@@ -11,7 +11,7 @@ This guide walks through the process of creating and deploying a Solidity-based 
 !!! note
     This tutorial was created using the pre-alpha release of [Moonbeam](https://github.com/PureStake/moonbeam/tree/crystalin-moonbeam-frontier). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development.  We have created this tutorial so you can test out Moonbeam’s Ethereum compatibility features.  Even though we are still in development, we believe it’s important that interested community members and developers have the opportunity to start to try things with Moonbeam and provide feedback.
 
-This guide assumes that you have a running local moonbeam node running in `--dev mode`, and that you have a MetaMask installation configured to use this local node.  You can find instructions for running a local Moonbeam node [here](getting-started/setting-up-a-node/) and to configure MetaMask for Moonbeam [here](/getting-started/using-metamask/).
+This guide assumes that you have a running local moonbeam node running in `--dev mode`, and that you have a MetaMask installation configured to use this local node.  You can find instructions for running a local Moonbeam node [here](/getting-started/setting-up-a-node/) and to configure MetaMask for Moonbeam [here](/getting-started/using-metamask/).
 
 ##Checking Prerequisites
 If you followed the guides above, you should have a local Moonbeam node producing blocks that looks like this:
