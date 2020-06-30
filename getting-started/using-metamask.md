@@ -1,7 +1,6 @@
 ---
 title: Using MetaMask
 description: Learn how to interact with the Moonbeam node using the MetaMask browser plug-in.
-hero: Getting Started with Moonbeam
 ---
 #Interacting with a Moonbeam Node Using MetaMask  
 ##Introduction  
