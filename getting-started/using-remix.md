@@ -1,7 +1,6 @@
 ---
 title: Using Remix
 description: Learn how to interact with the Moonbeam node using the Remix IDE for Ethereum.
-hero: Getting Started with Moonbeam
 ---
 
 #Interacting with Moonbeam Using Remix
