@@ -4,12 +4,12 @@ description: Learn how to set up your first Moonbeam node and connect it to the 
 hero: Getting Started with Moonbeam
 ---
 
-#Setting Up a Moonbeam Node and Connecting to the Polkadot JS GUI
-##Introduction
+#Setting Up a Moonbeam Node and Connecting to the Polkadot JS GUI  
+##Introduction  
 This guide outlines steps to create a node for testing the Ethereum compatibility functionality of Moonbeam.
 
 !!! note
-    This tutorial was created using the pre-alpha release of [Moonbeam](https://www.google.com/url?q=https://github.com/PureStake/moonbeam/tree/crystalin-moonbeam-frontier). . The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development.  We have created this tutorial so you can test out Moonbeam’s Ethereum compatibility features.  Even though we are still in development, we believe it’s important that interested community members and developers have the opportunity to start to try things with Moonbeam and provide feedback.
+    This tutorial was created using the pre-alpha release of [Moonbeam](https://github.com/PureStake/moonbeam/tree/crystalin-moonbeam-frontier). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development.  We have created this tutorial so you can test out Moonbeam’s Ethereum compatibility features.  Even though we are still in development, we believe it’s important that interested community members and developers have the opportunity to start to try things with Moonbeam and provide feedback.
 
 We will start by downloading and building a Moonbeam node that we will run in developer mode using the `--dev` flag.  
 
@@ -18,7 +18,7 @@ We will start by downloading and building a Moonbeam node that we will run in de
 
 The examples in this guide assume an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows.  If you follow to the end of this guide you will have a running Moonbeam node and will be able to connect it to the default Polkadot JS GUI.
 
-##Installation and Setup
+##Installation and Setup  
 We start by cloning and building a specific branch of the moonbeam repo that you can find here:
 
 [https://github.com/PureStake/moonbeam/tree/crystalin-moonbeam-frontier](https://github.com/PureStake/moonbeam/tree/crystalin-moonbeam-frontier)
@@ -89,4 +89,4 @@ Enter `0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b` as the account whose state we
 !!! note
     If you see “Unknown” in the response, check that the Moonbeam custom types have been loaded as described above.
 
-From here, you can begin testing Moonbeam’s Ethereum compatibility by [sending money via MetaMask](/getting-started/using-metamask/), via Remix (link to Remix tutorial), or with Truffle (link to Truffle tutorial).
+From here, you can begin testing Moonbeam’s Ethereum compatibility by [sending money via MetaMask](/getting-started/using-metamask/), [via Remix](/getting-started/using-remix/), or with Truffle (link to Truffle tutorial).
