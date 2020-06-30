@@ -1,7 +1,6 @@
 ---
 title: Setting Up a Node
 description: Learn how to set up your first Moonbeam node and connect it to the Polkadot JS GUI.
-hero: Getting Started with Moonbeam
 ---
 
 #Setting Up a Moonbeam Node and Connecting to the Polkadot JS GUI  
