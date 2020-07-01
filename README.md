@@ -9,7 +9,7 @@ This site provides documentation for Moonbeam, a Smart Contract Parachain on the
 
 
 ##What is Moonbeam?  
-Moonbeam is a developer oriented blockchain that strives to provide compatibility with the existing Ethereum developer toolchain and network.  It does this by providing a full EVM implementation, a web3 compatible API, and bridges connecting Moonbeam to existing Ethereum networks.  This means that developers will be able to deploy existing Solidity smart contracts and DApp frontends to Moonbeam with minimal changes.
+Moonbeam is a developer-oriented blockchain that strives to provide compatibility with the existing Ethereum developer toolchain and network.  It does this by providing a full EVM implementation, a web3 compatible API, and bridges connecting Moonbeam to existing Ethereum networks.  This means that developers will be able to deploy existing Solidity smart contracts and DApp frontends to Moonbeam with minimal changes.
 
 Moonbeam will also be a parachain on the Polkadot network which means that it will get shared security from the Polkadot relay chain, and that Moonbeam will be able to integrate with other chains that are connected to Polkadot once that functionality is available on Polkadot.
 
