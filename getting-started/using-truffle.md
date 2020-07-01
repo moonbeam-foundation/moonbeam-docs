@@ -33,6 +33,12 @@ Install Substrate and its pre-requisites (including Rust):
 curl https://getsubstrate.io -sSf | bash -s -- --fast 
 ```
 
+Initialize your Wasm Build environment (required for compiling Rust to Wasm):
+
+```
+./scripts/init.sh
+```
+
 And lastly, build the project using the Cargo command:
 
 ```
