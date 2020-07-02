@@ -8,7 +8,7 @@ description: Learn how to set up your first Moonbeam node and connect it to the 
 This guide outlines steps to create a node for testing the Ethereum compatibility functionality of Moonbeam.
 
 !!! note
-    This tutorial was created using the pre-alpha release of [Moonbeam](https://github.com/PureStake/moonbeam/tree/crystalin-moonbeam-frontier). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development.  We have created this tutorial so you can test out Moonbeam’s Ethereum compatibility features.  Even though we are still in development, we believe it’s important that interested community members and developers have the opportunity to start to try things with Moonbeam and provide feedback.
+    This tutorial was created using the pre-alpha release of [Moonbeam](https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development.  We have created this tutorial so you can test out Moonbeam’s Ethereum compatibility features.  Even though we are still in development, we believe it’s important that interested community members and developers have the opportunity to start to try things with Moonbeam and provide feedback.
 
 We will start by downloading and building a Moonbeam node that we will run in developer mode using the `--dev` flag.  
 
@@ -24,7 +24,7 @@ We start by cloning and building a specific branch of the moonbeam repo that you
 
 Follow the installation instructions on that page to set up Rust, install Substrate, and clone the repo.  Here is the output from the clone action from my laptop:
 
-![Output from clone action](/images/setting-up-node-1.png)
+![Output from clone action](/images/setting-up-node-1a.png)
 
 Once you have cloned all the required repos, it's time to build the node by running:
 
