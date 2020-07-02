@@ -31,7 +31,7 @@ Once you have cloned all the required repos, it's time to build the node by runn
 `cargo build --release`
 
 !!! note
-    The initial build will take a while, depending on your hardware. You should plan on 30 minutes.
+    The initial build will take a while, depending on your hardware. You should plan on 30 minutes.  You may see warnings related to evm v0.16.1 which can be ignored for purposes of this guide.
    
 Here is what the tail end of the build output looks like on my laptop:
 
