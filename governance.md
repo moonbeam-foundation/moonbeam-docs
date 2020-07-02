@@ -24,9 +24,9 @@ The "hard" governance process for Moonbeam will be driven by an on-chain process
 
 Some of the main components of this governance model include:
 
-* Council - A group of elected individuals who have special voting rights within the system.  Council members are expected to propose referenda for voting and have an ability to veto publicly sourced referenda.  There are rolling elections for council members where GLMR holders will vote on new or existing council members.  We plan to start with 5 council seats of which PureStake would occupy 2 seats.  We expect the number of council seats to grow over time via governance as the number of Moonbeam stakeholders increases.
+* Council - A group of elected individuals who have special voting rights within the system.  Council members are expected to propose referenda for voting and have an ability to veto publicly sourced referenda.  There are rolling elections for council members where GLMR holders will vote on new or existing council members.
 * Referenda - Any proposal for a change to the Moonbeam system including values for key parameters, code upgrades, or changes to the governance system itself.
 * Voting - Referenda will be voted on by GMLR token holders on a stake weighted basis.  Referenda which pass are subject to delayed enactment such that people that disagree with the direction of the decision have time to exit the network.
-* Treasury - a collection of funds that can be spent by submitting a proposal along with a deposit.  Spending proposals must be approved by the council.  Rejected proposals will result in the proposer losing their deposit.  In Moonbeam the treasury will be funded directly by a portion of block rewards.
+* Treasury - a collection of funds that can be spent by submitting a proposal along with a deposit.  Spending proposals must be approved by the council.  Rejected proposals will result in the proposer losing their deposit.
 
 See [https://polkadot.network/a-walkthrough-of-polkadots-governance/](https://polkadot.network/a-walkthrough-of-polkadots-governance/) and [https://wiki.polkadot.network/docs/en/learn-governance](https://wiki.polkadot.network/docs/en/learn-governance) for more details on how these Substrate frame pallets implement on-chain governance.
