@@ -1,5 +1,5 @@
 ---
-title: Eth Compatability
+title: Eth Compatibility
 description: Known differences and compatibility issues between Ethereum and Moonbeam
 ---
 
