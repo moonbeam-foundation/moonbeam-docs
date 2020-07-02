@@ -31,7 +31,7 @@ In addition to these Substrate Frame Pallets, we will be implementing modules th
 ##Ethereum Compatibility Architecture
 Smart contracts on Moonbeam can be implemented using Solidity, Vyper, and any other language which can compile smart contracts to EVM compatible bytecode.  Moonbean aims to provide a low-friction and secure environment for the development, testing, and execution of smart contracts that is compatible with the existing Ethereum developer toolchain.  The execution behavior and semantics of Moonbeam based smart contracts will strive to be as close to Ethereum version 1 as possible.  Moonbeam is a single shard, so cross contract calls have the same synchronous execution semantics as on Ethereum version 1.
 
-![Interaction Diagram](/images/interaction-diagram.png)
+![Interaction Diagram](/images/technology-diagram.png)
 
 A high level interaction flow is shown above.  A Web3 RPC call from a DApp or existing Ethereum developer tool such as Truffle are received by a Moonbeam node.  The node will have both Web3 RPCs and Substrate RPCs available meaning that you can use Ethereum or Substrate tools when interacting with a Moonbeam node.  These RPC calls are handled by associated Substrate runtime functions.  The Substrate runtime checks signatures and handles any extrinsics.  Smart contract calls are ultimately passed to the EVM to execute the state transitions.
 
