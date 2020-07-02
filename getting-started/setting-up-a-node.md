@@ -20,9 +20,9 @@ The examples in this guide assume an Ubuntu 18.04-based environment and will nee
 ##Installation and Setup  
 We start by cloning and building a specific branch of the moonbeam repo that you can find here:
 
-[https://github.com/PureStake/moonbeam/tree/crystalin-moonbeam-frontier](https://github.com/PureStake/moonbeam/tree/crystalin-moonbeam-frontier)
+[https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials](https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials)
 
-Follow the installation instructions on that page to set up Rust and clone the repo.  Here is the output from the clone action from my laptop:
+Follow the installation instructions on that page to set up Rust, install Substrate, and clone the repo.  Here is the output from the clone action from my laptop:
 
 ![Output from clone action](/images/setting-up-node-1.png)
 
