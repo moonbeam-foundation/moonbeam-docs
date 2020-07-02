@@ -33,25 +33,16 @@ Install Substrate and its pre-requisites (including Rust):
 curl https://getsubstrate.io -sSf | bash -s -- --fast 
 ```
 
-Initialize your Wasm Build environment (required for compiling Rust to Wasm):
-
-```
-./scripts/init.sh
-```
-
 And lastly, build the project using the Cargo command:
 
 ```
 cargo build --release
 ```
 
-!!! note
-    If a _cargo not found_ error appears in the terminal, manually add Rust to your system path (or restart your system):
-```bash
-source $HOME/.cargo/env
-```
+This will likely take 30 minutes or more, depending on your hardware.  You may see a warning about the use of deprecated item `sc_service::AbstractService::spawn_essential_task` which won’t affect the scenarios we are trying to show in this guide. 
 
-This will likely take 30 minutes or more, depending on your hardware.  You may see a warning about the use of deprecated item `sc_service::AbstractService::spawn_essential_task` which won’t affect the scenarios we are trying to show in this guide.  
+!!! note
+    If a _cargo not found_ error appears in the terminal, manually add Rust to your system path: _source $HOME/.cargo/env_
 
 Once the build finishes, you can start the Moonbeam node with the following command:
 
