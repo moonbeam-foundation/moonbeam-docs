@@ -8,15 +8,15 @@ description: Learn how to deploy a Solidity-based smart contract to a Moonbeam n
 This guide walks through the process of deploying a Solidity-based smart contract to a Moonbeam node using [Truffle](https://www.trufflesuite.com/).  Truffle is one of the commonly used development tools for smart contracts on Ethereum.  Given Moonbeam’s Ethereum compatibility features, Truffle can be used directly with a Moonbeam node.
 
 !!! note
-    This tutorial was created using the pre-alpha release of [Moonbeam](https://github.com/PureStake/moonbeam/tree/crystalin-moonbeam-frontier). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development.  We have created this tutorial so you can test out Moonbeam’s Ethereum compatibility features.  Even though we are still in development, we believe it’s important that interested community members and developers have the opportunity to start to try things with Moonbeam and provide feedback.
+    This tutorial was created using the pre-alpha release of [Moonbeam](https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development.  We have created this tutorial so you can test out Moonbeam’s Ethereum compatibility features.  Even though we are still in development, we believe it’s important that interested community members and developers have the opportunity to start to try things with Moonbeam and provide feedback.
 
 This guide is based on an Ubuntu 18.04 installation and assumes that you have a running local Moonbeam node running in `--dev` mode.  You can find instructions for running a local Moonbeam node [here](/getting-started/setting-up-a-node/).
 
 ##Installation and Setup  
-You will need to install a specific branch from the Moonbeam repo to install the version that was used to create this guide. To do that, first clone the [crystallin-add-tools branch](https://github.com/PureStake/moonbeam/tree/crystalin-add-tools) using the following command:
+You will need to install a specific branch from the Moonbeam repo to install the version that was used to create this guide. To do that, first clone the [moonbeam-tutorials](https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials) using the following command:
 
 ```
-git clone -b crystalin-add-tools https://github.com/PureStake/moonbeam
+git clone -b moonbeam-tutorials https://github.com/PureStake/moonbeam
 ```
 
 When building Moonbeam, you need to initialize and update the included submodules with the following command:
@@ -139,7 +139,7 @@ At the end of the process you should see a note about the number of packages whi
 Before we can deploy our contracts, let's compile them. You can do this with the following command:
 
 ```
-truffle compile
+node_modules/.bin/truffle compile
 ```
 
 If successful, you should see output like the following:
@@ -149,10 +149,10 @@ If successful, you should see output like the following:
 Now we are ready to deploy the compiled contracts.  You can do this with the following command:
 
 ```
-truffle migrate --network development
+node_modules/.bin/truffle migrate --network development
 ```
 
-If successful, you will see deployment actions including the address of the deployed contracts:
+If successful, you will see deployment actions including the address of the deployed contract:
 
 ![Successful contract deployment actions](/images/using-truffle-5.png)
 
