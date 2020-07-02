@@ -4,10 +4,10 @@ description: Learn how to interact with the Moonbeam node using the MetaMask bro
 ---
 #Interacting with a Moonbeam Node Using MetaMask  
 ##Introduction  
-This guide outlines steps for using a self-contained Moonbeam dev node to send tokens between EVM accounts with MetaMask.  If you haven’t already set up your own local dev node, refer to [this tutorial](/getting-started/setting-up-a-node/) or follow the instructions in the [GitHub repository](https://github.com/PureStake/moonbeam).
+This guide outlines steps for using a self-contained Moonbeam dev node to send tokens between EVM accounts with MetaMask.  If you haven’t already set up your own local dev node, refer to [this tutorial](/getting-started/setting-up-a-node/) or follow the instructions in the [GitHub repository](https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials).
 
 !!! note
-    This tutorial was created using the pre-alpha release of [Moonbeam](https://github.com/PureStake/moonbeam/tree/crystalin-moonbeam-frontier). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development.  We have created this tutorial so you can test out Moonbeam’s Ethereum compatibility features.  Even though we are still in development, we believe it’s important that interested community members and developers have the opportunity to start to try things with Moonbeam and provide feedback.
+    This tutorial was created using the pre-alpha release of [Moonbeam](https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development.  We have created this tutorial so you can test out Moonbeam’s Ethereum compatibility features.  Even though we are still in development, we believe it’s important that interested community members and developers have the opportunity to start to try things with Moonbeam and provide feedback.
 
 The examples in this guide assume an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows.
 
