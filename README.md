@@ -22,6 +22,6 @@ Follow us on twitter for regular updates: [@MoonbeamNetwork](https://twitter.com
 
 We send a monthly newsletter with project updates that you can sign up for [here](https://moonbeam.network/).
 
-##About this Site
+##About This Site
 This site is generated based on content in the moonbeam-docs repo which can be found [here](https://github.com/PureStake/moonbeam-docs) using [mkdocs](https://www.mkdocs.org/).
 
