@@ -13,16 +13,6 @@ Moonbeam is a developer-oriented blockchain that strives to provide compatibilit
 
 Moonbeam will also be a parachain on the Polkadot network which means that it will get shared security from the Polkadot relay chain, and that Moonbeam will be able to integrate with other chains that are connected to Polkadot once that functionality is available on Polkadot.
 
-##What is the Current Status and Roadmap for Moonbeam?
-Moonbeam is currently pre alpha software.  We are working on the implementation of the minimum feature set which will be needed to launch our testnet in Q3 2020.  Our rough roadmap beyond that is to launch on Kusama in Q4 2020 and on the Polkadot mainnet in Q1 2021.
-
-You can follow the Getting Started guides on this website to start to work with the Ethereum compatibility functionality of Moonbeam.  Our current focus is on making sure the Moonbeam EVM and Web3 features are feature complete.  Other critical components in our backlog that have to be implemented include the implementation of a unified account system and functionality to power collator incentives.
-
-##What are the Differences Between Moonbeam and Ethereum?
-While Moonbeam strives to be compatible with Ethereum’s Web3 API and EVM, there are a number of important Moonbeam differences.  Moonbeam uses a Proof of Stake based consensus mechanism, which means that Proof of Work concepts such as difficulty, uncles, hashrate, etc generally don’t have meaning within Moonbeam.  For APIs that return values related to Ethereum’s Proof of Work, we return default values.  Existing Ethereum contracts that rely on Proof of Work internals (e.g. Mining Pool contracts) will not work as expected on Moonbeam.
-
-Another significant difference between Moonbeam and Ethereum is that Moonbeam includes an extensive set of on-chain governance features based on Substrate functionality.  These onchain governance modules include functionality to power upgrades to the blockchain itself based on token weighted voting.
-
 ##How Can I Engage With the Moonbeam Community?
 Technical discussions and support are encouraged in our Riot room that can be found [here](https://matrix.to/#/!dzULkAiPePEaverEEP:matrix.org?via=matrix.org)
 
