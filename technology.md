@@ -35,5 +35,5 @@ Smart contracts on Moonbeam can be implemented using Solidity, Vyper, and any ot
 
 A high level interaction flow is shown above.  A Web3 RPC call from a DApp or existing Ethereum developer tool such as Truffle are received by a Moonbeam node.  The node will have both Web3 RPCs and Substrate RPCs available meaning that you can use Ethereum or Substrate tools when interacting with a Moonbeam node.  These RPC calls are handled by associated Substrate runtime functions.  The Substrate runtime checks signatures and handles any extrinsics.  Smart contract calls are ultimately passed to the EVM to execute the state transitions.
 
-By basing our EVM implementation on Pallet-EVM, which in turn is based on SputnikVM, we get a full EVM implementation that is currently in use in Ethereum Classic.
+By basing our EVM implementation on the Substrate Pallet-EVM, we get a full Rust based EVM implementation and support from the Parity engineering team.
 
