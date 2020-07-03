@@ -1,6 +1,6 @@
 ---
-title: Using Web3 to sign Moonbeam transactions
-description: Learn how send transactions with a simple script using web3.
+title: Using Web3
+description: Learn how send Moonbeam transactions with a simple script using web3.
 ---
 
 #Setting Using Web3 to sign Moonbeam transactions
