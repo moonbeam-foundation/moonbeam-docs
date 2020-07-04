@@ -59,7 +59,7 @@ For our example, we only need a single Javascript file (named arbitrarily _trans
 In the variable definitions, first, create our web3 constructor (`Web3`). Define the `privKey` variable as the private key of our genesis account, where all the funds are stored when deploying your local Moonbeam node, and this is also used to sign the transactions. Then, set the from and to addresses, make sure to use another address from your local Metamask account as the value of `toAddress`. And lastly, create a local web3 instance, where we set the provider to connect to our local Moonbeam node.
 
 !!! note 
-  Remember to change the _addressTo_ variable to another address provided by your Metamask wallet.
+    Remember to change the _addressTo_ variable to another address provided by your Metamask wallet.
 
 ```
 const Web3 = require('web3');
