@@ -3,7 +3,7 @@ title: Links
 description: Links to Important Resources for Moonbeam
 ---
 
-#Resources
+#Links
 
 * [Substrate.dev](https://substrate.dev/) - Starting point for learning about Substrate, which is a Rust based framework for developing blockchains.  Moonbeam is developed using Substrate and uses many of the modules that come with Substrate.
 * [Polkadot.network](https://polkadot.network/) - Learn about Polkadot, the vision behind the network, how the system works including staking, governance, etc.
