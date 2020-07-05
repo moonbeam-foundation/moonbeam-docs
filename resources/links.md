@@ -1,5 +1,5 @@
 ---
-title: Resources
+title: Links
 description: Links to Important Resources for Moonbeam
 ---
 
