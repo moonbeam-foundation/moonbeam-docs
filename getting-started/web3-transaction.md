@@ -54,7 +54,7 @@ npm ls web3
 As of the writing of this guide, the version used was 1.2.9. 
 
 ##The Transaction File
-For our example, we only need a single Javascript file (named arbitrarily _transaction.js_, which you can find [transaction file](/getting-started/transaction.js)) to make the transaction, which we will run using the `node` command in the terminal. The script will transfer 100 ETH from the genesis account to another address. For simplicity, the file is divided into three sections: variable definition, create transaction and deploy transaction.
+For our example, we only need a single Javascript file (named arbitrarily _transaction.js_, which you can find [here](/getting-started/transaction.js)) to make the transaction, which we will run using the `node` command in the terminal. The script will transfer 100 ETH from the genesis account to another address. For simplicity, the file is divided into three sections: variable definition, create transaction and deploy transaction.
 
 In the variable definitions, first, create our web3 constructor (`Web3`). Define the `privKey` variable as the private key of our genesis account, where all the funds are stored when deploying your local Moonbeam node, and this is also used to sign the transactions. Then, set the from and to addresses, make sure to use another address from your local Metamask account as the value of `toAddress`. And lastly, create a local web3 instance, where we set the provider to connect to our local Moonbeam node.
 
@@ -149,7 +149,7 @@ deploy();
 ```
 
 ## The Balance File
-Before running the script, we need another file to check the balances of both addresses before and after the transaction is executed. We can easily do this by leveraging the Ethereum compatibility features of Moonbeam. For simplicity, the balance file (named arbitrarily _balances.js_, which you can find [transaction file](/getting-started/balances.js)) is composed of two sections: the variables definition and the balance call.
+Before running the script, we need another file to check the balances of both addresses before and after the transaction is executed. We can easily do this by leveraging the Ethereum compatibility features of Moonbeam. For simplicity, the balance file (named arbitrarily _balances.js_, which you can find [here](/getting-started/balances.js)) is composed of two sections: the variables definition and the balance call.
 
 The variable definition is the same as for the previous transaction file, the only difference is that we do not need the private key as this is only a call function (reading data from the local Moonbeam node).
 
