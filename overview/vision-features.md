@@ -3,7 +3,7 @@ title: Vision
 description: We envision a multi-chain future, where users and assets can move freely across chains
 ---
 
-#Moonbeam Vision
+#Our Vision for Moonbeam
 ##Why We Are Building Moonbeam
 
 We believe in a multi-chain future with many chains, and many users and assets on those chains.
