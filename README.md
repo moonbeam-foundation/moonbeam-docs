@@ -17,18 +17,17 @@ Moonbeam will also be a parachain on the Polkadot network. That means that it wi
 
 ##How to Engage With the Moonbeam Community  
 
-###Riot  
+### :riot:  Riot  
 Technical discussions and support are encouraged in our Riot room that can be found [here](https://riot.im/app/#/room/!dzULkAiPePEaverEEP:matrix.org?via=matrix.org)
 
-###Telegram  
+### :fontawesome-brands-telegram-plane:  Telegram  
 General information and other non-technical topics can be discussed in our Telegram group [here](https://t.me/PureStake).
 
-### :material-Twitter: Twitter  
+### :fontawesome-brands-twitter:  Twitter  
 Follow us on Twitter for regular updates: [@MoonbeamNetwork](https://twitter.com/MoonbeamNetwork).
 
-###Newsletter  
+### :fontawesome-solid-envelope:  Newsletter  
 We send a monthly newsletter with project updates that you can sign up for [here](https://moonbeam.network/newsletter/).
 
 ##About This Site
-This site is generated based on content in the moonbeam-docs repo which can be found [here](https://github.com/PureStake/moonbeam-docs) using [mkdocs](https://www.mkdocs.org/).
-
+This site is generated using [mkdocs](https://www.mkdocs.org/) and is based on content in the moonbeam-docs repo, which can be found [on :fontawesome-brands-github: GitHub](https://github.com/PureStake/moonbeam-docs).
