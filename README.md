@@ -23,7 +23,7 @@ Technical discussions and support are encouraged in our Riot room that can be fo
 ###Telegram  
 General information and other non-technical topics can be discussed in our Telegram group [here](https://t.me/PureStake).
 
-###Twitter  
+### :material-Twitter: Twitter  
 Follow us on Twitter for regular updates: [@MoonbeamNetwork](https://twitter.com/MoonbeamNetwork).
 
 ###Newsletter  
