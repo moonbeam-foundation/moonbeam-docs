@@ -15,13 +15,18 @@ Moonbeam is a developer-oriented blockchain that strives to provide compatibilit
 
 Moonbeam will also be a parachain on the Polkadot network. That means that it will get shared security from the Polkadot relay chain and will be able to integrate with other chains that are connected to Polkadot (once that functionality is available on Polkadot).
 
-##How Can I Engage With the Moonbeam Community?
+##How to Engage With the Moonbeam Community  
+
+###Riot  
 Technical discussions and support are encouraged in our Riot room that can be found [here](https://riot.im/app/#/room/!dzULkAiPePEaverEEP:matrix.org?via=matrix.org)
 
+###Telegram  
 General information and other non-technical topics can be discussed in our Telegram group [here](https://t.me/PureStake).
 
+###Twitter  
 Follow us on Twitter for regular updates: [@MoonbeamNetwork](https://twitter.com/MoonbeamNetwork).
 
+###Newsletter  
 We send a monthly newsletter with project updates that you can sign up for [here](https://moonbeam.network/newsletter/).
 
 ##About This Site
