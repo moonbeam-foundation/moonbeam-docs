@@ -16,7 +16,7 @@ Moonbeam will also be a parachain on the Polkadot network which means that it wi
 ##How Can I Engage With the Moonbeam Community?
 Technical discussions and support are encouraged in our Riot room that can be found [here](https://matrix.to/#/!dzULkAiPePEaverEEP:matrix.org?via=matrix.org)
 
-General information and other non-technical topics can be discussed in our telegram group [here]().
+General information and other non-technical topics can be discussed in our telegram group [here](https://t.me/PureStake).
 
 Follow us on twitter for regular updates: [@MoonbeamNetwork](https://twitter.com/MoonbeamNetwork).
 
