@@ -88,4 +88,4 @@ Enter `0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b` as the account whose state we
 !!! note
     If you see “Unknown” in the response, check that the Moonbeam custom types have been loaded as described above.
 
-From here, you can begin testing Moonbeam’s Ethereum compatibility by [sending money via MetaMask](/getting-started/using-metamask/), [via Remix](/getting-started/using-remix/), with [Truffle](/getting-started/using-truffle/), or using the [Web3 library](/getting-started/web3-transaction/.
+From here, you can begin testing Moonbeam’s Ethereum compatibility by [sending money via MetaMask](/getting-started/using-metamask/), [via Remix](/getting-started/using-remix/), with [Truffle](/getting-started/using-truffle/), or using the [Web3 library](/getting-started/web3-transaction/).
