@@ -3,7 +3,8 @@ title: Using Web3 for Contracts
 description: Learn how to deploy Solidity-based contracts on Moonbeam with a simple script using web3.
 ---
 
-#Setting Using Web3 to deploy smart contracts on Moonbeam ##Introduction  
+#Setting Using Web3 to deploy smart contracts on Moonbeam 
+##Introduction  
 This guide walks you through the process of using the solidity compiler and Web3 to deploy and interact with a Solidity-based smart contract on a Moonbeam dev node. Given Moonbeam’s Ethereum compatibility features, the Web3 library can be used directly with a Moonbeam node.
 
 The examples on this guide are based on a Ubuntu 18.04 environment and assume that you have a local Moonbeam node running in --dev mode, you can find instructions to set up a local Moonbeam node [here](/getting-started/setting-up-a-node/).
@@ -66,7 +67,7 @@ As of the writing of this guide, versions used were 1.2.9 and 0.6.10, respective
 
 The contract we will use is a very simple incrementer (arbitrarly named _Incrementer.sol_, and which you can find [here](/code-snippets/web3-contract/Incrementer.sol)), the Solidity code is the following:
 
-```
+```js
 pragma solidity ^0.6.0;
 
 contract Incrementer{
@@ -95,7 +96,7 @@ Our `constructor` function, that runs when the contract is deployed, sets the in
 
 The only purpose of the _compile.js_ file (arbitrarily named, and which you can find [here](/code-snippets/web3-contract/compile.js)), is to use the Solidity compiler to output the bytecode and interface of our contract. First, we need to load the different modules that we will use for this process. The _path_ and _fs_ modules are included by default in Node.js (that is why we didn't have to install it before). Next, we have to read the content of the Solidity file (in UTF8 encoding). Then, we build the input object for the solidity compiler. And finally, we run the compiler and extract the data related to our incrementer contract, because for this simple example, is all we need.
 
-```
+```js
 const path = require('path');
 const fs = require('fs');
 const solc = require('solc');
@@ -125,12 +126,12 @@ module.exports = contractFile;
 
 ## The Deploy File
 
-The deployment file is divided into two subsections: the initialization and the deploy contract. First, we need to load our web3 module and the export of the _compile.js_ file, from which we will extract the `bytecode` and `abi`. Next, define the privKey variable as the private key of our genesis account, where all the funds are stored when deploying your local Moonbeam node, and this is also used to sign the transactions. The address is needed to specify the form value of the transaction. And lastly, create a local web3 instance, where we set the provider to connect to our local Moonbeam node.
+The deployment file (which you can find [here](/code-snippets/web3-contract/deploy.js)) is divided into two subsections: the initialization and the deploy contract. First, we need to load our web3 module and the export of the _compile.js_ file, from which we will extract the `bytecode` and `abi`. Next, define the privKey variable as the private key of our genesis account, where all the funds are stored when deploying your local Moonbeam node, and this is also used to sign the transactions. The address is needed to specify the form value of the transaction. And lastly, create a local web3 instance, where we set the provider to connect to our local Moonbeam node.
 
 To deploy the contract, we create an asynchronous function to handle the transaction promises. First, we need to create a local instance of our contract using the `web3.eth.Contract(abi)`, from which we will call the deploy function. For this function, provide the `bytecode` and the arguments input of the constructor function, in our case was just one that was arbitrarily set to five. Then, to create the transaction, we use the `web3.eth.accounts.signTransaction(tx, privKey)` command, where we have to define the tx object with some parameters such as: from address, the encoded abi from the previous step, and the gas limit. The private key must be provided as well to sign the transaction.
 
 
-```
+```js
 const Web3 = require('web3');
 const contractFile = require('./compile');
 
@@ -184,7 +185,7 @@ In this section, we will quickly go over the files that interact with our contra
 
 The following step is to create a local instance of the contract by using the `web3.eth.Contract(abi)` command. Then, wrapped in an async function, we can write the contract call by running `web3.methods.myMethods()`, where we set the method or function that we want to call and provide the inputs for this call. This promise returns the data that we can log in the console. And lastly, we run our get function.
 
-```
+```js
 const Web3 = require('web3');
 const { abi } = require('./compile');
 
@@ -208,7 +209,7 @@ get();
 
 Let's now define the file to send a transaction that will add the value provided to our number. The _increment.js_ file (which you can find [here](/code-snippets/web3-contract/increment.js)) is somewhat different to the previous example, and that is because here we are modifying the stored data, and for this, we need to send a transaction that pays gas. However, the initialization part of the file is similar. The only differences are that the private key must be defined for signing and that we've defined a `_value` that corresponds to the value to be added to our number. The contract transaction starts by creating a local instance of the contract as before, but when we call the corresponding `incrementer(_value).encodedABI` method where we pass in `_value`. Then, as we did when deploying the contract, we need to create the transaction with the corresponding data (wrapped in a async function), sign it with the private key, and send it. Lastly, we run our incrementer function.
 
-```
+```js
 const Web3 = require('web3');
 const { abi } = require('./compile');
 
@@ -249,7 +250,7 @@ increment();
 
 The _reset.js_ file (which you can find [here](/code-snippets/web3-contract/reset.js)), is almost identical to the previous example. The only difference is that we need to call the `reset()` method which takes no input.
 
-```
+```js
 const Web3 = require('web3');
 const { abi } = require('./compile');
 
