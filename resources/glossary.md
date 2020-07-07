@@ -22,3 +22,9 @@ A smart contract is a computer program or a transaction protocol which is intend
 
 ###Substrate
 A Rust based blockchain development framework created by Parity Technologies based on their experience implementing multiple blockchain clients.  Substrate comes with many modules and functionalities that are needed when you are building a blockchain including p2p network, consensus mechanisms, staking, cryptocurrency, on chain governance modules, etc.  It dramatically reduces the time and engineering effort required to implement a blockchain. 
+
+###Substrate Frame Pallets
+Substrate Frame Pallets are a collection of Rust-based modules providing functionality that is required when building a blockchain.  
+
+###WebAssembly/Wasm
+WebAssembly is an open standard that defines a portable binary code format. It is supported by different programming languages, compilers, and browsers.
