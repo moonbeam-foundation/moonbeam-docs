@@ -1,8 +1,8 @@
 ---
-title: Why We're Building on Polkadot
+title: Why Polkadot
 description: Moonbeam is built atop Substrate on the Polkadot network, adding speed and security to the platform.
 ---
-
+#Why We're Building on Polkadot
 After extensive research, we decided to build Moonbeam using the [Substrate development framework](/resources/glossary/#substrate) and to deploy Moonbeam as a [parachain](/resources/glossary/#parachains) on the [Polkadot network](/resources/glossary/#polkadot). 
 
 ##Substrate Blockchain Framework
