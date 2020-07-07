@@ -1,6 +1,6 @@
 ---
 title: Governance
-description: Explanation of how Governance works in Moonbeam
+description: Moonbeam will use an on-chain governance system, allowing for a stake-weighted vote on public referenda.
 ---
 
 #Governance in Moonbeam
