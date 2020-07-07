@@ -1,5 +1,5 @@
 ---
-title: Using Web3
+title: Using Web3 for Transactions
 description: Learn how send Moonbeam transactions with a simple script using web3.
 ---
 
