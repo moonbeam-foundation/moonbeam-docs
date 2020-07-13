@@ -24,7 +24,7 @@ We start by cloning and building a specific branch of the moonbeam repo that you
 
 Follow the installation instructions on that page to set up Rust, install Substrate, and clone the repo.  Here is the output from the clone action from my laptop:
 
-![Output from clone action](/images/setting-up-node-1b.png)
+![Output from clone action](/images/setting-up-a-node/setting-up-node-1b.png)
 
 Once you have cloned all the required repos, it's time to build the node by running:
 
@@ -35,7 +35,7 @@ Once you have cloned all the required repos, it's time to build the node by runn
    
 Here is what the tail end of the build output looks like on my laptop:
 
-![End of build output](/images/setting-up-node-2a.png)
+![End of build output](/images/setting-up-a-node/setting-up-node-2a.png)
 
 Then you will want to run the node in dev mode using the following command:
 
@@ -43,7 +43,7 @@ Then you will want to run the node in dev mode using the following command:
 
 You should see output that looks like the following and that shows blocks being produced:
 
-![Output shows blocks being produced](/images/setting-up-node-3a.png)
+![Output shows blocks being produced](/images/setting-up-a-node/setting-up-node-3a.png)
 
 ##Connecting Polkadot JS Apps to a Local Moonbeam Node
 The locally-running Moonbeam node is a Substrate-based node, so we can interact with it using standard Substrate tools.  Let’s start by connecting to it with Polkadot JS Apps.  
@@ -51,7 +51,7 @@ Open a browser to: [https://polkadot.js.org/apps/#/settings](https://polkadot.js
 
 This will open Polkadot JS Apps and bring you to the RPC configuration area, where you specify which Substrate RPC endpoint you want to connect to.  You will want to toggle the “remote node/endpoint to connect to” to “Local Node (Own, 127.0.0.1:9944)” which is the very last option in the dropdown (you have to scroll down):
 
-![Select Local Node](/images/setting-up-node-4a.png)
+![Select Local Node](/images/setting-up-a-node/setting-up-node-4a.png)
 
 Next we need to add Moonbeam custom types to Polkadot JS so it understands them.  Under settings navigate to the “Developer” tab, enter the following JSON and hit Save:
 
@@ -82,7 +82,7 @@ Next we need to add Moonbeam custom types to Polkadot JS so it understands them.
 
 It should look like this in the UI:
 
-![Node selected in UI](/images/setting-up-node-5a.png)
+![Node selected in UI](/images/setting-up-a-node/setting-up-node-5a.png)
 
 With Polkadot JS properly set up, you can look at blocks being produced in the explorer view, examine the chain state, etc.
 
@@ -97,7 +97,7 @@ Navigate to Chain state, select the “evm” module, and select “accounts(H16
 
 Enter `0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b` as the account whose state we want to query.  This is an account in the Moonbeam dev node that has been given an initial balance via the genesis configuration.  If you query this account, you should get a balance back that looks like this:
 
-![Querying the account](/images/setting-up-node-6a.png)
+![Querying the account](/images/setting-up-a-node/setting-up-node-6a.png)
 
 !!! note
     If you see “Unknown” in the response, check that the Moonbeam custom types have been loaded as described above.
