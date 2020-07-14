@@ -8,7 +8,7 @@ description: Learn how to set up your first Moonbeam node and connect it to the 
 This guide outlines steps to create a node for testing the Ethereum compatibility functionality of Moonbeam.
 
 !!! note
-This tutorial was created using the pre-alpha release of [Moonbeam](https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development. We have created this tutorial so you can test out Moonbeam’s Ethereum compatibility features. Even though it is still in development, we believe it’s important that interested community members and developers have the opportunity to start to try things with Moonbeam and provide feedback.
+    This tutorial was created using the pre-alpha release of [Moonbeam](https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development. We have created this tutorial so you can test out Moonbeam’s Ethereum compatibility features. Even though it is still in development, we believe it’s important that interested community members and developers have the opportunity to start to try things with Moonbeam and provide feedback.
 
 The examples in this guide assume an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows. If you follow to the end of this guide, you will have a running Moonbeam node and will be able to connect it to the default Polkadot JS GUI.
 
@@ -44,7 +44,7 @@ Once you have followed all of the procedures above, it's time to build the node 
 `cargo build --release`
 
 !!! note
-The initial build will take a while, depending on your hardware. You should plan on 30 minutes. You may see warnings related to evm v0.16.1 and use of deprecated item 'sc_service::AbstractService::spawn_essential_task' which can be ignored for purposes of this guide.
+    The initial build will take a while, depending on your hardware. You should plan on 30 minutes. You may see warnings related to evm v0.16.1 and use of deprecated item 'sc_service::AbstractService::spawn_essential_task' which can be ignored for purposes of this guide.
 
 Here is what the tail end of the build output should look like:
 
@@ -55,7 +55,7 @@ Then you will want to run the node in dev mode using the following command:
 `./target/release/node-moonbeam --dev`
 
 !!! note
-For people not familiar with Substrate, the `--dev` flag is a way you can run a Substrate-based node in a single node developer configuration for testing purposes. You can learn more about `--dev` in [this Substrate tutorial](https://substrate.dev/docs/en/tutorials/create-your-first-substrate-chain/interact).
+    For people not familiar with Substrate, the `--dev` flag is a way you can run a Substrate-based node in a single node developer configuration for testing purposes. You can learn more about `--dev` in [this Substrate tutorial](https://substrate.dev/docs/en/tutorials/create-your-first-substrate-chain/interact).
 
 You should see an output that looks like the following, showing that blocks are being produced:
 
@@ -117,6 +117,6 @@ Enter `0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b` as the account whose state we
 ![Querying the account](/images/setting-up-a-node/setting-up-node-6a.png)
 
 !!! note
-If you see “Unknown” in the response, check that the Moonbeam custom types have been loaded as described above.
+   If you see “Unknown” in the response, check that the Moonbeam custom types have been loaded as described above.
 
 From here, you can begin testing Moonbeam’s Ethereum compatibility by [sending money via MetaMask](/getting-started/using-metamask/), [via Remix](/getting-started/using-remix/), with [Truffle](/getting-started/using-truffle/), or using the [Web3 library](/getting-started/web3-transaction/).
