@@ -17,11 +17,11 @@ Moonbeam will also be a parachain on the Polkadot network. That means that it wi
 
 ##How to Engage With the Moonbeam Community  
 
-### :moonbeam-riot:  Riot  
-Technical discussions and support are encouraged in our Riot room that can be found [here](https://riot.im/app/#/room/!dzULkAiPePEaverEEP:matrix.org?via=matrix.org)
+### :moonbeam-riot:  Element (Formerly Riot)  
+Technical discussions and support are encouraged in our Riot room that can be found [here](https://riot.im/app/#/room/#moonbeam:matrix.org)
 
 ### :fontawesome-brands-telegram-plane:  Telegram  
-General information and other non-technical topics can be discussed in our Telegram group [here](https://t.me/PureStake).
+General information and other non-technical topics can be discussed in our Telegram group [here](https://t.me/Moonbeam_Official).
 
 ### :fontawesome-brands-twitter:  Twitter  
 Follow us on Twitter for regular updates: [@MoonbeamNetwork](https://twitter.com/MoonbeamNetwork).
