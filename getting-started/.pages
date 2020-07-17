@@ -6,3 +6,4 @@ arrange:
   - using-truffle.md
   - web3-transaction.md
   - web3-contract.md
+  - code-snippets.md

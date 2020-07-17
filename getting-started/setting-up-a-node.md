@@ -4,6 +4,9 @@ description: Learn how to set up your first Moonbeam node and connect it to the 
 ---
 
 #Setting Up a Moonbeam Node and Connecting to the Polkadot JS GUI  
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed//0HZDeqBhCXM' frameborder='0' allowfullscreen></iframe></div>
+<style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>You can find all the relevant code for this tutorial in [here](/getting-started/code-snippets/)</div>
+
 ##Introduction  
 This guide outlines steps to create a node for testing the Ethereum compatibility functionality of Moonbeam.
 
