@@ -69,18 +69,18 @@ cargo build --release
 }
 ```
 
-##Genesis account
-**Public Address:**
+##Genesis Account
+**Public address:**
 ```
 0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b
 ```
 
-**Private Key:**
+**Private key:**
 ```
 99B3C12287537E38C90A9219D4CB074A89A16E9CDB20BF85728EBD97C343E342
 ```
 
-##Metamask
+##MetaMask
 **Local Moonbeam node details:**  
 Network Name: 
 ```
@@ -95,7 +95,7 @@ ChainID:
 43
 ```
 
-**Gas Limit:**  
+**Gas limit:**  
 We are working through some issues related to gas estimation in Moonbeam. In the meantime, set the gas limit manually to:  
 ```
 4294967295
@@ -115,4 +115,66 @@ contract MyToken is ERC20 {
     _mint(msg.sender, initialSupply);
   }
 }
+```
+
+##Truffle
+**Truffle configuration file _truffle-config.js_:**
+```javascript
+const PrivateKeyProvider = require ('./private-provider')
+var privateKey = "99B3C12287537E38C90A9219D4CB074A89A16E9CDB20BF85728EBD97C343E342";
+
+module.exports = {
+  networks: {
+    development: {
+      provider: () => new PrivateKeyProvider(privateKey, "http://localhost:9933/", 43),
+      network_id: 43
+    },
+    live: {
+      provider: () => new PrivateKeyProvider(privateKey, "http://35.203.125.209:9933/", 43),
+      network_id: 43
+    },
+    ganache: {
+      provider: () => new PrivateKeyProvider(privateKey, "http://localhost:8545/", 43),
+      network_id: 43
+    }
+  }
+}
+```
+
+**ERC-20 contract for Truffle example:*
+```
+pragma solidity ^0.5.0;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20Detailed.sol";
+
+// This ERC-20 contract mints the specified amount of tokens to the contract creator.
+contract MyToken is ERC20, ERC20Detailed {
+    constructor(uint256 initialSupply)
+        public
+        ERC20Detailed("MyToken", "MYTOK", 18)
+    {
+        _mint(msg.sender, initialSupply);
+    }
+}
+```
+
+**Truffle migration script _2_deploy_contracts.js_:**
+```javascript
+var MyToken = artifacts.require("MyToken");
+
+module.exports = function (deployer) {
+  // deployment steps
+  deployer.deploy(MyToken, "8000000000000000000000000", { gas: 4294967295 });
+};
+```
+
+**Compile contracts in Truffle:**
+```
+node_modules/.bin/truffle compile
+```
+
+**Deploy contracts in Truffle:**
+```
+node_modules/.bin/truffle migrate --network development
 ```
