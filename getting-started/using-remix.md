@@ -5,7 +5,7 @@ description: Learn how to interact with the Moonbeam node using the Remix IDE fo
 
 #Interacting with Moonbeam Using Remix
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed//OZ_-xyHS-w4' frameborder='0' allowfullscreen></iframe></div>
-<style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>You can find all of the relevant code for this tutorial on the [code snippets page](/getting-started/code-snippets/)</div>
+<style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>You can find all of the relevant code for this tutorial on the [code snippets page](/resources/code-snippets/)</div>
 
 ##Introduction
 This guide walks through the process of creating and deploying a Solidity-based smart contract to a Moonbeam dev node using the [Remix IDE](https://remix.ethereum.org/).  Remix is one of the commonly used development environments for smart contracts on Ethereum.  Given Moonbeam’s Ethereum compatibility features, Remix can be used directly with a Moonbeam node.
