@@ -12,50 +12,12 @@ This guide walks through the process of deploying a Solidity-based smart contrac
 
 This guide is based on an Ubuntu 18.04 installation and assumes that you have a running local Moonbeam node running in `--dev` mode.  You can find instructions for running a local Moonbeam node [here](/getting-started/setting-up-a-node/).
 
-##Installation and Setup  
-You will need to install a specific branch from the Moonbeam repo to install the version that was used to create this guide. To do that, first clone the [moonbeam-tutorials](https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials) using the following command:
-
-```
-git clone -b moonbeam-tutorials https://github.com/PureStake/moonbeam
-```
-
-When building Moonbeam, you need to initialize and update the included submodules with the following command:
-
-```
-cd moonbeam && git submodule init && git submodule update && \
-  cd vendor/frontier && git submodule init && git submodule update && \
-  cd ../..
-```
-
-Install Substrate and its pre-requisites (including Rust):
-
-```
-curl https://getsubstrate.io -sSf | bash -s -- --fast 
-```
-
-And lastly, build the project using the Cargo command:
-
-```
-cargo build --release
-```
-
-This will likely take 30 minutes or more, depending on your hardware.  You may see a warning about the use of deprecated item `sc_service::AbstractService::spawn_essential_task` which won’t affect the scenarios we are trying to show in this guide. 
-
-!!! note
-    If a _cargo not found_ error appears in the terminal, manually add Rust to your system path: _source $HOME/.cargo/env_
-
-Once the build finishes, you can start the Moonbeam node with the following command:
-
-```
-./target/release/node-moonbeam --dev
-```
-
 ##Checking Prerequisites and Setting Up Truffle  
-If you followed the steps above, you should have a local Moonbeam node producing blocks that looks like this:
+If you followed the previous guides, you should have a local Moonbeam node producing blocks that looks like this:
 
 ![Local Moonbeam node that's producing blocks](/images/using-truffle-1.png)
 
-Navigate to the folder where you built Moonbeam and go into the `tools/truffle` directory.  In my case, this is `/home/derek/moonbeam/tools/truffle`, but replace this with the correct path for your environment.  This directory has a Truffle configuration that is designed to work with a locally running Moonbeam `--dev` node.
+Navigate to the folder where you built Moonbeam and go into the `tools/truffle` directory.  In our case, this is `/home/purestake/moonbeam/tools/truffle`, but replace this with the correct path for your environment.  This directory has a Truffle configuration that is designed to work with a locally running Moonbeam `--dev` node.
 
 Let’s take a look at the `truffle-config.js` file:
 
@@ -112,11 +74,11 @@ var MyToken = artifacts.require("MyToken");
 
 module.exports = function (deployer) {
   // deployment steps
-  deployer.deploy(MyToken, 8000000, { gas: 4294967295 });
+  deployer.deploy(MyToken, "8000000000000000000000000", { gas: 4294967295 });
 };
 ```
 
-"8000000" is the number of tokens to initially mint with the contract.
+"8000000000000000000000000" is the number of tokens to initially mint with the contract, that is, 8 million with 18 decimal places.
 
 !!! note
     We are specifying the gas to send with the contract deployment transaction.  This is needed as we are still working on some of the gas estimation functionality in Moonbeam.
