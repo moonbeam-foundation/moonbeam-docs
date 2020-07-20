@@ -141,7 +141,7 @@ module.exports = {
 }
 ```
 
-**ERC-20 contract for Truffle example:*
+**ERC-20 contract for Truffle example:**
 ```
 pragma solidity ^0.5.0;
 
