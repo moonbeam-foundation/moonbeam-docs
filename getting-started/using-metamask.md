@@ -17,7 +17,7 @@ The examples in this guide assume an Ubuntu 18.04-based environment and will nee
 You can interact with Moonbeam in two ways: using Substrate RPC endpoints, or by using Web3-compatible RPC endpoints.  The latter endpoints are currently being served from the same RPC server as the Substrate RPCs.  In this tutorial, we will use the Web3 RPC endpoints to interact with Moonbeam.
 
 ##Install the MetaMask Extension
-First, we start with a fresh and default MetaMask installation from the Chrome store, which is where we will import our dev account:
+First, we start with a fresh and default MetaMask installation from the Chrome store. Follow the "Get Started" guide, where you need to create a wallet, set a password, and store your secret backup phrase (this gives direct access to your funds, so make sure to store these in a secure place). Once completed, we will import our dev account:
 
 ![Import dev account into MetaMask](/images/using-metamask-1.png)
 
@@ -53,7 +53,7 @@ When you hit "save" and exit the network settings screen, MetaMask should be con
 ##Initiating a Transfer
 Let’s try sending some tokens with MetaMask.  
 
-For simplicity, I will transfer from this dev account to the default MetaMask account that came with my installation using the “Transfer between my accounts” option.  Let’s transfer 100 tokens and leave all other settings at the default:
+For simplicity, we will transfer from this dev account to the default MetaMask account that came with my installation using the “Transfer between my accounts” option.  Let’s transfer 100 tokens and leave all other settings at the default:
 
 ![Initiating a token transfer](/images/using-metamask-6.png)
 
