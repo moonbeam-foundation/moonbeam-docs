@@ -32,7 +32,7 @@ node -v
 npm -v
 ```
 
-As of the writing of this guide, versions used were 8.10.0 and 3.5.2, respectively.
+As of the writing of this guide, versions used were 8.10.0 and 6.14.6, respectively.
 
 Next, we can create a directory to store all our relevant files (in a separate path from the local Moonbeam node files), and create a simple package.json file by running:
 
