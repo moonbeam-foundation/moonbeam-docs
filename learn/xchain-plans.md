@@ -11,7 +11,7 @@ Polkadot defines a low-level integration protocol that can be used to facilitate
 ##An Analogy: The "Bash of Linux"
 For us, Polkadot will serve a similar function as something like Linux. Both are developer-oriented platforms that come with libraries that make building applications easier. 
 
-Recall the old Unix philosophy where'd you build tools that do one job, and do it well. This is something similar to the specialization that we expect to happen for parachains on Polkadot. On Linux, you can combine and compose these purpose-built tools together to achieve higher order effects using a shell-like bash. We anticipate that Moonbeam-based smart contracts can provide an analogous “bash-like” environment where specialized smart contracts and parachain functionality can be composed to achieve higher order goals
+Recall the old Unix philosophy where'd you build tools that do one job, and do it well. This is something similar to the specialization that we expect to happen for parachains on Polkadot. On Linux, you can combine and compose these purpose-built tools together to achieve higher order effects using a shell-like bash. We anticipate that Moonbeam-based smart contracts can provide an analogous “bash-like” environment where specialized smart contracts and parachain functionality can be composed to achieve higher order goals.
 
 It may be the case that projects start as one or more Moonbeam smart contracts and migrate over time to be “native applications” — which could be parathreads or parachains in the Polkadot context — if they need more performance or more direct control over their economies.
 
