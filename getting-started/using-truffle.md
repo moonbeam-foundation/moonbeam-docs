@@ -17,11 +17,11 @@ If you followed the previous guides, you should have a local Moonbeam node produ
 
 ![Local Moonbeam node that's producing blocks](/images/using-truffle-1.png)
 
-In addition, for this tutorial, we need to install Node.js and the npm package manager. You can do this by running in your terminal:
+In addition, for this tutorial, we need to install Node.js (we'll go for v14.x) and the npm package manager. You can do this by running in your terminal:
 
 ```
-sudo apt install nodejs
-sudo apt install npm
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+sudo apt install -y nodejs
 ```
 
 We can verify that everything installed correctly by querying the version for each package:
@@ -31,7 +31,7 @@ node -v
 npm -v
 ```
 
-As of the writing of this guide, versions used were 8.10.0 and 6.14.6, respectively.
+As of the writing of this guide, versions used were 14.6.0 and 6.14.6, respectively.
 
 Next, navigate to the folder where you built Moonbeam and go into the `tools/truffle` directory.  In our case, this is `/home/purestake/moonbeam/tools/truffle`, but replace this with the correct path for your environment.  This directory has a Truffle configuration that is designed to work with a locally running Moonbeam `--dev` node.
 
