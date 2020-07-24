@@ -17,11 +17,11 @@ If you followed the [tutorial](/getting-started/setting-up-a-node/), you should 
 
 ![Moonbeam local node](/images/web3-transaction-1.png)
 
-In addition, for this tutorial, we need to install Node.js and the npm package manager. You can do this by running in your terminal:
+In addition, for this tutorial, we need to install Node.js (we'll go for v14.x) and the npm package manager. You can do this by running in your terminal:
 
 ```
-sudo apt install nodejs
-sudo apt install npm
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+sudo apt install -y nodejs
 ```
 
 We can verify that everything installed correctly by querying the version for each package:
@@ -31,7 +31,7 @@ node -v
 npm -v
 ```
 
-As of the writing of this guide, versions used were 8.10.0 and 6.14.6, respectively.
+As of the writing of this guide, versions used were 14.6.0 and 6.14.6, respectively.
 
 Next, we can create a directory to store all our relevant files (in a separate path from the local Moonbeam node files), and create a simple package.json file by running:
 
