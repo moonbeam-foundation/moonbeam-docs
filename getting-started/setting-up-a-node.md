@@ -44,7 +44,15 @@ curl https://getsubstrate.io -sSf | bash -s -- --fast
 
 Once you have followed all of the procedures above, it's time to build the node by running:
 
-`cargo build --release`
+```
+cargo build --release`
+```
+
+If a _cargo not found error_ shows up in the terminal, manually add Rust to your system path (or restart your system):
+
+```
+source $HOME/.cargo/env
+```
 
 !!! note
     The initial build will take a while, depending on your hardware. You should plan on 30 minutes. You may see warnings related to evm v0.16.1 and use of deprecated item 'sc_service::AbstractService::spawn_essential_task' which can be ignored for purposes of this guide.
