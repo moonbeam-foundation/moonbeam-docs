@@ -45,7 +45,7 @@ curl https://getsubstrate.io -sSf | bash -s -- --fast
 Once you have followed all of the procedures above, it's time to build the node by running:
 
 ```
-cargo build --release`
+cargo build --release
 ```
 
 If a _cargo not found error_ shows up in the terminal, manually add Rust to your system path (or restart your system):
