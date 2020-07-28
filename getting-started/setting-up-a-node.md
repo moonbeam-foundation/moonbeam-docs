@@ -27,9 +27,7 @@ git clone -b moonbeam-tutorials https://github.com/PureStake/moonbeam
 Then, initialize and update the following git sub-modules:
 
 ```
-cd moonbeam && git submodule init && git submodule update && \
-cd vendor/frontier && git submodule init && git submodule update && \
-cd ../..
+cd moonbeam && git submodule update --init --recursive
 ```
 
 Here is what the output of the whole process should display:
