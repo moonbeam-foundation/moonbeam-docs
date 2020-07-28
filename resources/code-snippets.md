@@ -12,9 +12,7 @@ git clone -b moonbeam-tutorials https://github.com/PureStake/moonbeam
 
 **Initialize and update git-submodules:**
 ```
-cd moonbeam && git submodule init && git submodule update && \
-cd vendor/frontier && git submodule init && git submodule update && \
-cd ../..
+cd moonbeam && git submodule update --init --recursive
 ```
 
 **Install substrate and its pre-requisites:**
