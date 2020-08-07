@@ -1,5 +1,5 @@
 ---
-title: Welcome
+title: Docs Home
 description: Welcome to the documentation website for the Moonbeam smart contract platform, a parachain on Polkadot.
 ---
 
