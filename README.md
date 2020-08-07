@@ -26,6 +26,9 @@ General information and other non-technical topics can be discussed in our Teleg
 ### :fontawesome-brands-twitter:  Twitter  
 Follow us on Twitter for regular updates: [@MoonbeamNetwork](https://twitter.com/MoonbeamNetwork).
 
+### :fontawesome-brands-youtube:  YouTube  
+For video-tutorials and related content, subscribe to our YouTube channel [here](https://www.youtube.com/channel/UCTp8x3FpKsFonoUET6i90jg).
+
 ### :fontawesome-solid-envelope:  Newsletter  
 We send a monthly newsletter with project updates that you can sign up for [here](https://moonbeam.network/newsletter/).
 
