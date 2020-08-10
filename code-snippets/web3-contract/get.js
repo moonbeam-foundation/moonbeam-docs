@@ -12,7 +12,7 @@ const get = async () => {
    console.log(`Making a call to contract at address ${contractAddress}`);
    const data = await incrementer.methods
       .number()
-      .call({ from: address, gas: '4294967295' });
+      .call({ from: address });
    console.log(`The current number stored is: ${data}`);
 };
 
