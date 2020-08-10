@@ -34,19 +34,23 @@ npm -v
 
 As of the writing of this guide, versions used were 14.6.0 and 6.14.6, respectively.
 
-Next, we can create a directory to store all our relevant files (in a separate path from the local Moonbeam node files), and create a simple package.json file by running:
+Next, we can create a directory to store all our relevant files (in a separate path from the local Moonbeam node files) by running:
 
 ```
 mkdir incrementer
 cd incrementer/
+```
+
+And create a simple package.json file:
+```
 npm init --yes
 ```
 
-With the package.json file created, we can then install both the Web3 and the Solidity compiler packages, by executing:
+With the package.json file created, we can then install both the Web3 and the Solidity compiler (fixed at version v0.6.10) packages, by executing:
 
 ```
 npm install --save web3
-npm install --save solc
+npm install --save solc@0.6.10
 ```
 
 To verify the installed version of Web3 or the Solidity compiler you can use the `ls` command:
@@ -224,7 +228,7 @@ const get = async () => {
    console.log(`Making a call to contract at address ${contractAddress}`);
    const data = await incrementer.methods
       .number()
-      .call({ from: address, gas: '4294967295' });
+      .call({ from: address });
    console.log(`The current number stored is: ${data}`);
 };
 
