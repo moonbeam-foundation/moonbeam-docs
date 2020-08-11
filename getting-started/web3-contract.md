@@ -54,7 +54,7 @@ With the package.json file created, we can then install both the Web3 and the So
 ```
 npm install --save web3
 ```
-```sh
+```pypy
 npm install --save solc@0.6.10
 ```
 
@@ -82,7 +82,7 @@ Our setup for this example is going to be pretty simple. We are going to have th
 
 The contract we will use is a very simple incrementer (arbitrarly named _Incrementer.sol_, and which you can find [here](/code-snippets/web3-contract/Incrementer.sol)). The Solidity code is the following:
 
-```javascript
+```solidity
 pragma solidity ^0.6.0;
 
 contract Incrementer{
