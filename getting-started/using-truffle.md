@@ -24,6 +24,8 @@ In addition, for this tutorial, we need to install Node.js (we'll go for v14.x) 
 
 ```
 curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+```
+```
 sudo apt install -y nodejs
 ```
 
@@ -31,6 +33,8 @@ We can verify that everything installed correctly by querying the version for ea
 
 ```
 node -v
+```
+```
 npm -v
 ```
 
