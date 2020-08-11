@@ -22,6 +22,8 @@ In addition, for this tutorial, we need to install Node.js (we'll go for v14.x) 
 
 ```
 curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+```
+```
 sudo apt install -y nodejs
 ```
 
@@ -29,6 +31,8 @@ We can verify that everything installed correctly by querying the version for ea
 
 ```
 node -v
+```
+```
 npm -v
 ```
 
@@ -37,8 +41,7 @@ As of the writing of this guide, versions used were 14.6.0 and 6.14.6, respectiv
 Next, we can create a directory to store all our relevant files (in a separate path from the local Moonbeam node files) by running:
 
 ```
-mkdir incrementer
-cd incrementer/
+mkdir incrementer && cd incrementer/
 ```
 
 And create a simple package.json file:
@@ -50,6 +53,8 @@ With the package.json file created, we can then install both the Web3 and the So
 
 ```
 npm install --save web3
+```
+```
 npm install --save solc@0.6.10
 ```
 
@@ -57,6 +62,8 @@ To verify the installed version of Web3 or the Solidity compiler you can use the
 
 ```
 npm ls web3
+```
+```
 npm ls solc
 ```
 
@@ -75,7 +82,7 @@ Our setup for this example is going to be pretty simple. We are going to have th
 
 The contract we will use is a very simple incrementer (arbitrarly named _Incrementer.sol_, and which you can find [here](/code-snippets/web3-contract/Incrementer.sol)). The Solidity code is the following:
 
-```js
+```javascript
 pragma solidity ^0.6.0;
 
 contract Incrementer{
@@ -112,7 +119,7 @@ Then, we build the input object for the Solidity compiler.
 
 And finally, we run the compiler and extract the data related to our incrementer contract because, for this simple example, that is all we need.
 
-```js
+```javascript
 const path = require('path');
 const fs = require('fs');
 const solc = require('solc');
@@ -155,7 +162,7 @@ To deploy the contract, we create an asynchronous function to handle the transac
 Then, to create the transaction, we use the `web3.eth.accounts.signTransaction(tx, privKey)` command, where we have to define the tx object with some parameters such as: from address, the encoded abi from the previous step, and the gas limit. The private key must be provided as well to sign the transaction.
 
 
-```js
+```javascript
 const Web3 = require('web3');
 const contractFile = require('./compile');
 
@@ -213,7 +220,7 @@ Next, we define our address from which we are going to make the call to the cont
 
 The following step is to create a local instance of the contract by using the `web3.eth.Contract(abi)` command. Then, wrapped in an async function, we can write the contract call by running `web3.methods.myMethods()`, where we set the method or function that we want to call and provide the inputs for this call. This promise returns the data that we can log in the console. And lastly, we run our `get` function.
 
-```js
+```javascript
 const Web3 = require('web3');
 const { abi } = require('./compile');
 
@@ -241,7 +248,7 @@ The contract transaction starts by creating a local instance of the contract as 
 
 Then, as we did when deploying the contract, we need to create the transaction with the corresponding data (wrapped in a async function), sign it with the private key, and send it. Lastly, we run our incrementer function.
 
-```js
+```javascript
 const Web3 = require('web3');
 const { abi } = require('./compile');
 
@@ -282,7 +289,7 @@ increment();
 
 The _reset.js_ file (which you can find [here](/code-snippets/web3-contract/reset.js)), is almost identical to the previous example. The only difference is that we need to call the `reset()` method which takes no input.
 
-```js
+```javascript
 const Web3 = require('web3');
 const { abi } = require('./compile');
 
@@ -346,6 +353,8 @@ Then, we can use our incrementer file, remember that `_value = 3`. We can immedi
 
 ```
 node incrementer.js
+```
+```
 node get.js
 ```
 
@@ -358,6 +367,8 @@ Lastly, we can reset our number by using the reset file:
 
 ```
 node reset.js
+```
+```
 node get.js
 ```
 
