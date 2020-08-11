@@ -54,7 +54,7 @@ With the package.json file created, we can then install both the Web3 and the So
 ```
 npm install --save web3
 ```
-```
+```sh
 npm install --save solc@0.6.10
 ```
 
