@@ -46,7 +46,7 @@ We will create a new file to save the Solidity smart contract.  Hit the + button
 
 Now let's paste the following smart contract into the editor tab that comes up:
 
-```
+```solidity
 pragma solidity ^0.6.0;
 
 import 'https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v3.1.0/contracts/token/ERC20/ERC20.sol';
