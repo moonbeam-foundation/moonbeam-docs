@@ -19,9 +19,9 @@ const reset = async () => {
    const createTransaction = await web3.eth.accounts.signTransaction(
       {
          from: address,
+         to: contractAddress,
          data: encoded,
          gas: '4294967295',
-         to: contractAddress,
       },
       privKey
    );
