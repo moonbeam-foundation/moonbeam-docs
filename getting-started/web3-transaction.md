@@ -24,6 +24,8 @@ In addition, for this tutorial, we need to install Node.js (we'll go for v14.x) 
 
 ```
 curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+```
+```
 sudo apt install -y nodejs
 ```
 
@@ -31,6 +33,8 @@ We can verify that everything installed correctly by querying the version for ea
 
 ```
 node -v
+```
+```
 npm -v
 ```
 
@@ -39,8 +43,12 @@ As of the writing of this guide, versions used were 14.6.0 and 6.14.6, respectiv
 Next, we can create a directory to store all our relevant files (in a separate path from the local Moonbeam node files), and create a simple package.json file by running:
 
 ```
-mkdir transaction
-cd transaction/
+mkdir incrementer && cd incrementer/
+```
+
+And create a simple package.json file:
+
+```
 npm init --yes
 ```
 
