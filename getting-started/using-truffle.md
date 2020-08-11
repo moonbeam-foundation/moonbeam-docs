@@ -71,7 +71,7 @@ module.exports = {
 
 The contract we will be deploying with Truffle is a simple ERC-20 contract.  You can find this contract under `moonbeam/tools/truffle/contracts/MyToken.sol`.  The content of this file is:
 
-```
+```solidity
 pragma solidity ^0.5.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -92,7 +92,7 @@ This is a simple ERC-20 contract based on the OpenZepplin ERC-20 contract that c
 
 If we take a look at the Truffle migration script under `migrations/2_deploy_contracts.js`, it contains the following:
 
-```
+```javascript
 var MyToken = artifacts.require("MyToken");
 
 module.exports = function (deployer) {
