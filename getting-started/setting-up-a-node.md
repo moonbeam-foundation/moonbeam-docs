@@ -61,7 +61,9 @@ Here is what the tail end of the build output should look like:
 
 Then you will want to run the node in dev mode using the following command:
 
-`./target/release/node-moonbeam --dev`
+```
+./target/release/node-moonbeam --dev
+```
 
 !!! note
     For people not familiar with Substrate, the `--dev` flag is a way you can run a Substrate-based node in a single node developer configuration for testing purposes. You can learn more about `--dev` in [this Substrate tutorial](https://substrate.dev/docs/en/tutorials/create-your-first-substrate-chain/interact).
