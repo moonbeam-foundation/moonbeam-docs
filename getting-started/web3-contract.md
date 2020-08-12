@@ -180,7 +180,7 @@ const deploy = async () => {
 
    const incrementer = new web3.eth.Contract(abi);
 
-   incrementerTx = incrementer.deploy({
+   const incrementerTx = incrementer.deploy({
       data: bytecode,
       arguments: [5],
    });
