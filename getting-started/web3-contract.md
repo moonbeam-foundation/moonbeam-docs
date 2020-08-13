@@ -221,7 +221,25 @@ Next, we define our address from which we are going to make the call to the cont
 The following step is to create a local instance of the contract by using the `web3.eth.Contract(abi)` command. Then, wrapped in an async function, we can write the contract call by running `web3.methods.myMethods()`, where we set the method or function that we want to call and provide the inputs for this call. This promise returns the data that we can log in the console. And lastly, we run our `get` function.
 
 ```javascript
---8<-- "/code-snippets/web3-contract/get.js" 
+const Web3 = require('web3');
+const { abi } = require('./compile');
+
+// Initialization
+const address = '0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b';
+const web3 = new Web3('http://localhost:9933');
+const contractAddress = '0xC2Bf5F29a4384b1aB0C063e1c666f02121B6084a';
+
+// Contract Call
+const incrementer = new web3.eth.Contract(abi, contractAddress);
+const get = async () => {
+   console.log(`Making a call to contract at address ${contractAddress}`);
+   const data = await incrementer.methods
+      .number()
+      .call();
+   console.log(`The current number stored is: ${data}`);
+};
+
+get(); 
 ```
 
 Let's now define the file to send a transaction that will add the value provided to our number. The _increment.js_ file (which you can find [here](/code-snippets/web3-contract/increment.js)) is somewhat different to the previous example, and that is because here we are modifying the stored data, and for this, we need to send a transaction that pays gas. However, the initialization part of the file is similar. The only differences are that the private key must be defined for signing and that we've defined a `_value` that corresponds to the value to be added to our number.
