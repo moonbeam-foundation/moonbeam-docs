@@ -83,23 +83,7 @@ Our setup for this example is going to be pretty simple. We are going to have th
 The contract we will use is a very simple incrementer (arbitrarly named _Incrementer.sol_, and which you can find [here](/code-snippets/web3-contract/Incrementer.sol)). The Solidity code is the following:
 
 ```solidity
-pragma solidity ^0.6.0;
-
-contract Incrementer{
-    uint public number ;
-
-    constructor(uint _initialNumber) public {
-        number = _initialNumber;
-    }
-
-    function increment(uint _value) public {
-        number = number + _value;
-    }
-
-    function reset() public {
-        number = 0;
-    }
-}
+--8<-- "./moonbeam-docs/code-snippets/web3-contract/Incrementer.sol"
 ```
 
 Our `constructor` function, that runs when the contract is deployed, sets the initial value of the number variable that is stored in the Moonbeam node (default is 0). The `increment` function adds `_value` provided to the current number, but a transaction needs to be sent as this modifies the stored data. And lastly, the `reset` function resets the stored value to zero.
@@ -120,31 +104,7 @@ Then, we build the input object for the Solidity compiler.
 And finally, we run the compiler and extract the data related to our incrementer contract because, for this simple example, that is all we need.
 
 ```javascript
-const path = require('path');
-const fs = require('fs');
-const solc = require('solc');
-
-// Compile contract
-const contractPath = path.resolve(__dirname, 'Incrementer.sol');
-const source = fs.readFileSync(contractPath, 'utf8');
-const input = {
-   language: 'Solidity',
-   sources: {
-      'Incrementer.sol': {
-         content: source,
-      },
-   },
-   settings: {
-      outputSelection: {
-         '*': {
-            '*': ['*'],
-         },
-      },
-   },
-};
-const tempFile = JSON.parse(solc.compile(JSON.stringify(input)));
-const contractFile = tempFile.contracts['Incrementer.sol']['Incrementer'];
-module.exports = contractFile;
+--8<-- "./moonbeam-docs/code-snippets/web3-contract/compile.js"
 ```
 
 ## The Deploy File
@@ -163,44 +123,7 @@ Then, to create the transaction, we use the `web3.eth.accounts.signTransaction(t
 
 
 ```javascript
-const Web3 = require('web3');
-const contractFile = require('./compile');
-
-// Initialization
-const bytecode = contractFile.evm.bytecode.object;
-const abi = contractFile.abi;
-const privKey =
-   '99B3C12287537E38C90A9219D4CB074A89A16E9CDB20BF85728EBD97C343E342'; // Genesis private key
-const address = '0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b';
-const web3 = new Web3('http://localhost:9933');
-
-// Deploy contract
-const deploy = async () => {
-   console.log('Attempting to deploy from account:', address);
-
-   const incrementer = new web3.eth.Contract(abi);
-
-   const incrementerTx = incrementer.deploy({
-      data: bytecode,
-      arguments: [5],
-   });
-
-   const createTransaction = await web3.eth.accounts.signTransaction(
-      {
-         from: address,
-         data: incrementerTx.encodeABI(),
-         gas: '4294967295',
-      },
-      privKey
-   );
-
-   const createReceipt = await web3.eth.sendSignedTransaction(
-      createTransaction.rawTransaction
-   );
-   console.log('Contract deployed at address', createReceipt.contractAddress);
-};
-
-deploy();
+--8<-- "./moonbeam-docs/code-snippets/web3-contract/deploy.js"
 ```
 
 Note that the value "4294967295" for gas (referred to as the gas limit) needs to be manually set. As of the writing of this guide, we are working through some issues related to gas estimation in Moonbeam. Once these are fixed, this manual setting of the gas limit shouldn’t be necessary.
@@ -221,25 +144,7 @@ Next, we define our address from which we are going to make the call to the cont
 The following step is to create a local instance of the contract by using the `web3.eth.Contract(abi)` command. Then, wrapped in an async function, we can write the contract call by running `web3.methods.myMethods()`, where we set the method or function that we want to call and provide the inputs for this call. This promise returns the data that we can log in the console. And lastly, we run our `get` function.
 
 ```javascript
-const Web3 = require('web3');
-const { abi } = require('./compile');
-
-// Initialization
-const address = '0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b';
-const web3 = new Web3('http://localhost:9933');
-const contractAddress = '0xC2Bf5F29a4384b1aB0C063e1c666f02121B6084a';
-
-// Contract Call
-const incrementer = new web3.eth.Contract(abi, contractAddress);
-const get = async () => {
-   console.log(`Making a call to contract at address ${contractAddress}`);
-   const data = await incrementer.methods
-      .number()
-      .call();
-   console.log(`The current number stored is: ${data}`);
-};
-
-get(); 
+--8<-- "./moonbeam-docs/code-snippets/web3-contract/get.js"
 ```
 
 Let's now define the file to send a transaction that will add the value provided to our number. The _increment.js_ file (which you can find [here](/code-snippets/web3-contract/increment.js)) is somewhat different to the previous example, and that is because here we are modifying the stored data, and for this, we need to send a transaction that pays gas. However, the initialization part of the file is similar. The only differences are that the private key must be defined for signing and that we've defined a `_value` that corresponds to the value to be added to our number.
@@ -249,82 +154,13 @@ The contract transaction starts by creating a local instance of the contract as 
 Then, as we did when deploying the contract, we need to create the transaction with the corresponding data (wrapped in a async function), sign it with the private key, and send it. Lastly, we run our incrementer function.
 
 ```javascript
-const Web3 = require('web3');
-const { abi } = require('./compile');
-
-// Initialization
-const privKey =
-   '99B3C12287537E38C90A9219D4CB074A89A16E9CDB20BF85728EBD97C343E342'; // Genesis private key
-const address = '0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b';
-const web3 = new Web3('http://localhost:9933');
-const contractAddress = '0xC2Bf5F29a4384b1aB0C063e1c666f02121B6084a';
-const _value = 3;
-
-// Contract Tx
-const incrementer = new web3.eth.Contract(abi);
-const encoded = incrementer.methods.increment(_value).encodeABI();
-
-const increment = async () => {
-   console.log(
-      `Calling the increment by ${_value} function in contract at address ${contractAddress}`
-   );
-   const createTransaction = await web3.eth.accounts.signTransaction(
-      {
-         from: address,
-         to: contractAddress,
-         data: encoded,
-         gas: '4294967295',
-      },
-      privKey
-   );
-
-   const createReceipt = await web3.eth.sendSignedTransaction(
-      createTransaction.rawTransaction
-   );
-   console.log(`Tx successfull with hash: ${createReceipt.transactionHash}`);
-};
-
-increment();
+--8<-- "./moonbeam-docs/code-snippets/web3-contract/increment.js"
 ```
 
 The _reset.js_ file (which you can find [here](/code-snippets/web3-contract/reset.js)), is almost identical to the previous example. The only difference is that we need to call the `reset()` method which takes no input.
 
 ```javascript
-const Web3 = require('web3');
-const { abi } = require('./compile');
-
-// Initialization
-const privKey =
-   '99B3C12287537E38C90A9219D4CB074A89A16E9CDB20BF85728EBD97C343E342'; // Genesis private key
-const address = '0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b';
-const web3 = new Web3('http://localhost:9933');
-const contractAddress = '0xC2Bf5F29a4384b1aB0C063e1c666f02121B6084a';
-
-// Contract Tx
-const incrementer = new web3.eth.Contract(abi);
-const encoded = incrementer.methods.reset().encodeABI();
-
-const reset = async () => {
-   console.log(
-      `Calling the reset function in contract at address ${contractAddress}`
-   );
-   const createTransaction = await web3.eth.accounts.signTransaction(
-      {
-         from: address,
-         to: contractAddress,
-         data: encoded,
-         gas: '4294967295',
-      },
-      privKey
-   );
-
-   const createReceipt = await web3.eth.sendSignedTransaction(
-      createTransaction.rawTransaction
-   );
-   console.log(`Tx successfull with hash: ${createReceipt.transactionHash}`);
-};
-
-reset();
+--8<-- "./moonbeam-docs/code-snippets/web3-contract/reset.js"
 ```
 
 ##Interacting with the Contract
