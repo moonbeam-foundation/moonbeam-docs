@@ -135,41 +135,7 @@ deploy();
 So our completes _transaction.js_ script looks like this:
 
 ```js
-const Web3 = require('web3');
-
-// Variables definition
-const privKey =
-   '99B3C12287537E38C90A9219D4CB074A89A16E9CDB20BF85728EBD97C343E342'; // Genesis private key
-const addressFrom = '0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b';
-const addressTo = '0xB90168C8CBcd351D069ffFdA7B71cd846924d551'; // Enter your  Address here
-const web3 = new Web3('http://localhost:9933');
-
-// Create transaction
-const deploy = async () => {
-   console.log(
-      `Attempting to make transaction from ${addressFrom} to ${addressTo}`
-   );
-
-   const createTransaction = await web3.eth.accounts.signTransaction(
-      {
-         from: addressFrom,
-         to: addressTo,
-         value: web3.utils.toWei('100', 'ether'),
-         gas: '4294967295',
-      },
-      privKey
-   );
-
-   // Deploy transaction
-   const createReceipt = await web3.eth.sendSignedTransaction(
-      createTransaction.rawTransaction
-   );
-   console.log(
-      `Transaction successful with hash: ${createReceipt.transactionHash}`
-   );
-};
-
-deploy();
+--8<-- "transaction.js"
 ```
 
 ## The Balance File
@@ -182,29 +148,7 @@ To get the balances of our addresses, we need to make an asynchronous function t
 So basically, our _balances.js_ script looks like this:
 
 ```js
-const Web3 = require('web3');
-
-// Variables definition
-const addressFrom = '0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b';
-const addressTo = '0xB90168C8CBcd351D069ffFdA7B71cd846924d551'; // Enter your  Address here
-const web3 = new Web3('http://localhost:9933');
-
-// Balance call
-const balances = async () => {
-   const balanceFrom = web3.utils.fromWei(
-      await web3.eth.getBalance(addressFrom),
-      'ether'
-   );
-   const balanceTo = await web3.utils.fromWei(
-      await web3.eth.getBalance(addressTo),
-      'ether'
-   );
-
-   console.log(`The balance of ${addressFrom} is: ${balanceFrom} ETH.`);
-   console.log(`The balance of ${addressTo} is: ${balanceTo} ETH.`);
-};
-
-balances();
+--8<-- "balances.js"
 ```
 
 ## Running the Scripts
