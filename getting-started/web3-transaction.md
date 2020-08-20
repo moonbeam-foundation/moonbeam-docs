@@ -73,7 +73,7 @@ We need to set a couple of values in the variable definitions:
 
 1. Create our Web3 constructor (`Web3`).
 2. Define the `privKey` variable as the private key of our genesis account, which is where all the funds are stored when deploying your local Moonbeam node, and what is used to sign the transactions.
-3. Set the "from" and "to" addresses, making sure to set the value of `toAddress` to a different address than your local MetaMask account.
+3. Set the "from" and "to" addresses, making sure to set the value of `toAddress` to a different address, for example the one created by MetaMask when setting up a local wallet.
 4. Create a local Web3 instance and set the provider to connect to our local Moonbeam node.
 
 !!! note 
@@ -90,7 +90,7 @@ const addressTo = '0xB90168C8CBcd351D069ffFdA7B71cd846924d551';
 const web3 = new Web3('http://localhost:9933');
 ```
 
-Both "create transaction" and "deploy transaction" are wrapped in an asynchronous function that handles the promises from our Web3 instance. To create the transaction, we use the `web3.eth.accounts.signTransaction(tx, privKey)` command, where we have to define the tx object with some parameters such as: `addressFrom`, `addressTo`, number of tokens to send, and the gas limit.
+Both the "create transaction" and "deploy transaction" sections are wrapped in an asynchronous function that handles the promises from our Web3 instance. To create the transaction, we use the `web3.eth.accounts.signTransaction(tx, privKey)` command, where we have to define the tx object with some parameters such as: `addressFrom`, `addressTo`, number of tokens to send, and the gas limit.
 
 !!! note 
     Note that the number of tokens needs to be given in Wei, but we can use the Web3 toWei utility to convert units. The private key must be provided as well to sign the transaction.
