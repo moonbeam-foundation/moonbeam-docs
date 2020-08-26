@@ -67,7 +67,7 @@ npm ls web3
 npm ls solc
 ```
 
-As of the writing of this guide, versions used were 1.2.9 and 0.6.10, respectively.
+As of the writing of this guide, versions used were 1.2.9 and 0.6.10 (as mentioned before), respectively.
 
 Our setup for this example is going to be pretty simple. We are going to have the following files:
 
@@ -80,7 +80,7 @@ Our setup for this example is going to be pretty simple. We are going to have th
 
 ##The Contract File 
 
-The contract we will use is a very simple incrementer (arbitrarly named _Incrementer.sol_, and which you can find [here](/code-snippets/web3-contract/Incrementer.sol)). The Solidity code is the following:
+The contract we will use is a very simple incrementer (arbitrarily named _Incrementer.sol_, and which you can find [here](/code-snippets/web3-contract/Incrementer.sol)). The Solidity code is the following:
 
 ```solidity
 --8<-- "web3-contract/Incrementer.sol"
