@@ -78,7 +78,11 @@ Our setup for this example is going to be pretty simple. We are going to have th
 -  _increment.js_: it will make a transaction to increment the number stored on the Moonbeam node
 -  _reset.js_: the function to call that will reset the number stored to zero
 
-##The Contract File 
+##The Contract File and Compile Script
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed//pBp8VU9mnPs' frameborder='0' allowfullscreen></iframe></div>
+<style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>You can find all of the relevant code for this tutorial on the [code snippets page](/resources/code-snippets/)</div>
+
+###The contract file 
 
 The contract we will use is a very simple incrementer (arbitrarily named _Incrementer.sol_, and which you can find [here](/code-snippets/web3-contract/Incrementer.sol)). The Solidity code is the following:
 
@@ -91,7 +95,7 @@ Our `constructor` function, that runs when the contract is deployed, sets the in
 !!! note
     This contract is just a simple example that does not handle values wrapping around, and it is only for illustration purposes.
 
-##The Compile File
+###The compile file
 
 The only purpose of the _compile.js_ file (arbitrarily named, and which you can find [here](/code-snippets/web3-contract/compile.js)), is to use the Solidity compiler to output the bytecode and interface of our contract.
 
@@ -106,8 +110,11 @@ And finally, we run the compiler and extract the data related to our incrementer
 ```javascript
 --8<-- "web3-contract/compile.js"
 ```
+##The Deploy Script and Interacting with our Contract
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed//CRYfejvqNzg' frameborder='0' allowfullscreen></iframe></div>
+<style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>You can find all of the relevant code for this tutorial on the [code snippets page](/resources/code-snippets/)</div>
 
-## The Deploy File
+###The deploy file
 
 The deployment file (which you can find [here](/code-snippets/web3-contract/deploy.js)) is divided into two subsections: the initialization and the deploy contract.
 
@@ -133,7 +140,7 @@ With the transaction message created and signed (you can `console.log(createTran
 !!! note
     The _deploy.js_ script provides the contract address as an output. This comes handy as it is used for the contract interaction files.
 
-##Files to Interact with the Contract
+###Files to interact with the contract
 
 In this section, we will quickly go over the files that interact with our contract, either by making calls or sending transactions to it.
 
