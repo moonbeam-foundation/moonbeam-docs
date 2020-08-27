@@ -9,8 +9,17 @@ There's a great deal of terminology that's specific to Polkadot, Substrate, and 
 ###Collators
 One of the key network participants needed to support parachains within the Polkadot Network.  In Moonbeam, collators are the nodes that are responsible for block production and for submitting produced blocks up to the Polkadot Relay Chain for finalization.
 
+###Nominators
+Token holders who select to back a validator. They can receive part of the validator's reward but are subject to slashing of their staked tokens in case the validator misbehaves. A nominator can back up to 16 validators, and their bond is fully distributed between the backed validators that were selected for the validator set.
+
+###Nomitated Proof of Stake
+The mechanism used by Polkadot for selecting its block validator set to maximize chain security. At its core is a Proof-of-Stake system (PoS) in which nominators back validators. The latter with the highest backing are selected to be part of the validator set for a session. The stake of a validator is slashed in case of misbehaviour. Thus, nominators are expected to do due diligence on the validators they nominate. If you want to nominate PureStake for both Polkadot and/or Kusama, please follow [this guide](https://www.purestake.com/technology/polkadot-validator/).
+
 ###Parachains
-A blockchain which is connected to Polkadot.  Parachains receive shared security from Polkadot and the ability to interact with other parachains on the Polkadot network.
+A blockchain which has a slot and its connected to Polkadot.  Parachains receive shared security from Polkadot and the ability to interact with other parachains on the Polkadot network. They must lock DOT, the native relay chain token, to secure a slot for a specific period (of up two years).
+
+###Parathreads
+A blockchain which can connect to Polkadot.  Parathreads are able to interact with other members of the Polkadot network, but they bid for block finalization (in DOT) on a block-to-block basis. They compete with other parathreads for block finalization, meaning that the block with the highest bid is selected to be finalize in that round.
 
 ###Polkadot
 A network of connected blockchains that provides shared security and the ability to interact between chains.  Polkadot is built using the Substrate development framework.  Chains that connect to Polkadot are called parachains.
@@ -26,6 +35,9 @@ A Rust-based blockchain development framework created by Parity Technologies bas
 
 ###Substrate Frame Pallets
 Substrate Frame Pallets are a collection of Rust-based modules providing functionality that is required when building a blockchain.  
+
+###Validators
+A node that secures the Polkadot Relay Chain by staking DOT in the network, which is slashed if they misbehave. They finalize blocks from collators on parachains, and also participate on consensus for the next Relay Chain block with other validators.
 
 ###WebAssembly/Wasm
 WebAssembly is an open standard that defines a portable binary code format. It is supported by different programming languages, compilers, and browsers.
