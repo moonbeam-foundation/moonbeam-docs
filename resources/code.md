@@ -16,4 +16,4 @@ We also work on Ethereum compatibility features along with engineers from Parity
 
 [:fontawesome-brands-github: https://github.com/paritytech/frontier](https://github.com/paritytech/frontier)
 
-If you are interested in contributing code to Moonbeam, reach out to us on [:moonbeam-riot: Riot](https://matrix.to/#/!dzULkAiPePEaverEEP:matrix.org?via=matrix.org).
+If you are interested in contributing code to Moonbeam, reach out to us on [:moonbeam-element: Element](https://matrix.to/#/!dzULkAiPePEaverEEP:matrix.org?via=matrix.org).
