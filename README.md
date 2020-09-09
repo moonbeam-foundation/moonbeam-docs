@@ -17,6 +17,9 @@ Moonbeam will also be a parachain on the Polkadot network. That means that it wi
 
 ##How to Engage With the Moonbeam Community  
 
+### :fontawesome-brands-discord:  Discord  
+Instructions for our TestNet and other development-focused conversation is found on our [Discord channel](https://discord.gg/nWbtA9x).
+
 ### :moonbeam-element:  Element  
 Technical discussions and support are encouraged in our Element (formerly Riot) room that can be found [here](https://app.element.io/#/room/#moonbeam:matrix.org).
 
@@ -27,7 +30,7 @@ General information and other non-technical topics can be discussed in our Teleg
 Follow us on Twitter for regular updates: [@MoonbeamNetwork](https://twitter.com/MoonbeamNetwork).
 
 ### :fontawesome-brands-youtube:  YouTube  
-For video-tutorials and related content, subscribe to our YouTube channel [here](https://www.youtube.com/channel/UCTp8x3FpKsFonoUET6i90jg).
+For video-tutorials and related content, subscribe to our YouTube channel [here](https://www.youtube.com/c/MoonbeamNetwork).
 
 ### :fontawesome-solid-envelope:  Newsletter  
 We send a monthly newsletter with project updates that you can sign up for [here](https://moonbeam.network/newsletter/).
