@@ -19,7 +19,8 @@ This is the initial configuration for the Moonbeam TestNet:
 
 ![TestNet Diagram](/images/networks/Moonbeam-TestNet-1.png)
 
-## Features
+## Features  
+
 The following features are available:  
 - Fully emulated Ethereum block production in Substrate (Ethereum pallet).
 - Dispatchable functions to interact with the Rust EVM implementation ([EVM pallet](https://github.com/paritytech/substrate/tree/master/frame/evm)).
