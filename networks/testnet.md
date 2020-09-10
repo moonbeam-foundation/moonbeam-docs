@@ -40,10 +40,12 @@ Futures that may be implemented in the future:
 
 ##Get Started
 
-To connect to the Moonbeam TestNet, simply point your provider to the following RPC DNS:
+### HTTPS DNS
+
+To connect to the Moonbeam TestNet via HTTPS, simply point your provider to the following RPC DNS:
 
 ```
-http://rpc.testnet.moonbeam.network
+https://rpc.testnet.moonbeam.network
 ```
 
 For the Web3 library, create a local Web3 instance and set the provider to connect to the Moonbeam TestNet:
@@ -54,11 +56,13 @@ const Web3 = require('web3'); //Load Web3 library
 .
 .
 //Create local Web3 instance - set the Moonbeam TestNet as provider
-const web3 = new Web3('http://rpc.testnet.moonbeam.network'); 
+const web3 = new Web3('https://rpc.testnet.moonbeam.network'); 
 ```
 Any Ethereum wallet should be able to generate a valid address for Moonbeam (for example, [MetaMask](https://metamask.io/)).
 
-For WebSocket connections, you can use the following DNS:
+### WSS DNS
+
+For WebSocket connections, you can use the following RPC DNS:
 
 ```
 wss://wss.testnet.moonbeam.network
