@@ -6,7 +6,7 @@ description: Start building on the Moonbeam TestNet using Solidity and your favo
 *Updated September 10, 2020*
 
 ##Goal  
-The Moonbeam TestNet is for developers who want to start experimenting or building around Moonbeam in a parachain-based environment. In order to collect as much feedback as possible and provide fast resolution on issues, we have set up a [Discord with a dedicated TestNet channel](https://discord.gg/nWbtA9x).
+The Moonbeam TestNet is for developers who want to start experimenting or building around Moonbeam in a parachain-based environment. In order to collect as much feedback as possible and provide a fast resolution on issues, we have set up a [Discord with a dedicated TestNet channel](https://discord.gg/nWbtA9x).
 
 ##Initial Configuration
 This version of the TestNet is hosted by PureStake, but future versions will incorporate collators and other ecosystem participants.  
@@ -27,12 +27,12 @@ The following features are available:
 
 We have many features on the TestNet roadmap, including a few items that are planned for the next release:
 
-- Unification of Substrate and Ethereum accounts under the H160 format, an effort we are calling Unified Accounts. Consequently, there will be only one kind of account in the system respresented by a single address.
+- Unification of Substrate and Ethereum accounts under the H160 format, an effort we are calling Unified Accounts. Consequently, there will be only one kind of account in the system represented by a single address.
 - Event subscription support (pub/sub), which is a missing component on the Web3 RPC side and commonly used by dApp developers.
 
 Futures that may be implemented in the future:
 
-- Support for third-party collators, to enable interested parties to test their setups.
+- Support for third-party collators to enable interested parties to test their setups.
 - Implementation of the rewards system, as well as the token economic model ([Staking Pallet](https://wiki.polkadot.network/docs/en/learn-staking)).
 - On-chain governance features ([Democracy Pallet](https://github.com/paritytech/substrate/tree/HEAD/frame/democracy)).
 - Treasury features ([Treasury Pallet](https://github.com/paritytech/substrate/tree/master/frame/treasury)).
@@ -55,7 +55,7 @@ const Web3 = require('web3'); //Load Web3 library
 //Create local Web3 instance - set the Moonbeam TestNet as provider
 const web3 = new Web3('http://rpc.testnet.moonbeam.network'); 
 ```
-Any Ethereum wallet should be able to generate a valid address or Moonbeam (for example, [MetaMask](https://metamask.io/)).
+Any Ethereum wallet should be able to generate a valid address for Moonbeam (for example, [MetaMask](https://metamask.io/)).
 
 For WebSocket connections, you can use the following DNS:
 
