@@ -55,8 +55,13 @@ const Web3 = require('web3'); //Load Web3 library
 //Create local Web3 instance - set the Moonbeam TestNet as provider
 const web3 = new Web3('http://rpc.testnet.moonbeam.network:9933'); 
 ```
-
 Any Ethereum wallet should be able to generate a valid address or Moonbeam (for example, [MetaMask](https://metamask.io/)).
+
+For WebSocket connections, you can use the following endpoint:
+
+```
+wss://wss.testnet.moonbeam.network:9944
+```
 
 ##Proof of Authority
 The Moonbeam TestNet will run similarly to the way the [Kusama and Polkadot MainNets ran when they first launched](https://wiki.polkadot.network/docs/en/learn-launch#the-poa-launch): with Proof of Authority instead of Proof of Stake. This means that block finalization is carried out by a known identity, in this case, the PureStake validators.
