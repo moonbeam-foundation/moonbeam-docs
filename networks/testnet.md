@@ -6,7 +6,7 @@ description: Start building on the Moonbeam TestNet using Solidity and your favo
 *Updated September 10, 2020*
 
 ##Goal  
-The Moonbeam TestNet is for developers who want to start experimenting or building around Moonbeam in a parachain-based environment. In order to collect as much feedback as possible and provide a fast resolution on issues, we have set up a [Discord with a dedicated TestNet channel](https://discord.gg/nWbtA9x).
+The Moonbeam TestNet is for developers who want to start experimenting or building on Moonbeam in a parachain-based environment. In order to collect as much feedback as possible and provide a fast resolution on issues, we have set up a [Discord with a dedicated TestNet channel](https://discord.gg/nWbtA9x).
 
 ##Initial Configuration
 This version of the TestNet is hosted by PureStake, but future versions will incorporate collators and other ecosystem participants.  
