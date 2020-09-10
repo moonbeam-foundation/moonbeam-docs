@@ -6,7 +6,7 @@ description: An overview of the networks planned for Moonbeam, an Ethereum-compa
 #Networks  
 We plan to create multiple long-lived, Moonbeam-based networks. Significantly, Moonbeam will be deployed to Kusama in addition to Polkadot.
 
-Our approach will be to first deploy a PureStake hosted Parachain TestNet, followed by a Parachain deployed to the Rococo TestNet, then Moonbeam to Kusama, and finally to the Polkadot Network. Deploying in this way allows us to de-risk software upgrades to Moonbeam on the Polkadot MainNet while still maintaining a reasonable update velocity. We will add details on how to access different Moonbeam-based networks as the networks become available.
+Our approach will be first to deploy a PureStake hosted Parachain TestNet, followed by a Parachain deployed to the Rococo TestNet, then Moonbeam to Kusama, and finally to the Polkadot Network. Deploying in this way allows us to de-risk software upgrades to Moonbeam on the Polkadot MainNet while still maintaining a reasonable update velocity. We will add details on how to access different Moonbeam-based networks as the networks become available.
 
 ##Moonbeam  
 TestNet This TestNet is a network that is hosted by PureStake. It features a parachain-relay chain scheme with one collator and three validators. The goal is to allow developers to test the Ethereum compatibility features of Moonbeam without needing to run their own nodes or network, and in a shared environment that is parachain. [Learn more about the TestNet](/networks/testnet/).
