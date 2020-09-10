@@ -1,5 +1,5 @@
 ---
-title: Moonbeam TestNet
+title: TestNet
 description: Start building on the Moonbeam TestNet using Solidity and your favorite Ethereum tools.
 ---
 # Moonbeam TestNet  
