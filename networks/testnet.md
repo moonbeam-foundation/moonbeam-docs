@@ -12,6 +12,7 @@ The Moonbeam TestNet is for developers who want to start experimenting or buildi
 This version of the TestNet is hosted by PureStake, but future versions will incorporate collators and other ecosystem participants.  
 
 This is the initial configuration for the Moonbeam TestNet:  
+
 -  Infrastructure is hosted by PureStake.
 -  Moonbeam runs as a parachain connected to a relay chain.
 -  The parachain has one collator that is producing blocks.
@@ -22,6 +23,7 @@ This is the initial configuration for the Moonbeam TestNet:
 ## Features  
 
 The following features are available:  
+
 - Fully emulated Ethereum block production in Substrate (Ethereum pallet).
 - Dispatchable functions to interact with the Rust EVM implementation ([EVM pallet](https://github.com/paritytech/substrate/tree/master/frame/evm)).
 - Native Ethereum RPC support (Web3) in Substrate ([Frontier RPC](https://github.com/paritytech/frontier)). This provides compatibility with Ethereum developer tools such as MetaMask, Truffle, and Remix.
