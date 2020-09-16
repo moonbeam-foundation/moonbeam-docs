@@ -3,7 +3,7 @@ title: Integrate MetaMask
 description: How to connect with MetaMask to the Moonbeam TestNet
 ---
 
-# Connect Metamask to the Moonbeam TestNet
+# Connect MetaMask to the Moonbeam TestNet
 
 ## Creating a Wallet
 
