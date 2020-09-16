@@ -2,16 +2,18 @@
 title: TestNet
 description: Start building on the Moonbeam TestNet using Solidity and your favorite Ethereum tools.
 ---
-# Moonbeam TestNet  
+# Moonbeam TestNet - Moonbase 
 *Updated September 10, 2020*
 
 ##Goal  
-The Moonbeam TestNet is for developers who want to start experimenting or building on Moonbeam in a parachain-based environment. In order to collect as much feedback as possible and provide a fast resolution on issues, we have set up a [Discord with a dedicated TestNet channel](https://discord.gg/nWbtA9x).
+The Moonbeam TestNet, named Moonbase, is aimed to provide developers with a place to start experimenting and building on Moonbeam in a shared environment. Since Moonbeam will be deployed as a parachain on Kusama and Polkadot, we want our TestNet to reflect our production configuration. For this reason, we decided that it needed to be a parachain-based configuration rather than a Substrate standalone setup.
+
+In order to collect as much feedback as possible and provide a fast resolution on issues, we have set up a [Discord with a dedicated TestNet channel](https://discord.gg/nWbtA9x).
 
 ##Initial Configuration
 This version of the TestNet is hosted by PureStake, but future versions will incorporate collators and other ecosystem participants.  
 
-This is the initial configuration for the Moonbeam TestNet:  
+This is the initial configuration for the Moonbase:  
 
 -  Infrastructure is hosted by PureStake.
 -  Moonbeam runs as a parachain connected to a relay chain.
@@ -28,7 +30,7 @@ The following features are available:
 - Dispatchable functions to interact with the Rust EVM implementation ([EVM pallet](https://github.com/paritytech/substrate/tree/master/frame/evm)).
 - Native Ethereum RPC support (Web3) in Substrate ([Frontier RPC](https://github.com/paritytech/frontier)). This provides compatibility with Ethereum developer tools such as MetaMask, Truffle, and Remix.
 
-We have many features on the TestNet roadmap, including a few items that are planned for the next release:
+We have many features on Moonbase's roadmap, including a few items that are planned for the next release:
 
 - Unification of Substrate and Ethereum accounts under the H160 format, an effort we are calling Unified Accounts. Consequently, there will be only one kind of account in the system represented by a single address.
 - Event subscription support (pub/sub), which is a missing component on the Web3 RPC side and commonly used by dApp developers.
@@ -44,7 +46,7 @@ Futures that may be implemented in the future:
 
 ### HTTPS DNS
 
-To connect to the Moonbeam TestNet via HTTPS, simply point your provider to the following RPC DNS:
+To connect to Moonbase via HTTPS, simply point your provider to the following RPC DNS:
 
 ```
 https://rpc.testnet.moonbeam.network
@@ -71,23 +73,23 @@ wss://wss.testnet.moonbeam.network
 ```
 
 ##Proof of Authority
-The Moonbeam TestNet will run similarly to the way the [Kusama and Polkadot MainNets ran when they first launched](https://wiki.polkadot.network/docs/en/learn-launch#the-poa-launch): with Proof of Authority instead of Proof of Stake. This means that block finalization is carried out by a known identity, in this case, the PureStake validators.
+Moonbase will run similarly to the way the [Polkadot MainNets ran when they first launched](https://wiki.polkadot.network/docs/en/learn-launch#the-poa-launch): with Proof of Authority instead of Proof of Stake. This means that block finalization is carried out by a known identity, in this case, the PureStake validators.
 
 This also means that PureStake holds the Sudo Key in order to issue the commands and upgrades necessary to the network.
 
 ##Limitations
-This is the first Moonbeam TestNet, so there are some limitations.
+This is the first TestNet for Moonbeam, so there are some limitations.
 
-Tokens on the Moonbeam TestNet, named DEV, will be issued on demand. To request tokens, we've created a Discord bot (named Mission Control :sunglasses:) that will automatically send a maximum of 10 DEV tokens per hour (per Discord user) when you enter your address. You can check it out on our [Discord channel](https://discord.gg/nWbtA9x).
+Tokens on Moonbase, named DEV, will be issued on demand. To request tokens, we've created a Discord bot (named Mission Control :sunglasses:) that will automatically send a maximum of 10 DEV tokens per hour (per Discord user) when you enter your address. You can check it out on our [Discord channel](https://discord.gg/nWbtA9x).
 
-In addition, users only have access to the Moonbeam parachain. In future networks, we will add access to the Rococo relay chain so users can test transferring tokens.
+In addition, users only have access to the Moonbeam parachain. In future networks, we will add access to the relay chain so users can test transferring tokens.
 
 In order to provide an easy on-ramp for developers, smart contracts in this early iteration have no gas limit per block. This is temporary and will be adjusted in the future.
 
 ##Chain Purge
-This network is under active development. Occasionally, chain purges may be necessary in order to reset the blockchain to its initial state. This is necessary when doing major TestNet upgrades or maintenance. We will announce when a chain purge will take place via our [Discord channel](https://discord.gg/3rgpMmX) at least 24 hours in advance.
+This network is under active development. Occasionally, chain purges may be needed in order to reset the blockchain to its initial state. This is necessary when doing major TestNet upgrades or maintenance. We will announce when a chain purge will take place via our [Discord channel](https://discord.gg/3rgpMmX) at least 24 hours in advance.
 
 Please take note that PureStake will not be migrating the chain state. Thus, all data stored in the blockchain will be lost when a chain purge is carried out. However, as there is no gas limit, users can easily recreate their pre-purge state.
 
 ##Contact Us
-If you have any feedback regarding the Moonbeam TestNet, feel free to reach out through our official development channel on [Discord](https://discord.gg/3rgpMmX).
+If you have any feedback regarding Moonbase, feel free to reach out through our official development channel on [Discord](https://discord.gg/3rgpMmX).
