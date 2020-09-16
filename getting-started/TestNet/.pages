@@ -1,1 +1,5 @@
 title: TestNet
+arrange:
+  - connect.md
+  - faucet.md
+  - metamask.md
