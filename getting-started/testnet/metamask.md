@@ -23,10 +23,10 @@ Navigate to the Networks tab, and click on the "Add Network" button.
 
 ![MetaMask4](/images/testnet/testnet-metamask4.png)
 
-In here, fill out the following information:
+In here, fill out the following information and then click Save:
 
 Network Name: `Moonbase TestNet` - New RPC URL:" `https://rpc.testnet.moonbeam.network` - ChainID: `43` - Symbol: `DEV`
 
 ![MetaMask5](/images/testnet/testnet-metamask5.png)
 
-And that is it! You have succesfully connected MetaMask to the Moonbeam TestNet, Moonbase.
+That is it! You have succesfully connected MetaMask to the Moonbeam TestNet, Moonbase.
