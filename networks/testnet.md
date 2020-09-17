@@ -58,7 +58,9 @@ This also means that PureStake holds the Sudo Key in order to issue the commands
 ## Limitations
 This is the first TestNet for Moonbeam, so there are some limitations.
 
-In order to provide an easy on-ramp for developers, smart contracts in this early iteration have no gas limit per block. This is temporary and will be adjusted in the future.
+No [pre-compiles](https://ethereum.stackexchange.com/questions/15479/list-of-pre-compiled-contracts) are included in this release. However, all built-in functions are available.
+
+In order to provide an easy on-ramp for developers, this early iteration has no gas limit per block for execution of smart contracts. This is temporary and will be adjusted in the future.
 
 Users only have access to the Moonbeam parachain. In future networks, we will add access to the relay chain so users can test transferring tokens.
 
