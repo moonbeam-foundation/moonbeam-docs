@@ -135,7 +135,7 @@ deploy();
 So our completes _transaction.js_ script looks like this:
 
 ```js
---8<-- "transaction.js"
+--8<-- "web3-tx/transaction.js"
 ```
 
 ## The Balance File
@@ -148,7 +148,7 @@ To get the balances of our addresses, we need to make an asynchronous function t
 So basically, our _balances.js_ script looks like this:
 
 ```js
---8<-- "balances.js"
+--8<-- "web3-tx/balances.js"
 ```
 
 ## Running the Scripts
