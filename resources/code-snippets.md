@@ -199,12 +199,12 @@ npm install --save solc@0.6.10
 ##Signing Transactions with Web3 and JS
 **The _transaction.js_ file to make transaction:**
 ```javascript
---8<-- "transaction.js"
+--8<-- "web3-tx/transaction.js"
 ```
 
 **The _balances.js_ file to check balances:**
 ```javascript
---8<-- "balances.js"
+--8<-- "web3-tx/balances.js"
 ```
 
 ##Compiling and Deploying a Smart Contract with Web3 and JS
