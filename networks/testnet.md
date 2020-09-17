@@ -5,12 +5,12 @@ description: Start building on the Moonbeam TestNet using Solidity and your favo
 # Moonbeam TestNet - Moonbase 
 *Updated September 10, 2020*
 
-##Goal  
+## Goal  
 The Moonbeam TestNet, named Moonbase, is aimed to provide developers with a place to start experimenting and building on Moonbeam in a shared environment. Since Moonbeam will be deployed as a parachain on Kusama and Polkadot, we want our TestNet to reflect our production configuration. For this reason, we decided that it needed to be a parachain-based configuration rather than a Substrate standalone setup.
 
 In order to collect as much feedback as possible and provide a fast resolution on issues, we have set up a [Discord with a dedicated TestNet channel](https://discord.gg/nWbtA9x).
 
-##Initial Configuration
+## Initial Configuration
 This version of the TestNet is hosted by PureStake, but future versions will incorporate collators and other ecosystem participants.  
 
 This is the initial configuration for the Moonbase:  
@@ -42,7 +42,7 @@ Futures that may be implemented in the future:
 - On-chain governance features ([Democracy Pallet](https://github.com/paritytech/substrate/tree/HEAD/frame/democracy)).
 - Treasury features ([Treasury Pallet](https://github.com/paritytech/substrate/tree/master/frame/treasury)).
 
-##Get Started
+## Get Started
 
 --8<-- "testnet/connect.md"
 
@@ -51,19 +51,21 @@ Moonbase will run similarly to the way the [Polkadot MainNets ran when they firs
 
 This also means that PureStake holds the Sudo Key in order to issue the commands and upgrades necessary to the network.
 
-##Limitations
+## Tokens
+
+--8<-- "testnet/faucet.md"
+
+## Limitations
 This is the first TestNet for Moonbeam, so there are some limitations.
-
-Tokens on Moonbase, named DEV, will be issued on demand. To request tokens, we've created a Discord bot (named Mission Control :sunglasses:) that will automatically send a maximum of 10 DEV tokens per hour (per Discord user) when you enter your address. You can check it out on our [Discord channel](https://discord.gg/nWbtA9x).
-
-In addition, users only have access to the Moonbeam parachain. In future networks, we will add access to the relay chain so users can test transferring tokens.
 
 In order to provide an easy on-ramp for developers, smart contracts in this early iteration have no gas limit per block. This is temporary and will be adjusted in the future.
 
-##Chain Purge
+Users only have access to the Moonbeam parachain. In future networks, we will add access to the relay chain so users can test transferring tokens.
+
+## Chain Purge
 This network is under active development. Occasionally, chain purges may be needed in order to reset the blockchain to its initial state. This is necessary when doing major TestNet upgrades or maintenance. We will announce when a chain purge will take place via our [Discord channel](https://discord.gg/3rgpMmX) at least 24 hours in advance.
 
 Please take note that PureStake will not be migrating the chain state. Thus, all data stored in the blockchain will be lost when a chain purge is carried out. However, as there is no gas limit, users can easily recreate their pre-purge state.
 
-##Contact Us
+## Contact Us
 If you have any feedback regarding Moonbase, feel free to reach out through our official development channel on [Discord](https://discord.gg/3rgpMmX).
