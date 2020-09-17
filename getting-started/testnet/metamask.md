@@ -14,3 +14,19 @@ After installing [MetaMask](https://metamask.io), the setup will automatically o
 When prompted, you are given the option to import a wallet using a recovery seed phrase. For this exercise, you will want to set up a new wallet.
 
 ![MetaMask2](/images/testnet/testnet-metamask2.png)
+
+Once you finish the steps, you will see the main MetaMask interface. In here, click in the top right logo and go to Settings.
+
+![MetaMask3](/images/testnet/testnet-metamask3.png)
+
+Navigate to the Networks tab, and click on the "Add Network" button.
+
+![MetaMask4](/images/testnet/testnet-metamask4.png)
+
+In here, fill out the following information:
+
+Network Name: `Moonbase TestNet` - New RPC URL:" `https://rpc.testnet.moonbeam.network` - ChainID: `43` - Symbol: `DEV`
+
+![MetaMask5](/images/testnet/testnet-metamask5.png)
+
+And that is it! You have succesfully connected MetaMask to the Moonbeam TestNet, Moonbase.
