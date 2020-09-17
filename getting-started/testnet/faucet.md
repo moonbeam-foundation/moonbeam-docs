@@ -15,17 +15,19 @@ Under the category "Miscellaneous", you will find our TestNet bot channel.
 
 ![Discord1](/images/testnet/testnet-discord1.png)
 
+To check your balance, enter the following message, replacing `<enter-address-here->` with your H160 address:
+
+```
+!faucet send <enter-address-here->
+```
+
 To get DEV tokens, enter the following message, replacing `<enter-address-here->` with your H160 address:
  
 ```
 !faucet send <enter-address-here->
 ```
 
-To check your balance, enter the following message, replacing `<enter-address-here->` with your H160 address:
-
-```
-!faucet send <enter-address-here->
-```
+Mission Control will send you 10 DEV tokens and display your current account balance. Remember that Mission Control is limited to dispense once per Discord user per hour.
 
 ![Discord2](/images/testnet/testnet-discord2.png)
 
