@@ -119,15 +119,8 @@ An important note is that, in this development node, there are two completely di
 2. State that is contained within the included EVM
 
 ##Querying Account State
-Since many of you will be familiar with the standard Substrate-based functionality, let’s look at state within the EVM using the Substrate API.
 
-Navigate to Chain state, select the “evm” module, and select “accounts(H160): Account” as the thing we want to query.
+The Substrate account state can be checked through the Polkadot JS, inside the Accounts sub-menu. 
 
-Enter `0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b` as the account whose state we want to query. This is an account in the Moonbeam dev node that has been given an initial balance via the genesis configuration. If you query this account, you should get a balance back that looks like this:
+For the EVM side, leveraging the Ethereum full RPC capabilities of Moonbeam, you can use [MetaMask](/getting-started/using-metamask/) to check the account balance. You can also use other development tools such as [Remix](/getting-started/using-remix/), [Truffle](/getting-started/using-truffle/), or the [Web3 JavaScript library](/getting-started/web3-transaction/).
 
-![Querying the account](/images/setting-up-a-node/setting-up-node-6a.png)
-
-!!! note
-    If you see “Unknown” in the response, check that the Moonbeam custom types have been loaded as described above.
-
-From here, you can begin testing Moonbeam’s Ethereum compatibility by [sending money via MetaMask](/getting-started/using-metamask/), [via Remix](/getting-started/using-remix/), with [Truffle](/getting-started/using-truffle/), or using the [Web3 library](/getting-started/web3-transaction/).
