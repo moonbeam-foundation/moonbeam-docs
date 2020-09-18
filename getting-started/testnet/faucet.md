@@ -18,7 +18,7 @@ Under the category "Miscellaneous", you will find our TestNet bot channel.
 To check your balance, enter the following message, replacing `<enter-address-here->` with your H160 address:
 
 ```
-!faucet send <enter-address-here->
+!balance <enter-address-here->
 ```
 
 To get DEV tokens, enter the following message, replacing `<enter-address-here->` with your H160 address:
