@@ -72,6 +72,10 @@ You should see an output that looks like the following, showing that blocks are 
 
 ![Output shows blocks being produced](/images/setting-up-a-node/setting-up-node-3a.png)
 
+The local standalone Moonbeam node provides two RPC endpoints:
+-  HTTP: `http://127.0.0.1:9933`
+-  WS: `ws://127.0.0.1:9944` 
+
 ##Connecting Polkadot JS Apps to a Local Moonbeam Node
 The locally-running Moonbeam node is a Substrate-based node, so we can interact with it using standard Substrate tools. Let’s start by connecting to it with Polkadot JS Apps.  
 Open a browser to: [https://polkadot.js.org/apps/#/settings](https://polkadot.js.org/apps/#/settings)
