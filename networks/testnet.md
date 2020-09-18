@@ -3,7 +3,7 @@ title: TestNet
 description: Start building on the Moonbeam TestNet using Solidity and your favorite Ethereum tools.
 ---
 # Moonbeam TestNet - Moonbase 
-*Updated September 10, 2020*
+*Updated September 18, 2020*
 
 ## Goal  
 The Moonbeam TestNet, named Moonbase, is aimed to provide developers with a place to start experimenting and building on Moonbeam in a shared environment. Since Moonbeam will be deployed as a parachain on Kusama and Polkadot, we want our TestNet to reflect our production configuration. For this reason, we decided that it needed to be a parachain-based configuration rather than a Substrate standalone setup.
