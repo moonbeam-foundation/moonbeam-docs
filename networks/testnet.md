@@ -11,9 +11,7 @@ The Moonbeam TestNet, named Moonbase, is aimed to provide developers with a plac
 In order to collect as much feedback as possible and provide a fast resolution on issues, we have set up a [Discord with a dedicated TestNet channel](https://discord.gg/nWbtA9x).
 
 ## Initial Configuration
-This version of the TestNet is hosted by PureStake, but future versions will incorporate collators and other ecosystem participants.  
-
-This is the initial configuration for Moonbase:  
+This version of the TestNet has the following configuration:  
 
 -  Infrastructure is hosted by PureStake.
 -  Moonbeam runs as a parachain connected to a relay chain.
@@ -36,7 +34,7 @@ We have many features on Moonbase's roadmap, including a few items that are plan
 - Unification of Substrate and Ethereum accounts under the H160 format, an effort we are calling Unified Accounts. Consequently, there will be only one kind of account in the system represented by a single address.
 - Event subscription support (pub/sub), which is a missing component on the Web3 RPC side and commonly used by dApp developers.
 
-Futures that may be implemented in the future:
+Feutures that may be implemented in the future:
 
 - Support for third-party collators to enable interested parties to test their setups.
 - Implementation of the rewards system, as well as the token economic model ([Staking Pallet](https://wiki.polkadot.network/docs/en/learn-staking)).
