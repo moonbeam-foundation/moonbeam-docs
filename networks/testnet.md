@@ -19,7 +19,7 @@ This is the initial configuration for Moonbase:
 -  Moonbeam runs as a parachain connected to a relay chain.
 -  The parachain has one collator that is producing blocks.
 -  The relay chain hosts three validators to finalize relay chain blocks. One of them is selected to finalize each block produced by Moonbeam's only collator. This setup provides room to expand to a two-parachain configuration in the future.
--  There are two endpoints RPC endpoints.
+-  There are two RPC endpoints.
 
 ![TestNet Diagram](/images/networks/Moonbeam-TestNet-1.png)
 
