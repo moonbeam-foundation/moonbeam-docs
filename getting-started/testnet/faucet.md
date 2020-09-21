@@ -3,15 +3,15 @@ title: Faucet
 description: How to get use the faucet to get test tokens for Moonbase
 ---
 
-# Moonbase TestNet Faucet
+# Moonbase Alpha Faucet
 
-Tokens on Moonbase, named DEV, will be issued on demand. Currently, there are two ways you can get access to this token: through a Discord bot, or manually.
+Tokens on Moonbase Alpha, named DEV, will be issued on demand. Currently, there are two ways you can get access to this token: through a Discord bot, or manually.
 
 ### Discord - Mission Control
 
 To request tokens automatically, we've created a Discord bot (named Mission Control :sunglasses:) that will automatically send a maximum of 10 DEV tokens per hour (per Discord user) when you enter your address. You can check it out on our [Discord channel](https://discord.gg/3rgpMmX).
  
-Under the category "Miscellaneous", you will find our TestNet bot channel. 
+Under the category "Miscellaneous", you will find our AlphaNet bot channel. 
 
 ![Discord1](/images/testnet/testnet-discord1.png)
 
