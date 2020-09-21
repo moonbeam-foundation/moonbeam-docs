@@ -25,7 +25,7 @@ Navigate to the Networks tab, and click on the "Add Network" button.
 
 In here, fill out the following information and then click Save:
 
-Network Name: `Moonbase TestNet` - New RPC URL:" `https://rpc.testnet.moonbeam.network` - ChainID: `43` - Symbol: `DEV`
+Network Name: `Moonbase Alpha` - New RPC URL:" `https://rpc.testnet.moonbeam.network` - ChainID: `43` - Symbol: `DEV`
 
 ![MetaMask5](/images/testnet/testnet-metamask5.png)
 
