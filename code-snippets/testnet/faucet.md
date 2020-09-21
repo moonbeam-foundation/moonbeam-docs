@@ -1,4 +1,4 @@
-Tokens on Moonbase, named DEV, will be issued on demand. Currently, there are two ways you can get access to this token: through a Discord bot, or manually.
+Tokens on Moonbase Alpha, named DEV, will be issued on demand. Currently, there are two ways you can get access to this token: through a Discord bot, or manually.
 
 ### Discord - Mission Control
 
