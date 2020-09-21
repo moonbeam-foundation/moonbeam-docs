@@ -12,4 +12,4 @@ Under the category "Miscellaneous", you will find our AlphaNet bot channel. Ente
 
 ### Manual Procedure
 
-For token requests of more than the limited account allowed by our Discord bot, contact a moderator directly via our [Discord channel](https://discord.gg/3rgpMmX). We are happy to provided the tokens needed to test your applications.
+For token requests of more than the limited account allowed by our Discord bot, contact a moderator directly via our [Discord channel](https://discord.gg/3rgpMmX). We are happy to provide the tokens needed to test your applications.
