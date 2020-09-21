@@ -1,6 +1,6 @@
 ### HTTPS DNS
 
-To connect to Moonbase via HTTPS, simply point your provider to the following RPC DNS:
+To connect to Moonbase Alpha via HTTPS, simply point your provider to the following RPC DNS:
 
 ```
 https://rpc.testnet.moonbeam.network
