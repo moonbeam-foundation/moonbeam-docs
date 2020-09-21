@@ -3,7 +3,7 @@ title: Faucet
 description: How to get use the faucet to get test tokens for Moonbase
 ---
 
-# Moonbase Faucet
+# Moonbase TestNet Faucet
 
 Tokens on Moonbase, named DEV, will be issued on demand. Currently, there are two ways you can get access to this token: through a Discord bot, or manually.
 
