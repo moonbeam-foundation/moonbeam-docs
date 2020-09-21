@@ -2,11 +2,11 @@
 title: TestNet
 description: Start building on the Moonbeam TestNet using Solidity and your favorite Ethereum tools.
 ---
-# Moonbeam TestNet - Moonbase 
+# Moonbase, The Moonbeam TestNet
 *Updated September 18, 2020*
 
 ## Goal  
-The Moonbeam TestNet, named Moonbase, is aimed to provide developers with a place to start experimenting and building on Moonbeam in a shared environment. Since Moonbeam will be deployed as a parachain on Kusama and Polkadot, we want our TestNet to reflect our production configuration. For this reason, we decided that it needed to be a parachain-based configuration rather than a Substrate standalone setup.
+The Moonbeam alpha TestNet, named Moonbase, is aimed to provide developers with a place to start experimenting and building on Moonbeam in a shared environment. Since Moonbeam will be deployed as a parachain on Kusama and Polkadot, we want our TestNet to reflect our production configuration. For this reason, we decided that it needed to be a parachain-based configuration rather than a Substrate standalone setup.
 
 In order to collect as much feedback as possible and provide a fast resolution on issues, we have set up a [Discord with a dedicated TestNet channel](https://discord.gg/nWbtA9x).
 
@@ -19,7 +19,7 @@ This version of the TestNet has the following configuration:
 -  The relay chain hosts three validators to finalize relay chain blocks. One of them is selected to finalize each block produced by Moonbeam's only collator. This setup provides room to expand to a two-parachain configuration in the future.
 -  There are two RPC endpoints.
 
-![TestNet Diagram](/images/networks/Moonbeam-TestNet-1.png)
+![TestNet Diagram](/images/networks/Moonbeam-TestNet-alpha.png)
 
 ## Features  
 
