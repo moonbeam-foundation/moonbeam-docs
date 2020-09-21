@@ -19,7 +19,7 @@ This Alpha version of the TestNet has the following configuration:
 -  The relay chain hosts three validators to finalize relay chain blocks. One of them is selected to finalize each block produced by Moonbeam's only collator. This setup provides room to expand to a two-parachain configuration in the future.
 -  There are two RPC endpoints.
 
-![TestNet Diagram](/images/networks/Moonbeam-TestNet-alpha.png)
+![TestNet Diagram](/images/networks/Moonbase-Alpha.png)
 
 ## Features  
 
