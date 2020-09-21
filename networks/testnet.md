@@ -6,12 +6,12 @@ description: Start building on the Moonbeam TestNet using Solidity and your favo
 *Updated September 18, 2020*
 
 ## Goal  
-The Moonbeam alpha TestNet, named Moonbase, is aimed to provide developers with a place to start experimenting and building on Moonbeam in a shared environment. Since Moonbeam will be deployed as a parachain on Kusama and Polkadot, we want our TestNet to reflect our production configuration. For this reason, we decided that it needed to be a parachain-based configuration rather than a Substrate standalone setup.
+The Moonbeam Alpha TestNet, named Moonbase, is aimed to provide developers with a place to start experimenting and building on Moonbeam in a shared environment. Since Moonbeam will be deployed as a parachain on Kusama and Polkadot, we want our TestNet to reflect our production configuration. For this reason, we decided that it needed to be a parachain-based configuration rather than a Substrate standalone setup.
 
 In order to collect as much feedback as possible and provide a fast resolution on issues, we have set up a [Discord with a dedicated TestNet channel](https://discord.gg/nWbtA9x).
 
 ## Initial Configuration
-This version of the TestNet has the following configuration:  
+This Alpha version of the TestNet has the following configuration:  
 
 -  Infrastructure is hosted by PureStake.
 -  Moonbeam runs as a parachain connected to a relay chain.
@@ -46,7 +46,7 @@ Feutures that may be implemented in the future:
 --8<-- "testnet/connect.md"
 
 ##Proof of Authority
-Moonbase will run similarly to the way the [Polkadot MainNets ran when they first launched](https://wiki.polkadot.network/docs/en/learn-launch#the-poa-launch): with Proof of Authority instead of Proof of Stake. This means that block finalization is carried out by a known identity, in this case, the PureStake validators.
+Moonbase Alpha will run similarly to the way the [Polkadot MainNets ran when they first launched](https://wiki.polkadot.network/docs/en/learn-launch#the-poa-launch): with Proof of Authority instead of Proof of Stake. This means that block finalization is carried out by a known identity, in this case, the PureStake validators.
 
 This also means that PureStake holds the Sudo Key in order to issue the commands and upgrades necessary to the network.
 
@@ -69,4 +69,4 @@ This network is under active development. Occasionally, chain purges may be need
 Please take note that PureStake will not be migrating the chain state. Thus, all data stored in the blockchain will be lost when a chain purge is carried out. However, as there is no gas limit, users can easily recreate their pre-purge state.
 
 ## Contact Us
-If you have any feedback regarding Moonbase, feel free to reach out through our official development channel on [Discord](https://discord.gg/3rgpMmX) :fontawesome-brands-discord:.
+If you have any feedback regarding Moonbase Alpha, feel free to reach out through our official development channel on [Discord](https://discord.gg/3rgpMmX) :fontawesome-brands-discord:.
