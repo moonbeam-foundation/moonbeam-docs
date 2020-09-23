@@ -46,7 +46,7 @@ Once you have followed all of the procedures above, it's time to build the node 
 cargo build --release
 ```
 !!! note
-    With the latest Rust nightly release (1.48.0-nigthly 2020-09-16) the build process of the node fails. To fix this, we recommend either to downgrade to an earlier nigthly release (for example, 1.47.0-nightly 2020-08-14), or to create a toolchain with such version inside the Moonbeam folder. To create a toolchain, you can run the following commands inside the Moonbeam folder: `rustup override set nightly` - `rustup toolchain install nightly-2020-08-15` - `rustup target add wasm32-unknown-unknown --toolchain nightly-2020-08-15`. 
+    With the latest Rust nightly release (1.48.0-nigthly 2020-09-16 or later) the build process of the node fails. To fix this, we recommend either to downgrade to an earlier nigthly release (for example, 1.47.0-nightly 2020-08-14), or to create a toolchain with such version inside the Moonbeam folder. To create a toolchain, you can run the following commands inside the Moonbeam folder: `rustup toolchain install nightly-2020-08-23` - `rustup target add wasm32-unknown-unknown --toolchain nightly-2020-08-23`. Then to build the node you can run: `cargo +nightly-2020-08-23 build --release`.
 
 If a _cargo not found error_ shows up in the terminal, manually add Rust to your system path (or restart your system):
 
