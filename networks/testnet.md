@@ -8,7 +8,7 @@ description: Start building on the Moonbeam TestNet using Solidity and your favo
 ## Goal  
 The first Moonbeam TestNet, named Moonbase Alpha, aims to provide developers with a place to start experimenting and building on Moonbeam in a shared environment. Since Moonbeam will be deployed as a parachain on Kusama and Polkadot, we want our TestNet to reflect our production configuration. For this reason, we decided that it needed to be a parachain-based configuration rather than a Substrate standalone setup.
 
-In order to collect as much feedback as possible and provide a fast resolution on issues, we have set up a [Discord with a dedicated Moonbase AlphaNet channel](https://discord.gg/nWbtA9x).
+In order to collect as much feedback as possible and provide a fast resolution on issues, we have set up a [Discord with a dedicated Moonbase AlphaNet channel](https://discord.gg/PfpUATX).
 
 ## Initial Configuration
 Moonbase Alpha has the following configuration:  
@@ -64,7 +64,7 @@ In order to provide an easy on-ramp for developers, this early iteration has no 
 Users only have access to the Moonbeam parachain. In future networks, we will add access to the relay chain so users can test transferring tokens.
 
 ## Chain Purge
-This network is under active development. Occasionally, chain purges may be needed in order to reset the blockchain to its initial state. This is necessary when doing major TestNet upgrades or maintenance. We will announce when a chain purge will take place via our [Discord channel](https://discord.gg/3rgpMmX) at least 24 hours in advance.
+This network is under active development. Occasionally, chain purges may be needed in order to reset the blockchain to its initial state. This is necessary when doing major TestNet upgrades or maintenance. We will announce when a chain purge will take place via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
 
 Please take note that PureStake will not be migrating the chain state. Thus, all data stored in the blockchain will be lost when a chain purge is carried out. However, as there is no gas limit, users can easily recreate their pre-purge state.
 
