@@ -9,7 +9,7 @@ Tokens on Moonbase Alpha, named DEV, will be issued on demand. Currently, there 
 
 ### Discord - Mission Control
 
-To request tokens automatically, we've created a Discord bot (named Mission Control :sunglasses:) that will automatically send a maximum of 10 DEV tokens per hour (per Discord user) when you enter your address. You can check it out on our [Discord channel](https://discord.gg/3rgpMmX).
+To request tokens automatically, we've created a Discord bot (named Mission Control :sunglasses:) that will automatically send a maximum of 10 DEV tokens per hour (per Discord user) when you enter your address. You can check it out on our [Discord channel](https://discord.gg/PfpUATX).
  
 Under the category "Miscellaneous", you will find our AlphaNet bot channel. 
 
@@ -34,7 +34,7 @@ Mission Control will send you 10 DEV tokens and display your current account bal
 
 ### Manual Procedure
 
-For token requests of more than the limited account allowed by our Discord bot, contact a moderator directly via our [Discord channel](https://discord.gg/3rgpMmX). We are happy to provide the tokens needed to test your applications.
+For token requests of more than the limited account allowed by our Discord bot, contact a moderator directly via our [Discord channel](https://discord.gg/PfpUATX). We are happy to provide the tokens needed to test your applications.
 
 
 
