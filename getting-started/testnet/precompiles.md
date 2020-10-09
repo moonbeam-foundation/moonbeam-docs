@@ -7,7 +7,7 @@ description: Explanation and demo on the Precompiles Contracts
 
 ## Introduction
 
-Another feature added with the [release of Moonbase Alpha v2](TODO LINK), is a few of the [precompiled contracts](https://docs.klaytn.com/smart-contract/precompiled-contracts) that are natively available on Ethereum. Currently, the first four precompiles are included, which are: ecrecover, sha256, ripemd-160 and the identity function.
+Another feature added with the [release of Moonbase Alpha v2](TODO LINK), is the inclusion of some of the [precompiled contracts](https://docs.klaytn.com/smart-contract/precompiled-contracts) that are natively available on Ethereum. Currently, the first four precompiles are included, which are: ecrecover, sha256, ripemd-160 and the identity function.
 
 In this guide, we will show how to use and/or verify this four precompiles.
 
@@ -45,7 +45,7 @@ npm ls web3
 
 As of the writing of this guide, the version used was 1.3.0. 
 
-## Verify signatures with ECRECOVER
+## Verify Signatures with ECRECOVER
 
 The main function of this precompile is to verify the signature of a message. In general terms, you feed `ecrecover` the transaction's signature values and it returns an address. The signature is verified if the address returned is the same as the public address who sent the transaction.
 
@@ -87,7 +87,7 @@ This code will return the following object in the terminal:
   signature: '0x44287513919034a471a7dc2b2ed121f95984ae23b20f9637ba8dff471b6719ef7d7dc30309a3baffbfd9342b97d0e804092c0aeb5821319aa732bc09146eafb41b'
 }
 ```
-With the necessary values, we can go to Remix to test the precompiled contract. Note that this can be verified as well with the Web3 JS library, but in our case we'll go to Remix to be sure that this is using the precompiled contract. The Solidity code we can use to verify the signature is the following:
+With the necessary values, we can go to Remix to test the precompiled contract. Note that this can be verified as well with the Web3 JS library, but in our case we'll go to Remix to be sure that this is using the precompiled contract on the blockchain. The Solidity code we can use to verify the signature is the following:
 
 ```solidity
 pragma solidity ^0.7.0;
@@ -108,11 +108,11 @@ contract ECRECOVER{
 }
 ```
 
-Using the [Remix compiler and deployment](/getting-started/local-node/using-remix), and with [MetaMask pointing to Moonbase Alpha](/getting-started/testnet/metamask), we can deploy the contract and call the `verify` method that returns _true_ if the address returned by `ecrecover` is equal to the address used to signed the message (related to the private key and needs to be manually set in the contract).
+Using the [Remix compiler and deployment](/getting-started/local-node/using-remix), and with [MetaMask pointing to Moonbase Alpha](/getting-started/testnet/metamask), we can deploy the contract and call the `verify()` method that returns _true_ if the address returned by `ecrecover` is equal to the address used to signed the message (related to the private key and needs to be manually set in the contract).
 
 ## Hashing with SHA256
 
-This hashing function is widely used. It returns a SHA256 hash from the given data. To test this precompile, you can use this [online tool](https://emn178.github.io/online-tools/sha256.html) to calculate the SHA256 hash of any string you want, in our case we'll do so with `Hello World!`. We can head directly to Remix and deploy the following code, where the calculated hash is set for the `expectedHash` variable:
+This hashing function returns the SHA256 hash from the given data. To test this precompile, you can use this [online tool](https://md5calc.com/hash/sha256) to calculate the SHA256 hash of any string you want, in our case we'll do so with `Hello World!`. We can head directly to Remix and deploy the following code, where the calculated hash is set for the `expectedHash` variable:
 
 ```solidity
 pragma solidity ^0.7.0;
@@ -133,5 +133,60 @@ contract Hash256{
 }
 
 ```
+Once the contract is deployed, we can call the `checkHash()` method that returns _true_ if the hash returned by `calculateHash()` is equal to the hash provided.
+
+## Hashing with RIPEMD-160
+
+This hashing function returns a RIPEMD-160 hash from the given data. To test this precompile, you can use this [online tool](https://md5calc.com/hash/ripemd160) to calculate the RIPEMD-160 hash of any string you want, in our case we'll do so again with `Hello World!`. We'll reuse the same code as before but using the `ripemd160` function, note that it returns a `bytes20` type variable:
+
+```solidity
+pragma solidity ^0.7.0;
+
+contract HashRipmd160{
+    bytes20 public expectedHash = hex'8476ee4631b9b30ac2754b0ee0c47e161d3f724c';
+
+    function calculateHash() public pure returns (bytes20) {
+        string memory word = 'Hello World!';
+        bytes20 hash = ripemd160(bytes (word));
+        
+        return hash;        
+    }
+    
+    function checkHash() public view returns(bool) {
+        return (calculateHash() == expectedHash);
+    }
+}
+```
+With the contract deployed, we can call the `checkHash()` method that returns _true_ if the hash returned by `calculateHash()` is equal to the hash provided.
+
+## The Identity Function
+
+This function serves as a cheaper way to copy data in memory. It is not supported by the Solidity compiler so it needs to be called with inline assembly. The [following code](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-04-datacopy-data) (adapted to Solidity), can be used to call this precompiled contract. We can use this [online tool]() to get the bytes from any string, as this is the input of the method `callDataCopy()`.
+
+```solidity
+pragma solidity ^0.7.0;
+
+contract Identity{
+    
+    bytes public memoryStored;
+
+    function callDatacopy(bytes memory data) public returns (bytes memory) {
+    bytes memory result = new bytes(data.length);
+    assembly {
+        let len := mload(data)
+        if iszero(call(gas(), 0x04, 0, add(data, 0x20), len, add(result,0x20), len)) {
+            invalid()
+        }
+    }
+    
+    memoryStored = result;
+
+    return result;
+    }
+}
+```
+With the contract deployed, we can call the `callDataCopy()` method that and verify if `memoryStored` checks with the bytes that you pass in as an input of the function.
+
+
 
 
