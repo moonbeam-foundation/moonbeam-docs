@@ -92,15 +92,15 @@ Once we send the transaction, the log of the event emitted by the transaction wi
 
 ![Log of the transfer event](/images/testnet/testnet-pubsub2.png)
 
-Lets break down the response received. Our target event sends two pieces of indexed information, the “from” and “to” addresses (in that order), which are treated like topics. The other piece of data shared by our event is the number of tokens, that is not indexed. Therefore, there is a total of three topics (the maximum is four), which correspond to the opcode LOG3:
+Let's break down the response received. Our target event sends two pieces of indexed information, the “from” and “to” addresses (in that order), which are treated like topics. The other piece of data shared by our event is the number of tokens, that is not indexed. Therefore, there is a total of three topics (the maximum is four), which correspond to the opcode LOG3:
 
 ![Description of LOG3](/images/testnet/testnet-pubsub3.png)
 
 Consequently, you can see that the “from” and “to” addresses are contained inside the topics returned by the logs. Ethereum addresses are 40 hex characters long (1 hex character is 4 bits, hence 160 bits or H160 format). Thus, the extra 24 zeros are needed to fill the gap to H256, which are 64 hex characters long. 
 
-Unindexed data is returned in the “data” field of the logs, but this is encoded in bytes32/hex. To decode it we can use for example this [online tool](https://web3-type-converter.brn.sh/), and verify that the “data” is in fact 10 (plus 18 zeros). 
+Unindexed data is returned in the “data” field of the logs, but this is encoded in bytes32/hex. To decode it we can use for example, this [online tool](https://web3-type-converter.brn.sh/), and verify that the “data” is in fact 10 (plus 18 zeros). 
 
-If the event returns multiple unindexed values, these will be appended one after the other in the same order the event emmits them. Therefore, each value is then obtained by deconstructing data into separate 32 bytes (or 64 hex character long) pieces.
+If the event returns multiple unindexed values, these will be appended one after the other in the same order the event emits them. Therefore, each value is then obtained by deconstructing data into separate 32 bytes (or 64 hex character long) pieces.
 
 This example showed how we could subscribe only to event logs of a specific contract. But the Web3 JS library provides other subscription types that we’ll go over in the following sections.
 
@@ -118,7 +118,7 @@ Another type available under the Web3 JS library is to subscribe to new block he
 
 ![Subscribe to block headers response](/images/testnet/testnet-pubsub5.png)
 
-Note that in the image only one block header is shown. These messages are displayed for every block produced, so they can fill up the terminal quite fast.
+Note that only one block header is shown in the image. These messages are displayed for every block produced, so they can fill up the terminal quite fast.
 
 ## Check if the Node is Synchronized with the Network
 
