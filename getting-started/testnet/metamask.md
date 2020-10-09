@@ -5,6 +5,10 @@ description: How to connect with MetaMask to Moonbase, the Moonbeam TestNet
 
 # Connect MetaMask to Moonbase Alpha
 
+## Introduction
+
+This guide outlines steps to connect MetaMask to Moonbase Alpha. In contrast to our previous MetaMask guide, this guide is much simpler because we don't need a local Moonbeam node running to connec to, so lets jump right into it.
+
 ## Creating a Wallet
 
 After installing [MetaMask](https://metamask.io), the setup will automatically open a new task with a welcome screen. Click "Get Started" to begin the setup process.
