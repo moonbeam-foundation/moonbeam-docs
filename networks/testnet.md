@@ -25,7 +25,7 @@ Moonbase Alpha has the following configuration:
 
 The following features are available:  
 
--  Fully emulated Ethereum block production in Substrate (Ethereum pallet). [v1]
+-  Fully emulated Ethereum block production in Substrate (Ethereum pallet). ![v1](/images/testnet/v1.png)
 -  Dispatchable functions to interact with the Rust EVM implementation ([EVM pallet](https://github.com/paritytech/substrate/tree/master/frame/evm)). [v1]
 -  Native Ethereum RPC support (Web3) in Substrate ([Frontier RPC](https://github.com/paritytech/frontier)). This provides compatibility with Ethereum developer tools such as MetaMask, Truffle, and Remix. [v1]
 -  Event subscription support (pub/sub), which is a missing component on the Web3 RPC side and commonly used by dApp developers. You can find a tutorial on how to subscribe to events [here](/getting-started/testnet/pubsub). [v2]
