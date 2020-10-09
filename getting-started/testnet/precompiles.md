@@ -9,7 +9,7 @@ description: Explanation and demo on the Precompiles Contracts
 
 Another feature added with the [release of Moonbase Alpha v2](TODO LINK), is the inclusion of some of the [precompiled contracts](https://docs.klaytn.com/smart-contract/precompiled-contracts) that are natively available on Ethereum. Currently, the first four precompiles are included, which are: ecrecover, sha256, ripemd-160 and the identity function.
 
-In this guide, we will show how to use and/or verify this four precompiles.
+In this guide, we will show how to use and/or verify these four precompiles.
 
 ## Checking Prerequisites
 
@@ -47,9 +47,9 @@ As of the writing of this guide, the version used was 1.3.0.
 
 ## Verify Signatures with ECRECOVER
 
-The main function of this precompile is to verify the signature of a message. In general terms, you feed `ecrecover` the transaction's signature values and it returns an address. The signature is verified if the address returned is the same as the public address who sent the transaction.
+The main function of this precompile is to verify the signature of a message. In general terms, you feed `ecrecover` the transaction's signature values, and it returns an address. The signature is verified if the address returned is the same as the public address who sent the transaction.
 
-Lets jump into a small example to showcase how we can leverage this precompiled function. To do so we need to retrieve the transaction's signature values (v, r, s). To do so, we'll sign and retrieved the signed message were these values are as well:
+Let's jump into a small example to showcase how we can leverage this precompiled function. To do so we need to retrieve the transaction's signature values (v, r, s). To do so, we'll sign and retrieved the signed message were these values are as well:
 
 ```js
 const Web3 = require('web3');
@@ -87,7 +87,7 @@ This code will return the following object in the terminal:
   signature: '0x44287513919034a471a7dc2b2ed121f95984ae23b20f9637ba8dff471b6719ef7d7dc30309a3baffbfd9342b97d0e804092c0aeb5821319aa732bc09146eafb41b'
 }
 ```
-With the necessary values, we can go to Remix to test the precompiled contract. Note that this can be verified as well with the Web3 JS library, but in our case we'll go to Remix to be sure that this is using the precompiled contract on the blockchain. The Solidity code we can use to verify the signature is the following:
+With the necessary values, we can go to Remix to test the precompiled contract. Note that this can be verified as well with the Web3 JS library, but in our case, we'll go to Remix to be sure that this is using the precompiled contract on the blockchain. The Solidity code we can use to verify the signature is the following:
 
 ```solidity
 pragma solidity ^0.7.0;
@@ -161,7 +161,7 @@ With the contract deployed, we can call the `checkHash()` method that returns _t
 
 ## The Identity Function
 
-This function serves as a cheaper way to copy data in memory. It is not supported by the Solidity compiler so it needs to be called with inline assembly. The [following code](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-04-datacopy-data) (adapted to Solidity), can be used to call this precompiled contract. We can use this [online tool]() to get the bytes from any string, as this is the input of the method `callDataCopy()`.
+This function serves as a cheaper way to copy data in memory. The Solidity compiler does not support it, so it needs to be called with inline assembly. The [following code](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-04-datacopy-data) (adapted to Solidity), can be used to call this precompiled contract. We can use this [online tool]() to get the bytes from any string, as this is the input of the method `callDataCopy()`.
 
 ```solidity
 pragma solidity ^0.7.0;
