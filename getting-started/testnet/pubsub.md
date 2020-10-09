@@ -49,7 +49,7 @@ npm ls web3
 
 As of the writing of this guide, the version used was 1.3.0. 
 
-## Subscribing to event logs in Moonbase Alpha v2
+## Subscribing to Event Logs in Moonbase Alpha v2
 
 Any contract that follows the ERC20 token standard emits an event related to a transfer of tokens, that is, `event Transfer(address indexed from, address indexed to, uint256 value)`. For this example, we will subscribe to the logs of such events. Using the Web3 JS library, we need the following piece of code:
 
@@ -104,7 +104,7 @@ If the event returns multiple unindexed values, these will be appended one after
 
 This example showed how we could subscribe only to event logs of a specific contract. But the Web3 JS library provides other subscription types that we’ll go over in the following sections.
 
-## Subscribe to incoming pending transactions
+## Subscribe to Incoming Pending Transactions
 
 In order to subscribe to pending transactions, we can use the `web3.eth.subscribe(‘pendingTransactions’, [, callback])` method, implementing the same callback function to check for the response. This is much simpler than our previous example, and it returns the transaction hash of the pending transactions.
 
@@ -112,7 +112,7 @@ In order to subscribe to pending transactions, we can use the `web3.eth.subscrib
 
 We can verify that this transaction hash is the same as that shown in MetaMask (or Remix).
 
-## Subscribe to incoming block headers
+## Subscribe to Incoming Block Headers
 
 Another type available under the Web3 JS library is to subscribe to new block headers. To do so, we use the `web3.eth.subscribe('newBlockHeaders' [, callback])` method, implementing the same callback function to check for the response. This subscription provides incoming block headers and can be used to track changes in the blockchain.
 
@@ -120,7 +120,7 @@ Another type available under the Web3 JS library is to subscribe to new block he
 
 Note that in the image only one block header is shown. These messages are displayed for every block produced, so they can fill up the terminal quite fast.
 
-## Check if the node is synchronized with the network
+## Check if the Node is Synchronized with the Network
 
 With pub/sub it is also possible to check whether a particular node, which you are subscribed to, is currently synchronized with the network. For that, we can leverage the `web3.eth.subscribe(‘syncing' [, callback])` method, implementing the same callback function to check for the response. This subscription will return an object when the node is synced with the network.
 
