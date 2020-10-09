@@ -15,7 +15,9 @@ When prompted, you are given the option to import a wallet using a recovery seed
 
 ![MetaMask2](/images/testnet/testnet-metamask2.png)
 
-Once you finish the steps, you will see the main MetaMask interface. In here, click in the top right logo and go to Settings.
+## Connecting to Moonbase Alpha
+
+Once you finish creating or importing a wallet, you will see the main MetaMask interface. In here, click in the top right logo and go to Settings.
 
 ![MetaMask3](/images/testnet/testnet-metamask3.png)
 
