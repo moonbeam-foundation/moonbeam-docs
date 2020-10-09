@@ -35,7 +35,19 @@ node -v
 npm -v
 ```
 
-As of the writing of this guide, versions used were 14.6.0 and 6.14.6, respectively.
+As of the writing of this guide, versions used were 14.6.0 and 6.14.6, respectively. Also, we need to install the Web3 package by executing:
+
+```
+npm install --save web3
+```
+
+To verify the installed version of Web3, you can use the `ls` command:
+
+```
+npm ls web3
+```
+
+As of the writing of this guide, the version used was 1.3.0. 
 
 ## Subscribing to event logs in Moonbase Alpha v2
 
