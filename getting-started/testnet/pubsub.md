@@ -1,9 +1,9 @@
 ---
 title: Subscribe to Events
-description: Subscribe to specific events in the blockchain
+description: Use pub-sub to subscribe to specific events on Moonbeam's Ethereum-compatible chain.
 ---
 
-# Subscribe to events in Moonbase Alpha
+# Subscribe to Events in Moonbase Alpha
 
 ## Introduction
 
