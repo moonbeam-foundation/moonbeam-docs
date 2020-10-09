@@ -187,6 +187,9 @@ contract Identity{
 ```
 With the contract deployed, we can call the `callDataCopy()` method that and verify if `memoryStored` checks with the bytes that you pass in as an input of the function.
 
+## We Want to Hear From You
+
+If you have any feedback regarding the Moonbase Alpha v2, the precompile contracts, or any other Moonbeam related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).
 
 
 
