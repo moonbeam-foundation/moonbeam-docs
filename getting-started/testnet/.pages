@@ -3,3 +3,5 @@ arrange:
   - connect.md
   - faucet.md
   - metamask.md
+  - pubsub.md
+  - precompiles.md
