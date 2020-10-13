@@ -161,7 +161,7 @@ With the contract deployed, we can call the `checkHash()` method that returns _t
 
 ## The Identity Function
 
-This function serves as a cheaper way to copy data in memory. The Solidity compiler does not support it, so it needs to be called with inline assembly. The [following code](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-04-datacopy-data) (adapted to Solidity), can be used to call this precompiled contract. We can use this [online tool]() to get the bytes from any string, as this is the input of the method `callDataCopy()`.
+Also known as datacopy, his function serves as a cheaper way to copy data in memory. The Solidity compiler does not support it, so it needs to be called with inline assembly. The [following code](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-04-datacopy-data) (adapted to Solidity), can be used to call this precompiled contract. We can use this [online tool]() to get the bytes from any string, as this is the input of the method `callDataCopy()`.
 
 ```solidity
 pragma solidity ^0.7.0;
@@ -189,7 +189,7 @@ With the contract deployed, we can call the `callDataCopy()` method that and ver
 
 ## We Want to Hear From You
 
-If you have any feedback regarding the Moonbase Alpha v2, the precompile contracts, or any other Moonbeam related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).
+If you have any feedback regarding Moonbase Alpha, the precompile contracts, or any other Moonbeam related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).
 
 
 
