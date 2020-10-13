@@ -7,7 +7,7 @@ description:  Learn about precompile contracts on Moonbase Alpha, the Moonbeam N
 
 ## Introduction
 
-Another feature added with the [release of Moonbase Alpha v2](TODO LINK), is the inclusion of some of the [precompiled contracts](https://docs.klaytn.com/smart-contract/precompiled-contracts) that are natively available on Ethereum. Currently, the first four precompiles are included, which are: ecrecover, sha256, ripemd-160 and the identity function.
+Another feature added with the [release of Moonbase Alpha v2](http://www.purestake.com/blog/new-in-moonbase-alpha-v2-contract-events-and-pub-sub-capabilities/), is the inclusion of some of the [precompiled contracts](https://docs.klaytn.com/smart-contract/precompiled-contracts) that are natively available on Ethereum. Currently, the first four precompiles are included, which are: ecrecover, sha256, ripemd-160 and the identity function.
 
 In this guide, we will show how to use and/or verify these four precompiles.
 
