@@ -101,8 +101,7 @@ contract ECRECOVER{
     
     
     function verify() public view returns(bool) {
-        //bytes memory prefix = "\x19Ethereum Signed Message:\n32";
-        //bytes32 prefixedHash = keccak256(abi.encode(prefix, hash));
+        // Use ECRECOVER to verify address
         return (ecrecover(msgHash, v, r, s) == (addressTest));
     }
 }
