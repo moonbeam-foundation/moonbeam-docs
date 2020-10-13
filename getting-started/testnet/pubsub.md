@@ -7,7 +7,7 @@ description: Use pub-sub to subscribe to specific events on Moonbeam's Ethereum-
 
 ## Introduction
 
-With the [release of Moonbase Alpha v2](TODO LINK), the capability to subscribe to Ethereum style specific event was added. In this guide, we will outline the subscription types available and the current limitations.
+With the [release of Moonbase Alpha v2](TODO LINK), the ability to subscribe to Ethereum style events was added. In this guide, we will outline the subscription types available and the current limitations.
 
 ## Checking Prerequisites
 
@@ -49,7 +49,7 @@ npm ls web3
 
 As of the writing of this guide, the version used was 1.3.0. 
 
-## Subscribing to Event Logs in Moonbase Alpha v2
+## Subscribing to Event Logs in Moonbase Alpha
 
 Any contract that follows the ERC20 token standard emits an event related to a transfer of tokens, that is, `event Transfer(address indexed from, address indexed to, uint256 value)`. For this example, we will subscribe to the logs of such events. Using the Web3 JS library, we need the following piece of code:
 
@@ -136,13 +136,13 @@ Another limitation is related to the logs of the event. On Ethereum, you can use
 topics: [null, [address1, address2]]
 ```
 
-Here, by using the wildcard null in place for the event signature, we are listening to all events emitted by the contract that we subscribed to. But with this configuration, we can also use a second input field, that is "topic_1", to define a filter by address as mentioned before.
+Here, by using the wildcard null in place for the event signature, we filter to listen to all events emitted by the contract that we subscribed to. But with this configuration, we can also use a second input field, that is "topic_1", to define a filter by address as mentioned before.
 
-The current Frontier implementation does not support these features. As an alternative, you can create multiple subscriptions for all the events of the contract and the different addresses, but this increases the number of operations to be carried out. However, this is expected to be supported in future versions of the Moonbase TestNet.
+The current Frontier implementation does not support these features. As a workaround, you can create multiple subscriptions for all the events of the contract and the different addresses involved, but note that this will increase the number of operations that need to be carried out. Wildcard based filters and array-based input, such as the example shown before with _null_ and the two-address array, are expected to be supported in future versions of the Moonbase TestNet.
 
 ## We Want to Hear From You
 
-If you have any feedback regarding the Moonbase Alpha v2, pub/sub, or any other Moonbeam related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).
+If you have any feedback regarding Moonbase Alpha, pub/sub, or any other Moonbeam related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).
 
 
 
