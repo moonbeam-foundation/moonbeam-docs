@@ -7,7 +7,7 @@ description: Use pub-sub to subscribe to specific events on Moonbeam's Ethereum-
 
 ## Introduction
 
-With the [release of Moonbase Alpha v2](TODO LINK), the ability to subscribe to Ethereum style events was added. In this guide, we will outline the subscription types available and the current limitations.
+With the [release of Moonbase Alpha v2](http://www.purestake.com/news/moonbase-alpha-v2-pub-sub/), the ability to subscribe to Ethereum-style events was added. In this guide, we will outline the subscription types available and the current limitations.
 
 ## Checking Prerequisites
 
@@ -17,7 +17,7 @@ The examples in this guide are based on a Ubuntu 18.04 environment. Also, you wi
 -  Have an account with funds, which you can get from [Mission Control](/getting-started/testnet/faucet)
 -  Deploy your own ERC20 token on Moonbase, which you can do following [our Remix tutorial](/getting-started/local-node/using-remix) but first pointing MetaMask to Moonbase
 
-In addition, we need to install Node.js (we'll go for v14.x) and the npm package manager. You can do this by running in your terminal:
+In addition, we need to install Node.js (we'll go for v14.x) and npm. You can do this by running in your terminal:
 
 ```
 curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
@@ -138,7 +138,7 @@ topics: [null, [address1, address2]]
 
 Here, by using the wildcard null in place for the event signature, we filter to listen to all events emitted by the contract that we subscribed to. But with this configuration, we can also use a second input field, that is "topic_1", to define a filter by address as mentioned before.
 
-The current Frontier implementation does not support these features. As a workaround, you can create multiple subscriptions for all the events of the contract and the different addresses involved, but note that this will increase the number of operations that need to be carried out. Wildcard based filters and array-based input, such as the example shown before with _null_ and the two-address array, are expected to be supported in future versions of the Moonbase TestNet.
+The current Frontier implementation does not support these features. As a workaround, you can create multiple subscriptions for all the events of the contract and the different addresses involved, but note that this will increase the number of operations that need to be carried out. Wildcard-based filters and array-based input, such as the example shown before with _null_ and the two-address array, are expected to be supported in future versions of the Moonbase TestNet.
 
 ## We Want to Hear From You
 
