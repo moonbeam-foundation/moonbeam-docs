@@ -64,7 +64,7 @@ Here is what the tail end of the build output should look like:
 Then you will want to run the node in dev mode using the following command:
 
 ```
-./target/release/node-moonbeam --dev
+./target/release/moonbase-standalone --dev
 ```
 
 !!! note
