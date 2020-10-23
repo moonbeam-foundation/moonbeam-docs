@@ -80,9 +80,13 @@ Open a browser to: [https://polkadot.js.org/apps/#/explorer](https://polkadot.js
 
 ![Polkadot JS Apps](/images/setting-up-a-node/setting-up-node-4b.png)
 
-Click on the top right corner to open the menu to configure the networks, and then navigate down to open the Development sub-menu. In there,  you will want to toggle the "Local Node" option which points Polkadot JS Apps to `127.0.0.1:9944`.
+Click on the top right corner to open the menu to configure the networks, and then navigate down to open the Development sub-menu. In there,  you will want to toggle the "Local Node" option which points Polkadot JS Apps to `127.0.0.1:9944`. Next, hit on the Switch button and the site should connect to your standalone Moonbeam node.
 
 ![Select Local Node](/images/setting-up-a-node/setting-up-node-5b.png)
+
+With Polkadot JS Apps connected, you will see the standalone Moonbeam node producing blocks.
+
+![Select Local Node](/images/setting-up-a-node/setting-up-node-6b.png)
 
 Next, we need to add Moonbeam custom types to Polkadot JS, so it understands them. Under settings navigate to the “Developer” tab, enter the following JSON and hit Save:
 
