@@ -20,33 +20,28 @@ We start by cloning a specific branch of the moonbeam repo that you can find her
 
 [https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials](https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials)
 
-```sh
+```
 git clone -b tutorial-v2 https://github.com/PureStake/moonbeam
 cd moonbeam
 ```
 
 Next, install Substrate and all its prerequisites (including rust), by executing:
 
-```sh
+```
 curl https://getsubstrate.io -sSf | bash -s -- --fast
 ```
 
 Now, lets make some checks (correct version of rust nigthly) with the initialization script:
 
-```sh
+```
 bash ./scripts/init.sh
 ```
 
-Once you have followed all of the procedures above, it's time to build the node by running:
+Once you have followed all of the procedures above, it's time to build the standalone node by running:
 
-```sh
+```
+cd ./node/standalone
 cargo build --release
-```
-
-If a _cargo not found error_ shows up in the terminal, manually add Rust to your system path (or restart your system):
-
-```
-source $HOME/.cargo/env
 ```
 
 !!! note
