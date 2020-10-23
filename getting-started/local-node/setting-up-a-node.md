@@ -44,12 +44,18 @@ cd ./node/standalone
 cargo build --release
 ```
 
+If a _cargo not found error_ shows up in the terminal, manually add Rust to your system path (or restart your system):
+
+```
+source $HOME/.cargo/env
+```
+
 !!! note
     The initial build will take a while, depending on your hardware. You should plan on 30 minutes. You may see warnings related to evm v0.16.1 and use of deprecated item 'sc_service::AbstractService::spawn_essential_task' which can be ignored for purposes of this guide.
 
 Here is what the tail end of the build output should look like:
 
-![End of build output](/images/setting-up-a-node/setting-up-node-2a.png)
+![End of build output](/images/setting-up-a-node/setting-up-node-2b.png)
 
 Then you will want to run the node in dev mode using the following command:
 
@@ -62,7 +68,7 @@ Then you will want to run the node in dev mode using the following command:
 
 You should see an output that looks like the following, showing that blocks are being produced:
 
-![Output shows blocks being produced](/images/setting-up-a-node/setting-up-node-3a.png)
+![Output shows blocks being produced](/images/setting-up-a-node/setting-up-node-3b.png)
 
 The local standalone Moonbeam node provides two RPC endpoints:
 -  HTTP: `http://127.0.0.1:9933`
@@ -70,11 +76,13 @@ The local standalone Moonbeam node provides two RPC endpoints:
 
 ##Connecting Polkadot JS Apps to a Local Moonbeam Node
 The locally-running Moonbeam node is a Substrate-based node, so we can interact with it using standard Substrate tools. Let’s start by connecting to it with Polkadot JS Apps.  
-Open a browser to: [https://polkadot.js.org/apps/#/settings](https://polkadot.js.org/apps/#/settings)
+Open a browser to: [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/#/explorer). This will open Polkadot JS Apps which automatically connects to Polkadot MainNet. 
 
-This will open Polkadot JS Apps and bring you to the RPC configuration area, where you specify which Substrate RPC endpoint you want to connect to. You will want to toggle the “remote node/endpoint to connect to” to “Local Node (Own, 127.0.0.1:9944)” which is the very last option in the dropdown (you have to scroll down):
+![Polkadot JS Apps](/images/setting-up-a-node/setting-up-node-4b.png)
 
-![Select Local Node](/images/setting-up-a-node/setting-up-node-4a.png)
+Click on the top right corner to open the menu to configure the networks, and then navigate down to open the Development sub-menu. In there,  you will want to toggle the "Local Node" option which points Polkadot JS Apps to `127.0.0.1:9944`.
+
+![Select Local Node](/images/setting-up-a-node/setting-up-node-5b.png)
 
 Next, we need to add Moonbeam custom types to Polkadot JS, so it understands them. Under settings navigate to the “Developer” tab, enter the following JSON and hit Save:
 
