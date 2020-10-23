@@ -20,33 +20,28 @@ We start by cloning a specific branch of the moonbeam repo that you can find her
 
 [https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials](https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials)
 
+```sh
+git clone -b tutorial-v2 https://github.com/PureStake/moonbeam
+cd moonbeam
 ```
-git clone -b moonbeam-tutorials https://github.com/PureStake/moonbeam
-```
-
-Then, initialize and update the following git sub-modules:
-
-```
-cd moonbeam && git submodule update --init --recursive
-```
-
-Here is what the output of the whole process should display:
-
-![Output from clone action](/images/setting-up-a-node/setting-up-node-1b.png)
 
 Next, install Substrate and all its prerequisites (including rust), by executing:
 
-```
+```sh
 curl https://getsubstrate.io -sSf | bash -s -- --fast
+```
+
+Now, lets make some checks (correct version of rust nigthly) with the initialization script:
+
+```sh
+bash ./scripts/init.sh
 ```
 
 Once you have followed all of the procedures above, it's time to build the node by running:
 
-```
+```sh
 cargo build --release
 ```
-!!! note
-    With the latest Rust nightly release (1.48.0-nigthly 2020-09-16 or later) the build process of the node fails. To fix this, we recommend either to downgrade to an earlier nigthly release (for example, 1.47.0-nightly 2020-08-14), or to create a toolchain with such version inside the Moonbeam folder. To create a toolchain, you can run the following commands inside the Moonbeam folder: `rustup toolchain install nightly-2020-08-23` - `rustup target add wasm32-unknown-unknown --toolchain nightly-2020-08-23`. Then to build the node you can run: `cargo +nightly-2020-08-23 build --release`.
 
 If a _cargo not found error_ shows up in the terminal, manually add Rust to your system path (or restart your system):
 
