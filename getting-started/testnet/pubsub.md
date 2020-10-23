@@ -133,10 +133,10 @@ The pub/sub implementation in [Frontier](https://github.com/paritytech/frontier)
 Another limitation is related to the logs of the event. On Ethereum, you can use wildcards and pass in multiple input addresses, for example, to filter specific logs. Let's say we would like to subscribe to all events of a contract that have two specific addresses in the “topic_1” field (remember that “topic_0” is reserved to the event signature). Then we could pass in the following topic as input:
 
 ```js
-topics: [null, [address1, address2]]
+topics: [null, [address1-in-H256, address2-in-H256]]
 ```
 
-Here, by using the wildcard null in place for the event signature, we filter to listen to all events emitted by the contract that we subscribed to. But with this configuration, we can also use a second input field, that is "topic_1", to define a filter by address as mentioned before.
+Here, by using the wildcard null in place for the event signature, we filter to listen to all events emitted by the contract that we subscribed to. But with this configuration, we can also use a second input field, that is "topic_1", to define a filter by address as mentioned before. Note that the addresses need to be in H256 format, for example, for address `0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b` needs to be entered as `0x0000000000000000000000006Be02d1d3665660d22FF9624b7BE0551ee1Ac91b`.
 
 The current Frontier implementation does not support these features. As a workaround, you can create multiple subscriptions for all the events of the contract and the different addresses involved, but note that this will increase the number of operations that need to be carried out. Wildcard-based filters and array-based input, such as the example shown before with _null_ and the two-address array, are expected to be supported in future versions of the Moonbase TestNet.
 
