@@ -8,17 +8,17 @@ description: Learn how to set up your first Moonbeam node and connect it to the 
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>You can find all of the relevant code for this tutorial on the [code snippets page](/resources/code-snippets/)</div>
 
 ##Introduction  
-This guide outlines steps to create a node for testing the Ethereum compatibility functionality of Moonbeam.
+This guide outlines steps to create a standalone local node for testing the Ethereum compatibility functionality of Moonbeam.
 
 !!! note
-    This tutorial was created using the pre-alpha release of [Moonbeam](https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development. We have created this tutorial so you can test out Moonbeam’s Ethereum compatibility features. Even though it is still in development, we believe it’s important that interested community members and developers have the opportunity to start to try things with Moonbeam and provide feedback.
+    This tutorial was created using the alpha release of [Moonbeam](https://github.com/PureStake/moonbeam/). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development. We have created this tutorial so you can test out Moonbeam’s Ethereum compatibility features. Even though it is still in development, we believe it’s important that interested community members and developers have the opportunity to start to try things with Moonbeam and provide feedback.
 
 The examples in this guide assume an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows. If you follow to the end of this guide, you will have a running Moonbeam node and will be able to connect it to the default Polkadot JS GUI.
 
 ##Installation and Setup  
-We start by cloning a specific branch of the moonbeam repo that you can find here:
+We start by cloning a specific tag of the Moonbeam repo that you can find here:
 
-[https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials](https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials)
+[https://github.com/PureStake/moonbeam/](https://github.com/PureStake/moonbeam/)
 
 ```
 git clone -b tutorial-v2 https://github.com/PureStake/moonbeam
