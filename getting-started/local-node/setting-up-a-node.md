@@ -34,7 +34,7 @@ curl https://getsubstrate.io -sSf | bash -s -- --fast
 Now, lets make some checks (correct version of rust nigthly) with the initialization script:
 
 ```
-bash ./scripts/init.sh
+./scripts/init.sh
 ```
 
 Once you have followed all of the procedures above, it's time to build the standalone node by running:
