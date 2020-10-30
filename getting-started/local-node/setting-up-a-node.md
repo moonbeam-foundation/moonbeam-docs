@@ -4,7 +4,7 @@ description: Learn how to set up your first Moonbeam node and connect it to the 
 ---
 
 #Setting Up a Moonbeam Node and Connecting to the Polkadot JS GUI  
-<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed//0HZDeqBhCXM' frameborder='0' allowfullscreen></iframe></div>
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://youtu.be/p_0OAHSlHNM' frameborder='0' allowfullscreen></iframe></div>
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>You can find all of the relevant code for this tutorial on the [code snippets page](/resources/code-snippets/)</div>
 
 ##Introduction  
@@ -74,6 +74,17 @@ The local standalone Moonbeam node provides two RPC endpoints:
 -  HTTP: `http://127.0.0.1:9933`
 -  WS: `ws://127.0.0.1:9944` 
 
+##Getting Started with Docker
+An alternative to the steps higlighted before is to use docker to run a pre-build binary. Doing so, you prevent having to install Substrate and all the dependencies, and you can skip the building the node process as well. The only requirement is to have docker installed, and then you can execute the following command:
+
+```
+docker run --rm --name moonbeam_standalone --network host purestake/moonbase:tutorial-v2.2 /moonbase/moonbase-standalone --dev
+```
+
+If successful you should see an ouput similar to before, showing that blocks are being produced:
+
+![Docker - output shows blocks being produced](/images/setting-up-a-node/setting-up-node-8a.png)
+
 ##Connecting Polkadot JS Apps to a Local Moonbeam Node
 The locally-running Moonbeam node is a Substrate-based node, so we can interact with it using standard Substrate tools. Let’s start by connecting to it with Polkadot JS Apps.  
 Open a browser to: [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/#/explorer). This will open Polkadot JS Apps which automatically connects to Polkadot MainNet. 
@@ -131,4 +142,5 @@ An important note is that, with the current version of this standalone node, the
 The Substrate account state can be checked through the Polkadot JS, inside the Accounts sub-menu. 
 
 For the EVM side, leveraging the Ethereum full RPC capabilities of Moonbeam, you can use [MetaMask](/getting-started/using-metamask/) to check the account balance. You can also use other development tools such as [Remix](/getting-started/using-remix/), [Truffle](/getting-started/using-truffle/), or the [Web3 JavaScript library](/getting-started/web3-transaction/).
+
 
