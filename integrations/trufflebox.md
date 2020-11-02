@@ -1,75 +1,190 @@
 ---
-title: Moonbeam Truffle box
+title: Moonbeam Truffle Box
 description: Start using the Moonbeam Truffle box to deploy your smart contracts on Moonbeam using Truffle.
 ---
-# Moonbase Alpha, The Moonbeam TestNet
+# Moonbeam Truffle Box
 
-## Goal  
-The first Moonbeam TestNet, named Moonbase Alpha, aims to provide developers with a place to start experimenting and building on Moonbeam in a shared environment. Since Moonbeam will be deployed as a parachain on Kusama and Polkadot, we want our TestNet to reflect our production configuration. For this reason, we decided that it needed to be a parachain-based configuration rather than a Substrate standalone setup.
+##Introduction
+As part of an ongoing effort to help developers that want to start working on Moonbeam, we have launched the Moonbeam Truffle box (TODO>> LINK). With it, developers will find a boilerplate setup to get started deploying smart contracts on Moonbeam quickly. With the Moonbeam Truffle box, we have also incorporated the Moonbeam Truffle plugin, that introduces some commands to run a standalone node in your local environment as a docker image. This removes the process of setting up a local node which can take up to 40 minutes when building its binary, and is a quick and easy solution to get started developing in your local environment.
 
-In order to collect as much feedback as possible and provide a fast resolution on issues, we have set up a [Discord with a dedicated Moonbase AlphaNet channel](https://discord.gg/PfpUATX).
+This tutorial will guide you through the process of setting up the box, using the Moonbeam Truffle plugin, and deploy contracts to both a standalone Moonbeam node and Moonbase Alpha using Truffle with the box base configuration.
 
-## Initial Configuration
-Moonbase Alpha has the following configuration:  
+!!! note
+    This guide is based on an Ubuntu 18.04 installation.
 
--  Infrastructure is hosted by PureStake.
--  Moonbeam runs as a parachain connected to a relay chain.
--  The parachain has one collator that is producing blocks.
--  The relay chain hosts three validators to finalize relay chain blocks. One of them is selected to finalize each block produced by Moonbeam's only collator. This setup provides room to expand to a two-parachain configuration in the future.
--  There are two RPC endpoints.
+## Checking Prerequisites
 
-![TestNet Diagram](/images/testnet/Moonbase-Alpha.png)
+For this tutorial, we need to install Node.js (we'll go for v14.x) and the npm package manager. You can do this by running in your terminal:
 
-## Features  
+```
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+```
+```
+sudo apt install -y nodejs
+```
 
-The following features are available:  
+We can verify that everything installed correctly by querying the version for each package:
 
--  Fully emulated Ethereum block production in Substrate (Ethereum pallet). ![v1](/images/testnet/v1.svg)
--  Dispatchable functions to interact with the Rust EVM implementation ([EVM pallet](https://github.com/paritytech/substrate/tree/master/frame/evm)). ![v1](/images/testnet/v1.svg)
--  Native Ethereum RPC support (Web3) in Substrate ([Frontier RPC](https://github.com/paritytech/frontier)). This provides compatibility with Ethereum developer tools such as MetaMask, Truffle, and Remix. ![v1](/images/testnet/v1.svg)
--  Event subscription support (pub/sub), which is a missing component on the Web3 RPC side and commonly used by dApp developers. You can find a tutorial on how to subscribe to events [here](/getting-started/testnet/pubsub). ![v2](/images/testnet/v2.svg)
--  Support for the following precompile contracts: [ecrecover](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-01-ecrecover-hash-v-r-s), [sha256](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-02-sha-256-data), [ripemd160](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-03-ripemd-160-data) and the [identity function](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-04-datacopy-data) (or datacopy). ![v2](/images/testnet/v2.svg)
+```
+node -v
+```
+```
+npm -v
+```
 
-For more details regarding the updates of Moonbase Alpha v2, please refer to the [release notes](https://github.com/PureStake/moonbeam/releases/tag/v0.2.0). 
-
-We have many features on Moonbase's roadmap, planned for the next release:
-
-- Unification of Substrate and Ethereum accounts under the H160 format, an effort we are calling Unified Accounts. Consequently, there will be only one kind of account in the system represented by a single address.
+As of the writing of this guide, versions used were 14.15.0 and 6.14.8, respectively. Next, we can optionally install Truffle globally, to do so you can execute:
 
 
-Features that may be implemented in the future:
+```
+npm install -g truffle
+```
 
-- Support for third-party collators to enable interested parties to test their setups.
-- Implementation of the rewards system, as well as the token economic model ([Staking Pallet](https://wiki.polkadot.network/docs/en/learn-staking)).
-- On-chain governance features ([Democracy Pallet](https://github.com/paritytech/substrate/tree/HEAD/frame/democracy)).
-- Treasury features ([Treasury Pallet](https://github.com/paritytech/substrate/tree/master/frame/treasury)).
+As of the writing of this guide, version used was 5.1.51. 
 
-## Get Started
+## Downloading and Setting Up the Truffle Box
 
---8<-- "testnet/connect.md"
+To get started with the Moonbeam Truffle box, if you have Truffle installed globally, you can execute:
 
-##Proof of Authority
-Moonbase Alpha will run similarly to the way the [Polkadot MainNets ran when they first launched](https://wiki.polkadot.network/docs/en/learn-launch#the-poa-launch): with Proof of Authority instead of Proof of Stake. This means that block finalization is carried out by a known identity, in this case, the PureStake validators.
+```
+mkdir moonbeam-truffle-box && cd moonbeam-truffle-box
+truffle unbox moonbeam
+```
 
-This also means that PureStake holds the Sudo Key in order to issue the commands and upgrades necessary to the network.
+Nevertheless, the box has also Truffle as a dependency in case you do not want to have it installed globally. In such a case, you can directly clone the following repository:
 
-## Tokens
+```
+git clone https://github.com/PureStake/moonbeam-truffle-box
+cd moonbeam-truffle-box
+``` 
 
---8<-- "testnet/faucet.md"
+With the files in your local system, the next step is to install all dependencies by running:
 
+```
+npm install
+```
+
+And that is all the prerequisites you need to use the Moonbeam Truffle box.
+
+## Basic Functionalities
+
+The box is pre-configured with two networks: `dev` (for a standalone node) and `moonbase` (Moonbeam TestNet). Included as well, as an example, is an ERC20 token contract, and a simple test script. If you are experienced with Truffle, this setup will feel familiar.
+
+```js
+const PrivateKeyProvider = require('./private-provider');
+// Standalone Development Node Private Key
+const privateKeyDev =
+   '99B3C12287537E38C90A9219D4CB074A89A16E9CDB20BF85728EBD97C343E342';
+// Moonbase Alpha Private Key --> Please change this to your own Private Key with funds
+const privateKeyMoonbase = '';
+module.exports = {
+   networks: {
+      dev: {
+         provider: () => {
+            ...
+            return new PrivateKeyProvider(privateKeyDev, 'http://localhost:9933/', 43)
+         },
+         network_id: 43,
+      },
+      moonbase: {
+         provider: () => {
+            ...
+            return new PrivateKeyProvider(privateKeyMoonbase, 'https://rpc.testnet.moonbeam.network', 43)
+         },
+         network_id: 43,
+      },
+   },
+   plugins: ['moonbeam-truffle-plugin']
+};
+```
+
+The `truffle-config.js` file also includes the private key of the genesis account for the standalone node is included as well, the address associated with this key holds all the tokens in this development environment. For deployments in the Moonbase Alpha TestNet, you need to provide the private key of an address that holds funds. To do so, you can create an account in MetaMask, fund it using the [TestNet faucet](https://docs.moonbeam.network/getting-started/testnet/faucet/), and export its private key.
+
+As with using Truffle in any Ethernet network, you can run the normal commands to compile, test and deploy smart contracts in Moonbeam. For example, using the included ERC20 token contract, you can try the following commands:
+
+```
+./node_modules/.bin/truffle compile # compiles the contract
+./node_modules/.bin/truffle test #run the tests included in the test folder
+./node_modules/.bin/truffle migrate --network network_name  #deploys to the specified network
+```
+
+If you have Truffle installed globally, you can remove `./node_modules/.bin/` from the commands. Depending on the network you want to deploy the contracts too, you need to substitute network_name for either dev (to target the standalone node) or moonbase (to target the TestNet).
+
+## The Moonbeam Truffle Plugin
+
+Currently, to set up a standalone Moonbeam node, you can follow [this tutorial](/getting-started/local-node/setting-up-a-node). The process takes around 40 minutes in total, and you need to install Substrate and all its dependencies. The Moonbeam Truffle plugin provides a way to get started with a standalone node much quicker, and the only requirement is to have docker installed (at the time of writing the Docker version used was 19.03.6). For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/). To download the docker image, run the following line:
+
+```
+./node_modules/.bin/truffle run moonbeam install
+``` 
+
+![Install Moonbeam Truffle box](/images/trufflebox/trufflebox-01.png)
+
+ 
+Then, you have available a set of commands to control the node included in the docker image:
+ 
+```
+./node_modules/.bin/truffle run moonbeam start
+./node_modules/.bin/truffle run moonbeam status
+./node_modules/.bin/truffle run moonbeam pause
+./node_modules/.bin/truffle run moonbeam unpause
+./node_modules/.bin/truffle run moonbeam stop
+./node_modules/.bin/truffle run moonbeam remove
+```
+
+Each of the commands shown before does the following action:
+-  Start: starts a Moonbeam standalone node, this provides two RPC endpoints: - HTTP: `http://127.0.0.1:9933` - WS: `ws://127.0.0.1:9944`
+-  Status: tells the user if there is a Moonbeam standalone node running
+-  Pause: pauses the standalone node if it’s running
+-  Unpause: unpauses the standalone node if it’s paused
+-  Stop: stops the standalone node if it’s running, this also removes the docker container
+-  Remove: deletes the purestake/moonbase docker image
+
+You can see the output of these commands in the following image:
+
+![Install Moonbeam Truffle box](/images/trufflebox/trufflebox-02.png)
+
+## Testing the Moonbeam Truffle Box
+The box has the minimum requirements to help you get started. Lets first compile the contracts by running:
+
+```
+./node_modules/.bin/truffle compile
+``` 
+![Compile Contracts](/images/trufflebox/trufflebox-03.png)
+
+Remember that if you have Truffle installed globally, you can skip the ./node_modules/.bin/ part in the commands. With the contract compiled, we can run the basic test included in the box (note that for these tests Ganache is used, and not the Moonbeam standalone node):
+
+```
+./node_modules/.bin/truffle test
+```
+
+![Test Contract Moonbeam Truffle box](/images/trufflebox/trufflebox-04.png)
+
+
+After running the plugin install command, which downloads the Moonbeam standalone node docker image, let's start the local node and deploy the token contract to our local environment:
+
+```
+./node_modules/.bin/truffle run moonbeam start
+./node_modules/.bin/truffle migrate --network dev
+```
+
+![Deploy on Dev Moonbeam Truffle box](/images/trufflebox/trufflebox-05.png)
+
+And lastly, we can deploy our token contract to Moonbase Alpha, but first, make sure you set a private key with funds in the truffle-config.js file. Once the private key is set, we can execute the migrate command pointing to the TestNet (we need to pass in the --reset flag as both the development and Moonbase Alpha networks have the same chain Id).
+
+<code>
+./node_modules/.bin/truffle migrate --network moonbase --reset
+</code>
+
+![Deploy on Moonbase Moonbeam Truffle box](/images/trufflebox/trufflebox-06.png)
+
+And that is it, you’ve used the Moonbeam Truffle box to deploy a simple ERC20 token contract in both your standalone Moonbeam node and Moonbase Alpha.
+ 
 ## Limitations
-This is the first TestNet for Moonbeam, so there are some limitations.
 
-Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts) are yet to be included in this release. You can check a list of the precompiles supported [here](/getting-started/testnet/precompiles). However, all built-in functions are available.
+If you are familiar with Truffle, you might have noticed that we are using a custom provider programmed by ourselves, instead of the most common ones such as [hdwallet-provider](https://github.com/trufflesuite/truffle/tree/develop/packages/hdwallet-provider). This custom provider still uses standard libraries such as the web3-provider-engine and ethereumjs-wallet. The reason behind this is because our custom chain ID was not being included by the library used to sign the transactions. Therefore, the signature is invalid because the chain ID in the transaction blob is missing, and the transaction is rejected. Currently we are reviewing this and we expect to support other providers in future releases.
 
-In order to provide an easy on-ramp for developers, this early iteration has no gas limit per block for execution of smart contracts. This is temporary and will be adjusted in the future.
-
-Users only have access to the Moonbeam parachain. In future networks, we will add access to the relay chain so users can test transferring tokens.
-
-## Chain Purge
-This network is under active development. Occasionally, chain purges may be needed in order to reset the blockchain to its initial state. This is necessary when doing major TestNet upgrades or maintenance. We will announce when a chain purge will take place via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
-
-Please take note that PureStake will not be migrating the chain state. Thus, all data stored in the blockchain will be lost when a chain purge is carried out. However, as there is no gas limit, users can easily recreate their pre-purge state.
+In addition, when you have contracts deployed in your standalone Moonbeam node and want to deploy these same contracts into Moonbase Alpha, you need to pass in the flag `--reset`. Currently, this problem is because both the standalone node and Moonbase Alpha have the same chain ID. Truffle stores the information of a deployed contract inside a `.json` file within the `./build/contracts` folder, and it filters deployments to each network by their chain ID. For a future release, we will change the chain ID of the standalone Moonbeam node to a different value, so it does not collide with that of Moonbase Alpha.
 
 ## Contact Us
-If you have any feedback regarding Moonbase Alpha, feel free to reach out through our official development channel on [Discord](https://discord.gg/PfpUATX) :fontawesome-brands-discord:.
+ 
+If you have any feedback regarding the Moonbeam Truffle box or any other Moonbeam related topic, feel free to reach out through our official development Discord server.
