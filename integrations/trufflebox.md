@@ -111,7 +111,7 @@ If you have Truffle installed globally, you can remove `./node_modules/.bin/` fr
 
 ## The Moonbeam Truffle Plugin
 
-Currently, to set up a standalone Moonbeam node, you can follow [this tutorial](/getting-started/local-node/setting-up-a-node). The process takes around 40 minutes in total, and you need to install Substrate and all its dependencies. The Moonbeam Truffle plugin provides a way to get started with a standalone node much quicker, and the only requirement is to have docker installed (at the time of writing the Docker version used was 19.03.6). For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/). To download the docker image, run the following line:
+Currently, to set up a standalone Moonbeam node, you can follow [this tutorial](/getting-started/local-node/setting-up-a-node). The process takes around 40 minutes in total, and you need to install Substrate and all its dependencies. The Moonbeam Truffle plugin provides a way to get started with a standalone node much quicker, and the only requirement is to have docker installed (at the time of writing the docker version used was 19.03.6). For more information on installing docker, please visit [this page](https://docs.docker.com/get-docker/). To download the docker image, run the following line:
 
 ```
 ./node_modules/.bin/truffle run moonbeam install
