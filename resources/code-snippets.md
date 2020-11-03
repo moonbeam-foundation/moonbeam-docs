@@ -7,12 +7,8 @@ description: Code snippets of all tutorials
 ##Setting up a Local Moonbeam Node
 **Clone moonbeam-tutorials repo:**
 ```
-git clone -b moonbeam-tutorials https://github.com/PureStake/moonbeam
-```
-
-**Initialize and update git-submodules:**
-```
-cd moonbeam && git submodule update --init --recursive
+git clone -b tutorial-v2 https://github.com/PureStake/moonbeam
+cd moonbeam
 ```
 
 **Install substrate and its pre-requisites:**
@@ -20,8 +16,19 @@ cd moonbeam && git submodule update --init --recursive
 curl https://getsubstrate.io -sSf | bash -s -- --fast
 ```
 
-**Build the node:**
+**Add Rust to system path:**
+```
+source $HOME/.cargo/env
+```
+
+**Run the initialization script:**
+```
+./scripts/init.sh
+```
+
+**Build the standalone node:**
 ```	
+cd ./node/standalone
 cargo build --release
 ```
 
@@ -32,12 +39,12 @@ cargo build --release
 
 **Purge chain, clean up any old data from running a ‘dev’ node in the past:** 
 ```
-./target/release/node-moonbeam purge-chain --dev
+./target/release/moonbase-standalone --dev
 ```
 
 **Run node in dev mode suppressing block information but prints errors in console:**
 ```	
-./target/release/node-moonbeam --dev -lerror
+./target/release/moonbase-standalone --dev -lerror
 ```
 
 ##Polkadot JS Apps
@@ -93,13 +100,6 @@ ChainID:
 43
 ```
 
-**Gas limit:**  
-We are working through some issues related to gas estimation in Moonbeam. In the meantime, set the gas limit manually to:  
-```
-4294967295
-```
-Once these are fixed, this manual increase of the gas limit shouldn’t be necessary.
-
 ##Remix
 **ERC-20 contract Open Zeppeling template:**
 ```
@@ -125,14 +125,6 @@ module.exports = {
   networks: {
     development: {
       provider: () => new PrivateKeyProvider(privateKey, "http://localhost:9933/", 43),
-      network_id: 43
-    },
-    live: {
-      provider: () => new PrivateKeyProvider(privateKey, "http://35.203.125.209:9933/", 43),
-      network_id: 43
-    },
-    ganache: {
-      provider: () => new PrivateKeyProvider(privateKey, "http://localhost:8545/", 43),
       network_id: 43
     }
   }
@@ -163,7 +155,7 @@ var MyToken = artifacts.require("MyToken");
 
 module.exports = function (deployer) {
   // deployment steps
-  deployer.deploy(MyToken, "8000000000000000000000000", { gas: 4294967295 });
+  deployer.deploy(MyToken, "8000000000000000000000000");
 };
 ```
 
