@@ -5,7 +5,7 @@ description: Start using the Moonbeam Truffle box to deploy your smart contracts
 # Moonbeam Truffle Box
 
 ##Introduction
-As part of an ongoing effort to help developers that want to start working on Moonbeam, we have launched the Moonbeam Truffle box (TODO>> LINK). With it, developers will find a boilerplate setup to get started deploying smart contracts on Moonbeam quickly. With the Moonbeam Truffle box, we have also incorporated the Moonbeam Truffle plugin, that introduces some commands to run a standalone node in your local environment as a docker image. This removes the process of setting up a local node which can take up to 40 minutes when building its binary, and is a quick and easy solution to get started developing in your local environment.
+As part of an ongoing effort to help developers that want to start working on Moonbeam, we have [launched the Moonbeam Truffle box](https://www.purestake.com/news/moonbeam-truffle-box-now-available-for-solidity-developers). With it, developers will find a boilerplate setup to get started deploying smart contracts on Moonbeam quickly. With the Moonbeam Truffle box, we have also incorporated the Moonbeam Truffle plugin, that introduces some commands to run a standalone node in your local environment as a docker image. This removes the process of setting up a local node which can take up to 40 minutes when building its binary, and is a quick and easy solution to get started developing in your local environment.
 
 This tutorial will guide you through the process of setting up the box, using the Moonbeam Truffle plugin, and deploy contracts to both a standalone Moonbeam node and Moonbase Alpha using Truffle with the box base configuration.
 
@@ -47,7 +47,7 @@ To get started with the Moonbeam Truffle box, if you have Truffle installed glob
 
 ```
 mkdir moonbeam-truffle-box && cd moonbeam-truffle-box
-truffle unbox moonbeam
+truffle unbox moonbeam --> TODO FIX COMMAND
 ```
 
 Nevertheless, the box has also Truffle as a dependency in case you do not want to have it installed globally. In such a case, you can directly clone the following repository:
