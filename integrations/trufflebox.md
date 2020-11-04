@@ -192,4 +192,4 @@ In addition, when you have contracts deployed in your standalone Moonbeam node a
 
 ## Contact Us
  
-If you have any feedback regarding the Moonbeam Truffle box or any other Moonbeam related topic, feel free to reach out through our official development Discord server.
+If you have any feedback regarding the Moonbeam Truffle box or any other Moonbeam related topic, feel free to reach out through our official development [Discord server](https://discord.gg/PfpUATX).
