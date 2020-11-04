@@ -5,7 +5,7 @@ description: Start using the Moonbeam Truffle box to deploy your smart contracts
 # Moonbeam Truffle Box
 
 ##Introduction
-As part of an ongoing effort to help developers that want to start working on Moonbeam, we have [launched the Moonbeam Truffle box](https://www.purestake.com/news/moonbeam-truffle-box-now-available-for-solidity-developers). With it, developers will find a boilerplate setup to get started deploying smart contracts on Moonbeam quickly. With the Moonbeam Truffle box, we have also incorporated the Moonbeam Truffle plugin, that introduces some commands to run a standalone node in your local environment as a docker image. This removes the process of setting up a local node which can take up to 40 minutes when building its binary, and is a quick and easy solution to get started developing in your local environment.
+As part of an ongoing effort to help developers that want to start working on Moonbeam, we have [launched the Moonbeam Truffle box](https://www.purestake.com/news/moonbeam-truffle-box-now-available-for-solidity-developers). With it, developers will find a boilerplate setup to get started deploying smart contracts on Moonbeam quickly. With the Moonbeam Truffle box, we have also incorporated the Moonbeam Truffle plugin, that introduces some commands to run a standalone node in your local environment as a Docker image. This removes the process of setting up a local node which can take up to 40 minutes when building its binary, and is a quick and easy solution to get started developing in your local environment.
 
 This tutorial will guide you through the process of setting up the box, using the Moonbeam Truffle plugin, and deploy contracts to both a standalone Moonbeam node and Moonbase Alpha using Truffle with the box base configuration.
 
@@ -113,7 +113,7 @@ If you have Truffle installed globally, you can remove `./node_modules/.bin/` fr
 
 ## The Moonbeam Truffle Plugin
 
-Currently, to set up a standalone Moonbeam node, you can follow [this tutorial](/getting-started/local-node/setting-up-a-node). The process takes around 40 minutes in total, and you need to install Substrate and all its dependencies. The Moonbeam Truffle plugin provides a way to get started with a standalone node much quicker, and the only requirement is to have docker installed (at the time of writing the docker version used was 19.03.6). For more information on installing docker, please visit [this page](https://docs.docker.com/get-docker/). To download the docker image, run the following line:
+Currently, to set up a standalone Moonbeam node, you can follow [this tutorial](/getting-started/local-node/setting-up-a-node). The process takes around 40 minutes in total, and you need to install Substrate and all its dependencies. The Moonbeam Truffle plugin provides a way to get started with a standalone node much quicker, and the only requirement is to have Docker installed (at the time of writing the Docker version used was 19.03.6). For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/). To download the Docker image, run the following line:
 
 ```
 ./node_modules/.bin/truffle run moonbeam install
@@ -122,7 +122,7 @@ Currently, to set up a standalone Moonbeam node, you can follow [this tutorial](
 ![Install Moonbeam Truffle box](/images/trufflebox/trufflebox-01.png)
 
  
-Then, you have available a set of commands to control the node included in the docker image:
+Then, you have available a set of commands to control the node included in the Docker image:
  
 ```
 ./node_modules/.bin/truffle run moonbeam start
@@ -139,14 +139,14 @@ Each of the commands shown before does the following action:
 -  Status: tells the user if there is a Moonbeam standalone node running
 -  Pause: pauses the standalone node if it’s running
 -  Unpause: unpauses the standalone node if it’s paused
--  Stop: stops the standalone node if it’s running, this also removes the docker container
--  Remove: deletes the purestake/moonbase docker image
+-  Stop: stops the standalone node if it’s running, this also removes the Docker container
+-  Remove: deletes the purestake/moonbase Docker image
 
 You can see the output of these commands in the following image:
 
 ![Install Moonbeam Truffle box](/images/trufflebox/trufflebox-02.png)
 
-If you are familiar with docker, you can skip the plugin commands and interact with the docker image directly.
+If you are familiar with Docker, you can skip the plugin commands and interact with the Docker image directly.
 
 ## Testing the Moonbeam Truffle Box
 The box has the minimum requirements to help you get started. Lets first compile the contracts by running:
@@ -165,7 +165,7 @@ Remember that if you have Truffle installed globally, you can skip the ./node_mo
 ![Test Contract Moonbeam Truffle box](/images/trufflebox/trufflebox-04.png)
 
 
-After running the plugin install command, which downloads the Moonbeam standalone node docker image, let's start the local node and deploy the token contract to our local environment:
+After running the plugin install command, which downloads the Moonbeam standalone node Docker image, let's start the local node and deploy the token contract to our local environment:
 
 ```
 ./node_modules/.bin/truffle run moonbeam start
