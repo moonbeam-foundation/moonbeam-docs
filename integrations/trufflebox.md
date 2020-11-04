@@ -47,8 +47,10 @@ To get started with the Moonbeam Truffle box, if you have Truffle installed glob
 
 ```
 mkdir moonbeam-truffle-box && cd moonbeam-truffle-box
-truffle unbox moonbeam --> TODO FIX COMMAND
+truffle unbox PureStake/moonbeam-truffle-box
 ```
+
+![Unbox Moonbeam Truffle box](/images/trufflebox/trufflebox-07.png)
 
 Nevertheless, the box has also Truffle as a dependency in case you do not want to have it installed globally. In such a case, you can directly clone the following repository:
 
