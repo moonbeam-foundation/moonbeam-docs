@@ -146,6 +146,8 @@ You can see the output of these commands in the following image:
 
 ![Install Moonbeam Truffle box](/images/trufflebox/trufflebox-02.png)
 
+If you are familiar with docker, you can skip the plugin commands and interact with the docker image directly.
+
 ## Testing the Moonbeam Truffle Box
 The box has the minimum requirements to help you get started. Lets first compile the contracts by running:
 
