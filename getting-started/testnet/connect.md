@@ -3,7 +3,7 @@ title: Connect
 description: How to connect to the Moonbeam TestNet
 ---
 
-#Connect to Moonbase Alpha
+# Connect to Moonbase Alpha
 
 ## Introduction
 
