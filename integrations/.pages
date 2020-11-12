@@ -1,3 +1,4 @@
 title: Integrations
 arrange:
-  - trufflebox.md 
+  - oracles
+  - trufflebox.md
