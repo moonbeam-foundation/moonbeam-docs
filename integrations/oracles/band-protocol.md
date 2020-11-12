@@ -151,7 +151,7 @@ contract DemoOracle {
 
 ### Try it in Moonbase Alpha!
 
-We've deployed a contract available in the Moonbase Alpha TestNet (at address TODO), so you can easily check the information fed from Band Protocol's oracle. To do so you need the following interface contract:
+We've deployed a contract available in the Moonbase Alpha TestNet (at address `0x0D0dB701befcb7c2E22c27411543F774434534b3`), so you can easily check the information fed from Band Protocol's oracle. To do so you need the following interface contract:
 
 ```sol
 pragma solidity 0.6.11;
