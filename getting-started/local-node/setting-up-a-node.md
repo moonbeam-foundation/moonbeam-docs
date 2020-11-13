@@ -75,7 +75,16 @@ The local standalone Moonbeam node provides two RPC endpoints:
 -  WS: `ws://127.0.0.1:9944` 
 
 ##Getting Started with Docker
-An alternative to the steps higlighted before is to use docker to run a pre-build binary. Doing so, you prevent having to install Substrate and all the dependencies, and you can skip the building the node process as well. The only requirement is to have docker installed, and then you can execute the following command:
+An alternative to the steps higlighted before is to use docker to run a pre-build binary. Doing so, you prevent having to install Substrate and all the dependencies, and you can skip the building the node process as well. The only requirement is to have Docker installed, and then you can execute the following command to download the corresponding image:
+
+```
+docker pull purestake/moonbase:tutorial-v2.2
+```
+The tail end of the console log should look like this:
+
+![Docker - imaged pulled](/images/setting-up-a-node/setting-up-node-9a.png)
+
+Once the Docker image is downloaded, you can run it with the following line:
 
 ```
 docker run --rm --name moonbeam_standalone --network host purestake/moonbase:tutorial-v2.2 /moonbase/moonbase-standalone --dev
