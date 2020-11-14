@@ -38,7 +38,7 @@ This will open a wizard pop-up that will guide you through the process of adding
 
 ![Connect to Moonbase Alpha](/images/testnet/polkadotjs-app4.png)
 
-Next, enter your private key that you can export from MetaMask, in this case we are importing account whose private key is:
+Next, enter your private key that you can export from MetaMask, in this case we are importing the following account:
 
 - Private key: `28194e8ddb4a2f2b110ee69eaba1ee1f35e88da2222b5a7d6e3afa14cf7a3347`
 - Public address: `0x44236223aB4291b93EEd10E4B511B37a398DEE55` 
