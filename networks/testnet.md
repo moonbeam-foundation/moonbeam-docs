@@ -30,13 +30,13 @@ The following features are available:
 -  Native Ethereum RPC support (Web3) in Substrate ([Frontier RPC](https://github.com/paritytech/frontier)). This provides compatibility with Ethereum developer tools such as MetaMask, Truffle, and Remix. ![v1](/images/testnet/v1.svg)
 -  Event subscription support (pub/sub), which is a missing component on the Web3 RPC side and commonly used by dApp developers. You can find a tutorial on how to subscribe to events [here](/getting-started/testnet/pubsub). ![v2](/images/testnet/v2.svg)
 -  Support for the following precompile contracts: [ecrecover](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-01-ecrecover-hash-v-r-s), [sha256](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-02-sha-256-data), [ripemd160](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-03-ripemd-160-data) and the [identity function](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-04-datacopy-data) (or datacopy). ![v2](/images/testnet/v2.svg)
+-  Unification of Substrate and Ethereum accounts under the H160 format, an effort we are calling Unified Accounts. Consequently, there will be only one kind of account in the system represented by a single address. ![v3](/images/testnet/v3.svg)
+-  Upgrades to the event subscription support, adding the possibility of using wildcards and conditional formatting for topics. You can find more information [here](/getting-started/testnet/pubsub). ![v3](/images/testnet/v3.svg)
+-  Polkadot JS Apps now natively supports H160 addresses and ECDSA keys. You can use your Ethereum-style address for Substrate functions (when available) such as: staking, balances and governance. ![v3](/images/testnet/v3.svg)
 
-For more details regarding the updates of Moonbase Alpha v2, please refer to the [release notes](https://github.com/PureStake/moonbeam/releases/tag/v0.2.0). 
+For more details regarding the updates of Moonbase Alpha v2, please refer to the [release notes](https://github.com/PureStake/moonbeam/releases/tag/v0.2.0).
 
-We have many features on Moonbase's roadmap, planned for the next release:
-
-- Unification of Substrate and Ethereum accounts under the H160 format, an effort we are calling Unified Accounts. Consequently, there will be only one kind of account in the system represented by a single address.
-
+For more details regarding the updates of Moonbase Alpha v3, please refer to the [release notes](https://github.com/PureStake/moonbeam/releases/tag/v0.3.0).
 
 Features that may be implemented in the future:
 
