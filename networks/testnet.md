@@ -34,9 +34,14 @@ The following features are available:
 -  Upgrades to the event subscription support, adding the possibility of using wildcards and conditional formatting for topics. You can find more information [here](/getting-started/testnet/pubsub). ![v3](/images/testnet/v3.svg)
 -  Polkadot JS Apps now natively supports H160 addresses and ECDSA keys. You can use your Ethereum-style address for Substrate functions (when available) such as: staking, balances and governance. ![v3](/images/testnet/v3.svg)
 
-For more details regarding the updates of Moonbase Alpha v2, please refer to the [release notes](https://github.com/PureStake/moonbeam/releases/tag/v0.2.0).
+### Release Notes
 
-For more details regarding the updates of Moonbase Alpha v3, please refer to the [release notes](https://github.com/PureStake/moonbeam/releases/tag/v0.3.0).
+For more details regarding the updates of Moonbase Alpha, please refer to the following release notes:
+
+ - [Moonbase Alpha v2](https://github.com/PureStake/moonbeam/releases/tag/v0.2.0)
+ - [Moonbase Alpha v3](https://github.com/PureStake/moonbeam/releases/tag/v0.3.0).
+
+### Future Releases
 
 Features that may be implemented in the future:
 
