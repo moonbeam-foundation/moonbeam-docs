@@ -51,7 +51,7 @@ Click next and finish the wizard by setting an account name and password. After 
 
 ![Connect to Moonbase Alpha](/images/testnet/polkadotjs-app6.png)
 
-## Sending a Transaction Through Substrate API
+## Sending a Transaction Through Substrate's API
 
 Now, let's demonstrate the potential of Moonbeam’s Unified Accounts scheme by making a transfer through the Substrate API using the Polkadot JS Apps. Remember that we are talking about interacting with Substrate using an Ethereum-style H160 address. To do so, we've imported another account, named Charley with 5 `DEV` tokens.
 
