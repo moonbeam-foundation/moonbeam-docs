@@ -28,9 +28,9 @@ After switching, the Polkadot JS site will not only connect to Moonbase Alpha, b
 
 ![Connect to Moonbase Alpha](/images/testnet/polkadotjs-app2.png)
 
-## Importing a H160 Account
+## Importing an H160 Account
 
-Let’s see how we can import an already existing MetaMask account to Polkadot JS Apps. First, navigate to the accounts section, and click in the add account button.
+Let's see how we can import an already existing MetaMask account to Polkadot JS Apps. First, navigate to the accounts section, and click in the add account button.
 
 ![Connect to Moonbase Alpha](/images/testnet/polkadotjs-app3.png)
 
@@ -47,13 +47,13 @@ Make sure to include the prefix in the private key, that is `0x`. If you entered
 
 ![Connect to Moonbase Alpha](/images/testnet/polkadotjs-app5.png)
 
-Click next and finish the wizard by setting an account name and password. After a confirmation message, you should see in the main Accounts tab the address with the corresponding balance, in our case Bob’s. Moreover, we can overlay the MetaMask extension to see that both balances are the same.
+Click next and finish the wizard by setting an account name and password. After a confirmation message, you should see in the main Accounts tab the address with the corresponding balance, in our case Bob's. Moreover, we can overlay the MetaMask extension to see that both balances are the same.
 
 ![Connect to Moonbase Alpha](/images/testnet/polkadotjs-app6.png)
 
 ## Sending a Transaction Through Substrate's API
 
-Now, let's demonstrate the potential of Moonbeam’s Unified Accounts scheme by making a transfer through the Substrate API using the Polkadot JS Apps. Remember that we are talking about interacting with Substrate using an Ethereum-style H160 address. To do so, we've imported another account, named Charley with 5 `DEV` tokens.
+Now, let's demonstrate the potential of Moonbeam's Unified Accounts scheme by making a transfer through the Substrate API using the Polkadot JS Apps. Remember that we are talking about interacting with Substrate using an Ethereum-style H160 address. To do so, we've imported another account, named Charley with 5 `DEV` tokens.
 
 ![Connect to Moonbase Alpha](/images/testnet/polkadotjs-app7.png)
 
@@ -65,7 +65,7 @@ After the transaction is signed using the password, Polkadot JS will display som
 
 ![Connect to Moonbase Alpha](/images/testnet/polkadotjs-app8.png)
 
-And that is it! We are super excited about being able to support H160 accounts in Polkadot JS Apps, as we believe this will greatly enhance the user experience in the Moonbeam Network and its Ethereum compatibility fetures.
+And that is it! We are super excited about being able to support H160 accounts in Polkadot JS Apps, as we believe this will greatly enhance the user experience in the Moonbeam Network and its Ethereum compatibility features.
 
 ## Contact Us
  
