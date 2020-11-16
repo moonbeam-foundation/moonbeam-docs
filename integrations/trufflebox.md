@@ -83,16 +83,16 @@ module.exports = {
       dev: {
          provider: () => {
             ...
-            return new PrivateKeyProvider(privateKeyDev, 'http://localhost:9933/', 43)
+            return new PrivateKeyProvider(privateKeyDev, 'http://localhost:9933/', 1281)
          },
-         network_id: 43,
+         network_id: 1281,
       },
       moonbase: {
          provider: () => {
             ...
-            return new PrivateKeyProvider(privateKeyMoonbase, 'https://rpc.testnet.moonbeam.network', 43)
+            return new PrivateKeyProvider(privateKeyMoonbase, 'https://rpc.testnet.moonbeam.network', 1287)
          },
-         network_id: 43,
+         network_id: 1287,
       },
    },
    plugins: ['moonbeam-truffle-plugin']
@@ -101,7 +101,7 @@ module.exports = {
 
 The `truffle-config.js` file also includes the private key of the genesis account for the standalone node is included as well, the address associated with this key holds all the tokens in this development environment. For deployments in the Moonbase Alpha TestNet, you need to provide the private key of an address that holds funds. To do so, you can create an account in MetaMask, fund it using the [TestNet faucet](https://docs.moonbeam.network/getting-started/testnet/faucet/), and export its private key.
 
-As with using Truffle in any Ethernet network, you can run the normal commands to compile, test and deploy smart contracts in Moonbeam. For example, using the included ERC20 token contract, you can try the following commands:
+As with using Truffle in any Ethereum network, you can run the normal commands to compile, test and deploy smart contracts in Moonbeam. For example, using the included ERC20 token contract, you can try the following commands:
 
 ```
 ./node_modules/.bin/truffle compile # compiles the contract
@@ -174,10 +174,10 @@ After running the plugin install command, which downloads the Moonbeam standalon
 
 ![Deploy on Dev Moonbeam Truffle box](/images/trufflebox/trufflebox-05.png)
 
-And lastly, we can deploy our token contract to Moonbase Alpha, but first, make sure you set a private key with funds in the truffle-config.js file. Once the private key is set, we can execute the migrate command pointing to the TestNet (we need to pass in the --reset flag as both the development and Moonbase Alpha networks have the same chain Id).
+And lastly, we can deploy our token contract to Moonbase Alpha, but first, make sure you set a private key with funds in the truffle-config.js file. Once the private key is set, we can execute the migrate command pointing to the TestNet.
 
 <code>
-./node_modules/.bin/truffle migrate --network moonbase --reset
+./node_modules/.bin/truffle migrate --network moonbase
 </code>
 
 ![Deploy on Moonbase Moonbeam Truffle box](/images/trufflebox/trufflebox-06.png)
@@ -187,8 +187,6 @@ And that is it, you’ve used the Moonbeam Truffle box to deploy a simple ERC20 
 ## Limitations
 
 If you are familiar with Truffle, you might have noticed that we are using a custom provider programmed by ourselves, instead of the most common ones such as [hdwallet-provider](https://github.com/trufflesuite/truffle/tree/develop/packages/hdwallet-provider). This custom provider still uses standard libraries such as the web3-provider-engine and ethereumjs-wallet. The reason behind this is because our custom chain ID was not being included by the library used to sign the transactions. Therefore, the signature is invalid because the chain ID in the transaction blob is missing, and the transaction is rejected. Currently we are reviewing this and we expect to support other providers in future releases.
-
-In addition, when you have contracts deployed in your standalone Moonbeam node and want to deploy these same contracts into Moonbase Alpha, you need to pass in the flag `--reset`. Currently, this problem is because both the standalone node and Moonbase Alpha have the same chain ID. Truffle stores the information of a deployed contract inside a `.json` file within the `./build/contracts` folder, and it filters deployments to each network by their chain ID. For a future release, we will change the chain ID of the standalone Moonbeam node to a different value, so it does not collide with that of Moonbase Alpha.
 
 ## Contact Us
  
