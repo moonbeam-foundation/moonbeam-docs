@@ -104,7 +104,7 @@ If the event returns multiple unindexed values, these will be appended one after
 
 ### Using Wildcards and Conditional Formatting
 
-In the v2 release, where the subscription to events feature was introduced, there were some limitations regarding using wildcards and conditional formatting for the topics. Nevertheless, with the release of [Moonbase Alpha v3](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/), this is now possible.
+In the v2 release, where the feature of subscribing to logs was introduced, there were some limitations regarding using wildcards and conditional formatting for the topics. Nevertheless, with the release of [Moonbase Alpha v3](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/), this is now possible.
 
 Using the same example as in the previous section, lets subscribe to the events of the token contract with the following code:
 
@@ -135,7 +135,7 @@ web3.eth
    .on('data', function (log) {
       console.log(log);
    });
- ```
+```
 
 Here, by using the wildcard null in place for the event signature, we filter to listen to all events emitted by the contract that we subscribed to. But with this configuration, we can also use a second input field (`topic_1`) to define a filter by address as mentioned before. In the case of our subscription, we are notifying that we want to receive only events where `topic_1` is one of the addresses we are providing. Note that the addresses need to be in H256 format, for example, the address `0x12Cb274aAD8251C875c0bf6872b67d9983E53fDd` needs to be entered as `0x00000000000000000000000012Cb274aAD8251C875c0bf6872b67d9983E53fDd`. The output of this subscription will display the event signature in `topic_0` as before, to tell us which event was emitted by the contract.
 
