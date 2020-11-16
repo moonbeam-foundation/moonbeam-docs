@@ -1,5 +1,4 @@
 title: Integrations
 arrange:
-  - oracles
   - trufflebox.md
   - polkadotjs.md
