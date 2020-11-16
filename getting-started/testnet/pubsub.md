@@ -84,7 +84,7 @@ The result of the previous calculation is what's shown in the code snippet from 
 
 Next, an ERC20 token transfer will be sent with the following parameters:
 
--  From address: 0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b
+-  From address: 0x12Cb274aAD8251C875c0bf6872b67d9983E53fDd
 -  To address: 0xfcB0B397BB28046C01be6A3d66c7Eda99Fb0f344
 -  Value (tokens): 10000000000000000000 - that is 10 with 18 zeros
 
@@ -101,6 +101,47 @@ Consequently, you can see that the “from” and “to” addresses are contain
 Unindexed data is returned in the “data” field of the logs, but this is encoded in bytes32/hex. To decode it we can use for example, this [online tool](https://web3-type-converter.brn.sh/), and verify that the “data” is in fact 10 (plus 18 zeros). 
 
 If the event returns multiple unindexed values, these will be appended one after the other in the same order the event emits them. Therefore, each value is then obtained by deconstructing data into separate 32 bytes (or 64 hex character long) pieces.
+
+### Using Wildcards and Conditional Formatting
+
+In the v2 release, where the subscription to events feature was introduced, there were some limitations regarding using wildcards and conditional formatting for the topics. Nevertheless, with the release of [Moonbase Alpha v3](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/), this is now possible.
+
+Using the same example as in the previous section, lets subscribe to the events of the token contract with the following code:
+
+```js
+const Web3 = require('web3');
+const web3 = new Web3('wss://wss.testnet.moonbeam.network');
+
+web3.eth
+   .subscribe(
+      'logs',
+      {
+         address: 'ContractAddress',
+         topics: [
+            null,
+            [
+               '0x00000000000000000000000012Cb274aAD8251C875c0bf6872b67d9983E53fDd',
+               '0x00000000000000000000000024624Af7c023776cA13C07e1D76CC63a8AF7e994',
+            ],
+         ],
+      },
+      (error, result) => {
+         if (error) console.error(error);
+      }
+   )
+   .on('connected', function (subscriptionId) {
+      console.log(subscriptionId);
+   })
+   .on('data', function (log) {
+      console.log(log);
+   });
+ ```
+
+Here, by using the wildcard null in place for the event signature, we filter to listen to all events emitted by the contract that we subscribed to. But with this configuration, we can also use a second input field (`topic_1`) to define a filter by address as mentioned before. In the case of our subscription, we are notifying that we want to receive only events where `topic_1` is one of the addresses we are providing. Note that the addresses need to be in H256 format, for example, the address `0x12Cb274aAD8251C875c0bf6872b67d9983E53fDd` needs to be entered as `0x00000000000000000000000012Cb274aAD8251C875c0bf6872b67d9983E53fDd`. The output of this subscription will display the event signature in `topic_0` as before, to tell us which event was emitted by the contract.
+
+![Conditional Subscription](/images/testnet/testnet-pubsub7.png)
+
+As shown, we received two logs for the same subscription ID  by the two addresses provided with the conditional formatting. Events emitted by transactions from different addresses will not throw any logs to this subscription.
 
 This example showed how we could subscribe only to event logs of a specific contract. But the Web3 JS library provides other subscription types that we’ll go over in the following sections.
 
@@ -128,17 +169,7 @@ With pub/sub it is also possible to check whether a particular node, which you a
 
 ## Current Limitations
 
-The pub/sub implementation in [Frontier](https://github.com/paritytech/frontier) is still in active development. This first version allows dApp developers (or users in general) to subscribe to specific event types, but there are still some limitations. From the previous examples, you might have noticed that some of the fields are not showing proper information, and that is because certain properties are yet to be supported by Frontier.
-
-Another limitation is related to the logs of the event. On Ethereum, you can use wildcards and pass in multiple input addresses, for example, to filter specific logs. Let's say we would like to subscribe to all events of a contract that have two specific addresses in the “topic_1” field (remember that “topic_0” is reserved to the event signature). Then we could pass in the following topic as input:
-
-```js
-topics: [null, [address1-in-H256, address2-in-H256]]
-```
-
-Here, by using the wildcard null in place for the event signature, we filter to listen to all events emitted by the contract that we subscribed to. But with this configuration, we can also use a second input field, that is "topic_1", to define a filter by address as mentioned before. Note that the addresses need to be in H256 format, for example, for address `0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b` needs to be entered as `0x0000000000000000000000006Be02d1d3665660d22FF9624b7BE0551ee1Ac91b`.
-
-The current Frontier implementation does not support these features. As a workaround, you can create multiple subscriptions for all the events of the contract and the different addresses involved, but note that this will increase the number of operations that need to be carried out. Wildcard-based filters and array-based input, such as the example shown before with _null_ and the two-address array, are expected to be supported in future versions of the Moonbase TestNet.
+The pub/sub implementation in [Frontier](https://github.com/paritytech/frontier) is still in active development. This first version allows dApp developers (or users in general) to subscribe to specific event types, but there are still some limitations. With the current version released, from the previous examples, you might have noticed that some of the fields are not showing proper information, and that is because certain properties are yet to be supported by Frontier.
 
 ## We Want to Hear From You
 
