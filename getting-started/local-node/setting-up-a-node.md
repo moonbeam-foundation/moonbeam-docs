@@ -11,9 +11,7 @@ description: Learn how to set up your first Moonbeam node and connect it to the 
 This guide outlines steps to create a standalone local node for testing the Ethereum compatibility functionality of Moonbeam.
 
 !!! note
-    This tutorial was created using the v3 release of [Moonbase Alpha](https://github.com/PureStake/moonbeam/). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development. The examples in this guide assume an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows.
-    
-    This tutorial was created using the v3 release of Moonbase Alpha TODO TAG LINK. The Moonbeam platform, and the Frontier components it relies on for Substrate-based Ethereum compatibility, are still under very active development. 
+    This tutorial was created using the v3 release of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/v0.3.0). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development. The examples in this guide assume an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows.
 
 If you follow to the end of this guide, you will have a Moonbeam node running in your local enviroment, and will be able to connect it to the default Polkadot JS GUI.
 
