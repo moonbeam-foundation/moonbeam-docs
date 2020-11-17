@@ -51,11 +51,11 @@ When you hit "save" and exit the network settings screen, MetaMask should be con
 ## Initiating a Transfer
 Let’s try sending some tokens with MetaMask.  
 
-For simplicity, we will transfer from this dev account to the default MetaMask account that came with my installation using the “Transfer between my accounts” option.  Let’s transfer 100 tokens and leave all other settings at the default:
+For simplicity, we will transfer from this dev account to the default MetaMask account that came when initiating it. Consequently, we can use the “Transfer between my accounts” option.  Let’s transfer 100 tokens and leave all other settings at the default:
 
 ![Initiating a token transfer](/images/using-metamask-6.png)
 
-Once you submit, you will see the transaction in the “pending” state until it is confirmed like this:
+Once you have submitted the transaction, you will see it “pending” until it is confirmed, similar to the following image:
 
 ![Transaction confirmation](/images/using-metamask-7.png)
 
