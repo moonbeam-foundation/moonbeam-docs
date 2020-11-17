@@ -51,7 +51,7 @@ source $HOME/.cargo/env
 ```
 
 !!! note
-    The initial build will take a while, depending on your hardware. You should plan on 30 minutes. You may see warnings related to evm v0.16.1 and use of deprecated item 'sc_service::AbstractService::spawn_essential_task' which can be ignored for purposes of this guide.
+    The initial build will take a while. Depending on your hardware, you should plan on 30 minutes for the build process to finish.
 
 Here is what the tail end of the build output should look like:
 
