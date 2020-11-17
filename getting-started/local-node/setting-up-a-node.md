@@ -21,7 +21,7 @@ We start by cloning a specific tag of the Moonbeam repo that you can find here:
 [https://github.com/PureStake/moonbeam/](https://github.com/PureStake/moonbeam/)
 
 ```
-git clone -b tutorial-v2 https://github.com/PureStake/moonbeam
+git clone -b tutorial-v3 https://github.com/PureStake/moonbeam
 cd moonbeam
 ```
 
@@ -78,7 +78,7 @@ The local standalone Moonbeam node provides two RPC endpoints:
 An alternative to the steps higlighted before is to use docker to run a pre-build binary. Doing so, you prevent having to install Substrate and all the dependencies, and you can skip the building the node process as well. The only requirement is to have Docker installed, and then you can execute the following command to download the corresponding image:
 
 ```
-docker pull purestake/moonbase:tutorial-v2.2
+docker pull purestake/moonbase:tutorial-v3
 ```
 The tail end of the console log should look like this:
 
@@ -87,7 +87,7 @@ The tail end of the console log should look like this:
 Once the Docker image is downloaded, you can run it with the following line:
 
 ```
-docker run --rm --name moonbeam_standalone --network host purestake/moonbase:tutorial-v2.2 /moonbase/moonbase-standalone --dev
+docker run --rm --name moonbeam_standalone --network host purestake/moonbase:tutorial-v3 /moonbase/moonbase-standalone --dev
 ```
 
 If successful you should see an ouput similar to before, showing that blocks are being produced:
@@ -108,48 +108,10 @@ With Polkadot JS Apps connected, you will see the standalone Moonbeam node produ
 
 ![Select Local Node](/images/setting-up-a-node/setting-up-node-6b.png)
 
-##Adding Moonbeam custom types
-
-Next, we need to add Moonbeam custom types to Polkadot JS, so it understands them. Under settings navigate to the “Developer” tab, enter the following JSON and hit Save:
-
-``` json
-{
-  "Address": "AccountId",
-  "LookupSource": "AccountId",
-  "Account": {
-    "nonce": "U256",
-    "balance": "U256"
-  },
-  "Transaction": {
-    "nonce": "U256",
-    "action": "String",
-    "gas_price": "u64",
-    "gas_limit": "u64",
-    "value": "U256",
-    "input": "Vec<u8>",
-    "signature": "Signature"
-  },
-  "Signature": {
-    "v": "u64",
-    "r": "H256",
-    "s": "H256"
-  }
-}
-```
-
-It should look like this in the UI:
-
-![Moonbeam Polkadot JS Custom Types](/images/setting-up-a-node/setting-up-node-7a.png)
-
-An important note is that, with the current version of this standalone node, there are two completely different sets of states:
-
-1. Substrate account state which you will see under Accounts, for example
-2. State that is contained within the included EVM
-
 ##Querying Account State
 
-The Substrate account state can be checked through the Polkadot JS, inside the Accounts sub-menu. 
+With the release of [Moonbase Alpha v3](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/), Moonbeam now works under a single account format, which is the Ethereum-styled H160 and is now also supported in Polkadot JS Apps. To check the balance of an address, you can simply import your account to the Accounts tab. You can find more information in [this site](/integrations/polkadotjs/).
 
-For the EVM side, leveraging the Ethereum full RPC capabilities of Moonbeam, you can use [MetaMask](/getting-started/using-metamask/) to check the account balance. You can also use other development tools such as [Remix](/getting-started/using-remix/), [Truffle](/getting-started/using-truffle/), or the [Web3 JavaScript library](/getting-started/web3-transaction/).
+Nevertheless, leveraging the Ethereum full RPC capabilities of Moonbeam, you can use [MetaMask](/getting-started/using-metamask/) to check the balance of that address as well. In addition, you can also use other development tools such as [Remix](/getting-started/using-remix/), [Truffle](/getting-started/using-truffle/), or the [Web3 JavaScript library](/getting-started/web3-transaction/).
 
 
