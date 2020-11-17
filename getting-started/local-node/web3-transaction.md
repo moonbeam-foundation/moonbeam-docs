@@ -67,7 +67,7 @@ npm ls web3
 As of the writing of this guide, the version used was 1.2.9. 
 
 ##The Transaction File
-For our example, we only need a single JavaScript file (arbitrarily named _transaction.js_, which you can find [here](/code-snippets/transaction.js)) to create the transaction, which we will run using the `node` command in the terminal. The script will transfer 100 ETH from the genesis account to another address. For simplicity, the file is divided into three sections: variable definition, create transaction, and deploy transaction.
+For our example, we only need a single JavaScript file (arbitrarily named _transaction.js_, which you can find [here](/code-snippets/web3-tx/transaction.js)) to create the transaction, which we will run using the `node` command in the terminal. The script will transfer 100 ETH from the genesis account to another address. For simplicity, the file is divided into three sections: variable definition, create transaction, and deploy transaction.
 
 We need to set a couple of values in the variable definitions:
 
@@ -141,7 +141,7 @@ So our completes _transaction.js_ script looks like this:
 ## The Balance File
 Before running the script, we need another file to check the balances of both addresses before and after the transaction is executed. We can easily do this by leveraging the Ethereum compatibility features of Moonbeam.
 
-For simplicity, the balance file (named arbitrarily _balances.js_, which you can find [here](/code-snippets/balances.js)), is composed of two sections: the variables definition and the balance call.  The variables definition is nearly the same as for the previous transaction file; the only difference is that we do not need the private key, as this is only a call function (reading data from the local Moonbeam node).
+For simplicity, the balance file (named arbitrarily _balances.js_, which you can find [here](/code-snippets/web3-tx/balances.js)), is composed of two sections: the variables definition and the balance call.  The variables definition is nearly the same as for the previous transaction file; the only difference is that we do not need the private key, as this is only a call function (reading data from the local Moonbeam node).
 
 To get the balances of our addresses, we need to make an asynchronous function that uses the `web3.eth.getBalance(address)` command. We can take advantage of the `web3.utils.fromWei()` function to transform the balance into a more readable number in ETH. 
 
