@@ -1,6 +1,6 @@
 ---
 title: Using Web3 for Contracts
-description: Learn how to deploy Solidity-based contracts on Moonbeam with a simple script using Web3.
+description: Learn how to deploy unmodified and unchanged Solidity-based smart contracts to a Moonbeam with a simple script using Web3.
 ---
 
 #Using Web3 to Deploy Smart Contracts on Moonbeam 
