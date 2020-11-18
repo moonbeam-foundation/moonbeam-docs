@@ -1,6 +1,6 @@
 ---
 title: Vision
-description: We envision a multi-chain future, where users and assets can move freely across chains
+description: Moonbeam is designed to enable a multi-chain future, where users and assets can move freely across many specialized and heterogenous chains.
 ---
 
 #Our Vision for Moonbeam
