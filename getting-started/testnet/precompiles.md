@@ -107,7 +107,7 @@ contract ECRECOVER{
 }
 ```
 
-Using the [Remix compiler and deployment](/getting-started/local-node/using-remix), and with [MetaMask pointing to Moonbase Alpha](/getting-started/testnet/metamask), we can deploy the contract and call the `verify()` method that returns _true_ if the address returned by `ecrecover` is equal to the address used to signed the message (related to the private key and needs to be manually set in the contract).
+Using the [Remix compiler and deployment](/getting-started/local-node/using-remix/), and with [MetaMask pointing to Moonbase Alpha](/getting-started/testnet/metamask/), we can deploy the contract and call the `verify()` method that returns _true_ if the address returned by `ecrecover` is equal to the address used to signed the message (related to the private key and needs to be manually set in the contract).
 
 ## Hashing with SHA256
 
