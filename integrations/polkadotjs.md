@@ -1,6 +1,6 @@
 ---
 title: Polkadot JS Apps
-description: Moonbeam Integration with Polkadot JS Apps, use Ethereum address format on Substrate.
+description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereum-standard H160 addresses with Substrate-based apps like Polkadot JS.
 ---
 # Polkadot JS Apps
 
