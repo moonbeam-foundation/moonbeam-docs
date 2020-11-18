@@ -1,6 +1,6 @@
 ---
 title: Eth Compatibility
-description: What to expect when using Moonbeam if you're familiar with Ethereum.
+description: It can seem daunting to move to a Polkadot parachain if you’re used to Ethereum. Here’s what to expect when using Moonbeam for the first time.
 ---
 
 #Ethereum Compatibility
