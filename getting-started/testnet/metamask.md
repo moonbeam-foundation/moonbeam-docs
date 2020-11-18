@@ -1,6 +1,6 @@
 ---
 title: Integrate MetaMask
-description: How to connect with MetaMask to Moonbase, the Moonbeam TestNet
+description: Learn how to use MetaMask with the Moonbeam TestNet. This tutorial shows you how to connect a default installation of MetaMask to Moonbase Alpha.
 ---
 
 # Connect MetaMask to Moonbase Alpha
