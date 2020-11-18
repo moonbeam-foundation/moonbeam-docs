@@ -1,6 +1,6 @@
 ---
 title: Precompiled Contracts
-description:  Learn about precompile contracts on Moonbase Alpha, the Moonbeam Network TestNet for its Ethereum-compatible chain. 
+description:  Learn how to use precompile contracts on Moonbase Alpha, the Moonbeam Network TestNet that is unique for its complete Ethereum compatibility. 
 ---
 
 # Precompiled Contracts on Moonbase Alpha
