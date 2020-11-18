@@ -1,6 +1,6 @@
 ---
 title: Roadmap
-description: Moonbeam plans to launch a DevNet and TestNet in 2020, with a MainNet to follow in 2021.
+description: Moonbeam launched its first TestNet in September 2020, with a BetaNet on Kusama and MainNet on Polkadot to follow in early 2021.
 ---
 
 #Roadmap
