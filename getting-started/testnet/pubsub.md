@@ -13,9 +13,9 @@ With the [release of Moonbase Alpha v2](http://www.purestake.com/news/moonbase-a
 
 The examples in this guide are based on a Ubuntu 18.04 environment. Also, you will need the following:
 
--  Have MetaMask installed and [connected to Moonbase](/getting-started/testnet/metamask)
--  Have an account with funds, which you can get from [Mission Control](/getting-started/testnet/faucet)
--  Deploy your own ERC20 token on Moonbase, which you can do following [our Remix tutorial](/getting-started/local-node/using-remix) but first pointing MetaMask to Moonbase
+-  Have MetaMask installed and [connected to Moonbase](/getting-started/testnet/metamask/)
+-  Have an account with funds, which you can get from [Mission Control](/getting-started/testnet/faucet/)
+-  Deploy your own ERC20 token on Moonbase, which you can do following [our Remix tutorial](/getting-started/local-node/using-remix/) but first pointing MetaMask to Moonbase
 
 In addition, we need to install Node.js (we'll go for v14.x) and npm. You can do this by running in your terminal:
 
