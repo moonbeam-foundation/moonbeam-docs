@@ -1,6 +1,6 @@
 ---
 title: Glimmer Token
-description: Like all smart contract platforms, the Moonbeam Network will require a utility token to function, which is called Glimmer (GLMR).\
+description: Like all smart contract platforms, the Moonbeam Network will require a utility token to function, which is called Glimmer (GLMR).
 ---
 
 #Glimmer Token (GLMR)
