@@ -1,6 +1,6 @@
 ---
 title: Connect
-description: How to connect to the Moonbeam TestNet
+description: The Moonbeam TestNet, nicknamed Moonbase Alpha, is the easiest way to get started with a Polkadot environment. Follow this tutorial to connect to the TestNet.
 ---
 
 # Connect to Moonbase Alpha
