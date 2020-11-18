@@ -1,6 +1,6 @@
 ---
 title: Moonbeam Truffle Box
-description: Start using the Moonbeam Truffle box to deploy your smart contracts on Moonbeam using Truffle.
+description: Start using the Moonbeam Truffle Box for a quick, preconfigured way to deploy your Solidity smart contracts on Moonbeam using Truffle.
 ---
 # Moonbeam Truffle Box
 
