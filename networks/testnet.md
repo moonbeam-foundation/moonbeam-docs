@@ -1,6 +1,6 @@
 ---
 title: TestNet
-description: Start building on the Moonbeam TestNet using Solidity and your favorite Ethereum tools.
+description: An overview of the current configuration of the Moonbeam TestNet, Moonbase Alpha, and information on how to start building on it using Solidity.
 ---
 # Moonbase Alpha, The Moonbeam TestNet
 *Updated November 16, 2020*
