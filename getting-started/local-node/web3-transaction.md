@@ -1,6 +1,6 @@
 ---
 title: Using Web3 for Transactions
-description: Learn how to send transactions on Moonbeam with a simple script using Web3.
+description: Learn how to create and send transactions on Moonbeam’s Ethereum-compatible network with a simple script using Web3.
 ---
 
 #Using Web3 to Sign Moonbeam Transactions
