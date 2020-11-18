@@ -1,6 +1,6 @@
 ---
 title: Faucet
-description: How to get use the faucet to get test tokens for Moonbase
+description: Learn how to use the automated faucet bot on Discord to get test tokens for the Moonbeam TestNet, nicknamed Moonbase Alpha.
 ---
 
 # Moonbase Alpha Faucet
