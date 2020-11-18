@@ -1,6 +1,6 @@
 ---
 title: Subscribe to Events
-description: Use pub-sub to subscribe to specific events on Moonbeam's Ethereum-compatible chain.
+description: Use Ethereum-like publish-subscribe functionality to subscribe to specific events on Moonbeam's Ethereum-compatible chain.
 ---
 
 # Subscribe to Events in Moonbase Alpha
