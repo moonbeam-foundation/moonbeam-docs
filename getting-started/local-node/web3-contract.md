@@ -3,26 +3,27 @@ title: Using Web3 for Contracts
 description: Learn how to deploy unmodified and unchanged Solidity-based smart contracts to a Moonbeam with a simple script using Web3.
 ---
 
-#Using Web3 to Deploy Smart Contracts on Moonbeam 
+#Using Web3 to Deploy Smart Contracts on Moonbeam
 ##Introduction  
 This guide walks you through the process of using the Solidity compiler and Web3 to deploy and interact with a Solidity-based smart contract on a Moonbeam dev node. Given Moonbeam’s Ethereum compatibility features, the Web3 library can be used directly with a Moonbeam node.
 
 The examples on this guide are based on a Ubuntu 18.04 environment and assume that you have a local Moonbeam node running in --dev mode, you can find instructions to set up a local Moonbeam node [here](/getting-started/setting-up-a-node/).
 
-!!! note 
-    This tutorial was created using the pre-alpha release of [Moonbeam](https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development. We have created this tutorial so you can test out Moonbeam’s Ethereum compatibility features. Even though we are still in development, we believe it’s important that interested community members and developers have the opportunity to start to try things with Moonbeam and provide feedback.
+!!! note
+This tutorial was created using the pre-alpha release of [Moonbeam](https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development. We have created this tutorial so you can test out Moonbeam’s Ethereum compatibility features. Even though we are still in development, we believe it’s important that interested community members and developers have the opportunity to start to try things with Moonbeam and provide feedback.
 
-##Checking Prerequisites 
+##Checking Prerequisites
 
 If you followed the ["Setting Up a Node" tutorial](/getting-started/setting-up-a-node/), you should have a local Moonbeam node producing blocks that looks like this:
 
-![Moonbeam local node](/images/web3-contract-1.png)
+![Moonbeam local node](/images/web3contract/web3-contract-1.png)
 
 In addition, for this tutorial, we need to install Node.js (we'll go for v14.x) and the npm package manager. You can do this by running in your terminal:
 
 ```
 curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 ```
+
 ```
 sudo apt install -y nodejs
 ```
@@ -32,6 +33,7 @@ We can verify that everything installed correctly by querying the version for ea
 ```
 node -v
 ```
+
 ```
 npm -v
 ```
@@ -45,6 +47,7 @@ mkdir incrementer && cd incrementer/
 ```
 
 And create a simple package.json file:
+
 ```
 npm init --yes
 ```
@@ -54,6 +57,7 @@ With the package.json file created, we can then install both the Web3 and the So
 ```
 npm install --save web3
 ```
+
 ```pypy
 npm install --save solc@0.6.10
 ```
@@ -63,6 +67,7 @@ To verify the installed version of Web3 or the Solidity compiler you can use the
 ```
 npm ls web3
 ```
+
 ```
 npm ls solc
 ```
@@ -79,10 +84,11 @@ Our setup for this example is going to be pretty simple. We are going to have th
 -  _reset.js_: the function to call that will reset the number stored to zero
 
 ##The Contract File and Compile Script
+
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed//pBp8VU9mnPs' frameborder='0' allowfullscreen></iframe></div>
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>You can find all of the relevant code for this tutorial on the [code snippets page](/resources/code-snippets/)</div>
 
-###The contract file 
+###The contract file
 
 The contract we will use is a very simple incrementer (arbitrarily named _Incrementer.sol_, and which you can find [here](/code-snippets/web3-contract/Incrementer.sol)). The Solidity code is the following:
 
@@ -93,7 +99,7 @@ The contract we will use is a very simple incrementer (arbitrarily named _Increm
 Our `constructor` function, that runs when the contract is deployed, sets the initial value of the number variable that is stored in the Moonbeam node (default is 0). The `increment` function adds `_value` provided to the current number, but a transaction needs to be sent as this modifies the stored data. And lastly, the `reset` function resets the stored value to zero.
 
 !!! note
-    This contract is just a simple example that does not handle values wrapping around, and it is only for illustration purposes.
+This contract is just a simple example that does not handle values wrapping around, and it is only for illustration purposes.
 
 ###The compile file
 
@@ -108,9 +114,11 @@ Then, we build the input object for the Solidity compiler.
 And finally, we run the compiler and extract the data related to our incrementer contract because, for this simple example, that is all we need.
 
 ```javascript
---8<-- "web3-contract/compile.js"
+--8 < --'web3-contract/compile.js';
 ```
+
 ##The Deploy Script and Interacting with our Contract
+
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed//CRYfejvqNzg' frameborder='0' allowfullscreen></iframe></div>
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>You can find all of the relevant code for this tutorial on the [code snippets page](/resources/code-snippets/)</div>
 
@@ -128,9 +136,8 @@ To deploy the contract, we create an asynchronous function to handle the transac
 
 Then, to create the transaction, we use the `web3.eth.accounts.signTransaction(tx, privKey)` command, where we have to define the tx object with some parameters such as: from address, the encoded abi from the previous step, and the gas limit. The private key must be provided as well to sign the transaction.
 
-
 ```javascript
---8<-- "web3-contract/deploy.js"
+--8 < --'web3-contract/deploy.js';
 ```
 
 Note that the value "4294967295" for gas (referred to as the gas limit) needs to be manually set. As of the writing of this guide, we are working through some issues related to gas estimation in Moonbeam. Once these are fixed, this manual setting of the gas limit shouldn’t be necessary.
@@ -138,7 +145,7 @@ Note that the value "4294967295" for gas (referred to as the gas limit) needs to
 With the transaction message created and signed (you can `console.log(createTransaction)` to see the v-r-s values), we can now deploy it using the `web3.eth.sendSignedTransaction(signedTx)` by providing the `rawTransaction` from the createTransaction object. Lastly, we run our deploy function.
 
 !!! note
-    The _deploy.js_ script provides the contract address as an output. This comes handy as it is used for the contract interaction files.
+The _deploy.js_ script provides the contract address as an output. This comes handy as it is used for the contract interaction files.
 
 ###Files to interact with the contract
 
@@ -151,7 +158,7 @@ Next, we define our address from which we are going to make the call to the cont
 The following step is to create a local instance of the contract by using the `web3.eth.Contract(abi)` command. Then, wrapped in an async function, we can write the contract call by running `web3.methods.myMethods()`, where we set the method or function that we want to call and provide the inputs for this call. This promise returns the data that we can log in the console. And lastly, we run our `get` function.
 
 ```javascript
---8<-- "web3-contract/get.js"
+--8 < --'web3-contract/get.js';
 ```
 
 Let's now define the file to send a transaction that will add the value provided to our number. The _increment.js_ file (which you can find [here](/code-snippets/web3-contract/increment.js)) is somewhat different to the previous example, and that is because here we are modifying the stored data, and for this, we need to send a transaction that pays gas. However, the initialization part of the file is similar. The only differences are that the private key must be defined for signing and that we've defined a `_value` that corresponds to the value to be added to our number.
@@ -161,13 +168,13 @@ The contract transaction starts by creating a local instance of the contract as 
 Then, as we did when deploying the contract, we need to create the transaction with the corresponding data (wrapped in a async function), sign it with the private key, and send it. Lastly, we run our incrementer function.
 
 ```javascript
---8<-- "web3-contract/increment.js"
+--8 < --'web3-contract/increment.js';
 ```
 
 The _reset.js_ file (which you can find [here](/code-snippets/web3-contract/reset.js)), is almost identical to the previous example. The only difference is that we need to call the `reset()` method which takes no input.
 
 ```javascript
---8<-- "web3-contract/reset.js"
+--8 < --'web3-contract/reset.js';
 ```
 
 ##Interacting with the Contract
@@ -180,7 +187,7 @@ node deploy.js
 
 After a successful deployment, you should get the following output:
 
-![Moonbeam local node](/images/web3-contract-2.png)
+![Moonbeam local node](/images/web3contract/web3-contract-2.png)
 
 First, let's check and confirm that that the value stored is equal to the one we passed in as the input of the constructor function (that was 5), we do this by running:
 
@@ -190,34 +197,35 @@ node get.js
 
 With the following output:
 
-![Moonbeam local node](/images/web3-contract-3.png)
+![Moonbeam local node](/images/web3contract/web3-contract-3.png)
 
 Then, we can use our incrementer file, remember that `_value = 3`. We can immediately use our getter file to prompt the value after the transaction:
 
 ```
 node incrementer.js
 ```
+
 ```
 node get.js
 ```
 
 With the following output:
 
-![Moonbeam local node](/images/web3-contract-4.png)
-
+![Moonbeam local node](/images/web3contract/web3-contract-4.png)
 
 Lastly, we can reset our number by using the reset file:
 
 ```
 node reset.js
 ```
+
 ```
 node get.js
 ```
 
 With the following output:
 
-![Moonbeam local node](/images/web3-contract-5.png)
+![Moonbeam local node](/images/web3contract/web3-contract-5.png)
 
 ##We Want to Hear From You
 This example provides context on how you can start working with Moonbeam and how you can try out its Ethereum compatibility features such as the Web3 library. We are interested in hearing about your experience following the steps in this guide or your experience trying other Ethereum-based tools with Moonbeam. Feel free to join us in the [Moonbeam Discord here](https://discord.gg/PfpUATX). We would love to hear your feedback on Moonbeam and answer any questions that you have.

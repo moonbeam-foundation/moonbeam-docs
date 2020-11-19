@@ -4,6 +4,7 @@ description: Learn how to create and send transactions on Moonbeam’s Ethereum-
 ---
 
 #Using Web3 to Sign Moonbeam Transactions
+
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed//OEphJq-MWgU' frameborder='0' allowfullscreen></iframe></div>
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>You can find all of the relevant code for this tutorial on the [code snippets page](/resources/code-snippets/)</div>
 
@@ -13,18 +14,19 @@ This guide walks through the process of using Web3 to manually sign and send a t
 The examples in this guide are based on a Ubuntu 18.04 environment and assume that you have a local Moonbeam node running in --dev mode. You can find instructions to setup a local Moonbeam node [here](/getting-started/setting-up-a-node/).
 
 !!! note
-    This tutorial was created using the pre-alpha release of [Moonbeam](https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials).  The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development.  We have created this tutorial so you can test out Moonbeam’s Ethereum compatibility features.  Even though we are still in development, we believe it’s important that interested community members and developers have the opportunity to start to try things with Moonbeam and provide feedback.
+This tutorial was created using the pre-alpha release of [Moonbeam](https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development. We have created this tutorial so you can test out Moonbeam’s Ethereum compatibility features. Even though we are still in development, we believe it’s important that interested community members and developers have the opportunity to start to try things with Moonbeam and provide feedback.
 
 ##Checking Prerequisites
 If you followed the [tutorial](/getting-started/setting-up-a-node/), you should have a local Moonbeam node producing blocks that looks like this:
 
-![Moonbeam local node](/images/web3-transaction-1.png)
+![Moonbeam local node](/images/web3tx/web3-transaction-1.png)
 
 In addition, for this tutorial, we need to install Node.js (we'll go for v14.x) and the npm package manager. You can do this by running in your terminal:
 
 ```
 curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 ```
+
 ```
 sudo apt install -y nodejs
 ```
@@ -34,6 +36,7 @@ We can verify that everything installed correctly by querying the version for ea
 ```
 node -v
 ```
+
 ```
 npm -v
 ```
@@ -64,7 +67,7 @@ To verify the installed version of Web3, you can use the `ls` command:
 npm ls web3
 ```
 
-As of the writing of this guide, the version used was 1.2.9. 
+As of the writing of this guide, the version used was 1.2.9.
 
 ##The Transaction File
 For our example, we only need a single JavaScript file (arbitrarily named _transaction.js_, which you can find [here](/code-snippets/web3-tx/transaction.js)) to create the transaction, which we will run using the `node` command in the terminal. The script will transfer 100 ETH from the genesis account to another address. For simplicity, the file is divided into three sections: variable definition, create transaction, and deploy transaction.
@@ -76,8 +79,8 @@ We need to set a couple of values in the variable definitions:
 3. Set the "from" and "to" addresses, making sure to set the value of `toAddress` to a different address, for example the one created by MetaMask when setting up a local wallet.
 4. Create a local Web3 instance and set the provider to connect to our local Moonbeam node.
 
-!!! note 
-    Remember to change the _addressTo_ variable to another address provided by your MetaMask wallet.
+!!! note
+Remember to change the _addressTo_ variable to another address provided by your MetaMask wallet.
 
 ```js
 const Web3 = require('web3');
@@ -92,8 +95,8 @@ const web3 = new Web3('http://localhost:9933');
 
 Both the "create transaction" and "deploy transaction" sections are wrapped in an asynchronous function that handles the promises from our Web3 instance. To create the transaction, we use the `web3.eth.accounts.signTransaction(tx, privKey)` command, where we have to define the tx object with some parameters such as: `addressFrom`, `addressTo`, number of tokens to send, and the gas limit.
 
-!!! note 
-    Note that the number of tokens needs to be given in Wei, but we can use the Web3 toWei utility to convert units. The private key must be provided as well to sign the transaction.
+!!! note
+Note that the number of tokens needs to be given in Wei, but we can use the Web3 toWei utility to convert units. The private key must be provided as well to sign the transaction.
 
 ```js
 // Create transaction
@@ -113,8 +116,8 @@ const deploy = async () => {
    );
 ```
 
-!!! note 
-    Currently, the value "4294967295" for gas (referred to as the gas limit) needs to be manually set. As of the writing of this guide, we are working through some issues related to gas estimation in Moonbeam. Once these are fixed, this manual setting of the gas limit shouldn’t be necessary.
+!!! note
+Currently, the value "4294967295" for gas (referred to as the gas limit) needs to be manually set. As of the writing of this guide, we are working through some issues related to gas estimation in Moonbeam. Once these are fixed, this manual setting of the gas limit shouldn’t be necessary.
 
 Since the transaction message has been created and signed (you can `console.log(createTransaction)` to see the v-r-s values), we can now deploy it using the `web3.eth.sendSignedTransaction(signedTx)` by providing the `rawTransaction` from the `createTransaction` object.
 
@@ -132,26 +135,29 @@ Lastly, we run our deploy function.
 
 deploy();
 ```
+
 So our completes _transaction.js_ script looks like this:
 
 ```js
---8<-- "web3-tx/transaction.js"
+--8 < --'web3-tx/transaction.js';
 ```
 
 ## The Balance File
+
 Before running the script, we need another file to check the balances of both addresses before and after the transaction is executed. We can easily do this by leveraging the Ethereum compatibility features of Moonbeam.
 
-For simplicity, the balance file (named arbitrarily _balances.js_, which you can find [here](/code-snippets/web3-tx/balances.js)), is composed of two sections: the variables definition and the balance call.  The variables definition is nearly the same as for the previous transaction file; the only difference is that we do not need the private key, as this is only a call function (reading data from the local Moonbeam node).
+For simplicity, the balance file (named arbitrarily _balances.js_, which you can find [here](/code-snippets/web3-tx/balances.js)), is composed of two sections: the variables definition and the balance call. The variables definition is nearly the same as for the previous transaction file; the only difference is that we do not need the private key, as this is only a call function (reading data from the local Moonbeam node).
 
-To get the balances of our addresses, we need to make an asynchronous function that uses the `web3.eth.getBalance(address)` command. We can take advantage of the `web3.utils.fromWei()` function to transform the balance into a more readable number in ETH. 
+To get the balances of our addresses, we need to make an asynchronous function that uses the `web3.eth.getBalance(address)` command. We can take advantage of the `web3.utils.fromWei()` function to transform the balance into a more readable number in ETH.
 
 So basically, our _balances.js_ script looks like this:
 
 ```js
---8<-- "web3-tx/balances.js"
+--8 < --'web3-tx/balances.js';
 ```
 
 ## Running the Scripts
+
 First, let's check the balances of both of our addresses before the transaction by running:
 
 ```
@@ -160,7 +166,7 @@ node balances.js
 
 The output of the execution is the following:
 
-![Balances before transaction](/images/web3-transaction-2.png)
+![Balances before transaction](/images/web3tx/web3-transaction-2.png)
 
 We can run our _transaction.js_ script from the terminal window:
 
@@ -170,11 +176,11 @@ node transaction.js
 
 The output of the execution is the following:
 
-![Balances before transaction](/images/web3-transaction-3.png)
+![Balances before transaction](/images/web3tx/web3-transaction-3.png)
 
 And we can check the new balances:
 
-![Balances before transaction](/images/web3-transaction-4.png)
+![Balances before transaction](/images/web3tx/web3-transaction-4.png)
 
 ##We Want to Hear From You
 This is a fairly simple example, but it provides context for how you can start working with Moonbeam and how you can try out its Ethereum compatibility features. We are interested in hearing about your experience following the steps in this guide or your experience trying other Ethereum-based tools with Moonbeam. Feel free to join us in the [Moonbeam Discord here](https://discord.gg/PfpUATX). We would love to hear your feedback on Moonbeam and answer any questions that you have.
