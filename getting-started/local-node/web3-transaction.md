@@ -14,7 +14,7 @@ This guide walks through the process of using Web3 to manually sign and send a t
 The examples in this guide are based on a Ubuntu 18.04 environment and assume that you have a local Moonbeam node running in --dev mode. You can find instructions to setup a local Moonbeam node [here](/getting-started/setting-up-a-node/).
 
 !!! note
-   This tutorial was created using the pre-alpha release of [Moonbeam](https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development. We have created this tutorial so you can test out Moonbeam’s Ethereum compatibility features. Even though we are still in development, we believe it’s important that interested community members and developers have the opportunity to start to try things with Moonbeam and provide feedback.
+    This tutorial was created using the pre-alpha release of [Moonbeam](https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development. We have created this tutorial so you can test out Moonbeam’s Ethereum compatibility features. Even though we are still in development, we believe it’s important that interested community members and developers have the opportunity to start to try things with Moonbeam and provide feedback.
 
 ##Checking Prerequisites
 If you followed the [tutorial](/getting-started/setting-up-a-node/), you should have a local Moonbeam node producing blocks that looks like this:
@@ -80,7 +80,7 @@ We need to set a couple of values in the variable definitions:
 4. Create a local Web3 instance and set the provider to connect to our local Moonbeam node.
 
 !!! note
-   Remember to change the _addressTo_ variable to another address provided by your MetaMask wallet.
+    Remember to change the _addressTo_ variable to another address provided by your MetaMask wallet.
 
 ```js
 const Web3 = require('web3');
@@ -96,7 +96,7 @@ const web3 = new Web3('http://localhost:9933');
 Both the "create transaction" and "deploy transaction" sections are wrapped in an asynchronous function that handles the promises from our Web3 instance. To create the transaction, we use the `web3.eth.accounts.signTransaction(tx, privKey)` command, where we have to define the tx object with some parameters such as: `addressFrom`, `addressTo`, number of tokens to send, and the gas limit.
 
 !!! note
-   Note that the number of tokens needs to be given in Wei, but we can use the Web3 toWei utility to convert units. The private key must be provided as well to sign the transaction.
+    Note that the number of tokens needs to be given in Wei, but we can use the Web3 toWei utility to convert units. The private key must be provided as well to sign the transaction.
 
 ```js
 // Create transaction
@@ -117,7 +117,7 @@ const deploy = async () => {
 ```
 
 !!! note
-   Currently, the value "4294967295" for gas (referred to as the gas limit) needs to be manually set. As of the writing of this guide, we are working through some issues related to gas estimation in Moonbeam. Once these are fixed, this manual setting of the gas limit shouldn’t be necessary.
+    Currently, the value "4294967295" for gas (referred to as the gas limit) needs to be manually set. As of the writing of this guide, we are working through some issues related to gas estimation in Moonbeam. Once these are fixed, this manual setting of the gas limit shouldn’t be necessary.
 
 Since the transaction message has been created and signed (you can `console.log(createTransaction)` to see the v-r-s values), we can now deploy it using the `web3.eth.sendSignedTransaction(signedTx)` by providing the `rawTransaction` from the `createTransaction` object.
 
