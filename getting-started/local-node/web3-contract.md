@@ -10,7 +10,7 @@ This guide walks you through the process of using the Solidity compiler and Web3
 The examples on this guide are based on a Ubuntu 18.04 environment and assume that you have a local Moonbeam node running in --dev mode, you can find instructions to set up a local Moonbeam node [here](/getting-started/setting-up-a-node/).
 
 !!! note
-  This tutorial was created using the pre-alpha release of [Moonbeam](https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development. We have created this tutorial so you can test out Moonbeam’s Ethereum compatibility features. Even though we are still in development, we believe it’s important that interested community members and developers have the opportunity to start to try things with Moonbeam and provide feedback.
+    This tutorial was created using the pre-alpha release of [Moonbeam](https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development. We have created this tutorial so you can test out Moonbeam’s Ethereum compatibility features. Even though we are still in development, we believe it’s important that interested community members and developers have the opportunity to start to try things with Moonbeam and provide feedback.
 
 ##Checking Prerequisites
 
@@ -99,7 +99,7 @@ The contract we will use is a very simple incrementer (arbitrarily named _Increm
 Our `constructor` function, that runs when the contract is deployed, sets the initial value of the number variable that is stored in the Moonbeam node (default is 0). The `increment` function adds `_value` provided to the current number, but a transaction needs to be sent as this modifies the stored data. And lastly, the `reset` function resets the stored value to zero.
 
 !!! note
-  This contract is just a simple example that does not handle values wrapping around, and it is only for illustration purposes.
+    This contract is just a simple example that does not handle values wrapping around, and it is only for illustration purposes.
 
 ###The compile file
 
@@ -145,7 +145,7 @@ Note that the value "4294967295" for gas (referred to as the gas limit) needs to
 With the transaction message created and signed (you can `console.log(createTransaction)` to see the v-r-s values), we can now deploy it using the `web3.eth.sendSignedTransaction(signedTx)` by providing the `rawTransaction` from the createTransaction object. Lastly, we run our deploy function.
 
 !!! note
-  The _deploy.js_ script provides the contract address as an output. This comes handy as it is used for the contract interaction files.
+    The _deploy.js_ script provides the contract address as an output. This comes handy as it is used for the contract interaction files.
 
 ###Files to interact with the contract
 
