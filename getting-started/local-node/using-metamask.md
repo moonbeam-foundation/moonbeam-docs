@@ -10,7 +10,7 @@ description: This tutorial walks you through how to interact with a local Moonbe
 
 ## Introduction
 
-This guide outlines steps for using a self-contained Moonbeam standalone node to send tokens between accounts with MetaMask. If you haven’t already set up your own local dev node, refer to [this tutorial](/getting-started/setting-up-a-node/) or follow the instructions in the [GitHub repository](https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials).
+This guide outlines steps for connecting MetaMask to a self-contained Moonbeam standalone node, to send tokens between accounts. If you haven’t already set up your own local dev node, refer to [this tutorial](/getting-started/setting-up-a-node/) or follow the instructions in the [GitHub repository](https://github.com/PureStake/moonbeam/tree/moonbeam-tutorials).
 
 !!! note
     This tutorial was created using the v3 release of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/v0.3.0). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development. The examples in this guide assume an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows.
