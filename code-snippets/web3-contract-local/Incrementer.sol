@@ -1,4 +1,4 @@
-pragma solidity ^0.6.0;
+pragma solidity ^0.7.4;
 
 contract Incrementer {
     uint256 public number;

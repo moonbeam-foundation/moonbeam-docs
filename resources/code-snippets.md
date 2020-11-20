@@ -59,48 +59,11 @@ description: In order to make it easier to get up-and-running with Moonbeam, her
 ```
 
 ##Truffle
-**Truffle configuration file _truffle-config.js_:**
-```javascript
-const PrivateKeyProvider = require ('./private-provider')
-var privateKey = "99B3C12287537E38C90A9219D4CB074A89A16E9CDB20BF85728EBD97C343E342";
-
-module.exports = {
-  networks: {
-    development: {
-      provider: () => new PrivateKeyProvider(privateKey, "http://localhost:9933/", 43),
-      network_id: 43
-    }
-  }
-}
+**Download Moonbeam Truffle box:*
 ```
-
-**ERC-20 contract for Truffle example:**
-```
-pragma solidity ^0.5.0;
-
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/token/ERC20/ERC20Detailed.sol";
-
-// This ERC-20 contract mints the specified amount of tokens to the contract creator.
-contract MyToken is ERC20, ERC20Detailed {
-    constructor(uint256 initialSupply)
-        public
-        ERC20Detailed("MyToken", "MYTOK", 18)
-    {
-        _mint(msg.sender, initialSupply);
-    }
-}
-```
-
-**Truffle migration script _2_deploy_contracts.js_:**
-```javascript
-var MyToken = artifacts.require("MyToken");
-
-module.exports = function (deployer) {
-  // deployment steps
-  deployer.deploy(MyToken, "8000000000000000000000000");
-};
-```
+git clone https://github.com/PureStake/moonbeam-truffle-box
+cd moonbeam-truffle-box
+``` 
 
 **Compile contracts in Truffle:**
 ```
@@ -109,7 +72,7 @@ node_modules/.bin/truffle compile
 
 **Deploy contracts in Truffle:**
 ```
-node_modules/.bin/truffle migrate --network development
+node_modules/.bin/truffle migrate --network <network_name>
 ```
 
 ##Installing NodeJS, npm, Web3 JS Library, and the Solidity Compiler
