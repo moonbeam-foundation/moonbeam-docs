@@ -19,10 +19,10 @@ For this guide you will need to have a running standalone Moonbeam node running 
 
 ## Checking Prerequisites
 
-First we need to install Node.js (we'll go for v14.x) and the npm package manager. You can do this by running in your terminal:
+First we need to install Node.js (we'll go for v15.x) and the npm package manager. You can do this by running in your terminal:
 
 ```
-curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash -
 ```
 
 ```
