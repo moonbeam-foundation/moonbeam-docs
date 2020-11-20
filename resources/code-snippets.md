@@ -46,11 +46,11 @@ description: In order to make it easier to get up-and-running with Moonbeam, her
 ```
 
 ## Genesis Account
---8<-- 'web3-tx-local/dev-account.md'
+--8<-- 'metamask-local/dev-account.md'
 
 ## MetaMask
 **Local Moonbeam node details:**  
---8<-- 'web3-tx-local/network-details.md'
+--8<-- 'metamask-local/network-details.md'
 
 ## Remix
 **ERC-20 contract Open Zeppeling template:**
