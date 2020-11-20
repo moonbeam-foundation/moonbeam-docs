@@ -1,4 +1,4 @@
 -  Network Name: `Moonbeam Dev`
 -  New RPC URL: `http://127.0.0.1:9933`
 -  ChainID: `1281`
--  Symbol (Optional): DEV
+-  Symbol (Optional): `DEV`
