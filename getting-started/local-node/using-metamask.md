@@ -24,7 +24,7 @@ First, we start with a fresh and default [MetaMask](https://metamask.io/) instal
 
 The details for the development account that comes pre-funded for this standalone build are as follows:
 
---8<-- 'web3-tx-local/dev-account.md'
+--8<-- 'metamask-local/dev-account.md'
 
 On the import screen, select “Private Key” and paste in the key listed above:
 
@@ -42,7 +42,7 @@ Now let’s connect MetaMask to our locally running Moonbeam node, which should 
 
 If so, in MetaMask, navigate to Settings -> Networks -> Add Network and fill in the following details:
 
---8<-- 'web3-tx-local/network-details.md'
+--8<-- 'metamask-local/network-details.md'
 
 ![Enter your new network information into MetaMask](/images/metamask/using-metamask-4.png)
 
