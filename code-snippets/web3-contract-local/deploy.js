@@ -24,7 +24,7 @@ const deploy = async () => {
       {
          from: address,
          data: incrementerTx.encodeABI(),
-         gas: '4294967295',
+         gas: await incrementerTx.estimateGas(),
       },
       privKey
    );
