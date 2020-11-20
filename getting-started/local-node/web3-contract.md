@@ -58,7 +58,7 @@ With the package.json file created, we can then install both the Web3 and the So
 npm install web3
 ```
 
-```
+```pypy
 npm install solc@0.7.4
 ```
 
@@ -138,7 +138,7 @@ Then, to create the transaction, we use the `web3.eth.accounts.signTransaction(t
 --8<-- 'web3-contract-local/deploy.js'
 ```
 
-Note that the value "4294967295" for gas (referred to as the gas limit) needs to be manually set. As of the writing of this guide, we are working through some issues related to gas estimation in Moonbeam. Once these are fixed, this manual setting of the gas limit shouldn’t be necessary.
+To get the estimated gas to deploy this contract we can use the `estimateGas` method. This can differ from the actual gas consumed at the moment of execution but can provide a reference value.
 
 With the transaction message created and signed (you can `console.log(createTransaction)` to see the v-r-s values), we can now deploy it using the `web3.eth.sendSignedTransaction(signedTx)` by providing the `rawTransaction` from the createTransaction object. Lastly, we run our deploy function.
 
