@@ -93,7 +93,7 @@ Our setup for this example is going to be pretty simple. We are going to have th
 The contract we will use is a very simple incrementer (arbitrarily named _Incrementer.sol_, and which you can find [here](/code-snippets/web3-contract/Incrementer.sol)). The Solidity code is the following:
 
 ```solidity
---8<-- "web3-contract/Incrementer.sol"
+--8<-- 'web3-contract/Incrementer.sol'
 ```
 
 Our `constructor` function, that runs when the contract is deployed, sets the initial value of the number variable that is stored in the Moonbeam node (default is 0). The `increment` function adds `_value` provided to the current number, but a transaction needs to be sent as this modifies the stored data. And lastly, the `reset` function resets the stored value to zero.
@@ -114,7 +114,7 @@ Then, we build the input object for the Solidity compiler.
 And finally, we run the compiler and extract the data related to our incrementer contract because, for this simple example, that is all we need.
 
 ```javascript
---8 < --'web3-contract/compile.js';
+--8<-- 'web3-contract-local/compile.js'
 ```
 
 ##The Deploy Script and Interacting with our Contract
@@ -137,7 +137,7 @@ To deploy the contract, we create an asynchronous function to handle the transac
 Then, to create the transaction, we use the `web3.eth.accounts.signTransaction(tx, privKey)` command, where we have to define the tx object with some parameters such as: from address, the encoded abi from the previous step, and the gas limit. The private key must be provided as well to sign the transaction.
 
 ```javascript
---8 < --'web3-contract/deploy.js';
+--8<-- 'web3-contract-local/deploy.js'
 ```
 
 Note that the value "4294967295" for gas (referred to as the gas limit) needs to be manually set. As of the writing of this guide, we are working through some issues related to gas estimation in Moonbeam. Once these are fixed, this manual setting of the gas limit shouldn’t be necessary.
@@ -158,7 +158,7 @@ Next, we define our address from which we are going to make the call to the cont
 The following step is to create a local instance of the contract by using the `web3.eth.Contract(abi)` command. Then, wrapped in an async function, we can write the contract call by running `web3.methods.myMethods()`, where we set the method or function that we want to call and provide the inputs for this call. This promise returns the data that we can log in the console. And lastly, we run our `get` function.
 
 ```javascript
---8 < --'web3-contract/get.js';
+--8<-- 'web3-contract-local/get.js'
 ```
 
 Let's now define the file to send a transaction that will add the value provided to our number. The _increment.js_ file (which you can find [here](/code-snippets/web3-contract/increment.js)) is somewhat different to the previous example, and that is because here we are modifying the stored data, and for this, we need to send a transaction that pays gas. However, the initialization part of the file is similar. The only differences are that the private key must be defined for signing and that we've defined a `_value` that corresponds to the value to be added to our number.
@@ -168,13 +168,13 @@ The contract transaction starts by creating a local instance of the contract as 
 Then, as we did when deploying the contract, we need to create the transaction with the corresponding data (wrapped in a async function), sign it with the private key, and send it. Lastly, we run our incrementer function.
 
 ```javascript
---8 < --'web3-contract/increment.js';
+--8<-- 'web3-contract-local/increment.js'
 ```
 
 The _reset.js_ file (which you can find [here](/code-snippets/web3-contract/reset.js)), is almost identical to the previous example. The only difference is that we need to call the `reset()` method which takes no input.
 
 ```javascript
---8 < --'web3-contract/reset.js';
+--8<-- 'web3-contract-local/reset.js'
 ```
 
 ##Interacting with the Contract

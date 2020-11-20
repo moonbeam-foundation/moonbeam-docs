@@ -41,16 +41,7 @@ We will create a new file to save the Solidity smart contract.  Hit the + button
 Now let's paste the following smart contract into the editor tab that comes up:
 
 ```solidity
-pragma solidity ^0.7.0;
-
-import 'https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v3.2.0-solc-0.7/contracts/token/ERC20/ERC20.sol';
-
-// This ERC-20 contract mints the specified amount of tokens to the contract creator.
-contract MyToken is ERC20 {
-  constructor(uint256 initialSupply) ERC20("MyToken", "MYTOK") public {
-    _mint(msg.sender, initialSupply);
-  }
-}
+--8<-- 'remix-local/contract.md'
 ```
 
 This is a simple ERC-20 contract based on the current Open Zeppelin ERC-20 template.  It creates MyToken with symbol MYTOK and mints the entirety of the initial supply to the creator of the contract.

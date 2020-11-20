@@ -21,33 +21,31 @@ We start by cloning a specific tag of the Moonbeam repo that you can find here:
 [https://github.com/PureStake/moonbeam/](https://github.com/PureStake/moonbeam/)
 
 ```
-git clone -b tutorial-v3 https://github.com/PureStake/moonbeam
-cd moonbeam
+--8<-- 'setting-up-local/clone.md'
 ```
 
 Next, install Substrate and all its prerequisites (including rust), by executing:
 
 ```
-curl https://getsubstrate.io -sSf | bash -s -- --fast
+--8<-- 'setting-up-local/substrate.md'
 ```
 
 Now, lets make some checks (correct version of rust nigthly) with the initialization script:
 
 ```
-./scripts/init.sh
+--8<-- 'setting-up-local/initscript.md'
 ```
 
 Once you have followed all of the procedures above, it's time to build the standalone node by running:
 
 ```
-cd ./node/standalone
-cargo build --release
+--8<-- 'setting-up-local/build.md'
 ```
 
 If a _cargo not found error_ shows up in the terminal, manually add Rust to your system path (or restart your system):
 
 ```
-source $HOME/.cargo/env
+--8<-- 'setting-up-local/cargoerror.md'
 ```
 
 !!! note
@@ -60,7 +58,7 @@ Here is what the tail end of the build output should look like:
 Then you will want to run the node in dev mode using the following command:
 
 ```
-./target/release/moonbase-standalone --dev
+--8<-- 'setting-up-local/runnode.md'
 ```
 
 !!! note
@@ -79,7 +77,7 @@ The local standalone Moonbeam node provides two RPC endpoints:
 An alternative to the steps higlighted before is to use docker to run a pre-build binary. Doing so, you prevent having to install Substrate and all the dependencies, and you can skip the building the node process as well. The only requirement is to have Docker installed, and then you can execute the following command to download the corresponding image:
 
 ```
-docker pull purestake/moonbase:tutorial-v3
+--8<-- 'setting-up-local/dockerpull.md'
 ```
 The tail end of the console log should look like this:
 
@@ -88,7 +86,7 @@ The tail end of the console log should look like this:
 Once the Docker image is downloaded, you can run it with the following line:
 
 ```
-docker run --rm --name moonbeam_standalone --network host purestake/moonbase:tutorial-v3 /moonbase/moonbase-standalone --dev
+--8<-- 'setting-up-local/dockerrun.md'
 ```
 
 If successful you should see an ouput similar to before, showing that blocks are being produced:

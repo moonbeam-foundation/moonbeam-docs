@@ -1,0 +1,1 @@
+./target/release/moonbase-standalone --dev
