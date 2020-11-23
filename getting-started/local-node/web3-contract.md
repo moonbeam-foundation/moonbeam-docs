@@ -153,7 +153,7 @@ First, let's overview the _get.js_ file (the simplest of them all, which you can
 
 Next, we define our address from which we are going to make the call to the contract and create a local Web3 instance. And lastly, we need to provide the contract address (which is log in the console by the _deploy.js_ file).
 
-The following step is to create a local instance of the contract by using the `web3.eth.Contract(abi)` command. Then, wrapped in an async function, we can write the contract call by running `web3.methods.myMethods()`, where we set the method or function that we want to call and provide the inputs for this call. This promise returns the data that we can log in the console. And lastly, we run our `get` function.
+The following step is to create a local instance of the contract by using the `web3.eth.Contract(abi, contractAddress)` command. Then, wrapped in an async function, we can write the contract call by running `web3.methods.myMethods()`, where we set the method or function that we want to call and provide the inputs for this call. This promise returns the data that we can log in the console. And lastly, we run our `get` function.
 
 ```javascript
 --8<-- 'web3-contract-local/get.js'
@@ -161,9 +161,9 @@ The following step is to create a local instance of the contract by using the `w
 
 Let's now define the file to send a transaction that will add the value provided to our number. The _increment.js_ file (which you can find [here](/code-snippets/web3-contract-local/increment.js)) is somewhat different to the previous example, and that is because here we are modifying the stored data, and for this, we need to send a transaction that pays gas. However, the initialization part of the file is similar. The only differences are that the private key must be defined for signing and that we've defined a `_value` that corresponds to the value to be added to our number.
 
-The contract transaction starts by creating a local instance of the contract as before, but when we call the corresponding `incrementer(_value).encodedABI` method, where we pass in `_value`.
+The contract transaction starts by creating a local instance of the contract as before, but when we call the corresponding `incrementer(_value)` method, where we pass in `_value`.
 
-Then, as we did when deploying the contract, we need to create the transaction with the corresponding data (wrapped in a async function), sign it with the private key, and send it. Lastly, we run our incrementer function.
+Then, as we did when deploying the contract, we need to create the transaction with the corresponding data (wrapped in a async function), sign it with the private key, and send it. Note that we are calculating the gas using the `estimateGas` method as before. Lastly, we run our incrementer function.
 
 ```javascript
 --8<-- 'web3-contract-local/increment.js'
