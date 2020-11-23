@@ -1,2 +1,5 @@
 title: Web3 JS Libraries
 hide: true
+arrange:
+  - etherjs.md
+  - web3js.md
