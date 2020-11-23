@@ -13,10 +13,10 @@ In this guide, we will show how to use and/or verify these four precompiles.
 
 ## Checking Prerequisites
 
-For this tutorial, we need to install Node.js (we'll go for v14.x) and the npm package manager. You can do this by running in your terminal:
+For this tutorial, we need to install Node.js (we'll go for v15.x) and the npm package manager. You can do this by running in your terminal:
 
 ```
-curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash -
 ```
 ```
 sudo apt install -y nodejs
@@ -31,7 +31,7 @@ node -v
 npm -v
 ```
 
-As of the writing of this guide, versions used were 14.6.0 and 6.14.6, respectively. Also, we need to install the Web3 package by executing:
+As of the writing of this guide, versions used were 15.2.1 and 7.0.8, respectively.. Also, we need to install the Web3 package by executing:
 
 ```
 npm install --save web3
