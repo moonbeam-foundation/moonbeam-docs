@@ -9,8 +9,8 @@ const web3 = new Web3('http://localhost:9933');
 const contractAddress = '0xC2Bf5F29a4384b1aB0C063e1c666f02121B6084a';
 
 // Contract Tx
-const incrementer = new web3.eth.Contract(abi);
-const encoded = incrementer.methods.reset().encodeABI();
+const incrementer = new web3.eth.Contract(abi, contractAddress);
+const resetTx = incrementer.methods.reset();
 
 const reset = async () => {
    console.log(
@@ -20,8 +20,8 @@ const reset = async () => {
       {
          from: address,
          to: contractAddress,
-         data: encoded,
-         gas: '4294967295',
+         data: resetTx.encodeABI(),
+         gas: '40000',
       },
       privKey
    );
