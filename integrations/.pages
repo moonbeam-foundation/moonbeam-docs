@@ -1,3 +1,10 @@
 title: Integrations
 arrange:
+  - jslibraries
   - oracles
+  - metamask.md
+  - remix.md
+  - trufflebox.md
+  - polkadotjs.md
+  - precompiles.md
+  - pubsub.md

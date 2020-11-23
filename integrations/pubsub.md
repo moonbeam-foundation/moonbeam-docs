@@ -1,5 +1,5 @@
 ---
-title: Subscribe to Events
+title: Events Subscription
 description: Use Ethereum-like publish-subscribe functionality to subscribe to specific events on Moonbeam's Ethereum-compatible chain.
 ---
 
