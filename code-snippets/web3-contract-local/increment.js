@@ -10,8 +10,8 @@ const contractAddress = '0xC2Bf5F29a4384b1aB0C063e1c666f02121B6084a';
 const _value = 3;
 
 // Contract Tx
-const incrementer = new web3.eth.Contract(abi);
-const encoded = incrementer.methods.increment(_value).encodeABI();
+const incrementer = new web3.eth.Contract(abi, contractAddress);
+const incrementTx = incrementer.methods.increment(_value);
 
 const increment = async () => {
    console.log(
@@ -21,8 +21,8 @@ const increment = async () => {
       {
          from: address,
          to: contractAddress,
-         data: encoded,
-         gas: '4294967295',
+         data: incrementTx.encodeABI(),
+         gas: await incrementTx.estimateGas(),
       },
       privKey
    );
