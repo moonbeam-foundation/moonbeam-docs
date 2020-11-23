@@ -169,7 +169,7 @@ Then, as we did when deploying the contract, we need to create the transaction w
 --8<-- 'web3-contract-local/increment.js'
 ```
 
-The _reset.js_ file (which you can find [here](/code-snippets/web3-contract-local/reset.js)), is almost identical to the previous example. The only difference is that we need to call the `reset()` method which takes no input.
+The _reset.js_ file (which you can find [here](/code-snippets/web3-contract-local/reset.js)), is almost identical to the previous example. The only difference is that we need to call the `reset()` method which takes no input. In this case, we are manually setting the gas limit of the transaction to `40000`, as the `estimatedGas()` method returned an invalid value (something we are working on).
 
 ```javascript
 --8<-- 'web3-contract-local/reset.js'
