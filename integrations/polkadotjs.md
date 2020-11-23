@@ -4,7 +4,7 @@ description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereu
 ---
 # Polkadot JS Apps
 
-![Intro diagram](/images/trufflebox/polkadotjs-app0.png)
+![Intro diagram](/images/testnet/polkadotjs-app0.png)
 
 ##Introduction
 
