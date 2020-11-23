@@ -118,7 +118,7 @@ truffle run moonbeam remove
 Included with the Truffle box, there is also a ERC20 token contract:
 
 ```solidity
-pragma solidity ^0.7.0;
+pragma solidity ^0.7.5;
 
 // Import OpenZeppelin Contract
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -170,5 +170,5 @@ If successful, you will see deployment actions including the address of the depl
 
 Once you have followed the [MetaMask guide](/getting-started/using-metamask/) and [Remix guide](/getting-started/using-remix/), you will be able to take the deployed contract address that is returned and load it into MetaMask or Remix.
 
-##We Want to Hear From You
+## We Want to Hear From You
 This is obviously a simple example, but it provides context for how you can start working with Moonbeam and how you can try out its Ethereum compatibility features. We are interested in hearing about your experience following the steps in this guide or your experience trying other Ethereum-based tools with Moonbeam. Feel free to join us in the [Moonbeam Discord here](https://discord.gg/PfpUATX). We would love to hear your feedback on Moonbeam and answer any questions that you have.
