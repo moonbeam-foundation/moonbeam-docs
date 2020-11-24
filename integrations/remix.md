@@ -26,18 +26,17 @@ contract SimpleContract{
 }
 ```
 
-With the contract compiled, we can navigate to the "Deploy & Run Transactions" tab, we we need first to set our environment to "Injected Web3". This uses the provider injected by MetaMask, which allows us to deploy contracts to the network it is connected to, in this case the Moonbase Alpha TestNet. 
+Once compiled, we can navigate to the "Deploy & Run Transactions" tab, we we need first to set our environment to "Injected Web3". This uses the provider injected by MetaMask, which allows us to deploy contracts to the network it is connected to, in this case the Moonbase Alpha TestNet. 
 
-For this example, we'll be deploying the contract from a funded MetaMask account, and we'll pass in `Test Contract` as input to our contructor function. Once we hit the deploy button, we need to sign the transaction using MetaMask.
+For this example, we'll be deploying the contract from a funded MetaMask account. You can use our [TestNet faucet](/getting-started/testnet/faucet/) to fund you account for deployments on Moonbase Alpha. Next, pass in `Test Contract` as input to our contructor function and hit deploy. A MetaMask pop-up will show the information regarding the transaction, which we'll need to sign by clicking on confirm.
 
 ![Deploying Contract](/images/remix/integrations-remix-1.png)
 
- 
 Once the transaction is included, the contract appears in the "Deployed Contracts section" on Remix. In there, we can interact with the functions available from out contract.
 
 ![Interact with Contract](/images/remix/integrations-remix-2.png)
 
 ## Step-by-step Tutorials
 
-In the case that you are interested in a more detailed step-by-step guide, you can go to our specific tutorials on using [Remix on a Moonbeam standalone node](/getting-started/local-node/using-remix/). The steps can also be adapted to deploy on the Moonbase Alpha TestNet, by [connecting MetaMask to it](/getting-started/testnet/using-metamask/).
+In the case that you are interested in a more detailed step-by-step guide, you can go to our specific tutorials on using [Remix on a Moonbeam standalone node](/getting-started/local-node/using-remix/). The steps can also be adapted to deploy on the Moonbase Alpha TestNet, by [connecting MetaMask to it](/getting-started/testnet/metamask/).
 
