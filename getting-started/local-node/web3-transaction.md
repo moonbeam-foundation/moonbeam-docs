@@ -9,7 +9,7 @@ description: Learn how to create and send transactions on Moonbeam’s Ethereum-
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>You can find all of the relevant code for this tutorial on the [code snippets page](/resources/code-snippets/)</div>
 
 ## Introduction  
-This guide walks through the process of using Web3 to manually sign and send a transaction to a Moonbeam standalone node. For this example, we will use Node.js and straightforward JavaScript code.
+This guide walks through the process of using [web3.js](https://web3js.readthedocs.io/) to manually sign and send a transaction to a Moonbeam standalone node. For this example, we will use Node.js and straightforward JavaScript code.
 
 The guide assumes that you have a local Moonbeam node running in `--dev` mode. You can find instructions to setup a local Moonbeam node [here](/getting-started/setting-up-a-node/).
 

@@ -25,7 +25,7 @@ Next, navigate to the Networks tab, and click on the "Add Network" button.
 
 Here you can configure MetaMask for the following networks:
 
-Moonbeam standalone Node:
+Moonbeam standalone node:
 
 --8<-- 'metamask-local/network-details.md'
 

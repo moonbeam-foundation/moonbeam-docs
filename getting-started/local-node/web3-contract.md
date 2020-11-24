@@ -5,7 +5,7 @@ description: Learn how to deploy unmodified and unchanged Solidity-based smart c
 
 # Using Web3 to Deploy Smart Contracts on Moonbeam
 ## Introduction  
-This guide walks you through the process of using the Solidity compiler and Web3 to deploy and interact with a Solidity-based smart contract on a Moonbeam dev node. Given Moonbeam’s Ethereum compatibility features, the Web3 library can be used directly with a Moonbeam node.
+This guide walks you through the process of using the Solidity compiler and [web3.js](https://web3js.readthedocs.io/) to deploy and interact with a Solidity-based smart contract on a Moonbeam dev node. Given Moonbeam’s Ethereum compatibility features, the Web3 library can be used directly with a Moonbeam node.
 
 The guide assumes that you have a local Moonbeam node running in `--dev` mode. You can find instructions to setup a local Moonbeam node [here](/getting-started/setting-up-a-node/).
 
