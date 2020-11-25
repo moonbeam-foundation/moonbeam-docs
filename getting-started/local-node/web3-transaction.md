@@ -11,7 +11,7 @@ description: Learn how to create and send transactions on Moonbeam’s Ethereum-
 ## Introduction  
 This guide walks through the process of using [web3.js](https://web3js.readthedocs.io/) to manually sign and send a transaction to a Moonbeam standalone node. For this example, we will use Node.js and straightforward JavaScript code.
 
-The guide assumes that you have a local Moonbeam node running in `--dev` mode. You can find instructions to setup a local Moonbeam node [here](/getting-started/setting-up-a-node/).
+The guide assumes that you have a local Moonbeam node running in `--dev` mode. You can find instructions to set up a local Moonbeam node [here](/getting-started/setting-up-a-node/).
 
 !!! note
     This tutorial was created using the v3 release of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/v0.3.0). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development. The examples in this guide assume an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows.
@@ -171,11 +171,11 @@ node transaction.js
 
 The output of the execution is the following:
 
-![Balances before transaction](/images/web3tx/web3-transaction-3.png)
+![Deploy transaction](/images/web3tx/web3-transaction-3.png)
 
 And we can check the new balances:
 
-![Balances before transaction](/images/web3tx/web3-transaction-4.png)
+![Balances after transaction](/images/web3tx/web3-transaction-4.png)
 
 ## We Want to Hear From You
 This is a fairly simple example, but it provides context for how you can start working with Moonbeam and how you can try out its Ethereum compatibility features. We are interested in hearing about your experience following the steps in this guide or your experience trying other Ethereum-based tools with Moonbeam. Feel free to join us in the [Moonbeam Discord here](https://discord.gg/PfpUATX). We would love to hear your feedback on Moonbeam and answer any questions that you have.

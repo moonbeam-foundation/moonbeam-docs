@@ -9,7 +9,7 @@ description: Learn how to create and send transactions on Moonbeam’s Ethereum-
 
 This guide walks through the process of using [ethers.js](https://docs.ethers.io/) to manually sign and send a transaction to a Moonbeam standalone node. For this example, we will use Node.js and straightforward JavaScript code.
 
-The guide assumes that you have a local Moonbeam node running in `--dev` mode. You can find instructions to setup a local Moonbeam node [here](/getting-started/setting-up-a-node/).
+The guide assumes that you have a local Moonbeam node running in `--dev` mode. You can find instructions to set up a local Moonbeam node [here](/getting-started/setting-up-a-node/).
 
 !!! note
     This tutorial was created using the v3 release of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/v0.3.0). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development. The examples in this guide assume an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows.
@@ -72,9 +72,9 @@ As of the writing of this guide, the version used was 5.0.22.
 
 Similarly to our web3.js transaction tutorial, we only need a single JavaScript file (arbitrarily named _transaction.js_, which you can find [here](/code-snippets/ethers-tx-local/transaction.js)) to create and send the transaction, which we will run using the `node` command in the terminal. The script will transfer 100 ETH from the genesis account to another address. For simplicity, the file is divided into two sections: variable definition and deploy transaction.
 
-In the first section wee need to:
+In the first section we need to:
 
-1. Define the `privKey` variable as the private key of our genesis account, which is where all the funds are stored when deploying your local Moonbeam node, and what is used to sign the transactions. In ethers.js we need to set the prefix `0x`
+1. Define the `privKey` variable as the private key of our genesis account, which is where all the funds are stored when initiating your local Moonbeam node, and what is used to sign the transactions. In ethers.js we need to set the prefix `0x`
 2. Define the `addressTo`, for example to one created by MetaMask when setting up a local wallet
 3. Define our provider by passing in the RPC URL of our standalone Moonbeam node: `http://localhost:9933`
 4. Define our wallet by passing in the `privKey` and the provider. The wallet has the methods necessary to send the transaction
@@ -153,11 +153,11 @@ node transaction.js
 
 The output of the execution is the following:
 
-![Balances before transaction](/images/etherstx/ethers3-transaction-3.png)
+![Deploy transaction](/images/etherstx/ethers-transaction-3.png)
 
 And we can check the new balances:
 
-![Balances before transaction](/images/etherstx/ethers-transaction-4.png)
+![Balances after transaction](/images/etherstx/ethers-transaction-4.png)
 
 ## We Want to Hear From You
 This is a fairly simple example, but it provides context for how you can start working with Moonbeam and how you can try out its Ethereum compatibility features. We are interested in hearing about your experience following the steps in this guide or your experience trying other Ethereum-based tools with Moonbeam. Feel free to join us in the [Moonbeam Discord here](https://discord.gg/PfpUATX). We would love to hear your feedback on Moonbeam and answer any questions that you have.
