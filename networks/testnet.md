@@ -13,11 +13,11 @@ In order to collect as much feedback as possible and provide a fast resolution o
 ## Initial Configuration
 Moonbase Alpha has the following configuration:  
 
--  Infrastructure is hosted by PureStake.
--  Moonbeam runs as a parachain connected to a relay chain.
--  The parachain has one collator that is producing blocks.
--  The relay chain hosts three validators to finalize relay chain blocks. One of them is selected to finalize each block produced by Moonbeam's only collator. This setup provides room to expand to a two-parachain configuration in the future.
--  There are two RPC endpoints.
+-  Infrastructure is hosted by PureStake
+-  Moonbeam runs as a parachain connected to a relay chain
+-  The parachain has one collator that is producing blocks
+-  The relay chain hosts three validators to finalize relay chain blocks. One of them is selected to finalize each block produced by Moonbeam's only collator. This setup provides room to expand to a two-parachain configuration in the future
+-  There are two RPC endpoints
 
 ![TestNet Diagram](/images/testnet/Moonbase-Alpha.png)
 
@@ -25,30 +25,30 @@ Moonbase Alpha has the following configuration:
 
 The following features are available:  
 
--  Fully emulated Ethereum block production in Substrate (Ethereum pallet). ![v1](/images/testnet/v1.svg)
--  Dispatchable functions to interact with the Rust EVM implementation ([EVM pallet](https://github.com/paritytech/substrate/tree/master/frame/evm)). ![v1](/images/testnet/v1.svg)
--  Native Ethereum RPC support (Web3) in Substrate ([Frontier RPC](https://github.com/paritytech/frontier)). This provides compatibility with Ethereum developer tools such as MetaMask, Truffle, and Remix. ![v1](/images/testnet/v1.svg)
--  Event subscription support (pub/sub), which is a missing component on the Web3 RPC side and commonly used by dApp developers. You can find a tutorial on how to subscribe to events [here](/getting-started/testnet/pubsub). ![v2](/images/testnet/v2.svg)
--  Support for the following precompile contracts: [ecrecover](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-01-ecrecover-hash-v-r-s), [sha256](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-02-sha-256-data), [ripemd160](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-03-ripemd-160-data) and the [identity function](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-04-datacopy-data) (or datacopy). ![v2](/images/testnet/v2.svg)
--  Unification of Substrate and Ethereum accounts under the H160 format, an effort we are calling Unified Accounts. Consequently, there will be only one kind of account in the system represented by a single address. ![v3](/images/testnet/v3.svg)
--  Upgrades to the event subscription support, adding the possibility of using wildcards and conditional formatting for topics. You can find more information [here](https://docs.moonbeam.network/getting-started/testnet/pubsub/#using-wildcards-and-conditional-formatting). ![v3](/images/testnet/v3.svg)
--  Polkadot JS Apps now natively supports H160 addresses and ECDSA keys. You can use your Ethereum-style address for Substrate functions (when available) such as: staking, balances and governance. ![v3](/images/testnet/v3.svg)
+-  Fully emulated Ethereum block production in Substrate (Ethereum pallet) ![v1](/images/testnet/v1.svg)
+-  Dispatchable functions to interact with the Rust EVM implementation ([EVM pallet](https://github.com/paritytech/substrate/tree/master/frame/evm)) ![v1](/images/testnet/v1.svg)
+-  Native Ethereum RPC support (Web3) in Substrate ([Frontier RPC](https://github.com/paritytech/frontier)). This provides compatibility with Ethereum developer tools such as MetaMask, Truffle, and Remix ![v1](/images/testnet/v1.svg)
+-  Event subscription support (pub/sub), which is a missing component on the Web3 RPC side and commonly used by dApp developers. You can find a tutorial on how to subscribe to events [here](/getting-started/testnet/pubsub) ![v2](/images/testnet/v2.svg)
+-  Support for the following precompile contracts: [ecrecover](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-01-ecrecover-hash-v-r-s), [sha256](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-02-sha-256-data), [ripemd160](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-03-ripemd-160-data) and the [identity function](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-04-datacopy-data) (or datacopy) ![v2](/images/testnet/v2.svg)
+-  Unification of Substrate and Ethereum accounts under the H160 format, an effort we are calling Unified Accounts. Consequently, there will be only one kind of account in the system represented by a single address ![v3](/images/testnet/v3.svg)
+-  Upgrades to the event subscription support, adding the possibility of using wildcards and conditional formatting for topics. You can find more information [here](https://docs.moonbeam.network/getting-started/testnet/pubsub/#using-wildcards-and-conditional-formatting) ![v3](/images/testnet/v3.svg)
+-  Polkadot JS Apps now natively supports H160 addresses and ECDSA keys. You can use your Ethereum-style address for Substrate functions (when available) such as: staking, balances and governance ![v3](/images/testnet/v3.svg)
 
 ### Release Notes
 
 For more details regarding the updates of Moonbase Alpha, please refer to the following release notes:
 
  - [Moonbase Alpha v2](https://github.com/PureStake/moonbeam/releases/tag/v0.2.0)
- - [Moonbase Alpha v3](https://github.com/PureStake/moonbeam/releases/tag/v0.3.0).
+ - [Moonbase Alpha v3](https://github.com/PureStake/moonbeam/releases/tag/v0.3.0)
 
 ### Future Releases
 
 Features that may be implemented in the future:
 
-- Support for third-party collators to enable interested parties to test their setups.
-- Implementation of the rewards system, as well as the token economic model ([Staking Pallet](https://wiki.polkadot.network/docs/en/learn-staking)).
+- Support for third-party collators to enable interested parties to test their setups
+- Implementation of the rewards system, as well as the token economic model ([Staking Pallet](https://wiki.polkadot.network/docs/en/learn-staking))
 - On-chain governance features ([Democracy Pallet](https://github.com/paritytech/substrate/tree/HEAD/frame/democracy)).
-- Treasury features ([Treasury Pallet](https://github.com/paritytech/substrate/tree/master/frame/treasury)).
+- Treasury features ([Treasury Pallet](https://github.com/paritytech/substrate/tree/master/frame/treasury))
 
 ## Get Started
 

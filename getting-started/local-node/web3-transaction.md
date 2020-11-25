@@ -1,9 +1,9 @@
 ---
-title: Using Web3 for Transactions
-description: Learn how to create and send transactions on Moonbeam’s Ethereum-compatible network with a simple script using Web3.
+title: Using Web3.js for Transactions
+description: Learn how to create and send transactions on Moonbeam’s Ethereum-compatible network with a simple script using Web3.js.
 ---
 
-# Using Web3 to Sign Moonbeam Transactions
+# Using Web3.js to Send Transactions on Moonbeam
 
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed//OEphJq-MWgU' frameborder='0' allowfullscreen></iframe></div>
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>You can find all of the relevant code for this tutorial on the [code snippets page](/resources/code-snippets/)</div>
@@ -55,13 +55,13 @@ And create a simple package.json file:
 npm init --yes
 ```
 
-With the package.json file created, we can then install the Web3 package by executing:
+With the package.json file created, we can then install the web3.js package by executing:
 
 ```
 npm install web3
 ```
 
-To verify the installed version of Web3, you can use the `ls` command:
+To verify the installed version of web3.js, you can use the `ls` command:
 
 ```
 npm ls web3
@@ -70,13 +70,13 @@ npm ls web3
 As of the writing of this guide, the version used was 1.3.0.
 
 ## The Transaction File
-For our example, we only need a single JavaScript file (arbitrarily named _transaction.js_, which you can find [here](/code-snippets/web3-tx-local/transaction.js)) to create the transaction, which we will run using the `node` command in the terminal. The script will transfer 100 ETH from the genesis account to another address. For simplicity, the file is divided into three sections: variable definition, create transaction, and deploy transaction.
+For our example, we only need a single JavaScript file (arbitrarily named _transaction.js_, which you can find [here](/code-snippets/web3-tx-local/transaction.js)) to create and send the transaction, which we will run using the `node` command in the terminal. The script will transfer 100 ETH from the genesis account to another address. For simplicity, the file is divided into three sections: variable definition, create transaction, and deploy transaction.
 
 We need to set a couple of values in the variable definitions:
 
 1. Create our Web3 constructor (`Web3`).
 2. Define the `privKey` variable as the private key of our genesis account, which is where all the funds are stored when deploying your local Moonbeam node, and what is used to sign the transactions.
-3. Set the "from" and "to" addresses, making sure to set the value of `toAddress` to a different address, for example the one created by MetaMask when setting up a local wallet.
+3. Set the "from" and "to" addresses, making sure to set the value of `addressTo` to a different address, for example the one created by MetaMask when setting up a local wallet.
 4. Create a local Web3 instance and set the provider to connect to our local Moonbeam node.
 
 !!! note

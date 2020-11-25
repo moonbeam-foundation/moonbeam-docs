@@ -11,7 +11,7 @@ const balances = async () => {
       await web3.eth.getBalance(addressFrom),
       'ether'
    );
-   const balanceTo = await web3.utils.fromWei(
+   const balanceTo = web3.utils.fromWei(
       await web3.eth.getBalance(addressTo),
       'ether'
    );

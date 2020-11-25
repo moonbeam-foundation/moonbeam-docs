@@ -1,11 +1,11 @@
 ---
-title: Using Web3 for Contracts
-description: Learn how to deploy unmodified and unchanged Solidity-based smart contracts to a Moonbeam with a simple script using Web3.
+title: Using Web3.js for Contracts
+description: Learn how to deploy unmodified and unchanged Solidity-based smart contracts to a Moonbeam with a simple script using Web3.js.
 ---
 
-# Using Web3 to Deploy Smart Contracts on Moonbeam
+# Using Web3.js to Deploy Smart Contracts on Moonbeam
 ## Introduction  
-This guide walks you through the process of using the Solidity compiler and [web3.js](https://web3js.readthedocs.io/) to deploy and interact with a Solidity-based smart contract on a Moonbeam dev node. Given Moonbeam’s Ethereum compatibility features, the Web3 library can be used directly with a Moonbeam node.
+This guide walks you through the process of using the Solidity compiler and [web3.js](https://web3js.readthedocs.io/) to deploy and interact with a Solidity-based smart contract on a Moonbeam dev node. Given Moonbeam’s Ethereum compatibility features, the web3.js library can be used directly with a Moonbeam node.
 
 The guide assumes that you have a local Moonbeam node running in `--dev` mode. You can find instructions to setup a local Moonbeam node [here](/getting-started/setting-up-a-node/).
 
@@ -52,7 +52,7 @@ And create a simple package.json file:
 npm init --yes
 ```
 
-With the package.json file created, we can then install both the Web3 and the Solidity compiler (fixed at version v0.7.4) packages, by executing:
+With the package.json file created, we can then install both the web3.js and the Solidity compiler (fixed at version v0.7.4) packages, by executing:
 
 ```
 npm install web3
@@ -62,7 +62,7 @@ npm install web3
 npm install solc@0.7.4
 ```
 
-To verify the installed version of Web3 or the Solidity compiler you can use the `ls` command:
+To verify the installed version of web3.js or the Solidity compiler you can use the `ls` command:
 
 ```
 npm ls web3
@@ -124,7 +124,7 @@ And finally, we run the compiler and extract the data related to our incrementer
 
 The deployment file (which you can find [here](/code-snippets/web3-contract-local/deploy.js)) is divided into two subsections: the initialization and the deploy contract.
 
-First, we need to load our Web3 module and the export of the _compile.js_ file, from which we will extract the `bytecode` and `abi`.
+First, we need to load our web3.js module and the export of the _compile.js_ file, from which we will extract the `bytecode` and `abi`.
 
 Next, define the `privKey` variable as the private key of our genesis account, which is where all the funds are stored when deploying your local Moonbeam node, and what is also used to sign the transactions. The address is needed to specify the form value of the transaction.
 
