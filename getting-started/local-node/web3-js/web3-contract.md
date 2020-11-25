@@ -14,7 +14,6 @@ The guide assumes that you have a local Moonbeam node running in `--dev` mode. Y
     This tutorial was created using the v3 release of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/v0.3.0). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development. The examples in this guide assume an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows.
 
 ## Checking Prerequisites
-
 If you followed the ["Setting Up a Node" tutorial](/getting-started/setting-up-a-node/), you should have a local Moonbeam node producing blocks that looks like this:
 
 ![Moonbeam local node](/images/web3contract/web3-contract-1.png)
@@ -89,7 +88,6 @@ Our setup for this example is going to be pretty simple. We are going to have th
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>You can find all of the relevant code for this tutorial on the [code snippets page](/resources/code-snippets/)</div>
 
 ### The contract file
-
 The contract we will use is a very simple incrementer (arbitrarily named _Incrementer.sol_, and which you can find [here](/code-snippets/web3-contract-local/Incrementer.sol)). The Solidity code is the following:
 
 ```solidity
@@ -102,7 +100,6 @@ Our `constructor` function, that runs when the contract is deployed, sets the in
     This contract is just a simple example that does not handle values wrapping around, and it is only for illustration purposes.
 
 ### The compile file
-
 The only purpose of the _compile.js_ file (arbitrarily named, and which you can find [here](/code-snippets/web3-contract-local/compile.js)), is to use the Solidity compiler to output the bytecode and interface of our contract.
 
 First, we need to load the different modules that we will use for this process. The _path_ and _fs_ modules are included by default in Node.js (that is why we didn't have to install it before).
@@ -122,7 +119,6 @@ And finally, we run the compiler and extract the data related to our incrementer
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>You can find all of the relevant code for this tutorial on the [code snippets page](/resources/code-snippets/)</div>
 
 ### The deploy file
-
 The deployment file (which you can find [here](/code-snippets/web3-contract-local/deploy.js)) is divided into two subsections: the initialization and the deploy contract.
 
 First, we need to load our web3.js module and the export of the _compile.js_ file, from which we will extract the `bytecode` and `abi`.
@@ -147,7 +143,6 @@ With the transaction message created and signed (you can `console.log(createTran
     The _deploy.js_ script provides the contract address as an output. This comes handy as it is used for the contract interaction files.
 
 ### Files to interact with the contract
-
 In this section, we will quickly go over the files that interact with our contract, either by making calls or sending transactions to it.
 
 First, let's overview the _get.js_ file (the simplest of them all, which you can find [here](/code-snippets/web3-contract-local/get.js)), that fetches the current value stored in the Moonbeam node. We need to load our Web3 module and the export of the _compile.js_ file, from which we will extract the `abi`.
@@ -177,7 +172,6 @@ The _reset.js_ file (which you can find [here](/code-snippets/web3-contract-loca
 ```
 
 ## Interacting with the Contract
-
 With all the files ready, we can proceed to deploy our contract the local Moonbeam node. To do this, we execute the following command in the directory where all the files are:
 
 ```

@@ -37,6 +37,5 @@ Once the transaction is included, the contract appears in the "Deployed Contract
 ![Interact with Contract](/images/remix/integrations-remix-2.png)
 
 ## Step-by-step Tutorials
-
 In the case that you are interested in a more detailed step-by-step guide, you can go to our specific tutorials on using [Remix on a Moonbeam standalone node](/getting-started/local-node/using-remix/). The steps can also be adapted to deploy on the Moonbase Alpha TestNet, by [connecting MetaMask to it](/getting-started/testnet/metamask/).
 

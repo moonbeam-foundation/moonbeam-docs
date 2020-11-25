@@ -6,7 +6,6 @@ description: Learn how to create and send transactions on Moonbeam’s Ethereum-
 # Using Ethers.js to Send Transactions on Moonbeam
 
 ## Introduction
-
 This guide walks through the process of using [ethers.js](https://docs.ethers.io/) to manually sign and send a transaction to a Moonbeam standalone node. For this example, we will use Node.js and straightforward JavaScript code.
 
 The guide assumes that you have a local Moonbeam node running in `--dev` mode. You can find instructions to set up a local Moonbeam node [here](/getting-started/setting-up-a-node/).
@@ -15,7 +14,6 @@ The guide assumes that you have a local Moonbeam node running in `--dev` mode. Y
     This tutorial was created using the v3 release of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/v0.3.0). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development. The examples in this guide assume an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows.
 
 ## Checking Prerequisites
-
 If you followed this [tutorial](/getting-started/setting-up-a-node/), you should have a standalone Moonbeam node producing blocks in your local environment, that looks like this:
 
 ![Moonbeam local node](/images/etherstx/ethers-transaction-1.png)
@@ -69,7 +67,6 @@ npm ls ethers
 As of the writing of this guide, the version used was 5.0.22.
 
 ## The Transaction File
-
 Similarly to our web3.js transaction tutorial, we only need a single JavaScript file (arbitrarily named _transaction.js_, which you can find [here](/code-snippets/ethers-tx-local/transaction.js)) to create and send the transaction, which we will run using the `node` command in the terminal. The script will transfer 100 ETH from the genesis account to another address. For simplicity, the file is divided into two sections: variable definition and deploy transaction.
 
 In the first section we need to:

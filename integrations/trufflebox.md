@@ -15,7 +15,6 @@ This tutorial will guide you through the process of setting up the box, using th
     This guide is based on an Ubuntu 18.04 installation. At the time of writing, Node.js and npm versions used were 15.2.1 and 7.0.8 respectively. Node.js versions higher than 10.23.0 are required.
 
 ## Checking Prerequisites
-
 For this tutorial, we need to install Node.js (we'll go for v15.x) and the npm package manager. You can do this by running in your terminal:
 
 ```
@@ -44,7 +43,6 @@ npm install -g truffle
 As of the writing of this guide, version used was 5.1.51. 
 
 ## Downloading and Setting Up the Truffle Box
-
 To get started with the Moonbeam Truffle box, if you have Truffle installed globally, you can execute:
 
 ```
@@ -70,7 +68,6 @@ npm install
 And that is all the prerequisites you need to use the Moonbeam Truffle box.
 
 ## Basic Functionalities
-
 The box is pre-configured with two networks: `dev` (for a standalone node) and `moonbase` (Moonbeam TestNet). Included as well, as an example, is an ERC20 token contract, and a simple test script. The Solidity compiler set by default is `^0.7.0`, but this can be changed as required. If you are experienced with Truffle, this setup will feel familiar.
 
 ```js
@@ -125,7 +122,6 @@ As with using Truffle in any Ethereum network, you can run the normal commands t
 If you have Truffle installed globally, you can remove `./node_modules/.bin/` from the commands. Depending on the network you want to deploy the contracts too, you need to substitute network_name for either dev (to target the standalone node) or moonbase (to target the TestNet).
 
 ## The Moonbeam Truffle Plugin
-
 Currently, to set up a standalone Moonbeam node, you can follow [this tutorial](/getting-started/local-node/setting-up-a-node). The process takes around 40 minutes in total, and you need to install Substrate and all its dependencies. The Moonbeam Truffle plugin provides a way to get started with a standalone node much quicker, and the only requirement is to have Docker installed (at the time of writing the Docker version used was 19.03.6). For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/). To download the Docker image, run the following line:
 
 ```
@@ -198,9 +194,7 @@ And lastly, we can deploy our token contract to Moonbase Alpha, but first, make 
 And that is it, you’ve used the Moonbeam Truffle box to deploy a simple ERC20 token contract in both your standalone Moonbeam node and Moonbase Alpha.
  
 ## Limitations
-
 If you are familiar with Truffle, you might have noticed that we are using a custom provider programmed by ourselves, instead of the most common ones such as [hdwallet-provider](https://github.com/trufflesuite/truffle/tree/develop/packages/hdwallet-provider). This custom provider still uses standard libraries such as the web3-provider-engine and ethereumjs-wallet. The reason behind this is because our custom chain ID was not being included by the library used to sign the transactions. Therefore, the signature is invalid because the chain ID in the transaction blob is missing, and the transaction is rejected. Currently we are reviewing this and we expect to support other providers in future releases.
 
 ## Contact Us
- 
 If you have any feedback regarding the Moonbeam Truffle box or any other Moonbeam related topic, feel free to reach out through our official development [Discord server](https://discord.gg/PfpUATX).

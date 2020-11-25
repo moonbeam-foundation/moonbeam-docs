@@ -6,11 +6,9 @@ description: Use Ethereum-like publish-subscribe functionality to subscribe to s
 # Subscribe to Events in Moonbase Alpha
 
 ## Introduction
-
 With the [release of Moonbase Alpha v2](http://www.purestake.com/news/moonbase-alpha-v2-pub-sub/), the ability to subscribe to Ethereum-style events was added. In this guide, we will outline the subscription types available and the current limitations.
 
 ## Checking Prerequisites
-
 The examples in this guide are based on a Ubuntu 18.04 environment. Also, you will need the following:
 
 -  Have MetaMask installed and [connected to Moonbase](/getting-started/testnet/metamask/)
@@ -50,7 +48,6 @@ npm ls web3
 As of the writing of this guide, the version used was 1.3.0. 
 
 ## Subscribing to Event Logs in Moonbase Alpha
-
 Any contract that follows the ERC20 token standard emits an event related to a transfer of tokens, that is, `event Transfer(address indexed from, address indexed to, uint256 value)`. For this example, we will subscribe to the logs of such events. Using the Web3 JS library, we need the following piece of code:
 
 ```js
@@ -103,7 +100,6 @@ Unindexed data is returned in the `data` field of the logs, but this is encoded 
 If the event returns multiple unindexed values, these will be appended one after the other in the same order the event emits them. Therefore, each value is then obtained by deconstructing data into separate 32 bytes (or 64 hex character long) pieces.
 
 ### Using Wildcards and Conditional Formatting
-
 In the v2 release, where the feature of subscribing to logs was introduced, there were some limitations regarding using wildcards and conditional formatting for the topics. Nevertheless, with the release of [Moonbase Alpha v3](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/), this is now possible.
 
 Using the same example as in the previous section, lets subscribe to the events of the token contract with the following code:
@@ -146,7 +142,6 @@ As shown, we received two logs for the same subscription ID  by the two addresse
 This example showed how we could subscribe only to event logs of a specific contract. But the Web3 JS library provides other subscription types that we’ll go over in the following sections.
 
 ## Subscribe to Incoming Pending Transactions
-
 In order to subscribe to pending transactions, we can use the `web3.eth.subscribe(‘pendingTransactions’, [, callback])` method, implementing the same callback function to check for the response. This is much simpler than our previous example, and it returns the transaction hash of the pending transactions.
 
 ![Subscribe pending transactions response](/images/testnet/testnet-pubsub4.png)
@@ -154,7 +149,6 @@ In order to subscribe to pending transactions, we can use the `web3.eth.subscrib
 We can verify that this transaction hash is the same as that shown in MetaMask (or Remix).
 
 ## Subscribe to Incoming Block Headers
-
 Another type available under the Web3 JS library is to subscribe to new block headers. To do so, we use the `web3.eth.subscribe('newBlockHeaders' [, callback])` method, implementing the same callback function to check for the response. This subscription provides incoming block headers and can be used to track changes in the blockchain.
 
 ![Subscribe to block headers response](/images/testnet/testnet-pubsub5.png)
@@ -162,17 +156,14 @@ Another type available under the Web3 JS library is to subscribe to new block he
 Note that only one block header is shown in the image. These messages are displayed for every block produced, so they can fill up the terminal quite fast.
 
 ## Check if the Node is Synchronized with the Network
-
 With pub/sub it is also possible to check whether a particular node, which you are subscribed to, is currently synchronized with the network. For that, we can leverage the `web3.eth.subscribe(‘syncing' [, callback])` method, implementing the same callback function to check for the response. This subscription will return an object when the node is synced with the network.
 
 ![Subscribe to syncing response](/images/testnet/testnet-pubsub6.png)
 
 ## Current Limitations
-
 The pub/sub implementation in [Frontier](https://github.com/paritytech/frontier) is still in active development. This first version allows dApp developers (or users in general) to subscribe to specific event types, but there are still some limitations. With the current version released, from the previous examples, you might have noticed that some of the fields are not showing proper information, and that is because certain properties are yet to be supported by Frontier.
 
 ## We Want to Hear From You
-
 If you have any feedback regarding Moonbase Alpha, pub/sub, or any other Moonbeam related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).
 
 

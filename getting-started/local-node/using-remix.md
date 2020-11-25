@@ -57,7 +57,6 @@ Now navigate to the compile sidebar option to press the “Compile MyToken.sol�
 You will see Remix download all of the Open Zeppelin dependencies and compile the contract.
 
 ## Deploying a Contract to Moonbeam Using Remix
-
 Now we can deploy the contract by navigating to the Deployment sidebar option.  You need to change the topmost “Environment” dropdown from “JavaScript VM” to “Injected Web3” which tells Remix to use the MetaMask injected provider, which will point it to your Moonbeam standalone node.  As soon as you select this you will be prompted to allow Remix to connect to your MetaMask account.
 
 ![Replace](/images/remix/using-remix-7.png)

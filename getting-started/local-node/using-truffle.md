@@ -4,12 +4,10 @@ description: Moonbeam makes it incredibly easy to deploy a Solidity-based smart 
 ---
 
 # Interacting with Moonbeam Using Truffle
-
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed//RD5MefSPNeo' frameborder='0' allowfullscreen></iframe></div>
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>You can find all of the relevant code for this tutorial on the [code snippets page](/resources/code-snippets/)</div>
 
 ## Introduction
-
 This guide walks through the process of deploying a Solidity-based smart contract to a Moonbeam node using [Truffle](https://www.trufflesuite.com/). Truffle is one of the commonly used development tools for smart contracts on Ethereum. Given Moonbeam’s Ethereum compatibility features, Truffle can be used directly with a Moonbeam node.
 
 !!! note
@@ -18,7 +16,6 @@ This guide walks through the process of deploying a Solidity-based smart contrac
 For this guide you will need to have a running standalone Moonbeam node running in `--dev` mode. This can be done by either following the steps detailed [here](/getting-started/setting-up-a-node/), or by using the [Moonbeam Truffle plugin](/integrations/trufflebox/#the-moonbeam-truffle-plugin), which we'll use in the examples of this tutorial.
 
 ## Checking Prerequisites
-
 First we need to install Node.js (we'll go for v15.x) and the npm package manager. You can do this by running in your terminal:
 
 ```
@@ -51,7 +48,6 @@ As of the writing of this guide, versions used were 15.2.1, 7.0.8, and 5.1.52 re
      For the following examples, you don't need to have Truffle globally installed, as it is included as a dependency on the Moonbeam Truffle box as well. If that is the case, you need to run `./node_modules/.bin/truffle` instead of `truffle`.
 
 ## Getting Started with Truffle
-
 To ease the process of getting started with Truffle, we have [released the Moonbeam Truffle box](https://www.purestake.com/news/moonbeam-truffle-box-now-available-for-solidity-developers). This provides a boilerplate setup speedup the rampup process to deploy contracts on Moonbeam. To read more about the box, you can visit [this link](/integrations/trufflebox/).
 
 To download the Moonbeam Truffle box you can follow [these instructions](/integrations/trufflebox/#downloading-and-setting-up-the-truffle-box). Once inside the directoy, let's take a look at the `truffle-config.js` file (for the purpuse of this guide, some information was removed):
@@ -83,7 +79,6 @@ You might have noticed that we have defined a `dev` network that points to the s
      We are using a `PrivateKeyProvider` as our Web3 provider (instantiation included in `private-provider.js`). Currently, we are still experiencing some issues when using other Web3 providers such as `HDWalletProvider`, due to our custom chain ID.
 
 ## Running an Standalone TestNet
-
 Currently, to set up a standalone Moonbeam node, you can follow [this tutorial](/getting-started/local-node/setting-up-a-node). The process takes around 40 minutes in total, and you need to install Substrate and all its dependencies. The Moonbeam Truffle plugin provides a way to get started with a standalone node much quicker, and the only requirement is to have Docker installed (at the time of writing the Docker version used was 19.03.6).
 
 To start a standalone Moonbeam node in your local environment, we need first need to download the corresponding Docker image:
@@ -114,7 +109,6 @@ truffle run moonbeam remove
 ![Moonbeam local node stoped and image removed](/images/truffle/using-truffle-3.png)
 
 ## The Contract File
-
 Included with the Truffle box, there is also a ERC20 token contract:
 
 ```solidity
@@ -147,7 +141,6 @@ module.exports = function (deployer) {
 "8000000000000000000000000" is the number of tokens to initially mint with the contract, that is, 8 million with the 18 decimal places.
 
 ## Deploying a Contract to Moonbeam Using Truffle
-
 Before we can deploy our contracts, let's compile them. We talk in plural because normal Truffle deployments include as well the `Migrations.sol` contract. You can do this with the following command:
 
 ```

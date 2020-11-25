@@ -6,13 +6,11 @@ description:  Learn how to use precompile contracts on Moonbase Alpha, the Moonb
 # Precompiled Contracts on Moonbase Alpha
 
 ## Introduction
-
 Another feature added with the [release of Moonbase Alpha v2](http://www.purestake.com/blog/new-in-moonbase-alpha-v2-contract-events-and-pub-sub-capabilities/), is the inclusion of some of the [precompiled contracts](https://docs.klaytn.com/smart-contract/precompiled-contracts) that are natively available on Ethereum. Currently, the first four precompiles are included, which are: ecrecover, sha256, ripemd-160 and the identity function.
 
 In this guide, we will show how to use and/or verify these four precompiles.
 
 ## Checking Prerequisites
-
 For this tutorial, we need to install Node.js (we'll go for v15.x) and the npm package manager. You can do this by running in your terminal:
 
 ```
@@ -46,7 +44,6 @@ npm ls web3
 As of the writing of this guide, the version used was 1.3.0. 
 
 ## Verify Signatures with ECRECOVER
-
 The main function of this precompile is to verify the signature of a message. In general terms, you feed `ecrecover` the transaction's signature values, and it returns an address. The signature is verified if the address returned is the same as the public address who sent the transaction.
 
 Let's jump into a small example to showcase how we can leverage this precompiled function. To do so we need to retrieve the transaction's signature values (v, r, s). To do so, we'll sign and retrieved the signed message were these values are as well:
@@ -110,7 +107,6 @@ contract ECRECOVER{
 Using the [Remix compiler and deployment](/getting-started/local-node/using-remix/), and with [MetaMask pointing to Moonbase Alpha](/getting-started/testnet/metamask/), we can deploy the contract and call the `verify()` method that returns _true_ if the address returned by `ecrecover` is equal to the address used to signed the message (related to the private key and needs to be manually set in the contract).
 
 ## Hashing with SHA256
-
 This hashing function returns the SHA256 hash from the given data. To test this precompile, you can use this [online tool](https://md5calc.com/hash/sha256) to calculate the SHA256 hash of any string you want, in our case we'll do so with `Hello World!`. We can head directly to Remix and deploy the following code, where the calculated hash is set for the `expectedHash` variable:
 
 ```solidity
@@ -135,7 +131,6 @@ contract Hash256{
 Once the contract is deployed, we can call the `checkHash()` method that returns _true_ if the hash returned by `calculateHash()` is equal to the hash provided.
 
 ## Hashing with RIPEMD-160
-
 This hashing function returns a RIPEMD-160 hash from the given data. To test this precompile, you can use this [online tool](https://md5calc.com/hash/ripemd160) to calculate the RIPEMD-160 hash of any string you want, in our case we'll do so again with `Hello World!`. We'll reuse the same code as before but using the `ripemd160` function, note that it returns a `bytes20` type variable:
 
 ```solidity
@@ -159,7 +154,6 @@ contract HashRipmd160{
 With the contract deployed, we can call the `checkHash()` method that returns _true_ if the hash returned by `calculateHash()` is equal to the hash provided.
 
 ## The Identity Function
-
 Also known as datacopy, his function serves as a cheaper way to copy data in memory. The Solidity compiler does not support it, so it needs to be called with inline assembly. The [following code](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-04-datacopy-data) (adapted to Solidity), can be used to call this precompiled contract. We can use this [online tool](https://web3-type-converter.brn.sh/) to get the bytes from any string, as this is the input of the method `callDataCopy()`.
 
 ```solidity
@@ -187,7 +181,6 @@ contract Identity{
 With the contract deployed, we can call the `callDataCopy()` method that and verify if `memoryStored` checks with the bytes that you pass in as an input of the function.
 
 ## We Want to Hear From You
-
 If you have any feedback regarding Moonbase Alpha, the precompile contracts, or any other Moonbeam related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).
 
 

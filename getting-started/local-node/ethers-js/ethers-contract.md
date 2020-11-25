@@ -76,10 +76,9 @@ Similarly to our [web3.js contract tutorial](/getting-started/local-node/web3-co
 -  _reset.js_: the function to call that will reset the number stored to zero
 
 ## The Contract File and Compile Script
-
 Even though we are using a different library, these two files remain identical. The first being the smart contract written in Solidity, and the second being the compile script, both of which do not require the web3.js or ethers.js libraries.
-### The contract file
 
+### The contract file
 The contract we will use is a very simple incrementer (arbitrarily named _Incrementer.sol_, and which you can find [here](/code-snippets/web3-contract-local/Incrementer.sol)). The Solidity code is the following:
 
 ```solidity
@@ -108,11 +107,9 @@ And finally, we run the compiler and extract the data related to our incrementer
 ```
 
 ## The Deploy Script and Interacting with our Contract
-
 In this section we will see some differences between libraries, but with the same end  result.
 
 ### The deploy file
-
 The deployment file (which you can find [here](/code-snippets/ethers-contract-local/deploy.js)) is divided into two subsections: the initialization and the deploy contract.
 
 First, we need to load our ethers.js module and the export of the _compile.js_ file, from which we will extract the `bytecode` and `abi`.
@@ -129,7 +126,6 @@ To deploy the contract, first we need to create a local instance using the `ethe
     The _deploy.js_ script provides the contract address as an output. This comes handy as it is used for the contract interaction files.
 
 ### Files to interact with the contract
-
 In this section, we will quickly go over the files that interact with our contract, either by making calls or sending transactions to modify its storage
 
 First, let's overview the _get.js_ file (the simplest of them all, which you can find [here](/code-snippets/ethers-contract-local/get.js)), that fetches the current value stored on the contract. We need to load our ethers.js module and the export of the _compile.js_ file, from which we will extract the `abi`. Next, we define the provider so we can access the methods necessary to call our contract
