@@ -36,3 +36,6 @@ Depending on which network you want to connect to, you can set the `RPC_URL` to 
  - Moonbeam standalone node (default): `http://127.0.0.1:9933`
  - Moonbase Alpha TestNet: `https://rpc.testnet.moonbeam.network`
 
+## Step-by-step Tutorials
+
+In the case that you are interested in a more detailed step-by-step guide, you can go to our specific tutorials on using ethers.js on a Moonbeam standalone node to [send a transaction](/getting-started/local-node/ethers-transaction/), or [deploy a contract](/getting-started/local-node/ethers-transaction/). The steps can also be adapted to deploy on the Moonbase Alpha TestNet, by using the correct `RPC_URL` as mentioned before.

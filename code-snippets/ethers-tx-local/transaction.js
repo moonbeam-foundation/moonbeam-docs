@@ -1,7 +1,8 @@
 const ethers = require('ethers');
 
 // Variables definition
-const privKey = '0xPRIVKEY';
+const privKey =
+   '0x99B3C12287537E38C90A9219D4CB074A89A16E9CDB20BF85728EBD97C343E342';
 const addressTo = 'ADDRESSTO';
 const providerURL = 'http://localhost:9933';
 // Define Provider
