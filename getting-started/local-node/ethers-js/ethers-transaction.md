@@ -1,5 +1,5 @@
 ---
-title: Using Ethers.js for Transactions
+title: Send a Transaction
 description: Learn how to create and send transactions on Moonbeam’s Ethereum-compatible network with a simple script using Ethers.js.
 ---
 

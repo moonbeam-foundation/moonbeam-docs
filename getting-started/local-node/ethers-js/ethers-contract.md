@@ -1,5 +1,5 @@
 ---
-title: Using Ethers.js for Contracts
+title: Deploy a Contract
 description: Learn how to deploy unmodified and unchanged Solidity-based smart contracts to a Moonbeam with a simple script using Ethers.js.
 ---
 
