@@ -11,7 +11,7 @@ const web3 = new Web3('http://localhost:9933');
 
 // Deploy contract
 const deploy = async () => {
-   console.log('Attempting to deploy from account:', address);
+   console.log(`Attempting to deploy from account: ${address}`);
 
    const incrementer = new web3.eth.Contract(abi);
 
@@ -32,7 +32,7 @@ const deploy = async () => {
    const createReceipt = await web3.eth.sendSignedTransaction(
       createTransaction.rawTransaction
    );
-   console.log('Contract deployed at address', createReceipt.contractAddress);
+   console.log(`Contract deployed at address ${createReceipt.contractAddress}`);
 };
 
 deploy();

@@ -106,7 +106,7 @@ const send = async () => {
    );
 
    // Create Tx Object
-   tx = {
+   const tx = {
       to: addressTo,
       value: ethers.utils.parseEther('100'),
    };

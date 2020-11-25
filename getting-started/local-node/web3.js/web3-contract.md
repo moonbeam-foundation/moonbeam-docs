@@ -4,8 +4,9 @@ description: Learn how to deploy unmodified and unchanged Solidity-based smart c
 ---
 
 # Using Web3.js to Deploy Smart Contracts on Moonbeam
+
 ## Introduction  
-This guide walks you through the process of using the Solidity compiler and [web3.js](https://web3js.readthedocs.io/) to deploy and interact with a Solidity-based smart contract on a Moonbeam dev node. Given Moonbeam’s Ethereum compatibility features, the web3.js library can be used directly with a Moonbeam node.
+This guide walks you through the process of using the Solidity compiler and [web3.js](https://web3js.readthedocs.io/) to deploy and interact with a Solidity-based smart contract on a Moonbeam standalone node. Given Moonbeam’s Ethereum compatibility features, the web3.js library can be used directly with a Moonbeam node.
 
 The guide assumes that you have a local Moonbeam node running in `--dev` mode. You can find instructions to set up a local Moonbeam node [here](/getting-started/setting-up-a-node/).
 
@@ -120,7 +121,7 @@ And finally, we run the compiler and extract the data related to our incrementer
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed//CRYfejvqNzg' frameborder='0' allowfullscreen></iframe></div>
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>You can find all of the relevant code for this tutorial on the [code snippets page](/resources/code-snippets/)</div>
 
-###The deploy file
+### The deploy file
 
 The deployment file (which you can find [here](/code-snippets/web3-contract-local/deploy.js)) is divided into two subsections: the initialization and the deploy contract.
 
@@ -151,9 +152,9 @@ In this section, we will quickly go over the files that interact with our contra
 
 First, let's overview the _get.js_ file (the simplest of them all, which you can find [here](/code-snippets/web3-contract-local/get.js)), that fetches the current value stored in the Moonbeam node. We need to load our Web3 module and the export of the _compile.js_ file, from which we will extract the `abi`.
 
-Next, we define our address from which we are going to make the call to the contract and create a local Web3 instance. And lastly, we need to provide the contract address (which is log in the console by the _deploy.js_ file).
+Next, we create a local Web3 instance. And lastly, we need to provide the contract address (which is log in the console by the _deploy.js_ file).
 
-The following step is to create a local instance of the contract by using the `web3.eth.Contract(abi, contractAddress)` command. Then, wrapped in an async function, we can write the contract call by running `web3.methods.myMethods()`, where we set the method or function that we want to call and provide the inputs for this call. This promise returns the data that we can log in the console. And lastly, we run our `get` function.
+The following step is to create a local instance of the contract by using the `web3.eth.Contract(abi, contractAddress)` command. Then, wrapped in an async function, we can write the contract call by running `contractInstance.methods.myMethods()`, where we set the method or function that we want to call and provide the inputs for this call. This promise returns the data that we can log in the console. And lastly, we run our `get` function.
 
 ```javascript
 --8<-- 'web3-contract-local/get.js'

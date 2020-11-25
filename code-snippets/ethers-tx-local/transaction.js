@@ -4,7 +4,7 @@ const ethers = require('ethers');
 const privKey =
    '0x99B3C12287537E38C90A9219D4CB074A89A16E9CDB20BF85728EBD97C343E342';
 const addressTo = 'ADDRESSTO';
-const providerURL = 'http://localhost:9933';
+const providerURL = 'http://localhost:44433';
 // Define Provider
 let provider = new ethers.providers.JsonRpcProvider(providerURL);
 // Create Wallet
@@ -17,7 +17,7 @@ const send = async () => {
    );
 
    // Create Tx Object
-   tx = {
+   const tx = {
       to: addressTo,
       value: ethers.utils.parseEther('100'),
    };
