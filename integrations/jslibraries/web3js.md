@@ -20,11 +20,11 @@ npm install web3
 
 Once done, the simplest setup to start using the library and its methods is the following:
 
-```
+```js
 const Web3 = require('web3');
 
 //Create web3 instance
-const web3 = new Web3(RPC_URL);
+const web3 = new Web3('RPC_URL');
 ```
 
 Depending on which network you want to connect to, you can set the `RPC_URL` to the following values:

@@ -25,7 +25,7 @@ const ethers = require('ethers');
 const privKey = '0xPRIVKEY';
 
 // Define Provider
-let provider = new ethers.providers.JsonRpcProvider(RPC_URL);
+let provider = new ethers.providers.JsonRpcProvider('RPC_URL');
 
 // Create Wallet
 let wallet = new ethers.Wallet(privKey, provider);
