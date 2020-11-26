@@ -15,7 +15,7 @@ const Web3 = require('web3'); //Load Web3 library
 //Create local Web3 instance - set Moonbase Alpha as provider
 const web3 = new Web3('https://rpc.testnet.moonbeam.network'); 
 ```
-For the ethers.js library, define the provider by using `ethers.providers.JsonRpcProvider(providerURL) and setting the provider URL to Moonbase Alpha:
+For the ethers.js library, define the provider by using `ethers.providers.JsonRpcProvider(providerURL)` and setting the provider URL to Moonbase Alpha:
 
 ```js
 const ethers = require('ethers');

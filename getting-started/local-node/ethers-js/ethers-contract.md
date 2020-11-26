@@ -43,7 +43,7 @@ As of the writing of this guide, versions used were 15.2.1 and 7.0.8, respective
 Next, we can create a directory to store all our relevant files (in a separate path from the local Moonbeam node files) by running:
 
 ```
-mkdir transaction && cd transaction/
+mkdir incrementer && cd incrementer/
 ```
 
 And create a simple package.json file:
@@ -52,19 +52,27 @@ And create a simple package.json file:
 npm init --yes
 ```
 
-With the package.json file created, we can then install the ethers.js library by executing:
+With the package.json file created, we can then install both the ethers.js and the Solidity compiler (fixed at version v0.7.4) packages, by executing:
 
 ```
 npm install ethers
 ```
 
-To verify the installed version of ethers.js, you can use the `ls` command:
+```pypy
+npm install solc@0.7.4
+```
+
+To verify the installed version of ethers.js or the Solidity compiler you can use the `ls` command:
 
 ```
 npm ls ethers
 ```
 
-As of the writing of this guide, the version used was 5.0.22.
+```
+npm ls solc
+```
+
+As of the writing of this guide, versions used were 5.0.22 and 0.7.4 (as mentioned before), respectively.
 
 Similarly to our [web3.js contract tutorial](/getting-started/local-node/web3-js/web3-contract/), we will use that setup for this example, so some files we'll look similar:
 
@@ -90,7 +98,7 @@ Our `constructor` function, that runs when the contract is deployed, sets the in
 !!! note
     This contract is just a simple example that does not handle values wrapping around, and it is only for illustration purposes.
 
-    ### The compile file
+### The compile file
 
 The only purpose of the _compile.js_ file (arbitrarily named, and which you can find [here](/code-snippets/web3-contract-local/compile.js)), is to use the Solidity compiler to output the bytecode and interface of our contract.
 
@@ -107,7 +115,7 @@ And finally, we run the compiler and extract the data related to our incrementer
 ```
 
 ## The Deploy Script and Interacting with our Contract
-In this section we will see some differences between libraries, but with the same end  result.
+In this section we will see some differences between libraries regarding deployment of contracts, but with the same end  result.
 
 ### The deploy file
 The deployment file (which you can find [here](/code-snippets/ethers-contract-local/deploy.js)) is divided into two subsections: the initialization and the deploy contract.
@@ -116,7 +124,7 @@ First, we need to load our ethers.js module and the export of the _compile.js_ f
 
 Next, define the `privKey` variable as the private key of our genesis account, which is where all the funds are stored when deploying your local Moonbeam node. Remember that in ethers.js we need to provide the prefix `0x`. In addition, we have to define the provider by passing in the standalone Moonbeam node RPC URL. Both of these will be used to create the `wallet` instance and access all its methods.
 
-To deploy the contract, first we need to create a local instance using the `ethers.ContractFactory(abi, bytecode, wallet)`. Then, we can use the `deploy(args)` method of this local instance, which uses a signer to deploy the contract with the arguments passed into the constructor. This promise returns a contract that contains the address where it will be deployed once the transaction is processed.
+To deploy the contract, first we need to create a local instance using the `ethers.ContractFactory(abi, bytecode, wallet)`. Then, wrapped in an async function, we can use the `deploy(args)` method of this local instance, which uses a signer to deploy the contract with the arguments passed into the constructor. This promise returns a contract that contains the address where it will be deployed once the transaction is processed.
 
 ```javascript
 --8<-- 'ethers-contract-local/deploy.js'
@@ -135,3 +143,71 @@ The following step is to create a local instance of the contract by using the `e
 ```javascript
 --8<-- 'ethers-contract-local/get.js'
 ```
+
+Let's now define the file to send a transaction that will add the value provided to our number. The _increment.js_ file (which you can find [here](/code-snippets/ethers-contract-local/increment.js)) is somewhat different to the previous example, and that is because here we are modifying the stored data, and for this, we need to send a transaction that pays gas. In the case of ethers.js, the initialization is similar to the one on the deployment script, where we defined a provider and a wallet. However, the contract address and the value to be added are included as well.
+
+The contract transaction starts by creating a local instance of the contract as before, but in this case we pass in the `wallet` as a signer, to have read-write access to the methods of the contract.
+
+Then, we use the `increment` method of the local instance, providing the value to increment our number by. Ethers.js will proceed to create the transaction object, send the transaction, and return the receipt.
+
+```javascript
+--8<-- 'ethers-contract-local/increment.js'
+```
+
+The _reset.js_ file (which you can find [here](/code-snippets/ethers-contract-local/reset.js)), is almost identical to the previous example. The only difference is that we need to call the `reset()` method which takes no input. In this case, we are manually setting the gas limit of the transaction to `40000`, as the `estimatedGas()` method returns an invalid value (something we are working on).
+
+```javascript
+--8<-- 'ethers-contract-local/reset.js'
+```
+
+## Interacting with the Contract
+With all the files ready, we can proceed to deploy our contract the local Moonbeam node. To do this, we execute the following command in the directory where all the files are:
+
+```
+node deploy.js
+```
+
+After a successful deployment, you should get the following output:
+
+![Moonbeam local node](/images/etherscontract/ethers-contract-2.png)
+
+First, let's check and confirm that that the value stored is equal to the one we passed in as the input of the constructor function (that was 5), we do this by running:
+
+```
+node get.js
+```
+
+With the following output:
+
+![Moonbeam local node](/images/etherscontract/ethers-contract-3.png)
+
+Then, we can use our incrementer file, remember that `_value = 3`. We can immediately use our getter file to prompt the value after the transaction:
+
+```
+node incrementer.js
+```
+
+```
+node get.js
+```
+
+With the following output:
+
+![Moonbeam local node](/images/etherscontract/ethers-contract-4.png)
+
+Lastly, we can reset our number by using the reset file:
+
+```
+node reset.js
+```
+
+```
+node get.js
+```
+
+With the following output:
+
+![Moonbeam local node](/images/etherscontract/ethers-contract-5.png)
+
+## We Want to Hear From You
+This example provides context on how you can start working with Moonbeam and how you can try out its Ethereum compatibility features such as the ethers.js library. We are interested in hearing about your experience following the steps in this guide or your experience trying other Ethereum-based tools with Moonbeam. Feel free to join us in the [Moonbeam Discord here](https://discord.gg/PfpUATX). We would love to hear your feedback on Moonbeam and answer any questions that you have.

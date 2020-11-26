@@ -13,11 +13,9 @@ let provider = new ethers.providers.JsonRpcProvider(providerURL);
 let wallet = new ethers.Wallet(privKey, provider);
 
 // Deploy contract
+const incrementer = new ethers.ContractFactory(abi, bytecode, wallet);
 const deploy = async () => {
    console.log(`Attempting to deploy from account: ${wallet.address}`);
-
-   // Create instance
-   const incrementer = new ethers.ContractFactory(abi, bytecode, wallet);
 
    // Deploy contract with initialNumber set to 5
    const contract = await incrementer.deploy([5]);

@@ -165,7 +165,7 @@ Then, as we did when deploying the contract, we need to create the transaction w
 --8<-- 'web3-contract-local/increment.js'
 ```
 
-The _reset.js_ file (which you can find [here](/code-snippets/web3-contract-local/reset.js)), is almost identical to the previous example. The only difference is that we need to call the `reset()` method which takes no input. In this case, we are manually setting the gas limit of the transaction to `40000`, as the `estimatedGas()` method returned an invalid value (something we are working on).
+The _reset.js_ file (which you can find [here](/code-snippets/web3-contract-local/reset.js)), is almost identical to the previous example. The only difference is that we need to call the `reset()` method which takes no input. In this case, we are manually setting the gas limit of the transaction to `40000`, as the `estimatedGas()` method returns an invalid value (something we are working on).
 
 ```javascript
 --8<-- 'web3-contract-local/reset.js'
@@ -221,4 +221,4 @@ With the following output:
 ![Moonbeam local node](/images/web3contract/web3-contract-5.png)
 
 ## We Want to Hear From You
-This example provides context on how you can start working with Moonbeam and how you can try out its Ethereum compatibility features such as the Web3 library. We are interested in hearing about your experience following the steps in this guide or your experience trying other Ethereum-based tools with Moonbeam. Feel free to join us in the [Moonbeam Discord here](https://discord.gg/PfpUATX). We would love to hear your feedback on Moonbeam and answer any questions that you have.
+This example provides context on how you can start working with Moonbeam and how you can try out its Ethereum compatibility features such as the web3.js library. We are interested in hearing about your experience following the steps in this guide or your experience trying other Ethereum-based tools with Moonbeam. Feel free to join us in the [Moonbeam Discord here](https://discord.gg/PfpUATX). We would love to hear your feedback on Moonbeam and answer any questions that you have.
