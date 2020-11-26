@@ -13,7 +13,7 @@ This guide walks through the process of deploying a Solidity-based smart contrac
 !!! note
      This tutorial was created using the v3 release of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/v0.3.0). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development. The examples in this guide assume an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows.
 
-For this guide you will need to have a running standalone Moonbeam node running in `--dev` mode. This can be done by either following the steps detailed [here](/getting-started/setting-up-a-node/), or by using the [Moonbeam Truffle plugin](/integrations/trufflebox/#the-moonbeam-truffle-plugin), which we'll use in the examples of this tutorial.
+For this guide you will need to have a running standalone Moonbeam node running in `--dev` mode. This can be done by either following the steps detailed [here](/getting-started/local-node/setting-up-a-node/), or by using the [Moonbeam Truffle plugin](/integrations/trufflebox/#the-moonbeam-truffle-plugin), which we'll use in the examples of this tutorial.
 
 ## Checking Prerequisites
 First we need to install Node.js (we'll go for v15.x) and the npm package manager. You can do this by running in your terminal:
@@ -161,7 +161,7 @@ If successful, you will see deployment actions including the address of the depl
 
 ![Successful contract deployment actions](/images/truffle/using-truffle-5.png)
 
-Once you have followed the [MetaMask guide](/getting-started/using-metamask/) and [Remix guide](/getting-started/using-remix/), you will be able to take the deployed contract address that is returned and load it into MetaMask or Remix.
+Once you have followed the [MetaMask guide](/getting-started/local-node/using-metamask/) and [Remix guide](/getting-started/local-node/using-remix/), you will be able to take the deployed contract address that is returned and load it into MetaMask or Remix.
 
 ## We Want to Hear From You
 This is obviously a simple example, but it provides context for how you can start working with Moonbeam and how you can try out its Ethereum compatibility features. We are interested in hearing about your experience following the steps in this guide or your experience trying other Ethereum-based tools with Moonbeam. Feel free to join us in the [Moonbeam Discord here](https://discord.gg/PfpUATX). We would love to hear your feedback on Moonbeam and answer any questions that you have.

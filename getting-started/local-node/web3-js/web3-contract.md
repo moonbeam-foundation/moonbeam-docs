@@ -8,13 +8,13 @@ description: Learn how to deploy unmodified and unchanged Solidity-based smart c
 ## Introduction  
 This guide walks you through the process of using the Solidity compiler and [web3.js](https://web3js.readthedocs.io/) to deploy and interact with a Solidity-based smart contract on a Moonbeam standalone node. Given Moonbeam’s Ethereum compatibility features, the web3.js library can be used directly with a Moonbeam node.
 
-The guide assumes that you have a local Moonbeam node running in `--dev` mode. You can find instructions to set up a local Moonbeam node [here](/getting-started/setting-up-a-node/).
+The guide assumes that you have a local Moonbeam node running in `--dev` mode. You can find instructions to set up a local Moonbeam node [here](/getting-started/local-node/setting-up-a-node/).
 
 !!! note
     This tutorial was created using the v3 release of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/v0.3.0). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development. The examples in this guide assume an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows.
 
 ## Checking Prerequisites
-If you followed the ["Setting Up a Node" tutorial](/getting-started/setting-up-a-node/), you should have a local Moonbeam node producing blocks that looks like this:
+If you followed the ["Setting Up a Node" tutorial](/getting-started/local-node/setting-up-a-node/), you should have a local Moonbeam node producing blocks that looks like this:
 
 ![Moonbeam local node](/images/web3contract/web3-contract-1.png)
 

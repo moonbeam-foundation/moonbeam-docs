@@ -8,13 +8,13 @@ description: Learn how to deploy unmodified and unchanged Solidity-based smart c
 ## Introduction  
 This guide walks you through the process of using the Solidity compiler and [ethers.js](https://docs.ethers.io/) to deploy and interact with a Solidity-based smart contract on a Moonbeam standalone node. Given Moonbeam’s Ethereum compatibility features, the ethers.js library can be used directly with a Moonbeam node.
 
-The guide assumes that you have a local Moonbeam node running in `--dev` mode. You can find instructions to set up a local Moonbeam node [here](/getting-started/setting-up-a-node/).
+The guide assumes that you have a local Moonbeam node running in `--dev` mode. You can find instructions to set up a local Moonbeam node [here](/getting-started/local-node/setting-up-a-node/).
 
 !!! note
     This tutorial was created using the v3 release of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/v0.3.0). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development. The examples in this guide assume an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows.
 
 ## Checking Prerequisites
-If you followed this [tutorial](/getting-started/setting-up-a-node/), you should have a standalone Moonbeam node producing blocks in your local environment, that looks like this:
+If you followed this [tutorial](/getting-started/local-node/setting-up-a-node/), you should have a standalone Moonbeam node producing blocks in your local environment, that looks like this:
 
 ![Moonbeam local node](/images/etherscontract/ethers-contract-1.png)
 
@@ -66,7 +66,7 @@ npm ls ethers
 
 As of the writing of this guide, the version used was 5.0.22.
 
-Similarly to our [web3.js contract tutorial](/getting-started/local-node/web3-contract/), we will use that setup for this example, so some files we'll look similar:
+Similarly to our [web3.js contract tutorial](/getting-started/local-node/web3-js/web3-contract/), we will use that setup for this example, so some files we'll look similar:
 
 -  _Incrementer.sol_: the file with our Solidity code
 -  _compile.js_: it will compile the contract with the Solidity compiler
