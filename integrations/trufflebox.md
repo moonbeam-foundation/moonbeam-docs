@@ -114,18 +114,21 @@ The `truffle-config.js` file also includes the private key of the genesis accoun
 As with using Truffle in any Ethereum network, you can run the normal commands to compile, test and deploy smart contracts in Moonbeam. For example, using the included ERC20 token contract, you can try the following commands:
 
 ```
-./node_modules/.bin/truffle compile # compiles the contract
-./node_modules/.bin/truffle test #run the tests included in the test folder
-./node_modules/.bin/truffle migrate --network network_name  #deploys to the specified network
+truffle compile # compiles the contract
+truffle test #run the tests included in the test folder
+truffle migrate --network network_name  #deploys to the specified network
 ```
 
-If you have Truffle installed globally, you can remove `./node_modules/.bin/` from the commands. Depending on the network you want to deploy the contracts too, you need to substitute network_name for either dev (to target the standalone node) or moonbase (to target the TestNet).
+Depending on the network you want to deploy the contracts too, you need to substitute network_name for either dev (to target the standalone node) or moonbase (to target the TestNet).
+
+!!! note
+    If you don't have Truffle installed globally, you can instead use `npx truffle` or `./node_modules/.bin/truffle` instead of `truffle`.
 
 ## The Moonbeam Truffle Plugin
 Currently, to set up a standalone Moonbeam node, you can follow [this tutorial](/getting-started/local-node/setting-up-a-node). The process takes around 40 minutes in total, and you need to install Substrate and all its dependencies. The Moonbeam Truffle plugin provides a way to get started with a standalone node much quicker, and the only requirement is to have Docker installed (at the time of writing the Docker version used was 19.03.6). For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/). To download the Docker image, run the following line:
 
 ```
-./node_modules/.bin/truffle run moonbeam install
+truffle run moonbeam install
 ``` 
 
 ![Install Moonbeam Truffle box](/images/trufflebox/trufflebox-01.png)
@@ -134,12 +137,12 @@ Currently, to set up a standalone Moonbeam node, you can follow [this tutorial](
 Then, you have available a set of commands to control the node included in the Docker image:
  
 ```
-./node_modules/.bin/truffle run moonbeam start
-./node_modules/.bin/truffle run moonbeam status
-./node_modules/.bin/truffle run moonbeam pause
-./node_modules/.bin/truffle run moonbeam unpause
-./node_modules/.bin/truffle run moonbeam stop
-./node_modules/.bin/truffle run moonbeam remove
+truffle run moonbeam start
+truffle run moonbeam status
+truffle run moonbeam pause
+truffle run moonbeam unpause
+truffle run moonbeam stop
+truffle run moonbeam remove
 ```
 
 Each of the commands shown before does the following action:
@@ -161,33 +164,32 @@ If you are familiar with Docker, you can skip the plugin commands and interact w
 The box has the minimum requirements to help you get started. Lets first compile the contracts by running:
 
 ```
-./node_modules/.bin/truffle compile
+truffle compile
 ``` 
 ![Compile Contracts](/images/trufflebox/trufflebox-03.png)
 
 Remember that if you have Truffle installed globally, you can skip the ./node_modules/.bin/ part in the commands. With the contract compiled, we can run the basic test included in the box (note that for these tests Ganache is used, and not the Moonbeam standalone node):
 
 ```
-./node_modules/.bin/truffle test
+truffle test
 ```
 
 ![Test Contract Moonbeam Truffle box](/images/trufflebox/trufflebox-04.png)
 
-
 After running the plugin install command, which downloads the Moonbeam standalone node Docker image, let's start the local node and deploy the token contract to our local environment:
 
 ```
-./node_modules/.bin/truffle run moonbeam start
-./node_modules/.bin/truffle migrate --network dev
+truffle run moonbeam start
+truffle migrate --network dev
 ```
 
 ![Deploy on Dev Moonbeam Truffle box](/images/trufflebox/trufflebox-05.png)
 
 And lastly, we can deploy our token contract to Moonbase Alpha, but first, make sure you set a private key with funds in the truffle-config.js file. Once the private key is set, we can execute the migrate command pointing to the TestNet.
 
-<code>
-./node_modules/.bin/truffle migrate --network moonbase
-</code>
+```
+truffle migrate --network moonbase
+```
 
 ![Deploy on Moonbase Moonbeam Truffle box](/images/trufflebox/trufflebox-06.png)
 
