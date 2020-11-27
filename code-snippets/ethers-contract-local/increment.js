@@ -20,6 +20,7 @@ const increment = async () => {
    );
 
    const createReceipt = await incrementer.increment([_value]);
+   await createReceipt.wait();
 
    console.log(`Tx successfull with hash: ${createReceipt.hash}`);
 };

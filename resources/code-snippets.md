@@ -49,8 +49,13 @@ description: In order to make it easier to get up-and-running with Moonbeam, her
 --8<-- 'metamask-local/dev-account.md'
 
 ## MetaMask
-**Local Moonbeam node details:**  
+**Moonbeam Standalone node details:**
+
 --8<-- 'metamask-local/network-details.md'
+
+**Moonbase Alpha TestNet:**
+
+--8<-- 'testnet/metamask-testnet.md'
 
 ## Remix
 **ERC-20 contract Open Zeppeling template:**
@@ -58,8 +63,8 @@ description: In order to make it easier to get up-and-running with Moonbeam, her
 --8<-- 'remix-local/contract.md'
 ```
 
-##Truffle
-**Download Moonbeam Truffle box:*
+## Truffle
+**Download Moonbeam Truffle box:**
 ```
 git clone https://github.com/PureStake/moonbeam-truffle-box
 cd moonbeam-truffle-box
@@ -75,7 +80,7 @@ node_modules/.bin/truffle compile
 node_modules/.bin/truffle migrate --network <network_name>
 ```
 
-##Installing NodeJS, npm, Web3 JS Library, and the Solidity Compiler
+## Installing NodeJS, npm, Web3 JS Library, and the Solidity Compiler
 **Install NodeJS and npm:**
 ```
 curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash -
@@ -86,52 +91,52 @@ sudo apt install -y nodejs
 
 **Install the Web3 Javascript library with npm:**
 ```
-npm install --save web3
+npm install web3
 ```
 
 **Install the Solidity Compiler (for versions v0.7.x) with npm:**
 ```pypy
-npm install --save solc@0.7.0
+npm install solc@0.7.0
 ```
 
-##Signing Transactions with Web3 and JS
+## Signing Transactions with Web3 and JS
 **The _transaction.js_ file to make transaction:**
-```javascript
+```js
 --8<-- 'web3-tx-local/transaction.js'
 ```
 
 **The _balances.js_ file to check balances:**
-```javascript
+```js
 --8<-- 'web3-tx-local/balances.js'
 ```
 
-##Compiling and Deploying a Smart Contract with Web3 and JS
+## Compiling and Deploying a Smart Contract with Web3 and JS
 **The _Incrementer.sol_ example contract:**
-```javascript
+```js
 --8<-- "web3-contract-local/Incrementer.sol"
 ```
 
 **The _compile.js_ file that compiles the contract:**
-```javascript
+```js
 --8<-- "web3-contract-local/compile.js"
 ```
 
 **The _deploy.js_ file that deploys the contract:**
-```javascript
+```js
 --8<-- "web3-contract-local/deploy.js"
 ```
 
 **The _get.js_ file to interact with the contract:**
-```javascript
+```js
 --8<-- "web3-contract-local/get.js"
 ```
 
 **The _increment.js_ file  to interact with the contract:**
-```javascript
+```js
 --8<-- "web3-contract-local/increment.js"
 ```
 
 **The _reset.js_ file  to interact with the contract:**
-```javascript
+```js
 --8<-- "web3-contract-local/reset.js"
 ```

@@ -93,7 +93,7 @@ let provider = new ethers.providers.JsonRpcProvider(providerURL);
 let wallet = new ethers.Wallet(privKey, provider);
 ```
 
-Next, we need an asynchronous function that wraps the `wallet.sendTransaction(txObject)` method. The transaction object is quite simple, it only requires the address to where we want to send the tokens and the amount to send. Note that we use the `ethers.utils.parseEther()` which handles the necessary unit conversions from Ether to Wei, this is similar to using `ethers.utils.parseUnits(value,'ether')`.
+Next, we need an asynchronous function that wraps the `wallet.sendTransaction(txObject)` method. The transaction object is quite simple, it only requires the address to where we want to send the tokens and the amount to send. Note that we use the `ethers.utils.parseEther()` which handles the necessary unit conversions from Ether to Wei, this is similar to using `ethers.utils.parseUnits(value,'ether')`. Once the transaction is sent, we get the transaction response named `createReceipt` in this example, which has a few properties. For example, we can call the `createReceipt.wait()` method to wait until the transaction is processed.
 
 ```js
 // Deploy Transaction
@@ -109,6 +109,7 @@ const send = async () => {
    };
 
    const createReceipt = await wallet.sendTransaction(tx);
+   await createReceipt.wait();
    console.log(`Transaction successful with hash: ${createReceipt.hash}`);
 };
 ```

@@ -124,7 +124,7 @@ First, we need to load our ethers.js module and the export of the _compile.js_ f
 
 Next, define the `privKey` variable as the private key of our genesis account, which is where all the funds are stored when deploying your local Moonbeam node. Remember that in ethers.js we need to provide the prefix `0x`. In addition, we have to define the provider by passing in the standalone Moonbeam node RPC URL. Both of these will be used to create the `wallet` instance and access all its methods.
 
-To deploy the contract, first we need to create a local instance using the `ethers.ContractFactory(abi, bytecode, wallet)`. Then, wrapped in an async function, we can use the `deploy(args)` method of this local instance, which uses a signer to deploy the contract with the arguments passed into the constructor. This promise returns a contract that contains the address where it will be deployed once the transaction is processed.
+To deploy the contract, first we need to create a local instance using the `ethers.ContractFactory(abi, bytecode, wallet)`. Then, wrapped in an async function, we can use the `deploy(args)` method of this local instance, which uses a signer to deploy the contract with the arguments passed into the constructor. This promise returns the transaction that contains the address where it will be deployed. By using the `contract.deployed()` method, we wait of the transaction to be processed. 
 
 ```javascript
 --8<-- 'ethers-contract-local/deploy.js'
@@ -148,15 +148,15 @@ Let's now define the file to send a transaction that will add the value provided
 
 The contract transaction starts by creating a local instance of the contract as before, but in this case we pass in the `wallet` as a signer, to have read-write access to the methods of the contract.
 
-Then, we use the `increment` method of the local instance, providing the value to increment our number by. Ethers.js will proceed to create the transaction object, send the transaction, and return the receipt.
+Then, we use the `increment` method of the local instance, providing the value to increment our number by. Ethers.js will proceed to create the transaction object, send the transaction, and return the receipt. We can leverage the `wait()` method of the transaction response to wait for it to be processed.
 
-```javascript
+```js
 --8<-- 'ethers-contract-local/increment.js'
 ```
 
 The _reset.js_ file (which you can find [here](/code-snippets/ethers-contract-local/reset.js)), is almost identical to the previous example. The only difference is that we need to call the `reset()` method which takes no input. In this case, we are manually setting the gas limit of the transaction to `40000`, as the `estimatedGas()` method returns an invalid value (something we are working on).
 
-```javascript
+```js
 --8<-- 'ethers-contract-local/reset.js'
 ```
 

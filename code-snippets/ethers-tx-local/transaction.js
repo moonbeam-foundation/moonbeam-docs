@@ -23,6 +23,7 @@ const send = async () => {
    };
 
    const createReceipt = await wallet.sendTransaction(tx);
+   await createReceipt.wait();
    console.log(`Transaction successful with hash: ${createReceipt.hash}`);
 };
 

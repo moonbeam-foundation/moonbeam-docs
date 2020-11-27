@@ -19,6 +19,7 @@ const deploy = async () => {
 
    // Deploy contract with initialNumber set to 5
    const contract = await incrementer.deploy([5]);
+   await contract.deployed();
 
    console.log(`Contract deployed at address ${contract.address}`);
 };

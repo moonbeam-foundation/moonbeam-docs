@@ -21,6 +21,7 @@ const increment = async () => {
    const createReceipt = await incrementer.reset({
       gasLimit: 40000,
    });
+   await createReceipt.wait();
 
    console.log(`Tx successfull with hash: ${createReceipt.hash}`);
 };
