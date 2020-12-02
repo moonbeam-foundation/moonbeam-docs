@@ -1,6 +1,6 @@
 ---
 title: Ethers.js
-description: Use the Ethereum EtherJS Library to deploy contracts into Moonbeam
+description: Follow this tutorial to learn how to use the Ethereum EtherJS Library to deploy Solidity smart contracts to Moonbeam.
 ---
 # Ethers.js JavaScript Library
 
