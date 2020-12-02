@@ -1,1 +1,1 @@
-dm create moonbeam
+docker-machine create moonbeam
