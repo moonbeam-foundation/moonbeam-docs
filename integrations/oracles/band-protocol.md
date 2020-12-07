@@ -1,6 +1,6 @@
 ---
 title: Band Protocol
-description: How to use request data from a Band Protocol Oracle in your Moonbeam Ethereum Dapp
+description: How to use request data from a Band Protocol Oracle in your Moonbeam Ethereum Dapp using smart contracts or javascript
 ---
 # Band Protocol Oracle
 
@@ -11,9 +11,9 @@ Developers have two ways to fetch prices from Band’s oracle infrastructure. On
 
 The Aggregator Contract address can be found in the following table:
 
-|     Network    |   |         Aggregator Contract Address        |   |
-|:--------------:|---|:------------------------------------------:|---|
-| Moonbase Alpha |   | 0xDA7a001b254CD22e46d3eAB04d937489c93174C3 |   |
+|     Network    | |         Aggregator Contract Address        |
+|:--------------:|-|:------------------------------------------:|
+| Moonbase Alpha | | 0xDA7a001b254CD22e46d3eAB04d937489c93174C3 |
 
 ## Supported Token
 At the time of writing, the list of supported symbols can be found by following [this link](https://data.bandprotocol.com).
