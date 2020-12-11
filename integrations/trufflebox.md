@@ -12,7 +12,7 @@ As part of an ongoing effort to help developers that want to start working on Mo
 This tutorial will guide you through the process of setting up the box, using the Moonbeam Truffle plugin, and deploy contracts to both a standalone Moonbeam node and Moonbase Alpha using Truffle with the box base configuration.
 
 !!! note
-    This guide is based on an Ubuntu 18.04 installation. At the time of writing, Node.js and npm versions used were 15.2.1 and 7.0.8 respectively. Node.js versions higher than 10.23.0 are required.
+    This guide is based on an Ubuntu 18.04 installation. At the time of writing, Node.js and npm versions used were 15.2.1 and 7.0.8 respectively. Node.js versions higher than 10.23.0 are required. We also noticed an error while installing the packages with npm version 7.0.15. You can downgrade npm by running `npm install -g npm@version`, setting the version to the one desired.
 
 ## Checking Prerequisites
 For this tutorial, we need to install Node.js (we'll go for v15.x) and the npm package manager. You can do this by running in your terminal:
@@ -64,6 +64,8 @@ With the files in your local system, the next step is to install all dependencie
 ```
 npm install
 ```
+!!! note
+    We noticed an error while installing the packages with npm version 7.0.15. You can downgrade npm by running `npm install -g npm@version`, setting the version to the one desired, for example, 7.0.8 or 6.14.9.
 
 And that is all the prerequisites you need to use the Moonbeam Truffle box.
 
