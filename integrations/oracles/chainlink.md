@@ -98,7 +98,7 @@ If there is any specific pair you want us to include, feel free to reach out to 
 
 ### Run your Client Contract
 
-In case you want to run your own Client contract, but use our oracle node, you can do so with the following information:
+In case you want to run your Client contract, but use our oracle node, you can do so with the following information:
 
 |  Contract Type      |   |                     Address                  |
 |:-------------------:|---|:--------------------------------------------:|
