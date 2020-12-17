@@ -4,7 +4,7 @@ description: Follow this tutorial to learn how to use the Ethereum Web3 JavaScri
 ---
 # Web3.js JavaScript Library
 
-![Intro diagram](/images/integrations/integrations-web3js-0.png)
+![Intro diagram](/images/integrations/integrations-web3js-banner.png)
 
 ## Introduction
 

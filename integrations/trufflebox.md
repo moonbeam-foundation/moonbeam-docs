@@ -4,7 +4,7 @@ description: Start using the Moonbeam Truffle Box for a quick, preconfigured way
 ---
 # Moonbeam Truffle Box
 
-![Intro diagram](/images/trufflebox/trufflebox-00.png)
+![Intro diagram](/images/integrations/integrations-trufflebox-banner.png)
 
 ##Introduction
 As part of an ongoing effort to help developers that want to start working on Moonbeam, we have [launched the Moonbeam Truffle box](https://www.purestake.com/news/moonbeam-truffle-box-now-available-for-solidity-developers). With it, developers will find a boilerplate setup to get started deploying smart contracts on Moonbeam quickly. With the Moonbeam Truffle box, we have also incorporated the Moonbeam Truffle plugin, that introduces some commands to run a standalone node in your local environment as a Docker image. This removes the process of setting up a local node which can take up to 40 minutes when building its binary, and is a quick and easy solution to get started developing in your local environment.

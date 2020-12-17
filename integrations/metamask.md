@@ -5,7 +5,7 @@ description: This guide walks you through how to connect MetaMask, an browser ba
 
 # Interacting with Moonbeam Using MetaMask
 
-![Intro diagram](/images/metamask/integrations-metamask-0.png)
+![Intro diagram](/images/integrations/integrations-metamask-banner.png)
 
 ## Introduction
 

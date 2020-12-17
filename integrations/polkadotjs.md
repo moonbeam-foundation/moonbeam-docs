@@ -4,7 +4,7 @@ description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereu
 ---
 # Polkadot JS Apps
 
-![Intro diagram](/images/testnet/polkadotjs-app0.png)
+![Intro diagram](/images/integrations/integrations-polkadotjs-banner.png)
 
 ## Introduction
 With the [release of the v3 upgrade](https://www.purestake.com/news/moonbeam-network-upgrades-testnet-to-moonbase-alpha-v3) for the Moonbase Alpha TestNet, we have made significant updates to the underlying account system on Moonbeam, replacing the default Substrate-style accounts and keys with Ethereum-style accounts and keys.

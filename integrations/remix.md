@@ -5,7 +5,7 @@ description: Learn how to use one of the most popular Ethereum developer tools, 
 
 # Interacting with Moonbeam Using Remix
 
-![Intro diagram](/images/remix/integrations-remix-0.png)
+![Intro diagram](/images/integrations/integrations-remix-banner.png)
 
 ## Introduction
 
