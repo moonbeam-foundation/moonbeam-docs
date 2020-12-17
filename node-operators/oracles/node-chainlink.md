@@ -50,7 +50,7 @@ The basic requirements you need are the following:
 
 ## Node Setup
 
-First lets created a new directory to put all the necessary files, for example:
+First lets create a new directory to put all the necessary files, for example:
 
 ```
 mkdir -p ~/.chainlink-moonbeam //
