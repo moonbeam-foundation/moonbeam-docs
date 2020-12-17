@@ -93,42 +93,11 @@ If successful you should see an ouput similar to before, showing that blocks are
 
 ![Docker - output shows blocks being produced](/images/setting-up-a-node/setting-up-node-8a.png)
 
-### Docker for Mac
-To set up the Docker image for Mac you would need to install [Docker Machine](https://docs.docker.com/machine/install-machine/). 
-Check the up-to-date installation instructions on [https://docs.docker.com/machine/install-machine/](https://docs.docker.com/machine/install-machine/).
-This would allow you to connect to use the Local Node option when connecting to Polkadot JS Apps in the subsequent step.
-We will port forward the Docker Machine IP to localhost as Docker for Mac does not map the host network to localhost.
+### Docker for MacOS
+If you are using MacOS you will need to omit `--network host` as MacOS does not allow you to use this setting. You will need to be explicitly state the ports with the command below.
 
-After installing [Docker Machine](https://docs.docker.com/machine/install-machine/). Create a new Docker Machine called moonbeam.
 ```
 --8<-- 'setting-up-local/dockerformac1.md'
-```
-
-You should see a chunk of text. At the end it will instruct you to run the following command to set up the environment. Execute this.
-```
---8<-- 'setting-up-local/dockerformac2.md'
-```
-
-You will be instructed to run another command at the end once more. Likewise, execute this.
-```
---8<-- 'setting-up-local/dockerformac3.md'
-```
-!!! note
-    If have already created the Docker Machine you do not need to create a new machine simply run `docker-machine start moonbeam`
-
-Now forward the Docker Machine port to the port on your machine's localhost. 
-```
---8<-- 'setting-up-local/dockerformac4.md'
-```
-
-Pull the Docker image
-```
---8<-- 'setting-up-local/dockerpull.md'
-```
-
-When the image is downloaded run the Docker image with the line as with the previous section.
-```
---8<-- 'setting-up-local/dockerrun.md'
 ```
 
 ## Connecting Polkadot JS Apps to a Local Moonbeam Node
