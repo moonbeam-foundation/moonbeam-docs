@@ -2,7 +2,7 @@ pragma solidity ^0.6.6;
 
 /**
  * @title Simple Interface to interact with Universal Client Contract
- * @notice Client Address 0xbaCbF0EFeDB9fBC2736bfb1B2AC936557dd33A8B
+ * @notice Client Address 0x81f191eF90Fed48645FB846DFd7a6B8893fF5d56
  */
 interface ChainlinkInterface {
 

@@ -4,31 +4,25 @@ description: How to use request data from a Chainlink Oracle in your Moonbeam Et
 ---
 # Chainlink Oracle
 
-![Chainlink Moonbeam Banner](/images/chainlink/chainlink-diagram.png)
+![Chainlink Moonbeam Banner](/images/chainlink/chainlink-banner.png)
 
 ## Introduction
 
-Developers can use now [Chainlink's decentralized Oracle network](https://chain.link/) to fetch data in the Moonbase Alpha TestNet. In this tutorial, we will show only the [Basic Request Model](https://docs.chain.link/docs/architecture-request-model), where the end-user sends a request to an oracle provider, which fetches the data through an API, and fulfils the request storing this data on-chain.
+Developers can use now [Chainlink's decentralized Oracle network](https://chain.link/) to fetch data in the Moonbase Alpha TestNet. In this tutorial, we will show only the [Basic Request Model](https://docs.chain.link/docs/architecture-request-model), where the end-user sends a request to an Oracle provider, which fetches the data through an API, and fulfils the request storing this data on-chain.
 
 ## Basic Request Model
 
-Before we go into fetching the data itself, it is important to understand the basics of the "basic request model". An oracle node has a set of job IDs, where each corresponds to a task that can be requested by a user, for example, fetch a price feed. To do so, the user needs to send a request through a contract, we'll name it the _Client_ contract, passing in the following information:
+Before we go into fetching the data itself, it is important to understand the basics of the "basic request model". 
 
- - Oracle address: address of the contract deployed by the oracle node
- - Job ID: task to be executed
- - Payment: payment in LINK tokens that the oracle will receive for fulfiling the request
-
-This request actually sends a _transferAndCall_ to the LINK token contract, which handles the payment and relays the request to the oracle contract. Here, an event is emited with the request, which is picked up by the oracle node. Next, the node fetches the necessary data and executes the _fulfilOracleRequest_ function, which executes a callback that stores the requested information in the Client contract. The following diagram explains this workflow.
-
-![Basic Request Diagram](/images/chainlink/chainlink-basicrequest.png)
+--8<-- 'chainlink/chainlink-brm.md'
 
 ## The Client Contract
 
 The Client contract is the element that starts the communication with the Oracle by sending a request. As we saw on the diagram, it calls the _transferAndCall_ method from the LINK token contract, but there is more processing that is needed to track the request to the Oracle. For this example, you can use the code in [this file](/code-snippets/chainlink/Client.sol), and this deploy it on [Remix](/integrations/remix/) to try it out. Let's look at the core functions of the contract:
 
  - _constructor_: runs when the contract is deployed. Sets the address of the LINK token and the owner of the contract
- - _requestPrice_: it needs the oracle contract address, the job ID, and the payment (in LINK) tokens to the fulfiller of the request. Builds the new request that is sent using the _sendChainlinkRequestTo_ function from the _ChainlinkClient.sol_ import
- - _fulfill_: callback used by the oracle node to fulfill the request, by storing the queried information in the contract
+ - _requestPrice_: it needs the Oracle contract address, the job ID, and the payment (in LINK) tokens to the fulfiller of the request. Builds the new request that is sent using the _sendChainlinkRequestTo_ function from the _ChainlinkClient.sol_ import
+ - _fulfill_: callback used by the Oracle node to fulfill the request, by storing the queried information in the contract
 
 ```solidity
 pragma solidity ^0.6.6;
@@ -69,9 +63,9 @@ Note that the Client contract must have LINK tokens balance to be able to pay fo
 
 ## Try it on Moonbase Alpha
 
-If you want to skip the hurdles of deploying all the contracts, setting up your oracle node, creating job IDs, and so on, we've got you covered. 
+If you want to skip the hurdles of deploying all the contracts, setting up your Oracle node, creating job IDs, and so on, we've got you covered. 
 
-A custom Client contract on Moonbase Alpha that makes all requests to our oracle contract, with a 0 LINK token payment, is available. These requests are fulfilled by an oracle node we are running as well. You can try out with the following interface contract, with the custom Client contract deployed at `0xbaCbF0EFeDB9fBC2736bfb1B2AC936557dd33A8B`:
+A custom Client contract on Moonbase Alpha that makes all requests to our Oracle contract, with a 0 LINK token payment, is available. These requests are fulfilled by an Oracle node we are running as well. You can try out with the following interface contract, with the custom Client contract deployed at `0x81f191eF90Fed48645FB846DFd7a6B8893fF5d56`:
 
 ```solidity
 --8<-- 'chainlink/Interface.sol'
@@ -79,40 +73,45 @@ A custom Client contract on Moonbase Alpha that makes all requests to our oracle
 
 This provides two functions. `requestPrice()` only needs the job ID of the data you want to query. This function starts the chain of events explained before. `currentPrice()` is a view function that returns the latest price stored in the contract.
 
-Currently, the oracle node has a set of job IDs for different price datas for the following pairs:
+Currently, the Oracle node has a set of Job IDs for different price datas for the following pairs:
 
 |  Base/Quote    |   |         Job ID Reference           |
 |:--------------:|---|:----------------------------------:|
-| BTC to USD     |   | fcf5bbf903a24db4995412a0034e355e   |
-| ETH to USD     |   | c5b3864c5fa74c199d82aeafbd6990e9   |
-| DOT to USD     |   | b08c567a990a499fb2a76b580d51f481   |
-| KSM to USD     |   | 5ea60c08ece248d6bc4bb04e9c723a9b   |
-| Aave to USD    |   | 1aa6d16fe267469ebc354522e9efc07d   |
-| ALGO to USD    |   | bcee95ed927d4bd081db4873dbc52b91   |
-| BAND to USD    |   | c86806a16c8040bab941fa4bd7118674   |
-| LINK to USD    |   | d5668f1900d74b2489a406eb77f8ba25   |
-| SUSHI to USD   |   | 4869fcd0c69649a8ad93414dbb0c8789   |
-| UNI to USD     |   | 3e12c3a8513541c69ef615313a116a8e   |
+| BTC to USD     |   | 82f0d8b4be2143d49d6df4ff2edca4ac   |
+| ETH to USD     |   | a75d59e194fd478fa36610f158f51825   |
+| DOT to USD     |   | d2630d576c5c46f6a43160b439dc6ca1   |
+| KSM to USD     |   | 54248318766e437c805c0ead4b6a9e38   |
+| Aave to USD    |   | f68bd048576d49c78104aad8ae9aac3b   |
+| ALGO to USD    |   | 740f7dc8c10e44e4bc990bcf6302ebe4   |
+| BAND to USD    |   | 390daa166024415a8ec4fc259f19bdf1   |
+| LINK to USD    |   | 666722e8caff4ca1bcd61e312a3b4e6a   |
+| SUSHI to USD   |   | 5be855d1f44542b89f8dd14321c4612d   |
+| UNI to USD     |   | 8c490fd77c5742e4b6e4d6273800fa50   |
+
+Let' go ahead and use the interface contract with the `BTC to USD` Job ID in [Remix](/integrations/remix/). 
+
+After creating the file and compiling the contract, head to the "Deploy and Run Transactions" tab, enter the Client contract address and click on "At Address" the contract. Make sure you have set the "Environment" to "Injected Web3" so you are connected to Moonbase Alpha. This will create an instance of the Client contract that you can interact with. Use the function `requestPrice()` to query the data of the corresponding Job ID. Once the transaction is confirmed, we have to wait until the whole process we explained before happens. We can check the price using the view function `currentPrice()`.
+
+![Chainlink on Moonbase Alpha](/images/chainlink/chainlink-image1.png)
 
 If there is any specific pair you want us to include, feel free to reach out to us through our [Discord server](https://discord.com/invite/PfpUATX).
 
 ### Run your Client Contract
 
-In case you want to run your Client contract, but use our oracle node, you can do so with the following information:
+In case you want to run your Client contract, but use our Oracle node, you can do so with the following information:
 
 |  Contract Type      |   |                     Address                  |
 |:-------------------:|---|:--------------------------------------------:|
-| Oracle Contract     |   | 0xe30570257Af0F35F66d6798F75F34DD56dFa4EFC   |
-| LINK Token          |   | 0x2B13000735C0fC878673732Ee9bF8Ba5d76F7EC9   |
+| Oracle Contract     |   | 0xCdF0FC59EE7d7901a10A56Ae6C8a8486CB4D70A5   |
+| LINK Token          |   | 0xa36085F69e2889c224210F603D836748e7dC0088   |
 
 Remember that the LINK token payment is set to zero.
 
-
 ## Other Requests
 
-Chainlink's oracles can tentatively provide many different types of data feeds with the use of external adapters. However, for simplicity, our oracle node is configured to deliver only price feeds. 
+Chainlink's Oracles can tentatively provide many different types of data feeds with the use of external adapters. However, for simplicity, our Oracle node is configured to deliver only price feeds. 
 
-If you are interested in running you own oracle node in Moonbeam, please visit [this guide TODO](). Also, we recommend going through [Chainlink's documentation site](https://docs.chain.link/docs).
+If you are interested in running your own Oracle node in Moonbeam, please visit [this guide](/node-operators/oracles/node-chainlink/). Also, we recommend going through [Chainlink's documentation site](https://docs.chain.link/docs).
 
 ## Contact Us
-If you have any feedback regarding implementing Chainlink on your project, or any other Moonbeam related topic, feel free to reach out through our official development [Discord server](https://discord.com/invite/PfpUATX).
+If you have any feedback regarding implementing Chainlink on your project or any other Moonbeam related topic, feel free to reach out through our official development [Discord server](https://discord.com/invite/PfpUATX).

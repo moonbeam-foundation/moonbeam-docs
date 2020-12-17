@@ -4,7 +4,7 @@ import "https://github.com/smartcontractkit/chainlink/evm-contracts/src/v0.6/Cha
 
 /**
  * @title Client based in ChainlinkClient
- * @notice End users can deploy this contract to request the EthereumPrice from an Oracle
+ * @notice End users can deploy this contract to request the Prices from an Oracle
  */
 contract Client is ChainlinkClient {
   // Stores the answer from the Chainlink oracle
