@@ -8,7 +8,18 @@ description: How to use ChainBridge to connect assets between Ethereum and Moonb
 
 ## Introduction
 
-A bridge allows two economically sovereign, and technologically different chains to communicate with each other. They can range from centralized and trusted, to decentralized and trustless. One of the currently available solutions is [ChainBridge](https://github.com/ChainSafe/ChainBridge#installation), a modular multi-directional blockchain bridge built by [ChainSafe](https://chainsafe.io/).
+A bridge allows two economically sovereign, and technologically different chains to communicate with each other. They can range from centralized and trusted, to decentralized and trustless. One of the currently available solutions is [ChainBridge](https://github.com/ChainSafe/ChainBridge#installation), a modular multi-directional blockchain bridge built by [ChainSafe](https://chainsafe.io/). ChainBridge is now available in the Moonbase Alpha TestNet, communicating it to the Ethereum's Kovan TestNet.
+
+This guide is broken down into two main sections. In the first part, we'll explain the general workflow of the bridge. In the second part, we'll go through a couple of examples using the bridge to transfer ERC-20 and ERC-721 assets between Moonbase Alpha and Kovan. 
+
+ - [How the bridge works](/integrations/bridges/ethereum/chainbridge/#how-the-bridge-works)
+    - [General definitions](/integrations/bridges/ethereum/chainbridge/#general-definitions)
+ - [Using the bridge in Moonbase Alpha](/integrations/bridges/ethereum/chainbridge/#try-it-on-moonbase-alpha)
+    - [Transfer ERC-20 tokens](/integrations/bridges/ethereum/chainbridge/#erc-20-token-transfer)
+    - [Transfer ERC-721 tokens](/integrations/bridges/ethereum/chainbridge/#erc-721-token-transfer)
+    - [Generic handler](/integrations/bridges/ethereum/chainbridge/#generic-handler)
+ - [Contact us](/integrations/bridges/ethereum/chainbridge/#contact-us)
+
 
 ## How the Bridge Works
 
@@ -28,7 +39,7 @@ On both sides of the bridge, there are a set of smart contracts, where each has 
 
 The general workflow is the following (from Chain A to Chain B):
  
-  - A user initiates a transaction with the _deposit()_ function in the bridge contract of Chain A. Here, the user needs to input the function to be executed, the resource ID, and the _calldata_ (definitions after the diagram). After a few checks, the _deposit()_  function of the handler contract is called, which executes the function call of the target contract
+  - A user initiates a transaction with the _deposit()_ function in the bridge contract of Chain A. Here, the user needs to input the target chain, the resource ID, and the _calldata_ (definitions after the diagram). After a few checks, the _deposit()_  function of the handler contract is called, which executes the function call of the target contract
   - After the function of the target contract in Chain A is executed, an _Deposit_ event is emmited by the bridge contract with all the necessary data to be executed on Chain B, this can be called a proposal. Each proposal can have 5 status (inactive, active, passed, executed and cancelled) 
   - Relayers are always listening on both sides of the chain. Once the event is picked up by a relayer, he initiates a voting on the proposal, which happens on the bridge contract on Chain B. This sets the state of the proposal from inactive to active
   - Relayers must vote on the proposal. Everytime a relayer votes, an event is emmited by the bridge contract that updates its status. Once a threshold is met, the status changes from active to passed. A relayer then executes the proposal on Chain B via the bridge contract.
@@ -42,13 +53,13 @@ This workflow is summarized in the following diagram:
 
 Here we have put together a list of concepts applicable to the ChainBridge implementation (from Chain A to Chain B):
 
- - Chain ID: this is not to be confused with the chain ID of the network. Its a unique network identifier used by the protocol for each chain. It can be different to the actual chain ID of the network itself. For example, for Moonbase Alpha and Kovan, we've set the ChainBridge chain ID to 43 and 42 respectively
+ - ChainBridge Chain ID: this is not to be confused with the chain ID of the network. Its a unique network identifier used by the protocol for each chain. It can be different to the actual chain ID of the network itself. For example, for Moonbase Alpha and Kovan, we've set the ChainBridge chain ID to 43 and 42 respectively
  - Resource ID: is a 32 bytes word that is intended to uniquely identify an asset in a cross-chain environment. For that matter, the least significant byte is reserved for the chainId, so we would have 31 bytes in total to represent an asset of a chain in our bridge
  - Calldata: is the parameters required for the handler that includes the information necessary to execute the proposal on Chain B. The exact serialization is defined for each handler. You can find more information [here](https://chainsafe.github.io/ChainBridge/chains/ethereum/#erc20-handler)
 
 ## Try it on Moonbase Alpha
 
-Currently we have setup a relayer with ChainBridge implementation that connects Kovan and Moonbase Alpha.
+Currently we have setup a relayer with the ChainBridge implementation that connects Kovan and Moonbase Alpha.
 
 ChainSafe has [pre-programmed handlers](https://github.com/ChainSafe/chainbridge-solidity/tree/master/contracts/handlers) which are specific to ERC-20 and ERC-721 interfaces, and are used to transfer these token between chains. In general terms, this is just narrowing down the general purpose diagram that we've described before, so the handler works only with the specific token functions such as _lock/burn_ and _mint/unlock_. 
 
@@ -60,12 +71,12 @@ TODO -> Add information such as contract addresses etc.s
 
 To perform an ERC-20 token transfer through the bridge, the asset needs to be registered in the relayers. Therefore, we've deployed an ERC-20 token where any user can mint 5 tokens to test the bridge out:
 
- - Custom ERC-20 Token: `TODO->ADDRESS`
+ - Custom ERC-20 token: `TODO->ADDRESS`
 
 The following interface can be used to interact with this contract and mint the tokens:
 
 ```solidity
-pragma solidity ^0.6.0;
+pragma solidity ^0.6.4;
 
 /**
     Interface for the Custom ERC20 Token contract for ChainBridge implementation
@@ -78,12 +89,96 @@ interface CustomERC20 {
 }
 ```
 
-Note that the mint function of the ERC-20 token contract was modified to also approve the corresponding handler contract as an spender when minting tokens.
+Note that the mint function of the ERC-20 token contract was modified to also approve the corresponding handler contract as an spender when minting tokens. For example, you can try this contract in [Remix](/integrations/remix/).
+
+TODO >  Image with the tokens
+
+Once we have the tokens, we can proceed to send them over the bridge to the target chain, in this case we'll do it from Kovan to Moonbase Alpha. 
+
+Instead of interacting with the Bridge contract and calling the function `deposit()`, we've created a proxy contract to ease the process of using the bridge:
+
+ - Proxy contract: `TODO->ADDRESS`
+
+In simple terms, the proxy contract has the _chainID_ and _resourceID_ predefined for this example, and builds the _calldata_ object from the input given by the user, which is only the recipient address and the value to be sent.
+
+```solidity
+pragma solidity 0.6.4;
+
+/**
+ * @title Simple Interface to interact with Bridge Middleware
+ * @notice Bridge ERC-20 Middleware Address TODO
+ */
+
+interface IERC20Middleware {
+    
+    /**
+   * @notice Creates a deposit in the Bridge Contract for an ERC-20 Transfer,
+   * @notice and sends it to the Oracle.
+   * @notice _oracle The address of the Oracle contract fixed top
+   * @notice _payment For this example the PAYMENT is set to zero
+   * @param _recipient Address recipient of the tokens in the other chain
+   * @param _value Amount of tokens to be sent
+   */
+    function sendTokens(address _recipient, uint _value) external;
+}
+```
 
 ### ERC-721 Token Transfer
 
+Similar to our previous exmaple, to perform an ERC-721 token transfer through the bridge, the asset needs to be registered in the relayers. Therefore, we've deployed an ERC-721 token where any user can mint a token to test the bridge out:
 
-### Generic 
+ - Custom ERC-721 token: `TODO->ADDRESS`
+
+The following interface can be used to interact with this contract and mint the tokens:
+
+pragma solidity ^0.6.4;
+
+/**
+    Interface for the Custom ERC721 Token contract for ChainBridge implementation
+    ERC-721 Address: TODO
+*/
+
+interface CustomERC721 {
+
+    function mintTokens() external;
+}
+
+Note that the mint function of the ERC-721 token contract was modified to also approve the corresponding handler contract as an spender when minting tokens. For example, you can try this contract in [Remix](/integrations/remix/).
+
+TODO >  Image with the tokens
+
+Once we have the tokens, we can proceed to send them over the bridge to the target chain, in this case we'll do it from Kovan to Moonbase Alpha. 
+
+Instead of interacting with the Bridge contract and calling the function `deposit()`, we've created a proxy contract to ease the process of using the bridge:
+
+ - Proxy contract: `TODO->ADDRESS`
+
+In simple terms, the proxy contract has the _chainID_ and _resourceID_ predefined for this example, and builds the _calldata_ object from the input given by the user, which is only the recipient address and the token ID to be sent.
+
+```solidity
+pragma solidity 0.6.4;
+
+/**
+ * @title Simple Interface to interact with Bridge Middleware
+ * @notice Bridge ERC-721 Middleware Address TODO
+ */
+
+interface IERC721Middleware {
+    
+    /**
+   * @notice Creates a deposit in the Bridge Contract for an ERC-20 Transfer,
+   * @notice and sends it to the Oracle.
+   * @notice _oracle The address of the Oracle contract fixed top
+   * @notice _payment For this example the PAYMENT is set to zero
+   * @param _recipient Address recipient of the tokens in the other chain
+   * @param _tokenID Token ID to be sent
+   */
+    function sendTokens(address _recipient, uint _tokenID) external;
+}
+```
+
+
+### Generic Handler
 
 ## Contact Us
 If you have any feedback regarding implementing ChainBridge on your project, or any other Moonbeam related topic, feel free to reach out through our official development [Discord server](https://discord.com/invite/PfpUATX).

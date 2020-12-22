@@ -81,7 +81,7 @@ Currently, the Oracle node has a set of Job IDs for different price datas for th
 | ETH to USD     |   | a75d59e194fd478fa36610f158f51825   |
 | DOT to USD     |   | d2630d576c5c46f6a43160b439dc6ca1   |
 | KSM to USD     |   | 54248318766e437c805c0ead4b6a9e38   |
-| Aave to USD    |   | f68bd048576d49c78104aad8ae9aac3b   |
+| AAVE to USD    |   | f68bd048576d49c78104aad8ae9aac3b   |
 | ALGO to USD    |   | 740f7dc8c10e44e4bc990bcf6302ebe4   |
 | BAND to USD    |   | 390daa166024415a8ec4fc259f19bdf1   |
 | LINK to USD    |   | 666722e8caff4ca1bcd61e312a3b4e6a   |
@@ -90,7 +90,7 @@ Currently, the Oracle node has a set of Job IDs for different price datas for th
 
 Let' go ahead and use the interface contract with the `BTC to USD` Job ID in [Remix](/integrations/remix/). 
 
-After creating the file and compiling the contract, head to the "Deploy and Run Transactions" tab, enter the Client contract address and click on "At Address" the contract. Make sure you have set the "Environment" to "Injected Web3" so you are connected to Moonbase Alpha. This will create an instance of the Client contract that you can interact with. Use the function `requestPrice()` to query the data of the corresponding Job ID. Once the transaction is confirmed, we have to wait until the whole process we explained before happens. We can check the price using the view function `currentPrice()`.
+After creating the file and compiling the contract, head to the "Deploy and Run Transactions" tab, enter the Client contract address and click on "At Address". Make sure you have set the "Environment" to "Injected Web3" so you are connected to Moonbase Alpha. This will create an instance of the Client contract that you can interact with. Use the function `requestPrice()` to query the data of the corresponding Job ID. Once the transaction is confirmed, we have to wait until the whole process we explained before happens. We can check the price using the view function `currentPrice()`.
 
 ![Chainlink on Moonbase Alpha](/images/chainlink/chainlink-image1.png)
 

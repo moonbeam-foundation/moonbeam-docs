@@ -109,7 +109,7 @@ truffle run moonbeam remove
 ![Moonbeam local node stoped and image removed](/images/truffle/using-truffle-3.png)
 
 ## The Contract File
-Included with the Truffle box, there is also a ERC20 token contract:
+Included with the Truffle box, there is also a ERC-20 token contract:
 
 ```solidity
 pragma solidity ^0.7.5;

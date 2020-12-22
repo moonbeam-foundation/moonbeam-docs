@@ -1,4 +1,5 @@
 title: Oracles
 hide: false
 arrange:
+  - band-protocol.md
   - chainlink.md

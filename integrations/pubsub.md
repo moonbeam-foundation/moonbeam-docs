@@ -13,7 +13,7 @@ The examples in this guide are based on a Ubuntu 18.04 environment. Also, you wi
 
 -  Have MetaMask installed and [connected to Moonbase](/getting-started/testnet/metamask/)
 -  Have an account with funds, which you can get from [Mission Control](/getting-started/testnet/faucet/)
--  Deploy your own ERC20 token on Moonbase, which you can do following [our Remix tutorial](/getting-started/local-node/using-remix/) but first pointing MetaMask to Moonbase
+-  Deploy your own ERC-20 token on Moonbase, which you can do following [our Remix tutorial](/getting-started/local-node/using-remix/) but first pointing MetaMask to Moonbase
 
 In addition, we need to install Node.js (we'll go for v14.x) and npm. You can do this by running in your terminal:
 
@@ -48,7 +48,7 @@ npm ls web3
 As of the writing of this guide, the version used was 1.3.0. 
 
 ## Subscribing to Event Logs in Moonbase Alpha
-Any contract that follows the ERC20 token standard emits an event related to a transfer of tokens, that is, `event Transfer(address indexed from, address indexed to, uint256 value)`. For this example, we will subscribe to the logs of such events. Using the web3.js library, we need the following piece of code:
+Any contract that follows the ERC-20 token standard emits an event related to a transfer of tokens, that is, `event Transfer(address indexed from, address indexed to, uint256 value)`. For this example, we will subscribe to the logs of such events. Using the web3.js library, we need the following piece of code:
 
 ```js
 const Web3 = require('web3');
@@ -79,7 +79,7 @@ The result of the previous calculation is what's shown in the code snippet from 
 
 ![Subscription ID](/images/testnet/testnet-pubsub1.png)
 
-Next, an ERC20 token transfer will be sent with the following parameters:
+Next, an ERC-20 token transfer will be sent with the following parameters:
 
 -  From address: 0x44236223aB4291b93EEd10E4B511B37a398DEE55
 -  To address: 0x8841701Dba3639B254D9CEe712E49D188A1e941e

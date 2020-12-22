@@ -16,13 +16,13 @@ The Aggregator Contract address can be found in the following table:
 | Moonbase Alpha | | 0xDA7a001b254CD22e46d3eAB04d937489c93174C3 |
 
 ## Supported Token
-At the time of writing, the list of supported symbols can be found by following [this link](https://data.bandprotocol.com).
-
 Price queries with any denomination are available, as long as the base and quote symbols are supported (_base_/_quote_). For example:
 
  -  `BTC/USD`
  -  `BTC/ETH`
  -  `ETH/EUR`
+
+At the time of writing, the list of supported symbols can be found by following [this link](https://data.bandprotocol.com). There are more than 146 price pairs available to query.
 
 ## Querying Prices
 As stated before, developers can leverage two methods to query prices from Band's oracle: 
@@ -151,7 +151,7 @@ contract DemoOracle {
 
 ### Try it in Moonbase Alpha
 
-We've deployed a contract available in the Moonbase Alpha TestNet (at address `0x0D0dB701befcb7c2E22c27411543F774434534b3`), so you can easily check the information fed from Band Protocol's oracle. To do so you need the following interface contract:
+We've deployed a contract available in the Moonbase Alpha TestNet (at address `0xf15c870344c1c02f5939a5C4926b7cDb90dEc655`), so you can easily check the information fed from Band Protocol's oracle. To do so you need the following interface contract:
 
 ```sol
 pragma solidity 0.6.11;
@@ -169,6 +169,15 @@ With it, you will have to view functions available, very similar to our previous
  -  getPrice: provides the price feed for a single base/quote pair that is given as input to the function, that is, "BTC", "USD"
  -  getMultiPrices: provides the price feed for a multiple base/quote pairs that are given as input to the function, that is, ["BTC", "ETH", "ETH"], ["USD", "USD", "EUR"]
 
+For example, using [Remix](/integrations/remix/), we can easily query the `BTC/USD` price pair using this interface.
+
+After creating the file and compiling the contract, head to the "Deploy and Run Transactions" tab, enter the contract address (`0xf15c870344c1c02f5939a5C4926b7cDb90dEc655`) and click on "At Address". Make sure you have set the "Environment" to "Injected Web3" so you are connected to Moonbase Alpha. 
+
+![Band Protocol Remix deploy](/images/band/band-demo1.png)
+
+This will create an instance of the demo contract that you can interact with. Use the functions `getPrice()` and `getMultiPrices()` to query the data of the corresponding pair.
+
+![Band Protocol Remix check price](/images/band/band-demo2.png)
 
 ## BandChain.js Javascript Helper Library
 
@@ -227,7 +236,7 @@ queryData();
 
 When can execute this code with node, the following `dataQuery` output should look like this:
 
-![Band Protocol Moonbeam Diagram](/images/band/band-console.png)
+![Band Protocol JavaScript Library](/images/band/band-console.png)
 
 Note that compared to the request done via smart contracts, the result is given directly in the correct units.
 
