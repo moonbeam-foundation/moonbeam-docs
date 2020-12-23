@@ -1,4 +1,4 @@
 title: Ethereum
-hide: true
+hide: false
 arrange:
   - chainbridge.md
