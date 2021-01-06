@@ -89,7 +89,7 @@ Checkout the latest release.
 ```
 git checkout tags/$(git tag | tail -1)
 ```
-Get the lastest version of substrate.
+Get the latest version of substrate.
 ```
 curl https://getsubstrate.io -sSf | bash -s -- --fast
 ```
@@ -124,7 +124,7 @@ Copy the binary to the folder you created.
 cp ~/moonbeam/target/release/moonbase-alphanet /var/lib/moonbase-alpha/
 ```
 Create the systemd configuration file.
-- Update the `YOUR-NODE-NAME` (2 places) and base path if you chagned it. 
+- Update the `YOUR-NODE-NAME` (2 places) and base path if you changed it. 
 - Double check the binaries and spec files are in the proper paths as described below.
 - Name the file `/etc/systemd/system/moonbeam.service`
 ```
