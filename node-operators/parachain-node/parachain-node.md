@@ -9,7 +9,11 @@ description: How to run a Parachain node for the Moonbeam Network
 
 ## Introduction
 
-With the v5 release of Moonbeam, we now support multiple collators and rpc nodes.  We invite everyone to spin up a node and join the network.  Collation slots will be limited for now, but anyone can run a full node to connect to their own private RPC endpoint.  PureStake will be hosting the relay chain in PoA mode, and the instructions below explain how to run a Moonbeam parachain and connect it to the network.  
+With the v5 release of Moonbeam, we now support multiple collators and rpc nodes.  We invite everyone to spin up a node and join the Moonbase network.  Collation slots will be limited for now, but anyone can run a full node to connect to their own private RPC endpoint.  PureStake will be hosting the relay chain in PoA mode, and the instructions below explain how to run our parachain and connect it to the Moonbase network.  As development progresses, Kusama and then Polkadot will become the relay chains.  Here's how we will name these upcoming environments: 
+
+- Moonbase  <-> PureStake
+- Moonriver <-> Kusama
+- Moonbeam  <-> Polkadot
 
 This guide is targeted toward someone with experience running substrate based chains.  Running a parachain is similar to running a substrate node, with a few differences. A substrate parachain node will run two processes, one to sync the relay chain and one to sync the parachain.  As such, many things are doubled.  e.g. the data directory, the ports used, the log lines, etc.  
 
