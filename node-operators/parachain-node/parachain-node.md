@@ -11,9 +11,7 @@ description: How to run a Parachain node for the Moonbeam Network
 
 With the v5 release of Moonbeam, we now support multiple collators and rpc nodes.  We invite everyone to spin up a node and join the network.  Collation slots will be limited for now, but anyone can run a full node to connect to their own private RPC endpoint.  PureStake will be hosting the relay chain in PoA mode, and the instructions below explain how to run a Moonbeam parachain and connect it to the network.  
 
-This guide is targeted toward someone with experience running substrate based chains.  Running a parachain is similar to running a substrate node, with a few differences described below.  
-- A substrate parachain node will run two processes, one to sync the relay chain and one to sync the parachain.  
-- As such, many things are doubled.  e.g. the data directory, the ports used, the log lines, etc.  
+This guide is targeted toward someone with experience running substrate based chains.  Running a parachain is similar to running a substrate node, with a few differences. A substrate parachain node will run two processes, one to sync the relay chain and one to sync the parachain.  As such, many things are doubled.  e.g. the data directory, the ports used, the log lines, etc.  
 
 !!! note 
     Moonbase is still considered an Alphanet, and as such *will not* have 100% uptime.  We *will* be purging the parachain from time to time.  During development of your application, make sure you implement a method to quickly redeploy your contracts and accounts to a fresh parachain.  Join us on Twitter, Discord, or Telegram to be notified of upcoming purges. 
@@ -77,34 +75,34 @@ Below are the steps to compile the binary and run moonbeam as a systemd service.
 The following commands will build the latest release of the moonbeam parachain. 
 
 
-Clone the moonbeam repo
+Clone the moonbeam repo.
 ```
 cd ~
 git clone git@github.com:PureStake/moonbeam.git
 cd moonbeam
 ```
-View the latest release 
+View the latest release .
 ```
 git tag | tail -1
 ```
-Checkout the latest branch
+Checkout the latest release.
 ```
 git checkout tags/$(git tag | tail -1)
 ```
-Get the lastest version of substrate
+Get the lastest version of substrate.
 ```
 curl https://getsubstrate.io -sSf | bash -s -- --fast
 ```
-Run the init script
+Run the init script.
 ```
 ./scripts/init.sh
 ```
-Build the release 
+Build the release.
 ```
 cd ./node/parachain
 cargo build --release
 ```
-If needed, add Rust to your path
+If needed, add Rust to your path.
 ```
 source $HOME/.cargo/env
 ```
@@ -125,13 +123,13 @@ Copy the binary to the folder you created.
 ```
 cp ~/moonbeam/target/release/moonbase-alphanet /var/lib/moonbase-alpha/
 ```
-Create the systemd configuration file 
+Create the systemd configuration file.
 - Update the `YOUR-NODE-NAME` (2 places) and base path if you chagned it. 
-- Double check the binaries and spec files are in the proper paths as described below
-- name the file `/etc/systemd/system/moonbeam.service`
+- Double check the binaries and spec files are in the proper paths as described below.
+- Name the file `/etc/systemd/system/moonbeam.service`
 ```
 [Unit]
-Description="moonbase service as systemd service"
+Description="Moonbase alpha systemd service"
 After=network.target
 StartLimitIntervalSec=0
 
@@ -167,12 +165,12 @@ ExecStart=/var/lib/moonbase-alpha/moonbase-parachain \
 [Install]
 WantedBy=multi-user.target
 ```
-Register and start the service
+Register and start the service.
 ```
 systemctl enable moonbeam.service
 systemctl start moonbeam.service
 ```
-Verify the service is running 
+Verify the service is running.
 ```
 systemctl status moonbeam.service
 # and/or
