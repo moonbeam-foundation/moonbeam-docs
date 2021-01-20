@@ -7,7 +7,7 @@ description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereu
 ![Intro diagram](/images/integrations/integrations-polkadotjs-banner.png)
 
 ## Introduction
-With the [release of the v3 upgrade](https://www.purestake.com/news/moonbeam-network-upgrades-testnet-to-moonbase-alpha-v3) for the Moonbase Alpha TestNet, we have made significant updates to the underlying account system on Moonbeam, replacing the default Substrate-style accounts and keys with Ethereum-style accounts and keys.
+With the [release of the v3 upgrade](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/) for the Moonbase Alpha TestNet, we have made significant updates to the underlying account system on Moonbeam, replacing the default Substrate-style accounts and keys with Ethereum-style accounts and keys.
 
 On the previous configuration, a user (let's say Alice) can have an Ethereum-style address (H160 format) in a Substrate based chain. This address matches a private key, which can be used to sign transactions in the Ethereum side of the chain. Furthermore, the address is mapped into a storage slot inside the Substrate Balance pallet to a Substrate-style address (H256 format). However, Alice only knows the private key of the H160 address. Therefore, she is unable to send transactions with her H256 address and is limited only to do read-only operations through Substrate's API. As a consequence, Alice needs another H256 address matching a different private key to be able to operate in the Substrate side of the chain, which include, among others, staking, balances, and governance.
 
