@@ -1,21 +1,25 @@
 ---
 title: Docs Home
-description: Welcome to the documentation website for the Moonbeam smart contract platform, a parachain on Polkadot.
+description: Welcome to the documentation website for the Moonbeam smart contract platform, a parachain on Polkadot that is fully Ethereum compatible.
 ---
 
 # Welcome to Moonbeam
 
 ![Main Page Banner](/images/main-banner.png)
 
-This site provides documentation for Moonbeam, a smart contract parachain on the Polkadot network.  Here, you'll find both high-level and technical information for developers, collators, end users, and other Moonbeam network participants.
+This site provides documentation for Moonbeam, a smart contract parachain on the Polkadot network that is fully Ethereum Compatible.  Here, you'll find both high-level and technical information for developers, collators, end-users, and other Moonbeam network participants.
 
 This site will grow and be refined over time as Moonbeam is developed.  We welcome you to join the Moonbeam community and contribute to this site and to the project.
 
+---
 
 ## What is Moonbeam? 
+
 Moonbeam is a developer-oriented blockchain that strives to provide compatibility with the existing Ethereum developer toolchain and network.  It does this by providing a full EVM implementation, a Web3-compatible API, and bridges that connect Moonbeam to existing Ethereum networks.  This allows developers to deploy existing Solidity smart contracts and DApp frontends to Moonbeam with minimal changes.
 
 Moonbeam will also be a parachain on the Polkadot network. That means that it will get shared security from the Polkadot relay chain and will be able to integrate with other chains that are connected to Polkadot (once that functionality is available on Polkadot).
+
+---
 
 ## How to Get Started with Moonbeam
 
@@ -24,10 +28,45 @@ Moonbeam will also be a parachain on the Polkadot network. That means that it wi
 Currently, there are two ways you can start building on Moonbeam: 
 
  - Build your own Moonbeam instance as a [standalone node](/getting-started/local-node/setting-up-a-node/)
- - Connect to the [Moonbase Alpha TestNet]()
+ - [Connect](/getting-started/testnet/connect/) to the [Moonbase Alpha TestNet](/networks/testnet/)
+
+### Wallets
+
+Currently, we have tested Moonbeam with the following wallets:
+
+ - [MetaMask](/integrations/metamask.md)
+ - MathWallet (tutorial comming soon)
 
 
+However, any wallet that works with an Ethereum custom network should work with Moonbeam as well!
 
+### Tools
+
+Because of Moonbeam's Ethereum compatibility features, you can use the development tools you know and love:
+
+ - [Remix](/integrations/remix.md)
+ - [Truffle](/integrations/trufflebox/)
+ - HardHat (tutorial comming soon)
+ - [Web3.js](/integrations/jslibraries/web3js/)
+ - [Ethers.js](/integrations/jslibraries/etherjs/)
+
+ Want another Ethereum tool listed her? [Let us know!](https://discord.gg/PfpUATX)
+
+### Oracles
+
+ We've also a number of Oracles that can serve as data feed to your smart contracts:
+
+ - [Chainlink](/integrations/oracles/chainlink/)
+ - [Band Protocol](/integrations/oracles/band-protocol/)
+ - Razor Network (tutorial comming soon)
+
+### Bridges
+
+Currently, we have a fully functioning bridge implementation that connects Ethereum's Kovan TestNet and Moonbase Alpha:
+
+ - [ChainBridge](/integrations/bridges/ethereum/chainbridge/)
+
+---
 
 ## How to Engage With the Moonbeam Community  
 
