@@ -3,19 +3,33 @@ title: Docs Home
 description: Welcome to the documentation website for the Moonbeam smart contract platform, a parachain on Polkadot.
 ---
 
-#Welcome to Moonbeam
+# Welcome to Moonbeam
+
+![Main Page Banner](/images/main-banner.png)
 
 This site provides documentation for Moonbeam, a smart contract parachain on the Polkadot network.  Here, you'll find both high-level and technical information for developers, collators, end users, and other Moonbeam network participants.
 
 This site will grow and be refined over time as Moonbeam is developed.  We welcome you to join the Moonbeam community and contribute to this site and to the project.
 
 
-##What is Moonbeam? 
+## What is Moonbeam? 
 Moonbeam is a developer-oriented blockchain that strives to provide compatibility with the existing Ethereum developer toolchain and network.  It does this by providing a full EVM implementation, a Web3-compatible API, and bridges that connect Moonbeam to existing Ethereum networks.  This allows developers to deploy existing Solidity smart contracts and DApp frontends to Moonbeam with minimal changes.
 
 Moonbeam will also be a parachain on the Polkadot network. That means that it will get shared security from the Polkadot relay chain and will be able to integrate with other chains that are connected to Polkadot (once that functionality is available on Polkadot).
 
-##How to Engage With the Moonbeam Community  
+## How to Get Started with Moonbeam
+
+### Networks
+
+Currently, there are two ways you can start building on Moonbeam: 
+
+ - Build your own Moonbeam instance as a [standalone node](/getting-started/local-node/setting-up-a-node/)
+ - Connect to the [Moonbase Alpha TestNet]()
+
+
+
+
+## How to Engage With the Moonbeam Community  
 
 ### :fontawesome-brands-discord:  Discord  
 Instructions for our TestNet and other development-focused conversation is found on our [Discord channel](https://discord.gg/PfpUATX).
@@ -35,5 +49,5 @@ For video-tutorials and related content, subscribe to our YouTube channel [here]
 ### :fontawesome-solid-envelope:  Newsletter  
 We send a monthly newsletter with project updates that you can sign up for [here](https://moonbeam.network/newsletter/).
 
-##About This Site
+## About This Site
 This site is generated using [mkdocs](https://www.mkdocs.org/) and is based on content in the moonbeam-docs repo, which can be found [on :fontawesome-brands-github: GitHub](https://github.com/PureStake/moonbeam-docs).
