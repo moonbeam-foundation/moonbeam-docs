@@ -31,7 +31,7 @@ Any Ethereum wallet should be able to generate a valid address for Moonbeam (for
 
 ### WSS DNS
 
-For WebSocket connections, you can use the following RPC DNS:
+For WebSocket connections, you can use the following DNS:
 
 ```
 wss://wss.testnet.moonbeam.network

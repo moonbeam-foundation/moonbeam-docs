@@ -1,15 +1,15 @@
 ---
-title: Parachain Node
-description: How to run a Parachain node for the Moonbeam Network
+title: Collator
+description: How to run a full Parachain node for the Moonbeam Network to have your own RPC Endpoint
 ---
 
-# Run a Parachain Node on Moonbeam
+# Run a Full Node on Moonbeam
 
-(cool image) 
+![Full Node Moonbeam Banner](/images/fullnode/fullnode-banner.png)
 
 ## Introduction
 
-With the v5 release of Moonbeam, we now support multiple collators and rpc nodes.  We invite everyone to spin up a node and join the Moonbase network.  Collation slots will be limited for now, but anyone can run a full node to connect to their own private RPC endpoint.  PureStake will be hosting the relay chain in PoA mode, and the instructions below explain how to run our parachain and connect it to the Moonbase network.  As development progresses, Kusama and then Polkadot will become the relay chains.  Here's how we will name these upcoming environments: 
+With the {{ networks.moonbase.version }} release of Moonbeam, you can now have your own full node to access its RPC endpoints.  We invite everyone to spin up a node and join the Moonbase network.  Collation slots will be limited for now, but anyone can run a full node to connect to their own private RPC endpoint.  PureStake will be hosting the relay chain in PoA mode, and the instructions below explain how to run our parachain and connect it to the Moonbase network.  As development progresses, Kusama and then Polkadot will become the relay chains.  Here's how we will name these upcoming environments: 
 
 - Moonbase  <-> PureStake
 - Moonriver <-> Kusama

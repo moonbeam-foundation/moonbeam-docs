@@ -1,0 +1,14 @@
+networks:
+   moonbase:
+      version: v5
+      parachain_docker_sha: sha-34ba9713
+   relay_chain:
+      p2p: 30333
+      rpc: 9933
+      ws: 9944
+      prometheus: 9615
+   parachain:
+      p2p: 30334
+      rpc: 9934
+      ws: 9945
+      prometheus: 9616
