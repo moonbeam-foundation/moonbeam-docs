@@ -22,12 +22,12 @@ In our TestNet, the relay chain is hosted and ran by PureStake. But as developme
 This guide is targeted toward someone with experience running [Substrate](https://substrate.dev/) based chains.  Running a parachain is similar to running a Substrate node, with a few differences. A Substrate parachain node will run two processes, one to sync the relay chain and one to sync the parachain.  As such, many things are doubled, for example, the data directory, the ports used, the log lines, among others.
 
 !!! note 
-    Moonbase is still considered an Alphanet, and as such *will not* have 100% uptime.  We *will* be purging the parachain from time to time.  During development of your application, make sure you implement a method to quickly redeploy your contracts and accounts to a fresh parachain.  We will announce when a chain purge will take place via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
+    Moonbase is still considered an Alphanet, and as such *will not* have 100% uptime.  We *will* be purging the parachain from time to time. During the development of your application, make sure you implement a method to redeploy your contracts and accounts to a fresh parachain quickly. We will announce when a chain purge will take place via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
 
 
 ## Requirements
 
-The minimum specs recommended for a full node is shown in the following table. For our Kusama and Polkadot MainNet deployments, disks requirements will be higher as the network grows.
+The minimum specs recommended for a full node is shown in the following table. For our Kusama and Polkadot MainNet deployments, disk requirements will be higher as the network grows.
 
 | Component  |   |                     Requirement                          |
 |:----------:|:-:|:---------------------------------------------------------|
@@ -40,8 +40,7 @@ The minimum specs recommended for a full node is shown in the following table. F
 
 As stated before, the parachain node will listen on multiple ports. The default Substrate ports are used in the relay chain, while the parachain will listen on the next higher port.
 
-
-TODO THEY DONT NEED TO OPEN RPC WS PROMETHEUS TO THE INTERNET (EXTERNALLY) In general
+The only ports that need to be open for incoming traffic are those designated  for P2P
 
 ### Default ports for relay chain
 
@@ -64,19 +63,17 @@ TODO THEY DONT NEED TO OPEN RPC WS PROMETHEUS TO THE INTERNET (EXTERNALLY) In ge
 
 ## Installation Instructions - Docker
 
-A Moonbase Alpha full node can be spun up quickly using Docker. For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/). At the time of writing the Docker version used was 19.03.13.
+A Moonbase Alpha full node can be spun up quickly using Docker. For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/). At the time of writing, the Docker version used was 19.03.13.
 
 First, we need to create a local directory to store the chain data:
 
 ```
 mkdir moonbase-alpha   
 ```
-Now we can simply execute the docker run command. Note that you have to:
+Now we can execute the docker run command. Note that you have to:
 
   - Replace `YOUR-NODE-NAME` in two different places
-  - Replace `CHAIN-SPEC` for the specficiation file key associated with the network you want to connect to (for example, _alphanet_ to connect your full node to the Moonbase Alpha TestNet)
-
-TODO -> this is StageNet, needs update to TestNet
+  - Replace `CHAIN-SPEC` for the specification file key associated with the network you want to connect to (for example, _alphanet_ to connect your full node to the Moonbase Alpha TestNet)
 
 ```
 docker run -d -p 30333:30333 -p 30334:30334 -v moonbase-alpha:/data/ \
@@ -94,7 +91,7 @@ moonbase-alpha/moonbase-alphanet \
  You can verify the docker image with the following checksum `{{ networks.moonbase.parachain_docker_sha }}`.
 
 !!! note 
-    The checksum value will change from time to time. We will attempt to keep this documentation up to date but it may not always be.  If you see logs about a mismatched sha, contact us via our [Discord channel](https://discord.gg/PfpUATX) for the latest sha to use.
+    The checksum value will change from time to time. We will attempt to keep this documentation up to date, but it may not always be.  If you see logs about a mismatched sha, contact us via our [Discord channel](https://discord.gg/PfpUATX) for the latest `SHA` to use.
 
 If you want to expose WS or RPC ports, enable those on the Docker run command line, for example:
 
@@ -104,7 +101,6 @@ docker run -d -p 30333:30333 -p 30334:30334 -p 9934:9934 -p 9945:9945 #rest of c
 
 TODO -> Screenshot here
 
-
 ## Installation Instructions - Binary
 
 In this section, we'll go through the process of compiling the binary and running a Moonbeam full node as a systemd service. The following steps were tested on an Ubuntu 18.04 installation. Moonbase Alpha may work with other flavors of Linux, but Ubuntu is currently the only tested version.  
@@ -113,23 +109,17 @@ In this section, we'll go through the process of compiling the binary and runnin
 
 The following commands will build the latest release of the Moonbeam parachain. 
 
-First let's start by cloning the moonbeam repo.
+First, let's start by cloning the moonbeam repo.
 ```
 git clone https://github.com/PureStake/moonbeam
 cd moonbeam
 ```
 
----------------------
-TODO> Is this necessary?
-View the latest release .
-```
-git tag | tail -1
-```
-Checkout the latest release.
+Let's check out the latest release:
+
 ```
 git checkout tags/$(git tag | tail -1)
 ```
----------------------
 
 Next, install Substrate and all its prerequisites (including rust), by executing:
 
@@ -160,7 +150,7 @@ If a _cargo not found error_ shows up in the terminal, manually add Rust to your
 
 ### Running the Systemd Service
 
-The following commands will setup everything regarding running the service.
+The following commands will set up everything regarding running the service.
 
 First, let's create a service account to run the service:
 
@@ -185,9 +175,9 @@ cp ./moonbeam/target/release/moonbase-alphanet ./moonbase-alpha/
 The next step is to create the systemd configuration file. Note that you have to:
 
   - Replace `YOUR-NODE-NAME` in two different places
-  - TODO ADD CHAINSPEC
+  - Replace `CHAIN-SPEC` for the specification file key associated with the network you want to connect to (for example, _alphanet_ to connect your full node to the Moonbase Alpha TestNet)
+  - Replace `FULL-PATH-HERE` for the path to the folder from the root directory. Double check that the binary is in the proper path as described below (_ExecStart_)
   - Double check the base path if you've used a different directory 
-  - Double check that the binary is in the proper path as described below (_ExecStart_)
   - Name the file `/etc/systemd/system/moonbeam.service`
 
 ```
@@ -204,7 +194,7 @@ User=moonbase_service
 SyslogIdentifier=moonbase
 SyslogFacility=local7
 KillSignal=SIGHUP
-ExecStart=moonbase-alpha/moonbase-parachain \ --< TODO!
+ExecStart=/FULL-PATH-HERE/moonbase-alpha/moonbase-parachain \
      --parachain-id 1000 \
      --no-telemetry \
      --port 30334 \
@@ -248,7 +238,7 @@ TODO -> Screenshot here
 
 ## Telemetry Exporter
 
-Moonbeam will run a telemetry server which collects Prometheus metrics from all the Moonbeam parachain nodes on the network. Running this will be a great help to us during our development phase.  
+Moonbeam will run a telemetry server that collects Prometheus metrics from all the Moonbeam parachain nodes on the network. Running this will be a great help to us during our development phase.  
 
 The metrics exporter can run either as a kubernetes sidecar, or as a local binary if you are running a VM. It will push data out to our servers, so you do not have to enable any incoming ports for this service.
 
@@ -279,7 +269,7 @@ TODO -> Screenshot here
 
 ### Mismatched SHA
 
-The Moonbase Alpha TestNet is often upgraded. Consequently, you may see a mismatched SHA log line and have your node stall. This typically means you are running an older version and will need to upgrade.
+The Moonbase Alpha TestNet is often upgraded. Consequently, you may see a mismatched `SHA` log line and have your node stall. This typically means you are running an older version and will need to upgrade.
 
 TODO -> Screenshot here
 (image - Mismatched_Sha.png) still need to take it 

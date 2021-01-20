@@ -1,7 +1,7 @@
 networks:
    moonbase:
       version: v5
-      parachain_docker_sha: sha-34ba9713
+      parachain_docker_sha: sha-e57bc036
    relay_chain:
       p2p: 30333
       rpc: 9933
