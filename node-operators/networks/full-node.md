@@ -11,13 +11,13 @@ description: How to run a full Parachain node for the Moonbeam Network to have y
 
 With the release of Moonbase Alpha v5, you can spin up a full node that connects to the Moonbase Alpha TestNet, syncs with a bootnode, and provides local access your own RPC endpoints. 
 
-In our TestNet, the relay chain is hosted and ran by PureStake. But as development progresses, there will be deployments as well in Kusama and then Polkadot.  Here's how we will name these upcoming environments and their corresponding [chain specification files](https://substrate.dev/docs/en/knowledgebase/integrate/chain-spec) name: 
+In our TestNet, the relay chain is hosted and run by PureStake. But as development progresses, there will be deployments as well in Kusama and then Polkadot.  Here's how we will name these upcoming environments and their corresponding [chain specification files](https://substrate.dev/docs/en/knowledgebase/integrate/chain-spec) name: 
 
 |      Network      |   |     Hosted By    |   |   Chain Name  |
 |:-----------------:|:-:|:----------------:|:-:|:-------------:|
 |   Moonbase Alpha  |   |     PureStake    |   |    alphanet   |
 |      Moonriver    |   |       Kusama     |   |_not available_|
-|      Moonbase     |   |      Polkadot    |   |_not available_|
+|      Moonbeam     |   |      Polkadot    |   |_not available_|
 
 This guide is targeted toward someone with experience running [Substrate](https://substrate.dev/) based chains.  Running a parachain is similar to running a Substrate node, with a few differences. A Substrate parachain node will run two processes, one to sync the relay chain and one to sync the parachain.  As such, many things are doubled, for example, the database directory, the ports used, the log lines, among others.
 
@@ -37,7 +37,7 @@ The minimum specs recommended for a full node is shown in the following table. F
 |**Firewall**|   | P2P port must be open to incoming traffic:<br>&nbsp; &nbsp; - Source: Any<br>&nbsp; &nbsp; - Destination: 30333, 30334 TCP             |
 
 !!! note
-    If you don't see an `Imported` message (without `[Relaychain]` tag)when running the full node, you might need to double-check your port configuration.
+    If you don't see an `Imported` message (without the `[Relaychain]` tag) when running the full node, you might need to double-check your port configuration.
 
 ## Running Ports
 
@@ -156,7 +156,7 @@ chmod 0755 {{ networks.moonbase.node_directory }}
 chown moonbase_service {{ networks.moonbase.node_directory }}
 ```
 
-Now, we need to copy the binary we built in the last section to the folder you created:
+Now, we need to copy the binary we built in the last section to the created folder:
 
 ```
 cp ./target/release/moonbase-alphanet {{ networks.moonbase.node_directory }}
@@ -236,11 +236,11 @@ You will see logs from both the relay chain as well as the parachain.  The relay
 
 ### P2P Ports Not Open
 
-If you don't seen an `Imported` message (without `[Relaychain]` tag), you need to check the P2P port configuration. P2P port must be open to incoming traffic.
+If you don't seen an `Imported` message (without the `[Relaychain]` tag), you need to check the P2P port configuration. P2P port must be open to incoming traffic.
 
 ### In Sync
 
-Both chains must be in sync at all times, and you should see either `Imported` or `Idle` messages and have connected peers. 
+Both chains must be in sync at all times, and you should see either `Imported` or `Idle` messages and have connected peers.
 
 ### Genesis Mismatching
 
