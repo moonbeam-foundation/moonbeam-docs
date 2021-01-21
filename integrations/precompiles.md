@@ -50,7 +50,7 @@ The main function of this precompile is to verify the signature of a message. In
 
 Let's jump into a small example to showcase how we can leverage this precompiled function. To do so we need to retrieve the transaction's signature values (v, r, s). To do so, we'll sign and retrieved the signed message were these values are as well:
 
-```js
+```solidity
 const Web3 = require('web3');
 
 // Provider
@@ -191,7 +191,7 @@ This fifth precompile calculates the remainder when an integer _b_ (base) is rai
 
 The Solidity compiler does not support it, so it needs to be called with inline assembly. The [following code](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x05-bigmodexp-base-exp-mod) was simplified to show the functionality of this precompile. 
 
-```
+```solidity
 pragma solidity ^0.7.0;
 contract ModularCheck {
 
