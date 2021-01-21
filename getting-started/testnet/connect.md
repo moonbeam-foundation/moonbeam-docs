@@ -10,3 +10,6 @@ Moonbase Alpha has two endpoints available for users to connect to it: one for H
 
 --8<-- "testnet/connect.md"
 
+## Get Tokens
+
+To start building on Moonbase Alpha, you can get DEV tokens from our [faucet](/getting-started/testnet/faucet/).
