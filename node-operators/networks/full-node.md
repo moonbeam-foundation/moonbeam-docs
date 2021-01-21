@@ -1,0 +1,260 @@
+---
+title: Full Node
+description: How to run a full Parachain node for the Moonbeam Network to have your own RPC Endpoint
+---
+
+# Run a Full Node on Moonbeam
+
+![Full Node Moonbeam Banner](/images/fullnode/fullnode-banner.png)
+
+## Introduction
+
+With the release of Moonbase Alpha v5, you can spin up a full node that connects to the Moonbase Alpha TestNet, syncs with a bootnode, and provides local access your own RPC endpoints. 
+
+In our TestNet, the relay chain is hosted and ran by PureStake. But as development progresses, there will be deployments as well in Kusama and then Polkadot.  Here's how we will name these upcoming environments and their corresponding [chain specification files](https://substrate.dev/docs/en/knowledgebase/integrate/chain-spec) name: 
+
+|      Network      |   |     Hosted By    |   |   Chain Name  |
+|:-----------------:|:-:|:----------------:|:-:|:-------------:|
+|   Moonbase Alpha  |   |     PureStake    |   |    alphanet   |
+|      Moonriver    |   |       Kusama     |   |_not available_|
+|      Moonbase     |   |      Polkadot    |   |_not available_|
+
+This guide is targeted toward someone with experience running [Substrate](https://substrate.dev/) based chains.  Running a parachain is similar to running a Substrate node, with a few differences. A Substrate parachain node will run two processes, one to sync the relay chain and one to sync the parachain.  As such, many things are doubled, for example, the database directory, the ports used, the log lines, among others.
+
+!!! note 
+    Moonbase is still considered an Alphanet, and as such *will not* have 100% uptime.  We *will* be purging the parachain from time to time. During the development of your application, make sure you implement a method to redeploy your contracts and accounts to a fresh parachain quickly. We will announce when a chain purge will take place via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
+
+
+## Requirements
+
+The minimum specs recommended for a full node is shown in the following table. For our Kusama and Polkadot MainNet deployments, disk requirements will be higher as the network grows.
+
+| Component  |   |                     Requirement                          |
+|:----------:|:-:|:---------------------------------------------------------|
+|   **CPU**  |   | 8 Cores (early development phase - not optimized yet)    |
+|   **RAM**  |   | 16 GB (early development phase - not optimized yet)      |
+|   **SSD**  |   | 50 GB (to start in our TestNet)                          |
+|**Firewall**|   | P2P port must be open to incoming traffic:<br>&nbsp; &nbsp; - Source: Any<br>&nbsp; &nbsp; - Destination: 30333, 30334 TCP             |
+
+!!! note
+    If you don't see an `Imported` message (without `[Relaychain]` tag)when running the full node, you might need to double-check your port configuration.
+
+## Running Ports
+
+As stated before, the parachain node will listen on multiple ports. The default Substrate ports are used in the parachain, while the relay chain will listen on the next higher port.
+
+The only ports that need to be open for incoming traffic are those designated for P2P.
+
+### Default ports for a parachain full-node
+
+|  Description |   |                Port                  |
+|:------------:|:-:|:------------------------------------:|
+|    **P2P**   |   | {{ networks.parachain.p2p }} (TCP)   |
+|    **RPC**   |   | {{ networks.parachain.rpc }}         |
+|    **WS**    |   | {{ networks.parachain.ws }}          |
+|**Prometheus**|   | {{ networks.parachain.prometheus }}  |
+
+### Default ports of embedded relay chain
+
+|  Description |   |                Port                  |
+|:------------:|:-:|:------------------------------------:|
+|    **P2P**   |   | {{ networks.relay_chain.p2p }} (TCP) |
+|    **RPC**   |   | {{ networks.relay_chain.rpc }}       |
+|    **WS**    |   | {{ networks.relay_chain.ws }}        |
+|**Prometheus**|   | {{ networks.relay_chain.prometheus }}|
+ 
+## Installation Instructions - Docker
+
+A Moonbase Alpha full node can be spun up quickly using Docker. For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/). At the time of writing, the Docker version used was 19.03.6.
+
+First, we need to create a local directory to store the chain data:
+
+```
+mkdir {{ networks.moonbase.node_directory }}   
+```
+
+Now we can execute the docker run command. Note that you have to replace `YOUR-NODE-NAME` in two different places.
+
+```
+docker run -p {{ networks.relay_chain.p2p }}:{{ networks.relay_chain.p2p }} -p {{ networks.parachain.p2p }}:{{ networks.parachain.p2p }} -v "{{ networks.moonbase.node_directory }}:/data" \
+purestake/moonbase-parachain-testnet:{{ networks.moonbase.parachain_docker_tag }} \
+/moonbase-alphanet/moonbase-alphanet \
+    --base-path=/data \
+    --chain alphanet \
+    --name="YOUR-NODE-NAME" \
+    --execution wasm \
+    --wasm-execution compiled \
+    -- \
+    --name="YOUR-NODE-NAME (Embedded Relay)"
+```
+
+If you want to expose WS or RPC ports, enable those on the Docker run command line, for example:
+
+```
+docker run -p {{ networks.relay_chain.p2p }}:{{ networks.relay_chain.p2p }} -p {{ networks.parachain.p2p }}:{{ networks.parachain.p2p }} -p {{ networks.parachain.rpc }}:{{ networks.parachain.rpc }} -p {{ networks.parachain.ws }}:{{ networks.parachain.ws }} #rest of code goes here 
+```
+
+## Installation Instructions - Binary
+
+In this section, we'll go through the process of compiling the binary and running a Moonbeam full node as a systemd service. The following steps were tested on an Ubuntu 18.04 installation. Moonbase Alpha may work with other flavors of Linux, but Ubuntu is currently the only tested version.  
+
+### Compiling the Binary 
+
+The following commands will build the latest release of the Moonbeam parachain. 
+
+First, let's start by cloning the moonbeam repo.
+```
+git clone https://github.com/PureStake/moonbeam
+cd moonbeam
+```
+
+Let's check out the latest release:
+
+```
+git checkout tags/$(git tag | tail -1)
+```
+
+Next, install Substrate and all its prerequisites (including Rust), by executing:
+
+```
+--8<-- 'setting-up-local/substrate.md'
+```
+
+Now, we need to make some checks (correct version of Rust nigthly) with the initialization script:
+
+```
+--8<-- 'setting-up-local/initscript.md'
+```
+
+Lastly, let's build parachain binary:
+
+```
+cargo build --release
+```
+
+If a _cargo not found error_ shows up in the terminal, manually add Rust to your system path (or restart your system):
+
+```
+--8<-- 'setting-up-local/cargoerror.md'
+```
+
+### Running the Systemd Service
+
+The following commands will set up everything regarding running the service.
+
+First, let's create a service account to run the service:
+
+```
+adduser moonbase_service --system --no-create-home
+```
+
+Next, we need to create a directory to store the binary and data, and we'll also set the necessary permissions:
+
+```
+mkdir {{ networks.moonbase.node_directory }}
+chmod 0755 {{ networks.moonbase.node_directory }}
+chown moonbase_service {{ networks.moonbase.node_directory }}
+```
+
+Now, we need to copy the binary we built in the last section to the folder you created:
+
+```
+cp ./target/release/moonbase-alphanet {{ networks.moonbase.node_directory }}
+```
+
+The next step is to create the systemd configuration file. Note that you have to:
+
+  - Replace `YOUR-NODE-NAME` in two different places
+  - Double-check that the binary is in the proper path as described below (_ExecStart_)
+  - Double-check the base path if you've used a different directory 
+  - Name the file `/etc/systemd/system/moonbeam.service`
+
+```
+[Unit]
+Description="Moonbase Alpha systemd service"
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=10
+User=moonbase_service
+SyslogIdentifier=moonbase
+SyslogFacility=local7
+KillSignal=SIGHUP
+ExecStart={{ networks.moonbase.node_directory }}/moonbase-alphanet \
+     --parachain-id 1000 \
+     --no-telemetry \
+     --port {{ networks.parachain.p2p }} \
+     --rpc-port {{ networks.parachain.rpc }} \
+     --ws-port {{ networks.parachain.ws }} \
+     --pruning=archive \
+     --unsafe-rpc-external \
+     --unsafe-ws-external \
+     --rpc-methods=Safe \
+     --rpc-cors all \
+     --log rpc=info \
+     --base-path {{ networks.moonbase.node_directory }} \
+     --chain alphanet \
+     --name "YOUR-NODE-NAME" \
+     -- \
+     --port {{ networks.relay_chain.p2p }} \
+     --rpc-port {{ networks.relay_chain.rpc }} \
+     --ws-port {{ networks.relay_chain.ws }} \
+     --pruning=archive \
+     --name="YOUR-NODE-NAME (Embedded Relay)"
+     
+[Install]
+WantedBy=multi-user.target
+```
+We are almost there! We need to register and start the service by running:
+
+```
+systemctl enable moonbeam.service
+systemctl start moonbeam.service
+```
+
+And lastly, verify the service is running:
+
+```
+systemctl status moonbeam.service
+# and/or
+journalctl -f -u moonbeam.service
+```
+
+## Telemetry
+
+_Comming soon_
+
+## Logs and Troubleshooting
+
+You will see logs from both the relay chain as well as the parachain.  The relay chain will be prefixed by `[Relaychain]` while the parachain has no prefix.
+
+!!! note 
+    There is currently a [bug in cumulus](https://github.com/paritytech/cumulus/issues/257) regarding the naming issue.
+
+### P2P Ports Not Open
+
+If you don't seen an `Imported` message (without `[Relaychain]` tag), you need to check the P2P port configuration. P2P port must be open to incoming traffic.
+
+### In Sync
+
+Both chains must be in sync at all times, and you should see either `Imported` or `Idle` messages and have connected peers. 
+
+### Genesis Mismatching
+
+The Moonbase Alpha TestNet is often upgraded. Consequently, you may see the following message:
+
+```
+DATE [Relaychain] Bootnode with peer id `ID` is on a different 
+chain (our genesis: GENESIS_ID theirs: OTHER_GENESIS_ID)
+``` 
+
+This typically means you are running an older version and will need to upgrade.
+
+We announce the upgrades (and corresponding chain purge) via our [Discord channel](https://discord.gg/PfpUATX), at least 24 hours in advance.
+
+## Contact Us
+
+If you have any feedback regarding running a full node or any other Moonbeam related topic, feel free to reach out through our official development [Discord server](https://discord.com/invite/PfpUATX).

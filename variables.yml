@@ -1,0 +1,23 @@
+networks:
+   moonbase:
+      version: v5
+      parachain_docker_sha: sha-02fbb7e2
+      parachain_docker_tag: v0.5.0
+      node_directory: /var/lib/alphanet-data
+      bridge:
+         bridge_address: 0x817C46FD169Fddb07cbA40416F24616408D9C765
+         ERC20_handler: 0xC8364d561CAf9E35405fAc9965a84AcC70A90D1d
+         ERC721_handler: 0xC15C2256a774e93545057A85AB2433585F1376Dd
+         ERC20S: 0x9E7080EC3fBFa63580B062dCa6D4B7547A315e2c
+         ERC721E: 0xBC1D3BBA3B1E4b4d3bE04E413C4c5FaD4Bd05bC9
+         ERC721M: 0x29c6633934eb5D941ED5D9247761Bc5E5eAb078b
+   relay_chain:
+      p2p: 30334
+      rpc: 9934
+      ws: 9945
+      prometheus: 9616
+   parachain:
+      p2p: 30333
+      rpc: 9933
+      ws: 9944
+      prometheus: 9615

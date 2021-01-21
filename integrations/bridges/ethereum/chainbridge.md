@@ -97,7 +97,7 @@ To try the bridge with this sample ERC-20 token, we have to do the following ste
  - To send back the tokens we need to approve the handler contract of the target Chain as a spender
  - Use the modified bridge contract in the target Chain to send tokens
 
- !!! note
+!!! note
     Remember that tokens will be transferred only if the handler contract has enough allowance to spend tokens on behalf of the owner. If the process fails, check the allowance.
 
 Let's send some ERC20S tokens from Moonbase Alpha to Kovan. For that, we'll use [Remix](/integrations/remix/). First, we can use the following interface to interact with this contract and mint the tokens:

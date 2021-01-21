@@ -24,13 +24,13 @@ We start by cloning a specific tag of the Moonbeam repo that you can find here:
 --8<-- 'setting-up-local/clone.md'
 ```
 
-Next, install Substrate and all its prerequisites (including rust), by executing:
+Next, install Substrate and all its prerequisites (including Rust), by executing:
 
 ```
 --8<-- 'setting-up-local/substrate.md'
 ```
 
-Now, lets make some checks (correct version of rust nigthly) with the initialization script:
+Now, lets make some checks (correct version of Rust nigthly) with the initialization script:
 
 ```
 --8<-- 'setting-up-local/initscript.md'
