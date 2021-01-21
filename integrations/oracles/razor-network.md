@@ -54,7 +54,10 @@ interface Razor {
 }
 ```
 
- As an example, we will create a contract in which we will need to send in the job IDs to the function `addFeed()` and then, the function `findKing()` will find out which job ID has the highest price out of the job IDs sent to the contract
+We can use the following `Demo` script. It provides two functions:
+
+ -  fetchPrice: a _view_ function that queries a single job ID. For example, to fetch the price of `ETH` in `USD`, we will need to send in the job ID `1`
+ -  fetchMultiPrices: a _view_ function that queries multiple job IDs. For example, to fetch the price of `ETH` and `BTC` in `USD`, we will need to send in the job IDs `[1,2]`
 
 ```sol
 pragma solidity 0.6.11;
@@ -65,53 +68,25 @@ interface Razor {
     function getJob(uint256 id) external view returns(string memory url, string memory selector, string memory name, bool repeat, uint256 result);
 }
 
-contract King {
+contract Demo {
     Razor public razor;
-    uint256[] public jobs;
-    uint256 public numJobs = 0;
-    uint256 public king = 0;
-    uint256[] public lastResults;
 
     constructor() public {
         razor = Razor(0xD1843DE116930b5652c8371EfB3Ae72B629C10ab);
                 //Moonbase Alpha 0xD1843DE116930b5652c8371EfB3Ae72B629C10ab
     }
 
-    function addFeed(uint256 jobId) public {
-        jobs.push(jobId);
-        numJobs = numJobs + 1;
-        lastResults.push(0);
+    function fetchPrice(uint256 jobID) external view returns (uint256){
+        return razor.getResult(jobID);
     }
 
-    function findKing() public {
-        uint256 highestGain = 0;
-        uint256 highestGainer = 0;
-        uint256 leastLoss = 0;
-        uint256 leastLoser = 0;
-        for(uint256 i = 0; i < jobs.length; i++) {
-
-            uint256 price = razor.getResult(jobs[i]); //fetching the prices of each job ID from the bridge contract deployed on Moonbase Alpha
-
-            if(price > lastResults[i]) {
-                if(price - lastResults[i] > highestGain) {
-                    highestGain = price - lastResults[i];
-                    highestGainer = jobs[i];
-                }
-            } else if(price < lastResults[i]) {
-                    if(lastResults[i] - price < leastLoss) {
-                        leastLoss = lastResults[i] - price;
-                        leastLoser = jobs[i];
-                    }
-                }
-
-            lastResults[i] = price;
+    function fetchMultiPrices(uint256[] memory jobs) external view returns(uint256[] memory){
+        uint256[] memory prices = new uint256[](jobs.length);
+        for(uint256 i=0;i<jobs.length;i++){
+            prices.push(razor.getResult(jobs[i]));
         }
-        if (highestGain > 0) {
-            king = highestGainer;
-        } else if (leastLoss > 0) {
-            king = leastLoser;
-        }
-    }
+        return prices;
+    } 
 }
 ```
 
@@ -120,11 +95,11 @@ Make sure to set the Razor address to `0xD1843DE116930b5652c8371EfB3Ae72B629C10a
 For example, to deploy using Truffle, set up the migration by creating a new file called 2_deploy.js in the migrations director and paste the following code. This will tell truffle how to deploy the contract on the network. 
 
 ```
-var King = artifacts.require('./King.sol')
+var King = artifacts.require('./Demo.sol')
 module.exports = async function (deployer) {
 
 deployer.then(async () => {
-  await deployer.deploy(King)
+  await deployer.deploy(Demo)
 })
 }
 ```
