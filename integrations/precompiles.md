@@ -6,9 +6,12 @@ description:  Learn how to use precompile contracts on Moonbase Alpha, the Moonb
 # Precompiled Contracts on Moonbase Alpha
 
 ## Introduction
-Another feature added with the [release of Moonbase Alpha v2](http://www.purestake.com/blog/new-in-moonbase-alpha-v2-contract-events-and-pub-sub-capabilities/), is the inclusion of some of the [precompiled contracts](https://docs.klaytn.com/smart-contract/precompiled-contracts) that are natively available on Ethereum. Currently, the first four precompiles are included, which are: ecrecover, sha256, ripemd-160 and the identity function.
 
-In this guide, we will show how to use and/or verify these four precompiles.
+Another feature added with the [release of Moonbase Alpha v2](http://www.purestake.com/blog/new-in-moonbase-alpha-v2-contract-events-and-pub-sub-capabilities/), is the inclusion of some of the [precompiled contracts](https://docs.klaytn.com/smart-contract/precompiled-contracts) that are natively available on Ethereum. 
+
+Currently, the five precompiles are included, which are: ecrecover, sha256, ripemd-160, the identity function, and the modular exponentiation.
+
+In this guide, we will show how to use and/or verify these precompiles.
 
 ## Checking Prerequisites
 
@@ -42,7 +45,7 @@ To verify the installed version of Web3, you can use the `ls` command:
 npm ls web3
 ```
 
-As of the writing of this guide, the version used was 1.3.0. 
+As of the writing of this guide, the version used was 1.3.0. We will be also using [Remix](/integrations/remix.md), connecting it to the Moonbase Alpha TestNet via [MetaMask](/integrations/metamask.md).
 
 ## Verify Signatures with ECRECOVER
 
@@ -193,6 +196,7 @@ The Solidity compiler does not support it, so it needs to be called with inline 
 
 ```solidity
 pragma solidity ^0.7.0;
+
 contract ModularCheck {
 
     uint public checkResult;
