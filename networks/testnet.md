@@ -80,7 +80,7 @@ This is the first TestNet for Moonbeam, so there are some limitations.
 
 Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts) are yet to be included in this release. You can check a list of the precompiles supported [here](/integrations/precompiles). However, all built-in functions are available.
 
-Since the release of Moonbase Alpha v5, the maximum gas limit per block has been set to 2599000. This value is not final and we expect to increase it in future releases.
+Since the release of Moonbase Alpha v5, the maximum gas limit per block has been set to 6000000, with a maximum gas limit per transaction of 5199000. These values are not final and we expect to increase it in future releases.
 
 Users only have access to the Moonbeam parachain. In future networks, we will add access to the relay chain so users can test transferring tokens.
 
