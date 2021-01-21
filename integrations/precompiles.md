@@ -1,6 +1,6 @@
 ---
 title: Precompiled Contracts
-description:  Learn how to use precompile contracts on Moonbase Alpha, the Moonbeam Network TestNet that is unique for its complete Ethereum compatibility. 
+description:  Learn how to use precompiled contracts on Moonbase Alpha, the Moonbeam Network TestNet that is unique for its complete Ethereum compatibility. 
 ---
 
 # Precompiled Contracts on Moonbase Alpha
@@ -33,7 +33,7 @@ node -v
 npm -v
 ```
 
-As of the writing of this guide, versions used were 15.2.1 and 7.0.8, respectively.. Also, we need to install the Web3 package by executing:
+As of the writing of this guide, versions used were 15.2.1 and 7.0.8, respectively. Also, we need to install the Web3 package by executing:
 
 ```
 npm install --save web3
@@ -51,7 +51,7 @@ As of the writing of this guide, the version used was 1.3.0. We will be also usi
 
 The main function of this precompile is to verify the signature of a message. In general terms, you feed `ecrecover` the transaction's signature values, and it returns an address. The signature is verified if the address returned is the same as the public address who sent the transaction.
 
-Let's jump into a small example to showcase how we can leverage this precompiled function. To do so we need to retrieve the transaction's signature values (v, r, s). To do so, we'll sign and retrieved the signed message were these values are as well:
+Let's jump into a small example to showcase how we can leverage this precompiled function. To do so we need to retrieve the transaction's signature values (v, r, s). Therefore, we'll sign and retrieved the signed message were these values are as well:
 
 ```solidity
 const Web3 = require('web3');
@@ -109,11 +109,11 @@ contract ECRECOVER{
 }
 ```
 
-Using the [Remix compiler and deployment](/getting-started/local-node/using-remix/), and with [MetaMask pointing to Moonbase Alpha](/getting-started/testnet/metamask/), we can deploy the contract and call the `verify()` method that returns _true_ if the address returned by `ecrecover` is equal to the address used to signed the message (related to the private key and needs to be manually set in the contract).
+Using the [Remix compiler and deployment](/getting-started/local-node/using-remix/), and with [MetaMask pointing to Moonbase Alpha](/getting-started/testnet/metamask/), we can deploy the contract and call the `verify()` method that returns _true_ if the address returned by `ecrecover` is equal to the address used to sign the message (related to the private key and needs to be manually set in the contract).
 
 ## Hashing with SHA256
 
-This hashing function returns the SHA256 hash from the given data. To test this precompile, you can use this [online tool](https://md5calc.com/hash/sha256) to calculate the SHA256 hash of any string you want, in our case we'll do so with `Hello World!`. We can head directly to Remix and deploy the following code, where the calculated hash is set for the `expectedHash` variable:
+This hashing function returns the SHA256 hash from the given data. To test this precompile, you can use this [online tool](https://md5calc.com/hash/sha256) to calculate the SHA256 hash of any string you want. In our case, we'll do so with `Hello World!`. We can head directly to Remix and deploy the following code, where the calculated hash is set for the `expectedHash` variable:
 
 ```solidity
 pragma solidity ^0.7.0;
@@ -162,7 +162,7 @@ With the contract deployed, we can call the `checkHash()` method that returns _t
 
 ## The Identity Function
 
-Also known as datacopy, his function serves as a cheaper way to copy data in memory. The Solidity compiler does not support it, so it needs to be called with inline assembly. The [following code](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-04-datacopy-data) (adapted to Solidity), can be used to call this precompiled contract. We can use this [online tool](https://web3-type-converter.brn.sh/) to get the bytes from any string, as this is the input of the method `callDataCopy()`.
+Also known as datacopy, this function serves as a cheaper way to copy data in memory. The Solidity compiler does not support it, so it needs to be called with inline assembly. The [following code](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-04-datacopy-data) (adapted to Solidity), can be used to call this precompiled contract. We can use this [online tool](https://web3-type-converter.brn.sh/) to get the bytes from any string, as this is the input of the method `callDataCopy()`.
 
 ```solidity
 pragma solidity ^0.7.0;
@@ -230,11 +230,8 @@ contract ModularCheck {
 }
 ```
 
-You can try this in [Remix](/integrations/remix.md). Use the function `verify()` passing the base, exponent and modulus. The function will store the value in the `checkResult` variable. 
+You can try this in [Remix](/integrations/remix.md). Use the function `verify()` passing the base, exponent, and modulus. The function will store the value in the `checkResult` variable. 
 
 ## We Want to Hear From You
 
-If you have any feedback regarding Moonbase Alpha, the precompile contracts, or any other Moonbeam related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).
-
-
-
+If you have any feedback regarding Moonbase Alpha, the precompiled contracts, or any other Moonbeam related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).
