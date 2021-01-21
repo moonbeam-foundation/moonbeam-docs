@@ -3,21 +3,37 @@ title: Overview
 description: An overview of the networks planned for Moonbeam, an Ethereum-compatible smart contract parachain on Polkadot.
 ---
 
-#Networks  
+# Networks
+
 We plan to create multiple long-lived, Moonbeam-based networks. Significantly, Moonbeam will be deployed to Kusama in addition to Polkadot.
 
-Our approach will be first to deploy a PureStake hosted parachain TestNet, followed by a parachain deployed to the Rococo TestNet, then Moonbeam to Kusama, and finally to the Polkadot Network. Deploying in this way allows us to de-risk software upgrades to Moonbeam on the Polkadot MainNet while still maintaining a reasonable update velocity. We will add details on how to access different Moonbeam-based networks as the networks become available.
+Our roadmap in regards to deployments as a parachain is the following:
 
-##Moonbeam TestNet - Moonbase Alpha
-This Alpha TestNet, named Moonbase Alpha, is a network that is hosted by PureStake. It features a parachain-relay chain scheme with one collator and three validators. The goal is to allow developers to test the Ethereum compatibility features of Moonbeam without needing to run their own nodes or network, and in a shared environment that is parachain. [Learn more about Moonbase Alpha](/networks/testnet/).
+ - Moonbase Alpha: PureStake hosted parachain TestNet (_September 2020_) 
+ - Moonrock: deployment on the Rococo TestNet (_tbd_)
+ - Moonriver: deployment on Kusama (_end of Q1 2021_)
+ - Moonbeam: deployment on Polkadot (_end of Q2 2021_)
+ 
+This strategy allows us to de-risk software upgrades to Moonbeam on the Polkadot MainNet while still maintaining a reasonable update velocity. We will add details on how to access different Moonbeam-based networks as the networks become available.
 
-For future releases, Moonbase Alpha may support third-party collators, so they can test their setups.
+## Moonbase Alpha
 
-##Moonbeam RococoNet  
-Moonbeam will be deployed as a parachain on the Rococo TestNet. This deployment will provide a place to test interoperability with other chains as they, and the corresponding features, become available in Rococo.
+This TestNet is a network that is hosted by PureStake. It features a parachain-relay chain scheme. The goal is to allow developers to test the Ethereum compatibility features of Moonbeam without needing to run their own nodes or network, and in a shared environment that is parachain.
 
-##Moonbeam KusamaNet  
-Moonbeam will launch as a parachain on the Kusama network, in advance of deploying to the Polkadot MainNet ([more details here](https://www.purestake.com/news/moonbeam-on-kusama/)). This requires parachain functionality to be live on Kusama. We plan to exercise parachain-related functionality such as IPO, XCMP, and SPREE on our KusamaNet as those features become available.
+[Learn more about Moonbase Alpha](/networks/testnet/).
 
-##Moonbeam Polkadot MainNet  
+## Moonrock  
+
+We have decided not to take place in the first parachains deployments to Rococo, since we've been running a parachain relay-chain setup since we launched our TestNet in September 2020.
+
+However, we expect to deploy Moonbeam as a parachain on the Rococo TestNet once interoperability features become available. This will provide a place to test these features with other chains.
+
+## Moonriver
+
+Moonbeam will launch as a parachain on the Kusama network, in advance of deploying to the Polkadot MainNet ([more details here](https://www.purestake.com/news/moonbeam-on-kusama/)). This requires parachain functionality to be live on Kusama. 
+
+We plan to exercise parachain-related functionality such as [Crowdloan](https://wiki.polkadot.network/docs/en/learn-crowdloans), [XCMP](https://wiki.polkadot.network/docs/en/learn-crossch), and [SPREE](https://wiki.polkadot.network/docs/en/learn-spree) on Moonriver as those features become available.
+
+## Moonbeam Polkadot MainNet
+
 The Moonbeam production MainNet will be deployed as a parachain on Polkadot. This Moonbeam network will feature the highest levels of security and availability. Code running on the MainNet will generally have been vetted through one or more of the other networks listed above.
