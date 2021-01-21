@@ -69,19 +69,19 @@ ChainSafe has [pre-programmed handlers](https://github.com/ChainSafe/chainbridge
 
 This section will go over two different examples of using the bridge to move ERC-20 and ERC-721 tokens between chains. The information you will need is the following:
 
- - Bridge contract address (same for both TestNets): `0x4856b1f21e417b60B89CeA5150f0E8eba797e0aD`
- - ERC-20 handler contract (same for both TestNets): `0x9DFC71d5cc7329EbB7da46c54C8e442EE862804f`
- - ERC-721 handler contract (same for both TestNets): `0x0cD07b1FB3727d6faFFA98e005f625355DaeE7c6`
+ - Bridge contract address (same for both TestNets): `0x817C46FD169Fddb07cbA40416F24616408D9C765`
+ - ERC-20 handler contract (same for both TestNets): `0xC8364d561CAf9E35405fAc9965a84AcC70A90D1d`
+ - ERC-721 handler contract (same for both TestNets): `0xC15C2256a774e93545057A85AB2433585F1376Dd`
 
 ### ERC-20 Token Transfer
 
 ERC-20 tokens that want to be moved through the bridge need to be registered by the relayers in the handler contracts. Therefore, to test the bridge out, we've deployed an ERC-20 token (ERC20S) where any user can mint 5 tokens:
 
- - Custom ERC-20 sample token (same for both TestNets): `0xF886A7B548afc68CEc1835c07281FeDf08B23b45`
+ - Custom ERC-20 sample token (same for both TestNets): `0x9E7080EC3fBFa63580B062dCa6D4B7547A315e2c`
 
 In similar fashion, interacting directly with the Bridge contract and calling the function `deposit()` with the correct parameters can be intimidating. Consequently, we've created a modified bridge contract to ease the process of using the bridge which builds the necessary inputs to the `deposit()` function:
 
- - Custom bridge contract (same for both TestNets): `0x4856b1f21e417b60B89CeA5150f0E8eba797e0aD`
+ - Custom bridge contract (same for both TestNets): `0x817C46FD169Fddb07cbA40416F24616408D9C765`
 
 In simple terms, the modified contract used to initiate the transfer, has the _chainID_ and _resourceID_ predefined for this example. Therefore, it builds the _calldata_ object from the user's input, which is only the recipient address and the value to be sent.
 
@@ -107,7 +107,7 @@ pragma solidity ^0.6.4;
 
 /**
     Interface for the Custom ERC20 Token contract for ChainBridge implementation
-    ERC-20 Address: 0xF886A7B548afc68CEc1835c07281FeDf08B23b45
+    ERC-20 Address: 0x9E7080EC3fBFa63580B062dCa6D4B7547A315e2c
 **/
 
 interface ICustomERC20 {
@@ -118,7 +118,7 @@ interface ICustomERC20 {
     // Get Token Name
     function name() external view returns (string memory);
     
-    // Increase allowance to Handler 0x9DFC71d5cc7329EbB7da46c54C8e442EE862804f
+    // Increase allowance to Handler 0xC8364d561CAf9E35405fAc9965a84AcC70A90D1d
     function increaseAllowance(address spender, uint256 addedValue) external returns (bool);
     
     // Get allowance
@@ -139,7 +139,7 @@ pragma solidity 0.6.4;
 
 /**
  * @title Simple Interface to interact with bridge to transfer the ERC20S token
- * @notice Bridge Address 0x4856b1f21e417b60B89CeA5150f0E8eba797e0aD
+ * @notice Bridge Address 0x817C46FD169Fddb07cbA40416F24616408D9C765
  */
 
 interface IPSBridgeERC20 {
@@ -175,15 +175,15 @@ Similar to our previous example, ERC-721 tokens contracts need to be registered 
 
 To mint tokens in Moonbase Alpha (named ERC721Moon with symbol ERC721M) and send them back-and-forth to Kovan, you need the following address:
 
- - ERC-721 Moon tokens (ERC721M), with mint function in Moonbase Alpha: `0x7F0B22eC81A0C6A73c38Ecd71f2F423ECE3B228B`
+ - ERC-721 Moon tokens (ERC721M), with mint function in Moonbase Alpha: `0x29c6633934eb5D941ED5D9247761Bc5E5eAb078b`
 
  To mint tokens in Kovan (ERC721E) and send them back-and-forth to Moonbase Alpha, you need the following address:
 
- - ERC-721 Eth tokens (ERC721E), with mint function in Kovan: `0x7b86Fd8fF3274B5Ac2ea8d66d136dEac46551bb9`
+ - ERC-721 Eth tokens (ERC721E), with mint function in Kovan: `0xBC1D3BBA3B1E4b4d3bE04E413C4c5FaD4Bd05bC9`
 
 Instead of interacting with the Bridge contract and calling the function `deposit()`, we've modified the bridge contract to ease the process of using the bridge (same address as in the previous example):
 
- - Custom bridge contract (same for both TestNets): `0x4856b1f21e417b60B89CeA5150f0E8eba797e0aD`
+ - Custom bridge contract (same for both TestNets): `0x817C46FD169Fddb07cbA40416F24616408D9C765`
 
  In simple terms, the modified bridge contract used to initiate the transfer, has the _chainID_ and _resourceID_ predefined for this example. Therefore, it builds the _calldata_ object from the user's input, which is only the recipient address and the token ID to be sent.
 
@@ -194,8 +194,8 @@ pragma solidity ^0.6.4;
 
 /**
     Interface for the Custom ERC721 Token contract for ChainBridge implementation:
-    ERC721Moon: 0x7F0B22eC81A0C6A73c38Ecd71f2F423ECE3B228B
-    ERC721Eth: 0x7b86Fd8fF3274B5Ac2ea8d66d136dEac46551bb9
+    ERC721Moon: 0x29c6633934eb5D941ED5D9247761Bc5E5eAb078b
+    ERC721Eth: 0xBC1D3BBA3B1E4b4d3bE04E413C4c5FaD4Bd05bC9
 */
 
 interface ICustomERC721 {
@@ -212,7 +212,7 @@ interface ICustomERC721 {
     // Get Token URI
     function tokenURI(uint256 tokenId) external view returns (string memory);
     
-    // Set Approval for Handler 0x0cD07b1FB3727d6faFFA98e005f625355DaeE7c6
+    // Set Approval for Handler 0xC15C2256a774e93545057A85AB2433585F1376Dd
     function approve(address to, uint256 tokenId) external;
     
     // Check the address approved for a specific token ID
@@ -224,7 +224,7 @@ Note that the ERC-721 token contract's mint function was also modified to approv
 
 In Remix, load the interface contract at the ERC721E source token address (make sure you are using MetaMask's injected web3 provider). Next, call the `mintTokens()` function and sign the transaction. Once the transaction is confirmed, you should have received a ERC721E token. You can check your balance by adding the token to [MetaMask](/integrations/metamask/).
 
-![ChainBridge ERC20 mint Tokens](/images/chainbridge/chainbridge-image4.png)
+![ChainBridge ERC721 mint Tokens](/images/chainbridge/chainbridge-image4.png)
 
 Once we have the token, we can proceed to send it over the bridge to the target chain. In this case, remember we'll do it from Kovan to Moonbase Alpha. The following interface allows you to use the `sendERC721EthToken()` function to initiate the transfer of tokens originally minted in Kovan (ERC721E). On the contrary, you can use the `sendERC721MoonToken()` function to initiate the transfer of tokens originally minted in Moonbase Alpha (ERC721M).
 
@@ -233,7 +233,7 @@ pragma solidity 0.6.4;
 
 /**
  * @title Simple Interface to interact with bridge to transfer the ERC20S token
- * @notice Bridge Address 0x4856b1f21e417b60B89CeA5150f0E8eba797e0aD
+ * @notice Bridge Address 0x817C46FD169Fddb07cbA40416F24616408D9C765
  */
 
 interface IPSBridgeERC721 {
