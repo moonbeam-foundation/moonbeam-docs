@@ -1,3 +1,4 @@
 title: Getting Started
 arrange:
-  - explorers.md
+ - local-node
+ - testnet
