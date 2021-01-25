@@ -4,7 +4,7 @@ description: An overview of the currently available block explorers that may be 
 ---
 # Block Explorers
 
-![Explorer Banner](/images/integrations/explorers/explorers-banner.png)
+![Explorer Banner](/images/explorers/explorers-banner.png)
 
 ## Introduction 
 
@@ -18,15 +18,20 @@ Currently, we offer two block explorers: one for the Ethereum API based on the [
 
 To connect the explorer to a standalone Moonbea node, you can use [this URL](https://expedition.dev/?rpcUrl=http://127.0.0.1:9933). This uses the RPC endpoint located at port `9933` by default. If you have defined a different port, you can changed it in the URL bar.
 
-TODO > Screenshot here
+![Explorer Standalone](/images/explorers/explorers-images-1.png)
+
+!!! note
+    Expedition only works if running the standalone Moonbeam node with the repository tag `tutorial-v3`. It will not work if using master.
 
 ### Moonbase Alpha
 
-To access the current state of the Moonbase Alpha TestNet, navigate to [https://moonbeam-explorer.netlify.app/](https://moonbeam-explorer.netlify.app/). The explorer is also available in Spanish, Chinese, Russian and Korean.
+To access the current state of the Moonbase Alpha TestNet, navigate to [https://moonbeam-explorer.netlify.app/](https://moonbeam-explorer.netlify.app/). 
 
-TODO > Screenshot here
+The explorer is also available in Spanish, Chinese, Russian and Korean.
 
-You can find the repository for the explorer in this [URL](https://github.com/PureStake/moonbeam-explorer-expedition).
+![Explorer TestNet](/images/explorers/explorers-images-2.png)
+
+You can find the repository for the explorer in [this URL](https://github.com/PureStake/moonbeam-explorer-expedition).
 
 ## Polkadot.JS Apps (Susbtrate)
 
