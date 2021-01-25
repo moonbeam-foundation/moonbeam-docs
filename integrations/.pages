@@ -3,6 +3,7 @@ arrange:
   - bridges
   - jslibraries
   - oracles
+  - explorers.md
   - metamask.md
   - remix.md
   - trufflebox.md
