@@ -1,4 +1,6 @@
 networks:
+   standalone:
+      build_tag: tutorial-v3
    moonbase:
       version: v5
       parachain_docker_sha: sha-02fbb7e2

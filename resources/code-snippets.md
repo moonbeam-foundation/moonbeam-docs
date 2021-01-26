@@ -7,7 +7,8 @@ description: In order to make it easier to get up-and-running with Moonbeam, her
 ## Setting up a Local Moonbeam Node
 **Clone moonbeam-tutorials repo:**
 ```
---8<-- 'setting-up-local/clone.md'
+git clone -b {{ networks.standalone.build_tag }} https://github.com/PureStake/moonbeam
+cd moonbeam
 ```
 
 **Install substrate and its pre-requisites:**
