@@ -93,6 +93,13 @@ If successful you should see an ouput similar to before, showing that blocks are
 
 ![Docker - output shows blocks being produced](/images/setting-up-a-node/setting-up-node-8a.png)
 
+### Docker for MacOS
+If you are using MacOS you will need to omit `--network host` as MacOS does not allow you to use this setting. You will need to be explicitly state the ports with the command below.
+
+```
+--8<-- 'setting-up-local/dockerformac1.md'
+```
+
 ## Connecting Polkadot JS Apps to a Local Moonbeam Node
 The locally-running Moonbeam node is a Substrate-based node, so we can interact with it using standard Substrate tools. Let’s start by connecting to it with Polkadot JS Apps.  
 Open a browser to: [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/#/explorer). This will open Polkadot JS Apps which automatically connects to Polkadot MainNet. 
