@@ -13,7 +13,7 @@ The Bridge Contract address can be found in the following table:
 
 |     Network    | |         Aggregator Contract Address        |
 |:--------------:|-|:------------------------------------------:|
-| Moonbase Alpha | | 0xD1843DE116930b5652c8371EfB3Ae72B629C10ab |
+| Moonbase Alpha | | 0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB |
 
 ## Jobs
 Each datafeed has a Job ID attached to it. For example:
@@ -43,7 +43,7 @@ The second function, `getJob`, takes the job ID associated with the datafeed and
 
 ### Deploying on Moonbase Alpha
 
-We've deployed the bridge contract available in the Moonbase Alpha TestNet (at address `0xD1843DE116930b5652c8371EfB3Ae72B629C10ab`), so you can easily check the information fed from Razor Network's oracle. You would require The Bridge interface which defines `getResult` structure and makes the functions available to the contract for queries.
+We've deployed the bridge contract available in the Moonbase Alpha TestNet (at address `0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB`), so you can easily check the information fed from Razor Network's oracle. You would require The Bridge interface which defines `getResult` structure and makes the functions available to the contract for queries.
 
 ```
 pragma solidity 0.6.11;
@@ -72,8 +72,8 @@ contract Demo {
     Razor public razor;
 
     constructor() public {
-        razor = Razor(0xD1843DE116930b5652c8371EfB3Ae72B629C10ab);
-                //Moonbase Alpha 0xD1843DE116930b5652c8371EfB3Ae72B629C10ab
+        razor = Razor(0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB);
+                //Moonbase Alpha 0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB
     }
 
     function fetchPrice(uint256 jobID) external view returns (uint256){
@@ -90,7 +90,7 @@ contract Demo {
 }
 ```
 
-Make sure to set the Razor address to `0xD1843DE116930b5652c8371EfB3Ae72B629C10ab`
+Make sure to set the Razor address to `0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB`
 
 For example, to deploy using Truffle, set up the migration by creating a new file called 2_deploy.js in the migrations director and paste the following code. This will tell truffle how to deploy the contract on the network. 
 
