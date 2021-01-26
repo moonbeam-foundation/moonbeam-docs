@@ -3,10 +3,9 @@ arrange:
   - bridges
   - jslibraries
   - oracles
-  - metamask.md
+  - wallets
   - remix.md
   - trufflebox.md
   - pubsub.md
   - precompiles.md
-  - polkadotjs.md
 
