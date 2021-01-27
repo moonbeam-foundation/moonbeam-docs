@@ -8,7 +8,7 @@ description: An overview of the currently available block explorers that may be 
 
 ## Introduction 
 
-The Moonbeam team is currently working on onboarding a specialized block explorer solution that would allow to navigate the EVM, as well as, the Substrate layer of the blockchain.
+The Moonbeam team is currently working on onboarding a specialized block explorer solution that would allow to navigate the EVM as well as the Substrate layer of the blockchain.
 
 Currently, we offer two block explorers: one for the Ethereum API based on the [Expedition explorer](https://github.com/etclabscore/expedition), and one for the Substrate API using [Polkadot JS apps](/integrations/polkadotjs/). You can use both for either a standalone Moonbeam node, or the Moonbase Alpha TestNet.
 
@@ -37,7 +37,7 @@ You can find the repository for the explorer in [this URL](https://github.com/Pu
 
 ### Local Node
 
-Polkadot JS Apps uses the WebSocket endpoint to interact with the Network. To connect it to a standalone Moonbea node, you can follow the steps in [this tutorial](/getting-started/local-node/setting-up-a-node/#connecting-polkadot-js-apps-to-a-local-moonbeam-node). The default port for this is `9944`.
+Polkadot JS Apps uses the WebSocket endpoint to interact with the Network. To connect it to a standalone Moonbeam node, you can follow the steps in [this tutorial](/getting-started/local-node/setting-up-a-node/#connecting-polkadot-js-apps-to-a-local-moonbeam-node). The default port for this is `9944`.
 
 ![Local Node](/images/setting-up-a-node/setting-up-node-6b.png)
 
