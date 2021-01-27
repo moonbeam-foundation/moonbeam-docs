@@ -45,7 +45,7 @@ To verify the installed version of Web3, you can use the `ls` command:
 npm ls web3
 ```
 
-As of the writing of this guide, the version used was 1.3.0. We will be also using [Remix](/integrations/remix.md), connecting it to the Moonbase Alpha TestNet via [MetaMask](/integrations/metamask.md).
+As of the writing of this guide, the version used was 1.3.0. We will be also using [Remix](/integrations/remix/), connecting it to the Moonbase Alpha TestNet via [MetaMask](/integrations/metamask/).
 
 ## Verify Signatures with ECRECOVER
 
@@ -230,7 +230,7 @@ contract ModularCheck {
 }
 ```
 
-You can try this in [Remix](/integrations/remix.md). Use the function `verify()` passing the base, exponent, and modulus. The function will store the value in the `checkResult` variable. 
+You can try this in [Remix](/integrations/remix/). Use the function `verify()` passing the base, exponent, and modulus. The function will store the value in the `checkResult` variable. 
 
 ## We Want to Hear From You
 
