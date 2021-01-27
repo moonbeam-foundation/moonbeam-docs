@@ -44,7 +44,7 @@ However, any wallet that works with an Ethereum custom network should work with 
 
 Because of Moonbeam's Ethereum compatibility features, you can use the development tools you know and love:
 
- - [Remix](/integrations/remix.md)
+ - [Remix](/integrations/remix)
  - [Truffle](/integrations/trufflebox/)
  - HardHat (tutorial comming soon)
  - [Web3.js](/integrations/jslibraries/web3js/)
