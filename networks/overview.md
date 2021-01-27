@@ -18,13 +18,13 @@ This strategy allows us to de-risk software upgrades to Moonbeam on the Polkadot
 
 ## Moonbase Alpha
 
-This TestNet is a network that is hosted by PureStake. It features a parachain-relay chain scheme. The goal is to allow developers to test the Ethereum compatibility features of Moonbeam without needing to run their own nodes or network, and in a shared environment that is parachain.
+This TestNet is a network that is hosted by PureStake. It features a parachain/relay chain scheme. The goal is to allow developers to test the Ethereum compatibility features of Moonbeam without needing to run their own nodes or network, and in a shared environment that is parachain.
 
 [Learn more about Moonbase Alpha](/networks/testnet/).
 
 ## Moonrock  
 
-We have decided not to take place in the first parachains deployments to Rococo, since we've been running a parachain relay-chain setup since we launched our TestNet in September 2020.
+We have decided not to participate in the first parachain deployments to Rococo. We have been running our own parachain/relay chain setup since we launched our TestNet in September 2020.
 
 However, we expect to deploy Moonbeam as a parachain on the Rococo TestNet once interoperability features become available. This will provide a place to test these features with other chains.
 
