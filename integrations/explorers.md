@@ -33,7 +33,7 @@ The explorer is also available in Spanish, Chinese, Russian and Korean.
 
 You can find the repository for the explorer in [this URL](https://github.com/PureStake/moonbeam-explorer-expedition).
 
-## Polkadot.JS Apps (Susbtrate)
+## Polkadot.JS Apps (Substrate)
 
 ### Local Node
 
