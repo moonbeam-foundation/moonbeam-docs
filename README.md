@@ -34,7 +34,7 @@ Currently, there are two ways you can start building on Moonbeam:
 
 Currently, we have tested Moonbeam with the following wallets:
 
- - [MetaMask](/integrations/metamask.md)
+ - [MetaMask](/integrations/metamask/)
  - MathWallet (tutorial comming soon)
 
 
