@@ -67,11 +67,14 @@ The only ports that need to be open for incoming traffic are those designated fo
 
 A Moonbase Alpha full node can be spun up quickly using Docker. For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/). At the time of writing, the Docker version used was 19.03.6.
 
-First, we need to create a local directory to store the chain data:
+First, we need to create a local directory to store the chain data, and also set the necessary permissions:
 
 ```
-mkdir {{ networks.moonbase.node_directory }}   
+mkdir {{ networks.moonbase.node_directory }}
 ```
+
+!!! note
+    Make sure you set the permissions accordingly for the local directory that stores the chain data.
 
 Now we can execute the docker run command. Note that you have to replace `YOUR-NODE-NAME` in two different places.
 
@@ -84,9 +87,17 @@ purestake/moonbase-parachain-testnet:{{ networks.moonbase.parachain_docker_tag }
     --name="YOUR-NODE-NAME" \
     --execution wasm \
     --wasm-execution compiled \
+    --state-cache-size 4 \
     -- \
     --name="YOUR-NODE-NAME (Embedded Relay)"
 ```
+
+!!! note
+    The `--state-cache-size 4` flag is needed for now due to a bug in the parachain using the cache. Consequently, we have to limite to cache to an extremely low value until this is fixed, expected for v6.
+
+Once Docker pulls the necessary images, your Moonbase Alpha full node will start, displaying lots of informations such as the chain specification, node name, role, genesis state, among others:
+
+![Full Node Starting](/images/fullnode/fullnode-docker1.png)
 
 If you want to expose WS or RPC ports, enable those on the Docker run command line, for example:
 
@@ -94,6 +105,11 @@ If you want to expose WS or RPC ports, enable those on the Docker run command li
 docker run -p {{ networks.relay_chain.p2p }}:{{ networks.relay_chain.p2p }} -p {{ networks.parachain.p2p }}:{{ networks.parachain.p2p }} -p {{ networks.parachain.rpc }}:{{ networks.parachain.rpc }} -p {{ networks.parachain.ws }}:{{ networks.parachain.ws }} #rest of code goes here 
 ```
 
+During the syncing process you will see messages from both the embedded relay chain and the parachain (without a tag). This messages display a target block (TestNet), and a best block (local node synced state). 
+
+![Full Node Starting](/images/fullnode/fullnode-docker2.png)
+
+Once synced, you have a full node of the Moonbase Alpha TestNet running locally!
 ## Installation Instructions - Binary
 
 In this section, we'll go through the process of compiling the binary and running a Moonbeam full node as a systemd service. The following steps were tested on an Ubuntu 18.04 installation. Moonbase Alpha may work with other flavors of Linux, but Ubuntu is currently the only tested version.  
@@ -131,6 +147,7 @@ Lastly, let's build parachain binary:
 ```
 cargo build --release
 ```
+![Compiling Binary](/images/fullnode/fullnode-binary1.png)
 
 If a _cargo not found error_ shows up in the terminal, manually add Rust to your system path (or restart your system):
 
@@ -198,6 +215,7 @@ ExecStart={{ networks.moonbase.node_directory }}/moonbase-alphanet \
      --base-path {{ networks.moonbase.node_directory }} \
      --chain alphanet \
      --name "YOUR-NODE-NAME" \
+     --state-cache-size 4 \
      -- \
      --port {{ networks.relay_chain.p2p }} \
      --rpc-port {{ networks.relay_chain.rpc }} \
@@ -208,6 +226,10 @@ ExecStart={{ networks.moonbase.node_directory }}/moonbase-alphanet \
 [Install]
 WantedBy=multi-user.target
 ```
+
+!!! note
+    The `--state-cache-size 4` flag is needed for now due to a bug in the parachain using the cache. Consequently, we have to limite to cache to an extremely low value until this is fixed, expected for v6.
+
 We are almost there! We need to register and start the service by running:
 
 ```
@@ -219,9 +241,17 @@ And lastly, verify the service is running:
 
 ```
 systemctl status moonbeam.service
-# and/or
+```
+
+![Service Status](/images/fullnode/fullnode-binary2.png)
+
+We can also check the logs by executing:
+
+```
 journalctl -f -u moonbeam.service
 ```
+
+![Service Logs](/images/fullnode/fullnode-binary3.png)
 
 ## Telemetry
 
