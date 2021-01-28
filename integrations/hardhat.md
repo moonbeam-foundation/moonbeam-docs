@@ -104,7 +104,7 @@ After running the command, go ahead and choose `Create an empty hardhat.config.j
 We are going to store our contract in the `contracts` directory. Go ahead and create it:
 
 ```
-mkdir contracts && contracts
+mkdir contracts && cd contracts
 ```
 
 Our simple smart contract will be called Box: it will let people store a value that can be later retrieved. 
@@ -171,6 +171,5 @@ _Next Sections WIP_
 
 ## We Want to Hear From You
 If you have any feedback regarding Moonbase Alpha, event subscription, or any other Moonbeam related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).
-
 
 
