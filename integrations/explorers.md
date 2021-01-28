@@ -16,7 +16,7 @@ Currently, we offer two block explorers: one for the Ethereum API based on the [
 
 ### Local Node
 
-To connect the explorer to a standalone Moonbea node, you can use [this URL](https://expedition.dev/?rpcUrl=http://127.0.0.1:9933). This uses the RPC endpoint located at port `9933` by default. If you have defined a different port, you can changed it in the URL bar.
+To connect the explorer to a standalone Moonbeam node, you can use [this URL](https://expedition.dev/?rpcUrl=http://127.0.0.1:9933). This uses the RPC endpoint located at port `9933` by default. If you have defined a different port, you can changed it in the URL bar.
 
 ![Explorer Standalone](/images/explorers/explorers-images-1.png)
 
