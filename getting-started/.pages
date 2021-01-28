@@ -1,1 +1,4 @@
 title: Getting Started
+arrange:
+ - local-node
+ - testnet

@@ -1,3 +1,16 @@
+---
+title: Full Node
+description: How to run telemetry for a full Parachain node for the Moonbeam Network
+---
+
+# Telemetry for a Full Node
+
+## Introduction
+
+With the release of Moonbase Alpha v5, you can spin up a full node that connects to the Moonbase Alpha TestNet. You can check those steps in [this tutorial](/node-operators/networks/full-node/).
+
+In this guide we'll provide the necessary steps to enable the telemetry server for your Moonbase Alpha node.
+
 ## Telemetry Exporter
 
 Moonbeam will run a telemetry server that collects Prometheus metrics from all the Moonbeam parachain nodes on the network. Running this will be a great help to us during our development phase.  
@@ -11,10 +24,12 @@ For now we need to run two node watchdogs, one for the relay chain and one for t
 For help, contact the Moonbeam Discord or the [Gantree Discord](https://discord.gg/4Ep2NKrz). 
  
 ### Gathering Information
+
 1. Login to https://app.gantree.io and create an account.  Navigate to API keys and copy your API key. 
 2. Request a PCK key in our [Discord channel](https://discord.gg/PfpUATX)
    
 ### Docker
+
 We will run two instances of the gantree node watchdog; one for the relay chain and one for the parachain.  
 Required Configuration Information
 * GANTREE_NODE_WATCHDOG_API_KEY

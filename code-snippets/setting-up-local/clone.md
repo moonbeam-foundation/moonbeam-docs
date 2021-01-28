@@ -1,2 +1,2 @@
-git clone -b tutorial-v3 https://github.com/PureStake/moonbeam
+git clone -b {{ networks.standalone.build_tag }} https://github.com/PureStake/moonbeam
 cd moonbeam

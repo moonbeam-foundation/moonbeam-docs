@@ -1,16 +1,18 @@
 networks:
+   standalone:
+      build_tag: tutorial-v3
    moonbase:
       version: v5
       parachain_docker_sha: sha-02fbb7e2
-      parachain_docker_tag: v0.5.0
+      parachain_docker_tag: v0.5.1
       node_directory: /var/lib/alphanet-data
-      bridge:
-         bridge_address: 0x817C46FD169Fddb07cbA40416F24616408D9C765
-         ERC20_handler: 0xC8364d561CAf9E35405fAc9965a84AcC70A90D1d
-         ERC721_handler: 0xC15C2256a774e93545057A85AB2433585F1376Dd
-         ERC20S: 0x9E7080EC3fBFa63580B062dCa6D4B7547A315e2c
-         ERC721E: 0xBC1D3BBA3B1E4b4d3bE04E413C4c5FaD4Bd05bC9
-         ERC721M: 0x29c6633934eb5D941ED5D9247761Bc5E5eAb078b
+      chainbridge:
+         bridge_address: '0xA997c47d55991Ef5251b31D380CeFCaAD6978e03'
+         ERC20_handler: '0xE4B3f8270fF41352c3a795c844D111d819e6010F'
+         ERC721_handler: '0x6cB27360d16E9a9df198EB3CF90Bf0c28A550278'
+         ERC20S: '0xEEc83DC1B7D0dE3f0f1277619fbbE8150E70Ef39'
+         ERC721E: '0xCB2e28930103311312AF5B3412EAf3A28Da0402f'
+         ERC721M: '0xEa3875a7995669020b6Bbb91a63104e419eBacF4'
    relay_chain:
       p2p: 30334
       rpc: 9934
