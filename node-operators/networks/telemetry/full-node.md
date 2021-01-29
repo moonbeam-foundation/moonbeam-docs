@@ -17,7 +17,7 @@ Moonbeam will run a telemetry server that collects Prometheus metrics from all t
 
 The metrics exporter can run either as a kubernetes sidecar, or as a local binary if you are running a VM. It will push data out to our servers, so you do not have to enable any incoming ports for this service.
 
-We are using a service called [Gantree Node Watchdog](https://github.com/gantree-io/gantree-node-watchdog) to automatically upload telemetry.  Once you enable telemetry, you can also access a Prometheus/Grafana server from the [Gantree App] (https://app.gantree.io/).  There are detailed instructions on the github repo if you need more info, here is a quick start. 
+We are using a service called [Gantree Node Watchdog](https://github.com/gantree-io/gantree-node-watchdog) to automatically upload telemetry.  Once you enable telemetry, you can also access a Prometheus/Grafana server from the [Gantree App](https://app.gantree.io/).  There are detailed instructions on the github repo if you need more info, here is a quick start. 
 
 For now we need to run two node watchdogs, one for the relay chain and one for the parachain.  This will be updated in a future release. 
 
@@ -32,24 +32,42 @@ For help, contact the Moonbeam Discord or the [Gantree Discord](https://discord.
 
 We will run two instances of the gantree node watchdog; one for the relay chain and one for the parachain.  
 Required Configuration Information
-* GANTREE_NODE_WATCHDOG_API_KEY
-* GANTREE_NODE_WATCHDOG_PROJECT_ID
-* GANTREE_NODE_WATCHDOG_CLIENT_ID
-* GANTREE_NODE_WATCHDOG_PCKRC
-* GANTREE_NODE_WATCHDOG_METRICS_HOST
+- GANTREE_NODE_WATCHDOG_API_KEY
+- GANTREE_NODE_WATCHDOG_PROJECT_ID
+- GANTREE_NODE_WATCHDOG_CLIENT_ID
+- GANTREE_NODE_WATCHDOG_PCKRC
+- GANTREE_NODE_WATCHDOG_METRICS_HOST
 
 Instructions
-1. Download or compile the docker image ([TODO]: no compiled image yet, but soon, need to update instructions below for "IMAGE-NAME", needs persistant storage for .gnw config file )
-2. Run the relay Gantree node watchdog
+1. Clone the repo and build the docker image
   ```
-  docker run -it --network="host" -e GANTREE_NODE_WATCHDOG_API_KEY="YOUR-API-KEY" -e GANTREE_NODE_WATCHDOG_PROJECT_ID="moonbase-alpha" -e GANTREE_NODE_WATCHDOG_CLIENT_ID="YOUR-SERVER-NAME-relay" -e GANTREE_NODE_WATCHDOG_PCKRC="YOUR-PCK-KEY" -e GANTREE_NODE_WATCHDOG_METRICS_HOST="http://172.0.0.1:9615"  --name gantree_watchdog_relay IMAGE-NAME
+  git clone git@github.com:gantree-io/gantree-node-watchdog.git
+  cd gantree-node-watchdog
+  docker build .  
+  # get the IMAGE-NAME for use below
+  docker images
   ```
-3. Run the parachain Gantree node watchdog
+
+2. Update the commands below
+   - IMAGE-NAME
+   - YOUR-API-KEY
+   - YOUR-SERVER-NAME
+   - YOUR-PCK-KEY
+3. configure persistant storage for .gnw config file
   ```
-  docker run -it --network="host" -e GANTREE_NODE_WATCHDOG_API_KEY="YOUR-API-KEY" -e GANTREE_NODE_WATCHDOG_PROJECT_ID="moonbase-alpha" -e GANTREE_NODE_WATCHDOG_CLIENT_ID="YOUR-SERVER-NAME-parachain" -e GANTREE_NODE_WATCHDOG_PCKRC="YOUR-PCK-KEY" -e GANTREE_NODE_WATCHDOG_METRICS_HOST="http://172.0.0.1:9616" --name gantree_watchdog_relay IMAGE-NAME
+  mkdir -p /var/lib/gantree/relay
+  mkdir -p /var/lib/gantree/parachain
   ```
-4.  You should see waiting for provisioning in the logs.  Log into the https://app.gantree.io, select networks. Click the network and then `Provision Dashboard`.  This step may take a few minutes.  Once it completes, return to the network and you will see a `View Monitoring Dashboard` link to your custom Prometheus / Grafana dashboard. 
-5.  Once things are workign well, you can update the commands to run in daemon mode.  
+4. Run the relay Gantree node watchdog
+  ```
+  docker run -it --network="host" -e GANTREE_NODE_WATCHDOG_API_KEY="YOUR-API-KEY" -e GANTREE_NODE_WATCHDOG_PROJECT_ID="moonbase-alpha" -e GANTREE_NODE_WATCHDOG_CLIENT_ID="YOUR-SERVER-NAME-parachain" -e GANTREE_NODE_WATCHDOG_PCKRC="YOUR-PCK-KEY" -e GANTREE_NODE_WATCHDOG_METRICS_HOST="http://172.0.0.1:9615"  --name gantree_watchdog_relay -v /var/lib/gantree/parachain:/watchdog IMAGE-NAME
+  ```
+5. Run the parachain Gantree node watchdog
+  ```
+  docker run -it --network="host" -e GANTREE_NODE_WATCHDOG_API_KEY="YOUR-API-KEY" -e GANTREE_NODE_WATCHDOG_PROJECT_ID="moonbase-alpha" -e GANTREE_NODE_WATCHDOG_CLIENT_ID="YOUR-SERVER-NAME-relay" -e GANTREE_NODE_WATCHDOG_PCKRC="YOUR-PCK-KEY" -e GANTREE_NODE_WATCHDOG_METRICS_HOST="http://172.0.0.1:9616" --name gantree_watchdog_relay -v /var/lib/gantree/relay:/watchdog IMAGE-NAME
+  ```
+6.  You should see waiting for provisioning in the logs.  Log into the https://app.gantree.io, select networks. Click the network and then `Provision Dashboard`.  This step may take a few minutes.  Once it completes, return to the network and you will see a `View Monitoring Dashboard` link to your custom Prometheus / Grafana dashboard. 
+7.  Once things are workign well, you can update the commands to run in daemon mode.  
 
 ### Systemd
   
@@ -67,7 +85,7 @@ Instructions
   {
     "api_key": "YOUR-API-KEY",
     "project_id": "moonbase-alpha",
-    "client_id": "YOUR-SERVER-NAME-relay",
+    "client_id": "YOUR-SERVER-NAME-parachain",
     "pckrc": "YOUR-PCK-KEY",
     "metrics_host": "http://127.0.0.1:9615"
   }
@@ -77,7 +95,7 @@ Instructions
   {
     "api_key": "YOUR-API-KEY",
     "project_id": "moonbase-alpha",
-    "client_id": "YOUR-SERVER-NAME-parachain",
+    "client_id": "YOUR-SERVER-NAME-relay",
     "pckrc": "YOUR-PCK-KEY",
     "metrics_host": "http://127.0.0.1:9616"
   }
@@ -119,8 +137,9 @@ Instructions
 5. Enable and start the systemd services, monitor logs for errors
   ```
   sudo systemctl enable gantree-relay
-  sudo systemctl enable gantree-parachain
   sudo systemctl start gantree-relay && journalctl -f -u gantree-relay
+
+  sudo systemctl enable gantree-parachain
   sudo systemctl start gantree-parachain && journalctl -f -u gantree-parachain
   ```
 6. You should see the logs waiting for provisioning.  Log into the https://app.gantree.io, select networks. Click the network and then `Provision Dashboard`.  This step may take a few minutes.  Once it completes, return to the network and you will see a `View Monitoring Dashboard` link to your custom Prometheus / Grafana dashboard. 
