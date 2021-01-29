@@ -1,67 +1,68 @@
 ---
 title: Razor Network
-description: How to use request data from a Razor Network Oracle in your Moonbeam Ethereum Dapp using smart contracts or javascript
+description: How to use request data from a Razor Network Oracle in your Moonbeam Ethereum Dapp using smart contracts
 ---
 # Razor Network Oracle
 
-![Razor Network Moonbeam Diagram]
+![Razor Network Moonbeam Diagram](/images/razor/razor-banner.png)
 
 ## Introduction
-Developers can fetch prices from Razor Network’s oracle using a Bridge contract deployed on Moonbase Alpha Network. This Bridge is connected to Razor Network's oracle infrustructure, which sends prices to bridge contract.
 
-The Bridge Contract address can be found in the following table:
+Developers can now fetch prices from Razor Network’s oracle using a Bridge contract deployed on the Moonbase Alpha TestNet. This Bridge acts as middleware, and events emitted by it are fetched by the Razor Network's oracle infrastructure, sending prices to the Bridge contract.
 
-|     Network    | |         Aggregator Contract Address        |
+To access these price feeds, we need to interact with the Bridge contract address, which can be found in the following table:
+
+|     Network    | |         Contract Address        |
 |:--------------:|-|:------------------------------------------:|
 | Moonbase Alpha | | 0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB |
 
 ## Jobs
-Each datafeed has a Job ID attached to it. For example:
 
- -  `Job ID 1: ETH`
- -  `Job ID 2: BTC`
- -  `Job ID 3: MSFT`
+Each data-feed has a Job ID attached to it. For example:
 
-You can check job IDs for each datafeed at the following [link](https://razorscan.io/#/custom)
+|    Job ID    | |    Underlying Price [USD]  |
+|:------------:|-|:--------------------------:|
+|       1      | |            ETH             |
+|       2      | |            BTC             |
+|       3      | |      Microsoft Stocks      |
+
+You can check job IDs for each data-feed at the following [link](https://razorscan.io/#/custom). Price feeds are updated every 5 minutes. More information can be found in [Razor's documentation website][https://docs.razor.network/]
 
 ## Get Data From Bridge Contract
-Contracts can query on-chain data such as token prices from Razor Network's oracle by implementing the interface of the `Bridge` contract, which exposes the `getResult` and `getJob` functions.
+
+Contracts can query on-chain data such as token prices from Razor Network's oracle by implementing the interface of the Bridge contract, which exposes the `getResult` and `getJob` functions.
 
 ```
 pragma solidity 0.6.11;
 
 interface Razor {
+    
     function getResult(uint256 id) external view returns (uint256);
+    
     function getJob(uint256 id) external view returns(string memory url, string memory selector, string memory name, bool repeat, uint256 result);
 }
 ```
 
-The first function, `getResult`, takes the job ID associated with the datafeed and fetches it's price. For example, if we pass in `1` , we will receive the price of the datafeed associated with the job ID.
+The first function, `getResult`, takes the job ID associated with the data-feed and fetches the price. For example, if we pass in `1`, we will receive the price of the data-feed related to the job ID.
 
+The second function, `getJob`, takes the job ID associated with the data-feed and fetches the general information regarding the data-feed, such as the name of the data-feed, the price, and the URL being used to fetch the prices.
 
-The second function, `getJob`, takes the job ID associated with the datafeed and fetches the overall information regarding the datafeed such as the name of the datafeed, price of the datafeed and the url being used to fetch the prices.
+### Example Contract
 
-### Deploying on Moonbase Alpha
+We've deployed the bridge contract in the Moonbase Alpha TestNet (at address `{{ networks.moonbase.razor.bridge_address }}`, so you can quickly check the information fed from Razor Network's oracle. 
 
-We've deployed the bridge contract available in the Moonbase Alpha TestNet (at address `0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB`), so you can easily check the information fed from Razor Network's oracle. You would require The Bridge interface which defines `getResult` structure and makes the functions available to the contract for queries.
+The only requirement is the Bridge interface, which defines `getResult` structure and makes the functions available to the contract for queries.
 
-```
-pragma solidity 0.6.11;
-
-interface Razor {
-    function getResult(uint256 id) external view returns (uint256);
-    function getJob(uint256 id) external view returns(string memory url, string memory selector, string memory name, bool repeat, uint256 result);
-}
-```
 
 We can use the following `Demo` script. It provides two functions:
 
  -  fetchPrice: a _view_ function that queries a single job ID. For example, to fetch the price of `ETH` in `USD`, we will need to send in the job ID `1`
  -  fetchMultiPrices: a _view_ function that queries multiple job IDs. For example, to fetch the price of `ETH` and `BTC` in `USD`, we will need to send in the job IDs `[1,2]`
+ -  savePrice: a _public_ function that queries a single job ID. This sends a transaction and modifies the `price` variable stored in the contract.
+ -  saveMultiPrices: a _public_ function that queries multiple job IDs. For example, to fetch the price of `ETH` and `BTC` in `USD`, we will need to send in the job IDs `[1,2]`. This sends a transaction and modifies the `pricesArr` array stored in the contract, which will hold the price of each pair in the same order as specified in the input
 
 ```sol
 pragma solidity 0.6.11;
-pragma experimental ABIEncoderV2;
 
 interface Razor {
     function getResult(uint256 id) external view returns (uint256);
@@ -69,57 +70,72 @@ interface Razor {
 }
 
 contract Demo {
-    Razor public razor;
+    // Interface
+    Razor internal razor;
+    
+    // Variables
+    uint256 public price;
+    uint256[] public pricesArr;
 
-    constructor() public {
-        razor = Razor(0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB);
-                //Moonbase Alpha 0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB
+    constructor(address _bridgeAddress) public {
+        razor = Razor(_bridgeAddress); // Bridge Contract Address
+                                       // Moonbase Alpha {{ networks.moonbase.razor.bridge_address }}
     }
 
-    function fetchPrice(uint256 jobID) external view returns (uint256){
-        return razor.getResult(jobID);
+    function fetchPrice(uint256 _jobID) public view returns (uint256){
+        return razor.getResult(_jobID);
     }
-
+    
     function fetchMultiPrices(uint256[] memory jobs) external view returns(uint256[] memory){
         uint256[] memory prices = new uint256[](jobs.length);
         for(uint256 i=0;i<jobs.length;i++){
-            prices.push(razor.getResult(jobs[i]));
+            prices[i] = razor.getResult(jobs[i]);
         }
         return prices;
-    } 
-}
-```
+    }
+    
+    function savePrice(uint _jobID) public {
+        price = razor.getResult(_jobID);
+    }
 
-Make sure to set the Razor address to `0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB`
-
-For example, to deploy using Truffle, set up the migration by creating a new file called 2_deploy.js in the migrations director and paste the following code. This will tell truffle how to deploy the contract on the network. 
-
-```
-var King = artifacts.require('./Demo.sol')
-module.exports = async function (deployer) {
-
-deployer.then(async () => {
-  await deployer.deploy(Demo)
-})
-}
-```
-
-Set up the truffle configuration used for moonbase alpha, for example
-
-```
-moonbase: {
-            provider: () => new HDWalletProvider(mnemonic, 'https://rpc.testnet.moonbeam.network'),
-            network_id: 1287,
-            gas: 8000000,
-            gasPrice: 0
+    function saveMultiPrices(uint[] calldata _jobIDs) public {
+        delete pricesArr;
+        
+        for (uint256 i = 0; i < _jobIDs.length; i++) {
+            pricesArr.push(razor.getResult(_jobIDs[i]));
         }
+
+    }
+}
 ```
 
-Type the following command to deploy the contracts on Moonbase Alpha.
+### Try it on Moonbase Alpha
 
+The easiest way to try their Oracle implementation is by pointing the interface to the Bridge contract deployed at address `{{ networks.moonbase.razor.bridge_address }}`:
+
+```sol
+pragma solidity 0.6.11;
+
+interface Razor {
+    function getResult(uint256 id) external view returns (uint256);
+    function getJob(uint256 id) external view returns(string memory url, string memory selector, string memory name, bool repeat, uint256 result);
+}
 ```
-truffle migrate --network moonbase
-```
+
+With it, you will have two view functions available, very similar to our previous examples:
+
+ -  getPrice: provides the price feed for a single job ID given as input to the function. For example, to fetch the price of `ETH` in `USD`, we will need to send in the job ID `1`
+ -  getMultiPrices: provides the price feed for multiple job IDs given as an array input to the function. For example, to fetch the price of `ETH` and `BTC` in `USD`, we will need to send in the job IDs `[1,2]`
+
+Let's use [Remix](/integrations/remix/) to fetch the `BTC` price in `USD`.
+
+After creating the file and compiling the contract, head to the "Deploy and Run Transactions" tab, enter the contract address (`{{ networks.moonbase.razor.bridge_address }}`) and click on "At Address". Make sure you have set the "Environment" to "Injected Web3" so you are connected to Moonbase Alpha (through the Web3 provider of the wallet). 
+
+![Razor Remix deploy](/images/razor/razor-demo1.png)
+
+This will create an instance of the demo contract that you can interact with. Use the functions `getPrice()` and `getMultiPrices()` to query the data of the corresponding pair.
+
+![Razor check price](/images/razor/razor-demo2.png)
 
 ## Contact Us
-If you have any feedback regarding implementing Razor Network Oracle on your project, or any other Moonbeam related topic, feel free to reach out through our official development [Discord server](https://discord.com/invite/PfpUATX).
+If you have any feedback regarding implementing the Razor Network Oracle on your project, or any other Moonbeam related topic, feel free to reach out through our official development [Discord server](https://discord.com/invite/PfpUATX).
