@@ -53,18 +53,13 @@ Instructions
    - YOUR-API-KEY
    - YOUR-SERVER-NAME
    - YOUR-PCK-KEY
-3. configure persistant storage for .gnw config file
-  ```
-  mkdir -p /var/lib/gantree/relay
-  mkdir -p /var/lib/gantree/parachain
-  ```
 4. Run the relay Gantree node watchdog
   ```
-  docker run -it --network="host" -e GANTREE_NODE_WATCHDOG_API_KEY="YOUR-API-KEY" -e GANTREE_NODE_WATCHDOG_PROJECT_ID="moonbase-alpha" -e GANTREE_NODE_WATCHDOG_CLIENT_ID="YOUR-SERVER-NAME-parachain" -e GANTREE_NODE_WATCHDOG_PCKRC="YOUR-PCK-KEY" -e GANTREE_NODE_WATCHDOG_METRICS_HOST="http://172.0.0.1:9615"  --name gantree_watchdog_relay -v /var/lib/gantree/parachain:/watchdog IMAGE-NAME
+  docker run -it --network="host" -e GANTREE_NODE_WATCHDOG_API_KEY="YOUR-API-KEY" -e GANTREE_NODE_WATCHDOG_PROJECT_ID="moonbase-alpha" -e GANTREE_NODE_WATCHDOG_CLIENT_ID="YOUR-SERVER-NAME-parachain" -e GANTREE_NODE_WATCHDOG_PCKRC="YOUR-PCK-KEY" -e GANTREE_NODE_WATCHDOG_METRICS_HOST="http://172.0.0.1:9615"  --name gantree_watchdog_relay IMAGE-NAME
   ```
 5. Run the parachain Gantree node watchdog
   ```
-  docker run -it --network="host" -e GANTREE_NODE_WATCHDOG_API_KEY="YOUR-API-KEY" -e GANTREE_NODE_WATCHDOG_PROJECT_ID="moonbase-alpha" -e GANTREE_NODE_WATCHDOG_CLIENT_ID="YOUR-SERVER-NAME-relay" -e GANTREE_NODE_WATCHDOG_PCKRC="YOUR-PCK-KEY" -e GANTREE_NODE_WATCHDOG_METRICS_HOST="http://172.0.0.1:9616" --name gantree_watchdog_relay -v /var/lib/gantree/relay:/watchdog IMAGE-NAME
+  docker run -it --network="host" -e GANTREE_NODE_WATCHDOG_API_KEY="YOUR-API-KEY" -e GANTREE_NODE_WATCHDOG_PROJECT_ID="moonbase-alpha" -e GANTREE_NODE_WATCHDOG_CLIENT_ID="YOUR-SERVER-NAME-relay" -e GANTREE_NODE_WATCHDOG_PCKRC="YOUR-PCK-KEY" -e GANTREE_NODE_WATCHDOG_METRICS_HOST="http://172.0.0.1:9616" --name gantree_watchdog_relay IMAGE-NAME
   ```
 6.  You should see waiting for provisioning in the logs.  Log into the https://app.gantree.io, select networks. Click the network and then `Provision Dashboard`.  This step may take a few minutes.  Once it completes, return to the network and you will see a `View Monitoring Dashboard` link to your custom Prometheus / Grafana dashboard. 
 7.  Once things are workign well, you can update the commands to run in daemon mode.  
