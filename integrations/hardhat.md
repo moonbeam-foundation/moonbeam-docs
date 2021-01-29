@@ -157,19 +157,145 @@ Compiling 1 file with 0.8.1
 Compilation finished successfully
 ```
 
-## Deploying the contract to Moonbase Alpha
+## Getting ready for deployment
 
 After compilation an `artifacts` directory was created: it holds the bytecode and metadata of the contract, which are .json files. It’s a good idea to add this directory to your `.gitignore`.
 
-_Next Sections WIP_
+If you have not dones so yet, go ahead and [create a MetaMask Account, connect to Moonbase Alpha](/getting-started/testnet/metamask/), and fund it through [Mission Control](/getting-started/testnet/faucet/).
 
-- Create and fund a Moonbase account (will refer to existing tutorial)
-- Updating hardhat config to connect to Moonbase Alpha
-- Deploy the contract to Moonbase Alpha
-- Interact with the contract through hardhat console
-- Closing remarks and a segway into OpenZeppelin Contracts + Hardhat
+We will use the private key of the account you created to deploy the contract. Next, let's configure the network in `hardhat.config.js`:
+
+```js
+// ethers plugin required to interact with the contract
+require('@nomiclabs/hardhat-ethers');
+
+// private key from the pre-funded Moonbase Alpha testing account
+const { privateKey } = require('./secrets.json');
+
+module.exports = {
+  // latest Solidity version
+  solidity: "0.8.1",
+
+  networks: {
+    // Moonbase Alpha network specification
+    moonbase: {
+      url: `https://rpc.testnet.moonbeam.network`,
+      chainId: 1287,
+      accounts: [privateKey]   
+    }
+  }
+};
+```
+Take a look at the config file. It requires a `hardhat-ethers` plugin to interact with the Box contract once it's deployed. Install `ethers` plugin by running: 
+
+```
+npm install --save-dev @nomiclabs/hardhat-ethers ethers 
+```
+Next, let's create a `secrets.json`, in the directory root, where we will be storing the private key mentioned before: 
+
+![Secrets.json Root Directory](/images/hardhat/hardhat-secrets.png)
+
+To copy the private key, open Metamask and navigate to `Account Details`:
+
+![MetaMask Account Details](/images/hardhat/hardhat-account-details.png)
+
+Copy the private key:
+
+![Metamask Account Key](/images/hardhat/hardhat-key.png)
+
+Then paste the private key into `secrets.json`:
+```js
+{
+    "privateKey": "0af804f7a49a87e5f65ee8db9295aef7cabd51cd11b4be4"
+}
+```
+
+!!! note
+      Please, always manage your private keys with a designated secret manager or a similar service. Never save or commit your private keys inside your repositories.
+
+Congratulations!👏🏼  We are ready for deployment!🚀🌖
+
+
+## Deploying the contract
+
+In order to deploy the Box smart contract, we will need to write a simple `deployment script`. Create a new directory - `scripts`. Inside the newly created directory add a new file `deploy.js` and copy / paste the following deployment sequence:
+
+```js
+// scripts/deploy.js
+async function main() {
+  // We get the contract to deploy
+  const Box = await ethers.getContractFactory("Box");
+  console.log("Deploying Box...");
+
+  // Instantiating a new Box smart contract
+  const box = await Box.deploy();
+
+  // Waiting for the deployment to resolve
+  await box.deployed();
+  console.log("Box deployed to:", box.address);
+}
+
+main()
+  .then(() => process.exit(0))
+  .catch(error => {
+    console.error(error);
+    process.exit(1);
+  });
+```
+
+Using the `run` command, we can now deploy the `Box` contract to `Moonbase Alpha`: 
+
+```
+  npx hardhat run --network moonbase scripts/deploy.js
+```
+You should see a similar output:
+
+```
+Deploying Box...
+Box deployed to: 0xaEd14503e00C59A027D81891238246d62669a92A
+```
+
+Congratulations, your contract is live! Save the address. We will use it to interact with this contract instance.
+
+To interact with the contract, launch `hardhat console` by running:
+
+```
+npx hardhat console --network localhost
+```
+Then add the following lines of code, a line at a time. Don't worry about the `undefined` output you will get after each line is executed: 
+
+```js
+const Box = await ethers.getContractFactory("Box") 
+```
+```js
+const box = await Box.attach("0xaEd14503e00C59A027D81891238246d62669a92A")
+```
+Notice how we are using the address we got during the deployment to `attach` to the contract. 
+
+## Sending transactions
+
+After attaching to the contract we are ready to interact with it. While the console is still in session, let's call the `store` method and store a simple value: 
+
+```
+await box.store(777)
+```
+Hit `Enter`. The transaction will be signed by your Moonbase account and broadcasted to the network. The output should look similar to:
+
+![Transaction output](/images/hardhat/hardhat-store.png)
+
+Notice your address labeled as `from`, as well as the address of the contract, and the `data` that is being passed.
+
+Now let's retreive the value by running: 
+
+```
+(await box.retrieve()).toNumber() 
+```
+We should see `777` or the value you have stored initially. 
+
+Congratulations, you have completed the Hardhat tutorial! 🤯 🎉
+
+For more information on Hardhat, hardhat plugins, and other exciting functionality, please visit [hardhat.org](https://hardhat.org/).
+
 
 ## We Want to Hear From You
-If you have any feedback regarding Moonbase Alpha, event subscription, or any other Moonbeam related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).
-
-
+If you have any feedback regarding Moonbase Alpha, using hardhat to deploy smart contracts, or any other Moonbeam related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).
