@@ -49,6 +49,8 @@ First, clone the instance monitoring client repository and build the docker imag
 ```
 git clone https://github.com/gantree-io/gantree-node-watchdog
 cd gantree-node-watchdog
+# checkout latest release
+git checkout tags/$(git tag | tail -1)
 docker build .  
 # get the IMAGE-NAME for use below
 docker images
