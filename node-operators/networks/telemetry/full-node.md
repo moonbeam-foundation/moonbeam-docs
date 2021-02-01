@@ -61,14 +61,26 @@ Next, let's run the docker container (Gantree node watchdog). Note that you need
   - `YOUR-SERVER-NAME`
   - `YOUR-PCK-KEY` with the one requested in our Discord server
 
-  ```
-  docker run -it --network="host" -e GANTREE_NODE_WATCHDOG_API_KEY="YOUR-API-KEY" -e GANTREE_NODE_WATCHDOG_PROJECT_ID="moonbase-alpha" -e GANTREE_NODE_WATCHDOG_CLIENT_ID="YOUR-SERVER-NAME-parachain" -e GANTREE_NODE_WATCHDOG_PCKRC="YOUR-PCK-KEY" -e GANTREE_NODE_WATCHDOG_METRICS_HOST="http://172.0.0.1:9615"  --name gantree_watchdog_relay IMAGE-NAME
-  ```
+```
+docker run -it --network="host" \
+-e GANTREE_NODE_WATCHDOG_API_KEY="YOUR-API-KEY" \
+-e GANTREE_NODE_WATCHDOG_PROJECT_ID="moonbase-alpha" \
+-e GANTREE_NODE_WATCHDOG_CLIENT_ID="YOUR-SERVER-NAME-parachain" \
+-e GANTREE_NODE_WATCHDOG_PCKRC="YOUR-PCK-KEY" \
+-e GANTREE_NODE_WATCHDOG_METRICS_HOST="http://172.0.0.1:9615" \
+--name gantree_watchdog_relay IMAGE-NAME
+```
 
 Now, we need to run the parachain Gantree node watchdog. Note that you need to replace the same information as in the previous step.
 
 ```
-docker run -it --network="host" -e GANTREE_NODE_WATCHDOG_API_KEY="YOUR-API-KEY" -e GANTREE_NODE_WATCHDOG_PROJECT_ID="moonbase-alpha" -e GANTREE_NODE_WATCHDOG_CLIENT_ID="YOUR-SERVER-NAME-relay" -e GANTREE_NODE_WATCHDOG_PCKRC="YOUR-PCK-KEY" -e GANTREE_NODE_WATCHDOG_METRICS_HOST="http://172.0.0.1:9616" --name gantree_watchdog_relay IMAGE-NAME
+docker run -it --network="host" \
+-e GANTREE_NODE_WATCHDOG_API_KEY="YOUR-API-KEY" \
+-e GANTREE_NODE_WATCHDOG_PROJECT_ID="moonbase-alpha" \
+-e GANTREE_NODE_WATCHDOG_CLIENT_ID="YOUR-SERVER-NAME-relay" \
+-e GANTREE_NODE_WATCHDOG_PCKRC="YOUR-PCK-KEY" \
+-e GANTREE_NODE_WATCHDOG_METRICS_HOST="http://172.0.0.1:9616" \
+--name gantree_watchdog_relay IMAGE-NAME
 ```
 
 You should see waiting for provisioning in the logs.  
@@ -93,12 +105,12 @@ We will run two instances of the Gantree node watchdog: one for the relay chain 
 
 First, we need to download the Gantree node watchdog binary from the [release page](https://github.com/gantree-io/gantree-node-watchdog/releases), and extract it to a folder, for example, `/usr/local/bin`.
 
-Next, let's create 2 folders for the configuration files:
+Next, let's create two folders for the configuration files:
 
-  ```
-  mkdir -p /var/lib/gantree/relay
-  mkdir -p /var/lib/gantree/parachain
-  ```
+```
+mkdir -p /var/lib/gantree/relay
+mkdir -p /var/lib/gantree/parachain
+```
 
 Now, we need to generate the configuration files, place each in the folders created in the previous step. Note that you need to replace the following fields:
 
@@ -106,26 +118,26 @@ Now, we need to generate the configuration files, place each in the folders crea
   - `YOUR-SERVER-NAME`
   - `YOUR-PCK-KEY` with the one requested in our Discord server
 
-  ```
-  # Contents of /var/lib/gantree/relay/.gnw_config.json
-  {
-    "api_key": "YOUR-API-KEY",
-    "project_id": "moonbase-alpha",
-    "client_id": "YOUR-SERVER-NAME-parachain",
-    "pckrc": "YOUR-PCK-KEY",
-    "metrics_host": "http://127.0.0.1:9615"
-  }
-  ```
-  ```
-  # Contents of /var/lib/gantree/parachain/.gnw_config.json
-  {
-    "api_key": "YOUR-API-KEY",
-    "project_id": "moonbase-alpha",
-    "client_id": "YOUR-SERVER-NAME-relay",
-    "pckrc": "YOUR-PCK-KEY",
-    "metrics_host": "http://127.0.0.1:9616"
-  }
-  ```
+```
+# Contents of /var/lib/gantree/relay/.gnw_config.json
+{
+  "api_key": "YOUR-API-KEY",
+  "project_id": "moonbase-alpha",
+  "client_id": "YOUR-SERVER-NAME-parachain",
+  "pckrc": "YOUR-PCK-KEY",
+  "metrics_host": "http://127.0.0.1:9615"
+}
+```
+```
+# Contents of /var/lib/gantree/parachain/.gnw_config.json
+{
+  "api_key": "YOUR-API-KEY",
+  "project_id": "moonbase-alpha",
+  "client_id": "YOUR-SERVER-NAME-relay",
+  "pckrc": "YOUR-PCK-KEY",
+  "metrics_host": "http://127.0.0.1:9616"
+}
+```
 
 The next step is to generate your systemd configuration file:
 
@@ -173,3 +185,7 @@ sudo systemctl start gantree-parachain && journalctl -f -u gantree-parachain
 ```
 
 Lastly, you should see the logs waiting for provisioning.  Log into the [https://app.gantree.io](https://app.gantree.io), select networks. Click the network and then `Provision Dashboard`.  This step may take a few minutes.  Once it completes, return to the network, and you will see a `View Monitoring Dashboard` link to your custom Prometheus / Grafana dashboard. 
+
+## Contact Us
+
+If you have any feedback regarding running a full node with telemetry, or any other Moonbeam related topic, feel free to reach out through our official development [Discord server](https://discord.com/invite/PfpUATX).
