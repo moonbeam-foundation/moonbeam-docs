@@ -3,6 +3,8 @@ networks:
       build_tag: tutorial-v3
    moonbase:
       version: v5
+      rpc_url: https://rpc.testnet.moonbeam.network
+      chain_id: 1287
       parachain_docker_sha: sha-02fbb7e2
       parachain_docker_tag: v0.5.1
       node_directory: /var/lib/alphanet-data
