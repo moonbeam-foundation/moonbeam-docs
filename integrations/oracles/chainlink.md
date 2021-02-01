@@ -65,7 +65,7 @@ Note that the Client contract must have LINK tokens balance to be able to pay fo
 
 If you want to skip the hurdles of deploying all the contracts, setting up your Oracle node, creating job IDs, and so on, we've got you covered. 
 
-A custom Client contract on Moonbase Alpha that makes all requests to our Oracle contract, with a 0 LINK token payment, is available. These requests are fulfilled by an Oracle node we are running as well. You can try out with the following interface contract, with the custom Client contract deployed at `0x81f191eF90Fed48645FB846DFd7a6B8893fF5d56`:
+A custom Client contract on Moonbase Alpha that makes all requests to our Oracle contract, with a 0 LINK token payment, is available. These requests are fulfilled by an Oracle node we are running as well. You can try out with the following interface contract, with the custom Client contract deployed at `{{ networks.moonbase.chainlink.client_contract }}`:
 
 ```solidity
 --8<-- 'chainlink/Interface.sol'
@@ -75,18 +75,18 @@ This provides two functions. `requestPrice()` only needs the job ID of the data 
 
 Currently, the Oracle node has a set of Job IDs for different price datas for the following pairs:
 
-|  Base/Quote    |   |         Job ID Reference           |
-|:--------------:|---|:----------------------------------:|
-| BTC to USD     |   | 82f0d8b4be2143d49d6df4ff2edca4ac   |
-| ETH to USD     |   | a75d59e194fd478fa36610f158f51825   |
-| DOT to USD     |   | d2630d576c5c46f6a43160b439dc6ca1   |
-| KSM to USD     |   | 54248318766e437c805c0ead4b6a9e38   |
-| AAVE to USD    |   | f68bd048576d49c78104aad8ae9aac3b   |
-| ALGO to USD    |   | 740f7dc8c10e44e4bc990bcf6302ebe4   |
-| BAND to USD    |   | 390daa166024415a8ec4fc259f19bdf1   |
-| LINK to USD    |   | 666722e8caff4ca1bcd61e312a3b4e6a   |
-| SUSHI to USD   |   | 5be855d1f44542b89f8dd14321c4612d   |
-| UNI to USD     |   | 8c490fd77c5742e4b6e4d6273800fa50   |
+|  Base/Quote    |   |                Job ID Reference                 |
+|:--------------:|---|:-----------------------------------------------:|
+| BTC to USD     |   | {{ networks.moonbase.chainlink.basic.btc_usd }} |
+| ETH to USD     |   | {{ networks.moonbase.chainlink.basic.eth_usd }} |
+| DOT to USD     |   | {{ networks.moonbase.chainlink.basic.dot_usd }} |
+| KSM to USD     |   | {{ networks.moonbase.chainlink.basic.ksm_usd }} |
+| AAVE to USD    |   | {{ networks.moonbase.chainlink.basic.aave_usd }}|
+| ALGO to USD    |   | {{ networks.moonbase.chainlink.basic.algo_usd }}|
+| BAND to USD    |   | {{ networks.moonbase.chainlink.basic.band_usd }}|
+| LINK to USD    |   | {{ networks.moonbase.chainlink.basic.link_usd }}|
+| SUSHI to USD   |   |{{ networks.moonbase.chainlink.basic.sushi_usd }}|
+| UNI to USD     |   | {{ networks.moonbase.chainlink.basic.uni_usd }} |
 
 Let' go ahead and use the interface contract with the `BTC to USD` Job ID in [Remix](/integrations/remix/). 
 
@@ -100,10 +100,10 @@ If there is any specific pair you want us to include, feel free to reach out to 
 
 In case you want to run your Client contract, but use our Oracle node, you can do so with the following information:
 
-|  Contract Type      |   |                     Address                  |
-|:-------------------:|---|:--------------------------------------------:|
-| Oracle Contract     |   | 0xCdF0FC59EE7d7901a10A56Ae6C8a8486CB4D70A5   |
-| LINK Token          |   | 0xa36085F69e2889c224210F603D836748e7dC0088   |
+|  Contract Type      |   |                    Address                      |
+|:-------------------:|---|:-----------------------------------------------:|
+| Oracle Contract     |   |{{ networks.moonbase.chainlink.oracle_contract }}|
+| LINK Token          |   | {{ networks.moonbase.chainlink.link_contract }} |
 
 Remember that the LINK token payment is set to zero.
 
