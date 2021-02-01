@@ -13,6 +13,8 @@ networks:
          ERC20S: '0xEEc83DC1B7D0dE3f0f1277619fbbE8150E70Ef39'
          ERC721E: '0xCB2e28930103311312AF5B3412EAf3A28Da0402f'
          ERC721M: '0xEa3875a7995669020b6Bbb91a63104e419eBacF4'
+      razor:
+         bridge_address: '0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB'
       chainlink:
          oracle_contract: '0x1d693d883BeAeE16edD0D7588D6a9f7E1967E798'
          link_contract: '0xa36085F69e2889c224210F603D836748e7dC0088'

@@ -164,7 +164,7 @@ interface TestInterface {
 }
 ```
 
-With it, you will have to view functions available, very similar to our previous examples:
+With it, you will have two view functions available, very similar to our previous examples:
 
  -  getPrice: provides the price feed for a single base/quote pair that is given as input to the function, that is, "BTC", "USD"
  -  getMultiPrices: provides the price feed for a multiple base/quote pairs that are given as input to the function, that is, ["BTC", "ETH", "ETH"], ["USD", "USD", "EUR"]
