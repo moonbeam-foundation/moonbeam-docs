@@ -139,7 +139,7 @@ We start by requiring the [ethers plugin](https://hardhat.org/plugins/nomiclabs-
 npm install @nomiclabs/hardhat-ethers ethers 
 ```
 
-Next, we import tye private key that we've retrieved from MetaMask and stored it in a `.json` file.
+Next, we import the private key that we've retrieved from MetaMask and stored it in a `.json` file.
 
 !!! note
       Please, always manage your private keys with a designated secret manager or a similar service. Never save or commit your private keys inside your repositories.
@@ -198,7 +198,7 @@ After compilation, an `artifacts` directory is created: it holds the bytecode an
 
 ## Deploying the contract
 
-In order to deploy the Box smart contract, we will need to write a simple `deployment script`. First, let's create a new directory (`scripts`). Inside the newly created directory add a new file `deploy.js`
+In order to deploy the Box smart contract, we will need to write a simple `deployment script`. First, let's create a new directory (`scripts`). Inside the newly created directory, add a new file `deploy.js`
 
 ```
 mkdir scripts && cd scripts
@@ -264,7 +264,7 @@ Next, let's connect this instance to an existing one by passing in the address w
 const box = await Box.attach("0x425668350bD782D80D457d5F9bc7782A24B8c2ef")
 ```
 
-After attaching to the contract we are ready to interact with it. While the console is still in session, let's call the `store` method and store a simple value: 
+After attaching to the contract, we are ready to interact with it. While the console is still in session, let's call the `store` method and store a simple value: 
 
 ```
 await box.store(5)
