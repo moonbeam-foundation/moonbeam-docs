@@ -46,7 +46,7 @@ Because of Moonbeam's Ethereum compatibility features, you can use the developme
 
  - [Remix](/integrations/remix)
  - [Truffle](/integrations/trufflebox/)
- - HardHat (tutorial comming soon)
+ - [HardHat](/integrations/hardhat/)
  - [Web3.js](/integrations/jslibraries/web3js/)
  - [Ethers.js](/integrations/jslibraries/etherjs/)
 
@@ -58,7 +58,7 @@ Because of Moonbeam's Ethereum compatibility features, you can use the developme
 
  - [Chainlink](/integrations/oracles/chainlink/)
  - [Band Protocol](/integrations/oracles/band-protocol/)
- - Razor Network (tutorial comming soon)
+ - [Razor Network](/integrations/oracles/razor-network/)
 
 ### Bridges
 
