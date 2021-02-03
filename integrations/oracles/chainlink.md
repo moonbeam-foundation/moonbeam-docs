@@ -130,7 +130,9 @@ The end-user can retrieve price feeds with read-only operations via a Consumer c
 
 If you want to skip the hurdles of deploying all the contracts, setting up your Oracle node, creating job IDs, and so on, we've got you covered. 
 
-We've deployed all the necessary contracts on Moonbase Alpha to simplify the process of requesting price feeds. Currently, we are running only one Oracle node that fetches the price from a single API source. The data lives in a series of smart contracts, one per price feed, and can be fetched with the following interface:
+We've deployed all the necessary contracts on Moonbase Alpha to simplify the process of requesting price feeds. In our current configuration, we are running only one Oracle node that fetches the price from a single API source. Price data is checked every minute, and updated in the smart contracts every hour unless there is a price deviation of 1 %.
+
+The data lives in a series of smart contracts, one per price feed, and can be fetched with the following interface:
 
 ```solidity
 pragma solidity ^0.6.6;
