@@ -33,46 +33,17 @@ networks:
             sushi_usd: '6dffb6595c404e16a9a8355a54bcb5b2'
             uni_usd: 'c5c8f403012a44c986e45f7da0b90b65'
          feed:
-            btc:
-               agg: '0x1E1Cc00369F39f2faB548cE56361032A59C7b912'
-               proxy: '0xCf88A8d7fc1A687895fC8ffAad567f303926B094'
-               consumer: '0xa39d8684B8cd74821db73deEB4836Ea46E145300'
-            eth:
-               agg: '0x02b682C9bC461669513BC814D5F4c79C2A5F603f'
-               proxy: '0x3669da30c33D27A6A579548fCfc345fE5dEdda6e'
-               consumer: '0x0BAA6E884cfD628b33867F9E081B44a76276fA2D'
-            dot:
-               agg: '0xFab464Dc167998Eb2f1F12ae44c60BaB8706269B'
-               proxy: '0xA873F6b30aD79fCAF9b03A0A883d6D1f18D661d7'
-               consumer: '0xA8B2138c8E765288D4f6fb7D3ebCe2507A006a9C'
-            ksm:
-               agg: '0xFE7c856d803B1a82E468E50929085F6E7F196D1B'
-               proxy: '0x0C515E77897b2A7181C875c88FaF9BC8E5661E3b'
-               consumer: '0x4E9A1ebc0bEebe3516a8A9a911D781c37414bb39'
-            aave:
-               agg: '0x007B4548dFA818B37E2f1E74882c8482C758eD6E'
-               proxy: '0x64B22D2B8c3CA311a0C2de34bf799f8101c89362'
-               consumer: '0x9DA76AE39AECA424801DF1b63e9E2750643F9e76'
-            algo:
-               agg: '0xA8E2491cD45E64A94aCF483F3A0eF65cdbB83764'
-               proxy: '0x9fc3b0BF1156868085AFC1cFf4Bf6D85ea301371'
-               consumer: '0x49E1021974902B4a279fC7D359b4890FC38F8261'
-            band:
-               agg: '0xfA4890b26710ceB93582FFb3633aCF996b3f9bA6'
-               proxy: '0xC5aeD933FEb49794A8Bf2FB0e73D9c958c8a07ba'
-               consumer: '0x8997c0A8Dc9d13061FCf303711D1db4278e53a1B'
-            link:
-               agg: '0x5285d2fFecB00B00Be1aF4B8eB42e67487aDd585'
-               proxy: '0x446b93236B4d34642732B8dcbeB3cb4f4FA03C70'
-               consumer: '0x5310f2d4B531BCEA8126e2aEE40BAd71B707f530'
-            sushi:
-               agg: '0xE3644F56a24649DdD98a01FDD0Fcb59A5FfDb18e'
-               proxy: '0x4a6Cf10C0f5c4D4e7cf7385bFfecDAec0778357C'
-               consumer: '0xd265FAfc809108D9cf47b6970d750419ba9355B8'
-            uni:
-               agg: '0xe3D21034Ba7a2EE62A05970Ce30a7b55B6595bb4'
-               proxy: '0x326997c21451DaB916F9f01684991B6169dAf3E5'
-               consumer: '0x326fAFb9E9B5188d7c2e95C0D782ECB19E5EfDF9'
+            consumer:
+               btc_usd: '0xa39d8684B8cd74821db73deEB4836Ea46E145300'
+               eth_usd: '0x0BAA6E884cfD628b33867F9E081B44a76276fA2D'
+               dot_usd: '0xA8B2138c8E765288D4f6fb7D3ebCe2507A006a9C'
+               ksm_usd: '0x4E9A1ebc0bEebe3516a8A9a911D781c37414bb39'
+               aave_usd: '0x9DA76AE39AECA424801DF1b63e9E2750643F9e76'
+               algo_usd: '0x49E1021974902B4a279fC7D359b4890FC38F8261'
+               band_usd: '0x8997c0A8Dc9d13061FCf303711D1db4278e53a1B'
+               link_usd: '0x5310f2d4B531BCEA8126e2aEE40BAd71B707f530'
+               sushi_usd: '0xd265FAfc809108D9cf47b6970d750419ba9355B8'
+               uni_usd: '0x326fAFb9E9B5188d7c2e95C0D782ECB19E5EfDF9'
    relay_chain:
       p2p: 30334
       rpc: 9934
