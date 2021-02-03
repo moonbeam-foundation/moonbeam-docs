@@ -8,15 +8,15 @@ description: An overview of the current configuration of the Moonbeam TestNet, M
 ## Goal  
 The first Moonbeam TestNet, named Moonbase Alpha, aims to provide developers with a place to start experimenting and building on Moonbeam in a shared environment. Since Moonbeam will be deployed as a parachain on Kusama and Polkadot, we want our TestNet to reflect our production configuration. For this reason, we decided that it needed to be a parachain-based configuration rather than a Substrate standalone setup.
 
-In order to collect as much feedback as possible and provide a fast resolution to issues, we have set up a [Discord with a dedicated Moonbase AlphaNet channel](https://discord.gg/PfpUATX).
+In order to collect as much feedback as possible and provide fast issue resolution, we have set up a [Discord with a dedicated Moonbase AlphaNet channel](https://discord.gg/PfpUATX).
 
 ## Initial Configuration
 Moonbase Alpha has the following configuration:  
 
--  Moonbeam runs as a parachain connected to a relay chain
--  The parachain has two collator (hosted by PureStake) that are collating blocks
--  The relay chain hosts three validators (hosted by PureStake) to finalize relay chain blocks. One of them is selected to finalize each block collated by Moonbeam's collators. This setup provides room to expand to a two-parachain configuration in the future
--  There are two RPC endpoints (hosted by PureStake). People can run full nodes to access their own private RPC endpoints
+-  Moonbeam runs as a parachain connected to a relay chain.
+-  The parachain has two collators (hosted by PureStake) that are collating blocks.
+-  The relay chain hosts three validators (hosted by PureStake) to finalize relay chain blocks. One of them is selected to finalize each block collated by Moonbeam's collators. This setup provides room to expand to a two-parachain configuration in the future.
+-  There are two RPC endpoints (hosted by PureStake). People can run full nodes to access their own private RPC endpoints.
 
 ![TestNet Diagram](/images/testnet/Moonbase-Alpha-v5.png)
 
@@ -24,24 +24,23 @@ Moonbase Alpha has the following configuration:
 
 The following features are available:  
 
--  Fully emulated Ethereum block production in Substrate (Ethereum pallet) ![v1](/images/testnet/v1.svg)
+-  Fully-emulated Ethereum block production in Substrate (Ethereum pallet) ![v1](/images/testnet/v1.svg)
 -  Dispatchable functions to interact with the Rust EVM implementation ([EVM pallet](https://github.com/paritytech/frontier/tree/master/frame/evm)) ![v1](/images/testnet/v1.svg)
--  Native Ethereum RPC support (Web3) in Substrate ([Frontier RPC](https://github.com/paritytech/frontier)). This provides compatibility with Ethereum developer tools such as MetaMask, Truffle, and Remix ![v1](/images/testnet/v1.svg)
--  Event subscription support (pub/sub), which is a missing component on the Web3 RPC side and commonly used by dApp developers. You can find a tutorial on how to subscribe to events [here](/integrations/pubsub) ![v2](/images/testnet/v2.svg)
+-  Native Ethereum RPC support (Web3) in Substrate ([Frontier RPC](https://github.com/paritytech/frontier)). This provides compatibility with Ethereum developer tools, such as MetaMask, Truffle, and Remix ![v1](/images/testnet/v1.svg)
+-  Event subscription support (pub/sub), which is a missing component on the Web3 RPC side and is commonly used by dApp developers. You can find a tutorial on how to subscribe to events [here](/integrations/pubsub) ![v2](/images/testnet/v2.svg)
 -  Support for the following precompile contracts: [ecrecover](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-01-ecrecover-hash-v-r-s), [sha256](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-02-sha-256-data), [ripemd160](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-03-ripemd-160-data) and the [identity function](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-04-datacopy-data) (or datacopy) ![v2](/images/testnet/v2.svg)
 -  Unification of Substrate and Ethereum accounts under the H160 format, an effort we are calling [Unified Accounts](https://medium.com/moonbeam-network/moonbase-alpha-v3-introducing-unified-accounts-88fae3564cda). Consequently, there will be only one kind of account in the system represented by a single address ![v3](/images/testnet/v3.svg)
 -  Upgrades to the event subscription support, adding the possibility of using wildcards and conditional formatting for topics. You can find more information [here](https://docs.moonbeam.network/integrations/pubsub/#using-wildcards-and-conditional-formatting) ![v3](/images/testnet/v3.svg)
--  Polkadot JS Apps now natively supports H160 addresses and ECDSA keys. You can use your Ethereum-style address for Substrate functions (when available) such as: staking, balances and governance. You can find more information [here](/integrations/polkadotjs/) ![v3](/images/testnet/v3.svg)
+-  Polkadot JS Apps now natively supports H160 addresses and ECDSA keys. You can use your Ethereum-style address for Substrate functions (when available) such as: staking, balances, and governance. You can find more information [here](/integrations/polkadotjs/) ![v3](/images/testnet/v3.svg)
 - Updated to the newest version of the Polkadot parachain protocol ([Parachains V1](https://w3f.github.io/parachain-implementers-guide/)), which fixed several issues with node syncing, paving the way to have multiple collators to sync in the same parachain ![v4](/images/testnet/v4.svg)
 - Multiple improvements to our Etheruem Compatibility features:
-- Event subscrition ID now returns a Ethereum-styled subscription ID ![v4](/images/testnet/v4.svg)
+- Event subscription ID now returns an Ethereum-styled subscription ID ![v4](/images/testnet/v4.svg)
 - Fixed gas estimation issues for specific usecases ![v4](/images/testnet/v4.svg)
 - Added support for revert reason message ![v4](/images/testnet/v4.svg)
 - Support for Ethereum transactions without ChainId ![v4](/images/testnet/v4.svg)
 - Added a custom version of the [Staking Pallet](https://wiki.polkadot.network/docs/en/learn-staking) (for testing and development purposes only) ![v5](/images/testnet/v5.svg)
 - Added support for querying pending transactions while they are in the pool ![v5](/images/testnet/v5.svg)
-- Fixed some issues when retrieving past events, and other minor fixes related to smart contract events ![v5](/images/testnet/v5.svg)
-- Multiple under-the-hood improvements that include an optimization of the EVM execution time, making it 15-50 times faster ![v5](/images/testnet/v5.svg)
+- Fixed some issues when retrieving past events and other minor fixes related to smart contract events ![v5](/images/testnet/v5.svg)
 - Multiple under-the-hood improvements that include an optimization of the EVM execution time, making it 15-50 times faster ![v5](/images/testnet/v5.svg)
 - Support for the [modexp](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x05-bigmodexp-base-exp-mod) precompile contracts ![v5](/images/testnet/v5.svg)
 
@@ -80,7 +79,7 @@ This also means that PureStake holds the Sudo Key in order to issue the commands
 
 This is the first TestNet for Moonbeam, so there are some limitations.
 
-Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts) are yet to be included in this release. You can check a list of the precompiles supported [here](/integrations/precompiles). However, all built-in functions are available.
+Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts) are yet to be included in this release. You can check a list of supported precompiles [here](/integrations/precompiles). However, all built-in functions are available.
 
 Since the release of Moonbase Alpha v5, the maximum gas limit per block has been set to 6000000, with a maximum gas limit per transaction of 5198000. These values are not final and we expect to increase it in future releases.
 
