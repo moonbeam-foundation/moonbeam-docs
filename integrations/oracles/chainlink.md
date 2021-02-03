@@ -71,7 +71,26 @@ If you want to skip the hurdles of deploying all the contracts, setting up your 
 A custom Client contract on Moonbase Alpha that makes all requests to our Oracle contract, with a 0 LINK token payment, is available. These requests are fulfilled by an Oracle node we are running as well. You can try out with the following interface contract, with the custom Client contract deployed at `{{ networks.moonbase.chainlink.client_contract }}`:
 
 ```solidity
---8<-- 'chainlink/Interface.sol'
+pragma solidity ^0.6.6;
+
+/**
+ * @title Simple Interface to interact with Universal Client Contract
+ * @notice Client Address {{ networks.moonbase.chainlink.client_contract }}
+ */
+interface ChainlinkInterface {
+
+  /**
+   * @notice Creates a Chainlink request with the job specification ID,
+   * @notice and sends it to the Oracle.
+   * @notice _oracle The address of the Oracle contract fixed top
+   * @notice _payment For this example the PAYMENT is set to zero
+   * @param _jobId The job spec ID that we want to call in string format 
+   */
+    function requestPrice(string calldata _jobId) external;
+
+    function currentPrice() external view returns (uint);
+
+}
 ```
 
 This provides two functions. `requestPrice()` only needs the job ID of the data you want to query. This function starts the chain of events explained before. `currentPrice()` is a view function that returns the latest price stored in the contract.
