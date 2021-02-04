@@ -4,7 +4,7 @@ description: This guide walks you through how to connect Mathwallet, a browser-b
 ---
 
 # Interacting with Moonbeam Using MathWallet
-
+ 
 ![Intro banner](/images/mathwallet/mathwallet-banner.png)
 
 ## Introduction
