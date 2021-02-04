@@ -3,6 +3,8 @@ networks:
       build_tag: tutorial-v3
    moonbase:
       version: v5
+      rpc_url: https://rpc.testnet.moonbeam.network
+      chain_id: 1287
       parachain_docker_sha: sha-02fbb7e2
       parachain_docker_tag: v0.5.1
       node_directory: /var/lib/alphanet-data
@@ -13,6 +15,35 @@ networks:
          ERC20S: '0xEEc83DC1B7D0dE3f0f1277619fbbE8150E70Ef39'
          ERC721E: '0xCB2e28930103311312AF5B3412EAf3A28Da0402f'
          ERC721M: '0xEa3875a7995669020b6Bbb91a63104e419eBacF4'
+      razor:
+         bridge_address: '0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB'
+      chainlink:
+         oracle_contract: '0x1d693d883BeAeE16edD0D7588D6a9f7E1967E798'
+         link_contract: '0xa36085F69e2889c224210F603D836748e7dC0088'
+         client_contract: '0x2422039435Cc26A0e59D2A04dE571E9f957bF33a'
+         basic:
+            btc_usd: '41f092769a344cacbf424530a9387db4'
+            eth_usd: '19ec14a099174793bb7beeea104cd7d2'
+            dot_usd: '05d1f0991d194460bd7ec062dfaef81e'
+            ksm_usd: '73b9e9caac7345daaec8ad03f1406a4c'
+            aave_usd: '1db78c65bb3a4188a6e844a2a096d2da'
+            algo_usd: '9d5c22349b1641ce9eb8c7c99d261977'
+            band_usd: '0168e155195f46739e1ab2d8d2d53c0e'
+            link_usd: 'a6cc05afb0a941b28a0243e4fd9c4889'
+            sushi_usd: '6dffb6595c404e16a9a8355a54bcb5b2'
+            uni_usd: 'c5c8f403012a44c986e45f7da0b90b65'
+         feed:
+            consumer:
+               btc_usd: '0xa39d8684B8cd74821db73deEB4836Ea46E145300'
+               eth_usd: '0x0BAA6E884cfD628b33867F9E081B44a76276fA2D'
+               dot_usd: '0xA8B2138c8E765288D4f6fb7D3ebCe2507A006a9C'
+               ksm_usd: '0x4E9A1ebc0bEebe3516a8A9a911D781c37414bb39'
+               aave_usd: '0x9DA76AE39AECA424801DF1b63e9E2750643F9e76'
+               algo_usd: '0x49E1021974902B4a279fC7D359b4890FC38F8261'
+               band_usd: '0x8997c0A8Dc9d13061FCf303711D1db4278e53a1B'
+               link_usd: '0x5310f2d4B531BCEA8126e2aEE40BAd71B707f530'
+               sushi_usd: '0xd265FAfc809108D9cf47b6970d750419ba9355B8'
+               uni_usd: '0x326fAFb9E9B5188d7c2e95C0D782ECB19E5EfDF9'
    relay_chain:
       p2p: 30334
       rpc: 9934

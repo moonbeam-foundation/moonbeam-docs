@@ -10,12 +10,12 @@ description: Follow this tutorial to learn how to set up your first Moonbeam nod
 
 ## Introduction  
 
-This guide outlines steps to create a standalone local node for testing the Ethereum compatibility functionality of Moonbeam.
+This guide outlines the steps needed to create a standalone local node for testing the Ethereum compatibility functionality of Moonbeam.
 
 !!! note
-    This tutorial was created using the {{ networks.standalone.build_tag }} tag of [Moonbase Alpha](https://github.com/PureStake/moonbeam). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development. The examples in this guide assume an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows.
+    This tutorial was created using the {{ networks.standalone.build_tag }} tag of [Moonbase Alpha](https://github.com/PureStake/moonbeam). The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility are still under very active development. The examples in this guide assume an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows.
 
-If you follow to the end of this guide, you will have a Moonbeam node running in your local enviroment, and will be able to connect it to the default Polkadot JS GUI.
+If you follow to the end of this guide, you will have a Moonbeam node running in your local environment and will be able to connect it to the default Polkadot JS GUI.
 
 ## Installation and Setup  
 
@@ -28,13 +28,13 @@ git clone -b {{ networks.standalone.build_tag }} https://github.com/PureStake/mo
 cd moonbeam
 ```
 
-Next, install Substrate and all its prerequisites (including Rust), by executing:
+Next, install Substrate and all its prerequisites (including Rust) by executing:
 
 ```
 --8<-- 'setting-up-local/substrate.md'
 ```
 
-Now, lets make some checks (correct version of Rust nigthly) with the initialization script:
+Now, lets make some checks (correct version of Rust nightly) with the initialization script:
 
 ```
 --8<-- 'setting-up-local/initscript.md'
@@ -53,20 +53,20 @@ If a _cargo not found error_ shows up in the terminal, manually add Rust to your
 ```
 
 !!! note
-    The initial build will take a while. Depending on your hardware, you should plan on 30 minutes for the build process to finish.
+    The initial build will take a while. Depending on your hardware, you should expect approximately 30 minutes for the build process to finish.
 
 Here is what the tail end of the build output should look like:
 
 ![End of build output](/images/setting-up-a-node/setting-up-node-2b.png)
 
-Then you will want to run the node in dev mode using the following command:
+Then, you will want to run the node in dev mode using the following command:
 
 ```
 --8<-- 'setting-up-local/runnode.md'
 ```
 
 !!! note
-    For people not familiar with Substrate, the `--dev` flag is a way you can run a Substrate-based node in a single node developer configuration for testing purposes. You can learn more about `--dev` in [this Substrate tutorial](https://substrate.dev/docs/en/tutorials/create-your-first-substrate-chain/interact).
+    For people not familiar with Substrate, the `--dev` flag is a way to run a Substrate-based node in a single node developer configuration for testing purposes. You can learn more about `--dev` in [this Substrate tutorial](https://substrate.dev/docs/en/tutorials/create-your-first-substrate-chain/interact).
 
 You should see an output that looks like the following, showing that blocks are being produced:
 
@@ -79,7 +79,7 @@ The local standalone Moonbeam node provides two RPC endpoints:
 
 ## Getting Started with Docker
 
-An alternative to the steps higlighted before is to use docker to run a pre-build binary. Doing so, you prevent having to install Substrate and all the dependencies, and you can skip the building the node process as well. The only requirement is to have Docker installed, and then you can execute the following command to download the corresponding image:
+An alternative to the steps higlighted before is to use Docker to run a pre-build binary. Doing so, you prevent having to install Substrate and all the dependencies, and you can skip the building the node process as well. The only requirement is to have Docker installed, and then you can execute the following command to download the corresponding image:
 
 ```
 docker pull purestake/moonbase:{{ networks.standalone.build_tag }}
@@ -95,13 +95,13 @@ docker run --rm --name moonbeam_standalone --network host \
 purestake/moonbase:{{ networks.standalone.build_tag }} /moonbase/moonbase-standalone --dev
 ```
 
-If successful you should see an ouput similar to before, showing that blocks are being produced:
+If successful, you should see an ouput similar to before, showing that blocks are being produced:
 
 ![Docker - output shows blocks being produced](/images/setting-up-a-node/setting-up-node-8a.png)
 
 ### Docker for MacOS
 
-If you are using MacOS you will need to omit `--network host` as MacOS does not allow you to use this setting. You will need to be explicitly open RPC/WS servers to external connections using the `--ws-external` and `--rpc-external` flags:
+If you are using MacOS, you will need to omit `--network host` , as MacOS does not allow you to use this setting. You will need to be explicitly open RPC/WS servers to external connections using the `--ws-external` and `--rpc-external` flags:
 
 ```
 docker run --rm --name moonbeam_standalone -p 9944:9944 -p 9933:9933 \ 
@@ -112,11 +112,11 @@ purestake/moonbase:{{ networks.standalone.build_tag }} \
 ## Connecting Polkadot JS Apps to a Local Moonbeam Node
 
 The locally-running Moonbeam node is a Substrate-based node, so we can interact with it using standard Substrate tools. Let’s start by connecting to it with Polkadot JS Apps.  
-Open a browser to: [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/#/explorer). This will open Polkadot JS Apps which automatically connects to Polkadot MainNet. 
+Open a browser to: [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/#/explorer). This will open Polkadot JS Apps, which automatically connects to Polkadot MainNet. 
 
 ![Polkadot JS Apps](/images/setting-up-a-node/setting-up-node-4b.png)
 
-Click on the top left corner to open the menu to configure the networks, and then navigate down to open the Development sub-menu. In there,  you will want to toggle the "Local Node" option which points Polkadot JS Apps to `ws://127.0.0.1:9944`. Next, hit on the Switch button and the site should connect to your standalone Moonbeam node.
+Click on the top left corner to open the menu to configure the networks, and then navigate down to open the Development sub-menu. In there,  you will want to toggle the "Local Node" option, which points Polkadot JS Apps to `ws://127.0.0.1:9944`. Next, select the Switch button, and the site should connect to your standalone Moonbeam node.
 
 ![Select Local Node](/images/setting-up-a-node/setting-up-node-5b.png)
 
@@ -126,6 +126,6 @@ With Polkadot JS Apps connected, you will see the standalone Moonbeam node produ
 
 ## Querying Account State
 
-With the release of [Moonbase Alpha v3](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/), Moonbeam now works under a single account format, which is the Ethereum-styled H160 and is now also supported in Polkadot JS Apps. To check the balance of an address, you can simply import your account to the Accounts tab. You can find more information in [this site](/integrations/wallets/polkadotjs/).
+With the release of [Moonbase Alpha v3](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/), Moonbeam now works under a single account format, which is the Ethereum-styled H160 and is now also supported in Polkadot JS Apps. To check the balance of an address, you can simply import your account to the Accounts tab. You can find more information in [this site](/learn/unified-accounts/).
 
-Nevertheless, leveraging the Ethereum full RPC capabilities of Moonbeam, you can use [MetaMask](/getting-started/local-node/using-metamask/) to check the balance of that address as well. In addition, you can also use other development tools such as [Remix](/getting-started/local-node/using-remix/), [Truffle](/getting-started/local-node/using-truffle/), or the [Web3 JavaScript library](/getting-started/local-node/web3-js/web3-transaction/).
+Nevertheless, leveraging the Ethereum full RPC capabilities of Moonbeam, you can use [MetaMask](/getting-started/local-node/using-metamask/) to check the balance of that address as well. In addition, you can also use other development tools, such as [Remix](/getting-started/local-node/using-remix/), [Truffle](/getting-started/local-node/using-truffle/), and the [Web3 JavaScript library](/getting-started/local-node/web3-js/web3-transaction/).

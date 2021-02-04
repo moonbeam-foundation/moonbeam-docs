@@ -4,7 +4,7 @@ import 'https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v3.2
 
 // This ERC-20 contract mints the specified amount of tokens to the contract creator.
 contract MyToken is ERC20 {
-  constructor(uint256 initialSupply) ERC20("MyToken", "MYTOK") public {
+  constructor(uint256 initialSupply) ERC20("MyToken", "MYTOK") {
     _mint(msg.sender, initialSupply);
   }
 }

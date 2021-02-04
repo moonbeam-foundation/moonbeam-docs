@@ -6,5 +6,6 @@ arrange:
   - wallets
   - remix.md
   - trufflebox.md
+  - hardhat.md
   - pubsub.md
   - precompiles.md

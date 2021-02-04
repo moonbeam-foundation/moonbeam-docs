@@ -17,7 +17,7 @@ This site will grow and be refined over time as Moonbeam is developed.  We welco
 
 Moonbeam is a developer-oriented blockchain that strives to provide compatibility with the existing Ethereum developer toolchain and network.  It does this by providing a full EVM implementation, a Web3-compatible API, and bridges that connect Moonbeam to existing Ethereum networks.  This allows developers to deploy existing Solidity smart contracts and DApp frontends to Moonbeam with minimal changes.
 
-Moonbeam will also be a parachain on the Polkadot network. That means that it will get shared security from the Polkadot relay chain and will be able to integrate with other chains that are connected to Polkadot (once that functionality is available on Polkadot).
+Moonbeam will also be a parachain on the Polkadot network. That means it will get shared security from the Polkadot relay chain and will be able to integrate with other chains that are connected to Polkadot (once that functionality is available on Polkadot).
 
 ---
 
@@ -37,7 +37,6 @@ Currently, we have tested Moonbeam with the following wallets:
  - [MetaMask](/integrations/wallets/metamask/)
  - [MathWallet](/integrations/wallets/mathwallet/)
 
-
 However, any wallet that works with an Ethereum custom network should work with Moonbeam as well!
 
 ### Tools
@@ -46,19 +45,19 @@ Because of Moonbeam's Ethereum compatibility features, you can use the developme
 
  - [Remix](/integrations/remix/)
  - [Truffle](/integrations/trufflebox/)
- - HardHat (tutorial comming soon)
+ - [HardHat](/integrations/hardhat/)
  - [Web3.js](/integrations/jslibraries/web3js/)
  - [Ethers.js](/integrations/jslibraries/etherjs/)
 
- Want another Ethereum tool listed her? [Let us know!](https://discord.gg/PfpUATX)
+ Want another Ethereum tool listed here? [Let us know!](https://discord.gg/PfpUATX)
 
 ### Oracles
 
- We've also a number of Oracles that can serve as data feed to your smart contracts:
+ We also have a number of Oracles that can serve as data feed to your smart contracts:
 
  - [Chainlink](/integrations/oracles/chainlink/)
  - [Band Protocol](/integrations/oracles/band-protocol/)
- - Razor Network (tutorial comming soon)
+ - [Razor Network](/integrations/oracles/razor-network/)
 
 ### Bridges
 
