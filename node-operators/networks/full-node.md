@@ -9,9 +9,9 @@ description: How to run a full Parachain node for the Moonbeam Network to have y
 
 ## Introduction
 
-With the release of Moonbase Alpha v5, you can spin up a full node that connects to the Moonbase Alpha TestNet, syncs with a bootnode, and provides local access your own RPC endpoints. 
+With the release of Moonbase Alpha v5, you can spin up a full node that connects to the Moonbase Alpha TestNet, syncs with a bootnode, and provides local access to your own RPC endpoints. 
 
-In our TestNet, the relay chain is hosted and run by PureStake. But as development progresses, there will be deployments as well in Kusama and then Polkadot.  Here's how we will name these upcoming environments and their corresponding [chain specification files](https://substrate.dev/docs/en/knowledgebase/integrate/chain-spec) name: 
+In our TestNet, the relay chain is hosted and run by PureStake. But as development progresses, there will also be deployments in Kusama and then Polkadot.  Here's how we will name these upcoming environments and their corresponding [chain specification files](https://substrate.dev/docs/en/knowledgebase/integrate/chain-spec) name: 
 
 |      Network      |   |     Hosted By    |   |   Chain Name  |
 |:-----------------:|:-:|:----------------:|:-:|:-------------:|
@@ -19,7 +19,7 @@ In our TestNet, the relay chain is hosted and run by PureStake. But as developme
 |      Moonriver    |   |       Kusama     |   |_not available_|
 |      Moonbeam     |   |      Polkadot    |   |_not available_|
 
-This guide is targeted toward someone with experience running [Substrate](https://substrate.dev/) based chains.  Running a parachain is similar to running a Substrate node, with a few differences. A Substrate parachain node will run two processes, one to sync the relay chain and one to sync the parachain.  As such, many things are doubled, for example, the database directory, the ports used, the log lines, among others.
+This guide is meant for people with experience running [Substrate](https://substrate.dev/) based chains.  Running a parachain is similar to running a Substrate node with a few differences. A Substrate parachain node will run two processes: one to sync the relay chain and one to sync the parachain.  As such, many things are doubled, for example, the database directory, the ports used, the log lines, and more.
 
 !!! note 
     Moonbase is still considered an Alphanet, and as such *will not* have 100% uptime.  We *will* be purging the parachain from time to time. During the development of your application, make sure you implement a method to redeploy your contracts and accounts to a fresh parachain quickly. We will announce when a chain purge will take place via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
@@ -45,7 +45,7 @@ As stated before, the parachain node will listen on multiple ports. The default 
 
 The only ports that need to be open for incoming traffic are those designated for P2P.
 
-### Default ports for a parachain full-node
+### Default Ports for a Parachain Full-Node
 
 |  Description |   |                Port                  |
 |:------------:|:-:|:------------------------------------:|
@@ -54,7 +54,7 @@ The only ports that need to be open for incoming traffic are those designated fo
 |    **WS**    |   | {{ networks.parachain.ws }}          |
 |**Prometheus**|   | {{ networks.parachain.prometheus }}  |
 
-### Default ports of embedded relay chain
+### Default Ports of Embedded Relay Chain
 
 |  Description |   |                Port                  |
 |:------------:|:-:|:------------------------------------:|
@@ -67,7 +67,7 @@ The only ports that need to be open for incoming traffic are those designated fo
 
 A Moonbase Alpha full node can be spun up quickly using Docker. For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/). At the time of writing, the Docker version used was 19.03.6.
 
-First, we need to create a local directory to store the chain data, and also set the necessary permissions:
+First, we need to create a local directory to store the chain data and set the necessary permissions:
 
 ```
 mkdir {{ networks.moonbase.node_directory }}
@@ -93,26 +93,26 @@ purestake/moonbase-parachain-testnet:{{ networks.moonbase.parachain_docker_tag }
 ```
 
 !!! note
-    The `--state-cache-size 4` flag is needed for now due to a bug in the parachain using the cache. Consequently, we have to limite to cache to an extremely low value until this is fixed, expected for v6.
+    The `--state-cache-size 4` flag is needed for now due to a bug in the parachain using the cache. Consequently, we have to limite cache to an extremely low value until this is fixed (expected in v6).
 
-Once Docker pulls the necessary images, your Moonbase Alpha full node will start, displaying lots of informations such as the chain specification, node name, role, genesis state, among others:
+Once Docker pulls the necessary images, your Moonbase Alpha full node will start, displaying lots of information, such as the chain specification, node name, role, genesis state, and more:
 
 ![Full Node Starting](/images/fullnode/fullnode-docker1.png)
 
-If you want to expose WS or RPC ports, enable those on the Docker run command line, for example:
+If you want to expose WS or RPC ports, enable those on the Docker run command line. For example:
 
 ```
 docker run -p {{ networks.relay_chain.p2p }}:{{ networks.relay_chain.p2p }} -p {{ networks.parachain.p2p }}:{{ networks.parachain.p2p }} -p {{ networks.parachain.rpc }}:{{ networks.parachain.rpc }} -p {{ networks.parachain.ws }}:{{ networks.parachain.ws }} #rest of code goes here 
 ```
 
-During the syncing process you will see messages from both the embedded relay chain and the parachain (without a tag). This messages display a target block (TestNet), and a best block (local node synced state). 
+During the syncing process, you will see messages from both the embedded relay chain and the parachain (without a tag). These messages display a target block (TestNet) and a best block (local node synced state). 
 
 ![Full Node Starting](/images/fullnode/fullnode-docker2.png)
 
 Once synced, you have a full node of the Moonbase Alpha TestNet running locally!
 ## Installation Instructions - Binary
 
-In this section, we'll go through the process of compiling the binary and running a Moonbeam full node as a systemd service. The following steps were tested on an Ubuntu 18.04 installation. Moonbase Alpha may work with other flavors of Linux, but Ubuntu is currently the only tested version.  
+In this section, we'll go through the process of compiling the binary and running a Moonbeam full node as a systemd service. The following steps were tested on an Ubuntu 18.04 installation. Moonbase Alpha may work with other Linux flavors, but Ubuntu is currently the only tested version.  
 
 ### Compiling the Binary 
 
@@ -130,13 +130,13 @@ Let's check out the latest release:
 git checkout tags/$(git tag | tail -1)
 ```
 
-Next, install Substrate and all its prerequisites (including Rust), by executing:
+Next, install Substrate and all its prerequisites, including Rust, by executing:
 
 ```
 --8<-- 'setting-up-local/substrate.md'
 ```
 
-Now, we need to make some checks (correct version of Rust nigthly) with the initialization script:
+Now, we need to make some checks (correct version of Rust nightly) with the initialization script:
 
 ```
 --8<-- 'setting-up-local/initscript.md'
@@ -149,7 +149,7 @@ cargo build --release
 ```
 ![Compiling Binary](/images/fullnode/fullnode-binary1.png)
 
-If a _cargo not found error_ shows up in the terminal, manually add Rust to your system path (or restart your system):
+If a _cargo not found error_ shows up in the terminal, manually add Rust to your system path or restart your system:
 
 ```
 --8<-- 'setting-up-local/cargoerror.md'
@@ -165,7 +165,7 @@ First, let's create a service account to run the service:
 adduser moonbase_service --system --no-create-home
 ```
 
-Next, we need to create a directory to store the binary and data, and we'll also set the necessary permissions:
+Next, we need to create a directory to store the binary and data. We'll also set the necessary permissions:
 
 ```
 mkdir {{ networks.moonbase.node_directory }}
@@ -228,7 +228,7 @@ WantedBy=multi-user.target
 ```
 
 !!! note
-    The `--state-cache-size 4` flag is needed for now due to a bug in the parachain using the cache. Consequently, we have to limite to cache to an extremely low value until this is fixed, expected for v6.
+    The `--state-cache-size 4` flag is needed for now due to a bug in the parachain using the cache. Consequently, we have to limit the cache to an extremely low value until this is fixed, expected for v6.
 
 We are almost there! We need to register and start the service by running:
 
@@ -259,7 +259,7 @@ _Comming soon_
 
 ## Logs and Troubleshooting
 
-You will see logs from both the relay chain as well as the parachain.  The relay chain will be prefixed by `[Relaychain]` while the parachain has no prefix.
+You will see logs from both the relay chain as well as the parachain.  The relay chain will be prefixed by `[Relaychain]`, while the parachain has no prefix.
 
 !!! note 
     There is currently a [bug in cumulus](https://github.com/paritytech/cumulus/issues/257) regarding the naming issue.
@@ -281,10 +281,10 @@ DATE [Relaychain] Bootnode with peer id `ID` is on a different
 chain (our genesis: GENESIS_ID theirs: OTHER_GENESIS_ID)
 ``` 
 
-This typically means you are running an older version and will need to upgrade.
+This typically means that you are running an older version and will need to upgrade.
 
-We announce the upgrades (and corresponding chain purge) via our [Discord channel](https://discord.gg/PfpUATX), at least 24 hours in advance.
+We announce the upgrades (and corresponding chain purge) via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
 
 ## Contact Us
 
-If you have any feedback regarding running a full node or any other Moonbeam related topic, feel free to reach out through our official development [Discord server](https://discord.com/invite/PfpUATX).
+If you have any feedback regarding running a full node or any other Moonbeam-related topic, feel free to reach out through our official development [Discord server](https://discord.com/invite/PfpUATX).
