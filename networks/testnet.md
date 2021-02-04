@@ -92,5 +92,5 @@ This network is under active development. Occasionally, chain purges may be need
 
 Please take note that PureStake will not be migrating the chain state. Thus, all data stored in the blockchain will be lost when a chain purge is carried out. However, as there is no gas limit, users can easily recreate their pre-purge state.
 
-## Contact Us
+## We Want to Hear From You
 If you have any feedback regarding Moonbase Alpha, feel free to reach out through our official development channel on [Discord](https://discord.gg/PfpUATX) :fontawesome-brands-discord:.

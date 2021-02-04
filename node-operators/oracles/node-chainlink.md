@@ -209,5 +209,6 @@ And that is it! You have fully set up a Chainlink Oracle node that is running on
 
 To verify the Oracle is up and answering requests, follow our [using an Oracle](/integrations/oracles/chainlink/) tutorial. The main idea is to deploy a client contract that requests to the Oracle, and the Oracle writes the requested data into the contract's storage.
 
-## Contact Us
+## We Want to Hear From You
+
 If you have any feedback regarding implementing Chainlink on your project or any other Moonbeam related topic, feel free to reach out through our official development [Discord server](https://discord.com/invite/PfpUATX).

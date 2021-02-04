@@ -18,7 +18,7 @@ This guide is broken down into two main sections. In the first part, we'll expla
     - [Transfer ERC-20 tokens](/integrations/bridges/ethereum/chainbridge/#erc-20-token-transfer)
     - [Transfer ERC-721 tokens](/integrations/bridges/ethereum/chainbridge/#erc-721-token-transfer)
     - [Generic handler](/integrations/bridges/ethereum/chainbridge/#generic-handler)
- - [Contact us](/integrations/bridges/ethereum/chainbridge/#contact-us)
+ - [Contact us](/integrations/bridges/ethereum/chainbridge/#we-want-to-hear-from-you)
 
 ## How the Bridge Works
 

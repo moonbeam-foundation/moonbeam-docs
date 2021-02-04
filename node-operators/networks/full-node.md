@@ -285,6 +285,6 @@ This typically means you are running an older version and will need to upgrade.
 
 We announce the upgrades (and corresponding chain purge) via our [Discord channel](https://discord.gg/PfpUATX), at least 24 hours in advance.
 
-## Contact Us
+## We Want to Hear From You
 
 If you have any feedback regarding running a full node or any other Moonbeam related topic, feel free to reach out through our official development [Discord server](https://discord.com/invite/PfpUATX).

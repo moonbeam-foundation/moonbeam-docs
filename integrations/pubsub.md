@@ -163,7 +163,7 @@ With pub/sub it is also possible to check whether a particular node, which you a
 ## Current Limitations
 The pub/sub implementation in [Frontier](https://github.com/paritytech/frontier) is still in active development. This first version allows dApp developers (or users in general) to subscribe to specific event types, but there are still some limitations. With the current version released, from the previous examples, you might have noticed that some of the fields are not showing proper information, and that is because certain properties are yet to be supported by Frontier.
 
-## Contact Us
+## We Want to Hear From You
 If you have any feedback regarding Moonbase Alpha, event subscription, or any other Moonbeam related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).
 
 
