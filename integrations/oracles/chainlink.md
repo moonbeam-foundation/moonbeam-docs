@@ -113,5 +113,6 @@ Chainlink's Oracles can tentatively provide many different types of data feeds w
 
 If you are interested in running your own Oracle node in Moonbeam, please visit [this guide](/node-operators/oracles/node-chainlink/). Also, we recommend going through [Chainlink's documentation site](https://docs.chain.link/docs).
 
-## Contact Us
+## We Want to Hear From You
+
 If you have any feedback regarding implementing Chainlink on your project or any other Moonbeam related topic, feel free to reach out through our official development [Discord server](https://discord.com/invite/PfpUATX).

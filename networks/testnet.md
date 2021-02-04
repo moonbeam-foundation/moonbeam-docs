@@ -27,11 +27,11 @@ The following features are available:
 -  Fully emulated Ethereum block production in Substrate (Ethereum pallet) ![v1](/images/testnet/v1.svg)
 -  Dispatchable functions to interact with the Rust EVM implementation ([EVM pallet](https://github.com/paritytech/frontier/tree/master/frame/evm)) ![v1](/images/testnet/v1.svg)
 -  Native Ethereum RPC support (Web3) in Substrate ([Frontier RPC](https://github.com/paritytech/frontier)). This provides compatibility with Ethereum developer tools such as MetaMask, Truffle, and Remix ![v1](/images/testnet/v1.svg)
--  Event subscription support (pub/sub), which is a missing component on the Web3 RPC side and commonly used by dApp developers. You can find a tutorial on how to subscribe to events [here](/integrations/pubsub) ![v2](/images/testnet/v2.svg)
+-  Event subscription support (pub/sub), which is a missing component on the Web3 RPC side and commonly used by dApp developers. You can find a tutorial on how to subscribe to events [here](/integrations/pubsub/) ![v2](/images/testnet/v2.svg)
 -  Support for the following precompile contracts: [ecrecover](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-01-ecrecover-hash-v-r-s), [sha256](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-02-sha-256-data), [ripemd160](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-03-ripemd-160-data) and the [identity function](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-04-datacopy-data) (or datacopy) ![v2](/images/testnet/v2.svg)
 -  Unification of Substrate and Ethereum accounts under the H160 format, an effort we are calling [Unified Accounts](https://medium.com/moonbeam-network/moonbase-alpha-v3-introducing-unified-accounts-88fae3564cda). Consequently, there will be only one kind of account in the system represented by a single address ![v3](/images/testnet/v3.svg)
 -  Upgrades to the event subscription support, adding the possibility of using wildcards and conditional formatting for topics. You can find more information [here](https://docs.moonbeam.network/integrations/pubsub/#using-wildcards-and-conditional-formatting) ![v3](/images/testnet/v3.svg)
--  Polkadot JS Apps now natively supports H160 addresses and ECDSA keys. You can use your Ethereum-style address for Substrate functions (when available) such as: staking, balances and governance. You can find more information [here](/integrations/polkadotjs/) ![v3](/images/testnet/v3.svg)
+-  Polkadot JS Apps now natively supports H160 addresses and ECDSA keys. You can use your Ethereum-style address for Substrate functions (when available) such as: staking, balances and governance. You can find more information [here](/integrations/wallets/polkadotjs/) ![v3](/images/testnet/v3.svg)
 - Updated to the newest version of the Polkadot parachain protocol ([Parachains V1](https://w3f.github.io/parachain-implementers-guide/)), which fixed several issues with node syncing, paving the way to have multiple collators to sync in the same parachain ![v4](/images/testnet/v4.svg)
 - Multiple improvements to our Etheruem Compatibility features:
 - Event subscrition ID now returns a Ethereum-styled subscription ID ![v4](/images/testnet/v4.svg)
@@ -80,7 +80,7 @@ This also means that PureStake holds the Sudo Key in order to issue the commands
 
 This is the first TestNet for Moonbeam, so there are some limitations.
 
-Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts) are yet to be included in this release. You can check a list of the precompiles supported [here](/integrations/precompiles). However, all built-in functions are available.
+Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts) are yet to be included in this release. You can check a list of the precompiles supported [here](/integrations/precompiles/). However, all built-in functions are available.
 
 Since the release of Moonbase Alpha v5, the maximum gas limit per block has been set to 6000000, with a maximum gas limit per transaction of 5198000. These values are not final and we expect to increase it in future releases.
 

@@ -127,7 +127,7 @@ Depending on the network you want to deploy the contracts too, you need to subst
     If you don't have Truffle installed globally, you can instead use `npx truffle` or `./node_modules/.bin/truffle` instead of `truffle`.
 
 ## The Moonbeam Truffle Plugin
-Currently, to set up a standalone Moonbeam node, you can follow [this tutorial](/getting-started/local-node/setting-up-a-node). The process takes around 40 minutes in total, and you need to install Substrate and all its dependencies. The Moonbeam Truffle plugin provides a way to get started with a standalone node much quicker, and the only requirement is to have Docker installed (at the time of writing the Docker version used was 19.03.6). For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/). To download the Docker image, run the following line:
+Currently, to set up a standalone Moonbeam node, you can follow [this tutorial](/getting-started/local-node/setting-up-a-node/). The process takes around 40 minutes in total, and you need to install Substrate and all its dependencies. The Moonbeam Truffle plugin provides a way to get started with a standalone node much quicker, and the only requirement is to have Docker installed (at the time of writing the Docker version used was 19.03.6). For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/). To download the Docker image, run the following line:
 
 ```
 truffle run moonbeam install
@@ -200,5 +200,6 @@ And that is it, you’ve used the Moonbeam Truffle box to deploy a simple ERC20 
 ## Limitations
 If you are familiar with Truffle, you might have noticed that we are using a custom provider programmed by ourselves, instead of the most common ones such as [hdwallet-provider](https://github.com/trufflesuite/truffle/tree/develop/packages/hdwallet-provider). This custom provider still uses standard libraries such as the web3-provider-engine and ethereumjs-wallet. The reason behind this is because our custom chain ID was not being included by the library used to sign the transactions. Therefore, the signature is invalid because the chain ID in the transaction blob is missing, and the transaction is rejected. Currently we are reviewing this and we expect to support other providers in future releases.
 
-## Contact Us
+## We Want to Hear From You
+
 If you have any feedback regarding the Moonbeam Truffle box or any other Moonbeam related topic, feel free to reach out through our official development [Discord server](https://discord.gg/PfpUATX).

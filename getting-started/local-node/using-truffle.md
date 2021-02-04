@@ -79,7 +79,7 @@ You might have noticed that we have defined a `dev` network that points to the s
      We are using a `PrivateKeyProvider` as our Web3 provider (instantiation included in `private-provider.js`). Currently, we are still experiencing some issues when using other Web3 providers such as `HDWalletProvider`, due to our custom chain ID.
 
 ## Running an Standalone TestNet
-Currently, to set up a standalone Moonbeam node, you can follow [this tutorial](/getting-started/local-node/setting-up-a-node). The process takes around 40 minutes in total, and you need to install Substrate and all its dependencies. The Moonbeam Truffle plugin provides a way to get started with a standalone node much quicker, and the only requirement is to have Docker installed (at the time of writing the Docker version used was 19.03.6).
+Currently, to set up a standalone Moonbeam node, you can follow [this tutorial](/getting-started/local-node/setting-up-a-node/). The process takes around 40 minutes in total, and you need to install Substrate and all its dependencies. The Moonbeam Truffle plugin provides a way to get started with a standalone node much quicker, and the only requirement is to have Docker installed (at the time of writing the Docker version used was 19.03.6).
 
 To start a standalone Moonbeam node in your local environment, we need first need to download the corresponding Docker image:
 

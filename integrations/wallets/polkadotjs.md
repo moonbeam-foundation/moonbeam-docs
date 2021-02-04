@@ -57,6 +57,6 @@ After the transaction is signed using the password, Polkadot JS will display som
 
 And that is it! We are super excited about being able to support H160 accounts in Polkadot JS Apps, as we believe this will greatly enhance the user experience in the Moonbeam Network and its Ethereum compatibility features.
 
-## Contact Us
+## We Want to Hear From You
 If you have any feedback regarding the Polkadot JS Apps, the Unified Accounts integration, or any other Moonbeam related topic, feel free to reach out through our official development [Discord server](https://discord.gg/PfpUATX).
 

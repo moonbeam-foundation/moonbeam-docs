@@ -34,8 +34,8 @@ Currently, there are two ways you can start building on Moonbeam:
 
 Currently, we have tested Moonbeam with the following wallets:
 
- - [MetaMask](/integrations/metamask/)
- - MathWallet (tutorial comming soon)
+ - [MetaMask](/integrations/wallets/metamask/)
+ - [MathWallet](/integrations/wallets/mathwallet/)
 
 
 However, any wallet that works with an Ethereum custom network should work with Moonbeam as well!
@@ -44,7 +44,7 @@ However, any wallet that works with an Ethereum custom network should work with 
 
 Because of Moonbeam's Ethereum compatibility features, you can use the development tools you know and love:
 
- - [Remix](/integrations/remix)
+ - [Remix](/integrations/remix/)
  - [Truffle](/integrations/trufflebox/)
  - HardHat (tutorial comming soon)
  - [Web3.js](/integrations/jslibraries/web3js/)
