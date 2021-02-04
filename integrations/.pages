@@ -4,6 +4,7 @@ arrange:
   - jslibraries
   - oracles
   - wallets
+  - explorers.md
   - remix.md
   - trufflebox.md
   - hardhat.md
