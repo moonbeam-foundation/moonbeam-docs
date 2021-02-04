@@ -1,6 +1,6 @@
 ---
 title: MathWallet
-description: This guide walks you through how to connect Mathwallet, an browser based wallet that works with Ethereum, to Moonbeam.
+description: This guide walks you through how to connect Mathwallet, a browser-based wallet that works with Ethereum, to Moonbeam.
 ---
 
 # Interacting with Moonbeam Using MathWallet
@@ -9,17 +9,15 @@ description: This guide walks you through how to connect Mathwallet, an browser 
 
 ## Introduction
 
-
-
-Currently, MetaMask can be configured to connect to two networks: a Moonbeam standalone node, or the [Moonbase Alpha TestNet](/networks/testnet/). 
+Currently, MetaMask can be configured to connect to two networks: a Moonbeam standalone node or the [Moonbase Alpha TestNet](/networks/testnet/). 
 
 ## Connect MathWallet to Moonbeam
 
 In this part, we'll go through the process of connecting MathWallet to Moonbase Alpha. 
 
-First, you need install the MathWallet browser extension installed, which you can get from their [website](https://mathwallet.org/en-us/).
+First, you need to install the MathWallet browser extension installed, which you can get from their [website](https://mathwallet.org/en-us/).
 
-With the browser extension installed, open it and set a password.
+With the browser extension installed, please open it and set a password.
 
 ![Set wallet password](/images/mathwallet/mathwallet-images-1.png)
 
@@ -31,31 +29,31 @@ And lastly, on the main screen, click Switch Network and select Moonbase Alpha
 
 ![Connect to Moonbase Alpha](/images/mathwallet/mathwallet-images-3.png)
 
-And that is it, you have now MathWallet connected to the Moonbase Alpha TestNet! Your wallet should look like this:
+And that is it, you now have MathWallet connected to the Moonbase Alpha TestNet! Your wallet should look like this:
 
 ![Wallet Connected to Moonbase Alpha](/images/mathwallet/mathwallet-images-4.png)
 
 ## Adding a Wallet
 
-Now that MathWallet is connected to Moonbase Alpha, we can now create a wallet to get an account and start interacting with the TestNet. Currently there are three ways to add a wallet:
+Now that MathWallet is connected to Moonbase Alpha, we can now create a wallet to get an account and start interacting with the TestNet. Currently, there are three ways to add a wallet:
 
  - Create a wallet
  - Import an existing wallet using a mnemonic or private key
- - Connect hardware wallet (_not suported for now_)
+- Connect hardware wallet (_not supported for now_)
 
 ### Create a wallet
 
-To create a new wallet, click the the :heavy_plus_sign: sign next to "Moonbase Alpha" and select "Create Wallet".
+To create a new wallet, click the :heavy_plus_sign: sign next to "Moonbase Alpha" and select "Create Wallet".
 
 ![MathWallet create a wallet](/images/mathwallet/mathwallet-images-5.png)
 
-Set and confirm a wallet name. Next, make sure you safely store the mnemonic, as it provides direct access to your funds. Once you have completed the process you should see your newly created wallet with its associated public address.
+Set and confirm a wallet name. Next, make sure you safely store the mnemonic, as it provides direct access to your funds. Once you have completed the process, you should see your newly created wallet with its associated public address.
 
 ![MathWallet wallet created](/images/mathwallet/mathwallet-images-6.png)
 
 ### Import a wallet
 
-To create a new wallet, click the the :heavy_plus_sign: sign next to "Moonbase Alpha" and select "Import Wallet".
+To create a new wallet, click the :heavy_plus_sign: sign next to "Moonbase Alpha" and select "Import Wallet".
 
 ![MathWallet import a wallet](/images/mathwallet/mathwallet-images-7.png)
 
@@ -63,19 +61,19 @@ Next, select between importing using a mnemonic or a private key. For the first 
 
 ![MathWallet private key or mnemonic import](/images/mathwallet/mathwallet-images-8.png)
 
-After clicking next, set a wallet name and that is it! You should see your imported wallet with its associated public address.
+After clicking next, set a wallet name, and that is it! You should see your imported wallet with its associated public address.
 
 ![MathWallet imported wallet](/images/mathwallet/mathwallet-images-9.png)
 
 ## Using MathWallet
 
-MathWallet serves as an Web3 provider in tools such as [Remix](/integrations/remix/). By having MathWallet connected to Moonbase Alpha, you can deploy contracts as you would like using MetaMask, signing the transactions with MathWallet instead.
+MathWallet serves as a Web3 provider in tools such as [Remix](/integrations/remix/). By having MathWallet connected to Moonbase Alpha, you can deploy contracts as you would like using MetaMask, signing the transactions with MathWallet instead.
 
 For example, when deploying a smart contract, you should see a similar pop-up from MathWallet:
 
 ![MathWallet sign transaction](/images/mathwallet/mathwallet-images-10.png)
 
-By clicking on "Accept", we are signing this transaction and the contract will be deployed to the Moonbase Alpha TestNet.
+By clicking on "Accept", we are signing this transaction, and the contract will be deployed to the Moonbase Alpha TestNet.
 
 ## We Want to Hear From You
 
