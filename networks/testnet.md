@@ -42,7 +42,6 @@ The following features are available:
 - Added support for querying pending transactions while they are in the pool ![v5](/images/testnet/v5.svg)
 - Fixed some issues when retrieving past events, and other minor fixes related to smart contract events ![v5](/images/testnet/v5.svg)
 - Multiple under-the-hood improvements that include an optimization of the EVM execution time, making it 15-50 times faster ![v5](/images/testnet/v5.svg)
-- Multiple under-the-hood improvements that include an optimization of the EVM execution time, making it 15-50 times faster ![v5](/images/testnet/v5.svg)
 - Support for the [modexp](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x05-bigmodexp-base-exp-mod) precompile contracts ![v5](/images/testnet/v5.svg)
 
 ### Release Notes
