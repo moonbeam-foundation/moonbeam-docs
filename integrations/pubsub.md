@@ -33,7 +33,7 @@ node -v
 npm -v
 ```
 
-As of writing this guide, vthe ersions used were 14.6.0 and 6.14.6, respectively. Also, we need to install the Web3 package by executing:
+As of writing this guide, the versions used were 14.6.0 and 6.14.6, respectively. We will also need to install the Web3 package by executing:
 
 ```
 npm install --save web3
@@ -69,13 +69,13 @@ web3.eth.subscribe('logs', {
     });
 ```
 
-Note that we are connecting to the WebSocket endpoint of Moonbase Alpha. We use the `web3.eth.subscribe(‘logs’,  options [, callback])` method to subscribe to the logs, filtered by the given options. In our case, the options are the contract’s address where the events are emitted from and the topics used to describe the event. More information about topics can be found in [this Medium post](https://medium.com/mycrypto/understanding-event-logs-on-the-ethereum-blockchain-f4ae7ba50378). If no topics are included, you subscribe to all events emitted by the contract. In order to filter only the Transfer event, we need to include the signature of the event, calculated as:
+Note that we are connecting to the WebSocket endpoint of Moonbase Alpha. We use the `web3.eth.subscribe(‘logs’,  options [, callback])` method to subscribe to the logs, filtered by the given options. In our case, the options are the contract’s address where the events are emitted from and the topics used to describe the event. More information about topics can be found in [this Medium post](https://medium.com/mycrypto/understanding-event-logs-on-the-ethereum-blockchain-f4ae7ba50378). If no topics are included, you subscribe to all events emitted by the contract. In order to only filter the Transfer event, we need to include the signature of the event, calculated as:
 
 ```js
 EventSignature = keccak256(Transfer(address,address,uint256))
 ```
 
-The result of the previous calculation is shown in the previous code snippet. We’ll go back to filtering by topics later on. The rest of the code handles the callback function. Once we execute this code, we’ll get a subscription ID, and the terminal will wait for any event through that subscription:
+The result of the calculation is shown in the previous code snippet. We’ll return to filtering by topics later on. The rest of the code handles the callback function. Once we execute this code, we’ll get a subscription ID, and the terminal will wait for any event through that subscription:
 
 ![Subscription ID](/images/testnet/testnet-pubsub1.png)
 
@@ -89,7 +89,7 @@ Once we send the transaction, the log of the event emitted by the transaction wi
 
 ![Log of the transfer event](/images/testnet/testnet-pubsub2.png)
 
-Let's break down the response received. Our target event sends two pieces of indexed information, the `from` and `to` addresses (in that order), which are treated like topics. The other piece of data shared by our event is the number of tokens, which is not indexed. Therefore, there is a total of three topics (the maximum is four), which correspond to the opcode LOG3:
+Let's break down the response received. Our target event sends two pieces of indexed information: the `from` and `to` addresses (in that order), which are treated like topics. The other piece of data shared by our event is the number of tokens, which is not indexed. Therefore, there is a total of three topics (the maximum is four), which correspond to the opcode LOG3:
 
 ![Description of LOG3](/images/testnet/testnet-pubsub3.png)
 
@@ -133,13 +133,13 @@ web3.eth
    });
 ```
 
-Here, by using the wildcard null in place for the event signature, we filter to listen to all events emitted by the contract that we subscribed to. But with this configuration, we can also use a second input field (`topic_1`) to define a filter by address as mentioned before. In the case of our subscription, we are notifying that we want to receive only events where `topic_1` is one of the addresses we are providing. Note that the addresses need to be in H256 format, for example, the address `0x44236223aB4291b93EEd10E4B511B37a398DEE55` needs to be entered as `0x00000000000000000000000044236223aB4291b93EEd10E4B511B37a398DEE55`. The output of this subscription will display the event signature in `topic_0` as before, to tell us which event was emitted by the contract.
+Here, by using the wildcard null in place for the event signature, we filter to listen to all events emitted by the contract that we subscribed to. But with this configuration, we can also use a second input field (`topic_1`) to define a filter by address as mentioned before. In the case of our subscription, we are notifying that we want to only receive events where `topic_1` is one of the addresses we are providing. Note that the addresses need to be in H256 format. For example, the address `0x44236223aB4291b93EEd10E4B511B37a398DEE55` needs to be entered as `0x00000000000000000000000044236223aB4291b93EEd10E4B511B37a398DEE55`. As before, the output of this subscription will display the event signature in `topic_0` to tell us which event was emitted by the contract.
 
 ![Conditional Subscription](/images/testnet/testnet-pubsub7.png)
 
 As shown, we received two logs for the same subscription ID by the two addresses provided with conditional formatting. Events emitted by transactions from different addresses will not throw any logs to this subscription.
 
-This example showed how we could subscribe  to just the event logs of a specific contract, but the web3.js library provides other subscription types that we’ll go over in the following sections.
+This example showed how we could subscribe to just the event logs of a specific contract, but the web3.js library provides other subscription types that we’ll go over in the following sections.
 
 ## Subscribe to Incoming Pending Transactions
 In order to subscribe to pending transactions, we can use the `web3.eth.subscribe(‘pendingTransactions’, [, callback])` method, implementing the same callback function to check for the response. This is much simpler than our previous example, and it returns the transaction hash of the pending transactions.
@@ -149,13 +149,13 @@ In order to subscribe to pending transactions, we can use the `web3.eth.subscrib
 We can verify that this transaction hash is the same as that shown in MetaMask (or Remix).
 
 ## Subscribe to Incoming Block Headers
-Another type available under the Web3 JS library is to subscribe to new block headers. To do so, we use the `web3.eth.subscribe('newBlockHeaders' [, callback])` method, implementing the same callback function to check for the response. This subscription provides incoming block headers and can be used to track changes in the blockchain.
+Another type available under the Web3.js library is to subscribe to new block headers. To do so, we use the `web3.eth.subscribe('newBlockHeaders' [, callback])` method, implementing the same callback function to check for the response. This subscription provides incoming block headers and can be used to track changes in the blockchain.
 
 ![Subscribe to block headers response](/images/testnet/testnet-pubsub5.png)
 
 Note that only one block header is shown in the image. These messages are displayed for every block produced so they can fill up the terminal quite fast.
 
-## Check if the Node is Synchronized with the Network
+## Check if a Node is Synchronized with the Network
 With pub/sub it is also possible to check whether a particular node you are subscribed to is currently synchronized with the network. For that, we can leverage the `web3.eth.subscribe(‘syncing' [, callback])` method, implementing the same callback function to check for the response. This subscription will return an object when the node is synced with the network.
 
 ![Subscribe to syncing response](/images/testnet/testnet-pubsub6.png)
