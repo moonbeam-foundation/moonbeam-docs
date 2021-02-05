@@ -1,6 +1,8 @@
 networks:
    standalone:
       build_tag: tutorial-v3
+      rpc_url: http://127.0.0.1:9933
+      chain_id: 1281
    moonbase:
       version: v5
       rpc_url: https://rpc.testnet.moonbeam.network

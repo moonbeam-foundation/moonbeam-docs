@@ -12,6 +12,9 @@ The Moonbeam team is currently working on onboarding a specialized block explore
 
 Currently, we offer two block explorers: one for the Ethereum API based on the [Expedition explorer](https://github.com/etclabscore/expedition), and one for the Substrate API using [Polkadot JS apps](/integrations/polkadotjs/). You can use both for either a standalone Moonbeam node, or the Moonbase Alpha TestNet.
 
+!!! note
+    If you are using Brave Browser and your explorer is not connecting to the Moonbeam instance you are pointing it to, try disabling Brave Shield.
+
 ## Expedition Explorer (Ethereum)
 
 ### Local Node
