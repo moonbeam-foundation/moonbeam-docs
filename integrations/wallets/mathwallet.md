@@ -9,7 +9,9 @@ description: This guide walks you through how to connect Mathwallet, a browser-b
 
 ## Introduction
 
-Currently, MetaMask can be configured to connect to two networks: a Moonbeam standalone node or the [Moonbase Alpha TestNet](/networks/testnet/). 
+MathWallet [announced](https://mathwallet.org/moonbeam-wallet/en/) that is now natively supporting the [Moonbase Alpha TestNet](/networks/testnet/). This means that you are now able to interact with Moonbase Alpha using another wallet besides MetaMask.
+
+In this tutorial, we'll go through how to setup MathWallet to connect to our TestNet. We'll also present a brief example of using MathWallet as a Web3 provider for other tools such as [Remix](/integrations/remix/).
 
 ## Connect MathWallet to Moonbeam
 
