@@ -203,6 +203,6 @@ Note that to obtain the real price, you must account for the decimals of the pri
 
 If there is any specific pair you want us to include, feel free to reach out to us through our [Discord server](https://discord.com/invite/PfpUATX).
 
-## Contact Us
+## We Want to Hear From You
 
 If you have any feedback regarding implementing Chainlink on your project or any other Moonbeam related topic, feel free to reach out through our official development [Discord server](https://discord.com/invite/PfpUATX).

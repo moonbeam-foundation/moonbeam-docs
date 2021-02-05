@@ -240,5 +240,6 @@ When can execute this code with node, the following `dataQuery` output should lo
 
 Note that compared to the request done via smart contracts, the result is given directly in the correct units.
 
-## Contact Us
+## We Want to Hear From You
+
 If you have any feedback regarding implementing Band Protocol on your project, or any other Moonbeam related topic, feel free to reach out through our official development [Discord server](https://discord.com/invite/PfpUATX).

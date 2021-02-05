@@ -18,7 +18,7 @@ This guide is broken down into two main sections. In the first part, we'll expla
     - [Transfer ERC-20 tokens](/integrations/bridges/ethereum/chainbridge/#erc-20-token-transfer)
     - [Transfer ERC-721 tokens](/integrations/bridges/ethereum/chainbridge/#erc-721-token-transfer)
     - [Generic handler](/integrations/bridges/ethereum/chainbridge/#generic-handler)
- - [Contact us](/integrations/bridges/ethereum/chainbridge/#contact-us)
+ - [Contact us](/integrations/bridges/ethereum/chainbridge/#we-want-to-hear-from-you)
 
 ## How the Bridge Works
 
@@ -128,7 +128,7 @@ interface ICustomERC20 {
 
 Note that the ERC-20 token contract's mint function was also modified to approve the corresponding handler contract as a spender when minting tokens.
 
-In Remix, load the interface contract at the ERC-20 token address (make sure you are using MetaMask's injected web3 provider). Next, call the `mintTokens()` function and sign the transaction. Once the transaction is confirmed, you should have received 5 ERC20S tokens. You can check your balance by adding the token to [MetaMask](/integrations/metamask/).
+In Remix, load the interface contract at the ERC-20 token address (make sure you are using MetaMask's injected web3 provider). Next, call the `mintTokens()` function and sign the transaction. Once the transaction is confirmed, you should have received 5 ERC20S tokens. You can check your balance by adding the token to [MetaMask](/integrations/wallets/metamask/).
 
 ![ChainBridge ERC20 mint Tokens](/images/chainbridge/chainbridge-image1.png)
 
@@ -158,7 +158,7 @@ So once again, in Remix, load the interface contract at the bridge address. Next
 
 ![ChainBridge ERC20 send Tokens](/images/chainbridge/chainbridge-image2.png)
 
-You can check your balance by adding the token to [MetaMask](/integrations/metamask/), and connecting it to the target network, in our case Kovan.
+You can check your balance by adding the token to [MetaMask](/integrations/wallets/metamask/), and connecting it to the target network, in our case Kovan.
 
 ![ChainBridge ERC20 balance](/images/chainbridge/chainbridge-image3.png)
 
@@ -222,7 +222,7 @@ interface ICustomERC721 {
 
 Note that the ERC-721 token contract's mint function was also modified to approve the corresponding handler contract as a spender when minting tokens.
 
-In Remix, load the interface contract at the ERC721E source token address (make sure you are using MetaMask's injected web3 provider). Next, call the `mintTokens()` function and sign the transaction. Once the transaction is confirmed, you should have received a ERC721E token. You can check your balance by adding the token to [MetaMask](/integrations/metamask/).
+In Remix, load the interface contract at the ERC721E source token address (make sure you are using MetaMask's injected web3 provider). Next, call the `mintTokens()` function and sign the transaction. Once the transaction is confirmed, you should have received a ERC721E token. You can check your balance by adding the token to [MetaMask](/integrations/wallets/metamask/).
 
 ![ChainBridge ERC721 mint Tokens](/images/chainbridge/chainbridge-image4.png)
 
@@ -255,7 +255,7 @@ So once again, in Remix, load the interface contract at the bridge address. Next
 
 ![ChainBridge ERC721 send Token](/images/chainbridge/chainbridge-image5.png)
 
-You can check your balance by adding the token to [MetaMask](/integrations/metamask/), and connecting it to the target network, in our case Moonbase Alpha.
+You can check your balance by adding the token to [MetaMask](/integrations/wallets/metamask/), and connecting it to the target network, in our case Moonbase Alpha.
 
 ![ChainBridge ERC721 balance](/images/chainbridge/chainbridge-image6.png)
 
@@ -270,5 +270,6 @@ The Generic Handler offers the possibility of executing a function in chain A, a
 
 If you are interested in implementing this functionality, you can reach out directly to us via our [Discord server](https://discord.com/invite/PfpUATX). We'll be happy to discuss this implementation.
 
-## Contact Us
+## We Want to Hear From You
+
 If you have any feedback regarding implementing ChainBridge on your project or any other Moonbeam related topic, feel free to reach out through our official development [Discord server](https://discord.com/invite/PfpUATX).
