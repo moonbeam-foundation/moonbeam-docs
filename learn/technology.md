@@ -1,6 +1,6 @@
 ---
 title: Technology
-description: Moonbeam is built using Rust and the Substrate framework, enabling rich tools for implementation but also allowing for specialization and optimization.
+description: Moonbeam is built using Rust and the Substrate framework, enabling rich tools for implementation, but also allowing for specialization and optimization.
 ---
 
 #Technology
@@ -14,7 +14,7 @@ Rust is a good language for implementing a blockchain, as it is highly performan
 ###Substrate Framework
 Substrate provides a rich set of tools for creating blockchains, including a runtime execution environment that enables a generic state transition function, and a pluggable set of modules that provide implementations of various blockchain subsystems.
 
-Moonbeam leverages multiple existing Substrate frame pallets to provide key blockchain services and functionality, including core blockchain data structures, peer-to-peer networking, consensus mechanisms, accounts, assets, and balances.  Custom pallets and logic in the runtime implement Moonbeam-specific behavior and functionality such as cross-chain token integration.  For leveraged pallets, Moonbeam will strive to stay as close as possible to the upstream Substrate codebase and incorporate Substrate bug fixes, enhancements, and new features on an ongoing basis.
+Moonbeam leverages multiple existing Substrate frame pallets to provide key blockchain services and functionality, including core blockchain data structures, peer-to-peer networking, consensus mechanisms, accounts, assets, and balances.  Custom pallets and logic in the runtime implement Moonbeam-specific behavior and functionality, such as cross-chain token integration.  For leveraged pallets, Moonbeam will strive to stay as close as possible to the upstream Substrate codebase and incorporate Substrate bug fixes, enhancements, and new features on an ongoing basis.
 
 ##Blockchain Runtime
 The core Moonbeam runtime specifies the state transition function and behavior of the Moonbeam blockchain.  The runtime uses Substrate Frame, [Frame Pallets](/resources/glossary/#substrate-frame-pallets), and custom modules that are compiled to [WebAssembly (Wasm)](/resources/glossary/#webassemblywasm), and native binaries.  These compiled versions will be executed in the Polkadot Relay Chain and Moonbeam node environments.  
@@ -37,7 +37,7 @@ Some of the key Substrate Frame Pallets used in the Moonbeam runtime include:
 
 Moonbeam also uses the Cumulus library to provide integration to the Polkadot relay chain.
 
-In addition to these Substrate Frame Pallets, we will be implementing modules with Moonbeam-specific functionality, including collator mechanics and rewards, and other developer building blocks.
+In addition to these Substrate Frame Pallets, we will be implementing modules with Moonbeam-specific functionality, including collator mechanics and rewards and other developer building blocks.
 
 ##Ethereum Compatibility Architecture
 Smart contracts on Moonbeam can be implemented using Solidity, Vyper, and any other language which can compile smart contracts to EVM-compatible bytecode.  Moonbean aims to provide a low-friction and secure environment for the development, testing, and execution of smart contracts that is compatible with the existing Ethereum developer toolchain.  
