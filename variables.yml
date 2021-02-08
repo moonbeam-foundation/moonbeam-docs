@@ -12,7 +12,6 @@ networks:
       node_directory: /var/lib/alphanet-data
       collator_min_stake: 100000
       collator_slots: 8
-      state-cache-size: 4
       per-bill-fee: 200000000
       chainbridge:
          bridge_address: '0xA997c47d55991Ef5251b31D380CeFCaAD6978e03'

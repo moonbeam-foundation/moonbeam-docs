@@ -103,13 +103,9 @@ purestake/moonbase-parachain-testnet:{{ networks.moonbase.parachain_docker_tag }
     --author-id PUBLIC_KEY \
     --execution wasm \
     --wasm-execution compiled \
-    --state-cache-size {{networks.moonbase.state-cache-size }} \
     -- \
     --name="YOUR-NODE-NAME (Embedded Relay)"
 ```
-
-!!! note
-    The `--state-cache-size 4` flag is needed for now due to a bug in the parachain using the cache. Consequently, we have to limite to cache to an extremely low value until this is fixed, expected for v6.
 
 Once Docker pulls the necessary images, your Moonbase Alpha Collator will start, displaying lots of informations such as the chain specification, node name, role, genesis state, among others:
 
@@ -234,7 +230,6 @@ ExecStart={{ networks.moonbase.node_directory }}/moonbase-alphanet \
      --base-path {{ networks.moonbase.node_directory }} \
      --chain alphanet \
      --name "YOUR-NODE-NAME" \
-     --state-cache-size {{networks.moonbase.state-cache-size }} \
      -- \
      --port {{ networks.relay_chain.p2p }} \
      --rpc-port {{ networks.relay_chain.rpc }} \
@@ -245,9 +240,6 @@ ExecStart={{ networks.moonbase.node_directory }}/moonbase-alphanet \
 [Install]
 WantedBy=multi-user.target
 ```
-
-!!! note
-    The `--state-cache-size 4` flag is needed for now due to a bug in the parachain using the cache. Consequently, we have to limite to cache to an extremely low value until this is fixed, expected for v6.
 
 We are almost there! We need to register and start the service by running:
 
