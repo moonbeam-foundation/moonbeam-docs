@@ -9,7 +9,7 @@ description: How to run a full Parachain node for the Moonbeam Network to have y
 
 ## Introduction
 
-With the release of Moonbase Alpha v6, you can spin up a collator that connects to the Moonbase Alpha TestNet, syncs with a bootnode, and provides local access your own RPC endpoints. 
+With the release of Moonbase Alpha v6, you can spin up a collator that connects to the Moonbase Alpha TestNet, syncs with a bootnode, and provides local access your own RPC endpoints, and authors blocks in the parachain. 
 
 In our TestNet, the relay chain is hosted and run by PureStake. But as development progresses, there will be deployments as well in Kusama and then Polkadot.  Here's how we will name these upcoming environments and their corresponding [chain specification files](https://substrate.dev/docs/en/knowledgebase/integrate/chain-spec) name: 
 
