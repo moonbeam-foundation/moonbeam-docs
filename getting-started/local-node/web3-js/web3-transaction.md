@@ -60,7 +60,7 @@ With the package.json file created, we can then install the web3.js package by e
 npm install web3
 ```
 
-To verify the installed version of web3.js, you can use the `ls` command:
+To check which version of web3.js you have intalled, you can use the `ls` command:
 
 ```
 npm ls web3
