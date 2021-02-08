@@ -1,6 +1,6 @@
 ---
 title: Collator
-description: How to run a full Parachain node for the Moonbeam Network to have your own RPC Endpoint
+description: How to run a Collator node on the Moonbeam Network
 ---
 
 # Run a Collator on Moonbeam
@@ -9,7 +9,7 @@ description: How to run a full Parachain node for the Moonbeam Network to have y
 
 ## Introduction
 
-With the release of Moonbase Alpha v6, you can spin up a collator that connects to the Moonbase Alpha TestNet, syncs with a bootnode, and provides local access your own RPC endpoints, and authors blocks in the parachain. 
+With the release of Moonbase Alpha v6, you can spin up a collator that connects to the Moonbase Alpha TestNet, syncs with a bootnode, and provides local access your own RPC endpoints, and authors blocks on the parachain. 
 
 In our TestNet, the relay chain is hosted and run by PureStake. But as development progresses, there will be deployments as well in Kusama and then Polkadot.  Here's how we will name these upcoming environments and their corresponding [chain specification files](https://substrate.dev/docs/en/knowledgebase/integrate/chain-spec) name: 
 
@@ -40,7 +40,11 @@ The minimum specs recommended for a Collator is shown in the following table. Fo
     If you don't see an `Imported` message (without the `[Relaychain]` tag) when running the Collator, you might need to double-check your port configuration.
 
 ## Account and Staking Requirements
-Similar to Polkadot validators, you need to create an account (although in this case it's an H160 account) and have nominated stake (DEV tokens) in order to collate.  The slots are currently limited, but may be increased over time.  Validators need to have a minimum of {{ networks.moonbase.collator_min_stake }} DEV to be considered eligible to be a collator (i.e. get in the waiting pool).  After that the top {{ networks.moonbase.collator_slots }} collators by nominated stake will be the active set.  Reach out to us on our [Discord channel](https://discord.gg/PfpUATX) if you are interested in becoming a collator. 
+Similar to Polkadot validators, you need to create an account (although in this case it's an H160 account) and have nominated stake (DEV tokens) in order to collate.  The slots are currently limited, but may be increased over time.  
+
+Validators need to have a minimum of {{ networks.moonbase.collator_min_stake }} DEV to be considered eligible to be a collator (i.e. get in the waiting pool).  After that the top {{ networks.moonbase.collator_slots }} collators by nominated stake will be the active set.  
+
+Reach out to us on our [Discord channel](https://discord.gg/PfpUATX) if you are interested in becoming a collator. 
 
 
 ## Running Ports
@@ -70,10 +74,10 @@ The only ports that need to be open for incoming traffic are those designated fo
 
 ## Installation Instructions - Generate an Account
 
-A Moonbase Alpha collator is controled by running extriniscs against the parachain.  
+A Moonbase Alpha collator is controlled by running extriniscs against the parachain.  
 
 1. Login to the Moonbase Alpha polkadot.js site.  [https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts}
-2. Under Accounts, create a new Ehtereum type address from "Private Key".  Mnemonic is not supported with this version of Moonbase Alpha. Save your backup and private key securely.  
+2. Under Accounts, create a new Ethereum type address from "Private Key".  Mnemonic is not supported with this version of Moonbase Alpha. Save your backup and private key securely.  
 3. Record the `PUBLIC_KEY` for use in the configuration below.  
 4. Follow the steps below for setting up and configuring the node, then we will return to this site to continue the process.  
    
@@ -107,7 +111,7 @@ purestake/moonbase-parachain-testnet:{{ networks.moonbase.parachain_docker_tag }
     --name="YOUR-NODE-NAME (Embedded Relay)"
 ```
 
-Once Docker pulls the necessary images, your Moonbase Alpha Collator will start, displaying lots of informations such as the chain specification, node name, role, genesis state, among others:
+Once Docker pulls the necessary images, your Moonbase Alpha Collator will start, displaying lots of information such as the chain specification, node name, role, genesis state, among others:
 
 ![Full Node Starting](/images/fullnode/fullnode-docker1.png)
 
@@ -148,7 +152,7 @@ Next, install Substrate and all its prerequisites (including Rust), by executing
 --8<-- 'setting-up-local/substrate.md'
 ```
 
-Now, we need to make some checks (correct version of Rust nigthly) with the initialization script:
+Now, we need to make some checks (correct version of Rust nightly) with the initialization script:
 
 ```
 --8<-- 'setting-up-local/initscript.md'
@@ -276,7 +280,7 @@ Once your node is up and running, and in sync with the network, you can begin co
 3. Fund the account with at least {{ networks.moonbase.collator_min_stake }} DEV plus some extra for tx fees. 
 4. From your collator account, bond your (self) collator by calling the `stake.joinCandidates()` function.  Set the fee to {{networks.moonbase.per-bill-fee}}, bond to {{ networks.moonbase.collator_min_stake }}.  These numbers may change with future releases but don't adjust them for now. The bond amount is a minimum, you may bond more, but if you bond less you are not considered a valid collator.  Only collator bond counts for this check, additional nominations do not.  
 5. You may nominate your collator with another account you control or solicit nominations from others.  The top {{ networks.moonbase.collator_slots }} collators by total stake (including nominations) will be active for the next round.  Use the `stake.nominateNew()` function only to select a new collator to nominate. Use `stake.nominatorBondMore()` and `stake.nominatorBondLess()` to adjust the bond associated with an already nominated collator.  !!!note These function names are subject to change in future releases.
-6. It may take up to 2 hours to get in the active set (if you have eough stake)
+6. It may take up to 2 hours to get in the active set (if you have enough stake)
 7. The only way to see the active set now is to run a query against the [chain state](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/chainstate).  The query is still called `stake.validators()` although this will change to `stake.collators()` in a future release.  
 8. Block production is a random subsection of collators, but within that subsection speed matters.  A collator who can calculate and submit blocks faster than it's peers will author more blocks and generate more rewards.  
 
