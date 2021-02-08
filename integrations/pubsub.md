@@ -137,7 +137,7 @@ Here, by using the wildcard null in place for the event signature, we filter to 
 
 ![Conditional Subscription](/images/testnet/testnet-pubsub7.png)
 
-As shown, we received two logs for the same subscription ID by the two addresses provided with conditional formatting. Events emitted by transactions from different addresses will not throw any logs to this subscription.
+As shown, after we provided the two addresses with conditional formatting, we received two logs with the same subscription ID. Events emitted by transactions from different addresses will not throw any logs to this subscription.
 
 This example showed how we could subscribe to just the event logs of a specific contract, but the web3.js library provides other subscription types that we’ll go over in the following sections.
 
