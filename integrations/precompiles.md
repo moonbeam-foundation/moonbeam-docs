@@ -186,7 +186,7 @@ contract Identity{
     }
 }
 ```
-With the contract deployed, we can call the `callDataCopy()` method and verify if `memoryStored` checks with the bytes that you pass in as an input of the function.
+With the contract deployed, we can call the `callDataCopy()` method and verify if `memoryStored` matches the bytes that you pass in as an input of the function.
 
 ## Modular Exponentiation
 
