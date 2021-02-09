@@ -1,24 +1,26 @@
 ---
-title: Governance
+title: Principles
 description: As a Polkadot parachain, Moonbeam will use an on-chain governance system, allowing for a stake-weighted vote on public referenda.
 ---
 
-#Governance in Moonbeam
+# Governance in Moonbeam
+
+## Introduction
 
 Moonbeam is a decentralized network that will be governed by a community of stakeholders including core developers, application developers, collators, token holders, users, partners, and other contributors.  PureStake aims to facilitate the engagement of stakeholders from each of these categories as part of launching the network.
 
 Guiding "soft" principles for engagement with Moonbeam’s governance process include:
 
-* Being inclusive to stakeholders that want to engage with Moonbeam and that are affected by governance decisions.
-* To favor stakeholder engagement, even with views contrary to our own, versus a lack of engagement.
-* A commitment to openness and transparency in the decision-making process.
-* Working to keep the greater good of the network ahead of any personal gain.  
-* Acting at all times as a moral agent that considers the consequences of action (or inaction) from a moral standpoint.
-* Being patient and generous in our interactions with other stakeholders, but not tolerating abusive or destructive language, actions, and behavior.
+ - Being inclusive to stakeholders that want to engage with Moonbeam and that are affected by governance decisions.
+ - To favor stakeholder engagement, even with views contrary to our own, versus a lack of engagement.
+ - A commitment to openness and transparency in the decision-making process.
+ - Working to keep the greater good of the network ahead of any personal gain.  
+ - Acting at all times as a moral agent that considers the consequences of action (or inaction) from a moral standpoint.
+ - Being patient and generous in our interactions with other stakeholders, but not tolerating abusive or destructive language, actions, and behavior.
 
 These points were heavily inspired by Vlad Zamfir’s writings on governance. Refer to his articles, [especially this one](https://medium.com/@Vlad_Zamfir/how-to-participate-in-blockchain-governance-in-good-faith-and-with-good-manners-bd4e16846434).
 
-##On-Chain Governance Mechanics
+## On-Chain Governance Mechanics
 
 The "hard" governance process for Moonbeam will be driven by an on-chain process and will leverage the Democracy, Council, and Treasury [Substrate frame pallets](/resources/glossary/#substrate-frame-pallets), similar to how Kusama and the Polkadot Relay Chain are governed.  The overall intent of these modules are to allow the majority of tokens on the network to determine the outcomes of key decisions around the network.  These decision points come in the form of stake-weighted voting on proposed referenda.
 
