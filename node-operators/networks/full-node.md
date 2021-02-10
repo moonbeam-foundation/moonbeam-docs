@@ -1,6 +1,6 @@
 ---
 title: Run a Node
-description: How to run a full Parachain node for the Moonbeam Network to have your own RPC Endpoint or produce blocks
+description: How to run a full Parachain node for the Moonbeam Network to have your RPC Endpoint or produce blocks
 ---
 
 # Run a Node on Moonbeam
@@ -9,7 +9,7 @@ description: How to run a full Parachain node for the Moonbeam Network to have y
 
 ## Introduction
 
-With the release of Moonbase Alpha v6, you can spin up a node that connects to the Moonbase Alpha TestNet, syncs with a bootnode, provides local access your own RPC endpoints, and even authors blocks on the parachain. 
+With the release of Moonbase Alpha v6, you can spin up a node that connects to the Moonbase Alpha TestNet, syncs with a bootnode, provides local access your RPC endpoints, and even authors blocks on the parachain. 
 
 In our TestNet, the relay chain is hosted and run by PureStake. But as development progresses, there will be deployments as well in Kusama and then Polkadot.  Here's how we will name these upcoming environments and their corresponding [chain specification files](https://substrate.dev/docs/en/knowledgebase/integrate/chain-spec) name: 
 
@@ -66,7 +66,7 @@ The only ports that need to be open for incoming traffic are those designated fo
 
 A Moonbase Alpha node can be spun up quickly using Docker. For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/). At the time of writing, the Docker version used was 19.03.6.
 
-First, we need to create a local directory to store the chain data, and also set the necessary permissions:
+First, we need to create a local directory to store the chain data and also set the necessary permissions:
 
 ```
 mkdir {{ networks.moonbase.node_directory }}
@@ -77,7 +77,7 @@ mkdir {{ networks.moonbase.node_directory }}
 
 Now we can execute the docker run command. Note that you have to:
  - Replace `YOUR-NODE-NAME` in two different places
- - For collators, replace `PUBLIC_KEY` with the the public address that will be associated to collation activities. TODO add tutorial
+ - For collators, replace `PUBLIC_KEY` with the public address that will be associated with collation activities. TODO add tutorial
 
 === "Full Node"
 
@@ -123,7 +123,7 @@ If you want to expose WS or RPC ports, enable those on the Docker run command li
 docker run -p {{ networks.relay_chain.p2p }}:{{ networks.relay_chain.p2p }} -p {{ networks.parachain.p2p }}:{{ networks.parachain.p2p }} -p {{ networks.parachain.rpc }}:{{ networks.parachain.rpc }} -p {{ networks.parachain.ws }}:{{ networks.parachain.ws }} #rest of code goes here 
 ```
 
-During the syncing process you will see messages from both the embedded relay chain and the parachain (without a tag). This messages display a target block (TestNet), and a best block (local node synced state). 
+During the syncing process, you will see messages from both the embedded relay chain and the parachain (without a tag). These messages display a target block (TestNet) and a best block (local node synced state). 
 
 ![Full Node Starting](/images/fullnode/fullnode-docker2.png)
 
@@ -318,7 +318,9 @@ journalctl -f -u moonbeam.service
 
 ## Telemetry
 
-_Comming soon_
+To enable your Moonbase Alpha node's telemetry server, you can follow [this tutorial](/node-operators/networks/telemetry/).
+
+Running telemetry on a full node is not necessary. However, it is a requirement to do so for collators.
 
 ## Logs and Troubleshooting
 
@@ -329,7 +331,7 @@ You will see logs from both the relay chain as well as the parachain.  The relay
 
 ### P2P Ports Not Open
 
-If you don't seen an `Imported` message (without the `[Relaychain]` tag), you need to check the P2P port configuration. P2P port must be open to incoming traffic.
+If you don't see an `Imported` message (without the `[Relaychain]` tag), you need to check the P2P port configuration. P2P port must be open to incoming traffic.
 
 ### In Sync
 
