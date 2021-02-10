@@ -1,8 +1,5 @@
-title: Learn
+title: Governance
 arrange:
-  - technology.md
-  - eth-compatibility.md
-  - unified-accounts.md
-  - xchain-plans.md
-  - governance.md
-  - token.md
+  - overview.md
+  - proposals.md
+  - voting.md
