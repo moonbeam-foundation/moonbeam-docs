@@ -1,6 +1,6 @@
 ---
 title: Code Snippets
-description: In order to make it easier to get up-and-running with Moonbeam, here are some code snippets for each of the tutorials we’ve created.
+description: In order to make it easier to get started with Moonbeam, here are code snippets for each of the tutorials we’ve created.
 ---
 
 # Code Snippets

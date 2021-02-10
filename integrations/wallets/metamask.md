@@ -1,6 +1,6 @@
 ---
 title: MetaMask
-description: This guide walks you through how to connect MetaMask, an browser based Ethereum wallet, to Moonbeam.
+description: This guide walks you through how to connect MetaMask, an browser-based Ethereum wallet, to Moonbeam.
 ---
 
 # Interacting with Moonbeam Using MetaMask
@@ -9,17 +9,17 @@ description: This guide walks you through how to connect MetaMask, an browser ba
 
 ## Introduction
 
-Developers can leverage Moonbeam's Ethereum compatibility features to integrate tools such as [MetaMask](https://metamask.io/) into their dApps. By doing so, they can use the injected library MetaMask provide to interact with the blockchain.
+Developers can leverage Moonbeam's Ethereum compatibility features to integrate tools, such as [MetaMask](https://metamask.io/), into their DApps. By doing so, they can use the injected library MetaMask provides to interact with the blockchain.
 
-Currently, MetaMask can be configured to connect to two networks: a Moonbeam standalone node, or the Moonbase Alpha TestNet. 
+Currently, MetaMask can be configured to connect to two networks: a Moonbeam standalone node or the Moonbase Alpha TestNet. 
 
 ## Connect MetaMask to Moonbeam
 
-Once you have [MetaMask](https://metamask.io/) installed, you can set it up to connect to Moonbeam by clicking on the top right logo and open the settings.
+Once you have [MetaMask](https://metamask.io/) installed, you can connect it to Moonbeam by clicking on the top right logo and opening  the settings.
 
 ![MetaMask3](/images/testnet/testnet-metamask3.png)
 
-Next, navigate to the Networks tab, and click on the "Add Network" button.
+Next, navigate to the Networks tab and click on the "Add Network" button.
 
 ![MetaMask4](/images/testnet/testnet-metamask4.png)
 

@@ -41,17 +41,17 @@ On both sides of the bridge, there are a set of smart contracts, where each has 
 
 The general workflow is the following (from Chain A to Chain B):
  
-  - A user initiates a transaction with the _deposit()_ function in the bridge contract of Chain A. Here, the user needs to input the target chain, the resource ID, and the _calldata_ (definitions after the diagram). After a few checks, the _deposit()_  function of the handler contract is called, which executes the corresponding call of the target contract
-  - After the function of the target contract in Chain A is executed, a _Deposit_ event is emitted by the bridge contract, which holds the necessary data to be executed on Chain B. This is called a proposal. Each proposal can have five status (inactive, active, passed, executed and cancelled) 
-  - Relayers are always listening on both sides of the chain.  Once a relayer picks up the event, he initiates a voting on the proposal, which happens on the bridge contract on Chain B. This sets the state of the proposal from inactive to active
-  - Relayers must vote on the proposal. Every time a relayer votes, an event is emitted by the bridge contract that updates its status. Once a threshold is met, the status changes from active to passed. A relayer then executes the proposal on Chain B via the bridge contract
-  - After a few checks, the bridge executes the proposal in the target contract via the handler contract on Chain B. Another event is emitted which updates the proposal status from passed to executed
+  - A user initiates a transaction with the _deposit()_ function in the bridge contract of Chain A. Here, the user needs to input the target chain, the resource ID, and the _calldata_ (definitions after the diagram). After a few checks, the _deposit()_  function of the handler contract is called, which executes the corresponding call of the target contract.
+  - After the function of the target contract in Chain A is executed, a _Deposit_ event is emitted by the bridge contract, which holds the necessary data to be executed on Chain B. This is called a proposal. Each proposal can have five status (inactive, active, passed, executed and cancelled). 
+  - Relayers are always listening on both sides of the chain.  Once a relayer picks up the event, he initiates a voting on the proposal, which happens on the bridge contract on Chain B. This sets the state of the proposal from inactive to active.
+  - Relayers must vote on the proposal. Every time a relayer votes, an event is emitted by the bridge contract that updates its status. Once a threshold is met, the status changes from active to passed. A relayer then executes the proposal on Chain B via the bridge contract.
+  - After a few checks, the bridge executes the proposal in the target contract via the handler contract on Chain B. Another event is emitted, which updates the proposal status from passed to executed.
 
 This workflow is summarized in the following diagram:
 
 ![ChainBridge Moonbeam diagram](/images/chainbridge/chainbridge-diagram.png)
 
-The two target contracts on each side of the bridge are linked by doing a series of registrations in the corresponding handler contract via the bridge contract. These registrations can only be done currently by the bridge contract admin.
+The two target contracts on each side of the bridge are linked by doing a series of registrations in the corresponding handler contract via the bridge contract. These registrations currently can only be done by the bridge contract admin.
 
 ### General Definitions
 
@@ -83,7 +83,7 @@ In similar fashion, interacting directly with the Bridge contract and calling th
 
  - Custom bridge contract (same for both TestNets): `{{ networks.moonbase.chainbridge.bridge_address }}`
 
-In simple terms, the modified contract used to initiate the transfer, has the _chainID_ and _resourceID_ predefined for this example. Therefore, it builds the _calldata_ object from the user's input, which is only the recipient address and the value to be sent.
+In simple terms, the modified contract used to initiate the transfer has the _chainID_ and _resourceID_ predefined for this example. Therefore, it builds the _calldata_ object from the user's input, which is only the recipient address and the value to be sent.
 
 The general workflow for this example can be seen in this diagram:
 
@@ -91,7 +91,7 @@ The general workflow for this example can be seen in this diagram:
 
 To try the bridge with this sample ERC-20 token, we have to do the following steps (regardless of the direction of the transfer):
  
- - Mint tokens in source Chain (this approves the source handler contract as spender for the amount minted)
+ - Mint tokens in source Chain (this approves the source handler contract as a spender for the amount minted)
  - Use the modified bridge contract in the source Chain to send tokens
  - Wait until the process is completed
  - To send back the tokens we need to approve the handler contract of the target Chain as a spender
@@ -154,22 +154,22 @@ interface IPSBridgeERC20 {
 }
 ```
 
-So once again, in Remix, load the interface contract at the bridge address. Next, call the `sendERC20SToken()` function, providing the recipient address on the other side of the bridge and the amount to transfer in WEI. MetaMask should pop-up asking you to sign the transaction. Once the transaction is confirmed, the process can take around 3 minute to complete, after which you should have received the tokens in Kovan! 
+So once again, in Remix, load the interface contract at the bridge address. Next, call the `sendERC20SToken()` function, providing the recipient address on the other side of the bridge and the amount to transfer in WEI. MetaMask should pop-up and ask you to sign the transaction. Once the transaction is confirmed, the process can take around 3 minute to complete, after which you should have received the tokens in Kovan! 
 
 ![ChainBridge ERC20 send Tokens](/images/chainbridge/chainbridge-image2.png)
 
-You can check your balance by adding the token to [MetaMask](/integrations/wallets/metamask/), and connecting it to the target network, in our case Kovan.
+You can check your balance by adding the token to [MetaMask](/integrations/wallets/metamask/) and connecting it to the target network - in our case Kovan.
 
 ![ChainBridge ERC20 balance](/images/chainbridge/chainbridge-image3.png)
 
-Remember that you can also mint ERC20S tokens in Kovan and send them to Moonbase Alpha. To approve an spender or increase its allowance, you can use the `increaseAllowance()` function of the interface provided. To check the allowance to the handler contract in the ERC20 token contract, you can use the `allowance()` function of the interface.
+Remember that you can also mint ERC20S tokens in Kovan and send them to Moonbase Alpha. To approve an spender or increase its allowance, you can use the `increaseAllowance()` function of the interface provided. To check the allowance of the handler contract in the ERC20 token contract, you can use the `allowance()` function of the interface.
 
 !!! note
     Tokens will be transferred only if the handler contract has enough allowance to spend tokens on behalf of the owner. If the process fails, check the allowance.
 
 ### ERC-721 Token Transfer
 
-Similar to our previous example, ERC-721 tokens contracts need to be registered by the relayers to enable transfer through the bridge. Therefore, we've customized an ERC-721 token contract so that any user can mint a token to test the bridge out. However, as each token is non-fungible, and consequently unique, so the mint function is only available in the Source chain token contract, and not in the Target contract. As a consequence, you need a pair of ERC-721 contract addresses to mint tokens in Kovan and transfer those to Moonbase Alpha, and another pair for the opposite action. The following diagram explains the workflow for this example, where it is important to highlight that the token ID and metadata is maintained.
+Similar to our previous example, ERC-721 tokens contracts need to be registered by the relayers to enable transfer through the bridge. Therefore, we've customized an ERC-721 token contract so that any user can mint a token to test the bridge out. However, as each token is non-fungible, and consequently unique, the mint function is only available in the Source chain token contract, and not in the Target contract. As a consequence, you need a pair of ERC-721 contract addresses to mint tokens in Kovan and transfer those to Moonbase Alpha and another pair for the opposite action. The following diagram explains the workflow for this example: it is important to highlight that the token ID and metadata is maintained.
 
 ![ChainBridge ERC721 workflow](/images/chainbridge/chainbridge-erc721.png)
 
@@ -255,7 +255,7 @@ So once again, in Remix, load the interface contract at the bridge address. Next
 
 ![ChainBridge ERC721 send Token](/images/chainbridge/chainbridge-image5.png)
 
-You can check your balance by adding the token to [MetaMask](/integrations/wallets/metamask/), and connecting it to the target network, in our case Moonbase Alpha.
+You can check your balance by adding the token to [MetaMask](/integrations/wallets/metamask/) and connecting it to the target network, in our case Moonbase Alpha.
 
 ![ChainBridge ERC721 balance](/images/chainbridge/chainbridge-image6.png)
 
@@ -266,7 +266,7 @@ Remember that you can also mint ERC721M tokens in Moonbase Alpha and send them t
 
 ### Generic Handler
 
-The Generic Handler offers the possibility of executing a function in chain A, and creating a proposal to execute another function in chain B (similar to the general workflow diagram). This provides a compelling way of connecting two independent blockchains.
+The Generic Handler offers the possibility of executing a function in chain A and creating a proposal to execute another function in chain B (similar to the general workflow diagram). This provides a compelling way to connect two independent blockchains.
 
 If you are interested in implementing this functionality, you can reach out directly to us via our [Discord server](https://discord.com/invite/PfpUATX). We'll be happy to discuss this implementation.
 

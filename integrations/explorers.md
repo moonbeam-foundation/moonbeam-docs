@@ -8,9 +8,9 @@ description: An overview of the currently available block explorers that may be 
 
 ## Introduction 
 
-The Moonbeam team is currently working on onboarding a specialized block explorer solution that would allow to navigate the EVM as well as the Substrate layer of the blockchain.
+The Moonbeam team is currently working on onboarding a specialized block explorer solution that would allow users to navigate the EVM as well as the Substrate layer of the blockchain.
 
-Currently, we offer two block explorers: one for the Ethereum API based on the [Expedition explorer](https://github.com/etclabscore/expedition), and one for the Substrate API using [Polkadot JS apps](/integrations/wallets/polkadotjs/). You can use both for either a standalone Moonbeam node, or the Moonbase Alpha TestNet.
+Currently, we offer two block explorers: one for the Ethereum API based on the [Expedition explorer](https://github.com/etclabscore/expedition), and one for the Substrate API using [Polkadot JS apps](/integrations/wallets/polkadotjs/). You can use both for either a standalone Moonbeam node or the Moonbase Alpha TestNet.
 
 !!! note
     If you are using Brave Browser and your explorer is not connecting to the Moonbeam instance you are pointing it to, try disabling Brave Shield.
@@ -30,11 +30,11 @@ To connect the explorer to a standalone Moonbeam node, you can use [this URL](ht
 
 To access the current state of the Moonbase Alpha TestNet, navigate to [https://moonbeam-explorer.netlify.app/](https://moonbeam-explorer.netlify.app/). 
 
-The explorer is also available in Spanish, Chinese, Russian and Korean.
+The explorer is also available in Spanish, Chinese, Russian, and Korean.
 
 ![Explorer TestNet](/images/explorers/explorers-images-2.png)
 
-You can find the repository for the explorer in [this URL](https://github.com/PureStake/moonbeam-explorer-expedition).
+You can find the repository for the explorer at [this URL](https://github.com/PureStake/moonbeam-explorer-expedition).
 
 ## Polkadot.JS Apps (Substrate)
 
@@ -46,10 +46,14 @@ Polkadot JS Apps uses the WebSocket endpoint to interact with the Network. To co
 
 ### Moonbase Alpha
 
+<<<<<<< HEAD
 To view and interact with the Substrate layer of Moonbase Alpha, go to [this URL](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/explorer). This is the Polkadot JS Apps pointing to the TestNet, you can find more information is [this page](/integrations/wallets/polkadotjs/).
+=======
+To view and interact with the Substrate layer of Moonbase Alpha, go to [this URL](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/explorer). This is the Polkadot JS Apps pointing to the TestNet. You can find more information on [this page](/integrations/polkadotjs/).
+>>>>>>> ef4a488d8342c91768f406636b36e6dc3490a718
 
 ![Connect to Moonbase Alpha](/images/polkadotjs/polkadotjs-app2.png)
 
 ## We Want to Hear From You
 
-If you have any feedback regarding block explorers, or any other Moonbeam related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).
+If you have any feedback regarding block explorers or any other Moonbeam-related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).
