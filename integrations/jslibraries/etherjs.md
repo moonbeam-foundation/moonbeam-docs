@@ -7,7 +7,7 @@ description: Follow this tutorial to learn how to use the Ethereum EtherJS Libra
 ![Intro diagram](/images/integrations/integrations-ethersjs-banner.png)
 
 ## Introduction
-The [ethers.js](https://docs.ethers.io/) library provide a set of tools to interact with Ethereum Nodes, similar to web3.js. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations. Therefore, developers can leverage this compatibility and use the ethers.js library to interact with a Moonbeam node as if they were doing so on Ethereum. You can read more about ethers.js on this [blogpost](https://medium.com/l4-media/announcing-ethers-js-a-web3-alternative-6f134fdd06f3).
+The [ethers.js](https://docs.ethers.io/) library provides a set of tools to interact with Ethereum Nodes, similar to web3.js. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations. Therefore, developers can leverage this compatibility and use the ethers.js library to interact with a Moonbeam node as if they were doing so on Ethereum. You can read more about ethers.js on this [blogpost](https://medium.com/l4-media/announcing-ethers-js-a-web3-alternative-6f134fdd06f3).
 
 ## Setup Ethers.js with Moonbeam
 To get started with the ethers.js library, we first need to install it using the following command:
@@ -37,4 +37,4 @@ Different methods are available inside `provider` and `wallet`. Depending on whi
 
 ## Step-by-step Tutorials
 
-In the case that you are interested in a more detailed step-by-step guide, you can go to our specific tutorials on using ethers.js on a Moonbeam standalone node to [send a transaction](/getting-started/local-node/ethers-js/ethers-transaction/), or [deploy a contract](/getting-started/local-node/ethers-js/ethers-contract/). The steps can also be adapted to deploy on the Moonbase Alpha TestNet, by using the correct `RPC_URL` as mentioned before.
+If you are interested in a more detailed step-by-step guide, you can go to our specific tutorials on using ethers.js on a Moonbeam standalone node to [send a transaction](/getting-started/local-node/ethers-js/ethers-transaction/) or [deploy a contract](/getting-started/local-node/ethers-js/ethers-contract/). The steps can also be adapted to deploy on the Moonbase Alpha TestNet by using the correct `RPC_URL` as mentioned before.

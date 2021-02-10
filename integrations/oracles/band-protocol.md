@@ -1,13 +1,13 @@
 ---
 title: Band Protocol
-description: How to use request data from a Band Protocol Oracle in your Moonbeam Ethereum Dapp using smart contracts or javascript
+description: How to use request data from a Band Protocol Oracle in your Moonbeam Ethereum DApp using smart contracts or javascript
 ---
 # Band Protocol Oracle
 
 ![Band Protocol Moonbeam Diagram](/images/band/band-banner.png)
 
 ## Introduction
-Developers have two ways to fetch prices from Band’s oracle infrastructure. On one hand, they can use Band’s smart contracts on Moonbeam. Doing so, they access data that is on-chain and is updated either at regular intervals or when price slippage is more than a target amount (different for each token). On the other hand, devs can use the Javascript helper library, which uses an API endpoint to fetch the data using similar functions as those from the smart contracts, but this implementation bypasses the blockchain entirely.  This can be useful if your dApp front end needs direct access to the data.
+Developers have two ways to fetch prices from Band’s oracle infrastructure. On one hand, they can use Band’s smart contracts on Moonbeam. Doing so, they access data that is on-chain and is updated either at regular intervals or when price slippage is more than a target amount (different for each token). On the other hand, devs can use the Javascript helper library, which uses an API endpoint to fetch the data using similar functions as those from the smart contracts, but this implementation bypasses the blockchain entirely.  This can be useful if your DApp front-end needs direct access to the data.
 
 The Aggregator Contract address can be found in the following table:
 
@@ -16,7 +16,7 @@ The Aggregator Contract address can be found in the following table:
 | Moonbase Alpha | | 0xDA7a001b254CD22e46d3eAB04d937489c93174C3 |
 
 ## Supported Token
-Price queries with any denomination are available, as long as the base and quote symbols are supported (_base_/_quote_). For example:
+Price queries with any denomination are available as long as the base and quote symbols are supported (_base_/_quote_). For example:
 
  -  `BTC/USD`
  -  `BTC/ETH`
@@ -31,15 +31,15 @@ As stated before, developers can leverage two methods to query prices from Band'
  -  Javascript helper library
 
 ## Get Data Using Smart Contracts
-Contracts can query on-chain data such as token prices from Band's oracle by implementing the interface of the `StdReference` contract, which exposes the `getReferenceData` and `getReferenceDataBulk` functions.
+Contracts can query on-chain data, such as token prices, from Band's oracle by implementing the interface of the `StdReference` contract, which exposes the `getReferenceData` and `getReferenceDataBulk` functions.
 
 The first function, `getReferenceData`, takes two strings (the base and the quote symbol) as the inputs. The function queries the `StdReference` contract for the latest rates available for those two tokens. It returns a `ReferenceData` struct.
 
 The `ReferenceData` struct has the following elements:
 
- -  Rate: the exchange rate in terms of _base/quote_. The value returned is multiplied by 10<sup>18</sup>
- -  Last updated base: last time when the base price was updated (since UNIX epoch)
- - Last updated quote: last time when the quoted price was updated (since UNIX epoch)
+ - Rate: the exchange rate in terms of _base/quote_. The value returned is multiplied by 10<sup>18</sup>
+ - Last updated base: the last time when the base price was updated (since UNIX epoch)
+ - Last updated quote: the last time when the quoted price was updated (since UNIX epoch)
  
 ```
 struct ReferenceData {
@@ -49,7 +49,7 @@ struct ReferenceData {
 }
 ```
 
-The second function, `getReferenceDataBulk`, takes information as data arrays. For example, if we pass in `['BTC','BTC','ETH']` as base, and `['USD','ETH','EUR']` as quote, the `ReferenceData`returned array contains the information regarding the following pairs:
+The second function, `getReferenceDataBulk`, takes information as data arrays. For example, if we pass in `['BTC','BTC','ETH']` as base and `['USD','ETH','EUR']` as quote, the `ReferenceData`returned array contains the information regarding the following pairs:
 
  -  `BTC/USD`
  -  `BTC/ETH`
@@ -57,7 +57,7 @@ The second function, `getReferenceDataBulk`, takes information as data arrays. F
 
 ### Example Contract
 
-The following smart contract code provides some simple examples of the `StdReference` contract and the `getReferenceData` function, these are not meant for production. The `IStdReference.sol` interface defines ReferenceData structure and the functions available to make the queries.
+The following smart contract code provides some simple examples of the `StdReference` contract and the `getReferenceData` function - these are not meant for production. The `IStdReference.sol` interface defines ReferenceData structure and the functions available to make the queries.
 
 ```sol
 pragma solidity 0.6.11;
@@ -86,10 +86,10 @@ interface IStdReference {
 ```
 Next, we can use the following `DemoOracle` script. It provides four functions:
 
- -  getPrice: a _view_ function that queries a single base, in this example the price of `BTC` quoted in `USD`
- -  getMultiPrices: a _view_ function that queries multiple bases, in this example the price of `BTC` and `ETH`, both quoted in `USD`
- -  savePrice: a _public_ function that queries the _base/quote_ pair. Each element is provided as separate strings, for example `_base = "BTC", _quotes = "USD"`. This sends a transaction and modifies the `price` variable stored in the contract.
- -  saveMultiPrices: a _public_  function that queries each _base/quote_ pair. Each element is provided as a string array, for example `_bases = ["BTC","ETH"], _quotes = ["USD","USD"]`. This sends a transaction and modifies the `prices` array stored in the contract, that will hold the price of each pair in the same order as specified in the input
+ -  getPrice: a _view_ function that queries a single base. In this example, the price of `BTC` quoted in `USD`
+ -  getMultiPrices: a _view_ function that queries multiple bases. In this example, the price of `BTC` and `ETH`, both quoted in `USD`
+ -  savePrice: a _public_ function that queries the _base/quote_ pair. Each element is provided as separate strings, for example `_base = "BTC", _quotes = "USD"`. This sends a transaction and modifies the `price` variable stored in the contract
+ -  saveMultiPrices: a _public_  function that queries each _base/quote_ pair. Each element is provided as a string array. For example, `_bases = ["BTC","ETH"], _quotes = ["USD","USD"]`. This sends a transaction and modifies the `prices` array stored in the contract, which will hold the price of each pair in the same order as specified in the input
 
  When deployed, the constructor function needs the Aggregator Contract address for the target network.
 
@@ -151,7 +151,7 @@ contract DemoOracle {
 
 ### Try it in Moonbase Alpha
 
-We've deployed a contract available in the Moonbase Alpha TestNet (at address `0xf15c870344c1c02f5939a5C4926b7cDb90dEc655`), so you can easily check the information fed from Band Protocol's oracle. To do so you need the following interface contract:
+We've deployed a contract available in the Moonbase Alpha TestNet (at address `0xf15c870344c1c02f5939a5C4926b7cDb90dEc655`) so you can easily check the information fed from Band Protocol's oracle. To do so, you need the following interface contract:
 
 ```sol
 pragma solidity 0.6.11;
@@ -164,14 +164,14 @@ interface TestInterface {
 }
 ```
 
-With it, you will have two view functions available, very similar to our previous examples:
+With it, you will have two view functions available - very similar to our previous examples:
 
  -  getPrice: provides the price feed for a single base/quote pair that is given as input to the function, that is, "BTC", "USD"
  -  getMultiPrices: provides the price feed for a multiple base/quote pairs that are given as input to the function, that is, ["BTC", "ETH", "ETH"], ["USD", "USD", "EUR"]
 
 For example, using [Remix](/integrations/remix/), we can easily query the `BTC/USD` price pair using this interface.
 
-After creating the file and compiling the contract, head to the "Deploy and Run Transactions" tab, enter the contract address (`0xf15c870344c1c02f5939a5C4926b7cDb90dEc655`) and click on "At Address". Make sure you have set the "Environment" to "Injected Web3" so you are connected to Moonbase Alpha. 
+After creating the file and compiling the contract, head to the "Deploy and Run Transactions" tab, enter the contract address (`0xf15c870344c1c02f5939a5C4926b7cDb90dEc655`) and click on "At Address." Make sure you have set the "Environment" to "Injected Web3" so you are connected to Moonbase Alpha. 
 
 ![Band Protocol Remix deploy](/images/band/band-demo1.png)
 
@@ -187,7 +187,7 @@ The helper library also supports a similar `getReferenceData` function. To get s
 npm install @bandprotocol/bandchain.js
 ```
 
-The library provides a constructor function that requires an endpoint to point to. This returns an instance which then enables all the necessary methods, such as the `getReferenceData` function.  When querying for information, the function accepts an array where each element is the _base/quote_ pair needed, for example:
+The library provides a constructor function that requires an endpoint to point to. This returns an instance that then enables all the necessary methods, such as the `getReferenceData` function.  When querying for information, the function accepts an array where each element is the _base/quote_ pair needed. For example:
 
 ```
 getReferenceData(['BTC/USD', 'BTC/ETH', 'ETH/EUR'])
@@ -234,7 +234,7 @@ const queryData = async () => {
 queryData();
 ```
 
-When can execute this code with node, the following `dataQuery` output should look like this:
+We can execute this code with a node, and the following `dataQuery` output should look like this:
 
 ![Band Protocol JavaScript Library](/images/band/band-console.png)
 
@@ -242,4 +242,4 @@ Note that compared to the request done via smart contracts, the result is given 
 
 ## We Want to Hear From You
 
-If you have any feedback regarding implementing Band Protocol on your project, or any other Moonbeam related topic, feel free to reach out through our official development [Discord server](https://discord.com/invite/PfpUATX).
+If you have any feedback regarding implementing Band Protocol on your project or any other Moonbeam-related topic, feel free to reach out through our official development [Discord server](https://discord.com/invite/PfpUATX).
