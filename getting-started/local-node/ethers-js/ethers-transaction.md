@@ -11,14 +11,14 @@ This guide walks through the process of using [ethers.js](https://docs.ethers.io
 The guide assumes that you have a local Moonbeam node running in `--dev` mode. You can find instructions to set up a local Moonbeam node [here](/getting-started/local-node/setting-up-a-node/).
 
 !!! note
-    This tutorial was created using the v3 release of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/v0.3.0). The Moonbeam platform, and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility, are still under very active development. The examples in this guide assume an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows.
+    This tutorial was created using the v3 release of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/v0.3.0). The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility are still under very active development. The examples in this guide assume you have an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows.
 
 ## Checking Prerequisites
-If you followed this [tutorial](/getting-started/local-node/setting-up-a-node/), you should have a standalone Moonbeam node producing blocks in your local environment, that looks like this:
+If you followed [this tutorial](/getting-started/local-node/setting-up-a-node/), you should have a standalone Moonbeam node producing blocks in your local environment that look like this:
 
 ![Moonbeam local node](/images/etherstx/ethers-transaction-1.png)
 
-In addition, we need to install Node.js (we'll go for v15.x) and the npm package manager. You can do this by running in your terminal:
+Additionally, we need to install Node.js (we'll go for v15.x) and the npm package manager. You can do this by running in your terminal:
 
 ```
 curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash -
@@ -28,7 +28,7 @@ curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash -
 sudo apt install -y nodejs
 ```
 
-We can verify that everything installed correctly by querying the version for each package:
+We can verify that everything is installed correctly by querying the version for each package:
 
 ```
 node -v
@@ -38,9 +38,9 @@ node -v
 npm -v
 ```
 
-As of the writing of this guide, versions used were 15.2.1 and 7.0.8, respectively.
+The versions used when this guide was published were 15.2.1 and 7.0.8, respectively.
 
-Next, we can create a directory to store all our relevant files (in a separate path from the local Moonbeam node files) by running:
+Next, we can create a directory to store all of our relevant files (in a separate path from the local Moonbeam node files) by running:
 
 ```
 mkdir transaction && cd transaction/
@@ -64,17 +64,17 @@ To verify the installed version of ethers.js, you can use the `ls` command:
 npm ls ethers
 ```
 
-As of the writing of this guide, the version used was 5.0.22.
+The version used when this guide was published was 5.0.22.
 
 ## The Transaction File
 Similarly to our web3.js transaction tutorial, we only need a single JavaScript file (arbitrarily named _transaction.js_, which you can find [here](/code-snippets/ethers-tx-local/transaction.js)) to create and send the transaction, which we will run using the `node` command in the terminal. The script will transfer 100 ETH from the genesis account to another address. For simplicity, the file is divided into two sections: variable definition and deploy transaction.
 
 In the first section we need to:
 
-1. Define the `privKey` variable as the private key of our genesis account, which is where all the funds are stored when initiating your local Moonbeam node, and what is used to sign the transactions. In ethers.js we need to set the prefix `0x`
-2. Define the `addressTo`, for example to one created by MetaMask when setting up a local wallet
-3. Define our provider by passing in the RPC URL of our standalone Moonbeam node: `http://localhost:9933`
-4. Define our wallet by passing in the `privKey` and the provider. The wallet has the methods necessary to send the transaction
+1. Define the `privKey` variable as the private key of our genesis account, which is where all funds are stored when initiating your local Moonbeam node and what is used to sign the transactions. In ethers.js we need to set the prefix `0x`.
+2. Define the `addressTo`. For example, to one created by MetaMask when setting up a local wallet.
+3. Define our provider by passing in the RPC URL of our standalone Moonbeam node: `http://localhost:9933` .
+4. Define our wallet by passing in the `privKey` and the provider. The wallet has the methods necessary to send the transaction.
 
 !!! note
     Remember to change the _addressTo_ variable to another address provided by your MetaMask wallet.
@@ -93,7 +93,7 @@ let provider = new ethers.providers.JsonRpcProvider(providerURL);
 let wallet = new ethers.Wallet(privKey, provider);
 ```
 
-Next, we need an asynchronous function that wraps the `wallet.sendTransaction(txObject)` method. The transaction object is quite simple, it only requires the address to where we want to send the tokens and the amount to send. Note that we use the `ethers.utils.parseEther()` which handles the necessary unit conversions from Ether to Wei, this is similar to using `ethers.utils.parseUnits(value,'ether')`. Once the transaction is sent, we get the transaction response named `createReceipt` in this example, which has a few properties. For example, we can call the `createReceipt.wait()` method to wait until the transaction is processed.
+Next, we need an asynchronous function that wraps the `wallet.sendTransaction(txObject)` method. The transaction object is quite simple, it only requires the address of where we want to send the tokens and the amount to send. Note that we use the `ethers.utils.parseEther()`, which handles the necessary unit conversions from Ether to Wei - similar to using `ethers.utils.parseUnits(value,'ether')`. Once the transaction is sent, we get the transaction response (named `createReceipt` in this example), which has a few properties. For example, we can call the `createReceipt.wait()` method to wait until the transaction is processed.
 
 ```js
 // Deploy Transaction
@@ -127,7 +127,7 @@ For simplicity, the balance file (named arbitrarily _balances.js_, which you can
 
 To get the balances of our addresses, we need to make an asynchronous function that uses the `provider.getBalance(address)` command. We can take advantage of the `ethers.utils.formatEther()` function to transform the balance into a more readable number in ETH, as we did before.
 
-So basically, our _balances.js_ script looks like this:
+Essentially, our _balances.js_ script looks like this:
 
 ```js
 --8<-- 'ethers-tx-local/balances.js'
@@ -158,4 +158,4 @@ And we can check the new balances:
 ![Balances after transaction](/images/etherstx/ethers-transaction-4.png)
 
 ## We Want to Hear From You
-This is a fairly simple example, but it provides context for how you can start working with Moonbeam and how you can try out its Ethereum compatibility features. We are interested in hearing about your experience following the steps in this guide or your experience trying other Ethereum-based tools with Moonbeam. Feel free to join us in the [Moonbeam Discord here](https://discord.gg/PfpUATX). We would love to hear your feedback on Moonbeam and answer any questions that you have.
+This is a fairly simple example, but it provides context for how you can start working with Moonbeam and trying out its Ethereum compatibility features. We are interested in hearing about your experience following the steps in this guide or trying other Ethereum-based tools with Moonbeam. Feel free to join us in the [Moonbeam Discord here](https://discord.gg/PfpUATX). We would love to hear your feedback on Moonbeam and answer any questions that you have.

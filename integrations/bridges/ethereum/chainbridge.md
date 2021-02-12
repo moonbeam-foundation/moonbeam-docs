@@ -41,17 +41,17 @@ On both sides of the bridge, there are a set of smart contracts, where each has 
 
 The general workflow is the following (from Chain A to Chain B):
  
-  - A user initiates a transaction with the _deposit()_ function in the bridge contract of Chain A. Here, the user needs to input the target chain, the resource ID, and the _calldata_ (definitions after the diagram). After a few checks, the _deposit()_  function of the handler contract is called, which executes the corresponding call of the target contract
-  - After the function of the target contract in Chain A is executed, a _Deposit_ event is emitted by the bridge contract, which holds the necessary data to be executed on Chain B. This is called a proposal. Each proposal can have five status (inactive, active, passed, executed and cancelled) 
-  - Relayers are always listening on both sides of the chain.  Once a relayer picks up the event, he initiates a voting on the proposal, which happens on the bridge contract on Chain B. This sets the state of the proposal from inactive to active
-  - Relayers must vote on the proposal. Every time a relayer votes, an event is emitted by the bridge contract that updates its status. Once a threshold is met, the status changes from active to passed. A relayer then executes the proposal on Chain B via the bridge contract
-  - After a few checks, the bridge executes the proposal in the target contract via the handler contract on Chain B. Another event is emitted which updates the proposal status from passed to executed
+  - A user initiates a transaction with the _deposit()_ function in the bridge contract of Chain A. Here, the user needs to input the target chain, the resource ID, and the _calldata_ (definitions after the diagram). After a few checks, the _deposit()_  function of the handler contract is called, which executes the corresponding call of the target contract.
+  - After the function of the target contract in Chain A is executed, a _Deposit_ event is emitted by the bridge contract, which holds the necessary data to be executed on Chain B. This is called a proposal. Each proposal can have five status (inactive, active, passed, executed and cancelled). 
+  - Relayers are always listening on both sides of the chain.  Once a relayer picks up the event, he initiates a voting on the proposal, which happens on the bridge contract on Chain B. This sets the state of the proposal from inactive to active.
+  - Relayers must vote on the proposal. Every time a relayer votes, an event is emitted by the bridge contract that updates its status. Once a threshold is met, the status changes from active to passed. A relayer then executes the proposal on Chain B via the bridge contract.
+  - After a few checks, the bridge executes the proposal in the target contract via the handler contract on Chain B. Another event is emitted, which updates the proposal status from passed to executed.
 
 This workflow is summarized in the following diagram:
 
 ![ChainBridge Moonbeam diagram](/images/chainbridge/chainbridge-diagram.png)
 
-The two target contracts on each side of the bridge are linked by doing a series of registrations in the corresponding handler contract via the bridge contract. These registrations can only be done currently by the bridge contract admin.
+The two target contracts on each side of the bridge are linked by doing a series of registrations in the corresponding handler contract via the bridge contract. These registrations currently can only be done by the bridge contract admin.
 
 ### General Definitions
 
@@ -131,7 +131,7 @@ The general workflow for this example can be seen in this diagram:
 
 To try the bridge with this sample ERC-20 token, we must do the following steps (regardless of the direction of the transfer):
  
- - Mint tokens in source Chain (this approves the source handler contract as spender for the amount minted)
+ - Mint tokens in source Chain (this approves the source handler contract as a spender for the amount minted)
  - Use the modified bridge contract in the source Chain to send tokens
  - Wait until the process is completed
  - Approve the handler contract of the target Chain as a spender to send the tokens back
@@ -206,11 +206,11 @@ interface IPSBridgeERC20 {
 }
 ```
 
-So once again, in Remix, load the interface contract at the bridge address. Next, call the `sendERC20SToken()` function, providing the recipient address on the other side of the bridge and the amount to transfer in WEI. MetaMask should pop-up asking you to sign the transaction. Once the transaction is confirmed, the process can take around 3 minute to complete, after which you should have received the tokens in Kovan! 
+So once again, in Remix, load the interface contract at the bridge address. Next, call the `sendERC20SToken()` function, providing the recipient address on the other side of the bridge and the amount to transfer in WEI. MetaMask should pop-up and ask you to sign the transaction. Once the transaction is confirmed, the process can take around 3 minute to complete, after which you should have received the tokens in Kovan! 
 
 ![ChainBridge ERC20 send Tokens](/images/chainbridge/chainbridge-image2.png)
 
-You can check your balance by adding the token to [MetaMask](/integrations/wallets/metamask/), and connecting it to the target network, in our case Kovan.
+You can check your balance by adding the token to [MetaMask](/integrations/wallets/metamask/) and connecting it to the target network - in our case Kovan.
 
 ![ChainBridge ERC20 balance](/images/chainbridge/chainbridge-image3.png)
 

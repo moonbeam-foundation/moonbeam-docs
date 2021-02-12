@@ -7,15 +7,15 @@ description:  Learn how to use precompiled contracts on Moonbase Alpha, the Moon
 
 ## Introduction
 
-Another feature added with the [release of Moonbase Alpha v2](http://www.purestake.com/blog/new-in-moonbase-alpha-v2-contract-events-and-pub-sub-capabilities/), is the inclusion of some of the [precompiled contracts](https://docs.klaytn.com/smart-contract/precompiled-contracts) that are natively available on Ethereum. 
+Another feature added with the [release of Moonbase Alpha v2](http://www.purestake.com/blog/new-in-moonbase-alpha-v2-contract-events-and-pub-sub-capabilities/) is the inclusion of some [precompiled contracts](https://docs.klaytn.com/smart-contract/precompiled-contracts) that are natively available on Ethereum. 
 
-Currently, the five precompiles are included, which are: ecrecover, sha256, ripemd-160, the identity function, and the modular exponentiation.
+Five precompiles are currently included, including: ecrecover, sha256, ripemd-160, the identity function, and the modular exponentiation.
 
-In this guide, we will show how to use and/or verify these precompiles.
+In this guide, we will explain how to use and/or verify these precompiles.
 
 ## Checking Prerequisites
 
-For some of the precompiles, we'll be using Node.js (v15.x) and the npm package manager. You can install them running in your terminal:
+For some of precompiles, we'll be using Node.js (v15.x) and the npm package manager. You can install them by running the following in your terminal:
 
 ```
 curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash -
@@ -33,7 +33,7 @@ node -v
 npm -v
 ```
 
-As of the writing of this guide, versions used were 15.2.1 and 7.0.8, respectively. Also, we need to install the Web3 package by executing:
+As of writing this guide, the versions used were 15.2.1 and 7.0.8, respectively. We will also need to install the Web3 package by executing:
 
 ```
 npm install --save web3
@@ -44,14 +44,13 @@ To verify the installed version of Web3, you can use the `ls` command:
 ```
 npm ls web3
 ```
-
-As of the writing of this guide, the version used was 1.3.0. We will be also using [Remix](/integrations/remix/), connecting it to the Moonbase Alpha TestNet via [MetaMask](/integrations/wallets/metamask/).
+As of writing this guide, the version used was 1.3.0. We will be also using [Remix](/integrations/remix/), connecting it to the Moonbase Alpha TestNet via [MetaMask](/integrations/wallets/metamask/).
 
 ## Verify Signatures with ECRECOVER
 
-The main function of this precompile is to verify the signature of a message. In general terms, you feed `ecrecover` the transaction's signature values, and it returns an address. The signature is verified if the address returned is the same as the public address who sent the transaction.
+The main function of this precompile is to verify the signature of a message. In general terms, you feed `ecrecover` the transaction's signature values and it returns an address. The signature is verified if the address returned is the same as the public address that sent the transaction.
 
-Let's jump into a small example to showcase how we can leverage this precompiled function. To do so we need to retrieve the transaction's signature values (v, r, s). Therefore, we'll sign and retrieved the signed message were these values are as well:
+Let's jump into a small example to showcase how to leverage this precompiled function. To do so we need to retrieve the transaction's signature values (v, r, s). Therefore, we'll sign and retrieve the signed message where these values are:
 
 ```solidity
 const Web3 = require('web3');
@@ -89,7 +88,7 @@ This code will return the following object in the terminal:
   signature: '0x44287513919034a471a7dc2b2ed121f95984ae23b20f9637ba8dff471b6719ef7d7dc30309a3baffbfd9342b97d0e804092c0aeb5821319aa732bc09146eafb41b'
 }
 ```
-With the necessary values, we can go to Remix to test the precompiled contract. Note that this can be verified as well with the Web3 JS library, but in our case, we'll go to Remix to be sure that this is using the precompiled contract on the blockchain. The Solidity code we can use to verify the signature is the following:
+With the necessary values, we can go to Remix to test the precompiled contract. Note that this can also be verified with the Web3 JS library, but in our case, we'll go to Remix to be sure that it is using the precompiled contract on the blockchain. The Solidity code we can use to verify the signature is the following:
 
 ```solidity
 pragma solidity ^0.7.0;
@@ -109,7 +108,7 @@ contract ECRECOVER{
 }
 ```
 
-Using the [Remix compiler and deployment](/getting-started/local-node/using-remix/), and with [MetaMask pointing to Moonbase Alpha](/getting-started/testnet/metamask/), we can deploy the contract and call the `verify()` method that returns _true_ if the address returned by `ecrecover` is equal to the address used to sign the message (related to the private key and needs to be manually set in the contract).
+Using the [Remix compiler and deployment](/getting-started/local-node/using-remix/) and with [MetaMask pointing to Moonbase Alpha](/getting-started/testnet/metamask/), we can deploy the contract and call the `verify()` method that returns _true_ if the address returned by `ecrecover` is equal to the address used to sign the message (related to the private key and needs to be manually set in the contract).
 
 ## Hashing with SHA256
 
@@ -138,7 +137,7 @@ Once the contract is deployed, we can call the `checkHash()` method that returns
 
 ## Hashing with RIPEMD-160
 
-This hashing function returns a RIPEMD-160 hash from the given data. To test this precompile, you can use this [online tool](https://md5calc.com/hash/ripemd160) to calculate the RIPEMD-160 hash of any string you want, in our case we'll do so again with `Hello World!`. We'll reuse the same code as before but using the `ripemd160` function, note that it returns a `bytes20` type variable:
+This hashing function returns a RIPEMD-160 hash from the given data. To test this precompile, you can use this [online tool](https://md5calc.com/hash/ripemd160) to calculate the RIPEMD-160 hash of any string. In our case, we'll do so again with `Hello World!`. We'll reuse the same code as before, but use the `ripemd160` function. Note that it returns a `bytes20` type variable:
 
 ```solidity
 pragma solidity ^0.7.0;
@@ -162,7 +161,7 @@ With the contract deployed, we can call the `checkHash()` method that returns _t
 
 ## The Identity Function
 
-Also known as datacopy, this function serves as a cheaper way to copy data in memory. The Solidity compiler does not support it, so it needs to be called with inline assembly. The [following code](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-04-datacopy-data) (adapted to Solidity), can be used to call this precompiled contract. We can use this [online tool](https://web3-type-converter.brn.sh/) to get the bytes from any string, as this is the input of the method `callDataCopy()`.
+Also known as datacopy, this function serves as a cheaper way to copy data in memory. The Solidity compiler does not support it, so it needs to be called with inline assembly. The [following code](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-04-datacopy-data) (adapted to Solidity), can be used to call this precompiled contract. We can use this [online tool](https://web3-type-converter.brn.sh/) to get bytes from any string, as this is the input of the method `callDataCopy()`.
 
 ```solidity
 pragma solidity ^0.7.0;
@@ -186,7 +185,7 @@ contract Identity{
     }
 }
 ```
-With the contract deployed, we can call the `callDataCopy()` method that and verify if `memoryStored` checks with the bytes that you pass in as an input of the function.
+With the contract deployed, we can call the `callDataCopy()` method and verify if `memoryStored` matches the bytes that you pass in as an input of the function.
 
 ## Modular Exponentiation
 
@@ -230,8 +229,8 @@ contract ModularCheck {
 }
 ```
 
-You can try this in [Remix](/integrations/remix/). Use the function `verify()` passing the base, exponent, and modulus. The function will store the value in the `checkResult` variable. 
+You can try this in [Remix](/integrations/remix/). Use the function `verify()`, passing the base, exponent, and modulus. The function will store the value in the `checkResult` variable. 
 
 ## We Want to Hear From You
 
-If you have any feedback regarding Moonbase Alpha, the precompiled contracts, or any other Moonbeam related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).
+If you have any feedback regarding Moonbase Alpha, the precompiled contracts, or any other Moonbeam-related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).
