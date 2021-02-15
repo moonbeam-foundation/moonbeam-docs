@@ -13,6 +13,7 @@ networks:
       collator_min_stake: 1000
       collator_slots: 8
       per_bill_fee: 200000000
+      moonbeam_parachain_db_loc: /var/lib/alphanet-data/chains/local_testnet/db
       chainbridge:
          bridge_address: '0xA997c47d55991Ef5251b31D380CeFCaAD6978e03'
          ERC20_handler: '0xE4B3f8270fF41352c3a795c844D111d819e6010F'

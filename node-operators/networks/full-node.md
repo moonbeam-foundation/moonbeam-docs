@@ -328,6 +328,24 @@ To enable your Moonbase Alpha node's telemetry server, you can follow [this tuto
 
 Running telemetry on a full node is not necessary. However, it is a requirement to do so for collators.
 
+## Purging the Chain
+
+Occasionally we will be purging the parachain.  We will notify you on our Discord channel when this is necessary.  These are the steps to purge the parachain - it's the same for a full node or collator.  
+
+Stop the systemd service or docker container 
+
+```
+sudo systemctl stop moonbeam
+#or
+sudo docker stop `CONTAINER_ID`
+```
+Remove the db folder
+```
+sudo rm -rf {{ networks.moonbase.moonbeam_parachain_db_loc }}
+```
+
+Install the new version and/or start the service again.  
+
 ## Logs and Troubleshooting
 
 You will see logs from both the relay chain as well as the parachain.  The relay chain will be prefixed by `[Relaychain]` while the parachain has no prefix.
