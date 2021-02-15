@@ -15,6 +15,7 @@ This tutorial will guide you through the process of setting up the box, using th
     This guide is based on an Ubuntu 18.04 installation. At the time of writing, Node.js and npm versions used were 15.2.1 and 7.0.8 respectively. Node.js versions higher than 10.23.0 are required. We also noticed an error while installing the packages with npm version 7.0.15. You can downgrade npm by running `npm install -g npm@version`, setting the version to the one desired.
 
 ## Checking Prerequisites
+
 For this tutorial, we need to install Node.js (we'll go for v15.x) and the npm package manager. You can do this by running in your terminal:
 
 ```
@@ -43,6 +44,7 @@ npm install -g truffle
 As of the writing of this guide, the version used was 5.1.51. 
 
 ## Downloading and Setting Up the Truffle Box
+
 To get started with the Moonbeam Truffle box, if you have Truffle installed globally, you can execute:
 
 ```
@@ -70,16 +72,19 @@ npm install
 That concludes all prerequisites you need to use the Moonbeam Truffle box.
 
 ## Basic Functionalities
+
 The box is pre-configured with two networks: `dev` (for a standalone node) and `moonbase` (Moonbeam TestNet). Also included, as an example, is an ERC20 token contract and a simple test script. The Solidity compiler set by default is `^0.7.0`, but this can be changed as required. If you are experienced with Truffle, this setup will feel familiar.
 
 ```js
-const PrivateKeyProvider = require('./private-provider');
+const HDWalletProvider = require('@truffle/hdwallet-provider');
 // Standalone Development Node Private Key
 const privateKeyDev =
    '99B3C12287537E38C90A9219D4CB074A89A16E9CDB20BF85728EBD97C343E342';
 // Moonbase Alpha Private Key --> Please change this to your own Private Key with funds
+// NOTE: Do not store your private key in plaintext files
+//       this is only for demostration purposes only
 const privateKeyMoonbase =
-   '';
+   'YOUR_PRIVATE_KEY_HERE_ONLY_FOR_DEMOSTRATION_PURPOSES';
 
 module.exports = {
    networks: {
@@ -87,7 +92,10 @@ module.exports = {
       dev: {
          provider: () => {
             //...
-            return new PrivateKeyProvider(privateKeyDev, 'http://localhost:9933/', 1281)
+            return new HDWalletProvider(
+               privateKeyDev,
+               'http://localhost:9933/'
+            );
          },
          network_id: 1281,
       },
@@ -95,7 +103,10 @@ module.exports = {
       moonbase: {
          provider: () => {
             //...
-            return new PrivateKeyProvider(privateKeyMoonbase, 'https://rpc.testnet.moonbeam.network', 1287)
+            return new HDWalletProvider(
+               privateKeyMoonbase,
+               'https://rpc.testnet.moonbeam.network'
+            );
          },
          network_id: 1287,
       },
@@ -103,11 +114,11 @@ module.exports = {
    // Solidity 0.7.0 Compiler
    compilers: {
       solc: {
-        version: "^0.7.0"
-      }
+         version: '^0.7.0',
+      },
    },
    // Moonbeam Truffle Plugin
-   plugins: ['moonbeam-truffle-plugin']
+   plugins: ['moonbeam-truffle-plugin'],
 };
 ```
 
@@ -164,6 +175,7 @@ You can see the output of these commands in the following image:
 If you are familiar with Docker, you can skip the plugin commands and interact with the Docker image directly.
 
 ## Testing the Moonbeam Truffle Box
+
 The box has the minimum requirements to help you get started. Lets first compile the contracts by running:
 
 ```
@@ -198,9 +210,6 @@ truffle migrate --network moonbase
 
 And that is it, you’ve used the Moonbeam Truffle box to deploy a simple ERC20 token contract in both your standalone Moonbeam node and Moonbase Alpha.
  
-## Limitations
-If you are familiar with Truffle, you might have noticed that we are using a custom provider programmed ourselves instead of the most common ones, such as [hdwallet-provider](https://github.com/trufflesuite/truffle/tree/develop/packages/hdwallet-provider). This custom provider still uses standard libraries, such as the web3-provider-engine and ethereumjs-wallet. This is because our custom chain ID was not being included in the library used to sign the transactions. Therefore, the signature is invalid because the chain ID in the transaction blob is missing thus the transaction is rejected. We are currently reviewing this and expect to support other providers in future releases.
-
 ## We Want to Hear From You
 
 If you have any feedback regarding the Moonbeam Truffle box or other Moonbeam-related topic, feel free to reach out through our official development [Discord server](https://discord.gg/PfpUATX).

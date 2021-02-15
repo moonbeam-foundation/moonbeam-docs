@@ -53,7 +53,7 @@ To ease the process of getting started with Truffle, we have [released the Moonb
 To download the Moonbeam Truffle box, follow [these instructions](/integrations/trufflebox/#downloading-and-setting-up-the-truffle-box). Once inside the directoy, let's take a look at the `truffle-config.js` file (for the purpuse of this guide, some information was removed):
 
 ```js
-const PrivateKeyProvider = require('./private-provider');
+const HDWalletProvider = require('@truffle/hdwallet-provider');
 // Standalone Development Node Private Key
 const privateKeyDev =
    '99B3C12287537E38C90A9219D4CB074A89A16E9CDB20BF85728EBD97C343E342';
@@ -63,7 +63,7 @@ module.exports = {
       dev: {
          provider: () => {
             ...
-            return new PrivateKeyProvider(privateKeyDev, 'http://localhost:9933/', 1281)
+            return new HDWalletProvider(privateKeyDev, 'http://localhost:9933/')
          },
          network_id: 1281,
       },
@@ -73,10 +73,7 @@ module.exports = {
 };
 ```
 
-Note that we defined a `dev` network that points to the standalone node provider URL, and the private key of the development account, which holds all funds in the standalone node, is included.
-
-!!! note
-     We are using a `PrivateKeyProvider` as our Web3 provider (instantiation included in `private-provider.js`). Currently, we are still experiencing some issues when using other Web3 providers, such as `HDWalletProvider`, due to our custom chain ID.
+Note that we are using `HD-Wallet-Provider` from Truffle as the Hierarchical Deterministic wallet. Also, we've defined a `dev` network that points to the standalone node provider URL, and the private key of the development account, which holds all funds in the standalone node, is included.
 
 ## Running an Standalone TestNet
 
