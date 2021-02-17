@@ -1,6 +1,6 @@
-Before a proposal is enacted, it must go through different steps. The general flow of a proposal is the following (some simplifications were made):
+Before a proposal is enacted, it must go through various steps. The general flow of a proposal is the following (some simplifications were made):
 
- - Token holders must create a preimage of the proposal, which defines the action to be carried out. The submitter pays a fee-per-byte stored, the larger the preimage, the higher the fee. Once submitted, it returns a preimage hash
+ - Token holders must create a preimage of the proposal, which defines the action to be carried out. The submitter pays a fee-per-byte stored: the larger the preimage, the higher the fee. Once submitted, it returns a preimage hash
  - Token holders can submit the proposal using the preimage hash, locking tokens in the process. Once the submission transaction is accepted, the proposal is listed publicly
  - Once the proposal is listed, token holders can second the proposal (vouch for it) by locking the same amount of tokens the original proposal submitter locked
  - The most seconded proposal moves to public referendum
