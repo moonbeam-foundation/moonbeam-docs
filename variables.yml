@@ -46,6 +46,23 @@ networks:
                link_usd: '0x5310f2d4B531BCEA8126e2aEE40BAd71B707f530'
                sushi_usd: '0xd265FAfc809108D9cf47b6970d750419ba9355B8'
                uni_usd: '0x326fAFb9E9B5188d7c2e95C0D782ECB19E5EfDF9'
+      democracy:
+         launch_period:
+            days: 2
+            blocks: 14400
+         vote_period:
+            days: 10
+            blocks: 72000
+         enact_period:
+            days: 2
+            blocks: 14400
+         cool_period:
+            days: 14
+            blocks: 100800
+         min_deposit: 4
+         min_preim_deposit: 0.004
+         max_votes: 100
+         max_proposals: 100
    relay_chain:
       p2p: 30334
       rpc: 9934
