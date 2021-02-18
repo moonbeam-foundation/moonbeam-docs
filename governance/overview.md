@@ -28,7 +28,7 @@ With great power comes great responsibility. Some important parameters to unders
 
 ## Principles
 
-Guiding "soft" principles for engagement with Moonbeam’s governance process include:
+Guiding "soft" principles for engagement with Moonbeam's governance process include:
 
  - Being inclusive to token holders that want to engage with Moonbeam and that are affected by governance decisions.
  - Favoring token holder engagement, even with views contrary to our own, versus a lack of engagement.
@@ -49,3 +49,12 @@ Some of the main components of this governance model include:
  - **Treasury** — A collection of funds that can be spent by submitting a proposal along with a deposit. Spending proposals must be approved by the council. Rejected proposals will result in the proposer losing their deposit.
 
 See [this overview on the Polkadot website](https://polkadot.network/a-walkthrough-of-polkadots-governance/) and [this wiki post](https://wiki.polkadot.network/docs/en/learn-governance) for more details on how these Substrate frame pallets implement on-chain governance.
+
+## Try it on Moonbase Alpha
+
+Currently, in our Moonbase Alpha TestNet, token holders can submit and vote on proposals. To do so, check the following guides:
+
+ - [Submit a proposal](/governance/proposals/)
+ - [Vote on a proposal](/governance/voting/)
+
+The Council and Treasury components have yet to be implemented.
