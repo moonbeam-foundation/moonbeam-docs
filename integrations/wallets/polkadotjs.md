@@ -22,21 +22,27 @@ After switching, the Polkadot JS site will not only connect to Moonbase Alpha, b
 
 ![Connect to Moonbase Alpha](/images/polkadotjs/polkadotjs-app2.png)
 
-## Importing an H160 Account
+## Creating or Importing an H160 Account
 
-Let's see how we can import an already existing MetaMask account to Polkadot JS Apps. First, navigate to the accounts section and select the "add account: button.
+Let's see how we can create a new account, or import an already existing MetaMask account to Polkadot JS Apps. First, navigate to the accounts section, and click in the add account button.
 
 ![Connect to Moonbase Alpha](/images/polkadotjs/polkadotjs-app3.png)
 
-This will open a wizard pop-up that will guide you through the process of adding an account to the Polkadot JS Apps interface. Make sure you click on the drop-down menu and change from Mnemonic to Raw seed - this allows you to add an account through a private key. 
+This will open a wizard pop-up that will guide you through the process of adding an account to the Polkadot JS Apps interface. Make sure you click on the drop-down menu and change from Mnemonic to Raw seed, this allows you to add an account through a private key.
+
+!!! note
+    Currently, you can only create or import accounts in PolkadotJS via a private key. Doing so with the mnemonic will result in a different public address if you later try to import this account to an Ethereum wallet such as MetaMask. This is because PolkadotJS uses BIP39, whereas Ethereum uses BIP32 or BIP44.
 
 ![Connect to Moonbase Alpha](/images/polkadotjs/polkadotjs-app4.png)
 
-Next, enter your private key, which you can export from MetaMask. In this case, we are importing the following account:
+Next, if you want to create a new account make sure you store the private key displayed by the wizard. If you want to import an existing account, enter your private key that you can export from MetaMask, in this case we are importing the following account:
 
 - Private key: `28194e8ddb4a2f2b110ee69eaba1ee1f35e88da2222b5a7d6e3afa14cf7a3347`
 - Public address: `0x44236223aB4291b93EEd10E4B511B37a398DEE55` 
 
+!!! note
+    Never reveal your private keys as they give direct access to your funds. The steps in this guide are for demostration purposes only. 
+    
 Make sure to include the prefix in the private key, i.e., `0x`. If you entered the information correctly, the corresponding public address should appear in the upper left corner of the window.
 
 ![Connect to Moonbase Alpha](/images/polkadotjs/polkadotjs-app5.png)

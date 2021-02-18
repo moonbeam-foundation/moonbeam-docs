@@ -8,8 +8,13 @@ networks:
       rpc_url: https://rpc.testnet.moonbeam.network
       chain_id: 1287
       parachain_docker_sha: sha-02fbb7e2
-      parachain_docker_tag: v0.5.1
+      parachain_docker_tag: v0.6.0
       node_directory: /var/lib/alphanet-data
+      binary_name: moonbeam
+      collator_min_stake: 1000
+      collator_slots: 8
+      per_bill_fee: 200000000
+      moonbeam_parachain_db_loc: /var/lib/alphanet-data/chains/local_testnet/db
       chainbridge:
          kovan:
             bridge_address: '0xA997c47d55991Ef5251b31D380CeFCaAD6978e03'
