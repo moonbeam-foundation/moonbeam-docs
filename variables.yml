@@ -16,12 +16,20 @@ networks:
       per_bill_fee: 200000000
       moonbeam_parachain_db_loc: /var/lib/alphanet-data/chains/local_testnet/db
       chainbridge:
-         bridge_address: '0xA997c47d55991Ef5251b31D380CeFCaAD6978e03'
-         ERC20_handler: '0xE4B3f8270fF41352c3a795c844D111d819e6010F'
-         ERC721_handler: '0x6cB27360d16E9a9df198EB3CF90Bf0c28A550278'
-         ERC20S: '0xEEc83DC1B7D0dE3f0f1277619fbbE8150E70Ef39'
-         ERC721E: '0xCB2e28930103311312AF5B3412EAf3A28Da0402f'
-         ERC721M: '0xEa3875a7995669020b6Bbb91a63104e419eBacF4'
+         kovan:
+            bridge_address: '0xA997c47d55991Ef5251b31D380CeFCaAD6978e03'
+            ERC20_handler: '0xE4B3f8270fF41352c3a795c844D111d819e6010F'
+            ERC721_handler: '0x6cB27360d16E9a9df198EB3CF90Bf0c28A550278'
+            ERC20S: '0xEEc83DC1B7D0dE3f0f1277619fbbE8150E70Ef39'
+            ERC721E: '0xCB2e28930103311312AF5B3412EAf3A28Da0402f'
+            ERC721M: '0xEa3875a7995669020b6Bbb91a63104e419eBacF4'
+         rinkeby:
+            bridge_address: '0x27f6A099f91Fab8050dc503C1c454cACa1b521Fa'
+            ERC20_handler: '0x9f0604F0B81Dcfd3B4f544c1295F4080D0062733'
+            ERC721_handler: '0x45F2F4b083D3e20dB963b3DE646f4Ec08d18c49b'
+            ERC20S: '0x5d03df3c64D6AC1C6A43D1FB19120E8Ec97c190a'
+            ERC721E: '0xB15e416A6B3EF01Caeca0218Aac8D3e09B887722'
+            ERC721M: '0x12c4EeB8Af8a15b2E729223BA6E94fd8f5130265'
       razor:
          bridge_address: '0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB'
       chainlink:
@@ -51,6 +59,23 @@ networks:
                link_usd: '0x5310f2d4B531BCEA8126e2aEE40BAd71B707f530'
                sushi_usd: '0xd265FAfc809108D9cf47b6970d750419ba9355B8'
                uni_usd: '0x326fAFb9E9B5188d7c2e95C0D782ECB19E5EfDF9'
+      democracy:
+         launch_period:
+            days: 2
+            blocks: 14400
+         vote_period:
+            days: 10
+            blocks: 72000
+         enact_period:
+            days: 2
+            blocks: 14400
+         cool_period:
+            days: 14
+            blocks: 100800
+         min_deposit: 4
+         min_preim_deposit: 0.004
+         max_votes: 100
+         max_proposals: 100
    relay_chain:
       p2p: 30334
       rpc: 9934

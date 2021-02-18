@@ -14,11 +14,11 @@ The Polkadot JS Apps interface was updated as well so that it natively supports 
 
 ## Connecting to Moonbase Alpha
 
-First, we need to connect it to the Moonbase Alpha TestNet by clicking the top left corner logo and selecting Moonbase Alpha under Test Networks.
+First, we need to connect it to the Moonbase Alpha TestNet by clicking the top left corner logo and selecting Moonbase Alpha (under Test Networks).
 
 ![Connect to Moonbase Alpha](/images/polkadotjs/polkadotjs-app1.png)
 
-After switching, the Polkadot JS site will not only connect to Moonbase Alpha, but it will also change its styling, to make a perfect match.
+After switching, the Polkadot JS site will not only connect to Moonbase Alpha, but also change its styling to make a perfect match.
 
 ![Connect to Moonbase Alpha](/images/polkadotjs/polkadotjs-app2.png)
 
@@ -42,22 +42,22 @@ Next, if you want to create a new account make sure you store the private key di
 
 !!! note
     Never reveal your private keys as they give direct access to your funds. The steps in this guide are for demostration purposes only. 
-
-Make sure to include the prefix in the private key, that is `0x`. If you entered the information correctly, the corresponding public address should appear in the upper left corner of the window.
+    
+Make sure to include the prefix in the private key, i.e., `0x`. If you entered the information correctly, the corresponding public address should appear in the upper left corner of the window.
 
 ![Connect to Moonbase Alpha](/images/polkadotjs/polkadotjs-app5.png)
 
-Click next and finish the wizard by setting an account name and password. After a confirmation message, you should see in the main Accounts tab the address with the corresponding balance, in our case  we have named it Bob. Moreover, we can overlay the MetaMask extension to see that both balances are the same.
+Click next and finish the wizard by setting an account name and password. After a confirmation message, you should see in the main Accounts tab the address with the corresponding balance: in our case, Bob's address. Moreover, we can overlay the MetaMask extension to see that both balances are the same.
 
 ![Connect to Moonbase Alpha](/images/polkadotjs/polkadotjs-app6.png)
 
 ## Sending a Transaction Through Substrate's API
 
-Now, let's demonstrate the potential of Moonbeam's Unified Accounts scheme by making a transfer through the Substrate API using the Polkadot JS Apps. Remember that we are talking about interacting with Substrate using an Ethereum-style H160 address. To do so, we've imported another account, named Charley with 5 `DEV` tokens.
+Now, let's demonstrate the potential of Moonbeam's Unified Accounts scheme by making a transfer through the Substrate API using the Polkadot JS Apps. Remember that we are interacting with Substrate using an Ethereum-style H160 address. To do so, we've imported another account named Charley with 5 `DEV` tokens.
 
 ![Connect to Moonbase Alpha](/images/polkadotjs/polkadotjs-app7.png)
 
-Next, let's click on Bob's send button, which opens another wizard that guides you through the process of sending a transaction. Set the send to address and the amount, which for our example is 5 DEV tokens. When ready click on the Make Transfer button.
+Next, click on Bob's send button, which opens another wizard that guides you through the process of sending a transaction. Set the send to address and the amount, which for our example is 5 DEV tokens. When ready, click on the "Make Transfer" button.
 
 ![Connect to Moonbase Alpha](/images/polkadotjs/polkadotjs-app8.png)
 
@@ -65,9 +65,8 @@ After the transaction is signed using the password, Polkadot JS will display som
 
 ![Connect to Moonbase Alpha](/images/polkadotjs/polkadotjs-app8.png)
 
-And that is it! We are super excited about being able to support H160 accounts in Polkadot JS Apps, as we believe this will greatly enhance the user experience in the Moonbeam Network and its Ethereum compatibility features.
+And that is it! We are excited about being able to support H160 accounts in Polkadot JS Apps, as we believe this will greatly enhance the user experience in the Moonbeam Network and its Ethereum compatibility features.
 
 ## We Want to Hear From You
 
-If you have any feedback regarding the Polkadot JS Apps, the Unified Accounts integration, or any other Moonbeam related topic, feel free to reach out through our official development [Discord server](https://discord.gg/PfpUATX).
-
+If you have any feedback regarding the Polkadot JS Apps, the Unified Accounts integration, or any other Moonbeam-related topics, feel free to reach out through our official development [Discord server](https://discord.gg/PfpUATX).
