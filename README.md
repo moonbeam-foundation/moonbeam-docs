@@ -61,7 +61,7 @@ Because of Moonbeam's Ethereum compatibility features, you can use the developme
 
 ### Bridges
 
-Currently, we have a fully functioning bridge implementation that connects Ethereum's Kovan TestNet and Moonbase Alpha:
+Currently, we have a fully functioning bridge implementation that connects Ethereum's Rinkeby/Kovan TestNets and Moonbase Alpha:
 
  - [ChainBridge](/integrations/bridges/ethereum/chainbridge/)
 
