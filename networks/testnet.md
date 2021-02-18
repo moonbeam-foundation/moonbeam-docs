@@ -3,7 +3,7 @@ title: TestNet
 description: An overview of the current configuration of the Moonbeam TestNet, Moonbase Alpha, and information on how to start building on it using Solidity.
 ---
 # Moonbase Alpha, The Moonbeam TestNet
-*Updated January 21, 2020*
+*Updated February 18, 2020*
 
 ## Goal  
 The first Moonbeam TestNet, named Moonbase Alpha, aims to provide developers with a place to start experimenting and building on Moonbeam in a shared environment. Since Moonbeam will be deployed as a parachain on Kusama and Polkadot, we want our TestNet to reflect our production configuration. For this reason, we decided that it needed to be a parachain-based configuration rather than a Substrate standalone setup.
@@ -56,7 +56,7 @@ The following features are available:
 
 ??? release v6 "_February 2021_"      
     - Public release of the custom [Staking pallet](https://wiki.polkadot.network/docs/en/learn-staking). Now token holders can nominate collators and earn rewards
-    - Added the [Democracy pallet](https://github.com/paritytech/substrate/tree/HEAD/frame/democracy). Token holders can now [submit proposal](/governance/proposals/) and [vote on them](/governance/voting/)
+    - Added the [Democracy pallet](https://github.com/paritytech/substrate/tree/HEAD/frame/democracy). Token holders can now [submit proposals](/governance/proposals/) and [vote on them](/governance/voting/)
     - Updated to the latest version of [Frontier RPC](https://github.com/paritytech/frontier), which increases EVM execution efficiency by a factor of 5
     - The gas limit has been bump to 15M per block, with a 13M per transaction limit
 
@@ -74,19 +74,18 @@ For more details regarding the updates of Moonbase Alpha, please refer to the fo
 
 Features that may be implemented in the future:
 
-- Support for third-party collators to enable interested parties to test their setups
-- On-chain governance features ([Democracy pallet](https://github.com/paritytech/substrate/tree/HEAD/frame/democracy))
+- Expand on-chain governance features by introducing the [Council](https://wiki.polkadot.network/docs/en/learn-governance#council)
 - Treasury features ([Treasury pallet](https://github.com/paritytech/substrate/tree/master/frame/treasury))
 
 ## Get Started
 
 --8<-- "testnet/connect.md"
 
-## Proof of Authority
+## Early Stage Proof of Stake
 
-Moonbase Alpha will run similarly to the way the [Polkadot MainNets ran when they first launched](https://wiki.polkadot.network/docs/en/learn-launch#the-poa-launch): with Proof of Authority instead of Proof of Stake. This means that block finalization is carried out by a known identity, in this case, the PureStake validators.
+With the release of Moonbase Alpha v6, the TestNet is now running with an early stage Proof of Stake system. This means that, for testing purposes, Moonbeam partners will be encouraged to be the first collators in the network. 
 
-This also means that PureStake holds the Sudo Key in order to issue the commands and upgrades necessary to the network.
+As Moonbase Alpha progresses, we expect to evolve into a fully decentralized Proof of Stake network.
 
 ## Tokens
 
@@ -108,5 +107,6 @@ This network is under active development. Occasionally, chain purges may be need
 
 Please take note that PureStake will not be migrating the chain state. Thus, all data stored in the blockchain will be lost when a chain purge is carried out. However, as there is no gas limit, users can easily recreate their pre-purge state.
 
-## Contact Us
-If you have any feedback regarding Moonbase Alpha, feel free to reach out through our official development channel on [Discord](https://discord.gg/PfpUATX) :fontawesome-brands-discord:.
+## We Want to Hear From You
+
+If you have any feedback regarding Moonbase Alpha or any other Moonbeam-related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).

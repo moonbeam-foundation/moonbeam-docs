@@ -59,7 +59,7 @@ The proposal being voted on will set Bob's balance to `1500` via governance!
 
 ### How to Vote
 
-Voting on Moonbeam is pretty straightforward. Everything related to governance lives under the "Democracy" tab, where (in the image) you can note that there is a `1`, indicating there is one referendum taking place. Once there, click on the "Vote" button.
+Voting on Moonbeam is pretty straightforward. Everything related to governance lives under the "Democracy" tab, where (in the image) you can note that there is a `1`, indicating there is one democracy item pending (either proposals or referendums). Once there, click on the "Vote" button.
 
 ![Vote Button](/images/governance/governance-vote-1.png)
 
@@ -107,6 +107,44 @@ Remember that, for this example, the `setBalance` function was used to set Bob's
 ![Proposal Enactment](/images/governance/governance-vote-5.png)
 
 ### Delegate Voting
+
+Token holders have the option to delegate their vote to another account whose opinion they trust.  The account being delegated does not need to make any particular action. When they vote, the vote weight (that is, tokens times the conviction multiplier chose by the delegator) is added to its vote.
+
+To delegate your vote, first, navigate to the "Extrinsics" menu under the "Developers" tab.
+
+![Extrinsics Menu](/images/governance/governance-vote-6.png)
+
+Here, you need to provide the following information:
+
+ 1. Select the account from which you want to delegate your vote
+ 2. Choose the pallet you want to interact with. In this case, it is the `democracy` pallet
+ 3. Choose the extrinsic method to use for the transaction. This will determine the fields that need to fill in the following steps. In this case, it is `delegate` extrinsic 
+ 4. Select the account to which you want to delegate your vote
+ 5. Set the vote conviction, which determines its weight (`vote_weight = tokens * conviction_multiplier`). The conviction multiplier is related to the number of enactment periods the tokens will be locked for. Consequently, the longer you are willing to lock your tokens, the stronger your vote will be weighted. You also have the option of not locking tokens at all, but vote weight is drastically reduced
+ 6. Set the number of tokens you want to delegate to the account provided before
+ 7. Click the "Submit Transaction" button and sign the transaction
+
+![Extrinsics Transaction for Delegation](/images/governance/governance-vote-7.png)
+
+In this example, Alice delegated a total weight of 1000 (1000 tokens with an x1 conviction factor) to Charley.
+
+!!! note
+    Another way to delegate votes is under the "Accounts" tab. Click on the three dots of the account from which you want to delegate your vote and fill in the information as before.
+
+Once the account you have delegated your vote to votes, the total vote weight delegated will be allocated to the option that the account selected. For this example, Charley has decided to vote in favor of a proposal that is in public referendum. He voted with a total weight of 800 (800 tokens with an x1 conviction factor). But because Alice delegated 1000 vote weight to him, "Aye" votes total 1800 units.
+
+![Total Votes with Delegation](/images/governance/governance-vote-8.png)
+
+To remove delegation, repeat the process described before, but select the `undelegate` extrinsic in step 3.
+
+From vote delegation, there are some key takeaways:
+
+ - If a token holder were to remove the vote delegation during a public referendum where the delegated votes were used, these would be removed from the tally
+ - A token holder that delegated votes still has an economic buy-in. This means that if the option the delegator selected were to win, the tokens delegated are locked for the number of lock periods
+ - The tokens delegated for voting are no longer part of the token holder's free balance. To read more about the types of balances, you can visit [this site](https://wiki.polkadot.network/docs/en/build-protocol-info#free-vs-reserved-vs-locked-vs-vesting-balance)
+ - A token holder that delegated tokens can't participate in public referendum. First, the token holder must undelegate his vote
+
+### Unlocking Locked Tokens
 
 _Coming soon_
 
