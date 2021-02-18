@@ -86,8 +86,7 @@ Now we can execute the docker run command. Note that you have to:
 
     ```
     docker run -p {{ networks.relay_chain.p2p }}:{{ networks.relay_chain.p2p }} -p {{ networks.parachain.p2p }}:{{ networks.parachain.p2p }} -v "{{ networks.moonbase.node_directory }}:/data" \
-    purestake/moonbase-parachain-testnet:{{ networks.moonbase.parachain_docker_tag }} \
-    /moonbase-alphanet/moonbase-alphanet \
+    purestake/moonbeam:{{ networks.moonbase.parachain_docker_tag }} \
     --base-path=/data \
     --chain alphanet \
     --name="YOUR-NODE-NAME" \
@@ -103,8 +102,7 @@ Now we can execute the docker run command. Note that you have to:
 
     ```
     docker run -p {{ networks.relay_chain.p2p }}:{{ networks.relay_chain.p2p }} -p {{ networks.parachain.p2p }}:{{ networks.parachain.p2p }} -v "{{ networks.moonbase.node_directory }}:/data" \
-    purestake/moonbase-parachain-testnet:{{ networks.moonbase.parachain_docker_tag }} \
-    /moonbase-alphanet/moonbase-alphanet \
+    purestake/moonbeam:{{ networks.moonbase.parachain_docker_tag }} \
     --base-path=/data \
     --chain alphanet \
     --name="YOUR-NODE-NAME" \
@@ -198,7 +196,7 @@ chown moonbase_service {{ networks.moonbase.node_directory }}
 Now, we need to copy the binary we built in the last section to the created folder:
 
 ```
-cp ./target/release/moonbase-alphanet {{ networks.moonbase.node_directory }}
+cp ./target/release/{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
 ```
 
 The next step is to create the systemd configuration file. Note that you have to:
@@ -228,7 +226,7 @@ The next step is to create the systemd configuration file. Note that you have to
     SyslogIdentifier=moonbase
     SyslogFacility=local7
     KillSignal=SIGHUP
-    ExecStart={{ networks.moonbase.node_directory }}/moonbase-alphanet \
+    ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
          --parachain-id 1000 \
          --no-telemetry \
          --port {{ networks.parachain.p2p }} \
@@ -322,29 +320,31 @@ journalctl -f -u moonbeam.service
 
 ![Service Logs](/images/fullnode/fullnode-binary3.png)
 
+## Purging the Chain
+
+Occasionally Moonbase Alpha might be purged for upgrades.  Node operators will be notified on our Discord channel when this is necessary. In this section, the steps to purge the parachain are outlined, it's the same for a full node or collator.  
+
+First, stop the docker container or systemd service:
+
+```
+sudo docker stop `CONTAINER_ID`
+# or
+sudo systemctl stop moonbeam
+```
+
+Next, remove the `db` folder, where the parachain information is stored:
+
+```
+sudo rm -rf {{ networks.moonbase.moonbeam_parachain_db_loc }}
+```
+
+Lastly, install the new version and/or start the service again.  
+
 ## Telemetry
 
 To enable your Moonbase Alpha node's telemetry server, you can follow [this tutorial](/node-operators/networks/telemetry/).
 
 Running telemetry on a full node is not necessary. However, it is a requirement to do so for collators.
-
-## Purging the Chain
-
-Occasionally we will be purging the parachain.  We will notify you on our Discord channel when this is necessary.  These are the steps to purge the parachain - it's the same for a full node or collator.  
-
-Stop the systemd service or docker container 
-
-```
-sudo systemctl stop moonbeam
-#or
-sudo docker stop `CONTAINER_ID`
-```
-Remove the db folder
-```
-sudo rm -rf {{ networks.moonbase.moonbeam_parachain_db_loc }}
-```
-
-Install the new version and/or start the service again.  
 
 ## Logs and Troubleshooting
 
