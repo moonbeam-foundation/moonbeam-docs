@@ -13,7 +13,7 @@ Another significant difference between Moonbeam and Ethereum is that Moonbeam in
 
 ##What Stays the Same
 If you're moving portions of your existing workloads and state off of Ethereum Layer 1 to Moonbeam, you can expect minimal required changes (aside from the exceptions noted above). Your applications, contracts, and tools will largely remain unchanged.
-
+ 
 Moonbeam supports:
 
 * **Solidity-Based Smart Contracts**
