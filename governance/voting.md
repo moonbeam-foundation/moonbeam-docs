@@ -79,7 +79,7 @@ Here, you need to provide the following information:
     | 16            |   | 5                     |
     | 32            |   | 6                     |
 
- 4. Click on "Vote Aye" to approve the proposal or "Vote Nay" option not to approve the proposal, and then sign the transaction
+ 4. Click on "Vote Aye" to approve the proposal or "Vote Nay" to disapprove the proposal, and then sign the transaction
 
 ![Vote Submission](/images/governance/governance-vote-2.png)
 
