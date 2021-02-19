@@ -81,15 +81,19 @@ Features that may be implemented in the future:
 
 --8<-- "testnet/connect.md"
 
+## Telemetry
+
+You can see current Moonbase Alpha telemetry information visiting [this link](https://telemetry.polkadot.io/#list/Moonbase%20Alpha).
+
+## Tokens
+
+--8<-- "testnet/faucet.md"
+
 ## Early Stage Proof of Stake
 
 With the release of Moonbase Alpha v6, the TestNet is now running with an early stage Proof of Stake system. This means that, for testing purposes, Moonbeam partners will be encouraged to be the first collators in the network. 
 
 As Moonbase Alpha progresses, we expect to evolve into a fully decentralized Proof of Stake network.
-
-## Tokens
-
---8<-- "testnet/faucet.md"
 
 ## Limitations
 

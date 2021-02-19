@@ -226,7 +226,6 @@ The next step is to create the systemd configuration file. Note that you have to
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
          --parachain-id 1000 \
-         --no-telemetry \
          --port {{ networks.parachain.p2p }} \
          --rpc-port {{ networks.parachain.rpc }} \
          --ws-port {{ networks.parachain.ws }} \
@@ -268,7 +267,6 @@ The next step is to create the systemd configuration file. Note that you have to
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbase.node_directory }}/moonbase-alphanet \
          --parachain-id 1000 \
-         --no-telemetry \
          --collator \ 
          --author-id PUBLIC_KEY \
          --port {{ networks.parachain.p2p }} \
@@ -342,6 +340,8 @@ Lastly, install the new version and/or start the service again.
 To enable your Moonbase Alpha node's telemetry server, you can follow [this tutorial](/node-operators/networks/telemetry/).
 
 Running telemetry on a full node is not necessary. However, it is a requirement to do so for collators.
+
+Also, you can see current Moonbase Alpha telemetry information visiting [this link](https://telemetry.polkadot.io/#list/Moonbase%20Alpha).
 
 ## Logs and Troubleshooting
 
