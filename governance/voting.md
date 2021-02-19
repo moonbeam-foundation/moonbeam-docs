@@ -59,7 +59,7 @@ The proposal being voted on will set Bob's balance to `1500` via governance!
 
 ### How to Vote
 
-Voting on Moonbeam is pretty straightforward. Everything related to governance lives under the "Democracy" tab, where (in the image) you can note that there is a `1`, indicating there is one democracy item pending (either proposals or referenda). Once there, you can view the details of the referendum you want to vote by clicking on the arrow next to the description. The number next to the action and description it is called the referendum index. When ready, click on the "Vote" button.
+Voting on Moonbeam is pretty straightforward. Everything related to governance lives under the "Democracy" tab, where (in the image) you can note that there is a `1`, indicating there is one democracy item pending (either proposals or referenda). Once there, you can view the details of the referendum you want to vote by clicking on the arrow next to the description. The number next to the action and description it is called the referendum index (in this case,  it is 0). When ready, click on the "Vote" button.
 
 ![Vote Button](/images/governance/governance-vote-1.png)
 
@@ -67,7 +67,7 @@ Here, you need to provide the following information:
 
  1. Select the account with which you want to vote
  2. Enter the number of tokens that you want to vote with. These will be locked for the amount of time specified in the next step
- 3. Set the vote conviction, which determines its weight (`vote_weight = tokens * conviction_multiplier`). The conviction multiplier is related to the number of enactment periods the tokens will be locked for. Consequently, the longer you are willing to lock your tokens, the stronger your vote will be weighted. You also have the option of not locking tokens at all, but vote weight is drastically reduced (tokens are still locked during the referendum)
+ 3. Set the vote conviction, which determines its weight (`vote_weight = tokens * conviction_multiplier`). The conviction multiplier is related to the number of enactment periods the tokens will be locked for. Consequently, the longer you are willing to lock your tokens, the stronger your vote will be weighted. You also have the option of not locking tokens at all, but vote weight is drastically reduced (tokens are still locked during the duration of the referendum)
     
     |  Lock Periods |   | Conviction Multiplier |
     |:-------------:|:-:|:---------------------:|
@@ -79,14 +79,14 @@ Here, you need to provide the following information:
     | 16            |   | 5                     |
     | 32            |   | 6                     |
 
- 4. Click the "Vote Aye" to approve the proposal or the "Vote Nay" not to approve the proposal, and then sign the transaction
+ 4. Click on "Vote Aye" to approve the proposal or "Vote Nay" option not to approve the proposal, and then sign the transaction
 
 ![Vote Submission](/images/governance/governance-vote-2.png)
 
 !!! note
     The lockup periods shown in the previous image are not to be taken as reference. This guide was done with a customized version of Moonbeam with short Launch/Enactment periods for demonstration purposes only.
 
-In this case, Alice has decided to "Vote Aye" on the proposal with a conviction of `6x`. For this example, Charley has decided to "Vote Nay" on the proposal but chose not to lock any tokens (his tokens are only locked during the referendum), so his conviction was `0.1x`. With such vote distributions, the partial results can be seen in the main "Democracy" tab.
+In this case, Alice has decided to "Vote Aye" on the proposal with a conviction of `6x`. On the other hand, Charley has decided to "Vote Nay" on the proposal but chose not to lock any tokens (his tokens are only locked during the duration of the referendum), so his conviction was `0.1x`. With such vote distributions, the partial results can be seen in the main "Democracy" tab.
 
 ![Vote Information](/images/governance/governance-vote-3.png)
 
@@ -105,7 +105,7 @@ After the voting period has expired, the proposal will be visible under the "Dis
 
 Remember that, for this example, the `setBalance` function was used to set Bob's balance to 1500 tokens. Once the enactment period has passed, you can go back to the "Accounts" tab to verify that the proposal was made law.
 
-![Proposal Enactment](/images/governance/governance-vote-5.png)
+![Proposal Result](/images/governance/governance-vote-5.png)
 
 ### Delegate Voting
 
