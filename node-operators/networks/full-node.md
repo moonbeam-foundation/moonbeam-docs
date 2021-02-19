@@ -112,9 +112,6 @@ Now we can execute the docker run command. Note that you have to:
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
-!!! note
-    The `--state-cache-size 4` flag is needed for now due to a bug in the parachain using the cache. Consequently, we have to limite cache to an extremely low value until this is fixed (expected in v6).
-
 Once Docker pulls the necessary images, your Moonbase Alpha full node will start, displaying lots of information, such as the chain specification, node name, role, genesis state, and more:
 
 ![Full Node Starting](/images/fullnode/fullnode-docker1.png)
@@ -242,7 +239,6 @@ The next step is to create the systemd configuration file. Note that you have to
          --base-path {{ networks.moonbase.node_directory }} \
          --chain alphanet \
          --name "YOUR-NODE-NAME" \
-         --state-cache-size 4 \
          -- \
          --port {{ networks.relay_chain.p2p }} \
          --rpc-port {{ networks.relay_chain.rpc }} \
@@ -297,8 +293,6 @@ The next step is to create the systemd configuration file. Note that you have to
     [Install]
     WantedBy=multi-user.target
     ``` 
-
-The `--state-cache-size 4` flag is needed for now due to a bug in the parachain using the cache. Consequently, we have to limit the cache to an extremely low value until this is fixed, expected for v6.
 
 We are almost there! We need to register and start the service by running:
 
