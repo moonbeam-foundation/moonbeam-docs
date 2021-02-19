@@ -92,7 +92,6 @@ Now we can execute the docker run command. Note that you have to:
     --name="YOUR-NODE-NAME" \
     --execution wasm \
     --wasm-execution compiled \
-    --state-cache-size 4 \
     -- \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
