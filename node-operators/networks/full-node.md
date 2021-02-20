@@ -116,6 +116,9 @@ Once Docker pulls the necessary images, your Moonbase Alpha full node will start
 
 ![Full Node Starting](/images/fullnode/fullnode-docker1.png)
 
+!!! note
+    Running telemetry is not mandatory for full nodes. You can add the flag `--no-telemetry` to run the full node without telemetry activated.
+
 If you want to expose WS or RPC ports, enable those on the Docker run command line. For example:
 
 ```
@@ -265,7 +268,7 @@ The next step is to create the systemd configuration file. Note that you have to
     SyslogIdentifier=moonbase
     SyslogFacility=local7
     KillSignal=SIGHUP
-    ExecStart={{ networks.moonbase.node_directory }}/moonbase-alphanet \
+    ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
          --parachain-id 1000 \
          --collator \ 
          --author-id PUBLIC_KEY \
@@ -291,6 +294,8 @@ The next step is to create the systemd configuration file. Note that you have to
     [Install]
     WantedBy=multi-user.target
     ``` 
+!!! note
+    Running telemetry is not mandatory for full nodes. You can add the flag `--no-telemetry` to run the full node without telemetry activated.
 
 We are almost there! We need to register and start the service by running:
 
