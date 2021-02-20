@@ -294,6 +294,7 @@ The next step is to create the systemd configuration file. Note that you have to
     [Install]
     WantedBy=multi-user.target
     ``` 
+
 !!! note
     Running telemetry is not mandatory for full nodes. You can add the flag `--no-telemetry` to run the full node without telemetry activated.
 
