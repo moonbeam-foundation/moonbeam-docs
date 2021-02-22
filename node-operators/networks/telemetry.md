@@ -13,6 +13,9 @@ With the release of Moonbase Alpha v6, you can spin up a node that connects to t
 
 This guide will provide the necessary steps to enable the telemetry server for your Moonbase Alpha node.
 
+!!! note
+    The steps described in this guide are for a telemetry instance different than the standard Polkadot telemetry enabled by default (you can run nodes with no telemetry by using the `--no-telemetry` flag). The steps described in this guide are mandatory only for collator nodes.
+
 ## Telemetry Exporter Summary
 
 Moonbeam will run a telemetry server that collects Prometheus metrics from all the Moonbeam parachain nodes on the network. Running this will be a great help to us during our development phase.  
