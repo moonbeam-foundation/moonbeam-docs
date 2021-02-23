@@ -104,7 +104,7 @@ Now we can execute the docker run command. Note that you have to:
     --base-path=/data \
     --chain alphanet \
     --name="YOUR-NODE-NAME" \
-    --collator \ 
+    --collator \
     --author-id PUBLIC_KEY \
     --execution wasm \
     --wasm-execution compiled \
@@ -270,7 +270,7 @@ The next step is to create the systemd configuration file. Note that you have to
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
          --parachain-id 1000 \
-         --collator \ 
+         --collator \
          --author-id PUBLIC_KEY \
          --port {{ networks.parachain.p2p }} \
          --rpc-port {{ networks.parachain.rpc }} \
@@ -336,7 +336,7 @@ sudo systemctl stop moonbeam
 Next, remove the `db` folder, where the parachain information is stored:
 
 ```
-sudo rm -rf {{ networks.moonbase.moonbeam_parachain_db_loc }}
+sudo rm -rf {{ networks.moonbase.node_directory }}{{ networks.moonbase.node_db_loc }}
 ```
 
 Lastly, install the new version and/or start the service again.  
