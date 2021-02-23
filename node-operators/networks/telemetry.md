@@ -90,11 +90,9 @@ docker run -it --network="host" \
 --name gantree_watchdog_relay IMAGE-NAME
 ```
 
-You should see waiting for provisioning in the logs.  
+You should see waiting for provisioning in the logs.  Once it's complete, you can log into the [https://app.gantree.io](https://app.gantree.io) and select networks. You will see a `View Monitoring Dashboard` link to your custom Prometheus / Grafana dashboard which you can customize to your needs.  
 
-Log into the [https://app.gantree.io](https://app.gantree.io) and select networks. Click the network and then `Provision Dashboard`.  This step may take a few minutes.  Once it completes, return to the network, and you will see a `View Monitoring Dashboard` link to your custom Prometheus / Grafana dashboard. 
-
-Once things are working well, you can update the commands to run in daemon mode.  
+Once things are working well, you can update the commands to run in daemon mode.  Remove `-it` and add `-d` to the command above.  
 
 ## Telemetry Exporter with Systemd
 
@@ -191,7 +189,7 @@ sudo systemctl enable gantree-parachain
 sudo systemctl start gantree-parachain && journalctl -f -u gantree-parachain
 ```
 
-Lastly, you should see the logs waiting for provisioning.  Log into the [https://app.gantree.io](https://app.gantree.io), select networks. Click the network and then `Provision Dashboard`.  This step may take a few minutes.  Once it completes, return to the network, and you will see a `View Monitoring Dashboard` link to your custom Prometheus / Grafana dashboard. 
+You should see waiting for provisioning in the logs.  Once it's complete, you can log into the [https://app.gantree.io](https://app.gantree.io) and select networks. You will see a `View Monitoring Dashboard` link to your custom Prometheus / Grafana dashboard which you can customize to your needs.  
 
 ## Contact Us
 
