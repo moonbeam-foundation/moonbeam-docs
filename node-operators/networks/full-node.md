@@ -73,11 +73,12 @@ mkdir {{ networks.moonbase.node_directory }}
 ```
 
 !!! note
-    Make sure you set the permissions accordingly for the local directory that stores the chain data.
+    Make sure you set the ownership and permissions accordingly for the local directory that stores the chain data using the `chown` and `chmod` commands. 
+
 
 Now we can execute the docker run command. Note that you have to:
- - Replace `YOUR-NODE-NAME` in two different places
- - For collators, replace `PUBLIC_KEY` with the public address that will be associated with collation activities
+ - Replace `YOUR-NODE-NAME` in two different places.
+ - For collators, replace `PUBLIC_KEY` with the public address that will be associated with collation activities.
 
 !!! note
     If you are setting up a collator node, make sure to follow the code snippets for "Collator".    
@@ -85,7 +86,7 @@ Now we can execute the docker run command. Note that you have to:
 === "Full Node"
 
     ```
-    docker run -p {{ networks.relay_chain.p2p }}:{{ networks.relay_chain.p2p }} -p {{ networks.parachain.p2p }}:{{ networks.parachain.p2p }} -v "{{ networks.moonbase.node_directory }}:/data" \
+    docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
     purestake/moonbeam:{{ networks.moonbase.parachain_docker_tag }} \
     --base-path=/data \
     --chain alphanet \
@@ -99,7 +100,7 @@ Now we can execute the docker run command. Note that you have to:
 === "Collator"
 
     ```
-    docker run -p {{ networks.relay_chain.p2p }}:{{ networks.relay_chain.p2p }} -p {{ networks.parachain.p2p }}:{{ networks.parachain.p2p }} -v "{{ networks.moonbase.node_directory }}:/data" \
+    docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
     purestake/moonbeam:{{ networks.moonbase.parachain_docker_tag }} \
     --base-path=/data \
     --chain alphanet \
@@ -117,9 +118,9 @@ Once Docker pulls the necessary images, your Moonbase Alpha full node will start
 ![Full Node Starting](/images/fullnode/fullnode-docker1.png)
 
 !!! note
-    Running telemetry is not mandatory for full nodes. You can add the flag `--no-telemetry` to run the full node without telemetry activated.
+    Running telemetry is not mandatory for full nodes, only collators. You can add the flag `--no-telemetry` to run the full node without telemetry activated.
 
-If you want to expose WS or RPC ports, enable those on the Docker run command line. For example:
+The command above will enable all exposed ports, including the P2P, RPC, and Prometheus (telemetry) ports.  This command is compatible to use with the Gantree Node Watchdog telemetry.  If you want to expose specific ports, enable those on the Docker run command line as shown below. However, doing so will block the Gantree Node Watchdog (telemetry) container from accessing the moonbeam container, so don't do this when running a collator unless you understand [docker networking](https://docs.docker.com/network/).
 
 ```
 docker run -p {{ networks.relay_chain.p2p }}:{{ networks.relay_chain.p2p }} -p {{ networks.parachain.p2p }}:{{ networks.parachain.p2p }} -p {{ networks.parachain.rpc }}:{{ networks.parachain.rpc }} -p {{ networks.parachain.ws }}:{{ networks.parachain.ws }} #rest of code goes here 
