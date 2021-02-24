@@ -324,7 +324,7 @@ journalctl -f -u moonbeam.service
 
 ## Updating the Client
 
-As Moonbeam development continues, it will sometimes be necessary to upgrade your node software. Node operators will be notified on our Discord channel upgrades are available, and whether they are necessary (some client upgrades are optional). The upgrade process is straightforward, and the same for a full node or collator.  
+As Moonbeam development continues, it will sometimes be necessary to upgrade your node software. Node operators will be notified on our [Discord channel](https://discord.gg/PfpUATX) when upgrades are available, and whether they are necessary (some client upgrades are optional). The upgrade process is straightforward, and is the same for a full node or collator.  
 
 First, stop the docker container or systemd service:
 
@@ -333,35 +333,26 @@ sudo docker stop `CONTAINER_ID`
 # or
 sudo systemctl stop moonbeam
 ```
+Then, just install the new version, after which, you can start the service again.
 
-!!! Purging the Chain
+### Purging the Chain
 
-    Occasionally Moonbase Alpha might be purged and reset around major upgrades.
-    If this upgrade is accompanied by a purge, you will need a fresh data directory.
-    See [Purging the Chain] below for instructions.
-    TODO ^^ @alberto, How do I link to another section in this document?
+Occasionally Moonbase Alpha might be purged and reset around major upgrades. As always, node operators will be notified in advance (via our [Discord channel](https://discord.gg/PfpUATX)) if this upgrade is accompanied by a purge. You can also purge your node if your individual data directory becomes corrupted.
 
-
-Lastly, install the new version and/or start the service again.
-
-## Purging the Chain
-
-You may periodically need to purge your chain data. This can happen when the entire network agrees to purge and relaunch a new chain. Or when your individual data directory becomes corrupted.
-
-First, stop the docker container or systemd service:
+To do so, first stop the docker container or systemd service:
 ```
 sudo docker stop `CONTAINER_ID`
 # or
 sudo systemctl stop moonbeam
 ```
 
-Remove the `db` folder, where the parachain information is stored:
+Next, remove the `db` folder, where the parachain information is stored:
 
 ```
 sudo rm -rf {{ networks.moonbase.node_directory }}{{ networks.moonbase.node_db_loc }}
 ```
 
-You're now ready to start a new service with a fresh data directory.
+Lastly, make sure that you are running the latest version. If so, you can start a new node with a fresh data directory.
 
 ## Telemetry
 
