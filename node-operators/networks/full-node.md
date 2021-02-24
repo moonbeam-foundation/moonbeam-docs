@@ -334,11 +334,15 @@ sudo docker stop `CONTAINER_ID`
 sudo systemctl stop moonbeam
 ```
 
-Next, remove the `db` folder, where the parachain information is stored:
+!!! Purging the Chain
 
-```
-sudo rm -rf {{ networks.moonbase.node_directory }}{{ networks.moonbase.node_db_loc }}
-```
+    Occasionally Moonbase Alpha might be purged and reset around major upgrades.
+    If this upgrade is accompanied by a purge, you will need a fresh new data directory.
+    Remove the `db` folder, where the parachain information is stored:
+
+    ```
+    sudo rm -rf {{ networks.moonbase.node_directory }}{{ networks.moonbase.node_db_loc }}
+    ```
 
 Lastly, install the new version and/or start the service again.  
 
