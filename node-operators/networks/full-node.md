@@ -322,9 +322,9 @@ journalctl -f -u moonbeam.service
 
 ![Service Logs](/images/fullnode/fullnode-binary3.png)
 
-## Purging the Chain
+## Updating the Client
 
-Occasionally Moonbase Alpha might be purged for upgrades.  Node operators will be notified on our Discord channel when this is necessary. In this section, the steps to purge the parachain are outlined, it's the same for a full node or collator.  
+As Moonbeam development continues, it will sometimes be necessary to upgrade your node software. Node operators will be notified on our Discord channel upgrades are available, and whether they are necessary (some client upgrades are optional). The upgrade process is straightforward, and the same for a full node or collator.  
 
 First, stop the docker container or systemd service:
 
@@ -337,14 +337,31 @@ sudo systemctl stop moonbeam
 !!! Purging the Chain
 
     Occasionally Moonbase Alpha might be purged and reset around major upgrades.
-    If this upgrade is accompanied by a purge, you will need a fresh new data directory.
-    Remove the `db` folder, where the parachain information is stored:
+    If this upgrade is accompanied by a purge, you will need a fresh data directory.
+    See [Purging the Chain] below for instructions.
+    TODO ^^ @alberto, How do I link to another section in this document?
 
-    ```
-    sudo rm -rf {{ networks.moonbase.node_directory }}{{ networks.moonbase.node_db_loc }}
-    ```
 
-Lastly, install the new version and/or start the service again.  
+Lastly, install the new version and/or start the service again.
+
+## Purging the Chain
+
+You may periodically need to purge your chain data. This can happen when the entire network agrees to purge and relaunch a new chain. Or when your individual data directory becomes corrupted.
+
+First, stop the docker container or systemd service:
+```
+sudo docker stop `CONTAINER_ID`
+# or
+sudo systemctl stop moonbeam
+```
+
+Remove the `db` folder, where the parachain information is stored:
+
+```
+sudo rm -rf {{ networks.moonbase.node_directory }}{{ networks.moonbase.node_db_loc }}
+```
+
+You're now ready to start a new service with a fresh data directory.
 
 ## Telemetry
 
