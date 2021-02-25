@@ -322,12 +322,24 @@ journalctl -f -u moonbeam.service
 
 ![Service Logs](/images/fullnode/fullnode-binary3.png)
 
-## Purging the Chain
+## Updating the Client
 
-Occasionally Moonbase Alpha might be purged for upgrades.  Node operators will be notified on our Discord channel when this is necessary. In this section, the steps to purge the parachain are outlined, it's the same for a full node or collator.  
+As Moonbeam development continues, it will sometimes be necessary to upgrade your node software. Node operators will be notified on our [Discord channel](https://discord.gg/PfpUATX) when upgrades are available and whether they are necessary (some client upgrades are optional). The upgrade process is straightforward and is the same for a full node or collator.  
 
 First, stop the docker container or systemd service:
 
+```
+sudo docker stop `CONTAINER_ID`
+# or
+sudo systemctl stop moonbeam
+```
+Then, install the new version by repeating the steps described before, making sure that you are using the latest tag available. After updating, you can start the service again.
+
+### Purging the Chain
+
+Occasionally Moonbase Alpha might be purged and reset around major upgrades. As always, node operators will be notified in advance (via our [Discord channel](https://discord.gg/PfpUATX)) if this upgrade is accompanied by a purge. You can also purge your node if your individual data directory becomes corrupted.
+
+To do so, first stop the docker container or systemd service:
 ```
 sudo docker stop `CONTAINER_ID`
 # or
@@ -340,7 +352,7 @@ Next, remove the `db` folder, where the parachain information is stored:
 sudo rm -rf {{ networks.moonbase.node_directory }}{{ networks.moonbase.node_db_loc }}
 ```
 
-Lastly, install the new version and/or start the service again.  
+Lastly, install the newest version by repeating the steps described before, making sure you are using the latest tag available. If so, you can start a new node with a fresh data directory.
 
 ## Telemetry
 
