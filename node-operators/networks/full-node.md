@@ -324,7 +324,7 @@ journalctl -f -u moonbeam.service
 
 ## Updating the Client
 
-As Moonbeam development continues, it will sometimes be necessary to upgrade your node software. Node operators will be notified on our [Discord channel](https://discord.gg/PfpUATX) when upgrades are available, and whether they are necessary (some client upgrades are optional). The upgrade process is straightforward, and is the same for a full node or collator.  
+As Moonbeam development continues, it will sometimes be necessary to upgrade your node software. Node operators will be notified on our [Discord channel](https://discord.gg/PfpUATX) when upgrades are available and whether they are necessary (some client upgrades are optional). The upgrade process is straightforward and is the same for a full node or collator.  
 
 First, stop the docker container or systemd service:
 
@@ -333,7 +333,7 @@ sudo docker stop `CONTAINER_ID`
 # or
 sudo systemctl stop moonbeam
 ```
-Then, just install the new version, after which, you can start the service again.
+Then, install the new version by repeating the steps described before, making sure that you are using the latest tag available. After updating, you can start the service again.
 
 ### Purging the Chain
 
@@ -352,7 +352,7 @@ Next, remove the `db` folder, where the parachain information is stored:
 sudo rm -rf {{ networks.moonbase.node_directory }}{{ networks.moonbase.node_db_loc }}
 ```
 
-Lastly, make sure that you are running the latest version. If so, you can start a new node with a fresh data directory.
+Lastly, install the newest version by repeating the steps described before, making sure you are using the latest tag available. If so, you can start a new node with a fresh data directory.
 
 ## Telemetry
 
