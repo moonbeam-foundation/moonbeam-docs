@@ -17,19 +17,19 @@ networks:
       per_bill_fee: 200000000
       chainbridge:
          kovan:
-            bridge_address: '0xA997c47d55991Ef5251b31D380CeFCaAD6978e03'
-            ERC20_handler: '0xE4B3f8270fF41352c3a795c844D111d819e6010F'
-            ERC721_handler: '0x6cB27360d16E9a9df198EB3CF90Bf0c28A550278'
-            ERC20S: '0xEEc83DC1B7D0dE3f0f1277619fbbE8150E70Ef39'
-            ERC721E: '0xCB2e28930103311312AF5B3412EAf3A28Da0402f'
-            ERC721M: '0xEa3875a7995669020b6Bbb91a63104e419eBacF4'
+            bridge_address:   '0x73aa89155A3E4B9E58e634292E182Fb3eCd0D805'
+            ERC20_handler:    '0x91eB86784850C3057118A2003C2d82117050Dd2B'
+            ERC721_handler:   '0x91956D364671732C7D108fB32ed1aa0765F55F9d'
+            ERC20S:           '0xd222a876B303dAe4F8e2099ba3B26ECB5A1b8521'
+            ERC721M:          '0x48e654C4976A3ae64bb2598C137dab4996eA2d5c'
+            ERC721E:          '0xe2DFe9796a3ebf9fA8F44d601b40E80c36D0e40c'
          rinkeby:
-            bridge_address: '0x27f6A099f91Fab8050dc503C1c454cACa1b521Fa'
-            ERC20_handler: '0x9f0604F0B81Dcfd3B4f544c1295F4080D0062733'
-            ERC721_handler: '0x45F2F4b083D3e20dB963b3DE646f4Ec08d18c49b'
-            ERC20S: '0x5d03df3c64D6AC1C6A43D1FB19120E8Ec97c190a'
-            ERC721E: '0xB15e416A6B3EF01Caeca0218Aac8D3e09B887722'
-            ERC721M: '0x12c4EeB8Af8a15b2E729223BA6E94fd8f5130265'
+            bridge_address:   '0xcA27B6bdCfEDad5562de4E5743bEC4c010f50941'
+            ERC20_handler:    '0xdA18254F9ecAe8E0df72588455C01c0ef0e59F73'
+            ERC721_handler:   '0xD7Aa881B0EB6a2aC3e1A50C42b62A972650e96E3'
+            ERC20S:           '0xd7cb461644f402E62dB308Df5dCda21d0CE5ef63'
+            ERC721M:          '0x061BdB50d92C1F785Ec508B9F30D19819152942b'
+            ERC721E:          '0xFAA12468D875830F16AF973cd2f78861b9a6E848'
       razor:
          bridge_address: '0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB'
       chainlink:
