@@ -71,11 +71,11 @@ After clicking next, set a wallet name, and that is it! You should see your impo
 
 MathWallet serves as a Web3 provider in tools such as [Remix](/integrations/remix/). By having MathWallet connected to Moonbase Alpha, you can deploy contracts as you would like using MetaMask, signing the transactions with MathWallet instead.
 
-For example, when deploying a smart contract, you should see a similar pop-up from MathWallet:
+For example, in Remix, when deploying a smart contract, make sure you select the "Injected Web3" option in the "Environment" menu. If you have MathWallet connected, you will see the TestNet chain ID just below the box (_1287_) and your MathWallet account injected into Remix as well. When sending a transaction, you should see a similar pop-up from MathWallet:
 
 ![MathWallet sign transaction](/images/mathwallet/mathwallet-images-10.png)
 
-By clicking on "Accept", we are signing this transaction, and the contract will be deployed to the Moonbase Alpha TestNet.
+By clicking on "Accept," you are signing this transaction, and the contract will be deployed to the Moonbase Alpha TestNet.
 
 ## We Want to Hear From You
 
