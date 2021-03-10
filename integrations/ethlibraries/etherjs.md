@@ -8,11 +8,11 @@ description: Follow this tutorial to learn how to use the Ethereum EtherJS Libra
 
 ## Introduction
 
-The [ethers.js](https://docs.ethers.io/) library provides a set of tools to interact with Ethereum Nodes with JavaScript, similar to web3.js. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations. Therefore, developers can leverage this compatibility and use the ethers.js library to interact with a Moonbeam node as if they were doing so on Ethereum. You can read more about ethers.js on this [blogpost](https://medium.com/l4-media/announcing-ethers-js-a-web3-alternative-6f134fdd06f3).
+The [ethers.js](https://docs.ethers.io/) library provides a set of tools to interact with Ethereum Nodes with JavaScript, similar to web3.js. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations. Therefore, developers can leverage this compatibility and use the ethers.js library to interact with a Moonbeam node as if they were doing so on Ethereum. You can read more about ethers.js on this [blog post](https://medium.com/l4-media/announcing-ethers-js-a-web3-alternative-6f134fdd06f3).
 
 ## Setup Ethers.js with Moonbeam
 
-To get started with the ethers.js library, we first need to install it using the following command:
+To get started with the ethers.js library, first install it using the following command:
 
 ```
 npm install ethers
