@@ -12,7 +12,7 @@ description: Follow this tutorial to learn how to use the Ethereum Web3 Python L
 
 ## Setup Web3.js with Moonbeam
 
-To get started with the web3.js library, we first need to install it using the following command:
+To get started with the web3.js library, install it using the following command:
 
 ```
 npm install web3
