@@ -74,8 +74,8 @@ docker run -it --network="host" \
 -e GANTREE_NODE_WATCHDOG_PROJECT_ID="moonbase-alpha" \
 -e GANTREE_NODE_WATCHDOG_CLIENT_ID="YOUR-SERVER-NAME-parachain" \
 -e GANTREE_NODE_WATCHDOG_PCKRC="YOUR-PCK-KEY" \
--e GANTREE_NODE_WATCHDOG_METRICS_HOST="http://172.0.0.1:9615" \
---name gantree_watchdog_relay IMAGE-NAME
+-e GANTREE_NODE_WATCHDOG_METRICS_HOST="http://127.0.0.1:9615" \
+--name gantree_watchdog_parachain IMAGE-NAME
 ```
 
 Now, we need to run the parachain Gantree node watchdog. Note that you need to replace the same information as in the previous step.
@@ -86,7 +86,7 @@ docker run -it --network="host" \
 -e GANTREE_NODE_WATCHDOG_PROJECT_ID="moonbase-alpha" \
 -e GANTREE_NODE_WATCHDOG_CLIENT_ID="YOUR-SERVER-NAME-relay" \
 -e GANTREE_NODE_WATCHDOG_PCKRC="YOUR-PCK-KEY" \
--e GANTREE_NODE_WATCHDOG_METRICS_HOST="http://172.0.0.1:9616" \
+-e GANTREE_NODE_WATCHDOG_METRICS_HOST="http://127.0.0.1:9616" \
 --name gantree_watchdog_relay IMAGE-NAME
 ```
 
