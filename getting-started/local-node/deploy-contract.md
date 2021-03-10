@@ -337,7 +337,7 @@ Lastly, the transaction hash is displayed in the terminal.
 
 ### Web3.py
 
-In the first part of the script ([increment](/code-snippets/web3py-contract/increment.py) or [reset](/code-snippets/web3py-contract/reset.js) files), the `web3` instance (or provider) is created using the `Web3(Web3.HTTPProvider(provider_rpc))` method with the provider RPC. By changing the provider RPC, you can choose which network you want to send the transaction to.
+In the first part of the script ([increment](/code-snippets/web3py-contract/increment.py) or [reset](/code-snippets/web3py-contract/reset.py) files), the `web3` instance (or provider) is created using the `Web3(Web3.HTTPProvider(provider_rpc))` method with the provider RPC. By changing the provider RPC, you can choose which network you want to send the transaction to.
 
 The private key and the public address associated with it are defined for signing the transaction and establishing the from address. Also, the contract's interface (ABI) and address are needed as well to interact with it.
 

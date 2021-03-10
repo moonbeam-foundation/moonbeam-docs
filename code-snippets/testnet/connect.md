@@ -26,7 +26,7 @@ const providerURL = 'https://rpc.testnet.moonbeam.network';
 // Define Provider
 const provider = new ethers.providers.StaticJsonRpcProvider(providerURL, {
     chainId: 1287,
-    name: "moonbase-alphanet"
+    name: 'moonbase-alphanet'
 });
 ```
 
