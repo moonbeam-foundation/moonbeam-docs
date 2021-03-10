@@ -70,11 +70,11 @@ First, we need to create a local directory to store the chain data and set the n
 
 ```
 mkdir {{ networks.moonbase.node_directory }}
+sudo chown -R $(id -u):$(id -g) {{ networks.moonbase.node_directory }}
 ```
 
 !!! note
-    Make sure you set the ownership and permissions accordingly for the local directory that stores the chain data using the `chown` and `chmod` commands. 
-
+    Make sure you set the ownership and permissions accordingly for the local directory that stores the chain data. 
 
 Now we can execute the docker run command. Note that you have to:
  - Replace `YOUR-NODE-NAME` in two different places.
@@ -93,6 +93,9 @@ Now we can execute the docker run command. Note that you have to:
     --name="YOUR-NODE-NAME" \
     --execution wasm \
     --wasm-execution compiled \
+    --in-peers 200 \
+    --out-peers 200 \
+    --pruning archive \
     -- \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
@@ -109,6 +112,9 @@ Now we can execute the docker run command. Note that you have to:
     --author-id PUBLIC_KEY \
     --execution wasm \
     --wasm-execution compiled \
+    --in-peers 200 \
+    --out-peers 200 \
+    --pruning archive \
     -- \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
@@ -118,7 +124,10 @@ Once Docker pulls the necessary images, your Moonbase Alpha full node will start
 ![Full Node Starting](/images/fullnode/fullnode-docker1.png)
 
 !!! note
-    Running telemetry is not mandatory for full nodes, only collators. You can add the flag `--no-telemetry` to run the full node without telemetry activated.
+    If you are having issues with the default telemetry, you can add the flag `--no-telemetry` to run the full node without telemetry activated.
+
+!!! note
+    You can specify a custom Prometheus port with the `--promethues-port XXXX` flag (replacing `XXXX` with the actual port number). This is possible for both the parachain and embedded relay chain.
 
 The command above will enable all exposed ports, including the P2P, RPC, and Prometheus (telemetry) ports.  This command is compatible to use with the Gantree Node Watchdog telemetry.  If you want to expose specific ports, enable those on the Docker run command line as shown below. However, doing so will block the Gantree Node Watchdog (telemetry) container from accessing the moonbeam container, so don't do this when running a collator unless you understand [docker networking](https://docs.docker.com/network/).
 
@@ -191,9 +200,12 @@ Next, we need to create a directory to store the binary and data. We'll also set
 
 ```
 mkdir {{ networks.moonbase.node_directory }}
-chmod 0755 {{ networks.moonbase.node_directory }}
+sudo chown -R $(id -u):$(id -g) {{ networks.moonbase.node_directory }}
 chown moonbase_service {{ networks.moonbase.node_directory }}
 ```
+
+!!! note
+    Make sure you set the ownership and permissions accordingly for the local directory that stores the chain data.
 
 Now, we need to copy the binary we built in the last section to the created folder:
 
@@ -242,6 +254,9 @@ The next step is to create the systemd configuration file. Note that you have to
          --base-path {{ networks.moonbase.node_directory }} \
          --chain alphanet \
          --name "YOUR-NODE-NAME" \
+        --in-peers 200 \
+        --out-peers 200 \
+        --pruning archive \
          -- \
          --port {{ networks.relay_chain.p2p }} \
          --rpc-port {{ networks.relay_chain.rpc }} \
@@ -285,6 +300,9 @@ The next step is to create the systemd configuration file. Note that you have to
          --base-path {{ networks.moonbase.node_directory }} \
          --chain alphanet \
          --name "YOUR-NODE-NAME" \
+         --in-peers 200 \
+         --out-peers 200 \
+         --pruning archive \
          -- \
          --port {{ networks.relay_chain.p2p }} \
          --rpc-port {{ networks.relay_chain.rpc }} \
@@ -297,7 +315,10 @@ The next step is to create the systemd configuration file. Note that you have to
     ``` 
 
 !!! note
-    Running telemetry is not mandatory for full nodes. You can add the flag `--no-telemetry` to run the full node without telemetry activated.
+    If you are having issues with the default telemetry, you can add the flag `--no-telemetry` to run the full node without telemetry activated.
+
+!!! note
+    You can specify a custom Prometheus port with the `--promethues-port XXXX` flag (replacing `XXXX` with the actual port number). This is possible for both the parachain and embedded relay chain.
 
 We are almost there! We need to register and start the service by running:
 
