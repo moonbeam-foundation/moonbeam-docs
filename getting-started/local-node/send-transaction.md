@@ -101,7 +101,7 @@ In the second section, the transaction object is created with the `to`, `value`,
 
 Next, with transaction signed (you can `console.log(createTransaction)` to see the v-r-s values), you can send it by using the `web3.eth.sendSignedTransaction()` method, providing the signed transaction located in `createTransaction.rawTransaction`.
 
-Lastly, we run our asynchronous deploy function that wraps everything in this section.
+Lastly, run our asynchronous deploy function that wraps everything in this section.
 
 ### Ethers.js
 
@@ -111,11 +111,11 @@ The private key is defined to create a wallet instance, which also requires the 
 
 The `addressTo`, where the transaction will be sent, is also defined here, and it is required.
 
-In the second section, an asynchronous function wraps the `wallet.sendTransaction(txObject)` method. The transaction object is quite simple. It only requires the recipient's address and the amount to send. Note that we use the `ethers.utils.parseEther()`, which handles the necessary unit conversions from ETH to WEI - similar to using `ethers.utils.parseUnits(value,'ether')`. 
+In the second section, an asynchronous function wraps the `wallet.sendTransaction(txObject)` method. The transaction object is quite simple. It only requires the recipient's address and the amount to send. Note that `ethers.utils.parseEther()` can be used, which handles the necessary unit conversions from ETH to WEI - similar to using `ethers.utils.parseUnits(value,'ether')`. 
 
-Once the transaction is sent, we get the transaction response (named `createReceipt` in this example), which has a few properties. For instance, we can call the `createReceipt.wait()` method to wait until the transaction is processed (receipt status is OK).
+Once the transaction is sent, you canget the transaction response (named `createReceipt` in this example), which has a few properties. For instance, you can call the `createReceipt.wait()` method to wait until the transaction is processed (receipt status is OK).
 
-Lastly, we run our asynchronous deploy function that wraps everything in this section.
+Lastly, run the asynchronous deploy function that wraps everything in this section.
 
 ### Web3.py
 
