@@ -9,13 +9,13 @@ description: Use Hardhat to compile, deploy, and debug Ethereum smart contracts 
 
 ## Introduction
 
-Hardhat is an Ethereum development environment that helps developers manage and automate the recurring tasks inherent to building smart contracts and DApps. Hardhat can directly interact with Moonbeam's Ethereum API so it can also be used to deploy smart contracts into Moonbeam
+Hardhat is an Ethereum development environment that helps developers manage and automate the recurring tasks inherent to building smart contracts and DApps. Hardhat can directly interact with Moonbeam's Ethereum API so it can also be used to deploy smart contracts into Moonbeam.
 
 This guide will cover how to use Hardhat to compile, deploy, and debug Ethereum smart contracts on the Moonbase Alpha TestNet.
 
 ## Checking Prerequisites
 
-As always, check that Node.js has been installed on your machine (we'll go for v15.x) and npm. You can do this by running in your terminal:
+As always, check that Node.js has been installed on your machine (we'll use v15.x) and npm. You can do this by running the following in your terminal:
 
 === "Ubuntu"
 
@@ -142,7 +142,7 @@ npm install @nomiclabs/hardhat-ethers ethers
 Next, we import the private key that we've retrieved from MetaMask and store it in a `.json` file.
 
 !!! note
-      Please, always manage your private keys with a designated secret manager or similar service. Never save or commit your private keys inside your repositories.
+      Please always manage your private keys with a designated secret manager or similar service. Never save or commit your private keys inside your repositories.
 
 Inside the `module.exports`, we need to provide the Solidity version (`0.8.1` according to our contract file), and the network details:
 
@@ -188,7 +188,7 @@ Next, let's create a `secrets.json`, where we will be storing the private key me
 }
 ```
 
-Congratulations!👏🏼  We are ready for deployment!🚀🌖
+Congratulations!🏼  We are ready for deployment!
 
 ## Compiling Solidity
 
@@ -202,7 +202,7 @@ npx hardhat compile
 
 After compilation, an `artifacts` directory is created: it holds the bytecode and metadata of the contract, which are `.json` files. It’s a good idea to add this directory to your `.gitignore`.
 
-## Deploying the contract
+## Deploying the Contract
 
 In order to deploy the Box smart contract, we will need to write a simple `deployment script`. First, let's create a new directory (`scripts`). Inside the newly created directory, add a new file `deploy.js`.
 
@@ -264,7 +264,7 @@ npx hardhat console --network moonbase
 !!! note
     To deploy to a Moonbeam standalone node, replace `moonbase` for `dev` in the `console` command.
 
-Then add the following lines of code, one line at a time. First, we create a local instance of the `Box.sol`contract once again. Don't worry about the `undefined` output you will get after each line is executed: 
+Then, add the following lines of code one line at a time. First, we create a local instance of the `Box.sol`contract once again. Don't worry about the `undefined` output you will get after each line is executed: 
 
 
 ```js
