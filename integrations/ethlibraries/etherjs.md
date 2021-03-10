@@ -12,7 +12,7 @@ The [ethers.js](https://docs.ethers.io/) library provides a set of tools to inte
 
 ## Setup Ethers.js with Moonbeam
 
-To get started with the ethers.js library, first install it using the following command:
+To get started with the ethers.js library, install it using the following command:
 
 ```
 npm install ethers
