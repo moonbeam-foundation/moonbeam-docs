@@ -1,35 +1,51 @@
 const Web3 = require('web3');
 const { abi } = require('./compile');
 
-// Initialization
-const privKey =
-   '99B3C12287537E38C90A9219D4CB074A89A16E9CDB20BF85728EBD97C343E342'; // Genesis private key
-const address = '0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b';
-const web3 = new Web3('http://localhost:9933');
-const contractAddress = '0xC2Bf5F29a4384b1aB0C063e1c666f02121B6084a';
+/*
+   -- Define Provider & Variables --
+*/
+// Provider
+const providerRPC = {
+   standalone: 'http://localhost:9933',
+   moonbase: 'https://rpc.testnet.moonbeam.network',
+};
+const web3 = new Web3(providerRPC.standalone); //Change to correct network
 
-// Contract Tx
+// Variables
+const account_from = {
+   privateKey: 'YOUR-PRIVATE-KEY-HERE',
+};
+const contractAddress = 'CONTRACT-ADDRESS-HERE';
+
+/*
+   -- Send Function --
+*/
+// Create Contract Instance
 const incrementer = new web3.eth.Contract(abi, contractAddress);
+
+// Build Reset Tx
 const resetTx = incrementer.methods.reset();
 
 const reset = async () => {
    console.log(
-      `Calling the reset function in contract at address ${contractAddress}`
-   );
-   const createTransaction = await web3.eth.accounts.signTransaction(
-      {
-         from: address,
-         to: contractAddress,
-         data: resetTx.encodeABI(),
-         gas: '40000',
-      },
-      privKey
+      `Calling the reset function in contract at address: ${contractAddress}`
    );
 
+   // Sign Tx with PK
+   const createTransaction = await web3.eth.accounts.signTransaction(
+      {
+         to: contractAddress,
+         data: resetTx.encodeABI(),
+         gas: await incrementTx.estimateGas(),
+      },
+      account_from.privateKey
+   );
+
+   // Send Tx and Wait for Receipt
    const createReceipt = await web3.eth.sendSignedTransaction(
       createTransaction.rawTransaction
    );
-   console.log(`Tx successfull with hash: ${createReceipt.transactionHash}`);
+   console.log(`Tx successful with hash: ${createReceipt.transactionHash}`);
 };
 
 reset();

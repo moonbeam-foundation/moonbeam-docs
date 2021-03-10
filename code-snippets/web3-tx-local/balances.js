@@ -1,11 +1,22 @@
 const Web3 = require('web3');
 
-// Variables definition
-const addressFrom = '0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b';
-const addressTo = '0x44236223aB4291b93EEd10E4B511B37a398DEE55';
-const web3 = new Web3('http://localhost:9933');
+/*
+   -- Define Provider & Variables --
+*/
+// Provider
+const providerRPC = {
+   standalone: 'http://localhost:9933',
+   moonbase: 'https://rpc.testnet.moonbeam.network',
+};
+const web3 = new Web3(providerRPC.standalone); //Change to correct network
 
-// Balance call
+// Variables
+const addressFrom = 'ADDRESS-FROM-HERE';
+const addressTo = 'ADDRESS-TO-HERE';
+
+/*
+   -- Balance Call Function --
+*/
 const balances = async () => {
    const balanceFrom = web3.utils.fromWei(
       await web3.eth.getBalance(addressFrom),
