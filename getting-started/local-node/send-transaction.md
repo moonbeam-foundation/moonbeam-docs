@@ -9,7 +9,7 @@ description: Learn how to create and send transactions on Moonbeam’s Ethereum-
 
 ## Introduction
 
-This guide walks through using three different Ethereum libraries to sign and send a transaction on Moonbeam manually. The three libraries covered by this tutorial are:
+This guide walks through using three different Ethereum libraries to manually sign and send a transaction on Moonbeam. The three libraries covered in this tutorial are:
 
  - [Web3.js](https://web3js.readthedocs.io/)
  - [Ethers.js](https://docs.ethers.io/)
@@ -20,7 +20,7 @@ This guide walks through using three different Ethereum libraries to sign and se
 
 ## Checking Prerequisites
 
-The examples using both web3.js and ethers.js need you to previously install Node.js and NPM. For the web3.py you need Python and PIP. As of the writing of this guide, the versions used were:
+The examples using both web3.js and ethers.js require previous installation of Node.js and NPM. The example using web3.py requires Python and PIP. As of the writing of this guide, the versions used were:
 
  - Node.js v15.10.0
  - NPM v7.5.3
@@ -33,7 +33,7 @@ Next, create a directory to store all of the relevant files:
 mkdir transaction && cd transaction/
 ```
 
-For the JavaScript libraries, first, you can create a simple `package.json` file (not required):
+For the JavaScript libraries, you can first create a simple `package.json` file (not required):
 
 ```
 npm init --yes
@@ -56,7 +56,7 @@ In the directory, install the library to be used (web3.py is installed in the de
     pip3 install web3
     ```
 
-The versions used when this guide was published were
+The versions used as of publishing this guide were:
 
  - Web3.js v1.33 (`npm ls web3`)
  - Ethers.js v5.0.31 (`npm ls ethers`)
@@ -99,9 +99,9 @@ The `addressTo`, where the transaction will be sent, is also defined here, and i
 
 In the second section, the transaction object is created with the `to`, `value`, and `gas` fields. These describe the recipient, the amount to send, and the gas consumed by the transaction (21000 in this case). You can use the `web3.utils.toWei()` function to input the value in ETH (for example) and get the output in WEI. The transaction is signed with the private key using the `web3.eth.accounts.signTransaction()` method. Note that this returns a promise that needs to be resolved.
 
-Next, with transaction signed (you can `console.log(createTransaction)` to see the v-r-s values), you can send it by using the `web3.eth.sendSignedTransaction()` method, providing the signed transaction located in `createTransaction.rawTransaction`.
+Next, with the transaction signed (you can `console.log(createTransaction)` to see the v-r-s values), you can send it using the `web3.eth.sendSignedTransaction()` method, providing the signed transaction located in `createTransaction.rawTransaction`.
 
-Lastly, run our asynchronous deploy function that wraps everything in this section.
+Lastly, run the asynchronous deploy function.
 
 ### Ethers.js
 
@@ -113,13 +113,13 @@ The `addressTo`, where the transaction will be sent, is also defined here, and i
 
 In the second section, an asynchronous function wraps the `wallet.sendTransaction(txObject)` method. The transaction object is quite simple. It only requires the recipient's address and the amount to send. Note that `ethers.utils.parseEther()` can be used, which handles the necessary unit conversions from ETH to WEI - similar to using `ethers.utils.parseUnits(value,'ether')`. 
 
-Once the transaction is sent, you canget the transaction response (named `createReceipt` in this example), which has a few properties. For instance, you can call the `createReceipt.wait()` method to wait until the transaction is processed (receipt status is OK).
+Once the transaction is sent, you can get the transaction response (named `createReceipt` in this example), which has a few properties. For instance, you can call the `createReceipt.wait()` method to wait until the transaction is processed (receipt status is OK).
 
-Lastly, run the asynchronous deploy function that wraps everything in this section.
+Lastly, run the asynchronous deploy function.
 
 ### Web3.py
 
-In the first section of [the script](/code-snippets/web3py-tx/transaction.py), the `web3` instance (or provider) is created using the `Web3(Web3.HTTPProvider(provider_rpc))` methodwith the provider RPC. By changing the provider RPC, you can choose which network you want to send the transaction to. 
+In the first section of [the script](/code-snippets/web3py-tx/transaction.py), the `web3` instance (or provider) is created using the `Web3(Web3.HTTPProvider(provider_rpc))` method with the provider RPC. By changing the provider RPC, you can choose which network you want to send the transaction to. 
 
 The private key and the public address associated with it are defined for signing the transaction and logging purposes. The public address is not required. 
 
@@ -127,13 +127,13 @@ The `addressTo`, where the transaction will be sent, is also defined here, and i
 
 In the second section, the transaction object is created with the `nonce`, `gasPrice`, `gas`, `to`, and `value` fields. These describe the transaction count, gas price (0 for standalone and Moonbase Alpha), gas (21000 in this case), the recipient, and the amount to send. Note that the transaction count can be obtained with the `web3.eth.getTransactionCount(address)` method. Also, you can use the `web3.toWei()` function to input the value in ETH (for example) and get the output in WEI. The transaction is signed with the private key using the `web3.eth.account.signTransaction()` method.
 
-Next, with transaction signed, you can send it by using the `web3.eth.sendSignedTransaction()` method, providing the signed transaction located in `createTransaction.rawTransaction`.
+Next, with the transaction signed, you can send it by using the `web3.eth.sendSignedTransaction()` method, providing the signed transaction located in `createTransaction.rawTransaction`.
 
 ## The Balance File
 
 Before running the script, another file checks the balances of both addresses before and after the transaction is needed. This can be easily done by a simple query of an account balance.
 
-You can find the code snippet for each library here (files were arbritarly named `balances.*`):
+You can find the code snippet for each library here (files were arbitrarily named `balances.*`):
  
  - Web3.js: [_balances.js_](/code-snippets/web3-tx-local/balances.js)
  - Ethers.js: [_balances.js_](/code-snippets/ethers-tx-local/balances.js)
@@ -216,7 +216,7 @@ Next, run the _transaction.*_ script to execute the transaction:
     python3 transaction.py
     ```
 
-And lastly, recheck the balance to make sure the transfer was successful. The whole execution should look like this:
+And lastly, recheck the balance to make sure the transfer was successful. The entire execution should look like this:
 
 === "Web3.js"
     ![Send Tx Web3js](/images/sendtx/sendtx-web3js.png)
