@@ -97,6 +97,7 @@ Now we can execute the docker run command. Note that you have to:
     --out-peers 200 \
     --pruning archive \
     -- \
+    --pruning archive \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
@@ -116,6 +117,7 @@ Now we can execute the docker run command. Note that you have to:
     --out-peers 200 \
     --pruning archive \
     -- \
+    --pruning archive \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
@@ -256,7 +258,6 @@ The next step is to create the systemd configuration file. Note that you have to
          --name "YOUR-NODE-NAME" \
         --in-peers 200 \
         --out-peers 200 \
-        --pruning archive \
          -- \
          --port {{ networks.relay_chain.p2p }} \
          --rpc-port {{ networks.relay_chain.rpc }} \
@@ -302,7 +303,6 @@ The next step is to create the systemd configuration file. Note that you have to
          --name "YOUR-NODE-NAME" \
          --in-peers 200 \
          --out-peers 200 \
-         --pruning archive \
          -- \
          --port {{ networks.relay_chain.p2p }} \
          --rpc-port {{ networks.relay_chain.rpc }} \
