@@ -212,4 +212,4 @@ And that is it, you’ve used the Moonbeam Truffle box to deploy a simple ERC20 
  
 ## We Want to Hear From You
 
-If you have any feedback regarding the Moonbeam Truffle box or other Moonbeam-related topic, feel free to reach out through our official development [Discord server](https://discord.gg/PfpUATX).
+If you have any feedback regarding the Moonbeam Truffle box or other Moonbeam-related topics, feel free to reach out through our official development [Discord server](https://discord.gg/PfpUATX).
