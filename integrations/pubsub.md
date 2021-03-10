@@ -6,7 +6,7 @@ description: Use Ethereum-like publish-subscribe functionality to subscribe to s
 # Subscribe to Events in Moonbase Alpha
 
 ## Introduction
-With the [release of Moonbase Alpha v2](https://moonbeam.network/announcements/testnet-upgrade-moonbase-alpha-v2/), the ability to subscribe to Ethereum-style events was added. In this guide, we will outline the subscription types available and current limitations.
+The ability to subscribe to Ethereum-style events was added with the [release of Moonbase Alpha v2](https://moonbeam.network/announcements/testnet-upgrade-moonbase-alpha-v2/). In this guide, we will outline the subscription types available and current limitations.
 
 ## Checking Prerequisites
 The examples in this guide are based on an Ubuntu 18.04 environment. You will also need the following:
