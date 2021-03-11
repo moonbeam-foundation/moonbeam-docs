@@ -7,7 +7,7 @@ description:  Learn how to use precompiled contracts on Moonbase Alpha, the Moon
 
 ## Introduction
 
-Another feature added with the [release of Moonbase Alpha v2](http://www.purestake.com/blog/new-in-moonbase-alpha-v2-contract-events-and-pub-sub-capabilities/) is the inclusion of some [precompiled contracts](https://docs.klaytn.com/smart-contract/precompiled-contracts) that are natively available on Ethereum. 
+Another feature added with the [release of Moonbase Alpha v2](https://moonbeam.network/announcements/moonbase-alpha-v2-contract-events-pub-sub-capabilities/) is the inclusion of some [precompiled contracts](https://docs.klaytn.com/smart-contract/precompiled-contracts) that are natively available on Ethereum. 
 
 Five precompiles are currently included, including: ecrecover, sha256, ripemd-160, the identity function, and the modular exponentiation.
 
@@ -161,7 +161,7 @@ With the contract deployed, we can call the `checkHash()` method that returns _t
 
 ## The Identity Function
 
-Also known as datacopy, this function serves as a cheaper way to copy data in memory. The Solidity compiler does not support it, so it needs to be called with inline assembly. The [following code](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-04-datacopy-data) (adapted to Solidity), can be used to call this precompiled contract. We can use this [online tool](https://web3-type-converter.brn.sh/) to get bytes from any string, as this is the input of the method `callDataCopy()`.
+Also known as datacopy, this function serves as a cheaper way to copy data in memory. The Solidity compiler does not support it, so it needs to be called with inline assembly. The [following code](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-04-datacopy-data) (adapted to Solidity), can be used to call this precompiled contract. We can use this [online tool](https://web3-type-converter.onbrn.com/) to get bytes from any string, as this is the input of the method `callDataCopy()`.
 
 ```solidity
 pragma solidity ^0.7.0;

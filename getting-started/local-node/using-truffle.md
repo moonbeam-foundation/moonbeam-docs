@@ -48,7 +48,7 @@ As of this guide's publish date, the versions used were 15.2.1, 7.0.8, and 5.1.5
      For the following examples, you don't need to have Truffle globally installed, as it is included as a dependency on the Moonbeam Truffle box. If you prefer, you can run `npx truffle` or `./node_modules/.bin/truffle` instead of `truffle`.
 
 ## Getting Started with Truffle
-To ease the process of getting started with Truffle, we have [released the Moonbeam Truffle box](https://www.purestake.com/news/moonbeam-truffle-box-now-available-for-solidity-developers). This provides a boilerplate setup to speed up the rampup process to deploy contracts on Moonbeam. To read more about the box, you can visit [this link](/integrations/trufflebox/).
+To ease the process of getting started with Truffle, we have [released the Moonbeam Truffle box](https://moonbeam.network/announcements/moonbeam-truffle-box-available-solidity-developers/). This provides a boilerplate setup to speed up the rampup process to deploy contracts on Moonbeam. To read more about the box, you can visit [this link](/integrations/trufflebox/).
 
 To download the Moonbeam Truffle box, follow [these instructions](/integrations/trufflebox/#downloading-and-setting-up-the-truffle-box). Once inside the directoy, let's take a look at the `truffle-config.js` file (for the purpuse of this guide, some information was removed):
 

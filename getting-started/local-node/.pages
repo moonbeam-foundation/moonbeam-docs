@@ -4,5 +4,5 @@ arrange:
   - using-metamask.md
   - using-remix.md
   - using-truffle.md
-  - web3-js
-  - ethers-js
+  - send-transaction.md
+  - deploy-contract.md

@@ -211,7 +211,7 @@ mkdir scripts && cd scripts
 touch deploy.js
 ```
 
-Next, we need to write our deployment script using `ethers`. Because we'll be running it with Hardhat, we don't need to import any libraries. The script is a simplified version of that used in [this tutorial](/getting-started/local-node/ethers-js/ethers-contract/#the-deploy-file).
+Next, we need to write our deployment script using `ethers`. Because we'll be running it with Hardhat, we don't need to import any libraries. The script is a simplified version of that used in [this tutorial](/getting-started/local-node/deploy-contract/#deploying-the-contract).
 
 We start by creating a local instance of the contract with the `getContractFactory()` method. Next, let's use the `deploy()` method that exists within this instance to initiate the smart contract. Lastly, we wait for its deployment by using `deployed()`. Once deployed, we can fetch the address of the contract inside the box instantiation.
 

@@ -37,7 +37,7 @@ A collator has an account associated with its collation activities. This account
 
 Currently, you have two ways of proceeding in regards to the account:
 
- - Importing an existing (or create a new) H160 account from external wallets or services such as [MetaMask](/integrations/wallets/metamask/) and [MathWallet](/integrations/wallets/mathwallet)
+ - Importing an existing (or create a new) H160 account from external wallets or services such as [MetaMask](/integrations/wallets/metamask/) and [MathWallet](/integrations/wallets/mathwallet/)
  - Create a new H160 account with [PolkadotJS](/integrations/wallets/polkadotjs/)
 
 Once you have an H160 account imported to PolkadotJS, you should see it under the "Accounts" tab. Make sure you have your public address at hand (`PUBLIC_KEY`), as it is needed to configure your [deploy your full node](/node-operators/networks/full-node/) with the collation options.

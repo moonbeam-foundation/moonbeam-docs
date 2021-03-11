@@ -46,8 +46,9 @@ Because of Moonbeam's Ethereum compatibility features, you can use the developme
  - [Remix](/integrations/remix/)
  - [Truffle](/integrations/trufflebox/)
  - [HardHat](/integrations/hardhat/)
- - [Web3.js](/integrations/jslibraries/web3js/)
- - [Ethers.js](/integrations/jslibraries/etherjs/)
+ - [Web3.js](/integrations/ethlibraries/web3js/)
+ - [Ethers.js](/integrations/ethlibraries/etherjs/)
+ - [Web3.py](/integrations/ethlibraries/web3py/)
 
  Want another Ethereum tool listed here? [Let us know!](https://discord.gg/PfpUATX)
 

@@ -1,10 +1,10 @@
-const path = require('path');
 const fs = require('fs');
 const solc = require('solc');
 
-// Compile contract
-const contractPath = path.resolve(__dirname, 'Incrementer.sol');
-const source = fs.readFileSync(contractPath, 'utf8');
+// Get Path and Load Contract
+const source = fs.readFileSync('Incrementer.sol', 'utf8');
+
+// Compile Contract
 const input = {
    language: 'Solidity',
    sources: {
@@ -22,4 +22,6 @@ const input = {
 };
 const tempFile = JSON.parse(solc.compile(JSON.stringify(input)));
 const contractFile = tempFile.contracts['Incrementer.sol']['Incrementer'];
+
+// Export Contract Data
 module.exports = contractFile;

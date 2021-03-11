@@ -46,11 +46,7 @@ Polkadot JS Apps uses the WebSocket endpoint to interact with the Network. To co
 
 ### Moonbase Alpha
 
-<<<<<<< HEAD
 To view and interact with the Substrate layer of Moonbase Alpha, go to [this URL](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/explorer). This is the Polkadot JS Apps pointing to the TestNet, you can find more information is [this page](/integrations/wallets/polkadotjs/).
-=======
-To view and interact with the Substrate layer of Moonbase Alpha, go to [this URL](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/explorer). This is the Polkadot JS Apps pointing to the TestNet. You can find more information on [this page](/integrations/polkadotjs/).
->>>>>>> ef4a488d8342c91768f406636b36e6dc3490a718
 
 ![Connect to Moonbase Alpha](/images/polkadotjs/polkadotjs-app2.png)
 

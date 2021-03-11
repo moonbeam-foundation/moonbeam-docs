@@ -6,7 +6,7 @@ description: Use Ethereum-like publish-subscribe functionality to subscribe to s
 # Subscribe to Events in Moonbase Alpha
 
 ## Introduction
-With the [release of Moonbase Alpha v2](http://www.purestake.com/news/moonbase-alpha-v2-pub-sub/), the ability to subscribe to Ethereum-style events was added. In this guide, we will outline the subscription types available and current limitations.
+The ability to subscribe to Ethereum-style events was added with the [release of Moonbase Alpha v2](https://moonbeam.network/announcements/testnet-upgrade-moonbase-alpha-v2/). In this guide, we will outline the subscription types available and current limitations.
 
 ## Checking Prerequisites
 The examples in this guide are based on an Ubuntu 18.04 environment. You will also need the following:
@@ -95,7 +95,7 @@ Let's break down the response received. Our target event sends two pieces of ind
 
 Consequently, you can see that the `from` and `to` addresses are contained inside the topics returned by the logs. Ethereum addresses are 40 hex characters long (1 hex character is 4 bits, hence 160 bits or H160 format). Thus, the extra 24 zeros are needed to fill the gap to H256, which is 64 hex characters long. 
 
-Unindexed data is returned in the `data` field of the logs, but this is encoded in bytes32/hex. To decode it we can use, for example, this [online tool](https://web3-type-converter.brn.sh/), and verify that the `data` is in fact 1 (plus 18 zeros). 
+Unindexed data is returned in the `data` field of the logs, but this is encoded in bytes32/hex. To decode it we can use, for example, this [online tool](https://web3-type-converter.onbrn.com/), and verify that the `data` is in fact 1 (plus 18 zeros). 
 
 If the event returns multiple unindexed values, they will be appended one after the other in the same order the event emits them. Therefore, each value is then obtained by deconstructing data into separate 32 bytes (or 64 hex character long) pieces.
 
