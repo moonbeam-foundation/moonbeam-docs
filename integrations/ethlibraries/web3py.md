@@ -8,11 +8,11 @@ description: Follow this tutorial to learn how to use the Ethereum Web3 Python L
 
 ## Introduction
 
-[Web3.py](https://web3py.readthedocs.io/) is a set of libraries that allow developers to interact with Ethereum nodes using HTTP, IPC, or WebSocket protocols with Python. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations. Therefore, developers can leverage this compatibility and use the web3.js library to interact with a Moonbeam node as if they were doing so on Ethereum.
+[Web3.py](https://web3py.readthedocs.io/) is a set of libraries that allow developers to interact with Ethereum nodes using HTTP, IPC, or WebSocket protocols with Python. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations. Therefore, developers can leverage this compatibility and use the web3.py library to interact with a Moonbeam node as if they were doing so on Ethereum.
 
-## Setup Web3.js with Moonbeam
+## Setup Web3.py with Moonbeam
 
-To get started with the web3.js library, install it using the following command:
+To get started with the web3.py library, install it using the following command:
 
 ```
 npm install web3
