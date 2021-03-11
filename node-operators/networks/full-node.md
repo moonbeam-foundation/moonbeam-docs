@@ -11,7 +11,7 @@ description: How to run a full Parachain node for the Moonbeam Network to have y
 
 With the release of Moonbase Alpha v6, you can spin up a node that connects to the Moonbase Alpha TestNet, syncs with a bootnode, provides local access your RPC endpoints, and even authors blocks on the parachain. 
 
-In our TestNet, the relay chain is hosted and run by PureStake. But as development progresses, there will also be deployments in Kusama and then Polkadot.  Here's how we will name these upcoming environments and their corresponding [chain specification files](https://substrate.dev/docs/en/knowledgebase/integrate/chain-spec) name: 
+In our TestNet, the relay chain is hosted and run by PureStake. But as development progresses, there will also be deployments in Kusama and then Polkadot.  Here's how these upcoming environments will be named and their corresponding [chain specification files](https://substrate.dev/docs/en/knowledgebase/integrate/chain-spec) name: 
 
 |      Network      |   |     Hosted By    |   |   Chain Name  |
 |:-----------------:|:-:|:----------------:|:-:|:-------------:|
@@ -22,7 +22,7 @@ In our TestNet, the relay chain is hosted and run by PureStake. But as developme
 This guide is meant for people with experience running [Substrate](https://substrate.dev/) based chains.  Running a parachain is similar to running a Substrate node with a few differences. A Substrate parachain node will run two processes: one to sync the relay chain and one to sync the parachain.  As such, many things are doubled, for example, the database directory, the ports used, the log lines, and more.
 
 !!! note 
-    Moonbase Alpha is still considered an Alphanet, and as such *will not* have 100% uptime.  We *will* be purging the parachain from time to time. During the development of your application, make sure you implement a method to redeploy your contracts and accounts to a fresh parachain quickly. We will announce when a chain purge will take place via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
+    Moonbase Alpha is still considered an Alphanet, and as such *will not* have 100% uptime. The parachain *will* be purged from time to time. During the development of your application, make sure you implement a method to redeploy your contracts and accounts to a fresh parachain quickly. Chain purges will be announced via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
 
 ## Requirements
 
@@ -66,17 +66,26 @@ The only ports that need to be open for incoming traffic are those designated fo
 
 A Moonbase Alpha node can be spun up quickly using Docker. For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/). At the time of writing, the Docker version used was 19.03.6.
 
-First, we need to create a local directory to store the chain data and set the necessary permissions (replace `DOCKER_USER` for the actual user that will run the `docker` command):
+First, create a local directory to store the chain data:
 
 ```
 mkdir {{ networks.moonbase.node_directory }}
+```
+
+Next, set the necessary permissions either for a specific or current user (replace `DOCKER_USER` for the actual user that will run the `docker` command):
+
+```
+# chown to a specific user
 chown DOCKER_USER {{ networks.moonbase.node_directory }}
+
+# chown to current user
+sudo chown -R $(id -u):$(id -g) {{ networks.moonbase.node_directory }}
 ```
 
 !!! note
     Make sure you set the ownership and permissions accordingly for the local directory that stores the chain data. 
 
-Now we can execute the docker run command. Note that you have to:
+Now, execute the docker run command. Note that you have to:
  - Replace `YOUR-NODE-NAME` in two different places.
  - For collators, replace `PUBLIC_KEY` with the public address that will be associated with collation activities.
 
@@ -145,7 +154,7 @@ Once synced, you have a node of the Moonbase Alpha TestNet running locally!
 
 ## Installation Instructions - Binary
 
-In this section, we'll go through the process of compiling the binary and running a Moonbeam full node as a systemd service. The following steps were tested on an Ubuntu 18.04 installation. Moonbase Alpha may work with other Linux flavors, but Ubuntu is currently the only tested version.  
+This section goes through the process of compiling the binary and running a Moonbeam full node as a systemd service. The following steps were tested on an Ubuntu 18.04 installation. Moonbase Alpha may work with other Linux flavors, but Ubuntu is currently the only tested version.  
 
 ### Compiling the Binary 
 
@@ -169,13 +178,13 @@ Next, install Substrate and all its prerequisites, including Rust, by executing:
 --8<-- 'setting-up-local/substrate.md'
 ```
 
-Now, we need to make some checks (correct version of Rust nightly) with the initialization script:
+Now, make some checks (correct version of Rust nightly) with the initialization script:
 
 ```
 --8<-- 'setting-up-local/initscript.md'
 ```
 
-Lastly, let's build parachain binary:
+Lastly, build parachain binary:
 
 ```
 cargo build --release
@@ -198,7 +207,7 @@ First, let's create a service account to run the service:
 adduser moonbase_service --system --no-create-home
 ```
 
-Next, we need to create a directory to store the binary and data. We'll also set the necessary permissions:
+Next, create a directory to store the binary and data and set the necessary permissions:
 
 ```
 mkdir {{ networks.moonbase.node_directory }}
@@ -208,7 +217,7 @@ chown moonbase_service {{ networks.moonbase.node_directory }}
 !!! note
     Make sure you set the ownership and permissions accordingly for the local directory that stores the chain data.
 
-Now, we need to copy the binary we built in the last section to the created folder:
+Now, copy the binary built in the last section to the created folder:
 
 ```
 cp ./target/release/{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
@@ -319,7 +328,7 @@ The next step is to create the systemd configuration file. Note that you have to
 !!! note
     You can specify a custom Prometheus port with the `--promethues-port XXXX` flag (replacing `XXXX` with the actual port number). This is possible for both the parachain and embedded relay chain.
 
-We are almost there! We need to register and start the service by running:
+Almost there! Register and start the service by running:
 
 ```
 systemctl enable moonbeam.service
@@ -334,7 +343,7 @@ systemctl status moonbeam.service
 
 ![Service Status](/images/fullnode/fullnode-binary2.png)
 
-We can also check the logs by executing:
+You can also check the logs by executing:
 
 ```
 journalctl -f -u moonbeam.service
