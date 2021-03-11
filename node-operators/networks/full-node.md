@@ -66,11 +66,11 @@ The only ports that need to be open for incoming traffic are those designated fo
 
 A Moonbase Alpha node can be spun up quickly using Docker. For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/). At the time of writing, the Docker version used was 19.03.6.
 
-First, we need to create a local directory to store the chain data and set the necessary permissions:
+First, we need to create a local directory to store the chain data and set the necessary permissions (replace `DOCKER_USER` for the actual user that will run the `docker` command):
 
 ```
 mkdir {{ networks.moonbase.node_directory }}
-sudo chown -R $(id -u):$(id -g) {{ networks.moonbase.node_directory }}
+chown DOCKER_USER {{ networks.moonbase.node_directory }}
 ```
 
 !!! note
@@ -202,7 +202,6 @@ Next, we need to create a directory to store the binary and data. We'll also set
 
 ```
 mkdir {{ networks.moonbase.node_directory }}
-sudo chown -R $(id -u):$(id -g) {{ networks.moonbase.node_directory }}
 chown moonbase_service {{ networks.moonbase.node_directory }}
 ```
 
