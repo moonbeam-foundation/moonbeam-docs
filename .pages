@@ -5,6 +5,7 @@ arrange:
   - networks
   - governance
   - integrations
+  - dapps-list
   - node-operators
   - learn
   - resources
