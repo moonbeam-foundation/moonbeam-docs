@@ -1,5 +1,0 @@
-# Exclude
-dapps-list/*
-
-# Exceptions
-!dapps-list/.gitkeep 

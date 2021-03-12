@@ -1,0 +1,3 @@
+[submodule "dapps-list"]
+	path = dapps-list
+	url = https://github.com/PureStake/moonbeam-project-directory
