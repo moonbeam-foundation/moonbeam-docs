@@ -96,6 +96,7 @@ Now, execute the docker run command. Note that you have to:
 
     ```
     docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
+    -u $(id -u ${USER}):$(id -g ${USER}) \
     purestake/moonbeam:{{ networks.moonbase.parachain_docker_tag }} \
     --base-path=/data \
     --chain alphanet \
@@ -114,6 +115,7 @@ Now, execute the docker run command. Note that you have to:
 
     ```
     docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
+    -u $(id -u ${USER}):$(id -g ${USER}) \
     purestake/moonbeam:{{ networks.moonbase.parachain_docker_tag }} \
     --base-path=/data \
     --chain alphanet \
