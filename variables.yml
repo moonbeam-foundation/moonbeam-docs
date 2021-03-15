@@ -17,48 +17,48 @@ networks:
       per_bill_fee: 200000000
       chainbridge:
          kovan:
-            bridge_address:   '0x73aa89155A3E4B9E58e634292E182Fb3eCd0D805'
-            ERC20_handler:    '0x91eB86784850C3057118A2003C2d82117050Dd2B'
-            ERC721_handler:   '0x91956D364671732C7D108fB32ed1aa0765F55F9d'
-            ERC20S:           '0xd222a876B303dAe4F8e2099ba3B26ECB5A1b8521'
-            ERC721M:          '0x48e654C4976A3ae64bb2598C137dab4996eA2d5c'
-            ERC721E:          '0xe2DFe9796a3ebf9fA8F44d601b40E80c36D0e40c'
+            bridge_address: '0x73aa89155A3E4B9E58e634292E182Fb3eCd0D805'
+            ERC20_handler: '0x91eB86784850C3057118A2003C2d82117050Dd2B'
+            ERC721_handler: '0x91956D364671732C7D108fB32ed1aa0765F55F9d'
+            ERC20S: '0xd222a876B303dAe4F8e2099ba3B26ECB5A1b8521'
+            ERC721M: '0x48e654C4976A3ae64bb2598C137dab4996eA2d5c'
+            ERC721E: '0xe2DFe9796a3ebf9fA8F44d601b40E80c36D0e40c'
          rinkeby:
-            bridge_address:   '0xcA27B6bdCfEDad5562de4E5743bEC4c010f50941'
-            ERC20_handler:    '0xdA18254F9ecAe8E0df72588455C01c0ef0e59F73'
-            ERC721_handler:   '0xD7Aa881B0EB6a2aC3e1A50C42b62A972650e96E3'
-            ERC20S:           '0xd7cb461644f402E62dB308Df5dCda21d0CE5ef63'
-            ERC721M:          '0x061BdB50d92C1F785Ec508B9F30D19819152942b'
-            ERC721E:          '0xFAA12468D875830F16AF973cd2f78861b9a6E848'
+            bridge_address: '0xcA27B6bdCfEDad5562de4E5743bEC4c010f50941'
+            ERC20_handler: '0xdA18254F9ecAe8E0df72588455C01c0ef0e59F73'
+            ERC721_handler: '0xD7Aa881B0EB6a2aC3e1A50C42b62A972650e96E3'
+            ERC20S: '0xd7cb461644f402E62dB308Df5dCda21d0CE5ef63'
+            ERC721M: '0x061BdB50d92C1F785Ec508B9F30D19819152942b'
+            ERC721E: '0xFAA12468D875830F16AF973cd2f78861b9a6E848'
       razor:
          bridge_address: '0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB'
       chainlink:
-         oracle_contract:  '0x1d693d883BeAeE16edD0D7588D6a9f7E1967E798'
-         link_contract:    '0xa36085F69e2889c224210F603D836748e7dC0088'
-         client_contract:  '0xe88ec866D05e637074B5a0D0d931f292d7871613'
+         oracle_contract: '0x1d693d883BeAeE16edD0D7588D6a9f7E1967E798'
+         link_contract: '0xa36085F69e2889c224210F603D836748e7dC0088'
+         client_contract: '0xe88ec866D05e637074B5a0D0d931f292d7871613'
          basic:
-            aave_usd:   '09a985f987bf4fbb8da269b3d2dbe286'
-            algo_usd:   '8dff957770214c4fb0c79d90f8548754'
-            band_usd:   'bfbf0761019c493ab448b5a79dc9ba3c'
-            btc_usd:    'b17d475086e2451f9dee27f506f279c6'
-            dot_usd:    '0cd5311976d94d3e9f97986951ec8ee7'
-            eth_usd:    'f2376b95145a4511a5ba6720bc8e1e41'
-            ksm_usd:    '8395cde44b584577910d0d46eef00fe7'
-            link_usd:   '1ad3ebb5bbb645b582969071d8a2622b'
-            sushi_usd:  'a04c1203aae54274b445f352865e9c9a'
-            uni_usd:    '9be6d53447f84f509d6befb6259d7a72'
+            aave_usd: '09a985f987bf4fbb8da269b3d2dbe286'
+            algo_usd: '8dff957770214c4fb0c79d90f8548754'
+            band_usd: 'bfbf0761019c493ab448b5a79dc9ba3c'
+            btc_usd: 'b17d475086e2451f9dee27f506f279c6'
+            dot_usd: '0cd5311976d94d3e9f97986951ec8ee7'
+            eth_usd: 'f2376b95145a4511a5ba6720bc8e1e41'
+            ksm_usd: '8395cde44b584577910d0d46eef00fe7'
+            link_usd: '1ad3ebb5bbb645b582969071d8a2622b'
+            sushi_usd: 'a04c1203aae54274b445f352865e9c9a'
+            uni_usd: '9be6d53447f84f509d6befb6259d7a72'
          feed:
             consumer:
-               aave_usd:   '0xD1e52C81FD72fFc6dA3bF083297E6C37852E93DA'
-               algo_usd:   '0x0183d1C98442510DD7aaB0E2d09863c47FFF4dF1'
-               band_usd:   '0x124A3EE742737BC30307d1F82c5406bf79aBa4d6'
-               btc_usd:    '0x86f11CffCB1A86Ecb79643FCa1a3C666a61F84Fd'
-               dot_usd:    '0x235A40b872e543b6238df7Ff55E2D8eCAE80a6bd'
-               eth_usd:    '0xE33691Ba3cF532D4025cF0f47679eFe430d4A618'
-               ksm_usd:    '0x9Df2E2179ddb4D9197451946104068e08eD3E49F'
-               link_usd:   '0xC58B34ea686Db2d567835de7AB58fC678b6f186A'
-               sushi_usd:  '0x21B52fFF227cD9F425E817f9E1eaA0eB8cd647e1'
-               uni_usd:    '0x5Cd72748F94a8597f563D92687A8D2A5074b10E5'
+               aave_usd: '0xD1e52C81FD72fFc6dA3bF083297E6C37852E93DA'
+               algo_usd: '0x0183d1C98442510DD7aaB0E2d09863c47FFF4dF1'
+               band_usd: '0x124A3EE742737BC30307d1F82c5406bf79aBa4d6'
+               btc_usd: '0x86f11CffCB1A86Ecb79643FCa1a3C666a61F84Fd'
+               dot_usd: '0x235A40b872e543b6238df7Ff55E2D8eCAE80a6bd'
+               eth_usd: '0xE33691Ba3cF532D4025cF0f47679eFe430d4A618'
+               ksm_usd: '0x9Df2E2179ddb4D9197451946104068e08eD3E49F'
+               link_usd: '0xC58B34ea686Db2d567835de7AB58fC678b6f186A'
+               sushi_usd: '0x21B52fFF227cD9F425E817f9E1eaA0eB8cd647e1'
+               uni_usd: '0x5Cd72748F94a8597f563D92687A8D2A5074b10E5'
       democracy:
          launch_period:
             days: 2
@@ -76,6 +76,11 @@ networks:
          min_preim_deposit: 0.004
          max_votes: 100
          max_proposals: 100
+      staking:
+         min_nom_stake: 5
+         min_nom_amount: 5
+         max_nom_per_col: 10
+         max_col_per_nom: 8
    relay_chain:
       p2p: 30334
       rpc: 9934
