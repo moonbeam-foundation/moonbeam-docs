@@ -54,3 +54,5 @@ For each nominator, the reward would look like this:
 Where the stake corresponds to the amount of tokens bonded by each nominator in respect to the total stake of that collator.
 
 ## Try it on Moonbase Alpha
+
+Currently, in the Moonbase Alpha TestNet, token holders stake and earn rewards. To do so, check [this guide](/staking/stake/).
