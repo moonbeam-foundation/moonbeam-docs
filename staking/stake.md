@@ -9,7 +9,7 @@ description: A guide that shows how you can stake your tokens in Moonbeam by nom
 
 ## Introduction
 
-Collators (block producers) with the highest stake in the network join the active pool of collators, from which they are selected to offer a block to the relay chain.
+Collators (block producers) with the highest stake in the network join the active pool of collators, from which they are selected to offer a block to the Relay Chain.
 
 Token holders can add to the collators' stake using their tokens, a process called nomination (also referred to as staking). When they do so, they are vouching for that specific collator, and their nomination is a signal of trust.
 
@@ -35,7 +35,7 @@ Currently, for Moonbase Alpha:
 
 ## Extrinsics Definitions
 
-There are many extrinsics related to the staking pallet. So, all of them are not covered in this guide. However, this list defines all the extrinsics associated with the nomination process:
+There are many extrinsics related to the staking pallet, so all of them are not covered in this guide. However, this list defines all of the extrinsics associated with the nomination process:
 
 !!! note
     xtrinsics might change in the future as the staking pallet is updated.
@@ -50,13 +50,13 @@ There are many extrinsics related to the staking pallet. So, all of them are not
 
 ## Retrieving the List of Collators
 
-Before you start staking tokens, it is important to retrieve the list of collators available in the network. To do so, navigate to "Chain state" under the "Developer" tab.
+Before starting to stake tokens, it is important to retrieve the list of collators available in the network. To do so, navigate to "Chain state" under the "Developer" tab.
 
 ![Staking Account](/images/staking/staking-stake-10.png)
 
-Here, you need to provide the following information:
+Here, provide the following information:
 
-1. Choose the pallet you want to interact with. In this case, it is the `stake` pallet
+1. Choose the pallet to interact with. In this case, it is the `stake` pallet
 2. Choose the state to query. In this case, it is the `validators` or `candidatePool` state.
 3. Send the state query by clicking on the "+" button
 
@@ -104,7 +104,7 @@ To verify a nomination, you can navigate to "Chain state" under the "Developer" 
 Here, you need to provide the following information:
 
 1. Choose the pallet you want to interact with. In this case, it is the `stake` pallet
-2. Choose the state to query. In this case, it is the `nominators` state.
+2. Choose the state to query. In this case, it is the `nominators` state
 3. Make sure to disable the "include option" slider
 4. Send the state query by clicking on the "+" button
 
