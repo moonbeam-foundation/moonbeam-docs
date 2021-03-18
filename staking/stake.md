@@ -38,7 +38,7 @@ Currently, for Moonbase Alpha:
 There are many extrinsics related to the staking pallet, so all of them are not covered in this guide. However, this list defines all of the extrinsics associated with the nomination process:
 
 !!! note
-    xtrinsics might change in the future as the staking pallet is updated.
+    Extrinsics might change in the future as the staking pallet is updated.
 
 -  **joinNominators** — two inputs: address of collator to nominate and amount. Extrinsic to join the set of nominators and nominate your first collator. The amount must be at least {{ networks.moonbase.staking.min_nom_stake }} tokens
 -  **leaveNominators** — no inputs. Extrinsic to leave the set of nominators. Consequently, all ongoing nominations will be revoked
@@ -57,13 +57,13 @@ Before starting to stake tokens, it is important to retrieve the list of collato
 Here, provide the following information:
 
 1. Choose the pallet to interact with. In this case, it is the `stake` pallet
-2. Choose the state to query. In this case, it is the `validators` or `candidatePool` state.
+2. Choose the state to query. In this case, it is the `validators` or `candidatePool` state
 3. Send the state query by clicking on the "+" button
 
 Each extrinsic provides a different response:
 
 -  **validators** — returns the current active set of collators, that is, the top {{ networks.moonbase.staking.max_collators }} collators by total tokens staked (including nominations)
--  **candidatePool** — returns the current all of the collators, including those that are not in the active set
+-  **candidatePool** — returns the current list all of the collators, including those that are not in the active set
 
 ![Staking Account](/images/staking/staking-stake-11.png)
 
@@ -84,7 +84,7 @@ Currently, everything related to staking needs to be accessed via the "Extrinsic
 
 ![Staking Account](/images/staking/staking-stake-1.png)
 
-Here, you need to provide the following information:
+Here, provide the following information:
 
 1. Select the account from which you want to stake your tokens
 2. Choose the pallet you want to interact with. In this case, it is the `stake` pallet
@@ -101,7 +101,7 @@ To verify a nomination, you can navigate to "Chain state" under the "Developer" 
 
 ![Staking Account and Chain State](/images/staking/staking-stake-3.png)
 
-Here, you need to provide the following information:
+Here, provide the following information:
 
 1. Choose the pallet you want to interact with. In this case, it is the `stake` pallet
 2. Choose the state to query. In this case, it is the `nominators` state
@@ -126,7 +126,7 @@ If you are already a nominator, you have two options to stop your nominations: u
 
 This example is a continuation of the previous section, meaning that it assumes that you have at least two active nominations.
 
-You can remove your nomination from a specific collator by navigating to the "Extrinsics" menu under the "Developer" tab. Here, you need to provide the following information:
+You can remove your nomination from a specific collator by navigating to the "Extrinsics" menu under the "Developer" tab. Here, provide the following information:
 
 1. Select the account from which you want to remove your nomination
 2. Choose the pallet you want to interact with. In this case, it is the `stake` pallet
@@ -138,7 +138,7 @@ You can remove your nomination from a specific collator by navigating to the "Ex
 
 Once the transaction is confirmed, you can verify that your nomination was removed in the "Chain state" option under the "Developer" tab.
 
-Here, you need to provide the following information:
+Here, provide the following information:
 
 1. Choose the pallet you want to interact with. In this case, it is the `stake` pallet
 2. Choose the state to query. In this case, it is the `nominators` state
@@ -161,7 +161,7 @@ As collators receive rewards from block production, nominators get rewards as we
 
 In summary, nominators will earn rewards based on their stake of the total nominations for the collator being rewarded (including the collator's stake as well).
 
-From the previous example, Alice was rewarded with `0.0021` tokens after a payout round:
+From the previous example, Alice was rewarded with `0.0044` tokens after two payout rounds:
 
 ![Staking Reward Example](/images/staking/staking-stake-10.png)
 
