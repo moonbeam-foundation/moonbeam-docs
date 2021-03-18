@@ -55,4 +55,6 @@ Where the stake corresponds to the amount of tokens bonded by each nominator in 
 
 ## Try it on Moonbase Alpha
 
-Currently, in the Moonbase Alpha TestNet, token holders stake and earn rewards. To do so, check [this guide](/staking/stake/).
+In the Moonbase Alpha TestNet, token holders can stake and earn rewards (to get familiar with the system as the token doesn't have any actual value). 
+
+To do so, you can check [this guide](/staking/stake/).
