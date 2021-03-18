@@ -24,14 +24,14 @@ With the release of [Moonbase Alpha v6](https://github.com/PureStake/moonbeam/re
 Currently, for Moonbase Alpha:
 
 |             Variable             |     |                                                  Value                                                  |
-| :------------------------------: | :-: | :-----------------------------------------------------------------------------------------------------: |
-|     Minimum nomination stake     |     |                              {{ networks.moonbase.staking.min_nom_stake }}                              |
-|        Minimum nomination        |     |                              {{ networks.moonbase.staking.min_nom_amount}}                              |
+| :------------------------------: | :-: | :-----------------------------------------------------------------------------------------------------: | --- |
+|     Minimum nomination stake     |     |                          {{ networks.moonbase.staking.min_nom_stake }} tokens                           |
+|        Minimum nomination        |     |                          {{ networks.moonbase.staking.min_nom_amount}} tokens                           |
 | Maximum nominators per collators |     |                             {{ networks.moonbase.staking.max_nom_per_col }}                             |
 | Maximum collators per nominator  |     |                             {{ networks.moonbase.staking.max_col_per_nom }}                             |
 | Maximum collators per nominator  |     |                             {{ networks.moonbase.staking.max_col_per_nom }}                             |
 |              Round               |     | {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hours) |
-|          Bond duration           |     |                            {{ networks.moonbase.staking.bond_lock }} rounds                             |
+|          Bond duration           |     |                            {{ networks.moonbase.staking.bond_lock }} rounds                             |     |
 
 ## Extrinsics Definitions
 
