@@ -29,7 +29,6 @@ Currently, for Moonbase Alpha:
 |        Minimum nomination        |     |                          {{ networks.moonbase.staking.min_nom_amount}} tokens                           |
 | Maximum nominators per collators |     |                             {{ networks.moonbase.staking.max_nom_per_col }}                             |
 | Maximum collators per nominator  |     |                             {{ networks.moonbase.staking.max_col_per_nom }}                             |
-| Maximum collators per nominator  |     |                             {{ networks.moonbase.staking.max_col_per_nom }}                             |
 |              Round               |     | {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hours) |
 |          Bond duration           |     |                            {{ networks.moonbase.staking.bond_lock }} rounds                             |
 
