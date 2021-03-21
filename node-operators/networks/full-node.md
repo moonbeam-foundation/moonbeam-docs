@@ -377,7 +377,7 @@ sudo docker stop `CONTAINER_ID`
 sudo systemctl stop moonbeam
 ```
 
-Next, remove the `db` folder, where the parachain and relay chain information is stored:
+Next, remove the content of the folder where the chain data is stored (both for the parachain and relay chain):
 
 ```
 sudo rm -rf {{ networks.moonbase.node_directory }}/*
