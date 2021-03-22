@@ -26,14 +26,14 @@ We are using a service called [Gantree Node Watchdog](https://github.com/gantree
 
 For now, we need to run two node watchdogs, one for the relay chain and one for the parachain.  This will be updated in a future release. 
 
-For help, contact our [Discord server](https://discord.gg/Tp2PrS4J) or the [Gantree Discord](https://discord.gg/sfd9M8DVkm). 
+For help, contact our [Discord server](https://discord.gg/FQXm74UQ7V) or the [Gantree Discord](https://discord.gg/N95McPjHZ2). 
  
 ## Checking Prerequisites
 
 Before following this tutorial, you need to:
 
 1. Log in to [https://app.gantree.io](https://app.gantree.io) and create an account.  Navigate to API keys and copy your API key. 
-2. Request a PCK key in our [Discord server](https://discord.gg/Tp2PrS4J)
+2. Request a PCK key in our [Discord server](https://discord.gg/FQXm74UQ7V)
    
 ## Telemetry Exporter with Docker
 

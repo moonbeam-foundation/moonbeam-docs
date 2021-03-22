@@ -36,7 +36,7 @@ const reset = async () => {
       {
          to: contractAddress,
          data: resetTx.encodeABI(),
-         gas: await incrementTx.estimateGas(),
+         gas: await resetTx.estimateGas(),
       },
       account_from.privateKey
    );
