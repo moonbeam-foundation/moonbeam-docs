@@ -16,19 +16,19 @@ networks:
       per_bill_fee: 200000000
       chainbridge:
          kovan:
-            bridge_address: '0x73aa89155A3E4B9E58e634292E182Fb3eCd0D805'
-            ERC20_handler: '0x91eB86784850C3057118A2003C2d82117050Dd2B'
-            ERC721_handler: '0x91956D364671732C7D108fB32ed1aa0765F55F9d'
-            ERC20S: '0xd222a876B303dAe4F8e2099ba3B26ECB5A1b8521'
-            ERC721M: '0x48e654C4976A3ae64bb2598C137dab4996eA2d5c'
-            ERC721E: '0xe2DFe9796a3ebf9fA8F44d601b40E80c36D0e40c'
+            bridge_address: '0x8d5446a9c55C3A6c23A0e1c2d0F11AE31A0E9321'
+            ERC20_handler: '0x814A1324c18d422D58Da915850c85cF62B586438'
+            ERC721_handler: '0x367D4dDc01011191a9DCdf23beDa5e19D340E10e'
+            ERC20S: '0xb66aF299a579fA22e30d805aD44dAC11825Cf823'
+            ERC721M: '0x37E7647590ecb4D50d2c01ab89b56246A37398C8'
+            ERC721E: '0xf9E1BBd96eDdD63e998990C3BD995c83053F9DdC'
          rinkeby:
-            bridge_address: '0xcA27B6bdCfEDad5562de4E5743bEC4c010f50941'
-            ERC20_handler: '0xdA18254F9ecAe8E0df72588455C01c0ef0e59F73'
-            ERC721_handler: '0xD7Aa881B0EB6a2aC3e1A50C42b62A972650e96E3'
-            ERC20S: '0xd7cb461644f402E62dB308Df5dCda21d0CE5ef63'
-            ERC721M: '0x061BdB50d92C1F785Ec508B9F30D19819152942b'
-            ERC721E: '0xFAA12468D875830F16AF973cd2f78861b9a6E848'
+            bridge_address: '0x806c5757E24CC9e9Eb28d7DB522BBF37dC1a5fad'
+            ERC20_handler: '0x92B9b594990C5D5f89090C73a6C0FA110c893817'
+            ERC721_handler: '0xC14EcB32708Af1a34D60c139b20C8BbAAa694B06'
+            ERC20S: '0xbaafDbad27E8D7143eAE13fe632c279a91f3939c'
+            ERC721M: '0x351743f670e804f0Be42BBCF024EE6066d5f199f'
+            ERC721E: '0xf98841206bc289cBE24d01AdEfDD313a2AAd94A0'
       razor:
          bridge_address: '0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB'
       chainlink:
@@ -36,16 +36,16 @@ networks:
          link_contract: '0xa36085F69e2889c224210F603D836748e7dC0088'
          client_contract: '0xe88ec866D05e637074B5a0D0d931f292d7871613'
          basic:
-            aave_usd: '09a985f987bf4fbb8da269b3d2dbe286'
-            algo_usd: '8dff957770214c4fb0c79d90f8548754'
-            band_usd: 'bfbf0761019c493ab448b5a79dc9ba3c'
-            btc_usd: 'b17d475086e2451f9dee27f506f279c6'
-            dot_usd: '0cd5311976d94d3e9f97986951ec8ee7'
-            eth_usd: 'f2376b95145a4511a5ba6720bc8e1e41'
-            ksm_usd: '8395cde44b584577910d0d46eef00fe7'
-            link_usd: '1ad3ebb5bbb645b582969071d8a2622b'
-            sushi_usd: 'a04c1203aae54274b445f352865e9c9a'
-            uni_usd: '9be6d53447f84f509d6befb6259d7a72'
+            aave_usd: 'e2519fb0319a4cc09f5c4789f1ffbe13'
+            algo_usd: 'd13eab3969674cda99362a9d015f8d60'
+            band_usd: '2e69eb85fd5c4073830b03b463217492'
+            btc_usd: 'e129dd6d6a6748fcb7f3944e3993be80'
+            dot_usd: 'a8ddef6b544e42d194bbf08b7555562a'
+            eth_usd: 'd27d7e7cb8744c5d87e693c6133c9e82'
+            ksm_usd: '3b586989bdb24a30bfd2ebe87837fdf1'
+            link_usd: 'c5ba9425089b47c399cc9a1b75942e7f'
+            sushi_usd: '253662a033b24f2e963d0631e2c636e6'
+            uni_usd: '04fa59eec28244a38988e8e8c1b5fabe'
          feed:
             consumer:
                aave_usd: '0xD1e52C81FD72fFc6dA3bF083297E6C37852E93DA'
