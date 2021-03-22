@@ -14,7 +14,7 @@ To access these price feeds, we need to interact with the Bridge contract addres
 
 |     Network    | |         Contract Address        |
 |:--------------:|-|:------------------------------------------:|
-| Moonbase Alpha | | 0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB |
+| Moonbase Alpha | | 0xa7f180fb18EF0d65049fE03d4308bA33a28b6513 |
 
 ## Jobs
 

@@ -35,7 +35,7 @@ Validators need to have a minimum of {{ networks.moonbase.collator_min_stake }} 
 
 A collator has an account associated with its collation activities. This account is used to identify him as a block producer and send the payouts from block rewards.
 
-Currently, you have two ways of proceeding in regards to the account:
+Currently, you have two ways of proceeding in regards having an account in [PolkadotJS](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts):
 
  - Importing an existing (or create a new) H160 account from external wallets or services such as [MetaMask](/integrations/wallets/metamask/) and [MathWallet](/integrations/wallets/mathwallet/)
  - Create a new H160 account with [PolkadotJS](/integrations/wallets/polkadotjs/)
@@ -46,7 +46,7 @@ Once you have an H160 account imported to PolkadotJS, you should see it under th
 
 ## Become a Collator Candidate
 
-Once your node is running, and in sync with the network, you become a collator candidate by following the steps below:
+Once your node is running, and in sync with the network, you become a collator candidate by following the steps below in [PolkadotJS](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts):
 
 1. Navigate to the "Developers" tab and click on "Extrinsics"
 2. Select the account you want associated with your collation activities

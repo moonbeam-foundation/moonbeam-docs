@@ -377,10 +377,10 @@ sudo docker stop `CONTAINER_ID`
 sudo systemctl stop moonbeam
 ```
 
-Next, remove the `db` folder, where the parachain information is stored:
+Next, remove the content of the folder where the chain data is stored (both for the parachain and relay chain):
 
 ```
-sudo rm -rf {{ networks.moonbase.node_directory }}{{ networks.moonbase.node_db_loc }}
+sudo rm -rf {{ networks.moonbase.node_directory }}/*
 ```
 
 Lastly, install the newest version by repeating the steps described before, making sure you are using the latest tag available. If so, you can start a new node with a fresh data directory.
