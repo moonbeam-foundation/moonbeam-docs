@@ -4,6 +4,7 @@ networks:
       rpc_url: http://127.0.0.1:9933
       chain_id: 1281
    moonbase:
+      version: v0.6.0 # must be in this exact format for links to work
       rpc_url: https://rpc.testnet.moonbeam.network
       chain_id: 1287
       parachain_docker_tag: v0.6.2
