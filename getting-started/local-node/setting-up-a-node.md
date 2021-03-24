@@ -16,6 +16,8 @@ This guide outlines the steps needed to create a standalone local node for testi
 
 If you follow to the end of this guide, you will have a Moonbeam node running in your local environment and will be able to connect it to the default Polkadot JS GUI.
 
+There are two ways to get started running a Moonbeam node: you can [locally install and set it up yourself](#installation-and-setup) or you can use [docker to run a pre-built binary](#getting-started-with-docker). Using Docker is a quick and convenient way to get started, but does require you to [install Docker](https://docs.docker.com/get-docker/).
+
 ## Installation and Setup  
 
 We start by cloning a specific tag of the Moonbeam repo that you can find here:
@@ -87,24 +89,55 @@ The tail end of the console log should look like this:
 
 ![Docker - imaged pulled](/images/setting-up-a-node/setting-up-node-9a.png)
 
-Once the Docker image is downloaded, you can run it with the following line:
+Once the Docker image is downloaded, the next step is to run the image.
 
-```
-docker run --rm --name moonbeam_standalone --network host purestake/moonbeam --dev
-```
+If you are using MacOS, you will need to omit `--network host` , as MacOS does not allow you to use this setting. You will need to explicitly open RPC/WS servers to external connections using the `--ws-external` and `--rpc-external` flags.
+
+You can run the Docker image using the following:
+
+=== "Other OSs"
+    ```
+    docker run --rm --name moonbeam_standalone --network host purestake/moonbeam --dev
+    ```
+
+=== "MacOS"
+    ```
+    docker run --rm --name moonbeam_standalone -p 9944:9944 -p 9933:9933 \
+    purestake/moonbeam --dev --ws-external --rpc-external
+    ```
+
+This will spin up a standalone Moonbeam node for testing local development in the default instant seal mode. 
+
+You can also specify an interval seal at which blocks will be authored. For example, if you wanted blocks to be mined every 6 seconds, run the following command using milliseconds for the parameter:
+
+=== "Other OSs"
+    ```
+    docker run --rm --name moonbeam_standalone --network host purestake/moonbeam --dev --tmp --sealing 6000
+    ```
+
+=== "MacOS"
+    ```
+    docker run --rm --name moonbeam_standalone -p 9944:9944 -p 9933:9933 \
+    purestake/moonbeam --dev --ws-external --rpc-external --tmp --sealing 6000
+    ```
 
 If successful, you should see an ouput similar to before, showing that blocks are being produced:
 
 ![Docker - output shows blocks being produced](/images/setting-up-a-node/setting-up-node-8a.png)
 
-### Docker for MacOS
+You can also run the node using a manual seal for testing things like complex forking behavior:
 
-If you are using MacOS, you will need to omit `--network host` , as MacOS does not allow you to use this setting. You will need to explicitly open RPC/WS servers to external connections using the `--ws-external` and `--rpc-external` flags:
 
-```
-docker run --rm --name moonbeam_standalone -p 9944:9944 -p 9933:9933 \
-purestake/moonbeam --dev --ws-external --rpc-external
-```
+=== "Other OSs"
+    ```
+    docker run --rm --name moonbeam_standalone --network host purestake/moonbeam --dev --tmp --sealing manual
+    ```
+
+=== "MacOS"
+    ```
+    docker run --rm --name moonbeam_standalone -p 9944:9944 -p 9933:9933 \
+    purestake/moonbeam --dev --ws-external --rpc-external --tmp --sealing manual
+    ```
 
 ## Connecting Polkadot JS Apps to a Local Moonbeam Node
 
