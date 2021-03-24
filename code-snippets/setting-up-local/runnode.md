@@ -1,1 +1,1 @@
-./target/release/moonbase-standalone --dev
+./target/release/moonbeam --dev
