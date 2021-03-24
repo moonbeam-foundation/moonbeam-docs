@@ -81,7 +81,7 @@ The local standalone Moonbeam node provides two RPC endpoints:
 An alternative to the steps higlighted before is to use Docker to run a pre-build binary. Doing so, you prevent having to install Substrate and all the dependencies, and you can skip the building the node process as well. The only requirement is to have Docker installed, and then you can execute the following command to download the corresponding image:
 
 ```
-docker pull purestake/moonbase:{{ networks.standalone.build_tag }}
+docker pull purestake/moonbeam
 ```
 The tail end of the console log should look like this:
 
@@ -90,8 +90,7 @@ The tail end of the console log should look like this:
 Once the Docker image is downloaded, you can run it with the following line:
 
 ```
-docker run --rm --name moonbeam_standalone --network host \ 
-purestake/moonbase:{{ networks.standalone.build_tag }} /moonbase/moonbase-standalone --dev
+docker run --rm --name moonbeam_standalone --network host purestake/moonbeam --dev
 ```
 
 If successful, you should see an ouput similar to before, showing that blocks are being produced:
@@ -100,12 +99,11 @@ If successful, you should see an ouput similar to before, showing that blocks ar
 
 ### Docker for MacOS
 
-If you are using MacOS, you will need to omit `--network host` , as MacOS does not allow you to use this setting. You will need to be explicitly open RPC/WS servers to external connections using the `--ws-external` and `--rpc-external` flags:
+If you are using MacOS, you will need to omit `--network host` , as MacOS does not allow you to use this setting. You will need to explicitly open RPC/WS servers to external connections using the `--ws-external` and `--rpc-external` flags:
 
 ```
-docker run --rm --name moonbeam_standalone -p 9944:9944 -p 9933:9933 \ 
-purestake/moonbase:{{ networks.standalone.build_tag }} \ 
-/moonbase/moonbase-standalone --dev --ws-external --rpc-external
+docker run --rm --name moonbeam_standalone -p 9944:9944 -p 9933:9933 \
+purestake/moonbeam --dev --ws-external --rpc-external
 ```
 
 ## Connecting Polkadot JS Apps to a Local Moonbeam Node
