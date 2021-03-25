@@ -15,16 +15,25 @@ In this guide, we will explain how to use and/or verify these precompiles.
 
 ## Checking Prerequisites
 
-For some of precompiles, we'll be using Node.js (v15.x) and the npm package manager. You can install them by running the following in your terminal:
+For some precompiles, we need to install Node.js (we'll use v{{ node.version }}) and the npm package manager. You can download directly from [Node.js](https://nodejs.org/en/download/) or in your terminal:
 
-```
-curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash -
-```
-```
-sudo apt install -y nodejs
-```
+=== "Ubuntu"
+    ```
+    curl -sL https://deb.nodesource.com/setup_{{ node.version }} | sudo -E bash -
 
-We can verify that everything installed correctly by querying the version for each package:
+    sudo apt install -y nodejs
+    ```
+
+=== "MacOS"
+    ```
+    # You can use homebrew (https://docs.brew.sh/Installation)
+    brew install node
+
+    # Or you can use nvm (https://github.com/nvm-sh/nvm)
+    nvm install node
+    ```
+
+We can verify that everything is installed correctly by querying the version for each package:
 
 ```
 node -v

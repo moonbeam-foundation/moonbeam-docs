@@ -16,14 +16,23 @@ This tutorial will guide you through the process of setting up the box, using th
 
 ## Checking Prerequisites
 
-For this tutorial, we need to install Node.js (we'll go for v15.x) and the npm package manager. You can do this by running in your terminal:
+For this tutorial, we need to install Node.js (we'll use v{{ node.version }}) and the npm package manager. You can download directly from [Node.js](https://nodejs.org/en/download/) or in your terminal:
 
-```
-curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash -
-```
-```
-sudo apt install -y nodejs
-```
+=== "Ubuntu"
+    ```
+    curl -sL https://deb.nodesource.com/setup_{{ node.version }} | sudo -E bash -
+
+    sudo apt install -y nodejs
+    ```
+
+=== "MacOS"
+    ```
+    # You can use homebrew (https://docs.brew.sh/Installation)
+    brew install node
+
+    # Or you can use nvm (https://github.com/nvm-sh/nvm)
+    nvm install node
+    ```
 
 We can verify that everything installed correctly by querying the version for each package:
 

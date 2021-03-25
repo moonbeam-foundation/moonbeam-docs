@@ -15,23 +15,22 @@ This guide will cover how to use Hardhat to compile, deploy, and debug Ethereum 
 
 ## Checking Prerequisites
 
-As always, check that Node.js has been installed on your machine (we'll use v15.x) and npm. You can do this by running the following in your terminal:
+As always, we need to install Node.js (we'll use v{{ node.version }}) and the npm package manager. You can download directly from [Node.js](https://nodejs.org/en/download/) or in your terminal:
 
 === "Ubuntu"
-
     ```
-    curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash -
-    
+    curl -sL https://deb.nodesource.com/setup_{{ node.version }} | sudo -E bash -
+
     sudo apt install -y nodejs
-
     ```
 
-=== "Mac OS"
-
+=== "MacOS"
     ```
-    #Install Homebrew https://docs.brew.sh/Installation). Run:
-
+    # You can use homebrew (https://docs.brew.sh/Installation)
     brew install node
+
+    # Or you can use nvm (https://github.com/nvm-sh/nvm)
+    nvm install node
     ```
 
 
