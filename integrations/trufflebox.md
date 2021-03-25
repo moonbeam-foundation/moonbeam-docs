@@ -66,6 +66,7 @@ With the files in your local system, the next step is to install all dependencie
 ```
 npm install
 ```
+
 !!! note
     We noticed an error while installing the packages with npm version 7.0.15. You can downgrade npm by running `npm install -g npm@version` and setting the version to the one desired. For example, 7.0.8 or 6.14.9.
 
