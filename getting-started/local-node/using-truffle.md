@@ -16,15 +16,23 @@ This guide walks through the process of deploying a Solidity-based smart contrac
 For this guide, you will need to have a  standalone Moonbeam node running in `--dev` mode. This can be done by either following the steps detailed [here](/getting-started/local-node/setting-up-a-node/) or by using the [Moonbeam Truffle plugin](/integrations/trufflebox/#the-moonbeam-truffle-plugin), which we'll use in this tutorial's examples.
 
 ## Checking Prerequisites
-First, we need to install Node.js (we'll use v15.x) and the npm package manager. You can do this by running in your terminal:
+First, we need to install Node.js (we'll use v15.x) and the npm package manager. You can download directly from https://nodejs.org/en/download/ or via command line in your terminal:
 
-```
-curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash -
-```
+=== "Ubuntu"
+    ```
+    curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash -
 
-```
-sudo apt install -y nodejs
-```
+    sudo apt install -y nodejs
+    ```
+
+=== "MacOS"
+    ```
+    // you can use homebrew to install the latest compatible versions of nodejs and npm
+    homebrew install node
+
+    // or you can use nvm to install the latest compatible versions of nodejs and npm
+    nvm install node
+    ```
 
 We can verify that everything is installed correctly by querying the version for each package:
 
@@ -42,7 +50,7 @@ In addition, you can globally install Truffle by running:
 npm install -g truffle
 ```
 
-As of this guide's publish date, the versions used were 15.2.1, 7.0.8, and 5.1.52 respectively.
+As of this guide's publish date, the versions used were 15.12.0, 7.6.3, and 5.2.4 respectively.
 
 !!! note
      For the following examples, you don't need to have Truffle globally installed, as it is included as a dependency on the Moonbeam Truffle box. If you prefer, you can run `npx truffle` or `./node_modules/.bin/truffle` instead of `truffle`.
@@ -75,7 +83,7 @@ module.exports = {
 
 Note that we are using `HD-Wallet-Provider` from Truffle as the Hierarchical Deterministic wallet. Also, we've defined a `dev` network that points to the standalone node provider URL, and the private key of the development account, which holds all funds in the standalone node, is included.
 
-## Running an Standalone TestNet
+## Running a Standalone TestNet
 
 To set up a standalone Moonbeam node, you can follow [this tutorial](/getting-started/local-node/setting-up-a-node/). The process takes around 40 minutes in total, and you need to install Substrate and all its dependencies. The Moonbeam Truffle plugin provides a way to get started with a standalone node much quicker, and the only requirement is to have Docker installed (at time of writing the Docker version used was 19.03.6).
 
