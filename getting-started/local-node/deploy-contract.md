@@ -21,7 +21,7 @@ Besides, two other libraries will be used to compile the smart contract:
  - [Py-solc-x](https://pypi.org/project/py-solc-x/) to compile Solidity smart contracts using Python
 
 !!! note
-    The examples in this guide assume you have an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows.
+    The examples in this guide assume you have a MacOS or Ubuntu 18.04-based environment and will need to be adapted accordingly for Windows.
 
 ## Checking Prerequisites
 
