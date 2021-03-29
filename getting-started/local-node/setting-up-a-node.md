@@ -9,14 +9,75 @@ description: Follow this tutorial to learn how to set up your first Moonbeam nod
 
 ## Introduction  
 
-This guide outlines the steps needed to create a standalone local node for testing the Ethereum compatibility functionality of Moonbeam.
+This guide outlines the steps needed to create a standalone local node, with one [pre-funded account](#account-details), for testing the Ethereum compatibility functionality of Moonbeam.
 
 !!! note
     This tutorial was created using the {{ networks.standalone.build_tag }} tag of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/{{ networks.standalone.build_tag }}). The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility are still under very active development. The examples in this guide assume a MacOS or Ubuntu 18.04-based environment and will need to be adapted accordingly for Windows.
 
 If you follow to the end of this guide, you will have a Moonbeam node running in your local environment and will be able to connect it to the default Polkadot JS GUI.
 
-There are two ways to get started running a Moonbeam node: you can [locally install and set it up yourself](#installation-and-setup) or you can use [docker to run a pre-built binary](#getting-started-with-docker). Using Docker is a quick and convenient way to get started, but does require you to [install Docker](https://docs.docker.com/get-docker/).
+There are two ways to get started running a Moonbeam node: you can use [docker to run a pre-built binary](#getting-started-with-docker) or you can [locally install and set it up yourself](#installation-and-setup). Using Docker is a quick and convenient way to get started, but does require you to [install Docker](https://docs.docker.com/get-docker/).
+
+## Getting Started with Docker
+
+Using Docker enables you to spin up a node in a matter of seconds. It prevents you from having to install Substrate and all the dependencies, and you can skip the building the node process as well. The only requirement is to have Docker installed, and then you can execute the following command to download the corresponding image:
+
+```
+docker pull purestake/moonbeam
+```
+The tail end of the console log should look like this:
+
+![Docker - imaged pulled](/images/setting-up-a-node/setting-up-node-9a.png)
+
+Once the Docker image is downloaded, the next step is to run the image.
+
+If you are using MacOS, you will need to omit `--network host` , as MacOS does not allow you to use this setting. You will need to explicitly open RPC/WS servers to external connections using the `--ws-external` and `--rpc-external` flags.
+
+You can run the Docker image using the following:
+
+=== "Ubuntu"
+    ```
+    docker run --rm --name moonbeam_standalone --network host purestake/moonbeam --dev
+    ```
+
+=== "MacOS"
+    ```
+    docker run --rm --name moonbeam_standalone -p 9944:9944 -p 9933:9933 \
+    purestake/moonbeam --dev --ws-external --rpc-external
+    ```
+
+This will spin up a standalone Moonbeam node for testing local development in the default instant seal mode. 
+
+You can also specify an interval seal at which blocks can be authored. For example, if you wanted blocks to be authored every 6 seconds, run the following command using milliseconds for the parameter:
+
+=== "Ubuntu"
+    ```
+    docker run --rm --name moonbeam_standalone --network host purestake/moonbeam --dev --sealing 6000
+    ```
+
+=== "MacOS"
+    ```
+    docker run --rm --name moonbeam_standalone -p 9944:9944 -p 9933:9933 \
+    purestake/moonbeam --dev --ws-external --rpc-external --sealing 6000
+    ```
+
+If successful, you should see an ouput similar to before, showing that blocks are being produced:
+
+![Docker - output shows blocks being produced](/images/setting-up-a-node/setting-up-node-8a.png)
+
+You can also run the node using a manual seal for testing things like complex forking behavior:
+
+
+=== "Ubuntu"
+    ```
+    docker run --rm --name moonbeam_standalone --network host purestake/moonbeam --dev --sealing manual
+    ```
+
+=== "MacOS"
+    ```
+    docker run --rm --name moonbeam_standalone -p 9944:9944 -p 9933:9933 \
+    purestake/moonbeam --dev --ws-external --rpc-external --sealing manual
+    ```
 
 ## Installation and Setup  
 
@@ -77,67 +138,11 @@ The local standalone Moonbeam node provides two RPC endpoints:
  
  - HTTP: `http://127.0.0.1:9933`
  - WS: `ws://127.0.0.1:9944` 
+ 
+## Development Account
+Your standalone build comes with one pre-funded account for development:
 
-## Getting Started with Docker
-
-An alternative to the steps higlighted before is to use Docker to run a pre-build binary. Doing so, you prevent having to install Substrate and all the dependencies, and you can skip the building the node process as well. The only requirement is to have Docker installed, and then you can execute the following command to download the corresponding image:
-
-```
-docker pull purestake/moonbeam
-```
-The tail end of the console log should look like this:
-
-![Docker - imaged pulled](/images/setting-up-a-node/setting-up-node-9a.png)
-
-Once the Docker image is downloaded, the next step is to run the image.
-
-If you are using MacOS, you will need to omit `--network host` , as MacOS does not allow you to use this setting. You will need to explicitly open RPC/WS servers to external connections using the `--ws-external` and `--rpc-external` flags.
-
-You can run the Docker image using the following:
-
-=== "Other OSs"
-    ```
-    docker run --rm --name moonbeam_standalone --network host purestake/moonbeam --dev
-    ```
-
-=== "MacOS"
-    ```
-    docker run --rm --name moonbeam_standalone -p 9944:9944 -p 9933:9933 \
-    purestake/moonbeam --dev --ws-external --rpc-external
-    ```
-
-This will spin up a standalone Moonbeam node for testing local development in the default instant seal mode. 
-
-You can also specify an interval seal at which blocks will be authored. For example, if you wanted blocks to be mined every 6 seconds, run the following command using milliseconds for the parameter:
-
-=== "Other OSs"
-    ```
-    docker run --rm --name moonbeam_standalone --network host purestake/moonbeam --dev --tmp --sealing 6000
-    ```
-
-=== "MacOS"
-    ```
-    docker run --rm --name moonbeam_standalone -p 9944:9944 -p 9933:9933 \
-    purestake/moonbeam --dev --ws-external --rpc-external --tmp --sealing 6000
-    ```
-
-If successful, you should see an ouput similar to before, showing that blocks are being produced:
-
-![Docker - output shows blocks being produced](/images/setting-up-a-node/setting-up-node-8a.png)
-
-You can also run the node using a manual seal for testing things like complex forking behavior:
-
-
-=== "Other OSs"
-    ```
-    docker run --rm --name moonbeam_standalone --network host purestake/moonbeam --dev --tmp --sealing manual
-    ```
-
-=== "MacOS"
-    ```
-    docker run --rm --name moonbeam_standalone -p 9944:9944 -p 9933:9933 \
-    purestake/moonbeam --dev --ws-external --rpc-external --tmp --sealing manual
-    ```
+--8<-- 'metamask-local/dev-account.md'
 
 ## Connecting Polkadot JS Apps to a Local Moonbeam Node
 
@@ -157,5 +162,5 @@ With Polkadot JS Apps connected, you will see the standalone Moonbeam node produ
 ## Querying Account State
 
 With the release of [Moonbase Alpha v3](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/), Moonbeam now works under a single account format, which is the Ethereum-styled H160 and is now also supported in Polkadot JS Apps. To check the balance of an address, you can simply import your account to the Accounts tab. You can find more information in the [Unified Accounts](/learn/unified-accounts/) section.
-
+ 
 Nevertheless, leveraging the Ethereum full RPC capabilities of Moonbeam, you can use [MetaMask](/getting-started/local-node/using-metamask/) to check the balance of that address as well. In addition, you can also use other development tools, such as [Remix](/getting-started/local-node/using-remix/) and [Truffle](/getting-started/local-node/using-truffle/).
