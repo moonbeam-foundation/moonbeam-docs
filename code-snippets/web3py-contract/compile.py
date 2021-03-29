@@ -1,7 +1,7 @@
 import solcx
 
 # Install Solidity Compiler
-# solcx.install_solc()
+solcx.install_solc()
 
 # Compile Contract
 temp_file = solcx.compile_files('Incrementer.sol')
