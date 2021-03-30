@@ -13,7 +13,7 @@ description: Follow this tutorial to learn how to set up your first Moonbeam nod
 This guide outlines the steps needed to create a standalone local node for testing the Ethereum compatibility functionality of Moonbeam.
 
 !!! note
-This tutorial was created using the {{ networks.standalone.build_tag }} tag of [Moonbase Alpha](https://github.com/PureStake/moonbeam). The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility are still under very active development. The examples in this guide assume an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows.
+    This tutorial was created using the {{ networks.standalone.build_tag }} tag of [Moonbase Alpha](https://github.com/PureStake/moonbeam). The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility are still under very active development. The examples in this guide assume an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows.
 
 If you follow to the end of this guide, you will have a Moonbeam node running in your local environment and will be able to connect it to the default Polkadot JS GUI.
 
@@ -53,7 +53,7 @@ If a _cargo not found error_ shows up in the terminal, manually add Rust to your
 ```
 
 !!! note
-The initial build will take a while. Depending on your hardware, you should expect approximately 30 minutes for the build process to finish.
+    The initial build will take a while. Depending on your hardware, you should expect approximately 30 minutes for the build process to finish.
 
 Here is what the tail end of the build output should look like:
 
@@ -66,7 +66,7 @@ Then, you will want to run the node in dev mode using the following command:
 ```
 
 !!! note
-For people not familiar with Substrate, the `--dev` flag is a way to run a Substrate-based node in a single node developer configuration for testing purposes. You can learn more about `--dev` in [this Substrate tutorial](https://substrate.dev/docs/en/tutorials/create-your-first-substrate-chain/interact).
+    For people not familiar with Substrate, the `--dev` flag is a way to run a Substrate-based node in a single node developer configuration for testing purposes. You can learn more about `--dev` in [this Substrate tutorial](https://substrate.dev/docs/en/tutorials/create-your-first-substrate-chain/interact).
 
 You should see an output that looks like the following, showing that blocks are being produced:
 
@@ -74,8 +74,8 @@ You should see an output that looks like the following, showing that blocks are 
 
 The local standalone Moonbeam node provides two RPC endpoints:
 
--  HTTP: `http://127.0.0.1:9933`
--  WS: `ws://127.0.0.1:9944`
+ - HTTP: `http://127.0.0.1:9933`
+ - WS: `ws://127.0.0.1:9944`
 
 ## Getting Started with Docker
 

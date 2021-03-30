@@ -11,26 +11,26 @@ description: Learn how to deploy unmodified and unchanged Solidity-based smart c
 
 This guide walks through using the Solidity compiler and three different Ethereum libraries to sign and send a transaction on Moonbeam manually. The three libraries covered by this tutorial are:
 
--  [Web3.js](https://web3js.readthedocs.io/)
--  [Ethers.js](https://docs.ethers.io/)
--  [Web3.py](https://web3py.readthedocs.io/)
+ - [Web3.js](https://web3js.readthedocs.io/)
+ - [Ethers.js](https://docs.ethers.io/)
+ - [Web3.py](https://web3py.readthedocs.io/)
 
 Besides, two other libraries will be used to compile the smart contract:
 
--  [Solc-js](https://www.npmjs.com/package/solc) to compile Solidity smart contracts using JavaScript
--  [Py-solc-x](https://pypi.org/project/py-solc-x/) to compile Solidity smart contracts using Python
+ - [Solc-js](https://www.npmjs.com/package/solc) to compile Solidity smart contracts using JavaScript
+ - [Py-solc-x](https://pypi.org/project/py-solc-x/) to compile Solidity smart contracts using Python
 
 !!! note
-The examples in this guide assume you have an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows.
+    The examples in this guide assume you have an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows.
 
 ## Checking Prerequisites
 
 The examples using both web3.js and ethers.js need you to install Node.js and NPM previously. For the web3.py, you need Python and PIP. As of the writing of this guide, the versions used were:
 
--  Node.js v15.10.0
--  NPM v7.5.3
--  Python v3.6.9 (web3 requires Python >= 3.5.3 and < 4)
--  PIP3 v9.0.1
+ - Node.js v15.10.0
+ - NPM v7.5.3
+ - Python v3.6.9 (web3 requires Python >= 3.5.3 and < 4)
+ - PIP3 v9.0.1
 
 Next, create a directory to store all of the relevant files:
 
@@ -47,30 +47,36 @@ npm init --yes
 In the directory, install the corresponding library and the Solidity compiler (_web3.py_ and _py-solc-x_ are installed in the default directory of PIP3):
 
 === "Web3.js"
-`npm i web3 npm i solc@0.8.0`
+    ```
+    npm i web3 npm i solc@0.8.0
+    ```
 
 === "Ethers.js"
-`npm i ethers npm i solc@0.8.0`
+    ```
+    npm i ethers npm i solc@0.8.0
+    ```
 
 === "Web3.py"
-`pip3 install web3 pip3 install py-solc-x`
+    ```
+    pip3 install web3 pip3 install py-solc-x
+    ```
 
 The versions used when this guide was published were
 
--  Web3.js v1.33 (`npm ls web3`)
--  Ethers.js v5.0.31 (`npm ls ethers`)
--  Solc (JS) v0.8.0 (`npm ls solc`)
--  Web3.py v5.17.0 (`pip3 show web3`)
--  Py-solc-x v1.1.0 (`pip3 show py-solc-x`)
+ - Web3.js v1.33 (`npm ls web3`)
+ - Ethers.js v5.0.31 (`npm ls ethers`)
+ - Solc (JS) v0.8.0 (`npm ls solc`)
+ - Web3.py v5.17.0 (`pip3 show web3`)
+ - Py-solc-x v1.1.0 (`pip3 show py-solc-x`)
 
 The setup for this example will be relatively simple, and it'll contain the following files:
 
--  **_Incrementer.sol_** — the file with our Solidity code
--  **_compile.\*_** — compiles the contract with the Solidity compiler
--  **_deploy.\*_**: it will handle the deployment to our local Moonbeam node
--  **_get.\*_** — it will make a call to the node to get the current value of the number
--  **_increment.\*_** — it will make a transaction to increment the number stored on the Moonbeam node
--  **_reset.\*_** — the function to call that will reset the number stored to zero
+ - **_Incrementer.sol_** — the file with our Solidity code
+ - **_compile.\*_** — compiles the contract with the Solidity compiler
+ - **_deploy.\*_**: it will handle the deployment to our local Moonbeam node
+ - **_get.\*_** — it will make a call to the node to get the current value of the number
+ - **_increment.\*_** — it will make a transaction to increment the number stored on the Moonbeam node
+ - **_reset.\*_** — the function to call that will reset the number stored to zero
 
 ## The Contract File
 
@@ -83,27 +89,33 @@ The contract used is a simple incrementer, arbitrarily named _Incrementer.sol_, 
 The `constructor` function, which runs when the contract is deployed, sets the initial value of the number variable stored on-chain (default is 0). The `increment` function adds the `_value` provided to the current number, but a transaction needs to be sent, which modifies the stored data. Lastly, the `reset` function resets the stored value to zero.
 
 !!! note
-This contract is a simple example for illustration purposes only and does not handle values wrapping around.
+    This contract is a simple example for illustration purposes only and does not handle values wrapping around.
 
 ## Compiling the Contract
 
 The only purpose of the compile file is to use the Solidity compiler to output the bytecode and interface (ABI) our contract. You can find the code snippet for each library here (they were arbritarly named `compile.*`):
 
--  Web3.js: [_compile.js_](/snippets/code/web3-contract-local/compile.js)
--  Ethers.js: [_compile.js_](/snippets/code/web3-contract-local/compile.js)
--  Web3.py: [_compile.py_](/snippets/code/web3py-contract/compile.py)
+ - Web3.js: [_compile.js_](/snippets/code/web3-contract-local/compile.js)
+ - Ethers.js: [_compile.js_](/snippets/code/web3-contract-local/compile.js)
+ - Web3.py: [_compile.py_](/snippets/code/web3py-contract/compile.py)
 
 !!! note
-The compile file for both JavaScript libraries is the same as they share the JavaScript bindings for the Solidity compiler (same package)
+    The compile file for both JavaScript libraries is the same as they share the JavaScript bindings for the Solidity compiler (same package)
 
 === "Web3.js"
-`--8<-- 'code/web3-contract-local/compile.js'`
+    ```
+    --8<-- 'code/web3-contract-local/compile.js'
+    ```
 
 === "Ethers.js"
-`--8<-- 'code/web3-contract-local/compile.js'`
+    ```
+    --8<-- 'code/web3-contract-local/compile.js'
+    ```
 
 === "Web3.py"
-`--8<-- 'code/web3py-contract/compile.py'`
+    ```
+    --8<-- 'code/web3py-contract/compile.py'
+    ```
 
 ### Web3.js and Ethers.js
 
@@ -118,7 +130,7 @@ Lastly, extract the data of the `Incrementer` contract of the `Incrementer.sol` 
 In the first part of [the script](/snippets/code/web3py-contract/compile.py), the contract file is compiled using the `solcx.compile_files` function. Note that the contract file is in the same directory as the compile script.
 
 !!! note
-When running the `compile.py` you might be get an error stating that `Solc` needs to be installed. If so, uncomment the line in the file that executes `solcx.install_solc()` and rerun the compile file again with `python3 compile.py`. More information can be found in [this link](https://pypi.org/project/py-solc-x/).
+    When running the `compile.py` you might be get an error stating that `Solc` needs to be installed. If so, uncomment the line in the file that executes `solcx.install_solc()` and rerun the compile file again with `python3 compile.py`. More information can be found in [this link](https://pypi.org/project/py-solc-x/).
 
 Next, and wrapping up the script, the contract data is exported. In this example, only the interface (ABI) and bytecode were defined.
 
@@ -126,25 +138,31 @@ Next, and wrapping up the script, the contract data is exported. In this example
 
 Regardless of the library, the strategy to deploy the compiled smart contract is somewhat similar. A contract instance is created using its interface (ABI) and bytecode. From this instance, a deployment function is used to send a signed transaction that deploys the contract. You can find the code snippet for each library here (they were arbitrarily named `deploy.*`):
 
--  Web3.js: [_deploy.js_](/snippets/code/web3-contract-local/deploy.js)
--  Ethers.js: [_deploy.js_](/snippets/code/ethers-contract-local/deploy.js)
--  Web3.py: [_deploy.py_](/snippets/code/web3py-contract/deploy.py)
+ - Web3.js: [_deploy.js_](/snippets/code/web3-contract-local/deploy.js)
+ - Ethers.js: [_deploy.js_](/snippets/code/ethers-contract-local/deploy.js)
+ - Web3.py: [_deploy.py_](/snippets/code/web3py-contract/deploy.py)
 
 For simplicity, the deploy file is composed of two sections. In the first section ("Define Provider & Variables"), the library to use and the ABI and bytecode of the contract are imported. Also, the provider and account from (with the private key) are defined. Note that `providerRPC` has both the standard standalone node RPC endpoint and the one for [Moonbase Alpha](/networks/testnet/).
 
 The second section ("Deploy Contract") outlines the actual contract deployment part. Note that for this example, the initial value of the `number` variable was set to 5. Some of the key takeaways are discussed next.
 
 === "Web3.js"
-`--8<-- 'code/web3-contract-local/deploy.js'`
+    ```
+    --8<-- 'code/web3-contract-local/deploy.js'
+    ```
 
 === "Ethers.js"
-`--8<-- 'code/ethers-contract-local/deploy.js'`
+    ```
+    --8<-- 'code/ethers-contract-local/deploy.js'
+    ```
 
 === "Web3.py"
-`--8<-- 'code/web3py-contract/deploy.py'`
+    ```
+    --8<-- 'code/web3py-contract/deploy.py'
+    ```
 
 !!! note
-The _deploy.\*_ script provides the contract address as an output. This comes in handy, as it is used for the contract interaction files.
+    The _deploy.\*_ script provides the contract address as an output. This comes in handy, as it is used for the contract interaction files.
 
 ### Web3.js
 
@@ -186,22 +204,28 @@ Call methods are the type of interaction that don't modify the contract's storag
 
 Let's overview the _get.\*_ file (the simplest of them all), which fetches the current value stored in the contract. You can find the code snippet for each library here (they were arbritarly named `get.*`):
 
--  Web3.js: [_get.js_](/snippets/code/web3-contract-local/get.js)
--  Ethers.js: [_get.js_](/snippets/code/ethers-contract-local/get.js)
--  Web3.py: [_get.py_](/snippets/code/web3py-contract/get.py)
+ - Web3.js: [_get.js_](/snippets/code/web3-contract-local/get.js)
+ - Ethers.js: [_get.js_](/snippets/code/ethers-contract-local/get.js)
+ - Web3.py: [_get.py_](/snippets/code/web3py-contract/get.py)
 
 For simplicity, the get file is composed of two sections. In the first section ("Define Provider & Variables"), the library to use and the ABI of the contract are imported. Also, the provider and the contract's address are defined. Note that `providerRPC` has both the standard standalone node RPC endpoint and the one for [Moonbase Alpha](/networks/testnet/).
 
 The second section ("Call Function") outlines the actual call to the contract. Regardless of the library, a contract instance is created (linked to the contract's address), from which the call method is queried. Some of the key takeaways are discussed next.
 
 === "Web3.js"
-`--8<-- 'code/web3-contract-local/get.js'`
+    ```
+    --8<-- 'code/web3-contract-local/get.js'
+    ```
 
 === "Ethers.js"
-`--8<-- 'code/ethers-contract-local/get.js'`
+    ```
+    --8<-- 'code/ethers-contract-local/get.js'
+    ```
 
 === "Web3.py"
-`--8<-- 'code/web3py-contract/get.py'`
+    ```
+    --8<-- 'code/web3py-contract/get.py'
+    ```
 
 ### Web3.js
 
@@ -239,39 +263,51 @@ Send methods are the type of interaction that modify the contract's storage (cha
 
 First, let's overview the _increment.\*_ file, which increments the current number stored in the contract by a given value. You can find the code snippet for each library here (they were arbritarly named `increment.*`):
 
--  Web3.js: [_increment.js_](/snippets/code/web3-contract-local/increment.js)
--  Ethers.js: [_increment.js_](/snippets/code/ethers-contract-local/increment.js)
--  Web3.py: [_increment.py_](/snippets/code/web3py-contract/increment.py)
+ - Web3.js: [_increment.js_](/snippets/code/web3-contract-local/increment.js)
+ - Ethers.js: [_increment.js_](/snippets/code/ethers-contract-local/increment.js)
+ - Web3.py: [_increment.py_](/snippets/code/web3py-contract/increment.py)
 
 For simplicity, the increment file is composed of two sections. In the first section ("Define Provider & Variables"), the library to use and the ABI of the contract are imported. The provider, the contract's address, and the value of the `increment` function are also defined. Note that `providerRPC` has both the standard standalone node RPC endpoint and the one for [Moonbase Alpha](/networks/testnet/).
 
 The second section ("Send Function") outlines the actual function to be called with the transaction. Regardless of the library, a contract instance is created (linked to the contract's address), from which the function to be used is queried.
 
 === "Web3.js"
-`--8<-- 'code/web3-contract-local/increment.js'`
+    ```
+    --8<-- 'code/web3-contract-local/increment.js'
+    ```
 
 === "Ethers.js"
-`--8<-- 'code/ethers-contract-local/increment.js'`
+    ```
+    --8<-- 'code/ethers-contract-local/increment.js'
+    ```
 
 === "Web3.py"
-`--8<-- 'code/web3py-contract/increment.py'`
+    ```
+    --8<-- 'code/web3py-contract/increment.py'
+    ```
 
 The second file to interact with the contract is the _reset.\*_ file, which resets the number stored in the contract to zero. You can find the code snippet for each library here (they were arbritarly named `reset.*`):
 
--  Web3.js: [_reset.js_](/snippets/code/web3-contract-local/reset.js)
--  Ethers.js: [_reset.js_](/snippets/code/ethers-contract-local/reset.js)
--  Web3.py: [_reset.py_](/snippets/code/web3py-contract/reset.py)
+ - Web3.js: [_reset.js_](/snippets/code/web3-contract-local/reset.js)
+ - Ethers.js: [_reset.js_](/snippets/code/ethers-contract-local/reset.js)
+ - Web3.py: [_reset.py_](/snippets/code/web3py-contract/reset.py)
 
 Each file's structure is very similar to his _increment.\*_ counterpart for each library. The main difference is the method being called.
 
 === "Web3.js"
-`--8<-- 'code/web3-contract-local/reset.js'`
+    ```
+    --8<-- 'code/web3-contract-local/reset.js'
+    ```
 
 === "Ethers.js"
-`--8<-- 'code/ethers-contract-local/reset.js'`
+    ```
+    --8<-- 'code/ethers-contract-local/reset.js'
+    ```
 
 === "Web3.py"
-`--8<-- 'code/web3py-contract/reset.py'`
+    ```
+    --8<-- 'code/web3py-contract/reset.py'
+    ```
 
 ### Web3.js
 
@@ -316,68 +352,86 @@ For this section, the code shown before was adapted to target a Standalone node,
 First, deploy the contract by running (note that the directory was renamed for each library):
 
 === "Web3.js"
-`node deploy.js`
+    ```
+    node deploy.js
+    ```
 
 === "Ethers.js"
-`node deploy.js`
+    ```
+    node deploy.js
+    ```
 
 === "Web3.py"
-`python3 deploy.py`
+    ```
+    python3 deploy.py
+    ```
 
 This will deploy the contract and return the address:
 
 === "Web3.js"
-![Deploy Contract Web3js](/images/deploycontract/contract-deploy-web3js.png)
+    ![Deploy Contract Web3js](/images/deploycontract/contract-deploy-web3js.png)
 
 === "Ethers.js"
-![Deploy Contract Etherjs](/images/deploycontract/contract-deploy-ethers.png)
+    ![Deploy Contract Etherjs](/images/deploycontract/contract-deploy-ethers.png)
 
 === "Web3.py"
-![Deploy Contract Web3py](/images/deploycontract/contract-deploy-web3py.png)
+    ![Deploy Contract Web3py](/images/deploycontract/contract-deploy-web3py.png)
 
 Next, run the increment file. You can use the get file to verify the value of the number stored in the contract before and after increment it:
 
 === "Web3.js"
-`node get.js node increment.js node get.js`
+    ```
+    node get.js node increment.js node get.js
+    ```
 
 === "Ethers.js"
-`node get.js node increment.js node get.js`
+    ```
+    node get.js node increment.js node get.js
+    ```
 
 === "Web3.py"
-`python3 get.py python3 increment.py python3 get.py`
+    ```
+    python3 get.py python3 increment.py python3 get.py
+    ```
 
 This will display the value before the increment transaction, the hash of the transaction, and the value after:
 
 === "Web3.js"
-![Increment Contract Web3js](/images/deploycontract/contract-increment-web3js.png)
+    ![Increment Contract Web3js](/images/deploycontract/contract-increment-web3js.png)
 
 === "Ethers.js"
-![Increment Contract Etherjs](/images/deploycontract/contract-increment-ethers.png)
+    ![Increment Contract Etherjs](/images/deploycontract/contract-increment-ethers.png)
 
 === "Web3.py"
-![Increment Contract Web3py](/images/deploycontract/contract-increment-web3py.png)
+    ![Increment Contract Web3py](/images/deploycontract/contract-increment-web3py.png)
 
 Lastly, run the reset file. Once again, you can use the get file to verify the value of the number stored in the contract before and after resetting it:
 
 === "Web3.js"
-`node get.js node reset.js node get.js`
+    ```
+    node get.js node reset.js node get.js
+    ```
 
 === "Ethers.js"
-`node get.js node reset.js node get.js`
+    ```
+    node get.js node reset.js node get.js
+    ```
 
 === "Web3.py"
-`python3 get.py python3 reset.py python3 get.py`
+    ```
+    python3 get.py python3 reset.py python3 get.py
+    ```
 
 This will display the value before the reset transaction, the hash of the transaction, and the value after:
 
 === "Web3.js"
-![Reset Contract Web3js](/images/deploycontract/contract-reset-web3js.png)
+    ![Reset Contract Web3js](/images/deploycontract/contract-reset-web3js.png)
 
 === "Ethers.js"
-![Reset Contract Etherjs](/images/deploycontract/contract-reset-ethers.png)
+    ![Reset Contract Etherjs](/images/deploycontract/contract-reset-ethers.png)
 
 === "Web3.py"
-![Reset Contract Web3py](/images/deploycontract/contract-reset-web3py.png)
+    ![Reset Contract Web3py](/images/deploycontract/contract-reset-web3py.png)
 
 ## We Want to Hear From You
 

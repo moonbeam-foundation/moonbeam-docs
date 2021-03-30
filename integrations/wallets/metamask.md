@@ -37,5 +37,5 @@ Moonbase Alpha TestNet:
 
 In the case that you are interested in a more detailed step-by-step guide, you can go to our specific tutorials:
 
--  MetaMask on a [Moonbeam standalone node](/getting-started/local-node/using-metamask/)
--  MetaMask on [Moonbase Alpha](/getting-started/testnet/metamask/)
+ - MetaMask on a [Moonbeam standalone node](/getting-started/local-node/using-metamask/)
+ - MetaMask on [Moonbase Alpha](/getting-started/testnet/metamask/)

@@ -11,21 +11,21 @@ description: Learn how to create and send transactions on Moonbeam’s Ethereum-
 
 This guide walks through using three different Ethereum libraries to manually sign and send a transaction on Moonbeam. The three libraries covered in this tutorial are:
 
--  [Web3.js](https://web3js.readthedocs.io/)
--  [Ethers.js](https://docs.ethers.io/)
--  [Web3.py](https://web3py.readthedocs.io/)
+ - [Web3.js](https://web3js.readthedocs.io/)
+ - [Ethers.js](https://docs.ethers.io/)
+ - [Web3.py](https://web3py.readthedocs.io/)
 
 !!! note
-The examples in this guide assume you have an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows.
+    The examples in this guide assume you have an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows.
 
 ## Checking Prerequisites
 
 The examples using both web3.js and ethers.js require previous installation of Node.js and NPM. The example using web3.py requires Python and PIP. As of the writing of this guide, the versions used were:
 
--  Node.js v15.10.0
--  NPM v7.5.3
--  Python v3.6.9 (web3 requires Python >= 3.5.3 and < 4)
--  PIP3 v9.0.1
+ - Node.js v15.10.0
+ - NPM v7.5.3
+ - Python v3.6.9 (web3 requires Python >= 3.5.3 and < 4)
+ - PIP3 v9.0.1
 
 Next, create a directory to store all of the relevant files:
 
@@ -42,40 +42,52 @@ npm init --yes
 In the directory, install the library to be used (web3.py is installed in the default directory of PIP3):
 
 === "Web3.js"
-`npm i web3`
+    ```
+    npm i web3
+    ```
 
 === "Ethers.js"
-`npm i ethers`
+    ```
+    npm i ethers
+    ```
 
 === "Web3.py"
-`pip3 install web3`
+    ```
+    pip3 install web3
+    ```
 
 The versions used as of publishing this guide were:
 
--  Web3.js v1.33 (`npm ls web3`)
--  Ethers.js v5.0.31 (`npm ls ethers`)
--  Web3.py v5.17.0 (`pip3 show web3`)
+ - Web3.js v1.33 (`npm ls web3`)
+ - Ethers.js v5.0.31 (`npm ls ethers`)
+ - Web3.py v5.17.0 (`pip3 show web3`)
 
 ## The Transaction File
 
 Only one file is needed to execute a transaction between accounts. The script shown in this section will transfer 1 Token from an origin address (from which you hold the private key), to another address. You can find the code snippet for each library here (they were arbritarly named `transaction.*`):
 
--  Web3.js: [_transaction.js_](/snippets/code/web3-tx-local/transaction.js)
--  Ethers.js: [_transaction.js_](/snippets/code/ethers-tx-local/transaction.js)
--  Web3.py: [_transaction.py_](/snippets/code/web3py-tx/transaction.py)
+ - Web3.js: [_transaction.js_](/snippets/code/web3-tx-local/transaction.js)
+ - Ethers.js: [_transaction.js_](/snippets/code/ethers-tx-local/transaction.js)
+ - Web3.py: [_transaction.py_](/snippets/code/web3py-tx/transaction.py)
 
 Each of the files, regardless of the library used, has been divided into three sections. In the first section ("Define Provider & Variables"), the library to use is imported, and the provider and other variables are defined (variables depend on the library). Note that `providerRPC` has both the standard standalone node RPC endpoint and the one for [Moonbase Alpha](/networks/testnet/).
 
 The second section ("Create and Deploy Transaction") outlines the functions needed to send the transaction itself. Some of the key takeaways are discussed next.
 
 === "Web3.js"
-`--8<-- 'code/web3-tx-local/transaction.js'`
+    ```
+    --8<-- 'code/web3-tx-local/transaction.js'
+    ```
 
 === "Ethers.js"
-`--8<-- 'code/ethers-tx-local/transaction.js'`
+    ```
+    --8<-- 'code/ethers-tx-local/transaction.js'
+    ```
 
 === "Web3.py"
-`--8<-- 'code/web3py-tx/transaction.py'`
+    ```
+    --8<-- 'code/web3py-tx/transaction.py'
+    ```
 
 ### Web3.js
 
@@ -123,22 +135,28 @@ Before running the script, another file checks the balances of both addresses be
 
 You can find the code snippet for each library here (files were arbitrarily named `balances.*`):
 
--  Web3.js: [_balances.js_](/snippets/code/web3-tx-local/balances.js)
--  Ethers.js: [_balances.js_](/snippets/code/ethers-tx-local/balances.js)
--  Web3.py: [_balances.py_](/snippets/code/web3py-tx/balances.py)
+ - Web3.js: [_balances.js_](/snippets/code/web3-tx-local/balances.js)
+ - Ethers.js: [_balances.js_](/snippets/code/ethers-tx-local/balances.js)
+ - Web3.py: [_balances.py_](/snippets/code/web3py-tx/balances.py)
 
 For simplicity, the balance file is composed of two sections. As before, in the first section ("Define Provider & Variables"), the library to use is imported, and the provider and address from/to (to check the balances) are defined.
 
 The second section ("Balance Call Function") outlines the functions needed to fetch the balances of the accounts previously defined. Note that `providerRPC` has both the standard standalone node RPC endpoint and the one for [Moonbase Alpha](/networks/testnet/). Some of the key takeaways are discussed next.
 
 === "Web3.js"
-`--8<-- 'code/web3-tx-local/balances.js'`
+    ```
+    --8<-- 'code/web3-tx-local/balances.js'
+    ```
 
 === "Ethers.js"
-`--8<-- 'code/ethers-tx-local/balances.js'`
+    ```
+    --8<-- 'code/ethers-tx-local/balances.js'
+    ```
 
 === "Web3.py"
-`--8<-- 'code/web3py-tx/balances.py'`
+    ```
+    --8<-- 'code/web3py-tx/balances.py'
+    ```
 
 ### Web3.js
 
@@ -167,35 +185,47 @@ For this section, the code shown before was adapted to target a Standalone node,
 First, check the balances of both of the addresses before the transaction by running (note that the directory was renamed for each library):
 
 === "Web3.js"
-`node balances.js`
+    ```
+    node balances.js
+    ```
 
 === "Ethers.js"
-`node balances.js`
+    ```
+    node balances.js
+    ```
 
 === "Web3.py"
-`python3 balances.py`
+    ```
+    python3 balances.py
+    ```
 
 Next, run the _transaction.\*_ script to execute the transaction:
 
 === "Web3.js"
-`node transaction.js`
+    ```
+    node transaction.js
+    ```
 
 === "Ethers.js"
-`node transaction.js`
+    ```
+    node transaction.js
+    ```
 
 === "Web3.py"
-`python3 transaction.py`
+    ```
+    python3 transaction.py
+    ```
 
 And lastly, recheck the balance to make sure the transfer was successful. The entire execution should look like this:
 
 === "Web3.js"
-![Send Tx Web3js](/images/sendtx/sendtx-web3js.png)
+    ![Send Tx Web3js](/images/sendtx/sendtx-web3js.png)
 
 === "Ethers.js"
-![Send Tx Etherjs](/images/sendtx/sendtx-ethers.png)
+    ![Send Tx Etherjs](/images/sendtx/sendtx-ethers.png)
 
 === "Web3.py"
-![Send Tx Web3py](/images/sendtx/sendtx-web3py.png)
+    ![Send Tx Web3py](/images/sendtx/sendtx-web3py.png)
 
 ## We Want to Hear From You
 

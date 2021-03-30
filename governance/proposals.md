@@ -26,13 +26,13 @@ This guide was done with a customized version of Moonbeam with short Launch/Enac
 
 Some of the key parameters for this guide are the following:
 
--  **Proposal** — action or items being proposed by users of the network
--  **Second** — other stakeholders can second (approve) a proposal if they agree with it and want to help it reach public referenda. This requires matching the deposit of the original proposer
--  **Preimage hash** — hash of the proposal to be enacted. The first step to make a proposal is to submit a preimage. The hash is just its identifier. The proposer of the preimage can be different than the user that proposes that preimage as a formal proposal
--  **Minimum preimage deposit** — minimum amount of tokens that the proposer needs to pay when submitting a preimage
--  **Minimum proposal deposit** — minimum amount of tokens that the proposer needs to bond when submitting a proposal. Tokens might be locked for an indeterminate amount of time because it is unknown when a proposal may become a referendum (if ever). This is true for tokens bonded by both the proposer and users that second the proposal
--  **Launch period** — how often new public referenda are launched
--  **Cool-off period** — duration (in blocks) in which a proposal may not be re-submitted after being vetoed
+ - **Proposal** — action or items being proposed by users of the network
+ - **Second** — other stakeholders can second (approve) a proposal if they agree with it and want to help it reach public referenda. This requires matching the deposit of the original proposer
+ - **Preimage hash** — hash of the proposal to be enacted. The first step to make a proposal is to submit a preimage. The hash is just its identifier. The proposer of the preimage can be different than the user that proposes that preimage as a formal proposal
+ - **Minimum preimage deposit** — minimum amount of tokens that the proposer needs to pay when submitting a preimage
+ - **Minimum proposal deposit** — minimum amount of tokens that the proposer needs to bond when submitting a proposal. Tokens might be locked for an indeterminate amount of time because it is unknown when a proposal may become a referendum (if ever). This is true for tokens bonded by both the proposer and users that second the proposal
+ - **Launch period** — how often new public referenda are launched
+ - **Cool-off period** — duration (in blocks) in which a proposal may not be re-submitted after being vetoed
 
 Currently, for Moonbase Alpha:
 
@@ -67,17 +67,17 @@ Everything related to governance lives under the "Democracy" tab. Once there, cl
 
 Here, you need to provide the following information:
 
-1. Select the account from which you want to submit the preimage
-2. Choose the pallet you want to interact with and the dispatchable function (or action) to propose. The action you choose will determine the fields that need to fill in the following steps. In this case, it is the `democracy` pallet and the `setBalance` function
-3. Set the address of which you want to change the balance
-4. Set the new balance that this address will hold. To read more about the types of balances, you can visit [this site](https://wiki.polkadot.network/docs/en/build-protocol-info#free-vs-reserved-vs-locked-vs-vesting-balance)
-5. Copy the preimage hash. This represents the proposal. You will use this hash when submitting the actual proposal
-6. Click the "Submit preimage" button and sign the transaction
+ 1. Select the account from which you want to submit the preimage
+ 2. Choose the pallet you want to interact with and the dispatchable function (or action) to propose. The action you choose will determine the fields that need to fill in the following steps. In this case, it is the `democracy` pallet and the `setBalance` function
+ 3. Set the address of which you want to change the balance
+ 4. Set the new balance that this address will hold. To read more about the types of balances, you can visit [this site](https://wiki.polkadot.network/docs/en/build-protocol-info#free-vs-reserved-vs-locked-vs-vesting-balance)
+ 5. Copy the preimage hash. This represents the proposal. You will use this hash when submitting the actual proposal
+ 6. Click the "Submit preimage" button and sign the transaction
 
 ![Fill in the Preimage Information](/images/governance/governance-proposal-3.png)
 
 !!! note
-Make sure you copy the preimage hash, as it is necessary to submit the proposal.
+    Make sure you copy the preimage hash, as it is necessary to submit the proposal.
 
 Note that the storage cost of the preimage is displayed at the bottom left corner of this window. After the transaction is submitted, you will see some confirmations on the top right corner of the PolkadotJS Apps interface, but nothing will have changed in the main democracy screen. However, don't worry. If the transaction is confirmed, the preimage has been submitted.
 
@@ -89,15 +89,15 @@ Once you have committed the preimage (check the previous section), the roadmap's
 
 Here, you need to provide the following information:
 
-1. Select the account from which you want to submit the proposal (in this case, Alice)
-2. Enter the preimage hash related to the proposal. In this example, it is the hash of the `setBalance` preimage from the previous section
-3. Set the locked balance. This is the number of tokens the proposer bonds with his proposal. Remember that the proposal with the most amount of tokens locked goes to referendum. The minimum deposit is displayed just below this input tab
-4. Click the "Submit proposal" button and sign the transaction
+ 1. Select the account from which you want to submit the proposal (in this case, Alice)
+ 2. Enter the preimage hash related to the proposal. In this example, it is the hash of the `setBalance` preimage from the previous section
+ 3. Set the locked balance. This is the number of tokens the proposer bonds with his proposal. Remember that the proposal with the most amount of tokens locked goes to referendum. The minimum deposit is displayed just below this input tab
+ 4. Click the "Submit proposal" button and sign the transaction
 
 ![Fill in the Proposal Information](/images/governance/governance-proposal-5.png)
 
 !!! note
-Tokens might be locked for an indeterminate amount of time because it is unknown when a proposal may become a referendum (if ever).
+    Tokens might be locked for an indeterminate amount of time because it is unknown when a proposal may become a referendum (if ever).
 
 After the transaction is submitted, you will see some confirmations on the top right corner of the PolkadotJS Apps interface. You should also see the proposal listed in the "Proposals" section, displaying the proposer and the amounts of tokens locked, and it is now ready to be seconded!
 
@@ -108,7 +108,7 @@ After the transaction is submitted, you will see some confirmations on the top r
 To second a proposal means that you agree with it and want to back it up with your tokens to help it reach public referenda. The amount of tokens to be locked is equal to the proposer's original deposit - no more, no less.
 
 !!! note
-A single account can second a proposal multiple times. This is by design, as an account could just send tokens to different addresses and use them to second the proposal. What counts is the number of tokens backing up a proposal, not the number of vouches it has received.
+    A single account can second a proposal multiple times. This is by design, as an account could just send tokens to different addresses and use them to second the proposal. What counts is the number of tokens backing up a proposal, not the number of vouches it has received.
 
 This section outlines the steps to second the proposal made in the previous section. To do so, click the "Second" button that is available for each proposal that shows up in the proposals list.
 
@@ -116,14 +116,14 @@ This section outlines the steps to second the proposal made in the previous sect
 
 Here, you need to provide the following information:
 
-1. Select the account you want to second the proposal with (in this case, Charley)
-2. Verify the number of tokens required to second the proposal
-3. Click the "Second" button and sign the transaction
+ 1. Select the account you want to second the proposal with (in this case, Charley)
+ 2. Verify the number of tokens required to second the proposal
+ 3. Click the "Second" button and sign the transaction
 
 ![Fill in Second Information](/images/governance/governance-proposal-8.png)
 
 !!! note
-Tokens might be locked for an indeterminate amount of time because it is unknown when a proposal may become a referendum (if ever)
+    Tokens might be locked for an indeterminate amount of time because it is unknown when a proposal may become a referendum (if ever)
 
 After the transaction is submitted, you will see some confirmations on the top right corner of the PolkadotJS Apps interface. You should also see the proposal listed in the "Proposals" section, displaying the proposer and the amounts of tokens locked and listing the users that have seconded this proposal!
 

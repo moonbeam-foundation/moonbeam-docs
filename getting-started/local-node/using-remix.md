@@ -13,7 +13,7 @@ description: Learn how to use one of the most popular Ethereum developer tools, 
 This guide walks through the process of creating and deploying a Solidity-based smart contract to a Moonbeam standalone node using the [Remix IDE](https://remix.ethereum.org/). Remix is one of the commonly used development environments for smart contracts on Ethereum. Given Moonbeam’s Ethereum compatibility features, Remix can be used directly with a Moonbeam node.
 
 !!! note
-This tutorial was created using the v3 release of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/v0.3.0). The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility are still under very active development.
+    This tutorial was created using the v3 release of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/v0.3.0). The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility are still under very active development.
 
 This guide assumes that you have a local Moonbeam node running in `--dev` mode and that you have a [MetaMask](https://metamask.io/) installation configured to use this local node. You can find instructions for running a local Moonbeam node [here](/getting-started/local-node/setting-up-a-node/) and instructions to connect MetaMask to it [here](/getting-started/local-node/using-metamask/).
 
@@ -28,7 +28,7 @@ And you should have a MetaMask installation connected to your local Moonbeam dev
 ![MetaMask installation with a balance](/images/remix/using-remix-2.png)
 
 !!! note
-Make sure you are connected to your Moonbeam node and not another network!
+    Make sure you are connected to your Moonbeam node and not another network!
 
 ## Getting Started with Remix
 
@@ -79,7 +79,7 @@ You will be prompted in MetaMask to confirm the contract deployment transaction.
 ![Confirm the transaction message](/images/remix/using-remix-9.png)
 
 !!! note
-If you have problems deploying any specific contract, you can try manually increasing the gas limit. You can do this under Settings -> Advanced -> Advanced Gas Controls = ON.
+    If you have problems deploying any specific contract, you can try manually increasing the gas limit. You can do this under Settings -> Advanced -> Advanced Gas Controls = ON.
 
 After you press confirm and the deployment is complete, you will see the transaction listed in MetaMask. The contract will appear under Deployed Contracts in Remix.
 

@@ -24,9 +24,9 @@ Before we go into fetching the data itself, it is important to understand the ba
 
 The Client contract is the element that starts the communication with the Oracle by sending a request. As shown in the diagram, it calls the _transferAndCall_ method from the LINK token contract, but there is more processing that is needed to track the request to the Oracle. For this example, you can use the code in [this file](/snippets/code/chainlink/Client.sol), and deploy it on [Remix](/integrations/remix/) to try it out. Let's look at the core functions of the contract:
 
--  _constructor_: runs when the contract is deployed. It sets the address of the LINK token and the owner of the contract
--  _requestPrice_: needs the Oracle contract address, the job ID, and the payment (in LINK) tokens to the fulfiller of the request. Builds the new request that is sent using the _sendChainlinkRequestTo_ function from the _ChainlinkClient.sol_ import
--  _fulfill_: callback used by the Oracle node to fulfill the request by storing the queried information in the contract
+ - _constructor_: runs when the contract is deployed. It sets the address of the LINK token and the owner of the contract
+ - _requestPrice_: needs the Oracle contract address, the job ID, and the payment (in LINK) tokens to the fulfiller of the request. Builds the new request that is sent using the _sendChainlinkRequestTo_ function from the _ChainlinkClient.sol_ import
+ - _fulfill_: callback used by the Oracle node to fulfill the request by storing the queried information in the contract
 
 ```solidity
 pragma solidity ^0.6.6;

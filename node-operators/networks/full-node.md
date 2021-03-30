@@ -22,7 +22,7 @@ In our TestNet, the relay chain is hosted and run by PureStake. But as developme
 This guide is meant for people with experience running [Substrate](https://substrate.dev/) based chains. Running a parachain is similar to running a Substrate node with a few differences. A Substrate parachain node will run two processes: one to sync the relay chain and one to sync the parachain. As such, many things are doubled, for example, the database directory, the ports used, the log lines, and more.
 
 !!! note
-Moonbase Alpha is still considered an Alphanet, and as such _will not_ have 100% uptime. The parachain _will_ be purged from time to time. During the development of your application, make sure you implement a method to redeploy your contracts and accounts to a fresh parachain quickly. Chain purges will be announced via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
+    Moonbase Alpha is still considered an Alphanet, and as such _will not_ have 100% uptime. The parachain _will_ be purged from time to time. During the development of your application, make sure you implement a method to redeploy your contracts and accounts to a fresh parachain quickly. Chain purges will be announced via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
 
 ## Requirements
 
@@ -83,18 +83,17 @@ sudo chown -R $(id -u):$(id -g) {{ networks.moonbase.node_directory }}
 ```
 
 !!! note
-Make sure you set the ownership and permissions accordingly for the local directory that stores the chain data.
+    Make sure you set the ownership and permissions accordingly for the local directory that stores the chain data.
 
 Now, execute the docker run command. Note that you have to:
 
--  Replace `YOUR-NODE-NAME` in two different places.
--  For collators, replace `PUBLIC_KEY` with the public address that will be associated with collation activities.
+ - Replace `YOUR-NODE-NAME` in two different places.
+ - For collators, replace `PUBLIC_KEY` with the public address that will be associated with collation activities.
 
 !!! note
-If you are setting up a collator node, make sure to follow the code snippets for "Collator".
+    If you are setting up a collator node, make sure to follow the code snippets for "Collator".
 
 === "Full Node"
-
     ```
     docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
@@ -114,7 +113,6 @@ If you are setting up a collator node, make sure to follow the code snippets for
     ```
 
 === "Collator"
-
     ```
     docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
@@ -139,10 +137,10 @@ Once Docker pulls the necessary images, your Moonbase Alpha full node will start
 ![Full Node Starting](/images/fullnode/fullnode-docker1.png)
 
 !!! note
-If you are having issues with the default telemetry, you can add the flag `--no-telemetry` to run the full node without telemetry activated.
+    If you are having issues with the default telemetry, you can add the flag `--no-telemetry` to run the full node without telemetry activated.
 
 !!! note
-You can specify a custom Prometheus port with the `--promethues-port XXXX` flag (replacing `XXXX` with the actual port number). This is possible for both the parachain and embedded relay chain.
+    You can specify a custom Prometheus port with the `--promethues-port XXXX` flag (replacing `XXXX` with the actual port number). This is possible for both the parachain and embedded relay chain.
 
 The command above will enable all exposed ports, including the P2P, RPC, and Prometheus (telemetry) ports. This command is compatible to use with the Gantree Node Watchdog telemetry. If you want to expose specific ports, enable those on the Docker run command line as shown below. However, doing so will block the Gantree Node Watchdog (telemetry) container from accessing the moonbeam container, so don't do this when running a collator unless you understand [docker networking](https://docs.docker.com/network/).
 
@@ -221,7 +219,7 @@ chown moonbase_service {{ networks.moonbase.node_directory }}
 ```
 
 !!! note
-Make sure you set the ownership and permissions accordingly for the local directory that stores the chain data.
+    Make sure you set the ownership and permissions accordingly for the local directory that stores the chain data.
 
 Now, copy the binary built in the last section to the created folder:
 
@@ -231,17 +229,16 @@ cp ./target/release/{{ networks.moonbase.binary_name }} {{ networks.moonbase.nod
 
 The next step is to create the systemd configuration file. Note that you have to:
 
--  Replace `YOUR-NODE-NAME` in two different places
--  Double-check that the binary is in the proper path as described below (_ExecStart_)
--  Double-check the base path if you've used a different directory
--  For collators, replace `PUBLIC-KEY` with the public key of your H160 Ethereum address created above
--  Name the file `/etc/systemd/system/moonbeam.service`
+ - Replace `YOUR-NODE-NAME` in two different places
+ - Double-check that the binary is in the proper path as described below (_ExecStart_)
+ - Double-check the base path if you've used a different directory
+ - For collators, replace `PUBLIC-KEY` with the public key of your H160 Ethereum address created above
+ - Name the file `/etc/systemd/system/moonbeam.service`
 
 !!! note
-If you are setting up a collator node, make sure to follow the code snippets for "Collator".
+    If you are setting up a collator node, make sure to follow the code snippets for "Collator".
 
 === "Full Node"
-
     ```
     [Unit]
     Description="Moonbase Alpha systemd service"
@@ -284,7 +281,6 @@ If you are setting up a collator node, make sure to follow the code snippets for
     ```
 
 === "Collator"
-
     ```
     [Unit]
     Description="Moonbase Alpha systemd service"
@@ -328,10 +324,10 @@ If you are setting up a collator node, make sure to follow the code snippets for
     ```
 
 !!! note
-If you are having issues with the default telemetry, you can add the flag `--no-telemetry` to run the full node without telemetry activated.
+    If you are having issues with the default telemetry, you can add the flag `--no-telemetry` to run the full node without telemetry activated.
 
 !!! note
-You can specify a custom Prometheus port with the `--promethues-port XXXX` flag (replacing `XXXX` with the actual port number). This is possible for both the parachain and embedded relay chain.
+    You can specify a custom Prometheus port with the `--promethues-port XXXX` flag (replacing `XXXX` with the actual port number). This is possible for both the parachain and embedded relay chain.
 
 Almost there! Register and start the service by running:
 
@@ -403,7 +399,7 @@ Also, you can see current Moonbase Alpha telemetry information visiting [this li
 You will see logs from both the relay chain as well as the parachain. The relay chain will be prefixed by `[Relaychain]`, while the parachain has no prefix.
 
 !!! note
-There is currently a [bug in cumulus](https://github.com/paritytech/cumulus/issues/257) regarding the naming issue.
+    There is currently a [bug in cumulus](https://github.com/paritytech/cumulus/issues/257) regarding the naming issue.
 
 ### P2P Ports Not Open
 
