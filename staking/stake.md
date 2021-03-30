@@ -19,7 +19,7 @@ With the release of [Moonbase Alpha v6](https://github.com/PureStake/moonbeam/re
 
 ## General Definitions
 
---8<-- 'staking/staking-definitions.md'
+--8<-- 'text/staking/staking-definitions.md'
 
 Currently, for Moonbase Alpha:
 
@@ -37,7 +37,7 @@ Currently, for Moonbase Alpha:
 There are many extrinsics related to the staking pallet, so all of them are not covered in this guide. However, this list defines all of the extrinsics associated with the nomination process:
 
 !!! note
-    Extrinsics might change in the future as the staking pallet is updated.
+Extrinsics might change in the future as the staking pallet is updated.
 
 -  **joinNominators** — two inputs: address of collator to nominate and amount. Extrinsic to join the set of nominators and nominate your first collator. The amount must be at least {{ networks.moonbase.staking.min_nom_stake }} tokens
 -  **leaveNominators** — no inputs. Extrinsic to leave the set of nominators. Consequently, all ongoing nominations will be revoked
