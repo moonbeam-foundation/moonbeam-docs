@@ -17,7 +17,7 @@ Collators (and token holders if they nominate) have a stake in the network from 
 
 ## General Definitions
 
---8<-- 'staking/staking-definitions.md'
+--8<-- 'text/staking/staking-definitions.md'
 
 Currently, for Moonbase Alpha:
 

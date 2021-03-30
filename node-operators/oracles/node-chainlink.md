@@ -2,6 +2,7 @@
 title: Chainlink Node
 description: How to set up a Chainlink Oracle node for the Moonbeam Network to feed data on-chain to be used by Smart Contracts
 ---
+
 # Run a Chainlink Oracle Node on Moonbeam
 
 ![Chainlink Moonbeam Banner](/images/chainlink/chainlinknode-banner.png)
@@ -13,40 +14,40 @@ As an open, permissionless network, anyone may choose to operate an Oracle provi
 This article provides an overview in regards to setting up a Chainlink Oracle on Moonbase Alpha.
 
 !!! note
-    The examples provided are for demonstration purposes only. Passwords **MUST** be managed securely and never stored in plaintext. These examples assume an Ubuntu 18.04-based environment, but call-outs for MacOs are included. This guide is for a development setup only, do not use this for a production environment.
+The examples provided are for demonstration purposes only. Passwords **MUST** be managed securely and never stored in plaintext. These examples assume an Ubuntu 18.04-based environment, but call-outs for MacOs are included. This guide is for a development setup only, do not use this for a production environment.
 
 ## Basic Request Model
 
-Before we go dive into how to get started, it is important to understand the basics of the "basic request model." 
+Before we go dive into how to get started, it is important to understand the basics of the "basic request model."
 
---8<-- 'chainlink/chainlink-brm.md'
+--8<-- 'text/chainlink/chainlink-brm.md'
 
 ## Advanced Users
 
 If you are familiar with running Chainlink Oracle nodes, this information will get you started on the Moonbase Alpha TestNet quickly:
 
-- Chainlink documentation, which can be found [here](https://docs.chain.link/docs/running-a-chainlink-node)
-- Moonbase Alpha WSS EndPoint: `wss://wss.testnet.moonbeam.network`
-- Moonbase Alpha ChainId: `1287`
-- LINK Token on Moonbase Alpha: `0xa36085F69e2889c224210F603D836748e7dC0088`
-- Get Moonbase Alpha tokens from [our Faucet](/getting-started/testnet/faucet/)
+-  Chainlink documentation, which can be found [here](https://docs.chain.link/docs/running-a-chainlink-node)
+-  Moonbase Alpha WSS EndPoint: `wss://wss.testnet.moonbeam.network`
+-  Moonbase Alpha ChainId: `1287`
+-  LINK Token on Moonbase Alpha: `0xa36085F69e2889c224210F603D836748e7dC0088`
+-  Get Moonbase Alpha tokens from [our Faucet](/getting-started/testnet/faucet/)
 
 ## Getting Started
 
 This guide will walk through the process of setting up the Oracle node, summarized as:
 
- - Setup a Chainlink node connected to Moonbase Alpha
- - Fund node
- - Deploy an Oracle contract
- - Create a job on the Chainlink node
- - Bond node and Oracle
- - Test using a client contract
+-  Setup a Chainlink node connected to Moonbase Alpha
+-  Fund node
+-  Deploy an Oracle contract
+-  Create a job on the Chainlink node
+-  Bond node and Oracle
+-  Test using a client contract
 
 The basic requirements are:
 
- - Docker for running Postgres DB and ChainLink node containers. For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/)
- - An account with funds. You can create one with [Metamask](/integrations/wallets/metamask/), which can be funded via [our Faucet](https://docs.moonbeam.network/getting-started/testnet/faucet/)
- - Access to the Remix IDE in case you want to use it to deploy the Oracle contract. You can find more information about Remix on Moonbeam [here](/integrations/remix/)
+-  Docker for running Postgres DB and ChainLink node containers. For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/)
+-  An account with funds. You can create one with [Metamask](/integrations/wallets/metamask/), which can be funded via [our Faucet](https://docs.moonbeam.network/getting-started/testnet/faucet/)
+-  Access to the Remix IDE in case you want to use it to deploy the Oracle contract. You can find more information about Remix on Moonbeam [here](/integrations/remix/)
 
 ## Node Setup
 
@@ -68,10 +69,10 @@ docker run -d --name chainlink_postgres_db \
     -t postgres:11
 ```
 
-Make sure to replace `{YOU_PASSWORD_HERE}` with an actual password. 
+Make sure to replace `{YOU_PASSWORD_HERE}` with an actual password.
 
 !!! note
-    Reminder, do not store any production passwords in a plaintext file. The examples provided are for demonstration purposes only.
+Reminder, do not store any production passwords in a plaintext file. The examples provided are for demonstration purposes only.
 
 Docker will proceed to download the necessary images if they are not available. Now, we need to create an environment file for Chainlink in the newly-created directory. This file is read on the creation of the Chainlink container. MacOs users may replace `localhost` with `host.docker.internal`.
 
@@ -130,7 +131,7 @@ docker logs --tail 50 {container_id} #Logs progressing
 
 With the Oracle node running, let's configure the smart contract side of things.
 
-First, we need to retrieve the address that the Oracle node will use to send transactions and write data on-chain. To retrieve the address, log into the [ChainLink node's UI](http://localhost:6688/) (located at `http://localhost:6688/`) using the credentials from the `.api` file. 
+First, we need to retrieve the address that the Oracle node will use to send transactions and write data on-chain. To retrieve the address, log into the [ChainLink node's UI](http://localhost:6688/) (located at `http://localhost:6688/`) using the credentials from the `.api` file.
 
 ![Chainlink login](/images/chainlink/chainlinknode-image2.png)
 
@@ -156,8 +157,8 @@ Lastly, we have to bond the Oracle node and the Oracle smart contract. A node ca
 
 To set this authorization, we can use the function `setFulfillmentPermission()` from the Oracle contract. This needs two parameters:
 
-- The address of the node that we want to bond to the contract (which we did in a previous step)
-- A boolean indicating the status of the bond. In this case, we set it to `true` 
+-  The address of the node that we want to bond to the contract (which we did in a previous step)
+-  A boolean indicating the status of the bond. In this case, we set it to `true`
 
 We can use the instance of the contract deployed on Remix to do so, and check the Oracle node is authorized with the view function `getAuthorizationStatus()`, passing in the Oracle node address.
 
@@ -201,6 +202,7 @@ Next, paste the following JSON. This will create a Job that will request the cur
   ]
 }
 ```
+
 ![Chainlink New Job JSON Blob](/images/chainlink/chainlinknode-image7.png)
 
 And that is it! You have fully set up a Chainlink Oracle node that is running on Moonbase Alpha.
@@ -212,4 +214,3 @@ To verify the Oracle is up and answering requests, follow our [using an Oracle](
 ## We Want to Hear From You
 
 If you have any feedback regarding implementing Chainlink on your project or any other Moonbeam-related topic, feel free to reach out through our official development [Discord server](https://discord.com/invite/PfpUATX).
-
