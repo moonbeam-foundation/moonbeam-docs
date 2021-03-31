@@ -83,12 +83,8 @@ node_modules/.bin/truffle migrate --network <network_name>
 
 ## Installing NodeJS, npm, Web3 JS Library, and the Solidity Compiler
 **Install NodeJS and npm:**
-```
-curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash -
-```
-```
-sudo apt install -y nodejs
-```
+--8<-- '../code-snippets/common/install-nodejs-commands.md'
+
 
 **Install the Web3 Javascript library with npm:**
 ```

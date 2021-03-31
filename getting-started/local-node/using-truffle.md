@@ -16,33 +16,9 @@ This guide walks through the process of deploying a Solidity-based smart contrac
 For this guide, you will need to have a  standalone Moonbeam node running in `--dev` mode. This can be done by either following the steps detailed [here](/getting-started/local-node/setting-up-a-node/) or by using the [Moonbeam Truffle plugin](/integrations/trufflebox/#the-moonbeam-truffle-plugin), which we'll use in this tutorial's examples.
 
 ## Checking Prerequisites
-First, we need to install Node.js (we'll use v{{ node.version }}) and the npm package manager. You can download directly from [Node.js](https://nodejs.org/en/download/) or in your terminal:
 
-=== "Ubuntu"
-    ```
-    curl -sL https://deb.nodesource.com/setup_{{ node.version }} | sudo -E bash -
+--8<-- '../code-snippets/common/install-nodejs.md'
 
-    sudo apt install -y nodejs
-    ```
-
-=== "MacOS"
-    ```
-    # You can use homebrew (https://docs.brew.sh/Installation)
-    brew install node
-
-    # Or you can use nvm (https://github.com/nvm-sh/nvm)
-    nvm install node
-    ```
-
-We can verify that everything is installed correctly by querying the version for each package:
-
-```
-node -v
-```
-
-```
-npm -v
-```
 
 In addition, you can globally install Truffle by running:
 

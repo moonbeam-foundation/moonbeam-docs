@@ -15,32 +15,7 @@ In this guide, we will explain how to use and/or verify these precompiles.
 
 ## Checking Prerequisites
 
-For some precompiles, we need to install Node.js (we'll use v{{ node.version }}) and the npm package manager. You can download directly from [Node.js](https://nodejs.org/en/download/) or in your terminal:
-
-=== "Ubuntu"
-    ```
-    curl -sL https://deb.nodesource.com/setup_{{ node.version }} | sudo -E bash -
-
-    sudo apt install -y nodejs
-    ```
-
-=== "MacOS"
-    ```
-    # You can use homebrew (https://docs.brew.sh/Installation)
-    brew install node
-
-    # Or you can use nvm (https://github.com/nvm-sh/nvm)
-    nvm install node
-    ```
-
-We can verify that everything is installed correctly by querying the version for each package:
-
-```
-node -v
-```
-```
-npm -v
-```
+--8<-- '../code-snippets/common/install-nodejs.md'
 
 As of writing this guide, the versions used were 15.2.1 and 7.0.8, respectively. We will also need to install the Web3 package by executing:
 
