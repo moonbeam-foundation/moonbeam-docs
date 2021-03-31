@@ -9,7 +9,7 @@ description: Follow this tutorial to learn how to set up your first Moonbeam nod
 
 ## Introduction  
 
-This guide outlines the steps needed to create a standalone local node, with one [pre-funded account](#account-details), for testing the Ethereum compatibility functionality of Moonbeam.
+This guide outlines the steps needed to create a standalone local node, with one [pre-funded account](#development-accounts), for testing the Ethereum compatibility functionality of Moonbeam.
 
 !!! note
     This tutorial was created using the {{ networks.standalone.build_tag }} tag of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/{{ networks.standalone.build_tag }}). The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility are still under very active development. The examples in this guide assume a MacOS or Ubuntu 18.04-based environment and will need to be adapted accordingly for Windows.
@@ -32,8 +32,6 @@ The tail end of the console log should look like this:
 
 Once the Docker image is downloaded, the next step is to run the image.
 
-If you are using MacOS, you will need to omit `--network host` , as MacOS does not allow you to use this setting. You will need to explicitly open RPC/WS servers to external connections using the `--ws-external` and `--rpc-external` flags.
-
 You can run the Docker image using the following:
 
 === "Ubuntu"
@@ -51,20 +49,14 @@ If successful, you should see an output showing an idle state waiting for blocks
 
 ![Docker - output shows blocks being produced](/images/setting-up-a-node/setting-up-node-8a.png)
 
-You can also run the node using a manual seal for testing things like complex forking behavior:
+For more information on some of the flags and options used in the example, check out [Common Flags and Options](#common-flags-and-options). If you want to see a complete list of all of the flags, options, and subcommands, open the help menu by running:
 
+```
+docker run --rm --name moonbeam_standalone \
+purestake/moonbeam --help
+```
 
-=== "Ubuntu"
-    ```
-    docker run --rm --name moonbeam_standalone --network host purestake/moonbeam --dev --sealing manual
-    ```
-
-=== "MacOS"
-    ```
-    docker run --rm --name moonbeam_standalone -p 9944:9944 -p 9933:9933 \
-    purestake/moonbeam --dev --ws-external --rpc-external --sealing manual
-    ```
-
+To continue on with the tutorial, the next section is not necessary as you've already spun up a node with Docker. You can skip ahead to [Connecting Polkadot JS Apps to a Local Moonbeam Node](#connecting-polkadot-js-apps-to-a-local-moonbeam-node).
 ## Installation and Setup  
 
 We start by cloning a specific tag of the Moonbeam repo that you can find here:
@@ -120,16 +112,16 @@ You should see an output that looks like the following, showing an idle state wa
 
 ![Output shows blocks being produced](/images/setting-up-a-node/setting-up-node-3b.png)
 
+For more information on some of the flags and options used in the example, check out [Common Flags and Options](#common-flags-and-options). If you want to see a complete list of all of the flags, options, and subcommands, open the help menu by running:
+
+```
+./target/release/moonbeam --help
+```
+
 The local standalone Moonbeam node provides two RPC endpoints:
  
  - HTTP: `http://127.0.0.1:9933`
  - WS: `ws://127.0.0.1:9944` 
- 
-## Development Account
-Your standalone build comes with one pre-funded account for development:
-
---8<-- 'metamask-local/dev-account.md'
-
 ## Connecting Polkadot JS Apps to a Local Moonbeam Node
 
 The locally-running Moonbeam node is a Substrate-based node, so we can interact with it using standard Substrate tools. Let’s start by connecting to it with Polkadot JS Apps.  
@@ -150,3 +142,22 @@ With Polkadot JS Apps connected, you will see the standalone Moonbeam node produ
 With the release of [Moonbase Alpha v3](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/), Moonbeam now works under a single account format, which is the Ethereum-styled H160 and is now also supported in Polkadot JS Apps. To check the balance of an address, you can simply import your account to the Accounts tab. You can find more information in the [Unified Accounts](/learn/unified-accounts/) section.
  
 Nevertheless, leveraging the Ethereum full RPC capabilities of Moonbeam, you can use [MetaMask](/getting-started/local-node/using-metamask/) to check the balance of that address as well. In addition, you can also use other development tools, such as [Remix](/getting-started/local-node/using-remix/) and [Truffle](/getting-started/local-node/using-truffle/).
+
+## Common Flags and Options
+
+Flags:
+
+- `--dev` - Specifies the development chain
+- `--tmp` - Runs a temporary node in which all of the configuration will be deleted at the end of the process
+- `--rpc-external` - Listen to all RPC interfaces
+- `--ws-external` - Listen to all Websocket interfaces
+
+Options:
+
+- `--sealing` - When blocks should be sealed in the dev service. Options are "instant", "manual", or timer interval in milliseconds [default: instant]
+
+## Development Accounts
+
+Your standalone build comes with one pre-funded account for development:
+
+--8<-- 'metamask-local/dev-account.md'
