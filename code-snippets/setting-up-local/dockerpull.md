@@ -1,1 +1,1 @@
-docker pull purestake/moonbase:tutorial-v3
+docker pull purestake/moonbeam:tutorial-v6

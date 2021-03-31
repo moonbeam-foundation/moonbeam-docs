@@ -23,8 +23,9 @@ There are two ways to get started running a Moonbeam node: you can use [docker t
 Using Docker enables you to spin up a node in a matter of seconds. It prevents you from having to install Substrate and all the dependencies, and you can skip the building the node process as well. The only requirement is to have Docker installed, and then you can execute the following command to download the corresponding image:
 
 ```
-docker pull purestake/moonbeam
+--8<-- 'setting-up-local/dockerpull.md'
 ```
+
 The tail end of the console log should look like this:
 
 ![Docker - imaged pulled](/images/setting-up-a-node/setting-up-node-9a.png)
@@ -37,13 +38,12 @@ You can run the Docker image using the following:
 
 === "Ubuntu"
     ```
-    docker run --rm --name moonbeam_standalone --network host purestake/moonbeam --dev
+    --8<-- 'setting-up-local/dockerrun.md'
     ```
 
 === "MacOS"
     ```
-    docker run --rm --name moonbeam_standalone -p 9944:9944 -p 9933:9933 \
-    purestake/moonbeam --dev --ws-external --rpc-external
+    --8<-- 'setting-up-local/dockerrun_macos.md'
     ```
 
 This will spin up a standalone Moonbeam node for testing local development in the default instant seal mode. 
