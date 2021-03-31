@@ -9,7 +9,7 @@ description: Follow this tutorial to learn how to set up your first Moonbeam nod
 
 ## Introduction  
 
-This guide outlines the steps needed to create a standalone local node, with one [pre-funded account](#development-accounts), for testing the Ethereum compatibility functionality of Moonbeam.
+This guide outlines the steps needed to create a standalone local node, with one [pre-funded account](#pre-funded-development-account), for testing the Ethereum compatibility functionality of Moonbeam.
 
 !!! note
     This tutorial was created using the {{ networks.standalone.build_tag }} tag of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/{{ networks.standalone.build_tag }}). The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility are still under very active development. The examples in this guide assume a MacOS or Ubuntu 18.04-based environment and will need to be adapted accordingly for Windows.
@@ -156,7 +156,7 @@ Options:
 
 - `--sealing` - When blocks should be sealed in the dev service. Options are "instant", "manual", or timer interval in milliseconds [default: instant]
 
-## Development Accounts
+## Pre-funded Development Account
 
 Your standalone build comes with one pre-funded account for development:
 
