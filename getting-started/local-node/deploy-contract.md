@@ -20,8 +20,8 @@ Besides, two other libraries will be used to compile the smart contract:
  - [Solc-js](https://www.npmjs.com/package/solc) to compile Solidity smart contracts using JavaScript
  - [Py-solc-x](https://pypi.org/project/py-solc-x/) to compile Solidity smart contracts using Python
 
-!!! note
-    The examples in this guide assume you have a MacOS or Ubuntu 18.04-based environment and will need to be adapted accordingly for Windows.
+!!!note
+    --8<-- '../code-snippets/common/assumes-mac-or-ubuntu-env.md'
 
 ## Checking Prerequisites
 

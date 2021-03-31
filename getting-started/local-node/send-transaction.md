@@ -15,8 +15,8 @@ This guide walks through using three different Ethereum libraries to manually si
  - [Ethers.js](https://docs.ethers.io/)
  - [Web3.py](https://web3py.readthedocs.io/)
 
-!!! note
-    The examples in this guide assume you have an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows.
+!!!note
+    --8<-- '../code-snippets/common/assumes-mac-or-ubuntu-env.md'
 
 ## Checking Prerequisites
 
