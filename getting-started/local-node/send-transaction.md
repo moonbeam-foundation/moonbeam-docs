@@ -228,7 +228,4 @@ And lastly, recheck the balance to make sure the transfer was successful. The en
 === "Web3.py"
     ![Send Tx Web3py](/images/sendtx/sendtx-web3py.png)
 
-
-## We Want to Hear From You
-
-This is a fairly simple example, but it provides context for how you can start working with Moonbeam and trying out its Ethereum compatibility features. We are interested in hearing about your experience following the steps in this guide or trying other Ethereum-based tools with Moonbeam. Feel free to join us in the [Moonbeam Discord here](https://discord.gg/PfpUATX). We would love to hear your feedback on Moonbeam and answer any questions that you have.
+--8<-- '../code-snippets/common/we-want-to-hear-from-you.md'

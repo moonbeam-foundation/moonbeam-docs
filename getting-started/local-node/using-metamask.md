@@ -64,5 +64,4 @@ Note that the Account 2 balance has been decreased by the sent amount + gas fees
 !!! note
     If you end up resetting your standalone node using the Substrate purge-chain command, you will need to reset your MetaMask genesis account using Settings -> Advanced -> Reset Account. This will clear the transaction history from your accounts and reset the nonce. Make sure you don’t erase anything that you want to keep!
 
-## We Want to Hear From You
-This is obviously a simple example, but it provides context for how you can start working with Moonbeam and how you can try out its Ethereum compatibility features. We are interested in hearing about your experience following the steps in this guide or your experience trying other Ethereum-based tools with Moonbeam. Feel free to join us in the [Moonbeam Discord here](https://discord.gg/PfpUATX). We would love to hear your feedback on Moonbeam and answer any questions that you have.
+--8<-- '../code-snippets/common/we-want-to-hear-from-you.md'

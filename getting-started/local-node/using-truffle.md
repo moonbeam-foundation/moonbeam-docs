@@ -145,5 +145,4 @@ If successful, you will see deployment actions, including the address of the dep
 
 Once you have followed the [MetaMask guide](/getting-started/local-node/using-metamask/) and [Remix guide](/getting-started/local-node/using-remix/), you will be able to take the deployed contract address that is returned and load it into MetaMask or Remix.
 
-## We Want to Hear From You
-This is obviously a simple example, but it provides context for how you can start working with Moonbeam and how you can try out its Ethereum compatibility features. We are interested in hearing about your experience following the steps in this guide or trying other Ethereum-based tools with Moonbeam. Feel free to join us in the [Moonbeam Discord](https://discord.gg/PfpUATX). We would love to hear your feedback on Moonbeam and answer any questions that you have.
+--8<-- '../code-snippets/common/we-want-to-hear-from-you.md'

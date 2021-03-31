@@ -111,5 +111,4 @@ Hit “Confirm” and, after the transaction is complete, you will see a confirm
 
 If you own the account that you sent the tokens to, you can add the token asset to verify that the transfer arrived.
 
-## We Want to Hear From You
-This is obviously a simple example, but it provides context for how you can start working with Moonbeam and how you can try out its Ethereum compatibility features.  We are interested in hearing about your experience following the steps in this guide or your experience trying other Ethereum-based tools with Moonbeam.  Feel free to join us in the [Moonbeam Discord](https://discord.gg/PfpUATX).  We would love to hear your feedback on Moonbeam and answer any questions that you have.  
+--8<-- '../code-snippets/common/we-want-to-hear-from-you.md'
