@@ -46,22 +46,8 @@ You can run the Docker image using the following:
     --8<-- 'setting-up-local/dockerrun_macos.md'
     ```
 
-This will spin up a standalone Moonbeam node for testing local development in the default instant seal mode. 
-
-You can also specify an interval seal at which blocks can be authored. For example, if you wanted blocks to be authored every 6 seconds, run the following command using milliseconds for the parameter:
-
-=== "Ubuntu"
-    ```
-    docker run --rm --name moonbeam_standalone --network host purestake/moonbeam --dev --sealing 6000
-    ```
-
-=== "MacOS"
-    ```
-    docker run --rm --name moonbeam_standalone -p 9944:9944 -p 9933:9933 \
-    purestake/moonbeam --dev --ws-external --rpc-external --sealing 6000
-    ```
-
-If successful, you should see an ouput similar to before, showing that blocks are being produced:
+This should spin up a standalone Moonbeam node for testing local development in the default instant seal mode. 
+If successful, you should see an output showing an idle state waiting for blocks to be authored:
 
 ![Docker - output shows blocks being produced](/images/setting-up-a-node/setting-up-node-8a.png)
 
@@ -130,7 +116,7 @@ Then, you will want to run the node in dev mode using the following command:
 !!! note
     For people not familiar with Substrate, the `--dev` flag is a way to run a Substrate-based node in a single node developer configuration for testing purposes. You can learn more about `--dev` in [this Substrate tutorial](https://substrate.dev/docs/en/tutorials/create-your-first-substrate-chain/interact).
 
-You should see an output that looks like the following, showing that blocks are being produced:
+You should see an output that looks like the following, showing an idle state waiting for blocks to be produced:
 
 ![Output shows blocks being produced](/images/setting-up-a-node/setting-up-node-3b.png)
 
