@@ -124,7 +124,7 @@ Now, we need to generate the configuration files, place each in the folders crea
   - `YOUR-PCK-KEY` with the one requested in our Discord server
 
 ```
-# Contents of /var/lib/gantree/relay/.gnw_config.json
+# Contents of /var/lib/gantree/parachain/.gnw_config.json
 {
   "api_key": "YOUR-API-KEY",
   "project_id": "moonbase-alpha",
@@ -134,7 +134,7 @@ Now, we need to generate the configuration files, place each in the folders crea
 }
 ```
 ```
-# Contents of /var/lib/gantree/parachain/.gnw_config.json
+# Contents of /var/lib/gantree/relay/.gnw_config.json
 {
   "api_key": "YOUR-API-KEY",
   "project_id": "moonbase-alpha",
