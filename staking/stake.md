@@ -38,7 +38,7 @@ There are many extrinsics related to the staking pallet, so all of them are not 
 !!! note
     Extrinsics might change in the future as the staking pallet is updated.
 
- - **nominate** — two inputs: address of collator to nominate and amount. Extrinsic to nominate a new collator. The amount must be at least {{ networks.moonbase.staking.min_nom_amount }} tokens
+ - **nominate** — two inputs: address of collator to nominate and amount. Extrinsic to nominate a collator. The amount must be at least {{ networks.moonbase.staking.min_nom_amount }} tokens
  - **leaveNominators** — no inputs. Extrinsic to leave the set of nominators. Consequently, all ongoing nominations will be revoked
  - **nominatorBondLess** — two inputs: address of a nominated collator and amount. Extrinsic to reduce the amount of staked tokens for an already nominated collator. The amount must not decrease your overall total staked below {{ networks.moonbase.staking.min_nom_stake }} tokens
  - **nominatorBondMore** — two inputs: address of a nominated collator and amount. Extrinsic to increase the amount of staked tokens for an already nominated collator
@@ -131,7 +131,7 @@ Once the transaction is confirmed, you can verify that your nomination was remov
 Here, provide the following information:
 
  1. Choose the pallet you want to interact with. In this case, it is the `parachainStaking` pallet
- 2. Choose the state to query. In this case, it is the `nominators` state
+ 2. Choose the state to query. In this case, it is the `nominatorState` state
  3. Make sure to disable the "include options" slider
  4. Send the state query by clicking on the "+" button
 
@@ -143,7 +143,7 @@ As mentioned before, you can also remove all ongoing nominations with the `leave
 
 ![Staking Leave Nominatiors Extrinsic](/images/staking/staking-stake-9.png)
 
-Once the transaction is confirmed, your account should not be listed in the `nominators` state when queried, and you should have no reserved balance (related to staking).
+Once the transaction is confirmed, your account should not be listed in the `nominatorState` state when queried, and you should have no reserved balance (related to staking).
 
 ## Staking Rewards
 
