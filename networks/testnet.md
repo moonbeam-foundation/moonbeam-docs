@@ -64,8 +64,12 @@ The following features are available:
     - Updated to the latest version of [Frontier RPC](https://github.com/paritytech/frontier), which increases EVM execution efficiency by a factor of 5
     - The gas limit has been bump to 15M per block, with a 13M per transaction limit
 
-??? release v7 "_April_ 2021_"      
-    - Some cool stuff TODO
+??? release v7 "_April 2021_"      
+    - Added support for Ethereum debug/tracing modules. These are turned off by default, to use them you need to spin up a full-node and turn on the feature
+    - Fixed block propagation issues so that is not longer limited to collators, improving network stability
+    - Added Councils and Technical Committee, expanding governance features
+    - Staking module has been refactored, with new names to improve the end-user experience
+    - Added three new precompiles: [Bn128Add](https://eips.ethereum.org/EIPS/eip-196), [Bn128Mul](https://eips.ethereum.org/EIPS/eip-196) and [Bn128Pairing](https://eips.ethereum.org/EIPS/eip-197)
 
 ### Release Notes
 
@@ -82,7 +86,6 @@ For more details regarding the updates of Moonbase Alpha, please refer to the fo
 
 Features that may be implemented in the future:
 
- - Expand on-chain governance features by introducing the [Council](https://wiki.polkadot.network/docs/en/learn-governance#council)
  - Treasury features ([Treasury pallet](https://github.com/paritytech/substrate/tree/master/frame/treasury))
 
 ## Get Started
