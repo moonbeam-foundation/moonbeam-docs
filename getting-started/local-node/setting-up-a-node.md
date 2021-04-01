@@ -65,8 +65,7 @@ We start by cloning a specific tag of the Moonbeam repo that you can find here:
 [https://github.com/PureStake/moonbeam/](https://github.com/PureStake/moonbeam/)
 
 ```
-git clone -b {{ networks.standalone.build_tag }} https://github.com/PureStake/moonbeam
-cd moonbeam
+--8<-- 'code/setting-up-local/clone.md'
 ```
 
 Next, install Substrate and all its prerequisites (including Rust) by executing:
