@@ -24,7 +24,7 @@ There are two ways to get started running a Moonbeam node: you can use [docker t
 Using Docker enables you to spin up a node in a matter of seconds. It prevents you from having to install Substrate and all the dependencies, and you can skip the building the node process as well. The only requirement is to have Docker installed, and then you can execute the following command to download the corresponding image:
 
 ```
---8<-- 'setting-up-local/dockerpull.md'
+--8<-- 'code/setting-up-local/dockerpull.md'
 ```
 
 The tail end of the console log should look like this:
@@ -37,12 +37,12 @@ You can run the Docker image using the following:
 
 === "Ubuntu"
     ```
-    --8<-- 'setting-up-local/dockerrun.md'
+    --8<-- 'code/setting-up-local/dockerrun.md'
     ```
 
 === "MacOS"
     ```
-    --8<-- 'setting-up-local/dockerrun_macos.md'
+    --8<-- 'code/setting-up-local/dockerrun_macos.md'
     ```
 
 This should spin up a standalone Moonbeam node for testing local development in the default instant seal mode. 
@@ -161,4 +161,4 @@ Options:
 
 Your standalone build comes with one pre-funded account for development:
 
---8<-- 'metamask-local/dev-account.md'
+--8<-- 'text/metamask-local/dev-account.md'
