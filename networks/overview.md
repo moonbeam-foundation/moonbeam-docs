@@ -11,8 +11,8 @@ Our roadmap in regards to deployments as a parachain is the following:
 
  - Moonbase Alpha: PureStake hosted parachain TestNet (_September 2020_) 
  - Moonrock: deployment on the Rococo TestNet (_tbd_)
- - Moonriver: deployment on Kusama (_end of Q1 2021_)
- - Moonbeam: deployment on Polkadot (_end of Q2 2021_)
+ - Moonriver: deployment on Kusama (_end of Q2 2021_)
+ - Moonbeam: deployment on Polkadot (_end of Q3 2021_)
  
 This strategy allows us to de-risk software upgrades to Moonbeam on the Polkadot MainNet while still maintaining a reasonable update velocity. We will add details on how to access different Moonbeam-based networks as the networks become available.
 

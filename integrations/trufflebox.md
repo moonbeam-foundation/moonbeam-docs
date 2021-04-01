@@ -161,12 +161,12 @@ truffle run moonbeam remove
 
 Each of the commands shown before does the following action:
 
--  Start: Starts a Moonbeam standalone node. This provides two RPC endpoints: - HTTP: `http://127.0.0.1:9933` - WS: `ws://127.0.0.1:9944`
--  Status: Tells the user if there is a Moonbeam standalone node running
--  Pause: Pauses the standalone node if it’s running
--  Unpause: Unpauses the standalone node if it’s paused
--  Stop: Stops the standalone node if it’s running. This also removes the Docker container
--  Remove: Deletes the purestake/moonbase Docker image
+ - Start: Starts a Moonbeam standalone node. This provides two RPC endpoints: - HTTP: `http://127.0.0.1:9933` - WS: `ws://127.0.0.1:9944`
+ - Status: Tells the user if there is a Moonbeam standalone node running
+ - Pause: Pauses the standalone node if it’s running
+ - Unpause: Unpauses the standalone node if it’s paused
+ - Stop: Stops the standalone node if it’s running. This also removes the Docker container
+ - Remove: Deletes the purestake/moonbase Docker image
 
 You can see the output of these commands in the following image:
 

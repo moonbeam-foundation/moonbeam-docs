@@ -21,7 +21,7 @@ As always, check that Node.js has been installed on your machine (we'll use v15.
 
     ```
     curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash -
-    
+
     sudo apt install -y nodejs
 
     ```
@@ -34,7 +34,6 @@ As always, check that Node.js has been installed on your machine (we'll use v15.
     brew install node
     ```
 
-
 We can verify that everything is installed correctly by querying the version for each package:
 
 ```
@@ -45,12 +44,12 @@ node -v
 npm -v
 ```
 
-As of writing of this guide, the versions used were 15.7.0 and 7.4.3, respectively. 
+As of writing of this guide, the versions used were 15.7.0 and 7.4.3, respectively.
 
 Also, you will need the following:
 
--  Have MetaMask installed and [connected to Moonbase](/getting-started/testnet/metamask/)
--  Have an account with funds, which you can get from [Mission Control](/getting-started/testnet/faucet/)
+ - Have MetaMask installed and [connected to Moonbase](/getting-started/testnet/metamask/)
+ - Have an account with funds, which you can get from [Mission Control](/getting-started/testnet/faucet/)
 
 Once all requirements have been met, you are ready to build with Hardhat.
 
@@ -85,8 +84,8 @@ npx hardhat
 This will create a Hardhat config file (`hardhat.config.js`) in our project directory.
 
 !!! note
-      `npx` is used to run executables installed locally in your project. Although Hardhat can be installed globally, we recommend installing locally in each project so that you can control the version on a project by project basis.
-    
+    `npx` is used to run executables installed locally in your project. Although Hardhat can be installed globally, we recommend installing locally in each project so that you can control the version on a project by project basis.
+
 After running the command, choose `Create an empty hardhat.config.js`:
 
 ![Hardhat Create Project](/images/hardhat/hardhat-images-1.png)
@@ -99,9 +98,9 @@ We are going to store our contract in the `contracts` directory. Create it:
 mkdir contracts && cd contracts
 ```
 
-The smart contract that we'll deploy as an example will be called Box: it will let people store a value that can be later retrieved. 
+The smart contract that we'll deploy as an example will be called Box: it will let people store a value that can be later retrieved.
 
-We will save this file as `contracts/Box.sol`: 
+We will save this file as `contracts/Box.sol`:
 
 ```solidity
 // contracts/Box.sol
@@ -133,16 +132,16 @@ Let's modify our Hardhat configuration file so we can compile and deploy this co
 
 If you have not yet done so, create a MetaMask Account, [connect to Moonbase Alpha](/getting-started/testnet/metamask/), and fund it through [Mission Control](/getting-started/testnet/faucet/). We will use the private key of the account created to deploy the contract.
 
-We start by requiring the [ethers plugin](https://hardhat.org/plugins/nomiclabs-hardhat-ethers.html), which brings the [ethers.js][/integrations/ethers/] library that allows you to interact with the blockchain in a simple way. We can install `ethers` plugin by running: 
+We start by requiring the [ethers plugin](https://hardhat.org/plugins/nomiclabs-hardhat-ethers.html), which brings the [ethers.js][/integrations/ethers/] library that allows you to interact with the blockchain in a simple way. We can install `ethers` plugin by running:
 
 ```
-npm install @nomiclabs/hardhat-ethers ethers 
+npm install @nomiclabs/hardhat-ethers ethers
 ```
 
 Next, we import the private key that we've retrieved from MetaMask and store it in a `.json` file.
 
 !!! note
-      Please always manage your private keys with a designated secret manager or similar service. Never save or commit your private keys inside your repositories.
+    Please always manage your private keys with a designated secret manager or similar service. Never save or commit your private keys inside your repositories.
 
 Inside the `module.exports`, we need to provide the Solidity version (`0.8.1` according to our contract file), and the network details:
 
@@ -174,7 +173,7 @@ module.exports = {
     moonbase: {
       url: `{{ networks.moonbase.rpc_url }}`,
       chainId: {{ networks.moonbase.chain_id }},
-      accounts: [privateKey]   
+      accounts: [privateKey]
     }
   }
 };
@@ -188,7 +187,7 @@ Next, let's create a `secrets.json`, where we will be storing the private key me
 }
 ```
 
-Congratulations!🏼  We are ready for deployment!
+Congratulations!🏼 We are ready for deployment!
 
 ## Compiling Solidity
 
@@ -218,27 +217,27 @@ We start by creating a local instance of the contract with the `getContractFacto
 ```js
 // scripts/deploy.js
 async function main() {
-  // We get the contract to deploy
-  const Box = await ethers.getContractFactory("Box");
-  console.log("Deploying Box...");
+   // We get the contract to deploy
+   const Box = await ethers.getContractFactory('Box');
+   console.log('Deploying Box...');
 
-  // Instantiating a new Box smart contract
-  const box = await Box.deploy();
+   // Instantiating a new Box smart contract
+   const box = await Box.deploy();
 
-  // Waiting for the deployment to resolve
-  await box.deployed();
-  console.log("Box deployed to:", box.address);
+   // Waiting for the deployment to resolve
+   await box.deployed();
+   console.log('Box deployed to:', box.address);
 }
 
 main()
-  .then(() => process.exit(0))
-  .catch(error => {
-    console.error(error);
-    process.exit(1);
-  });
+   .then(() => process.exit(0))
+   .catch((error) => {
+      console.error(error);
+      process.exit(1);
+   });
 ```
 
-Using the `run` command, we can now deploy the `Box` contract to `Moonbase Alpha`: 
+Using the `run` command, we can now deploy the `Box` contract to `Moonbase Alpha`:
 
 ```
   npx hardhat run --network moonbase scripts/deploy.js
@@ -264,20 +263,19 @@ npx hardhat console --network moonbase
 !!! note
     To deploy to a Moonbeam standalone node, replace `moonbase` for `dev` in the `console` command.
 
-Then, add the following lines of code one line at a time. First, we create a local instance of the `Box.sol`contract once again. Don't worry about the `undefined` output you will get after each line is executed: 
-
+Then, add the following lines of code one line at a time. First, we create a local instance of the `Box.sol`contract once again. Don't worry about the `undefined` output you will get after each line is executed:
 
 ```js
-const Box = await ethers.getContractFactory("Box") 
+const Box = await ethers.getContractFactory('Box');
 ```
 
 Next, let's connect this instance to an existing one by passing in the address we obtained when deploying the contract:
 
 ```js
-const box = await Box.attach("0x425668350bD782D80D457d5F9bc7782A24B8c2ef")
+const box = await Box.attach('0x425668350bD782D80D457d5F9bc7782A24B8c2ef');
 ```
 
-After attaching to the contract, we are ready to interact with it. While the console is still in session, let's call the `store` method and store a simple value: 
+After attaching to the contract, we are ready to interact with it. While the console is still in session, let's call the `store` method and store a simple value:
 
 ```
 await box.store(5)
@@ -287,12 +285,13 @@ The transaction will be signed by your Moonbase account and broadcast to the net
 
 ![Transaction output](/images/hardhat/hardhat-images-4.png)
 
-Notice your address labeled `from`, the address of the contract, and the `data` that is being passed. Now, let's retrieve the value by running: 
+Notice your address labeled `from`, the address of the contract, and the `data` that is being passed. Now, let's retrieve the value by running:
 
 ```
-(await box.retrieve()).toNumber() 
+(await box.retrieve()).toNumber()
 ```
-We should see `5` or the value you have stored initially. 
+
+We should see `5` or the value you have stored initially.
 
 Congratulations, you have completed the Hardhat tutorial! 🤯 🎉
 

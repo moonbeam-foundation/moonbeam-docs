@@ -18,17 +18,17 @@ The Aggregator Contract address can be found in the following table:
 ## Supported Token
 Price queries with any denomination are available as long as the base and quote symbols are supported (_base_/_quote_). For example:
 
- -  `BTC/USD`
- -  `BTC/ETH`
- -  `ETH/EUR`
+ - `BTC/USD`
+ - `BTC/ETH`
+ - `ETH/EUR`
 
 At the time of writing, the list of supported symbols can be found by following [this link](https://data.bandprotocol.com). There are more than 146 price pairs available to query.
 
 ## Querying Prices
 As stated before, developers can leverage two methods to query prices from Band's oracle: 
 
- -  Band's smart contract on Moonbeam (deployed to Moonbase Alpha TestNet for now)
- -  Javascript helper library
+ - Band's smart contract on Moonbeam (deployed to Moonbase Alpha TestNet for now)
+ - Javascript helper library
 
 ## Get Data Using Smart Contracts
 Contracts can query on-chain data, such as token prices, from Band's oracle by implementing the interface of the `StdReference` contract, which exposes the `getReferenceData` and `getReferenceDataBulk` functions.
@@ -51,9 +51,9 @@ struct ReferenceData {
 
 The second function, `getReferenceDataBulk`, takes information as data arrays. For example, if we pass in `['BTC','BTC','ETH']` as base and `['USD','ETH','EUR']` as quote, the `ReferenceData`returned array contains the information regarding the following pairs:
 
- -  `BTC/USD`
- -  `BTC/ETH`
- -  `ETH/EUR`
+ - `BTC/USD`
+ - `BTC/ETH`
+ - `ETH/EUR`
 
 ### Example Contract
 
@@ -86,10 +86,10 @@ interface IStdReference {
 ```
 Next, we can use the following `DemoOracle` script. It provides four functions:
 
- -  getPrice: a _view_ function that queries a single base. In this example, the price of `BTC` quoted in `USD`
- -  getMultiPrices: a _view_ function that queries multiple bases. In this example, the price of `BTC` and `ETH`, both quoted in `USD`
- -  savePrice: a _public_ function that queries the _base/quote_ pair. Each element is provided as separate strings, for example `_base = "BTC", _quotes = "USD"`. This sends a transaction and modifies the `price` variable stored in the contract
- -  saveMultiPrices: a _public_  function that queries each _base/quote_ pair. Each element is provided as a string array. For example, `_bases = ["BTC","ETH"], _quotes = ["USD","USD"]`. This sends a transaction and modifies the `prices` array stored in the contract, which will hold the price of each pair in the same order as specified in the input
+ - getPrice: a _view_ function that queries a single base. In this example, the price of `BTC` quoted in `USD`
+ - getMultiPrices: a _view_ function that queries multiple bases. In this example, the price of `BTC` and `ETH`, both quoted in `USD`
+ - savePrice: a _public_ function that queries the _base/quote_ pair. Each element is provided as separate strings, for example `_base = "BTC", _quotes = "USD"`. This sends a transaction and modifies the `price` variable stored in the contract
+ - saveMultiPrices: a _public_  function that queries each _base/quote_ pair. Each element is provided as a string array. For example, `_bases = ["BTC","ETH"], _quotes = ["USD","USD"]`. This sends a transaction and modifies the `prices` array stored in the contract, which will hold the price of each pair in the same order as specified in the input
 
  When deployed, the constructor function needs the Aggregator Contract address for the target network.
 
@@ -166,8 +166,8 @@ interface TestInterface {
 
 With it, you will have two view functions available - very similar to our previous examples:
 
- -  getPrice: provides the price feed for a single base/quote pair that is given as input to the function, that is, "BTC", "USD"
- -  getMultiPrices: provides the price feed for a multiple base/quote pairs that are given as input to the function, that is, ["BTC", "ETH", "ETH"], ["USD", "USD", "EUR"]
+ - getPrice: provides the price feed for a single base/quote pair that is given as input to the function, that is, "BTC", "USD"
+ - getMultiPrices: provides the price feed for a multiple base/quote pairs that are given as input to the function, that is, ["BTC", "ETH", "ETH"], ["USD", "USD", "EUR"]
 
 For example, using [Remix](/integrations/remix/), we can easily query the `BTC/USD` price pair using this interface.
 

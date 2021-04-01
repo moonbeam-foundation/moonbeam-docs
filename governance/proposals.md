@@ -20,7 +20,7 @@ With the release of [Moonbase Alpha v6](https://github.com/PureStake/moonbeam/re
 More information can be found in Polkadot's Wiki pages related to [Governance]() and [Participate in Democracy](https://wiki.polkadot.network/docs/en/maintain-guides-democracy).
 
 !!! note
-This guide was done with a customized version of Moonbeam with short Launch/Enactment periods for demonstration purposes only.
+    This guide was done with a customized version of Moonbeam with short Launch/Enactment periods for demonstration purposes only.
 
 ## Definitions
 

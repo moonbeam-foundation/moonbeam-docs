@@ -36,9 +36,9 @@ At the end of every round ({{ networks.moonbase.staking.round_blocks }} blocks),
 
 When collators join the set of collators, they establish a commission to charge their nominators for the service they provide. Therefore, the reward distribution goes as follows:
 
--  The commission is taken out of the reward to be distributed
--  The collator gets the rewards corresponding to their stake in the network, plus the commission
--  The rest of the rewards are distributed among nominators by stake
+ - The commission is taken out of the reward to be distributed
+ - The collator gets the rewards corresponding to their stake in the network, plus the commission
+ - The rest of the rewards are distributed among nominators by stake
 
 Mathematically speaking, for collators, the reward would look like this:
 
