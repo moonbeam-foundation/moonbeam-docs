@@ -9,18 +9,18 @@ description: How to send a proposal to be voted on Moonbeam via governance featu
 
 ## Introduction
 
-As mentioned in the [governance overview page](/governance/overview/#definitions), a proposal is a submission to the chain in which a token holder suggests for an action to be enacted by the system. 
+As mentioned in the [governance overview page](/governance/overview/#definitions), a proposal is a submission to the chain in which a token holder suggests for an action to be enacted by the system.
 
-Proposals are one of the core elements of the governance system because they are the main tool for stakeholders to propose actions/changes, which other stakeholders then vote on. 
+Proposals are one of the core elements of the governance system because they are the main tool for stakeholders to propose actions/changes, which other stakeholders then vote on.
 
-In Moonbeam, users will be able to create, second, and vote on proposals using their H160 address and private key, that is, their regular Ethereum account! 
+In Moonbeam, users will be able to create, second, and vote on proposals using their H160 address and private key, that is, their regular Ethereum account!
 
 With the release of [Moonbase Alpha v6](https://github.com/PureStake/moonbeam/releases/tag/v0.6.0), users of the network can now submit proposals for public referenda in the TestNet. This guide outlines the process of how to create a proposal. The steps will go from its creation until it reaches public referenda. You can find a guide on how to vote on a proposal [here](/governance/voting/).
 
 More information can be found in Polkadot's Wiki pages related to [Governance]() and [Participate in Democracy](https://wiki.polkadot.network/docs/en/maintain-guides-democracy).
 
 !!! note
-    This guide was done with a customized version of Moonbeam with short Launch/Enactment periods for demonstration purposes only.
+This guide was done with a customized version of Moonbeam with short Launch/Enactment periods for demonstration purposes only.
 
 ## Definitions
 
@@ -29,23 +29,23 @@ Some of the key parameters for this guide are the following:
  - **Proposal** — action or items being proposed by users of the network
  - **Second** — other stakeholders can second (approve) a proposal if they agree with it and want to help it reach public referenda. This requires matching the deposit of the original proposer
  - **Preimage hash** — hash of the proposal to be enacted. The first step to make a proposal is to submit a preimage. The hash is just its identifier. The proposer of the preimage can be different than the user that proposes that preimage as a formal proposal
-  - **Minimum preimage deposit** — minimum amount of tokens that the proposer needs to pay when submitting a preimage
+ - **Minimum preimage deposit** — minimum amount of tokens that the proposer needs to pay when submitting a preimage
  - **Minimum proposal deposit** — minimum amount of tokens that the proposer needs to bond when submitting a proposal. Tokens might be locked for an indeterminate amount of time because it is unknown when a proposal may become a referendum (if ever). This is true for tokens bonded by both the proposer and users that second the proposal
  - **Launch period** — how often new public referenda are launched
  - **Cool-off period** — duration (in blocks) in which a proposal may not be re-submitted after being vetoed
 
 Currently, for Moonbase Alpha:
 
-|      Variable     |   |                 Value                           |
-|:-----------------:|:-:|:-----------------------------------------------:|
-|    Launch Period  |   | {{ networks.moonbase.democracy.launch_period.blocks}} blocks ({{ networks.moonbase.democracy.launch_period.days}} days) |
-|  Cool-off Period  |   | {{ networks.moonbase.democracy.cool_period.blocks}} blocks ({{ networks.moonbase.democracy.cool_period.days}} days) |
-|  Minimum Preimage Deposit  |   |{{ networks.moonbase.democracy.min_preim_deposit}} DEV |
-|  Minimum Proposal Deposit  |   |{{ networks.moonbase.democracy.min_deposit}} DEV |
+|         Variable         |     |                                                          Value                                                          |
+| :----------------------: | :-: | :---------------------------------------------------------------------------------------------------------------------: |
+|      Launch Period       |     | {{ networks.moonbase.democracy.launch_period.blocks}} blocks ({{ networks.moonbase.democracy.launch_period.days}} days) |
+|     Cool-off Period      |     |   {{ networks.moonbase.democracy.cool_period.blocks}} blocks ({{ networks.moonbase.democracy.cool_period.days}} days)   |
+| Minimum Preimage Deposit |     |                                 {{ networks.moonbase.democracy.min_preim_deposit}} DEV                                  |
+| Minimum Proposal Deposit |     |                                    {{ networks.moonbase.democracy.min_deposit}} DEV                                     |
 
 ## Roadmap of a Proposal
 
---8<-- 'governance/roadmap.md'
+--8<-- 'text/governance/roadmap.md'
 
 ## Proposing an Action
 
@@ -118,7 +118,7 @@ Here, you need to provide the following information:
 
  1. Select the account you want to second the proposal with (in this case, Charley)
  2. Verify the number of tokens required to second the proposal
- 4. Click the "Second" button and sign the transaction
+ 3. Click the "Second" button and sign the transaction
 
 ![Fill in Second Information](/images/governance/governance-proposal-8.png)
 

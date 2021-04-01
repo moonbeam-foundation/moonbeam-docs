@@ -3,11 +3,12 @@ title: Setting Up a Node
 description: Follow this tutorial to learn how to set up your first Moonbeam node. You’ll also learn how to connect it to and control it with the Polkadot JS GUI.
 ---
 
-# Setting Up a Moonbeam Node and Connecting to the Polkadot JS GUI  
+# Setting Up a Moonbeam Node and Connecting to the Polkadot JS GUI
+
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed//p_0OAHSlHNM' frameborder='0' allowfullscreen></iframe></div>
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>You can find all of the relevant code for this tutorial on the <a href="{{ config.site_url }}resources/code-snippets/">code snippets page</a></div>
 
-## Introduction  
+## Introduction
 
 This guide outlines the steps needed to create a standalone local node, with one [pre-funded account](#pre-funded-development-account), for testing the Ethereum compatibility functionality of Moonbeam.
 
@@ -71,25 +72,25 @@ cd moonbeam
 Next, install Substrate and all its prerequisites (including Rust) by executing:
 
 ```
---8<-- 'setting-up-local/substrate.md'
+--8<-- 'code/setting-up-local/substrate.md'
 ```
 
 Now, lets make some checks (correct version of Rust nightly) with the initialization script:
 
 ```
---8<-- 'setting-up-local/initscript.md'
+--8<-- 'code/setting-up-local/initscript.md'
 ```
 
 Once you have followed all of the procedures above, it's time to build the standalone node by running:
 
 ```
---8<-- 'setting-up-local/build.md'
+--8<-- 'code/setting-up-local/build.md'
 ```
 
 If a _cargo not found error_ shows up in the terminal, manually add Rust to your system path (or restart your system):
 
 ```
---8<-- 'setting-up-local/cargoerror.md'
+--8<-- 'code/setting-up-local/cargoerror.md'
 ```
 
 !!! note
@@ -102,7 +103,7 @@ Here is what the tail end of the build output should look like:
 Then, you will want to run the node in dev mode using the following command:
 
 ```
---8<-- 'setting-up-local/runnode.md'
+--8<-- 'code/setting-up-local/runnode.md'
 ```
 
 !!! note
@@ -125,11 +126,11 @@ The local standalone Moonbeam node provides two RPC endpoints:
 ## Connecting Polkadot JS Apps to a Local Moonbeam Node
 
 The locally-running Moonbeam node is a Substrate-based node, so we can interact with it using standard Substrate tools. Let’s start by connecting to it with Polkadot JS Apps.  
-Open a browser to: [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/#/explorer). This will open Polkadot JS Apps, which automatically connects to Polkadot MainNet. 
+Open a browser to: [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/#/explorer). This will open Polkadot JS Apps, which automatically connects to Polkadot MainNet.
 
 ![Polkadot JS Apps](/images/setting-up-a-node/setting-up-node-4b.png)
 
-Click on the top left corner to open the menu to configure the networks, and then navigate down to open the Development sub-menu. In there,  you will want to toggle the "Local Node" option, which points Polkadot JS Apps to `ws://127.0.0.1:9944`. Next, select the Switch button, and the site should connect to your standalone Moonbeam node.
+Click on the top left corner to open the menu to configure the networks, and then navigate down to open the Development sub-menu. In there, you will want to toggle the "Local Node" option, which points Polkadot JS Apps to `ws://127.0.0.1:9944`. Next, select the Switch button, and the site should connect to your standalone Moonbeam node.
 
 ![Select Local Node](/images/setting-up-a-node/setting-up-node-5b.png)
 

@@ -2,25 +2,29 @@
 title: TestNet
 description: An overview of the current configuration of the Moonbeam TestNet, Moonbase Alpha, and information on how to start building on it using Solidity.
 ---
-# Moonbase Alpha, The Moonbeam TestNet
-*Updated February 18, 2020*
 
-## Goal  
+# Moonbase Alpha, The Moonbeam TestNet
+
+_Updated February 18, 2020_
+
+## Goal
+
 The first Moonbeam TestNet, named Moonbase Alpha, aims to provide developers with a place to start experimenting and building on Moonbeam in a shared environment. Since Moonbeam will be deployed as a parachain on Kusama and Polkadot, we want our TestNet to reflect our production configuration. For this reason, we decided that it needed to be a parachain-based configuration rather than a Substrate standalone setup.
 
 In order to collect as much feedback as possible and provide fast issue resolution, we have set up a [Discord with a dedicated Moonbase AlphaNet channel](https://discord.gg/PfpUATX).
 
 ## Initial Configuration
-Moonbase Alpha has the following configuration:  
 
--  Moonbeam runs as a parachain connected to a relay chain
--  The parachain has two collators (hosted by PureStake) that are collating blocks
--  The relay chain hosts three validators (hosted by PureStake) to finalize relay chain blocks. One of them is selected to finalize each block collated by Moonbeam's collators. This setup provides room to expand to a two-parachain configuration in the future
--  There are two RPC endpoints (hosted by PureStake). People can run full nodes to access their own private RPC endpoints
+Moonbase Alpha has the following configuration:
+
+ - Moonbeam runs as a parachain connected to a relay chain
+ - The parachain has two collators (hosted by PureStake) that are collating blocks
+ - The relay chain hosts three validators (hosted by PureStake) to finalize relay chain blocks. One of them is selected to finalize each block collated by Moonbeam's collators. This setup provides room to expand to a two-parachain configuration in the future
+ - There are two RPC endpoints (hosted by PureStake). People can run full nodes to access their own private RPC endpoints
 
 ![TestNet Diagram](/images/testnet/Moonbase-Alpha-v5.png)
 
-## Features  
+## Features
 
 The following features are available:
 
@@ -74,12 +78,12 @@ For more details regarding the updates of Moonbase Alpha, please refer to the fo
 
 Features that may be implemented in the future:
 
-- Expand on-chain governance features by introducing the [Council](https://wiki.polkadot.network/docs/en/learn-governance#council)
-- Treasury features ([Treasury pallet](https://github.com/paritytech/substrate/tree/master/frame/treasury))
+ - Expand on-chain governance features by introducing the [Council](https://wiki.polkadot.network/docs/en/learn-governance#council)
+ - Treasury features ([Treasury pallet](https://github.com/paritytech/substrate/tree/master/frame/treasury))
 
 ## Get Started
 
---8<-- "testnet/connect.md"
+--8<-- 'text/testnet/connect.md'
 
 ## Telemetry
 
@@ -87,11 +91,11 @@ You can see current Moonbase Alpha telemetry information visiting [this link](ht
 
 ## Tokens
 
---8<-- "testnet/faucet.md"
+--8<-- 'text/testnet/faucet.md'
 
 ## Early Stage Proof of Stake
 
-With the release of Moonbase Alpha v6, the TestNet is now running with an early stage Proof of Stake system. This means that, for testing purposes, Moonbeam partners will be encouraged to be the first collators in the network. 
+With the release of Moonbase Alpha v6, the TestNet is now running with an early stage Proof of Stake system. This means that, for testing purposes, Moonbeam partners will be encouraged to be the first collators in the network.
 
 As Moonbase Alpha progresses, we expect to evolve into a fully decentralized Proof of Stake network.
 
