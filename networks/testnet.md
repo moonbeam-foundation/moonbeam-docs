@@ -18,11 +18,11 @@ In order to collect as much feedback as possible and provide fast issue resoluti
 Moonbase Alpha has the following configuration:
 
  - Moonbeam runs as a parachain connected to a relay chain
- - The parachain has two collators (hosted by PureStake) that are collating blocks
+ - The parachain has two collators (hosted by PureStake) that are collating blocks. External collators can join the network. Only the top {{ networks.moonbase. collator_slots }} collator nodes by stake are chosen in the active set
  - The relay chain hosts three validators (hosted by PureStake) to finalize relay chain blocks. One of them is selected to finalize each block collated by Moonbeam's collators. This setup provides room to expand to a two-parachain configuration in the future
  - There are two RPC endpoints (hosted by PureStake). People can run full nodes to access their own private RPC endpoints
 
-![TestNet Diagram](/images/testnet/Moonbase-Alpha-v5.png)
+![TestNet Diagram](/images/testnet/Moonbase-Alpha-v7.png)
 
 ## Features
 
@@ -64,6 +64,9 @@ The following features are available:
     - Updated to the latest version of [Frontier RPC](https://github.com/paritytech/frontier), which increases EVM execution efficiency by a factor of 5
     - The gas limit has been bump to 15M per block, with a 13M per transaction limit
 
+??? release v7 "_April_ 2021_"      
+    - Some cool stuff TODO
+
 ### Release Notes
 
 For more details regarding the updates of Moonbase Alpha, please refer to the following release notes:
@@ -73,6 +76,7 @@ For more details regarding the updates of Moonbase Alpha, please refer to the fo
  - [Moonbase Alpha v4](https://github.com/PureStake/moonbeam/releases/tag/v0.4.0)
  - [Moonbase Alpha v5](https://github.com/PureStake/moonbeam/releases/tag/v0.5.0)
  - [Moonbase Alpha v6](https://github.com/PureStake/moonbeam/releases/tag/v0.6.0)
+ - [Moonbase Alpha v7](https://github.com/PureStake/moonbeam/releases/tag/v0.7.0)
 
 ### Future Releases
 
