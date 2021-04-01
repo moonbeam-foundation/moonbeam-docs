@@ -18,6 +18,7 @@ This guide walks through the process of creating and deploying a Solidity-based 
 This guide assumes that you have a local Moonbeam node running in `--dev` mode and that you have a [MetaMask](https://metamask.io/) installation configured to use this local node. You can find instructions for running a local Moonbeam node [here](/getting-started/local-node/setting-up-a-node/) and instructions to connect MetaMask to it [here](/getting-started/local-node/using-metamask/).
 
 ## Checking Prerequisites
+
 If you followed the guides above, you should have a local Moonbeam node that will begin to produce blocks as they are authored, which looks like this:
 
 ![Local Moonbeam node producing blocks](/images/remix/using-remix-1.png)

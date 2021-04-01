@@ -35,7 +35,9 @@ On the import screen, select “Private Key” and paste in the key listed above
 You should end up with an imported “Account 2” that looks like this:
 
 ![MetaMask displaying your new Account 2](/images/metamask/using-metamask-3.png)
+
 ## Connect to the Local Moonbeam Node
+
 Now, let’s connect MetaMask to our locally running Moonbeam node, which will begin to produce blocks as they are authored:
 
 ![Standalone Moonbeam Node](/images/metamask/using-metamask-9.png)
