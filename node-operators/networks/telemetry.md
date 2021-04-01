@@ -32,8 +32,8 @@ For help, contact our [Discord server](https://discord.gg/FQXm74UQ7V) or the [Ga
 
 Before following this tutorial, you need to:
 
-1. Log in to [https://app.gantree.io](https://app.gantree.io) and create an account.  Navigate to API keys and copy your API key. 
-2. Request a PCK key in our [Discord server](https://discord.gg/FQXm74UQ7V)
+ 1. Log in to [https://app.gantree.io](https://app.gantree.io) and create an account.  Navigate to API keys and copy your API key. 
+ 2. Request a PCK key in our [Discord server](https://discord.gg/FQXm74UQ7V)
    
 ## Telemetry Exporter with Docker
 
