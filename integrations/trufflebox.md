@@ -6,7 +6,8 @@ description: Start using the Moonbeam Truffle Box for a quick, preconfigured way
 
 ![Intro diagram](/images/integrations/integrations-trufflebox-banner.png)
 
-##Introduction
+## Introduction
+
 As part of an ongoing effort to help developers that want to start working on Moonbeam, we have [launched the Moonbeam Truffle box](https://moonbeam.network/announcements/moonbeam-truffle-box-available-solidity-developers/). With it, developers will find a boilerplate setup to get started deploying smart contracts on Moonbeam quickly. With the Moonbeam Truffle box, we have also incorporated the Moonbeam Truffle plugin, which introduces some commands to run a standalone node in your local environment as a Docker image. This removes the process of setting up a local node (which can take up to 40 minutes when building its binary) and is a quick and easy solution to get started developing in your local environment.
 
 This tutorial will guide you through the process of setting up the box, using the Moonbeam Truffle plugin, and deploying contracts to both a standalone Moonbeam node and Moonbase Alpha using Truffle with the box base configuration.
@@ -161,12 +162,12 @@ truffle run moonbeam remove
 
 Each of the commands shown before does the following action:
 
--  Start: Starts a Moonbeam standalone node. This provides two RPC endpoints: - HTTP: `http://127.0.0.1:9933` - WS: `ws://127.0.0.1:9944`
--  Status: Tells the user if there is a Moonbeam standalone node running
--  Pause: Pauses the standalone node if it’s running
--  Unpause: Unpauses the standalone node if it’s paused
--  Stop: Stops the standalone node if it’s running. This also removes the Docker container
--  Remove: Deletes the purestake/moonbase Docker image
+ - Start: Starts a Moonbeam standalone node. This provides two RPC endpoints: - HTTP: `http://127.0.0.1:9933` - WS: `ws://127.0.0.1:9944`
+ - Status: Tells the user if there is a Moonbeam standalone node running
+ - Pause: Pauses the standalone node if it’s running
+ - Unpause: Unpauses the standalone node if it’s paused
+ - Stop: Stops the standalone node if it’s running. This also removes the Docker container
+ - Remove: Deletes the purestake/moonbase Docker image
 
 You can see the output of these commands in the following image:
 

@@ -4,16 +4,14 @@ networks:
       rpc_url: http://127.0.0.1:9933
       chain_id: 1281
    moonbase:
-      version: v5
+      version: v7
       rpc_url: https://rpc.testnet.moonbeam.network
       chain_id: 1287
-      parachain_docker_tag: v0.6.2
+      parachain_docker_tag: v0.7.0
       node_directory: /var/lib/alphanet-data
       node_db_loc: /chains/moonbase_alpha/db
       binary_name: moonbeam
-      collator_min_stake: 1000
       collator_slots: 8
-      per_bill_fee: 200000000
       chainbridge:
          kovan:
             bridge_address: '0x8d5446a9c55C3A6c23A0e1c2d0F11AE31A0E9321'
@@ -76,6 +74,7 @@ networks:
          max_votes: 100
          max_proposals: 100
       staking:
+         collator_min_stake: 1000
          max_collators: 8
          round_blocks: 600
          round_hours: 2
@@ -83,7 +82,7 @@ networks:
          min_nom_stake: 5
          min_nom_amount: 5
          max_nom_per_col: 10
-         max_col_per_nom: 8
+         max_col_per_nom: 25
          collators:
             address1: '0x4c5A56ed5A4FF7B09aA86560AfD7d383F4831Cce'
             address2: '0x62d2e7324f9274fac3893a59aff8e944a323a495'
