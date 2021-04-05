@@ -3,7 +3,7 @@ title: TestNet
 description: An overview of the current configuration of the Moonbeam TestNet, Moonbase Alpha, and information on how to start building on it using Solidity.
 ---
 
-# Moonbase Alpha, The Moonbeam TestNet
+# The Moonbase Alpha TestNet
 
 _Updated April 5, 2021_
 

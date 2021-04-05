@@ -4,14 +4,14 @@ networks:
       rpc_url: http://127.0.0.1:9933
       chain_id: 1281
    moonbase:
-      version: v5
+      version: v7
       rpc_url: https://rpc.testnet.moonbeam.network
       chain_id: 1287
-      parachain_docker_tag: v0.6.2
+      parachain_docker_tag: v0.7.0
       node_directory: /var/lib/alphanet-data
       node_db_loc: /chains/moonbase_alpha/db
       binary_name: moonbeam
-      collator_slots: 16
+      collator_slots: 8
       chainbridge:
          kovan:
             bridge_address: '0x8d5446a9c55C3A6c23A0e1c2d0F11AE31A0E9321'
