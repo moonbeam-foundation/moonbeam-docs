@@ -31,8 +31,8 @@ networks:
          bridge_address: '0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB'
       chainlink:
          oracle_contract: '0xA356990bCDed8Cc6865Be606D64E7381bfe00B72'
-         link_contract: '0x6355D6E4f58fB96e859A89423B9d6A8F98aF1f4c'
-         client_contract: '0xa36085F69e2889c224210F603D836748e7dC0088'
+         link_contract: '0xa36085F69e2889c224210F603D836748e7dC0088'
+         client_contract: '0x6355D6E4f58fB96e859A89423B9d6A8F98aF1f4c'
          basic:
             aave_usd: '684981fa8e264cc1afa3e1df7fe8eecc'
             algo_usd: 'f7a442a6365048799a30c02ac56f4440'
