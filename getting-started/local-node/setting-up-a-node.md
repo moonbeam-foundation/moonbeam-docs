@@ -10,14 +10,16 @@ description: Follow this tutorial to learn how to set up your first Moonbeam nod
 
 ## Introduction
 
-This guide outlines the steps needed to create a standalone local node, with one [pre-funded account](#pre-funded-development-account), for testing the Ethereum compatibility functionality of Moonbeam.
+This guide outlines the steps needed to create a development node for testing the Ethereum compatibility features of Moonbeam.
 
 !!! note
     This tutorial was created using the {{ networks.standalone.build_tag }} tag of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/{{ networks.standalone.build_tag }}). The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility are still under very active development. The examples in this guide assume a MacOS or Ubuntu 18.04-based environment and will need to be adapted accordingly for Windows.
 
-If you follow to the end of this guide, you will have a Moonbeam node running in your local environment and will be able to connect it to the default Polkadot JS GUI.
+A Moonbeam development node is your own personal development environment for building and testing applications on Moonbeam. For Ethereum developers, it is comparible to Ganache. It enables you to get started quickly and easily without the overhead of a relay chain. You can spin up your node with the `--sealing` option to author blocks instantly, manually, or at a custom interval after transactions are received. By default a block will be created when a transaction is received, which is similar to Ganache's instamine feature. 
 
-There are two ways to get started running a Moonbeam node: you can use [docker to run a pre-built binary](#getting-started-with-docker) or you can [locally install and set it up yourself](#installation-and-setup). Using Docker is a quick and convenient way to get started, but does require you to [install Docker](https://docs.docker.com/get-docker/).
+If you follow to the end of this guide, you will have a Moonbeam development node running in your local environment and will be able to connect it to the default Polkadot JS GUI.
+
+There are two ways to get started running a Moonbeam node: you can use [docker to run a pre-built binary](#getting-started-with-docker) or you can [locally install and set up a development node yourself](#installation-and-setup). Using Docker is a quick and convenient way to get started, but does require you to [install Docker](https://docs.docker.com/get-docker/). If you chose to install and set it up yourself, it could take roughly 30 minutes or longer to complete depending on your hardware.
 
 ## Getting Started with Docker
 
@@ -45,7 +47,7 @@ You can run the Docker image using the following:
     --8<-- 'code/setting-up-local/dockerrun_macos.md'
     ```
 
-This should spin up a standalone Moonbeam node for testing local development in the default instant seal mode. 
+This should spin up a Moonbeam develoment node in instant seal mode for local testing, so that blocks are authored instantly as transactions are received.
 If successful, you should see an output showing an idle state waiting for blocks to be authored:
 
 ![Docker - output shows blocks being produced](/images/setting-up-a-node/setting-up-node-8a.png)
@@ -81,7 +83,7 @@ Now, lets make some checks (correct version of Rust nightly) with the initializa
 --8<-- 'code/setting-up-local/initscript.md'
 ```
 
-Once you have followed all of the procedures above, it's time to build the standalone node by running:
+Once you have followed all of the procedures above, it's time to build the development node by running:
 
 ```
 --8<-- 'code/setting-up-local/build.md'
@@ -119,7 +121,7 @@ For more information on some of the flags and options used in the example, check
 ./target/release/moonbeam --help
 ```
 
-The local standalone Moonbeam node provides two RPC endpoints:
+The local Moonbeam development node provides two RPC endpoints:
  
  - HTTP: `http://127.0.0.1:9933`
  - WS: `ws://127.0.0.1:9944` 
@@ -130,11 +132,11 @@ Open a browser to: [https://polkadot.js.org/apps/#/explorer](https://polkadot.js
 
 ![Polkadot JS Apps](/images/setting-up-a-node/setting-up-node-4b.png)
 
-Click on the top left corner to open the menu to configure the networks, and then navigate down to open the Development sub-menu. In there, you will want to toggle the "Local Node" option, which points Polkadot JS Apps to `ws://127.0.0.1:9944`. Next, select the Switch button, and the site should connect to your standalone Moonbeam node.
+Click on the top left corner to open the menu to configure the networks, and then navigate down to open the Development sub-menu. In there, you will want to toggle the "Local Node" option, which points Polkadot JS Apps to `ws://127.0.0.1:9944`. Next, select the Switch button, and the site should connect to your Moonbeam development node.
 
 ![Select Local Node](/images/setting-up-a-node/setting-up-node-5b.png)
 
-With Polkadot JS Apps connected, you will see the standalone Moonbeam node producing blocks.
+With Polkadot JS Apps connected, you will see the Moonbeam development node producing blocks.
 
 ![Select Local Node](/images/setting-up-a-node/setting-up-node-6b.png)
 
@@ -146,16 +148,26 @@ Nevertheless, leveraging the Ethereum full RPC capabilities of Moonbeam, you can
 
 ## Common Flags and Options
 
-Flags:
+Flags do not take an argument. To use a flag, add it to the end of a command. For example:
 
-- `--dev` - Specifies the development chain
-- `--tmp` - Runs a temporary node in which all of the configuration will be deleted at the end of the process
-- `--rpc-external` - Listen to all RPC interfaces
-- `--ws-external` - Listen to all Websocket interfaces
+```
+--8<-- 'code/setting-up-local/runnode.md'
+```
 
-Options:
+- `--dev`: Specifies the development chain
+- `--no-telemetry`: Disable connecting to the Substrate telemetry server. For global chains, telemetry is on by default. Telemetry is unavailable if you are running a development (`--dev`) node.
+- `--tmp`: Runs a temporary node in which all of the configuration will be deleted at the end of the process
+- `--rpc-external`: Listen to all RPC interfaces
+- `--ws-external`: Listen to all Websocket interfaces
 
-- `--sealing` - When blocks should be sealed in the dev service. Options are "instant", "manual", or timer interval in milliseconds [default: instant]
+Options accept an argument on the right side of a command. For example:
+
+```
+--8<-- 'code/setting-up-local/runnodewithsealinginterval.md'
+```
+
+- `-l <log pattern>` or `--log <log pattern>`: Sets a custom logging filter. The syntax for the log pattern is `<target>=<level>`. For example, to print all of the RPC logs, the command would look like this: `-l rpc=trace`.
+- `--sealing <interval>`: When blocks should be sealed in the dev service. Accepted arguments for interval: `instant`, `manual`, or a number representing the timer interval in milliseconds. The default is `instant`.
 
 ## Pre-funded Development Account
 
