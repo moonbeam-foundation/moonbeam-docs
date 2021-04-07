@@ -16,7 +16,7 @@ This guide walks through using three different Ethereum libraries to manually si
  - [Web3.py](https://web3py.readthedocs.io/)
 
 !!!note
-    --8<-- '../code-snippets/common/assumes-mac-or-ubuntu-env.md'
+    --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
 
 ## Checking Prerequisites
 
@@ -227,4 +227,4 @@ And lastly, recheck the balance to make sure the transfer was successful. The en
 === "Web3.py"
     ![Send Tx Web3py](/images/sendtx/sendtx-web3py.png)
 
---8<-- '../code-snippets/common/we-want-to-hear-from-you.md'
+--8<-- 'text/common/we-want-to-hear-from-you.md'

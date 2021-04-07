@@ -15,7 +15,7 @@ The examples in this guide are based on an Ubuntu 18.04 environment. You will al
 -  Have an account with funds. You can get this from [Mission Control](/getting-started/testnet/faucet/)
 -  Deploy your own ERC-20 token on Moonbase. You can do following [our Remix tutorial](/getting-started/local-node/using-remix/), while first pointing MetaMask to Moonbase
 
---8<-- '../code-snippets/common/install-nodejs.md'
+--8<-- 'text/common/install-nodejs.md'
 
 As of writing this guide, the versions used were 14.6.0 and 6.14.6, respectively. We will also need to install the Web3 package by executing:
 

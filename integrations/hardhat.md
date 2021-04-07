@@ -15,7 +15,7 @@ This guide will cover how to use Hardhat to compile, deploy, and debug Ethereum 
 
 ## Checking Prerequisites
 
---8<-- '../code-snippets/common/install-nodejs.md'
+--8<-- 'text/common/install-nodejs.md'
 
 As of writing of this guide, the versions used were 15.7.0 and 7.4.3, respectively. 
 
@@ -77,7 +77,6 @@ We will save this file as `contracts/Box.sol`:
 
 ```solidity
 // contracts/Box.sol
-// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.1;
 
 contract Box {

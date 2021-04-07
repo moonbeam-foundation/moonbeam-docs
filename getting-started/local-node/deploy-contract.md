@@ -20,8 +20,8 @@ Besides, two other libraries will be used to compile the smart contract:
  - [Solc-js](https://www.npmjs.com/package/solc) to compile Solidity smart contracts using JavaScript
  - [Py-solc-x](https://pypi.org/project/py-solc-x/) to compile Solidity smart contracts using Python
 
-!!!note
-    --8<-- '../code-snippets/common/assumes-mac-or-ubuntu-env.md'
+!!! note
+    --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
 
 ## Checking Prerequisites
 
@@ -433,4 +433,4 @@ This will display the value before the reset transaction, the hash of the transa
 === "Web3.py"
     ![Reset Contract Web3py](/images/deploycontract/contract-reset-web3py.png)
 
---8<-- '../code-snippets/common/we-want-to-hear-from-you.md'
+--8<-- 'text/common/we-want-to-hear-from-you.md'

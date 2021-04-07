@@ -14,13 +14,13 @@ This guide walks through the process of deploying a Solidity-based smart contrac
 
 !!! note
      This tutorial was created using the {{ networks.moonbase.version }} release of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/{{ networks.moonbase.version }}). The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility are still under very active development.
-     --8<-- '../code-snippets/common/assumes-mac-or-ubuntu-env.md'
+    --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
 
 For this guide, you will need to have a standalone Moonbeam node running in `--dev` mode. This can be done by either following the steps detailed [here](/getting-started/local-node/setting-up-a-node/) or by using the [Moonbeam Truffle plugin](/integrations/trufflebox/#the-moonbeam-truffle-plugin), which we'll use in this tutorial's examples.
 
 ## Checking Prerequisites
 
---8<-- '../code-snippets/common/install-nodejs.md'
+--8<-- 'text/common/install-nodejs.md'
 
 
 In addition, you can globally install Truffle by running:
@@ -151,4 +151,4 @@ If successful, you will see deployment actions, including the address of the dep
 
 Once you have followed the [MetaMask guide](/getting-started/local-node/using-metamask/) and [Remix guide](/getting-started/local-node/using-remix/), you will be able to take the deployed contract address that is returned and load it into MetaMask or Remix.
 
---8<-- '../code-snippets/common/we-want-to-hear-from-you.md'
+--8<-- 'text/common/we-want-to-hear-from-you.md'

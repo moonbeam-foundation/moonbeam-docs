@@ -15,7 +15,7 @@ In this guide, we will explain how to use and/or verify these precompiles.
 
 ## Checking Prerequisites
 
---8<-- '../code-snippets/common/install-nodejs.md'
+--8<-- 'text/common/install-nodejs.md'
 
 As of writing this guide, the versions used were 15.2.1 and 7.0.8, respectively. We will also need to install the Web3 package by executing:
 
