@@ -36,7 +36,7 @@ The minimum specs recommended to run a node are shown in the following table. Fo
 | **Firewall** |     | P2P port must be open to incoming traffic:<br>&nbsp; &nbsp; - Source: Any<br>&nbsp; &nbsp; - Destination: 30333, 30334 TCP |
 
 !!! note
-If you don't see an `Imported` message (without the `[Relaychain]` tag) when running a node, you might need to double-check your port configuration.
+    If you don't see an `Imported` message (without the `[Relaychain]` tag) when running a node, you might need to double-check your port configuration.
 
 ## Running Ports
 
@@ -211,7 +211,8 @@ The following commands will build the latest release of the Moonbeam parachain.
 First, let's start by cloning the moonbeam repo.
 
 ```
---8<-- 'code/setting-up-local/clone.md'
+git clone -b {{ networks.standalone.build_tag }} https://github.com/PureStake/moonbeam
+cd moonbeam
 ```
 
 Let's check out the latest release:

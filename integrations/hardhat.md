@@ -57,8 +57,8 @@ npx hardhat
 This will create a Hardhat config file (`hardhat.config.js`) in our project directory.
 
 !!! note
-      `npx` is used to run executables installed locally in your project. Although Hardhat can be installed globally, we recommend installing locally in each project so that you can control the version on a project by project basis.
-    
+    `npx` is used to run executables installed locally in your project. Although Hardhat can be installed globally, we recommend installing locally in each project so that you can control the version on a project by project basis.
+
 After running the command, choose `Create an empty hardhat.config.js`:
 
 ![Hardhat Create Project](/images/hardhat/hardhat-images-1.png)
@@ -113,7 +113,7 @@ npm install @nomiclabs/hardhat-ethers ethers
 Next, we import the private key that we've retrieved from MetaMask and store it in a `.json` file.
 
 !!! note
-      Please always manage your private keys with a designated secret manager or similar service. Never save or commit your private keys inside your repositories.
+    Please always manage your private keys with a designated secret manager or similar service. Never save or commit your private keys inside your repositories.
 
 Inside the `module.exports`, we need to provide the Solidity version (`0.8.1` according to our contract file), and the network details:
 
