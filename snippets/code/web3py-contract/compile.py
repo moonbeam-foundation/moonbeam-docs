@@ -1,11 +1,11 @@
 import solcx
 
-# Install Solidity Compiler
-solcx.install_solc()
+# If you haven't already installed the Solidity compiler, uncomment the following line
+# solcx.install_solc()
 
-# Compile Contract
+# Compile contract
 temp_file = solcx.compile_files('Incrementer.sol')
 
-# Export Contract Data
+# Export contract data
 abi = temp_file['Incrementer.sol:Incrementer']['abi']
 bytecode = temp_file['Incrementer.sol:Incrementer']['bin']
