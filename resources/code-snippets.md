@@ -20,12 +20,6 @@ cd moonbeam
 --8<-- 'code/setting-up-local/substrate.md'
 ```
 
-**Run initialization script:**
-
-```
---8<-- 'code/setting-up-local/initscript.md'
-```
-
 **Add Rust to system path:**
 
 ```

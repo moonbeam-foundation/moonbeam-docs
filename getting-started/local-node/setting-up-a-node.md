@@ -77,12 +77,6 @@ Next, install Substrate and all its prerequisites (including Rust) by executing:
 --8<-- 'code/setting-up-local/substrate.md'
 ```
 
-Now, lets make some checks (correct version of Rust nightly) with the initialization script:
-
-```
---8<-- 'code/setting-up-local/initscript.md'
-```
-
 Once you have followed all of the procedures above, it's time to build the development node by running:
 
 ```
