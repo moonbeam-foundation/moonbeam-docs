@@ -17,7 +17,7 @@ This guide outlines the steps needed to create a development node for testing th
 
 A Moonbeam development node is your own personal development environment for building and testing applications on Moonbeam. For Ethereum developers, it is comparible to Ganache. It enables you to get started quickly and easily without the overhead of a relay chain. You can spin up your node with the `--sealing` option to author blocks instantly, manually, or at a custom interval after transactions are received. By default a block will be created when a transaction is received, which is similar to Ganache's instamine feature. 
 
-If you follow to the end of this guide, you will have a Moonbeam development node running in your local environment and will be able to connect it to the default Polkadot JS GUI.
+If you follow to the end of this guide, you will have a Moonbeam development node running in your local environment, with 10 [pre-funded accounts](#pre-funded-development-accounts), and will be able to connect it to the default Polkadot JS GUI.
 
 There are two ways to get started running a Moonbeam node: you can use [docker to run a pre-built binary](#getting-started-with-docker) or you can [locally install and set up a development node yourself](#installation-and-setup). Using Docker is a quick and convenient way to get started, but does require you to [install Docker](https://docs.docker.com/get-docker/). If you chose to install and set it up yourself, it could take roughly 30 minutes or longer to complete depending on your hardware.
 
@@ -169,8 +169,8 @@ Options accept an argument on the right side of a command. For example:
 - `-l <log pattern>` or `--log <log pattern>`: Sets a custom logging filter. The syntax for the log pattern is `<target>=<level>`. For example, to print all of the RPC logs, the command would look like this: `-l rpc=trace`.
 - `--sealing <interval>`: When blocks should be sealed in the dev service. Accepted arguments for interval: `instant`, `manual`, or a number representing the timer interval in milliseconds. The default is `instant`.
 
-## Pre-funded Development Account
+## Pre-funded Development Accounts
 
-Your standalone build comes with one pre-funded account for development:
+Your Moonbeam development node comes with ten pre-funded accounts for development. The addresses are derived from Substrate's canonical development mnemonic: `bottom drive obey lake curtain smoke basket hold race lonely fit walk`. Checkout the [Using MetaMask](/getting-started/local-node/using-metamask/) section to get started interacting with your accounts.
 
---8<-- 'text/metamask-local/dev-account.md'
+--8<-- 'text/setting-up-local/dev-accounts.md'

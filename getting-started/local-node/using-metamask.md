@@ -24,11 +24,11 @@ First, we start with a fresh and default [MetaMask](https://metamask.io/) instal
 
 ![Import dev account into MetaMask](/images/metamask/using-metamask-1.png)
 
-The details for the development account that comes pre-funded for this standalone build are as follows:
+The details for the development accounts that comes pre-funded for this standalone build are as follows:
 
---8<-- 'text/metamask-local/dev-account.md'
+--8<-- 'text/setting-up-local/dev-accounts.md'
 
-On the import screen, select “Private Key” and paste in the key listed above:
+On the import screen, select “Private Key” and paste in one of the keys listed above. For this example we'll use Gerald's key:
 
 ![Paste your account key into MetaMask](/images/metamask/using-metamask-2.png)
 
@@ -50,7 +50,7 @@ If so, in MetaMask, navigate to Settings -> Networks -> Add Network and fill in 
 
 When you hit "save" and exit the network settings screen, MetaMask should be connected to the local Moonbeam standalone node via its Web3 RPC, and you should see the Moonbeam dev account with a balance of 1207925.8196 DEV.
 
-![Your new Moonbeam account with a balance of 123456.123](/images/metamask/using-metamask-5.png)
+![Your new Moonbeam account with a balance of 1207925.8196](/images/metamask/using-metamask-5.png)
 
 ## Initiating a Transfer
 

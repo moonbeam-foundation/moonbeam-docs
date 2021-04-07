@@ -60,6 +60,10 @@ cd moonbeam
 
 --8<-- 'text/metamask-local/dev-account.md'
 
+## Development Accounts
+
+--8<-- 'text/setting-up-local/dev-accounts.md'
+
 ## MetaMask
 
 **Moonbeam Standalone node details:**
