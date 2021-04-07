@@ -116,7 +116,7 @@ Now, execute the docker run command. Note that you have to:
 
 === "MacOS"
     ```
-    docker run -v "{{ networks.moonbase.node_directory }}:/data" \
+    docker run -p {{ networks.parachain.rpc }}:{{ networks.parachain.rpc }} -p {{ networks.parachain.ws }}:{{ networks.parachain.ws }} -v "{{ networks.moonbase.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     purestake/moonbeam:{{ networks.moonbase.parachain_docker_tag }} \
     --ws-external \
@@ -158,7 +158,7 @@ Now, execute the docker run command. Note that you have to:
 
 === "MacOS"
     ```
-    docker run -v "{{ networks.moonbase.node_directory }}:/data" \
+    docker run -p {{ networks.parachain.rpc }}:{{ networks.parachain.rpc }} -p {{ networks.parachain.ws }}:{{ networks.parachain.ws }} -v "{{ networks.moonbase.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     purestake/moonbeam:{{ networks.moonbase.parachain_docker_tag }} \
     --ws-external \
