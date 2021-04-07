@@ -10,7 +10,8 @@ description: In order to make it easier to get started with Moonbeam, here are c
 **Clone moonbeam-tutorials repo:**
 
 ```
---8<-- 'code/setting-up-local/clone.md'
+git clone -b {{ networks.standalone.build_tag }} https://github.com/PureStake/moonbeam
+cd moonbeam
 ```
 
 **Install substrate and its pre-requisites:**
