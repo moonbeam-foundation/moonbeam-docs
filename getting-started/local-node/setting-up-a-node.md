@@ -13,7 +13,7 @@ description: Follow this tutorial to learn how to set up your first Moonbeam nod
 This guide outlines the steps needed to create a development node for testing the Ethereum compatibility features of Moonbeam.
 
 !!! note
-    This tutorial was created using the {{ networks.standalone.build_tag }} tag of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/{{ networks.standalone.build_tag }}). The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility are still under very active development. The examples in this guide assume a MacOS or Ubuntu 18.04-based environment and will need to be adapted accordingly for Windows.
+    This tutorial was created using the {{ networks.development.build_tag }} tag of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/{{ networks.development.build_tag }}). The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility are still under very active development. The examples in this guide assume a MacOS or Ubuntu 18.04-based environment and will need to be adapted accordingly for Windows.
 
 A Moonbeam development node is your own personal development environment for building and testing applications on Moonbeam. For Ethereum developers, it is comparible to Ganache. It enables you to get started quickly and easily without the overhead of a relay chain. You can spin up your node with the `--sealing` option to author blocks instantly, manually, or at a custom interval after transactions are received. By default a block will be created when a transaction is received, which is similar to Ganache's instamine feature. 
 
@@ -55,7 +55,7 @@ If successful, you should see an output showing an idle state waiting for blocks
 For more information on some of the flags and options used in the example, check out [Common Flags and Options](#common-flags-and-options). If you want to see a complete list of all of the flags, options, and subcommands, open the help menu by running:
 
 ```
-docker run --rm --name moonbeam_standalone \
+docker run --rm --name moonbeam_development \
 purestake/moonbeam --help
 ```
 
@@ -67,7 +67,7 @@ We start by cloning a specific tag of the Moonbeam repo that you can find here:
 [https://github.com/PureStake/moonbeam/](https://github.com/PureStake/moonbeam/)
 
 ```
-git clone -b {{ networks.standalone.build_tag }} https://github.com/PureStake/moonbeam
+git clone -b {{ networks.development.build_tag }} https://github.com/PureStake/moonbeam
 cd moonbeam
 ```
 

@@ -6,8 +6,8 @@ const contractFile = require('./compile');
 */
 // Provider
 const providerRPC = {
-   standalone: {
-      name: 'moonbeam-standalone',
+   development: {
+      name: 'moonbeam-development',
       rpc: 'http://localhost:9933',
       chainId: 1281,
    },
@@ -18,10 +18,10 @@ const providerRPC = {
    },
 };
 const provider = new ethers.providers.StaticJsonRpcProvider(
-   providerRPC.standalone.rpc,
+   providerRPC.development.rpc,
    {
-      chainId: providerRPC.standalone.chainId,
-      name: providerRPC.standalone.name,
+      chainId: providerRPC.development.chainId,
+      name: providerRPC.development.name,
    }
 ); //Change to correct network
 

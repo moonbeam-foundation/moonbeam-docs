@@ -5,10 +5,10 @@ const Web3 = require('web3');
 */
 // Provider
 const providerRPC = {
-   standalone: 'http://localhost:9933',
+   development: 'http://localhost:9933',
    moonbase: 'https://rpc.testnet.moonbeam.network',
 };
-const web3 = new Web3(providerRPC.standalone); //Change to correct network
+const web3 = new Web3(providerRPC.development); //Change to correct network
 
 const account_from = {
    privateKey: 'YOUR-PRIVATE-KEY-HERE',

@@ -10,10 +10,10 @@ description: This tutorial walks you through how to interact with a local Moonbe
 
 ## Introduction
 
-This guide outlines the steps needed to connect MetaMask to a self-contained Moonbeam standalone node in order to send tokens between accounts. If you haven’t already set up your own local dev node, refer to [this tutorial](/getting-started/local-node/setting-up-a-node/), or follow the instructions in the [GitHub repository](https://github.com/PureStake/moonbeam/).
+This guide outlines the steps needed to connect MetaMask to a self-contained Moonbeam development node in order to send tokens between accounts. If you haven’t already set up your own local dev node, refer to [this tutorial](/getting-started/local-node/setting-up-a-node/), or follow the instructions in the [GitHub repository](https://github.com/PureStake/moonbeam/).
 
 !!! note
-    This tutorial was created using the {{ networks.standalone.build_tag}} tag which is based on the {{ networks.moonbase.version }} release of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/{{ networks.moonbase.version }}). The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility are still under very active development. 
+    This tutorial was created using the {{ networks.development.build_tag}} tag which is based on the {{ networks.moonbase.version }} release of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/{{ networks.moonbase.version }}). The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility are still under very active development. 
     --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
 
 You can interact with Moonbeam in two ways: by using Substrate RPC endpoints or using Web3-compatible RPC endpoints. The latter endpoints are currently being served from the same RPC server as the Substrate RPCs. In this tutorial, we will use the Web3 RPC endpoints to interact with Moonbeam.
@@ -24,7 +24,7 @@ First, we start with a fresh and default [MetaMask](https://metamask.io/) instal
 
 ![Import dev account into MetaMask](/images/metamask/using-metamask-1.png)
 
-The details for the development accounts that comes pre-funded for this standalone build are as follows:
+The details for the development accounts that comes pre-funded for this development node are as follows:
 
 --8<-- 'text/setting-up-local/dev-accounts.md'
 
@@ -40,15 +40,15 @@ You should end up with an imported “Account 2” that looks like this:
 
 Now, let’s connect MetaMask to our locally running Moonbeam node, which will begin to author blocks as transactions arrive:
 
-![Standalone Moonbeam Node](/images/metamask/using-metamask-9.png)
+![Moonbeam Development Node](/images/metamask/using-metamask-9.png)
 
 If so, in MetaMask, navigate to Settings -> Networks -> Add Network and fill in the following details:
 
---8<-- 'text/metamask-local/standalone-details.md'
+--8<-- 'text/metamask-local/development-node-details.md'
 
 ![Enter your new network information into MetaMask](/images/metamask/using-metamask-4.png)
 
-When you hit "save" and exit the network settings screen, MetaMask should be connected to the local Moonbeam standalone node via its Web3 RPC, and you should see the Moonbeam dev account with a balance of 1207925.8196 DEV.
+When you hit "save" and exit the network settings screen, MetaMask should be connected to the local Moonbeam development node via its Web3 RPC, and you should see the Moonbeam dev account with a balance of 1207925.8196 DEV.
 
 ![Your new Moonbeam account with a balance of 1207925.8196](/images/metamask/using-metamask-5.png)
 
@@ -69,6 +69,6 @@ Note that the Account 2 balance has been decreased by the sent amount + gas fees
 ![New balance in Account 1](/images/metamask/using-metamask-8.png)
 
 !!! note
-    If you end up resetting your standalone node using the Substrate purge-chain command, you will need to reset your MetaMask genesis account using Settings -> Advanced -> Reset Account. This will clear the transaction history from your accounts and reset the nonce. Make sure you don’t erase anything that you want to keep!
+    If you end up resetting your development node using the Substrate purge-chain command, you will need to reset your MetaMask genesis account using Settings -> Advanced -> Reset Account. This will clear the transaction history from your accounts and reset the nonce. Make sure you don’t erase anything that you want to keep!
 
 --8<-- '../text/common/we-want-to-hear-from-you.md'

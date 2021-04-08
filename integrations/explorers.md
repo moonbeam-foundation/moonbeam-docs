@@ -10,7 +10,7 @@ description: An overview of the currently available block explorers that may be 
 
 The Moonbeam team is currently working on onboarding a specialized block explorer solution that would allow users to navigate the EVM as well as the Substrate layer of the blockchain.
 
-Currently, we offer two block explorers: one for the Ethereum API based on the [Expedition explorer](https://github.com/etclabscore/expedition), and one for the Substrate API using [Polkadot JS apps](/integrations/wallets/polkadotjs/). You can use both for either a standalone Moonbeam node or the Moonbase Alpha TestNet.
+Currently, we offer two block explorers: one for the Ethereum API based on the [Expedition explorer](https://github.com/etclabscore/expedition), and one for the Substrate API using [Polkadot JS apps](/integrations/wallets/polkadotjs/). You can use both for either a Moonbeam development node or the Moonbase Alpha TestNet.
 
 !!! note
     If you are using Brave Browser and your explorer is not connecting to the Moonbeam instance you are pointing it to, try disabling Brave Shield.
@@ -19,12 +19,12 @@ Currently, we offer two block explorers: one for the Ethereum API based on the [
 
 ### Local Node
 
-To connect the explorer to a standalone Moonbeam node, you can use [this URL](https://expedition.dev/?rpcUrl=http://127.0.0.1:9933). This uses the RPC endpoint located at port `9933` by default. If you have defined a different port, you can changed it in the URL bar.
+To connect the explorer to a Moonbeam development node, you can use [this URL](https://expedition.dev/?rpcUrl=http://127.0.0.1:9933). This uses the RPC endpoint located at port `9933` by default. If you have defined a different port, you can changed it in the URL bar.
 
-![Explorer Standalone](/images/explorers/explorers-images-1.png)
+![Explorer Development](/images/explorers/explorers-images-1.png)
 
 !!! note
-    Expedition only works if running the standalone Moonbeam node with the repository tag `tutorial-v3`. It will not work if using master.
+    Expedition only works if running the Moonbeam development node with the repository tag `tutorial-v3`. It will not work if using master.
 
 ### Moonbase Alpha
 
@@ -40,7 +40,7 @@ You can find the repository for the explorer at [this URL](https://github.com/Pu
 
 ### Local Node
 
-Polkadot JS Apps uses the WebSocket endpoint to interact with the Network. To connect it to a standalone Moonbeam node, you can follow the steps in [this tutorial](/getting-started/local-node/setting-up-a-node/#connecting-polkadot-js-apps-to-a-local-moonbeam-node). The default port for this is `9944`.
+Polkadot JS Apps uses the WebSocket endpoint to interact with the Network. To connect it to a Moonbeam development node, you can follow the steps in [this tutorial](/getting-started/local-node/setting-up-a-node/#connecting-polkadot-js-apps-to-a-local-moonbeam-node). The default port for this is `9944`.
 
 ![Local Node](/images/explorers/explorers-images-3.png)
 

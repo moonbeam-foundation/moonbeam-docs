@@ -10,7 +10,7 @@ description: In order to make it easier to get started with Moonbeam, here are c
 **Clone moonbeam-tutorials repo:**
 
 ```
-git clone -b {{ networks.standalone.build_tag }} https://github.com/PureStake/moonbeam
+git clone -b {{ networks.development.build_tag }} https://github.com/PureStake/moonbeam
 cd moonbeam
 ```
 
@@ -26,7 +26,7 @@ cd moonbeam
 --8<-- 'code/setting-up-local/cargoerror.md'
 ```
 
-**Build the standalone node:**
+**Build the development node:**
 
 ```
 --8<-- 'code/setting-up-local/build.md'
@@ -41,13 +41,13 @@ cd moonbeam
 **Purge chain, clean up any old data from running a ‘dev’ node in the past:**
 
 ```
-./target/release/moonbase-standalone purge-chain --dev
+./target/release/moonbeam-development purge-chain --dev
 ```
 
 **Run node in dev mode suppressing block information but prints errors in console:**
 
 ```
-./target/release/moonbase-standalone --dev -lerror
+./target/release/moonbeam-development --dev -lerror
 ```
 
 ## Genesis Account
@@ -60,9 +60,9 @@ cd moonbeam
 
 ## MetaMask
 
-**Moonbeam Standalone node details:**
+**Moonbeam Development node details:**
 
---8<-- 'text/metamask-local/standalone-details.md'
+--8<-- 'text/metamask-local/development-node-details.md'
 
 **Moonbase Alpha TestNet:**
 

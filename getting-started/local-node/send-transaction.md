@@ -70,7 +70,7 @@ Only one file is needed to execute a transaction between accounts. The script sh
  - Ethers.js: [_transaction.js_](/snippets/code/ethers-tx-local/transaction.js)
  - Web3.py: [_transaction.py_](/snippets/code/web3py-tx/transaction.py)
 
-Each of the files, regardless of the library used, has been divided into three sections. In the first section ("Define Provider & Variables"), the library to use is imported, and the provider and other variables are defined (variables depend on the library). Note that `providerRPC` has both the standard standalone node RPC endpoint and the one for [Moonbase Alpha](/networks/testnet/).
+Each of the files, regardless of the library used, has been divided into three sections. In the first section ("Define Provider & Variables"), the library to use is imported, and the provider and other variables are defined (variables depend on the library). Note that `providerRPC` has both the standard development node RPC endpoint and the one for [Moonbase Alpha](/networks/testnet/).
 
 The second section ("Create and Deploy Transaction") outlines the functions needed to send the transaction itself. Some of the key takeaways are discussed next.
 
@@ -125,7 +125,7 @@ The private key and the public address associated with it are defined for signin
 
 The `addressTo`, where the transaction will be sent, is also defined here, and it is required.
 
-In the second section, the transaction object is created with the `nonce`, `gasPrice`, `gas`, `to`, and `value` fields. These describe the transaction count, gas price (0 for standalone and Moonbase Alpha), gas (21000 in this case), the recipient, and the amount to send. Note that the transaction count can be obtained with the `web3.eth.getTransactionCount(address)` method. Also, you can use the `web3.toWei()` function to input the value in ETH (for example) and get the output in WEI. The transaction is signed with the private key using the `web3.eth.account.signTransaction()` method.
+In the second section, the transaction object is created with the `nonce`, `gasPrice`, `gas`, `to`, and `value` fields. These describe the transaction count, gas price (0 for development and Moonbase Alpha), gas (21000 in this case), the recipient, and the amount to send. Note that the transaction count can be obtained with the `web3.eth.getTransactionCount(address)` method. Also, you can use the `web3.toWei()` function to input the value in ETH (for example) and get the output in WEI. The transaction is signed with the private key using the `web3.eth.account.signTransaction()` method.
 
 Next, with the transaction signed, you can send it by using the `web3.eth.sendSignedTransaction()` method, providing the signed transaction located in `createTransaction.rawTransaction`.
 
@@ -141,7 +141,7 @@ You can find the code snippet for each library here (files were arbitrarily name
 
 For simplicity, the balance file is composed of two sections. As before, in the first section ("Define Provider & Variables"), the library to use is imported, and the provider and address from/to (to check the balances) are defined.
 
-The second section ("Balance Call Function") outlines the functions needed to fetch the balances of the accounts previously defined. Note that `providerRPC` has both the standard standalone node RPC endpoint and the one for [Moonbase Alpha](/networks/testnet/). Some of the key takeaways are discussed next.
+The second section ("Balance Call Function") outlines the functions needed to fetch the balances of the accounts previously defined. Note that `providerRPC` has both the standard development node RPC endpoint and the one for [Moonbase Alpha](/networks/testnet/). Some of the key takeaways are discussed next.
 
 === "Web3.js"
     ```
@@ -178,7 +178,7 @@ In the second section, the `web3.eth.getBalance(address)` method is used to fetc
 
 ## Running the Scripts
 
-For this section, the code shown before was adapted to target a Standalone node, which you can run by following [this tutorial](/getting-started/local-node/setting-up-a-node/). Also, each transaction was sent from the pre-funded account that comes with the node:
+For this section, the code shown before was adapted to target a development node, which you can run by following [this tutorial](/getting-started/local-node/setting-up-a-node/). Also, each transaction was sent from the pre-funded account that comes with the node:
 
 --8<-- 'text/metamask-local/dev-account.md'
 

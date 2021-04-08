@@ -121,11 +121,11 @@ Inside the `module.exports`, we need to provide the Solidity version (`0.8.1` ac
  - URL: `{{ networks.moonbase.rpc_url }}`
  - ChainID: `{{ networks.moonbase.chain_id }}`
 
-If you want to deploy to a local Moonbeam standalone node, you can use the following network details:
+If you want to deploy to a local Moonbeam development node, you can use the following network details:
 
  - Network name: `dev`
- - URL: `{{ networks.standalone.rpc_url }}`
- - ChainID: `{{ networks.standalone.chain_id }}`
+ - URL: `{{ networks.development.rpc_url }}`
+ - ChainID: `{{ networks.development.chain_id }}`
 
 The Hardhat configuration file should look like this:
 
@@ -216,7 +216,7 @@ Using the `run` command, we can now deploy the `Box` contract to `Moonbase Alpha
 ```
 
 !!! note
-    To deploy to a Moonbeam standalone node, replace `moonbase` for `dev` in the `run` command.
+    To deploy to a Moonbeam development node, replace `moonbase` for `dev` in the `run` command.
 
 After a few seconds, the contract is deployed, and you should see the address in the terminal.
 
@@ -233,7 +233,7 @@ npx hardhat console --network moonbase
 ```
 
 !!! note
-    To deploy to a Moonbeam standalone node, replace `moonbase` for `dev` in the `console` command.
+    To deploy to a Moonbeam development node, replace `moonbase` for `dev` in the `console` command.
 
 Then, add the following lines of code one line at a time. First, we create a local instance of the `Box.sol`contract once again. Don't worry about the `undefined` output you will get after each line is executed: 
 

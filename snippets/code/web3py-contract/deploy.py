@@ -6,10 +6,10 @@ from web3 import Web3
 #
 # Provider
 provider_rpc = {
-    'standalone': 'http://localhost:9933',
+    'development': 'http://localhost:9933',
     'alphanet': 'https://rpc.testnet.moonbeam.network',
 }
-web3 = Web3(Web3.HTTPProvider(provider_rpc['standalone']))  # Change to correct network
+web3 = Web3(Web3.HTTPProvider(provider_rpc['development']))  # Change to correct network
 
 # Variables
 account_from = {
