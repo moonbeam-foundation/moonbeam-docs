@@ -3,9 +3,9 @@ title: TestNet
 description: An overview of the current configuration of the Moonbeam TestNet, Moonbase Alpha, and information on how to start building on it using Solidity.
 ---
 
-# Moonbase Alpha, The Moonbeam TestNet
+# The Moonbase Alpha TestNet
 
-_Updated February 18, 2020_
+_Updated April 5, 2021_
 
 ## Goal
 
@@ -18,29 +18,29 @@ In order to collect as much feedback as possible and provide fast issue resoluti
 Moonbase Alpha has the following configuration:
 
  - Moonbeam runs as a parachain connected to a relay chain
- - The parachain has two collators (hosted by PureStake) that are collating blocks
+ - The parachain has two collators (hosted by PureStake) that are collating blocks. External collators can join the network. Only the top {{ networks.moonbase.collator_slots }} collator nodes by stake are chosen in the active set
  - The relay chain hosts three validators (hosted by PureStake) to finalize relay chain blocks. One of them is selected to finalize each block collated by Moonbeam's collators. This setup provides room to expand to a two-parachain configuration in the future
  - There are two RPC endpoints (hosted by PureStake). People can run full nodes to access their own private RPC endpoints
 
-![TestNet Diagram](/images/testnet/Moonbase-Alpha-v5.png)
+![TestNet Diagram](/images/testnet/Moonbase-Alpha-v7.png)
 
 ## Features
 
 The following features are available:
 
 ??? release v1 "_September 2020_"
-    -  Fully-emulated Ethereum block production in Substrate (Ethereum pallet)
-    -  Dispatchable functions to interact with the Rust EVM implementation ([EVM pallet](https://docs.rs/pallet-evm/2.0.1/pallet_evm/))
-    -  Native Ethereum RPC support (Web3) in Substrate ([Frontier](https://github.com/paritytech/frontier)). This provides compatibility with Ethereum developer tools such as MetaMask, Remix, and Truffle 
+    - Fully-emulated Ethereum block production in Substrate (Ethereum pallet)
+    - Dispatchable functions to interact with the Rust EVM implementation ([EVM pallet](https://docs.rs/pallet-evm/2.0.1/pallet_evm/))
+    - Native Ethereum RPC support (Web3) in Substrate ([Frontier](https://github.com/paritytech/frontier)). This provides compatibility with Ethereum developer tools such as MetaMask, Remix, and Truffle 
 
 ??? release v2 "_October 2020_"
-    -  Event subscription support (pub/sub), which is a missing component on the Web3 RPC side and commonly used by DApp developers. You can find a tutorial on how to subscribe to events [here](/integrations/pubsub/)
-    -  Support for the following precompile contracts: [ecrecover](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-01-ecrecover-hash-v-r-s), [sha256](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-02-sha-256-data), [ripemd160](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-03-ripemd-160-data) and the [identity function](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-04-datacopy-data) (or datacopy)
+    - Event subscription support (pub/sub), which is a missing component on the Web3 RPC side and commonly used by DApp developers. You can find a tutorial on how to subscribe to events [here](/integrations/pubsub/)
+    - Support for the following precompile contracts: [ecrecover](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-01-ecrecover-hash-v-r-s), [sha256](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-02-sha-256-data), [ripemd160](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-03-ripemd-160-data) and the [identity function](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-04-datacopy-data) (or datacopy)
 
 ??? release v3 "_November 2020_"
-    -  Unification of Substrate and Ethereum accounts under the H160 format, an effort we are calling [Unified Accounts](https://medium.com/moonbeam-network/moonbase-alpha-v3-introducing-unified-accounts-88fae3564cda). Consequently, there will be only one kind of account in the system represented by a single address
-    -  Upgrades to the event subscription support, adding the possibility of using wildcards and conditional formatting for topics. You can find more information [here](https://docs.moonbeam.network/integrations/pubsub/#using-wildcards-and-conditional-formatting)
-    -  Polkadot JS Apps now natively supports H160 addresses and ECDSA keys. You can use your Ethereum-style address for Substrate functions (when available) like staking, balances, and governance. You can find more information [here](/integrations/wallets/polkadotjs/)
+    - Unification of Substrate and Ethereum accounts under the H160 format, an effort we are calling [Unified Accounts](https://medium.com/moonbeam-network/moonbase-alpha-v3-introducing-unified-accounts-88fae3564cda). Consequently, there will be only one kind of account in the system represented by a single address
+    - Upgrades to the event subscription support, adding the possibility of using wildcards and conditional formatting for topics. You can find more information [here](https://docs.moonbeam.network/integrations/pubsub/#using-wildcards-and-conditional-formatting)
+    - Polkadot JS Apps now natively supports H160 addresses and ECDSA keys. You can use your Ethereum-style address for Substrate functions (when available) like staking, balances, and governance. You can find more information [here](/integrations/wallets/polkadotjs/)
 
 ??? release v4 "_December 2020_"
     - Updated to the newest version of the Polkadot parachain protocol ([Parachains V1](https://w3f.github.io/parachain-implementers-guide/)), which fixed several issues with node syncing, paving the way to have multiple collators to sync in the same parachain
@@ -64,6 +64,13 @@ The following features are available:
     - Updated to the latest version of [Frontier RPC](https://github.com/paritytech/frontier), which increases EVM execution efficiency by a factor of 5
     - The gas limit has been bump to 15M per block, with a 13M per transaction limit
 
+??? release v7 "_April 2021_"      
+    - Added support for Ethereum debug/tracing modules. These are turned off by default, to use them you need to spin up a full-node and turn on the feature
+    - Fixed block propagation issues so that is not longer limited to collators, improving network stability
+    - Added Councils and Technical Committee, expanding governance features
+    - Staking module has been refactored, with new names to improve the end-user experience
+    - Added three new precompiles: [Bn128Add](https://eips.ethereum.org/EIPS/eip-196), [Bn128Mul](https://eips.ethereum.org/EIPS/eip-196) and [Bn128Pairing](https://eips.ethereum.org/EIPS/eip-197)
+
 ### Release Notes
 
 For more details regarding the updates of Moonbase Alpha, please refer to the following release notes:
@@ -73,12 +80,12 @@ For more details regarding the updates of Moonbase Alpha, please refer to the fo
  - [Moonbase Alpha v4](https://github.com/PureStake/moonbeam/releases/tag/v0.4.0)
  - [Moonbase Alpha v5](https://github.com/PureStake/moonbeam/releases/tag/v0.5.0)
  - [Moonbase Alpha v6](https://github.com/PureStake/moonbeam/releases/tag/v0.6.0)
+ - [Moonbase Alpha v7](https://github.com/PureStake/moonbeam/releases/tag/v0.7.0)
 
 ### Future Releases
 
 Features that may be implemented in the future:
 
- - Expand on-chain governance features by introducing the [Council](https://wiki.polkadot.network/docs/en/learn-governance#council)
  - Treasury features ([Treasury pallet](https://github.com/paritytech/substrate/tree/master/frame/treasury))
 
 ## Get Started

@@ -56,10 +56,10 @@ The only requirement is the Bridge interface, which defines `getResult` structur
 
 We can use the following `Demo` script. It provides various functions:
 
- -  fetchPrice: a _view_ function that queries a single Job ID. For example, to fetch the price of `ETH` in `USD`, we will need to send the Job ID `1`
- -  fetchMultiPrices: a _view_ function that queries multiple Job IDs. For example, to fetch the price of `ETH` and `BTC` in `USD`, we will need to send the Job IDs `[1,2]`
- -  savePrice: a _public_ function that queries a single Job ID. This sends a transaction and modifies the `price` variable stored in the contract.
- -  saveMultiPrices: a _public_ function that queries multiple Job IDs. For example, to fetch the price of `ETH` and `BTC` in `USD`, we will need to send the Job IDs `[1,2]`. This sends a transaction and modifies the `pricesArr` array stored in the contract, which will hold the price of each pair in the same order as specified in the input
+ - fetchPrice: a _view_ function that queries a single Job ID. For example, to fetch the price of `ETH` in `USD`, we will need to send the Job ID `1`
+ - fetchMultiPrices: a _view_ function that queries multiple Job IDs. For example, to fetch the price of `ETH` and `BTC` in `USD`, we will need to send the Job IDs `[1,2]`
+ - savePrice: a _public_ function that queries a single Job ID. This sends a transaction and modifies the `price` variable stored in the contract.
+ - saveMultiPrices: a _public_ function that queries multiple Job IDs. For example, to fetch the price of `ETH` and `BTC` in `USD`, we will need to send the Job IDs `[1,2]`. This sends a transaction and modifies the `pricesArr` array stored in the contract, which will hold the price of each pair in the same order as specified in the input
 
 ```sol
 pragma solidity 0.6.11;
@@ -124,8 +124,8 @@ interface Razor {
 
 With it, you will have two view functions available, very similar to our previous examples:
 
- -  getPrice: provides the price feed for a single job ID given as input to the function. For example, to fetch the price of `ETH` in `USD`, we will need to send the Job ID `1`
- -  getMultiPrices: provides the price feed for multiple Job IDs given as an array input to the function. For example, to fetch the price of `ETH` and `BTC` in `USD`, we will need to send the job IDs `[1,2]`
+ - getPrice: provides the price feed for a single job ID given as input to the function. For example, to fetch the price of `ETH` in `USD`, we will need to send the Job ID `1`
+ - getMultiPrices: provides the price feed for multiple Job IDs given as an array input to the function. For example, to fetch the price of `ETH` and `BTC` in `USD`, we will need to send the job IDs `[1,2]`
 
 Let's use [Remix](/integrations/remix/) to fetch the `BTC` price in `USD`.
 

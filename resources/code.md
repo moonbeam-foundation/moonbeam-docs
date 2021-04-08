@@ -3,7 +3,8 @@ title: Source Code
 description: Moonbeam is an open source project in the Polkadot ecosystem, with publicly available and auditable source code.
 ---
 
-#Moonbeam Source Code
+# Moonbeam Source Code
+
 Moonbeam is an open source project.  The main Moonbeam repo can be found here:
 
 [:fontawesome-brands-github: https://github.com/PureStake/moonbeam](https://github.com/PureStake/moonbeam)
