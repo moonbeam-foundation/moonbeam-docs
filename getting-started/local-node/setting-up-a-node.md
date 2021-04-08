@@ -154,7 +154,7 @@ Flags do not take an argument. To use a flag, add it to the end of a command. Fo
 - `--rpc-external`: Listen to all RPC interfaces
 - `--ws-external`: Listen to all Websocket interfaces
 
-Options accept an argument on the right side of a command. For example:
+Options accept an argument to the right side of the option. For example:
 
 ```
 --8<-- 'code/setting-up-local/runnodewithsealinginterval.md'
