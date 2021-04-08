@@ -19,11 +19,11 @@ A Moonbeam development node is your own personal development environment for bui
 
 If you follow to the end of this guide, you will have a Moonbeam development node running in your local environment, with 10 [pre-funded accounts](#pre-funded-development-accounts), and will be able to connect it to the default Polkadot JS GUI.
 
-There are two ways to get started running a Moonbeam node: you can use [docker to run a pre-built binary](#getting-started-with-docker) or you can [locally install and set up a development node yourself](#installation-and-setup). Using Docker is a quick and convenient way to get started, but does require you to [install Docker](https://docs.docker.com/get-docker/). If you chose to install and set it up yourself, it could take roughly 30 minutes or longer to complete depending on your hardware.
+There are two ways to get started running a Moonbeam node: you can use [docker to run a pre-built binary](#getting-started-with-docker) or you can [locally install and set up a development node yourself](#installation-and-setup). Using Docker is a quick and convenient way to get started as you won't have to install Substrate and all the dependencies, and you can skip the building the node process as well. It does require you to [install Docker](https://docs.docker.com/get-docker/). On the other hand, if you decide you want to go through the process of building your own development node, it could take roughly 30 minutes or longer to complete depending on your hardware.
 
 ## Getting Started with Docker
 
-Using Docker enables you to spin up a node in a matter of seconds. It prevents you from having to install Substrate and all the dependencies, and you can skip the building the node process as well. The only requirement is to have Docker installed, and then you can execute the following command to download the corresponding image:
+Using Docker enables you to spin up a node in a matter of seconds. Once you have Docker installed, then you can execute the following command to download the corresponding image:
 
 ```
 docker pull purestake/moonbeam:{{ networks.development.build_tag }}
@@ -114,15 +114,14 @@ For more information on some of the flags and options used in the example, check
 ```
 ./target/release/moonbeam --help
 ```
-
-The local Moonbeam development node provides two RPC endpoints:
- 
- - HTTP: `http://127.0.0.1:9933`
- - WS: `ws://127.0.0.1:9944` 
 ## Connecting Polkadot JS Apps to a Local Moonbeam Node
 
-The locally-running Moonbeam node is a Substrate-based node, so we can interact with it using standard Substrate tools. Let’s start by connecting to it with Polkadot JS Apps.  
-Open a browser to: [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/#/explorer). This will open Polkadot JS Apps, which automatically connects to Polkadot MainNet.
+The development node is a Substrate-based node, so we can interact with it using standard Substrate tools. The two provided RPC endpoints are:
+
+ - HTTP: `http://127.0.0.1:9933`
+ - WS: `ws://127.0.0.1:9944` 
+
+Let’s start by connecting to it with Polkadot JS Apps. Open a browser to: [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/#/explorer). This will open Polkadot JS Apps, which automatically connects to Polkadot MainNet.
 
 ![Polkadot JS Apps](/images/setting-up-a-node/setting-up-node-5.png)
 
@@ -162,6 +161,8 @@ Options accept an argument on the right side of a command. For example:
 
 - `-l <log pattern>` or `--log <log pattern>`: Sets a custom logging filter. The syntax for the log pattern is `<target>=<level>`. For example, to print all of the RPC logs, the command would look like this: `-l rpc=trace`.
 - `--sealing <interval>`: When blocks should be sealed in the dev service. Accepted arguments for interval: `instant`, `manual`, or a number representing the timer interval in milliseconds. The default is `instant`.
+
+For a complete list of flags and options, spin up your Moonbeam development node with `--help` added to the end of the command.
 
 ## Pre-funded Development Accounts
 
