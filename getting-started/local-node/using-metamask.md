@@ -38,7 +38,7 @@ You should end up with an imported “Account 2” that looks like this:
 
 ## Connect to the Local Moonbeam Node
 
-Now, let’s connect MetaMask to our locally running Moonbeam node, which will begin to produce blocks as they are authored:
+Now, let’s connect MetaMask to our locally running Moonbeam node, which will begin to author blocks as transactions arrive:
 
 ![Standalone Moonbeam Node](/images/metamask/using-metamask-9.png)
 

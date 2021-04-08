@@ -19,7 +19,7 @@ This guide assumes that you have a local Moonbeam node running in `--dev` mode a
 
 ## Checking Prerequisites
 
-If you followed the guides above, you should have a local Moonbeam node that will begin to produce blocks as they are authored, which looks like this:
+If you followed the guides above, you should have a local Moonbeam node which will begin to author blocks as transactions arrive:
 
 ![Local Moonbeam node producing blocks](/images/remix/using-remix-1.png)
 
