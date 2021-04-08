@@ -31,7 +31,7 @@ Using Docker enables you to spin up a node in a matter of seconds. It prevents y
 
 The tail end of the console log should look like this:
 
-![Docker - imaged pulled](/images/setting-up-a-node/setting-up-node-9a.png)
+![Docker - imaged pulled](/images/setting-up-a-node/setting-up-node-1.png)
 
 Once the Docker image is downloaded, the next step is to run the image.
 
@@ -50,7 +50,7 @@ You can run the Docker image using the following:
 This should spin up a Moonbeam develoment node in instant seal mode for local testing, so that blocks are authored instantly as transactions are received.
 If successful, you should see an output showing an idle state waiting for blocks to be authored:
 
-![Docker - output shows blocks being produced](/images/setting-up-a-node/setting-up-node-8a.png)
+![Docker - output shows blocks being produced](/images/setting-up-a-node/setting-up-node-2.png)
 
 For more information on some of the flags and options used in the example, check out [Common Flags and Options](#common-flags-and-options). If you want to see a complete list of all of the flags, options, and subcommands, open the help menu by running:
 
@@ -94,7 +94,7 @@ If a _cargo not found error_ shows up in the terminal, manually add Rust to your
 
 Here is what the tail end of the build output should look like:
 
-![End of build output](/images/setting-up-a-node/setting-up-node-2b.png)
+![End of build output](/images/setting-up-a-node/setting-up-node-3.png)
 
 Then, you will want to run the node in dev mode using the following command:
 
@@ -107,7 +107,7 @@ Then, you will want to run the node in dev mode using the following command:
 
 You should see an output that looks like the following, showing an idle state waiting for blocks to be produced:
 
-![Output shows blocks being produced](/images/setting-up-a-node/setting-up-node-3b.png)
+![Output shows blocks being produced](/images/setting-up-a-node/setting-up-node-4.png)
 
 For more information on some of the flags and options used in the example, check out [Common Flags and Options](#common-flags-and-options). If you want to see a complete list of all of the flags, options, and subcommands, open the help menu by running:
 
@@ -124,15 +124,15 @@ The local Moonbeam development node provides two RPC endpoints:
 The locally-running Moonbeam node is a Substrate-based node, so we can interact with it using standard Substrate tools. Let’s start by connecting to it with Polkadot JS Apps.  
 Open a browser to: [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/#/explorer). This will open Polkadot JS Apps, which automatically connects to Polkadot MainNet.
 
-![Polkadot JS Apps](/images/setting-up-a-node/setting-up-node-4b.png)
+![Polkadot JS Apps](/images/setting-up-a-node/setting-up-node-5.png)
 
 Click on the top left corner to open the menu to configure the networks, and then navigate down to open the Development sub-menu. In there, you will want to toggle the "Local Node" option, which points Polkadot JS Apps to `ws://127.0.0.1:9944`. Next, select the Switch button, and the site should connect to your Moonbeam development node.
 
-![Select Local Node](/images/setting-up-a-node/setting-up-node-5b.png)
+![Select Local Node](/images/setting-up-a-node/setting-up-node-6.png)
 
 With Polkadot JS Apps connected, you will see the Moonbeam development node producing blocks.
 
-![Select Local Node](/images/setting-up-a-node/setting-up-node-6b.png)
+![Select Local Node](/images/setting-up-a-node/setting-up-node-7.png)
 
 ## Querying Account State
 

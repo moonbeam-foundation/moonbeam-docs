@@ -42,7 +42,7 @@ You can find the repository for the explorer at [this URL](https://github.com/Pu
 
 Polkadot JS Apps uses the WebSocket endpoint to interact with the Network. To connect it to a standalone Moonbeam node, you can follow the steps in [this tutorial](/getting-started/local-node/setting-up-a-node/#connecting-polkadot-js-apps-to-a-local-moonbeam-node). The default port for this is `9944`.
 
-![Local Node](/images/setting-up-a-node/setting-up-node-6b.png)
+![Local Node](/images/explorers/explorers-images-3.png)
 
 ### Moonbase Alpha
 
