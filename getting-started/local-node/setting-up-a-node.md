@@ -13,7 +13,8 @@ description: Follow this tutorial to learn how to set up your first Moonbeam nod
 This guide outlines the steps needed to create a development node for testing the Ethereum compatibility features of Moonbeam.
 
 !!! note
-    This tutorial was created using the {{ networks.development.build_tag }} tag of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/{{ networks.development.build_tag }}). The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility are still under very active development. The examples in this guide assume a MacOS or Ubuntu 18.04-based environment and will need to be adapted accordingly for Windows.
+    This tutorial was created using the {{ networks.development.build_tag }} tag of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/{{ networks.development.build_tag }}). The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility are still under very active development.
+    --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
 
 A Moonbeam development node is your own personal development environment for building and testing applications on Moonbeam. For Ethereum developers, it is comparible to Ganache. It enables you to get started quickly and easily without the overhead of a relay chain. You can spin up your node with the `--sealing` option to author blocks instantly, manually, or at a custom interval after transactions are received. By default a block will be created when a transaction is received, which is similar to Ganache's instamine feature. 
 
