@@ -26,7 +26,7 @@ There are two ways to get started running a Moonbeam node: you can use [docker t
 Using Docker enables you to spin up a node in a matter of seconds. It prevents you from having to install Substrate and all the dependencies, and you can skip the building the node process as well. The only requirement is to have Docker installed, and then you can execute the following command to download the corresponding image:
 
 ```
---8<-- 'code/setting-up-local/dockerpull.md'
+docker pull purestake/moonbeam:{{ networks.development.build_tag }}
 ```
 
 The tail end of the console log should look like this:
@@ -39,12 +39,12 @@ You can run the Docker image using the following:
 
 === "Ubuntu"
     ```
-    --8<-- 'code/setting-up-local/dockerrun.md'
+    docker run --rm --name {{ networks.development.container_name }} --network host purestake/moonbeam:{{ networks.development.build_tag }} --dev
     ```
 
 === "MacOS"
     ```
-    --8<-- 'code/setting-up-local/dockerrun_macos.md'
+    docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 -p 9933:9933 purestake/moonbeam:{{ networks.development.build_tag }} --dev --ws-external --rpc-external
     ```
 
 This should spin up a Moonbeam develoment node in instant seal mode for local testing, so that blocks are authored instantly as transactions are received.
@@ -55,7 +55,7 @@ If successful, you should see an output showing an idle state waiting for blocks
 For more information on some of the flags and options used in the example, check out [Common Flags and Options](#common-flags-and-options). If you want to see a complete list of all of the flags, options, and subcommands, open the help menu by running:
 
 ```
-docker run --rm --name moonbeam_development \
+docker run --rm --name {{ networks.development.container_name }} \
 purestake/moonbeam --help
 ```
 

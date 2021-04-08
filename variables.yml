@@ -3,6 +3,7 @@ networks:
       build_tag: tutorial-v7
       rpc_url: http://127.0.0.1:9933
       chain_id: 1281
+      container_name: moonbeam_development
    moonbase:
       version: v0.7.0 # must be in this exact format for links to work
       rpc_url: https://rpc.testnet.moonbeam.network

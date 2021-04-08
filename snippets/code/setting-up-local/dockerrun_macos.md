@@ -1,1 +1,0 @@
-docker run --rm --name moonbeam_development -p 9944:9944 -p 9933:9933 purestake/moonbeam:tutorial-v7 --dev --ws-external --rpc-external

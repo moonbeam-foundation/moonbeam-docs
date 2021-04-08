@@ -1,1 +1,0 @@
-docker run --rm --name moonbeam_development --network host purestake/moonbeam:tutorial-v7 --dev
