@@ -38,11 +38,7 @@ You should end up with an imported “Account 2” that looks like this:
 
 ## Connect to the Local Moonbeam Node
 
-Now, let’s connect MetaMask to our locally running Moonbeam node, which will begin to author blocks as transactions arrive:
-
-![Moonbeam Development Node](/images/metamask/using-metamask-9.png)
-
-If so, in MetaMask, navigate to Settings -> Networks -> Add Network and fill in the following details:
+Now, let’s connect MetaMask to our locally running Moonbeam node. In MetaMask, navigate to Settings -> Networks -> Add Network and fill in the following details:
 
 --8<-- 'text/metamask-local/development-node-details.md'
 
@@ -68,7 +64,12 @@ Note that the Account 2 balance has been decreased by the sent amount + gas fees
 
 ![New balance in Account 1](/images/metamask/using-metamask-8.png)
 
+If you head back over to your terminal where you have your Moonbeam node running, you will begin to see blocks being authored as transactions arrive:
+
+![Moonbeam Development Node](/images/metamask/using-metamask-9.png)
+
 !!! note
     If you end up resetting your development node using the Substrate purge-chain command, you will need to reset your MetaMask genesis account using Settings -> Advanced -> Reset Account. This will clear the transaction history from your accounts and reset the nonce. Make sure you don’t erase anything that you want to keep!
 
---8<-- '../text/common/we-want-to-hear-from-you.md'
+ 
+--8<-- 'text/common/we-want-to-hear-from-you.md'
