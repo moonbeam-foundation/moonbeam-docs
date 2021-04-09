@@ -8,48 +8,62 @@ description: An overview of the currently available block explorers that may be 
 
 ## Introduction 
 
-The Moonbeam team is currently working on onboarding a specialized block explorer solution that would allow users to navigate the EVM as well as the Substrate layer of the blockchain.
+Block explorers can be thought of as search engines for the blockchain. They allow users to search information such as balances, contracts, and transactions. More advanced block explorers even offer indexing capabilities, which enable them to provide a complete set of information, such as ERC20 tokens in the network. They might even offer API services to access it via external services.
 
-Currently, we offer two block explorers: one for the Ethereum API based on the [Expedition explorer](https://github.com/etclabscore/expedition), and one for the Substrate API using [Polkadot JS apps](/integrations/wallets/polkadotjs/). You can use both for either a standalone Moonbeam node or the Moonbase Alpha TestNet.
+Moonbeam provides two different sets of explorers: one to query the Ethereum API, and one for the Substrate API.
 
 !!! note
     If you are using Brave Browser and your explorer is not connecting to the Moonbeam instance you are pointing it to, try disabling Brave Shield.
 
-## Expedition Explorer (Ethereum)
+## Ethereum API
 
-### Local Node
+### Expedition (Dev Node - TestNet)
 
-To connect the explorer to a standalone Moonbeam node, you can use [this URL](https://expedition.dev/?rpcUrl=http://127.0.0.1:9933). This uses the RPC endpoint located at port `9933` by default. If you have defined a different port, you can changed it in the URL bar.
+A Moonbeam-themed version of the [Expedition](https://github.com/etclabscore/expedition) explorer can be found in [this link](https://moonbeam-explorer.netlify.app/).
 
-![Explorer Standalone](/images/explorers/explorers-images-1.png)
+By default, the explorer is connected to the Moonbase Alpha TestNet. However, you can connect it following the next steps:
 
-!!! note
-    Expedition only works if running the standalone Moonbeam node with the repository tag `tutorial-v3`. It will not work if using master.
+ 1. Click on the gear icon in the top right corner
+ 2. Select "Development" if you have a node running on `http://localhost:9933` (default RPC location of a Moonbeam node running with `--dev`flag). You can also switch back to "Moonbase Alpha"
+ 3. In the case you want to connect to a specific RPC URL, select "Custom RPC" and enter the URL. For example, `http://localhost:9937`
 
-### Moonbase Alpha
+![Expedition Explorer](/images/explorers/explorers-images-1.png)
 
-To access the current state of the Moonbase Alpha TestNet, navigate to [https://moonbeam-explorer.netlify.app/](https://moonbeam-explorer.netlify.app/). 
+### Blockscout (TestNet)
 
-The explorer is also available in Spanish, Chinese, Russian, and Korean.
+Blockscout provides an easy-to-use interface for users to inspect and confirm transactions on EVM blockchains, including Moonbeam. It allows to search transactions, view accounts, and balances, and verify smart contracts. More information can be found in their [documentation site](https://docs.blockscout.com/).
 
-![Explorer TestNet](/images/explorers/explorers-images-2.png)
+As main features, Blockscout offers:
 
-You can find the repository for the explorer at [this URL](https://github.com/PureStake/moonbeam-explorer-expedition).
+ - Open source development, meaning all is code is open to the community to explore and improve. You can find the code [here](https://github.com/blockscout/blockscout)
+ - Real-time transaction tracking
+ - Smart contract interaction
+ - ERC20 and ERC721 token support, listing all available token contract in a friendly interface
+ - Full-featured API with GraphQL, where users can test API calls directly from a web interface
 
-## Polkadot.JS Apps (Substrate)
+An instance of Blockscout running against the Moonbase Alpha TestNet can be found in [this link](https://moonbase-blockscout.testnet.moonbeam.network/).
 
-### Local Node
+IMAGE HERE
+
+## Substrate API
+
+### PolkadotJS (Dev Node - TestNet)
 
 Polkadot JS Apps uses the WebSocket endpoint to interact with the Network. To connect it to a standalone Moonbeam node, you can follow the steps in [this tutorial](/getting-started/local-node/setting-up-a-node/#connecting-polkadot-js-apps-to-a-local-moonbeam-node). The default port for this is `9944`.
 
-![Local Node](/images/setting-up-a-node/setting-up-node-6b.png)
+![Polkadot JS Local Node](/images/explorers/explorers-images-3.png)
 
-### Moonbase Alpha
+To view and interact with Moonbase Alpha's substrate layer, go to [this URL](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/explorer). This is the Polkadot JS Apps pointing to the TestNet. You can find more information is [this page](/integrations/wallets/polkadotjs/).
 
-To view and interact with the Substrate layer of Moonbase Alpha, go to [this URL](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/explorer). This is the Polkadot JS Apps pointing to the TestNet, you can find more information is [this page](/integrations/wallets/polkadotjs/).
+![Polkadot JS Moonbase Alpha](/images/explorers/explorers-images-4.png)
 
-![Connect to Moonbase Alpha](/images/polkadotjs/polkadotjs-app2.png)
+### Subscan
 
+Subscan provides blockchain explorer capabilities for Substrate-based chains. It is capable of parse different standard or custom modules. For example, this is useful to display information regarding the Staking pallet (or module), Governance, and EVM. Code is all open-source and can be found [here](https://github.com/itering/subscan-essentials).
+
+An instance of Subscan running against the Moonbase Alpha TestNet can be found in [this link](https://moonbase.subscan.io/).
+
+![Subscan Moonbase Alpha](/images/explorers/explorers-images-5.png)
 ## We Want to Hear From You
 
 If you have any feedback regarding block explorers or any other Moonbeam-related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).
