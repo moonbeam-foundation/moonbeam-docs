@@ -41,7 +41,7 @@ As main features, Blockscout offers:
  - ERC20 and ERC721 token support, listing all available token contract in a friendly interface
  - Full-featured API with GraphQL, where users can test API calls directly from a web interface
 
-An instance of Blockscout running against the Moonbase Alpha TestNet can be found in [this link](https://moonbase-blockscout.moonbeam.network/).
+An instance of Blockscout running against the Moonbase Alpha TestNet can be found in [this link](https://moonbase-blockscout.testnet.moonbeam.network/).
 
 ![Blockscout Explorer](/images/explorers/explorers-images-2.png)
 
