@@ -31,11 +31,11 @@ By default, the explorer is connected to the Moonbase Alpha TestNet. However, yo
 
 ### Blockscout (TestNet)
 
-Blockscout provides an easy-to-use interface for users to inspect and confirm transactions on EVM blockchains, including Moonbeam. It allows to search transactions, view accounts, and balances, and verify smart contracts. More information can be found in their [documentation site](https://docs.blockscout.com/).
+Blockscout provides an easy-to-use interface for users to inspect and confirm transactions on EVM blockchains, including Moonbeam. It allows you to search transactions, view accounts, and balances, and verify smart contracts. More information can be found in their [documentation site](https://docs.blockscout.com/).
 
 As main features, Blockscout offers:
 
- - Open source development, meaning all is code is open to the community to explore and improve. You can find the code [here](https://github.com/blockscout/blockscout)
+ - Open source development, meaning all code is open to the community to explore and improve. You can find the code [here](https://github.com/blockscout/blockscout)
  - Real-time transaction tracking
  - Smart contract interaction
  - ERC20 and ERC721 token support, listing all available token contract in a friendly interface
@@ -53,13 +53,13 @@ Polkadot JS Apps uses the WebSocket endpoint to interact with the Network. To co
 
 ![Polkadot JS Local Node](/images/explorers/explorers-images-3.png)
 
-To view and interact with Moonbase Alpha's substrate layer, go to [this URL](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/explorer). This is the Polkadot JS Apps pointing to the TestNet. You can find more information is [this page](/integrations/wallets/polkadotjs/).
+To view and interact with Moonbase Alpha's substrate layer, go to [this URL](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/explorer). This is the Polkadot JS Apps pointing to the TestNet. You can find more information on [this page](/integrations/wallets/polkadotjs/).
 
 ![Polkadot JS Moonbase Alpha](/images/explorers/explorers-images-4.png)
 
 ### Subscan
 
-Subscan provides blockchain explorer capabilities for Substrate-based chains. It is capable of parse different standard or custom modules. For example, this is useful to display information regarding the Staking pallet (or module), Governance, and EVM. Code is all open-source and can be found [here](https://github.com/itering/subscan-essentials).
+Subscan provides blockchain explorer capabilities for Substrate-based chains. It is capable of parsing standard or custom modules. For example, this is useful to display information regarding the Staking, Governance, and EVM pallets (or modules). Code is all open-source and can be found [here](https://github.com/itering/subscan-essentials).
 
 An instance of Subscan running against the Moonbase Alpha TestNet can be found in [this link](https://moonbase.subscan.io/).
 
