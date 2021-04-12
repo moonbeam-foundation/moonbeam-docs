@@ -8,5 +8,6 @@ arrange:
   - remix.md
   - trufflebox.md
   - hardhat.md
+  - thegraph.md
   - pubsub.md
   - precompiles.md
