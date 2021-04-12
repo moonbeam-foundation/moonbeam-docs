@@ -40,12 +40,16 @@ You can run the Docker image using the following:
 
 === "Ubuntu"
     ```
-    docker run --rm --name {{ networks.development.container_name }} --network host purestake/moonbeam:{{ networks.development.build_tag }} --dev
+    docker run --rm --name {{ networks.development.container_name }} --network host \
+    purestake/moonbeam:{{ networks.development.build_tag }} \
+    --dev
     ```
 
 === "MacOS"
     ```
-    docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 -p 9933:9933 purestake/moonbeam:{{ networks.development.build_tag }} --dev --ws-external --rpc-external
+    docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 -p 9933:9933 \
+    purestake/moonbeam:{{ networks.development.build_tag }} \
+    --dev --ws-external --rpc-external
     ```
 
 This should spin up a Moonbeam develoment node in instant seal mode for local testing, so that blocks are authored instantly as transactions are received.
@@ -57,7 +61,8 @@ For more information on some of the flags and options used in the example, check
 
 ```
 docker run --rm --name {{ networks.development.container_name }} \
-purestake/moonbeam --help
+purestake/moonbeam \
+--help
 ```
 
 To continue on with the tutorial, the next section is not necessary as you've already spun up a node with Docker. You can skip ahead to [Connecting Polkadot JS Apps to a Local Moonbeam Node](#connecting-polkadot-js-apps-to-a-local-moonbeam-node).
