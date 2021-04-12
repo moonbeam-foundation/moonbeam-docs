@@ -10,13 +10,14 @@ description: Learn how to use one of the most popular Ethereum developer tools, 
 
 ## Introduction
 
-This guide walks through the process of creating and deploying a Solidity-based smart contract to a Moonbeam development node using the [Remix IDE](https://remix.ethereum.org/). Remix is one of the commonly used development environments for smart contracts on Ethereum. Given Moonbeam’s Ethereum compatibility features, Remix can be used directly with a Moonbeam node.
+Remix is one of the commonly used development environments for smart contracts on Ethereum. Given Moonbeam’s Ethereum compatibility features, Remix can be used directly with a Moonbeam development node or the Moonbase Alpha testnet.
+
+This guide walks through the process of creating and deploying a Solidity-based smart contract to a Moonbeam development node using the [Remix IDE](https://remix.ethereum.org/). 
 
 !!! note
     This tutorial was created using the {{ networks.development.build_tag}} tag which is based on the {{ networks.moonbase.version }} release of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/{{ networks.moonbase.version }}). The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility are still under very active development.
 
 This guide assumes that you have a local Moonbeam node running in `--dev` mode and that you have a [MetaMask](https://metamask.io/) installation configured to use this local node. You can find instructions for running a local Moonbeam node [here](/getting-started/local-node/setting-up-a-node/) and instructions to connect MetaMask to it [here](/getting-started/local-node/using-metamask/).
-
 ## Checking Prerequisites
 
 If you followed the guides above, you should have a local Moonbeam node which will begin to author blocks as transactions arrive:
@@ -62,7 +63,9 @@ You will see Remix download all of the Open Zeppelin dependencies and compile th
 
 ## Deploying a Contract to Moonbeam Using Remix
 
-Now we can deploy the contract by navigating to the Deployment sidebar option. You need to change the topmost “Environment” dropdown from “JavaScript VM” to “Injected Web3.” This tells Remix to use the MetaMask injected provider, which will point it to your Moonbeam development node. As soon as you select this, you will be prompted to allow Remix to connect to your MetaMask account.
+Now we can deploy the contract by navigating to the Deployment sidebar option. You need to change the topmost “Environment” dropdown from “JavaScript VM” to “Injected Web3.” This tells Remix to use the MetaMask injected provider, which will point it to your Moonbeam development node. If you wanted to try this using the Moonbase Alpha testnet, you would have to connect MetaMask to the testnet instead of your local development node.
+
+As soon as you select "Injected Web3", you will be prompted to allow Remix to connect to your MetaMask account.
 
 ![Replace](/images/remix/using-remix-7.png)
 
