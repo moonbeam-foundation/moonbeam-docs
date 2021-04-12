@@ -179,7 +179,7 @@ module.exports = {
 };
 ```
 
-Next, let's create a `secrets.json`, where we will be storing the private key mentioned before. The file must contain a `privateKey` entry, for example:
+Next, let's create a `secrets.json`, where the private key mentioned before is stored. Make sure to add the file to your project's `.gitignore`, and to never reveal your private key. The `secrets.json` file must contain a `privateKey` entry, for example:
 
 ```js
 {
@@ -187,7 +187,7 @@ Next, let's create a `secrets.json`, where we will be storing the private key me
 }
 ```
 
-Congratulations!🏼 We are ready for deployment!
+Congratulations! We are ready for deployment!
 
 ## Compiling Solidity
 
