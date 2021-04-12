@@ -179,7 +179,7 @@ module.exports = {
 };
 ```
 
-Next, let's create a `secrets.json`, where we will be storing the private key mentioned before. The file must contain a `privateKey` entry, for example:
+Next, let's create a `secrets.json`, where we will be storing the private key mentioned before. Make sure to add the file to your project's `.gitignore`. `secrets.json` must contain a `privateKey` entry, for example:
 
 ```js
 {
