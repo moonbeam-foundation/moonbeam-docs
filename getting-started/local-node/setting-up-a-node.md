@@ -130,7 +130,7 @@ Click on the top left corner to open the menu to configure the networks, and the
 
 ![Select Local Node](/images/setting-up-a-node/setting-up-node-6.png)
 
-With Polkadot JS Apps connected, you will see the Moonbeam development node producing blocks.
+With Polkadot JS Apps connected, you will see the Moonbeam development node waiting for transactions to arrive to begin producing blocks.
 
 ![Select Local Node](/images/setting-up-a-node/setting-up-node-7.png)
 
@@ -162,11 +162,19 @@ Options accept an argument to the right side of the option. For example:
 
 - `-l <log pattern>` or `--log <log pattern>`: Sets a custom logging filter. The syntax for the log pattern is `<target>=<level>`. For example, to print all of the RPC logs, the command would look like this: `-l rpc=trace`.
 - `--sealing <interval>`: When blocks should be sealed in the dev service. Accepted arguments for interval: `instant`, `manual`, or a number representing the timer interval in milliseconds. The default is `instant`.
+- `--rpc-port <port>`: Sets the HTTP RPC server TCP port. Accepts a port as the argument.
+- `--ws-port <port>`: Sets the WebSockets RPC server TCP port. Accepts a port as the argument.
 
 For a complete list of flags and options, spin up your Moonbeam development node with `--help` added to the end of the command.
 
 ## Pre-funded Development Accounts
 
-Your Moonbeam development node comes with ten pre-funded accounts for development. The addresses are derived from Substrate's canonical development mnemonic: `bottom drive obey lake curtain smoke basket hold race lonely fit walk`. Checkout the [Using MetaMask](/getting-started/local-node/using-metamask/) section to get started interacting with your accounts.
+Your Moonbeam development node comes with ten pre-funded accounts for development. The addresses are derived from Substrate's canonical development mnemonic: 
+
+```
+bottom drive obey lake curtain smoke basket hold race lonely fit walk
+```
+
+Checkout the [Using MetaMask](/getting-started/local-node/using-metamask/) section to get started interacting with your accounts.
 
 --8<-- 'text/setting-up-local/dev-accounts.md'
