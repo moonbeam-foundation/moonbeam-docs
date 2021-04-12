@@ -15,34 +15,7 @@ This guide will cover how to use Hardhat to compile, deploy, and debug Ethereum 
 
 ## Checking Prerequisites
 
-As always, check that Node.js has been installed on your machine (we'll use v15.x) and npm. You can do this by running the following in your terminal:
-
-=== "Ubuntu"
-
-    ```
-    curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash -
-
-    sudo apt install -y nodejs
-
-    ```
-
-=== "Mac OS"
-
-    ```
-    #Install Homebrew https://docs.brew.sh/Installation). Run:
-
-    brew install node
-    ```
-
-We can verify that everything is installed correctly by querying the version for each package:
-
-```
-node -v
-```
-
-```
-npm -v
-```
+--8<-- 'text/common/install-nodejs.md'
 
 As of writing of this guide, the versions used were 15.7.0 and 7.4.3, respectively.
 
@@ -104,7 +77,6 @@ We will save this file as `contracts/Box.sol`:
 
 ```solidity
 // contracts/Box.sol
-// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.1;
 
 contract Box {
@@ -149,11 +121,11 @@ Inside the `module.exports`, we need to provide the Solidity version (`0.8.1` ac
  - URL: `{{ networks.moonbase.rpc_url }}`
  - ChainID: `{{ networks.moonbase.chain_id }}`
 
-If you want to deploy to a local Moonbeam standalone node, you can use the following network details:
+If you want to deploy to a local Moonbeam development node, you can use the following network details:
 
  - Network name: `dev`
- - URL: `{{ networks.standalone.rpc_url }}`
- - ChainID: `{{ networks.standalone.chain_id }}`
+ - URL: `{{ networks.development.rpc_url }}`
+ - ChainID: `{{ networks.development.chain_id }}`
 
 The Hardhat configuration file should look like this:
 
@@ -244,7 +216,7 @@ Using the `run` command, we can now deploy the `Box` contract to `Moonbase Alpha
 ```
 
 !!! note
-    To deploy to a Moonbeam standalone node, replace `moonbase` for `dev` in the `run` command.
+    To deploy to a Moonbeam development node, replace `moonbase` for `dev` in the `run` command.
 
 After a few seconds, the contract is deployed, and you should see the address in the terminal.
 
@@ -261,7 +233,7 @@ npx hardhat console --network moonbase
 ```
 
 !!! note
-    To deploy to a Moonbeam standalone node, replace `moonbase` for `dev` in the `console` command.
+    To deploy to a Moonbeam development node, replace `moonbase` for `dev` in the `console` command.
 
 Then, add the following lines of code one line at a time. First, we create a local instance of the `Box.sol`contract once again. Don't worry about the `undefined` output you will get after each line is executed:
 

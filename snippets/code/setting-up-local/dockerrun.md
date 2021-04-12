@@ -1,1 +1,0 @@
-docker run --rm --name moonbeam_standalone --network host purestake/moonbase:tutorial-v3 /moonbase/moonbase-standalone --dev

@@ -21,7 +21,7 @@ Besides, two other libraries will be used to compile the smart contract:
  - [Py-solc-x](https://pypi.org/project/py-solc-x/) to compile Solidity smart contracts using Python
 
 !!! note
-    The examples in this guide assume you have an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows.
+    --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
 
 ## Checking Prerequisites
 
@@ -142,7 +142,7 @@ Regardless of the library, the strategy to deploy the compiled smart contract is
  - Ethers.js: [_deploy.js_](/snippets/code/ethers-contract-local/deploy.js)
  - Web3.py: [_deploy.py_](/snippets/code/web3py-contract/deploy.py)
 
-For simplicity, the deploy file is composed of two sections. In the first section ("Define Provider & Variables"), the library to use and the ABI and bytecode of the contract are imported. Also, the provider and account from (with the private key) are defined. Note that `providerRPC` has both the standard standalone node RPC endpoint and the one for [Moonbase Alpha](/networks/testnet/).
+For simplicity, the deploy file is composed of two sections. In the first section ("Define Provider & Variables"), the library to use and the ABI and bytecode of the contract are imported. Also, the provider and account from (with the private key) are defined. Note that `providerRPC` has both the standard development node RPC endpoint and the one for [Moonbase Alpha](/networks/testnet/).
 
 The second section ("Deploy Contract") outlines the actual contract deployment part. Note that for this example, the initial value of the `number` variable was set to 5. Some of the key takeaways are discussed next.
 
@@ -208,7 +208,7 @@ Let's overview the _get.\*_ file (the simplest of them all), which fetches the c
  - Ethers.js: [_get.js_](/snippets/code/ethers-contract-local/get.js)
  - Web3.py: [_get.py_](/snippets/code/web3py-contract/get.py)
 
-For simplicity, the get file is composed of two sections. In the first section ("Define Provider & Variables"), the library to use and the ABI of the contract are imported. Also, the provider and the contract's address are defined. Note that `providerRPC` has both the standard standalone node RPC endpoint and the one for [Moonbase Alpha](/networks/testnet/).
+For simplicity, the get file is composed of two sections. In the first section ("Define Provider & Variables"), the library to use and the ABI of the contract are imported. Also, the provider and the contract's address are defined. Note that `providerRPC` has both the standard development node RPC endpoint and the one for [Moonbase Alpha](/networks/testnet/).
 
 The second section ("Call Function") outlines the actual call to the contract. Regardless of the library, a contract instance is created (linked to the contract's address), from which the call method is queried. Some of the key takeaways are discussed next.
 
@@ -267,7 +267,7 @@ First, let's overview the _increment.\*_ file, which increments the current numb
  - Ethers.js: [_increment.js_](/snippets/code/ethers-contract-local/increment.js)
  - Web3.py: [_increment.py_](/snippets/code/web3py-contract/increment.py)
 
-For simplicity, the increment file is composed of two sections. In the first section ("Define Provider & Variables"), the library to use and the ABI of the contract are imported. The provider, the contract's address, and the value of the `increment` function are also defined. Note that `providerRPC` has both the standard standalone node RPC endpoint and the one for [Moonbase Alpha](/networks/testnet/).
+For simplicity, the increment file is composed of two sections. In the first section ("Define Provider & Variables"), the library to use and the ABI of the contract are imported. The provider, the contract's address, and the value of the `increment` function are also defined. Note that `providerRPC` has both the standard development node RPC endpoint and the one for [Moonbase Alpha](/networks/testnet/).
 
 The second section ("Send Function") outlines the actual function to be called with the transaction. Regardless of the library, a contract instance is created (linked to the contract's address), from which the function to be used is queried.
 
@@ -345,7 +345,7 @@ Lastly, the transaction hash is displayed in the terminal.
 
 ## Running the Scripts
 
-For this section, the code shown before was adapted to target a Standalone node, which you can run by following [this tutorial](/getting-started/local-node/setting-up-a-node/). Also, each transaction was sent from the pre-funded account that comes with the node:
+For this section, the code shown before was adapted to target a development node, which you can run by following [this tutorial](/getting-started/local-node/setting-up-a-node/). Also, each transaction was sent from the pre-funded account that comes with the node:
 
 --8<-- 'text/metamask-local/dev-account.md'
 
@@ -433,6 +433,4 @@ This will display the value before the reset transaction, the hash of the transa
 === "Web3.py"
     ![Reset Contract Web3py](/images/deploycontract/contract-reset-web3py.png)
 
-## We Want to Hear From You
-
-This is a fairly simple example, but it provides context for how you can start working with Moonbeam and trying out its Ethereum compatibility features. We are interested in hearing about your experience following the steps in this guide or trying other Ethereum-based tools with Moonbeam. Feel free to join us in the [Moonbeam Discord here](https://discord.gg/PfpUATX). We would love to hear your feedback on Moonbeam and answer any questions that you have.
+--8<-- 'text/common/we-want-to-hear-from-you.md'

@@ -93,7 +93,9 @@ Now, execute the docker run command. Note that you have to:
 !!! note
     If you are setting up a collator node, make sure to follow the code snippets for "Collator".
 
-=== "Full Node"
+### Full Node
+
+=== "Ubuntu"
     ```
     docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
@@ -112,11 +114,55 @@ Now, execute the docker run command. Note that you have to:
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
-=== "Collator"
+=== "MacOS"
+    ```
+    docker run -p {{ networks.parachain.rpc }}:{{ networks.parachain.rpc }} -p {{ networks.parachain.ws }}:{{ networks.parachain.ws }} -v "{{ networks.moonbase.node_directory }}:/data" \
+    -u $(id -u ${USER}):$(id -g ${USER}) \
+    purestake/moonbeam:{{ networks.moonbase.parachain_docker_tag }} \
+    --ws-external \
+    --rpc-external \
+    --rpc-cors all \
+    --base-path=/data \
+    --chain alphanet \
+    --name="YOUR-NODE-NAME" \
+    --execution wasm \
+    --wasm-execution compiled \
+    --in-peers 200 \
+    --out-peers 200 \
+    --pruning archive \
+    -- \
+    --pruning archive \
+    --name="YOUR-NODE-NAME (Embedded Relay)"
+    ```
+### Collator
+
+=== "Ubuntu"
     ```
     docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     purestake/moonbeam:{{ networks.moonbase.parachain_docker_tag }} \
+    --base-path=/data \
+    --chain alphanet \
+    --name="YOUR-NODE-NAME" \
+    --collator \
+    --author-id PUBLIC_KEY \
+    --execution wasm \
+    --wasm-execution compiled \
+    --in-peers 200 \
+    --out-peers 200 \
+    --pruning archive \
+    -- \
+    --pruning archive \
+    --name="YOUR-NODE-NAME (Embedded Relay)"
+    ```
+
+=== "MacOS"
+    ```
+    docker run -p {{ networks.parachain.rpc }}:{{ networks.parachain.rpc }} -p {{ networks.parachain.ws }}:{{ networks.parachain.ws }} -v "{{ networks.moonbase.node_directory }}:/data" \
+    -u $(id -u ${USER}):$(id -g ${USER}) \
+    purestake/moonbeam:{{ networks.moonbase.parachain_docker_tag }} \
+    --ws-external \
+    --rpc-external \
     --base-path=/data \
     --chain alphanet \
     --name="YOUR-NODE-NAME" \
@@ -165,7 +211,7 @@ The following commands will build the latest release of the Moonbeam parachain.
 First, let's start by cloning the moonbeam repo.
 
 ```
-git clone https://github.com/PureStake/moonbeam
+git clone -b {{ networks.development.build_tag }} https://github.com/PureStake/moonbeam
 cd moonbeam
 ```
 
@@ -397,9 +443,6 @@ Also, you can see current Moonbase Alpha telemetry information visiting [this li
 ## Logs and Troubleshooting
 
 You will see logs from both the relay chain as well as the parachain. The relay chain will be prefixed by `[Relaychain]`, while the parachain has no prefix.
-
-!!! note
-    There is currently a [bug in cumulus](https://github.com/paritytech/cumulus/issues/257) regarding the naming issue.
 
 ### P2P Ports Not Open
 

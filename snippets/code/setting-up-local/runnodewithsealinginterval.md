@@ -1,0 +1,1 @@
+./target/release/moonbeam --dev --sealing 6000
