@@ -10,6 +10,8 @@ description: This tutorial walks you through how to interact with a local Moonbe
 
 ## Introduction
 
+MetaMask can be used to connect to Moonbeam through the Moonbase Alpha Testnet or via a locally running Moonbeam development node.
+
 This guide outlines the steps needed to connect MetaMask to a self-contained Moonbeam development node in order to send tokens between accounts. If you haven’t already set up your own local dev node, refer to [this tutorial](/getting-started/local-node/setting-up-a-node/), or follow the instructions in the [GitHub repository](https://github.com/PureStake/moonbeam/).
 
 !!! note
@@ -36,11 +38,21 @@ You should end up with an imported “Account 2” that looks like this:
 
 ![MetaMask displaying your new Account 2](/images/metamask/using-metamask-3.png)
 
-## Connect to the Local Moonbeam Node
+## Connecting MetaMask to Moonbeam
 
-Now, let’s connect MetaMask to our locally running Moonbeam node. In MetaMask, navigate to Settings -> Networks -> Add Network and fill in the following details:
+MetaMask can be configured to connect to your local development node or to the Moonbase Alpha testnet. 
+
+To connect MetaMask to Moonbeam, navigate to Settings -> Networks -> Add Network. This is where you can configure which network you would like MetaMask to connect to, using the following network configurations:
+
+Moonbeam development node:
 
 --8<-- 'text/metamask-local/development-node-details.md'
+
+Moonbase Alpha TestNet:
+
+--8<-- 'text/testnet/testnet-details.md'
+
+For the purpose of this tutorial, let's connect MetaMask to our locally running Moonbeam development node.
 
 ![Enter your new network information into MetaMask](/images/metamask/using-metamask-4.png)
 
