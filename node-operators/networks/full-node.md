@@ -211,7 +211,7 @@ The following commands will build the latest release of the Moonbeam parachain.
 First, let's start by cloning the moonbeam repo.
 
 ```
-git clone -b {{ networks.development.build_tag }} https://github.com/PureStake/moonbeam
+git clone https://github.com/PureStake/moonbeam
 cd moonbeam
 ```
 
@@ -225,12 +225,6 @@ Next, install Substrate and all its prerequisites, including Rust, by executing:
 
 ```
 --8<-- 'code/setting-up-node/substrate.md'
-```
-
-Now, make some checks (correct version of Rust nightly) with the initialization script:
-
-```
---8<-- 'code/setting-up-node/initscript.md'
 ```
 
 Lastly, build parachain binary:
