@@ -224,13 +224,13 @@ git checkout tags/$(git tag | tail -1)
 Next, install Substrate and all its prerequisites, including Rust, by executing:
 
 ```
---8<-- 'code/setting-up-local/substrate.md'
+--8<-- 'code/setting-up-node/substrate.md'
 ```
 
 Now, make some checks (correct version of Rust nightly) with the initialization script:
 
 ```
---8<-- 'code/setting-up-local/initscript.md'
+--8<-- 'code/setting-up-node/initscript.md'
 ```
 
 Lastly, build parachain binary:
@@ -244,7 +244,7 @@ cargo build --release
 If a _cargo not found error_ shows up in the terminal, manually add Rust to your system path or restart your system:
 
 ```
---8<-- 'code/setting-up-local/cargoerror.md'
+--8<-- 'code/setting-up-node/cargoerror.md'
 ```
 
 ### Running the Systemd Service

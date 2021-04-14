@@ -20,7 +20,7 @@ A Moonbeam development node is your own personal development environment for bui
 
 If you follow to the end of this guide, you will have a Moonbeam development node running in your local environment, with 10 [pre-funded accounts](#pre-funded-development-accounts), and will be able to connect it to the default Polkadot JS GUI.
 
-There are two ways to get started running a Moonbeam node: you can use [docker to run a pre-built binary](#getting-started-with-docker) or you can [locally install and set up a development node yourself](#installation-and-setup). Using Docker is a quick and convenient way to get started as you won't have to install Substrate and all the dependencies, and you can skip the building the node process as well. It does require you to [install Docker](https://docs.docker.com/get-docker/). On the other hand, if you decide you want to go through the process of building your own development node, it could take roughly 30 minutes or longer to complete depending on your hardware.
+There are two ways to get started running a Moonbeam node: you can use [Docker to run a pre-built binary](#getting-started-with-docker) or you can [locally install and set up a development node yourself](#installation-and-setup). Using Docker is a quick and convenient way to get started as you won't have to install Substrate and all the dependencies, and you can skip the building the node process as well. It does require you to [install Docker](https://docs.docker.com/get-docker/). On the other hand, if you decide you want to go through the process of building your own development node, it could take roughly 30 minutes or longer to complete depending on your hardware.
 
 ## Getting Started with Docker
 
@@ -80,19 +80,19 @@ cd moonbeam
 Next, install Substrate and all its prerequisites (including Rust) by executing:
 
 ```
---8<-- 'code/setting-up-local/substrate.md'
+--8<-- 'code/setting-up-node/substrate.md'
 ```
 
 Once you have followed all of the procedures above, it's time to build the development node by running:
 
 ```
---8<-- 'code/setting-up-local/build.md'
+--8<-- 'code/setting-up-node/build.md'
 ```
 
 If a _cargo not found error_ shows up in the terminal, manually add Rust to your system path (or restart your system):
 
 ```
---8<-- 'code/setting-up-local/cargoerror.md'
+--8<-- 'code/setting-up-node/cargoerror.md'
 ```
 
 !!! note
@@ -105,7 +105,7 @@ Here is what the tail end of the build output should look like:
 Then, you will want to run the node in dev mode using the following command:
 
 ```
---8<-- 'code/setting-up-local/runnode.md'
+--8<-- 'code/setting-up-node/runnode.md'
 ```
 
 !!! note
@@ -141,16 +141,29 @@ With Polkadot JS Apps connected, you will see the Moonbeam development node wait
 
 ## Querying Account State
 
-With the release of [Moonbase Alpha v3](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/), Moonbeam now works under a single account format, which is the Ethereum-styled H160 and is now also supported in Polkadot JS Apps. To check the balance of an address, you can simply import your account to the Accounts tab. You can find more information in the [Unified Accounts](/learn/unified-accounts/) section.
+With the release of [Moonbase Alpha v3](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/), Moonbeam now works under a single account format, which is the Ethereum-styled H160 and is now also supported in Polkadot JS Apps. To check the balance of an address, you can simply import your account in the Accounts tab. You can find more information in the [Unified Accounts](/learn/unified-accounts/) section.
  
 Nevertheless, leveraging the Ethereum full RPC capabilities of Moonbeam, you can use [MetaMask](/getting-started/local-node/using-metamask/) to check the balance of that address as well. In addition, you can also use other development tools, such as [Remix](/getting-started/local-node/using-remix/) and [Truffle](/getting-started/local-node/using-truffle/).
 
-## Common Flags and Options
+## Common Commands, Flags and Options
+
+### Purging the Chain
+
+When running a node via the binary file, data is stored in a local directory typically located in `~/.local/shared/moonbeam/chains/development/db`. If you want to start a fresh instance of the node, you can either delete the content of the folder, or run the following command inside the `moonbeam` folder:
+
+```
+./target/release/moonbeam purge-chain --dev -y
+```
+
+This will remove the data folder, note that all data regarding is now lost.
+
+If you used Docker, the data folder is related to the Docker container itself.
+### Node Flags
 
 Flags do not take an argument. To use a flag, add it to the end of a command. For example:
 
 ```
---8<-- 'code/setting-up-local/runnode.md'
+--8<-- 'code/setting-up-node/runnode.md'
 ```
 
 - `--dev`: Specifies the development chain
@@ -159,18 +172,28 @@ Flags do not take an argument. To use a flag, add it to the end of a command. Fo
 - `--rpc-external`: Listen to all RPC interfaces
 - `--ws-external`: Listen to all Websocket interfaces
 
+### Node Options
+
 Options accept an argument to the right side of the option. For example:
 
 ```
---8<-- 'code/setting-up-local/runnodewithsealinginterval.md'
+--8<-- 'code/setting-up-node/runnodewithsealinginterval.md'
 ```
 
 - `-l <log pattern>` or `--log <log pattern>`: Sets a custom logging filter. The syntax for the log pattern is `<target>=<level>`. For example, to print all of the RPC logs, the command would look like this: `-l rpc=trace`.
-- `--sealing <interval>`: When blocks should be sealed in the dev service. Accepted arguments for interval: `instant`, `manual`, or a number representing the timer interval in milliseconds. The default is `instant`.
+- `--sealing <interval>`: When blocks should be sealed in the dev service. Accepted arguments for interval: `instant`, `manual`, or a number representing the timer interval in milliseconds (for example, `6000` will have the node produce blocks every 6 seconds). The default is `instant`.
 - `--rpc-port <port>`: Sets the HTTP RPC server TCP port. Accepts a port as the argument.
 - `--ws-port <port>`: Sets the WebSockets RPC server TCP port. Accepts a port as the argument.
 
 For a complete list of flags and options, spin up your Moonbeam development node with `--help` added to the end of the command.
+
+## Advanced Flags and Options
+
+--8<-- 'code/setting-up-node/advanced-flags.md'
+
+```
+./target/release/moonbeam --dev --ethapi=debug,trace
+```
 
 ## Pre-funded Development Accounts
 
