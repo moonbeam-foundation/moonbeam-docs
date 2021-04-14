@@ -211,7 +211,7 @@ The following commands will build the latest release of the Moonbeam parachain.
 First, let's start by cloning the moonbeam repo.
 
 ```
-git clone -b {{ networks.development.build_tag }} https://github.com/PureStake/moonbeam
+git clone https://github.com/PureStake/moonbeam
 cd moonbeam
 ```
 
