@@ -227,12 +227,6 @@ Next, install Substrate and all its prerequisites, including Rust, by executing:
 --8<-- 'code/setting-up-local/substrate.md'
 ```
 
-Now, make some checks (correct version of Rust nightly) with the initialization script:
-
-```
---8<-- 'code/setting-up-local/initscript.md'
-```
-
 Lastly, build parachain binary:
 
 ```
