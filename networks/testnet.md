@@ -48,7 +48,6 @@ The following features are available:
         * Event subscription ID now returns an Ethereum-styled subscription ID
         * Fixed gas estimation issues for specific usecases
         * Added support for revert reason message
-        * Event subscription ID now returns an Ethereum-styled subscription ID
         * Support for Ethereum transactions without ChainId
 
 ??? release v5 "_January 2021_"      
