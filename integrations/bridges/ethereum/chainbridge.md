@@ -238,7 +238,7 @@ In simple terms, the modified bridge contract used to initiate the transfer will
 Let's send an ERC721M token from **Moonbase Alpha** to **Kovan**. For that, we'll use [Remix](/integrations/remix/). The following interface can be used to interact with the source ERC721M contract and mint the tokens. The `tokenOfOwnerByIndex()` function also can be used to check the token IDs owned by a specific address, passing the address and the index to query (each token ID is stored as an array element associated to the address):
 
 ```solidity
-pragma solidity ^0.6.4;
+pragma solidity ^0.8.1;
 
 /**
     Interface for the Custom ERC721 Token contract for ChainBridge implementation:
