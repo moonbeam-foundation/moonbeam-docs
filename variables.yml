@@ -14,20 +14,12 @@ networks:
       binary_name: moonbeam
       collator_slots: 8
       chainbridge:
-         kovan:
-            bridge_address: '0x89863493571c063171bE47e00c9404063eF1947A'
-            ERC20_handler: '0xC290939834364f08C8177b2A787eb3E032Fab27e'
-            ERC721_handler: '0xfB736169b682027AF57D282B83952d2a82f41d55'
-            ERC20S: '0xF1346880D471D4345D740401A9B082265bDcc76a'
-            ERC721M: '0xD1017C476f05DFc456c02C35Fb94D8aBf79766A0'
-            ERC721E: '0xf0fC240f029c9E953D85350B35439ECA24BECbe2'
-         rinkeby:
-            bridge_address: '0xB8254105AC9EBAe528728bbdCDd1E060d8d24D08'
-            ERC20_handler: '0xddaDdc5148C47f9E1926520d7AD2175dD5Aad4d5'
-            ERC721_handler: '0xc6B836d5C269AbB5a7a81F35597b8d9c32ea8933'
-            ERC20S: '0xDb148a131d775615E8707eE11708B88e601b4397'
-            ERC721M: '0x23A5AdE9E1e5DB3F0Db2027d91041fe3d78b2358'
-            ERC721E: '0x5A142d1658DCE58e180b0329d83569C4c0B6e424'
+         bridge_address: '0x747e8C91C8661704b1c33b0365A89f7e988E1de3'
+         ERC20_handler: '0xDC826cF5AD261FcD1D1dC404648B4D596Df88C8C'
+         ERC721_handler: '0xa6DCb79BC155f732C0761eFCEd656927FFA97E9E'
+         ERC20S: '0x019F59AFbB89f0d395F905F7Ca0A48485619bcA5'
+         ERC721M: '0xAC86f2e7C7C2e360eD0541fFDbb68710596E11B5'
+         generic_handler: '0x2dB6dA88c34943cED170FA64EBc1b21c3f8C8b92'
       razor:
          bridge_address: '0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB'
       chainlink:

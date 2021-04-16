@@ -194,8 +194,8 @@ interface IBridge {
 After adding the Bridge contract to Remix and compiling it, in order to send ERC20s tokens over the bridge you'll need to:
 
 1. Load the bridge contract address and click **At Address**
-2. To call the `sendERC20SToken()` function, enter the destinationChainID (Kovan: `42`, Rinkeby: `4`, Moonbase Alpha: `1287`)
-3. enter the recipient address on the other side of the bridge
+2. To call the `sendERC20SToken()` function, enter the destination chain ID (For this example we are using Kovan: `42`)
+3. Enter the recipient address on the other side of the bridge
 4. Add the amount to transfer in WEI
 5. Click **transact** and then MetaMask should pop-up asking you to sign the transaction. 
 
@@ -214,7 +214,7 @@ Remember that you can also mint ERC20S tokens in Kovan and send them to Moonbase
 
 ### ERC-721 Token Transfer
 
-Similar to our previous example, ERC-721 tokens contracts need to be registered by the relayers to enable transfer through the bridge. Therefore, we've customized an ERC-721 token contract so that any user can mint a token to test the bridge out. However, as each token is non-fungible, and consequently unique, the mint function is only available in the Source chain token contract and not in the Target contract. So you'll mint ERC-721M tokens on Moonbase Alpha to then transfer to  Rinkeby or Kovan. The following diagram explains the workflow for this example, where it is important to highlight that the token ID and metadata is maintained.
+Similar to our previous example, ERC-721 tokens contracts need to be registered by the relayers to enable transfer through the bridge. Therefore, we've customized an ERC-721 token contract so that any user can mint a token to test the bridge out. However, as each token is non-fungible, and consequently unique, the mint function is only available in the Source chain token contract and not in the Target contract. In other words, ERC-721M tokens can only be minted on Moonbase Alpha and then transfered to Rinkeby or Kovan. The following diagram explains the workflow for this example, where it is important to highlight that the token ID and metadata is maintained.
 
 ![ChainBridge ERC721 workflow](/images/chainbridge/chainbridge-erc721.png)
 
@@ -244,6 +244,8 @@ pragma solidity ^0.6.4;
     Interface for the Custom ERC721 Token contract for ChainBridge implementation:
     Kovan/Rinkeby - Moonbase Alpha:
         ERC721Moon: {{ networks.moonbase.chainbridge.ERC721M }}
+
+    ERC721Moon tokens are only mintable on Moonbase Alpha
 */
 
 interface ICustomERC721 {
@@ -318,10 +320,12 @@ interface IBridge {
 Now you can proceed to send the ERC721M token over the bridge to the target chain. In this case, remember that we'll do it from Moonbase Alpha to Kovan. To transfer the ERC721M token over the bridge:
 
 1. Load the bridge contract address and click **At Address**
-2. Call the `sendERC721MoonToken()` function to initiate the transfer of ERC721M tokens originally minted in Moonbase Alpha by providing the recipient address on the other side of the bridge
-3. Add the token ID to transfer
-4. Click **transact** and then MetaMask should pop-up asking you to sign the transaction.
-5. Once the transaction is confirmed, the process can take around 3 minute to complete, after which you should have received the same token ID in Kovan!
+2. Call the `sendERC721MoonToken()` function to initiate the transfer of ERC721M tokens originally minted in Moonbase Alpha by providing the destination chain ID (For this example we're using Kovan: `42`)
+3. Enter the recipient address on the other side of the bridge
+4. Add the token ID to transfer
+5. Click **transact** and then MetaMask should pop-up asking you to sign the transaction.
+
+Once the transaction is confirmed, the process can take around 3 minute to complete, after which you should have received the same token ID in Kovan!
 
 ![ChainBridge ERC721 send Token](/images/chainbridge/chainbridge-image5.png)
 
@@ -329,7 +333,7 @@ You can check your balance by adding the token to [MetaMask](/integrations/walle
 
 ![ChainBridge ERC721 balance](/images/chainbridge/chainbridge-image6.png)
 
-Remember that you will mint ERC721M tokens in Moonbase Alpha and then they will be available to send back and forth to Kovan or Rinkeby. It is important to always check the allowance provided to the handler contract in the corresponding ERC721 token contract. You can approve the handler contract to send tokens on your behalf using the `approve()` function provided in the interface. You can check the approval of each of your token IDs with the `getApproved()` function.
+Remember that ERC721M tokens are only mintable in Moonbase Alpha and then they will be available to send back and forth to Kovan or Rinkeby. It is important to always check the allowance provided to the handler contract in the corresponding ERC721 token contract. You can approve the handler contract to send tokens on your behalf using the `approve()` function provided in the interface. You can check the approval of each of your token IDs with the `getApproved()` function.
 
 !!! note
     Tokens will be transferred only if the handler contract is approved to transfer tokens on behalf of the owner. If the process fails, check the approval.
@@ -345,6 +349,9 @@ The generic handler address is:
 
 If you are interested in implementing this functionality, you can reach out directly to us via our [Discord server](https://discord.com/invite/PfpUATX). We'll be happy to discuss this implementation.
 
+### Moonbase Alpha ChainBridge UI
+
+If you want to play around with transferring ERC20S tokens from Moonbase Alpha to Kovan or Rinkeby without having to set up the contracts in Remix, you can checkout our [Moonbase Alpha ChainBridge UI](https://moonbase-chainbridge.netlify.app/transfer).
 ## We Want to Hear From You
 
 If you have any feedback regarding implementing ChainBridge on your project or any other Moonbeam-related topic, feel free to reach out through our official development [Discord server](https://discord.com/invite/PfpUATX).
