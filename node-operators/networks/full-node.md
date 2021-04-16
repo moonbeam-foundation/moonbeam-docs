@@ -109,6 +109,7 @@ Now, execute the docker run command. Note that you have to:
     --in-peers 200 \
     --out-peers 200 \
     --pruning archive \
+    --state-cache-size 1 \
     -- \
     --pruning archive \
     --name="YOUR-NODE-NAME (Embedded Relay)"
@@ -130,6 +131,7 @@ Now, execute the docker run command. Note that you have to:
     --in-peers 200 \
     --out-peers 200 \
     --pruning archive \
+    --state-cache-size 1 \
     -- \
     --pruning archive \
     --name="YOUR-NODE-NAME (Embedded Relay)"
@@ -151,6 +153,7 @@ Now, execute the docker run command. Note that you have to:
     --in-peers 200 \
     --out-peers 200 \
     --pruning archive \
+    --state-cache-size 1 \
     -- \
     --pruning archive \
     --name="YOUR-NODE-NAME (Embedded Relay)"
@@ -173,6 +176,7 @@ Now, execute the docker run command. Note that you have to:
     --in-peers 200 \
     --out-peers 200 \
     --pruning archive \
+    --state-cache-size 1 \
     -- \
     --pruning archive \
     --name="YOUR-NODE-NAME (Embedded Relay)"
@@ -299,6 +303,7 @@ The next step is to create the systemd configuration file. Note that you have to
          --rpc-port {{ networks.parachain.rpc }} \
          --ws-port {{ networks.parachain.ws }} \
          --pruning=archive \
+         --state-cache-size 1 \
          --unsafe-rpc-external \
          --unsafe-ws-external \
          --rpc-methods=Safe \
@@ -343,6 +348,7 @@ The next step is to create the systemd configuration file. Note that you have to
          --rpc-port {{ networks.parachain.rpc }} \
          --ws-port {{ networks.parachain.ws }} \
          --pruning=archive \
+         --state-cache-size 1 \
          --unsafe-rpc-external \
          --unsafe-ws-external \
          --rpc-methods=Safe \
