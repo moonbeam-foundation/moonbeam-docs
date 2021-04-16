@@ -9,7 +9,7 @@ _Updated April 5, 2021_
 
 ## Goal
 
-The first Moonbeam TestNet, named Moonbase Alpha, aims to provide developers with a place to start experimenting and building on Moonbeam in a shared environment. Since Moonbeam will be deployed as a parachain on Kusama and Polkadot, we want our TestNet to reflect our production configuration. For this reason, we decided that it needed to be a parachain-based configuration rather than a Substrate standalone setup.
+The first Moonbeam TestNet, named Moonbase Alpha, aims to provide developers with a place to start experimenting and building on Moonbeam in a shared environment. Since Moonbeam will be deployed as a parachain on Kusama and Polkadot, we want our TestNet to reflect our production configuration. For this reason, we decided that it needed to be a parachain-based configuration rather than a Substrate development setup.
 
 In order to collect as much feedback as possible and provide fast issue resolution, we have set up a [Discord with a dedicated Moonbase AlphaNet channel](https://discord.gg/PfpUATX).
 
@@ -48,7 +48,6 @@ The following features are available:
         * Event subscription ID now returns an Ethereum-styled subscription ID
         * Fixed gas estimation issues for specific usecases
         * Added support for revert reason message
-        * Event subscription ID now returns an Ethereum-styled subscription ID
         * Support for Ethereum transactions without ChainId
 
 ??? release v5 "_January 2021_"      

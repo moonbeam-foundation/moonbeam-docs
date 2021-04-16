@@ -30,7 +30,7 @@ You can check Job IDs for each data-feed at the following [link](https://razorsc
 
 ## Get Data From Bridge Contract
 
-Contracts can query on-chain dat,a such as token prices, from Razor Network's oracle by implementing the interface of the Bridge contract, which exposes the `getResult` and `getJob` functions.
+Contracts can query on-chain data such as token prices, from Razor Network's oracle by implementing the interface of the Bridge contract, which exposes the `getResult` and `getJob` functions.
 
 ```
 pragma solidity 0.6.11;

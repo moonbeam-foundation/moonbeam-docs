@@ -6,38 +6,22 @@ description: Moonbeam makes it incredibly easy to deploy a Solidity-based smart 
 # Interacting with Moonbeam Using Truffle
 
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed//RD5MefSPNeo' frameborder='0' allowfullscreen></iframe></div>
-<style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>You can find all of the relevant code for this tutorial on the [code snippets page](/resources/snippets/code/)</div>
+<style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>You can find all of the relevant code for this tutorial on the <a href="{{ config.site_url }}resources/code-snippets/">code snippets page</a></div>
 
 ## Introduction
 
 This guide walks through the process of deploying a Solidity-based smart contract to a Moonbeam node using [Truffle](https://www.trufflesuite.com/), a commonly used development tool for smart contracts on Ethereum. Given Moonbeam’s Ethereum compatibility features, Truffle can be used directly with a Moonbeam node.
 
 !!! note
-    This tutorial was created using the v3 release of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/v0.3.0). The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility are still under very active development. The examples in this guide assume you have an Ubuntu 18.04-based environment and will need to be adapted accordingly for MacOS or Windows.
+    This tutorial was created using the {{ networks.development.build_tag}} tag which is based on the {{ networks.moonbase.version }} release of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/{{ networks.moonbase.version }}). The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility are still under very active development.
+    --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
 
-For this guide, you will need to have a standalone Moonbeam node running in `--dev` mode. This can be done by either following the steps detailed [here](/getting-started/local-node/setting-up-a-node/) or by using the [Moonbeam Truffle plugin](/integrations/trufflebox/#the-moonbeam-truffle-plugin), which we'll use in this tutorial's examples.
+For this guide, you will need to have a Moonbeam development node running in `--dev` mode. This can be done by either following the steps detailed [here](/getting-started/local-node/setting-up-a-node/) or by using the [Moonbeam Truffle plugin](/integrations/trufflebox/#the-moonbeam-truffle-plugin), which we'll use in this tutorial's examples.
 
 ## Checking Prerequisites
 
-First, we need to install Node.js (we'll use v15.x) and the npm package manager. You can do this by running in your terminal:
+--8<-- 'text/common/install-nodejs.md'
 
-```
-curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash -
-```
-
-```
-sudo apt install -y nodejs
-```
-
-We can verify that everything is installed correctly by querying the version for each package:
-
-```
-node -v
-```
-
-```
-npm -v
-```
 
 In addition, you can globally install Truffle by running:
 
@@ -45,7 +29,7 @@ In addition, you can globally install Truffle by running:
 npm install -g truffle
 ```
 
-As of this guide's publish date, the versions used were 15.2.1, 7.0.8, and 5.1.52 respectively.
+As of this guide's publish date, the versions used were 15.12.0, 7.6.3, and 5.2.4 respectively.
 
 !!! note
     For the following examples, you don't need to have Truffle globally installed, as it is included as a dependency on the Moonbeam Truffle box. If you prefer, you can run `npx truffle` or `./node_modules/.bin/truffle` instead of `truffle`.
@@ -58,7 +42,7 @@ To download the Moonbeam Truffle box, follow [these instructions](/integrations/
 
 ```js
 const HDWalletProvider = require('@truffle/hdwallet-provider');
-// Standalone Development Node Private Key
+// Moonbeam Development Node Private Key
 const privateKeyDev =
    '99B3C12287537E38C90A9219D4CB074A89A16E9CDB20BF85728EBD97C343E342';
 //...
@@ -77,13 +61,13 @@ module.exports = {
 };
 ```
 
-Note that we are using `HD-Wallet-Provider` from Truffle as the Hierarchical Deterministic wallet. Also, we've defined a `dev` network that points to the standalone node provider URL, and the private key of the development account, which holds all funds in the standalone node, is included.
+Note that we are using `HD-Wallet-Provider` from Truffle as the Hierarchical Deterministic wallet. Also, we've defined a `dev` network that points to the development node provider URL, and the private key of the development account, which holds all funds in the development node, is included.
 
-## Running an Standalone TestNet
+## Running a Development Node
 
-To set up a standalone Moonbeam node, you can follow [this tutorial](/getting-started/local-node/setting-up-a-node/). The process takes around 40 minutes in total, and you need to install Substrate and all its dependencies. The Moonbeam Truffle plugin provides a way to get started with a standalone node much quicker, and the only requirement is to have Docker installed (at time of writing the Docker version used was 19.03.6).
+To set up a Moonbeam development node, you can follow [this tutorial](/getting-started/local-node/setting-up-a-node/). The process takes around 40 minutes in total, and you need to install Substrate and all its dependencies. The Moonbeam Truffle plugin provides a way to get started with a development node much quicker, and the only requirement is to have Docker installed (at time of writing the Docker version used was 19.03.6).
 
-To start a standalone Moonbeam node in your local environment, we need to first download the corresponding Docker image:
+To start a Moonbeam development node in your local environment, we need to first download the corresponding Docker image:
 
 ```
 truffle run moonbeam install
@@ -101,7 +85,7 @@ You will see a message indicating that the node has started, followed by both of
 
 ![Moonbeam local node started](/images/truffle/using-truffle-2.png)
 
-Once you are finished using your standalone Moonbeam node, you can run the following lines to stop it and remove the Docker image if that is the case:
+Once you are finished using your Moonbeam development node, you can run the following lines to stop it and remove the Docker image if that is the case:
 
 ```
 truffle run moonbeam stop && \
@@ -167,6 +151,4 @@ If successful, you will see deployment actions, including the address of the dep
 
 Once you have followed the [MetaMask guide](/getting-started/local-node/using-metamask/) and [Remix guide](/getting-started/local-node/using-remix/), you will be able to take the deployed contract address that is returned and load it into MetaMask or Remix.
 
-## We Want to Hear From You
-
-This is obviously a simple example, but it provides context for how you can start working with Moonbeam and how you can try out its Ethereum compatibility features. We are interested in hearing about your experience following the steps in this guide or trying other Ethereum-based tools with Moonbeam. Feel free to join us in the [Moonbeam Discord](https://discord.gg/PfpUATX). We would love to hear your feedback on Moonbeam and answer any questions that you have.
+--8<-- 'text/common/we-want-to-hear-from-you.md'
