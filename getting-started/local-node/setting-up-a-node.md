@@ -189,7 +189,7 @@ For a complete list of flags and options, spin up your Moonbeam development node
 
 ## Advanced Flags and Options
 
---8<-- 'code/setting-up-node/advanced-flags.md'
+--8<-- 'text/setting-up-node/advanced-flags.md'
 
 For example, when running the binary:
 
@@ -207,4 +207,4 @@ bottom drive obey lake curtain smoke basket hold race lonely fit walk
 
 Checkout the [Using MetaMask](/getting-started/local-node/using-metamask/) section to get started interacting with your accounts.
 
---8<-- 'text/setting-up-local/dev-accounts.md'
+--8<-- 'text/setting-up-node/dev-accounts.md'

@@ -56,7 +56,7 @@ cd moonbeam
 
 ## Development Accounts
 
---8<-- 'text/setting-up-local/dev-accounts.md'
+--8<-- 'text/setting-up-node/dev-accounts.md'
 
 ## MetaMask
 

@@ -394,7 +394,7 @@ journalctl -f -u moonbeam.service
 
 ## Advanced Flags and Options
 
---8<-- 'code/setting-up-node/advanced-flags.md'
+--8<-- 'text/setting-up-node/advanced-flags.md'
 
 ## Updating the Client
 
