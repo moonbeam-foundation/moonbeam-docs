@@ -16,7 +16,7 @@ This guide outlines the steps needed to create a development node for testing th
     This tutorial was created using the {{ networks.development.build_tag }} tag of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/{{ networks.development.build_tag }}). The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility are still under very active development.
     --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
 
-A Moonbeam development node is your own personal development environment for building and testing applications on Moonbeam. For Ethereum developers, it is comparible to Ganache. It enables you to get started quickly and easily without the overhead of a relay chain. You can spin up your node with the `--sealing` option to author blocks instantly, manually, or at a custom interval after transactions are received. By default a block will be created when a transaction is received, which is similar to Ganache's instamine feature. 
+A Moonbeam development node is your own personal development environment for building and testing applications on Moonbeam. For Ethereum developers, it is comparable to Ganache. It enables you to get started quickly and easily without the overhead of a relay chain. You can spin up your node with the `--sealing` option to author blocks instantly, manually, or at a custom interval after transactions are received. By default a block will be created when a transaction is received, which is similar to Ganache's instamine feature. 
 
 If you follow to the end of this guide, you will have a Moonbeam development node running in your local environment, with 10 [pre-funded accounts](#pre-funded-development-accounts), and will be able to connect it to the default Polkadot JS GUI.
 
@@ -52,7 +52,7 @@ You can run the Docker image using the following:
     --dev --ws-external --rpc-external
     ```
 
-This should spin up a Moonbeam develoment node in instant seal mode for local testing, so that blocks are authored instantly as transactions are received.
+This should spin up a Moonbeam development node in instant seal mode for local testing, so that blocks are authored instantly as transactions are received.
 If successful, you should see an output showing an idle state waiting for blocks to be authored:
 
 ![Docker - output shows blocks being produced](/images/setting-up-a-node/setting-up-node-2.png)
