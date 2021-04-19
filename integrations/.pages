@@ -9,5 +9,6 @@ arrange:
   - trufflebox.md
   - hardhat.md
   - pubsub.md
-  - precompiles.md
   - debug-trace.md
+  - precompiles.md
+

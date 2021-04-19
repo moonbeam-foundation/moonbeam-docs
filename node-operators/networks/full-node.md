@@ -392,6 +392,10 @@ journalctl -f -u moonbeam.service
 
 ![Service Logs](/images/fullnode/fullnode-binary3.png)
 
+## Advanced Flags and Options
+
+--8<-- 'code/setting-up-node/advanced-flags.md'
+
 ## Updating the Client
 
 As Moonbeam development continues, it will sometimes be necessary to upgrade your node software. Node operators will be notified on our [Discord channel](https://discord.gg/PfpUATX) when upgrades are available and whether they are necessary (some client upgrades are optional). The upgrade process is straightforward and is the same for a full node or collator.

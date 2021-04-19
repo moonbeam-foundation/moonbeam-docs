@@ -191,8 +191,10 @@ For a complete list of flags and options, spin up your Moonbeam development node
 
 --8<-- 'code/setting-up-node/advanced-flags.md'
 
+For example, when running the binary:
+
 ```
-./target/release/moonbeam --dev --ethapi=debug,trace
+./target/release/moonbeam --dev --execution=Native --ethapi=debug,trace
 ```
 
 ## Pre-funded Development Accounts
