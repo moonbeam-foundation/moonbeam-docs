@@ -17,25 +17,25 @@ cd moonbeam
 **Install substrate and its pre-requisites:**
 
 ```
---8<-- 'code/setting-up-local/substrate.md'
+--8<-- 'code/setting-up-node/substrate.md'
 ```
 
 **Add Rust to system path:**
 
 ```
---8<-- 'code/setting-up-local/cargoerror.md'
+--8<-- 'code/setting-up-node/cargoerror.md'
 ```
 
 **Build the development node:**
 
 ```
---8<-- 'code/setting-up-local/build.md'
+--8<-- 'code/setting-up-node/build.md'
 ```
 
 **Run node in dev mode:**
 
 ```
---8<-- 'code/setting-up-local/runnode.md'
+--8<-- 'code/setting-up-node/runnode.md'
 ```
 
 **Purge chain, clean up any old data from running a ‘dev’ node in the past:**
@@ -56,7 +56,7 @@ cd moonbeam
 
 ## Development Accounts
 
---8<-- 'text/setting-up-local/dev-accounts.md'
+--8<-- 'text/setting-up-node/dev-accounts.md'
 
 ## MetaMask
 
