@@ -15,7 +15,7 @@ With the release of Moonbase Alpha v7, as part of Moonbeam's goal of providing a
 
 Supporting both RPC methods is an important milestone because many projects, such as [The Graph](https://thegraph.com/) or [Blockscout](https://docs.blockscout.com/), rely on them to index blockchain data.
 
-Both calls are quite heavy on the node's side. Therefore, it is required to make this RPC against a locally running node with either the `--ethapi=debug` flag for `debug_traceTransaction`, and/or the `--ethapi=trace` flag for `trace_filter`. Currently, you can spin two different kind of nodes:
+Both calls are quite heavy on the node's side. Therefore, it is required to make this RPC against a locally running node with either the `--ethapi=debug` flag for `debug_traceTransaction`, and/or the `--ethapi=trace` flag for `trace_filter`. Currently, you can spin up two different kinds of nodes:
 
  - **Moonbeam development node** — run your own Moonbeam instance in your private environment. To do so, you can follow [this guide](/getting-started/local-node/setting-up-a-node/). Make sure to check the [advanced flags section](/getting-started/local-node/setting-up-a-node/#advanced-flags-and-options)
  - **Moonbase Alpha node** — run a full node of the TestNet and access your own private endpoints. To do so, you can follow [this guide](/node-operators/networks/full-node/). Make sure to check the [advanced flags section](/node-operators/networks/full-node/#advanced-flags-and-options)
