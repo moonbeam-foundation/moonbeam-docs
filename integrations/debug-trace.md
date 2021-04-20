@@ -22,7 +22,7 @@ Both calls are quite heavy on the node's side. Therefore, it is required to make
 
 ## Geth Debug API
 
-The `debug_traceTransaction` RPC implementation follows [Geth's debug API guidelines](https://geth.ethereum.org/docs/rpc/ns-debug#debug_tracetransaction). You can read more about the RPC method in [this link](https://geth.ethereum.org/docs/rpc/ns-debug#debug_tracetransaction).
+The `debug_traceTransaction` RPC implementation follows [Geth's debug API guidelines](https://geth.ethereum.org/docs/rpc/ns-debug#debug_tracetransaction).
 
 The RPC method requires the transaction hash to run. As optional parameters you can provide the following:
 
