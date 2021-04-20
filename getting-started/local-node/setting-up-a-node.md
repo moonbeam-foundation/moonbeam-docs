@@ -155,7 +155,7 @@ When running a node via the binary file, data is stored in a local directory typ
 ./target/release/moonbeam purge-chain --dev -y
 ```
 
-This will remove the data folder, note that all data regarding is now lost.
+This will remove the data folder, note that all chain data is now lost.
 
 If you used Docker, the data folder is related to the Docker container itself.
 ### Node Flags
