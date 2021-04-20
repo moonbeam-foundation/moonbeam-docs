@@ -34,7 +34,7 @@ JavaScript based transaction tracing is not supported at the moment.
 
 ## Trace Module
 
-The `trace_filter` RPC implementation follows [OpenEthereum's trace module guidelines](https://openethereum.github.io/JSONRPC-trace-module). You can read more about the RPC method in [this link](https://openethereum.github.io/JSONRPC-trace-module#trace_filter).
+The `trace_filter` RPC implementation follows [OpenEthereum's trace module guidelines](https://openethereum.github.io/JSONRPC-trace-module#trace_filter).
 
 The RPC method requires any of the following optional parameters:
 
