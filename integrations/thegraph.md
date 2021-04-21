@@ -9,15 +9,19 @@ description: Build APIs using The Graph indexing protocol on Moonbeam
 
 ## Introduction
 
-Indexing protocols organize information in a way that applications can access it more efficiently. For example, Google indexes the entire internet to efficiently provide information in a timely matter when you search for something.
+Indexing protocols organize information in a way that applications can access it more efficiently. For example, Google indexes the entire internet to provide information in an efficient matter when you search for something.
 
 The Graph is a decentralized and open-source indexing protocol for querying networks like Ethereum. In short, it provides a way to efficiently store data emitted by events from smart contracts so that other projects or dApps can access it easily.
 
-Developers can build APIs, called subgraphs. Users or other developers can use subgraphs to query data specific to a set of smart contracts. Data is fetched with a standard GraphQL API. You can read more about The Graph protocol in [this link](https://thegraph.com/docs/introduction#what-the-graph-is).
+Furthermore, developers can build APIs, called subgraphs. Users or other developers can use subgraphs to query data specific to a set of smart contracts. Data is fetched with a standard GraphQL API. You can visit [their documentation](https://thegraph.com/docs/introduction#what-the-graph-is) to read more about The Graph protocol.
 
 With the introduction of Ethereum tracing modules in [Moonbase Alpha v7](https://github.com/PureStake/moonbeam/releases/tag/v0.7.0), The Graph is capable of indexing blockchain data in Moonbeam.
 
-This guide takes you through the creation of a simple subgraph for a Lottery contract.
+This guide takes you through the creation of a simple subgraph for a lottery contract on Moonbase Alpha.
+
+## Checking Prerequisites
+
+Currently, to use The Graph on Moonbase Alpha you need to have a Graph Node running against the TestNet. To do so, you can follow [this tutorial](/node-operators/indexers/thegraph-node/). 
 
 ## The Lottery Contract
 
@@ -40,3 +44,11 @@ The Graph uses the events emitted by the contract to indexed data. The lottery c
  - **LotteryResult** — in the `pickWinner` function. It provides information to the draw of an ongoing round, such as the address of the winner, current lottery round, if the winning ticket was a gift, amount of the prize, and timestamp of the draw
 
 ## Creating a Lottery Subgraph
+
+Subgraphs tend to have some of the following files:
+
+ - `subgraph.yaml`: is a YAML file that contains the [Subgraph's manifest](https://thegraph.com/docs/define-a-subgraph#the-subgraph-manifest), that is, information related to the smart contracts being indexed by the Subgraph
+ - `schema.grapql`: is a [GraphQL schema](https://thegraph.com/docs/define-a-subgraph#the-graphql-schema) file that defines the data store for the Subgraph being created, and its structure. It is written using [GraphQL interface definition schema](https://graphql.org/learn/schema/#type-language)
+ - 'AssembyScript mappings': code in [AssemblyScript](https://github.com/AssemblyScript/assemblyscript) that is used to translate event data from the contract to the entities defined in the schema
+
+[This GitHub repository](https://github.com/PureStake/moonlotto-subgraph) has everything you need to help you get started with you first Subgraph. The repo also includes the Lottery contract, as well as a Hardhat configuration file and deployment script. If you are not familiar with it, you can check our [Hardhat integration guide](/integrations/hardhat/). For this example, the contract was deployed to `{{ networks.moonbase.thegraph.lotto_contract }}`.
