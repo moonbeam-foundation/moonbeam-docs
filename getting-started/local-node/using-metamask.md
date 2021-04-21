@@ -82,39 +82,5 @@ If you head back over to your terminal where you have your Moonbeam node running
 
 !!! note
     If you end up resetting your development node using the Substrate purge-chain command, you will need to reset your MetaMask genesis account using Settings -> Advanced -> Reset Account. This will clear the transaction history from your accounts and reset the nonce. Make sure you don’t erase anything that you want to keep!
-
-
-## One-click Connect to MetaMask
-
-<div>
-    <button class="connect">Connect MetaMask to Moonbase Alpha</button>
-    <script>
-        document.querySelector(".connect").onclick = () => setupMoonbaseAlpha();
-        const setupMoonbaseAlpha = () => {
-            const provider = window.ethereum;
-            if (provider) {
-                provider.request({ method: "eth_requestAccounts"})
-                provider.request({
-                    method: "wallet_addEthereumChain",
-                    params: [
-                        {
-                            chainId: `0x507`,
-                            chainName: "Moonbase Alpha",
-                            nativeCurrency: {
-                                name: 'DEV',
-                                symbol: 'DEV',
-                                decimals: 18
-                            },
-                            rpcUrls: ["https://rpc.testnet.moonbeam.network"],
-                            blockExplorerUrls: ["https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/explorer"],
-                        },
-                    ]
-                })
-            } else {
-                console.log("Uh oh! Looks like you need to install MetaMask")
-            }
-        }
-    </script>
-</div>
  
 --8<-- 'text/common/we-want-to-hear-from-you.md'
