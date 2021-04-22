@@ -1,4 +1,5 @@
 const provider = window.ethereum;
+const moonbaseAlphaChainId = "0x507";
 
 /** Connect to Moonbase Alpha */
 const setupMoonbaseAlpha = async () => {
@@ -13,7 +14,7 @@ const setupMoonbaseAlpha = async () => {
                 method: "wallet_addEthereumChain",
                 params: [
                     {
-                        chainId: "0x507",
+                        chainId: moonbaseAlphaChainId,
                         chainName: "Moonbase Alpha",
                         nativeCurrency: {
                             name: 'DEV',
@@ -53,15 +54,16 @@ connectMetaMaskNav.addEventListener("click", () => {
 })
 
 /** If we are already connected to Moonbase Alpha, show disbled button with 'Connected' text */
+const connectButtons = [connectMetaMask, connectMetaMaskNav];
 const isConnectedToMoonbaseAlpha = async () => {
     const chainId = await provider.request({
         method: 'eth_chainId'
     })
-    if (chainId === "0x507"){
-        connectMetaMask.innerHTML = "Connected";
-        connectMetaMask.className += " disabled-button";
-        connectMetaMaskNav.innerHTML = "Connected";
-        connectMetaMaskNav.className += " disabled-button";
+    if (chainId === moonbaseAlphaChainId){
+        connectButtons.forEach((button) => {
+            button.innerHTML = "Connected";
+            button.className += " disabled-button";
+        })
     }
 }
 
