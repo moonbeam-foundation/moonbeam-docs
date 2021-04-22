@@ -22,6 +22,7 @@ const setupMoonbaseAlpha = async () => {
                             decimals: 18
                         },
                        rpcUrls: ["https://rpc.testnet.moonbeam.network"],
+                       blockExplorerUrls: ["https://moonbase-blockscout.testnet.moonbeam.network/"]
                     },
                 ]
             })
