@@ -109,7 +109,7 @@ docker-compose up
 
 After a while, you should see logs related to the Graph Node syncing with the latest available block in the network:
 
-![Graph Node logs](/images/thegraph/thegraphnode-images3.png).
+![Graph Node logs](/images/thegraph/thegraphnode-images3.png)
 
 And that is it! You have a Graph Node running against the Moonbase Alpha TestNet. Feel free to adapt this example to a Moonbeam development node as well.
 
