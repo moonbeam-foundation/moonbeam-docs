@@ -25,7 +25,6 @@ const setupMoonbaseAlpha = async () => {
                 ]
             })
         } catch(e) {
-            console.error(e);
             /** Code 4001 is user rejected, we don't need to notify the user if they rejected the request */
             if (e.code !== 4001) {
                 errorModalContainer.style.display = "block";
@@ -35,7 +34,6 @@ const setupMoonbaseAlpha = async () => {
     } else {
         errorModalContainer.style.display = "block";
         errorMessage.innerHTML = `It looks like MetaMask hasn't been installed. Please <a href="https://metamask.io/download.html" target="_blank" rel="noreferrer noopener">install MetaMask</a> and try again.`
-        console.log("error!");
     }
 }
 
