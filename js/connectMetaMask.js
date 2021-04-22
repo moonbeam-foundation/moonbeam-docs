@@ -62,8 +62,10 @@ const isConnectedToMoonbaseAlpha = async () => {
     })
     if (chainId === moonbaseAlphaChainId){
         connectButtons.forEach((button) => {
-            button.innerHTML = "Connected";
-            button.className += " disabled-button";
+            if (button){
+                button.innerHTML = "Connected";
+                button.className += " disabled-button";
+            }     
         })
     }
 }
