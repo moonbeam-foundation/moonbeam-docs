@@ -13,6 +13,16 @@ Developers can leverage Moonbeam's Ethereum compatibility features to integrate 
 
 Currently, MetaMask can be configured to connect to two networks: a Moonbeam development node or the Moonbase Alpha TestNet.
 
+If you already have MetaMask installed, you can easily connect MetaMask to the Moonbase Alpha test network:
+
+<div class="button-wrapper">
+    <a href="#" class="md-button connectMetaMask">Connect MetaMask</a>
+</div>
+
+!!! note
+    MetaMask will popup asking for permission to add Moonbase Alpha as a custom network. Once you approve permissions, MetaMask will switch your current network to Moonbase Alpha.
+
+
 ## Connect MetaMask to Moonbeam
 
 Once you have [MetaMask](https://metamask.io/) installed, you can connect it to Moonbeam by clicking on the top right logo and opening the settings.
