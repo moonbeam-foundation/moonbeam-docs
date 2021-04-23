@@ -93,7 +93,6 @@ if (provider) {
     provider.on("accountsChanged", async (accounts) => {
         if (accounts.length > 0) {
             displayConnectedButton();
-            return;
         } else {
             window.location.reload()
         }
