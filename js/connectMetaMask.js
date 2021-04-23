@@ -90,7 +90,7 @@ if (provider) {
     })
 
     /** When the account changes update the button text */
-    provider.on("accountsChanged", async (accounts) => {
+    provider.on("accountsChanged", (accounts) => {
         if (accounts.length > 0) {
             displayConnectedButton();
         } else {
