@@ -14,7 +14,7 @@ A Graph Node sources events from a blockchain to deterministically update a data
 There are two ways you can set up a Graph Node: you can use Docker to run an all-in-one image, or you can run their [Rust implementation](https://github.com/graphprotocol/graph-node). The steps described in this guide will only cover the Docker alternative, as it is more convenient, and you can set up a Graph Node very quickly.
 
 !!! note
-    The steps described in this guide assume an Ubuntu 18.04-based environment, and they will need to be adapted accordingly for other systems.
+    The steps described in this guide have been tested in both Ubuntu 18.04-based and MacOs environments, and they will need to be adapted accordingly for other systems.
 
 ## Checking Prerequisites
 
