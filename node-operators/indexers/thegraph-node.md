@@ -9,7 +9,7 @@ description: Build APIs using The Graph indexing protocol on Moonbeam
 
 ## Introduction
 
-A Graph Node sources events from a blockchain to deterministically update a data store that can be queried via the GraphQL endpoint.
+A Graph Node sources events from a blockchain to deterministically update a data store that can be then queried via a GraphQL endpoint.
 
 There are two ways you can set up a Graph Node: you can use Docker to run an all-in-one image, or you can run their [Rust implementation](https://github.com/graphprotocol/graph-node). The steps described in this guide will only cover the Docker alternative, as it is more convenient, and you can set up a Graph Node very quickly.
 
