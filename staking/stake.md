@@ -147,7 +147,7 @@ Once the transaction is confirmed, your account should not be listed in the `nom
 
 ## Staking Rewards
 
-As collators receive rewards from block production, nominators get rewards as well. A brief overview on how the rewards are calculated can be found on [this page](/staking/overview/#reward-distribution).
+As collators receive rewards from block production, nominators get rewards as well. A brief overview on how the rewards are calculated can be found in [this page](/staking/overview/#reward-distribution).
 
 In summary, nominators will earn rewards based on their stake of the total nominations for the collator being rewarded (including the collator's stake as well).
 

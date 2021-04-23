@@ -12,6 +12,9 @@ networks:
       node_directory: /var/lib/alphanet-data
       node_db_loc: /chains/moonbase_alpha/db
       binary_name: moonbeam
+      thegraph:
+         lotto_contract: '0x44ddD2EC5BE2A7f3e4A465C21600bE8df644093f'
+         block_number: 132605
       collator_slots: 8
       chainbridge:
          bridge_address: '0x747e8C91C8661704b1c33b0365A89f7e988E1de3'
