@@ -23,21 +23,21 @@ This guide takes you through the creation of a simple subgraph for a lottery con
 
 To use The Graph on Moonbase Alpha you have two options:
 
- - Point your Subgraph to The Graph API
- - Run a Graph Node against Moonbase Alpha and point your Subgraph to it. To do so, you can follow [this tutorial](/node-operators/indexers/thegraph-node/). 
+ - Point your Subgraph to The Graph API via the [Graph Explorer website](https://thegraph.com/explorer/)
+ - Run a Graph Node against Moonbase Alpha and point your Subgraph to it. To do so, you can follow [this tutorial](/node-operators/indexers/thegraph-node/).
 
 ## The Lottery Contract
 
-For this example, a simple Lottery contract will be used. You can find the Solidity file in [this link](https://github.com/PureStake/moonlotto-subgraph/blob/main/contracts/MoonLotto.sol). 
+For this example, a simple Lottery contract is be used. You can find the Solidity file in [this link](https://github.com/PureStake/moonlotto-subgraph/blob/main/contracts/MoonLotto.sol). 
 
-The contract hosts a lottery where a player can buy a ticket for himself or gift one to another user. When 1 hour has passed, if there are 10 participants, the next player that joins the lottery will execute a function that picks the winner. All the funds stored in the contract are sent to the winner, after which a new round starts.
+The contract hosts a lottery where players can buy ticket for themselves or gift one to another user. When 1 hour has passed, if there are 10 participants, the next player that joins the lottery will execute a function that picks the winner. All the funds stored in the contract are sent to the winner, after which a new round starts.
 
 The main functions of the contract are the following:
 
  - **joinLottery** — no inputs. Function to enter the lottery's current round, the value (amount of tokens) sent to the contract need to be equal to the ticket price
  - **giftTicket** —  one input: ticket's recipient address. Similar to `joinLottery` but the ticket's owner can be set to a different address
  - **enterLottery** — one input: ticket's owner address. An internal function that handles the lottery's tickets logic. If an hour has passed and there are at least 10 participants, it calls the `pickWinner` function
- - **pickWinner** — no inputs. An internal function that selects the lottery winner with a pseudo-random number generator (not safe, only for demostration purposes). It handles the logic of transferring funds and resetting variable for the next lottery round
+ - **pickWinner** — no inputs. An internal function that selects the lottery winner with a pseudo-random number generator (not safe, only for demonstration purposes). It handles the logic of transferring funds and resetting variable for the next lottery round
 
 ### Events of the Lottery Contract
 
@@ -50,36 +50,42 @@ The Graph uses the events emitted by the contract to indexed data. The lottery c
 
 This section goes through the process of creating a Subgraph. For the Lottery Subgraph, a [GitHub repository](https://github.com/PureStake/moonlotto-subgraph) was prepared and contains everything you need to help you get started. The repo also includes the Lottery contract, as well as a Hardhat configuration file and deployment script. If you are not familiar with it, you can check our [Hardhat integration guide](/integrations/hardhat/). 
 
-For this example, the contract was deployed to `{{ networks.moonbase.thegraph.lotto_contract }}`. There is no particular order to follow when modifying the files.
-
-So to get started, clone the repo and install the dependencies:
+To get started, first clone the repo and install the dependencies:
 
 ```
 git clone https://github.com/PureStake/moonlotto-subgraph \
 && cd moonlotto-subgraph && yarn
 ```
 
-Next, create the TypeScrypt types for The Graph by running:
+
+Now you can create the TypeScript types for The Graph by running:
 
 ```
 npx graph codegen --output-dir src/types/
 ```
 
-The code above can be executed as well with `yarn codegen`.
+!!! note
+    Creating the types requires you to have the ABI files as specified in the `subgraph.yaml` file. This sample repository has the file already, but this is usually obtained after compiling the contract. Check the [Moonlotto repo](https://github.com/PureStake/moonlotto-subgraph) for more information.
+
+The `codegen` command can also be executed using `yarn codegen`.
+
+For this example, the contract was deployed to `{{ networks.moonbase.thegraph.lotto_contract }}`. You can find more information on how to deploy a contract wiht Hardhat in our [integrations tutorial](/integrations/hardhat/). Also, the "README" file in the [Moonloto repository](https://github.com/PureStake/moonlotto-subgraph) has the steps necessary to compile and deploy the contract if required.
 
 ### Subgraphs Core Structure
 
 In general terms, Subgraphs define the data that The Graph will index from the blockchain and the way it is stored. Subgraphs tend to have some of the following files:
 
  - **subgraph.yaml** — is a YAML file that contains the [Subgraph's manifest](https://thegraph.com/docs/define-a-subgraph#the-subgraph-manifest), that is, information related to the smart contracts being indexed by the Subgraph
- - **schema.grapql** — is a [GraphQL schema](https://thegraph.com/docs/define-a-subgraph#the-graphql-schema) file that defines the data store for the Subgraph being created and its structure. It is written using [GraphQL interface definition schema](https://graphql.org/learn/schema/#type-language)
- - **AssembyScript mappings** — code in TypeScript (then compiled to[AssemblyScript](https://github.com/AssemblyScript/assemblyscript)) that is used to translate event data from the contract to the entities defined in the schema
+ - **schema.graphql** — is a [GraphQL schema](https://thegraph.com/docs/define-a-subgraph#the-graphql-schema) file that defines the data store for the Subgraph being created and its structure. It is written using [GraphQL interface definition schema](https://graphql.org/learn/schema/#type-language)
+ - **AssemblyScript mappings** — code in TypeScript (then compiled to [AssemblyScript](https://github.com/AssemblyScript/assemblyscript)) that is used to translate event data from the contract to the entities defined in the schema
+
+There is no particular order to follow when modifying the files to create a Subgraph.
 
 ### Schema.graphql
 
 It is important to outline what data needs to be extracted from the events of the contract before modifying the `schema.graphql`. Schemas need to be defined considering the requirements of the dApp itself. For this example, although there is no dApp associated with the lottery, four entities are defined:
 
- - **Round** — refers to a lottery round. It stores an index of the round, the prize awarded, the timestamp of the creating of the round, the timestamp of when the winner was drawn, and information regarding the participating tickets, which is derived from the `Ticket` entity
+ - **Round** — refers to a lottery round. It stores an index of the round, the prize awarded, the timestamp of when the round started, the timestamp of when the winner was drawn, and information regarding the participating tickets, which is derived from the `Ticket` entity
  - **Player** — refers to a player that has participated in at least one round. It stores its address and information from all its participating tickets, which is derived from the `Ticket` entity
  - **Ticket** — refers to a ticket to enter a lottery round. It stores if the ticket was gifted, the owner's address, the round from which the ticket is valid, and if it was a winning ticket
 
@@ -126,7 +132,7 @@ Some of the most important parameters in the `subgraph.yaml` file are the follow
  - **dataSources/mapping/file** — refers to the location of the mapping file
  - **dataSources/mapping/entities** — refers to the definitions of the entities in the `schema.graphql` file
  - **dataSources/abis/name** — refers to where the interface of the contract is stored inside the `types/dataSources/name`
- - **dataSources/abis/file** — refers to the location where the `.json` file with the contratc's ABI is stored
+ - **dataSources/abis/file** — refers to the location where the `.json` file with the contract's ABI is stored
  - **dataSources/eventHandlers** — no value needs to be defined here, but this section refers to all the events that The Graph will index
  - **dataSources/eventHandlers/event** — refers to the structure of an event to be tracked inside the contract. You need to provide the event name and its type of variables
  - **dataSources/eventHandlers/handler** — refers to the name of the function inside the `mapping.ts` file which handles the event data
@@ -222,11 +228,14 @@ export function handlePlayerJoined(event: PlayerJoined): void {
 
 ## Deploying a Subgraph
 
-If you are going to use The Graph API (hosted service), you need to (all steps can be found in [this link](https://thegraph.com/docs/deploy-a-subgraph)):
+If you are going to use The Graph API (hosted service), you need to:
 
  - Create a [Graph Explorer](https://thegraph.com/explorer/) account, you will need a Github account
  - Go to your dashboard and write down the access token
  - If using The Graph API, you need to create your Subgraph via the "Add Subgraph" button in the Graph Explorer site
+
+!!! note
+    All steps can be found in [this link](https://thegraph.com/docs/deploy-a-subgraph).
  
 If using a local Graph Node, you can create your Subgraph executing the following code:
 
