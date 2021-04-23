@@ -63,6 +63,8 @@ const displayConnectedButton = async () => {
             const shortenedAccount = `${accounts[0].slice(0, 6)}...${accounts[0].slice(-4)}`;
             button.innerHTML =`Connected: ${shortenedAccount}`;
             button.className += " disabled-button";
+            button.removeEventListener("click", () => {});
+        }     
     })
 }
 
