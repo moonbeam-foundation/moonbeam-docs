@@ -56,17 +56,24 @@ connectMetaMaskNav.addEventListener("click", () => {
 
 /** If we are already connected to Moonbase Alpha, show disbled button with 'Connected' text */
 const connectButtons = [connectMetaMask, connectMetaMaskNav];
+const displayConnectedButton = async () => {
+    const accounts = await ethereum.request({ method: 'eth_accounts' });
+    connectButtons.forEach((button) => {
+        if (button && accounts.length > 0){
+            const shortenedAccount = `${accounts[0].slice(0, 6)}...${accounts[0].slice(-4)}`;
+            button.innerHTML =`Connected: ${shortenedAccount}`;
+            button.className += " disabled-button";
+            button.removeEventListener("click", () => {});
+        }     
+    })
+}
+
 const isConnectedToMoonbaseAlpha = async () => {
     const chainId = await provider.request({
         method: 'eth_chainId'
     })
     if (chainId === moonbaseAlphaChainId){
-        connectButtons.forEach((button) => {
-            if (button){
-                button.innerHTML = "Connected";
-                button.className += " disabled-button";
-            }     
-        })
+        displayConnectedButton();
     }
 }
 
@@ -80,5 +87,14 @@ if (provider) {
         // Plus, everytime the window reloads, we call isConnectedToMoonbaseAlpha again
         // and can show the correct 'Connected' or 'Connect MetaMask' button text
         window.location.reload();
+    })
+
+    /** When the account changes update the button text */
+    provider.on("accountsChanged", (accounts) => {
+        if (accounts.length > 0) {
+            displayConnectedButton();
+        } else {
+            window.location.reload()
+        }
     })
 }
