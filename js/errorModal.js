@@ -32,4 +32,4 @@ modal.appendChild(closeModal);
 modal.appendChild(modalHeader);
 modal.appendChild(modalMessage);
 modalContainer.appendChild(modal);
-main.prepend(modalContainer);
+main.append(modalContainer);
