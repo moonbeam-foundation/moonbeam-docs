@@ -93,7 +93,7 @@ The `constructor` function, which runs when the contract is deployed, sets the i
 
 ## Compiling the Contract
 
-The only purpose of the compile file is to use the Solidity compiler to output the bytecode and interface (ABI) our contract. You can find the code snippet for each library here (they were arbritarly named `compile.*`):
+The only purpose of the compile file is to use the Solidity compiler to output the bytecode and interface (ABI) our contract. You can find the code snippet for each library here (they were arbitrarily named `compile.*`):
 
  - Web3.js: [_compile.js_](/snippets/code/web3-contract-local/compile.js)
  - Ethers.js: [_compile.js_](/snippets/code/web3-contract-local/compile.js)
@@ -170,7 +170,7 @@ In the first part of [the script](/snippets/code/web3-contract-local/deploy.js),
 
 The private key, and the public address associated with it, are defined for signing the transaction and logging purposes. Only the private key is required. Also, the contract's bytecode and interface (ABI) are fetched from the compile's export.
 
-In the second section, a contract instance is created by providing the ABI. Next, the `deploy` function is used, which needs the bytecode and arguments of the constructor function. This will generate the constructor transaction boject.
+In the second section, a contract instance is created by providing the ABI. Next, the `deploy` function is used, which needs the bytecode and arguments of the constructor function. This will generate the constructor transaction object.
 
 Afterwards, the constructor transaction can be signed using the `web3.eth.accounts.signTransaction()` method. The data field corresponds to the bytecode, and the constructor input arguments are encoded together. Note that the value of gas is obtained using `estimateGas()` option inside the constructor transaction.
 
@@ -202,7 +202,7 @@ Lastly, the signed transaction is sent, and the contract's address is displayed 
 
 Call methods are the type of interaction that don't modify the contract's storage (change variables), meaning no transaction needs to be sent.
 
-Let's overview the _get.\*_ file (the simplest of them all), which fetches the current value stored in the contract. You can find the code snippet for each library here (they were arbritarly named `get.*`):
+Let's overview the _get.\*_ file (the simplest of them all), which fetches the current value stored in the contract. You can find the code snippet for each library here (they were arbitrarily named `get.*`):
 
  - Web3.js: [_get.js_](/snippets/code/web3-contract-local/get.js)
  - Ethers.js: [_get.js_](/snippets/code/ethers-contract-local/get.js)
@@ -261,7 +261,7 @@ Lastly, the value is displayed in the terminal.
 
 Send methods are the type of interaction that modify the contract's storage (change variables), meaning a transaction needs to be signed and sent.
 
-First, let's overview the _increment.\*_ file, which increments the current number stored in the contract by a given value. You can find the code snippet for each library here (they were arbritarly named `increment.*`):
+First, let's overview the _increment.\*_ file, which increments the current number stored in the contract by a given value. You can find the code snippet for each library here (they were arbitrarily named `increment.*`):
 
  - Web3.js: [_increment.js_](/snippets/code/web3-contract-local/increment.js)
  - Ethers.js: [_increment.js_](/snippets/code/ethers-contract-local/increment.js)
@@ -286,7 +286,7 @@ The second section ("Send Function") outlines the actual function to be called w
     --8<-- 'code/web3py-contract/increment.py'
     ```
 
-The second file to interact with the contract is the _reset.\*_ file, which resets the number stored in the contract to zero. You can find the code snippet for each library here (they were arbritarly named `reset.*`):
+The second file to interact with the contract is the _reset.\*_ file, which resets the number stored in the contract to zero. You can find the code snippet for each library here (they were arbitrarily named `reset.*`):
 
  - Web3.js: [_reset.js_](/snippets/code/web3-contract-local/reset.js)
  - Ethers.js: [_reset.js_](/snippets/code/ethers-contract-local/reset.js)
