@@ -49,6 +49,8 @@ Because of Moonbeam's Ethereum compatibility features, you can use the developme
  - [Web3.js](/integrations/ethlibraries/web3js/)
  - [Ethers.js](/integrations/ethlibraries/etherjs/)
  - [Web3.py](/integrations/ethlibraries/web3py/)
+ - [The Graph](/integrations/thegraph/)
+ - [Debug API & Trace Module](/integrations/debug-trace/)
 
  Want another Ethereum tool listed here? [Let us know!](https://discord.gg/PfpUATX)
 
