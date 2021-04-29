@@ -245,6 +245,30 @@ If a _cargo not found error_ shows up in the terminal, manually add Rust to your
 --8<-- 'code/setting-up-node/cargoerror.md'
 ```
 
+### Downloading Pre-compiled Binaries
+
+If you wish to download the pre-compiled binary instead of compiling it yourself, binaries are attached to releases under the `assets` section at `https://github.com/PureStake/moonbeam/releases` under the name `moonbeam`.
+
+To download the binary, `curl` the following, filling in the proper release number:
+
+```
+curl -sL https://github.com/PureStake/moonbeam/releases/download/<RELEASE_NUMBER>/moonbeam -o moonbeam
+```
+
+Then modify the permissions:
+
+`sudo chmod +x moonbeam`
+
+And lastly copy it to the the designated folder
+
+`cp moonbeam {{ networks.moonbase.node_directory }}`
+
+If you wish to move it to a user binary directory: 
+
+`mv moonbeam /usr/local/bin`
+
+You can check that it was installed properly by running `moonbeam --version`.
+ 
 ### Running the Systemd Service
 
 The following commands will set up everything regarding running the service.
