@@ -64,7 +64,7 @@ The versions used as of publishing this guide were:
 
 ## The Transaction File
 
-Only one file is needed to execute a transaction between accounts. The script shown in this section will transfer 1 Token from an origin address (from which you hold the private key), to another address. You can find the code snippet for each library here (they were arbritarly named `transaction.*`):
+Only one file is needed to execute a transaction between accounts. The script shown in this section will transfer 1 Token from an origin address (from which you hold the private key), to another address. You can find the code snippet for each library here (they were arbitrarily named `transaction.*`):
 
  - Web3.js: [_transaction.js_](/snippets/code/web3-tx-local/transaction.js)
  - Ethers.js: [_transaction.js_](/snippets/code/ethers-tx-local/transaction.js)

@@ -192,8 +192,8 @@ Public referenda use a positive turnout bias metric, that is, a super-majority a
 
 Where:
 
- - **Approve** — number of "Aye" votes (incudes the conviction multiplier)
- - **Against** — number of "Nay" votes (incudes the conviction multiplier)
+ - **Approve** — number of "Aye" votes (includes the conviction multiplier)
+ - **Against** — number of "Nay" votes (includes the conviction multiplier)
  - **Turnout** — the total number of voting tokens (without including the conviction multiplier)
  - **Electorate** — the total number of tokens issued in the network
 
