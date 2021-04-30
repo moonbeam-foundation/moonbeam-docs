@@ -15,7 +15,6 @@ networks:
       thegraph:
          lotto_contract: '0x44ddD2EC5BE2A7f3e4A465C21600bE8df644093f'
          block_number: 132605
-      collator_slots: 8
       chainbridge:
          bridge_address: '0x747e8C91C8661704b1c33b0365A89f7e988E1de3'
          ERC20_handler: '0xDC826cF5AD261FcD1D1dC404648B4D596Df88C8C'
@@ -71,7 +70,7 @@ networks:
          max_proposals: 100
       staking:
          collator_min_stake: 1000
-         max_collators: 8
+         max_collators: 21
          round_blocks: 600
          round_hours: 2
          bond_lock: 2

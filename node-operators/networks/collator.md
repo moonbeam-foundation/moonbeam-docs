@@ -26,7 +26,7 @@ From a technical perspective, collators must meet the following requirements:
 
 Similar to Polkadot validators, you need to create an account (although in this case, it's an H160 account) and have a nominated stake (DEV tokens) in order to collate. The slots are currently limited to {{ networks.moonbase.collators_slots }}, but may be increased over time.  
 
-Collators need to have a minimum of {{ networks.moonbase.staking.collator_min_stake }} DEV to be considered eligible (become a candidate). Only the top {{ networks.moonbase.collator_slots }} collators by nominated stake will be in the active set.  
+Collators need to have a minimum of {{ networks.moonbase.staking.collator_min_stake }} DEV to be considered eligible (become a candidate). Only the top {{ networks.moonbase.staking.max_collators }} collators by nominated stake will be in the active set.  
 
 !!! note
     Currently, creating or importing an account in PolkadotJS via a mnemonic seed will result in a different public address if you later try to import this account to an Ethereum wallet such as MetaMask. This is because PolkadotJS uses BIP39, whereas Ethereum uses BIP32 or BIP44. 
@@ -61,7 +61,7 @@ Once your node is running, and in sync with the network, you become a collator c
 !!! note
     Function names and the minimum bond requirement are subject to change in future releases.
 
-As mentioned before, only the top {{ networks.moonbase.collator_slots }} collators by nominated stake will be in the active set. 
+As mentioned before, only the top {{ networks.moonbase.staking.max_collators }} collators by nominated stake will be in the active set. 
 
 ## Stop Collating
 
