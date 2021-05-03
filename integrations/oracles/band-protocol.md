@@ -239,7 +239,3 @@ We can execute this code with a node, and the following `dataQuery` output shoul
 ![Band Protocol JavaScript Library](/images/band/band-console.png)
 
 Note that compared to the request done via smart contracts, the result is given directly in the correct units.
-
-## We Want to Hear From You
-
-If you have any feedback regarding implementing Band Protocol on your project or any other Moonbeam-related topic, feel free to reach out through our official development [Discord server](https://discord.com/invite/PfpUATX).

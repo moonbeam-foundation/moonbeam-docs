@@ -433,4 +433,3 @@ This will display the value before the reset transaction, the hash of the transa
 === "Web3.py"
     ![Reset Contract Web3py](/images/deploycontract/contract-reset-web3py.png)
 
---8<-- 'text/common/we-want-to-hear-from-you.md'

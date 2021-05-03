@@ -112,7 +112,3 @@ After a while, you should see logs related to the Graph Node syncing with the la
 ![Graph Node logs](/images/thegraph/thegraphnode-images3.png)
 
 And that is it! You have a Graph Node running against the Moonbase Alpha TestNet. Feel free to adapt this example to a Moonbeam development node as well.
-
-## We Want to Hear From You
-
-If you have any feedback regarding running a Graph Node in Moonbeam or any other Moonbeam-related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).

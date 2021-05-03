@@ -154,7 +154,3 @@ In summary, nominators will earn rewards based on their stake of the total nomin
 From the previous example, Alice was rewarded with `0.0044` tokens after two payout rounds:
 
 ![Staking Reward Example](/images/staking/staking-stake-10.png)
-
-## We Want to Hear From You
-
-If you have any feedback regarding how to stake your tokens on Moonbase Alpha or any other Moonbeam-related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).

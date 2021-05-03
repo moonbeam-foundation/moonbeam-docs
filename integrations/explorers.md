@@ -64,6 +64,3 @@ Subscan provides blockchain explorer capabilities for Substrate-based chains. It
 An instance of Subscan running against the Moonbase Alpha TestNet can be found in [this link](https://moonbase.subscan.io/).
 
 ![Subscan Moonbase Alpha](/images/explorers/explorers-images-5.png)
-## We Want to Hear From You
-
-If you have any feedback regarding block explorers or any other Moonbeam-related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).

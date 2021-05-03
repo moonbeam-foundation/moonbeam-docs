@@ -82,6 +82,3 @@ The following table presents some of the timings in regards to different actions
 !!! note 
     The values presented in the previous table are subject to change in future releases.
 
-## We Want to Hear From You
-
-If you have any feedback regarding running a collator or any other Moonbeam related topic, feel free to reach out through our official development [Discord server](https://discord.com/invite/PfpUATX).

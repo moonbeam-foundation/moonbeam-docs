@@ -151,4 +151,3 @@ If successful, you will see deployment actions, including the address of the dep
 
 Once you have followed the [MetaMask guide](/getting-started/local-node/using-metamask/) and [Remix guide](/getting-started/local-node/using-remix/), you will be able to take the deployed contract address that is returned and load it into MetaMask or Remix.
 
---8<-- 'text/common/we-want-to-hear-from-you.md'

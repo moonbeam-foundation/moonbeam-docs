@@ -227,4 +227,3 @@ And lastly, recheck the balance to make sure the transfer was successful. The en
 === "Web3.py"
     ![Send Tx Web3py](/images/sendtx/sendtx-web3py.png)
 
---8<-- 'text/common/we-want-to-hear-from-you.md'

@@ -77,6 +77,3 @@ For example, in Remix, when deploying a smart contract, make sure you select the
 
 By clicking on "Accept," you are signing this transaction, and the contract will be deployed to the Moonbase Alpha TestNet.
 
-## We Want to Hear From You
-
-If you have any feedback regarding using MathWallet or any other Moonbeam related topic, feel free to reach out through our official development [Discord server](https://discord.gg/PfpUATX).

@@ -197,6 +197,3 @@ truffle migrate --network moonbase
 
 And that is it, you’ve used the Moonbeam Truffle box to deploy a simple ERC20 token contract in both your Moonbeam development node and Moonbase Alpha.
  
-## We Want to Hear From You
-
-If you have any feedback regarding the Moonbeam Truffle box or other Moonbeam-related topics, feel free to reach out through our official development [Discord server](https://discord.gg/PfpUATX).

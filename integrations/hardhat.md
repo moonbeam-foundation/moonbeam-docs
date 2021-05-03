@@ -268,7 +268,3 @@ We should see `5` or the value you have stored initially.
 Congratulations, you have completed the Hardhat tutorial! 🤯 🎉
 
 For more information on Hardhat, hardhat plugins, and other exciting functionality, please visit [hardhat.org](https://hardhat.org/).
-
-## We Want to Hear From You
-
-If you have any feedback regarding using Hardhat to deploy smart contracts on Moonbase Alpha or any other Moonbeam-related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).

@@ -82,6 +82,3 @@ The node responds with the trace information corresponding to the filter (respon
 
 ![Trace Filter Node Running](/images/debugtrace/debugtrace-images3.png)
 
-## We Want to Hear From You
-
-If you have any feedback regarding using the Debug API or the Trace module, or any other Moonbeam-related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).

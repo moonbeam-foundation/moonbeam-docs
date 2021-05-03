@@ -270,7 +270,3 @@ The logs from the previous command should look similar to:
 ![The Graph deployed](/images/thegraph/thegraph-images1.png)
 
 DApps can now use the Subgraph endpoints to fetch the data indexed by The Graph protocol.
-
-## We Want to Hear From You
-
-If you have any feedback regarding creating a Subgraph in Moonbeam or any other Moonbeam-related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).

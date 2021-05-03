@@ -18,8 +18,7 @@ This guide is broken down into two main sections. In the first part, we'll expla
     - [Transfer ERC-20 tokens](/integrations/bridges/ethereum/chainbridge/#erc-20-token-transfer)
     - [Transfer ERC-721 tokens](/integrations/bridges/ethereum/chainbridge/#erc-721-token-transfer)
     - [Generic handler](/integrations/bridges/ethereum/chainbridge/#generic-handler)
- - [Contact us](/integrations/bridges/ethereum/chainbridge/#we-want-to-hear-from-you)
-
+    
 ## How the Bridge Works
 
 ChainBridge is, at its core, a message-passing protocol. Events on a source chain are used to send a message that is routed to the destination chain. There are three main roles:
@@ -352,6 +351,4 @@ If you are interested in implementing this functionality, you can reach out dire
 ### Moonbase Alpha ChainBridge UI
 
 If you want to play around with transferring ERC20S tokens from Moonbase Alpha to Kovan or Rinkeby without having to set up the contracts in Remix, you can checkout our [Moonbase Alpha ChainBridge UI](https://moonbase-chainbridge.netlify.app/transfer).
-## We Want to Hear From You
 
-If you have any feedback regarding implementing ChainBridge on your project or any other Moonbeam-related topic, feel free to reach out through our official development [Discord server](https://discord.com/invite/PfpUATX).
