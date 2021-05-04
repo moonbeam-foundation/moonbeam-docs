@@ -20,7 +20,7 @@ A Moonbeam development node is your own personal development environment for bui
 
 If you follow to the end of this guide, you will have a Moonbeam development node running in your local environment, with 10 [pre-funded accounts](#pre-funded-development-accounts), and will be able to connect it to the default Polkadot JS GUI.
 
-There are two ways to get started running a Moonbeam node: you can use [Docker to run a pre-built binary](#getting-started-with-docker) or you can [locally install and set up a development node yourself](#installation-and-setup). Using Docker is a quick and convenient way to get started as you won't have to install Substrate and all the dependencies, and you can skip the building the node process as well. It does require you to [install Docker](https://docs.docker.com/get-docker/). On the other hand, if you decide you want to go through the process of building your own development node, it could take roughly 30 minutes or longer to complete depending on your hardware.
+There are two ways to get started running a Moonbeam node: you can use [Docker to run a pre-built binary](#getting-started-with-docker) or you can [compile the binary locally](#getting-started-with-the-binary-file) and set up a development node yourself. Using Docker is a quick and convenient way to get started as you won't have to install Substrate and all the dependencies, and you can skip the building the node process as well. It does require you to [install Docker](https://docs.docker.com/get-docker/). On the other hand, if you decide you want to go through the process of building your own development node, it could take roughly 30 minutes or longer to complete depending on your hardware.
 
 ## Getting Started with Docker
 
@@ -66,9 +66,13 @@ purestake/moonbeam \
 ```
 
 To continue on with the tutorial, the next section is not necessary as you've already spun up a node with Docker. You can skip ahead to [Connecting Polkadot JS Apps to a Local Moonbeam Node](#connecting-polkadot-js-apps-to-a-local-moonbeam-node).
-## Installation and Setup  
 
-We start by cloning a specific tag of the Moonbeam repo that you can find here:
+## Getting Started with the Binary File
+
+!!! note
+    If you know what you are doing, you can directly download the precompiled binaries attached to each release on the [Moonbeam-release page](https://github.com/PureStake/moonbeam/releases). These will not work in all systems. For example, the binaries only work with x86-64 Linux with specific versions of dependencies. The safest way to ensure compatibility is to compile the binary in the system where it will be run from.
+
+First, start by cloning a specific tag of the Moonbeam repo that you can find here:
 
 [https://github.com/PureStake/moonbeam/](https://github.com/PureStake/moonbeam/)
 
@@ -122,12 +126,12 @@ For more information on some of the flags and options used in the example, check
 ```
 ## Connecting Polkadot JS Apps to a Local Moonbeam Node
 
-The development node is a Substrate-based node, so we can interact with it using standard Substrate tools. The two provided RPC endpoints are:
+The development node is a Substrate-based node, so you can interact with it using standard Substrate tools. The two provided RPC endpoints are:
 
  - HTTP: `http://127.0.0.1:9933`
  - WS: `ws://127.0.0.1:9944` 
 
-Let’s start by connecting to it with Polkadot JS Apps. Open a browser to: [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/#/explorer). This will open Polkadot JS Apps, which automatically connects to Polkadot MainNet.
+Start by connecting to it with Polkadot JS Apps. Open a browser to: [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/#/explorer). This will open Polkadot JS Apps, which automatically connects to Polkadot MainNet.
 
 ![Polkadot JS Apps](/images/setting-up-a-node/setting-up-node-5.png)
 
