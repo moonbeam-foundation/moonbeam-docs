@@ -22,7 +22,7 @@
     - Public Address: `0xC0F0f4ab324C46e55D02D0033343B4Be8A55532d`
     - Private Key: `0xb9d2ea9a615f3165812e8d44de0d24da9bbd164b65c4f0573e1ce2c8dbd9c8df`
 
-- Gerald:
+- Goliath:
     - Public Address: `0x7BF369283338E12C90514468aa3868A551AB2929`
     - Private Key: `0x96b8a38e12e1a31dee1eab2fffdf9d9990045f5b37e44d8cc27766ef294acf18`
 

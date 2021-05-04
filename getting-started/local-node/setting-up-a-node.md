@@ -205,6 +205,10 @@ Your Moonbeam development node comes with ten pre-funded accounts for developmen
 bottom drive obey lake curtain smoke basket hold race lonely fit walk
 ```
 
+--8<-- 'code/setting-up-node/dev-accounts.md'
+
 Checkout the [Using MetaMask](/getting-started/local-node/using-metamask/) section to get started interacting with your accounts.
 
---8<-- 'text/setting-up-node/dev-accounts.md'
+Also, included with the development node is a prefunded account used for testing purposes:
+
+--8<-- 'code/setting-up-node/dev-testing-account.md'

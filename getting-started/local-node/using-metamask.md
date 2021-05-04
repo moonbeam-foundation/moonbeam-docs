@@ -28,7 +28,9 @@ First, we start with a fresh and default [MetaMask](https://metamask.io/) instal
 
 The details for the development accounts that comes pre-funded for this development node are as follows:
 
---8<-- 'text/setting-up-node/dev-accounts.md'
+--8<-- 'code/setting-up-node/dev-accounts.md'
+
+--8<-- 'code/setting-up-node/dev-testing-account.md'
 
 On the import screen, select “Private Key” and paste in one of the keys listed above. For this example we'll use Gerald's key:
 

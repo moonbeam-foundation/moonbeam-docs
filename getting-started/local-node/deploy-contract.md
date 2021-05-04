@@ -381,17 +381,32 @@ Next, run the increment file. You can use the get file to verify the value of th
 
 === "Web3.js"
     ```
-    node get.js node increment.js node get.js
+    # Get value
+    node get.js 
+    # Increment value
+    increment.js
+    # Get value
+    node get.js
     ```
 
 === "Ethers.js"
     ```
-    node get.js node increment.js node get.js
+    # Get value
+    node get.js 
+    # Increment value
+    increment.js
+    # Get value
+    node get.js
     ```
 
 === "Web3.py"
     ```
-    python3 get.py python3 increment.py python3 get.py
+    # Get value
+    python3 get.py 
+    # Increment value
+    python3 increment.py
+    # Get value
+    python3 get.py
     ```
 
 This will display the value before the increment transaction, the hash of the transaction, and the value after:
@@ -409,17 +424,32 @@ Lastly, run the reset file. Once again, you can use the get file to verify the v
 
 === "Web3.js"
     ```
-    node get.js node reset.js node get.js
+    # Get value
+    node get.js 
+    # Reset value
+    node reset.js 
+    # Get value
+    node get.js
     ```
 
 === "Ethers.js"
     ```
-    node get.js node reset.js node get.js
+    # Get value
+    node get.js 
+    # Reset value
+    node reset.js 
+    # Get value
+    node get.js
     ```
 
 === "Web3.py"
     ```
-    python3 get.py python3 reset.py python3 get.py
+    # Get value
+    python3 get.py 
+    # Reset value
+    python3 reset.py
+    # Get value
+    python3 get.py
     ```
 
 This will display the value before the reset transaction, the hash of the transaction, and the value after:
