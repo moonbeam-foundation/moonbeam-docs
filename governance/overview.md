@@ -20,7 +20,7 @@ With great power comes great responsibility. Some important parameters to unders
  - **Proposals** — actions or items being proposed by token holders. This need to be seconded by other users in order to move to referendum
  - **Referendum** — when the most seconded proposal is voted on by the community. There can be a maximum of five active referenda at a time unless there is an emergency referendum in progress
  - **Launch period** — how often new public referenda are launched
- - **Voting period** — time token holders have to vote for a referendum (duration of a referendum)
+ - **Voting period** — time token holders have to vote for a referendum (duration of a referendum).
 - **Voting** — referenda are voted on by token holders on a stake and conviction weighted basis. Convictions refer to the time that token holders wish to lock their tokens when voting: the longer they are locked, the more weight their vote has. Referenda that pass are subject to delayed enactment so that people who disagree with the direction of the decision have time to exit the network
  - **Enactment period** — time between a proposal being approved and enacted (make law). It is also the minimum period necessary to lock funds to propose an action
  - **Lock period** — time (after the proposal enactment) that the tokens of the winning voters are locked. Users can still use this tokens for staking or voting
@@ -45,9 +45,10 @@ The "hard" governance process for Moonbeam will be driven by an on-chain process
 
 Some of the main components of this governance model include:
 
- - **Referendum** — a proposal for a change to the Moonbeam system including values for key parameters, code upgrades, or changes to the governance system itself
+ - **Referendum** — a proposal for a change to the Moonbeam system including values for key parameters, code upgrades, or changes to the governance system itself. A maximum of 100 referanda can be open in the Council at once.
  - **Voting** — referenda will be voted on by token holders on a stake-weighted basis. Referenda which pass are subject to delayed enactment such that people that disagree with the direction of the decision have time to exit the network
- - **Council** — a group of elected individuals who have special voting rights within the system. Council members are expected to propose referenda for voting and have an ability to veto publicly-sourced referenda. There are rolling elections for council members where GLMR holders will vote on new or existing council members
+ - **Council** — a group of elected individuals who have special voting rights within the system. Council members are expected to propose referenda for voting and have an ability to veto publicly-sourced referenda. There are rolling elections for council members where GLMR holders will vote on new or existing council members. The Council is also responsible for electing the technical committee.
+ - **Technical Committee** — a group of individuals elected by the Council who have special voting rights. As in Polkadot and Kusama, the Technical Committee has the ability to (along with the Council) fast-track emergency referanda voting and implementation in urgent circumstances. A fast-tracked referendum can be created alongside existing active referenda. That is to say, an emergecy referendum does not replace currently active referenda. 
  - **Treasury** — A collection of funds that can be spent by submitting a proposal along with a deposit. Spending proposals must be approved by the council. Rejected proposals will result in the proposer losing their deposit
 
 See [this overview on the Polkadot website](https://polkadot.network/a-walkthrough-of-polkadots-governance/) and [this wiki post](https://wiki.polkadot.network/docs/en/learn-governance) for more details on how these Substrate frame pallets implement on-chain governance.
@@ -59,4 +60,4 @@ Currently, in our Moonbase Alpha TestNet, token holders can submit proposals and
  - [Submit a proposal](/governance/proposals/)
  - [Vote on a proposal](/governance/voting/)
 
-The Council and Treasury components have yet to be implemented.
+The Treasury component has yet to be implemented.
