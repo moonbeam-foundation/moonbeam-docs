@@ -1,2 +1,0 @@
-## We Want to Hear From You
-This is a simple example, but it provides context for how you can start working with Moonbeam and trying out its Ethereum compatibility features. We are interested in hearing about your experience following the steps in this guide or trying other Ethereum-based tools with Moonbeam. Feel free to join us in the [Moonbeam Discord here](https://discord.gg/PfpUATX). We would love to hear your feedback on Moonbeam and answer any questions that you have.

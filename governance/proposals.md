@@ -129,6 +129,3 @@ After the transaction is submitted, you will see some confirmations on the top r
 
 ![Proposal Seconded](/images/governance/governance-proposal-9.png)
 
-## We Want to Hear From You
-
-If you have any feedback regarding sending a proposal on Moonbase Alpha or any other Moonbeam-related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).

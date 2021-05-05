@@ -120,4 +120,3 @@ Hit “Confirm” and, after the transaction is complete, you will see a confirm
 
 If you own the account that you sent the tokens to, you can add the token asset to verify that the transfer arrived.
 
---8<-- 'text/common/we-want-to-hear-from-you.md'

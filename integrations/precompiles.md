@@ -215,6 +215,3 @@ contract ModularCheck {
 
 You can try this in [Remix](/integrations/remix/). Use the function `verify()`, passing the base, exponent, and modulus. The function will store the value in the `checkResult` variable. 
 
-## We Want to Hear From You
-
-If you have any feedback regarding Moonbase Alpha, the precompiled contracts, or any other Moonbeam-related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).

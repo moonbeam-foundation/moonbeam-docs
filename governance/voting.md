@@ -209,6 +209,3 @@ In the previous example, these numbers were:
 
 In short, a heavy super-majority of aye votes is required to approve a proposal at low turnouts, but as turnout increases, it becomes a simple majority.
 
-## We Want to Hear From You
-
-If you have any feedback regarding voting a proposal on Moonbase Alpha or any other Moonbeam-related topic, feel free to reach out through our official development [Discord channel](https://discord.gg/PfpUATX).
