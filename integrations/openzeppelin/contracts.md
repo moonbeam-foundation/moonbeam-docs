@@ -29,35 +29,42 @@ OpenZeppelin provides a set of core contracts that implement the behavior specif
 
  - [**IERC20**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#IERC20) — basic interface that all ERC20 tokens must have
  - [**IERC20Metadata**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#IERC20Metadata) — extended interface to include the three optional functions: name, symbol and decimals
- - [**ERC20**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#ERC20) — implementation of the ERC20 interface, including the three optional functions. In addition, it includes a 
+ - [**ERC20**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#ERC20) — implementation of the ERC20 interface, including the three optional functions. In addition, it includes a supply mechanism with a minting function
 
 Some of the extensions available are:
 
  - [**ERC20Burnable**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#ERC20Burnable) — allows for tokens to be destroy, meaning that the total supply contracts
- - [**ERC20Capped**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#ERC20Capped) — allows for tokens to be destroy, meaning that the total supply contracts
- - [**ERC20Burnable**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#ERC20Burnable) — allows for tokens to be destroy, meaning that the total supply contracts
- - [**ERC20Burnable**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#ERC20Burnable) — allows for tokens to be destroy, meaning that the total supply contracts
+ - [**ERC20Capped**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#ERC20Capped) — adds a cap to the supply of tokens
+ - [**ERC20Pausable**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#ERC20Pausable) — allows to pause toek transfers, minting and burning
+ - [**ERC20Snapshot**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#ERC20Snapshot) — allows for balances and total supply to be recorded when a snapshot is created
 
-
-
+You can find more information regarding draft EIPs, presents and utilities in their [ERC20 documentation site](https://docs.openzeppelin.com/contracts/4.x/erc20).
 
 All the code related to the contracts mentioned before can be found in [OpenZeppelins ERC20 token repo](https://github.com/OpenZeppelin/openzeppelin-contracts/tree/release-v4.1/contracts/token/ERC20).
 
----
+### ERC721 Token Contract
 
- - **totalSupply** — a view function, no inputs. Returns the amount of tokens in existence
- - **balanceOf** — a view function, one input: address of account to query. Returns the amount of tokens owned by the address
- - **transfer** — two inputs: address of recipient and amount to transfer. Function that initiates a transaction to move the specified amount of tokens to a provided address. Emits a transfer event
- - **allowance** — a view function, two inputs: address of the owner and address of the spender. Returns the remaining number of tokens that the spender can transfer on behalf of the owner. By default this is set to zero
- - **approve** — two inputs: address of the spender and allowance amount. Function that initiates a transaction to set the amount of tokens the spender can transfer on behalf of the owner. Emits an approval event
- - **transferFrom** — three inputs: address of the owner, address of recipient and amount. Function that initiates a transaction to transfer an amount of tokens from the owner's address to a recipient. Used by approved addresses if the amount is lower than the allowance
+Is a non-fungible token contract that follows the [ERC721 Token Standard](https://ethereum.org/en/developers/docs/standards/tokens/erc-721/). Non-fungible means that each token is different, and therefore, unique. An ERC721 token can represent ownership of that unique item, wheter it is a collectibe, item in a game, real state, and so on. 
 
-The EIP also defines two events:
+The basic interface of the ERC721 token standard is covered in the [EIP-721](https://eips.ethereum.org/EIPS/eip-721). OpenZeppelin provides a set of core contracts that implement the behavior specified in the EIP.
 
- - **Transfer** — three fields: from address, to address and amount. Event that provides information when an amount of tokens are moved from an account to another
- - **Emitted** — three fields: address of the owner, address of the spender and amount. Event that provides information when an allowance is set by the `approve` function
+ - [**IERC721**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#IERC721) — required interface that is ERC721 compliant
+ - [**IERC721Metadata**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#IERC721Metadata) — extended interface to include the token name, symbol and token URI (Uniform Resource Identifier), which represents the token metadata
+ - [**IERC721Enumerable**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#IERC721Enumerable) — extended interface to enumerate tokens in the contracts, making them discoverable though some added functions
+ - [**ERC721**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#ERC721) — implementation of the ERC721 interface, including the Metadata extension
+ - [**ERC721Enumerable**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#ERC721Enumerable) — implementation of the ERC721 interface, including the Metadata and Enumerable extensions
 
-Three additional functions are defined by the EIP
+Some of the extensions available are:
+
+ - [**ERC20Burnable**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#ERC20Burnable) — allows for tokens to be destroy, meaning that the total supply contracts
+ - [**ERC20Capped**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#ERC20Capped) — adds a cap to the supply of tokens
+ - [**ERC20Pausable**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#ERC20Pausable) — allows to pause toek transfers, minting and burning
+ - [**ERC20Snapshot**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#ERC20Snapshot) — allows for balances and total supply to be recorded when a snapshot is created
+
+You can find more information regarding draft EIPs, presents and utilities in their [ERC20 documentation site](https://docs.openzeppelin.com/contracts/4.x/erc20).
+
+All the code related to the contracts mentioned before can be found in [OpenZeppelins ERC20 token repo](https://github.com/OpenZeppelin/openzeppelin-contracts/tree/release-v4.1/contracts/token/ERC20).
+
 
 
 
