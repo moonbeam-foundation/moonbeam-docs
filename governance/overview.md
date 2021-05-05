@@ -65,6 +65,10 @@ Voting parameters are currently set as follows:
 - **Cool-off Period** — 7 days
 - **Minimum Deposit** - 4 GLMR
 
+Voting Rights to Cancel
+- The technical committee may cancel a proposal before it has been passed only by unaminous vote.
+- A single technical committee member may veto an inbound council proposal, however, they can only veto it once, and it only lasts for the cool-off period (currently 7 days).
+- To cancel a proposal which has been passed, 2/3 of the council must be in agreement.
 
 ## Try it on Moonbase Alpha
 
