@@ -24,6 +24,7 @@ With great power comes great responsibility. Some important parameters to unders
 - **Voting** — referenda are voted on by token holders on a stake and conviction weighted basis. Convictions refer to the time that token holders wish to lock their tokens when voting: the longer they are locked, the more weight their vote has. Referenda that pass are subject to delayed enactment so that people who disagree with the direction of the decision have time to exit the network
  - **Enactment period** — time between a proposal being approved and enacted (make law). It is also the minimum period necessary to lock funds to propose an action
  - **Lock period** — time (after the proposal enactment) that the tokens of the winning voters are locked. Users can still use this tokens for staking or voting
+ - **Cool-off period** - The duration a veto from the technical committee lasts before the proposal may be submitted again. 
  - **Delegation** — act of transfering your voting power to another account for up to a certain conviction
 
 ## Principles
@@ -52,6 +53,18 @@ Some of the main components of this governance model include:
  - **Treasury** — A collection of funds that can be spent by submitting a proposal along with a deposit. Spending proposals must be approved by the council. Rejected proposals will result in the proposer losing their deposit
 
 See [this overview on the Polkadot website](https://polkadot.network/a-walkthrough-of-polkadots-governance/) and [this wiki post](https://wiki.polkadot.network/docs/en/learn-governance) for more details on how these Substrate frame pallets implement on-chain governance.
+
+## Voting Rights of the Council and the Technical Committee
+
+This section covers some background information on voting and outlines voting parameters of the protocol as they are set currently. There is a limit to the amount of time in blocks that the technical committee and the council have to vote on motions. Motions may end in fewer blocks if there are already enough votes submitted to determine the outcome. A maximum of 100 proposals can be open each in the technical committee and in the council.
+
+Voting parameters are currently set as follows:
+- **Voting Period** — 5 days 
+- **Fast-Track Voting Period** — 1 day
+- **Enactment Period** — 1 day
+- **Cool-off Period** — 7 days
+- **Minimum Deposit** - 4 GLMR
+
 
 ## Try it on Moonbase Alpha
 
