@@ -21,6 +21,7 @@ With great power comes great responsibility. Some important parameters to unders
  - **Referendum** — when the most seconded proposal is voted on by the community. There can be a maximum of five active referenda at a time unless there is an emergency referendum in progress
  - **Launch period** — how often new public referenda are launched
  - **Voting period** — time token holders have to vote for a referendum (duration of a referendum)
+ - **Fast-Track Voting period** — duration for voting for emergency proposals that address critical issues
 - **Voting** — referenda are voted on by token holders on a stake and conviction weighted basis. Convictions refer to the time that token holders wish to lock their tokens when voting: the longer they are locked, the more weight their vote has. Referenda that pass are subject to delayed enactment so that people who disagree with the direction of the decision have time to exit the network
  - **Enactment period** — time between a proposal being approved and enacted (make law). It is also the minimum period necessary to lock funds to propose an action
  - **Lock period** — time (after the proposal enactment) that the tokens of the winning voters are locked. Users can still use this tokens for staking or voting
@@ -46,10 +47,10 @@ The "hard" governance process for Moonbeam will be driven by an on-chain process
 
 Some of the main components of this governance model include:
 
- - **Referendum** — a proposal for a change to the Moonbeam system including values for key parameters, code upgrades, or changes to the governance system itself.
+ - **Referendum** — a proposal for a change to the Moonbeam system including values for key parameters, code upgrades, or changes to the governance system itself
  - **Voting** — referenda will be voted on by token holders on a stake-weighted basis. Referenda which pass are subject to delayed enactment such that people that disagree with the direction of the decision have time to exit the network
- - **Council** — a group of elected individuals who have special voting rights within the system. Council members are expected to propose referenda for voting and have an ability to veto publicly-sourced referenda. There are rolling elections for council members where GLMR holders will vote on new or existing council members. The Council is also responsible for electing the technical committee.
- - **Technical Committee** — a group of individuals elected by the Council who have special voting rights. As in Polkadot and Kusama, the Technical Committee has the ability to (along with the Council) fast-track emergency referenda voting and implementation in urgent circumstances. A fast-tracked referendum can be created alongside existing active referenda. That is to say, an emergency referendum does not replace currently active referenda. 
+ - **Council** — a group of elected individuals who have special voting rights within the system. Council members are expected to propose referenda for voting and have an ability to veto publicly-sourced referenda. There are rolling elections for council members where GLMR holders will vote on new or existing council members. The Council is also responsible for electing the technical committee
+ - **Technical Committee** — a group of individuals elected by the Council who have special voting rights. As in Polkadot and Kusama, the Technical Committee has the ability to (along with the Council) fast-track emergency referenda voting and implementation in urgent circumstances. A fast-tracked referendum can be created alongside existing active referenda. That is to say, an emergency referendum does not replace currently active referenda
  - **Treasury** — A collection of funds that can be spent by submitting a proposal along with a deposit. Spending proposals must be approved by the council. Rejected proposals will result in the proposer losing their deposit
 
 See [this overview on the Polkadot website](https://polkadot.network/a-walkthrough-of-polkadots-governance/) and [this wiki post](https://wiki.polkadot.network/docs/en/learn-governance) for more details on how these Substrate frame pallets implement on-chain governance.
@@ -59,16 +60,19 @@ See [this overview on the Polkadot website](https://polkadot.network/a-walkthrou
 This section covers some background information on voting and outlines voting parameters of the protocol as they are set currently. There is a limit to the amount of time in blocks that the technical committee and the council have to vote on motions. Motions may end in fewer blocks if there are already enough votes submitted to determine the outcome. A maximum of 100 proposals can be open each in the technical committee and in the council.
 
 Voting parameters are currently set as follows:
+
 - **Voting Period** — 5 days 
 - **Fast-Track Voting Period** — 1 day
 - **Enactment Period** — 1 day
 - **Cool-off Period** — 7 days
 - **Minimum Deposit** - 4 GLMR
 
-Voting Rights to Cancel
-- The technical committee may cancel a proposal before it has been passed only by unanimous vote.
-- A single technical committee member may veto an inbound council proposal, however, they can only veto it once, and it only lasts for the cool-off period (currently 7 days).
-- To cancel a proposal which has been passed, 2/3 of the council must be in agreement.
+**Voting Rights to Cancel:**
+
+ * The technical committee may cancel a proposal before it has been passed only by unanimous vote
+ * A single technical committee member may veto an inbound council proposal, however, they can only veto it once, and it only lasts for the cool-off period (currently 7 days)
+ * The technical committee may cancel a proposal before it has been passed only by unanimous vote
+
 
 ## Try it on Moonbase Alpha
 
