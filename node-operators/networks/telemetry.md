@@ -76,6 +76,7 @@ docker run -it --network="host" \
 -e GANTREE_NODE_WATCHDOG_PCKRC="YOUR-PCK-KEY" \
 -e GANTREE_NODE_WATCHDOG_METRICS_HOST="http://127.0.0.1:9615" \
 --name gantree_watchdog_parachain IMAGE-NAME
+--chain alphanet
 ```
 
 Now, we need to run the relay Gantree node watchdog. Note that you need to replace the same information as in the previous step.
@@ -88,6 +89,7 @@ docker run -it --network="host" \
 -e GANTREE_NODE_WATCHDOG_PCKRC="YOUR-PCK-KEY" \
 -e GANTREE_NODE_WATCHDOG_METRICS_HOST="http://127.0.0.1:9616" \
 --name gantree_watchdog_relay IMAGE-NAME
+--chain alphanet
 ```
 
 You should see waiting for provisioning in the logs.  Once it's complete, you can log into the [https://app.gantree.io](https://app.gantree.io) and select networks. You will see a `View Monitoring Dashboard` link to your custom Prometheus / Grafana dashboard which you can customize to your needs.  
