@@ -15,7 +15,7 @@ description: Follow this tutorial to learn how to use the Ethereum Web3 Python L
 To get started with the web3.py library, install it using the following command:
 
 ```
-npm install web3
+pip3 install web3
 ```
 
 Once done, the simplest setup to start using the library and its methods is the following:
