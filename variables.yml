@@ -56,14 +56,17 @@ networks:
             days: 2
             blocks: 14400
          vote_period:
-            days: 10
-            blocks: 72000
+            days: 5
+            blocks: 36000
+         fast_vote_period:
+            days: 1
+            blocks: 7200   
          enact_period:
-            days: 2
-            blocks: 14400
+            days: 1
+            blocks: 7200
          cool_period:
-            days: 14
-            blocks: 100800
+            days: 7
+            blocks: 50400
          min_deposit: 4
          min_preim_deposit: 0.004
          max_votes: 100
