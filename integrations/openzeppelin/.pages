@@ -3,5 +3,4 @@ hide: false
 arrange:
   - overview.md
   - contracts.md
-  - wizard.md  
   - defender.md

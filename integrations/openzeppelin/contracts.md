@@ -1,6 +1,6 @@
 ---
 title: Contracts & Libraries
-description:  Learn how to deploy the most common OpenZeppelin contracts on Moonbeam thanks to its Ethereum compatibility features
+description:  Learn how to easily create common OpenZeppelin contracts with their Contracts Wizard, and how to deploy them on Moonbeam thanks to its Ethereum compatibility features
 ---
 
 # OpenZeppelin Contracts & Libraries
@@ -13,119 +13,32 @@ OpenZeppelin contracts and libraries have become a standard in the industry. The
 
 Because Moonbeam is fully Ethereum compatible, all of OpenZeppelin's contracts and libraries can be implemented without any changes.
 
-This guide is divided into two sections. The first part outlines a conceptual introduction to the most common OpenZeppelin libraries and ERC token standards. The second section provides a step-by-step guide on how you can deploy these contracts on Moonbeam. 
+This guide is divided into two sections. The first part describes the OpenZeppelin Contracts Wizard, an great online tool to help you create smart contracts using OpenZeppelin code. The second section provides a step-by-step guide on how you can deploy these contracts on Moonbeam.
 
-## Introduction to OpenZeppelin's Contracts & Libraries
+## OpenZeppelin Contract Wizard
 
-This section outlines some of the most commonly used contracts/libraries from OpenZeppelin. Each contract might have variants to expand its functionalities.
+OpenZeppelin has developed an online web-based interactive contract generator tool that is probably the easiest and fastest way to write your smart contract using OpenZeppelin code. The tool is called Contracts Wizard, and you can find it on their [documentation site](https://docs.openzeppelin.com/contracts/4.x/wizard).
 
-You can find a list of all the available contracts and libraries in OpenZeppelin's [documentation site](https://docs.openzeppelin.com/contracts/4.x/).
+Currently, the Contracts Wizard support the following ERC standards:
 
-### ERC20 Token Contract
+ - [**ERC20**](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/) — a fungible token standard that follows [EIP-20](https://eips.ethereum.org/EIPS/eip-20). Fungible means that all tokens are equivalent and interchangeable that is, of equal value. One typical example of fungible tokens is fiat currencies, where each equal-denomination bill has the same value.
+ - [**ERC721**](https://ethereum.org/en/developers/docs/standards/tokens/erc-721/) — a non-fungible token contract that follows [EIP-721](https://eips.ethereum.org/EIPS/eip-721). Non-fungible means that each token is different, and therefore, unique. An ERC721 token can represent ownership of that unique item, whether it is a collectible item in a game, real state, and so on. 
+ - [**ERC1155**](https://docs.openzeppelin.com/contracts/4.x/erc1155) — also known as the multi-token contract, because it can represent both fungible and non-fungible tokens in a single smart contract. It follows [EIP-1155](https://eips.ethereum.org/EIPS/eip-1155)
 
-It is a fungible token contract that follows the [ERC20 Token Standard](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/). Fungible means that all tokens are equivalent and interchangeable that is, of equal value. One typical example of fungible tokens is fiat currencies, where each equal-denomination bill has the same value.
+The wizard is comprised of the following sections:
 
-One way of looking at ERC20 token contracts is as a table where each row represents an address and each column a different property. For example, three basic properties are the balance of the address, spenders, and allowances. The owner of that balance can approve other addresses to make transfers on their behalf. Each spender has an allowance, or a balance they are allowed to transfer.
+ 1. **Token standard selection** — shows all the different standards supported by the wizard
+ 2. **Settings** — provides the baseline settings for each token standard, such as token name, symbol, pre-mint (token supply when the contract is deployed), and URI (for non-fungible tokens)
+ 3. **Features** — list of all features available for each token standard. You can find more information about the different features in the following links:
+     - [ERC20](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20)
+     - [ERC721](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721)
+     - [ERC1155](https://docs.openzeppelin.com/contracts/4.x/api/token/erc1155)
+ 4. **Access Control** — list all of the available [access control mechanism](https://docs.openzeppelin.com/contracts/4.x/access-control) available for each token standard
+ 5. **Interactive code display** — shows the smart contract code with the configuration as set by the user
 
-The basic interface of the ERC20 token standard is covered in the [EIP-20](https://eips.ethereum.org/EIPS/eip-20). Tokens can have (but are not obliged to) have a name, symbol, and custom decimal structure.
+![OpenZeppelin Contracts Wizard](/images/openzeppelin/ozwizard-images1.png)
 
-OpenZeppelin provides a set of core contracts that implement the behavior specified in the EIP.
-
- - [**IERC20**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#IERC20) — the basic interface that all ERC20 tokens must have
- - [**IERC20Metadata**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#IERC20Metadata) — extended interface to include the three optional functions: name, symbol and decimals
- - [**ERC20**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#ERC20) — implementation of the ERC20 interface, including the three optional functions. In addition, it includes a supply mechanism with a minting function
-
-Some of the extensions available are:
-
- - [**ERC20Burnable**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#ERC20Burnable) — allows for tokens to be destroyed, meaning that the total supply contracts
- - [**ERC20Capped**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#ERC20Capped) — adds a cap to the supply of tokens
- - [**ERC20Pausable**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#ERC20Pausable) — allows pausing token transfers, minting, and burning
- - [**ERC20Snapshot**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#ERC20Snapshot) — allows for balances and total supply to be recorded when a snapshot is created
-
-You can find more information regarding draft EIPs, presets, and utilities in their [ERC20 documentation site](https://docs.openzeppelin.com/contracts/4.x/erc20).
-
-All the code related to the contracts mentioned before can be found in [OpenZeppelins ERC20 token repo](https://github.com/OpenZeppelin/openzeppelin-contracts/tree/release-v4.1/contracts/token/ERC20).
-
-### ERC721 Token Contract
-
-It is a non-fungible token contract that follows the [ERC721 Token Standard](https://ethereum.org/en/developers/docs/standards/tokens/erc-721/). Non-fungible means that each token is different, and therefore, unique. An ERC721 token can represent ownership of that unique item, whether it is a collectible item in a game, real state, and so on. 
-
-The basic interface of the ERC721 token standard is covered in the [EIP-721](https://eips.ethereum.org/EIPS/eip-721). OpenZeppelin provides a set of core contracts that implement the behavior specified in the EIP.
-
- - [**IERC721**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#IERC721) — required interface that is ERC721 compliant
- - [**IERC721Metadata**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#IERC721Metadata) — extended interface to include the token name, symbol and token URI (Uniform Resource Identifier), which represents the token metadata
- - [**IERC721Enumerable**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#IERC721Enumerable) — extended interface to enumerate tokens in the contracts, making them discoverable though some added functions
- - [**ERC721**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#ERC721) — implementation of the ERC721 interface, including the Metadata extension
- - [**ERC721Enumerable**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#ERC721Enumerable) — implementation of the ERC721 interface, including the Metadata and Enumerable extensions
-
-Some of the extensions available are:
-
- - [**ERC721Pausable**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#ERC721Pausable) — allows pausing token transfers, minting, and burning
- - [**ERC721Burnable**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#ERC721Burnable) — allows for tokens to be irreversibly destroyed (burned)
- - [**ERC721URIStorage**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#ERC721URIStorage) — allows for storage base token URI management
-
-You can find more information regarding draft EIPs, presets, and utilities in their [ERC721 documentation site](https://docs.openzeppelin.com/contracts/4.x/erc721).
-
-All the code related to the contracts mentioned before can be found in [OpenZeppelins ERC721 token repo](https://github.com/OpenZeppelin/openzeppelin-contracts/tree/release-v4.1/contracts/token/ERC721).
-
-### ERC1155 Token Contract
-
-It is also known as the multi-token contract, because it is able to represent both fungible and non-fungible tokens in a single smart contract. It draws ideas from all [ERC20](https://docs.openzeppelin.com/contracts/4.x/erc20), [ERC721](https://docs.openzeppelin.com/contracts/4.x/erc1155#721.adoc) and [ERC777](https://docs.openzeppelin.com/contracts/4.x/erc777) token standards.
-
-Tokens are organized by IDs, similar to the ERC721 token contract. But each ID can have multiple units (or tokens). Therefore, if a token ID has only 1 unit, it acts as a non-fungible token. On the contrary, if a token ID has multiple units, it acts as a fungible token
-
-The basic interface of the ERC1155 token standard is covered in the [EIP-1155](https://eips.ethereum.org/EIPS/eip-1155). OpenZeppelin provides a set of core contracts that implement the behavior specified in the EIP.
-
- - [**IERC1155**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc1155#IERC1155) — required interface that is ERC1155 compliant
- - [**IERC1155MetadataURI**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc1155#IERC1155MetadataURI) — extended interface to include the token URI (Uniform Resource Identifier), which represents the token metadata
- - [**ERC1155**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc1155#ERC1155) — implementation of the ERC1155 interface, including the Metadata extension
- - [**IERC1155Receiver**](https://docs.openzeppelin.com/contracts/4.x/api/token/erc1155#IERC1155Receiver) — interface to accept transfers of ERC1155 tokens
-
-Some of the extensions available are:
-
- - [**ERC1155Pausable**](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v4.1/contracts/token/ERC1155/extensions/ERC1155Pausable.sol) — allows pausing token transfers, minting, and burning
- - [**ERC1155Burnable**](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v4.1/contracts/token/ERC1155/extensions/ERC1155Burnable.sol) — allows for tokens to be irreversibly destroyed (burned)
-
-You can find more information regarding draft EIPs, presets and utilities in their [ERC1155 documentation site](https://docs.openzeppelin.com/contracts/4.x/erc1155).
-
-All the code related to the contracts mentioned before can be found in [OpenZeppelins ERC1155 token repo](https://github.com/OpenZeppelin/openzeppelin-contracts/tree/release-v4.1/contracts/token/ERC1155).
-
-### Safe Math
-
-Basic mathematic calculations on smart contracts can produce under and overflow vulnerabilities. This happens when a variable type is not able to store a value, so it wraps around. For example, a `uint8` can store numbers between 0-255. If an `uint8` variable equals 255, and you add one, it will wrap around (overflow) and return 0.
-
-With the introduction of Solidity `0.8`, the compiler has now built-in overflow checking. Nevertheless, OpenZeppelin provides the [SafeMath library](https://docs.openzeppelin.com/contracts/4.x/utilities#math), which protects contracts from under and overflows if you are using Solidity prior `0.8`. Make sure to use the right version for your contracts. You can find the master `SafeMath.sol` file in their [GitHub repo](https://github.com/OpenZeppelin/openzeppelin-contracts/tree/master/contracts/utils/math).
-
-The library provides the following functions (names are dependant on the version being used):
- 
- - **add** — adds two unsigned integers, checking for overflow
- - **subtract** — subtracts two unsigned integers, checking for underflow
- - **multiply** — multiplies two unsigned integers, checking for overflow 
- - **divide** — divides two unsigned integers, checking for division by zero
- - **modulus** — returns the remainder of dividing two unsigned integers, checking for division by zero
-
-### Address
-
-Sometimes it is important to check if the address a smart contract is interacting with is another smart contract. `Address.sol` is a set of functions related to address type. For example, it has a method called `isContract(address)` that returns `false` if the input address is:
-
- - An externally-owned account
- - A contract in construction
- - An address where a contract will be created
- - An address where a contract lived, but was destroyed
-
-The contract has other functions as well. You can find all the information regarding the `Address.sol` contract in OpenZeppelin's [documentation site](https://docs.openzeppelin.com/contracts/4.x/api/utils#Address). Also, the master file can be found in their [GitHub repo](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Address.sol).
-
-### Ownable
-
-Developers might want to restrict access to certain functions in their smart contracts. `Ownable.sol` provides the most common and basic form of access control, where there is an address/account saved in the contract's storage as the owner. The contract has the modifier `onlyOwner` that restricts access to a function when used.
-
-By default, the deployer of the contract is marked as the owner, and it allows the owner to:
-
- - Transfer ownership to another account
- - Renounce ownership by setting the owner to a null address. Note that when doing so, all functions that rely on the `onlyOwner` modifier will no longer be accessible
-
- You can find all the information regarding the `Ownable.sol` contract in OpenZeppelin's [documentation site](https://docs.openzeppelin.com/contracts/4.x/access-control#ownership-and-ownable). Also, the master file can be found in their [GitHub repo](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol).
-
+Once you have set up your contract with all the settings and features, it is just as easy as copying and pasting the code into your contract file.
 
 ## Deploying OpenZeppelin Contracts on Moonbeam
 
@@ -134,6 +47,8 @@ This section goes through the steps for deploying OpenZeppelin contracts on Moon
  - ERC20 (fungible tokens)
  - ERC721 (non-fungible tokens)
  - ERC1155 (multi-token standard)
+
+All the code of the contracts was obtained using OpenZeppelin [Contract Wizard](https://docs.openzeppelin.com/contracts/4.x/wizard).
  
 ### Checking Prerequisites
 
@@ -151,11 +66,11 @@ For this example, an ERC20 token will be deployed to Moonbase Alpha. The final c
 
 The mintable ERC20 OpenZeppelin token contract provides a `mint` function that can only be called by the owner of the contract. By default, the owner is the contract's deployer address. There is also a premint of `1000` tokens sent to the contract's deployer configured in the `constructor` function.
 
-The first step is to go to [Remix](https://remix.ethereum.org/) and create a new file. For this example, the file name will be `ERC20.sol`.
+The first step is to go to [Remix](https://remix.ethereum.org/) and take the following steps:
 
-IMAGE HERE
-
-Next, it is time to write your smart contract. In this case, the following code is used:
+ 1. Click on the "Create New File" icon and set a file name. For this example, it was set to `ERC20.sol`
+ 2. Make sure the file was created succesfully. Click on the file to open it up in the text editor
+ 3. Write your smart contract using the file editor. For this example the following code was used:
 
 ```
 pragma solidity ^0.8.0;
@@ -174,18 +89,25 @@ contract MyToken is ERC20, Ownable {
 }
 ```
 
-Once your smart contract is written, head to the "Solidity Compiler` tab and click on the compile button. Alternatively, you can check the "Auto compile" feature.
+![Getting Started with Remix](/images/openzeppelin/ozcontracts-images1.png)
 
-IMAGE HERE
+Once your smart contract is written, you can compile it by takink the following steps: 
 
-With the contract compiled, head to the "Deploy & Run Transactions" tab. In here, you need to:
+ 1. Head to the "Solidity Compiler`
+ 2. Click on the compile button
+ 3. Alternatively, you can check the "Auto compile" feature
 
- 1. Change the environment to "Injected Web3". This will use MetaMask's injected provider. Consequently, the contract wil be deployed to whatever network MetaMask is connected to. MetaMask might show a pop-up outlining that Remix is trying to connect to your wallet
- 2. Select the right contract to deploy. In this example, it is the `MyToken` contract inside the `ERC20.sol` file
- 3. If everything is ready, click on the "Deploy" button. Review the transaction information in MetaMask and confirm it
- 4. After a few seconds, the transaction should get confirmed and you should see your contract under "Deployed Contracts"
+![Compile ERC20 Contract with Remix](/images/openzeppelin/ozcontracts-images2.png)
 
-IMAGE HERE
+With the contract compiled, you are ready to deploy it taking the following steps: 
+
+ 1. Head to the "Deploy & Run Transactions" tab
+ 2. Change the environment to "Injected Web3". This will use MetaMask's injected provider. Consequently, the contract wil be deployed to whatever network MetaMask is connected to. MetaMask might show a pop-up outlining that Remix is trying to connect to your wallet
+ 3. Select the right contract to deploy. In this example, it is the `MyToken` contract inside the `ERC20.sol` file
+ 4. If everything is ready, click on the "Deploy" button. Review the transaction information in MetaMask and confirm it
+ 5. After a few seconds, the transaction should get confirmed and you should see your contract under "Deployed Contracts"
+
+![Deploy ERC20 Contract with Remix](/images/openzeppelin/ozcontracts-images3.png)
 
 And that is it! You've deployed an ERC20 token contract using OpenZeppeling's contracts and libraries. Next, you can interact with your token contract via Remix, or add it to MetaMask.
 
@@ -200,9 +122,9 @@ For this example, an ERC721 token will be deployed to Moonbase Alpha. The final 
 
 The mintable ERC721 OpenZeppelin token contract provides a `mint` function that can only be called by the owner of the contract. By default, the owner is the contract's deployer address.
 
-The first step is to go to [Remix](https://remix.ethereum.org/) and create a new file. For this example, the file name will be `ERC721.sol`.
+As with the [ERC20 contract](#deploying-an-erc20-token), the first step is to go to [Remix](https://remix.ethereum.org/) and create a new file. For this example, the file name will be `ERC721.sol`.
 
-As shown for the [ERC20 token](#deploying-an-erc20-token), you'll need to write the smart contract and compile it. For this example, the following code is used:
+Next, you'll need to write the smart contract and compile it. For this example, the following code is used:
 
 ```
 pragma solidity ^0.8.0;
@@ -248,7 +170,7 @@ With the contract compiled, head to the "Deploy & Run Transactions" tab. In here
  3. If everything is ready, click on the "Deploy" button. Review the transaction information in MetaMask and confirm it
  4. After a few seconds, the transaction should get confirmed and you should see your contract under "Deployed Contracts"
 
-IMAGE HERE
+![Deploy ERC721 Contract with Remix](/images/openzeppelin/ozcontracts-images4.png)
 
 And that is it! You've deployed an ERC721 token contract using OpenZeppeling's contracts and libraries. Next, you can interact with your token contract via Remix, or add it to MetaMask.
 
@@ -308,6 +230,6 @@ With the contract compiled, head to the "Deploy & Run Transactions" tab. In here
  3. If everything is ready, click on the "Deploy" button. Review the transaction information in MetaMask and confirm it
  4. After a few seconds, the transaction should get confirmed and you should see your contract under "Deployed Contracts"
 
-IMAGE HERE
+![Deploy ERC1155 Contract with Remix](/images/openzeppelin/ozcontracts-images5.png)
 
 And that is it! You've deployed an ERC1155 token contract using OpenZeppeling's contracts and libraries. Next, you can interact with your token contract via Remix.
