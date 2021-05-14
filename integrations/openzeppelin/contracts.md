@@ -54,8 +54,8 @@ All the code of the contracts was obtained using OpenZeppelin [Contract Wizard](
 
 The steps described in this section assumes you have [MetaMask](https://metamask.io/) installed and connected to the Moonbase Alpha TestNet. Contract deployment is done using the [Remix IDE](https://remix.ethereum.org/) via the "Injected Web3" environment. You can corresponding tutorials in the following links:
 
- - [Interacting with Moonbeam using MetaMask](https://docs.moonbeam.network/integrations/wallets/metamask/)
- - [Interacting with Moonbeam using Remix](https://docs.moonbeam.network/integrations/remix/)
+ - [Interacting with Moonbeam using MetaMask](/integrations/wallets/metamask/)
+ - [Interacting with Moonbeam using Remix](/integrations/remix/)
 
 ### Deploying an ERC20 Token
 
@@ -72,7 +72,7 @@ The first step is to go to [Remix](https://remix.ethereum.org/) and take the fol
  2. Make sure the file was created succesfully. Click on the file to open it up in the text editor
  3. Write your smart contract using the file editor. For this example the following code was used:
 
-```
+```sol
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -126,7 +126,7 @@ As with the [ERC20 contract](#deploying-an-erc20-token), the first step is to go
 
 Next, you'll need to write the smart contract and compile it. For this example, the following code is used:
 
-```
+```sol
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
@@ -188,7 +188,7 @@ The first step is to go to [Remix](https://remix.ethereum.org/) and create a new
 
 As shown for the [ERC20 token](#deploying-an-erc20-token), you'll need to write the smart contract and compile it. For this example, the following code is used:
 
-```
+```sol
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
