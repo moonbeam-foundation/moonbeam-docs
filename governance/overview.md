@@ -73,8 +73,6 @@ Voting parameters are currently set as follows:
 
  * The technical committee may cancel a proposal before it has been passed only by unanimous vote
  * A single technical committee member may veto an inbound council proposal, however, they can only veto it once, and it only lasts for the cool-off period ({{ networks.moonbase.democracy.cool_period.days}} days)
- * The technical committee may cancel a proposal before it has been passed only by unanimous vote
-
 
 ## Try it on Moonbase Alpha
 
