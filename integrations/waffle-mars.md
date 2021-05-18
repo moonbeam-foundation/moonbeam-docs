@@ -156,7 +156,6 @@ The deployment will be broken up into three sections: [generating artifacts](#ge
 ```
 npm run build
 ```
-
 ![Waffle and Mars compiler output](/images/waffle-mars/waffle-mars-2.png)
 
 If you open the `build` directory, you should now see an `artifacts.ts` file containing the artifact data needed for deployments. To continue on and create a deployment, you'll need to start with writing a deployment script.
@@ -191,7 +190,6 @@ deploy({network: 'http://127.0.0.1:9933', privateKey}, () => {
 ```
 
 4. Add a deploy script to the `scripts` object in the `package.json`
-
 ```json
   "scripts": {
     "build": "waffle && mars",
