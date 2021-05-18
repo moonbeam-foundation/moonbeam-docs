@@ -129,7 +129,7 @@ That is all you need to do to configure Waffle, now you're all set to compile th
 npm run build
 ```
 
-<SHOW COMPILER OUTPUT>
+![Waffle compiler output](/images/waffle-mars/waffle-mars-1.png)
 
 After compiling your contracts, Waffle stores the JSON output in the `build` directory. The contract in this guide is based on Open Zeppelin's ERC-20 template, so relevant ERC-20 JSON files will appear in the `build` directory too. 
 
@@ -157,6 +157,7 @@ The deployment will be broken up into three sections: [generating artifacts](#ge
 npm run build
 ```
 
+![Waffle and Mars compiler output](/images/waffle-mars/waffle-mars-2.png)
 
 If you open the `build` directory, you should now see an `artifacts.ts` file containing the artifact data needed for deployments. To continue on and create a deployment, you'll need to start with writing a deployment script.
 
@@ -204,11 +205,12 @@ deploy({network: 'http://127.0.0.1:9933', privateKey}, () => {
 ```
 npm run deploy
 ```
-1. In your Terminal, Mars will prompt you to press `ENTER` to send your transaction. 
+![Mars confirm deployment](/images/waffle-mars/waffle-mars-3.png)
 
 2. In your Terminal, Mars will prompt you to press `ENTER` to send your transaction. 
-<SHOW MARS PRESS ENTER>
+![Mars deployment output](/images/waffle-mars/waffle-mars-4.png)
 
 If successful, you should see details about your transaction including it's hash, the block it was included in, and it's address. If you go to the terminal running your Moonbeam development node, you will also see that a block has been created. 
 
-<SHOW MARS TX DETAILS>
+![Moonbeam Development Node showing a block being created](/images/waffle-mars/waffle-mars-5.png)
+
