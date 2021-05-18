@@ -52,7 +52,7 @@ In the case that you are interested in more detailed, step-by-step guides to con
 
 ## Integrate MetaMask into a DApp
 
-With the release of MetaMask's [Custom Networks API](https://consensys.net/blog/metamask/connect-users-to-layer-2-networks-with-the-metamask-custom-networks-api/?utm_content=156337458&utm_medium=social&utm_source=twitter&hss_channel=tw-3278906401), users can be prompted to add Moonbeam's Testnet, Moonbase Alpha. This section will take you through the process of adding a "Connect to Moonbase Alpha" button that will prompt users to connect their MetaMask account(s) to Moonbase Alpha. Your users will no longer need to know or worry about Moonbase Alpha's network configurations and adding a custom network to MetaMask. To interact with Moonbeam from your dApp, all users will need to do is click a few buttons to connect to Moonbase Alpha and get started.
+With the release of MetaMask's [Custom Networks API](https://consensys.net/blog/metamask/connect-users-to-layer-2-networks-with-the-metamask-custom-networks-api/), users can be prompted to add Moonbeam's Testnet, Moonbase Alpha. This section will take you through the process of adding a "Connect to Moonbase Alpha" button that will prompt users to connect their MetaMask account(s) to Moonbase Alpha. Your users will no longer need to know or worry about Moonbase Alpha's network configurations and adding a custom network to MetaMask. To interact with Moonbeam from your dApp, all users will need to do is click a few buttons to connect to Moonbase Alpha and get started.
 
 MetaMask injects a global Ethereum API into websites users visit at `window.ethereum`, which allows the websites to read and request the users' blockchain data. You'll be using the Ethereum provider to walk your users through the process of adding Moonbase Alpha as a custom network. In general, you will have to:
 
@@ -157,7 +157,7 @@ Once the network has been successfully added, it will also prompt the user to th
 
 <img src="/images/integrations/integrations-metamask-4.png" alt="Integrate MetaMask into a Dapp - Switch to network" style="width: 50%; display: block; margin-left: auto; margin-right: auto;"/>
 
-So, now you should have a button that on click walks users through the entire process of connecting their MetaMask accounts to Moonbase Alpha. 
+So, now you should have a button that, on click, walks users through the entire process of connecting their MetaMask accounts to Moonbase Alpha. 
 
 <img src="/images/integrations/integrations-metamask-5.png" alt="Integrate MetaMask into a Dapp - Account connected to Moonbase Alpha"/>
 
