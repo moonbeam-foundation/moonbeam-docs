@@ -25,26 +25,30 @@ Waffle and Mars can be used on the Moonbase Alpha TestNet, but for the purposes 
 
 ## Create a TypeScript Project with Waffle & Mars
 
-To get started, you'll need to create a TypeScript project and install and configure a few dependencies such as TypeScript, Waffle, and Mars. You will also need to install Open Zeppelin Contracts as the contract you will be creating will use their ERC20 base implementation. The other library you'll need is TS Node, which will be used to execute the deployment script later in the guide. 
+To get started, you'll need to create a TypeScript project and install and configure a few dependencies such as TypeScript, Waffle, and Mars. You will also need to install Open Zeppelin Contracts as the contract you will be creating will use their ERC20 base implementation. The other library you'll need is TS Node, which will be used to execute the deployment script you'll create later in the guide. 
 
 1. Create the directory and change to it
 ```
 mkdir waffle-mars && cd waffle-mars
 ```
-1. Initialize the project which will create a `package.json` in the directory
+
+2. Initialize the project which will create a `package.json` in the directory
 ```
 npm init -y
 ```
-1. Install Waffle, Mars, Ethers, OpenZeppelin Contracts, TypeScript, and TS Node
+
+3. Install Waffle, Mars, Ethers, OpenZeppelin Contracts, TypeScript, and TS Node
 ```
 npm install --save-dev ethereum-waffle ethereum-mars \
 typescript @openzeppelin/contracts ts-node
 ```
-1. Create a TypeScript configuration file
+
+4. Create a TypeScript configuration file
 ```
 touch tsconfig.json
 ```
-1. Add a basic TypeScript configuration
+
+5. Add a basic TypeScript configuration
 ```
 {
   "compilerOptions": {
@@ -72,7 +76,8 @@ For this guide, you will create an ERC-20 contract that mints a specified amount
 ```
 mkdir contracts && cd contracts && touch MyToken.sol
 ```
-1. Add the following contract to MyToken.sol
+
+2. Add the following contract to MyToken.sol
 ```
 pragma solidity ^0.8.0;
 
@@ -91,11 +96,12 @@ In this contract, you are creating an ERC20 token called MyToken with the symbol
 
 Now that you have written a smart contract, the next step is to use Waffle to compile it. Before diving into compiling your contract, you will need to configure Waffle.
 
-1. Create a `waffle.json` file to configure Waffle
+1. Go back to the root project directory and create a `waffle.json` file to configure Waffle
 ```
-touch waffle.json
+cd .. && touch waffle.json
 ```
-1. Edit the `waffle.json` to specify compiler configurations and the directory containing your contracts. For this example, we'll use `solcjs` and the Solidity version you used for the contract, which is `0.8.0`
+
+2. Edit the `waffle.json` to specify compiler configurations and the directory containing your contracts. For this example, we'll use `solcjs` and the Solidity version you used for the contract, which is `0.8.0`
 ```json
 {
   "compilerType": "solcjs",
@@ -109,7 +115,8 @@ touch waffle.json
   "sourceDirectory": "./contracts"
 }
 ```
-1. Add a script to run Waffle in the `package.json`
+
+3. Add a script to run Waffle in the `package.json`
 ```json
 "scripts": {
   "build": "waffle"
@@ -128,11 +135,15 @@ After compiling your contracts, Waffle stores the JSON output in the `build` dir
 
 ## Deploy Contract
 
+After you compile your contracts and before deployment, you will have to generate contract artifacts for Mars. Then you'll need to create a deployment script, configure Mars, and deploy the `MyToken` smart contract.
+
 Remember, you will be deploying to a locally running Moonbeam development node and will need to use the development node RPC URL: `http://127.0.0.1:9933`. You can use Gerald's development account for this guide:
 
 --8<-- 'text/metamask-local/dev-account.md'
 
-After you compile your contracts and before deployment, you will have to generate contract artifacts for Mars. Then you'll need to create a deployment script, configure Mars, and deploy the `MyToken` smart contract.
+The deployment will be broken up into three sections: [generating artifacts](#generating-artifacts), [creating a deployment script](#creating-a-deployment-script), and [deploying to Moonbeam](#deploying-to-moonbeam). 
+
+### Generating Artifacts
 
 1. Update existing script to run Waffle in the `package.json` to include Mars:
 ```json
@@ -140,18 +151,23 @@ After you compile your contracts and before deployment, you will have to generat
   "build": "waffle && mars"
 },
 ```
-1. Generate the artifacts and create the `artifacts.ts` file needed for deployments
+
+2. Generate the artifacts and create the `artifacts.ts` file needed for deployments
 ```
 npm run build
 ```
 
+
 If you open the `build` directory, you should now see an `artifacts.ts` file containing the artifact data needed for deployments. To continue on and create a deployment, you'll need to start with writing a deployment script.
+
+### Creating a Deployment Script
 
 1. Create a `src` directory to contain your deployment scripts and create the script to deploy the `MyToken` contract
 ```
 mkdir src && cd src && touch deploy.ts
 ```
-1. In `deploy.ts`, use Mars' `deploy` function to create a script to deploy to your Moonbeam development node using Gerald's private key
+
+2. In `deploy.ts`, use Mars' `deploy` function to create a script to deploy to your Moonbeam development node using Gerald's private key
 ```javascript
 import { deploy } from 'ethereum-mars'
 
@@ -161,7 +177,8 @@ deploy({network: 'http://127.0.0.1:9933', privateKey},(deployer) => {
   // Deployment logic will go here
 });
 ```
-1. Set up the `deploy` function to deploy the `MyToken` contract created in the previous steps
+
+3. Set up the `deploy` function to deploy the `MyToken` contract created in the previous steps
 ```javascript
 import { deploy, contract } from 'ethereum-mars'
 import { MyToken } from '../build/artifacts'
@@ -171,19 +188,25 @@ deploy({network: 'http://127.0.0.1:9933', privateKey}, () => {
   contract('myToken', MyToken, [20_000])
 });
 ```
-1. Add a deploy script to the `scripts` object in the `package.json`
+
+4. Add a deploy script to the `scripts` object in the `package.json`
+
 ```json
   "scripts": {
     "build": "waffle && mars",
     "deploy": "ts-node src/deploy.ts"
   },
 ```
+
+### Deploying to Moonbeam
+
 1. Deploy the contract
 ```
 npm run deploy
 ```
 1. In your Terminal, Mars will prompt you to press `ENTER` to send your transaction. 
 
+2. In your Terminal, Mars will prompt you to press `ENTER` to send your transaction. 
 <SHOW MARS PRESS ENTER>
 
 If successful, you should see details about your transaction including it's hash, the block it was included in, and it's address. If you go to the terminal running your Moonbeam development node, you will also see that a block has been created. 
