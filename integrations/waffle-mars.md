@@ -145,6 +145,8 @@ The deployment will be broken up into three sections: [generate artifacts](#gene
 
 ### Generate Artifacts
 
+Artifacts need to be generated for Mars so that typechecks are enabled within deployment scripts. 
+
 1. Update existing script to run Waffle in the `package.json` to include Mars:
 ```json
 "scripts": {
@@ -161,6 +163,11 @@ npm run build
 If you open the `build` directory, you should now see an `artifacts.ts` file containing the artifact data needed for deployments. To continue on and create a deployment, you'll need to start with writing a deployment script.
 
 ### Create a Deployment Script
+
+Now you need to configure the deployment for the `MyToken` contract to a locally running Moonbeam development node. 
+
+In this step, you'll create the deployment script which will define how the contract should be deployed. Mars offers a `deploy` function that you can pass options to such as the private key of the account to deploy the contract, the network to deploy to, and more. Inside of the `deploy` function is where the contracts to be deployed are defined. Mars has a `contract` function that accepts the `name`, `artifact`, and `constructorArgs`. This function will be used to deploy the `MyToken` contract with an initial supply of 100 MYTOKs.
+
 
 1. Create a `src` directory to contain your deployment scripts and create the script to deploy the `MyToken` contract
 ```
@@ -185,7 +192,7 @@ import { MyToken } from '../build/artifacts'
 
 const privateKey = "0x99b3c12287537e38c90a9219d4cb074a89a16e9cdb20bf85728ebd97c343e342"
 deploy({network: 'http://127.0.0.1:9933', privateKey}, () => {
-  contract('myToken', MyToken, [20_000])
+  contract('myToken', MyToken, [100])
 });
 ```
 
