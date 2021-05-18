@@ -9,7 +9,7 @@ description: Learn how to use Waffle and Mars to write, compile, and deploy Ethe
 
 ## Introduction
 
-[Waffle](waffle.io) and [Mars](https://ethereum-mars.readthedocs.io/en/latest/index.html) are two tools developers can use together to write, test, and deploy smart contracts onto Moonbeam. Waffle provides a lightweight JavaScript framework, that is TypeScript compatible, for writing and testing smart contracts. While Mars is a deployment manager that makes it easier to write and execute deployment configurations so you don't have to worry about your deployments.
+[Waffle](https://waffle.io) and [Mars](https://ethereum-mars.readthedocs.io/en/latest/index.html) are two tools developers can use together to write, test, and deploy smart contracts onto Moonbeam. Waffle provides a lightweight JavaScript framework, that is TypeScript compatible, for writing and testing smart contracts. While Mars is a deployment manager that makes it easier to write and execute deployment configurations so you don't have to worry about your deployments.
 
 For the purposes of this guide, Waffle is used to compile your contracts to JSON that the EVM can understand. After compilation, Mars takes the JSON output and uses it to generate artifacts which are then used to deploy contracts to Moonbeam.
 
@@ -141,9 +141,9 @@ Remember, you will be deploying to a locally running Moonbeam development node a
 
 --8<-- 'text/metamask-local/dev-account.md'
 
-The deployment will be broken up into three sections: [generating artifacts](#generating-artifacts), [creating a deployment script](#creating-a-deployment-script), and [deploying to Moonbeam](#deploying-to-moonbeam). 
+The deployment will be broken up into three sections: [generate artifacts](#generate-artifacts), [create a deployment script](#create-a-deployment-script), and [deploy to Moonbeam](#deploy-to-moonbeam). 
 
-### Generating Artifacts
+### Generate Artifacts
 
 1. Update existing script to run Waffle in the `package.json` to include Mars:
 ```json
@@ -160,7 +160,7 @@ npm run build
 
 If you open the `build` directory, you should now see an `artifacts.ts` file containing the artifact data needed for deployments. To continue on and create a deployment, you'll need to start with writing a deployment script.
 
-### Creating a Deployment Script
+### Create a Deployment Script
 
 1. Create a `src` directory to contain your deployment scripts and create the script to deploy the `MyToken` contract
 ```
@@ -197,7 +197,7 @@ deploy({network: 'http://127.0.0.1:9933', privateKey}, () => {
   },
 ```
 
-### Deploying to Moonbeam
+### Deploy to Moonbeam
 
 1. Deploy the contract
 ```
