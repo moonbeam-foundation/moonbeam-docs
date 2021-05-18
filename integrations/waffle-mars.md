@@ -212,3 +212,6 @@ If successful, you should see details about your transaction including it's hash
 
 ![Moonbeam Development Node showing a block being created](/images/waffle-mars/waffle-mars-5.png)
 
+## Example Project
+
+If you want to see a completed example of a Waffle and Mars project on Moonbeam, check out the [moonbeam-waffle-mars-example](https://github.com/EthWorks/moonbeam-waffle-mars-example) created by the team behind Waffle and Mars, EthWorks.
