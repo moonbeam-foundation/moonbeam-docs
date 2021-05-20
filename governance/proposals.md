@@ -55,7 +55,7 @@ To make a proposal in the network, you need to use the PolkadotJS Apps interface
 
 ![Accounts in PolkadotJS](/images/governance/governance-proposal-1.png)
 
-The proposal will set Bob's balance to `1500` via governance!
+The proposal will make permanent on-chain the remark "Hello World!"
 
 ### Submitting a Preimage of the Proposal
 
@@ -68,7 +68,7 @@ Everything related to governance lives under the "Democracy" tab. Once there, cl
 Here, you need to provide the following information:
 
  1. Select the account from which you want to submit the preimage
- 2. Choose the pallet you want to interact with and the dispatchable function (or action) to propose. The action you choose will determine the fields that need to fill in the following steps. In this case, it is the `democracy` pallet and the `setBalance` function
+ 2. Choose the pallet you want to interact with and the dispatchable function (or action) to propose. The action you choose will determine the fields that need to fill in the following steps. In this case, it is the `system` pallet and the `remark` function
  3. Set the address of which you want to change the balance
  4. Set the new balance that this address will hold. To read more about the types of balances, you can visit [this site](https://wiki.polkadot.network/docs/en/build-protocol-info#free-vs-reserved-vs-locked-vs-vesting-balance)
  5. Copy the preimage hash. This represents the proposal. You will use this hash when submitting the actual proposal
