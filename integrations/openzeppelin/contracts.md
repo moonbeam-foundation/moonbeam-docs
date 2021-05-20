@@ -1,6 +1,6 @@
 ---
 title: Contracts & Libraries
-description:  Learn how to easily create common OpenZeppelin contracts with their Contracts Wizard, and how to deploy them on Moonbeam thanks to its Ethereum compatibility features
+description:  Learn how to create common OpenZeppelin contracts with their Contracts Wizard easily and how to deploy them on Moonbeam thanks to its Ethereum compatibility features
 ---
 
 # OpenZeppelin Contracts & Libraries
@@ -13,7 +13,7 @@ OpenZeppelin contracts and libraries have become a standard in the industry. The
 
 Because Moonbeam is fully Ethereum compatible, all of OpenZeppelin's contracts and libraries can be implemented without any changes.
 
-This guide is divided into two sections. The first part describes the OpenZeppelin Contracts Wizard, an great online tool to help you create smart contracts using OpenZeppelin code. The second section provides a step-by-step guide on how you can deploy these contracts on Moonbeam.
+This guide is divided into two sections. The first part describes the OpenZeppelin Contracts Wizard, a great online tool to help you create smart contracts using OpenZeppelin code. The second section provides a step-by-step guide on how you can deploy these contracts on Moonbeam.
 
 ## OpenZeppelin Contract Wizard
 
@@ -42,7 +42,7 @@ Once you have set up your contract with all the settings and features, it is jus
 
 ## Deploying OpenZeppelin Contracts on Moonbeam
 
-This section goes through the steps for deploying OpenZeppelin contracts on Moonbeam Currently, it covers the following contracts:
+This section goes through the steps for deploying OpenZeppelin contracts on Moonbeam Currently. It covers the following contracts:
 
  - ERC20 (fungible tokens)
  - ERC721 (non-fungible tokens)
@@ -52,7 +52,7 @@ All the code of the contracts was obtained using OpenZeppelin [Contract Wizard](
  
 ### Checking Prerequisites
 
-The steps described in this section assumes you have [MetaMask](https://metamask.io/) installed and connected to the Moonbase Alpha TestNet. Contract deployment is done using the [Remix IDE](https://remix.ethereum.org/) via the "Injected Web3" environment. You can corresponding tutorials in the following links:
+The steps described in this section assume you have [MetaMask](https://metamask.io/) installed and connected to the Moonbase Alpha TestNet. Contract deployment is done using the [Remix IDE](https://remix.ethereum.org/) via the "Injected Web3" environment. You can find corresponding tutorials in the following links:
 
  - [Interacting with Moonbeam using MetaMask](/integrations/wallets/metamask/)
  - [Interacting with Moonbeam using Remix](/integrations/remix/)
@@ -61,16 +61,16 @@ The steps described in this section assumes you have [MetaMask](https://metamask
 
 For this example, an ERC20 token will be deployed to Moonbase Alpha. The final code used combines different contracts from OpenZeppelin:
 
- - **ERC20.sol** — ERC20 token implementation with the optional features from the base interface. Includes the supply mechanism with a `mint` function, but needs to be explicitly called from within the main contract
+ - **ERC20.sol** — ERC20 token implementation with the optional features from the base interface. Includes the supply mechanism with a `mint` function but needs to be explicitly called from within the main contract
  - **Ownable.sol** — extension to restrict access to certain functions
 
-The mintable ERC20 OpenZeppelin token contract provides a `mint` function that can only be called by the owner of the contract. By default, the owner is the contract's deployer address. There is also a premint of `1000` tokens sent to the contract's deployer configured in the `constructor` function.
+The mintable ERC20 OpenZeppelin token contract provides a `mint` function that the owner of the contract can only call. By default, the owner is the contract's deployer address. There is also a premint of `1000` tokens sent to the contract's deployer configured in the `constructor` function.
 
 The first step is to go to [Remix](https://remix.ethereum.org/) and take the following steps:
 
  1. Click on the "Create New File" icon and set a file name. For this example, it was set to `ERC20.sol`
- 2. Make sure the file was created succesfully. Click on the file to open it up in the text editor
- 3. Write your smart contract using the file editor. For this example the following code was used:
+ 2. Make sure the file was created successfully. Click on the file to open it up in the text editor
+ 3. Write your smart contract using the file editor. For this example, the following code was used:
 
 ```sol
 pragma solidity ^0.8.0;
@@ -91,7 +91,7 @@ contract MyToken is ERC20, Ownable {
 
 ![Getting Started with Remix](/images/openzeppelin/ozcontracts-images1.png)
 
-Once your smart contract is written, you can compile it by takink the following steps: 
+Once your smart contract is written, you can compile it by taking the following steps:
 
  1. Head to the "Solidity Compiler`
  2. Click on the compile button
@@ -102,10 +102,10 @@ Once your smart contract is written, you can compile it by takink the following 
 With the contract compiled, you are ready to deploy it taking the following steps: 
 
  1. Head to the "Deploy & Run Transactions" tab
- 2. Change the environment to "Injected Web3". This will use MetaMask's injected provider. Consequently, the contract wil be deployed to whatever network MetaMask is connected to. MetaMask might show a pop-up outlining that Remix is trying to connect to your wallet
- 3. Select the right contract to deploy. In this example, it is the `MyToken` contract inside the `ERC20.sol` file
+ 2. Change the environment to "Injected Web3". This will use MetaMask's injected provider. Consequently, the contract will be deployed to whatever network MetaMask is connected to. MetaMask might show a pop-up outlining that Remix is trying to connect to your wallet
+ 3. Select the proper contract to deploy. In this example, it is the `MyToken` contract inside the `ERC20.sol` file
  4. If everything is ready, click on the "Deploy" button. Review the transaction information in MetaMask and confirm it
- 5. After a few seconds, the transaction should get confirmed and you should see your contract under "Deployed Contracts"
+ 5. After a few seconds, the transaction should get confirmed, and you should see your contract under "Deployed Contracts"
 
 ![Deploy ERC20 Contract with Remix](/images/openzeppelin/ozcontracts-images3.png)
 
@@ -115,7 +115,7 @@ And that is it! You've deployed an ERC20 token contract using OpenZeppeling's co
 
 For this example, an ERC721 token will be deployed to Moonbase Alpha. The final code used combines different contracts from OpenZeppelin:
 
- - **ERC721** — ERC721 token implementation with the optional features from the base interface. Includes the supply mechanism with a `_mint` function, but needs to be explicitly called from within the main contract
+ - **ERC721** — ERC721 token implementation with the optional features from the base interface. Includes the supply mechanism with a `_mint` function but needs to be explicitly called from within the main contract
  - **Burnable** — extension to allow tokens to be destroyed by their owners (or approved addresses)
  - **Enumerable** — extension to allow on-chain enumeration of tokens
  - **Ownable.sol** — extension to restrict access to certain functions
@@ -165,10 +165,10 @@ contract MyToken is ERC721, ERC721Enumerable, ERC721Burnable, Ownable {
 
 With the contract compiled, head to the "Deploy & Run Transactions" tab. In here, you need to:
 
- 1. Change the environment to "Injected Web3". This will use MetaMask's injected provider. Consequently, the contract wil be deployed to whatever network MetaMask is connected to. MetaMask might show a pop-up outlining that Remix is trying to connect to your wallet
- 2. Select the right contract to deploy. In this example, it is the `MyToken` contract inside the `ERC721.sol` file
+ 1. Change the environment to "Injected Web3". This will use MetaMask's injected provider. Consequently, the contract will be deployed to whatever network MetaMask is connected to. MetaMask might show a pop-up outlining that Remix is trying to connect to your wallet
+ 2. Select the proper contract to deploy. In this example, it is the `MyToken` contract inside the `ERC721.sol` file
  3. If everything is ready, click on the "Deploy" button. Review the transaction information in MetaMask and confirm it
- 4. After a few seconds, the transaction should get confirmed and you should see your contract under "Deployed Contracts"
+ 4. After a few seconds, the transaction should get confirmed, and you should see your contract under "Deployed Contracts"
 
 ![Deploy ERC721 Contract with Remix](/images/openzeppelin/ozcontracts-images4.png)
 
@@ -178,11 +178,11 @@ And that is it! You've deployed an ERC721 token contract using OpenZeppeling's c
 
 For this example, an ERC1155 token will be deployed to Moonbase Alpha. The final code used combines different contracts from OpenZeppelin:
 
- - **ERC1155** — ERC1155 token implementation with the optional features from the base interface. Includes the supply mechanism with a `_mint` function, but needs to be explicitly called from within the main contract
+ - **ERC1155** — ERC1155 token implementation with the optional features from the base interface. Includes the supply mechanism with a `_mint` function but needs to be explicitly called from within the main contract
  - **Pausable** — extension to allows pausing tokens transfer, mintings and burnings
  - **Ownable.sol** — extension to restrict access to certain functions
 
-OpenZeppelin's ERC1155 token contract provides a `_mint` function that can only be called in the `constructor` function. Therefore, this examples creates 1000 tokens withn an ID of `0`, and 1 unique token with an ID of `1`.
+OpenZeppelin's ERC1155 token contract provides a `_mint` function that can only be called in the `constructor` function. Therefore, this example creates 1000 tokens with an ID of `0`, and 1 unique token with an ID of `1`.
 
 The first step is to go to [Remix](https://remix.ethereum.org/) and create a new file. For this example, the file name will be `ERC1155.sol`.
 
@@ -225,10 +225,10 @@ contract MyToken is ERC1155, Ownable, Pausable {
 
 With the contract compiled, head to the "Deploy & Run Transactions" tab. In here, you need to:
 
- 1. Change the environment to "Injected Web3". This will use MetaMask's injected provider. Consequently, the contract wil be deployed to whatever network MetaMask is connected to. MetaMask might show a pop-up outlining that Remix is trying to connect to your wallet
- 2. Select the right contract to deploy. In this example, it is the `MyToken` contract inside the `ERC1155.sol` file
+ 1. Change the environment to "Injected Web3". This will use MetaMask's injected provider. Consequently, the contract will be deployed to whatever network MetaMask is connected to. MetaMask might show a pop-up outlining that Remix is trying to connect to your wallet
+ 2. Select the proper contract to deploy. In this example, it is the `MyToken` contract inside the `ERC1155.sol` file
  3. If everything is ready, click on the "Deploy" button. Review the transaction information in MetaMask and confirm it
- 4. After a few seconds, the transaction should get confirmed and you should see your contract under "Deployed Contracts"
+ 4. After a few seconds, the transaction should get confirmed, and you should see your contract under "Deployed Contracts"
 
 ![Deploy ERC1155 Contract with Remix](/images/openzeppelin/ozcontracts-images5.png)
 
