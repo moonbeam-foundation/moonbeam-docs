@@ -86,7 +86,7 @@ Here, you need to provide the following information:
 !!! note
     The lockup periods shown in the previous image are not to be taken as reference. This guide was done with a customized version of Moonbeam with short Launch/Enactment periods for demonstration purposes only.
 
-In this case, Alice has decided to "Vote Aye" on the proposal with a conviction of `6x`. On the other hand, Charley has decided to "Vote Nay" on the proposal but chose not to lock any tokens (his tokens are only locked during the duration of the referendum), so his conviction was `0.1x`. With such vote distributions, the partial results can be seen in the main "Democracy" tab.
+In this case, Alice and Bob have decided to "Vote Aye" on the proposal with a conviction of `6x`. On the other hand, Charley has decided to "Vote Nay" on the proposal but chose not to lock any tokens (his tokens are only locked during the duration of the referendum), so his conviction was `0.1x`. With such vote distributions, the partial results can be seen in the main "Democracy" tab.
 
 ![Vote Information](/images/governance/governance-vote-3a.png)
 
@@ -113,6 +113,9 @@ To delegate your vote, first, navigate to the "Extrinsics" menu under the "Devel
 
 ![Extrinsics Menu](/images/governance/governance-vote-6.png)
 
+!!! note
+    If you try to delegate tokens to a person that has already voted, the transaction will fail. Consider using a new account for the below steps.
+
 Here, you need to provide the following information:
 
  1. Select the account from which you want to delegate your vote
@@ -125,7 +128,9 @@ Here, you need to provide the following information:
 
 ![Extrinsics Transaction for Delegation](/images/governance/governance-vote-7.png)
 
-In this example, Alice delegated a total weight of 1000 (1000 tokens with an x1 conviction factor) to Charley.
+In this example, Alice delegated a total weight of 1000 (1000 tokens with an x1 conviction factor) to Charley. To verify the delegation, click the blue circle on the left that indicates a delegation exists.
+
+![View Delegation](/images/governance/governance-vote-14.png)
 
 !!! note
     Another way to delegate votes is under the "Accounts" tab. Click on the three dots of the account from which you want to delegate your vote and fill in the information as before.
