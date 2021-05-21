@@ -53,15 +53,15 @@ This section goes over the process of voting on a referendum. The guide assumes 
 
 To vote on a proposal in the network, you need to use the PolkadotJS Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do by following [this guide](/integrations/wallets/polkadotjs/#creating-or-importing-an-h160-account). For this example, three accounts were imported and named with super original names: Alice, Bob, and Charley.
 
-![Accounts in PolkadotJS](/images/governance/governance-proposal-1.png)
+![Accounts in PolkadotJS](/images/governance/governance-proposal-systemremark-1.png)
 
-The proposal being voted on will set Bob's balance to `1500` via governance!
+The proposal being voted will embed the remark "This is a unique string." on chain permanently.
 
 ### How to Vote
 
 Voting on Moonbeam is pretty straightforward. Everything related to governance lives under the "Democracy" tab, where (in the image) you can note that there is a `1`, indicating there is one democracy item pending (either proposals or referenda). Once there, you can view the details of the referendum you want to vote by clicking on the arrow next to the description. The number next to the action and description it is called the referendum index (in this case, it is 0). When ready, click on the "Vote" button.
 
-![Vote Button](/images/governance/governance-vote-1.png)
+![Vote Button](/images/governance/governance-vote-1a.png)
 
 Here, you need to provide the following information:
 
@@ -81,21 +81,22 @@ Here, you need to provide the following information:
 
  4. Click on "Vote Aye" to approve the proposal or "Vote Nay" to disapprove the proposal, and then sign the transaction
 
-![Vote Submission](/images/governance/governance-vote-2.png)
+![Vote Submission](/images/governance/governance-vote-2a.png)
 
 !!! note
     The lockup periods shown in the previous image are not to be taken as reference. This guide was done with a customized version of Moonbeam with short Launch/Enactment periods for demonstration purposes only.
 
 In this case, Alice has decided to "Vote Aye" on the proposal with a conviction of `6x`. On the other hand, Charley has decided to "Vote Nay" on the proposal but chose not to lock any tokens (his tokens are only locked during the duration of the referendum), so his conviction was `0.1x`. With such vote distributions, the partial results can be seen in the main "Democracy" tab.
 
-![Vote Information](/images/governance/governance-vote-3.png)
+![Vote Information](/images/governance/governance-vote-3a.png)
 
 From voting, there are some key takeaways:
 
- - Alice's weighted vote is 10800 units. That is, her 1800 locked tokens multiplied her conviction by x6
- - Charley's weighted vote is 80 units. That is, his 800 tokens with no locking period (only during referendum) made his conviction factor x0.1
+ - Alice's weighted vote is 60000 units. That is, her 10000 locked tokens multiplied her conviction by x6
+ - Bob's weighted vote is 60 units. That is, his 10 locked tokens multiplied his conviction by x6
+ - Charley's weighted vote is 0.8 units. That is, his 8 tokens with no locking period (only during referendum) made his conviction factor x0.1
  - Both the remaining voting period and time before the proposal is enacted (if passed) are shown on the screen
- - The overall turnout (in percentage) is just 0.21%. This is calculated as the total number of voting tokens (2600) divided by the total amount of tokens in the network (1.22M in this case)
+ - The overall turnout (in percentage) is just 0.09%. This is calculated as the total number of voting tokens (10018) divided by the total amount of tokens in the network (11.13M in this case)
  - Even though the turnout is quite low, the proposal is tentatively approved because of the super-majority approval. More information can be found in [this section](/governance/voting/#positive-turnout-bias)
  - It is important to write down the referendum index, as this is needed to unlock the tokens later when the locking period expires. Currently there is no way to retrieve the referendum index once it has been enacted
 
@@ -103,9 +104,6 @@ After the voting period has expired, the proposal will be visible under the "Dis
 
 ![Proposal Enactment](/images/governance/governance-vote-4.png)
 
-Remember that, for this example, the `setBalance` function was used to set Bob's balance to 1500 tokens. Once the enactment period has passed, you can go back to the "Accounts" tab to verify that the proposal was made law.
-
-![Proposal Result](/images/governance/governance-vote-5.png)
 
 ### Delegate Voting
 
