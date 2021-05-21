@@ -114,7 +114,7 @@ To delegate your vote, first, navigate to the "Extrinsics" menu under the "Devel
 ![Extrinsics Menu](/images/governance/governance-vote-6.png)
 
 !!! note
-    If you try to delegate tokens to a person that has already voted, the transaction will fail. Consider using a new account for the below steps.
+    If you try to delegate tokens to a person who has already voted, the transaction will fail. Consider using a new account for the below steps.
 
 Here, you need to provide the following information:
 
