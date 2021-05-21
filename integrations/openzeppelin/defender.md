@@ -23,7 +23,7 @@ For more information, the OpenZeppelin team has written a great [documentation s
 
 ## Getting Started with Defender on Moonbase Alpha
 
-This section goes through the steps for getting started with OpenZeppelin Defender on Moonbase Alpha
+This section goes through the steps for getting started with OpenZeppelin Defender on Moonbase Alpha.
  
 ### Checking Prerequisites
 
