@@ -42,7 +42,7 @@ Once you have set up your contract with all the settings and features, it is jus
 
 ## Deploying OpenZeppelin Contracts on Moonbeam
 
-This section goes through the steps for deploying OpenZeppelin contracts on Moonbeam Currently. It covers the following contracts:
+This section goes through the steps for deploying OpenZeppelin contracts on Moonbeam. It covers the following contracts:
 
  - ERC20 (fungible tokens)
  - ERC721 (non-fungible tokens)
