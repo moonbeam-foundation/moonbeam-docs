@@ -33,7 +33,7 @@ The wizard is comprised of the following sections:
      - [ERC20](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20)
      - [ERC721](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721)
      - [ERC1155](https://docs.openzeppelin.com/contracts/4.x/api/token/erc1155)
- 4. **Access Control** — list all of the available [access control mechanism](https://docs.openzeppelin.com/contracts/4.x/access-control) available for each token standard
+ 4. **Access Control** — list of all the available [access control mechanisms](https://docs.openzeppelin.com/contracts/4.x/access-control) for each token standard
  5. **Interactive code display** — shows the smart contract code with the configuration as set by the user
 
 ![OpenZeppelin Contracts Wizard](/images/openzeppelin/ozwizard-images1.png)
@@ -89,6 +89,8 @@ contract MyToken is ERC20, Ownable {
 }
 ```
 
+This ERC20 token smart contract was extracted from the [Contract Wizard](#openzeppelin-contract-wizard), setting a premint of `1000` tokens and activating the `Mintable` feature.
+
 ![Getting Started with Remix](/images/openzeppelin/ozcontracts-images1.png)
 
 Once your smart contract is written, you can compile it by taking the following steps:
@@ -109,7 +111,7 @@ With the contract compiled, you are ready to deploy it taking the following step
 
 ![Deploy ERC20 Contract with Remix](/images/openzeppelin/ozcontracts-images3.png)
 
-And that is it! You've deployed an ERC20 token contract using OpenZeppeling's contracts and libraries. Next, you can interact with your token contract via Remix, or add it to MetaMask.
+And that is it! You've deployed an ERC20 token contract using OpenZeppelin's contracts and libraries. Next, you can interact with your token contract via Remix, or add it to MetaMask.
 
 ### Deploying an ERC721 Token
 
@@ -163,6 +165,8 @@ contract MyToken is ERC721, ERC721Enumerable, ERC721Burnable, Ownable {
 }
 ```
 
+This ERC721 token smart contract was extracted from the [Contract Wizard](#openzeppelin-contract-wizard), setting the `Base URI` as `Test` and activating the `Mintable`, `Burnable`, and `Enumerable` features.
+
 With the contract compiled, head to the "Deploy & Run Transactions" tab. In here, you need to:
 
  1. Change the environment to "Injected Web3". This will use MetaMask's injected provider. Consequently, the contract will be deployed to whatever network MetaMask is connected to. MetaMask might show a pop-up outlining that Remix is trying to connect to your wallet
@@ -172,7 +176,7 @@ With the contract compiled, head to the "Deploy & Run Transactions" tab. In here
 
 ![Deploy ERC721 Contract with Remix](/images/openzeppelin/ozcontracts-images4.png)
 
-And that is it! You've deployed an ERC721 token contract using OpenZeppeling's contracts and libraries. Next, you can interact with your token contract via Remix, or add it to MetaMask.
+And that is it! You've deployed an ERC721 token contract using OpenZeppelin's contracts and libraries. Next, you can interact with your token contract via Remix, or add it to MetaMask.
 
 ### Deploying an ERC1155 Token
 
@@ -223,6 +227,8 @@ contract MyToken is ERC1155, Ownable, Pausable {
 }
 ```
 
+This ERC1155 token smart contract was extracted from the [Contract Wizard](#openzeppelin-contract-wizard), setting no `Base URI` and activating `Pausable` feature. The constructor function was modified to include the minting of both a fungible and a non-fungible token.
+
 With the contract compiled, head to the "Deploy & Run Transactions" tab. In here, you need to:
 
  1. Change the environment to "Injected Web3". This will use MetaMask's injected provider. Consequently, the contract will be deployed to whatever network MetaMask is connected to. MetaMask might show a pop-up outlining that Remix is trying to connect to your wallet
@@ -232,4 +238,4 @@ With the contract compiled, head to the "Deploy & Run Transactions" tab. In here
 
 ![Deploy ERC1155 Contract with Remix](/images/openzeppelin/ozcontracts-images5.png)
 
-And that is it! You've deployed an ERC1155 token contract using OpenZeppeling's contracts and libraries. Next, you can interact with your token contract via Remix.
+And that is it! You've deployed an ERC1155 token contract using OpenZeppelin's contracts and libraries. Next, you can interact with your token contract via Remix.
