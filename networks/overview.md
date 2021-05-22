@@ -24,9 +24,15 @@ This TestNet is a network hosted by PureStake. It features a parachain/relay cha
 
 ## Moonrock  
 
-We have decided not to participate in the first parachain deployments to Rococo. We have been running our own parachain/relay chain setup since we launched our TestNet in September 2020.
+Moonbeam deployment to the [Rococo parachain TestNet](https://polkadot.network/introducing-rococo-polkadots-parachain-testnet/)  is called Moonrock. This instance is not meant to be long-lived and is aimed to be used for development purposes.
 
-However, we expect to deploy Moonbeam as a parachain on the Rococo TestNet once interoperability features become available. This will provide a place to test these features with other chains.
+You can read more about the role Moonrock plays for Moonbeam in [this blogpost](https://moonbeam.network/blog/role-of-rococo-in-moonriver-launch-strategy/).
+
+## Moonshadow
+
+Moonbeam deployment to the [Westend TestNet](https://polkadot.network/westend-introducing-a-new-testnet-for-polkadot-and-kusama/) is called Moonshadow.
+
+Moonshadow will serve as a testing environment for Moonriver/Moonbeam. Compared to Moonbase Alpha, where we have control over the relay chain, Moonshadow replicates the production environment of Kusama/Polkadot, where the relay chain is an independent blockchain.
 
 ## Moonriver
 

@@ -72,6 +72,7 @@ networks:
          max_votes: 100
          max_proposals: 100
       staking:
+         precompile_address: '0x0000000000000000000000000000000000000800'
          collator_min_stake: 1000
          max_collators: 28
          round_blocks: 600

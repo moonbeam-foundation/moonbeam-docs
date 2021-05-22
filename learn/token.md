@@ -16,18 +16,26 @@ This token is central to the design of Moonbeam and cannot be removed without sa
 
 ## Glimmer Token
 
-In the Moonbeam deployment on Polkadot MainNet, this token will be called Glimmer, as in, “that smart contract call will cost 3 Glimmer.”  The token symbol will be GLMR.
+The token for the Moonbeam deployment on Polkadot MainNet will be called Glimmer, as in, “that smart contract call will cost 3 Glimmer.”  The token symbol will be GLMR.
 
-You can find more information about Glimmer [here](https://moonbeam.network/networks/moonbeam/glimmer-token/).
+You can find more information about Glimmer [here](https://moonbeam.foundation/glimmer-token/).
 
-## River Token
+## Moonriver Token
 
-In the Moonbeam deployment on Kusama (called Moonriver), this token will be called River, as in, “that smart contract call will cost 3 River.”  The token symbol will be RIVER.
+The token for the Moonbeam deployment on Kusama (called Moonriver) will be called Moonriver, as in, “that smart contract call will cost 3 Moonriver.”  The token symbol will be MOVR.
 
-You can find more information about River [here](https://moonbeam.network/networks/moonriver/river-token/).
+You can find more information about Moonriver [here](https://moonbeam.foundation/moonriver-token/).
+
+## Moonshadow Token
+
+The token for the Moonbeam deployment on Westend (called Moonshadow) will be called Moonshadow, as in, “that smart contract call will cost 3 Moonshadow.”  The token symbol will be MSHD.
+
+This token can be acquired freely and **it has no value**, as its only purpose is to drive development and testing on Moonshadow.
+
+More information about how to freely acquire MSHD will follow soon.
 
 ## DEV Token
 
-In our Moonbeam TestNet (called Moonbase Alpha), the token is called DEV. This token can be acquired freely, as its only purpose is to drive development and testing on Moonbase Alpha.
+In our Moonbeam TestNet (called Moonbase Alpha), the token is called DEV. This token can be acquired freely and **it has no value**, as its only purpose is to drive development and testing on Moonbase Alpha.
 
-You can access free DEV tokens from our [faucet](https://docs.moonbeam.network/getting-started/testnet/faucet/).
+You can acquire DEV tokens for free from our [faucet](https://docs.moonbeam.network/getting-started/testnet/faucet/).

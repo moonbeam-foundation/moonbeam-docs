@@ -30,7 +30,7 @@ const provider = new ethers.providers.StaticJsonRpcProvider(providerURL, {
 });
 ```
 
-Any Ethereum wallet should be able to generate a valid address for Moonbeam (for example, [MetaMask](https://metamask.io/)).
+Any Ethereum wallet should be able to generate a valid address for all Moonbeam deployments (for example, [MetaMask](https://metamask.io/)).
 
 ### WSS DNS
 
