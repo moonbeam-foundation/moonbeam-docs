@@ -9,7 +9,7 @@ One of the key planned features for Moonbeam is to provide an easy way for devel
 
 Polkadot defines a low-level integration protocol, called cross-chain message passing (XCMP), that can be used to facilitate communication between parachains within the Polkadot network and share trusted logic between chains on the Polkadot network, called shared protected runtime execution enclaves (SPREE). Parity is in the process of implementing XCMP and is in the design phase of SPREE as of writing this document (July 2020). Post-Polkadot mainnet launch, XCMP and SPREE support will be released as upgrades to the Polkadot relay chain. We plan to implement and support integration scenarios based on these protocols when they are available.
 
-## An Analogy: The "Bash of Linux"
+## An Analogy: The "Bash of Polkadot"
 
 For us, Polkadot will serve a similar function to something like Linux. Both are developer-oriented platforms that come with libraries to make building applications easier. 
 
