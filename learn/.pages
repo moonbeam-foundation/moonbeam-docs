@@ -1,6 +1,7 @@
 title: Learn
 arrange:
   - technology.md
+  - consensus.md
   - eth-compatibility.md
   - unified-accounts.md
   - xchain-plans.md
