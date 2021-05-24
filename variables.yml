@@ -60,7 +60,7 @@ networks:
             blocks: 36000
          fast_vote_period:
             days: 1
-            blocks: 7200   
+            blocks: 7200
          enact_period:
             days: 1
             blocks: 7200
@@ -85,6 +85,9 @@ networks:
          collators:
             address1: '0x4c5A56ed5A4FF7B09aA86560AfD7d383F4831Cce'
             address2: '0x62d2e7324f9274fac3893a59aff8e944a323a495'
+   moonshadow:
+      rpc_url: https://rpc.moonshadow.testnet.moonbeam.network
+      chain_id: 1288
    relay_chain:
       p2p: 30334
       rpc: 9934

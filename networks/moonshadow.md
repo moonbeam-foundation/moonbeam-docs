@@ -1,6 +1,6 @@
 ---
 title: Moonshadow
-description: An overview of the current configuration of the Moonshadow TestNetand information on how to start building on it using Solidity.
+description: An overview of the current configuration of the Moonshadow TestNet and information on how to start building on it using Solidity.
 ---
 
 # Moonshadow - Moonbeam on Westend
