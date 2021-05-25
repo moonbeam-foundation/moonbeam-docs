@@ -42,9 +42,9 @@ npm init -y
 
 3. Install the following dependencies:
 ```
-npm install --save-dev ethereum-waffle ethereum-mars \
-ethers @openzeppelin/contracts typescript ts-node \
-chai @types/chai mocha @types/mocha
+npm install ethereum-waffle ethereum-mars ethers \
+@openzeppelin/contracts typescript ts-node chai \
+@types/chai mocha @types/mocha
 ```
     - [Waffle](https://github.com/EthWorks/Waffle) - for writing, compiling, and testing smart contracts
     - [Mars](https://github.com/EthWorks/Mars) - for deploying smart contracts to Moonbeam
@@ -259,7 +259,7 @@ npm run test
 it('Should transfer the correct amount of tokens to the destination account', async () => {
   // Send the destination wallet 7 tokens
   await (await token.transfer(walletTo.address, 7)).wait();
-  
+
   // Expect the destination wallet to have received the 7 tokens
   expect(await token.balanceOf(walletTo.address)).to.equal(7);
 });
