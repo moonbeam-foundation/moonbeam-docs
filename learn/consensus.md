@@ -23,7 +23,7 @@ Enter Nimbus. Nimbus is a framework for building slot-based consensus algorithms
 
 For example, Moonbeam uses a two-layer approach. The first layer comprises the parachain staking filter, which helps select an active collator pool among all collator candidates using a staked-based ranking. The second layer adds another filter which narrows down the number of collators to a subset for each slot.
 
-Notice that Nimbus can only answer which collator(s) are eligible to produce a parachain block in the next available slot. It is the [Cumulus](https://wiki.polkadot.network/docs/en/build-cumulus#docsNav) consensus mechanism that marks this parachain block as best, and ultimately the [BABE](https://wiki.polkadot.network/docs/en/learn-consensus#babe) and [GRANDPA](https://wiki.polkadot.network/docs/en/learn-consensus#grandpa-finality-gadget) hybrid consensus model that will include this parachain block in the relay chain and finalize it. Once any relay chain forks are resolved at a relay chain level, that parachain block is deterministically finalized.
+Notice that Nimbus can only answer which collator(s) are eligible to produce a parachain block in the next available slot. It is the [Cumulus](https://wiki.polkadot.network/docs/en/build-cumulus#docsNav) consensus mechanism that marks this parachain block as best, and ultimately the [BABE](https://wiki.polkadot.network/docs/en/learn-consensus#babe) and [GRANDPA](https://wiki.polkadot.network/docs/en/learn-consensus#grandpa-finality-gadget) hybrid consensus model (of the relay chain) that will include this parachain block in the relay chain and finalize it. Once any relay chain forks are resolved at a relay chain level, that parachain block is deterministically finalized.
 
 The following two sections go over the filtering strategy currently used in Moonbeam.
 
@@ -31,7 +31,7 @@ The following two sections go over the filtering strategy currently used in Moon
 
 Collators can join the candidate pool by simply bonding some tokens via an extrinsic. Once in the pool, token holders can add to the collator's stake via nomination (also referred to as staking), that is, at a parachain level.
 
-Parachain staking is the first of the two Nimbus filters applied to the collator candidate pool. It selects the top {{ networks.moonbase.staking.max_collators }} collators in terms of tokens staked in the network, which includes the collator bond and nominations from token holders. This filtered pool are called selected candidates, and selected candidates are renewed every round (which lasts {{ networks.moonbase.staking.round_blocks }} blocks). For a given round, the following diagram describes the parachain staking filtering:
+Parachain staking is the first of the two Nimbus filters applied to the collator candidate pool. It selects the top {{ networks.moonbase.staking.max_collators }} collators in terms of tokens staked in the network, which includes the collator bond and nominations from token holders. This filtered pool is called selected candidates, and selected candidates are renewed every round (which lasts {{ networks.moonbase.staking.round_blocks }} blocks). For a given round, the following diagram describes the parachain staking filtering:
 
 ![Nimbus Parachain Staking Filter](/images/consensus/consensus-images1.png)
 
