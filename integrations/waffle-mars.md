@@ -94,7 +94,7 @@ mkdir contracts && cd contracts && touch MyToken.sol
 ```
 pragma solidity ^0.8.0;
 
-import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract MyToken is ERC20 {
     constructor() ERC20("MyToken", "MYTOK") {}
@@ -154,7 +154,9 @@ After compiling your contracts, Waffle stores the JSON output in the `build` dir
 
 ### Test with Waffle
 
-Before deploying your contract and sending it off into the wild, you should test it first. Waffle is the most advanced testing framework and has plenty of tools to help you with testing. You'll be running tests against the Moonbase Alpha TestNet and will need the corresponding RPC URL to connect to it: `https://rpc.testnet.moonbeam.network`.
+Before deploying your contract and sending it off into the wild, you should test it first. Waffle provides an advanced testing framework and has plenty of tools to help you with testing. 
+
+You'll be running tests against the Moonbase Alpha TestNet and will need the corresponding RPC URL to connect to it: `https://rpc.testnet.moonbeam.network`. Since you will be running tests against the TestNet, it might take a couple minutes to run all of the tests. If you want a more efficient testing experience, you can [spin up a Moonbeam development node](/getting-started/local-node/setting-up-a-node/) using [`instant seal`](/getting-started/local-node/setting-up-a-node/#node-options). Running a local Moonbeam development node with the `instant seal` feature is similar to the quick and iterative experience you would get with [Ganache](https://www.trufflesuite.com/ganache).
 
 1. Create a directory to contain your tests and a file to test your `MyToken` contract:
 ```
@@ -241,7 +243,7 @@ cd .. && touch .mocharc.json
 ```
 npm run test
 ```
-Please note that it could take a few minutes to process, but if all worked as expected, you should have one failing test.
+Please note that it could take a few minutes to process because the tests are running against Moonbase Alpha, but if all worked as expected, you should have one failing test.
 
 9. Next, you can go back and edit the test to check for 10 tokens:
 ```typescript
@@ -309,7 +311,7 @@ You've used Waffle to write, compile, and test the `MyToken` contract and can no
 
 After you compile your contracts and before deployment, you will have to generate contract artifacts for Mars. Mars uses the contract artifacts for typechecks in deployments. Then you'll need to create a deployment script and deploy the `MyToken` smart contract.
 
-Remember, you will be deploying to Moonbase Alpha and will need to use the testnet configurations:
+Remember, you will be deploying to Moonbase Alpha and will need to use the TestNet configurations:
 
 --8<-- 'text/testnet/testnet-details.md'
 
