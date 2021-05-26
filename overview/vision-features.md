@@ -28,7 +28,7 @@ Projects that are struggling with cost and scalability challenges on Ethereum ca
 Ecosystem projects that need smart contract functionality can use Moonbeam to:  
 
  - Augment their existing parachains and parathreads.  
- - Add new functionality that is needed but not included on the main [Polkadot Relay Chain](/resources/glossary/#relay-chain). For example, they could create a place where teams can crowdfund their projects, implement lockdrops, and process other, more complex financial transactions than are provided by base [Substrate](/resources/glossary/#substrate) functionality.  
+ - Add new functionality that is needed but not included on the main [Polkadot relay chain](/resources/glossary/#relay-chain). For example, they could create a place where teams can crowdfund their projects, implement lockdrops, and process other, more complex financial transactions than are provided by base [Substrate](/resources/glossary/#substrate) functionality.  
  - Leverage the mature and extensive Ethereum development toolchain.  
 
 ### Developers of New DApps

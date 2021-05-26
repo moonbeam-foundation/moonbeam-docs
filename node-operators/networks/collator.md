@@ -24,7 +24,7 @@ From a technical perspective, collators must meet the following requirements:
 
 ## Account and Staking Requirements
 
-Similar to Polkadot validators, you need to create an account (although in this case, it's an H160 account) and have a nominated stake (DEV tokens) in order to collate. The slots are currently limited to {{ networks.moonbase.collators_slots }}, but may be increased over time.  
+Similar to Polkadot validators, you need to create an account (although in this case, it's an H160 account) and have a nominated stake (DEV tokens) in order to collate. 
 
 Collators need to have a minimum of {{ networks.moonbase.staking.collator_min_stake }} DEV to be considered eligible (become a candidate). Only the top {{ networks.moonbase.staking.max_collators }} collators by nominated stake will be in the active set.  
 
