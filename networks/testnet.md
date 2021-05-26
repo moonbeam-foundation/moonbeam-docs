@@ -5,7 +5,7 @@ description: An overview of the current configuration of the Moonbeam TestNet, M
 
 # The Moonbase Alpha TestNet
 
-_Updated April TODO, 2021_
+_Updated May 27th, 2021_
 
 !!! note
     With the release of [Moonbase Alpha v8](https://github.com/PureStake/moonbeam/releases/tag/v0.8.0), the minimum gas price has been set to 1 GDEV (similar to GWei on Ethereum). This might be a breaking change if you've previously specified a gas price of `0` for your deployment.
@@ -109,7 +109,7 @@ You can see current Moonbase Alpha telemetry information visiting [this link](ht
 
 ## Early Stage Proof of Stake
 
-With the release of Moonbase Alpha v6, the TestNet is now running with an early stage Proof of Stake system. This means that, for testing purposes, Moonbeam partners will be encouraged to be the first collators in the network. Currently the active set consists of {{ networks.moonbase.staking.max_collators }} collators.
+With the release of Moonbase Alpha v6, the TestNet is now running with an early stage Proof of Stake system. Currently the active set consists of {{ networks.moonbase.staking.max_collators }} collators, which are nominated with DEV funds held by the team.
 
 As Moonbase Alpha progresses, we expect to evolve into a fully decentralized Proof of Stake network.
 
