@@ -11,7 +11,7 @@ description: Learn about all the parts of Moonbeam's Nimbus consensus framework 
 
 Polkadot relies on a [hybrid consensus model](https://wiki.polkadot.network/docs/en/learn-consensus). In such a scheme, the block finality gadget and the block production mechanism are separate. Consequently, parachains only have to worry about producing blocks and rely on the relay chain to validate the state transitions.
 
-At a parachain level, block producers are called [collators](https://wiki.polkadot.network/docs/en/learn-collator). They maintain parachains (such as Moonbeam)) by collecting transactions from users and offering blocks to the relay chain [validators](https://wiki.polkadot.network/docs/en/learn-validator).
+At a parachain level, block producers are called [collators](https://wiki.polkadot.network/docs/en/learn-collator). They maintain parachains (such as Moonbeam) by collecting transactions from users and offering blocks to the relay chain [validators](https://wiki.polkadot.network/docs/en/learn-validator).
 
 However, parachains might find the following problems they need to solve in a trustless and decentralized matter (if applicable):
 
