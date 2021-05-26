@@ -15,8 +15,8 @@ With the release of Moonbase Alpha v6, users can spin up full nodes and activate
 
 Moonbeam uses the [Nimbus Parachain Consensus Framework](/learn/consensus/). This provides a two-step filter to allocate collators to a block production slot:
 
- - The parachain staking filter selects the top {{ networks.moonbase.staking.max_collators }} collators in terms of tokens staked in the network. This filtered pool are called selected candidates
- - The fixed size subset filter picks a pseudo-random subset of the previously selected candidates
+ - The parachain staking filter selects the top {{ networks.moonbase.staking.max_collators }} collators in terms of tokens staked in the network. This filtered pool is called selected candidates, and selected candidates are rotated every round
+ - The fixed size subset filter picks a pseudo-random subset of the previously selected candidates for each block production slot
 
 This guide will take you through the following steps:
 
