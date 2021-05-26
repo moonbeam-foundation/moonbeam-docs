@@ -30,8 +30,8 @@ The minimum specs recommended to run a node are shown in the following table. Fo
 
 |  Component   |     | Requirement                                                                                                                |
 | :----------: | :-: | :------------------------------------------------------------------------------------------------------------------------- |
-|   **CPU**    |     | 8 Cores (early development phase - not optimized yet)                                                                      |
-|   **RAM**    |     | 16 GB (early development phase - not optimized yet)                                                                        |
+|   **CPU**    |     | 8 Cores (Fastest per core speed)                                                                      |
+|   **RAM**    |     | 16 GB                                                                         |
 |   **SSD**    |     | 50 GB (to start in our TestNet)                                                                                            |
 | **Firewall** |     | P2P port must be open to incoming traffic:<br>&nbsp; &nbsp; - Source: Any<br>&nbsp; &nbsp; - Destination: 30333, 30334 TCP |
 
@@ -105,8 +105,6 @@ Now, execute the docker run command. Note that you have to:
     --name="YOUR-NODE-NAME" \
     --execution wasm \
     --wasm-execution compiled \
-    --in-peers 200 \
-    --out-peers 200 \
     --pruning archive \
     --state-cache-size 1 \
     -- \
@@ -127,8 +125,6 @@ Now, execute the docker run command. Note that you have to:
     --name="YOUR-NODE-NAME" \
     --execution wasm \
     --wasm-execution compiled \
-    --in-peers 200 \
-    --out-peers 200 \
     --pruning archive \
     --state-cache-size 1 \
     -- \
@@ -148,8 +144,6 @@ Now, execute the docker run command. Note that you have to:
     --collator \
     --execution wasm \
     --wasm-execution compiled \
-    --in-peers 200 \
-    --out-peers 200 \
     --pruning archive \
     --state-cache-size 1 \
     -- \
@@ -170,8 +164,6 @@ Now, execute the docker run command. Note that you have to:
     --collator \
     --execution wasm \
     --wasm-execution compiled \
-    --in-peers 200 \
-    --out-peers 200 \
     --pruning archive \
     --state-cache-size 1 \
     -- \
