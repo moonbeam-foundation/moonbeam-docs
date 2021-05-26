@@ -50,7 +50,7 @@ A lower eligibility ratio might provide faster block finalization times. However
 
 Once the size of the subset is defined, collators are randomly selected using the relay chain's block height as a source of entropy. Consequently, a new subset of eligible collators is selected for every relay chain block. For a given round and a given block `XYZ`, the following diagram describes the fixed-size subset filtering: 
 
-![Nimbus Parachain Staking Filter](/images/consensus/consensus-images1.png)
+![Nimbus Parachain Staking Filter](/images/consensus/consensus-images2.png)
 
 ## Why Nimbus?
 
