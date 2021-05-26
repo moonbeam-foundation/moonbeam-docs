@@ -5,7 +5,7 @@ description: An overview of the current configuration of the Moonshadow TestNet 
 
 # Moonshadow - Moonbeam on Westend
 
-_Updated April TODO, 2021_
+_Updated May 31st, 2021_
 
 ## Goal
 
@@ -29,7 +29,6 @@ Moonshadow will have the same set of features as Moonbase Alpha. To see the full
 
 --8<-- 'text/moonshadow/connect.md'
 
-
 ## Tokens
 
 The token that will be used in the Moonshadow deployment is called Moonshadow, with the symbol MSHD. The Moonshadow token does not hold any value. 
@@ -38,15 +37,17 @@ The minimum gas price is 1 GMSHD (similar to GWei on Ethereum).
 
 More information about how to freely acquire MSHD will follow soon.
 
-## Proof of Authority
+## Centralized Proof of Stake
 
-At launch, the Moonshadow parachain will run as a Proof-of-Authority network, as all four collators will be run by PureStake.
+At launch, the Moonshadow parachain will run as a centralized Proof-of-Stake network, as all four collators will be run by PureStake and nominated with DEV funds held by the team.
 
-As the network progresses, we expected to move to a similar system as the Moonbase Alpha TestNet
+As the network progresses, some testing might include onboarding external collators.
 
 ## Limitations
 
 As Moonshadow shares the same set of features as Moonbase Alpha, they also share limitations. You can check all current limitations in the [Moonbase Alpha page](/networks/moonbase/#limitations).
+
+Moonshadow is expected to be a place to test the rollout process of Moonriver/Moonbeam. Developers who want to try Moonbeam Ethereum-compatibility features are referred to deploy on [Moonbase Alpha](/networks/moonbase/).
 
 ## Chain Purge
 
