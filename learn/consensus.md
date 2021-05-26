@@ -34,7 +34,7 @@ Parachain staking filtering is the first of the two Nimbus filters applied to th
 
 ![Nimbus Parachain Staking Filter](/images/consensus/consensus-images1.png)
 
-From this pool, another filter is applied to retrieve a subset of elegible collators for the next slot.
+From this pool, another filter is applied to retrieve a subset of eligible collators for the next slot.
 
 If you want to learn more about staking, visit our [staking documentation](/staking/overview).
 
@@ -62,7 +62,7 @@ You might ask yourself: but why Nimbus? Initially, it was not envisioned when Mo
 
 Nimbus puts the author-checking execution in a [Substrate pallet](https://substrate.dev/docs/en/knowledgebase/runtime/pallets). At first glance, you might think this adds a higher execution load to a single block compared to doing this check off-chain. But consider this from a perspective of both parachain nodes and validators.
 
-For parachain nodes, this computation will be made. Either way, checking in the runtime does not change the total amount of computation they do. Since the extrinsic that does the checking is an inherent, it does not cost any fees, so that number is also unchanged. Consequently, there is not much difference from their perspective.
+For parachain nodes, this computation will be made. Either way, checking in the runtime does not change the total amount of computation they do. Since the extrinsic that does the checking is an _inherent_, it does not cost any fees, so that number is also unchanged. Consequently, there is not much difference from their perspective.
 
 The validators will also have to check the author either way. The difference is whether they do it in the custom executor or the pallet. By putting the author-checking execution logic in a pallet, the execution time can be benchmarked and quantified with weights. Suppose this logic is not accounted for in the weight system, as is when it goes straight in the executor like in AuRa. In that case, there is the risk of a block exceeding the execution limit (currently 1/2 seconds). This means that the unaccounted author check pushes the total execution time across the threshold.
 
@@ -70,7 +70,7 @@ In practice, this check will be fast and will most likely not push execution tim
 
 ### Reusability
 
-Another benefit of moving the author-checking execution to a pallet, rather than a custom executor, is that one single executor can be reused for any consensus that can be express in the Nimbus framework. That is slot-based, signature-sealed algorithms. 
+Another benefit of moving the author-checking execution to a pallet, rather than a custom executor, is that one single executor can be reused for any consensus that can be expressed in the Nimbus framework. That is slot-based, signature-sealed algorithms. 
 
 For example, the [relay-chain provided consensus](https://github.com/paritytech/cumulus/blob/master/client/consensus/relay-chain/src/lib.rs), [AuRa](https://crates.io/crates/sc-consensus-aura) and [BABE](https://crates.io/crates/sc-consensus-babe) have each their own custom executor. With Nimbus, these consensus mechanisms can reuse the same executor. The power of reusability is evidenced by the Nimbus implementation of AuRa in less than 100 lines of code.
 
