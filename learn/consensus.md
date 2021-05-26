@@ -37,7 +37,7 @@ Parachain staking is the first of the two Nimbus filters applied to the collator
 
 From this pool, another filter is applied to retrieve a subset of eligible collators for the next block authoring slot.
 
-If you want to learn more about staking, visit our [staking documentation](/staking/overview).
+If you want to learn more about staking, visit our [staking documentation](/staking/overview/).
 
 ## Fixed Size Subset Filtering
 
