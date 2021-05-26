@@ -1,5 +1,5 @@
 title: Wallets
-arrange:
+nav:
   - mathwallet.md
   - metamask.md
   - polkadotjs.md

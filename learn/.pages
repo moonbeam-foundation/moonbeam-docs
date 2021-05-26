@@ -1,5 +1,5 @@
 title: Learn
-arrange:
+nav:
   - technology.md
   - eth-compatibility.md
   - unified-accounts.md
