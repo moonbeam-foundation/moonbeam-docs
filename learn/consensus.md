@@ -80,4 +80,4 @@ Teams building parachains may want to change, tune, or adjust their consensus al
 
 With the Nimbus framework, writing a consensus engine is as easy as writing a [Substrate pallet](https://substrate.dev/docs/en/knowledgebase/runtime/pallets). Consequently, swapping consensus is as easy as upgrading a pallet. 
 
-Nonetheless, how swapping it is still bounded by consensus engines (filters) that fit within Nimbus, but it might be helpful for teams that are yet confident on what consensus they want to implement in the long run.
+Nonetheless, hot swapping is still bounded by consensus engines (filters) that fit within Nimbus, but it might be helpful for teams that are yet confident on what consensus they want to implement in the long run.
