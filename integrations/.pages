@@ -9,6 +9,7 @@ nav:
   - remix.md
   - trufflebox.md
   - hardhat.md
+  - waffle-mars.md
   - thegraph.md
   - pubsub.md
   - debug-trace.md
