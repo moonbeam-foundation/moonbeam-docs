@@ -88,7 +88,6 @@ sudo chown -R $(id -u):$(id -g) {{ networks.moonbase.node_directory }}
 Now, execute the docker run command. Note that you have to:
 
  - Replace `YOUR-NODE-NAME` in two different places.
- - For collators, replace `PUBLIC_KEY` with the public address that will be associated with collation activities.
 
 !!! note
     If you are setting up a collator node, make sure to follow the code snippets for "Collator".
@@ -147,7 +146,6 @@ Now, execute the docker run command. Note that you have to:
     --chain alphanet \
     --name="YOUR-NODE-NAME" \
     --collator \
-    --author-id PUBLIC_KEY \
     --execution wasm \
     --wasm-execution compiled \
     --in-peers 200 \
@@ -170,7 +168,6 @@ Now, execute the docker run command. Note that you have to:
     --chain alphanet \
     --name="YOUR-NODE-NAME" \
     --collator \
-    --author-id PUBLIC_KEY \
     --execution wasm \
     --wasm-execution compiled \
     --in-peers 200 \
@@ -276,7 +273,6 @@ The next step is to create the systemd configuration file. Note that you have to
  - Replace `YOUR-NODE-NAME` in two different places
  - Double-check that the binary is in the proper path as described below (_ExecStart_)
  - Double-check the base path if you've used a different directory
- - For collators, replace `PUBLIC-KEY` with the public key of your H160 Ethereum address created above
  - Name the file `/etc/systemd/system/moonbeam.service`
 
 !!! note
@@ -343,7 +339,6 @@ The next step is to create the systemd configuration file. Note that you have to
     ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
          --parachain-id 1000 \
          --collator \
-         --author-id PUBLIC_KEY \
          --port {{ networks.parachain.p2p }} \
          --rpc-port {{ networks.parachain.rpc }} \
          --ws-port {{ networks.parachain.ws }} \
