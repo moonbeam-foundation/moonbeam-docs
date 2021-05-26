@@ -3,7 +3,7 @@ title: Parachain Consensus
 description: Learn about all the parts of Moonbeam's Nimbus consensus framework and how it works as part of the Polkadot's shared security model
 ---
 
-# Nimbus Consensus Framework
+# Nimbus Parachain Consensus Framework
 
 ![Moonbeam Consensus Banner](/images/consensus/consensus-banner.png)
 
@@ -25,29 +25,29 @@ For example, Moonbeam uses a two-layer approach. The first layer comprises the p
 
 Notice that Nimbus can only answer which collator(s) are eligible to produce a parachain block in the next available slot. It is the [Cumulus](https://wiki.polkadot.network/docs/en/build-cumulus#docsNav) consensus mechanism that marks this parachain block as best, and ultimately the [BABE](https://wiki.polkadot.network/docs/en/learn-consensus#babe) and [GRANDPA](https://wiki.polkadot.network/docs/en/learn-consensus#grandpa-finality-gadget) hybrid consensus model that will include this parachain block in the relay chain and finalize it. Once any relay chain forks are resolved at a relay chain level, that parachain block is deterministically finalized.
 
-The following two sections go over the filtering strategy currently used at Moonbeam.
+The following two sections go over the filtering strategy currently used in Moonbeam.
 
 ## Parachain Staking Filtering
 
-Collators can join the candidate pool by simply bonding some tokens via an extrinsic. Once in the pool, token holders can add the collator's stake via nomination (also referred to as staking).
+Collators can join the candidate pool by simply bonding some tokens via an extrinsic. Once in the pool, token holders can add to the collator's stake via nomination (also referred to as staking), that is, at a parachain level.
 
-Parachain staking is the first of the two Nimbus filters applied to the collator's candidate pool. It selects the top {{ networks.moonbase.staking.max_collators }} collators in terms of tokens staked in the network, which includes the bond and nominations from token holders. This filtered pool is called the selected candidates, and it is renewed every round (which lasts {{ networks.moonbase.staking.round_blocks }} blocks). For a given round, the following diagram describes the parachain staking filtering:
+Parachain staking is the first of the two Nimbus filters applied to the collator candidate pool. It selects the top {{ networks.moonbase.staking.max_collators }} collators in terms of tokens staked in the network, which includes the collator bond and nominations from token holders. This filtered pool are called selected candidates, and selected candidates are renewed every round (which lasts {{ networks.moonbase.staking.round_blocks }} blocks). For a given round, the following diagram describes the parachain staking filtering:
 
 ![Nimbus Parachain Staking Filter](/images/consensus/consensus-images1.png)
 
-From this pool, another filter is applied to retrieve a subset of eligible collators for the next slot.
+From this pool, another filter is applied to retrieve a subset of eligible collators for the next block authoring slot.
 
 If you want to learn more about staking, visit our [staking documentation](/staking/overview).
 
 ## Fixed Size Subset Filtering
 
-Once the parachain staking filter is applied and the selected collator candidates are retrieved, a second filter helps narrow down the number to a few eligible collators for the next block authoring slot.
+Once the parachain staking filter is applied and the selected candidates are retrieved, a second filter is applied on a block by block basis and helps narrow down the selected candidates to a smaller number of eligible collators for the next block authoring slot.
 
 In broad terms, this second filter picks a pseudo-random subset of the previously selected candidates. The eligibility ratio, a tunable parameter, defines the size of this subset.
 
-A high eligibility ratio results in fewer chances for the network to skip a block production slot, as more collators will be eligible to propose a block for a specific slot. However, only a certain number of validators are assigned to a parachain, meaning that most of these blocks will not be backed by a validator.  For those that are, a higher number of backed blocks means that it might take longer for the relay chain to solve any possible forks and return a finalized block.
+A high eligibility ratio results in fewer chances for the network to skip a block production slot, as more collators will be eligible to propose a block for a specific slot. However, only a certain number of validators are assigned to a parachain, meaning that most of these blocks will not be backed by a validator. For those that are, a higher number of backed blocks means that it might take longer for the relay chain to solve any possible forks and return a finalized block. Moreover, this might create an unfair advantage for certain collators that might be able to get their proposed block faster to relay chain validators, securing a higher portion of block rewards (if any).
 
-A lower eligibility ratio might provide faster block finalization times. However, if the eligible collators are not able to propose a block (for whatever reason), the network will skip a block, affecting its stability.
+On the contrary, a lower eligibility ratio might provide faster block finalization times and a fairer block production distribution amongst collators. However, if the eligible collators are not able to propose a block (for whatever reason), the network will skip a block, affecting its stability.
 
 Once the size of the subset is defined, collators are randomly selected using a source of entropy. Currently, an internal coin-flipping algorithm is implemented, but this will later be migrated to use the relay chain's [randomness beacon](https://wiki.polkadot.network/docs/en/learn-randomness). Consequently, a new subset of eligible collators is selected for every relay chain block. For a given round and a given block `XYZ`, the following diagram describes the fixed-size subset filtering: 
 
