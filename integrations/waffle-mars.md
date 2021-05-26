@@ -305,8 +305,6 @@ describe ('MyToken', () => {
 
 If you want to write more tests on your own, you could consider testing transfers from accounts without any funds or transfers from accounts without enough funds.
 
-You've used Waffle to write, compile, and test the `MyToken` contract and can now move on to deploying the contract to Moonbase Alpha with Mars. 
-
 ## Use Mars to Deploy to Moonbase Alpha
 
 After you compile your contracts and before deployment, you will have to generate contract artifacts for Mars. Mars uses the contract artifacts for typechecks in deployments. Then you'll need to create a deployment script and deploy the `MyToken` smart contract.
