@@ -93,9 +93,7 @@ The following table presents some of the timings in regards to different actions
 
 With the release of [Moonbase Alpha v8](/networks/testnet/), collators will sign blocks using an author ID, which is basically a [session key](https://wiki.polkadot.network/docs/en/learn-keys#session-keys). To match the Substrate standard, Moonbeam collator's session keys are [SR25519](https://wiki.polkadot.network/docs/en/learn-keys#what-is-sr25519-and-where-did-it-come-from). This guide will show you how you can create/rotate your session keys associated to your collator node.
 
-First, make sure you are running your collator node with the following flags. 
-
-Once you have your collator node running, your terminal should print similar logs:
+First, make sure you're [running a collator node](/node-operators/networks/full-node/) and you have exposed the RPC ports. Once you have your collator node running, your terminal should print similar logs:
 
 ![Collator Terminal Logs](/images/fullnode/collator-terminal1.png)
 
