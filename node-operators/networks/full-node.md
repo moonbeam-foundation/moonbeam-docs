@@ -137,7 +137,7 @@ Now, execute the docker run command. Note that you have to:
     --base-path=/data \
     --chain alphanet \
     --name="YOUR-NODE-NAME" \
-    --collator \
+    --validator \
     --execution wasm \
     --wasm-execution compiled \
     --pruning archive \
@@ -155,7 +155,7 @@ Now, execute the docker run command. Note that you have to:
     --base-path=/data \
     --chain alphanet \
     --name="YOUR-NODE-NAME" \
-    --collator \
+    --validator \
     --execution wasm \
     --wasm-execution compiled \
     --pruning archive \
@@ -318,7 +318,7 @@ The next step is to create the systemd configuration file. Note that you have to
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
-         --collator \
+         --validator \
          --port {{ networks.parachain.p2p }} \
          --rpc-port {{ networks.parachain.rpc }} \
          --ws-port {{ networks.parachain.ws }} \
