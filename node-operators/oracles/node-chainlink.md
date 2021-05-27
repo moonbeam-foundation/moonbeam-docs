@@ -46,7 +46,7 @@ This guide will walk through the process of setting up the Oracle node, summariz
 The basic requirements are:
 
  - Docker for running Postgres DB and ChainLink node containers. For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/)
- - An account with funds. You can create one with [Metamask](/integrations/wallets/metamask/), which can be funded via [our Faucet](https://docs.moonbeam.network/getting-started/moonbase/faucet/)
+ - An account with funds. You can create one with [Metamask](/integrations/wallets/metamask/), which can be funded via [our Faucet](/getting-started/moonbase/faucet/)
  - Access to the Remix IDE in case you want to use it to deploy the Oracle contract. You can find more information about Remix on Moonbeam [here](/integrations/remix/)
 
 ## Node Setup
@@ -134,7 +134,7 @@ First, we need to retrieve the address that the Oracle node will use to send tra
 
 ![Chainlink login](/images/chainlink/chainlinknode-image2.png)
 
-Go to the 'Configuration Page` and copy the node address. Use the [Moonbeam Faucet](https://docs.moonbeam.network/getting-started/moonbase/faucet/) to fund it.
+Go to the 'Configuration Page` and copy the node address. Use the [Moonbeam Faucet](/getting-started/moonbase/faucet/) to fund it.
 
 ![Chainlink address](/images/chainlink/chainlinknode-image3.png)
 
