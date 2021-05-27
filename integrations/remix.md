@@ -28,7 +28,7 @@ contract SimpleContract{
 
 Once compiled, we can navigate to the "Deploy & Run Transactions" tab. We need first to set our environment to "Injected Web3." This uses the provider injected by MetaMask, which allows us to deploy contracts to the network it is connected to - in this case, the Moonbase Alpha TestNet. 
 
-For this example, we'll be deploying the contract from a funded MetaMask account. You can use our [TestNet faucet](/getting-started/testnet/faucet/) to fund your account for deployments on Moonbase Alpha. Next, pass in `Test Contract` as input to our contructor function and hit deploy. A MetaMask pop-up will show the information regarding the transaction, which we'll need to sign by clicking "confirm."
+For this example, we'll be deploying the contract from a funded MetaMask account. You can use our [TestNet faucet](/getting-started/moonbase/faucet/) to fund your account for deployments on Moonbase Alpha. Next, pass in `Test Contract` as input to our contructor function and hit deploy. A MetaMask pop-up will show the information regarding the transaction, which we'll need to sign by clicking "confirm."
 
 ![Deploying Contract](/images/remix/integrations-remix-1.png)
 
@@ -37,5 +37,5 @@ Once the transaction is included, the contract appears in the "Deployed Contract
 ![Interact with Contract](/images/remix/integrations-remix-2.png)
 
 ## Step-by-step Tutorials
-If you are interested in a more detailed step-by-step guide, go to our specific tutorials on using [Remix on a Moonbeam development node](/getting-started/local-node/using-remix/). The steps can also be adapted to deploy on the Moonbase Alpha TestNet by [connecting MetaMask to it](/getting-started/testnet/metamask/).
+If you are interested in a more detailed step-by-step guide, go to our specific tutorials on using [Remix on a Moonbeam development node](/getting-started/local-node/using-remix/). The steps can also be adapted to deploy on the Moonbase Alpha TestNet by [connecting MetaMask to it](/getting-started/moonbase/metamask/).
 
