@@ -9,11 +9,11 @@ description: Moonbeam provides staking features where token holders nominate col
 
 ## Introduction
 
-Moonbeam uses a block production mechanism based on [Polkadot's Proof-of-Stake model](https://wiki.polkadot.network/docs/en/learn-consensus) where there are collators and validators. [Collators](https://wiki.polkadot.network/docs/en/learn-collator) maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the Relay Chain [validators](https://wiki.polkadot.network/docs/en/learn-validator).
+Moonbeam uses a block production mechanism based on [Polkadot's Proof-of-Stake model](https://wiki.polkadot.network/docs/en/learn-consensus), where there are collators and validators. [Collators](https://wiki.polkadot.network/docs/en/learn-collator) maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.network/docs/en/learn-validator).
 
 The collators' set (nodes that produce blocks) are selected based on their stake in the network. And here is where staking comes in.
 
-Collators (and token holders if they nominate) have a stake in the network from which they get slashed if they misbehave. Therefore, the higher the stake, the higher the network security. The higher the stake, the more likely the collator will get selected to produce a block and earn rewards, which they share with their nominators. In such a way, network members are incentivized to stake tokens to improve the overall security.
+Collators (and token holders if they nominate) have a stake in the network. The top N collators by staked amount are chosen to produce blocks with a valid set of transactions, where N is a configurable parameter. Part of each block reward goes to the collator that produced the block, who then shares it with the nominators considering their percental contributions towards the collator's staked. In such a way, network members are incentivized to stake tokens to improve the overall security.
 
 ## General Definitions
 
