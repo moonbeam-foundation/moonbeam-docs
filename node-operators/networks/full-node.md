@@ -116,8 +116,6 @@ Now, execute the docker run command. Note that you have to:
     docker run -p {{ networks.parachain.rpc }}:{{ networks.parachain.rpc }} -p {{ networks.parachain.ws }}:{{ networks.parachain.ws }} -v "{{ networks.moonbase.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     purestake/moonbeam:{{ networks.moonbase.parachain_docker_tag }} \
-    --ws-external \
-    --rpc-external \
     --base-path=/data \
     --chain alphanet \
     --name="YOUR-NODE-NAME" \
@@ -154,8 +152,6 @@ Now, execute the docker run command. Note that you have to:
     docker run -p {{ networks.parachain.rpc }}:{{ networks.parachain.rpc }} -p {{ networks.parachain.ws }}:{{ networks.parachain.ws }} -v "{{ networks.moonbase.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     purestake/moonbeam:{{ networks.moonbase.parachain_docker_tag }} \
-    --ws-external \
-    --rpc-external \
     --base-path=/data \
     --chain alphanet \
     --name="YOUR-NODE-NAME" \
@@ -289,7 +285,6 @@ The next step is to create the systemd configuration file. Note that you have to
          --ws-port {{ networks.parachain.ws }} \
          --pruning=archive \
          --state-cache-size 1 \
-         --log rpc=info \
          --base-path {{ networks.moonbase.node_directory }} \
          --chain alphanet \
          --name "YOUR-NODE-NAME" \
@@ -326,7 +321,6 @@ The next step is to create the systemd configuration file. Note that you have to
          --ws-port {{ networks.parachain.ws }} \
          --pruning=archive \
          --state-cache-size 1 \
-         --log rpc=info \
          --base-path {{ networks.moonbase.node_directory }} \
          --chain alphanet \
          --name "YOUR-NODE-NAME" \
