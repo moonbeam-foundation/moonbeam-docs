@@ -30,4 +30,4 @@ You can find more information about River [here](https://moonbeam.network/networ
 
 In our Moonbeam TestNet (called Moonbase Alpha), the token is called DEV. This token can be acquired freely, as its only purpose is to drive development and testing on Moonbase Alpha.
 
-You can access free DEV tokens from our [faucet](https://docs.moonbeam.network/getting-started/testnet/faucet/).
+You can access free DEV tokens from our [faucet](/getting-started/moonbase/faucet/).

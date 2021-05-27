@@ -7,7 +7,7 @@ description: Moonbeam launched its first TestNet in September 2020, with a BetaN
 
 Moonbeam is still being actively developed. 
 
-On September 2020, we launched our [TestNet](/networks/overview/). Since then we have performed significants upgrades on almost a monthly basis. You can check the milestones achieved by each update in their corresponding [release notes](/networks/testnet/#release-notes).
+On September 2020, we launched our [TestNet](/networks/overview/). Since then we have performed significants upgrades on almost a monthly basis. You can check the milestones achieved by each update in their corresponding [release notes](/networks/moonbase/#release-notes).
 
 
 The rough roadmap beyond that is to launch Moonriver, our Kusama deployment, by the end of Q1 2021, and Moonbeam on the Polkadot MainNet in Q2 2021.

@@ -28,7 +28,7 @@ Moonbeam will also be a parachain on the Polkadot network. That means it will ge
 Currently, there are two ways you can start building on Moonbeam: 
 
  - Build your own Moonbeam instance as a [development node](/getting-started/local-node/setting-up-a-node/)
- - [Connect](/getting-started/testnet/connect/) to the [Moonbase Alpha TestNet](/networks/testnet/)
+ - [Connect](/getting-started/moonbase/connect/) to the [Moonbase Alpha TestNet](/networks/moonbase/)
 
 ### Wallets
 

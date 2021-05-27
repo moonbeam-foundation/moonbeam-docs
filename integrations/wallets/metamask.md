@@ -49,7 +49,7 @@ Moonbase Alpha TestNet:
 In the case that you are interested in more detailed, step-by-step guides to configure MetaMask to Moonbeam, you can go to our specific tutorials:
 
  - MetaMask on a [Moonbeam development node](/getting-started/local-node/using-metamask/)
- - MetaMask on [Moonbase Alpha](/getting-started/testnet/metamask/)
+ - MetaMask on [Moonbase Alpha](/getting-started/moonbase/metamask/)
 
 ## Integrate MetaMask into a DApp
 

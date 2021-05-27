@@ -107,7 +107,7 @@ module.exports = {
 };
 ```
 
-The `truffle-config.js` file also includes the private key of the genesis account for the development node. The address associated with this key holds all the tokens in this development environment. For deployments in the Moonbase Alpha TestNet, you need to provide the private key of an address that holds funds. To do so, you can create an account in MetaMask, fund it using the [TestNet faucet](https://docs.moonbeam.network/getting-started/testnet/faucet/), and export its private key.
+The `truffle-config.js` file also includes the private key of the genesis account for the development node. The address associated with this key holds all the tokens in this development environment. For deployments in the Moonbase Alpha TestNet, you need to provide the private key of an address that holds funds. To do so, you can create an account in MetaMask, fund it using the [TestNet faucet](/getting-started/moonbase/faucet/), and export its private key.
 
 As with using Truffle in any Ethereum network, you can run the normal commands to compile, test, and deploy smart contracts in Moonbeam. For example, you can try the following commands using the included ERC20 token contract:
 
