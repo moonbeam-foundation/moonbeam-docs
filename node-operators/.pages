@@ -3,3 +3,4 @@ hide: false
 nav:
   - networks
   - oracles
+  - indexers

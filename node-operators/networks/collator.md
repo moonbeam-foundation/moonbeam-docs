@@ -120,11 +120,13 @@ Make sure you write down this public key of the author ID. Next, this will be ma
 
 Once you've generated your author ID (session keys), the next step is to map it to your H160 account (an Ethereum-styled address). Make sure you hold the private keys to this account, as this is where the block rewards are paid out to.
 
+There is a {{ networks.moonbase.staking.collator_map_bond }} DEV tokens bond that is sent when mapping your authord ID with your account. This bond is per author ID registered.
+
 The `authorMapping` module has the following extrinsics programmed:
 
- - **addAssociation** — one input: author ID. Maps your author ID to the H160 account from which the transaction is being sent, ensuring is the true owner of its private keys
- - **clearAssociation** — one input: author ID. Clears the association of an author ID to the H160 account from which the transaction is being sent, which needs to be the owner of that author ID
- - **updateAssociation** — two inputs: old and new author IDs. Updates the mapping from an old author ID to a new one. Useful after a key rotation
+ - **addAssociation** — one input: author ID. Maps your author ID to the H160 account from which the transaction is being sent, ensuring is the true owner of its private keys. It requires a {{ networks.moonbase.staking.collator_map_bond }} DEV tokens bond
+ - **clearAssociation** — one input: author ID. Clears the association of an author ID to the H160 account from which the transaction is being sent, which needs to be the owner of that author ID. Also refunds the {{ networks.moonbase.staking.collator_map_bond }} DEV tokens bond
+ - **updateAssociation** — two inputs: old and new author IDs. Updates the mapping from an old author ID to a new one. Useful after a key rotation or migration. It executes both the `add` and `clear` association extrinsics atomically, enabling key rotation without needing a second bond
 
 The module also adds the following RPC calls (chain state):
 
@@ -132,7 +134,7 @@ The module also adds the following RPC calls (chain state):
 
 ### Mapping Extrinsic
 
-To map your author ID to your account, you need to be inside the selected candidates pool. Once you are a selected candidate, you need to send a mapping extrinsic (transaction). To do so, take the following steps:
+To map your author ID to your account, you need to be inside the selected candidates pool. Once you are a selected candidate, you need to send a mapping extrinsic (transaction). Note that this will bond {{ networks.moonbase.staking.collator_map_bond }} DEV tokens, and this is per author ID registered. To do so, take the following steps:
 
  1. Head to the "Developer" tab
  2. Select the "Extrinsics" option
