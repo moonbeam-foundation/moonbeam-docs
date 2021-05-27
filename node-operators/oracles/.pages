@@ -1,4 +1,4 @@
 title: Oracles
 hide: false
-arrange:
+nav:
   - node-chainlink.md

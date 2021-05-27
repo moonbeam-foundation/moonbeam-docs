@@ -1,5 +1,5 @@
 title: Learn
-arrange:
+nav:
   - technology.md
   - consensus.md
   - eth-compatibility.md

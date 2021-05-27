@@ -18,7 +18,6 @@ However, parachains might find the following problems they need to solve in a tr
  - Amongst all of the nodes in the network, which ones are allowed to author blocks?
  - If multiple nodes are allowed, will they be eligible at the same time? Only one? Maybe a few?
 
-
 Enter Nimbus. Nimbus is a framework for building slot-based consensus algorithms on [Cumulus](https://github.com/paritytech/cumulus)-based parachains. It strives to provide standard implementations for the logistical parts of such consensus engines and helpful traits for implementing the elements (filters) that researchers and developers want to customize. These filters can be customizable to define what a block authorship slot is and can be composed, so block authorship is restricted to a subset of collators in multiple steps.
 
 For example, Moonbeam uses a two-layer approach. The first layer comprises the parachain staking filter, which helps select an active collator pool among all collator candidates using a staked-based ranking. The second layer adds another filter which narrows down the number of collators to a subset for each slot.
