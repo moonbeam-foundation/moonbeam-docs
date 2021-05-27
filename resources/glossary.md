@@ -9,7 +9,7 @@ There's a great deal of terminology that's specific to Polkadot, Substrate, and 
 
 ### Collators
 
-One of the key network participants needed to support parachains within the Polkadot Network.  In Moonbeam, collators are the nodes that are responsible for block production and for submitting produced blocks up to the Polkadot Relay Chain for finalization.
+One of the key network participants needed to support parachains within the Polkadot Network.  In Moonbeam, collators are the nodes that are responsible for block production and for submitting produced blocks up to the Polkadot relay chain for finalization.
 
 ### Nominators
 
@@ -33,7 +33,7 @@ A network of connected blockchains that provides shared security and the ability
 
 ### Relay Chain
 
-The backbone blockchain supporting the Polkadot network.  Parachains connect to the Relay Chain and use it for shared security and message passing.  Validators on the Relay Chain help secure the parachains.
+The backbone blockchain supporting the Polkadot network.  Parachains connect to the relay Chain and use it for shared security and message passing.  Validators on the relay Chain help secure the parachains.
 
 ### Smart Contract
 
@@ -49,7 +49,7 @@ Substrate Frame Pallets are a collection of Rust-based modules, providing the fu
 
 ### Validators
 
-A node that secures the Polkadot Relay Chain by staking DOT in the network, which is slashed if they misbehave. They finalize blocks from collators on parachains and also participate on consensus for the next Relay Chain block with other validators.
+A node that secures the Polkadot relay Chain by staking DOT in the network, which is slashed if they misbehave. They finalize blocks from collators on parachains and also participate on consensus for the next relay Chain block with other validators.
 
 ### WebAssembly/Wasm
 

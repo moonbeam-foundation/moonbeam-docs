@@ -1,5 +1,5 @@
 title: Moonbase Alpha
-arrange:
+nav:
   - connect.md
   - faucet.md
   - metamask.md

@@ -1,5 +1,5 @@
 title: Local Node
-arrange:
+nav:
   - setting-up-a-node.md
   - using-metamask.md
   - using-remix.md

@@ -1,5 +1,5 @@
 title: Governance
-arrange:
+nav:
   - overview.md
   - proposals.md
   - voting.md

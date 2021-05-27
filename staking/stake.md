@@ -9,11 +9,11 @@ description: A guide that shows how you can stake your tokens in Moonbeam by nom
 
 ## Introduction
 
-Collators (block producers) with the highest stake in the network join the active pool of collators, from which they are selected to offer a block to the Relay Chain.
+Collators (block producers) with the highest stake in the network join the active pool of collators, from which they are selected to offer a block to the relay chain.
 
 Token holders can add to the collators' stake using their tokens, a process called nomination (also referred to as staking). When they do so, they are vouching for that specific collator, and their nomination is a signal of trust.
 
-When a collator does not behave appropriately, its stake in the network is slashed, affecting the tokens nominated by users as well (feature currently not available in Moonbase Alpha). If collators act accordingly, they'll receive block rewards as part of the inflationary model. They can share these as staking rewards with their nominators.
+Collators receive part of the block rewards as part of the token inflationary model. They can share these as staking rewards with their nominators, considering their percental contribution toward his stake in the network.
 
 With the release of [Moonbase Alpha v6](https://github.com/PureStake/moonbeam/releases/tag/v0.6.0), users of the network can now stake their tokens to nominate collators. This guide outlines all the steps to do so.
 
@@ -58,7 +58,7 @@ Here, provide the following information:
 
 Each extrinsic provides a different response:
 
- - **selectedCandidates** — returns the current active set of collators, that is, the top {{ networks.moonbase.staking.max_collators }} collators by total tokens staked (including nominations)
+ - **selectedCandidates** — returns the current active set of collators, that is, the top }{ networks.moonbase.staking.max_collators }} collators by total tokens staked (including nominations)
  - **candidatePool** — returns the current list of all the collators, including those that are not in the active set
 
 ![Staking Account](/images/staking/staking-stake-11.png)

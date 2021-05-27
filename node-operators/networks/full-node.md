@@ -30,8 +30,8 @@ The minimum specs recommended to run a node are shown in the following table. Fo
 
 |  Component   |     | Requirement                                                                                                                |
 | :----------: | :-: | :------------------------------------------------------------------------------------------------------------------------- |
-|   **CPU**    |     | 8 Cores (early development phase - not optimized yet)                                                                      |
-|   **RAM**    |     | 16 GB (early development phase - not optimized yet)                                                                        |
+|   **CPU**    |     | 8 Cores (Fastest per core speed)                                                                      |
+|   **RAM**    |     | 16 GB                                                                         |
 |   **SSD**    |     | 50 GB (to start in our TestNet)                                                                                            |
 | **Firewall** |     | P2P port must be open to incoming traffic:<br>&nbsp; &nbsp; - Source: Any<br>&nbsp; &nbsp; - Destination: 30333, 30334 TCP |
 
@@ -88,7 +88,6 @@ sudo chown -R $(id -u):$(id -g) {{ networks.moonbase.node_directory }}
 Now, execute the docker run command. Note that you have to:
 
  - Replace `YOUR-NODE-NAME` in two different places.
- - For collators, replace `PUBLIC_KEY` with the public address that will be associated with collation activities.
 
 !!! note
     If you are setting up a collator node, make sure to follow the code snippets for "Collator".
@@ -106,8 +105,6 @@ Now, execute the docker run command. Note that you have to:
     --name="YOUR-NODE-NAME" \
     --execution wasm \
     --wasm-execution compiled \
-    --in-peers 200 \
-    --out-peers 200 \
     --pruning archive \
     --state-cache-size 1 \
     -- \
@@ -128,8 +125,6 @@ Now, execute the docker run command. Note that you have to:
     --name="YOUR-NODE-NAME" \
     --execution wasm \
     --wasm-execution compiled \
-    --in-peers 200 \
-    --out-peers 200 \
     --pruning archive \
     --state-cache-size 1 \
     -- \
@@ -143,15 +138,13 @@ Now, execute the docker run command. Note that you have to:
     docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     purestake/moonbeam:{{ networks.moonbase.parachain_docker_tag }} \
+    --rpc-cors all \
     --base-path=/data \
     --chain alphanet \
     --name="YOUR-NODE-NAME" \
     --collator \
-    --author-id PUBLIC_KEY \
     --execution wasm \
     --wasm-execution compiled \
-    --in-peers 200 \
-    --out-peers 200 \
     --pruning archive \
     --state-cache-size 1 \
     -- \
@@ -166,15 +159,13 @@ Now, execute the docker run command. Note that you have to:
     purestake/moonbeam:{{ networks.moonbase.parachain_docker_tag }} \
     --ws-external \
     --rpc-external \
+    --rpc-cors all \
     --base-path=/data \
     --chain alphanet \
     --name="YOUR-NODE-NAME" \
     --collator \
-    --author-id PUBLIC_KEY \
     --execution wasm \
     --wasm-execution compiled \
-    --in-peers 200 \
-    --out-peers 200 \
     --pruning archive \
     --state-cache-size 1 \
     -- \
@@ -276,7 +267,6 @@ The next step is to create the systemd configuration file. Note that you have to
  - Replace `YOUR-NODE-NAME` in two different places
  - Double-check that the binary is in the proper path as described below (_ExecStart_)
  - Double-check the base path if you've used a different directory
- - For collators, replace `PUBLIC-KEY` with the public key of your H160 Ethereum address created above
  - Name the file `/etc/systemd/system/moonbeam.service`
 
 !!! note
@@ -312,8 +302,6 @@ The next step is to create the systemd configuration file. Note that you have to
          --base-path {{ networks.moonbase.node_directory }} \
          --chain alphanet \
          --name "YOUR-NODE-NAME" \
-        --in-peers 200 \
-        --out-peers 200 \
          -- \
          --port {{ networks.relay_chain.p2p }} \
          --rpc-port {{ networks.relay_chain.rpc }} \
@@ -343,7 +331,6 @@ The next step is to create the systemd configuration file. Note that you have to
     ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
          --parachain-id 1000 \
          --collator \
-         --author-id PUBLIC_KEY \
          --port {{ networks.parachain.p2p }} \
          --rpc-port {{ networks.parachain.rpc }} \
          --ws-port {{ networks.parachain.ws }} \
@@ -352,12 +339,11 @@ The next step is to create the systemd configuration file. Note that you have to
          --unsafe-rpc-external \
          --unsafe-ws-external \
          --rpc-methods=Safe \
+         --rpc-cors all \
          --log rpc=info \
          --base-path {{ networks.moonbase.node_directory }} \
          --chain alphanet \
          --name "YOUR-NODE-NAME" \
-         --in-peers 200 \
-         --out-peers 200 \
          -- \
          --port {{ networks.relay_chain.p2p }} \
          --rpc-port {{ networks.relay_chain.rpc }} \
