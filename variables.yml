@@ -18,12 +18,12 @@ networks:
          lotto_contract: '0x44ddD2EC5BE2A7f3e4A465C21600bE8df644093f'
          block_number: 132605
       chainbridge:
-         bridge_address: '0x747e8C91C8661704b1c33b0365A89f7e988E1de3'
-         ERC20_handler: '0xDC826cF5AD261FcD1D1dC404648B4D596Df88C8C'
-         ERC721_handler: '0xa6DCb79BC155f732C0761eFCEd656927FFA97E9E'
-         ERC20S: '0x019F59AFbB89f0d395F905F7Ca0A48485619bcA5'
-         ERC721M: '0xAC86f2e7C7C2e360eD0541fFDbb68710596E11B5'
-         generic_handler: '0x2dB6dA88c34943cED170FA64EBc1b21c3f8C8b92'
+         bridge_address: '0x638285E837Db7124FF0947251c6f20ceEb2645DF'
+         ERC20_handler: '0x623b114e13bdef428f34fa3a76E3BbA580Fd5bb3'
+         ERC721_handler: '0xa60e3a1ef9EbD7b607cbE0cAcC1E3A9B5a6f10c4'
+         generic_handler: '0xaD8E9976Dfa86B33A7A4330bdc3Bb28c3A5f854D'
+         ERC20S: '0xFCefBC458DA5b11a10422C0703bea1D154887D76'
+         ERC721M: '0x13a4DFdA8B3f0509D340f6034Cd9106cf2DB6BAa'
       razor:
          bridge_address: '0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB'
       chainlink:
