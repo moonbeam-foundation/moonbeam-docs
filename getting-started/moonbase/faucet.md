@@ -18,7 +18,7 @@ To request tokens automatically, we've created a Discord bot (named Mission Cont
  
 Under the category "Miscellaneous," you will find our AlphaNet bot channel. 
 
-![Discord1](/images/testnet/testnet-discord1a.png)
+![Discord1](/images/testnet/testnet-discord1.png)
 
 To check your balance, enter the following message, replacing `<enter-address-here->` with your H160 address:
 
@@ -34,7 +34,7 @@ To get DEV tokens, enter the following message, replacing `<enter-address-here->
 
 Mission Control will send you 5 DEV tokens and display your current account balance. Remember that Mission Control is limited to dispense once every 24 hours per Discord user.
 
-![Discord2](/images/testnet/testnet-discord2a.png)
+![Discord2](/images/testnet/testnet-discord2.png)
 
 ## Manual Procedure
 
