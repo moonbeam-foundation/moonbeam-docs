@@ -56,11 +56,9 @@ languageOptions.forEach(option => {
     const destinationLanguage = option.attributes.value.value;
     // Redirect users to the destination language
     if (supportedLanguages.includes(destinationLanguage)){
-      console.log("destin", destinationLanguage);
       if (isStaging){
         window.location = `http://docs-${destinationLanguage}-stage.moonbeam.network/${currentPath}`
       } else {
-        console.log(`${window.location.origin}/${destinationLanguage}${currentPath}`);
         window.location = `${window.location.origin}/${destinationLanguage}${currentPath}`;
       }
     } else {
@@ -68,7 +66,6 @@ languageOptions.forEach(option => {
       if (isStaging){
         window.location = `http://docs-stage.moonbeam.network/${currentPath}`
       } else {
-        console.log("down here dest lang", destinationLanguage)
         window.location = `${window.location.origin}${currentPath}`
       }
     }
