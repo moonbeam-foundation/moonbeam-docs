@@ -5,71 +5,72 @@ const selectLabel = document.querySelector(".select-label");
 const supportedLanguages = ["cn"];
 const english = document.querySelector(".en");
 const selected = "selected";
+let isStaging = false;
 
-const resetSelected = () => {
-  for (let languageOption of languageSelect.children){
-    languageOption.classList.remove(selected);
+/* Get current language and path */
+let currentLanguage;
+let currentPath = window.location.pathname;
+
+// If user is on staging site, no modifications to the currentPath are necessary and the
+// language will be in the host object instead of the pathname object
+if (window.location.origin.includes("stage")){
+  isStaging = true;
+  // If user is on a language other than English, the language will be the 2nd item in the array
+  if (supportedLanguages.includes(window.location.host.split('-')[1])) {
+    currentLanguage = window.location.host.split('-')[1];
+  } else {
+    currentLanguage = "en";
   }
-};
+} else {
+  currentPath = window.location.pathname.split('/');
+  // If user is on a language other than English, the language will be the 2nd item in the array
+  if (supportedLanguages.includes(currentPath[1])){
+    currentLanguage = currentPath[1]; 
+    // Remove the language from the path
+    currentPath = currentPath.join('/').slice(3);
+  } else {
+    currentLanguage = "en";
+    currentPath = currentPath.join('/');
+  };
+}
 
-const setEnglish = () => {
-  resetSelected();
+/* Show user the current language on the dropdown */
+if (currentLanguage === "en"){
   english.classList.add(selected, selected);
   selectLabel.textContent = "English";
+} else {
+  const currentLanguageElement = document.querySelector(`.${currentLanguage}`);
+  selectLabel.textContent = currentLanguageElement.textContent;
+  currentLanguageElement.classList.add(selected, selected);
 }
 
-const setSelected = (language) => {
-  if (supportedLanguages.includes(language)){
-    resetSelected();
-    const selectedLanguage = document.querySelector(`.${language}`);
-    console.log(selectedLanguage.textContent);
-    selectLabel.textContent = selectedLanguage.textContent;
-    selectedLanguage.classList.add(selected, selected);
-  } else {
-    // we're on the english site or we don't support it so default to english
-    setEnglish()
-  }
-};
+/* Add event listeners */
+selectWrapper.addEventListener("click", (e) => {
+  e.preventDefault();
+  selectWrapper.classList.toggle("active");
+})
 
-window.onload = () => {
-  selectWrapper.addEventListener("click", (e) => {
+languageOptions.forEach(option => {
+  option.addEventListener("click", (e) => {
     e.preventDefault();
-    selectWrapper.classList.toggle("active");
-  })
-
-  languageOptions.forEach(option => {
-    option.addEventListener("click", (e) => {
-      e.preventDefault();
-      const language = option.attributes.value.value;
-      if (language !== "en"){
-        if (window.location.origin.includes("stage")){
-          window.location = `http://docs-${language}-stage.moonbeam.network/`;
-        } else {
-          window.location = `${window.location.origin}/${language}`
-        }
+    const destinationLanguage = option.attributes.value.value;
+    // Redirect users to the destination language
+    if (supportedLanguages.includes(destinationLanguage)){
+      console.log("destin", destinationLanguage);
+      if (isStaging){
+        window.location = `http://docs-${destinationLanguage}-stage.moonbeam.network/${currentPath}`
       } else {
-        if (window.location.origin.includes("stage")){
-          window.location = `http://docs-stage.moonbeam.network/`
-        } else {
-          window.location = window.location.origin;
-        }
+        console.log(`${window.location.origin}/${destinationLanguage}${currentPath}`);
+        window.location = `${window.location.origin}/${destinationLanguage}${currentPath}`;
       }
-    })
-  })
-
-  if (window.location.origin.includes("stage")) {
-    // If it is another language, it'll be the 2nd item in the array
-    const languagePath = window.location.host.split('-')[1]; 
-    setSelected(languagePath);
-  } else {
-    if (window.location.pathname === "/") {
-      // User is definitely on the English site
-      setEnglish();
     } else {
-      // User is possibly on another language site
-      // If it is another language, it'll be the 2nd item in the array
-      const languagePath = window.location.pathname.split('/')[1]; 
-      setSelected(languagePath);
+      // Default to English
+      if (isStaging){
+        window.location = `http://docs-stage.moonbeam.network/${currentPath}`
+      } else {
+        console.log("down here dest lang", destinationLanguage)
+        window.location = `${window.location.origin}${currentPath}`
+      }
     }
-  }
-}
+  })
+})
