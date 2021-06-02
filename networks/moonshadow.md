@@ -9,7 +9,7 @@ _Updated June 2nd, 2021_
 
 ## Goal
 
-Moonshadow is the Moonbeam deployment to the [Westend TestNet](https://polkadot.network/westend-introducing-a-new-testnet-for-polkadot-and-kusama/). It will serve as a dry run for the future rollout of [Moonriver](https://moonbeam.network/networks/moonriver/launch/)/Moonbeam. Compared to Moonbase Alpha, where we have control over the relay chain, Moonshadow replicates the production environment of Kusama/Polkadot, where the relay chain is an independent blockchain.
+Moonshadow is the Moonbeam deployment to the [Westend TestNet](https://polkadot.network/westend-introducing-a-new-testnet-for-polkadot-and-kusama/). It will serve as a dry run for the future network launch process of [Moonriver](https://moonbeam.network/networks/moonriver/launch/)/Moonbeam. Compared to Moonbase Alpha, where we have control over the relay chain, Moonshadow replicates the production environment of Kusama/Polkadot, where the relay chain is an independent blockchain.
 
 ## Initial Configuration
 
@@ -25,7 +25,7 @@ Moonshadow has the following configuration:
 
 Moonshadow will have the same set of features as Moonbase Alpha. To see the full list, you can visit the [Moonbase Alpha page](/networks/moonbase/#features).
 
-However, as it serves as a dry run for the future rollout of [Moonriver](https://moonbeam.network/networks/moonriver/launch/)/Moonbeam, it will have some [limitations](#limitations)
+However, as it serves as a dry run for the future network launch process of [Moonriver](https://moonbeam.network/networks/moonriver/launch/)/Moonbeam, it will have some [limitations](#limitations)
 
 ## Get Started
 
@@ -49,7 +49,7 @@ As the network progresses, some external collators might be onboarded for furthe
 
 As Moonshadow shares the same set of features as Moonbase Alpha, they also share limitations. You can check all current limitations in the [Moonbase Alpha page](/networks/moonbase/#limitations).
 
-Furthermore, Moonshadow is expected to be a place to test the rollout process of [Moonriver](https://moonbeam.network/networks/moonriver/launch/)/Moonbeam. Therefore, depending on the phase being tested, there will be further limitations on the network. Developers who want to try Moonbeam Ethereum-compatibility features are referred to deploy on [Moonbase Alpha](/networks/moonbase/).
+Furthermore, Moonshadow is expected to be a place to test network launch process of [Moonriver](https://moonbeam.network/networks/moonriver/launch/)/Moonbeam. Therefore, depending on the phase being tested, there will be further limitations on the network. Developers who want to try Moonbeam Ethereum-compatibility features are referred to deploy on [Moonbase Alpha](/networks/moonbase/).
 
 ## Chain Purge
 

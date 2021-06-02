@@ -33,7 +33,7 @@ You can read more about the role Moonrock plays for Moonbeam in [this blog post]
 
 Moonbeam deployment to the [Westend TestNet](https://polkadot.network/westend-introducing-a-new-testnet-for-polkadot-and-kusama/) is called Moonshadow.
 
-Moonshadow will serve as a dry run for the future rollout of [Moonriver](https://moonbeam.network/networks/moonriver/launch/)/Moonbeam. Compared to Moonbase Alpha, where we have control over the relay chain, Moonshadow replicates the production environment of Kusama/Polkadot, where the relay chain is an independent blockchain.
+Moonshadow will serve as a dry run for the future network launch process of [Moonriver](https://moonbeam.network/networks/moonriver/launch/)/Moonbeam. Compared to Moonbase Alpha, where we have control over the relay chain, Moonshadow replicates the production environment of Kusama/Polkadot, where the relay chain is an independent blockchain.
 
 ## Moonriver
 
