@@ -13,4 +13,4 @@ Moonbase Alpha has two endpoints available for users to connect to: one for HTTP
 
 ## Get Tokens
 
-To start building on Moonbase Alpha, you can get DEV tokens from our [faucet](/getting-started/testnet/faucet/).
+To start building on Moonbase Alpha, you can get DEV tokens from our [faucet](/getting-started/moonbase/faucet/).

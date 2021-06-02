@@ -1,11 +1,14 @@
 ---
-title: TestNet
+title: Moonbase Alpha
 description: An overview of the current configuration of the Moonbeam TestNet, Moonbase Alpha, and information on how to start building on it using Solidity.
 ---
 
 # The Moonbase Alpha TestNet
 
-_Updated April 5, 2021_
+_Updated May 27th, 2021_
+
+!!! note
+    With the release of [Moonbase Alpha v8](https://github.com/PureStake/moonbeam/releases/tag/v0.8.0), the minimum gas price has been set to 1 GDEV (similar to GWei on Ethereum). This might be a breaking change if you've previously specified a gas price of `0` for your deployment.
 
 ## Goal
 
@@ -17,7 +20,7 @@ In order to collect as much feedback as possible and provide fast issue resoluti
 
 Moonbase Alpha has the following configuration:
 
- - Moonbeam runs as a parachain connected to a relay chain
+ - Moonbase Alpha runs as a parachain connected to a relay chain
  - The parachain has two collators (hosted by PureStake) that are collating blocks. External collators can join the network. Only the top {{ networks.moonbase.staking.max_collators }} collator nodes by stake are chosen in the active set
  - The relay chain hosts three validators (hosted by PureStake) to finalize relay chain blocks. One of them is selected to finalize each block collated by Moonbeam's collators. This setup provides room to expand to a two-parachain configuration in the future
  - There are two RPC endpoints (hosted by PureStake). People can run full nodes to access their own private RPC endpoints
@@ -70,6 +73,16 @@ The following features are available:
     - Staking module has been refactored, with new names to improve the end-user experience
     - Added three new precompiles: [Bn128Add](https://eips.ethereum.org/EIPS/eip-196), [Bn128Mul](https://eips.ethereum.org/EIPS/eip-196) and [Bn128Pairing](https://eips.ethereum.org/EIPS/eip-197)
 
+??? release v8 "_May 2021_"      
+    - Added the [Treasury pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_treasury/index.html), to bring [Treasury functionalities](https://wiki.polkadot.network/docs/en/learn-treasury) to Moonbase Alpha. Two separate treasuries were set up: one receiving 20% of the transaction fees and governed by democracy/councils, and the other receiving 30% of the block rewards that will serve to secure future parachain slots
+    - Added the [Proxy pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_proxy/index.html), which enables the use of [Proxy accounts](https://wiki.polkadot.network/docs/en/learn-proxies) on Moonbase Alpha
+    - Introduced a new consensus mechanism, called Nimbus. Nimbus provides different filters to choose a random subset of the current active collator pool to produce the next block. Furthermore, block authors now sign blocks using session keys, which are mapped via an extrinsic to an H160 address for rewards payment. You can read more about Nimbus [here](/learn/consensus/)
+    - Added a [Staking precompiled contract](https://github.com/PureStake/moonbeam/pull/358) contract at address `{{ networks.moonbase.staking.precompile_address }}`. An interface to interact with the contract can be found on [this link](https://raw.githubusercontent.com/PureStake/moonbeam/master/runtime/precompiles/src/StakingInterface.sol)
+    - Added [preliminary logs bloom filtering](https://github.com/paritytech/frontier/pull/364) to match user requests through Frontier. This feature was [further optmized](https://github.com/paritytech/frontier/pull/372) to achieve faster response times and a more predictable performance
+    - Added the [parachain Crowdloan pallet](https://github.com/paritytech/polkadot/blob/master/runtime/common/src/crowdloan.rs) to test the distribution of rewards
+    - Many improvements that aim to enhance network stability
+    - Minimum gas price has been increased to 1 GDEV (analog to GWei on Ethereum)
+
 ### Release Notes
 
 For more details regarding the updates of Moonbase Alpha, please refer to the following release notes:
@@ -80,12 +93,7 @@ For more details regarding the updates of Moonbase Alpha, please refer to the fo
  - [Moonbase Alpha v5](https://github.com/PureStake/moonbeam/releases/tag/v0.5.0)
  - [Moonbase Alpha v6](https://github.com/PureStake/moonbeam/releases/tag/v0.6.0)
  - [Moonbase Alpha v7](https://github.com/PureStake/moonbeam/releases/tag/v0.7.0)
-
-### Future Releases
-
-Features that may be implemented in the future:
-
- - Treasury features ([Treasury pallet](https://github.com/paritytech/substrate/tree/master/frame/treasury))
+ - [Moonbase Alpha v8](https://github.com/PureStake/moonbeam/releases/tag/v0.8.0)
 
 ## Get Started
 
@@ -101,7 +109,7 @@ You can see current Moonbase Alpha telemetry information visiting [this link](ht
 
 ## Early Stage Proof of Stake
 
-With the release of Moonbase Alpha v6, the TestNet is now running with an early stage Proof of Stake system. This means that, for testing purposes, Moonbeam partners will be encouraged to be the first collators in the network.
+With the release of Moonbase Alpha v6, the TestNet is now running with an early stage Proof of Stake system. Currently the active set consists of {{ networks.moonbase.staking.max_collators }} collators, which are nominated with DEV funds held by the team.
 
 As Moonbase Alpha progresses, we expect to evolve into a fully decentralized Proof of Stake network.
 
@@ -109,9 +117,9 @@ As Moonbase Alpha progresses, we expect to evolve into a fully decentralized Pro
 
 This is the first TestNet for Moonbeam, so there are some limitations.
 
-Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts) are yet to be included in this release. You can check a list of supported precompiles [here](/integrations/precompiles/). However, all built-in functions are available.
+Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts) are yet to be included. You can check a list of supported precompiles [here](/integrations/precompiles/). However, all built-in functions are available.
 
-Since the release of Moonbase Alpha v6, the maximum gas limit per block has been set to 15M, with a maximum gas limit per transaction of 13M.
+Since the release of Moonbase Alpha v6, the maximum gas limit per block has been set to {{ networks.moonbase.gas_block }}, with a maximum gas limit per transaction of {{ networks.moonbase.gas_tx }}.
 
 Users only have access to the Moonbeam parachain. In future networks, we will add access to the relay chain so users can test transferring tokens.
 
@@ -119,4 +127,4 @@ Users only have access to the Moonbeam parachain. In future networks, we will ad
 
 This network is under active development. Occasionally, chain purges may be needed in order to reset the blockchain to its initial state. This is necessary when doing major TestNet upgrades or maintenance. We will announce when a chain purge will take place via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
 
-Please take note that PureStake will not be migrating the chain state. Thus, all data stored in the blockchain will be lost when a chain purge is carried out. However, as there is no gas limit, users can easily recreate their pre-purge state.
+Please take note that PureStake will not be migrating the chain state. Thus, all data stored in the blockchain will be lost when a chain purge is carried out.

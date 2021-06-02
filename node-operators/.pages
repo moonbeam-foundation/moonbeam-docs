@@ -1,5 +1,6 @@
 title: Node Operators
 hide: false
-arrange:
+nav:
   - networks
   - oracles
+  - indexers

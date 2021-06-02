@@ -1,13 +1,15 @@
 title: Integrations
-arrange:
+nav:
   - bridges
   - ethlibraries
+  - openzeppelin
   - oracles
   - wallets
   - explorers.md
   - remix.md
   - trufflebox.md
   - hardhat.md
+  - waffle-mars.md
   - thegraph.md
   - pubsub.md
   - debug-trace.md
