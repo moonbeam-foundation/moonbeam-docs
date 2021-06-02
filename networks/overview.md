@@ -10,7 +10,8 @@ We plan to create multiple long-lived, Moonbeam-based networks. Significantly, M
 Our roadmap in regards to deployments as a parachain is the following:
 
  - Moonbase Alpha: PureStake hosted parachain TestNet (_September 2020_) 
- - Moonrock: deployment on the Rococo TestNet (_tbd_)
+ - Moonrock: deployment on the Rococo TestNet
+ - Moonshadow: deployment on the Westend TestNet
  - Moonriver: deployment on Kusama (_end of Q2 2021_)
  - Moonbeam: deployment on Polkadot (_end of Q3 2021_)
  
@@ -24,19 +25,19 @@ This TestNet is a network hosted by PureStake. It features a parachain/relay cha
 
 ## Moonrock  
 
-Moonbeam deployment to the [Rococo parachain TestNet](https://polkadot.network/introducing-rococo-polkadots-parachain-testnet/)  is called Moonrock. This instance is not meant to be long-lived and is aimed to be used for development purposes.
+Moonbeam deployment to the [Rococo parachain TestNet](https://polkadot.network/introducing-rococo-polkadots-parachain-testnet/) is called Moonrock. This instance is not meant to be long-lived and is aimed to be used for development purposes.
 
-You can read more about the role Moonrock plays for Moonbeam in [this blogpost](https://moonbeam.network/blog/role-of-rococo-in-moonriver-launch-strategy/).
+You can read more about the role Moonrock plays for Moonbeam in [this blog post](https://moonbeam.network/blog/role-of-rococo-in-moonriver-launch-strategy/).
 
 ## Moonshadow
 
 Moonbeam deployment to the [Westend TestNet](https://polkadot.network/westend-introducing-a-new-testnet-for-polkadot-and-kusama/) is called Moonshadow.
 
-Moonshadow will serve as a testing environment for Moonriver/Moonbeam. Compared to Moonbase Alpha, where we have control over the relay chain, Moonshadow replicates the production environment of Kusama/Polkadot, where the relay chain is an independent blockchain.
+Moonshadow will serve as a dry run for the future rollout of [Moonriver](https://moonbeam.network/networks/moonriver/launch/)/Moonbeam. Compared to Moonbase Alpha, where we have control over the relay chain, Moonshadow replicates the production environment of Kusama/Polkadot, where the relay chain is an independent blockchain.
 
 ## Moonriver
 
-Moonbeam will launch as a parachain on the Kusama network, in advance of deploying to the Polkadot MainNet ([more details here](https://www.purestake.com/news/moonbeam-on-kusama/)). This requires parachain functionality to be live on Kusama. 
+Moonbeam will launch as a parachain on the Kusama network in advance of deploying to the Polkadot MainNet ([more details here](https://www.purestake.com/news/moonbeam-on-kusama/)). This requires parachain functionality to be live on Kusama. 
 
 We plan to exercise parachain-related functionality such as [Crowdloan](https://wiki.polkadot.network/docs/en/learn-crowdloans), [XCMP](https://wiki.polkadot.network/docs/en/learn-crosschain), and [SPREE](https://wiki.polkadot.network/docs/en/learn-spree) on Moonriver as those features become available.
 

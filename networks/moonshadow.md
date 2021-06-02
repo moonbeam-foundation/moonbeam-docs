@@ -5,11 +5,11 @@ description: An overview of the current configuration of the Moonshadow TestNet 
 
 # Moonshadow - Moonbeam on Westend
 
-_Updated May 31st, 2021_
+_Updated June 2nd, 2021_
 
 ## Goal
 
-Moonshadow is the Moonbeam deployment to the [Westend TestNet](https://polkadot.network/westend-introducing-a-new-testnet-for-polkadot-and-kusama/). It will serve as a testing environment for Moonriver/Moonbeam. Compared to Moonbase Alpha, where we have control over the relay chain, Moonshadow replicates the production environment of Kusama/Polkadot, where the relay chain is an independent blockchain.
+Moonshadow is the Moonbeam deployment to the [Westend TestNet](https://polkadot.network/westend-introducing-a-new-testnet-for-polkadot-and-kusama/). It will serve as a dry run for the future rollout of [Moonriver](https://moonbeam.network/networks/moonriver/launch/)/Moonbeam. Compared to Moonbase Alpha, where we have control over the relay chain, Moonshadow replicates the production environment of Kusama/Polkadot, where the relay chain is an independent blockchain.
 
 ## Initial Configuration
 
@@ -23,7 +23,9 @@ Moonshadow has the following configuration:
 
 ## Features
 
-Moonshadow will have the same set of features as Moonbase Alpha. To see the full list you can visit the [Moonbase Alpha page](/networks/moonbase/#features).
+Moonshadow will have the same set of features as Moonbase Alpha. To see the full list, you can visit the [Moonbase Alpha page](/networks/moonbase/#features).
+
+However, as it serves as a dry run for the future rollout of [Moonriver](https://moonbeam.network/networks/moonriver/launch/)/Moonbeam, it will have some [limitations](#limitations)
 
 ## Get Started
 
@@ -41,15 +43,14 @@ More information about how to freely acquire MSHD will follow soon.
 
 At launch, the Moonshadow parachain will run as a centralized Proof-of-Stake network, as all four collators will be run by PureStake and nominated with DEV funds held by the team.
 
-As the network progresses, some testing might include onboarding external collators.
+As the network progresses, some external collators might be onboarded for further testing.
 
 ## Limitations
 
 As Moonshadow shares the same set of features as Moonbase Alpha, they also share limitations. You can check all current limitations in the [Moonbase Alpha page](/networks/moonbase/#limitations).
 
-Moonshadow is expected to be a place to test the rollout process of Moonriver/Moonbeam. Developers who want to try Moonbeam Ethereum-compatibility features are referred to deploy on [Moonbase Alpha](/networks/moonbase/).
+Furthermore, Moonshadow is expected to be a place to test the rollout process of [Moonriver](https://moonbeam.network/networks/moonriver/launch/)/Moonbeam. Therefore, depending on the phase being tested, there will be further limitations on the network. Developers who want to try Moonbeam Ethereum-compatibility features are referred to deploy on [Moonbase Alpha](/networks/moonbase/).
 
 ## Chain Purge
 
 As Moonshadow will be a parachain in the Westend TestNet, purges are not expected.
-
