@@ -53,7 +53,7 @@ Once you have an H160 account imported to PolkadotJS, you should see it under th
 
 ### Become a Collator Candidate
 
-Once your node is running and in sync with the network, you become a collator candidate by following the steps below in [PolkadotJS](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts):
+Once your node is running and in sync with the network, you become a collator candidate (and join the candidate pool) by following the steps below in [PolkadotJS](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts):
 
  1. Navigate to the "Developers" tab and click on "Extrinsics"
  2. Select the account you want to be associated with your collation activities
@@ -134,7 +134,7 @@ The module also adds the following RPC calls (chain state):
 
 ### Mapping Extrinsic
 
-To map your author ID to your account, you need to be inside the selected candidates pool. Once you are a selected candidate, you need to send a mapping extrinsic (transaction). Note that this will bond {{ networks.moonbase.staking.collator_map_bond }} DEV tokens, and this is per author ID registered. To do so, take the following steps:
+To map your author ID to your account, you need to be inside the [candidate pool](#become-a-collator-candidate). Once you are a collator candidate, you need to send a mapping extrinsic (transaction). Note that this will bond {{ networks.moonbase.staking.collator_map_bond }} DEV tokens, and this is per author ID registered. To do so, take the following steps:
 
  1. Head to the "Developer" tab
  2. Select the "Extrinsics" option
@@ -146,7 +146,7 @@ To map your author ID to your account, you need to be inside the selected candid
 
 ![Author ID Mapping to Account Extrinsic](/images/fullnode/collator-polkadotjs3.png)
 
-If the transaction is successful, you will see a confirmation notification on your screen. On the contrary, make sure you are inside the selected candidates.
+If the transaction is successful, you will see a confirmation notification on your screen. On the contrary, make sure you've joined the [candidate pool](#become-a-collator-candidate).
 
 ![Author ID Mapping to Account Extrinsic Successful](/images/fullnode/collator-polkadotjs4.png)
 
