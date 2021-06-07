@@ -58,7 +58,7 @@ Here, provide the following information:
 
 Each extrinsic provides a different response:
 
- - **selectedCandidates** — returns the current active set of collators, that is, the top }{ networks.moonbase.staking.max_collators }} collators by total tokens staked (including nominations)
+ - **selectedCandidates** — returns the current active set of collators, that is, the top {{ networks.moonbase.staking.max_collators }} collators by total tokens staked (including nominations)
  - **candidatePool** — returns the current list of all the collators, including those that are not in the active set
 
 ![Staking Account](/images/staking/staking-stake-11.png)
