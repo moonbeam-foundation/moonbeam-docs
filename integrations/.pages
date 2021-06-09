@@ -2,6 +2,7 @@ title: Integrations
 nav:
   - bridges
   - ethlibraries
+  - indexers
   - openzeppelin
   - oracles
   - wallets
@@ -10,7 +11,6 @@ nav:
   - trufflebox.md
   - hardhat.md
   - waffle-mars.md
-  - thegraph.md
   - pubsub.md
   - debug-trace.md
   - precompiles.md
