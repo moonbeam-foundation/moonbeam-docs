@@ -151,6 +151,7 @@ def fetch_wallet_balance(address):
 fetch_wallet_balance('0xFEC4f9D5B322Aa834056E85946A32c35A3f5aDD8')
 
 ```
+
 !!! note
     The 2nd parameter of `auth` is empty, because there is no password required - your API key is all that's needed.
 
