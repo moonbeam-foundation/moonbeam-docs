@@ -73,10 +73,10 @@ curl https://api.covalenthq.com/v1/1287/tokens/\
     The colon `:` after the API key is important because otherwise you will be prompted for a password (which is not needed).
 
 
-The Covalent API will return a list of token holders for the ERTH token. Unless you already owned some ERTH tokens, your address will be missing from that list. Head over to the [Moonbase Alpha ERC-20 Faucet](https://moonbase-minterc20.netlify.app/) to generate some ERTH tokens for yourself. Now repeat the same Covalent API request as above. You should now see your address in the list of token holders for the ERTH token.
+The Covalent API will return a list of token holders for the ERTH token. Unless you already owned some ERTH tokens, your address will be missing from that list. Head over to the [Moonbase Alpha ERC-20 Faucet](https://moonbase-minterc20.netlify.app/) to generate some ERTH tokens for yourself. Now repeat the same Covalent API request as above. The Covalent API updates in real-time, so you should now see your address in the list of token holders for the ERTH token.
 
 ## Javascript Examples
-Copy and paste the below code block into your preferred environment, or [JSFiddle](https://jsfiddle.net/). After setting the API key, set the address constant. Remember our chain ID is ‘1287’ for Moonbase Alpha.
+Copy and paste the below code block into your preferred environment, or [JSFiddle](https://jsfiddle.net/). After setting the API key, set the address constant. Remember our chain ID is `1287` for Moonbase Alpha.
 
 === "Using Fetch"
     ```js
@@ -134,7 +134,7 @@ The output should resemble the below. The balances endpoint returns a list of al
 ![Javascript Console Output](/images/covalent/covalentjs.png)
 
 ## Python Example
-Covalent doesn’t have an official API wrapper. To query the API directly you will have to use the Python [requests library](https://pypi.org/project/requests/). Install requests into your environment from the command line with `pip install requests`. Then import it and use it in your code. Use the HTTP verbs get methods to return the information from the API. Copy and paste the below code block into your preferred environment and run it. 
+Covalent doesn’t have an official API wrapper. To query the API directly you will have to use the Python [requests library](https://pypi.org/project/requests/). Install requests into your environment from the command line with `pip install requests`. Then import it and use it in your code. Use the HTTP verbs get methods to return the information from the API. Copy and paste the below code block into your preferred environment and run it. The output should look similiar to the screenshot above, however the formatting may vary depending on your environment.
 
 ```python
 import requests
@@ -151,6 +151,8 @@ def fetch_wallet_balance(address):
 fetch_wallet_balance('0xFEC4f9D5B322Aa834056E85946A32c35A3f5aDD8')
 
 ```
+!!! note
+    The 2nd parameter of `auth` is empty, because there is no password required - your API key is all that's needed.
 
 ### Community Built Libraries
 Covalent currently has libraries in Python, Node, and Go, which are built and maintained by the community as part of the [Covalent Alchemists Program](https://www.covalenthq.com/ambassador/). The tools have been built by the community to provide value to users of the Covalent API and are [available here](https://www.covalenthq.com/docs/tools/community).
