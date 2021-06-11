@@ -54,8 +54,8 @@ You can run the Docker image using the following:
 
 === "Windows"
     ```
-    docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 -p 9933:9933 \
-    purestake/moonbeam:{{ networks.development.build_tag }} \
+    docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 -p 9933:9933 ^
+    purestake/moonbeam:{{ networks.development.build_tag }} ^
     --dev --ws-external --rpc-external
     ```
 

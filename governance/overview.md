@@ -64,7 +64,7 @@ Voting parameters are currently set as follows:
 |             Variable             |     |                         Value                         |
 | :------------------------------: | :-: | :---------------------------------------------------: |
 |     Voting Period     |     |     {{ networks.moonbase.democracy.vote_period.blocks}} blocks ({{ networks.moonbase.democracy.vote_period.days}} days)     |
-|        Fast-Track Voting Period        |     |     {{ networks.moonbase.democracy.fast_vote_period.blocks}} blocks ({{ networks.moonbase.democracy.fast_vote_period.days}} day)     | | 
+|        Fast-Track Voting Period        |     |     {{ networks.moonbase.democracy.fast_vote_period.blocks}} blocks ({{ networks.moonbase.democracy.fast_vote_period.hours}} hours)     | | 
 |          Enactment Period           |     |     {{ networks.moonbase.democracy.enact_period.blocks}} blocks ({{ networks.moonbase.democracy.enact_period.days}} day)  |
 | Cool-off Period |     |     {{ networks.moonbase.democracy.cool_period.blocks}} blocks ({{ networks.moonbase.democracy.cool_period.days}} days)  |
 |              Minimum Deposit               |     | {{ networks.moonbase.democracy.min_deposit }} GLMR |

@@ -1,99 +1,99 @@
 networks:
-   development:
-      build_tag: tutorial-v7
-      rpc_url: http://127.0.0.1:9933
-      chain_id: 1281
-      container_name: moonbeam_development
-   moonbase:
-      version: v0.7.0 # must be in this exact format for links to work
-      rpc_url: https://rpc.testnet.moonbeam.network
-      chain_id: 1287
-      parachain_docker_tag: v0.8.0
-      gas_block: 15M
-      gas_tx: 13M
-      node_directory: /var/lib/alphanet-data
-      node_db_loc: /chains/moonbase_alpha/db
-      binary_name: moonbeam
-      thegraph:
-         lotto_contract: '0x44ddD2EC5BE2A7f3e4A465C21600bE8df644093f'
-         block_number: 132605
-      chainbridge:
-         bridge_address: '0x638285E837Db7124FF0947251c6f20ceEb2645DF'
-         ERC20_handler: '0x623b114e13bdef428f34fa3a76E3BbA580Fd5bb3'
-         ERC721_handler: '0xa60e3a1ef9EbD7b607cbE0cAcC1E3A9B5a6f10c4'
-         generic_handler: '0xaD8E9976Dfa86B33A7A4330bdc3Bb28c3A5f854D'
-         ERC20S: '0xFCefBC458DA5b11a10422C0703bea1D154887D76'
-         ERC721M: '0x13a4DFdA8B3f0509D340f6034Cd9106cf2DB6BAa'
-      razor:
-         bridge_address: '0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB'
-      chainlink:
-         oracle_contract: '0x1d693d883BeAeE16edD0D7588D6a9f7E1967E798'
-         link_contract: '0xa36085F69e2889c224210F603D836748e7dC0088'
-         client_contract: '0xe88ec866D05e637074B5a0D0d931f292d7871613'
-         basic:
-            aave_usd: '541b8f7db7374d78b38285ef1b8bfacc'
-            algo_usd: 'cdb48696e2314133a1dc8ea27922dd24'
-            band_usd: '6b0983e0cb6d4aca908b615302a9d672'
-            btc_usd: '82ceee2897824a0e8b014ed4ed2ab31e'
-            dot_usd: '6f6371a780324b90aaf195a0d39c723c'
-            eth_usd: '60160cdd0e10489681967e9d7ef4c927'
-            ksm_usd: '30a1686f657249f4b6ab01e384b2beaa'
-            link_usd: 'aad8dbdb0c1840ab905728d85117b681'
-            sushi_usd: 'b4b07d0fc218455caaff2223a05ec208'
-            uni_usd: '22b567acabdb419abe8136a2bab6ade8'
-         feed:
-            consumer:
-               aave_usd: '0xD1e52C81FD72fFc6dA3bF083297E6C37852E93DA'
-               algo_usd: '0x0183d1C98442510DD7aaB0E2d09863c47FFF4dF1'
-               band_usd: '0x124A3EE742737BC30307d1F82c5406bf79aBa4d6'
-               btc_usd: '0x86f11CffCB1A86Ecb79643FCa1a3C666a61F84Fd'
-               dot_usd: '0x235A40b872e543b6238df7Ff55E2D8eCAE80a6bd'
-               eth_usd: '0xE33691Ba3cF532D4025cF0f47679eFe430d4A618'
-               ksm_usd: '0x9Df2E2179ddb4D9197451946104068e08eD3E49F'
-               link_usd: '0xC58B34ea686Db2d567835de7AB58fC678b6f186A'
-               sushi_usd: '0x21B52fFF227cD9F425E817f9E1eaA0eB8cd647e1'
-               uni_usd: '0x5Cd72748F94a8597f563D92687A8D2A5074b10E5'
-      democracy:
-         launch_period:
-            days: 2
-            blocks: 14400
-         vote_period:
-            days: 5
-            blocks: 36000
-         fast_vote_period:
-            days: 1
-            blocks: 7200
-         enact_period:
-            days: 1
-            blocks: 7200
-         cool_period:
-            days: 7
-            blocks: 50400
-         min_deposit: 4
-         min_preim_deposit: 0.004
-         max_votes: 100
-         max_proposals: 100
-      staking:
-         collator_min_stake: 1000
-         collator_map_bond: 100
-         max_collators: 32
-         round_blocks: 600
-         round_hours: 2
-         bond_lock: 2
-         min_nom_stake: 5
-         min_nom_amount: 5
-         max_nom_per_col: 10
-         max_col_per_nom: 25
-         collators:
-            address1: '0x4c5A56ed5A4FF7B09aA86560AfD7d383F4831Cce'
-            address2: '0x62d2e7324f9274fac3893a59aff8e944a323a495'
-   relay_chain:
-      p2p: 30334
-      rpc: 9934
-      ws: 9945
-      prometheus: 9616
-   parachain:
-      p2p: 30333
-      rpc: 9933
-      ws: 9944
-      prometheus: 9615
+  development:
+    build_tag: tutorial-v7
+    rpc_url: http://127.0.0.1:9933
+    chain_id: 1281
+    container_name: moonbeam_development
+  moonbase:
+    version: v0.7.0 # must be in this exact format for links to work
+    rpc_url: https://rpc.testnet.moonbeam.network
+    chain_id: 1287
+    parachain_docker_tag: v0.8.0
+    gas_block: 15M
+    gas_tx: 13M
+    node_directory: /var/lib/alphanet-data
+    node_db_loc: /chains/moonbase_alpha/db
+    binary_name: moonbeam
+    thegraph:
+      lotto_contract: '0x44ddD2EC5BE2A7f3e4A465C21600bE8df644093f'
+      block_number: 132605
+    chainbridge:
+      bridge_address: '0x638285E837Db7124FF0947251c6f20ceEb2645DF'
+      ERC20_handler: '0x623b114e13bdef428f34fa3a76E3BbA580Fd5bb3'
+      ERC721_handler: '0xa60e3a1ef9EbD7b607cbE0cAcC1E3A9B5a6f10c4'
+      generic_handler: '0xaD8E9976Dfa86B33A7A4330bdc3Bb28c3A5f854D'
+      ERC20S: '0xFCefBC458DA5b11a10422C0703bea1D154887D76'
+      ERC721M: '0x13a4DFdA8B3f0509D340f6034Cd9106cf2DB6BAa'
+    razor:
+      bridge_address: '0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB'
+    chainlink:
+      oracle_contract: '0x1d693d883BeAeE16edD0D7588D6a9f7E1967E798'
+      link_contract: '0xa36085F69e2889c224210F603D836748e7dC0088'
+      client_contract: '0xe88ec866D05e637074B5a0D0d931f292d7871613'
+      basic:
+        aave_usd: '541b8f7db7374d78b38285ef1b8bfacc'
+        algo_usd: 'cdb48696e2314133a1dc8ea27922dd24'
+        band_usd: '6b0983e0cb6d4aca908b615302a9d672'
+        btc_usd: '82ceee2897824a0e8b014ed4ed2ab31e'
+        dot_usd: '6f6371a780324b90aaf195a0d39c723c'
+        eth_usd: '60160cdd0e10489681967e9d7ef4c927'
+        ksm_usd: '30a1686f657249f4b6ab01e384b2beaa'
+        link_usd: 'aad8dbdb0c1840ab905728d85117b681'
+        sushi_usd: 'b4b07d0fc218455caaff2223a05ec208'
+        uni_usd: '22b567acabdb419abe8136a2bab6ade8'
+      feed:
+        consumer:
+          aave_usd: '0xD1e52C81FD72fFc6dA3bF083297E6C37852E93DA'
+          algo_usd: '0x0183d1C98442510DD7aaB0E2d09863c47FFF4dF1'
+          band_usd: '0x124A3EE742737BC30307d1F82c5406bf79aBa4d6'
+          btc_usd: '0x86f11CffCB1A86Ecb79643FCa1a3C666a61F84Fd'
+          dot_usd: '0x235A40b872e543b6238df7Ff55E2D8eCAE80a6bd'
+          eth_usd: '0xE33691Ba3cF532D4025cF0f47679eFe430d4A618'
+          ksm_usd: '0x9Df2E2179ddb4D9197451946104068e08eD3E49F'
+          link_usd: '0xC58B34ea686Db2d567835de7AB58fC678b6f186A'
+          sushi_usd: '0x21B52fFF227cD9F425E817f9E1eaA0eB8cd647e1'
+          uni_usd: '0x5Cd72748F94a8597f563D92687A8D2A5074b10E5'
+    democracy:
+      launch_period:
+        days: 1
+        blocks: 7200
+      vote_period:
+        days: 5
+        blocks: 36000
+      fast_vote_period:
+        hours: 4
+        blocks: 1200
+      enact_period:
+        days: 1
+        blocks: 7200
+      cool_period:
+        days: 7
+        blocks: 50400
+      min_deposit: 4
+      min_preim_deposit: 0.004
+      max_votes: 100
+      max_proposals: 100
+    staking:
+      collator_min_stake: 1000
+      collator_map_bond: 100
+      max_collators: 32
+      round_blocks: 300
+      round_hours: 1
+      bond_lock: 2
+      min_nom_stake: 5
+      min_nom_amount: 5
+      max_nom_per_col: 10
+      max_col_per_nom: 25
+      collators:
+        address1: '0x4c5A56ed5A4FF7B09aA86560AfD7d383F4831Cce'
+        address2: '0x62d2e7324f9274fac3893a59aff8e944a323a495'
+  relay_chain:
+    p2p: 30334
+    rpc: 9934
+    ws: 9945
+    prometheus: 9616
+  parachain:
+    p2p: 30333
+    rpc: 9933
+    ws: 9944
+    prometheus: 9615
