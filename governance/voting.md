@@ -17,7 +17,7 @@ In Moonbeam, users will be able to create, second, and vote on proposals using t
 
 With the release of [Moonbase Alpha v6](https://github.com/PureStake/moonbeam/releases/tag/v0.6.0), users of the network can now submit proposals for public referenda and vote on them. This guide outlines how to vote on a proposal that has reached a public referendum. You can find a guide on how to submit a proposal [here](/governance/proposals/).
 
-More information related to [Governance](https://wiki.polkadot.network/docs/en/learn-governance) and [Participate in Democracy](https://wiki.polkadot.network/docs/en/maintain-guides-democracy) can be found in Polkadot's Wiki pages.
+More information related to [Governance](https://wiki.polkadot.network/docs/learn-governance) and [Participate in Democracy](https://wiki.polkadot.network/docs/maintain-guides-democracy) can be found in Polkadot's Wiki pages.
 
 !!! note
     This guide was done with a customized version of Moonbeam with short Launch/Enactment periods for demonstration purposes only.
@@ -145,13 +145,13 @@ From vote delegation, there are some key takeaways:
 
  - If a token holder were to remove the vote delegation during a public referendum where the delegated votes were used, these would be removed from the tally
  - A token holder that delegated votes still has an economic buy-in. This means that if the option the delegator selected were to win, the tokens delegated are locked for the number of lock periods
- - The tokens delegated for voting are no longer part of the token holder's free balance. To read more about the types of balances, you can visit [this site](https://wiki.polkadot.network/docs/en/build-protocol-info#free-vs-reserved-vs-locked-vs-vesting-balance)
+ - The tokens delegated for voting are no longer part of the token holder's free balance. To read more about the types of balances, you can visit [this site](https://wiki.polkadot.network/docs/build-protocol-info#free-vs-reserved-vs-locked-vs-vesting-balance)
  - A token holder that delegated tokens can't participate in public referendum. First, the token holder must undelegate his vote
  - A token holder that delegated tokens needs to manually unlock his locked tokens after the locking period has expired. For this, it is necessary to know the referendum index
 
 ### Unlocking Locked Tokens
 
-When token holders vote, the tokens used are locked and cannot be transferred. You can verify if you have any locked tokens in the "Accounts" tab, expanding the address's account details to query. There, you will see different types of balances (you can read more information about each type [here](https://wiki.polkadot.network/docs/en/build-protocol-info#free-vs-reserved-vs-locked-vs-vesting-balance)). If you hover over the icon next to "democracy," an information panel will show telling you the current status of your lock. Different lock status includes:
+When token holders vote, the tokens used are locked and cannot be transferred. You can verify if you have any locked tokens in the "Accounts" tab, expanding the address's account details to query. There, you will see different types of balances (you can read more information about each type [here](https://wiki.polkadot.network/docs/build-protocol-info#free-vs-reserved-vs-locked-vs-vesting-balance)). If you hover over the icon next to "democracy," an information panel will show telling you the current status of your lock. Different lock status includes:
 
  - Locked because of an ongoing referendum, meaning that you've used your tokens and have to wait until the referendum finishes, even if you've voted with a no-lock conviction factor
  - Locked because of the conviction multiplier selected, displaying the number of blocks and time left

@@ -17,7 +17,7 @@ In Moonbeam, users will be able to create, second, and vote on proposals using t
 
 With the release of [Moonbase Alpha v6](https://github.com/PureStake/moonbeam/releases/tag/v0.6.0), users of the network can now submit proposals for public referenda in the TestNet. This guide outlines the process of how to create a proposal. The steps will go from its creation until it reaches public referenda. You can find a guide on how to vote on a proposal [here](/governance/voting/).
 
-More information can be found in Polkadot's Wiki pages related to [Governance](https://wiki.polkadot.network/docs/en/learn-governance#council) and [Participate in Democracy](https://wiki.polkadot.network/docs/en/maintain-guides-democracy).
+More information can be found in Polkadot's Wiki pages related to [Governance](https://wiki.polkadot.network/docs/learn-governance#council) and [Participate in Democracy](https://wiki.polkadot.network/docs/maintain-guides-democracy).
 
 !!! note
     This guide was done with a customized version of Moonbeam with short Launch/Enactment periods for demonstration purposes only.
