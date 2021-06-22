@@ -54,14 +54,14 @@ The following features are available:
         * Support for Ethereum transactions without ChainId
 
 ??? release v5 "_January 2021_"      
-    - Added a custom version of the [Staking pallet](https://wiki.polkadot.network/docs/en/learn-staking) (for testing and development purposes only)
+    - Added a custom version of the [Staking pallet](https://wiki.polkadot.network/docs/learn-staking) (for testing and development purposes only)
     - Added support for querying pending transactions while they are in the pool 
     - Fixed some issues when retrieving past events and other minor fixes related to smart contract events
     - Multiple under-the-hood improvements that include an optimization of the EVM execution time, making it 15-50 times faster
     - Support for the [modexp](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x05-bigmodexp-base-exp-mod) precompile contracts
 
 ??? release v6 "_February 2021_"      
-    - Public release of the custom [Staking pallet](https://wiki.polkadot.network/docs/en/learn-staking). Now token holders can nominate collators and earn rewards
+    - Public release of the custom [Staking pallet](https://wiki.polkadot.network/docs/learn-staking). Now token holders can nominate collators and earn rewards
     - Added the [Democracy pallet](https://github.com/paritytech/substrate/tree/HEAD/frame/democracy). Token holders can now [submit proposals](/governance/proposals/) and [vote on them](/governance/voting/)
     - Updated to the latest version of [Frontier RPC](https://github.com/paritytech/frontier), which increases EVM execution efficiency by a factor of 5
     - The gas limit has been bump to 15M per block, with a 13M per transaction limit
@@ -74,8 +74,8 @@ The following features are available:
     - Added three new precompiles: [Bn128Add](https://eips.ethereum.org/EIPS/eip-196), [Bn128Mul](https://eips.ethereum.org/EIPS/eip-196) and [Bn128Pairing](https://eips.ethereum.org/EIPS/eip-197)
 
 ??? release v8 "_May 2021_"      
-    - Added the [Treasury pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_treasury/index.html), to bring [Treasury functionalities](https://wiki.polkadot.network/docs/en/learn-treasury) to Moonbase Alpha. Two separate treasuries were set up: one receiving 20% of the transaction fees and governed by democracy/councils, and the other receiving 30% of the block rewards that will serve to secure future parachain slots
-    - Added the [Proxy pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_proxy/index.html), which enables the use of [Proxy accounts](https://wiki.polkadot.network/docs/en/learn-proxies) on Moonbase Alpha
+    - Added the [Treasury pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_treasury/index.html), to bring [Treasury functionalities](https://wiki.polkadot.network/docs/learn-treasury) to Moonbase Alpha. Two separate treasuries were set up: one receiving 20% of the transaction fees and governed by democracy/councils, and the other receiving 30% of the block rewards that will serve to secure future parachain slots
+    - Added the [Proxy pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_proxy/index.html), which enables the use of [Proxy accounts](https://wiki.polkadot.network/docs/learn-proxies) on Moonbase Alpha
     - Introduced a new consensus mechanism, called Nimbus. Nimbus provides different filters to choose a random subset of the current active collator pool to produce the next block. Furthermore, block authors now sign blocks using session keys, which are mapped via an extrinsic to an H160 address for rewards payment. You can read more about Nimbus [here](/learn/consensus/)
     - Added a [Staking precompiled contract](https://github.com/PureStake/moonbeam/pull/358) contract at address `{{ networks.moonbase.staking.precompile_address }}`. An interface to interact with the contract can be found on [this link](https://raw.githubusercontent.com/PureStake/moonbeam/master/runtime/precompiles/src/StakingInterface.sol)
     - Added [preliminary logs bloom filtering](https://github.com/paritytech/frontier/pull/364) to match user requests through Frontier. This feature was [further optmized](https://github.com/paritytech/frontier/pull/372) to achieve faster response times and a more predictable performance

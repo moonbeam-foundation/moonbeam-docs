@@ -32,7 +32,7 @@ However, we expect to deploy Moonbeam as a parachain on the Rococo TestNet once 
 
 Moonbeam will launch as a parachain on the Kusama network, in advance of deploying to the Polkadot MainNet ([more details here](https://www.purestake.com/news/moonbeam-on-kusama/)). This requires parachain functionality to be live on Kusama. 
 
-We plan to exercise parachain-related functionality such as [Crowdloan](https://wiki.polkadot.network/docs/en/learn-crowdloans), [XCMP](https://wiki.polkadot.network/docs/en/learn-crosschain), and [SPREE](https://wiki.polkadot.network/docs/en/learn-spree) on Moonriver as those features become available.
+We plan to exercise parachain-related functionality such as [Crowdloan](https://wiki.polkadot.network/docs/learn-crowdloans), [XCMP](https://wiki.polkadot.network/docs/learn-crosschain), and [SPREE](https://wiki.polkadot.network/docs/learn-spree) on Moonriver as those features become available.
 
 ## Moonbeam Polkadot MainNet
 
