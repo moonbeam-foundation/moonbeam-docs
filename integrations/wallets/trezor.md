@@ -31,14 +31,14 @@ In addition, you'll need MetaMask as an intermediary between your Trezor device 
 
 ## Importing your Trezor Account to MetaMask
 
-To get started, you need to have set up a wallet (either standard or a hidden wallet). Once you've connected your Trezor device, unlocked it, and have a wallet setup in Trezor Suite. Next, to import your Trezor Ethereum account to MetaMask, take the following steps:
+To get started, you need to have set up a wallet (either standard or a hidden wallet). Once you've connected your Trezor device, unlocked it, and get a wallet setup in Trezor Suite. Next, to import your Trezor Ethereum account to MetaMask, take the following steps:
 
  1. Click on the top-right logo to expand the menu
  2. Select "Connect Hardware Wallet"
 
 ![MetaMask Connect Hardware Wallet](/images/ledger/ledger-images1.png)
 
-Right, you are prompted to select which hardware wallet you'll like to use in MetaMask. At the moment of writing, only Ledger and Trezor hardware wallets are supported. If you have your Trezor device ready to go, take the following steps:
+Right after, you are prompted to select which hardware wallet you'll like to use in MetaMask. At the moment of writing, only Ledger and Trezor hardware wallets are supported. If you have your Trezor device ready to go, take the following steps:
 
  1. Select the Trezor logo
  2. Click on "Continue"
@@ -61,7 +61,7 @@ Once you've your device connected, you need to allow MetaMask to read its public
 
 ![Trezor Hardware Wallet Connect Wizard Allow Read Public Keys](/images/trezor/trezor-images5.png)
 
-Next, you are asked if you want to export the public key of your Ethereum account (tab was cropped and labeled as 1 in the following image). Right after, you are prompted with an option to use [Trezor's passphrase option](https://wiki.trezor.io/Passphrase) (tab cropped and labeled as 2 in the image). If you want to use the default wallet, just click on "Enter." On the contrary, please follow Trezor's wiki article for passphrase wallets.
+Next, you are asked if you want to export the public key of your Ethereum account (tab was cropped and labeled as 1 in the following image). Right after, you are prompted with an option to use [Trezor's passphrase option (tab cropped and labeled as 2 in the image). If you want to use the default wallet, just click on "Enter." On the contrary, please follow [Trezor's wiki article for passphrase wallets](https://wiki.trezor.io/Passphrase).
 
 ![Trezor Hardware Wallet Connect Wizard Allow Export and Passphrase](/images/trezor/trezor-images6.png)
 
@@ -106,4 +106,6 @@ Right after you've approved the transaction, MetaMask sends it to the network. O
 
 ![MetaMask Trezor Transaction Wizard](/images/trezor/trezor-images12.png)
 
-And that is it! You've signed a transaction on Moonbase Alpha using your Trezor hardware wallet!
+And that is it! You've signed a transaction on Moonbase Alpha using your Trezor hardware wallet. 
+
+The process of interacting with smart contracts using your Trezor device is pretty similar. Make sure to double-check the data being signed on your Trezor device before confirming the transaction.
