@@ -94,7 +94,7 @@ A `TrezorConnect` tab should pop up, asking permission to read public keys from 
 
 As you would in a standard transaction, set the recipient address, enter the number of tokens to send, review transaction details and confirm it. This will initiate the transaction signature wizard in your Trezor device. Here, take the following steps:
 
- 1. Review all transaction details. Please note that the token corresponds to the network MetaMask is connected to. **In this case, it is DEV tokens and not UNKN!**.
+ 1. Review all transaction details. Please note that the token corresponds to the network MetaMask is connected to. **In this case, it is DEV tokens and not UNKN!**
  2. Once all details have been checked, hold the button to confirm
 
 !!! note
