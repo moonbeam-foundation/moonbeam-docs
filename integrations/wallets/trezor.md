@@ -108,4 +108,4 @@ Right after you've approved the transaction, MetaMask sends it to the network. O
 
 And that is it! You've signed a transaction on Moonbase Alpha using your Trezor hardware wallet. 
 
-The process of interacting with smart contracts using your Trezor device is pretty similar. Make sure to double-check the data being signed on your Trezor device before confirming the transaction.
+The process of interacting with smart contracts using your Trezor device is similar. Make sure to double-check the data being signed on your Trezor device before confirming the transaction.
