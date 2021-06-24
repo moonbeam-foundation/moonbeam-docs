@@ -60,7 +60,7 @@ The interface includes the following functions:
 1. Click on the Deploy and Run Tab, directly below the Compile Tab in Remix. Note: we are not deploying a contract here, instead we are accessing a precompiled contract that is already deployed
 2. Make sure "Injected Web3" is selected in the Environment drop down
 3. Ensure “ParachainStaking - StakingInterface.sol” is selected in the Contract dropdown. Since this is a precompiled contract there is no need to deploy, instead we are going to provide the address of the precompile in the “At Address” Field
-4. Provide the address of the Staking precompile: `{{networks.moonbase.staking.precompile_address}}` and Click “At Address”
+4. Provide the address of the Staking precompile: `{{networks.moonbase.staking.precompile_address}}` and click “At Address”
 
 ![Provide the address](/images/staking/staking-precompile-3.png)
 
