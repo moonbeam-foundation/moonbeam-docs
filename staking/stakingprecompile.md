@@ -19,10 +19,10 @@ The Staking module is coded in Rust and it is part of a pallet that is normally 
 
 The interface includes the following functions:
 
- - `is_nominator(address collator)` checks whether the specified address is currently a staking nominator
+ - `is_nominator(address collator)` - checks whether the specified address is currently a staking nominator
  - `is_candidate(address collator)` - checks whether the specified address is currently a collator candidate
- - `min_nomination()` gets the minimum nomination amount
- - `join_candidates(uint256 amount)` allows the account to join the set of collator candidates with a specified bond amount
+ - `min_nomination()` - gets the minimum nomination amount
+ - `join_candidates(uint256 amount)` - allows the account to join the set of collator candidates with a specified bond amount
  - `leave_candidates()` - immediately removes the account from the candidate pool to prevent others from selecting it as a collator and triggers unbonding after BondDuration rounds have elapsed
  - `go_offline()` - temporarily leave the set of collator candidates without unbonding
  - `go_online()` - rejoin the set of collator candidates after previously calling go_offline()
@@ -40,6 +40,9 @@ The interface includes the following functions:
 
  - Have MetaMask installed and [connected to Moonbase Alpha](/getting-started/moonbase/metamask/)
  - Have an account with over {{networks.moonbase.staking.min_nom_stake}} tokens. You can get this from [Mission Control](/getting-started/moonbase/faucet/)
+
+!!! note
+    The example below requires more than {{networks.moonbase.staking.min_nom_stake}} DEV tokens due the minimum nomination amount plus gas fees. If you need more than the faucet dispenses please contact us on Discord and we will be happy to help you. 
 
 ### Remix Set Up
 1. Get a copy of [StakingInterface.sol](https://github.com/PureStake/moonbeam/blob/master/runtime/precompiles/src/StakingInterface.sol)
