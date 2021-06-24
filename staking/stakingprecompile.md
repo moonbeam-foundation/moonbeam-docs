@@ -42,7 +42,7 @@ The interface includes the following functions:
  - Have an account with over `{{networks.moonbase.staking.min_nom_stake}}` tokens. You can get this from [Mission Control](/getting-started/moonbase/faucet/)
 
 !!! note
-    The example below requires more than `{{networks.moonbase.staking.min_nom_stake}}` DEV tokens due the minimum nomination amount plus gas fees. If you need more than the faucet dispenses please contact us on Discord and we will be happy to help you. 
+    The example below requires more than `{{networks.moonbase.staking.min_nom_stake}}` DEV tokens due to the minimum nomination amount plus gas fees. If you need more than the faucet dispenses, please contact us on Discord and we will be happy to help you. 
 
 ### Remix Set Up
 1. Get a copy of [StakingInterface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol)
@@ -51,13 +51,13 @@ The interface includes the following functions:
 ![Copying and Pasting the Staking Interface into Remix](/images/staking/staking-precompile-1.png)
 
 ### Compile the Contract
-1. Click on the Compile Tab, second from top
+1. Click on the Compile tab, second from top
 2. Compile [Staking Interface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol)
 
 ![Compiling StakingInteface.sol](/images/staking/staking-precompile-2.png)
 
 ### Access the Contract
-1. Click on the Deploy and Run Tab, directly below the Compile Tab in Remix. Note: we are not deploying a contract here, instead we are accessing a precompiled contract that is already deployed
+1. Click on the Deploy and Run tab, directly below the Compile tab in Remix. Note: we are not deploying a contract here, instead we are accessing a precompiled contract that is already deployed
 2. Make sure "Injected Web3" is selected in the Environment drop down
 3. Ensure “ParachainStaking - StakingInterface.sol” is selected in the Contract dropdown. Since this is a precompiled contract there is no need to deploy, instead we are going to provide the address of the precompile in the “At Address” Field
 4. Provide the address of the Staking precompile: `{{networks.moonbase.staking.precompile_address}}` and click “At Address”
