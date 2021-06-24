@@ -24,12 +24,12 @@ Some important terminology to understand in regards to treasuries:
 - **Spend period** - the amount of days, in blocks, during which the treasury funds as many proposals as possible without exceeding the maximum
 - **Maximum approved proposals** - the maximum amount of proposals that can wait in the spending queue
 
-Currently, for Moonbase Alpha:
+Currently, the Treasury values are as follows:
 
 |             Variable             |     |                                                             Value                                                      |
 | :------------------------------: | :-: | :--------------------------------------------------------------------------------------------------------------------: |
 |           Proposal bond          |     |                            {{ networks.moonbase.treasury.proposal_bond }}% of the proposed spend                       |
-|       Proposal bond minimum      |     |                               {{ networks.moonbase.treasury.proposal_bond_min }} DEV token                             |
+|       Proposal bond minimum      |     |                                  {{ networks.moonbase.treasury.proposal_bond_min }} token                             |
 |           Spend period           |     |  {{ networks.moonbase.treasury.spend_period_blocks }} blocks ({{ networks.moonbase.treasury.spend_period_days}} days)  |
 |     Maximum approved proposals   |     |                                  {{ networks.moonbase.treasury.max_approved_proposals }}                               |
 
