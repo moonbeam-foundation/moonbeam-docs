@@ -36,8 +36,8 @@ Currently, we have tested Moonbeam with the following wallets:
 
  - [MetaMask](/integrations/wallets/metamask/)
  - [MathWallet](/integrations/wallets/mathwallet/)
- - [Ledger](/intergrations/wallets/ledger/)
- - [Trezor](/intergrations/wallets/trezor/)
+ - [Ledger](/integrations/wallets/ledger/)
+ - [Trezor](/integrations/wallets/trezor/)
 
 
 However, any wallet that works with an Ethereum custom network should work with Moonbeam as well!
