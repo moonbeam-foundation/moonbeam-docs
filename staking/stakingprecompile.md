@@ -42,16 +42,16 @@ The interface includes the following functions:
  - Have an account with over {{networks.moonbase.staking.min_nom_stake}} tokens. You can get this from [Mission Control](/getting-started/moonbase/faucet/)
 
 ### Remix Set Up
-1. Get a copy of the [latest staking interface](https://github.com/PureStake/moonbeam/blob/master/runtime/precompiles/src/StakingInterface.sol)
+1. Get a copy of [StakingInterface.sol](https://github.com/PureStake/moonbeam/blob/master/runtime/precompiles/src/StakingInterface.sol)
 2. Copy and paste the file contents into a Remix file named StakingInterface.sol
 
-![Copying and Pasting the Staking Interface into Remix](/images/staking/stakinginterface1.png)
+![Copying and Pasting the Staking Interface into Remix](/images/staking/staking-precompile-1.png)
 
 ### Compile the Contract
 1. Click on the Compile Tab, second from top
 2. Compile [Staking Interface.sol](https://github.com/PureStake/moonbeam/blob/master/runtime/precompiles/src/StakingInterface.sol)
 
-![Compiling StakingInteface.sol](/images/staking/compile4.png)
+![Compiling StakingInteface.sol](/images/staking/staking-precompile-2.png)
 
 ### Access the Contract
 1. Click on the Deploy and Run Tab, directly below the Compile Tab in Remix
@@ -59,7 +59,7 @@ The interface includes the following functions:
 3. Make sure “ParachainStaking - StakingInterface.sol” is selected in the Contract dropdown. Since this is a precompiled contract on Moonbase Alpha there is no need to deploy, instead we are going to provide the address of the precompile in the “AtAddress” Field
 4. Provide the address of the Staking precompile: `{{networks.moonbase.staking.precompile_address}}` and Click “At Address”
 
-![Provide the addressl](/images/staking/deploy1export.png)
+![Provide the address](/images/staking/staking-precompile-3.png)
 
 ### Nominate a Collator
 For this example, we are going to be nominating a collator. Nominators are token holders who stake tokens, vouching for specific collators. Any user that holds a minimum amount of {{networks.moonbase.staking.min_nom_stake}} tokens as free balance can become a nominator. 
@@ -69,17 +69,18 @@ For this example, we are going to be nominating a collator. Nominators are token
 3. Provide the amount to nominate in WEI. There is a minimum of {{networks.moonbase.staking.min_nom_stake}} DEV to nominate, so the lowest amount in WEI is `5000000000000000000`
 4. Press Transact and Confirm the Transaction in Metamask
 
-![Nominate a Collator](/images/staking/nominateexport.png)
+![Nominate a Collator](/images/staking/staking-precompile-4.png)
 
 ### Verify Nomination
 To verify your nomination was successful, you can check the chain state in Polkadot.js Apps. First, add your metamask address to the [address book in Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/addresses). If you've already completed this step you can skip ahead to the next section. 
 
 #### Add Metamask Address to Address Book
-1. Click on Add Contact
-2. Add your Metamask Moonbase Alpha Address
-3. Provide a nickname for the account
+1. Navigate to Accounts -> Address Book 
+2. Click on Add Contact
+3. Add your Metamask Moonbase Alpha Address
+4. Provide a nickname for the account
 
-![Add to Address Book](/images/staking/addressbook.png)
+![Add to Address Book](/images/staking/staking-precompile-5.png)
 
 #### Verify Nominator State
 1. To verify your nomination was successful, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/chainstate) and navigate to Developer -> Chain State
@@ -87,9 +88,9 @@ To verify your nomination was successful, you can check the chain state in Polka
 3. Select the nominatorState query
 4. Click the Plus Button to return the results and verify your nomination
 
-![Verify Nomination](/images/staking/verifynomination.png)
+![Verify Nomination](/images/staking/staking-precompile-6.png)
 
 ### Revoking a Nomination
 To revoke a nomination and receive your tokens back, call the revoke_nomination method, providing the same address you started the nomination with above. You can check your Nominator state again on Polkadot.js Apps to confirm.
 
-![Revoke Nomination](/images/staking/revokenomination.png)
+![Revoke Nomination](/images/staking/staking-precompile-7.png)
