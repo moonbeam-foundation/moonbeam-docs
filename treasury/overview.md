@@ -9,7 +9,9 @@ description: As a Polkadot parachain, Moonbeam will use an on-chain treasury con
 
 ## Introduction
 
-A treasury is an on-chain managed collection of funds. Moonbase Alpha will have a community treasury for supporting network initiatives to further the network. This treasury will be funded by 20% of transaction fees on the network and will be managed by the Council.
+A treasury is an on-chain managed collection of funds. Moonbeam will have a community treasury for supporting network initiatives to further the network. This treasury will be funded by 20% of transaction fees on the network and will be managed by the Council.
+
+Each Moonbeam-based network will have it's own treasury. In other words, the Moonbase Alpha TestNet, Moonshadow on Westend, Moonriver on Kusama, and Moonbeam on Polkadot will each have their own respective treasury. 
 
 ## General Definitions
 
@@ -24,19 +26,19 @@ Some important terminology to understand in regards to treasuries:
 
 Currently, for Moonbase Alpha:
 
-|             Variable             |     |                                                  Value                                                  |
-| :------------------------------: | :-: | :-----------------------------------------------------------------------------------------------------: |
-|           Proposal bond          |     |                          5% of the proposed spend                                                       |
-|       Proposal bond minimum      |     |                          1 DEV token                                                                    |
-|           Spend period           |     |                          43200 blocks (6 days)                                                          |
-|     Maximum approved proposals   |     |                          100                                                                            |
+|             Variable             |     |                                                             Value                                                      |
+| :------------------------------: | :-: | :--------------------------------------------------------------------------------------------------------------------: |
+|           Proposal bond          |     |                            {{ networks.moonbase.treasury.proposal_bond }}% of the proposed spend                       |
+|       Proposal bond minimum      |     |                               {{ networks.moonbase.treasury.proposal_bond_min }} DEV token                             |
+|           Spend period           |     |  {{ networks.moonbase.treasury.spend_period_blocks }} blocks ({{ networks.moonbase.treasury.spend_period_days}} days)  |
+|     Maximum approved proposals   |     |                                  {{ networks.moonbase.treasury.max_approved_proposals }}                               |
 
 
 ## Community Treasury
 
-To fund the Treasury, 20% of each block's transactions fees will be sent to the Treasury. The remaining 80% of the fees are burned. The Treasury allows stakeholders to submit spending proposals to be reviewed and voted on by the Council. These spending proposals should include initiatives to further the network or boost network engagement. Some network initiatives could include funding integrations or collaborations, community events, network outreach, and more. 
+To fund the Treasury, 20% of each block's transactions fees will be allocated to it. The remaining 80% of the fees are burned. The Treasury allows stakeholders to submit spending proposals to be reviewed and voted on by the Council. These spending proposals should include initiatives to further the network or boost network engagement. Some network initiatives could include funding integrations or collaborations, community events, network outreach, and more. 
 
-To deter spam, proposals must be submitted with a deposit, also known as a proposal bond. If the proposal bond is less than the proposal bond minimum, the proposal bond minimum must be submitted for the deposit instead. So, any token holder that has enough tokens to cover the deposit can submit a proposal. If the proposer's balance doesn't have enough funds to cover the deposit, the extrinsic will fail due to insufficient funds and you will have to pay transaction fees. 
+To deter spam, proposals must be submitted with a deposit, also known as a proposal bond.The proposal bond needs to be higher than the minimum amount, known as the proposal bond minimum, which can be changed by a governance proposal. So, any token holder that has enough tokens to cover the deposit can submit a proposal. If the proposer doesn't have enough funds to cover the deposit, the extrinsic will fail due to insufficient funds, but transaction fees will still be deducted. 
 
 Once a proposal has been submitted, is subject to governance, and the council votes on it. If the proposal gets rejected, the deposit will be lost and transfered to the treasury pot. If approved by the council, the proposal enters a queue to be placed into a spend period. If the spending queue happens to contain the number of maximum approved proposals, the proposal submission will fail similarly to how it would if the proposer's balance is too low.
 
