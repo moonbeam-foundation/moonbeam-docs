@@ -5,7 +5,7 @@ description: Moonbeam Parachain Staking Ethereum Solidity Precompile Interface D
 
 # Staking Precompile
 
-![Staking Moonbeam Banner](/images/staking/staking-stake-banner.png)
+![Staking Moonbeam Banner](/images/staking/staking-precompile-banner.png)
 
 ## Introduction
 
@@ -15,7 +15,7 @@ The Staking module is coded in Rust and it is part of a pallet that is normally 
 
 ## The Parachain-Staking Solidity Interface
 
-[StakingInterface.sol](https://github.com/PureStake/moonbeam/blob/master/runtime/precompiles/src/StakingInterface.sol) is an interface through which solidity contracts can interact with Parachain-Staking. The beauty is that solidity developers don’t have to learn the Substrate API. Instead, they can interact with staking functions using the Ethereum interface they are familiar with.
+[StakingInterface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol) is an interface through which solidity contracts can interact with Parachain-Staking. The beauty is that solidity developers don’t have to learn the Substrate API. Instead, they can interact with staking functions using the Ethereum interface they are familiar with.
 
 The interface includes the following functions:
 
@@ -45,14 +45,14 @@ The interface includes the following functions:
     The example below requires more than `{{networks.moonbase.staking.min_nom_stake}}` DEV tokens due the minimum nomination amount plus gas fees. If you need more than the faucet dispenses please contact us on Discord and we will be happy to help you. 
 
 ### Remix Set Up
-1. Get a copy of [StakingInterface.sol](https://github.com/PureStake/moonbeam/blob/master/runtime/precompiles/src/StakingInterface.sol)
+1. Get a copy of [StakingInterface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol)
 2. Copy and paste the file contents into a Remix file named StakingInterface.sol
 
 ![Copying and Pasting the Staking Interface into Remix](/images/staking/staking-precompile-1.png)
 
 ### Compile the Contract
 1. Click on the Compile Tab, second from top
-2. Compile [Staking Interface.sol](https://github.com/PureStake/moonbeam/blob/master/runtime/precompiles/src/StakingInterface.sol)
+2. Compile [Staking Interface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol)
 
 ![Compiling StakingInteface.sol](/images/staking/staking-precompile-2.png)
 
