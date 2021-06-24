@@ -57,7 +57,7 @@ The interface includes the following functions:
 ![Compiling StakingInteface.sol](/images/staking/staking-precompile-2.png)
 
 ### Access the Contract
-1. Click on the Deploy and Run Tab, directly below the Compile Tab in Remix. Note: we are not deploying a contract here, instead we are accessing a precompiled contract that is already deployed.
+1. Click on the Deploy and Run Tab, directly below the Compile Tab in Remix. Note: we are not deploying a contract here, instead we are accessing a precompiled contract that is already deployed
 2. Make sure "Injected Web3" is selected in the Environment drop down
 3. Ensure “ParachainStaking - StakingInterface.sol” is selected in the Contract dropdown. Since this is a precompiled contract there is no need to deploy, instead we are going to provide the address of the precompile in the “At Address” Field
 4. Provide the address of the Staking precompile: `{{networks.moonbase.staking.precompile_address}}` and Click “At Address”
@@ -67,7 +67,7 @@ The interface includes the following functions:
 ### Nominate a Collator
 For this example, we are going to be nominating a collator. Nominators are token holders who stake tokens, vouching for specific collators. Any user that holds a minimum amount of {{networks.moonbase.staking.min_nom_stake}} tokens as free balance can become a nominator. 
 
-1. Expand the panel with the contract address and find the nominate function and expand the panel to see the parameters
+1. Expand the panel with the contract address. Locate the nominate function and expand the panel to see the parameters
 2. Provide the address of a collator such as `{{ networks.moonbase.staking.collators.address1 }}`
 3. Provide the amount to nominate in WEI. There is a minimum of `{{networks.moonbase.staking.min_nom_stake}}` DEV to nominate, so the lowest amount in WEI is `5000000000000000000`
 4. Press "transact" and confirm the transaction in Metamask
@@ -89,11 +89,11 @@ To verify your nomination was successful, you can check the chain state in Polka
 1. To verify your nomination was successful, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/chainstate) and navigate to Developer -> Chain State
 2. Select the "parachainStaking" pallet
 3. Select the "nominatorState" query
-4. Click the Plus Button to return the results and verify your nomination
+4. Click the "Plus" Button to return the results and verify your nomination
 
 ![Verify Nomination](/images/staking/staking-precompile-6.png)
 
 ### Revoking a Nomination
-To revoke a nomination and receive your tokens back, call the `revoke_nomination method`, providing the same address you started the nomination with above. You can check your nominator state again on Polkadot.js Apps to confirm.
+To revoke a nomination and receive your tokens back, call the `revoke_nomination` method, providing the same address you started the nomination with above. You can check your nominator state again on Polkadot.js Apps to confirm.
 
 ![Revoke Nomination](/images/staking/staking-precompile-7.png)
