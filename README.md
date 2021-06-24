@@ -36,6 +36,9 @@ Currently, we have tested Moonbeam with the following wallets:
 
  - [MetaMask](/integrations/wallets/metamask/)
  - [MathWallet](/integrations/wallets/mathwallet/)
+ - [Ledger](/intergrations/wallets/ledger/)
+ - [Trezor](/intergrations/wallets/trezor/)
+
 
 However, any wallet that works with an Ethereum custom network should work with Moonbeam as well!
 
@@ -49,7 +52,8 @@ Because of Moonbeam's Ethereum compatibility features, you can use the developme
  - [Web3.js](/integrations/ethlibraries/web3js/)
  - [Ethers.js](/integrations/ethlibraries/etherjs/)
  - [Web3.py](/integrations/ethlibraries/web3py/)
- - [The Graph](/integrations/thegraph/)
+ - [The Graph](/integrations/indexers/thegraph/)
+ - [Covalent API](/integrations/indexers/covalent/)
  - [Debug API & Trace Module](/integrations/debug-trace/)
 
  Want another Ethereum tool listed here? [Let us know!](https://discord.gg/PfpUATX)

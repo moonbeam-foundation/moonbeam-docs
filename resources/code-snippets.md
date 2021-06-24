@@ -41,13 +41,13 @@ cd moonbeam
 **Purge chain, clean up any old data from running a ‘dev’ node in the past:**
 
 ```
-./target/release/moonbeam-development purge-chain --dev
+./target/release/moonbeam purge-chain --dev
 ```
 
 **Run node in dev mode suppressing block information but prints errors in console:**
 
 ```
-./target/release/moonbeam-development --dev -lerror
+./target/release/moonbeam --dev -lerror
 ```
 
 ## Genesis Account
