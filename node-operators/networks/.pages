@@ -4,3 +4,5 @@ nav:
   - full-node.md
   - collator.md
   - telemetry.md
+  - troubleshooting.md
+  - advanced-options.md
