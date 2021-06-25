@@ -548,7 +548,7 @@ During the syncing process, you will see messages from both the embedded relay c
 !!! note
     It will take a few days to completely sync the embedded Kusama relay chain. Make sure that your system meets the [requirements](#requirements). 
 
-Once synced, you will be connected to peers, but blocks will not be produced until Moonriver secures a parachain lease.
+Once synced, you will be connected to peers, but blocks will not be produced until Moonriver secures a parachain lease. If your node is active on the public telemetry, you should be able to see it. As long as no errors are shown on startup and you are connected to peers, you are now ready for the launch of Moonriver!
 
 ### Installation Instructions - Binary
 
@@ -727,12 +727,13 @@ journalctl -f -u moonbeam.service
 
 ![Service Logs](/images/fullnode/fullnode-binary3.png)
 
+Once synced, you will be connected to peers, but blocks will not be produced until Moonriver secures a parachain lease. If your node is active on the public telemetry, you should be able to see it. As long as no errors are shown on startup and you are connected to peers, you are now ready for the launch of Moonriver!
+
 
 ## Telemetry
 
-To enable your Moonbase Alpha node's telemetry server, you can follow [this tutorial](/node-operators/networks/telemetry/).
+To enable your Moonbase Alpha or Moonriver node's telemetry server, you can follow [this tutorial](/node-operators/networks/telemetry/).
 
 Running telemetry on a full node is not necessary. However, it is a requirement to do so for collators.
 
-Also, you can see current Moonbase Alpha telemetry information visiting [this link](https://telemetry.polkadot.io/#list/Moonbase%20Alpha).
-
+Also, if you're interested, you can check out current [Moonbase Alpha telemetry](https://telemetry.polkadot.io/#list/Moonbase%20Alpha) and [Moonriver telemetry](https://telemetry.polkadot.io/#list/Moonriver) data.
