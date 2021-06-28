@@ -11,7 +11,7 @@ description: Moonbeam Parachain Staking Ethereum Solidity Precompile Interface D
 
 A delegated proof of stake pallet recently debuted called [Parachain-Staking](https://github.com/PureStake/moonbeam/tree/master/pallets/parachain-staking/src), allowing token holders (nominators) to express exactly which collator candidates they would like to support and with what quantity of stake. The design of the Parachain-Staking pallet is such that it enforces shared risk/reward on chain between delegators and collators.
 
-The Staking module is coded in Rust and it is part of a pallet that is normally not accessible from the Ethereum side of Moonbeam. However, a Staking Precompile allows developers to access the staking features as a precompiled contract located at address `{{networks.moonbase.staking.precompile_address}}`. The Staking Precompile is included in our [Moonbase Alpha v8 release](https://moonbeam.network/announcements/testnet-upgrade-moonbase-alpha-v8/).
+The Staking module is coded in Rust and it is part of a pallet that is normally not accessible from the Ethereum side of Moonbeam. However, a Staking Precompile allows developers to access the staking features using the Ethereum API in a precompiled contract located at address `{{networks.moonbase.staking.precompile_address}}`. The Staking Precompile was first released in [Moonbase Alpha v8 release](https://moonbeam.network/announcements/testnet-upgrade-moonbase-alpha-v8/).
 
 ## The Parachain-Staking Solidity Interface
 
@@ -19,30 +19,31 @@ The Staking module is coded in Rust and it is part of a pallet that is normally 
 
 The interface includes the following functions:
 
- - **is_nominator(address collator)** — checks whether the specified address is currently a staking nominator
- - **is_candidate(address collator)** — checks whether the specified address is currently a collator candidate
- - **min_nomination()** — gets the minimum nomination amount
- - **join_candidates(uint256 amount)** — allows the account to join the set of collator candidates with a specified bond amount
- - **leave_candidates()** — immediately removes the account from the candidate pool to prevent others from selecting it as a collator and triggers unbonding after BondDuration rounds have elapsed
- - **go_offline()** — temporarily leave the set of collator candidates without unbonding
- - **go_online()** — rejoin the set of collator candidates after previously calling go_offline()
- - **candidate_bond_more(uint256 more)** — collator candidate increases bond by specified amount
- - **candidate_bond_less(uint256 less)** — collator candidate decreases bond by specified amount
- - **nominate(address collator, uint256 amount)** — if the caller is not a nominator, this function adds them to the set of nominators. If the caller is already a nominator, then it adjusts their nomination amount
- - **leave_nominators()** — leave the set of nominators and revoke all ongoing nominations
- - **revoke_nominations(address collator)** — revoke a specific nomination
- - **nominator_bond_more(address collator, uint256 more)** — nominator increases bond to a collator by specified amount
- - **nominator_bond_less(address collator, uint256 less** — nominator decreases bond to a collator by specified amount
+ - **is_nominator**(*address* **collator**) — checks whether the specified address is currently a staking nominator
+ - **is_candidate**(*address* **collator**) — checks whether the specified address is currently a collator candidate
+ - **min_nomination**() — gets the minimum nomination amount
+ - **join_candidates**(*uint256* **amount**) — allows the account to join the set of collator candidates with a specified bond amount
+ - **leave_candidates**() — immediately removes the account from the candidate pool to prevent others from selecting it as a collator and triggers unbonding after BondDuration rounds have elapsed
+ - **go_offline**() — temporarily leave the set of collator candidates without unbonding
+ - **go_online**() — rejoin the set of collator candidates after previously calling go_offline()
+ - **candidate_bond_more**(*uint256* **more**) — collator candidate increases bond by specified amount
+ - **candidate_bond_less**(*uint256* **less**) — collator candidate decreases bond by specified amount
+ - **nominate**(*address* **collator**, *uint256* **amount**) — if the caller is not a nominator, this function adds them to the set of nominators. If the caller is already a nominator, then it adjusts their nomination amount
+ - **leave_nominators**() — leave the set of nominators and revoke all ongoing nominations
+ - **revoke_nominations**(*address* **collator**) — revoke a specific nomination
+ - **nominator_bond_more**(*address* **collator**, *uint256* **more**) — nominator increases bond to a collator by specified amount
+ - **nominator_bond_less**(*address* **collator**, *uint256* **less**) — nominator decreases bond to a collator by specified amount
 
 ## Interacting with the Staking Precompile
 
 ### Checking Prerequisites
+The below example references Moonbase Alpha, however, it is compatible with all networks including Moonriver and Moonbeam.
 
  - Have MetaMask installed and [connected to Moonbase Alpha](/getting-started/moonbase/metamask/)
  - Have an account with over `{{networks.moonbase.staking.min_nom_stake}}` tokens. You can get this from [Mission Control](/getting-started/moonbase/faucet/)
 
 !!! note
-    The example below requires more than `{{networks.moonbase.staking.min_nom_stake}}` DEV tokens due to the minimum nomination amount plus gas fees. If you need more than the faucet dispenses, please contact us on Discord and we will be happy to help you. 
+    The example below requires more than `{{networks.moonbase.staking.min_nom_stake}}` tokens due to the minimum nomination amount plus gas fees. If you need more than the faucet dispenses, please contact us on Discord and we will be happy to help you. 
 
 ### Remix Set Up
 1. Get a copy of [StakingInterface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol)
