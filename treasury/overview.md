@@ -30,7 +30,7 @@ Currently, the Treasury values are as follows:
     |             Variable             |     |                                                             Value                                                      |
     | :------------------------------: | :-: | :--------------------------------------------------------------------------------------------------------------------: |
     |           Proposal bond          |     |                            {{ networks.moonbase.treasury.proposal_bond }}% of the proposed spend                       |
-    |       Proposal bond minimum      |     |                                  {{ networks.moonbase.treasury.proposal_bond_min }} token                              |
+    |       Proposal bond minimum      |     |                                  {{ networks.moonbase.treasury.proposal_bond_min }} DEV token                              |
     |           Spend period           |     |  {{ networks.moonbase.treasury.spend_period_blocks }} blocks ({{ networks.moonbase.treasury.spend_period_days}} days)  |
     |     Maximum approved proposals   |     |                                  {{ networks.moonbase.treasury.max_approved_proposals }}                               |
 
@@ -38,7 +38,7 @@ Currently, the Treasury values are as follows:
     |             Variable             |     |                                                             Value                                                      |
     | :------------------------------: | :-: | :--------------------------------------------------------------------------------------------------------------------: |
     |           Proposal bond          |     |                            {{ networks.moonbase.treasury.proposal_bond }}% of the proposed spend                       |
-    |       Proposal bond minimum      |     |                                  {{ networks.moonbase.treasury.proposal_bond_min }} token                              |
+    |       Proposal bond minimum      |     |                                  {{ networks.moonbase.treasury.proposal_bond_min }} MOVR token                              |
     |           Spend period           |     |  {{ networks.moonbase.treasury.spend_period_blocks }} blocks ({{ networks.moonbase.treasury.spend_period_days}} days)  |
     |     Maximum approved proposals   |     |                                  {{ networks.moonbase.treasury.max_approved_proposals }}                               |
 
