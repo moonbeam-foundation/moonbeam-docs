@@ -9,7 +9,7 @@ description: How to run telemetry for a full Parachain node for the Moonbeam Net
 
 ## Introduction
 
-With the release of Moonbase Alpha v6, and the upcoming launch of Moonriver, you can spin up a node that connects to the Moonbase Alpha TestNet or Moonriver on Kusama. You can check those steps in [this tutorial](/node-operators/networks/full-node/).
+With the release of Moonbase Alpha v6, and the recent launch of Moonriver, you can spin up a node that connects to the Moonbase Alpha TestNet or Moonriver on Kusama. You can check those steps in [this tutorial](/node-operators/networks/full-node/).
 
 This guide will provide the necessary steps to enable the telemetry server for your Moonbeam-based node.
 
@@ -82,7 +82,7 @@ Run the docker container (parachain Gantree node watchdog). Note that you need t
     --name gantree_watchdog_parachain IMAGE-NAME
     ```
 
-=== "Moonriver on Kusama"
+=== "Moonriver"
     ```
     docker run -it --network="host" \
     -e GANTREE_NODE_WATCHDOG_API_KEY="YOUR-API-KEY" \
@@ -106,7 +106,7 @@ Now, we need to run the relay Gantree node watchdog. Note that you need to repla
     --name gantree_watchdog_relay IMAGE-NAME
     ```
 
-=== "Moonriver on Kusama"
+=== "Moonriver"
     ```
     docker run -it --network="host" \
     -e GANTREE_NODE_WATCHDOG_API_KEY="YOUR-API-KEY" \
@@ -164,7 +164,7 @@ Parachain:
     }
     ```
 
-=== "Moonriver on Kusama"
+=== "Moonriver"
     ```
     # Contents of /var/lib/gantree/parachain/.gnw_config.json
     {
@@ -190,7 +190,7 @@ Embedded relay chain:
     }
     ```
 
-=== "Moonriver on Kusama"
+=== "Moonriver"
     ```
     # Contents of /var/lib/gantree/relay/.gnw_config.json
     {

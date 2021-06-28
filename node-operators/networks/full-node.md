@@ -11,7 +11,7 @@ description: How to run a full Parachain node for the Moonbeam Network to have y
 
 Running a full node on a Moonbeam-based network allows you to connect to the network, sync with a bootnode, obtain local access to RPC endpoints, author blocks on the parachain, and more.
 
-There are multiple deployments of Moonbeam, including the Moonbase Alpha TestNet, right around the corner will be Moonriver on Kusama, and eventually there will be Moonbeam on Polkadot. Here's how these environments are named and their corresponding [chain specification file](https://substrate.dev/docs/en/knowledgebase/integrate/chain-spec) names:
+There are multiple deployments of Moonbeam, including the Moonbase Alpha TestNet, Moonriver on Kusama, and eventually there will be Moonbeam on Polkadot. Here's how these environments are named and their corresponding [chain specification file](https://substrate.dev/docs/en/knowledgebase/integrate/chain-spec) names:
 
 |    Network     |     | Hosted By |     |   Chain Name    |
 | :------------: | :-: | :-------: | :-: | :-------------: |
@@ -36,7 +36,7 @@ The minimum specs recommended to run a node are shown in the following table. Fo
     |   **SSD**    |     | 50 GB (to start)                                                                                            |
     | **Firewall** |     | P2P port must be open to incoming traffic:<br>&nbsp; &nbsp; - Source: Any<br>&nbsp; &nbsp; - Destination: 30333, 30334 TCP |
 
-=== "Moonriver on Kusama"
+=== "Moonriver"
     |  Component   |     | Requirement                                                                                                                |
     | :----------: | :-: | :------------------------------------------------------------------------------------------------------------------------- |
     |   **CPU**    |     | 8 Cores (Fastest per core speed)                                                                      |
@@ -83,7 +83,7 @@ Create a local directory to store the chain data:
     mkdir {{ networks.moonbase.node_directory }}
     ```
 
-=== "Moonriver on Kusama"
+=== "Moonriver"
     ```
     mkdir {{ networks.moonriver.node_directory }}
     ```
@@ -99,7 +99,7 @@ Set the necessary permissions either for a specific or current user (replace `DO
     sudo chown -R $(id -u):$(id -g) {{ networks.moonbase.node_directory }}
     ```
 
-=== "Moonriver on Kusama"
+=== "Moonriver"
     ```
     # chown to a specific user
     chown DOCKER_USER {{ networks.moonriver.node_directory }}
@@ -137,7 +137,7 @@ Now, execute the docker run command. Note that you have to:
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
-=== "Moonriver on Kusama"
+=== "Moonriver"
     ```
     docker run --network="host" -v "{{ networks.moonriver.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
@@ -176,7 +176,7 @@ Now, execute the docker run command. Note that you have to:
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
-=== "Moonriver on Kusama"
+=== "Moonriver"
     ```
     docker run --network="host" -v "{{ networks.moonriver.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
@@ -225,7 +225,7 @@ During the syncing process, you will see messages from both the embedded relay c
 
 If you followed the installation instructions for Moonbase Alpha, once synced, you will have a node of the Moonbase Alpha TestNet running locally!
 
-If you followed the installation instructions for Moonriver, once synced, you will be connected to peers, but blocks will not be produced until Moonriver secures a parachain lease. If your node is active on the public telemetry, you should be able to see it. As long as no errors are shown on startup and you are connected to peers, you are now ready for the launch of Moonriver!
+If you followed the installation instructions for Moonriver, once synced, you will be connected to peers and see blocks being produced on the Moonriver network!
 
 ## Installation Instructions - Binary
 
@@ -279,7 +279,7 @@ First, let's create a service account to run the service:
     adduser moonbase_service --system --no-create-home
     ```
 
-=== "Moonriver on Kusama"
+=== "Moonriver"
     ```
     adduser moonriver_service --system --no-create-home
     ```
@@ -292,7 +292,7 @@ Next, create a directory to store the binary and data and set the necessary perm
     chown moonbase_service {{ networks.moonbase.node_directory }}
     ```
 
-=== "Moonriver on Kusama"
+=== "Moonriver"
     ```
     mkdir {{ networks.moonriver.node_directory }}
     chown moonriver_service {{ networks.moonriver.node_directory }}
@@ -308,7 +308,7 @@ Now, copy the binary built in the last section to the created folder:
     cp ./target/release/{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
     ```
 
-=== "Moonriver on Kusama"
+=== "Moonriver"
     ```
     cp ./target/release/{{ networks.moonriver.binary_name }} {{ networks.moonriver.node_directory }}
     ```
@@ -360,7 +360,7 @@ The next step is to create the systemd configuration file. Note that you have to
     WantedBy=multi-user.target
     ```
 
-=== "Moonriver on Kusama"
+=== "Moonriver"
     ```
     [Unit]
     Description="Moonriver systemd service"
@@ -430,7 +430,7 @@ The next step is to create the systemd configuration file. Note that you have to
     WantedBy=multi-user.target
     ```
 
-=== "Moonriver on Kusama"
+=== "Moonriver"
     ```
     [Unit]
     Description="Moonriver systemd service"
