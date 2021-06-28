@@ -93,6 +93,8 @@ networks:
       spend_period_blocks: 43200
       spend_period_days: 6
       max_approved_proposals: 100
+      tx_fees_allocated: 20
+      tx_fees_burned: 80
   relay_chain:
     p2p: 30334
     rpc: 9934

@@ -9,7 +9,7 @@ description: As a Polkadot parachain, Moonbeam will use an on-chain treasury con
 
 ## Introduction
 
-A treasury is an on-chain managed collection of funds. Moonbeam will have a community treasury for supporting network initiatives to further the network. This treasury will be funded by 20% of transaction fees on the network and will be managed by the Council.
+A treasury is an on-chain managed collection of funds. Moonbeam will have a community treasury for supporting network initiatives to further the network. This treasury will be funded by {{ networks.moonbase.treasury.tx_fees_allocated }}% of transaction fees on the network and will be managed by the Council.
 
 Each Moonbeam-based network will have it's own treasury. In other words, the Moonbase Alpha TestNet, Moonshadow on Westend, Moonriver on Kusama, and Moonbeam on Polkadot will each have their own respective treasury. 
 
@@ -26,17 +26,25 @@ Some important terminology to understand in regards to treasuries:
 
 Currently, the Treasury values are as follows:
 
-|             Variable             |     |                                                             Value                                                      |
-| :------------------------------: | :-: | :--------------------------------------------------------------------------------------------------------------------: |
-|           Proposal bond          |     |                            {{ networks.moonbase.treasury.proposal_bond }}% of the proposed spend                       |
-|       Proposal bond minimum      |     |                                  {{ networks.moonbase.treasury.proposal_bond_min }} token                             |
-|           Spend period           |     |  {{ networks.moonbase.treasury.spend_period_blocks }} blocks ({{ networks.moonbase.treasury.spend_period_days}} days)  |
-|     Maximum approved proposals   |     |                                  {{ networks.moonbase.treasury.max_approved_proposals }}                               |
+=== "Moonbase Alpha"
+    |             Variable             |     |                                                             Value                                                      |
+    | :------------------------------: | :-: | :--------------------------------------------------------------------------------------------------------------------: |
+    |           Proposal bond          |     |                            {{ networks.moonbase.treasury.proposal_bond }}% of the proposed spend                       |
+    |       Proposal bond minimum      |     |                                  {{ networks.moonbase.treasury.proposal_bond_min }} token                              |
+    |           Spend period           |     |  {{ networks.moonbase.treasury.spend_period_blocks }} blocks ({{ networks.moonbase.treasury.spend_period_days}} days)  |
+    |     Maximum approved proposals   |     |                                  {{ networks.moonbase.treasury.max_approved_proposals }}                               |
 
+=== "Moonriver"
+    |             Variable             |     |                                                             Value                                                      |
+    | :------------------------------: | :-: | :--------------------------------------------------------------------------------------------------------------------: |
+    |           Proposal bond          |     |                            {{ networks.moonbase.treasury.proposal_bond }}% of the proposed spend                       |
+    |       Proposal bond minimum      |     |                                  {{ networks.moonbase.treasury.proposal_bond_min }} token                              |
+    |           Spend period           |     |  {{ networks.moonbase.treasury.spend_period_blocks }} blocks ({{ networks.moonbase.treasury.spend_period_days}} days)  |
+    |     Maximum approved proposals   |     |                                  {{ networks.moonbase.treasury.max_approved_proposals }}                               |
 
 ## Community Treasury
 
-To fund the Treasury, 20% of each block's transactions fees will be allocated to it. The remaining 80% of the fees are burned. The Treasury allows stakeholders to submit spending proposals to be reviewed and voted on by the Council. These spending proposals should include initiatives to further the network or boost network engagement. Some network initiatives could include funding integrations or collaborations, community events, network outreach, and more. 
+To fund the Treasury, {{ networks.moonbase.treasury.tx_fees_allocated }}% of each block's transactions fees will be allocated to it. The remaining {{ networks.moonbase.treasury.tx_fees_burned }}% of the fees are burned. The Treasury allows stakeholders to submit spending proposals to be reviewed and voted on by the Council. These spending proposals should include initiatives to further the network or boost network engagement. Some network initiatives could include funding integrations or collaborations, community events, network outreach, and more. 
 
 To deter spam, proposals must be submitted with a deposit, also known as a proposal bond.The proposal bond needs to be higher than the minimum amount, known as the proposal bond minimum, which can be changed by a governance proposal. So, any token holder that has enough tokens to cover the deposit can submit a proposal. If the proposer doesn't have enough funds to cover the deposit, the extrinsic will fail due to insufficient funds, but transaction fees will still be deducted. 
 
