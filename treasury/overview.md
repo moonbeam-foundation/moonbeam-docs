@@ -5,7 +5,7 @@ description: As a Polkadot parachain, Moonbeam will use an on-chain treasury con
 
 # Treasury in Moonbeam
 
-![Treasury Moonbeam Banner](/images/treasury/overview-banner.png)
+![Treasury Moonbeam Banner](/images/treasury/treasury-overview-banner.png)
 
 ## Introduction
 
