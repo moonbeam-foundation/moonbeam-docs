@@ -34,10 +34,10 @@ The contract hosts a lottery where players can buy ticket for themselves, or gif
 
 The main functions of the contract are the following:
 
- - **joinLottery** — no inputs. Function to enter the lottery's current round, the value (amount of tokens) sent to the contract need to be equal to the ticket price
- - **giftTicket** —  one input: ticket's recipient address. Similar to `joinLottery` but the ticket's owner can be set to a different address
- - **enterLottery** — one input: ticket's owner address. An internal function that handles the lottery's tickets logic. If an hour has passed and there are at least 10 participants, it calls the `pickWinner` function
- - **pickWinner** — no inputs. An internal function that selects the lottery winner with a pseudo-random number generator (not safe, only for demonstration purposes). It handles the logic of transferring funds and resetting variable for the next lottery round
+ - **joinLottery**() — Function to enter the lottery's current round, the value (amount of tokens) sent to the contract need to be equal to the ticket price
+ - **giftTicket**(*address* recipient) —  Similar to `joinLottery` but the ticket's owner can be set to a different address
+ - **enterLottery**(*address* owner) — An internal function that handles the lottery's tickets logic. If an hour has passed and there are at least 10 participants, it calls the `pickWinner` function
+ - **pickWinner**() — An internal function that selects the lottery winner with a pseudo-random number generator (not safe, only for demonstration purposes). It handles the logic of transferring funds and resetting variable for the next lottery round
 
 ### Events of the Lottery Contract
 

@@ -19,20 +19,20 @@ The Staking module is coded in Rust and it is part of a pallet that is normally 
 
 The interface includes the following functions:
 
- - **is_nominator**(*address* **collator**) — checks whether the specified address is currently a staking nominator
- - **is_candidate**(*address* **collator**) — checks whether the specified address is currently a collator candidate
+ - **is_nominator**(*address* collator) — checks whether the specified address is currently a staking nominator
+ - **is_candidate**(*address* collator) — checks whether the specified address is currently a collator candidate
  - **min_nomination**() — gets the minimum nomination amount
- - **join_candidates**(*uint256* **amount**) — allows the account to join the set of collator candidates with a specified bond amount
+ - **join_candidates**(*uint256* amount) — allows the account to join the set of collator candidates with a specified bond amount
  - **leave_candidates**() — immediately removes the account from the candidate pool to prevent others from selecting it as a collator and triggers unbonding after BondDuration rounds have elapsed
  - **go_offline**() — temporarily leave the set of collator candidates without unbonding
  - **go_online**() — rejoin the set of collator candidates after previously calling go_offline()
- - **candidate_bond_more**(*uint256* **more**) — collator candidate increases bond by specified amount
- - **candidate_bond_less**(*uint256* **less**) — collator candidate decreases bond by specified amount
- - **nominate**(*address* **collator**, *uint256* **amount**) — if the caller is not a nominator, this function adds them to the set of nominators. If the caller is already a nominator, then it adjusts their nomination amount
+ - **candidate_bond_more**(*uint256* more) — collator candidate increases bond by specified amount
+ - **candidate_bond_less**(*uint256* less) — collator candidate decreases bond by specified amount
+ - **nominate**(*address* collator, *uint256* amount) — if the caller is not a nominator, this function adds them to the set of nominators. If the caller is already a nominator, then it adjusts their nomination amount
  - **leave_nominators**() — leave the set of nominators and revoke all ongoing nominations
- - **revoke_nominations**(*address* **collator**) — revoke a specific nomination
- - **nominator_bond_more**(*address* **collator**, *uint256* **more**) — nominator increases bond to a collator by specified amount
- - **nominator_bond_less**(*address* **collator**, *uint256* **less**) — nominator decreases bond to a collator by specified amount
+ - **revoke_nominations**(*address* collator) — revoke a specific nomination
+ - **nominator_bond_more**(*address* collator, *uint256* more) — nominator increases bond to a collator by specified amount
+ - **nominator_bond_less**(*address* collator, *uint256* less) — nominator decreases bond to a collator by specified amount
 
 ## Interacting with the Staking Precompile
 
