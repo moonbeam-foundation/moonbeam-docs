@@ -88,6 +88,11 @@ networks:
       collators:
         address1: '0x4c5A56ed5A4FF7B09aA86560AfD7d383F4831Cce'
         address2: '0x62d2e7324f9274fac3893a59aff8e944a323a495'
+  moonriver:
+    node_directory: /var/lib/moonriver-data
+    parachain_docker_tag: moonriver-genesis
+    chain_spec: moonriver
+    binary_name: moonbeam
   relay_chain:
     p2p: 30334
     rpc: 9934

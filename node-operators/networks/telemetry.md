@@ -9,9 +9,9 @@ description: How to run telemetry for a full Parachain node for the Moonbeam Net
 
 ## Introduction
 
-With the release of Moonbase Alpha v6, you can spin up a node that connects to the Moonbase Alpha TestNet. You can check those steps in [this tutorial](/node-operators/networks/full-node/).
+With the release of Moonbase Alpha v6, and the upcoming launch of Moonriver, you can spin up a node that connects to the Moonbase Alpha TestNet or Moonriver on Kusama. You can check those steps in [this tutorial](/node-operators/networks/full-node/).
 
-This guide will provide the necessary steps to enable the telemetry server for your Moonbase Alpha node.
+This guide will provide the necessary steps to enable the telemetry server for your Moonbeam-based node.
 
 !!! note
     The steps described in this guide are for a telemetry instance different than the standard Polkadot telemetry enabled by default (you can run nodes with no telemetry by using the `--no-telemetry` flag). The steps described in this guide are mandatory only for collator nodes.
@@ -34,6 +34,9 @@ Before following this tutorial, you need to:
 
  1. Log in to [https://app.gantree.io](https://app.gantree.io) and create an account.  Navigate to API keys and copy your API key. 
  2. Request a PCK key in our [Discord server](https://discord.gg/FQXm74UQ7V)
+
+
+ You can use the same PCK key for all of our Moonbeam-based networks, which currently includes Moonbase Alpha and Moonriver.
    
 ## Telemetry Exporter with Docker
 
@@ -61,34 +64,58 @@ docker build .
 docker images
 ```
 
-Next, let's run the docker container (parachain Gantree node watchdog). Note that you need to replace the following fields:
+Run the docker container (parachain Gantree node watchdog). Note that you need to replace the following fields:
 
-  - `IMAGE-NAME` witch the one fetched in the previous step
+  - `IMAGE-NAME` with the one fetched in the previous step
   - `YOUR-API-KEY` with the one provided by [https://app.gantree.io](https://app.gantree.io)
   - `YOUR-SERVER-NAME`
-  - `YOUR-PCK-KEY` with the one requested in our Discord server
+  - `YOUR-PCK-KEY` with the one requested in our Discord server (you can use the same one for all Moonbeam-based networks)
 
-```
-docker run -it --network="host" \
--e GANTREE_NODE_WATCHDOG_API_KEY="YOUR-API-KEY" \
--e GANTREE_NODE_WATCHDOG_PROJECT_ID="moonbase-alpha" \
--e GANTREE_NODE_WATCHDOG_CLIENT_ID="YOUR-SERVER-NAME-parachain" \
--e GANTREE_NODE_WATCHDOG_PCKRC="YOUR-PCK-KEY" \
--e GANTREE_NODE_WATCHDOG_METRICS_HOST="http://127.0.0.1:9615" \
---name gantree_watchdog_parachain IMAGE-NAME
-```
+=== "Moonbase Alpha"
+    ```
+    docker run -it --network="host" \
+    -e GANTREE_NODE_WATCHDOG_API_KEY="YOUR-API-KEY" \
+    -e GANTREE_NODE_WATCHDOG_PROJECT_ID="moonbase-alpha" \
+    -e GANTREE_NODE_WATCHDOG_CLIENT_ID="YOUR-SERVER-NAME-parachain" \
+    -e GANTREE_NODE_WATCHDOG_PCKRC="YOUR-PCK-KEY" \
+    -e GANTREE_NODE_WATCHDOG_METRICS_HOST="http://127.0.0.1:9615" \
+    --name gantree_watchdog_parachain IMAGE-NAME
+    ```
+
+=== "Moonriver on Kusama"
+    ```
+    docker run -it --network="host" \
+    -e GANTREE_NODE_WATCHDOG_API_KEY="YOUR-API-KEY" \
+    -e GANTREE_NODE_WATCHDOG_PROJECT_ID="moonriver" \
+    -e GANTREE_NODE_WATCHDOG_CLIENT_ID="YOUR-SERVER-NAME-parachain" \
+    -e GANTREE_NODE_WATCHDOG_PCKRC="YOUR-PCK-KEY" \
+    -e GANTREE_NODE_WATCHDOG_METRICS_HOST="http://127.0.0.1:9615" \
+    --name gantree_watchdog_parachain IMAGE-NAME
+    ```
 
 Now, we need to run the relay Gantree node watchdog. Note that you need to replace the same information as in the previous step.
 
-```
-docker run -it --network="host" \
--e GANTREE_NODE_WATCHDOG_API_KEY="YOUR-API-KEY" \
--e GANTREE_NODE_WATCHDOG_PROJECT_ID="moonbase-alpha" \
--e GANTREE_NODE_WATCHDOG_CLIENT_ID="YOUR-SERVER-NAME-relay" \
--e GANTREE_NODE_WATCHDOG_PCKRC="YOUR-PCK-KEY" \
--e GANTREE_NODE_WATCHDOG_METRICS_HOST="http://127.0.0.1:9616" \
---name gantree_watchdog_relay IMAGE-NAME
-```
+=== "Moonbase Alpha"
+    ```
+    docker run -it --network="host" \
+    -e GANTREE_NODE_WATCHDOG_API_KEY="YOUR-API-KEY" \
+    -e GANTREE_NODE_WATCHDOG_PROJECT_ID="moonbase-alpha" \
+    -e GANTREE_NODE_WATCHDOG_CLIENT_ID="YOUR-SERVER-NAME-relay" \
+    -e GANTREE_NODE_WATCHDOG_PCKRC="YOUR-PCK-KEY" \
+    -e GANTREE_NODE_WATCHDOG_METRICS_HOST="http://127.0.0.1:9616" \
+    --name gantree_watchdog_relay IMAGE-NAME
+    ```
+
+=== "Moonriver on Kusama"
+    ```
+    docker run -it --network="host" \
+    -e GANTREE_NODE_WATCHDOG_API_KEY="YOUR-API-KEY" \
+    -e GANTREE_NODE_WATCHDOG_PROJECT_ID="moonriver" \
+    -e GANTREE_NODE_WATCHDOG_CLIENT_ID="YOUR-SERVER-NAME-relay" \
+    -e GANTREE_NODE_WATCHDOG_PCKRC="YOUR-PCK-KEY" \
+    -e GANTREE_NODE_WATCHDOG_METRICS_HOST="http://127.0.0.1:9616" \
+    --name gantree_watchdog_relay IMAGE-NAME
+    ```
 
 You should see waiting for provisioning in the logs.  Once it's complete, you can log into the [https://app.gantree.io](https://app.gantree.io) and select networks. You will see a `View Monitoring Dashboard` link to your custom Prometheus / Grafana dashboard which you can customize to your needs.  
 
@@ -125,29 +152,55 @@ Now, we need to generate the configuration files, place each in the folders crea
 
 Parachain:
 
-```
-# Contents of /var/lib/gantree/parachain/.gnw_config.json
-{
-  "api_key": "YOUR-API-KEY",
-  "project_id": "moonbase-alpha",
-  "client_id": "YOUR-SERVER-NAME-parachain",
-  "pckrc": "YOUR-PCK-KEY",
-  "metrics_host": "http://127.0.0.1:9615"
-}
-```
+=== "Moonbase Alpha"
+    ```
+    # Contents of /var/lib/gantree/parachain/.gnw_config.json
+    {
+      "api_key": "YOUR-API-KEY",
+      "project_id": "moonbase-alpha",
+      "client_id": "YOUR-SERVER-NAME-parachain",
+      "pckrc": "YOUR-PCK-KEY",
+      "metrics_host": "http://127.0.0.1:9615"
+    }
+    ```
+
+=== "Moonriver on Kusama"
+    ```
+    # Contents of /var/lib/gantree/parachain/.gnw_config.json
+    {
+      "api_key": "YOUR-API-KEY",
+      "project_id": "moonriver",
+      "client_id": "YOUR-SERVER-NAME-parachain",
+      "pckrc": "YOUR-PCK-KEY",
+      "metrics_host": "http://127.0.0.1:9615"
+    }
+    ```
 
 Embedded relay chain:
 
-```
-# Contents of /var/lib/gantree/relay/.gnw_config.json
-{
-  "api_key": "YOUR-API-KEY",
-  "project_id": "moonbase-alpha",
-  "client_id": "YOUR-SERVER-NAME-relay",
-  "pckrc": "YOUR-PCK-KEY",
-  "metrics_host": "http://127.0.0.1:9616"
-}
-```
+=== "Moonbase Alpha"
+    ```
+    # Contents of /var/lib/gantree/relay/.gnw_config.json
+    {
+      "api_key": "YOUR-API-KEY",
+      "project_id": "moonbase-alpha",
+      "client_id": "YOUR-SERVER-NAME-relay",
+      "pckrc": "YOUR-PCK-KEY",
+      "metrics_host": "http://127.0.0.1:9616"
+    }
+    ```
+
+=== "Moonriver on Kusama"
+    ```
+    # Contents of /var/lib/gantree/relay/.gnw_config.json
+    {
+      "api_key": "YOUR-API-KEY",
+      "project_id": "moonriver",
+      "client_id": "YOUR-SERVER-NAME-relay",
+      "pckrc": "YOUR-PCK-KEY",
+      "metrics_host": "http://127.0.0.1:9616"
+    }
+    ```
 
 The next step is to generate your systemd configuration file.
 
@@ -200,7 +253,3 @@ sudo systemctl start gantree-relay && journalctl -f -u gantree-relay
 ```
 
 You should see waiting for provisioning in the logs.  Once it's complete, you can log into the [https://app.gantree.io](https://app.gantree.io) and select networks. You will see a `View Monitoring Dashboard` link to your custom Prometheus / Grafana dashboard which you can customize to your needs.  
-
-## Contact Us
-
-If you have any feedback regarding running a full node with telemetry, or any other Moonbeam related topic, feel free to reach out through our official development [Discord server](https://discord.com/invite/PfpUATX).
