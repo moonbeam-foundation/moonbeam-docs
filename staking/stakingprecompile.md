@@ -11,7 +11,7 @@ description: Moonbeam Parachain Staking Ethereum Solidity Precompile Interface D
 
 A delegated proof of stake pallet recently debuted called [Parachain-Staking](https://github.com/PureStake/moonbeam/tree/master/pallets/parachain-staking/src), allowing token holders (nominators) to express exactly which collator candidates they would like to support and with what quantity of stake. The design of the Parachain-Staking pallet is such that it enforces shared risk/reward on chain between delegators and collators.
 
-The Staking module is coded in Rust and it is part of a pallet that is normally not accessible from the Ethereum side of Moonbeam. However, a Staking Precompile allows developers to access the staking features using the Ethereum API in a precompiled contract located at address `{{networks.moonbase.staking.precompile_address}}`. The Staking Precompile was first released in [Moonbase Alpha v8 release](https://moonbeam.network/announcements/testnet-upgrade-moonbase-alpha-v8/).
+The Staking module is coded in Rust and it is part of a pallet that is normally not accessible from the Ethereum side of Moonbeam. However, a Staking Precompile allows developers to access the staking features using the Ethereum API in a precompiled contract located at address `{{networks.moonbase.staking.precompile_address}}`. The Staking Precompile was first released in the [Moonbase Alpha v8 release](https://moonbeam.network/announcements/testnet-upgrade-moonbase-alpha-v8/).
 
 ## The Parachain-Staking Solidity Interface
 
@@ -37,7 +37,7 @@ The interface includes the following functions:
 ## Interacting with the Staking Precompile
 
 ### Checking Prerequisites
-The below example references Moonbase Alpha, however, it is compatible with all networks including Moonriver and Moonbeam.
+The below example is demonstrated on Moonbase Alpha, however, it is compatible with all networks including Moonriver and Moonbeam.
 
  - Have MetaMask installed and [connected to Moonbase Alpha](/getting-started/moonbase/metamask/)
  - Have an account with over `{{networks.moonbase.staking.min_nom_stake}}` tokens. You can get this from [Mission Control](/getting-started/moonbase/faucet/)
@@ -58,7 +58,7 @@ The below example references Moonbase Alpha, however, it is compatible with all 
 ![Compiling StakingInteface.sol](/images/staking/staking-precompile-2.png)
 
 ### Access the Contract
-1. Click on the Deploy and Run tab, directly below the Compile tab in Remix. Note: we are not deploying a contract here, instead we are accessing a precompiled contract that is already deployed
+1. Click on the Deploy and Run tab, directly below the Compile tab in Remix. **Note**: we are not deploying a contract here, instead we are accessing a precompiled contract that is already deployed
 2. Make sure "Injected Web3" is selected in the Environment drop down
 3. Ensure “ParachainStaking - StakingInterface.sol” is selected in the Contract dropdown. Since this is a precompiled contract there is no need to deploy, instead we are going to provide the address of the precompile in the “At Address” Field
 4. Provide the address of the Staking precompile: `{{networks.moonbase.staking.precompile_address}}` and click “At Address”
@@ -70,7 +70,7 @@ For this example, we are going to be nominating a collator. Nominators are token
 
 1. Expand the panel with the contract address. Locate the nominate function and expand the panel to see the parameters
 2. Provide the address of a collator such as `{{ networks.moonbase.staking.collators.address1 }}`
-3. Provide the amount to nominate in WEI. There is a minimum of `{{networks.moonbase.staking.min_nom_stake}}` DEV to nominate, so the lowest amount in WEI is `5000000000000000000`
+3. Provide the amount to nominate in WEI. There is a minimum of `{{networks.moonbase.staking.min_nom_stake}}` tokens to nominate, so the lowest amount in WEI is `5000000000000000000`
 4. Press "transact" and confirm the transaction in Metamask
 
 ![Nominate a Collator](/images/staking/staking-precompile-4.png)
@@ -81,7 +81,7 @@ To verify your nomination was successful, you can check the chain state in Polka
 #### Add Metamask Address to Address Book
 1. Navigate to Accounts -> Address Book 
 2. Click on "Add contact"
-3. Add your Metamask Moonbase Alpha Address
+3. Add your Metamask Address
 4. Provide a nickname for the account
 
 ![Add to Address Book](/images/staking/staking-precompile-5.png)
