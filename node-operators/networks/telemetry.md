@@ -117,7 +117,7 @@ Now, we need to run the relay Gantree node watchdog. Note that you need to repla
     --name gantree_watchdog_relay IMAGE-NAME
     ```
 
-You should see waiting for provisioning in the logs.  Once it's complete, you can log into the [https://app.gantree.io](https://app.gantree.io) and select networks. You will see a `View Monitoring Dashboard` link to your custom Prometheus / Grafana dashboard which you can customize to your needs.  
+You should see "waiting for provisioning" in the logs. If it is your first time running Gantree, it will wait until you log back into the portal and click "provision dashboard" to switch to "provisioning". This switch can take a few minutes. Once it's complete, you can log into the [https://app.gantree.io](https://app.gantree.io) and select networks. You will see a `View Monitoring Dashboard` link to your custom Prometheus / Grafana dashboard which you can customize to your needs.  
 
 Once things are working well, you can update the commands to run in daemon mode.  Remove `-it` and add `-d` to the command above.  
 
