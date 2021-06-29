@@ -42,7 +42,7 @@ Lastly, build parachain binary:
 cargo build --release
 ```
 
-![Compiling Binary](/images/fullnode/fullnode-binary1.png)
+![Compiling Binary](/images/fullnode/compile-binary1.png)
 
 If a _cargo not found error_ shows up in the terminal, manually add Rust to your system path or restart your system:
 

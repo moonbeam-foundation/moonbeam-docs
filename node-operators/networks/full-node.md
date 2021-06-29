@@ -458,7 +458,7 @@ And lastly, verify the service is running:
 systemctl status moonbeam.service
 ```
 
-![Service Status](/images/fullnode/fullnode-binary2.png)
+![Service Status](/images/fullnode/fullnode-binary1.png)
 
 You can also check the logs by executing:
 
@@ -466,7 +466,7 @@ You can also check the logs by executing:
 journalctl -f -u moonbeam.service
 ```
 
-![Service Logs](/images/fullnode/fullnode-binary3.png)
+![Service Logs](/images/fullnode/fullnode-binary2.png)
 
 ## Advanced Flags and Options
 
