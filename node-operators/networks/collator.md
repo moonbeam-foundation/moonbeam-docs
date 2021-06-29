@@ -124,13 +124,13 @@ There is a {{ networks.moonbase.staking.collator_map_bond }} DEV tokens bond tha
 
 The `authorMapping` module has the following extrinsics programmed:
 
- - **addAssociation** — one input: author ID. Maps your author ID to the H160 account from which the transaction is being sent, ensuring is the true owner of its private keys. It requires a {{ networks.moonbase.staking.collator_map_bond }} DEV tokens bond
- - **clearAssociation** — one input: author ID. Clears the association of an author ID to the H160 account from which the transaction is being sent, which needs to be the owner of that author ID. Also refunds the {{ networks.moonbase.staking.collator_map_bond }} DEV tokens bond
- - **updateAssociation** — two inputs: old and new author IDs. Updates the mapping from an old author ID to a new one. Useful after a key rotation or migration. It executes both the `add` and `clear` association extrinsics atomically, enabling key rotation without needing a second bond
+ - **addAssociation**(*address* authorID) — Maps your author ID to the H160 account from which the transaction is being sent, ensuring is the true owner of its private keys. It requires a {{ networks.moonbase.staking.collator_map_bond }} DEV tokens bond
+ - **clearAssociation**(*address* authorID) — Clears the association of an author ID to the H160 account from which the transaction is being sent, which needs to be the owner of that author ID. Also refunds the {{ networks.moonbase.staking.collator_map_bond }} DEV tokens bond
+ - **updateAssociation**(*address* oldAuthorID, *address* newAuthorID) —  Updates the mapping from an old author ID to a new one. Useful after a key rotation or migration. It executes both the `add` and `clear` association extrinsics atomically, enabling key rotation without needing a second bond
 
 The module also adds the following RPC calls (chain state):
 
-- **mapping** — one optional input: author ID. Displays all mappings stored on-chain, or only that related to the input if provided
+- **mapping**(*address* optionalAuthorID) — Displays all mappings stored on-chain, or only that related to the input if provided
 
 ### Mapping Extrinsic
 

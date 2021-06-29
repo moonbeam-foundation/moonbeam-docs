@@ -19,9 +19,9 @@ The Staking module is coded in Rust and it is part of a pallet that is normally 
 
 The interface includes the following functions:
 
- - **is_nominator**(*address* collator) — checks whether the specified address is currently a staking nominator
- - **is_candidate**(*address* collator) — checks whether the specified address is currently a collator candidate
- - **min_nomination**() — gets the minimum nomination amount
+ - **is_nominator**(*address* collator) — read-only function that checks whether the specified address is currently a staking nominator
+ - **is_candidate**(*address* collator) — read-only function that checks whether the specified address is currently a collator candidate
+ - **min_nomination**() — read-only function that gets the minimum nomination amount
  - **join_candidates**(*uint256* amount) — allows the account to join the set of collator candidates with a specified bond amount
  - **leave_candidates**() — immediately removes the account from the candidate pool to prevent others from selecting it as a collator and triggers unbonding after BondDuration rounds have elapsed
  - **go_offline**() — temporarily leave the set of collator candidates without unbonding

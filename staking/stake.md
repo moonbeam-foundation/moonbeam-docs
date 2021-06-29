@@ -38,11 +38,11 @@ There are many extrinsics related to the staking pallet, so all of them are not 
 !!! note
     Extrinsics might change in the future as the staking pallet is updated.
 
- - **nominate** — two inputs: address of collator to nominate and amount. Extrinsic to nominate a collator. The amount must be at least {{ networks.moonbase.staking.min_nom_amount }} tokens
- - **leaveNominators** — no inputs. Extrinsic to leave the set of nominators. Consequently, all ongoing nominations will be revoked
- - **nominatorBondLess** — two inputs: address of a nominated collator and amount. Extrinsic to reduce the amount of staked tokens for an already nominated collator. The amount must not decrease your overall total staked below {{ networks.moonbase.staking.min_nom_stake }} tokens
- - **nominatorBondMore** — two inputs: address of a nominated collator and amount. Extrinsic to increase the amount of staked tokens for an already nominated collator
- - **revokeNomination** — one input: address of a nominated collator. Extrinsic to remove an existing nomination
+ - **nominate**(*address* collator, *uint256* amount) — Extrinsic to nominate a collator. The amount must be at least {{ networks.moonbase.staking.min_nom_amount }} tokens
+ - **leaveNominators**() — Extrinsic to leave the set of nominators. Consequently, all ongoing nominations will be revoked
+ - **nominatorBondLess**(*address* collator, *uint256* less) — Extrinsic to reduce the amount of staked tokens for an already nominated collator. The amount must not decrease your overall total staked below {{ networks.moonbase.staking.min_nom_stake }} tokens
+ - **nominatorBondMore**(*address* collator, *uint256* more) — Extrinsic to increase the amount of staked tokens for an already nominated collator
+ - **revokeNomination**(*address* collator) — Extrinsic to remove an existing nomination
 
 ## Retrieving the List of Collators
 
