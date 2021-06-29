@@ -2,6 +2,7 @@ title: Networks
 hide: false
 nav:
   - full-node.md
+  - compile-binary.md
   - collator.md
   - telemetry.md
-  - compile-binary.md
+  
