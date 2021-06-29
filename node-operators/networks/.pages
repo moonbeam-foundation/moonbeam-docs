@@ -4,3 +4,4 @@ nav:
   - full-node.md
   - collator.md
   - telemetry.md
+  - compile-binary.md

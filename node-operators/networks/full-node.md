@@ -216,45 +216,42 @@ If you followed the installation instructions for Moonriver, once synced, you wi
 
 ## Installation Instructions - Binary
 
-This section goes through the process of compiling the binary and running a Moonbeam full node as a systemd service. The following steps were tested on an Ubuntu 18.04 installation. Moonbeam may work with other Linux flavors, but Ubuntu is currently the only tested version.
+This section goes through the process of using the release binary and running a Moonbeam full node as a systemd service. The following steps were tested on an Ubuntu 18.04 installation. Moonbeam may work with other Linux flavors, but Ubuntu is currently the only tested version.
 
-### Compiling the Binary
+To manually build the binaries yourself, check out the [Compile Moonbeam Binary](/node-operators/networks/compile-binary) guide.
 
-The following commands will build the latest release of the Moonbeam parachain.
+### Use the Release Binary
 
-First, let's start by cloning the moonbeam repo.
+There are a couple ways to get started with the Moonbeam binary. You can compile the binary yourself, but the whole process can take around 30 minutes to install the dependencies and build the binary. If you're interested in going this route, check out the [Compile the Binary](/) page of our documentation.
 
-```
-git clone https://github.com/PureStake/moonbeam
-cd moonbeam
-```
+Or you can use the [release binary](https://github.com/PureStake/moonbeam/releases) to get started right away.
 
-Let's check out the latest release:
+Use `wget` to grab the latest release binary:
 
-```
-git checkout tags/$(git tag | tail -1)
-```
 
-Next, install Substrate and all its prerequisites, including Rust, by executing:
+=== "Moonbase Alpha"
+    ```
+    wget https://github.com/PureStake/moonbeam/releases/download/v0.8.4/moonbeam
+    ```
 
-```
---8<-- 'code/setting-up-node/substrate.md'
-```
+=== "Moonriver"
+    ```
+    wget https://github.com/PureStake/moonbeam/releases/download/moonriver-genesis/moonbeam
+    ``` 
 
-Lastly, build parachain binary:
+To verify that you have downloaded the correct version, you can run `sha256sum moonbeam` in your terminal, you should receive the following output:
 
-```
-cargo build --release
-```
+=== "Moonbase Alpha"
+    ```
+    7a63187a131d7f23738ce1025363a5a41b9db953c0bca73fb06fd8cfc7b39d1d
+    ```
 
-![Compiling Binary](/images/fullnode/fullnode-binary1.png)
+=== "Moonriver"
+    ```
+    445e820ec347ff4b30ebbe61ae16a6f57abdb98eb379e96b8e7eaf17b359601c
+    ```
 
-If a _cargo not found error_ shows up in the terminal, manually add Rust to your system path or restart your system:
-
-```
---8<-- 'code/setting-up-node/cargoerror.md'
-```
-
+Once you've retrieved the binary, you can use it to run the systemd service. 
 ### Running the Systemd Service
 
 The following commands will set up everything regarding running the service.
@@ -285,16 +282,16 @@ Next, create a directory to store the binary and data. Make sure you set the own
     chown moonriver_service {{ networks.moonriver.node_directory }}
     ```
 
-Now, copy the binary built in the last section to the created folder:
+Now, copy the binary built in the last section to the created folder. If you [compiled the binary](/node-operators/networks/compile-binary/) yourself, you'll need to copy the binary in the target directory (`./target/release/{{ networks.moonbase.binary_name }}`). Otherwise, copy the Moonbeam binary in the root:
 
 === "Moonbase Alpha"
     ```
-    cp ./target/release/{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
+    cp ./{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
     ```
 
 === "Moonriver"
     ```
-    cp ./target/release/{{ networks.moonriver.binary_name }} {{ networks.moonriver.node_directory }}
+    cp ./{{ networks.moonriver.binary_name }} {{ networks.moonriver.node_directory }}
     ```
 
 The next step is to create the systemd configuration file. If you are setting up a collator node, make sure to follow the code snippets for "Collator". Note that you have to:
