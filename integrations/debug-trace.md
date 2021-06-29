@@ -40,10 +40,10 @@ The RPC method requires any of the following *optional* parameters:
 
  - **fromBlock**(*uint* blockNumber) — either block number (`hex`), `earliest` which is the genesis block or `latest` (default) best block available. Trace starting block
  - **toBlock**(*uint* blockNumber) — either block number (`hex`), `earliest` which is the genesis block or `latest` best block available. Trace ending block
- - **fromAddress**(*array* addresses) — Filter transactions done from these addresses only. If an empty array is provided, no filtering is done with this field
- - **toAddress**(*array* addresses) — Filter transactions done from these addresses only. If an empty array is provided, no filtering is done with this field
- - **after**(*uint* offset) — Default offset is `0`. Trace offset (or starting) number
- - **count**(*uint* numberOfTraces) — Number of traces to display in a batch
+ - **fromAddress**(*array* addresses) — filter transactions done from these addresses only. If an empty array is provided, no filtering is done with this field
+ - **toAddress**(*array* addresses) — filter transactions done from these addresses only. If an empty array is provided, no filtering is done with this field
+ - **after**(*uint* offset) — default offset is `0`. Trace offset (or starting) number
+ - **count**(*uint* numberOfTraces) — number of traces to display in a batch
 
 ## Try it on Moonbase Alpha
 
