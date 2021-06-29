@@ -110,9 +110,6 @@ Next, make sure you set the ownership and permissions accordingly for the local 
 
 Now, execute the docker run command. If you are setting up a collator node, make sure to follow the code snippets for "Collator". Note that you have to replace `YOUR-NODE-NAME` in two different places.
 
-!!! note
-    If you're using MacOS, replace `--network="host"` with `-p {{ networks.parachain.rpc }}:{{ networks.parachain.rpc }} -p {{ networks.parachain.ws }}:{{ networks.parachain.ws }}`
-
 ### Full Node
 
 === "Moonbase Alpha"
@@ -186,6 +183,16 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --pruning archive \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
+
+If you're using MacOS, you can run the following code snippets in your terminal:
+
+=== "Moonbase Alpha"
+    - [_Full Node_](/snippets/code/full-node/moonbase-full-node)
+    - [_Collator_](/snippets/code/full-node/moonbase-collator)
+
+=== "Moonriver"
+    - [_Full Node_](/snippets/code/full-node/moonriver-full-node)
+    - [_Collator_](/snippets/code/full-node/moonriver-collator)
 
 Once Docker pulls the necessary images, your full Moonbeam (or Moonriver) node will start, displaying lots of information, such as the chain specification, node name, role, genesis state, and more:
 
