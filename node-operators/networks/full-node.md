@@ -88,7 +88,7 @@ Create a local directory to store the chain data:
     mkdir {{ networks.moonriver.node_directory }}
     ```
 
-Set the necessary permissions either for a specific or current user (replace `DOCKER_USER` for the actual user that will run the `docker` command):
+Next, make sure you set the ownership and permissions accordingly for the local directory that stores the chain data. In this case, set the necessary permissions either for a specific or current user (replace `DOCKER_USER` for the actual user that will run the `docker` command):
 
 === "Moonbase Alpha"
     ```
@@ -108,15 +108,10 @@ Set the necessary permissions either for a specific or current user (replace `DO
     sudo chown -R $(id -u):$(id -g) {{ networks.moonriver.node_directory }}
     ```
 
-!!! note
-    Make sure you set the ownership and permissions accordingly for the local directory that stores the chain data.
-
-Now, execute the docker run command. Note that you have to:
-
- - Replace `YOUR-NODE-NAME` in two different places.
+Now, execute the docker run command. If you are setting up a collator node, make sure to follow the code snippets for "Collator". Note that you have to replace `YOUR-NODE-NAME` in two different places.
 
 !!! note
-    If you are setting up a collator node, make sure to follow the code snippets for "Collator".
+    If you're using MacOS, replace `--network="host"` with `-p {{ networks.parachain.rpc }}:{{ networks.parachain.rpc }} -p {{ networks.parachain.ws }}:{{ networks.parachain.ws }}`
 
 ### Full Node
 
@@ -154,8 +149,6 @@ Now, execute the docker run command. Note that you have to:
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
-!!! note
-    If you're using MacOS, replace `--network="host"` with `-p {{ networks.parachain.rpc }}:{{ networks.parachain.rpc }} -p {{ networks.parachain.ws }}:{{ networks.parachain.ws }}`
 ### Collator
 
 === "Moonbase Alpha"
@@ -194,18 +187,12 @@ Now, execute the docker run command. Note that you have to:
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
-!!! note
-    If you're using MacOS, replace `--network="host"` with `-p {{ networks.parachain.rpc }}:{{ networks.parachain.rpc }} -p {{ networks.parachain.ws }}:{{ networks.parachain.ws }}`
-
-Once Docker pulls the necessary images, your full Moonbeam node will start, displaying lots of information, such as the chain specification, node name, role, genesis state, and more:
+Once Docker pulls the necessary images, your full Moonbeam (or Moonriver) node will start, displaying lots of information, such as the chain specification, node name, role, genesis state, and more:
 
 ![Full Node Starting](/images/fullnode/fullnode-docker1.png)
 
 !!! note
     If you want to run an RPC endpoint, to connect polkadot.js.org, or to run your own application, use the flags `--unsafe-rpc-external` and/or `--unsafe-ws-external` to run the full node with external access to the RPC ports.  More details are available by running `moonbeam --help`.  
-
-!!! note
-    If you are having issues with the default telemetry, you can add the flag `--no-telemetry` to run the full node without telemetry activated.
 
 !!! note
     You can specify a custom Prometheus port with the `--prometheus-port XXXX` flag (replacing `XXXX` with the actual port number). This is possible for both the parachain and embedded relay chain.
@@ -225,7 +212,7 @@ During the syncing process, you will see messages from both the embedded relay c
 
 If you followed the installation instructions for Moonbase Alpha, once synced, you will have a node of the Moonbase Alpha TestNet running locally!
 
-If you followed the installation instructions for Moonriver, once synced, you will be connected to peers and see blocks being produced on the Moonriver network!
+If you followed the installation instructions for Moonriver, once synced, you will be connected to peers and see blocks being produced on the Moonriver network! Note that in this case you need to also sync to the Kusama relay chain, which might take a few days.
 
 ## Installation Instructions - Binary
 
@@ -284,7 +271,7 @@ First, let's create a service account to run the service:
     adduser moonriver_service --system --no-create-home
     ```
 
-Next, create a directory to store the binary and data and set the necessary permissions:
+Next, create a directory to store the binary and data. Make sure you set the ownership and permissions accordingly for the local directory that stores the chain data.:
 
 === "Moonbase Alpha"
     ```
@@ -298,9 +285,6 @@ Next, create a directory to store the binary and data and set the necessary perm
     chown moonriver_service {{ networks.moonriver.node_directory }}
     ```
 
-!!! note
-    Make sure you set the ownership and permissions accordingly for the local directory that stores the chain data.
-
 Now, copy the binary built in the last section to the created folder:
 
 === "Moonbase Alpha"
@@ -313,15 +297,12 @@ Now, copy the binary built in the last section to the created folder:
     cp ./target/release/{{ networks.moonriver.binary_name }} {{ networks.moonriver.node_directory }}
     ```
 
-The next step is to create the systemd configuration file. Note that you have to:
+The next step is to create the systemd configuration file. If you are setting up a collator node, make sure to follow the code snippets for "Collator". Note that you have to:
 
  - Replace `YOUR-NODE-NAME` in two different places
  - Double-check that the binary is in the proper path as described below (_ExecStart_)
  - Double-check the base path if you've used a different directory
  - Name the file `/etc/systemd/system/moonbeam.service`
-
-!!! note
-    If you are setting up a collator node, make sure to follow the code snippets for "Collator".
 
 #### Full Node
 
@@ -463,9 +444,6 @@ The next step is to create the systemd configuration file. Note that you have to
     [Install]
     WantedBy=multi-user.target
     ```
-
-!!! note
-    If you are having issues with the default telemetry, you can add the flag `--no-telemetry` to run the full node without telemetry activated.
 
 !!! note
     You can specify a custom Prometheus port with the `--promethues-port XXXX` flag (replacing `XXXX` with the actual port number). This is possible for both the parachain and embedded relay chain.
