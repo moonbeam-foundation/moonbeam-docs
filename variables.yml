@@ -95,6 +95,15 @@ networks:
       max_approved_proposals: 100
       tx_fees_allocated: 20
       tx_fees_burned: 80
+  moonriver:
+    treasury:
+      proposal_bond: 5
+      proposal_bond_min: 1
+      spend_period_blocks: 43200
+      spend_period_days: 6
+      max_approved_proposals: 100
+      tx_fees_allocated: 20
+      tx_fees_burned: 80
   relay_chain:
     p2p: 30334
     rpc: 9934
