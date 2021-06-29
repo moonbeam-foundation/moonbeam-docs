@@ -26,9 +26,9 @@ The `debug_traceTransaction` RPC implementation follows [Geth's debug API guidel
 
 The RPC method requires the transaction hash to run. As optional parameters you can provide the following:
 
- - **disableStorage** — one input: boolean (default: _false_). Setting this to true disables storage capture
- - **disableMemory** — one input: boolean (default: _false_). Setting this to true disables memory capture
- - **disableStack** — one input: boolean (default: _false_). Setting this to true disables stack capture
+ - **disableStorage**(*boolean*) — (default: _false_). Setting this to true disables storage capture
+ - **disableMemory**(*boolean*) — (default: _false_). Setting this to true disables memory capture
+ - **disableStack**(*boolean*) — (default: _false_). Setting this to true disables stack capture
 
 JavaScript based transaction tracing is not supported at the moment.
 
@@ -36,14 +36,14 @@ JavaScript based transaction tracing is not supported at the moment.
 
 The `trace_filter` RPC implementation follows [OpenEthereum's trace module guidelines](https://openethereum.github.io/JSONRPC-trace-module#trace_filter).
 
-The RPC method requires any of the following optional parameters:
+The RPC method requires any of the following *optional* parameters:
 
- - **fromBlock** — one input: either block number (`hex`), `earliest` which is the genesis block or `latest` (default) best block available. Trace starting block
- - **toBlock** — one input: either block number (`hex`), `earliest` which is the genesis block or `latest` best block available. Trace ending block
- - **fromAddress** — one input: array of addresses. Filter transactions done from these addresses only. If an empty array is provided, no filtering is done with this field
- - **toAddress** — one input: array of addresses. Filter transactions done from these addresses only. If an empty array is provided, no filtering is done with this field
- - **after** — one input: offset (`uint`), default is `0`. Trace offset (or starting) number
- - **count** — one input: number of traces (`uint`). Number of traces to display in a batch
+ - **fromBlock**(*uint* blockNumber) — either block number (`hex`), `earliest` which is the genesis block or `latest` (default) best block available. Trace starting block
+ - **toBlock**(*uint* blockNumber) — either block number (`hex`), `earliest` which is the genesis block or `latest` best block available. Trace ending block
+ - **fromAddress**(*array* addresses) — filter transactions done from these addresses only. If an empty array is provided, no filtering is done with this field
+ - **toAddress**(*array* addresses) — filter transactions done from these addresses only. If an empty array is provided, no filtering is done with this field
+ - **after**(*uint* offset) — default offset is `0`. Trace offset (or starting) number
+ - **count**(*uint* numberOfTraces) — number of traces to display in a batch
 
 ## Try it on Moonbase Alpha
 
