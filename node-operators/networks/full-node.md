@@ -351,6 +351,7 @@ The next step is to create the systemd configuration file. If you are setting up
     Description="Moonriver systemd service"
     After=network.target
     StartLimitIntervalSec=0
+    
     [Service]
     Type=simple
     Restart=on-failure
@@ -421,6 +422,7 @@ The next step is to create the systemd configuration file. If you are setting up
     Description="Moonriver systemd service"
     After=network.target
     StartLimitIntervalSec=0
+
     [Service]
     Type=simple
     Restart=on-failure
