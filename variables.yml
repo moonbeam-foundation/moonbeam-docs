@@ -97,6 +97,13 @@ networks:
       tx_fees_allocated: 20
       tx_fees_burned: 80
   moonriver:
+    gas_block: 15M
+    gas_tx: 13M
+    rpc_url: https://rpc.moonriver.moonbeam.network
+    wss_url: wss://wss.moonriver.moonbeam.network
+    chain_id: 1285
+    staking:
+      initial_collators: 32
     treasury:
       proposal_bond: 5
       proposal_bond_min: 1
