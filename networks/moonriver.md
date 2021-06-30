@@ -17,10 +17,10 @@ In order to collect as much feedback as possible and provide fast issue resoluti
 
 Moonriver is scheduled to follow a [5-phase launch process](https://moonbeam.network/networks/moonriver/launch/). At the end of the 5 phases, Moonriver will have the following configurations:
 
- - Moonriver runs as a parachain connected to the Kusama relay chain (Phase 0)
+ - Moonriver runs as a parachain connected to the Kusama relay chain.
  - The parachain has an active set of {{ networks.moonriver.staking.initial_collators }} (or more) collators that are collating blocks. The active set is made up of the top collator nodes by stake. The number of collators in the active set is subject to governance. 
  - The Kusama relay chain finalizes relay chain blocks.
- - There are two RPC endpoints (hosted by PureStake). People can run full nodes to access their own private RPC endpoints
+ - There are two RPC endpoints (hosted by PureStake). People can run full nodes to access their own private RPC endpoints.
 
 ![Moonriver Diagram](/images/moonriver/moonriver-diagram.png)
 
