@@ -17,12 +17,12 @@ Each Moonbeam-based network will have it's own treasury. In other words, the Moo
 
 Some important terminology to understand in regards to treasuries:
 
-- **Council** - a group of elected individuals that control how treasury funds will be spent
-- **Proposal** - a plan or suggestion to further the network that is put forth by stakeholders to be approved by the council
-- **Proposal bond** - a deposit equal to a percentage of the total proposal spend amount
-- **Proposal bond minimum** - minimum amount for a proposal bond. This amount must be paid as the bond if it is higher than the deposit percentage
-- **Spend period** - the amount of days, in blocks, during which the treasury funds as many proposals as possible without exceeding the maximum
-- **Maximum approved proposals** - the maximum amount of proposals that can wait in the spending queue
+- **Council** — a group of elected individuals that control how treasury funds will be spent
+- **Proposal** — a plan or suggestion to further the network that is put forth by stakeholders to be approved by the council
+- **Proposal bond** — a deposit equal to a percentage of the total proposal spend amount
+- **Proposal bond minimum** — minimum amount for a proposal bond. This amount must be paid as the bond if it is higher than the deposit percentage
+- **Spend period** — the amount of days, in blocks, during which the treasury funds as many proposals as possible without exceeding the maximum
+- **Maximum approved proposals** — the maximum amount of proposals that can wait in the spending queue
 
 Currently, the Treasury values are as follows:
 
