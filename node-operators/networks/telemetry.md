@@ -71,7 +71,7 @@ Run the docker container (parachain Gantree node watchdog). Note that you need t
   - `YOUR-SERVER-NAME`
   - `YOUR-PCK-KEY` with the one requested in our Discord server (you can use the same one for all Moonbeam-based networks).
 
-The `PROJECT_ID` will always be set to `moonbeam`, regardless of what network you are connected to. 
+The `PROJECT_ID` will always be set to `moonbeam`, regardless of what network you are connected to. The `CLIENT_ID` should contain your company name so we can easily identify you on the Prometheus/Grafana dashboard.
 
 ```
 docker run -it --network="host" \
@@ -128,7 +128,7 @@ Now, we need to generate the configuration files, place each in the folders crea
   - `YOUR-SERVER-NAME`
   - `YOUR-PCK-KEY` with the one requested in our Discord server
 
-The `project_id` will always be set to `moonbeam`, regardless of what network you are connected to. 
+The `project_id` will always be set to `moonbeam`, regardless of what network you are connected to. The `client_id` should contain your company name so we can easily identify you on the Prometheus/Grafana dashboard.
 
 Parachain:
 
