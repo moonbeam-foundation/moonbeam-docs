@@ -97,6 +97,8 @@ networks:
       tx_fees_allocated: 20
       tx_fees_burned: 80
   moonriver:
+    min_gas_price: 1
+    block_time: 12
     gas_block: 15M
     gas_tx: 13M
     rpc_url: https://rpc.moonriver.moonbeam.network

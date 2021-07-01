@@ -13,7 +13,7 @@ const Web3 = require('web3'); //Load Web3 library
 .
 .
 .
-//Create local Web3 instance - set Moonbase Alpha as provider
+//Create local Web3 instance - set Moonriver as provider
 const web3 = new Web3("https://rpc.moonriver.moonbeam.network"); 
 ```
 For the ethers.js library, define the provider by using `ethers.providers.StaticJsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonriver:
@@ -26,7 +26,7 @@ const providerURL = "https://rpc.moonriver.moonbeam.network";
 // Define Provider
 const provider = new ethers.providers.StaticJsonRpcProvider(providerURL, {
     chainId: 1285,
-    name: 'moonbase-alphanet'
+    name: 'moonriver'
 });
 ```
 
@@ -42,4 +42,4 @@ wss://wss.moonriver.moonbeam.network
 
 ### Chain ID
 
-For the Moonbase Alpha TestNet the chain ID is: `1285`
+The Moonriver chain ID is: `1285`

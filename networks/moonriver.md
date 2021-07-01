@@ -13,7 +13,7 @@ In June 2021, Moonriver first launched as a parachain on the Kusama network. Moo
 
 In order to collect as much feedback as possible and provide fast issue resolution, we have set up a [Discord with a dedicated Moonriver channel](https://discord.gg/5TaUvbRvgM).
 
-## Initial Configuration
+## Initial Configurations
 
 Moonriver is scheduled to follow a [5-phase launch process](https://moonbeam.network/networks/moonriver/launch/). At the end of the 5 phases, Moonriver will have the following configurations:
 
@@ -24,14 +24,18 @@ Moonriver is scheduled to follow a [5-phase launch process](https://moonbeam.net
 
 ![Moonriver Diagram](/images/moonriver/moonriver-diagram.png)
 
-## Features
+Currently, you can expect the following network configurations:
 
-### Release Notes
+| Variable              | Value                                       |
+|-----------------------|---------------------------------------------|
+| Minimum gas price     | {{ networks.moonriver.min_gas_price }} gsed |
+| Block time            | {{ networks.moonriver.block_time }} seconds |
+| Block gas limit       | {{ networks.moonriver.gas_block }}          |
+| Transaction gas limit | {{ networks.moonriver.gas_tx }}             |
+| RPC endpoint          | {{ networks.moonriver.rpc_url }}            |
+| WSS endpoint          | {{ networks.moonriver.wss_url }}            |
 
-For more details regarding the updates of Moonriver, please refer to the following release notes:
-
- - [Moonriver Genesis](https://github.com/PureStake/moonbeam/releases/tag/moonriver-genesis)
-
+Some network configurations will change and improve over time, such as the block time, block gas limit, and transaction gas limit. 
 ## Get Started
 
 --8<-- 'text/moonriver/connect.md'
@@ -42,7 +46,23 @@ You can see current Moonriver telemetry information visiting [this link](https:/
 
 ## Tokens
 
-The tokens on Moonriver will also be called Moonriver (MOVR). Check out the Moonbeam Foundation for more information on the [Moonriver token](https://moonbeam.foundation/moonriver-token/).
+The tokens on Moonriver will also be called Moonriver (MOVR). Check out the Moonbeam Foundation for more information on the [Moonriver token](https://moonbeam.foundation/moonriver-token/). 
+
+### Token Denominations
+
+The smallest unit of Moonriver is called a Sediment. It takes 10^18 Sediment to make one Moonriver. The denominations are as follows:
+
+| Unit         | Moonriver            | Sediment                      |
+|--------------|----------------------|-------------------------------|
+| Sediment     | 0.000000000000000001 | 1                             |
+| Kilosediment | 0.000000000000001    | 1,000                         |
+| Megasediment | 0.000000000001       | 1,000,000                     |
+| Gigasediment | 0.000000001          | 1,000,000,000                 |
+| Micromovr    | 0.000001             | 1,000,000,000,000             |
+| Millimovr    | 0.001                | 1,000,000,000,000,000         |
+| Movr         | 1                    | 1,000,000,000,000,000,000     |
+| Kilomovr     | 1,000                | 1,000,000,000,000,000,000,000 |
+
 
 ## Proof of Stake
 
@@ -53,6 +73,4 @@ There will be an initial collator election and the active collator set will star
 ## Limitations
 
 Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts) are yet to be included. You can check a list of supported precompiles [here](/integrations/precompiles/). However, all built-in functions are available.
-
-Since the launch of Moonriver, the maximum gas limit per block has been set to {{ networks.moonriver.gas_block }}, with a maximum gas limit per transaction of {{ networks.moonriver.gas_tx }}.
 
