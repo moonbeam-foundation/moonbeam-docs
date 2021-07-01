@@ -140,7 +140,7 @@ Go to the 'Configuration Page` and copy the node address. Use the [Moonbeam Fauc
 
 Next, we need to deploy the Oracle contract, which is the middleware between the chain and the node. The contract emits an event with all the necessary information, which is read by the Oracle node. Then, the node fulfills the request and writes the requested data in the caller's contract.
 
-The source code of the Oracle contract can be found in Chainlink's official GitHub repository [here](https://github.com/smartcontractkit/chainlink/tree/develop/evm-contracts/src/v0.6). For this example, we'll use Remix to interact with Moonbase Alpha and deploy the contract. In Remix, we can copy the following code:
+The source code of the Oracle contract can be found in Chainlink's official GitHub repository [here](https://github.com/smartcontractkit/chainlink/tree/develop/contracts/src/v0.6). For this example, we'll use Remix to interact with Moonbase Alpha and deploy the contract. In Remix, we can copy the following code:
 
 ```
 pragma solidity ^0.6.6;

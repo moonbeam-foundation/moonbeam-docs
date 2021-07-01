@@ -8,7 +8,8 @@ networks:
     version: v0.7.0 # must be in this exact format for links to work
     rpc_url: https://rpc.testnet.moonbeam.network
     chain_id: 1287
-    parachain_docker_tag: v0.8.0
+    parachain_release_tag: v0.9.1
+    parachain_sha256sum: de4cbbd849b70b2215d5fc9b67f5841d985c6bad496940a2eb3f15534e6f735f
     gas_block: 15M
     gas_tx: 13M
     node_directory: /var/lib/alphanet-data
@@ -97,6 +98,11 @@ networks:
       tx_fees_allocated: 20
       tx_fees_burned: 80
   moonriver:
+    node_directory: /var/lib/moonriver-data
+    parachain_release_tag: v0.9.1
+    parachain_sha256sum: de4cbbd849b70b2215d5fc9b67f5841d985c6bad496940a2eb3f15534e6f735f
+    chain_spec: moonriver
+    binary_name: moonbeam
     treasury:
       proposal_bond: 5
       proposal_bond_min: 1
