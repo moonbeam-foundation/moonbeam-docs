@@ -9,7 +9,7 @@ description: How to run telemetry for a full Parachain node for the Moonbeam Net
 
 ## Introduction
 
-With the release of Moonbase Alpha v6, and the recent launch of Moonriver, you can spin up a node that connects to the Moonbase Alpha TestNet or Moonriver on Kusama. You can check those steps in [this tutorial](/node-operators/networks/full-node/).
+Since Moonbase Alpha v6, and the recent launch of Moonriver, you can spin up a node that connects to the Moonbase Alpha TestNet or Moonriver on Kusama. You can check those steps in [this tutorial](/node-operators/networks/full-node/).
 
 This guide will provide the necessary steps to enable the telemetry server for your Moonbeam-based node.
 
@@ -20,7 +20,7 @@ This guide will provide the necessary steps to enable the telemetry server for y
 
 Moonbeam will run a telemetry server that collects Prometheus metrics from all the Moonbeam parachain nodes on the network. Running this will be a great help to us during our development phase.  
 
-The metrics exporter can run either as a kubernetes sidecar, or as a local binary if you are running a VM. It will push data out to our servers, so you do not have to enable any incoming ports for this service.
+The metrics exporter can run either as a Kubernetes sidecar, or as a local binary if you are running a VM. It will push data out to our servers, so you do not have to enable any incoming ports for this service.
 
 We are using a service called [Gantree Node Watchdog](https://github.com/gantree-io/gantree-node-watchdog) to upload telemetry automatically.  Once you enable telemetry, you can also access a Prometheus/Grafana server from the [Gantree App](https://app.gantree.io/).  There are detailed instructions on the GitHub repository. If you need more info, here is a quick start. 
 

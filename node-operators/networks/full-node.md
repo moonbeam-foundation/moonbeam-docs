@@ -19,7 +19,7 @@ There are multiple deployments of Moonbeam, including the Moonbase Alpha TestNet
 |   Moonriver    |     |  Kusama   |     |    moonriver    |
 |    Moonbeam    |     | Polkadot  |     | _not available_ |
 
-This guide is meant for people with experience running [Substrate](https://substrate.dev/) based chains. Running a parachain is similar to running a Substrate node with a few differences. A Substrate parachain node will run two processes: one to sync the relay chain and one to sync the parachain. As such, many things are doubled, for example, the database directory, the ports used, the log lines, and more.
+This guide is meant for people with experience compiling [Substrate](https://substrate.dev/) based blockchain nodes. A parachain node is similar to a typical Substrate node, but there are some differences. A Substrate parachain node will is a bigger build because it contains code to run the parachain itself, as well as code to sync the relay chain, and facilitate communication between the two. As such, this build is quite large and may take over 30 min and require 32GB of memory.
 
 !!! note
     Moonbase Alpha is still considered an Alphanet, and as such _will not_ have 100% uptime. The parachain _will_ be purged from time to time. During the development of your application, make sure you implement a method to redeploy your contracts and accounts to a fresh parachain quickly. Chain purges will be announced via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
@@ -250,7 +250,8 @@ To verify that you have downloaded the correct version, you can run `sha256sum m
     445e820ec347ff4b30ebbe61ae16a6f57abdb98eb379e96b8e7eaf17b359601c
     ```
 
-Once you've retrieved the binary, you can use it to run the systemd service. 
+Once you've retrieved the binary, you can use it to run the systemd service.
+
 ### Running the Systemd Service
 
 The following commands will set up everything regarding running the service.
