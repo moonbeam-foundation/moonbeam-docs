@@ -116,7 +116,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
     ```
     docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
-    purestake/moonbeam:{{ networks.moonbase.parachain_docker_tag }} \
+    purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
     --base-path=/data \
     --chain alphanet \
     --name="YOUR-NODE-NAME" \
@@ -133,7 +133,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
     ```
     docker run --network="host" -v "{{ networks.moonriver.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
-    purestake/moonbeam:{{ networks.moonriver.parachain_docker_tag }} \
+    purestake/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
     --base-path=/data \
     --chain {{ networks.moonriver.chain_spec }} \
     --name="YOUR-NODE-NAME" \
@@ -152,7 +152,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
     ```
     docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
-    purestake/moonbeam:{{ networks.moonbase.parachain_docker_tag }} \
+    purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
     --base-path=/data \
     --chain alphanet \
     --name="YOUR-NODE-NAME" \
@@ -170,7 +170,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
     ```
     docker run --network="host" -v "{{ networks.moonriver.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
-    purestake/moonbeam:{{ networks.moonriver.parachain_docker_tag }} \
+    purestake/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
     --base-path=/data \
     --chain {{ networks.moonriver.chain_spec }} \
     --name="YOUR-NODE-NAME" \
@@ -230,24 +230,24 @@ Use `wget` to grab the latest release binary:
 
 === "Moonbase Alpha"
     ```
-    wget https://github.com/PureStake/moonbeam/releases/download/v0.8.4/moonbeam
+    wget https://github.com/PureStake/moonbeam/releases/download/{{ networks.moonbase.parachain_release_tag }}/moonbeam
     ```
 
 === "Moonriver"
     ```
-    wget https://github.com/PureStake/moonbeam/releases/download/moonriver-genesis/moonbeam
+    wget https://github.com/PureStake/moonbeam/releases/download/{{ networks.moonriver.parachain_release_tag }}/moonbeam
     ``` 
 
 To verify that you have downloaded the correct version, you can run `sha256sum moonbeam` in your terminal, you should receive the following output:
 
 === "Moonbase Alpha"
     ```
-    7a63187a131d7f23738ce1025363a5a41b9db953c0bca73fb06fd8cfc7b39d1d
+    {{ networks.moonbase.parachain_sha256sum }}
     ```
 
 === "Moonriver"
     ```
-    445e820ec347ff4b30ebbe61ae16a6f57abdb98eb379e96b8e7eaf17b359601c
+    {{ networks.moonriver.parachain_sha256sum }}
     ```
 
 Once you've retrieved the binary, you can use it to run the systemd service.
@@ -368,6 +368,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --ws-port {{ networks.relay_chain.ws }} \
          --pruning=archive \
          --name="YOUR-NODE-NAME (Embedded Relay)"
+    
     [Install]
     WantedBy=multi-user.target
     ```
@@ -440,6 +441,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --ws-port {{ networks.relay_chain.ws }} \
          --pruning=archive \
          --name="YOUR-NODE-NAME (Embedded Relay)"
+    
     [Install]
     WantedBy=multi-user.target
     ```

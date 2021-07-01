@@ -9,7 +9,7 @@ title: Moonriver Full Node MacOS
 ```
 docker run -p 9933:9933 -p 9944:9944 -v "{{ networks.moonbase.node_directory }}:/data" \
 -u $(id -u ${USER}):$(id -g ${USER}) \
-purestake/moonbeam:{{ networks.moonbase.parachain_docker_tag }} \
+purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
 --base-path=/data \
 --chain {{ networks.moonbase.chain_spec }} \
 --name="YOUR-NODE-NAME" \
@@ -28,7 +28,7 @@ purestake/moonbeam:{{ networks.moonbase.parachain_docker_tag }} \
 ```
 docker run -p 9933:9933 -p 9944:9944 -v "{{ networks.moonbase.node_directory }}:/data" \
 -u $(id -u ${USER}):$(id -g ${USER}) \
-purestake/moonbeam:{{ networks.moonbase.parachain_docker_tag }} \
+purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
 --base-path=/data \
 --chain {{ networks.moonbase.chain_spec }} \
 --name="YOUR-NODE-NAME" \
@@ -47,7 +47,7 @@ purestake/moonbeam:{{ networks.moonbase.parachain_docker_tag }} \
 ```
 docker run -p 9933:9933 -p 9944:9944 -v "{{ networks.moonriver.node_directory }}:/data" \
 -u $(id -u ${USER}):$(id -g ${USER}) \
-purestake/moonbeam:{{ networks.moonriver.parachain_docker_tag }} \
+purestake/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
 --base-path=/data \
 --chain {{ networks.moonriver.chain_spec }} \
 --name="YOUR-NODE-NAME" \
@@ -65,7 +65,7 @@ purestake/moonbeam:{{ networks.moonriver.parachain_docker_tag }} \
 ```
 docker run -p 9933:9933 -p 9944:9944 -v "{{ networks.moonriver.node_directory }}:/data" \
 -u $(id -u ${USER}):$(id -g ${USER}) \
-purestake/moonbeam:{{ networks.moonriver.parachain_docker_tag }} \
+purestake/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
 --base-path=/data \
 --chain {{ networks.moonriver.chain_spec }} \
 --name="YOUR-NODE-NAME" \
