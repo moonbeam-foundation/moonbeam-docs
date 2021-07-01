@@ -36,6 +36,7 @@ Currently, you can expect the following network configurations:
 | WSS endpoint          | {{ networks.moonriver.wss_url }}            |
 
 Some network configurations will change and improve over time, such as the block time, block gas limit, and transaction gas limit. 
+
 ## Get Started
 
 --8<-- 'text/moonriver/connect.md'
