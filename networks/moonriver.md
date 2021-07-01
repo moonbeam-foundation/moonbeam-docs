@@ -67,7 +67,7 @@ The smallest unit of Moonriver is called a Sediment. It takes 10^18 Sediment to 
 
 ## Proof of Stake
 
-Over the course of the Moonriver launch, the network will progressively, in phases, be updated to a fully decentralized Proof of Stake network. For a complete breakdown of what will occur during each phase, check out the [Network Launch Status](https://moonbeam.network/networks/moonriver/launch/) page.
+Over the course of the 5-phase Moonriver launch, the network will progressively be updated to a fully decentralized Proof of Stake network. For a breakdown of what will occur during each phase, check out the [Network Launch Status](https://moonbeam.network/networks/moonriver/launch/) page.
 
 In Phase 1, there will be an initial collator election and the active collator set will start at {{ networks.moonriver.staking.initial_collators }} collators. Once governance is enabled in Phase 2, the number of collators in the active set will be subject to governance. The active set will consist of the top collators by stake, including nominations.
 
