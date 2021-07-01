@@ -53,16 +53,16 @@ The tokens on Moonriver will also be called Moonriver (MOVR). Check out the Moon
 
 The smallest unit of Moonriver is called a Sediment. It takes 10^18 Sediment to make one Moonriver. The denominations are as follows:
 
-| Unit         | Moonriver            | Sediment                      |
-|--------------|----------------------|-------------------------------|
-| Sediment     | 0.000000000000000001 | 1                             |
-| Kilosediment | 0.000000000000001    | 1,000                         |
-| Megasediment | 0.000000000001       | 1,000,000                     |
-| Gigasediment | 0.000000001          | 1,000,000,000                 |
-| Micromovr    | 0.000001             | 1,000,000,000,000             |
-| Millimovr    | 0.001                | 1,000,000,000,000,000         |
-| Movr         | 1                    | 1,000,000,000,000,000,000     |
-| Kilomovr     | 1,000                | 1,000,000,000,000,000,000,000 |
+| Unit           | Moonriver            | Sediment                      |
+|----------------|----------------------|-------------------------------|
+| Sediment       | 0.000000000000000001 | 1                             |
+| Kilosediment   | 0.000000000000001    | 1,000                         |
+| Megasediment   | 0.000000000001       | 1,000,000                     |
+| Gigasediment   | 0.000000001          | 1,000,000,000                 |
+| Micromoonriver | 0.000001             | 1,000,000,000,000             |
+| Millimoonriver | 0.001                | 1,000,000,000,000,000         |
+| Moonriver      | 1                    | 1,000,000,000,000,000,000     |
+| Kilomoonriver  | 1,000                | 1,000,000,000,000,000,000,000 |
 
 
 ## Proof of Stake
