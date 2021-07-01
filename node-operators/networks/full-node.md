@@ -15,8 +15,8 @@ There are multiple deployments of Moonbeam, including the Moonbase Alpha TestNet
 
 |    Network     |     | Hosted By |     |   Chain Name    |
 | :------------: | :-: | :-------: | :-: | :-------------: |
-| Moonbase Alpha |     | PureStake |     |    alphanet     |
-|   Moonriver    |     |  Kusama   |     |    moonriver    |
+| Moonbase Alpha |     | PureStake |     |    {{ networks.moonbase.chain_spec }}     |
+|   Moonriver    |     |  Kusama   |     |    {{ networks.moonriver.chain_spec }}    |
 |    Moonbeam    |     | Polkadot  |     | _not available_ |
 
 This guide is meant for people with experience compiling [Substrate](https://substrate.dev/) based blockchain nodes. A parachain node is similar to a typical Substrate node, but there are some differences. A Substrate parachain node will is a bigger build because it contains code to run the parachain itself, as well as code to sync the relay chain, and facilitate communication between the two. As such, this build is quite large and may take over 30 min and require 32GB of memory.
@@ -118,7 +118,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
     -u $(id -u ${USER}):$(id -g ${USER}) \
     purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
     --base-path=/data \
-    --chain alphanet \
+    --chain {{ networks.moonbase.chain_spec }} \
     --name="YOUR-NODE-NAME" \
     --execution wasm \
     --wasm-execution compiled \
@@ -154,7 +154,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
     -u $(id -u ${USER}):$(id -g ${USER}) \
     purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
     --base-path=/data \
-    --chain alphanet \
+    --chain {{ networks.moonbase.chain_spec }} \
     --name="YOUR-NODE-NAME" \
     --validator \
     --execution wasm \
@@ -325,7 +325,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --pruning=archive \
          --state-cache-size 1 \
          --base-path {{ networks.moonbase.node_directory }} \
-         --chain alphanet \
+         --chain {{ networks.moonbase.chain_spec }} \
          --name "YOUR-NODE-NAME" \
          -- \
          --port {{ networks.relay_chain.p2p }} \
@@ -397,7 +397,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --pruning=archive \
          --state-cache-size 1 \
          --base-path {{ networks.moonbase.node_directory }} \
-         --chain alphanet \
+         --chain {{ networks.moonbase.chain_spec }} \
          --name "YOUR-NODE-NAME" \
          -- \
          --port {{ networks.relay_chain.p2p }} \
