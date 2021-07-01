@@ -24,7 +24,6 @@ purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
 
 ## Moonbase Alpha Collator
 
-
 ```
 docker run -p 9933:9933 -p 9944:9944 -v "{{ networks.moonbase.node_directory }}:/data" \
 -u $(id -u ${USER}):$(id -g ${USER}) \
