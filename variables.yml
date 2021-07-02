@@ -112,7 +112,7 @@ networks:
     wss_url: wss://wss.moonriver.moonbeam.network
     chain_id: 1285
     staking:
-      initial_collators: 32
+      max_collators: 8
     treasury:
       proposal_bond: 5
       proposal_bond_min: 1
