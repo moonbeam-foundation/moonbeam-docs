@@ -70,6 +70,29 @@ Over the course of the 5-phase Moonriver launch, the network will progressively 
 
 In Phase 1, there will be an initial collator election and the active collator set will start at 32 collators. Once governance is enabled in Phase 2, the number of collators in the active set will be subject to governance. The active set will consist of the top collators by stake, including nominations.
 
+### Governance Configurations
+
+|             Variable             |                          Value                                                                                                    |
+| ---------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+|  Voting Period                   | {{ networks.moonriver.democracy.vote_period.blocks}} blocks ({{ networks.moonriver.democracy.vote_period.days}} days)             |
+|  Fast-Track Voting Period        | {{ networks.moonriver.democracy.fast_vote_period.blocks}} blocks ({{ networks.moonriver.democracy.fast_vote_period.days}} days)   |
+|  Enactment Period                | {{ networks.moonriver.democracy.enact_period.blocks}} blocks ({{ networks.moonriver.democracy.enact_period.days}} day)            |
+|  Cool-off Period                 | {{ networks.moonriver.democracy.cool_period.blocks}} blocks ({{ networks.moonriver.democracy.cool_period.days}} days)             |
+|  Minimum Deposit                 | {{ networks.moonriver.democracy.min_deposit }} MOVR                                                                               |
+|  Maximum Votes                   | {{ networks.moonriver.democracy.max_votes }}                                                                                      |
+|  Maximum Proposals               | {{ networks.moonriver.democracy.max_proposals }}                                                                                  |
+
+### Staking Configurations
+
+|             Variable               |                                                  Value                                                   |
+| :--------------------------------: | :--------------------------------------------------------------------------------------------- --------: |
+|   Minimum nomination stake         | {{ networks.moonriver.staking.min_nom_stake }} tokens                                                    |
+|   Minimum nomination               | {{ networks.moonriver.staking.min_nom_amount}} tokens                                                    |
+|   Maximum nominators per collators | {{ networks.moonriver.staking.max_nom_per_col }}                                                         |
+|   Maximum collators per nominator  | {{ networks.moonriver.staking.max_col_per_nom }}                                                         |
+|   Round                            | {{ networks.moonriver.staking.round_blocks }} blocks ({{ networks.moonriver.staking.round_hours }} hours)|
+|   Bond duration                    | {{ networks.moonriver.staking.bond_lock }} rounds                                                        |
+
 ## Limitations
 
 Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts) are yet to be included. You can check a list of supported precompiles [here](/integrations/precompiles/). However, all built-in functions are available.

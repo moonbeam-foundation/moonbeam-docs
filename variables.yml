@@ -111,8 +111,34 @@ networks:
     rpc_url: https://rpc.moonriver.moonbeam.network
     wss_url: wss://wss.moonriver.moonbeam.network
     chain_id: 1285
+    democracy:
+      launch_period:
+        days: 1
+        blocks: 7200
+      vote_period:
+        days: 5
+        blocks: 36000
+      fast_vote_period:
+        days: 1
+        blocks: 7200
+      enact_period:
+        days: 1
+        blocks: 7200
+      cool_period:
+        days: 7
+        blocks: 50400
+      min_deposit: 4
+      max_votes: 100
+      max_proposals: 100
     staking:
       max_collators: 8
+      round_blocks: 300
+      round_hours: 1
+      bond_lock: 2
+      min_nom_stake: 5
+      min_nom_amount: 5
+      max_nom_per_col: 10
+      max_col_per_nom: 25
     treasury:
       proposal_bond: 5
       proposal_bond_min: 1
