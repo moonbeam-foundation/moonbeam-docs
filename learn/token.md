@@ -24,7 +24,7 @@ You can find more information about Glimmer [here](https://moonbeam.network/netw
 
 In the Moonbeam deployment on Kusama (called Moonriver), this token will be called Moonriver, as in, “that smart contract call will cost 3 Moonriver.”  The token symbol will be MOVR.
 
-You can find more information about MOVR [here](https://moonbeam.foundation/moonriver-token/).
+You can find more information about Moonriver [here](https://moonbeam.foundation/moonriver-token/).
 
 ## DEV Token
 
