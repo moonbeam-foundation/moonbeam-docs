@@ -49,7 +49,7 @@ Currently, you have two ways of proceeding in regards having an account in [Polk
 
 Once you have an H160 account imported to PolkadotJS, you should see it under the "Accounts" tab. Make sure you have your public address at hand (`PUBLIC_KEY`), as it is needed to configure your [deploy your full node](/node-operators/networks/full-node/) with the collation options.
 
-![Account in PolkadotJS](/images/fullnode/collator-polkadotjs1.png)
+![Account in PolkadotJS](/images/fullnode/collator-polkadotjs0.png)
 
 ### Become a Collator Candidate
 
@@ -62,7 +62,7 @@ You need to get the `totalSelected` parameter (this can change thru governance) 
 4. Open the drop-down menu, which lists all the possible queries related to `parachainStaking`, and choose `totalSelected`
 5. Click on the `+` icon to submit the query
 
-![Get Number of Candidates](/images/fullnode/collator-polkadotjs0.png)
+![Get Number of Candidates](/images/fullnode/collator-polkadotjs1.png)
 
 #### Join the Candidate Pool
 
@@ -77,7 +77,7 @@ Once your node is running and in sync with the network, you become a collator ca
  7. Set the candidate count to the value returned by the `totalSelected` chain state query, currently `{{ networks.moonbase.staking.max_collators }}`
  8. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
-![Join Collators pool PolkadotJS](/images/fullnode/collator-polkadotjs2a.png)
+![Join Collators pool PolkadotJS](/images/fullnode/collator-polkadotjs2.png)
 
 !!! note
     Function names and the minimum bond requirement are subject to change in future releases.
