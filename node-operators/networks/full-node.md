@@ -447,7 +447,7 @@ The next step is to create the systemd configuration file. If you are setting up
     ```
 
 !!! note
-    You can specify a custom Prometheus port with the `--promethues-port XXXX` flag (replacing `XXXX` with the actual port number). This is possible for both the parachain and embedded relay chain.
+    You can specify a custom Prometheus port with the `--prometheus-port XXXX` flag (replacing `XXXX` with the actual port number). This is possible for both the parachain and embedded relay chain.
 
 Almost there! Register and start the service by running:
 
