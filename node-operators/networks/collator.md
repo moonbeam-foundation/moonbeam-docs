@@ -49,12 +49,13 @@ Currently, you have two ways of proceeding in regards having an account in [Polk
 
 Once you have an H160 account imported to PolkadotJS, you should see it under the "Accounts" tab. Make sure you have your public address at hand (`PUBLIC_KEY`), as it is needed to configure your [deploy your full node](/node-operators/networks/full-node/) with the collation options.
 
-![Account in PolkadotJS](/images/fullnode/collator-polkadotjs0.png)
+![Account in PolkadotJS](/images/fullnode/collator-polkadotjs1.png)
 
-### Become a Collator Candidate
+## Become a Collator Candidate
 
-#### Get the Number of Candidates Selected
-You need to get the `totalSelected` parameter (this can change thru governance) as you'll need to submit this parameter in a later transaction.
+### Get the Number of Candidates Selected
+
+First, you need to get the `totalSelected` parameter (this can change thru governance) as you'll need to submit this parameter in a later transaction.
 
 1. Head to the "Developer" tab 
 2. Click on "Chain State"
@@ -62,9 +63,9 @@ You need to get the `totalSelected` parameter (this can change thru governance) 
 4. Open the drop-down menu, which lists all the possible queries related to `parachainStaking`, and choose `totalSelected`
 5. Click on the `+` icon to submit the query
 
-![Get Number of Candidates](/images/fullnode/collator-polkadotjs1.png)
+![Get Number of Candidates](/images/fullnode/collator-polkadotjs2.png)
 
-#### Join the Candidate Pool
+### Join the Candidate Pool
 
 Once your node is running and in sync with the network, you become a collator candidate (and join the candidate pool) by following the steps below in [PolkadotJS](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts):
 
@@ -74,10 +75,10 @@ Once your node is running and in sync with the network, you become a collator ca
  4. Select `parachainStaking` pallet under the "submit the following extrinsics" menu
  5. Open the drop-down menu, which lists all the possible extrinsics related to staking, and select the `joinCandidates()` function
  6. Set the bond to at least {{ networks.moonbase.staking.collator_min_stake }}, which is the minimum amount to be considered a collator candidate. Only collator bond counts for this check. Additional nominations do not count
- 7. Set the candidate count to the value returned by the `totalSelected` chain state query, currently `{{ networks.moonbase.staking.max_collators }}`
+ 7. Set the candidate count to the value returned by the `totalSelected` chain state query, currently `{{ networks.moonbase.staking.max_collators }}`. To learn how to retrieve this value, check [this section](#get-the-number-of-candidates-selected)
  8. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
-![Join Collators pool PolkadotJS](/images/fullnode/collator-polkadotjs2.png)
+![Join Collators pool PolkadotJS](/images/fullnode/collator-polkadotjs3.png)
 
 !!! note
     Function names and the minimum bond requirement are subject to change in future releases.
@@ -158,11 +159,11 @@ To map your author ID to your account, you need to be inside the [candidate pool
  6. Enter the author ID. In this case, it was obtained via the RPC call `author_rotateKeys` in the previous section
  7. Click on "Submit Transaction"
 
-![Author ID Mapping to Account Extrinsic](/images/fullnode/collator-polkadotjs3.png)
+![Author ID Mapping to Account Extrinsic](/images/fullnode/collator-polkadotjs4.png)
 
 If the transaction is successful, you will see a confirmation notification on your screen. On the contrary, make sure you've joined the [candidate pool](#become-a-collator-candidate).
 
-![Author ID Mapping to Account Extrinsic Successful](/images/fullnode/collator-polkadotjs4.png)
+![Author ID Mapping to Account Extrinsic Successful](/images/fullnode/collator-polkadotjs5.png)
 
 ### Checking the Mappings
 
@@ -170,10 +171,11 @@ You can also check the current on-chain mappings by verifying the chain state. T
 
  1. Head to the "Developer" tab
  2. Select the "Chain state" option
- 3. Choose `authorMapping` as the state to query. Currently, there is only one method programmed (`mapping`)
- 4. Optionally, provide an author ID to query, or press the slider to retrieve all on-chain mappings
- 5. Click on the "+" button to send the RPC call
+ 3. Choose `authorMapping` as the state to query
+ 4. Select the `mappingWithDeposit` method
+ 5. Provide an author ID to query. Optinally, you can disable the slider to retrieve all mappings 
+ 6. Click on the "+" button to send the RPC call
 
-![Author ID Mapping Chain State](/images/fullnode/collator-polkadotjs5.png)
+![Author ID Mapping Chain State](/images/fullnode/collator-polkadotjs6.png)
 
-If no author ID was included, this would return all the mappings stored on-chain, where you can verify that your author ID is correctly mapped to your H160 account.
+You should be able to see the H160 account associated with the author ID provided. If no author ID was included, this would return all the mappings stored on-chain.
