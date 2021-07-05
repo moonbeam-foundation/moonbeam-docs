@@ -55,13 +55,20 @@ Once you have an H160 account imported to PolkadotJS, you should see it under th
 
 ### Get the Number of Candidates Selected
 
-First, you need to get the `totalSelected` parameter (this can change thru governance) as you'll need to submit this parameter in a later transaction.
+First, you need to get the `candidatePool` length (this can change thru governance) as you'll need to submit this parameter in a later transaction. To do so, you'll have to run the following JavaScript code snippet from within Polkadot.js Apps:
 
-1. Head to the "Developer" tab 
-2. Click on "Chain State"
-3. Select `parachainStaking` pallet under the "selected state query" menu 
-4. Open the drop-down menu, which lists all the possible queries related to `parachainStaking`, and choose `totalSelected`
-5. Click on the `+` icon to submit the query
+```
+// Simple script to get candidate pool size
+const candidatePool = await api.query.parachainStaking.candidatePool();
+console.log(`Candidate pool size is: ${candidatePool.length}`);
+```
+
+ 1. Head to the "Developer" tab 
+ 2. Click on "JavaScript"
+ 3. Copy the code from the previous snippet and paste it inside the code editor box 
+ 4. Click the save icon and set a name for the code snippet, for example, "CandidatePool"
+ 5. Click on the run button. This will execute the code from the editor box
+ 6. Copy the result, as you'll need it when joining the candidate pool
 
 ![Get Number of Candidates](/images/fullnode/collator-polkadotjs2.png)
 
