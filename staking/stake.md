@@ -63,28 +63,23 @@ Each extrinsic provides a different response:
 
 ![Staking Account](/images/staking/staking-stake-11.png)
 
-## Get the Size of the Candidate Pool
+## Get the Collator Nominator Count
 
-First, you need to get the `candidatePool` size (this can change thru governance) as you'll need to submit this parameter in a later transaction. To do so, you'll have to run the following JavaScript code snippet from within [PolkadotJS](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/js):
+First, you need to get the `collator_nominator_count` as you'll need to submit this parameter in a later transaction. To do so, you'll have to run the following JavaScript code snippet from within [PolkadotJS](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/js):
+
+
 
 ```js
-// Simple script to get candidate pool size
-const candidatePool = await api.query.parachainStaking.candidatePool();
-console.log(`Candidate pool size is: ${candidatePool.length}`);
+// Simple script to get collator_nominator_count
+// Remember to replace collatorAccount with the address of desired collator.
+const collatorAccount = '0x4c5A56ed5A4FF7B09aA86560AfD7d383F4831Cce'; 
+const collatorInfo = await api.query.parachainStaking.collatorState2(collatorAccount);
+console.log(collatorInfo.toHuman()["nominators"].length);
 ```
-
- 1. Head to the "Developer" tab 
- 2. Click on "JavaScript"
- 3. Copy the code from the previous snippet and paste it inside the code editor box 
- 4. (Optional) Click the save icon and set a name for the code snippet, for example, "Get candidatePool size". This will save the code snippet locally
- 5. Click on the run button. This will execute the code from the editor box
- 6. Copy the result, as you'll need it when joining the candidate pool
-
-![Get Number of Candidates](/images/staking/staking-stake-12.png)
 
 ## How to Nominate a Collator
 
-This section goes over the process of nominating collators. The tutorial will use the following collators as reference:
+This section goes over the process of nominating collators. The tutorial will use the following collators as a reference:
 
 |  Variable  |     |                      Address                       |
 | :--------: | :-: | :------------------------------------------------: |
@@ -106,9 +101,14 @@ To nominate a collator, provide the following information:
  3. Choose the extrinsic method to use for the transaction. This will determine the fields that need to fill in the following steps. In this case, it is the `nominate` extrinsic
  4. Set the collator's address you want to nominate. In this case, it is set to `{{ networks.moonbase.staking.collators.address1 }}`
  5. Set the number of tokens you want to stake
- 6. Click the "Submit Transaction" button and sign the transaction
+ 6. Input the collator nominator count you retrieved above from the JavaScript console
+ 7. Input the number of previous nominations you have made from your selected account. This would be 0 if you haven't yet nominated a collator. If you are uncertain of how many nominations you have already made, estimate a maximum number
+ 8. Click the "Submit Transaction" button and sign the transaction
 
-![Staking Join Nominators Extrinsics](/images/staking/staking-stake-2.png)
+![Staking Join Nominators Extrinsics](/images/staking/staking-stake-12.png)
+
+!!! note
+    The parameters used in steps 6 and 7 are for gas estimation purposes and do not need to be exact. However, they should not be lower than the actual value. 
 
 Once the transaction is confirmed, you can head back to the "Accounts" tab to verify that you have a reserved balance (equal to the number of tokens staked).
 
@@ -143,7 +143,7 @@ You can remove your nomination from a specific collator by navigating to the "Ex
  4. Set the collator's address you want to remove your nomination from. In this case, it is set to `{{ networks.moonbase.staking.collators.address2 }}`
  5. Click the "Submit Transaction" button and sign the transaction
 
-![Staking Revoke Nomination Extrinsic](/images/staking/staking-stake-7.png)
+![Staking Revoke Nomination Extrinsic](/images/staking/staking-stake-13.png)
 
 Once the transaction is confirmed, you can verify that your nomination was removed in the "Chain state" option under the "Developer" tab.
 
@@ -154,7 +154,7 @@ Here, provide the following information:
  3. Make sure to disable the "include options" slider
  4. Send the state query by clicking on the "+" button
 
-![Staking Revoke Nomination Cain State](/images/staking/staking-stake-8.png)
+![Staking Revoke Nomination Chain State](/images/staking/staking-stake-14.png)
 
 In the response, you should see your account (in this case, Alice's account) with a list of the nominations. Each nomination contains the target address of the collator, and the amount.
 
