@@ -61,24 +61,38 @@ This section covers some background information on voting and outlines voting pa
 
 Voting parameters are currently set as follows:
 
-|             Variable             |     |                         Value                         |
-| :------------------------------: | :-: | :---------------------------------------------------: |
-|     Voting Period     |     |     {{ networks.moonbase.democracy.vote_period.blocks}} blocks ({{ networks.moonbase.democracy.vote_period.days}} days)     |
-|        Fast-Track Voting Period        |     |     {{ networks.moonbase.democracy.fast_vote_period.blocks}} blocks ({{ networks.moonbase.democracy.fast_vote_period.hours}} hours)     | | 
-|          Enactment Period           |     |     {{ networks.moonbase.democracy.enact_period.blocks}} blocks ({{ networks.moonbase.democracy.enact_period.days}} day)  |
-| Cool-off Period |     |     {{ networks.moonbase.democracy.cool_period.blocks}} blocks ({{ networks.moonbase.democracy.cool_period.days}} days)  |
-|              Minimum Deposit               |     | {{ networks.moonbase.democracy.min_deposit }} GLMR |
+=== "Moonbase Alpha"
+
+    |         Variable         |  |                                                              Value                                                              |
+    |:------------------------:|::|:-------------------------------------------------------------------------------------------------------------------------------:|
+    |      Voting Period       |  |       {{ networks.moonbase.democracy.vote_period.blocks}} blocks ({{ networks.moonbase.democracy.vote_period.days}} days)       |
+    | Fast-Track Voting Period |  | {{ networks.moonbase.democracy.fast_vote_period.blocks}} blocks ({{ networks.moonbase.democracy.fast_vote_period.hours}} hours) |
+    |     Enactment Period     |  |      {{ networks.moonbase.democracy.enact_period.blocks}} blocks ({{ networks.moonbase.democracy.enact_period.days}} day)       |
+    |     Cool-off Period      |  |       {{ networks.moonbase.democracy.cool_period.blocks}} blocks ({{ networks.moonbase.democracy.cool_period.days}} days)       |
+    |     Minimum Deposit      |  |                                        {{ networks.moonbase.democracy.min_deposit }} DEV                                        |
+
+=== "Moonriver"
+
+    |         Variable         |  |                                                              Value                                                              |
+    |:------------------------:|::|:-------------------------------------------------------------------------------------------------------------------------------:|
+    |      Voting Period       |  |      {{ networks.moonriver.democracy.vote_period.blocks}} blocks ({{ networks.moonriver.democracy.vote_period.days}} days)      |
+    | Fast-Track Voting Period |  | {{ networks.moonriver.democracy.fast_vote_period.blocks}} blocks ({{ networks.moonriver.democracy.fast_vote_period.days}} days) |
+    |     Enactment Period     |  |     {{ networks.moonriver.democracy.enact_period.blocks}} blocks ({{ networks.moonriver.democracy.enact_period.days}} day)      |
+    |     Cool-off Period      |  |      {{ networks.moonriver.democracy.cool_period.blocks}} blocks ({{ networks.moonriver.democracy.cool_period.days}} days)      |
+    |     Minimum Deposit      |  |                                       {{ networks.moonriver.democracy.min_deposit }} MOVR                                       |
 
 **Voting Rights to Cancel:**
 
  * The technical committee may cancel a proposal before it has been passed only by unanimous vote
  * A single technical committee member may veto an inbound council proposal, however, they can only veto it once, and it only lasts for the cool-off period ({{ networks.moonbase.democracy.cool_period.days}} days)
 
-## Try it on Moonbase Alpha
+## Try it out
 
 Currently, in our Moonbase Alpha TestNet, token holders can submit proposals and vote on referenda. To do so, check the following guides:
 
  - [Submit a proposal](/governance/proposals/)
  - [Vote on a proposal](/governance/voting/)
+
+--8<-- 'text/moonriver-launch/governance-phase-2.md'
 
 The Treasury component has yet to be implemented.

@@ -19,16 +19,27 @@ Collators (and token holders if they nominate) have a stake in the network. The 
 
 --8<-- 'text/staking/staking-definitions.md'
 
-Currently, for Moonbase Alpha:
+=== "Moonbase Alpha"
 
-|             Variable             |     |                                                  Value                                                  |
-| :------------------------------: | :-: | :-----------------------------------------------------------------------------------------------------: |
-|     Minimum nomination stake     |     |                          {{ networks.moonbase.staking.min_nom_stake }} tokens                           |
-|        Minimum nomination        |     |                          {{ networks.moonbase.staking.min_nom_amount}} tokens                           |
-| Maximum nominators per collators |     |                             {{ networks.moonbase.staking.max_nom_per_col }}                             |
-| Maximum collators per nominator  |     |                             {{ networks.moonbase.staking.max_col_per_nom }}                             |
-|              Round               |     | {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hours) |
-|          Bond duration           |     |                            {{ networks.moonbase.staking.bond_lock }} rounds                             |
+    |             Variable             |  |                                                  Value                                                  |
+    |:--------------------------------:|::|:-------------------------------------------------------------------------------------------------------:|
+    |     Minimum nomination stake     |  |                          {{ networks.moonbase.staking.min_nom_stake }} tokens                           |
+    |        Minimum nomination        |  |                          {{ networks.moonbase.staking.min_nom_amount}} tokens                           |
+    | Maximum nominators per collators |  |                             {{ networks.moonbase.staking.max_nom_per_col }}                             |
+    | Maximum collators per nominator  |  |                             {{ networks.moonbase.staking.max_col_per_nom }}                             |
+    |              Round               |  | {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hours) |
+    |          Bond duration           |  |                            {{ networks.moonbase.staking.bond_lock }} rounds                             |
+
+=== "Moonriver"
+
+    |             Variable             |  |                                                   Value                                                   |
+    |:--------------------------------:|::|:---------------------------------------------------------------------------------------------------------:|
+    |     Minimum nomination stake     |  |                           {{ networks.moonriver.staking.min_nom_stake }} tokens                           |
+    |        Minimum nomination        |  |                           {{ networks.moonriver.staking.min_nom_amount}} tokens                           |
+    | Maximum nominators per collators |  |                             {{ networks.moonriver.staking.max_nom_per_col }}                              |
+    | Maximum collators per nominator  |  |                             {{ networks.moonriver.staking.max_col_per_nom }}                              |
+    |              Round               |  | {{ networks.moonriver.staking.round_blocks }} blocks ({{ networks.moonriver.staking.round_hours }} hours) |
+    |          Bond duration           |  |                             {{ networks.moonriver.staking.bond_lock }} rounds                             |
 
 ## Reward Distribution
 
@@ -52,8 +63,10 @@ For each nominator, the reward would look like this:
 
 Where the stake corresponds to the amount of tokens bonded by each nominator in respect to the total stake of that collator.
 
-## Try it on Moonbase Alpha
+## Try it out
 
 In the Moonbase Alpha TestNet, token holders can stake and earn rewards (to get familiar with the system as the token doesn't have any actual value).
 
 To do so, you can check [this guide](/staking/stake/).
+
+--8<-- 'text/moonriver-launch/staking-phase-4.md'

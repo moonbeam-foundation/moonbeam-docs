@@ -97,6 +97,9 @@ networks:
       tx_fees_allocated: 20
       tx_fees_burned: 80
   moonriver:
+    rpc_url: https://rpc.moonriver.moonbeam.network
+    chain_id: 1285
+    chain_spec: moonriver
     treasury:
       proposal_bond: 5
       proposal_bond_min: 1
@@ -105,6 +108,36 @@ networks:
       max_approved_proposals: 100
       tx_fees_allocated: 20
       tx_fees_burned: 80
+    democracy:
+      launch_period:
+        days: 1
+        blocks: 7200
+      vote_period:
+        days: 5
+        blocks: 36000
+      fast_vote_period:
+        hours: 4
+        blocks: 1200
+      enact_period:
+        days: 1
+        blocks: 7200
+      cool_period:
+        days: 7
+        blocks: 50400
+      min_deposit: 4
+      min_preim_deposit: 0.004
+      max_votes: 100
+    staking:
+      collator_min_stake: 1000
+      collator_map_bond: 100
+      max_collators: 8
+      round_blocks: 300
+      round_hours: 1
+      bond_lock: 2
+      min_nom_stake: 5
+      min_nom_amount: 5
+      max_nom_per_col: 10
+      max_col_per_nom: 25
   relay_chain:
     p2p: 30334
     rpc: 9934

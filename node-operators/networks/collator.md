@@ -11,11 +11,11 @@ description: Instructions on how to become a collator in the Moonbeam Network on
 
 Collators are members of the network that maintain the parachains they take part in. They run a full node (for both their particular parachain and the relay chain), and they produce the state transition proof for relay chain validators.
 
-With the release of Moonbase Alpha v6, users can spin up full nodes and activate the `collate` feature and participate in the ecosystem as collators.
+Users can spin up full nodes on Moonbase Alpha and Moonriver and activate the `collate` feature to participate in the ecosystem as collators.
 
 Moonbeam uses the [Nimbus Parachain Consensus Framework](/learn/consensus/). This provides a two-step filter to allocate collators to a block production slot:
 
- - The parachain staking filter selects the top {{ networks.moonbase.staking.max_collators }} collators in terms of tokens staked in the network. This filtered pool is called selected candidates, and selected candidates are rotated every round
+ - The parachain staking filter selects the top {{ networks.moonbase.staking.max_collators }} collators on Moonbase Alpha and the top {{ networks.moonriver.staking.max_collators }} collators on Moonriver in terms of tokens staked in each network. This filtered pool is called selected candidates, and selected candidates are rotated every round
  - The fixed size subset filter picks a pseudo-random subset of the previously selected candidates for each block production slot
 
 This guide will take you through the following steps:
@@ -34,9 +34,19 @@ From a technical perspective, collators must meet the following requirements:
 
 ## Accounts and Staking Requirements
 
-Similar to Polkadot validators, you need to create an account. For Moonbeam, this is an H160 account or basically an Ethereum style account from which you hold the private keys. In addition, you need a nominated stake (DEV tokens) to collate. The slots are currently limited to {{ networks.moonbase.collators_slots }} but may be increased over time.  
+Similar to Polkadot validators, you need to create an account. For Moonbeam, this is an H160 account or basically an Ethereum style account from which you hold the private keys. In addition, you will need a minimum amount of tokens staked to be considered eligible (become a candidate). Only a certain amount of the top collators by nominated stake will be in the active set.
 
-Collators need to have a minimum of {{ networks.moonbase.staking.collator_min_stake }} DEV to be considered eligible (become a candidate). Only the top {{ networks.moonbase.staking.max_collators }} collators by nominated stake will be in the active set.   
+=== "Moonbase Alpha"
+    |    Variable     |                             Value                             |
+    |:---------------:|:-------------------------------------------------------------:|
+    |  Minimum stake  | {{ networks.moonbase.staking.collator_min_stake }} DEV tokens |
+    | Active set size |    {{ networks.moonbase.staking.max_collators }} collators    |
+
+=== "Moonriver"
+    |    Variable     |                              Value                              |
+    |:---------------:|:---------------------------------------------------------------:|
+    |  Minimum stake  | {{ networks.moonriver.staking.collator_min_stake }} MOVR tokens |
+    | Active set size |    {{ networks.moonriver.staking.max_collators }} collators     |
 
 ### Account in PolkadotJS
 
@@ -53,14 +63,14 @@ Once you have an H160 account imported to PolkadotJS, you should see it under th
 
 ### Become a Collator Candidate
 
-Once your node is running and in sync with the network, you become a collator candidate (and join the candidate pool) by following the steps below in [PolkadotJS](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts):
+Once your node is running and in sync with the network, you become a collator candidate (and join the candidate pool). Depending on which network you are connecting to, head to PolkadotJS for [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts) or [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network#/accounts) and take the following steps:
 
  1. Navigate to the "Developers" tab and click on "Extrinsics"
  2. Select the account you want to be associated with your collation activities
- 3. Confirm your collator account is funded with at least {{ networks.moonbase.staking.collator_min_stake }} DEV tokens plus some extra for transaction fees 
+ 3. Confirm your collator account is funded with at least the [minimum stake required](#accounts-and-staking-requirements) plus some extra for transaction fees 
  4. Select `parachainStaking` pallet under the "submit the following extrinsics" menu
  5. Open the drop-down menu, which lists all the possible extrinsics related to staking, and select the `joinCandidates()` function
- 6. Set the bond to at least {{ networks.moonbase.staking.collator_min_stake }}, which is the minimum amount to be considered a collator candidate. Only collator bond counts for this check. Additional nominations do not count
+ 6. Set the bond to at least the [minimum amount](#accounts-and-staking-requirements) to be considered a collator candidate. Only collator bond counts for this check. Additional nominations do not count
  7. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
 ![Join Collators pool PolkadotJS](/images/fullnode/collator-polkadotjs2.png)
@@ -68,7 +78,7 @@ Once your node is running and in sync with the network, you become a collator ca
 !!! note
     Function names and the minimum bond requirement are subject to change in future releases.
 
-As mentioned before, only the top {{ networks.moonbase.staking.max_collators }} collators by nominated stake will be in the active set. 
+As mentioned before, only the top {{ networks.moonbase.staking.max_collators }} collators on Moonbase Alpha and the top {{ networks.moonriver.staking.max_collators }} collators on Moonriver by nominated stake will be in the active set. 
 
 ### Stop Collating
 
@@ -79,11 +89,11 @@ Similar to Polkadot's `chill()` function, to leave the collator's candidate pool
 
 The following table presents some of the timings in regards to different actions related to collation activities:
 
-|                Action               |   |   Rounds  |   |   Hours  |
-|:-----------------------------------:|:-:|:---------:|:-:|:--------:|
-|  Join/leave collator candidates     |   |     2     |   |    4     |
-|      Add/remove nominations         |   |     1     |   |    2     |
-|Rewards payouts (after current round)|   |     2     |   |    4     |
+|                Action                 |  | Rounds |  | Hours |
+|:-------------------------------------:|::|:------:|::|:-----:|
+|    Join/leave collator candidates     |  |   2    |  |   4   |
+|        Add/remove nominations         |  |   1    |  |   2   |
+| Rewards payouts (after current round) |  |   2    |  |   4   |
 
 
 !!! note 
@@ -120,12 +130,15 @@ Make sure you write down this public key of the author ID. Next, this will be ma
 
 Once you've generated your author ID (session keys), the next step is to map it to your H160 account (an Ethereum-styled address). Make sure you hold the private keys to this account, as this is where the block rewards are paid out to.
 
-There is a {{ networks.moonbase.staking.collator_map_bond }} DEV tokens bond that is sent when mapping your authord ID with your account. This bond is per author ID registered.
+There is a bond that is sent when mapping your author ID with your account. This bond is per author ID registered. The bond set is as follows:
+
+ - Moonbase Alpha - {{ networks.moonbase.staking.collator_map_bond }} DEV tokens 
+ - Moonriver - {{ networks.moonriver.staking.collator_map_bond }} MOVR tokens. 
 
 The `authorMapping` module has the following extrinsics programmed:
 
- - **addAssociation**(*address* authorID) — maps your author ID to the H160 account from which the transaction is being sent, ensuring is the true owner of its private keys. It requires a {{ networks.moonbase.staking.collator_map_bond }} DEV tokens bond
- - **clearAssociation**(*address* authorID) — clears the association of an author ID to the H160 account from which the transaction is being sent, which needs to be the owner of that author ID. Also refunds the {{ networks.moonbase.staking.collator_map_bond }} DEV tokens bond
+ - **addAssociation**(*address* authorID) — maps your author ID to the H160 account from which the transaction is being sent, ensuring is the true owner of its private keys. It requires a bond
+ - **clearAssociation**(*address* authorID) — clears the association of an author ID to the H160 account from which the transaction is being sent, which needs to be the owner of that author ID. Also refunds the bond
  - **updateAssociation**(*address* oldAuthorID, *address* newAuthorID) —  updates the mapping from an old author ID to a new one. Useful after a key rotation or migration. It executes both the `add` and `clear` association extrinsics atomically, enabling key rotation without needing a second bond
 
 The module also adds the following RPC calls (chain state):
@@ -134,7 +147,7 @@ The module also adds the following RPC calls (chain state):
 
 ### Mapping Extrinsic
 
-To map your author ID to your account, you need to be inside the [candidate pool](#become-a-collator-candidate). Once you are a collator candidate, you need to send a mapping extrinsic (transaction). Note that this will bond {{ networks.moonbase.staking.collator_map_bond }} DEV tokens, and this is per author ID registered. To do so, take the following steps:
+To map your author ID to your account, you need to be inside the [candidate pool](#become-a-collator-candidate). Once you are a collator candidate, you need to send a mapping extrinsic (transaction). Note that this will bond tokens per author ID registered. To do so, take the following steps:
 
  1. Head to the "Developer" tab
  2. Select the "Extrinsics" option

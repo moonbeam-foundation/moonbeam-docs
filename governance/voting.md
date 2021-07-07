@@ -35,13 +35,23 @@ Some of the key parameters for this guide are the following:
  - **Lock period** — the time (after the proposal's enactment) that tokens of the winning voters are locked. Users can still use these tokens for staking or voting
  - **Delegation** — the act of transferring your voting power to another account for up to a certain conviction
 
-Currently, for Moonbase Alpha:
+=== "Moonbase Alpha"
 
-|        Variable         |     |                                                         Value                                                         |
-| :---------------------: | :-: | :-------------------------------------------------------------------------------------------------------------------: |
-|       Vote Period       |     |  {{ networks.moonbase.democracy.vote_period.blocks}} blocks ({{ networks.moonbase.democracy.vote_period.days}} days)  |
-|      Enact Period       |     | {{ networks.moonbase.democracy.enact_period.blocks}} blocks ({{ networks.moonbase.democracy.enact_period.days}} days) |
-| Maximum Number of Votes |     |                                      {{ networks.moonbase.democracy.max_votes}}                                       |
+    |        Variable         |  |                                                         Value                                                         |
+    |:-----------------------:|::|:---------------------------------------------------------------------------------------------------------------------:|
+    |      Enact Period       |  | {{ networks.moonbase.democracy.enact_period.blocks}} blocks ({{ networks.moonbase.democracy.enact_period.days}} days) |
+    | Maximum Number of Votes |  |                                      {{ networks.moonbase.democracy.max_votes}}                                       |
+    |       Vote Period       |  |  {{ networks.moonbase.democracy.vote_period.blocks}} blocks ({{ networks.moonbase.democracy.vote_period.days}} days)  |
+
+=== "Moonriver"
+
+    |        Variable         |  |                                                          Value                                                          |
+    |:-----------------------:|::|:-----------------------------------------------------------------------------------------------------------------------:|
+    |       Vote Period       |  |  {{ networks.moonriver.democracy.vote_period.blocks}} blocks ({{ networks.moonriver.democracy.vote_period.days}} days)  |
+    |      Enact Period       |  | {{ networks.moonriver.democracy.enact_period.blocks}} blocks ({{ networks.moonriver.democracy.enact_period.days}} days) |
+    | Maximum Number of Votes |  |                                       {{ networks.moonriver.democracy.max_votes}}                                       |
+
+--8<-- 'text/moonriver-launch/governance-phase-2.md'
 
 ## Roadmap of a Proposal
 
