@@ -1,6 +1,6 @@
 ---
 title: Tokens
-description: Like all smart contract platforms, the Moonbeam Network will require a utility token to function, which is called Glimmer (GLMR) for Polkadot, and River (RIVER) for Kusama.
+description: Like all smart contract platforms, the Moonbeam Network will require a utility token to function, which is called Glimmer (GLMR) for Polkadot, and Moonriver (MOVR) for Kusama.
 ---
 
 # Introduction
@@ -20,11 +20,11 @@ In the Moonbeam deployment on Polkadot MainNet, this token will be called Glimme
 
 You can find more information about Glimmer [here](https://moonbeam.network/networks/moonbeam/glimmer-token/).
 
-## River Token
+## Moonriver Token
 
-In the Moonbeam deployment on Kusama (called Moonriver), this token will be called River, as in, “that smart contract call will cost 3 River.”  The token symbol will be RIVER.
+In the Moonbeam deployment on Kusama (called Moonriver), this token will be called Moonriver, as in, “that smart contract call will cost 3 Moonriver.”  The token symbol will be MOVR.
 
-You can find more information about River [here](https://moonbeam.network/networks/moonriver/river-token/).
+You can find more information about Moonriver [here](https://moonbeam.foundation/moonriver-token/).
 
 ## DEV Token
 
