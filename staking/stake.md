@@ -76,6 +76,7 @@ const collatorAccount = '0x4c5A56ed5A4FF7B09aA86560AfD7d383F4831Cce';
 const collatorInfo = await api.query.parachainStaking.collatorState2(collatorAccount);
 console.log(collatorInfo.toHuman()["nominators"].length);
 ```
+![Get collator nominator count](/images/staking/staking-stake-15.png)
 
 ## How to Nominate a Collator
 
@@ -119,7 +120,7 @@ To verify a nomination, you can navigate to "Chain state" under the "Developer" 
 Here, provide the following information:
 
  1. Choose the pallet you want to interact with. In this case, it is the `parachainStaking` pallet
- 2. Choose the state to query. In this case, it is the `nominators` state
+ 2. Choose the state to query. In this case, it is the `nominatorState`
  3. Make sure to enable the "include option" slider
  4. Send the state query by clicking on the "+" button
 
