@@ -84,7 +84,7 @@ console.log(`Candidate pool size is: ${candidatePool.length}`);
 
 ### Join the Candidate Pool
 
-Once your node is running and in sync with the network, you become a collator candidate (and join the candidate pool). Depending on which network you are connecting to, head to PolkadotJS for [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts) or [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network#/accounts) and take the following steps:
+Once your node is running and in sync with the network, you become a collator candidate (and join the candidate pool). Depending on which network you are connected to, head to PolkadotJS for [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts) or [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network#/accounts) and take the following steps:
 
  1. Navigate to the "Developers" tab and click on "Extrinsics"
  2. Select the account you want to be associated with your collation activities
