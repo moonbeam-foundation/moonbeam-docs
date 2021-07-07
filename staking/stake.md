@@ -101,7 +101,7 @@ To nominate a collator, provide the following information:
  3. Choose the extrinsic method to use for the transaction. This will determine the fields that need to fill in the following steps. In this case, it is the `nominate` extrinsic
  4. Set the collator's address you want to nominate. In this case, it is set to `{{ networks.moonbase.staking.collators.address1 }}`
  5. Set the number of tokens you want to stake
- 6. Input the collator nominator count you retrieved above from the JavaScript console
+ 6. Input the `collator_nominator_count` you retrieved above from the JavaScript console
  7. Input the number of previous nominations you have made from your selected account. This would be 0 if you haven't yet nominated a collator. If you are uncertain of how many nominations you have already made, estimate a maximum number
  8. Click the "Submit Transaction" button and sign the transaction
 
@@ -120,10 +120,10 @@ Here, provide the following information:
 
  1. Choose the pallet you want to interact with. In this case, it is the `parachainStaking` pallet
  2. Choose the state to query. In this case, it is the `nominators` state
- 3. Make sure to disable the "include option" slider
+ 3. Make sure to enable the "include option" slider
  4. Send the state query by clicking on the "+" button
 
-![Staking Chain State Query](/images/staking/staking-stake-4.png)
+![Staking Chain State Query](/images/staking/staking-stake-14.png)
 
 In the response, you should see your account (in this case, Alice's account) with a list of the nominations. Each nomination contains the target address of the collator and the amount.
 
@@ -151,7 +151,7 @@ Here, provide the following information:
 
  1. Choose the pallet you want to interact with. In this case, it is the `parachainStaking` pallet
  2. Choose the state to query. In this case, it is the `nominatorState` state
- 3. Make sure to disable the "include options" slider
+ 3. Make sure to enable the "include options" slider
  4. Send the state query by clicking on the "+" button
 
 ![Staking Revoke Nomination Chain State](/images/staking/staking-stake-14.png)
