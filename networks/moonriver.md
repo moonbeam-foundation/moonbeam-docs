@@ -9,7 +9,7 @@ _Updated June 30th, 2021_
 
 ## Goal
 
-On June 2021, Moonriver first launched as a parachain on the Kusama network. Moonriver is a sister network of Moonbeam, and provides an environment to test new code under real economic conditions. Developers now have access to start experimenting and building on an incentivized canary network connected to Kusama. 
+In June 2021, Moonriver first launched as a parachain on the Kusama network. Moonriver is a sister network of Moonbeam, and provides an environment to test new code under real economic conditions. Developers now have access to start experimenting and building on an incentivized canary network connected to Kusama. 
 
 In order to collect as much feedback as possible and provide fast issue resolution, we have set up a [Discord with a dedicated Moonriver channel](https://discord.gg/5TaUvbRvgM).
 
@@ -17,7 +17,7 @@ In order to collect as much feedback as possible and provide fast issue resoluti
 
 Moonriver is scheduled to follow a [5-phase launch process](https://moonbeam.network/networks/moonriver/launch/). Currently, Moonriver is in Phase 0 of the launch process and has the following configurations:
 
-- Runs as a parachain connected to the Kusama relay chain.
+- Runs as a parachain connected to the Kusama relay chain
 - Has an active set of {{ networks.moonriver.staking.max_collators }} collators, all hosted by PureStake on behalf of the Moonbeam Foundation. There will be an initial collator election in Phase 1 to expand the collator set to parties outside of the Moonbeam team
 - There are two RPC endpoints (hosted by PureStake). People can run full nodes to access their own private RPC endpoints
 
@@ -29,7 +29,7 @@ Some important variables to note include:
 
 | Variable              | Value                                       |
 |:---------------------:|:-------------------------------------------:|
-| Minimum gas price     | {{ networks.moonriver.min_gas_price }} GSed ([token denominations](#token-denominations)) |
+| Minimum gas price     | {{ networks.moonriver.min_gas_price }} Gsed ([token denominations](#token-denominations)) |
 | Block time            | {{ networks.moonriver.block_time }} seconds (expected to be 6 seconds) |
 | Block gas limit       | {{ networks.moonriver.gas_block }} (expected to increase by at least 4x) |
 | Transaction gas limit | {{ networks.moonriver.gas_tx }} (expected to increase by at least 4x) |
@@ -74,18 +74,18 @@ The tokens on Moonriver will also be called Moonriver (MOVR). Check out the Moon
 
 ### Token Denominations
 
-The smallest unit of Moonriver is called a Sediment. It takes 10^18 Sediment to make one Moonriver. The denominations are as follows:
+The smallest unit of Moonriver is called a Sediment (Sed). It takes 10^18 Sediment to make one Moonriver. The denominations are as follows:
 
-| Unit           | Moonriver            | Sediment                      |
+| Unit           | Moonriver (MOVR)     | Sediment (Sed)                |
 |:--------------:|:--------------------:|:-----------------------------:|
-| Sediment       | 0.000000000000000001 | 1                             |
-| KiloSediment   | 0.000000000000001    | 1,000                         |
-| MegaSediment   | 0.000000000001       | 1,000,000                     |
-| GigaSediment   | 0.000000001          | 1,000,000,000                 |
-| MicroMoonriver | 0.000001             | 1,000,000,000,000             |
-| MilliMoonriver | 0.001                | 1,000,000,000,000,000         |
+| Sediment (Sed) | 0.000000000000000001 | 1                             |
+| Kilosed        | 0.000000000000001    | 1,000                         |
+| Megased        | 0.000000000001       | 1,000,000                     |
+| Gigased        | 0.000000001          | 1,000,000,000                 |
+| Micromoonriver | 0.000001             | 1,000,000,000,000             |
+| Millimoonriver | 0.001                | 1,000,000,000,000,000         |
 | Moonriver      | 1                    | 1,000,000,000,000,000,000     |
-| KiloMoonriver  | 1,000                | 1,000,000,000,000,000,000,000 |
+| Kilomoonriver  | 1,000                | 1,000,000,000,000,000,000,000 |
 
 
 ## Proof of Stake
