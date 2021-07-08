@@ -49,7 +49,7 @@ struct ReferenceData {
 }
 ```
 
-The second function, **getReferenceDataBulk**(*string[]* _bases, *string[]* _quotes), takes information as data arrays. For example, if we pass in `['BTC','BTC','ETH']` as base and `['USD','ETH','EUR']` as quote, the `ReferenceData`returned array contains the information regarding the following pairs:
+The second function, `getReferenceDataBulk`, takes information as data arrays. For example, if we pass in `['BTC','BTC','ETH']` as base and `['USD','ETH','EUR']` as quote, the `ReferenceData`returned array contains the information regarding the following pairs:
 
  - `BTC/USD`
  - `BTC/ETH`
@@ -57,7 +57,7 @@ The second function, **getReferenceDataBulk**(*string[]* _bases, *string[]* _quo
 
 ### Example Contract
 
-The following smart contract code provides some simple examples of the `StdReference` contract and the **getReferenceData**(*string[]* bases, *string[]* quotes) function - these are not meant for production. The `IStdReference.sol` interface defines ReferenceData structure and the functions available to make the queries.
+The following smart contract code provides some simple examples of the `StdReference` contract and the `getReferenceData` function - these are not meant for production. The `IStdReference.sol` interface defines ReferenceData structure and the functions available to make the queries.
 
 ```sol
 pragma solidity 0.6.11;
@@ -181,13 +181,13 @@ This will create an instance of the demo contract that you can interact with. Us
 
 ## BandChain.js Javascript Helper Library
 
-The helper library also supports a similar **getReferenceData**(*string[]* base/quote) function. To get started, the library needs to be installed:
+The helper library also supports a similar `getReferenceData` function. To get started, the library needs to be installed:
 
 ```
 npm install @bandprotocol/bandchain.js
 ```
 
-The library provides a constructor function that requires an endpoint to point to. This returns an instance that then enables all the necessary methods, such as the **getReferenceData**(*string[]* base/quote) function.  When querying for information, the function accepts an array where each element is the _base/quote_ pair needed. For example:
+The library provides a constructor function that requires an endpoint to point to. This returns an instance that then enables all the necessary methods, such as the `getReferenceData` function.  When querying for information, the function accepts an array where each element is the _base/quote_ pair needed. For example:
 
 ```
 getReferenceData(['BTC/USD', 'BTC/ETH', 'ETH/EUR'])
@@ -218,7 +218,7 @@ Where `lastUpdatedBase` and `lastUpdatedQuote` are the last time when the base a
 
 ### Example Usage
 
-The following Javascript script provides a simple example of the **getReferenceData**(*string[]* base/quote) function.
+The following Javascript script provides a simple example of the `getReferenceData` function.
 
 ```js
 const BandChain = require('@bandprotocol/bandchain.js');
