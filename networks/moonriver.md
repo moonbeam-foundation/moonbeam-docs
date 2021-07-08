@@ -30,7 +30,7 @@ Some important variables to note include:
 |       Variable        |                                           Value                                           |
 |:---------------------:|:-----------------------------------------------------------------------------------------:|
 |   Minimum gas price   | {{ networks.moonriver.min_gas_price }} Gsed ([token denominations](#token-denominations)) |
-|      Block time       |          {{ networks.moonriver.block_time }} seconds (expected to be 6 seconds)           |
+|   Target block time   |          {{ networks.moonriver.block_time }} seconds (expected to be 6 seconds)           |
 |    Block gas limit    |         {{ networks.moonriver.gas_block }} (expected to increase by at least 4x)          |
 | Transaction gas limit |           {{ networks.moonriver.gas_tx }} (expected to increase by at least 4x)           |
 |     RPC endpoint      |                             {{ networks.moonriver.rpc_url }}                              |
