@@ -1,7 +1,7 @@
-const selectWrapper = document.querySelector(".select-wrapper");
+const selectWrapper = document.querySelector(".language-select-wrapper");
 const languageSelect = document.querySelector(".language-select");
-const languageOptions = document.querySelectorAll(".select-wrapper .language-select li");
-const selectLabel = document.querySelector(".select-label");
+const languageOptions = document.querySelectorAll(".language-select-wrapper .language-select li");
+const selectLabel = document.querySelector(".language-select-label");
 const supportedLanguages = ["cn", "es", "ru"];
 const english = document.querySelector(".en");
 const selected = "selected";
