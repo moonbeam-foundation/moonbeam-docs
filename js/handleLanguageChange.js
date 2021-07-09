@@ -4,9 +4,10 @@ const languageOptions = document.querySelectorAll(
   '.select-wrapper .language-select li'
 );
 const selectLabel = document.querySelector('.select-label');
-const supportedLanguages = ['cn', 'fr', 'ru'];
+const supportedLanguages = ['cn', 'es', 'fr', 'ru'];
 const english = document.querySelector('.en');
 const selected = 'selected';
+
 let isStaging = false;
 
 /* Get current language and path */

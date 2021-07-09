@@ -53,29 +53,36 @@ Once you have an H160 account imported to PolkadotJS, you should see it under th
 
 ## Become a Collator Candidate
 
-### Get the Number of Candidates Selected
+### Get the Size of the Candidate Pool
 
-First, you need to get the `totalSelected` parameter (this can change thru governance) as you'll need to submit this parameter in a later transaction.
+First, you need to get the `candidatePool` size (this can change thru governance) as you'll need to submit this parameter in a later transaction. To do so, you'll have to run the following JavaScript code snippet from within [PolkadotJS](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/js):
 
-1. Head to the "Developer" tab 
-2. Click on "Chain State"
-3. Select `parachainStaking` pallet under the "selected state query" menu 
-4. Open the drop-down menu, which lists all the possible queries related to `parachainStaking`, and choose `totalSelected`
-5. Click on the `+` icon to submit the query
+```js
+// Simple script to get candidate pool size
+const candidatePool = await api.query.parachainStaking.candidatePool();
+console.log(`Candidate pool size is: ${candidatePool.length}`);
+```
+
+ 1. Head to the "Developer" tab 
+ 2. Click on "JavaScript"
+ 3. Copy the code from the previous snippet and paste it inside the code editor box 
+ 4. (Optional) Click the save icon and set a name for the code snippet, for example, "Get candidatePool size". This will save the code snippet locally
+ 5. Click on the run button. This will execute the code from the editor box
+ 6. Copy the result, as you'll need it when joining the candidate pool
 
 ![Get Number of Candidates](/images/fullnode/collator-polkadotjs2.png)
 
 ### Join the Candidate Pool
 
-Once your node is running and in sync with the network, you become a collator candidate (and join the candidate pool) by following the steps below in [PolkadotJS](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts):
+Once your node is running and in sync with the network, you become a collator candidate (and join the candidate pool) by following the steps below in [PolkadotJS](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/extrinsics):
 
  1. Navigate to the "Developers" tab and click on "Extrinsics"
  2. Select the account you want to be associated with your collation activities
  3. Confirm your collator account is funded with at least {{ networks.moonbase.staking.collator_min_stake }} DEV tokens plus some extra for transaction fees 
  4. Select `parachainStaking` pallet under the "submit the following extrinsics" menu
  5. Open the drop-down menu, which lists all the possible extrinsics related to staking, and select the `joinCandidates()` function
- 6. Set the bond to at least {{ networks.moonbase.staking.collator_min_stake }}, which is the minimum amount to be considered a collator candidate. Only collator bond counts for this check. Additional nominations do not count
- 7. Set the candidate count to the value returned by the `totalSelected` chain state query, currently `{{ networks.moonbase.staking.max_collators }}`. To learn how to retrieve this value, check [this section](#get-the-number-of-candidates-selected)
+ 6. Set the bond to at least {{ networks.moonbase.staking.collator_min_stake }} DEV tokens, which is the minimum amount to be considered a collator candidate on Moonbase Alpha. Only collator bond counts for this check. Additional nominations do not count
+ 7. Set the candidate count as the candidate pool size. To learn how to retrieve this value, check [this section](#get-the-size-of-the-candidate-pool)
  8. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
 ![Join Collators pool PolkadotJS](/images/fullnode/collator-polkadotjs3.png)
