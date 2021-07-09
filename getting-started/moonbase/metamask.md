@@ -17,15 +17,8 @@ If you already have MetaMask installed, you can easily connect MetaMask to the M
 
 !!! note
     MetaMask will popup asking for permission to add Moonbase Alpha as a custom network. Once you approve permissions, MetaMask will switch your current network to Moonbase Alpha.
-## Creating a Wallet
-
-After installing [MetaMask](https://metamask.io), the setup will automatically open a new task with a welcome screen. Click "Get Started" to begin the setup process.
-
-![MetaMask1](/images/testnet/testnet-metamask1.png)
-
-When prompted, you are given the option to import a wallet using a recovery seed phrase. For this exercise, set up a new wallet.
-
-![MetaMask2](/images/testnet/testnet-metamask2.png)
+    
+--8<-- 'text/common/create-metamask-wallet.md'
 
 ## Connecting to Moonbase Alpha
 
