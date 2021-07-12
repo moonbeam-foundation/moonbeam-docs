@@ -19,6 +19,9 @@ This guide is divided into two sections. The first part describes the OpenZeppel
 
 OpenZeppelin has developed an online web-based interactive contract generator tool that is probably the easiest and fastest way to write your smart contract using OpenZeppelin code. The tool is called Contracts Wizard, and you can find it on their [documentation site](https://docs.openzeppelin.com/contracts/4.x/wizard).
 
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/l8RTwu6hGpY' frameborder='0' allowfullscreen></iframe></div>
+<style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>In this video, we use Open Zeppelin Wizard to deploy an ERC-20 token to Moonbase Alpha</a></div>
+
 Currently, the Contracts Wizard support the following ERC standards:
 
  - [**ERC20**](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/) — a fungible token standard that follows [EIP-20](https://eips.ethereum.org/EIPS/eip-20). Fungible means that all tokens are equivalent and interchangeable that is, of equal value. One typical example of fungible tokens is fiat currencies, where each equal-denomination bill has the same value.
