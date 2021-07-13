@@ -98,6 +98,16 @@ networks:
       max_approved_proposals: 100
       tx_fees_allocated: 20
       tx_fees_burned: 80
+    collator_timings:
+      join_leave_candidates:
+        rounds: 2
+        hours: 4
+      add_remove_nominations:
+        rounds: 1
+        hours: 2
+      rewards_payouts:
+        rounds: 2
+        hours: 4
   moonriver:
     rpc_url: https://rpc.moonriver.moonbeam.network
     wss_url: wss://wss.moonriver.moonbeam.network
@@ -131,15 +141,6 @@ networks:
       max_votes: 100
       min_preim_deposit: 0.004
       max_proposals: 100
-    staking:
-      max_collators: 8
-      round_blocks: 300
-      round_hours: 1
-      bond_lock: 2
-      min_nom_stake: 5
-      min_nom_amount: 5
-      max_nom_per_col: 10
-      max_col_per_nom: 25
     treasury:
       proposal_bond: 5
       proposal_bond_min: 1
@@ -151,7 +152,7 @@ networks:
     staking:
       collator_min_stake: 1000
       collator_map_bond: 100
-      max_collators: 8
+      max_collators: 20
       round_blocks: 300
       round_hours: 1
       bond_lock: 2
@@ -159,6 +160,16 @@ networks:
       min_nom_amount: 5
       max_nom_per_col: 10
       max_col_per_nom: 25
+    collator_timings:
+      join_leave_candidates:
+        rounds: 2
+        hours: 4
+      add_remove_nominations:
+        rounds: 1
+        hours: 2
+      rewards_payouts:
+        rounds: 2
+        hours: 4
   relay_chain:
     p2p: 30334
     rpc: 9934

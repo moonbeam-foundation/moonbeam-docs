@@ -47,10 +47,13 @@ Some of the key parameters for this guide are the following:
     |:------------------------:|::|:-------------------------------------------------------------------------------------------------------------------------:|
     |      Launch Period       |  | {{ networks.moonriver.democracy.launch_period.blocks}} blocks ({{ networks.moonriver.democracy.launch_period.days}} days) |
     |     Cool-off Period      |  |   {{ networks.moonriver.democracy.cool_period.blocks}} blocks ({{ networks.moonriver.democracy.cool_period.days}} days)   |
-    | Minimum Preimage Deposit |  |                                  {{ networks.moonriver.democracy.min_preim_deposit}} DEV                                  |
-    | Minimum Proposal Deposit |  |                                     {{ networks.moonriver.democracy.min_deposit}} DEV                                     |
+    | Minimum Preimage Deposit |  |                                  {{ networks.moonriver.democracy.min_preim_deposit}} MOVR                                 |
+    | Minimum Proposal Deposit |  |                                     {{ networks.moonriver.democracy.min_deposit}} MOVR                                    |
 
 --8<-- 'text/moonriver-launch/governance-phase-2.md'
+
+This guide will show you how to submit a proposal on Moonbase Alpha.
+
 ## Roadmap of a Proposal
 
 --8<-- 'text/governance/roadmap.md'

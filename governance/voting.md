@@ -47,11 +47,13 @@ Some of the key parameters for this guide are the following:
 
     |        Variable         |  |                                                          Value                                                          |
     |:-----------------------:|::|:-----------------------------------------------------------------------------------------------------------------------:|
-    |       Vote Period       |  |  {{ networks.moonriver.democracy.vote_period.blocks}} blocks ({{ networks.moonriver.democracy.vote_period.days}} days)  |
     |      Enact Period       |  | {{ networks.moonriver.democracy.enact_period.blocks}} blocks ({{ networks.moonriver.democracy.enact_period.days}} days) |
     | Maximum Number of Votes |  |                                       {{ networks.moonriver.democracy.max_votes}}                                       |
+    |       Vote Period       |  |  {{ networks.moonriver.democracy.vote_period.blocks}} blocks ({{ networks.moonriver.democracy.vote_period.days}} days)  |
 
 --8<-- 'text/moonriver-launch/governance-phase-2.md'
+
+This guide will show you how to vote on a referendum on Moonbase Alpha.
 
 ## Roadmap of a Proposal
 

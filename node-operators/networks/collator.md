@@ -37,16 +37,16 @@ From a technical perspective, collators must meet the following requirements:
 Similar to Polkadot validators, you need to create an account. For Moonbeam, this is an H160 account or basically an Ethereum style account from which you hold the private keys. In addition, you will need a minimum amount of tokens staked to be considered eligible (become a candidate). Only a certain amount of the top collators by nominated stake will be in the active set.
 
 === "Moonbase Alpha"
-    |    Variable     |                             Value                             |
-    |:---------------:|:-------------------------------------------------------------:|
-    |  Minimum stake  | {{ networks.moonbase.staking.collator_min_stake }} DEV tokens |
-    | Active set size |    {{ networks.moonbase.staking.max_collators }} collators    |
+    |    Variable     |                          Value                          |
+    |:---------------:|:-------------------------------------------------------:|
+    |  Minimum stake  | {{ networks.moonbase.staking.collator_min_stake }} DEV  |
+    | Active set size | {{ networks.moonbase.staking.max_collators }} collators |
 
 === "Moonriver"
-    |    Variable     |                              Value                              |
-    |:---------------:|:---------------------------------------------------------------:|
-    |  Minimum stake  | {{ networks.moonriver.staking.collator_min_stake }} MOVR tokens |
-    | Active set size |    {{ networks.moonriver.staking.max_collators }} collators     |
+    |    Variable     |                          Value                           |
+    |:---------------:|:--------------------------------------------------------:|
+    |  Minimum stake  | {{ networks.moonriver.staking.collator_min_stake }} MOVR |
+    | Active set size | {{ networks.moonriver.staking.max_collators }} collators |
 
 ### Account in PolkadotJS
 
@@ -63,6 +63,25 @@ Once you have an H160 account imported to PolkadotJS, you should see it under th
 
 ## Become a Collator Candidate
 
+Before getting started, it's important to note some of the timings of different actions related to collation activities:
+
+=== "Moonbase Alpha"
+    |               Variable                |       Value        |
+    |:-------------------------------------:|:------------------:|
+    |    Join/leave collator candidates     | {{ networks.moonbase.collator_timings.join_leave_candidates.rounds }} rounds ({{ networks.moonbase.collator_timings.join_leave_candidates.hours }} hours) |
+    |        Add/remove nominations         | {{ networks.moonbase.collator_timings.add_remove_nominations.rounds }} rounds ({{ networks.moonbase.collator_timings.add_remove_nominations.hours }} hours) |
+    | Rewards payouts (after current round) | {{ networks.moonbase.collator_timings.rewards_payouts.rounds }} rounds ({{ networks.moonbase.collator_timings.rewards_payouts.hours }} hours) |
+
+=== "Moonriver"
+    |               Variable                |       Value        |
+    |:-------------------------------------:|:------------------:|
+    |    Join/leave collator candidates     | {{ networks.moonriver.collator_timings.join_leave_candidates.rounds }} rounds ({{ networks.moonriver.collator_timings.join_leave_candidates.hours }} hours) |
+    |        Add/remove nominations         | {{ networks.moonriver.collator_timings.add_remove_nominations.rounds }} rounds ({{ networks.moonriver.collator_timings.add_remove_nominations.hours }} hours) |
+    | Rewards payouts (after current round) | {{ networks.moonriver.collator_timings.rewards_payouts.rounds }} rounds ({{ networks.moonriver.collator_timings.rewards_payouts.hours }} hours) |
+
+
+!!! note 
+    The values presented in the previous table are subject to change in future releases.
 ### Get the Size of the Candidate Pool
 
 First, you need to get the `candidatePool` size (this can change thru governance) as you'll need to submit this parameter in a later transaction. To do so, you'll have to run the following JavaScript code snippet from within [PolkadotJS](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/js):
@@ -105,21 +124,6 @@ As mentioned before, only the top {{ networks.moonbase.staking.max_collators }} 
 ### Stop Collating
 
 Similar to Polkadot's `chill()` function, to leave the collator's candidate pool, follow the same steps as before but select the `leaveCandidates()` function in step 5.
-
-
-### Timings
-
-The following table presents some of the timings in regards to different actions related to collation activities:
-
-|                Action                 |  | Rounds |  | Hours |
-|:-------------------------------------:|::|:------:|::|:-----:|
-|    Join/leave collator candidates     |  |   2    |  |   4   |
-|        Add/remove nominations         |  |   1    |  |   2   |
-| Rewards payouts (after current round) |  |   2    |  |   4   |
-
-
-!!! note 
-    The values presented in the previous table are subject to change in future releases.
 
 ## Session Keys
 

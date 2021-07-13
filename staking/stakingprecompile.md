@@ -15,6 +15,8 @@ The Staking module is coded in Rust and it is part of a pallet that is normally 
 
 --8<-- 'text/moonriver-launch/staking-phase-4.md'
 
+This guide will show you how to interact with the Staking Precompile on Moonbase Alpha.
+
 ## The Parachain-Staking Solidity Interface
 
 [StakingInterface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol) is an interface through which solidity contracts can interact with Parachain-Staking. The beauty is that solidity developers don’t have to learn the Substrate API. Instead, they can interact with staking functions using the Ethereum interface they are familiar with.

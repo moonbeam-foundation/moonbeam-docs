@@ -23,8 +23,8 @@ Collators (and token holders if they nominate) have a stake in the network. The 
 
     |             Variable             |  |                                                  Value                                                  |
     |:--------------------------------:|::|:-------------------------------------------------------------------------------------------------------:|
-    |     Minimum nomination stake     |  |                          {{ networks.moonbase.staking.min_nom_stake }} tokens                           |
-    |        Minimum nomination        |  |                          {{ networks.moonbase.staking.min_nom_amount}} tokens                           |
+    |     Minimum nomination stake     |  |                          {{ networks.moonbase.staking.min_nom_stake }} DEV                              |
+    |        Minimum nomination        |  |                          {{ networks.moonbase.staking.min_nom_amount}} DEV                              |
     | Maximum nominators per collators |  |                             {{ networks.moonbase.staking.max_nom_per_col }}                             |
     | Maximum collators per nominator  |  |                             {{ networks.moonbase.staking.max_col_per_nom }}                             |
     |              Round               |  | {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hours) |
@@ -34,8 +34,8 @@ Collators (and token holders if they nominate) have a stake in the network. The 
 
     |             Variable             |  |                                                   Value                                                   |
     |:--------------------------------:|::|:---------------------------------------------------------------------------------------------------------:|
-    |     Minimum nomination stake     |  |                           {{ networks.moonriver.staking.min_nom_stake }} tokens                           |
-    |        Minimum nomination        |  |                           {{ networks.moonriver.staking.min_nom_amount}} tokens                           |
+    |     Minimum nomination stake     |  |                           {{ networks.moonriver.staking.min_nom_stake }} MOVR                             |
+    |        Minimum nomination        |  |                           {{ networks.moonriver.staking.min_nom_amount}} MOVR                             |
     | Maximum nominators per collators |  |                             {{ networks.moonriver.staking.max_nom_per_col }}                              |
     | Maximum collators per nominator  |  |                             {{ networks.moonriver.staking.max_col_per_nom }}                              |
     |              Round               |  | {{ networks.moonriver.staking.round_blocks }} blocks ({{ networks.moonriver.staking.round_hours }} hours) |
