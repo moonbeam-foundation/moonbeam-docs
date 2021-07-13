@@ -36,6 +36,8 @@ Some important variables to note include:
 |     RPC endpoint      |                             {{ networks.moonriver.rpc_url }}                              |
 |     WSS endpoint      |                             {{ networks.moonriver.wss_url }}                              |
 
+--8<-- 'text/moonriver/endpoints.md'
+
 ### Governance Configurations
 
 |         Variable         |                                                              Value                                                              |
