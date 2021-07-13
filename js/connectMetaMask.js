@@ -29,6 +29,7 @@ const supportedNetworks = {
     chainId: moonriverChainId,
     chainName: 'Moonriver',
     rpcUrls: ['https://rpc.moonriver.moonbeam.network'],
+    blockExplorerUrls: ['https://blockscout.moonriver.moonbeam.network/'],
     nativeCurrency: {
       name: 'Moonriver',
       symbol: 'MOVR',
