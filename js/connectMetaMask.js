@@ -1,3 +1,4 @@
+// Get network select elements
 const metaMaskSelectWrapper = document.querySelector(
   '.metamask-select-wrapper'
 );
@@ -6,6 +7,20 @@ const networkOptions = document.querySelectorAll(
   '.metamask-select-wrapper .metamask-select li'
 );
 const metaMaskSelectLabel = document.querySelector('.metamask-select-label');
+
+// Get network button elements
+const metaMaskButtons = document.querySelectorAll('.connectMetaMask');
+// If user is not on Integrate MetaMask page, connectMetaMask will not be available so
+// we need to check if it's there before adding the event listener to it
+if (metaMaskButtons.length > 0) {
+  metaMaskButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      console.log("hi", e.target.attributes.value.value)
+      connect(e.target.attributes.value.value);
+    });
+  })
+}
 
 const provider = window.ethereum;
 const moonbaseAlphaChainId = '0x507';
@@ -92,10 +107,15 @@ const connect = async (network) => {
 
   if (provider) {
     try {
+      const currentNetwork = provider.chainId;
+      const targetNetwork = supportedNetworks[network];
+      if (targetNetwork.chainId === currentNetwork){
+        throw new Error(`You are already connected to the ${targetNetwork.chainName} network`)
+      }
       await provider.request({ method: 'eth_requestAccounts' });
       await provider.request({
         method: 'wallet_addEthereumChain',
-        params: [supportedNetworks[network]],
+        params: [targetNetwork],
       });
     } catch (e) {
       /** Code 4001 is user rejected, we don't need to notify the user if they rejected the request */
@@ -109,6 +129,8 @@ const connect = async (network) => {
     errorMessage.innerHTML = `It looks like MetaMask hasn't been installed. Please <a href="https://metamask.io/download.html" target="_blank" rel="noreferrer noopener">install MetaMask</a> and try again.`;
   }
 };
+
+console.log(networkOptions)
 
 networkOptions.forEach((option) => {
   option.addEventListener('click', (e) => {
