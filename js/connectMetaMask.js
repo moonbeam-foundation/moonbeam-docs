@@ -100,12 +100,11 @@ const connect = async (network) => {
         errorModalContainer.style.display = "block";
         errorMessage.innerHTML = `It looks like MetaMask hasn't been installed. Please <a href="https://metamask.io/download.html" target="_blank" rel="noreferrer noopener">install MetaMask</a> and try again.`
     }
-}
+};
 
 networkOptions.forEach(option => {
   option.addEventListener("click", (e) => {
     e.preventDefault();
-    
     connect(e.target.className);
   })
 })
