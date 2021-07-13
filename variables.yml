@@ -100,6 +100,7 @@ networks:
       tx_fees_burned: 80
   moonriver:
     rpc_url: https://rpc.moonriver.moonbeam.network
+    wss_url: wss://wss.moonriver.moonbeam.network
     chain_id: 1285
     node_directory: /var/lib/moonriver-data
     parachain_release_tag: v0.9.1
@@ -110,9 +111,6 @@ networks:
     block_time: 12
     gas_block: 15M
     gas_tx: 12.995M
-    rpc_url: https://rpc.moonriver.moonbeam.network
-    wss_url: wss://wss.moonriver.moonbeam.network
-    chain_id: 1285
     democracy:
       launch_period:
         days: 1
@@ -131,6 +129,7 @@ networks:
         blocks: 50400
       min_deposit: 4
       max_votes: 100
+      min_preim_deposit: 0.004
       max_proposals: 100
     staking:
       max_collators: 8
@@ -149,25 +148,6 @@ networks:
       max_approved_proposals: 100
       tx_fees_allocated: 20
       tx_fees_burned: 80
-    democracy:
-      launch_period:
-        days: 1
-        blocks: 7200
-      vote_period:
-        days: 5
-        blocks: 36000
-      fast_vote_period:
-        hours: 4
-        blocks: 1200
-      enact_period:
-        days: 1
-        blocks: 7200
-      cool_period:
-        days: 7
-        blocks: 50400
-      min_deposit: 4
-      min_preim_deposit: 0.004
-      max_votes: 100
     staking:
       collator_min_stake: 1000
       collator_map_bond: 100
