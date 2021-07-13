@@ -52,9 +52,11 @@ Before starting to stake tokens, it is important to retrieve the list of collato
 
 Here, provide the following information:
 
- 1. Choose the pallet to interact with. In this case, it is the `parachainStaking` pallet
- 2. Choose the state to query. In this case, it is the `selectedCandidates` or `candidatePool` state
- 3. Send the state query by clicking on the "+" button
+ 1. Head to the "Developer" tab 
+ 2. Click on "Chain State"
+ 3. Choose the pallet to interact with. In this case, it is the `parachainStaking` pallet
+ 4. Choose the state to query. In this case, it is the `selectedCandidates` or `candidatePool` state
+ 5. Send the state query by clicking on the "+" button
 
 Each extrinsic provides a different response:
 
