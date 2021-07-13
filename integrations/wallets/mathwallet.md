@@ -9,13 +9,11 @@ description: This guide walks you through how to connect Mathwallet, a browser-b
 
 ## Introduction
 
-MathWallet [announced](https://mathwallet.org/moonbeam-wallet/en/) that is now natively supporting the [Moonbase Alpha TestNet](/networks/moonbase/). This means that you are now able to interact with Moonbase Alpha using another wallet besides MetaMask.
+MathWallet [announced](https://mathwallet.org/moonbeam-wallet/en/) that is now natively supporting the [Moonbase Alpha TestNet](/networks/moonbase/) and [Moonriver](/networks/moonriver/). This means that you are now able to interact with Moonbase Alpha and Moonriver using another wallet besides MetaMask.
 
-In this tutorial, we'll go through how to setup MathWallet to connect to our TestNet. We'll also present a brief example of using MathWallet as a Web3 provider for other tools such as [Remix](/integrations/remix/).
+In this tutorial, we'll go through how to setup MathWallet to connect to our [TestNet](#connect-to-moonbase-alpha) and [Moonriver](#connect-to-moonriver). We'll also present a brief example of using MathWallet as a Web3 provider for other tools such as [Remix](/integrations/remix/).
 
-## Connect MathWallet to Moonbeam
-
-In this part, we'll go through the process of connecting MathWallet to Moonbase Alpha. 
+## Checking Prerequisites
 
 First, you need to install the MathWallet browser extension installed, which you can get from their [website](https://mathwallet.org/en-us/).
 
@@ -23,7 +21,9 @@ With the browser extension installed, please open it and set a password.
 
 ![Set wallet password](/images/mathwallet/mathwallet-images-1.png)
 
-Next, let's enable Moonbase Alpha under Settings (top right gear icon) -> Networks -> Ethereum.
+## Connect to Moonbase Alpha
+
+In this part, we'll go through the process of connecting MathWallet to Moonbase Alpha. Enable Moonbase Alpha under Settings (top right gear icon) -> Networks -> Ethereum.
 
 ![Enable Moonbase Alpha](/images/mathwallet/mathwallet-images-2.png)
 
@@ -35,15 +35,29 @@ And that is it, you now have MathWallet connected to the Moonbase Alpha TestNet!
 
 ![Wallet Connected to Moonbase Alpha](/images/mathwallet/mathwallet-images-4.png)
 
+## Connect to Moonriver
+
+Getting started with Moonriver is a straightforward process. All you have to do is click Switch Network and select Moonriver
+
+![Connect to Moonriver](/images/mathwallet/mathwallet-moonriver-images-1.png)
+
+And that is it, you now have MathWallet connected to Moonriver! Your wallet should look like this:
+
+![Wallet Connected to Moonriver](/images/mathwallet/mathwallet-moonriver-images-2.png)
+
 ## Adding a Wallet
 
-Now that MathWallet is connected to Moonbase Alpha, we can now create a wallet to get an account and start interacting with the TestNet. Currently, there are three ways to add a wallet:
+The following steps will show you how to interact with the Moonbase Alpha TestNet, but can also be used to interact with Moonriver.
+
+After you are connected to Moonbase Alpha, you can now create a wallet to get an account and start interacting with the TestNet. Currently, there are three ways to add a wallet:
 
  - Create a wallet
  - Import an existing wallet using a mnemonic or private key
 - Connect hardware wallet (_not supported for now_)
 
 ### Create a wallet
+
+The following steps for creating a wallet can be modified for Moonriver
 
 To create a new wallet, click the :heavy_plus_sign: sign next to "Moonbase Alpha" and select "Create Wallet".
 
@@ -69,9 +83,9 @@ After clicking next, set a wallet name, and that is it! You should see your impo
 
 ## Using MathWallet
 
-MathWallet serves as a Web3 provider in tools such as [Remix](/integrations/remix/). By having MathWallet connected to Moonbase Alpha, you can deploy contracts as you would like using MetaMask, signing the transactions with MathWallet instead.
+MathWallet serves as a Web3 provider in tools such as [Remix](/integrations/remix/). By having MathWallet connected to Moonbase Alpha or Moonriver, you can deploy contracts as you would like using MetaMask, signing the transactions with MathWallet instead.
 
-For example, in Remix, when deploying a smart contract, make sure you select the "Injected Web3" option in the "Environment" menu. If you have MathWallet connected, you will see the TestNet chain ID just below the box (_1287_) and your MathWallet account injected into Remix as well. When sending a transaction, you should see a similar pop-up from MathWallet:
+For example, in Remix, when deploying a smart contract to Moonbase Alpha, make sure you select the "Injected Web3" option in the "Environment" menu. If you have MathWallet connected, you will see the TestNet chain ID just below the box (_1287_) and your MathWallet account injected into Remix as well. When sending a transaction, you should see a similar pop-up from MathWallet:
 
 ![MathWallet sign transaction](/images/mathwallet/mathwallet-images-10.png)
 
