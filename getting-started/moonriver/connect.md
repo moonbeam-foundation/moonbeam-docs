@@ -9,7 +9,5 @@ description: The Moonbeam TestNet, nicknamed Moonbase Alpha, is the easiest way 
 
 Moonriver has two endpoints available for users to connect to: one for HTTPS and one for WSS.
 
---8<-- 'text/moonriver/endpoints.md'
-
 --8<-- 'text/moonriver/connect.md'
 
