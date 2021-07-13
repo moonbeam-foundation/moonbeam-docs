@@ -61,7 +61,7 @@ We can use the following `Demo` script. It provides various functions:
  - savePrice: a _public_ function that queries a single Job ID. This sends a transaction and modifies the `price` variable stored in the contract.
  - saveMultiPrices: a _public_ function that queries multiple Job IDs. For example, to fetch the price of `ETH` and `BTC` in `USD`, we will need to send the Job IDs `[1,2]`. This sends a transaction and modifies the `pricesArr` array stored in the contract, which will hold the price of each pair in the same order as specified in the input
 
-```sol
+```solidity
 pragma solidity 0.6.11;
 
 interface Razor {
@@ -113,7 +113,7 @@ contract Demo {
 
 The easiest way to try their Oracle implementation is by pointing the interface to the Bridge contract deployed at address `{{ networks.moonbase.razor.bridge_address }}`:
 
-```sol
+```solidity
 pragma solidity 0.6.11;
 
 interface Razor {

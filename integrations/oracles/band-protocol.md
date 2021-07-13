@@ -41,7 +41,7 @@ The `ReferenceData` struct has the following elements:
  - Last updated base: the last time when the base price was updated (since UNIX epoch)
  - Last updated quote: the last time when the quoted price was updated (since UNIX epoch)
  
-```
+```js
 struct ReferenceData {
    uint256 rate; 
    uint256 lastUpdatedBase; 
@@ -59,7 +59,7 @@ The second function, `getReferenceDataBulk`, takes information as data arrays. F
 
 The following smart contract code provides some simple examples of the `StdReference` contract and the `getReferenceData` function - these are not meant for production. The `IStdReference.sol` interface defines ReferenceData structure and the functions available to make the queries.
 
-```sol
+```solidity
 pragma solidity 0.6.11;
 pragma experimental ABIEncoderV2;
 
@@ -84,6 +84,7 @@ interface IStdReference {
         returns (ReferenceData[] memory);
 }
 ```
+
 Next, we can use the following `DemoOracle` script. It provides four functions:
 
  - **getPrice**(*string[]* base, *string[]* quotes): a _view_ function that queries a single base. In this example, the price of `BTC` quoted in `USD`
@@ -93,7 +94,7 @@ Next, we can use the following `DemoOracle` script. It provides four functions:
 
  When deployed, the constructor function needs the Aggregator Contract address for the target network.
 
-```sol
+```solidity
 pragma solidity 0.6.11;
 pragma experimental ABIEncoderV2;
 
@@ -153,7 +154,7 @@ contract DemoOracle {
 
 We've deployed a contract available in the Moonbase Alpha TestNet (at address `0xf15c870344c1c02f5939a5C4926b7cDb90dEc655`) so you can easily check the information fed from Band Protocol's oracle. To do so, you need the following interface contract:
 
-```sol
+```solidity
 pragma solidity 0.6.11;
 pragma experimental ABIEncoderV2;
 
@@ -195,7 +196,7 @@ getReferenceData(['BTC/USD', 'BTC/ETH', 'ETH/EUR'])
 
 Then, it returns an array object with the following structure:
 
-```
+```js
 [
   {
     pair: 'BTC/USD',
