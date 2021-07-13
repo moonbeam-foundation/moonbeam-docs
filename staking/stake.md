@@ -76,6 +76,14 @@ const collatorAccount = 'COLLATOR_ADDRESS';
 const collatorInfo = await api.query.parachainStaking.collatorState2(collatorAccount);
 console.log(collatorInfo.toHuman()["nominators"].length);
 ```
+
+ 1. Head to the "Developer" tab 
+ 2. Click on "JavaScript"
+ 3. Copy the code from the previous snippet and paste it inside the code editor box 
+ 4. (Optional) Click the save icon and set a name for the code snippet, for example, "Get collator_nominator_count". This will save the code snippet locally
+ 5. Click on the run button. This will execute the code from the editor box
+ 6. Copy the result, as you'll need it when initiating a nomination
+
 ![Get collator nominator count](/images/staking/staking-stake-3.png)
 
 ## Get your Number of Existing Nominations
@@ -88,6 +96,14 @@ const yourNominatorAccount = 'YOUR_ADDRESS_HERE';
 const nominatorInfo = await api.query.parachainStaking.nominatorState(yourNominatorAccount);
 console.log(nominatorInfo.toHuman()["nominations"].length);
 ```
+
+ 1. Head to the "Developer" tab 
+ 2. Click on "JavaScript"
+ 3. Copy the code from the previous snippet and paste it inside the code editor box 
+ 4. (Optional) Click the save icon and set a name for the code snippet, for example, "Get existing nominations". This will save the code snippet locally
+ 5. Click on the run button. This will execute the code from the editor box
+ 6. Copy the result, as you'll need it when initiating a nomination
+
 ![Get existing nomination count](/images/staking/staking-stake-4.png)
 
 ## How to Nominate a Collator
