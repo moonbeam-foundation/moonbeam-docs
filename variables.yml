@@ -12,7 +12,7 @@ networks:
     parachain_release_tag: v0.9.1
     parachain_sha256sum: de4cbbd849b70b2215d5fc9b67f5841d985c6bad496940a2eb3f15534e6f735f
     gas_block: 15M
-    gas_tx: 13M
+    gas_tx: 12.995M
     node_directory: /var/lib/alphanet-data
     node_db_loc: /chains/moonbase_alpha/db
     binary_name: moonbeam
@@ -104,6 +104,41 @@ networks:
     parachain_sha256sum: de4cbbd849b70b2215d5fc9b67f5841d985c6bad496940a2eb3f15534e6f735f
     chain_spec: moonriver
     binary_name: moonbeam
+    min_gas_price: 1
+    block_time: 12
+    gas_block: 15M
+    gas_tx: 12.995M
+    rpc_url: https://rpc.moonriver.moonbeam.network
+    wss_url: wss://wss.moonriver.moonbeam.network
+    chain_id: 1285
+    democracy:
+      launch_period:
+        days: 1
+        blocks: 7200
+      vote_period:
+        days: 5
+        blocks: 36000
+      fast_vote_period:
+        days: 1
+        blocks: 7200
+      enact_period:
+        days: 1
+        blocks: 7200
+      cool_period:
+        days: 7
+        blocks: 50400
+      min_deposit: 4
+      max_votes: 100
+      max_proposals: 100
+    staking:
+      max_collators: 8
+      round_blocks: 300
+      round_hours: 1
+      bond_lock: 2
+      min_nom_stake: 5
+      min_nom_amount: 5
+      max_nom_per_col: 10
+      max_col_per_nom: 25
     treasury:
       proposal_bond: 5
       proposal_bond_min: 1
