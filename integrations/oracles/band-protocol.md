@@ -41,7 +41,7 @@ The `ReferenceData` struct has the following elements:
  - Last updated base: the last time when the base price was updated (since UNIX epoch)
  - Last updated quote: the last time when the quoted price was updated (since UNIX epoch)
  
-```
+```js
 struct ReferenceData {
    uint256 rate; 
    uint256 lastUpdatedBase; 
@@ -59,7 +59,7 @@ The second function, `getReferenceDataBulk`, takes information as data arrays. F
 
 The following smart contract code provides some simple examples of the `StdReference` contract and the `getReferenceData` function - these are not meant for production. The `IStdReference.sol` interface defines ReferenceData structure and the functions available to make the queries.
 
-```sol
+```solidity
 pragma solidity 0.6.11;
 pragma experimental ABIEncoderV2;
 
@@ -84,16 +84,17 @@ interface IStdReference {
         returns (ReferenceData[] memory);
 }
 ```
+
 Next, we can use the following `DemoOracle` script. It provides four functions:
 
- - getPrice: a _view_ function that queries a single base. In this example, the price of `BTC` quoted in `USD`
- - getMultiPrices: a _view_ function that queries multiple bases. In this example, the price of `BTC` and `ETH`, both quoted in `USD`
- - savePrice: a _public_ function that queries the _base/quote_ pair. Each element is provided as separate strings, for example `_base = "BTC", _quotes = "USD"`. This sends a transaction and modifies the `price` variable stored in the contract
- - saveMultiPrices: a _public_  function that queries each _base/quote_ pair. Each element is provided as a string array. For example, `_bases = ["BTC","ETH"], _quotes = ["USD","USD"]`. This sends a transaction and modifies the `prices` array stored in the contract, which will hold the price of each pair in the same order as specified in the input
+ - **getPrice**(*string[]* base, *string[]* quotes): a _view_ function that queries a single base. In this example, the price of `BTC` quoted in `USD`
+ - **getMultiPrices**(*string[]* bases, *string[]* quotes): a _view_ function that queries multiple bases. In this example, the price of `BTC` and `ETH`, both quoted in `USD`
+ - **savePrice**(*string* base, *string* quote): a _public_ function that queries the _base/quote_ pair. Each element is provided as separate strings, for example `_base = "BTC", _quotes = "USD"`. This sends a transaction and modifies the `price` variable stored in the contract
+ - **saveMultiPrices**(*string[]* bases, *string[]* quotes): a _public_  function that queries each _base/quote_ pair. Each element is provided as a string array. For example, `_bases = ["BTC","ETH"], _quotes = ["USD","USD"]`. This sends a transaction and modifies the `prices` array stored in the contract, which will hold the price of each pair in the same order as specified in the input
 
  When deployed, the constructor function needs the Aggregator Contract address for the target network.
 
-```sol
+```solidity
 pragma solidity 0.6.11;
 pragma experimental ABIEncoderV2;
 
@@ -153,7 +154,7 @@ contract DemoOracle {
 
 We've deployed a contract available in the Moonbase Alpha TestNet (at address `0xf15c870344c1c02f5939a5C4926b7cDb90dEc655`) so you can easily check the information fed from Band Protocol's oracle. To do so, you need the following interface contract:
 
-```sol
+```solidity
 pragma solidity 0.6.11;
 pragma experimental ABIEncoderV2;
 
@@ -166,8 +167,8 @@ interface TestInterface {
 
 With it, you will have two view functions available - very similar to our previous examples:
 
- - getPrice: provides the price feed for a single base/quote pair that is given as input to the function, that is, "BTC", "USD"
- - getMultiPrices: provides the price feed for a multiple base/quote pairs that are given as input to the function, that is, ["BTC", "ETH", "ETH"], ["USD", "USD", "EUR"]
+ - **getPrice**(*string* base, *string* quote): provides the price feed for a single base/quote pair that is given as input to the function, that is, "BTC", "USD"
+ - **getMultiPrices**(*string[]* bases, *string[]* quotes): provides the price feed for a multiple base/quote pairs that are given as input to the function, that is, ["BTC", "ETH", "ETH"], ["USD", "USD", "EUR"]
 
 For example, using [Remix](/integrations/remix/), we can easily query the `BTC/USD` price pair using this interface.
 
@@ -195,7 +196,7 @@ getReferenceData(['BTC/USD', 'BTC/ETH', 'ETH/EUR'])
 
 Then, it returns an array object with the following structure:
 
-```
+```js
 [
   {
     pair: 'BTC/USD',
