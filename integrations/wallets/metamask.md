@@ -44,8 +44,7 @@ Moonbeam development node:
     - Symbol (Optional): `DEV`
     - Block Explorer: `{{ networks.development.block_explorer }}`
 
-
-Moonbase Alpha TestNet:
+=== "Moonbase Alpha TestNet"
 
     - Network Name: `Moonbase Alpha`
     - RPC URL: `{{ networks.moonbase.rpc_url }}`

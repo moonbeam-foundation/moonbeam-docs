@@ -70,7 +70,6 @@ cd moonbeam
     - Symbol (Optional): `DEV`
     - Block Explorer: `{{ networks.development.block_explorer }}`
 
-
 === "Moonbase Alpha TestNet"
 
     - Network Name: `Moonbase Alpha`
