@@ -309,9 +309,7 @@ If you want to write more tests on your own, you could consider testing transfer
 
 After you compile your contracts and before deployment, you will have to generate contract artifacts for Mars. Mars uses the contract artifacts for typechecks in deployments. Then you'll need to create a deployment script and deploy the `MyToken` smart contract.
 
-Remember, you will be deploying to Moonbase Alpha and will need to use the TestNet configurations:
-
---8<-- 'text/testnet/testnet-details.md'
+Remember, you will be deploying to Moonbase Alpha and will need to use the TestNet RPC URL: `{{ networks.moonbase.rpc_url }}`.
 
 The deployment will be broken up into three sections: [generate artifacts](#generate-artifacts), [create a deployment script](#create-a-deployment-script), and [deploy with Mars](#deploy-with-mars). 
 

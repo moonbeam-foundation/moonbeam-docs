@@ -4,11 +4,13 @@ networks:
     rpc_url: http://127.0.0.1:9933
     chain_id: 1281
     container_name: moonbeam_development
+    block_explorer: https://moonbeam-explorer.netlify.app/
   moonbase:
     version: v0.7.0 # must be in this exact format for links to work
     rpc_url: https://rpc.testnet.moonbeam.network
     chain_id: 1287
     chain_spec: alphanet
+    block_explorer: https://moonbase-blockscout.testnet.moonbeam.network/
     parachain_release_tag: v0.9.1
     parachain_sha256sum: de4cbbd849b70b2215d5fc9b67f5841d985c6bad496940a2eb3f15534e6f735f
     gas_block: 15M
@@ -116,6 +118,7 @@ networks:
     parachain_release_tag: v0.9.1
     parachain_sha256sum: de4cbbd849b70b2215d5fc9b67f5841d985c6bad496940a2eb3f15534e6f735f
     chain_spec: moonriver
+    block_explorer: https://blockscout.moonriver.moonbeam.network/
     binary_name: moonbeam
     min_gas_price: 1
     block_time: 12

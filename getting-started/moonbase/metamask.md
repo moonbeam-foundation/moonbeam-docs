@@ -32,7 +32,11 @@ Navigate to the Networks tab and click the "Add Network" button.
 
 In here, fill out the following information and then click Save:
 
---8<-- 'text/testnet/testnet-details.md'
+  - Network Name: `Moonbase Alpha`
+  - RPC URL: `{{ networks.moonbase.rpc_url }}`
+  - ChainID: `{{ networks.moonbase.chain_id }}`
+  - Symbol (Optional): `DEV`
+  - Block Explorer: `{{ networks.moonbase.block_explorer }}`
 
 ![MetaMask5](/images/testnet/testnet-metamask5.png)
 
