@@ -78,7 +78,7 @@ networks:
       max_votes: 100
       max_proposals: 100
     staking:
-      collator_min_stake: 1000
+      collator_bond_min: 1000
       collator_map_bond: 100
       max_collators: 32
       round_blocks: 300
@@ -153,7 +153,7 @@ networks:
       tx_fees_allocated: 20
       tx_fees_burned: 80
     staking:
-      collator_min_stake: 1000
+      collator_bond_min: 1000
       collator_map_bond: 100
       max_collators: 26
       round_blocks: 300

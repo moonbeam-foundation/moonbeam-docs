@@ -39,13 +39,13 @@ Similar to Polkadot validators, you need to create an account. For Moonbeam, thi
 === "Moonbase Alpha"
     |    Variable     |                          Value                          |
     |:---------------:|:-------------------------------------------------------:|
-    |  Minimum stake  | {{ networks.moonbase.staking.collator_min_stake }} DEV  |
+    |   Bond Amount   | {{ networks.moonbase.staking.collator_bond_min }} DEV   |
     | Active set size | {{ networks.moonbase.staking.max_collators }} collators |
 
 === "Moonriver"
     |    Variable     |                          Value                           |
     |:---------------:|:--------------------------------------------------------:|
-    |  Minimum stake  | {{ networks.moonriver.staking.collator_min_stake }} MOVR |
+    |   Bond Amount   | {{ networks.moonriver.staking.collator_bond_min }} MOVR  |
     | Active set size | {{ networks.moonriver.staking.max_collators }} collators |
 
 ### Account in PolkadotJS
@@ -163,7 +163,7 @@ There is a bond that is sent when mapping your author ID with your account. This
 
 The `authorMapping` module has the following extrinsics programmed:
 
- - **addAssociation**(*address* authorID) — maps your author ID to the H160 account from which the transaction is being sent, ensuring is the true owner of its private keys. It requires a bond
+ - **addAssociation**(*address* authorID) — maps your author ID to the H160 account from which the transaction is being sent, ensuring is the true owner of its private keys. It requires a [bond](#accounts-and-staking-requirements)
  - **clearAssociation**(*address* authorID) — clears the association of an author ID to the H160 account from which the transaction is being sent, which needs to be the owner of that author ID. Also refunds the bond
  - **updateAssociation**(*address* oldAuthorID, *address* newAuthorID) —  updates the mapping from an old author ID to a new one. Useful after a key rotation or migration. It executes both the `add` and `clear` association extrinsics atomically, enabling key rotation without needing a second bond
 
