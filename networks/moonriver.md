@@ -15,10 +15,10 @@ In order to collect as much feedback as possible and provide fast issue resoluti
 
 ## Initial Configurations
 
-Moonriver is scheduled to follow a [5-phase launch process](https://moonbeam.network/networks/moonriver/launch/). Currently, Moonriver is in Phase 0 of the launch process and has the following configurations:
+Moonriver is scheduled to follow a [5-phase launch process](https://moonbeam.network/networks/moonriver/launch/). Currently, Moonriver is in Phase 1 of the launch process and has the following configurations:
 
 - Runs as a parachain connected to the Kusama relay chain
-- Has an active set of {{ networks.moonriver.staking.max_collators }} collators, all hosted by PureStake on behalf of the Moonbeam Foundation. There will be an initial collator election in Phase 1 to expand the collator set to parties outside of the Moonbeam team
+- Has an active set of {{ networks.moonriver.staking.max_collators }} collators, all hosted by PureStake on behalf of the Moonbeam Foundation. There is an initial collator election during Phase 1 to expand the collator set to parties outside of the Moonbeam team
 - There are two RPC endpoints (hosted by PureStake). People can run full nodes to access their own private RPC endpoints
 
 ![Moonriver Diagram](/images/moonriver/moonriver-diagram.png)
@@ -89,7 +89,7 @@ The smallest unit of Moonriver is called a Sediment (Sed). It takes 10^18 Sedime
 
 Over the course of the 5-phase Moonriver launch, the network will progressively be updated to a fully decentralized Proof of Stake network. For a breakdown of what will occur during each phase, check out the [Network Launch Status](https://moonbeam.network/networks/moonriver/launch/) page.
 
-In Phase 1, there will be an initial collator election and the active collator set will start at 32 collators. Once governance is enabled in Phase 2, the number of collators in the active set will be subject to governance. The active set will consist of the top collators by stake, including nominations.
+In the current phase, Phase 1, there is an initial collator election to fill the {{ networks.moonriver.staking.max_collators }} spots in the active collator set. Once governance is enabled in Phase 2, the number of collators in the active set will be subject to governance. The active set will consist of the top collators by stake, including nominations.
 
 ## Limitations
 

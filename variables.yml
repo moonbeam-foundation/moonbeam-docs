@@ -4,11 +4,13 @@ networks:
     rpc_url: http://127.0.0.1:9933
     chain_id: 1281
     container_name: moonbeam_development
+    block_explorer: https://moonbeam-explorer.netlify.app/
   moonbase:
     version: v0.7.0 # must be in this exact format for links to work
     rpc_url: https://rpc.testnet.moonbeam.network
     chain_id: 1287
     chain_spec: alphanet
+    block_explorer: https://moonbase-blockscout.testnet.moonbeam.network/
     parachain_release_tag: v0.9.1
     parachain_sha256sum: de4cbbd849b70b2215d5fc9b67f5841d985c6bad496940a2eb3f15534e6f735f
     gas_block: 15M
@@ -76,7 +78,7 @@ networks:
       max_votes: 100
       max_proposals: 100
     staking:
-      collator_min_stake: 1000
+      collator_bond_min: 1000
       collator_map_bond: 100
       max_collators: 32
       round_blocks: 300
@@ -98,19 +100,30 @@ networks:
       max_approved_proposals: 100
       tx_fees_allocated: 20
       tx_fees_burned: 80
+    collator_timings:
+      join_leave_candidates:
+        rounds: 2
+        hours: 4
+      add_remove_nominations:
+        rounds: 1
+        hours: 2
+      rewards_payouts:
+        rounds: 2
+        hours: 4
   moonriver:
+    rpc_url: https://rpc.moonriver.moonbeam.network
+    wss_url: wss://wss.moonriver.moonbeam.network
+    chain_id: 1285
     node_directory: /var/lib/moonriver-data
     parachain_release_tag: v0.9.1
     parachain_sha256sum: de4cbbd849b70b2215d5fc9b67f5841d985c6bad496940a2eb3f15534e6f735f
     chain_spec: moonriver
+    block_explorer: https://blockscout.moonriver.moonbeam.network/
     binary_name: moonbeam
     min_gas_price: 1
     block_time: 12
     gas_block: 15M
     gas_tx: 12.995M
-    rpc_url: https://rpc.moonriver.moonbeam.network
-    wss_url: wss://wss.moonriver.moonbeam.network
-    chain_id: 1285
     democracy:
       launch_period:
         days: 1
@@ -129,16 +142,8 @@ networks:
         blocks: 50400
       min_deposit: 4
       max_votes: 100
+      min_preim_deposit: 0.004
       max_proposals: 100
-    staking:
-      max_collators: 8
-      round_blocks: 300
-      round_hours: 1
-      bond_lock: 2
-      min_nom_stake: 5
-      min_nom_amount: 5
-      max_nom_per_col: 10
-      max_col_per_nom: 25
     treasury:
       proposal_bond: 5
       proposal_bond_min: 1
@@ -147,6 +152,27 @@ networks:
       max_approved_proposals: 100
       tx_fees_allocated: 20
       tx_fees_burned: 80
+    staking:
+      collator_bond_min: 1000
+      collator_map_bond: 100
+      max_collators: 26
+      round_blocks: 300
+      round_hours: 1
+      bond_lock: 2
+      min_nom_stake: 5
+      min_nom_amount: 5
+      max_nom_per_col: 10
+      max_col_per_nom: 25
+    collator_timings:
+      join_leave_candidates:
+        rounds: 2
+        hours: 4
+      add_remove_nominations:
+        rounds: 1
+        hours: 2
+      rewards_payouts:
+        rounds: 2
+        hours: 4
   relay_chain:
     p2p: 30334
     rpc: 9934

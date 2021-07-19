@@ -10,8 +10,8 @@ We plan to create multiple long-lived, Moonbeam-based networks. Significantly, M
 Our roadmap in regards to deployments as a parachain is the following:
 
  - Moonbase Alpha: PureStake hosted parachain TestNet (_September 2020_) 
- - Moonrock: deployment on the Rococo TestNet (_tbd_)
- - Moonriver: deployment on Kusama (_end of Q2 2021_)
+ - Moonrock: deployment on the Rococo TestNet (_May 2021_)
+ - Moonriver: deployment on Kusama (_June 2021_)
  - Moonbeam: deployment on Polkadot (_end of Q3 2021_)
  
 This strategy allows us to de-risk software upgrades to Moonbeam on the Polkadot MainNet while still maintaining a reasonable update velocity. We will add details on how to access different Moonbeam-based networks as the networks become available.
@@ -24,15 +24,17 @@ This TestNet is a network hosted by PureStake. It features a parachain/relay cha
 
 ## Moonrock  
 
-We have decided not to participate in the first parachain deployments to Rococo. We have been running our own parachain/relay chain setup since we launched our TestNet in September 2020.
+We decided not to participate in the first parachain deployments to Rococo because we have been running our own parachain/relay chain setup since we launched our TestNet in September 2020.
 
-However, we expect to deploy Moonbeam as a parachain on the Rococo TestNet once interoperability features become available. This will provide a place to test these features with other chains.
+However, Moonrock was deployed to Rococo for the first time in May 2021. 
 
 ## Moonriver
 
-Moonbeam will launch as a parachain on the Kusama network, in advance of deploying to the Polkadot MainNet ([more details here](https://www.purestake.com/news/moonbeam-on-kusama/)). This requires parachain functionality to be live on Kusama. 
+In advance of deploying to the Polkadot MainNet, [Moonbeam launched Moonriver](https://moonbeam.network/announcements/moonriver-launch-kusama/) as a parachain on the Kusama network. The parachain functionality is live on Kusama and features are progressively being released according to the [Moonriver launch schedule](https://moonbeam.network/networks/moonriver/launch/). 
 
-We plan to exercise parachain-related functionality such as [Crowdloan](https://wiki.polkadot.network/docs/learn-crowdloans), [XCMP](https://wiki.polkadot.network/docs/learn-crosschain), and [SPREE](https://wiki.polkadot.network/docs/learn-spree) on Moonriver as those features become available.
+We plan to exercise parachain-related functionality such as [XCMP](https://wiki.polkadot.network/docs/learn-crosschain) and [SPREE](https://wiki.polkadot.network/docs/learn-spree) on Moonriver as those features become available.
+
+[Learn more about Moonriver](/networks/moonriver/).
 
 ## Moonbeam Polkadot MainNet
 

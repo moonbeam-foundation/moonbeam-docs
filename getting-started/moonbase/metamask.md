@@ -7,9 +7,9 @@ description: Learn how to use MetaMask with the Moonbeam TestNet. This tutorial 
 
 ## Introduction
 
-This guide outlines the steps needed to connect MetaMask to Moonbase Alpha. In contrast to our previous MetaMask guide, this is much simpler because you don't need to connect to a local running Moonbeam node. Let's jump right into it.
+This guide outlines the steps needed to connect MetaMask to Moonbase Alpha. In contrast to the MetaMask guide for a Moonbeam development node, this is much simpler because you don't need to connect to a local running Moonbeam node. Let's jump right into it.
 
-If you already have MetaMask installed, you can easily connect MetaMask to the Moonbase Alpha test network:
+If you already have MetaMask installed, you can easily connect MetaMask to the Moonbase Alpha TestNet:
 
 <div class="button-wrapper">
     <a href="#" class="md-button connectMetaMask">Connect MetaMask</a>
@@ -17,15 +17,8 @@ If you already have MetaMask installed, you can easily connect MetaMask to the M
 
 !!! note
     MetaMask will popup asking for permission to add Moonbase Alpha as a custom network. Once you approve permissions, MetaMask will switch your current network to Moonbase Alpha.
-## Creating a Wallet
-
-After installing [MetaMask](https://metamask.io), the setup will automatically open a new task with a welcome screen. Click "Get Started" to begin the setup process.
-
-![MetaMask1](/images/testnet/testnet-metamask1.png)
-
-When prompted, you are given the option to import a wallet using a recovery seed phrase. For this exercise, set up a new wallet.
-
-![MetaMask2](/images/testnet/testnet-metamask2.png)
+    
+--8<-- 'text/common/create-metamask-wallet.md'
 
 ## Connecting to Moonbase Alpha
 
@@ -39,7 +32,11 @@ Navigate to the Networks tab and click the "Add Network" button.
 
 In here, fill out the following information and then click Save:
 
---8<-- 'text/testnet/testnet-details.md'
+  - Network Name: `Moonbase Alpha`
+  - RPC URL: `{{ networks.moonbase.rpc_url }}`
+  - ChainID: `{{ networks.moonbase.chain_id }}`
+  - Symbol (Optional): `DEV`
+  - Block Explorer: `{{ networks.moonbase.block_explorer }}`
 
 ![MetaMask5](/images/testnet/testnet-metamask5.png)
 
