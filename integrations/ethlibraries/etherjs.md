@@ -39,14 +39,22 @@ let wallet = new ethers.Wallet(privKey, provider);
 Different methods are available inside `provider` and `wallet`. Depending on which network you want to connect to, you can set the `RPC_URL` to the following values:
 
 Moonbeam development node: 
- - RPC_URL: `http://127.0.0.1:9933`"
- - ChainId: `1281`
- - NETWORK_NAME: `moonbeam-development`
+
+  - RPC_URL: `{{ networks.development.rpc_url }}`
+  - ChainId: `{{ networks.development.chain_id }}`
+  - NETWORK_NAME: `moonbeam-development`
  
 Moonbase Alpha TestNet: 
- - RPC_URL: `https://rpc.testnet.moonbeam.network`
- - ChainId: `1287`
- - NETWORK_NAME: `moonbase-alpha`
+
+  - RPC_URL: `{{ networks.moonbase.rpc_url }}`
+  - ChainId: `{{ networks.moonbase.chain_id }}`
+  - NETWORK_NAME: `moonbase-alpha`
+
+Moonriver:
+
+  - RPC_URL: `{{ networks.moonriver.rpc_url }}`
+  - ChainID: `{{ networks.moonriver.chain_id }}`
+  - NETWORK_NAME: `{{ networks.moonriver.chain_spec }}`
 
 ## Step-by-step Tutorials
 
