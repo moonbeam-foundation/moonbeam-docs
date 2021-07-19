@@ -9,6 +9,15 @@ description: Learn how to use MetaMask with Moonriver, the Moonbeam deployment o
 
 This guide outlines the steps needed to connect MetaMask to Moonriver. In contrast to the MetaMask guide for a Moonbeam development node, this is much simpler because you don't need to connect to a local running Moonbeam node. Let's jump right into it.
 
+If you already have MetaMask installed, you can easily connect MetaMask to the Moonriver:
+
+<div class="button-wrapper">
+    <a href="#" class="md-button connectMetaMask" value="moonriver">Connect MetaMask</a>
+</div>
+
+!!! note
+    MetaMask will popup asking for permission to add Moonriver as a custom network. Once you approve permissions, MetaMask will switch your current network to Moonriver.
+
 --8<-- 'text/common/create-metamask-wallet.md'
 
 ## Connecting to Moonriver
