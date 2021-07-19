@@ -24,9 +24,10 @@ Navigate to the Networks tab and click the "Add Network" button.
 In here, fill out the following information and then click Save:
 
  - Network Name: `Moonriver`
- - New RPC URL: `{{ networks.moonriver.rpc_url }}`
+ - RPC URL: `{{ networks.moonriver.rpc_url }}`
  - ChainID: `{{ networks.moonriver.chain_id }}`
  - Symbol (Optional): `MOVR`
+ - Block Explorer (Optional): `{{ networks.moonriver.block_explorer }}`
 
 ![MetaMask5](/images/moonriver/moonriver-integrate-metamask-1.png)
 
