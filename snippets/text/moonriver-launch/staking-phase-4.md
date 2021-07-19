@@ -1,0 +1,1 @@
+Staking is currently restricted on Moonriver, but in Phase 4 of the [Moonriver network launch](https://moonbeam.network/networks/moonriver/launch/) restrictions will be removed so all users can participate in the staking system.

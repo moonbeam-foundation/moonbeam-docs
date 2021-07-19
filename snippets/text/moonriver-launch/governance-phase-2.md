@@ -1,0 +1,1 @@
+Governance is not available on Moonriver yet, but will be enabled in Phase 2 of the [Moonriver network launch](https://moonbeam.network/networks/moonriver/launch/).

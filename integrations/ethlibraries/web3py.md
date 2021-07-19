@@ -30,6 +30,7 @@ Depending on which network you want to connect to, you can set the `RPC_URL` to 
 
  - Moonbeam development node: `http://127.0.0.1:9933`
  - Moonbase Alpha TestNet: `https://rpc.testnet.moonbeam.network`
+ - Moonriver: `{{ networks.moonriver.rpc_url }}`
 
 ## Step-by-step Tutorials
 

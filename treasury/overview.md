@@ -24,8 +24,6 @@ Some important terminology to understand in regards to treasuries:
 - **Spend period** — the amount of days, in blocks, during which the treasury funds as many proposals as possible without exceeding the maximum
 - **Maximum approved proposals** — the maximum amount of proposals that can wait in the spending queue
 
-Currently, the Treasury values are as follows:
-
 === "Moonbase Alpha"
     |             Variable             |     |                                                             Value                                                      |
     | :------------------------------: | :-: | :--------------------------------------------------------------------------------------------------------------------: |
