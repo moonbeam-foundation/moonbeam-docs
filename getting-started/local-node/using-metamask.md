@@ -54,7 +54,7 @@ To connect MetaMask to Moonbeam, navigate to Settings -> Networks -> Add Network
     - Symbol (Optional): `DEV`
     - Block Explorer (Optional): `{{ networks.development.block_explorer }}`
 
-=== "Moonbase Alpha TestNet"
+=== "Moonbase Alpha"
 
     - Network Name: `Moonbase Alpha`
     - RPC URL: `{{ networks.moonbase.rpc_url }}`

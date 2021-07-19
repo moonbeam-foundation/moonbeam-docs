@@ -9,7 +9,7 @@ description: This guide walks you through how to connect Nifty Wallet, a browser
 
 ## Introduction
 
-[Nifty Wallet](https://www.poa.network/for-users/nifty-wallet) is a POA wallet, initially forked from MetaMask, and extended for interaction with POA features. Since Nifty is Ethereum compatible, it can also be used on Moonbeam. 
+[Nifty Wallet](https://www.poa.network/for-users/nifty-wallet) was initially forked from MetaMask, and has been extended for interaction with POA networks, POA Core and POA Sokol. Since Nifty is Ethereum compatible, it can also be used on Moonbeam. 
 
 Please be aware that Nifty Wallet is beta software and it is recommended to sign out when you're done using a site.
 
@@ -33,7 +33,28 @@ Navigate to the settings, in the top left corner, click on the POA dropdown. Scr
   
 <img src="/images/nifty/nifty-images-2.png" alt="Create Custom RPC" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 
-Enter the RPC URL for Moonbase Alpha in the New RPC URL Field: `https://rpc.testnet.moonbeam.network`. Then click "Save".
+Enter the RPC URL for Moonbeam in the New RPC URL Field:
+
+=== "Moonbeam Development Node"
+
+    ```
+      {{ networks.development.rpc_url }}
+    ```
+    
+=== "Moonbase Alpha"
+
+    ```
+      {{ networks.moonbase.rpc_url }}
+    ```
+
+=== "Moonriver"
+
+    ```
+      {{ networks.moonriver.rpc_url }}
+    ```
+
+
+Then click "Save".
 
 <img src="/images/nifty/nifty-images-3.png" alt="Connect to Moonbase Alpha" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 
@@ -53,7 +74,8 @@ For example, in Remix, when deploying a smart contract, make sure you select the
 
 Ensure you have DEV tokens in your account and, if necessary, head to the faucet to obtain some tokens. By clicking on "Submit," you are signing this transaction, and the contract will be deployed to the Moonbase Alpha TestNet.
 
-Please note that although your account balance shows ETH, it is not real ETH, and just DEV tokens. 
+!!! note
+    Please note that although your account balance shows ETH, it is not real ETH, and just DEV tokens. 
 
 The transaction will be displayed under the "Sent" tab.
 
