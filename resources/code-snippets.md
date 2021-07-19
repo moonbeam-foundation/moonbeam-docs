@@ -62,13 +62,13 @@ cd moonbeam
 
 ## MetaMask
 
-=== "Development Node"
+=== "Moonbeam Development Node"
 
     - Network Name: `Moonbeam Dev`
     - RPC URL: `{{ networks.development.rpc_url }}`
     - ChainID: `{{ networks.development.chain_id }}`
     - Symbol (Optional): `DEV`
-    - Block Explorer: `{{ networks.development.block_explorer }}`
+    - Block Explorer (Optional): `{{ networks.development.block_explorer }}`
 
 === "Moonbase Alpha TestNet"
 
@@ -76,7 +76,7 @@ cd moonbeam
     - RPC URL: `{{ networks.moonbase.rpc_url }}`
     - ChainID: `{{ networks.moonbase.chain_id }}`
     - Symbol (Optional): `DEV`
-    - Block Explorer: `{{ networks.moonbase.block_explorer }}`
+    - Block Explorer (Optional): `{{ networks.moonbase.block_explorer }}`
 
 === "Moonriver"
 
@@ -84,4 +84,4 @@ cd moonbeam
     - RPC URL: `{{ networks.moonriver.rpc_url }}`
     - ChainID: `{{ networks.moonriver.chain_id }}`
     - Symbol (Optional): `MOVR`
-    - Block Explorer: `{{ networks.moonriver.block_explorer }}`
+    - Block Explorer (Optional): `{{ networks.moonriver.block_explorer }}`
