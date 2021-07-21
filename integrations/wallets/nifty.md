@@ -72,7 +72,7 @@ For example, in Remix, when deploying a smart contract, make sure you select the
 
 <img src="/images/nifty/nifty-images-5.png" alt="Nifty sign transaction" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 
-Ensure you have DEV tokens in your account and, if necessary, head to the faucet to obtain some tokens. By clicking on "Submit," you are signing this transaction, and the contract will be deployed to the Moonbase Alpha TestNet.
+Ensure you have DEV tokens in your account and, if necessary, head to the [faucet](/getting-started/moonbase/faucet/) to obtain some tokens. By clicking on "Submit," you are signing this transaction, and the contract will be deployed to the Moonbase Alpha TestNet.
 
 !!! note
     Please note that although your account balance shows ETH, it is not real ETH, and just DEV tokens. 
