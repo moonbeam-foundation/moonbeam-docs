@@ -87,13 +87,20 @@ To create a new account, click the user icon in the top right corner and select 
 
 <img src="/images/nifty/nifty-images-7.png" alt="Nifty create an account" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 
+A new account will be created and you'll be switched to the new account.
+
+<img src="/images/nifty/nifty-images-8.png" alt="Nifty create an account" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
+
 ## Import an Account
 
 To create a new wallet, click the user icon in the top right corner and select "Import Account".
 
-<img src="/images/nifty/nifty-images-8.png" alt="Nifty import an account" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
+<img src="/images/nifty/nifty-images-9.png" alt="Nifty import an account" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 
 Next, select the type of import from the dropdown and enter the necessary details to import your account. For example, if you choose to import with a private key, paste your private key in the input field and click "Import".
 
-<img src="/images/nifty/nifty-images-9.png" alt="MathWallet private key or mnemonic import" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
+<img src="/images/nifty/nifty-images-10.png" alt="MathWallet private key or mnemonic import" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 
+Your account will be imported and you'll be switched to the imported account.
+
+<img src="/images/nifty/nifty-images-11.png" alt="Nifty create an account" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
