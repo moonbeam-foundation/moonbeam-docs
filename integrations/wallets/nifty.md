@@ -23,7 +23,7 @@ With the browser extension installed, please open it and set a password.
 
 <img src="/images/nifty/nifty-images-1.png" alt="Set wallet password" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 
-After creating a password, a vault will be created for your account and seed words to restore your account will be generated. You'll be prompted to save the generated seed words. You can choose to save the seed words as a file or if you decide to save them another way, you can proceed by clicking "I've copied it somewhere safe". 
+After creating a password, a vault will be created for your account and seed words to restore your account will be generated. You'll be prompted to save the generated seed words. You can choose to save the seed words as a file or if you decide to save them another way, you can proceed by clicking "I've copied it somewhere safe". Just be sure that you have safely stored the seed words and you don't share them with anyone.
 
 ## Connect Nifty Wallet to Moonbeam
 
