@@ -29,6 +29,8 @@ After creating a password, a vault will be created for your account and seed wor
 
 Once you've created an account, you can now connect to the Moonbase Alpha TestNet by creating a custom network. 
 
+You can also connect to Moonbase Alpha using an imported account. At this time, hardware wallets are not supported for custom RPCs. 
+
 Navigate to the settings, in the top left corner, click on the POA dropdown. Scroll down to the bottom and select Custom RPC.
   
 <img src="/images/nifty/nifty-images-2.png" alt="Create Custom RPC" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
