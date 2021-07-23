@@ -64,7 +64,7 @@ If successful, you should see an output showing an idle state waiting for blocks
 
 ![Docker - output shows blocks being produced](/images/setting-up-a-node/setting-up-node-2.png)
 
-For more information on some of the flags and options used in the example, check out [Common Flags and Options](#common-flags-and-options). If you want to see a complete list of all of the flags, options, and subcommands, open the help menu by running:
+For more information on some of the flags and options used in the example, check out [Common Flags and Options](#common-commands-flags-and-options). If you want to see a complete list of all of the flags, options, and subcommands, open the help menu by running:
 
 ```
 docker run --rm --name {{ networks.development.container_name }} \
@@ -126,7 +126,7 @@ You should see an output that looks like the following, showing an idle state wa
 
 ![Output shows blocks being produced](/images/setting-up-a-node/setting-up-node-4.png)
 
-For more information on some of the flags and options used in the example, check out [Common Flags and Options](#common-flags-and-options). If you want to see a complete list of all of the flags, options, and subcommands, open the help menu by running:
+For more information on some of the flags and options used in the example, check out [Common Flags and Options](#common-commands-flags-and-options). If you want to see a complete list of all of the flags, options, and subcommands, open the help menu by running:
 
 ```
 ./target/release/moonbeam --help
