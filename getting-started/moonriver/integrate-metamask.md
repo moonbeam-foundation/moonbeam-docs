@@ -29,6 +29,11 @@ In here, fill out the following information and then click Save:
  - Symbol (Optional): `MOVR`
  - Block Explorer (Optional): `{{ networks.moonriver.block_explorer }}`
 
-![MetaMask5](/images/moonriver/moonriver-integrate-metamask-1.png)
+![Add Moonriver to MetaMask](/images/moonriver/moonriver-integrate-metamask-1.png)
 
 That's it! You have succesfully connected MetaMask to the Moonbeam deployment on Kusama, Moonriver.
+
+![MetaMask connected to Moonriver](/images/moonriver/moonriver-integrate-metamask-2.png)
+
+!!! note
+    Moonriver (MOVR) is not currently available for sale. If you participated in the crowdloan, you will not see your rewards until after transfers have been enabled in Phase 4 of the [Moonriver network launch](https://moonbeam.network/networks/moonriver/launch/).
