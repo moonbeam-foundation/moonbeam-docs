@@ -25,7 +25,7 @@ OpenZeppelin has developed an online web-based interactive contract generator to
 Currently, the Contracts Wizard support the following ERC standards:
 
  - [**ERC20**](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/) — a fungible token standard that follows [EIP-20](https://eips.ethereum.org/EIPS/eip-20). Fungible means that all tokens are equivalent and interchangeable that is, of equal value. One typical example of fungible tokens is fiat currencies, where each equal-denomination bill has the same value.
- - [**ERC721**](https://ethereum.org/en/developers/docs/standards/tokens/erc-721/) — a non-fungible token contract that follows [EIP-721](https://eips.ethereum.org/EIPS/eip-721). Non-fungible means that each token is different, and therefore, unique. An ERC721 token can represent ownership of that unique item, whether it is a collectible item in a game, real state, and so on. 
+ - [**ERC721**](https://ethereum.org/en/developers/docs/standards/tokens/erc-721/) — a non-fungible token contract that follows [EIP-721](https://eips.ethereum.org/EIPS/eip-721). Non-fungible means that each token is different, and therefore, unique. An ERC721 token can represent ownership of that unique item, whether it is a collectible item in a game, real estate, and so on. 
  - [**ERC1155**](https://docs.openzeppelin.com/contracts/4.x/erc1155) — also known as the multi-token contract, because it can represent both fungible and non-fungible tokens in a single smart contract. It follows [EIP-1155](https://eips.ethereum.org/EIPS/eip-1155)
 
 The wizard is comprised of the following sections:
