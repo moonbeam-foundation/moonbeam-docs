@@ -1,9 +1,9 @@
 ---
 title: Connect
-description: The Moonbeam TestNet, nicknamed Moonbase Alpha, is the easiest way to get started with a Polkadot environment. Follow this tutorial to connect to the TestNet.
+description: All of the information needed to connect to Moonriver, the Moonbeam deployment on Kusama, including available RPC and WSS endpoints. 
 ---
 
-# Connect to Moonbase Alpha
+# Connect to Moonriver
 
 ## Introduction
 
