@@ -2,11 +2,14 @@
 The Moonriver RPC and WSS endpoints hosted by PureStake are for development purposes only and are not meant to be used in production applications. The following are alternative endpoint providers:
 
 - [OnFinality](https://onfinality.io/)
+  - HTTP: `https://moonriver.api.onfinality.io/public`
+  - WebSocket: `wss://moonriver.api.onfinality.io/public-ws`
 - [Elara](https://elara.patract.io/)
+  - WebSocket: `wss://moonriver.kusama.elara.patract.io`
 
 ### HTTPS DNS
 
-To connect to Moonriver via HTTPS, simply point your provider to the following RPC DNS:
+To connect to Moonriver via HTTPS, simply point your provider to the following RPC DNS (or one of the alternative endpoints listed above):
 
 ```
 https://rpc.moonriver.moonbeam.network
@@ -40,7 +43,7 @@ Any Ethereum wallet should be able to generate a valid address for Moonbeam (for
 
 ### WSS DNS
 
-For WebSocket connections, you can use the following DNS:
+For WebSocket connections, you can use the following DNS (or one of the alternative endpoints listed above):
 
 ```
 wss://wss.moonriver.moonbeam.network
