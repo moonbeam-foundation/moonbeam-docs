@@ -26,29 +26,29 @@ Moonriver is scheduled to follow a [5-phase launch process](https://moonbeam.net
 Some important variables/configurations to note include:
 
 === "General"
-    |       Variable        |                                               Value                                           |
-    |:---------------------:|    :-----------------------------------------------------------------------------------------:|
-    |   Minimum gas price   | {{ networks.moonriver.min_gas_price }} Gsed*  |
-    |   Target block time   |          {{ networks.moonriver.block_time }} seconds (expected to be 6     seconds)           |
-    |    Block gas limit    |         {{ networks.moonriver.gas_block }} (expected to increase by at     least 4x)          |
-    | Transaction gas limit |           {{ networks.moonriver.gas_tx }} (expected to increase by at     least 4x)           |
-    |     RPC endpoint      |                             {{ networks.moonriver.rpc_url }}    }                              |
-    |     WSS endpoint      |                             {{ networks.moonriver.wss_url }}                              |
+    |       Variable        |                                    Value                                     |
+    |:---------------------:|:----------------------------------------------------------------------------:|
+    |   Minimum gas price   |                 {{ networks.moonriver.min_gas_price }} Gwei*                 |
+    |   Target block time   |  {{ networks.moonriver.block_time }} seconds (expected to be 6     seconds)  |
+    |    Block gas limit    | {{ networks.moonriver.gas_block }} (expected to increase by at     least 4x) |
+    | Transaction gas limit |  {{ networks.moonriver.gas_tx }} (expected to increase by at     least 4x)   |
+    |     RPC endpoint      |                    {{ networks.moonriver.rpc_url }}    }                     |
+    |     WSS endpoint      |                       {{ networks.moonriver.wss_url }}                       |
 
 === "Governance"
-    |         Variable         |                                                                  Value                                                              |
-    |:------------------------:|    :---------------------------------------------------------------------------------------------------    ----------------------------:|
-    |      Voting Period       |      {{ networks.moonriver.democracy.vote_period.blocks}} blocks ({{     networks.moonriver.democracy.vote_period.days}} days)      |
-    | Fast-Track Voting Period | {{ networks.moonriver.democracy.fast_vote_period.blocks}} blocks ({{     networks.moonriver.democracy.fast_vote_period.days}} days) |
-    |     Enactment Period     |     {{ networks.moonriver.democracy.enact_period.blocks}} blocks ({{     networks.moonriver.democracy.enact_period.days}} day)      |
-    |     Cool-off Period      |      {{ networks.moonriver.democracy.cool_period.blocks}} blocks ({{     networks.moonriver.democracy.cool_period.days}} days)      |
-    |     Minimum Deposit      |                                       {{ networks.moonriver.democracy.    min_deposit }} MOVR                                       |
-    |      Maximum Votes       |                                          {{ networks.moonriver.    democracy.max_votes }}                                           |
-    |    Maximum Proposals     |                                        {{ networks.moonriver.democracy.    max_proposals }}                                         |
+    |         Variable         |                                                             Value                                                              |
+    |:------------------------:|:------------------------------------------------------------------------------------------------------------------------------:|
+    |      Voting Period       |      {{ networks.moonriver.democracy.vote_period.blocks}} blocks ({{networks.moonriver.democracy.vote_period.days}} days)      |
+    | Fast-Track Voting Period | {{ networks.moonriver.democracy.fast_vote_period.blocks}} blocks ({{networks.moonriver.democracy.fast_vote_period.days}} days) |
+    |     Enactment Period     |     {{ networks.moonriver.democracy.enact_period.blocks}} blocks ({{networks.moonriver.democracy.enact_period.days}} day)      |
+    |     Cool-off Period      |      {{ networks.moonriver.democracy.cool_period.blocks}} blocks ({{networks.moonriver.democracy.cool_period.days}} days)      |
+    |     Minimum Deposit      |                                    {{ networks.moonriver.democracy.    min_deposit }} MOVR                                     |
+    |      Maximum Votes       |                                        {{ networks.moonriver.    democracy.max_votes }}                                        |
+    |    Maximum Proposals     |                                      {{ networks.moonriver.democracy.    max_proposals }}                                      |
 
 === "Staking"
-    |             Variable             |                                                       Value                                                   |
-    |:--------------------------------:|    :---------------------------------------------------------------------------------------------------    ------:|
+    |             Variable             |                                                     Value                                                     |
+    |:--------------------------------:|:-------------------------------------------------------------------------------------------------------------:|
     |     Minimum nomination stake     |                           {{ networks.moonriver.staking.    min_nom_stake }} tokens                           |
     |        Minimum nomination        |                           {{ networks.moonriver.staking.    min_nom_amount}} tokens                           |
     | Maximum nominators per collators |                             {{ networks.moonriver.staking.    max_nom_per_col }}                              |
@@ -72,14 +72,14 @@ The tokens on Moonriver will also be called Moonriver (MOVR). Check out the Moon
 
 ### Token Denominations
 
-The smallest unit of Moonriver is called a Sediment (Sed). It takes 10^18 Sediment to make one Moonriver. The denominations are as follows:
+The smallest unit of Moonriver, similarly to Ethereum, is a Wei. It takes 10^18 Wei to make one Moonriver. The denominations are as follows:
 
-|      Unit      |   Moonriver (MOVR)   |        Sediment (Sed)         |
+|      Unit      |   Moonriver (MOVR)   |              Wei              |
 |:--------------:|:--------------------:|:-----------------------------:|
-| Sediment (Sed) | 0.000000000000000001 |               1               |
-|    Kilosed     |  0.000000000000001   |             1,000             |
-|    Megased     |    0.000000000001    |           1,000,000           |
-|    Gigased     |     0.000000001      |         1,000,000,000         |
+|      Wei       | 0.000000000000000001 |               1               |
+|    Kilowei     |  0.000000000000001   |             1,000             |
+|    Megawei     |    0.000000000001    |           1,000,000           |
+|    Gigawei     |     0.000000001      |         1,000,000,000         |
 | Micromoonriver |       0.000001       |       1,000,000,000,000       |
 | Millimoonriver |        0.001         |     1,000,000,000,000,000     |
 |   Moonriver    |          1           |   1,000,000,000,000,000,000   |
