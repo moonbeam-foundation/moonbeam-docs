@@ -15,10 +15,10 @@ In order to collect as much feedback as possible and provide fast issue resoluti
 
 ## Initial Configurations
 
-Moonriver is scheduled to follow a [5-phase launch process](https://moonbeam.network/networks/moonriver/launch/). Currently, Moonriver is in Phase 1 of the launch process and has the following configurations:
+Moonriver is scheduled to follow a [5-phase launch process](https://moonbeam.network/networks/moonriver/launch/). Currently, Moonriver is in Phase 2 of the launch process and has the following configurations:
 
 - Runs as a parachain connected to the Kusama relay chain
-- Has an active set of {{ networks.moonriver.staking.max_collators }} collators, all hosted by PureStake on behalf of the Moonbeam Foundation. There is an initial collator election during Phase 1 to expand the collator set to parties outside of the Moonbeam team
+- Has an active set of {{ networks.moonriver.staking.max_collators }} collators
 - There are two RPC endpoints (hosted by PureStake). People can run full nodes to access their own private RPC endpoints
 
 ![Moonriver Diagram](/images/moonriver/moonriver-diagram.png)
@@ -89,7 +89,7 @@ The smallest unit of Moonriver, similarly to Ethereum, is a Wei. It takes 10^18 
 
 Over the course of the 5-phase Moonriver launch, the network will progressively be updated to a fully decentralized Proof of Stake network. For a breakdown of what will occur during each phase, check out the [Network Launch Status](https://moonbeam.network/networks/moonriver/launch/) page.
 
-In the current phase, Phase 1, there is an initial collator election to fill the {{ networks.moonriver.staking.max_collators }} spots in the active collator set. The number of collators in the active set will be subject to governance. The active set will consist of the top collators by stake, including nominations.
+In Phase 1, there was an initial collator election to fill the active collator set with parties outside of the Moonbeam team. The number of collators in the active set will be subject to governance. The active set will consist of the top collators by stake, including nominations.
 
 ## Limitations
 
