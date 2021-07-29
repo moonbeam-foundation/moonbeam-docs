@@ -89,7 +89,7 @@ The smallest unit of Moonriver is called a Sediment (Sed). It takes 10^18 Sedime
 
 Over the course of the 5-phase Moonriver launch, the network will progressively be updated to a fully decentralized Proof of Stake network. For a breakdown of what will occur during each phase, check out the [Network Launch Status](https://moonbeam.network/networks/moonriver/launch/) page.
 
-In the current phase, Phase 1, there is an initial collator election to fill the {{ networks.moonriver.staking.max_collators }} spots in the active collator set. Once governance is enabled in Phase 2, the number of collators in the active set will be subject to governance. The active set will consist of the top collators by stake, including nominations.
+In the current phase, Phase 1, there is an initial collator election to fill the {{ networks.moonriver.staking.max_collators }} spots in the active collator set. The number of collators in the active set will be subject to governance. The active set will consist of the top collators by stake, including nominations.
 
 ## Limitations
 

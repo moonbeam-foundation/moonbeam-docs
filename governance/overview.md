@@ -91,6 +91,4 @@ Currently, in our Moonbase Alpha TestNet, token holders can submit proposals and
  - [Submit a proposal](/governance/proposals/)
  - [Vote on a proposal](/governance/voting/)
 
---8<-- 'text/moonriver-launch/governance-phase-2.md'
-
 The Treasury component has yet to be implemented.
