@@ -5,7 +5,7 @@ description: An overview of the current configuration of the Moonbeam deployment
 
 # Moonriver
 
-_Updated July 9th, 2021_
+_Updated July 29th, 2021_
 
 ## Goal
 
