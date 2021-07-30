@@ -1,6 +1,14 @@
+The Moonbase Alpha RPC and WSS endpoints hosted by PureStake are for development purposes only and are not meant to be used in production applications. The following are alternative endpoint providers:
+
+- [OnFinality](https://onfinality.io/)
+  - HTTP: `https://moonbeam-alpha.api.onfinality.io/public`
+  - WebSocket: `wss://moonbeam-alpha.api.onfinality.io/public-ws`
+- [Elara](https://elara.patract.io/)
+  - WebSocket: `wss://moonbase.moonbeam.elara.patract.io`
+
 ### HTTPS DNS
 
-To connect to Moonbase Alpha via HTTPS, simply point your provider to the following RPC DNS:
+To connect to Moonbase Alpha via HTTPS, simply point your provider to the following RPC DNS (or one of the alternative endpoints listed above):
 
 ```
 https://rpc.testnet.moonbeam.network
@@ -46,7 +54,7 @@ For the Moonbase Alpha TestNet the chain ID is: `1287`.
 
 ### Relay Chain
 
-To connect to the Moonbase Alpha relay chain, managed by PureStake, you can use the following WS Endpoint:
+To connect to the Moonbase Alpha relay chain, managed by PureStake, you can use the following WS Endpoint (or one of the alternative endpoints listed above):
 
 ```
 wss://wss-relay.testnet.moonbeam.network
