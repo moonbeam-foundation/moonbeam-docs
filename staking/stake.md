@@ -106,7 +106,7 @@ Currently, everything related to staking needs to be accessed via the "Extrinsic
 
 ![Staking Account](/images/staking/staking-stake-5.png)
 
-To nominate a collator, provide the following Get the Collator Nominator Count:
+To nominate a collator, provide the following information:
 
  1. Select the account from which you want to stake your tokens
  2. Choose the pallet you want to interact with. In this case, it is the `parachainStaking` pallet

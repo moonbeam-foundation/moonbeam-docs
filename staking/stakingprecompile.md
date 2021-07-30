@@ -41,6 +41,7 @@ The interface includes the following functions:
  - **nominator_bond_less**(*address* collator, *uint256* less) — nominator decreases bond to a collator by specified amount
 
 ## Checking Prerequisites
+
 The below example is demonstrated on Moonbase Alpha, however, it is compatible with all networks including Moonriver and Moonbeam.
 
  - Have MetaMask installed and [connected to Moonbase Alpha](/getting-started/moonbase/metamask/)
@@ -50,18 +51,21 @@ The below example is demonstrated on Moonbase Alpha, however, it is compatible w
     The example below requires more than `{{networks.moonbase.staking.min_nom_stake}}` tokens due to the minimum nomination amount plus gas fees. If you need more than the faucet dispenses, please contact us on Discord and we will be happy to help you. 
 
 ## Remix Set Up
+
 1. Get a copy of [StakingInterface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol)
 2. Copy and paste the file contents into a Remix file named StakingInterface.sol
 
 ![Copying and Pasting the Staking Interface into Remix](/images/staking/staking-precompile-1.png)
 
 ## Compile the Contract
+
 1. Click on the Compile tab, second from top
 2. Compile [Staking Interface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol)
 
 ![Compiling StakingInteface.sol](/images/staking/staking-precompile-2.png)
 
 ## Access the Contract
+
 1. Click on the Deploy and Run tab, directly below the Compile tab in Remix. **Note**: we are not deploying a contract here, instead we are accessing a precompiled contract that is already deployed
 2. Make sure "Injected Web3" is selected in the Environment drop down
 3. Ensure “ParachainStaking - StakingInterface.sol” is selected in the Contract dropdown. Since this is a precompiled contract there is no need to deploy, instead we are going to provide the address of the precompile in the “At Address” Field
@@ -70,6 +74,7 @@ The below example is demonstrated on Moonbase Alpha, however, it is compatible w
 ![Provide the address](/images/staking/staking-precompile-3.png)
 
 ## Nominate a Collator
+
 For this example, we are going to be nominating a collator. Nominators are token holders who stake tokens, vouching for specific collators. Any user that holds a minimum amount of {{networks.moonbase.staking.min_nom_stake}} tokens as free balance can become a nominator. 
 
 In order to nominate a collator, you'll need to determine the current collator nomination count and nominator nomination count. The collator nomination count is the numner of nominations backing a specific collator. The nominator nomination account is the number of nominations made by the nominator.
@@ -94,9 +99,11 @@ In order to nominate a collator, you'll need to determine the current collator n
 ![Nominate a Collator](/images/staking/staking-precompile-4.png)
 
 ## Verify Nomination
+
 To verify your nomination was successful, you can check the chain state in Polkadot.js Apps. First, add your metamask address to the [address book in Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/addresses). If you've already completed this step you can skip ahead to the next section. 
 
 ### Add Metamask Address to Address Book
+
 1. Navigate to Accounts -> Address Book 
 2. Click on "Add contact"
 3. Add your Metamask Address
@@ -105,6 +112,7 @@ To verify your nomination was successful, you can check the chain state in Polka
 ![Add to Address Book](/images/staking/staking-precompile-5.png)
 
 ### Verify Nominator State
+
 1. To verify your nomination was successful, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/chainstate) and navigate to Developer -> Chain State
 2. Select the "parachainStaking" pallet
 3. Select the "nominatorState" query
@@ -113,6 +121,7 @@ To verify your nomination was successful, you can check the chain state in Polka
 ![Verify Nomination](/images/staking/staking-precompile-6.png)
 
 ## Revoking a Nomination
+
 To revoke a nomination and receive your tokens back:
 
 1. Call the `revoke_nomination` method, providing the same address you started the nomination with above
