@@ -7,7 +7,7 @@ description: A guide that shows how you can stake your tokens in Moonbeam by nom
 
 ![Staking Moonbeam Banner](/images/staking/staking-stake-banner.png)
 
-## Introduction
+## Introduction {: #introduction } 
 
 Collators (block producers) with the highest stake in the network join the active pool of collators, from which they are selected to offer a block to the relay chain.
 
@@ -17,7 +17,7 @@ Collators receive part of the block rewards as part of the token inflationary mo
 
 With the release of [Moonbase Alpha v6](https://github.com/PureStake/moonbeam/releases/tag/v0.6.0), users of the network can now stake their tokens to nominate collators. This guide outlines all the steps to do so.
 
-## General Definitions
+## General Definitions {: #general-definitions } 
 
 --8<-- 'text/staking/staking-definitions.md'
 
@@ -47,7 +47,7 @@ With the release of [Moonbase Alpha v6](https://github.com/PureStake/moonbeam/re
 
 This guide will show you how to stake on Moonbase Alpha.
 
-## Extrinsics Definitions
+## Extrinsics Definitions {: #extrinsics-definitions } 
 
 There are many extrinsics related to the staking pallet, so all of them are not covered in this guide. However, this list defines all of the extrinsics associated with the nomination process:
 
@@ -60,7 +60,7 @@ There are many extrinsics related to the staking pallet, so all of them are not 
  - **nominatorBondMore**(*address* collator, *uint256* more) — extrinsic to increase the amount of staked tokens for an already nominated collator
  - **revokeNomination**(*address* collator) — extrinsic to remove an existing nomination
 
-## Retrieving the List of Collators
+## Retrieving the List of Collators {: #retrieving-the-list-of-collators } 
 
 Before starting to stake tokens, it is important to retrieve the list of collators available in the network. To do so, navigate to "Chain state" under the "Developer" tab.
 
@@ -81,7 +81,7 @@ Each extrinsic provides a different response:
 
 ![Staking Account](/images/staking/staking-stake-2.png)
 
-## Get the Collator Nominator Count
+## Get the Collator Nominator Count {: #get-the-collator-nominator-count } 
 
 First, you need to get the `collator_nominator_count` as you'll need to submit this parameter in a later transaction. To do so, you'll have to run the following JavaScript code snippet from within [PolkadotJS](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/js):
 
@@ -104,7 +104,7 @@ console.log(collatorInfo.toHuman()["nominators"].length);
 
 ![Get collator nominator count](/images/staking/staking-stake-3.png)
 
-## Get your Number of Existing Nominations
+## Get your Number of Existing Nominations {: #get-your-number-of-existing-nominations } 
 If you've never made a nomination from your address you can skip this section. However, if you're unsure how many existing nominations you have, you'll want to run the following JavaScript code snippet to get `nomination_count` from within [PolkadotJS](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/js):
 
 ```js
@@ -124,7 +124,7 @@ console.log(nominatorInfo.toHuman()["nominations"].length);
 
 ![Get existing nomination count](/images/staking/staking-stake-4.png)
 
-## How to Nominate a Collator
+## How to Nominate a Collator {: #how-to-nominate-a-collator } 
 
 This section goes over the process of nominating collators. The tutorial will use the following collators as a reference:
 
@@ -176,7 +176,7 @@ In the response, you should see your account (in this case, Alice's account) wit
 
 You can follow the same steps as described to nominate other collators in the network. For example, Alice nominated `{{ networks.moonbase.staking.collators.address2 }}` as well.
 
-## How to Stop Nominations
+## How to Stop Nominations {: #how-to-stop-nominations } 
 
 If you are already a nominator, you have two options to stop your nominations: using the `revokeNomination` extrinsic to unstake your tokens from a specific collator, or using the `leaveNominators` extrinsic to revoke all ongoing nominations.
 
@@ -211,7 +211,7 @@ As mentioned before, you can also remove all ongoing nominations with the `leave
 
 Once the transaction is confirmed, your account should not be listed in the `nominatorState` state when queried, and you should have no reserved balance (related to staking).
 
-## Staking Rewards
+## Staking Rewards {: #staking-rewards } 
 
 As collators receive rewards from block production, nominators get rewards as well. A brief overview on how the rewards are calculated can be found in [this page](/staking/overview/#reward-distribution).
 

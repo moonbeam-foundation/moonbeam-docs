@@ -7,7 +7,7 @@ description: Build APIs using The Graph indexing protocol on Moonbeam
 
 ![The Graph Node on Moonbeam](/images/thegraph/thegraphnode-banner.png)
 
-## Introduction
+## Introduction {: #introduction } 
 
 A Graph Node sources events from a blockchain to deterministically update a data store that can be then queried via a GraphQL endpoint.
 
@@ -16,7 +16,7 @@ There are two ways you can set up a Graph Node: you can use Docker to run an all
 !!! note
     The steps described in this guide have been tested in both Ubuntu 18.04-based and MacOs environments, and they will need to be adapted accordingly for other systems.
 
-## Checking Prerequisites
+## Checking Prerequisites {: #checking-prerequisites } 
 
 Before diving into setting up a Graph Node, you neeed to have the following installed on your system:
 
@@ -31,7 +31,7 @@ In addition, you need to have a node running with the `--ethapi=trace` option en
 
 In this guide, a Graph Node runs against a Moonbase Alpha full node with the `--ethapi=trace` flag.
 
-## Running a Graph Node
+## Running a Graph Node {: #running-a-graph-node } 
 
 The first step is to clone the [Graph Node repository](https://github.com/graphprotocol/graph-node/):
 

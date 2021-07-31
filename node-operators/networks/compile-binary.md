@@ -7,13 +7,13 @@ description: How to compile the Moonbeam binary to run a full Parachain node, ga
 
 ![Full Node Moonbeam Banner](/images/fullnode/compile-binary-banner.png)
 
-## Introduction
+## Introduction {: #introduction } 
 
 There are several ways to get started running a full node on the Moonbeam network. This guide goes through the process of compiling the Moonbeam binary from Rust source code. For a more general overview of running nodes, or to get started with Docker, check out the [Run a Node](/node-operators/networks/full-node) page of our documentation.
 
 This guide is meant for people with experience compiling [Substrate](https://substrate.dev/) based blockchain nodes. A parachain node is similar to a typical Substrate node, but there are some differences. A Substrate parachain node will is a bigger build because it contains code to run the parachain itself, as well as code to sync the relay chain, and facilitate communication between the two. As such, this build is quite large and may take over 30 min and require 32GB of memory.
 
-## Compiling the Binary
+## Compiling the Binary {: #compiling-the-binary } 
 
 The following commands will build the latest release of the Moonbeam parachain.
 

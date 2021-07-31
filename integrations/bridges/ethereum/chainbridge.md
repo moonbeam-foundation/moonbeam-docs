@@ -6,7 +6,7 @@ description: How to use ChainBridge to connect assets between Ethereum and Moonb
 
 ![ChainBridge Moonbeam banner](/images/chainbridge/chainbridge-banner.png)
 
-## Introduction
+## Introduction {: #introduction } 
 
 A bridge allows two economically sovereign and technologically different chains to communicate with each other. They can range from centralized and trusted, to decentralized and trust minimized. One of the currently available solutions is [ChainBridge](https://github.com/ChainSafe/ChainBridge#installation), a modular multi-directional blockchain bridge built by [ChainSafe](https://chainsafe.io/). A ChainBridge implementation is now available in Moonbeam, which connects our Moonbase Alpha TestNet and Ethereum's Kovan/Rinkeby TestNets.
 
@@ -19,7 +19,7 @@ This guide is broken down into two main sections. In the first part, we'll expla
     - [Transfer ERC-721 tokens](/integrations/bridges/ethereum/chainbridge/#erc-721-token-transfer)
     - [Generic handler](/integrations/bridges/ethereum/chainbridge/#generic-handler)
     
-## How the Bridge Works
+## How the Bridge Works {: #how-the-bridge-works } 
 
 ChainBridge is, at its core, a message-passing protocol. Events on a source chain are used to send a message that is routed to the destination chain. There are three main roles:
 
@@ -35,7 +35,7 @@ On both sides of the bridge, there are a set of smart contracts, where each has 
  - **Handler contracts** — validates the parameters provided by the user, creating a deposit/execution record
  - **Target contract** — as the name suggests, this is the contract we are going to interact with on each side of the bridge
 
-### General Workflow
+### General Workflow {: #general-workflow } 
 
 
 The general workflow is the following (from Chain A to Chain B):
@@ -52,7 +52,7 @@ This workflow is summarized in the following diagram:
 
 The two target contracts on each side of the bridge are linked by doing a series of registrations in the corresponding handler contract via the bridge contract. These registrations currently can only be done by the bridge contract admin.
 
-### General Definitions
+### General Definitions {: #general-definitions } 
 
 Here we have put together a list of concepts applicable to the ChainBridge implementation (from Chain A to Chain B):
 
@@ -60,7 +60,7 @@ Here we have put together a list of concepts applicable to the ChainBridge imple
  - **Resource ID** — is a 32 bytes word that is intended to uniquely identify an asset in a cross-chain environment. Note that the least significant byte is reserved for the chainId, so we would have 31 bytes in total to represent an asset of a chain in our bridge. For example, this may express tokenX on Chain A is equivalent to tokenY on Chain B
  - **Calldata** — is the parameter required for the handler that includes the information necessary to execute the proposal on Chain B. The exact serialization is defined for each handler. You can find more information [here](https://chainbridge.chainsafe.io/chains/ethereum/#erc20-erc721-handlers)
 
-## Try it on Moonbase Alpha
+## Try it on Moonbase Alpha {: #try-it-on-moonbase-alpha } 
 
 We have set up a relayer with the ChainBridge implementation, which is connected to our Moonbase Alpha TestNet and both Ethereum's Rinkeby and Kovan TestNets.
 
@@ -82,7 +82,7 @@ This guide will go over two different examples of using the bridge to transfer t
 !!! note
     The bridge contract, ERC-20 handler contract, and ERC-721 handler contract addresses listed above are applicable for both Kovan and Rinkeby.
 
-### ERC-20 Token Transfer
+### ERC-20 Token Transfer {: #erc20-token-transfer } 
 
 ERC-20 tokens that want to be moved through the bridge need to be registered by the relayers in the handler contract. Therefore, to test the bridge, we've deployed an ERC-20 token (ERC20S) where any user can mint 5 tokens:
 
@@ -211,7 +211,7 @@ Remember that you can also mint ERC20S tokens in Kovan and send them to Moonbase
 !!! note
     Tokens will be transferred only if the handler contract has enough allowance to spend tokens on behalf of the owner. If the process fails, check the allowance.
 
-### ERC-721 Token Transfer
+### ERC-721 Token Transfer {: #erc721-token-transfer } 
 
 Similar to our previous example, ERC-721 tokens contracts need to be registered by the relayers to enable transfer through the bridge. Therefore, we've customized an ERC-721 token contract so that any user can mint a token to test the bridge out. However, as each token is non-fungible, and consequently unique, the mint function is only available in the Source chain token contract and not in the Target contract. In other words, ERC-721M tokens can only be minted on Moonbase Alpha and then transfered to Rinkeby or Kovan. The following diagram explains the workflow for this example, where it is important to highlight that the token ID and metadata is maintained.
 
@@ -337,7 +337,7 @@ Remember that ERC721M tokens are only mintable in Moonbase Alpha and then they w
 !!! note
     Tokens will be transferred only if the handler contract is approved to transfer tokens on behalf of the owner. If the process fails, check the approval.
 
-### Generic Handler
+### Generic Handler {: #generic-handler } 
 
 The Generic Handler offers the possibility of executing a function in chain A and creating a proposal to execute another function in chain B (similar to the general workflow diagram). This provides a compelling way of connecting two independent blockchains.
 
@@ -348,7 +348,7 @@ The generic handler address is:
 
 If you are interested in implementing this functionality, you can reach out directly to us via our [Discord server](https://discord.com/invite/PfpUATX). We'll be happy to discuss this implementation.
 
-### Moonbase Alpha ChainBridge UI
+### Moonbase Alpha ChainBridge UI {: #moonbase-alpha-chainbridge-ui } 
 
 If you want to play around with transferring ERC20S tokens from Moonbase Alpha to Kovan or Rinkeby without having to set up the contracts in Remix, you can checkout our [Moonbase Alpha ChainBridge UI](https://moonbase-chainbridge.netlify.app/transfer).
 

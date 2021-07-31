@@ -8,7 +8,7 @@ description: This tutorial walks you through how to interact with a local Moonbe
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/hrpBd2-a7as' frameborder='0' allowfullscreen></iframe></div>
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>You can find all of the relevant code for this tutorial on the <a href="{{ config.site_url }}resources/code-snippets/">code snippets page</a></div>
 
-## Introduction
+## Introduction {: #introduction } 
 
 MetaMask can be used to connect to Moonbeam through the Moonbase Alpha TestNet or via a locally running Moonbeam development node.
 
@@ -20,7 +20,7 @@ This guide outlines the steps needed to connect MetaMask to a self-contained Moo
 
 You can interact with Moonbeam in two ways: by using Substrate RPC endpoints or using Web3-compatible RPC endpoints. The latter endpoints are currently being served from the same RPC server as the Substrate RPCs. In this tutorial, we will use the Web3 RPC endpoints to interact with Moonbeam.
 
-## Install the MetaMask Extension
+## Install the MetaMask Extension {: #install-the-metamask-extension } 
 
 First, we start with a fresh and default [MetaMask](https://metamask.io/) installation from the Chrome store. After downloading, installing, and initializing the extension, follow the "Get Started" guide. In there, you need to create a wallet, set a password, and store your secret backup phrase (this gives direct access to your funds, so make sure to store these in a secure place). Once completed, we will import the development account:
 
@@ -40,7 +40,7 @@ You should end up with an imported “Account 2” that looks like this:
 
 ![MetaMask displaying your new Account 2](/images/metamask/using-metamask-3.png)
 
-## Connecting MetaMask to Moonbeam
+## Connecting MetaMask to Moonbeam {: #connecting-metamask-to-moonbeam } 
 
 MetaMask can be configured to connect to your local development node or to the Moonbase Alpha TestNet. 
 
@@ -78,7 +78,7 @@ When you hit "save" and exit the network settings screen, MetaMask should be con
 
 ![Your new Moonbeam account with a balance of 1207925.8196](/images/metamask/using-metamask-5.png)
 
-## Initiating a Transfer
+## Initiating a Transfer {: #initiating-a-transfer } 
 
 Let’s try sending some tokens with MetaMask.
 

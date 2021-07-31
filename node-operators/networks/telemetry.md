@@ -7,7 +7,7 @@ description: How to run telemetry for a full Parachain node for the Moonbeam Net
 
 ![Telemetry Moonbeam Banner](/images/fullnode/telemetry-banner.png)
 
-## Introduction
+## Introduction {: #introduction } 
 
 Since Moonbase Alpha v6, and the recent launch of Moonriver, you can spin up a node that connects to the Moonbase Alpha TestNet or Moonriver on Kusama. You can check those steps in [this tutorial](/node-operators/networks/full-node/).
 
@@ -16,7 +16,7 @@ This guide will provide the necessary steps to enable the telemetry server for y
 !!! note
     The steps described in this guide are for a telemetry instance different than the standard Polkadot telemetry enabled by default (you can run nodes with no telemetry by using the `--no-telemetry` flag). The steps described in this guide are mandatory only for collator nodes.
 
-## Telemetry Exporter Summary
+## Telemetry Exporter Summary {: #telemetry-exporter-summary } 
 
 Moonbeam will run a telemetry server that collects Prometheus metrics from all the Moonbeam parachain nodes on the network. Running this will be a great help to us during our development phase.  
 
@@ -28,7 +28,7 @@ For now, we need to run two node watchdogs, one for the parachain and one for th
 
 For help, contact our [Discord server](https://discord.gg/FQXm74UQ7V) or the [Gantree Discord](https://discord.gg/N95McPjHZ2). 
  
-## Checking Prerequisites
+## Checking Prerequisites {: #checking-prerequisites } 
 
 Before following this tutorial, you need to:
 
@@ -38,11 +38,11 @@ Before following this tutorial, you need to:
 
  You can use the same PCK key for all of our Moonbeam-based networks, which currently includes Moonbase Alpha and Moonriver.
    
-## Telemetry Exporter with Docker
+## Telemetry Exporter with Docker {: #telemetry-exporter-with-docker } 
 
 We will run two instances of the Gantree node watchdog using Docker: one for the parachain and one for the relay chain.  
 
-### Required Configuration Information
+### Required Configuration Information {: #required-configuration-information } 
 
 - GANTREE_NODE_WATCHDOG_API_KEY
 - GANTREE_NODE_WATCHDOG_PROJECT_ID
@@ -50,7 +50,7 @@ We will run two instances of the Gantree node watchdog using Docker: one for the
 - GANTREE_NODE_WATCHDOG_PCKRC
 - GANTREE_NODE_WATCHDOG_METRICS_HOST
 
-### Instructions
+### Instructions {: #instructions } 
 
 First, clone the instance monitoring client repository and build the docker image:
 
@@ -99,11 +99,11 @@ You should see "waiting for provisioning" in the logs. If it is your first time 
 
 Once things are working well, you can update the commands to run in daemon mode.  Remove `-it` and add `-d` to the command above.  
 
-## Telemetry Exporter with Systemd
+## Telemetry Exporter with Systemd {: #telemetry-exporter-with-systemd } 
 
 We will run two instances of the Gantree node watchdog: one for the parachain and one for the relay chain.  
 
-### Required Configuration Information
+### Required Configuration Information {: #required-configuration-information } 
 
 - GANTREE_NODE_WATCHDOG_API_KEY
 - GANTREE_NODE_WATCHDOG_PROJECT_ID
@@ -111,7 +111,7 @@ We will run two instances of the Gantree node watchdog: one for the parachain an
 - GANTREE_NODE_WATCHDOG_PCKRC
 - GANTREE_NODE_WATCHDOG_METRICS_HOST
 
-### Instructions
+### Instructions {: #instructions } 
 
 First, we need to download the Gantree node watchdog binary from the [release page](https://github.com/gantree-io/gantree-node-watchdog/releases), and extract it to a folder, for example, `/usr/local/bin`.
 

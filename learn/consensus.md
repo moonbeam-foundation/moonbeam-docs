@@ -7,7 +7,7 @@ description: Learn about all the parts of Moonbeam's Nimbus consensus framework 
 
 ![Moonbeam Consensus Banner](/images/consensus/consensus-banner.png)
 
-## Introduction
+## Introduction {: #introduction } 
 
 Polkadot relies on a [hybrid consensus model](https://wiki.polkadot.network/docs/learn-consensus). In such a scheme, the block finality gadget and the block production mechanism are separate. Consequently, parachains only have to worry about producing blocks and rely on the relay chain to validate the state transitions.
 
@@ -26,7 +26,7 @@ Notice that Nimbus can only answer which collator(s) are eligible to produce a p
 
 The following two sections go over the filtering strategy currently used in Moonbeam.
 
-## Parachain Staking Filtering
+## Parachain Staking Filtering {: #parachain-staking-filtering } 
 
 Collators can join the candidate pool by simply bonding some tokens via an extrinsic. Once in the pool, token holders can add to the collator's stake via nomination (also referred to as staking), that is, at a parachain level.
 
@@ -38,7 +38,7 @@ From this pool, another filter is applied to retrieve a subset of eligible colla
 
 If you want to learn more about staking, visit our [staking documentation](/staking/overview/).
 
-## Fixed Size Subset Filtering
+## Fixed Size Subset Filtering {: #fixed-size-subset-filtering } 
 
 Once the parachain staking filter is applied and the selected candidates are retrieved, a second filter is applied on a block by block basis and helps narrow down the selected candidates to a smaller number of eligible collators for the next block authoring slot.
 
@@ -52,7 +52,7 @@ Once the size of the subset is defined, collators are randomly selected using a 
 
 ![Nimbus Parachain Staking Filter](/images/consensus/consensus-images2.png)
 
-## Why Nimbus?
+## Why Nimbus? {: #why-nimbus? } 
 
 You might ask yourself: but why Nimbus? Initially, it was not envisioned when Moonbeam was being developed. As Moonbeam progressed, the necessity for a more customizable but straightforward parachain consensus mechanism became clear, as the available methods presented some drawbacks or technical limitations. 
 
@@ -64,7 +64,7 @@ With Nimbus, writing a parachain consensus engine is as easy as writing a pallet
 
 Some technical benefits of Nimbus are considered in the following sections.
 
-### Weight and Extra Execution
+### Weight and Extra Execution {: #weight-and-extra-execution } 
 
 Nimbus puts the author-checking execution in a [Substrate pallet](https://substrate.dev/docs/en/knowledgebase/runtime/pallets). At first glance, you might think this adds a higher execution load to a single block compared to doing this check off-chain. But consider this from a validator’s perspective
 
@@ -72,13 +72,13 @@ The validators will also have to check the author. By putting the author-checkin
 
 In practice, this check will be fast and will most likely not push execution time over the limit. But from a theoretical perspective, accounting for its weight is better for implementation purposes.
 
-### Reusability
+### Reusability {: #reusability } 
 
 Another benefit of moving the author-checking execution to a pallet, rather than a custom executor, is that one single executor can be reused for any consensus that can be expressed in the Nimbus framework. That is slot-based, signature-sealed algorithms.
 
 For example, the [relay-chain provided consensus](https://github.com/paritytech/cumulus/blob/master/client/consensus/relay-chain/src/lib.rs), [AuRa](https://crates.io/crates/sc-consensus-aura) and [BABE](https://crates.io/crates/sc-consensus-babe) each have their own custom executor. With Nimbus, these consensus mechanisms can reuse the same executor. The power of reusability is evidenced by the Nimbus implementation of AuRa in less than 100 lines of code.
 
-### Hot-Swapping Consensus
+### Hot-Swapping Consensus {: #hotswapping-consensus } 
 
 Teams building parachains may want to change, tune, or adjust their consensus algorithm from time to time. Without nimbus, swapping consensus would require a client upgrade and hard fork.
 

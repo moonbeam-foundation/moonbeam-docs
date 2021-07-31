@@ -7,13 +7,13 @@ description: An overview of the current configuration of the Moonbeam deployment
 
 _Updated July 29th, 2021_
 
-## Goal
+## Goal {: #goal } 
 
 In June 2021, Moonriver first launched as a parachain on the Kusama network. Moonriver is a sister network of Moonbeam, and provides an environment to test new code under real economic conditions. Developers now have access to start experimenting and building on an incentivized canary network connected to Kusama. 
 
 In order to collect as much feedback as possible and provide fast issue resolution, we have set up a [Discord with a dedicated Moonriver channel](https://discord.gg/5TaUvbRvgM).
 
-## Initial Configurations
+## Initial Configurations {: #initial-configurations } 
 
 Moonriver is scheduled to follow a [5-phase launch process](https://moonbeam.network/networks/moonriver/launch/). Currently, Moonriver is in Phase 2 of the launch process and has the following configurations:
 
@@ -58,19 +58,19 @@ Some important variables/configurations to note include:
 
 _*Read more about [token denominations](#token-denominations)_
 
-## Get Started
+## Get Started {: #get-started } 
 
 --8<-- 'text/moonriver/connect.md'
 
-## Telemetry
+## Telemetry {: #telemetry } 
 
 You can see current Moonriver telemetry information visiting [this link](https://telemetry.polkadot.io/#list/Moonriver).
 
-## Tokens
+## Tokens {: #tokens } 
 
 The tokens on Moonriver will also be called Moonriver (MOVR). Check out the Moonbeam Foundation site for more information on the [Moonriver token](https://moonbeam.foundation/moonriver-token/). 
 
-### Token Denominations
+### Token Denominations {: #token-denominations } 
 
 The smallest unit of Moonriver, similarly to Ethereum, is a Wei. It takes 10^18 Wei to make one Moonriver. The denominations are as follows:
 
@@ -85,13 +85,13 @@ The smallest unit of Moonriver, similarly to Ethereum, is a Wei. It takes 10^18 
 |   Moonriver    |          1           |   1,000,000,000,000,000,000   |
 | Kilomoonriver  |        1,000         | 1,000,000,000,000,000,000,000 |
 
-## Proof of Stake
+## Proof of Stake {: #proof-of-stake } 
 
 Over the course of the 5-phase Moonriver launch, the network will progressively be updated to a fully decentralized Proof of Stake network. For a breakdown of what will occur during each phase, check out the [Network Launch Status](https://moonbeam.network/networks/moonriver/launch/) page.
 
 In Phase 1, there was an initial collator election to fill the active collator set with parties outside of the Moonbeam team. The number of collators in the active set will be subject to governance. The active set will consist of the top collators by stake, including nominations.
 
-## Limitations
+## Limitations {: #limitations } 
 
 Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts) are yet to be included. You can check a list of supported precompiles [here](/integrations/precompiles/). However, all built-in functions are available.
 

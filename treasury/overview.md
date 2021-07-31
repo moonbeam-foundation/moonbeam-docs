@@ -7,13 +7,13 @@ description: As a Polkadot parachain, Moonbeam will use an on-chain treasury con
 
 ![Treasury Moonbeam Banner](/images/treasury/treasury-overview-banner.png)
 
-## Introduction
+## Introduction {: #introduction } 
 
 A treasury is an on-chain managed collection of funds. Moonbeam will have a community treasury for supporting network initiatives to further the network. This treasury will be funded by a percentage of transaction fees of the network and will be managed by the Council.
 
 Each Moonbeam-based network will have it's own treasury. In other words, the Moonbase Alpha TestNet, Moonshadow on Westend, Moonriver on Kusama, and Moonbeam on Polkadot will each have their own respective treasury. 
 
-## General Definitions
+## General Definitions {: #general-definitions } 
 
 Some important terminology to understand in regards to treasuries:
 
@@ -42,7 +42,7 @@ Some important terminology to understand in regards to treasuries:
     |     Maximum approved proposals   |     |                                  {{ networks.moonriver.treasury.max_approved_proposals }}                               |
      |     % of transaction fees allocated   |     |                                  {{ networks.moonriver.treasury.tx_fees_allocated }}                               |
 
-## Community Treasury
+## Community Treasury {: #community-treasury } 
 
 To fund the Treasury, a percentage of each block's transactions fees will be allocated to it. The remaining percentage of the fees are burned (check table above). The Treasury allows stakeholders to submit spending proposals to be reviewed and voted on by the Council. These spending proposals should include initiatives to further the network or boost network engagement. Some network initiatives could include funding integrations or collaborations, community events, network outreach, and more. 
 

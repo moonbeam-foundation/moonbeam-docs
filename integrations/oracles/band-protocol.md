@@ -6,7 +6,7 @@ description: How to use request data from a Band Protocol Oracle in your Moonbea
 
 ![Band Protocol Moonbeam Diagram](/images/band/band-banner.png)
 
-## Introduction
+## Introduction {: #introduction } 
 Developers have two ways to fetch prices from Band’s oracle infrastructure. On one hand, they can use Band’s smart contracts on Moonbeam. Doing so, they access data that is on-chain and is updated either at regular intervals or when price slippage is more than a target amount (different for each token). On the other hand, devs can use the Javascript helper library, which uses an API endpoint to fetch the data using similar functions as those from the smart contracts, but this implementation bypasses the blockchain entirely.  This can be useful if your DApp front-end needs direct access to the data.
 
 The Aggregator Contract address can be found in the following table:
@@ -15,7 +15,7 @@ The Aggregator Contract address can be found in the following table:
 |:--------------:|-|:------------------------------------------:|
 | Moonbase Alpha | | 0xDA7a001b254CD22e46d3eAB04d937489c93174C3 |
 
-## Supported Token
+## Supported Token {: #supported-token } 
 Price queries with any denomination are available as long as the base and quote symbols are supported (_base_/_quote_). For example:
 
  - `BTC/USD`
@@ -24,13 +24,13 @@ Price queries with any denomination are available as long as the base and quote 
 
 At the time of writing, the list of supported symbols can be found by following [this link](https://data.bandprotocol.com). There are more than 146 price pairs available to query.
 
-## Querying Prices
+## Querying Prices {: #querying-prices } 
 As stated before, developers can leverage two methods to query prices from Band's oracle: 
 
  - Band's smart contract on Moonbeam (deployed to Moonbase Alpha TestNet for now)
  - Javascript helper library
 
-## Get Data Using Smart Contracts
+## Get Data Using Smart Contracts {: #get-data-using-smart-contracts } 
 Contracts can query on-chain data, such as token prices, from Band's oracle by implementing the interface of the `StdReference` contract, which exposes the `getReferenceData` and `getReferenceDataBulk` functions.
 
 The first function, `getReferenceData`, takes two strings (the base and the quote symbol) as the inputs. The function queries the `StdReference` contract for the latest rates available for those two tokens. It returns a `ReferenceData` struct.
@@ -55,7 +55,7 @@ The second function, `getReferenceDataBulk`, takes information as data arrays. F
  - `BTC/ETH`
  - `ETH/EUR`
 
-### Example Contract
+### Example Contract {: #example-contract } 
 
 The following smart contract code provides some simple examples of the `StdReference` contract and the `getReferenceData` function - these are not meant for production. The `IStdReference.sol` interface defines ReferenceData structure and the functions available to make the queries.
 
@@ -150,7 +150,7 @@ contract DemoOracle {
 }
 ```
 
-### Try it in Moonbase Alpha
+### Try it in Moonbase Alpha {: #try-it-in-moonbase alpha } 
 
 We've deployed a contract available in the Moonbase Alpha TestNet (at address `0xf15c870344c1c02f5939a5C4926b7cDb90dEc655`) so you can easily check the information fed from Band Protocol's oracle. To do so, you need the following interface contract:
 
@@ -180,7 +180,7 @@ This will create an instance of the demo contract that you can interact with. Us
 
 ![Band Protocol Remix check price](/images/band/band-demo2.png)
 
-## BandChain.js Javascript Helper Library
+## BandChain.js Javascript Helper Library {: #bandchainjs-javascript-helper-library } 
 
 The helper library also supports a similar `getReferenceData` function. To get started, the library needs to be installed:
 
@@ -217,7 +217,7 @@ Then, it returns an array object with the following structure:
 ```
 Where `lastUpdatedBase` and `lastUpdatedQuote` are the last time when the base and quote prices were updated respectively (since UNIX epoch).
 
-### Example Usage
+### Example Usage {: #example-usage } 
 
 The following Javascript script provides a simple example of the `getReferenceData` function.
 

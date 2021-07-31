@@ -7,20 +7,20 @@ description: How to use request data from a Chainlink Oracle in your Moonbeam Et
 
 ![Chainlink Moonbeam Banner](/images/chainlink/chainlink-banner.png)
 
-## Introduction
+## Introduction {: #introduction } 
 
 Developers can now use [Chainlink's decentralized Oracle network](https://chain.link/) to fetch data in the Moonbase Alpha TestNet. This tutorial goes through two different ways of using Chainlink Oracles:
 
  - [Basic Request Model](https://docs.chain.link/docs/architecture-request-model), where the end-user sends a request to an Oracle provider, which fetches the data through an API, and fulfils the request storing this data on-chain
  - [Price Feeds](https://docs.chain.link/docs/architecture-decentralized-model), where data is continuously updated by Oracle operators in a smart contract so that other smart contracts can fetch it
 
-## Basic Request Model
+## Basic Request Model {: #basic-request-model } 
 
 Before we go into fetching the data itself, it is important to understand the basics of the "basic request model."
 
 --8<-- 'text/chainlink/chainlink-brm.md'
 
-### The Client Contract
+### The Client Contract {: #the-client-contract } 
 
 The Client contract is the element that starts the communication with the Oracle by sending a request. As shown in the diagram, it calls the _transferAndCall_ method from the LINK token contract, but there is more processing that is needed to track the request to the Oracle. For this example, you can use the code in [this file](/snippets/code/chainlink/Client.sol), and deploy it on [Remix](/integrations/remix/) to try it out. Let's look at the core functions of the contract:
 
@@ -65,7 +65,7 @@ contract Client is ChainlinkClient {
 
 Note that the Client contract must have a LINK tokens balance to be able to pay for this request. However, if you deploy your setup, you can set the LINK value to 0 in your `ChainlinkClient.sol` contract, but you still need to have the LINK token contract deployed.
 
-### Try it on Moonbase Alpha
+### Try it on Moonbase Alpha {: #try-it-on-moonbase-alpha } 
 
 If you want to skip the hurdles of deploying all contracts, setting up your Oracle node, creating job IDs, and so on, we've got you covered.
 
@@ -119,7 +119,7 @@ After creating the file and compiling the contract, head to the "Deploy and Run 
 
 If there is any specific pair you want us to include, feel free to reach out to us through our [Discord server](https://discord.com/invite/PfpUATX).
 
-### Run your Client Contract
+### Run your Client Contract {: #run-your-client-contract } 
 
 If you want to run your Client contract but use our Oracle node, you can do so with the following information:
 
@@ -130,13 +130,13 @@ If you want to run your Client contract but use our Oracle node, you can do so w
 
 Remember that the LINK token payment is set to zero.
 
-### Other Requests
+### Other Requests {: #other-requests } 
 
 Chainlink's Oracles can tentatively provide many different types of data feeds with the use of external adapters. However, for simplicity, our Oracle node is configured to deliver only price feeds.
 
 If you are interested in running your own Oracle node in Moonbeam, please visit [this guide](/node-operators/oracles/node-chainlink/). Also, we recommend going through [Chainlink's documentation site](https://docs.chain.link/docs).
 
-## Price Feeds
+## Price Feeds {: #price-feeds } 
 
 Before we go into fetching the data itself, it is important to understand the basics of price feeds.
 
@@ -146,7 +146,7 @@ The end-user can retrieve price feeds with read-only operations via a Consumer c
 
 ![Price Feed Diagram](/images/chainlink/chainlink-pricefeed.png)
 
-### Try it on Moonbase Alpha
+### Try it on Moonbase Alpha {: #try-it-on-moonbase-alpha } 
 
 If you want to skip the hurdles of deploying all the contracts, setting up your Oracle node, creating job IDs, and so on, we've got you covered.
 

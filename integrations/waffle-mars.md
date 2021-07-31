@@ -7,7 +7,7 @@ description: Learn how to use Waffle and Mars to write, compile, test, and deplo
 
 ![Waffle and Mars on Moonbeam](/images/waffle-mars/waffle-mars-banner.png)
 
-## Introduction
+## Introduction {: #introduction } 
 
 [Waffle](https://getwaffle.io/) is a library for compiling and testing smart contracts, and [Mars](https://github.com/EthWorks/Mars) is a deployment manager. Together, Waffle and Mars can be used to write, compile, test, and deploy Ethereum smart contracts. Since Moonbeam is Ethereum compatible, Waffle and Mars can be used to deploy smart contracts to a Moonbeam development node or the Moonbase Alpha TestNet. 
 
@@ -16,7 +16,7 @@ Waffle uses minimal dependencies, has syntax that is easy to learn and extend, a
 Mars provides a simple, TypeScript compatible framework for creating advanced deployment scripts and staying in sync with state changes. Mars focuses on infrastructure-as-code, allowing developers to specify how their smart contracts should be deployed and then using those specifications to automatically handle state changes and deployments.
 
 In this guide, you'll be creating a TypeScript project to write, compile, and test a smart contract using Waffle, then deploy it on to the Moonbase Alpha TestNet using Mars.
-## Checking Prerequisites
+## Checking Prerequisites {: #checking-prerequisites } 
 
 --8<-- 'text/common/install-nodejs.md'
 
@@ -26,7 +26,7 @@ Waffle and Mars can be used with a locally running Moonbeam development node, bu
 
 Once you've created an account you'll need to export the private key to be used in this guide. Before moving on, ensure your account has funds and, if needed, get `DEV` tokens from the [faucet](/getting-started/testnet/faucet/).
 
-## Create a TypeScript Project with Waffle & Mars
+## Create a TypeScript Project with Waffle & Mars {: #create-a-typescript-project-with-waffle-mars } 
 
 To get started, you'll create a TypeScript project and install and configure a few dependencies.
 
@@ -81,7 +81,7 @@ touch tsconfig.json
 ```
 
 Now, you should have a basic TypeScript project with the necessary dependencies to get started building with Waffle and Mars.
-## Add a Contract
+## Add a Contract {: #add-a-contract } 
 
 For this guide, you will create an ERC-20 contract that mints a specified amount of tokens to the contract creator. It's based on the Open Zeppelin ERC-20 template.
 
@@ -107,9 +107,9 @@ contract MyToken is ERC20 {
 
 In this contract, you are creating an ERC20 token called MyToken with the symbol MYTOK, that allows you, as the contract creator, to mint as many MYTOKs as desired.
 
-## Use Waffle to Compile and Test
+## Use Waffle to Compile and Test {: #use-waffle-to-compile-and-test } 
 
-### Compile with Waffle
+### Compile with Waffle {: #compile-with-waffle } 
 
 Now that you have written a smart contract, the next step is to use Waffle to compile it. Before diving into compiling your contract, you will need to configure Waffle.
 
@@ -152,7 +152,7 @@ npm run build
 
 After compiling your contracts, Waffle stores the JSON output in the `build` directory. The contract in this guide is based on Open Zeppelin's ERC-20 template, so relevant ERC-20 JSON files will appear in the `build` directory too. 
 
-### Test with Waffle
+### Test with Waffle {: #test-with-waffle } 
 
 Before deploying your contract and sending it off into the wild, you should test it first. Waffle provides an advanced testing framework and has plenty of tools to help you with testing. 
 
@@ -305,7 +305,7 @@ describe ('MyToken', () => {
 
 If you want to write more tests on your own, you could consider testing transfers from accounts without any funds or transfers from accounts without enough funds.
 
-## Use Mars to Deploy to Moonbase Alpha
+## Use Mars to Deploy to Moonbase Alpha {: #use-mars-to-deploy-to-moonbase-alpha } 
 
 After you compile your contracts and before deployment, you will have to generate contract artifacts for Mars. Mars uses the contract artifacts for typechecks in deployments. Then you'll need to create a deployment script and deploy the `MyToken` smart contract.
 
@@ -313,7 +313,7 @@ Remember, you will be deploying to Moonbase Alpha and will need to use the TestN
 
 The deployment will be broken up into three sections: [generate artifacts](#generate-artifacts), [create a deployment script](#create-a-deployment-script), and [deploy with Mars](#deploy-with-mars). 
 
-### Generate Artifacts
+### Generate Artifacts {: #generate-artifacts } 
 
 Artifacts need to be generated for Mars so that typechecks are enabled within deployment scripts. 
 
@@ -333,7 +333,7 @@ npm run build
 
 If you open the `build` directory, you should now see an `artifacts.ts` file containing the artifact data needed for deployments. To continue on with the deployment process, you'll need to write a deployment script. The deployment script will be used to tell Mars which contract to deploy, to what network, and which account is to be used to trigger the deployment.
 
-### Create a Deployment Script
+### Create a Deployment Script {: #create-a-deployment-script } 
 
 Now you need to configure the deployment for the `MyToken` contract to the Moonbase Alpha TestNet. 
 
@@ -377,7 +377,7 @@ deploy({network: 'https://rpc.testnet.moonbeam.network', privateKey}, () => {
 
 So far, you should have created a deployment script in `deploy.ts` that will deploy the `MyToken` contract to Moonbase Alpha, and added the ability to easily call the script and deploy the contract. 
 
-### Deploy with Mars
+### Deploy with Mars {: #deploy-with-mars } 
 
 You've configured the deployment, now it's time to actually deploy to Moonbase Alpha. 
 
@@ -395,6 +395,6 @@ If successful, you should see details about your transaction including it's hash
 
 Congratulations! You've deployed a contract to Moonbase Alpha using Waffle and Mars!
 
-## Example Project
+## Example Project {: #example-project } 
 
 If you want to see a completed example of a Waffle and Mars project on Moonbeam, check out the [moonbeam-waffle-mars-example](https://github.com/EthWorks/moonbeam-waffle-mars-example) created by the team behind Waffle and Mars, EthWorks.

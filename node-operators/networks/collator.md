@@ -7,7 +7,7 @@ description: Instructions on how to become a collator in the Moonbeam Network on
 
 ![Collator Moonbeam Banner](/images/fullnode/collator-banner.png)
 
-## Introduction
+## Introduction {: #introduction } 
 
 Collators are members of the network that maintain the parachains they take part in. They run a full node (for both their particular parachain and the relay chain), and they produce the state transition proof for relay chain validators.
 
@@ -25,14 +25,14 @@ This guide will take you through the following steps:
  - **[Generate session keys](#generate-session-keys)** — explains how to generate session keys, used to map your author ID with your H160 account
  - **[Map author ID to your account](#map-author-id-to-your-account)** — outlines the steps to map your public session key to your H160 account, where block rewards will be paid to
 
-## Technical Requirements
+## Technical Requirements {: #technical-requirements } 
 
 From a technical perspective, collators must meet the following requirements:
 
  - Have a full node running with the collation options. To do so, follow the [spin up a full node tutorial](/node-operators/networks/full-node/), considering the specific code snippets for collators
  - Enable the telemetry server for your full node. To do so, follow the [telemetry tutorial](/node-operators/networks/telemetry/)
 
-## Accounts and Staking Requirements
+## Accounts and Staking Requirements {: #accounts-and-staking-requirements } 
 
 Similar to Polkadot validators, you need to create an account. For Moonbeam, this is an H160 account or basically an Ethereum style account from which you hold the private keys. In addition, you will need a minimum amount of tokens staked to be considered eligible (become a candidate). Only a certain amount of the top collators by nominated stake will be in the active set.
 
@@ -48,7 +48,7 @@ Similar to Polkadot validators, you need to create an account. For Moonbeam, thi
     |   Bond Amount   | {{ networks.moonriver.staking.collator_bond_min }} MOVR  |
     | Active set size | {{ networks.moonriver.staking.max_collators }} collators |
 
-### Account in PolkadotJS
+### Account in PolkadotJS {: #account-in-polkadotjs } 
 
 A collator has an account associated with its collation activities. This account mapped to an author ID to identify him as a block producer and send the payouts from block rewards. 
 
@@ -61,7 +61,7 @@ Once you have an H160 account imported to PolkadotJS, you should see it under th
 
 ![Account in PolkadotJS](/images/fullnode/collator-polkadotjs1.png)
 
-## Become a Collator Candidate
+## Become a Collator Candidate {: #become-a-collator-candidate } 
 
 Before getting started, it's important to note some of the timings of different actions related to collation activities:
 
@@ -82,7 +82,7 @@ Before getting started, it's important to note some of the timings of different 
 
 !!! note 
     The values presented in the previous table are subject to change in future releases.
-### Get the Size of the Candidate Pool
+### Get the Size of the Candidate Pool {: #get-the-size-of-the-candidate-pool } 
 
 First, you need to get the `candidatePool` size (this can change thru governance) as you'll need to submit this parameter in a later transaction. To do so, you'll have to run the following JavaScript code snippet from within [PolkadotJS](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/js):
 
@@ -101,7 +101,7 @@ console.log(`Candidate pool size is: ${candidatePool.length}`);
 
 ![Get Number of Candidates](/images/fullnode/collator-polkadotjs2.png)
 
-### Join the Candidate Pool
+### Join the Candidate Pool {: #join-the-candidate-pool } 
 
 Once your node is running and in sync with the network, you become a collator candidate (and join the candidate pool). Depending on which network you are connected to, head to PolkadotJS for [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts) or [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network#/accounts) and take the following steps:
 
@@ -121,11 +121,11 @@ Once your node is running and in sync with the network, you become a collator ca
 
 As mentioned before, only the top {{ networks.moonbase.staking.max_collators }} collators on Moonbase Alpha and the top {{ networks.moonriver.staking.max_collators }} collators on Moonriver by nominated stake will be in the active set. 
 
-### Stop Collating
+### Stop Collating {: #stop-collating } 
 
 Similar to Polkadot's `chill()` function, to leave the collator's candidate pool, follow the same steps as before but select the `leaveCandidates()` function in step 5.
 
-## Session Keys
+## Session Keys {: #session-keys } 
 
 With the release of [Moonbase Alpha v8](/networks/testnet/), collators will sign blocks using an author ID, which is basically a [session key](https://wiki.polkadot.network/docs/learn-keys#session-keys). To match the Substrate standard, Moonbeam collator's session keys are [SR25519](https://wiki.polkadot.network/docs/learn-keys#what-is-sr25519-and-where-did-it-come-from). This guide will show you how you can create/rotate your session keys associated to your collator node.
 
@@ -152,7 +152,7 @@ The collator node should respond with the corresponding public key of the new au
 
 Make sure you write down this public key of the author ID. Next, this will be mapped to an H160 Ethereum-styled address to which the block rewards are paid.
 
-## Map Author ID to your Account
+## Map Author ID to your Account {: #map-author-id-to-your-account } 
 
 Once you've generated your author ID (session keys), the next step is to map it to your H160 account (an Ethereum-styled address). Make sure you hold the private keys to this account, as this is where the block rewards are paid out to.
 
@@ -171,7 +171,7 @@ The module also adds the following RPC calls (chain state):
 
 - **mapping**(*address* optionalAuthorID) — displays all mappings stored on-chain, or only that related to the input if provided
 
-### Mapping Extrinsic
+### Mapping Extrinsic {: #mapping-extrinsic } 
 
 To map your author ID to your account, you need to be inside the [candidate pool](#become-a-collator-candidate). Once you are a collator candidate, you need to send a mapping extrinsic (transaction). Note that this will bond tokens per author ID registered. To do so, take the following steps:
 
@@ -189,7 +189,7 @@ If the transaction is successful, you will see a confirmation notification on yo
 
 ![Author ID Mapping to Account Extrinsic Successful](/images/fullnode/collator-polkadotjs5.png)
 
-### Checking the Mappings
+### Checking the Mappings {: #checking-the-mappings } 
 
 You can also check the current on-chain mappings by verifying the chain state. To do so, take the following steps:
 

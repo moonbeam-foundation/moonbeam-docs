@@ -14,19 +14,19 @@ This token is central to the design of Moonbeam and cannot be removed without sa
  - Facilitating the on-chain governance mechanism, including proposing referenda, electing council members, voting, etc.
  - Paying for network transaction fees
 
-## Glimmer Token
+## Glimmer Token {: #glimmer-token } 
 
 In the Moonbeam deployment on Polkadot MainNet, this token will be called Glimmer, as in, “that smart contract call will cost 3 Glimmer.”  The token symbol will be GLMR.
 
 You can find more information about Glimmer [here](https://moonbeam.network/networks/moonbeam/glimmer-token/).
 
-## Moonriver Token
+## Moonriver Token {: #moonriver-token } 
 
 In the Moonbeam deployment on Kusama (called Moonriver), this token will be called Moonriver, as in, “that smart contract call will cost 3 Moonriver.”  The token symbol will be MOVR.
 
 You can find more information about Moonriver [here](https://moonbeam.foundation/moonriver-token/).
 
-## DEV Token
+## DEV Token {: #dev-token } 
 
 In our Moonbeam TestNet (called Moonbase Alpha), the token is called DEV. This token can be acquired freely, as its only purpose is to drive development and testing on Moonbase Alpha.
 
