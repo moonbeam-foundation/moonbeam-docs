@@ -52,7 +52,7 @@ Once the size of the subset is defined, collators are randomly selected using a 
 
 ![Nimbus Parachain Staking Filter](/images/consensus/consensus-images2.png)
 
-## Why Nimbus? {: #why-nimbus? } 
+## Why Nimbus? {: #why-nimbus } 
 
 You might ask yourself: but why Nimbus? Initially, it was not envisioned when Moonbeam was being developed. As Moonbeam progressed, the necessity for a more customizable but straightforward parachain consensus mechanism became clear, as the available methods presented some drawbacks or technical limitations. 
 
