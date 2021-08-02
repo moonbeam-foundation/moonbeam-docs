@@ -4,7 +4,7 @@ title: Moonriver Full Node MacOS
 
 # Code Snippets Collator/Full Node MacOS
 
-## Moonbase Alpha Full Node
+## Moonbase Alpha Full Node {: #moonbase-alpha-full-node } 
 
 ```
 docker run -p 9933:9933 -p 9944:9944 -v "{{ networks.moonbase.node_directory }}:/data" \
@@ -22,7 +22,7 @@ purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
 --name="YOUR-NODE-NAME (Embedded Relay)"
 ```
 
-## Moonbase Alpha Collator
+## Moonbase Alpha Collator {: #moonbase-alpha-collator } 
 
 ```
 docker run -p 9933:9933 -p 9944:9944 -v "{{ networks.moonbase.node_directory }}:/data" \
@@ -41,7 +41,7 @@ purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
 --name="YOUR-NODE-NAME (Embedded Relay)"
 ```
 
-## Moonriver Full Node
+## Moonriver Full Node {: #moonriver-full-node } 
 
 ```
 docker run -p 9933:9933 -p 9944:9944 -v "{{ networks.moonriver.node_directory }}:/data" \
@@ -59,7 +59,7 @@ purestake/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
 --name="YOUR-NODE-NAME (Embedded Relay)"
 ```
 
-## Moonriver Collator
+## Moonriver Collator {: #moonriver-collator } 
 
 ```
 docker run -p 9933:9933 -p 9944:9944 -v "{{ networks.moonriver.node_directory }}:/data" \
