@@ -15,7 +15,7 @@ One of the key network participants needed to support parachains within the Polk
 
 Token holders who select to "back" a validator. They can receive part of the validator's reward, but are subject to slashing of their staked tokens in case the validator misbehaves. A nominator can back up to 16 validators, and their bond is fully distributed between the backed validators that were selected for the validator set. If you want to nominate PureStake for both Polkadot and/or Kusama, please follow [this guide](https://www.purestake.com/technology/polkadot-validator/).
 
-### Nomitated Proof of Stake {: #nomitated-proof-of-stake } 
+### Nominated Proof of Stake {: #nominated-proof-of-stake } 
 
 The mechanism used by Polkadot for selecting its block validator set to maximize chain security. At its core, it is a Proof-of-Stake system (PoS) in which nominators back validators. The latter with the highest backing are selected to be part of the validator set for a session. The stake of a validator is slashed in case of misbehavior. Thus, nominators are expected to do due diligence on the validators they nominate. If you want to nominate PureStake for both Polkadot and/or Kusama, please follow [this guide](https://www.purestake.com/technology/polkadot-validator/).
 
