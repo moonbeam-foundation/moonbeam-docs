@@ -156,7 +156,7 @@ With the release of [Moonbase Alpha v3](https://www.purestake.com/news/moonbeam-
  
 Nevertheless, leveraging the Ethereum full RPC capabilities of Moonbeam, you can use [MetaMask](/getting-started/local-node/using-metamask/) to check the balance of that address as well. In addition, you can also use other development tools, such as [Remix](/getting-started/local-node/using-remix/) and [Truffle](/getting-started/local-node/using-truffle/).
 
-## Common Commands, Flags and Options {: #common-commands,-flags-and-options } 
+## Common Commands, Flags and Options {: #common-commands-flags-and-options } 
 
 ### Purging the Chain {: #purging-the-chain } 
 
