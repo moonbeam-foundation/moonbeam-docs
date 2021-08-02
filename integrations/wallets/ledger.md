@@ -87,7 +87,7 @@ Next, allow Ledger Live to connect to your device by following these steps:
  4. Click "Open" in the Ledger Live App
  5. Open the Ethereum App on your Ledger Device and resume [importing accounts](#import-accounts)
 
- ![Allow Ledger Live to connect your Ledger Device](/images/ledger/ledger-images9.png)
+ ![Allow Ledger Live to connect your Ledger Device](/images/ledger/ledger-images5.png)
 
 With this feature enabled, MetaMask will open Ledger Live when trying to connect to your Ledger device. You can read more about it in this [MetaMask blog post](https://metamask.zendesk.com/hc/en-us/articles/360020394612-How-to-connect-a-Trezor-or-Ledger-Hardware-Wallet).
 
@@ -97,7 +97,7 @@ If you've successfully [imported your Ledger account to MetaMask](#importing-you
 
 First, make sure your Ledger account is [funded with DEV tokens](/getting-started/moonbase/faucet/). Next, click on the "Send" button.
 
-![MetaMask Ledger Account Funded](/images/ledger/ledger-images5.png)
+![MetaMask Ledger Account Funded](/images/ledger/ledger-images6.png)
 
 As you would in a standard transaction, set the recipient address, enter the number of tokens to send, review transaction details and confirm it. This will initiate the transaction signature wizard in your Ledger device. Here, take the following steps:
 
@@ -112,11 +112,11 @@ As you would in a standard transaction, set the recipient address, enter the num
 !!! note
     At the time of writing, the token name is always shown as `ETH`. Please note that the token being handled is the one corresponding to the network MetaMask is connected to.
 
-![MetaMask Ledger Transaction Wizard](/images/ledger/ledger-images6.png)
+![MetaMask Ledger Transaction Wizard](/images/ledger/ledger-images7.png)
 
 Right after you've approved the transaction, MetaMask sends it to the network. Once the transaction is confirmed, it will be displayed as "Send" on MetaMask's main screen.
 
-![MetaMask Ledger Transaction Wizard](/images/ledger/ledger-images7.png)
+![MetaMask Ledger Transaction Wizard](/images/ledger/ledger-images8.png)
 
 And that is it! You've signed a transaction on Moonbase Alpha using your Ledger hardware wallet!
 
@@ -134,4 +134,4 @@ However, if you want to use your Ledger hardware wallet for transactions related
 !!! note
     This option is necessary to use your Ledger device to interact with ERC20 token contracts that might live inside the Moonbeam ecosystem.
 
-![MetaMask Ledger Allow Contracts Tx](/images/ledger/ledger-images8.png)
+![MetaMask Ledger Allow Contracts Tx](/images/ledger/ledger-images9.png)
