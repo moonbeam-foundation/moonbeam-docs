@@ -10,13 +10,13 @@ _Updated May 27th, 2021_
 !!! note
     With the release of [Moonbase Alpha v8](https://github.com/PureStake/moonbeam/releases/tag/v0.8.0), the minimum gas price has been set to 1 GDEV (similar to GWei on Ethereum). This might be a breaking change if you've previously specified a gas price of `0` for your deployment.
 
-## Goal
+## Goal {: #goal } 
 
 The first Moonbeam TestNet, named Moonbase Alpha, aims to provide developers with a place to start experimenting and building on Moonbeam in a shared environment. Since Moonbeam will be deployed as a parachain on Kusama and Polkadot, we want our TestNet to reflect our production configuration. For this reason, we decided that it needed to be a parachain-based configuration rather than a Substrate development setup.
 
 In order to collect as much feedback as possible and provide fast issue resolution, we have set up a [Discord with a dedicated Moonbase AlphaNet channel](https://discord.gg/PfpUATX).
 
-## Initial Configuration
+## Initial Configuration {: #initial-configuration } 
 
 Moonbase Alpha has the following configuration:
 
@@ -27,7 +27,7 @@ Moonbase Alpha has the following configuration:
 
 ![TestNet Diagram](/images/testnet/Moonbase-Alpha-v7.png)
 
-## Features
+## Features {: #features } 
 
 The following features are available:
 
@@ -83,7 +83,7 @@ The following features are available:
     - Many improvements that aim to enhance network stability
     - Minimum gas price has been increased to 1 GDEV (analog to GWei on Ethereum)
 
-### Release Notes
+### Release Notes {: #release-notes } 
 
 For more details regarding the updates of Moonbase Alpha, please refer to the following release notes:
 
@@ -95,25 +95,25 @@ For more details regarding the updates of Moonbase Alpha, please refer to the fo
  - [Moonbase Alpha v7](https://github.com/PureStake/moonbeam/releases/tag/v0.7.0)
  - [Moonbase Alpha v8](https://github.com/PureStake/moonbeam/releases/tag/v0.8.0)
 
-## Get Started
+## Get Started {: #get-started } 
 
 --8<-- 'text/testnet/connect.md'
 
-## Telemetry
+## Telemetry {: #telemetry } 
 
 You can see current Moonbase Alpha telemetry information visiting [this link](https://telemetry.polkadot.io/#list/Moonbase%20Alpha).
 
-## Tokens
+## Tokens {: #tokens } 
 
 --8<-- 'text/testnet/faucet.md'
 
-## Early Stage Proof of Stake
+## Early Stage Proof of Stake {: #early-stage-proof-of-stake } 
 
 With the release of Moonbase Alpha v6, the TestNet is now running with an early stage Proof of Stake system. Currently the active set consists of {{ networks.moonbase.staking.max_collators }} collators, which are nominated with DEV funds held by the team.
 
 As Moonbase Alpha progresses, we expect to evolve into a fully decentralized Proof of Stake network.
 
-## Limitations
+## Limitations {: #limitations } 
 
 This is the first TestNet for Moonbeam, so there are some limitations.
 
@@ -123,7 +123,7 @@ Since the release of Moonbase Alpha v6, the maximum gas limit per block has been
 
 Users only have access to the Moonbeam parachain. In future networks, we will add access to the relay chain so users can test transferring tokens.
 
-## Chain Purge
+## Chain Purge {: #chain-purge } 
 
 This network is under active development. Occasionally, chain purges may be needed in order to reset the blockchain to its initial state. This is necessary when doing major TestNet upgrades or maintenance. We will announce when a chain purge will take place via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
 

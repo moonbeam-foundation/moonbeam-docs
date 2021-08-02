@@ -7,7 +7,7 @@ description: Learn how to deploy unmodified and unchanged Solidity-based smart c
 
 ![Ethereum Libraries Integrations Moonbeam](/images/sendtx/web3-libraries-banner.png)
 
-## Introduction
+## Introduction {: #introduction } 
 
 This guide walks through using the Solidity compiler and three different Ethereum libraries to sign and send a transaction on Moonbeam manually. The three libraries covered by this tutorial are:
 
@@ -23,7 +23,7 @@ Besides, two other libraries will be used to compile the smart contract:
 !!! note
     --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
 
-## Checking Prerequisites
+## Checking Prerequisites {: #checking-prerequisites } 
 
 The examples using both web3.js and ethers.js need you to install Node.js and NPM previously. For the web3.py, you need Python and PIP. As of the writing of this guide, the versions used were:
 
@@ -78,7 +78,7 @@ The setup for this example will be relatively simple, and it'll contain the foll
  - **_increment.\*_** — it will make a transaction to increment the number stored on the Moonbeam node
  - **_reset.\*_** — the function to call that will reset the number stored to zero
 
-## The Contract File
+## The Contract File {: #the-contract-file } 
 
 The contract used is a simple incrementer, arbitrarily named _Incrementer.sol_, which you can find [here](/snippets/code/web3-contract-local/Incrementer.sol). The Solidity code is the following:
 
@@ -91,7 +91,7 @@ The `constructor` function, which runs when the contract is deployed, sets the i
 !!! note
     This contract is a simple example for illustration purposes only and does not handle values wrapping around.
 
-## Compiling the Contract
+## Compiling the Contract {: #compiling-the-contract } 
 
 The only purpose of the compile file is to use the Solidity compiler to output the bytecode and interface (ABI) our contract. You can find the code snippet for each library here (they were arbitrarily named `compile.*`):
 
@@ -117,7 +117,7 @@ The only purpose of the compile file is to use the Solidity compiler to output t
     --8<-- 'code/web3py-contract/compile.py'
     ```
 
-### Web3.js and Ethers.js
+### Web3.js and Ethers.js {: #web3js-and-ethersjs } 
 
 In the first part of [the script](/snippets/code/web3-contract-local/compile.js), the contract's path is fetched, and its content read.
 
@@ -125,7 +125,7 @@ Next, the Solidity compiler's input object is built, and it is passed as input t
 
 Lastly, extract the data of the `Incrementer` contract of the `Incrementer.sol` file, and export it so that the deployment script can use it.
 
-### Web3.py
+### Web3.py {: #web3py } 
 
 In the first part of [the script](/snippets/code/web3py-contract/compile.py), the contract file is compiled using the `solcx.compile_files` function. Note that the contract file is in the same directory as the compile script.
 
@@ -134,7 +134,7 @@ In the first part of [the script](/snippets/code/web3py-contract/compile.py), th
 
 Next, and wrapping up the script, the contract data is exported. In this example, only the interface (ABI) and bytecode were defined.
 
-## Deploying the Contract
+## Deploying the Contract {: #deploying-the-contract } 
 
 Regardless of the library, the strategy to deploy the compiled smart contract is somewhat similar. A contract instance is created using its interface (ABI) and bytecode. From this instance, a deployment function is used to send a signed transaction that deploys the contract. You can find the code snippet for each library here (they were arbitrarily named `deploy.*`):
 
@@ -164,7 +164,7 @@ The second section ("Deploy Contract") outlines the actual contract deployment p
 !!! note
     The _deploy.\*_ script provides the contract address as an output. This comes in handy, as it is used for the contract interaction files.
 
-### Web3.js
+### Web3.js {: #web3js } 
 
 In the first part of [the script](/snippets/code/web3-contract-local/deploy.js), the `web3` instance (or provider) is created using the `Web3` constructor with the provider RPC. By changing the provider RPC given to the constructor, you can choose which network you want to send the transaction to.
 
@@ -176,7 +176,7 @@ Afterwards, the constructor transaction can be signed using the `web3.eth.accoun
 
 Lastly, the signed transaction is sent, and the contract's address is displayed in the terminal.
 
-### Ethers.js
+### Ethers.js {: #ethersjs } 
 
 In the first part of [the script](/snippets/code/ethers-contract-local/deploy.js), different networks can be specified with a name, RPC URL (required), and chain ID. The provider (similar to the `web3` instance) is created with the `ethers.providers.StaticJsonRpcProvider` method. An alternative is to use the `ethers.providers.JsonRpcProvide(providerRPC)` method, which only requires the provider RPC endpoint address. But this might created compatibility issues with individual project specifications.
 
@@ -186,7 +186,7 @@ In the second section, a contract instance is created with `ethers.ContractFacto
 
 Lastly, the contract's address is displayed in the terminal.
 
-### Web3.py
+### Web3.py {: #web3py } 
 
 In the first part of [the script](/snippets/code/web3py-contract/deploy.py), the `web3` instance (or provider) is created using the `Web3(Web3.HTTPProvider(provider_rpc))` method with the provider RPC. By changing the provider RPC, you can choose which network you want to send the transaction to.
 
@@ -198,7 +198,7 @@ The constructor transaction can be signed using `web3.eth.account.signTransactio
 
 Lastly, the signed transaction is sent, and the contract's address is displayed in the terminal.
 
-## Reading from the Contract (Call Methods)
+## Reading from the Contract (Call Methods) {: #reading-from-the-contract-call-methods } 
 
 Call methods are the type of interaction that don't modify the contract's storage (change variables), meaning no transaction needs to be sent.
 
@@ -227,7 +227,7 @@ The second section ("Call Function") outlines the actual call to the contract. R
     --8<-- 'code/web3py-contract/get.py'
     ```
 
-### Web3.js
+### Web3.js {: #web3js } 
 
 In the first part of [the script](/snippets/code/web3-contract-local/get.js), the `web3` instance (or provider) is created using the `Web3` constructor with the provider RPC. By changing the provider RPC given to the constructor, you can choose which network you want to send the transaction to.
 
@@ -237,7 +237,7 @@ In the second section, a contract instance is created with `web3.eth.Contract()`
 
 Lastly, the value is displayed in the terminal.
 
-### Ethers.js
+### Ethers.js {: #ethersjs } 
 
 In the first part of [the script](/snippets/code/ethers-contract-local/get.js), different networks can be specified with a name, RPC URL (required), and chain ID. The provider (similar to the `web3` instance) is created with the `ethers.providers.StaticJsonRpcProvider` method. An alternative is to use the `ethers.providers.JsonRpcProvide(providerRPC)` method, which only requires the provider RPC endpoint address. But this might created compatibility issues with individual project specifications.
 
@@ -247,7 +247,7 @@ In the second section, a contract instance is created with `ethers.Contract()`, 
 
 Lastly, the value is displayed in the terminal.
 
-### Web3.py
+### Web3.py {: #web3py } 
 
 In the first part of [the script](/snippets/code/web3py-contract/get.py), the `web3` instance (or provider) is created using the `Web3(Web3.HTTPProvider(provider_rpc))` method with the provider RPC. By changing the provider RPC, you can choose which network you want to send the transaction to.
 
@@ -257,7 +257,7 @@ In the second section, a contract instance is created with `web3.eth.contract()`
 
 Lastly, the value is displayed in the terminal.
 
-## Interacting with the Contract (Send Methods)
+## Interacting with the Contract (Send Methods) {: #interacting-with-the-contract-send-methods } 
 
 Send methods are the type of interaction that modify the contract's storage (change variables), meaning a transaction needs to be signed and sent.
 
@@ -309,7 +309,7 @@ Each file's structure is very similar to his _increment.\*_ counterpart for each
     --8<-- 'code/web3py-contract/reset.py'
     ```
 
-### Web3.js
+### Web3.js {: #web3js } 
 
 In the first part of the script ([increment](/snippets/code/web3-contract-local/increment.js) or [reset](/snippets/code/web3-contract-local/reset.js) files), the `web3` instance (or provider) is created using the `Web3` constructor with the provider RPC. By changing the provider RPC given to the constructor, you can choose which network you want to send the transaction to.
 
@@ -321,7 +321,7 @@ Afterwards, the transaction can be signed using the `web3.eth.accounts.signTrans
 
 Lastly, the signed transaction is sent, and the transaction hash is displayed in the terminal.
 
-### Ethers.js
+### Ethers.js {: #ethersjs } 
 
 In the first part of the script ([increment](/snippets/code/ethers-contract-local/increment.js) or [reset](/snippets/code/ethers-contract-local/reset.js) files), different networks can be specified with a name, RPC URL (required), and chain ID. The provider (similar to the `web3` instance) is created with the `ethers.providers.StaticJsonRpcProvider` method. An alternative is to use the `ethers.providers.JsonRpcProvide(providerRPC)` method, which only requires the provider RPC endpoint address. But this might created compatibility issues with individual project specifications.
 
@@ -331,7 +331,7 @@ In the second section, a contract instance is created with `ethers.Contract()`, 
 
 Lastly, the transaction hash is displayed in the terminal.
 
-### Web3.py
+### Web3.py {: #web3py } 
 
 In the first part of the script ([increment](/snippets/code/web3py-contract/increment.py) or [reset](/snippets/code/web3py-contract/reset.py) files), the `web3` instance (or provider) is created using the `Web3(Web3.HTTPProvider(provider_rpc))` method with the provider RPC. By changing the provider RPC, you can choose which network you want to send the transaction to.
 
@@ -343,7 +343,7 @@ The transaction can be signed using `web3.eth.account.signTransaction()`, passin
 
 Lastly, the transaction hash is displayed in the terminal.
 
-## Running the Scripts
+## Running the Scripts {: #running-the-scripts } 
 
 For this section, the code shown before was adapted to target a development node, which you can run by following [this tutorial](/getting-started/local-node/setting-up-a-node/). Also, each transaction was sent from the pre-funded account that comes with the node:
 

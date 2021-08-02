@@ -1,4 +1,4 @@
-## Creating a Wallet
+## Creating a Wallet {: #creating-a-wallet } 
 
 After installing [MetaMask](https://metamask.io), the setup will automatically open a new task with a welcome screen. Click "Get Started" to begin the setup process.
 

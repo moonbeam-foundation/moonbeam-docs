@@ -7,7 +7,7 @@ description: This guide walks you through how to connect Nifty Wallet, a browser
  
 ![Intro banner](/images/nifty/nifty-banner.png)
 
-## Introduction
+## Introduction {: #introduction } 
 
 [Nifty Wallet](https://www.poa.network/for-users/nifty-wallet) was initially forked from MetaMask, and has been extended for interaction with POA networks, POA Core and POA Sokol. Since Nifty is Ethereum compatible, it can also be used on Moonbeam. 
 
@@ -15,7 +15,7 @@ Please be aware that Nifty Wallet is beta software and it is recommended to sign
 
 This tutorial will cover how to setup Nifty Wallet to connect to our TestNet, Moonbase Alpha.
 
-## Creating a Wallet
+## Creating a Wallet {: #creating-a-wallet } 
 
 First, you need to install the [Nifty Wallet browser extension](https://chrome.google.com/webstore/detail/nifty-wallet/jbdaocneiiinmjbjlgalhcelgbejmnid?hl=en) from the Chrome web store.
 
@@ -25,7 +25,7 @@ With the browser extension installed, please open it and set a password.
 
 After creating a password, a vault will be created for your account and seed words to restore your account will be generated. You'll be prompted to save the generated seed words. You can choose to save the seed words as a file or if you decide to save them another way, you can proceed by clicking "I've copied it somewhere safe". Just be sure that you have safely stored the seed words and you don't share them with anyone.
 
-## Connect Nifty Wallet to Moonbeam
+## Connect Nifty Wallet to Moonbeam {: #connect-nifty-wallet-to-moonbeam } 
 
 Once you've created an account, you can now connect to the Moonbase Alpha TestNet by creating a custom network. 
 
@@ -66,7 +66,7 @@ The current RPC should change to the Moonbase Alpha RPC URL, and in the top left
 
 And that is it, you now have Nifty Wallet connected to the Moonbase Alpha TestNet!
 
-## Using Nifty Wallet
+## Using Nifty Wallet {: #using-nifty-wallet } 
 
 Nifty Wallet serves as a Web3 provider in tools such as [Remix](/integrations/remix/). By having Nifty Wallet connected to Moonbase Alpha, you can deploy contracts as you would like using MetaMask, signing the transactions with Nifty instead. 
 
@@ -83,7 +83,7 @@ The transaction will be displayed under the "Sent" tab.
 
 <img src="/images/nifty/nifty-images-6.png" alt="Nifty confirmed transaction" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 
-## Create a New Account
+## Create a New Account {: #create-a-new-account } 
 
 To create a new account, click the user icon in the top right corner and select "Create Account".
 
@@ -93,7 +93,7 @@ A new account will be created and you'll be switched to the new account.
 
 <img src="/images/nifty/nifty-images-8.png" alt="Nifty create an account" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 
-## Import an Account
+## Import an Account {: #import-an-account } 
 
 To create a new wallet, click the user icon in the top right corner and select "Import Account".
 

@@ -6,13 +6,13 @@ description: Moonbeam now uses the Ethereum based H160 account system natively a
 
 ![Intro diagram](/images/learn/unifiedaccounts-banner.png)
 
-## Introduction
+## Introduction {: #introduction } 
 
 With the [release of the v3 upgrade](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/) for the Moonbase Alpha TestNet, we have made significant updates to the underlying account system on Moonbeam, replacing the default Substrate-style accounts and keys with Ethereum-style accounts and keys.
 
 The Polkadot JS Apps interface was updated as well so that it natively supports H160 addresses and ECDSA keys. You can check out [this tutorial](/integrations/wallets/polkadotjs/) to see more about this integration.
 
-## Substrate EVM Compatible Blockchain
+## Substrate EVM Compatible Blockchain {: #substrate-evm-compatible-blockchain } 
 
 Any parachain in the Polkadot ecosystem can offer a full EVM implementation, which provides the possibility of executing Solidity-based smart contracts with minimal to no changes. Substrate makes this integration possible - just plug the [EVM pallet](https://docs.rs/pallet-evm/2.0.1/pallet_evm/) into your runtime for EVM support, and the [Ethereum Pallet with Frontier](https://github.com/paritytech/frontier) to have Ethereum RPC compatibility. The availability of these open-source modules that Moonbeam has developed with Parity has led multiple parachains to offer Ethereum compatibility on their chains.
 
@@ -26,7 +26,7 @@ The following diagram illustrates this configuration.
 
 This can creates friction and a poor user experience for Alice. First, she has to move tokens to her H160 mapped H256 address to be able to make transactions and deploy contracts through the EVM. Second, she also needs to hold a balance in her other H256 address (which she has a different private key for) to use Substrate-based features. So in short, Alice needs a minimum of two private keys to have the best of both worlds.
 
-## Moonbeam Unified Accounts
+## Moonbeam Unified Accounts {: #moonbeam-unified-accounts } 
 
 Moonbeam’s focus is to create a fully Ethereum-compatible environment on Polkadot with the best user experience possible. This extends beyond the base Ethereum feature set, with additional features such as on-chain governance, staking, and cross-chain integrations.
 

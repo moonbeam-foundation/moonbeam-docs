@@ -5,7 +5,7 @@ description: In order to make it easier to get started with Moonbeam, here are c
 
 # Code Snippets
 
-## Setting up a Local Moonbeam Node
+## Setting up a Local Moonbeam Node {: #setting-up-a-local-moonbeam-node } 
 
 **Clone moonbeam-tutorials repo:**
 
@@ -50,17 +50,17 @@ cd moonbeam
 ./target/release/moonbeam --dev -lerror
 ```
 
-## Genesis Account
+## Genesis Account {: #genesis-account } 
 
 --8<-- 'text/metamask-local/dev-account.md'
 
-## Development Accounts
+## Development Accounts {: #development-accounts } 
 
 --8<-- 'code/setting-up-node/dev-accounts.md'
 
 --8<-- 'code/setting-up-node/dev-testing-account.md'
 
-## MetaMask
+## MetaMask {: #metamask } 
 
 === "Moonbeam Development Node"
 

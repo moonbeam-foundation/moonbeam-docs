@@ -4,7 +4,7 @@ The Moonbase Alpha RPC and WSS endpoints hosted by PureStake are for development
 - [Elara](https://elara.patract.io/)
 
 
-### HTTPS DNS
+### HTTPS DNS {: #https-dns } 
 
 To connect to Moonbase Alpha via HTTPS, simply point your provider to the following RPC DNS:
 
@@ -44,7 +44,7 @@ const provider = new ethers.providers.StaticJsonRpcProvider(providerURL, {
 
 Any Ethereum wallet should be able to generate a valid address for Moonbeam (for example, [MetaMask](https://metamask.io/)).
 
-### WSS DNS
+### WSS DNS {: #wss-dns } 
 
 For WebSocket connections, you can use the following DNS:
 
@@ -63,11 +63,11 @@ For WebSocket connections, you can use the following DNS:
     wss://moonbase.moonbeam.elara.patract.io
     ```
 
-### Chain ID
+### Chain ID {: #chain-id } 
 
 For the Moonbase Alpha TestNet the chain ID is: `1287`.
 
-### Relay Chain
+### Relay Chain {: #relay-chain } 
 
 To connect to the Moonbase Alpha relay chain, managed by PureStake, you can use the following WS Endpoint:
 

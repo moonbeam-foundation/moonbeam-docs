@@ -6,7 +6,7 @@ description: Start using the Moonbeam Truffle Box for a quick, preconfigured way
 
 ![Intro diagram](/images/integrations/integrations-trufflebox-banner.png)
 
-##Introduction
+##Introduction {: # } 
 As part of an ongoing effort to help developers that want to start working on Moonbeam, we have [launched the Moonbeam Truffle box](https://moonbeam.network/announcements/moonbeam-truffle-box-available-solidity-developers/). With it, developers will find a boilerplate setup to get started deploying smart contracts on Moonbeam quickly. With the Moonbeam Truffle box, we have also incorporated the Moonbeam Truffle plugin, which introduces some commands to run a development node in your local environment as a Docker image. This removes the process of setting up a local node (which can take up to 40 minutes when building its binary) and is a quick and easy solution to get started developing in your local environment.
 
 This tutorial will guide you through the process of setting up the box, using the Moonbeam Truffle plugin, and deploying contracts to both a development Moonbeam node and Moonbase Alpha using Truffle with the box base configuration.
@@ -14,7 +14,7 @@ This tutorial will guide you through the process of setting up the box, using th
 !!! note
     This guide is based on an Ubuntu 18.04 installation. At the time of writing, Node.js and npm versions used were 15.2.1 and 7.0.8 respectively. Node.js versions higher than 10.23.0 are required. We also noticed an error while installing the packages with npm version 7.0.15. You can downgrade npm by running `npm install -g npm@version`, setting the version to the one desired.
 
-## Checking Prerequisites
+## Checking Prerequisites {: #checking-prerequisites } 
 
 --8<-- 'text/common/install-nodejs.md'
 
@@ -27,7 +27,7 @@ npm install -g truffle
 
 As of the writing of this guide, the version used was 5.1.51. 
 
-## Downloading and Setting Up the Truffle Box
+## Downloading and Setting Up the Truffle Box {: #downloading-and-setting-up-the-truffle-box } 
 
 To get started with the Moonbeam Truffle box, if you have Truffle installed globally, you can execute:
 
@@ -56,7 +56,7 @@ npm install
 
 That concludes all prerequisites you need to use the Moonbeam Truffle box.
 
-## Basic Functionalities
+## Basic Functionalities {: #basic-functionalities } 
 
 The box is pre-configured with two networks: `dev` (for a development node) and `moonbase` (Moonbeam TestNet). Also included, as an example, is an ERC20 token contract and a simple test script. The Solidity compiler set by default is `^0.7.0`, but this can be changed as required. If you are experienced with Truffle, this setup will feel familiar.
 
@@ -122,7 +122,7 @@ Depending on the network you want to deploy the contracts to, you need to substi
 !!! note
     If you don't have Truffle installed globally, you can use `npx truffle` or `./node_modules/.bin/truffle` instead of `truffle` instead.
 
-## The Moonbeam Truffle Plugin
+## The Moonbeam Truffle Plugin {: #the-moonbeam-truffle-plugin } 
 
 To set up a Moonbeam development node, you can currently follow [this tutorial](/getting-started/local-node/setting-up-a-node/). The process takes around 40 minutes in total, and you need to install Substrate and all its dependencies. The Moonbeam Truffle plugin provides a way to get started with a development node much quicker, and the only requirement is to have Docker installed (at the time of writing the Docker version used was 19.03.6). For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/). To download the Docker image, run the following line:
 
@@ -161,7 +161,7 @@ You can see the output of these commands in the following image:
 
 If you are familiar with Docker, you can skip the plugin commands and interact with the Docker image directly.
 
-## Testing the Moonbeam Truffle Box
+## Testing the Moonbeam Truffle Box {: #testing-the-moonbeam-truffle-box } 
 
 The box has the minimum requirements to help you get started. Lets first compile the contracts by running:
 

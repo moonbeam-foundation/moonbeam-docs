@@ -7,13 +7,13 @@ description: Use Hardhat to compile, deploy, and debug Ethereum smart contracts 
 
 ![Hardhat Create Project](/images/hardhat/hardhat-banner.png)
 
-## Introduction
+## Introduction {: #introduction } 
 
 Hardhat is an Ethereum development environment that helps developers manage and automate the recurring tasks inherent to building smart contracts and DApps. Hardhat can directly interact with Moonbeam's Ethereum API so it can also be used to deploy smart contracts into Moonbeam.
 
 This guide will cover how to use Hardhat to compile, deploy, and debug Ethereum smart contracts on the Moonbase Alpha TestNet.
 
-## Checking Prerequisites
+## Checking Prerequisites {: #checking-prerequisites } 
 
 --8<-- 'text/common/install-nodejs.md'
 
@@ -26,7 +26,7 @@ Also, you will need the following:
 
 Once all requirements have been met, you are ready to build with Hardhat.
 
-## Starting a Hardhat Project
+## Starting a Hardhat Project {: #starting-a-hardhat-project } 
 
 To start a new project, create a directory for it:
 
@@ -63,7 +63,7 @@ After running the command, choose `Create an empty hardhat.config.js`:
 
 ![Hardhat Create Project](/images/hardhat/hardhat-images-1.png)
 
-## The Contract File
+## The Contract File {: #the-contract-file } 
 
 We are going to store our contract in the `contracts` directory. Create it:
 
@@ -98,7 +98,7 @@ contract Box {
 }
 ```
 
-## Hardhat Configuration File
+## Hardhat Configuration File {: #hardhat-configuration-file } 
 
 Let's modify our Hardhat configuration file so we can compile and deploy this contract to Moonbase Alpha.
 
@@ -161,7 +161,7 @@ Next, let's create a `secrets.json`, where the private key mentioned before is s
 
 Congratulations! We are ready for deployment!
 
-## Compiling Solidity
+## Compiling Solidity {: #compiling-solidity } 
 
 Our contract, `Box.sol`, uses Solidity 0.8.1. Make sure the Hardhat configuration file is correctly set up with this solidity version. If so, we can compile the contract by running:
 
@@ -173,7 +173,7 @@ npx hardhat compile
 
 After compilation, an `artifacts` directory is created: it holds the bytecode and metadata of the contract, which are `.json` files. It’s a good idea to add this directory to your `.gitignore`.
 
-## Deploying the Contract
+## Deploying the Contract {: #deploying-the-contract } 
 
 In order to deploy the Box smart contract, we will need to write a simple `deployment script`. First, let's create a new directory (`scripts`). Inside the newly created directory, add a new file `deploy.js`.
 
@@ -224,7 +224,7 @@ After a few seconds, the contract is deployed, and you should see the address in
 
 Congratulations, your contract is live! Save the address, as we will use it to interact with this contract instance in the next step.
 
-## Interacting with the Contract
+## Interacting with the Contract {: #interacting-with-the-contract } 
 
 Let's use Hardhat to interact with our newly deployed contract in Moonbase Alpha. To do so, launch `hardhat console` by running:
 
