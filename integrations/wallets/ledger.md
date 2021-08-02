@@ -65,15 +65,19 @@ If you've imported your Ledger Ethereum-styled account successfully, you should 
 
 You've now successfully imported a Moonbeam compatible account from your Ledger device and are now ready to start [signing transactions using your hardware wallet](#signing-a-transaction-using-your-ledger).
 
-### Chrome Browser
+## Chrome Browser
 
 As of Chrome version 91, users that want to connect their Ledger device to MetaMask must be running the latest version of Ledger Live (v2.29 at the time of writing). 
 
-In addition, in MetaMask, they must enable Ledger Live support. To do so, take the following steps:
+### Enable Ledger Live Support in Metamask
+
+In MetaMask, take the following steps:
 
  1. Expand the top-right menu and go to "Settings"
  2. Navigate to "Advanced"
  3. Enable the "Use Ledger Live" feature
+
+### Enable Device Access
 
 Next, allow Ledger Live to connect to your device by following these steps:
 
