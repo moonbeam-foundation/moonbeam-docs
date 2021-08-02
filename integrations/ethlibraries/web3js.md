@@ -33,7 +33,7 @@ Depending on which network you want to connect to, you can set the `RPC_URL` to 
  - Moonbase Alpha TestNet: `{{ networks.moonbase.rpc_url }}`
  - Moonriver: `{{ networks.moonriver.rpc_url }}`
 
-## Step-by-step Tutorials {: #stepbystep-tutorials } 
+## Step-by-step Tutorials {: #step-by-step-tutorials } 
 
 If you are interested in a more detailed step-by-step guide, go to our specific tutorials about using web3.js on Moonbeam to [send a transaction](/getting-started/local-node/send-transaction/) or [deploy a contract](/getting-started/local-node/deploy-contract/).
 

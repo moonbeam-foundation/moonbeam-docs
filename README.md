@@ -77,22 +77,22 @@ Currently, we have a fully functioning bridge implementation that connects Ether
 
 ## How to Engage With the Moonbeam Community {: #how-to-engage-with-the-moonbeam-community } 
 
-### :fontawesome-brands-discord:  Discord {: #:fontawesomebrandsdiscord:-discord } 
+### :fontawesome-brands-discord:  Discord {: #fontawesome-brands-discord-discord } 
 Instructions for our TestNet and other development-focused conversation is found on our [Discord channel](https://discord.gg/PfpUATX).
 
-### :moonbeam-element:  Element {: #:moonbeamelement:-element } 
+### :moonbeam-element:  Element {: #moonbeam-element-element } 
 Technical discussions and support are encouraged in our Element (formerly Riot) room that can be found [here](https://app.element.io/#/room/#moonbeam:matrix.org).
 
-### :fontawesome-brands-telegram-plane:  Telegram {: #:fontawesomebrandstelegramplane:-telegram } 
+### :fontawesome-brands-telegram-plane:  Telegram {: #fontawesome-brands-telegram-plane-telegram } 
 General information and other non-technical topics can be discussed in our Telegram group [here](https://t.me/Moonbeam_Official).
 
-### :fontawesome-brands-twitter:  Twitter {: #:fontawesomebrandstwitter:-twitter } 
+### :fontawesome-brands-twitter:  Twitter {: #fontawesome-brands-twitter-twitter } 
 Follow us on Twitter for regular updates: [@MoonbeamNetwork](https://twitter.com/MoonbeamNetwork).
 
-### :fontawesome-brands-youtube:  YouTube {: #:fontawesomebrandsyoutube:-youtube } 
+### :fontawesome-brands-youtube:  YouTube {: #fontawesome-brands-youtube-youtube } 
 For video-tutorials and related content, subscribe to our YouTube channel [here](https://www.youtube.com/c/MoonbeamNetwork).
 
-### :fontawesome-solid-envelope:  Newsletter {: #:fontawesomesolidenvelope:-newsletter } 
+### :fontawesome-solid-envelope:  Newsletter {: #fontawesome-solid-envelope-newsletter } 
 We send a monthly newsletter with project updates that you can sign up for [here](https://moonbeam.network/newsletter/).
 
 ## About This Site {: #about-this-site } 

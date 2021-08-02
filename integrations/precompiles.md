@@ -119,7 +119,7 @@ contract Hash256{
 ```
 Once the contract is deployed, we can call the `checkHash()` method that returns _true_ if the hash returned by `calculateHash()` is equal to the hash provided.
 
-## Hashing with RIPEMD-160 {: #hashing-with-ripemd160 } 
+## Hashing with RIPEMD-160 {: #hashing-with-ripemd-160 } 
 
 This hashing function returns a RIPEMD-160 hash from the given data. To test this precompile, you can use this [online tool](https://md5calc.com/hash/ripemd160) to calculate the RIPEMD-160 hash of any string. In our case, we'll do so again with `Hello World!`. We'll reuse the same code as before, but use the `ripemd160` function. Note that it returns a `bytes20` type variable:
 

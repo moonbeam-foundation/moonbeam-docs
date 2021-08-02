@@ -78,7 +78,7 @@ Another benefit of moving the author-checking execution to a pallet, rather than
 
 For example, the [relay-chain provided consensus](https://github.com/paritytech/cumulus/blob/master/client/consensus/relay-chain/src/lib.rs), [AuRa](https://crates.io/crates/sc-consensus-aura) and [BABE](https://crates.io/crates/sc-consensus-babe) each have their own custom executor. With Nimbus, these consensus mechanisms can reuse the same executor. The power of reusability is evidenced by the Nimbus implementation of AuRa in less than 100 lines of code.
 
-### Hot-Swapping Consensus {: #hotswapping-consensus } 
+### Hot-Swapping Consensus {: #hot-swapping-consensus } 
 
 Teams building parachains may want to change, tune, or adjust their consensus algorithm from time to time. Without nimbus, swapping consensus would require a client upgrade and hard fork.
 

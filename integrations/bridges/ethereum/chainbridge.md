@@ -82,7 +82,7 @@ This guide will go over two different examples of using the bridge to transfer t
 !!! note
     The bridge contract, ERC-20 handler contract, and ERC-721 handler contract addresses listed above are applicable for both Kovan and Rinkeby.
 
-### ERC-20 Token Transfer {: #erc20-token-transfer } 
+### ERC-20 Token Transfer {: #erc-20-token-transfer } 
 
 ERC-20 tokens that want to be moved through the bridge need to be registered by the relayers in the handler contract. Therefore, to test the bridge, we've deployed an ERC-20 token (ERC20S) where any user can mint 5 tokens:
 
@@ -211,7 +211,7 @@ Remember that you can also mint ERC20S tokens in Kovan and send them to Moonbase
 !!! note
     Tokens will be transferred only if the handler contract has enough allowance to spend tokens on behalf of the owner. If the process fails, check the allowance.
 
-### ERC-721 Token Transfer {: #erc721-token-transfer } 
+### ERC-721 Token Transfer {: #erc-721-token-transfer } 
 
 Similar to our previous example, ERC-721 tokens contracts need to be registered by the relayers to enable transfer through the bridge. Therefore, we've customized an ERC-721 token contract so that any user can mint a token to test the bridge out. However, as each token is non-fungible, and consequently unique, the mint function is only available in the Source chain token contract and not in the Target contract. In other words, ERC-721M tokens can only be minted on Moonbase Alpha and then transfered to Rinkeby or Kovan. The following diagram explains the workflow for this example, where it is important to highlight that the token ID and metadata is maintained.
 

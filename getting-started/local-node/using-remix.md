@@ -94,7 +94,7 @@ Drill down on the contract under “Deployed Contracts.” Clicking on name, sym
 
 ![Interact with the contract from Remix](/images/remix/using-remix-11.png)
 
-## Interacting with a Moonbeam-based ERC-20 from MetaMask {: #interacting-with-a-moonbeambased-erc20-from-metamask } 
+## Interacting with a Moonbeam-based ERC-20 from MetaMask {: #interacting-with-a-moonbeam-based-erc-20-from-metamask } 
 
 Now, open MetaMask to add the newly deployed ERC-20 tokens. Before doing so, make sure you have copied the contract's address from Remix. Back in MetaMask, click on “Add Token” as shown below. Make sure you are in the account that deployed the token contract.
 

@@ -54,7 +54,7 @@ As stated before, the relay/parachain nodes will listen on multiple ports. The d
 
 The only ports that need to be open for incoming traffic are those designated for P2P.
 
-### Default Ports for a Parachain Full-Node {: #default-ports-for-a-parachain-fullnode } 
+### Default Ports for a Parachain Full-Node {: #default-ports-for-a-parachain-full-node } 
 
 |  Description   |     |                Port                 |
 | :------------: | :-: | :---------------------------------: |

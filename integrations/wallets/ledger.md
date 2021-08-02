@@ -50,7 +50,7 @@ In the next screen, you are prompted to select which hardware wallet you'll like
 
 If MetaMask was able to connect successfully to your Ledger device, you should see a list of five Ethereum-styled accounts. On the contrary, double-check that Ledger Live is closed, you've connected your Ledger device to the computer, unlocked it, and that the Ethereum app is opened. If you are using Chrome, check these [additional steps](#chrome-browser).
 
-### Import Accounts
+### Import Accounts {: #import-accounts } 
 
 From this list of five Ethereum accounts, take the following steps:
 
@@ -69,7 +69,7 @@ You've now successfully imported a Moonbeam compatible account from your Ledger 
 
 As of Chrome version 91, users that want to connect their Ledger device to MetaMask must be running the latest version of Ledger Live (v2.29 at the time of writing). 
 
-### Enable Ledger Live Support in Metamask
+### Enable Ledger Live Support in Metamask {: #enable-ledger-live-support-in-metamask } 
 
 In MetaMask, take the following steps:
 
@@ -77,7 +77,7 @@ In MetaMask, take the following steps:
  2. Navigate to "Advanced"
  3. Enable the "Use Ledger Live" feature
 
-### Enable Device Access
+### Enable Device Access {: #enable-device-access } 
 
 Next, allow Ledger Live to connect to your device by following these steps:
 

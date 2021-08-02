@@ -15,7 +15,7 @@ Moonbeam's cross-chain integration is accomplished by becoming a [parachain](/re
 
 There are three main audiences who can most benefit from Moonbeam's cross-chain functionality:
 
-### Existing Ethereum-Based Projects {: #existing-ethereumbased-projects } 
+### Existing Ethereum-Based Projects {: #existing-ethereum-based-projects } 
 
 Projects that are struggling with cost and scalability challenges on Ethereum can use Moonbeam to: 
 

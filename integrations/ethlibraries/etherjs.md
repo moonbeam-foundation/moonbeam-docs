@@ -56,6 +56,6 @@ Moonriver:
   - ChainID: `{{ networks.moonriver.chain_id }}`
   - NETWORK_NAME: `{{ networks.moonriver.chain_spec }}`
 
-## Step-by-step Tutorials {: #stepbystep-tutorials } 
+## Step-by-step Tutorials {: #step-by-step-tutorials } 
 
 If you are interested in a more detailed step-by-step guide, you can go to our specific tutorials on using ethers.js on Moonbeam to [send a transaction](/getting-started/local-node/send-transaction/) or [deploy a contract](/getting-started/local-node/deploy-contract/).

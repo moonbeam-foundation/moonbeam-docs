@@ -60,7 +60,7 @@ Here you can configure MetaMask for the following networks:
     - Symbol (Optional): `MOVR`
     - Block Explorer (Optional): `{{ networks.moonriver.block_explorer }}`
 
-## Step-by-step Tutorials {: #stepbystep-tutorials } 
+## Step-by-step Tutorials {: #step-by-step-tutorials } 
 
 In the case that you are interested in more detailed, step-by-step guides to configure MetaMask to Moonbeam, you can go to our specific tutorials:
 

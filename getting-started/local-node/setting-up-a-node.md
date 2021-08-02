@@ -208,7 +208,7 @@ For example, when running the binary:
 ./target/release/moonbeam --dev --execution=Native --ethapi=debug,trace
 ```
 
-## Pre-funded Development Accounts {: #prefunded-development-accounts } 
+## Pre-funded Development Accounts {: #pre-funded-development-accounts } 
 
 Your Moonbeam development node comes with ten pre-funded accounts for development. The addresses are derived from Substrate's canonical development mnemonic: 
 
