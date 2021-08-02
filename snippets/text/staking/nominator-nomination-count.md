@@ -4,7 +4,7 @@ If you've never made a nomination from your address you can skip this section. H
 // Simple script to get your number of existing nominations.
 // Remember to replace YOUR_ADDRESS_HERE with your nominator address.
 const yourNominatorAccount = 'YOUR_ADDRESS_HERE'; 
-const nominatorInfo = await api.query.parachainStaking.nominatorState(yourNominatorAccount);
+const nominatorInfo = await api.query.parachainStaking.nominatorState2(yourNominatorAccount);
 console.log(nominatorInfo.toHuman()["nominations"].length);
 ```
 
