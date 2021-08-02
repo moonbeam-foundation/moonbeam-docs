@@ -18,7 +18,7 @@ This token is central to the design of Moonbeam and cannot be removed without sa
 
 In the Moonbeam deployment on Polkadot MainNet, this token will be called Glimmer, as in, “that smart contract call will cost 3 Glimmer.”  The token symbol will be GLMR.
 
-You can find more information about Glimmer [here](https://moonbeam.network/networks/moonbeam/glimmer-token/).
+You can find more information about Glimmer [here](https://moonbeam.foundation/glimmer-token/).
 
 ## Moonriver Token {: #moonriver-token } 
 

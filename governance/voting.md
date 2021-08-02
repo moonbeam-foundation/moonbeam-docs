@@ -76,8 +76,9 @@ Voting on Moonbeam is pretty straightforward. Everything related to governance l
 Here, you need to provide the following information:
 
  1. Select the account with which you want to vote
- 2. Enter the number of tokens that you want to vote with. These will be locked for the amount of time specified in the next step
+ 2. Enter the number of tokens that you want to vote with. These will be locked for the amount of time specified in the next step. Remember, you need to save a small amount of tokens for gas. If you try to vote with your entire balance the transaction will fail.
  3. Set the vote conviction, which determines its weight (`vote_weight = tokens * conviction_multiplier`). The conviction multiplier is related to the number of enactment periods the tokens will be locked for. Consequently, the longer you are willing to lock your tokens, the stronger your vote will be weighted. You also have the option of not locking tokens at all, but vote weight is drastically reduced (tokens are still locked during the duration of the referendum)
+ 4. Click on "Vote Aye" to approve the proposal or "Vote Nay" to disapprove the proposal, and then sign the transaction
 
    | Lock Periods |     | Conviction Multiplier |
    | :----------: | :-: | :-------------------: |
@@ -89,7 +90,6 @@ Here, you need to provide the following information:
    |      16      |     |           5           |
    |      32      |     |           6           |
 
- 4. Click on "Vote Aye" to approve the proposal or "Vote Nay" to disapprove the proposal, and then sign the transaction
 
 ![Vote Submission](/images/governance/governance-vote-2a.png)
 
