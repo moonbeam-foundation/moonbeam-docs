@@ -7,7 +7,7 @@ description:  Learn how to use OpenZeppelin Defender to manage smart contracts s
 
 ![OpenZeppelin Defender Banner](/images/openzeppelin/ozdefender-banner.png)
 
-## Introduction
+## Introduction {: #introduction } 
 
 OpenZeppelin Defender is a web-based application that allows developers to perform and automate smart contract operations in a secure way. Defender offers different components:
 
@@ -21,11 +21,11 @@ OpenZeppelin Defender can now be used on the Moonbase Alpha TestNet. This guide 
 
 For more information, the OpenZeppelin team has written a great [documentation site](https://docs.openzeppelin.com/defender/) for Defender.
 
-## Getting Started with Defender on Moonbase Alpha
+## Getting Started with Defender on Moonbase Alpha {: #getting-started-with-defender-on-moonbase-alpha } 
 
 This section goes through the steps for getting started with OpenZeppelin Defender on Moonbase Alpha.
  
-### Checking Prerequisites
+### Checking Prerequisites {: #checking-prerequisites } 
 
 The steps described in this section assume you have [MetaMask](https://metamask.io/) installed and connected to the Moonbase Alpha TestNet. If you haven't connected MetaMask to the TestNet, check out our [MetaMask integration guide](/integrations/wallets/metamask/).
 
@@ -73,7 +73,7 @@ contract PausableBox is Initializable, PausableUpgradeable, OwnableUpgradeable {
 }
 ```
 
-### Connecting Defender to Moonbase Alpha
+### Connecting Defender to Moonbase Alpha {: #connecting-defender-to-moonbase-alpha } 
 
 Once you have an OpenZeppelin Defender account, log into the [Defender App](https://defender.openzeppelin.com/). In the main screen, with MetaMask [connected to Moonbase Alpha](/getting-started/moonbase/metamask/) click on the top right corner "Connect wallet" button:
 
@@ -81,11 +81,11 @@ Once you have an OpenZeppelin Defender account, log into the [Defender App](http
 
 If successful, you should see your address and a text stating "Connected to Moonbase Alpha."
 
-## Using the Admin Component
+## Using the Admin Component {: #using-the-admin-component } 
 
 This section goes through the steps for getting started with OpenZeppelin Defender Admin component to manage smart contracts on Moonbase Alpha.
 
-### Importing your Contract
+### Importing your Contract {: #importing-your-contract } 
 
 The first step to using Defender Admin is to add the contract you want to manage. To do so, click on the "Add contract" button near the top right corner. This will take you to the "import contract" screen, where you need to:
 
@@ -102,7 +102,7 @@ If everything was successfully imported, you should see your contract in the Adm
 
 ![OpenZeppelin Defender Admin Contract Added](/images/openzeppelin/ozdefender-images3.png)
 
-### Create a Contract Proposal
+### Create a Contract Proposal {: #create-a-contract-proposal } 
 
 Proposals are actions to be carried out in the contract. At the time of writing, there are three main proposals/actions that can take place:
 
@@ -130,7 +130,7 @@ Once the proposal is successfully created, it should be listed in the contract's
 
 ![OpenZeppelin Defender Admin Contract Proposal List](/images/openzeppelin/ozdefender-images6.png)
 
-### Approve a Contract Proposal
+### Approve a Contract Proposal {: #approve-a-contract-proposal } 
 
 With the contract proposal created, the next step is to approve and execute it. To do so, go to the proposal and click on "Approve and Execute." 
 

@@ -7,7 +7,7 @@ description:  Learn how to use OpenZeppelin products on Moonbeam thanks to its E
 
 ![OpenZeppelin Banner](/images/openzeppelin/openzeppelin-banner.png)
 
-## Introduction
+## Introduction {: #introduction } 
 
 OpenZeppelin is well known in the Ethereum developer community as their set of audited smart contracts and libraries are a standard in the industry. For example, most of the tutorials that show developers how to deploy an ERC20 token use OpenZeppelin contracts.
 
@@ -15,7 +15,7 @@ You can find more information about OpenZeppelin in their [website](https://open
 
 As part of its Ethereum compatibility features, OpenZeppelin products can be seamlessly used on Moonbeam. This page will provide information on different OpenZeppelin solutions that you can test.
 
-## OpenZeppelin on Moonbeam
+## OpenZeppelin on Moonbeam {: #openzeppelin-on-moonbeam } 
 
 Currently, the following OpenZeppelin products/solutions work on the different networks available on Moonbeam:
 

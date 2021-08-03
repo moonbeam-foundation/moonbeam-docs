@@ -7,7 +7,7 @@ description: How to vote on a proposal so that it is enacted or rejected on Moon
 
 ![Governance Moonbeam Banner](/images/governance/governance-voting-banner.png)
 
-## Introduction
+## Introduction {: #introduction } 
 
 Once a proposal reaches public referenda, token holders can vote on it using their own tokens. Two factors defined the weight a vote has: the number of tokens locked and lock duration (called conviction). This is to ensure that there is an economic buy-in to the result to prevent vote-selling. Consequently, the longer you are willing to lock your tokens, the stronger your vote will be weighted. You also have the option of not locking tokens at all, but vote weight is drastically reduced.
 
@@ -22,7 +22,7 @@ More information related to [Governance](https://wiki.polkadot.network/docs/lear
 !!! note
     This guide was done with a customized version of Moonbeam with short Launch/Enactment periods for demonstration purposes only.
 
-## Definitions
+## Definitions {: #definitions } 
 
 Some of the key parameters for this guide are the following:
 
@@ -53,11 +53,11 @@ Some of the key parameters for this guide are the following:
 
 This guide will show you how to vote on a referendum on Moonbase Alpha.
 
-## Roadmap of a Proposal
+## Roadmap of a Proposal {: #roadmap-of-a-proposal } 
 
 --8<-- 'text/governance/roadmap.md'
 
-## Voting on a Referendum
+## Voting on a Referendum {: #voting-on-a-referendum } 
 
 This section goes over the process of voting on a referendum. The guide assumes that there is one already taking place, in this case, the one created in [this guide](/governance/proposals/).
 
@@ -67,7 +67,7 @@ To vote on a proposal in the network, you need to use the PolkadotJS Apps interf
 
 The proposal being voted will embed the remark "This is a unique string." on chain permanently.
 
-### How to Vote
+### How to Vote {: #how-to-vote } 
 
 Voting on Moonbeam is pretty straightforward. Everything related to governance lives under the "Democracy" tab, where (in the image) you can note that there is a `1`, indicating there is one democracy item pending (either proposals or referenda). Once there, you can view the details of the referendum you want to vote by clicking on the arrow next to the description. The number next to the action and description it is called the referendum index (in this case, it is 0). When ready, click on the "Vote" button.
 
@@ -76,8 +76,9 @@ Voting on Moonbeam is pretty straightforward. Everything related to governance l
 Here, you need to provide the following information:
 
  1. Select the account with which you want to vote
- 2. Enter the number of tokens that you want to vote with. These will be locked for the amount of time specified in the next step
+ 2. Enter the number of tokens that you want to vote with. These will be locked for the amount of time specified in the next step. Remember, you need to save a small amount of tokens for gas. If you try to vote with your entire balance the transaction will fail.
  3. Set the vote conviction, which determines its weight (`vote_weight = tokens * conviction_multiplier`). The conviction multiplier is related to the number of enactment periods the tokens will be locked for. Consequently, the longer you are willing to lock your tokens, the stronger your vote will be weighted. You also have the option of not locking tokens at all, but vote weight is drastically reduced (tokens are still locked during the duration of the referendum)
+ 4. Click on "Vote Aye" to approve the proposal or "Vote Nay" to disapprove the proposal, and then sign the transaction
 
    | Lock Periods |     | Conviction Multiplier |
    | :----------: | :-: | :-------------------: |
@@ -89,7 +90,6 @@ Here, you need to provide the following information:
    |      16      |     |           5           |
    |      32      |     |           6           |
 
- 4. Click on "Vote Aye" to approve the proposal or "Vote Nay" to disapprove the proposal, and then sign the transaction
 
 ![Vote Submission](/images/governance/governance-vote-2a.png)
 
@@ -115,7 +115,7 @@ After the voting period has expired, the proposal will be visible under the "Dis
 ![Proposal Enactment](/images/governance/governance-vote-4.png)
 
 
-### Delegate Voting
+### Delegate Voting {: #delegate-voting } 
 
 Token holders have the option to delegate their vote to another account whose opinion they trust. The account being delegated does not need to make any particular action. When they vote, the vote weight (that is, tokens times the conviction multiplier chose by the delegator) is added to its vote.
 
@@ -159,7 +159,7 @@ From vote delegation, there are some key takeaways:
  - A token holder that delegated tokens can't participate in public referendum. First, the token holder must undelegate his vote
  - A token holder that delegated tokens needs to manually unlock his locked tokens after the locking period has expired. For this, it is necessary to know the referendum index
 
-### Unlocking Locked Tokens
+### Unlocking Locked Tokens {: #unlocking-locked-tokens } 
 
 When token holders vote, the tokens used are locked and cannot be transferred. You can verify if you have any locked tokens in the "Accounts" tab, expanding the address's account details to query. There, you will see different types of balances (you can read more information about each type [here](https://wiki.polkadot.network/docs/build-protocol-info#free-vs-reserved-vs-locked-vs-vesting-balance)). If you hover over the icon next to "democracy," an information panel will show telling you the current status of your lock. Different lock status includes:
 
@@ -197,7 +197,7 @@ Once the transaction goes through, the locked tokens should be unlocked. To doub
 
 ![Check Balance](/images/governance/governance-vote-13.png)
 
-## Positive Turnout Bias
+## Positive Turnout Bias {: #positive-turnout-bias } 
 
 Public referenda use a positive turnout bias metric, that is, a super-majority approval formula. The equation is the following:
 

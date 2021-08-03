@@ -7,7 +7,7 @@ description: How to send a proposal to be voted on Moonbeam via governance featu
 
 ![Governance Moonbeam Banner](/images/governance/governance-proposal-banner.png)
 
-## Introduction
+## Introduction {: #introduction } 
 
 As mentioned in the [governance overview page](/governance/overview/#definitions), a proposal is a submission to the chain in which a token holder suggests for an action to be enacted by the system.
 
@@ -22,7 +22,7 @@ More information can be found in Polkadot's Wiki pages related to [Governance](h
 !!! note
     This guide was done with a customized version of Moonbeam with short Launch/Enactment periods for demonstration purposes only.
 
-## Definitions
+## Definitions {: #definitions } 
 
 Some of the key parameters for this guide are the following:
 
@@ -52,11 +52,11 @@ Some of the key parameters for this guide are the following:
 
 This guide will show you how to submit a proposal on Moonbase Alpha.
 
-## Roadmap of a Proposal
+## Roadmap of a Proposal {: #roadmap-of-a-proposal } 
 
 --8<-- 'text/governance/roadmap.md'
 
-## Proposing an Action
+## Proposing an Action {: #proposing-an-action } 
 
 This section goes over the process of creating a proposal, from a preimage until it reaches public referenda. Instead of making a generic example, this guide will actually create a real proposal that will serve as a base for this guide and others.
 
@@ -66,7 +66,7 @@ To make a proposal in the network, you need to use the PolkadotJS Apps interface
 
 This proposal is to make permanent on-chain the remark "This is a unique string."
 
-### Submitting a Preimage of the Proposal
+### Submitting a Preimage of the Proposal {: #submitting-a-preimage-of-the-proposal } 
 
 The first step is to submit a preimage of the proposal. This is because the storage cost of large preimages can be pretty hefty, as the preimage contains all the information regarding the proposal itself. With this configuration, one account with more funds can submit a preimage and another account can submit the proposal.
 
@@ -89,7 +89,7 @@ Here, you need to provide the following information:
 
 Note that the storage cost of the preimage is displayed at the bottom left corner of this window. After the transaction is submitted, you will see some confirmations on the top right corner of the PolkadotJS Apps interface, but nothing will have changed in the main democracy screen. However, don't worry. If the transaction is confirmed, the preimage has been submitted.
 
-### Submitting a Proposal
+### Submitting a Proposal {: #submitting-a-proposal } 
 
 Once you have committed the preimage (check the previous section), the roadmap's next major milestone is to submit the proposal related to it. To do so, in the main democracy screen, click on "Submit proposal."
 
@@ -111,7 +111,7 @@ After the transaction is submitted, you will see some confirmations on the top r
 
 ![Proposal listed](/images/governance/governance-proposal-systemremark-7.png)
 
-### Seconding a Proposal
+### Seconding a Proposal {: #seconding-a-proposal } 
 
 To second a proposal means that you agree with it and want to back it up with your tokens to help it reach public referenda. The amount of tokens to be locked is equal to the proposer's original deposit - no more, no less.
 

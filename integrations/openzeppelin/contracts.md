@@ -7,7 +7,7 @@ description:  Learn how to create common OpenZeppelin contracts with their Contr
 
 ![OpenZeppelin Contracts Banner](/images/openzeppelin/ozcontracts-banner.png)
 
-## Introduction
+## Introduction {: #introduction } 
 
 OpenZeppelin contracts and libraries have become a standard in the industry. They help developers minimize risk, as their open-source code templates are battle-tested for Ethereum and other blockchains. Their code includes the most used implementations of ERC standards and add-ons and often appears in guides and tutorials around the community.
 
@@ -15,7 +15,7 @@ Because Moonbeam is fully Ethereum compatible, all of OpenZeppelin's contracts a
 
 This guide is divided into two sections. The first part describes the OpenZeppelin Contracts Wizard, a great online tool to help you create smart contracts using OpenZeppelin code. The second section provides a step-by-step guide on how you can deploy these contracts on Moonbeam.
 
-## OpenZeppelin Contract Wizard
+## OpenZeppelin Contract Wizard {: #openzeppelin-contract-wizard } 
 
 OpenZeppelin has developed an online web-based interactive contract generator tool that is probably the easiest and fastest way to write your smart contract using OpenZeppelin code. The tool is called Contracts Wizard, and you can find it on their [documentation site](https://docs.openzeppelin.com/contracts/4.x/wizard).
 
@@ -43,7 +43,7 @@ The wizard is comprised of the following sections:
 
 Once you have set up your contract with all the settings and features, it is just as easy as copying and pasting the code into your contract file.
 
-## Deploying OpenZeppelin Contracts on Moonbeam
+## Deploying OpenZeppelin Contracts on Moonbeam {: #deploying-openzeppelin-contracts-on-moonbeam } 
 
 This section goes through the steps for deploying OpenZeppelin contracts on Moonbeam. It covers the following contracts:
 
@@ -53,14 +53,14 @@ This section goes through the steps for deploying OpenZeppelin contracts on Moon
 
 All the code of the contracts was obtained using OpenZeppelin [Contract Wizard](https://docs.openzeppelin.com/contracts/4.x/wizard).
  
-### Checking Prerequisites
+### Checking Prerequisites {: #checking-prerequisites } 
 
 The steps described in this section assume you have [MetaMask](https://metamask.io/) installed and connected to the Moonbase Alpha TestNet. Contract deployment is done using the [Remix IDE](https://remix.ethereum.org/) via the "Injected Web3" environment. You can find corresponding tutorials in the following links:
 
  - [Interacting with Moonbeam using MetaMask](/integrations/wallets/metamask/)
  - [Interacting with Moonbeam using Remix](/integrations/remix/)
 
-### Deploying an ERC20 Token
+### Deploying an ERC20 Token {: #deploying-an-erc20-token } 
 
 For this example, an ERC20 token will be deployed to Moonbase Alpha. The final code used combines different contracts from OpenZeppelin:
 
@@ -116,7 +116,7 @@ With the contract compiled, you are ready to deploy it taking the following step
 
 And that is it! You've deployed an ERC20 token contract using OpenZeppelin's contracts and libraries. Next, you can interact with your token contract via Remix, or add it to MetaMask.
 
-### Deploying an ERC721 Token
+### Deploying an ERC721 Token {: #deploying-an-erc721-token } 
 
 For this example, an ERC721 token will be deployed to Moonbase Alpha. The final code used combines different contracts from OpenZeppelin:
 
@@ -181,7 +181,7 @@ With the contract compiled, head to the "Deploy & Run Transactions" tab. In here
 
 And that is it! You've deployed an ERC721 token contract using OpenZeppelin's contracts and libraries. Next, you can interact with your token contract via Remix, or add it to MetaMask.
 
-### Deploying an ERC1155 Token
+### Deploying an ERC1155 Token {: #deploying-an-erc1155-token } 
 
 For this example, an ERC1155 token will be deployed to Moonbase Alpha. The final code used combines different contracts from OpenZeppelin:
 

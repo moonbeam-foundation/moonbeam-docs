@@ -7,7 +7,7 @@ description: How to run a full Parachain node for the Moonbeam Network to have y
 
 ![Full Node Moonbeam Banner](/images/fullnode/fullnode-banner.png)
 
-## Introduction
+## Introduction {: #introduction } 
 
 Running a full node on a Moonbeam-based network allows you to connect to the network, sync with a bootnode, obtain local access to RPC endpoints, author blocks on the parachain, and more.
 
@@ -24,7 +24,7 @@ This guide is meant for people with experience compiling [Substrate](https://sub
 !!! note
     Moonbase Alpha is still considered an Alphanet, and as such _will not_ have 100% uptime. The parachain _will_ be purged from time to time. During the development of your application, make sure you implement a method to redeploy your contracts and accounts to a fresh parachain quickly. Chain purges will be announced via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
 
-## Requirements
+## Requirements {: #requirements } 
 
 The minimum specs recommended to run a node are shown in the following table. For our Kusama and Polkadot MainNet deployments, disk requirements will be higher as the network grows.
 
@@ -48,13 +48,13 @@ The minimum specs recommended to run a node are shown in the following table. Fo
 !!! note
     If you don't see an `Imported` message (without the `[Relaychain]` tag) when running a node, you might need to double-check your port configuration.
 
-## Running Ports
+## Running Ports {: #running-ports } 
 
 As stated before, the relay/parachain nodes will listen on multiple ports. The default Substrate ports are used in the parachain, while the relay chain will listen on the next higher port.
 
 The only ports that need to be open for incoming traffic are those designated for P2P.
 
-### Default Ports for a Parachain Full-Node
+### Default Ports for a Parachain Full-Node {: #default-ports-for-a-parachain-full-node } 
 
 |  Description   |     |                Port                 |
 | :------------: | :-: | :---------------------------------: |
@@ -63,7 +63,7 @@ The only ports that need to be open for incoming traffic are those designated fo
 |     **WS**     |     |     {{ networks.parachain.ws }}     |
 | **Prometheus** |     | {{ networks.parachain.prometheus }} |
 
-### Default Ports of Embedded Relay Chain
+### Default Ports of Embedded Relay Chain {: #default-ports-of-embedded-relay-chain } 
 
 |  Description   |     |                 Port                  |
 | :------------: | :-: | :-----------------------------------: |
@@ -72,7 +72,7 @@ The only ports that need to be open for incoming traffic are those designated fo
 |     **WS**     |     |     {{ networks.relay_chain.ws }}     |
 | **Prometheus** |     | {{ networks.relay_chain.prometheus }} |
 
-## Installation Instructions - Docker
+## Installation Instructions - Docker {: #installation-instructions-docker } 
 
 A Moonbeam node can be spun up quickly using Docker. For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/). At the time of writing, the Docker version used was 19.03.6. When connecting to Moonriver on Kusama, it will take a few days to completely sync the embedded Kusama relay chain. Make sure that your system meets the [requirements](#requirements).
 
@@ -110,7 +110,7 @@ Next, make sure you set the ownership and permissions accordingly for the local 
 
 Now, execute the docker run command. If you are setting up a collator node, make sure to follow the code snippets for "Collator". Note that you have to replace `YOUR-NODE-NAME` in two different places.
 
-### Full Node
+### Full Node {: #full-node } 
 
 === "Moonbase Alpha"
     ```
@@ -146,7 +146,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
-### Collator
+### Collator {: #collator } 
 
 === "Moonbase Alpha"
     ```
@@ -213,13 +213,13 @@ If you followed the installation instructions for Moonbase Alpha, once synced, y
 
 If you followed the installation instructions for Moonriver, once synced, you will be connected to peers and see blocks being produced on the Moonriver network! Note that in this case you need to also sync to the Kusama relay chain, which might take a few days.
 
-## Installation Instructions - Binary
+## Installation Instructions - Binary {: #installation-instructions-binary } 
 
 This section goes through the process of using the release binary and running a Moonbeam full node as a systemd service. The following steps were tested on an Ubuntu 18.04 installation. Moonbeam may work with other Linux flavors, but Ubuntu is currently the only tested version.
 
 To manually build the binaries yourself, check out the [Compile Moonbeam Binary](/node-operators/networks/compile-binary) guide.
 
-### Use the Release Binary
+### Use the Release Binary {: #use-the-release-binary } 
 
 There are a couple ways to get started with the Moonbeam binary. You can compile the binary yourself, but the whole process can take around 30 minutes to install the dependencies and build the binary. If you're interested in going this route, check out the [Compile the Binary](/) page of our documentation.
 
@@ -252,7 +252,7 @@ To verify that you have downloaded the correct version, you can run `sha256sum m
 
 Once you've retrieved the binary, you can use it to run the systemd service.
 
-### Running the Systemd Service
+### Running the Systemd Service {: #running-the-systemd-service } 
 
 The following commands will set up everything regarding running the service.
 
@@ -301,7 +301,7 @@ The next step is to create the systemd configuration file. If you are setting up
  - Double-check the base path if you've used a different directory
  - Name the file `/etc/systemd/system/moonbeam.service`
 
-#### Full Node
+#### Full Node {: #full-node } 
 
 === "Moonbase Alpha"
     ```
@@ -372,7 +372,7 @@ The next step is to create the systemd configuration file. If you are setting up
     [Install]
     WantedBy=multi-user.target
     ```
-#### Collator
+#### Collator {: #collator } 
 
 === "Moonbase Alpha"
     ```
@@ -472,11 +472,11 @@ journalctl -f -u moonbeam.service
 
 ![Service Logs](/images/fullnode/fullnode-binary2.png)
 
-## Advanced Flags and Options
+## Advanced Flags and Options {: #advanced-flags-and-options } 
 
 --8<-- 'text/setting-up-node/advanced-flags.md'
 
-## Updating the Client
+## Updating the Client {: #updating-the-client } 
 
 As Moonbeam development continues, it will sometimes be necessary to upgrade your node software. Node operators will be notified on our [Discord channel](https://discord.gg/PfpUATX) when upgrades are available and whether they are necessary (some client upgrades are optional). The upgrade process is straightforward and is the same for a full node or collator.
 
@@ -490,7 +490,7 @@ sudo systemctl stop moonbeam
 
 Then, install the new version by repeating the steps described before, making sure that you are using the latest tag available. After updating, you can start the service again.
 
-### Purging the Chain
+### Purging the Chain {: #purging-the-chain } 
 
 Occasionally Moonbase Alpha might be purged and reset around major upgrades. As always, node operators will be notified in advance (via our [Discord channel](https://discord.gg/PfpUATX)) if this upgrade is accompanied by a purge. You can also purge your node if your individual data directory becomes corrupted.
 
@@ -510,7 +510,7 @@ sudo rm -rf {{ networks.moonbase.node_directory }}/*
 
 Lastly, install the newest version by repeating the steps described before, making sure you are using the latest tag available. If so, you can start a new node with a fresh data directory.
 
-## Telemetry
+## Telemetry {: #telemetry } 
 
 To enable your Moonbase Alpha or Moonriver node's telemetry server, you can follow [this tutorial](/node-operators/networks/telemetry/).
 
@@ -518,19 +518,19 @@ Running telemetry on a full node is not necessary. However, it is a requirement 
 
 Also, you can check out current [Moonbase Alpha telemetry](https://telemetry.polkadot.io/#list/Moonbase%20Alpha) and [Moonriver telemetry](https://telemetry.polkadot.io/#list/Moonriver) data.
 
-## Logs and Troubleshooting
+## Logs and Troubleshooting {: #logs-and-troubleshooting } 
 
 You will see logs from both the relay chain as well as the parachain. The relay chain will be prefixed by `[Relaychain]`, while the parachain has no prefix.
 
-### P2P Ports Not Open
+### P2P Ports Not Open {: #p2p-ports-not-open } 
 
 If you don't see an `Imported` message (without the `[Relaychain]` tag), you need to check the P2P port configuration. P2P port must be open to incoming traffic.
 
-### In Sync
+### In Sync {: #in-sync } 
 
 Both chains must be in sync at all times, and you should see either `Imported` or `Idle` messages and have connected peers.
 
-### Genesis Mismatching
+### Genesis Mismatching {: #genesis-mismatching } 
 
 The Moonbase Alpha TestNet is often upgraded. Consequently, you may see the following message:
 

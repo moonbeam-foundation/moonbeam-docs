@@ -8,7 +8,7 @@ description: Follow this tutorial to learn how to set up your first Moonbeam nod
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/p_0OAHSlHNM' frameborder='0' allowfullscreen></iframe></div>
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>You can find all of the relevant code for this tutorial on the <a href="{{ config.site_url }}resources/code-snippets/">code snippets page</a></div>
 
-## Introduction
+## Introduction {: #introduction } 
 
 This guide outlines the steps needed to create a development node for testing the Ethereum compatibility features of Moonbeam.
 
@@ -22,7 +22,7 @@ If you follow to the end of this guide, you will have a Moonbeam development nod
 
 There are two ways to get started running a Moonbeam node: you can use [Docker to run a pre-built binary](#getting-started-with-docker) or you can [compile the binary locally](#getting-started-with-the-binary-file) and set up a development node yourself. Using Docker is a quick and convenient way to get started as you won't have to install Substrate and all the dependencies, and you can skip the building the node process as well. It does require you to [install Docker](https://docs.docker.com/get-docker/). On the other hand, if you decide you want to go through the process of building your own development node, it could take roughly 30 minutes or longer to complete depending on your hardware.
 
-## Getting Started with Docker
+## Getting Started with Docker {: #getting-started-with-docker } 
 
 Using Docker enables you to spin up a node in a matter of seconds. Once you have Docker installed, then you can execute the following command to download the corresponding image:
 
@@ -74,7 +74,7 @@ purestake/moonbeam \
 
 To continue on with the tutorial, the next section is not necessary as you've already spun up a node with Docker. You can skip ahead to [Connecting Polkadot JS Apps to a Local Moonbeam Node](#connecting-polkadot-js-apps-to-a-local-moonbeam-node).
 
-## Getting Started with the Binary File
+## Getting Started with the Binary File {: #getting-started-with-the-binary-file } 
 
 !!! note
     If you know what you are doing, you can directly download the precompiled binaries attached to each release on the [Moonbeam-release page](https://github.com/PureStake/moonbeam/releases). These will not work in all systems. For example, the binaries only work with x86-64 Linux with specific versions of dependencies. The safest way to ensure compatibility is to compile the binary in the system where it will be run from.
@@ -131,7 +131,7 @@ For more information on some of the flags and options used in the example, check
 ```
 ./target/release/moonbeam --help
 ```
-## Connecting Polkadot JS Apps to a Local Moonbeam Node
+## Connecting Polkadot JS Apps to a Local Moonbeam Node {: #connecting-polkadot-js-apps-to-a-local-moonbeam-node } 
 
 The development node is a Substrate-based node, so you can interact with it using standard Substrate tools. The two provided RPC endpoints are:
 
@@ -150,15 +150,15 @@ With Polkadot JS Apps connected, you will see the Moonbeam development node wait
 
 ![Select Local Node](/images/setting-up-a-node/setting-up-node-7.png)
 
-## Querying Account State
+## Querying Account State {: #querying-account-state } 
 
 With the release of [Moonbase Alpha v3](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/), Moonbeam now works under a single account format, which is the Ethereum-styled H160 and is now also supported in Polkadot JS Apps. To check the balance of an address, you can simply import your account in the Accounts tab. You can find more information in the [Unified Accounts](/learn/unified-accounts/) section.
  
 Nevertheless, leveraging the Ethereum full RPC capabilities of Moonbeam, you can use [MetaMask](/getting-started/local-node/using-metamask/) to check the balance of that address as well. In addition, you can also use other development tools, such as [Remix](/getting-started/local-node/using-remix/) and [Truffle](/getting-started/local-node/using-truffle/).
 
-## Common Commands, Flags and Options
+## Common Commands, Flags and Options {: #common-commands-flags-and-options } 
 
-### Purging the Chain
+### Purging the Chain {: #purging-the-chain } 
 
 When running a node via the binary file, data is stored in a local directory typically located in `~/.local/shared/moonbeam/chains/development/db`. If you want to start a fresh instance of the node, you can either delete the content of the folder, or run the following command inside the `moonbeam` folder:
 
@@ -169,7 +169,7 @@ When running a node via the binary file, data is stored in a local directory typ
 This will remove the data folder, note that all chain data is now lost.
 
 If you used Docker, the data folder is related to the Docker container itself.
-### Node Flags
+### Node Flags {: #node-flags } 
 
 Flags do not take an argument. To use a flag, add it to the end of a command. For example:
 
@@ -183,7 +183,7 @@ Flags do not take an argument. To use a flag, add it to the end of a command. Fo
 - `--rpc-external`: Listen to all RPC interfaces
 - `--ws-external`: Listen to all Websocket interfaces
 
-### Node Options
+### Node Options {: #node-options } 
 
 Options accept an argument to the right side of the option. For example:
 
@@ -198,7 +198,7 @@ Options accept an argument to the right side of the option. For example:
 
 For a complete list of flags and options, spin up your Moonbeam development node with `--help` added to the end of the command.
 
-## Advanced Flags and Options
+## Advanced Flags and Options {: #advanced-flags-and-options } 
 
 --8<-- 'text/setting-up-node/advanced-flags.md'
 
@@ -208,7 +208,7 @@ For example, when running the binary:
 ./target/release/moonbeam --dev --execution=Native --ethapi=debug,trace
 ```
 
-## Pre-funded Development Accounts
+## Pre-funded Development Accounts {: #pre-funded-development-accounts } 
 
 Your Moonbeam development node comes with ten pre-funded accounts for development. The addresses are derived from Substrate's canonical development mnemonic: 
 

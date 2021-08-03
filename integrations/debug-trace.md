@@ -7,7 +7,7 @@ description:  Learn how to leverage the Geth Debug API and OpenEthereum Trace mo
 
 ![Full Node Moonbeam Banner](/images/debugtrace/debugtrace-banner.png)
 
-## Introduction
+## Introduction {: #introduction } 
 
 Both Geth's debug API and OpenEthereum's trace module provide non-standard RPC methods for getting a deeper insight into transaction processing.
 
@@ -20,7 +20,7 @@ Both calls are quite heavy on the node's side. Therefore, it is required to make
  - **Moonbeam development node** — run your own Moonbeam instance in your private environment. To do so, you can follow [this guide](/getting-started/local-node/setting-up-a-node/). Make sure to check the [advanced flags section](/getting-started/local-node/setting-up-a-node/#advanced-flags-and-options)
  - **Moonbase Alpha node** — run a full node of the TestNet and access your own private endpoints. To do so, you can follow [this guide](/node-operators/networks/full-node/). Make sure to check the [advanced flags section](/node-operators/networks/full-node/#advanced-flags-and-options)
 
-## Geth Debug API
+## Geth Debug API {: #geth-debug-api } 
 
 The `debug_traceTransaction` RPC implementation follows [Geth's debug API guidelines](https://geth.ethereum.org/docs/rpc/ns-debug#debug_tracetransaction).
 
@@ -32,7 +32,7 @@ The RPC method requires the transaction hash to run. As optional parameters you 
 
 JavaScript based transaction tracing is not supported at the moment.
 
-## Trace Module
+## Trace Module {: #trace-module } 
 
 The `trace_filter` RPC implementation follows [OpenEthereum's trace module guidelines](https://openethereum.github.io/JSONRPC-trace-module#trace_filter).
 
@@ -45,7 +45,7 @@ The RPC method requires any of the following *optional* parameters:
  - **after**(*uint* offset) — default offset is `0`. Trace offset (or starting) number
  - **count**(*uint* numberOfTraces) — number of traces to display in a batch
 
-## Try it on Moonbase Alpha
+## Try it on Moonbase Alpha {: #try-it-on-moonbase-alpha } 
 
 As mentioned before, to use both features you need to have a node running with the `debug` and `trace` flags. For this example, a local Moonbase Alpha full node is used, with the RPC HTTP endpoint at `http://127.0.0.1:9933`. If you have a running node, you should see a similar terminal log:
 

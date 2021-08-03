@@ -1,10 +1,22 @@
-### HTTPS DNS
+The Moonbase Alpha RPC and WSS endpoints hosted by PureStake are for development purposes only and are not meant to be used in production applications. The following are alternative endpoint providers:
+
+- [OnFinality](https://onfinality.io/)
+- [Elara](https://elara.patract.io/)
+
+
+### HTTPS DNS {: #https-dns } 
 
 To connect to Moonbase Alpha via HTTPS, simply point your provider to the following RPC DNS:
 
-```
-https://rpc.testnet.moonbeam.network
-```
+=== "PureStake"
+    ```
+    https://rpc.testnet.moonbeam.network
+    ```
+
+=== "OnFinality"
+    ```
+    https://moonbeam-alpha.api.onfinality.io/public
+    ```
 
 For the web3.js library, you can create a local Web3 instance and set the provider to connect to Moonbase Alpha (both HTTP and WS are supported):
 
@@ -32,19 +44,30 @@ const provider = new ethers.providers.StaticJsonRpcProvider(providerURL, {
 
 Any Ethereum wallet should be able to generate a valid address for Moonbeam (for example, [MetaMask](https://metamask.io/)).
 
-### WSS DNS
+### WSS DNS {: #wss-dns } 
 
 For WebSocket connections, you can use the following DNS:
 
-```
-wss://wss.testnet.moonbeam.network
-```
+=== "PureStake"
+    ```
+    wss://wss.testnet.moonbeam.network
+    ```
 
-### Chain ID
+=== "OnFinality"
+    ```
+    wss://moonbeam-alpha.api.onfinality.io/public-ws
+    ```
+
+=== "Elara"
+    ```
+    wss://moonbase.moonbeam.elara.patract.io
+    ```
+
+### Chain ID {: #chain-id } 
 
 For the Moonbase Alpha TestNet the chain ID is: `1287`.
 
-### Relay Chain
+### Relay Chain {: #relay-chain } 
 
 To connect to the Moonbase Alpha relay chain, managed by PureStake, you can use the following WS Endpoint:
 

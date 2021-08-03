@@ -5,12 +5,12 @@ description: The Moonbeam TestNet, nicknamed Moonbase Alpha, is the easiest way 
 
 # Connect to Moonbase Alpha
 
-## Introduction
+## Introduction {: #introduction } 
 
 Moonbase Alpha has two endpoints available for users to connect to: one for HTTPS and one for WSS.
 
 --8<-- 'text/testnet/connect.md'
 
-## Get Tokens
+## Get Tokens {: #get-tokens } 
 
 To start building on Moonbase Alpha, you can get DEV tokens from our [faucet](/getting-started/moonbase/faucet/).

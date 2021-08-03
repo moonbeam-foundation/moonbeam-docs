@@ -6,7 +6,7 @@ description: An overview of the currently available block explorers that may be 
 
 ![Explorer Banner](/images/explorers/explorers-banner.png)
 
-## Introduction 
+## Introduction {: #introduction } 
 
 Block explorers can be thought of as search engines for the blockchain. They allow users to search information such as balances, contracts, and transactions. More advanced block explorers even offer indexing capabilities, which enable them to provide a complete set of information, such as ERC20 tokens in the network. They might even offer API services to access it via external services.
 
@@ -15,9 +15,9 @@ Moonbeam provides two different sets of explorers: one to query the Ethereum API
 !!! note
     If you are using Brave Browser and your explorer is not connecting to the Moonbeam instance you are pointing it to, try disabling Brave Shield.
 
-## Ethereum API
+## Ethereum API {: #ethereum-api } 
 
-### Expedition (Dev Node - TestNet)
+### Expedition (Dev Node - TestNet) {: #expedition-dev-node-testnet } 
 
 A Moonbeam-themed version of the [Expedition](https://github.com/etclabscore/expedition) explorer can be found in [this link](https://moonbeam-explorer.netlify.app/).
 
@@ -29,7 +29,7 @@ By default, the explorer is connected to the Moonbase Alpha TestNet. However, yo
 
 ![Expedition Explorer](/images/explorers/explorers-images-1.png)
 
-### Blockscout (TestNet)
+### Blockscout (TestNet) {: #blockscout-testnet } 
 
 Blockscout provides an easy-to-use interface for users to inspect and confirm transactions on EVM blockchains, including Moonbeam. It allows you to search transactions, view accounts, and balances, and verify smart contracts. More information can be found in their [documentation site](https://docs.blockscout.com/).
 
@@ -45,9 +45,9 @@ An instance of Blockscout running against the Moonbase Alpha TestNet can be foun
 
 ![Blockscout Explorer](/images/explorers/explorers-images-2.png)
 
-## Substrate API
+## Substrate API {: #substrate-api } 
 
-### PolkadotJS (Dev Node - TestNet)
+### PolkadotJS (Dev Node - TestNet) {: #polkadotjs-dev-node-testnet } 
 
 Polkadot JS Apps uses the WebSocket endpoint to interact with the Network. To connect it to a Moonbeam development node, you can follow the steps in [this tutorial](/getting-started/local-node/setting-up-a-node/#connecting-polkadot-js-apps-to-a-local-moonbeam-node). The default port for this is `9944`.
 
@@ -57,7 +57,7 @@ To view and interact with Moonbase Alpha's substrate layer, go to [this URL](htt
 
 ![Polkadot JS Moonbase Alpha](/images/explorers/explorers-images-4.png)
 
-### Subscan
+### Subscan {: #subscan } 
 
 Subscan provides blockchain explorer capabilities for Substrate-based chains. It is capable of parsing standard or custom modules. For example, this is useful to display information regarding the Staking, Governance, and EVM pallets (or modules). Code is all open-source and can be found [here](https://github.com/itering/subscan-essentials).
 

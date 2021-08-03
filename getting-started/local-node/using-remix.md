@@ -8,7 +8,7 @@ description: Learn how to use one of the most popular Ethereum developer tools, 
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/RT_f1-ga_n4' frameborder='0' allowfullscreen></iframe></div>
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>You can find all of the relevant code for this tutorial on the <a href="{{ config.site_url }}resources/code-snippets/">code snippets page</a></div>
 
-## Introduction
+## Introduction {: #introduction } 
 
 Remix is one of the commonly used development environments for smart contracts on Ethereum. Given Moonbeam’s Ethereum compatibility features, Remix can be used directly with a Moonbeam development node or the Moonbase Alpha TestNet.
 
@@ -18,7 +18,7 @@ This guide walks through the process of creating and deploying a Solidity-based 
     This tutorial was created using the {{ networks.development.build_tag}} tag which is based on the {{ networks.moonbase.version }} release of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/{{ networks.moonbase.version }}). The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility are still under very active development.
 
 This guide assumes that you have a local Moonbeam node running in `--dev` mode and that you have a [MetaMask](https://metamask.io/) installation configured to use this local node. You can find instructions for running a local Moonbeam node [here](/getting-started/local-node/setting-up-a-node/) and instructions to connect MetaMask to it [here](/getting-started/local-node/using-metamask/).
-## Checking Prerequisites
+## Checking Prerequisites {: #checking-prerequisites } 
 
 If you followed the guides above, you should have a local Moonbeam node which will begin to author blocks as transactions arrive:
 
@@ -31,7 +31,7 @@ And you should have a MetaMask installation connected to your local Moonbeam dev
 !!! note
     Make sure you are connected to your Moonbeam node and not another network!
 
-## Getting Started with Remix
+## Getting Started with Remix {: #getting-started-with-remix } 
 
 Now, let’s fire up Remix to exercise more advanced functionalities in Moonbeam.
 
@@ -61,7 +61,7 @@ Now, navigate to the compile sidebar option to press the “Compile MyToken.sol�
 
 You will see Remix download all of the Open Zeppelin dependencies and compile the contract.
 
-## Deploying a Contract to Moonbeam Using Remix
+## Deploying a Contract to Moonbeam Using Remix {: #deploying-a-contract-to-moonbeam-using-remix } 
 
 Now we can deploy the contract by navigating to the Deployment sidebar option. You need to change the topmost “Environment” dropdown from “JavaScript VM” to “Injected Web3.” This tells Remix to use the MetaMask injected provider, which will point it to your Moonbeam development node. If you wanted to try this using the Moonbase Alpha TestNet, you would have to connect MetaMask to the TestNet instead of your local development node.
 
@@ -94,7 +94,7 @@ Drill down on the contract under “Deployed Contracts.” Clicking on name, sym
 
 ![Interact with the contract from Remix](/images/remix/using-remix-11.png)
 
-## Interacting with a Moonbeam-based ERC-20 from MetaMask
+## Interacting with a Moonbeam-based ERC-20 from MetaMask {: #interacting-with-a-moonbeam-based-erc-20-from-metamask } 
 
 Now, open MetaMask to add the newly deployed ERC-20 tokens. Before doing so, make sure you have copied the contract's address from Remix. Back in MetaMask, click on “Add Token” as shown below. Make sure you are in the account that deployed the token contract.
 
