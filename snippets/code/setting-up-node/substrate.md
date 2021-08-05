@@ -1,1 +1,1 @@
-curl https://getsubstrate.io -sSf | bash -s -- --fast
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh

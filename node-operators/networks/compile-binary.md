@@ -30,13 +30,19 @@ Let's check out the latest release:
 git checkout tags/$(git tag | tail -1)
 ```
 
-Next, install a Substrate development environment, including Rust, by executing:
+Next, install Rust and all its prerequisites by executing:
 
 ```
 --8<-- 'code/setting-up-node/substrate.md'
 ```
 
-Lastly, build parachain binary:
+Next, update your PATH environment variable by running:
+
+```
+--8<-- 'code/setting-up-node/cargoerror.md'
+```
+
+Lastly, build the parachain binary:
 
 ```
 cargo build --release
@@ -44,10 +50,5 @@ cargo build --release
 
 ![Compiling Binary](/images/fullnode/compile-binary1.png)
 
-If a _cargo not found error_ shows up in the terminal, manually add Rust to your system path or restart your system:
-
-```
---8<-- 'code/setting-up-node/cargoerror.md'
-```
 
 Now you can use the Moonbeam binary to [run a systemd service](/node-operators/networks/full-node/#running-the-systemd-service).
