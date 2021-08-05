@@ -5,7 +5,7 @@ description: An overview of the current configuration of the Moonbeam deployment
 
 # Moonriver
 
-_Updated July 29th, 2021_
+_Updated August 5th, 2021_
 
 ## Goal {: #goal } 
 
@@ -15,7 +15,7 @@ In order to collect as much feedback as possible and provide fast issue resoluti
 
 ## Initial Configurations {: #initial-configurations } 
 
-Moonriver is scheduled to follow a [5-phase launch process](https://moonbeam.network/networks/moonriver/launch/). Currently, Moonriver is in Phase 2 of the launch process and has the following configurations:
+Moonriver is scheduled to follow a [5-phase launch process](https://moonbeam.network/networks/moonriver/launch/). Currently, Moonriver is in Phase 3 of the launch process and has the following configurations:
 
 - Runs as a parachain connected to the Kusama relay chain
 - Has an active set of {{ networks.moonriver.staking.max_collators }} collators
