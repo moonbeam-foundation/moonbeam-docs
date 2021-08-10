@@ -91,7 +91,7 @@ cd moonbeam
 Second, install Rust and all its prerequisites by executing:
 
 ```
---8<-- 'code/setting-up-node/substrate.md'
+--8<-- 'code/setting-up-node/installrust.md'
 ```
 
 Next, update your PATH environment variable by running:
