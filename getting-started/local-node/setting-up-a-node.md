@@ -88,7 +88,7 @@ git clone -b {{ networks.development.build_tag }} https://github.com/PureStake/m
 cd moonbeam
 ```
 
-Second, install Rust and all its prerequisites by executing:
+Second, install Rust and its prerequisites [via Rust's recommended method](https://www.rust-lang.org/tools/install){target=_blank} by executing:
 
 ```
 --8<-- 'code/setting-up-node/installrust.md'

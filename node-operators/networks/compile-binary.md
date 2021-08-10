@@ -30,7 +30,7 @@ Let's check out the latest release:
 git checkout tags/$(git tag | tail -1)
 ```
 
-Next, install Rust and all its prerequisites by executing:
+Next, install Rust and its prerequisites [via Rust's recommended method](https://www.rust-lang.org/tools/install){target=_blank} by executing:
 
 ```
 --8<-- 'code/setting-up-node/installrust.md'
