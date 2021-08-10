@@ -39,7 +39,7 @@ Next, install Rust and all its prerequisites by executing:
 Next, update your PATH environment variable by running:
 
 ```
---8<-- 'code/setting-up-node/cargoerror.md'
+--8<-- 'code/setting-up-node/updatepath.md'
 ```
 
 Lastly, build the parachain binary:

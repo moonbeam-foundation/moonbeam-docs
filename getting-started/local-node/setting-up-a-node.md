@@ -97,7 +97,7 @@ Second, install Rust and all its prerequisites by executing:
 Next, update your PATH environment variable by running:
 
 ```
---8<-- 'code/setting-up-node/cargoerror.md'
+--8<-- 'code/setting-up-node/updatepath.md'
 ```
 
 Now, build the development node by running:
