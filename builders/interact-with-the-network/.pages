@@ -1,0 +1,14 @@
+title: Interact with the Network
+nav:
+ - index.md
+ - ethereum-libraries
+ - send-a-transaction.md
+ - openzeppelin
+ - precompiled-contracts.md
+ - events-subscription.md
+ - debug-trace.md
+ - block-explorers.md
+ - bridges
+ - indexers
+ - oracles
+ - integrate-metamask-into-a-dapp.md
