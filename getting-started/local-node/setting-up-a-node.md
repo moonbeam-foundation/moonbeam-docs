@@ -88,7 +88,7 @@ git clone -b {{ networks.development.build_tag }} https://github.com/PureStake/m
 cd moonbeam
 ```
 
-Second, install Rust and its prerequisites [via Rust's recommended method](https://www.rust-lang.org/tools/install){target=_blank} by executing:
+If you already have Rust installed, you can skip the next two steps. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://www.rust-lang.org/tools/install){target=_blank} by executing:
 
 ```
 --8<-- 'code/setting-up-node/installrust.md'
@@ -104,6 +104,11 @@ Now, build the development node by running:
 
 ```
 --8<-- 'code/setting-up-node/build.md'
+```
+
+If a _cargo not found error_ shows up in the terminal, manually add Rust to your system path or restart your system:
+```
+--8<-- 'code/setting-up-node/updatepath.md'
 ```
 
 !!! note
