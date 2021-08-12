@@ -1,14 +1,10 @@
-title: Interact with the Network
+title: Interact
 nav:
  - index.md
  - eth-libraries
- - send-transaction.md
- - openzeppelin
- - precompiled-contracts.md
- - events-subscription.md
- - debug-trace.md
- - explorers.md
- - bridges
- - indexers
- - oracles
+ - remix.md
+ - oz-remix.md
+ - hardhat.md
+ - truffle.md
+ - waffle-mars.md
  - metamask-dapp.md

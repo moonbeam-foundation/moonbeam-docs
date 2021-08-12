@@ -3,5 +3,6 @@ hide: false
 nav:
     - index.md
     - get-started
-    - deploy
     - interact
+    - tools
+    - integrations

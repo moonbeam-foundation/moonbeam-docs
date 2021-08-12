@@ -1,6 +1,5 @@
-title: Ethereum Libraries
+title: Using Ethereum Libraries
 nav:
  - index.md
- - ethers.js.md
- - web3.js.md 
- - web3.py.md
+ - send-transaction.md
+ - deploy-contract.md
