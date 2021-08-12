@@ -30,7 +30,7 @@ Let's check out the latest release:
 git checkout tags/$(git tag | tail -1)
 ```
 
-Next, install Rust and its prerequisites [via Rust's recommended method](https://www.rust-lang.org/tools/install){target=_blank} by executing:
+If you already have Rust installed, you can skip the next two steps. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://www.rust-lang.org/tools/install){target=_blank} by executing:
 
 ```
 --8<-- 'code/setting-up-node/installrust.md'
@@ -50,5 +50,9 @@ cargo build --release
 
 ![Compiling Binary](/images/fullnode/compile-binary1.png)
 
+If a _cargo not found error_ shows up in the terminal, manually add Rust to your system path or restart your system:
+```
+--8<-- 'code/setting-up-node/updatepath.md'
+```
 
 Now you can use the Moonbeam binary to [run a systemd service](/node-operators/networks/full-node/#running-the-systemd-service).
