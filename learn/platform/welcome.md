@@ -52,12 +52,12 @@ Because of Moonbeam's Ethereum compatibility features, you can use the developme
  - [Remix](/builders/deploy-a-contract/using-remix/)
  - [OpenZeppelin and Remix](/builders/deploy-a-contract/using-openzeppelin-and-remix/)
  - [HardHat](/builders/interact/hardhat/)
- - [Truffle](/integrations/trufflebox/)
+ - [Truffle](/builders/interact/truffle/)
  - [Waffle and Mars](/builders/deploy-a-contract/using-waffle-and-mars/)
 
 Want another Ethereum tool listed here? [Let us know!](https://discord.gg/PfpUATX)
 
-### Interact with the Network {: #interact-with-the-network } 
+### Tools and Integrations {: #tools-and-integrations } 
 
  - [Web3.js](/builders/tools/eth-libraries/web3js/)
  - [Ethers.js](/builders/tools/eth-libraries/etherjs/)
