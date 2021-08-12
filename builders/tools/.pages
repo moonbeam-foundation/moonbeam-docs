@@ -9,6 +9,6 @@ nav:
  - waffle.md
  - mars.md
  - explorers.md
- - precompiled-contracts.md
- - events-subscription.md
+ - precompiles.md
+ - pubsub.md
  - debug-trace.md
