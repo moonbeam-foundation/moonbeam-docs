@@ -8,6 +8,6 @@ nav:
  - networks
  - technology.md
  - tokens.md
- - source-code.md
- - important-links.md
+ - code.md
+ - links.md
  - glossary.md

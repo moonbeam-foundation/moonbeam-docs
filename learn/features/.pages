@@ -3,8 +3,8 @@ nav:
   - index.md
   - eth-compatibility.md
   - unified-accounts.md
-  - cross-chain-integration.md
+  - xchain-plans.md
   - staking.md
   - governance.md
   - treasury.md
-  - parachain-consensus.md
+  - consensus.md
