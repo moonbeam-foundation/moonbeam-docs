@@ -48,7 +48,7 @@ The Graph uses the events emitted by the contract to index data. The lottery con
 
 ## Creating a Subgraph {: #creating-a-subgraph } 
 
-This section goes through the process of creating a Subgraph. For the Lottery Subgraph, a [GitHub repository](https://github.com/PureStake/moonlotto-subgraph) was prepared with everything you need to help you get started. The repo also includes the Lottery contract, as well as a Hardhat configuration file and deployment script. If you are not familiar with it, you can check our [Hardhat integration guide](/integrations/hardhat/). 
+This section goes through the process of creating a Subgraph. For the Lottery Subgraph, a [GitHub repository](https://github.com/PureStake/moonlotto-subgraph) was prepared with everything you need to help you get started. The repo also includes the Lottery contract, as well as a Hardhat configuration file and deployment script. If you are not familiar with it, you can check our [Hardhat integration guide](/builders/interact/hardhat/). 
 
 To get started, first clone the repo and install the dependencies:
 
@@ -68,7 +68,7 @@ npx graph codegen --output-dir src/types/
 
 The `codegen` command can also be executed using `yarn codegen`.
 
-For this example, the contract was deployed to `{{ networks.moonbase.thegraph.lotto_contract }}`. You can find more information on how to deploy a contract with Hardhat in our [integrations tutorial](/integrations/hardhat/). Also, the "README" file in the [Moonloto repository](https://github.com/PureStake/moonlotto-subgraph) has the steps necessary to compile and deploy the contract if required.
+For this example, the contract was deployed to `{{ networks.moonbase.thegraph.lotto_contract }}`. You can find more information on how to deploy a contract with Hardhat in our [integrations tutorial](/builders/interact/hardhat/). Also, the "README" file in the [Moonloto repository](https://github.com/PureStake/moonlotto-subgraph) has the steps necessary to compile and deploy the contract if required.
 
 ### Subgraphs Core Structure {: #subgraphs-core-structure } 
 
