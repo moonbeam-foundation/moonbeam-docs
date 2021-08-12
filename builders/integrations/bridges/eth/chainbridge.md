@@ -12,12 +12,12 @@ A bridge allows two economically sovereign and technologically different chains 
 
 This guide is broken down into two main sections. In the first part, we'll explain the general workflow of the bridge. In the second part, we'll go through a couple of examples using the bridge to transfer ERC-20 and ERC-721 assets between Moonbase Alpha and Kovan/Rinkeby. 
 
- - [How the bridge works](/integrations/bridges/ethereum/chainbridge/#how-the-bridge-works)
-    - [General definitions](/integrations/bridges/ethereum/chainbridge/#general-definitions)
- - [Using the bridge in Moonbase Alpha](/integrations/bridges/ethereum/chainbridge/#try-it-on-moonbase-alpha)
-    - [Transfer ERC-20 tokens](/integrations/bridges/ethereum/chainbridge/#erc-20-token-transfer)
-    - [Transfer ERC-721 tokens](/integrations/bridges/ethereum/chainbridge/#erc-721-token-transfer)
-    - [Generic handler](/integrations/bridges/ethereum/chainbridge/#generic-handler)
+ - [How the bridge works](/builders/integrations/bridges/eth/chainbridge/#how-the-bridge-works)
+    - [General definitions](/builders/integrations/bridges/eth/chainbridge/#general-definitions)
+ - [Using the bridge in Moonbase Alpha](/builders/integrations/bridges/eth/chainbridge/#try-it-on-moonbase-alpha)
+    - [Transfer ERC-20 tokens](/builders/integrations/bridges/eth/chainbridge/#erc-20-token-transfer)
+    - [Transfer ERC-721 tokens](/builders/integrations/bridges/eth/chainbridge/#erc-721-token-transfer)
+    - [Generic handler](/builders/integrations/bridges/eth/chainbridge/#generic-handler)
     
 ## How the Bridge Works {: #how-the-bridge-works } 
 
@@ -116,7 +116,7 @@ To try the bridge with this sample ERC-20 token, we must do the following steps 
 !!! note
     Remember that tokens will be transferred only if the handler contract has enough allowance to spend tokens on behalf of the owner. If the process fails, check the allowance.
 
-Let's send some ERC20S tokens from **Moonbase Alpha** to **Kovan**. If you wanted to try it out with Rinkeby, the steps and addresses are the same. For this, we'll use [Remix](/integrations/remix/). First, we can use the following interface to interact with this contract and mint the tokens:
+Let's send some ERC20S tokens from **Moonbase Alpha** to **Kovan**. If you wanted to try it out with Rinkeby, the steps and addresses are the same. For this, we'll use [Remix](/builders/tools/remix/). First, we can use the following interface to interact with this contract and mint the tokens:
 
 ```solidity
 pragma solidity ^0.8.1;
@@ -155,7 +155,7 @@ After adding the Custom ERC20 contract to Remix and compiling it, the next steps
 2. Select Injected Web3 from the **Environment** dropdown
 3. Load the custom ERC-20 token contract address and click **At Address**
 4. Call the `mintTokens()` function and sign the transaction. 
-5. Once the transaction is confirmed, you should have received 5 ERC20S tokens. You can check your balance by adding the token to [MetaMask](/integrations/wallets/metamask/).
+5. Once the transaction is confirmed, you should have received 5 ERC20S tokens. You can check your balance by adding the token to [MetaMask](/tokens/connect/metamask/).
 
 ![ChainBridge ERC20 mint Tokens](/images/chainbridge/chainbridge-image1.png)
 
@@ -202,7 +202,7 @@ Once the transaction is confirmed, the process can take around 3 minutes to comp
 
 ![ChainBridge ERC20 send Tokens](/images/chainbridge/chainbridge-image2.png)
 
-You can check your balance by adding the token to [MetaMask](/integrations/wallets/metamask/) and connecting it to the target network - in our case Kovan.
+You can check your balance by adding the token to [MetaMask](/tokens/connect/metamask/) and connecting it to the target network - in our case Kovan.
 
 ![ChainBridge ERC20 balance](/images/chainbridge/chainbridge-image3.png)
 
@@ -234,7 +234,7 @@ Instead of interacting with the Bridge contract and calling the function `deposi
 
 In simple terms, the modified bridge contract used to initiate the transfer will create the _chainID_ and _resourceID_ for this example based on the destination chain ID that you provide. Therefore, it builds the _calldata_ object from the user's input, which is only the recipient address and the token ID to be sent.
 
-Let's send an ERC721M token from **Moonbase Alpha** to **Kovan**. For that, we'll use [Remix](/integrations/remix/). The following interface can be used to interact with the source ERC721M contract and mint the tokens. The `tokenOfOwnerByIndex()` function also can be used to check the token IDs owned by a specific address, passing the address and the index to query (each token ID is stored as an array element associated to the address):
+Let's send an ERC721M token from **Moonbase Alpha** to **Kovan**. For that, we'll use [Remix](/builders/tools/remix/). The following interface can be used to interact with the source ERC721M contract and mint the tokens. The `tokenOfOwnerByIndex()` function also can be used to check the token IDs owned by a specific address, passing the address and the index to query (each token ID is stored as an array element associated to the address):
 
 ```solidity
 pragma solidity ^0.8.1;
@@ -281,7 +281,7 @@ After adding the contract to Remix and compiling it, next we'll want to mint an 
 2. Select Injected Web3 from the **Environment** dropdown
 3. Load the custom ERC721M token contract address and click **At Address**
 4. Call the `mintTokens()` function and sign the transaction. 
-5. Once the transaction is confirmed, you should have received an ERC721M token. You can check your balance by adding the token to [MetaMask](/integrations/wallets/metamask/).
+5. Once the transaction is confirmed, you should have received an ERC721M token. You can check your balance by adding the token to [MetaMask](/tokens/connect/metamask/).
 
 ![ChainBridge ERC721 mint Tokens](/images/chainbridge/chainbridge-image4.png) 
 
@@ -328,7 +328,7 @@ Once the transaction is confirmed, the process can take around 3 minute to compl
 
 ![ChainBridge ERC721 send Token](/images/chainbridge/chainbridge-image5.png)
 
-You can check your balance by adding the token to [MetaMask](/integrations/wallets/metamask/) and connecting it to the target network, in our case Kovan.
+You can check your balance by adding the token to [MetaMask](/tokens/connect/metamask/) and connecting it to the target network, in our case Kovan.
 
 ![ChainBridge ERC721 balance](/images/chainbridge/chainbridge-image6.png)
 

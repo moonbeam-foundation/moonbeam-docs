@@ -93,5 +93,5 @@ In Phase 1, there was an initial collator election to fill the active collator s
 
 ## Limitations {: #limitations } 
 
-Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts) are yet to be included. You can check a list of supported precompiles [here](/integrations/precompiles/). However, all built-in functions are available.
+Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts) are yet to be included. You can check a list of supported precompiles [here](/builders/tools/precompiles/). However, all built-in functions are available.
 

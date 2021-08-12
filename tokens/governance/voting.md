@@ -15,7 +15,7 @@ Referenda are simple, inclusive, and stake-based voting schemes. Each referendum
 
 In Moonbeam, users will be able to create, second, and vote on proposals using their H160 address and private key, that is, their regular Ethereum account!
 
-With the release of [Moonbase Alpha v6](https://github.com/PureStake/moonbeam/releases/tag/v0.6.0), users of the network can now submit proposals for public referenda and vote on them. This guide outlines how to vote on a proposal that has reached a public referendum. You can find a guide on how to submit a proposal [here](/governance/proposals/).
+With the release of [Moonbase Alpha v6](https://github.com/PureStake/moonbeam/releases/tag/v0.6.0), users of the network can now submit proposals for public referenda and vote on them. This guide outlines how to vote on a proposal that has reached a public referendum. You can find a guide on how to submit a proposal [here](/tokens/governance/proposals/).
 
 More information related to [Governance](https://wiki.polkadot.network/docs/learn-governance) and [Participate in Democracy](https://wiki.polkadot.network/docs/maintain-guides-democracy) can be found in Polkadot's Wiki pages.
 
@@ -59,9 +59,9 @@ This guide will show you how to vote on a referendum on Moonbase Alpha.
 
 ## Voting on a Referendum {: #voting-on-a-referendum } 
 
-This section goes over the process of voting on a referendum. The guide assumes that there is one already taking place, in this case, the one created in [this guide](/governance/proposals/).
+This section goes over the process of voting on a referendum. The guide assumes that there is one already taking place, in this case, the one created in [this guide](/tokens/governance/proposals/).
 
-To vote on a proposal in the network, you need to use the PolkadotJS Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do by following [this guide](/integrations/wallets/polkadotjs/#creating-or-importing-an-h160-account). For this example, three accounts were imported and named with super original names: Alice, Bob, and Charley.
+To vote on a proposal in the network, you need to use the PolkadotJS Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do by following [this guide](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account). For this example, three accounts were imported and named with super original names: Alice, Bob, and Charley.
 
 ![Accounts in PolkadotJS](/images/governance/governance-proposal-systemremark-1.png)
 
@@ -107,7 +107,7 @@ From voting, there are some key takeaways:
  - Charley's weighted vote is 0.8 units. That is, his 8 tokens with no locking period (only during referendum) made his conviction factor x0.1
  - Both the remaining voting period and time before the proposal is enacted (if passed) are shown on the screen
  - The overall turnout (in percentage) is just 0.09%. This is calculated as the total number of voting tokens (10018) divided by the total amount of tokens in the network (11.13M in this case)
- - Even though the turnout is quite low, the proposal is tentatively approved because of the super-majority approval. More information can be found in [this section](/governance/voting/#positive-turnout-bias)
+ - Even though the turnout is quite low, the proposal is tentatively approved because of the super-majority approval. More information can be found in [this section](/tokens/governance/voting/#positive-turnout-bias)
  - It is important to write down the referendum index, as this is needed to unlock the tokens later when the locking period expires. Currently there is no way to retrieve the referendum index once it has been enacted
 
 After the voting period has expired, the proposal will be visible under the "Dispatch" tab if approved. In here, you can also see the time remaining until the proposal is enacted.

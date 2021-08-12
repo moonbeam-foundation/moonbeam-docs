@@ -28,7 +28,7 @@ To verify the installed version of Web3, you can use the `ls` command:
 ```
 npm ls web3
 ```
-As of writing this guide, the version used was 1.3.0. We will be also using [Remix](/integrations/remix/), connecting it to the Moonbase Alpha TestNet via [MetaMask](/integrations/wallets/metamask/).
+As of writing this guide, the version used was 1.3.0. We will be also using [Remix](/builders/tools/remix/), connecting it to the Moonbase Alpha TestNet via [MetaMask](/tokens/connect/metamask/).
 
 ## Verify Signatures with ECRECOVER {: #verify-signatures-with-ecrecover } 
 
@@ -92,7 +92,7 @@ contract ECRECOVER{
 }
 ```
 
-Using the [Remix compiler and deployment](/getting-started/local-node/using-remix/) and with [MetaMask pointing to Moonbase Alpha](/getting-started/moonbase/metamask/), we can deploy the contract and call the `verify()` method that returns _true_ if the address returned by `ecrecover` is equal to the address used to sign the message (related to the private key and needs to be manually set in the contract).
+Using the [Remix compiler and deployment](/builders/interact/remix/) and with [MetaMask pointing to Moonbase Alpha](/getting-started/moonbase/metamask/), we can deploy the contract and call the `verify()` method that returns _true_ if the address returned by `ecrecover` is equal to the address used to sign the message (related to the private key and needs to be manually set in the contract).
 
 ## Hashing with SHA256 {: #hashing-with-sha256 } 
 
@@ -213,5 +213,5 @@ contract ModularCheck {
 }
 ```
 
-You can try this in [Remix](/integrations/remix/). Use the function `verify()`, passing the base, exponent, and modulus. The function will store the value in the `checkResult` variable. 
+You can try this in [Remix](/builders/tools/remix/). Use the function `verify()`, passing the base, exponent, and modulus. The function will store the value in the `checkResult` variable. 
 

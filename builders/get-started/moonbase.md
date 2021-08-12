@@ -13,7 +13,7 @@ Moonbase Alpha has two endpoints available for users to connect to: one for HTTP
 
 ## Get Tokens {: #get-tokens } 
 
-To start building on Moonbase Alpha, you can get DEV tokens from our [faucet](/getting-started/moonbase/faucet/).
+To start building on Moonbase Alpha, you can get DEV tokens from our [faucet](/builders/get-started/moonbase/#get-tokens/).
 
 ### Discord - Mission Control {: #discord-mission-control } 
 

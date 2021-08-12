@@ -35,4 +35,4 @@ deploy({network: 'https://rpc.testnet.moonbeam.network', privateKey},(deployer) 
 
 ## Tutorial
 
-If you are interested in a more detailed step-by-step guide on how to use Mars, go to our specific tutorial about using [Waffle & Mars](/tutorials/moonbase-alpha/waffle-&-mars/) on Moonbeam.
+If you are interested in a more detailed step-by-step guide on how to use Mars, go to our specific tutorial about using [Waffle & Mars](/builders/interact/waffle-mars/) on Moonbeam.

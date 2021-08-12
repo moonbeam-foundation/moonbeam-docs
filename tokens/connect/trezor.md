@@ -27,7 +27,7 @@ At the time of writing, the following versions were used:
  - Trezor One firmware v1.10.0
  - Trezor Model T firmware v2.4.0
 
-In addition, you'll need MetaMask as an intermediary between your Trezor device and Moonbase Alpha. Make sure that your MetaMask is [connected to Moonbase Alpha](/integrations/wallets/metamask/). Please note that your Trezor device will sign transactions in whichever MetaMask network is connected to.
+In addition, you'll need MetaMask as an intermediary between your Trezor device and Moonbase Alpha. Make sure that your MetaMask is [connected to Moonbase Alpha](/tokens/connect/metamask/). Please note that your Trezor device will sign transactions in whichever MetaMask network is connected to.
 
 ## Importing your Trezor Account to MetaMask {: #importing-your-trezor-account-to-metamask } 
 
@@ -84,7 +84,7 @@ You've now successfully imported a Moonbeam compatible account from your Trezor 
 
 If you've successfully [imported your Trezor account to MetaMask](#importing-your-trezor-account-to-metamask), you are ready to sign transactions on Moonbeam using your Trezor device. This tutorial will show you how to send a simple transaction on the Moonbase Alpha TestNet, but it applies to other Moonbeam ecosystem networks.
 
-First, make sure your Trezor account is [funded with DEV tokens](/getting-started/moonbase/faucet/). Next, click on the "Send" button.
+First, make sure your Trezor account is [funded with DEV tokens](/builders/get-started/moonbase/#get-tokens/). Next, click on the "Send" button.
 
 ![MetaMask Trezor Account Funded](/images/trezor/trezor-images9.png)
 

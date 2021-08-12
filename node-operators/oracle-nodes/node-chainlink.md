@@ -30,7 +30,7 @@ If you are familiar with running Chainlink Oracle nodes, this information will g
  - Moonbase Alpha WSS EndPoint: `wss://wss.testnet.moonbeam.network`
  - Moonbase Alpha ChainId: `1287`
  - LINK Token on Moonbase Alpha: `0xa36085F69e2889c224210F603D836748e7dC0088`
- - Get Moonbase Alpha tokens from [our Faucet](/getting-started/moonbase/faucet/)
+ - Get Moonbase Alpha tokens from [our Faucet](/builders/get-started/moonbase/#get-tokens/)
 
 ## Getting Started {: #getting-started } 
 
@@ -46,8 +46,8 @@ This guide will walk through the process of setting up the Oracle node, summariz
 The basic requirements are:
 
  - Docker for running Postgres DB and ChainLink node containers. For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/)
- - An account with funds. You can create one with [Metamask](/integrations/wallets/metamask/), which can be funded via [our Faucet](/getting-started/moonbase/faucet/)
- - Access to the Remix IDE in case you want to use it to deploy the Oracle contract. You can find more information about Remix on Moonbeam [here](/integrations/remix/)
+ - An account with funds. You can create one with [Metamask](/tokens/connect/metamask/), which can be funded via [our Faucet](/builders/get-started/moonbase/#get-tokens/)
+ - Access to the Remix IDE in case you want to use it to deploy the Oracle contract. You can find more information about Remix on Moonbeam [here](/builders/tools/remix/)
 
 ## Node Setup {: #node-setup } 
 
@@ -134,7 +134,7 @@ First, we need to retrieve the address that the Oracle node will use to send tra
 
 ![Chainlink login](/images/chainlink/chainlinknode-image2.png)
 
-Go to the 'Configuration Page` and copy the node address. Use the [Moonbeam Faucet](/getting-started/moonbase/faucet/) to fund it.
+Go to the 'Configuration Page` and copy the node address. Use the [Moonbeam Faucet](/builders/get-started/moonbase/#get-tokens/) to fund it.
 
 ![Chainlink address](/images/chainlink/chainlinknode-image3.png)
 
@@ -208,5 +208,5 @@ And that is it! You have fully set up a Chainlink Oracle node that is running on
 
 ## Test the Oracle {: #test-the-oracle } 
 
-To verify the Oracle is up and answering requests, follow our [using an Oracle](/integrations/oracles/chainlink/) tutorial. The main idea is to deploy a client contract that requests to the Oracle, and the Oracle writes the requested data into the contract's storage.
+To verify the Oracle is up and answering requests, follow our [using an Oracle](/builders/integrations/oracles/chainlink/) tutorial. The main idea is to deploy a client contract that requests to the Oracle, and the Oracle writes the requested data into the contract's storage.
 

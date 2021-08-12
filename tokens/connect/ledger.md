@@ -28,7 +28,7 @@ At the time of writing, the following versions were used:
  - Ledger Nano X firmware v1.3.0
  - Ethereum app v1.8.5
 
-In addition, you'll need MetaMask as an intermediary between your Ledger device and Moonbase Alpha. Make sure that your MetaMask is [connected to Moonbase Alpha](/integrations/wallets/metamask/). Chrome users (version 91) need some additional steps, which [are detailed in this tutorial](#chrome-browser). Using Firefox will result in a much simpler/straightforward experience.
+In addition, you'll need MetaMask as an intermediary between your Ledger device and Moonbase Alpha. Make sure that your MetaMask is [connected to Moonbase Alpha](/tokens/connect/metamask/). Chrome users (version 91) need some additional steps, which [are detailed in this tutorial](#chrome-browser). Using Firefox will result in a much simpler/straightforward experience.
 
 Please note that your Ledger device will sign transactions in whichever MetaMask network is connected to.
 
@@ -95,7 +95,7 @@ With this feature enabled, MetaMask will open Ledger Live when trying to connect
 
 If you've successfully [imported your Ledger account to MetaMask](#importing-your-ledger-account-to-metamask), you are ready to sign transactions on Moonbeam using your Ledger device. This tutorial will show you how to send a simple transaction on the Moonbase Alpha TestNet, but it applies to other Moonbeam ecosystem networks.
 
-First, make sure your Ledger account is [funded with DEV tokens](/getting-started/moonbase/faucet/). Next, click on the "Send" button.
+First, make sure your Ledger account is [funded with DEV tokens](/builders/get-started/moonbase/#get-tokens/). Next, click on the "Send" button.
 
 ![MetaMask Ledger Account Funded](/images/ledger/ledger-images6.png)
 

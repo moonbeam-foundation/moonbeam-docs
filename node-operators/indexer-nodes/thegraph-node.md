@@ -26,7 +26,7 @@ Before diving into setting up a Graph Node, you neeed to have the following inst
 
 In addition, you need to have a node running with the `--ethapi=trace` option enabled. Currently, you can spin up two different kinds of nodes:
 
- - **Moonbeam development node** — run your own Moonbeam instance in your private environment. To do so, you can follow [this guide](/getting-started/local-node/setting-up-a-node/). Make sure to check the [advanced flags section](/getting-started/local-node/setting-up-a-node/#advanced-flags-and-options)
+ - **Moonbeam development node** — run your own Moonbeam instance in your private environment. To do so, you can follow [this guide](/builders/get-started/moonbeam-dev/). Make sure to check the [advanced flags section](/builders/get-started/moonbeam-dev/#advanced-flags-and-options)
  - **Moonbase Alpha node** — run a full node of the TestNet and access your own private endpoints. To do so, you can follow [this guide](/node-operators/networks/full-node/). Make sure to check the [advanced flags section](/node-operators/networks/full-node/#advanced-flags-and-options)
 
 In this guide, a Graph Node runs against a Moonbase Alpha full node with the `--ethapi=trace` flag.

@@ -16,7 +16,7 @@ This guide walks through the process of deploying a Solidity-based smart contrac
     This tutorial was created using the {{ networks.development.build_tag}} tag which is based on the {{ networks.moonbase.version }} release of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/{{ networks.moonbase.version }}). The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility are still under very active development.
     --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
 
-For this guide, you will need to have a Moonbeam development node running in `--dev` mode. This can be done by either following the steps detailed [here](/getting-started/local-node/setting-up-a-node/) or by using the [Moonbeam Truffle plugin](/integrations/trufflebox/#the-moonbeam-truffle-plugin), which we'll use in this tutorial's examples.
+For this guide, you will need to have a Moonbeam development node running in `--dev` mode. This can be done by either following the steps detailed [here](/builders/get-started/moonbeam-dev/) or by using the [Moonbeam Truffle plugin](/integrations/trufflebox/#the-moonbeam-truffle-plugin), which we'll use in this tutorial's examples.
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
@@ -92,7 +92,7 @@ module.exports = {
 
 Note that we are using `HD-Wallet-Provider` from Truffle as the Hierarchical Deterministic wallet. Also, we've defined a `dev` network that points to the development node provider URL, and the private key of the development account, which holds all funds in the development node, is included. 
 
-For deployments to the Moonbase Alpha TestNet or Moonriver, you need to provide the private key of an address that holds funds. For Moonbase Alpha, you can create an account in MetaMask, fund it using the [TestNet faucet](/getting-started/moonbase/faucet/), and export its private key.
+For deployments to the Moonbase Alpha TestNet or Moonriver, you need to provide the private key of an address that holds funds. For Moonbase Alpha, you can create an account in MetaMask, fund it using the [TestNet faucet](/builders/get-started/moonbase/#get-tokens/), and export its private key.
 
 Below you can find network configurations for all of our networks:
 
@@ -131,7 +131,7 @@ Below you can find network configurations for all of our networks:
 
 ## Using the Moonbeam Truffle Plugin to Run a Node {: #using-the-moonbeam-truffle-plugin-to-run-a-node }
 
-To set up a Moonbeam development node, you can follow [this tutorial](/getting-started/local-node/setting-up-a-node/). The process takes around 40 minutes in total, and you need to install Substrate and all its dependencies. The Moonbeam Truffle plugin provides a way to get started with a development node much quicker, and the only requirement is to have Docker installed (at time of writing the Docker version used was 19.03.6).
+To set up a Moonbeam development node, you can follow [this tutorial](/builders/get-started/moonbeam-dev/). The process takes around 40 minutes in total, and you need to install Substrate and all its dependencies. The Moonbeam Truffle plugin provides a way to get started with a development node much quicker, and the only requirement is to have Docker installed (at time of writing the Docker version used was 19.03.6).
 
 To start a Moonbeam development node in your local environment, we need to first download the corresponding Docker image:
 

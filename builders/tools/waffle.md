@@ -42,4 +42,4 @@ To configure Waffle to run tests against a Moonbeam development node or the Moon
 
 ## Tutorial
 
-If you are interested in a more detailed step-by-step guide on how to use Waffle, go to our specific tutorial about using [Waffle & Mars](/tutorials/moonbase-alpha/waffle-&-mars/) on Moonbeam.
+If you are interested in a more detailed step-by-step guide on how to use Waffle, go to our specific tutorial about using [Waffle & Mars](/builders/interact/waffle-mars/) on Moonbeam.

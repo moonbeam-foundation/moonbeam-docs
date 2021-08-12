@@ -16,7 +16,7 @@ All requests require authentication; you will need [a free API Key](https://www.
 Also, you will need the following:
 
  - Have MetaMask installed and [connected to Moonbase](/getting-started/moonbase/metamask/)
- - Have an account with funds, which you can get from [Mission Control](/getting-started/moonbase/faucet/)
+ - Have an account with funds, which you can get from [Mission Control](/builders/get-started/moonbase/#get-tokens/)
 
 ## Types of Endpoints {: #types-of-endpoints } 
 

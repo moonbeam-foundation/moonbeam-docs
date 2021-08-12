@@ -23,7 +23,7 @@ In this guide, you'll be creating a TypeScript project to write, compile, and te
 
 As of writing of this guide, the versions used were 15.12.0 and 7.6.3, respectively.
 
-Waffle and Mars can be used with a locally running Moonbeam development node, but for the purposes of this guide, you will be deploying to Moonbase Alpha. Therefore, you will need a funded account for development. You can choose to [create an account with MetaMask](/getting-started/testnet/metamask/#creating-a-wallet) or [create an account with PolkadotJS Apps](/integrations/wallets/polkadotjs/#creating-or-importing-an-h160-account). 
+Waffle and Mars can be used with a locally running Moonbeam development node, but for the purposes of this guide, you will be deploying to Moonbase Alpha. Therefore, you will need a funded account for development. You can choose to [create an account with MetaMask](/getting-started/testnet/metamask/#creating-a-wallet) or [create an account with PolkadotJS Apps](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account). 
 
 Once you've created an account you'll need to export the private key to be used in this guide. Before moving on, ensure your account has funds and, if needed, get `DEV` tokens from the [faucet](/getting-started/testnet/faucet/).
 
@@ -157,7 +157,7 @@ After compiling your contracts, Waffle stores the JSON output in the `build` dir
 
 Before deploying your contract and sending it off into the wild, you should test it first. Waffle provides an advanced testing framework and has plenty of tools to help you with testing. 
 
-You'll be running tests against the Moonbase Alpha TestNet and will need the corresponding RPC URL to connect to it: `https://rpc.testnet.moonbeam.network`. Since you will be running tests against the TestNet, it might take a couple minutes to run all of the tests. If you want a more efficient testing experience, you can [spin up a Moonbeam development node](/getting-started/local-node/setting-up-a-node/) using [`instant seal`](/getting-started/local-node/setting-up-a-node/#node-options). Running a local Moonbeam development node with the `instant seal` feature is similar to the quick and iterative experience you would get with [Ganache](https://www.trufflesuite.com/ganache).
+You'll be running tests against the Moonbase Alpha TestNet and will need the corresponding RPC URL to connect to it: `https://rpc.testnet.moonbeam.network`. Since you will be running tests against the TestNet, it might take a couple minutes to run all of the tests. If you want a more efficient testing experience, you can [spin up a Moonbeam development node](/builders/get-started/moonbeam-dev/) using [`instant seal`](/builders/get-started/moonbeam-dev/#node-options). Running a local Moonbeam development node with the `instant seal` feature is similar to the quick and iterative experience you would get with [Ganache](https://www.trufflesuite.com/ganache).
 
 1. Create a directory to contain your tests and a file to test your `MyToken` contract:
 ```

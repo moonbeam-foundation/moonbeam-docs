@@ -45,7 +45,7 @@ The interface includes the following functions:
 The below example is demonstrated on Moonbase Alpha, however, it is compatible with all networks including Moonriver and Moonbeam.
 
  - Have MetaMask installed and [connected to Moonbase Alpha](/getting-started/moonbase/metamask/)
- - Have an account with over `{{networks.moonbase.staking.min_nom_stake}}` tokens. You can get this from [Mission Control](/getting-started/moonbase/faucet/)
+ - Have an account with over `{{networks.moonbase.staking.min_nom_stake}}` tokens. You can get this from [Mission Control](/builders/get-started/moonbase/#get-tokens/)
 
 !!! note
     The example below requires more than `{{networks.moonbase.staking.min_nom_stake}}` tokens due to the minimum nomination amount plus gas fees. If you need more than the faucet dispenses, please contact us on Discord and we will be happy to help you. 

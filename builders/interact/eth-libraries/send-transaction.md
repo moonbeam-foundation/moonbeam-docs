@@ -70,7 +70,7 @@ Only one file is needed to execute a transaction between accounts. The script sh
  - Ethers.js: [_transaction.js_](/snippets/code/ethers-tx-local/transaction.js)
  - Web3.py: [_transaction.py_](/snippets/code/web3py-tx/transaction.py)
 
-Each of the files, regardless of the library used, has been divided into three sections. In the first section ("Define Provider & Variables"), the library to use is imported, and the provider and other variables are defined (variables depend on the library). Note that `providerRPC` has both the standard development node RPC endpoint and the one for [Moonbase Alpha](/networks/moonbase/).
+Each of the files, regardless of the library used, has been divided into three sections. In the first section ("Define Provider & Variables"), the library to use is imported, and the provider and other variables are defined (variables depend on the library). Note that `providerRPC` has both the standard development node RPC endpoint and the one for [Moonbase Alpha](/learn/platform/networks/moonbase/).
 
 The second section ("Create and Deploy Transaction") outlines the functions needed to send the transaction itself. Some of the key takeaways are discussed next.
 
@@ -141,7 +141,7 @@ You can find the code snippet for each library here (files were arbitrarily name
 
 For simplicity, the balance file is composed of two sections. As before, in the first section ("Define Provider & Variables"), the library to use is imported, and the provider and address from/to (to check the balances) are defined.
 
-The second section ("Balance Call Function") outlines the functions needed to fetch the balances of the accounts previously defined. Note that `providerRPC` has both the standard development node RPC endpoint and the one for [Moonbase Alpha](/networks/moonbase/). Some of the key takeaways are discussed next.
+The second section ("Balance Call Function") outlines the functions needed to fetch the balances of the accounts previously defined. Note that `providerRPC` has both the standard development node RPC endpoint and the one for [Moonbase Alpha](/learn/platform/networks/moonbase/). Some of the key takeaways are discussed next.
 
 === "Web3.js"
     ```
@@ -160,25 +160,25 @@ The second section ("Balance Call Function") outlines the functions needed to fe
 
 ### Web3.js {: #web3js } 
 
-The first section of [the script](/snippets/code/web3-tx-local/balances.js) is very similar to the one in [transaction file](/getting-started/local-node/send-transaction/#web3js). The main difference is that no private key is needed because there is no need to send a transaction.
+The first section of [the script](/snippets/code/web3-tx-local/balances.js) is very similar to the one in [transaction file](/builders/interact/eth-libraries/send-transaction/#web3js). The main difference is that no private key is needed because there is no need to send a transaction.
 
 In the second section, an asynchronous function wraps the web3 method used to fetch the balance of an address, `web3.eth.getBalance(address)`. Once again, you can leverage the `web3.utils.fromWei()` function to transform the balance into a more readable number in ETH.
 
 ### Ethers.js {: #ethersjs } 
 
-The first section of [the script](/snippets/code/ethers-tx-local/balances.js) is very similar to the one in [transaction file](/getting-started/local-node/send-transaction/#ethersjs). The main difference is that no private key is needed because there is no need to send a transaction. On the contrary, the `addressFrom` needs to be defined.
+The first section of [the script](/snippets/code/ethers-tx-local/balances.js) is very similar to the one in [transaction file](/builders/interact/eth-libraries/send-transaction/#ethersjs). The main difference is that no private key is needed because there is no need to send a transaction. On the contrary, the `addressFrom` needs to be defined.
 
 In the second section, an asynchronous function wraps the provider method used to fetch the balance of an address, which is `provider.getBalance(address)`. Once again, you can leverage the `ethers.utils.formatEther()` function to transform the balance into a more readable number in ETH.
 
 ### Web3.py {: #web3py } 
 
-The first section of [the script](/snippets/code/web3py-tx/balances.py) is very similar to the one in [transaction file](/getting-started/local-node/send-transaction/#web3py). The main difference is that no private key is needed because there is no need to send a transaction.
+The first section of [the script](/snippets/code/web3py-tx/balances.py) is very similar to the one in [transaction file](/builders/interact/eth-libraries/send-transaction/#web3py). The main difference is that no private key is needed because there is no need to send a transaction.
 
 In the second section, the `web3.eth.getBalance(address)` method is used to fetch a target address's balance. Once again, you can leverage the `eb3.fromWei()` function to transform the balance into a more readable number in ETH.
 
 ## Running the Scripts {: #running-the-scripts } 
 
-For this section, the code shown before was adapted to target a development node, which you can run by following [this tutorial](/getting-started/local-node/setting-up-a-node/). Also, each transaction was sent from the pre-funded account that comes with the node:
+For this section, the code shown before was adapted to target a development node, which you can run by following [this tutorial](/builders/get-started/moonbeam-dev/). Also, each transaction was sent from the pre-funded account that comes with the node:
 
 --8<-- 'text/metamask-local/dev-account.md'
 

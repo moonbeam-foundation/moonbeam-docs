@@ -114,7 +114,7 @@ This section goes over the process of nominating collators. The tutorial will us
 | Collator 1 |     | {{ networks.moonbase.staking.collators.address1 }} |
 | Collator 2 |     | {{ networks.moonbase.staking.collators.address2 }} |
 
-To access staking features, you need to use the PolkadotJS Apps interface. To do so, you need to import/create an Ethereum-style account first (H160 address), which you can do by following [this guide](/integrations/wallets/polkadotjs/#creating-or-importing-an-h160-account).
+To access staking features, you need to use the PolkadotJS Apps interface. To do so, you need to import/create an Ethereum-style account first (H160 address), which you can do by following [this guide](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account).
 
 For this example, an account was imported and named with a super original name: Alice.
 
@@ -129,8 +129,8 @@ To nominate a collator, provide the following information:
  3. Choose the extrinsic method to use for the transaction. This will determine the fields that need to fill in the following steps. In this case, it is the `nominate` extrinsic
  4. Set the collator's address you want to nominate. In this case, it is set to `{{ networks.moonbase.staking.collators.address1 }}`
  5. Set the number of tokens you want to stake
- 6. Input the `collator_nominator_count` you [retrieved above from the JavaScript console](/staking/stake/#get-the-collator-nominator-count)
- 7. Input the `nomination_count` [you retrieved from the Javascript console](/staking/stake/#get-your-number-of-existing-nominations). This is `0` if you haven't yet nominated a collator
+ 6. Input the `collator_nominator_count` you [retrieved above from the JavaScript console](/tokens/staking/stake/#get-the-collator-nominator-count)
+ 7. Input the `nomination_count` [you retrieved from the Javascript console](/tokens/staking/stake/#get-your-number-of-existing-nominations). This is `0` if you haven't yet nominated a collator
  8. Click the "Submit Transaction" button and sign the transaction
 
 ![Staking Join Nominators Extrinsics](/images/staking/staking-stake-6.png)

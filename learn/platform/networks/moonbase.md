@@ -37,13 +37,13 @@ The following features are available:
     - Native Ethereum RPC support (Web3) in Substrate ([Frontier](https://github.com/paritytech/frontier)). This provides compatibility with Ethereum developer tools such as MetaMask, Remix, and Truffle 
 
 ??? release v2 "_October 2020_"
-    - Event subscription support (pub/sub), which is a missing component on the Web3 RPC side and commonly used by DApp developers. You can find a tutorial on how to subscribe to events [here](/integrations/pubsub/)
+    - Event subscription support (pub/sub), which is a missing component on the Web3 RPC side and commonly used by DApp developers. You can find a tutorial on how to subscribe to events [here](/builders/tools/pubsub/)
     - Support for the following precompile contracts: [ecrecover](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-01-ecrecover-hash-v-r-s), [sha256](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-02-sha-256-data), [ripemd160](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-03-ripemd-160-data) and the [identity function](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-04-datacopy-data) (or datacopy)
 
 ??? release v3 "_November 2020_"
     - Unification of Substrate and Ethereum accounts under the H160 format, an effort we are calling [Unified Accounts](https://medium.com/moonbeam-network/moonbase-alpha-v3-introducing-unified-accounts-88fae3564cda). Consequently, there will be only one kind of account in the system represented by a single address
-    - Upgrades to the event subscription support, adding the possibility of using wildcards and conditional formatting for topics. You can find more information [here](https://docs.moonbeam.network/integrations/pubsub/#using-wildcards-and-conditional-formatting)
-    - Polkadot JS Apps now natively supports H160 addresses and ECDSA keys. You can use your Ethereum-style address for Substrate functions (when available) like staking, balances, and governance. You can find more information [here](/integrations/wallets/polkadotjs/)
+    - Upgrades to the event subscription support, adding the possibility of using wildcards and conditional formatting for topics. You can find more information [here](https://docs.moonbeam.network/builders/tools/pubsub/#using-wildcards-and-conditional-formatting)
+    - Polkadot JS Apps now natively supports H160 addresses and ECDSA keys. You can use your Ethereum-style address for Substrate functions (when available) like staking, balances, and governance. You can find more information [here](/tokens/connect/polkadotjs/)
 
 ??? release v4 "_December 2020_"
     - Updated to the newest version of the Polkadot parachain protocol ([Parachains V1](https://w3f.github.io/parachain-implementers-guide/)), which fixed several issues with node syncing, paving the way to have multiple collators to sync in the same parachain
@@ -62,7 +62,7 @@ The following features are available:
 
 ??? release v6 "_February 2021_"      
     - Public release of the custom [Staking pallet](https://wiki.polkadot.network/docs/learn-staking). Now token holders can nominate collators and earn rewards
-    - Added the [Democracy pallet](https://github.com/paritytech/substrate/tree/HEAD/frame/democracy). Token holders can now [submit proposals](/governance/proposals/) and [vote on them](/governance/voting/)
+    - Added the [Democracy pallet](https://github.com/paritytech/substrate/tree/HEAD/frame/democracy). Token holders can now [submit proposals](/tokens/governance/proposals/) and [vote on them](/tokens/governance/voting/)
     - Updated to the latest version of [Frontier RPC](https://github.com/paritytech/frontier), which increases EVM execution efficiency by a factor of 5
     - The gas limit has been bump to 15M per block, with a 13M per transaction limit
 
@@ -76,7 +76,7 @@ The following features are available:
 ??? release v8 "_May 2021_"      
     - Added the [Treasury pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_treasury/index.html), to bring [Treasury functionalities](https://wiki.polkadot.network/docs/learn-treasury) to Moonbase Alpha. Two separate treasuries were set up: one receiving 20% of the transaction fees and governed by democracy/councils, and the other receiving 30% of the block rewards that will serve to secure future parachain slots
     - Added the [Proxy pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_proxy/index.html), which enables the use of [Proxy accounts](https://wiki.polkadot.network/docs/learn-proxies) on Moonbase Alpha
-    - Introduced a new consensus mechanism, called Nimbus. Nimbus provides different filters to choose a random subset of the current active collator pool to produce the next block. Furthermore, block authors now sign blocks using session keys, which are mapped via an extrinsic to an H160 address for rewards payment. You can read more about Nimbus [here](/learn/consensus/)
+    - Introduced a new consensus mechanism, called Nimbus. Nimbus provides different filters to choose a random subset of the current active collator pool to produce the next block. Furthermore, block authors now sign blocks using session keys, which are mapped via an extrinsic to an H160 address for rewards payment. You can read more about Nimbus [here](/learn/features/consensus/)
     - Added a [Staking precompiled contract](https://github.com/PureStake/moonbeam/pull/358) contract at address `{{ networks.moonbase.staking.precompile_address }}`. An interface to interact with the contract can be found on [this link](https://raw.githubusercontent.com/PureStake/moonbeam/master/precompiles/parachain-staking/StakingInterface.sol)
     - Added [preliminary logs bloom filtering](https://github.com/paritytech/frontier/pull/364) to match user requests through Frontier. This feature was [further optmized](https://github.com/paritytech/frontier/pull/372) to achieve faster response times and a more predictable performance
     - Added the [parachain Crowdloan pallet](https://github.com/paritytech/polkadot/blob/master/runtime/common/src/crowdloan.rs) to test the distribution of rewards
@@ -117,7 +117,7 @@ As Moonbase Alpha progresses, we expect to evolve into a fully decentralized Pro
 
 This is the first TestNet for Moonbeam, so there are some limitations.
 
-Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts) are yet to be included. You can check a list of supported precompiles [here](/integrations/precompiles/). However, all built-in functions are available.
+Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts) are yet to be included. You can check a list of supported precompiles [here](/builders/tools/precompiles/). However, all built-in functions are available.
 
 Since the release of Moonbase Alpha v6, the maximum gas limit per block has been set to {{ networks.moonbase.gas_block }}, with a maximum gas limit per transaction of {{ networks.moonbase.gas_tx }}.
 

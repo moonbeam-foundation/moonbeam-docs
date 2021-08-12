@@ -49,11 +49,11 @@ An instance of Blockscout running against the Moonbase Alpha TestNet can be foun
 
 ### PolkadotJS (Dev Node - TestNet) {: #polkadotjs-dev-node-testnet } 
 
-Polkadot JS Apps uses the WebSocket endpoint to interact with the Network. To connect it to a Moonbeam development node, you can follow the steps in [this tutorial](/getting-started/local-node/setting-up-a-node/#connecting-polkadot-js-apps-to-a-local-moonbeam-node). The default port for this is `9944`.
+Polkadot JS Apps uses the WebSocket endpoint to interact with the Network. To connect it to a Moonbeam development node, you can follow the steps in [this tutorial](/builders/get-started/moonbeam-dev/#connecting-polkadot-js-apps-to-a-local-moonbeam-node). The default port for this is `9944`.
 
 ![Polkadot JS Local Node](/images/explorers/explorers-images-3.png)
 
-To view and interact with Moonbase Alpha's substrate layer, go to [this URL](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/explorer). This is the Polkadot JS Apps pointing to the TestNet. You can find more information in [this page](/integrations/wallets/polkadotjs/).
+To view and interact with Moonbase Alpha's substrate layer, go to [this URL](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/explorer). This is the Polkadot JS Apps pointing to the TestNet. You can find more information in [this page](/tokens/connect/polkadotjs/).
 
 ![Polkadot JS Moonbase Alpha](/images/explorers/explorers-images-4.png)
 
