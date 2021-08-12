@@ -35,5 +35,5 @@ Depending on which network you want to connect to, you can set the `RPC_URL` to 
 
 ## Tutorials {: #tutorials } 
 
-If you are interested in a more detailed step-by-step guide, go to our specific tutorials about using web3.js on Moonbeam to [send a transaction](/getting-started/local-node/send-transaction/) or [deploy a contract](/getting-started/local-node/deploy-contract/).
+If you are interested in a more detailed step-by-step guide, go to our specific tutorials about using web3.js on Moonbeam to [send a transaction](/builders/interact/eth-libraries/send-transaction/) or [deploy a contract](/builders/interact/eth-libraries/deploy-contract/).
 
