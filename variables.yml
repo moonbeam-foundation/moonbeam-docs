@@ -11,8 +11,8 @@ networks:
     chain_id: 1287
     chain_spec: alphanet
     block_explorer: https://moonbase-blockscout.testnet.moonbeam.network/
-    parachain_release_tag: v0.9.1
-    parachain_sha256sum: de4cbbd849b70b2215d5fc9b67f5841d985c6bad496940a2eb3f15534e6f735f
+    parachain_release_tag: v0.10.0
+    parachain_sha256sum: a3da6aa16a9c36c38f58d4d8164b0e44b69dee1528f273a7e18458c745233569
     gas_block: 15M
     gas_tx: 12.995M
     node_directory: /var/lib/alphanet-data
