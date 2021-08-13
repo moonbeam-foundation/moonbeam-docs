@@ -79,15 +79,15 @@ For this example, we are going to be nominating a collator. Nominators are token
 
 In order to nominate a collator, you'll need to determine the current collator nomination count and nominator nomination count. The collator nomination count is the numner of nominations backing a specific collator. The nominator nomination account is the number of nominations made by the nominator.
 
-### Get the Collator Nominator Count
+### Get the Collator Nominator Count {: #get-the-collator-nominator-count } 
 
 --8<-- 'text/staking/collator-nominator-count.md'
 
-### Get your Number of Existing Nominations
+### Get your Number of Existing Nominations {: #get-your-number-of-existing-nominations } 
 
 --8<-- 'text/staking/nominator-nomination-count.md'
 
-### Call Nominate
+### Call Nominate {: #call-nominate } 
 
 1. Expand the panel with the contract address. Locate the nominate function and expand the panel to see the parameters
 2. Provide the address of a collator such as `{{ networks.moonbase.staking.collators.address1 }}`

@@ -7,11 +7,11 @@ description: Learn how to configure Truffle to add a local Moonbeam development 
 
 ![Intro diagram](/images/integrations/integrations-truffle-banner.png)
 
-## Introduction
+## Introduction {: #introduction } 
 
 [Truffle](https://www.trufflesuite.com/truffle) is a popular development framework for compiling, testing, and deploying Solidity smart contracts. Since Moonbeam is Ethereum compatible, with a few lines of extra configuration, you can use Truffle as you normally would with Ethereum to develop on Moonbeam.
 
-## Configure Truffle to Connect to Moonbeam
+## Configure Truffle to Connect to Moonbeam {: #configure-truffle-to-connect-to-moonbeam } 
 
 If you haven't yet, you'll want to globally install Truffle:
 
@@ -65,6 +65,6 @@ module.exports = {
 ```
 
 
-## Tutorial
+## Tutorial {: #tutorial } 
 
 If you are interested in a more detailed step-by-step guide, go to our specific tutorial about [using Truffle](/builders/interact/truffle/) with Moonbeam.

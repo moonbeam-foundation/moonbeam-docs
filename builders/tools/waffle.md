@@ -6,11 +6,11 @@ description: Learn how to configure Waffle for testing Solidity smart contracts 
 # Waffle
 
 ![Waffle Introduction](/images/waffle-mars/waffle-banner.png)
-## Introduction
+## Introduction {: #introduction } 
 
 [Waffle](https://www.getwaffle.io/) is a popular development framework for testing Solidity smart contracts. Since Moonbeam is Ethereum compatible, with a few lines of extra configuration, you can use Waffle as you normally would with Ethereum to develop on Moonbeam.
 
-## Configure Waffle to Connect to Moonbeam
+## Configure Waffle to Connect to Moonbeam {: #configure-waffle-to-connect-to-moonbeam } 
 
 Assuming you already have a JavaScript or TypeScript project, install Waffle:
 
@@ -40,6 +40,6 @@ To configure Waffle to run tests against a Moonbeam development node or the Moon
     })
     ```
 
-## Tutorial
+## Tutorial {: #tutorial } 
 
 If you are interested in a more detailed step-by-step guide on how to use Waffle, go to our specific tutorial about using [Waffle & Mars](/builders/interact/waffle-mars/) on Moonbeam.

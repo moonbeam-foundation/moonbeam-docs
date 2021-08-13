@@ -23,11 +23,11 @@ If you already have MetaMask installed, you can easily connect MetaMask to the M
 
 Learn [how to integrate a Connect MetaMask button](/builders/interact-with-the-network/integrate-metamask-into-a-dapp) into your dapp, so that users can connect to Moonbase Alpha with a simple click of a button.
 
-## Install the MetaMask Extension {: #install-the-metamask-extension }
+## Install the MetaMask Extension {: #install-the-metamask-extension } 
 
 First, we start with a fresh and default [MetaMask](https://metamask.io/) installation from the Chrome store. After downloading, installing, and initializing the extension, follow the "Get Started" guide. In there, you need to create a wallet, set a password, and store your secret backup phrase (this gives direct access to your funds, so make sure to store these in a secure place). 
 
-## Create a Wallet {: #create-a-wallet }
+## Create a Wallet {: #create-a-wallet } 
 
 After installing [MetaMask](https://metamask.io), the setup will automatically open a new task with a welcome screen. Click "Get Started" to begin the setup process.
 
@@ -37,7 +37,7 @@ When prompted, you are given the option to import a wallet using a recovery seed
 
 ![MetaMask2](/images/metamask/metamask-2.png)
 
-## Import Accounts  {: #import-accounts }
+## Import Accounts {: #import-accounts } 
 
 Instead of creating an account, you also have the option of importing any account into MetaMask you hold the private keys to. For this example, you'll import a development account.
 
@@ -95,7 +95,7 @@ Here you can configure MetaMask for the following networks:
 
 ![MetaMask5](/images/metamask/metamask-8.png)
 
-## Initiate a Transfer {: #initiate-a-transfer }
+## Initiate a Transfer {: #initiate-a-transfer } 
 
 You can also try sending some tokens with MetaMask. You will need two accounts for this example, so if you need to create another one you can do so now. Once you have two accounts, click "Send" to initiate the transfer. Select the “Transfer between my accounts” option, transfer 100 tokens, and leave all other settings as they are:
 

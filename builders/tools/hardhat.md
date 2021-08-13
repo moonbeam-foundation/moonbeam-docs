@@ -7,11 +7,11 @@ description: Learn how to configure Hardhat to add a local Moonbeam development 
 
 ![Hardhat Create Project](/images/hardhat/hardhat-banner.png)
 
-## Introduction
+## Introduction {: #introduction } 
 
 [Hardhat](https://hardhat.org/) is a popular development framework for compiling, testing, and deploying Solidity smart contracts. Since Moonbeam is Ethereum compatible, with a few lines of extra configuration, you can use Hardhat as you normally would to develop on Moonbeam.
 
-## Configure Hardhat to Connect to Moonbeam
+## Configure Hardhat to Connect to Moonbeam {: #configure-hardhat-to-connect-to-moonbeam } 
 
 To get started with Hardhat you must have an npm project. If you do not yet have one, to create one you can run:
 
@@ -66,6 +66,6 @@ module.exports = {
 };
 ```
 
-## Tutorial
+## Tutorial {: #tutorial } 
 
 If you are interested in a more detailed step-by-step guide, check out our specific tutorial about using [Hardhat](/tutorials/moonbase-alpha/hardhat/) with Moonbeam.

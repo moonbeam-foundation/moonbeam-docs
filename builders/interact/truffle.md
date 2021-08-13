@@ -38,7 +38,7 @@ As of this guide's publish date, the versions used were 15.12.0, 7.6.3, and 5.2.
 
 To ease the process of getting started with Truffle, we have [released the Moonbeam Truffle box](https://moonbeam.network/announcements/moonbeam-truffle-box-available-solidity-developers/). This provides a boilerplate setup to speed up the rampup process to deploy contracts on Moonbeam.
 
-### Creating a Project using the Moonbeam Truffle Box
+### Creating a Project using the Moonbeam Truffle Box {: #creating-a-project-using-the-moonbeam-truffle-box } 
 
 To get started with the Moonbeam Truffle box, if you have Truffle installed globally, you can execute:
 
@@ -65,7 +65,7 @@ npm install
 !!! note
     We noticed an error while installing the packages with npm version 7.0.15. You can downgrade npm by running `npm install -g npm@version` and setting the version to the one desired. For example, 7.0.8 or 6.14.9.
 
-### The Truffle Configuration File
+### The Truffle Configuration File {: #the-truffle-configuration-file } 
 
 Navigate inside the directory to take a look at the `truffle-config.js` file (for the purpose of this guide, some information was removed):
 
@@ -129,7 +129,7 @@ Below you can find network configurations for all of our networks:
     },
     ```
 
-## Using the Moonbeam Truffle Plugin to Run a Node {: #using-the-moonbeam-truffle-plugin-to-run-a-node }
+## Using the Moonbeam Truffle Plugin to Run a Node {: #using-the-moonbeam-truffle-plugin-to-run-a-node } 
 
 To set up a Moonbeam development node, you can follow [this tutorial](/builders/get-started/moonbeam-dev/). The process takes around 40 minutes in total, and you need to install Substrate and all its dependencies. The Moonbeam Truffle plugin provides a way to get started with a development node much quicker, and the only requirement is to have Docker installed (at time of writing the Docker version used was 19.03.6).
 
