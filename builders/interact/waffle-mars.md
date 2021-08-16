@@ -23,9 +23,9 @@ In this guide, you'll be creating a TypeScript project to write, compile, and te
 
 As of writing of this guide, the versions used were 15.12.0 and 7.6.3, respectively.
 
-Waffle and Mars can be used with a locally running Moonbeam development node, but for the purposes of this guide, you will be deploying to Moonbase Alpha. Therefore, you will need a funded account for development. You can choose to [create an account with MetaMask](/getting-started/testnet/metamask/#creating-a-wallet) or [create an account with PolkadotJS Apps](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account). 
+Waffle and Mars can be used with a locally running Moonbeam development node, but for the purposes of this guide, you will be deploying to Moonbase Alpha. Therefore, you will need a funded account for development. You can choose to [create an account with MetaMask](/tokens/connect/metamask/#create-a-wallet) or [create an account with PolkadotJS Apps](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account). 
 
-Once you've created an account you'll need to export the private key to be used in this guide. Before moving on, ensure your account has funds and, if needed, get `DEV` tokens from the [faucet](/getting-started/testnet/faucet/).
+Once you've created an account you'll need to export the private key to be used in this guide. Before moving on, ensure your account has funds and, if needed, get `DEV` tokens from the [faucet](/builders/get-started/moonbase/#get-tokens/).
 
 ## Create a TypeScript Project with Waffle & Mars {: #create-a-typescript-project-with-waffle-mars } 
 

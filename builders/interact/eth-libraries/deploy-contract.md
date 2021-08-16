@@ -11,9 +11,9 @@ description: Learn how to deploy unmodified and unchanged Solidity-based smart c
 
 This guide walks through using the Solidity compiler and three different Ethereum libraries to deploy a contract to Moonbeam manually. The three libraries covered by this tutorial are:
 
- - [Web3.js](/integrations/ethlibraries/etherjs)
- - [Ethers.js](/integrations/ethlibraries/web3js)
- - [Web3.py](/integrations/ethlibraries/web3py)
+ - [Web3.js](/builders/tools/eth-libraries/etherjs)
+ - [Ethers.js](/builders/tools/eth-libraries/web3js)
+ - [Web3.py](/builders/tools/eth-libraries/web3py)
 
 !!! note
     If you would like to find the simplest way to get started, check out the quick start guide for each library by clicking the links above 

@@ -19,7 +19,7 @@ This guide walks through the process of creating and deploying a Solidity-based 
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
-This guide assumes that you have a local Moonbeam node running in `--dev` mode and that you have a [MetaMask](https://metamask.io/) installation configured to use this local node. You can find instructions for running a local Moonbeam node [here](/builders/get-started/moonbeam-dev/) and instructions to connect MetaMask to it [here](/getting-started/local-node/using-metamask/).
+This guide assumes that you have a local Moonbeam node running in `--dev` mode and that you have a [MetaMask](https://metamask.io/) installation configured to use this local node. You can find instructions for running a local Moonbeam node [here](/builders/get-started/moonbeam-dev/) and instructions to connect MetaMask to it [here](/tokens/connect/metamask/).
 
 If you followed the guides above, you should have a local Moonbeam node which will begin to author blocks as transactions arrive:
 

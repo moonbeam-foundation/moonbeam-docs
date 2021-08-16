@@ -44,7 +44,7 @@ The interface includes the following functions:
 
 The below example is demonstrated on Moonbase Alpha, however, it is compatible with all networks including Moonriver and Moonbeam.
 
- - Have MetaMask installed and [connected to Moonbase Alpha](/getting-started/moonbase/metamask/)
+ - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/)
  - Have an account with over `{{networks.moonbase.staking.min_nom_stake}}` tokens. You can get this from [Mission Control](/builders/get-started/moonbase/#get-tokens/)
 
 !!! note

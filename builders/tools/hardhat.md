@@ -68,4 +68,4 @@ module.exports = {
 
 ## Tutorial {: #tutorial } 
 
-If you are interested in a more detailed step-by-step guide, check out our specific tutorial about using [Hardhat](/tutorials/moonbase-alpha/hardhat/) with Moonbeam.
+If you are interested in a more detailed step-by-step guide, check out our specific tutorial about using [Hardhat](/builders/interact/hardhat/) with Moonbeam.

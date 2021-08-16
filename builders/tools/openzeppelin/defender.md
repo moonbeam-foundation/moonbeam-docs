@@ -75,7 +75,7 @@ contract PausableBox is Initializable, PausableUpgradeable, OwnableUpgradeable {
 
 ### Connecting Defender to Moonbase Alpha {: #connecting-defender-to-moonbase-alpha } 
 
-Once you have an OpenZeppelin Defender account, log into the [Defender App](https://defender.openzeppelin.com/). In the main screen, with MetaMask [connected to Moonbase Alpha](/getting-started/moonbase/metamask/) click on the top right corner "Connect wallet" button:
+Once you have an OpenZeppelin Defender account, log into the [Defender App](https://defender.openzeppelin.com/). In the main screen, with MetaMask [connected to Moonbase Alpha](/tokens/connect/metamask/) click on the top right corner "Connect wallet" button:
 
 ![OpenZeppelin Defender Connect](/images/openzeppelin/ozdefender-images1.png)
 

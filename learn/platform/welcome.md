@@ -48,12 +48,12 @@ However, any wallet that works with an Ethereum custom network should work with 
 
 Because of Moonbeam's Ethereum compatibility features, you can use the development tools you know and love to deploy a contract:
 
- - [Ethereum Libraries](/builders/deploy-a-contract/using-ethereum-libraries/)
- - [Remix](/builders/deploy-a-contract/using-remix/)
- - [OpenZeppelin and Remix](/builders/deploy-a-contract/using-openzeppelin-and-remix/)
+ - [Ethereum Libraries](/builders/interact/eth-libraries/)
+ - [Remix](/builders/interact/remix/)
+ - [OpenZeppelin and Remix](/builders/interact/oz-remix/)
  - [HardHat](/builders/interact/hardhat/)
  - [Truffle](/builders/interact/truffle/)
- - [Waffle and Mars](/builders/deploy-a-contract/using-waffle-and-mars/)
+ - [Waffle and Mars](/builders/interact/waffle-mars/)
 
 Want another Ethereum tool listed here? [Let us know!](https://discord.gg/PfpUATX)
 

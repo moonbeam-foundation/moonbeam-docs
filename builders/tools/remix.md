@@ -29,7 +29,7 @@ contract SimpleContract{
 Once you've compiled the contract and are ready to deploy you can navigate to the "Deploy & Run Transactions" tab in Remix and follow these steps:
 
 1. Set the Remix environment to "Injected Web3"
-2. Set your account and ensure you have funds. For Moonbase Alpha, you can use our [TestNet faucet](/builders/getting-started/moonbase-alpha/#discord-mission-control/)
+2. Set your account and ensure you have funds. For Moonbase Alpha, you can use our [TestNet faucet](/builders/get-started/moonbase/#discord-mission-control/)
 3. Pass in `Test Contract` as input to the contructor function and hit "Deploy"
 4. MetaMask will pop-up and show the information regarding the transaction, which you'll need to sign by clicking "Confirm"
 
@@ -41,4 +41,4 @@ Once the transaction is included, the contract appears in the "Deployed Contract
 
 ## Tutorial {: #tutorial } 
 
-If you are interested in a more detailed step-by-step guide, go to our specific tutorials about [using Remix](/tutorials/local-node/using-remix/) with Moonbeam.
+If you are interested in a more detailed step-by-step guide, go to our specific tutorials about [using Remix](/builders/interact/remix/) with Moonbeam.
