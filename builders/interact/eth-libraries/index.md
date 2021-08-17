@@ -1,6 +1,6 @@
 ---
-title: Using Ethereum Libraries
+title: Eth Libraries
 template: main.html
 ---
- 
+
 <div class='subsection-wrapper'></div>

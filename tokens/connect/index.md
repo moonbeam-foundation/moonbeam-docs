@@ -1,6 +1,6 @@
 ---
-title: Connect to Moonbeam
+title: Connect
 template: main.html
 ---
- 
- <div class='subsection-wrapper'></div>
+
+<div class='subsection-wrapper'></div>
