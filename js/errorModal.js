@@ -20,7 +20,7 @@ modalContainer.style.display = 'none';
 
 /** Set generic header for the error modal */
 modalHeader.textContent =
-  'There was a problem connecting MetaMask to Moonbase Alpha';
+  'There was a problem connecting MetaMask';
 
 /** Set up close button */
 closeModal.innerHTML = '&times;';

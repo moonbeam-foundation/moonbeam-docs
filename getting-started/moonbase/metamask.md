@@ -12,7 +12,7 @@ This guide outlines the steps needed to connect MetaMask to Moonbase Alpha. In c
 If you already have MetaMask installed, you can easily connect MetaMask to the Moonbase Alpha TestNet:
 
 <div class="button-wrapper">
-    <a href="#" class="md-button connectMetaMask">Connect MetaMask</a>
+    <a href="#" class="md-button connectMetaMask" value="moonbase">Connect MetaMask</a>
 </div>
 
 !!! note
