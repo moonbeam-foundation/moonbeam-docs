@@ -11,6 +11,18 @@ Moonbase Alpha has two endpoints available for users to connect to: one for HTTP
 
 --8<-- 'text/testnet/connect.md'
 
+## Connect MetaMask
+
+If you already have MetaMask installed, you can easily connect MetaMask to the Moonbase Alpha TestNet:
+
+<div class="button-wrapper">
+    <a href="#" class="md-button connectMetaMask" value="moonbase">Connect MetaMask</a>
+</div>
+
+!!! note
+    MetaMask will popup asking for permission to add Moonbase Alpha as a custom network. Once you approve permissions, MetaMask will switch your current network to Moonbase Alpha.
+
+If you do not have MetaMask installed, please check out the Interacting with [Moonbeam using MetaMask](/tokens/connect/metamask/) guide.
 ## Get Tokens {: #get-tokens } 
 
 To start building on Moonbase Alpha, you can get DEV tokens from our [faucet](/builders/get-started/moonbase/#get-tokens/).

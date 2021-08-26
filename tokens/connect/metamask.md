@@ -5,23 +5,40 @@ description: This guide walks you through how to connect MetaMask, an browser-ba
 
 # Interacting with Moonbeam Using MetaMask
 
-<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed//hrpBd2-a7as' frameborder='0' allowfullscreen></iframe></div>
-<style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style>
+![Intro banner](/images/integrations/integrations-metamask-banner.png)
 
 ## Introduction {: #introduction } 
 
 Developers can leverage Moonbeam's Ethereum compatibility features to integrate tools, such as [MetaMask](https://metamask.io/), into their DApps. By doing so, they can use the injected library MetaMask provides to interact with the blockchain.
 
-If you already have MetaMask installed, you can easily connect MetaMask to the Moonbase Alpha TestNet:
+Currently, MetaMask can be configured to connect to a few networks: a Moonbeam development node, the Moonbase Alpha TestNet, and Moonriver.
+
+If you already have MetaMask installed, you can easily connect MetaMask to the network of your choice:
 
 <div class="button-wrapper">
-    <a href="#" class="md-button connectMetaMask">Connect MetaMask</a>
+    <a href="#" class="md-button connectMetaMask" value="moonbase">Connect to Moonbase Alpha</a>
+</div>
+
+<div class="button-wrapper">
+    <a href="#" class="md-button connectMetaMask" value="moonriver">Connect to Moonriver</a>
 </div>
 
 !!! note
-    MetaMask will popup asking for permission to add Moonbase Alpha as a custom network. Once you approve permissions, MetaMask will switch your current network to Moonbase Alpha.
+    MetaMask will popup asking for permission to add a a custom network. Once you approve permissions, MetaMask will switch your current network.
 
 Learn [how to integrate a Connect MetaMask button](/builders/interact/metamask-dapp/) into your dapp, so that users can connect to Moonbase Alpha with a simple click of a button.
+
+## Video Tutorials
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed//hrpBd2-a7as' frameborder='0' allowfullscreen></iframe></div>
+<style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>In this video, we'll show you how to use MetaMask to interact with Moonbeam</a></div>
+
+<br>
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/ywpc1UwpIyg' frameborder='0' allowfullscreen></iframe></div>
+<style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>In this video, we'll show you how to connect your MetaMask wallet to the Moonriver network</a></div>
+
+
 
 ## Install the MetaMask Extension {: #install-the-metamask-extension } 
 
