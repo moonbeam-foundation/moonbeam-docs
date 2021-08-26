@@ -4,7 +4,6 @@ const classname = pathname.replace('/', '.').replaceAll('/', '-');
 
 if (classname !== "."){
   const section = document.querySelector(classname)
-  console.log(section.children)
   
   // Get the div to append the subsection cards to
   const wrapper = document.querySelector(".subsection-wrapper");
@@ -19,6 +18,7 @@ if (classname !== "."){
     <div class="card">
       <a href=${href}>
         <h2 class="title">${title}</h2>
+        <img class="icon" src="/images/index-pages/${image}.png" onerror="this.src='/images/index-pages/blank.png'; this.onerror = null">
       </a>
     </div>
     `
