@@ -11,16 +11,20 @@ description: This guide walks you through how to connect MetaMask, an browser-ba
 
 Developers can leverage Moonbeam's Ethereum compatibility features to integrate tools, such as [MetaMask](https://metamask.io/), into their DApps. By doing so, they can use the injected library MetaMask provides to interact with the blockchain.
 
-Currently, MetaMask can be configured to connect to two networks: a Moonbeam development node or the Moonbase Alpha TestNet.
+Currently, MetaMask can be configured to connect to a few networks: a Moonbeam development node, the Moonbase Alpha TestNet, and Moonriver.
 
-If you already have MetaMask installed, you can easily connect MetaMask to the Moonbase Alpha TestNet:
+If you already have MetaMask installed, you can easily connect MetaMask to the network of your choice:
 
 <div class="button-wrapper">
-    <a href="#" class="md-button connectMetaMask">Connect MetaMask</a>
+    <a href="#" class="md-button connectMetaMask" value="moonbase">Connect to Moonbase Alpha</a>
+</div>
+
+<div class="button-wrapper">
+    <a href="#" class="md-button connectMetaMask" value="moonriver">Connect to Moonriver</a>
 </div>
 
 !!! note
-    MetaMask will popup asking for permission to add Moonbase Alpha as a custom network. Once you approve permissions, MetaMask will switch your current network to Moonbase Alpha.
+    MetaMask will popup asking for permission to add a a custom network. Once you approve permissions, MetaMask will switch your current network.
 
 Learn [how to integrate a Connect MetaMask button](#integrate-metamask-into-a-dapp) into your dapp, so that users can connect to Moonbase Alpha with a simple click of a button.
 
