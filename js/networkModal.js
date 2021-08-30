@@ -15,9 +15,10 @@ closeNetworkModal.className = 'close-modal';
 /** Set the display to none to hide the modal until it is needed */
 networkModalContainer.style.display = 'none';
 
+networkModalHeader.innerHTML = `Please select a network:`
+
 /** Set generic header for the network modal */
 networkModalMessage.innerHTML = `
-  <div class="connect-header">Please select a network:</div>
   <div class="button-wrapper">
     <a href="#" class="md-button connect-network md-typeset" value="moonbase">Moonbase Alpha TestNet</a>
   </div>
