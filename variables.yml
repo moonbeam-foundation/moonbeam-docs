@@ -161,7 +161,7 @@ networks:
       bond_lock: 2
       min_nom_stake: 5
       min_nom_amount: 5
-      max_nom_per_col: 10
+      max_nom_per_col: 100
       max_col_per_nom: 25
     collator_timings:
       join_leave_candidates:
