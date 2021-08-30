@@ -42,7 +42,7 @@ Collators (and token holders if they nominate) have a stake in the network. The 
     |          Bond duration           |  |                             {{ networks.moonriver.staking.bond_lock }} rounds                             |
 
 
-## Quick Reference {: quick-reference}
+## Quick Reference {: #quick-reference }
 
 * Minimum Nomination Amount: {{ networks.moonbase.staking.min_nom_stake }} MOVR/DEV
 * Max Eligible Nominators Per Collator: Top {{ networks.moonriver.staking.max_nom_per_col }} nominators by size of stake per collator are eligible for staking rewards (nominators not in the top {{ networks.moonriver.staking.max_nom_per_col }} do not receive any rewards)
