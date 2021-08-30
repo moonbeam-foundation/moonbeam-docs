@@ -43,25 +43,27 @@ Collators (and token holders if they nominate) have a stake in the network. The 
 
 ## Reward Distribution {: #reward-distribution } 
 
-At the end of every round ({{ networks.moonbase.staking.round_blocks }} blocks), collators are rewarded for their work from {{ networks.moonbase.staking.bond_lock }} rounds ago.
+Collators are rewarded at the end of every round ({{ networks.moonbase.staking.round_blocks }} blocks) for their work from {{ networks.moonbase.staking.bond_lock }} rounds ago.
 
-When collators join the set of collators, they establish a commission to charge their nominators for the service they provide. Therefore, the reward distribution goes as follows:
+The distribution of the 5% annual inflation goes as follows:
 
- - The commission is taken out of the reward to be distributed
- - The collator gets the rewards corresponding to their stake in the network, plus the commission
- - The rest of the rewards are distributed among nominators by stake
+ - 1% goes to incentivizing collators
+ - 1.5% goes to the parachain bond reserve
+ - The remaining 2.5% will go to users that stake their tokens
 
-Mathematically speaking, for collators, the reward would look like this:
+Out of that 2.5%, collators gets the rewards corresponding to their stake in the network.The rest are distributed among nominators by stake.
+
+Mathematically speaking, for collators, the reward distribution per block proposed and finalized would look like this:
 
 ![Staking Collator Reward](/images/staking/staking-overview-1.png)
 
-Where the stake corresponds to the amount of tokens bonded by the collator in respect to the total stake of that collator (accounting nominations).
+Where `amount_due` is the corresponding inflation being distributed in a specific block, the `stake` corresponds to the number of tokens bonded by the collator in respect to the total stake of that collator (accounting nominations).
 
-For each nominator, the reward would look like this:
+For each nominator, the reward distribution (per block proposed and finalized by the nominated collator) would look like this:
 
 ![Staking Nominator Reward](/images/staking/staking-overview-2.png)
 
-Where the stake corresponds to the amount of tokens bonded by each nominator in respect to the total stake of that collator.
+Where `amount_due` is the corresponding inflation being distributed in a specific block, the `stake` corresponds to the amount of tokens bonded by each nominator in respect to the total stake of that collator.
 
 ## Try it out {: #try-it-out } 
 

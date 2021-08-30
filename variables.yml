@@ -11,8 +11,8 @@ networks:
     chain_id: 1287
     chain_spec: alphanet
     block_explorer: https://moonbase-blockscout.testnet.moonbeam.network/
-    parachain_release_tag: v0.9.1
-    parachain_sha256sum: de4cbbd849b70b2215d5fc9b67f5841d985c6bad496940a2eb3f15534e6f735f
+    parachain_release_tag: v0.11.2
+    parachain_sha256sum: dd4a96fb3ddc8ca5350db137bc0743c9b38982291739ab1a1ec58ace78f5c450
     gas_block: 15M
     gas_tx: 12.995M
     node_directory: /var/lib/alphanet-data
@@ -115,8 +115,8 @@ networks:
     wss_url: wss://wss.moonriver.moonbeam.network
     chain_id: 1285
     node_directory: /var/lib/moonriver-data
-    parachain_release_tag: v0.9.1
-    parachain_sha256sum: de4cbbd849b70b2215d5fc9b67f5841d985c6bad496940a2eb3f15534e6f735f
+    parachain_release_tag: v0.9.6
+    parachain_sha256sum: 4acf58edce245776f14c48b7389e6e9c90b195cfad3d69d28d552a44641e0004
     chain_spec: moonriver
     block_explorer: https://blockscout.moonriver.moonbeam.network/
     binary_name: moonbeam
