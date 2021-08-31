@@ -43,9 +43,7 @@ With the release of [Moonbase Alpha v6](https://github.com/PureStake/moonbeam/re
     |              Round               |  | {{ networks.moonriver.staking.round_blocks }} blocks ({{ networks.moonriver.staking.round_hours }} hours) |
     |          Bond duration           |  |                             {{ networks.moonriver.staking.bond_lock }} rounds                             |
 
---8<-- 'text/moonriver-launch/post-launch.md'
-
-This guide will show you how to stake on Moonbase Alpha.
+This guide will show you how to stake on Moonbase Alpha and Moonriver.
 
 ## Extrinsics Definitions {: #extrinsics-definitions } 
 

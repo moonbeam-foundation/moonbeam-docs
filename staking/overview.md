@@ -17,17 +17,17 @@ Collators (and token holders if they nominate) have a stake in the network. The 
 
 ## Quick Reference {: #quick-reference }
 
-* Minimum Nomination Amount: {{ networks.moonbase.staking.min_nom_stake }} MOVR/DEV
-* Max Eligible Nominators Per Collator: Top {{ networks.moonriver.staking.max_nom_per_col }} nominators by size of stake per collator are eligible for staking rewards (nominators not in the top {{ networks.moonriver.staking.max_nom_per_col }} do not receive any rewards)
-* Bonding Duration: {{ networks.moonriver.staking.bond_lock }} rounds ({{ networks.moonriver.staking.round_blocks }} blocks/round, time per round is approximately 1 hour)
-* Unbonding Duration: {{ networks.moonriver.staking.bond_lock }} rounds 
-* Reward Payout Time: Rewards are distributed automatically to the free balance {{ networks.moonriver.collator_timings.rewards_payouts.rounds }} rounds after they are earned
-* Aggregate Nominator Rewards: 50% of total inflation
-* Nominator Rewards: Variable; it's the aggregate nominator rewards distributed over all eligible nominators, taking into account the relative size of stakes; [More Information](/staking/overview/#reward-distribution)
-* Collator Commission: Fixed at 20% of total inflation, separate from the nominator reward pool
-* Slashing: No slashing currently (can be changed with governance); collator rewards are paid as part of produced blocks, so offline or poorly performing collators that don’t produce blocks will pay out less or no rewards
-* Collator Information: [Link1](https://moonriver.subscan.io/validator) [Link2](https://moonbeam-explorer.netlify.app/stats/miners/)
-* Managing Staking and Nomination Related Actions: [Link](https://apps.moonbeam.network/moonriver)
+- **Minimum Nomination Amount** — {{ networks.moonbase.staking.min_nom_stake }} MOVR/DEV
+- **Max Eligible Nominators Per Collator** — Top {{ networks.moonriver.staking.max_nom_per_col }} nominators by size of stake per collator are eligible for staking rewards (nominators not in the top {{ networks.moonriver.staking.max_nom_per_col }} do not receive any rewards)
+- **Bonding Duration** — {{ networks.moonriver.staking.bond_lock }} rounds ({{ networks.moonriver.staking.round_blocks }} blocks/round, time per round is approximately 1 hour)
+- **Unbonding Duration** — {{ networks.moonriver.staking.bond_lock }} rounds 
+- **Reward Payout Time** — Rewards are distributed automatically to the free balance {{ networks.moonriver.collator_timings.rewards_payouts.rounds }} rounds after they are earned
+- **Aggregate Nominator Rewards** — 50% of total inflation
+- **Nominator Rewards** — Variable; it's the aggregate nominator rewards distributed over all eligible nominators, taking into account the relative size of stakes ([More Information](/staking/overview/#reward-distribution))
+- **Collator Commission** — Fixed at 20% of total inflation, separate from the nominator reward pool
+- **Slashing** — No slashing currently (can be changed with governance); collator rewards are paid as part of produced blocks, so offline or poorly performing collators that don’t produce blocks will pay out less or no rewards
+- **Collator Information** — [Link1](https://moonriver.subscan.io/validator), [Link2](https://moonbeam-explorer.netlify.app/stats/miners/)
+- **Managing Staking and Nomination Related Actions** — [Link](https://apps.moonbeam.network/moonriver)
 
 
 ## General Definitions {: #general-definitions } 
@@ -85,6 +85,4 @@ Where `amount_due` is the corresponding inflation being distributed in a specifi
 
 In the Moonbase Alpha TestNet, token holders can stake and earn rewards (to get familiar with the system as the token doesn't have any actual value).
 
---8<-- 'text/moonriver-launch/post-launch.md'
-
-You can start interacting with staking functions through this [dashboard](https://apps.moonbeam.network/moonriver). To do so, you can check [this guide](/staking/stake/) or [this video tutorial](https://www.youtube.com/watch?v=maIfN2QkPpc).
+You can start interacting with staking functions on Moonbase Alpha or Moonriver through this [dashboard](https://apps.moonbeam.network/moonriver). To do so, you can check [this guide](https://moonbeam.network/tutorial/stake-movr/) or [this video tutorial](https://www.youtube.com/watch?v=maIfN2QkPpc).
