@@ -45,10 +45,10 @@ The interface includes the following functions:
 The below example is demonstrated on Moonbase Alpha, however, it is compatible with all networks including Moonriver and Moonbeam.
 
  - Have MetaMask installed and [connected to Moonbase Alpha](/getting-started/moonbase/metamask/)
- - Have an account with over `{{networks.moonbase.staking.min_nom_stake}}` tokens. You can get this from [Mission Control](/getting-started/moonbase/faucet/)
+ - Have an account with over `{{networks.moonbase.staking.min_nom_amount}}` tokens. You can get this from [Mission Control](/getting-started/moonbase/faucet/)
 
 !!! note
-    The example below requires more than `{{networks.moonbase.staking.min_nom_stake}}` tokens due to the minimum nomination amount plus gas fees. If you need more than the faucet dispenses, please contact us on Discord and we will be happy to help you. 
+    The example below requires more than `{{networks.moonbase.staking.min_nom_amount}}` tokens due to the minimum nomination amount plus gas fees. If you need more than the faucet dispenses, please contact us on Discord and we will be happy to help you. 
 
 ## Remix Set Up {: #remix-set-up } 
 
@@ -75,7 +75,7 @@ The below example is demonstrated on Moonbase Alpha, however, it is compatible w
 
 ## Nominate a Collator {: #nominate-a-collator } 
 
-For this example, we are going to be nominating a collator. Nominators are token holders who stake tokens, vouching for specific collators. Any user that holds a minimum amount of {{networks.moonbase.staking.min_nom_stake}} tokens as free balance can become a nominator. 
+For this example, we are going to be nominating a collator. Nominators are token holders who stake tokens, vouching for specific collators. Any user that holds a minimum amount of {{networks.moonbase.staking.min_nom_amount}} tokens as free balance can become a nominator. 
 
 In order to nominate a collator, you'll need to determine the current collator nomination count and nominator nomination count. The collator nomination count is the numner of nominations backing a specific collator. The nominator nomination account is the number of nominations made by the nominator.
 
@@ -91,7 +91,7 @@ In order to nominate a collator, you'll need to determine the current collator n
 
 1. Expand the panel with the contract address. Locate the nominate function and expand the panel to see the parameters
 2. Provide the address of a collator such as `{{ networks.moonbase.staking.collators.address1 }}`
-3. Provide the amount to nominate in WEI. There is a minimum of `{{networks.moonbase.staking.min_nom_stake}}` tokens to nominate, so the lowest amount in WEI is `5000000000000000000`
+3. Provide the amount to nominate in WEI. There is a minimum of `{{networks.moonbase.staking.min_nom_amount}}` tokens to nominate, so the lowest amount in WEI is `5000000000000000000`
 4. Provide the nomination count for the collator provided in Step 2
 5. Provide your nomination count
 6. Press "transact" and confirm the transaction in Metamask

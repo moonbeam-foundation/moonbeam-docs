@@ -84,7 +84,6 @@ networks:
       round_blocks: 300
       round_hours: 1
       bond_lock: 2
-      min_nom_stake: 5
       min_nom_amount: 5
       max_nom_per_col: 10
       max_col_per_nom: 25
@@ -159,7 +158,6 @@ networks:
       round_blocks: 300
       round_hours: 1
       bond_lock: 2
-      min_nom_stake: 5
       min_nom_amount: 5
       max_nom_per_col: 10
       max_col_per_nom: 25

@@ -25,7 +25,6 @@ With the release of [Moonbase Alpha v6](https://github.com/PureStake/moonbeam/re
 
     |             Variable             |  |                                                  Value                                                  |
     |:--------------------------------:|::|:-------------------------------------------------------------------------------------------------------:|
-    |     Minimum nomination stake     |  |                              {{ networks.moonbase.staking.min_nom_stake }} DEV                          |
     |        Minimum nomination        |  |                              {{ networks.moonbase.staking.min_nom_amount}} DEV                          |
     | Maximum nominators per collators |  |                             {{ networks.moonbase.staking.max_nom_per_col }}                             |
     | Maximum collators per nominator  |  |                             {{ networks.moonbase.staking.max_col_per_nom }}                             |
@@ -36,7 +35,6 @@ With the release of [Moonbase Alpha v6](https://github.com/PureStake/moonbeam/re
 
     |             Variable             |  |                                                   Value                                                   |
     |:--------------------------------:|::|:---------------------------------------------------------------------------------------------------------:|
-    |     Minimum nomination stake     |  |                           {{ networks.moonriver.staking.min_nom_stake }} MOVR                             |
     |        Minimum nomination        |  |                           {{ networks.moonriver.staking.min_nom_amount}} MOVR                             |
     | Maximum nominators per collators |  |                             {{ networks.moonriver.staking.max_nom_per_col }}                              |
     | Maximum collators per nominator  |  |                             {{ networks.moonriver.staking.max_col_per_nom }}                              |
@@ -56,7 +54,7 @@ There are many extrinsics related to the staking pallet, so all of them are not 
 
  - **nominate**(*address* collator, *uint256* amount) — extrinsic to nominate a collator. The amount must be at least {{ networks.moonbase.staking.min_nom_amount }} tokens
  - **leaveNominators**() — extrinsic to leave the set of nominators. Consequently, all ongoing nominations will be revoked
- - **nominatorBondLess**(*address* collator, *uint256* less) — extrinsic to reduce the amount of staked tokens for an already nominated collator. The amount must not decrease your overall total staked below {{ networks.moonbase.staking.min_nom_stake }} tokens
+ - **nominatorBondLess**(*address* collator, *uint256* less) — extrinsic to reduce the amount of staked tokens for an already nominated collator. The amount must not decrease your overall total staked below {{ networks.moonbase.staking.min_nom_amount }} tokens
  - **nominatorBondMore**(*address* collator, *uint256* more) — extrinsic to increase the amount of staked tokens for an already nominated collator
  - **revokeNomination**(*address* collator) — extrinsic to remove an existing nomination
 
