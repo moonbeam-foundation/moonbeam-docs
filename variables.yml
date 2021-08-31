@@ -115,7 +115,7 @@ networks:
     wss_url: wss://wss.moonriver.moonbeam.network
     chain_id: 1285
     node_directory: /var/lib/moonriver-data
-    parachain_release_tag: v0.9.6
+    parachain_release_tag: v0.11.2
     parachain_sha256sum: 4acf58edce245776f14c48b7389e6e9c90b195cfad3d69d28d552a44641e0004
     chain_spec: moonriver
     block_explorer: https://blockscout.moonriver.moonbeam.network/
