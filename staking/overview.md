@@ -87,4 +87,4 @@ In the Moonbase Alpha TestNet, token holders can stake and earn rewards (to get 
 
 To do so, you can check [this guide](/staking/stake/).
 
---8<-- 'text/moonriver-launch/staking-phase-4.md'
+--8<-- 'text/moonriver-launch/post-launch.md'

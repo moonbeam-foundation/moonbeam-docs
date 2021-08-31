@@ -1,0 +1,1 @@
+The Moonriver network has completed its launch process, and the staking feature is open to users that wish to participate. You can start interacting with staking functions through this [dashboard](https://apps.moonbeam.network/moonriver). 
