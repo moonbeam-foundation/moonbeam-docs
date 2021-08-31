@@ -85,6 +85,6 @@ Where `amount_due` is the corresponding inflation being distributed in a specifi
 
 In the Moonbase Alpha TestNet, token holders can stake and earn rewards (to get familiar with the system as the token doesn't have any actual value).
 
-To do so, you can check [this guide](/staking/stake/).
-
 --8<-- 'text/moonriver-launch/post-launch.md'
+
+You can start interacting with staking functions through this [dashboard](https://apps.moonbeam.network/moonriver). To do so, you can check [this guide](/staking/stake/) or [this video tutorial](https://www.youtube.com/watch?v=maIfN2QkPpc).
