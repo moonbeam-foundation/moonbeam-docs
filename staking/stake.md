@@ -26,7 +26,6 @@ With the release of [Moonbase Alpha v6](https://github.com/PureStake/moonbeam/re
     |             Variable             |  |                                                   Value                                                   |
     |:--------------------------------:|::|:---------------------------------------------------------------------------------------------------------:|
     |     Minimum nomination stake     |  |                           {{ networks.moonriver.staking.min_nom_stake }} MOVR                             |
-    |        Minimum nomination        |  |                           {{ networks.moonriver.staking.min_nom_amount}} MOVR                             |
     | Maximum nominators per collators |  |                             {{ networks.moonriver.staking.max_nom_per_col }}                              |
     | Maximum collators per nominator  |  |                             {{ networks.moonriver.staking.max_col_per_nom }}                              |
     |              Round               |  | {{ networks.moonriver.staking.round_blocks }} blocks ({{ networks.moonriver.staking.round_hours }} hours) |
@@ -37,7 +36,6 @@ With the release of [Moonbase Alpha v6](https://github.com/PureStake/moonbeam/re
     |             Variable             |  |                                                  Value                                                  |
     |:--------------------------------:|::|:-------------------------------------------------------------------------------------------------------:|
     |     Minimum nomination stake     |  |                              {{ networks.moonbase.staking.min_nom_stake }} DEV                          |
-    |        Minimum nomination        |  |                              {{ networks.moonbase.staking.min_nom_amount}} DEV                          |
     | Maximum nominators per collators |  |                             {{ networks.moonbase.staking.max_nom_per_col }}                             |
     | Maximum collators per nominator  |  |                             {{ networks.moonbase.staking.max_col_per_nom }}                             |
     |              Round               |  | {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hours) |
@@ -52,19 +50,15 @@ There are many extrinsics related to the staking pallet, so all of them are not 
 !!! note
     Extrinsics might change in the future as the staking pallet is updated.
 
- - **nominate**(*address* collator, *uint256* amount) — extrinsic to nominate a collator. The amount must be at least {{ networks.moonbase.staking.min_nom_amount }} tokens
+ - **nominate**(*address* collator, *uint256* amount) — extrinsic to nominate a collator. The amount needs to be greater than the minimum nomination stake
  - **leaveNominators**() — extrinsic to leave the set of nominators. Consequently, all ongoing nominations will be revoked
- - **nominatorBondLess**(*address* collator, *uint256* less) — extrinsic to reduce the amount of staked tokens for an already nominated collator. The amount must not decrease your overall total staked below {{ networks.moonbase.staking.min_nom_stake }} tokens
+ - **nominatorBondLess**(*address* collator, *uint256* less) — extrinsic to reduce the amount of staked tokens for an already nominated collator. The amount must not decrease your overall total staked below the minimum nomination stake
  - **nominatorBondMore**(*address* collator, *uint256* more) — extrinsic to increase the amount of staked tokens for an already nominated collator
  - **revokeNomination**(*address* collator) — extrinsic to remove an existing nomination
 
 ## Retrieving the List of Collators {: #retrieving-the-list-of-collators } 
 
-Before starting to stake tokens, it is important to retrieve the list of collators available in the network. To do so, navigate to "Chain state" under the "Developer" tab.
-
-![Staking Account](/images/staking/staking-stake-1.png)
-
-Here, provide the following information:
+Before starting to stake tokens, it is important to retrieve the list of collators available in the network. To do so:
 
  1. Head to the "Developer" tab 
  2. Click on "Chain State"

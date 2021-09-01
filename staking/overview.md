@@ -30,11 +30,11 @@ Collators (and token holders if they nominate) have a stake in the network. The 
     - **Bonding duration** — nomination takes effect in the next round (funds are withdrawn immediately)
     - **Unbonding duration** — {{ networks.moonriver.staking.bond_lock }} rounds
     - **Reward payout time** — {{ networks.moonriver.collator_timings.rewards_payouts.rounds }} rounds. Rewards are distributed automatically to the free balance
-    - **Collator commission** — fixed at {{ networks.moonriver.staking.collator_reward_inflation }}% of the annual inflation, set to {{ networks.moonriver.treasury.total_annual_inflation }}% per year. Not related to the nominators reward pool
+    - **Collator commission** — fixed at {{ networks.moonriver.staking.collator_reward_inflation }}% of the annual inflation ({{ networks.moonriver.total_annual_inflation }}%). Not related to the nominators reward pool
     - **Nominators reward pool** — {{ networks.moonriver.staking.nominator_reward_inflation }}% of the annual inflation
     - **Nominator rewards** — variable. It's the aggregate nominator rewards distributed over all eligible nominators, taking into account the relative size of stakes ([read more](/staking/overview/#reward-distribution))
     - **Slashing** — currently, there is no slashing. This can be later changed through governance. Collators who produce blocks that are not finalized by the relay chain won't receive rewards
-    - **Collator information** — list of collators: [Moonriver Subscan](https://moonriver.subscan.io/validator). Collator data for the last two rounds: Moonbeam Explorer](https://moonbeam-explorer.netlify.app/stats/miners/)
+    - **Collator information** — list of collators: [Moonriver Subscan](https://moonriver.subscan.io/validator). Collator data for the last two rounds: [Moonbeam Explorer](https://moonbeam-explorer.netlify.app/stats/miners/)
     - **Manage staking related actions** — visit the [Moonbeam Network dApp](https://apps.moonbeam.network/moonriver)
 
 === "Moonbase Alpha" 
@@ -46,11 +46,11 @@ Collators (and token holders if they nominate) have a stake in the network. The 
     - **Bonding duration** — nomination takes effect in the next round (funds are withdrawn immediately)
     - **Unbonding duration** — {{ networks.moonbase.staking.bond_lock }} rounds
     - **Reward payout time** — {{ networks.moonbase.collator_timings.rewards_payouts.rounds }} rounds. Rewards are distributed automatically to the free balance
-    - **Collator commission** — fixed at {{ networks.moonbase.staking.collator_reward_inflation }}% of the annual  inflation, set to {{ networks.moonbase.treasury.total_annual_inflation }}% per year. Not related to the nominators reward pool
+    - **Collator commission** — fixed at {{ networks.moonbase.staking.collator_reward_inflation }}% of the annual  inflation ({{ networks.moonriver.total_annual_inflation }}%). Not related to the nominators reward pool
     - **Nominators reward pool** — {{ networks.moonbase.staking.nominator_reward_inflation }}% of the annual  inflation
     - **Nominator rewards** — variable. It's the aggregate nominator rewards distributed over all eligible nominators, taking into account the relative size of stakes ([read more](/staking/overview/#reward-distribution))
     - **Slashing** — currently, there is no slashing. This can be later changed through governance. Collators who produce blocks that are not finalized by the relay chain won't receive rewards
-    - **Collator information** — list of collators: [Moonriver Subscan](https://moonbase.subscan.io/validator). Collator data for the last two rounds: Moonbeam Explorer](https://moonbeam-explorer.netlify.app/stats/miners/)
+    - **Collator information** — list of collators: [Moonriver Subscan](https://moonbase.subscan.io/validator). Collator data for the last two rounds: [Moonbeam Explorer](https://moonbeam-explorer.netlify.app/stats/miners/)
     - **Manage staking related actions** — visit the [Moonbeam Network dApp](https://apps.moonbeam.network/moonbase-alpha)
 
 ## Reward Distribution {: #reward-distribution } 
