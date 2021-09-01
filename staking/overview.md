@@ -17,33 +17,37 @@ Collators (and token holders if they nominate) have a stake in the network. The 
 
 ## Quick Reference {: #quick-reference }
 
-- **Minimum nomination amount** — {{ networks.moonbase.staking.min_nom_stake }} MOVR/DEV
-- **Max eligible nominators per collator** — top {{ networks.moonriver.staking.max_nom_per_col }} nominators by size of stake per collator are eligible for staking rewards (nominators not in the top {{ networks.moonriver.staking.max_nom_per_col }} do not receive any rewards)
-- **Bonding duration** — {{ networks.moonriver.staking.bond_lock }} rounds ({{ networks.moonriver.staking.round_blocks }} blocks/round, time per round is approximately 1 hour)
-- **Unbonding duration** — {{ networks.moonriver.staking.bond_lock }} rounds 
-- **Reward payout time** — rewards are distributed automatically to the free balance {{ networks.moonriver.collator_timings.rewards_payouts.rounds }} rounds after they are earned
-- **Aggregate nominator rewards** — 50% of total inflation
-- **Nominator rewards** — variable; it's the aggregate nominator rewards distributed over all eligible nominators, taking into account the relative size of stakes ([More Information](/staking/overview/#reward-distribution))
-- **Collator commission** — fixed at 20% of total inflation, separate from the nominator reward pool
-- **Slashing** — no slashing currently (can be changed with governance); collator rewards are paid as part of produced blocks, so offline or poorly performing collators that don’t produce blocks will pay out less or no rewards
-- **Collator information** — [list of validators on the Moonriver Subscan](https://moonriver.subscan.io/validator), [collator data on the Moonbeam Explorer](https://moonbeam-explorer.netlify.app/stats/miners/)
-- **Managing staking and nomination related actions** — [the Moonbeam Network dApp](https://apps.moonbeam.network/moonriver)
+=== "Moonriver" 
 
+    - **Minimum nomination amount** — {{ networks.moonriver.staking.min_nom_stake }} MOVR
+    - **Max eligible nominators per collator** — top {{ networks.moonriver.staking.max_nom_per_col }} nominators by size of stake per collator are eligible for staking rewards (nominators not in the top {{ networks.moonriver.staking.max_nom_per_col }} do not receive any rewards)
+    - **Bonding duration** — {{ networks.moonriver.staking.bond_lock }} rounds ({{ networks.moonriver.staking.round_blocks }} blocks/round, time per round is approximately {{ networks.moonriver.staking.round_hours }} hour)
+    - **Unbonding duration** — {{ networks.moonriver.staking.bond_lock }} rounds 
+    - **Reward payout time** — rewards are distributed automatically to the free balance {{ networks.moonriver.collator_timings.rewards_payouts.rounds }} rounds after they are earned
+    - **Aggregate nominator rewards** — {{ networks.moonriver.staking.nominator_reward_as_percent_of_inflation }}% of total inflation, which is set to {{ networks.moonriver.treasury.total_annual_inflation }}% per year
+    - **Nominator rewards** — variable; it's the aggregate nominator rewards distributed over all eligible nominators, taking into account the relative size of stakes ([More Information](/staking/overview/#reward-distribution))
+    - **Collator commission** — fixed at {{ networks.moonriver.staking.collator_reward_as_percent_of_inflation }}% of total inflation, set to a {{ networks.moonriver.treasury.total_annual_inflation }}% annual total inflation rate, separate from the nominator reward pool
+    - **Slashing** — no slashing currently (can be changed with governance); collator rewards are paid as part of produced blocks, so offline or poorly performing collators that don’t produce blocks will pay out less or no rewards
+    - **Collator information** — [list of validators on the Moonriver Subscan](https://moonriver.subscan.io/validator), [collator data on the Moonbeam Explorer](https://moonbeam-explorer.netlify.app/stats/miners/)
+    - **Managing staking and nomination related actions** — [the Moonbeam Network dApp](https://apps.moonbeam.network/moonriver)
+
+=== "Moonbase Alpha" 
+
+    - **Minimum nomination amount** — {{ networks.moonbase.staking.min_nom_stake }} DEV
+    - **Max eligible nominators per collator** — top {{ networks.moonbase.staking.max_nom_per_col }} nominators by size of stake per collator are eligible for staking rewards (nominators not in the top {{ networks.moonbase.staking.max_nom_per_col }} do not receive any rewards)
+    - **Bonding duration** — {{ networks.moonbase.staking.bond_lock }} rounds ({{ networks.moonbase.staking.round_blocks }} blocks/round, time per round is approximately {{ networks.moonbase.staking.round_hours }} hour)
+    - **Unbonding duration** — {{ networks.moonbase.staking.bond_lock }} rounds 
+    - **Reward payout time** — rewards are distributed automatically to the free balance {{ networks.moonbase.collator_timings.rewards_payouts.rounds }} rounds after they are earned
+    - **Aggregate nominator rewards** — {{ networks.moonbase.staking.nominator_reward_as_percent_of_inflation }}% of total inflation, which is set to {{ networks.moonbase.treasury.total_annual_inflation }}% per year
+    - **Nominator rewards** — variable; it's the aggregate nominator rewards distributed over all eligible nominators, taking into account the relative size of stakes ([More Information](/staking/overview/#reward-distribution))
+    - **Collator commission** — fixed at {{ networks.moonbase.staking.collator_reward_as_percent_of_inflation }}% of total inflation, set to a {{ networks.moonbase.treasury.total_annual_inflation }}% annual total inflation rate, separate from the nominator reward pool
+    - **Slashing** — no slashing currently (can be changed with governance); collator rewards are paid as part of produced blocks, so offline or poorly performing collators that don’t produce blocks will pay out less or no rewards
+    - **Collator information** — [list of validators on the Moonbase Alpha Subscan](https://moonbase.subscan.io/validator)
+    - **Managing staking and nomination related actions** — [the Moonbeam Network dApp](https://apps.moonbeam.network/moonbase-alpha)
 
 ## General Definitions {: #general-definitions } 
 
 --8<-- 'text/staking/staking-definitions.md'
-
-=== "Moonbase Alpha"
-
-    |             Variable             |  |                                                  Value                                                  |
-    |:--------------------------------:|::|:-------------------------------------------------------------------------------------------------------:|
-    |     Minimum nomination stake     |  |                          {{ networks.moonbase.staking.min_nom_stake }} DEV                              |
-    |        Minimum nomination        |  |                          {{ networks.moonbase.staking.min_nom_amount}} DEV                              |
-    | Maximum nominators per collators |  |                             {{ networks.moonbase.staking.max_nom_per_col }}                             |
-    | Maximum collators per nominator  |  |                             {{ networks.moonbase.staking.max_col_per_nom }}                             |
-    |              Round               |  | {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hours) |
-    |          Bond duration           |  |                            {{ networks.moonbase.staking.bond_lock }} rounds                             |
 
 === "Moonriver"
 
@@ -55,6 +59,17 @@ Collators (and token holders if they nominate) have a stake in the network. The 
     | Maximum collators per nominator  |  |                             {{ networks.moonriver.staking.max_col_per_nom }}                              |
     |              Round               |  | {{ networks.moonriver.staking.round_blocks }} blocks ({{ networks.moonriver.staking.round_hours }} hours) |
     |          Bond duration           |  |                             {{ networks.moonriver.staking.bond_lock }} rounds                             |
+
+=== "Moonbase Alpha"
+
+    |             Variable             |  |                                                  Value                                                  |
+    |:--------------------------------:|::|:-------------------------------------------------------------------------------------------------------:|
+    |     Minimum nomination stake     |  |                          {{ networks.moonbase.staking.min_nom_stake }} DEV                              |
+    |        Minimum nomination        |  |                          {{ networks.moonbase.staking.min_nom_amount}} DEV                              |
+    | Maximum nominators per collators |  |                             {{ networks.moonbase.staking.max_nom_per_col }}                             |
+    | Maximum collators per nominator  |  |                             {{ networks.moonbase.staking.max_col_per_nom }}                             |
+    |              Round               |  | {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hours) |
+    |          Bond duration           |  |                            {{ networks.moonbase.staking.bond_lock }} rounds                             |
 
 
 ## Reward Distribution {: #reward-distribution } 
