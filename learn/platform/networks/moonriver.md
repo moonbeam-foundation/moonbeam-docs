@@ -50,7 +50,6 @@ Some important variables/configurations to note include:
     |             Variable             |                                                     Value                                                     |
     |:--------------------------------:|:-------------------------------------------------------------------------------------------------------------:|
     |     Minimum nomination stake     |                           {{ networks.moonriver.staking.    min_nom_stake }} tokens                           |
-    |        Minimum nomination        |                           {{ networks.moonriver.staking.    min_nom_amount}} tokens                           |
     | Maximum nominators per collators |                             {{ networks.moonriver.staking.    max_nom_per_col }}                              |
     | Maximum collators per nominator  |                             {{ networks.moonriver.staking.    max_col_per_nom }}                              |
     |              Round               | {{ networks.moonriver.staking.round_blocks }} blocks ({{     networks.moonriver.staking.round_hours }} hours) |

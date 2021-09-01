@@ -77,6 +77,7 @@ networks:
       min_preim_deposit: 0.004
       max_votes: 100
       max_proposals: 100
+    total_annual_inflation: 5
     staking:
       collator_bond_min: 1000
       collator_map_bond: 100
@@ -85,9 +86,10 @@ networks:
       round_hours: 1
       bond_lock: 2
       min_nom_stake: 5
-      min_nom_amount: 5
-      max_nom_per_col: 10
+      max_nom_per_col: 100
       max_col_per_nom: 25
+      nominator_reward_inflation: 50
+      collator_reward_inflation: 20
       precompile_address: '0x0000000000000000000000000000000000000800'
       collators:
         address1: '0x4c5A56ed5A4FF7B09aA86560AfD7d383F4831Cce'
@@ -115,7 +117,7 @@ networks:
     wss_url: wss://wss.moonriver.moonbeam.network
     chain_id: 1285
     node_directory: /var/lib/moonriver-data
-    parachain_release_tag: v0.9.6
+    parachain_release_tag: v0.11.2
     parachain_sha256sum: 4acf58edce245776f14c48b7389e6e9c90b195cfad3d69d28d552a44641e0004
     chain_spec: moonriver
     block_explorer: https://blockscout.moonriver.moonbeam.network/
@@ -144,14 +146,7 @@ networks:
       max_votes: 100
       min_preim_deposit: 0.004
       max_proposals: 100
-    treasury:
-      proposal_bond: 5
-      proposal_bond_min: 1
-      spend_period_blocks: 43200
-      spend_period_days: 6
-      max_approved_proposals: 100
-      tx_fees_allocated: 20
-      tx_fees_burned: 80
+    total_annual_inflation: 5
     staking:
       collator_bond_min: 1000
       collator_map_bond: 100
@@ -160,9 +155,18 @@ networks:
       round_hours: 1
       bond_lock: 2
       min_nom_stake: 5
-      min_nom_amount: 5
-      max_nom_per_col: 10
+      max_nom_per_col: 100
       max_col_per_nom: 25
+      nominator_reward_inflation: 50
+      collator_reward_inflation: 20
+    treasury:
+      proposal_bond: 5
+      proposal_bond_min: 1
+      spend_period_blocks: 43200
+      spend_period_days: 6
+      max_approved_proposals: 100
+      tx_fees_allocated: 20
+      tx_fees_burned: 80
     collator_timings:
       join_leave_candidates:
         rounds: 2
