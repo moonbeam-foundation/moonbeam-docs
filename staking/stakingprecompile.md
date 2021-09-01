@@ -13,7 +13,7 @@ A delegated proof of stake pallet recently debuted called [Parachain-Staking](ht
 
 The Staking module is coded in Rust and it is part of a pallet that is normally not accessible from the Ethereum side of Moonbeam. However, a Staking Precompile allows developers to access the staking features using the Ethereum API in a precompiled contract located at address `{{networks.moonbase.staking.precompile_address}}`. The Staking Precompile was first released in the [Moonbase Alpha v8 release](https://moonbeam.network/announcements/testnet-upgrade-moonbase-alpha-v8/).
 
-This guide will show you how to interact with the Staking Precompile on Moonbase Alpha and Moonriver.
+This guide will show you how to interact with the Staking Precompile on Moonriver and the Moonbase Alpha TestNet.
 
 ## The Parachain-Staking Solidity Interface {: #the-parachain-staking-solidity-interface } 
 

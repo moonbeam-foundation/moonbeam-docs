@@ -86,11 +86,11 @@ networks:
       bond_lock: 2
       min_nom_stake: 5
       min_nom_amount: 5
-      max_nom_per_col: 10
+      max_nom_per_col: 100
       max_col_per_nom: 25
+      nominator_reward_inflation: 2.5
+      collator_reward_inflation: 1
       precompile_address: '0x0000000000000000000000000000000000000800'
-      nominator_reward_as_percent_of_inflation: 50
-      collator_reward_as_percent_of_inflation: 50
       collators:
         address1: '0x4c5A56ed5A4FF7B09aA86560AfD7d383F4831Cce'
         address2: '0x623c9E50647a049F92090fe55e22cC0509872FB6'
@@ -167,8 +167,8 @@ networks:
       min_nom_amount: 5
       max_nom_per_col: 100
       max_col_per_nom: 25
-      nominator_reward_as_percent_of_inflation: 50
-      collator_reward_as_percent_of_inflation: 50
+      nominator_reward_inflation: 2.5
+      collator_reward_inflation: 1
     collator_timings:
       join_leave_candidates:
         rounds: 2
