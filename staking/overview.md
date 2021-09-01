@@ -26,8 +26,8 @@ Collators (and token holders if they nominate) have a stake in the network. The 
 - **Nominator rewards** — variable; it's the aggregate nominator rewards distributed over all eligible nominators, taking into account the relative size of stakes ([More Information](/staking/overview/#reward-distribution))
 - **Collator commission** — fixed at 20% of total inflation, separate from the nominator reward pool
 - **Slashing** — no slashing currently (can be changed with governance); collator rewards are paid as part of produced blocks, so offline or poorly performing collators that don’t produce blocks will pay out less or no rewards
-- **Collator information** — [Link1](https://moonriver.subscan.io/validator), [Link2](https://moonbeam-explorer.netlify.app/stats/miners/)
-- **Managing staking and nomination related actions** — [Link](https://apps.moonbeam.network/moonriver)
+- **Collator information** — [list of validators on the Moonriver Subscan](https://moonriver.subscan.io/validator), [collator data on the Moonbeam Explorer](https://moonbeam-explorer.netlify.app/stats/miners/)
+- **Managing staking and nomination related actions** — [the Moonbeam Network dApp](https://apps.moonbeam.network/moonriver)
 
 
 ## General Definitions {: #general-definitions } 
