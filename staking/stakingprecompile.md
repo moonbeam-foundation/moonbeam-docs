@@ -13,9 +13,7 @@ A delegated proof of stake pallet recently debuted called [Parachain-Staking](ht
 
 The Staking module is coded in Rust and it is part of a pallet that is normally not accessible from the Ethereum side of Moonbeam. However, a Staking Precompile allows developers to access the staking features using the Ethereum API in a precompiled contract located at address `{{networks.moonbase.staking.precompile_address}}`. The Staking Precompile was first released in the [Moonbase Alpha v8 release](https://moonbeam.network/announcements/testnet-upgrade-moonbase-alpha-v8/).
 
---8<-- 'text/moonriver-launch/staking-phase-4.md'
-
-This guide will show you how to interact with the Staking Precompile on Moonbase Alpha.
+This guide will show you how to interact with the Staking Precompile on Moonbase Alpha. The same steps can be followed for Moonrvier as well.
 
 ## The Parachain-Staking Solidity Interface {: #the-parachain-staking-solidity-interface } 
 
@@ -75,7 +73,7 @@ The below example is demonstrated on Moonbase Alpha, however, it is compatible w
 
 ## Nominate a Collator {: #nominate-a-collator } 
 
-For this example, we are going to be nominating a collator. Nominators are token holders who stake tokens, vouching for specific collators. Any user that holds a minimum amount of {{networks.moonbase.staking.min_nom_stake}} tokens as free balance can become a nominator. 
+For this example, we are going to be nominating a collator on Moonbase Alpha. Nominators are token holders who stake tokens, vouching for specific collators. Any user that holds a minimum amount of {{networks.moonbase.staking.min_nom_stake}} tokens as free balance can become a nominator. 
 
 In order to nominate a collator, you'll need to determine the current collator nomination count and nominator nomination count. The collator nomination count is the numner of nominations backing a specific collator. The nominator nomination account is the number of nominations made by the nominator.
 
