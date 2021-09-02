@@ -1,6 +1,7 @@
 title: Node Operators
 hide: false
 nav:
+  - index.md
   - networks
-  - oracles
-  - indexers
+  - oracle-nodes
+  - indexer-nodes

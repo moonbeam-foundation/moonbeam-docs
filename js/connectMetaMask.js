@@ -1,6 +1,6 @@
 const provider = window.ethereum;
 const moonbaseAlphaChainId = '0x507';
-const moonriverChainId = "0x505";
+const moonriverChainId = '0x505';
 
 /**  Add event listener to the Connect MetaMask buttons */
 const metaMaskButtons = document.querySelectorAll('.connectMetaMask');
