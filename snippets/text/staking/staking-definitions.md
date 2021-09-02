@@ -6,6 +6,4 @@ Some important parameters to understand in relation to the staking system in Moo
  - **Minimum nomination** — minimum amount of tokens to nominate other collators once a user is in the set of nominators
  - **Maximum nominators per collator** — maximum number of nominators a collator can have
  - **Maximum collators per nominator** — maximum number of collators a nominator can nominate
- - **Round** — number of blocks in a round. An important parameter for reward distribution
-
- - **Bond duration** — number of rounds that the staking rewards are delayed
+ - **Round** — a specific number of blocks around which staking actions are enforced. For example, new nominations are enacted when the next round starts. When revoking nominations, funds are returned after a certain amount of rounds
