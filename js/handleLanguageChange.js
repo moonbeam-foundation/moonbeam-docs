@@ -48,7 +48,7 @@ const displayLanguage = (label, language, abbreviatedLanguage) => {
         a.substr(0, 4)
       )
     )
-      check = true;
+      isMobile = true;
   })(navigator.userAgent || navigator.vendor || window.opera);
 
   if (isMobile) {
