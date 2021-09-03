@@ -41,7 +41,7 @@ jobs:
           cd moonbeam-mkdocs
 
           # change destination build folder in mkdocs YAML to local site/
-          sed -i 's/site_dir.*/site_dir: site/' mkdocs.yml
+          sed -i "s/'site_dir'.*/'site_dir': site/" mkdocs.yml
 
           # build project
           python3 -m mkdocs build
