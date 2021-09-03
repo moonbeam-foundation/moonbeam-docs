@@ -9,7 +9,7 @@ const connectMetaMaskNav = document.querySelector('.connectMetaMask-nav');
 const supportedNetworks = {
   moonbase: {
     chainId: moonbaseAlphaChainId,
-    chainName: 'Moonbase Alpha',
+    chainName: 'Moonbeam TestNet Moonbase Alpha',
     rpcUrls: ['https://rpc.testnet.moonbeam.network'],
     blockExplorerUrls: [
       'https://moonbase-blockscout.testnet.moonbeam.network/',
@@ -22,7 +22,7 @@ const supportedNetworks = {
   },
   moonriver: {
     chainId: moonriverChainId,
-    chainName: 'Moonriver',
+    chainName: 'Moonriver Kusama',
     rpcUrls: ['https://rpc.moonriver.moonbeam.network'],
     blockExplorerUrls: ['https://blockscout.moonriver.moonbeam.network/'],
     nativeCurrency: {
