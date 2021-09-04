@@ -36,6 +36,14 @@ jobs:
           # install dependencies quietly
           pip3 install -r requirements.txt &> /dev/null && echo "Dependencies installed" || echo "Error while installing dependencies"
 
+      - name: Get Submodules
+        run: |          
+          cd moonbeam-mkdocs/moonbeam-docs
+
+          # Initialize and update submodules
+          git submodule init
+          git submodule update
+
       - name: Build mkdocs
         run: |          
           cd moonbeam-mkdocs
