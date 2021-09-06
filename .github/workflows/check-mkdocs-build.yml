@@ -1,9 +1,9 @@
 name: CheckMkDocsBuild
 on:
-  # Trigger the workflow on a new pull request on master
+  # Triggger the workflow on a new pull request on master
   pull_request_target:
     branches:
-      - master
+      - main
 
 jobs:
   build-docs-site:
@@ -11,45 +11,37 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Checkout Submodule
+        run: |
+          git submodule update --init
+          
       - name: Allow to move dotfiles
         run: |
           # move also dotfile with *
           shopt -s dotglob
-
+          
       - name: Clone Moonbeam MKDocs
         run: |
           # clone mkdocs repo locally
           git clone https://${{ secrets.REPO_SCOPED_TOKEN }}@github.com/PureStake/moonbeam-mkdocs.git
-
+          
       - name: Move moonbeam-docs contents to mkdocs repository
         run: |
           mkdir moonbeam-mkdocs/moonbeam-docs
           mv * moonbeam-mkdocs/moonbeam-docs &> /dev/null || echo "Error with mv expected due to recursively moving all contents into subfolder"
-
+      
       - name: Install pip requirements
         run: |
           cd moonbeam-mkdocs
-
           # upgrade pip
           pip3 install --upgrade pip setuptools
-
           # install dependencies quietly
           pip3 install -r requirements.txt &> /dev/null && echo "Dependencies installed" || echo "Error while installing dependencies"
-
-      - name: Get Submodules
-        run: |          
-          cd moonbeam-mkdocs/moonbeam-docs
-
-          # Initialize and update submodules
-          git submodule init
-          git submodule update
-
+      
       - name: Build mkdocs
-        run: |          
+        run: |
           cd moonbeam-mkdocs
-
           # change destination build folder in mkdocs YAML to local site/
           sed -i "s/'site_dir'.*/'site_dir': 'site'/" mkdocs.yml
-
           # build project
           python3 -m mkdocs build
