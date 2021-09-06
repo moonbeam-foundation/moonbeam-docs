@@ -1,9 +1,9 @@
 name: CheckMkDocsBuild
 on:
-  # Triggger the workflow on a new pull request on master
+  # Trigger the workflow on a new pull request on master
   pull_request_target:
     branches:
-      - main
+      - master
 
 jobs:
   build-docs-site:
@@ -14,22 +14,22 @@ jobs:
       - name: Checkout Submodule
         run: |
           git submodule update --init
-          
+
       - name: Allow to move dotfiles
         run: |
           # move also dotfile with *
           shopt -s dotglob
-          
+
       - name: Clone Moonbeam MKDocs
         run: |
           # clone mkdocs repo locally
           git clone https://${{ secrets.REPO_SCOPED_TOKEN }}@github.com/PureStake/moonbeam-mkdocs.git
-          
+
       - name: Move moonbeam-docs contents to mkdocs repository
         run: |
           mkdir moonbeam-mkdocs/moonbeam-docs
           mv * moonbeam-mkdocs/moonbeam-docs &> /dev/null || echo "Error with mv expected due to recursively moving all contents into subfolder"
-      
+
       - name: Install pip requirements
         run: |
           cd moonbeam-mkdocs
@@ -37,7 +37,7 @@ jobs:
           pip3 install --upgrade pip setuptools
           # install dependencies quietly
           pip3 install -r requirements.txt &> /dev/null && echo "Dependencies installed" || echo "Error while installing dependencies"
-      
+
       - name: Build mkdocs
         run: |
           cd moonbeam-mkdocs
