@@ -40,8 +40,8 @@ The minimum specs recommended to run a node are shown in the following table. Fo
     |  Component   |     | Requirement                                                                                                                |
     | :----------: | :-: | :------------------------------------------------------------------------------------------------------------------------- |
     |   **CPU**    |     | {{ networks.moonriver.node.cores }} Cores (Fastest per core speed)                                                                      |
-    |   **RAM**    |     | {{ networks.moonbase.node.ram }} GB                                                                         |
-    |   **SSD**    |     | {{ networks.moonbase.node.hd }} GB (to start)                                                                              |
+    |   **RAM**    |     | {{ networks.moonriver.node.ram }} GB                                                                         |
+    |   **SSD**    |     | {{ networks.moonriver.node.hd }} GB (to start)                                                                              |
     | **Firewall** |     | P2P port must be open to incoming traffic:<br>&nbsp; &nbsp; - Source: Any<br>&nbsp; &nbsp; - Destination: 30333, 30334 TCP |
 
 
