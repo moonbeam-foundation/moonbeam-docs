@@ -25,7 +25,7 @@ If you already have MetaMask installed, you can easily connect MetaMask to the M
 If you do not have MetaMask installed, please check out the [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask/) guide.
 ## Get Tokens {: #get-tokens } 
 
-To start building on Moonbase Alpha, you can get DEV tokens from our [faucet](/builders/get-started/moonbase/#get-tokens/).
+To start building on Moonbase Alpha, you can get DEV tokens from our [faucet](https://discord.gg/PfpUATX), in our Discord Channel. For specific amounts, you can always reach out directly to us via our community channels.
 
 ### Discord - Mission Control {: #discord-mission-control } 
 
