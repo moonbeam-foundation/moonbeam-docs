@@ -1,0 +1,7 @@
+title: Moonbeam vs Ethereum
+nav:
+  - index.md
+  - balances.md
+  - transfers-api.md
+  - consensus-finality.md
+  - rpc-support.md
