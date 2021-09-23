@@ -21,7 +21,7 @@ _An image will be here_
 
 An account on Moonbeam is also an entity with a token balance (the token will depend on the network). Like on Ethereum, account holders can send token transactions on the Moonbeam Network they are connected to. In addition, accounts can be controlled by users (with the private key for signing) or smart contracts.
 
-As with Ethereum, there are two main type of accounts: user-owned and contract owned. Within user-owned accounts. There are [proxy accounts](https://wiki.polkadot.network/docs/learn-proxies) within user-owned accounts, which can perform a limited number of actions on behalf of another account. However, in terms of balances, all of Moonbeam account types have four (4) different [balance types](https://wiki.polkadot.network/docs/learn-accounts#balance-types):
+As with Ethereum, there are two main type of accounts: user-owned and contract owned. There are [proxy accounts](https://wiki.polkadot.network/docs/learn-proxies) within user-owned accounts, which can perform a limited number of actions on behalf of another account. However, in terms of balances, all of Moonbeam account types have four (4) different [balance types](https://wiki.polkadot.network/docs/learn-accounts#balance-types):
 
  - **Free** — refers to the balance that can be used. The `free` balance is also what is available for the Ethereum API on Moonbeam. For example, this is the balance displayed by MetaMask
  - **Reserved** — refers to the balance held due to on-chain requirements and can be freed by performing some on-chain action. For example, funds that are being staked at a protocol level (parachain staking) are shown as `reserved balance`. These funds are **not** accessible via the Ethereum API until they are freed
