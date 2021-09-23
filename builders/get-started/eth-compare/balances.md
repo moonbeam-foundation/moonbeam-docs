@@ -21,17 +21,17 @@ _An image will be here_
 
 An account on Moonbeam is also an entity with a token balance (the token will depend on the network). Like on Ethereum, account holders can send token transactions on the Moonbeam Network they are connected to. In addition, accounts can be controlled by users (with the private key for signing) or smart contracts.
 
-As with Ethereum, there are two main type of accounts: user-owned and contract owned. There are [proxy accounts](https://wiki.polkadot.network/docs/learn-proxies) within user-owned accounts, which can perform a limited number of actions on behalf of another account. However, in terms of balances, all of Moonbeam account types have four (4) different [balance types](https://wiki.polkadot.network/docs/learn-accounts#balance-types):
+As with Ethereum, there are two main type of accounts: user-owned and contract owned. Within both account types, there are also [proxy accounts](https://wiki.polkadot.network/docs/learn-proxies), which can perform a limited number of actions on behalf of another account. However, in terms of balances, all of Moonbeam account types have four (4) different [balance types](https://wiki.polkadot.network/docs/learn-accounts#balance-types):
 
- - **Free** — refers to the balance that can be used. The `free` balance is also what is available for the Ethereum API on Moonbeam. For example, this is the balance displayed by MetaMask
+ - **Reducible** — refers to the balance that can be used (not locked/frozen). The `reducible` balance is also what is available for the Ethereum API on Moonbeam. For example, this is the balance displayed by MetaMask
  - **Reserved** — refers to the balance held due to on-chain requirements and can be freed by performing some on-chain action. For example, funds that are being staked at a protocol level (parachain staking) are shown as `reserved balance`. These funds are **not** accessible via the Ethereum API until they are freed
- - **Misc frozen** — represents a balance that the `free` balance may not drop below when withdrawing funds, except for transaction fee payment. For example, funds being used to vote on a governance proposal are shown as `misc frozen`. These funds are **not** accessible via the Ethereum API until they are freed
-  **Fee frozen** — represents a balance that the `free` balance may not drop below when specifically paying for transaction fees. These funds are **not** accessible via the Ethereum API until they are freed
+ - **Misc frozen** — represents a balance that the `reducible` balance may not drop below when withdrawing funds, except for transaction fee payment. For example, funds being used to vote on a governance proposal are shown as `misc frozen`. These funds are **not** accessible via the Ethereum API until they are freed
+  **Fee frozen** — represents a balance that the `reducible` balance may not drop below when specifically paying for transaction fees. These funds are **not** accessible via the Ethereum API until they are freed
 
 _An image will be here_
 
 ## Main Differences
 
-The main difference between account balances on Ethereum and Moonbeam lies in the concept of a locked balance in Moonbeam. These are tokens that are still owned by that account, but they are not spendable.
+The main difference between account balances on Ethereum and Moonbeam lies in the concept of locked and reserved balance in Moonbeam. These are tokens that are still owned by that account, but they are not spendable (yet).
 
-From the Ethereum's API perspective, an account might show that it has a certain balance (called `free` balance). After an on-chain action, this value might increase (or decrease) without and actual balance transfer.
+From the Ethereum's API perspective, an account might show that it has a certain balance (called `reducible` balance). However, after an on-chain action, this value might increase (or decrease) without and actual balance transfer.

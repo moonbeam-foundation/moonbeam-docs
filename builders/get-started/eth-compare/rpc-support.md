@@ -76,4 +76,4 @@ At the time of writing, the [supported subcriptions](https://geth.ethereum.org/d
  - **[newPendingTransactions](https://geth.ethereum.org/docs/rpc/pubsub#newpendingtransactions)** — Returns the hash for all transactions that are added to the pending state
  - **[syncing](https://geth.ethereum.org/docs/rpc/pubsub#syncing)** — Indicates when the node starts or stop synchronizing with the network
 
-You can find a dedicated tutorial for these subscriptions in [this page](/builders/tools/pubsub/).
+For a dedicated tutorial for these subscriptions checkout the [Events Subscription](/builders/tools/pubsub/) guide.

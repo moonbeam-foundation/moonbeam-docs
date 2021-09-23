@@ -43,7 +43,4 @@ The following code snippet uses Polkadot.js to loop through each event fetched f
 
 --8<-- 'code/vs-ethereum/balance-event.md'
 
-In addition, you can find more code snippets related to more specific cases around balance transfers in [this link](https://gist.github.com/crystalin/b2ce44a208af60d62b5ecd1bad513bce).
-
-
-
+In addition, you can find more code snippets related to more specific cases around balance transfers in [this script](https://gist.github.com/crystalin/b2ce44a208af60d62b5ecd1bad513bce).
