@@ -19,7 +19,7 @@ This tutorial shows you how to get started with your Ledger hardware wallet on M
 
 Before you get started, update [Ledger Live](https://www.ledger.com/ledger-live/download) to the latest version available. Also, make sure you've your Ledger hardware wallet device running the latest firmware. The Ledger support website offers tutorials on how to update the firmware of both [Ledger Nano S](https://support.ledger.com/hc/en-us/articles/360002731113-Update-Ledger-Nano-S-firmware) and [Ledger Nano X](https://support.ledger.com/hc/en-us/articles/360013349800-Update-Ledger-Nano-X-firmware) devices.
 
-Once you are running the latest firmware version, ensure you are running the newest Ethereum application. The Ledger support website offers a tutorial on [how to install the Ethereum app](https://support.ledger.com/hc/en-us/articles/360009576554-Ethereum-ETH-).
+Once you are running the latest firmware version, ensure you are running the newest Ethereum application. The Ledger support website offers a tutorial on [how to install the Ethereum app](https://support.ledger.com/hc/en-us/articles/360009576554-Ethereum-ETH-). If you're adapting this tutorial for Moonriver, you can [install the Moonriver app](#installing-the-moonriver-app-with-ledger-live).
 
 At the time of writing, the following versions were used:
 
@@ -32,9 +32,20 @@ In addition, you'll need MetaMask as an intermediary between your Ledger device 
 
 Please note that your Ledger device will sign transactions in whichever MetaMask network is connected to.
 
+## Installing the Moonriver App with Ledger Live {: #installing-the-moonriver-app-with-ledger-live }
+
+If you're looking to connect your Ledger to the Moonriver network, you can now do so through the Moonriver app in the Ledger Live app catalog. To do so, open up the Ledger Live app and:
+
+1. Select **Manager** from the menu
+2. Connect and unlock your device (this must be done before installation)
+3. In the **App catalog**, search for Moonriver (MOVR)
+4. Click **Install**
+
+Your Ledger device will show a status of **Processing**. Then once the Moonriver app has been successfully installed, the app will appear in the menu on your Ledger device. In the Ledger Live app, you'll also see the Moonriver (MOVR) app under the **Apps installed** tab on the **Manager** page.
+
 ## Importing your Ledger Account to MetaMask {: #importing-your-ledger-account-to-metamask } 
 
-To get started, you need to connect your Ledger device to the computer, unlock it, open the Ethereum application. Next, to import your Ethereum Ledger account to MetaMask, take the following steps:
+To get started, you need to connect your Ledger device to the computer, unlock it, open the Ethereum application. For Moonriver, you can open the Moonriver application. Next, to import your Ethereum Ledger account to MetaMask, take the following steps:
 
  1. Click on the top-right logo to expand the menu
  2. Select "Connect Hardware Wallet"
@@ -48,7 +59,7 @@ In the next screen, you are prompted to select which hardware wallet you'll like
 
 ![MetaMask Select Ledger Hardware Wallet](/images/ledger/ledger-images2.png)
 
-If MetaMask was able to connect successfully to your Ledger device, you should see a list of five Ethereum-styled accounts. On the contrary, double-check that Ledger Live is closed, you've connected your Ledger device to the computer, unlocked it, and that the Ethereum app is opened. If you are using Chrome, check these [additional steps](#chrome-browser).
+If MetaMask was able to connect successfully to your Ledger device, you should see a list of five Ethereum-styled accounts. On the contrary, double-check that Ledger Live is closed, you've connected your Ledger device to the computer, unlocked it, and that the Ethereum app is opened. For Moonriver, ensure the Moonriver app is opened. If you are using Chrome, check these [additional steps](#chrome-browser).
 
 ### Import Accounts {: #import-accounts } 
 
@@ -85,9 +96,9 @@ Next, allow Ledger Live to connect to your device by following these steps:
  2. Select "Connect Hardware Wallet"
  3. Allow Chrome permission to open Ledger Live
  4. Click "Open" in the Ledger Live App
- 5. Open the Ethereum App on your Ledger Device and resume [importing accounts](#import-accounts)
+ 5. Open the Ethereum app on your Ledger device and resume [importing accounts](#import-accounts). For Moonriver, you can open the Moonriver app on your Ledger device.
 
- ![Allow Ledger Live to connect your Ledger Device](/images/ledger/ledger-images5.png)
+ ![Allow Ledger Live to connect your Ledger device](/images/ledger/ledger-images5.png)
 
 With this feature enabled, MetaMask will open Ledger Live when trying to connect to your Ledger device. You can read more about it in this [MetaMask blog post](https://metamask.zendesk.com/hc/en-us/articles/360020394612-How-to-connect-a-Trezor-or-Ledger-Hardware-Wallet).
 
@@ -102,9 +113,9 @@ First, make sure your Ledger account is [funded with DEV tokens](/builders/get-s
 As you would in a standard transaction, set the recipient address, enter the number of tokens to send, review transaction details and confirm it. This will initiate the transaction signature wizard in your Ledger device. Here, take the following steps:
 
  1. Click the button to proceed to the next screen. Your Ledger device is only warning you to review the transaction
- 2. Check the number of tokens being sent. Please note that the token corresponds to the network MetaMask is connected to. **In this case, it is DEV tokens and not ETH!** When ready, proceed to the next screen
+ 2. Check the number of tokens being sent. Please note that the token corresponds to the network MetaMask is connected to. **In this case, it is DEV tokens and not MOVR or ETH!** When ready, proceed to the next screen
  3. Check the recipient's address and proceed to the next screen
- 4. Check the chain ID of the network. This information confirms which network MetaMask is connected to. For example, for Moonbase Alpha, the chain ID is 1287, Moonriver 1285 (not yet live), and Moonbeam 1284 (not yet live). When ready, proceed to the next screen
+ 4. Check the chain ID of the network. This information confirms which network MetaMask is connected to. For example, for Moonbase Alpha, the chain ID is 1287, Moonriver 1285, and Moonbeam 1284 (not yet live). When ready, proceed to the next screen
  5. Check the max fees applicable to this transaction. This is the gas price multiplied by the gas limit you've set on MetaMask. When ready, proceed to the next screen
  6. If you agree with all the transaction details, approve it. This will sign the transaction and will trigger MetaMask to send it. On the contrary, proceed to the next screen
  7. If you don't agree with all the transaction details, reject it. This will cancel the transaction, and MetaMask will mark it as failed
@@ -124,9 +135,9 @@ And that is it! You've signed a transaction on Moonbase Alpha using your Ledger 
 
 By default, Ledger devices don't admit a `data` field in the transaction object. Consequently, users can't deploy or interact with smart contracts.
 
-However, if you want to use your Ledger hardware wallet for transactions related to smart contracts, you need to change a configuration parameter inside the Ethereum application. To do so, take the following steps:
+However, if you want to use your Ledger hardware wallet for transactions related to smart contracts, you need to change a configuration parameter inside the Ethereum, or Moonriver, application. To do so, take the following steps:
 
- 1. Open the Ledger Ethereum app
+ 1. Open the Ledger Ethereum app. For Moonriver, open the Ledger Moonriver app
  2. Navigate to "Settings"
  3. Find the "Contract data" page. It should state "NOT allowed" at the bottom
  4. Select/validate the option to change its value to "Allowed"
