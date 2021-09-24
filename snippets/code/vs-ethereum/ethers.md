@@ -44,6 +44,13 @@ const main = async () => {
   // Uses Ethereum JSON-RPC
   const txReceipt = await customWeb3Request(web3Provider, 'eth_getTransactionReceipt', [txHash]);
 
+  // As a safety check, get given block to check if transaction is included
+  // Uses Ethereum JSON-RPC
+  const txBlock = await customWeb3Request(web3Provider, 'eth_getBlockByNumber', [
+    txReceipt.blockNumber,
+    false,
+  ]);
+
   // If block number of receipt is not null, compare it against finalized head
   if (txReceipt) {
     // Convert to Number
@@ -54,6 +61,11 @@ const main = async () => {
       `Your transaction in block ${txBlockNumber} is finalized? ${
         finalizedBlockNumber >= txBlockNumber
       }`
+    );
+    console.log(
+      `Your transaction in indeed in block ${txBlockNumber}? ${txBlock.transactions.includes(
+        txHash
+      )}`
     );
   } else {
     console.log('Your transaction has not been included in the canonical chain');

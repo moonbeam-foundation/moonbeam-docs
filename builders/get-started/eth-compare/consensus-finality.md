@@ -35,6 +35,7 @@ In terms of finality, on Moonbeam, you can check when a transaction is finalized
  1. You ask the network the hash of the latest finalized block
  2. You retrieve the block number using the hash
  3. You compare it with the block number of your transaction. If your transaction was included in a previous block, it is finalized
+ 4. As as safety check, retrieve the block by number, and verify that the given transaction hash is in the block
 
 The following sections outline how you can check for transaction finality using both the Ethereum JSON-RPC (custom Web3 request) and the Substrate (Polkadot) JSON-RPC.
 
@@ -53,7 +54,7 @@ With [Web3.js](https://web3js.readthedocs.io/), you can make custom RPC requests
 
 Given a transaction hash (`tx_hash`), the following code snippet uses Web3.js to fetch the current finalized block and compare it with the block number of the transaction you've provided. 
 
-The code relies on two custom RPC requests from the Substrate JSON-RPC: `chain_getFinalizedHead` and `chain_getHeader`. The first request gets the block hash of the last finalized block. The second request gets the block header for a given block hash. It also uses the same custom RPC function for `eth_getTransactionReceipt`, but this can be modified to use the regular `web3.eth.getTransactionReceipt(hash)` method.
+The code relies on two custom RPC requests from the Substrate JSON-RPC: `chain_getFinalizedHead` and `chain_getHeader`. The first request gets the block hash of the last finalized block. The second request gets the block header for a given block hash. It also uses the same custom RPC function for `eth_getTransactionReceipt`, but this can be modified to use the regular `web3.eth.getTransactionReceipt(hash)` method. The same is true for `eth_getBlockByNumber`, to check if the given transactio hash is included in the block.
 
 --8<-- 'code/vs-ethereum/web3.md'
 
@@ -63,7 +64,7 @@ With [Ethers.js](https://docs.ethers.io/), you can make custom RPC requests with
 
 Given a transaction hash (`tx_hash`), the following code snippet uses Ethers.js to fetch the current finalized block and compare it with the block number of the transaction you've provided. 
 
-The code relies on two custom RPC requests from the Substrate JSON-RPC: `chain_getFinalizedHead` and `chain_getHeader`. The first request gets the block hash of the last finalized block. The second request gets the block header for a given block hash. It also uses the same custom RPC function for `eth_getTransactionReceipt`, but this can be modified to use the regular `web3Provider.getTransactionReceipt(hash)` method.
+The code relies on two custom RPC requests from the Substrate JSON-RPC: `chain_getFinalizedHead` and `chain_getHeader`. The first request gets the block hash of the last finalized block. The second request gets the block header for a given block hash. It also uses the same custom RPC function for `eth_getTransactionReceipt`, but this can be modified to use the regular `web3Provider.getTransactionReceipt(hash)` method. The same is true for `eth_getBlockByNumber`, to check if the given transactio hash is included in the block.
 
 --8<-- 'code/vs-ethereum/ethers.md'
 
