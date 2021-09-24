@@ -5,24 +5,22 @@ from web3.providers.base import JSONBaseProvider
 from web3.providers import HTTPProvider
 from web3 import Web3
 
-#Define the Web3 provider and RPC endpoint
+# Define the TxHash to Check Finality
+txHash = 'tx_hash'
+
+# Define the Web3 provider
 RPC_address = 'https://rpc.moonriver.moonbeam.network'
 web3 = Web3(HTTPProvider(RPC_address))
 
-#The hash of the transaction to be checked
-txHash = 'tx_hash'
 
 # synchronously request receipts for given transaction
 def sync_receipts(web3, transaction):
     return web3.eth.getTransactionReceipt(transaction)
 
 # asynchronous JSON RPC API request
-async def async_make_request(session, url, method, params):
-    base_provider = JSONBaseProvider()
-    request_data = base_provider.encode_rpc_request(method, params)
-    async with session.post(url, data=request_data,
-                        headers={'Content-Type': 'application/json'}) as response:
-        content = await response.read()
+async def customWeb3Request(web3, method, params):
+    request_data = web3.encode_rpc_request(method, params)
+    async web3
     response = base_provider.decode_rpc_response(content)
     return response
 

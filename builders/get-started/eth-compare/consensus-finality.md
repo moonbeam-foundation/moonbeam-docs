@@ -53,7 +53,7 @@ With [Web3.js](https://web3js.readthedocs.io/), you can make custom RPC requests
 
 Given a transaction hash (`tx_hash`), the following code snippet uses Web3.js to fetch the current finalized block and compare it with the block number of the transaction you've provided. 
 
-The code relies on two customs RPC requests from the Substrate JSON-RPC: `chain_getFinalizedHead` and `chain_getHeader`. The first request gets the block hash of the last finalized block. The second request gets the block header for a given block hash. It also uses the same custom RPC function for `eth_getTransactionReceipt`, but this can be modified to use the regular `web3.eth.getTransactionReceipt(hash)` method.
+The code relies on two custom RPC requests from the Substrate JSON-RPC: `chain_getFinalizedHead` and `chain_getHeader`. The first request gets the block hash of the last finalized block. The second request gets the block header for a given block hash. It also uses the same custom RPC function for `eth_getTransactionReceipt`, but this can be modified to use the regular `web3.eth.getTransactionReceipt(hash)` method.
 
 --8<-- 'code/vs-ethereum/web3.md'
 
@@ -63,19 +63,21 @@ With [Ethers.js](https://docs.ethers.io/), you can make custom RPC requests with
 
 Given a transaction hash (`tx_hash`), the following code snippet uses Ethers.js to fetch the current finalized block and compare it with the block number of the transaction you've provided. 
 
-The code relies on two customs RPC requests from the Substrate JSON-RPC: `chain_getFinalizedHead` and `chain_getHeader`. The first request gets the block hash of the last finalized block. The second request gets the block header for a given block hash. It also uses the same custom RPC function for `eth_getTransactionReceipt`, but this can be modified to use the regular `web3Provider.getTransactionReceipt(hash)` method.
+The code relies on two custom RPC requests from the Substrate JSON-RPC: `chain_getFinalizedHead` and `chain_getHeader`. The first request gets the block hash of the last finalized block. The second request gets the block header for a given block hash. It also uses the same custom RPC function for `eth_getTransactionReceipt`, but this can be modified to use the regular `web3Provider.getTransactionReceipt(hash)` method.
 
 --8<-- 'code/vs-ethereum/ethers.md'
 
+<!---
 ### Custom RPC Requests with Web3.py
 
 With [Web3.py](https://web3py.readthedocs.io/en/stable/), you can make custom RPC requests with the `JSONBaseProvider()` web3 provider. This will enable the `encode_rpc_request` and `decode_rpc_response` methods. However, at the time of writing, this was not in the official Web3.py documentation.
 
 Given a transaction hash (`tx_hash`), the following code snippet uses Web3.py to fetch the current finalized block and compare it with the block number of the transaction you've provided. 
 
-The code asynchronously calls two customs RPC requests from the Substrate JSON-RPC: `chain_getFinalizedHead` and `chain_getHeader`. The first request gets the block hash of the last finalized block. The second request gets the block header for a given block hash. It uses the built-in `web3.eth.getTransactionReceipt` method for retrieving the transaction receipt.
+The code asynchronously calls two custom RPC requests from the Substrate JSON-RPC: `chain_getFinalizedHead` and `chain_getHeader`. The first request gets the block hash of the last finalized block. The second request gets the block header for a given block hash. It uses the built-in `web3.eth.getTransactionReceipt` method for retrieving the transaction receipt.
 
 --8<-- 'code/vs-ethereum/web3py.md'
+-->
 
 ## Checking Tx Finality with Polkadot.js
 

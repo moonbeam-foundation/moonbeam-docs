@@ -37,10 +37,10 @@ At the time of writing, the basic JSON RPC methods from the Ethereum API support
  - **[eth_sendTransaction](https://eth.wiki/json-rpc/API#eth_sendtransaction)** — Creates new message call transaction or a contract creation, if the data field contains code. Returns the transaction hash, or the zero hash if the transaction is not yet available
  - **[eth_sendRawTransaction](https://eth.wiki/json-rpc/API#eth_sendrawtransaction)** — Creates new message call transaction or a contract creation for signed transactions. Returns the transaction hash, or the zero hash if the transaction is not yet available
  - **[eth_call](https://eth.wiki/json-rpc/API#eth_call)** — Executes a new message call immediately without creating a transaction on the block chain, returning the value of the executed call
- - **[eth_estimateGas](https://eth.wiki/json-rpc/API#eth_estimategas)** — Returns an esimate amount of how much gas is necessary for a given transaction to succeed
+ - **[eth_estimateGas](https://eth.wiki/json-rpc/API#eth_estimategas)** — Returns an estimate amount of how much gas is necessary for a given transaction to succeed
  - **[eth_getTransactionByHash](https://eth.wiki/json-rpc/API#eth_gettransactionbyhash)** — Returns the information about a transation with a given hash
- - **[eth_getTransactionByBlockHashAndIndex](https://eth.wiki/json-rpc/API#eth_gettransactionbyblockhashandindex)** — Returns information about a trasaction at a given block hash, and a given index position
- - **[eth_getTransactionByBlockNumberAndIndex](https://eth.wiki/json-rpc/API#eth_gettransactionbyblocknumberandindex)** — Returns information about a trasaction at a given block number, and a given index position
+ - **[eth_getTransactionByBlockHashAndIndex](https://eth.wiki/json-rpc/API#eth_gettransactionbyblockhashandindex)** — Returns information about a transaction at a given block hash, and a given index position
+ - **[eth_getTransactionByBlockNumberAndIndex](https://eth.wiki/json-rpc/API#eth_gettransactionbyblocknumberandindex)** — Returns information about a transaction at a given block number, and a given index position
  - **[eth_getTransactionReceipt](https://eth.wiki/json-rpc/API#eth_gettransactionreceipt)** — Returns the transaction receipt of a given transaction hash
  - **[eth_getUncleByBlockHashAndIndex](https://eth.wiki/json-rpc/API#eth_getunclebyblockhashandindex)** — Returns `"null"` by default
  - **[eth_getUncleByBlockNumberAndIndex](https://eth.wiki/json-rpc/API#eth_getunclebyblocknumberandindex)** — Returns `null` by default
@@ -58,16 +58,16 @@ At the time of writing, the filter-related JSON RPC methods from the Ethereum AP
  - **[eth_newPendingTransactionFilter](https://eth.wiki/json-rpc/API#eth_newpendingtransactionfilter)** — Creates a filter in the node to notify when a new pending transaction arrives. Returns a filter ID
  - **[eth_getFilterChanges](https://eth.wiki/json-rpc/API#eth_getfilterchanges)** — Polling method for filters (see methods above). Returns an array of logs which occured since last poll
  - **[eth_getFilterLogs](https://eth.wiki/json-rpc/API#eth_getfilterlogs)** — Returns an array of all the logs matching the filter with a given ID
- - **[eth_uninstallFilter](https://eth.wiki/json-rpc/API#eth_uninstallfilter)** — Uninstall a filters with a given ID. Should be used when polling is not longer needed. Filters timeout when they are not requested using `eth_getFilterChanges` after a period of time
+ - **[eth_uninstallFilter](https://eth.wiki/json-rpc/API#eth_uninstallfilter)** — Uninstall a filter with a given ID. Should be used when polling is not longer needed. Filters timeout when they are not requested using `eth_getFilterChanges` after a period of time
 
-## Event Subcription Ethereum JSON RPC Methods
+## Event Subscription Ethereum JSON RPC Methods
 
 At the time of writing, the [event subscription JSON RPC methods](https://geth.ethereum.org/docs/rpc/pubsub) from the Ethereum API supported by Moonbeam are:
 
 - **[eth_subscribe](https://geth.ethereum.org/docs/rpc/pubsub#create-subscription)** — Creates a subscription for a given subscription name. If successful, returns the subscription ID
 - **[eth_unsubscribe](https://geth.ethereum.org/docs/rpc/pubsub#cancel-subscription)** — Cancels the subscription given by its ID
 
-### Supported Subscriptions
+### Supported Subscription
 
 At the time of writing, the [supported subcriptions](https://geth.ethereum.org/docs/rpc/pubsub#supported-subscriptions) are:
 
