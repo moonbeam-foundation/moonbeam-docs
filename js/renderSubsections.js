@@ -1,4 +1,5 @@
 // Get the current page the user is on
+console.log("WHAT THE FUCK")
 const pathname = window.location.pathname;
 const classname = pathname.replace('/', '.').replaceAll('/', '-');
 
@@ -11,7 +12,7 @@ if (classname !== "."){
   // Append the cards
   const appendCards = (section) => {
     const href = section.href;
-    const image = href.split('/').slice(3, -1).join("/");  
+    const image = href.split('/').slice(3, -1).join("/").toLowerCase();
     const title = section.innerText;
   
     wrapper.innerHTML += `
