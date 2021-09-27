@@ -61,11 +61,11 @@ Once you've your device connected, you need to allow MetaMask to read its public
 
 ![Trezor Hardware Wallet Connect Wizard Allow Read Public Keys](/images/trezor/trezor-images5.png)
 
-Next, you are asked if you want to export the public key of your Ethereum account (tab was cropped and labeled as 1 in the following image). Right after, you are prompted with an option to use [Trezor's passphrase option (tab cropped and labeled as 2 in the image). If you want to use the default wallet, just click on "Enter." On the contrary, please follow [Trezor's wiki article for passphrase wallets](https://wiki.trezor.io/Passphrase).
+Next, you are asked if you want to export the public key of your Ethereum account (tab was cropped and labeled as 1 in the following image). Right after, you are prompted with an option to use [Trezor's passphrase option (tab cropped and labeled as 2 in the image). If you want to use the default wallet, just click on "Enter." If not, please follow [Trezor's wiki article for passphrase wallets](https://wiki.trezor.io/Passphrase).
 
 ![Trezor Hardware Wallet Connect Wizard Allow Export and Passphrase](/images/trezor/trezor-images6.png)
 
-If MetaMask was able to connect successfully to your Trezor device, you should see a list of five Ethereum-styled accounts. On the contrary, please double-check that you've properly connected your Trezor device to the computer and it is unlocked. You can also repeat the process with the Trezor Suite app opened.
+If MetaMask was able to connect successfully to your Trezor device, you should see a list of five Ethereum-styled accounts. If not, please double-check that you've properly connected your Trezor device to the computer and it is unlocked. You can also repeat the process with the Trezor Suite app opened.
 
 From this list of five Ethereum accounts, take the following steps:
 
