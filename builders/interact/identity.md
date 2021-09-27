@@ -5,6 +5,8 @@ description: Learn how to create and clear an identity, including personal infor
 
 # Managing your Account Identity
 
+![Managing your Account Identity](/images/identity/identity-banner.png)
+
 ## Introduction {: #introduction } 
 
 The [Substrate](/learn/platform/technology/#substrate-framework) Identity pallet is an out-of-the-box solution for adding personal information to your on-chain account. Personal information can include default fields such as your legal name, display name, website, Twitter handle, Riot (now known as Element) name. You can also take advantage of custom fields to include any other relevant information. 
