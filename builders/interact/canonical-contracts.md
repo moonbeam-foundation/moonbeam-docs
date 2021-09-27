@@ -17,7 +17,11 @@ The following canonical contract addresses have been established:
 | [Multicall (SushiSwap)](https://blockscout.moonriver.moonbeam.network/address/0x270f2F35bED92B7A59eA5F08F6B3fd34c8D9D9b5/transactions) | 0x270f2F35bED92B7A59eA5F08F6B3fd34c8D9D9b5 |
 |  [Gnosis Safe Factory](https://blockscout.moonriver.moonbeam.network/address/0x4e59b44847b379578588920cA78FbF26c0B4956C/transactions)  | 0x4e59b44847b379578588920cA78FbF26c0B4956C |
 
-There are also a set of precompiles included on Moonriver. Precompiles with addresses that, if converted to decimal format, fall within the range of 0-1023 are [Ethereum Mainnet precompiles](#ethereum-mainnet-precompiles). Those that fall within the range of 1024-2047 are precompiles that are [not in Ethereum and not Moonbeam specific](#non-moonbeam-specific-nor-ethereum-precomiles). Lastly, those that fall within the range of 2048-4095 are [Moonbeam specific precompiles](#moonbeam-specific-precompiles).
+There are also a set of precompiles included on Moonriver. The precompiles are categorized by address and based on the origin network. If you were to convert the precompile addresses to decimal, the categories are as follows:
+
+- **0-1023** - [Ethereum Mainnet precompiles](#ethereum-mainnet-precompiles)
+- **1024-2047** - precompiles that are [not in Ethereum and not Moonbeam specific](#non-moonbeam-specific-nor-ethereum-precomiles)
+- **2048-4095** - [Moonbeam specific precompiles](#moonbeam-specific-precompiles)
 
 ### Ethereum Mainnet Precompiles
 
