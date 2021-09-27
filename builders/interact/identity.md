@@ -82,7 +82,9 @@ You should see status notifications pop-up in the top right hand corner. Once th
 
 ![Updated account balances](/images/identity/identity-5.png)
 
-You’ve successfully set an identity! Once you clear your identity, the deposit in your reserved balance will get transferred back to your transferable balance. If you need to make changes to your identity, you can go through the process of setting your identity again. Please note that you will need to ensure all fields are re-entered, even if only one field needs to be changed, or they will be overwritten. You will not need to pay another deposit, unless custom fields are used, but you will need to pay gas fees.
+If the identity information matches what you entered, you’ve successfully set an identity! 
+
+Once you clear your identity, the deposit in your reserved balance will get transferred back to your transferable balance. If you need to make changes to your identity, you can go through the process of setting your identity again. Please note that you will need to ensure all fields are re-entered, even if only one field needs to be changed, or they will be overwritten. You will not need to pay another deposit, unless custom fields are used, but you will need to pay gas fees.
 
 ### Clear an Identity
 
