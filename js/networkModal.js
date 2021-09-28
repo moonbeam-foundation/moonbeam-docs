@@ -15,7 +15,7 @@ closeNetworkModal.className = 'close-modal';
 /** Set the display to none to hide the modal until it is needed */
 networkModalContainer.style.display = 'none';
 
-networkModalHeader.innerHTML = `Please select a network:`
+networkModalHeader.innerHTML = `Please select a network:`;
 
 /** Set generic header for the network modal */
 networkModalMessage.innerHTML = `
@@ -25,7 +25,7 @@ networkModalMessage.innerHTML = `
   <div class="button-wrapper">
     <a href="#" class="md-button connect-network" value="moonriver">Moonriver</a>
   </div>
-`
+`;
 
 /** Set up close button */
 closeNetworkModal.innerHTML = '&times;';
