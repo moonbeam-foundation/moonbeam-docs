@@ -83,14 +83,14 @@ languageOptions.forEach((option) => {
     // Redirect users to the destination language
     if (supportedLanguages.includes(destinationLanguage)) {
       if (isStaging) {
-        window.location = `http://docs-${destinationLanguage}-stage.moonbeam.network/${currentPath}`;
+        window.location = `http://docs-${destinationLanguage}-stage.moonbeam.network${currentPath}`;
       } else {
         window.location = `${window.location.origin}/${destinationLanguage}${currentPath}`;
       }
     } else {
       // Default to English
       if (isStaging) {
-        window.location = `http://docs-stage.moonbeam.network/${currentPath}`;
+        window.location = `http://docs-stage.moonbeam.network${currentPath}`;
       } else {
         window.location = `${window.location.origin}${currentPath}`;
       }
