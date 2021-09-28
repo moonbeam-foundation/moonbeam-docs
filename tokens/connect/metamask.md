@@ -26,7 +26,7 @@ If you already have MetaMask installed, you can easily connect MetaMask to the n
 !!! note
     MetaMask will popup asking for permission to add a a custom network. Once you approve permissions, MetaMask will switch your current network.
 
-Learn [how to integrate a Connect MetaMask button](/builders/interact/metamask-dapp/) into your dapp, so that users can connect to Moonbase Alpha with a simple click of a button.
+Learn [how to integrate a Connect MetaMask button](https://medium.com/moonbeam-network/integrate-metamask-into-a-dapp-ea7528c5a786) into your dapp, so that users can connect to Moonbase Alpha with a simple click of a button.
 
 ## Video Tutorials
 
