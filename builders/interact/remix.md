@@ -121,24 +121,36 @@ Hit “Confirm” and, after the transaction is complete, you will see a confirm
 
 If you own the account that you sent the tokens to, you can add the token asset to verify that the transfer arrived.
 
-## Using the Moonbeam Remix Plugin {: #using-the-moonbeam-remix-plugin } 
+## Using the Moonbeam Remix Plugin {: #using-the-moonbeam-remix-plugin }
+
 The Moonbeam Team has built a Remix plugin that makes it even easier to develop and deploy your Ethereum smart contracts on Moonbeam.  The Moonbeam Remix Plugin combines all of the important functions needed to compile, deploy, and interact with your smart contracts from one place - no switching tabs needed. 
 
 ### Installing the Moonbeam Remix Plugin
 
-To install the Moonbeam Remix Plugin, head to the Plugin manager tab and search for "Moonbeam". Press "Activate" and the Moonbeam Remix Plugin will be added directly above the Plugin manager tab.
+To install the Moonbeam Remix Plugin, take the following steps:
+
+ 1. Head to the Plugin manager tab
+ 2. Search for "Moonbeam"
+ 3. Press "Activate" and the Moonbeam Remix Plugin will be added directly above the Plugin manager tab
 
 ![Activating the Moonbeam Remix Plugin](/images/remix/plugin-remix-1.png)
 
+Once you've added the plugin, a Moonbeam logo will appear on the left hand side, representing the Moonbeam Remix Plugin tab.
+
 ### Getting Started with the Moonbeam Remix Plugin
-Click on the Moonbeam Logo in your Remix IDE to open the Moonbeam Plugin. This part assumes you already have a contract in Remix ready to be compiled. You can generate an [ERC-20 contract here.](https://wizard.openzeppelin.com/)  Follow along as we deploy an ERC-20 Token to Moonbase Alpha using the Moonbeam Remix Plugin.
 
-1. Press "Connect" to Connect your Metamask to the Remix IDE
-2. Ensure you're on the correct network. In this example, we're on Moonbase Alpha
-3. Press Compile or choose Auto-Compile if you prefer
-4. Press Deploy and Confirm the Transaction in Metamask
+Click on the Moonbeam Logo in your Remix IDE to open the Moonbeam Plugin. This part assumes you already have a contract in Remix ready to be compiled. You can generate an [ERC-20 contract here.](https://wizard.openzeppelin.com/)  Follow along to deploy an ERC-20 Token to Moonbase Alpha using the Moonbeam Remix Plugin.
 
-It's that easy! The Moonbeam Remix Plugin works seamlessly with Remix so you can freely switch between using the traditional Remix compile and deploy tabs and the Moonbeam Remix Plugin. 
+ 1. Press "Connect" to Connect your Metamask to the Remix IDE
+ 2. Ensure you're on the correct network. In this example, we're on Moonbase Alpha
+ 3. Press Compile or choose Auto-Compile if you prefer
+ 4. Press Deploy and Confirm the Transaction in Metamask
 
 ![Compiling and Deploying a Contract with the Moonbeam Remix Plug](/images/remix/plugin-remix-2.png)
+
+It's that easy! Once the contract is deployed, you'll see the address and all available read/write methods to interact with it.
+
+The Moonbeam Remix Plugin works seamlessly with Remix so you can freely switch between using the traditional Remix compile and deploy tabs and the Moonbeam Remix Plugin. 
+
+
 
