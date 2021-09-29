@@ -7,4 +7,5 @@ nav:
  - hardhat.md
  - truffle.md
  - waffle-mars.md
+ - canonical-contracts.md
  - identity.md
