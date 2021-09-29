@@ -185,7 +185,7 @@ To map your author ID to your account, you need to be inside the [candidate pool
 
 ![Author ID Mapping to Account Extrinsic](/images/fullnode/collator-polkadotjs4.png)
 
-If the transaction is successful, you will see a confirmation notification on your screen. On the contrary, make sure you've joined the [candidate pool](#become-a-collator-candidate).
+If the transaction is successful, you will see a confirmation notification on your screen. If not, make sure you've joined the [candidate pool](#become-a-collator-candidate).
 
 ![Author ID Mapping to Account Extrinsic Successful](/images/fullnode/collator-polkadotjs5.png)
 
