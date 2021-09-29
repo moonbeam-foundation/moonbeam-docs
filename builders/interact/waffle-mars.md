@@ -157,7 +157,7 @@ After compiling your contracts, Waffle stores the JSON output in the `build` dir
 
 Before deploying your contract and sending it off into the wild, you should test it first. Waffle provides an advanced testing framework and has plenty of tools to help you with testing. 
 
-You'll be running tests against the Moonbase Alpha TestNet and will need the corresponding RPC URL to connect to it: `https://rpc.testnet.moonbeam.network`. Since you will be running tests against the TestNet, it might take a couple minutes to run all of the tests. If you want a more efficient testing experience, you can [spin up a Moonbeam development node](/builders/get-started/moonbeam-dev/) using [`instant seal`](/builders/get-started/moonbeam-dev/#node-options). Running a local Moonbeam development node with the `instant seal` feature is similar to the quick and iterative experience you would get with [Ganache](https://www.trufflesuite.com/ganache).
+You'll be running tests against the Moonbase Alpha TestNet and will need the corresponding RPC URL to connect to it: `{{ networks.moonbase.rpc_url }}`. Since you will be running tests against the TestNet, it might take a couple minutes to run all of the tests. If you want a more efficient testing experience, you can [spin up a Moonbeam development node](/builders/get-started/moonbeam-dev/) using [`instant seal`](/builders/get-started/moonbeam-dev/#node-options). Running a local Moonbeam development node with the `instant seal` feature is similar to the quick and iterative experience you would get with [Ganache](https://www.trufflesuite.com/ganache).
 
 1. Create a directory to contain your tests and a file to test your `MyToken` contract:
 ```
@@ -177,7 +177,7 @@ use(solidity);
 
 describe ('MyToken', () => {
   // Use custom provider to connect to Moonbase Alpha
-  let provider: Provider = new ethers.providers.JsonRpcProvider('https://rpc.testnet.moonbeam.network');
+  let provider: Provider = new ethers.providers.JsonRpcProvider('{{ networks.moonbase.rpc_url }}');
   let wallet: Wallet;
   let walletTo: Wallet;
   let token: MyToken;
@@ -279,7 +279,7 @@ import { MyToken, MyTokenFactory } from '../build/types';
 use(solidity);
 
 describe ('MyToken', () => {
-  let provider: Provider = new ethers.providers.JsonRpcProvider('https://rpc.testnet.moonbeam.network');
+  let provider: Provider = new ethers.providers.JsonRpcProvider('{{ networks.moonbase.rpc_url }}');
   let wallet: Wallet;
   let walletTo: Wallet;
   let token: MyToken;
@@ -351,7 +351,7 @@ mkdir src && cd src && touch deploy.ts
 import { deploy } from 'ethereum-mars';
 
 const privateKey = "<insert-your-private-key-here>";
-deploy({network: 'https://rpc.testnet.moonbeam.network', privateKey},(deployer) => {
+deploy({network: '{{ networks.moonbase.rpc_url }}', privateKey},(deployer) => {
   // Deployment logic will go here
 });
 ```
@@ -362,7 +362,7 @@ import { deploy, contract } from 'ethereum-mars';
 import { MyToken } from '../build/artifacts';
 
 const privateKey = "<insert-your-private-key-here>";
-deploy({network: 'https://rpc.testnet.moonbeam.network', privateKey}, () => {
+deploy({network: '{{ networks.moonbase.rpc_url }}', privateKey}, () => {
   contract('myToken', MyToken, [10]);
 });
 ```

@@ -54,7 +54,7 @@ As mentioned before, to use both features you need to have a node running with t
 For example, for the `debug_traceTransaction` call, you can make the following JSON RPC request in your terminal (in this case, for the transaction hash `0x04978f83e778d715eb074352091b2159c0689b5ae2da2554e8fe8e609ab463bf`):
 
 ```
-curl http://localhost:9933 -H "Content-Type:application/json;charset=utf-8" -d \
+curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
   '{
     "jsonrpc":"2.0",
     "id":1,
@@ -70,7 +70,7 @@ The node responds with the step-by-step replayed transaction information (respon
 For the `trace_filter` call, you can make the following JSON RPC request in your terminal (in this case, the filter is from block 20000 to 25000, only for transactions where the recipient is  `0x4E0078423a39EfBC1F8B5104540aC2650a756577`, it will start with a zero offset and provide the first 20 traces):
 
 ```
-curl http://localhost:9933 -H "Content-Type:application/json;charset=utf-8" -d \
+curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
   '{
     "jsonrpc":"2.0",
     "id":1,

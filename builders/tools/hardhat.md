@@ -46,20 +46,20 @@ module.exports = {
    networks: {
       // Moonbeam Development Node
       dev: {
-        url: 'http://localhost:9933/',
-        chainId: 1281,
+        url: '{{ networks.development.rpc_url }}',
+        chainId: {{ networks.development.chain_id }},  // {{ networks.development.hex_chain_id }} in hex,
         accounts: [privateKeyDev]
       },
       // Moonbase Alpha TestNet
       moonbase: {
-        url: `https://rpc.testnet.moonbeam.network`,
-        chainId: 1287,
+        url: `{{ networks.moonbase.rpc_url }}`,
+        chainId: {{ networks.moonbase.chain_id }},  // {{ networks.moonbase.hex_chain_id }} in hex,
         accounts: [privateKeyMoonbase]
       },
       // Moonriver
       moonbase: {
-        url: `https://rpc.moonriver.moonbeam.network`,
-        chainId: 1285,
+        url: `{{ networks.moonriver.rpc_url }}`,
+        chainId: {{ networks.moonriver.chain_id }},  // {{ networks.moonriver.hex_chain_id }} in hex,
         accounts: [privateKeyMoonriver]
       },
    },

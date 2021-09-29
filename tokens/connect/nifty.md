@@ -70,7 +70,7 @@ And that is it, you now have Nifty Wallet connected to the Moonbase Alpha TestNe
 
 Nifty Wallet serves as a Web3 provider in tools such as [Remix](/builders/tools/remix/). By having Nifty Wallet connected to Moonbase Alpha, you can deploy contracts as you would like using MetaMask, signing the transactions with Nifty instead. 
 
-For example, in Remix, when deploying a smart contract, make sure you select the "Injected Web3" option in the "Environment" menu. If you have Nifty Wallet connected, you will see the TestNet chain ID just below the box (_1287_) and your Nifty Wallet account injected into Remix as well. When sending a transaction, you should see a similar pop-up from Nifty:
+For example, in Remix, when deploying a smart contract, make sure you select the "Injected Web3" option in the "Environment" menu. If you have Nifty Wallet connected, you will see the TestNet chain ID just below the box (_{{ networks.moonbase.chain_id }}_) and your Nifty Wallet account injected into Remix as well. When sending a transaction, you should see a similar pop-up from Nifty:
 
 <img src="/images/nifty/nifty-images-5.png" alt="Nifty sign transaction" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 

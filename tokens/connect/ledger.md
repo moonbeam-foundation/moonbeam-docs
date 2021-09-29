@@ -104,7 +104,7 @@ As you would in a standard transaction, set the recipient address, enter the num
  1. Click the button to proceed to the next screen. Your Ledger device is only warning you to review the transaction
  2. Check the number of tokens being sent. Please note that the token corresponds to the network MetaMask is connected to. **In this case, it is DEV tokens and not ETH!** When ready, proceed to the next screen
  3. Check the recipient's address and proceed to the next screen
- 4. Check the chain ID of the network. This information confirms which network MetaMask is connected to. For example, for Moonbase Alpha, the chain ID is 1287, Moonriver 1285 (not yet live), and Moonbeam 1284 (not yet live). When ready, proceed to the next screen
+ 4. Check the chain ID of the network. This information confirms which network MetaMask is connected to. For example, for Moonbase Alpha, the chain ID is {{ networks.moonbase.chain_id }} (hex: {{ networks.moonbase.hex_chain_id}}), Moonriver {{ networks.moonriver.chain_id }} (hex: {{ networks.moonriver.hex_chain_id }}), and Moonbeam 1284 (not yet live). When ready, proceed to the next screen
  5. Check the max fees applicable to this transaction. This is the gas price multiplied by the gas limit you've set on MetaMask. When ready, proceed to the next screen
  6. If you agree with all the transaction details, approve it. This will sign the transaction and will trigger MetaMask to send it. If not, proceed to the next screen
  7. If you don't agree with all the transaction details, reject it. This will cancel the transaction, and MetaMask will mark it as failed
