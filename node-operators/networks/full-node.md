@@ -322,6 +322,8 @@ The next step is to create the systemd configuration file. If you are setting up
          --port {{ networks.parachain.p2p }} \
          --rpc-port {{ networks.parachain.rpc }} \
          --ws-port {{ networks.parachain.ws }} \
+         --execution wasm \
+         --wasm-execution compiled \
          --pruning=archive \
          --state-cache-size 1 \
          --base-path {{ networks.moonbase.node_directory }} \
@@ -357,6 +359,8 @@ The next step is to create the systemd configuration file. If you are setting up
          --port {{ networks.parachain.p2p }} \
          --rpc-port {{ networks.parachain.rpc }} \
          --ws-port {{ networks.parachain.ws }} \
+         --execution wasm \
+         --wasm-execution compiled \
          --pruning=archive \
          --state-cache-size 1 \
          --base-path {{ networks.moonriver.node_directory }} \
@@ -394,6 +398,8 @@ The next step is to create the systemd configuration file. If you are setting up
          --port {{ networks.parachain.p2p }} \
          --rpc-port {{ networks.parachain.rpc }} \
          --ws-port {{ networks.parachain.ws }} \
+         --execution wasm \
+         --wasm-execution compiled \
          --pruning=archive \
          --state-cache-size 1 \
          --base-path {{ networks.moonbase.node_directory }} \
@@ -430,6 +436,8 @@ The next step is to create the systemd configuration file. If you are setting up
          --port {{ networks.parachain.p2p }} \
          --rpc-port {{ networks.parachain.rpc }} \
          --ws-port {{ networks.parachain.ws }} \
+         --execution wasm \
+         --wasm-execution compiled \
          --pruning=archive \
          --state-cache-size 1 \
          --base-path {{ networks.moonriver.node_directory }} \

@@ -166,7 +166,7 @@ In the second section, an asynchronous function wraps the web3 method used to fe
 
 ### Ethers.js {: #ethersjs } 
 
-The first section of [the script](/snippets/code/ethers-tx-local/balances.js) is very similar to the one in [transaction file](/builders/interact/eth-libraries/send-transaction/#ethersjs). The main difference is that no private key is needed because there is no need to send a transaction. On the contrary, the `addressFrom` needs to be defined.
+The first section of [the script](/snippets/code/ethers-tx-local/balances.js) is very similar to the one in [transaction file](/builders/interact/eth-libraries/send-transaction/#ethersjs). The main difference is that no private key is needed because there is no need to send a transaction. However, the `addressFrom` needs to be defined.
 
 In the second section, an asynchronous function wraps the provider method used to fetch the balance of an address, which is `provider.getBalance(address)`. Once again, you can leverage the `ethers.utils.formatEther()` function to transform the balance into a more readable number in ETH.
 

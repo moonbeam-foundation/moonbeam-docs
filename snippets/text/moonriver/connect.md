@@ -1,7 +1,8 @@
 
-The Moonriver RPC and WSS endpoints hosted by PureStake are for development purposes only and are not meant to be used in production applications. The following are alternative endpoint providers:
+The Moonriver RPC and WSS endpoints hosted by PureStake are for development purposes only and are not meant to be used in production applications. The following API providers do offer production level infrastructure (with some limited free tiers as well):
 
 - [OnFinality](https://onfinality.io/)
+- [Bware Labs](https://bwarelabs.com/)
 - [Elara](https://elara.patract.io/)
 
 ### HTTPS DNS {: #https-dns } 
@@ -18,6 +19,11 @@ To connect to Moonriver via HTTPS, simply point your provider to one of the foll
     https://moonriver.api.onfinality.io/public
     ```
 
+=== "Elara"
+    ```
+    https://pub.elara.patract.io/moonriver
+    ```
+
 For the web3.js library, you can create a local Web3 instance and set the provider to connect to Moonriver (both HTTP and WS are supported):
 
 ```js
@@ -28,6 +34,7 @@ const Web3 = require('web3'); //Load Web3 library
 //Create local Web3 instance - set Moonriver as provider
 const web3 = new Web3("https://rpc.moonriver.moonbeam.network"); 
 ```
+
 For the ethers.js library, define the provider by using `ethers.providers.StaticJsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonriver:
 
 ```js
@@ -60,7 +67,7 @@ For WebSocket connections, you can use the following DNS:
 
 === "Elara"
     ```
-    wss://moonriver.kusama.elara.patract.io
+    wss://pub.elara.patract.io/moonriver
     ```
 
 ### Chain ID {: #chain-id } 

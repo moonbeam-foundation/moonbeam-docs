@@ -48,7 +48,7 @@ In the next screen, you are prompted to select which hardware wallet you'll like
 
 ![MetaMask Select Ledger Hardware Wallet](/images/ledger/ledger-images2.png)
 
-If MetaMask was able to connect successfully to your Ledger device, you should see a list of five Ethereum-styled accounts. On the contrary, double-check that Ledger Live is closed, you've connected your Ledger device to the computer, unlocked it, and that the Ethereum app is opened. If you are using Chrome, check these [additional steps](#chrome-browser).
+If MetaMask was able to connect successfully to your Ledger device, you should see a list of five Ethereum-styled accounts. If not, double-check that Ledger Live is closed, you've connected your Ledger device to the computer, unlocked it, and that the Ethereum app is opened. If you are using Chrome, check these [additional steps](#chrome-browser).
 
 ### Import Accounts {: #import-accounts } 
 
@@ -106,7 +106,7 @@ As you would in a standard transaction, set the recipient address, enter the num
  3. Check the recipient's address and proceed to the next screen
  4. Check the chain ID of the network. This information confirms which network MetaMask is connected to. For example, for Moonbase Alpha, the chain ID is 1287, Moonriver 1285 (not yet live), and Moonbeam 1284 (not yet live). When ready, proceed to the next screen
  5. Check the max fees applicable to this transaction. This is the gas price multiplied by the gas limit you've set on MetaMask. When ready, proceed to the next screen
- 6. If you agree with all the transaction details, approve it. This will sign the transaction and will trigger MetaMask to send it. On the contrary, proceed to the next screen
+ 6. If you agree with all the transaction details, approve it. This will sign the transaction and will trigger MetaMask to send it. If not, proceed to the next screen
  7. If you don't agree with all the transaction details, reject it. This will cancel the transaction, and MetaMask will mark it as failed
 
 !!! note

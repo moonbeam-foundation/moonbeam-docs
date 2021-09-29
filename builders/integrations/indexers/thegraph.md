@@ -13,7 +13,7 @@ Indexing protocols organize information in a way that applications can access it
 
 The Graph is a decentralized and open-source indexing protocol for querying networks like Ethereum. In short, it provides a way to efficiently store data emitted by events from smart contracts so that other projects or dApps can access it easily.
 
-Furthermore, developers can build APIs, called Subgraphs. Users or other developers can use Subgraphs to query data specific to a set of smart contracts. Data is fetched with a standard GraphQL API. You can visit [their documentation](https://thegraph.com/docs/introduction#what-the-graph-is) to read more about The Graph protocol.
+Furthermore, developers can build APIs, called Subgraphs. Users or other developers can use Subgraphs to query data specific to a set of smart contracts. Data is fetched with a standard GraphQL API. You can visit [their documentation](https://thegraph.com/docs/about/introduction#what-the-graph-is) to read more about The Graph protocol.
 
 With the introduction of Ethereum tracing modules in [Moonbase Alpha v7](https://github.com/PureStake/moonbeam/releases/tag/v0.7.0), The Graph is capable of indexing blockchain data in Moonbeam.
 

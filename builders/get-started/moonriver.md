@@ -13,7 +13,7 @@ Moonriver has two endpoints available for users to connect to: one for HTTPS and
 
 ## Connect MetaMask
 
-If you already have MetaMask installed, you can easily connect MetaMask to the Moonriver:
+If you already have MetaMask installed, you can easily connect MetaMask to Moonriver:
 
 <div class="button-wrapper">
     <a href="#" class="md-button connectMetaMask" value="moonriver">Connect MetaMask</a>
