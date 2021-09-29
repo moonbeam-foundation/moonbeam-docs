@@ -1,11 +1,11 @@
 ---
 title: Canonical Contracts
-description: A brief overview of the canonical contracts available on Moonriver.
+description: A brief overview of the canonical contracts available on Moonriver and Moonbase Alpha. It includes some common-goods contract as well as some precompiles.
 ---
 
 # Canonical Contracts
 
-![Staking Moonbeam Banner](/images/canonical-contracts/canonical-contracts-banner.png)
+![Canonical contracts banner](/images/canonical-contracts/canonical-contracts-banner.png)
 
 ## Common-goods Contracts
 
