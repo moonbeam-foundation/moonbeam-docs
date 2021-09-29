@@ -1,6 +1,12 @@
 // Get the current page the user is on
 const pathname = window.location.pathname;
-const classname = pathname.replace('/', '.').replaceAll('/', '-');
+let classname;
+
+if (pathname.includes('cn')) {
+  classname = pathname.replace('/cn/', '.').replaceAll('/', '-');
+} else {
+  classname = pathname.replace('/', '.').replaceAll('/', '-');
+}
 
 if (classname !== '.') {
   const section = document.querySelector(classname);
@@ -11,14 +17,20 @@ if (classname !== '.') {
   // Append the cards
   const appendCards = (section) => {
     const href = section.href;
-    const image = href.split('/').slice(3, -1).join('/').toLowerCase();
     const title = section.innerText;
+    let image = href.split('/').slice(3, -1).join('/').toLowerCase();
+    let imagePath = `/images/index-pages/${image}.png`;
+
+    if (pathname.includes('cn')) {
+      image = image.replace('cn/', '');
+      imagePath = `/cn/images/index-pages/${image}.png`;
+    }
 
     wrapper.innerHTML += `
     <div class="card">
       <a href=${href}>
         <h2 class="title">${title}</h2>
-        <img class="icon" src="/images/index-pages/${image}.png" onerror="this.src='/images/index-pages/blank.png'; this.onerror = null">
+        <img class="icon" src="${imagePath}" onerror="this.src='/images/index-pages/blank.png'; this.onerror = null">
       </a>
     </div>
     `;
