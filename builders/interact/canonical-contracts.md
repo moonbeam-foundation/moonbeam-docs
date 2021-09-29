@@ -7,16 +7,29 @@ description: A brief overview of the canonical contracts available on Moonriver.
 
 ![Staking Moonbeam Banner](/images/canonical-contracts/canonical-contracts-banner.png)
 
-## Common Good Contracts
+## Common-goods Contracts
 
-The following canonical contract addresses have been established:
+The following contracts addresses have been established:
 
-|                                                                Contract                                                                |                  Address                   |
-|:--------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
-|         [WMOVR](https://blockscout.moonriver.moonbeam.network/address/0xf50225a84382c74CbdeA10b0c176f71fc3DE0C4d/transactions)         | 0xf50225a84382c74CbdeA10b0c176f71fc3DE0C4d |
-| [Multicall (SushiSwap)](https://blockscout.moonriver.moonbeam.network/address/0x270f2F35bED92B7A59eA5F08F6B3fd34c8D9D9b5/transactions) | 0x270f2F35bED92B7A59eA5F08F6B3fd34c8D9D9b5 |
-|  [Gnosis Safe Factory](https://blockscout.moonriver.moonbeam.network/address/0x4e59b44847b379578588920cA78FbF26c0B4956C/transactions)  | 0x4e59b44847b379578588920cA78FbF26c0B4956C |
-|                                          [EIP 1820](https://eips.ethereum.org/EIPS/eip-1820)                                           | 0x1820a4b7618bde71dce8cdc73aab6c95905fad24 |
+=== "Moonriver"
+    |                                                               Contract                                                               |                  Address                   |
+    |   :-------------------------------------------------------------------------------   -------------------------------------------------------:|  :------------------------------------------:|
+    |         [WMOVR](https://blockscout.moonriver.moonbeam.network/address/    0xf50225a84382c74CbdeA10b0c176f71fc3DE0C4d/)         |  0xf50225a84382c74CbdeA10b0c176f71fc3DE0C4d |
+    | [Multicall](https://blockscout.moonriver.moonbeam.network/address/   0x270f2F35bED92B7A59eA5F08F6B3fd34c8D9D9b5/)* |     0x270f2F35bED92B7A59eA5F08F6B3fd34c8D9D9b5 |
+    |  [Multisig Factory](https://blockscout.moonriver.moonbeam.network/address/    0x4e59b44847b379578588920cA78FbF26c0B4956C/)  |     0x4e59b44847b379578588920cA78FbF26c0B4956C |
+    |                                          [EIP 1820](https://eips.ethereum.org/    EIPS/eip-1820)                                           |  0x1820a4b7618bde71dce8cdc73aab6c95905fad24 |
+
+    _*Deployed by SushiSwap_
+
+=== "Moonbase Alpha"
+    |                                                                Contract                                                                |                  Address                   |
+    |   :-------------------------------------------------------------------------------   -------------------------------------------------------:|  :------------------------------------------:|
+    |         [WDEV](https://moonbase-blockscout.testnet.moonbeam.network/address/0xD909178CC99d318e4D46e7E66a972955859670E1/)         |  0xD909178CC99d318e4D46e7E66a972955859670E1 |
+    | [Multicall](https://moonbase-blockscout.testnet.moonbeam.network/address/0x4E2cfca20580747AdBA58cd677A998f8B261Fc21/)* |     0x4E2cfca20580747AdBA58cd677A998f8B261Fc21 |
+    |  [Multisig Factory](https://moonbase-blockscout.testnet.moonbeam.network//address/0x4e59b44847b379578588920cA78FbF26c0B4956C/)  |     0x4e59b44847b379578588920cA78FbF26c0B4956C |
+    |                                          [EIP 1820](https://eips.ethereum.org/    EIPS/eip-1820)                                           |  0x1820a4b7618bde71dce8cdc73aab6c95905fad24 |
+
+    _*Deployed in the [UniswapV2 Demo Repo](https://github.com/PureStake/moonbeam-uniswap/tree/main/uniswap-contracts-moonbeam)_
 
 ## Precompiled Contracts
 
@@ -25,6 +38,7 @@ There are a set of precompiled contracts included on Moonriver that are categori
 - **0-1023** - [Ethereum Mainnet precompiles](#ethereum-mainnet-precompiles)
 - **1024-2047** - precompiles that are [not in Ethereum and not Moonbeam specific](#non-moonbeam-specific-nor-ethereum-precomiles)
 - **2048-4095** - [Moonbeam specific precompiles](#moonbeam-specific-precompiles)
+
 ### Ethereum Mainnet Precompiles
 
 |                                                      Contract                                                       |                  Address                   |
