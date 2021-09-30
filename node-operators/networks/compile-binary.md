@@ -27,7 +27,7 @@ cd moonbeam
 Let's check out the latest release:
 
 ```
-git checkout tags/$(git tag | tail -1)
+git checkout tags/$(git describe --tags)
 ```
 
 If you already have Rust installed, you can skip the next two steps. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://www.rust-lang.org/tools/install){target=_blank} by executing:
