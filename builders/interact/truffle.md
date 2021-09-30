@@ -80,9 +80,9 @@ module.exports = {
       dev: {
          provider: () => {
             ...
-            return new HDWalletProvider(privateKeyDev, 'http://localhost:9933/')
+            return new HDWalletProvider(privateKeyDev, '{{ networks.development.rpc_url }}')
          },
-         network_id: 1281,
+         network_id: {{ networks.development.chain_id }},  // {{ networks.development.hex_chain_id }} in hex,
       },
       //...
    },
@@ -101,9 +101,9 @@ Below you can find network configurations for all of our networks:
     dev: {
       provider: () => {
          ...
-         return new HDWalletProvider(privateKeyDev, 'http://localhost:9933/') // Insert your private key here
+         return new HDWalletProvider(privateKeyDev, '{{ networks.development.rpc_url }}') // Insert your private key here
       },
-      network_id: 1281,
+      network_id: {{ networks.development.chain_id }} (hex: {{ networks.development.hex_chain_id }}),
     },
     ```
 
@@ -112,9 +112,9 @@ Below you can find network configurations for all of our networks:
     moonbase: {
       provider: () => {
          ...
-         return new HDWalletProvider(privateKeyMoonbase, 'https://rpc.testnet.moonbeam.network') // Insert your private key here
+         return new HDWalletProvider(privateKeyMoonbase, '{{ networks.moonbase.rpc_url }}') // Insert your private key here
       },
-      network_id: 1287,
+      network_id: {{ networks.moonbase.chain_id }} (hex: {{ networks.moonbase.hex_chain_id }}),
     },
     ```
 
@@ -123,9 +123,9 @@ Below you can find network configurations for all of our networks:
     moonriver: {
       provider: () => {
          ...
-         return new HDWalletProvider(privateKeyMoonriver, 'https://rpc.moonriver.moonbeam.network') // Insert your private key here
+         return new HDWalletProvider(privateKeyMoonriver, '{{ networks.moonriver.rpc_url }}') // Insert your private key here
       },
-      network_id: 1285,
+      network_id: {{ networks.moonriver.chain_id }} (hex: {{ networks.moonriver.hex_chain_id }}),
     },
     ```
 

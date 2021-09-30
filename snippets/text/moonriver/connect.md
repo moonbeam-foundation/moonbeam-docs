@@ -72,4 +72,4 @@ For WebSocket connections, you can use the following DNS:
 
 ### Chain ID {: #chain-id } 
 
-The Moonriver chain ID is: `1285`
+The Moonriver chain ID is: `1287`, or `0x505` in hex.

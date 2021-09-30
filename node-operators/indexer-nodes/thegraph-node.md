@@ -53,7 +53,7 @@ The tail end from the logs of the previous command should look something similar
 Once everything is set up, you need to modify the "Ethereum environment" inside the `docker-compose.yml` file, so that it points to the endpoint of the node you are running this Graph Node against. Note that the `setup.sh` file detects the `Host IP` and writes its value, so you'll need to modify it accordingly.
 
 ```
-ethereum: 'mbase:http://localhost:9933'
+ethereum: 'mbase:{{ networks.development.rpc_url }}'
 ```
 
 The entire `docker-compose.yml` file should look something similar to:
@@ -78,7 +78,7 @@ services:
       postgres_pass: let-me-in
       postgres_db: graph-node
       ipfs: 'ipfs:5001'
-      ethereum: 'mbase:http://localhost:9933'
+      ethereum: 'mbase:{{ networks.development.rpc_url }}'
       RUST_LOG: info
   ipfs:
     image: ipfs/go-ipfs:v0.4.23

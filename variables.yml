@@ -3,12 +3,14 @@ networks:
     build_tag: tutorial-v7
     rpc_url: http://127.0.0.1:9933
     chain_id: 1281
+    hex_chain_id: '0x501'
     container_name: moonbeam_development
     block_explorer: https://moonbeam-explorer.netlify.app/
   moonbase:
     version: v0.7.0 # must be in this exact format for links to work
     rpc_url: https://rpc.testnet.moonbeam.network
     chain_id: 1287
+    hex_chain_id: '0x507'
     chain_spec: alphanet
     block_explorer: https://moonbase-blockscout.testnet.moonbeam.network/
     parachain_release_tag: v0.12.3
@@ -124,6 +126,7 @@ networks:
     rpc_url: https://rpc.moonriver.moonbeam.network
     wss_url: wss://wss.moonriver.moonbeam.network
     chain_id: 1285
+    hex_chain_id: '0x505'
     node_directory: /var/lib/moonriver-data
     parachain_release_tag: v0.12.3
     parachain_sha256sum: bfe382dd1e7e7dbfcfec1beb0261096104ea848050abcfe03c6ef4f04e74143d

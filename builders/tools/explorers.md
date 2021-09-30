@@ -24,7 +24,7 @@ A Moonbeam-themed version of the [Expedition](https://github.com/etclabscore/exp
 By default, the explorer is connected to the Moonbase Alpha TestNet. However, you can connect it following the next steps:
 
  1. Click on the gear icon in the top right corner
- 2. Select "Development" if you have a node running on `http://localhost:9933` (default RPC location of a Moonbeam node running with `--dev`flag). You can also switch back to "Moonbase Alpha"
+ 2. Select "Development" if you have a node running on `{{ networks.development.rpc_url }}` (default RPC location of a Moonbeam node running with `--dev`flag). You can also switch back to "Moonbase Alpha"
  3. In the case you want to connect to a specific RPC URL, select "Custom RPC" and enter the URL. For example, `http://localhost:9937`
 
 ![Expedition Explorer](/images/explorers/explorers-images-1.png)

@@ -40,7 +40,7 @@ Let's jump into a small example to showcase how to leverage this precompiled fun
 const Web3 = require('web3');
 
 // Provider
-const web3 = new Web3('https://rpc.testnet.moonbeam.network');
+const web3 = new Web3('{{ networks.moonbase.rpc_url }}');
 
 // Address and Private Key
 const address = '0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b';

@@ -28,7 +28,7 @@ If you are familiar with running Chainlink Oracle nodes, this information will g
 
  - Chainlink documentation, which can be found [here](https://docs.chain.link/docs/running-a-chainlink-node)
  - Moonbase Alpha WSS EndPoint: `wss://wss.testnet.moonbeam.network`
- - Moonbase Alpha ChainId: `1287`
+ - Moonbase Alpha ChainId: `{{ networks.moonbase.chain_id }}` (hex: `{{ networks.moonbase.hex_chain_id}}`)
  - LINK Token on Moonbase Alpha: `0xa36085F69e2889c224210F603D836748e7dC0088`
  - Get Moonbase Alpha tokens from [our Faucet](/builders/get-started/moonbase/#get-tokens/)
 

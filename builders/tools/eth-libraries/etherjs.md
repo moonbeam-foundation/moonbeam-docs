@@ -41,19 +41,19 @@ Different methods are available inside `provider` and `wallet`. Depending on whi
 Moonbeam development node: 
 
   - RPC_URL: `{{ networks.development.rpc_url }}`
-  - ChainId: `{{ networks.development.chain_id }}`
+  - ChainId: `{{ networks.development.chain_id }}` (hex: `{{ networks.development.hex_chain_id }}`)
   - NETWORK_NAME: `moonbeam-development`
  
 Moonbase Alpha TestNet: 
 
   - RPC_URL: `{{ networks.moonbase.rpc_url }}`
-  - ChainId: `{{ networks.moonbase.chain_id }}`
+  - ChainId: `{{ networks.moonbase.chain_id }}` (hex: `{{ networks.moonbase.hex_chain_id }}`)
   - NETWORK_NAME: `moonbase-alpha`
 
 Moonriver:
 
   - RPC_URL: `{{ networks.moonriver.rpc_url }}`
-  - ChainID: `{{ networks.moonriver.chain_id }}`
+  - ChainID: `{{ networks.moonriver.chain_id }}` (hex: `{{ networks.moonriver.hex_chain_id }}`)
   - NETWORK_NAME: `{{ networks.moonriver.chain_spec }}`
 
 ## Tutorials {: #tutorials } 

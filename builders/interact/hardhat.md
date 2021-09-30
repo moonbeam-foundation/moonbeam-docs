@@ -120,16 +120,16 @@ Inside the `module.exports`, we need to provide the Solidity version (`0.8.1` ac
 === "Moonbeam Development Node"
     ```      
     dev: {
-        url: 'http://localhost:9933/',
-        chainId: 1281,
+        url: '{{ networks.development.rpc_url }}',
+        chainId: {{ networks.development.chain_id }} (hex: {{ networks.development.hex_chain_id }}),
         accounts: [privateKeyDev] // Insert your private key here
       },
     ```
 === "Moonbase Alpha"
     ```
     moonbase: {
-        url: `https://rpc.testnet.moonbeam.network`,
-        chainId: 1287,
+        url: '{{ networks.moonbase.rpc_url }}',
+        chainId: {{ networks.moonbase.chain_id }} (hex: {{ networks.moonbase.hex_chain_id }}),
         accounts: [privateKeyMoonbase] // Insert your private key here
       },
     ```
@@ -137,8 +137,8 @@ Inside the `module.exports`, we need to provide the Solidity version (`0.8.1` ac
 === "Moonriver"
     ```
     moonriver: {
-        url: `https://rpc.moonriver.moonbeam.network`,
-        chainId: 1285,
+        url: '{{ networks.moonriver.rpc_url }}',
+        chainId: {{ networks.moonriver.chain_id }} (hex: {{ networks.moonriver.hex_chain_id }}),
         accounts: [privateKeyMoonriver] // Insert your private key here
       },
     ```
@@ -159,8 +159,8 @@ module.exports = {
   networks: {
     // Moonbase Alpha network specification
     moonbase: {
-      url: `{{ networks.moonbase.rpc_url }}`,
-      chainId: {{ networks.moonbase.chain_id }},
+      url: '{{ networks.moonbase.rpc_url }}',
+      chainId: {{ networks.moonbase.chain_id }} // {{ networks.moonbase.hex_chain_id }} in hex,
       accounts: [privateKey]
     }
   }

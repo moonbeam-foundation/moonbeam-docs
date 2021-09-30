@@ -25,8 +25,8 @@ To configure Waffle to run tests against a Moonbeam development node or the Moon
     ```js
     describe ('Test Contract', () => {
       // Use custom provider to connect to Moonbase Alpha or Moonbeam development node
-      const moonbaseAlphaProvider = new ethers.providers.JsonRpcProvider('https://rpc.testnet.moonbeam.network');
-      const devProvider = new ethers.providers.JsonRpcProvider('http://localhost:9933');
+      const moonbaseAlphaProvider = new ethers.providers.JsonRpcProvider('{{ networks.moonbase.rpc_url }}');
+      const devProvider = new ethers.providers.JsonRpcProvider('{{ networks.development.rpc_url }}');
     })
     ```
 
@@ -35,8 +35,8 @@ To configure Waffle to run tests against a Moonbeam development node or the Moon
     ```typescript
     describe ('Test Contract', () => {
       // Use custom provider to connect to Moonbase Alpha or Moonbeam development node
-      const moonbaseAlphaProvider: Provider = new ethers.providers.JsonRpcProvider('https://rpc.testnet.moonbeam.network');
-      const devProvider: Provider = new ethers.providers.JsonRpcProvider('http://localhost:9933');
+      const moonbaseAlphaProvider: Provider = new ethers.providers.JsonRpcProvider('{{ networks.moonbase.rpc_url }}');
+      const devProvider: Provider = new ethers.providers.JsonRpcProvider('{{ networks.development.rpc_url }}');
     })
     ```
 

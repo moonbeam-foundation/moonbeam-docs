@@ -36,29 +36,29 @@ module.exports = {
       // Moonbeam Development Node
       dev: {
         provider: () => {
-          return new HDWalletProvider(privateKeyDev, 'http://localhost:9933/')
+          return new HDWalletProvider(privateKeyDev, '{{ networks.development.rpc_url }}')
          },
-        network_id: 1281,
+        network_id: {{ networks.development.chain_id }}, // {{ networks.development.hex_chain_id }} in hex,
       },
       // Moonbase Alpha TestNet
       moonbase: {
         provider: () => {
           return new HDWalletProvider(
             privateKeyMoonbase,
-            'https://rpc.testnet.moonbeam.network'
+            '{{ networks.moonbase.rpc_url }}'
           );
         },
-        network_id: 1287,
+        network_id: {{ networks.moonbase.chain_id }}, // {{ networks.moonbase.hex_chain_id }} in hex,
       },
       // Moonriver
       moonriver: {
         provider: () => {
           return new HDWalletProvider(
             privateKeyMoonriver,
-            'https://rpc.moonriver.moonbeam.network'
+            '{{ networks.moonriver.rpc_url }}'
           );
         },
-        network_id: 1285,
+        network_id: {{ networks.moonriver.chain_id }}, // {{ networks.moonriver.hex_chain_id }} in hex,
       }
    },
 };
