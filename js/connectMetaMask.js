@@ -10,7 +10,7 @@ const supportedNetworks = {
   moonbase: {
     chainId: moonbaseAlphaChainId,
     chainName: 'Moonbase Alpha',
-    rpcUrls: ['{{ networks.moonbase.rpc_url }}'],
+    rpcUrls: ['https://rpc.testnet.moonbeam.network'],
     blockExplorerUrls: ['https://moonbase-blockscout.testnet.moonbeam.network/'],
     nativeCurrency: {
       name: 'DEV',

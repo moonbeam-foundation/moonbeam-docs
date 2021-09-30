@@ -9,7 +9,7 @@ const providerRPC = {
   moonriver: {
     name: 'moonriver',
     rpc: 'https://rpc.moonriver.moonbeam.network',
-    chainId: {{ networks.moonriver.chain_id }},
+    chainId: 1285,
   },
 };
 

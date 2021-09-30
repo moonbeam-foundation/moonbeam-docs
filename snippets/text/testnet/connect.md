@@ -65,7 +65,7 @@ For WebSocket connections, you can use the following DNS:
 
 ### Chain ID {: #chain-id } 
 
-For the Moonbase Alpha TestNet the chain ID is: `{{ networks.moonbase.chain_id }}`, which is `{{ networks.moonbase.hex_chain_id}}` in hex.
+For the Moonbase Alpha TestNet the chain ID is: `1287`, which is `0x507` in hex.
 
 ### Relay Chain {: #relay-chain } 
 

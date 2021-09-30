@@ -44,7 +44,7 @@ const ethers = require('ethers');
 const providerURL = "https://rpc.moonriver.moonbeam.network";
 // Define Provider
 const provider = new ethers.providers.StaticJsonRpcProvider(providerURL, {
-    chainId: {{ networks.moonriver.chain_id }},
+    chainId: 1285,
     name: 'moonriver'
 });
 ```
@@ -72,4 +72,4 @@ For WebSocket connections, you can use the following DNS:
 
 ### Chain ID {: #chain-id } 
 
-The Moonriver chain ID is: `{{ networks.moonriver.chain_id }}`, or `{{ networks.moonriver.hex_chain_id }}` in hex.
+The Moonriver chain ID is: `1287`, or `0x505` in hex.
