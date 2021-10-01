@@ -4,7 +4,7 @@ description: Follow this tutorial to learn how to use the Ethereum EtherJS Libra
 ---
 # Ethers.js JavaScript Library
 
-![Intro diagram](/images/integrations/integrations-ethersjs-banner.png)
+![Intro diagram](/images/builders/tools/eth-libraries/ethersjs-banner.png)
 
 ## Introduction {: #introduction } 
 

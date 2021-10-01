@@ -5,7 +5,7 @@ description: How to run telemetry for a full Parachain node for the Moonbeam Net
 
 # Telemetry for a Full Node
 
-![Telemetry Moonbeam Banner](/images/fullnode/telemetry-banner.png)
+![Telemetry Moonbeam Banner](/images/node-operators/networks/telemetry-banner.png)
 
 ## Introduction {: #introduction } 
 

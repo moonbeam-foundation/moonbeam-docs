@@ -5,7 +5,7 @@ description: Moonbeam Parachain Staking Ethereum Solidity Precompile Interface D
 
 # Interacting with the Staking Precompile
 
-![Staking Moonbeam Banner](/images/staking/staking-precompile-banner.png)
+![Staking Moonbeam Banner](/images/tokens/staking/precompiles/precompile-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -53,14 +53,14 @@ The below example is demonstrated on Moonbase Alpha, however, it is compatible w
 1. Get a copy of [StakingInterface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol)
 2. Copy and paste the file contents into a Remix file named StakingInterface.sol
 
-![Copying and Pasting the Staking Interface into Remix](/images/staking/staking-precompile-1.png)
+![Copying and Pasting the Staking Interface into Remix](/images/tokens/staking/precompiles/precompile-1.png)
 
 ## Compile the Contract {: #compile-the-contract } 
 
 1. Click on the Compile tab, second from top
 2. Compile [Staking Interface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol)
 
-![Compiling StakingInteface.sol](/images/staking/staking-precompile-2.png)
+![Compiling StakingInteface.sol](/images/tokens/staking/precompiles/precompile-2.png)
 
 ## Access the Contract {: #access-the-contract } 
 
@@ -69,7 +69,7 @@ The below example is demonstrated on Moonbase Alpha, however, it is compatible w
 3. Ensure “ParachainStaking - StakingInterface.sol” is selected in the Contract dropdown. Since this is a precompiled contract there is no need to deploy, instead we are going to provide the address of the precompile in the “At Address” Field
 4. Provide the address of the Staking precompile: `{{networks.moonbase.staking.precompile_address}}` and click “At Address”
 
-![Provide the address](/images/staking/staking-precompile-3.png)
+![Provide the address](/images/tokens/staking/precompiles/precompile-3.png)
 
 ## Nominate a Collator {: #nominate-a-collator } 
 
@@ -94,7 +94,7 @@ In order to nominate a collator, you'll need to determine the current collator n
 5. Provide your nomination count
 6. Press "transact" and confirm the transaction in Metamask
 
-![Nominate a Collator](/images/staking/staking-precompile-4.png)
+![Nominate a Collator](/images/tokens/staking/precompiles/precompile-4.png)
 
 ## Verify Nomination {: #verify-nomination } 
 
@@ -107,7 +107,7 @@ To verify your nomination was successful, you can check the chain state in Polka
 3. Add your Metamask Address
 4. Provide a nickname for the account
 
-![Add to Address Book](/images/staking/staking-precompile-5.png)
+![Add to Address Book](/images/tokens/staking/precompiles/precompile-5.png)
 
 ### Verify Nominator State {: #verify-nominator-state } 
 1. To verify your nomination was successful, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/chainstate) and navigate to Developer -> Chain State
@@ -115,7 +115,7 @@ To verify your nomination was successful, you can check the chain state in Polka
 3. Select the "nominatorState" query
 4. Click the "Plus" Button to return the results and verify your nomination
 
-![Verify Nomination](/images/staking/staking-precompile-6.png)
+![Verify Nomination](/images/tokens/staking/precompiles/precompile-6.png)
 
 ## Revoking a Nomination {: #revoking-a-nomination } 
 
@@ -124,7 +124,7 @@ To revoke a nomination and receive your tokens back:
 1. Call the `revoke_nomination` method, providing the same address you started the nomination with above
 2. Click "transact" and confirm the transaction in MetaMask
 
-![Revoke Nomination](/images/staking/staking-precompile-7.png)
+![Revoke Nomination](/images/tokens/staking/precompiles/precompile-7.png)
 
 You can check your nominator state again on Polkadot.js Apps to confirm.
 

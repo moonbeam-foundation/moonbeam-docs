@@ -4,7 +4,7 @@ description: How to use request data from a Razor Network Oracle in your Moonbea
 ---
 # Razor Network Oracle
 
-![Razor Network Moonbeam Diagram](/images/razor/razor-banner.png)
+![Razor Network Moonbeam Diagram](/images/builders/integrations/oracles/razor/razor-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -131,11 +131,11 @@ Let's use [Remix](/builders/tools/remix/) to fetch the `BTC` price in `USD`.
 
 After creating the file and compiling the contract, head to the "Deploy and Run Transactions" tab, enter the contract address (`{{ networks.moonbase.razor.bridge_address }}`), and click on "At Address." Make sure you have set the "Environment" to "Injected Web3" so that you are connected to Moonbase Alpha (through the Web3 provider of the wallet). 
 
-![Razor Remix deploy](/images/razor/razor-demo1.png)
+![Razor Remix deploy](/images/builders/integrations/oracles/razor/razor-demo-1.png)
 
 This will create an instance of the demo contract that you can interact with. Use the functions `getPrice()` and `getMultiPrices()` to query the data of the corresponding pair.
 
-![Razor check price](/images/razor/razor-demo2.png)
+![Razor check price](/images/builders/integrations/oracles/razor/razor-demo-2.png)
 
 ## Contact Us {: #contact-us } 
 If you have any feedback regarding implementing the Razor Network Oracle on your project or any other Moonbeam related topic, feel free to reach out through our official development [Discord server](https://discord.com/invite/PfpUATX).

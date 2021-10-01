@@ -5,7 +5,7 @@ description: Learn how to use one of the most popular Ethereum developer tools, 
 
 # Remix
 
-![Intro diagram](/images/integrations/integrations-remix-banner.png)
+![Intro diagram](/images/builders/tools/remix/remix-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -33,11 +33,11 @@ Once you've compiled the contract and are ready to deploy you can navigate to th
 3. Pass in `Test Contract` as input to the contructor function and hit "Deploy"
 4. MetaMask will pop-up and show the information regarding the transaction, which you'll need to sign by clicking "Confirm"
 
-![Deploying Contract](/images/remix/integrations-remix-1.png)
+![Deploying Contract](/images/builders/tools/remix/remix-1.png)
 
 Once the transaction is included, the contract appears in the "Deployed Contracts" section on Remix. In there, we can interact with the functions available from our contract.
 
-![Interact with Contract](/images/remix/integrations-remix-2.png)
+![Interact with Contract](/images/builders/tools/remix/remix-2.png)
 
 ## Tutorial {: #tutorial } 
 

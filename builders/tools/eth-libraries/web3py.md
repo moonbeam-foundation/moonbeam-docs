@@ -4,7 +4,7 @@ description: Follow this tutorial to learn how to use the Ethereum Web3 Python L
 ---
 # Web3.py Python Library
 
-![Intro diagram](/images/integrations/integrations-web3py-banner.png)
+![Intro diagram](/images/builders/tools/eth-libraries/web3py-banner.png)
 
 ## Introduction {: #introduction } 
 

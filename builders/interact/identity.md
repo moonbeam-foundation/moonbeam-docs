@@ -5,7 +5,7 @@ description: Learn how to create and clear an identity, including personal infor
 
 # Managing your Account Identity
 
-![Managing your Account Identity](/images/identity/identity-banner.png)
+![Managing your Account Identity](/images/builders/interact/identity/identity-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -56,14 +56,14 @@ To get started with setting an identity using the Accounts UI, head to the [Acco
 
 You should already have an account connected, so you can go ahead and click on your account name to verify and take note of your balances. After you send the transaction to set an identity, the deposit(s) you submitted will be moved from your transferable balance to your reserved balance. 
 
-![Starting account balances](/images/identity/identity-1.png)
+![Starting account balances](/images/builders/interact/identity/identity-1.png)
 
 To set your identity, you'll need to:
 
 1. Click on the 3 vertical dots next to the account you would like to set an identity for
 2. A menu will pop up. Click **Set on-chain identity**
 
-![Set on-chain identity](/images/identity/identity-2.png)
+![Set on-chain identity](/images/builders/interact/identity/identity-2.png)
 
 Next, the menu to register and set your identity will pop-up and you can start filling in your information. You are not required to enter information for every single field, you can choose to fill in just one field or all of them, it's up to you. For this example:
 
@@ -72,15 +72,15 @@ Next, the menu to register and set your identity will pop-up and you can start f
 3. Click on the **include field** toggle for Twitter and then enter in your Twitter handle
 4. After you're done filling in your information and the deposit amount looks alright to you, click **Set Identity**
 
-![Set your identity](/images/identity/identity-3.png)
+![Set your identity](/images/builders/interact/identity/identity-3.png)
 
 You will then be prompted to sign the transaction. If everything looks good, you can enter your password and click Sign and Submit to sign and send the transaction.
 
-![Authorize transaction](/images/identity/identity-4.png)
+![Authorize transaction](/images/builders/interact/identity/identity-4.png)
 
 You should see status notifications pop-up in the top right hand corner. Once the transaction has been confirmed, you can click on your account name again and the panel will slide out on the right side of the page. Your balances will have changed, and you’ll also see your new identity information.
 
-![Updated account balances](/images/identity/identity-5.png)
+![Updated account balances](/images/builders/interact/identity/identity-5.png)
 
 If the identity information matches what you entered, you’ve successfully set an identity! 
 
@@ -93,19 +93,19 @@ To clear your identity from the [Accounts tab](https://polkadot.js.org/apps/?rpc
 1. Click on the 3 vertical dots next to the account you would like to add identity information for
 2. A menu will pop up. Click **Set on-chain identity**
 
-![Set on-chain identity](/images/identity/identity-6.png)
+![Set on-chain identity](/images/builders/interact/identity/identity-6.png)
 
 The identity menu will pop-up with your information already filled out. You'll need to click **Clear Identity**.
 
-![Clear identity](/images/identity/identity-7.png)
+![Clear identity](/images/builders/interact/identity/identity-7.png)
 
 You will then be prompted to sign the transaction. If everything looks good, you can enter your password and click Sign and Submit to sign and send the transaction.
 
-![Authorize transaction](/images/identity/identity-8.png)
+![Authorize transaction](/images/builders/interact/identity/identity-8.png)
 
 You should see status notifications pop-up in the top right hand corner. Once the transaction has been confirmed, you can click on your account name again and the panel will slide out on the right side of the page. You can see your reserved balance was transferred back to your transferable balance, and your identity information has been removed.
 
-![Updated account balances](/images/identity/identity-9.png)
+![Updated account balances](/images/builders/interact/identity/identity-9.png)
 
 That’s it! You’ve successfully cleared your identity. If you want to add a new identity, you can do so at any time. 
 
@@ -122,7 +122,7 @@ To register an identity using the extrinsics UI, navigate to the [Extrinsics pag
     1. Select the format of the data. For this example, you can use **Raw** data but you also have the option of entering your data in BlackTwo256, Sha256, Keccak256, and ShaThree256 hashed format
     2. Enter the data in that format
 
-![Set your identity using the Extrincs UI](/images/identity/identity-10.png)
+![Set your identity using the Extrincs UI](/images/builders/interact/identity/identity-10.png)
 
 Optionally, if you would like to enter custom fields, you can do so by:
 
@@ -134,15 +134,15 @@ Optionally, if you would like to enter custom fields, you can do so by:
     1. Select the format of the data for the value. Again, you can use **Raw** data
     2. Enter the value in the selected format
 
-![Add custom fields](/images/identity/identity-11.png)
+![Add custom fields](/images/builders/interact/identity/identity-11.png)
 
 Finally, once all of your identity information has been added, you can scroll to the bottom of the page and click **Submit Transaction**.
 
-![Submit identity information](/images/identity/identity-12.png)
+![Submit identity information](/images/builders/interact/identity/identity-12.png)
 
 You will then be prompted to sign the transaction. Remember, there is an additional deposit required for each additional custom field. If everything looks good, you can enter your password and click **Sign and Submit** to sign and send the transaction.
 
-![Authorize transaction](/images/identity/identity-13.png)
+![Authorize transaction](/images/builders/interact/identity/identity-13.png)
 
 You should see status notifications pop-up in the top right hand corner confirming the transaction. If successful, you’ve set an identity! Congratulations! To make sure everything went through and your identity information looks good, next you can confirm your identity.
 
@@ -150,7 +150,7 @@ You should see status notifications pop-up in the top right hand corner confirmi
 
 To verify the addition of your identity information, you can click on the **Developer** tab and then navigate to [Chain state](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/chainstate).
 
-![Navigate to Chain State](/images/identity/identity-14.png)
+![Navigate to Chain State](/images/builders/interact/identity/identity-14.png)
 
 On the **Chain State** UI, make sure **Storage** is selected. Then you can start to request your identity information:
 
@@ -159,7 +159,7 @@ On the **Chain State** UI, make sure **Storage** is selected. Then you can start
 3. Select your account
 4. Click the **+** button to get your identity information
 
-![Request identity information](/images/identity/identity-15.png)
+![Request identity information](/images/builders/interact/identity/identity-15.png)
 
 You can see now that you’ve successfully set an identity! Once you clear your identity, the deposit in your reserved balance will get transferred back to your transferable balance. If you need to make changes to your identity, you can go through the process of setting your identity again. Please note that you will need to ensure all fields are re-entered, even if only one field needs to be changed, or they will be overwritten. You will not need to pay another deposit, unless custom fields are used, but you will need to pay gas fees.
 
@@ -172,11 +172,11 @@ To clear your identity from the [Extrinsics tab](https://polkadot.js.org/apps/?r
 3. Then select the **clearIdentity()** function
 4. Click **Submit Transaction**
 
-![Clear an identity using the Extrinsics UI](/images/identity/identity-16.png)
+![Clear an identity using the Extrinsics UI](/images/builders/interact/identity/identity-16.png)
 
 You will then be prompted to sign the transaction. If everything looks good, you can enter your password and click **Sign and Submit** to sign and send the transaction.
 
-![Authorize transaction](/images/identity/identity-17.png)
+![Authorize transaction](/images/builders/interact/identity/identity-17.png)
 
 You should see status notifications pop-up in the top right hand corner confirming the transaction. 
 

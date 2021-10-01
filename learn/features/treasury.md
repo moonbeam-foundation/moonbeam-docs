@@ -5,7 +5,7 @@ description: As a Polkadot parachain, Moonbeam will use an on-chain treasury con
 
 # Treasury in Moonbeam
 
-![Treasury Moonbeam Banner](/images/treasury/treasury-overview-banner.png)
+![Treasury Moonbeam Banner](/images/learn/features/treasury/treasury-overview-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -54,4 +54,4 @@ Once the proposal is in a spend period, the funds will get distributed to the be
 
 The happy path for a treasury proposal is shown in the following diagram:
 
-![Treasury Proposal Happy Path Diagram](/images/treasury/treasury-proposal-roadmap.png)
+![Treasury Proposal Happy Path Diagram](/images/learn/features/treasury/treasury-proposal-roadmap.png)

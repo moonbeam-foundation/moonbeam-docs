@@ -5,7 +5,7 @@ description: Learn how to configure Truffle to add a local Moonbeam development 
 
 # Truffle
 
-![Intro diagram](/images/integrations/integrations-truffle-banner.png)
+![Intro diagram](/images/builders/tools/truffle-banner.png)
 
 ## Introduction {: #introduction } 
 

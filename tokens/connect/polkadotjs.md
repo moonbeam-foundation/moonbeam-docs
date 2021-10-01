@@ -5,7 +5,7 @@ description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereu
 
 # Interacting with Moonbeam Using Polkadot JS Apps
 
-![Intro diagram](/images/polkadotjs/polkadotjs-banner.png)
+![Intro diagram](/images/tokens/connect/polkadotjs/polkadotjs-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -17,24 +17,24 @@ The Polkadot JS Apps interface was updated as well so that it natively supports 
 
 First, we need to connect it to the Moonbase Alpha TestNet by clicking the top left corner logo and selecting Moonbase Alpha (under Test Networks).
 
-![Connect to Moonbase Alpha](/images/polkadotjs/polkadotjs-app1.png)
+![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjs/polkadotjs-app-1.png)
 
 After switching, the Polkadot JS site will not only connect to Moonbase Alpha, but also change its styling to make a perfect match.
 
-![Connect to Moonbase Alpha](/images/polkadotjs/polkadotjs-app2.png)
+![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjs/polkadotjs-app-2.png)
 
 ## Creating or Importing an H160 Account {: #creating-or-importing-an-h160-account } 
 
 Let's see how we can create a new account, or import an already existing MetaMask account to Polkadot JS Apps. First, navigate to the accounts section, and click in the add account button.
 
-![Connect to Moonbase Alpha](/images/polkadotjs/polkadotjs-app3.png)
+![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjs/polkadotjs-app-3.png)
 
 This will open a wizard pop-up that will guide you through the process of adding an account to the Polkadot JS Apps interface. Make sure you click on the drop-down menu and change from Mnemonic to Raw seed, this allows you to add an account through a private key.
 
 !!! note
     Currently, you can only create or import accounts in PolkadotJS via a private key. Doing so with the mnemonic will result in a different public address if you later try to import this account to an Ethereum wallet such as MetaMask. This is because PolkadotJS uses BIP39, whereas Ethereum uses BIP32 or BIP44.
 
-![Connect to Moonbase Alpha](/images/polkadotjs/polkadotjs-app4.png)
+![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjs/polkadotjs-app-4.png)
 
 Next, if you want to create a new account make sure you store the private key displayed by the wizard. If you want to import an existing account, enter your private key that you can export from MetaMask, in this case we are importing the following account:
 
@@ -46,24 +46,24 @@ Next, if you want to create a new account make sure you store the private key di
     
 Make sure to include the prefix in the private key, i.e., `0x`. If you entered the information correctly, the corresponding public address should appear in the upper left corner of the window.
 
-![Connect to Moonbase Alpha](/images/polkadotjs/polkadotjs-app5.png)
+![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjs/polkadotjs-app-5.png)
 
 Click next and finish the wizard by setting an account name and password. After a confirmation message, you should see in the main Accounts tab the address with the corresponding balance: in our case, Bob's address. Moreover, we can overlay the MetaMask extension to see that both balances are the same.
 
-![Connect to Moonbase Alpha](/images/polkadotjs/polkadotjs-app6.png)
+![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjs/polkadotjs-app-6.png)
 
 ## Sending a Transaction Through Substrate's API {: #sending-a-transaction-through-substrates-api } 
 
 Now, let's demonstrate the potential of Moonbeam's Unified Accounts scheme by making a transfer through the Substrate API using the Polkadot JS Apps. Remember that we are interacting with Substrate using an Ethereum-style H160 address. To do so, we've imported another account named Charley with 5 `DEV` tokens.
 
-![Connect to Moonbase Alpha](/images/polkadotjs/polkadotjs-app7.png)
+![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjs/polkadotjs-app-7.png)
 
 Next, click on Bob's send button, which opens another wizard that guides you through the process of sending a transaction. Set the send to address and the amount, which for our example is 5 DEV tokens. When ready, click on the "Make Transfer" button.
 
-![Connect to Moonbase Alpha](/images/polkadotjs/polkadotjs-app8.png)
+![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjs/polkadotjs-app-8.png)
 
 After the transaction is signed using the password, Polkadot JS will display some messages on the top right corner while it's being processed. Once confirmed, you should see the balances updated for each account.
 
-![Connect to Moonbase Alpha](/images/polkadotjs/polkadotjs-app8.png)
+![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjs/polkadotjs-app-9.png)
 
 And that is it! We are excited about being able to support H160 accounts in Polkadot JS Apps, as we believe this will greatly enhance the user experience in the Moonbeam Network and its Ethereum compatibility features.
