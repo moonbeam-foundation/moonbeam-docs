@@ -3,6 +3,8 @@ title: Account Balances
 description: A description of the main differences that Ethereum developers need to understand in terms of account balances on Moonbeam.
 ---
 
+![Moonbeam v Ethereum - Account Balances Banner](/images/eth-compare/balances-banner.png)
+
 ## Introduction
 
 While Moonbeam strives to be compatible with Ethereum's Web3 API and EVM, there are some important Moonbeam differences that developers should know and understand in terms of account balances.
