@@ -15,7 +15,7 @@ Token holders can add to the collators' stake using their tokens, a process call
 
 Collators receive part of the block rewards as part of the token inflationary model. They can share these as staking rewards with their nominators, considering their percental contribution toward his stake in the network.
 
-With the release of [Moonbase Alpha v6](https://github.com/PureStake/moonbeam/releases/tag/v0.6.0), users of the network can now stake their tokens to nominate collators. This guide outlines all the steps to do so.
+With the release of [Moonbase Alpha v6](https://github.com/PureStake/moonbeam/releases/tag/v0.6.0), users of the network can now stake their tokens to nominate collators. This guide will show you how to stake on Moonbase Alpha, but the same steps can be followed for Moonriver.
 
 ## General Definitions {: #general-definitions } 
 
@@ -41,8 +41,6 @@ With the release of [Moonbase Alpha v6](https://github.com/PureStake/moonbeam/re
     |              Round               |  | {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hours) |
     |          Bond duration           |  |                            {{ networks.moonbase.staking.bond_lock }} rounds                             |
 
-This guide will show you how to stake on Moonbase Alpha, but the same steps can be followed for Moonriver.
-
 ## Extrinsics Definitions {: #extrinsics-definitions } 
 
 There are many extrinsics related to the staking pallet, so all of them are not covered in this guide. However, this list defines all of the extrinsics associated with the nomination process:
@@ -55,6 +53,23 @@ There are many extrinsics related to the staking pallet, so all of them are not 
  - **nominatorBondLess**(*address* collator, *uint256* less) — extrinsic to reduce the amount of staked tokens for an already nominated collator. The amount must not decrease your overall total staked below the minimum nomination stake
  - **nominatorBondMore**(*address* collator, *uint256* more) — extrinsic to increase the amount of staked tokens for an already nominated collator
  - **revokeNomination**(*address* collator) — extrinsic to remove an existing nomination
+
+## Retrieving Staking Parameters {: #retrieving-staking-parameters } 
+
+You can now read any of the current parameters around staking, such as the ones previously listed in the [General Definitions](#general-definitions) section and more, directly from PolkadotJS Apps.
+
+Navigate to PolkadotJS Apps **Chain state** UI, and connect to either [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/chainstate) or [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network/#chainstate).
+
+Then to retrieve the various staking parameters, you'll need to:
+
+1. Select the **Constants** tab on the **Chain state** UI
+2. From the **selected constant query** dropdown, choose **parachainStaking**
+3. Choose any function you would like to get data for. For this example, you can use **maxCollatorsPerNominator**. This will return the maximum number of collators you can nominate
+4. Click **+** to return the current value
+
+![Retrieving staking parameters](/images/staking/staking-stake-parameters.png)
+
+You should then see the maximum collators per nominator. At time of writing this it was 100 for Moonbase Alpha.
 
 ## Retrieving the List of Collators {: #retrieving-the-list-of-collators } 
 
