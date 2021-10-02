@@ -11,6 +11,14 @@ Moonbase Alpha has two endpoints available for users to connect to: one for HTTP
 
 --8<-- 'text/testnet/connect.md'
 
+## Block Explorers
+
+For Moonbase Alpha, you can use any of the following block explorers:
+
+ - **Substrate API** — [Subscan](https://moonbase.subscan.io/) or [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/explorer)
+ - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=Moonbase%20Alpha)
+ - **Ethereum API with Indexing** — [Blockscout](https://moonbase-blockscout.testnet.moonbeam.network/)
+
 ## Connect MetaMask
 
 If you already have MetaMask installed, you can easily connect MetaMask to the Moonbase Alpha TestNet:
@@ -23,14 +31,6 @@ If you already have MetaMask installed, you can easily connect MetaMask to the M
     MetaMask will popup asking for permission to add Moonbase Alpha as a custom network. Once you approve permissions, MetaMask will switch your current network to Moonbase Alpha.
 
 If you do not have MetaMask installed, please check out the [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask/) guide.
-
-## Block Explorers
-
-For Moonbase Alpha, you can use any of the following block explorers:
-
- - **Substrate API** — [Subscan](https://moonbase.subscan.io/) or [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/explorer)
- - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=Moonbase%20Alpha)
- - **Ethereum API with Indexing** — [Blockscout](https://moonbase-blockscout.testnet.moonbeam.network/)
 
 ## Get Tokens {: #get-tokens } 
 
