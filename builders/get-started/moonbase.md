@@ -32,6 +32,14 @@ If you already have MetaMask installed, you can easily connect MetaMask to the M
 
 If you do not have MetaMask installed, please check out the [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask/) guide.
 
+If you want to connect MetaMask by providing the network information, you can use the following:
+
+ - Network Name: `Moonbase`
+ - RPC URL: `{{ networks.moonbase.rpc_url }}`
+ - ChainID: `{{ networks.moonbase.chain_id }}` (hex: `{{ networks.moonbase.hex_chain_id }}`)
+ - Symbol (Optional): `DEV`
+ - Block Explorer (Optional): `{{ networks.moonbase.block_explorer }}`
+
 ## Get Tokens {: #get-tokens } 
 
 To start building on Moonbase Alpha, you can get DEV tokens from our [faucet](https://discord.gg/PfpUATX), in our Discord Channel. For specific amounts, you can always reach out directly to us via our community channels.

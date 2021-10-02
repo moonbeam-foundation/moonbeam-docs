@@ -31,3 +31,11 @@ If you already have MetaMask installed, you can easily connect MetaMask to Moonr
     MetaMask will popup asking for permission to add Moonriver as a custom network. Once you approve permissions, MetaMask will switch your current network to Moonriver.
 
 If you do not have MetaMask installed, please check out the [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask/) guide.
+
+The RPC information needed to connect MetaMask is the following:
+
+ - Network Name: `Moonriver`
+ - RPC URL: `{{ networks.moonriver.rpc_url }}`
+ - ChainID: `{{ networks.moonriver.chain_id }}` (hex: `{{ networks.moonriver.hex_chain_id }}`)
+ - Symbol (Optional): `MOVR`
+ - Block Explorer (Optional): `{{ networks.moonriver.block_explorer }}`
