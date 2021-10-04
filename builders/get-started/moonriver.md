@@ -32,7 +32,7 @@ If you already have MetaMask installed, you can easily connect MetaMask to Moonr
 
 If you do not have MetaMask installed, please check out the [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask/) guide.
 
-The RPC information needed to connect MetaMask is the following:
+If you want to connect MetaMask by providing the network information, you can use the following data:
 
  - Network Name: `Moonriver`
  - RPC URL: `{{ networks.moonriver.rpc_url }}`
