@@ -144,7 +144,7 @@ In a standard configuration, each price feed is updated by a decentralized Oracl
 
 The end-user can retrieve price feeds with read-only operations via a Consumer contract, referencing the correct Aggregator interface (Proxy contract). The Proxy acts as a middleware to provide the Consumer with the most up-to-date Aggregator for a particular price feed.
 
-![Price Feed Diagram](/images/builders/integrations/oracles/chainlink/chainlink-pricefeed.png)
+![Price Feed Diagram](/images/builders/integrations/oracles/chainlink/chainlink-price-feed.png)
 
 ### Try it on Moonbase Alpha {: #try-it-on-moonbase-alpha } 
 

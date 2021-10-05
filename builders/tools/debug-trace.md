@@ -5,7 +5,7 @@ description:  Learn how to leverage the Geth Debug API and OpenEthereum Trace mo
 
 # Debug API & Trace Module
 
-![Full Node Moonbeam Banner](/images/builders/tools/debug-trace/debugtrace-banner.png)
+![Full Node Moonbeam Banner](/images/builders/tools/debug-trace/debug-trace-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -49,7 +49,7 @@ The RPC method requires any of the following *optional* parameters:
 
 As mentioned before, to use both features you need to have a node running with the `debug` and `trace` flags. For this example, a local Moonbase Alpha full node is used, with the RPC HTTP endpoint at `http://127.0.0.1:9933`. If you have a running node, you should see a similar terminal log:
 
-![Debug API](/images/builders/tools/debug-trace/debugtrace-1.png)
+![Debug API](/images/builders/tools/debug-trace/debug-trace-1.png)
 
 For example, for the `debug_traceTransaction` call, you can make the following JSON RPC request in your terminal (in this case, for the transaction hash `0x04978f83e778d715eb074352091b2159c0689b5ae2da2554e8fe8e609ab463bf`):
 
@@ -65,7 +65,7 @@ curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charse
 
 The node responds with the step-by-step replayed transaction information (response was cropped as it is quite long):
 
-![Trace Debug Node Running](/images/builders/tools/debug-trace/debugtrace-2.png)
+![Trace Debug Node Running](/images/builders/tools/debug-trace/debug-trace-2.png)
 
 For the `trace_filter` call, you can make the following JSON RPC request in your terminal (in this case, the filter is from block 20000 to 25000, only for transactions where the recipient is  `0x4E0078423a39EfBC1F8B5104540aC2650a756577`, it will start with a zero offset and provide the first 20 traces):
 
@@ -80,5 +80,5 @@ curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charse
 
 The node responds with the trace information corresponding to the filter (response was cropped as it is quite long).
 
-![Trace Filter Node Running](/images/builders/tools/debug-trace/debugtrace-3.png)
+![Trace Filter Node Running](/images/builders/tools/debug-trace/debug-trace-3.png)
 

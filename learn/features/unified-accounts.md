@@ -4,7 +4,7 @@ description: Moonbeam now uses the Ethereum based H160 account system natively a
 ---
 # Unified Accounts
 
-![Intro diagram](/images/learn/features/unifiedaccounts-banner.png)
+![Intro diagram](/images/learn/features/unified-accounts-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -22,7 +22,7 @@ However, Alice only knows the private key of the H160 address, and not of the ma
 
 The following diagram illustrates this configuration.
 
-![Old account system diagram](/images/learn/features/unifiedaccounts-1.png)
+![Old account system diagram](/images/learn/features/unified-accounts-1.png)
 
 This can creates friction and a poor user experience for Alice. First, she has to move tokens to her H160 mapped H256 address to be able to make transactions and deploy contracts through the EVM. Second, she also needs to hold a balance in her other H256 address (which she has a different private key for) to use Substrate-based features. So in short, Alice needs a minimum of two private keys to have the best of both worlds.
 
@@ -34,6 +34,6 @@ With Unified Accounts, a user (let's call him Bob) will only need a single H160 
 
 The diagram for this new configuration looks as follows.
 
-![New account system diagram](/images/learn/features/unifiedaccounts-2.png)
+![New account system diagram](/images/learn/features/unified-accounts-2.png)
 
 That is it, Bob only holds one private key that matches one address. He does not need to move balances between 2 different accounts and is able to access all the features with a single account and private key. We have standardized this single account to conform to the Ethereum-style H160 address and ECDSA key standards.
