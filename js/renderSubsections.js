@@ -21,9 +21,10 @@ if (classname !== '.') {
     let image = href.split('/').slice(3, -1).join('/').toLowerCase();
     let imagePath = `/images/index-pages/${image}.png`;
 
+    // Modify the image paths so that it uses the absolute path
     if (pathname.includes('cn')) {
       image = image.replace('cn/', '');
-      imagePath = `/cn/images/index-pages/${image}.png`;
+      imagePath = imagePath.replace('cn/', '');
     }
 
     wrapper.innerHTML += `

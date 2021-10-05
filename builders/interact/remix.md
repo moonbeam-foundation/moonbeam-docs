@@ -15,7 +15,7 @@ Remix is one of the commonly used development environments for smart contracts o
 This guide walks through the process of creating and deploying a Solidity-based smart contract to a Moonbeam development node using the [Remix IDE](https://remix.ethereum.org/). 
 
 !!! note
-    This tutorial was created using the {{ networks.development.build_tag}} tag which is based on the {{ networks.moonbase.version }} release of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/{{ networks.moonbase.version }}). The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility are still under very active development.
+    This tutorial was created using the {{ networks.development.build_tag}} tag which is based on the {{ networks.moonbase.parachain_release_tag }} release of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/{{ networks.moonbase.parachain_release_tag }}). The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility are still under very active development.
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 

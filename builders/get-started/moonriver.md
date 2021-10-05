@@ -11,6 +11,14 @@ Moonriver has two endpoints available for users to connect to: one for HTTPS and
 
 --8<-- 'text/moonriver/connect.md'
 
+## Block Explorers
+
+For Moonriver, you can use any of the following block explorers:
+
+ - **Substrate API** — [Subscan](https://moonriver.subscan.io/) or [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network#/explorer)
+ - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=Moonriver)
+ - **Ethereum API with Indexing** — [Blockscout](https://blockscout.moonriver.moonbeam.network/)
+
 ## Connect MetaMask
 
 If you already have MetaMask installed, you can easily connect MetaMask to Moonriver:
@@ -23,3 +31,11 @@ If you already have MetaMask installed, you can easily connect MetaMask to Moonr
     MetaMask will popup asking for permission to add Moonriver as a custom network. Once you approve permissions, MetaMask will switch your current network to Moonriver.
 
 If you do not have MetaMask installed, please check out the [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask/) guide.
+
+If you want to connect MetaMask by providing the network information, you can use the following data:
+
+ - Network Name: `Moonriver`
+ - RPC URL: `{{ networks.moonriver.rpc_url }}`
+ - ChainID: `{{ networks.moonriver.chain_id }}` (hex: `{{ networks.moonriver.hex_chain_id }}`)
+ - Symbol (Optional): `MOVR`
+ - Block Explorer (Optional): `{{ networks.moonriver.block_explorer }}`

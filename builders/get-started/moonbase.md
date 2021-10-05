@@ -11,6 +11,14 @@ Moonbase Alpha has two endpoints available for users to connect to: one for HTTP
 
 --8<-- 'text/testnet/connect.md'
 
+## Block Explorers
+
+For Moonbase Alpha, you can use any of the following block explorers:
+
+ - **Substrate API** — [Subscan](https://moonbase.subscan.io/) or [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/explorer)
+ - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=Moonbase%20Alpha)
+ - **Ethereum API with Indexing** — [Blockscout](https://moonbase-blockscout.testnet.moonbeam.network/)
+
 ## Connect MetaMask
 
 If you already have MetaMask installed, you can easily connect MetaMask to the Moonbase Alpha TestNet:
@@ -23,6 +31,15 @@ If you already have MetaMask installed, you can easily connect MetaMask to the M
     MetaMask will popup asking for permission to add Moonbase Alpha as a custom network. Once you approve permissions, MetaMask will switch your current network to Moonbase Alpha.
 
 If you do not have MetaMask installed, please check out the [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask/) guide.
+
+If you want to connect MetaMask by providing the network information, you can use the following data:
+
+ - Network Name: `Moonbase Alpha`
+ - RPC URL: `{{ networks.moonbase.rpc_url }}`
+ - ChainID: `{{ networks.moonbase.chain_id }}` (hex: `{{ networks.moonbase.hex_chain_id }}`)
+ - Symbol (Optional): `DEV`
+ - Block Explorer (Optional): `{{ networks.moonbase.block_explorer }}`
+
 ## Get Tokens {: #get-tokens } 
 
 To start building on Moonbase Alpha, you can get DEV tokens from our [faucet](https://discord.gg/PfpUATX), in our Discord Channel. For specific amounts, you can always reach out directly to us via our community channels.
@@ -50,7 +67,3 @@ To get DEV tokens, enter the following message, replacing `<enter-address-here->
 Mission Control will send you 5 DEV tokens and display your current account balance. Remember that Mission Control is limited to dispense once every 24 hours per Discord user.
 
 ![Discord2](/images/builders/get-started/moonbase/discord-2.png)
-
-### Manual Procedure {: #manual-procedure } 
-
-For token requests of more than the limited account allowed by our Discord bot, contact a moderator directly via our [Discord channel](https://discord.gg/PfpUATX). We are happy to provide the tokens needed to test your applications.
