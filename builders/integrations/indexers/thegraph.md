@@ -5,7 +5,7 @@ description: Build APIs using The Graph indexing protocol on Moonbeam
 
 # Using The Graph on Moonbeam
 
-![The Graph on Moonbeam](/images/builders/integrations/indexers/thegraph/thegraph-banner.png)
+![The Graph on Moonbeam](/images/builders/integrations/indexers/the-graph/the-graph-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -267,6 +267,6 @@ Where:
 
 The logs from the previous command should look similar to:
 
-![The Graph deployed](/images/builders/integrations/indexers/thegraph/thegraph-1.png)
+![The Graph deployed](/images/builders/integrations/indexers/the-graph/the-graph-1.png)
 
 DApps can now use the Subgraph endpoints to fetch the data indexed by The Graph protocol.

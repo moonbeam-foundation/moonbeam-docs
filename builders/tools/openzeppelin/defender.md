@@ -5,7 +5,7 @@ description:  Learn how to use OpenZeppelin Defender to manage smart contracts s
 
 # OpenZeppelin Defender
 
-![OpenZeppelin Defender Banner](/images/builders/tools/openzeppelin/ozdefender-banner.png)
+![OpenZeppelin Defender Banner](/images/builders/tools/openzeppelin/oz-defender-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -77,7 +77,7 @@ contract PausableBox is Initializable, PausableUpgradeable, OwnableUpgradeable {
 
 Once you have an OpenZeppelin Defender account, log into the [Defender App](https://defender.openzeppelin.com/). In the main screen, with MetaMask [connected to Moonbase Alpha](/tokens/connect/metamask/) click on the top right corner "Connect wallet" button:
 
-![OpenZeppelin Defender Connect](/images/builders/tools/openzeppelin/ozdefender-1.png)
+![OpenZeppelin Defender Connect](/images/builders/tools/openzeppelin/oz-defender-1.png)
 
 If successful, you should see your address and a text stating "Connected to Moonbase Alpha."
 
@@ -96,11 +96,11 @@ The first step to using Defender Admin is to add the contract you want to manage
  5. Check that the contract features were detected correctly
  6. Once you've checked all the information, click on the "Add" button
 
-![OpenZeppelin Defender Admin Add Contract](/images/builders/tools/openzeppelin/ozdefender-2.png)
+![OpenZeppelin Defender Admin Add Contract](/images/builders/tools/openzeppelin/oz-defender-2.png)
 
 If everything was successfully imported, you should see your contract in the Admin component main screen:
 
-![OpenZeppelin Defender Admin Contract Added](/images/builders/tools/openzeppelin/ozdefender-3.png)
+![OpenZeppelin Defender Admin Contract Added](/images/builders/tools/openzeppelin/oz-defender-3.png)
 
 ### Create a Contract Proposal {: #create-a-contract-proposal } 
 
@@ -115,7 +115,7 @@ In this case, a new proposal is created to pause the contract. To do so, take th
  1. Click on the "New proposal" button to see all the available options
  2. Click on "Pause"
 
-![OpenZeppelin Defender Admin Contract New Pause Proposal](/images/builders/tools/openzeppelin/ozdefender-4.png)
+![OpenZeppelin Defender Admin Contract New Pause Proposal](/images/builders/tools/openzeppelin/oz-defender-4.png)
 
 This will open the proposal page, where all the details regarding the proposal need to be filled in. In this example, you need to provide the following information:
 
@@ -124,21 +124,21 @@ This will open the proposal page, where all the details regarding the proposal n
  3. Description of the proposal. In here, you should provide as much detail as possible for other members/managers of the contract (if using a MultiSig wallet)
  4. Click on "Create pause proposal"
 
-![OpenZeppelin Defender Admin Contract Pause Proposal Details](/images/builders/tools/openzeppelin/ozdefender-5.png)
+![OpenZeppelin Defender Admin Contract Pause Proposal Details](/images/builders/tools/openzeppelin/oz-defender-5.png)
 
 Once the proposal is successfully created, it should be listed in the contract's admin dashboard.
 
-![OpenZeppelin Defender Admin Contract Proposal List](/images/builders/tools/openzeppelin/ozdefender-6.png)
+![OpenZeppelin Defender Admin Contract Proposal List](/images/builders/tools/openzeppelin/oz-defender-6.png)
 
 ### Approve a Contract Proposal {: #approve-a-contract-proposal } 
 
 With the contract proposal created, the next step is to approve and execute it. To do so, go to the proposal and click on "Approve and Execute." 
 
-![OpenZeppelin Defender Admin Contract Proposal Pause Approve](/images/builders/tools/openzeppelin/ozdefender-7.png)
+![OpenZeppelin Defender Admin Contract Proposal Pause Approve](/images/builders/tools/openzeppelin/oz-defender-7.png)
 
 
 This will initiate a transaction that needs to be signed using MetaMask, after which the proposal state should change to "Executed (confirmation pending)." Once the transaction is processed, the status should show "Executed."
 
-![OpenZeppelin Defender Admin Contract Proposal Pause Executed](/images/builders/tools/openzeppelin/ozdefender-8.png)
+![OpenZeppelin Defender Admin Contract Proposal Pause Executed](/images/builders/tools/openzeppelin/oz-defender-8.png)
 
 You can also see that the contract's status has changed from "Running" to "Paused." Great! You now know how to use the Admin component to manage your smart contracts. 

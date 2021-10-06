@@ -5,7 +5,7 @@ description: How to run a full Parachain node for the Moonbeam Network to have y
 
 # Run a Node on Moonbeam
 
-![Full Node Moonbeam Banner](/images/node-operators/networks/full-node/fullnode-banner.png)
+![Full Node Moonbeam Banner](/images/node-operators/networks/full-node/full-node-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -188,7 +188,7 @@ If you're using MacOS, you can find all the code snippets [here](/snippets/text/
 
 Once Docker pulls the necessary images, your full Moonbeam (or Moonriver) node will start, displaying lots of information, such as the chain specification, node name, role, genesis state, and more:
 
-![Full Node Starting](/images/node-operators/networks/full-node/fullnode-docker-1.png)
+![Full Node Starting](/images/node-operators/networks/full-node/full-node-docker-1.png)
 
 !!! note
     If you want to run an RPC endpoint, to connect polkadot.js.org, or to run your own application, use the flags `--unsafe-rpc-external` and/or `--unsafe-ws-external` to run the full node with external access to the RPC ports.  More details are available by running `moonbeam --help`.  
@@ -204,7 +204,7 @@ docker run -p {{ networks.relay_chain.p2p }}:{{ networks.relay_chain.p2p }} -p {
 
 During the syncing process, you will see messages from both the embedded relay chain and the parachain (without a tag). These messages display a target block (live network state) and a best block (local node synced state).
 
-![Full Node Starting](/images/node-operators/networks/full-node/fullnode-docker-2.png)
+![Full Node Starting](/images/node-operators/networks/full-node/full-node-docker-2.png)
 
 !!! note
     It will take a few days to completely sync the embedded Kusama relay chain. Make sure that your system meets the [requirements](#requirements). 
@@ -470,7 +470,7 @@ And lastly, verify the service is running:
 systemctl status moonbeam.service
 ```
 
-![Service Status](/images/node-operators/networks/full-node/fullnode-binary-1.png)
+![Service Status](/images/node-operators/networks/full-node/full-node-binary-1.png)
 
 You can also check the logs by executing:
 
@@ -478,7 +478,7 @@ You can also check the logs by executing:
 journalctl -f -u moonbeam.service
 ```
 
-![Service Logs](/images/node-operators/networks/full-node/fullnode-binary-2.png)
+![Service Logs](/images/node-operators/networks/full-node/full-node-binary-2.png)
 
 ## Advanced Flags and Options {: #advanced-flags-and-options } 
 

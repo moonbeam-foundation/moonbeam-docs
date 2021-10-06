@@ -5,6 +5,8 @@ description:  Learn how to use precompiled contracts on Moonbase Alpha, the Moon
 
 # Precompiled Contracts on Moonbase Alpha
 
+![Precomiled Contracts Banner](/images/builders/interact/precompiles/precompiled-banner.png)
+
 ## Introduction {: #introduction } 
 
 Another feature added with the [release of Moonbase Alpha v2](https://moonbeam.network/blog/moonbase-alpha-v2-contract-events-pub-sub-capabilities/) is the inclusion of some [precompiled contracts](https://docs.klaytn.com/smart-contract/precompiled-contracts) that are natively available on Ethereum. 

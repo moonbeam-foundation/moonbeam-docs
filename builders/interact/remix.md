@@ -133,7 +133,7 @@ To install the Moonbeam Remix Plugin, take the following steps:
  2. Search for "Moonbeam"
  3. Press "Activate" and the Moonbeam Remix Plugin will be added directly above the Plugin manager tab
 
-![Activating the Moonbeam Remix Plugin](/images/builders/interact/remix/plugin-remix-1.png)
+![Activating the Moonbeam Remix Plugin](/images/builders/interact/remix/using-remix-17.png)
 
 Once you've added the plugin, a Moonbeam logo will appear on the left hand side, representing the Moonbeam Remix Plugin tab.
 
@@ -146,7 +146,7 @@ Click on the Moonbeam Logo in your Remix IDE to open the Moonbeam Plugin. This p
  3. Press Compile or choose Auto-Compile if you prefer
  4. Press Deploy and Confirm the Transaction in Metamask
 
-![Compiling and Deploying a Contract with the Moonbeam Remix Plug](/images/builders/interact/remix/plugin-remix-2.png)
+![Compiling and Deploying a Contract with the Moonbeam Remix Plug](/images/builders/interact/remix/using-remix-18.png)
 
 It's that easy! Once the contract is deployed, you'll see the address and all available read/write methods to interact with it.
 
