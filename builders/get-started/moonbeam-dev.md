@@ -233,5 +233,5 @@ Also, included with the development node is a prefunded account used for testing
 
 For a Moonbeam development node, you can use any of the following block explorers:
 
- - **Substrate API** — [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network#/explorer) on WS port `9944`
+ - **Substrate API** — [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/explorer) on WS port `9944`
  - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=Moonbeam%20Dev%20Node) on HTTP port `9933`
