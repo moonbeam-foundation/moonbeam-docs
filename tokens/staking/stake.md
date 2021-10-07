@@ -56,9 +56,9 @@ There are many extrinsics related to the staking pallet, so all of them are not 
 
 ## Retrieving Staking Parameters {: #retrieving-staking-parameters } 
 
-You can now read any of the current parameters around staking, such as the ones previously listed in the [General Definitions](#general-definitions) section and more, directly from PolkadotJS Apps.
+You can now read any of the current parameters around staking, such as the ones previously listed in the [General Definitions](#general-definitions) section and more, directly from Polkadot.js Apps.
 
-Navigate to PolkadotJS Apps **Chain state** UI, and connect to either [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/chainstate) or [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network/#chainstate).
+Navigate to Polkadot.js Apps **Chain state** UI, and connect to either [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/chainstate) or [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network/#chainstate).
 
 Then to retrieve the various staking parameters, you'll need to:
 
@@ -105,7 +105,7 @@ This section goes over the process of nominating collators. The tutorial will us
 | Collator 1 |     | {{ networks.moonbase.staking.collators.address1 }} |
 | Collator 2 |     | {{ networks.moonbase.staking.collators.address2 }} |
 
-To access staking features, you need to use the PolkadotJS Apps interface. To do so, you need to import/create an Ethereum-style account first (H160 address), which you can do by following [this guide](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account).
+To access staking features, you need to use the Polkadot.js Apps interface. To do so, you need to import/create an Ethereum-style account first (H160 address), which you can do by following [this guide](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account).
 
 For this example, an account was imported and named with a super original name: Alice.
 

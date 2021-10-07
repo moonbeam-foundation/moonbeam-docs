@@ -37,7 +37,7 @@ Currently, we have tested Moonbeam with the following wallets:
 
  - [MetaMask](/tokens/connect/metamask/)
  - [MathWallet](/tokens/connect/mathwallet/)
- - [Polkadot JS Apps](/tokens/connect/polkadotjs/)
+ - [Polkadot.js Apps](/tokens/connect/polkadotjs/)
  - [Ledger](/tokens/connect/ledger/)
  - [Trezor](/tokens/connect/trezor/)
  - [Nifty](/tokens/connect/nifty/)

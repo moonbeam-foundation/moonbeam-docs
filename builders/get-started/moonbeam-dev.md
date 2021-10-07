@@ -1,6 +1,6 @@
 ---
 title: Moonbeam Development Node
-description: Follow this tutorial to learn how to set up your first Moonbeam node. You’ll also learn how to connect it to and control it with the Polkadot JS GUI.
+description: Follow this tutorial to learn how to set up your first Moonbeam node. You’ll also learn how to connect it to and control it with the Polkadot.js GUI.
 ---
 
 # Getting Started with a Moonbeam Development Node
@@ -18,7 +18,7 @@ This guide outlines the steps needed to create a development node for testing th
 
 A Moonbeam development node is your own personal development environment for building and testing applications on Moonbeam. For Ethereum developers, it is comparable to Ganache. It enables you to get started quickly and easily without the overhead of a relay chain. You can spin up your node with the `--sealing` option to author blocks instantly, manually, or at a custom interval after transactions are received. By default a block will be created when a transaction is received, which is similar to Ganache's instamine feature. 
 
-If you follow to the end of this guide, you will have a Moonbeam development node running in your local environment, with 10 [pre-funded accounts](#pre-funded-development-accounts), and will be able to connect it to the default Polkadot JS GUI.
+If you follow to the end of this guide, you will have a Moonbeam development node running in your local environment, with 10 [pre-funded accounts](#pre-funded-development-accounts), and will be able to connect it to the default Polkadot.js GUI.
 
 There are two ways to get started running a Moonbeam node: you can use [Docker to run a pre-built binary](#getting-started-with-docker) or you can [compile the binary locally](#getting-started-with-the-binary-file) and set up a development node yourself. Using Docker is a quick and convenient way to get started as you won't have to install Substrate and all the dependencies, and you can skip the building the node process as well. It does require you to [install Docker](https://docs.docker.com/get-docker/). On the other hand, if you decide you want to go through the process of building your own development node, it could take roughly 30 minutes or longer to complete depending on your hardware.
 
@@ -72,7 +72,7 @@ purestake/moonbeam \
 --help
 ```
 
-To continue on with the tutorial, the next section is not necessary as you've already spun up a node with Docker. You can skip ahead to [Connecting Polkadot JS Apps to a Local Moonbeam Node](#connecting-polkadot-js-apps-to-a-local-moonbeam-node).
+To continue on with the tutorial, the next section is not necessary as you've already spun up a node with Docker. You can skip ahead to [Connecting Polkadot.js Apps to a Local Moonbeam Node](#connecting-polkadot-js-apps-to-a-local-moonbeam-node).
 
 ## Getting Started with the Binary File {: #getting-started-with-the-binary-file } 
 
@@ -136,28 +136,28 @@ For more information on some of the flags and options used in the example, check
 ```
 ./target/release/moonbeam --help
 ```
-## Connecting Polkadot JS Apps to a Local Moonbeam Node {: #connecting-polkadot-js-apps-to-a-local-moonbeam-node } 
+## Connecting Polkadot.js Apps to a Local Moonbeam Node {: #connecting-polkadot-js-apps-to-a-local-moonbeam-node } 
 
 The development node is a Substrate-based node, so you can interact with it using standard Substrate tools. The two provided RPC endpoints are:
 
  - HTTP: `http://127.0.0.1:9933`
  - WS: `ws://127.0.0.1:9944` 
 
-Start by connecting to it with Polkadot JS Apps. Open a browser to: [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/#/explorer). This will open Polkadot JS Apps, which automatically connects to Polkadot MainNet.
+Start by connecting to it with Polkadot.js Apps. Open a browser to: [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/#/explorer). This will open Polkadot.js Apps, which automatically connects to Polkadot MainNet.
 
-![Polkadot JS Apps](/images/setting-up-a-node/setting-up-node-5.png)
+![Polkadot.js Apps](/images/setting-up-a-node/setting-up-node-5.png)
 
-Click on the top left corner to open the menu to configure the networks, and then navigate down to open the Development sub-menu. In there, you will want to toggle the "Local Node" option, which points Polkadot JS Apps to `ws://127.0.0.1:9944`. Next, select the Switch button, and the site should connect to your Moonbeam development node.
+Click on the top left corner to open the menu to configure the networks, and then navigate down to open the Development sub-menu. In there, you will want to toggle the "Local Node" option, which points Polkadot.js Apps to `ws://127.0.0.1:9944`. Next, select the Switch button, and the site should connect to your Moonbeam development node.
 
 ![Select Local Node](/images/setting-up-a-node/setting-up-node-6.png)
 
-With Polkadot JS Apps connected, you will see the Moonbeam development node waiting for transactions to arrive to begin producing blocks.
+With Polkadot.js Apps connected, you will see the Moonbeam development node waiting for transactions to arrive to begin producing blocks.
 
 ![Select Local Node](/images/setting-up-a-node/setting-up-node-7.png)
 
 ## Querying Account State {: #querying-account-state } 
 
-With the release of [Moonbase Alpha v3](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/), Moonbeam now works under a single account format, which is the Ethereum-styled H160 and is now also supported in Polkadot JS Apps. To check the balance of an address, you can simply import your account in the Accounts tab. You can find more information in the [Unified Accounts](/learn/features/unified-accounts/) section.
+With the release of [Moonbase Alpha v3](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/), Moonbeam now works under a single account format, which is the Ethereum-styled H160 and is now also supported in Polkadot.js Apps. To check the balance of an address, you can simply import your account in the Accounts tab. You can find more information in the [Unified Accounts](/learn/features/unified-accounts/) section.
  
 Nevertheless, leveraging the Ethereum full RPC capabilities of Moonbeam, you can use [MetaMask](/tokens/connect/metamask/) to check the balance of that address as well. In addition, you can also use other development tools, such as [Remix](/builders/interact/remix/) and [Truffle](/builders/interact/truffle/).
 
