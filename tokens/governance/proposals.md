@@ -60,9 +60,9 @@ This guide will show you how to submit a proposal on Moonbase Alpha.
 
 This section goes over the process of creating a proposal, from a preimage until it reaches public referenda. Instead of making a generic example, this guide will actually create a real proposal that will serve as a base for this guide and others.
 
-To make a proposal in the network, you need to use the PolkadotJS Apps interface. To do so, you need import an Ethereum-style account first (H160 address), which you can do following [this guide](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account). For this example, three accounts were imported and named with super original names: Alice, Bob, and Charley.
+To make a proposal in the network, you need to use the Polkadot.js Apps interface. To do so, you need import an Ethereum-style account first (H160 address), which you can do following [this guide](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account). For this example, three accounts were imported and named with super original names: Alice, Bob, and Charley.
 
-![Accounts in PolkadotJS](/images/tokens/governance/proposals/proposals-1.png)
+![Accounts in Polkadot.js](/images/tokens/governance/proposals/proposals-1.png)
 
 This proposal is to make permanent on-chain the remark "This is a unique string."
 
@@ -87,7 +87,7 @@ Here, you need to provide the following information:
 !!! note
     Make sure you copy the preimage hash, as it is necessary to submit the proposal.
 
-Note that the storage cost of the preimage is displayed at the bottom left corner of this window. After the transaction is submitted, you will see some confirmations on the top right corner of the PolkadotJS Apps interface, but nothing will have changed in the main democracy screen. However, don't worry. If the transaction is confirmed, the preimage has been submitted.
+Note that the storage cost of the preimage is displayed at the bottom left corner of this window. After the transaction is submitted, you will see some confirmations on the top right corner of the Polkadot.js Apps interface, but nothing will have changed in the main democracy screen. However, don't worry. If the transaction is confirmed, the preimage has been submitted.
 
 ### Submitting a Proposal {: #submitting-a-proposal } 
 
@@ -107,7 +107,7 @@ Here, you need to provide the following information:
 !!! note
     Tokens might be locked for an indeterminate amount of time because it is unknown when a proposal may become a referendum (if ever).
 
-After the transaction is submitted, you will see some confirmations on the top right corner of the PolkadotJS Apps interface. You should also see the proposal listed in the "Proposals" section, displaying the proposer and the amounts of tokens locked, and it is now ready to be seconded!
+After the transaction is submitted, you will see some confirmations on the top right corner of the Polkadot.js Apps interface. You should also see the proposal listed in the "Proposals" section, displaying the proposer and the amounts of tokens locked, and it is now ready to be seconded!
 
 ![Proposal listed](/images/tokens/governance/proposals/proposals-6.png)
 
@@ -133,7 +133,7 @@ Here, you need to provide the following information:
 !!! note
     Tokens might be locked for an indeterminate amount of time because it is unknown when a proposal may become a referendum (if ever)
 
-After the transaction is submitted, you will see some confirmations on the top right corner of the PolkadotJS Apps interface. You should also see the proposal listed in the "Proposals" section, displaying the proposer and the amounts of tokens locked and listing the users that have seconded this proposal!
+After the transaction is submitted, you will see some confirmations on the top right corner of the Polkadot.js Apps interface. You should also see the proposal listed in the "Proposals" section, displaying the proposer and the amounts of tokens locked and listing the users that have seconded this proposal!
 
 ![Proposal Seconded](/images/tokens/governance/proposals/proposals-9.png)
 

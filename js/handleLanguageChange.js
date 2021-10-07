@@ -1,8 +1,12 @@
+// These language variables are also used in other scripts
+const supportedLanguages = ['cn', 'es', 'fr', 'ru'];
+const revampedLanguageSites = ['cn'];
+
 const selectWrapper = document.querySelector('.language-select-wrapper');
 const languageSelect = document.querySelector('.language-select');
 const languageOptions = document.querySelectorAll('.language-select-wrapper .language-select li');
 const selectLabel = document.querySelector('.language-select-label');
-const supportedLanguages = ['cn', 'es', 'fr', 'ru'];
+
 const english = document.querySelector('.en');
 const selected = 'selected';
 let isStaging = false;

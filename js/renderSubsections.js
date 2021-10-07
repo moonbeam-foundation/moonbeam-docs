@@ -1,11 +1,22 @@
 // Get the current page the user is on
 const pathname = window.location.pathname;
-let classname;
 
-if (pathname.includes('cn')) {
-  classname = pathname.replace('/cn/', '.').replaceAll('/', '-');
-} else {
-  classname = pathname.replace('/', '.').replaceAll('/', '-');
+// Determine which language site the user is on
+let currLanguage = 'en' // Default to English
+for (language in supportedLanguages) {
+  if (pathname.includes(`/${language}`)) {
+    currLanguage = language;
+  }
+}
+
+let classname = pathname.replace('/', '.').replaceAll('/', '-');
+let isRevamped = false;
+for (language in revampedLanguageSites) {
+  if (language == currLanguage) {
+    classname = pathname.replace(`/${language}/`, '.').replaceAll('/', '-');
+    isRevamped = true;
+    break;
+  }
 }
 
 if (classname !== '.') {
@@ -22,9 +33,9 @@ if (classname !== '.') {
     let imagePath = `/images/index-pages/${image}.png`;
 
     // Modify the image paths so that it uses the absolute path
-    if (pathname.includes('cn')) {
-      image = image.replace('cn/', '');
-      imagePath = imagePath.replace('cn/', '');
+    if (isRevamped) {
+      image = image.replace(`${currLanguage}/`, '');
+      imagePath = imagePath.replace(`${currLanguage}/`, '');
     }
 
     wrapper.innerHTML += `
