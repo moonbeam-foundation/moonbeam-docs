@@ -11,7 +11,6 @@ for (language in supportedLanguages) {
 
 let classname = pathname.replace('/', '.').replaceAll('/', '-');
 let isRevamped = false;
-const revampedLanguageSites = ['cn'];
 for (language in revampedLanguageSites) {
   if (language == currLanguage) {
     classname = pathname.replace(`/${language}/`, '.').replaceAll('/', '-');
