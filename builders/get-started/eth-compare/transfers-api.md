@@ -3,7 +3,7 @@ title: Transfers API
 description: A description of the main differences that developers need to understand in terms of the different balance transfers available on Moonbeam.
 ---
 
-![Moonbeam v Ethereum - Transfers API Banner](/images/eth-compare/transfers-api-banner.png)
+![Moonbeam v Ethereum - Transfers API Banner](/images/builders/get-started/eth-compare/transfers-api-banner.png)
 
 ## Introduction
 

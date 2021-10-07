@@ -5,7 +5,7 @@ description: Instructions on how to become a collator in the Moonbeam Network on
 
 # Run a Collator on Moonbeam
 
-![Collator Moonbeam Banner](/images/fullnode/collator-banner.png)
+![Collator Moonbeam Banner](/images/node-operators/networks/collators/collator-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -59,7 +59,7 @@ Currently, you have two ways of proceeding in regards having an account in [Polk
 
 Once you have an H160 account imported to Polkadot.js, you should see it under the "Accounts" tab. Make sure you have your public address at hand (`PUBLIC_KEY`), as it is needed to configure your [deploy your full node](/node-operators/networks/full-node/) with the collation options.
 
-![Account in Polkadot.js](/images/fullnode/collator-polkadotjs1.png)
+![Account in Polkadot.js](/images/node-operators/networks/collators/collator-polkadotjs-1.png)
 
 ## Become a Collator Candidate {: #become-a-collator-candidate } 
 
@@ -99,7 +99,7 @@ console.log(`Candidate pool size is: ${candidatePool.length}`);
  5. Click on the run button. This will execute the code from the editor box
  6. Copy the result, as you'll need it when joining the candidate pool
 
-![Get Number of Candidates](/images/fullnode/collator-polkadotjs2.png)
+![Get Number of Candidates](/images/node-operators/networks/collators/collator-polkadotjs-2.png)
 
 ### Join the Candidate Pool {: #join-the-candidate-pool } 
 
@@ -114,7 +114,7 @@ Once your node is running and in sync with the network, you become a collator ca
  7. Set the candidate count as the candidate pool size. To learn how to retrieve this value, check [this section](#get-the-size-of-the-candidate-pool)
  8. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
-![Join Collators pool Polkadot.js](/images/fullnode/collator-polkadotjs3.png)
+![Join Collators pool Polkadot.js](/images/node-operators/networks/collators/collator-polkadotjs-3.png)
 
 !!! note
     Function names and the minimum bond requirement are subject to change in future releases.
@@ -131,7 +131,7 @@ With the release of [Moonbase Alpha v8](/networks/testnet/), collators will sign
 
 First, make sure you're [running a collator node](/node-operators/networks/full-node/) and you have exposed the RPC ports. Once you have your collator node running, your terminal should print similar logs:
 
-![Collator Terminal Logs](/images/fullnode/collator-terminal1.png)
+![Collator Terminal Logs](/images/node-operators/networks/collators/collator-terminal-1.png)
 
 Next, session keys can be rotated by sending an RPC call to the HTTP endpoint with the `author_rotateKeys` method. For reference, if your collator's HTTP endpoint is at port `9933`, the JSON-RPC call might look like this:
 
@@ -148,7 +148,7 @@ curl http://127.0.0.1:9933 -H \
 
 The collator node should respond with the corresponding public key of the new author ID (session key).
 
-![Collator Terminal Logs RPC Rotate Keys](/images/fullnode/collator-terminal2.png)
+![Collator Terminal Logs RPC Rotate Keys](/images/node-operators/networks/collators/collator-terminal-2.png)
 
 Make sure you write down this public key of the author ID. Next, this will be mapped to an H160 Ethereum-styled address to which the block rewards are paid.
 
@@ -183,11 +183,11 @@ To map your author ID to your account, you need to be inside the [candidate pool
  6. Enter the author ID. In this case, it was obtained via the RPC call `author_rotateKeys` in the previous section
  7. Click on "Submit Transaction"
 
-![Author ID Mapping to Account Extrinsic](/images/fullnode/collator-polkadotjs4.png)
+![Author ID Mapping to Account Extrinsic](/images/node-operators/networks/collators/collator-polkadotjs-4.png)
 
 If the transaction is successful, you will see a confirmation notification on your screen. If not, make sure you've joined the [candidate pool](#become-a-collator-candidate).
 
-![Author ID Mapping to Account Extrinsic Successful](/images/fullnode/collator-polkadotjs5.png)
+![Author ID Mapping to Account Extrinsic Successful](/images/node-operators/networks/collators/collator-polkadotjs-5.png)
 
 ### Checking the Mappings {: #checking-the-mappings } 
 
@@ -200,6 +200,6 @@ You can also check the current on-chain mappings by verifying the chain state. T
  5. Provide an author ID to query. Optinally, you can disable the slider to retrieve all mappings 
  6. Click on the "+" button to send the RPC call
 
-![Author ID Mapping Chain State](/images/fullnode/collator-polkadotjs6.png)
+![Author ID Mapping Chain State](/images/node-operators/networks/collators/collator-polkadotjs-6.png)
 
 You should be able to see the H160 account associated with the author ID provided. If no author ID was included, this would return all the mappings stored on-chain.

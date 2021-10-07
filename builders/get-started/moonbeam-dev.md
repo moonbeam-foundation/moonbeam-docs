@@ -32,7 +32,7 @@ docker pull purestake/moonbeam:{{ networks.development.build_tag }}
 
 The tail end of the console log should look like this:
 
-![Docker - imaged pulled](/images/setting-up-a-node/setting-up-node-1.png)
+![Docker - imaged pulled](/images/builders/get-started/moonbeam-dev/moonbeam-dev-1.png)
 
 Once the Docker image is downloaded, the next step is to run the image.
 
@@ -62,7 +62,7 @@ You can run the Docker image using the following:
 This should spin up a Moonbeam development node in instant seal mode for local testing, so that blocks are authored instantly as transactions are received.
 If successful, you should see an output showing an idle state waiting for blocks to be authored:
 
-![Docker - output shows blocks being produced](/images/setting-up-a-node/setting-up-node-2.png)
+![Docker - output shows blocks being produced](/images/builders/get-started/moonbeam-dev/moonbeam-dev-2.png)
 
 For more information on some of the flags and options used in the example, check out [Common Flags and Options](#common-commands-flags-and-options). If you want to see a complete list of all of the flags, options, and subcommands, open the help menu by running:
 
@@ -116,7 +116,7 @@ If a _cargo not found error_ shows up in the terminal, manually add Rust to your
 
 Here is what the tail end of the build output should look like:
 
-![End of build output](/images/setting-up-a-node/setting-up-node-3.png)
+![End of build output](/images/builders/get-started/moonbeam-dev/moonbeam-dev-3.png)
 
 Then, you will want to run the node in dev mode using the following command:
 
@@ -129,7 +129,7 @@ Then, you will want to run the node in dev mode using the following command:
 
 You should see an output that looks like the following, showing an idle state waiting for blocks to be produced:
 
-![Output shows blocks being produced](/images/setting-up-a-node/setting-up-node-4.png)
+![Output shows blocks being produced](/images/builders/get-started/moonbeam-dev/moonbeam-dev-4.png)
 
 For more information on some of the flags and options used in the example, check out [Common Flags and Options](#common-commands-flags-and-options). If you want to see a complete list of all of the flags, options, and subcommands, open the help menu by running:
 
@@ -145,15 +145,15 @@ The development node is a Substrate-based node, so you can interact with it usin
 
 Start by connecting to it with Polkadot.js Apps. Open a browser to: [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/#/explorer). This will open Polkadot.js Apps, which automatically connects to Polkadot MainNet.
 
-![Polkadot.js Apps](/images/setting-up-a-node/setting-up-node-5.png)
+![Polkadot.js Apps](/images/builders/get-started/moonbeam-dev/moonbeam-dev-5.png)
 
 Click on the top left corner to open the menu to configure the networks, and then navigate down to open the Development sub-menu. In there, you will want to toggle the "Local Node" option, which points Polkadot.js Apps to `ws://127.0.0.1:9944`. Next, select the Switch button, and the site should connect to your Moonbeam development node.
 
-![Select Local Node](/images/setting-up-a-node/setting-up-node-6.png)
+![Select Local Node](/images/builders/get-started/moonbeam-dev/moonbeam-dev-6.png)
 
 With Polkadot.js Apps connected, you will see the Moonbeam development node waiting for transactions to arrive to begin producing blocks.
 
-![Select Local Node](/images/setting-up-a-node/setting-up-node-7.png)
+![Select Local Node](/images/builders/get-started/moonbeam-dev/moonbeam-dev-7.png)
 
 ## Querying Account State {: #querying-account-state } 
 
@@ -234,4 +234,4 @@ Also, included with the development node is a prefunded account used for testing
 For a Moonbeam development node, you can use any of the following block explorers:
 
  - **Substrate API** — [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/explorer) on WS port `9944`
- - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=Moonbeam%20Dev%20Node) on HTTP port `9933`
+ - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=MoonbeamDevNode) on HTTP port `9933`

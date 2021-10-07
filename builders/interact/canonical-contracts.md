@@ -5,7 +5,7 @@ description: A brief overview of the canonical contracts available on Moonriver 
 
 # Canonical Contracts
 
-![Canonical contracts banner](/images/canonical-contracts/canonical-contracts-banner.png)
+![Canonical contracts banner](/images/builders/interact/canonical-contracts/canonical-contracts-banner.png)
 
 ## Common-goods Contracts
 

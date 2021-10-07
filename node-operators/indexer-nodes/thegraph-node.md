@@ -5,7 +5,7 @@ description: Build APIs using The Graph indexing protocol on Moonbeam
 
 # Running a Graph Node on Moonbeam
 
-![The Graph Node on Moonbeam](/images/thegraph/thegraphnode-banner.png)
+![The Graph Node on Moonbeam](/images/node-operators/indexer-nodes/the-graph/the-graph-node-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -48,7 +48,7 @@ Next, execute the `setup.sh` file. This will pull all the necessary Docker image
 
 The tail end from the logs of the previous command should look something similar to:
 
-![Graph Node setup](/images/thegraph/thegraphnode-images1.png)
+![Graph Node setup](/images/node-operators/indexer-nodes/the-graph/the-graph-node-1.png)
 
 Once everything is set up, you need to modify the "Ethereum environment" inside the `docker-compose.yml` file, so that it points to the endpoint of the node you are running this Graph Node against. Note that the `setup.sh` file detects the `Host IP` and writes its value, so you'll need to modify it accordingly.
 
@@ -105,10 +105,10 @@ Lastly, to run the Graph Node, just run the following command:
 docker-compose up
 ```
 
-![Graph Node compose up](/images/thegraph/thegraphnode-images2.png)
+![Graph Node compose up](/images/node-operators/indexer-nodes/the-graph/the-graph-node-2.png)
 
 After a while, you should see logs related to the Graph Node syncing with the latest available block in the network:
 
-![Graph Node logs](/images/thegraph/thegraphnode-images3.png)
+![Graph Node logs](/images/node-operators/indexer-nodes/the-graph/the-graph-node-3.png)
 
 And that is it! You have a Graph Node running against the Moonbase Alpha TestNet. Feel free to adapt this example to a Moonbeam development node as well.

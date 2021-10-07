@@ -5,7 +5,7 @@ description: Learn how to configure Hardhat to add a local Moonbeam development 
 
 # Hardhat
 
-![Hardhat Create Project](/images/hardhat/hardhat-banner.png)
+![Hardhat Create Project](/images/builders/interact/hardhat/hardhat-banner.png)
 
 ## Introduction {: #introduction } 
 

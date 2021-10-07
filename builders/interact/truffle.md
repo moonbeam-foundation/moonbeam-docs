@@ -47,7 +47,7 @@ mkdir moonbeam-truffle-box && cd moonbeam-truffle-box
 truffle unbox PureStake/moonbeam-truffle-box
 ```
 
-![Unbox Moonbeam Truffle box](/images/truffle/truffle-1.png)
+![Unbox Moonbeam Truffle box](/images/builders/interact/truffle/truffle-1.png)
 
 Nevertheless, the box also has Truffle as a dependency in case you do not want to have it installed globally. In such a case, you can directly clone the following repository:
 
@@ -139,7 +139,7 @@ To start a Moonbeam development node in your local environment, we need to first
 truffle run moonbeam install
 ```
 
-![Docker image download](/images/truffle/truffle-2.png)
+![Docker image download](/images/builders/interact/truffle/truffle-2.png)
 
 Once downloaded, we can proceed to start the local node with the following command:
 
@@ -149,7 +149,7 @@ truffle run moonbeam start
 
 You will see a message indicating that the node has started, followed by both of the endpoinds available.
 
-![Moonbeam local node started](/images/truffle/truffle-3.png)
+![Moonbeam local node started](/images/builders/interact/truffle/truffle-3.png)
 
 Once you are finished using your Moonbeam development node, you can run the following lines to stop it and remove the Docker image if that is the case:
 
@@ -158,7 +158,7 @@ truffle run moonbeam stop && \
 truffle run moonbeam remove
 ```
 
-![Moonbeam local node stoped and image removed](/images/truffle/truffle-4.png)
+![Moonbeam local node stoped and image removed](/images/builders/interact/truffle/truffle-4.png)
 
 You also have the option to pause and unpause your Moonbeam development node:
 
@@ -169,7 +169,7 @@ truffle run moonbeam unpause
 
 You can see the output of these commands in the following image:
 
-![Install Moonbeam Truffle box](/images/truffle/truffle-5.png)
+![Install Moonbeam Truffle box](/images/builders/interact/truffle/truffle-5.png)
 
 !!! note
     If you are familiar with Docker, you can skip the plugin commands and interact with the Docker image directly.
@@ -217,7 +217,7 @@ truffle compile
 
 If successful, you should see output like the following:
 
-![Truffle compile success message](/images/truffle/truffle-6.png)
+![Truffle compile success message](/images/builders/interact/truffle/truffle-6.png)
 
 Now we are ready to deploy the compiled contracts. You can do this with the following command:
 
@@ -241,5 +241,5 @@ Now we are ready to deploy the compiled contracts. You can do this with the foll
 
 If successful, you will see deployment actions, including the address of the deployed contract:
 
-![Successful contract deployment actions](/images/truffle/truffle-7.png)
+![Successful contract deployment actions](/images/builders/interact/truffle/truffle-7.png)
 

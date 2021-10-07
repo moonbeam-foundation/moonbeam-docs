@@ -1,6 +1,6 @@
 networks:
   development:
-    build_tag: v0.12.3
+    build_tag: v0.13.0
     rpc_url: http://127.0.0.1:9933
     chain_id: 1281
     hex_chain_id: '0x501'

@@ -3,7 +3,7 @@ title: Account Balances
 description: A description of the main differences that Ethereum developers need to understand in terms of account balances on Moonbeam.
 ---
 
-![Moonbeam v Ethereum - Account Balances Banner](/images/eth-compare/balances-banner.png)
+![Moonbeam v Ethereum - Account Balances Banner](/images/builders/get-started/eth-compare/balances-banner.png)
 
 ## Introduction
 

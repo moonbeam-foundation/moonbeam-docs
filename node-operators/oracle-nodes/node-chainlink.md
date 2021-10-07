@@ -5,7 +5,7 @@ description: How to set up a Chainlink Oracle node for the Moonbeam Network to f
 
 # Run a Chainlink Oracle Node on Moonbeam
 
-![Chainlink Moonbeam Banner](/images/chainlink/chainlinknode-banner.png)
+![Chainlink Moonbeam Banner](/images/node-operators/oracle-nodes/chainlink/chainlink-node-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -124,7 +124,7 @@ docker ps #Containers Running
 docker logs --tail 50 {container_id} #Logs progressing
 ```
 
-![Docker logs](/images/chainlink/chainlinknode-image1.png)
+![Docker logs](/images/node-operators/oracle-nodes/chainlink/chainlink-node-1.png)
 
 ## Contract Setup {: #contract-setup } 
 
@@ -132,11 +132,11 @@ With the Oracle node running, let's configure the smart contract side of things.
 
 First, we need to retrieve the address that the Oracle node will use to send transactions and write data on-chain. To retrieve the address, log into the [ChainLink node's UI](http://localhost:6688/) (located at `http://localhost:6688/`) using the credentials from the `.api` file.
 
-![Chainlink login](/images/chainlink/chainlinknode-image2.png)
+![Chainlink login](/images/node-operators/oracle-nodes/chainlink/chainlink-node-2.png)
 
 Go to the 'Configuration Page` and copy the node address. Use the [Moonbeam Faucet](/builders/get-started/moonbase/#get-tokens/) to fund it.
 
-![Chainlink address](/images/chainlink/chainlinknode-image3.png)
+![Chainlink address](/images/node-operators/oracle-nodes/chainlink/chainlink-node-3.png)
 
 Next, we need to deploy the Oracle contract, which is the middleware between the chain and the node. The contract emits an event with all the necessary information, which is read by the Oracle node. Then, the node fulfills the request and writes the requested data in the caller's contract.
 
@@ -150,7 +150,7 @@ import "https://github.com/smartcontractkit/chainlink/evm-contracts/src/v0.6/Ora
 
 After compiling the contract, head to the "Deploy and Run Transactions" tab, enter the Link token address and deploy the contract. Once deployed, copy the address of the contract.
 
-![Deploy Oracle using Remix](/images/chainlink/chainlinknode-image4.png)
+![Deploy Oracle using Remix](/images/node-operators/oracle-nodes/chainlink/chainlink-node-4.png)
 
 Lastly, we have to bond the Oracle node and the Oracle smart contract. A node can listen to the requests sent to a certain Oracle contract, but only authorized (aka. bonded) nodes can fulfill the request with a result.
 
@@ -161,7 +161,7 @@ To set this authorization, we can use the function `setFulfillmentPermission()` 
 
 We can use the instance of the contract deployed on Remix to do so, and check the Oracle node is authorized with the view function `getAuthorizationStatus()`, passing in the Oracle node address.
 
-![Authorize Chainlink Oracle Node](/images/chainlink/chainlinknode-image5.png)
+![Authorize Chainlink Oracle Node](/images/node-operators/oracle-nodes/chainlink/chainlink-node-5.png)
 
 ## Create Job on the Oracle node {: #create-job-on-the-oracle-node } 
 
@@ -171,7 +171,7 @@ The last step to have a fully configured Chainlink Oracle is to create a Job. Re
 
 Seeing an Oracle as an API service, a Job here would be one of the functions that we can call and that will return a result. To create our first Job, go to the [Jobs sections of your node](http://localhost:6688/jobs) and click on "New Job."
 
-![Chainlink Oracle New Job](/images/chainlink/chainlinknode-image6.png)
+![Chainlink Oracle New Job](/images/node-operators/oracle-nodes/chainlink/chainlink-node-6.png)
 
 Next, paste the following JSON. This will create a Job that will request the current ETH price in USD. Make sure you enter your Oracle contract address (`YOUR_ORACLE_CONTRACT_ADDRESS`).
 
@@ -202,7 +202,7 @@ Next, paste the following JSON. This will create a Job that will request the cur
 }
 ```
 
-![Chainlink New Job JSON Blob](/images/chainlink/chainlinknode-image7.png)
+![Chainlink New Job JSON Blob](/images/node-operators/oracle-nodes/chainlink/chainlink-node-7.png)
 
 And that is it! You have fully set up a Chainlink Oracle node that is running on Moonbase Alpha.
 

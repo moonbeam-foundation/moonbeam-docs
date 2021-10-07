@@ -5,7 +5,7 @@ description: Learn how to create and send transactions on Moonbeam’s Ethereum-
 
 # Send Transactions using Ethereum Libraries on Moonbeam
 
-![Ethereum Libraries Integrations Moonbeam](/images/sendtx/web3-libraries-banner.png)
+![Ethereum Libraries Integrations Moonbeam](/images/builders/interact/eth-libraries/web3-libraries-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -219,11 +219,11 @@ Next, run the _transaction.\*_ script to execute the transaction:
 And lastly, recheck the balance to make sure the transfer was successful. The entire execution should look like this:
 
 === "Web3.js"
-    ![Send Tx Web3js](/images/sendtx/sendtx-web3js.png)
+    ![Send Tx Web3js](/images/builders/interact/eth-libraries/send-tx/sendtx-web3js.png)
 
 === "Ethers.js"
-    ![Send Tx Etherjs](/images/sendtx/sendtx-ethers.png)
+    ![Send Tx Etherjs](/images/builders/interact/eth-libraries/send-tx/sendtx-ethers.png)
 
 === "Web3.py"
-    ![Send Tx Web3py](/images/sendtx/sendtx-web3py.png)
+    ![Send Tx Web3py](/images/builders/interact/eth-libraries/send-tx/sendtx-web3py.png)
 

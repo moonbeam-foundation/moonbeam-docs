@@ -15,4 +15,4 @@ console.log(nominatorInfo.toHuman()["nominations"].length);
  5. Click on the run button. This will execute the code from the editor box
  6. Copy the result, as you'll need it when initiating a nomination
 
-![Get existing nomination count](/images/staking/staking-stake-4.png)
+![Get existing nomination count](/images/tokens/staking/stake/stake-4.png)

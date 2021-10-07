@@ -3,7 +3,7 @@ title: RPC Support
 description: A description of the main differences that Ethereum developers need to understand in terms of the Ethereum RPC support Moonbeam Provides.
 ---
 
-![Moonbeam v Ethereum - RPC Support Banner](/images/eth-compare/rpc-support-banner.png)
+![Moonbeam v Ethereum - RPC Support Banner](/images/builders/get-started/eth-compare/rpc-support-banner.png)
 
 ## Introduction
 

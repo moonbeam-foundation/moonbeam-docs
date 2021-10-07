@@ -23,11 +23,11 @@ This guide assumes that you have a local Moonbeam node running in `--dev` mode a
 
 If you followed the guides above, you should have a local Moonbeam node which will begin to author blocks as transactions arrive:
 
-![Local Moonbeam node producing blocks](/images/remix/using-remix-1.png)
+![Local Moonbeam node producing blocks](/images/builders/interact/remix/using-remix-1.png)
 
 And you should have a MetaMask installation connected to your local Moonbeam dev node with at least one account that has a balance. It should look something like this (expanded view):
 
-![MetaMask installation with a balance](/images/remix/using-remix-2.png)
+![MetaMask installation with a balance](/images/builders/interact/remix/using-remix-2.png)
 
 !!! note
     Make sure you are connected to your Moonbeam node and not another network!
@@ -38,11 +38,11 @@ Now, let’s fire up Remix to exercise more advanced functionalities in Moonbeam
 
 Launch Remix by navigating to [https://remix.ethereum.org/](https://remix.ethereum.org/). In the main screen, under Environments, select Solidity to configure Remix for Solidity development, then navigate to the File Explorers view:
 
-![File explorer](/images/remix/using-remix-3.png)
+![File explorer](/images/builders/interact/remix/using-remix-3.png)
 
 We will create a new file to save the Solidity smart contract. Hit the + button under File Explorers and enter the name "MyToken.sol" in the popup dialog:
 
-![Create a new file for your Solidity contract](/images/remix/using-remix-4.png)
+![Create a new file for your Solidity contract](/images/builders/interact/remix/using-remix-4.png)
 
 Next, let's paste the following smart contract into the editor tab that comes up:
 
@@ -54,11 +54,11 @@ This is a simple ERC-20 contract based on the current Open Zeppelin ERC-20 templ
 
 Once you have pasted the contract into the editor, it should look like this:
 
-![Paste the contract into the editor](/images/remix/using-remix-5.png)
+![Paste the contract into the editor](/images/builders/interact/remix/using-remix-5.png)
 
 Now, navigate to the compile sidebar option to press the “Compile MyToken.sol” button:
 
-![Compile MyToken.sol](/images/remix/using-remix-6.png)
+![Compile MyToken.sol](/images/builders/interact/remix/using-remix-6.png)
 
 You will see Remix download all of the Open Zeppelin dependencies and compile the contract.
 
@@ -68,7 +68,7 @@ Now we can deploy the contract by navigating to the Deployment sidebar option. Y
 
 As soon as you select "Injected Web3", you will be prompted to allow Remix to connect to your MetaMask account.
 
-![Replace](/images/remix/using-remix-7.png)
+![Replace](/images/builders/interact/remix/using-remix-7.png)
 
 Press “Next” in Metamask to allow Remix to access the selected account.
 
@@ -76,48 +76,48 @@ Back on Remix, you should see that the account you wish to use for deployment is
 
 Once you have entered this value, select "Deploy."
 
-![Enter an account balance and deploy](/images/remix/using-remix-8.png)
+![Enter an account balance and deploy](/images/builders/interact/remix/using-remix-8.png)
 
 You will be prompted in MetaMask to confirm the contract deployment transaction.
 
-![Confirm the transaction message](/images/remix/using-remix-9.png)
+![Confirm the transaction message](/images/builders/interact/remix/using-remix-9.png)
 
 !!! note
     If you have problems deploying any specific contract, you can try manually increasing the gas limit. You can do this under Settings -> Advanced -> Advanced Gas Controls = ON.
 
 After you press confirm and the deployment is complete, you will see the transaction listed in MetaMask. The contract will appear under Deployed Contracts in Remix.
 
-![Confirmed label on a transaction](/images/remix/using-remix-10.png)
+![Confirmed label on a transaction](/images/builders/interact/remix/using-remix-10.png)
 
 Once the contract is deployed, you can interact with it from within Remix.
 
 Drill down on the contract under “Deployed Contracts.” Clicking on name, symbol, and totalSupply should return “MyToken,” “MYTOK,” and “8000000000000000000000000” respectively. If you copy the address from which you deployed the contract and paste it into the balanceOf field, you should see the entirety of the balance of the ERC20 as belonging to that user. Copy the contract address by clicking the button next to the contract name and address.
 
-![Interact with the contract from Remix](/images/remix/using-remix-11.png)
+![Interact with the contract from Remix](/images/builders/interact/remix/using-remix-11.png)
 
 ## Interacting with a Moonbeam-based ERC-20 from MetaMask {: #interacting-with-a-moonbeam-based-erc-20-from-metamask } 
 
 Now, open MetaMask to add the newly deployed ERC-20 tokens. Before doing so, make sure you have copied the contract's address from Remix. Back in MetaMask, click on “Add Token” as shown below. Make sure you are in the account that deployed the token contract.
 
-![Add a token](/images/remix/using-remix-12.png)
+![Add a token](/images/builders/interact/remix/using-remix-12.png)
 
 Paste the copied contract address into the “Custom Token” field. The “Token Symbol” and “Decimals of Precision” fields should be automatically populated.
 
-![Paste the copied contract address](/images/remix/using-remix-13.png)
+![Paste the copied contract address](/images/builders/interact/remix/using-remix-13.png)
 
 After hitting “Next,” you will need to confirm that you want to add these tokens to your MetaMask account. Hit “Add Token” and you should see a balance of 8M MyTokens in MetaMask:
 
-![Add the tokens to your MetaMask account](/images/remix/using-remix-14.png)
+![Add the tokens to your MetaMask account](/images/builders/interact/remix/using-remix-14.png)
 
 Now we can send some of these ERC-20 tokens to the other account that we have set up in MetaMask. Hit “send” to initiate the transfer of 500 MyTokens and select the destination account.
 
 After hitting “next,” you will be asked to confirm (similar to what is pictured below).
 
-![Confirmation of the token transfer](/images/remix/using-remix-15.png)
+![Confirmation of the token transfer](/images/builders/interact/remix/using-remix-15.png)
 
 Hit “Confirm” and, after the transaction is complete, you will see a confirmation and a reduction of the MyToken account balance from the sender account in MetaMask:
 
-![Verify the reduction in account balance](/images/remix/using-remix-16.png)
+![Verify the reduction in account balance](/images/builders/interact/remix/using-remix-16.png)
 
 If you own the account that you sent the tokens to, you can add the token asset to verify that the transfer arrived.
 
@@ -133,7 +133,7 @@ To install the Moonbeam Remix Plugin, take the following steps:
  2. Search for "Moonbeam"
  3. Press "Activate" and the Moonbeam Remix Plugin will be added directly above the Plugin manager tab
 
-![Activating the Moonbeam Remix Plugin](/images/remix/plugin-remix-1.png)
+![Activating the Moonbeam Remix Plugin](/images/builders/interact/remix/using-remix-17.png)
 
 Once you've added the plugin, a Moonbeam logo will appear on the left hand side, representing the Moonbeam Remix Plugin tab.
 
@@ -146,7 +146,7 @@ Click on the Moonbeam Logo in your Remix IDE to open the Moonbeam Plugin. This p
  3. Press Compile or choose Auto-Compile if you prefer
  4. Press Deploy and Confirm the Transaction in Metamask
 
-![Compiling and Deploying a Contract with the Moonbeam Remix Plug](/images/remix/plugin-remix-2.png)
+![Compiling and Deploying a Contract with the Moonbeam Remix Plug](/images/builders/interact/remix/using-remix-18.png)
 
 It's that easy! Once the contract is deployed, you'll see the address and all available read/write methods to interact with it.
 

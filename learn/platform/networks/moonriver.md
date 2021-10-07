@@ -21,7 +21,7 @@ Moonriver is scheduled to follow a [5-phase launch process](https://moonbeam.net
 - Has an active set of {{ networks.moonriver.staking.max_collators }} collators
 - There are two RPC endpoints (hosted by PureStake). People can run full nodes to access their own private RPC endpoints
 
-![Moonriver Diagram](/images/moonriver/moonriver-diagram.png)
+![Moonriver Diagram](/images/learn/platform/networks/moonriver-diagram.png)
 
 Some important variables/configurations to note include:
 

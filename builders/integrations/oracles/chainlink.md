@@ -5,7 +5,7 @@ description: How to use request data from a Chainlink Oracle in your Moonbeam Et
 
 # Chainlink Oracle
 
-![Chainlink Moonbeam Banner](/images/chainlink/chainlink-banner.png)
+![Chainlink Moonbeam Banner](/images/builders/integrations/oracles/chainlink/chainlink-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -115,7 +115,7 @@ Let's go ahead and use the interface contract with the `BTC to USD` Job ID in [R
 
 After creating the file and compiling the contract, head to the "Deploy and Run Transactions" tab, enter the Client contract address, and click on "At Address." Make sure you have set the "Environment" to "Injected Web3" so you are connected to Moonbase Alpha. This will create an instance of the Client contract that you can interact with. Use the function `requestPrice()` to query the data of the corresponding Job ID. Once the transaction is confirmed, we have to wait until the whole process explained before occurs. We can check the price using the view function `currentPrice()`.
 
-![Chainlink Basic Request on Moonbase Alpha](/images/chainlink/chainlink-image1.png)
+![Chainlink Basic Request on Moonbase Alpha](/images/builders/integrations/oracles/chainlink/chainlink-1.png)
 
 If there is any specific pair you want us to include, feel free to reach out to us through our [Discord server](https://discord.com/invite/PfpUATX).
 
@@ -144,7 +144,7 @@ In a standard configuration, each price feed is updated by a decentralized Oracl
 
 The end-user can retrieve price feeds with read-only operations via a Consumer contract, referencing the correct Aggregator interface (Proxy contract). The Proxy acts as a middleware to provide the Consumer with the most up-to-date Aggregator for a particular price feed.
 
-![Price Feed Diagram](/images/chainlink/chainlink-pricefeed.png)
+![Price Feed Diagram](/images/builders/integrations/oracles/chainlink/chainlink-price-feed.png)
 
 ### Try it on Moonbase Alpha {: #try-it-on-moonbase-alpha } 
 
@@ -198,7 +198,7 @@ After creating the file and compiling the contract, head to the "Deploy and Run 
 
 This will create an instance of the Consumer contract that you can interact with. Use the function `getLatestPrice()` to query the data of the corresponding price feed.
 
-![Chainlink Price Feeds on Moonbase Alpha](/images/chainlink/chainlink-image2.png)
+![Chainlink Price Feeds on Moonbase Alpha](/images/builders/integrations/oracles/chainlink/chainlink-2.png)
 
 Note that to obtain the real price, you must account for the decimals of the price feed, available with the `decimals()` method.
 

@@ -16,7 +16,7 @@ Moonbase Alpha has two endpoints available for users to connect to: one for HTTP
 For Moonbase Alpha, you can use any of the following block explorers:
 
  - **Substrate API** — [Subscan](https://moonbase.subscan.io/) or [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/explorer)
- - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=Moonbase%20Alpha)
+ - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=MoonbaseAlpha)
  - **Ethereum API with Indexing** — [Blockscout](https://moonbase-blockscout.testnet.moonbeam.network/)
 
 ## Connect MetaMask
@@ -50,7 +50,7 @@ To request tokens automatically, we've created a Discord bot (named Mission Cont
  
 Under the category "Miscellaneous," you will find our AlphaNet bot channel. 
 
-![Discord1](/images/testnet/testnet-discord1.png)
+![Discord1](/images/builders/get-started/moonbase/discord-1.png)
 
 To check your balance, enter the following message, replacing `<enter-address-here->` with your H160 address:
 
@@ -66,4 +66,4 @@ To get DEV tokens, enter the following message, replacing `<enter-address-here->
 
 Mission Control will send you 5 DEV tokens and display your current account balance. Remember that Mission Control is limited to dispense once every 24 hours per Discord user.
 
-![Discord2](/images/testnet/testnet-discord2.png)
+![Discord2](/images/builders/get-started/moonbase/discord-2.png)

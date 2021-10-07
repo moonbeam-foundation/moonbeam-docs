@@ -5,7 +5,7 @@ description: How to vote on a proposal so that it is enacted or rejected on Moon
 
 # How to Vote on a Proposal
 
-![Governance Moonbeam Banner](/images/governance/governance-voting-banner.png)
+![Governance Moonbeam Banner](/images/tokens/governance/voting/voting-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -63,7 +63,7 @@ This section goes over the process of voting on a referendum. The guide assumes 
 
 To vote on a proposal in the network, you need to use the Polkadot.js Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do by following [this guide](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account). For this example, three accounts were imported and named with super original names: Alice, Bob, and Charley.
 
-![Accounts in Polkadot.js](/images/governance/governance-proposal-systemremark-1.png)
+![Accounts in Polkadot.js](/images/tokens/governance/proposals/proposals-1.png)
 
 The proposal being voted will embed the remark "This is a unique string." on chain permanently.
 
@@ -71,7 +71,7 @@ The proposal being voted will embed the remark "This is a unique string." on cha
 
 Voting on Moonbeam is pretty straightforward. Everything related to governance lives under the "Democracy" tab, where (in the image) you can note that there is a `1`, indicating there is one democracy item pending (either proposals or referenda). Once there, you can view the details of the referendum you want to vote by clicking on the arrow next to the description. The number next to the action and description it is called the referendum index (in this case, it is 0). When ready, click on the "Vote" button.
 
-![Vote Button](/images/governance/governance-vote-1a.png)
+![Vote Button](/images/tokens/governance/voting/vote-2.png)
 
 Here, you need to provide the following information:
 
@@ -91,14 +91,14 @@ Here, you need to provide the following information:
    |      32      |     |           6           |
 
 
-![Vote Submission](/images/governance/governance-vote-2a.png)
+![Vote Submission](/images/tokens/governance/voting/vote-3.png)
 
 !!! note
     The lockup periods shown in the previous image are not to be taken as reference. This guide was done with a customized version of Moonbeam with short Launch/Enactment periods for demonstration purposes only.
 
 In this case, Alice and Bob have decided to "Vote Aye" on the proposal with a conviction of `6x`. On the other hand, Charley has decided to "Vote Nay" on the proposal but chose not to lock any tokens (his tokens are only locked during the duration of the referendum), so his conviction was `0.1x`. With such vote distributions, the partial results can be seen in the main "Democracy" tab.
 
-![Vote Information](/images/governance/governance-vote-3a.png)
+![Vote Information](/images/tokens/governance/voting/vote-4.png)
 
 From voting, there are some key takeaways:
 
@@ -112,7 +112,7 @@ From voting, there are some key takeaways:
 
 After the voting period has expired, the proposal will be visible under the "Dispatch" tab if approved. In here, you can also see the time remaining until the proposal is enacted.
 
-![Proposal Enactment](/images/governance/governance-vote-4.png)
+![Proposal Enactment](/images/tokens/governance/voting/vote-5.png)
 
 
 ### Delegate Voting {: #delegate-voting } 
@@ -121,7 +121,7 @@ Token holders have the option to delegate their vote to another account whose op
 
 To delegate your vote, first, navigate to the "Extrinsics" menu under the "Developers" tab.
 
-![Extrinsics Menu](/images/governance/governance-vote-6.png)
+![Extrinsics Menu](/images/tokens/governance/voting/vote-6.png)
 
 !!! note
     If you try to delegate tokens to a person who has already voted, the transaction will fail. Consider using a new account for the below steps.
@@ -136,18 +136,18 @@ Here, you need to provide the following information:
  6. Set the number of tokens you want to delegate to the account provided before
  7. Click the "Submit Transaction" button and sign the transaction
 
-![Extrinsics Transaction for Delegation](/images/governance/governance-vote-7.png)
+![Extrinsics Transaction for Delegation](/images/tokens/governance/voting/vote-7.png)
 
 In this example, Alice delegated a total weight of 1000 (1000 tokens with an x1 conviction factor) to Charley. To verify the delegation, click the blue circle on the left that indicates a delegation exists.
 
-![View Delegation](/images/governance/governance-vote-14.png)
+![View Delegation](/images/tokens/governance/voting/vote-8.png)
 
 !!! note
     Another way to delegate votes is under the "Accounts" tab. Click on the three dots of the account from which you want to delegate your vote and fill in the information as before.
 
 Once the account you have delegated your vote to votes, the total vote weight delegated will be allocated to the option that the account selected. For this example, Charley has decided to vote in favor of a proposal that is in public referendum. He voted with a total weight of 800 (800 tokens with an x1 conviction factor). But because Alice delegated 1000 vote weight to him, "Aye" votes total 1800 units.
 
-![Total Votes with Delegation](/images/governance/governance-vote-8.png)
+![Total Votes with Delegation](/images/tokens/governance/voting/vote-9.png)
 
 To remove delegation, repeat the process described before, but select the `undelegate` extrinsic in step 3.
 
@@ -167,11 +167,11 @@ When token holders vote, the tokens used are locked and cannot be transferred. Y
  - Locked because of the conviction multiplier selected, displaying the number of blocks and time left
  - Lock expired, meaning that you can now get your tokens back
 
-![Account Lock Status](/images/governance/governance-vote-9.png)
+![Account Lock Status](/images/tokens/governance/voting/vote-10.png)
 
 Once the lock is expired, you can request your tokens back. To do so, navigate to the "Extrinsics" menu under the "Developers" tab.
 
-![Extrinsics Menu](/images/governance/governance-vote-10.png)
+![Extrinsics Menu](/images/tokens/governance/voting/vote-11.png)
 
 Here, two different extrinsics need to be sent. First, you need to provide the following information:
 
@@ -181,7 +181,7 @@ Here, two different extrinsics need to be sent. First, you need to provide the f
  4. Enter the referendum index. This is the number that appeared on the left-hand side in the "Democracy" tab. In this case, it is 0
  5. Click the "Submit Transaction" button and sign the transaction
 
-![Remove Vote Extrinsics](/images/governance/governance-vote-11.png)
+![Remove Vote Extrinsics](/images/tokens/governance/voting/vote-12.png)
 
 For the next extrinsic, you need to provide the following information:
 
@@ -191,17 +191,17 @@ For the next extrinsic, you need to provide the following information:
  4. Enter the target account that will receive the unlocked tokens. In this case, the tokens will be returned to Alice
  5. Click the "Submit Transaction" button and sign the transaction
 
-![Unlock Extrinsics](/images/governance/governance-vote-12.png)
+![Unlock Extrinsics](/images/tokens/governance/voting/vote-13.png)
 
 Once the transaction goes through, the locked tokens should be unlocked. To double-check, you can go back to the "Accounts" tab and see that, for this example, Alice has her full balance as "transferable."
 
-![Check Balance](/images/governance/governance-vote-13.png)
+![Check Balance](/images/tokens/governance/voting/vote-14.png)
 
 ## Positive Turnout Bias {: #positive-turnout-bias } 
 
 Public referenda use a positive turnout bias metric, that is, a super-majority approval formula. The equation is the following:
 
-![Positive Turnout Bias](/images/governance/governance-vote-bias.png)
+![Positive Turnout Bias](/images/tokens/governance/voting/vote-bias.png)
 
 Where:
 

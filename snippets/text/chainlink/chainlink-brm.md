@@ -6,4 +6,4 @@ An Oracle node has a set of job IDs, where each corresponds to a task that can b
 
 This request actually sends a _transferAndCall_ to the LINK token contract, which handles the payment and relays the request to the Oracle contract. Here, an event is emited with the request, which is picked up by the Oracle node. Next, the node fetches the necessary data and executes the _fulfilOracleRequest_ function, which executes a callback that stores the requested information in the Client contract. The following diagram explains this workflow.
 
-![Basic Request Diagram](/images/chainlink/chainlink-basicrequest.png)
+![Basic Request Diagram](/images/builders/integrations/oracles/chainlink/chainlink-basic-request.png)

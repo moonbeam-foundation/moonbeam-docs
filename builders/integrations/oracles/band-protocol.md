@@ -4,7 +4,7 @@ description: How to use request data from a Band Protocol Oracle in your Moonbea
 ---
 # Band Protocol Oracle
 
-![Band Protocol Moonbeam Diagram](/images/band/band-banner.png)
+![Band Protocol Moonbeam Diagram](/images/builders/integrations/oracles/band/band-banner.png)
 
 ## Introduction {: #introduction } 
 Developers have two ways to fetch prices from Band’s oracle infrastructure. On one hand, they can use Band’s smart contracts on Moonbeam. Doing so, they access data that is on-chain and is updated either at regular intervals or when price slippage is more than a target amount (different for each token). On the other hand, devs can use the Javascript helper library, which uses an API endpoint to fetch the data using similar functions as those from the smart contracts, but this implementation bypasses the blockchain entirely.  This can be useful if your DApp front-end needs direct access to the data.
@@ -174,11 +174,11 @@ For example, using [Remix](/builders/tools/remix/), we can easily query the `BTC
 
 After creating the file and compiling the contract, head to the "Deploy and Run Transactions" tab, enter the contract address (`0xf15c870344c1c02f5939a5C4926b7cDb90dEc655`) and click on "At Address." Make sure you have set the "Environment" to "Injected Web3" so you are connected to Moonbase Alpha. 
 
-![Band Protocol Remix deploy](/images/band/band-demo1.png)
+![Band Protocol Remix deploy](/images/builders/integrations/oracles/band/band-demo-1.png)
 
 This will create an instance of the demo contract that you can interact with. Use the functions `getPrice()` and `getMultiPrices()` to query the data of the corresponding pair.
 
-![Band Protocol Remix check price](/images/band/band-demo2.png)
+![Band Protocol Remix check price](/images/builders/integrations/oracles/band/band-demo-2.png)
 
 ## BandChain.js Javascript Helper Library {: #bandchainjs-javascript-helper-library } 
 
@@ -237,6 +237,6 @@ queryData();
 
 We can execute this code with a node, and the following `dataQuery` output should look like this:
 
-![Band Protocol JavaScript Library](/images/band/band-console.png)
+![Band Protocol JavaScript Library](/images/builders/integrations/oracles/band/band-console.png)
 
 Note that compared to the request done via smart contracts, the result is given directly in the correct units.

@@ -5,7 +5,7 @@ description: How to compile the Moonbeam binary to run a full Parachain node, ga
 
 # Compile the Moonbeam Binary
 
-![Full Node Moonbeam Banner](/images/fullnode/compile-binary-banner.png)
+![Full Node Moonbeam Banner](/images/node-operators/networks/compile-binary/compile-binary-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -48,7 +48,7 @@ Lastly, build the parachain binary:
 cargo build --release
 ```
 
-![Compiling Binary](/images/fullnode/compile-binary1.png)
+![Compiling Binary](/images/node-operators/networks/compile-binary/compile-binary-1.png)
 
 If a _cargo not found error_ shows up in the terminal, manually add Rust to your system path or restart your system:
 ```

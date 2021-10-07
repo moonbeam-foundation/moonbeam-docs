@@ -7,4 +7,4 @@ Before a proposal is enacted, it must go through various steps. The general flow
  - Once in referendum, token holders vote "Aye" or "Nay" on the proposal by locking tokens. Two factors account the vote weight: amount locked and locking period
  - If the proposal passes, it is enacted after a certain amount of time
 
-![Proposal Roadmap](/images/governance/governance-proposal-roadmap.png)
+![Proposal Roadmap](/images/tokens/governance/proposals/governance-proposal-roadmap.png)

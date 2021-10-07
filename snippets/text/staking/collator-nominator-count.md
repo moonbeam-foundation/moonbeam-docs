@@ -15,4 +15,4 @@ console.log(collatorInfo.toHuman()["nominators"].length);
  5. Click on the run button. This will execute the code from the editor box
  6. Copy the result, as you'll need it when initiating a nomination
 
-![Get collator nominator count](/images/staking/staking-stake-3.png)
+![Get collator nominator count](/images/tokens/staking/stake/stake-3.png)

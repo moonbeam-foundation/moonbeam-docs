@@ -25,7 +25,7 @@ Moonbase Alpha has the following configuration:
  - The relay chain hosts three validators (hosted by PureStake) to finalize relay chain blocks. One of them is selected to finalize each block collated by Moonbeam's collators. This setup provides room to expand to a two-parachain configuration in the future
  - There are two RPC endpoints (hosted by PureStake). People can run full nodes to access their own private RPC endpoints
 
-![TestNet Diagram](/images/testnet/Moonbase-Alpha-v7.png)
+![TestNet Diagram](/images/learn/platform/networks/moonbase-diagram-v7.png)
 
 ## Features {: #features } 
 
@@ -105,7 +105,22 @@ You can see current Moonbase Alpha telemetry information visiting [this link](ht
 
 ## Tokens {: #tokens } 
 
---8<-- 'text/testnet/faucet.md'
+Tokens on Moonbase Alpha, named DEV, will be issued on demand. **DEV tokens hold no value and can be freely acquired**. Currently, there are two ways you can get access to this token: through a Discord bot, or manually.
+
+### Discord - Mission Control {: #discord-mission-control } 
+
+To request tokens automatically, we've created a Discord bot (named Mission Control :sunglasses:) that will automatically send a maximum of 5 DEV tokens every 24 hours (per Discord user) when you enter your address. You can check it out on our [Discord channel](https://discord.gg/PfpUATX). For more information, please visit [this site](/builders/get-started/moonbase/#get-tokens/).
+ 
+Under the category "Miscellaneous", you will find our AlphaNet bot channel. Enter the following message, replacing `<enter-address-here->` with your H160 address:
+ 
+```
+!faucet send <enter-address-here->
+```
+
+### Manual Procedure {: #manual-procedure } 
+
+For token requests of more than the limited account allowed by our Discord bot, contact a moderator directly via our [Discord channel](https://discord.gg/PfpUATX). We are happy to provide the tokens needed to test your applications.
+
 
 ## Early Stage Proof of Stake {: #early-stage-proof-of-stake } 
 

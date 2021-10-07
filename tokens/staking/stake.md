@@ -5,7 +5,7 @@ description: A guide that shows how you can stake your tokens in Moonbeam by nom
 
 # How to Stake your Tokens
 
-![Staking Moonbeam Banner](/images/staking/staking-stake-banner.png)
+![Staking Moonbeam Banner](/images/tokens/staking/stake/stake-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -67,7 +67,7 @@ Then to retrieve the various staking parameters, you'll need to:
 3. Choose any function you would like to get data for. For this example, you can use **maxCollatorsPerNominator**. This will return the maximum number of collators you can nominate
 4. Click **+** to return the current value
 
-![Retrieving staking parameters](/images/staking/staking-stake-parameters.png)
+![Retrieving staking parameters](/images/tokens/staking/stake/stake-parameters.png)
 
 You should then see the maximum collators per nominator. At time of writing this it was 100 for Moonbase Alpha.
 
@@ -86,7 +86,7 @@ Each extrinsic provides a different response:
  - **selectedCandidates** — returns the current active set of collators, that is, the top {{ networks.moonbase.staking.max_collators }} collators by total tokens staked (including nominations)
  - **candidatePool** — returns the current list of all the collators, including those that are not in the active set
 
-![Staking Account](/images/staking/staking-stake-2.png)
+![Staking Account](/images/tokens/staking/stake/stake-2.png)
 
 ## Get the Collator Nominator Count {: #get-the-collator-nominator-count } 
 
@@ -111,7 +111,7 @@ For this example, an account was imported and named with a super original name: 
 
 Currently, everything related to staking needs to be accessed via the "Extrinsics" menu, under the "Developer" tab:
 
-![Staking Account](/images/staking/staking-stake-5.png)
+![Staking Account](/images/tokens/staking/stake/stake-5.png)
 
 To nominate a collator, provide the following information:
 
@@ -124,7 +124,7 @@ To nominate a collator, provide the following information:
  7. Input the `nomination_count` [you retrieved from the Javascript console](/tokens/staking/stake/#get-your-number-of-existing-nominations). This is `0` if you haven't yet nominated a collator
  8. Click the "Submit Transaction" button and sign the transaction
 
-![Staking Join Nominators Extrinsics](/images/staking/staking-stake-6.png)
+![Staking Join Nominators Extrinsics](/images/tokens/staking/stake/stake-6.png)
 
 !!! note
     The parameters used in steps 6 and 7 are for gas estimation purposes and do not need to be exact. However, they should not be lower than the actual values. 
@@ -133,7 +133,7 @@ Once the transaction is confirmed, you can head back to the "Accounts" tab to ve
 
 To verify a nomination, you can navigate to "Chain state" under the "Developer" tab.
 
-![Staking Account and Chain State](/images/staking/staking-stake-7.png)
+![Staking Account and Chain State](/images/tokens/staking/stake/stake-7.png)
 
 Here, provide the following information:
 
@@ -142,7 +142,7 @@ Here, provide the following information:
  3. Make sure to enable the "include option" slider
  4. Send the state query by clicking on the "+" button
 
-![Staking Chain State Query](/images/staking/staking-stake-8.png)
+![Staking Chain State Query](/images/tokens/staking/stake/stake-8.png)
 
 In the response, you should see your account (in this case, Alice's account) with a list of the nominations. Each nomination contains the target address of the collator and the amount.
 
@@ -162,7 +162,7 @@ You can remove your nomination from a specific collator by navigating to the "Ex
  4. Set the collator's address you want to remove your nomination from. In this case, it is set to `{{ networks.moonbase.staking.collators.address2 }}`
  5. Click the "Submit Transaction" button and sign the transaction
 
-![Staking Revoke Nomination Extrinsic](/images/staking/staking-stake-9.png)
+![Staking Revoke Nomination Extrinsic](/images/tokens/staking/stake/stake-9.png)
 
 Once the transaction is confirmed, you can verify that your nomination was removed in the "Chain state" option under the "Developer" tab.
 
@@ -173,13 +173,13 @@ Here, provide the following information:
  3. Make sure to enable the "include options" slider
  4. Send the state query by clicking on the "+" button
 
-![Staking Revoke Nomination Chain State](/images/staking/staking-stake-8.png)
+![Staking Revoke Nomination Chain State](/images/tokens/staking/stake/stake-8.png)
 
 In the response, you should see your account (in this case, Alice's account) with a list of the nominations. Each nomination contains the target address of the collator, and the amount.
 
 As mentioned before, you can also remove all ongoing nominations with the `leaveNominators` extrinsic (in step 3 of the "Extrinsics" instructions). This extrinsic requires no input:
 
-![Staking Leave Nominatiors Extrinsic](/images/staking/staking-stake-10.png)
+![Staking Leave Nominatiors Extrinsic](/images/tokens/staking/stake/stake-10.png)
 
 Once the transaction is confirmed, your account should not be listed in the `nominatorState` state when queried, and you should have no reserved balance (related to staking).
 
@@ -191,4 +191,4 @@ In summary, nominators will earn rewards based on their stake of the total nomin
 
 From the previous example, Alice was rewarded with `0.0044` tokens after two payout rounds:
 
-![Staking Reward Example](/images/staking/staking-stake-1.png)
+![Staking Reward Example](/images/tokens/staking/stake/stake-1.png)

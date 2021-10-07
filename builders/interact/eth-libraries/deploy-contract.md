@@ -5,7 +5,7 @@ description: Learn how to deploy unmodified and unchanged Solidity-based smart c
 
 # Using Ethereum Libraries to Deploy To Moonbeam
 
-![Ethereum Libraries Integrations Moonbeam](/images/sendtx/web3-libraries-banner.png)
+![Ethereum Libraries Integrations Moonbeam](/images/builders/interact/eth-libraries/web3-libraries-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -372,13 +372,13 @@ First, deploy the contract by running (note that the directory was renamed for e
 This will deploy the contract and return the address:
 
 === "Web3.js"
-    ![Deploy Contract Web3js](/images/deploycontract/contract-deploy-web3js.png)
+    ![Deploy Contract Web3js](/images/builders/interact/eth-libraries/deploy-contract/contract-deploy-web3js.png)
 
 === "Ethers.js"
-    ![Deploy Contract Etherjs](/images/deploycontract/contract-deploy-ethers.png)
+    ![Deploy Contract Etherjs](/images/builders/interact/eth-libraries/deploy-contract/contract-deploy-ethers.png)
 
 === "Web3.py"
-    ![Deploy Contract Web3py](/images/deploycontract/contract-deploy-web3py.png)
+    ![Deploy Contract Web3py](/images/builders/interact/eth-libraries/deploy-contract/contract-deploy-web3py.png)
 
 Next, run the increment file. You can use the get file to verify the value of the number stored in the contract before and after increment it:
 
@@ -415,13 +415,13 @@ Next, run the increment file. You can use the get file to verify the value of th
 This will display the value before the increment transaction, the hash of the transaction, and the value after:
 
 === "Web3.js"
-    ![Increment Contract Web3js](/images/deploycontract/contract-increment-web3js.png)
+    ![Increment Contract Web3js](/images/builders/interact/eth-libraries/deploy-contract/contract-increment-web3js.png)
 
 === "Ethers.js"
-    ![Increment Contract Etherjs](/images/deploycontract/contract-increment-ethers.png)
+    ![Increment Contract Etherjs](/images/builders/interact/eth-libraries/deploy-contract/contract-increment-ethers.png)
 
 === "Web3.py"
-    ![Increment Contract Web3py](/images/deploycontract/contract-increment-web3py.png)
+    ![Increment Contract Web3py](/images/builders/interact/eth-libraries/deploy-contract/contract-increment-web3py.png)
 
 Lastly, run the reset file. Once again, you can use the get file to verify the value of the number stored in the contract before and after resetting it:
 
@@ -458,11 +458,11 @@ Lastly, run the reset file. Once again, you can use the get file to verify the v
 This will display the value before the reset transaction, the hash of the transaction, and the value after:
 
 === "Web3.js"
-    ![Reset Contract Web3js](/images/deploycontract/contract-reset-web3js.png)
+    ![Reset Contract Web3js](/images/builders/interact/eth-libraries/deploy-contract/contract-reset-web3js.png)
 
 === "Ethers.js"
-    ![Reset Contract Etherjs](/images/deploycontract/contract-reset-ethers.png)
+    ![Reset Contract Etherjs](/images/builders/interact/eth-libraries/deploy-contract/contract-reset-ethers.png)
 
 === "Web3.py"
-    ![Reset Contract Web3py](/images/deploycontract/contract-reset-web3py.png)
+    ![Reset Contract Web3py](/images/builders/interact/eth-libraries/deploy-contract/contract-reset-web3py.png)
 

@@ -5,7 +5,7 @@ description: Querying Blockchain Data with the Covalent API Moonbeam
 
 # Getting Started with the Covalent API
 
-![The Graph on Moonbeam](/images/covalent/covalentbannerimage.png)
+![The Graph on Moonbeam](/images/builders/integrations/indexers/covalent/covalent-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -132,7 +132,7 @@ Copy and paste the below code block into your preferred environment, or [JSFiddl
 
 The output should resemble the below. The balances endpoint returns a list of all ERC20 and NFT token balances including ERC721 and ERC1155 along with their current spot prices (if available).
 
-![Javascript Console Output](/images/covalent/covalentjs.png)
+![Javascript Console Output](/images/builders/integrations/indexers/covalent/covalentjs.png)
 
 ## Python Example {: #python-example } 
 Covalent doesn’t have an official API wrapper. To query the API directly you will have to use the Python [requests library](https://pypi.org/project/requests/). Install requests into your environment from the command line with `pip install requests`. Then import it and use it in your code. Use the HTTP verbs get methods to return the information from the API. Copy and paste the below code block into your preferred environment and run it. The output should look similiar to the screenshot above, however the formatting may vary depending on your environment.
