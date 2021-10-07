@@ -61,9 +61,9 @@ This guide will show you how to vote on a referendum on Moonbase Alpha.
 
 This section goes over the process of voting on a referendum. The guide assumes that there is one already taking place, in this case, the one created in [this guide](/tokens/governance/proposals/).
 
-To vote on a proposal in the network, you need to use the PolkadotJS Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do by following [this guide](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account). For this example, three accounts were imported and named with super original names: Alice, Bob, and Charley.
+To vote on a proposal in the network, you need to use the Polkadot.js Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do by following [this guide](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account). For this example, three accounts were imported and named with super original names: Alice, Bob, and Charley.
 
-![Accounts in PolkadotJS](/images/governance/governance-proposal-systemremark-1.png)
+![Accounts in Polkadot.js](/images/governance/governance-proposal-systemremark-1.png)
 
 The proposal being voted will embed the remark "This is a unique string." on chain permanently.
 

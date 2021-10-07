@@ -1,6 +1,6 @@
 ---
 title: Unified Accounts
-description: Moonbeam now uses the Ethereum based H160 account system natively and is supported by Polkadot JS Apps
+description: Moonbeam now uses the Ethereum based H160 account system natively and is supported by Polkadot.js Apps
 ---
 # Unified Accounts
 
@@ -10,7 +10,7 @@ description: Moonbeam now uses the Ethereum based H160 account system natively a
 
 With the [release of the v3 upgrade](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/) for the Moonbase Alpha TestNet, we have made significant updates to the underlying account system on Moonbeam, replacing the default Substrate-style accounts and keys with Ethereum-style accounts and keys.
 
-The Polkadot JS Apps interface was updated as well so that it natively supports H160 addresses and ECDSA keys. You can check out [this tutorial](/tokens/connect/polkadotjs/) to see more about this integration.
+The Polkadot.js Apps interface was updated as well so that it natively supports H160 addresses and ECDSA keys. You can check out [this tutorial](/tokens/connect/polkadotjs/) to see more about this integration.
 
 ## Substrate EVM Compatible Blockchain {: #substrate-evm-compatible-blockchain } 
 

@@ -48,18 +48,18 @@ Similar to Polkadot validators, you need to create an account. For Moonbeam, thi
     |   Bond Amount   | {{ networks.moonriver.staking.collator_bond_min }} MOVR  |
     | Active set size | {{ networks.moonriver.staking.max_collators }} collators |
 
-### Account in PolkadotJS {: #account-in-polkadotjs } 
+### Account in Polkadot.js {: #account-in-polkadotjs } 
 
 A collator has an account associated with its collation activities. This account mapped to an author ID to identify him as a block producer and send the payouts from block rewards. 
 
-Currently, you have two ways of proceeding in regards having an account in [PolkadotJS](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts):
+Currently, you have two ways of proceeding in regards having an account in [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts):
 
  - Importing an existing (or create a new) H160 account from external wallets or services such as [MetaMask](/tokens/connect/metamask/) and [MathWallet](/tokens/connect/mathwallet/)
- - Create a new H160 account with [PolkadotJS](/tokens/connect/polkadotjs/)
+ - Create a new H160 account with [Polkadot.js](/tokens/connect/polkadotjs/)
 
-Once you have an H160 account imported to PolkadotJS, you should see it under the "Accounts" tab. Make sure you have your public address at hand (`PUBLIC_KEY`), as it is needed to configure your [deploy your full node](/node-operators/networks/full-node/) with the collation options.
+Once you have an H160 account imported to Polkadot.js, you should see it under the "Accounts" tab. Make sure you have your public address at hand (`PUBLIC_KEY`), as it is needed to configure your [deploy your full node](/node-operators/networks/full-node/) with the collation options.
 
-![Account in PolkadotJS](/images/fullnode/collator-polkadotjs1.png)
+![Account in Polkadot.js](/images/fullnode/collator-polkadotjs1.png)
 
 ## Become a Collator Candidate {: #become-a-collator-candidate } 
 
@@ -84,7 +84,7 @@ Before getting started, it's important to note some of the timings of different 
     The values presented in the previous table are subject to change in future releases.
 ### Get the Size of the Candidate Pool {: #get-the-size-of-the-candidate-pool } 
 
-First, you need to get the `candidatePool` size (this can change thru governance) as you'll need to submit this parameter in a later transaction. To do so, you'll have to run the following JavaScript code snippet from within [PolkadotJS](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/js):
+First, you need to get the `candidatePool` size (this can change thru governance) as you'll need to submit this parameter in a later transaction. To do so, you'll have to run the following JavaScript code snippet from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/js):
 
 ```js
 // Simple script to get candidate pool size
@@ -103,7 +103,7 @@ console.log(`Candidate pool size is: ${candidatePool.length}`);
 
 ### Join the Candidate Pool {: #join-the-candidate-pool } 
 
-Once your node is running and in sync with the network, you become a collator candidate (and join the candidate pool). Depending on which network you are connected to, head to PolkadotJS for [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts) or [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network#/accounts) and take the following steps:
+Once your node is running and in sync with the network, you become a collator candidate (and join the candidate pool). Depending on which network you are connected to, head to Polkadot.js for [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts) or [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network#/accounts) and take the following steps:
 
  1. Navigate to the "Developers" tab and click on "Extrinsics"
  2. Select the account you want to be associated with your collation activities
@@ -114,7 +114,7 @@ Once your node is running and in sync with the network, you become a collator ca
  7. Set the candidate count as the candidate pool size. To learn how to retrieve this value, check [this section](#get-the-size-of-the-candidate-pool)
  8. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
-![Join Collators pool PolkadotJS](/images/fullnode/collator-polkadotjs3.png)
+![Join Collators pool Polkadot.js](/images/fullnode/collator-polkadotjs3.png)
 
 !!! note
     Function names and the minimum bond requirement are subject to change in future releases.
