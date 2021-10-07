@@ -76,7 +76,7 @@ With the contract deployed, we can call the `checkHash()` method that returns _t
 
 ## BN128Add {: #bn128add }
 
-The BN128Add precompile implements a native elliptic curve point addition. It returns an elliptic curve point representing (ax, ay) + (bx, by) such that (ax, ay) and (bx, by) are valid points on the curve bn256. 
+The BN128Add precompile implements a native elliptic curve point addition. It returns an elliptic curve point representing `(ax, ay) + (bx, by)` such that `(ax, ay)` and `(bx, by)` are valid points on the curve BN256. 
 
 Currently there is no BN128Add support in Solidity, so it needs to be called with inline assembly. The following sample code can be used to call this precompile.
 
@@ -86,7 +86,7 @@ Using the [Remix compiler and deployment](/builders/interact/remix/) and with [M
 
 ## BN128Mul {: #bn128mul }
 
-The BN128Mul precompile implements a native elliptic curve multiplication with a scalar value. It returns an elliptic curve point representing scalar * (x, y) such that (x, y) is a valid curve point on the curve bn256. 
+The BN128Mul precompile implements a native elliptic curve multiplication with a scalar value. It returns an elliptic curve point representing `scalar * (x, y)` such that `(x, y)` is a valid curve point on the curve BN256. 
 
 Currently there is no BN128Mul support in Solidity, so it needs to be called with inline assembly. The following sample code can be used to call this precompile.
 
@@ -106,7 +106,9 @@ Using the [Remix compiler and deployment](/builders/interact/remix/) and with [M
 
 ## The Identity Function {: #the-identity-function } 
 
-Also known as datacopy, this function serves as a cheaper way to copy data in memory. The Solidity compiler does not support it, so it needs to be called with inline assembly. The [following code](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-04-datacopy-data) (adapted to Solidity), can be used to call this precompiled contract. We can use this [online tool](https://web3-type-converter.onbrn.com/) to get bytes from any string, as this is the input of the method `callDataCopy()`.
+Also known as datacopy, this function serves as a cheaper way to copy data in memory. 
+
+Currently there is no Identity Function support in Solidity, so it needs to be called with inline assembly. The [following sample code](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-04-datacopy-data) (adapted to Solidity), can be used to call this precompiled contract. You can use this [online tool](https://web3-type-converter.onbrn.com/) to get bytes from any string, as this is the input of the method `callDataCopy()`.
 
 --8<-- 'code/precompiles/identity.md'
 
