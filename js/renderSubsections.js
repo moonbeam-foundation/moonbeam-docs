@@ -1,23 +1,24 @@
 // Get the current page the user is on
-const pathname = window.location.pathname;
+let pathname = window.location.pathname;
 
 // Determine which language site the user is on
-let currLanguage = 'en' // Default to English
+let currLanguage = 'en'; // Default to English
+let isRevamped = false;
+
 for (language in supportedLanguages) {
-  if (pathname.includes(`/${language}`)) {
-    currLanguage = language;
+  const langPath = `/${supportedLanguages[language]}`;
+  if (pathname.includes(langPath)) {
+    currLanguage = supportedLanguages[language];
+    // Remove the language from the path so we can grab the classname
+    pathname = pathname.replace(langPath, '');
+
+    if (revampedLanguageSites.includes(currLanguage)) {
+      isRevamped = true;
+    }
   }
 }
 
 let classname = pathname.replace('/', '.').replaceAll('/', '-');
-let isRevamped = false;
-for (language in revampedLanguageSites) {
-  if (language == currLanguage) {
-    classname = pathname.replace(`/${language}/`, '.').replaceAll('/', '-');
-    isRevamped = true;
-    break;
-  }
-}
 
 if (classname !== '.') {
   const section = document.querySelector(classname);
