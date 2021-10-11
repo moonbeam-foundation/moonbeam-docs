@@ -2,17 +2,17 @@
 let pathname = window.location.pathname;
 
 // Determine which language site the user is on
-let currLanguage = 'en' // Default to English
+let currLanguage = 'en'; // Default to English
 let isRevamped = false;
 
 for (language in supportedLanguages) {
-  const langPath = `/${language}`
+  const langPath = `/${language}`;
   if (pathname.includes(langPath)) {
     currLanguage = language;
     // Remove the language from the path so we can grab the classname
-    pathname = pathname.replace(langPath, "")
+    pathname = pathname.replace(langPath, '');
 
-    if (revampedLanguageSites.includes(language)){
+    if (revampedLanguageSites.includes(language)) {
       isRevamped = true;
     }
   }
