@@ -80,7 +80,7 @@ The txpool RPC implementations follow [Geth's txpool API guidelines](https://get
 
 ## Trace Module {: #trace-module } 
 
-The `trace_filter` RPC implementation follows [OpenEthereum's trace module guidelines](https://openethereum.github.io/JSONRPC-trace-module#trace_filter).
+The `trace_filter` RPC implementation follows [OpenEthereum's trace module guidelines](https://openethereum.github.io/JSONRPC-trace-module#trace_filter). There is a seperate Docker image for the tracing module. The latest available image can be found on the [Docker Hub for the `moonbeam-tracing` image](https://hub.docker.com/r/purestake/moonbeam-tracing/tags).
 
 The RPC method requires any of the following *optional* parameters:
 
@@ -93,9 +93,73 @@ The RPC method requires any of the following *optional* parameters:
 
 ## Try it on Moonbase Alpha {: #try-it-on-moonbase-alpha } 
 
-As mentioned before, to use the debug and trace features you need to have a node running with the `debug` and `trace` flags. For this example, a local Moonbase Alpha full node is used, with the RPC HTTP endpoint at `http://127.0.0.1:9933`. If you have a running node, you should see a similar terminal log:
+As mentioned before, to use the debug, txpool, and trace features you need to have a node running with the `debug`, `txpool`, and `trace` flags. 
+
+To spin up a tracing node, you'll want to use the following command:
+
+=== "Moonbeam Development Node"
+    ```
+    docker run --network="host" -v "/var/lib/alphanet-data:/data" \
+    -u $(id -u ${USER}):$(id -g ${USER}) \
+    purestake/moonbeam-tracing:v0.13.1-800 \
+    --dev
+    --base-path=/data \
+    --chain alphanet \
+    --name="Moonbeam-Tutorial" \
+    --execution wasm \
+    --wasm-execution compiled \
+    --pruning archive \
+    --state-cache-size 1 \
+    --ethapi=debug,trace,txpool \
+    --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
+    -- \
+    --pruning archive \
+    --name="Moonbeam-Tutorial (Embedded Relay)"
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    docker run --network="host" -v "/var/lib/alphanet-data:/data" \
+    -u $(id -u ${USER}):$(id -g ${USER}) \
+    purestake/moonbeam-tracing:v0.13.1-800 \
+    --base-path=/data \
+    --chain alphanet \
+    --name="Moonbeam-Tutorial" \
+    --execution wasm \
+    --wasm-execution compiled \
+    --pruning archive \
+    --state-cache-size 1 \
+    --ethapi=debug,trace,txpool \
+    --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
+    -- \
+    --pruning archive \
+    --name="Moonbeam-Tutorial (Embedded Relay)"
+    ```
+
+=== "Moonriver"
+    ```
+    docker run --network="host" -v "/var/lib/alphanet-data:/data" \
+    -u $(id -u ${USER}):$(id -g ${USER}) \
+    purestake/moonbeam-tracing:v0.13.1-800 \
+    --base-path=/data \
+    --chain moonriver \
+    --name="Moonbeam-Tutorial" \
+    --execution wasm \
+    --wasm-execution compiled \
+    --pruning archive \
+    --state-cache-size 1 \
+    --ethapi=debug,trace,txpool \
+    --wasm-runtime-overrides=/moonbeam/moonriver-substitutes-tracing \
+    -- \
+    --pruning archive \
+    --name="Moonbeam-Tutorial (Embedded Relay)"
+    ```
+
+For this example, a local Moonbase Alpha full node is used, with the RPC HTTP endpoint at `http://127.0.0.1:9933`. If you have a running node, you should see a similar terminal log:
 
 ![Debug API](/images/builders/tools/debug-trace/debug-trace-1.png)
+
+### Using the Debug API
 
 For example, for the `debug_traceTransaction` call, you can make the following JSON RPC request in your terminal (in this case, for the transaction hash `0x04978f83e778d715eb074352091b2159c0689b5ae2da2554e8fe8e609ab463bf`):
 
@@ -113,6 +177,8 @@ The node responds with the step-by-step replayed transaction information (respon
 
 ![Trace Debug Node Running](/images/builders/tools/debug-trace/debug-trace-2.png)
 
+### Using the Tracing Module
+
 For the `trace_filter` call, you can make the following JSON RPC request in your terminal (in this case, the filter is from block 20000 to 25000, only for transactions where the recipient is  `0x4E0078423a39EfBC1F8B5104540aC2650a756577`, it will start with a zero offset and provide the first 20 traces):
 
 ```
@@ -128,3 +194,19 @@ The node responds with the trace information corresponding to the filter (respon
 
 ![Trace Filter Node Running](/images/builders/tools/debug-trace/debug-trace-3.png)
 
+### Using the Txpool API
+
+Since none of the currently supported txpool methods require a parameter, you can adapt the following curl command by changing the method for any of the txpool methods:
+
+```
+curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
+  '{
+    "jsonrpc":"2.0",
+    "id":1,
+    "method":"txpool_status", "params":[]
+  }'
+```
+
+For this example, the `txpool_status` method will return the number of transactions currently pending or queued. 
+
+![Txpool Request and Response](/images/builders/tools/debug-trace/debug-trace-4.png)
