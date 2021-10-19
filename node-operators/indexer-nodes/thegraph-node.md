@@ -24,27 +24,9 @@ Before diving into setting up a Graph Node, you neeed to have the following inst
  - [Docker Compose](https://docs.docker.com/compose/install/)
  - [JQ](https://stedolan.github.io/jq/download/)
 
-You will need to spin up a full node with the tracing option enabled:
+In this guide, you will learn how to run a Graph node against a Moonbase Alpha tracing node with the `tracing` flag enabled. This guide can also be adapted for Moonriver.
 
-=== "Moonbeam Development Node"
-    You can run your own Moonbeam instance in a private development environment. To do so, you can follow the [Getting Started with a Moonbeam Development Node](/builders/get-started/moonbeam-dev/) guide. Make sure to check the [Advanced Flags](/builders/get-started/moonbeam-dev/#advanced-flags-and-options) section for more details
-
-    You will need to start your node with the following flag:
-    - `--ethapi=trace --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing`
-
-=== "Moonbase Alpha"
-    You can run a full node of the TestNet and access your own private endpoints. To do so, you can follow the [Run a Node on Moonbeam](/node-operators/networks/full-node/) guide. Make sure to check the [Advanced Flags](/node-operators/networks/full-node/#advanced-flags-and-options) section for more details
-
-    You will need to start your node with the following flag:
-    - `--ethapi=trace --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing`
-
-=== "Moonriver"
-    You can run a full Moonriver node locally. To do so, please check out the [Run a Node on Moonbeam](/node-operators/networks/full-node/) guide and make sure to switch to the **Moonriver** tabs as you follow along. Also make sure to check the [Advanced Flags](/node-operators/networks/full-node/#advanced-flags-and-options) section for more details
-
-    You will need to start your node with the following flag:
-    - `--ethapi=trace --wasm-runtime-overrides=/moonbeam/moonriver-substitutes-tracing`
-
-In this guide, a Graph Node runs against a Moonbase Alpha full node with the tracing flag but the instructions can be adapted for Moonriver.
+To spin up a full node with the `tracing` flag enabled, check out the [Debug & Trace](/builders/tools/debug-trace/#get-started) guide.
 
 ## Running a Graph Node {: #running-a-graph-node } 
 
