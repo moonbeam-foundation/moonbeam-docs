@@ -6,7 +6,7 @@ If you are running a tracing node, you have the following flags available to you
 
 You can use one or more of the above flag(s) at a given time, it's ultimately up to you and what your needs are but you must also run the following flag too:
 
-  - **`--wasm-runtime-overrides=/moonbeam/<network>-substitutes-tracing`** - specifies the path where the local WASM runtimes are stored. These runtimes will override on-chain runtimes. Accepts the network as a parameter: `moonbase` (for development nodes and Moonbase Alpha) or `moonriver`. 
+  - **`--wasm-runtime-overrides=/moonbeam/<network>-substitutes-tracing`** - specifies the path where the local WASM runtimes are stored. These runtimes will override on-chain runtimes. Accepts the network as a parameter: `moonbase` (for development nodes and Moonbase Alpha) or `moonriver`
 
 !!! note
     Debug/Trace features are still being actively developed. Because these requests are very CPU-demanding, it is recommended to run the node with the `--execution=Native` flag. This will use the native runtime included as part of the node executable instead of the Wasm binary stored on-chain.
