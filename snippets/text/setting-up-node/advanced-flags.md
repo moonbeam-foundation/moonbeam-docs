@@ -1,12 +1,15 @@
-With the release of Moonbase Alpha v7, nodes also provide access to some non-standard RPC methods, which allow developers to inspect and debug transactions during runtime. Currently, two features are available:
+Nodes also provide access to some non-standard RPC methods, which allow developers to inspect and debug transactions during runtime. Currently, a few features are available:
 
- - Geth debug API: more specifically, the `debug_traceTransaction` method. This will attempt to run the transaction in the same manner as it was executed. You can read more about this RPC method in [this link](https://geth.ethereum.org/docs/rpc/ns-debug#debug_tracetransaction)
- - OpenEthereum trace module: more specifically, the `trace_filter` method. This returns the trace matching a specific filter provided as input to the RPC call. You can read more about this RPC method in [this link](https://openethereum.github.io/JSONRPC-trace-module#trace_filter)
+ - Geth debug API: more specifically, the `debug_traceTransaction`, `debug_traceBlockByNumber`, and `debug_traceBlockByHash` methods. This will attempt to run the transaction or block in the same manner as it was executed.
+    - Required flag: `--ethapi=debug`
+ - Geth txpool API: `txpool_content`, `txpool_inspect`, `txpool_status` methods. These methods return information about the transaction pool, specifically about pending and queued transactions.
+    - Required flag: `--ethapi=txpool`
+ - OpenEthereum trace module: more specifically, the `trace_filter` method. This returns the trace matching a specific filter provided as input to the RPC call. The tracing module uses a separate Docker image to build and run the node. The required command is as follows:
 
-The features mentioned above can be activated using the following flags:
+--8<-- 'code/debug-trace/tracing-node.md'
 
- - `--ethapi=debug`: enables the Geth debug API for the `debug_traceTransaction` RPC call
- - `--ethapi=trace`: enables the OpenEthereum trace module for the `trace_filter` RPC call
+
+You can read more about how to use these RPC methods in the [Debug & Trace](/builders/tools/debug-trace/) guide.
 
 !!! note
     Debug/Trace features are still being actively developed. Because these requests are very CPU-demanding, it is recommended to run the node with the `--execution=Native` flag. This will use the native runtime included as part of the node executable instead of the Wasm binary stored on-chain.

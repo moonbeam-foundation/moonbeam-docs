@@ -101,63 +101,7 @@ As mentioned before, to use the debug, txpool, and trace features you need to ha
 
 To spin up a node with all 3 flags, you'll want to use the following command:
 
-=== "Moonbeam Development Node"
-    ```
-    docker run --network="host" -v "/var/lib/alphanet-data:/data" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-    purestake/moonbeam-tracing:v0.13.1-800 \
-    --dev
-    --base-path=/data \
-    --chain alphanet \
-    --name="Moonbeam-Tutorial" \
-    --execution wasm \
-    --wasm-execution compiled \
-    --pruning archive \
-    --state-cache-size 1 \
-    --ethapi=debug,trace,txpool \
-    --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
-    -- \
-    --pruning archive \
-    --name="Moonbeam-Tutorial (Embedded Relay)"
-    ```
-
-=== "Moonbase Alpha"
-    ```
-    docker run --network="host" -v "/var/lib/alphanet-data:/data" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-    purestake/moonbeam-tracing:v0.13.1-800 \
-    --base-path=/data \
-    --chain alphanet \
-    --name="Moonbeam-Tutorial" \
-    --execution wasm \
-    --wasm-execution compiled \
-    --pruning archive \
-    --state-cache-size 1 \
-    --ethapi=debug,trace,txpool \
-    --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
-    -- \
-    --pruning archive \
-    --name="Moonbeam-Tutorial (Embedded Relay)"
-    ```
-
-=== "Moonriver"
-    ```
-    docker run --network="host" -v "/var/lib/alphanet-data:/data" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-    purestake/moonbeam-tracing:v0.13.1-800 \
-    --base-path=/data \
-    --chain moonriver \
-    --name="Moonbeam-Tutorial" \
-    --execution wasm \
-    --wasm-execution compiled \
-    --pruning archive \
-    --state-cache-size 1 \
-    --ethapi=debug,trace,txpool \
-    --wasm-runtime-overrides=/moonbeam/moonriver-substitutes-tracing \
-    -- \
-    --pruning archive \
-    --name="Moonbeam-Tutorial (Embedded Relay)"
-    ```
+--8<-- 'code/debug-trace/tracing-node.md'
 
 For this example, a local Moonbase Alpha full node is used, with the RPC HTTP endpoint at `http://127.0.0.1:9933`. If you have a running node, you should see a similar terminal log:
 

@@ -210,7 +210,7 @@ For a complete list of flags and options, spin up your Moonbeam development node
 For example, when running the binary:
 
 ```
-./target/release/moonbeam --dev --execution=Native --ethapi=debug,trace
+./target/release/moonbeam --dev --execution=Native --ethapi=debug
 ```
 
 ## Pre-funded Development Accounts {: #pre-funded-development-accounts } 
