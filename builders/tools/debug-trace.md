@@ -11,7 +11,7 @@ description:  Learn how to leverage Geth's Debug and Txpool APIs, and OpenEthere
 
 Geth's debug and txpool APIs and OpenEthereum's trace module provide non-standard RPC methods for getting a deeper insight into transaction processing. As part of Moonbeam's goal of providing a seamless Ethereum experience for developers, there is support for some of these non-standard RPC methods. Supporting these RPC methods is an important milestone because many projects, such as [The Graph](https://thegraph.com/) or [Blockscout](https://docs.blockscout.com/), rely on them to index blockchain data.
 
-This guide will cover the supported RPC methods available on Moonbeam as well as how to get started running a node with debug and tracing enabled.
+This guide will cover the supported RPC methods available on Moonbeam as well as how to get started running a node with debug, txpool, and tracing features enabled.
 
 ## Supported RPC Methods
 
@@ -27,42 +27,46 @@ The following RPC methods are available:
 
 ## Get Started
 
-To spin up a debug, txpool, or tracing node, you will need to use various flags to determine how the node will behave and what functionality the node will support. The flags to enable the debug, txpool, and tracing features are required and the features are unavailable unless specified due to the heavy nature of the calls on the node's side. 
+Spinning up a debug, txpool, or tracing node is similar to running a full node, however, you need to use additional flags to tell the node which features to support. Otherwise, the debug, txpool, and tracing features will be unavailable due to the heavy calls on the node's side.
 
 === "Moonbeam Development Node"
     You can run your own Moonbeam instance in a private development environment. To do so, you can follow the [Getting Started with a Moonbeam Development Node](/builders/get-started/moonbeam-dev/) guide. Make sure to check the [Advanced Flags](/builders/get-started/moonbeam-dev/#advanced-flags-and-options) section
 
     You will also need to start your node with the following flag(s) depending on the features you would like to enable:
 
-      - `--ethapi=debug` flag for `debug_traceTransaction`, `debug_traceBlockByNumber`, and `debug_traceBlockByHash`
-      - `--ethapi=trace --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing` flag for `trace_filter` 
-      - `--ethapi=txpool` flag for `txpool_content`, `txpool_inspect`, and `txpool_status`
+      - `--ethapi=debug` flag that enables `debug_traceTransaction`, `debug_traceBlockByNumber`, and `debug_traceBlockByHash`
+      - `--ethapi=trace --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing` flag that enables `trace_filter` 
+      - `--ethapi=txpool` flag that enables `txpool_content`, `txpool_inspect`, and `txpool_status`
 
 === "Moonbase Alpha"
     You can run a full node of the TestNet and access your own private endpoints. To do so, you can follow the [Run a Node on Moonbeam](/node-operators/networks/full-node/) guide. Make sure to check the [Advanced Flags](/node-operators/networks/full-node/#advanced-flags-and-options) section.
 
     You will also need to start your node with the following flag(s) depending on the features you would like to enable:
 
-    - `--ethapi=debug` flag for `debug_traceTransaction`, `debug_traceBlockByNumber`, and `debug_traceBlockByHash`
-    - `--ethapi=trace --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing` flag for `trace_filter` 
-    - `--ethapi=txpool` flag for `txpool_content`, `txpool_inspect`, and `txpool_status`
+    - `--ethapi=debug` flag that enables `debug_traceTransaction`, `debug_traceBlockByNumber`, and `debug_traceBlockByHash`
+    - `--ethapi=trace --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing` flag that enables `trace_filter` 
+    - `--ethapi=txpool` flag that enables `txpool_content`, `txpool_inspect`, and `txpool_status`
 
 === "Moonriver"
     You can run a full Moonriver node locally. To do so, please check out the [Run a Node on Moonbeam](/node-operators/networks/full-node/) guide and make sure to switch to the **Moonriver** tabs as you follow along. Also make sure to check the [Advanced Flags](/node-operators/networks/full-node/#advanced-flags-and-options) section
 
     You will also need to start your node with the following flag(s) depending on the features you would like to enable:
 
-    - `--ethapi=debug` flag for `debug_traceTransaction`, `debug_traceBlockByNumber`, and `debug_traceBlockByHash`
-    - `--ethapi=trace --wasm-runtime-overrides=/moonbeam/moonriver-substitutes-tracing` flag for `trace_filter` 
-    - `--ethapi=txpool` flag for `txpool_content`, `txpool_inspect`, and `txpool_status`
+    - `--ethapi=debug` flag that enables `debug_traceTransaction`, `debug_traceBlockByNumber`, and `debug_traceBlockByHash`
+    - `--ethapi=trace --wasm-runtime-overrides=/moonbeam/moonriver-substitutes-tracing` flag that enables `trace_filter` 
+    - `--ethapi=txpool` flag that enables `txpool_content`, `txpool_inspect`, and `txpool_status`
+
+!!! note
+    If you are using more than one feature flag, you can combine them into one line, for example:      
+      `--ethapi=debug,trace,txpool --wasm-runtime-overrides=/moonbeam/moonriver-substitutes-tracing`
 
 ## Debug API {: #geth-debug-api } 
 
 The debug RPC implementations follow [Geth's debug API guidelines](https://geth.ethereum.org/docs/rpc/ns-debug):
 
-  - [`debug_traceTransaction`](https://geth.ethereum.org/docs/rpc/ns-debug#debug_tracetransaction) - requires the hash of the transaction to be traced. Works by attempting to replay the transaction in the same way it originally was executed on the network
-  - [`debug_traceBlockByNumber`](https://geth.ethereum.org/docs/rpc/ns-debug#debug_traceblockbynumber) - requires the block number of the block to be traced. 
-  - [`debug_traceBlockByHash`](https://geth.ethereum.org/docs/rpc/ns-debug#debug_traceblockbyhash) - requires the hash of the block to be traced.
+  - [`debug_traceTransaction`](https://geth.ethereum.org/docs/rpc/ns-debug#debug_tracetransaction) - requires the hash of the transaction to be traced
+  - [`debug_traceBlockByNumber`](https://geth.ethereum.org/docs/rpc/ns-debug#debug_traceblockbynumber) - requires the block number of the block to be traced
+  - [`debug_traceBlockByHash`](https://geth.ethereum.org/docs/rpc/ns-debug#debug_traceblockbyhash) - requires the hash of the block to be traced 
 
 As *optional* parameters for the supported debug methods, you can provide the following:
 
@@ -80,9 +84,9 @@ The txpool RPC implementations follow [Geth's txpool API guidelines](https://get
 
 ## Trace Module {: #trace-module } 
 
-The `trace_filter` RPC implementation follows [OpenEthereum's trace module guidelines](https://openethereum.github.io/JSONRPC-trace-module#trace_filter). There is a seperate Docker image for the tracing module. The latest available image can be found on the [Docker Hub for the `moonbeam-tracing` image](https://hub.docker.com/r/purestake/moonbeam-tracing/tags).
+There is a seperate Docker image for the tracing module. The latest available image can be found on the [Docker Hub for the `moonbeam-tracing` image](https://hub.docker.com/r/purestake/moonbeam-tracing/tags).
 
-The RPC method requires any of the following *optional* parameters:
+The `trace_filter` RPC implementation follows [OpenEthereum's trace module guidelines](https://openethereum.github.io/JSONRPC-trace-module#trace_filter). The RPC method requires any of the following *optional* parameters:
 
  - **fromBlock**(*uint* blockNumber) — either block number (`hex`), `earliest` which is the genesis block or `latest` (default) best block available. Trace starting block
  - **toBlock**(*uint* blockNumber) — either block number (`hex`), `earliest` which is the genesis block or `latest` best block available. Trace ending block
@@ -95,7 +99,7 @@ The RPC method requires any of the following *optional* parameters:
 
 As mentioned before, to use the debug, txpool, and trace features you need to have a node running with the `debug`, `txpool`, and `trace` flags. 
 
-To spin up a tracing node, you'll want to use the following command:
+To spin up a node with all 3 flags, you'll want to use the following command:
 
 === "Moonbeam Development Node"
     ```
