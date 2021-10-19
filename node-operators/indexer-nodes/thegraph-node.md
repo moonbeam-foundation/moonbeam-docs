@@ -24,12 +24,27 @@ Before diving into setting up a Graph Node, you neeed to have the following inst
  - [Docker Compose](https://docs.docker.com/compose/install/)
  - [JQ](https://stedolan.github.io/jq/download/)
 
-In addition, you need to have a node running with the `--ethapi=trace` option enabled. Currently, you can spin up two different kinds of nodes:
+You will need to spin up a full node with the tracing option enabled:
 
- - **Moonbeam development node** — run your own Moonbeam instance in your private environment. To do so, you can follow [this guide](/builders/get-started/moonbeam-dev/). Make sure to check the [advanced flags section](/builders/get-started/moonbeam-dev/#advanced-flags-and-options)
- - **Moonbase Alpha node** — run a full node of the TestNet and access your own private endpoints. To do so, you can follow [this guide](/node-operators/networks/full-node/). Make sure to check the [advanced flags section](/node-operators/networks/full-node/#advanced-flags-and-options)
+=== "Moonbeam Development Node"
+    You can run your own Moonbeam instance in a private development environment. To do so, you can follow the [Getting Started with a Moonbeam Development Node](/builders/get-started/moonbeam-dev/) guide. Make sure to check the [Advanced Flags](/builders/get-started/moonbeam-dev/#advanced-flags-and-options) section for more details
 
-In this guide, a Graph Node runs against a Moonbase Alpha full node with the `--ethapi=trace` flag.
+    You will need to start your node with the following flag:
+    - `--ethapi=trace --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing`
+
+=== "Moonbase Alpha"
+    You can run a full node of the TestNet and access your own private endpoints. To do so, you can follow the [Run a Node on Moonbeam](/node-operators/networks/full-node/) guide. Make sure to check the [Advanced Flags](/node-operators/networks/full-node/#advanced-flags-and-options) section for more details
+
+    You will need to start your node with the following flag:
+    - `--ethapi=trace --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing`
+
+=== "Moonriver"
+    You can run a full Moonriver node locally. To do so, please check out the [Run a Node on Moonbeam](/node-operators/networks/full-node/) guide and make sure to switch to the **Moonriver** tabs as you follow along. Also make sure to check the [Advanced Flags](/node-operators/networks/full-node/#advanced-flags-and-options) section for more details
+
+    You will need to start your node with the following flag:
+    - `--ethapi=trace --wasm-runtime-overrides=/moonbeam/moonriver-substitutes-tracing`
+
+In this guide, a Graph Node runs against a Moonbase Alpha full node with the tracing flag but the instructions can be adapted for Moonriver.
 
 ## Running a Graph Node {: #running-a-graph-node } 
 
@@ -52,9 +67,20 @@ The tail end from the logs of the previous command should look something similar
 
 Once everything is set up, you need to modify the "Ethereum environment" inside the `docker-compose.yml` file, so that it points to the endpoint of the node you are running this Graph Node against. Note that the `setup.sh` file detects the `Host IP` and writes its value, so you'll need to modify it accordingly.
 
-```
-ethereum: 'mbase:{{ networks.development.rpc_url }}'
-```
+=== "Moonbeam Development Node"
+    ```
+    ethereum: 'mbase:{{ networks.development.rpc_url }}'
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    ethereum: 'mbase:{{ networks.development.rpc_url }}'
+    ```
+
+=== "Moonriver"
+    ```
+    ethereum: 'moonriver:{{ networks.development.rpc_url }}'
+    ```
 
 The entire `docker-compose.yml` file should look something similar to:
 
@@ -111,4 +137,4 @@ After a while, you should see logs related to the Graph Node syncing with the la
 
 ![Graph Node logs](/images/node-operators/indexer-nodes/the-graph/the-graph-node-3.png)
 
-And that is it! You have a Graph Node running against the Moonbase Alpha TestNet. Feel free to adapt this example to a Moonbeam development node as well.
+And that is it! You have a Graph Node running against the Moonbase Alpha TestNet. Feel free to adapt this example to a Moonbeam development node or Moonriver as well.

@@ -15,15 +15,13 @@ The Graph is a decentralized and open-source indexing protocol for querying netw
 
 Furthermore, developers can build APIs, called Subgraphs. Users or other developers can use Subgraphs to query data specific to a set of smart contracts. Data is fetched with a standard GraphQL API. You can visit [their documentation](https://thegraph.com/docs/about/introduction#what-the-graph-is) to read more about The Graph protocol.
 
-With the introduction of Ethereum tracing modules in [Moonbase Alpha v7](https://github.com/PureStake/moonbeam/releases/tag/v0.7.0), The Graph is capable of indexing blockchain data in Moonbeam.
-
-This guide takes you through the creation of a simple subgraph for a Lottery contract on Moonbase Alpha.
+Due to the support of Ethereum tracing modules in Moonbeam, The Graph is capable of indexing blockchain data in Moonbeam. This guide takes you through the creation of a simple subgraph for a Lottery contract on Moonbase Alpha. This guide can be adapted for Moonriver.
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
 To use The Graph on Moonbase Alpha you have two options:
 
- - Run a Graph Node against Moonbase Alpha and point your Subgraph to it. To do so, you can follow [this tutorial](/node-operators/indexer-nodes/thegraph-node/)
+ - Run a Graph Node against Moonbase Alpha and point your Subgraph to it. To do so, you can follow [this tutorial](/node-operators/indexer-nodes/thegraph-node/) (you can also adapt the instructions for Moonriver)
  - Point your Subgraph to The Graph API via the [Graph Explorer website](https://thegraph.com/explorer/). To do so you need to create an account and have an access token
  
 ## The Lottery Contract {: #the-lottery-contract } 
