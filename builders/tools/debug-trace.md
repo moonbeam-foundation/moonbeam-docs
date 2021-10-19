@@ -11,95 +11,34 @@ description:  Learn how to leverage Geth's Debug and Txpool APIs, and OpenEthere
 
 Geth's debug and txpool APIs and OpenEthereum's trace module provide non-standard RPC methods for getting a deeper insight into transaction processing. As part of Moonbeam's goal of providing a seamless Ethereum experience for developers, there is support for some of these non-standard RPC methods. Supporting these RPC methods is an important milestone because many projects, such as [The Graph](https://thegraph.com/) or [Blockscout](https://docs.blockscout.com/), rely on them to index blockchain data.
 
-This guide will cover the supported RPC methods available on Moonbeam as well as how to get started running a node with debug, txpool, and tracing features enabled.
+This guide will cover the supported RPC methods available on Moonbeam as well as how to get started running a node with `debug`, `txpool`, and `tracing` flags enabled.
 
 ## Supported RPC Methods
 
 The following RPC methods are available: 
 
-  - `debug_traceTransaction`
-  - `debug_traceBlockByNumber`
-  - `debug_traceBlockByHash`
-  - `trace_filter`
-  - `txpool_content`
-  - `txpool_inspect`
-  - `txpool_status`
+  - [`debug_traceTransaction`](https://geth.ethereum.org/docs/rpc/ns-debug#debug_tracetransaction)
+  - [`debug_traceBlockByNumber`](https://geth.ethereum.org/docs/rpc/ns-debug#debug_traceblockbynumber)
+  - [`debug_traceBlockByHash`](https://geth.ethereum.org/docs/rpc/ns-debug#debug_traceblockbyhash)
+  - [`trace_filter`](https://openethereum.github.io/JSONRPC-trace-module#trace_filter)
+  - [`txpool_content`](https://geth.ethereum.org/docs/rpc/ns-txpool#txpool_content)
+  - [`txpool_inspect`](https://geth.ethereum.org/docs/rpc/ns-txpool#txpool_inspect)
+  - [`txpool_status`](https://geth.ethereum.org/docs/rpc/ns-txpool#txpool_status)
 
 ## Get Started
 
-Spinning up a debug, txpool, or tracing node is similar to running a full node, however, you need to use additional flags to tell the node which features to support. Otherwise, the debug, txpool, and tracing features will be unavailable due to the heavy calls on the node's side.
+Spinning up a `debug`, `txpool`, or `tracing` node is similar to running a full node, however, you need to use a different Docker image than the standard Moonbeam image. You will also need to use additional flags to tell the node which features to support. Otherwise, the features will be unavailable as they are not included out of the box due to the heavy calls on the node's side.
 
-=== "Moonbeam Development Node"
-    You can run your own Moonbeam instance in a private development environment. To do so, you can follow the [Getting Started with a Moonbeam Development Node](/builders/get-started/moonbeam-dev/) guide. Make sure to check the [Advanced Flags](/builders/get-started/moonbeam-dev/#advanced-flags-and-options) section
+Instead of the standard `purestake/moonbeam` docker image, you will need to use `purestake/moonbeam-tracing` image. The latest supported version can be found on the [Docker Hub for the `moonbeam-tracing` image](https://hub.docker.com/r/purestake/moonbeam-tracing/tags).
 
-    You will also need to start your node with the following flag(s) depending on the features you would like to enable:
+You will also need to start your node with the following flag(s) depending on the features you would like to enable:
 
-      - `--ethapi=debug` flag that enables `debug_traceTransaction`, `debug_traceBlockByNumber`, and `debug_traceBlockByHash`
-      - `--ethapi=trace --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing` flag that enables `trace_filter` 
-      - `--ethapi=txpool` flag that enables `txpool_content`, `txpool_inspect`, and `txpool_status`
+  - **`--ethapi=debug`** - optional flag that enables `debug_traceTransaction`, `debug_traceBlockByNumber`, and `debug_traceBlockByHash`
+  - **`--ethapi=trace`** - optional flag that enables `trace_filter` 
+  - **`--ethapi=txpool`** - optional flag that enables `txpool_content`, `txpool_inspect`, and `txpool_status`
+  - **`--wasm-runtime-overrides=/moonbeam/<network>-substitutes-tracing`** - **required** flag for tracing that specifies the path where the local WASM runtimes are stored. Accepts the network as a parameter: `moonbase` (for development nodes and Moonbase Alpha) or `moonriver` 
 
-=== "Moonbase Alpha"
-    You can run a full node of the TestNet and access your own private endpoints. To do so, you can follow the [Run a Node on Moonbeam](/node-operators/networks/full-node/) guide. Make sure to check the [Advanced Flags](/node-operators/networks/full-node/#advanced-flags-and-options) section.
-
-    You will also need to start your node with the following flag(s) depending on the features you would like to enable:
-
-    - `--ethapi=debug` flag that enables `debug_traceTransaction`, `debug_traceBlockByNumber`, and `debug_traceBlockByHash`
-    - `--ethapi=trace --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing` flag that enables `trace_filter` 
-    - `--ethapi=txpool` flag that enables `txpool_content`, `txpool_inspect`, and `txpool_status`
-
-=== "Moonriver"
-    You can run a full Moonriver node locally. To do so, please check out the [Run a Node on Moonbeam](/node-operators/networks/full-node/) guide and make sure to switch to the **Moonriver** tabs as you follow along. Also make sure to check the [Advanced Flags](/node-operators/networks/full-node/#advanced-flags-and-options) section
-
-    You will also need to start your node with the following flag(s) depending on the features you would like to enable:
-
-    - `--ethapi=debug` flag that enables `debug_traceTransaction`, `debug_traceBlockByNumber`, and `debug_traceBlockByHash`
-    - `--ethapi=trace --wasm-runtime-overrides=/moonbeam/moonriver-substitutes-tracing` flag that enables `trace_filter` 
-    - `--ethapi=txpool` flag that enables `txpool_content`, `txpool_inspect`, and `txpool_status`
-
-!!! note
-    If you are using more than one feature flag, you can combine them into one line, for example:      
-      `--ethapi=debug,trace,txpool --wasm-runtime-overrides=/moonbeam/moonriver-substitutes-tracing`
-
-## Debug API {: #geth-debug-api } 
-
-The debug RPC implementations follow [Geth's debug API guidelines](https://geth.ethereum.org/docs/rpc/ns-debug):
-
-  - [`debug_traceTransaction`](https://geth.ethereum.org/docs/rpc/ns-debug#debug_tracetransaction) - requires the hash of the transaction to be traced
-  - [`debug_traceBlockByNumber`](https://geth.ethereum.org/docs/rpc/ns-debug#debug_traceblockbynumber) - requires the block number of the block to be traced
-  - [`debug_traceBlockByHash`](https://geth.ethereum.org/docs/rpc/ns-debug#debug_traceblockbyhash) - requires the hash of the block to be traced 
-
-As *optional* parameters for the supported debug methods, you can provide the following:
-
- - **disableStorage**(*boolean*) — (default: _false_). Setting this to true disables storage capture
- - **disableMemory**(*boolean*) — (default: _false_). Setting this to true disables memory capture
- - **disableStack**(*boolean*) — (default: _false_). Setting this to true disables stack capture
-
-## Txpool API
-
-The txpool RPC implementations follow [Geth's txpool API guidelines](https://geth.ethereum.org/docs/rpc/ns-txpool):
-
-  - [`txpool_content`](https://geth.ethereum.org/docs/rpc/ns-txpool#txpool_content) - no required or optional parameters
-  - [`txpool_inspect`](https://geth.ethereum.org/docs/rpc/ns-txpool#txpool_inspect) - no required or optional parameters 
-  - [`txpool_status`](https://geth.ethereum.org/docs/rpc/ns-txpool#txpool_status) - no required or optional parameters
-
-## Trace Module {: #trace-module } 
-
-There is a seperate Docker image for the tracing module. The latest available image can be found on the [Docker Hub for the `moonbeam-tracing` image](https://hub.docker.com/r/purestake/moonbeam-tracing/tags).
-
-The `trace_filter` RPC implementation follows [OpenEthereum's trace module guidelines](https://openethereum.github.io/JSONRPC-trace-module#trace_filter). The RPC method requires any of the following *optional* parameters:
-
- - **fromBlock**(*uint* blockNumber) — either block number (`hex`), `earliest` which is the genesis block or `latest` (default) best block available. Trace starting block
- - **toBlock**(*uint* blockNumber) — either block number (`hex`), `earliest` which is the genesis block or `latest` best block available. Trace ending block
- - **fromAddress**(*array* addresses) — filter transactions done from these addresses only. If an empty array is provided, no filtering is done with this field
- - **toAddress**(*array* addresses) — filter transactions done from these addresses only. If an empty array is provided, no filtering is done with this field
- - **after**(*uint* offset) — default offset is `0`. Trace offset (or starting) number
- - **count**(*uint* numberOfTraces) — number of traces to display in a batch
-
-## Try it on Moonbase Alpha {: #try-it-on-moonbase-alpha } 
-
-As mentioned before, to use the debug, txpool, and trace features you need to have a node running with the `debug`, `txpool`, and `trace` flags. 
-
-To spin up a node with all 3 flags, you'll want to use the following command:
+The complete command for running a tracing node is as follows:
 
 === "Moonbeam Development Node"
     ```
@@ -159,7 +98,44 @@ To spin up a node with all 3 flags, you'll want to use the following command:
     --name="Moonbeam-Tutorial (Embedded Relay)"
     ```
 
-For this example, a local Moonbase Alpha full node is used, with the RPC HTTP endpoint at `http://127.0.0.1:9933`. If you have a running node, you should see a similar terminal log:
+## Debug API {: #geth-debug-api } 
+
+The debug RPC implementations follow [Geth's debug API guidelines](https://geth.ethereum.org/docs/rpc/ns-debug):
+
+  - [`debug_traceTransaction`](https://geth.ethereum.org/docs/rpc/ns-debug#debug_tracetransaction) - requires the hash of the transaction to be traced
+  - [`debug_traceBlockByNumber`](https://geth.ethereum.org/docs/rpc/ns-debug#debug_traceblockbynumber) - requires the block number of the block to be traced
+  - [`debug_traceBlockByHash`](https://geth.ethereum.org/docs/rpc/ns-debug#debug_traceblockbyhash) - requires the hash of the block to be traced 
+
+As *optional* parameters for the supported debug methods, you can provide the following:
+
+ - **disableStorage**(*boolean*) — (default: _false_). Setting this to true disables storage capture
+ - **disableMemory**(*boolean*) — (default: _false_). Setting this to true disables memory capture
+ - **disableStack**(*boolean*) — (default: _false_). Setting this to true disables stack capture
+
+## Txpool API
+
+The txpool RPC implementations follow [Geth's txpool API guidelines](https://geth.ethereum.org/docs/rpc/ns-txpool):
+
+  - [`txpool_content`](https://geth.ethereum.org/docs/rpc/ns-txpool#txpool_content) - no required or optional parameters
+  - [`txpool_inspect`](https://geth.ethereum.org/docs/rpc/ns-txpool#txpool_inspect) - no required or optional parameters 
+  - [`txpool_status`](https://geth.ethereum.org/docs/rpc/ns-txpool#txpool_status) - no required or optional parameters
+
+## Trace Module {: #trace-module } 
+
+The [`trace_filter`]((https://openethereum.github.io/JSONRPC-trace-module#trace_filter)) RPC implementation follows [OpenEthereum's trace module guidelines](https://openethereum.github.io/JSONRPC-trace-module). The RPC method requires any of the following *optional* parameters:
+
+ - **fromBlock**(*uint* blockNumber) — either block number (`hex`), `earliest` which is the genesis block or `latest` (default) best block available. Trace starting block
+ - **toBlock**(*uint* blockNumber) — either block number (`hex`), `earliest` which is the genesis block or `latest` best block available. Trace ending block
+ - **fromAddress**(*array* addresses) — filter transactions done from these addresses only. If an empty array is provided, no filtering is done with this field
+ - **toAddress**(*array* addresses) — filter transactions done from these addresses only. If an empty array is provided, no filtering is done with this field
+ - **after**(*uint* offset) — default offset is `0`. Trace offset (or starting) number
+ - **count**(*uint* numberOfTraces) — number of traces to display in a batch
+
+## Try it out {: #try-it-out } 
+
+For this example, a local Moonbase Alpha full node is used, with the RPC HTTP endpoint at `http://127.0.0.1:9933`. You can also run the following curl commands against a Moonbeam development or Moonriver tracing node. 
+
+If you have a running node, you should see a similar terminal log:
 
 ![Debug API](/images/builders/tools/debug-trace/debug-trace-1.png)
 
