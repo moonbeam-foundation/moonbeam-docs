@@ -248,7 +248,7 @@ Where:
  - **access-token** — refers to the access token to use The Graph API
  
 !!! note
-    All steps can be found in the Graph's documentation for using a [Hosted Service to Deploy our Subgraph](https://thegraph.com/docs/developer/quick-start#4-deploy-your-subgraph).
+    All steps can be found in the Graph's documentation for using a [Hosted Service to Deploy your Subgraph](https://thegraph.com/docs/developer/quick-start#4-deploy-your-subgraph).
  
 ### Using a Local Graph Node
 
