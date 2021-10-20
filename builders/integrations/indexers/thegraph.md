@@ -243,8 +243,9 @@ npx graph deploy --product hosted-service <username>/<subgraph-name>
 ```
 
 Where:
-- **username** - refers to your GitHub username you used to create an account with
-- **subgraph-name** - refers to the Subgraph name
+
+ - **username** - refers to your GitHub username you used to create an account with
+ - **subgraph-name** - refers to the Subgraph name
  - **access-token** — refers to the access token to use The Graph API
  
 !!! note
