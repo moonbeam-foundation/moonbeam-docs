@@ -482,7 +482,7 @@ journalctl -f -u moonbeam.service
 
 ## Debug, Trace and TxPool APIs {: #debug-trace-txpool-apis } 
 
-You can also gain access to some non-standard RPC methods by running a tracing node, which allow developers to inspect and debug transactions during runtime. Tracing nodes use a different Docker image than a standard Moonbase Alpha or Moonriver node. To learn how to run a tracing node, check out the [Debug & Trace](/builders/tools/debug-trace/#try-it-out) guide and be sure to switch to the right network tab throughout the instructions.
+You can also gain access to some non-standard RPC methods by running a tracing node, which allow developers to inspect and debug transactions during runtime. Tracing nodes use a different Docker image than a standard Moonbase Alpha or Moonriver node. To learn how to run a tracing node, check out the [Debug & Trace](/node-operators/networks/debug-trace/#try-it-out) guide and be sure to switch to the right network tab throughout the instructions.
 
 ## Updating the Client {: #updating-the-client } 
 

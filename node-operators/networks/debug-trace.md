@@ -46,9 +46,7 @@ The complete command for running a tracing node is as follows:
     docker run --network="host" -v "/var/lib/alphanet-data:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     purestake/moonbeam-tracing:v0.13.1-800 \
-    --dev
     --base-path=/data \
-    --chain alphanet \
     --name="Moonbeam-Tutorial" \
     --execution native \
     --wasm-execution compiled \
@@ -56,9 +54,7 @@ The complete command for running a tracing node is as follows:
     --state-cache-size 1 \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
-    -- \
-    --pruning archive \
-    --name="Moonbeam-Tutorial (Embedded Relay)"
+    --dev
     ```
 
 === "Moonbase Alpha"
@@ -126,7 +122,7 @@ The txpool RPC implementations follow [Geth's txpool API guidelines](https://get
 
 ## Trace Module {: #trace-module } 
 
-The [`trace_filter`]((https://openethereum.github.io/JSONRPC-trace-module#trace_filter)) RPC implementation follows [OpenEthereum's trace module guidelines](https://openethereum.github.io/JSONRPC-trace-module). The RPC method requires any of the following *optional* parameters:
+The [`trace_filter`](https://openethereum.github.io/JSONRPC-trace-module#trace_filter) RPC implementation follows [OpenEthereum's trace module guidelines](https://openethereum.github.io/JSONRPC-trace-module). The RPC method requires any of the following *optional* parameters:
 
  - **fromBlock**(*uint* blockNumber) — either block number (`hex`), `earliest` which is the genesis block or `latest` (default) best block available. Trace starting block
  - **toBlock**(*uint* blockNumber) — either block number (`hex`), `earliest` which is the genesis block or `latest` best block available. Trace ending block
