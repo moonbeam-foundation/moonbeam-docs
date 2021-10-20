@@ -9,7 +9,7 @@ description:  Learn how to leverage Geth's Debug and Txpool APIs, and OpenEthere
 
 ## Introduction {: #introduction } 
 
-Geth's debug and txpool APIs and OpenEthereum's trace module provide non-standard RPC methods for getting a deeper insight into transaction processing. As part of Moonbeam's goal of providing a seamless Ethereum experience for developers, there is support for some of these non-standard RPC methods. Supporting these RPC methods is an important milestone because many projects, such as [The Graph](https://thegraph.com/) or [Blockscout](https://docs.blockscout.com/), rely on them to index blockchain data.
+Geth's `debug` and `txpool` APIs and OpenEthereum's `trace` module provide non-standard RPC methods for getting a deeper insight into transaction processing. As part of Moonbeam's goal of providing a seamless Ethereum experience for developers, there is support for some of these non-standard RPC methods. Supporting these RPC methods is an important milestone because many projects, such as [The Graph](https://thegraph.com/) or [Blockscout](https://docs.blockscout.com/), rely on them to index blockchain data.
 
 This guide will cover the supported RPC methods available on Moonbeam as well as how to get started running a node with `debug`, `txpool`, and `tracing` flags enabled.
 
@@ -40,6 +40,9 @@ You will also need to start your node with the following flag(s) depending on th
 
 The complete command for running a tracing node is as follows:
 
+!!! note
+    Debug/Trace features are still being actively developed. Because these requests are very CPU-demanding, it is recommended to run the node with the `--execution=Native` flag. This will use the native runtime included as part of the node executable instead of the Wasm binary stored on-chain.
+
 === "Moonbeam Development Node"
     ```
     docker run --network="host" -v "/var/lib/alphanet-data:/data" \
@@ -49,7 +52,7 @@ The complete command for running a tracing node is as follows:
     --base-path=/data \
     --chain alphanet \
     --name="Moonbeam-Tutorial" \
-    --execution wasm \
+    --execution native \
     --wasm-execution compiled \
     --pruning archive \
     --state-cache-size 1 \
@@ -68,7 +71,7 @@ The complete command for running a tracing node is as follows:
     --base-path=/data \
     --chain alphanet \
     --name="Moonbeam-Tutorial" \
-    --execution wasm \
+    --execution native \
     --wasm-execution compiled \
     --pruning archive \
     --state-cache-size 1 \
@@ -87,7 +90,7 @@ The complete command for running a tracing node is as follows:
     --base-path=/data \
     --chain moonriver \
     --name="Moonbeam-Tutorial" \
-    --execution wasm \
+    --execution native \
     --wasm-execution compiled \
     --pruning archive \
     --state-cache-size 1 \
@@ -97,6 +100,9 @@ The complete command for running a tracing node is as follows:
     --pruning archive \
     --name="Moonbeam-Tutorial (Embedded Relay)"
     ```
+
+!!! note
+    If you want to run an RPC endpoint, to connect polkadot.js.org, or to run your own application, use the flags `--unsafe-rpc-external` and/or `--unsafe-ws-external` to run the full node with external access to the RPC ports.  More details are available by running `moonbeam --help`.  
 
 ## Debug API {: #geth-debug-api } 
 
@@ -130,6 +136,14 @@ The [`trace_filter`]((https://openethereum.github.io/JSONRPC-trace-module#trace_
  - **toAddress**(*array* addresses) — filter transactions done from these addresses only. If an empty array is provided, no filtering is done with this field
  - **after**(*uint* offset) — default offset is `0`. Trace offset (or starting) number
  - **count**(*uint* numberOfTraces) — number of traces to display in a batch
+
+ By default, the maximum number of trace entries a single request of `trace_filter` is allowed to return is `500`. A request exceeding this limit will return an error. You can set a different maximum limit with the following flag:
+
+  - **`--ethapi-trace-max-count <uint>`** — sets the maximum number of trace entries to be returned by the node
+
+Blocks processed by requests are temporarily stored on cache for a certain amount of time (default is `300` seconds), after which they are deleted. You can set a different time for deletion with the following flag:
+
+  - **`-ethapi-trace-cache-duration <uint>`** — sets the duration (in seconds) after which the cache of `trace_filter,` for a given block, is discarded
 
 ## Try it out {: #try-it-out } 
 

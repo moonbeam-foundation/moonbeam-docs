@@ -198,11 +198,11 @@ Options accept an argument to the right side of the option. For example:
 
 For a complete list of flags and options, spin up your Moonbeam development node with `--help` added to the end of the command.
 
-### Advanced Flags and Options {: #advanced-flags-and-options } 
+## Debug, Trace and TxPool APIs {: #debug-trace-txpool-apis } 
 
-You can also gain access to some non-standard RPC methods by running a tracing node, which allow developers to inspect and debug transactions during runtime. Tracing nodes use a different Docker image than a standard Moonbeam development node. To learn how to run a Moonbeam development tracing node, check out the [Debug & Trace](/builders/tools/debug-trace/#try-it-out) guide and be sure to switch to the **Moonbeam Development Node** tab throughout the instructions.
+You can also gain access to some non-standard RPC methods by running a tracing node, which allow developers to inspect and debug transactions during runtime. Tracing nodes use a different Docker image than a standard Moonbeam development node. 
 
---8<-- 'text/setting-up-node/advanced-flags.md'
+To learn how to run a Moonbeam development tracing node, check out the [Debug & Trace](/builders/tools/debug-trace/#try-it-out) guide and be sure to switch to the **Moonbeam Development Node** tab throughout the instructions.
 
 ## Pre-funded Development Accounts {: #pre-funded-development-accounts } 
 
