@@ -37,11 +37,9 @@ You will also need to start your node with the following flag(s) depending on th
   - **`--ethapi=trace`** - optional flag that enables `trace_filter` 
   - **`--ethapi=txpool`** - optional flag that enables `txpool_content`, `txpool_inspect`, and `txpool_status`
   - **`--wasm-runtime-overrides=/moonbeam/<network>-substitutes-tracing`** - **required** flag for tracing that specifies the path where the local WASM runtimes are stored. Accepts the network as a parameter: `moonbase` (for development nodes and Moonbase Alpha) or `moonriver` 
+  - **`--execution=native`** - optional, recommended flag that uses the native runtime included as part of the node executable instead of the Wasm binary stored on-chain
 
 The complete command for running a tracing node is as follows:
-
-!!! note
-    Debug/Trace features are still being actively developed. Because these requests are very CPU-demanding, it is recommended to run the node with the `--execution=Native` flag. This will use the native runtime included as part of the node executable instead of the Wasm binary stored on-chain.
 
 === "Moonbeam Development Node"
     ```
