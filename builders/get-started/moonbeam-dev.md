@@ -64,7 +64,7 @@ If successful, you should see an output showing an idle state waiting for blocks
 
 ![Docker - output shows blocks being produced](/images/builders/get-started/moonbeam-dev/moonbeam-dev-2.png)
 
-For more information on some of the flags and options used in the example, check out [Common Flags and Options](#common-commands-flags-and-options). If you want to see a complete list of all of the flags, options, and subcommands, open the help menu by running:
+For more information on some of the flags and options used in the example, check out [Flags and Options](#commands-flags-and-options). If you want to see a complete list of all of the flags, options, and subcommands, open the help menu by running:
 
 ```
 docker run --rm --name {{ networks.development.container_name }} \
@@ -106,11 +106,6 @@ Now, build the development node by running:
 --8<-- 'code/setting-up-node/build.md'
 ```
 
-If a _cargo not found error_ shows up in the terminal, manually add Rust to your system path or restart your system:
-```
---8<-- 'code/setting-up-node/updatepath.md'
-```
-
 !!! note
     The initial build will take a while. Depending on your hardware, you should expect approximately 30 minutes for the build process to finish.
 
@@ -131,7 +126,7 @@ You should see an output that looks like the following, showing an idle state wa
 
 ![Output shows blocks being produced](/images/builders/get-started/moonbeam-dev/moonbeam-dev-4.png)
 
-For more information on some of the flags and options used in the example, check out [Common Flags and Options](#common-commands-flags-and-options). If you want to see a complete list of all of the flags, options, and subcommands, open the help menu by running:
+For more information on some of the flags and options used in the example, check out [Flags and Options](#commands-flags-and-options). If you want to see a complete list of all of the flags, options, and subcommands, open the help menu by running:
 
 ```
 ./target/release/moonbeam --help
@@ -140,8 +135,8 @@ For more information on some of the flags and options used in the example, check
 
 The development node is a Substrate-based node, so you can interact with it using standard Substrate tools. The two provided RPC endpoints are:
 
- - HTTP: `http://127.0.0.1:9933`
- - WS: `ws://127.0.0.1:9944` 
+ - **HTTP** - `http://127.0.0.1:9933`
+ - **WS** - `ws://127.0.0.1:9944` 
 
 Start by connecting to it with Polkadot.js Apps. Open a browser to: [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/#/explorer). This will open Polkadot.js Apps, which automatically connects to Polkadot MainNet.
 
@@ -161,7 +156,7 @@ With the release of [Moonbase Alpha v3](https://www.purestake.com/news/moonbeam-
  
 Nevertheless, leveraging the Ethereum full RPC capabilities of Moonbeam, you can use [MetaMask](/tokens/connect/metamask/) to check the balance of that address as well. In addition, you can also use other development tools, such as [Remix](/builders/interact/remix/) and [Truffle](/builders/interact/truffle/).
 
-## Common Commands, Flags and Options {: #common-commands-flags-and-options } 
+## Commands, Flags and Options {: #common-commands-flags-and-options } 
 
 ### Purging the Chain {: #purging-the-chain } 
 
@@ -182,11 +177,11 @@ Flags do not take an argument. To use a flag, add it to the end of a command. Fo
 --8<-- 'code/setting-up-node/runnode.md'
 ```
 
-- `--dev`: Specifies the development chain
-- `--no-telemetry`: Disable connecting to the Substrate telemetry server. For global chains, telemetry is on by default. Telemetry is unavailable if you are running a development (`--dev`) node.
-- `--tmp`: Runs a temporary node in which all of the configuration will be deleted at the end of the process
-- `--rpc-external`: Listen to all RPC interfaces
-- `--ws-external`: Listen to all Websocket interfaces
+- **`--dev`** - specifies the development chain
+- **`--no-telemetry`** - disable connecting to the Substrate telemetry server. For global chains, telemetry is on by default. Telemetry is unavailable if you are running a development (`--dev`) node
+- **`--tmp`** - runs a temporary node in which all of the configuration will be deleted at the end of the process
+- **`--rpc-external`** - listen to all RPC interfaces
+- **`--ws-external`** - listen to all Websocket interfaces
 
 ### Node Options {: #node-options } 
 
@@ -196,22 +191,18 @@ Options accept an argument to the right side of the option. For example:
 --8<-- 'code/setting-up-node/runnodewithsealinginterval.md'
 ```
 
-- `-l <log pattern>` or `--log <log pattern>`: Sets a custom logging filter. The syntax for the log pattern is `<target>=<level>`. For example, to print all of the RPC logs, the command would look like this: `-l rpc=trace`.
-- `--sealing <interval>`: When blocks should be sealed in the dev service. Accepted arguments for interval: `instant`, `manual`, or a number representing the timer interval in milliseconds (for example, `6000` will have the node produce blocks every 6 seconds). The default is `instant`.
-- `--rpc-port <port>`: Sets the HTTP RPC server TCP port. Accepts a port as the argument.
-- `--ws-port <port>`: Sets the WebSockets RPC server TCP port. Accepts a port as the argument.
+- **`-l <log pattern>` or `--log <log pattern>`** - sets a custom logging filter. The syntax for the log pattern is `<target>=<level>`. For example, to print all of the RPC logs, the command would look like this: `-l rpc=trace`
+- **`--sealing <interval>`** - when blocks should be sealed in the dev service. Accepted arguments for interval: `instant`, `manual`, or a number representing the timer interval in milliseconds (for example, `6000` will have the node produce blocks every 6 seconds). The default is `instant`
+- **`--rpc-port <port>`** - sets the HTTP RPC server TCP port. Accepts a port as the argument
+- **`--ws-port <port>`**: sets the WebSockets RPC server TCP port. Accepts a port as the argument
 
 For a complete list of flags and options, spin up your Moonbeam development node with `--help` added to the end of the command.
 
-## Advanced Flags and Options {: #advanced-flags-and-options } 
+## Debug, Trace and TxPool APIs {: #debug-trace-txpool-apis } 
 
---8<-- 'text/setting-up-node/advanced-flags.md'
+You can also gain access to some non-standard RPC methods by running a tracing node, which allow developers to inspect and debug transactions during runtime. Tracing nodes use a different Docker image than a standard Moonbeam development node. 
 
-For example, when running the binary:
-
-```
-./target/release/moonbeam --dev --execution=Native --ethapi=debug,trace
-```
+To learn how to run a Moonbeam development tracing node, check out the [Debug & Trace](/builders/tools/debug-trace/#try-it-out) guide and be sure to switch to the **Moonbeam Development Node** tab throughout the instructions.
 
 ## Pre-funded Development Accounts {: #pre-funded-development-accounts } 
 
