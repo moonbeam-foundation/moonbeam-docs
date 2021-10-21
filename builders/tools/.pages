@@ -12,3 +12,4 @@ nav:
  - precompiles.md
  - pubsub.md
  - debug-trace.md
+ - multisig-safe.md
