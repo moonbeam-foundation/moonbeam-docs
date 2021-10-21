@@ -15,15 +15,13 @@ The Graph is a decentralized and open-source indexing protocol for querying netw
 
 Furthermore, developers can build APIs, called Subgraphs. Users or other developers can use Subgraphs to query data specific to a set of smart contracts. Data is fetched with a standard GraphQL API. You can visit [their documentation](https://thegraph.com/docs/about/introduction#what-the-graph-is) to read more about The Graph protocol.
 
-With the introduction of Ethereum tracing modules in [Moonbase Alpha v7](https://github.com/PureStake/moonbeam/releases/tag/v0.7.0), The Graph is capable of indexing blockchain data in Moonbeam.
-
-This guide takes you through the creation of a simple subgraph for a Lottery contract on Moonbase Alpha.
+Due to the support of Ethereum tracing modules in Moonbeam, The Graph is capable of indexing blockchain data in Moonbeam. This guide takes you through the creation of a simple subgraph for a Lottery contract on Moonbase Alpha. This guide can be adapted for Moonriver.
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
 To use The Graph on Moonbase Alpha you have two options:
 
- - Run a Graph Node against Moonbase Alpha and point your Subgraph to it. To do so, you can follow [this tutorial](/node-operators/indexer-nodes/thegraph-node/)
+ - Run a Graph Node against Moonbase Alpha and point your Subgraph to it. To do so, you can follow [this tutorial](/node-operators/indexer-nodes/thegraph-node/) (you can also adapt the instructions for Moonriver)
  - Point your Subgraph to The Graph API via the [Graph Explorer website](https://thegraph.com/explorer/). To do so you need to create an account and have an access token
  
 ## The Lottery Contract {: #the-lottery-contract } 
@@ -227,31 +225,50 @@ export function handlePlayerJoined(event: PlayerJoined): void {
 
 ## Deploying a Subgraph {: #deploying-a-subgraph } 
 
+There are a few different ways to deploy a Subgraph. This guide will cover how to deploy a Subgraph [Using the Hosted Service](#using-the-hosted-service) and [Using a Local Graph Node](#using-a-local-graph-node). 
+
+### Using the Hosted Service
+
 If you are going to use The Graph API (hosted service), you need to:
 
  - Create a [Graph Explorer](https://thegraph.com/explorer/) account, you will need a Github account
  - Go to your dashboard and write down the access token
  - Create your Subgraph via the "Add Subgraph" button in the Graph Explorer site. Write down the Subgraph name
 
-!!! note
-    All steps can be found in [this link](https://thegraph.com/docs/deploy-a-subgraph).
+Next, in the terminal you can add your access token and deploy your Subgraph:
+
+```
+npx graph auth --product hosted-service <access-token>
+npx graph deploy --product hosted-service <username>/<subgraph-name>    
+```
+
+Where:
+
+ - **username** - refers to your GitHub username you used to create an account with
+ - **subgraph-name** - refers to the Subgraph name
+ - **access-token** — refers to the access token to use The Graph API
  
+!!! note
+    All steps can be found in the Graph's documentation for using a [Hosted Service to Deploy your Subgraph](https://thegraph.com/docs/developer/quick-start#4-deploy-your-subgraph).
+ 
+### Using a Local Graph Node
+
 If using a local Graph Node, you can create your Subgraph executing the following code:
 
 ```
-npx graph create <username>/<subgraphName> --node <graph-node>
+npx graph create <username>/<subgraph-name> --node <graph-node>
 ```
 
 Where:
 
  - **username** — refers to the username related to the Subgraph being created
- - **subgraphName** — refers to the Subgraph name
+ - **subgraph-name** — refers to the Subgraph name
  - **graph-node** — refers to the URL of the hosted service to use. Typically, for a local Graph Node is `http://127.0.0.1:8020`
 
 Once created, you can deploy your Subgraph by running the following command with the same parameters as before:
-
+ 
 ```
-npx graph deploy <username>/<subgraphName> \
+npx graph deploy <username>/<subgraph-name> \
 --ipfs <ipfs-url> \
 --node <graph-node> \
 --access-token <access-token>
@@ -260,7 +277,7 @@ npx graph deploy <username>/<subgraphName> \
 Where:
 
  - **username** — refers to the username used when creating the Subgraph
- - **subraphName** — refers to the Subgraph name defined when creating the Subgraph
+ - **subraph-name** — refers to the Subgraph name defined when creating the Subgraph
  - **ifps-url**  — refers to the URL for IFPS. If using The Graph API you can use `https://api.thegraph.com/ipfs/`. For your local Graph Node, the default value is `http://localhost:5001`
  - **graph-node** — refers to the URL of the hosted service to use. If using The Graph API you can use `https://api.thegraph.com/deploy/`. For your local Graph Node, the default value is `http://localhost:8020`
  - **access-token** — refers to the access token to use The Graph API. If you are using a local Graph Node this parameter is not necessary

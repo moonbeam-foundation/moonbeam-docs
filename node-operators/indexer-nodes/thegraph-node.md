@@ -24,12 +24,9 @@ Before diving into setting up a Graph Node, you neeed to have the following inst
  - [Docker Compose](https://docs.docker.com/compose/install/)
  - [JQ](https://stedolan.github.io/jq/download/)
 
-In addition, you need to have a node running with the `--ethapi=trace` option enabled. Currently, you can spin up two different kinds of nodes:
+In this guide, you will learn how to run a Graph node against a Moonbase Alpha tracing node with the `tracing` flag enabled. This guide can also be adapted for Moonriver.
 
- - **Moonbeam development node** — run your own Moonbeam instance in your private environment. To do so, you can follow [this guide](/builders/get-started/moonbeam-dev/). Make sure to check the [advanced flags section](/builders/get-started/moonbeam-dev/#advanced-flags-and-options)
- - **Moonbase Alpha node** — run a full node of the TestNet and access your own private endpoints. To do so, you can follow [this guide](/node-operators/networks/full-node/). Make sure to check the [advanced flags section](/node-operators/networks/full-node/#advanced-flags-and-options)
-
-In this guide, a Graph Node runs against a Moonbase Alpha full node with the `--ethapi=trace` flag.
+To spin up a full node with the `tracing` flag enabled, check out the [Debug & Trace](/node-operators/networks/debug-trace/#get-started) guide.
 
 ## Running a Graph Node {: #running-a-graph-node } 
 
@@ -52,9 +49,20 @@ The tail end from the logs of the previous command should look something similar
 
 Once everything is set up, you need to modify the "Ethereum environment" inside the `docker-compose.yml` file, so that it points to the endpoint of the node you are running this Graph Node against. Note that the `setup.sh` file detects the `Host IP` and writes its value, so you'll need to modify it accordingly.
 
-```
-ethereum: 'mbase:{{ networks.development.rpc_url }}'
-```
+=== "Moonbeam Development Node"
+    ```
+    ethereum: 'mbase:{{ networks.development.rpc_url }}'
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    ethereum: 'mbase:{{ networks.development.rpc_url }}'
+    ```
+
+=== "Moonriver"
+    ```
+    ethereum: 'moonriver:{{ networks.development.rpc_url }}'
+    ```
 
 The entire `docker-compose.yml` file should look something similar to:
 
@@ -111,4 +119,4 @@ After a while, you should see logs related to the Graph Node syncing with the la
 
 ![Graph Node logs](/images/node-operators/indexer-nodes/the-graph/the-graph-node-3.png)
 
-And that is it! You have a Graph Node running against the Moonbase Alpha TestNet. Feel free to adapt this example to a Moonbeam development node as well.
+And that is it! You have a Graph Node running against the Moonbase Alpha TestNet. Feel free to adapt this example to a Moonbeam development node or Moonriver as well.

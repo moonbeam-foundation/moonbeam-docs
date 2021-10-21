@@ -480,9 +480,9 @@ journalctl -f -u moonbeam.service
 
 ![Service Logs](/images/node-operators/networks/full-node/full-node-binary-2.png)
 
-## Advanced Flags and Options {: #advanced-flags-and-options } 
+## Debug, Trace and TxPool APIs {: #debug-trace-txpool-apis } 
 
---8<-- 'text/setting-up-node/advanced-flags.md'
+You can also gain access to some non-standard RPC methods by running a tracing node, which allow developers to inspect and debug transactions during runtime. Tracing nodes use a different Docker image than a standard Moonbase Alpha or Moonriver node. To learn how to run a tracing node, check out the [Debug & Trace](/node-operators/networks/debug-trace) guide and be sure to switch to the right network tab throughout the instructions.
 
 ## Updating the Client {: #updating-the-client } 
 
