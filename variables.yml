@@ -86,7 +86,7 @@ networks:
     staking:
       collator_bond_min: 1000
       collator_map_bond: 100
-      max_collators: 32
+      max_collators: 40
       round_blocks: 300
       round_hours: 1
       bond_lock: 2
@@ -164,7 +164,7 @@ networks:
     staking:
       collator_bond_min: 1000
       collator_map_bond: 100
-      max_collators: 40
+      max_collators: 48
       round_blocks: 300
       round_hours: 1
       bond_lock: 2
