@@ -26,7 +26,7 @@ Before diving into setting up a Graph Node, you neeed to have the following inst
 
 In this guide, you will learn how to run a Graph node against a Moonbase Alpha tracing node with the `tracing` flag enabled. This guide can also be adapted for Moonriver.
 
-To spin up a full node with the `tracing` flag enabled, check out the [Debug & Trace](/builders/tools/debug-trace/#get-started) guide.
+To spin up a full node with the `tracing` flag enabled, check out the [Debug & Trace](/node-operators/networks/debug-trace/#get-started) guide.
 
 ## Running a Graph Node {: #running-a-graph-node } 
 
