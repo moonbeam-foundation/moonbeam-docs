@@ -5,7 +5,7 @@ description:  Learn how to leverage Geth's Debug and Txpool APIs, and OpenEthere
 
 # Debug API & Trace Module
 
-![Debug & Trace Moonbeam Banner](/images/builders/tools/debug-trace/debug-trace-banner.png)
+![Debug & Trace Moonbeam Banner](/images/node-operators/networks/debug-trace/debug-trace-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -145,7 +145,7 @@ For this example, a local Moonbase Alpha full node is used, with the RPC HTTP en
 
 If you have a running node, you should see a similar terminal log:
 
-![Debug API](/images/builders/tools/debug-trace/debug-trace-1.png)
+![Debug API](/images/node-operators/networks/debug-trace/debug-trace-1.png)
 
 ### Using the Debug API
 
@@ -163,7 +163,7 @@ curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charse
 
 The node responds with the step-by-step replayed transaction information (response was cropped as it is quite long):
 
-![Trace Debug Node Running](/images/builders/tools/debug-trace/debug-trace-2.png)
+![Trace Debug Node Running](/images/node-operators/networks/debug-trace/debug-trace-2.png)
 
 ### Using the Tracing Module
 
@@ -180,7 +180,7 @@ curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charse
 
 The node responds with the trace information corresponding to the filter (response was cropped as it is quite long).
 
-![Trace Filter Node Running](/images/builders/tools/debug-trace/debug-trace-3.png)
+![Trace Filter Node Running](/images/node-operators/networks/debug-trace/debug-trace-3.png)
 
 ### Using the Txpool API
 
@@ -197,4 +197,4 @@ curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charse
 
 For this example, the `txpool_status` method will return the number of transactions currently pending or queued. 
 
-![Txpool Request and Response](/images/builders/tools/debug-trace/debug-trace-4.png)
+![Txpool Request and Response](/images/node-operators/networks/debug-trace/debug-trace-4.png)
