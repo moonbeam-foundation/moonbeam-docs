@@ -103,7 +103,7 @@ Next up is the owners and confirmations section of the wizard. In this section, 
 
 There are many different setups that can be used when creating a Safe. There can be 1 or more owners of the Safe as well as varying threshold levels. Please note that it is not advised to create a Safe with just 1 owner as it creates the possibility of a single point of failure.
 
-For this guide, you will create a multisig setup that has 3 owners and requires a threshold of 2, so at least 2 out of the 3 owners keys are required to executed transactions through the Safe.
+For this guide, you will create a multisig setup that has 3 owners and requires a threshold of 2, so at least 2 out of the 3 owners keys are required to execute transactions through the Safe.
 
 Your account will automatically be prefilled in as the first owner, however this can be changed if you would like to use different accounts. For this example, Alice's account has been prefilled. In addition to Alice, you can also add Bob and Charlie as owners:
 
@@ -128,26 +128,26 @@ It could take a few minutes to process the transaction and create the Safe, but 
 
 ## Configure Safe
 
-You can always manage your Safe and change some of the parameters set when creating it. To do you can click in the "Settings" option on the left hand side menu. 
+You can always manage your Safe and change some of the parameters set when creating it. To do you can click in the **Settings** option on the left hand side menu. 
 
-Insert Image Here
+![Modify Safe Settings](/images/builders/tools/multisig-safe/safe-8.png)
 
 In there you have the following options:
 
  - **Safe Details** — allows you to change the Safe name. This is a local action that requires no on-chain interaction
  - **Owners** — allows you to initiate a on-chain proposal to add/remove owners to the Safe
  - **Policies** — allows you to initiate a on-chain proposal to change the multisig threshold to execute the proposal as a transaction
- - **Advanced** — allows you to check other parameters from the Safe, such as the nonce, modules and transaction guard
+ - **Advanced** — allows you to check other parameters from the Safe, such as the nonce, modules, and transaction guard
  
 ## Receive and Send Tokens
 
 Now that you have created your Safe, you can start interacting with it. First, load up the Safe by sending some DEV tokens to it. You can send funds to the Safe from any account with DEV tokens. For this example, you can use Alice's account. Hover over **DEV** in the list of assets to reveal the **Send** and **Receive** buttons. Then click **Receive**.
 
-![Receive Tokens to the Safe](/images/builders/tools/multisig-safe/safe-8.png)
+![Receive Tokens to the Safe](/images/builders/tools/multisig-safe/safe-9.png)
 
 A pop-up will appear with the address of the Safe. Copy the address and click **Done**. 
 
-![Copy Safe Address](/images/builders/tools/multisig-safe/safe-9.png)
+![Copy Safe Address](/images/builders/tools/multisig-safe/safe-10.png)
 
 Next, open up your MetaMask to initiate a transaction:
 
@@ -157,13 +157,13 @@ Next, open up your MetaMask to initiate a transaction:
  4. Click **Next**
  5. Review the details of the transaction and click **Confirm**
 
-![Send DEV Tokens to the Safe](/images/builders/tools/multisig-safe/safe-10.png)
+![Send DEV Tokens to the Safe](/images/builders/tools/multisig-safe/safe-11.png)
 
 The transaction will be sent and your balance for DEV tokens will be updated on the Safe. 
 
 Now that you have funds in the Safe, you can send funds from the Safe to another account. For this example, you can send 1 DEV token to Bob's address. Hover over **DEV** in the list of assets, and this time click on **Send**.
 
-![Send Tokens from the Safe](/images/builders/tools/multisig-safe/safe-11.png)
+![Send Tokens from the Safe](/images/builders/tools/multisig-safe/safe-12.png)
 
 A pop-up will appear where you can enter the recipient and the amount of DEV tokens to send:
 
@@ -172,30 +172,32 @@ A pop-up will appear where you can enter the recipient and the amount of DEV tok
  3. Enter 1 DEV token
  4. Click **Review**
 
-![Send 1 DEV Token from the Safe to Bob](/images/builders/tools/multisig-safe/safe-12.png)
+![Send 1 DEV Token from the Safe to Bob](/images/builders/tools/multisig-safe/safe-13.png)
 
 Then review the details and click **Submit**. MetaMask will pop-up and you'll notice that instead of sending a transaction, you're sending a message. Click **Sign** to sign the message.
 
-![Submit Transaction and Sign Message](/images/builders/tools/multisig-safe/safe-13.png)
+![Submit Transaction and Sign Message](/images/builders/tools/multisig-safe/safe-14.png)
 
-Now, if you go back to the Safe, under the **Transactions** tab, you should be able to see that there has been a transaction initiated to send 1 DEV tokens to Bob's address. However, you should also see that only 1 out of 2 confirmations have been received and that 1 more owner is required to confirm the transaction before it gets executed. Therefore, you now have to confirm the transaction from either Bob's or Charlie's account.
+Now, if you go back to the Safe, under the **Transactions** tab, you should be able to see that there has been a transaction initiated to send 1 DEV tokens to Bob's address. However, you should also see that only 1 out of 2 confirmations have been received and that 1 more owner is required to confirm the transaction before it gets executed. 
 
-![Transaction Needs Confirmations](/images/builders/tools/multisig-safe/safe-14.png)
+![Transaction Needs Confirmations](/images/builders/tools/multisig-safe/safe-15.png)
 
-Switch accounts in MetaMask to Bob's account (or Charley's). Then go back to the Safe connected as Bob. The **Confirm** button should now be enabled. As Bob, go ahead and click **Confirm** to meet the threshold and send the transaction. A pop-up will appear for you to approve the transaction: 
+It is possible for a transaction to get rejected. If 2 of the 3 owners decided to reject the proposal, then the assets would remain in the Safe. However, for this example, you can confirm the transaction from either Bob's or Charlie's account.
+
+Switch accounts in MetaMask to Bob's account (or Charlie's). Then go back to the Safe connected as Bob. The **Confirm** button should now be enabled. As Bob, go ahead and click **Confirm** to meet the threshold and send the transaction. A pop-up will appear for you to approve the transaction:
 
  1. Check the **Execute transaction** box to execute the transaction immediately after confirmation. You can un-check it for the transaction to be executed manually at a later time
  2. Click **Submit**
  3. MetaMask will pop-up and ask you to confirm the transaction, if everything looks good, you can click **Confirm**
 
 !!! note
-    If you receive an error stating the transaction might fail, you may need to increase the gas limit. You can do so either in the "Advanced options" or in MetaMask. 
+    If you receive an error stating the transaction might fail, you may need to increase the gas limit. You can do so either in the **Advanced options** or in MetaMask. 
 
-![Submit Transaction Confirmation](/images/builders/tools/multisig-safe/safe-15.png)
+![Submit Transaction Confirmation](/images/builders/tools/multisig-safe/safe-16.png)
 
 The transaction will be removed from the **QUEUE** tab and a record of the transaction can now be found under the **HISTORY** tab. In addition, Bob's balance has now increased by 1 DEV token, and the Safe's balance for DEV tokens has decreased.
 
-![Successfully Executed Transaction](/images/builders/tools/multisig-safe/safe-16.png)
+![Successfully Executed Transaction](/images/builders/tools/multisig-safe/safe-17.png)
 
 Congratulations, you've successfully received and sent DEV tokens to and from the Safe!
 
@@ -214,7 +216,7 @@ You'll need to get the Safe's address again, you can do so by clicking on the **
  5. Click **Next**
  6. Review the transaction details and then click **Confirm** to send the transaction.
 
-![Send ERC20s to the Safe](/images/builders/tools/multisig-safe/safe-17.png)
+![Send ERC20s to the Safe](/images/builders/tools/multisig-safe/safe-18.png)
 
 If you navigate back to the Safe, in the list of **Assets** you should now see **MyToken** and a balance of 1000 MYTOKs. It could take a few minutes for **MyToken** to appear, but there is nothing for you to do to add the asset, it will appear on it's own.
 
@@ -222,7 +224,7 @@ Now that you have loaded your Safe with MYTOKs, you can send some from the Safe 
 
 Hover over **MyToken** in the list of assets, and this time click on **Send**.
 
-![Send ERC20s from the Safe](/images/builders/tools/multisig-safe/safe-18.png)
+![Send ERC20s from the Safe](/images/builders/tools/multisig-safe/safe-19.png)
 
 A pop-up will appear where you can enter the recipient and the amount of DEV tokens to send:
 
@@ -231,17 +233,19 @@ A pop-up will appear where you can enter the recipient and the amount of DEV tok
  3. Enter 10 MYTOK tokens
  4. Click **Review** and review the details
 
-![Send ERC20s to Charlie from the Safe](/images/builders/tools/multisig-safe/safe-19.png)
+![Send ERC20s to Charlie from the Safe](/images/builders/tools/multisig-safe/safe-20.png)
 
 If everything looks ok, you can:
  1. Click **Submit**. MetaMask will pop-up and you'll notice that instead of sending a transaction, you're sending a message
  2. Click **Sign** to sign the message
 
-![Sign Message to Send ERC20s to Charlie from the Safe](/images/builders/tools/multisig-safe/safe-20.png)
+![Sign Message to Send ERC20s to Charlie from the Safe](/images/builders/tools/multisig-safe/safe-21.png)
 
-Now, if you go back to the Safe, under the **Transactions** tab, you should be able to see that there has been a transaction initiated to send 10 MYTOK tokens to Charlie's address. However, you should also see that only 1 out of 2 confirmations have been received and that 1 more owner is required to confirm the transaction before it gets executed. Therefore, you now have to confirm the transaction from either Alice's or Charlie's account. 
+Now, if you go back to the Safe, under the **Transactions** tab, you should be able to see that there has been a transaction initiated to send 10 MYTOK tokens to Charlie's address. However, you should also see that only 1 out of 2 confirmations have been received and that 1 more owner is required to confirm the transaction before it gets executed.
 
-![Transaction Needs Confirmation](/images/builders/tools/multisig-safe/safe-21.png)
+![Transaction Needs Confirmation](/images/builders/tools/multisig-safe/safe-22.png)
+
+It is possible for a transaction to get rejected. If 2 of the 3 owners decided to reject the proposal, then the assets would remain in the Safe. However, for this example, you can confirm the transaction from either Alice's or Charlie's account.
 
 Switch accounts in MetaMask to Alice's account. Then go back to the Safe connected as Alice. The **Confirm** button should now be enabled. As Alice again, go ahead and click **Confirm** to meet the threshold and send the transaction. A pop-up will appear for you to approve the transaction:
 
@@ -249,14 +253,15 @@ Switch accounts in MetaMask to Alice's account. Then go back to the Safe connect
 2. Click **Submit**
 3. MetaMask will pop-up and ask you to confirm the transaction, if everything looks good, you can click **Confirm**
 
-!!! note
-    If you receive an error stating the transaction might fail, you may need to increase the gas limit. You can do so either in the "Advanced options" or in MetaMask.
 
-![Submit Transaction Confirmations](/images/builders/tools/multisig-safe/safe-22.png)
+!!! note
+    If you receive an error stating the transaction might fail, you may need to increase the gas limit. You can do so either in the **Advanced options** or in MetaMask.
+
+![Submit Transaction Confirmations](/images/builders/tools/multisig-safe/safe-23.png)
 
 The transaction will be removed from the **QUEUE** tab and a record of the transaction can now be found under the **HISTORY** tab. In addition, Charlie's balance has now increased by 10 MYTOK tokens, and the Safe's balance for MYTOK tokens has decreased.
 
-![Successfully Executed Transaction](/images/builders/tools/multisig-safe/safe-23.png)
+![Successfully Executed Transaction](/images/builders/tools/multisig-safe/safe-24.png)
 
 Congratulations, you've successfully received and sent ERC20 tokens to and from the Safe!
 
@@ -271,7 +276,7 @@ From the Safe:
  1. On the left hand side click on **New Transaction**
  2. Then select **Contract interaction**
 
-![New Contract Interaction](/images/builders/tools/multisig-safe/safe-24.png)
+![New Contract Interaction](/images/builders/tools/multisig-safe/safe-25.png)
 
 The **Contract interaction** pop-up will appear and you can fill in the contract details:
 
@@ -281,35 +286,37 @@ The **Contract interaction** pop-up will appear and you can fill in the contract
  4. Then a `_text` input field will appear. You can enter anything you would like, for this example, you can use `polkadots and moonbeams`
  5. Click **Review**
 
-![Create Contract Interaction](/images/builders/tools/multisig-safe/safe-25.png)
+![Create Contract Interaction](/images/builders/tools/multisig-safe/safe-26.png)
 
 If the details look ok, go ahead and:
  1. Click **Submit**. MetaMask will pop-up and you'll notice that instead of sending a transaction, you're sending a message
  2. Click **Sign** to sign the message
 
-![Submit Contract Interaction](/images/builders/tools/multisig-safe/safe-26.png)
+![Submit Contract Interaction](/images/builders/tools/multisig-safe/safe-27.png)
 
-Now, if you go back to the Safe, under the **Transactions** tab, you should be able to see that there has been a transaction initiated for a **Contract interaction**. However, you should also see that only 1 out of 2 confirmations have been received and that 1 more owner is required to confirm the transaction before it gets executed. Therefore, you now have to confirm the transaction from either Bob's or Charlie's account.
+Now, if you go back to the Safe, under the **Transactions** tab, you should be able to see that there has been a transaction initiated for a **Contract interaction**. However, you should also see that only 1 out of 2 confirmations have been received and that 1 more owner is required to confirm the transaction before it gets executed.
 
-![Transaction Needs Confirmation](/images/builders/tools/multisig-safe/safe-27.png)
+![Transaction Needs Confirmation](/images/builders/tools/multisig-safe/safe-28.png)
 
-Switch accounts in MetaMask to Bob's account (or Charley's). Then go back to the Safe connected as Bob. The **Confirm** button should now be enabled. As Bob, go ahead and click **Confirm** to meet the threshold and send the transaction. A pop-up will appear for you to approve the transaction:
+It is possible for a transaction to get rejected. If 2 of the 3 owners decided to reject the proposal, then the assets would remain in the Safe. However, for this example, you can confirm the transaction from either Bob's or Charlie's account.
+
+Switch accounts in MetaMask to Bob's account (or Charlie's). Then go back to the Safe connected as Bob. The **Confirm** button should now be enabled. As Bob, go ahead and click **Confirm** to meet the threshold and send the transaction. A pop-up will appear for you to approve the transaction:
 
 1. Check the **Execute transaction** box to execute the transaction immediately after confirmation. You can un-check it for the transaction to be executed manually at a later time
 2. Click **Submit**
 3. MetaMask will pop-up and ask you to confirm the transaction, if everything looks good, you can click **Confirm**
 
 !!! note
-    If you receive an error stating the transaction might fail, you may need to increase the gas limit. You can do so either in the "Advanced options" or in MetaMask.
+    If you receive an error stating the transaction might fail, you may need to increase the gas limit. You can do so either in the **Advanced options** or in MetaMask.
 
-![Submit Transaction Confirmation](/images/builders/tools/multisig-safe/safe-28.png)
+![Submit Transaction Confirmation](/images/builders/tools/multisig-safe/safe-29.png)
 
 The transaction will be removed from the **QUEUE** tab and a record of the transaction can now be found under the **HISTORY** tab. 
 
-![Transaction History](/images/builders/tools/multisig-safe/safe-29.png)
+![Transaction History](/images/builders/tools/multisig-safe/safe-30.png)
 
 To double check that the correct text was set, you can go through the process again except instead of selecting **setTextData** from the **Method** dropdown, you can select **text** to read the `text` value. This will be a call instead of a transaction, so a **Call** button will appear. Click on it and directly within the pop-up, you should see the result of the call, `polkadots and moonbeams`.
 
-![Contract Interaction Call Result](/images/builders/tools/multisig-safe/safe-30.png)
+![Contract Interaction Call Result](/images/builders/tools/multisig-safe/safe-31.png)
 
 Congratulations, you've successfully interacted with a smart contract using the Safe!
