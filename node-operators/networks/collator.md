@@ -128,13 +128,15 @@ Similar to Polkadot's `chill()` function, to leave the collator's candidate pool
 ### Bond More {: #bond-more }
 As a collator or collator candidate there are two options for increasing one's stake. The first option is to send the funds to be staked to another owned address and [nominate your collator](/tokens/staking/stake/#how-to-nominate-a-collator).  Collators that have {{ networks.moonriver.staking.collator_bond_min }} MOVR or more bonded can increase their bond from [Polkadot JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network#/accounts) as follows:
 
- 1. Navigate to the "Developer" tab and click on "Extrinsics"
- 2. Select your collator account (and verify it contains the additional funds to be bonded)
- 3. Select `parachainStaking` pallet under the "submit the following extrinsic" menu
- 4. Open the drop-down menu, which lists all the possible extrinsics related to staking, and select the `candidateBondMore()` function
- 5. Specify the additional amount to be bonded in the `more: BalanceOf` field
- 6. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
+ 1. Navigate to the "Developer" tab 
+ 2. Click on "Extrinsics"
+ 3. Select your collator account (and verify it contains the additional funds to be bonded)
+ 4. Select `parachainStaking` pallet under the "submit the following extrinsic" menu
+ 5. Open the drop-down menu, which lists all the possible extrinsics related to staking, and select the `candidateBondMore()` function
+ 6. Specify the additional amount to be bonded in the `more: BalanceOf` field
+ 7. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
  
+![Collator Bond More](/images/node-operators/networks/collators/collator-polkadotjs-7.png)
 
 ### Bond Less {: #bond-less }
 As a collator or collator candidate you may decrease your amount bonded if you have more than {{ networks.moonriver.staking.collator_bond_min }} MOVR bonded.
@@ -142,14 +144,15 @@ As a collator or collator candidate you may decrease your amount bonded if you h
 !!! note
     The collator bond for Moonriver was previously 100 MOVR for a brief period during the network launch process. If you are collator with {{ networks.moonriver.staking.collator_bond_min }} MOVR or less, you won't be able to decrease your bond. 
 
- 1. Navigate to the "Developer" tab and click on "Extrinsics"
- 2. Select your collator account
- 3. Select `parachainStaking` pallet under the "submit the following extrinsic" menu
- 4. Open the drop-down menu, which lists all the possible extrinsics related to staking, and select the `candidateBondLess()` function
- 5. Specify the amount which you want to decrease your bond by in the `less: BalanceOf` field
- 6. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
+ 1. Navigate to the "Developer" tab 
+ 2. Click on "Extrinsics"
+ 3. Select your collator account
+ 4. Select `parachainStaking` pallet under the "submit the following extrinsic" menu
+ 5. Open the drop-down menu, which lists all the possible extrinsics related to staking, and select the `candidateBondLess()` function
+ 6. Specify the amount by which you want to decrease your bond in the `less: BalanceOf` field
+ 7. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
  
-
+![Collator Bond Less](/images/node-operators/networks/collators/collator-polkadotjs-8.png)
 
 ## Session Keys {: #session-keys } 
 
