@@ -126,7 +126,7 @@ As mentioned before, only the top {{ networks.moonbase.staking.max_collators }} 
 Similar to Polkadot's `chill()` function, to leave the collator's candidate pool, follow the same steps as before but select the `leaveCandidates()` function in step 5.
 
 ### Bond More {: #bond-more }
-As a collator or collator candidate there are two options for increasing one's stake. The first option is to send the funds to be staked to another owned address and [nominate your collator](/tokens/staking/stake/#how-to-nominate-a-collator).  Collators that have {{ networks.moonriver.staking.collator_bond_min }} MOVR or more bonded can increase their bond from [Polkadot JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network#/accounts) as follows:
+As a collator or collator candidate there are two options for increasing one's stake. The first and recommended option is to send the funds to be staked to another owned address and [nominate your collator](/tokens/staking/stake/#how-to-nominate-a-collator). Alternatively, collators that have {{ networks.moonriver.staking.collator_bond_min }} MOVR or more bonded can increase their bond from [Polkadot JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network#/accounts) as follows:
 
  1. Navigate to the "Developer" tab 
  2. Click on "Extrinsics"
