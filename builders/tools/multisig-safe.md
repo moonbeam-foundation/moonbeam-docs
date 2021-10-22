@@ -9,9 +9,11 @@ description: Learn how to use and manage funds with the Moonbeam Safe. Create a 
 
 ## Introduction {: #introduction } 
 
-A single-signature wallet, or singlesig for short, is a wallet in which only one owner holds the private key. If the private key is lost, then access to the wallet and the funds are lost forever. To solve this problem, multi-signature wallets, or multisig for short, have been introduced. With a multisig wallet there is more than one owner, so one owner could lose their keys and the other owners would still have access to the wallet and funds. Therefore creating an extra layer of security.
+A single-signature wallet, or singlesig for short, is a wallet in which only one owner holds the private key, and therefore has control over all the assets that account holds. Moreover, if the private key is lost, then access to the wallet and the funds are lost forever. 
 
-To help manage singlesig and multisig wallets, the [Moonbeam Safe](https://multisig.moonbeam.network/) has been created. The Safe can be configured as a multisig contract that allows two or more owners to hold and transfer funds to and from the Safe. You can also configure the Safe to be a singlesig contract with only one owner. 
+To solve this problem, multi-signature wallets, or multisig for short, have been introduced. With a multisig wallet there is more than one owner, so one owner could lose their keys and the others would still have access to the wallet and funds. In addition, multisig wallets can require threshold signing, where a proposal is only executed as a transaction if a certain amount of approvals are attained. Therefore creating an extra layer of security.
+
+To help manage singlesig and multisig wallets, [Gnosis Safe](https://gnosis-safe.io/) was forked to create [Moonbeam Safe](https://multisig.moonbeam.network/). The Safe can be configured as a multisig contract that allows two or more owners to hold and transfer funds to and from the Safe. You can also configure the Safe to be a singlesig contract with only one owner. 
 
 This guide will show you how to create a multisig Safe on the Moonbase Alpha TestNet. You will also learn how to send DEV and ERC20 tokens to and from the Safe, and how to interact with smart contracts using the Safe. This guide can be adapted for Moonriver. 
 
@@ -26,24 +28,13 @@ For this guide, you will be creating a Safe on Moonbase Alpha to interact and ma
  - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/)
  - At least two accounts each loaded with funds. You can get DEV tokens from [Mission Control](/builders/get-started/moonbase/#get-tokens/)
 
-You will need at least two accounts because you will be setting up a multisig Safe with 3 owners, and 2 of the 3 owners will be required to confirm any transactions before getting executed. Therefore, throughout this guide you will need to switch back and forth between at least two of the accounts to be able to confirm and send transactions. 
+You will need at least two accounts because you will be setting up a multisig Safe with 3 owners, and 2/3 confirmations for any transaction to get executed. Therefore, throughout this guide you will need to switch back and forth between at least two of the accounts to be able to confirm and send transactions. 
 
-For this guide, you can feel free to create your own accounts or import the following development accounts into your MetaMask:
+This guide will use the following accounts:
 
-Alice:
-
- - **Public Address** - 0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac
- - **Private Key** - 0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133
-
-Bob:
-
- - **Public Address** - 0x3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0
- - **Private Key** - 0x8075991ce870b93a8870eca0c0f91913d12f47948ca0fd25b49c6fa7cdbeee8b
-
-Charlie:
-
- - **Public Address** - 0x798d4Ba9baf0064Ec19eB4F0a1a45785ae9D6DFc
- - **Private Key** - 0x0b6e18cafb6ed99687ec547bd28139cafdd2bffe70e6b688025de6b445aa5c5b
+ - **Alice** — 0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac
+ - **Bob** — 0x3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0
+ - **Charlie** — 0x798d4Ba9baf0064Ec19eB4F0a1a45785ae9D6DFc
 
 ### ERC20 Tokens
 
@@ -79,17 +70,17 @@ To get started creating a Safe, navigate to the [Moonbeam Safe](https://multisig
 
 Once on the [Moonbase Alpha](https://multisig.moonbeam.network/moonbase/) page, you can begin to create a Safe by first connecting your wallet:
 
-1. Click **Connect Wallet**
-2. Select a wallet to connect to Moonbeam Safe. For this example you can use MetaMask. If MetaMask doesn't appear in the list of options, click **Show More** and select **MetaMask**
+ 1. Click **Connect Wallet**
+ 2. Select a wallet to connect to Moonbeam Safe. For this example you can use MetaMask. If MetaMask doesn't appear in the list of options, click **Show More** and select **MetaMask**
 
 ![Connect Wallet to Moonbeam Safe](/images/builders/tools/multisig-safe/safe-1.png)
 
 If you're not already signed into MetaMask, you will be prompted to sign in. You will then be guided through adding and connecting your accounts, and adding and switching to the Moonbase Alpha network:
 
-1. Select an account and connect to the Safe. You'll want to select at least 2 of the 3 owner accounts and then click **Next**. For this example, Alice, Bob, and Charlie's accounts have all been selected 
-2. Connect to the selected accounts by clicking **Connect**
-3. If you are not connected to Moonbase Alpha, nor do you have the network added to your MetaMask, add Moonbase Alpha as a custom network by clicking **Approve**
-4. Switch the network to Moonbase Alpha by click **Switch Network**
+ 1. Select an account and connect to the Safe. You'll want to select at least 2 of the 3 owner accounts and then click **Next**. For this example, Alice, Bob, and Charlie's accounts have all been selected 
+ 2. Connect to the selected accounts by clicking **Connect**
+ 3. If you are not connected to Moonbase Alpha, nor do you have the network added to your MetaMask, add Moonbase Alpha as a custom network by clicking **Approve**
+ 4. Switch the network to Moonbase Alpha by click **Switch Network**
 
 ![Connect MetaMask to Moonbase Alpha](/images/builders/tools/multisig-safe/safe-2.png)
 
@@ -103,8 +94,8 @@ To create a new Safe on Moonbase Alpha, click **Create new Safe**. You will be t
 
 You will need to give your Safe a name:
 
-1. Enter the name of your new Safe, you can use `moonbeam-tutorial`
-2. Click **Start**
+ 1. Enter the name of your new Safe, you can use `moonbeam-tutorial`
+ 2. Click **Start**
 
 ![Submit Safe Name](/images/builders/tools/multisig-safe/safe-4.png)
 
@@ -112,19 +103,22 @@ Next up is the owners and confirmations section of the wizard. In this section, 
 
 There are many different setups that can be used when creating a Safe. There can be 1 or more owners of the Safe as well as varying threshold levels. Please note that it is not advised to create a Safe with just 1 owner as it creates the possibility of a single point of failure.
 
-For this guide, you will create a multisig setup that has 3 owners and requires a threshold of 2, so at least 2 out of the 3 owners keys are required to move the funds in the Safe.
+For this guide, you will create a multisig setup that has 3 owners and requires a threshold of 2, so at least 2 out of the 3 owners keys are required to executed transactions through the Safe.
 
 Your account will automatically be prefilled in as the first owner, however this can be changed if you would like to use different accounts. For this example, Alice's account has been prefilled. In addition to Alice, you can also add Bob and Charlie as owners:
 
-1. Click **Add another owner**
-2. Enter **Bob** as the second owner, along with his address: `0x3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0`
-3. Enter **Charlie** as the third owner, along with his address: `0x798d4Ba9baf0064Ec19eB4F0a1a45785ae9D6DFc`
-4. Set the confirmation threshold to **2** out of 3 owners
-5. Click **Review** to go to the last step in the wizard
+ 1. Click **Add another owner**
+ 2. Enter **Bob** as the second owner, along with his address: `0x3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0`
+ 3. Enter **Charlie** as the third owner, along with his address: `0x798d4Ba9baf0064Ec19eB4F0a1a45785ae9D6DFc`
+ 4. Set the confirmation threshold to **2** out of 3 owners
+ 5. Click **Review** to go to the last step in the wizard
 
 ![Enter Safe Owners](/images/builders/tools/multisig-safe/safe-5.png)
 
-Finally, you can review all of the Safe and owner details and if everything looks ok, click **Submit** to create your new Safe. The creation of the Safe will cost approximately less than .001 DEV tokens on Moonbase Alpha. MetaMask will pop-up and prompt you to confirm the transaction. Click **Confirm** to send the transaction and create the Safe. 
+Finally, you can review all of the Safe and owner details and if everything looks ok:
+
+ 1. Click **Submit** to create your new Safe. The creation of the Safe will cost approximately less than .001 DEV tokens on Moonbase Alpha. MetaMask will pop-up and prompt you to confirm the transaction
+ 2. Click **Confirm** to send the transaction and create the Safe
 
 ![Send Transaction to Create Multisig Safe](/images/builders/tools/multisig-safe/safe-6.png)
 
@@ -132,6 +126,19 @@ It could take a few minutes to process the transaction and create the Safe, but 
 
 ![Safe Created Successfully](/images/builders/tools/multisig-safe/safe-7.png)
 
+## Configure Safe
+
+You can always manage your Safe and change some of the parameters set when creating it. To do you can click in the "Settings" option on the left hand side menu. 
+
+Insert Image Here
+
+In there you have the following options:
+
+ - **Safe Details** — allows you to change the Safe name. This is a local action that requires no on-chain interaction
+ - **Owners** — allows you to initiate a on-chain proposal to add/remove owners to the Safe
+ - **Policies** — allows you to initiate a on-chain proposal to change the multisig threshold to execute the proposal as a transaction
+ - **Advanced** — allows you to check other parameters from the Safe, such as the nonce, modules and transaction guard
+ 
 ## Receive and Send Tokens
 
 Now that you have created your Safe, you can start interacting with it. First, load up the Safe by sending some DEV tokens to it. You can send funds to the Safe from any account with DEV tokens. For this example, you can use Alice's account. Hover over **DEV** in the list of assets to reveal the **Send** and **Receive** buttons. Then click **Receive**.
@@ -144,11 +151,11 @@ A pop-up will appear with the address of the Safe. Copy the address and click **
 
 Next, open up your MetaMask to initiate a transaction:
 
-1. Click **Send** to send a transaction
-2. Paste in the address of the Safe
-3. Enter the amount of DEV tokens you would like to send to the Safe. For this example, you can use 2 DEV tokens
-4. Click **Next**
-5. Review the details of the transaction and click **Confirm**
+ 1. Click **Send** to send a transaction
+ 2. Paste in the address of the Safe
+ 3. Enter the amount of DEV tokens you would like to send to the Safe. For this example, you can use 2 DEV tokens
+ 4. Click **Next**
+ 5. Review the details of the transaction and click **Confirm**
 
 ![Send DEV Tokens to the Safe](/images/builders/tools/multisig-safe/safe-10.png)
 
@@ -160,10 +167,10 @@ Now that you have funds in the Safe, you can send funds from the Safe to another
 
 A pop-up will appear where you can enter the recipient and the amount of DEV tokens to send:
 
-1. Enter Bob's Address
-2. Select **DEV** from the list of assets
-3. Enter 1 DEV token
-4. Click **Review**
+ 1. Enter Bob's Address
+ 2. Select **DEV** from the list of assets
+ 3. Enter 1 DEV token
+ 4. Click **Review**
 
 ![Send 1 DEV Token from the Safe to Bob](/images/builders/tools/multisig-safe/safe-12.png)
 
@@ -171,17 +178,18 @@ Then review the details and click **Submit**. MetaMask will pop-up and you'll no
 
 ![Submit Transaction and Sign Message](/images/builders/tools/multisig-safe/safe-13.png)
 
-Now, if you go back to the Safe, under the **Transactions** tab, you should be able to see that there has been a transaction initiated to send .5 DEV tokens to Bob's address. However, you should also see that only 1 out of 2 confirmations have been received and that 1 more owner is required to confirm the transaction before it gets executed. Therefore, you now have to confirm the transaction from either Bob's or Charlie's account.
+Now, if you go back to the Safe, under the **Transactions** tab, you should be able to see that there has been a transaction initiated to send 1 DEV tokens to Bob's address. However, you should also see that only 1 out of 2 confirmations have been received and that 1 more owner is required to confirm the transaction before it gets executed. Therefore, you now have to confirm the transaction from either Bob's or Charlie's account.
 
 ![Transaction Needs Confirmations](/images/builders/tools/multisig-safe/safe-14.png)
 
-Switch accounts in MetaMask to Bob's account. Then go back to the Safe connected as Bob. The **Confirm** button should now be enabled. As Bob, go ahead and click **Confirm** to meet the threshold and send the transaction. A pop-up will appear for you to approve the transaction: 
+Switch accounts in MetaMask to Bob's account (or Charley's). Then go back to the Safe connected as Bob. The **Confirm** button should now be enabled. As Bob, go ahead and click **Confirm** to meet the threshold and send the transaction. A pop-up will appear for you to approve the transaction: 
 
-1. Check the **Execute transaction** box to execute the transaction immediately after confirmation. You can un-check it for the transaction to be executed manually at a later time
-2. Click **Submit**
-3. MetaMask will pop-up and ask you to confirm the transaction, if everything looks good, you can click **Confirm**
+ 1. Check the **Execute transaction** box to execute the transaction immediately after confirmation. You can un-check it for the transaction to be executed manually at a later time
+ 2. Click **Submit**
+ 3. MetaMask will pop-up and ask you to confirm the transaction, if everything looks good, you can click **Confirm**
 
-If you receive an error stating the transaction might fail, you may need to increase the gas limit. 
+!!! note
+    If you receive an error stating the transaction might fail, you may need to increase the gas limit. You can do so either in the "Advanced options" or in MetaMask. 
 
 ![Submit Transaction Confirmation](/images/builders/tools/multisig-safe/safe-15.png)
 
@@ -199,12 +207,12 @@ You should still be connected to Bob's account for this example. So, you'll be s
 
 You'll need to get the Safe's address again, you can do so by clicking on the **Copy to clipboard** icon in the top left hand corner. Once you've got your Safe's address copied, open up MetaMask:
 
-1. Switch to the **Assets** tab and select **MYTOK** from the list
-2. Click **Send** 
-3. Paste in the Safe's address
-4. Enter amount of MYTOKs to send. You should have minted 8M MYTOK tokens in the [Using Remix to Deploy to Moonbeam](https://docs.moonbeam.network/builders/interact/remix/) guide. So for this example, you can enter 1000 MYTOKs for the amount to send
-5. Click **Next**
-6. Review the transaction details and then click **Confirm** to send the transaction.
+ 1. Switch to the **Assets** tab and select **MYTOK** from the list
+ 2. Click **Send** 
+ 3. Paste in the Safe's address
+ 4. Enter amount of MYTOKs to send. You should have minted 8M MYTOK tokens in the [Using Remix to Deploy to Moonbeam](https://docs.moonbeam.network/builders/interact/remix/) guide. So for this example, you can enter 1000 MYTOKs for the amount to send
+ 5. Click **Next**
+ 6. Review the transaction details and then click **Confirm** to send the transaction.
 
 ![Send ERC20s to the Safe](/images/builders/tools/multisig-safe/safe-17.png)
 
@@ -218,14 +226,16 @@ Hover over **MyToken** in the list of assets, and this time click on **Send**.
 
 A pop-up will appear where you can enter the recipient and the amount of DEV tokens to send:
 
-1. Enter Charlies's Address
-2. Select **MyToken** from the list of assets
-3. Enter 10 MYTOK tokens
-4. Click **Review** and review the details
+ 1. Enter Charlies's Address
+ 2. Select **MyToken** from the list of assets
+ 3. Enter 10 MYTOK tokens
+ 4. Click **Review** and review the details
 
 ![Send ERC20s to Charlie from the Safe](/images/builders/tools/multisig-safe/safe-19.png)
 
-If everything looks ok, you can click **Submit**. MetaMask will pop-up and you'll notice that instead of sending a transaction, you're sending a message. Click **Sign** to sign the message. 
+If everything looks ok, you can:
+ 1. Click **Submit**. MetaMask will pop-up and you'll notice that instead of sending a transaction, you're sending a message
+ 2. Click **Sign** to sign the message
 
 ![Sign Message to Send ERC20s to Charlie from the Safe](/images/builders/tools/multisig-safe/safe-20.png)
 
@@ -239,7 +249,8 @@ Switch accounts in MetaMask to Alice's account. Then go back to the Safe connect
 2. Click **Submit**
 3. MetaMask will pop-up and ask you to confirm the transaction, if everything looks good, you can click **Confirm**
 
-If you receive an error stating the transaction might fail, you may need to increase the gas limit. 
+!!! note
+    If you receive an error stating the transaction might fail, you may need to increase the gas limit. You can do so either in the "Advanced options" or in MetaMask.
 
 ![Submit Transaction Confirmations](/images/builders/tools/multisig-safe/safe-22.png)
 
@@ -257,22 +268,24 @@ You should still be connected to Alice's account for this section of the guide.
 
 From the Safe:
 
-1. On the left hand side click on **New Transaction**
-2. Then select **Contract interaction**
+ 1. On the left hand side click on **New Transaction**
+ 2. Then select **Contract interaction**
 
 ![New Contract Interaction](/images/builders/tools/multisig-safe/safe-24.png)
 
 The **Contract interaction** pop-up will appear and you can fill in the contract details:
 
-1. Enter the contract address into the **Contract address** field
-2. In the **ABI** text box, paste the ABI
-3. A **Method** dropdown will appear. Select the `setTextData` function
-4. Then a `_text` input field will appear. You can enter anything you would like, for this example, you can use `polkadots and moonbeams`
-5. Click **Review**
+ 1. Enter the contract address into the **Contract address** field
+ 2. In the **ABI** text box, paste the ABI
+ 3. A **Method** dropdown will appear. Select the `setTextData` function
+ 4. Then a `_text` input field will appear. You can enter anything you would like, for this example, you can use `polkadots and moonbeams`
+ 5. Click **Review**
 
 ![Create Contract Interaction](/images/builders/tools/multisig-safe/safe-25.png)
 
-If the details look ok, go ahead and click **Submit**. MetaMask will pop-up and you'll notice that instead of sending a transaction, you're sending a message. Click **Sign** to sign the message.
+If the details look ok, go ahead and:
+ 1. Click **Submit**. MetaMask will pop-up and you'll notice that instead of sending a transaction, you're sending a message
+ 2. Click **Sign** to sign the message
 
 ![Submit Contract Interaction](/images/builders/tools/multisig-safe/safe-26.png)
 
@@ -280,13 +293,14 @@ Now, if you go back to the Safe, under the **Transactions** tab, you should be a
 
 ![Transaction Needs Confirmation](/images/builders/tools/multisig-safe/safe-27.png)
 
-Switch accounts in MetaMask to Bob's account. Then go back to the Safe connected as Bob. The **Confirm** button should now be enabled. As Bob, go ahead and click **Confirm** to meet the threshold and send the transaction. A pop-up will appear for you to approve the transaction:
+Switch accounts in MetaMask to Bob's account (or Charley's). Then go back to the Safe connected as Bob. The **Confirm** button should now be enabled. As Bob, go ahead and click **Confirm** to meet the threshold and send the transaction. A pop-up will appear for you to approve the transaction:
 
 1. Check the **Execute transaction** box to execute the transaction immediately after confirmation. You can un-check it for the transaction to be executed manually at a later time
 2. Click **Submit**
 3. MetaMask will pop-up and ask you to confirm the transaction, if everything looks good, you can click **Confirm**
 
-If you receive an error stating the transaction might fail, you may need to increase the gas limit. 
+!!! note
+    If you receive an error stating the transaction might fail, you may need to increase the gas limit. You can do so either in the "Advanced options" or in MetaMask.
 
 ![Submit Transaction Confirmation](/images/builders/tools/multisig-safe/safe-28.png)
 
