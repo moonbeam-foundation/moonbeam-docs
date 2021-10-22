@@ -10,4 +10,5 @@ nav:
  - mars.md
  - explorers.md
  - precompiles.md
+ - debug-trace.md
  - pubsub.md
