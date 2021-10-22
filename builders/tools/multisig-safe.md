@@ -258,6 +258,7 @@ Now, if you go back to the Safe, under the **Transactions** tab, you should be a
 You will need to switch accounts to Alice or Charlie and confirm the transaction to execute it. You can follow the same steps outlined in the above [Transaction Confirmation](#transaction-confirmation) section.
 
 Once the transaction has been confirmed from one of the other two accounts, the transaction will be moved to the **HISTORY** tab. 
+
 ![Successfully Executed Transaction](/images/builders/tools/multisig-safe/safe-23.png)
 
 Congratulations! You've successfully received and sent ERC20 tokens to and from the Safe!
