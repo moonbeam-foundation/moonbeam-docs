@@ -1,17 +1,21 @@
 ---
 title: Debug & Trace
-description:  Learn how to leverage Geth's Debug and Txpool APIs, and OpenEthereum's Trace module on Moonbeam
+description:  Learn how to leverage Geth's Debug and Txpool APIs, and OpenEthereum's Trace module to call non-standard RPC methods on Moonbeam
 ---
 
 # Debug API & Trace Module
 
-![Debug & Trace Moonbeam Banner](/images/node-operators/networks/debug-trace/debug-trace-banner.png)
+![Debug & Trace Moonbeam Banner](/images/builders/tools/debug-trace/debug-trace-banner.png)
 
 ## Introduction {: #introduction } 
 
 Geth's `debug` and `txpool` APIs and OpenEthereum's `trace` module provide non-standard RPC methods for getting a deeper insight into transaction processing. As part of Moonbeam's goal of providing a seamless Ethereum experience for developers, there is support for some of these non-standard RPC methods. Supporting these RPC methods is an important milestone because many projects, such as [The Graph](https://thegraph.com/) or [Blockscout](https://docs.blockscout.com/), rely on them to index blockchain data.
 
-This guide will cover the supported RPC methods available on Moonbeam as well as how to get started running a node with `debug`, `txpool`, and `tracing` flags enabled.
+This guide will cover the supported RPC methods available on Moonbeam as well as how to invoke the methods using curl commands against a local Moonbase Alpha tracing node.
+
+## Checking Prerequisites
+
+You will need to have a locally running instance of a Moonbase Alpha tracing node with the `debug`, `txpool`, and `tracing` flags enabled for this guide. If you haven't already done so, you can follow the guide on [Running a Tracing Node](/node-operators/networks/tracing-node/). The RPC HTTP endpoint should be at `http://127.0.0.1:9933`.
 
 ## Supported RPC Methods
 
@@ -24,79 +28,6 @@ The following RPC methods are available:
   - [`txpool_content`](https://geth.ethereum.org/docs/rpc/ns-txpool#txpool_content)
   - [`txpool_inspect`](https://geth.ethereum.org/docs/rpc/ns-txpool#txpool_inspect)
   - [`txpool_status`](https://geth.ethereum.org/docs/rpc/ns-txpool#txpool_status)
-
-## Get Started
-
-Spinning up a `debug`, `txpool`, or `tracing` node is similar to running a full node, however, you need to use a different Docker image than the standard Moonbeam image. You will also need to use additional flags to tell the node which features to support. Otherwise, the features will be unavailable as they are not included out of the box due to the heavy calls on the node's side.
-
-Instead of the standard `purestake/moonbeam` docker image, you will need to use `purestake/moonbeam-tracing` image. The latest supported version can be found on the [Docker Hub for the `moonbeam-tracing` image](https://hub.docker.com/r/purestake/moonbeam-tracing/tags).
-
-You will also need to start your node with the following flag(s) depending on the features you would like to enable:
-
-  - **`--ethapi=debug`** - optional flag that enables `debug_traceTransaction`, `debug_traceBlockByNumber`, and `debug_traceBlockByHash`
-  - **`--ethapi=trace`** - optional flag that enables `trace_filter` 
-  - **`--ethapi=txpool`** - optional flag that enables `txpool_content`, `txpool_inspect`, and `txpool_status`
-  - **`--wasm-runtime-overrides=/moonbeam/<network>-substitutes-tracing`** - **required** flag for tracing that specifies the path where the local WASM runtimes are stored. Accepts the network as a parameter: `moonbase` (for development nodes and Moonbase Alpha) or `moonriver` 
-  - **`--execution=native`** - optional, recommended flag that uses the native runtime included as part of the node executable instead of the Wasm binary stored on-chain
-
-The complete command for running a tracing node is as follows:
-
-=== "Moonbeam Development Node"
-    ```
-    docker run --network="host" -v "/var/lib/alphanet-data:/data" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-    purestake/moonbeam-tracing:v0.13.1-800 \
-    --base-path=/data \
-    --name="Moonbeam-Tutorial" \
-    --execution native \
-    --wasm-execution compiled \
-    --pruning archive \
-    --state-cache-size 1 \
-    --ethapi=debug,trace,txpool \
-    --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
-    --dev
-    ```
-
-=== "Moonbase Alpha"
-    ```
-    docker run --network="host" -v "/var/lib/alphanet-data:/data" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-    purestake/moonbeam-tracing:v0.13.1-800 \
-    --base-path=/data \
-    --chain alphanet \
-    --name="Moonbeam-Tutorial" \
-    --execution native \
-    --wasm-execution compiled \
-    --pruning archive \
-    --state-cache-size 1 \
-    --ethapi=debug,trace,txpool \
-    --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
-    -- \
-    --pruning archive \
-    --name="Moonbeam-Tutorial (Embedded Relay)"
-    ```
-
-=== "Moonriver"
-    ```
-    docker run --network="host" -v "/var/lib/alphanet-data:/data" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-    purestake/moonbeam-tracing:v0.13.1-800 \
-    --base-path=/data \
-    --chain moonriver \
-    --name="Moonbeam-Tutorial" \
-    --execution native \
-    --wasm-execution compiled \
-    --pruning archive \
-    --state-cache-size 1 \
-    --ethapi=debug,trace,txpool \
-    --wasm-runtime-overrides=/moonbeam/moonriver-substitutes-tracing \
-    -- \
-    --pruning archive \
-    --name="Moonbeam-Tutorial (Embedded Relay)"
-    ```
-
-!!! note
-    If you want to run an RPC endpoint, to connect polkadot.js.org, or to run your own application, use the flags `--unsafe-rpc-external` and/or `--unsafe-ws-external` to run the full node with external access to the RPC ports.  More details are available by running `moonbeam --help`.  
 
 ## Debug API {: #geth-debug-api } 
 
@@ -131,13 +62,12 @@ The [`trace_filter`](https://openethereum.github.io/JSONRPC-trace-module#trace_f
  - **after**(*uint* offset) — default offset is `0`. Trace offset (or starting) number
  - **count**(*uint* numberOfTraces) — number of traces to display in a batch
 
- By default, the maximum number of trace entries a single request of `trace_filter` is allowed to return is `500`. A request exceeding this limit will return an error. You can set a different maximum limit with the following flag:
+There are a couple default values that you should be aware of:
 
-  - **`--ethapi-trace-max-count <uint>`** — sets the maximum number of trace entries to be returned by the node
+ - The maximum number of trace entries a single request of `trace_filter` is allowed to return is `500`. A request exceeding this limit will return an error
+ - Blocks processed by requests are temporarily stored on cache for `300` seconds, after which they are deleted
 
-Blocks processed by requests are temporarily stored on cache for a certain amount of time (default is `300` seconds), after which they are deleted. You can set a different time for deletion with the following flag:
-
-  - **`-ethapi-trace-cache-duration <uint>`** — sets the duration (in seconds) after which the cache of `trace_filter,` for a given block, is discarded
+To change the default values you can add [Additional Flags](/node-operators/networks/tracing-node/#additional-flags) when spinning up your tracing node.
 
 ## Try it out {: #try-it-out } 
 
@@ -145,7 +75,7 @@ For this example, a local Moonbase Alpha full node is used, with the RPC HTTP en
 
 If you have a running node, you should see a similar terminal log:
 
-![Debug API](/images/node-operators/networks/debug-trace/debug-trace-1.png)
+![Debug API](/images/builders/tools/debug-trace/debug-trace-1.png)
 
 ### Using the Debug API
 
@@ -163,7 +93,7 @@ curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charse
 
 The node responds with the step-by-step replayed transaction information (response was cropped as it is quite long):
 
-![Trace Debug Node Running](/images/node-operators/networks/debug-trace/debug-trace-2.png)
+![Trace Debug Node Running](/images/builders/tools/debug-trace/debug-trace-2.png)
 
 ### Using the Tracing Module
 
@@ -180,7 +110,7 @@ curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charse
 
 The node responds with the trace information corresponding to the filter (response was cropped as it is quite long).
 
-![Trace Filter Node Running](/images/node-operators/networks/debug-trace/debug-trace-3.png)
+![Trace Filter Node Running](/images/builders/tools/debug-trace/debug-trace-3.png)
 
 ### Using the Txpool API
 
@@ -197,4 +127,4 @@ curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charse
 
 For this example, the `txpool_status` method will return the number of transactions currently pending or queued. 
 
-![Txpool Request and Response](/images/node-operators/networks/debug-trace/debug-trace-4.png)
+![Txpool Request and Response](/images/builders/tools/debug-trace/debug-trace-4.png)

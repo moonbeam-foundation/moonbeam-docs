@@ -7,8 +7,9 @@ nav:
   - remix.md
   - hardhat.md
   - truffle.md
-  - multisig-safe.md
   - waffle.md
   - mars.md
+  - multisig-safe.md
   - precompiles.md
+  - debug-trace.md
   - pubsub.md

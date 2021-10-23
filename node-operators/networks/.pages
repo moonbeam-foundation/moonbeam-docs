@@ -4,6 +4,6 @@ nav:
   - index.md
   - full-node.md
   - compile-binary.md
-  - debug-trace.md
+  - tracing-node.md
   - collator.md
   - telemetry.md
