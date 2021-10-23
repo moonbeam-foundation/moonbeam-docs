@@ -1,13 +1,14 @@
 title: Tools
 nav:
- - index.md
- - eth-libraries
- - openzeppelin
- - remix.md
- - hardhat.md
- - truffle.md
- - waffle.md
- - mars.md
- - explorers.md
- - precompiles.md
- - pubsub.md
+  - index.md
+  - eth-libraries
+  - openzeppelin
+  - explorers.md
+  - remix.md
+  - hardhat.md
+  - truffle.md
+  - multisig-safe.md
+  - waffle.md
+  - mars.md
+  - precompiles.md
+  - pubsub.md
