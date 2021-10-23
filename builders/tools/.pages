@@ -2,8 +2,8 @@ title: Tools
 nav:
   - index.md
   - eth-libraries
-  - explorers.md
   - openzeppelin
+  - explorers.md
   - remix.md
   - hardhat.md
   - truffle.md

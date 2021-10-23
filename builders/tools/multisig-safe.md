@@ -182,13 +182,15 @@ Then review the details and click **Submit**. MetaMask will pop-up and you'll no
 
 ![Submit Transaction and Sign Message](/images/builders/tools/multisig-safe/safe-14.png)
 
-Now, if you go back to the Safe, under the **Transactions** tab, you should be able to see that there has been a transaction initiated to send 1 DEV tokens to Bob's address. However, you should also see that only 1 out of 2 confirmations have been received and that 1 more owner is required to confirm the transaction before it gets executed. 
+Now, if you go back to the Safe, under the **Transactions** tab, you should be able to see that there has been a transaction proposal initiated to send 1 DEV tokens to Bob's address. However, you should also see that only 1 out of 2 confirmations have been received and that 1 more owner is required to confirm the transaction before it gets executed. 
 
 ![Transaction Needs Confirmations](/images/builders/tools/multisig-safe/safe-15.png)
 
 ### Transaction Confirmation
 
-It is possible for a transaction to get rejected. If 2 of the 3 owners decided to reject the proposal, then the assets would remain in the Safe. However, for this example, you can confirm the transaction from either Bob's or Charlie's account.
+The process of confirming (or rejecting) a transaction proposal is similar for all the use cases of a multisig Safe. One of the owners initiates the proposal to execute an action. The other owners can approve or reject the proposal. Once the signature threshold is reached, any owner can execute the transaction proposal if approved, or discard the transaction proposal if rejected.
+
+In this example, if 2 of the 3 owners decided to reject the proposal, then the assets would remain in the Safe. However, in this case, you can confirm the transaction from either Bob's or Charlie's account.
 
 Switch accounts in MetaMask to Bob's account (or Charlie's). Then go back to the Safe connected as Bob. The **Confirm** button should now be enabled. As Bob, go ahead and click **Confirm** to meet the threshold and send the transaction. A pop-up will appear for you to approve the transaction:
 
@@ -251,7 +253,7 @@ If everything looks ok, you can:
 
 ![Sign Message to Send ERC20s to Charlie from the Safe](/images/builders/tools/multisig-safe/safe-21.png)
 
-Now, if you go back to the Safe, under the **Transactions** tab, you should be able to see that there has been a transaction initiated to send 10 MYTOK tokens to Charlie's address. However, you should also see that only 1 out of 2 confirmations have been received and that 1 more owner is required to confirm the transaction before it gets executed.
+Now, if you go back to the Safe, under the **Transactions** tab, you should be able to see that there has been a transaction proposal initiated to send 10 MYTOK tokens to Charlie's address. However, you should also see that only 1 out of 2 confirmations have been received and that 1 more owner is required to confirm the transaction before it gets executed.
 
 ![Transaction Needs Confirmation](/images/builders/tools/multisig-safe/safe-22.png)
 
@@ -292,7 +294,7 @@ If the details look ok, go ahead and:
 
 ![Submit Contract Interaction](/images/builders/tools/multisig-safe/safe-26.png)
 
-Now, if you go back to the Safe, under the **Transactions** tab, you should be able to see that there has been a transaction initiated for a **Contract interaction**. However, you should also see that only 1 out of 2 confirmations have been received and that 1 more owner is required to confirm the transaction before it gets executed.
+Now, if you go back to the Safe, under the **Transactions** tab, you should be able to see that there has been a transaction proposal initiated for a **Contract interaction**. However, you should also see that only 1 out of 2 confirmations have been received and that 1 more owner is required to confirm the transaction before it gets executed.
 
 ![Transaction Needs Confirmation](/images/builders/tools/multisig-safe/safe-27.png)
 
