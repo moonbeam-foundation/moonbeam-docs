@@ -4,6 +4,6 @@ nav:
   - metamask.md
   - mathwallet.md
   - polkadotjs.md
-  - ledger.md
   - trezor.md
   - nifty.md
+  - ledger
