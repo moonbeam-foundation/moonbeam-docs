@@ -13,7 +13,7 @@ Hardware wallets provide a safer way to store crypto funds because the private k
 
 With the release of the Moonriver app on Ledger Live, you can now use your Ledger device to sign transactions on Moonriver without having to deal with chain configurations.
 
-This tutorial shows you how to get started with your Ledger hardware wallet on Moonriver using the Ledger Live Moonriver app. The guide only illustrates the steps for a Ledger Nano X device, but you can follow along with a Ledger Nano S as well. If you are looking for instructions on how to connect your Ledger to a Moonbeam development node or the Moonbase Alpha TestNet, you can check out the guide for [using the Ledger Live Ethereum app](/connect/ledger/ethereum-ledger/).
+This tutorial shows you how to get started with your Ledger hardware wallet on Moonriver using the Ledger Live Moonriver app. The guide only illustrates the steps for a Ledger Nano X device, but you can follow along with a Ledger Nano S as well. If you are looking for instructions on how to connect your Ledger to a Moonbeam development node or the Moonbase Alpha TestNet, you can check out the guide for [using the Ledger Live Ethereum app](/tokens/connect/ledger/eth-app/).
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 

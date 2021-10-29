@@ -13,7 +13,7 @@ Hardware wallets provide a safer way to store crypto funds because the private k
 
 Because Moonbeam is fully Ethereum compatible, and Ledger now supports signing in different Chain ID networks, you can use your Ledger device to sign transactions on Moonbeam using the Ledger Live Ethereum app!
 
-This tutorial shows you how to get started with your Ledger hardware wallet on Moonbase Alpha using the Ethereum app. The guide only illustrates the steps for a Ledger Nano X device, but you can follow along with a Ledger Nano S as well. The same process can be applied to the other networks of the Moonbeam ecosystem. You can also connect your Ledger device to Moonriver by [using the Ledger Live Moonriver app](/connect/ledger/moonriver-ledger/).
+This tutorial shows you how to get started with your Ledger hardware wallet on Moonbase Alpha using the Ethereum app. The guide only illustrates the steps for a Ledger Nano X device, but you can follow along with a Ledger Nano S as well. The same process can be applied to the other networks of the Moonbeam ecosystem. You can also connect your Ledger device to Moonriver by [using the Ledger Live Moonriver app](/tokens/connect/ledger/moonriver-app/).
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
