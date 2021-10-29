@@ -238,7 +238,7 @@ Hover over **MyToken** in the list of assets, and this time click on **Send**.
 
 ![Send ERC20s from the Safe](/images/builders/tools/multisig-safe/safe-19.png)
 
-A pop-up will appear where you can enter the recipient and the amount of DEV tokens to send:
+A pop-up will appear where you can enter the recipient and the amount of MYTOK tokens to send:
 
  1. Enter Charlies's Address
  2. Select **MyToken** from the list of assets
