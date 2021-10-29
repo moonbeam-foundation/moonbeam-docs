@@ -3,7 +3,7 @@ title: Run a Tracing Node
 description:  Learn how to leverage Geth's Debug and Txpool APIs, and OpenEthereum's Trace module to run a tracing node on Moonbeam
 ---
 
-# Debug API & Trace Module
+# Run a Tracing Node
 
 ![Debug & Trace Moonbeam Banner](/images/node-operators/networks/tracing-node/tracing-node-banner.png)
 
@@ -127,9 +127,9 @@ You should see a terminal log similar to the following if you spun up a Moonbase
 
 ## Additional Flags
 
-To use the native runtime included as part of the node executable instead of the Wasm binary stored on-chain, run the following command:
+To use the Wasm binary stored on-chain, run the following command:
 
-  - **`--execution=native`** - sets the execution strategy that should be used by all execution contexts to `native`
+  - **`--execution=wasm`** - sets the execution strategy that should be used by all execution contexts to `wasm`
 
 By default, the maximum number of trace entries a single request of `trace_filter` is allowed to return is `500`. A request exceeding this limit will return an error. You can set a different maximum limit with the following flag:
 
