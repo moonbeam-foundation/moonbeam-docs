@@ -40,7 +40,7 @@ Your Ledger device will show a status of **Processing**. Then once the app has b
 
 After the app has been successfully installed, you can close out of Ledger Live. 
 
-![Moonriver Ledger App Installed](/images/tokens/connect/ledger/ledger-1.png)
+<img src="/images/tokens/connect/ledger/ledger-1.png" alt="Moonriver Ledger App Installed" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 
 ## Import your Ledger Account to MetaMask {: #import-your-ledger-account-to-metamask } 
 
