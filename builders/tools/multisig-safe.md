@@ -248,6 +248,7 @@ A pop-up will appear where you can enter the recipient and the amount of MYTOK t
 ![Send ERC20s to Charlie from the Safe](/images/builders/tools/multisig-safe/safe-20.png)
 
 If everything looks ok, you can:
+
  1. Click **Submit**. MetaMask will pop-up and you'll notice that instead of sending a transaction, you're sending a message
  2. Click **Sign** to sign the message
 
