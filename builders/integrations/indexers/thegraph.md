@@ -122,7 +122,7 @@ Some of the most important parameters in the `subgraph.yaml` file are:
  - **repository** — refers to the Github repo of the subgraph
  - **schema/file** — refers to the location of the `schema.graphql` file
  - **dataSources/name** — refers to the name of the Subgraph
- - **network** — refers to the network name. This value **must** be set to `mbase` for any Subgraph being deployed to Moonbase Alpha
+ - **network** — refers to the network name. This value **must** be set to `mbase` for any Subgraph being deployed to Moonbase Alpha. For Moonriver, you must set it to `moonriver`
  - **dataSources/source/address** — refers to the address of the contract of interest
  - **dataSources/source/abi** — refers to where the interface of the contract is stored inside the `types` folder created with the `codegen` command
  - **dataSources/source/startBlock** — refers to the start block from which the indexing will start. Ideally, this value should be close to the block the contract was created in. You can use [Blockscout](https://moonbase-blockscout.testnet.moonbeam.network/) to get this information by providing the contract address. For this example, the contract was created at block `{{ networks.moonbase.thegraph.block_number }}`
