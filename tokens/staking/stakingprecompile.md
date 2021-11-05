@@ -21,11 +21,14 @@ This guide will show you how to interact with the Staking Precompile on Moonbase
 
 The interface includes the following functions:
 
- - **is_nominator**(*address* collator) — read-only function that checks whether the specified address is currently a staking nominator
+ - **is_nominator**(*address* nominator) — read-only function that checks whether the specified address is currently a staking nominator
  - **is_candidate**(*address* collator) — read-only function that checks whether the specified address is currently a collator candidate
  - **is_selected_candidate**(*address* collator) - read-only function that checks whether the specified address is currently part of the active collator set
  - **points**(*uint256* round) - read-only function that gets the total points awarded to all collators in a given round
  - **min_nomination**() — read-only function that gets the minimum nomination amount
+ - **candidate_count**() - read-only function that gets the current amount of collator candidates
+ - **collator_nomination_count**(*address* collator) - read-only function that returns the number of nominations for the specified collator address
+ - **nominator_nomination_count**(*address* nominator) - read-only function that returns the number of nominations for the specified nominator address
  - **join_candidates**(*uint256* amount, *uint256* candidateCount) — allows the account to join the set of collator candidates with a specified bond amount and the current candidate count
  - **leave_candidates**(*uint256* amount, *uint256* candidateCount) — immediately removes the account from the candidate pool to prevent others from selecting it as a collator and triggers unbonding after BondDuration rounds have elapsed
  - **go_offline**() — temporarily leave the set of collator candidates without unbonding
@@ -68,6 +71,7 @@ The below example is demonstrated on Moonbase Alpha, however, it is compatible w
 2. Make sure "Injected Web3" is selected in the Environment drop down
 3. Ensure “ParachainStaking - StakingInterface.sol” is selected in the Contract dropdown. Since this is a precompiled contract there is no need to deploy, instead we are going to provide the address of the precompile in the “At Address” Field
 4. Provide the address of the Staking precompile: `{{networks.moonbase.staking.precompile_address}}` and click “At Address”
+5. The Parachain Staking precompile will appear in the list of "Deployed Contracts"
 
 ![Provide the address](/images/tokens/staking/precompiles/precompile-3.png)
 
@@ -75,26 +79,45 @@ The below example is demonstrated on Moonbase Alpha, however, it is compatible w
 
 For this example, we are going to be nominating a collator on Moonbase Alpha. Nominators are token holders who stake tokens, vouching for specific collators. Any user that holds a minimum amount of {{networks.moonbase.staking.min_nom_stake}} tokens as free balance can become a nominator. 
 
+You can do your own research and select the collator you desire. For this guide, the following collator address will be used: `{{ networks.moonbase.staking.collators.address1 }}`.
+
 In order to nominate a collator, you'll need to determine the current collator nomination count and nominator nomination count. The collator nomination count is the numner of nominations backing a specific collator. The nominator nomination account is the number of nominations made by the nominator.
 
 ### Get the Collator Nominator Count {: #get-the-collator-nominator-count } 
 
---8<-- 'text/staking/collator-nominator-count.md'
+To obtain the collator nominator count, you can call a function that the staking precompile provides. Expand the "PARACHAINSTAKING" contract found under the "Deployed Contracts" list, then:
+
+1. Find and expand the "collator_nominator_count" function
+2. Enter the collator address (`{{ networks.moonbase.staking.collators.address1 }}`)
+3. Click "call"
+4. After the call is complete, the results will be displayed
+
+![Call collator nomination count](/images/tokens/staking/precompiles/precompile-4.png)
 
 ### Get your Number of Existing Nominations {: #get-your-number-of-existing-nominations } 
 
---8<-- 'text/staking/nominator-nomination-count.md'
+If you don't know your existing number of nominations, you can easily get them by calling the "nominator_nomination_count" function:
+
+1. Find and expand the "nominator_nomination_count" function
+2. Enter your address
+3. Click "call"
+4. After the call is complete, the results will be displayed
+
+![Call nominator nomination count](/images/tokens/staking/precompiles/precompile-5.png)
 
 ### Call Nominate {: #call-nominate } 
 
-1. Expand the panel with the contract address. Locate the nominate function and expand the panel to see the parameters
-2. Provide the address of a collator such as `{{ networks.moonbase.staking.collators.address1 }}`
-3. Provide the amount to nominate in WEI. There is a minimum of `{{networks.moonbase.staking.min_nom_stake}}` tokens to nominate, so the lowest amount in WEI is `5000000000000000000`
-4. Provide the nomination count for the collator provided in Step 2
-5. Provide your nomination count
-6. Press "transact" and confirm the transaction in Metamask
+Now that you have obtained the [collator nominator count](#get-the-collator-nominator-count) and your [number of existing nominations](#get-your-number-of-existing-nominations), you have all of the information you need to nominate a collator. To get started:
 
-![Nominate a Collator](/images/tokens/staking/precompiles/precompile-4.png)
+1. Find and expand the "nominate" function
+2. Enter the collator address you would like to nominate (`{{ networks.moonbase.staking.collators.address1 }}`)
+3. Provide the amount to nominate in WEI. There is a minimum of `{{networks.moonbase.staking.min_nom_stake}}` tokens to nominate, so the lowest amount in WEI is `5000000000000000000`
+4. Enter the nomination count for the collator
+5. Enter your nomination count
+6. Press "transact"
+7. MetaMask will pop-up, you can review the details and confirm the transaction
+
+![Nominate a Collator](/images/tokens/staking/precompiles/precompile-6.png)
 
 ## Verify Nomination {: #verify-nomination } 
 
@@ -102,29 +125,37 @@ To verify your nomination was successful, you can check the chain state in Polka
 
 ### Add Metamask Address to Address Book {: #add-metamask-address-to-address-book } 
 
-1. Navigate to Accounts -> Address Book 
+1. Navigate to "Accounts" -> "Address Book"
 2. Click on "Add contact"
 3. Add your Metamask Address
 4. Provide a nickname for the account
+5. Click "Save"
 
-![Add to Address Book](/images/tokens/staking/precompiles/precompile-5.png)
+![Add to Address Book](/images/tokens/staking/precompiles/precompile-7.png)
 
 ### Verify Nominator State {: #verify-nominator-state } 
-1. To verify your nomination was successful, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/chainstate) and navigate to Developer -> Chain State
-2. Select the "parachainStaking" pallet
-3. Select the "nominatorState" query
-4. Click the "Plus" Button to return the results and verify your nomination
 
-![Verify Nomination](/images/tokens/staking/precompiles/precompile-6.png)
+1. To verify your nomination was successful, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/chainstate) and navigate to "Developer" -> "Chain State"
+2. Select the "parachainStaking" pallet
+3. Select the "nominatorState2" query
+4. Enter your address
+5. Click the "+" button to return the results and verify your nomination
+
+!!! note
+    You do not have to enter anything in the "blockhash to query at" field if you are looking for an overview of your nominations.
+
+![Verify Nomination](/images/tokens/staking/precompiles/precompile-8.png)
 
 ## Revoking a Nomination {: #revoking-a-nomination } 
 
-To revoke a nomination and receive your tokens back:
+To revoke a nomination and receive your tokens back, head back over to Remix, then:
 
-1. Call the `revoke_nomination` method, providing the same address you started the nomination with above
-2. Click "transact" and confirm the transaction in MetaMask
+1. From the list of "Deployed Contracts", find and expand the "nominator_nomination_count" function
+2. Enter the collator address you would like to revoke the nomination for
+3. Click "transact"
+4. MetaMask will pop, you can review the transaction details, and click "confirm"
 
-![Revoke Nomination](/images/tokens/staking/precompiles/precompile-7.png)
+![Revoke Nomination](/images/tokens/staking/precompiles/precompile-9.png)
 
-You can check your nominator state again on Polkadot.js Apps to confirm.
+After the call is complete, the results will be displayed. You can also check your nominator state again on Polkadot.js Apps to confirm.
 
