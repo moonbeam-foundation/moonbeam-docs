@@ -202,7 +202,7 @@ For a complete list of flags and options, spin up your Moonbeam development node
 
 You can also gain access to some non-standard RPC methods by running a tracing node, which allow developers to inspect and debug transactions during runtime. Tracing nodes use a different Docker image than a standard Moonbeam development node. 
 
-To learn how to run a Moonbeam development tracing node, check out the [Debug & Trace](/node-operators/networks/debug-trace) guide and be sure to switch to the **Moonbeam Development Node** tab throughout the instructions.
+To learn how to run a Moonbeam development tracing node, check out the [Run a Tracing Node](/node-operators/networks/tracing-node) guide and be sure to switch to the **Moonbeam Development Node** tab throughout the instructions. Then to access the non-standard RPC methods with your tracing node, check out the [Debug & Trace](/builders/tools/debug-trace) guide.
 
 ## Pre-funded Development Accounts {: #pre-funded-development-accounts } 
 
