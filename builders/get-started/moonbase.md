@@ -3,11 +3,9 @@ title: Moonbase Alpha
 description: The Moonbeam TestNet, named Moonbase Alpha, is the easiest way to get started with a Polkadot environment. Follow this tutorial to connect to the TestNet.
 ---
 
-# Connect to Moonbase Alpha
+# Get Started with Moonbase Alpha
 
-## Introduction {: #introduction } 
-
-Moonbase Alpha has two endpoints available for users to connect to: one for HTTPS and one for WSS.
+## Connect to Moonbase Alpha {: #connect-to-moonriver } 
 
 --8<-- 'text/testnet/connect.md'
 
@@ -18,6 +16,8 @@ For Moonbase Alpha, you can use any of the following block explorers:
  - **Substrate API** — [Subscan](https://moonbase.subscan.io/) or [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/explorer)
  - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=MoonbaseAlpha)
  - **Ethereum API with Indexing** — [Blockscout](https://moonbase-blockscout.testnet.moonbeam.network/)
+
+For more information on each of the available block explorers, please head to the [Block Explorers](/builders/tools/explorers) section of the documentation.
 
 ## Connect MetaMask
 
@@ -30,7 +30,7 @@ If you already have MetaMask installed, you can easily connect MetaMask to the M
 !!! note
     MetaMask will popup asking for permission to add Moonbase Alpha as a custom network. Once you approve permissions, MetaMask will switch your current network to Moonbase Alpha.
 
-If you do not have MetaMask installed, please check out the [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask/) guide.
+If you do not have MetaMask installed, or would like to follow a tutorial to get started, please check out the [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask/) guide.
 
 If you want to connect MetaMask by providing the network information, you can use the following data:
 
