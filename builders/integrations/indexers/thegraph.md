@@ -17,13 +17,6 @@ Furthermore, developers can build APIs, called Subgraphs. Users or other develop
 
 Due to the support of Ethereum tracing modules in Moonbeam, The Graph is capable of indexing blockchain data in Moonbeam. This guide takes you through the creation of a simple subgraph for a Lottery contract on Moonbase Alpha. This guide can be adapted for Moonriver.
 
-## Checking Prerequisites {: #checking-prerequisites } 
-
-To use The Graph on Moonbase Alpha you have two options:
-
- - Run a Graph Node against Moonbase Alpha and point your Subgraph to it. To do so, you can follow [this tutorial](/node-operators/indexer-nodes/thegraph-node/) (you can also adapt the instructions for Moonriver)
- - Point your Subgraph to The Graph API via the [Graph Explorer website](https://thegraph.com/explorer/). To do so you need to create an account and have an access token
-
 ## Quick Start
 
 If you're familiar with The Graph and looking to learn how to dive right in on Moonbeam-based networks, you can use the following `network` configurations for your Subgraph manifest (`subgraph.yaml`):
@@ -45,6 +38,13 @@ If you're familiar with The Graph and looking to learn how to dive right in on M
     dataSources:
       network: moonriver
     ```
+
+## Checking Prerequisites {: #checking-prerequisites } 
+
+To use The Graph on Moonbase Alpha you have two options:
+
+ - Run a Graph Node against Moonbase Alpha and point your Subgraph to it. To do so, you can follow [this tutorial](/node-operators/indexer-nodes/thegraph-node/) (you can also adapt the instructions for Moonriver)
+ - Point your Subgraph to The Graph API via the [Graph Explorer website](https://thegraph.com/explorer/). To do so you need to create an account and have an access token
 
 ## The Lottery Contract {: #the-lottery-contract } 
 
