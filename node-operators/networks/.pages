@@ -6,4 +6,3 @@ nav:
   - compile-binary.md
   - tracing-node.md
   - collator.md
-  - telemetry.md
