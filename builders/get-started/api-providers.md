@@ -111,14 +111,18 @@ To get started, you'll need to head to [Bware Labs](https://app.bwarelabs.com/),
 3. Select the network from the dropdown
 4. Click **Create Endpoint**
 
+![Bware Labs](/images/builders/get-started/api-providers/api-providers-1.png)
+
 #### Elara
 
-To get started, navigate to [Elara](https://elara.patract.io/) and create an account using your GitHub credentials. Once signed in, from the **Dashboard** you can generate a API endpoint by creating a new project:
+To get started, navigate to [Elara](https://elara.patract.io/) and create an account using your GitHub credentials. Once signed in, from the **Dashboard**, expand the **Kusama Eco-chains** menu, and select **Moonriver**. Then you can generate a API endpoint by creating a new project:
 
 1. Click **Create New Project**
 2. Enter your project name
 3. Select the network
 4. Click **Create** to the project
+
+![Elara](/images/builders/get-started/api-providers/api-providers-2.png)
 
 #### OnFinality
 
@@ -127,3 +131,5 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 1. Click on **API Service**
 2. Select the network from the dropdown
 3. Your custom API endpoint will be generated automatically
+
+![OnFinality](/images/builders/get-started/api-providers/api-providers-3.png)
