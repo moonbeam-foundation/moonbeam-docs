@@ -30,7 +30,6 @@ This guide will take you through the following steps:
 From a technical perspective, collators must meet the following requirements:
 
  - Have a full node running with the collation options. To do so, follow the [spin up a full node tutorial](/node-operators/networks/full-node/), considering the specific code snippets for collators
- - Enable the telemetry server for your full node. To do so, follow the [telemetry tutorial](/node-operators/networks/telemetry/)
 
 ## Accounts and Staking Requirements {: #accounts-and-staking-requirements } 
 
