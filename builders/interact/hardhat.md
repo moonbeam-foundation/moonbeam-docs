@@ -160,7 +160,7 @@ module.exports = {
     // Moonbase Alpha network specification
     moonbase: {
       url: '{{ networks.moonbase.rpc_url }}',
-      chainId: {{ networks.moonbase.chain_id }} // {{ networks.moonbase.hex_chain_id }} in hex,
+      chainId: {{ networks.moonbase.chain_id }}, // {{ networks.moonbase.hex_chain_id }} in hex,
       accounts: [privateKey]
     }
   }
