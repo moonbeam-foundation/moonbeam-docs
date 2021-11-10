@@ -121,7 +121,7 @@ Inside the `module.exports`, we need to provide the Solidity version (`0.8.1` ac
     ```      
     dev: {
         url: '{{ networks.development.rpc_url }}',
-        chainId: {{ networks.development.chain_id }} (hex: {{ networks.development.hex_chain_id }}),
+        chainId: {{ networks.development.chain_id }}, //(hex: {{ networks.development.hex_chain_id }}),
         accounts: [privateKeyDev] // Insert your private key here
       },
     ```
@@ -129,7 +129,7 @@ Inside the `module.exports`, we need to provide the Solidity version (`0.8.1` ac
     ```
     moonbase: {
         url: '{{ networks.moonbase.rpc_url }}',
-        chainId: {{ networks.moonbase.chain_id }} (hex: {{ networks.moonbase.hex_chain_id }}),
+        chainId: {{ networks.moonbase.chain_id }}, // (hex: {{ networks.moonbase.hex_chain_id }}),
         accounts: [privateKeyMoonbase] // Insert your private key here
       },
     ```
@@ -138,7 +138,7 @@ Inside the `module.exports`, we need to provide the Solidity version (`0.8.1` ac
     ```
     moonriver: {
         url: '{{ networks.moonriver.rpc_url }}',
-        chainId: {{ networks.moonriver.chain_id }} (hex: {{ networks.moonriver.hex_chain_id }}),
+        chainId: {{ networks.moonriver.chain_id }}, //(hex: {{ networks.moonriver.hex_chain_id }}),
         accounts: [privateKeyMoonriver] // Insert your private key here
       },
     ```
