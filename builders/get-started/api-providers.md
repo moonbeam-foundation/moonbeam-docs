@@ -104,6 +104,8 @@ The following WSS endpoints are available:
 
 #### Bware Labs
 
+As a user of the Bware Labs platform, you will be able to obtain your own free endpoint allowing you to interact with Moonbeam, just by performing a few simple clicks within a user-friendly interface.
+
 To get started, you'll need to head to [Bware Labs](https://app.bwarelabs.com/), and launch the app, and connect your wallet. Once your wallet is connected you will be able to generate your own custom endpoint. To generate an endpoint:
 
 1. Select a network for your endpoint. There are two options to choose from: Moonbeam and Moonriver. If you're looking for the Moonbase Alpha TestNet, you can choose Moonbeam 
@@ -115,6 +117,8 @@ To get started, you'll need to head to [Bware Labs](https://app.bwarelabs.com/),
 
 #### Elara
 
+Elara provides Moonriver developers with free, instant, and scalable blockchain API access services.
+
 To get started, navigate to [Elara](https://elara.patract.io/) and create an account using your GitHub credentials. Once signed in, from the **Dashboard**, expand the **Kusama Eco-chains** menu, and select **Moonriver**. Then you can generate a API endpoint by creating a new project:
 
 1. Click **Create New Project**
@@ -125,6 +129,8 @@ To get started, navigate to [Elara](https://elara.patract.io/) and create an acc
 ![Elara](/images/builders/get-started/api-providers/api-providers-2.png)
 
 #### OnFinality
+
+OnFinality provides a free API key based endpoint for customers that provide higher rate limits and performance than the free public endpoint. You also receive more in depth analytics of the usage of your application.
 
 To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io/) and sign up, or if you already have signed up you can go ahead and log in. From the OnFinality **Dashboard**, you can:
 
