@@ -25,7 +25,9 @@ At the time of writing, the following versions were used:
  - Ledger Nano S firmware v2.0.0
  - Ledger Nano X firmware v2.0.0
 
-In addition, you'll need MetaMask as an intermediary between your Ledger device and Moonbeam. Make sure that your MetaMask is [connected to Moonbeam](/tokens/connect/metamask/). Chrome users (version 91) need some additional steps, which [are detailed in this tutorial](#chrome-browser). Using Firefox will result in a much simpler/straightforward experience.
+In addition, you'll need MetaMask as an intermediary between your Ledger device and Moonbeam. Make sure that your MetaMask is [connected to Moonbeam](/tokens/connect/metamask/). 
+
+As of [MetaMask version 10.5.0](https://consensys.net/blog/metamask/metamask-and-ledger-integration-fixed/), connecting your Ledger device with MetaMask on Chrome is easy again. You just need to have the latest version of MetaMask installed. 
 
 ## Install the Ledger Live App {: install-the-ledger-live-app }
 
@@ -58,7 +60,23 @@ In the next screen, you are prompted to select which hardware wallet you'll like
 
 ![MetaMask Select Ledger Hardware Wallet](/images/tokens/connect/ledger/ledger-3.png)
 
-If MetaMask was able to connect successfully to your Ledger device, you should see a list of five Moonbeam/Ethereum-styled accounts. If not, double-check that Ledger Live is closed, you've connected your Ledger device to the computer, unlocked it, and that the Moonriver or Ethereum app is opened. If you are using Chrome, check these [additional steps](#chrome-browser).
+If you're using Chrome or a Chrome-based browser like Brave, you'll be prompted to select your Ledger device to connect via WebHID:
+
+1. Select your Ledger device from the pop-up
+2. Click **Connect**
+
+![Ledger on Chrome](/images/tokens/connect/ledger/ledger-4.png)
+
+If a pop-up doesn't appear, you may need to change your MetaMask settings to enable a WebHID connection. You can check and update your MetaMask settings by following these steps:
+
+1. Expand the top-right menu and go to **Settings** 
+2. Navigate to **Advanced**
+3. Scroll down to **Preferred Ledger Connection Type** and select **WebHID** from the dropdown
+
+!!! note
+    The **Preferred Ledger Connection Type** setting is only available on Chrome and Chrome-based browsers. This setting doesn't exist on other browsers such as Firefox.
+
+If MetaMask was able to connect successfully to your Ledger device, you should see a list of five Moonbeam/Ethereum-styled accounts. If not, double-check that Ledger Live is closed, you've connected your Ledger device to the computer, unlocked it, and that the Moonriver or Ethereum app is opened.
 
 ### Import Accounts and View Balances {: #import-accounts-and-view-balances } 
 
@@ -67,41 +85,15 @@ From this list of five Moonbeam accounts, take the following steps:
  1. Select the accounts you would like to import from your Ledger device
  2. Click on **Unlock**
 
-![MetaMask Select Ethereum Accounts to Import](/images/tokens/connect/ledger/ledger-4.png)
+![MetaMask Select Ethereum Accounts to Import](/images/tokens/connect/ledger/ledger-5.png)
 
 If you've imported your Ledger account successfully, you should see your account and balance displayed in the main MetaMask screen like shown in the following image:
 
-![MetaMask Successfully Imported Ledger Account](/images/tokens/connect/ledger/ledger-5.png)
+![MetaMask Successfully Imported Ledger Account](/images/tokens/connect/ledger/ledger-6.png)
 
 You can switch accounts in MetaMask at any time to view the balance of your other imported Ledger accounts.
 
-You've now successfully imported a Moonbeam compatible account from your Ledger device and are now ready to start interacting with your Ledger device. If you're not using Chrome, you can skip ahead to the [Receiving Tokens](#receive-tokens) section of this guide.
-
-## Chrome Browser {: #chrome-browser } 
-
-As of Chrome version 91, users that want to connect their Ledger device to MetaMask must be running the latest version of Ledger Live (v2.29 at the time of writing). 
-
-### Enable Ledger Live Support in Metamask {: #enable-ledger-live-support-in-metamask } 
-
-In MetaMask, take the following steps:
-
- 1. Expand the top-right menu and go to **Settings**
- 2. Navigate to **Advanced**
- 3. Enable the **Use Ledger Live** feature
-
-### Enable Device Access {: #enable-device-access } 
-
-Next, allow Ledger Live to connect to your device by following these steps:
-
- 1. Click on the top-right logo to expand the Metamask menu
- 2. Select **Connect Hardware Wallet**
- 3. Allow Chrome permission to open Ledger Live
- 4. Click **Open** in the Ledger Live App
- 5. Open the Moonriver or Ethereum App on your Ledger Device and continue on to [import accounts](#import-accounts-and-view-balances)
-
- ![Allow Ledger Live to connect your Ledger Device](/images/tokens/connect/ledger/ledger-6.png)
-
-With this feature enabled, MetaMask will open Ledger Live when trying to connect to your Ledger device. You can read more about it in this [MetaMask blog post](https://metamask.zendesk.com/hc/en-us/articles/360020394612-How-to-connect-a-Trezor-or-Ledger-Hardware-Wallet).
+You've now successfully imported a Moonbeam compatible account from your Ledger device and are now ready to start interacting with your Ledger device.
 
 ## Receive Tokens {: #receive-tokens } 
 
