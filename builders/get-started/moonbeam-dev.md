@@ -166,9 +166,11 @@ When running a node via the binary file, data is stored in a local directory typ
 ./target/release/moonbeam purge-chain --dev -y
 ```
 
-This will remove the data folder, note that all chain data is now lost.
+This will remove the data folder, note that all chain data is now lost. To learn more about all of the available `purge-chain` commands, you can checkout the [Purging Binary Data](/node-operators/networks/compile-binary/#purging-binary-data) section of our documentation.
 
-If you used Docker, the data folder is related to the Docker container itself.
+!!! note
+    If you used Docker, the data folder is related to the Docker container itself.
+
 ### Node Flags {: #node-flags } 
 
 Flags do not take an argument. To use a flag, add it to the end of a command. For example:

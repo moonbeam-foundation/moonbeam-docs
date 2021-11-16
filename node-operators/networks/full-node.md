@@ -502,13 +502,18 @@ Then, install the new version by repeating the steps described before, making su
 
 Occasionally Moonbase Alpha might be purged and reset around major upgrades. As always, node operators will be notified in advance (via our [Discord channel](https://discord.gg/PfpUATX)) if this upgrade is accompanied by a purge. You can also purge your node if your individual data directory becomes corrupted.
 
-To do so, first stop the docker container or systemd service:
+If you spun up your node following the [Using the Binary](/node-operators/networks/compile-binary/) guide, you can refer back to the [Purging Binary Data](/node-operators/networks/compile-binary/#purging-binary-data) section to check out the available `purge-chain` commands. 
+
+If you're using Docker or the systemd service, you'll first need to stop the service:
 
 ```
 sudo docker stop `CONTAINER_ID`
 # or
 sudo systemctl stop moonbeam
 ```
+
+!!! note
+    If you used Docker, the data folder is related to the Docker container itself.
 
 Next, remove the content of the folder where the chain data is stored (both for the parachain and relay chain):
 

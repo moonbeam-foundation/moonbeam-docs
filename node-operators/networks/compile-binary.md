@@ -1,9 +1,9 @@
 ---
-title: Compile the Binary
+title: Using the Binary
 description: How to compile the Moonbeam binary to run a full Parachain node, gain access to RPC endpoints, and produce blocks, for the Moonbeam Network.
 ---
 
-# Compile the Moonbeam Binary
+# Using the Moonbeam Binary
 
 ![Full Node Moonbeam Banner](/images/node-operators/networks/compile-binary/compile-binary-banner.png)
 
@@ -56,3 +56,38 @@ If a _cargo not found error_ shows up in the terminal, manually add Rust to your
 ```
 
 Now you can use the Moonbeam binary to [run a systemd service](/node-operators/networks/full-node/#running-the-systemd-service).
+
+## Purging Binary Data {: #purging-binary-data }
+
+If you want to start a fresh instance of a node, there are a handful of `purge-chain` commands available to you which will remove your previous chain data as specified. The base command which will remove both the parachain and relay chain data is:
+
+```
+./target/release/moonbeam purge-chain
+```
+
+You can add the following flags to the above command if you want to specify what data should be purged:
+
+- `--parachain` - only deletes the parachain database, keeping the relay chain data in tact
+- `--relaychain` - only deletes the relay chain database, keeping the parachain data in tact
+
+You can also specify a chain to be removed:
+
+- `--chain` - specify the chain using either one of the predefined chains or a path to a file with the chainspec
+
+To purge only your Moonbase Alpha parachain data, for example, you would run the following command:
+
+```
+./target/release/moonbeam purge-chain --parachain --chain alphanet
+```
+
+To specify a path to the chainspec for a development chain to be purged, you would run:
+
+```
+./target/release/moonbeam purge-chain --chain example-moonbeam-dev-service.json
+```
+
+For the complete list of available `purge-chain` commands, you can access the help menu by running:
+
+```
+./target/release/moonbeam purge-chain --help
+```
