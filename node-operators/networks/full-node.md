@@ -221,7 +221,7 @@ To manually build the binaries yourself, check out the [Compile Moonbeam Binary]
 
 ### Use the Release Binary {: #use-the-release-binary } 
 
-There are a couple ways to get started with the Moonbeam binary. You can compile the binary yourself, but the whole process can take around 30 minutes to install the dependencies and build the binary. If you're interested in going this route, check out the [Compile the Binary](/node-operators/networks/compile-binary) page of our documentation.
+There are a couple ways to get started with the Moonbeam binary. You can compile the binary yourself, but the whole process can take around 30 minutes to install the dependencies and build the binary. If you're interested in going this route, check out the [Using the Binary](/node-operators/networks/compile-binary) page of our documentation.
 
 Or you can use the [release binary](https://github.com/PureStake/moonbeam/releases) to get started right away.
 
