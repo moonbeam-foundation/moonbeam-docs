@@ -127,7 +127,7 @@ networks:
     chain_id: 1285
     hex_chain_id: '0x505'
     node_directory: /var/lib/moonriver-data
-    parachain_release_tag: v0.13.0
+    parachain_release_tag: v0.14.2
     parachain_sha256sum: 0223dfeeec38a70f4fd5f4666944dfc5d3b6520c60f000a458f42121682fcfaf
     chain_spec: moonriver
     block_explorer: https://blockscout.moonriver.moonbeam.network/
