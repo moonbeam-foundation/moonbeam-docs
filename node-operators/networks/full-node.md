@@ -520,23 +520,45 @@ If you're using Docker or systemd, you'll first need to stop the service:
 
 If you spun up your node using Docker along with the `-v` flag, which specifies a mounted directory for your container, or used the systemd service, you will need to purge the specified directory. To do so, you can run the following command:
 
-```
-sudo rm -rf {{ networks.moonbase.node_directory }}/*
-```
+=== "Moonbase Alpha"
+
+    ```
+    sudo rm -rf {{ networks.moonbase.node_directory }}/*
+    ```
+
+=== "Moonriver"
+
+    ```
+    sudo rm -rf {{ networks.moonriver.node_directory }}/*
+    ```
 
 If you used Docker but did not use the `-v` flag, then the data folder is related to the Docker container itself. Therefore, removing the Docker container will remove the chain data.
 
 To only remove the parachain data for a specific chain, you can run:
 
-```
-sudo rm -rf {{ networks.moonbase.node_directory }}/chains/<chain_to_delete>/*
-```
+=== "Moonbase Alpha"
+
+    ```
+    sudo rm -rf {{ networks.moonbase.node_directory }}/chains/*
+    ```
+
+=== "Moonriver"
+
+    ```
+    sudo rm -rf {{ networks.moonriver.node_directory }}/chains/*
+    ```
 
 Similarly, to only remove the relay chain data, you can run:
 
-```
-sudo rm -rf {{ networks.moonbase.node_directory }}/chains/polkadot/*
-```
+=== "Moonbase Alpha"
+    ```
+    sudo rm -rf {{ networks.moonbase.node_directory }}/polkadot/*
+    ```
+
+=== "Moonriver"
+    ```
+    sudo rm -rf {{ networks.moonriver.node_directory }}/polkadot/*
+    ```
 
 Now that your chain data has been purged, you can start a new node with a fresh data directory. You can install the newest version by repeating the steps described before, making sure you are using the latest tag available.
 
