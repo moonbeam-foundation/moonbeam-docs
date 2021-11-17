@@ -7,6 +7,10 @@ description: Use one of the supported API providers to connect via JSON RPC and 
 
 ![API Providers banner](/images/builders/get-started/api-providers/api-providers-banner.png)
 
+## Public Endpoints
+
+If you're looking to get started quickly, you can check out the public endpoints available for [Moonbase Alpha](/builders/get-started/moonbase/#api-providers) and [Moonriver](/builders/get-started/moonriver/#api-providers).
+
 ## Custom Endpoints
 
 You can create a custom endpoint using any of the following API providers:
