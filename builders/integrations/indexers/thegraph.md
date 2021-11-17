@@ -17,16 +17,38 @@ Furthermore, developers can build APIs, called Subgraphs. Users or other develop
 
 Due to the support of Ethereum tracing modules in Moonbeam, The Graph is capable of indexing blockchain data in Moonbeam. This guide takes you through the creation of a simple subgraph for a Lottery contract on Moonbase Alpha. This guide can be adapted for Moonriver.
 
+## Quick Start
+
+If you're familiar with The Graph and looking to learn how to dive right in on Moonbeam-based networks, you can use the following `network` configurations for your Subgraph manifest (`subgraph.yaml`):
+
+=== "Moonbeam Development Node"
+    ```
+    dataSources:
+      network: mbase
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    dataSources:
+      network: mbase
+    ```
+
+=== "Moonriver"
+    ```
+    dataSources:
+      network: moonriver
+    ```
+
 ## Checking Prerequisites {: #checking-prerequisites } 
 
 To use The Graph on Moonbase Alpha you have two options:
 
  - Run a Graph Node against Moonbase Alpha and point your Subgraph to it. To do so, you can follow [this tutorial](/node-operators/indexer-nodes/thegraph-node/) (you can also adapt the instructions for Moonriver)
  - Point your Subgraph to The Graph API via the [Graph Explorer website](https://thegraph.com/explorer/). To do so you need to create an account and have an access token
- 
+
 ## The Lottery Contract {: #the-lottery-contract } 
 
-For this example, a simple Lottery contract is be used. You can find the Solidity file in [this link](https://github.com/PureStake/moonlotto-subgraph/blob/main/contracts/MoonLotto.sol). 
+For this example, a simple Lottery contract will be used. You can find the Solidity file in the [MoonLotto GitHub repository](https://github.com/PureStake/moonlotto-subgraph/blob/main/contracts/MoonLotto.sol). 
 
 The contract hosts a lottery where players can buy ticket for themselves, or gift one to another user. When 1 hour has passed, if there are 10 participants, the next player that joins the lottery will execute a function that picks the winner. All the funds stored in the contract are sent to the winner, after which a new round starts.
 
@@ -46,9 +68,9 @@ The Graph uses the events emitted by the contract to index data. The lottery con
 
 ## Creating a Subgraph {: #creating-a-subgraph } 
 
-This section goes through the process of creating a Subgraph. For the Lottery Subgraph, a [GitHub repository](https://github.com/PureStake/moonlotto-subgraph) was prepared with everything you need to help you get started. The repo also includes the Lottery contract, as well as a Hardhat configuration file and deployment script. If you are not familiar with it, you can check our [Hardhat integration guide](/builders/interact/hardhat/). 
+This section goes through the process of creating a Subgraph. For the Lottery Subgraph, a [GitHub repository](https://github.com/PureStake/moonlotto-subgraph) was prepared with everything you need to help you get started. The repository also includes the Lottery contract, as well as a Hardhat configuration file and deployment script. If you are not familiar with it, you can check our [Hardhat integration guide](/builders/interact/hardhat/). 
 
-To get started, first clone the repo and install the dependencies:
+To get started, first clone the repository and install the dependencies:
 
 ```
 git clone https://github.com/PureStake/moonlotto-subgraph \
@@ -62,11 +84,11 @@ npx graph codegen --output-dir src/types/
 ```
 
 !!! note
-    Creating the types requires you to have the ABI files specified in the `subgraph.yaml` file. This sample repository has the file already, but this is usually obtained after compiling the contract. Check the [Moonlotto repo](https://github.com/PureStake/moonlotto-subgraph) for more information.
+    Creating the types requires you to have the ABI files specified in the `subgraph.yaml` file. This sample repository has the file already, but this is usually obtained after compiling the contract. Check the [Moonlotto repository](https://github.com/PureStake/moonlotto-subgraph) for more information.
 
 The `codegen` command can also be executed using `yarn codegen`.
 
-For this example, the contract was deployed to `{{ networks.moonbase.thegraph.lotto_contract }}`. You can find more information on how to deploy a contract with Hardhat in our [integrations tutorial](/builders/interact/hardhat/). Also, the "README" file in the [Moonloto repository](https://github.com/PureStake/moonlotto-subgraph) has the steps necessary to compile and deploy the contract if required.
+For this example, the contract was deployed to `{{ networks.moonbase.thegraph.lotto_contract }}`. You can find more information on how to deploy a contract with Hardhat in our [integrations tutorial](/builders/interact/hardhat/). Also, the "README" file in the [Moonlotto repository](https://github.com/PureStake/moonlotto-subgraph) has the steps necessary to compile and deploy the contract if required.
 
 ### Subgraphs Core Structure {: #subgraphs-core-structure } 
 
@@ -119,7 +141,7 @@ The `subgraph.yaml` file, or Subgraph's manifest, contains the information relat
 
 Some of the most important parameters in the `subgraph.yaml` file are:
 
- - **repository** — refers to the Github repo of the subgraph
+ - **repository** — refers to the Github repository of the subgraph
  - **schema/file** — refers to the location of the `schema.graphql` file
  - **dataSources/name** — refers to the name of the Subgraph
  - **network** — refers to the network name. This value **must** be set to `mbase` for any Subgraph being deployed to Moonbase Alpha. For Moonriver, you must set it to `moonriver`

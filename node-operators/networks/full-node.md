@@ -196,7 +196,6 @@ Once Docker pulls the necessary images, your full Moonbeam (or Moonriver) node w
 !!! note
     You can specify a custom Prometheus port with the `--prometheus-port XXXX` flag (replacing `XXXX` with the actual port number). This is possible for both the parachain and embedded relay chain.
 
-The command above will enable all exposed ports required for basic operation, including the P2P, and Prometheus (telemetry) ports. This command is compatible to use with the Gantree Node Watchdog telemetry. If you want to expose specific ports, enable those on the Docker run command line as shown below. However, doing so will block the Gantree Node Watchdog (telemetry) container from accessing the moonbeam container, so don't do this when running a collator unless you understand [docker networking](https://docs.docker.com/network/).
 
 ```
 docker run -p {{ networks.relay_chain.p2p }}:{{ networks.relay_chain.p2p }} -p {{ networks.parachain.p2p }}:{{ networks.parachain.p2p }} -p {{ networks.parachain.rpc }}:{{ networks.parachain.rpc }} -p {{ networks.parachain.ws }}:{{ networks.parachain.ws }} #rest of code goes here
@@ -561,14 +560,6 @@ Similarly, to only remove the relay chain data, you can run:
     ```
 
 Now that your chain data has been purged, you can start a new node with a fresh data directory. You can install the newest version by repeating the steps described before, making sure you are using the latest tag available.
-
-## Telemetry {: #telemetry } 
-
-To enable your Moonbase Alpha or Moonriver node's telemetry server, you can follow [this tutorial](/node-operators/networks/telemetry/).
-
-Running telemetry on a full node is not necessary. However, it is a requirement to do so for collators.
-
-Also, you can check out current [Moonbase Alpha telemetry](https://telemetry.polkadot.io/#list/Moonbase%20Alpha) and [Moonriver telemetry](https://telemetry.polkadot.io/#list/Moonriver) data.
 
 ## Logs and Troubleshooting {: #logs-and-troubleshooting } 
 

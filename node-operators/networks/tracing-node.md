@@ -15,7 +15,7 @@ To use the supported RPC methods, you need to run a tracing node, which is sligh
 
 This guide will show you how to get started running a tracing node on Moonbeam with the `debug`, `txpool`, and `tracing` flags enabled.
 
-## Checking Prerequisites
+## Checking Prerequisites {: #checking-prerequisites }
 
 Running a tracing node requires you to have Docker installed. For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/). At the time of writing, the Docker version used was 19.03.6.
 
@@ -51,7 +51,7 @@ Next, make sure you set the ownership and permissions accordingly for the local 
     sudo chown -R $(id -u):$(id -g) {{ networks.moonriver.node_directory }}
     ```
 
-## Run a Tracing Node
+## Run a Tracing Node {: #run-a-tracing-node }
 
 Spinning up a `debug`, `txpool`, or `tracing` node is similar to [running a full node](/node-operators/networks/full-node/). Instead of the standard `purestake/moonbeam` docker image, you will need to use `purestake/moonbeam-tracing` image. The latest supported version can be found on the [Docker Hub for the `moonbeam-tracing` image](https://hub.docker.com/r/purestake/moonbeam-tracing/tags).
 
@@ -125,7 +125,7 @@ You should see a terminal log similar to the following if you spun up a Moonbase
 
 ![Debug API](/images/builders/tools/debug-trace/debug-trace-1.png)
 
-## Additional Flags
+## Additional Flags {: #additional-flags }
 
 To use the Wasm binary stored on-chain, run the following command:
 
@@ -139,6 +139,6 @@ Blocks processed by requests are temporarily stored on cache for a certain amoun
 
   - **`-ethapi-trace-cache-duration <uint>`** — sets the duration (in seconds) after which the cache of `trace_filter,` for a given block, is discarded
 
-## Using a Tracing Node
+## Using a Tracing Node {: #using-a-tracing-node }
 
 To explore the different non-standard RPC methods available on Moonbeam, and how to use these methods with a tracing node, check out the [Debug & Trace](/builders/tools/debug-trace/) guide.
