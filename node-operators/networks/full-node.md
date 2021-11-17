@@ -518,7 +518,7 @@ If you're using Docker or systemd, you'll first need to stop the service:
     sudo systemctl stop moonbeam
     ```
 
-If you spun up your node using Docker along with the `-v` flag, which specifies a mounted directory for your container, or used the systemd service, you will need to purge the specified directory. To do so, you can run the following command:
+If you spun up your node using Docker along with the `-v` flag, which specifies a mounted directory for your container, or used the systemd service, you will need to purge the specified directory. To purge your parachain and relay chain data, you can run the following command:
 
 === "Moonbase Alpha"
 
