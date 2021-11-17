@@ -7,102 +7,15 @@ description: Use one of the supported API providers to connect via JSON RPC and 
 
 ![API Providers banner](/images/builders/get-started/api-providers/api-providers-banner.png)
 
-## PureStake Development Endpoints
+## Custom Endpoints
 
-Moonbeam-based networks have two endpoints available for users to connect to: one for HTTPS and one for WSS. The RPC and WSS endpoints hosted by PureStake are for development purposes only and are **not** meant to be used in production applications.
-
-### Moonbase Alpha
-
-=== "HTTPS RPC"
-    ```
-    https://rpc.testnet.moonbeam.network
-    ```
-
-=== "WSS"
-    ```
-    wss://wss.testnet.moonbeam.network
-    ```
-
-To connect to the Moonbase Alpha relay chain, managed by PureStake, you can use the following WS Endpoint:
-
-```
-wss://wss-relay.testnet.moonbeam.network
-```
-
-### Moonriver
-
-=== "HTTPS RPC"
-    ```
-    https://rpc.moonriver.moonbeam.network
-    ```
-
-=== "WSS"
-    ```
-    wss://wss.moonriver.moonbeam.network
-    ```
-
-## Production Endpoints
-
-The following providers are suitable for production-use on Moonbeam:
+You can create a custom endpoint using any of the following API providers:
 
 - [Bware Labs](https://bwarelabs.com/)
 - [Elara](https://elara.patract.io/)
 - [OnFinality](https://onfinality.io/)
 
-If you're looking to get started quickly, you can use one of the [Public Endpoints](#public-endpoints), or you can also create your own [Custom Endpoints](#custom-endpoints) for each of your projects.
-
-### Public Endpoints
-
-#### Moonbase Alpha
-
-The following HTTPS RPC endpoints are available:
-
-=== "OnFinality"
-    ```
-    https://moonbeam-alpha.api.onfinality.io/public
-    ```
-
-The following WSS endpoints are available:
-
-=== "Elara"
-    ```
-    wss://moonbase.moonbeam.elara.patract.io
-    ```
-
-=== "OnFinality"
-    ```
-    wss://moonbeam-alpha.api.onfinality.io/public-ws
-    ```
-
-#### Moonriver
-
-The following HTTPS RPC endpoints are available:
-
-=== "Elara"
-    ```
-    https://pub.elara.patract.io/moonriver
-    ```
-    
-=== "OnFinality"
-    ```
-    https://moonriver.api.onfinality.io/public
-    ```
-
-The following WSS endpoints are available:
-
-=== "Elara"
-    ```
-    wss://pub.elara.patract.io/moonriver
-    ```
-
-=== "OnFinality"
-    ```
-    wss://moonriver.api.onfinality.io/public-ws
-    ```
-
-### Custom Endpoints
-
-#### Bware Labs
+### Bware Labs
 
 As a user of the Bware Labs platform, you will be able to obtain your own free endpoint allowing you to interact with Moonbeam, just by performing a few simple clicks within a user-friendly interface.
 
@@ -115,7 +28,7 @@ To get started, you'll need to head to [Bware Labs](https://app.bwarelabs.com/),
 
 ![Bware Labs](/images/builders/get-started/api-providers/api-providers-1.png)
 
-#### Elara
+### Elara
 
 Elara provides Moonriver developers with free, instant, and scalable blockchain API access services.
 
@@ -128,7 +41,7 @@ To get started, navigate to [Elara](https://elara.patract.io/) and create an acc
 
 ![Elara](/images/builders/get-started/api-providers/api-providers-2.png)
 
-#### OnFinality
+### OnFinality
 
 OnFinality provides a free API key based endpoint for customers that provide higher rate limits and performance than the free public endpoint. You also receive more in depth analytics of the usage of your application.
 
