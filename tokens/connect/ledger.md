@@ -21,9 +21,9 @@ Before you get started, update [Ledger Live](https://www.ledger.com/ledger-live/
 
 At the time of writing, the following versions were used:
 
- - Ledger Live 2.34.3
- - Ledger Nano S firmware v2.0.0
- - Ledger Nano X firmware v2.0.0
+ - [Ledger Live 2.35.1](https://support.ledger.com/hc/en-us/articles/360020773319-What-s-new-in-Ledger-Live-?docs=true)
+ - [Ledger Nano S firmware v2.0.0](https://support.ledger.com/hc/en-us/articles/360010446000-Ledger-Nano-S-firmware-release-notes?docs=true)
+ - [Ledger Nano X firmware v2.0.1](https://support.ledger.com/hc/en-us/articles/360014980580-Ledger-Nano-X-firmware-release-notes?docs=true)
 
 In addition, you'll need MetaMask as an intermediary between your Ledger device and Moonbeam. Make sure that your MetaMask is [connected to Moonbeam](/tokens/connect/metamask/). 
 
