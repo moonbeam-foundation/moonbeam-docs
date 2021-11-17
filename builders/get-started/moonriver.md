@@ -5,8 +5,6 @@ description: Learn how to get started and connect to Moonriver, the Moonbeam dep
 
 # Get Started with Moonriver
 
-## Connect to Moonriver {: #connect-to-moonriver } 
-
 --8<-- 'text/moonriver/connect.md'
 
 ## Block Explorers

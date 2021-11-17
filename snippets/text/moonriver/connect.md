@@ -1,16 +1,58 @@
+## API Providers
 
-### API Providers
+There are some different API providers you can choose from depending upon your needs:
 
-The following API providers are supported on Moonriver: 
+- [Development endpoints](#purestake-development-endpoints)
+- [Public production endpoints](#public-production-endpoints)
+- [Custom endpoints](/builders/get-started/api-providers)
 
-- [PureStake](/builders/get-started/api-providers#purestake-development-endpoints) - for development purposes only
+### PureStake Development Endpoints
+
+Moonbeam-based networks have two endpoints available for users to connect to: one for HTTPS and one for WSS. The RPC and WSS endpoints hosted by PureStake are for development purposes only and are **not** meant to be used in production applications.
+
+=== "HTTPS RPC"
+    ```
+    https://rpc.moonriver.moonbeam.network
+    ```
+
+=== "WSS"
+    ```
+    wss://wss.moonriver.moonbeam.network
+    ```
+
+### Public Production Endpoints
+
+The following providers are suitable for production-use on Moonriver:
+
 - [Bware Labs](https://bwarelabs.com/)
 - [Elara](https://elara.patract.io/)
 - [OnFinality](https://onfinality.io/)
 
-For more information on each of the supported API Providers, head over to the [API Providers](/builders/get-started/api-providers) section of our documentation.
+The following HTTPS RPC endpoints are available:
 
-### Quick Start {: #quick-start } 
+=== "Elara"
+    ```
+    https://pub.elara.patract.io/moonriver
+    ```
+    
+=== "OnFinality"
+    ```
+    https://moonriver.api.onfinality.io/public
+    ```
+
+The following WSS endpoints are available:
+
+=== "Elara"
+    ```
+    wss://pub.elara.patract.io/moonriver
+    ```
+
+=== "OnFinality"
+    ```
+    wss://moonriver.api.onfinality.io/public-ws
+    ```
+
+## Quick Start {: #quick-start } 
 
 For the web3.js library, you can create a local Web3 instance and set the provider to connect to Moonriver (both HTTP and WS are supported):
 
@@ -39,6 +81,6 @@ const provider = new ethers.providers.StaticJsonRpcProvider(providerURL, {
 
 Any Ethereum wallet should be able to generate a valid address for Moonbeam (for example, [MetaMask](https://metamask.io/)).
 
-### Chain ID {: #chain-id } 
+## Chain ID {: #chain-id } 
 
 The Moonriver chain ID is: `1285`, or `0x505` in hex.

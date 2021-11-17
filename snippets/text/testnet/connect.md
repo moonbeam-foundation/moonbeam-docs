@@ -1,15 +1,61 @@
-### API Providers
+## API Providers
 
-The following API providers are supported on the Moonbase Alpha TestNet: 
+There are some different API providers you can choose from depending upon your needs:
 
-- [PureStake](/builders/get-started/api-providers#purestake-development-endpoints) - for development purposes only
+- [Development endpoints](#purestake-development-endpoints)
+- [Public production endpoints](#public-production-endpoints)
+- [Custom endpoints](/builders/get-started/api-providers)
+
+### PureStake Development Endpoints
+
+Moonbeam-based networks have two endpoints available for users to connect to: one for HTTPS and one for WSS. The RPC and WSS endpoints hosted by PureStake are for development purposes only and are **not** meant to be used in production applications.
+
+=== "HTTPS RPC"
+    ```
+    https://rpc.testnet.moonbeam.network
+    ```
+
+=== "WSS"
+    ```
+    wss://wss.testnet.moonbeam.network
+    ```
+
+To connect to the Moonbase Alpha relay chain, managed by PureStake, you can use the following WS Endpoint:
+
+```
+wss://wss-relay.testnet.moonbeam.network
+```
+
+### Public Production Endpoints
+
+The following providers are suitable for production-use on Moonbase Alpha:
+
 - [Bware Labs](https://bwarelabs.com/)
 - [Elara](https://elara.patract.io/)
 - [OnFinality](https://onfinality.io/)
 
-For more information on each of the supported API Providers, head over to the [API Providers](/builders/get-started/api-providers) section of our documentation.
+The following HTTPS RPC endpoints are available:
 
-### Quick Start {: #quick-start } 
+=== "OnFinality"
+    ```
+    https://moonbeam-alpha.api.onfinality.io/public
+    ```
+
+The following WSS endpoints are available:
+
+=== "Elara"
+    ```
+    wss://moonbase.moonbeam.elara.patract.io
+    ```
+
+=== "OnFinality"
+    ```
+    wss://moonbeam-alpha.api.onfinality.io/public-ws
+    ```
+
+You can also create your own custom endpoint for development or production-use, to do so check out the [API Providers](/builders/get-started/api-providers) page of our documentation.
+
+## Quick Start {: #quick-start } 
 
 For the web3.js library, you can create a local Web3 instance and set the provider to connect to Moonbase Alpha (both HTTP and WS are supported):
 
@@ -37,11 +83,11 @@ const provider = new ethers.providers.StaticJsonRpcProvider(providerURL, {
 
 Any Ethereum wallet should be able to generate a valid address for Moonbeam (for example, [MetaMask](https://metamask.io/)).
 
-### Chain ID {: #chain-id } 
+## Chain ID {: #chain-id } 
 
 For the Moonbase Alpha TestNet the chain ID is: `1287`, which is `0x507` in hex.
 
-### Relay Chain {: #relay-chain } 
+## Relay Chain {: #relay-chain } 
 
 To connect to the Moonbase Alpha relay chain, managed by PureStake, you can use the following WS Endpoint:
 
