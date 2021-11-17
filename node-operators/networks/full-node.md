@@ -500,28 +500,45 @@ Then, install the new version by repeating the steps described before, making su
 
 ### Purging the Chain {: #purging-the-chain } 
 
-Occasionally Moonbase Alpha might be purged and reset around major upgrades. As always, node operators will be notified in advance (via our [Discord channel](https://discord.gg/PfpUATX)) if this upgrade is accompanied by a purge. You can also purge your node if your individual data directory becomes corrupted.
+On an as-needed basis, Moonbase Alpha might be purged and reset. If a purge is required, node operators will be notified in advance (via our [Discord channel](https://discord.gg/PfpUATX)). You can also purge your node if your individual data directory becomes corrupted.
 
 If you spun up your node following the [Using the Binary](/node-operators/networks/compile-binary/) guide, you can refer back to the [Purging Binary Data](/node-operators/networks/compile-binary/#purging-binary-data) section to check out the available `purge-chain` commands. 
 
-If you're using Docker or the systemd service, you'll first need to stop the service:
+If you're using Docker or systemd, you'll first need to stop the service:
 
-```
-sudo docker stop `CONTAINER_ID`
-# or
-sudo systemctl stop moonbeam
-```
+=== "Docker"
 
-!!! note
-    If you used Docker, the data folder is related to the Docker container itself.
+    ```
+    sudo docker stop `CONTAINER_ID`
+    ```
 
-Next, remove the content of the folder where the chain data is stored (both for the parachain and relay chain):
+=== "Systemd"
+
+    ```
+    sudo systemctl stop moonbeam
+    ```
+
+If you spun up your node using Docker along with the `-v` flag, which specifies a mounted directory for your container, or used the systemd service, you will need to purge the specified directory. To do so, you can run the following command:
 
 ```
 sudo rm -rf {{ networks.moonbase.node_directory }}/*
 ```
 
-Lastly, install the newest version by repeating the steps described before, making sure you are using the latest tag available. If so, you can start a new node with a fresh data directory.
+If you used Docker but did not use the `-v` flag, then the data folder is related to the Docker container itself. Therefore, removing the Docker container will remove the chain data.
+
+To only remove the parachain data for a specific chain, you can run:
+
+```
+sudo rm -rf {{ networks.moonbase.node_directory }}/chains/<chain_to_delete>/*
+```
+
+Similarly, to only remove the relay chain data, you can run:
+
+```
+sudo rm -rf {{ networks.moonbase.node_directory }}/chains/polkadot/*
+```
+
+Now that your chain data has been purged, you can start a new node with a fresh data directory. You can install the newest version by repeating the steps described before, making sure you are using the latest tag available.
 
 ## Telemetry {: #telemetry } 
 
@@ -533,7 +550,7 @@ Also, you can check out current [Moonbase Alpha telemetry](https://telemetry.pol
 
 ## Logs and Troubleshooting {: #logs-and-troubleshooting } 
 
-You will see logs from both the relay chain as well as the parachain. The relay chain will be prefixed by `[Relaychain]`, while the parachain has no prefix.
+You will see logs from both the relay chain and the parachain. The relay chain will be prefixed by `[Relaychain]`, while the parachain has no prefix.
 
 ### P2P Ports Not Open {: #p2p-ports-not-open } 
 
