@@ -9,7 +9,7 @@ description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereu
 
 ## Introduction {: #introduction } 
 
-The Polkadot.js extension manages accounts and facilitates the signing of transactions with those accounts. It is not a full-featured wallet like [MetaMask](/tokens/connect/metamask). However, the extension has the ability to inject accounts into the browser, which provides a similar user experience to a full-featured wallet with the benefit of added security.
+The [Polkadot.js extension](https://polkadot.js.org/extension/) manages accounts and facilitates the signing of transactions with those accounts. It is not a full-featured wallet like [MetaMask](/tokens/connect/metamask). However, the extension has the ability to inject accounts into the browser, which provides a similar user experience to a full-featured wallet with the benefit of added security.
 
 Creating and mantaining accounts in the Polkadot.js extension is more secure than creating them directly in Polkadot.js Apps. With the extension, the accounts live outside of the browser and are only injected into sites that you specifically authorize. Additionally, the extension can protect you from known phishing sites. 
 
@@ -44,7 +44,7 @@ Ensure you're on the Moonriver or Moonbeam Network, then take the following step
 
 It's a good idea to repeat the `Update metadata` process for each network that you'd like to interact with. 
 
-![Update Metadata](/images/tokens/connect/polkadotjsext/polkadotjs-ext-3a.png)
+![Update Metadata](/images/tokens/connect/polkadotjsext/polkadotjs-ext-3.png)
 
 !!! note
     Moonbeam uses Ethereum-style H160 addresses across all of its networks - Moonbeam, Moonriver, and Moonbase Alpha. There is no need to create separate accounts for use on each chain.
@@ -73,15 +73,15 @@ On this final page of the account creation wizard, take the following steps:
 !!! note
     Currently, the Polkadot.js Extension does not support derived Ethereum-style addresses. This means that you can create only one address per seed. Similarly, this means that if you're importing a Metamask wallet, you'll only be able to utilize your first Metamask account within the Polkadot.js Extension. This is expected to be a temporary limitation and will be resolved soon. 
 
-## Interacting with PolkadotJSApps {: #interacting-with-polkadotjsapps }
+## Interacting with Polkadot.js Apps {: #interacting-with-polkadot.js-apps }
 
-Remember that you cannot send funds directly from the Polkadot.js Extension. However, the extension can inject your accounts in other applications, such as [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonriver.api.onfinality.io%2Fpublic-ws#/accounts), if you grant it permission to do so. Navigate to the [Accounts Page](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonriver.api.onfinality.io%2Fpublic-ws#/accounts) where you should see your injected account. 
+Remember that you cannot send funds directly from the Polkadot.js Extension. However, the extension can inject your accounts into other apps, such as [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonriver.api.onfinality.io%2Fpublic-ws#/accounts), if you grant it permission to do so. Navigate to the [Accounts Page](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonriver.api.onfinality.io%2Fpublic-ws#/accounts) where you should see your injected account. 
 
- 1. If this is your first time using the extension, you'll need to give the extension permission to inject your accounts into Polkadot.js Apps. As a safety measure, verify the URL displayed in the pop-up matches the URL of Polkadot.js Apps.
+ 1. If this is your first time using the extension, you'll need to give the extension permission to inject your accounts into Polkadot.js Apps. As a safety measure, verify the URL displayed in the pop-up matches the URL of Polkadot.js Apps
  2. Click "Yes, allow this application access"
  3. Navigate to the accounts page
  4. Click "My Accounts"
- 5. You should see your account from the extension injected into Polkadot.js Apps. Here, you can send a transaction and you'll sign the transaction in the Polkadot.js extension. For more information about using Polkadot.js Apps, see the [Polkadot.js Apps tutorial here](/tokens/connect/polkadotjs).
+ 5. You should see your account from the extension injected into Polkadot.js Apps. Here, you can send a transaction and you'll sign the transaction in the Polkadot.js extension. For more information about using Polkadot.js Apps, see the [Polkadot.js Apps tutorial here](/tokens/connect/polkadotjs)
 
 If you don't see your account in Polkadot.js Apps, first refresh the page. Secondly, check the extension to verify that the account is not hidden by toggling the eye icon next to your account in the extension.
 
