@@ -5,7 +5,7 @@ description: Use one of the supported API providers to connect to a public endpo
 
 # Network Endpoints
 
-![API Providers banner](/images/builders/get-started/api-providers/api-providers-banner.png)
+![API Providers banner](/images/builders/get-started/endpoints/endpoints-banner.png)
 
 ## Public Endpoints
 
@@ -13,7 +13,7 @@ Moonbeam-based networks have two endpoints available for users to connect to: on
 
 The endpoints in this section are for development purposes only and are not meant to be used in production applications.
 
-If you are looking for an API provider suitable for production use, you can check out the [Custom Endpoints](#custom-endpoints) section of this guide. 
+If you are looking for an API provider suitable for production use, you can check out the [Endpoint Providers](#endpoint-providers) section of this guide. 
 
 ### Moonbase Alpha Endpoints
 
@@ -23,9 +23,9 @@ If you are looking for an API provider suitable for production use, you can chec
 
 --8<-- 'code/endpoints/moonriver.md'
 
-## Custom Endpoints
+## Endpoint Providers
 
-You can create a custom endpoint suitable for development or production use using any of the following API providers:
+You can create your own endpoint suitable for development or production use using any of the following API providers:
 
 - [Bware Labs](#bware-labs)
 - [Elara](#elara)
@@ -42,7 +42,7 @@ To get started, you'll need to head to [Bware Labs](https://app.bwarelabs.com/),
 3. Select the network from the dropdown
 4. Click **Create Endpoint**
 
-![Bware Labs](/images/builders/get-started/api-providers/api-providers-1.png)
+![Bware Labs](/images/builders/get-started/endpoints/endpoints-1.png)
 
 ### Elara
 
@@ -55,7 +55,7 @@ To get started, navigate to [Elara](https://elara.patract.io/) and create an acc
 3. Select the network
 4. Click **Create** to the project
 
-![Elara](/images/builders/get-started/api-providers/api-providers-2.png)
+![Elara](/images/builders/get-started/endpoints/endpoints-2.png)
 
 ### OnFinality
 
@@ -67,4 +67,4 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 2. Select the network from the dropdown
 3. Your custom API endpoint will be generated automatically
 
-![OnFinality](/images/builders/get-started/api-providers/api-providers-3.png)
+![OnFinality](/images/builders/get-started/endpoints/endpoints-3.png)
