@@ -57,8 +57,6 @@ Some important variables/configurations to note include:
 
 _*Read more about [token denominations](#token-denominations)_
 
-## Get Started {: #get-started } 
-
 --8<-- 'text/moonriver/connect.md'
 
 ## Telemetry {: #telemetry } 

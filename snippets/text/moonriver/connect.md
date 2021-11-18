@@ -1,14 +1,12 @@
+## Connect to Moonriver
 
-### API Providers
+### Network Endpoints
 
-The following API providers are supported on Moonriver: 
+Moonriver has two types of endpoints available for users to connect to: one for HTTPS and one for WSS. 
 
-- [PureStake](/builders/get-started/api-providers#purestake-development-endpoints) - for development purposes only
-- [Bware Labs](https://bwarelabs.com/)
-- [Elara](https://elara.patract.io/)
-- [OnFinality](https://onfinality.io/)
+If you're looking for your own endpoints suitable for production use, you can check out the [Endpoint Providers](/builders/get-started/endpoints/#endpoint-providers) section of our documentation. Otherwise, to get started quickly you can use one of the following public HTTPS or WSS endpoints:
 
-For more information on each of the supported API Providers, head over to the [API Providers](/builders/get-started/api-providers) section of our documentation.
+--8<-- 'code/endpoints/moonriver.md'
 
 ### Quick Start {: #quick-start } 
 

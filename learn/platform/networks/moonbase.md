@@ -95,8 +95,6 @@ For more details regarding the updates of Moonbase Alpha, please refer to the fo
  - [Moonbase Alpha v7](https://github.com/PureStake/moonbeam/releases/tag/v0.7.0)
  - [Moonbase Alpha v8](https://github.com/PureStake/moonbeam/releases/tag/v0.8.0)
 
-## Get Started {: #get-started } 
-
 --8<-- 'text/testnet/connect.md'
 
 ## Telemetry {: #telemetry } 

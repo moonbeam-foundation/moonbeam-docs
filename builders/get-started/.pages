@@ -5,4 +5,4 @@ nav:
   - moonbeam-dev.md
   - moonbase.md
   - moonriver.md
-  - api-providers.md
+  - endpoints.md
