@@ -91,3 +91,13 @@ Given a transaction hash (`tx_hash`), the following code snippet uses Polkadot.j
 The code relies on three RPC requests from the Substrate JSON-RPC: `chain_getFinalizedHead`, `chain_getHeader` and `eth_getTransactionReceipt`. The first request gets the block hash of the last finalized block. The second request gets the block header for a given block hash. The third request is fairly similar to the Ethereum JSON-RPC method, but it is done directly via the Substrate metadata.
 
 --8<-- 'code/vs-ethereum/polkadotjs.md'
+
+## Checking Tx Finality with Python Substrate Interface
+
+The [Python Substrate Interface package](https://github.com/polkascan/py-substrate-interface) provides developers a way to interact with Substrate chains using Python. 
+
+Given a transaction hash (`tx_hash`), the following code snippet uses Python Substrate Interface to fetch the current finalized block and compare it with the block number of the transaction you've provided. You can find all the available information about Python Substrate Interface and the available endpoints in their [official documentation site](https://polkascan.github.io/py-substrate-interface/).
+
+The code relies on two RPC requests from the Substrate JSON-RPC: `eth_getTransactionReceipt` and `eth_getBlockByNumber`. The first request gets the Ethereum transaction receipt by tx hash. The second request gets the Ethereum block by block number. 
+
+--8<-- 'code/vs-ethereum/pysubstrateinterface.md'
