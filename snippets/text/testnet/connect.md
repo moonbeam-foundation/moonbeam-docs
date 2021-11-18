@@ -1,4 +1,5 @@
 ## Connect to Moonbase Alpha
+
 ### Network Endpoints
 
 Moonbase Alpha has two types of endpoints available for users to connect to: one for HTTPS and one for WSS. 
