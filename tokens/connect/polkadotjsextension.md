@@ -9,7 +9,7 @@ description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereu
 
 ## Introduction {: #introduction } 
 
-The [Polkadot.js extension](https://polkadot.js.org/extension/) manages accounts and facilitates the signing of transactions with those accounts. It is not a full-featured wallet like [MetaMask](/tokens/connect/metamask). However, the extension has the ability to inject accounts into the browser, which provides a similar user experience to a full-featured wallet with the benefit of added security.
+The [Polkadot.js extension](https://polkadot.js.org/extension/){target=_blank} manages accounts and facilitates the signing of transactions with those accounts. It is not a full-featured wallet like [MetaMask](/tokens/connect/metamask){target=_blank}. However, the extension has the ability to inject accounts into the browser, which provides a similar user experience to a full-featured wallet with the benefit of added security. Although dApp support for the Polkadot.js extension is limited, the extension seamlessly integrates with Polkadot.js Apps enabling you to send and receive funds and participate in Polkadot-native functions such as governance.
 
 Creating and mantaining accounts in the Polkadot.js extension is more secure than creating them directly in Polkadot.js Apps. With the extension, the accounts live outside of the browser and are only injected into sites that you specifically authorize. Additionally, the extension can protect you from known phishing sites. 
 
@@ -17,13 +17,13 @@ With the latest update to the Polkadot.js extension, the plugin now natively sup
 
 ## Installing the Polkadot.js Extension {: #installing-the-polkadot.js-extension } 
 
-The Polkadot.js extension is compatible with Chrome, Brave, and Firefox. To install it, head to [this link](https://polkadot.js.org/extension/) and click on your respective browser. If you're using Brave, click on the Chrome link. 
+The Polkadot.js extension is compatible with Chrome, Brave, and Firefox. To install it, head to [this link](https://polkadot.js.org/extension/){target=_blank} and click on your respective browser. If you're using Brave, click on the Chrome link. 
 
 ![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjsext/polkadotjs-ext-1.png)
 
 ## Update Metadata {: #update-metadata } 
 
-It's important to update the extension metadata for each network you want to interact with, otherwise you may not see all of the latest updates reflected in the extension. To do so, first head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network#/settings).
+It's important to update the extension metadata for each network you want to interact with, otherwise you may not see all of the latest updates reflected in the extension. To do so, first head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network#/settings){target=_blank}.
 
 If you're not connected to the Moonbeam or Moonriver network, click the network logo in the upper left corner, then take the following steps:
 
@@ -46,19 +46,21 @@ It's a good idea to repeat the `Update metadata` process for each network that y
 
 ![Update Metadata](/images/tokens/connect/polkadotjsext/polkadotjs-ext-3.png)
 
-!!! note
-    Moonbeam uses Ethereum-style H160 addresses across all of its networks - Moonbeam, Moonriver, and Moonbase Alpha. There is no need to create separate accounts for use on each chain.
+
 
 ## Creating a Moonbeam Address {: #creating-a-moonbeam-address }
-Open the Polkadot.js extension and click on the "+" Icon. Then press "Create a New Account". This will open the “Create an account” wizard. In the first page, the twelve word mnemonic seed is shown. Make sure you backup your twelve word mnemonic seed. The words must be kept in the exact order displayed on your screen. For more information on storing your mnemonic seed safely, see [this link](https://wiki.polkadot.network/docs/learn-account-generation#storing-your-key-safely). On this page, take the following steps:
+Open the Polkadot.js extension and click on the "+" Icon. Then press "Create a New Account". This will open the “Create an account” wizard. In the first page, the twelve word mnemonic seed is shown. Make sure you backup your twelve word mnemonic seed. The words must be kept in the exact order displayed on your screen. For more information on storing your mnemonic seed safely, see [this link](https://wiki.polkadot.network/docs/learn-account-generation#storing-your-key-safely){target=_blank}. On this page, take the following steps:
 
  1. Ensure you have your mnemonic seed securely backed up, then check the corresponding box. If you navigate away from the extension before completing the account setup wizard, the seed will not be saved and you'll need to create a new account.
  2. Click on the “next step” button
 
 !!! note
-    DO NOT share your seed with anyone. Your seed grants full access to ALL of your funds. 
+    Moonbeam uses Ethereum-style H160 addresses across all of its networks - Moonbeam, Moonriver, and Moonbase Alpha. There is no need to create separate accounts for use on each chain.
 
 ![New Account](/images/tokens/connect/polkadotjsext/polkadotjs-ext-4.png)
+
+!!! note
+    DO NOT share your seed with anyone. Your seed grants full access to ALL of your funds. 
 
 On this final page of the account creation wizard, take the following steps:
 
@@ -75,13 +77,13 @@ On this final page of the account creation wizard, take the following steps:
 
 ## Interacting with Polkadot.js Apps {: #interacting-with-polkadot.js-apps }
 
-Remember that you cannot send funds directly from the Polkadot.js Extension. However, the extension can inject your accounts into other apps, such as [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonriver.api.onfinality.io%2Fpublic-ws#/accounts), if you grant it permission to do so. Navigate to the [Accounts Page](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonriver.api.onfinality.io%2Fpublic-ws#/accounts) where you should see your injected account. 
+Remember that you cannot send funds directly from the Polkadot.js Extension. However, the extension can inject your accounts into other apps, such as [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonriver.api.onfinality.io%2Fpublic-ws#/accounts){target=_blank}, if you grant it permission to do so. Navigate to the [Accounts Page](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonriver.api.onfinality.io%2Fpublic-ws#/accounts){target=_blank} where you should see your injected account. 
 
  1. If this is your first time using the extension, you'll need to give the extension permission to inject your accounts into Polkadot.js Apps. As a safety measure, verify the URL displayed in the pop-up matches the URL of Polkadot.js Apps
  2. Click "Yes, allow this application access"
  3. Navigate to the accounts page
  4. Click "My Accounts"
- 5. You should see your account from the extension injected into Polkadot.js Apps. Here, you can send a transaction and you'll sign the transaction in the Polkadot.js extension. For more information about using Polkadot.js Apps, see the [Polkadot.js Apps tutorial here](/tokens/connect/polkadotjs)
+ 5. You should see your account from the extension injected into Polkadot.js Apps. Here, you can send a transaction and you'll sign the transaction in the Polkadot.js extension. For more information about using Polkadot.js Apps, see the [Polkadot.js Apps tutorial here](/tokens/connect/polkadotjs){target=_blank}
 
 If you don't see your account in Polkadot.js Apps, first refresh the page. Secondly, check the extension to verify that the account is not hidden by toggling the eye icon next to your account in the extension.
 
