@@ -21,22 +21,61 @@ The Polkadot.js extension is compatible with Chrome, Brave, and Firefox. To inst
 
 ![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjsext/polkadotjs-ext-1.png)
 
-After switching, the Polkadot.js site will not only connect to Moonbase Alpha, but also change its styling to make a perfect match.
-
-![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjs/polkadotjs-app-2.png)
-
 ## Update Metadata {: #update-metadata } 
 
-It's important to update the extension metadata, otherwise you may not see all of the latest updates reflected in the extension. To do so, first. head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network#/settings).
+It's important to update the extension metadata for each network you want to interact with, otherwise you may not see all of the latest updates reflected in the extension. To do so, first, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network#/settings).
 
-Then, ensure you're on the Moonriver or Moonbeam Network and take the following steps: 
+If you're not connected to the Moonbeam or Moonriver network, click the network logo in the upper left corner, then take the following steps:
+
+ 1. Click on the `Kusama and Parachains` for Moonriver or the `Polkadot and Parachains` for Moonbeam
+ 2. Find Moonriver in the list and select any one of the providers in the dropdown
+ 3. Click the "Switch" Button at the Top and wait for the page to reload
+
+![Switch to the correct network](/images/tokens/connect/polkadotjsext/polkadotjs-ext-2.png)
+
+
+Ensure you're on the Moonriver or Moonbeam Network and take the following steps: 
 
  1. Click on the "Settings" Tab
  2. Navigate to "Metadata"
- 3. Enable the "Use Ledger Live" feature
+ 3. Click on "Update Metadata". If you see a message that reads `No Upgradable extensions`, you can skip the following steps
+ 4. The Polkadot JS Extension will pop up to prompt you to confirm the update. As a safety measure, verify the URL displayed in the extension is the same as the Polkadot.js Apps site in your browser.
+ 5. Click "Yes, do this metadata update" to complete the update  
 
-![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjs/polkadotjs-app-3.png)
+It's a good idea to repeat the `Update metadata` process for each network that you'd like to interact with. 
+
+![Update Metadata](/images/tokens/connect/polkadotjsext/polkadotjs-ext-3a.png)
 
 !!! note
     Moonbeam uses Ethereum-style H160 addresses across all of its networks - Moonbeam, Moonriver, and Moonbase Alpha. There is no need to create separate accounts for use on each chain.
+
+## Creating a Moonbeam Address {: #creating-a-moonbeam-address }
+Open the Polkadot JS extension and click on the "+" Icon. Then press "Create a New Account".
+
+This will open the “Create an account” wizard. In the first page, the 12-word mnemonic seed is shown. Make sure you backup your twelve word mnemonic seed. The words must be kept in the exact order displayed on your screen. For more information on storing your mnemonic seed safely, see [this link](https://wiki.polkadot.network/docs/learn-account-generation#storing-your-key-safely). On this page, take the following steps
+
+ 1. Ensure you have your mnemonic seed securely backed up, then check the corresponding box
+ 2. Click on the “next step” button
+
+!!! note
+    DO NOT share your seed with anyone. Your seed grants full access to ALL of your funds. 
+
+![New Account](/images/tokens/connect/polkadotjsext/polkadotjs-ext-4.png)
+
+ 1. Select the `Moonriver` Network. If you create an account in another format, such as Polkadot or Kusama, you'll be unable to later convert that to the Ethereum-style address format used in Moonriver and you'll need to create a new Moonriver address 
+ 2. Give this account a descriptive name
+ 3. Set a password, this will be used when signing transactions
+ 4. Confirm the password
+ 5. Click “Add the account with the generated seed” to complete the account generation 
+
+![Finish Account Creation](/images/tokens/connect/polkadotjsext/polkadotjs-ext-5.png)
+
+!!! note
+    Currently, the Polkadot.js Extension does not support derived Ethereum-style addresses. This means that you can create only one address per seed. Similarly, this means that if you're importing a Metamask wallet, you'll only be able to utilize your first Metamask account that in the Polkadot.js Extension. This is expected to be a temporary limitation and will be resolved soon. 
+
+https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonriver.api.onfinality.io%2Fpublic-ws#/accounts     
+
+## Interacting with PolkadotJSApps {: #interacting-with-polkadotjsapps }
+
+Remember that you cannot send funds directly from Polkadot JS Extension. However, the extension can inject your accounts in other applications, such as PolkadotJSApps, if you grant it permission to do so.
 
