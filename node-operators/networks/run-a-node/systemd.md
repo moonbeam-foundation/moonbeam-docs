@@ -16,7 +16,7 @@ This guide is meant for people with experience compiling [Substrate](https://sub
 !!! note
     Moonbase Alpha is still considered an Alphanet, and as such _will not_ have 100% uptime. The parachain might be purged as needed. During the development of your application, make sure you implement a method to redeploy your contracts and accounts to a fresh parachain quickly. If a chain purge is required, it will be announced via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
 
-## Installation Instructions {: #installation-instructions-binary } 
+## Installation Instructions {: #installation-instructions } 
 
 This section goes through the process of using the binary and running a Moonbeam full node as a systemd service. The following steps were tested on an Ubuntu 18.04 installation. Moonbeam may work with other Linux flavors, but Ubuntu is currently the only tested version.
 
