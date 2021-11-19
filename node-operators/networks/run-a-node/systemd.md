@@ -331,19 +331,85 @@ journalctl -f -u moonbeam.service
 
 As Moonbeam development continues, it will sometimes be necessary to upgrade your node software. Node operators will be notified on our [Discord channel](https://discord.gg/PfpUATX) when upgrades are available and whether they are necessary (some client upgrades are optional). The upgrade process is straightforward and is the same for a full node or collator.
 
-First, stop the systemd service:
+If you want to update your client, you can keep your existing chain data in tact, and only update the binary by following these steps:
 
-```
-sudo systemctl stop moonbeam
-```
+1. Stop the systemd service:
 
-Then, install the new version by repeating the steps described before, making sure that you are using the latest tag available. After updating, you can start the service again.
+    ```
+    sudo systemctl stop moonbeam
+    ```
+
+2. Remove the old binary file:
+    
+    === "Moonbase Alpha"
+        ```
+        rm  {{ networks.moonbase.node_directory }}/moonbeam
+        ```
+
+    === "Moonriver"
+        ```
+        rm  {{ networks.moonriver.node_directory }}/moonbeam
+        ```
+
+3. Get the latest version of Moonbeam from the [Moonbeam GitHub Release](https://github.com/PureStake/moonbeam/releases/) page
+
+4. If you're using the release binary, update the version and run:
+
+    ```
+    wget https://github.com/PureStake/moonbeam/releases/download/<NEW VERSION TAG HERE>/moonbeam
+    ```
+
+    If you want to compile the binary, please refer back to the [Compile the Binary](#compile-the-binary) instructions, making sure you `git checkout` to the latest version.
+
+5. Copy the binary to the data directory:
+
+    === "Moonbase Alpha"
+        ```
+        # If you used the release binary:
+        cp ./{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
+
+        # Or if you compiled the binary:
+        cp ./target/release/{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
+        ```
+
+    === "Moonriver"
+        ```
+        # If you used the release binary:
+        cp ./{{ networks.moonriver.binary_name }} {{ networks.moonriver.node_directory }}
+
+        # Or if you compiled the binary:
+        cp ./target/release/{{ networks.moonriver.binary_name }} {{ networks.moonriver.node_directory }}
+        ```
+
+6. Update permissions:
+
+    === "Moonbase Alpha"
+
+        ```
+        chmod +x moonbeam
+        chown moonbase_service moonbeam
+        ```
+
+    === "Moonriver"
+
+        ```
+        chmod +x moonbeam
+        chown moonriver_service moonbeam
+        ```
+
+7. Start your service:
+
+    ```
+    systemctl start moonbeam
+    ```
+
+To check the status of your updated node, you can run `systemctl status moonbeam.service`, or to see logs you can run `journalctl -f -u moonbeam.service`.
 
 ### Purging the Chain {: #purging-the-chain } 
 
-On an as-needed basis, Moonbase Alpha might be purged and reset. If a purge is required, node operators will be notified in advance (via our [Discord channel](https://discord.gg/PfpUATX)). You can also purge your node if your individual data directory becomes corrupted.
+If you need a fresh instance of your Moonbeam node, you can purge your node by removing the associated data directory.
 
-Depending on whether you used the release binary or compiled the binary yourself, the instructions for purging your chain data will slightly vary. 
+Depending on whether you used the release binary or compiled the binary yourself, the instructions for purging your chain data will slightly vary. If you compiled the binary yourself, you can skip ahead to the [Purging Compiled Binary](#purging-compiled-binary) section.
 
 #### Purging Release Binary {: #purging-release-binary } 
 
@@ -395,7 +461,7 @@ Similarly, to only remove the relay chain data, you can run:
     sudo rm -rf {{ networks.moonriver.node_directory }}/polkadot/*
     ```
 
-Now that your chain data has been purged, you can start a new node with a fresh data directory. You can install the newest version by repeating the steps described before, making sure you are using the latest tag available.
+--8<-- 'text/purge-chain/post-purge.md'
 
 #### Purging Compiled Binary {: #purging-compiled-binary } 
 
@@ -432,4 +498,4 @@ For the complete list of available `purge-chain` commands, you can access the he
 ./target/release/moonbeam purge-chain --help
 ```
 
-Now that your chain data has been purged, you can start a new node with a fresh data directory. You can install the newest version by repeating the steps described before, making sure you are using the latest tag available.
+--8<-- 'text/purge-chain/post-purge.md'
