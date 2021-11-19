@@ -5,7 +5,7 @@ description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereu
 
 # Interacting with Moonbeam Using the Polkadot.js Extension
 
-![Intro diagram](/images/tokens/connect/polkadotjs/polkadotjs-banner.png)
+![Intro diagram](/images/tokens/connect/polkadotjsext/polkadotjs-ext-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -70,7 +70,7 @@ On this final page of the account creation wizard, take the following steps:
  4. Confirm the password
  5. Click “Add the account with the generated seed” to complete the account generation 
 
-![Finish Account Creation](/images/tokens/connect/polkadotjsext/polkadotjs-ext-5.png)
+<img src="/images/tokens/connect/polkadotjsext/polkadotjs-ext-5.png" alt="Finish Account Creation" style="width: 60%; display: block; margin-left: auto; margin-right: auto;" />
 
 !!! note
     Currently, the Polkadot.js Extension does not support derived Ethereum-style addresses. This means that you can create only one address per seed. Similarly, this means that if you're importing a Metamask wallet, you'll only be able to utilize your first Metamask account within the Polkadot.js Extension. This is expected to be a temporary limitation and will be resolved soon. 
@@ -85,6 +85,6 @@ Remember that you cannot send funds directly from the Polkadot.js Extension. How
  4. Click "My Accounts"
  5. You should see your account from the extension injected into Polkadot.js Apps. Here, you can send a transaction and you'll sign the transaction in the Polkadot.js extension. For more information about using Polkadot.js Apps, see the [Polkadot.js Apps tutorial here](/tokens/connect/polkadotjs){target=_blank}
 
-If you don't see your account in Polkadot.js Apps, first refresh the page. Secondly, check the extension to verify that the account is not hidden by toggling the eye icon next to your account in the extension.
+If you don't see your account in Polkadot.js Apps, first refresh the page. Second, check the extension to verify that the account is not hidden by toggling the eye icon next to your account in the extension.
 
 ![Polkadot.js Apps](/images/tokens/connect/polkadotjsext/polkadotjs-ext-6.png)
