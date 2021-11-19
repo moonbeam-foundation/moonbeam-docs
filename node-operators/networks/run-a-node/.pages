@@ -1,7 +1,6 @@
 title: Run a Node
-hide: false
 nav:
   - index.md
-  - full-node.md
+  - overview.md
   - docker.md
   - systemd.md

@@ -166,7 +166,7 @@ When running a node via the binary file, data is stored in a local directory typ
 ./target/release/moonbeam purge-chain --dev -y
 ```
 
-This will remove the data folder, note that all chain data is now lost. To learn more about all of the available `purge-chain` commands, you can checkout the [Purging Binary Data](/node-operators/networks/compile-binary/#purging-binary-data) section of our documentation.
+This will remove the data folder, note that all chain data is now lost. To learn more about all of the available `purge-chain` commands, you can checkout the [Purging Binary Data](/node-operators/networks/run-a-node/systemd/#purging-compiled-binary) section of our documentation.
 
 If you spun up your node using Docker along with the `-v` flag to specify a a mounted directory for your container, you will need to purge that directory. To do so, you can run the following command:
 

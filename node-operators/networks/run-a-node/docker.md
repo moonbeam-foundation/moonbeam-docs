@@ -5,7 +5,7 @@ description: How to run a full Parachain node so you can have your own RPC endpo
 
 # Run a Node on Moonbeam Using Docker
 
-![Full Node Moonbeam Banner](/images/node-operators/networks/full-node/full-node-banner.png)
+![Full Node Moonbeam Banner](/images/node-operators/networks/run-a-node/docker/docker-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -13,7 +13,7 @@ Running a full node on a Moonbeam-based network allows you to connect to the net
 
 ## Installation Instructions {: #installation-instructions }
 
-A Moonbeam node can be spun up quickly using Docker. For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/). At the time of writing, the Docker version used was 19.03.6. When connecting to Moonriver on Kusama, it will take a few days to completely sync the embedded Kusama relay chain. Make sure that your system meets the [requirements](/node-operators/run-a-node/full-node#requirements).
+A Moonbeam node can be spun up quickly using Docker. For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/). At the time of writing, the Docker version used was 19.03.6. When connecting to Moonriver on Kusama, it will take a few days to completely sync the embedded Kusama relay chain. Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview#requirements).
 
 Create a local directory to store the chain data:
 
@@ -127,7 +127,7 @@ If you're using MacOS, you can find all the code snippets [here](/snippets/text/
 
 Once Docker pulls the necessary images, your full Moonbeam (or Moonriver) node will start, displaying lots of information, such as the chain specification, node name, role, genesis state, and more:
 
-![Full Node Starting](/images/node-operators/networks/full-node/full-node-docker-1.png)
+![Full Node Starting](/images/node-operators/networks/run-a-node/docker/full-node-docker-1.png)
 
 !!! note
     If you want to run an RPC endpoint, to connect polkadot.js.org, or to run your own application, use the flags `--unsafe-rpc-external` and/or `--unsafe-ws-external` to run the full node with external access to the RPC ports.  More details are available by running `moonbeam --help`.  
@@ -142,10 +142,10 @@ docker run -p {{ networks.relay_chain.p2p }}:{{ networks.relay_chain.p2p }} -p {
 
 During the syncing process, you will see messages from both the embedded relay chain and the parachain (without a tag). These messages display a target block (live network state) and a best block (local node synced state).
 
-![Full Node Starting](/images/node-operators/networks/full-node/full-node-docker-2.png)
+![Full Node Starting](/images/node-operators/networks/run-a-node/docker/full-node-docker-2.png)
 
 !!! note
-    It will take a few days to completely sync the embedded Kusama relay chain. Make sure that your system meets the [requirements](#requirements). 
+    It will take a few days to completely sync the embedded Kusama relay chain. Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview#requirements). 
 
 If you followed the installation instructions for Moonbase Alpha, once synced, you will have a node of the Moonbase Alpha TestNet running locally!
 

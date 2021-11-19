@@ -5,7 +5,7 @@ description: How to run a full Parachain node so you can have your own RPC endpo
 
 # Run a Node on Moonbeam Using Systemd
 
-![Full Node Moonbeam Banner](/images/node-operators/networks/full-node/full-node-banner.png)
+![Full Node Moonbeam Banner](/images/node-operators/networks/run-a-node/systemd/systemd-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -16,19 +16,15 @@ This guide is meant for people with experience compiling [Substrate](https://sub
 !!! note
     Moonbase Alpha is still considered an Alphanet, and as such _will not_ have 100% uptime. The parachain might be purged as needed. During the development of your application, make sure you implement a method to redeploy your contracts and accounts to a fresh parachain quickly. If a chain purge is required, it will be announced via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
 
-## Installation Instructions - Binary {: #installation-instructions-binary } 
+## Installation Instructions {: #installation-instructions-binary } 
 
-This section goes through the process of using the release binary and running a Moonbeam full node as a systemd service. The following steps were tested on an Ubuntu 18.04 installation. Moonbeam may work with other Linux flavors, but Ubuntu is currently the only tested version.
+This section goes through the process of using the binary and running a Moonbeam full node as a systemd service. The following steps were tested on an Ubuntu 18.04 installation. Moonbeam may work with other Linux flavors, but Ubuntu is currently the only tested version.
 
-To manually build the binaries yourself, check out the [Compile Moonbeam Binary](/node-operators/networks/compile-binary) guide.
+To get started quickly without the hassle of compiling the binary yourself, you can use [The Release Binary](#the-release-binary). Or if you prefer to manually build the binaries yourself, which could take around 30 minutes to install the dependencies and compile, you can check out the [Compile the Binary](#compile-the-binary) section.
 
-### Use the Release Binary {: #use-the-release-binary } 
+### The Release Binary {: #the-release-binary } 
 
-There are a couple ways to get started with the Moonbeam binary. You can compile the binary yourself, but the whole process can take around 30 minutes to install the dependencies and build the binary. If you're interested in going this route, check out the [Using the Binary](/node-operators/networks/compile-binary) page of our documentation.
-
-Or you can use the [release binary](https://github.com/PureStake/moonbeam/releases) to get started right away.
-
-Use `wget` to grab the latest release binary:
+To get started use `wget` to grab the latest [release binary](https://github.com/PureStake/moonbeam/releases):
 
 
 === "Moonbase Alpha"
@@ -53,7 +49,54 @@ To verify that you have downloaded the correct version, you can run `sha256sum m
     {{ networks.moonriver.parachain_sha256sum }}
     ```
 
-Once you've retrieved the binary, you can use it to run the systemd service.
+Once you've retrieved the binary, you can skip ahead to the [Running the Systemd Service](#running-the-systemd-service) section to get started running your node.
+
+### Compile the Binary {: #compile-the-binary } 
+
+Manually compiling the binary can take around 30 minutes and requires 32GB of memory.
+
+The following commands will build the latest release of the Moonbeam parachain.
+
+First, let's start by cloning the moonbeam repo.
+
+```
+git clone https://github.com/PureStake/moonbeam
+cd moonbeam
+```
+
+Let's check out the latest release:
+
+```
+git checkout tags/$(git describe --tags)
+```
+
+If you already have Rust installed, you can skip the next two steps. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://www.rust-lang.org/tools/install){target=_blank} by executing:
+
+```
+--8<-- 'code/setting-up-node/installrust.md'
+```
+
+Next, update your PATH environment variable by running:
+
+```
+--8<-- 'code/setting-up-node/updatepath.md'
+```
+
+Lastly, build the parachain binary:
+
+```
+cargo build --release
+```
+
+![Compiling Binary](/images/node-operators/networks/run-a-node/systemd/full-node-binary-1.png)
+
+If a _cargo not found error_ shows up in the terminal, manually add Rust to your system path or restart your system:
+
+```
+--8<-- 'code/setting-up-node/updatepath.md'
+```
+
+Now you can use the Moonbeam binary to run a systemd service.
 
 ### Running the Systemd Service {: #running-the-systemd-service } 
 
@@ -85,7 +128,7 @@ Next, create a directory to store the binary and data. Make sure you set the own
     chown moonriver_service {{ networks.moonriver.node_directory }}
     ```
 
-Now, copy the binary built in the last section to the created folder. If you [compiled the binary](/node-operators/networks/compile-binary/) yourself, you'll need to copy the binary in the target directory (`./target/release/{{ networks.moonbase.binary_name }}`). Otherwise, copy the Moonbeam binary in the root:
+Now, copy the binary built in the last section to the created folder. If you [compiled the binary](#compile-the-binary) yourself, you'll need to copy the binary in the target directory (`./target/release/{{ networks.moonbase.binary_name }}`). Otherwise, copy the Moonbeam binary in the root:
 
 === "Moonbase Alpha"
     ```
@@ -273,7 +316,7 @@ And lastly, verify the service is running:
 systemctl status moonbeam.service
 ```
 
-![Service Status](/images/node-operators/networks/full-node/full-node-binary-1.png)
+![Service Status](/images/node-operators/networks/run-a-node/systemd/full-node-binary-2.png)
 
 You can also check the logs by executing:
 
@@ -281,7 +324,7 @@ You can also check the logs by executing:
 journalctl -f -u moonbeam.service
 ```
 
-![Service Logs](/images/node-operators/networks/full-node/full-node-binary-2.png)
+![Service Logs](/images/node-operators/networks/run-a-node/systemd/full-node-binary-3.png)
 
 
 ## Updating the Client {: #updating-the-client } 
@@ -300,7 +343,9 @@ Then, install the new version by repeating the steps described before, making su
 
 On an as-needed basis, Moonbase Alpha might be purged and reset. If a purge is required, node operators will be notified in advance (via our [Discord channel](https://discord.gg/PfpUATX)). You can also purge your node if your individual data directory becomes corrupted.
 
-If you spun up your node following the [Using the Binary](/node-operators/networks/compile-binary/) guide, you can refer back to the [Purging Binary Data](/node-operators/networks/compile-binary/#purging-binary-data) section to check out the available `purge-chain` commands. 
+Depending on whether you used the release binary or compiled the binary yourself, the instructions for purging your chain data will slightly vary. 
+
+#### Purging Release Binary {: #purging-release-binary } 
 
 You'll first need to stop the systemd service:
 
@@ -349,5 +394,42 @@ Similarly, to only remove the relay chain data, you can run:
     ```
     sudo rm -rf {{ networks.moonriver.node_directory }}/polkadot/*
     ```
+
+Now that your chain data has been purged, you can start a new node with a fresh data directory. You can install the newest version by repeating the steps described before, making sure you are using the latest tag available.
+
+#### Purging Compiled Binary {: #purging-compiled-binary } 
+
+If you want to start a fresh instance of a node, there are a handful of `purge-chain` commands available to you which will remove your previous chain data as specified. The base command which will remove both the parachain and relay chain data is:
+
+```
+./target/release/moonbeam purge-chain
+```
+
+You can add the following flags to the above command if you want to specify what data should be purged:
+
+- `--parachain` - only deletes the parachain database, keeping the relay chain data in tact
+- `--relaychain` - only deletes the relay chain database, keeping the parachain data in tact
+
+You can also specify a chain to be removed:
+
+- `--chain` - specify the chain using either one of the predefined chains or a path to a file with the chainspec
+
+To purge only your Moonbase Alpha parachain data, for example, you would run the following command:
+
+```
+./target/release/moonbeam purge-chain --parachain --chain alphanet
+```
+
+To specify a path to the chainspec for a development chain to be purged, you would run:
+
+```
+./target/release/moonbeam purge-chain --chain example-moonbeam-dev-service.json
+```
+
+For the complete list of available `purge-chain` commands, you can access the help menu by running:
+
+```
+./target/release/moonbeam purge-chain --help
+```
 
 Now that your chain data has been purged, you can start a new node with a fresh data directory. You can install the newest version by repeating the steps described before, making sure you are using the latest tag available.

@@ -1,8 +1,6 @@
 title: Networks
-hide: false
 nav:
   - index.md
   - run-a-node
-  - compile-binary.md
   - tracing-node.md
   - collator.md
