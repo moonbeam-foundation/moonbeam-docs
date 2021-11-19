@@ -151,7 +151,7 @@ If you followed the installation instructions for Moonbase Alpha, once synced, y
 
 If you followed the installation instructions for Moonriver, once synced, you will be connected to peers and see blocks being produced on the Moonriver network! Note that in this case you need to also sync to the Kusama relay chain, which might take a few days.
 
-## Updating the Client {: #updating-the-client } 
+## Update the Client {: #update-the-client } 
 
 As Moonbeam development continues, it will sometimes be necessary to upgrade your node software. Node operators will be notified on our [Discord channel](https://discord.gg/PfpUATX) when upgrades are available and whether they are necessary (some client upgrades are optional). The upgrade process is straightforward and is the same for a full node or collator.
 
@@ -167,7 +167,7 @@ As Moonbeam development continues, it will sometimes be necessary to upgrade you
 
 Once your node is running again, you should see logs in your terminal.
 
-### Purging the Chain {: #purging-the-chain } 
+### Purge Your Node {: #purge-your-node } 
 
 If you need a fresh instance of your Moonbeam node, you can purge your node by removing the associated data directory. 
 

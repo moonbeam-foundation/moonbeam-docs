@@ -158,7 +158,7 @@ Nevertheless, leveraging the Ethereum full RPC capabilities of Moonbeam, you can
 
 ## Commands, Flags and Options {: #common-commands-flags-and-options } 
 
-### Purging the Chain {: #purging-the-chain } 
+### Purging Your Node {: #purging-your-node } 
 
 When running a node via the binary file, data is stored in a local directory typically located in `~/.local/shared/moonbeam/chains/development/db`. If you want to start a fresh instance of the node, you can either delete the content of the folder, or run the following command inside the `moonbeam` folder:
 

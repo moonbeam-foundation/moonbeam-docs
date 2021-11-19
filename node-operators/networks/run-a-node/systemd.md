@@ -327,7 +327,7 @@ journalctl -f -u moonbeam.service
 ![Service Logs](/images/node-operators/networks/run-a-node/systemd/full-node-binary-3.png)
 
 
-## Updating the Client {: #updating-the-client } 
+## Update the Client {: #update-the-client } 
 
 As Moonbeam development continues, it will sometimes be necessary to upgrade your node software. Node operators will be notified on our [Discord channel](https://discord.gg/PfpUATX) when upgrades are available and whether they are necessary (some client upgrades are optional). The upgrade process is straightforward and is the same for a full node or collator.
 
@@ -405,13 +405,13 @@ If you want to update your client, you can keep your existing chain data in tact
 
 To check the status of your updated node, you can run `systemctl status moonbeam.service`, or to see logs you can run `journalctl -f -u moonbeam.service`.
 
-### Purging the Chain {: #purging-the-chain } 
+### Purge Your Node {: #purge-your-node } 
 
 If you need a fresh instance of your Moonbeam node, you can purge your node by removing the associated data directory.
 
-Depending on whether you used the release binary or compiled the binary yourself, the instructions for purging your chain data will slightly vary. If you compiled the binary yourself, you can skip ahead to the [Purging Compiled Binary](#purging-compiled-binary) section.
+Depending on whether you used the release binary or compiled the binary yourself, the instructions for purging your chain data will slightly vary. If you compiled the binary yourself, you can skip ahead to the [Purge Compiled Binary](#purge-compiled-binary) section.
 
-#### Purging Release Binary {: #purging-release-binary } 
+#### Purge Release Binary {: #purge-release-binary } 
 
 You'll first need to stop the systemd service:
 
@@ -463,7 +463,7 @@ Similarly, to only remove the relay chain data, you can run:
 
 --8<-- 'text/purge-chain/post-purge.md'
 
-#### Purging Compiled Binary {: #purging-compiled-binary } 
+#### Purge Compiled Binary {: #purge-compiled-binary } 
 
 If you want to start a fresh instance of a node, there are a handful of `purge-chain` commands available to you which will remove your previous chain data as specified. The base command which will remove both the parachain and relay chain data is:
 

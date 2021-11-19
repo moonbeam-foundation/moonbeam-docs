@@ -106,5 +106,9 @@ chain (our genesis: GENESIS_ID theirs: OTHER_GENESIS_ID)
 
 This typically means that you are running an older version and will need to upgrade.
 
-We announce the upgrades (and corresponding chain purge) via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
+We announce the upgrades (and corresponding chain purge) via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance. 
 
+Instructions for purging chain data will vary slightly depending on how you spun up your node:
+
+  - For Docker, you can check out the [Purge Your Node](/node-operators/networks/run-a-node/docker/#purge-your-node) section of the [Using Docker](/node-operators/networks/run-a-node/docker) page
+  - For Systemd, you can take a look at the [Purge Your Node](/node-operators/networks/run-a-node/systemd/#purge-your-node) section of the [Using Systemd](/node-operators/networks/run-a-node/systemd) page
