@@ -5,7 +5,8 @@ description: This guide walks you through how to use your Ledger hardware wallet
 
 # Interacting with Moonbeam Using Ledger Hardware Wallet
 
-![Intro diagram](/images/tokens/connect/ledger/ledger-banner.png)
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/ct4h9MN41j4' frameborder='0' allowfullscreen></iframe></div>
+<style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style>
 
 ## Introduction {: #introduction } 
 
@@ -31,7 +32,7 @@ As of [MetaMask version 10.5.0](https://consensys.net/blog/metamask/metamask-and
 
 ## Install the Ledger Live App {: install-the-ledger-live-app }
 
-If you want to connect to Moonriver, you can use the Moonriver app from the Ledger Live app catalog. Otherwise, for other Moonbeam-based networks, you can use the Ethereum Ledger Live app. To get started, open up Ledger Live and:
+If you want to connect to Moonriver, you can use the Moonriver app from the Ledger Live app catalog but first you will need to install the Ethereum app. This is because the Moonriver app is dependent on the Ethereum app. Once the Ethereum app is installed you will be able to install the Moonriver app without a problem. Otherwise, for other Moonbeam-based networks, you only need to install the Ethereum app and later on you will need to specify a chain ID. To get started, open up Ledger Live and:
 
 1. Select **Manager** from the menu
 2. Connect and unlock your device (this must be done before installation)
