@@ -36,18 +36,16 @@ If you want to connect to Moonriver, you can use the Moonriver app from the Ledg
 
 1. Select **Manager** from the menu
 2. Connect and unlock your device (this must be done before installation)
-3. In the **App catalog** search for Moonriver (MOVR) or Ethereum (ETH)
-4. Click **Install**
+3. In the **App catalog** search for Ethereum (ETH) and click **Install**. Your Ledger device will show **Processing** and once the installation is complete, the app will appear on your Ledger device
+4. Search for Moonriver (MOVR) in the **App catalog** and click **Install**. Again, your Ledger device will show **Processing** and once complete, the Moonriver app will appear on your Ledger device
 
-Your Ledger device will show a status of **Processing**. Then once the app has been successfully installed, it will appear in the menu on your Ledger device. In the Ledger Live app, you'll also see the app under the **Apps installed** tab on the **Manager** page.
-
-After the app has been successfully installed, you can close out of Ledger Live. 
+In the Ledger Live app, you should now see the Ethereum and Moonriver apps under the **Apps installed** tab on the **Manager** page. After the apps have been successfully installed, you can close out of Ledger Live. 
 
 <img src="/images/tokens/connect/ledger/ledger-1.png" alt="Moonriver Ledger App Installed" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 
 ## Import your Ledger Account to MetaMask {: #import-your-ledger-account-to-metamask } 
 
-Once the app has been installed from Ledger Live, connect your Ledger device to the computer, unlock it, open the Moonriver or Ethereum application. Then import your Ledger account to MetaMask using the following steps:
+Once the Moonriver and Ethereum apps have been installed from Ledger Live, connect your Ledger device to the computer, unlock it, open the Moonriver application. If you're adpating these instructions for another Moonbeam-based network aside from Moonriver, you can go ahead and open the Ethereum app instead. Then import your Ledger account to MetaMask using the following steps:
 
  1. Click on the top-right logo to expand the menu
  2. Select **Connect Hardware Wallet**
@@ -77,7 +75,7 @@ If a pop-up doesn't appear, you may need to change your MetaMask settings to ena
 !!! note
     The **Preferred Ledger Connection Type** setting is only available on Chrome and Chrome-based browsers. This setting doesn't exist on other browsers such as Firefox.
 
-If MetaMask was able to connect successfully to your Ledger device, you should see a list of five Moonbeam/Ethereum-styled accounts. If not, double-check that Ledger Live is closed, you've connected your Ledger device to the computer, unlocked it, and that the Moonriver or Ethereum app is opened.
+If MetaMask was able to connect successfully to your Ledger device, you should see a list of five Moonbeam/Ethereum-styled accounts. If not, double-check that Ledger Live is closed, you've connected your Ledger device to the computer, unlocked it, and that the Moonriver app is opened. If you're adapting these instructions for another Moonbeam-based network aside from Moonriver, make sure the Ethereum app is opened on your Ledger device. 
 
 ### Import Accounts and View Balances {: #import-accounts-and-view-balances } 
 
