@@ -7,7 +7,7 @@ description: Learn how to get started and connect to Moonriver, the Moonbeam dep
 
 --8<-- 'text/moonriver/connect.md'
 
-## Block Explorers
+## Block Explorers {: #block-explorers }
 
 For Moonriver, you can use any of the following block explorers:
 
@@ -17,7 +17,7 @@ For Moonriver, you can use any of the following block explorers:
 
 For more information on each of the available block explorers, please head to the [Block Explorers](/builders/tools/explorers) section of the documentation.
 
-## Connect MetaMask
+## Connect MetaMask {: #connect-metamask }
 
 If you already have MetaMask installed, you can easily connect MetaMask to Moonriver:
 
