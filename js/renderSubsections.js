@@ -22,7 +22,6 @@ for (language in supportedLanguages) {
 let classname = pathname.replace('/', '.').replaceAll('/', '-');
 
 if (classname !== '.') {
-  console.log(document)
   const section = document.querySelector(classname);
 
   // Get the div to append the subsection cards to
