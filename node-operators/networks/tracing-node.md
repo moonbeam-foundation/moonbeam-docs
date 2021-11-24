@@ -53,7 +53,7 @@ Next, make sure you set the ownership and permissions accordingly for the local 
 
 ## Run a Tracing Node {: #run-a-tracing-node }
 
-Spinning up a `debug`, `txpool`, or `tracing` node is similar to [running a full node](/node-operators/networks/full-node/). Instead of the standard `purestake/moonbeam` docker image, you will need to use `purestake/moonbeam-tracing` image. The latest supported version can be found on the [Docker Hub for the `moonbeam-tracing` image](https://hub.docker.com/r/purestake/moonbeam-tracing/tags).
+Spinning up a `debug`, `txpool`, or `tracing` node is similar to [running a full node](/node-operators/networks/run-a-node/overview/). Instead of the standard `purestake/moonbeam` docker image, you will need to use `purestake/moonbeam-tracing` image. The latest supported version can be found on the [Docker Hub for the `moonbeam-tracing` image](https://hub.docker.com/r/purestake/moonbeam-tracing/tags).
 
 You will also need to start your node with the following flag(s) depending on the features you would like to enable:
 

@@ -135,9 +135,3 @@ Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts)
 Since the release of Moonbase Alpha v6, the maximum gas limit per block has been set to {{ networks.moonbase.gas_block }}, with a maximum gas limit per transaction of {{ networks.moonbase.gas_tx }}.
 
 Users only have access to the Moonbeam parachain. In future networks, we will add access to the relay chain so users can test transferring tokens.
-
-## Chain Purge {: #chain-purge } 
-
-This network is under active development. Occasionally, chain purges may be needed in order to reset the blockchain to its initial state. This is necessary when doing major TestNet upgrades or maintenance. We will announce when a chain purge will take place via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
-
-Please take note that PureStake will not be migrating the chain state. Thus, all data stored in the blockchain will be lost when a chain purge is carried out.

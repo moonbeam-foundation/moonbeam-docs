@@ -29,7 +29,7 @@ This guide will take you through the following steps:
 
 From a technical perspective, collators must meet the following requirements:
 
- - Have a full node running with the collation options. To do so, follow the [spin up a full node tutorial](/node-operators/networks/full-node/), considering the specific code snippets for collators
+ - Have a full node running with the collation options. To do so, follow the [spin up a full node tutorial](/node-operators/networks/run-a-node/overview/), considering the specific code snippets for collators
 
 ## Accounts and Staking Requirements {: #accounts-and-staking-requirements } 
 
@@ -56,7 +56,7 @@ Currently, you have two ways of proceeding in regards having an account in [Polk
  - Importing an existing (or create a new) H160 account from external wallets or services such as [MetaMask](/tokens/connect/metamask/) and [MathWallet](/tokens/connect/mathwallet/)
  - Create a new H160 account with [Polkadot.js](/tokens/connect/polkadotjs/)
 
-Once you have an H160 account imported to Polkadot.js, you should see it under the "Accounts" tab. Make sure you have your public address at hand (`PUBLIC_KEY`), as it is needed to configure your [deploy your full node](/node-operators/networks/full-node/) with the collation options.
+Once you have an H160 account imported to Polkadot.js, you should see it under the "Accounts" tab. Make sure you have your public address at hand (`PUBLIC_KEY`), as it is needed to configure your [deploy your full node](/node-operators/networks/run-a-node/overview/) with the collation options.
 
 ![Account in Polkadot.js](/images/node-operators/networks/collators/collator-polkadotjs-1.png)
 
@@ -157,7 +157,7 @@ As a collator or collator candidate you may decrease your amount bonded if you h
 
 With the release of [Moonbase Alpha v8](/networks/testnet/), collators will sign blocks using an author ID, which is basically a [session key](https://wiki.polkadot.network/docs/learn-keys#session-keys). To match the Substrate standard, Moonbeam collator's session keys are [SR25519](https://wiki.polkadot.network/docs/learn-keys#what-is-sr25519-and-where-did-it-come-from). This guide will show you how you can create/rotate your session keys associated to your collator node.
 
-First, make sure you're [running a collator node](/node-operators/networks/full-node/) and you have exposed the RPC ports. Once you have your collator node running, your terminal should print similar logs:
+First, make sure you're [running a collator node](/node-operators/networks/run-a-node/overview/) and you have exposed the RPC ports. Once you have your collator node running, your terminal should print similar logs:
 
 ![Collator Terminal Logs](/images/node-operators/networks/collators/collator-terminal-1.png)
 

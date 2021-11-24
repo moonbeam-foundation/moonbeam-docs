@@ -6,7 +6,8 @@ let currLanguage = 'en'; // Default to English
 let isRevamped = false;
 
 for (language in supportedLanguages) {
-  const langPath = `/${supportedLanguages[language]}`;
+  const langPath = `/${supportedLanguages[language]}/`;
+
   if (pathname.includes(langPath)) {
     currLanguage = supportedLanguages[language];
     // Remove the language from the path so we can grab the classname

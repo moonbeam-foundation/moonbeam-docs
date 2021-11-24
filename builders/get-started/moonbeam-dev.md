@@ -158,7 +158,7 @@ Nevertheless, leveraging the Ethereum full RPC capabilities of Moonbeam, you can
 
 ## Commands, Flags and Options {: #common-commands-flags-and-options } 
 
-### Purging the Chain {: #purging-the-chain } 
+### Purging Your Node {: #purging-your-node } 
 
 When running a node via the binary file, data is stored in a local directory typically located in `~/.local/shared/moonbeam/chains/development/db`. If you want to start a fresh instance of the node, you can either delete the content of the folder, or run the following command inside the `moonbeam` folder:
 
@@ -166,9 +166,20 @@ When running a node via the binary file, data is stored in a local directory typ
 ./target/release/moonbeam purge-chain --dev -y
 ```
 
-This will remove the data folder, note that all chain data is now lost.
+This will remove the data folder, note that all chain data is now lost. To learn more about all of the available `purge-chain` commands, you can checkout the [Purging Binary Data](/node-operators/networks/run-a-node/systemd/#purging-compiled-binary) section of our documentation.
 
-If you used Docker, the data folder is related to the Docker container itself.
+If you spun up your node using Docker along with the `-v` flag to specify a a mounted directory for your container, you will need to purge that directory. To do so, you can run the following command:
+
+```
+sudo rm -rf {{ networks.moonbase.node_directory }}/*
+```
+
+If you followed the instructions in this guide and did not use the `-v` flag, you can stop and remove the Docker container. The associated data will be removed along with it. To do so, you can run the following command:
+
+```
+sudo docker stop `CONTAINER_ID` && docker rm `CONTAINER_ID`
+```
+
 ### Node Flags {: #node-flags } 
 
 Flags do not take an argument. To use a flag, add it to the end of a command. For example:
