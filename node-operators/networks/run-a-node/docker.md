@@ -179,7 +179,7 @@ You'll first need to stop the Docker container:
 
 If you did not use the `-v` flag to specify a local directory for storing your chain data when you spun up your node, then the data folder is related to the Docker container itself. Therefore, removing the Docker container will remove the chain data.
 
-If you did spin up your node with the `-v` flag, you will need to purge the specified directory. To purge your parachain and relay chain data, you can run the following command:
+If you did spin up your node with the `-v` flag, you will need to purge the specified directory. For example, for the suggested data directly, you can run the following command to purge your parachain and relay chain data:
 
 === "Moonbase Alpha"
 
