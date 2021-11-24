@@ -11,7 +11,7 @@ for (language in supportedLanguages) {
   if (pathname.includes(langPath)) {
     currLanguage = supportedLanguages[language];
     // Remove the language from the path so we can grab the classname
-    pathname = pathname.replace(langPath, '');
+    pathname = pathname.replace(langPath.slice(0, -1), '');
 
     if (revampedLanguageSites.includes(currLanguage)) {
       isRevamped = true;
@@ -22,6 +22,7 @@ for (language in supportedLanguages) {
 let classname = pathname.replace('/', '.').replaceAll('/', '-');
 
 if (classname !== '.') {
+  console.log(document)
   const section = document.querySelector(classname);
 
   // Get the div to append the subsection cards to
