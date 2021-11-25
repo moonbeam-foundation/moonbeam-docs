@@ -1,27 +1,32 @@
 ---
-title: ERC20 Precompile
-description:  Learn how to access and interact with an ERC20 representation of DEV tokens on the Moonbase Alpha TestNet by using the ERC20 precompiled contract.
+title: ERC-20 Precompile
+description:  Learn how to access and interact with an ERC-20 representation of DEV tokens on the Moonbase Alpha TestNet by using the ERC-20 precompiled contract.
 ---
 
-# ERC20 Precompiled Contract
+# ERC-20 Precompiled Contract
 
 ![Precomiled Contracts Banner](/images/builders/tools/precompiles/erc20/erc20-banner.png)
 
 ## Introduction {: #introduction } 
 
-The ERC20 precompiled contract on Moonbeam allows developers to interact with native protocol tokens through an ERC20 contract.
+The ERC-20 precompiled contract on Moonbeam allows developers to interact with the native protocol token through an ERC-20 interface. This means, the precompile 
 
-Under the hood, the ERC20 precompile interacts with the Substrate balances pallet, which is coded in Rust. The balances pallet provides functionality for retrieving the [various types of balances in Moonbeam](/builders/get-started/eth-compare/balances/#moonbeam-account-balances), setting the free balance, transferring balances, and more.
+One of the main benefits of this precompile, is that it removes the necessity of having a wrapped representation of the protocol token as an ERC-20 smart contract, such as WETH on Ethereum. Furthermore, it prevents having multiple wrapped representation of the same protocol token. Consequently, dApps that need to interact with the protocol token via an ERC-20 interface, can do so without needing a separate smart contract.
 
-The precompile allows developers to use Solidity to interact with the native protocol tokens, which are DEV tokens on the Moonbase Alpha TestNet. You do not need to have any knowledge of the Substrate API and the balances pallet. Instead, you can interact with the precompile like you would with any other ERC20 interface.
+Under the hood, the [ERC-20 precompile](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/src/lib.rs) executes certain Substrate actions related to the Substrate balances pallet, which is coded in Rust. The balances pallet provides functionality for handling the [various types of balances in Moonbeam](/builders/get-started/eth-compare/balances/#moonbeam-account-balances), setting the free balance, transferring balances, and more.
 
-This guide will show you how to interact with the ERC20 precompile on Moonbase Alpha.
+This guide will show you how to interact with the ERC-20 precompile on Moonbase Alpha.
 
-## The ERC20 Interface {: #the-erc20-interface }
+## The ERC-20 Interface {: #the-erc20-interface }
 
 The [ERC20.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol) interface on Moonbeam follows the [EIP-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20) which is the standard API interface for tokens within smart contracts. The standard defines the required functions and events that a token contract has to implement to be interoperable with different applications.
 
-The precompile is located at address `{{networks.moonbase.precompiles.erc20 }}`.
+The precompile is located at the following address:
+
+=== "Moonbase Alpha"
+     ```
+     {{networks.moonbase.precompiles.erc20 }}
+     ```
 
 The interface includes the following functions:
 
@@ -36,7 +41,7 @@ The interface includes the following functions:
 - **transferFrom(*address* from, *address* to, *uint256* value)** - transfers tokens from one given address to another given address and returns true if successful
 
 !!! note
-    The ERC20 standard does not specify the implications of multiple calls to `approve`. Changing an allowance with this function multiple times enables a possible attack vector. To avoid incorrect or unintended transaction ordering, you can first reduce the `spender` allowance to `0` and then set the desired allowance afterwards. For more details on the attack vector, you can check out the [ERC20 API: An Attack Vector on Approve/TransferFrom Methods](https://docs.google.com/document/d/1YLPtQxZu1UAvO9cZ1O2RPXBbT0mooh4DYKjA_jp-RLM/edit#) overview
+    The ERC-20 standard does not specify the implications of multiple calls to `approve`. Changing an allowance with this function multiple times enables a possible attack vector. To avoid incorrect or unintended transaction ordering, you can first reduce the `spender` allowance to `0` and then set the desired allowance afterwards. For more details on the attack vector, you can check out the [ERC-20 API: An Attack Vector on Approve/TransferFrom Methods](https://docs.google.com/document/d/1YLPtQxZu1UAvO9cZ1O2RPXBbT0mooh4DYKjA_jp-RLM/edit#) overview
 
 The interface also includes the following required events:
 
@@ -45,15 +50,15 @@ The interface also includes the following required events:
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
-You will need to have:
+To follow along this tutorial, you will need to have:
 
 - [MetaMask installed and connected to the Moonbase Alpha](/tokens/connect/metamask/) TestNet
-- Create or have two accounts on Moonbase Alpha to test out the different features in the ERC20 precompile
+- Create or have two accounts on Moonbase Alpha to test out the different features in the ERC-20 precompile
 - At least one of the accounts will need to be funded with `DEV` tokens. You can obtain tokens for testing purposes from the Moonbase Alpha [faucet](/builders/get-started/moonbase/#get-tokens/)
 
 ## Add Token to MetaMask {: #add-token-to-metamask }
 
-If you want to interact with Moonbase Alpha DEV tokens like you would with an ERC20 in MetaMask, you can create a custom token using the precompile address.
+If you want to interact with Moonbase Alpha DEV tokens like you would with an ERC-20 in MetaMask, you can create a custom token using the precompile address.
 
 To get started, open up MetaMask and make sure you are [connected to Moonbase Alpha](/tokens/connect/metamask/) and:
 
@@ -73,7 +78,7 @@ MetaMask will prompt you to import the tokens. You can review the token details 
 
 ![Confirm and Import Tokens](/images/builders/tools/precompiles/erc20/erc20-3.png)
 
-And that's it! You've successfully added the DEV token as a custom ERC20 token on the Moonbase Alpha TestNet.
+And that's it! You've successfully added the DEV token as a custom ERC-20 token on the Moonbase Alpha TestNet.
 
 ## Interact with the Precompile Using Remix {: #interact-with-the-precompile-using-remix } 
 
@@ -95,13 +100,13 @@ If the interface was compiled successfully, you will see a green check mark next
 
 ### Access the Contract {: #access-the-contract } 
 
-Instead of deploying the ERC20 precompile, you will access the interface given the address of the precompiled contract:
+Instead of deploying the ERC-20 precompile, you will access the interface given the address of the precompiled contract:
 
 1. Click on the **Deploy and Run** tab, directly below the **Compile** tab in Remix. Please note the precompiled contract is already deployed
 2. Make sure **Injected Web3** is selected in the **Environment** drop down. Once you select **Injected Web3**, you might be prompted by MetaMask to connect your account to Remix
 3. Make sure the correct account is displayed under **Account**
 4. Ensure **IERC20 - IERC20.sol** is selected in the **Contract** dropdown. Since this is a precompiled contract there is no need to deploy, instead we are going to provide the address of the precompile in the **At Address** Field
-5. Provide the address of the ERC20 precompile: `{{networks.moonbase.precompiles.erc20}}` and click **At Address**
+5. Provide the address of the ERC-20 precompile: `{{networks.moonbase.precompiles.erc20}}` and click **At Address**
 
 ![Access the address](/images/builders/tools/precompiles/erc20/erc20-5.png)
 
@@ -197,4 +202,4 @@ Once the transaction is complete, you can [check the balance](#get-account-balan
 
 ![Zero Allowance](/images/builders/tools/precompiles/erc20/erc20-13.png)
 
-And that's it! You've successfully interacted with the ERC20 precompile using MetaMask and Remix!
+And that's it! You've successfully interacted with the ERC-20 precompile using MetaMask and Remix!
