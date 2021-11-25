@@ -1,11 +1,11 @@
 ---
-title: How to use the Staking Precompile
+title: Staking Precompile
 description: Moonbeam Parachain Staking Ethereum Solidity Precompile Interface Demo
 ---
 
 # Interacting with the Staking Precompile
 
-![Staking Moonbeam Banner](/images/tokens/staking/precompiles/precompile-banner.png)
+![Staking Moonbeam Banner](/images/builders/tools/precompiles/staking/staking-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -56,14 +56,14 @@ The below example is demonstrated on Moonbase Alpha, however, it is compatible w
 1. Get a copy of [StakingInterface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol)
 2. Copy and paste the file contents into a Remix file named StakingInterface.sol
 
-![Copying and Pasting the Staking Interface into Remix](/images/tokens/staking/precompiles/precompile-1.png)
+![Copying and Pasting the Staking Interface into Remix](/images/builders/tools/precompiles/staking/staking-1.png)
 
 ## Compile the Contract {: #compile-the-contract } 
 
 1. Click on the Compile tab, second from top
 2. Compile [Staking Interface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol)
 
-![Compiling StakingInteface.sol](/images/tokens/staking/precompiles/precompile-2.png)
+![Compiling StakingInteface.sol](/images/builders/tools/precompiles/staking/staking-2.png)
 
 ## Access the Contract {: #access-the-contract } 
 
@@ -73,7 +73,7 @@ The below example is demonstrated on Moonbase Alpha, however, it is compatible w
 4. Provide the address of the Staking precompile: `{{networks.moonbase.precompiles.staking}}` and click “At Address”
 5. The Parachain Staking precompile will appear in the list of "Deployed Contracts"
 
-![Provide the address](/images/tokens/staking/precompiles/precompile-3.png)
+![Provide the address](/images/builders/tools/precompiles/staking/staking-3.png)
 
 ## Nominate a Collator {: #nominate-a-collator } 
 
@@ -92,7 +92,7 @@ To obtain the collator nominator count, you can call a function that the staking
 3. Click "call"
 4. After the call is complete, the results will be displayed
 
-![Call collator nomination count](/images/tokens/staking/precompiles/precompile-4.png)
+![Call collator nomination count](/images/builders/tools/precompiles/staking/staking-4.png)
 
 ### Get your Number of Existing Nominations {: #get-your-number-of-existing-nominations } 
 
@@ -103,7 +103,7 @@ If you don't know your existing number of nominations, you can easily get them b
 3. Click "call"
 4. After the call is complete, the results will be displayed
 
-![Call nominator nomination count](/images/tokens/staking/precompiles/precompile-5.png)
+![Call nominator nomination count](/images/builders/tools/precompiles/staking/staking-5.png)
 
 ### Call Nominate {: #call-nominate } 
 
@@ -117,7 +117,7 @@ Now that you have obtained the [collator nominator count](#get-the-collator-nomi
 6. Press "transact"
 7. MetaMask will pop-up, you can review the details and confirm the transaction
 
-![Nominate a Collator](/images/tokens/staking/precompiles/precompile-6.png)
+![Nominate a Collator](/images/builders/tools/precompiles/staking/staking-6.png)
 
 ## Verify Nomination {: #verify-nomination } 
 
@@ -131,7 +131,7 @@ To verify your nomination was successful, you can check the chain state in Polka
 4. Provide a nickname for the account
 5. Click "Save"
 
-![Add to Address Book](/images/tokens/staking/precompiles/precompile-7.png)
+![Add to Address Book](/images/builders/tools/precompiles/staking/staking-7.png)
 
 ### Verify Nominator State {: #verify-nominator-state } 
 
@@ -144,7 +144,7 @@ To verify your nomination was successful, you can check the chain state in Polka
 !!! note
     You do not have to enter anything in the "blockhash to query at" field if you are looking for an overview of your nominations.
 
-![Verify Nomination](/images/tokens/staking/precompiles/precompile-8.png)
+![Verify Nomination](/images/builders/tools/precompiles/staking/staking-8.png)
 
 ## Revoking a Nomination {: #revoking-a-nomination } 
 
@@ -155,7 +155,7 @@ To revoke a nomination and receive your tokens back, head back over to Remix, th
 3. Click "transact"
 4. MetaMask will pop, you can review the transaction details, and click "confirm"
 
-![Revoke Nomination](/images/tokens/staking/precompiles/precompile-9.png)
+![Revoke Nomination](/images/builders/tools/precompiles/staking/staking-9.png)
 
 After the call is complete, the results will be displayed. You can also check your nominator state again on Polkadot.js Apps to confirm.
 

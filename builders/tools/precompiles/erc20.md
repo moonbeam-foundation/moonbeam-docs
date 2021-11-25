@@ -1,5 +1,5 @@
 ---
-title: ERC20 Contract
+title: ERC20 Precompile
 description:  Learn how to access and interact with an ERC20 representation of DEV tokens on the Moonbase Alpha TestNet by using the ERC20 precompiled contract.
 ---
 
