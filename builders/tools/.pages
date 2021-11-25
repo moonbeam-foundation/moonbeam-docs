@@ -3,6 +3,7 @@ nav:
   - index.md
   - eth-libraries
   - openzeppelin
+  - precompiles
   - explorers.md
   - remix.md
   - hardhat.md
@@ -10,6 +11,5 @@ nav:
   - waffle.md
   - mars.md
   - multisig-safe.md
-  - precompiles.md
   - debug-trace.md
   - pubsub.md

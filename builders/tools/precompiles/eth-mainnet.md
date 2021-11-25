@@ -1,11 +1,11 @@
 ---
-title: Precompiled Contracts
+title: Ethereum MainNet Contracts
 description:  Learn how to use precompiled contracts on Moonbase Alpha, the Moonbeam Network TestNet that is unique for its complete Ethereum compatibility. 
 ---
 
-# Precompiled Contracts on Moonbase Alpha
+# Ethereum MainNet Precompiled Contracts on Moonbase Alpha
 
-![Precomiled Contracts Banner](/images/builders/interact/precompiles/precompiled-banner.png)
+![Precomiled Contracts Banner](/images/builders/tools/precompiles/eth-mainnet/eth-mainnet-banner.png)
 
 ## Introduction {: #introduction } 
 
