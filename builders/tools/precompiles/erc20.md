@@ -11,7 +11,7 @@ description:  Learn how to access and interact with an ERC-20 representation of 
 
 The ERC-20 precompiled contract on Moonbeam allows developers to interact with the native protocol token through an ERC-20 interface.
 
-One of the main benefits of this precompile is that it removes the necessity of having a wrapped representation of the protocol token as an ERC-20 smart contract, such as WETH on Ethereum. Furthermore, it prevents having multiple wrapped representations of the same protocol token. Consequently, dApps that need to interact with the protocol token via an ERC-20 interface can do so without needing a separate smart contract.
+One of the main benefits of this precompile is that it removes the necessity of having a wrapped representation of the protocol token as an ERC-20 smart contract, such as WETH on Ethereum. Furthermore, it prevents having multiple wrapped representations of the same protocol token. Consequently, DApps that need to interact with the protocol token via an ERC-20 interface can do so without needing a separate smart contract.
 
 Under the hood, the [ERC-20 precompile](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/src/lib.rs) executes specific Substrate actions related to the Substrate balances pallet, which is coded in Rust. The balances pallet provides functionality for handling the [various types of balances in Moonbeam](/builders/get-started/eth-compare/balances/#moonbeam-account-balances), setting the free balance, transferring balances, and more.
 
