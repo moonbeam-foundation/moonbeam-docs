@@ -36,10 +36,10 @@ The Covalent API has two classes of endpoints:
  - The refresh rate of the APIs is real-time: 30s or 2 blocks, and batch 10m or 40 blocks  
 
 ## Supported Endpoints {: #supported-endpoints } 
- - **Balances** — Get token balances for an address. Returns a list of all ERC20 and NFT token balances including ERC721 and ERC1155 along with their current spot prices (if available)
+ - **Balances** — Get token balances for an address. Returns a list of all ERC-20 and NFT token balances including ERC-721 and ERC-1155 along with their current spot prices (if available)
  - **Transactions** — Retrieves all transactions for an address including decoded log events. Does a deep-crawl of the blockchain to 
  retrieve all transactions that reference this address
- - **Transfers** — Get ERC20 token transfers for an address along with historical token prices (if available)
+ - **Transfers** — Get ERC-20 token transfers for an address along with historical token prices (if available)
  - **Token Holders** — Return a paginated list of token holders
  - **Log Events (Smart Contract)** — Return a paginated list of decoded log events emitted by a particular smart contract
  - **Log Events (Topic Hash)** — Return a paginated list of decoded log events with one or more topic hashes separated by a comma
@@ -130,7 +130,7 @@ Copy and paste the below code block into your preferred environment, or [JSFiddl
 
     ```
 
-The output should resemble the below. The balances endpoint returns a list of all ERC20 and NFT token balances including ERC721 and ERC1155 along with their current spot prices (if available).
+The output should resemble the below. The balances endpoint returns a list of all ERC-20 and NFT token balances including ERC-721 and ERC-1155 along with their current spot prices (if available).
 
 ![Javascript Console Output](/images/builders/integrations/indexers/covalent/covalentjs.png)
 

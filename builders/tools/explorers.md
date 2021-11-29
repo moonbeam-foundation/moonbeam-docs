@@ -8,7 +8,7 @@ description: An overview of the currently available block explorers that may be 
 
 ## Introduction {: #introduction } 
 
-Block explorers can be thought of as search engines for the blockchain. They allow users to search information such as balances, contracts, and transactions. More advanced block explorers even offer indexing capabilities, which enable them to provide a complete set of information, such as ERC20 tokens in the network. They might even offer API services to access it via external services.
+Block explorers can be thought of as search engines for the blockchain. They allow users to search information such as balances, contracts, and transactions. More advanced block explorers even offer indexing capabilities, which enable them to provide a complete set of information, such as ERC-20 tokens in the network. They might even offer API services to access it via external services.
 
 Moonbeam provides two different sets of explorers: one to query the Ethereum API, and one for the Substrate API.
 
@@ -38,7 +38,7 @@ As main features, Blockscout offers:
  - Open source development, meaning all code is open to the community to explore and improve. You can find the code [here](https://github.com/blockscout/blockscout)
  - Real-time transaction tracking
  - Smart contract interaction
- - ERC20 and ERC721 token support, listing all available token contract in a friendly interface
+ - ERC-20 and ERC-721 token support, listing all available token contract in a friendly interface
  - Full-featured API with GraphQL, where users can test API calls directly from a web interface
 
 An instance of Blockscout running against the Moonbase Alpha TestNet can be found in [this link](https://moonbase-blockscout.testnet.moonbeam.network/).
