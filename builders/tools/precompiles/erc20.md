@@ -15,7 +15,7 @@ One of the main benefits of this precompile is that it removes the necessity of 
 
 Under the hood, the [ERC-20 precompile](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/src/lib.rs) executes specific Substrate actions related to the Substrate balances pallet, which is coded in Rust. The balances pallet provides functionality for handling the [various types of balances in Moonbeam](/builders/get-started/eth-compare/balances/#moonbeam-account-balances), setting the free balance, transferring balances, and more.
 
-This guide will show you how to interact with DEV tokens, the native protocol token for the Moonbase Alpha TestNet, via the ERC-20 precompile.
+This guide will show you how to interact with DEV tokens, the native protocol tokens for the Moonbase Alpha TestNet, via the ERC-20 precompile.
 
 ## The ERC-20 Interface {: #the-erc20-interface }
 
