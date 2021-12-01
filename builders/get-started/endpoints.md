@@ -53,4 +53,4 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 2. Select the network from the dropdown
 3. Your custom API endpoint will be generated automatically
 
-![OnFinality](/images/builders/get-started/endpoints/endpoints-3.png)
+![OnFinality](/images/builders/get-started/endpoints/endpoints-2.png)
