@@ -195,6 +195,17 @@ networks:
       rewards_payouts:
         rounds: 2
         hours: 4
+    chainlink:
+      feed:
+        consumer:
+          bnb_usd: '0xD6B013A65C22C372F995864CcdAE202D0194f9bf'
+          btc_usd: '0x1B5C6cF9Df1CBF30387C24CC7DB1787CCf65C797'
+          eth_usd: '0xc3cF399566220dc5Ed6C8CFbf8247214Af103C72'
+          frax_usd: '0xD080d4760318710e795B0a59f181f6C1512ffB15'
+          ksm_usd: '0x6e0513145FCE707Cd743528DB7C1cAB537DE9d1B'
+          link_usd: '0xdD27789b504fEd690F406A82F16B45a0901172C0'
+          mim_usd: '0xdD6296BD7515271F7E4b10C3A87A2f9863fECa97'
+          usdt_usd: '0xF80DAd54AF79257D41c30014160349896ca5370a'
   relay_chain:
     p2p: 30334
     rpc: 9934
