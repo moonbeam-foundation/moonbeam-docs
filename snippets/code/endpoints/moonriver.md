@@ -1,9 +1,4 @@
 #### HTTPS
-
-=== "Elara"
-    ```
-    https://pub.elara.patract.io/moonriver
-    ```
     
 === "OnFinality"
     ```
@@ -16,11 +11,6 @@
     ```
 
 #### WSS
-
-=== "Elara"
-    ```
-    wss://pub.elara.patract.io/moonriver
-    ```
 
 === "OnFinality"
     ```

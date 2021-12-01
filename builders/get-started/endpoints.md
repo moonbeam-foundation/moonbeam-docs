@@ -28,7 +28,6 @@ If you are looking for an API provider suitable for production use, you can chec
 You can create your own endpoint suitable for development or production use using any of the following API providers:
 
 - [Bware Labs](#bware-labs)
-- [Elara](#elara)
 - [OnFinality](#onfinality)
 
 ### Bware Labs
@@ -44,19 +43,6 @@ To get started, you'll need to head to [Bware Labs](https://app.bwarelabs.com/),
 
 ![Bware Labs](/images/builders/get-started/endpoints/endpoints-1.png)
 
-### Elara
-
-[Elara](https://elara.patract.io/) provides Moonriver developers with free, instant, and scalable blockchain API access services.
-
-To get started, navigate to [Elara](https://elara.patract.io/) and create an account using your GitHub credentials. Once signed in, from the **Dashboard**, expand the **Kusama Eco-chains** menu, and select **Moonriver**. Then you can generate a API endpoint by creating a new project:
-
-1. Click **Create New Project**
-2. Enter your project name
-3. Select the network
-4. Click **Create** to the project
-
-![Elara](/images/builders/get-started/endpoints/endpoints-2.png)
-
 ### OnFinality
 
 [OnFinality](https://onfinality.io/) provides a free API key based endpoint for customers that provide higher rate limits and performance than the free public endpoint. You also receive more in depth analytics of the usage of your application.
@@ -67,4 +53,4 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 2. Select the network from the dropdown
 3. Your custom API endpoint will be generated automatically
 
-![OnFinality](/images/builders/get-started/endpoints/endpoints-3.png)
+![OnFinality](/images/builders/get-started/endpoints/endpoints-2.png)
