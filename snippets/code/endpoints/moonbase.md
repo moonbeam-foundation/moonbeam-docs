@@ -12,11 +12,6 @@
 
 #### WSS
 
-=== "Elara"
-    ```
-    wss://moonbase.moonbeam.elara.patract.io
-    ```
-
 === "OnFinality"
     ```
     wss://moonbeam-alpha.api.onfinality.io/public-ws
