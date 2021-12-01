@@ -21,7 +21,7 @@ The end-user can retrieve price feeds with read-only operations via a Data Feed 
 
 ![Price Feed Diagram](/images/builders/integrations/oracles/chainlink/chainlink-price-feed.png)
 
-### Try it out {: #try-it-out } 
+## Fetch Price Data {: #fetch-price-data } 
 
 There are Data Feed contracts available for both Moonbase Alpha and Moonriver to help simplify the process of requesting price feeds. In our current configuration for Moonbase Alpha, we are running only one Oracle node that fetches the price from a single API source. Price data is checked every minute and updated in the smart contracts every hour unless there is a price deviation of 1 %. The Moonriver Data Feed contracts are updated by multiple Chainlink nodes on a regular basis.
 
