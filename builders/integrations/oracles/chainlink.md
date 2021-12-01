@@ -17,7 +17,7 @@ Before we go into fetching the data itself, it is important to understand the ba
 
 In a standard configuration, each price feed is updated by a decentralized Oracle network. Each Oracle node is rewarded for publishing the price data to the Aggregator contract. The Aggregator contract receives periodic data updates from the network of oracles and aggregates and stores the data on-chain so that consumers can easily fetch it. However, the information is only updated if a minimum number of responses from Oracle nodes are received (during an aggregation round).
 
-The end-user can retrieve price feeds with read-only operations via a Consumer contract, referencing the Aggregator interface (Proxy contract). The Proxy acts as a middleware to provide the Consumer with the most up-to-date Aggregator for a particular price feed.
+The end-user can retrieve price feeds with read-only operations via a Data Feed contract, referencing the Aggregator interface (Proxy contract). The Proxy acts as a middleware to provide the Data Feed with the most up-to-date Aggregator for a particular price feed.
 
 ![Price Feed Diagram](/images/builders/integrations/oracles/chainlink/chainlink-price-feed.png)
 
@@ -58,35 +58,35 @@ interface AggregatorV3Interface {
 }
 ```  
 
-As seen above in the interface, there are five functions: `decimal`, `description`, `version`, `getRoundData`, and `latestRoundData`. Since the Consumer contract will use the Aggregator interface, all of these functions are available for fetching data. 
+As seen above in the interface, there are five functions for fetching data: `decimal`, `description`, `version`, `getRoundData`, and `latestRoundData`.
 
 Currently, there are Data Feed contracts for the the following price pairs:
 
 === "Moonbase Alpha"
-    |  Base/Quote  |  |                     Consumer Contract                     |
-    |:------------:|--|:---------------------------------------------------------:|
-    |  BTC to USD  |  |  {{ networks.moonbase.chainlink.feed.consumer.btc_usd }}  |
-    |  ETH to USD  |  |  {{ networks.moonbase.chainlink.feed.consumer.eth_usd }}  |
-    |  DOT to USD  |  |  {{ networks.moonbase.chainlink.feed.consumer.dot_usd }}  |
-    |  KSM to USD  |  |  {{ networks.moonbase.chainlink.feed.consumer.ksm_usd }}  |
-    | AAVE to USD  |  | {{ networks.moonbase.chainlink.feed.consumer.aave_usd }}  |
-    | ALGO to USD  |  | {{ networks.moonbase.chainlink.feed.consumer.algo_usd }}  |
-    | BAND to USD  |  | {{ networks.moonbase.chainlink.feed.consumer.band_usd }}  |
-    | LINK to USD  |  | {{ networks.moonbase.chainlink.feed.consumer.link_usd }}  |
-    | SUSHI to USD |  | {{ networks.moonbase.chainlink.feed.consumer.sushi_usd }} |
-    |  UNI to USD  |  |  {{ networks.moonbase.chainlink.feed.consumer.uni_usd }}  |
+    |  Base/Quote  |  |                Data Feed Contract                |
+    |:------------:|--|:------------------------------------------------:|
+    |  BTC to USD  |  |  {{ networks.moonbase.chainlink.feed.btc_usd }}  |
+    |  ETH to USD  |  |  {{ networks.moonbase.chainlink.feed.eth_usd }}  |
+    |  DOT to USD  |  |  {{ networks.moonbase.chainlink.feed.dot_usd }}  |
+    |  KSM to USD  |  |  {{ networks.moonbase.chainlink.feed.ksm_usd }}  |
+    | AAVE to USD  |  | {{ networks.moonbase.chainlink.feed.aave_usd }}  |
+    | ALGO to USD  |  | {{ networks.moonbase.chainlink.feed.algo_usd }}  |
+    | BAND to USD  |  | {{ networks.moonbase.chainlink.feed.band_usd }}  |
+    | LINK to USD  |  | {{ networks.moonbase.chainlink.feed.link_usd }}  |
+    | SUSHI to USD |  | {{ networks.moonbase.chainlink.feed.sushi_usd }} |
+    |  UNI to USD  |  |  {{ networks.moonbase.chainlink.feed.uni_usd }}  |
 
 === "Moonriver"
-    | Base/Quote  |  |                     Consumer Contract                     |
-    |:-----------:|--|:---------------------------------------------------------:|
-    | BTC to USD  |  | {{ networks.moonriver.chainlink.feed.consumer.btc_usd }}  |
-    | ETH to USD  |  | {{ networks.moonriver.chainlink.feed.consumer.eth_usd }}  |
-    | KSM to USD  |  | {{ networks.moonriver.chainlink.feed.consumer.ksm_usd }}  |
-    | LINK to USD |  | {{ networks.moonriver.chainlink.feed.consumer.link_usd }} |
-    | BNB to USD  |  | {{ networks.moonriver.chainlink.feed.consumer.bnb_usd }}  |
-    | FRAX to USD |  | {{ networks.moonriver.chainlink.feed.consumer.frax_usd }} |
-    | MIM to USD  |  | {{ networks.moonriver.chainlink.feed.consumer.mim_usd }}  |
-    | USDT to USD |  | {{ networks.moonriver.chainlink.feed.consumer.usdt_usd }} |
+    | Base/Quote  |  |                Data Feed Contract                |
+    |:-----------:|--|:------------------------------------------------:|
+    | BTC to USD  |  | {{ networks.moonriver.chainlink.feed.btc_usd }}  |
+    | ETH to USD  |  | {{ networks.moonriver.chainlink.feed.eth_usd }}  |
+    | KSM to USD  |  | {{ networks.moonriver.chainlink.feed.ksm_usd }}  |
+    | LINK to USD |  | {{ networks.moonriver.chainlink.feed.link_usd }} |
+    | BNB to USD  |  | {{ networks.moonriver.chainlink.feed.bnb_usd }}  |
+    | FRAX to USD |  | {{ networks.moonriver.chainlink.feed.frax_usd }} |
+    | MIM to USD  |  | {{ networks.moonriver.chainlink.feed.mim_usd }}  |
+    | USDT to USD |  | {{ networks.moonriver.chainlink.feed.usdt_usd }} |
 
 Let's go ahead and use the Aggregator interface to fetch the price feed of `BTC to USD` using [Remix](https://remix.ethereum.org/). If you need help loading a contract into Remix, check out the [Using Remix](/builders/interact/remix/) page of the documentation site.
 
@@ -98,13 +98,13 @@ After creating the file and compiling the contract, you will need to follow thes
 2. Set the **Environment** to **Injected Web3**
 3. If your MetaMask is already connected it will appear in the **Account** selector. Otherwise, you will be prompted by MetaMask to select and connect your account(s)
 4. Select the `AggregatorV3Interface` contract from the **Contract** dropdown
-5. Enter the Consumer contract address corresponding to `BTC to USD` in the **At Address** field and click the **At Address** button:
+5. Enter the Data Feed contract address corresponding to `BTC to USD` in the **At Address** field and click the **At Address** button:
 
     === "Moonbase Alpha"
-        `{{ networks.moonbase.chainlink.feed.consumer.btc_usd }}`
+        `{{ networks.moonbase.chainlink.feed.btc_usd }}`
 
     === "Moonriver"
-        `{{ networks.moonriver.chainlink.feed.consumer.btc_usd }}`
+        `{{ networks.moonriver.chainlink.feed.btc_usd }}`
 
 ![Load the Chainlink Price Feed Aggregator Interface on Moonriver](/images/builders/integrations/oracles/chainlink/chainlink-1.png)
 
