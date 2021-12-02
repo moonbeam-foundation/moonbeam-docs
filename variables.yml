@@ -51,16 +51,28 @@ networks:
         sushi_usd: 'b4b07d0fc218455caaff2223a05ec208'
         uni_usd: '22b567acabdb419abe8136a2bab6ade8'
       feed:
-        aave_usd: '0xD1e52C81FD72fFc6dA3bF083297E6C37852E93DA'
-        algo_usd: '0x0183d1C98442510DD7aaB0E2d09863c47FFF4dF1'
-        band_usd: '0x124A3EE742737BC30307d1F82c5406bf79aBa4d6'
-        btc_usd: '0x86f11CffCB1A86Ecb79643FCa1a3C666a61F84Fd'
-        dot_usd: '0x235A40b872e543b6238df7Ff55E2D8eCAE80a6bd'
-        eth_usd: '0xE33691Ba3cF532D4025cF0f47679eFe430d4A618'
-        ksm_usd: '0x9Df2E2179ddb4D9197451946104068e08eD3E49F'
-        link_usd: '0xC58B34ea686Db2d567835de7AB58fC678b6f186A'
-        sushi_usd: '0x21B52fFF227cD9F425E817f9E1eaA0eB8cd647e1'
-        uni_usd: '0x5Cd72748F94a8597f563D92687A8D2A5074b10E5'
+        consumer:
+          aave_usd: '0xD1e52C81FD72fFc6dA3bF083297E6C37852E93DA'
+          algo_usd: '0x0183d1C98442510DD7aaB0E2d09863c47FFF4dF1'
+          band_usd: '0x124A3EE742737BC30307d1F82c5406bf79aBa4d6'
+          btc_usd: '0x86f11CffCB1A86Ecb79643FCa1a3C666a61F84Fd'
+          dot_usd: '0x235A40b872e543b6238df7Ff55E2D8eCAE80a6bd'
+          eth_usd: '0xE33691Ba3cF532D4025cF0f47679eFe430d4A618'
+          ksm_usd: '0x9Df2E2179ddb4D9197451946104068e08eD3E49F'
+          link_usd: '0xC58B34ea686Db2d567835de7AB58fC678b6f186A'
+          sushi_usd: '0x21B52fFF227cD9F425E817f9E1eaA0eB8cd647e1'
+          uni_usd: '0x5Cd72748F94a8597f563D92687A8D2A5074b10E5'
+        aggregator:
+          aave_usd: '0x64B22D2B8c3CA311a0C2de34bf799f8101c89362'
+          algo_usd: '0x9fc3b0BF1156868085AFC1cFf4Bf6D85ea301371'
+          band_usd: '0xC5aeD933FEb49794A8Bf2FB0e73D9c958c8a07ba'
+          btc_usd: '0xCf88A8d7fc1A687895fC8ffAad567f303926B094'
+          dot_usd: '0xA873F6b30aD79fCAF9b03A0A883d6D1f18D661d7'
+          eth_usd: '0x3669da30c33D27A6A579548fCfc345fE5dEdda6e'
+          ksm_usd: '0x0C515E77897b2A7181C875c88FaF9BC8E5661E3b'
+          link_usd: '0x446b93236B4d34642732B8dcbeB3cb4f4FA03C70'
+          sushi_usd: '0x4a6Cf10C0f5c4D4e7cf7385bFfecDAec0778357C'
+          uni_usd: '0x326997c21451DaB916F9f01684991B6169dAf3E5'
     democracy:
       launch_period:
         days: 1
@@ -196,14 +208,15 @@ networks:
         hours: 4
     chainlink:
       feed:
-        bnb_usd: '0xD6B013A65C22C372F995864CcdAE202D0194f9bf'
-        btc_usd: '0x1B5C6cF9Df1CBF30387C24CC7DB1787CCf65C797'
-        eth_usd: '0xc3cF399566220dc5Ed6C8CFbf8247214Af103C72'
-        frax_usd: '0xD080d4760318710e795B0a59f181f6C1512ffB15'
-        ksm_usd: '0x6e0513145FCE707Cd743528DB7C1cAB537DE9d1B'
-        link_usd: '0xdD27789b504fEd690F406A82F16B45a0901172C0'
-        mim_usd: '0xdD6296BD7515271F7E4b10C3A87A2f9863fECa97'
-        usdt_usd: '0xF80DAd54AF79257D41c30014160349896ca5370a'
+        aggregator:
+          bnb_usd: '0xD6B013A65C22C372F995864CcdAE202D0194f9bf'
+          btc_usd: '0x1B5C6cF9Df1CBF30387C24CC7DB1787CCf65C797'
+          eth_usd: '0xc3cF399566220dc5Ed6C8CFbf8247214Af103C72'
+          frax_usd: '0xD080d4760318710e795B0a59f181f6C1512ffB15'
+          ksm_usd: '0x6e0513145FCE707Cd743528DB7C1cAB537DE9d1B'
+          link_usd: '0xdD27789b504fEd690F406A82F16B45a0901172C0'
+          mim_usd: '0xdD6296BD7515271F7E4b10C3A87A2f9863fECa97'
+          usdt_usd: '0xF80DAd54AF79257D41c30014160349896ca5370a'
   relay_chain:
     p2p: 30334
     rpc: 9934
