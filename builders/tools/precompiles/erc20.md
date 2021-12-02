@@ -48,6 +48,9 @@ The interface also includes the following required events:
 - **Transfer(*address indexed* from, *address indexed* to, *uint256* value)** - emitted when a transfer has been performed
 - **Approval(*address indexed* owner, *address indexed* spender, *uint256* value)** - emitted when an approval has been registered
 
+!!! note
+    The ERC-20 precompile does not include `deposit` and `withdraw` functions that are expected from a wrapped token contract, such as WETH.
+
 ## Checking Prerequisites {: #checking-prerequisites } 
 
 To follow along with this tutorial, you will need to have:
