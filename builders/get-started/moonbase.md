@@ -46,7 +46,7 @@ To start building on Moonbase Alpha, you can get DEV tokens from our [faucet](ht
 
 To request tokens automatically, we've created a Discord bot (named Mission Control :sunglasses:) that will automatically send a maximum of 5 DEV tokens every 24 hours (per Discord user) when you enter your address. You can check it out on our [Discord channel](https://discord.gg/PfpUATX).
  
-Under the category "Miscellaneous," you will find our AlphaNet bot channel. 
+Under the category "Miscellaneous," you will find our #Moonbase-Faucet channel. 
 
 ![Discord1](/images/builders/get-started/moonbase/discord-1.png)
 
@@ -65,3 +65,6 @@ To get DEV tokens, enter the following message, replacing `<enter-address-here->
 Mission Control will send you 5 DEV tokens and display your current account balance. Remember that Mission Control is limited to dispense once every 24 hours per Discord user.
 
 ![Discord2](/images/builders/get-started/moonbase/discord-2.png)
+
+!!! note
+    Moonbase Alpha DEV tokens have no value. Please don't spam the faucet with unnecessary requests.
