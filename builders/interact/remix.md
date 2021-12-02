@@ -91,7 +91,7 @@ After you press confirm and the deployment is complete, you will see the transac
 
 Once the contract is deployed, you can interact with it from within Remix.
 
-Drill down on the contract under “Deployed Contracts.” Clicking on name, symbol, and totalSupply should return “MyToken,” “MYTOK,” and “8000000000000000000000000” respectively. If you copy the address from which you deployed the contract and paste it into the balanceOf field, you should see the entirety of the balance of the ERC20 as belonging to that user. Copy the contract address by clicking the button next to the contract name and address.
+Drill down on the contract under “Deployed Contracts.” Clicking on name, symbol, and totalSupply should return “MyToken,” “MYTOK,” and “8000000000000000000000000” respectively. If you copy the address from which you deployed the contract and paste it into the balanceOf field, you should see the entirety of the balance of the ERC-20 as belonging to that user. Copy the contract address by clicking the button next to the contract name and address.
 
 ![Interact with the contract from Remix](/images/builders/interact/remix/using-remix-11.png)
 
@@ -139,7 +139,7 @@ Once you've added the plugin, a Moonbeam logo will appear on the left hand side,
 
 ### Getting Started with the Moonbeam Remix Plugin
 
-Click on the Moonbeam Logo in your Remix IDE to open the Moonbeam Plugin. This part assumes you already have a contract in Remix ready to be compiled. You can generate an [ERC-20 contract here.](https://wizard.openzeppelin.com/)  Follow along to deploy an ERC-20 Token to Moonbase Alpha using the Moonbeam Remix Plugin.
+Click on the Moonbeam Logo in your Remix IDE to open the Moonbeam Plugin. This part assumes you already have a contract in Remix ready to be compiled. You can generate an [ERC-20 contract here](https://wizard.openzeppelin.com/). Follow along to deploy an ERC-20 Token to Moonbase Alpha using the Moonbeam Remix Plugin.
 
  1. Press "Connect" to Connect your Metamask to the Remix IDE
  2. Ensure you're on the correct network. In this example, we're on Moonbase Alpha

@@ -35,7 +35,7 @@ Collators (and token holders if they nominate) have a stake in the network. The 
     - **Nominator rewards** — variable. It's the aggregate nominator rewards distributed over all eligible nominators, taking into account the relative size of stakes ([read more](/staking/overview/#reward-distribution))
     - **Slashing** — currently, there is no slashing. This can be later changed through governance. Collators who produce blocks that are not finalized by the relay chain won't receive rewards
     - **Collator information** — list of collators: [Moonriver Subscan](https://moonriver.subscan.io/validator). Collator data for the last two rounds: [Moonbeam Explorer](https://moonbeam-explorer.netlify.app/stats/miners?network=Moonriver)
-    - **Manage staking related actions** — visit the [Moonbeam Network dApp](https://apps.moonbeam.network/moonriver)
+    - **Manage staking related actions** — visit the [Moonbeam Network DApp](https://apps.moonbeam.network/moonriver)
 
 === "Moonbase Alpha" 
 
@@ -51,7 +51,7 @@ Collators (and token holders if they nominate) have a stake in the network. The 
     - **Nominator rewards** — variable. It's the aggregate nominator rewards distributed over all eligible nominators, taking into account the relative size of stakes ([read more](/staking/overview/#reward-distribution))
     - **Slashing** — currently, there is no slashing. This can be later changed through governance. Collators who produce blocks that are not finalized by the relay chain won't receive rewards
     - **Collator information** — list of collators: [Moonbase Alpha Subscan](https://moonbase.subscan.io/validator). Collator data for the last two rounds: [Moonbeam Explorer](https://moonbeam-explorer.netlify.app/stats/miners?network=MoonbaseAlpha)
-    - **Manage staking related actions** — visit the [Moonbeam Network dApp](https://apps.moonbeam.network/moonbase-alpha)
+    - **Manage staking related actions** — visit the [Moonbeam Network DApp](https://apps.moonbeam.network/moonbase-alpha)
 
 To learn how to get the current value of any of the parameters around staking, check out the [Retrieving Staking Parameters](/tokens/staking/stake/#retrieving-staking-parameters) section of the [How to Stake your Tokens](/tokens/staking/stake/) guide. 
 
@@ -81,4 +81,4 @@ Where `amount_due` is the corresponding inflation being distributed in a specifi
 
 ## Try it out {: #try-it-out } 
 
-You can start interacting with staking functions on Moonriver and Moonbase Alpha through the [Moonbeam Network dApp](https://apps.moonbeam.network/moonriver). To do so, you can check [this guide](https://moonbeam.network/tutorial/stake-movr/) or [this video tutorial](https://www.youtube.com/watch?v=maIfN2QkPpc).
+You can start interacting with staking functions on Moonriver and Moonbase Alpha through the [Moonbeam Network DApp](https://apps.moonbeam.network/moonriver). To do so, you can check [this guide](https://moonbeam.network/tutorial/stake-movr/) or [this video tutorial](https://www.youtube.com/watch?v=maIfN2QkPpc).
