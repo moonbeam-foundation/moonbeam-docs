@@ -35,19 +35,19 @@ The following contracts addresses have been established:
 
 There are a set of precompiled contracts included on Moonriver that are categorized by address and based on the origin network. If you were to convert the precompiled addresses to decimal format, and break them into categories by numeric value, the categories are as follows:
 
-- **0-1023** - [Ethereum Mainnet precompiles](#ethereum-mainnet-precompiles)
+- **0-1023** - [Ethereum MainNet precompiles](#ethereum-mainnet-precompiles)
 - **1024-2047** - precompiles that are [not in Ethereum and not Moonbeam specific](#non-moonbeam-specific-nor-ethereum-precomiles)
 - **2048-4095** - [Moonbeam specific precompiles](#moonbeam-specific-precompiles)
 
-### Ethereum Mainnet Precompiles
+### Ethereum MainNet Precompiles
 
 |                                                      Contract                                                       |                  Address                   |
 |:-------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
-|                     [ECRECOVER](/builders/tools/precompiles/#verify-signatures-with-ecrecover/)                     | 0x0000000000000000000000000000000000000001 |
-|                             [SHA256](/builders/tools/precompiles/#hashing-with-sha256/)                             | 0x0000000000000000000000000000000000000002 |
-|                         [RIPEMD160](/builders/tools/precompiles/#hashing-with-ripemd-160/)                          | 0x0000000000000000000000000000000000000003 |
-|                           [Identity](/builders/tools/precompiles/#the-identity-function/)                           | 0x0000000000000000000000000000000000000004 |
-|                   [Modular Exponentiation](/builders/tools/precompiles/#modular-exponentiation/)                    | 0x0000000000000000000000000000000000000005 |
+|                     [ECRECOVER](/builders/tools/precompiles/eth-mainnet/#verify-signatures-with-ecrecover/)                     | 0x0000000000000000000000000000000000000001 |
+|                             [SHA256](/builders/tools/precompiles/eth-mainnet/#hashing-with-sha256/)                             | 0x0000000000000000000000000000000000000002 |
+|                         [RIPEMD160](/builders/tools/precompiles/eth-mainnet/#hashing-with-ripemd-160/)                          | 0x0000000000000000000000000000000000000003 |
+|                           [Identity](/builders/tools/precompiles/eth-mainnet/#the-identity-function/)                           | 0x0000000000000000000000000000000000000004 |
+|                   [Modular Exponentiation](/builders/tools/precompiles/eth-mainnet/#modular-exponentiation/)                    | 0x0000000000000000000000000000000000000005 |
 |     [Bn128Add](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_bn128/struct.Bn128Add.html)     | 0x0000000000000000000000000000000000000006 |
 |     [Bn128Mul](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_bn128/struct.Bn128Mul.html)     | 0x0000000000000000000000000000000000000007 |
 | [Bn128Pairing](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_bn128/struct.Bn128Pairing.html) | 0x0000000000000000000000000000000000000008 |
@@ -64,5 +64,6 @@ There are a set of precompiled contracts included on Moonriver that are categori
 
 |                                                          Contract                                                           |                  Address                   |
 |:---------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
-|  [Parachain Staking](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol)  | 0x0000000000000000000000000000000000000800 |
-| [Crowdloan Rewards](https://github.com/PureStake/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol) | 0x0000000000000000000000000000000000000801 |
+|  [Parachain Staking](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol)  | {{networks.moonbase.precompiles.staking}} |
+| [Crowdloan Rewards](https://github.com/PureStake/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol) | {{networks.moonbase.precompiles.crowdloan }} |
+| [ERC20 Interface (Moonbase Alpha)](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol)  | {{networks.moonbase.precompiles.erc20 }} |
