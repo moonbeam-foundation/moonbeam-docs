@@ -1,6 +1,6 @@
 networks:
   development:
-    build_tag: v0.14.2
+    build_tag: v0.15.1
     rpc_url: http://127.0.0.1:9933
     chain_id: 1281
     hex_chain_id: '0x501'
@@ -11,9 +11,9 @@ networks:
     chain_id: 1287
     hex_chain_id: '0x507'
     chain_spec: alphanet
-    block_explorer: https://moonbase-blockscout.testnet.moonbeam.network/
-    parachain_release_tag: v0.14.2 # must be in this exact format for links to work
-    parachain_sha256sum: 0223dfeeec38a70f4fd5f4666944dfc5d3b6520c60f000a458f42121682fcfaf
+    block_explorer: https://moonbase.moonscan.io
+    parachain_release_tag: v0.15.1 # must be in this exact format for links to work
+    parachain_sha256sum: c08e5f55bfc1dc7e2eec47727f0e710bc112f64b04c96843874e2f22a9badcd6
     gas_block: 15M
     gas_tx: 12.995M
     node_directory: /var/lib/alphanet-data
@@ -127,12 +127,86 @@ networks:
     chain_id: 1285
     hex_chain_id: '0x505'
     node_directory: /var/lib/moonriver-data
-    parachain_release_tag: v0.14.2
-    parachain_sha256sum: 0223dfeeec38a70f4fd5f4666944dfc5d3b6520c60f000a458f42121682fcfaf
+    parachain_release_tag: v0.15.1
+    parachain_sha256sum: c08e5f55bfc1dc7e2eec47727f0e710bc112f64b04c96843874e2f22a9badcd6
     chain_spec: moonriver
-    block_explorer: https://blockscout.moonriver.moonbeam.network/
+    block_explorer: https://moonriver.moonscan.io
     binary_name: moonbeam
     min_gas_price: 1
+    block_time: 12
+    gas_block: 15M
+    gas_tx: 12.995M
+    node:
+      cores: 8
+      ram: 16
+      hd: 500
+    democracy:
+      launch_period:
+        days: 1
+        blocks: 7200
+      vote_period:
+        days: 5
+        blocks: 36000
+      fast_vote_period:
+        days: 1
+        blocks: 7200
+      enact_period:
+        days: 1
+        blocks: 7200
+      cool_period:
+        days: 7
+        blocks: 50400
+      min_deposit: 4
+      max_votes: 100
+      min_preim_deposit: 0.004
+      max_proposals: 100
+    total_annual_inflation: 5
+    staking:
+      collator_bond_min: 1000
+      collator_map_bond: 100
+      max_collators: 52
+      round_blocks: 300
+      round_hours: 1
+      bond_lock: 2
+      min_nom_stake: 5
+      max_nom_per_col: 100
+      max_col_per_nom: 25
+      nominator_reward_inflation: 50
+      collator_reward_inflation: 20
+    treasury:
+      proposal_bond: 5
+      proposal_bond_min: 1
+      spend_period_blocks: 43200
+      spend_period_days: 6
+      max_approved_proposals: 100
+      tx_fees_allocated: 20
+      tx_fees_burned: 80
+    identity:
+      basic_dep: 1.0258
+      field_dep: .0066
+      max_fields: 100
+    collator_timings:
+      join_leave_candidates:
+        rounds: 2
+        hours: 4
+      add_remove_nominations:
+        rounds: 1
+        hours: 2
+      rewards_payouts:
+        rounds: 2
+        hours: 4
+  moonbeam:
+    rpc_url: https://rpc.moonbeam.moonbeam.network
+    wss_url: wss://wss.moonbeam.moonbeam.network
+    chain_id: 1284
+    hex_chain_id: '0x504'
+    node_directory: /var/lib/moonbeam-data
+    parachain_release_tag: v0.15.1
+    parachain_sha256sum: c08e5f55bfc1dc7e2eec47727f0e710bc112f64b04c96843874e2f22a9badcd6
+    chain_spec: moonbeam
+    block_explorer: https://moonscan.io
+    binary_name: moonbeam
+    min_gas_price: 100
     block_time: 12
     gas_block: 15M
     gas_tx: 12.995M
