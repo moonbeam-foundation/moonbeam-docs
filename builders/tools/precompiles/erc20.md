@@ -1,15 +1,15 @@
 ---
-title: ERC-20 Precompile
-description:  Learn how to access and interact with an ERC-20 representation of DEV tokens on the Moonbase Alpha TestNet by using the ERC-20 precompiled contract.
+title: Native Token ERC-20
+description:  Learn how to access and interact with an ERC-20 representation of native token on Moonbea, and check how this is done on the Moonbase Alpha TestNet by using the ERC-20 precompiled contract.
 ---
 
-# ERC-20 Precompiled Contract
+#  Native Token ERC-20 Precompile
 
 ![Precomiled Contracts Banner](/images/builders/tools/precompiles/erc20/erc20-banner.png)
 
 ## Introduction {: #introduction } 
 
-The ERC-20 precompiled contract on Moonbeam allows developers to interact with the native protocol token through an ERC-20 interface.
+The native token ERC-20 precompiled contract on Moonbeam allows developers to interact with the native protocol token through an ERC-20 interface.
 
 One of the main benefits of this precompile is that it removes the necessity of having a wrapped representation of the protocol token as an ERC-20 smart contract, such as WETH on Ethereum. Furthermore, it prevents having multiple wrapped representations of the same protocol token. Consequently, DApps that need to interact with the protocol token via an ERC-20 interface can do so without needing a separate smart contract.
 
@@ -47,6 +47,8 @@ The interface also includes the following required events:
 
 - **Transfer(*address indexed* from, *address indexed* to, *uint256* value)** - emitted when a transfer has been performed
 - **Approval(*address indexed* owner, *address indexed* spender, *uint256* value)** - emitted when an approval has been registered
+
+!!! note The ERC-20 precompile does not include `deposit` and `withdraw` functions and subsequent events that are expected from a wrapped token contract, such as WETH.
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 

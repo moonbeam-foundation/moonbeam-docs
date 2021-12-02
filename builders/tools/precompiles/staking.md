@@ -1,5 +1,5 @@
 ---
-title: Staking Precompile
+title: Staking Functions
 description: Moonbeam Parachain Staking Ethereum Solidity Precompile Interface Demo
 ---
 
