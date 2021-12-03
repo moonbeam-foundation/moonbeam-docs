@@ -1,5 +1,5 @@
 ---
-title: Using OpenZeppelin and Remix
+title: Using OpenZeppelin
 description:  Learn how to create common OpenZeppelin contracts with their Contracts Wizard easily and how to deploy them on Moonbeam thanks to its Ethereum compatibility features
 ---
 

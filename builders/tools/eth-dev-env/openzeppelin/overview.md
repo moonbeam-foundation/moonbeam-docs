@@ -5,7 +5,7 @@ description:  Learn how to use OpenZeppelin products on Moonbeam thanks to its E
 
 # OpenZeppelin
 
-![OpenZeppelin Banner](/images/builders/tools/openzeppelin/openzeppelin-banner.png)
+![OpenZeppelin Banner](/images/builders/tools/eth-dev-env/openzeppelin/openzeppelin-banner.png)
 
 ## Introduction {: #introduction } 
 

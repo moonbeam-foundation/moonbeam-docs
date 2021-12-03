@@ -5,7 +5,7 @@ description: Learn how to configure Mars for deploying Solidity smart contracts 
 
 # Mars
 
-![Mars Introduction](/images/builders/tools/mars-banner.png)
+![Mars Introduction](/images/builders/tools/eth-dev-env/mars-banner.png)
 ## Introduction {: #introduction } 
 
 [Mars](https://github.com/EthWorks/Mars) is a new infrastructure-as-code tool for deploying Solidity smart contracts. Mars makes writing advanced deployment scripts a breeze and handles state change for you, making sure your deployments are always up-to-date. Since Moonbeam is Ethereum compatible, you can use Mars as you normally would with Ethereum to develop on Moonbeam. All you have to do is change the network you wish to deploy to. 
