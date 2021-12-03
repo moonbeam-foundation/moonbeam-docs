@@ -29,7 +29,7 @@ For finality, Polkadot/Kusama rely on [GRANDPA](https://wiki.polkadot.network/do
 
 ## Main Differences
 
-In terms of consensus, Moonbeam is based on Nominated Proof-of-Stake, while Ethereum relies on Proof-of-Work, which are very different. Consequently, Proof of Work concepts, such as  `difficulty`, `uncles`, `hashrate`, generally don’t have meaning within Moonbeam.
+In terms of consensus, Moonbeam is based on Delegated Proof-of-Stake, while Ethereum relies on Proof-of-Work, which are very different. Consequently, Proof of Work concepts, such as  `difficulty`, `uncles`, `hashrate`, generally don’t have meaning within Moonbeam.
 
 For APIs that return values related to Ethereum’s Proof of Work, default values are returned. Existing Ethereum contracts that rely on Proof of Work internals (e.g., mining pool contracts) will almost certainly not work as expected on Moonbeam.
 

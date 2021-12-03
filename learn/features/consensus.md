@@ -28,19 +28,19 @@ The following two sections go over the filtering strategy currently used in Moon
 
 ## Parachain Staking Filtering {: #parachain-staking-filtering } 
 
-Collators can join the candidate pool by simply bonding some tokens via an extrinsic. Once in the pool, token holders can add to the collator's stake via nomination (also referred to as staking), that is, at a parachain level.
+Candidates can join the candidate pool by simply bonding some tokens via an extrinsic. Once in the pool, token holders can add to the candidate's stake via delegation (also referred to as staking), that is, at a parachain level.
 
-Parachain staking is the first of the two Nimbus filters applied to the collator candidate pool. It selects the top {{ networks.moonbase.staking.max_collators }} collators in terms of tokens staked in the network, which includes the collator bond and nominations from token holders. This filtered pool is called selected candidates, and selected candidates are renewed every round (which lasts {{ networks.moonbase.staking.round_blocks }} blocks). For a given round, the following diagram describes the parachain staking filtering:
+Parachain staking is the first of the two Nimbus filters applied to the candidate pool. It selects the top {{ networks.moonbase.staking.max_candidates }} candidates in terms of tokens staked in the network, which includes the candidate's bond and delegations from token holders. This filtered pool is called selected candidates, and selected candidates are renewed every round (which lasts {{ networks.moonbase.staking.round_blocks }} blocks). For a given round, the following diagram describes the parachain staking filtering:
 
 ![Nimbus Parachain Staking Filter](/images/learn/features/consensus/consensus-1.png)
 
-From this pool, another filter is applied to retrieve a subset of eligible collators for the next block authoring slot.
+From this pool, another filter is applied to retrieve a subset of eligible candidates for the next block authoring slot.
 
 If you want to learn more about staking, visit our [staking documentation](/staking/overview/).
 
 ## Fixed Size Subset Filtering {: #fixed-size-subset-filtering } 
 
-Once the parachain staking filter is applied and the selected candidates are retrieved, a second filter is applied on a block by block basis and helps narrow down the selected candidates to a smaller number of eligible collators for the next block authoring slot.
+Once the parachain staking filter is applied and the selected candidates are retrieved, a second filter is applied on a block by block basis and helps narrow down the selected candidates to a smaller number of eligible candidates for the next block authoring slot.
 
 In broad terms, this second filter picks a pseudo-random subset of the previously selected candidates. The eligibility ratio, a tunable parameter, defines the size of this subset.
 
