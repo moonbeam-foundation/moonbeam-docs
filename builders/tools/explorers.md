@@ -61,22 +61,34 @@ As main features, Blockscout offers:
 
 ![Blockscout Explorer](/images/builders/tools/explorers/explorers-2.png)
 
+### Expedition {: #expedition } 
+
+A Moonbeam-themed version of the [Expedition](https://github.com/xops/expedition){target=_blank} explorer can be found in [this link](https://moonbeam-explorer.netlify.app/){target=_blank}.
+
+By default, the explorer is connected to the Moonriver. However, you can switch to another network or connect it to a local dev node by following the next steps:
+
+ 1. Click on the gear icon in the top right corner
+ 2. Select "Development" if you have a node running on `{{ networks.development.rpc_url }}` (default RPC location of a Moonbeam node running with `--dev`flag). You can also switch back to "Moonbase Alpha"
+ 3. In the case you want to connect to a specific RPC URL, select "Custom RPC" and enter the URL. For example, `http://localhost:9937`
+
+![Expedition Explorer](/images/builders/tools/explorers/explorers-3.png)
+
 ## Substrate API {: #substrate-api } 
 
 ### Subscan {: #subscan } 
 
 [Subscan](https://moonriver.subscan.io/){target=_blank} is the primary Substrate API block explorer for Moonbeam. Subscan is capable of parsing standard or custom modules. For example, this is useful to display information regarding the Staking, Governance, and EVM pallets (or modules). The code is all open-source and can be found [here](https://github.com/itering/subscan-essentials){target=_blank}. Subscan hosts explorers for both [Moonriver](https://moonriver.subscan.io/){target=_blank} and the [Moonbase Alpha TestNet](https://moonbase.subscan.io/){target=_blank}.
 
-![Subscan Moonriver](/images/builders/tools/explorers/explorers-3.png)
+![Subscan Moonriver](/images/builders/tools/explorers/explorers-4.png)
 
 ### Polkadot.js {: #polkadotjs } 
 
 While not a full-featured block explorer, Polkadot.js Apps is a convenient option especially for users running local development nodes to view events and query transaction hashes.  Polkadot.js Apps uses the WebSocket endpoint to interact with the Network. To connect it to a Moonbeam development node, you can follow the steps in [this tutorial](/builders/get-started/moonbeam-dev/#connecting-polkadot-js-apps-to-a-local-moonbeam-node). The default port for this is `9944`.
 
-![Polkadot.js Local Node](/images/builders/tools/explorers/explorers-4.png)
+![Polkadot.js Local Node](/images/builders/tools/explorers/explorers-5.png)
 
 Polkadot.js Apps support also includes both [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonriver.api.onfinality.io%2Fpublic-ws#/explorer){target=_blank} and the [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/explorer){target=_blank}. You can find more information in [this page](/tokens/connect/polkadotjs/).
 
-![Polkadot.js Moonriver](/images/builders/tools/explorers/explorers-5.png)
+![Polkadot.js Moonriver](/images/builders/tools/explorers/explorers-6.png)
 
 
