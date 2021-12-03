@@ -10,23 +10,25 @@ description: An overview of the currently available block explorers that may be 
 
 Block explorers can be thought of as search engines for the blockchain. They allow users to search information such as balances, contracts, and transactions. More advanced block explorers even offer indexing capabilities, which enable them to provide a complete set of information, such as ERC-20 tokens in the network. They might even offer API services to access it via external services.
 
-Moonbeam provides two different pairs of explorers: two to query the Ethereum API, and two dedicated to the Substrate API. All EVM-based transactions are accessible via the Ethereum API wheras the Substrate API can be relied upon for Substrate-native functions such as governance and staking. 
+Moonbeam provides two different kind of explorers: ones to query the Ethereum API, and others  dedicated to the Substrate API. All EVM-based transactions are accessible via the Ethereum API wheras the Substrate API can be relied upon for Substrate-native functions such as governance and staking. The Substrate API also includes information about the EVM-based transactions, but only limited information is shown. 
 
 ## Quick Links {: #quick-links } 
 
 === "Moonriver"
-    |                                                               Block Explorer                                                               |                  Type                   |                  URL                   |
-    |   :-------------------------------------------------------------------------------   -------------------------------------------------------:|  :------------------------------------------:| :------------------------------------------:|
-    |         [Moonscan](https://moonriver.moonscan.io/){target=_blank}         |  EVM | https://moonriver.moonscan.io/ |
-    | [Blockscout](https://blockscout.moonriver.moonbeam.network/){target=_blank} |     EVM | https://blockscout.moonriver.moonbeam.network/ | 
-    |  [Subscan](https://moonriver.subscan.io/){target=_blank}  |     Substrate | https://moonriver.subscan.io/ |
+    |                           Block Explorer                                   |   Type   |                  URL                   |
+    |:--------------------------------------------------------------------------:|:--------:| :------------------------------------------:|
+    |          [Moonscan](https://moonriver.moonscan.io/){target=_blank}         |  EVM | https://moonriver.moonscan.io/ |
+    |[Blockscout](https://blockscout.moonriver.moonbeam.network/){target=_blank} |     EVM | https://blockscout.moonriver.moonbeam.network/ |
+    |[Expedition](https://moonbeam-explorer.netlify.app/?network=Moonriver){target=_blank} |     EVM | https://moonbeam-explorer.netlify.app/?network=Moonriver | 
+    |[Subscan](https://moonriver.subscan.io/){target=_blank}  |     Substrate | https://moonriver.subscan.io/ |
     |                                          [Polkadot.Js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonriver.api.onfinality.io%2Fpublic-ws#/explorer){target=_blank}                                          |  Substrate | https://polkadot.js.org/apps/#/explorer | 
 
 === "Moonbase Alpha"
     |                                                               Block Explorer                                                               |                  Type                   |                  URL                   |
     |   :-------------------------------------------------------------------------------   -------------------------------------------------------:|  :------------------------------------------:| :------------------------------------------:|
     |         [Moonscan](https://moonbase.moonscan.io/){target=_blank}         |  EVM | https://moonbase.moonscan.io/ |
-    | [Blockscout](https://moonbase-blockscout.testnet.moonbeam.network/){target=_blank} |     EVM | https://moonbase-blockscout.testnet.moonbeam.network/ | 
+    | [Blockscout](https://moonbase-blockscout.testnet.moonbeam.network/){target=_blank} |     EVM | https://moonbase-blockscout.testnet.moonbeam.network/ |
+    |[Expedition](https://moonbeam-explorer.netlify.app/?network=MoonbaseAlpha){target=_blank} |     EVM | https://moonbeam-explorer.netlify.app/?network=MoonbaseAlpha |  
     |  [Subscan](https://moonbase.subscan.io/){target=_blank}  |     Substrate | https://moonbase.subscan.io/ |
     |                                          [Polkadot.Js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/explorer){target=_blank}                                           |  Substrate | https://polkadot.js.org/apps/#/explorer | 
 
