@@ -132,9 +132,9 @@ networks:
         rounds: 2
         hours: 4
     precompiles:
-        staking: '0x0000000000000000000000000000000000000800'
-        crowdloan: '0x0000000000000000000000000000000000000801'
-        erc20: '0x0000000000000000000000000000000000000802'
+      staking: '0x0000000000000000000000000000000000000800'
+      crowdloan: '0x0000000000000000000000000000000000000801'
+      erc20: '0x0000000000000000000000000000000000000802'
   moonriver:
     rpc_url: https://rpc.moonriver.moonbeam.network
     wss_url: wss://wss.moonriver.moonbeam.network
@@ -219,6 +219,7 @@ networks:
           ksm_usd: '0x6e0513145FCE707Cd743528DB7C1cAB537DE9d1B'
           link_usd: '0xdD27789b504fEd690F406A82F16B45a0901172C0'
           mim_usd: '0xdD6296BD7515271F7E4b10C3A87A2f9863fECa97'
+          movr_usd: '0x3f8BFbDc1e79777511c00Ad8591cef888C2113C1'
           usdt_usd: '0xF80DAd54AF79257D41c30014160349896ca5370a'
   relay_chain:
     p2p: 30334

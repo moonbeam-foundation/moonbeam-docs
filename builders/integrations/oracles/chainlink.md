@@ -62,6 +62,20 @@ As seen above in the interface, there are five functions for fetching data: `dec
 
 Currently, there are Data Feed contracts for the the following price pairs:
 
+
+=== "Moonriver"
+    | Base/Quote  |  |                Data Feed Contract                |
+    |:-----------:|--|:------------------------------------------------:|
+    | BTC to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.btc_usd }}  |
+    | ETH to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.eth_usd }}  |
+    | KSM to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.ksm_usd }}  |
+    | LINK to USD |  | {{ networks.moonriver.chainlink.feed.aggregator.link_usd }} |
+    | BNB to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.bnb_usd }}  |
+    | FRAX to USD |  | {{ networks.moonriver.chainlink.feed.aggregator.frax_usd }} |
+    | MIM to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.mim_usd }}  |
+    | MOVR to USD |  | {{ networks.moonriver.chainlink.feed.aggregator.movr_usd }} |
+    | USDT to USD |  | {{ networks.moonriver.chainlink.feed.aggregator.usdt_usd }} |
+    
 === "Moonbase Alpha"
     |  Base/Quote  |  |                Data Feed Contract                |
     |:------------:|--|:------------------------------------------------:|
@@ -75,18 +89,6 @@ Currently, there are Data Feed contracts for the the following price pairs:
     | LINK to USD  |  | {{ networks.moonbase.chainlink.feed.aggregator.link_usd }}  |
     | SUSHI to USD |  | {{ networks.moonbase.chainlink.feed.aggregator.sushi_usd }} |
     |  UNI to USD  |  |  {{ networks.moonbase.chainlink.feed.aggregator.uni_usd }}  |
-
-=== "Moonriver"
-    | Base/Quote  |  |                Data Feed Contract                |
-    |:-----------:|--|:------------------------------------------------:|
-    | BTC to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.btc_usd }}  |
-    | ETH to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.eth_usd }}  |
-    | KSM to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.ksm_usd }}  |
-    | LINK to USD |  | {{ networks.moonriver.chainlink.feed.aggregator.link_usd }} |
-    | BNB to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.bnb_usd }}  |
-    | FRAX to USD |  | {{ networks.moonriver.chainlink.feed.aggregator.frax_usd }} |
-    | MIM to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.mim_usd }}  |
-    | USDT to USD |  | {{ networks.moonriver.chainlink.feed.aggregator.usdt_usd }} |
 
 For example, you can use the Aggregator interface to fetch the price feed of `BTC to USD` using [Remix](https://remix.ethereum.org/). If you need help loading a contract into Remix, check out the [Using Remix](/builders/interact/remix/) page of the documentation site.
 
