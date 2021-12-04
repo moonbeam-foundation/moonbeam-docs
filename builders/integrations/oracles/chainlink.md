@@ -17,7 +17,9 @@ Before we go into fetching the data itself, it is important to understand the ba
 
 In a standard configuration, each price feed is updated by a decentralized Oracle network. Each Oracle node is rewarded for publishing the price data to the Aggregator contract. The Aggregator contract receives periodic data updates from the network of oracles and aggregates and stores the data on-chain so that consumers can easily fetch it. However, the information is only updated if a minimum number of responses from Oracle nodes are received (during an aggregation round).
 
-The end-user can retrieve price feeds with read-only operations via an Aggregator interface.
+The end-user can retrieve price feeds with read-only operations via an Aggregator interface, or via a Consumer interface through the Proxy.
+
+![Price Feed Diagram](/images/builders/integrations/oracles/chainlink/chainlink-price-feed.png)
 
 ## Fetch Price Data {: #fetch-price-data } 
 
@@ -86,7 +88,7 @@ Currently, there are Data Feed contracts for the the following price pairs:
     | MIM to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.mim_usd }}  |
     | USDT to USD |  | {{ networks.moonriver.chainlink.feed.aggregator.usdt_usd }} |
 
-You can use the Aggregator interface to fetch the price feed of `BTC to USD` using [Remix](https://remix.ethereum.org/). If you need help loading a contract into Remix, check out the [Using Remix](/builders/interact/remix/) page of the documentation site.
+For example, you can use the Aggregator interface to fetch the price feed of `BTC to USD` using [Remix](https://remix.ethereum.org/). If you need help loading a contract into Remix, check out the [Using Remix](/builders/interact/remix/) page of the documentation site.
 
 You will need to connect your MetaMask account to Remix, so make sure you have MetaMask installed and are connected to the Moonbase Alpha TestNet or Moonriver. To get help setting up MetaMask, check out the [Interacting with Moonbeam Using MetaMask](/tokens/connect/metamask/#install-the-metamask-extension) guide.
 
