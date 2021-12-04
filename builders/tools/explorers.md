@@ -67,9 +67,8 @@ A Moonbeam-themed version of the [Expedition](https://github.com/xops/expedition
 
 By default, the explorer is connected to the Moonriver. However, you can switch to another network or connect it to a local dev node by following the next steps:
 
- 1. Click on the gear icon in the top right corner
- 2. Select **Development** if you have a node running on `{{ networks.development.rpc_url }}` (default RPC location of a Moonbeam node running with `--dev`flag). You can also switch back to **Moonbase Alpha**
- 3. In the case you want to connect to a specific RPC URL, select **Custom RPC** and enter the URL. For example, `http://localhost:9937`
+ 1. Click on the network text, where you'll be able to select between all different networks, including a **Moonbeam Development Node** running on `{{ networks.development.rpc_url }}`
+ 2. In the case you want to connect to a specific RPC URL, select **Add Custom Chain** and enter the URL. For example, `http://localhost:9937`
 
 ![Expedition Explorer](/images/builders/tools/explorers/explorers-3.png)
 
