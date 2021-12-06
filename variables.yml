@@ -11,7 +11,7 @@ networks:
     chain_id: 1287
     hex_chain_id: '0x507'
     chain_spec: alphanet
-    block_explorer: https://moonbase-blockscout.testnet.moonbeam.network/
+    block_explorer: https://moonbase.moonscan.io/
     parachain_release_tag: v0.15.1 # must be in this exact format for links to work
     parachain_sha256sum: c08e5f55bfc1dc7e2eec47727f0e710bc112f64b04c96843874e2f22a9badcd6
     gas_block: 15M
@@ -133,7 +133,7 @@ networks:
     parachain_release_tag: v0.15.1
     parachain_sha256sum: c08e5f55bfc1dc7e2eec47727f0e710bc112f64b04c96843874e2f22a9badcd6
     chain_spec: moonriver
-    block_explorer: https://blockscout.moonriver.moonbeam.network/
+    block_explorer: https://moonriver.moonscan.io/
     binary_name: moonbeam
     min_gas_price: 1
     block_time: 12
