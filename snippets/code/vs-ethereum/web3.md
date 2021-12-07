@@ -62,17 +62,17 @@ const main = async () => {
     txHash,
   ]);
 
-  // As a safety check, get given block to check if transaction is included
-  // Uses Ethereum JSON-RPC
-  const txBlock = await customWeb3Request(web3.currentProvider, 'eth_getBlockByNumber', [
-    txReceipt.result.blockNumber,
-    false,
-  ]);
-
   // If block number of receipt is not null, compare it against finalized head
   if (txReceipt) {
     // Convert to Number
     const txBlockNumber = parseInt(txReceipt.result.blockNumber, 16);
+
+    // As a safety check, get given block to check if transaction is included
+    // Uses Ethereum JSON-RPC
+    const txBlock = await customWeb3Request(web3.currentProvider, 'eth_getBlockByNumber', [
+      txBlockNumber,
+      false,
+    ]);
 
     console.log(`Current finalized block number is ${finalizedBlockNumber}`);
     console.log(
@@ -81,7 +81,7 @@ const main = async () => {
       }`
     );
     console.log(
-      `Your transaction in indeed in block ${txBlockNumber}? ${txBlock.result.transactions.includes(
+      `Your transaction is indeed in block ${txBlockNumber}? ${txBlock.result.transactions.includes(
         txHash
       )}`
     );

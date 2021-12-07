@@ -1,4 +1,4 @@
-```python
+```py
 import asyncio
 from aiohttp import ClientSession
 from web3.providers.base import JSONBaseProvider

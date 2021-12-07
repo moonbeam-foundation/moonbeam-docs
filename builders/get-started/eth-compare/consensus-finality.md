@@ -11,7 +11,7 @@ While Moonbeam strives to be compatible with Ethereum's Web3 API and EVM, there 
 
 In short, consensus is a way for different parties to agree on a shared state. As blocks are created, nodes in the network must decide which block will represent the next valid state. Finality defines when that valid state cannot be altered or reversed.
 
-At the time of writing, Ethereum uses a consensus protocol based on [Proof-of-Work (PoW)](https://ethereum.org/en/developers/docs/consensus-mechanisms/pow/), which provides probabilistic finality. On the contrary, Moonbeam uses a hybrid consensus protocol based on [Nominated Proof-of-Stake (NPoS)](https://wiki.polkadot.network/docs/learn-consensus), which provides deterministic finality.
+At the time of writing, Ethereum uses a consensus protocol based on [Proof-of-Work (PoW)](https://ethereum.org/en/developers/docs/consensus-mechanisms/pow/), which provides probabilistic finality. In contrast, Moonbeam uses a hybrid consensus protocol based on [Nominated Proof-of-Stake (NPoS)](https://wiki.polkadot.network/docs/learn-consensus), which provides deterministic finality.
 
 This guide will outline some of these main differences around consensus and finality, and what to expect when using Moonbeam for the first time.
 
@@ -23,9 +23,9 @@ Probabilistic finality means that the probability that a block (and all its tran
 
 ## Moonbeam Consensus and Finality
 
-In Polkadot, there are collators and validators. [Collators](https://wiki.polkadot.network/docs/en/learn-collator) maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the Relay Chain [validators](https://wiki.polkadot.network/docs/en/learn-validator). The collators set (nodes that produce blocks) are selected based on the [stake they have in the network](/learn/features/consensus/). 
+In Polkadot, there are collators and validators. [Collators](https://wiki.polkadot.network/docs/en/learn-collator) maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the Relay Chain [validators](https://wiki.polkadot.network/docs/en/learn-validator). The collator set (nodes that produce blocks) are selected based on the [stake they have in the network](/learn/features/consensus/). 
 
-For finality, Polkadot/Kusama rely on [GRANDPA](https://wiki.polkadot.network/docs/learn-consensus#finality-gadget-grandpa). GRANDPA provides deterministic finality for any given transaction (block). In other terms, when a block/transaction is marked as final, it can't be reverted except via on-chain governance or forking. Moonbeam follows this deterministic finality.
+For finality, Polkadot/Kusama rely on [GRANDPA](https://wiki.polkadot.network/docs/learn-consensus#finality-gadget-grandpa). GRANDPA provides deterministic finality for any given transaction (block). In other words, when a block/transaction is marked as final, it can't be reverted except via on-chain governance or forking. Moonbeam follows this deterministic finality.
 
 ## Main Differences
 
@@ -33,8 +33,9 @@ In terms of consensus, Moonbeam is based on Nominated Proof-of-Stake, while Ethe
 
 For APIs that return values related to Ethereum’s Proof of Work, default values are returned. Existing Ethereum contracts that rely on Proof of Work internals (e.g., mining pool contracts) will almost certainly not work as expected on Moonbeam.
 
-In terms of finality, on Moonbeam, you can check when a transaction is finalized, meaning that it can't be reverted. The strategy is fairly simple: 
- 1. You ask the network the hash of the latest finalized block
+However, the deterministic finality of Moonbeam can be used to provide a better user experience than is currently possible in Ethereum. The strategy to check for transaction finality is fairly simple:
+
+ 1. You ask the network for the hash of the latest finalized block
  2. You retrieve the block number using the hash
  3. You compare it with the block number of your transaction. If your transaction was included in a previous block, it is finalized
  4. As as safety check, retrieve the block by number, and verify that the given transaction hash is in the block
@@ -56,7 +57,7 @@ With [Web3.js](https://web3js.readthedocs.io/), you can make custom RPC requests
 
 Given a transaction hash (`tx_hash`), the following code snippet uses Web3.js to fetch the current finalized block and compare it with the block number of the transaction you've provided. 
 
-The code relies on two custom RPC requests from the Substrate JSON-RPC: `chain_getFinalizedHead` and `chain_getHeader`. The first request gets the block hash of the last finalized block. The second request gets the block header for a given block hash. It also uses the same custom RPC function for `eth_getTransactionReceipt`, but this can be modified to use the regular `web3.eth.getTransactionReceipt(hash)` method. The same is true for `eth_getBlockByNumber`, to check if the given transactio hash is included in the block.
+The code relies on two custom RPC requests from the Substrate JSON-RPC: `chain_getFinalizedHead` and `chain_getHeader`. The first request gets the block hash of the last finalized block. The second request gets the block header for a given block hash. It also uses the same custom RPC function for `eth_getTransactionReceipt`, but this can be modified to use the regular `web3.eth.getTransactionReceipt(hash)` method. The same is true for `eth_getBlockByNumber`, to check if the given transaction hash is included in the block.
 
 --8<-- 'code/vs-ethereum/web3.md'
 
@@ -66,21 +67,19 @@ With [Ethers.js](https://docs.ethers.io/), you can make custom RPC requests with
 
 Given a transaction hash (`tx_hash`), the following code snippet uses Ethers.js to fetch the current finalized block and compare it with the block number of the transaction you've provided. 
 
-The code relies on two custom RPC requests from the Substrate JSON-RPC: `chain_getFinalizedHead` and `chain_getHeader`. The first request gets the block hash of the last finalized block. The second request gets the block header for a given block hash. It also uses the same custom RPC function for `eth_getTransactionReceipt`, but this can be modified to use the regular `web3Provider.getTransactionReceipt(hash)` method. The same is true for `eth_getBlockByNumber`, to check if the given transactio hash is included in the block.
+The code relies on two custom RPC requests from the Substrate JSON-RPC: `chain_getFinalizedHead` and `chain_getHeader`. The first request gets the block hash of the last finalized block. The second request gets the block header for a given block hash. It also uses the same custom RPC function for `eth_getTransactionReceipt`, but this can be modified to use the regular `web3Provider.getTransactionReceipt(hash)` method. The same is true for `eth_getBlockByNumber`, to check if the given transaction hash is included in the block.
 
 --8<-- 'code/vs-ethereum/ethers.md'
 
-<!---
 ### Custom RPC Requests with Web3.py
 
 With [Web3.py](https://web3py.readthedocs.io/en/stable/), you can make custom RPC requests with the `JSONBaseProvider()` web3 provider. This will enable the `encode_rpc_request` and `decode_rpc_response` methods. However, at the time of writing, this was not in the official Web3.py documentation.
 
 Given a transaction hash (`tx_hash`), the following code snippet uses Web3.py to fetch the current finalized block and compare it with the block number of the transaction you've provided. 
 
-The code asynchronously calls two custom RPC requests from the Substrate JSON-RPC: `chain_getFinalizedHead` and `chain_getHeader`. The first request gets the block hash of the last finalized block. The second request gets the block header for a given block hash. It uses the built-in `web3.eth.getTransactionReceipt` method for retrieving the transaction receipt.
+The code asynchronously calls two custom RPC requests from the Substrate JSON-RPC: `chain_getFinalizedHead` and `chain_getHeader`. The first request gets the block hash of the last finalized block. The second request gets the block header for a given block hash. It uses the built-in `web3.eth.getTransactionReceipt` method for retrieving the transaction receipt. The same is true for `eth_getBlockByNumber`, to check if the given transaction hash is included in the block.
 
 --8<-- 'code/vs-ethereum/web3py.md'
--->
 
 ## Checking Tx Finality with Polkadot.js
 
