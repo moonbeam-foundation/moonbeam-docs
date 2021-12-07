@@ -1,5 +1,4 @@
 ```py
-```py
 from web3 import Web3
 
 # Define the TxHash to Check Finality
