@@ -11,10 +11,11 @@ description: The Moonbeam TestNet, named Moonbase Alpha, is the easiest way to g
 
 For Moonbase Alpha, you can use any of the following block explorers:
 
- - **Substrate API** — [Subscan](https://moonbase.subscan.io/) or [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/explorer)
- - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=MoonbaseAlpha)
- - **Ethereum API with Indexing** — [Blockscout](https://moonbase-blockscout.testnet.moonbeam.network/)
-
+ - **Ethereum API (Etherscan Equivalent)** — [Moonscan](https://moonbase.moonscan.io/){target=_blank}
+ - **Ethereum API with Indexing** — [Blockscout](https://moonbase-blockscout.testnet.moonbeam.network/){target=_blank}
+ - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=MoonbaseAlpha){target=_blank}
+ - **Substrate API** — [Subscan](https://moonbase.subscan.io/){target=_blank} or [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/explorer){target=_blank}
+ 
 For more information on each of the available block explorers, please head to the [Block Explorers](/builders/tools/explorers) section of the documentation.
 
 ## Connect MetaMask

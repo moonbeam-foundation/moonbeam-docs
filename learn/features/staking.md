@@ -34,8 +34,9 @@ Collators (and token holders if they nominate) have a stake in the network. The 
     - **Nominators reward pool** — {{ networks.moonriver.staking.nominator_reward_inflation }}% of the annual inflation
     - **Nominator rewards** — variable. It's the aggregate nominator rewards distributed over all eligible nominators, taking into account the relative size of stakes ([read more](/staking/overview/#reward-distribution))
     - **Slashing** — currently, there is no slashing. This can be later changed through governance. Collators who produce blocks that are not finalized by the relay chain won't receive rewards
-    - **Collator information** — list of collators: [Moonriver Subscan](https://moonriver.subscan.io/validator). Collator data for the last two rounds: [Moonbeam Explorer](https://moonbeam-explorer.netlify.app/stats/miners?network=Moonriver)
-    - **Manage staking related actions** — visit the [Moonbeam Network DApp](https://apps.moonbeam.network/moonriver)
+    - **Collator information** — a list of Moonriver collators is available on [Subscan](https://moonriver.subscan.io/validator){target=_blank}. A collator performance leaderboard is accessible on [Moonscan](https://moonriver.moonscan.io/collators){target=_blank}
+    - **Collator APY Info** - [DappLooker Collator Dashboard](http://analytics.dapplooker.com/public/dashboard/7dfc5a6e-da33-4d54-94bf-0dfa5e6843cb){target=_blank} *Warning! This dashboard is experimental beta software and may not accurately reflect collator performance. Be sure to do your own research before delegating to a collator* 
+    - **Manage staking related actions** — visit the [Moonbeam Network DApp](https://apps.moonbeam.network/moonriver){target=_blank}
 
 === "Moonbase Alpha" 
 
@@ -50,8 +51,8 @@ Collators (and token holders if they nominate) have a stake in the network. The 
     - **Nominators reward pool** — {{ networks.moonbase.staking.nominator_reward_inflation }}% of the annual  inflation
     - **Nominator rewards** — variable. It's the aggregate nominator rewards distributed over all eligible nominators, taking into account the relative size of stakes ([read more](/staking/overview/#reward-distribution))
     - **Slashing** — currently, there is no slashing. This can be later changed through governance. Collators who produce blocks that are not finalized by the relay chain won't receive rewards
-    - **Collator information** — list of collators: [Moonbase Alpha Subscan](https://moonbase.subscan.io/validator). Collator data for the last two rounds: [Moonbeam Explorer](https://moonbeam-explorer.netlify.app/stats/miners?network=MoonbaseAlpha)
-    - **Manage staking related actions** — visit the [Moonbeam Network DApp](https://apps.moonbeam.network/moonbase-alpha)
+    - **Collator information** — a list of Moonbase Alpha collators is available on [Subscan](https://moonbase.subscan.io/validator){target=_blank}. Collator data for the last two rounds: [Moonbeam Explorer](https://moonbeam-explorer.netlify.app/stats/miners?network=MoonbaseAlpha){target=_blank}
+    - **Manage staking related actions** — visit the [Moonbeam Network DApp](https://apps.moonbeam.network/moonbase-alpha){target=_blank}
 
 To learn how to get the current value of any of the parameters around staking, check out the [Retrieving Staking Parameters](/tokens/staking/stake/#retrieving-staking-parameters) section of the [How to Stake your Tokens](/tokens/staking/stake/) guide. 
 
