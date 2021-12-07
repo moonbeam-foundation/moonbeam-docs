@@ -69,13 +69,15 @@ Before getting started, it's important to note some of the timings of different 
     |:-------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------:|
     |         Join/leave candidates         |  {{ networks.moonbase.collator_timings.join_leave_candidates.rounds }} rounds ({{ networks.moonbase.collator_timings.join_leave_candidates.hours }} hours)  |
     |        Add/remove delegations         | {{ networks.moonbase.collator_timings.add_remove_delegations.rounds }} rounds ({{ networks.moonbase.collator_timings.add_remove_delegations.hours }} hours) |
+     |        Revoke/reduce delegations         | {{ networks.moonbase.collator_timings.add_remove_delegations.rounds }} rounds ({{ networks.moonbase.collator_timings.add_remove_delegations.hours }} hours) |
     | Rewards payouts (after current round) |        {{ networks.moonbase.collator_timings.rewards_payouts.rounds }} rounds ({{ networks.moonbase.collator_timings.rewards_payouts.hours }} hours)        |
 
 === "Moonriver"
     |               Variable                |                                                                             Value                                                                             |
     |:-------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------:|
     |         Join/leave candidates         |  {{ networks.moonriver.collator_timings.join_leave_candidates.rounds }} rounds ({{ networks.moonriver.collator_timings.join_leave_candidates.hours }} hours)  |
-    |        Add/remove delegations         | {{ networks.moonriver.collator_timings.add_remove_delegations.rounds }} rounds ({{ networks.moonriver.collator_timings.add_remove_delegations.hours }} hours) |
+    |        Add delegation         | {{ networks.moonriver.collator_timings.add_delegations.rounds }} rounds ({{ networks.moonriver.collator_timings.add_delegations.hours }} hours) |
+    |        Revoke/reduce delegation         | {{ networks.moonriver.collator_timings.remove_delegations.rounds }} rounds ({{ networks.moonriver.collator_timings.remove_delegations.hours }} hours) |
     | Rewards payouts (after current round) |        {{ networks.moonriver.collator_timings.rewards_payouts.rounds }} rounds ({{ networks.moonriver.collator_timings.rewards_payouts.hours }} hours)        |
 
 
@@ -185,7 +187,7 @@ If you wish to bond less, you have to schedule a request, wait an exit delay of 
 
 ### Bond More {: #bond-more }
 
-As a candidate there are two options for increasing one's stake. The first and recommended option is to send the funds to be staked to another owned address and [nominate your collator](/tokens/staking/stake/#how-to-nominate-a-collator). Alternatively, collators that have {{ networks.moonriver.staking.collator_bond_min }} MOVR or more bonded can increase their bond from [Polkadot JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network#/accounts) as follows:
+As a candidate there are two options for increasing one's stake. The first and recommended option is to send the funds to be staked to another owned address and [delegate to your collator](/tokens/staking/stake/#how-to-nominate-a-collator). Alternatively, collators that have {{ networks.moonriver.staking.candidate_bond_min }} MOVR or more bonded can increase their bond from [Polkadot JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network#/accounts) as follows:
 
  1. Navigate to the **Developer** tab 
  2. Click on **Extrinsics**
@@ -195,6 +197,9 @@ As a candidate there are two options for increasing one's stake. The first and r
  6. Specify the additional amount to be bonded in the **more: BalanceOf** field
  7. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
  
+!!! note
+    Collators will not earn additional rewards for increasing their bond amount. To increase your staked MOVR, it is recommended that you instead send funds to another owned address and delegate to your collator.
+
 ![Collator Bond More](/images/node-operators/networks/collators/collator-polkadotjs-7.png)
 
 ### Bond Less {: #bond-less}

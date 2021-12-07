@@ -162,7 +162,7 @@ networks:
       max_proposals: 100
     total_annual_inflation: 5
     staking:
-      candidate_bond_min: 1000
+      candidate_bond_min: 500
       collator_map_bond: 100
       max_candidates: 52
       round_blocks: 300
@@ -189,9 +189,12 @@ networks:
       join_leave_candidates:
         rounds: 2
         hours: 4
-      add_remove_delegations:
+      add_delegations:
         rounds: 1
         hours: 2
+      remove_delegations:
+        rounds: 24
+        hours: 48
       rewards_payouts:
         rounds: 2
         hours: 4
