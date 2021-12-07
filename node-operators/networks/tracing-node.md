@@ -71,8 +71,6 @@ The complete command for running a tracing node is as follows:
     purestake/moonbeam-tracing:v0.13.1-800 \
     --base-path=/data \
     --name="Moonbeam-Tutorial" \
-    --execution native \
-    --wasm-execution compiled \
     --pruning archive \
     --state-cache-size 1 \
     --ethapi=debug,trace,txpool \
@@ -88,8 +86,6 @@ The complete command for running a tracing node is as follows:
     --base-path=/data \
     --chain alphanet \
     --name="Moonbeam-Tutorial" \
-    --execution native \
-    --wasm-execution compiled \
     --pruning archive \
     --state-cache-size 1 \
     --ethapi=debug,trace,txpool \
