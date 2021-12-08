@@ -15,11 +15,11 @@ In order to collect as much feedback as possible and provide fast issue resoluti
 
 ## Initial Configurations {: #initial-configurations } 
 
-Moonriver is scheduled to follow a [5-phase launch process](https://moonbeam.network/networks/moonriver/launch/). Currently, Moonriver is in Phase 3 of the launch process and has the following configurations:
+Currently, Moonriver has the following configurations:
 
 - Runs as a parachain connected to the Kusama relay chain
 - Has an active set of {{ networks.moonriver.staking.max_collators }} collators
-- There are two RPC endpoints (hosted by PureStake). People can run full nodes to access their own private RPC endpoints
+- It has infrastructure providers that provide [API endpoints](/builders/get-started/endpoints/) to connect to the network. Projecs can also [run their own node](/node-operators/networks/run-a-node/) to have access to their own private endpoints
 
 ![Moonriver Diagram](/images/learn/platform/networks/moonriver-diagram.png)
 
@@ -32,7 +32,7 @@ Some important variables/configurations to note include:
     |   Target block time   |  {{ networks.moonriver.block_time }} seconds (expected to be 6     seconds)  |
     |    Block gas limit    | {{ networks.moonriver.gas_block }} (expected to increase by at     least 4x) |
     | Transaction gas limit |  {{ networks.moonriver.gas_tx }} (expected to increase by at     least 4x)   |
-    |     RPC endpoint      |                    {{ networks.moonriver.rpc_url }}    }                     |
+    |     RPC endpoint      |                    {{ networks.moonriver.rpc_url }}  |
     |     WSS endpoint      |                       {{ networks.moonriver.wss_url }}                       |
 
 === "Governance"
@@ -71,22 +71,21 @@ The tokens on Moonriver will also be called Moonriver (MOVR). Check out the Moon
 
 The smallest unit of Moonriver, similarly to Ethereum, is a Wei. It takes 10^18 Wei to make one Moonriver. The denominations are as follows:
 
-|      Unit      |   Moonriver (MOVR)   |              Wei              |
-|:--------------:|:--------------------:|:-----------------------------:|
-|      Wei       | 0.000000000000000001 |               1               |
-|    Kilowei     |  0.000000000000001   |             1,000             |
-|    Megawei     |    0.000000000001    |           1,000,000           |
-|    Gigawei     |     0.000000001      |         1,000,000,000         |
-| Micromoonriver |       0.000001       |       1,000,000,000,000       |
-| Millimoonriver |        0.001         |     1,000,000,000,000,000     |
-|   Moonriver    |          1           |   1,000,000,000,000,000,000   |
-| Kilomoonriver  |        1,000         | 1,000,000,000,000,000,000,000 |
+| Unit             | Moonriver (MOVR)       | Wei                             |
+|------------------|------------------------|---------------------------------|
+| :--------------: | :--------------------: | :-----------------------------: |
+| Wei              | 0.000000000000000001   | 1                               |
+| Kilowei          | 0.000000000000001      | 1,000                           |
+| Megawei          | 0.000000000001         | 1,000,000                       |
+| Gigawei          | 0.000000001            | 1,000,000,000                   |
+| Micromoonriver   | 0.000001               | 1,000,000,000,000               |
+| Millimoonriver   | 0.001                  | 1,000,000,000,000,000           |
+| Moonriver        | 1                      | 1,000,000,000,000,000,000       |
+| Kilomoonriver    | 1,000                  | 1,000,000,000,000,000,000,000   |
 
 ## Proof of Stake {: #proof-of-stake } 
 
-Over the course of the 5-phase Moonriver launch, the network will progressively be updated to a fully decentralized Proof of Stake network. For a breakdown of what will occur during each phase, check out the [Network Launch Status](https://moonbeam.network/networks/moonriver/launch/) page.
-
-In Phase 1, there was an initial collator election to fill the active collator set with parties outside of the Moonbeam team. The number of collators in the active set will be subject to governance. The active set will consist of the top collators by stake, including nominations.
+TODO -> Add what Erin writes about this
 
 ## Limitations {: #limitations } 
 
