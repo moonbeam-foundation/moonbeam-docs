@@ -32,7 +32,7 @@ Some important variables/configurations to note include:
     |   Target block time   |  {{ networks.moonriver.block_time }} seconds (expected to be 6     seconds)  |
     |    Block gas limit    | {{ networks.moonriver.gas_block }} (expected to increase by at     least 4x) |
     | Transaction gas limit |  {{ networks.moonriver.gas_tx }} (expected to increase by at     least 4x)   |
-    |     RPC endpoint      |                    {{ networks.moonriver.rpc_url }}    }                     |
+    |     RPC endpoint      |                    {{ networks.moonriver.rpc_url }}  |
     |     WSS endpoint      |                       {{ networks.moonriver.wss_url }}                       |
 
 === "Governance"
@@ -71,16 +71,17 @@ The tokens on Moonriver will also be called Moonriver (MOVR). Check out the Moon
 
 The smallest unit of Moonriver, similarly to Ethereum, is a Wei. It takes 10^18 Wei to make one Moonriver. The denominations are as follows:
 
-|      Unit      |   Moonriver (MOVR)   |              Wei              |
-|:--------------:|:--------------------:|:-----------------------------:|
-|      Wei       | 0.000000000000000001 |               1               |
-|    Kilowei     |  0.000000000000001   |             1,000             |
-|    Megawei     |    0.000000000001    |           1,000,000           |
-|    Gigawei     |     0.000000001      |         1,000,000,000         |
-| Micromoonriver |       0.000001       |       1,000,000,000,000       |
-| Millimoonriver |        0.001         |     1,000,000,000,000,000     |
-|   Moonriver    |          1           |   1,000,000,000,000,000,000   |
-| Kilomoonriver  |        1,000         | 1,000,000,000,000,000,000,000 |
+| Unit             | Moonriver (MOVR)       | Wei                             |
+|------------------|------------------------|---------------------------------|
+| :--------------: | :--------------------: | :-----------------------------: |
+| Wei              | 0.000000000000000001   | 1                               |
+| Kilowei          | 0.000000000000001      | 1,000                           |
+| Megawei          | 0.000000000001         | 1,000,000                       |
+| Gigawei          | 0.000000001            | 1,000,000,000                   |
+| Micromoonriver   | 0.000001               | 1,000,000,000,000               |
+| Millimoonriver   | 0.001                  | 1,000,000,000,000,000           |
+| Moonriver        | 1                      | 1,000,000,000,000,000,000       |
+| Kilomoonriver    | 1,000                  | 1,000,000,000,000,000,000,000   |
 
 ## Proof of Stake {: #proof-of-stake } 
 

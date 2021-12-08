@@ -1,13 +1,12 @@
 title: Platform
 nav:
- - index.md
- - welcome.md
- - vision.md
- - why-polkadot.md
- - roadmap.md
- - networks
- - technology.md
- - tokens.md
- - code.md
- - links.md
- - glossary.md
+  - index.md
+  - networks
+  - vision.md
+  - why-polkadot.md
+  - roadmap.md
+  - technology.md
+  - tokens.md
+  - code.md
+  - links.md
+  - glossary.md

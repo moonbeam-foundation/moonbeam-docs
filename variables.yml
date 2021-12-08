@@ -196,8 +196,8 @@ networks:
         rounds: 2
         hours: 4
   moonbeam:
-    rpc_url: https://rpc.moonbeam.moonbeam.network
-    wss_url: wss://wss.moonbeam.moonbeam.network
+    rpc_url: https://rpc.api.moonbeam.network
+    wss_url: wss://wss.api.moonbeam.network
     chain_id: 1284
     hex_chain_id: '0x504'
     node_directory: /var/lib/moonbeam-data
@@ -216,11 +216,11 @@ networks:
       hd: 500
     democracy:
       launch_period:
-        days: 1
-        blocks: 7200
+        days: 7
+        blocks: 50400
       vote_period:
-        days: 5
-        blocks: 36000
+        days: 14
+        blocks: 100800
       fast_vote_period:
         days: 1
         blocks: 7200
@@ -230,21 +230,21 @@ networks:
       cool_period:
         days: 7
         blocks: 50400
-      min_deposit: 4
+      min_deposit: 400
       max_votes: 100
-      min_preim_deposit: 0.004
+      min_preim_deposit: 0.04
       max_proposals: 100
     total_annual_inflation: 5
     staking:
-      collator_bond_min: 1000
-      collator_map_bond: 100
-      max_collators: 52
-      round_blocks: 300
-      round_hours: 1
-      bond_lock: 2
-      min_nom_stake: 5
+      collator_bond_min: 100000
+      collator_map_bond: 10000
+      max_collators: 8
+      round_blocks: 600
+      round_hours: 2
+      bond_lock: 24
+      min_nom_stake: 500
       max_nom_per_col: 100
-      max_col_per_nom: 25
+      max_col_per_nom: 100
       nominator_reward_inflation: 50
       collator_reward_inflation: 20
     treasury:

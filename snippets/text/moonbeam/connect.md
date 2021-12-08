@@ -18,7 +18,7 @@ const Web3 = require('web3'); //Load Web3 library
 .
 .
 //Create local Web3 instance - set Moonbeam as provider
-const web3 = new Web3("https://rpc.moonbeam.moonbeam.network"); 
+const web3 = new Web3("https://rpc.api.moonbeam.network"); 
 ```
 
 For the ethers.js library, define the provider by using `ethers.providers.StaticJsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonbeam:
@@ -27,7 +27,7 @@ For the ethers.js library, define the provider by using `ethers.providers.Static
 const ethers = require('ethers');
 
 
-const providerURL = "https://rpc.moonbeam.moonbeam.network";
+const providerURL = "https://rpc.api.moonbeam.network";
 // Define Provider
 const provider = new ethers.providers.StaticJsonRpcProvider(providerURL, {
     chainId: 1284,

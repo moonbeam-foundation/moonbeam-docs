@@ -26,7 +26,7 @@ Some important variables/configurations to note include:
     |   Target block time   |  {{ networks.moonbeam.block_time }} seconds (expected to be 6     seconds)  |
     |    Block gas limit    | {{ networks.moonbeam.gas_block }} (expected to increase by at     least 4x) |
     | Transaction gas limit |  {{ networks.moonbeam.gas_tx }} (expected to increase by at     least 4x)   |
-    |     RPC endpoint      |                    {{ networks.moonbeam.rpc_url }}    }                     |
+    |     RPC endpoint      |                    {{ networks.moonbeam.rpc_url }}                     |
     |     WSS endpoint      |                       {{ networks.moonbeam.wss_url }}                       |
 
 === "Governance"
