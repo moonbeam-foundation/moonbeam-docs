@@ -85,6 +85,7 @@ networks:
     total_annual_inflation: 5
     staking:
       candidate_bond_min: 1000
+      candidate_bond_min_wei: 1000000000000000000000
       collator_map_bond: 100
       max_candidates: 60
       round_blocks: 300
@@ -166,6 +167,7 @@ networks:
     total_annual_inflation: 5
     staking:
       candidate_bond_min: 500
+      candidate_bond_min_wei: 500000000000000000000
       collator_map_bond: 100
       max_candidates: 52
       round_blocks: 300
@@ -190,8 +192,8 @@ networks:
       max_fields: 100
     collator_timings:
       join_leave_candidates:
-        rounds: 2
-        hours: 4
+        rounds: 24
+        hours: 48
       add_delegations:
         rounds: 2
         hours: 4

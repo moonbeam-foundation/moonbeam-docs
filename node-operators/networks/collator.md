@@ -67,7 +67,7 @@ Before getting started, it's important to note some of the timings of different 
 === "Moonbase Alpha"
     |               Variable                |                                                                            Value                                                                            |
     |:-------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------:|
-    |         Join/leave candidates         |  {{ networks.moonbase.collator_timings.join_leave_candidates.rounds }} rounds ({{ networks.moonbase.collator_timings.join_leave_candidates.hours }} hours)  |
+    |         Leave candidates         |  {{ networks.moonbase.collator_timings.join_leave_candidates.rounds }} rounds ({{ networks.moonbase.collator_timings.join_leave_candidates.hours }} hours)  |
     |        Add delegations         | {{ networks.moonbase.collator_timings.add_delegations.rounds }} rounds ({{ networks.moonbase.collator_timings.add_delegations.hours }} hours) |
      |        Revoke/reduce delegations         | {{ networks.moonbase.collator_timings.remove_delegations.rounds }} rounds ({{ networks.moonbase.collator_timings.remove_delegations.hours }} hours) |
     | Rewards payouts (after current round) |        {{ networks.moonbase.collator_timings.rewards_payouts.rounds }} rounds ({{ networks.moonbase.collator_timings.rewards_payouts.hours }} hours)        |
@@ -75,14 +75,14 @@ Before getting started, it's important to note some of the timings of different 
 === "Moonriver"
     |               Variable                |                                                                             Value                                                                             |
     |:-------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-    |         Join/leave candidates         |  {{ networks.moonriver.collator_timings.join_leave_candidates.rounds }} rounds ({{ networks.moonriver.collator_timings.join_leave_candidates.hours }} hours)  |
-    |        Add delegation         | {{ networks.moonriver.collator_timings.add_delegations.rounds }} rounds ({{ networks.moonriver.collator_timings.add_delegations.hours }} hours) |
+    |         Leave candidates         |  {{ networks.moonriver.collator_timings.join_leave_candidates.rounds }} rounds ({{ networks.moonriver.collator_timings.join_leave_candidates.hours }} hours)  |
+    |        Add delegations         | {{ networks.moonriver.collator_timings.add_delegations.rounds }} rounds ({{ networks.moonriver.collator_timings.add_delegations.hours }} hours) |
     |        Revoke/reduce delegations         | {{ networks.moonriver.collator_timings.remove_delegations.rounds }} rounds ({{ networks.moonriver.collator_timings.remove_delegations.hours }} hours) |
     | Rewards payouts (after current round) |        {{ networks.moonriver.collator_timings.rewards_payouts.rounds }} rounds ({{ networks.moonriver.collator_timings.rewards_payouts.hours }} hours)        |
 
 
 !!! note 
-    The values presented in the previous table are subject to change in future releases.
+    Joining the collator candidate pool takes effect immediately. Adding or increasing a delegation also takes effect immediately, but rewards payouts begin {{ networks.moonriver.collator_timings.rewards_payouts.rounds }} rounds later. The values presented in the previous table are subject to change in future releases.
 
 ### Get the Size of the Candidate Pool {: #get-the-size-of-the-candidate-pool } 
 
@@ -112,11 +112,11 @@ Once your node is running and in sync with the network, you become a candidate (
  3. Confirm your account is funded with at least the [minimum stake required](#accounts-and-staking-requirements) plus some extra for transaction fees 
  4. Select **parachainStaking** pallet under the **submit the following extrinsic** menu
  5. Open the drop-down menu, which lists all the possible extrinsics related to staking, and select the **joinCandidates()** function
- 6. Set the bond to at least the [minimum amount](#accounts-and-staking-requirements) to be considered a candidate. Only the candidate bond counts for this check. Additional delegations do not count
+ 6. Set the bond to at least the [minimum amount](#accounts-and-staking-requirements) to be considered a candidate. You'll need to enter this amount in `wei`. As an example, the minimum bond of {{ networks.moonbase.staking.candidate_bond_min }} DEV in Moonbase Alpha would be `{{ networks.moonbase.staking.candidate_bond_min_wei }}` (21 zeros) in wei. For Moonriver, the minimum bond of {{ networks.moonriver.staking.candidate_bond_min }} MOVR is `{{ networks.moonriver.staking.candidate_bond_min_wei }}` (20 zeros) in wei. Only the candidate bond counts for this check. Additional delegations do not count
  7. Set the candidate count as the candidate pool size. To learn how to retrieve this value, check the [Get the Size of the Candidate Pool](#get-the-size-of-the-candidate-pool) section
  8. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
-![Join candidate pool via Polkadot.js](/images/node-operators/networks/collators/collator-polkadotjs-3.png)
+![Join candidate pool via Polkadot.js](/images/node-operators/networks/collators/collator-polkadotjs-16.png)
 
 !!! note
     Function names and the minimum bond requirement are subject to change in future releases.
@@ -145,7 +145,7 @@ To get started and schedule a request, take the following steps:
 
 #### Execute Request to Leave Candidates
 
-After the transaction has been confirmed, you will need to wait 2 rounds before you can execute the request. To execute the request, you can follow these steps:
+After the waiting period has passed, you'll be able to execute the request. To execute the request, you can follow these steps:
 
  1. Navigate to the **Developer** tab 
  2. Click on **Extrinsics**
@@ -170,10 +170,6 @@ If you scheduled a request to leave the candidate pool but changed your mind, as
  7. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
 ![Cancel leave candidates request](/images/node-operators/networks/collators/collator-polkadotjs-11.png)
-
-### Moonriver
-
-Similar to Polkadot's `chill()` function, to leave the collator's candidate pool, follow the same steps as in the [Join the Candidate Pool](#join-the-candidate-pool) section, but select the `leaveCandidates()` function in step 5.
 
 ## Change Candidate Bond Amount {: #change-candidate-bond-amount }
 
