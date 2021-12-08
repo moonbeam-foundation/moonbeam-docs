@@ -33,7 +33,7 @@ From a technical perspective, candidates must meet the following requirements:
 
 ## Accounts and Staking Requirements {: #accounts-and-staking-requirements } 
 
-Similar to Polkadot validators, you need to create an account. For Moonbeam, this is an H160 account or basically an Ethereum style account from which you hold the private keys. In addition, you will need a minimum amount of tokens staked to be considered eligible (become a candidate). Only a certain amount of the top candidates by delegated stake will be in the active set of collators.
+Similar to Polkadot validators, you need to create an account. For Moonbeam, this is an H160 account or an Ethereum-style account from which you hold the private keys. In addition, you will need a minimum amount of tokens staked to be considered eligible (become a candidate). Only a certain amount of the top candidates by delegated stake will be in the active set of collators.
 
 === "Moonbase Alpha"
     |    Variable     |                          Value                          |
@@ -51,7 +51,7 @@ Similar to Polkadot validators, you need to create an account. For Moonbeam, thi
 
 A collator has an account associated with its collation activities. This account is mapped to an author ID to identify the collator as a block producer and send the payouts from block rewards. 
 
-Currently, you have two ways of proceeding in regards having an account in [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts):
+Currently, you have two ways of proceeding in regards to having an account in [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts):
 
  - Importing an existing (or create a new) H160 account from external wallets or services such as [MetaMask](/tokens/connect/metamask/) and [MathWallet](/tokens/connect/mathwallet/)
  - Create a new H160 account with [Polkadot.js](/tokens/connect/polkadotjs/)
@@ -68,7 +68,7 @@ Before getting started, it's important to note some of the timings of different 
     |               Variable                |                                                                            Value                                                                            |
     |:-------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------:|
     |         Join/leave candidates         |  {{ networks.moonbase.collator_timings.join_leave_candidates.rounds }} rounds ({{ networks.moonbase.collator_timings.join_leave_candidates.hours }} hours)  |
-    |        Add/remove delegations         | {{ networks.moonbase.collator_timings.add_remove_delegations.rounds }} rounds ({{ networks.moonbase.collator_timings.add_remove_delegations.hours }} hours) |
+    |        Add delegations         | {{ networks.moonbase.collator_timings.add_remove_delegations.rounds }} rounds ({{ networks.moonbase.collator_timings.add_remove_delegations.hours }} hours) |
      |        Revoke/reduce delegations         | {{ networks.moonbase.collator_timings.add_remove_delegations.rounds }} rounds ({{ networks.moonbase.collator_timings.add_remove_delegations.hours }} hours) |
     | Rewards payouts (after current round) |        {{ networks.moonbase.collator_timings.rewards_payouts.rounds }} rounds ({{ networks.moonbase.collator_timings.rewards_payouts.hours }} hours)        |
 
@@ -77,7 +77,7 @@ Before getting started, it's important to note some of the timings of different 
     |:-------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------:|
     |         Join/leave candidates         |  {{ networks.moonriver.collator_timings.join_leave_candidates.rounds }} rounds ({{ networks.moonriver.collator_timings.join_leave_candidates.hours }} hours)  |
     |        Add delegation         | {{ networks.moonriver.collator_timings.add_delegations.rounds }} rounds ({{ networks.moonriver.collator_timings.add_delegations.hours }} hours) |
-    |        Revoke/reduce delegation         | {{ networks.moonriver.collator_timings.remove_delegations.rounds }} rounds ({{ networks.moonriver.collator_timings.remove_delegations.hours }} hours) |
+    |        Revoke/reduce delegations         | {{ networks.moonriver.collator_timings.remove_delegations.rounds }} rounds ({{ networks.moonriver.collator_timings.remove_delegations.hours }} hours) |
     | Rewards payouts (after current round) |        {{ networks.moonriver.collator_timings.rewards_payouts.rounds }} rounds ({{ networks.moonriver.collator_timings.rewards_payouts.hours }} hours)        |
 
 
@@ -125,7 +125,7 @@ As mentioned before, only the top {{ networks.moonbase.staking.max_candidates }}
 
 ## Stop Collating {: #stop-collating } 
 
-As of the latest runtime upgrade, [runtime version 1001](https://github.com/PureStake/moonbeam/releases/tag/runtime-1001), there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled. These changes are live on Moonbase Alpha, and will soon be coming to Moonriver. 
+As of the latest runtime upgrade, [runtime version 1001](https://github.com/PureStake/moonbeam/releases/tag/runtime-1001){target=_blank}, there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled. These changes are live on Moonbase Alpha, and will soon be coming to Moonriver. 
 
 Since the stop collating functionality is currently different for Moonbase Alpha than Moonriver this section will be divided into two parts: one for [Moonbase Alpha](#moonbase-alpha) and one for [Moonriver](#moonriver).
 
@@ -140,13 +140,13 @@ To get started and schedule a request, take the following steps:
 
  1. Navigate to the **Developer** tab 
  2. Click on **Extrinsics**
- 3. Select your candidate account (and verify it contains the additional funds to be bonded)
+ 3. Select your candidate account
  4. Select `parachainStaking` pallet under the **submit the following extrinsic** menu
  5. Select the `scheduleLeaveCandidates` extrinsic
  6. Enter the `candidateCount` which you should have retrieved in the [Get the Size of the Candidate Pool](#get-the-size-of-the-candidate-pool) section
  7. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
-![Schedule leave candidates request](/images/node-operators/networks/collators/collator-polkadotjs-7.png)
+![Schedule leave candidates request](/images/node-operators/networks/collators/collator-polkadotjs-9.png)
 
 #### Execute Request to Leave Candidates
 
@@ -154,12 +154,13 @@ After the transaction has been confirmed, you will need wait 2 rounds before you
 
  1. Navigate to the **Developer** tab 
  2. Click on **Extrinsics**
- 3. Select your candidate account (and verify it contains the additional funds to be bonded)
+ 3. Select your candidate account
  4. Select `parachainStaking` pallet under the **submit the following extrinsic** menu
  5. Select the `executeLeaveCandidates` extrinsic
- 6. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
+ 6. Select the target candidate account (anyone can execute the request after 2 rounds have passed since the `scheduleLeaveCandidates` was submitted)
+ 7. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
-![Execute leave candidates request](/images/node-operators/networks/collators/collator-polkadotjs-7.png)
+![Execute leave candidates request](/images/node-operators/networks/collators/collator-polkadotjs-10.png)
 
 #### Cancel Request to Leave Candidates
 
@@ -167,13 +168,13 @@ If you scheduled a request to leave the candidate pool but changed your mind, as
 
  1. Navigate to the **Developer** tab 
  2. Click on **Extrinsics**
- 3. Select your candidate account (and verify it contains the additional funds to be bonded)
+ 3. Select your candidate account
  4. Select `parachainStaking` pallet under the **submit the following extrinsic** menu
  5. Select the `cancelLeaveCandidates` extrinsic
  6. Provide the `candidateCount` which you should have retrieved in the [Get the Size of the Candidate Pool](#get-the-size-of-the-candidate-pool) section
  7. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
-![Cancel leave candidates request](/images/node-operators/networks/collators/collator-polkadotjs-7.png)
+![Cancel leave candidates request](/images/node-operators/networks/collators/collator-polkadotjs-11.png)
 
 ### Moonriver
 
@@ -218,25 +219,29 @@ To schedule a request to bond less, you can follow these steps:
 
  1. Navigate to the **Developer** tab 
  2. Click on **Extrinsics**
- 3. Select your candidate account (and verify it contains the additional funds to be bonded)
+ 3. Select your candidate account
  4. Select **parachainStaking** pallet under the **submit the following extrinsic** menu
- 5. Open the drop-down menu, which lists all the possible extrinsics related to staking, and select the **scheduleCandidateLessMore()** function
- 6. Specify the additional amount to be bonded in the **less: BalanceOf** field
+ 5. Open the drop-down menu and select the **scheduleCandidateBondLess()** function
+ 6. Specify the amount to decrease the bond by in the  **less: BalanceOf** field
  7. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
  
-![Collator Bond More](/images/node-operators/networks/collators/collator-polkadotjs-7.png)
+![Schedule Candidate Bond Less](/images/node-operators/networks/collators/collator-polkadotjs-12.png)
 
 Once the transaction is confirmed, it will take 2 rounds before you can execute and decrease the bond amount. If you try to execute the request before the exit delay, your extrinsic will fail and you'll you'll see an error from Polkadot.js Apps for `parachainStaking.PendingDelegationRequest`.
 
 ##### Execute Request
 
-After at least 2 rounds have passed from scheduling a request to decrease your bond, you can execute the request to actually decrease the bond amount. Go back to the **Developer** tab of the **Extrinsics** menu and follow these steps:
+After at least 2 rounds have passed from scheduling a request to decrease your bond, you can execute the request to actually decrease the bond amount by following these steps:
 
- 1. Select an account to execute the request with
- 2. Select **parachainStaking** pallet under the **submit the following extrinsic** menu
- 3. Select the **executeCandidateBondRequest** extrinsic
- 4. Enter your candidate account to increase the bond for
- 5. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
+ 1. Navigate to the **Developer** tab 
+ 2. Click on **Extrinsics**
+ 3. Select an account to execute the request with
+ 4. Select **parachainStaking** pallet under the **submit the following extrinsic** menu
+ 5. Select the **executeCandidateBondLess** extrinsic
+ 6. Select the target candidate account (anyone can execute the request after 2 rounds have passed since the `scheduleCandidateBondLess` was submitted)
+ 7. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
+
+![Execute Candidate Bond Less](/images/node-operators/networks/collators/collator-polkadotjs-13.png)
 
 Once the transaction has been confirmed, you can check your free and reserved balances from the **Accounts** tab and notice now that the execution has gone through, your balances have been updated.
 
@@ -255,10 +260,10 @@ If you scheduled a request to bond more or less but changed your mind, as long a
 
 #### Moonriver
 
-As a collator or collator candidate you may decrease your amount bonded if you have more than {{ networks.moonriver.staking.collator_bond_min }} MOVR bonded.
+As a collator or collator candidate you may decrease your amount bonded if you have more than {{ networks.moonriver.staking.candidate_bond_min }} MOVR bonded.
 
 !!! note
-    The collator bond for Moonriver was previously 100 MOVR for a brief period during the network launch process. If you are collator with {{ networks.moonriver.staking.collator_bond_min }} MOVR or less, you won't be able to decrease your bond. 
+    The collator bond for Moonriver was previously 100 MOVR for a brief period during the network launch process. If you are collator with {{ networks.moonriver.staking.candidate_bond_min }} MOVR or less, you won't be able to decrease your bond. 
 
  1. Navigate to the **Developer** tab 
  2. Click on **Extrinsics**
@@ -272,7 +277,7 @@ As a collator or collator candidate you may decrease your amount bonded if you h
 
 ## Session Keys {: #session-keys } 
 
-Collators will need to sign blocks using an author ID, which is basically a [session key](https://wiki.polkadot.network/docs/learn-keys#session-keys). To match the Substrate standard, Moonbeam collator's session keys are [SR25519](https://wiki.polkadot.network/docs/learn-keys#what-is-sr25519-and-where-did-it-come-from). This guide will show you how you can create/rotate your session keys associated to your collator node.
+Collators will need to sign blocks using an author ID, which is basically a [session key](https://wiki.polkadot.network/docs/learn-keys#session-keys){target=_blank}. To match the Substrate standard, Moonbeam collator's session keys are [SR25519](https://wiki.polkadot.network/docs/learn-keys#what-is-sr25519-and-where-did-it-come-from){target=_blank}. This guide will show you how you can create/rotate your session keys associated to your collator node.
 
 First, make sure you're [running a collator node](/node-operators/networks/run-a-node/overview/) and you have exposed the RPC ports. Once you have your collator node running, your terminal should print similar logs:
 
