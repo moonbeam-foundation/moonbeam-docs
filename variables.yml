@@ -115,9 +115,12 @@ networks:
       join_leave_candidates:
         rounds: 2
         hours: 4
-      add_remove_delegations:
-        rounds: 1
-        hours: 2
+      add_delegations:
+        rounds: 2
+        hours: 4
+      remove_delegations:
+        rounds: 2
+        hours: 4
       rewards_payouts:
         rounds: 2
         hours: 4
@@ -190,8 +193,8 @@ networks:
         rounds: 2
         hours: 4
       add_delegations:
-        rounds: 1
-        hours: 2
+        rounds: 2
+        hours: 4
       remove_delegations:
         rounds: 24
         hours: 48
