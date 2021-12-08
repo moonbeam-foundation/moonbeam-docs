@@ -15,7 +15,7 @@ Token holders can add to candidates' stake using their tokens, a process called 
 
 Once a candidate joins the active set of collators, they are eligible to produce blocks and receive partial block rewards as part of the token inflationary model. They can share these as staking rewards with their delegators, considering their percental contribution toward their stake in the network.
 
-As of the latest runtime upgrade, [runtime version 1001](https://github.com/PureStake/moonbeam/releases/tag/runtime-1001), there have been significant changes to the way users can interact with various staking features. The first major change is that now nominators are referred to as delegators, and nominations as delegations, and so on. In addition, there have been changes to the duration of rounds and the way staking exits are handled. Each round was increased to 2 hours (versus 1 hour), and the exit delay was extended from two rounds (previously 2 hours) to 24 hours, which is approximately 2 days. The final change to note is for staking exits. If you want to make an exit, you have to first schedule it, wait an exit delay, and then execute the exit. This guide will cover this two-step process. These changes have already taken effect within the Moonbase Alpha TestNet, and soon will take effect for Moonriver.
+As of the latest runtime upgrade, [runtime version 1001](https://github.com/PureStake/moonbeam/releases/tag/runtime-1001), there have been significant changes to the way users can interact with various staking features. The first major change is that now nominators are referred to as delegators, and nominations as delegations, and so on. In addition, there have been changes to the duration of rounds and the way staking exits are handled. Each round was increased to 2 hours (versus 1 hour), and in Moonriver, the exit delay was extended from two rounds (previously 2 hours) to {{ networks.moonriver.collator_timings.remove_delegations.rounds }} rounds which is approximately {{ networks.moonriver.collator_timings.remove_delegations.hours }} hours. The final change to note is for staking exits. If you want to make an exit, you have to first schedule it, wait an exit delay, and then execute the exit. This guide will cover this two-step process. These changes are now live in Moonbase Alpha and Moonriver.
 
 This guide will show you how to stake on Moonbase Alpha, but similar steps can be taken for Moonriver.
 
@@ -97,7 +97,7 @@ Then to retrieve the various staking parameters, you'll need to:
 3. Choose any function you would like to get data for. For this example, you can use **maxDelegationsPerDelegator** on Moonbase Alpha, which is the equivalent to **maxCollatorsPerNominator** on Moonriver. This will return the maximum number of candidates you can delegate
 4. Click **+** to return the current value
 
-![Retrieving staking parameters](/images/tokens/staking/stake/stake-1.png)
+![Retrieving staking parameters](/images/tokens/staking/stake/stake-12.png)
 
 You should then see the maximum delegations per delegator. At time of writing this it was {{ networks.moonbase.staking.max_delegations_per_delegator }} for Moonbase Alpha and {{ networks.moonriver.staking.max_delegations_per_delegator }} for Moonriver.
 
@@ -133,11 +133,11 @@ First, you need to get the `candidateDelegationCount` as you'll need to submit t
 
 === "Moonriver"
     ```js
-    // Simple script to get collator_nominator_count
-    // Remember to replace COLLATOR_ADDRESS with the address of desired candidate.
-    const candidateAccount = 'COLLATOR_ADDRESS'; 
-    const candidateInfo = await api.query.parachainStaking.collatorState2(candidateAccount);
-    console.log(candidateInfo.toHuman()["nominators"].length);
+    // Simple script to get candidate_delegation_count
+    // Remember to replace COLLATOR_ADDRESS with the address of desired collator.
+    const candidateAccount = 'COLLATOR_CANDIDATE_ADDRESS'; 
+    const candidateInfo = await api.query.parachainStaking.candidateState(candidateAccount);
+    console.log(candidateInfo.toHuman()["delegators"].length);
     ```
 
  1. Head to the **Developer** tab 
@@ -147,7 +147,7 @@ First, you need to get the `candidateDelegationCount` as you'll need to submit t
  5. To execute the code, click on the run button
  6. Copy the result as you'll need it when initiating a delegation
 
-![Get candidate delegation count](/images/tokens/staking/stake/stake-3.png)
+![Get candidate delegation count](/images/tokens/staking/stake/stake-14.png)
 
 ## Get your Number of Existing Delegations {: #get-your-number-of-existing-delegations } 
 
@@ -167,8 +167,8 @@ If you've never made a delegation from your address you can skip this section. H
     // Simple script to get your number of existing delegations.
     // Remember to replace YOUR_ADDRESS_HERE with your delegator address.
     const yourDelegatorAccount = 'YOUR_ADDRESS_HERE'; 
-    const delegatorInfo = await api.query.parachainStaking.nominatorState2(yourDelegatorAccount);
-    console.log(delegatorInfo.toHuman()["nominations"].length);
+    const delegatorInfo = await api.query.parachainStaking.delegatorState(yourDelegatorAccount);
+    console.log(delegatorInfo.toHuman()["delegations"].length);
     ```
 
  1. Head to the **Developer** tab 
@@ -178,7 +178,7 @@ If you've never made a delegation from your address you can skip this section. H
  5. To execute the code, click on the run button
  6. Copy the result as you'll need it when initiating a delegation
 
-![Get existing delegation count](/images/tokens/staking/stake/stake-4.png)
+![Get existing delegation count](/images/tokens/staking/stake/stake-13.png)
 
 ## How to Delegate a Candidate {: #how-to-delegate-a-candidate } 
 
@@ -208,7 +208,7 @@ To delegate a candidate, provide the following information:
  7. Input the `delegator_delegation_count` [you retrieved from the Javascript console](#get-your-number-of-existing-delegations). This is `0` if you haven't yet delegated a candidate
  8. Click the **Submit Transaction** button and sign the transaction
 
-![Staking Join Delegators Extrinsics](/images/tokens/staking/stake/stake-6.png)
+![Staking Join Delegators Extrinsics](/images/tokens/staking/stake/stake-15.png)
 
 !!! note
     The parameters used in steps 6 and 7 are for gas estimation purposes and do not need to be exact. However, they should not be lower than the actual values. 
@@ -222,11 +222,12 @@ To verify a delegation, you can navigate to **Chain state** under the **Develope
 Here, provide the following information:
 
  1. Choose the pallet you want to interact with. In this case, it is the `parachainStaking` pallet
- 2. Choose the state to query. In this case, it is the `delegatorState` for Moonbase Alpha, or `nominatorState` for Moonriver
- 3. Make sure to enable the **include option** slider
- 4. Send the state query by clicking on the **+** button
+ 2. Choose the state to query. In this case, it is the `delegatorState`
+ 3. Verify the selected address is correct. In this, we are looking at Alice's account
+ 4. Make sure to enable the **include option** slider
+ 5. Send the state query by clicking on the **+** button
 
-![Staking Chain State Query](/images/tokens/staking/stake/stake-8.png)
+![Staking Chain State Query](/images/tokens/staking/stake/stake-16.png)
 
 In the response, you should see your account (in this case, Alice's account) with a list of the delegations. Each delegation contains the target address of the candidate and the amount.
 
@@ -234,15 +235,11 @@ You can follow the same steps as described to delegate other candidates in the n
 
 ## How to Stop Delegations {: #how-to-stop-delegations } 
 
-As of the latest runtime upgrade, [runtime version 1001](https://github.com/PureStake/moonbeam/releases/tag/runtime-1001), there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled. These changes are live on Moonbase Alpha, and will soon be coming to Moonriver. 
-
-Since stopping a delegation is currently different for Moonbase Alpha than Moonriver this section will be divided into two parts: one for [Moonbase Alpha](#moonbase-alpha) and one for [Moonriver](#moonriver).
-
-### Moonbase Alpha
+As of the latest runtime upgrade, [runtime version 1001](https://github.com/PureStake/moonbeam/releases/tag/runtime-1001), there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled. These changes are now live on Moonbase Alpha and Moonriver.
 
 If you want to make an exit and stop a delegation, you have to first schedule it, wait an exit delay, and then execute the exit. If you are already a delegator, you have two options to request to stop your delegations: using the `scheduleRevokeDelegation` extrinsic to request to unstake your tokens from a specific collator candidate, or using the `scheduleLeaveDelegators` extrinsic to request to revoke all ongoing delegations. Scheduling a request does not automatically revoke your delegations, you must wait 2 rounds and then execute the request by using either the `executeDelegationRequest` method or the `executeLeaveDelegators` method. 
 
-#### Schedule Request to Stop Delegations
+### Schedule Request to Stop Delegations
 
 This example is a continuation of the previous section, and assumes that you have at least two active delegations.
 
@@ -254,18 +251,18 @@ To schedule a request to revoke your delegation from a specific candidate, navig
  4. Set the candidate's address you want to remove your delegation from. In this case, it is set to `{{ networks.moonbase.staking.candidates.address2 }}`
  5. Click the **Submit Transaction** button and sign the transaction
 
-![Staking Schedule Request to Revoke Delegation Extrinsic](/images/tokens/staking/stake/stake-9.png)
+![Staking Schedule Request to Revoke Delegation Extrinsic](/images/tokens/staking/stake/stake-17.png)
 
 !!! note
     There can only be one pending scheduled request per candidate.
 
 As mentioned before, you can also remove all ongoing delegations with the `scheduleLeaveDelegators` extrinsic in step 3 of the **Extrinsics** instructions. This extrinsic requires no input.
 
-![Staking Leave Delegators Extrinsic](/images/tokens/staking/stake/stake-10.png)
+![Staking Leave Delegators Extrinsic](/images/tokens/staking/stake/stake-18.png)
 
 Once you have scheduled an exit, you must wait 2 rounds before you can then execute it. If you try to execute it before the 2 rounds is up the extrinsic will fail and you'll see an error from Polkadot.js Apps for `parachainStaking.PendingDelegationRequest`.
 
-#### Execute Request to Stop Delegations
+### Execute Request to Stop Delegations
 
 After at least 2 rounds have passed since you initiated the scheduled request, you can go back to the **Developer** tab of the **Extrinsics** menu and follow these steps to execute the request:
 
@@ -276,7 +273,7 @@ After at least 2 rounds have passed since you initiated the scheduled request, y
  5. Set the candidate's address you want to remove your delegation from. In this case, it is set to `{{ networks.moonbase.staking.candidates.address2 }}`
  6. Click the **Submit Transaction** button and sign the transaction
 
-![Staking Execute Revoke Delegation Extrinsic](/images/tokens/staking/stake/stake-9.png)
+![Staking Execute Revoke Delegation Extrinsic](/images/tokens/staking/stake/stake-19.png)
 
 If you want to remove all ongoing delegations, you can adapt the **Extrinsics** instructions to call the `executeLeaveDelegators` extrinsic:
 
@@ -286,7 +283,7 @@ If you want to remove all ongoing delegations, you can adapt the **Extrinsics** 
 4. Enter the total number of all delegations to revoke using the `delegator_delegation_count` [you retrieved from the Javascript console](#get-your-number-of-existing-delegations). This is `0` if you haven't yet delegated a candidate
 5. Click the **Submit Transaction** button and sign the transaction
 
-![Staking Execute Leave Delegators Extrinsic](/images/tokens/staking/stake/stake-9.png)
+![Staking Execute Leave Delegators Extrinsic](/images/tokens/staking/stake/stake-20.png)
 
 Once the transaction is confirmed, you can verify that your delegation was removed or that you left the set of delegators by going to the **Chain state** option under the **Developer** tab. Here, provide the following information:
 
@@ -295,13 +292,13 @@ Once the transaction is confirmed, you can verify that your delegation was remov
  3. Make sure to enable the **include options** slider
  4. Send the state query by clicking on the **+** button
 
-![Staking Verify Delegation is Revoked](/images/tokens/staking/stake/stake-8.png)
+![Staking Verify Delegation is Revoked](/images/tokens/staking/stake/stake-21.png)
 
 In the response, you should see your account (in this case, Alice's account) with a list of the remaining delegations. Each delegation contains the target address of the candidate, and the amount. There should no longer be an entry for `{{ networks.moonbase.staking.candidates.address2 }}`. Or if you left the delegator set, you should see a response of `<none>`.
 
 You can also check your free and reserved balances from the **Accounts** tab and notice now that the execution has gone through, your balances have been updated.
 
-#### Cancel Request to Stop Delegations
+### Cancel Request to Stop Delegations
 
 If you scheduled a request to stop delegations but changed your mind, as long as the request has not been executed, you can cancel the request at any time and all of your delegations will remain as is. If you scheduled a request via the `scheduleRevokeDelegation` extrinsic, you will need to call `cancelDelegationRequest`. On the other hand, if you scheduled a request via the `scheduleRevokeDelegation` extrinsic, you will need to call the `cancelLeaveDelegators` extinsic. To cancel the request you can follow these steps:
 
@@ -310,7 +307,7 @@ If you scheduled a request to stop delegations but changed your mind, as long as
 3. Choose the **cancelDelegationRequest** or the **cancelLeaveDelegators** extrinsic
 4. Click the **Submit Transaction** button and sign the transaction
 
-![Staking Cancel Scheduled Request to Revoke Delegation via Chain State](/images/tokens/staking/stake/stake-8.png)
+![Staking Cancel Scheduled Request to Revoke Delegation via Chain State](/images/tokens/staking/stake/stake-22.png)
 
 ### Moonriver {: #moonriver }
 

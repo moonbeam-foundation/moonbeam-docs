@@ -88,8 +88,8 @@ networks:
       candidate_bond_min_wei: 1000000000000000000000
       collator_map_bond: 100
       max_candidates: 60
-      round_blocks: 300
-      round_hours: 1
+      round_blocks: 600
+      round_hours: 2
       bond_lock: 2
       min_del_stake: 5
       max_del_per_can: 100
@@ -170,8 +170,8 @@ networks:
       candidate_bond_min_wei: 500000000000000000000
       collator_map_bond: 100
       max_candidates: 52
-      round_blocks: 300
-      round_hours: 1
+      round_blocks: 600
+      round_hours: 2
       bond_lock: 2
       min_del_stake: 5
       max_del_per_can: 100
