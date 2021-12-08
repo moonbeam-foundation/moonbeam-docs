@@ -7,11 +7,13 @@ description: A description of the main differences that developers need to under
 
 ## Introduction
 
-While Moonbeam strives to be compatible with Ethereum's Web3 API and EVM, there are some important Moonbeam differences that developers should know and understand in terms of balance transfers.
+While Moonbeam strives to be compatible with Ethereum's Web3 API and EVM, there are some important Moonbeam differences that developers should know and understand in terms of balance transfers of the base network token (for example, MOVR and GLMR).
 
-Token holders have two ways of initiating a balance transfer on Moonbeam. On one side, users can use the Ethereum API via apps like MetaMask, MathWallet, or any other tools that use the Ethereum JSON-RPC. On the other side, users can use the Substrate API, via the Polkadot.js Apps website.
+Token holders have two ways of initiating a balance transfer on Moonbeam. On one hand, users can use the Ethereum API via apps like MetaMask, MathWallet, or any other tools that use the Ethereum JSON-RPC. On the other hand, users can use the Substrate API, via the Polkadot.js Apps website, or directly using the Substrate RPC.
 
-Developers need to be aware that token holders can leverage both APIs to transfer tokens. This guide will outline some of these main differences around both APIs for balance transfers and what to expect when using Moonbeam for the first time.
+Developers need to be aware that token holders can leverage both APIs to transfer the base layer network token. Note that these comments do not apply to transfers of other assets like ERC20 based assets in the Moonriver or Moonbeam EVMs. Transfers of these assets are only done via the Ethereum APIs since these are smart contract interactions.
+
+This guide will outline some of these main differences around both APIs for base layer network token balance transfers and what to expect when using Moonbeam for the first time.
 
 ## Ethereum Transfers
 
@@ -21,7 +23,7 @@ There are different strategies to listen for transfers or balance changes on Eth
 
 ## Moonbeam Transfers
 
-As stated before, Moonbeam enables token holders to execute transfers via both the Ethereum and Substrate API. There are multiple scenarios to trigger token transfer on Moonbeam. Consequently, to monitor all transfers, **you should use the Polkadot.js SDK** (Substrate API).
+As stated before, Moonbeam enables token holders to execute base layer network token transfers via both the Ethereum and Substrate API. There are multiple scenarios to trigger token transfer on Moonbeam. Consequently, to monitor all transfers, **you should use the Polkadot.js SDK** (Substrate API).
 
 Before going over the different scenarios, there are two different elements associated with a block:
 
@@ -35,7 +37,7 @@ The different transfer scenarios are:
  - **Ethereum transfer** — it will create an `ethereum.transact` extrinsic, with an empty input. It will trigger **one** `balances.Transfer` event
  - **Ethereum transfers via smart contracts** — it will create an `ethereum.transact` extrinsic, with some data as input. It will trigger **one or multiple** `balances.Transfer` events
 
-All the scenarios described above will effectively transfer tokens. The easiest way to monitor them all is to rely on the `balances.Transfer` event.
+All the scenarios described above will effectively transfer base layer network tokens. The easiest way to monitor them all is to rely on the `balances.Transfer` event.
 
 ## Monitor All Balance Transfers with the Substrate API
 

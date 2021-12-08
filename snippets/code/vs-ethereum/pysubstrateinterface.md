@@ -29,5 +29,5 @@ if __name__ == "__main__":
         
         print("Current finalized block number is", finalizedBlockNumber)
         print("Your transaction in block", txBlockNumber, "is finalized? " + str(txBlockNumber <= finalizedBlockNumber))
-        print("Your transaction in indeed in block", txBlockNumber, "? "+ str(txHash in txBlock["result"]["transactions"]))
+        print("Your transaction is indeed in block", txBlockNumber, "? "+ str(txHash in txBlock["result"]["transactions"]))
 ```

@@ -62,6 +62,17 @@ networks:
           link_usd: '0xC58B34ea686Db2d567835de7AB58fC678b6f186A'
           sushi_usd: '0x21B52fFF227cD9F425E817f9E1eaA0eB8cd647e1'
           uni_usd: '0x5Cd72748F94a8597f563D92687A8D2A5074b10E5'
+        aggregator:
+          aave_usd: '0x64B22D2B8c3CA311a0C2de34bf799f8101c89362'
+          algo_usd: '0x9fc3b0BF1156868085AFC1cFf4Bf6D85ea301371'
+          band_usd: '0xC5aeD933FEb49794A8Bf2FB0e73D9c958c8a07ba'
+          btc_usd: '0xCf88A8d7fc1A687895fC8ffAad567f303926B094'
+          dot_usd: '0xA873F6b30aD79fCAF9b03A0A883d6D1f18D661d7'
+          eth_usd: '0x3669da30c33D27A6A579548fCfc345fE5dEdda6e'
+          ksm_usd: '0x0C515E77897b2A7181C875c88FaF9BC8E5661E3b'
+          link_usd: '0x446b93236B4d34642732B8dcbeB3cb4f4FA03C70'
+          sushi_usd: '0x4a6Cf10C0f5c4D4e7cf7385bFfecDAec0778357C'
+          uni_usd: '0x326997c21451DaB916F9f01684991B6169dAf3E5'
     democracy:
       launch_period:
         days: 1
@@ -95,7 +106,6 @@ networks:
       max_col_per_nom: 25
       nominator_reward_inflation: 50
       collator_reward_inflation: 20
-      precompile_address: '0x0000000000000000000000000000000000000800'
       collators:
         address1: '0x4c5A56ed5A4FF7B09aA86560AfD7d383F4831Cce'
         address2: '0x623c9E50647a049F92090fe55e22cC0509872FB6'
@@ -121,6 +131,10 @@ networks:
       rewards_payouts:
         rounds: 2
         hours: 4
+    precompiles:
+      staking: '0x0000000000000000000000000000000000000800'
+      crowdloan: '0x0000000000000000000000000000000000000801'
+      erc20: '0x0000000000000000000000000000000000000802'
   moonriver:
     rpc_url: https://rpc.moonriver.moonbeam.network
     wss_url: wss://wss.moonriver.moonbeam.network
@@ -130,7 +144,7 @@ networks:
     parachain_release_tag: v0.15.1
     parachain_sha256sum: c08e5f55bfc1dc7e2eec47727f0e710bc112f64b04c96843874e2f22a9badcd6
     chain_spec: moonriver
-    block_explorer: https://moonriver.moonscan.io
+    block_explorer: https://moonriver.moonscan.io/
     binary_name: moonbeam
     min_gas_price: 1
     block_time: 12
@@ -164,7 +178,7 @@ networks:
     staking:
       collator_bond_min: 1000
       collator_map_bond: 100
-      max_collators: 52
+      max_collators: 58
       round_blocks: 300
       round_hours: 1
       bond_lock: 2
@@ -195,6 +209,18 @@ networks:
       rewards_payouts:
         rounds: 2
         hours: 4
+    chainlink:
+      feed:
+        aggregator:
+          bnb_usd: '0xD6B013A65C22C372F995864CcdAE202D0194f9bf'
+          btc_usd: '0x1B5C6cF9Df1CBF30387C24CC7DB1787CCf65C797'
+          eth_usd: '0xc3cF399566220dc5Ed6C8CFbf8247214Af103C72'
+          frax_usd: '0xD080d4760318710e795B0a59f181f6C1512ffB15'
+          ksm_usd: '0x6e0513145FCE707Cd743528DB7C1cAB537DE9d1B'
+          link_usd: '0xdD27789b504fEd690F406A82F16B45a0901172C0'
+          mim_usd: '0xdD6296BD7515271F7E4b10C3A87A2f9863fECa97'
+          movr_usd: '0x3f8BFbDc1e79777511c00Ad8591cef888C2113C1'
+          usdt_usd: '0xF80DAd54AF79257D41c30014160349896ca5370a'
   moonbeam:
     rpc_url: https://rpc.api.moonbeam.network
     wss_url: wss://wss.api.moonbeam.network
