@@ -161,7 +161,7 @@ To verify your delegation was successful, you can check the chain state in Polka
 
 1. To verify your delegation was successful, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/chainstate) and navigate to **Developer** and then **Chain State**
 2. Select the **parachainStaking** pallet
-3. Select the **delegatorState** query for Moonbase Alpha, or **nominatorState2** for Moonriver
+3. Select the **delegatorState** query
 4. Enter your address
 5. Click the **+** button to return the results and verify your delegation
 
