@@ -13,7 +13,7 @@ A delegated proof of stake pallet recently debuted called [Parachain-Staking](ht
 
 The Staking module is coded in Rust and it is part of a pallet that is normally not accessible from the Ethereum side of Moonbeam. However, a Staking Precompile allows developers to access the staking features using the Ethereum API in a precompiled contract located at address `{{networks.moonbase.staking.precompile_address}}`.
 
-As of the latest runtime upgrade, [runtime version 1001](https://github.com/PureStake/moonbeam/releases/tag/runtime-1001), there have been significant changes to the way users can interact with various staking features within the staking precompile. The first major change is that now nominators are referred to as delegators, and nominations as delegations, and so on. In addition, there have been changes to the duration of rounds and the way staking exits are handled. Each round was increased to 2 hours (versus 1 hour), and the exit delay was extended from two rounds (previously 2 hours) to 24 hours, which is approximately 2 days. The final change to note is for staking exits. If you want to make an exit, you have to first schedule it, wait an exit delay, and then execute the exit. These changes have already taken effect within the Moonbase Alpha TestNet, and soon will take effect for Moonriver.
+As of the latest runtime upgrade, [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/), there have been significant changes to the way users can interact with various staking features within the staking precompile. The first major change is that now nominators are referred to as delegators, and nominations as delegations, and so on. In addition, there have been changes to the duration of rounds and the way staking exits are handled. Each round was increased to 2 hours (versus 1 hour), and the exit delay was extended from two rounds (previously 2 hours) to 24 hours, which is approximately 2 days. The final change to note is for staking exits. If you want to make an exit, you have to first schedule it, wait an exit delay, and then execute the exit. These changes have already taken effect within the Moonbase Alpha TestNet, and soon will take effect for Moonriver.
 
 This guide will show you how to interact with the Staking Precompile on Moonbase Alpha. Similar steps can be followed for Moonrvier.
 
@@ -172,17 +172,13 @@ To verify your delegation was successful, you can check the chain state in Polka
 
 ## Revoking a Delegation {: #revoking-a-delegation } 
 
-As of the latest runtime upgrade, [runtime version 1001](https://github.com/PureStake/moonbeam/releases/tag/runtime-1001), there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled. These changes are live on Moonbase Alpha, and will soon be coming to Moonriver. 
-
-Since stopping a delegation is currently different for Moonbase Alpha than Moonriver this section will be divided into two parts: one for [Moonbase Alpha](#moonbase-alpha) and one for [Moonriver](#moonriver).
-
-### Moonbase Alpha
+As of the latest runtime upgrade, [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/), there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled. 
 
 Exits now require you to schedule a request to exit or revoke a delegation, wait a delay period, and then execute the request.
 
 To revoke a delegation for a specific candidate and receive your tokens back, you can use the `scheduleRevokeDelegation` extrinsic. Scheduling a request does not automatically revoke your delegation, you must wait 2 rounds as an exit delay, and then execute the request by using the `executeDelegationRequest` method.
 
-#### Schedule Request to Revoke a Delegation
+### Schedule Request to Revoke a Delegation
 
 To revoke a delegation and receive your tokens back, head back over to Remix, then:
 
@@ -195,7 +191,7 @@ To revoke a delegation and receive your tokens back, head back over to Remix, th
 
 Once the transaction is confirmed, it will take 2 rounds before you can execute and revoke the delegation request. If you try to revoke it before the exit delay is up, your extrinsic will fail.
 
-#### Execute Request to Revoke a Delegation
+### Execute Request to Revoke a Delegation
 
 After at least 2 rounds have passed, you can go back to Remix and follow these steps to execute the due request:
 
@@ -207,7 +203,7 @@ After at least 2 rounds have passed, you can go back to Remix and follow these s
 
 After the call is complete, the results will be displayed and the delegation will be revoked for the given delegator and from the specified candidate. You can also check your delegator state again on Polkadot.js Apps to confirm.
 
-#### Cancel Request to Revoke a Delegation
+### Cancel Request to Revoke a Delegation
 
 If for any reason you need to cancel a pending scheduled request to revoke a delegation, you can do so by following these steps in Remix:
 
@@ -217,16 +213,3 @@ If for any reason you need to cancel a pending scheduled request to revoke a del
 4. MetaMask will pop, you can review the transaction details, and click **confirm**
 
 You can check your delegator state again on Polkadot.js Apps to confirm that your delegation is still in tact.
-
-### Moonriver
-
-To revoke a nomination on Moonriver and receive your tokens back, head back over to Remix, then:
-
-1. From the list of **Deployed Contracts**, find and expand the **nominator_nomination_count** function
-2. Enter the candidate address you would like to revoke the nomination for
-3. Click **transact**
-4. MetaMask will pop, you can review the transaction details, and click **confirm**
-
-![Revoke Nomination](/images/builders/tools/precompiles/staking/staking-9.png)
-
-After the call is complete, the results will be displayed. You can also check your nominator state again on Polkadot.js Apps to confirm.

@@ -15,7 +15,7 @@ Users can spin up full nodes on Moonbase Alpha and Moonriver and activate the `c
 
 Moonbeam uses the [Nimbus Parachain Consensus Framework](/learn/features/consensus/). This provides a two-step filter to allocate candidates to the active set of collators, then assign collators to a block production slot:
 
- - The parachain staking filter selects the top {{ networks.moonbase.staking.max_candidates }} candidates on Moonbase Alpha and the top {{ networks.moonriver.staking.max_candidates }} candidates on Moonriver in terms of tokens staked in each network. This filtered pool is called selected candidates, and selected candidates are rotated every round
+ - The parachain staking filter selects the top {{ networks.moonbase.staking.max_candidates }} candidates on Moonbase Alpha and the top {{ networks.moonriver.staking.max_candidates }} candidates on Moonriver in terms of tokens staked in each network. This filtered pool is called selected candidates, which are rotated every round
  - The fixed size subset filter picks a pseudo-random subset of the previously selected candidates for each block production slot
 
 This guide will take you through the following steps:
@@ -27,13 +27,13 @@ This guide will take you through the following steps:
 
 ## Technical Requirements {: #technical-requirements } 
 
-From a technical perspective, candidates must meet the following requirements:
+From a technical perspective, collators must meet the following requirements:
 
  - Have a full node running with the collation options. To do so, follow the [Run a Node](/node-operators/networks/run-a-node/overview/) tutorial, considering the specific code snippets for collators
 
 ## Accounts and Staking Requirements {: #accounts-and-staking-requirements } 
 
-Similar to Polkadot validators, you need to create an account. For Moonbeam, this is an H160 account or an Ethereum-style account from which you hold the private keys. In addition, you will need a minimum amount of tokens staked to be considered eligible (become a candidate). Only a certain number of the top candidates by delegated stake will be in the active set of collators.
+Similar to Polkadot validators, you need to create an account. For Moonbeam, this is an H160 account or an Ethereum-style account from which you hold the private keys. In addition, you will need a minimum amount of tokens staked to be considered eligible (become a candidate). Only a certain number of the top collator candidates by delegated stake will be in the active set of collators.
 
 === "Moonbase Alpha"
     |    Variable     |                          Value                          |
@@ -125,7 +125,7 @@ As mentioned before, only the top {{ networks.moonbase.staking.max_candidates }}
 
 ## Stop Collating {: #stop-collating } 
 
-As of the latest runtime upgrade, [runtime version 1001](https://github.com/PureStake/moonbeam/releases/tag/runtime-1001){target=_blank}, there have been significant changes to the way users can interact with various staking features, including the way staking exits are handled. 
+As of the latest runtime upgrade, [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/){target=_blank}, there have been significant changes to the way users can interact with various staking features, including the way staking exits are handled. 
 
 To stop collating and leave the candidate pool, you must first schedule a request to leave the pool. Scheduling a request does not automatically remove you from the candidate pool, you must wait {{ networks.moonriver.collator_timings.remove_delegations.rounds }} rounds ({{ networks.moonriver.collator_timings.remove_delegations.hours }} hours) in Moonriver until you will be able to execute the request and stop collating. On Moonbase Alpha, the waiting period is {{ networks.moonbase.collator_timings.add_delegations.rounds }} rounds ({{ networks.moonbase.collator_timings.remove_delegations.hours }} hours). While you are waiting the specified number of rounds, you will still be eligible to produce blocks and earn rewards if you're in the active set.
 
@@ -196,7 +196,7 @@ As a candidate there are two options for increasing one's stake. The first and r
 
 ### Bond Less {: #bond-less}
 
-As of the latest runtime upgrade, [runtime version 1001](https://github.com/PureStake/moonbeam/releases/tag/runtime-1001), there have been significant changes to the way users can interact with various staking features, including the way staking exits are handled. As a collator or collator candidate in Moonriver you may decrease your amount bonded if you have more than {{ networks.moonriver.staking.candidate_bond_min }} MOVR bonded.
+As of the latest runtime upgrade, [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/), there have been significant changes to the way users can interact with various staking features, including the way staking exits are handled. As a collator or collator candidate in Moonriver you may decrease your amount bonded if you have more than {{ networks.moonriver.staking.candidate_bond_min }} MOVR bonded.
 
 !!! note
     The collator bond for Moonriver was previously 100 MOVR for a brief period during the network launch process. If you are collator with {{ networks.moonriver.staking.candidate_bond_min }} MOVR or less, you won't be able to decrease your bond. 

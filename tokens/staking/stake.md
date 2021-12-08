@@ -11,11 +11,9 @@ description: A guide that shows how you can stake your tokens in Moonbeam by del
 
 Collator candidates with the highest stake in the network join the active pool of collators (block producers), from which they are selected to offer a block to the relay chain.
 
-Token holders can add to candidates' stake using their tokens, a process called delegation (also referred to as staking). When they do so, they are vouching for that specific candidate, and their delegation is a signal of trust.
+Token holders can add to candidates' stake using their tokens, a process called delegation (also referred to as staking). When they do so, they are vouching for that specific candidate, and their delegation is a signal of trust. When delegating, tokens are deducted instantly and added to the total amount staked by the user. Exiting a position is divided into a two step operation: scheduling and execution. First, token holders must schedule a request to exit their position, and wait for a given delay or unbonding period, which depends on the network. Once the unbonding period has expired, users can execute their scheduled action.
 
 Once a candidate joins the active set of collators, they are eligible to produce blocks and receive partial block rewards as part of the token inflationary model. They share these as staking rewards with their delegators, considering their proportional contribution toward their stake in the network.
-
-As of the latest runtime upgrade, [runtime version 1001](https://github.com/PureStake/moonbeam/releases/tag/runtime-1001), there have been significant changes to the way users can interact with various staking features. The first major change is that now nominators are referred to as delegators, and nominations as delegations, and so on. In addition, there have been changes to the duration of rounds and the way staking exits are handled. Each round was increased to 2 hours (versus 1 hour), and in Moonriver, the exit delay was extended from two rounds (previously 2 hours) to {{ networks.moonriver.collator_timings.remove_delegations.rounds }} rounds which is approximately {{ networks.moonriver.collator_timings.remove_delegations.hours }} hours. The final change to note is for staking exits. If you want to make an exit, you have to first schedule it, wait an exit delay, and then execute the exit. This guide will cover this two-step process. These changes are now live in Moonbase Alpha and Moonriver.
 
 This guide will show you how to stake on Moonbase Alpha, but similar steps can be taken for Moonriver.
 
@@ -45,7 +43,7 @@ This guide will show you how to stake on Moonbase Alpha, but similar steps can b
 
 ## Extrinsics Definitions {: #extrinsics-definitions } 
 
-There are many extrinsics related to the staking pallet, so all of them are not covered in this guide. However, the following list defines all of the extrinsics associated with the delegation process.
+There are many extrinsics related to the staking pallet, so all of them are not covered in this guide. However, the following list defines all of the extrinsics associated with the delegation process. After [runtime upgrade 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/), some extrinsics where deprecated.
 
 !!! note
     Extrinsics might change in the future as the staking pallet is updated.
@@ -64,10 +62,10 @@ The following extrinsics are deprecated:
  
 ### Bond More or Less 
 
+  - **delegatorBondMore**(*address* candidate, *uint256* more) - extrinsic to request to increase the amount of staked tokens for an already delegated collator. Replaces the deprecated `nominatorBondMore` extrinsic
  - **scheduleDelegatorBondLess**(*address* candidate, *uint256* less) - extrinsic to request to reduce the amount of staked tokens for an already delegated collator. The amount must not decrease your overall total staked below the minimum delegation stake. This will take 2 rounds to process before you can execute the request via the `executeCandidateBondRequest` extrinsic. Replaces the deprecated `nominatorBondLess` extrinsic
- - **scheduleDelegatorBondMore**(*address* candidate, *uint256* more) - extrinsic to request to increase the amount of staked tokens for an already delegated collator. The amount must not decrease your overall total staked below the minimum delegation stake. This will take 2 rounds to process before you can execute the request via the `executeCandidateBondRequest` extrinsic. Replaces the deprecated `nominatorBondMore` extrinsic
- - **executeCandidateBondRequest**(*address* candidate) - extrinsic to execute an increase or decrease in the bond for a specific candidate. This extrinsic should only be used after a bond request has been scheduled and at least 2 rounds have passed
- - **cancelCandidateBondRequest**() - extrinsic to cancel a scheduled request to increase or decrease the bond for a specific candidate
+ - **executeCandidateBondRequest**(*address* candidate) - extrinsic to execute a decrease in the bond for a specific candidate. This extrinsic should only be used after a bond request has been scheduled and at least 2 rounds have passed
+ - **cancelCandidateBondLess**() - extrinsic to cancel a scheduled request to increase or decrease the bond for a specific candidate
 
 The following extrinsics are deprecated: 
 
@@ -235,7 +233,7 @@ You can follow the same steps as described to delegate other candidates in the n
 
 ## How to Stop Delegations {: #how-to-stop-delegations } 
 
-As of the latest runtime upgrade, [runtime version 1001](https://github.com/PureStake/moonbeam/releases/tag/runtime-1001), there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled. These changes are now live on Moonbase Alpha and Moonriver.
+As of the latest runtime upgrade, [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/), there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled. These changes are now live on Moonbase Alpha and Moonriver.
 
 If you want to make an exit and stop a delegation, you have to first schedule it, wait an exit delay, and then execute the exit. If you are already a delegator, you have two options to request to stop your delegations: using the `scheduleRevokeDelegation` extrinsic to request to unstake your tokens from a specific collator candidate, or using the `scheduleLeaveDelegators` extrinsic to request to revoke all ongoing delegations. Scheduling a request does not automatically revoke your delegations, you must wait 2 rounds and then execute the request by using either the `executeDelegationRequest` method or the `executeLeaveDelegators` method. 
 

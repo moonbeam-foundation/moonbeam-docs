@@ -13,7 +13,7 @@ Moonbeam uses a block production mechanism based on [Polkadot's Proof-of-Stake m
 
 The candidates in the active set of collators (nodes that produce blocks) are selected based on their stake in the network. And here is where staking comes in.
 
-Collator candidates (and token holders if they delegate) have a stake in the network. The top N candidates by staked amount are chosen to produce blocks with a valid set of transactions, where N is a configurable parameter. Part of each block reward goes to the candidate that produced the block, who then shares it with the delegators considering their percental contributions towards the candidate's stake. In such a way, network members are incentivized to stake tokens to improve the overall security.
+Collator candidates (and token holders if they delegate) have a stake in the network. The top N candidates by staked amount are chosen to produce blocks with a valid set of transactions, where N is a configurable parameter. Part of each block reward goes to the collators that produced the block, who then shares it with the delegators considering their percental contributions towards the candidate's stake. In such a way, network members are incentivized to stake tokens to improve the overall security.
 
 ## General Definitions {: #general-definitions } 
 
