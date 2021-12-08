@@ -265,10 +265,10 @@ networks:
       collator_bond_min: 100000
       collator_map_bond: 10000
       max_collators: 8
-      round_blocks: 600
-      round_hours: 2
+      round_blocks: 1800
+      round_hours: 6
       bond_lock: 24
-      min_nom_stake: 500
+      min_nom_stake: 50
       max_nom_per_col: 100
       max_col_per_nom: 100
       nominator_reward_inflation: 50

@@ -23,6 +23,10 @@ If you are looking for an API provider suitable for production use, you can chec
 
 --8<-- 'code/endpoints/moonriver.md'
 
+### Moonbeam Endpoints
+
+--8<-- 'code/endpoints/moonbeam.md'
+
 ## Endpoint Providers
 
 You can create your own endpoint suitable for development or production use using any of the following API providers:
@@ -36,7 +40,7 @@ As a user of the [Bware Labs](https://bwarelabs.com/) platform, you will be able
 
 To get started, you'll need to head to [Bware Labs](https://app.bwarelabs.com/), and launch the app, and connect your wallet. Once your wallet is connected you will be able to generate your own custom endpoint. To generate an endpoint:
 
-1. Select a network for your endpoint. There are two options to choose from: Moonbeam and Moonriver. If you're looking for the Moonbase Alpha TestNet, you can choose Moonbeam 
+1. Select a network for your endpoint. There are two options to choose from: Moonbase Alpha, Moonriver and Moonbeam.
 2. Give your endpoint a name
 3. Select the network from the dropdown
 4. Click **Create Endpoint**
