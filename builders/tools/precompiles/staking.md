@@ -159,10 +159,12 @@ To verify your delegation was successful, you can check the chain state in Polka
 
 ### Verify Delegator State {: #verify-delegator-state } 
 
-1. To verify your delegation was successful, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/chainstate) and navigate to **Developer** and then **Chain State**
-2. Select the **parachainStaking** pallet
-3. Select the **delegatorState** query
-4. Enter your address
+To verify your delegation was successful, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/chainstate) and navigate to **Developer** and then **Chain State**
+
+1. Select the **parachainStaking** pallet
+2. Select the **delegatorState** query
+3. Enter your address
+4. Optionally, you can enable the **include option** slider if you want to provide a specific blockhash to query
 5. Click the **+** button to return the results and verify your delegation
 
 !!! note
