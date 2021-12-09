@@ -39,7 +39,7 @@ The interface includes the following functions:
  - **candidate_delegation_count**(*address* candidate) - read-only function that returns the number of delegations for the specified collator candidate address. Replaces the deprecated `collator_nomination_count` extrinsic
  - **delegator_delegation_count**(*address* delegator) - read-only function that returns the number of delegations for the specified delegator address. Replaces the deprecated `nominator_nomination_count` extrinsic
  - **join_candidates**(*uint256* amount, *uint256* candidateCount) — allows the account to join the set of collator candidates with a specified bond amount and the current candidate count
- - **schedule_leave_candidates**(*uint256* candidateCount) - schedules a request for a candidate to remove themselves from the candidate pool. Scheduling the request does not automatically execute it. There is a delay of {{ networks.moonbase.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonbase.collator_timings.leave_candidates.hours }} hours) for Moonbase Alpha and {{ networks.moonriver.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonriver.collator_timings.leave_candidates.hours }} hours) for Moonriver. Once the delay is up you can execute the request via the `execute_leave_candidates` extrinsic. Replaces the deprecated `leaveCandidates` extrinsic
+ - **schedule_leave_candidates**(*uint256* candidateCount) - schedules a request for a candidate to remove themselves from the candidate pool. Scheduling the request does not automatically execute it. There is a delay of {{ networks.moonbase.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonbase.collator_timings.leave_candidates.hours }} hours) for Moonbase Alpha and {{ networks.moonriver.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonriver.collator_timings.leave_candidates.hours }} hours) for Moonriver. Once the delay is up you can execute the request via the `execute_leave_candidates` extrinsic. Replaces the deprecated `leave_candidates` extrinsic
  - **execute_leave_candidates**() - executes the due request to leave the set of collator candidates 
  - **cancel_leave_candidates**(*uint256* candidateCount) - allows a candidate to cancel a pending scheduled request to leave the candidate pool. Given the current number of candidates in the pool
  - **go_offline**() — temporarily leave the set of collator candidates without unbonding
@@ -101,7 +101,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 1. Click on the Deploy and Run tab, directly below the Compile tab in Remix. **Note**: we are not deploying a contract here, instead we are accessing a precompiled contract that is already deployed
 2. Make sure **Injected Web3** is selected in the Environment drop down
 3. Ensure **ParachainStaking - StakingInterface.sol** is selected in the **Contract** dropdown. Since this is a precompiled contract there is no need to deploy, instead we are going to provide the address of the precompile in the **At Address** Field
-4. Provide the address of the staking precompile: `{{networks.moonbase.staking.precompile_address}}` and click **At Address**
+4. Provide the address of the staking precompile for Moonbase Alpha: `{{networks.moonbase.staking.precompile_address}}` and click **At Address**
 5. The Parachain Staking precompile will appear in the list of **Deployed Contracts**
 
 ![Provide the address](/images/builders/tools/precompiles/staking/staking-3.png)

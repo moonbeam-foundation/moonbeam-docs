@@ -101,7 +101,7 @@ Then to retrieve the various staking parameters, you'll need to:
 
 1. Select the **Constants** tab on the **Chain state** UI
 2. From the **selected constant query** dropdown, choose **parachainStaking**
-3. Choose any function you would like to get data for. For this example, you can use **maxDelegationsPerDelegator** on Moonbase Alpha, which is the equivalent to **maxCollatorsPerNominator** on Moonriver. This will return the maximum number of candidates you can delegate
+3. Choose any function you would like to get data for. For this example, you can use **maxDelegationsPerDelegator**. This will return the maximum number of candidates you can delegate
 4. Click **+** to return the current value
 
 ![Retrieving staking parameters](/images/tokens/staking/stake/stake-12.png)
@@ -133,23 +133,13 @@ Each extrinsic provides a different response:
 
 First, you need to get the `candidateDelegationCount` as you'll need to submit this parameter in a later transaction. To do so, you'll have to run the following JavaScript code snippet from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/js):
 
-=== "Moonbase Alpha"
-    ```js
-    // Simple script to get candidate_delegation_count
-    // Remember to replace COLLATOR_ADDRESS with the address of desired collator.
-    const candidateAccount = 'COLLATOR_CANDIDATE_ADDRESS'; 
-    const candidateInfo = await api.query.parachainStaking.candidateState(candidateAccount);
-    console.log(candidateInfo.toHuman()["delegators"].length);
-    ```
-
-=== "Moonriver"
-    ```js
-    // Simple script to get candidate_delegation_count
-    // Remember to replace COLLATOR_ADDRESS with the address of desired collator.
-    const candidateAccount = 'COLLATOR_CANDIDATE_ADDRESS'; 
-    const candidateInfo = await api.query.parachainStaking.candidateState(candidateAccount);
-    console.log(candidateInfo.toHuman()["delegators"].length);
-    ```
+```js
+// Simple script to get candidate_delegation_count
+// Remember to replace COLLATOR_ADDRESS with the address of desired collator.
+const candidateAccount = 'COLLATOR_CANDIDATE_ADDRESS'; 
+const candidateInfo = await api.query.parachainStaking.candidateState(candidateAccount);
+console.log(candidateInfo.toHuman()["delegators"].length);
+```
 
  1. Head to the **Developer** tab 
  2. Click on **JavaScript**
@@ -164,23 +154,13 @@ First, you need to get the `candidateDelegationCount` as you'll need to submit t
 
 If you've never made a delegation from your address you can skip this section. However, if you're unsure how many existing delegations you have, you'll want to run the following JavaScript code snippet to get `delegator_delegation_count` from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/js):
 
-=== "Moonbase Alpha"
-    ```js
-    // Simple script to get your number of existing delegations.
-    // Remember to replace YOUR_ADDRESS_HERE with your delegator address.
-    const yourDelegatorAccount = 'YOUR_ADDRESS_HERE'; 
-    const delegatorInfo = await api.query.parachainStaking.delegatorState(yourDelegatorAccount);
-    console.log(delegatorInfo.toHuman()["delegations"].length);
-    ```
-
-=== "Moonriver"
-    ```js
-    // Simple script to get your number of existing delegations.
-    // Remember to replace YOUR_ADDRESS_HERE with your delegator address.
-    const yourDelegatorAccount = 'YOUR_ADDRESS_HERE'; 
-    const delegatorInfo = await api.query.parachainStaking.delegatorState(yourDelegatorAccount);
-    console.log(delegatorInfo.toHuman()["delegations"].length);
-    ```
+```js
+// Simple script to get your number of existing delegations.
+// Remember to replace YOUR_ADDRESS_HERE with your delegator address.
+const yourDelegatorAccount = 'YOUR_ADDRESS_HERE'; 
+const delegatorInfo = await api.query.parachainStaking.delegatorState(yourDelegatorAccount);
+console.log(delegatorInfo.toHuman()["delegations"].length);
+```
 
  1. Head to the **Developer** tab 
  2. Click on **JavaScript**
