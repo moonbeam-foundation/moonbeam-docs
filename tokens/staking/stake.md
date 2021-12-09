@@ -198,8 +198,8 @@ Currently, everything related to staking needs to be accessed via the **Extrinsi
 To delegate a candidate, provide the following information:
 
  1. Select the account from which you want to stake your tokens
- 2. Choose the `parachainStaking` pallet
- 3. Choose the `delegate` extrinsic for Moonbase Alpha, or `nominate` for Moonriver
+ 2. Choose the **parachainStaking** pallet
+ 3. Choose the **delegate** extrinsic
  4. Set the candidate's address to delegate. In this case, it is set to `{{ networks.moonbase.staking.candidates.address1 }}`
  5. Set the number of tokens you want to stake
  6. Input the `candidate_delegation_count` you [retrieved above from the JavaScript console](#get-the-candidate-delegation-count)
@@ -219,8 +219,8 @@ To verify a delegation, you can navigate to **Chain state** under the **Develope
 
 Here, provide the following information:
 
- 1. Choose the pallet you want to interact with. In this case, it is the `parachainStaking` pallet
- 2. Choose the state to query. In this case, it is the `delegatorState`
+ 1. Choose the pallet you want to interact with. In this case, it is the **parachainStaking** pallet
+ 2. Choose the state to query. In this case, it is the **delegatorState**
  3. Verify the selected address is correct. In this case, we are looking at Alice's account
  4. Make sure to enable the **include option** slider
  5. Send the state query by clicking on the **+** button

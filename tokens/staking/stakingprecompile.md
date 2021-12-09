@@ -13,7 +13,7 @@ A delegated proof of stake pallet recently debuted called [Parachain-Staking](ht
 
 The Staking module is coded in Rust and it is part of a pallet that is normally not accessible from the Ethereum side of Moonbeam. However, a Staking Precompile allows developers to access the staking features using the Ethereum API in a precompiled contract located at address `{{networks.moonbase.staking.precompile_address}}`.
 
-As of the latest runtime upgrade, [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/), there have been significant changes to the way users can interact with various staking features within the staking precompile. The first major change is that now nominators are referred to as delegators, and nominations as delegations, and so on. In addition, there have been changes to the duration of rounds and the way staking exits are handled. Each round was increased to 2 hours (versus 1 hour), and the exit delay was extended from two rounds (previously 2 hours) to 24 hours, which is approximately 2 days. The final change to note is for staking exits. If you want to make an exit, you have to first schedule it, wait an exit delay, and then execute the exit. These changes have already taken effect within the Moonbase Alpha TestNet, and soon will take effect for Moonriver.
+As of the latest runtime upgrade, [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/), there have been significant changes to the way users can interact with various staking features within the staking precompile.
 
 This guide will show you how to interact with the Staking Precompile on Moonbase Alpha. Similar steps can be followed for Moonrvier.
 
@@ -111,7 +111,7 @@ In order to delegate a candidate, you'll need to determine the current candidate
 
 To obtain the candidate delegator count, you can call a function that the staking precompile provides. Expand the **PARACHAINSTAKING** contract found under the **Deployed Contracts** list, then:
 
-1. Find and expand the **candidate_delegation_count** function for Moonbase Alpha, or **collator_nominator_count** for Moonriver
+1. Find and expand the **candidate_delegation_count** function
 2. Enter the candidate address (`{{ networks.moonbase.staking.candidates.address1 }}`)
 3. Click **call**
 4. After the call is complete, the results will be displayed
@@ -122,7 +122,7 @@ To obtain the candidate delegator count, you can call a function that the stakin
 
 If you don't know your existing number of delegations, you can easily get them by following these steps:
 
-1. Find and expand the **delegator_delegation_count** function for Moonbase Alpha, or **nominator_nomination_count** for Moonriver
+1. Find and expand the **delegator_delegation_count** function
 2. Enter your address
 3. Click **call**
 4. After the call is complete, the results will be displayed
@@ -133,7 +133,7 @@ If you don't know your existing number of delegations, you can easily get them b
 
 Now that you have obtained the [candidate delegator count](#get-the-candidate-delegator-count) and your [number of existing delegations](#get-your-number-of-existing-delegations), you have all of the information you need to delegate a candidate. To get started:
 
-1. Find and expand the **delegate** function for Moonbase Alpha, or **nominate** for Moonriver
+1. Find and expand the **delegate** function
 2. Enter the candidate address you would like to delegate (`{{ networks.moonbase.staking.candidates.address1 }}`)
 3. Provide the amount to delegate in WEI. There is a minimum of `{{networks.moonbase.staking.min_del_stake}}` tokens to delegate, so the lowest amount in WEI is `5000000000000000000`
 4. Enter the delegation count for the candidate
