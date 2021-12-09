@@ -1,8 +1,4 @@
-```python
-import asyncio
-from aiohttp import ClientSession
-from web3.providers.base import JSONBaseProvider
-from web3.providers import HTTPProvider
+```py
 from web3 import Web3
 
 # Define the TxHash to Check Finality
@@ -10,52 +6,38 @@ txHash = 'tx_hash'
 
 # Define the Web3 provider
 RPC_address = 'https://rpc.moonriver.moonbeam.network'
-web3 = Web3(HTTPProvider(RPC_address))
-
-
-# synchronously request receipts for given transaction
-def sync_receipts(web3, transaction):
-    return web3.eth.getTransactionReceipt(transaction)
+web3Provider = Web3(Web3.HTTPProvider(RPC_address))
 
 # asynchronous JSON RPC API request
-async def customWeb3Request(web3, method, params):
-    request_data = web3.encode_rpc_request(method, params)
-    async web3
-    response = base_provider.decode_rpc_response(content)
+def customWeb3Request(method, params):
+    response = web3Provider.provider.make_request(method, params)
     return response
 
-async def run(node_address, method_header, params):
-    # Fetch all responses within one Client session,
-    # keep connection alive for all requests.
-    async with ClientSession() as session:       
-        task = asyncio.ensure_future(async_make_request(session, node_address,
-                                                            method_header, params))
-        response = await task
-        return response
-
 if __name__ == "__main__":
+    # Get the latest finalized block of the Substrate chain
+    # Uses Polkadot JSON-RPC
+    finalizedHeadHash = customWeb3Request('chain_getFinalizedHead', [])
 
-    #Get the current event loop
-    loop = asyncio.get_event_loop()
-    
-    #Get the latest finalized block of the Substrate chain
-    finalizedHeadHash = loop.run_until_complete(run(RPC_address, 'chain_getFinalizedHead', []))['result']
-    
-    #Get finalized block header to retrieve number
-    finalizedBlockHeader = loop.run_until_complete(run(RPC_address, 'chain_getHeader', [finalizedHeadHash]))['result']
+    # Get finalized block header to retrieve number
+    # Uses Polkadot JSON-RPC
+    finalizedBlockHeader =  customWeb3Request('chain_getHeader', [finalizedHeadHash["result"]])
+    finalizedBlockNumber = int(finalizedBlockHeader["result"]["number"], 16)
 
-    #Parse the finalized block number
-    finalizedBlockNumber = int(finalizedBlockHeader["number"], 16)
+    # Get the transaction receipt of the given tx hash
+    # Uses Ethereum JSON-RPC
+    txReceipt =  customWeb3Request('eth_getTransactionReceipt', [txHash])
 
-    #Get the transaction receipt of the given tx hash
-    txReceipt = sync_receipts(web3, txHash)
-
-    #If block number of receipt is not null, compare it against finalized head
+    # If block number of receipt is not null, compare it against finalized head
     if txReceipt is not None :
-        txBlockNumber = txReceipt["blockNumber"]
-        print('Current finalized block number is '+ str(finalizedBlockNumber))
-        print('Your transaction in block '+str(txBlockNumber) + ' is finalized? ' + str(bool(finalizedBlockNumber >= txBlockNumber)))
+        txBlockNumber = int(txReceipt["result"]["blockNumber"], 16)
 
+        # As a safety check, get given block to check if transaction is included
+        # Uses Ethereum JSON-RPC
+        txBlock = customWeb3Request('eth_getBlockByNumber', [txBlockNumber, bool(0)])
+
+        print('Current finalized block number is ' + str(finalizedBlockNumber))
+        print('Your transaction in block ' +str(txBlockNumber) + ' is finalized? ' + str(finalizedBlockNumber >= txBlockNumber))
+        print('Your transaction is indeed in block ' +str(txBlockNumber) + '? ' + str(txHash in txBlock["result"]["transactions"]) )
     else:
         print("Your transaction has not been included in the canonical chain")
 ```

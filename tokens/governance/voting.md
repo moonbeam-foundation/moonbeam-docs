@@ -1,5 +1,5 @@
 ---
-title: How to Vote on a Proposal
+title: Vote on a Proposal
 description: How to vote on a proposal so that it is enacted or rejected on Moonbeam via governance features
 ---
 

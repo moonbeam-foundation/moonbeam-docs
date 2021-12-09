@@ -1,5 +1,5 @@
 ---
-title: How to Stake
+title: Delegate Stake
 description: A guide that shows how you can stake your tokens in Moonbeam by delegating collator candidates
 ---
 

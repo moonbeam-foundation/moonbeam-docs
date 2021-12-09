@@ -35,6 +35,7 @@ Collator candidates (and token holders if they delegate) have a stake in the net
     - **Delegator rewards** — variable. It's the aggregate delegator rewards distributed over all eligible delegators, taking into account the relative size of stakes ([read more](/staking/overview/#reward-distribution))
     - **Slashing** — currently, there is no slashing. This can be later changed through governance. Collators who produce blocks that are not finalized by the relay chain won't receive rewards
     - **Collator candidate information** — list of candidates: [Moonriver Subscan](https://moonriver.subscan.io/validator). Collator data for the last two rounds: [Moonbeam Explorer](https://moonbeam-explorer.netlify.app/stats/miners?network=Moonriver)
+    - **Collator APY Info** - [DappLooker Collator Dashboard](http://analytics.dapplooker.com/public/dashboard/7dfc5a6e-da33-4d54-94bf-0dfa5e6843cb){target=_blank} *Warning! This dashboard is experimental beta software and may not accurately reflect collator performance. Be sure to do your own research before delegating to a collator* 
     - **Manage staking related actions** — visit the [Moonbeam Network dApp](https://apps.moonbeam.network/moonriver)
 
 === "Moonbase Alpha" 

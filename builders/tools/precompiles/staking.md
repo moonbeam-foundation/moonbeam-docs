@@ -1,11 +1,11 @@
 ---
-title: How to use the Staking Precompile
+title: Staking Functions
 description: Moonbeam Parachain Staking Ethereum Solidity Precompile Interface Demo
 ---
 
 # Interacting with the Staking Precompile
 
-![Staking Moonbeam Banner](/images/tokens/staking/precompiles/precompile-banner.png)
+![Staking Moonbeam Banner](/images/builders/tools/precompiles/staking/staking-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -80,14 +80,14 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 1. Get a copy of [StakingInterface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol)
 2. Copy and paste the file contents into a Remix file named StakingInterface.sol
 
-![Copying and Pasting the Staking Interface into Remix](/images/tokens/staking/precompiles/precompile-1.png)
+![Copying and Pasting the Staking Interface into Remix](/images/builders/tools/precompiles/staking/staking-1.png)
 
 ## Compile the Contract {: #compile-the-contract } 
 
 1. Click on the Compile tab, second from top
 2. Compile [StakingInterface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol)
 
-![Compiling StakingInteface.sol](/images/tokens/staking/precompiles/precompile-2.png)
+![Compiling StakingInteface.sol](/images/builders/tools/precompiles/staking/staking-2.png)
 
 ## Access the Contract {: #access-the-contract } 
 
@@ -97,7 +97,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 4. Provide the address of the staking precompile: `{{networks.moonbase.staking.precompile_address}}` and click **At Address**
 5. The Parachain Staking precompile will appear in the list of **Deployed Contracts**
 
-![Provide the address](/images/tokens/staking/precompiles/precompile-3.png)
+![Provide the address](/images/builders/tools/precompiles/staking/staking-3.png)
 
 ## Delegate a Collator {: #delegate-a-collator } 
 
@@ -116,7 +116,7 @@ To obtain the candidate delegator count, you can call a function that the stakin
 3. Click **call**
 4. After the call is complete, the results will be displayed
 
-![Call collator delegation count](/images/tokens/staking/precompiles/precompile-4.png)
+![Call collator delegation count](/images/builders/tools/precompiles/staking/staking-4.png)
 
 ### Get your Number of Existing Delegations {: #get-your-number-of-existing-delegations } 
 
@@ -127,7 +127,7 @@ If you don't know your existing number of delegations, you can easily get them b
 3. Click **call**
 4. After the call is complete, the results will be displayed
 
-![Call delegator delegation count](/images/tokens/staking/precompiles/precompile-5.png)
+![Call delegator delegation count](/images/builders/tools/precompiles/staking/staking-5.png)
 
 ### Call Delegate {: #call-delegate } 
 
@@ -141,7 +141,7 @@ Now that you have obtained the [candidate delegator count](#get-the-candidate-de
 6. Press **transact**
 7. MetaMask will pop-up, you can review the details and confirm the transaction
 
-![Delegate a Collator](/images/tokens/staking/precompiles/precompile-6.png)
+![Delegate a Collator](/images/builders/tools/precompiles/staking/staking-6.png)
 
 ## Verify Delegation {: #verify-delegation } 
 
@@ -155,7 +155,7 @@ To verify your delegation was successful, you can check the chain state in Polka
 4. Provide a nickname for the account
 5. Click **Save**
 
-![Add to Address Book](/images/tokens/staking/precompiles/precompile-7.png)
+![Add to Address Book](/images/builders/tools/precompiles/staking/staking-7.png)
 
 ### Verify Delegator State {: #verify-delegator-state } 
 
@@ -168,7 +168,7 @@ To verify your delegation was successful, you can check the chain state in Polka
 !!! note
     You do not have to enter anything in the **blockhash to query at** field if you are looking for an overview of your delegations.
 
-![Verify delegation](/images/tokens/staking/precompiles/precompile-8.png)
+![Verify delegation](/images/builders/tools/precompiles/staking/staking-8.png)
 
 ## Revoking a Delegation {: #revoking-a-delegation } 
 
@@ -187,7 +187,7 @@ To revoke a delegation and receive your tokens back, head back over to Remix, th
 3. Click **transact**
 4. MetaMask will pop, you can review the transaction details, and click **confirm**
 
-![Revoke delegation](/images/tokens/staking/precompiles/precompile-9.png)
+![Revoke delegation](/images/builders/tools/precompiles/staking/staking-9.png)
 
 Once the transaction is confirmed, it will take 2 rounds before you can execute and revoke the delegation request. If you try to revoke it before the exit delay is up, your extrinsic will fail.
 

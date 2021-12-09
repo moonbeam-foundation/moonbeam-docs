@@ -1,6 +1,6 @@
 ---
 title: Moonbeam Safe
-description: Learn how to use and manage funds with the Moonbeam Safe. Create a new multisig safe and receive and send tokens to the safe, as well as ERC20s, on Moonbeam.
+description: Learn how to use and manage funds with the Moonbeam Safe. Create a new multisig safe and receive and send tokens to the safe, as well as ERC-20s, on Moonbeam.
 ---
 
 # Interacting with Moonbeam Safe
@@ -15,11 +15,11 @@ To solve this problem, multi-signature wallets, or multisig for short, have been
 
 To help manage singlesig and multisig wallets, [Gnosis Safe](https://gnosis-safe.io/) was forked to create [Moonbeam Safe](https://multisig.moonbeam.network/). The Safe can be configured as a multisig contract that allows two or more owners to hold and transfer funds to and from the Safe. You can also configure the Safe to be a singlesig contract with only one owner. 
 
-This guide will show you how to create a multisig Safe on the Moonbase Alpha TestNet. You will also learn how to send DEV and ERC20 tokens to and from the Safe, and how to interact with smart contracts using the Safe. This guide can be adapted for Moonriver. 
+This guide will show you how to create a multisig Safe on the Moonbase Alpha TestNet. You will also learn how to send DEV and ERC-20 tokens to and from the Safe, and how to interact with smart contracts using the Safe. This guide can be adapted for Moonriver. 
 
 ## Checking Prerequisites
 
-Before diving into the guide, you'll need to have a few [MetaMask accounts](#metamask-accounts) loaded up with funds, some [ERC20 tokens](#erc20-tokens) on hand to send to the Safe, and a [deployed smart contract](#deployed-smart-contract) to interact with.
+Before diving into the guide, you'll need to have a few [MetaMask accounts](#metamask-accounts) loaded up with funds, some [ERC-20 tokens](#erc-20-tokens) on hand to send to the Safe, and a [deployed smart contract](#deployed-smart-contract) to interact with.
 
 ### MetaMask Accounts
 
@@ -36,9 +36,9 @@ This guide will use the following accounts:
  - **Bob** — 0x3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0
  - **Charlie** — 0x798d4Ba9baf0064Ec19eB4F0a1a45785ae9D6DFc
 
-### ERC20 Tokens
+### ERC-20 Tokens
 
-Later on in this guide, you will be learning how to send and receive ERC20 tokens to and from the Safe. So you will need to have deployed some ERC20 tokens and added them to your MetaMask account. To do so, you can check out the [Using Remix to Deploy to Moonbeam](https://docs.moonbeam.network/builders/interact/remix/) guide, in particular the [Deploying a Contract to Moonbeam](https://docs.moonbeam.network/builders/interact/remix/#deploying-a-contract-to-moonbeam-using-remix) and [Interact with a Moonbeam-based ERC20](https://docs.moonbeam.network/builders/interact/remix/#interacting-with-a-moonbeam-based-erc-20-from-metamask) sections will show you how to deploy an ERC20 token and import it into MetaMask.
+Later on in this guide, you will be learning how to send and receive ERC-20 tokens to and from the Safe. So you will need to have deployed some ERC-20 tokens and added them to your MetaMask account. To do so, you can check out the [Using Remix to Deploy to Moonbeam](https://docs.moonbeam.network/builders/interact/remix/) guide, in particular the [Deploying a Contract to Moonbeam](https://docs.moonbeam.network/builders/interact/remix/#deploying-a-contract-to-moonbeam-using-remix) and [Interact with a Moonbeam-based ERC-20](https://docs.moonbeam.network/builders/interact/remix/#interacting-with-a-moonbeam-based-erc-20-from-metamask) sections will show you how to deploy an ERC-20 token and import it into MetaMask.
 
 ### Deployed Smart Contract
 
@@ -209,11 +209,11 @@ The transaction will be removed from the **QUEUE** tab and a record of the trans
 
 Congratulations, you've successfully received and sent DEV tokens to and from the Safe!
 
-## Receive and Send ERC20 Tokens
+## Receive and Send ERC-20 Tokens
 
-### Receive ERC20 Tokens
+### Receive ERC-20 Tokens
 
-Next up is to receive and send ERC20s to and from the Safe. You should already have loaded up your MetaMask with **MYTOK** ERC20 tokens. If not, please refer back to the [ERC20 Tokens](#erc20-tokens) section of the prerequisites.
+Next up is to receive and send ERC-20s to and from the Safe. You should already have loaded up your MetaMask with **MYTOK** ERC-20 tokens. If not, please refer back to the [ERC-20 Tokens](#erc-20-tokens) section of the prerequisites.
 
 You should still be connected to Bob's account for this example. So, you'll be sending MYTOK tokens from Bob's account to the Safe.
 
@@ -226,17 +226,17 @@ You'll need to get the Safe's address again, you can do so by clicking on the **
  5. Click **Next**
  6. Review the transaction details and then click **Confirm** to send the transaction.
 
-![Send ERC20s to the Safe](/images/builders/tools/multisig-safe/safe-18.png)
+![Send ERC-20s to the Safe](/images/builders/tools/multisig-safe/safe-18.png)
 
 If you navigate back to the Safe, in the list of **Assets** you should now see **MyToken** and a balance of 1000 MYTOKs. It could take a few minutes for **MyToken** to appear, but there is nothing for you to do to add the asset, it will appear on it's own.
 
-### Send ERC20 Tokens
+### Send ERC-20 Tokens
 
 Now that you have loaded your Safe with MYTOKs, you can send some from the Safe to another account. For this example, you can send 10 MYTOKs to Charlie.  
 
 Hover over **MyToken** in the list of assets, and this time click on **Send**.
 
-![Send ERC20s from the Safe](/images/builders/tools/multisig-safe/safe-19.png)
+![Send ERC-20s from the Safe](/images/builders/tools/multisig-safe/safe-19.png)
 
 A pop-up will appear where you can enter the recipient and the amount of MYTOK tokens to send:
 
@@ -245,14 +245,14 @@ A pop-up will appear where you can enter the recipient and the amount of MYTOK t
  3. Enter 10 MYTOK tokens
  4. Click **Review** and review the details
 
-![Send ERC20s to Charlie from the Safe](/images/builders/tools/multisig-safe/safe-20.png)
+![Send ERC-20s to Charlie from the Safe](/images/builders/tools/multisig-safe/safe-20.png)
 
 If everything looks ok, you can:
 
  1. Click **Submit**. MetaMask will pop-up and you'll notice that instead of sending a transaction, you're sending a message
  2. Click **Sign** to sign the message
 
-![Sign Message to Send ERC20s to Charlie from the Safe](/images/builders/tools/multisig-safe/safe-21.png)
+![Sign Message to Send ERC-20s to Charlie from the Safe](/images/builders/tools/multisig-safe/safe-21.png)
 
 Now, if you go back to the Safe, under the **Transactions** tab, you should be able to see that there has been a transaction proposal initiated to send 10 MYTOK tokens to Charlie's address. However, you should also see that only 1 out of 2 confirmations have been received and that 1 more owner is required to confirm the transaction before it gets executed.
 
@@ -264,7 +264,7 @@ Once the transaction has been confirmed from one of the other two accounts, the 
 
 ![Successfully Executed Transaction](/images/builders/tools/multisig-safe/safe-23.png)
 
-Congratulations! You've successfully received and sent ERC20 tokens to and from the Safe!
+Congratulations! You've successfully received and sent ERC-20 tokens to and from the Safe!
 
 ## Interact with a Smart Contract
 
