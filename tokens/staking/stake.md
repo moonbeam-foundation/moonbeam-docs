@@ -25,23 +25,30 @@ Token holders that want to easily stake their tokens can use the [Moonbeam dApp]
 
 === "Moonriver"
 
-    |             Variable              |  |                                                   Value                                                   |
-    |:---------------------------------:|::|:---------------------------------------------------------------------------------------------------------:|
-    |     Minimum delegation stake      |  |                            {{ networks.moonriver.staking.min_del_stake }} MOVR                            |
-    | Maximum delegators per candidates |  |                             {{ networks.moonriver.staking.max_del_per_can }}                              |
-    | Maximum candidates per delegator  |  |                             {{ networks.moonriver.staking.max_delegations_per_delegator }}                              |
-    |               Round               |  | {{ networks.moonriver.staking.round_blocks }} blocks ({{ networks.moonriver.staking.round_hours }} hours) |
-    |           Bond duration           |  |                             {{ networks.moonriver.staking.bond_lock }} rounds                             |
+    |             Variable              |  |                                                                          Value                                                                          |
+    |:---------------------------------:|::|:-------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |     Minimum delegation stake      |  |                                                   {{ networks.moonriver.staking.min_del_stake }} MOVR                                                   |
+    | Maximum delegators per candidates |  |                                                    {{ networks.moonriver.staking.max_del_per_can }}                                                     |
+    | Maximum candidates per delegator  |  |                                             {{ networks.moonriver.staking.max_delegations_per_delegator }}                                              |
+    |               Round               |  |                        {{ networks.moonriver.staking.round_blocks }} blocks ({{ networks.moonriver.staking.round_hours }} hours)                        |
+    |           Bond duration           |  |                                                    {{ networks.moonriver.staking.bond_lock }} rounds                                                    |
+    |      Leave delegators delay       |  |   {{ networks.moonriver.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonriver.delegator_timings.leave_delegators.hours }} hours)   |
+    |     Delegator bond less delay     |  |      {{ networks.moonriver.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonriver.delegator_timings.del_bond_less.hours }} hours)      |
+    |     Revoke delegations delay      |  | {{ networks.moonriver.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonriver.delegator_timings.revoke_delegations.hours }} hours) |
+
 
 === "Moonbase Alpha"
 
-    |             Variable              |  |                                                  Value                                                  |
-    |:---------------------------------:|::|:-------------------------------------------------------------------------------------------------------:|
-    |     Minimum delegation stake      |  |                            {{ networks.moonbase.staking.min_del_stake }} DEV                            |
-    | Maximum delegators per candidates |  |                             {{ networks.moonbase.staking.max_del_per_can }}                             |
-    | Maximum candidates per delegator  |  |                             {{ networks.moonbase.staking.max_delegations_per_delegator }}                             |
-    |               Round               |  | {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hours) |
-    |           Bond duration           |  |                            {{ networks.moonbase.staking.bond_lock }} rounds                             |
+    |             Variable              |  |                                                                         Value                                                                         |
+    |:---------------------------------:|::|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |     Minimum delegation stake      |  |                                                   {{ networks.moonbase.staking.min_del_stake }} DEV                                                   |
+    | Maximum delegators per candidates |  |                                                    {{ networks.moonbase.staking.max_del_per_can }}                                                    |
+    | Maximum candidates per delegator  |  |                                             {{ networks.moonbase.staking.max_delegations_per_delegator }}                                             |
+    |               Round               |  |                        {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hours)                        |
+    |           Bond duration           |  |                                                   {{ networks.moonbase.staking.bond_lock }} rounds                                                    |
+    |      Leave delegators delay       |  |   {{ networks.moonbase.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonbase.delegator_timings.leave_delegators.hours }} hours)   |
+    |     Delegator bond less delay     |  |      {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours)      |
+    |     Revoke delegations delay      |  | {{ networks.moonbase.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbase.delegator_timings.revoke_delegations.hours }} hours) |
 
 ## Extrinsics Definitions {: #extrinsics-definitions } 
 
@@ -188,8 +195,8 @@ If you've never made a delegation from your address you can skip this section. H
 
 The tutorial will use the following candidates as a reference:
 
-|  Variable   |  |                      Address                       |
-|:-----------:|::|:--------------------------------------------------:|
+|  Variable   |  |                       Address                       |
+|:-----------:|::|:---------------------------------------------------:|
 | Candidate 1 |  | {{ networks.moonbase.staking.candidates.address1 }} |
 | Candidate 2 |  | {{ networks.moonbase.staking.candidates.address2 }} |
 
