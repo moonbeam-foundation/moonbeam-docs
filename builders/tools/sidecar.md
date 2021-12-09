@@ -60,7 +60,7 @@ Please reference the [Public Endpoints](/builders/get-started/endpoints/) page f
 After setting the environmental variable, you can use the `echo` command to check that the environmental variable has been set correctly, by typing:
 
 ```
-echo SAS_SUBSTRATE_WS_URL
+echo $SAS_SUBSTRATE_WS_URL
 ```
 
 And it should display the network endpoint you have just set. 
