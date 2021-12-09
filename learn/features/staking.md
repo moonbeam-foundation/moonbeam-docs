@@ -29,7 +29,7 @@ Collator candidates (and token holders if they delegate) have a stake in the net
     - **Max delegations per delegator** — a delegator can delegate {{ networks.moonriver.staking.max_delegations_per_delegator }} different candidates
     - **Bonding duration** — delegation takes effect in the next round (funds are withdrawn immediately)
     - **Unbonding duration** — {{ networks.moonriver.staking.bond_lock }} rounds
-    - **Reward payout time** — {{ networks.moonriver.collator_timings.rewards_payouts.rounds }} rounds. Rewards are distributed automatically to the free balance
+    - **Reward payout time** — {{ networks.moonriver.delegator_timings.rewards_payouts.rounds }} rounds. Rewards are distributed automatically to the free balance
     - **Collator commission** — fixed at {{ networks.moonriver.staking.collator_reward_inflation }}% of the annual inflation ({{ networks.moonriver.total_annual_inflation }}%). Not related to the delegators reward pool
     - **Delegators reward pool** — {{ networks.moonriver.staking.delegator_reward_inflation }}% of the annual inflation
     - **Delegator rewards** — variable. It's the aggregate delegator rewards distributed over all eligible delegators, taking into account the relative size of stakes ([read more](/staking/overview/#reward-distribution))
@@ -46,7 +46,7 @@ Collator candidates (and token holders if they delegate) have a stake in the net
     - **Max delegations per delegator** — a delegator can delegated {{ networks.moonbase.staking.max_delegations_per_delegator }} different candidates
     - **Bonding duration** — delegation takes effect in the next round (funds are withdrawn immediately)
     - **Unbonding duration** — {{ networks.moonbase.staking.bond_lock }} rounds
-    - **Reward payout time** — {{ networks.moonbase.collator_timings.rewards_payouts.rounds }} rounds. Rewards are distributed automatically to the free balance
+    - **Reward payout time** — {{ networks.moonbase.delegator_timings.rewards_payouts.rounds }} rounds. Rewards are distributed automatically to the free balance
     - **Collator commission** — fixed at {{ networks.moonbase.staking.collator_reward_inflation }}% of the annual  inflation ({{ networks.moonriver.total_annual_inflation }}%). Not related to the delegators reward pool
     - **Delegators reward pool** — {{ networks.moonbase.staking.delegator_reward_inflation }}% of the annual  inflation
     - **Delegator rewards** — variable. It's the aggregate delegator rewards distributed over all eligible delegators, taking into account the relative size of stakes ([read more](/staking/overview/#reward-distribution))

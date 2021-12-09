@@ -53,8 +53,8 @@ There are many extrinsics related to the staking pallet, so all of them are not 
 ### Join or Leave The Delegator Set
 
  - **delegate**(*address* candidate, *uint256* amount, *uint256* candidateDelegationCount, *uint256* delegatorDelegationCount) - extrinsic to delegate a collator. The amount needs to be greater than the minimum delegation stake. Replaces the deprecated `nominate` extrinsic
- - **scheduleLeaveDelegators**() - extrinsic to schedule to leave the set of delegators. This will take 2 rounds to process before you can execute the request via the `executeLeaveDelegators` extrinsic and actually leave the set of delegators. Replaces the deprecated `leaveNominators` extrinsic
- - **executeLeaveDelegators**(*uint256* delegatorDelegationCount) - extrinsic to execute and leave the set of delegators. This extrinsic should only be used after a leave has been scheduled and at least 2 rounds have passed. Consequently, all ongoing delegations will be revoked
+ - **scheduleLeaveDelegators**() - extrinsic to schedule to leave the set of delegators. There is an exit delay before you can execute the request via the `executeLeaveDelegators` extrinsic and actually leave the set of delegators. There is a delay of {{ networks.moonbase.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonbase.delegator_timings.leave_delegators.hours }} hours) for Moonbase Alpha and {{ networks.moonriver.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonriver.delegator_timings.leave_delegators.hours }} hours) for Moonriver. Replaces the deprecated `leaveNominators` extrinsic
+ - **executeLeaveDelegators**(*uint256* delegatorDelegationCount) - extrinsic to execute and leave the set of delegators. This extrinsic should only be used after a leave has been scheduled and the exit delay has passed. Consequently, all ongoing delegations will be revoked
  - **cancelLeaveDelegators**() - extrinsic to cancel a scheduled request to leave the set of delegators
 
 The following extrinsics are deprecated: 
@@ -65,8 +65,8 @@ The following extrinsics are deprecated:
 ### Bond More or Less 
 
   - **delegatorBondMore**(*address* candidate, *uint256* more) - extrinsic to request to increase the amount of staked tokens for an already delegated collator. Replaces the deprecated `nominatorBondMore` extrinsic
- - **scheduleDelegatorBondLess**(*address* candidate, *uint256* less) - extrinsic to request to reduce the amount of staked tokens for an already delegated collator. The amount must not decrease your overall total staked below the minimum delegation stake. This will take 2 rounds to process before you can execute the request via the `executeCandidateBondRequest` extrinsic. Replaces the deprecated `nominatorBondLess` extrinsic
- - **executeCandidateBondRequest**(*address* candidate) - extrinsic to execute a decrease in the bond for a specific candidate. This extrinsic should only be used after a bond request has been scheduled and at least 2 rounds have passed
+ - **scheduleDelegatorBondLess**(*address* candidate, *uint256* less) - extrinsic to request to reduce the amount of staked tokens for an already delegated collator. The amount must not decrease your overall total staked below the minimum delegation stake. There will be an exit delay before you can execute the request via the `executeCandidateBondRequest` extrinsic. There is a delay of {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours) for Moonbase Alpha and {{ networks.moonriver.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonriver.delegator_timings.del_bond_less.hours }} hours) for Moonriver. Replaces the deprecated `nominatorBondLess` extrinsic
+ - **executeCandidateBondRequest**(*address* candidate) - extrinsic to execute a decrease in the bond for a specific candidate. This extrinsic should only be used after a bond request has been scheduled and the exit delay has passed
  - **cancelCandidateBondLess**() - extrinsic to cancel a scheduled request to increase or decrease the bond for a specific candidate
 
 The following extrinsics are deprecated: 
@@ -76,8 +76,8 @@ The following extrinsics are deprecated:
 
 ### Revoke Delegations
 
- - **scheduleRevokeDelegation**(*address* collator) - extrinsic to schedule to remove an existing delegation entirely. This will take 2 rounds to process before you can execute the request via the `executeDelegationRequest` extrinsic. Replaces the deprecated `revokeNomination` extrinsic 
- - **executeDelegationRequest**(*address* delegator, *address* candidate) - extrinsic to execute and pending delegation requests. This extrinsic should only be used after a request has been scheduled and at least 2 rounds have passed 
+ - **scheduleRevokeDelegation**(*address* collator) - extrinsic to schedule to remove an existing delegation entirely. There will be an exit delay before you can execute the request via the `executeDelegationRequest` extrinsic. There is a delay of {{ networks.moonbase.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbase.delegator_timings.revoke_delegations.hours }} hours) for Moonbase Alpha and {{ networks.moonriver.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonriver.delegator_timings.revoke_delegations.hours }} hours) for Moonriver. Replaces the deprecated `revokeNomination` extrinsic 
+ - **executeDelegationRequest**(*address* delegator, *address* candidate) - extrinsic to execute and pending delegation requests. This extrinsic should only be used after a request has been scheduled and the exit delay has passed 
  - **cancelDelegationRequest**(*address* candidate) - extrinsic to cancel a scheduled request to revoke a delegation
 
 The following extrinsic is deprecated: 
@@ -241,7 +241,9 @@ You can follow the same steps as described to delegate other candidates in the n
 
 As of the latest runtime upgrade, [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/), there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled. These changes are now live on Moonbase Alpha and Moonriver.
 
-If you want to make an exit and stop a delegation, you have to first schedule it, wait an exit delay, and then execute the exit. If you are already a delegator, you have two options to request to stop your delegations: using the `scheduleRevokeDelegation` extrinsic to request to unstake your tokens from a specific collator candidate, or using the `scheduleLeaveDelegators` extrinsic to request to revoke all ongoing delegations. Scheduling a request does not automatically revoke your delegations, you must wait 2 rounds and then execute the request by using either the `executeDelegationRequest` method or the `executeLeaveDelegators` method. 
+If you want to make an exit and stop a delegation, you have to first schedule it, wait an exit delay, and then execute the exit. If you are already a delegator, you have two options to request to stop your delegations: using the `scheduleRevokeDelegation` extrinsic to request to unstake your tokens from a specific collator candidate, or using the `scheduleLeaveDelegators` extrinsic to request to revoke all ongoing delegations. Scheduling a request does not automatically revoke your delegations, you must wait an exit delay and then execute the request by using either the `executeDelegationRequest` method or the `executeLeaveDelegators` method. 
+
+There is an exit delay of {{ networks.moonbase.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonbase.delegator_timings.leave_delegators.hours }} hours) for Moonbase Alpha and {{ networks.moonriver.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonriver.delegator_timings.leave_delegators.hours }} hours) for Moonriver.
 
 ### Schedule Request to Stop Delegations
 
@@ -264,11 +266,11 @@ As mentioned before, you can also remove all ongoing delegations with the `sched
 
 ![Staking Leave Delegators Extrinsic](/images/tokens/staking/stake/stake-18.png)
 
-Once you have scheduled an exit, you must wait 2 rounds before you can then execute it. If you try to execute it before the 2 rounds is up the extrinsic will fail and you'll see an error from Polkadot.js Apps for `parachainStaking.PendingDelegationRequest`.
+Once you have scheduled an exit, you must wait an exit delay before you can then execute it. If you try to execute it before the exit delay is up the extrinsic will fail and you'll see an error from Polkadot.js Apps for `parachainStaking.PendingDelegationRequest`.
 
 ### Execute Request to Stop Delegations
 
-After at least 2 rounds have passed since you initiated the scheduled request, you can go back to the **Developer** tab of the **Extrinsics** menu and follow these steps to execute the request:
+After the exit delay has passed after initiating the scheduled request, you can go back to the **Developer** tab of the **Extrinsics** menu and follow these steps to execute the request:
 
  1. Select the account to execute the revocation
  2. Choose the **parachainStaking** pallet

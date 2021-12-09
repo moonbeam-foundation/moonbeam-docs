@@ -122,17 +122,24 @@ networks:
       basic_dep: 1.0258
       field_dep: .0066
       max_fields: 100
-    collator_timings:
-      join_leave_candidates:
+    delegator_timings:
+      leave_delegators:
         rounds: 2
         hours: 4
-      add_delegations:
+      revoke_delegations:
         rounds: 2
         hours: 4
-      remove_delegations:
+      del_bond_less:
         rounds: 2
         hours: 4
       rewards_payouts:
+        rounds: 2
+        hours: 4
+    collator_timings:
+      leave_candidates:
+        rounds: 2
+        hours: 4
+      can_bond_less:
         rounds: 2
         hours: 4
     precompiles:
@@ -204,19 +211,26 @@ networks:
       basic_dep: 1.0258
       field_dep: .0066
       max_fields: 100
-    collator_timings:
-      join_leave_candidates:
+    delegator_timings:
+      leave_delegators:
         rounds: 24
         hours: 48
-      add_delegations:
-        rounds: 2
-        hours: 4
-      remove_delegations:
+      revoke_delegations:
+        rounds: 24
+        hours: 48
+      del_bond_less:
         rounds: 24
         hours: 48
       rewards_payouts:
         rounds: 2
         hours: 4
+    collator_timings:
+      leave_candidates:
+        rounds: 24
+        hours: 48
+      can_bond_less:
+        rounds: 24
+        hours: 48
     precompiles:
       staking: '0x0000000000000000000000000000000000000800'
       crowdloan: '0x0000000000000000000000000000000000000801'
