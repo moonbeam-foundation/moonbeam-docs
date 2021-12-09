@@ -1,5 +1,5 @@
 ---
-title: Delegate Stake
+title: How to Stake
 description: A guide that shows how you can stake your tokens in Moonbeam by delegating collator candidates
 ---
 
@@ -15,7 +15,9 @@ Token holders can add to candidates' stake using their tokens, a process called 
 
 Once a candidate joins the active set of collators, they are eligible to produce blocks and receive partial block rewards as part of the token inflationary model. They share these as staking rewards with their delegators, considering their proportional contribution toward their stake in the network.
 
-This guide will show you how to stake on Moonbase Alpha, but similar steps can be taken for Moonriver.
+This guide will show you how to stake on Moonbase Alpha via Polkadot.js Apps, but similar steps can be taken for Moonriver.
+
+Token holders that want to easily stake their tokens can use the [Moonbeam dApp](https://apps.moonbeam.network/) to do so.
 
 ## General Definitions {: #general-definitions } 
 
@@ -97,9 +99,13 @@ Then to retrieve the various staking parameters, you'll need to:
 
 ![Retrieving staking parameters](/images/tokens/staking/stake/stake-12.png)
 
-You should then see the maximum delegations per delegator. At time of writing this it was {{ networks.moonbase.staking.max_delegations_per_delegator }} for Moonbase Alpha and {{ networks.moonriver.staking.max_delegations_per_delegator }} for Moonriver.
+You should then see the maximum delegations per delegator. At time of writing, this is {{ networks.moonbase.staking.max_delegations_per_delegator }} for Moonbase Alpha and {{ networks.moonriver.staking.max_delegations_per_delegator }} for Moonriver.
 
-## Retrieving the List of Candidates {: #retrieving-the-list-of-candidates } 
+## How to Stake via Polkadot.js Apps {: #how-to-delegate-a-candidate } 
+
+This section goes over the process of delegating collator candidates. But before staking via Polkadot.js Apps, you need to retrieve some important parameters.
+
+### Retrieving the List of Candidates {: #retrieving-the-list-of-candidates } 
 
 Before starting to stake tokens, it is important to retrieve the list of collator candidates available in the network. To do so:
 
@@ -116,7 +122,7 @@ Each extrinsic provides a different response:
 
 ![Staking Account](/images/tokens/staking/stake/stake-2.png)
 
-## Get the Candidate Delegation Count {: #get-the-candidate-delegation-count } 
+### Get the Candidate Delegation Count {: #get-the-candidate-delegation-count } 
 
 First, you need to get the `candidateDelegationCount` as you'll need to submit this parameter in a later transaction. To do so, you'll have to run the following JavaScript code snippet from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/js):
 
@@ -147,7 +153,7 @@ First, you need to get the `candidateDelegationCount` as you'll need to submit t
 
 ![Get candidate delegation count](/images/tokens/staking/stake/stake-14.png)
 
-## Get your Number of Existing Delegations {: #get-your-number-of-existing-delegations } 
+### Get your Number of Existing Delegations {: #get-your-number-of-existing-delegations } 
 
 If you've never made a delegation from your address you can skip this section. However, if you're unsure how many existing delegations you have, you'll want to run the following JavaScript code snippet to get `delegator_delegation_count` from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/js):
 
@@ -178,9 +184,9 @@ If you've never made a delegation from your address you can skip this section. H
 
 ![Get existing delegation count](/images/tokens/staking/stake/stake-13.png)
 
-## How to Delegate a Candidate {: #how-to-delegate-a-candidate } 
+### Staking your Tokens
 
-This section goes over the process of delegating collator candidates. The tutorial will use the following candidates as a reference:
+The tutorial will use the following candidates as a reference:
 
 |  Variable   |  |                      Address                       |
 |:-----------:|::|:--------------------------------------------------:|

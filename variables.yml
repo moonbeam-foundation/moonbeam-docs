@@ -107,7 +107,6 @@ networks:
       max_delegations_per_delegator: 60
       delegator_reward_inflation: 50
       collator_reward_inflation: 20
-      precompile_address: '0x0000000000000000000000000000000000000800'
       candidates:
         address1: '0x4c5A56ed5A4FF7B09aA86560AfD7d383F4831Cce'
         address2: '0x623c9E50647a049F92090fe55e22cC0509872FB6'
@@ -218,6 +217,10 @@ networks:
       rewards_payouts:
         rounds: 2
         hours: 4
+    precompiles:
+      staking: '0x0000000000000000000000000000000000000800'
+      crowdloan: '0x0000000000000000000000000000000000000801'
+      erc20: '0x0000000000000000000000000000000000000802'
     chainlink:
       feed:
         aggregator:

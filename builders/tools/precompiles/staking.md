@@ -9,11 +9,18 @@ description: Moonbeam Parachain Staking Ethereum Solidity Precompile Interface D
 
 ## Introduction {: #introduction } 
 
-A delegated proof of stake pallet recently debuted called [Parachain-Staking](https://github.com/PureStake/moonbeam/tree/master/pallets/parachain-staking/src), allowing token holders (delegators) to express exactly which collator candidates they would like to support and with what quantity of stake. The design of the Parachain-Staking pallet is such that it enforces shared risk/reward on chain between delegators and candidates.
+Moonbeam uses a Delegated Proof of Stake system through a [Parachain-Staking](https://github.com/PureStake/moonbeam/tree/master/pallets/parachain-staking/src) pallet, allowing token holders (delegators) to express exactly which collator candidates they would like to support and with what quantity of stake. The design of the Parachain-Staking pallet is such that it enforces shared risk/reward on chain between delegators and candidates.
 
-The Staking module is coded in Rust and it is part of a pallet that is normally not accessible from the Ethereum side of Moonbeam. However, a Staking Precompile allows developers to access the staking features using the Ethereum API in a precompiled contract located at address `{{networks.moonbase.staking.precompile_address}}`.
+The Staking module is coded in Rust and it is part of a pallet that is normally not accessible from the Ethereum side of Moonbeam. However, a Staking Precompile allows developers to access the staking features using the Ethereum API in a precompiled contract located at address:
 
-As of the latest runtime upgrade, [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/), there have been significant changes to the way users can interact with various staking features within the staking precompile.
+=== "Moonriver"
+     ```
+     {{networks.moonriver.precompiles.staking}}
+     ```
+=== "Moonbase Alpha"
+     ```
+     {{networks.moonbase.precompiles.staking}}
+     ```
 
 This guide will show you how to interact with the Staking Precompile on Moonbase Alpha. Similar steps can be followed for Moonrvier.
 
