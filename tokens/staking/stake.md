@@ -282,8 +282,9 @@ Once the transaction is confirmed, you can verify that your delegation was remov
 
  1. Choose the **parachainStaking** pallet
  2. Choose the **delegatorState** state to query
- 3. Make sure to enable the **include options** slider
- 4. Send the state query by clicking on the **+** button
+ 3. Select your account
+ 4. Make sure to enable the **include options** slider
+ 5. Send the state query by clicking on the **+** button
 
 ![Staking Verify Delegation is Revoked](/images/tokens/staking/stake/stake-21.png)
 
@@ -298,7 +299,8 @@ If you scheduled a request to stop delegations but changed your mind, as long as
 1. Select the account to cancel the scheduled request for
 2. Choose the **parachainStaking** pallet
 3. Choose the **cancelDelegationRequest** or the **cancelLeaveDelegators** extrinsic
-4. Click the **Submit Transaction** button and sign the transaction
+4. Enter the candidates address that corresponds to the due request you would like to cancel
+5. Click the **Submit Transaction** button and sign the transaction
 
 ![Staking Cancel Scheduled Request to Revoke Delegation via Chain State](/images/tokens/staking/stake/stake-22.png)
 
