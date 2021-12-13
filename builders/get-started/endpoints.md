@@ -15,17 +15,17 @@ The endpoints in this section are for development purposes only and are not mean
 
 If you are looking for an API provider suitable for production use, you can check out the [Endpoint Providers](#endpoint-providers) section of this guide. 
 
-### Moonbase Alpha Endpoints
+### Moonbeam Endpoints
 
---8<-- 'code/endpoints/moonbase.md'
+--8<-- 'code/endpoints/moonbeam.md'
 
 ### Moonriver Endpoints
 
 --8<-- 'code/endpoints/moonriver.md'
 
-### Moonbeam Endpoints
+### Moonbase Alpha Endpoints
 
---8<-- 'code/endpoints/moonbeam.md'
+--8<-- 'code/endpoints/moonbase.md'
 
 ## Endpoint Providers
 
