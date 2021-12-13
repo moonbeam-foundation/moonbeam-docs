@@ -19,7 +19,7 @@ Currently, Moonriver has the following configurations:
 
 - Runs as a parachain connected to the Kusama relay chain
 - Has an active set of {{ networks.moonriver.staking.max_collators }} collators
-- It has infrastructure providers that provide [API endpoints](/builders/get-started/endpoints/) to connect to the network. Projecs can also [run their own node](/node-operators/networks/run-a-node/) to have access to their own private endpoints
+- It has infrastructure providers that provide [API endpoints](/builders/get-started/endpoints/) to connect to the network. Projects can also [run their own node](/node-operators/networks/run-a-node/) to have access to their own private endpoints
 
 ![Moonriver Diagram](/images/learn/platform/networks/moonriver-diagram.png)
 
