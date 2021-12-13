@@ -32,7 +32,7 @@ However, Moonrock was deployed to Rococo for the first time in May 2021.
 
 In advance of deploying to the Polkadot MainNet, [Moonbeam launched Moonriver](https://moonbeam.network/announcements/moonriver-launch-kusama/) as a parachain on the Kusama network. The parachain functionality is live on Kusama.
 
-Moonriver will offer parachain-related functionalities such as [XCMP](https://wiki.polkadot.network/docs/learn-crosschain) and [SPREE](https://wiki.polkadot.network/docs/learn-spree) on Moonriver as those features become available.
+Moonriver will offer parachain-related functionalities such as [XCMP](https://wiki.polkadot.network/docs/learn-crosschain) and [SPREE](https://wiki.polkadot.network/docs/learn-spree) as these features become available.
 
 [Learn more about Moonriver](/learn/platform/networks/moonriver/).
 
