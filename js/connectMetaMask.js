@@ -11,7 +11,7 @@ const supportedNetworks = {
     chainId: moonbaseAlphaChainId,
     chainName: 'Moonbase Alpha',
     rpcUrls: ['https://rpc.testnet.moonbeam.network'],
-    blockExplorerUrls: ['https://moonbase-blockscout.testnet.moonbeam.network/'],
+    blockExplorerUrls: ['https://moonbase.moonscan.io/'],
     nativeCurrency: {
       name: 'DEV',
       symbol: 'DEV',
@@ -22,7 +22,7 @@ const supportedNetworks = {
     chainId: moonriverChainId,
     chainName: 'Moonriver',
     rpcUrls: ['https://rpc.moonriver.moonbeam.network'],
-    blockExplorerUrls: ['https://blockscout.moonriver.moonbeam.network/'],
+    blockExplorerUrls: ['https://moonriver.moonscan.io/'],
     nativeCurrency: {
       name: 'Moonriver',
       symbol: 'MOVR',
