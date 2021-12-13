@@ -33,7 +33,7 @@ As with Ethereum, there are two main types of accounts: user-owned and contract 
  - **Reducible** — refers to the balance that can be used (not locked/frozen) through the Ethereum API on Moonbeam. For example, this is the balance displayed by MetaMask. It is the real spendable balance, accounting for all democracy locks (displayed as transferable in Polkadot.js Apps)
  - **Reserved** — refers to the balance held due to on-chain requirements, and that can be freed by performing some on-chain action. For example, funds that are being staked at a protocol level (parachain staking) are shown as `reserved balance`. These funds are **not** accessible via the Ethereum API until they are freed
  - **Misc frozen** — represents a balance that the `free` balance may not drop below when withdrawing funds, except for transaction fee payment. For example, funds being used to vote on a governance proposal are shown as `misc frozen`. These funds are **not** accessible via the Ethereum API until they are freed
-  **Fee frozen** — represents a balance that the `free` balance may not drop below when specifically paying for transaction fees. These funds are **not** accessible via the Ethereum API until they are freed
+ - **Fee frozen** — represents a balance that the `free` balance may not drop below when specifically paying for transaction fees. These funds are **not** accessible via the Ethereum API until they are freed
 
 _An image will be here_
 

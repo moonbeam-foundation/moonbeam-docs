@@ -5,7 +5,7 @@ description: An overview of the current configuration of the Moonbeam deployment
 
 # Moonriver
 
-_Updated August 5th, 2021_
+_Updated December 13th, 2021_
 
 ## Goal {: #goal } 
 
@@ -42,18 +42,18 @@ Some important variables/configurations to note include:
     | Fast-Track Voting Period | {{ networks.moonriver.democracy.fast_vote_period.blocks}} blocks ({{networks.moonriver.democracy.fast_vote_period.days}} days) |
     |     Enactment Period     |     {{ networks.moonriver.democracy.enact_period.blocks}} blocks ({{networks.moonriver.democracy.enact_period.days}} day)      |
     |     Cool-off Period      |      {{ networks.moonriver.democracy.cool_period.blocks}} blocks ({{networks.moonriver.democracy.cool_period.days}} days)      |
-    |     Minimum Deposit      |                                    {{ networks.moonriver.democracy.    min_deposit }} MOVR                                     |
-    |      Maximum Votes       |                                        {{ networks.moonriver.    democracy.max_votes }}                                        |
-    |    Maximum Proposals     |                                      {{ networks.moonriver.democracy.    max_proposals }}                                      |
+    |     Minimum Deposit      |                                      {{ networks.moonriver.democracy.min_deposit }} MOVR                                       |
+    |      Maximum Votes       |                                          {{ networks.moonriver.democracy.max_votes }}                                          |
+    |    Maximum Proposals     |                                        {{ networks.moonriver.democracy.max_proposals }}                                        |
 
 === "Staking"
-    |             Variable             |                                                     Value                                                     |
-    |:--------------------------------:|:-------------------------------------------------------------------------------------------------------------:|
-    |     Minimum nomination stake     |                           {{ networks.moonriver.staking.    min_nom_stake }} tokens                           |
-    | Maximum nominators per collators |                             {{ networks.moonriver.staking.    max_nom_per_col }}                              |
-    | Maximum collators per nominator  |                             {{ networks.moonriver.staking.    max_col_per_nom }}                              |
-    |              Round               | {{ networks.moonriver.staking.round_blocks }} blocks ({{     networks.moonriver.staking.round_hours }} hours) |
-    |          Bond duration           |                             {{ networks.moonriver.staking.    bond_lock }} rounds                             |
+    |             Variable              |                                                   Value                                                   |
+    |:---------------------------------:|:---------------------------------------------------------------------------------------------------------:|
+    |     Minimum delegation stake      |                           {{ networks.moonriver.staking.min_del_stake }} tokens                           |
+    | Maximum delegators per candidates |                             {{ networks.moonriver.staking.max_del_per_can }}                              |
+    | Maximum candidates per delegator  |                             {{ networks.moonriver.staking.max_delegations_per_delegator }}                              |
+    |               Round               | {{ networks.moonriver.staking.round_blocks }} blocks ({{ networks.moonriver.staking.round_hours }} hours) |
+    |           Bond duration           |                             {{ networks.moonriver.staking.bond_lock }} rounds                             |
 
 _*Read more about [token denominations](#token-denominations)_
 
@@ -85,7 +85,7 @@ The smallest unit of Moonriver, similarly to Ethereum, is a Wei. It takes 10^18 
 
 ## Proof of Stake {: #proof-of-stake } 
 
-TODO -> Add what Erin writes about this
+The Moonriver network is a fully decentralized Delegated Proof of Stake network where users of the network can delegate collator candidates to produce blocks and earn rewards. It uses the [Nimbus framework](/learn/features/consensus/) framework for parachain consensus. The number of candidates in the active set will be subject to governance. The active set will consist of the top candidates by stake, including delegations. 
 
 ## Limitations {: #limitations } 
 
