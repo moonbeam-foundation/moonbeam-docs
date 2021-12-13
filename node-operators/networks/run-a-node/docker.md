@@ -13,13 +13,13 @@ Running a full node on a Moonbeam-based network allows you to connect to the net
 
 ## Installation Instructions {: #installation-instructions }
 
-A Moonbeam node can be spun up quickly using Docker. For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/). At the time of writing, the Docker version used was 19.03.6. When connecting to Moonriver on Kusama, it will take a few days to completely sync the embedded Kusama relay chain. Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview#requirements).
+A Moonbeam node can be spun up quickly using Docker. For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/). At the time of writing, the Docker version used was 19.03.6. When connecting to Moonriver on Kusama or Moonbeam on Polkadot, it will take a few days to completely sync the embedded relay chain. Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview#requirements).
 
 Create a local directory to store the chain data:
 
-=== "Moonbase Alpha"
+=== "Moonbeam"
     ```
-    mkdir {{ networks.moonbase.node_directory }}
+    mkdir {{ networks.moonbeam.node_directory }}
     ```
 
 === "Moonriver"
@@ -27,15 +27,21 @@ Create a local directory to store the chain data:
     mkdir {{ networks.moonriver.node_directory }}
     ```
 
-Next, make sure you set the ownership and permissions accordingly for the local directory that stores the chain data. In this case, set the necessary permissions either for a specific or current user (replace `DOCKER_USER` for the actual user that will run the `docker` command):
-
 === "Moonbase Alpha"
     ```
+    mkdir {{ networks.moonbase.node_directory }}
+    ```
+
+
+Next, make sure you set the ownership and permissions accordingly for the local directory that stores the chain data. In this case, set the necessary permissions either for a specific or current user (replace `DOCKER_USER` for the actual user that will run the `docker` command):
+
+=== "Moonbeam"
+    ```
     # chown to a specific user
-    chown DOCKER_USER {{ networks.moonbase.node_directory }}
+    chown DOCKER_USER {{ networks.moonbeam.node_directory }}
 
     # chown to current user
-    sudo chown -R $(id -u):$(id -g) {{ networks.moonbase.node_directory }}
+    sudo chown -R $(id -u):$(id -g) {{ networks.moonbeam.node_directory }}
     ```
 
 === "Moonriver"
@@ -47,23 +53,33 @@ Next, make sure you set the ownership and permissions accordingly for the local 
     sudo chown -R $(id -u):$(id -g) {{ networks.moonriver.node_directory }}
     ```
 
+=== "Moonbase Alpha"
+    ```
+    # chown to a specific user
+    chown DOCKER_USER {{ networks.moonbase.node_directory }}
+
+    # chown to current user
+    sudo chown -R $(id -u):$(id -g) {{ networks.moonbase.node_directory }}
+    ```
+
 Now, execute the docker run command. If you are setting up a collator node, make sure to follow the code snippets for "Collator". Note that you have to replace `YOUR-NODE-NAME` in two different places.
 
 ### Full Node {: #full-node } 
 
-=== "Moonbase Alpha"
+=== "Moonbeam"
     ```
-    docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
+    docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
-    purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
+    purestake/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
     --base-path=/data \
-    --chain {{ networks.moonbase.chain_spec }} \
+    --chain {{ networks.moonbeam.chain_spec }} \
     --name="YOUR-NODE-NAME" \
     --execution wasm \
     --wasm-execution compiled \
     --pruning archive \
     --state-cache-size 1 \
     -- \
+    --execution wasm
     --pruning archive \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
@@ -81,19 +97,38 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --pruning archive \
     --state-cache-size 1 \
     -- \
+    --execution wasm
+    --pruning archive \
+    --name="YOUR-NODE-NAME (Embedded Relay)"
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
+    -u $(id -u ${USER}):$(id -g ${USER}) \
+    purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
+    --base-path=/data \
+    --chain {{ networks.moonbase.chain_spec }} \
+    --name="YOUR-NODE-NAME" \
+    --execution wasm \
+    --wasm-execution compiled \
+    --pruning archive \
+    --state-cache-size 1 \
+    -- \
+    --execution wasm
     --pruning archive \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
 ### Collator {: #collator } 
 
-=== "Moonbase Alpha"
+=== "Moonbeam"
     ```
-    docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
+    docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
-    purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
+    purestake/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
     --base-path=/data \
-    --chain {{ networks.moonbase.chain_spec }} \
+    --chain {{ networks.moonbeam.chain_spec }} \
     --name="YOUR-NODE-NAME" \
     --validator \
     --execution wasm \
@@ -101,6 +136,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --pruning archive \
     --state-cache-size 1 \
     -- \
+    --execution wasm
     --pruning archive \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
@@ -119,6 +155,26 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --pruning archive \
     --state-cache-size 1 \
     -- \
+    --execution wasm
+    --pruning archive \
+    --name="YOUR-NODE-NAME (Embedded Relay)"
+    ```
+    
+=== "Moonbase Alpha"
+    ```
+    docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
+    -u $(id -u ${USER}):$(id -g ${USER}) \
+    purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
+    --base-path=/data \
+    --chain {{ networks.moonbase.chain_spec }} \
+    --name="YOUR-NODE-NAME" \
+    --validator \
+    --execution wasm \
+    --wasm-execution compiled \
+    --pruning archive \
+    --state-cache-size 1 \
+    -- \
+    --execution wasm
     --pruning archive \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
@@ -130,7 +186,7 @@ Once Docker pulls the necessary images, your full Moonbeam (or Moonriver) node w
 ![Full Node Starting](/images/node-operators/networks/run-a-node/docker/full-node-docker-1.png)
 
 !!! note
-    If you want to run an RPC endpoint, to connect polkadot.js.org, or to run your own application, use the flags `--unsafe-rpc-external` and/or `--unsafe-ws-external` to run the full node with external access to the RPC ports.  More details are available by running `moonbeam --help`.  
+    If you want to run an RPC endpoint, to connect Polkadot.js Apps, or to run your own application, use the flags `--unsafe-rpc-external` and/or `--unsafe-ws-external` to run the full node with external access to the RPC ports.  More details are available by running `moonbeam --help`. This is **not** recommended for Collators.  
 
 !!! note
     You can specify a custom Prometheus port with the `--prometheus-port XXXX` flag (replacing `XXXX` with the actual port number). This is possible for both the parachain and embedded relay chain.
@@ -145,11 +201,11 @@ During the syncing process, you will see messages from both the embedded relay c
 ![Full Node Starting](/images/node-operators/networks/run-a-node/docker/full-node-docker-2.png)
 
 !!! note
-    It will take a few days to completely sync the embedded Kusama relay chain. Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview#requirements). 
+    It may take a few days to completely sync the embedded relay chain. Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview#requirements). 
 
 If you followed the installation instructions for Moonbase Alpha, once synced, you will have a node of the Moonbase Alpha TestNet running locally!
 
-If you followed the installation instructions for Moonriver, once synced, you will be connected to peers and see blocks being produced on the Moonriver network! Note that in this case you need to also sync to the Kusama relay chain, which might take a few days.
+If you followed the installation instructions for Moonbeam/Moonriver, once synced, you will be connected to peers and see blocks being produced on the Moonbeam/Moonriver network! Note that in this case you need to also sync to the Polkadot/Kusama relay chain, which might take a few days.
 
 ## Update the Client {: #update-the-client } 
 
@@ -167,7 +223,7 @@ As Moonbeam development continues, it will sometimes be necessary to upgrade you
 
 Once your node is running again, you should see logs in your terminal.
 
-### Purge Your Node {: #purge-your-node } 
+## Purge Your Node {: #purge-your-node } 
 
 If you need a fresh instance of your Moonbeam node, you can purge your node by removing the associated data directory. 
 
@@ -181,44 +237,54 @@ If you did not use the `-v` flag to specify a local directory for storing your c
 
 If you did spin up your node with the `-v` flag, you will need to purge the specified directory. For example, for the suggested data directly, you can run the following command to purge your parachain and relay chain data:
 
-=== "Moonbase Alpha"
-
+=== "Moonbeam"
     ```
-    sudo rm -rf {{ networks.moonbase.node_directory }}/*
+    sudo rm -rf {{ networks.moonbeam.node_directory }}/*
     ```
 
 === "Moonriver"
-
     ```
     sudo rm -rf {{ networks.moonriver.node_directory }}/*
     ```
 
+=== "Moonbase Alpha"
+    ```
+    sudo rm -rf {{ networks.moonbase.node_directory }}/*
+    ```
+
+
 To only remove the parachain data for a specific chain, you can run:
 
-=== "Moonbase Alpha"
-
+=== "Moonbeam"
     ```
-    sudo rm -rf {{ networks.moonbase.node_directory }}/chains/*
+    sudo rm -rf {{ networks.moonbeam.node_directory }}/chains/*
     ```
 
 === "Moonriver"
-
     ```
     sudo rm -rf {{ networks.moonriver.node_directory }}/chains/*
     ```
 
+=== "Moonbase Alpha"
+    ```
+    sudo rm -rf {{ networks.moonbase.node_directory }}/chains/*
+    ```
+
 Similarly, to only remove the relay chain data, you can run:
 
-=== "Moonbase Alpha"
-
+=== "Moonbeam"
     ```
-    sudo rm -rf {{ networks.moonbase.node_directory }}/polkadot/*
+    sudo rm -rf {{ networks.moonbeam.node_directory }}/polkadot/*
     ```
 
 === "Moonriver"
-
     ```
     sudo rm -rf {{ networks.moonriver.node_directory }}/polkadot/*
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    sudo rm -rf {{ networks.moonbase.node_directory }}/polkadot/*
     ```
 
 --8<-- 'text/purge-chain/post-purge.md'
