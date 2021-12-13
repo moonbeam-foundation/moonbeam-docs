@@ -26,7 +26,6 @@ For the ethers.js library, define the provider by using `ethers.providers.Static
 ```js
 const ethers = require('ethers');
 
-
 const providerURL = "https://rpc.moonriver.moonbeam.network";
 // Define Provider
 const provider = new ethers.providers.StaticJsonRpcProvider(providerURL, {
@@ -39,4 +38,4 @@ Any Ethereum wallet should be able to generate a valid address for Moonbeam (for
 
 ### Chain ID {: #chain-id } 
 
-The Moonriver chain ID is: `1285`, or `0x505` in hex.
+Moonriver chain ID is: `1285`, or `0x505` in hex.
