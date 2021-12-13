@@ -25,7 +25,6 @@ For the ethers.js library, define the provider by using `ethers.providers.Static
 ```js
 const ethers = require('ethers');
 
-
 const providerURL = 'https://rpc.testnet.moonbeam.network';
 // Define Provider
 const provider = new ethers.providers.StaticJsonRpcProvider(providerURL, {
