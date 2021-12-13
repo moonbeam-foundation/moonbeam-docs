@@ -57,7 +57,7 @@ _*Read more about [token denominations](#token-denominations)_
 
 ## Tokens {: #tokens } 
 
-The tokens on Moonbeam will also be called Glimmer (GLMR). Check out the Moonbeam Foundation site for more information on the [Glimmer](https://moonbeam.foundation/glimmer-token/). 
+The tokens on Moonbeam will also be called Glimmer (GLMR). Check out the Moonbeam Foundation site for more information on the [Glimmer](https://moonbeam.foundation/glimmer-token/) token. 
 
 ### Token Denominations {: #token-denominations } 
 
