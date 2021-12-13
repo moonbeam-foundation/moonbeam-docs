@@ -11,13 +11,13 @@ description: Learn about all of the necessary details to run a full Parachain no
 
 Running a full node on a Moonbeam-based network allows you to connect to the network, sync with a bootnode, obtain local access to RPC endpoints, author blocks on the parachain, and more.
 
-There are multiple deployments of Moonbeam, including the Moonbase Alpha TestNet, Moonriver on Kusama, and eventually there will be Moonbeam on Polkadot. Here's how these environments are named and their corresponding [chain specification file](https://substrate.dev/docs/en/knowledgebase/integrate/chain-spec) names:
+There are multiple deployments of Moonbeam, including the Moonbase Alpha TestNet, Moonriver on Kusama, and Moonbeam on Polkadot. Here's how these environments are named and their corresponding [chain specification file](https://substrate.dev/docs/en/knowledgebase/integrate/chain-spec) names:
 
 |    Network     |  | Hosted By |  |             Chain Name              |
 |:--------------:|::|:---------:|::|:-----------------------------------:|
 | Moonbase Alpha |  | PureStake |  | {{ networks.moonbase.chain_spec }}  |
 |   Moonriver    |  |  Kusama   |  | {{ networks.moonriver.chain_spec }} |
-|    Moonbeam    |  | Polkadot  |  |           _not available_           |
+|    Moonbeam    |  | Polkadot  |  | {{ networks.moonbeam.chain_spec }}  |
 
 !!! note
     Moonbase Alpha is still considered an Alphanet, and as such _will not_ have 100% uptime. The parachain might be purged as needed. During the development of your application, make sure you implement a method to redeploy your contracts and accounts to a fresh parachain quickly. If a chain purge is required, it will be announced via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
@@ -28,12 +28,12 @@ Running a parachain node is similar to a typical Substrate node, but there are s
 
 The minimum specs recommended to run a node are shown in the following table. For our Kusama and Polkadot MainNet deployments, disk requirements will be higher as the network grows.
 
-=== "Moonbase Alpha"
+=== "Moonbeam"
     |  Component   |  | Requirement                                                                                                                |
     |:------------:|::|:---------------------------------------------------------------------------------------------------------------------------|
-    |   **CPU**    |  | {{ networks.moonbase.node.cores }} Cores (Fastest per core speed)                                                          |
-    |   **RAM**    |  | {{ networks.moonbase.node.ram }} GB                                                                                        |
-    |   **SSD**    |  | {{ networks.moonbase.node.hd }} GB (to start)                                                                              |
+    |   **CPU**    |  | {{ networks.moonbeam.node.cores }} Cores (Fastest per core speed)                                                         |
+    |   **RAM**    |  | {{ networks.moonbeam.node.ram }} GB                                                                                       |
+    |   **SSD**    |  | {{ networks.moonbeam.node.hd }} GB (to start)                                                                             |
     | **Firewall** |  | P2P port must be open to incoming traffic:<br>&nbsp; &nbsp; - Source: Any<br>&nbsp; &nbsp; - Destination: 30333, 30334 TCP |
 
 === "Moonriver"
@@ -44,6 +44,13 @@ The minimum specs recommended to run a node are shown in the following table. Fo
     |   **SSD**    |  | {{ networks.moonriver.node.hd }} GB (to start)                                                                             |
     | **Firewall** |  | P2P port must be open to incoming traffic:<br>&nbsp; &nbsp; - Source: Any<br>&nbsp; &nbsp; - Destination: 30333, 30334 TCP |
 
+=== "Moonbase Alpha"
+    |  Component   |  | Requirement                                                                                                                |
+    |:------------:|::|:---------------------------------------------------------------------------------------------------------------------------|
+    |   **CPU**    |  | {{ networks.moonbase.node.cores }} Cores (Fastest per core speed)                                                          |
+    |   **RAM**    |  | {{ networks.moonbase.node.ram }} GB                                                                                        |
+    |   **SSD**    |  | {{ networks.moonbase.node.hd }} GB (to start)                                                                              |
+    | **Firewall** |  | P2P port must be open to incoming traffic:<br>&nbsp; &nbsp; - Source: Any<br>&nbsp; &nbsp; - Destination: 30333, 30334 TCP |
 
 !!! note
     If you don't see an `Imported` message (without the `[Relaychain]` tag) when running a node, you might need to double-check your port configuration.
@@ -52,7 +59,7 @@ The minimum specs recommended to run a node are shown in the following table. Fo
 
 As stated before, the relay/parachain nodes will listen on multiple ports. The default Substrate ports are used in the parachain, while the relay chain will listen on the next higher port.
 
-The only ports that need to be open for incoming traffic are those designated for P2P.
+The only ports that need to be open for incoming traffic are those designated for P2P. **Collators must not have RPC or WS ports opened**.
 
 ### Default Ports for a Parachain Full-Node {: #default-ports-for-a-parachain-full-node } 
 
@@ -81,7 +88,7 @@ There are a couple different guides to help you get started running a Moonbeam-b
 
 ## Debug, Trace and TxPool APIs {: #debug-trace-txpool-apis } 
 
-You can also gain access to some non-standard RPC methods by running a tracing node, which allow developers to inspect and debug transactions during runtime. Tracing nodes use a different Docker image than a standard Moonbase Alpha or Moonriver node. Check out the [Run a Tracing Node](/node-operators/networks/tracing-node) guide and be sure to switch to the right network tab throughout the instructions. Then to interact with your tracing node, check out the [Debug & Trace](/builders/tools/debug-trace) guide.
+You can also gain access to some non-standard RPC methods by running a tracing node, which allow developers to inspect and debug transactions during runtime. Tracing nodes use a different Docker image than a standard Moonbase Alpha, Moonriver, or Moonbeam node. Check out the [Run a Tracing Node](/node-operators/networks/tracing-node) guide and be sure to switch to the right network tab throughout the instructions. Then to interact with your tracing node, check out the [Debug & Trace](/builders/tools/debug-trace) guide.
 
 ## Logs and Troubleshooting {: #logs-and-troubleshooting } 
 
