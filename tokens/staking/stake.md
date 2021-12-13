@@ -1,6 +1,6 @@
 ---
-title: Delegate Stake
-description: A guide that shows how you can stake your tokens in Moonbeam by nominating collators
+title: How to Stake
+description: A guide that shows how you can stake your tokens in Moonbeam by delegating collator candidates
 ---
 
 # How to Stake your Tokens
@@ -9,13 +9,15 @@ description: A guide that shows how you can stake your tokens in Moonbeam by nom
 
 ## Introduction {: #introduction } 
 
-Collators (block producers) with the highest stake in the network join the active pool of collators, from which they are selected to offer a block to the relay chain.
+Collator candidates with the highest stake in the network join the active pool of collators (block producers), from which they are selected to offer a block to the relay chain.
 
-Token holders can add to the collators' stake using their tokens, a process called nomination (also referred to as staking). When they do so, they are vouching for that specific collator, and their nomination is a signal of trust.
+Token holders can add to candidates' stake using their tokens, a process called delegation (also referred to as staking). When they do so, they are vouching for that specific candidate, and their delegation is a signal of trust. When delegating, tokens are deducted instantly and added to the total amount staked by the user. Exiting a position is divided into a two step operation: scheduling and execution. First, token holders must schedule a request to exit their position, and wait for a given delay or unbonding period, which depends on the network. Once the unbonding period has expired, users can execute their scheduled action.
 
-Collators receive part of the block rewards as part of the token inflationary model. They can share these as staking rewards with their nominators, considering their percental contribution toward his stake in the network.
+Once a candidate joins the active set of collators, they are eligible to produce blocks and receive partial block rewards as part of the token inflationary model. They share these as staking rewards with their delegators, considering their proportional contribution toward their stake in the network.
 
-With the release of [Moonbase Alpha v6](https://github.com/PureStake/moonbeam/releases/tag/v0.6.0), users of the network can now stake their tokens to nominate collators. This guide will show you how to stake on Moonbase Alpha, but the same steps can be followed for Moonriver.
+This guide will show you how to stake on Moonbase Alpha via Polkadot.js Apps, but similar steps can be taken for Moonriver.
+
+Token holders that want to easily stake their tokens can use the [Moonbeam dApp](https://apps.moonbeam.network/) to do so.
 
 ## General Definitions {: #general-definitions } 
 
@@ -23,36 +25,71 @@ With the release of [Moonbase Alpha v6](https://github.com/PureStake/moonbeam/re
 
 === "Moonriver"
 
-    |             Variable             |  |                                                   Value                                                   |
-    |:--------------------------------:|::|:---------------------------------------------------------------------------------------------------------:|
-    |     Minimum nomination stake     |  |                           {{ networks.moonriver.staking.min_nom_stake }} MOVR                             |
-    | Maximum nominators per collators |  |                             {{ networks.moonriver.staking.max_nom_per_col }}                              |
-    | Maximum collators per nominator  |  |                             {{ networks.moonriver.staking.max_col_per_nom }}                              |
-    |              Round               |  | {{ networks.moonriver.staking.round_blocks }} blocks ({{ networks.moonriver.staking.round_hours }} hours) |
-    |          Bond duration           |  |                             {{ networks.moonriver.staking.bond_lock }} rounds                             |
+    |             Variable              |  |                                                                          Value                                                                          |
+    |:---------------------------------:|::|:-------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |     Minimum delegation stake      |  |                                                   {{ networks.moonriver.staking.min_del_stake }} MOVR                                                   |
+    | Maximum delegators per candidates |  |                                                    {{ networks.moonriver.staking.max_del_per_can }}                                                     |
+    | Maximum candidates per delegator  |  |                                             {{ networks.moonriver.staking.max_delegations_per_delegator }}                                              |
+    |               Round               |  |                        {{ networks.moonriver.staking.round_blocks }} blocks ({{ networks.moonriver.staking.round_hours }} hours)                        |
+    |           Bond duration           |  |                                                    {{ networks.moonriver.staking.bond_lock }} rounds                                                    |
+    |      Leave delegators delay       |  |   {{ networks.moonriver.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonriver.delegator_timings.leave_delegators.hours }} hours)   |
+    |     Delegator bond less delay     |  |      {{ networks.moonriver.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonriver.delegator_timings.del_bond_less.hours }} hours)      |
+    |     Revoke delegations delay      |  | {{ networks.moonriver.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonriver.delegator_timings.revoke_delegations.hours }} hours) |
+
 
 === "Moonbase Alpha"
 
-    |             Variable             |  |                                                  Value                                                  |
-    |:--------------------------------:|::|:-------------------------------------------------------------------------------------------------------:|
-    |     Minimum nomination stake     |  |                              {{ networks.moonbase.staking.min_nom_stake }} DEV                          |
-    | Maximum nominators per collators |  |                             {{ networks.moonbase.staking.max_nom_per_col }}                             |
-    | Maximum collators per nominator  |  |                             {{ networks.moonbase.staking.max_col_per_nom }}                             |
-    |              Round               |  | {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hours) |
-    |          Bond duration           |  |                            {{ networks.moonbase.staking.bond_lock }} rounds                             |
+    |             Variable              |  |                                                                         Value                                                                         |
+    |:---------------------------------:|::|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |     Minimum delegation stake      |  |                                                   {{ networks.moonbase.staking.min_del_stake }} DEV                                                   |
+    | Maximum delegators per candidates |  |                                                    {{ networks.moonbase.staking.max_del_per_can }}                                                    |
+    | Maximum candidates per delegator  |  |                                             {{ networks.moonbase.staking.max_delegations_per_delegator }}                                             |
+    |               Round               |  |                        {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hours)                        |
+    |           Bond duration           |  |                                                   {{ networks.moonbase.staking.bond_lock }} rounds                                                    |
+    |      Leave delegators delay       |  |   {{ networks.moonbase.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonbase.delegator_timings.leave_delegators.hours }} hours)   |
+    |     Delegator bond less delay     |  |      {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours)      |
+    |     Revoke delegations delay      |  | {{ networks.moonbase.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbase.delegator_timings.revoke_delegations.hours }} hours) |
 
 ## Extrinsics Definitions {: #extrinsics-definitions } 
 
-There are many extrinsics related to the staking pallet, so all of them are not covered in this guide. However, this list defines all of the extrinsics associated with the nomination process:
+There are many extrinsics related to the staking pallet, so all of them are not covered in this guide. However, the following list defines all of the extrinsics associated with the delegation process. After [runtime upgrade 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/), some extrinsics where deprecated.
 
 !!! note
     Extrinsics might change in the future as the staking pallet is updated.
 
- - **nominate**(*address* collator, *uint256* amount) — extrinsic to nominate a collator. The amount needs to be greater than the minimum nomination stake
- - **leaveNominators**() — extrinsic to leave the set of nominators. Consequently, all ongoing nominations will be revoked
- - **nominatorBondLess**(*address* collator, *uint256* less) — extrinsic to reduce the amount of staked tokens for an already nominated collator. The amount must not decrease your overall total staked below the minimum nomination stake
- - **nominatorBondMore**(*address* collator, *uint256* more) — extrinsic to increase the amount of staked tokens for an already nominated collator
- - **revokeNomination**(*address* collator) — extrinsic to remove an existing nomination
+### Join or Leave The Delegator Set
+
+ - **delegate**(*address* candidate, *uint256* amount, *uint256* candidateDelegationCount, *uint256* delegatorDelegationCount) - extrinsic to delegate a collator. The amount needs to be greater than the minimum delegation stake. Replaces the deprecated `nominate` extrinsic
+ - **scheduleLeaveDelegators**() - extrinsic to schedule to leave the set of delegators. There is an exit delay before you can execute the request via the `executeLeaveDelegators` extrinsic and actually leave the set of delegators. There is a delay of {{ networks.moonbase.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonbase.delegator_timings.leave_delegators.hours }} hours) for Moonbase Alpha and {{ networks.moonriver.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonriver.delegator_timings.leave_delegators.hours }} hours) for Moonriver. Replaces the deprecated `leaveNominators` extrinsic
+ - **executeLeaveDelegators**(*uint256* delegatorDelegationCount) - extrinsic to execute and leave the set of delegators. This extrinsic should only be used after a leave has been scheduled and the exit delay has passed. Consequently, all ongoing delegations will be revoked
+ - **cancelLeaveDelegators**() - extrinsic to cancel a scheduled request to leave the set of delegators
+
+The following extrinsics are deprecated: 
+
+ - **nominate**(*address* collator, *uint256* amount, *uint256* collatorNominationCount, *uint256* nominatorNominationCount) — extrinsic to delegate a collator. The amount needs to be greater than the minimum delegation stake
+ - **leaveNominators**(*uint256* nominatorNominationCount) — extrinsic to leave the set of delegators. Consequently, all ongoing delegations will be revoked
+ 
+### Bond More or Less 
+
+  - **delegatorBondMore**(*address* candidate, *uint256* more) - extrinsic to request to increase the amount of staked tokens for an already delegated collator. Replaces the deprecated `nominatorBondMore` extrinsic
+ - **scheduleDelegatorBondLess**(*address* candidate, *uint256* less) - extrinsic to request to reduce the amount of staked tokens for an already delegated collator. The amount must not decrease your overall total staked below the minimum delegation stake. There will be an exit delay before you can execute the request via the `executeCandidateBondRequest` extrinsic. There is a delay of {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours) for Moonbase Alpha and {{ networks.moonriver.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonriver.delegator_timings.del_bond_less.hours }} hours) for Moonriver. Replaces the deprecated `nominatorBondLess` extrinsic
+ - **executeCandidateBondRequest**(*address* candidate) - extrinsic to execute a decrease in the bond for a specific candidate. This extrinsic should only be used after a bond request has been scheduled and the exit delay has passed
+ - **cancelCandidateBondLess**() - extrinsic to cancel a scheduled request to increase or decrease the bond for a specific candidate
+
+The following extrinsics are deprecated: 
+
+ - **nominatorBondLess**(*address* collator, *uint256* less) — extrinsic to reduce the amount of staked tokens for an already delegated collator. The amount must not decrease your overall total staked below the minimum delegation stake
+ - **nominatorBondMore**(*address* collator, *uint256* more) — extrinsic to increase the amount of staked tokens for an already delegated collator
+
+### Revoke Delegations
+
+ - **scheduleRevokeDelegation**(*address* collator) - extrinsic to schedule to remove an existing delegation entirely. There will be an exit delay before you can execute the request via the `executeDelegationRequest` extrinsic. There is a delay of {{ networks.moonbase.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbase.delegator_timings.revoke_delegations.hours }} hours) for Moonbase Alpha and {{ networks.moonriver.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonriver.delegator_timings.revoke_delegations.hours }} hours) for Moonriver. Replaces the deprecated `revokeNomination` extrinsic 
+ - **executeDelegationRequest**(*address* delegator, *address* candidate) - extrinsic to execute and pending delegation requests. This extrinsic should only be used after a request has been scheduled and the exit delay has passed 
+ - **cancelDelegationRequest**(*address* candidate) - extrinsic to cancel a scheduled request to revoke a delegation
+
+The following extrinsic is deprecated: 
+
+ - **revokeNomination**(*address* collator) — extrinsic to remove an existing delegation
 
 ## Retrieving Staking Parameters {: #retrieving-staking-parameters } 
 
@@ -64,164 +101,214 @@ Then to retrieve the various staking parameters, you'll need to:
 
 1. Select the **Constants** tab on the **Chain state** UI
 2. From the **selected constant query** dropdown, choose **parachainStaking**
-3. Choose any function you would like to get data for. For this example, you can use **maxCollatorsPerNominator**. This will return the maximum number of collators you can nominate
+3. Choose any function you would like to get data for. For this example, you can use **maxDelegationsPerDelegator**. This will return the maximum number of candidates you can delegate
 4. Click **+** to return the current value
 
-![Retrieving staking parameters](/images/tokens/staking/stake/stake-1.png)
+![Retrieving staking parameters](/images/tokens/staking/stake/stake-12.png)
 
-You should then see the maximum collators per nominator. At time of writing this it was 100 for Moonbase Alpha.
+You should then see the maximum delegations per delegator. At time of writing, this is {{ networks.moonbase.staking.max_delegations_per_delegator }} for Moonbase Alpha and {{ networks.moonriver.staking.max_delegations_per_delegator }} for Moonriver.
 
-## Retrieving the List of Collators {: #retrieving-the-list-of-collators } 
+## How to Stake via Polkadot.js Apps {: #how-to-delegate-a-candidate } 
 
-Before starting to stake tokens, it is important to retrieve the list of collators available in the network. To do so:
+This section goes over the process of delegating collator candidates. But before staking via Polkadot.js Apps, you need to retrieve some important parameters.
 
- 1. Head to the "Developer" tab 
- 2. Click on "Chain State"
- 3. Choose the pallet to interact with. In this case, it is the `parachainStaking` pallet
- 4. Choose the state to query. In this case, it is the `selectedCandidates` or `candidatePool` state
- 5. Send the state query by clicking on the "+" button
+### Retrieving the List of Candidates {: #retrieving-the-list-of-candidates } 
+
+Before starting to stake tokens, it is important to retrieve the list of collator candidates available in the network. To do so:
+
+ 1. Head to the **Developer** tab 
+ 2. Click on **Chain State**
+ 3. Choose the pallet to interact with. In this case, it is the **parachainStaking** pallet
+ 4. Choose the state to query. In this case, it is the **selectedCandidates** or **candidatePool** state
+ 5. Send the state query by clicking on the **+** button
 
 Each extrinsic provides a different response:
 
- - **selectedCandidates** — returns the current active set of collators, that is, the top {{ networks.moonbase.staking.max_collators }} collators by total tokens staked (including nominations)
- - **candidatePool** — returns the current list of all the collators, including those that are not in the active set
+ - **selectedCandidates** — returns the current active set of collators, that is, the top {{ networks.moonbase.staking.max_candidates }} collator candidates by total tokens staked (including delegations)
+ - **candidatePool** — returns the current list of all the candidates, including those that are not in the active set
 
 ![Staking Account](/images/tokens/staking/stake/stake-2.png)
 
-## Get the Collator Nominator Count {: #get-the-collator-nominator-count } 
+### Get the Candidate Delegation Count {: #get-the-candidate-delegation-count } 
 
-First, you need to get the `collator_nominator_count` as you'll need to submit this parameter in a later transaction. To do so, you'll have to run the following JavaScript code snippet from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/js):
+First, you need to get the `candidateDelegationCount` as you'll need to submit this parameter in a later transaction. To do so, you'll have to run the following JavaScript code snippet from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/js):
 
 ```js
-// Simple script to get collator_nominator_count
+// Simple script to get candidate_delegation_count
 // Remember to replace COLLATOR_ADDRESS with the address of desired collator.
-const collatorAccount = 'COLLATOR_ADDRESS'; 
-const collatorInfo = await api.query.parachainStaking.collatorState2(collatorAccount);
-console.log(collatorInfo.toHuman()["nominators"].length);
+const candidateAccount = 'COLLATOR_CANDIDATE_ADDRESS'; 
+const candidateInfo = await api.query.parachainStaking.candidateState(candidateAccount);
+console.log(candidateInfo.toHuman()["delegators"].length);
 ```
 
- 1. Head to the "Developer" tab 
- 2. Click on "JavaScript"
+ 1. Head to the **Developer** tab 
+ 2. Click on **JavaScript**
  3. Copy the code from the previous snippet and paste it inside the code editor box 
- 4. (Optional) Click the save icon and set a name for the code snippet, for example, "Get collator_nominator_count". This will save the code snippet locally
- 5. Click on the run button. This will execute the code from the editor box
- 6. Copy the result, as you'll need it when initiating a nomination
+ 4. (Optional) Click the save icon and set a name for the code snippet, for example, **Get candidate delegator count**. This will save the code snippet locally
+ 5. To execute the code, click on the run button
+ 6. Copy the result as you'll need it when initiating a delegation
 
-![Get collator nominator count](/images/tokens/staking/stake/stake-3.png)
+![Get candidate delegation count](/images/tokens/staking/stake/stake-14.png)
 
-## Get your Number of Existing Nominations {: #get-your-number-of-existing-nominations } 
+### Get your Number of Existing Delegations {: #get-your-number-of-existing-delegations } 
 
-If you've never made a nomination from your address you can skip this section. However, if you're unsure how many existing nominations you have, you'll want to run the following JavaScript code snippet to get `nomination_count` from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/js):
+If you've never made a delegation from your address you can skip this section. However, if you're unsure how many existing delegations you have, you'll want to run the following JavaScript code snippet to get `delegator_delegation_count` from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/js):
 
 ```js
-// Simple script to get your number of existing nominations.
-// Remember to replace YOUR_ADDRESS_HERE with your nominator address.
-const yourNominatorAccount = 'YOUR_ADDRESS_HERE'; 
-const nominatorInfo = await api.query.parachainStaking.nominatorState2(yourNominatorAccount);
-console.log(nominatorInfo.toHuman()["nominations"].length);
+// Simple script to get your number of existing delegations.
+// Remember to replace YOUR_ADDRESS_HERE with your delegator address.
+const yourDelegatorAccount = 'YOUR_ADDRESS_HERE'; 
+const delegatorInfo = await api.query.parachainStaking.delegatorState(yourDelegatorAccount);
+console.log(delegatorInfo.toHuman()["delegations"].length);
 ```
 
- 1. Head to the "Developer" tab 
- 2. Click on "JavaScript"
+ 1. Head to the **Developer** tab 
+ 2. Click on **JavaScript**
  3. Copy the code from the previous snippet and paste it inside the code editor box 
- 4. (Optional) Click the save icon and set a name for the code snippet, for example, "Get existing nominations". This will save the code snippet locally
- 5. Click on the run button. This will execute the code from the editor box
- 6. Copy the result, as you'll need it when initiating a nomination
+ 4. (Optional) Click the save icon and set a name for the code snippet, for example, **Get existing delegations**. This will save the code snippet locally
+ 5. To execute the code, click on the run button
+ 6. Copy the result as you'll need it when initiating a delegation
 
-![Get existing nomination count](/images/tokens/staking/stake/stake-4.png)
+![Get existing delegation count](/images/tokens/staking/stake/stake-13.png)
 
-## How to Nominate a Collator {: #how-to-nominate-a-collator } 
+### Staking your Tokens
 
-This section goes over the process of nominating collators. The tutorial will use the following collators as a reference:
+The tutorial will use the following candidates as a reference:
 
-|  Variable  |     |                      Address                       |
-| :--------: | :-: | :------------------------------------------------: |
-| Collator 1 |     | {{ networks.moonbase.staking.collators.address1 }} |
-| Collator 2 |     | {{ networks.moonbase.staking.collators.address2 }} |
+|  Variable   |  |                       Address                       |
+|:-----------:|::|:---------------------------------------------------:|
+| Candidate 1 |  | {{ networks.moonbase.staking.candidates.address1 }} |
+| Candidate 2 |  | {{ networks.moonbase.staking.candidates.address2 }} |
 
 To access staking features, you need to use the Polkadot.js Apps interface. To do so, you need to import/create an Ethereum-style account first (H160 address), which you can do by following [this guide](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account).
 
-For this example, an account was imported and named with a super original name: Alice.
+For this example, an account was imported and named with a super original name: Alice. Alice's address is `0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac`.
 
-Currently, everything related to staking needs to be accessed via the "Extrinsics" menu, under the "Developer" tab:
+Currently, everything related to staking needs to be accessed via the **Extrinsics** menu, under the **Developer** tab:
 
 ![Staking Account](/images/tokens/staking/stake/stake-5.png)
 
-To nominate a collator, provide the following information:
+To delegate a candidate, provide the following information:
 
  1. Select the account from which you want to stake your tokens
- 2. Choose the pallet you want to interact with. In this case, it is the `parachainStaking` pallet
- 3. Choose the extrinsic method to use for the transaction. This will determine the fields that need to fill in the following steps. In this case, it is the `nominate` extrinsic
- 4. Set the collator's address you want to nominate. In this case, it is set to `{{ networks.moonbase.staking.collators.address1 }}`
+ 2. Choose the **parachainStaking** pallet
+ 3. Choose the **delegate** extrinsic
+ 4. Set the candidate's address to delegate. In this case, it is set to `{{ networks.moonbase.staking.candidates.address1 }}`
  5. Set the number of tokens you want to stake
- 6. Input the `collator_nominator_count` you [retrieved above from the JavaScript console](/tokens/staking/stake/#get-the-collator-nominator-count)
- 7. Input the `nomination_count` [you retrieved from the Javascript console](/tokens/staking/stake/#get-your-number-of-existing-nominations). This is `0` if you haven't yet nominated a collator
- 8. Click the "Submit Transaction" button and sign the transaction
+ 6. Input the `candidate_delegation_count` you [retrieved above from the JavaScript console](#get-the-candidate-delegation-count)
+ 7. Input the `delegator_delegation_count` [you retrieved from the JavaScript console](#get-your-number-of-existing-delegations). This is `0` if you haven't yet delegated a candidate
+ 8. Click the **Submit Transaction** button and sign the transaction
 
-![Staking Join Nominators Extrinsics](/images/tokens/staking/stake/stake-6.png)
+![Staking Join Delegators Extrinsics](/images/tokens/staking/stake/stake-15.png)
 
 !!! note
     The parameters used in steps 6 and 7 are for gas estimation purposes and do not need to be exact. However, they should not be lower than the actual values. 
 
-Once the transaction is confirmed, you can head back to the "Accounts" tab to verify that you have a reserved balance (equal to the number of tokens staked).
+Once the transaction is confirmed, you can head back to the **Accounts** tab to verify that you have a reserved balance (equal to the number of tokens staked).
 
-To verify a nomination, you can navigate to "Chain state" under the "Developer" tab.
+To verify a delegation, you can navigate to **Chain state** under the **Developer** tab.
 
 ![Staking Account and Chain State](/images/tokens/staking/stake/stake-7.png)
 
 Here, provide the following information:
 
- 1. Choose the pallet you want to interact with. In this case, it is the `parachainStaking` pallet
- 2. Choose the state to query. In this case, it is the `nominatorState`
- 3. Make sure to enable the "include option" slider
- 4. Send the state query by clicking on the "+" button
+ 1. Choose the pallet you want to interact with. In this case, it is the **parachainStaking** pallet
+ 2. Choose the state to query. In this case, it is the **delegatorState**
+ 3. Verify the selected address is correct. In this case, we are looking at Alice's account
+ 4. Make sure to enable the **include option** slider
+ 5. Send the state query by clicking on the **+** button
 
-![Staking Chain State Query](/images/tokens/staking/stake/stake-8.png)
+![Staking Chain State Query](/images/tokens/staking/stake/stake-16.png)
 
-In the response, you should see your account (in this case, Alice's account) with a list of the nominations. Each nomination contains the target address of the collator and the amount.
+In the response, you should see your account (in this case, Alice's account) with a list of the delegations. Each delegation contains the target address of the candidate and the amount.
 
-You can follow the same steps as described to nominate other collators in the network. For example, Alice nominated `{{ networks.moonbase.staking.collators.address2 }}` as well.
+You can follow the same steps as described to delegate other candidates in the network. For example, Alice delegated `{{ networks.moonbase.staking.candidates.address2 }}` as well.
 
-## How to Stop Nominations {: #how-to-stop-nominations } 
+## How to Stop Delegations {: #how-to-stop-delegations } 
 
-If you are already a nominator, you have two options to stop your nominations: using the `revokeNomination` extrinsic to unstake your tokens from a specific collator, or using the `leaveNominators` extrinsic to revoke all ongoing nominations.
+As of the latest runtime upgrade, [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/), there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled. These changes are now live on Moonbase Alpha and Moonriver.
 
-This example is a continuation of the previous section, and assumes that you have at least two active nominations.
+If you want to make an exit and stop a delegation, you have to first schedule it, wait an exit delay, and then execute the exit. If you are already a delegator, you have two options to request to stop your delegations: using the `scheduleRevokeDelegation` extrinsic to request to unstake your tokens from a specific collator candidate, or using the `scheduleLeaveDelegators` extrinsic to request to revoke all ongoing delegations. Scheduling a request does not automatically revoke your delegations, you must wait an exit delay and then execute the request by using either the `executeDelegationRequest` method or the `executeLeaveDelegators` method. 
 
-You can remove your nomination from a specific collator by navigating to the "Extrinsics" menu under the "Developer" tab. Here, provide the following information:
+There is an exit delay of {{ networks.moonbase.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonbase.delegator_timings.leave_delegators.hours }} hours) for Moonbase Alpha and {{ networks.moonriver.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonriver.delegator_timings.leave_delegators.hours }} hours) for Moonriver.
 
- 1. Select the account from which you want to remove your nomination
- 2. Choose the pallet you want to interact with. In this case, it is the `parachainStaking` pallet
- 3. Choose the extrinsic method to use for the transaction. This will determine the fields that need to fill in the following steps. In this case, it is the `revokeNomination` extrinsic
- 4. Set the collator's address you want to remove your nomination from. In this case, it is set to `{{ networks.moonbase.staking.collators.address2 }}`
- 5. Click the "Submit Transaction" button and sign the transaction
+### Schedule Request to Stop Delegations
 
-![Staking Revoke Nomination Extrinsic](/images/tokens/staking/stake/stake-9.png)
+This example is a continuation of the previous section, and assumes that you have at least two active delegations.
 
-Once the transaction is confirmed, you can verify that your nomination was removed in the "Chain state" option under the "Developer" tab.
+To schedule a request to revoke your delegation from a specific candidate, navigate to the **Extrinsics** menu under the **Developer** tab. Here, provide the following information:
 
-Here, provide the following information:
+ 1. Select the account from which you want to remove your delegation
+ 2. Choose the `parachainStaking` pallet
+ 3. Choose the `scheduleRevokeDelegation` extrinsic
+ 4. Set the candidate's address you want to remove your delegation from. In this case, it is set to `{{ networks.moonbase.staking.candidates.address2 }}`
+ 5. Click the **Submit Transaction** button and sign the transaction
 
- 1. Choose the pallet you want to interact with. In this case, it is the `parachainStaking` pallet
- 2. Choose the state to query. In this case, it is the `nominatorState` state
- 3. Make sure to enable the "include options" slider
- 4. Send the state query by clicking on the "+" button
+![Staking Schedule Request to Revoke Delegation Extrinsic](/images/tokens/staking/stake/stake-17.png)
 
-![Staking Revoke Nomination Chain State](/images/tokens/staking/stake/stake-8.png)
+!!! note
+    There can only be one pending scheduled request per candidate.
 
-In the response, you should see your account (in this case, Alice's account) with a list of the nominations. Each nomination contains the target address of the collator, and the amount.
+As mentioned before, you can also remove all ongoing delegations with the `scheduleLeaveDelegators` extrinsic in step 3 of the **Extrinsics** instructions. This extrinsic requires no input.
 
-As mentioned before, you can also remove all ongoing nominations with the `leaveNominators` extrinsic (in step 3 of the "Extrinsics" instructions). This extrinsic requires no input:
+![Staking Leave Delegators Extrinsic](/images/tokens/staking/stake/stake-18.png)
 
-![Staking Leave Nominatiors Extrinsic](/images/tokens/staking/stake/stake-10.png)
+Once you have scheduled an exit, you must wait an exit delay before you can then execute it. If you try to execute it before the exit delay is up the extrinsic will fail and you'll see an error from Polkadot.js Apps for `parachainStaking.PendingDelegationRequest`.
 
-Once the transaction is confirmed, your account should not be listed in the `nominatorState` state when queried, and you should have no reserved balance (related to staking).
+### Execute Request to Stop Delegations
+
+After the exit delay has passed after initiating the scheduled request, you can go back to the **Developer** tab of the **Extrinsics** menu and follow these steps to execute the request:
+
+ 1. Select the account to execute the revocation
+ 2. Choose the **parachainStaking** pallet
+ 3. Choose the **executeDelegationRequest** extrinsic
+ 4. Set the delegator's address you want to remove the delegation for. For this example, it will be Alice's address `0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac`
+ 5. Set the candidate's address you want to remove your delegation from. In this case, it is set to `{{ networks.moonbase.staking.candidates.address2 }}`
+ 6. Click the **Submit Transaction** button and sign the transaction
+
+![Staking Execute Revoke Delegation Extrinsic](/images/tokens/staking/stake/stake-19.png)
+
+If you want to remove all ongoing delegations, you can adapt the **Extrinsics** instructions to call the `executeLeaveDelegators` extrinsic:
+
+1. Select the account to remove all the delegations for
+2. Choose the **parachainStaking** pallet
+3. Choose the **executeLeaveDelegators** extrinsic
+4. Enter the total number of all delegations to revoke using the `delegator_delegation_count` [you retrieved from the Javascript console](#get-your-number-of-existing-delegations). This is `0` if you haven't yet delegated a candidate
+5. Click the **Submit Transaction** button and sign the transaction
+
+![Staking Execute Leave Delegators Extrinsic](/images/tokens/staking/stake/stake-20.png)
+
+Once the transaction is confirmed, you can verify that your delegation was removed or that you left the set of delegators by going to the **Chain state** option under the **Developer** tab. Here, provide the following information:
+
+ 1. Choose the **parachainStaking** pallet
+ 2. Choose the **delegatorState** state to query
+ 3. Select your account
+ 4. Make sure to enable the **include options** slider
+ 5. Send the state query by clicking on the **+** button
+
+![Staking Verify Delegation is Revoked](/images/tokens/staking/stake/stake-21.png)
+
+In the response, you should see your account (in this case, Alice's account) with a list of the remaining delegations. Each delegation contains the target address of the candidate, and the amount. There should no longer be an entry for `{{ networks.moonbase.staking.candidates.address2 }}`. Or if you left the delegator set, you should see a response of `<none>`.
+
+You can also check your free and reserved balances from the **Accounts** tab and notice now that the execution has gone through, your balances have been updated.
+
+### Cancel Request to Stop Delegations
+
+If you scheduled a request to stop delegations but changed your mind, as long as the request has not been executed, you can cancel the request at any time and all of your delegations will remain as is. If you scheduled a request via the `scheduleRevokeDelegation` extrinsic, you will need to call `cancelDelegationRequest`. On the other hand, if you scheduled a request via the `scheduleRevokeDelegation` extrinsic, you will need to call the `cancelLeaveDelegators` extrinsic. To cancel the request you can follow these steps:
+
+1. Select the account to cancel the scheduled request for
+2. Choose the **parachainStaking** pallet
+3. Choose the **cancelDelegationRequest** or the **cancelLeaveDelegators** extrinsic
+4. Enter the candidates address that corresponds to the due request you would like to cancel
+5. Click the **Submit Transaction** button and sign the transaction
+
+![Staking Cancel Scheduled Request to Revoke Delegation via Chain State](/images/tokens/staking/stake/stake-22.png)
 
 ## Staking Rewards {: #staking-rewards } 
 
-As collators receive rewards from block production, nominators get rewards as well. A brief overview on how the rewards are calculated can be found in [this page](/staking/overview/#reward-distribution).
+As candidates in the active set of collators receive rewards from block production, delegators get rewards as well. A brief overview on how the rewards are calculated can be found in [this page](/staking/overview/#reward-distribution).
 
-In summary, nominators will earn rewards based on their stake of the total nominations for the collator being rewarded (including the collator's stake as well).
+In summary, delegators will earn rewards based on their stake of the total delegations for the collator being rewarded (including the collator's stake as well).
 
 From the previous example, Alice was rewarded with `0.0044` tokens after two payout rounds:
 
