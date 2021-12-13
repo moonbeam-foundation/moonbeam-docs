@@ -17,7 +17,7 @@ Once fully launched, Moonbeam will have the following configurations:
 
 - Runs as a parachain connected to the Polkadot relay chain
 - Has an active set of {{ networks.moonbeam.staking.max_candidates }} collators
-- It has infrastructure providers that provide [API endpoints](/builders/get-started/endpoints/) to connect to the network. Projecs can also [run their own node](/node-operators/networks/run-a-node/) to have access to their own private endpoints
+- It has infrastructure providers that provide [API endpoints](/builders/get-started/endpoints/) to connect to the network. Projects can also [run their own node](/node-operators/networks/run-a-node/) to have access to their own private endpoints
 
 ![Moonbeam Diagram](/images/learn/platform/networks/moonbeam-diagram.png)
 
