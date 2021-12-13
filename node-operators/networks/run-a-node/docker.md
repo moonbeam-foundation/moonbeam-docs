@@ -62,7 +62,10 @@ Next, make sure you set the ownership and permissions accordingly for the local 
     sudo chown -R $(id -u):$(id -g) {{ networks.moonbase.node_directory }}
     ```
 
-Now, execute the docker run command. If you are setting up a collator node, make sure to follow the code snippets for "Collator". Note that you have to replace `YOUR-NODE-NAME` in two different places.
+Now, execute the docker run command. If you are setting up a collator node, make sure to follow the code snippets for "Collator". Note that you have to:
+ 
+ - Replace `YOUR-NODE-NAME` in two different places
+ - Replace `<50% RAM in MB>` for 50% of the actual RAM your server has. For example, for 32 GB RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
 
 ### Full Node {: #full-node } 
 
@@ -78,6 +81,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --wasm-execution compiled \
     --pruning archive \
     --state-cache-size 1 \
+    --db-cache <50% RAM in MB>
     -- \
     --execution wasm
     --pruning archive \
@@ -96,6 +100,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --wasm-execution compiled \
     --pruning archive \
     --state-cache-size 1 \
+    --db-cache <50% RAM in MB>
     -- \
     --execution wasm
     --pruning archive \
@@ -114,6 +119,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --wasm-execution compiled \
     --pruning archive \
     --state-cache-size 1 \
+    --db-cache <50% RAM in MB>
     -- \
     --execution wasm
     --pruning archive \
@@ -135,6 +141,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --wasm-execution compiled \
     --pruning archive \
     --state-cache-size 1 \
+    --db-cache <50% RAM in MB>
     -- \
     --execution wasm
     --pruning archive \
@@ -154,6 +161,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --wasm-execution compiled \
     --pruning archive \
     --state-cache-size 1 \
+    --db-cache <50% RAM in MB>
     -- \
     --execution wasm
     --pruning archive \
@@ -173,6 +181,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --wasm-execution compiled \
     --pruning archive \
     --state-cache-size 1 \
+    --db-cache <50% RAM in MB>
     -- \
     --execution wasm
     --pruning archive \

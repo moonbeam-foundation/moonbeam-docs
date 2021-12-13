@@ -182,6 +182,7 @@ Next, make sure you set the ownership and permissions accordingly for the local 
 The next step is to create the systemd configuration file. If you are setting up a collator node, make sure to follow the code snippets for "Collator". Note that you have to:
 
  - Replace `YOUR-NODE-NAME` in two different places
+ - Replace `<50% RAM in MB>` for 50% of the actual RAM your server has. For example, for 32 GB RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
  - Double-check that the binary is in the proper path as described below (_ExecStart_)
  - Double-check the base path if you've used a different directory
  - Name the file `/etc/systemd/system/moonbeam.service`
@@ -211,6 +212,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --wasm-execution compiled \
          --pruning=archive \
          --state-cache-size 1 \
+         --db-cache <50% RAM in MB>
          --base-path {{ networks.moonbeam.node_directory }} \
          --chain {{ networks.moonbeam.chain_spec }} \
          --name "YOUR-NODE-NAME" \
@@ -249,6 +251,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --wasm-execution compiled \
          --pruning=archive \
          --state-cache-size 1 \
+         --db-cache <50% RAM in MB>
          --base-path {{ networks.moonriver.node_directory }} \
          --chain {{ networks.moonriver.chain_spec }} \
          --name "YOUR-NODE-NAME" \
@@ -287,6 +290,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --wasm-execution compiled \
          --pruning=archive \
          --state-cache-size 1 \
+         --db-cache <50% RAM in MB>
          --base-path {{ networks.moonbase.node_directory }} \
          --chain {{ networks.moonbase.chain_spec }} \
          --name "YOUR-NODE-NAME" \
@@ -328,6 +332,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --wasm-execution compiled \
          --pruning=archive \
          --state-cache-size 1 \
+         --db-cache <50% RAM in MB>
          --base-path {{ networks.moonbeam.node_directory }} \
          --chain {{ networks.moonbeam.chain_spec }} \
          --name "YOUR-NODE-NAME" \
@@ -367,6 +372,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --wasm-execution compiled \
          --pruning=archive \
          --state-cache-size 1 \
+         --db-cache <50% RAM in MB>
          --base-path {{ networks.moonriver.node_directory }} \
          --chain {{ networks.moonriver.chain_spec }} \
          --name "YOUR-NODE-NAME" \
@@ -406,6 +412,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --wasm-execution compiled \
          --pruning=archive \
          --state-cache-size 1 \
+         --db-cache <50% RAM in MB>
          --base-path {{ networks.moonbase.node_directory }} \
          --chain {{ networks.moonbase.chain_spec }} \
          --name "YOUR-NODE-NAME" \
