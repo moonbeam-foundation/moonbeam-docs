@@ -43,13 +43,13 @@ Some important variables/configurations to note include (still subject to change
     |    Maximum Proposals     |                                       {{ networks.moonbeam.democracy.max_proposals }}                                        |
 
 === "Staking"
-    |             Variable             |                                                  Value                                                  |
-    |:--------------------------------:|:-------------------------------------------------------------------------------------------------------:|
-    |     Minimum delegation stake     |                          {{ networks.moonbeam.staking.min_del_stake }} tokens                           |
-    | Maximum nominators per collators |                             {{ networks.moonbeam.staking.max_del_per_can }}                             |
-    | Maximum collators per nominator  |                             {{ networks.moonbeam.staking.max_del_per_del }}                             |
-    |              Round               | {{ networks.moonbeam.staking.round_blocks }} blocks ({{ networks.moonbeam.staking.round_hours }} hours) |
-    |          Bond duration           |                            {{ networks.moonbeam.staking.bond_lock }} rounds                             |
+    |             Variable              |                                                  Value                                                  |
+    |:---------------------------------:|:-------------------------------------------------------------------------------------------------------:|
+    |     Minimum delegation stake      |                          {{ networks.moonbeam.staking.min_del_stake }} tokens                           |
+    | Maximum delegators per candidates |                             {{ networks.moonbeam.staking.max_del_per_can }}                             |
+    | Maximum candidates per delegator  |                             {{ networks.moonbeam.staking.max_del_per_del }}                             |
+    |               Round               | {{ networks.moonbeam.staking.round_blocks }} blocks ({{ networks.moonbeam.staking.round_hours }} hours) |
+    |           Bond duration           |                            {{ networks.moonbeam.staking.bond_lock }} rounds                             |
 
 _*Read more about [token denominations](#token-denominations)_
 
