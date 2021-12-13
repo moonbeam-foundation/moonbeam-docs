@@ -24,12 +24,12 @@ Once fully launched, Moonbeam will have the following configurations:
 Some important variables/configurations to note include (still subject to change):
 
 === "General"
-    |       Variable        |                                    Value                                    |
-    |:---------------------:|:---------------------------------------------------------------------------:|
-    |   Minimum gas price   |                 {{ networks.moonbeam.min_gas_price }} Gwei*                 |
-    |   Target block time   |  {{ networks.moonbeam.block_time }} seconds (expected to be 6     seconds)  |
-    |    Block gas limit    | {{ networks.moonbeam.gas_block }} (expected to increase by at     least 4x) |
-    | Transaction gas limit |  {{ networks.moonbeam.gas_tx }} (expected to increase by at     least 4x)   |
+    |       Variable        |                                  Value                                  |
+    |:---------------------:|:-----------------------------------------------------------------------:|
+    |   Minimum gas price   |               {{ networks.moonbeam.min_gas_price }} Gwei*               |
+    |   Target block time   |  {{ networks.moonbeam.block_time }} seconds (expected to be 6 seconds)  |
+    |    Block gas limit    | {{ networks.moonbeam.gas_block }} (expected to increase by at least 4x) |
+    | Transaction gas limit |  {{ networks.moonbeam.gas_tx }} (expected to increase by at least 4x)   |
 
 === "Governance"
     |         Variable         |                                                            Value                                                             |
@@ -38,18 +38,18 @@ Some important variables/configurations to note include (still subject to change
     | Fast-Track Voting Period | {{ networks.moonbeam.democracy.fast_vote_period.blocks}} blocks ({{networks.moonbeam.democracy.fast_vote_period.days}} days) |
     |     Enactment Period     |     {{ networks.moonbeam.democracy.enact_period.blocks}} blocks ({{networks.moonbeam.democracy.enact_period.days}} day)      |
     |     Cool-off Period      |      {{ networks.moonbeam.democracy.cool_period.blocks}} blocks ({{networks.moonbeam.democracy.cool_period.days}} days)      |
-    |     Minimum Deposit      |                                    {{ networks.moonbeam.democracy.    min_deposit }} MOVR                                    |
-    |      Maximum Votes       |                                       {{ networks.moonbeam.    democracy.max_votes }}                                        |
-    |    Maximum Proposals     |                                     {{ networks.moonbeam.democracy.    max_proposals }}                                      |
+    |     Minimum Deposit      |                                      {{ networks.moonbeam.democracy.min_deposit }} GLMR                                      |
+    |      Maximum Votes       |                                         {{ networks.moonbeam.democracy.max_votes }}                                          |
+    |    Maximum Proposals     |                                       {{ networks.moonbeam.democracy.max_proposals }}                                        |
 
 === "Staking"
-    |             Variable             |                                                    Value                                                    |
-    |:--------------------------------:|:-----------------------------------------------------------------------------------------------------------:|
-    |     Minimum nomination stake     |                          {{ networks.moonbeam.staking.    min_del_stake }} tokens                           |
-    | Maximum nominators per collators |                             {{ networks.moonbeam.staking.    max_del_per_can }}                             |
-    | Maximum collators per nominator  |                             {{ networks.moonbeam.staking.    max_del_per_del }}                             |
-    |              Round               | {{ networks.moonbeam.staking.round_blocks }} blocks ({{     networks.moonbeam.staking.round_hours }} hours) |
-    |          Bond duration           |                            {{ networks.moonbeam.staking.    bond_lock }} rounds                             |
+    |             Variable             |                                                  Value                                                  |
+    |:--------------------------------:|:-------------------------------------------------------------------------------------------------------:|
+    |     Minimum delegation stake     |                          {{ networks.moonbeam.staking.min_del_stake }} tokens                           |
+    | Maximum nominators per collators |                             {{ networks.moonbeam.staking.max_del_per_can }}                             |
+    | Maximum collators per nominator  |                             {{ networks.moonbeam.staking.max_del_per_del }}                             |
+    |              Round               | {{ networks.moonbeam.staking.round_blocks }} blocks ({{ networks.moonbeam.staking.round_hours }} hours) |
+    |          Bond duration           |                            {{ networks.moonbeam.staking.bond_lock }} rounds                             |
 
 _*Read more about [token denominations](#token-denominations)_
 
