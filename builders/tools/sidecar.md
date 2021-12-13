@@ -24,10 +24,10 @@ Running this service locally through NPM requires node.js to be installed.
 To install the Substrate API Sidecar service in the current directory, run this from the command line:
 
 ```
-npm install @substrate/api-sidecar@{{ networks.moonriver.substrate_api_sidecar.stable_version }}
+npm install @substrate/api-sidecar@{{ networks.parachain.substrate_api_sidecar.stable_version }}
 ```
 
-Substrate API Sidecar v{{ networks.moonriver.substrate_api_sidecar.stable_version }} is the current stable version that has been tested to work with Moonbeam networks. You can verify the installation was successful by typing from the installation directory root:
+Substrate API Sidecar v{{ networks.parachain.substrate_api_sidecar.stable_version }} is the current stable version that has been tested to work with Moonbeam networks. You can verify the installation was successful by typing from the installation directory root:
 
 ```
 node_modules/.bin/substrate-api-sidecar --version
@@ -121,7 +121,7 @@ The EVM fields are then mapped to the Substrate API Sidecar block JSON object as
 To calculate the gas spent or used during EVM execution of the transaction, the following formula can be used: 
 
 ```
-GasPrice * Tx Weight / {{ networks.moonriver.tx_weight_to_gas_ratio }}
+GasPrice * Tx Weight / {{ networks.parachain.tx_weight_to_gas_ratio }}
 ```
 
 where GasPrice can be read from the block according to the above table, and Tx Weight can be retrieved under the event of the relevant extrinsic where the `method` field is set to: 
