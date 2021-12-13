@@ -26,28 +26,26 @@ To get started quickly without the hassle of compiling the binary yourself, you 
 
 To get started use `wget` to grab the latest [release binary](https://github.com/PureStake/moonbeam/releases):
 
-
-=== "Moonbase Alpha"
+=== "Moonbeam"
     ```
-    wget https://github.com/PureStake/moonbeam/releases/download/{{ networks.moonbase.parachain_release_tag }}/moonbeam
+    wget https://github.com/PureStake/moonbeam/releases/download/{{ networks.moonbeam.parachain_release_tag }}/moonbeam
     ```
 
 === "Moonriver"
     ```
     wget https://github.com/PureStake/moonbeam/releases/download/{{ networks.moonriver.parachain_release_tag }}/moonbeam
     ``` 
-
-=== "Moonbeam"
+   
+=== "Moonbase Alpha"
     ```
-    wget https://github.com/PureStake/moonbeam/releases/download/{{ networks.moonbeam.parachain_release_tag }}/moonbeam
-    ``` 
-
+    wget https://github.com/PureStake/moonbeam/releases/download/{{ networks.moonbase.parachain_release_tag }}/moonbeam
+    ```
 
 To verify that you have downloaded the correct version, you can run `sha256sum moonbeam` in your terminal, you should receive the following output:
 
-=== "Moonbase Alpha"
+=== "Moonbeam"
     ```
-    {{ networks.moonbase.parachain_sha256sum }}
+    {{ networks.moonbeam.parachain_sha256sum }}
     ```
 
 === "Moonriver"
@@ -55,9 +53,9 @@ To verify that you have downloaded the correct version, you can run `sha256sum m
     {{ networks.moonriver.parachain_sha256sum }}
     ```
 
-=== "Moonbeam"
+=== "Moonbase Alpha"
     ```
-    {{ networks.moonbeam.parachain_sha256sum }}
+    {{ networks.moonbase.parachain_sha256sum }}
     ```
 
 Once you've retrieved the binary, you can skip ahead to the [Running the Systemd Service](#running-the-systemd-service) section to get started running your node.
@@ -115,9 +113,9 @@ The following commands will set up everything regarding running the service.
 
 First, let's create a service account to run the service:
 
-=== "Moonbase Alpha"
+=== "Moonbeam"
     ```
-    adduser moonbase_service --system --no-create-home
+    adduser moonbeam_service --system --no-create-home
     ```
 
 === "Moonriver"
@@ -125,40 +123,33 @@ First, let's create a service account to run the service:
     adduser moonriver_service --system --no-create-home
     ```
 
-=== "Moonbeam"
-    ```
-    adduser moonbeam_service --system --no-create-home
-    ```
-
-
-Next, create a directory to store the binary and data. Make sure you set the ownership and permissions accordingly for the local directory that stores the chain data.:
-
 === "Moonbase Alpha"
     ```
-    mkdir {{ networks.moonbase.node_directory }}
-    chown moonbase_service {{ networks.moonbase.node_directory }}
+    adduser moonbase_service --system --no-create-home
+    ```
+
+Next, create a directory to store the binary and data (you might need `sudo`):
+
+=== "Moonbeam"
+    ```
+    mkdir {{ networks.moonbeam.node_directory }}
     ```
 
 === "Moonriver"
     ```
     mkdir {{ networks.moonriver.node_directory }}
-    chown moonriver_service {{ networks.moonriver.node_directory }}
     ```
-
-
-=== "Moonbeam"
-    ```
-    mkdir {{ networks.moonbeam.node_directory }}
-    chown moonbeam_service {{ networks.moonbeam.node_directory }}
-    ```
-
-
-
-Now, copy the binary built in the last section to the created folder. If you [compiled the binary](#compile-the-binary) yourself, you'll need to copy the binary in the target directory (`./target/release/`). Otherwise, copy the Moonbeam binary in the root:
 
 === "Moonbase Alpha"
     ```
-    cp ./{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
+    mkdir {{ networks.moonbase.node_directory }}
+    ```
+
+Now, copy the binary built in the last section to the created folder. If you [compiled the binary](#compile-the-binary) yourself, you'll need to copy the binary in the target directory (`./target/release/`). Otherwise, copy the Moonbeam binary in the root (you might need sudo):
+
+=== "Moonbeam"
+    ```
+    cp ./{{ networks.moonbeam.binary_name }} {{ networks.moonbeam.node_directory }}
     ```
 
 === "Moonriver"
@@ -166,11 +157,27 @@ Now, copy the binary built in the last section to the created folder. If you [co
     cp ./{{ networks.moonriver.binary_name }} {{ networks.moonriver.node_directory }}
     ```
 
-=== "Moonbeam"
+=== "Moonbase Alpha"
     ```
-    cp ./{{ networks.moonbeam.binary_name }} {{ networks.moonbeam.node_directory }}
+    cp ./{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
     ```
 
+Next, make sure you set the ownership and permissions accordingly for the local directory that stores the chain data:
+
+=== "Moonbeam"
+    ```
+    sudo chown -R moonbeam_service {{ networks.moonbeam.node_directory }}
+    ```
+
+=== "Moonriver"
+    ```
+    sudo chown -R moonriver_service {{ networks.moonriver.node_directory }}
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    sudo chown -R moonbase_service {{ networks.moonbase.node_directory }}
+    ```
 
 The next step is to create the systemd configuration file. If you are setting up a collator node, make sure to follow the code snippets for "Collator". Note that you have to:
 
@@ -180,80 +187,6 @@ The next step is to create the systemd configuration file. If you are setting up
  - Name the file `/etc/systemd/system/moonbeam.service`
 
 #### Full Node {: #full-node } 
-
-=== "Moonbase Alpha"
-    ```
-    [Unit]
-    Description="Moonbase Alpha systemd service"
-    After=network.target
-    StartLimitIntervalSec=0
-
-    [Service]
-    Type=simple
-    Restart=on-failure
-    RestartSec=10
-    User=moonbase_service
-    SyslogIdentifier=moonbase
-    SyslogFacility=local7
-    KillSignal=SIGHUP
-    ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
-         --port {{ networks.parachain.p2p }} \
-         --rpc-port {{ networks.parachain.rpc }} \
-         --ws-port {{ networks.parachain.ws }} \
-         --execution wasm \
-         --wasm-execution compiled \
-         --pruning=archive \
-         --state-cache-size 1 \
-         --base-path {{ networks.moonbase.node_directory }} \
-         --chain {{ networks.moonbase.chain_spec }} \
-         --name "YOUR-NODE-NAME" \
-         -- \
-         --port {{ networks.relay_chain.p2p }} \
-         --rpc-port {{ networks.relay_chain.rpc }} \
-         --ws-port {{ networks.relay_chain.ws }} \
-         --pruning=archive \
-         --name="YOUR-NODE-NAME (Embedded Relay)"
-
-    [Install]
-    WantedBy=multi-user.target
-    ```
-
-=== "Moonriver"
-    ```
-    [Unit]
-    Description="Moonriver systemd service"
-    After=network.target
-    StartLimitIntervalSec=0
-    
-    [Service]
-    Type=simple
-    Restart=on-failure
-    RestartSec=10
-    User=moonriver_service
-    SyslogIdentifier=moonriver
-    SyslogFacility=local7
-    KillSignal=SIGHUP
-    ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
-         --port {{ networks.parachain.p2p }} \
-         --rpc-port {{ networks.parachain.rpc }} \
-         --ws-port {{ networks.parachain.ws }} \
-         --execution wasm \
-         --wasm-execution compiled \
-         --pruning=archive \
-         --state-cache-size 1 \
-         --base-path {{ networks.moonriver.node_directory }} \
-         --chain {{ networks.moonriver.chain_spec }} \
-         --name "YOUR-NODE-NAME" \
-         -- \
-         --port {{ networks.relay_chain.p2p }} \
-         --rpc-port {{ networks.relay_chain.rpc }} \
-         --ws-port {{ networks.relay_chain.ws }} \
-         --pruning=archive \
-         --name="YOUR-NODE-NAME (Embedded Relay)"
-    
-    [Install]
-    WantedBy=multi-user.target
-    ```
 
 === "Moonbeam"
     ```
@@ -266,7 +199,7 @@ The next step is to create the systemd configuration file. If you are setting up
     Type=simple
     Restart=on-failure
     RestartSec=10
-    User=moonriver_service
+    User=moonbeam_service
     SyslogIdentifier=moonbeam
     SyslogFacility=local7
     KillSignal=SIGHUP
@@ -285,6 +218,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --port {{ networks.relay_chain.p2p }} \
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
+         --execution wasm
          --pruning=archive \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
@@ -292,7 +226,43 @@ The next step is to create the systemd configuration file. If you are setting up
     WantedBy=multi-user.target
     ```
 
-#### Collator {: #collator } 
+=== "Moonriver"
+    ```
+    [Unit]
+    Description="Moonriver systemd service"
+    After=network.target
+    StartLimitIntervalSec=0
+    
+    [Service]
+    Type=simple
+    Restart=on-failure
+    RestartSec=10
+    User=moonriver_service
+    SyslogIdentifier=moonriver
+    SyslogFacility=local7
+    KillSignal=SIGHUP
+    ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
+         --port {{ networks.parachain.p2p }} \
+         --rpc-port {{ networks.parachain.rpc }} \
+         --ws-port {{ networks.parachain.ws }} \
+         --execution wasm \
+         --wasm-execution compiled \
+         --pruning=archive \
+         --state-cache-size 1 \
+         --base-path {{ networks.moonriver.node_directory }} \
+         --chain {{ networks.moonriver.chain_spec }} \
+         --name "YOUR-NODE-NAME" \
+         -- \
+         --port {{ networks.relay_chain.p2p }} \
+         --rpc-port {{ networks.relay_chain.rpc }} \
+         --ws-port {{ networks.relay_chain.ws }} \
+         --execution wasm
+         --pruning=archive \
+         --name="YOUR-NODE-NAME (Embedded Relay)"
+    
+    [Install]
+    WantedBy=multi-user.target
+    ```
 
 === "Moonbase Alpha"
     ```
@@ -310,7 +280,6 @@ The next step is to create the systemd configuration file. If you are setting up
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
-         --validator \
          --port {{ networks.parachain.p2p }} \
          --rpc-port {{ networks.parachain.rpc }} \
          --ws-port {{ networks.parachain.ws }} \
@@ -325,6 +294,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --port {{ networks.relay_chain.p2p }} \
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
+         --execution wasm
          --pruning=archive \
          --name="YOUR-NODE-NAME (Embedded Relay)"
 
@@ -332,43 +302,7 @@ The next step is to create the systemd configuration file. If you are setting up
     WantedBy=multi-user.target
     ```
 
-=== "Moonriver"
-    ```
-    [Unit]
-    Description="Moonriver systemd service"
-    After=network.target
-    StartLimitIntervalSec=0
-
-    [Service]
-    Type=simple
-    Restart=on-failure
-    RestartSec=10
-    User=moonriver_service
-    SyslogIdentifier=moonriver
-    SyslogFacility=local7
-    KillSignal=SIGHUP
-    ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
-         --validator \
-         --port {{ networks.parachain.p2p }} \
-         --rpc-port {{ networks.parachain.rpc }} \
-         --ws-port {{ networks.parachain.ws }} \
-         --execution wasm \
-         --wasm-execution compiled \
-         --pruning=archive \
-         --state-cache-size 1 \
-         --base-path {{ networks.moonriver.node_directory }} \
-         --chain {{ networks.moonriver.chain_spec }} \
-         --name "YOUR-NODE-NAME" \
-         -- \
-         --port {{ networks.relay_chain.p2p }} \
-         --rpc-port {{ networks.relay_chain.rpc }} \
-         --ws-port {{ networks.relay_chain.ws }} \
-         --pruning=archive \
-         --name="YOUR-NODE-NAME (Embedded Relay)"
-    
-    [Install]
-    WantedBy=multi-user.target
-    ```
+#### Collator {: #collator } 
 
 === "Moonbeam"
     ```
@@ -401,6 +335,46 @@ The next step is to create the systemd configuration file. If you are setting up
          --port {{ networks.relay_chain.p2p }} \
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
+         --execution wasm
+         --pruning=archive \
+         --name="YOUR-NODE-NAME (Embedded Relay)"
+    
+    [Install]
+    WantedBy=multi-user.target
+    ```
+    
+=== "Moonriver"
+    ```
+    [Unit]
+    Description="Moonriver systemd service"
+    After=network.target
+    StartLimitIntervalSec=0
+
+    [Service]
+    Type=simple
+    Restart=on-failure
+    RestartSec=10
+    User=moonriver_service
+    SyslogIdentifier=moonriver
+    SyslogFacility=local7
+    KillSignal=SIGHUP
+    ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
+         --validator \
+         --port {{ networks.parachain.p2p }} \
+         --rpc-port {{ networks.parachain.rpc }} \
+         --ws-port {{ networks.parachain.ws }} \
+         --execution wasm \
+         --wasm-execution compiled \
+         --pruning=archive \
+         --state-cache-size 1 \
+         --base-path {{ networks.moonriver.node_directory }} \
+         --chain {{ networks.moonriver.chain_spec }} \
+         --name "YOUR-NODE-NAME" \
+         -- \
+         --port {{ networks.relay_chain.p2p }} \
+         --rpc-port {{ networks.relay_chain.rpc }} \
+         --ws-port {{ networks.relay_chain.ws }} \
+         --execution wasm
          --pruning=archive \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
@@ -408,6 +382,47 @@ The next step is to create the systemd configuration file. If you are setting up
     WantedBy=multi-user.target
     ```
 
+=== "Moonbase Alpha"
+    ```
+    [Unit]
+    Description="Moonbase Alpha systemd service"
+    After=network.target
+    StartLimitIntervalSec=0
+
+    [Service]
+    Type=simple
+    Restart=on-failure
+    RestartSec=10
+    User=moonbase_service
+    SyslogIdentifier=moonbase
+    SyslogFacility=local7
+    KillSignal=SIGHUP
+    ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
+         --validator \
+         --port {{ networks.parachain.p2p }} \
+         --rpc-port {{ networks.parachain.rpc }} \
+         --ws-port {{ networks.parachain.ws }} \
+         --execution wasm \
+         --wasm-execution compiled \
+         --pruning=archive \
+         --state-cache-size 1 \
+         --base-path {{ networks.moonbase.node_directory }} \
+         --chain {{ networks.moonbase.chain_spec }} \
+         --name "YOUR-NODE-NAME" \
+         -- \
+         --port {{ networks.relay_chain.p2p }} \
+         --rpc-port {{ networks.relay_chain.rpc }} \
+         --ws-port {{ networks.relay_chain.ws }} \
+         --execution wasm
+         --pruning=archive \
+         --name="YOUR-NODE-NAME (Embedded Relay)"
+
+    [Install]
+    WantedBy=multi-user.target
+    ```
+
+!!! note
+    If you want to run an RPC endpoint, to connect Polkadot.js Apps, or to run your own application, use the flags `--unsafe-rpc-external` and/or `--unsafe-ws-external` to run the full node with external access to the RPC ports.  More details are available by running `moonbeam --help`. This is **not** recommended for Collators. 
 
 !!! note
     You can specify a custom Prometheus port with the `--prometheus-port XXXX` flag (replacing `XXXX` with the actual port number). This is possible for both the parachain and embedded relay chain.
@@ -445,14 +460,14 @@ If you want to update your client, you can keep your existing chain data in tact
 1. Stop the systemd service:
 
     ```
-    sudo systemctl stop moonbeam
+    sudo systemctl stop moonbeam.service
     ```
 
 2. Remove the old binary file:
     
-    === "Moonbase Alpha"
+    === "Moonbeam"
         ```
-        rm  {{ networks.moonbase.node_directory }}/moonbeam
+        rm  {{ networks.moonbeam.node_directory }}/moonbeam
         ```
 
     === "Moonriver"
@@ -460,10 +475,10 @@ If you want to update your client, you can keep your existing chain data in tact
         rm  {{ networks.moonriver.node_directory }}/moonbeam
         ```
 
-    === "Moonbeam"
+    === "Moonbase Alpha"
         ```
-        rm  {{ networks.moonbeam.node_directory }}/moonbeam
-       
+        rm  {{ networks.moonbase.node_directory }}/moonbeam
+        ```
 
 3. Get the latest version of Moonbeam from the [Moonbeam GitHub Release](https://github.com/PureStake/moonbeam/releases/) page
 
@@ -477,13 +492,13 @@ If you want to update your client, you can keep your existing chain data in tact
 
 5. Copy the binary to the data directory:
 
-    === "Moonbase Alpha"
+    === "Moonbeam"
         ```
         # If you used the release binary:
-        cp ./{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
+        cp ./{{ networks.moonbeam.binary_name }} {{ networks.moonbeam.node_directory }}
 
         # Or if you compiled the binary:
-        cp ./target/release/{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
+        cp ./target/release/{{ networks.moonbeam.binary_name }} {{ networks.moonbeam.node_directory }}
         ```
 
     === "Moonriver"
@@ -495,55 +510,49 @@ If you want to update your client, you can keep your existing chain data in tact
         cp ./target/release/{{ networks.moonriver.binary_name }} {{ networks.moonriver.node_directory }}
         ```
 
-    === "Moonbeam"
+    === "Moonbase Alpha"
         ```
         # If you used the release binary:
-        cp ./{{ networks.moonbeam.binary_name }} {{ networks.moonbeam.node_directory }}
+        cp ./{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
 
         # Or if you compiled the binary:
-        cp ./target/release/{{ networks.moonbeam.binary_name }} {{ networks.moonbeam.node_directory }}
+        cp ./target/release/{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
         ```
-
-
 
 6. Update permissions:
 
-    === "Moonbase Alpha"
-
+    === "Moonbeam"
         ```
         chmod +x moonbeam
-        chown moonbase_service moonbeam
+        chown moonbeam_service moonbeam
         ```
 
     === "Moonriver"
-
         ```
         chmod +x moonbeam
         chown moonriver_service moonbeam
         ```
 
-    === "Moonbeam"
-
+    === "Moonbase Alpha"
         ```
         chmod +x moonbeam
-        chown moonbeam_service moonbeam
-        ``
+        chown moonbase_service moonbeam
+        ```
 
 7. Start your service:
-
     ```
-    systemctl start moonbeam
+    systemctl start moonbeam.service
     ```
 
-To check the status of your updated node, you can run `systemctl status moonbeam.service`, or to see logs you can run `journalctl -f -u moonbeam.service`.
+To check the status of the service and/or logs, you can refer to the commands from before.
 
-### Purge Your Node {: #purge-your-node } 
+## Purge Your Node {: #purge-your-node } 
 
 If you need a fresh instance of your Moonbeam node, you can purge your node by removing the associated data directory.
 
 Depending on whether you used the release binary or compiled the binary yourself, the instructions for purging your chain data will slightly vary. If you compiled the binary yourself, you can skip ahead to the [Purge Compiled Binary](#purge-compiled-binary) section.
 
-#### Purge Release Binary {: #purge-release-binary } 
+### Purge Release Binary {: #purge-release-binary } 
 
 You'll first need to stop the systemd service:
 
@@ -553,69 +562,58 @@ sudo systemctl stop moonbeam
 
 To purge your parachain and relay chain data, you can run the following command:
 
-=== "Moonbase Alpha"
-
+=== "Moonbeam"
     ```
-    sudo rm -rf {{ networks.moonbase.node_directory }}/*
+    sudo rm -rf {{ networks.moonbeam.node_directory }}/*
     ```
 
 === "Moonriver"
-
     ```
     sudo rm -rf {{ networks.moonriver.node_directory }}/*
     ```
 
-=== "Moonbeam"
-
+=== "Moonbase Alpha"
     ```
-    sudo rm -rf {{ networks.moonbeam.node_directory }}/*
-   
-
+    sudo rm -rf {{ networks.moonbase.node_directory }}/*
+    ```
 
 To only remove the parachain data for a specific chain, you can run:
 
-=== "Moonbase Alpha"
-
-    ```
-    sudo rm -rf {{ networks.moonbase.node_directory }}/chains/*
-    ```
-
-=== "Moonriver"
-
-    ```
-    sudo rm -rf {{ networks.moonriver.node_directory }}/chains/*
-    ```
-
 === "Moonbeam"
-
     ```
     sudo rm -rf {{ networks.moonbeam.node_directory }}/chains/*
     ```
 
-Similarly, to only remove the relay chain data, you can run:
+=== "Moonriver"
+    ```
+    sudo rm -rf {{ networks.moonriver.node_directory }}/chains/*
+    ```
 
 === "Moonbase Alpha"
+    ```
+    sudo rm -rf {{ networks.moonbase.node_directory }}/chains/*
+    ```
 
-    ```
-    sudo rm -rf {{ networks.moonbase.node_directory }}/polkadot/*
-    ```
-
-=== "Moonriver"
-
-    ```
-    sudo rm -rf {{ networks.moonriver.node_directory }}/polkadot/*
-    ```
+Similarly, to only remove the relay chain data, you can run:
 
 === "Moonbeam"
-
     ```
     sudo rm -rf {{ networks.moonbeam.node_directory }}/polkadot/*
     ```
 
+=== "Moonriver"
+    ```
+    sudo rm -rf {{ networks.moonriver.node_directory }}/polkadot/*
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    sudo rm -rf {{ networks.moonbase.node_directory }}/polkadot/*
+    ```
 
 --8<-- 'text/purge-chain/post-purge.md'
 
-#### Purge Compiled Binary {: #purge-compiled-binary } 
+### Purge Compiled Binary {: #purge-compiled-binary } 
 
 If you want to start a fresh instance of a node, there are a handful of `purge-chain` commands available to you which will remove your previous chain data as specified. The base command which will remove both the parachain and relay chain data is:
 

@@ -28,12 +28,12 @@ Running a parachain node is similar to a typical Substrate node, but there are s
 
 The minimum specs recommended to run a node are shown in the following table. For our Kusama and Polkadot MainNet deployments, disk requirements will be higher as the network grows.
 
-=== "Moonbase Alpha"
+=== "Moonbeam"
     |  Component   |  | Requirement                                                                                                                |
     |:------------:|::|:---------------------------------------------------------------------------------------------------------------------------|
-    |   **CPU**    |  | {{ networks.moonbase.node.cores }} Cores (Fastest per core speed)                                                          |
-    |   **RAM**    |  | {{ networks.moonbase.node.ram }} GB                                                                                        |
-    |   **SSD**    |  | {{ networks.moonbase.node.hd }} GB (to start)                                                                              |
+    |   **CPU**    |  | {{ networks.moonbeam.node.cores }} Cores (Fastest per core speed)                                                         |
+    |   **RAM**    |  | {{ networks.moonbeam.node.ram }} GB                                                                                       |
+    |   **SSD**    |  | {{ networks.moonbeam.node.hd }} GB (to start)                                                                             |
     | **Firewall** |  | P2P port must be open to incoming traffic:<br>&nbsp; &nbsp; - Source: Any<br>&nbsp; &nbsp; - Destination: 30333, 30334 TCP |
 
 === "Moonriver"
@@ -44,14 +44,13 @@ The minimum specs recommended to run a node are shown in the following table. Fo
     |   **SSD**    |  | {{ networks.moonriver.node.hd }} GB (to start)                                                                             |
     | **Firewall** |  | P2P port must be open to incoming traffic:<br>&nbsp; &nbsp; - Source: Any<br>&nbsp; &nbsp; - Destination: 30333, 30334 TCP |
 
-=== "Moonbeam"
+=== "Moonbase Alpha"
     |  Component   |  | Requirement                                                                                                                |
     |:------------:|::|:---------------------------------------------------------------------------------------------------------------------------|
-    |   **CPU**    |  | {{ networks.moonbeam.node.cores }} Cores (Fastest per core speed)                                                         |
-    |   **RAM**    |  | {{ networks.moonbeam.node.ram }} GB                                                                                       |
-    |   **SSD**    |  | {{ networks.moonbeam.node.hd }} GB (to start)                                                                             |
+    |   **CPU**    |  | {{ networks.moonbase.node.cores }} Cores (Fastest per core speed)                                                          |
+    |   **RAM**    |  | {{ networks.moonbase.node.ram }} GB                                                                                        |
+    |   **SSD**    |  | {{ networks.moonbase.node.hd }} GB (to start)                                                                              |
     | **Firewall** |  | P2P port must be open to incoming traffic:<br>&nbsp; &nbsp; - Source: Any<br>&nbsp; &nbsp; - Destination: 30333, 30334 TCP |
-
 
 !!! note
     If you don't see an `Imported` message (without the `[Relaychain]` tag) when running a node, you might need to double-check your port configuration.
@@ -60,7 +59,7 @@ The minimum specs recommended to run a node are shown in the following table. Fo
 
 As stated before, the relay/parachain nodes will listen on multiple ports. The default Substrate ports are used in the parachain, while the relay chain will listen on the next higher port.
 
-The only ports that need to be open for incoming traffic are those designated for P2P.
+The only ports that need to be open for incoming traffic are those designated for P2P. **Collators must not have RPC or WS ports opened**.
 
 ### Default Ports for a Parachain Full-Node {: #default-ports-for-a-parachain-full-node } 
 
