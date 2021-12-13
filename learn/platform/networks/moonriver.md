@@ -5,7 +5,7 @@ description: An overview of the current configuration of the Moonbeam deployment
 
 # Moonriver
 
-_Updated November 30th, 2021_
+_Updated December 13th, 2021_
 
 ## Goal {: #goal } 
 
@@ -15,25 +15,25 @@ In order to collect as much feedback as possible and provide fast issue resoluti
 
 ## Initial Configurations {: #initial-configurations } 
 
-Moonriver has the following configurations:
+Currently, Moonriver has the following configurations:
 
 - Runs as a parachain connected to the Kusama relay chain
 - Has an active set of {{ networks.moonriver.staking.max_candidates }} collators
-- There are two RPC endpoints (hosted by PureStake). People can run full nodes to access their own private RPC endpoints
+- It has infrastructure providers that provide [API endpoints](/builders/get-started/endpoints/) to connect to the network. Projects can also [run their own node](/node-operators/networks/run-a-node/) to have access to their own private endpoints
 
 ![Moonriver Diagram](/images/learn/platform/networks/moonriver-diagram.png)
 
 Some important variables/configurations to note include:
 
 === "General"
-    |       Variable        |                                  Value                                   |
-    |:---------------------:|:------------------------------------------------------------------------:|
-    |   Minimum gas price   |               {{ networks.moonriver.min_gas_price }} Gwei*               |
-    |   Target block time   |  {{ networks.moonriver.block_time }} seconds (expected to be 6 seconds)  |
-    |    Block gas limit    | {{ networks.moonriver.gas_block }} (expected to increase by at least 4x) |
-    | Transaction gas limit |  {{ networks.moonriver.gas_tx }} (expected to increase by at least 4x)   |
-    |     RPC endpoint      |                     {{ networks.moonriver.rpc_url }}                     |
-    |     WSS endpoint      |                     {{ networks.moonriver.wss_url }}                     |
+    |       Variable        |                                    Value                                     |
+    |:---------------------:|:----------------------------------------------------------------------------:|
+    |   Minimum gas price   |                 {{ networks.moonriver.min_gas_price }} Gwei*                 |
+    |   Target block time   |  {{ networks.moonriver.block_time }} seconds (expected to be 6     seconds)  |
+    |    Block gas limit    | {{ networks.moonriver.gas_block }} (expected to increase by at     least 4x) |
+    | Transaction gas limit |  {{ networks.moonriver.gas_tx }} (expected to increase by at     least 4x)   |
+    |     RPC endpoint      |                       {{ networks.moonriver.rpc_url }}                       |
+    |     WSS endpoint      |                       {{ networks.moonriver.wss_url }}                       |
 
 === "Governance"
     |         Variable         |                                                             Value                                                              |
@@ -51,7 +51,7 @@ Some important variables/configurations to note include:
     |:---------------------------------:|:---------------------------------------------------------------------------------------------------------:|
     |     Minimum delegation stake      |                           {{ networks.moonriver.staking.min_del_stake }} tokens                           |
     | Maximum delegators per candidates |                             {{ networks.moonriver.staking.max_del_per_can }}                              |
-    | Maximum candidates per delegator  |                             {{ networks.moonriver.staking.max_delegations_per_delegator }}                              |
+    | Maximum candidates per delegator  |                             {{ networks.moonriver.staking.max_del_per_del }}                              |
     |               Round               | {{ networks.moonriver.staking.round_blocks }} blocks ({{ networks.moonriver.staking.round_hours }} hours) |
     |           Bond duration           |                             {{ networks.moonriver.staking.bond_lock }} rounds                             |
 
@@ -84,7 +84,7 @@ The smallest unit of Moonriver, similarly to Ethereum, is a Wei. It takes 10^18 
 
 ## Proof of Stake {: #proof-of-stake } 
 
-The Moonriver network is a fully decentralized Delegated Proof of Stake network where users of the network can delegate collator candidates to produce blocks and earn rewards. The number of candidates in the active set will be subject to governance. The active set will consist of the top candidates by stake, including delegations.
+The Moonriver network is a fully decentralized Delegated Proof of Stake network where users of the network can delegate collator candidates to produce blocks and earn rewards. It uses the [Nimbus framework](/learn/features/consensus/) framework for parachain consensus. The number of candidates in the active set will be subject to governance. The active set will consist of the top candidates by stake, including delegations. 
 
 ## Limitations {: #limitations } 
 

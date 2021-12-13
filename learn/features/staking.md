@@ -26,7 +26,7 @@ Collator candidates (and token holders if they delegate) have a stake in the net
     - **Minimum delegation amount** — {{ networks.moonriver.staking.min_del_stake }} MOVR
     - **Round duration** — {{ networks.moonriver.staking.round_blocks }} blocks, time per round is approximately {{ networks.moonriver.staking.round_hours }} hour
     - **Max eligible delegators per candidate** — for a given round, only the top {{ networks.moonriver.staking.max_del_per_can }} delegators by staked amount are eligible for staking rewards
-    - **Max delegations per delegator** — a delegator can delegate {{ networks.moonriver.staking.max_delegations_per_delegator }} different candidates
+    - **Max delegations per delegator** — a delegator can delegate {{ networks.moonriver.staking.max_del_per_del }} different candidates
     - **Bonding duration** — delegation takes effect in the next round (funds are withdrawn immediately)
     - **Unbonding duration** — {{ networks.moonriver.staking.bond_lock }} rounds
     - **Reward payout time** — {{ networks.moonriver.delegator_timings.rewards_payouts.rounds }} rounds. Rewards are distributed automatically to the free balance
@@ -43,7 +43,7 @@ Collator candidates (and token holders if they delegate) have a stake in the net
     - **Minimum delegation amount** — {{ networks.moonbase.staking.min_del_stake }} DEV
     - **Round duration** — {{ networks.moonbase.staking.round_blocks }} blocks, time per round is approximately {{ networks.moonbase.staking.round_hours }} hour
     - **Max eligible delegators per collator** — for a given round, only the top {{ networks.moonbase.staking.max_del_per_can }} delegators by staked amount are eligible for staking rewards
-    - **Max delegations per delegator** — a delegator can delegated {{ networks.moonbase.staking.max_delegations_per_delegator }} different candidates
+    - **Max delegations per delegator** — a delegator can delegated {{ networks.moonbase.staking.max_del_per_del }} different candidates
     - **Bonding duration** — delegation takes effect in the next round (funds are withdrawn immediately)
     - **Unbonding duration** — {{ networks.moonbase.staking.bond_lock }} rounds
     - **Reward payout time** — {{ networks.moonbase.delegator_timings.rewards_payouts.rounds }} rounds. Rewards are distributed automatically to the free balance
