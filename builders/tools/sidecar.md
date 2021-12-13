@@ -13,47 +13,44 @@ Substrate API Sidecar allows applications to access blocks, account balance, and
 
 There are multiple ways of installing and running the Substrate API Sidecar. This guide will describe the steps for installing and running it locally through NPM. For running Substrate API Sidecar through Docker, or building and running it from source, please refer to the [Substrate API Sidecar Github Repository](https://github.com/paritytech/substrate-api-sidecar#readme).
 
-### Prerequisites {: #prerequisites }
+### Checking Prerequisites {: #checking-prerequisites }
 
 Running this service locally through NPM requires node.js to be installed. 
 
 --8<-- 'text/common/install-nodejs.md'
 
-### Installation {: #installation }
+#### Installing the Substrate API Sidecar {: #installing-the-substrate-api-sidecar }
 
-To install the Substrate API Sidecar service globally, run this from the command line:
-
-```
-npm install -g @substrate/api-sidecar@9.2.0
-```
-
-Substrate API Sidecar v9.2.0 is the current stable version that has been tested to work with Moonbeam networks. You can verify the installation was successful by typing:
+To install the Substrate API Sidecar service in the current directory, run this from the command line:
 
 ```
-substrate-api-sidecar --version
+npm install @substrate/api-sidecar@{{ networks.moonriver.substrate_api_sidecar.stable_version }}
 ```
 
-### Set Environmental Variables {: #set-environmental-variables }
-
-In the shell that Sidecar will run, export the environmental variable for the WS endpoint of the network: 
+Substrate API Sidecar v{{ networks.moonriver.substrate_api_sidecar.stable_version }} is the current stable version that has been tested to work with Moonbeam networks. You can verify the installation was successful by typing from the installation directory root:
 
 ```
-export SAS_SUBSTRATE_WS_URL=WEBSOCKET ENDPOINT OF THE NODE/NETWORK
+node_modules/.bin/substrate-api-sidecar --version
 ```
 
-Examples: 
+## Setting up the Substrate API Sidecar {: #setting-up-the-substrate-api-sidecar }
 
-For local node (default endpoint):
+In the terminal that Sidecar will run, export the environmental variable for the WS endpoint of the network. Examples: 
 
-```
-export SAS_SUBSTRATE_WS_URL=ws://127.0.0.1:9944
-```
+=== "Moonriver"
+    ```
+    export SAS_SUBSTRATE_WS_URL=wss://wss.moonriver.moonbeam.network
+    ```
 
-For Moonriver Public Endpoint:
+=== "Moonbase Alpha"
+    ```
+    export SAS_SUBSTRATE_WS_URL=wss://wss.testnet.moonbeam.network
+    ```
 
-```
-export SAS_SUBSTRATE_WS_URL=wss://wss.moonriver.moonbeam.network
-```
+=== "Moonbeam Dev Node (Default)"
+    ```
+    export SAS_SUBSTRATE_WS_URL=ws://127.0.0.1:9944
+    ```
 
 Please reference the [Public Endpoints](/builders/get-started/endpoints/) page for a full list of Moonbeam network endpoints.
 
@@ -65,12 +62,12 @@ echo $SAS_SUBSTRATE_WS_URL
 
 And it should display the network endpoint you have just set. 
 
-### Running Substrate API Sidecar {: #running-substrate-api-sidecar } 
+## Running Substrate API Sidecar {: #running-substrate-api-sidecar } 
 
-In the current shell with the environmental variables, run:
+With the network endpoint environmental variable set, and from the installation directory root, run:
 
 ```
-substrate-api-sidecar  
+node_modules/.bin/substrate-api-sidecar 
 ```
 
 If the installation and configuration are successful, you should see this output in the console: 
@@ -89,6 +86,55 @@ Some of the commonly used Substrate API Sidecar endpoints include:
  - **GET /runtime/metadata** — Get the runtime metadata in decoded, JSON form.
 
 For a full list of API endpoints available on Substrate API Sidecar, please refer to the [official documentation](https://paritytech.github.io/substrate-api-sidecar/dist/).
+
+## EVM Field Mapping in Block JSON Object {: #evm-fields-mapping-in-block-json-object}
+
+Substrate API Sidecar returns Moonbeam blocks as a JSON object. Information related to EVM execution of Moonbeam transactions is under the `extrinsics` top level field, where individual extrinsics are organized numerically as nested JSON objects. 
+
+Moonbeam EVM transactions can be identify by the `method` field under the current extrinsic object, where it is set to:
+
+```
+pallet: "ethereum", method: "transact" 
+```
+
+To obtain the EVM sender address, recipient address, and EVM hash, check the `events` field under the current extrinsic object, and identify the event where the `method` field is set to:
+
+```
+pallet: "ethereum", method: "Executed" 
+```
+
+The EVM fields are then mapped to the Substrate API Sidecar block JSON object as following:
+
+| EVM Field     | Block JSON Field                          |
+| ----------- | ------------------------------------ |
+| `Nonce`       | extrinsics.{extrinsic number}.args.transaction.nonce |
+| `GasPrice`       | extrinsics.{extrinsic number}.args.transaction.gasPrice |
+| `GasLimit`    | extrinsics.{extrinsic number}.args.transaction.gasLimit |
+| `Signature`       | extrinsics.{extrinsic number}.args.transaction.signature |
+| `Sender Address`       | extrinsics.{extrinsic number}.events.{event number}.data.0 |
+| `Recipient Address`    | extrinsics.{extrinsic number}.events.{event number}.data.1 |
+| `EVM Hash`       | extrinsics.{extrinsic number}.events.{event number}.data.2 |
+| `EVM Execution Status`       | extrinsics.{extrinsic number}.events.{event number}.data.3 |
+
+### Computing Gas Spent {: #computing-gas-used } 
+
+To calculate the gas spent or used during EVM execution of the transaction, the following formula can be used: 
+
+```
+GasPrice * Tx Weight / {{ networks.moonriver.tx_weight_to_gas_ratio }}
+```
+
+where GasPrice can be read from the block according to the above table, and Tx Weight can be retrieved under the event of the relevant extrinsic where the `method` field is set to: 
+
+```
+pallet: "system", method: "ExtrinsicSuccess" 
+```
+
+And Tx Weight is mapped to the following field of the block JSON object:
+
+```
+extrinsics.{extrinsic number}.events.{event number}.data.0.weight
+```
 
 ## Public Moonbeam Sidecar Deployments  {: #public-moonbeam-sidecar-deployments }
 
