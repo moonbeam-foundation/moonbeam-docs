@@ -86,13 +86,13 @@ Next, navigate to the Networks tab and click on the "Add Network" button.
 
 Here you can configure MetaMask for the following networks:
 
-=== "Moonbeam Development Node"
+=== "Moonriver"
 
-    - Network Name: `Moonbeam Dev`
-    - RPC URL: `{{ networks.development.rpc_url }}`
-    - ChainID: `{{ networks.development.chain_id }}` ((hex: `{{ networks.development.hex_chain_id }}`))
-    - Symbol (Optional): `DEV`
-    - Block Explorer (Optional): `{{ networks.development.block_explorer }}`
+    - Network Name: `Moonriver`
+    - RPC URL: `{{ networks.moonriver.rpc_url }}`
+    - ChainID: `{{ networks.moonriver.chain_id }}` (hex: `{{ networks.moonriver.hex_chain_id }}`)
+    - Symbol (Optional): `MOVR`
+    - Block Explorer (Optional): `{{ networks.moonriver.block_explorer }}`
 
 === "Moonbase Alpha"
 
@@ -102,13 +102,13 @@ Here you can configure MetaMask for the following networks:
     - Symbol (Optional): `DEV`
     - Block Explorer (Optional): `{{ networks.moonbase.block_explorer }}`
 
-=== "Moonriver"
+=== "Moonbeam Development Node"
 
-    - Network Name: `Moonriver`
-    - RPC URL: `{{ networks.moonriver.rpc_url }}`
-    - ChainID: `{{ networks.moonriver.chain_id }}` (hex: `{{ networks.moonriver.hex_chain_id }}`)
-    - Symbol (Optional): `MOVR`
-    - Block Explorer (Optional): `{{ networks.moonriver.block_explorer }}`
+    - Network Name: `Moonbeam Dev`
+    - RPC URL: `{{ networks.development.rpc_url }}`
+    - ChainID: `{{ networks.development.chain_id }}` ((hex: `{{ networks.development.hex_chain_id }}`))
+    - Symbol (Optional): `DEV`
+    - Block Explorer (Optional): `{{ networks.development.block_explorer }}`
 
 ![MetaMask5](/images/tokens/connect/metamask/metamask-8.png)
 

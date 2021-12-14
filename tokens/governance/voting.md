@@ -35,6 +35,14 @@ Some of the key parameters for this guide are the following:
  - **Lock period** — the time (after the proposal's enactment) that tokens of the winning voters are locked. Users can still use these tokens for staking or voting
  - **Delegation** — the act of transferring your voting power to another account for up to a certain conviction
 
+=== "Moonriver"
+
+    |        Variable         |  |                                                          Value                                                          |
+    |:-----------------------:|::|:-----------------------------------------------------------------------------------------------------------------------:|
+    |      Enact Period       |  | {{ networks.moonriver.democracy.enact_period.blocks}} blocks ({{ networks.moonriver.democracy.enact_period.days}} days) |
+    | Maximum Number of Votes |  |                                       {{ networks.moonriver.democracy.max_votes}}                                       |
+    |       Vote Period       |  |  {{ networks.moonriver.democracy.vote_period.blocks}} blocks ({{ networks.moonriver.democracy.vote_period.days}} days)  |
+
 === "Moonbase Alpha"
 
     |        Variable         |  |                                                         Value                                                         |
@@ -43,13 +51,6 @@ Some of the key parameters for this guide are the following:
     | Maximum Number of Votes |  |                                      {{ networks.moonbase.democracy.max_votes}}                                       |
     |       Vote Period       |  |  {{ networks.moonbase.democracy.vote_period.blocks}} blocks ({{ networks.moonbase.democracy.vote_period.days}} days)  |
 
-=== "Moonriver"
-
-    |        Variable         |  |                                                          Value                                                          |
-    |:-----------------------:|::|:-----------------------------------------------------------------------------------------------------------------------:|
-    |      Enact Period       |  | {{ networks.moonriver.democracy.enact_period.blocks}} blocks ({{ networks.moonriver.democracy.enact_period.days}} days) |
-    | Maximum Number of Votes |  |                                       {{ networks.moonriver.democracy.max_votes}}                                       |
-    |       Vote Period       |  |  {{ networks.moonriver.democracy.vote_period.blocks}} blocks ({{ networks.moonriver.democracy.vote_period.days}} days)  |
 
 This guide will show you how to vote on a referendum on Moonbase Alpha.
 

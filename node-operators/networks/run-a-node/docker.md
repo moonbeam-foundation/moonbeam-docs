@@ -18,16 +18,19 @@ A Moonbeam node can be spun up quickly using Docker. For more information on ins
 Create a local directory to store the chain data:
 
 === "Moonbeam"
+
     ```
     mkdir {{ networks.moonbeam.node_directory }}
     ```
 
 === "Moonriver"
+
     ```
     mkdir {{ networks.moonriver.node_directory }}
     ```
 
 === "Moonbase Alpha"
+
     ```
     mkdir {{ networks.moonbase.node_directory }}
     ```
@@ -36,6 +39,7 @@ Create a local directory to store the chain data:
 Next, make sure you set the ownership and permissions accordingly for the local directory that stores the chain data. In this case, set the necessary permissions either for a specific or current user (replace `DOCKER_USER` for the actual user that will run the `docker` command):
 
 === "Moonbeam"
+
     ```
     # chown to a specific user
     chown DOCKER_USER {{ networks.moonbeam.node_directory }}
@@ -45,6 +49,7 @@ Next, make sure you set the ownership and permissions accordingly for the local 
     ```
 
 === "Moonriver"
+
     ```
     # chown to a specific user
     chown DOCKER_USER {{ networks.moonriver.node_directory }}
@@ -54,6 +59,7 @@ Next, make sure you set the ownership and permissions accordingly for the local 
     ```
 
 === "Moonbase Alpha"
+
     ```
     # chown to a specific user
     chown DOCKER_USER {{ networks.moonbase.node_directory }}
@@ -70,6 +76,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
 ### Full Node {: #full-node } 
 
 === "Moonbeam"
+
     ```
     docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
@@ -89,6 +96,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
     ```
 
 === "Moonriver"
+
     ```
     docker run --network="host" -v "{{ networks.moonriver.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
@@ -108,6 +116,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
     ```
 
 === "Moonbase Alpha"
+
     ```
     docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
@@ -129,6 +138,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
 ### Collator {: #collator } 
 
 === "Moonbeam"
+
     ```
     docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
@@ -149,6 +159,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
     ```
 
 === "Moonriver"
+
     ```
     docker run --network="host" -v "{{ networks.moonriver.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
@@ -169,6 +180,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
     ```
     
 === "Moonbase Alpha"
+
     ```
     docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
@@ -247,16 +259,19 @@ If you did not use the `-v` flag to specify a local directory for storing your c
 If you did spin up your node with the `-v` flag, you will need to purge the specified directory. For example, for the suggested data directly, you can run the following command to purge your parachain and relay chain data:
 
 === "Moonbeam"
+
     ```
     sudo rm -rf {{ networks.moonbeam.node_directory }}/*
     ```
 
 === "Moonriver"
+
     ```
     sudo rm -rf {{ networks.moonriver.node_directory }}/*
     ```
 
 === "Moonbase Alpha"
+
     ```
     sudo rm -rf {{ networks.moonbase.node_directory }}/*
     ```
@@ -265,16 +280,19 @@ If you did spin up your node with the `-v` flag, you will need to purge the spec
 To only remove the parachain data for a specific chain, you can run:
 
 === "Moonbeam"
+
     ```
     sudo rm -rf {{ networks.moonbeam.node_directory }}/chains/*
     ```
 
 === "Moonriver"
+
     ```
     sudo rm -rf {{ networks.moonriver.node_directory }}/chains/*
     ```
 
 === "Moonbase Alpha"
+
     ```
     sudo rm -rf {{ networks.moonbase.node_directory }}/chains/*
     ```
@@ -282,16 +300,19 @@ To only remove the parachain data for a specific chain, you can run:
 Similarly, to only remove the relay chain data, you can run:
 
 === "Moonbeam"
+
     ```
     sudo rm -rf {{ networks.moonbeam.node_directory }}/polkadot/*
     ```
 
 === "Moonriver"
+
     ```
     sudo rm -rf {{ networks.moonriver.node_directory }}/polkadot/*
     ```
 
 === "Moonbase Alpha"
+
     ```
     sudo rm -rf {{ networks.moonbase.node_directory }}/polkadot/*
     ```

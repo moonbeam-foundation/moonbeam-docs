@@ -14,10 +14,13 @@ Moonbeam uses a Delegated Proof of Stake system through a [Parachain-Staking](ht
 The Staking module is coded in Rust and it is part of a pallet that is normally not accessible from the Ethereum side of Moonbeam. However, a Staking Precompile allows developers to access the staking features using the Ethereum API in a precompiled contract located at address:
 
 === "Moonriver"
+
      ```
      {{networks.moonriver.precompiles.staking}}
      ```
+
 === "Moonbase Alpha"
+
      ```
      {{networks.moonbase.precompiles.staking}}
      ```

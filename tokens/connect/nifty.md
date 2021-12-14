@@ -37,10 +37,10 @@ Navigate to the settings, in the top left corner, click on the POA dropdown. Scr
 
 Enter the RPC URL for Moonbeam in the New RPC URL Field:
 
-=== "Moonbeam Development Node"
+=== "Moonriver"
 
     ```
-      {{ networks.development.rpc_url }}
+      {{ networks.moonriver.rpc_url }}
     ```
     
 === "Moonbase Alpha"
@@ -49,12 +49,11 @@ Enter the RPC URL for Moonbeam in the New RPC URL Field:
       {{ networks.moonbase.rpc_url }}
     ```
 
-=== "Moonriver"
+=== "Moonbeam Development Node"
 
     ```
-      {{ networks.moonriver.rpc_url }}
+      {{ networks.development.rpc_url }}
     ```
-
 
 Then click "Save".
 

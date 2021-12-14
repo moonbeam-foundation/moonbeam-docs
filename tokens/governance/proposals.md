@@ -34,7 +34,17 @@ Some of the key parameters for this guide are the following:
  - **Launch period** — how often new public referenda are launched
  - **Cool-off period** — duration (in blocks) in which a proposal may not be re-submitted after being vetoed
 
+=== "Moonriver"
+
+    |         Variable         |  |                                                           Value                                                           |
+    |:------------------------:|::|:-------------------------------------------------------------------------------------------------------------------------:|
+    |      Launch Period       |  | {{ networks.moonriver.democracy.launch_period.blocks}} blocks ({{ networks.moonriver.democracy.launch_period.days}} days) |
+    |     Cool-off Period      |  |   {{ networks.moonriver.democracy.cool_period.blocks}} blocks ({{ networks.moonriver.democracy.cool_period.days}} days)   |
+    | Minimum Preimage Deposit |  |                                  {{ networks.moonriver.democracy.min_preim_deposit}} MOVR                                 |
+    | Minimum Proposal Deposit |  |                                     {{ networks.moonriver.democracy.min_deposit}} MOVR                                    |
+
 === "Moonbase Alpha"
+
     |         Variable         |  |                                                          Value                                                          |
     |:------------------------:|::|:-----------------------------------------------------------------------------------------------------------------------:|
     |      Launch Period       |  | {{ networks.moonbase.democracy.launch_period.blocks}} blocks ({{ networks.moonbase.democracy.launch_period.days}} days) |
@@ -42,13 +52,6 @@ Some of the key parameters for this guide are the following:
     | Minimum Preimage Deposit |  |                                 {{ networks.moonbase.democracy.min_preim_deposit}} DEV                                  |
     | Minimum Proposal Deposit |  |                                    {{ networks.moonbase.democracy.min_deposit}} DEV                                     |
 
-=== "Moonriver"
-    |         Variable         |  |                                                           Value                                                           |
-    |:------------------------:|::|:-------------------------------------------------------------------------------------------------------------------------:|
-    |      Launch Period       |  | {{ networks.moonriver.democracy.launch_period.blocks}} blocks ({{ networks.moonriver.democracy.launch_period.days}} days) |
-    |     Cool-off Period      |  |   {{ networks.moonriver.democracy.cool_period.blocks}} blocks ({{ networks.moonriver.democracy.cool_period.days}} days)   |
-    | Minimum Preimage Deposit |  |                                  {{ networks.moonriver.democracy.min_preim_deposit}} MOVR                                 |
-    | Minimum Proposal Deposit |  |                                     {{ networks.moonriver.democracy.min_deposit}} MOVR                                    |
 
 This guide will show you how to submit a proposal on Moonbase Alpha.
 

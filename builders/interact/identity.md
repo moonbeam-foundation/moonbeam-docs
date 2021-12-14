@@ -27,13 +27,6 @@ To store your information on-chain, you must bond some funds, which eventually w
  
 - **Custom fields include** - any other relevant information. For example, you could include your Discord handle
 
-=== "Moonbase Alpha"
-    |        Variable       |                                Definition                               |                      Value                     |
-    |:---------------------:|:-----------------------------------------------------------------------:|:----------------------------------------------:|
-    |     Basic Deposit     |            The amount held on deposit for setting an identity           | {{ networks.moonbase.identity.basic_dep }} DEV |
-    |     Field Deposit     | The amount held on deposit per additional field for setting an identity | {{ networks.moonbase.identity.field_dep }} DEV |
-    | Max Additional Fields |     Maximum number of additional fields that may be stored in an ID     |   {{ networks.moonbase.identity.max_fields }}  |
-
 === "Moonriver"
     |        Variable       |                                Definition                               |                       Value                      |
     |:---------------------:|:-----------------------------------------------------------------------:|:------------------------------------------------:|
@@ -41,6 +34,12 @@ To store your information on-chain, you must bond some funds, which eventually w
     |     Field Deposit     | The amount held on deposit per additional field for setting an identity | {{ networks.moonriver.identity.field_dep }} MOVR |
     | Max Additional Fields |     Maximum number of additional fields that may be stored in an ID     |   {{ networks.moonriver.identity.max_fields }}   |
 
+=== "Moonbase Alpha"
+    |        Variable       |                                Definition                               |                      Value                     |
+    |:---------------------:|:-----------------------------------------------------------------------:|:----------------------------------------------:|
+    |     Basic Deposit     |            The amount held on deposit for setting an identity           | {{ networks.moonbase.identity.basic_dep }} DEV |
+    |     Field Deposit     | The amount held on deposit per additional field for setting an identity | {{ networks.moonbase.identity.field_dep }} DEV |
+    | Max Additional Fields |     Maximum number of additional fields that may be stored in an ID     |   {{ networks.moonbase.identity.max_fields }}  |
 
 ## Getting Started
 

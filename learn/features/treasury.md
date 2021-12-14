@@ -24,6 +24,15 @@ Some important terminology to understand in regards to treasuries:
 - **Spend period** — the amount of days, in blocks, during which the treasury funds as many proposals as possible without exceeding the maximum
 - **Maximum approved proposals** — the maximum amount of proposals that can wait in the spending queue
 
+=== "Moonriver"
+    |             Variable             |     |                                                             Value                                                      |
+    | :------------------------------: | :-: | :--------------------------------------------------------------------------------------------------------------------: |
+    |           Proposal bond          |     |                            {{ networks.moonriver.treasury.proposal_bond }}% of the proposed spend                       |
+    |       Proposal bond minimum      |     |                                  {{ networks.moonriver.treasury.proposal_bond_min }} MOVR                              |
+    |           Spend period           |     |  {{ networks.moonriver.treasury.spend_period_blocks }} blocks ({{ networks.moonriver.treasury.spend_period_days}} days)  |
+    |     Maximum approved proposals   |     |                                  {{ networks.moonriver.treasury.max_approved_proposals }}                               |
+     |     % of transaction fees allocated   |     |                                  {{ networks.moonriver.treasury.tx_fees_allocated }}                               |
+
 === "Moonbase Alpha"
     |             Variable             |     |                                                             Value                                                      |
     | :------------------------------: | :-: | :--------------------------------------------------------------------------------------------------------------------: |
@@ -33,14 +42,6 @@ Some important terminology to understand in regards to treasuries:
     |     Maximum approved proposals   |     |                                  {{ networks.moonbase.treasury.max_approved_proposals }}                               |
     |     % of transaction fees allocated   |     |                                  {{ networks.moonbase.treasury.tx_fees_allocated }}                               |
 
-=== "Moonriver"
-    |             Variable             |     |                                                             Value                                                      |
-    | :------------------------------: | :-: | :--------------------------------------------------------------------------------------------------------------------: |
-    |           Proposal bond          |     |                            {{ networks.moonriver.treasury.proposal_bond }}% of the proposed spend                       |
-    |       Proposal bond minimum      |     |                                  {{ networks.moonriver.treasury.proposal_bond_min }} MOVR                              |
-    |           Spend period           |     |  {{ networks.moonriver.treasury.spend_period_blocks }} blocks ({{ networks.moonriver.treasury.spend_period_days}} days)  |
-    |     Maximum approved proposals   |     |                                  {{ networks.moonriver.treasury.max_approved_proposals }}                               |
-     |     % of transaction fees allocated   |     |                                  {{ networks.moonriver.treasury.tx_fees_allocated }}                               |
 
 ## Community Treasury {: #community-treasury } 
 

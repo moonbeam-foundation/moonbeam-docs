@@ -117,14 +117,15 @@ Next, we import the private key that we've retrieved from MetaMask and store it 
 
 Inside the `module.exports`, we need to provide the Solidity version (`0.8.1` according to our contract file), and the network details:
 
-=== "Moonbeam Development Node"
-    ```      
-    dev: {
-        url: '{{ networks.development.rpc_url }}',
-        chainId: {{ networks.development.chain_id }}, //(hex: {{ networks.development.hex_chain_id }}),
-        accounts: [privateKeyDev] // Insert your private key here
+=== "Moonriver"
+    ```
+    moonriver: {
+        url: '{{ networks.moonriver.rpc_url }}',
+        chainId: {{ networks.moonriver.chain_id }}, //(hex: {{ networks.moonriver.hex_chain_id }}),
+        accounts: [privateKeyMoonriver] // Insert your private key here
       },
     ```
+
 === "Moonbase Alpha"
     ```
     moonbase: {
@@ -134,12 +135,12 @@ Inside the `module.exports`, we need to provide the Solidity version (`0.8.1` ac
       },
     ```
 
-=== "Moonriver"
-    ```
-    moonriver: {
-        url: '{{ networks.moonriver.rpc_url }}',
-        chainId: {{ networks.moonriver.chain_id }}, //(hex: {{ networks.moonriver.hex_chain_id }}),
-        accounts: [privateKeyMoonriver] // Insert your private key here
+=== "Moonbeam Development Node"
+    ```      
+    dev: {
+        url: '{{ networks.development.rpc_url }}',
+        chainId: {{ networks.development.chain_id }}, //(hex: {{ networks.development.hex_chain_id }}),
+        accounts: [privateKeyDev] // Insert your private key here
       },
     ```
 
