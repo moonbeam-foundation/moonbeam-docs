@@ -61,7 +61,7 @@ Once everything is set up, you need to modify the "Ethereum environment" inside 
     ethereum: 'mbase:{{ networks.development.rpc_url }}'
     ```
 
-=== "Moonbeam Development Node"
+=== "Moonbeam Dev Node"
 
     ```
     ethereum: 'mbase:{{ networks.development.rpc_url }}'

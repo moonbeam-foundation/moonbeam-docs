@@ -137,7 +137,7 @@ Inside the `module.exports`, we need to provide the Solidity version (`0.8.1` ac
       },
     ```
 
-=== "Moonbeam Development Node"
+=== "Moonbeam Dev Node"
 
     ```      
     dev: {

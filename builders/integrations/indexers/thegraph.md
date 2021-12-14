@@ -35,7 +35,7 @@ If you're familiar with The Graph and looking to learn how to dive right in on M
       network: mbase
     ```
 
-=== "Moonbeam Development Node"
+=== "Moonbeam Dev Node"
 
     ```
     dataSources:

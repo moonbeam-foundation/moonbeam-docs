@@ -120,7 +120,7 @@ Below you can find network configurations for all of our networks:
     },
     ```
 
-=== "Moonbeam Development Node"
+=== "Moonbeam Dev Node"
 
     ```
     dev: {
@@ -236,7 +236,7 @@ Now we are ready to deploy the compiled contracts. You can do this with the foll
     truffle migrate --network moonbase
     ```
 
-=== "Moonbeam Development Node"
+=== "Moonbeam Dev Node"
 
     ```
     truffle migrate --network dev

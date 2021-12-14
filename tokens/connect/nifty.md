@@ -49,7 +49,7 @@ Enter the RPC URL for Moonbeam in the New RPC URL Field:
       {{ networks.moonbase.rpc_url }}
     ```
 
-=== "Moonbeam Development Node"
+=== "Moonbeam Dev Node"
 
     ```
       {{ networks.development.rpc_url }}

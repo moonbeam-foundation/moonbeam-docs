@@ -102,7 +102,7 @@ Here you can configure MetaMask for the following networks:
     - Symbol (Optional): `DEV`
     - Block Explorer (Optional): `{{ networks.moonbase.block_explorer }}`
 
-=== "Moonbeam Development Node"
+=== "Moonbeam Dev Node"
 
     - Network Name: `Moonbeam Dev`
     - RPC URL: `{{ networks.development.rpc_url }}`

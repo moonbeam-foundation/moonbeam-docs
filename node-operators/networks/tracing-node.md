@@ -107,7 +107,7 @@ The complete command for running a tracing node is as follows:
     --name="Moonbeam-Tutorial (Embedded Relay)"
     ```
 
-  === "Moonbeam Development Node"
+  === "Moonbeam Dev Node"
 
     ```
     docker run --network="host" -v "/var/lib/alphanet-data:/data" \
