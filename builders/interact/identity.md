@@ -28,6 +28,7 @@ To store your information on-chain, you must bond some funds, which eventually w
 - **Custom fields include** - any other relevant information. For example, you could include your Discord handle
 
 === "Moonriver"
+
     |        Variable       |                                Definition                               |                       Value                      |
     |:---------------------:|:-----------------------------------------------------------------------:|:------------------------------------------------:|
     |     Basic Deposit     |            The amount held on deposit for setting an identity           | {{ networks.moonriver.identity.basic_dep }} MOVR |
@@ -35,6 +36,7 @@ To store your information on-chain, you must bond some funds, which eventually w
     | Max Additional Fields |     Maximum number of additional fields that may be stored in an ID     |   {{ networks.moonriver.identity.max_fields }}   |
 
 === "Moonbase Alpha"
+
     |        Variable       |                                Definition                               |                      Value                     |
     |:---------------------:|:-----------------------------------------------------------------------:|:----------------------------------------------:|
     |     Basic Deposit     |            The amount held on deposit for setting an identity           | {{ networks.moonbase.identity.basic_dep }} DEV |

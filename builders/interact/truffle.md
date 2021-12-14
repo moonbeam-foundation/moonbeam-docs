@@ -97,6 +97,7 @@ For deployments to the Moonbase Alpha TestNet or Moonriver, you need to provide 
 Below you can find network configurations for all of our networks:
 
 === "Moonriver"
+
     ```
     moonriver: {
       provider: () => {
@@ -108,6 +109,7 @@ Below you can find network configurations for all of our networks:
     ```
 
 === "Moonbase Alpha"
+
     ```
     moonbase: {
       provider: () => {
@@ -119,6 +121,7 @@ Below you can find network configurations for all of our networks:
     ```
 
 === "Moonbeam Development Node"
+
     ```
     dev: {
       provider: () => {

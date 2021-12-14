@@ -25,6 +25,7 @@ Some important terminology to understand in regards to treasuries:
 - **Maximum approved proposals** — the maximum amount of proposals that can wait in the spending queue
 
 === "Moonriver"
+
     |             Variable             |     |                                                             Value                                                      |
     | :------------------------------: | :-: | :--------------------------------------------------------------------------------------------------------------------: |
     |           Proposal bond          |     |                            {{ networks.moonriver.treasury.proposal_bond }}% of the proposed spend                       |
@@ -34,6 +35,7 @@ Some important terminology to understand in regards to treasuries:
      |     % of transaction fees allocated   |     |                                  {{ networks.moonriver.treasury.tx_fees_allocated }}                               |
 
 === "Moonbase Alpha"
+
     |             Variable             |     |                                                             Value                                                      |
     | :------------------------------: | :-: | :--------------------------------------------------------------------------------------------------------------------: |
     |           Proposal bond          |     |                            {{ networks.moonbase.treasury.proposal_bond }}% of the proposed spend                       |
