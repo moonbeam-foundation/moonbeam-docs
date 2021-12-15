@@ -29,17 +29,15 @@ With great power comes great responsibility. Some important parameters to unders
  - **Delegation** — act of transferring your voting power to another account for up to a certain conviction
 
 === "Moonriver"
-
-    |         Variable         |  |                                                              Value                                                              |
-    |:------------------------:|::|:-------------------------------------------------------------------------------------------------------------------------------:|
-    |      Voting Period       |  |      {{ networks.moonriver.democracy.vote_period.blocks}} blocks ({{ networks.moonriver.democracy.vote_period.days}} days)      |
-    | Fast-Track Voting Period |  | {{ networks.moonriver.democracy.fast_vote_period.blocks}} blocks ({{ networks.moonriver.democracy.fast_vote_period.days}} day)  |
-    |     Enactment Period     |  |     {{ networks.moonriver.democracy.enact_period.blocks}} blocks ({{ networks.moonriver.democracy.enact_period.days}} day)      |
-    |     Cool-off Period      |  |      {{ networks.moonriver.democracy.cool_period.blocks}} blocks ({{ networks.moonriver.democracy.cool_period.days}} days)      |
-    |     Minimum Deposit      |  |                                       {{ networks.moonriver.democracy.min_deposit }} MOVR                                       |
+    |         Variable         |  |                                                             Value                                                              |
+    |:------------------------:|::|:------------------------------------------------------------------------------------------------------------------------------:|
+    |      Voting Period       |  |     {{ networks.moonriver.democracy.vote_period.blocks}} blocks ({{ networks.moonriver.democracy.vote_period.days}} days)      |
+    | Fast-Track Voting Period |  | {{ networks.moonriver.democracy.fast_vote_period.blocks}} blocks ({{ networks.moonriver.democracy.fast_vote_period.days}} day) |
+    |     Enactment Period     |  |     {{ networks.moonriver.democracy.enact_period.blocks}} blocks ({{ networks.moonriver.democracy.enact_period.days}} day)     |
+    |     Cool-off Period      |  |     {{ networks.moonriver.democracy.cool_period.blocks}} blocks ({{ networks.moonriver.democracy.cool_period.days}} days)      |
+    |     Minimum Deposit      |  |                                      {{ networks.moonriver.democracy.min_deposit }} MOVR                                       |
 
 === "Moonbase Alpha"
-
     |         Variable         |  |                                                              Value                                                              |
     |:------------------------:|::|:-------------------------------------------------------------------------------------------------------------------------------:|
     |      Voting Period       |  |       {{ networks.moonbase.democracy.vote_period.blocks}} blocks ({{ networks.moonbase.democracy.vote_period.days}} days)       |

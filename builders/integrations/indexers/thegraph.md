@@ -22,21 +22,18 @@ Due to the support of Ethereum tracing modules in Moonbeam, The Graph is capable
 If you're familiar with The Graph and looking to learn how to dive right in on Moonbeam-based networks, you can use the following `network` configurations for your Subgraph manifest (`subgraph.yaml`):
 
 === "Moonriver"
-
     ```
     dataSources:
       network: moonriver
     ```
 
 === "Moonbase Alpha"
-
     ```
     dataSources:
       network: mbase
     ```
 
 === "Moonbeam Dev Node"
-
     ```
     dataSources:
       network: mbase

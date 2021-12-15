@@ -22,13 +22,11 @@ Running a tracing node requires you to have Docker installed. For more informati
 If you haven't previously run a standard full Moonbeam node, you will need to setup a directory to store chain data:
 
 === "Moonriver"
-
     ```
     mkdir {{ networks.moonriver.node_directory }}
     ```
 
 === "Moonbase Alpha"
-
     ```
     mkdir {{ networks.moonbase.node_directory }}
     ```
@@ -36,7 +34,6 @@ If you haven't previously run a standard full Moonbeam node, you will need to se
 Next, make sure you set the ownership and permissions accordingly for the local directory that stores the chain data. In this case, set the necessary permissions either for a specific or current user (replace `DOCKER_USER` for the actual user that will run the `docker` command):
 
 === "Moonriver"
-
     ```
     # chown to a specific user
     chown DOCKER_USER {{ networks.moonriver.node_directory }}
@@ -47,7 +44,6 @@ Next, make sure you set the ownership and permissions accordingly for the local 
 
 
 === "Moonbase Alpha"
-
     ```
     # chown to a specific user
     chown DOCKER_USER {{ networks.moonbase.node_directory }}
@@ -70,7 +66,6 @@ You will also need to start your node with the following flag(s) depending on th
 The complete command for running a tracing node is as follows:
 
 === "Moonriver"
-
     ```
     docker run --network="host" -v "/var/lib/alphanet-data:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
@@ -90,7 +85,6 @@ The complete command for running a tracing node is as follows:
     ```
 
 === "Moonbase Alpha"
-
     ```
     docker run --network="host" -v "/var/lib/alphanet-data:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
@@ -108,7 +102,6 @@ The complete command for running a tracing node is as follows:
     ```
 
 === "Moonbeam Dev Node"
-
     ```
     docker run --network="host" -v "/var/lib/alphanet-data:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \

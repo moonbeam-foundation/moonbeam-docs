@@ -97,7 +97,6 @@ For deployments to the Moonbase Alpha TestNet or Moonriver, you need to provide 
 Below you can find network configurations for all of our networks:
 
 === "Moonriver"
-
     ```
     moonriver: {
       provider: () => {
@@ -109,7 +108,6 @@ Below you can find network configurations for all of our networks:
     ```
 
 === "Moonbase Alpha"
-
     ```
     moonbase: {
       provider: () => {
@@ -121,7 +119,6 @@ Below you can find network configurations for all of our networks:
     ```
 
 === "Moonbeam Dev Node"
-
     ```
     dev: {
       provider: () => {
@@ -225,19 +222,16 @@ If successful, you should see output like the following:
 Now we are ready to deploy the compiled contracts. You can do this with the following command:
 
 === "Moonriver"
-
     ```
     truffle migrate --network moonriver
     ```
 
 === "Moonbase Alpha"
-
     ```
     truffle migrate --network moonbase
     ```
 
 === "Moonbeam Dev Node"
-
     ```
     truffle migrate --network dev
     ```

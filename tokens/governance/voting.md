@@ -36,7 +36,6 @@ Some of the key parameters for this guide are the following:
  - **Delegation** — the act of transferring your voting power to another account for up to a certain conviction
 
 === "Moonriver"
-
     |        Variable         |  |                                                          Value                                                          |
     |:-----------------------:|::|:-----------------------------------------------------------------------------------------------------------------------:|
     |      Enact Period       |  | {{ networks.moonriver.democracy.enact_period.blocks}} blocks ({{ networks.moonriver.democracy.enact_period.days}} days) |
@@ -44,7 +43,6 @@ Some of the key parameters for this guide are the following:
     |       Vote Period       |  |  {{ networks.moonriver.democracy.vote_period.blocks}} blocks ({{ networks.moonriver.democracy.vote_period.days}} days)  |
 
 === "Moonbase Alpha"
-
     |        Variable         |  |                                                         Value                                                         |
     |:-----------------------:|::|:---------------------------------------------------------------------------------------------------------------------:|
     |      Enact Period       |  | {{ networks.moonbase.democracy.enact_period.blocks}} blocks ({{ networks.moonbase.democracy.enact_period.days}} days) |
@@ -81,15 +79,15 @@ Here, you need to provide the following information:
  3. Set the vote conviction, which determines its weight (`vote_weight = tokens * conviction_multiplier`). The conviction multiplier is related to the number of enactment periods the tokens will be locked for. Consequently, the longer you are willing to lock your tokens, the stronger your vote will be weighted. You also have the option of not locking tokens at all, but vote weight is drastically reduced (tokens are still locked during the duration of the referendum)
  4. Click on "Vote Aye" to approve the proposal or "Vote Nay" to disapprove the proposal, and then sign the transaction
 
-   | Lock Periods |     | Conviction Multiplier |
-   | :----------: | :-: | :-------------------: |
-   |      0       |     |          0.1          |
-   |      1       |     |           1           |
-   |      2       |     |           2           |
-   |      4       |     |           3           |
-   |      8       |     |           4           |
-   |      16      |     |           5           |
-   |      32      |     |           6           |
+   | Lock Periods |  | Conviction Multiplier |
+   |:------------:|::|:---------------------:|
+   |      0       |  |          0.1          |
+   |      1       |  |           1           |
+   |      2       |  |           2           |
+   |      4       |  |           3           |
+   |      8       |  |           4           |
+   |      16      |  |           5           |
+   |      32      |  |           6           |
 
 
 ![Vote Submission](/images/tokens/governance/voting/vote-3.png)
@@ -213,13 +211,13 @@ Where:
 
 In the previous example, these numbers were:
 
-|  Variable  |     |         Value         |
-| :--------: | :-: | :-------------------: |
-|  Approve   |     |   10800 (1800 x 6)    |
-|  Against   |     |    80 (800 x 0.1)     |
-|  Turnout   |     |   2600 (1800 + 800)   |
-| Electorate |     |         1.22M         |
-| **Result** |     | 1.5 < 9.8 (Aye wins!) |
+|  Variable  |  |         Value         |
+|:----------:|::|:---------------------:|
+|  Approve   |  |   10800 (1800 x 6)    |
+|  Against   |  |    80 (800 x 0.1)     |
+|  Turnout   |  |   2600 (1800 + 800)   |
+| Electorate |  |         1.22M         |
+| **Result** |  | 1.5 < 9.8 (Aye wins!) |
 
 In short, a heavy super-majority of aye votes is required to approve a proposal at low turnouts, but as turnout increases, it becomes a simple majority.
 

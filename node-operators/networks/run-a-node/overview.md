@@ -29,16 +29,14 @@ Running a parachain node is similar to a typical Substrate node, but there are s
 The minimum specs recommended to run a node are shown in the following table. For our Kusama and Polkadot MainNet deployments, disk requirements will be higher as the network grows.
 
 === "Moonbeam"
-
     |  Component   |  | Requirement                                                                                                                |
     |:------------:|::|:---------------------------------------------------------------------------------------------------------------------------|
-    |   **CPU**    |  | {{ networks.moonbeam.node.cores }} Cores (Fastest per core speed)                                                         |
-    |   **RAM**    |  | {{ networks.moonbeam.node.ram }} GB                                                                                       |
-    |   **SSD**    |  | {{ networks.moonbeam.node.hd }} GB (to start)                                                                             |
+    |   **CPU**    |  | {{ networks.moonbeam.node.cores }} Cores (Fastest per core speed)                                                          |
+    |   **RAM**    |  | {{ networks.moonbeam.node.ram }} GB                                                                                        |
+    |   **SSD**    |  | {{ networks.moonbeam.node.hd }} GB (to start)                                                                              |
     | **Firewall** |  | P2P port must be open to incoming traffic:<br>&nbsp; &nbsp; - Source: Any<br>&nbsp; &nbsp; - Destination: 30333, 30334 TCP |
 
 === "Moonriver"
-
     |  Component   |  | Requirement                                                                                                                |
     |:------------:|::|:---------------------------------------------------------------------------------------------------------------------------|
     |   **CPU**    |  | {{ networks.moonriver.node.cores }} Cores (Fastest per core speed)                                                         |
@@ -47,7 +45,6 @@ The minimum specs recommended to run a node are shown in the following table. Fo
     | **Firewall** |  | P2P port must be open to incoming traffic:<br>&nbsp; &nbsp; - Source: Any<br>&nbsp; &nbsp; - Destination: 30333, 30334 TCP |
 
 === "Moonbase Alpha"
-
     |  Component   |  | Requirement                                                                                                                |
     |:------------:|::|:---------------------------------------------------------------------------------------------------------------------------|
     |   **CPU**    |  | {{ networks.moonbase.node.cores }} Cores (Fastest per core speed)                                                          |

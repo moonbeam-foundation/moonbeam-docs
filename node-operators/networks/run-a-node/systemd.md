@@ -27,19 +27,16 @@ To get started quickly without the hassle of compiling the binary yourself, you 
 To get started use `wget` to grab the latest [release binary](https://github.com/PureStake/moonbeam/releases):
 
 === "Moonbeam"
-
     ```
     wget https://github.com/PureStake/moonbeam/releases/download/{{ networks.moonbeam.parachain_release_tag }}/moonbeam
     ```
 
 === "Moonriver"
-
     ```
     wget https://github.com/PureStake/moonbeam/releases/download/{{ networks.moonriver.parachain_release_tag }}/moonbeam
     ``` 
    
 === "Moonbase Alpha"
-
     ```
     wget https://github.com/PureStake/moonbeam/releases/download/{{ networks.moonbase.parachain_release_tag }}/moonbeam
     ```
@@ -47,19 +44,16 @@ To get started use `wget` to grab the latest [release binary](https://github.com
 To verify that you have downloaded the correct version, you can run `sha256sum moonbeam` in your terminal, you should receive the following output:
 
 === "Moonbeam"
-
     ```
     {{ networks.moonbeam.parachain_sha256sum }}
     ```
 
 === "Moonriver"
-
     ```
     {{ networks.moonriver.parachain_sha256sum }}
     ```
 
 === "Moonbase Alpha"
-
     ```
     {{ networks.moonbase.parachain_sha256sum }}
     ```
@@ -120,19 +114,16 @@ The following commands will set up everything regarding running the service.
 First, let's create a service account to run the service:
 
 === "Moonbeam"
-
     ```
     adduser moonbeam_service --system --no-create-home
     ```
 
 === "Moonriver"
-
     ```
     adduser moonriver_service --system --no-create-home
     ```
 
 === "Moonbase Alpha"
-
     ```
     adduser moonbase_service --system --no-create-home
     ```
@@ -140,19 +131,16 @@ First, let's create a service account to run the service:
 Next, create a directory to store the binary and data (you might need `sudo`):
 
 === "Moonbeam"
-
     ```
     mkdir {{ networks.moonbeam.node_directory }}
     ```
 
 === "Moonriver"
-
     ```
     mkdir {{ networks.moonriver.node_directory }}
     ```
 
 === "Moonbase Alpha"
-
     ```
     mkdir {{ networks.moonbase.node_directory }}
     ```
@@ -160,19 +148,16 @@ Next, create a directory to store the binary and data (you might need `sudo`):
 Now, copy the binary built in the last section to the created folder. If you [compiled the binary](#compile-the-binary) yourself, you'll need to copy the binary in the target directory (`./target/release/`). Otherwise, copy the Moonbeam binary in the root (you might need sudo):
 
 === "Moonbeam"
-
     ```
     cp ./{{ networks.moonbeam.binary_name }} {{ networks.moonbeam.node_directory }}
     ```
 
 === "Moonriver"
-
     ```
     cp ./{{ networks.moonriver.binary_name }} {{ networks.moonriver.node_directory }}
     ```
 
 === "Moonbase Alpha"
-
     ```
     cp ./{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
     ```
@@ -180,19 +165,16 @@ Now, copy the binary built in the last section to the created folder. If you [co
 Next, make sure you set the ownership and permissions accordingly for the local directory that stores the chain data:
 
 === "Moonbeam"
-
     ```
     sudo chown -R moonbeam_service {{ networks.moonbeam.node_directory }}
     ```
 
 === "Moonriver"
-
     ```
     sudo chown -R moonriver_service {{ networks.moonriver.node_directory }}
     ```
 
 === "Moonbase Alpha"
-
     ```
     sudo chown -R moonbase_service {{ networks.moonbase.node_directory }}
     ```
@@ -208,7 +190,6 @@ The next step is to create the systemd configuration file. If you are setting up
 #### Full Node {: #full-node } 
 
 === "Moonbeam"
-
     ```
     [Unit]
     Description="Moonbeam systemd service"
@@ -248,7 +229,6 @@ The next step is to create the systemd configuration file. If you are setting up
     ```
 
 === "Moonriver"
-
     ```
     [Unit]
     Description="Moonriver systemd service"
@@ -288,7 +268,6 @@ The next step is to create the systemd configuration file. If you are setting up
     ```
 
 === "Moonbase Alpha"
-
     ```
     [Unit]
     Description="Moonbase Alpha systemd service"
@@ -330,7 +309,6 @@ The next step is to create the systemd configuration file. If you are setting up
 #### Collator {: #collator } 
 
 === "Moonbeam"
-
     ```
     [Unit]
     Description="Moonbeam systemd service"
@@ -371,7 +349,6 @@ The next step is to create the systemd configuration file. If you are setting up
     ```
     
 === "Moonriver"
-
     ```
     [Unit]
     Description="Moonriver systemd service"
@@ -412,7 +389,6 @@ The next step is to create the systemd configuration file. If you are setting up
     ```
 
 === "Moonbase Alpha"
-
     ```
     [Unit]
     Description="Moonbase Alpha systemd service"
@@ -497,19 +473,16 @@ If you want to update your client, you can keep your existing chain data in tact
 2. Remove the old binary file:
     
     === "Moonbeam"
-
         ```
         rm  {{ networks.moonbeam.node_directory }}/moonbeam
         ```
 
     === "Moonriver"
-
         ```
         rm  {{ networks.moonriver.node_directory }}/moonbeam
         ```
 
     === "Moonbase Alpha"
-
         ```
         rm  {{ networks.moonbase.node_directory }}/moonbeam
         ```
@@ -527,7 +500,6 @@ If you want to update your client, you can keep your existing chain data in tact
 5. Copy the binary to the data directory:
 
     === "Moonbeam"
-
         ```
         # If you used the release binary:
         cp ./{{ networks.moonbeam.binary_name }} {{ networks.moonbeam.node_directory }}
@@ -537,7 +509,6 @@ If you want to update your client, you can keep your existing chain data in tact
         ```
 
     === "Moonriver"
-
         ```
         # If you used the release binary:
         cp ./{{ networks.moonriver.binary_name }} {{ networks.moonriver.node_directory }}
@@ -547,7 +518,6 @@ If you want to update your client, you can keep your existing chain data in tact
         ```
 
     === "Moonbase Alpha"
-
         ```
         # If you used the release binary:
         cp ./{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
@@ -559,21 +529,18 @@ If you want to update your client, you can keep your existing chain data in tact
 6. Update permissions:
 
     === "Moonbeam"
-
         ```
         chmod +x moonbeam
         chown moonbeam_service moonbeam
         ```
 
     === "Moonriver"
-
         ```
         chmod +x moonbeam
         chown moonriver_service moonbeam
         ```
 
     === "Moonbase Alpha"
-
         ```
         chmod +x moonbeam
         chown moonbase_service moonbeam
@@ -603,19 +570,16 @@ sudo systemctl stop moonbeam
 To purge your parachain and relay chain data, you can run the following command:
 
 === "Moonbeam"
-
     ```
     sudo rm -rf {{ networks.moonbeam.node_directory }}/*
     ```
 
 === "Moonriver"
-
     ```
     sudo rm -rf {{ networks.moonriver.node_directory }}/*
     ```
 
 === "Moonbase Alpha"
-
     ```
     sudo rm -rf {{ networks.moonbase.node_directory }}/*
     ```
@@ -623,19 +587,16 @@ To purge your parachain and relay chain data, you can run the following command:
 To only remove the parachain data for a specific chain, you can run:
 
 === "Moonbeam"
-
     ```
     sudo rm -rf {{ networks.moonbeam.node_directory }}/chains/*
     ```
 
 === "Moonriver"
-
     ```
     sudo rm -rf {{ networks.moonriver.node_directory }}/chains/*
     ```
 
 === "Moonbase Alpha"
-
     ```
     sudo rm -rf {{ networks.moonbase.node_directory }}/chains/*
     ```
@@ -643,19 +604,16 @@ To only remove the parachain data for a specific chain, you can run:
 Similarly, to only remove the relay chain data, you can run:
 
 === "Moonbeam"
-
     ```
     sudo rm -rf {{ networks.moonbeam.node_directory }}/polkadot/*
     ```
 
 === "Moonriver"
-
     ```
     sudo rm -rf {{ networks.moonriver.node_directory }}/polkadot/*
     ```
 
 === "Moonbase Alpha"
-
     ```
     sudo rm -rf {{ networks.moonbase.node_directory }}/polkadot/*
     ```

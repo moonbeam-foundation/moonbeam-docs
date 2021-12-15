@@ -36,14 +36,12 @@ From a technical perspective, collators must meet the following requirements:
 Similar to Polkadot validators, you need to create an account. For Moonbeam, this is an H160 account or an Ethereum-style account from which you hold the private keys. In addition, you will need a minimum amount of tokens staked to be considered eligible (become a candidate). Only a certain number of the top collator candidates by delegated stake will be in the active set of collators.
 
 === "Moonriver"
-
     |    Variable     |                           Value                           |
     |:---------------:|:---------------------------------------------------------:|
     |   Bond Amount   | {{ networks.moonriver.staking.candidate_bond_min }} MOVR  |
     | Active set size | {{ networks.moonriver.staking.max_candidates }} collators |
 
 === "Moonbase Alpha"
-
     |    Variable     |                          Value                           |
     |:---------------:|:--------------------------------------------------------:|
     |   Bond Amount   |  {{ networks.moonbase.staking.candidate_bond_min }} DEV  |
@@ -67,7 +65,6 @@ Once you have an H160 account imported to Polkadot.js, you should see it under t
 Before getting started, it's important to note some of the timings of different actions related to collation and delegation activities:
 
 === "Moonriver"
-
     |               Variable                |                                                                          Value                                                                          |
     |:-------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------:|
     |           Leave candidates            |    {{ networks.moonriver.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonriver.collator_timings.leave_candidates.hours }} hours)    |
@@ -76,7 +73,6 @@ Before getting started, it's important to note some of the timings of different 
     | Rewards payouts (after current round) |    {{ networks.moonriver.delegator_timings.rewards_payouts.rounds }} rounds ({{ networks.moonriver.delegator_timings.rewards_payouts.hours }} hours)    |
 
 === "Moonbase Alpha"
-
     |               Variable                |                                                                         Value                                                                         |
     |:-------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
     |           Leave candidates            |    {{ networks.moonbase.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonbase.collator_timings.leave_candidates.hours }} hours)    |

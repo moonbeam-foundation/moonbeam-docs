@@ -24,7 +24,6 @@ Token holders that want to easily stake their tokens can use the [Moonbeam dApp]
 --8<-- 'text/staking/staking-definitions.md'
 
 === "Moonriver"
-
     |             Variable              |  |                                                                          Value                                                                          |
     |:---------------------------------:|::|:-------------------------------------------------------------------------------------------------------------------------------------------------------:|
     |     Minimum delegation stake      |  |                                                   {{ networks.moonriver.staking.min_del_stake }} MOVR                                                   |
@@ -38,7 +37,6 @@ Token holders that want to easily stake their tokens can use the [Moonbeam dApp]
 
 
 === "Moonbase Alpha"
-
     |             Variable              |  |                                                                         Value                                                                         |
     |:---------------------------------:|::|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
     |     Minimum delegation stake      |  |                                                   {{ networks.moonbase.staking.min_del_stake }} DEV                                                   |
@@ -71,7 +69,7 @@ The following extrinsics are deprecated:
  
 ### Bond More or Less 
 
-  - **delegatorBondMore**(*address* candidate, *uint256* more) - extrinsic to request to increase the amount of staked tokens for an already delegated collator. Replaces the deprecated `nominatorBondMore` extrinsic
+ - **delegatorBondMore**(*address* candidate, *uint256* more) - extrinsic to request to increase the amount of staked tokens for an already delegated collator. Replaces the deprecated `nominatorBondMore` extrinsic
  - **scheduleDelegatorBondLess**(*address* candidate, *uint256* less) - extrinsic to request to reduce the amount of staked tokens for an already delegated collator. The amount must not decrease your overall total staked below the minimum delegation stake. There will be an exit delay before you can execute the request via the `executeCandidateBondRequest` extrinsic. There is a delay of {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours) for Moonbase Alpha and {{ networks.moonriver.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonriver.delegator_timings.del_bond_less.hours }} hours) for Moonriver. Replaces the deprecated `nominatorBondLess` extrinsic
  - **executeCandidateBondRequest**(*address* candidate) - extrinsic to execute a decrease in the bond for a specific candidate. This extrinsic should only be used after a bond request has been scheduled and the exit delay has passed
  - **cancelCandidateBondLess**() - extrinsic to cancel a scheduled request to increase or decrease the bond for a specific candidate

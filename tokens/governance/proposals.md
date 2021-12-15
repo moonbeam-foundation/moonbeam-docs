@@ -35,16 +35,14 @@ Some of the key parameters for this guide are the following:
  - **Cool-off period** — duration (in blocks) in which a proposal may not be re-submitted after being vetoed
 
 === "Moonriver"
-
     |         Variable         |  |                                                           Value                                                           |
     |:------------------------:|::|:-------------------------------------------------------------------------------------------------------------------------:|
     |      Launch Period       |  | {{ networks.moonriver.democracy.launch_period.blocks}} blocks ({{ networks.moonriver.democracy.launch_period.days}} days) |
     |     Cool-off Period      |  |   {{ networks.moonriver.democracy.cool_period.blocks}} blocks ({{ networks.moonriver.democracy.cool_period.days}} days)   |
-    | Minimum Preimage Deposit |  |                                  {{ networks.moonriver.democracy.min_preim_deposit}} MOVR                                 |
-    | Minimum Proposal Deposit |  |                                     {{ networks.moonriver.democracy.min_deposit}} MOVR                                    |
+    | Minimum Preimage Deposit |  |                                 {{ networks.moonriver.democracy.min_preim_deposit}} MOVR                                  |
+    | Minimum Proposal Deposit |  |                                    {{ networks.moonriver.democracy.min_deposit}} MOVR                                     |
 
 === "Moonbase Alpha"
-
     |         Variable         |  |                                                          Value                                                          |
     |:------------------------:|::|:-----------------------------------------------------------------------------------------------------------------------:|
     |      Launch Period       |  | {{ networks.moonbase.democracy.launch_period.blocks}} blocks ({{ networks.moonbase.democracy.launch_period.days}} days) |

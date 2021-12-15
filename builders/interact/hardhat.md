@@ -118,7 +118,6 @@ Next, we import the private key that we've retrieved from MetaMask and store it 
 Inside the `module.exports`, we need to provide the Solidity version (`0.8.1` according to our contract file), and the network details:
 
 === "Moonriver"
-
     ```
     moonriver: {
         url: '{{ networks.moonriver.rpc_url }}',
@@ -128,7 +127,6 @@ Inside the `module.exports`, we need to provide the Solidity version (`0.8.1` ac
     ```
 
 === "Moonbase Alpha"
-
     ```
     moonbase: {
         url: '{{ networks.moonbase.rpc_url }}',
@@ -138,7 +136,6 @@ Inside the `module.exports`, we need to provide the Solidity version (`0.8.1` ac
     ```
 
 === "Moonbeam Dev Node"
-
     ```      
     dev: {
         url: '{{ networks.development.rpc_url }}',
