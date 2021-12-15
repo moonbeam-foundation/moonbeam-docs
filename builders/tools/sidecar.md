@@ -145,7 +145,7 @@ There are public Substrate API Sidecar deployments for Moonbeam networks and can
     https://moonriver-rest-api.moonriver.moonbeam.network
     ```
 
-=== "Moonbase Alpha Relay"
+=== "Moonbase Alpha"
     ```
-    https://alphanet-rest-api.testnet.moonbeam.network
+    https://moonbase-rest-api.testnet.moonbeam.network
     ```
