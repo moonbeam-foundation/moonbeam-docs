@@ -212,7 +212,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --wasm-execution compiled \
          --pruning=archive \
          --state-cache-size 1 \
-         --db-cache <50% RAM in MB>
+         --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonbeam.node_directory }} \
          --chain {{ networks.moonbeam.chain_spec }} \
          --name "YOUR-NODE-NAME" \
@@ -220,7 +220,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --port {{ networks.relay_chain.p2p }} \
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
-         --execution wasm
+         --execution wasm \
          --pruning=archive \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
@@ -251,7 +251,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --wasm-execution compiled \
          --pruning=archive \
          --state-cache-size 1 \
-         --db-cache <50% RAM in MB>
+         --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonriver.node_directory }} \
          --chain {{ networks.moonriver.chain_spec }} \
          --name "YOUR-NODE-NAME" \
@@ -259,7 +259,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --port {{ networks.relay_chain.p2p }} \
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
-         --execution wasm
+         --execution wasm \
          --pruning=archive \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
@@ -290,7 +290,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --wasm-execution compiled \
          --pruning=archive \
          --state-cache-size 1 \
-         --db-cache <50% RAM in MB>
+         --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonbase.node_directory }} \
          --chain {{ networks.moonbase.chain_spec }} \
          --name "YOUR-NODE-NAME" \
@@ -298,7 +298,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --port {{ networks.relay_chain.p2p }} \
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
-         --execution wasm
+         --execution wasm \
          --pruning=archive \
          --name="YOUR-NODE-NAME (Embedded Relay)"
 
@@ -332,7 +332,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --wasm-execution compiled \
          --pruning=archive \
          --state-cache-size 1 \
-         --db-cache <50% RAM in MB>
+         --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonbeam.node_directory }} \
          --chain {{ networks.moonbeam.chain_spec }} \
          --name "YOUR-NODE-NAME" \
@@ -340,7 +340,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --port {{ networks.relay_chain.p2p }} \
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
-         --execution wasm
+         --execution wasm \
          --pruning=archive \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
@@ -372,7 +372,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --wasm-execution compiled \
          --pruning=archive \
          --state-cache-size 1 \
-         --db-cache <50% RAM in MB>
+         --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonriver.node_directory }} \
          --chain {{ networks.moonriver.chain_spec }} \
          --name "YOUR-NODE-NAME" \
@@ -380,7 +380,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --port {{ networks.relay_chain.p2p }} \
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
-         --execution wasm
+         --execution wasm \
          --pruning=archive \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
@@ -412,7 +412,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --wasm-execution compiled \
          --pruning=archive \
          --state-cache-size 1 \
-         --db-cache <50% RAM in MB>
+         --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonbase.node_directory }} \
          --chain {{ networks.moonbase.chain_spec }} \
          --name "YOUR-NODE-NAME" \
@@ -420,7 +420,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --port {{ networks.relay_chain.p2p }} \
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
-         --execution wasm
+         --execution wasm \
          --pruning=archive \
          --name="YOUR-NODE-NAME (Embedded Relay)"
 

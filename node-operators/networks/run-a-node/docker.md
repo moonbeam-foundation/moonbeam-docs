@@ -81,9 +81,9 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --wasm-execution compiled \
     --pruning archive \
     --state-cache-size 1 \
-    --db-cache <50% RAM in MB>
+    --db-cache <50% RAM in MB> \
     -- \
-    --execution wasm
+    --execution wasm \
     --pruning archive \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
@@ -100,9 +100,9 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --wasm-execution compiled \
     --pruning archive \
     --state-cache-size 1 \
-    --db-cache <50% RAM in MB>
+    --db-cache <50% RAM in MB> \
     -- \
-    --execution wasm
+    --execution wasm \
     --pruning archive \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
@@ -119,9 +119,9 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --wasm-execution compiled \
     --pruning archive \
     --state-cache-size 1 \
-    --db-cache <50% RAM in MB>
+    --db-cache <50% RAM in MB> \
     -- \
-    --execution wasm
+    --execution wasm \
     --pruning archive \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
@@ -141,9 +141,9 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --wasm-execution compiled \
     --pruning archive \
     --state-cache-size 1 \
-    --db-cache <50% RAM in MB>
+    --db-cache <50% RAM in MB> \
     -- \
-    --execution wasm
+    --execution wasm \
     --pruning archive \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
@@ -161,9 +161,9 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --wasm-execution compiled \
     --pruning archive \
     --state-cache-size 1 \
-    --db-cache <50% RAM in MB>
+    --db-cache <50% RAM in MB> \
     -- \
-    --execution wasm
+    --execution wasm \
     --pruning archive \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
@@ -181,9 +181,9 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --wasm-execution compiled \
     --pruning archive \
     --state-cache-size 1 \
-    --db-cache <50% RAM in MB>
+    --db-cache <50% RAM in MB> \
     -- \
-    --execution wasm
+    --execution wasm \
     --pruning archive \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
