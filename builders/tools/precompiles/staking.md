@@ -17,6 +17,7 @@ The Staking module is coded in Rust and it is part of a pallet that is normally 
      ```
      {{networks.moonriver.precompiles.staking}}
      ```
+
 === "Moonbase Alpha"
      ```
      {{networks.moonbase.precompiles.staking}}

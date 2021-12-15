@@ -28,8 +28,16 @@ With great power comes great responsibility. Some important parameters to unders
  - **Cool-off period** - The duration a veto from the technical committee lasts before the proposal may be submitted again 
  - **Delegation** — act of transferring your voting power to another account for up to a certain conviction
 
-=== "Moonbase Alpha"
+=== "Moonriver"
+    |         Variable         |  |                                                             Value                                                              |
+    |:------------------------:|::|:------------------------------------------------------------------------------------------------------------------------------:|
+    |      Voting Period       |  |     {{ networks.moonriver.democracy.vote_period.blocks}} blocks ({{ networks.moonriver.democracy.vote_period.days}} days)      |
+    | Fast-Track Voting Period |  | {{ networks.moonriver.democracy.fast_vote_period.blocks}} blocks ({{ networks.moonriver.democracy.fast_vote_period.days}} day) |
+    |     Enactment Period     |  |     {{ networks.moonriver.democracy.enact_period.blocks}} blocks ({{ networks.moonriver.democracy.enact_period.days}} day)     |
+    |     Cool-off Period      |  |     {{ networks.moonriver.democracy.cool_period.blocks}} blocks ({{ networks.moonriver.democracy.cool_period.days}} days)      |
+    |     Minimum Deposit      |  |                                      {{ networks.moonriver.democracy.min_deposit }} MOVR                                       |
 
+=== "Moonbase Alpha"
     |         Variable         |  |                                                              Value                                                              |
     |:------------------------:|::|:-------------------------------------------------------------------------------------------------------------------------------:|
     |      Voting Period       |  |       {{ networks.moonbase.democracy.vote_period.blocks}} blocks ({{ networks.moonbase.democracy.vote_period.days}} days)       |
@@ -37,16 +45,6 @@ With great power comes great responsibility. Some important parameters to unders
     |     Enactment Period     |  |      {{ networks.moonbase.democracy.enact_period.blocks}} blocks ({{ networks.moonbase.democracy.enact_period.days}} day)       |
     |     Cool-off Period      |  |       {{ networks.moonbase.democracy.cool_period.blocks}} blocks ({{ networks.moonbase.democracy.cool_period.days}} days)       |
     |     Minimum Deposit      |  |                                        {{ networks.moonbase.democracy.min_deposit }} DEV                                        |
-
-=== "Moonriver"
-
-    |         Variable         |  |                                                              Value                                                              |
-    |:------------------------:|::|:-------------------------------------------------------------------------------------------------------------------------------:|
-    |      Voting Period       |  |      {{ networks.moonriver.democracy.vote_period.blocks}} blocks ({{ networks.moonriver.democracy.vote_period.days}} days)      |
-    | Fast-Track Voting Period |  | {{ networks.moonriver.democracy.fast_vote_period.blocks}} blocks ({{ networks.moonriver.democracy.fast_vote_period.days}} day)  |
-    |     Enactment Period     |  |     {{ networks.moonriver.democracy.enact_period.blocks}} blocks ({{ networks.moonriver.democracy.enact_period.days}} day)      |
-    |     Cool-off Period      |  |      {{ networks.moonriver.democracy.cool_period.blocks}} blocks ({{ networks.moonriver.democracy.cool_period.days}} days)      |
-    |     Minimum Deposit      |  |                                       {{ networks.moonriver.democracy.min_deposit }} MOVR                                       |
 
 ## Principles {: #principles } 
 

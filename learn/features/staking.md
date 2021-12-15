@@ -22,7 +22,6 @@ Collator candidates (and token holders if they delegate) have a stake in the net
 ## Quick Reference {: #quick-reference }
 
 === "Moonriver" 
-
     - **Minimum delegation amount** — {{ networks.moonriver.staking.min_del_stake }} MOVR
     - **Round duration** — {{ networks.moonriver.staking.round_blocks }} blocks, time per round is approximately {{ networks.moonriver.staking.round_hours }} hour
     - **Max eligible delegators per candidate** — for a given round, only the top {{ networks.moonriver.staking.max_del_per_can }} delegators by staked amount are eligible for staking rewards
@@ -39,7 +38,6 @@ Collator candidates (and token holders if they delegate) have a stake in the net
     - **Manage staking related actions** — visit the [Moonbeam Network dApp](https://apps.moonbeam.network/moonriver)
 
 === "Moonbase Alpha" 
-
     - **Minimum delegation amount** — {{ networks.moonbase.staking.min_del_stake }} DEV
     - **Round duration** — {{ networks.moonbase.staking.round_blocks }} blocks, time per round is approximately {{ networks.moonbase.staking.round_hours }} hour
     - **Max eligible delegators per collator** — for a given round, only the top {{ networks.moonbase.staking.max_del_per_can }} delegators by staked amount are eligible for staking rewards

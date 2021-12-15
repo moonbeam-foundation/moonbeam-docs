@@ -49,9 +49,9 @@ The tail end from the logs of the previous command should look something similar
 
 Once everything is set up, you need to modify the "Ethereum environment" inside the `docker-compose.yml` file, so that it points to the endpoint of the node you are running this Graph Node against. Note that the `setup.sh` file detects the `Host IP` and writes its value, so you'll need to modify it accordingly.
 
-=== "Moonbeam Development Node"
+=== "Moonriver"
     ```
-    ethereum: 'mbase:{{ networks.development.rpc_url }}'
+    ethereum: 'moonriver:{{ networks.development.rpc_url }}'
     ```
 
 === "Moonbase Alpha"
@@ -59,9 +59,9 @@ Once everything is set up, you need to modify the "Ethereum environment" inside 
     ethereum: 'mbase:{{ networks.development.rpc_url }}'
     ```
 
-=== "Moonriver"
+=== "Moonbeam Dev Node"
     ```
-    ethereum: 'moonriver:{{ networks.development.rpc_url }}'
+    ethereum: 'mbase:{{ networks.development.rpc_url }}'
     ```
 
 The entire `docker-compose.yml` file should look something similar to:

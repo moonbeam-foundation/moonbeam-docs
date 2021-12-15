@@ -31,9 +31,9 @@ The minimum specs recommended to run a node are shown in the following table. Fo
 === "Moonbeam"
     |  Component   |  | Requirement                                                                                                                |
     |:------------:|::|:---------------------------------------------------------------------------------------------------------------------------|
-    |   **CPU**    |  | {{ networks.moonbeam.node.cores }} Cores (Fastest per core speed)                                                         |
-    |   **RAM**    |  | {{ networks.moonbeam.node.ram }} GB                                                                                       |
-    |   **SSD**    |  | {{ networks.moonbeam.node.hd }} GB (to start)                                                                             |
+    |   **CPU**    |  | {{ networks.moonbeam.node.cores }} Cores (Fastest per core speed)                                                          |
+    |   **RAM**    |  | {{ networks.moonbeam.node.ram }} GB                                                                                        |
+    |   **SSD**    |  | {{ networks.moonbeam.node.hd }} GB (to start)                                                                              |
     | **Firewall** |  | P2P port must be open to incoming traffic:<br>&nbsp; &nbsp; - Source: Any<br>&nbsp; &nbsp; - Destination: 30333, 30334 TCP |
 
 === "Moonriver"
