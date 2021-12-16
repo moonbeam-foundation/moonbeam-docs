@@ -5,6 +5,8 @@ description: Information on how to use Substrate-based REST service with Moonbea
 
 # Using Substrate API Sidecar with Moonbeam
 
+![Substrate API Sidecar](/images/builders/tools/sidecar/sidecar-banner.png)
+
 ## Introduction {: #introduction } 
 
 Substrate API Sidecar allows applications to access blocks, account balance, and other information of Substrate-based blockchains through a REST API. This can be useful for exchanges, wallets or other types of applications that need to keep track of account balance and other state changes on a Moonbeam network. This page will describe how to install and run a Substrate API Sidecar for Moonbeam, and the commonly used API endpoints.

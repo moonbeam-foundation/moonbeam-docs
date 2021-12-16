@@ -225,7 +225,7 @@ networks:
           movr_usd: '0x3f8BFbDc1e79777511c00Ad8591cef888C2113C1'
           usdt_usd: '0xF80DAd54AF79257D41c30014160349896ca5370a'
     substrate_api_sidecar:
-      stable_version: 9.2.0
+      stable_version: 11.3.3
     tx_weight_to_gas_ratio: 25000
   relay_chain:
     p2p: 30334
