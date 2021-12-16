@@ -96,14 +96,14 @@ For deployments to the Moonbase Alpha TestNet or Moonriver, you need to provide 
 
 Below you can find network configurations for all of our networks:
 
-=== "Moonbeam Development Node"
+=== "Moonriver"
     ```
-    dev: {
+    moonriver: {
       provider: () => {
          ...
-         return new HDWalletProvider(privateKeyDev, '{{ networks.development.rpc_url }}') // Insert your private key here
+         return new HDWalletProvider(privateKeyMoonriver, '{{ networks.moonriver.rpc_url }}') // Insert your private key here
       },
-      network_id: {{ networks.development.chain_id }} (hex: {{ networks.development.hex_chain_id }}),
+      network_id: {{ networks.moonriver.chain_id }} (hex: {{ networks.moonriver.hex_chain_id }}),
     },
     ```
 
@@ -118,14 +118,14 @@ Below you can find network configurations for all of our networks:
     },
     ```
 
-=== "Moonriver"
+=== "Moonbeam Dev Node"
     ```
-    moonriver: {
+    dev: {
       provider: () => {
          ...
-         return new HDWalletProvider(privateKeyMoonriver, '{{ networks.moonriver.rpc_url }}') // Insert your private key here
+         return new HDWalletProvider(privateKeyDev, '{{ networks.development.rpc_url }}') // Insert your private key here
       },
-      network_id: {{ networks.moonriver.chain_id }} (hex: {{ networks.moonriver.hex_chain_id }}),
+      network_id: {{ networks.development.chain_id }} (hex: {{ networks.development.hex_chain_id }}),
     },
     ```
 
@@ -221,22 +221,19 @@ If successful, you should see output like the following:
 
 Now we are ready to deploy the compiled contracts. You can do this with the following command:
 
-=== "Moonbeam Development Node"
-
+=== "Moonriver"
     ```
-    truffle migrate --network dev
+    truffle migrate --network moonriver
     ```
 
 === "Moonbase Alpha"
-
     ```
     truffle migrate --network moonbase
     ```
 
-=== "Moonriver"
-
+=== "Moonbeam Dev Node"
     ```
-    truffle migrate --network moonriver
+    truffle migrate --network dev
     ```
 
 If successful, you will see deployment actions, including the address of the deployed contract:

@@ -5,7 +5,7 @@ description: An overview of the current configuration of the Moonbeam TestNet, M
 
 # The Moonbase Alpha TestNet
 
-_Updated May 27th, 2021_
+_Updated December 9th, 2021_
 
 !!! note
     With the release of [Moonbase Alpha v8](https://github.com/PureStake/moonbeam/releases/tag/v0.8.0), the minimum gas price has been set to 1 GDEV (similar to GWei on Ethereum). This might be a breaking change if you've previously specified a gas price of `0` for your deployment.
@@ -21,7 +21,7 @@ In order to collect as much feedback as possible and provide fast issue resoluti
 Moonbase Alpha has the following configuration:
 
  - Moonbase Alpha runs as a parachain connected to a relay chain
- - The parachain has two collators (hosted by PureStake) that are collating blocks. External collators can join the network. Only the top {{ networks.moonbase.staking.max_collators }} collator nodes by stake are chosen in the active set
+ - The parachain has two collators (hosted by PureStake) that are collating blocks. External collators can join the network. Only the top {{ networks.moonbase.staking.max_candidates }} collator nodes by stake are chosen in the active set
  - The relay chain hosts three validators (hosted by PureStake) to finalize relay chain blocks. One of them is selected to finalize each block collated by Moonbeam's collators. This setup provides room to expand to a two-parachain configuration in the future
  - There are two RPC endpoints (hosted by PureStake). People can run full nodes to access their own private RPC endpoints
 
@@ -61,14 +61,14 @@ The following features are available:
     - Support for the [modexp](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x05-bigmodexp-base-exp-mod) precompile contracts
 
 ??? release v6 "_February 2021_"      
-    - Public release of the custom [Staking pallet](https://wiki.polkadot.network/docs/learn-staking). Now token holders can nominate collators and earn rewards
+    - Public release of the custom [Staking pallet](https://wiki.polkadot.network/docs/learn-staking). Now token holders can delegate candidates and earn rewards
     - Added the [Democracy pallet](https://github.com/paritytech/substrate/tree/HEAD/frame/democracy). Token holders can now [submit proposals](/tokens/governance/proposals/) and [vote on them](/tokens/governance/voting/)
     - Updated to the latest version of [Frontier RPC](https://github.com/paritytech/frontier), which increases EVM execution efficiency by a factor of 5
     - The gas limit has been bump to 15M per block, with a 13M per transaction limit
 
 ??? release v7 "_April 2021_"      
     - Added support for Ethereum debug/tracing modules. These are turned off by default, to use them you need to spin up a full-node and turn on the feature
-    - Fixed block propagation issues so that is not longer limited to collators, improving network stability
+    - Fixed block propagation issues so that is no longer limited to collator candidates, improving network stability
     - Added Councils and Technical Committee, expanding governance features
     - Staking module has been refactored, with new names to improve the end-user experience
     - Added three new precompiles: [Bn128Add](https://eips.ethereum.org/EIPS/eip-196), [Bn128Mul](https://eips.ethereum.org/EIPS/eip-196) and [Bn128Pairing](https://eips.ethereum.org/EIPS/eip-197)
@@ -119,12 +119,9 @@ Under the category "Miscellaneous", you will find our AlphaNet bot channel. Ente
 
 For token requests of more than the limited account allowed by our Discord bot, contact a moderator directly via our [Discord channel](https://discord.gg/PfpUATX). We are happy to provide the tokens needed to test your applications.
 
+## Proof of Stake {: #proof-of-stake } 
 
-## Early Stage Proof of Stake {: #early-stage-proof-of-stake } 
-
-With the release of Moonbase Alpha v6, the TestNet is now running with an early stage Proof of Stake system. Currently the active set consists of {{ networks.moonbase.staking.max_collators }} collators, which are nominated with DEV funds held by the team.
-
-As Moonbase Alpha progresses, we expect to evolve into a fully decentralized Proof of Stake network.
+The Moonbase Alpha TestNet is a fully decentralized Delegated Proof of Stake network where users of the network can delegate collator candidates to produce blocks and "earn rewards" for testing purposes. Please note, that the Moonbase Alpha DEV tokens have no real value. The number of candidates in the active set will be subject to governance. The active set will consist of the top candidates by stake, including delegations.
 
 ## Limitations {: #limitations } 
 

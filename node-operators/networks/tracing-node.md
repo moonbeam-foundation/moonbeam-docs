@@ -21,26 +21,17 @@ Running a tracing node requires you to have Docker installed. For more informati
 
 If you haven't previously run a standard full Moonbeam node, you will need to setup a directory to store chain data:
 
-=== "Moonbase Alpha"
-    ```
-    mkdir {{ networks.moonbase.node_directory }}
-    ```
-
 === "Moonriver"
     ```
     mkdir {{ networks.moonriver.node_directory }}
     ```
 
-Next, make sure you set the ownership and permissions accordingly for the local directory that stores the chain data. In this case, set the necessary permissions either for a specific or current user (replace `DOCKER_USER` for the actual user that will run the `docker` command):
-
 === "Moonbase Alpha"
     ```
-    # chown to a specific user
-    chown DOCKER_USER {{ networks.moonbase.node_directory }}
-
-    # chown to current user
-    sudo chown -R $(id -u):$(id -g) {{ networks.moonbase.node_directory }}
+    mkdir {{ networks.moonbase.node_directory }}
     ```
+
+Next, make sure you set the ownership and permissions accordingly for the local directory that stores the chain data. In this case, set the necessary permissions either for a specific or current user (replace `DOCKER_USER` for the actual user that will run the `docker` command):
 
 === "Moonriver"
     ```
@@ -49,6 +40,16 @@ Next, make sure you set the ownership and permissions accordingly for the local 
 
     # chown to current user
     sudo chown -R $(id -u):$(id -g) {{ networks.moonriver.node_directory }}
+    ```
+
+
+=== "Moonbase Alpha"
+    ```
+    # chown to a specific user
+    chown DOCKER_USER {{ networks.moonbase.node_directory }}
+
+    # chown to current user
+    sudo chown -R $(id -u):$(id -g) {{ networks.moonbase.node_directory }}
     ```
 
 ## Run a Tracing Node {: #run-a-tracing-node }
@@ -64,58 +65,59 @@ You will also need to start your node with the following flag(s) depending on th
 
 The complete command for running a tracing node is as follows:
 
-=== "Moonbeam Development Node"
+!!! note
+    Make sure you replace `<50% RAM in MB>` for 50% of the actual RAM your server has. For example, for 32 GB RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
+
+=== "Moonriver"
     ```
     docker run --network="host" -v "/var/lib/alphanet-data:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
-    purestake/moonbeam-tracing:v0.13.1-800 \
+    {{ networks.development.tracing_tag }} \
     --base-path=/data \
+    --chain moonriver \
     --name="Moonbeam-Tutorial" \
-    --execution native \
-    --wasm-execution compiled \
     --pruning archive \
     --state-cache-size 1 \
     --ethapi=debug,trace,txpool \
-    --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
-    --dev
+    --wasm-runtime-overrides=/moonbeam/moonriver-substitutes-tracing \
+    -- \
+    --execution wasm \
+    --pruning archive \
+    --name="Moonbeam-Tutorial (Embedded Relay)"
     ```
 
 === "Moonbase Alpha"
     ```
     docker run --network="host" -v "/var/lib/alphanet-data:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
-    purestake/moonbeam-tracing:v0.13.1-800 \
+    {{ networks.moonbase.tracing_tag }} \
     --base-path=/data \
     --chain alphanet \
     --name="Moonbeam-Tutorial" \
-    --execution native \
-    --wasm-execution compiled \
     --pruning archive \
     --state-cache-size 1 \
+    --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
     -- \
+    --execution wasm \
     --pruning archive \
     --name="Moonbeam-Tutorial (Embedded Relay)"
     ```
 
-=== "Moonriver"
+=== "Moonbeam Dev Node"
     ```
     docker run --network="host" -v "/var/lib/alphanet-data:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
-    purestake/moonbeam-tracing:v0.13.1-800 \
+    {{ networks.moonriver.tracing_tag }} \
     --base-path=/data \
-    --chain moonriver \
     --name="Moonbeam-Tutorial" \
-    --execution native \
-    --wasm-execution compiled \
     --pruning archive \
     --state-cache-size 1 \
+    --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
-    --wasm-runtime-overrides=/moonbeam/moonriver-substitutes-tracing \
-    -- \
-    --pruning archive \
-    --name="Moonbeam-Tutorial (Embedded Relay)"
+    --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
+    --dev
     ```
 
 !!! note

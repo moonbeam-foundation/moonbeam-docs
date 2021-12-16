@@ -25,7 +25,6 @@ For the ethers.js library, define the provider by using `ethers.providers.Static
 ```js
 const ethers = require('ethers');
 
-
 const providerURL = 'https://rpc.testnet.moonbeam.network';
 // Define Provider
 const provider = new ethers.providers.StaticJsonRpcProvider(providerURL, {
@@ -38,7 +37,7 @@ Any Ethereum wallet should be able to generate a valid address for Moonbeam (for
 
 ### Chain ID {: #chain-id } 
 
-For the Moonbase Alpha TestNet the chain ID is: `1287`, which is `0x507` in hex.
+Moonbase Alpha TestNet chain ID is: `1287`, which is `0x507` in hex.
 
 ### Relay Chain {: #relay-chain } 
 

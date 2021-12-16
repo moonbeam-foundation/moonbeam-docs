@@ -64,8 +64,8 @@ Currently, there are Data Feed contracts for the the following price pairs:
 
 
 === "Moonriver"
-    | Base/Quote  |  |                Data Feed Contract                |
-    |:-----------:|--|:------------------------------------------------:|
+    | Base/Quote  |  |                     Data Feed Contract                      |
+    |:-----------:|--|:-----------------------------------------------------------:|
     | BTC to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.btc_usd }}  |
     | ETH to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.eth_usd }}  |
     | KSM to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.ksm_usd }}  |
@@ -77,8 +77,8 @@ Currently, there are Data Feed contracts for the the following price pairs:
     | USDT to USD |  | {{ networks.moonriver.chainlink.feed.aggregator.usdt_usd }} |
     
 === "Moonbase Alpha"
-    |  Base/Quote  |  |                Data Feed Contract                |
-    |:------------:|--|:------------------------------------------------:|
+    |  Base/Quote  |  |                     Data Feed Contract                      |
+    |:------------:|--|:-----------------------------------------------------------:|
     |  BTC to USD  |  |  {{ networks.moonbase.chainlink.feed.aggregator.btc_usd }}  |
     |  ETH to USD  |  |  {{ networks.moonbase.chainlink.feed.aggregator.eth_usd }}  |
     |  DOT to USD  |  |  {{ networks.moonbase.chainlink.feed.aggregator.dot_usd }}  |
@@ -102,11 +102,15 @@ After creating the file and compiling the contract, you will need to follow thes
 4. Select the `AggregatorV3Interface` contract from the **Contract** dropdown
 5. Enter the Data Feed contract address corresponding to `BTC to USD` in the **At Address** field and click the **At Address** button:
 
-    === "Moonbase Alpha"
-        `{{ networks.moonbase.chainlink.feed.aggregator.btc_usd }}`
-
     === "Moonriver"
-        `{{ networks.moonriver.chainlink.feed.aggregator.btc_usd }}`
+        ```
+        {{ networks.moonriver.chainlink.feed.aggregator.btc_usd }}
+        ```
+
+    === "Moonbase Alpha"
+        ```
+        {{ networks.moonbase.chainlink.feed.aggregator.btc_usd }}
+        ```
 
 ![Load the Chainlink Price Feed Aggregator Interface on Moonriver](/images/builders/integrations/oracles/chainlink/chainlink-1.png)
 

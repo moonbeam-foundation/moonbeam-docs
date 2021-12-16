@@ -21,10 +21,10 @@ Due to the support of Ethereum tracing modules in Moonbeam, The Graph is capable
 
 If you're familiar with The Graph and looking to learn how to dive right in on Moonbeam-based networks, you can use the following `network` configurations for your Subgraph manifest (`subgraph.yaml`):
 
-=== "Moonbeam Development Node"
+=== "Moonriver"
     ```
     dataSources:
-      network: mbase
+      network: moonriver
     ```
 
 === "Moonbase Alpha"
@@ -33,10 +33,10 @@ If you're familiar with The Graph and looking to learn how to dive right in on M
       network: mbase
     ```
 
-=== "Moonriver"
+=== "Moonbeam Dev Node"
     ```
     dataSources:
-      network: moonriver
+      network: mbase
     ```
 
 ## Checking Prerequisites {: #checking-prerequisites } 

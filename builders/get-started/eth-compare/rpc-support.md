@@ -11,7 +11,7 @@ While Moonbeam strives to be compatible with Ethereum's Web3 API and EVM, there 
 
 The Moonbeam team has collaborated closely with [Parity](https://www.parity.io/) on developing [Frontier](https://github.com/paritytech/frontier). Frontier is the Ethereum compatibility layer for Substrate based chains, and it is what allows developers to run unmodified Ethereum DApps.
 
-Nevertheless, not all of the Ethereum JSON RPC methods are supported, and some of the supported ones return default values (those related to PoW). This guide will outline some of these main differences around Ethereum RPC support and what to expect when using Moonbeam for the first time.
+Nevertheless, not all of the Ethereum JSON RPC methods are supported, and some of the supported ones return default values (those related to Ethereum's PoW consensus mechanism in particular). This guide will outline some of these main differences around Ethereum RPC support and what to expect when using Moonbeam for the first time.
 
 ## Basic Ethereum JSON RPC Methods
 
@@ -40,7 +40,7 @@ At the time of writing, the basic JSON RPC methods from the Ethereum API support
  - **[eth_sendRawTransaction](https://eth.wiki/json-rpc/API#eth_sendrawtransaction)** — Creates new message call transaction or a contract creation for signed transactions. Returns the transaction hash, or the zero hash if the transaction is not yet available
  - **[eth_call](https://eth.wiki/json-rpc/API#eth_call)** — Executes a new message call immediately without creating a transaction on the block chain, returning the value of the executed call
  - **[eth_estimateGas](https://eth.wiki/json-rpc/API#eth_estimategas)** — Returns an estimate amount of how much gas is necessary for a given transaction to succeed
- - **[eth_getTransactionByHash](https://eth.wiki/json-rpc/API#eth_gettransactionbyhash)** — Returns the information about a transation with a given hash
+ - **[eth_getTransactionByHash](https://eth.wiki/json-rpc/API#eth_gettransactionbyhash)** — Returns the information about a transaction with a given hash
  - **[eth_getTransactionByBlockHashAndIndex](https://eth.wiki/json-rpc/API#eth_gettransactionbyblockhashandindex)** — Returns information about a transaction at a given block hash, and a given index position
  - **[eth_getTransactionByBlockNumberAndIndex](https://eth.wiki/json-rpc/API#eth_gettransactionbyblocknumberandindex)** — Returns information about a transaction at a given block number, and a given index position
  - **[eth_getTransactionReceipt](https://eth.wiki/json-rpc/API#eth_gettransactionreceipt)** — Returns the transaction receipt of a given transaction hash
@@ -58,9 +58,9 @@ At the time of writing, the filter-related JSON RPC methods from the Ethereum AP
 - **[eth_newFilter](https://eth.wiki/json-rpc/API#eth_newfilter)** — Creates a filter object based on the input provided. Returns a filter ID
  - **[eth_newBlockFilter](https://eth.wiki/json-rpc/API#eth_newblockfilter)** — Creates a filter in the node to notify when a new block arrives. Returns a filter id
  - **[eth_newPendingTransactionFilter](https://eth.wiki/json-rpc/API#eth_newpendingtransactionfilter)** — Creates a filter in the node to notify when a new pending transaction arrives. Returns a filter ID
- - **[eth_getFilterChanges](https://eth.wiki/json-rpc/API#eth_getfilterchanges)** — Polling method for filters (see methods above). Returns an array of logs which occured since last poll
+ - **[eth_getFilterChanges](https://eth.wiki/json-rpc/API#eth_getfilterchanges)** — Polling method for filters (see methods above). Returns an array of logs which occurred since last poll
  - **[eth_getFilterLogs](https://eth.wiki/json-rpc/API#eth_getfilterlogs)** — Returns an array of all the logs matching the filter with a given ID
- - **[eth_uninstallFilter](https://eth.wiki/json-rpc/API#eth_uninstallfilter)** — Uninstall a filter with a given ID. Should be used when polling is not longer needed. Filters timeout when they are not requested using `eth_getFilterChanges` after a period of time
+ - **[eth_uninstallFilter](https://eth.wiki/json-rpc/API#eth_uninstallfilter)** — Uninstall a filter with a given ID. Should be used when polling is no longer needed. Filters timeout when they are not requested using `eth_getFilterChanges` after a period of time
 
 ## Event Subscription Ethereum JSON RPC Methods
 
@@ -71,7 +71,7 @@ At the time of writing, the [event subscription JSON RPC methods](https://geth.e
 
 ### Supported Subscription
 
-At the time of writing, the [supported subcriptions](https://geth.ethereum.org/docs/rpc/pubsub#supported-subscriptions) are:
+At the time of writing, the [supported subscriptions](https://geth.ethereum.org/docs/rpc/pubsub#supported-subscriptions) are:
 
  - **[newHeads](https://geth.ethereum.org/docs/rpc/pubsub#newheads)** — Triggers a notification each time a new header is appended to the chain
  - **[logs](https://geth.ethereum.org/docs/rpc/pubsub#logs)** — Returns logs that are included in new imported blocks, and match a given filter criteria
