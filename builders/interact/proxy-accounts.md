@@ -13,7 +13,7 @@ Proxy accounts can be set up to perform a limited number of actions on behalf of
 
 Proxy accounts can be set up to perform specific Substrate functions such as author mapping, staking, balances, and more. This can allow you to, for example, grant a trusted individual access to perform collator or delegator functions on your behalf. A proxy could also be used to keep a staking account safe in cold storage.
 
-This guide will show you how to set up a Proxy account for balance transfers and executing a proxy transaction on the Moonbase Alpha TestNet.
+This guide will show you how to set up a proxy account on the Moonbase Alpha TestNet for balance transfers and how to execute a proxy transaction.
 
 ## Checking Prerequisites
 
@@ -23,11 +23,36 @@ To follow along with this tutorial, you will need to have:
 - Create or have two accounts on Moonbase Alpha
 - At least one of the accounts will need to be funded with `DEV` tokens. You can obtain tokens for testing purposes from the Moonbase Alpha [faucet](/builders/get-started/moonbase/#get-tokens/)
 
-If you need help importing your accounts into Polkadot.js Apps, please check out the [Interacting with Moonbeam using Polkadot.js Apps](https://docs.moonbeam.network/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account) guide.
+If you need help importing your accounts into Polkadot.js Apps, please check out the [Interacting with Moonbeam using Polkadot.js Apps](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account) guide.
+
+## General Definitions
+
+When setting up a proxy account, a bond for the proxy will be taken out of your free balance and moved to your reserved balance. The bond is required as adding a proxy requires on-chain storage space. After the proxy has been removed from your account, the bond will be returned to your free balance.
+
+The deposit is calculated based on a deposit base and a deposit factor:
+
+- **Deposit base** - the amount to be reserved for an account to have a proxy list
+- **Deposit factor** - the additional amount to be reserved for every proxy the primary account has
+
+The equation for calculating the deposit is: `deposit base + deposit factor * number of proxies`.
+
+=== "Moonriver"
+    |    Variable    |                       Value                        |
+    |:--------------:|:--------------------------------------------------:|
+    |  Deposit base  |  {{ networks.moonriver.proxy.deposit_base }} MOVR  |
+    | Deposit factor | {{ networks.moonriver.proxy.deposit_factor }} MOVR |
+    |  Max proxies   | {{ networks.moonriver.proxy.max_proxies }} proxies |
+
+=== "Moonbase Alpha"
+    |    Variable    |                       Value                        |
+    |:--------------:|:--------------------------------------------------:|
+    |  Deposit base  |  {{ networks.moonriver.proxy.deposit_base }} DEV   |
+    | Deposit factor | {{ networks.moonriver.proxy.deposit_factor }} DEV  |
+    |  Max proxies   | {{ networks.moonriver.proxy.max_proxies }} proxies |
 
 ## Proxy Types
 
-When creating a proxy account, you must choose a type of proxy which will define how the proxy account can be used. The available options are:
+When creating a proxy account, you must choose a type of proxy which will define how the proxy can be used. The available options are:
 
 - **`AuthorMapping`** - this type of proxy account is allowed to make transactions related to governance
 - **`CancelProxy`** - allows the proxy account to reject and remove any announced proxy calls
@@ -37,7 +62,7 @@ When creating a proxy account, you must choose a type of proxy which will define
 - **`Balances`** - allows the proxy account to only make transactions related to sending funds
 - **`Any`** - allows the proxy account to use any function supported by the proxy pallet
 
-For the purposes of this guide, you will be setting up a proxy account using the balances proxy type.  
+For the purposes of this guide, you will be setting up a proxy account using the balances proxy type. 
 
 ## Creating a Proxy Account
 
@@ -55,7 +80,7 @@ To get started creating your proxy account, head to the **Developer** tab and se
 
 ![Creating a Proxy Account](/images/builders/interact/proxy-accounts/proxies-1.png)
 
-You will then be prompted to authorize and sign the transaction. Go ahead and click **Sign and Submit** to create the proxy relationship. When you submit the proxy, a bond for the proxy will be taken out of your free balance and moved to your reserved balance. After the proxy has been removed from your account, the bond will be returned to your free balance.
+You will then be prompted to authorize and sign the transaction. Go ahead and click **Sign and Submit** to create the proxy relationship. 
 
 ![Submit Transaction to Create a Proxy Account](/images/builders/interact/proxy-accounts/proxies-2.png)
 
