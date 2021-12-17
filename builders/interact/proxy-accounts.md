@@ -46,9 +46,9 @@ The equation for calculating the deposit is: `deposit base + deposit factor * nu
 === "Moonbase Alpha"
     |    Variable    |                       Value                        |
     |:--------------:|:--------------------------------------------------:|
-    |  Deposit base  |  {{ networks.moonriver.proxy.deposit_base }} DEV   |
-    | Deposit factor | {{ networks.moonriver.proxy.deposit_factor }} DEV  |
-    |  Max proxies   | {{ networks.moonriver.proxy.max_proxies }} proxies |
+    |  Deposit base  |   {{ networks.moonbase.proxy.deposit_base }} DEV   |
+    | Deposit factor |  {{ networks.moonbase.proxy.deposit_factor }} DEV  |
+    |  Max proxies   |  {{ networks.moonbase.proxy.max_proxies }} proxies |
 
 ## Proxy Types
 
