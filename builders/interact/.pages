@@ -8,4 +8,6 @@ nav:
  - truffle.md
  - waffle-mars.md
  - canonical-contracts.md
+ - proxy-accounts.md
  - identity.md
+
