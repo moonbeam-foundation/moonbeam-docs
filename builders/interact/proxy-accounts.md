@@ -62,7 +62,7 @@ When creating a proxy account, you must choose a type of proxy which will define
 - **`Balances`** - allows the proxy account to only make transactions related to sending funds
 - **`Any`** - allows the proxy account to use any function supported by the proxy pallet
 
-For the purposes of this guide, you will be setting up a proxy account using the balances proxy type. Since this type enables the proxy to spend funds on behalf of the primary account, you should exercise caution and only provide access to accounts you trust. The proxy will have access to transfer all of the funds within the primary account, if not trusted, could drain the primary account. Also make sure not to forget to remove the proxy as needed.
+For the purposes of this guide, you will be setting up a proxy account using the balances proxy type. Since this type enables the proxy to spend funds on behalf of the primary account, you should exercise caution and only provide access to accounts you trust. The proxy will have access to transfer all of the funds within the primary account, and if not trusted, the proxy could drain the primary account. Also make sure not to forget to remove the proxy as needed.
 
 ## Creating a Proxy Account
 
