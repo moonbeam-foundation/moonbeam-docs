@@ -54,7 +54,7 @@ The equation for calculating the deposit is: `deposit base + deposit factor * nu
 
 When creating a proxy account, you must choose a type of proxy which will define how the proxy can be used. The available options are:
 
-- **`AuthorMapping`** - this type of proxy account is allowed to make transactions related to governance
+- **`AuthorMapping`** - this type of proxy account is used by collators to migrate services from one server to another
 - **`CancelProxy`** - allows the proxy account to reject and remove any announced proxy calls
 - **`Staking`** - allows the proxy account to perform staking-related transactions, such as collator or delegator functions, including `authorMapping()`
 - **`Governance`** - allows the proxy account to make transactions related to governance, such as voting or proposing democracy proposals
@@ -62,11 +62,11 @@ When creating a proxy account, you must choose a type of proxy which will define
 - **`Balances`** - allows the proxy account to only make transactions related to sending funds
 - **`Any`** - allows the proxy account to use any function supported by the proxy pallet
 
-For the purposes of this guide, you will be setting up a proxy account using the balances proxy type. 
+For the purposes of this guide, you will be setting up a proxy account using the balances proxy type. Since this type enables the proxy to spend funds on behalf of the primary account, you should exercise caution and only provide access to accounts you trust. The proxy will have access to transfer all of the funds within the primary account, if not trusted, could drain the primary account. Also make sure not to forget to remove the proxy as needed.
 
 ## Creating a Proxy Account
 
-There are a couple of ways you can create proxy accounts in Polkadot.js Apps, either from the **Extrinsics** page or the **Accounts** page. However, to create a time-delayed proxy, you will need to use the **Extrinsics** page. A time delay provides an additional layer of security to proxies by specifying a delay period based on a number of blocks. This will prevent the proxy account from executing a transaction until the delay period ends.
+There are a couple of ways you can create proxy accounts in Polkadot.js Apps, either from the **Extrinsics** page or the **Accounts** page. However, to create a time-delayed proxy, you will need to use the **Extrinsics** page. A time delay provides an additional layer of security to proxies by specifying a delay period based on a number of blocks. This will prevent the proxy account from executing a transaction until the delay period ends. The delay allows time for the primary account that controls the proxy to review pending transactions, potentially for malicious actions, and cancel if necessary before execution. 
 
 To get started creating your proxy account, head to the **Developer** tab and select **Extrinsics** from the dropdown. Next, you will need to take the following steps:
 
@@ -75,7 +75,7 @@ To get started creating your proxy account, head to the **Developer** tab and se
 3. Choose the **addProxy** extrinsic
 4. Select the **delegate** account for the proxy
 5. From the **proxyType** dropdown, choose **Balances**
-6. Optionally you can add a time delay using a specified number of blocks
+6. Optionally you can add a time delay using a specified number of blocks to add an additional layer of security for the primary account to review the pending transaction
 7. Click **Submit Transaction** 
 
 ![Creating a Proxy Account](/images/builders/interact/proxy-accounts/proxies-1.png)
