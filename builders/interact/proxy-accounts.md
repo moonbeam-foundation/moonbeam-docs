@@ -27,7 +27,7 @@ If you need help importing your accounts into Polkadot.js Apps, please check out
 
 ## General Definitions
 
-When setting up a proxy account, a bond for the proxy is taken out of your free balance and moved to your reserved balance. The bond is required as adding a proxy requires on-chain storage space, and it is recalculated for each proxy you add or remove. After all proxies are removed from your account, the bond is be returned to your free balance.
+When setting up a proxy account, a bond for the proxy is taken out of your free balance and moved to your reserved balance. The bond is required as adding a proxy requires on-chain storage space, and it is recalculated for each proxy you add or remove. After all proxies are removed from your account, the bond is returned to your free balance.
 
 The deposit is calculated based on a deposit base and a deposit factor:
 
