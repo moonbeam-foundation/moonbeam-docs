@@ -49,7 +49,7 @@ In the terminal that Sidecar will run, export the environmental variable for the
     export SAS_SUBSTRATE_WS_URL=wss://wss.testnet.moonbeam.network
     ```
 
-=== "Moonbeam Dev Node (Default)"
+=== "Moonbeam Dev Node"
     ```
     export SAS_SUBSTRATE_WS_URL=ws://127.0.0.1:9944
     ```
@@ -138,16 +138,16 @@ To obtain the EVM sender address, recipient address, and EVM hash, check the `ev
 
 The EVM field mappings are then summarized as the following:
 
-| EVM Field     | Block JSON Field                          |
-| ----------- | ------------------------------------ |
-| `Nonce`       | extrinsics.{extrinsic number}.args.transaction.nonce |
-| `GasPrice`       | extrinsics.{extrinsic number}.args.transaction.gasPrice |
-| `GasLimit`    | extrinsics.{extrinsic number}.args.transaction.gasLimit |
-| `Signature`       | extrinsics.{extrinsic number}.args.transaction.signature |
+| EVM Field              | Block JSON Field                                           |
+|------------------------|------------------------------------------------------------|
+| `Nonce`                | extrinsics.{extrinsic number}.args.transaction.nonce       |
+| `GasPrice`             | extrinsics.{extrinsic number}.args.transaction.gasPrice    |
+| `GasLimit`             | extrinsics.{extrinsic number}.args.transaction.gasLimit    |
+| `Signature`            | extrinsics.{extrinsic number}.args.transaction.signature   |
 | `Sender Address`       | extrinsics.{extrinsic number}.events.{event number}.data.0 |
 | `Recipient Address`    | extrinsics.{extrinsic number}.events.{event number}.data.1 |
-| `EVM Hash`       | extrinsics.{extrinsic number}.events.{event number}.data.2 |
-| `EVM Execution Status`       | extrinsics.{extrinsic number}.events.{event number}.data.3 |
+| `EVM Hash`             | extrinsics.{extrinsic number}.events.{event number}.data.2 |
+| `EVM Execution Status` | extrinsics.{extrinsic number}.events.{event number}.data.3 |
 
 !!! note
     EVM transaction nonce and signature fields are under `extrinsics.{extrinsic number}.args.transaction`, whereas the `nonce` and `signature` fields under `extrinsics.{extrinsic number}` are the Substrate transaction nonce and signature, which are set to `null` for EVM transactions.
