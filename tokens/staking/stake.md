@@ -93,7 +93,7 @@ The following extrinsic is deprecated:
 
 You can now read any of the current parameters around staking, such as the ones previously listed in the [General Definitions](#general-definitions) section and more, directly from Polkadot.js Apps.
 
-Navigate to Polkadot.js Apps **Chain state** UI, and connect to either [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/chainstate) or [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network/#chainstate).
+Navigate to Polkadot.js Apps **Chain state** UI, and connect to either [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/chainstate){target=_blank} or [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network/#chainstate){target=_blank}.
 
 Then to retrieve the various staking parameters, you'll need to:
 
@@ -129,7 +129,7 @@ Each extrinsic provides a different response:
 
 ### Get the Candidate Delegation Count {: #get-the-candidate-delegation-count } 
 
-First, you need to get the `candidateDelegationCount` as you'll need to submit this parameter in a later transaction. To do so, you'll have to run the following JavaScript code snippet from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/js):
+First, you need to get the `candidateDelegationCount` as you'll need to submit this parameter in a later transaction. To do so, you'll have to run the following JavaScript code snippet from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/js){target=_blank}:
 
 ```js
 // Simple script to get candidate_delegation_count
@@ -150,7 +150,7 @@ console.log(candidateInfo.toHuman()["delegators"].length);
 
 ### Get your Number of Existing Delegations {: #get-your-number-of-existing-delegations } 
 
-If you've never made a delegation from your address you can skip this section. However, if you're unsure how many existing delegations you have, you'll want to run the following JavaScript code snippet to get `delegator_delegation_count` from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/js):
+If you've never made a delegation from your address you can skip this section. However, if you're unsure how many existing delegations you have, you'll want to run the following JavaScript code snippet to get `delegator_delegation_count` from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/js){target=_blank}:
 
 ```js
 // Simple script to get your number of existing delegations.

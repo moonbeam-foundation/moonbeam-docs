@@ -153,7 +153,7 @@ Now that you have obtained the [candidate delegator count](#get-the-candidate-de
 
 ## Verify Delegation {: #verify-delegation } 
 
-To verify your delegation was successful, you can check the chain state in Polkadot.js Apps. First, add your metamask address to the [address book in Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/addresses). If you've already completed this step you can skip ahead to the [Verify Delegator State](#verify-delegator-state) section to jump right in. 
+To verify your delegation was successful, you can check the chain state in Polkadot.js Apps. First, add your metamask address to the [address book in Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/addresses){target=_blank}. If you've already completed this step you can skip ahead to the [Verify Delegator State](#verify-delegator-state) section to jump right in. 
 
 ### Add Metamask Address to Address Book {: #add-metamask-address-to-address-book } 
 
@@ -167,7 +167,7 @@ To verify your delegation was successful, you can check the chain state in Polka
 
 ### Verify Delegator State {: #verify-delegator-state } 
 
-To verify your delegation was successful, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/chainstate) and navigate to **Developer** and then **Chain State**
+To verify your delegation was successful, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/chainstate){target=_blank} and navigate to **Developer** and then **Chain State**
 
 1. Select the **parachainStaking** pallet
 2. Select the **delegatorState** query

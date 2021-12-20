@@ -51,7 +51,7 @@ Similar to Polkadot validators, you need to create an account. For Moonbeam, thi
 
 A collator has an account associated with its collation activities. This account is mapped to an author ID to identify the collator as a block producer and send the payouts from block rewards. 
 
-Currently, you have two ways of proceeding in regard to having an account in [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts):
+Currently, you have two ways of proceeding in regard to having an account in [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/accounts){target=_blank}:
 
  - Importing an existing (or create a new) H160 account from external wallets or services such as [MetaMask](/tokens/connect/metamask/) and [MathWallet](/tokens/connect/mathwallet/)
  - Create a new H160 account with [Polkadot.js](/tokens/connect/polkadotjs/)
@@ -87,7 +87,7 @@ Before getting started, it's important to note some of the timings of different 
 
 ### Get the Size of the Candidate Pool {: #get-the-size-of-the-candidate-pool } 
 
-First, you need to get the `candidatePool` size (this can change through governance) as you'll need to submit this parameter in a later transaction. To do so, you'll have to run the following JavaScript code snippet from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/js):
+First, you need to get the `candidatePool` size (this can change through governance) as you'll need to submit this parameter in a later transaction. To do so, you'll have to run the following JavaScript code snippet from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/js){target=_blank}:
 
 ```js
 // Simple script to get candidate pool size
@@ -106,7 +106,7 @@ console.log(`Candidate pool size is: ${candidatePool.length}`);
 
 ### Join the Candidate Pool {: #join-the-candidate-pool } 
 
-Once your node is running and in sync with the network, you become a candidate (and join the candidate pool). Depending on which network you are connected to, head to Polkadot.js for [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts) or [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network#/accounts) and take the following steps:
+Once your node is running and in sync with the network, you become a candidate (and join the candidate pool). Depending on which network you are connected to, head to Polkadot.js for [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/accounts){target=_blank} or [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network#/accounts){target=_blank} and take the following steps:
 
  1. Navigate to the **Developer** tab and click on **Extrinsics**
  2. Select the account you want to be associated with your collation activities

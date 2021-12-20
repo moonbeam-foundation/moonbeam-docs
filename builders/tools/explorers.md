@@ -15,22 +15,22 @@ Moonbeam provides two different kind of explorers: ones to query the Ethereum AP
 ## Quick Links {: #quick-links } 
 
 === "Moonriver"
-    |                           Block Explorer                                   |   Type   |                  URL                   |
-    |:--------------------------------------------------------------------------:|:--------:| :------------------------------------------:|
-    |          [Moonscan](https://moonriver.moonscan.io/){target=_blank}         |  EVM | https://moonriver.moonscan.io/ |
-    |[Blockscout](https://blockscout.moonriver.moonbeam.network/){target=_blank} |     EVM | https://blockscout.moonriver.moonbeam.network/ |
-    |[Expedition](https://moonbeam-explorer.netlify.app/?network=Moonriver){target=_blank} |     EVM | https://moonbeam-explorer.netlify.app/?network=Moonriver | 
-    |[Subscan](https://moonriver.subscan.io/){target=_blank}  |     Substrate | https://moonriver.subscan.io/ |
-    |                                          [Polkadot.Js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonriver.api.onfinality.io%2Fpublic-ws#/explorer){target=_blank}                                          |  Substrate | https://polkadot.js.org/apps/#/explorer | 
+    |                                                        Block Explorer                                                         |   Type    |                           URL                            |
+    |:-----------------------------------------------------------------------------------------------------------------------------:|:---------:|:--------------------------------------------------------:|
+    |                                   [Moonscan](https://moonriver.moonscan.io/){target=_blank}                                   |    EVM    |              https://moonriver.moonscan.io/              |
+    |                          [Blockscout](https://blockscout.moonriver.moonbeam.network/){target=_blank}                          |    EVM    |      https://blockscout.moonriver.moonbeam.network/      |
+    |                     [Expedition](https://moonbeam-explorer.netlify.app/?network=Moonriver){target=_blank}                     |    EVM    | https://moonbeam-explorer.netlify.app/?network=Moonriver |
+    |                                    [Subscan](https://moonriver.subscan.io/){target=_blank}                                    | Substrate |              https://moonriver.subscan.io/               |
+    | [Polkadot.Js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonriver.api.onfinality.io%2Fpublic-ws#/explorer){target=_blank} | Substrate |         https://polkadot.js.org/apps/#/explorer          |
 
 === "Moonbase Alpha"
-    |                                                               Block Explorer                                                               |                  Type                   |                  URL                   |
-    |   :-------------------------------------------------------------------------------   -------------------------------------------------------:|  :------------------------------------------:| :------------------------------------------:|
-    |         [Moonscan](https://moonbase.moonscan.io/){target=_blank}         |  EVM | https://moonbase.moonscan.io/ |
-    | [Blockscout](https://moonbase-blockscout.testnet.moonbeam.network/){target=_blank} |     EVM | https://moonbase-blockscout.testnet.moonbeam.network/ |
-    |[Expedition](https://moonbeam-explorer.netlify.app/?network=MoonbaseAlpha){target=_blank} |     EVM | https://moonbeam-explorer.netlify.app/?network=MoonbaseAlpha |  
-    |  [Subscan](https://moonbase.subscan.io/){target=_blank}  |     Substrate | https://moonbase.subscan.io/ |
-    |                                          [Polkadot.Js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/explorer){target=_blank}                                           |  Substrate | https://polkadot.js.org/apps/#/explorer | 
+    |                                                     Block Explorer                                                      |   Type    |                             URL                              |
+    |:-----------------------------------------------------------------------------------------------------------------------:|:---------:|:------------------------------------------------------------:|
+    |                                [Moonscan](https://moonbase.moonscan.io/){target=_blank}                                 |    EVM    |                https://moonbase.moonscan.io/                 |
+    |                   [Blockscout](https://moonbase-blockscout.testnet.moonbeam.network/){target=_blank}                    |    EVM    |    https://moonbase-blockscout.testnet.moonbeam.network/     |
+    |                [Expedition](https://moonbeam-explorer.netlify.app/?network=MoonbaseAlpha){target=_blank}                |    EVM    | https://moonbeam-explorer.netlify.app/?network=MoonbaseAlpha |
+    |                                 [Subscan](https://moonbase.subscan.io/){target=_blank}                                  | Substrate |                 https://moonbase.subscan.io/                 |
+    | [Polkadot.Js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=_blank} | Substrate |           https://polkadot.js.org/apps/#/explorer            |
 
 ## Ethereum API {: #ethereum-api } 
 
@@ -86,7 +86,7 @@ While not a full-featured block explorer, Polkadot.js Apps is a convenient optio
 
 ![Polkadot.js Local Node](/images/builders/tools/explorers/explorers-5.png)
 
-Polkadot.js Apps support also includes both [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonriver.api.onfinality.io%2Fpublic-ws#/explorer){target=_blank} and the [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/explorer){target=_blank}. You can find more information in [this page](/tokens/connect/polkadotjs/).
+Polkadot.js Apps support also includes both [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonriver.api.onfinality.io%2Fpublic-ws#/explorer){target=_blank} and the [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=_blank}. You can find more information in [this page](/tokens/connect/polkadotjs/).
 
 ![Polkadot.js Moonriver](/images/builders/tools/explorers/explorers-6.png)
 
