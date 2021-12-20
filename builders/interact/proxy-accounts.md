@@ -27,14 +27,18 @@ If you need help importing your accounts into Polkadot.js Apps, please check out
 
 ## General Definitions
 
-When setting up a proxy account, a bond for the proxy will be taken out of your free balance and moved to your reserved balance. The bond is required as adding a proxy requires on-chain storage space. After the proxy has been removed from your account, the bond will be returned to your free balance.
+When setting up a proxy account, a bond for the proxy will be taken out of your free balance and moved to your reserved balance. The bond is required as adding a proxy requires on-chain storage space, and it is recalculated for each proxy you add or remove. After the proxy has been removed from your account, the bond will be returned to your free balance.
 
 The deposit is calculated based on a deposit base and a deposit factor:
 
 - **Deposit base** - the amount to be reserved for an account to have a proxy list
 - **Deposit factor** - the additional amount to be reserved for every proxy the primary account has
 
-The equation for calculating the deposit is: `deposit base + deposit factor * number of proxies`.
+The equation for calculating the deposit is: 
+
+```
+deposit base + deposit factor * number of proxies
+```
 
 === "Moonriver"
     |    Variable    |                       Value                        |
@@ -44,11 +48,11 @@ The equation for calculating the deposit is: `deposit base + deposit factor * nu
     |  Max proxies   | {{ networks.moonriver.proxy.max_proxies }} proxies |
 
 === "Moonbase Alpha"
-    |    Variable    |                       Value                        |
-    |:--------------:|:--------------------------------------------------:|
-    |  Deposit base  |   {{ networks.moonbase.proxy.deposit_base }} DEV   |
-    | Deposit factor |  {{ networks.moonbase.proxy.deposit_factor }} DEV  |
-    |  Max proxies   |  {{ networks.moonbase.proxy.max_proxies }} proxies |
+    |    Variable    |                       Value                       |
+    |:--------------:|:-------------------------------------------------:|
+    |  Deposit base  |  {{ networks.moonbase.proxy.deposit_base }} DEV   |
+    | Deposit factor | {{ networks.moonbase.proxy.deposit_factor }} DEV  |
+    |  Max proxies   | {{ networks.moonbase.proxy.max_proxies }} proxies |
 
 ## Proxy Types
 
@@ -114,7 +118,7 @@ To check your proxy accounts from the **Chain state** page, you can take the fol
 
 ![Verify your Proxy Accounts](/images/builders/interact/proxy-accounts/proxies-5.png)
 
-The result will appear on the page showing you information about all of your proxies, including the delegate/proxy account address, the proxy type, the delay period if one was specified, and the total bond amount for all of your proxies in wei.
+The result will appear on the page showing you information about all of your proxies, including the delegate/proxy account address, the proxy type, the delay period if one was specified, and the total bond amount for all of your proxies in Wei.
 
 As previously mentioned, you can also check your proxy accounts from the **Accounts** page. To do so, you can navigate to the **Accounts** page and there should be a Proxy symbol next to the primary account. Hover over the icon and click on **Proxy overview** to review your proxies.
 
@@ -137,7 +141,7 @@ To execute a transaction, you can navigate back to the **Extrinsics** page and t
 5. Select the **balances** call
 6. Choose the **transfer** extrinsic
 7. In the **dest** field, enter the address you would like to send funds to
-8. In the **value** field, enter the amount of funds to send in wei. For this example, you can send 2 DEV tokens, which will be `2000000000000000000` in wei
+8. In the **value** field, enter the amount of funds to send in Wei. For this example, you can send 2 DEV tokens, which will be `2000000000000000000` in Wei
 9. Click **Submit Transaction**
 
 ![Execute a Proxy Transaction](/images/builders/interact/proxy-accounts/proxies-8.png)
