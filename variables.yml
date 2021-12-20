@@ -8,7 +8,7 @@ networks:
     container_name: moonbeam_development
     block_explorer: https://moonbeam-explorer.netlify.app/
   moonbase:
-    rpc_url: https://rpc.testnet.moonbeam.network
+    rpc_url: https://rpc.api.moonbase.moonbeam.network
     chain_id: 1287
     hex_chain_id: '0x507'
     chain_spec: alphanet

@@ -27,7 +27,7 @@ Before we go dive into how to get started, it is important to understand the bas
 If you are familiar with running Chainlink Oracle nodes, this information will get you started on the Moonbase Alpha TestNet quickly:
 
  - Chainlink documentation, which can be found [here](https://docs.chain.link/docs/running-a-chainlink-node)
- - Moonbase Alpha WSS EndPoint: `wss://wss.testnet.moonbeam.network`
+ - Moonbase Alpha WSS EndPoint: `wss://wss.api.moonbase.moonbeam.network`
  - Moonbase Alpha ChainId: `{{ networks.moonbase.chain_id }}` (hex: `{{ networks.moonbase.hex_chain_id}}`)
  - LINK Token on Moonbase Alpha: `0xa36085F69e2889c224210F603D836748e7dC0088`
  - Get Moonbase Alpha tokens from [our Faucet](/builders/get-started/moonbase/#get-tokens/)
@@ -86,7 +86,7 @@ CHAINLINK_TLS_PORT=0
 SECURE_COOKIES=false
 GAS_UPDATER_ENABLED=false
 ALLOW_ORIGINS=*
-ETH_URL=wss://wss.testnet.moonbeam.network
+ETH_URL=wss://wss.api.moonbase.moonbeam.network
 DATABASE_URL=postgresql://chainlink:{YOUR_PASSWORD_HERE}@localhost:5432/chainlink?sslmode=disable
 MINIMUM_CONTRACT_PAYMENT=0" > ~/.chainlink-moonbeam/.env
 ```
