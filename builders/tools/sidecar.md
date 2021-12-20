@@ -91,21 +91,52 @@ For a full list of API endpoints available on Substrate API Sidecar, please refe
 
 ## EVM Field Mapping in Block JSON Object {: #evm-fields-mapping-in-block-json-object}
 
-Substrate API Sidecar returns Moonbeam blocks as a JSON object. Information related to EVM execution of Moonbeam transactions is under the `extrinsics` top level field, where individual extrinsics are organized numerically as nested JSON objects. 
+Substrate API Sidecar returns Moonbeam blocks as a JSON object. Information related to EVM execution of Moonbeam transactions is under the `extrinsics` top level field, where individual extrinsics are organized numerically as nested JSON objects. The nesting structure is as following:
+
+```JSON
+RESPONSE JSON Block Object:
+    |--extrinsics
+        |--{extrinsic number}
+            |--method
+                |--pallet: "ethereum"
+                |--method: "transact"
+            |--signature:
+            |--nonce: 
+            |--args
+                |--transaction
+                    |--nonce
+                    |--gasPrice
+                    |--gasLimit
+                    |--signature
+            |--events
+                |--{event number}
+                    |--method
+                        |--pallet: "ethereum"
+                        |--method: "Executed"
+                    |--data
+                        |--0
+                        |--1
+                        |--2
+                        |--3
+    ...
+
+```
 
 Moonbeam EVM transactions can be identify by the `method` field under the current extrinsic object, where it is set to:
 
 ```
-pallet: "ethereum", method: "transact" 
+{extrinsic number}.method.pallet = "ethereum"
+{extrinsic number}.method.method = "transact"
 ```
 
 To obtain the EVM sender address, recipient address, and EVM hash, check the `events` field under the current extrinsic object, and identify the event where the `method` field is set to:
 
 ```
-pallet: "ethereum", method: "Executed" 
+{event number}.method.pallet: "ethereum"
+{event number}.method.method: "Executed" 
 ```
 
-The EVM fields are then mapped to the Substrate API Sidecar block JSON object as following:
+The EVM field mappings are then summarized as the following:
 
 | EVM Field     | Block JSON Field                          |
 | ----------- | ------------------------------------ |
@@ -117,6 +148,10 @@ The EVM fields are then mapped to the Substrate API Sidecar block JSON object as
 | `Recipient Address`    | extrinsics.{extrinsic number}.events.{event number}.data.1 |
 | `EVM Hash`       | extrinsics.{extrinsic number}.events.{event number}.data.2 |
 | `EVM Execution Status`       | extrinsics.{extrinsic number}.events.{event number}.data.3 |
+
+!!! note
+    EVM transaction nonce and signature fields are under `extrinsics.{extrinsic number}.args.transaction`, whereas the `nonce` and `signature` fields under `extrinsics.{extrinsic number}` are the Substrate transaction nonce and signature, which are set to `null` for EVM transactions.
+
 
 ### Computing Gas Spent {: #computing-gas-used } 
 
