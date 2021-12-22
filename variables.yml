@@ -152,6 +152,9 @@ networks:
       staking: '0x0000000000000000000000000000000000000800'
       crowdloan: '0x0000000000000000000000000000000000000801'
       erc20: '0x0000000000000000000000000000000000000802'
+    substrate_api_sidecar:
+      stable_version: 9.2.0
+    tx_weight_to_gas_ratio: 25000
   moonriver:
     rpc_url: https://rpc.moonriver.moonbeam.network
     wss_url: wss://wss.moonriver.moonbeam.network
@@ -258,6 +261,9 @@ networks:
           mim_usd: '0xdD6296BD7515271F7E4b10C3A87A2f9863fECa97'
           movr_usd: '0x3f8BFbDc1e79777511c00Ad8591cef888C2113C1'
           usdt_usd: '0xF80DAd54AF79257D41c30014160349896ca5370a'
+    substrate_api_sidecar:
+      stable_version: 11.3.3
+    tx_weight_to_gas_ratio: 25000
   moonbeam:
     rpc_url: https://rpc.api.moonbeam.network
     wss_url: wss://wss.api.moonbeam.network
