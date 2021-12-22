@@ -1,20 +1,21 @@
 const provider = window.ethereum;
-const moonbaseAlphaChainId = '0x507';
+const moonbeamChainId = "0x504"
 const moonriverChainId = '0x505';
+const moonbaseAlphaChainId = '0x507';
 
 /**  Add event listener to the Connect MetaMask buttons */
 const metaMaskButtons = document.querySelectorAll('.connectMetaMask');
 const connectMetaMaskNav = document.querySelector('.connectMetaMask-nav');
 
 const supportedNetworks = {
-  moonbase: {
-    chainId: moonbaseAlphaChainId,
-    chainName: 'Moonbase Alpha',
-    rpcUrls: ['https://rpc.api.moonbase.moonbeam.network'],
-    blockExplorerUrls: ['https://moonbase.moonscan.io/'],
+  moonbeam: {
+    chainId: moonbeamChainId,
+    chainName: 'Moonbeam',
+    rpcUrls: ['https://rpc.api.moonbeam.network'],
+    blockExplorerUrls: ['https://moonbeam.moonscan.io/'],
     nativeCurrency: {
-      name: 'DEV',
-      symbol: 'DEV',
+      name: 'Glimmer',
+      symbol: 'GLMR',
       decimals: 18,
     },
   },
@@ -26,6 +27,17 @@ const supportedNetworks = {
     nativeCurrency: {
       name: 'Moonriver',
       symbol: 'MOVR',
+      decimals: 18,
+    },
+  },
+  moonbase: {
+    chainId: moonbaseAlphaChainId,
+    chainName: 'Moonbase Alpha',
+    rpcUrls: ['https://rpc.api.moonbase.moonbeam.network'],
+    blockExplorerUrls: ['https://moonbase.moonscan.io/'],
+    nativeCurrency: {
+      name: 'DEV',
+      symbol: 'DEV',
       decimals: 18,
     },
   },
@@ -53,6 +65,8 @@ const isConnectedToMoonbeam = async (buttons) => {
       displayConnected(buttons, 'moonbase', 'Moonbase Alpha');
     } else if (chainId === moonriverChainId) {
       displayConnected(buttons, 'moonriver', 'Moonriver');
+    } else if (chainId === moonbeamChainId) {
+      displayConnected(buttons, "moonbeam", "Moonbeam")
     }
   }
 };

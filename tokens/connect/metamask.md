@@ -16,11 +16,15 @@ Currently, MetaMask can be configured to connect to a few networks: a Moonbeam d
 If you already have MetaMask installed, you can easily connect MetaMask to the network of your choice:
 
 <div class="button-wrapper">
-    <a href="#" class="md-button connectMetaMask" value="moonbase">Connect to Moonbase Alpha</a>
+    <a href="#" class="md-button connectMetaMask" value="moonbeam">Connect to Moonbeam</a>
 </div>
 
 <div class="button-wrapper">
     <a href="#" class="md-button connectMetaMask" value="moonriver">Connect to Moonriver</a>
+</div>
+
+<div class="button-wrapper">
+    <a href="#" class="md-button connectMetaMask" value="moonbase">Connect to Moonbase Alpha</a>
 </div>
 
 !!! note
