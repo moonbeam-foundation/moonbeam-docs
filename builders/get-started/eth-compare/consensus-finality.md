@@ -11,7 +11,7 @@ While Moonbeam strives to be compatible with Ethereum's Web3 API and EVM, there 
 
 In short, consensus is a way for different parties to agree on a shared state. As blocks are created, nodes in the network must decide which block will represent the next valid state. Finality defines when that valid state cannot be altered or reversed.
 
-At the time of writing, Ethereum uses a consensus protocol based on [Proof-of-Work (PoW)](https://ethereum.org/en/developers/docs/consensus-mechanisms/pow/), which provides probabilistic finality. In contrast, Moonbeam uses a hybrid consensus protocol based on [Nominated Proof-of-Stake (NPoS)](https://wiki.polkadot.network/docs/learn-consensus), which provides deterministic finality.
+At the time of writing, Ethereum uses a consensus protocol based on [Proof-of-Work (PoW)](https://ethereum.org/en/developers/docs/consensus-mechanisms/pow/), which provides probabilistic finality. In contrast, Moonbeam uses a hybrid consensus protocol based on Delegated Proof-of-Stake (DPoS), which provides deterministic finality. DPoS is an evolution of Polkadot's [Nominated Proof of Stake (NPoS)](https://wiki.polkadot.network/docs/learn-consensus) concept, that puts more power into the hands of token holders by allowing delegators to choose which collator candidate they want to support and in what magnitude.
 
 This guide will outline some of these main differences around consensus and finality, and what to expect when using Moonbeam for the first time.
 
