@@ -25,12 +25,12 @@ The precompile is located at the following address:
 
 === "Moonriver"
      ```
-     0x0000000000000000000000000000000000000802
+     {{networks.moonriver.precompiles.erc20 }}
      ```
 
 === "Moonbase Alpha"
      ```
-     0x0000000000000000000000000000000000000802
+     {{networks.moonriver.precompiles.erc20 }}
      ```
 
 --8<-- 'text/erc20-interface/erc20-interface.md'
