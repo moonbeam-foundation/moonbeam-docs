@@ -36,7 +36,7 @@ Any contract that follows the ERC-20 token standard emits an event related to a 
 
 ```js
 const Web3 = require('web3');
-const web3 = new Web3('wss://wss.testnet.moonbeam.network');
+const web3 = new Web3('wss://wss.api.moonbase.moonbeam.network');
 
 web3.eth.subscribe('logs', {
     address: 'ContractAddress',
@@ -90,7 +90,7 @@ Using the same example as in the previous section, lets subscribe to the events 
 
 ```js
 const Web3 = require('web3');
-const web3 = new Web3('wss://wss.testnet.moonbeam.network');
+const web3 = new Web3('wss://wss.api.moonbase.moonbeam.network');
 
 web3.eth
    .subscribe(

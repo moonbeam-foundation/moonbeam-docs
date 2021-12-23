@@ -15,7 +15,7 @@ This guide will show you how to set an identity, and then clear it, on the Moonb
 
 ## Checking Prerequisites { : #checking-prerequisites }
 
-You'll need to connect to the [Moonbase Alpha TestNet](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network) on the Polkadot.js Apps explorer. You can also follow along and adapt the instructions for [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network).
+You'll need to connect to the [Moonbase Alpha TestNet](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network){target=_blank} on the Polkadot.js Apps explorer. You can also follow along and adapt the instructions for [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network){target=_blank}.
 
 You will also need to create or import an account into Polkadot.js Apps. If you haven't already created or imported an account, please follow our guide on [Creating or Importing an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account). Make sure you fund your account with DEV tokens if you’re on Moonbase Alpha, or MOVR if you’re on Moonriver. For more information on the DEV token faucet, check out the [Get Tokens](/builders/get-started/moonbase/#get-tokens) section of the Moonbase Alpha documentation.
 
@@ -51,7 +51,7 @@ If you are looking for a more customizable experience and want to add custom fie
 
 ### Set an Identity
 
-To get started with setting an identity using the Accounts UI, head to the [Accounts tab](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts) on the Polkadot.js Apps explorer.
+To get started with setting an identity using the Accounts UI, head to the [Accounts tab](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/accounts){target=_blank} on the Polkadot.js Apps explorer.
 
 You should already have an account connected, so you can go ahead and click on your account name to verify and take note of your balances. After you send the transaction to set an identity, the deposit(s) you submitted will be moved from your transferable balance to your reserved balance. 
 
@@ -87,7 +87,7 @@ Once you clear your identity, the deposit in your reserved balance will get tran
 
 ### Clear an Identity
 
-To clear your identity from the [Accounts tab](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts) of the Polkadot.js Apps UI, you'll need to:
+To clear your identity from the [Accounts tab](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/accounts){target=_blank} of the Polkadot.js Apps UI, you'll need to:
 
 1. Click on the 3 vertical dots next to the account you would like to add identity information for
 2. A menu will pop up. Click **Set on-chain identity**
@@ -112,7 +112,7 @@ That’s it! You’ve successfully cleared your identity. If you want to add a n
 
 ### Set an Identity
 
-To register an identity using the extrinsics UI, navigate to the [Extrinsics page](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/extrinsics) on Polkadot.js Apps. Then, you'll need to:
+To register an identity using the extrinsics UI, navigate to the [Extrinsics page](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} on Polkadot.js Apps. Then, you'll need to:
 
 1. Select your account
 2. Select identity from the **submit the following extrinsic** dropdown
@@ -147,7 +147,7 @@ You should see status notifications pop-up in the top right hand corner confirmi
 
 ### Confirm an Identity
 
-To verify the addition of your identity information, you can click on the **Developer** tab and then navigate to [Chain state](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/chainstate).
+To verify the addition of your identity information, you can click on the **Developer** tab and then navigate to [Chain state](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/chainstate){target=_blank}.
 
 ![Navigate to Chain State](/images/builders/interact/identity/identity-14.png)
 
@@ -164,7 +164,7 @@ You can see now that you’ve successfully set an identity! Once you clear your 
 
 ### Clear an Identity
 
-To clear your identity from the [Extrinsics tab](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/extrinsics) of the Polkadot.js Apps UI, you'll need to:
+To clear your identity from the [Extrinsics tab](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} of the Polkadot.js Apps UI, you'll need to:
 
 1. Select your account from the **using the selected account** dropdown
 2. Select identity from the **submit the following extrinsic** dropdown

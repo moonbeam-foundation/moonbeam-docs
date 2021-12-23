@@ -8,3 +8,4 @@ nav:
   - multisig-safe.md
   - debug-trace.md
   - pubsub.md
+  - sidecar.md

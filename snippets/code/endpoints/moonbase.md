@@ -7,7 +7,7 @@
     
 === "PureStake"
     ```
-    https://rpc.testnet.moonbeam.network
+    https://rpc.api.moonbase.moonbeam.network
     ```
 
 #### WSS
@@ -19,7 +19,7 @@
 
 === "PureStake"
     ```
-    wss://wss.testnet.moonbeam.network
+    wss://wss.api.moonbase.moonbeam.network
     ```
 
 --8<-- 'text/testnet/relay-chain.md'
