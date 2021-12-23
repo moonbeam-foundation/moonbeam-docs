@@ -35,6 +35,9 @@ The precompile is located at the following address:
 
 --8<-- 'text/erc20-interface/erc20-interface.md'
 
+!!! note 
+    The ERC-20 precompile does not include `deposit` and `withdraw` functions and subsequent events that are expected from a wrapped token contract, such as WETH.
+
 ## Checking Prerequisites {: #checking-prerequisites } 
 
 To follow along with this tutorial, you will need to have:
@@ -69,7 +72,7 @@ And that's it! You've successfully added the DEV token as a custom ERC-20 token 
 
 ## Interact with the Precompile Using Remix {: #interact-with-the-precompile-using-remix } 
 
-You can interact with the ERC20 precompile using [Remix](https://remix.ethereum.org/). To add the precompile to Remix, you will need to:
+You can interact with the ERC-20 precompile using [Remix](https://remix.ethereum.org/). To add the precompile to Remix, you will need to:
 
 1. Get a copy of [ERC20.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol) 
 2. Paste the file contents into a Remix file named **IERC20.sol**
@@ -101,7 +104,7 @@ The **IERC20** precompile will appear in the list of **Deployed Contracts**.
 
 ### Get Basic Token Information {: #get-basic-token-information } 
 
-The ERC20 interface allows you to quickly obtain token information, including the token's total supply, name, symbol, and decimal places. You can get this information by following these steps:
+The ERC-20 interface allows you to quickly obtain token information, including the token's total supply, name, symbol, and decimal places. You can get this information by following these steps:
 
 1. Expand the IERC20 contract under **Deployed Contracts**
 2. Click **`decimals`** to get the decimal places of the Moonbase Alpha native protocol token
