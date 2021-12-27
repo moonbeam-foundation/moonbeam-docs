@@ -27,8 +27,8 @@ Collator candidates (and token holders if they delegate) have a stake in the net
     - **Max eligible delegators per candidate** — for a given round, only the top {{ networks.moonriver.staking.max_del_per_can }} delegators by staked amount are eligible for staking rewards
     - **Max delegations per delegator** — a delegator can delegate {{ networks.moonriver.staking.max_del_per_del }} different candidates
     - **Bonding duration** — delegation takes effect in the next round (funds are withdrawn immediately)
-    - **Unbonding duration** — {{ networks.moonriver.staking.bond_lock }} rounds
-    - **Reward payout time** — {{ networks.moonriver.delegator_timings.rewards_payouts.rounds }} rounds. Rewards are distributed automatically to the free balance
+    - **Unbonding duration** — {{ networks.moonriver.delegator_timings.del_bond_less.rounds }} rounds
+    - **Reward payout delay** — {{ networks.moonriver.delegator_timings.rewards_payouts.rounds }} rounds. Rewards are distributed automatically to the free balance
     - **Collator commission** — fixed at {{ networks.moonriver.staking.collator_reward_inflation }}% of the annual inflation ({{ networks.moonriver.total_annual_inflation }}%). Not related to the delegators reward pool
     - **Delegators reward pool** — {{ networks.moonriver.staking.delegator_reward_inflation }}% of the annual inflation
     - **Delegator rewards** — variable. It's the aggregate delegator rewards distributed over all eligible delegators, taking into account the relative size of stakes ([read more](/staking/overview/#reward-distribution))
@@ -40,11 +40,11 @@ Collator candidates (and token holders if they delegate) have a stake in the net
 === "Moonbase Alpha" 
     - **Minimum delegation amount** — {{ networks.moonbase.staking.min_del_stake }} DEV
     - **Round duration** — {{ networks.moonbase.staking.round_blocks }} blocks, time per round is approximately {{ networks.moonbase.staking.round_hours }} hour
-    - **Max eligible delegators per collator** — for a given round, only the top {{ networks.moonbase.staking.max_del_per_can }} delegators by staked amount are eligible for staking rewards
+    - **Max eligible delegators per candidate** — for a given round, only the top {{ networks.moonbase.staking.max_del_per_can }} delegators by staked amount are eligible for staking rewards
     - **Max delegations per delegator** — a delegator can delegated {{ networks.moonbase.staking.max_del_per_del }} different candidates
     - **Bonding duration** — delegation takes effect in the next round (funds are withdrawn immediately)
-    - **Unbonding duration** — {{ networks.moonbase.staking.bond_lock }} rounds
-    - **Reward payout time** — {{ networks.moonbase.delegator_timings.rewards_payouts.rounds }} rounds. Rewards are distributed automatically to the free balance
+    - **Unbonding duration** — {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds
+    - **Reward payout delay** — {{ networks.moonbase.delegator_timings.rewards_payouts.rounds }} rounds. Rewards are distributed automatically to the free balance
     - **Collator commission** — fixed at {{ networks.moonbase.staking.collator_reward_inflation }}% of the annual  inflation ({{ networks.moonriver.total_annual_inflation }}%). Not related to the delegators reward pool
     - **Delegators reward pool** — {{ networks.moonbase.staking.delegator_reward_inflation }}% of the annual  inflation
     - **Delegator rewards** — variable. It's the aggregate delegator rewards distributed over all eligible delegators, taking into account the relative size of stakes ([read more](/staking/overview/#reward-distribution))
@@ -56,7 +56,9 @@ To learn how to get the current value of any of the parameters around staking, c
 
 ## Reward Distribution {: #reward-distribution } 
 
-Collators are rewarded at the end of every round ({{ networks.moonbase.staking.round_blocks }} blocks) for their work from {{ networks.moonbase.staking.bond_lock }} rounds ago.
+Rewards for collators and their delegators are calculated at the start of every round for their work prior to the [reward payout delay](#quick-reference). For example, on Moonriver the rewards are calculated for the collators work from {{ networks.moonriver.delegator_timings.rewards_payouts.rounds }} rounds ago.
+
+The calculated rewards are then paid out incrementally, once per block, until all of the rewards have been paid. In each block, one collator is chosen to receive their reward payout, and is paid along with their delegators.
 
 The distribution of the 5% annual inflation goes as follows:
 

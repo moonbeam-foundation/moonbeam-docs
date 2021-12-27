@@ -83,7 +83,7 @@ Before getting started, it's important to note some of the timings of different 
 
 
 !!! note 
-    Joining the collator candidate pool takes effect immediately. Adding or increasing a delegation also takes effect immediately, but rewards payouts begin {{ networks.moonriver.delegator_timings.rewards_payouts.rounds }} rounds later. The values presented in the previous table are subject to change in future releases.
+    Joining the collator candidate pool takes effect immediately. Adding or increasing a delegation also takes effect immediately, but rewards payouts are calculated {{ networks.moonriver.delegator_timings.rewards_payouts.rounds }} rounds later. The calculated rewards are then paid out incrementally, once per block, until all of the rewards have been paid. In each block, one collator is chosen to receive their reward payout, and is paid along with their delegators. The values presented in the previous table are subject to change in future releases.
 
 ### Get the Size of the Candidate Pool {: #get-the-size-of-the-candidate-pool } 
 
