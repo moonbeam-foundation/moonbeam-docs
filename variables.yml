@@ -103,7 +103,6 @@ networks:
       max_candidates: 60
       round_blocks: 600
       round_hours: 2
-      bond_lock: 24
       min_del_stake: 5
       max_del_per_can: 100
       max_del_per_del: 60
@@ -203,7 +202,6 @@ networks:
       max_candidates: 58
       round_blocks: 600
       round_hours: 2
-      bond_lock: 24
       min_del_stake: 5
       max_del_per_can: 100
       max_del_per_del: 100
@@ -312,7 +310,6 @@ networks:
       max_candidates: 8
       round_blocks: 1800
       round_hours: 6
-      bond_lock: 24
       min_del_stake: 500
       max_del_per_can: 100
       max_del_per_del: 100
