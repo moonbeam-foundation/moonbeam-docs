@@ -56,7 +56,7 @@ To learn how to get the current value of any of the parameters around staking, c
 
 ## Reward Distribution {: #reward-distribution } 
 
-Rewards for collators and their delegators are calculated at the end of every round for their work prior to the [reward payout delay](#quick-reference). For example, on Moonriver the rewards are calculated for the collators work from {{ networks.moonriver.delegator_timings.rewards_payouts.rounds }} rounds ago.
+Rewards for collators and their delegators are calculated at the start of every round for their work prior to the [reward payout delay](#quick-reference). For example, on Moonriver the rewards are calculated for the collators work from {{ networks.moonriver.delegator_timings.rewards_payouts.rounds }} rounds ago.
 
 The calculated rewards are then paid out incrementally, once per block, until the total rewards have been paid. In each block, one collator is chosen to receive their reward payout, and is paid along with their delegators.
 
