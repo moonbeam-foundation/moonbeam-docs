@@ -311,7 +311,7 @@ networks:
       round_blocks: 1800
       round_hours: 6
       min_del_stake: 500
-      max_del_per_can: 100
+      max_del_per_can: 300
       max_del_per_del: 100
       delegator_reward_inflation: 50
       collator_reward_inflation: 20
