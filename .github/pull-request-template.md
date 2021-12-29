@@ -19,6 +19,7 @@ Please link to any corresponding PRs here.
 - [ ] Will need to create PR in `moonbeam-docs` repo to remove images
 - [ ] Will need to create PR in `moonbeam-docs` repo to remove variables
 - [ ] Will need to create PR in `moonbeam-mkdocs` repo to add redirects for Chinese site
+- [ ] No additional PRs are required after the translations are done
 
 #### Items to be Updated
 
