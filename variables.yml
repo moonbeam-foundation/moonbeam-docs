@@ -104,7 +104,7 @@ networks:
       round_blocks: 600
       round_hours: 2
       min_del_stake: 5
-      max_del_per_can: 100
+      max_del_per_can: 300
       max_del_per_del: 60
       delegator_reward_inflation: 50
       collator_reward_inflation: 20
@@ -203,7 +203,7 @@ networks:
       round_blocks: 600
       round_hours: 2
       min_del_stake: 5
-      max_del_per_can: 100
+      max_del_per_can: 300
       max_del_per_del: 100
       delegator_reward_inflation: 50
       collator_reward_inflation: 20
