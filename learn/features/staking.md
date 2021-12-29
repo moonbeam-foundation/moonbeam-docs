@@ -58,7 +58,7 @@ To learn how to get the current value of any of the parameters around staking, c
 
 Rewards for collators and their delegators are calculated at the start of every round for their work prior to the [reward payout delay](#quick-reference). For example, on Moonriver the rewards are calculated for the collators work from {{ networks.moonriver.delegator_timings.rewards_payouts.rounds }} rounds ago.
 
-The calculated rewards are then paid out incrementally, once per block, until all of the rewards have been paid. In each block, one collator is chosen to receive their reward payout, and is paid along with their delegators.
+The calculated rewards are then paid out incrementally, once per block, until all of the rewards have been paid. In each block, one collator is chosen to receive their reward payout, and is paid along with their delegators. For example, if there are {{ networks.moonbase.staking.max_candidates }} collators, all of the collators and their delegators would be paid by the {{ networks.moonbase.staking.max_candidates }}th block.
 
 The distribution of the 5% annual inflation goes as follows:
 
