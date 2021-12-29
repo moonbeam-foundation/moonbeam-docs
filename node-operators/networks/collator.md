@@ -33,19 +33,21 @@ From a technical perspective, collators must meet the following requirements:
 
 ## Accounts and Staking Requirements {: #accounts-and-staking-requirements } 
 
-Similar to Polkadot validators, you need to create an account. For Moonbeam, this is an H160 account or an Ethereum-style account from which you hold the private keys. In addition, you will need a minimum amount of tokens staked to be considered eligible (become a candidate). Only a certain number of the top collator candidates by delegated stake will be in the active set of collators.
+Similar to Polkadot validators, you need to create an account. For Moonbeam, this is an H160 account or an Ethereum-style account from which you hold the private keys. In addition, you will need a minimum amount of tokens staked (self-bonded) to be considered eligible and become a candidate. Only a certain number of the top collator candidates by delegated stake, including self-bonded and delegator-bonded stake (total bonded), will be in the active set of collators.
 
 === "Moonriver"
-    |    Variable     |                           Value                           |
-    |:---------------:|:---------------------------------------------------------:|
-    |   Bond Amount   | {{ networks.moonriver.staking.candidate_bond_min }} MOVR  |
-    | Active set size | {{ networks.moonriver.staking.max_candidates }} collators |
+    |     Variable      |                           Value                           |
+    |:-----------------:|:---------------------------------------------------------:|
+    | Self-Bond Amount  |     {{ networks.moonriver.staking.min_can_stk }} MOVR     |
+    | Total Bond Amount |     {{ networks.moonriver.staking.min_col_stk }} MOVR     |
+    |  Active set size  | {{ networks.moonriver.staking.max_candidates }} collators |
 
 === "Moonbase Alpha"
-    |    Variable     |                          Value                           |
-    |:---------------:|:--------------------------------------------------------:|
-    |   Bond Amount   |  {{ networks.moonbase.staking.candidate_bond_min }} DEV  |
-    | Active set size | {{ networks.moonbase.staking.max_candidates }} collators |
+    |     Variable      |                          Value                           |
+    |:-----------------:|:--------------------------------------------------------:|
+    | Self-Bond Amount  |     {{ networks.moonbase.staking.min_can_stk }} DEV      |
+    | Total Bond Amount |     {{ networks.moonbase.staking.min_col_stk }} DEV      |
+    |  Active set size  | {{ networks.moonbase.staking.max_candidates }} collators |
 
 ### Account in Polkadot.js {: #account-in-polkadotjs } 
 
@@ -113,7 +115,7 @@ Once your node is running and in sync with the network, you become a candidate (
  3. Confirm your account is funded with at least the [minimum stake required](#accounts-and-staking-requirements) plus some extra for transaction fees 
  4. Select **parachainStaking** pallet under the **submit the following extrinsic** menu
  5. Open the drop-down menu, which lists all the possible extrinsics related to staking, and select the **joinCandidates()** function
- 6. Set the bond to at least the [minimum amount](#accounts-and-staking-requirements) to be considered a candidate. You'll need to enter this amount in `wei`. As an example, the minimum bond of {{ networks.moonbase.staking.candidate_bond_min }} DEV in Moonbase Alpha would be `{{ networks.moonbase.staking.candidate_bond_min_wei }}` (21 zeros) in wei. For Moonriver, the minimum bond of {{ networks.moonriver.staking.candidate_bond_min }} MOVR is `{{ networks.moonriver.staking.candidate_bond_min_wei }}` (20 zeros) in wei. Only the candidate bond counts for this check. Additional delegations do not count
+ 6. Set the bond to at least the [minimum amount](#accounts-and-staking-requirements) to be considered a candidate. You'll need to enter this amount in `wei`. As an example, the minimum bond of {{ networks.moonbase.staking.min_can_stk }} DEV in Moonbase Alpha would be `{{ networks.moonbase.staking.min_can_stk_wei }}` (21 zeros) in wei. For Moonriver, the minimum bond of {{ networks.moonriver.staking.min_can_stk }} MOVR is `{{ networks.moonriver.staking.min_can_stk_wei }}` (20 zeros) in wei. Only the candidate bond counts for this check. Additional delegations do not count
  7. Set the candidate count as the candidate pool size. To learn how to retrieve this value, check the [Get the Size of the Candidate Pool](#get-the-size-of-the-candidate-pool) section
  8. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
@@ -180,7 +182,7 @@ If you wish to bond less, you have to schedule a request, wait an exit delay, an
 
 ### Bond More {: #bond-more }
 
-As a candidate there are two options for increasing one's stake. The first and recommended option is to send the funds to be staked to another owned address and [delegate to your collator](/tokens/staking/stake/#how-to-nominate-a-collator). Alternatively, collators that have {{ networks.moonriver.staking.candidate_bond_min }} MOVR or more bonded can increase their bond from [Polkadot JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network#/accounts) as follows:
+As a candidate there are two options for increasing one's stake. The first and recommended option is to send the funds to be staked to another owned address and [delegate to your collator](/tokens/staking/stake/#how-to-nominate-a-collator). Alternatively, collators that have {{ networks.moonriver.staking.min_can_stk }} MOVR or more bonded can increase their bond from [Polkadot JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network#/accounts) as follows:
 
  1. Navigate to the **Developer** tab 
  2. Click on **Extrinsics**
@@ -197,10 +199,10 @@ As a candidate there are two options for increasing one's stake. The first and r
 
 ### Bond Less {: #bond-less}
 
-As of the latest runtime upgrade, [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/), there have been significant changes to the way users can interact with various staking features, including the way staking exits are handled. As a collator or collator candidate in Moonriver you may decrease your amount bonded if you have more than {{ networks.moonriver.staking.candidate_bond_min }} MOVR bonded.
+As of the latest runtime upgrade, [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/), there have been significant changes to the way users can interact with various staking features, including the way staking exits are handled. As a collator or collator candidate in Moonriver you may decrease your amount bonded if you have more than {{ networks.moonriver.staking.min_can_stk }} MOVR bonded.
 
 !!! note
-    The collator bond for Moonriver was previously 100 MOVR for a brief period during the network launch process. If you are collator with {{ networks.moonriver.staking.candidate_bond_min }} MOVR or less, you won't be able to decrease your bond. 
+    The collator bond for Moonriver was previously 100 MOVR for a brief period during the network launch process. If you are collator with {{ networks.moonriver.staking.min_can_stk }} MOVR or less, you won't be able to decrease your bond. 
 
 In order to bond less, you have to first schedule a request, wait the duration of the exit delay, and then execute the request. You can [cancel a request](#cancel-request) at any time, as long as the request hasn't been executed yet.
 
