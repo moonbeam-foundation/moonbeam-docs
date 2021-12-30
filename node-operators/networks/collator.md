@@ -33,21 +33,21 @@ From a technical perspective, collators must meet the following requirements:
 
 ## Accounts and Staking Requirements {: #accounts-and-staking-requirements } 
 
-Similar to Polkadot validators, you need to create an account. For Moonbeam, this is an H160 account or an Ethereum-style account from which you hold the private keys. In addition, you will need a minimum amount of tokens staked (self-bonded) to be considered eligible and become a candidate. Only a certain number of the top collator candidates by delegated stake, including self-bonded and delegator-bonded stake (total bonded), will be in the active set of collators.
+Similar to Polkadot validators, you need to create an account. For Moonbeam, this is an H160 account or an Ethereum-style account from which you hold the private keys. In addition, you will need a minimum amount of tokens staked (self-bonded) to be considered eligible and become a candidate. Only a certain number of the top collator candidates by total stake, including self-bonded and delegated stake (total bonded), will be in the active set of collators.
 
 === "Moonriver"
-    |     Variable      |                           Value                           |
-    |:-----------------:|:---------------------------------------------------------:|
-    | Self-Bond Amount  |     {{ networks.moonriver.staking.min_can_stk }} MOVR     |
-    | Total Bond Amount |     {{ networks.moonriver.staking.min_col_stk }} MOVR     |
-    |  Active set size  | {{ networks.moonriver.staking.max_candidates }} collators |
+    |         Variable          |                           Value                           |
+    |:-------------------------:|:---------------------------------------------------------:|
+    | Minimum self-bond amount  |     {{ networks.moonriver.staking.min_can_stk }} MOVR     |
+    | Minimum total bond amount |     {{ networks.moonriver.staking.min_col_stk }} MOVR     |
+    |      Active set size      | {{ networks.moonriver.staking.max_candidates }} collators |
 
 === "Moonbase Alpha"
-    |     Variable      |                          Value                           |
-    |:-----------------:|:--------------------------------------------------------:|
-    | Self-Bond Amount  |     {{ networks.moonbase.staking.min_can_stk }} DEV      |
-    | Total Bond Amount |     {{ networks.moonbase.staking.min_col_stk }} DEV      |
-    |  Active set size  | {{ networks.moonbase.staking.max_candidates }} collators |
+    |         Variable          |                          Value                           |
+    |:-------------------------:|:--------------------------------------------------------:|
+    | Minimum self-bond amount  |     {{ networks.moonbase.staking.min_can_stk }} DEV      |
+    | Minimum total bond amount |     {{ networks.moonbase.staking.min_col_stk }} DEV      |
+    |      Active set size      | {{ networks.moonbase.staking.max_candidates }} collators |
 
 ### Account in Polkadot.js {: #account-in-polkadotjs } 
 
