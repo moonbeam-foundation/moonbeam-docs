@@ -97,15 +97,16 @@ networks:
       max_proposals: 100
     total_annual_inflation: 5
     staking:
-      candidate_bond_min: 1000
-      candidate_bond_min_wei: 1000000000000000000000
+      min_col_stk: 1000
+      min_can_stk: 500
+      min_can_stk_wei: 500000000000000000000
       collator_map_bond: 100
       max_candidates: 60
       round_blocks: 600
       round_hours: 2
       min_del_stake: 5
       max_del_per_can: 300
-      max_del_per_del: 60
+      max_del_per_del: 100
       delegator_reward_inflation: 50
       collator_reward_inflation: 20
       candidates:
@@ -196,8 +197,9 @@ networks:
       max_proposals: 100
     total_annual_inflation: 5
     staking:
-      candidate_bond_min: 500
-      candidate_bond_min_wei: 500000000000000000000
+      min_col_stk: 1000
+      min_can_stk: 500
+      min_can_stk_wei: 500000000000000000000
       collator_map_bond: 100
       max_candidates: 58
       round_blocks: 600
@@ -304,10 +306,11 @@ networks:
       max_proposals: 100
     total_annual_inflation: 5
     staking:
-      candidate_bond_min: 100000
-      candidate_bond_min_wei: 100000000000000000000000
+      min_col_stk: 100000
+      min_can_stk: 100000
+      min_can_stk_wei: 100000000000000000000000
       collator_map_bond: 10000
-      max_candidates: 8
+      max_candidates: 32
       round_blocks: 1800
       round_hours: 6
       min_del_stake: 500
