@@ -1,5 +1,5 @@
 ---
-title: Block Explorers Overview
+title: Overview
 description: An overview of the currently available block explorers that may be used to navigate the Substrate and Ethereum layers of Moonbeam.
 ---
 # Block Explorers
