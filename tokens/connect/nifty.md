@@ -27,15 +27,20 @@ After creating a password, a vault will be created for your account and seed wor
 
 ## Connect Nifty Wallet to Moonbeam {: #connect-nifty-wallet-to-moonbeam } 
 
-Once you've created an account, you can now connect to the Moonbase Alpha TestNet by creating a custom network. 
+Once you've created an account, you can now connect to any of the Moonbeam-based networks by creating a custom network. 
 
-You can also connect to Moonbase Alpha using an imported account. At this time, hardware wallets are not supported for custom RPCs. 
+You can also connect to Moonbeam using an imported account. At this time, hardware wallets are not supported for custom RPCs. 
 
-Navigate to the settings, in the top left corner, click on the POA dropdown. Scroll down to the bottom and select Custom RPC.
+Navigate to the settings, in the top left corner, click on the network dropdown. Scroll down to the bottom and select **Custom RPC**.
   
 <img src="/images/tokens/connect/nifty/nifty-2.png" alt="Create Custom RPC" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 
-Enter the RPC URL for Moonbeam in the New RPC URL Field:
+Enter the RPC URL for Moonbeam in the **New RPC URL** field:
+
+=== "Moonbeam"
+    ```
+      {{ networks.moonbeam.rpc_url }}
+    ```
 
 === "Moonriver"
     ```
@@ -56,32 +61,32 @@ Then click "Save".
 
 <img src="/images/tokens/connect/nifty/nifty-3.png" alt="Connect to Moonbase Alpha" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 
-The current RPC should change to the Moonbase Alpha RPC URL, and in the top left corner you'll see the network has changed to "Private Network".
+The current RPC should change to the Moonbeam RPC URL that you provided, and in the top left corner you'll see the network has changed to "Private Network".
 
 <img src="/images/tokens/connect/nifty/nifty-4.png" alt="Wallet Connected to Moonbase Alpha" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 
-And that is it, you now have Nifty Wallet connected to the Moonbase Alpha TestNet!
+And that is it, you now have Nifty Wallet connected to the Moonbeam!
 
 ## Using Nifty Wallet {: #using-nifty-wallet } 
 
-Nifty Wallet serves as a Web3 provider in tools such as [Remix](/builders/tools/remix/). By having Nifty Wallet connected to Moonbase Alpha, you can deploy contracts as you would like using MetaMask, signing the transactions with Nifty instead. 
+Nifty Wallet serves as a Web3 provider in tools such as [Remix](/builders/tools/remix/). By having Nifty Wallet connected to any of the Moonbeam networks, you can deploy contracts as you would like using MetaMask, signing the transactions with Nifty instead. This example will use the Moonbase Alpha TestNet.
 
-For example, in Remix, when deploying a smart contract, make sure you select the "Injected Web3" option in the "Environment" menu. If you have Nifty Wallet connected, you will see the TestNet chain ID just below the box (_{{ networks.moonbase.chain_id }}_) and your Nifty Wallet account injected into Remix as well. When sending a transaction, you should see a similar pop-up from Nifty:
+In Remix, when deploying a smart contract, make sure you select the **Injected Web3** option in the **Environment** menu. If you have Nifty Wallet connected, you will see the Moonbeam chain ID just below the box and your Nifty Wallet account injected into Remix as well. When sending a transaction, you should see a similar pop-up from Nifty:
 
 <img src="/images/tokens/connect/nifty/nifty-5.png" alt="Nifty sign transaction" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 
-Ensure you have DEV tokens in your account and, if necessary, head to the [faucet](/builders/get-started/moonbase/#get-tokens/) to obtain some tokens. By clicking on "Submit," you are signing this transaction, and the contract will be deployed to the Moonbase Alpha TestNet.
+Since this example is on Moonbase Alpha, ensure you have DEV tokens in your account and, if necessary, head to the [faucet](/builders/get-started/moonbase/#get-tokens/) to obtain some tokens. By clicking on **Submit**, you are signing this transaction, and the contract will be deployed to the Moonbase Alpha TestNet.
 
 !!! note
     Please note that although your account balance shows ETH, it is not real ETH, and just DEV tokens. 
 
-The transaction will be displayed under the "Sent" tab.
+The transaction will be displayed under the **Sent** tab.
 
 <img src="/images/tokens/connect/nifty/nifty-6.png" alt="Nifty confirmed transaction" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 
 ## Create a New Account {: #create-a-new-account } 
 
-To create a new account, click the user icon in the top right corner and select "Create Account".
+To create a new account, click the user icon in the top right corner and select **Create Account**.
 
 <img src="/images/tokens/connect/nifty/nifty-7.png" alt="Nifty create an account" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 
@@ -91,11 +96,11 @@ A new account will be created and you'll be switched to the new account.
 
 ## Import an Account {: #import-an-account } 
 
-To create a new wallet, click the user icon in the top right corner and select "Import Account".
+To create a new wallet, click the user icon in the top right corner and select **Import Account**.
 
 <img src="/images/tokens/connect/nifty/nifty-9.png" alt="Nifty import an account" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 
-Next, select the type of import from the dropdown and enter the necessary details to import your account. For example, if you choose to import with a private key, paste your private key in the input field and click "Import".
+Next, select the type of import from the dropdown and enter the necessary details to import your account. For example, if you choose to import with a private key, paste your private key in the input field and click **Import**.
 
 <img src="/images/tokens/connect/nifty/nifty-10.png" alt="MathWallet private key or mnemonic import" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 

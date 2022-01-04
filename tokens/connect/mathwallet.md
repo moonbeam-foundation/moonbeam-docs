@@ -9,17 +9,52 @@ description: This guide walks you through how to connect Mathwallet, a browser-b
 
 ## Introduction {: #introduction } 
 
-MathWallet [announced](https://mathwallet.org/moonbeam-wallet/en/) that is now natively supporting the [Moonbase Alpha TestNet](/learn/platform/networks/moonbase/) and [Moonriver](/learn/platform/networks/moonriver/). This means that you are now able to interact with Moonbase Alpha and Moonriver using another wallet besides MetaMask.
+MathWallet [announced](https://mathwallet.org/moonbeam-wallet/en/) that is now natively supporting each of the [Moonbeam-based networks](/learn/platform/networks). This means that you are now able to interact with any of the networks using another wallet besides MetaMask.
 
-In this tutorial, we'll go through how to setup MathWallet to connect to our [TestNet](#connect-to-moonbase-alpha) and [Moonriver](#connect-to-moonriver). We'll also present a brief example of using MathWallet as a Web3 provider for other tools such as [Remix](/builders/tools/remix/).
+In this tutorial, we'll go through how to setup MathWallet to connect to each of the networks: [Moonbeam](#connect-to-moonbeam), [Moonriver](#connect-to-moonriver), and [Moonbase Alpha](#connect-to-moonbase-alpha). We'll also present a brief example of using MathWallet as a Web3 provider for other tools such as [Remix](/builders/tools/remix/).
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
-First, you need to install the MathWallet browser extension installed, which you can get from their [website](https://mathwallet.org/en-us/).
+First, you need to install the MathWallet browser extension, which you can get from their [website](https://mathwallet.org/en-us/).
 
 With the browser extension installed, please open it and set a password.
 
 ![Set wallet password](/images/tokens/connect/mathwallet/mathwallet-1.png)
+
+## Connect to Moonbeam {: #connect-to-moonbeam } 
+
+To get started with Moonbeam, you will need to add a custom network. To get started click on the settings gear. Then select **Networks**. Scroll down to the bottom of the **Ethereum** section, and add click **Custom**.
+
+![Create custom network]()
+
+Next you will be able to enter in the network configurations for Moonbeam:
+
+1. Make sure **Ethereum** is selected
+2. Enter "Moonbeam" for the **Name**
+3. Enter the Moonbeam RPC URL for the **Node Address** ({{ networks.moonbeam.rpc_url }})
+4. Click **Confirm**
+
+![Add Moonbeam as a custom network]()
+
+Once you've added the network you will need to switch to it. Go back to the main screen, and click on **Switch Network**, and then select **Moonbeam**.
+
+![Select Moonbeam]()
+
+And that is it, you now have MathWallet connected to Moonbeam! Your wallet should look like this:
+
+![Wallet Connected to Moonbeam]()
+
+Eventually this process will be improved upon, and it will be similar to connecting to Moonriver.
+
+## Connect to Moonriver {: #connect-to-moonriver } 
+
+Getting started with Moonriver is a straightforward process. All you have to do is click **Switch Network** and select **Moonriver**
+
+![Connect to Moonriver](/images/tokens/connect/mathwallet/mathwallet-5.png)
+
+And that is it, you now have MathWallet connected to Moonriver! Your wallet should look like this:
+
+![Wallet Connected to Moonriver](/images/tokens/connect/mathwallet/mathwallet-6.png)
 
 ## Connect to Moonbase Alpha {: #connect-to-moonbase-alpha } 
 
@@ -34,16 +69,6 @@ And lastly, on the main screen, click Switch Network and select Moonbase Alpha
 And that is it, you now have MathWallet connected to the Moonbase Alpha TestNet! Your wallet should look like this:
 
 ![Wallet Connected to Moonbase Alpha](/images/tokens/connect/mathwallet/mathwallet-4.png)
-
-## Connect to Moonriver {: #connect-to-moonriver } 
-
-Getting started with Moonriver is a straightforward process. All you have to do is click Switch Network and select Moonriver
-
-![Connect to Moonriver](/images/tokens/connect/mathwallet/mathwallet-5.png)
-
-And that is it, you now have MathWallet connected to Moonriver! Your wallet should look like this:
-
-![Wallet Connected to Moonriver](/images/tokens/connect/mathwallet/mathwallet-6.png)
 
 ## Adding a Wallet {: #adding-a-wallet } 
 
