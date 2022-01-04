@@ -9,9 +9,9 @@ description: Querying Blockchain Data with the Covalent API Moonbeam
 
 ## Introduction {: #introduction } 
 
-Covalent provides a unified API to bring full transparency and visibility to assets across all blockchain networks. Simply put, Covalent offers a single API that allows you to pull detailed, granular blockchain transaction data from multiple blockchains with no code. The unified Covalent API allows you to create entirely new applications or augment existing ones without configuring or maintaining infrastructure. Covalent supports Moonbase Alpha and Moonriver plans to support Moonbeam.
+Covalent provides a unified API to bring full transparency and visibility to assets across all blockchain networks. Simply put, Covalent offers a single API that allows you to pull detailed, granular blockchain transaction data from multiple blockchains with no code. The unified Covalent API allows you to create entirely new applications or augment existing ones without configuring or maintaining infrastructure. Covalent currently supports Moonbase Alpha and Moonriver.
 
-This guide will cover all of the details needed to get started with the Covalent API and how to access the API endpoints for Moonbase Alpha using curl commands, JavaScript, and Python. This guide can be adapted for use on Moonriver.
+This guide will cover all of the details needed to get started with the Covalent API and how to access the API endpoints for Moonbase Alpha using curl commands, and JavaScript and Python snippets. This guide can be adapted for use on Moonriver.
 
 ## Types of Endpoints {: #types-of-endpoints } 
 
@@ -42,26 +42,26 @@ The Covalent API has two classes of endpoints:
 
 ### Request Formatting {: #request-formatting } 
 
-   | Endpoint                    |  | Format                                                              |
-   |:----------------------------|::|:--------------------------------------------------------------------|
-   | Balances                    |  | api.covalenthq.com/v1/1287/address/{address}/balances_v2/           |
-   | Transactions                |  | api.covalenthq.com/v1/1287/address/{address}/transactions_v2/       |
-   | Transfers                   |  | api.covalenthq.com/v1/1287/address/{address}/transfers_v2/          |
-   | Token Holders               |  | api.covalenthq.com/v1/1287/tokens/{contract_address}/token_holders/ |
-   | Log Events (Smart Contract) |  | api.covalenthq.com/v1/1287/events/address/{contract_address}/       |
-   | Log Events (Topic Hash)     |  | api.covalenthq.com/v1/1287/events/topics/{topic}/                   |
+| Endpoint                    |  | Format                                                              |
+|:----------------------------|::|:--------------------------------------------------------------------|
+| Balances                    |  | api.covalenthq.com/v1/1287/address/{address}/balances_v2/           |
+| Transactions                |  | api.covalenthq.com/v1/1287/address/{address}/transactions_v2/       |
+| Transfers                   |  | api.covalenthq.com/v1/1287/address/{address}/transfers_v2/          |
+| Token Holders               |  | api.covalenthq.com/v1/1287/tokens/{contract_address}/token_holders/ |
+| Log Events (Smart Contract) |  | api.covalenthq.com/v1/1287/events/address/{contract_address}/       |
+| Log Events (Topic Hash)     |  | api.covalenthq.com/v1/1287/events/topics/{topic}/                   |
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
-To get started with the Covalent API, you will need the following:
+To get started with the Covalent API, you will need to have the following:
 
  - A free [Covalent API Key](https://www.covalenthq.com/platform/#/auth/register/)
- - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/)
- - Have an account with funds, which you can get from [Mission Control](/builders/get-started/moonbase/#get-tokens/)
+ - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/)
+ - An account with funds, which you can get from [Mission Control](/builders/get-started/moonbase/#get-tokens/)
 
 ## Try it Out {: #try-it-out } 
 
-First, make sure you have [your API Key](https://www.covalenthq.com/platform/#/auth/register/) which begins with `ckey_`. Once you have your API key you will be able to access any of the supported endpoints. To access all of the supported endpoints, you will need to provide the chain ID:
+First, make sure you have [your API Key](https://www.covalenthq.com/platform/#/auth/register/) which begins with `ckey_`. Once you have your API key you will be able to access any of the supported endpoints. To get information for a specific network, you will need to provide the chain ID:
 
 === "Moonriver"
     ```
@@ -144,7 +144,7 @@ Copy and paste the below code block into your preferred environment, or [JSFiddl
 	getData();
     ```
 
-The balances endpoint returns a list of all ERC-20 and NFT token balances including ERC-721 and ERC-1155 along with their current spot prices (if available).
+The balances endpoint returns a list of all ERC-20 and NFT token balances, including ERC-721 and ERC-1155 balances, along with their current spot prices (if available).
 
 ![Javascript Console Output](/images/builders/integrations/indexers/covalent/covalentjs.png)
 
