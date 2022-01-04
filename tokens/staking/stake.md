@@ -15,38 +15,9 @@ Token holders can add to candidates' stake using their tokens, a process called 
 
 Once a candidate joins the active set of collators, they are eligible to produce blocks and receive partial block rewards as part of the token inflationary model. They share these as staking rewards with their delegators, considering their proportional contribution toward their stake in the network.
 
-This guide will show you how to stake on Moonbase Alpha via Polkadot.js Apps, but similar steps can be taken for Moonriver.
+This guide will show you how to stake on Moonbase Alpha via Polkadot.js Apps, but similar steps can be taken for any of the Moonbeam and Moonriver. Token holders that want to easily stake their tokens can use the [Moonbeam dApp](https://apps.moonbeam.network/) to do so.
 
-Token holders that want to easily stake their tokens can use the [Moonbeam dApp](https://apps.moonbeam.network/) to do so.
-
-## General Definitions {: #general-definitions } 
-
---8<-- 'text/staking/staking-definitions.md'
-
-=== "Moonriver"
-    |             Variable              |  |                                                                          Value                                                                          |
-    |:---------------------------------:|::|:-------------------------------------------------------------------------------------------------------------------------------------------------------:|
-    |     Minimum delegation stake      |  |                                                   {{ networks.moonriver.staking.min_del_stake }} MOVR                                                   |
-    | Maximum delegators per candidate  |  |                                                    {{ networks.moonriver.staking.max_del_per_can }}                                                     |
-    | Maximum candidates per delegator  |  |                                                    {{ networks.moonriver.staking.max_del_per_del }}                                                     |
-    |               Round               |  |                        {{ networks.moonriver.staking.round_blocks }} blocks ({{ networks.moonriver.staking.round_hours }} hours)                        |
-    | Initial bond & bond more duration |  |                                       delegation takes effect in the next round (funds are withdrawn immediately)                                       |
-    |      Leave delegators delay       |  |   {{ networks.moonriver.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonriver.delegator_timings.leave_delegators.hours }} hours)   |
-    |     Delegator bond less delay     |  |      {{ networks.moonriver.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonriver.delegator_timings.del_bond_less.hours }} hours)      |
-    |     Revoke delegations delay      |  | {{ networks.moonriver.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonriver.delegator_timings.revoke_delegations.hours }} hours) |
-
-
-=== "Moonbase Alpha"
-    |             Variable              |  |                                                                         Value                                                                         |
-    |:---------------------------------:|::|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
-    |     Minimum delegation stake      |  |                                                   {{ networks.moonbase.staking.min_del_stake }} DEV                                                   |
-    | Maximum delegators per candidate  |  |                                                    {{ networks.moonbase.staking.max_del_per_can }}                                                    |
-    | Maximum candidates per delegator  |  |                                                    {{ networks.moonbase.staking.max_del_per_del }}                                                    |
-    |               Round               |  |                        {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hours)                        |
-    | Initial bond & bond more duration |  |                                      delegation takes effect in the next round (funds are withdrawn immediately)                                      |
-    |      Leave delegators delay       |  |   {{ networks.moonbase.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonbase.delegator_timings.leave_delegators.hours }} hours)   |
-    |     Delegator bond less delay     |  |      {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours)      |
-    |     Revoke delegations delay      |  | {{ networks.moonbase.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbase.delegator_timings.revoke_delegations.hours }} hours) |
+For more general information on staking, please check out the [Staking in Moonbeam](/learn/features/staking/) overview.
 
 ## Extrinsics Definitions {: #extrinsics-definitions } 
 
@@ -58,7 +29,7 @@ There are many extrinsics related to the staking pallet, so all of them are not 
 ### Join or Leave The Delegator Set
 
  - **delegate**(*address* candidate, *uint256* amount, *uint256* candidateDelegationCount, *uint256* delegatorDelegationCount) - extrinsic to delegate a collator. The amount needs to be greater than the minimum delegation stake. Replaces the deprecated `nominate` extrinsic
- - **scheduleLeaveDelegators**() - extrinsic to schedule to leave the set of delegators. There is an exit delay before you can execute the request via the `executeLeaveDelegators` extrinsic and actually leave the set of delegators. There is a delay of {{ networks.moonbase.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonbase.delegator_timings.leave_delegators.hours }} hours) for Moonbase Alpha and {{ networks.moonriver.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonriver.delegator_timings.leave_delegators.hours }} hours) for Moonriver. Replaces the deprecated `leaveNominators` extrinsic
+ - **scheduleLeaveDelegators**() - extrinsic to schedule to leave the set of delegators. There is an [exit delay](/learn/features/staking/#quick-reference) before you can execute the request via the `executeLeaveDelegators` extrinsic and actually leave the set of delegators. Replaces the deprecated `leaveNominators` extrinsic
  - **executeLeaveDelegators**(*uint256* delegatorDelegationCount) - extrinsic to execute and leave the set of delegators. This extrinsic should only be used after a leave has been scheduled and the exit delay has passed. Consequently, all ongoing delegations will be revoked
  - **cancelLeaveDelegators**() - extrinsic to cancel a scheduled request to leave the set of delegators
 
@@ -70,7 +41,7 @@ The following extrinsics are deprecated:
 ### Bond More or Less 
 
  - **delegatorBondMore**(*address* candidate, *uint256* more) - extrinsic to request to increase the amount of staked tokens for an already delegated collator. Replaces the deprecated `nominatorBondMore` extrinsic
- - **scheduleDelegatorBondLess**(*address* candidate, *uint256* less) - extrinsic to request to reduce the amount of staked tokens for an already delegated collator. The amount must not decrease your overall total staked below the minimum delegation stake. There will be an exit delay before you can execute the request via the `executeCandidateBondRequest` extrinsic. There is a delay of {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours) for Moonbase Alpha and {{ networks.moonriver.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonriver.delegator_timings.del_bond_less.hours }} hours) for Moonriver. Replaces the deprecated `nominatorBondLess` extrinsic
+ - **scheduleDelegatorBondLess**(*address* candidate, *uint256* less) - extrinsic to request to reduce the amount of staked tokens for an already delegated collator. The amount must not decrease your overall total staked below the minimum delegation stake. There will be a [bond less delay](/learn/features/staking/#quick-reference) before you can execute the request via the `executeCandidateBondRequest` extrinsic. Replaces the deprecated `nominatorBondLess` extrinsic
  - **executeCandidateBondRequest**(*address* candidate) - extrinsic to execute a decrease in the bond for a specific candidate. This extrinsic should only be used after a bond request has been scheduled and the exit delay has passed
  - **cancelCandidateBondLess**() - extrinsic to cancel a scheduled request to increase or decrease the bond for a specific candidate
 
@@ -81,7 +52,7 @@ The following extrinsics are deprecated:
 
 ### Revoke Delegations
 
- - **scheduleRevokeDelegation**(*address* collator) - extrinsic to schedule to remove an existing delegation entirely. There will be an exit delay before you can execute the request via the `executeDelegationRequest` extrinsic. There is a delay of {{ networks.moonbase.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbase.delegator_timings.revoke_delegations.hours }} hours) for Moonbase Alpha and {{ networks.moonriver.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonriver.delegator_timings.revoke_delegations.hours }} hours) for Moonriver. Replaces the deprecated `revokeNomination` extrinsic 
+ - **scheduleRevokeDelegation**(*address* collator) - extrinsic to schedule to remove an existing delegation entirely. There will be a [revoke delegation delay](/learn/features/staking/#quick-reference) before you can execute the request via the `executeDelegationRequest` extrinsic. Replaces the deprecated `revokeNomination` extrinsic 
  - **executeDelegationRequest**(*address* delegator, *address* candidate) - extrinsic to execute and pending delegation requests. This extrinsic should only be used after a request has been scheduled and the exit delay has passed 
  - **cancelDelegationRequest**(*address* candidate) - extrinsic to cancel a scheduled request to revoke a delegation
 
@@ -93,7 +64,7 @@ The following extrinsic is deprecated:
 
 You can now read any of the current parameters around staking, such as the ones previously listed in the [General Definitions](#general-definitions) section and more, directly from Polkadot.js Apps.
 
-Navigate to Polkadot.js Apps **Chain state** UI, and connect to either [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/chainstate){target=_blank} or [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network/#chainstate){target=_blank}.
+Navigate to Polkadot.js Apps **Chain state** UI, and for the purposes of this guide, connect to [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/chainstate){target=_blank}. Alternatively, you can connect to [Moonbeam](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network/#chainstate){target=_blank} or [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network/#chainstate){target=_blank}.
 
 Then to retrieve the various staking parameters, you'll need to:
 
@@ -104,7 +75,7 @@ Then to retrieve the various staking parameters, you'll need to:
 
 ![Retrieving staking parameters](/images/tokens/staking/stake/stake-12.png)
 
-You should then see the maximum delegations per delegator. At time of writing, this is {{ networks.moonbase.staking.max_del_per_del }} for Moonbase Alpha and {{ networks.moonriver.staking.max_del_per_del }} for Moonriver.
+You should then see the maximum delegations per delegator, which can also be found in the [Staking in Moonbeam](/learn/features/staking/#quick-reference) overview.
 
 ## How to Stake via Polkadot.js Apps {: #how-to-delegate-a-candidate } 
 
@@ -122,7 +93,7 @@ Before starting to stake tokens, it is important to retrieve the list of collato
 
 Each extrinsic provides a different response:
 
- - **selectedCandidates** — returns the current active set of collators, that is, the top {{ networks.moonbase.staking.max_candidates }} collator candidates by total tokens staked (including delegations)
+ - **selectedCandidates** — returns the current active set of collators, that is, the top collator candidates by total tokens staked (including delegations). For example, on Moonbase Alpha it is the top {{ networks.moonbase.staking.max_candidates }} candidates
  - **candidatePool** — returns the current list of all the candidates, including those that are not in the active set
 
 ![Staking Account](/images/tokens/staking/stake/stake-2.png)
@@ -171,7 +142,7 @@ console.log(delegatorInfo.toHuman()["delegations"].length);
 
 ### Staking your Tokens
 
-The tutorial will use the following candidates as a reference:
+The tutorial will use the following candidates on Moonbase Alpha as a reference:
 
 |  Variable   |  |                       Address                       |
 |:-----------:|::|:---------------------------------------------------:|
@@ -224,11 +195,9 @@ You can follow the same steps as described to delegate other candidates in the n
 
 ## How to Stop Delegations {: #how-to-stop-delegations } 
 
-As of the latest runtime upgrade, [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/), there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled. These changes are now live on Moonbase Alpha and Moonriver.
+As of the latest runtime upgrade, [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/), there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled.
 
-If you want to make an exit and stop a delegation, you have to first schedule it, wait an exit delay, and then execute the exit. If you are already a delegator, you have two options to request to stop your delegations: using the `scheduleRevokeDelegation` extrinsic to request to unstake your tokens from a specific collator candidate, or using the `scheduleLeaveDelegators` extrinsic to request to revoke all ongoing delegations. Scheduling a request does not automatically revoke your delegations, you must wait an exit delay and then execute the request by using either the `executeDelegationRequest` method or the `executeLeaveDelegators` method. 
-
-There is an exit delay of {{ networks.moonbase.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonbase.delegator_timings.leave_delegators.hours }} hours) for Moonbase Alpha and {{ networks.moonriver.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonriver.delegator_timings.leave_delegators.hours }} hours) for Moonriver.
+If you want to make an exit and stop a delegation, you have to first schedule it, wait an exit delay, and then execute the exit. If you are already a delegator, you have two options to request to stop your delegations: using the `scheduleRevokeDelegation` extrinsic to request to unstake your tokens from a specific collator candidate, or using the `scheduleLeaveDelegators` extrinsic to request to revoke all ongoing delegations. Scheduling a request does not automatically revoke your delegations, you must wait an [exit delay](/learn/features/staking/#quick-reference) and then execute the request by using either the `executeDelegationRequest` method or the `executeLeaveDelegators` method. 
 
 ### Schedule Request to Stop Delegations
 
@@ -251,7 +220,7 @@ As mentioned before, you can also remove all ongoing delegations with the `sched
 
 ![Staking Leave Delegators Extrinsic](/images/tokens/staking/stake/stake-18.png)
 
-Once you have scheduled an exit, you must wait an exit delay before you can then execute it. If you try to execute it before the exit delay is up the extrinsic will fail and you'll see an error from Polkadot.js Apps for `parachainStaking.PendingDelegationRequest`.
+Once you have scheduled an exit, you must wait an [exit delay](/learn/features/staking/#quick-reference) before you can then execute it. If you try to execute it before the exit delay is up the extrinsic will fail and you'll see an error from Polkadot.js Apps for `parachainStaking.PendingDelegationRequest`.
 
 ### Execute Request to Stop Delegations
 
