@@ -23,33 +23,27 @@ In your `truffle-config.js` file, add network configurations for a Moonbeam deve
 
 ```javascript
 const HDWalletProvider = require('@truffle/hdwallet-provider');
-// Moonbeam Development Node Private Key
-const privateKeyDev =
-   '99B3C12287537E38C90A9219D4CB074A89A16E9CDB20BF85728EBD97C343E342';
-// Moonbase Alpha Private Key
-const privateKeyMoonbase = "YOUR-PRIVATE-KEY-HERE";
+// Moonbeam Private Key - Note: This is for example purposes only. Never store your private keys in a JavaScript file.
+const privateKeyMoonbeam = "YOUR-PRIVATE-KEY-HERE";
 // Moonriver Private Key - Note: This is for example purposes only. Never store your private keys in a JavaScript file.
 const privateKeyMoonriver = "YOUR-PRIVATE-KEY-HERE";
+// Moonbase Alpha Private Key
+const privateKeyMoonbase = "YOUR-PRIVATE-KEY-HERE";
+// Moonbeam Development Node Private Key
+const privateKeyDev = '99B3C12287537E38C90A9219D4CB074A89A16E9CDB20BF85728EBD97C343E342';
 
 module.exports = {
    networks: {
-      // Moonbeam Development Node
-      dev: {
-        provider: () => {
-          return new HDWalletProvider(privateKeyDev, '{{ networks.development.rpc_url }}')
-         },
-        network_id: {{ networks.development.chain_id }}, // {{ networks.development.hex_chain_id }} in hex,
-      },
-      // Moonbase Alpha TestNet
-      moonbase: {
+      // Moonbeam
+      moonbeam: {
         provider: () => {
           return new HDWalletProvider(
-            privateKeyMoonbase,
-            '{{ networks.moonbase.rpc_url }}'
+            privateKeyMoonbeam,
+            '{{ networks.moonbeam.rpc_url }}'
           );
         },
-        network_id: {{ networks.moonbase.chain_id }}, // {{ networks.moonbase.hex_chain_id }} in hex,
-      },
+        network_id: {{ networks.moonbeam.chain_id }}, // {{ networks.moonbeam.hex_chain_id }} in hex,
+      }
       // Moonriver
       moonriver: {
         provider: () => {
@@ -60,10 +54,26 @@ module.exports = {
         },
         network_id: {{ networks.moonriver.chain_id }}, // {{ networks.moonriver.hex_chain_id }} in hex,
       }
+      // Moonbase Alpha TestNet
+      moonbase: {
+        provider: () => {
+          return new HDWalletProvider(
+            privateKeyMoonbase,
+            '{{ networks.moonbase.rpc_url }}'
+          );
+        },
+        network_id: {{ networks.moonbase.chain_id }}, // {{ networks.moonbase.hex_chain_id }} in hex,
+      },
+      // Moonbeam Development Node
+      dev: {
+        provider: () => {
+          return new HDWalletProvider(privateKeyDev, '{{ networks.development.rpc_url }}')
+         },
+        network_id: {{ networks.development.chain_id }}, // {{ networks.development.hex_chain_id }} in hex,
+      },
    },
 };
 ```
-
 
 ## Tutorial {: #tutorial } 
 

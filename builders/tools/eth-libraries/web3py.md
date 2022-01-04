@@ -28,9 +28,25 @@ web3 = Web3(Web3.HTTPProvider('RPC_URL'))
 
 Depending on which network you want to connect to, you can set the `RPC_URL` to the following values:
 
- - Moonbeam development node: `http://127.0.0.1:9933`
- - Moonbase Alpha TestNet: `{{ networks.moonbase.rpc_url }}`
- - Moonriver: `{{ networks.moonriver.rpc_url }}`
+=== "Moonbeam"
+    ```
+    {{ networks.moonbeam.rpc_url }}
+    ```
+
+=== "Moonriver"
+    ```
+    {{ networks.moonriver.rpc_url }}
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    {{ networks.moonbase.rpc_url }}
+    ```
+
+=== "Moonbeam Dev Node"
+    ```
+    {{ networks.development.rpc_url }}
+    ```
 
 ## Tutorials {: #tutorials } 
 

@@ -4,8 +4,11 @@ from web3 import Web3
 # Define the TxHash to Check Finality
 txHash = 'tx_hash'
 
+# Set the RPC_address for Moonbeam
+# This can also be adapted for Moonriver or Moonbase Alpha
+RPC_address = 'https://rpc.api.moonbeam.network'
+
 # Define the Web3 provider
-RPC_address = 'https://rpc.moonriver.moonbeam.network'
 web3Provider = Web3(Web3.HTTPProvider(RPC_address))
 
 # asynchronous JSON RPC API request

@@ -39,6 +39,11 @@ node_modules/.bin/substrate-api-sidecar --version
 
 In the terminal that Sidecar will run, export the environmental variable for the WS endpoint of the network. Examples: 
 
+=== "Moonbeam"
+    ```
+    export SAS_SUBSTRATE_WS_URL=wss://wss.api.moonbeam.network
+    ```
+
 === "Moonriver"
     ```
     export SAS_SUBSTRATE_WS_URL=wss://wss.moonriver.moonbeam.network
@@ -46,7 +51,7 @@ In the terminal that Sidecar will run, export the environmental variable for the
 
 === "Moonbase Alpha"
     ```
-    export SAS_SUBSTRATE_WS_URL=wss://wss.testnet.moonbeam.network
+    export SAS_SUBSTRATE_WS_URL=wss://wss.api.moonbase.moonbeam.network
     ```
 
 === "Moonbeam Dev Node"
