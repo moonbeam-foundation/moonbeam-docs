@@ -95,11 +95,7 @@ networks:
       min_preim_deposit: 0.004
       max_votes: 100
       max_proposals: 100
-    inflation:
-      total_annual_inflation: 5
-      delegator_reward_inflation: 50
-      collator_reward_inflation: 20
-      parachain_bond_inflation: 30
+    total_annual_inflation: 5
     staking:
       min_col_stk: 1000
       min_can_stk: 500
@@ -111,6 +107,8 @@ networks:
       min_del_stake: 5
       max_del_per_can: 300
       max_del_per_del: 100
+      delegator_reward_inflation: 50
+      collator_reward_inflation: 20
       candidates:
         address1: '0x4c5A56ed5A4FF7B09aA86560AfD7d383F4831Cce'
         address2: '0x623c9E50647a049F92090fe55e22cC0509872FB6'
@@ -197,11 +195,7 @@ networks:
       max_votes: 100
       min_preim_deposit: 0.004
       max_proposals: 100
-    inflation:
-      total_annual_inflation: 5
-      delegator_reward_inflation: 50
-      collator_reward_inflation: 20
-      parachain_bond_inflation: 30
+    total_annual_inflation: 5
     staking:
       min_col_stk: 1000
       min_can_stk: 500
@@ -213,6 +207,8 @@ networks:
       min_del_stake: 5
       max_del_per_can: 300
       max_del_per_del: 100
+      delegator_reward_inflation: 50
+      collator_reward_inflation: 20
     treasury:
       proposal_bond: 5
       proposal_bond_min: 1
@@ -308,11 +304,7 @@ networks:
       max_votes: 100
       min_preim_deposit: 0.04
       max_proposals: 100
-    inflation:
-      total_annual_inflation: 5
-      delegator_reward_inflation: 50
-      collator_reward_inflation: 20
-      parachain_bond_inflation: 30
+    total_annual_inflation: 5
     staking:
       min_col_stk: 100000
       min_can_stk: 100000
@@ -324,6 +316,8 @@ networks:
       min_del_stake: 500
       max_del_per_can: 300
       max_del_per_del: 100
+      delegator_reward_inflation: 50
+      collator_reward_inflation: 20
     treasury:
       proposal_bond: 5
       proposal_bond_min: 100
