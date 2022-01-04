@@ -77,7 +77,7 @@ As main features, Blockscout offers:
 
 A Moonbeam-themed version of the [Expedition](https://github.com/xops/expedition){target=_blank} explorer can be found in [this link](https://moonbeam-explorer.netlify.app/){target=_blank}.
 
-By default, the explorer is connected to the Moonbeam. However, you can switch to Moonriver or Moonbase Alpha, or connect it to a local dev node by following the next steps:
+By default, the explorer is connected to Moonbeam. However, you can switch to Moonriver or Moonbase Alpha, or connect it to a local dev node by following the next steps:
 
  1. Click on the network text, where you'll be able to select between all different networks, including a **Moonbeam Development Node** running on `{{ networks.development.rpc_url }}`
  2. In the case you want to connect to a specific RPC URL, select **Add Custom Chain** and enter the URL. For example, `http://localhost:9937`
@@ -94,12 +94,10 @@ By default, the explorer is connected to the Moonbeam. However, you can switch t
 
 ### Polkadot.js {: #polkadotjs } 
 
-While not a full-featured block explorer, Polkadot.js Apps is a convenient option especially for users running local development nodes to view events and query transaction hashes.  Polkadot.js Apps uses the WebSocket endpoint to interact with the Network. 
+While not a full-featured block explorer, Polkadot.js Apps is a convenient option especially for users running local development nodes to view events and query transaction hashes. Polkadot.js Apps uses the WebSocket endpoint to interact with the Network. You can easily connect to [Moonbeam](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/explorer){target=_blank}, [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbase.moonbeam.network#/explorer){target=_blank}, or [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=_blank}.
 
 ![Polkadot.js Moonriver](/images/builders/tools/explorers/explorers-6.png)
 
 To connect it to a Moonbeam development node, you can follow the steps in [this tutorial](/builders/get-started/moonbeam-dev/#connecting-polkadot-js-apps-to-a-local-moonbeam-node). The default port for this is `9944`.
 
 ![Polkadot.js Local Node](/images/builders/tools/explorers/explorers-5.png)
-
-
