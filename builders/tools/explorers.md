@@ -96,8 +96,8 @@ By default, the explorer is connected to Moonbeam. However, you can switch to Mo
 
 While not a full-featured block explorer, Polkadot.js Apps is a convenient option especially for users running local development nodes to view events and query transaction hashes. Polkadot.js Apps uses the WebSocket endpoint to interact with the Network. You can easily connect to [Moonbeam](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/explorer){target=_blank}, [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbase.moonbeam.network#/explorer){target=_blank}, or [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=_blank}.
 
-![Polkadot.js Moonriver](/images/builders/tools/explorers/explorers-6.png)
+![Polkadot.js Moonriver](/images/builders/tools/explorers/explorers-5.png)
 
 To connect it to a Moonbeam development node, you can follow the steps in [this tutorial](/builders/get-started/moonbeam-dev/#connecting-polkadot-js-apps-to-a-local-moonbeam-node). The default port for this is `9944`.
 
-![Polkadot.js Local Node](/images/builders/tools/explorers/explorers-5.png)
+![Polkadot.js Local Node](/images/builders/tools/explorers/explorers-6.png)
