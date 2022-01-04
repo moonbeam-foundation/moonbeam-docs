@@ -45,7 +45,7 @@ The interface includes the following functions:
  - **candidate_delegation_count**(*address* candidate) - read-only function that returns the number of delegations for the specified collator candidate address. Replaces the deprecated `collator_nomination_count` extrinsic
  - **delegator_delegation_count**(*address* delegator) - read-only function that returns the number of delegations for the specified delegator address. Replaces the deprecated `nominator_nomination_count` extrinsic
  - **join_candidates**(*uint256* amount, *uint256* candidateCount) — allows the account to join the set of collator candidates with a specified bond amount and the current candidate count
- - **schedule_leave_candidates**(*uint256* candidateCount) - schedules a request for a candidate to remove themselves from the candidate pool. Scheduling the request does not automatically execute it.Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `execute_leave_candidates` extrinsic. Replaces the deprecated `leave_candidates` extrinsic
+ - **schedule_leave_candidates**(*uint256* candidateCount) - schedules a request for a candidate to remove themselves from the candidate pool. Scheduling the request does not automatically execute it. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `execute_leave_candidates` extrinsic. Replaces the deprecated `leave_candidates` extrinsic
  - **execute_leave_candidates**() - executes the due request to leave the set of collator candidates 
  - **cancel_leave_candidates**(*uint256* candidateCount) - allows a candidate to cancel a pending scheduled request to leave the candidate pool. Given the current number of candidates in the pool
  - **go_offline**() — temporarily leave the set of collator candidates without unbonding
@@ -111,7 +111,7 @@ Some of the aforementioned staking interface functions include exit delays that 
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
-The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonriver and Moonbeam.
+The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonbeam and Moonriver.
 
  - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/)
  - Have an account with over `{{networks.moonbase.staking.min_del_stake}}` tokens. You can get this from [Mission Control](/builders/get-started/moonbase/#get-tokens/)

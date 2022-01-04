@@ -15,7 +15,7 @@ The candidates in the active set of collators (nodes that produce blocks) are se
 
 Collator candidates (and token holders if they delegate) have a stake in the network. The top N candidates by staked amount are chosen to produce blocks with a valid set of transactions, where N is a configurable parameter. Part of each block reward goes to the collators that produced the block, who then shares it with the delegators considering their percental contributions towards the collator's stake. In such a way, network members are incentivized to stake tokens to improve the overall security.
 
-To easily manage staking related actions, you can visit the [Moonbeam Network DApp](https://apps.moonbeam.network/) and use the network tabs at the top of the page to easily switch between Moonbeam networks. To learn how to use the DApp, you can check out the [How to Stake MOVR Tokens](https://moonbeam.network/tutorial/stake-movr/) guide or or [video tutorial](https://www.youtube.com/watch?v=D2wPnqfoeIg), both of which can be adapted for the other Moonbeam networks.
+To easily manage staking related actions, you can visit the [Moonbeam Network DApp](https://apps.moonbeam.network/) and use the network tabs at the top of the page to easily switch between Moonbeam networks. To learn how to use the DApp, you can check out the [How to Stake MOVR Tokens](https://moonbeam.network/tutorial/stake-movr/) guide or or [video tutorial](https://www.youtube.com/watch?v=D2wPnqfoeIg), both of which can be adapted for the Moonbeam and the Moonbase Alpha TestNet.
 
 ## General Definitions {: #general-definitions } 
 
@@ -91,7 +91,7 @@ There are a few resources you can check out to help you select a collator to del
 
 
 !!! note
-    The DappLooker Collator dashboard is experimental beta software and may not accurately reflect collator performance. Be sure to do your own research before delegating to a collator.
+    The DappLooker Collator dashboard for Moonriver is experimental beta software and may not accurately reflect collator performance. Be sure to do your own research before delegating to a collator.
 
 ## Reward Distribution {: #reward-distribution } 
 
