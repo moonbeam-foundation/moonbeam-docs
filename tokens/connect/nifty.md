@@ -61,7 +61,7 @@ Then click "Save".
 
 <img src="/images/tokens/connect/nifty/nifty-3.png" alt="Connect to Moonbase Alpha" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 
-The current RPC should change to the Moonbeam RPC URL that you provided, and in the top left corner you'll see the network has changed to "Private Network".
+The current RPC should change to the Moonbeam RPC URL that you provided, and in the top left corner you'll see the network has changed to **Private Network**.
 
 <img src="/images/tokens/connect/nifty/nifty-4.png" alt="Wallet Connected to Moonbase Alpha" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 
@@ -69,7 +69,7 @@ And that is it, you now have Nifty Wallet connected to the Moonbeam!
 
 ## Using Nifty Wallet {: #using-nifty-wallet } 
 
-Nifty Wallet serves as a Web3 provider in tools such as [Remix](/builders/tools/remix/). By having Nifty Wallet connected to any of the Moonbeam networks, you can deploy contracts as you would like using MetaMask, signing the transactions with Nifty instead. This example will use the Moonbase Alpha TestNet.
+Nifty Wallet serves as a Web3 provider in tools such as [Remix](/builders/tools/remix/). By having Nifty Wallet connected to any of the Moonbeam networks, you can deploy contracts as you would like using MetaMask, signing the transactions with Nifty instead. This example will use the Moonbase Alpha TestNet, but it can be adapted for Moonbeam and Moonriver.
 
 In Remix, when deploying a smart contract, make sure you select the **Injected Web3** option in the **Environment** menu. If you have Nifty Wallet connected, you will see the Moonbeam chain ID just below the box and your Nifty Wallet account injected into Remix as well. When sending a transaction, you should see a similar pop-up from Nifty:
 
