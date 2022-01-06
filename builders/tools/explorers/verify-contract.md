@@ -109,7 +109,7 @@ Take the following steps to verify the contract on Moonscan:
 
     ![BlockScout Result Page](/images/builders/tools/explorers/verify-contract/verify-contract-7.png)
 
-## Multi-Part Smart Contracts
+## Multi-Part Smart Contract
 
 For verifying smart contracts that are made up of multiple files, the process is slightly different. 
 
