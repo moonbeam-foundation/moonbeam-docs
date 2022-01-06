@@ -90,6 +90,13 @@ Next, navigate to the Networks tab and click on the "Add Network" button.
 
 Here you can configure MetaMask for the following networks:
 
+=== "Moonbeam"
+    - Network Name: `Moonbeam`
+    - RPC URL: `{{ networks.moonbeam.rpc_url }}`
+    - ChainID: `{{ networks.moonbeam.chain_id }}` (hex: `{{ networks.moonbeam.hex_chain_id }}`)
+    - Symbol (Optional): `GLMR`
+    - Block Explorer (Optional): `{{ networks.moonbeam.block_explorer }}`
+
 === "Moonriver"
     - Network Name: `Moonriver`
     - RPC URL: `{{ networks.moonriver.rpc_url }}`
