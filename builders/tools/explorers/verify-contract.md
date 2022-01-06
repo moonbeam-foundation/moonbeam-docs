@@ -109,7 +109,7 @@ Take the following steps to verify the contract on Moonscan:
 
     ![BlockScout Result Page](/images/builders/tools/explorers/verify-contract/verify-contract-7.png)
 
-## Multi-Part Smart Contract
+## Multi-Part Smart Contract {: #multi-part-smart-contract }
 
 For verifying smart contracts that are made up of multiple files, the process is slightly different. 
 
@@ -119,7 +119,7 @@ For verifying on Moonscan, select `Solidity (Multi-part files)` under `Compiler 
 
 Aside from that, the process is the largely the same as verifying a single-file contracts on Moonscan. 
 
-### Smart Contract Flattening
+### Smart Contract Flattening {: #smart-contract-flattening }
 
 Because BlockScout does not support uploading multiple Solidity files that make up one contract directly, we must do some pre-processing before verifying multi-part smart contracts on BlockScout. 
 
