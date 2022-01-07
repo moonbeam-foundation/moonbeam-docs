@@ -9,7 +9,7 @@ description: This guide walks you through how to connect Nifty Wallet, a browser
 
 ## Introduction {: #introduction } 
 
-[Nifty Wallet](https://www.poa.network/for-users/nifty-wallet) was initially forked from MetaMask, and has been extended for interaction with POA networks, POA Core and POA Sokol. Since Nifty is Ethereum compatible, it can also be used on Moonbeam. 
+[Nifty Wallet](https://www.poa.network/v/master-1/for-users/nifty-wallet) was initially forked from MetaMask, and has been extended for interaction with POA networks, POA Core and POA Sokol. Since Nifty is Ethereum compatible, it can also be used on Moonbeam. 
 
 Please be aware that Nifty Wallet is beta software and it is recommended to sign out when you're done using a site.
 

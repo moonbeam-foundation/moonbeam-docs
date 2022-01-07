@@ -70,14 +70,15 @@ The complete command for running a tracing node is as follows:
 
 === "Moonriver"
     ```
-    docker run --network="host" -v "/var/lib/alphanet-data:/data" \
+    docker run --network="host" -v "{{ networks.moonriver.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
-    {{ networks.development.tracing_tag }} \
+    {{ networks.moonriver.tracing_tag }} \
     --base-path=/data \
-    --chain moonriver \
+    --chain {{ networks.moonriver.chain_spec }} \
     --name="Moonbeam-Tutorial" \
     --pruning archive \
     --state-cache-size 1 \
+    --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonriver-substitutes-tracing \
     -- \
@@ -88,11 +89,11 @@ The complete command for running a tracing node is as follows:
 
 === "Moonbase Alpha"
     ```
-    docker run --network="host" -v "/var/lib/alphanet-data:/data" \
+    docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     {{ networks.moonbase.tracing_tag }} \
     --base-path=/data \
-    --chain alphanet \
+    --chain {{ networks.moonbase.chain_spec }} \
     --name="Moonbeam-Tutorial" \
     --pruning archive \
     --state-cache-size 1 \
@@ -107,14 +108,9 @@ The complete command for running a tracing node is as follows:
 
 === "Moonbeam Dev Node"
     ```
-    docker run --network="host" -v "/var/lib/alphanet-data:/data" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-    {{ networks.moonriver.tracing_tag }} \
-    --base-path=/data \
+    docker run --network="host" \
+    {{ networks.development.tracing_tag }} \
     --name="Moonbeam-Tutorial" \
-    --pruning archive \
-    --state-cache-size 1 \
-    --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
     --dev
