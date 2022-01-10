@@ -2,7 +2,7 @@
 title: Home
 description: Welcome to the documentation website for the Moonbeam smart contract platform, a parachain on Polkadot that is fully Ethereum compatible.
 ---
-
+ 
 # Welcome to Moonbeam
 
 ![Main Page Banner](/images/learn/platform/main-banner.png)

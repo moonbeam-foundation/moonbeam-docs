@@ -97,7 +97,7 @@ There are a few resources you can check out to help you select a collator to del
 
 Rewards for collators and their delegators are calculated at the start of every round for their work prior to the [reward payout delay](#quick-reference). For example, on Moonriver the rewards are calculated for the collators work from {{ networks.moonriver.delegator_timings.rewards_payouts.rounds }} rounds ago.
 
-The calculated rewards are then paid out incrementally, once per block, until all of the rewards have been paid. In each block, one collator is chosen to receive their reward payout, and is paid along with their delegators. For example, if there are {{ networks.moonriver.staking.max_candidates }} collators, all of the collators and their delegators would be paid by block {{ networks.moonriver.staking.max_candidates }} of the new round.
+The calculated rewards are then paid out on a block-by-block basis. For every block, one collator will be chosen to receive their entire reward payout from the prior round, along with their delegators, until all of the rewards have been paid for that round. For example, if there are {{ networks.moonriver.staking.max_candidates }} collators who produced blocks in the prior round, all of the collators and their delegators would be paid by block {{ networks.moonriver.staking.max_candidates }} of the new round.
 
 ### Annual Inflation {: #annual-inflation}
 
