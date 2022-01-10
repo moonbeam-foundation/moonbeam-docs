@@ -18,12 +18,12 @@ Moonbeam provides two different kind of explorers: ones to query the Ethereum AP
 <!-- |                          [Blockscout](https://blockscout.moonriver.moonbeam.network/){target=_blank}                          |    EVM    |      https://blockscout.moonriver.moonbeam.network/      | -->
 
 === "Moonbeam"
-    |                                                        Block Explorer                                                         |   Type    |                           URL                            |
-    |:-----------------------------------------------------------------------------------------------------------------------------:|:---------:|:--------------------------------------------------------:|
-    |                                   [Moonscan](https://moonbeam.moonscan.io/){target=_blank}                                    |    EVM    |              https://moonbeam.moonscan.io/               |
-    |                     [Expedition](https://moonbeam-explorer.netlify.app/?network=Moonbeam){target=_blank}                      |    EVM    | https://moonbeam-explorer.netlify.app/?network=Moonbeam  |
-    |                                    [Subscan](https://moonbeam.subscan.io/){target=_blank}                                     | Substrate |              https://moonbeam.subscan.io/                |
-    | [Polkadot.Js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam.api.onfinality.io%2Fpublic-ws#/explorer){target=_blank}  | Substrate |         https://polkadot.js.org/apps/#/explorer          |
+    |                                                        Block Explorer                                                        |   Type    |                           URL                           |
+    |:----------------------------------------------------------------------------------------------------------------------------:|:---------:|:-------------------------------------------------------:|
+    |                                   [Moonscan](https://moonbeam.moonscan.io/){target=_blank}                                   |    EVM    |              https://moonbeam.moonscan.io/              |
+    |                     [Expedition](https://moonbeam-explorer.netlify.app/?network=Moonbeam){target=_blank}                     |    EVM    | https://moonbeam-explorer.netlify.app/?network=Moonbeam |
+    |                                    [Subscan](https://moonbeam.subscan.io/){target=_blank}                                    | Substrate |              https://moonbeam.subscan.io/               |
+    | [Polkadot.Js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam.api.onfinality.io%2Fpublic-ws#/explorer){target=_blank} | Substrate |         https://polkadot.js.org/apps/#/explorer         |
 
 
 === "Moonriver"
@@ -48,7 +48,7 @@ Moonbeam provides two different kind of explorers: ones to query the Ethereum AP
 
 ### Moonscan {: #Moonscan } 
 
-[Moonscan](https://moonscan.io/){target=_blank} is the primary Ethereum API block explorer for Moonbeam. Built by the Etherscan team, Moonscan provides a powerful, intuitive, and feature-rich experience. In addition to its comprehensive transaction and block data, Moonscan provides a number of [statistics and charts](https://moonbeam.moonscan.io/charts){target=_blank}, such as average gas price, daily transactions, and block size charts.
+[Moonscan](https://moonscan.io/){target=_blank} is the primary Ethereum API block explorer for Moonbeam-based networks. Built by the Etherscan team, Moonscan provides a powerful, intuitive, and feature-rich experience. In addition to its comprehensive transaction and block data, Moonscan provides a number of [statistics and charts](https://moonbeam.moonscan.io/charts){target=_blank}, such as average gas price, daily transactions, and block size charts.
 
 Other Moonscan features include:
 
@@ -75,7 +75,7 @@ As main features, Blockscout offers:
 
 ### Expedition {: #expedition } 
 
-A Moonbeam-themed version of the [Expedition](https://github.com/xops/expedition){target=_blank} explorer can be found in [this link](https://moonbeam-explorer.netlify.app/){target=_blank}.
+A Moonbeam-themed version of the [Expedition](https://github.com/xops/expedition){target=_blank} explorer can be found in [this link](https://moonbeam-explorer.netlify.app/){target=_blank}. It is a basic JSON-RPC based explorer.
 
 By default, the explorer is connected to Moonbeam. However, you can switch to Moonriver or Moonbase Alpha, or connect it to a local dev node by following the next steps:
 
