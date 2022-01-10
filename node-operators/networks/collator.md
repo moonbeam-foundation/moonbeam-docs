@@ -24,12 +24,17 @@ This guide will take you through the following steps:
  - **[Accounts and staking requirements](#accounts-and-staking-requirements)** — goes through the process of getting your account set up and bond tokens to become a candidate
  - **[Generate session keys](#generate-session-keys)** — explains how to generate session keys, used to map your author ID with your H160 account
  - **[Map author ID to your account](#map-author-id-to-your-account)** — outlines the steps to map your public session key to your H160 account, where block rewards will be paid to
+ - **[Join the Discord](#join-discord)** — introduces the best way to keep up with important collator updates, as well as where to go to if you have any questions
 
 ## Technical Requirements {: #technical-requirements } 
 
 From a technical perspective, collators must meet the following requirements:
 
  - Have a full node running with the collation options. To do so, follow the [Run a Node](/node-operators/networks/run-a-node/overview/) tutorial, considering the specific code snippets for collators
+
+!!! attention
+    Running a **collator** node has higher CPU requirements than the ones provided in the above tutorial. In order for your collator node to be able to keep up with a high transaction throughput, a CPU with high clock speed and single thread performance is important. We have tested and seen good results with the following CPUs: Intel Xeon E-2386/2388 and Ryzen 9 5950x/5900x. As most cloud providers focus on multithreading rather than single-thread performance, using a bare-metal provider is recommended.
+    Running your collator node in Docker is also not recommended, as it will have a significant impact in performance.
 
 ## Accounts and Staking Requirements {: #accounts-and-staking-requirements } 
 
@@ -330,3 +335,15 @@ You can also check the current on-chain mappings by verifying the chain state. T
 ![Author ID Mapping Chain State](/images/node-operators/networks/collators/collator-polkadotjs-6.png)
 
 You should be able to see the H160 account associated with the author ID provided. If no author ID was included, this would return all the mappings stored on-chain.
+
+## Join the Discord {: #join-discord } 
+
+As a collator, it is important to keep track of updates and changes to configuration. It is also important to be able to easily contact us and vice versa in case there is any issue with your node, as that will not only negatively affect collator and delegator rewards, it will also negatively affect the network.
+
+For this purpose, we use [Discord](https://discord.com/invite/moonbeam). The most relevant Discord channels for collators are the following:
+
+ - *tech-upgrades-announcements* — here we will publish any updates or changes in configuration collators will be required to follow. We will also announce any technical issues to watch out for, such as network stalls
+ - *collators* — this is the general collator discussion channel. We are proud of having an active and friendly collator community so if you have any questions, this is the place to ask. We will also ping collators here for any issues that require their attention.
+ - *meet-the-collators* — in this channel you can introduce yourself to potential delegators
+
+After you join our Discord, feel free to DM *PureStake - Gil#0433* or *PureStake-Art#6950* and introduce yourself. This will let us know who to contact if we see an issue with your node, and will also let us assign the relevant Discord collator role, enabling you to post in *meet-the-collators*.
