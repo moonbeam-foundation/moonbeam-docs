@@ -274,7 +274,7 @@ networks:
     parachain_sha256sum: 4e4ddb0c4c441b01bd3fab4f7951e1033f12c40d8d9d3d2fd9bc1883853f1ef1
     tracing_tag: purestake/moonbeam-tracing:v0.16.0-1001-9ddc
     chain_spec: moonbeam
-    block_explorer: https://moonbeam.moonscan.io
+    block_explorer: https://moonscan.io
     binary_name: moonbeam
     min_gas_price: 100
     block_time: 12
