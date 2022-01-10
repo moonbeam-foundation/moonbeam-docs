@@ -12,7 +12,7 @@ description: This guide walks you through how to connect MetaMask, an browser-ba
 
 Developers can leverage Moonbeam's Ethereum compatibility features to integrate tools, such as [MetaMask](https://metamask.io/), into their DApps. By doing so, they can use the injected library MetaMask provides to interact with the blockchain.
 
-Currently, MetaMask can be configured to connect to a few networks: a Moonbeam development node, the Moonbase Alpha TestNet, and Moonriver.
+Currently, MetaMask can be configured to connect to a few networks: Moonbeam, Moonriver, the Moonbase Alpha TestNet, and a Moonbeam development node.
 
 If you already have MetaMask installed, you can easily connect MetaMask to the network of your choice:
 
@@ -27,7 +27,7 @@ If you already have MetaMask installed, you can easily connect MetaMask to the n
 !!! note
     MetaMask will popup asking for permission to add a a custom network. Once you approve permissions, MetaMask will switch your current network.
 
-Learn [how to integrate a Connect MetaMask button](/builders/interact/metamask-dapp/) into your DApp, so that users can connect to Moonbase Alpha with a simple click of a button.
+Learn [how to integrate a Connect MetaMask button](/builders/interact/metamask-dapp/) into your DApp, so that users can connect to Moonbase Alpha with a simple click of a button. The guide can also be adapted for the other Moonbeam-based networks.
 
 ## Install the MetaMask Extension {: #install-the-metamask-extension } 
 
@@ -65,13 +65,9 @@ You should end up with an imported **Account 2** that looks like this:
 
 ## Connect MetaMask to Moonbeam {: #connect-metamask-to-moonbeam } 
 
-Once you have [MetaMask](https://metamask.io/) installed and have created or imported an account, you can connect it to Moonbeam by clicking on the top right logo and opening the settings.
+Once you have [MetaMask](https://metamask.io/) installed and have created or imported an account, you can connect it to Moonbeam by clicking on the network dropdown and selecting **Add Network**.
 
-![MetaMask3](/images/tokens/connect/metamask/metamask-6.png)
-
-Next, navigate to the Networks tab and click on the **Add Network** button.
-
-![MetaMask4](/images/tokens/connect/metamask/metamask-7.png)
+![MetaMask3](/images/tokens/connect/metamask/metamask-6-new.png)
 
 Here you can configure MetaMask for the following networks:
 
