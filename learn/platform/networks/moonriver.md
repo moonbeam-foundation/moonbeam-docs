@@ -49,11 +49,12 @@ Some important variables/configurations to note include:
 === "Staking"
     |             Variable              |                                                   Value                                                   |
     |:---------------------------------:|:---------------------------------------------------------------------------------------------------------:|
-    |     Minimum delegation stake      |                           {{ networks.moonriver.staking.min_del_stake }} MOVR                             |
+    |     Minimum delegation stake      |                            {{ networks.moonriver.staking.min_del_stake }} MOVR                            |
     | Maximum delegators per candidates |                             {{ networks.moonriver.staking.max_del_per_can }}                              |
-    | Maximum delegations per account   |                             {{ networks.moonriver.staking.max_del_per_del }}                              |
+    |  Maximum delegations per account  |                             {{ networks.moonriver.staking.max_del_per_del }}                              |
     |               Round               | {{ networks.moonriver.staking.round_blocks }} blocks ({{ networks.moonriver.staking.round_hours }} hours) |
-    |           Bond duration           |                             {{ networks.moonriver.staking.bond_lock }} rounds                             |
+    |           Bond duration           |                delegation takes effect in the next round (funds are withdrawn immediately)                |
+    |          Unbond duration          |                      {{ networks.moonriver.delegator_timings.del_bond_less.rounds }} rounds                      |
 
 _*Read more about [token denominations](#token-denominations)_
 

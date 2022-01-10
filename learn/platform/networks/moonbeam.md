@@ -45,11 +45,12 @@ Some important variables/configurations to note include (still subject to change
 === "Staking"
     |             Variable              |                                                  Value                                                  |
     |:---------------------------------:|:-------------------------------------------------------------------------------------------------------:|
-    |     Minimum delegation stake      |                          {{ networks.moonbeam.staking.min_del_stake }} GLMR                             |
+    |     Minimum delegation stake      |                           {{ networks.moonbeam.staking.min_del_stake }} GLMR                            |
     | Maximum delegators per candidates |                             {{ networks.moonbeam.staking.max_del_per_can }}                             |
-    | Maximum delegations per account   |                             {{ networks.moonbeam.staking.max_del_per_del }}                             |
+    |  Maximum delegations per account  |                             {{ networks.moonbeam.staking.max_del_per_del }}                             |
     |               Round               | {{ networks.moonbeam.staking.round_blocks }} blocks ({{ networks.moonbeam.staking.round_hours }} hours) |
-    |           Bond duration           |                            {{ networks.moonbeam.staking.bond_lock }} rounds                             |
+    |           Bond duration           |               delegation takes effect in the next round (funds are withdrawn immediately)               |
+    |          Unbond duration          |                     {{ networks.moonbeam.delegator_timings.del_bond_less.rounds }} rounds                      |
 
 _*Read more about [token denominations](#token-denominations)_
 

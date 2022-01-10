@@ -27,10 +27,10 @@ Token holders that want to easily stake their tokens can use the [Moonbeam dApp]
     |             Variable              |  |                                                                          Value                                                                          |
     |:---------------------------------:|::|:-------------------------------------------------------------------------------------------------------------------------------------------------------:|
     |     Minimum delegation stake      |  |                                                   {{ networks.moonriver.staking.min_del_stake }} MOVR                                                   |
-    | Maximum delegators per candidates |  |                                                    {{ networks.moonriver.staking.max_del_per_can }}                                                     |
+    | Maximum delegators per candidate  |  |                                                    {{ networks.moonriver.staking.max_del_per_can }}                                                     |
     | Maximum candidates per delegator  |  |                                                    {{ networks.moonriver.staking.max_del_per_del }}                                                     |
     |               Round               |  |                        {{ networks.moonriver.staking.round_blocks }} blocks ({{ networks.moonriver.staking.round_hours }} hours)                        |
-    |           Bond duration           |  |                                                    {{ networks.moonriver.staking.bond_lock }} rounds                                                    |
+    | Initial bond & bond more duration |  |                                       delegation takes effect in the next round (funds are withdrawn immediately)                                       |
     |      Leave delegators delay       |  |   {{ networks.moonriver.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonriver.delegator_timings.leave_delegators.hours }} hours)   |
     |     Delegator bond less delay     |  |      {{ networks.moonriver.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonriver.delegator_timings.del_bond_less.hours }} hours)      |
     |     Revoke delegations delay      |  | {{ networks.moonriver.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonriver.delegator_timings.revoke_delegations.hours }} hours) |
@@ -40,10 +40,10 @@ Token holders that want to easily stake their tokens can use the [Moonbeam dApp]
     |             Variable              |  |                                                                         Value                                                                         |
     |:---------------------------------:|::|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
     |     Minimum delegation stake      |  |                                                   {{ networks.moonbase.staking.min_del_stake }} DEV                                                   |
-    | Maximum delegators per candidates |  |                                                    {{ networks.moonbase.staking.max_del_per_can }}                                                    |
+    | Maximum delegators per candidate  |  |                                                    {{ networks.moonbase.staking.max_del_per_can }}                                                    |
     | Maximum candidates per delegator  |  |                                                    {{ networks.moonbase.staking.max_del_per_del }}                                                    |
     |               Round               |  |                        {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hours)                        |
-    |           Bond duration           |  |                                                   {{ networks.moonbase.staking.bond_lock }} rounds                                                    |
+    | Initial bond & bond more duration |  |                                      delegation takes effect in the next round (funds are withdrawn immediately)                                      |
     |      Leave delegators delay       |  |   {{ networks.moonbase.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonbase.delegator_timings.leave_delegators.hours }} hours)   |
     |     Delegator bond less delay     |  |      {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours)      |
     |     Revoke delegations delay      |  | {{ networks.moonbase.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbase.delegator_timings.revoke_delegations.hours }} hours) |
