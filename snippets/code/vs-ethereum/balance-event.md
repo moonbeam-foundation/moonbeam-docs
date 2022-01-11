@@ -3,11 +3,12 @@ import { typesBundle } from "moonbeam-types-bundle";
 import { ApiPromise, WsProvider } from "@polkadot/api";
 
 
-// This script will listen to all MOVRs transfers (Substrate & Ethereum)
+// This script will listen to all GLMR transfers (Substrate & Ethereum)
+// It can be adapted for Moonriver or Moonbase Alpha
 
 const main = async () => {
-  // Define the provider
-  const wsProvider = new WsProvider("wss://wss.moonriver.moonbeam.network");
+  // Define the provider for Moonbeam
+  const wsProvider = new WsProvider("wss://wss.api.moonbeam.network");
 
   // Create the provider using Moonbeam types
   const polkadotApi = await ApiPromise.create({

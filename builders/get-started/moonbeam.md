@@ -22,8 +22,7 @@ For more information on each of the available block explorers, please head to th
 
 Currently, you can't connect MetaMask to Moonbeam as the EVM is not yet enabled. You'll find the instructions on how to connect MetaMask to Moonbeam once the network is fully launched.
 
-<!---
-If you already have MetaMask installed, you can easily connect MetaMask to Moonriver:
+If you already have MetaMask installed, you can easily connect MetaMask to Moonbeam:
 
 <div class="button-wrapper">
     <a href="#" class="md-button connectMetaMask" value="moonbeam">Connect MetaMask</a>
@@ -41,4 +40,3 @@ If you want to connect MetaMask by providing the network information, you can us
  - ChainID: `{{ networks.moonbeam.chain_id }}` (hex: `{{ networks.moonbeam.hex_chain_id }}`)
  - Symbol (Optional): `GLMR`
  - Block Explorer (Optional): `{{ networks.moonbeam.block_explorer }}` 
- --->

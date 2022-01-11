@@ -4,19 +4,20 @@ import ethers from 'ethers';
 // Define the TxHash to Check Finality
 const txHash = 'tx_hash';
 
-// Define the RPC of the Provider
+// Define the RPC of the Provider for Moonbeam
+// This can be adapted for Moonriver or Moonbase Alpha
 const providerRPC = {
-  moonriver: {
-    name: 'moonriver',
-    rpc: 'https://rpc.moonriver.moonbeam.network',
-    chainId: 1285,
-  },
+  moonbeam: {
+    name: 'moonbeam',
+    rpc: 'https://rpc.api.moonbeam.network',
+    chainId: 1284,
+  }
 };
 
 // Define the Web3 provider
-const web3Provider = new ethers.providers.JsonRpcProvider(providerRPC.moonriver.rpc, {
-  chainId: providerRPC.moonriver.chainId,
-  name: providerRPC.moonriver.name,
+const web3Provider = new ethers.providers.JsonRpcProvider(providerRPC.moonbeam.rpc, {
+  chainId: providerRPC.moonbeam.chainId,
+  name: providerRPC.moonbeam.name,
 });
 
 // Define the function for the Custom Web3 Request
