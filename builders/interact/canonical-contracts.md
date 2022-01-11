@@ -12,12 +12,12 @@ description: A brief overview of the canonical contracts available on Moonbeam, 
 The following contracts addresses have been established:
 
 === "Moonbeam"
-    |                                            Contract                                            |                  Address                   |
-    |:----------------------------------------------------------------------------------------------:|:------------------------------------------:|
-    |   [WGLMR](https://moonbeam.moonscan.io/address/0xAcc15dC74880C9944775448304B263D191c6077F/)    | 0xAcc15dC74880C9944775448304B263D191c6077F |
-    | [Multicall](https://moonbeam.moonscan.io/address/0x83e3b61886770de2F64AAcaD2724ED4f08F7f36B/)  | 0x83e3b61886770de2F64AAcaD2724ED4f08F7f36B |
-    | [Multicall2](https://moonbeam.moonscan.io/address/0x6477204E12A7236b9619385ea453F370aD897bb2/) | 0x6477204E12A7236b9619385ea453F370aD897bb2 |
-    |                      [EIP 1820](https://eips.ethereum.org/EIPS/eip-1820)                       | 0x1820a4b7618bde71dce8cdc73aab6c95905fad24 |
+    |                                               Contract                                                |                  Address                   |
+    |:-----------------------------------------------------------------------------------------------------:|:------------------------------------------:|
+    |   [WGLMR](https://blockscout.moonbeam.network/address/0xAcc15dC74880C9944775448304B263D191c6077F/)    | 0xAcc15dC74880C9944775448304B263D191c6077F |
+    | [Multicall](https://blockscout.moonbeam.network/address/0x83e3b61886770de2F64AAcaD2724ED4f08F7f36B/)  | 0x83e3b61886770de2F64AAcaD2724ED4f08F7f36B |
+    | [Multicall2](https://blockscout.moonbeam.network/address/0x6477204E12A7236b9619385ea453F370aD897bb2/) | 0x6477204E12A7236b9619385ea453F370aD897bb2 |
+    |                          [EIP 1820](https://eips.ethereum.org/EIPS/eip-1820)                          | 0x1820a4b7618bde71dce8cdc73aab6c95905fad24 |
 
 === "Moonriver"
     |                                               Contract                                                |                  Address                   |
