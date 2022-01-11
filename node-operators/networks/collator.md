@@ -291,14 +291,9 @@ Once you've generated your author ID (session keys), the next step is to map it 
 
 There is a bond that is sent when mapping your author ID with your account. This bond is per author ID registered. The bond set is as follows:
 
-=== "Moonbeam"
-    {{ networks.moonbeam.staking.collator_map_bond }} GLMR tokens
-
-=== "Moonriver"
-    {{ networks.moonriver.staking.collator_map_bond }} MOVR tokens
-
-=== "Moonbase Alpha"
-    {{ networks.moonbase.staking.collator_map_bond }} DEV tokens 
+ - Moonbeam -  {{ networks.moonbeam.staking.collator_map_bond }} GLMR tokens
+ - Moonriver - {{ networks.moonriver.staking.collator_map_bond }} MOVR tokens
+ - Moonbase Alpha - {{ networks.moonbase.staking.collator_map_bond }} DEV tokens 
 
 The `authorMapping` module has the following extrinsics programmed:
 

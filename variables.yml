@@ -315,13 +315,13 @@ networks:
       parachain_bond_inflation: 30
     staking:
       min_col_stk: 100000
-      min_can_stk: 100000
-      min_can_stk_wei: 100000000000000000000000
+      min_can_stk: 10000
+      min_can_stk_wei: 10000000000000000000000
       collator_map_bond: 10000
       max_candidates: 48
       round_blocks: 1800
       round_hours: 6
-      min_del_stake: 500
+      min_del_stake: 50
       max_del_per_can: 300
       max_del_per_del: 100
     treasury:

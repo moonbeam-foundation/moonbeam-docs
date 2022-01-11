@@ -122,7 +122,7 @@ Inside the `module.exports`, we need to provide the Solidity version (`0.8.1` ac
     moonbeam: {
         url: '{{ networks.moonbeam.rpc_url }}',
         chainId: {{ networks.moonbeam.chain_id }}, //(hex: {{ networks.moonbeam.hex_chain_id }}),
-        accounts: [privateKeyMoonrbeam] // Insert your private key here
+        accounts: [privateKeyMoonbeam] // Insert your private key here
       },
     ```
 
