@@ -90,6 +90,7 @@ The complete command for running a tracing node is as follows:
     --name="Moonbeam-Tutorial" \
     --pruning archive \
     --state-cache-size 1 \
+    --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonbeam-substitutes-tracing \
     -- \
