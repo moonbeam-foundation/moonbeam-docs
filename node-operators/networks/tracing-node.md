@@ -82,11 +82,11 @@ The complete command for running a tracing node is as follows:
 
 === "Moonbeam"
     ```
-    docker run --network="host" -v "/var/lib/alphanet-data:/data" \
+    docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     {{ networks.moonbeam.tracing_tag }} \
     --base-path=/data \
-    --chain moonbeam \
+    --chain {{ networks.moonbeam.chain_spec }} \
     --name="Moonbeam-Tutorial" \
     --pruning archive \
     --state-cache-size 1 \

@@ -18,7 +18,7 @@ This strategy allows us to de-risk software upgrades to Moonbeam on the Polkadot
 
 ## Moonbeam {: #moonbeam } 
 
-The Moonbeam production MainNet is a parachain on Polkadot since December 17th 2021. Moonbeam features the highest levels of security and availability. Code running on the MainNet is generally have been vetted through one or more of the other networks listed above.
+The Moonbeam production MainNet is a parachain on Polkadot and has been since December 17th 2021. Moonbeam features the highest levels of security and availability. Code running on the MainNet is generally have been vetted through one or more of the other networks listed above.
 
 Moonbeam will offer parachain-related functionalities such as [XCMP](https://wiki.polkadot.network/docs/learn-crosschain) and [SPREE](https://wiki.polkadot.network/docs/learn-spree) as these features become available.
 

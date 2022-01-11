@@ -20,8 +20,6 @@ For more information on each of the available block explorers, please head to th
 
 ## Connect MetaMask {: #connect-metamask }
 
-Currently, you can't connect MetaMask to Moonbeam as the EVM is not yet enabled. You'll find the instructions on how to connect MetaMask to Moonbeam once the network is fully launched.
-
 If you already have MetaMask installed, you can easily connect MetaMask to Moonbeam:
 
 <div class="button-wrapper">

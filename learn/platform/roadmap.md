@@ -13,12 +13,14 @@ In June 2021, Moonriver went [live on Kusama](https://moonbeam.network/announcem
 
 In December 2021, Moonbeam went [live on Polkadot](https://moonbeam.network/announcements/moonbeam-now-producing-blocks-polkadot/), as one of the first parachains in the ecosystem.
 
+## Q1-Q2 2022 Roadmap for Moonbeam and Moonriver
+
 ![Q1-Q2 2022 Roadmap](/images/learn/platform/roadmap/roadmap.png)
 
-## Interoperability
+### Interoperability
 
 Interoperability is and will continue to be a high-priority item, in particular XCM development. For more information on XCM, please check out the [XCM](/builders/xcm/) section of the documentation. 
 
-## Community Development
+### Community Development
 
 There is and will continue to be a large focus on growing the Moonriver and Moonbeam ecosystems, including deployments of integrations and partnerships and the addition of bounty programs.

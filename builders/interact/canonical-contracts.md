@@ -78,4 +78,4 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
 |         [ERC-20 Interface](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol)          |   {{networks.moonbase.precompiles.erc20 }}   |
 
 !!! note
-    The ERC-20 Interface is currently only available on Moonbase Alpha and Moonriver.
+    The ERC-20 Interface is currently only available on Moonriver and Moonbase Alpha.
