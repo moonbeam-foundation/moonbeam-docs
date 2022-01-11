@@ -92,9 +92,20 @@ module.exports = {
 
 Note that we are using `HD-Wallet-Provider` from Truffle as the Hierarchical Deterministic wallet. Also, we've defined a `dev` network that points to the development node provider URL, and the private key of the development account, which holds all funds in the development node, is included. 
 
-For deployments to the Moonbase Alpha TestNet or Moonriver, you need to provide the private key of an address that holds funds. For Moonbase Alpha, you can create an account in MetaMask, fund it using the [TestNet faucet](/builders/get-started/moonbase/#get-tokens/), and export its private key.
+For deployments to Moonbeam-based networks, you need to provide the private key of an address that holds funds. If you decide to use a development node, it will come with 10 pre-funded accounts that you can use. Otherwise, you can [create an account in MetaMask](/tokens/connect/metamask) and fund it. For Moonbase Alpha, you can [get tokens](/builders/get-started/moonbase/#get-tokens/) from the faucet. Once you have an acouunt with funds, you will need to export its private key.
 
 Below you can find network configurations for all of our networks:
+
+=== "Moonbeam"
+    ```
+    moonbeam: {
+      provider: () => {
+         ...
+         return new HDWalletProvider(privateKeyMoonbeam, '{{ networks.moonbeam.rpc_url }}') // Insert your private key here
+      },
+      network_id: {{ networks.moonbeam.chain_id }} (hex: {{ networks.moonbeam.hex_chain_id }}),
+    },
+    ```
 
 === "Moonriver"
     ```
@@ -220,6 +231,11 @@ If successful, you should see output like the following:
 ![Truffle compile success message](/images/builders/interact/truffle/truffle-6.png)
 
 Now we are ready to deploy the compiled contracts. You can do this with the following command:
+
+=== "Moonbeam"
+    ```
+    truffle migrate --network moonbeam
+    ```
 
 === "Moonriver"
     ```

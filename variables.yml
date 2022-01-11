@@ -326,6 +326,10 @@ networks:
       max_approved_proposals: 100
       tx_fees_allocated: 20
       tx_fees_burned: 80
+    proxy:
+      deposit_base: 1.0008
+      deposit_factor: 0.0021
+      max_proxies: 32
     identity:
       basic_dep: 1.0258
       field_dep: .0066
@@ -350,6 +354,10 @@ networks:
       can_bond_less:
         rounds: 28
         hours: 168
+    precompiles:
+      staking: '0x0000000000000000000000000000000000000800'
+      crowdloan: '0x0000000000000000000000000000000000000801'
+      erc20: '0x0000000000000000000000000000000000000802'
   relay_chain:
     p2p: 30334
     rpc: 9934

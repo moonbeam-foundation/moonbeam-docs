@@ -40,6 +40,13 @@ The equation for calculating the deposit is:
 deposit base + deposit factor * number of proxies
 ```
 
+=== "Moonbeam"
+    |    Variable    |                       Value                       |
+    |:--------------:|:-------------------------------------------------:|
+    |  Deposit base  |  {{ networks.moonbeam.proxy.deposit_base }} GLMR  |
+    | Deposit factor | {{ networks.moonbeam.proxy.deposit_factor }} GLMR |
+    |  Max proxies   | {{ networks.moonbeam.proxy.max_proxies }} proxies |
+
 === "Moonriver"
     |    Variable    |                       Value                        |
     |:--------------:|:--------------------------------------------------:|

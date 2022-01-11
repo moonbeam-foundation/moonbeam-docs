@@ -4,8 +4,9 @@ import Web3 from 'web3';
 // Define the TxHash to Check Finality
 const txHash = 'tx_hash';
 
-// Define the Web3 provider
-const web3 = new Web3('https://rpc.moonriver.moonbeam.network');
+// Define the Web3 provider for Moonbeam
+// This can also be adapted for Moonriver or Moonbase Alpha
+const web3 = new Web3('https://rpc.api.moonbeam.network');
 
 // Define the function for the Custom Web3 Request
 const customWeb3Request = async (web3Provider, method, params) => {

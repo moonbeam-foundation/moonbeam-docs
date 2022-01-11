@@ -11,13 +11,7 @@ description: Learn how to create and clear an identity, including personal infor
 
 The [Substrate](/learn/platform/technology/#substrate-framework) Identity pallet is an out-of-the-box solution for adding personal information to your on-chain account. Personal information can include default fields such as your legal name, display name, website, Twitter handle, Riot (now known as Element) name. You can also take advantage of custom fields to include any other relevant information. 
 
-This guide will show you how to set an identity, and then clear it, on the Moonbase Alpha TestNet. This guide can also be adapted to be used on Moonriver.
-
-## Checking Prerequisites { : #checking-prerequisites }
-
-You'll need to connect to the [Moonbase Alpha TestNet](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network){target=_blank} on the Polkadot.js Apps explorer. You can also follow along and adapt the instructions for [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network){target=_blank}.
-
-You will also need to create or import an account into Polkadot.js Apps. If you haven't already created or imported an account, please follow our guide on [Creating or Importing an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account). Make sure you fund your account with DEV tokens if you’re on Moonbase Alpha, or MOVR if you’re on Moonriver. For more information on the DEV token faucet, check out the [Get Tokens](/builders/get-started/moonbase/#get-tokens) section of the Moonbase Alpha documentation.
+This guide will show you how to set an identity, and then clear it, on the Moonbase Alpha TestNet. This guide can also be adapted to be used on Moonbeam and Moonriver.
 
 ## General Definitions
 
@@ -26,6 +20,13 @@ To store your information on-chain, you must bond some funds, which eventually w
 - **Default fields include** - your legal name, display name, website, Twitter handle, Riot (now known as Element) name
  
 - **Custom fields include** - any other relevant information. For example, you could include your Discord handle
+
+=== "Moonbeam"
+    |       Variable        |                               Definition                                |                      Value                      |
+    |:---------------------:|:-----------------------------------------------------------------------:|:-----------------------------------------------:|
+    |     Basic Deposit     |           The amount held on deposit for setting an identity            | {{ networks.moonbeam.identity.basic_dep }} GLMR |
+    |     Field Deposit     | The amount held on deposit per additional field for setting an identity | {{ networks.moonbeam.identity.field_dep }} GLMR |
+    | Max Additional Fields |     Maximum number of additional fields that may be stored in an ID     |   {{ networks.moonbeam.identity.max_fields }}   |
 
 === "Moonriver"
     |       Variable        |                               Definition                                |                      Value                       |
@@ -40,6 +41,14 @@ To store your information on-chain, you must bond some funds, which eventually w
     |     Basic Deposit     |           The amount held on deposit for setting an identity            | {{ networks.moonbase.identity.basic_dep }} DEV |
     |     Field Deposit     | The amount held on deposit per additional field for setting an identity | {{ networks.moonbase.identity.field_dep }} DEV |
     | Max Additional Fields |     Maximum number of additional fields that may be stored in an ID     |  {{ networks.moonbase.identity.max_fields }}   |
+
+## Checking Prerequisites { : #checking-prerequisites }
+
+For this guide, you will need the following:
+
+- To connect to the [Moonbase Alpha TestNet](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network){target=_blank} on the Polkadot.js Apps explorer. You can also follow along and adapt the instructions for [Moonbeam](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network){target=_blank} or [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network){target=_blank}.
+- To [create or import an account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account) into Polkadot.js Apps
+- Make sure you have funded your account. For Moonbase Alpha, you can [get DEV tokens from the faucet](/builders/get-started/moonbase/#get-tokens)
 
 ## Getting Started
 

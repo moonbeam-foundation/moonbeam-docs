@@ -4,14 +4,15 @@ from substrateinterface import SubstrateInterface
 # Define the Ethereum TxHash to Check Finality
 txHash = 'txHash'
 
-# Point API Provider to Moonriver Network
+# Point API Provider to Moonbeam
+# This can also be adapted for Moonriver or Moonbase Alpha
 moonbeamAPIProvider = SubstrateInterface(
-    url="wss://wss.moonriver.moonbeam.network",
+    url="wss://wss.api.moonbeam.network",
 )
 
 if __name__ == "__main__":
 
-    # Get the latest finalized block header of the Moonriver chain
+    # Get the latest finalized block header of the chain
     finalizedBlockHeader =  moonbeamAPIProvider.get_block_header(finalized_only = True)
     # Get the finalized block number from the block header
     finalizedBlockNumber = finalizedBlockHeader["header"]["number"]

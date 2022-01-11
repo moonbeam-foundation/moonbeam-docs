@@ -117,6 +117,15 @@ Next, we import the private key that we've retrieved from MetaMask and store it 
 
 Inside the `module.exports`, we need to provide the Solidity version (`0.8.1` according to our contract file), and the network details:
 
+=== "Moonbeam"
+    ```
+    moonbeam: {
+        url: '{{ networks.moonbeam.rpc_url }}',
+        chainId: {{ networks.moonbeam.chain_id }}, //(hex: {{ networks.moonbeam.hex_chain_id }}),
+        accounts: [privateKeyMoonrbeam] // Insert your private key here
+      },
+    ```
+
 === "Moonriver"
     ```
     moonriver: {
@@ -280,8 +289,8 @@ Notice your address labeled `from`, the address of the contract, and the `data` 
 (await box.retrieve()).toNumber()
 ```
 
-We should see `5` or the value you have stored initially.
+You should see `5` or the value you have stored initially.
 
-Congratulations, you have completed the Hardhat tutorial! 🤯 🎉
+Congratulations, you have completed the Hardhat tutorial!
 
 For more information on Hardhat, hardhat plugins, and other exciting functionality, please visit [hardhat.org](https://hardhat.org/).

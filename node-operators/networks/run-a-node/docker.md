@@ -32,7 +32,6 @@ Create a local directory to store the chain data:
     mkdir {{ networks.moonbase.node_directory }}
     ```
 
-
 Next, make sure you set the ownership and permissions accordingly for the local directory that stores the chain data. In this case, set the necessary permissions either for a specific or current user (replace `DOCKER_USER` for the actual user that will run the `docker` command):
 
 === "Moonbeam"

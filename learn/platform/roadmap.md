@@ -1,14 +1,24 @@
 ---
 title: Roadmap
-description: Moonbeam launched its first TestNet in September 2020, with a BetaNet on Kusama and MainNet on Polkadot to follow in early 2021.
+description: Moonbeam launched its first TestNet in September 2020, a MainNet on Kusama in June 2021, and a MainNet on Polkadot in December 2021.
 ---
 
 # Roadmap
 
 Moonbeam is still being actively developed. 
 
-On September 2020, we launched our [TestNet](/learn/platform/networks/overview/). Since then we have performed significants upgrades on almost a monthly basis. You can check the milestones achieved by each update in their corresponding [release notes](/learn/platform/networks/moonbase/#release-notes).
+In September 2020, we launched our [TestNet](/learn/platform/networks/overview/). Since then we have performed significants upgrades on almost a monthly basis. You can check the milestones achieved by each update in their corresponding [release notes](/learn/platform/networks/moonbase/#release-notes).
 
-On June 2021, Moonriver went [live on Kusama](https://moonbeam.network/announcements/moonriver-launch-kusama/), making it the first live production level blockchain within the Moonbeam Network.
+In June 2021, Moonriver went [live on Kusama](https://moonbeam.network/announcements/moonriver-launch-kusama/), making it the first live production level blockchain within the Moonbeam Network.
 
-The rough roadmap beyond that is to launch Moonbeam on the Polkadot MainNet by the end of 2021. However, this milestone is still dependant on the enabling of Parachains in the Polkadot relay chain.
+In December 2021, Moonbeam went [live on Polkadot](https://moonbeam.network/announcements/moonbeam-now-producing-blocks-polkadot/), as one of the first parachains in the ecosystem.
+
+![Q1-Q2 2022 Roadmap](/images/learn/platform/roadmap/roadmap.png)
+
+## Interoperability
+
+Interoperability is and will continue to be a high-priority item, in particular XCM development. For more information on XCM, please check out the [XCM](/builders/xcm/) section of the documentation. 
+
+## Community Development
+
+There is and will continue to be a large focus on growing the Moonriver and Moonbeam ecosystems, including deployments of integrations and partnerships and the addition of bounty programs.
