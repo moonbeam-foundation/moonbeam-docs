@@ -5,7 +5,7 @@ description: Learn about how to verify smart contracts on Moonbeam networks usin
 ---
 # Verify Smart Contracts
 
-![Explorer Banner](/images/builders/tools/explorers/overview/explorers-banner.png)
+![Explorer Banner](/images/builders/tools/explorers/verify-contract/verify-contract-banner.png)
 
 ## Introduction {: #introduction } 
 
