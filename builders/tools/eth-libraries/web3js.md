@@ -29,9 +29,25 @@ const web3 = new Web3('RPC_URL');
 
 Depending on which network you want to connect to, you can set the `RPC_URL` to the following values:
 
- - Moonbeam development node: `{{ networks.development.rpc_url }}`
- - Moonbase Alpha TestNet: `{{ networks.moonbase.rpc_url }}`
- - Moonriver: `{{ networks.moonriver.rpc_url }}`
+=== "Moonbeam"
+    ```
+    {{ networks.moonbeam.rpc_url }}
+    ```
+
+=== "Moonriver"
+    ```
+    {{ networks.moonriver.rpc_url }}
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    {{ networks.moonbase.rpc_url }}
+    ```
+
+=== "Moonbeam Dev Node"
+    ```
+    {{ networks.development.rpc_url }}
+    ```
 
 ## Tutorials {: #tutorials } 
 

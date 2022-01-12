@@ -5,8 +5,8 @@ import { typesBundle } from 'moonbeam-types-bundle';
 // Define the TxHash to Check Finality
 const txHash = 'tx_hash';
 
-// Define the provider
-const wsProvider = new WsProvider('wss://wss.moonriver.moonbeam.network');
+// Define the provider for Moonbeam
+const wsProvider = new WsProvider('wss://wss.api.moonbeam.network');
 
 const main = async () => {
   // Create the provider using Moonbeam types

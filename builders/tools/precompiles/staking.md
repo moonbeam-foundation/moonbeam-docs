@@ -13,6 +13,11 @@ Moonbeam uses a Delegated Proof of Stake system through a [Parachain-Staking](ht
 
 The Staking module is coded in Rust and it is part of a pallet that is normally not accessible from the Ethereum side of Moonbeam. However, a Staking Precompile allows developers to access the staking features using the Ethereum API in a precompiled contract located at address:
 
+=== "Moonbeam"
+     ```
+     {{networks.moonbeam.precompiles.staking}}
+     ```
+
 === "Moonriver"
      ```
      {{networks.moonriver.precompiles.staking}}
@@ -40,22 +45,22 @@ The interface includes the following functions:
  - **candidate_delegation_count**(*address* candidate) - read-only function that returns the number of delegations for the specified collator candidate address. Replaces the deprecated `collator_nomination_count` extrinsic
  - **delegator_delegation_count**(*address* delegator) - read-only function that returns the number of delegations for the specified delegator address. Replaces the deprecated `nominator_nomination_count` extrinsic
  - **join_candidates**(*uint256* amount, *uint256* candidateCount) — allows the account to join the set of collator candidates with a specified bond amount and the current candidate count
- - **schedule_leave_candidates**(*uint256* candidateCount) - schedules a request for a candidate to remove themselves from the candidate pool. Scheduling the request does not automatically execute it. There is a delay of {{ networks.moonbase.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonbase.collator_timings.leave_candidates.hours }} hours) for Moonbase Alpha and {{ networks.moonriver.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonriver.collator_timings.leave_candidates.hours }} hours) for Moonriver. Once the delay is up you can execute the request via the `execute_leave_candidates` extrinsic. Replaces the deprecated `leave_candidates` extrinsic
+ - **schedule_leave_candidates**(*uint256* candidateCount) - schedules a request for a candidate to remove themselves from the candidate pool. Scheduling the request does not automatically execute it. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `execute_leave_candidates` extrinsic. Replaces the deprecated `leave_candidates` extrinsic
  - **execute_leave_candidates**() - executes the due request to leave the set of collator candidates 
  - **cancel_leave_candidates**(*uint256* candidateCount) - allows a candidate to cancel a pending scheduled request to leave the candidate pool. Given the current number of candidates in the pool
  - **go_offline**() — temporarily leave the set of collator candidates without unbonding
  - **go_online**() — rejoin the set of collator candidates after previously calling go_offline()
  - **candidate_bond_more**(*uint256* more) — collator candidate increases bond by specified amount
- - **schedule_candidate_bond_less**(*uint256* more) - schedules a request to decrease a candidates bond by a specified amount. There is a delay of {{ networks.moonbase.collator_timings.can_bond_less.rounds }} rounds ({{ networks.moonbase.collator_timings.can_bond_less.hours }} hours) for Moonbase Alpha and {{ networks.moonriver.collator_timings.can_bond_less.rounds }} rounds ({{ networks.moonriver.collator_timings.can_bond_less.hours }} hours) for Moonriver. Once the delay is up you can execute the request via the `execute_candidate_bond_request` extrinsic. Replaces the deprecated `candidate_bond_less` extrinsic
+ - **schedule_candidate_bond_less**(*uint256* more) - schedules a request to decrease a candidates bond by a specified amount. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `execute_candidate_bond_request` extrinsic. Replaces the deprecated `candidate_bond_less` extrinsic
  - **execute_candidate_bond_request**(*address* candidate) - executes any due requests to decrease a specified candidates bond amount
  - **cancel_candidate_bond_request**() - allows a candidate to cancel a pending scheduled request to decrease a candidates bond
  - **delegate**(*address* candidate, *uint256* amount, *uint256* candidateDelegationCount, *uint256* delegatorDelegationCount) — if the caller is not a delegator, this function adds them to the set of delegators. If the caller is already a delegator, then it adjusts their delegation amount. Replaces the deprecated `nominate` extrinsic
- - **schedule_leave_delegators**() — schedules a request to leave the set of delegators and revoke all ongoing delegations. There is a delay of {{ networks.moonbase.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonbase.delegator_timings.leave_delegators.hours }} hours) for Moonbase Alpha and {{ networks.moonriver.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonriver.delegator_timings.leave_delegators.hours }} hours) for Moonriver. Once the delay is up you can execute the request via the `execute_leave_delegators` extrinsic. Replaces the deprecated `leave_nominators` extrinsic
+ - **schedule_leave_delegators**() — schedules a request to leave the set of delegators and revoke all ongoing delegations. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `execute_leave_delegators` extrinsic. Replaces the deprecated `leave_nominators` extrinsic
  - **execute_leave_delegators**(*uint256* delegatorDelegationCount) - executes the due request to leave the set of delegators and revoke all delegations
  - **cancel_leave_delegators**() - cancels a pending scheduled request to leave the set of delegators
- - **schedule_revoke_delegation**(*address* candidate) — schedules a request to revoke a delegation given the address of a candidate. There is a delay of {{ networks.moonbase.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbase.delegator_timings.revoke_delegations.hours }} hours) for Moonbase Alpha and {{ networks.moonriver.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonriver.delegator_timings.revoke_delegations.hours }} hours) for Moonriver. Once the delay is up you can execute the request via the `execute_delegation_request` extrinsic. Replaces the deprecated `revoke_nominations` extrinsic
+ - **schedule_revoke_delegation**(*address* candidate) — schedules a request to revoke a delegation given the address of a candidate. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `execute_delegation_request` extrinsic. Replaces the deprecated `revoke_nominations` extrinsic
  - **delegator_bond_more**(*address* candidate, *uint256* more) — delegator increases bond to a collator by specified amount. Replaces the deprecated `nominator_bond_more` extrinsic
- - **schedule_delegator_bond_less**(*address* candidate, *uint256* less) — schedules a request for a delegator to bond less with respect to a specific candidate. There is a delay of {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours) for Moonbase Alpha and {{ networks.moonriver.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonriver.delegator_timings.del_bond_less.hours }} hours) for Moonriver. Once the delay is up you can execute the request via the `execute_delegation_request` extrinsic. Replaces the deprecated `nominator_bond_less` extrinsic
+ - **schedule_delegator_bond_less**(*address* candidate, *uint256* less) — schedules a request for a delegator to bond less with respect to a specific candidate. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `execute_delegation_request` extrinsic. Replaces the deprecated `nominator_bond_less` extrinsic
  - **execute_delegation_request**(*address* delegator, *address* candidate) - executes any due delegation requests provided the address of a delegator and a candidate
  - **cancel_delegation_request**(*address* candidate) - cancels any pending delegation requests provided the address of a candidate
 
@@ -73,9 +78,40 @@ The following methods are **deprecated** and will be removed in the future:
  - **nominator_bond_more**(*address* collator, *uint256* more) — delegator increases bond to a collator by specified amount
  - **nominator_bond_less**(*address* collator, *uint256* less) — delegator decreases bond to a collator by specified amount
 
+## Exit Delays 
+
+Some of the aforementioned staking interface functions include exit delays that you must wait before the request can be executed. The exit delays to note are as follows:
+
+=== "Moonbeam"
+    |        Variable         |                                                                         Value                                                                         |
+    |:-----------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
+    | Decrease candidate bond |       {{ networks.moonbeam.collator_timings.can_bond_less.rounds }} rounds ({{ networks.moonbeam.collator_timings.can_bond_less.hours }} hours)       |
+    | Decrease delegator bond |      {{ networks.moonbeam.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbeam.delegator_timings.del_bond_less.hours }} hours)      |
+    |    Revoke delegation    | {{ networks.moonbeam.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbeam.delegator_timings.revoke_delegations.hours }} hours) |
+    |    Leave candidates     |    {{ networks.moonbeam.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonbeam.collator_timings.leave_candidates.hours }} hours)    |
+    |    Leave delegators     |   {{ networks.moonbeam.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonbeam.delegator_timings.leave_delegators.hours }} hours)   |
+
+=== "Moonriver"
+    |        Variable         |                                                                          Value                                                                          |
+    |:-----------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    | Decrease candidate bond |       {{ networks.moonriver.collator_timings.can_bond_less.rounds }} rounds ({{ networks.moonriver.collator_timings.can_bond_less.hours }} hours)       |
+    | Decrease delegator bond |      {{ networks.moonriver.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonriver.delegator_timings.del_bond_less.hours }} hours)      |
+    |    Revoke delegation    | {{ networks.moonriver.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonriver.delegator_timings.revoke_delegations.hours }} hours) |
+    |    Leave candidates     |    {{ networks.moonriver.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonriver.collator_timings.leave_candidates.hours }} hours)    |
+    |    Leave delegators     |   {{ networks.moonriver.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonriver.delegator_timings.leave_delegators.hours }} hours)   |
+
+=== "Moonbase Alpha"
+    |        Variable         |                                                                         Value                                                                         |
+    |:-----------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
+    | Decrease candidate bond |       {{ networks.moonbase.collator_timings.can_bond_less.rounds }} rounds ({{ networks.moonbase.collator_timings.can_bond_less.hours }} hours)       |
+    | Decrease delegator bond |      {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours)      |
+    |    Revoke delegation    | {{ networks.moonbase.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbase.delegator_timings.revoke_delegations.hours }} hours) |
+    |    Leave candidates     |    {{ networks.moonbase.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonbase.collator_timings.leave_candidates.hours }} hours)    |
+    |    Leave delegators     |   {{ networks.moonbase.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonbase.delegator_timings.leave_delegators.hours }} hours)   |
+
 ## Checking Prerequisites {: #checking-prerequisites } 
 
-The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonriver.
+The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonbeam and Moonriver.
 
  - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/)
  - Have an account with over `{{networks.moonbase.staking.min_del_stake}}` tokens. You can get this from [Mission Control](/builders/get-started/moonbase/#get-tokens/)
@@ -182,11 +218,11 @@ To verify your delegation was successful, head to [Polkadot.js Apps](https://pol
 
 ## Revoking a Delegation {: #revoking-a-delegation } 
 
-As of the latest runtime upgrade, [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/), there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled. 
+As of [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/), there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled. 
 
 Exits now require you to schedule a request to exit or revoke a delegation, wait a delay period, and then execute the request.
 
-To revoke a delegation for a specific candidate and receive your tokens back, you can use the `scheduleRevokeDelegation` extrinsic. Scheduling a request does not automatically revoke your delegation, you must wait an exit delay, and then execute the request by using the `executeDelegationRequest` method. There is a delay of {{ networks.moonbase.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbase.delegator_timings.revoke_delegations.hours }} hours) for Moonbase Alpha and {{ networks.moonriver.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonriver.delegator_timings.revoke_delegations.hours }} hours) for Moonriver.
+To revoke a delegation for a specific candidate and receive your tokens back, you can use the `scheduleRevokeDelegation` extrinsic. Scheduling a request does not automatically revoke your delegation, you must wait an [exit delay](#exit-delays), and then execute the request by using the `executeDelegationRequest` method.
 
 ### Schedule Request to Revoke a Delegation
 

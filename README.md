@@ -2,7 +2,7 @@
 title: Home
 description: Welcome to the documentation website for the Moonbeam smart contract platform, a parachain on Polkadot that is fully Ethereum compatible.
 ---
-
+ 
 # Welcome to Moonbeam
 
 ![Main Page Banner](/images/learn/platform/main-banner.png)
@@ -28,8 +28,9 @@ Moonbeam will also be a parachain on the Polkadot network. That means it will ge
 Currently, there are a few ways you can start building on Moonbeam: 
 
  - Build your own Moonbeam instance as a [development node](/builders/get-started/moonbeam-dev/)
- - [Connect](/builders/get-started/moonbase/) to the [Moonbase Alpha TestNet](/learn/platform/networks/moonbase/)
+ - [Connect](/builders/get-started/moonbeam/) to [Moonbeam](/learn/platform/networks/moonbeam/)
  - [Connect](/builders/get-started/moonriver/) to [Moonriver](/learn/platform/networks/moonriver/)
+ - [Connect](/builders/get-started/moonbase/) to the [Moonbase Alpha TestNet](/learn/platform/networks/moonbase/)
 
 ### Wallets {: #wallets } 
 

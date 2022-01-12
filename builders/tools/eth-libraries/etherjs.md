@@ -36,26 +36,36 @@ const provider = new ethers.providers.StaticJsonRpcProvider('RPC_URL', {
 let wallet = new ethers.Wallet(privKey, provider);
 ```
 
-Different methods are available inside `provider` and `wallet`. Depending on which network you want to connect to, you can set the `RPC_URL` to the following values:
+Different methods are available inside `provider` and `wallet`. Depending on which network you want to connect to, you can set the network configurations to the following values:
 
-Moonbeam development node: 
+=== "Moonbeam"
+    |   Variable   |                                      Value                                       |
+    |:------------:|:--------------------------------------------------------------------------------:|
+    |   RPC_URL    |                        `{{ networks.moonbeam.rpc_url }}`                         |
+    |   ChainID    | `{{ networks.moonbeam.chain_id }}` (hex: `{{ networks.moonbeam.hex_chain_id }}`) |
+    | NETWORK_NAME |                       `{{ networks.moonbeam.chain_spec }}`                       |
 
-  - RPC_URL: `{{ networks.development.rpc_url }}`
-  - ChainId: `{{ networks.development.chain_id }}` (hex: `{{ networks.development.hex_chain_id }}`)
-  - NETWORK_NAME: `moonbeam-development`
+=== "Moonriver"
+    |   Variable   |                                       Value                                        |
+    |:------------:|:----------------------------------------------------------------------------------:|
+    |   RPC_URL    |                         `{{ networks.moonriver.rpc_url }}`                         |
+    |   ChainID    | `{{ networks.moonriver.chain_id }}` (hex: `{{ networks.moonriver.hex_chain_id }}`) |
+    | NETWORK_NAME |                       `{{ networks.moonriver.chain_spec }}`                        |
+
+=== "Moonbase Alpha"
+    |   Variable   |                                      Value                                       |
+    |:------------:|:--------------------------------------------------------------------------------:|
+    |   RPC_URL    |                        `{{ networks.moonbase.rpc_url }}`                         |
+    |   ChainID    | `{{ networks.moonbase.chain_id }}` (hex: `{{ networks.moonbase.hex_chain_id }}`) |
+    | NETWORK_NAME |                                 `moonbase-alpha`                                 |
+
+=== "Moonbeam Dev Node" 
+    |   Variable   |                                         Value                                          |
+    |:------------:|:--------------------------------------------------------------------------------------:|
+    |   RPC_URL    |                          `{{ networks.development.rpc_url }}`                          |
+    |   ChainID    | `{{ networks.development.chain_id }}` (hex: `{{ networks.development.hex_chain_id }}`) |
+    | NETWORK_NAME |                                 `moonbeam-development`                                 |
  
-Moonbase Alpha TestNet: 
-
-  - RPC_URL: `{{ networks.moonbase.rpc_url }}`
-  - ChainId: `{{ networks.moonbase.chain_id }}` (hex: `{{ networks.moonbase.hex_chain_id }}`)
-  - NETWORK_NAME: `moonbase-alpha`
-
-Moonriver:
-
-  - RPC_URL: `{{ networks.moonriver.rpc_url }}`
-  - ChainID: `{{ networks.moonriver.chain_id }}` (hex: `{{ networks.moonriver.hex_chain_id }}`)
-  - NETWORK_NAME: `{{ networks.moonriver.chain_spec }}`
-
 ## Tutorials {: #tutorials } 
 
 If you are interested in a more detailed step-by-step guide, you can go to our specific tutorials on using ethers.js on Moonbeam to [send a transaction](/builders/interact/eth-libraries/send-transaction/) or [deploy a contract](/builders/interact/eth-libraries/deploy-contract/).

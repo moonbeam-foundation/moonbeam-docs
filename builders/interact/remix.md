@@ -83,7 +83,7 @@ You will be prompted in MetaMask to confirm the contract deployment transaction.
 ![Confirm the transaction message](/images/builders/interact/remix/using-remix-9.png)
 
 !!! note
-    If you have problems deploying any specific contract, you can try manually increasing the gas limit. You can do this under Settings -> Advanced -> Advanced Gas Controls = ON.
+    If you have problems deploying any specific contract, you can try manually increasing the gas limit in MetaMask. Select the colored circle in the top right corner and select **Settings** from the menu. Then click on **Advanced** and toggle the **Advanced Gas Controls** setting to **ON**.
 
 After you press confirm and the deployment is complete, you will see the transaction listed in MetaMask. The contract will appear under Deployed Contracts in Remix.
 

@@ -28,16 +28,16 @@ The core Moonbeam runtime specifies the state transition function and behavior o
 
 Some of the key Substrate Frame Pallets used in the Moonbeam runtime include:
 
- - **Balances** — Support for accounts, balances, and transfers.
- - **EVM** — Full Rust-based EVM implementation based on SputnikVM.  Provides the state transition logic for Moonbeam-based smart contracts.
- - **Ethereum** — Provides emulation of Ethereum block processing for the EVM.
- - **RPC-Ethereum** — Web3 RPC implementation in Substrate.
- - **Council** — Includes governance mechanics around the council and proposals.
- - **Democracy** — Functionality for public stake-weighted token holder voting.
- - **Executive** — Orchestration layer that dispatches calls to other runtime modules.
- - **Indices** — Support for user-friendly shortnames for account addresses.
- - **System** — Provides low-level types, storage, and blockchain functions.
- - **Treasury** — On-chain treasury that can be used to fund public goods such as a parachain slot.
+ - **Balances** — Support for accounts, balances, and transfers
+ - **EVM** — Full Rust-based EVM implementation based on SputnikVM.  Provides the state transition logic for Moonbeam-based smart contracts
+ - **Ethereum** — Provides emulation of Ethereum block processing for the EVM
+ - **RPC-Ethereum** — Web3 RPC implementation in Substrate
+ - **Council** — Includes governance mechanics around the council and proposals
+ - **Democracy** — Functionality for public stake-weighted token holder voting
+ - **Executive** — Orchestration layer that dispatches calls to other runtime modules
+ - **Indices** — Support for user-friendly shortnames for account addresses
+ - **System** — Provides low-level types, storage, and blockchain functions
+ - **Treasury** — On-chain treasury that can be used to fund public goods such as a parachain slot
 
 Moonbeam also uses the Cumulus library to provide integration to the Polkadot relay chain.
 

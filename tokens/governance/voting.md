@@ -35,6 +35,13 @@ Some of the key parameters for this guide are the following:
  - **Lock period** — the time (after the proposal's enactment) that tokens of the winning voters are locked. Users can still use these tokens for staking or voting
  - **Delegation** — the act of transferring your voting power to another account for up to a certain conviction
 
+=== "Moonbeam"
+    |        Variable         |  |                                                         Value                                                         |
+    |:-----------------------:|::|:---------------------------------------------------------------------------------------------------------------------:|
+    |      Enact Period       |  | {{ networks.moonbeam.democracy.enact_period.blocks}} blocks ({{ networks.moonbeam.democracy.enact_period.days}} days) |
+    | Maximum Number of Votes |  |                                      {{ networks.moonbeam.democracy.max_votes}}                                       |
+    |       Vote Period       |  |  {{ networks.moonbeam.democracy.vote_period.blocks}} blocks ({{ networks.moonbeam.democracy.vote_period.days}} days)  |
+
 === "Moonriver"
     |        Variable         |  |                                                          Value                                                          |
     |:-----------------------:|::|:-----------------------------------------------------------------------------------------------------------------------:|

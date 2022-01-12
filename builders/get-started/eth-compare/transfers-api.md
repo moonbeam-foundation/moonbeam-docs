@@ -7,11 +7,11 @@ description: A description of the main differences that developers need to under
 
 ## Introduction
 
-While Moonbeam strives to be compatible with Ethereum's Web3 API and EVM, there are some important Moonbeam differences that developers should know and understand in terms of balance transfers of the base network token (for example, MOVR and GLMR).
+While Moonbeam strives to be compatible with Ethereum's Web3 API and EVM, there are some important Moonbeam differences that developers should know and understand in terms of balance transfers of the base network token (for example, GLMR and MOVR).
 
 Token holders have two ways of initiating a balance transfer on Moonbeam. On one hand, users can use the Ethereum API via apps like MetaMask, MathWallet, or any other tools that use the Ethereum JSON-RPC. On the other hand, users can use the Substrate API, via the Polkadot.js Apps website, or directly using the Substrate RPC.
 
-Developers need to be aware that token holders can leverage both APIs to transfer the base layer network token. Note that these comments do not apply to transfers of other assets like ERC20 based assets in the Moonriver or Moonbeam EVMs. Transfers of these assets are only done via the Ethereum APIs since these are smart contract interactions.
+Developers need to be aware that token holders can leverage both APIs to transfer the base layer network token. Note that these comments do not apply to transfers of other assets like ERC-20 based assets in the Moonriver or Moonbeam EVMs. Transfers of these assets are only done via the Ethereum APIs since these are smart contract interactions.
 
 This guide will outline some of these main differences around both APIs for base layer network token balance transfers and what to expect when using Moonbeam for the first time.
 

@@ -23,6 +23,11 @@ The [ERC20.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/ba
 
 The precompile is located at the following address:
 
+<!-- === "Moonbeam"
+     ```
+     {{networks.moonbeam.precompiles.erc20 }}
+     ``` -->
+
 === "Moonriver"
      ```
      {{networks.moonriver.precompiles.erc20 }}

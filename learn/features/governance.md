@@ -28,6 +28,16 @@ With great power comes great responsibility. Some important parameters to unders
  - **Cool-off period** - The duration a veto from the technical committee lasts before the proposal may be submitted again 
  - **Delegation** — act of transferring your voting power to another account for up to a certain conviction
 
+=== "Moonbeam"
+    |         Variable         |  |                                                            Value                                                             |
+    |:------------------------:|::|:----------------------------------------------------------------------------------------------------------------------------:|
+    |      Voting Period       |  |     {{ networks.moonbeam.democracy.vote_period.blocks}} blocks ({{ networks.moonbeam.democracy.vote_period.days}} days)      |
+    | Fast-Track Voting Period |  | {{ networks.moonbeam.democracy.fast_vote_period.blocks}} blocks ({{ networks.moonbeam.democracy.fast_vote_period.days}} day) |
+    |     Enactment Period     |  |     {{ networks.moonbeam.democracy.enact_period.blocks}} blocks ({{ networks.moonbeam.democracy.enact_period.days}} day)     |
+    |     Cool-off Period      |  |     {{ networks.moonbeam.democracy.cool_period.blocks}} blocks ({{ networks.moonbeam.democracy.cool_period.days}} days)      |
+    |     Minimum Deposit      |  |                                      {{ networks.moonbeam.democracy.min_deposit }} GLMR                                      |
+
+
 === "Moonriver"
     |         Variable         |  |                                                             Value                                                              |
     |:------------------------:|::|:------------------------------------------------------------------------------------------------------------------------------:|

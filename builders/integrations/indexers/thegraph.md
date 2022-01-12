@@ -15,11 +15,17 @@ The Graph is a decentralized and open-source indexing protocol for querying netw
 
 Furthermore, developers can build APIs, called Subgraphs. Users or other developers can use Subgraphs to query data specific to a set of smart contracts. Data is fetched with a standard GraphQL API. You can visit [their documentation](https://thegraph.com/docs/about/introduction#what-the-graph-is) to read more about The Graph protocol.
 
-Due to the support of Ethereum tracing modules in Moonbeam, The Graph is capable of indexing blockchain data in Moonbeam. This guide takes you through the creation of a simple subgraph for a Lottery contract on Moonbase Alpha. This guide can be adapted for Moonriver.
+Due to the support of Ethereum tracing modules in Moonbeam, The Graph is capable of indexing blockchain data in Moonbeam. This guide takes you through the creation of a simple subgraph for a Lottery contract on Moonbase Alpha. This guide can be adapted for Moonbeam and Moonriver.
 
 ## Quick Start
 
-If you're familiar with The Graph and looking to learn how to dive right in on Moonbeam-based networks, you can use the following `network` configurations for your Subgraph manifest (`subgraph.yaml`):
+If you're familiar with The Graph and looking to learn how to dive right in on any of the Moonbeam-based networks, you can use the following `network` configurations for your Subgraph manifest (`subgraph.yaml`):
+
+=== "Moonbeam"
+    ```
+    dataSources:
+      network: moonbeam
+    ```
 
 === "Moonriver"
     ```
@@ -43,7 +49,7 @@ If you're familiar with The Graph and looking to learn how to dive right in on M
 
 To use The Graph on Moonbase Alpha you have two options:
 
- - Run a Graph Node against Moonbase Alpha and point your Subgraph to it. To do so, you can follow [this tutorial](/node-operators/indexer-nodes/thegraph-node/) (you can also adapt the instructions for Moonriver)
+ - Run a Graph Node against Moonbase Alpha and point your Subgraph to it. To do so, you can follow [this tutorial](/node-operators/indexer-nodes/thegraph-node/) (you can also adapt the instructions for Moonbeam and Moonriver)
  - Point your Subgraph to The Graph API via the [Graph Explorer website](https://thegraph.com/explorer/). To do so you need to create an account and have an access token
 
 ## The Lottery Contract {: #the-lottery-contract } 
@@ -94,8 +100,8 @@ For this example, the contract was deployed to `{{ networks.moonbase.thegraph.lo
 
 In general terms, Subgraphs define the data that The Graph will index from the blockchain and the way it is stored. Subgraphs tend to have some of the following files:
 
- - **subgraph.yaml** — is a YAML file that contains the [Subgraph's manifest](https://thegraph.com/docs/define-a-subgraph#the-subgraph-manifest), that is, information related to the smart contracts being indexed by the Subgraph
- - **schema.graphql** — is a [GraphQL schema](https://thegraph.com/docs/define-a-subgraph#the-graphql-schema) file that defines the data store for the Subgraph being created and its structure. It is written using [GraphQL interface definition schema](https://graphql.org/learn/schema/#type-language)
+ - **subgraph.yaml** — is a YAML file that contains the [Subgraph's manifest](https://thegraph.com/docs/en/developer/create-subgraph-hosted/#the-subgraph-manifest), that is, information related to the smart contracts being indexed by the Subgraph
+ - **schema.graphql** — is a [GraphQL schema](https://thegraph.com/docs/en/developer/create-subgraph-hosted/#the-graph-ql-schema) file that defines the data store for the Subgraph being created and its structure. It is written using [GraphQL interface definition schema](https://graphql.org/learn/schema/#type-language)
  - **AssemblyScript mappings** — code in TypeScript (then compiled to [AssemblyScript](https://github.com/AssemblyScript/assemblyscript)) that is used to translate event data from the contract to the entities defined in the schema
 
 There is no particular order to follow when modifying the files to create a Subgraph.
@@ -144,7 +150,7 @@ Some of the most important parameters in the `subgraph.yaml` file are:
  - **repository** — refers to the Github repository of the subgraph
  - **schema/file** — refers to the location of the `schema.graphql` file
  - **dataSources/name** — refers to the name of the Subgraph
- - **network** — refers to the network name. This value **must** be set to `mbase` for any Subgraph being deployed to Moonbase Alpha. For Moonriver, you must set it to `moonriver`
+ - **network** — refers to the network name. This value **must** be set to `mbase` for any Subgraph being deployed to Moonbase Alpha. For Moonbeam and Moonriver, you can use `moonbeam` and `moonriver`, respectively
  - **dataSources/source/address** — refers to the address of the contract of interest
  - **dataSources/source/abi** — refers to where the interface of the contract is stored inside the `types` folder created with the `codegen` command
  - **dataSources/source/startBlock** — refers to the start block from which the indexing will start. Ideally, this value should be close to the block the contract was created in. You can use [Blockscout](https://moonbase-blockscout.testnet.moonbeam.network/) to get this information by providing the contract address. For this example, the contract was created at block `{{ networks.moonbase.thegraph.block_number }}`

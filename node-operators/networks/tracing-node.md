@@ -21,6 +21,11 @@ Running a tracing node requires you to have Docker installed. For more informati
 
 If you haven't previously run a standard full Moonbeam node, you will need to setup a directory to store chain data:
 
+=== "Moonbeam"
+    ```
+    mkdir {{ networks.moonbeam.node_directory }}
+    ```
+
 === "Moonriver"
     ```
     mkdir {{ networks.moonriver.node_directory }}
@@ -33,6 +38,15 @@ If you haven't previously run a standard full Moonbeam node, you will need to se
 
 Next, make sure you set the ownership and permissions accordingly for the local directory that stores the chain data. In this case, set the necessary permissions either for a specific or current user (replace `DOCKER_USER` for the actual user that will run the `docker` command):
 
+=== "Moonbeam"
+    ```
+    # chown to a specific user
+    chown DOCKER_USER {{ networks.moonbeam.node_directory }}
+
+    # chown to current user
+    sudo chown -R $(id -u):$(id -g) {{ networks.moonbeam.node_directory }}
+    ```
+
 === "Moonriver"
     ```
     # chown to a specific user
@@ -41,7 +55,6 @@ Next, make sure you set the ownership and permissions accordingly for the local 
     # chown to current user
     sudo chown -R $(id -u):$(id -g) {{ networks.moonriver.node_directory }}
     ```
-
 
 === "Moonbase Alpha"
     ```
@@ -61,23 +74,42 @@ You will also need to start your node with the following flag(s) depending on th
   - **`--ethapi=debug`** - optional flag that enables `debug_traceTransaction`, `debug_traceBlockByNumber`, and `debug_traceBlockByHash`
   - **`--ethapi=trace`** - optional flag that enables `trace_filter` 
   - **`--ethapi=txpool`** - optional flag that enables `txpool_content`, `txpool_inspect`, and `txpool_status`
-  - **`--wasm-runtime-overrides=/moonbeam/<network>-substitutes-tracing`** - **required** flag for tracing that specifies the path where the local WASM runtimes are stored. Accepts the network as a parameter: `moonbase` (for development nodes and Moonbase Alpha) or `moonriver` 
-
+  - **`--wasm-runtime-overrides=/moonbeam/<network>-substitutes-tracing`** - **required** flag for tracing that specifies the path where the local WASM runtimes are stored. Accepts the network as a parameter: `moonbeam`, `moonriver`, or `moonbase` (for development nodes and Moonbase Alpha)
 The complete command for running a tracing node is as follows:
 
 !!! note
     Make sure you replace `<50% RAM in MB>` for 50% of the actual RAM your server has. For example, for 32 GB RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
 
-=== "Moonriver"
+=== "Moonbeam"
     ```
-    docker run --network="host" -v "/var/lib/alphanet-data:/data" \
+    docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
-    {{ networks.development.tracing_tag }} \
+    {{ networks.moonbeam.tracing_tag }} \
     --base-path=/data \
-    --chain moonriver \
+    --chain {{ networks.moonbeam.chain_spec }} \
     --name="Moonbeam-Tutorial" \
     --pruning archive \
     --state-cache-size 1 \
+    --db-cache <50% RAM in MB> \
+    --ethapi=debug,trace,txpool \
+    --wasm-runtime-overrides=/moonbeam/moonbeam-substitutes-tracing \
+    -- \
+    --execution wasm \
+    --pruning archive \
+    --name="Moonbeam-Tutorial (Embedded Relay)"
+    ```
+
+=== "Moonriver"
+    ```
+    docker run --network="host" -v "{{ networks.moonriver.node_directory }}:/data" \
+    -u $(id -u ${USER}):$(id -g ${USER}) \
+    {{ networks.moonriver.tracing_tag }} \
+    --base-path=/data \
+    --chain {{ networks.moonriver.chain_spec }} \
+    --name="Moonbeam-Tutorial" \
+    --pruning archive \
+    --state-cache-size 1 \
+    --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonriver-substitutes-tracing \
     -- \
@@ -88,11 +120,11 @@ The complete command for running a tracing node is as follows:
 
 === "Moonbase Alpha"
     ```
-    docker run --network="host" -v "/var/lib/alphanet-data:/data" \
+    docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     {{ networks.moonbase.tracing_tag }} \
     --base-path=/data \
-    --chain alphanet \
+    --chain {{ networks.moonbase.chain_spec }} \
     --name="Moonbeam-Tutorial" \
     --pruning archive \
     --state-cache-size 1 \
@@ -107,14 +139,10 @@ The complete command for running a tracing node is as follows:
 
 === "Moonbeam Dev Node"
     ```
-    docker run --network="host" -v "/var/lib/alphanet-data:/data" \
+    docker run --network="host" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
-    {{ networks.moonriver.tracing_tag }} \
-    --base-path=/data \
+    {{ networks.development.tracing_tag }} \
     --name="Moonbeam-Tutorial" \
-    --pruning archive \
-    --state-cache-size 1 \
-    --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
     --dev
