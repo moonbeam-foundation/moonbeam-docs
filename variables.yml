@@ -1,362 +1,376 @@
 networks:
-  development:
-    build_tag: v0.18.0
-    tracing_tag: purestake/moonbeam-tracing:v0.16.0-1001-9ddc
-    rpc_url: http://127.0.0.1:9933
-    chain_id: 1281
-    hex_chain_id: '0x501'
-    container_name: moonbeam_development
-    block_explorer: https://moonbeam-explorer.netlify.app/
-  moonbase:
-    rpc_url: https://rpc.api.moonbase.moonbeam.network
-    chain_id: 1287
-    hex_chain_id: '0x507'
-    chain_spec: alphanet
-    block_explorer: https://moonbase.moonscan.io/
-    parachain_release_tag: v0.18.0 # must be in this exact format for links to work
-    parachain_sha256sum: 4e4ddb0c4c441b01bd3fab4f7951e1033f12c40d8d9d3d2fd9bc1883853f1ef1
-    tracing_tag: purestake/moonbeam-tracing:v0.16.0-1001-9ddc
-    gas_block: 15M
-    gas_tx: 12.995M
-    node_directory: /var/lib/alphanet-data
-    node_db_loc: /chains/moonbase_alpha/db
-    binary_name: moonbeam
-    node:
-      cores: 8
-      ram: 16
-      hd: 250
-    thegraph:
-      lotto_contract: '0x44ddD2EC5BE2A7f3e4A465C21600bE8df644093f'
-      block_number: 132605
-    chainbridge:
-      bridge_address: '0x638285E837Db7124FF0947251c6f20ceEb2645DF'
-      ERC20_handler: '0x623b114e13bdef428f34fa3a76E3BbA580Fd5bb3'
-      ERC721_handler: '0xa60e3a1ef9EbD7b607cbE0cAcC1E3A9B5a6f10c4'
-      generic_handler: '0xaD8E9976Dfa86B33A7A4330bdc3Bb28c3A5f854D'
-      ERC20S: '0xFCefBC458DA5b11a10422C0703bea1D154887D76'
-      ERC721M: '0x13a4DFdA8B3f0509D340f6034Cd9106cf2DB6BAa'
-    razor:
-      bridge_address: '0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB'
-    chainlink:
-      oracle_contract: '0x1d693d883BeAeE16edD0D7588D6a9f7E1967E798'
-      link_contract: '0xa36085F69e2889c224210F603D836748e7dC0088'
-      client_contract: '0xe88ec866D05e637074B5a0D0d931f292d7871613'
-      basic:
-        aave_usd: '541b8f7db7374d78b38285ef1b8bfacc'
-        algo_usd: 'cdb48696e2314133a1dc8ea27922dd24'
-        band_usd: '6b0983e0cb6d4aca908b615302a9d672'
-        btc_usd: '82ceee2897824a0e8b014ed4ed2ab31e'
-        dot_usd: '6f6371a780324b90aaf195a0d39c723c'
-        eth_usd: '60160cdd0e10489681967e9d7ef4c927'
-        ksm_usd: '30a1686f657249f4b6ab01e384b2beaa'
-        link_usd: 'aad8dbdb0c1840ab905728d85117b681'
-        sushi_usd: 'b4b07d0fc218455caaff2223a05ec208'
-        uni_usd: '22b567acabdb419abe8136a2bab6ade8'
-      feed:
-        consumer:
-          aave_usd: '0xD1e52C81FD72fFc6dA3bF083297E6C37852E93DA'
-          algo_usd: '0x0183d1C98442510DD7aaB0E2d09863c47FFF4dF1'
-          band_usd: '0x124A3EE742737BC30307d1F82c5406bf79aBa4d6'
-          btc_usd: '0x86f11CffCB1A86Ecb79643FCa1a3C666a61F84Fd'
-          dot_usd: '0x235A40b872e543b6238df7Ff55E2D8eCAE80a6bd'
-          eth_usd: '0xE33691Ba3cF532D4025cF0f47679eFe430d4A618'
-          ksm_usd: '0x9Df2E2179ddb4D9197451946104068e08eD3E49F'
-          link_usd: '0xC58B34ea686Db2d567835de7AB58fC678b6f186A'
-          sushi_usd: '0x21B52fFF227cD9F425E817f9E1eaA0eB8cd647e1'
-          uni_usd: '0x5Cd72748F94a8597f563D92687A8D2A5074b10E5'
-        aggregator:
-          aave_usd: '0x64B22D2B8c3CA311a0C2de34bf799f8101c89362'
-          algo_usd: '0x9fc3b0BF1156868085AFC1cFf4Bf6D85ea301371'
-          band_usd: '0xC5aeD933FEb49794A8Bf2FB0e73D9c958c8a07ba'
-          btc_usd: '0xCf88A8d7fc1A687895fC8ffAad567f303926B094'
-          dot_usd: '0xA873F6b30aD79fCAF9b03A0A883d6D1f18D661d7'
-          eth_usd: '0x3669da30c33D27A6A579548fCfc345fE5dEdda6e'
-          ksm_usd: '0x0C515E77897b2A7181C875c88FaF9BC8E5661E3b'
-          link_usd: '0x446b93236B4d34642732B8dcbeB3cb4f4FA03C70'
-          sushi_usd: '0x4a6Cf10C0f5c4D4e7cf7385bFfecDAec0778357C'
-          uni_usd: '0x326997c21451DaB916F9f01684991B6169dAf3E5'
-    democracy:
-      launch_period:
-        days: 1
-        blocks: 7200
-      vote_period:
-        days: 5
-        blocks: 36000
-      fast_vote_period:
-        hours: 4
-        blocks: 1200
-      enact_period:
-        days: 1
-        blocks: 7200
-      cool_period:
-        days: 7
-        blocks: 50400
-      min_deposit: 4
-      min_preim_deposit: 0.004
-      max_votes: 100
-      max_proposals: 100
-    total_annual_inflation: 5
-    staking:
-      min_col_stk: 1000
-      min_can_stk: 500
-      min_can_stk_wei: 500000000000000000000
-      collator_map_bond: 100
-      max_candidates: 60
-      round_blocks: 600
-      round_hours: 2
-      min_del_stake: 5
-      max_del_per_can: 300
-      max_del_per_del: 100
-      delegator_reward_inflation: 50
-      collator_reward_inflation: 20
-      candidates:
-        address1: '0x4c5A56ed5A4FF7B09aA86560AfD7d383F4831Cce'
-        address2: '0x623c9E50647a049F92090fe55e22cC0509872FB6'
-    treasury:
-      proposal_bond: 5
-      proposal_bond_min: 1
-      spend_period_blocks: 43200
-      spend_period_days: 6
-      max_approved_proposals: 100
-      tx_fees_allocated: 20
-      tx_fees_burned: 80
-    proxy:
-      deposit_base: 1.0008
-      deposit_factor: 0.0021
-      max_proxies: 32
-    identity:
-      basic_dep: 1.0258
-      field_dep: .0066
-      max_fields: 100
-    delegator_timings:
-      leave_delegators:
-        rounds: 2
-        hours: 4
-      revoke_delegations:
-        rounds: 2
-        hours: 4
-      del_bond_less:
-        rounds: 2
-        hours: 4
-      rewards_payouts:
-        rounds: 2
-        hours: 4
-    collator_timings:
-      leave_candidates:
-        rounds: 2
-        hours: 4
-      can_bond_less:
-        rounds: 2
-        hours: 4
-    precompiles:
-      staking: '0x0000000000000000000000000000000000000800'
-      crowdloan: '0x0000000000000000000000000000000000000801'
-      erc20: '0x0000000000000000000000000000000000000802'
-    substrate_api_sidecar:
-      stable_version: 9.2.0
-    tx_weight_to_gas_ratio: 25000
-  moonriver:
-    rpc_url: https://rpc.moonriver.moonbeam.network
-    wss_url: wss://wss.moonriver.moonbeam.network
-    chain_id: 1285
-    hex_chain_id: '0x505'
-    node_directory: /var/lib/moonriver-data
-    parachain_release_tag: v0.18.0
-    parachain_sha256sum: 4d29a31aa33ad97702571c02053684bfe441700cd66836eb356b9479380dd483
-    tracing_tag: purestake/moonbeam-tracing:v0.16.0-1001-9ddc
-    chain_spec: moonriver
-    block_explorer: https://moonriver.moonscan.io/
-    binary_name: moonbeam
-    min_gas_price: 1
-    block_time: 12
-    gas_block: 15M
-    gas_tx: 12.995M
-    node:
-      cores: 8
-      ram: 16
-      hd: 500
-    democracy:
-      launch_period:
-        days: 1
-        blocks: 7200
-      vote_period:
-        days: 5
-        blocks: 36000
-      fast_vote_period:
-        days: 1
-        blocks: 7200
-      enact_period:
-        days: 1
-        blocks: 7200
-      cool_period:
-        days: 7
-        blocks: 50400
-      min_deposit: 4
-      max_votes: 100
-      min_preim_deposit: 0.004
-      max_proposals: 100
-    total_annual_inflation: 5
-    staking:
-      min_col_stk: 1000
-      min_can_stk: 500
-      min_can_stk_wei: 500000000000000000000
-      collator_map_bond: 100
-      max_candidates: 64
-      round_blocks: 600
-      round_hours: 2
-      min_del_stake: 5
-      max_del_per_can: 300
-      max_del_per_del: 100
-      delegator_reward_inflation: 50
-      collator_reward_inflation: 20
-    treasury:
-      proposal_bond: 5
-      proposal_bond_min: 1
-      spend_period_blocks: 43200
-      spend_period_days: 6
-      max_approved_proposals: 100
-      tx_fees_allocated: 20
-      tx_fees_burned: 80
-    proxy:
-      deposit_base: 1.0008
-      deposit_factor: 0.0021
-      max_proxies: 32
-    identity:
-      basic_dep: 1.0258
-      field_dep: .0066
-      max_fields: 100
-    delegator_timings:
-      leave_delegators:
-        rounds: 24
-        hours: 48
-      revoke_delegations:
-        rounds: 24
-        hours: 48
-      del_bond_less:
-        rounds: 24
-        hours: 48
-      rewards_payouts:
-        rounds: 2
-        hours: 4
-    collator_timings:
-      leave_candidates:
-        rounds: 24
-        hours: 48
-      can_bond_less:
-        rounds: 24
-        hours: 48
-    precompiles:
-      staking: '0x0000000000000000000000000000000000000800'
-      crowdloan: '0x0000000000000000000000000000000000000801'
-      erc20: '0x0000000000000000000000000000000000000802'
-    chainlink:
-      feed:
-        aggregator:
-          bnb_usd: '0xD6B013A65C22C372F995864CcdAE202D0194f9bf'
-          btc_usd: '0x1B5C6cF9Df1CBF30387C24CC7DB1787CCf65C797'
-          eth_usd: '0xc3cF399566220dc5Ed6C8CFbf8247214Af103C72'
-          frax_usd: '0xD080d4760318710e795B0a59f181f6C1512ffB15'
-          ksm_usd: '0x6e0513145FCE707Cd743528DB7C1cAB537DE9d1B'
-          link_usd: '0xdD27789b504fEd690F406A82F16B45a0901172C0'
-          mim_usd: '0xdD6296BD7515271F7E4b10C3A87A2f9863fECa97'
-          movr_usd: '0x3f8BFbDc1e79777511c00Ad8591cef888C2113C1'
-          usdt_usd: '0xF80DAd54AF79257D41c30014160349896ca5370a'
-    substrate_api_sidecar:
-      stable_version: 11.3.3
-    tx_weight_to_gas_ratio: 25000
-  moonbeam:
-    rpc_url: https://rpc.api.moonbeam.network
-    wss_url: wss://wss.api.moonbeam.network
-    chain_id: 1284
-    hex_chain_id: '0x504'
-    node_directory: /var/lib/moonbeam-data
-    parachain_release_tag: v0.18.0
-    parachain_sha256sum: 4d29a31aa33ad97702571c02053684bfe441700cd66836eb356b9479380dd483
-    tracing_tag: purestake/moonbeam-tracing:v0.16.0-1001-9ddc
-    chain_spec: moonbeam
-    block_explorer: https://moonscan.io
-    binary_name: moonbeam
-    min_gas_price: 100
-    block_time: 12
-    gas_block: 15M
-    gas_tx: 12.995M
-    node:
-      cores: 8
-      ram: 16
-      hd: 500
-    democracy:
-      launch_period:
-        days: 7
-        blocks: 50400
-      vote_period:
-        days: 14
-        blocks: 100800
-      fast_vote_period:
-        days: 1
-        blocks: 7200
-      enact_period:
-        days: 2
-        blocks: 14400
-      cool_period:
-        days: 7
-        blocks: 50400
-      min_deposit: 400
-      max_votes: 100
-      min_preim_deposit: 0.04
-      max_proposals: 100
-    total_annual_inflation: 5
-    staking:
-      min_col_stk: 100000
-      min_can_stk: 100000
-      min_can_stk_wei: 100000000000000000000000
-      collator_map_bond: 10000
-      max_candidates: 48
-      round_blocks: 1800
-      round_hours: 6
-      min_del_stake: 500
-      max_del_per_can: 300
-      max_del_per_del: 100
-      delegator_reward_inflation: 50
-      collator_reward_inflation: 20
-    treasury:
-      proposal_bond: 5
-      proposal_bond_min: 100
-      spend_period_blocks: 43200
-      spend_period_days: 6
-      max_approved_proposals: 100
-      tx_fees_allocated: 20
-      tx_fees_burned: 80
-    identity:
-      basic_dep: 1.0258
-      field_dep: .0066
-      max_fields: 100
-    delegator_timings:
-      leave_delegators:
-        rounds: 28
-        hours: 168
-      revoke_delegations:
-        rounds: 28
-        hours: 168
-      del_bond_less:
-        rounds: 28
-        hours: 168
-      rewards_payouts:
-        rounds: 2
-        hours: 12
-    collator_timings:
-      leave_candidates:
-        rounds: 28
-        hours: 168
-      can_bond_less:
-        rounds: 28
-        hours: 168
-  relay_chain:
-    p2p: 30334
-    rpc: 9934
-    ws: 9945
-    prometheus: 9616
-  parachain:
-    p2p: 30333
-    rpc: 9933
-    ws: 9944
-    prometheus: 9615
+    development:
+        build_tag: v0.18.0
+        tracing_tag: purestake/moonbeam-tracing:v0.16.0-1001-9ddc
+        rpc_url: http://127.0.0.1:9933
+        chain_id: 1281
+        hex_chain_id: '0x501'
+        container_name: moonbeam_development
+        block_explorer: https://moonbeam-explorer.netlify.app/
+    moonbase:
+        rpc_url: https://rpc.api.moonbase.moonbeam.network
+        chain_id: 1287
+        hex_chain_id: '0x507'
+        chain_spec: alphanet
+        block_explorer: https://moonbase.moonscan.io/
+        parachain_release_tag: v0.18.0 # must be in this exact format for links to work
+        parachain_sha256sum: 4e4ddb0c4c441b01bd3fab4f7951e1033f12c40d8d9d3d2fd9bc1883853f1ef1
+        tracing_tag: purestake/moonbeam-tracing:v0.16.0-1001-9ddc
+        gas_block: 15M
+        gas_tx: 12.995M
+        node_directory: /var/lib/alphanet-data
+        node_db_loc: /chains/moonbase_alpha/db
+        binary_name: moonbeam
+        node:
+            cores: 8
+            ram: 16
+            hd: 250
+        thegraph:
+            lotto_contract: '0x44ddD2EC5BE2A7f3e4A465C21600bE8df644093f'
+            block_number: 132605
+        chainbridge:
+            bridge_address: '0x638285E837Db7124FF0947251c6f20ceEb2645DF'
+            ERC20_handler: '0x623b114e13bdef428f34fa3a76E3BbA580Fd5bb3'
+            ERC721_handler: '0xa60e3a1ef9EbD7b607cbE0cAcC1E3A9B5a6f10c4'
+            generic_handler: '0xaD8E9976Dfa86B33A7A4330bdc3Bb28c3A5f854D'
+            ERC20S: '0xFCefBC458DA5b11a10422C0703bea1D154887D76'
+            ERC721M: '0x13a4DFdA8B3f0509D340f6034Cd9106cf2DB6BAa'
+        razor:
+            bridge_address: '0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB'
+        chainlink:
+            oracle_contract: '0x1d693d883BeAeE16edD0D7588D6a9f7E1967E798'
+            link_contract: '0xa36085F69e2889c224210F603D836748e7dC0088'
+            client_contract: '0xe88ec866D05e637074B5a0D0d931f292d7871613'
+            basic:
+                aave_usd: '541b8f7db7374d78b38285ef1b8bfacc'
+                algo_usd: 'cdb48696e2314133a1dc8ea27922dd24'
+                band_usd: '6b0983e0cb6d4aca908b615302a9d672'
+                btc_usd: '82ceee2897824a0e8b014ed4ed2ab31e'
+                dot_usd: '6f6371a780324b90aaf195a0d39c723c'
+                eth_usd: '60160cdd0e10489681967e9d7ef4c927'
+                ksm_usd: '30a1686f657249f4b6ab01e384b2beaa'
+                link_usd: 'aad8dbdb0c1840ab905728d85117b681'
+                sushi_usd: 'b4b07d0fc218455caaff2223a05ec208'
+                uni_usd: '22b567acabdb419abe8136a2bab6ade8'
+            feed:
+                consumer:
+                    aave_usd: '0xD1e52C81FD72fFc6dA3bF083297E6C37852E93DA'
+                    algo_usd: '0x0183d1C98442510DD7aaB0E2d09863c47FFF4dF1'
+                    band_usd: '0x124A3EE742737BC30307d1F82c5406bf79aBa4d6'
+                    btc_usd: '0x86f11CffCB1A86Ecb79643FCa1a3C666a61F84Fd'
+                    dot_usd: '0x235A40b872e543b6238df7Ff55E2D8eCAE80a6bd'
+                    eth_usd: '0xE33691Ba3cF532D4025cF0f47679eFe430d4A618'
+                    ksm_usd: '0x9Df2E2179ddb4D9197451946104068e08eD3E49F'
+                    link_usd: '0xC58B34ea686Db2d567835de7AB58fC678b6f186A'
+                    sushi_usd: '0x21B52fFF227cD9F425E817f9E1eaA0eB8cd647e1'
+                    uni_usd: '0x5Cd72748F94a8597f563D92687A8D2A5074b10E5'
+                aggregator:
+                    aave_usd: '0x64B22D2B8c3CA311a0C2de34bf799f8101c89362'
+                    algo_usd: '0x9fc3b0BF1156868085AFC1cFf4Bf6D85ea301371'
+                    band_usd: '0xC5aeD933FEb49794A8Bf2FB0e73D9c958c8a07ba'
+                    btc_usd: '0xCf88A8d7fc1A687895fC8ffAad567f303926B094'
+                    dot_usd: '0xA873F6b30aD79fCAF9b03A0A883d6D1f18D661d7'
+                    eth_usd: '0x3669da30c33D27A6A579548fCfc345fE5dEdda6e'
+                    ksm_usd: '0x0C515E77897b2A7181C875c88FaF9BC8E5661E3b'
+                    link_usd: '0x446b93236B4d34642732B8dcbeB3cb4f4FA03C70'
+                    sushi_usd: '0x4a6Cf10C0f5c4D4e7cf7385bFfecDAec0778357C'
+                    uni_usd: '0x326997c21451DaB916F9f01684991B6169dAf3E5'
+        democracy:
+            launch_period:
+                days: 1
+                blocks: 7200
+            vote_period:
+                days: 5
+                blocks: 36000
+            fast_vote_period:
+                hours: 4
+                blocks: 1200
+            enact_period:
+                days: 1
+                blocks: 7200
+            cool_period:
+                days: 7
+                blocks: 50400
+            min_deposit: 4
+            min_preim_deposit: 0.004
+            max_votes: 100
+            max_proposals: 100
+        inflation:
+            total_annual_inflation: 5
+            delegator_reward_inflation: 50
+            collator_reward_inflation: 20
+            parachain_bond_inflation: 30
+        staking:
+            min_col_stk: 1000
+            min_can_stk: 500
+            min_can_stk_wei: 500000000000000000000
+            collator_map_bond: 100
+            max_candidates: 60
+            round_blocks: 600
+            round_hours: 2
+            min_del_stake: 5
+            max_del_per_can: 300
+            max_del_per_del: 100
+            candidates:
+                address1: '0x4c5A56ed5A4FF7B09aA86560AfD7d383F4831Cce'
+                address2: '0x623c9E50647a049F92090fe55e22cC0509872FB6'
+        treasury:
+            proposal_bond: 5
+            proposal_bond_min: 1
+            spend_period_blocks: 43200
+            spend_period_days: 6
+            max_approved_proposals: 100
+            tx_fees_allocated: 20
+            tx_fees_burned: 80
+        proxy:
+            deposit_base: 1.0008
+            deposit_factor: 0.0021
+            max_proxies: 32
+        identity:
+            basic_dep: 1.0258
+            field_dep: .0066
+            max_fields: 100
+        delegator_timings:
+            leave_delegators:
+                rounds: 2
+                hours: 4
+            revoke_delegations:
+                rounds: 2
+                hours: 4
+            del_bond_less:
+                rounds: 2
+                hours: 4
+            rewards_payouts:
+                rounds: 2
+                hours: 4
+        collator_timings:
+            leave_candidates:
+                rounds: 2
+                hours: 4
+            can_bond_less:
+                rounds: 2
+                hours: 4
+        precompiles:
+            staking: '0x0000000000000000000000000000000000000800'
+            crowdloan: '0x0000000000000000000000000000000000000801'
+            erc20: '0x0000000000000000000000000000000000000802'
+        substrate_api_sidecar:
+            stable_version: 9.2.0
+        tx_weight_to_gas_ratio: 25000
+    moonriver:
+        rpc_url: https://rpc.moonriver.moonbeam.network
+        wss_url: wss://wss.moonriver.moonbeam.network
+        chain_id: 1285
+        hex_chain_id: '0x505'
+        node_directory: /var/lib/moonriver-data
+        parachain_release_tag: v0.18.0
+        parachain_sha256sum: 4d29a31aa33ad97702571c02053684bfe441700cd66836eb356b9479380dd483
+        tracing_tag: purestake/moonbeam-tracing:v0.16.0-1001-9ddc
+        chain_spec: moonriver
+        block_explorer: https://moonriver.moonscan.io/
+        binary_name: moonbeam
+        min_gas_price: 1
+        block_time: 12
+        gas_block: 15M
+        gas_tx: 12.995M
+        node:
+            cores: 8
+            ram: 16
+            hd: 500
+        democracy:
+            launch_period:
+                days: 1
+                blocks: 7200
+            vote_period:
+                days: 5
+                blocks: 36000
+            fast_vote_period:
+                days: 1
+                blocks: 7200
+            enact_period:
+                days: 1
+                blocks: 7200
+            cool_period:
+                days: 7
+                blocks: 50400
+            min_deposit: 4
+            max_votes: 100
+            min_preim_deposit: 0.004
+            max_proposals: 100
+        inflation:
+            total_annual_inflation: 5
+            delegator_reward_inflation: 50
+            collator_reward_inflation: 20
+            parachain_bond_inflation: 30
+        staking:
+            min_col_stk: 1000
+            min_can_stk: 500
+            min_can_stk_wei: 500000000000000000000
+            collator_map_bond: 100
+            max_candidates: 64
+            round_blocks: 600
+            round_hours: 2
+            min_del_stake: 5
+            max_del_per_can: 300
+            max_del_per_del: 100
+        treasury:
+            proposal_bond: 5
+            proposal_bond_min: 1
+            spend_period_blocks: 43200
+            spend_period_days: 6
+            max_approved_proposals: 100
+            tx_fees_allocated: 20
+            tx_fees_burned: 80
+        proxy:
+            deposit_base: 1.0008
+            deposit_factor: 0.0021
+            max_proxies: 32
+        identity:
+            basic_dep: 1.0258
+            field_dep: .0066
+            max_fields: 100
+        delegator_timings:
+            leave_delegators:
+                rounds: 24
+                hours: 48
+            revoke_delegations:
+                rounds: 24
+                hours: 48
+            del_bond_less:
+                rounds: 24
+                hours: 48
+            rewards_payouts:
+                rounds: 2
+                hours: 4
+        collator_timings:
+            leave_candidates:
+                rounds: 24
+                hours: 48
+            can_bond_less:
+                rounds: 24
+                hours: 48
+        precompiles:
+            staking: '0x0000000000000000000000000000000000000800'
+            crowdloan: '0x0000000000000000000000000000000000000801'
+            erc20: '0x0000000000000000000000000000000000000802'
+        chainlink:
+            feed:
+                aggregator:
+                    bnb_usd: '0xD6B013A65C22C372F995864CcdAE202D0194f9bf'
+                    btc_usd: '0x1B5C6cF9Df1CBF30387C24CC7DB1787CCf65C797'
+                    eth_usd: '0xc3cF399566220dc5Ed6C8CFbf8247214Af103C72'
+                    frax_usd: '0xD080d4760318710e795B0a59f181f6C1512ffB15'
+                    ksm_usd: '0x6e0513145FCE707Cd743528DB7C1cAB537DE9d1B'
+                    link_usd: '0xdD27789b504fEd690F406A82F16B45a0901172C0'
+                    mim_usd: '0xdD6296BD7515271F7E4b10C3A87A2f9863fECa97'
+                    movr_usd: '0x3f8BFbDc1e79777511c00Ad8591cef888C2113C1'
+                    usdt_usd: '0xF80DAd54AF79257D41c30014160349896ca5370a'
+        substrate_api_sidecar:
+            stable_version: 11.3.3
+        tx_weight_to_gas_ratio: 25000
+    moonbeam:
+        rpc_url: https://rpc.api.moonbeam.network
+        wss_url: wss://wss.api.moonbeam.network
+        chain_id: 1284
+        hex_chain_id: '0x504'
+        node_directory: /var/lib/moonbeam-data
+        parachain_release_tag: v0.18.0
+        parachain_sha256sum: 4d29a31aa33ad97702571c02053684bfe441700cd66836eb356b9479380dd483
+        tracing_tag: purestake/moonbeam-tracing:v0.16.0-1001-9ddc
+        chain_spec: moonbeam
+        block_explorer: https://moonscan.io
+        binary_name: moonbeam
+        min_gas_price: 100
+        block_time: 12
+        gas_block: 15M
+        gas_tx: 12.995M
+        node:
+            cores: 8
+            ram: 16
+            hd: 500
+        democracy:
+            launch_period:
+                days: 7
+                blocks: 50400
+            vote_period:
+                days: 14
+                blocks: 100800
+            fast_vote_period:
+                days: 1
+                blocks: 7200
+            enact_period:
+                days: 2
+                blocks: 14400
+            cool_period:
+                days: 7
+                blocks: 50400
+            min_deposit: 400
+            max_votes: 100
+            min_preim_deposit: 0.04
+            max_proposals: 100
+        inflation:
+            total_annual_inflation: 5
+            delegator_reward_inflation: 50
+            collator_reward_inflation: 20
+            parachain_bond_inflation: 30
+        staking:
+            min_col_stk: 100000
+            min_can_stk: 100000
+            min_can_stk_wei: 100000000000000000000000
+            collator_map_bond: 10000
+            max_candidates: 48
+            round_blocks: 1800
+            round_hours: 6
+            min_del_stake: 50
+            max_del_per_can: 300
+            max_del_per_del: 100
+        treasury:
+            proposal_bond: 5
+            proposal_bond_min: 100
+            spend_period_blocks: 43200
+            spend_period_days: 6
+            max_approved_proposals: 100
+            tx_fees_allocated: 20
+            tx_fees_burned: 80
+        proxy:
+            deposit_base: 1.0008
+            deposit_factor: 0.0021
+            max_proxies: 32
+        identity:
+            basic_dep: 1.0258
+            field_dep: .0066
+            max_fields: 100
+        delegator_timings:
+            leave_delegators:
+                rounds: 28
+                hours: 168
+            revoke_delegations:
+                rounds: 28
+                hours: 168
+            del_bond_less:
+                rounds: 28
+                hours: 168
+            rewards_payouts:
+                rounds: 2
+                hours: 12
+        collator_timings:
+            leave_candidates:
+                rounds: 28
+                hours: 168
+            can_bond_less:
+                rounds: 28
+                hours: 168
+        precompiles:
+            staking: '0x0000000000000000000000000000000000000800'
+            crowdloan: '0x0000000000000000000000000000000000000801'
+            erc20: '0x0000000000000000000000000000000000000802'
+    relay_chain:
+        p2p: 30334
+        rpc: 9934
+        ws: 9945
+        prometheus: 9616
+    parachain:
+        p2p: 30333
+        rpc: 9933
+        ws: 9944
+        prometheus: 9615

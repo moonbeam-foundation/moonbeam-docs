@@ -34,6 +34,14 @@ Some of the key parameters for this guide are the following:
  - **Launch period** — how often new public referenda are launched
  - **Cool-off period** — duration (in blocks) in which a proposal may not be re-submitted after being vetoed
 
+=== "Moonbeam"
+    |         Variable         |  |                                                          Value                                                          |
+    |:------------------------:|::|:-----------------------------------------------------------------------------------------------------------------------:|
+    |      Launch Period       |  | {{ networks.moonbeam.democracy.launch_period.blocks}} blocks ({{ networks.moonbeam.democracy.launch_period.days}} days) |
+    |     Cool-off Period      |  |   {{ networks.moonbeam.democracy.cool_period.blocks}} blocks ({{ networks.moonbeam.democracy.cool_period.days}} days)   |
+    | Minimum Preimage Deposit |  |                                 {{ networks.moonbeam.democracy.min_preim_deposit}} GLMR                                 |
+    | Minimum Proposal Deposit |  |                                    {{ networks.moonbeam.democracy.min_deposit}} GLMR                                    |
+
 === "Moonriver"
     |         Variable         |  |                                                           Value                                                           |
     |:------------------------:|::|:-------------------------------------------------------------------------------------------------------------------------:|

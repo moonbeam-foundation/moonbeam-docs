@@ -24,7 +24,7 @@ Before diving into setting up a Graph Node, you neeed to have the following inst
  - [Docker Compose](https://docs.docker.com/compose/install/)
  - [JQ](https://stedolan.github.io/jq/download/)
 
-In this guide, you will learn how to run a Graph node against a Moonbase Alpha tracing node with the `tracing` flag enabled. This guide can also be adapted for Moonriver.
+In this guide, you will learn how to run a Graph node against a Moonbase Alpha tracing node with the `tracing` flag enabled. This guide can also be adapted for Moonbeam and Moonriver.
 
 To spin up a full node with the `tracing` flag enabled, check out the [Debug & Trace](/node-operators/networks/tracing-node) guide.
 
@@ -48,6 +48,11 @@ The tail end from the logs of the previous command should look something similar
 ![Graph Node setup](/images/node-operators/indexer-nodes/the-graph/the-graph-node-1.png)
 
 Once everything is set up, you need to modify the "Ethereum environment" inside the `docker-compose.yml` file, so that it points to the endpoint of the node you are running this Graph Node against. Note that the `setup.sh` file detects the `Host IP` and writes its value, so you'll need to modify it accordingly.
+
+=== "Moonbeam"
+    ```
+    ethereum: 'moonbeam:{{ networks.development.rpc_url }}'
+    ```
 
 === "Moonriver"
     ```
@@ -119,4 +124,4 @@ After a while, you should see logs related to the Graph Node syncing with the la
 
 ![Graph Node logs](/images/node-operators/indexer-nodes/the-graph/the-graph-node-3.png)
 
-And that is it! You have a Graph Node running against the Moonbase Alpha TestNet. Feel free to adapt this example to a Moonbeam development node or Moonriver as well.
+And that is it! You have a Graph Node running against the Moonbase Alpha TestNet. Feel free to adapt this example for Moonbeam and Moonriver as well.

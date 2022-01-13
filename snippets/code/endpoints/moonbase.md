@@ -23,8 +23,3 @@
     ```
 
 --8<-- 'text/testnet/relay-chain.md'
-
-=== "PureStake"
-    ```
-    wss://wss-relay.testnet.moonbeam.network
-    ```
