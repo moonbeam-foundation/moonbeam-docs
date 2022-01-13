@@ -11,7 +11,26 @@ description: Querying Blockchain Data with the Covalent API Moonbeam
 
 Covalent provides a unified API to bring full transparency and visibility to assets across all blockchain networks. Simply put, Covalent offers a single API that allows you to pull detailed, granular blockchain transaction data from multiple blockchains with no code. The unified Covalent API allows you to create entirely new applications or augment existing ones without configuring or maintaining infrastructure. Covalent currently supports Moonbase Alpha and Moonriver and plans to support Moonbeam.
 
-This guide will cover all of the details needed to get started with the Covalent API and how to access the API endpoints for Moonbase Alpha using curl commands, and JavaScript and Python snippets. This guide can be adapted for use on Moonriver.
+This guide will cover all of the details needed to get started with the Covalent API and how to access the API endpoints for Moonbase Alpha using curl commands, and JavaScript and Python snippets. This guide can be adapted for use on Moonbeam or Moonriver.
+
+## Quick Start {: #quick-start } 
+
+If you're familiar with Covalent and looking to learn how to dive right in on any of the Moonbeam-based networks, you only need to provide the chain ID:
+
+=== "Moonbeam"
+    ```
+    {{ networks.moonbeam.chain_id }}
+    ```
+
+=== "Moonriver"
+    ```
+    {{ networks.moonriver.chain_id }}
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    {{ networks.moonbase.chain_id }}
+    ```
 
 ## Types of Endpoints {: #types-of-endpoints } 
 
@@ -61,17 +80,7 @@ To get started with the Covalent API, you will need to have the following:
 
 ## Try it Out {: #try-it-out } 
 
-First, make sure you have [your API Key](https://www.covalenthq.com/platform/#/auth/register/) which begins with `ckey_`. Once you have your API key you will be able to access any of the supported endpoints. To get information for a specific network, you will need to provide the chain ID:
-
-=== "Moonriver"
-    ```
-    {{ networks.moonriver.chain_id }}
-    ```
-
-=== "Moonbase Alpha"
-    ```
-    {{ networks.moonbase.chain_id }}
-    ```
+First, make sure you have [your API Key](https://www.covalenthq.com/platform/#/auth/register/) which begins with `ckey_`. Once you have your API key you will be able to access any of the supported endpoints. To get information for a specific network, you will need to provide the [chain ID](#quick-start).
 
 ### Using Curl {: #using-curl }
 
