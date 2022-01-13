@@ -14,9 +14,6 @@ Moonbeam provides two different kind of explorers: ones to query the Ethereum AP
 
 ## Quick Links {: #quick-links } 
 
-<!-- TODO: add blockscout when it's ready -->
-<!-- |                          [Blockscout](https://blockscout.moonriver.moonbeam.network/){target=_blank}                          |    EVM    |      https://blockscout.moonriver.moonbeam.network/      | -->
-
 === "Moonbeam"
     |                                                        Block Explorer                                                        |   Type    |                           URL                           |
     |:----------------------------------------------------------------------------------------------------------------------------:|:---------:|:-------------------------------------------------------:|
