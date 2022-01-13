@@ -21,6 +21,7 @@ Moonbeam provides two different kind of explorers: ones to query the Ethereum AP
     |                                                        Block Explorer                                                        |   Type    |                           URL                           |
     |:----------------------------------------------------------------------------------------------------------------------------:|:---------:|:-------------------------------------------------------:|
     |                                   [Moonscan](https://moonbeam.moonscan.io/){target=_blank}                                   |    EVM    |              https://moonbeam.moonscan.io/              |
+    |                          [Blockscout](https://blockscout.moonbeam.network/){target=_blank}                          |    EVM    |      https://blockscout.moonbeam.network/      |
     |                     [Expedition](https://moonbeam-explorer.netlify.app/?network=Moonbeam){target=_blank}                     |    EVM    | https://moonbeam-explorer.netlify.app/?network=Moonbeam |
     |                                    [Subscan](https://moonbeam.subscan.io/){target=_blank}                                    | Substrate |              https://moonbeam.subscan.io/               |
     | [Polkadot.Js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam.api.onfinality.io%2Fpublic-ws#/explorer){target=_blank} | Substrate |         https://polkadot.js.org/apps/#/explorer         |
