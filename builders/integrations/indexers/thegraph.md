@@ -306,7 +306,7 @@ Where:
 
  - **username** — refers to the username used when creating the Subgraph
  - **subraph-name** — refers to the Subgraph name defined when creating the Subgraph
- - **ifps-url**  — refers to the URL for IFPS. If using The Graph API you can use `https://api.thegraph.com/ipfs/`. For your local Graph Node, the default value is `http://localhost:5001`
+ - **ipfs-url**  — refers to the URL for IPFS. If using The Graph API you can use `https://api.thegraph.com/ipfs/`. For your local Graph Node, the default value is `http://localhost:5001`
  - **graph-node** — refers to the URL of the hosted service to use. If using The Graph API you can use `https://api.thegraph.com/deploy/`. For your local Graph Node, the default value is `http://localhost:8020`
  - **access-token** — refers to the access token to use The Graph API. If you are using a local Graph Node this parameter is not necessary
 
