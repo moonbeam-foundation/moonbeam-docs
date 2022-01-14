@@ -73,7 +73,7 @@ After you are connected to Moonbase Alpha, you can now create a wallet to get an
 
 ### Create a Wallet {: #create-a-wallet } 
 
-The following steps for creating a wallet can be modified for Moonriver
+The following steps for creating a wallet can be modified for Moonbeam and Moonriver.
 
 To create a new wallet, click the :heavy_plus_sign: sign next to **Moonbase Alpha** and select **Create Wallet**.
 
