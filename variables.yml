@@ -185,8 +185,8 @@ networks:
                 days: 5
                 blocks: 36000
             fast_vote_period:
-                days: 1
-                blocks: 7200
+                hours: 3
+                blocks: 900
             enact_period:
                 days: 1
                 blocks: 7200
