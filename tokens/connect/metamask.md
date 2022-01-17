@@ -71,7 +71,7 @@ You should end up with an imported **Account 2** that looks like this:
 
 Once you have [MetaMask](https://metamask.io/) installed and have created or imported an account, you can connect it to Moonbeam by clicking on the network dropdown and selecting **Add Network**.
 
-![MetaMask3](/images/tokens/connect/metamask/metamask-6-new.png)
+![MetaMask3](/images/tokens/connect/metamask/metamask-6.png)
 
 Here you can configure MetaMask for the following networks:
 
@@ -111,25 +111,25 @@ Here you can configure MetaMask for the following networks:
     |     Symbol (Optional)     |                                         `DEV`                                          |
     | Block Explorer (Optional) |                      `{{ networks.development.block_explorer }}`                       |
 
-![MetaMask5](/images/tokens/connect/metamask/metamask-8.png)
+![MetaMask5](/images/tokens/connect/metamask/metamask-7.png)
 
 ## Initiate a Transfer {: #initiate-a-transfer } 
 
 You can also try sending some tokens with MetaMask. You will need two accounts for this example, so if you need to create another one you can do so now. Once you have two accounts, click **Send** to initiate the transfer. Select the **Transfer between my accounts** option, transfer 100 tokens, and leave all other settings as they are:
 
-![Initiating a token transfer](/images/tokens/connect/metamask/metamask-9.png)
+![Initiating a token transfer](/images/tokens/connect/metamask/metamask-8.png)
 
 Once you have submitted the transaction, you will see it **pending** until it is confirmed, as shown in the following image:
 
-![Transaction confirmation](/images/tokens/connect/metamask/metamask-10.png)
+![Transaction confirmation](/images/tokens/connect/metamask/metamask-9.png)
 
 Note that the Account 2 balance has been decreased by the sent amount + gas fees. Flipping over to Account 1, we see the 100 sent tokens have arrived:
 
-![New balance in Account 1](/images/tokens/connect/metamask/metamask-11.png)
+![New balance in Account 1](/images/tokens/connect/metamask/metamask-10.png)
 
 If you head back over to your terminal where you have your Moonbeam node running, you will begin to see blocks being authored as transactions arrive:
 
-![Moonbeam Development Node](/images/tokens/connect/metamask/metamask-12.png)
+![Moonbeam Development Node](/images/tokens/connect/metamask/metamask-11.png)
 
 !!! note
     If you end up resetting your development node using the Substrate purge-chain command, you will need to reset your MetaMask genesis account. To do so click on the colored circle in the top right corner and from the menu click on **Settings**. Then click on **Advanced**, and **Reset Account**. This will clear the transaction history from your accounts and reset the nonce. Make sure you don’t erase anything that you want to keep!

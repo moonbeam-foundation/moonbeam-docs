@@ -41,4 +41,4 @@ Moonbase Alpha TestNet chain ID is: `1287`, which is `0x507` in hex.
 
 ### Relay Chain {: #relay-chain } 
 
---8<-- 'text/testnet/relay-chain.md
+--8<-- 'text/testnet/relay-chain.md'
