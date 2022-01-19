@@ -54,7 +54,7 @@ Take the following steps to verify the contract on Moonscan:
 2. Fill in the contract's deployed address in the first field including the `0x` prefix
 3. Select the compiler type. For the current `Incrementer.sol` example, select **Solidity (Single file)**
 4. After selecting the compiler type, select the compiler version used to compile the contract. If the compiler version used was a nightly commit, uncheck the box under the field to select the nightly version
-5. Select the open source license used. If there was none used, select **No License (None)**
+5. Select the open source license used. For the current `Incrementer.sol` example, select the option, **MIT License (MIT)**. If there was none used, select **No License (None)**
 6. Click the **Continue** button at the bottom of the form to continue on to the next page
     ![First Page Screenshot](/images/builders/tools/explorers/verify-contract/verify-contract-2.png)
 
@@ -87,23 +87,22 @@ On the verification page, the contract address will be prefilled. Fill in the fo
 After a short wait, ff the verification is completely successfully, the browser will return to the contract's **Code** page, displaying information including the contract's ABI encoded constructor arguments, the contract name, bytecode, ABI and source code. The contract page will also have two additional tabs, **Read Contract** and **Write Contract** for users to read or write to the contract directly
     ![BlockScout Result Page](/images/builders/tools/explorers/verify-contract/verify-contract-7.png)
 
-## Multi-Part Smart Contract {: #multi-part-smart-contract }
 
-For verifying smart contracts that are made up of multiple files, the process is slightly different. 
+## Smart Contract Flattening {: #smart-contract-flattening }
 
-For verifying on Moonscan, select **Solidity (Multi-part files)** under **Compiler Type** (step 3 of the above example). Then on the next page, select and upload all different Solidity files that the contract consists of, including their nested dependency contract files. 
+For verifying smart contracts that are made up of multiple files, the process is slightly different and requires some pre-processing to combine all dependencies of the target smart contract into a single Solidity file. 
+
+This pre-processing is usually referred to as smart contract flattening. There are a number of tools that can be used to flatten a multi-part smart contract into a single Solidity file, such as [Truffle Flattener](https://www.npmjs.com/package/truffle-flattener). Please refer to the respective smart contract flattening tool's documentation for more detailed instructions on its usage. 
+
+After flattening the multi-part smart contract, it can be verified using the new flattened Solidity file on a block explorer the same way that a single-file smart contract is verified as described in this tutorial. 
+
+## Multi-Part Smart Contract on Moonscan {: #multi-part-smart-contract-on-moonscan }
+
+For verifying on Moonscan, there is a built-in feature to process multi-part smart contract. 
+
+Select **Solidity (Multi-part files)** under **Compiler Type** (step 3 of the above example). Then on the next page, select and upload all different Solidity files that the contract consists of, including their nested dependency contract files. 
 
  ![Moonscan Multifile Page](/images/builders/tools/explorers/verify-contract/verify-contract-8.png)
 
-Aside from that, the process is the largely the same as verifying a single-file contracts on Moonscan. 
-
-### Smart Contract Flattening {: #smart-contract-flattening }
-
-Because BlockScout does not support uploading multiple Solidity files that make up one contract directly, we must do some pre-processing before verifying multi-part smart contracts on BlockScout. 
-
-This pre-processing is usually referred to as smart contract flattening, which is essentially combining all dependencies of the target smart contract into a single Solidity file. 
-
-There are a number of tools that can be used to flatten a multi-part smart contract into a single Solidity file, such as [Truffle Flattener](https://www.npmjs.com/package/truffle-flattener). Please refer to the respective flattening tool's documentation for more detailed instructions on usage. 
-
-After flattening the multi-part smart contract, it can be verified using the new flattened Solidity file on the block explorer the same way that a single-file smart contract is verified. 
+Aside from that, the process is the largely the same as verifying a single-file contracts on Moonscan.
 
