@@ -71,27 +71,52 @@ If you're looking for candidate or collator-specific requirements and informatio
 There are a few resources you can check out to help you select a collator to delegate:
 
 === "Moonbeam"
-    |      Variable       |                                                  Value                                                  |
-    |:-------------------:|:-------------------------------------------------------------------------------------------------------:|
-    | List of candidates  |                [Moonbeam Subscan](https://moonbeam.subscan.io/validator){target=_blank}                 |
-    | Collator statistics | [Moonbeam Explorer](https://moonbeam-explorer.netlify.app/stats/miners?network=Moonbeam){target=_blank} |
+    |       Variable        |                                     Value                                      |
+    |:---------------------:|:------------------------------------------------------------------------------:|
+    | Stake GLMR Dashboard  |              [Stake GLMR](https://stakeglmr.com/){target=_blank}               |
+    | Collators Leaderboard | [Moonscan for Moonbeam](https://moonbeam.moonscan.io/collators){target=_blank} |
 
 === "Moonriver"
-    |      Variable       |                                                                 Value                                                                 |
-    |:-------------------:|:-------------------------------------------------------------------------------------------------------------------------------------:|
-    | List of candidates  |                              [Moonriver Subscan](https://moonriver.subscan.io/validator){target=_blank}                               |
-    | Collator statistics |               [Moonbeam Explorer](https://moonbeam-explorer.netlify.app/stats/miners?network=Moonriver){target=_blank}                |
-    |  Collator APY data  | [DappLooker Collator Dashboard](http://analytics.dapplooker.com/public/dashboard/7dfc5a6e-da33-4d54-94bf-0dfa5e6843cb){target=_blank} |
+    |       Variable        |                                                                 Value                                                                 |
+    |:---------------------:|:-------------------------------------------------------------------------------------------------------------------------------------:|
+    | Stake MOVR Dashboard  |                                          [Stake MOVR](https://stakemovr.com/){target=_blank}                                          |
+    | Collators Leaderboard |                           [Moonscan for Moonriver](https://moonriver.moonscan.io/collators){target=_blank}                            |
+    |   Collator APY data   | [DappLooker Collator Dashboard](http://analytics.dapplooker.com/public/dashboard/7dfc5a6e-da33-4d54-94bf-0dfa5e6843cb){target=_blank} |
 
 === "Moonbase Alpha"
-    |      Variable       |                                                    Value                                                     |
-    |:-------------------:|:------------------------------------------------------------------------------------------------------------:|
-    | List of candidates  |                [Moonbase Alpha Subscan](https://moonbase.subscan.io/validator){target=_blank}                |
-    | Collator statistics | [Moonbeam Explorer](https://moonbeam-explorer.netlify.app/stats/miners?network=MoonbaseAlpha){target=_blank} |
-
+    |      Variable      |                                     Value                                      |
+    |:------------------:|:------------------------------------------------------------------------------:|
+    | List of candidates | [Moonbase Alpha Subscan](https://moonbase.subscan.io/validator){target=_blank} |
 
 !!! note
     The DappLooker Collator dashboard for Moonriver is experimental beta software and may not accurately reflect collator performance. Be sure to do your own research before delegating to a collator.
+
+### General Tips {: #general-tips }
+
+To optimize your staking rewards, you should generally choose a collator with a lower total amount bonded. In that case, your delegation amount will represent a larger portion of the collator’s total stake and you will earn proportionally higher rewards. 
+
+Secondly, you can consider collator performance by reviewing the number of blocks each collator has produced recently. You can use the [Stake GLMR](https://stakeglmr.com/){target=_blank} and [Stake MOVR](https://stakemovr.com/){target=_blank} dashboards to see the blocks per round for each collator for the last 12, 36, 84, or 360 rounds to get a bird's eye view on the performance for each collator.
+
+You can also checkout the Collators Leaderboard on Moonscan for [Moonbeam](https://moonbeam.moonscan.io/collators){target=_blank} or [Moonriver](https://moonriver.moonscan.io/collators){target=_blank} to view the number of blocks each collator has produced in the last day, 7 days, or 30 days.
+
+Lastly, to see the blocks produced only in the last round, you can go to the Moonbeam DApp staking dashboard:
+
+=== "Moonbeam"
+    ```
+    https://apps.moonbeam.network/moonbeam/staking
+    ```
+
+=== "Moonriver"
+    ```
+    https://apps.moonbeam.network/moonriver/staking
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    https://apps.moonbeam.network/moonbase-alpha/staking
+    ```
+
+From the staking dashboard, you can click on **Select a collator**. The list of collators will appear and you can review the **Blocks last round** column to see how many blocks each collator produced in the previous round. These figures will vary widely, however, 0 blocks produced in the last round typically suggests poor collator performance.
 
 ## Reward Distribution {: #reward-distribution } 
 
