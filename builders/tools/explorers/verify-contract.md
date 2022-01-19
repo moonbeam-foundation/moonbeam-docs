@@ -96,7 +96,7 @@ This pre-processing is usually referred to as smart contract flattening. There a
 
 After flattening the multi-part smart contract, it can be verified using the new flattened Solidity file on a block explorer the same way that a single-file smart contract is verified as described in this tutorial. 
 
-## Multi-Part Smart Contract on Moonscan {: #multi-part-smart-contract-on-moonscan }
+### Verify Multi-Part Smart Contract on Moonscan {: #verify-multi-part-smart-contract-on-moonscan }
 
 For verifying on Moonscan, there is a built-in feature to process multi-part smart contract. 
 
