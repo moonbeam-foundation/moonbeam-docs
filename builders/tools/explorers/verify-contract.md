@@ -42,6 +42,8 @@ You will need to collect some information related to the contract's compiler and
 
 ![Example Compiler Options in Remix IDE](/images/builders/tools/explorers/verify-contract/verify-contract-1.png)
 
+![Contract Address in Remix IDE](/images/builders/tools/explorers/verify-contract/verify-contract-2.png)
+
 ## Verify the Contract  {: #verifying-the-contract }
 
 The next step will be verifying the smart contract in an EVM compatible explorer for the Moonbeam network that you deployed to. 
@@ -56,7 +58,7 @@ Take the following steps to verify the contract on Moonscan:
 4. After selecting the compiler type, select the compiler version used to compile the contract. If the compiler version used was a nightly commit, uncheck the box under the field to select the nightly version
 5. Select the open source license used. For the current `Incrementer.sol` example, select the option, **MIT License (MIT)**. If there was none used, select **No License (None)**
 6. Click the **Continue** button at the bottom of the form to continue on to the next page
-    ![First Page Screenshot](/images/builders/tools/explorers/verify-contract/verify-contract-2.png)
+    ![First Page Screenshot](/images/builders/tools/explorers/verify-contract/verify-contract-3.png)
 
 On the second page, the **Contract Address**, **Compiler**, and **Constructor Arguments** fields should be prefilled, fill in the rest of the information: 
 
@@ -65,15 +67,15 @@ On the second page, the **Contract Address**, **Compiler**, and **Constructor Ar
 3. (Optional) Add contract libraries and their addresses if any were used in the contract
 4. (Optional) Check any other optional fields that may apply to your contract, and fill them out accordingly
 5. Click on the CAPTCHA at the bottom and the **Verify and Publish** button to confirm and begin verification
-    ![Second Page Screenshot](/images/builders/tools/explorers/verify-contract/verify-contract-3.png)
+    ![Second Page Screenshot](/images/builders/tools/explorers/verify-contract/verify-contract-4.png)
 
 After a short wait, the result of verification will be displayed in the browser, and a success result page will display the contract's ABI encoded constructor arguments, the contract name, bytecode, and ABI
-    ![Result Page Screenshot](/images/builders/tools/explorers/verify-contract/verify-contract-4.png)
+    ![Result Page Screenshot](/images/builders/tools/explorers/verify-contract/verify-contract-5.png)
 
 ### BlockScout {: #blockscout }
 
 Go to the contract's page on [BlockScout](https://moonbase-blockscout.testnet.moonbeam.network/) for the respective network by searching for its address, and click on **Verify & Publish** under the **Code** tab
-    ![BlockScout Verify Button](/images/builders/tools/explorers/verify-contract/verify-contract-5.png)
+    ![BlockScout Verify Button](/images/builders/tools/explorers/verify-contract/verify-contract-6.png)
 
 On the verification page, the contract address will be prefilled. Fill in the following information:
 1. Fill in the contract name; this must be the same name as the contract definition. In the example, the contract name is `Incrementer`
@@ -82,10 +84,10 @@ On the verification page, the contract address will be prefilled. Fill in the fo
 4. (Optional) Toggle **Try to fetch constructor arguments automatically** to **Yes**, or fill in the ABI-encoded constructor arguments manually if the contract constructor accepts arguments
 5. (Optional) Add contract libraries and their addresses if any were used in the contract
 6. Click **Verify & Publish** at the bottom when all the information is filled out
-    ![BlockScout Verify Page](/images/builders/tools/explorers/verify-contract/verify-contract-6.png)
+    ![BlockScout Verify Page](/images/builders/tools/explorers/verify-contract/verify-contract-7.png)
 
 After a short wait, ff the verification is completely successfully, the browser will return to the contract's **Code** page, displaying information including the contract's ABI encoded constructor arguments, the contract name, bytecode, ABI and source code. The contract page will also have two additional tabs, **Read Contract** and **Write Contract** for users to read or write to the contract directly
-    ![BlockScout Result Page](/images/builders/tools/explorers/verify-contract/verify-contract-7.png)
+    ![BlockScout Result Page](/images/builders/tools/explorers/verify-contract/verify-contract-8.png)
 
 
 ## Smart Contract Flattening {: #smart-contract-flattening }
@@ -102,7 +104,7 @@ For verifying on Moonscan, there is a built-in feature to process multi-part sma
 
 Select **Solidity (Multi-part files)** under **Compiler Type** (step 3 of the above example). Then on the next page, select and upload all different Solidity files that the contract consists of, including their nested dependency contract files. 
 
- ![Moonscan Multifile Page](/images/builders/tools/explorers/verify-contract/verify-contract-8.png)
+ ![Moonscan Multifile Page](/images/builders/tools/explorers/verify-contract/verify-contract-9.png)
 
 Aside from that, the process is the largely the same as verifying a single-file contracts on Moonscan.
 
