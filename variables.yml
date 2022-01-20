@@ -13,8 +13,8 @@ networks:
         hex_chain_id: '0x507'
         chain_spec: alphanet
         block_explorer: https://moonbase.moonscan.io/
-        parachain_release_tag: v0.18.0 # must be in this exact format for links to work
-        parachain_sha256sum: 4d29a31aa33ad97702571c02053684bfe441700cd66836eb356b9479380dd483
+        parachain_release_tag: v0.18.1 # must be in this exact format for links to work
+        parachain_sha256sum: c866828124fb763cf1e11baf328bd21467a808aa6182bbc9c324d5430e180ccb
         tracing_tag: purestake/moonbeam-tracing:v0.16.0-1001-9ddc
         gas_block: 15M
         gas_tx: 12.995M
