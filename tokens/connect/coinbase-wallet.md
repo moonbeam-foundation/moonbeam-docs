@@ -100,6 +100,13 @@ To send funds from your Coinbase Wallet, tap the desired asset from the wallet t
 
 And that's it! You've successfully set up your Coinbase Wallet app, connected it to the Moonbeam network, and learned how to send and receive funds. 
 
-!!! note
-    At this time, Coinbase Wallet displays only outgoing transactions in your transaction history in the app. You can see your full transaction history, including incoming transactions, by looking up your address on a blockchain explorer such as [Moonscan](https://moonscan.io/){target=_blank}
+
+## Limitations {: #limitations } 
+ - At this time, Coinbase Wallet displays only outgoing transactions in your transaction history in the app. You can see your full transaction history, including incoming transactions, by looking up your address on a blockchain explorer such as [Moonscan](https://moonscan.io/){target=_blank}
+ - Coinbase Wallet does not support the importing or exporting of private keys. If you need to import additional pre-existing accounts to your wallet, you should use another wallet such as [MetaMask](/tokens/connect/metamask/) 
+
+## Additional Resources {: #additional-resources } 
+
+ - [Coinbase Wallet FAQ](https://wallet.coinbase.com/faq/){target=_blank}
+ - [Coinbase Wallet Getting Started Guide](https://www.coinbase.com/wallet/getting-started-mobile){target=_blank}
  
