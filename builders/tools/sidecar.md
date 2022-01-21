@@ -177,17 +177,3 @@ And Tx Weight is mapped to the following field of the block JSON object:
 ```
 extrinsics.{extrinsic number}.events.{event number}.data.0.weight
 ```
-
-## Public Moonbeam Sidecar Deployments  {: #public-moonbeam-sidecar-deployments }
-
-There are public Substrate API Sidecar deployments for Moonbeam networks and can be used by querying their endpoints according to the API. 
-
-=== "Moonriver"
-    ```
-    https://moonriver-rest-api.moonriver.moonbeam.network
-    ```
-
-=== "Moonbase Alpha"
-    ```
-    https://moonbase-rest-api.testnet.moonbeam.network
-    ```
