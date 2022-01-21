@@ -37,7 +37,7 @@ Although Coinbase Wallet has a built-in browser, it doesn't currently support au
  2. Tap on **Default Network**
  3. Tap on the **+** icon in the upper right corner
  4. Here, you can fill in the network details for Moonbeam, Moonriver, or the Moonbase Alpha TestNet. Press **Save** once finished 
- 5. After returning to the Default Network Page, you can switch your default network to Moonbeam or Moonriver.
+ 5. After returning to the Default Network Page, you can switch your default network to Moonbeam or Moonriver
 
 ![Coinbase Wallet Image 3](/images/tokens/connect/coinbase-wallet/coinbase-wallet-3.png)
 
