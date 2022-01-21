@@ -130,7 +130,7 @@ To register an identity using the extrinsics UI, navigate to the [Extrinsics pag
     1. Select the format of the data. For this example, you can use **Raw** data but you also have the option of entering your data in BlackTwo256, Sha256, Keccak256, and ShaThree256 hashed format
     2. Enter the data in that format
 
-![Set your identity using the Extrincs UI](/images/builders/interact/identity/identity-10.png)
+![Set your identity using the Extrinsics UI](/images/builders/interact/identity/identity-10.png)
 
 Optionally, if you would like to enter custom fields, you can do so by:
 
