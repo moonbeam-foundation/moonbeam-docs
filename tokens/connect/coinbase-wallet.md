@@ -1,5 +1,5 @@
 ---
-title: Coinbase Wallet
+title: Using Coinbase Wallet
 description: This guide walks you through how to use the Coinbase Wallet extension and the Mobile App.
 ---
 
