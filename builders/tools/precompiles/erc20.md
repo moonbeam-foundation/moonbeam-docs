@@ -1,6 +1,6 @@
 ---
 title: Native Token ERC-20
-description:  Learn how to access and interact with an ERC-20 representation of native token on Moonbea, and check how this is done on the Moonbase Alpha TestNet by using the ERC-20 precompiled contract.
+description:  Learn how to access and interact with an ERC-20 representation of native token on Moonbeam, and check how this is done on the Moonbase Alpha TestNet by using the ERC-20 precompiled contract.
 ---
 
 #  Native Token ERC-20 Precompile

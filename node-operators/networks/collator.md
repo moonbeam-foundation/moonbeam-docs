@@ -93,7 +93,7 @@ Before getting started, it's important to note some of the timings of different 
     |:-------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
     |           Leave candidates            |    {{ networks.moonbase.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonbase.collator_timings.leave_candidates.hours }} hours)    |
     |           Revoke delegation           | {{ networks.moonbase.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbase.delegator_timings.revoke_delegations.hours }} hours) |
-    |      Reduce candidate delegation      |     {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours)     |
+    |      Reduce self-delegation      |     {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours)     |
     | Rewards payouts (after current round) |    {{ networks.moonbase.delegator_timings.rewards_payouts.rounds }} rounds ({{ networks.moonbase.delegator_timings.rewards_payouts.hours }} hours)    |
 
 !!! note 
@@ -207,7 +207,7 @@ As a candidate, there are two options for increasing one's stake. The first and 
  7. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
  
 !!! note
-    Collators will not earn additional rewards for increasing their bond amount. To increase your staked MOVR, it is recommended that you instead send funds to another owned address and delegate to your collator.
+    Collators will not earn additional rewards for increasing their bond amount. To increase your staked amount, it is recommended that you instead send funds to another owned address and delegate to your collator.
 
 ![Collator Bond More](/images/node-operators/networks/collators/collator-polkadotjs-7.png)
 
