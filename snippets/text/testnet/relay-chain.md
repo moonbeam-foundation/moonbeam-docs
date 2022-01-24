@@ -2,5 +2,5 @@ To connect to the Moonbase Alpha relay chain, you can use the following WS Endpo
 
 === "PureStake"
     ```
-    wss://wss-relay.testnet.moonbeam.network
+    wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network
     ```
