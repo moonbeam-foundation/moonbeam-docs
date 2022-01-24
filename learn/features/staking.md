@@ -96,30 +96,10 @@ There are a few resources you can check out to help you select a collator to del
 
 ### General Tips {: #general-tips }
 
-To optimize your staking rewards, you should generally choose a collator with a lower total amount bonded. In that case, your delegation amount will represent a larger portion of the collator’s total stake and you will earn proportionally higher rewards. 
-
-Secondly, you can consider collator performance by reviewing the number of blocks each collator has produced recently. You can use the [Stake GLMR](https://stakeglmr.com/){target=_blank} and [Stake MOVR](https://stakemovr.com/){target=_blank} dashboards to see the blocks per round for each collator for the last 12, 36, 84, or 360 rounds to get a bird's eye view on the performance for each collator.
-
-You can also checkout the Collators Leaderboard on Moonscan for [Moonbeam](https://moonbeam.moonscan.io/collators){target=_blank} or [Moonriver](https://moonriver.moonscan.io/collators){target=_blank} to view the number of blocks each collator has produced in the last day, 7 days, or 30 days.
-
-Lastly, to see the blocks produced only in the last round, you can go to the Moonbeam DApp staking dashboard:
-
-=== "Moonbeam"
-    ```
-    https://apps.moonbeam.network/moonbeam/staking
-    ```
-
-=== "Moonriver"
-    ```
-    https://apps.moonbeam.network/moonriver/staking
-    ```
-
-=== "Moonbase Alpha"
-    ```
-    https://apps.moonbeam.network/moonbase-alpha/staking
-    ```
-
-From the staking dashboard, you can click on **Select a collator**. The list of collators will appear and you can review the **Blocks last round** column to see how many blocks each collator produced in the previous round. These figures will vary widely, however, 0 blocks produced in the last round typically suggests poor collator performance.
+- To optimize your staking rewards, you should generally choose a collator with a lower total amount bonded. In that case, your delegation amount will represent a larger portion of the collator’s total stake and you will earn proportionally higher rewards. However, there is a higher risk of the collator being kicked out of the active set and not earning rewards at all
+- The minimum bond for each collator tends to increase over time, so if your delegation is close to the minimum, there is a higher chance you might fall below the minimum and not receive rewards
+- Spreading delegations between multiple collators is more efficient in terms of rewards, but only recommended if you have enough to stay above the minimum bond of each collator
+- You can consider collator performance by reviewing the number of blocks each collator has produced recently
 
 ## Reward Distribution {: #reward-distribution } 
 
