@@ -33,7 +33,7 @@ With great power comes great responsibility. Some important parameters to unders
     |:------------------------:|::|:----------------------------------------------------------------------------------------------------------------------------:|
     |      Voting Period       |  |     {{ networks.moonbeam.democracy.vote_period.blocks}} blocks ({{ networks.moonbeam.democracy.vote_period.days}} days)      |
     | Fast-Track Voting Period |  | {{ networks.moonbeam.democracy.fast_vote_period.blocks}} blocks ({{ networks.moonbeam.democracy.fast_vote_period.days}} day) |
-    |     Enactment Period     |  |     {{ networks.moonbeam.democracy.enact_period.blocks}} blocks ({{ networks.moonbeam.democracy.enact_period.days}} day)     |
+    |     Enactment Period     |  |     {{ networks.moonbeam.democracy.enact_period.blocks}} blocks ({{ networks.moonbeam.democracy.enact_period.days}} days)     |
     |     Cool-off Period      |  |     {{ networks.moonbeam.democracy.cool_period.blocks}} blocks ({{ networks.moonbeam.democracy.cool_period.days}} days)      |
     |     Minimum Deposit      |  |                                      {{ networks.moonbeam.democracy.min_deposit }} GLMR                                      |
 
@@ -42,7 +42,7 @@ With great power comes great responsibility. Some important parameters to unders
     |         Variable         |  |                                                             Value                                                              |
     |:------------------------:|::|:------------------------------------------------------------------------------------------------------------------------------:|
     |      Voting Period       |  |     {{ networks.moonriver.democracy.vote_period.blocks}} blocks ({{ networks.moonriver.democracy.vote_period.days}} days)      |
-    | Fast-Track Voting Period |  | {{ networks.moonriver.democracy.fast_vote_period.blocks}} blocks ({{ networks.moonriver.democracy.fast_vote_period.days}} day) |
+    | Fast-Track Voting Period |  | {{ networks.moonriver.democracy.fast_vote_period.blocks}} blocks ({{ networks.moonriver.democracy.fast_vote_period.hours}} hours) |
     |     Enactment Period     |  |     {{ networks.moonriver.democracy.enact_period.blocks}} blocks ({{ networks.moonriver.democracy.enact_period.days}} day)     |
     |     Cool-off Period      |  |     {{ networks.moonriver.democracy.cool_period.blocks}} blocks ({{ networks.moonriver.democracy.cool_period.days}} days)      |
     |     Minimum Deposit      |  |                                      {{ networks.moonriver.democracy.min_deposit }} MOVR                                       |
