@@ -23,7 +23,7 @@ You can [download the Coinbase Wallet app](https://wallet.coinbase.com/?_branch_
 
 ![Coinbase Wallet Image 1](/images/tokens/connect/coinbase-wallet/coinbase-wallet-1.png)
 
-Next, you'll be prompted to create a passcode or you can use your phone's built-in authentication method such as Face ID. The next screen will remind you of the importance of backing up your secret recovery phrase. On iOS, you have the option of making an encrypted backup of the seed phrase to iCloud, or you can save the phrase manually. On the following screen you'll be asked to confirm your secret recovery phrase. As a reminder, your secret recovery phrase grants full and unlimited access to your funds- you should never share this with anyone. 
+Next, you'll be prompted to create a passcode or you can use your phone's built-in authentication method such as Face ID. The next screen will remind you of the importance of backing up your secret recovery phrase. On iOS, you have the option of making an encrypted backup of the seed phrase to iCloud, or you can save the phrase manually. On the following screen you'll be asked to confirm your secret recovery phrase. As a reminder, your secret recovery phrase grants full and unlimited access to your funds. You should never share this with anyone. 
 
 ![Coinbase Wallet Image 2](/images/tokens/connect/coinbase-wallet/coinbase-wallet-2.png)
 
@@ -72,7 +72,7 @@ You can find all of the relevant parameters for each network below:
 
 ## Receiving Funds {: #receiving-funds } 
 
-Since you created a new wallet in this demo, the app displays an empty home screen with a "No coins found" message. You can change this by sending some GLMR to this account. To send funds to your Coinbase Wallet app, take the following steps:
+Since you created a new wallet in this demo, the app displays an empty home screen with a **No coins found** message. You can change this by sending some GLMR to this account. To send funds to your Coinbase Wallet app, take the following steps:
 
  1. From the wallet tab (or homescreen) of the app, tap **Receive**
  2. Search for "GLMR"
