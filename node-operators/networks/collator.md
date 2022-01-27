@@ -205,9 +205,6 @@ As a candidate, there are two options for increasing one's stake. The first and 
  5. Open the drop-down menu, which lists all the possible extrinsics related to staking, and select the **candidateBondMore()** function
  6. Specify the additional amount to be bonded in the **more: BalanceOf** field
  7. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
- 
-!!! note
-    Collators will not earn additional rewards for increasing their bond amount. To increase your staked amount, it is recommended that you instead send funds to another owned address and delegate to your collator.
 
 ![Collator Bond More](/images/node-operators/networks/collators/collator-polkadotjs-7.png)
 
