@@ -71,27 +71,36 @@ If you're looking for candidate or collator-specific requirements and informatio
 There are a few resources you can check out to help you select a collator to delegate:
 
 === "Moonbeam"
-    |      Variable       |                                                  Value                                                  |
-    |:-------------------:|:-------------------------------------------------------------------------------------------------------:|
-    | List of candidates  |                [Moonbeam Subscan](https://moonbeam.subscan.io/validator){target=_blank}                 |
-    | Collator statistics | [Moonbeam Explorer](https://moonbeam-explorer.netlify.app/stats/miners?network=Moonbeam){target=_blank} |
+    |           Variable           |                                     Value                                     |
+    |:----------------------------:|:-----------------------------------------------------------------------------:|
+    |     Stake GLMR Dashboard     |              [Stake GLMR](https://stakeglmr.com/){target=_blank}              |
+    |    Collators Leaderboard     |       [Moonscan](https://moonbeam.moonscan.io/collators){target=_blank}       |
+    | Staking Simulation Dashboard |            [Web3Go](https://web3go.xyz/#/Moonbeam){target=_blank}             |
+    |      Collator Dashboard      | [DappLooker](https://network.dapplooker.com/moonbeam/collator){target=_blank} |
 
 === "Moonriver"
-    |      Variable       |                                                                 Value                                                                 |
-    |:-------------------:|:-------------------------------------------------------------------------------------------------------------------------------------:|
-    | List of candidates  |                              [Moonriver Subscan](https://moonriver.subscan.io/validator){target=_blank}                               |
-    | Collator statistics |               [Moonbeam Explorer](https://moonbeam-explorer.netlify.app/stats/miners?network=Moonriver){target=_blank}                |
-    |  Collator APY data  | [DappLooker Collator Dashboard](http://analytics.dapplooker.com/public/dashboard/7dfc5a6e-da33-4d54-94bf-0dfa5e6843cb){target=_blank} |
+    |           Variable           |                                     Value                                      |
+    |:----------------------------:|:------------------------------------------------------------------------------:|
+    |     Stake MOVR Dashboard     |              [Stake MOVR](https://stakemovr.com/){target=_blank}               |
+    |    Collators Leaderboard     |       [Moonscan](https://moonriver.moonscan.io/collators){target=_blank}       |
+    | Staking Simulation Dashboard |            [Web3Go](https://web3go.xyz/#/Moonriver){target=_blank}             |
+    |      Collator Dashboard      | [DappLooker](https://network.dapplooker.com/moonriver/collator){target=_blank} |
+
 
 === "Moonbase Alpha"
-    |      Variable       |                                                    Value                                                     |
-    |:-------------------:|:------------------------------------------------------------------------------------------------------------:|
-    | List of candidates  |                [Moonbase Alpha Subscan](https://moonbase.subscan.io/validator){target=_blank}                |
-    | Collator statistics | [Moonbeam Explorer](https://moonbeam-explorer.netlify.app/stats/miners?network=MoonbaseAlpha){target=_blank} |
-
+    |      Variable      |                                     Value                                      |
+    |:------------------:|:------------------------------------------------------------------------------:|
+    | List of candidates | [Moonbase Alpha Subscan](https://moonbase.subscan.io/validator){target=_blank} |
 
 !!! note
     The DappLooker Collator dashboard for Moonriver is experimental beta software and may not accurately reflect collator performance. Be sure to do your own research before delegating to a collator.
+
+### General Tips {: #general-tips }
+
+- To optimize your staking rewards, you should generally choose a collator with a lower total amount bonded. In that case, your delegation amount will represent a larger portion of the collator’s total stake and you will earn proportionally higher rewards. However, there is a higher risk of the collator being kicked out of the active set and not earning rewards at all
+- The minimum bond for each collator tends to increase over time, so if your delegation is close to the minimum, there is a higher chance you might fall below the minimum and not receive rewards
+- Spreading delegations between multiple collators is more efficient in terms of rewards, but only recommended if you have enough to stay above the minimum bond of each collator
+- You can consider collator performance by reviewing the number of blocks each collator has produced recently
 
 ## Reward Distribution {: #reward-distribution } 
 

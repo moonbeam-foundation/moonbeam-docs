@@ -118,7 +118,7 @@ With the contract deployed, we can call the `callDataCopy()` method and verify i
 
 ## Modular Exponentiation {: #modular-exponentiation } 
 
-This fifth precompile calculates the remainder when an integer _b_ (base) is raised to the _e_-th power (the exponent), and is divided by a positive integer _m_ (the modulus).
+This precompile calculates the remainder when an integer _b_ (base) is raised to the _e_-th power (the exponent), and is divided by a positive integer _m_ (the modulus).
 
 The Solidity compiler does not support it, so it needs to be called with inline assembly. The [following code](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x05-bigmodexp-base-exp-mod) was simplified to show the functionality of this precompile. 
 
