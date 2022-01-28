@@ -158,8 +158,8 @@ networks:
             stable_version: 9.2.0
         tx_weight_to_gas_ratio: 25000
     moonriver:
-        rpc_url: https://rpc.moonriver.moonbeam.network
-        wss_url: wss://wss.moonriver.moonbeam.network
+        rpc_url: https://rpc.api.moonriver.moonbeam.network
+        wss_url: wss://wss.api.moonriver.moonbeam.network
         chain_id: 1285
         hex_chain_id: '0x505'
         node_directory: /var/lib/moonriver-data

@@ -64,7 +64,7 @@ The following extrinsic is deprecated:
 
 You can now read any of the current parameters around staking, such as the ones previously listed in the [General Definitions](#general-definitions) section and more, directly from Polkadot.js Apps.
 
-Navigate to Polkadot.js Apps **Chain state** UI, and for the purposes of this guide, connect to [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/chainstate){target=_blank}. Alternatively, you can connect to [Moonbeam](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network/#chainstate){target=_blank} or [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network/#chainstate){target=_blank}.
+Navigate to Polkadot.js Apps **Chain state** UI, and for the purposes of this guide, connect to [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/chainstate){target=_blank}. Alternatively, you can connect to [Moonbeam](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network/#chainstate){target=_blank} or [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonriver.moonbeam.network/#chainstate){target=_blank}.
 
 Then to retrieve the various staking parameters, you'll need to:
 

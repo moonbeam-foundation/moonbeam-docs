@@ -22,7 +22,7 @@ const supportedNetworks = {
     moonriver: {
         chainId: moonriverChainId,
         chainName: 'Moonriver',
-        rpcUrls: ['https://rpc.moonriver.moonbeam.network'],
+        rpcUrls: ['https://rpc.api.moonriver.moonbeam.network'],
         blockExplorerUrls: ['https://moonriver.moonscan.io/'],
         nativeCurrency: {
             name: 'Moonriver',

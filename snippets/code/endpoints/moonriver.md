@@ -7,7 +7,7 @@
 
 === "PureStake"
     ```
-    https://rpc.moonriver.moonbeam.network
+    https://rpc.api.moonriver.moonbeam.network
     ```
 
 #### WSS
@@ -19,5 +19,5 @@
 
 === "PureStake"
     ```
-    wss://wss.moonriver.moonbeam.network
+    wss://wss.api.moonriver.moonbeam.network
     ```
