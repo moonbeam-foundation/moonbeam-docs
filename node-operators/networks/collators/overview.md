@@ -11,7 +11,7 @@ description: Instructions on how to dive in and become a collator in the Moonbea
 
 Collators are members of the network that maintain the parachains they take part in. They run a full node (for both their particular parachain and the relay chain), and they produce the state transition proof for relay chain validators.
 
-There are some [requirements](/node-operators/networks/collators/requirements/){target=blank} that need to be considered before they can become a collator candidate including machine, bonding, and account requirements.
+There are some [requirements](/node-operators/networks/collators/requirements/){target=blank} that need to be considered before they can become a collator candidate including machine, bonding, and account requirements. There is also a level of commitment to the community and the network that is necessary.
 
 Candidates will need a minimum amount of tokens bonded (self-bonded) to be considered eligible. Only a certain number of the top collator candidates by total stake, including self-bonded and delegated stake, will be in the active set of collators. Otherwise, the collator will remain in the candidate pool.
 

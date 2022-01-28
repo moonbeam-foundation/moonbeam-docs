@@ -37,9 +37,9 @@ In addition, you should take into account the following considerations:
 
 ## Account Requirements {: #account-requirements } 
 
-Similar to Polkadot validators, you need to create an account. For Moonbeam, this is an H160 account or an Ethereum-style account from which you hold the private keys. There are many Ethereum wallets that can be used, but for production purposes it is recommended to generate keys as securely as possible. It is also recommended to generate backup keys.
+Similar to Polkadot validators, you need to create an account. For Moonbeam, this is an H160 account or an Ethereum-style account from which you hold the private keys. As a collator, you are responsible for correctly managing your own keys. Incorrectly doing so can result in a loss of funds.
 
-You can actually generate keys using the Moonbeam binary through a tool called Moonkey. It can be used to generate both ethereum-style accounts and substrate-style accounts. 
+There are many Ethereum wallets that can be used, but for production purposes it is recommended to generate keys as securely as possible. It is also recommended to generate backup keys. You can actually generate keys using the Moonbeam binary through a tool called Moonkey. It can be used to generate both ethereum-style accounts and substrate-style accounts. 
 
 To generate keys securely it is recommended to do so on an air-gapped machine. Once you generate your keys make sure you store them safely. To securely store your keys, here are some recommendations, from least to most secure:
 

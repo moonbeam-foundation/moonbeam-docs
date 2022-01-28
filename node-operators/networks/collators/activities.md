@@ -22,29 +22,32 @@ Before getting started, it's important to note some of the timings of different 
 === "Moonbeam"
     |               Variable                |                                                                         Value                                                                         |
     |:-------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |            Round duration             |                        {{ networks.moonbeam.staking.round_blocks }} blocks ({{ networks.moonbeam.staking.round_hours }} hours)                        |
     |           Leave candidates            |    {{ networks.moonbeam.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonbeam.collator_timings.leave_candidates.hours }} hours)    |
     |           Revoke delegation           | {{ networks.moonbeam.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbeam.delegator_timings.revoke_delegations.hours }} hours) |
-    |      Reduce self-delegation      |       {{ networks.moonbeam.collator_timings.can_bond_less.rounds }} rounds ({{ networks.moonbeam.collator_timings.can_bond_less.hours }} hours)       |
+    |        Reduce self-delegation         |       {{ networks.moonbeam.collator_timings.can_bond_less.rounds }} rounds ({{ networks.moonbeam.collator_timings.can_bond_less.hours }} hours)       |
     | Rewards payouts (after current round) |    {{ networks.moonbeam.delegator_timings.rewards_payouts.rounds }} rounds ({{ networks.moonbeam.delegator_timings.rewards_payouts.hours }} hours)    |
 
 === "Moonriver"
     |               Variable                |                                                                          Value                                                                          |
     |:-------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |            Round duration             |                        {{ networks.moonriver.staking.round_blocks }} blocks ({{ networks.moonriver.staking.round_hours }} hours)                        |
     |           Leave candidates            |    {{ networks.moonriver.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonriver.collator_timings.leave_candidates.hours }} hours)    |
     |           Revoke delegation           | {{ networks.moonriver.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonriver.delegator_timings.revoke_delegations.hours }} hours) |
-    |      Reduce self-delegation      |       {{ networks.moonriver.collator_timings.can_bond_less.rounds }} rounds ({{ networks.moonriver.collator_timings.can_bond_less.hours }} hours)       |
+    |        Reduce self-delegation         |       {{ networks.moonriver.collator_timings.can_bond_less.rounds }} rounds ({{ networks.moonriver.collator_timings.can_bond_less.hours }} hours)       |
     | Rewards payouts (after current round) |    {{ networks.moonriver.delegator_timings.rewards_payouts.rounds }} rounds ({{ networks.moonriver.delegator_timings.rewards_payouts.hours }} hours)    |
 
 === "Moonbase Alpha"
     |               Variable                |                                                                         Value                                                                         |
     |:-------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |            Round duration             |                        {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hours)                        |
     |           Leave candidates            |    {{ networks.moonbase.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonbase.collator_timings.leave_candidates.hours }} hours)    |
     |           Revoke delegation           | {{ networks.moonbase.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbase.delegator_timings.revoke_delegations.hours }} hours) |
-    |      Reduce candidate delegation      |     {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours)     |
+    |      Reduce candidate delegation      |      {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours)      |
     | Rewards payouts (after current round) |    {{ networks.moonbase.delegator_timings.rewards_payouts.rounds }} rounds ({{ networks.moonbase.delegator_timings.rewards_payouts.hours }} hours)    |
 
 !!! note 
-    Joining the collator candidate pool takes effect immediately. Adding or increasing a delegation also takes effect immediately, but rewards payouts are calculated {{ networks.moonriver.delegator_timings.rewards_payouts.rounds }} rounds later. The calculated rewards are then paid out on a block-by-block basis. For every block, one collator will be chosen to receive their entire reward payout from the prior round, along with their delegators, until all of the rewards have been paid for that round. For example, if there are {{ networks.moonriver.staking.max_candidates }} collators who produced blocks in the prior round, all of the collators and their delegators would be paid by block {{ networks.moonriver.staking.max_candidates }} of the new round. The values presented in the previous table are subject to change in future releases.
+    The values presented in the previous table are subject to change in future releases.
 
 ## Become a Candidate {: #become-a-candidate } 
 
