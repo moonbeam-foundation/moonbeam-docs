@@ -71,19 +71,20 @@ If you're looking for candidate or collator-specific requirements and informatio
 There are a few resources you can check out to help you select a collator to delegate:
 
 === "Moonbeam"
-    |           Variable           |                               Value                               |
-    |:----------------------------:|:-----------------------------------------------------------------:|
-    |     Stake GLMR Dashboard     |        [Stake GLMR](https://stakeglmr.com/){target=_blank}        |
-    |    Collators Leaderboard     | [Moonscan](https://moonbeam.moonscan.io/collators){target=_blank} |
-    | Staking Simulation Dashboard |      [Web3Go](https://web3go.xyz/#/Moonbeam){target=_blank}       |
+    |           Variable           |                                     Value                                     |
+    |:----------------------------:|:-----------------------------------------------------------------------------:|
+    |     Stake GLMR Dashboard     |              [Stake GLMR](https://stakeglmr.com/){target=_blank}              |
+    |    Collators Leaderboard     |       [Moonscan](https://moonbeam.moonscan.io/collators){target=_blank}       |
+    | Staking Simulation Dashboard |            [Web3Go](https://web3go.xyz/#/Moonbeam){target=_blank}             |
+    |      Collator Dashboard      | [DappLooker](https://network.dapplooker.com/moonbeam/collator){target=_blank} |
 
 === "Moonriver"
-    |           Variable           |                                                                 Value                                                                 |
-    |:----------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------:|
-    |     Stake MOVR Dashboard     |                                          [Stake MOVR](https://stakemovr.com/){target=_blank}                                          |
-    |    Collators Leaderboard     |                           [Moonscan for Moonriver](https://moonriver.moonscan.io/collators){target=_blank}                            |
-    | Staking Simulation Dashboard |                                        [Web3Go](https://web3go.xyz/#/Moonriver){target=_blank}                                        |
-    |      Collator APY data       | [DappLooker Collator Dashboard](http://analytics.dapplooker.com/public/dashboard/7dfc5a6e-da33-4d54-94bf-0dfa5e6843cb){target=_blank} |
+    |           Variable           |                                     Value                                      |
+    |:----------------------------:|:------------------------------------------------------------------------------:|
+    |     Stake MOVR Dashboard     |              [Stake MOVR](https://stakemovr.com/){target=_blank}               |
+    |    Collators Leaderboard     |       [Moonscan](https://moonriver.moonscan.io/collators){target=_blank}       |
+    | Staking Simulation Dashboard |            [Web3Go](https://web3go.xyz/#/Moonriver){target=_blank}             |
+    |      Collator Dashboard      | [DappLooker](https://network.dapplooker.com/moonriver/collator){target=_blank} |
 
 
 === "Moonbase Alpha"
