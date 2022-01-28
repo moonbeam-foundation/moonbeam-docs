@@ -46,7 +46,7 @@ In the terminal that Sidecar will run, export the environmental variable for the
 
 === "Moonriver"
     ```
-    export SAS_SUBSTRATE_WS_URL=wss://wss.moonriver.moonbeam.network
+    export SAS_SUBSTRATE_WS_URL=wss://wss.api.moonriver.moonbeam.network
     ```
 
 === "Moonbase Alpha"

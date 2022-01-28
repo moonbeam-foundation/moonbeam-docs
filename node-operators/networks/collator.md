@@ -59,7 +59,7 @@ Similar to Polkadot validators, you need to create an account. For Moonbeam, thi
 
 A collator has an account associated with its collation activities. This account is mapped to an author ID to identify the collator as a block producer and send the payouts from block rewards. 
 
-Depending on which network you want to run a collator node for, you can head to Polkadot.js for [Moonbeam](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/accounts){target=_blank}, [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network#/accounts){target=_blank}, or [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/accounts){target=_blank}. From there, you have two ways of proceeding in regard to having an account:
+Depending on which network you want to run a collator node for, you can head to Polkadot.js for [Moonbeam](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/accounts){target=_blank}, [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonriver.moonbeam.network#/accounts){target=_blank}, or [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/accounts){target=_blank}. From there, you have two ways of proceeding in regard to having an account:
 
  - Importing an existing (or create a new) H160 account from external wallets or services such as [MetaMask](/tokens/connect/metamask/) and [MathWallet](/tokens/connect/mathwallet/)
  - Create a new H160 account with [Polkadot.js](/tokens/connect/polkadotjs/)
@@ -196,7 +196,7 @@ If you wish to bond less, you have to schedule a request, wait an [exit delay](#
 
 ### Bond More {: #bond-more }
 
-As a candidate, there are two options for increasing one's stake. The first and recommended option is to send the funds to be staked to another owned address and [delegate to your collator](/tokens/staking/stake/#how-to-nominate-a-collator). Alternatively, collators that already have at least the [minimum self-bond amount](#accounts-and-staking-requirements) staked can increase their bond from [Polkadot JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network#/accounts) as follows:
+As a candidate, there are two options for increasing one's stake. The first and recommended option is to send the funds to be staked to another owned address and [delegate to your collator](/tokens/staking/stake/#how-to-nominate-a-collator). Alternatively, collators that already have at least the [minimum self-bond amount](#accounts-and-staking-requirements) staked can increase their bond from [Polkadot JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonriver.moonbeam.network#/accounts) as follows:
 
  1. Navigate to the **Developer** tab 
  2. Click on **Extrinsics**
