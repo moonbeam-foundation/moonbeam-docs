@@ -3,4 +3,4 @@ nav:
   - index.md
   - run-a-node
   - tracing-node.md
-  - collator.md
+  - collators
