@@ -36,7 +36,7 @@ At a minimum, you must include the following information to submit your project/
 First, you'll need to [create a DappRadar account](https://auth.dappradar.com/email-register){target=_blank} and verify your email. Once ready with the required content, you can head to the [Submit a DApp Page](https://dappradar.com/dashboard/submit-dapp){target=_blank} where you can take the following steps:
 
  1. Enter your project’s name
- 2. Upload your DApp's Logo (250 by 250 pixel PNG or JPG, 150KB max)  
+ 2. Upload your DApp's logo (250 by 250 pixel PNG or JPG, 150KB max)  
  3. Select the relevant category for your DApp
  4. Include the URL for your DApp
  5. Write a short description (160 characters or less)
