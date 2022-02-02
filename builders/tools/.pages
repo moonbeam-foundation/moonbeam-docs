@@ -9,3 +9,4 @@ nav:
   - debug-trace.md
   - pubsub.md
   - sidecar.md
+  - walletconnect.md
