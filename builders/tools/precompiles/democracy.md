@@ -1,5 +1,5 @@
 ---
-title: Democracy Precompile
+title: Democracy 
 description: Moonbeam Democracy Solidity Precompile Interface Demo
 ---
 
