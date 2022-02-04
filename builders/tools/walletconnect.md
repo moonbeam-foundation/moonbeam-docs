@@ -57,18 +57,18 @@ To get started, you can open up the `App.js` file of the template and the first 
 
 ```js
 const connect = async () => { 
-    setFetching(true);
+  setFetching(true);
 
-    // 1. Create connector
-    const connector = new WalletConnect({ bridge: "https://bridge.walletconnect.org", qrcodeModal: QRCodeModal });
+  // 1. Create connector
+  const connector = new WalletConnect({ bridge: "https://bridge.walletconnect.org", qrcodeModal: QRCodeModal });
 
-    // 2. Update the connector state
-    setConnector(connector);
+  // 2. Update the connector state
+  setConnector(connector);
 
-    // 3. If not connected, create a new session
-    if (!connector.connected) {
-      await connector.createSession();
-    }
+  // 3. If not connected, create a new session
+  if (!connector.connected) {
+    await connector.createSession();
+  }
 };
 ```
 
@@ -100,30 +100,31 @@ Upon disconnecting, you will need to reset the state of your DApp back to the in
 
 ```js
 const resetApp = () => {
-    setConnector(null);
-    setFetching(false);
-}
+  setConnector(null);
+  setFetching(false);
+};
 ```
 
 In addition to resetting the state of the DApp, you will also need to kill the session using the `connector` and the WalletConnect `killSession` function. Since all of this functionality should happen when the user clicks on the **Disconnect** button, you can create a single `killSession` function to handle the reset and the disconnection.
 
 ```js
 const killSession = () => {
-    // Make sure the connector exists before trying to kill the session
-    if (connector) {
-      connector.killSession();
-    }
-    resetApp();
-}
+  // Make sure the connector exists before trying to kill the session
+  if (connector) {
+    connector.killSession();
+  }
+  resetApp();
+};
 ```
 
 Now that you have all of the logic required to handle the disconnection, you will need the **Disconnect** button that `onClick` will call the `killSession` function. Since you only want to display the **Disconnect** button once a user is connected, you can use [conditional renderering](https://reactjs.org/docs/conditional-rendering.html){target=blank}. Conditional rendering allows you to check against certain variables and if a condition applies you can render one element or another. In this case, if you are not fetching the initial connection and the connector exists, you can render the **Disconnect** button, otherwise render the **Connect Wallet** button. You can replace the existing `<Button>` with the following:
 
 ```jsx
-{connector && !fetching ? 
-    <OutlinedButton onClick={killSession}>Disconnect</OutlinedButton>
-    :
+{connector && !fetching ? (
+  <OutlinedButton onClick={killSession}>Disconnect</OutlinedButton>
+  ) : (
     <Button onClick={connect}>Connect Wallet</Button>
+  )
 }
 ```
 
@@ -141,12 +142,12 @@ In the `disconnect` event callback, you can add the `resetApp` function so that 
 
 ```js
 connector.on("disconnect", async (error) => {
-    if (error) {
-        // Handle errors as you see fit
-        console.error(error);
-    }
-    resetApp();
-})
+  if (error) {
+    // Handle errors as you see fit
+    console.error(error);
+  }
+  resetApp();
+});
 ```
 
 So far you've setup the minimum logic required for connecting and disconnecting your DApp and the MetaMask mobile app. When the connection has been established, a **Disconnect** button is now displayed. In the next section, you'll expand on what is displayed when connected to include account and network details.
@@ -173,19 +174,19 @@ You'll notice that the `onConnect` function already accepts two parameters: the 
 
 ```js
 const onConnect = async (chainId, connectedAccount) => {
-    setAccount(connectedAccount);
-    setChainId(chainId);
+  setAccount(connectedAccount);
+  setChainId(chainId);
 
-    // get chain data
-    const networkData = SUPPORTED_NETWORKS.filter((chain) => chain.chain_id === chainId)[0];
+  // get chain data
+  const networkData = SUPPORTED_NETWORKS.filter((chain) => chain.chain_id === chainId)[0];
 
-    if (!networkData) {
-        setSupported(false);
-    } else {
-        setSupported(true);
-        // set additional network data here
-    }
-}
+  if (!networkData) {
+    setSupported(false);
+  } else {
+    setSupported(true);
+    // set additional network data here
+  }
+};
 ```
 
 If the network does exist in the list of supported networks, you can then save additional network name and symbol. The symbol will be used later on to display the connected account's balance. 
@@ -193,46 +194,48 @@ If the network does exist in the list of supported networks, you can then save a
 You can replace the `// set additional network data here` comment with the following:
 
 ```js
-setNetwork(networkData.name)
-setSymbol(networkData.native_currency.symbol)
+setNetwork(networkData.name);
+setSymbol(networkData.native_currency.symbol);
 ```
 
 You will also need to update the `useEffect` dependency array to include the `chainId` and `account` state variables so that it re-renders with any changes to either variable.
 
 ```js
 useEffect(() => {
-    ...
-}, [connector, chainId, account])
+  ...
+}, [connector, chainId, account]);
 ```
 
 Then to render these state variables on the page, you can include additional UI elements alongside the **Disconnect** button. Again, you can use conditional rendering to display specific details or an error message if the network is supported or not.
 
 ```jsx
-{connector && !fetching ?
-    <LoadedData>
+{connector && !fetching ? (
+  <LoadedData>
+    <Data>
+      <strong>Connected Account: </strong>
+      {account}
+    </Data>
+    <Data>
+      <strong>Chain ID: </strong>
+      {chainId}
+    </Data>
+    {supported ? (
+      <>
         <Data>
-            <strong>Connected Account: </strong>
-            { account }
+          <strong>Network: </strong>
+          {network}
         </Data>
-        <Data>
-            <strong>Chain ID: </strong>
-            { chainId }
-        </Data>
-        {supported ?
-            <>
-                <Data>
-                    <strong>Network: </strong>
-                    { network }
-                </Data>
-            </>
-            :
-            <strong>Network not supported. Please disconnect, switch networks, and connect again.</strong>
-        }    
-        <OutlinedButton onClick={killSession}>Disconnect</OutlinedButton>
-    </LoadedData>    
-    :
+      </>
+    ) : (
+      <strong>
+        Network not supported. Please disconnect, switch networks, and connect again.
+      </strong>
+    )}
+    <OutlinedButton onClick={killSession}>Disconnect</OutlinedButton>
+  </LoadedData>
+  ) : (
     <Button onClick={connect}>Connect Wallet</Button>
-}
+)}
 ```
 
 You can adapt the above code snippet as needed to provide better error handling.
@@ -248,7 +251,7 @@ You can replace the `// check state variables here & if needed refresh the app` 
 ```js
 // If any of these variables do not exist and the connector is connected, refresh the data
 if ((!chainId || !account) && connector.connected) {
-    refreshData()
+  refreshData();
 }
 ```
 
@@ -275,31 +278,31 @@ For simplicity, you can add the logic for fetching the account balance and savin
 
 ```js
 const onConnect = async (chainId, address) => {
-    setAccount(address);
+  setAccount(address);
 
-    const networkData = SUPPORTED_NETWORKS.filter((network) => network.chain_id === chainId)[0];    
+  const networkData = SUPPORTED_NETWORKS.filter((network) => network.chain_id === chainId)[0];  
 
-    if (!networkData){
-        setSupported(false)
-    } else {
-        setSupported(true)
-        setNetwork(networkData.name)
-        setSymbol(networkData.native_currency.symbol)
-        setChainId(chainId);
+  if (!networkData){
+    setSupported(false);
+  } else {
+    setSupported(true);
+    setNetwork(networkData.name);
+    setSymbol(networkData.native_currency.symbol);
+    setChainId(chainId);
 
-        // 1. Create an Ethers provider
-        const provider = new ethers.providers.StaticJsonRpcProvider(networkData.rpc_url, {
-          chainId,
-          name: networkData.name
-        });
+    // 1. Create an Ethers provider
+    const provider = new ethers.providers.StaticJsonRpcProvider(networkData.rpc_url, {
+      chainId,
+      name: networkData.name
+    });
 
-        // 2. Get the account balance
-        const balance = await provider.getBalance(address);
-        // 3. Format the balance
-        const formattedBalance = ethers.utils.formatEther(balance);
-        // 4. Save the balance to state
-        setBalance(formattedBalance)
-    }
+    // 2. Get the account balance
+    const balance = await provider.getBalance(address);
+    // 3. Format the balance
+    const formattedBalance = ethers.utils.formatEther(balance);
+    // 4. Save the balance to state
+    setBalance(formattedBalance);
+  }
 };
 ```
 
@@ -310,27 +313,28 @@ You can also use the `balance` state variable to refresh the data on the page.
 ```js
 // If any of these variables do not exist and the connector is connected, refresh the data
 if ((!chainId || !account || !balance) && connector.connected) {
-    refreshData()
+  refreshData();
 }
 ```
 
 Finally, you can display the account balance if the user is connected to a supported network. You can use the `symbol` state variable that was created earlier on in the guide to show the balance in **DEV** for Moonbase Alpha.
 
 ```jsx
-{supported ?
-    <>
-        <Data>
-            <strong>Network: </strong>
-            { network }
-        </Data>
-        <Data>
-            <strong>Balance: </strong>
-            { balance } { symbol }
-        </Data>
-    </>
-    :
+{supported ? (
+  <>
+    <Data>
+      <strong>Network: </strong>
+      {network}
+    </Data>
+    <Data>
+      <strong>Balance: </strong>
+      {balance} {symbol}
+    </Data>
+  </>
+  ) : (
     <strong>Network not supported. Please disconnect, switch networks, and connect again.</strong>
-} 
+  )
+}
 ```
 
 This example can be adapted to retrieve other data from Ethers as needed.
@@ -349,27 +353,28 @@ To get started, you will need to update the `sendTransaction` function that has 
       // Handle the error as you see fit
       console.error(e);
     }
-  }
+  };
 ```
 
 To initiate the transaction from the DApp, you will need to create a button, that `onClick` calls the `sendTransaction` function. This should only be done if the connected network is a supported network.
 
 ```jsx
-{supported ?
-    <>
-        <Data>
-            <strong>Network: </strong>
-            { network }
-        </Data>
-        <Data>
-            <strong>Balance: </strong>
-            { balance } { symbol }
-        </Data>
-        <OutlinedButton onClick={sendTransaction}>Send Transaction</OutlinedButton>
-    </>
-    :
+{supported ? (
+  <>
+    <Data>
+      <strong>Network: </strong>
+      {network}
+    </Data>
+    <Data>
+      <strong>Balance: </strong>
+      {balance} {symbol}
+    </Data>
+    <OutlinedButton onClick={sendTransaction}>Send Transaction</OutlinedButton>
+  </>
+  ) : (
     <strong>Network not supported. Please disconnect, switch networks, and connect again.</strong>
-} 
+  )
+}
 ```
 
 When you click on **Send Transaction**, a pop-up will appear in MetaMask mobile with the transaction details. To sign and send the transaction, you can click on **Confirm**. If successful you should see a notification in the MetaMask mobile app. You can also confirm the transaction went through by searching for your account in a block explorer such as [Moonscan](https://moonbase.moonscan.io/){target=blank}.
