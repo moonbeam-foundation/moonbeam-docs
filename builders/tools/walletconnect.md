@@ -19,7 +19,7 @@ WalletConnect can also be used to establish a connection between a DApp and a de
 
 In this guide, you'll learn how to integrate WalletConnect into a simple DApp built on the Moonbase Alpha TestNet. The guide will be divided into a few different sections. The first section will cover connecting your DApp to MetaMask mobile. After the connection has been established, the guide will cover disconnections. This way, when you are testing your DApp you will be able to connect and then disconnect so you don't end up with a bunch of unnecessary WalletConnect sessions lingering in MetaMask mobile. Afterwards you will learn how to display network and account details when connected, and send transactions from your DApp to MetaMask mobile for confirmation.
 
-This guide is an adaptation of the [WalletConnect Example Dapp](https://example.walletconnect.org/){target=blank} ([source code](https://github.com/WalletConnect/walletconnect-example-dapp){target=blank}).
+This guide is an adaptation of the [WalletConnect Example Dapp](https://example.walletconnect.org/){target=blank} ([source code](https://github.com/WalletConnect/walletconnect-example-dapp){target=blank}). To view the end result, you can check out the [Moonbeam WalletConnect Demo app](https://moonbeam-walletconnect-demo.netlify.app/){target=blank} ([source code](https://github.com/PureStake/moonbeam-walletconnect-demo){target=blank}).
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
@@ -37,7 +37,7 @@ Lastly, you will need to have an account funded with DEV tokens, so that you can
 
 To get started quickly with the Moonbeam WalletConnect template, which provides everything you need to dive right in, you'll need to take the following steps:
 
-1. Clone the [walletconnect-template GitHub repository](https://github.com/eshaben/walletconnect-template){target=blank}
+1. Clone the [walletconnect-template GitHub repository](https://github.com/PureStake/moonbeam-walletconnect-template){target=blank}
 2. Run `npm install` to install the required dependencies
 3. Run `npm start` to spin up a local instance of the DApp
 
@@ -378,9 +378,9 @@ When you click on **Send Transaction**, a pop-up will appear in MetaMask mobile 
 
 ## Final Code {: #final-code }
 
-To review the code for this tutorial in one place, you can check out the [moonbeam-walletconnect-demo GitHub repository](){target=blank}.
+To review the code for this tutorial in one place, you can check out the [moonbeam-walletconnect-demo GitHub repository](https://github.com/PureStake/moonbeam-walletconnect-demo){target=blank}.
 
-To see all of the code in action, you can check out the deployed [Moonbeam WalletConnect Demo App](){target=blank}.
+To see all of the code in action, you can check out the deployed [Moonbeam WalletConnect Demo App](https://moonbeam-walletconnect-demo.netlify.app/){target=blank}.
 
 ## Additional Considerations {: #additional-considerations }
 
