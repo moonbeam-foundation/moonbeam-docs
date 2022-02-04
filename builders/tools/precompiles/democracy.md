@@ -30,7 +30,7 @@ The democracy pallet is coded in Rust and it is part of a pallet that is normall
 
 ## The Democracy Solidity Interface {: #the-democracy-solidity-interface } 
 
-[DemocracyInterface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/pallet-democracy/DemocracyInterface.sol) is an interface through which solidity contracts can interact with the democracy pallet. The beauty of the precompile is that you don’t have to learn the Substrate API- you can interact with staking functions using the Ethereum interface you're familiar with.
+[DemocracyInterface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/pallet-democracy/DemocracyInterface.sol){target=_blank} is an interface through which solidity contracts can interact with the democracy pallet. The beauty of the precompile is that you don’t have to learn the Substrate API — you can interact with staking functions using the Ethereum interface you're familiar with.
 
 The interface includes the following functions:
 
@@ -117,10 +117,10 @@ On the next screen, take the following steps:
 
 ### Call the Propose Function {: #call-the-propose-function }
 
-1. Expand the Democracy precompile contract to see the available functions. Remember, we are not deploying a contract here, instead we are accessing a precompiled contract that is already deployed
-2. Find the **propose** function press the button to expand the section
+1. Expand the Democracy precompile contract to see the available functions
+2. Find the **propose** function and press the button to expand the section
 3. Enter the hash of the proposal
-4. Enter the value in WEI of the tokens to bond.  {{ networks.moonbase.democracy.min_deposit }} DEV / {{ networks.moonriver.democracy.min_deposit }} MOVR or {{ networks.moonbeam.democracy.min_deposit }} GLMR is the minimum. For this example 4 DEV or `4000000000000000000` was entered
+4. Enter the value in WEI of the tokens to bond. The minimum bond is  {{ networks.moonbase.democracy.min_deposit }} DEV / {{ networks.moonriver.democracy.min_deposit }} MOVR or {{ networks.moonbeam.democracy.min_deposit }} GLMR. For this example 4 DEV or `4000000000000000000` was entered
 5. Press **transact** and confirm the transaction in MetaMask
 
 ![Call the propose function](/images/builders/tools/precompiles/democracy/democracy-6.png)
@@ -130,7 +130,7 @@ On the next screen, take the following steps:
 At this step, you'll take the encoded proposal that you got from [Polkadot.JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/democracy){target=_blank} and submit it via the **note_preimage** function of the democracy precompile. Despite its name, the preimage is not required to be submitted before the proposal. However, submitting the preimage is required before a proposal can be enacted. To submit the preimage via the **note_preimage** function, take the following steps:
 
 1. Expand the Democracy precompile contract to see the available functions 
-2. Find the **note_preimage** function press the button to expand the section
+2. Find the **note_preimage** function and press the button to expand the section
 3. Copy the encoded proposal that you noted in the prior section. Note, the encoded proposal is not the same as the preimage hash. Ensure you are are entering the correct value into this field
 4. Press **transact** and confirm the transaction in MetaMask
 
@@ -140,7 +140,7 @@ After your transaction has been confirmed you can return to the Democracy sectio
 
 ## Second a Proposal {: #second-a-proposal } 
 
-Seconding a proposal allows it to move to referendum status and requires a bond equivalent to the bond furnished by the proposer. Seconded proposals transition to referendum status once per launch period, which is approximately ({{ networks.moonbase.democracy.launch_period.days}} day in Moonbase Alpha and Moonriver, and {{ networks.moonbeam.democracy.launch_period.days}} days in Moonbeam). 
+Seconding a proposal allows it to move to referendum status and requires a bond equivalent to the bond furnished by the proposer. Seconded proposals transition to referendum status once per launch period, which is approximately {{ networks.moonbase.democracy.launch_period.days}} day in Moonbase Alpha and Moonriver, and {{ networks.moonbeam.democracy.launch_period.days}} days in Moonbeam. 
 
 ### Get the Proposal Index {: #get-the-proposal-index } 
 
@@ -159,7 +159,7 @@ First, you'll need to gather some information about the proposal you wish to sec
 Now, you're ready to return to Remix to second the proposal via the democracy precompile. To do so, take the following steps:
 
 1. Expand the Democracy precompile contract to see the available functions if it is not already open
-2. Find the **second** function press the button to expand the section
+2. Find the **second** function and press the button to expand the section
 3. Enter the index of the proposal to second
 4. Although you noted the exact number of seconds the proposal already has above, the parameter needed is an upper bound. To avoid gas estimation errors, you should enter a number that is significantly larger than the actual number of seconds. `10` was entered in this example
 5. Press **transact** and confirm the transaction in MetaMask
@@ -191,7 +191,7 @@ First, you'll need to get the index of the referendum you wish to vote on. Remem
 Now, you're ready to return to Remix to vote on the referendum via the democracy precompile. To do so, take the following steps:
 
 1. Expand the Democracy precompile contract to see the available functions if it is not already open
-2. Find the **standard_vote** function press the button to expand the section
+2. Find the **standard_vote** function and press the button to expand the section
 3. Enter the index of the referendum to vote on
 4. Enter 0 for nay or 1 for aye. In the context of a referendum, nay is a vote to keep the status quo unchanged. Aye is a vote to enact the action proposed by the referendum
 5. Enter the number of tokens to lock in WEI. Avoid entering your full balance here because you need to pay for transaction fees
