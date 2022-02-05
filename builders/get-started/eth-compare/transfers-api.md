@@ -43,8 +43,8 @@ All the scenarios described above will effectively transfer base layer network t
 
 The [Polkadot.js API package](https://polkadot.js.org/docs/api/start) provides developers a way to interact with Substrate chains using Javascript.
 
-The following code snippet uses Polkadot.js to loop through each event fetched from the provider. Then, it checks it corresponds to a `balances.Transfer` event. If so, it will extract the `from`, `to` and `amount` of the transfer and display it on the console. Note that the `amount` is shown in the smallest unit (Wei).  You can find all the available information about Polkadot.js and the Substrate JSON RPC in their [official documentation site](https://polkadot.js.org/docs/substrate/rpc).
+The following code snippet uses [`subscribeFinalizedHeads`](https://polkadot.js.org/docs/substrate/rpc/#subscribefinalizedheads-header) to subscribe to new finalized block headers, and loops through extrinsics fetched from the block, and retrieves the events of each extrinsic. Then, it checks if any event corresponds to a `balances.Transfer` event. If so, it will extract the `from`, `to`, `amount`, and the `tx hash` of the transfer and display it on the console. Note that the `amount` is shown in the smallest unit (Wei).  You can find all the available information about Polkadot.js and the Substrate JSON RPC in their [official documentation site](https://polkadot.js.org/docs/substrate/rpc).
 
 --8<-- 'code/vs-ethereum/balance-event.md'
 
-In addition, you can find more code snippets related to more specific cases around balance transfers in [this script](https://gist.github.com/crystalin/b2ce44a208af60d62b5ecd1bad513bce).
+In addition, you can find more sample code snippets related to more specific cases around balance transfers at this [GitHub page](https://gist.github.com/crystalin/b2ce44a208af60d62b5ecd1bad513bce).
