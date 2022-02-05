@@ -9,9 +9,9 @@ description: Moonbeam Democracy Solidity Precompile Interface Demo
 
 ## Introduction {: #introduction } 
 
-As a Polkadot parachain, Moonbeam features native on-chain governance thanks to the [substrate democracy pallet](https://marketplace-staging.substrate.dev/pallets/pallet-democracy){target=_blank}. The democracy precompile allows developers to access the governance functions of the substrate democracy pallet directly from a solidity interface. This enables a vastly improved end-user experience. For example, token-holders can vote on referenda directly from MetaMask, rather than importing an account in Polkadot.Js Apps and navigating a complex UI. 
+As a Polkadot parachain, Moonbeam features native on-chain governance thanks to the [substrate democracy pallet](https://marketplace-staging.substrate.dev/pallets/pallet-democracy){target=_blank}. The democracy pallet is coded in Rust and it is part of a pallet that is normally not accessible from the Ethereum side of Moonbeam. However, the democracy precompile allows you to access the governance functions of the substrate democracy pallet directly from a solidity interface. Additionally, this enables a vastly improved end-user experience. For example, token-holders can vote on referenda directly from MetaMask, rather than importing an account in Polkadot.Js Apps and navigating a complex UI. 
 
-The democracy pallet is coded in Rust and it is part of a pallet that is normally not accessible from the Ethereum side of Moonbeam. However, the Democracy Precompile allows developers to access the native substrate democracy features using the Ethereum API in a precompiled contract located at address:
+The democracy precompile is located at the following address:
 
 === "Moonbeam"
      ```
@@ -52,7 +52,7 @@ The interface also includes the following functions which are not currently supp
   - **ongoing_referendum_info**(*uint256* ref_index) — read-only function that returns the details of the specified ongoing referendum in the form of a tuple that includes the following:
     1. block in which the referendum ended (*uint256*)
     2. the proposal hash (*bytes32*)
-    3. the biasing mechanism where 0 is SuperMajorityApprove, 1 is SuperMajorityAgainst, 2 is SimpleMajority (*uint256*)
+    3. [the biasing mechanism](https://wiki.polkadot.network/docs/learn-governance#super-majority-approve){target=_blank} where 0 is SuperMajorityApprove, 1 is SuperMajorityAgainst, 2 is SimpleMajority (*uint256*)
     4. the enactment delay period (*uint256*)
     5. the total aye vote, including conviction (*uint256*)
     6. the total nay note, including conviction (*uint256*)
@@ -70,7 +70,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 ## Remix Set Up {: #remix-set-up } 
 
 1. Get a copy of [DemocracyInterface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/pallet-democracy/DemocracyInterface.sol){target=_blank}
-2. Copy and paste the file contents into a Remix file named DemocracyInterface.sol
+2. Copy and paste the file contents into a [Remix file](https://remix.ethereum.org/){target=_blank} named DemocracyInterface.sol
 
 ![Copying and Pasting the Democracy Interface into Remix](/images/builders/tools/precompiles/democracy/democracy-1.png)
 
@@ -120,14 +120,14 @@ On the next screen, take the following steps:
 1. Expand the Democracy precompile contract to see the available functions
 2. Find the **propose** function and press the button to expand the section
 3. Enter the hash of the proposal
-4. Enter the value in WEI of the tokens to bond. The minimum bond is  {{ networks.moonbase.democracy.min_deposit }} DEV / {{ networks.moonriver.democracy.min_deposit }} MOVR or {{ networks.moonbeam.democracy.min_deposit }} GLMR. For this example 4 DEV or `4000000000000000000` was entered
+4. Enter the value in WEI of the tokens to bond. The minimum bond is  {{ networks.moonbase.democracy.min_deposit }} DEV, {{ networks.moonriver.democracy.min_deposit }} MOVR or {{ networks.moonbeam.democracy.min_deposit }} GLMR. For this example 4 DEV or `4000000000000000000` was entered
 5. Press **transact** and confirm the transaction in MetaMask
 
 ![Call the propose function](/images/builders/tools/precompiles/democracy/democracy-6.png)
 
 ### Submit the Preimage {: #submit-the-preimage }
 
-At this step, you'll take the encoded proposal that you got from [Polkadot.JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/democracy){target=_blank} and submit it via the **note_preimage** function of the democracy precompile. Despite its name, the preimage is not required to be submitted before the proposal. However, submitting the preimage is required before a proposal can be enacted. To submit the preimage via the **note_preimage** function, take the following steps:
+At this step, you'll take the encoded proposal that you got from [Polkadot.JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/democracy){target=_blank} and submit it via the **note_preimage** function of the Democracy precompile. Despite its name, the preimage is not required to be submitted before the proposal. However, submitting the preimage is required before a proposal can be enacted. To submit the preimage via the **note_preimage** function, take the following steps:
 
 1. Expand the Democracy precompile contract to see the available functions 
 2. Find the **note_preimage** function and press the button to expand the section
@@ -140,7 +140,7 @@ After your transaction has been confirmed you can return to the Democracy sectio
 
 ## Second a Proposal {: #second-a-proposal } 
 
-Seconding a proposal allows it to move to referendum status and requires a bond equivalent to the bond furnished by the proposer. Seconded proposals transition to referendum status once per launch period, which is approximately {{ networks.moonbase.democracy.launch_period.days}} day in Moonbase Alpha and Moonriver, and {{ networks.moonbeam.democracy.launch_period.days}} days in Moonbeam. 
+Seconding a proposal allows it to move to referendum status and requires a bond equivalent to the bond furnished by the proposer. Seconded proposals transition to referendum status once per launch period, which is approximately {{ networks.moonbase.democracy.launch_period.days}} day in Moonbase Alpha, {{ networks.moonbase.democracy.launch_period.days}} day in Moonriver, and {{ networks.moonbeam.democracy.launch_period.days}} days in Moonbeam. 
 
 ### Get the Proposal Index {: #get-the-proposal-index } 
 
@@ -173,7 +173,7 @@ And that's it! To review your seconded proposal, you can revisit [Polkadot.JS Ap
 
 ## Vote on a Referendum {: #vote-on-a-referendum } 
 
-Seconded proposals transition to referendum status once per launch period, which is approximately {{ networks.moonbase.democracy.launch_period.days}} day in Moonbase Alpha and Moonriver, and {{ networks.moonbeam.democracy.launch_period.days}} days in Moonbeam. If there are no active referenda currently up for vote in Moonbase Alpha, you may need to wait for the launch period to pass for the proposal you seconded in the prior step to make it to referendum status.
+Seconded proposals transition to referendum status once per launch period, which is approximately {{ networks.moonbase.democracy.launch_period.days}} day in Moonbase Alpha, {{ networks.moonbase.democracy.launch_period.days}} day in Moonriver, and {{ networks.moonbeam.democracy.launch_period.days}} days in Moonbeam. If there are no active referenda currently up for vote in Moonbase Alpha, you may need to wait for the launch period to pass for the proposal you seconded in the prior step to make it to referendum status.
 
 ### Get the Referendum Index {: #get-the-referendum-index } 
 
@@ -196,8 +196,8 @@ Now, you're ready to return to Remix to vote on the referendum via the democracy
 4. Enter 0 for nay or 1 for aye. In the context of a referendum, nay is a vote to keep the status quo unchanged. Aye is a vote to enact the action proposed by the referendum
 5. Enter the number of tokens to lock in WEI. Avoid entering your full balance here because you need to pay for transaction fees
 6. Enter a conviction between 0-6 inclusive that represents the desired lock period for the tokens committed to the vote, where 0 represents no lock period and 6 represents the maximum lock period. For more information on lock periods, see [voting on a proposal](/tokens/governance/voting/)
-7. Press transact and confirm the transaction in MetaMask
+7. Press **transact** and confirm the transaction in MetaMask
 
 ![Call the vote function](/images/builders/tools/precompiles/democracy/democracy-11.png)
 
-And that's it! You've completed your introduction to the democracy precompile. There are a few more functions that are documented in [DemocracyInterface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/pallet-democracy/DemocracyInterface.sol){target=_blank} — feel free to reach out on [Discord](https://discord.gg/moonbeam){target=_blank} if you have any questions about those functions or any other aspect of the democracy precompile.
+And that's it! You've completed your introduction to the Democracy precompile. There are a few more functions that are documented in [DemocracyInterface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/pallet-democracy/DemocracyInterface.sol){target=_blank} — feel free to reach out on [Discord](https://discord.gg/moonbeam){target=_blank} if you have any questions about those functions or any other aspect of the Democracy precompile.
