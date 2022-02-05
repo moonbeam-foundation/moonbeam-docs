@@ -41,10 +41,11 @@ First, you'll need to [create a DappRadar account](https://auth.dappradar.com/em
  4. Include the URL for your DApp
  5. Write a short description (160 characters or less)
  6. Specify the protocols your DApp is deployed to. You can select multiple protocols here, such as Moonbeam and Moonriver
- 7. Write a full description for your DApp
- 8. Optionally, provide social media links 
- 9. It is optional but recommended that you provide screenshots of your DApp. You also have the option of providing a YouTube URL to a demo of your DApp 
- 10. Review the terms and conditions, and press **Submit a dapp**
+ 7. After selecting at least one protocol, you'll be prompted to enter your DApp's contract address(es) for each protocol
+ 8. Write a full description for your DApp
+ 9. Optionally, provide social media links 
+ 10. It is optional but recommended that you provide screenshots of your DApp. You also have the option of providing a YouTube URL to a demo of your DApp 
+ 11. Review the terms and conditions, and press **Submit a dapp**
 
 ![How to Submit your DApp](/images/learn/dapps-list/dapp-radar/dapp-radar-2.png)
 
