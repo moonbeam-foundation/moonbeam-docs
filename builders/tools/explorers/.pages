@@ -3,3 +3,4 @@ nav:
   - index.md
   - overview.md
   - verify-contract.md
+  - etherscan-plugins.md

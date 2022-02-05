@@ -1,9 +1,10 @@
 ---
 title: Verify Smart Contracts
 description: Learn about how to verify smart contracts on Moonbeam networks using one of the available block explorers. 
-
 ---
+
 # Verify Smart Contracts
+
 ![Explorer Banner](/images/builders/tools/explorers/verify-contract/verify-contract-banner.png)
 
 ## Introduction {: #introduction } 
