@@ -21,6 +21,70 @@ In this guide, you'll learn how to integrate WalletConnect into a simple DApp bu
 
 This guide is an adaptation of the [WalletConnect Example Dapp](https://example.walletconnect.org/){target=blank} ([source code](https://github.com/WalletConnect/walletconnect-example-dapp){target=blank}). To view the end result, you can check out the [Moonbeam WalletConnect Demo app](https://moonbeam-walletconnect-demo.netlify.app/){target=blank} ([source code](https://github.com/PureStake/moonbeam-walletconnect-demo){target=blank}).
 
+## Quick Start {: #quick-start }
+
+If you already have a DApp with WalletConnect support, and just want to add Moonbeam support. You can use the following network configurations:
+
+=== "Moonbeam"
+    ```
+    {
+      name: "Moonbeam",
+      short_name: "moonbeam",
+      chain: "Moonbeam",
+      network: "mainnet",
+      chain_id: 1284,
+      network_id: 1284,
+      rpc_url: "https:pc.api.moonbeam.network",
+      native_currency: {
+        symbol: "GLMR",
+        name: "Glimmer",
+        decimals: "18",
+        contractAddress: "",
+        balance: "",
+      },
+    },
+    ```
+
+=== "Moonriver"
+    ```
+    {
+      name: "Moonriver",
+      short_name: "moonriver",
+      chain: "Moonriver",
+      network: "mainnet",
+      chain_id: 1285,
+      network_id: 1285,
+      rpc_url: "https://rpc.moonriver.moonbeam.network",
+      native_currency: {
+        symbol: "MOVR",
+        name: "Moonriver",
+        decimals: "18",
+        contractAddress: "",
+        balance: "",
+      },
+    },
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    {
+      name: "Moonbase Alpha",
+      short_name: "moonbase",
+      chain: "Moonbase",
+      network: "testnet",
+      chain_id: 1287,
+      network_id: 1287,
+      rpc_url: "https://rpc.api.moonbase.moonbeam.network",
+      native_currency: {
+        symbol: "DEV",
+        name: "DEV",
+        decimals: "18",
+        contractAddress: "",
+        balance: "",
+      },
+    },
+    ```
+
 ## Checking Prerequisites {: #checking-prerequisites }
 
 Throughout this guide, you'll use a simple front-end DApp built with [React](https://reactjs.org/) to connect to a mobile wallet via WalletConnect. So you will need a React project and the MetaMask mobile app installed for testing purposes. A template has been created that includes the required packages, some basic styling, and placeholders where logic and UI elements will need to be added. However, if you would to use your own DApp, you'll need to install the following required dependencies:
@@ -29,7 +93,7 @@ Throughout this guide, you'll use a simple front-end DApp built with [React](htt
 npm install ethers @walletconnect/client @walletconnect/qrcode-modal
 ```
 
-This guide will use MetaMask mobile for testing purposes. You can install MetaMask mobile from the [Apple App Store](https://apps.apple.com/us/app/metamask-blockchain-wallet/id1438144202) or [Google Play Store](https://play.google.com/store/apps/details?id=io.metamask&hl=en_US&gl=US).
+This guide will use MetaMask mobile for testing purposes. To install MetaMask mobile, you can go to [metamask.io/download/](https://metamask.io/download/){target=blank} and switch to either the **iOS** or **Android** tab.
 
 Lastly, you will need to have an account funded with DEV tokens, so that you can test out sending a transaction. To [get tokens](/builders/get-started/moonbase/#get-tokens) you can head to the faucet on [Discord](https://discord.com/invite/PfpUATX).
 
@@ -49,7 +113,7 @@ There are a couple of ways you can connect your MetaMask mobile wallet to the Mo
 
 In this section, you will learn how to make a connection between your DApp and MetaMask mobile. WalletConnect establishes a remote connection between a DApp and mobile wallet by using a bridge server to relay payloads. The connection is initiated via a QR code displayed in the DApp, which will need to be scanned and approved by the mobile wallet.
 
-To get started, you can open up the `App.js` file of the template and the first changes will be made within the `connect` function. This function will handle the connection logic by creating a new instance of the WalletConnect connector. You'll notice that the `setFetching` state hook is already in place. This will be used to set the `fetching` state variable to `true` while the connection is being established. In general the `connect` function will:
+To get started, you can open up the [`App.js` file of the template](https://github.com/PureStake/moonbeam-walletconnect-template/blob/main/src/App.js) and the first changes will be made within the `connect` function. This function will handle the connection logic by creating a new instance of the WalletConnect connector. You'll notice that the `setFetching` state hook is already in place. This will be used to set the `fetching` state variable to `true` while the connection is being established. In general the `connect` function will:
 
 1. Create the WalletConnect Connector and pass in the URL for the bridge server and the WalletConnect QR code modal
 2. Use the `setConnector` state hook to update the `connector` state variable
@@ -72,7 +136,7 @@ const connect = async () => {
 };
 ```
 
-Now that you have the `connect` function setup, you can create a **Connect Wallet** button that will call it `onClick`. You can replace the `{/* buttons and network details will go here */}` comment with the following button:
+Now that you have the `connect` function setup, you can create a **Connect Wallet** button that will call it `onClick`. You can replace the `{/* buttons and network details will go here */}` comment in the [template](https://github.com/PureStake/moonbeam-walletconnect-template/blob/main/src/App.js#L124){target=blank} with the following button:
 
 ```html
 <Button onClick={connect}>Connect Wallet</Button>
@@ -170,7 +234,7 @@ So far you've setup the minimum logic required for connecting and disconnecting 
 
 With the basics of connecting and disconnecting out of the way, you can expand on what is displayed in the DApp when a user is connected. The first thing you'll want to do is check if the network they are on is supported and if not display a message that requests them to switch the network.
 
-The template comes with a list of supported networks, you can find it under `src/helpers/networks.js`. For the purposes of this guide, Moonbase Alpha is the only one that you'll be testing but you can feel free to uncomment the Moonbeam and Moonriver network configurations and add additional networks as needed.
+The template comes with a list of supported networks, you can find it under [`src/helpers/networks.js`](https://github.com/PureStake/moonbeam-walletconnect-template/blob/main/src/helpers/networks.js){target=blank}. For the purposes of this guide, Moonbase Alpha is the only one that you'll be testing but you can feel free to uncomment the Moonbeam and Moonriver network configurations and add additional networks as needed.
 
 You can add the logic to check if the connected network is supported to the `onConnect` function. The `onConnect` function is called anytime a `connect` event is emitted. If the user is connected to a supported network, you can display network details such as the chain ID, network name, and more. You can add the following state variables and hooks:
 
@@ -260,7 +324,7 @@ While you're developing the DApp, you'll want to handle page refreshes and updat
 
 The template already has a `refreshData` function, it just needs to be called under certain circumstances. If the `connector` exists and is connected, but the `chainId` or `account` doesn't you should call the `refreshData` function and use the `connector` configurations to update state and re-render the variables on the page.
 
-You can replace the `// check state variables here & if needed refresh the app` comment with the following:
+You can replace the `// check state variables here & if needed refresh the app` [comment](https://github.com/PureStake/moonbeam-walletconnect-template/blob/main/src/App.js#L84){target=blank} with the following:
 
 ```js
 // If any of these variables do not exist and the connector is connected, refresh the data
