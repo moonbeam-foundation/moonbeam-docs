@@ -79,6 +79,8 @@ npx hardhat verify --network moonbase <CONTRACT-ADDRESS>
 
 In your terminal you should see the source code for your contract was successfully submitted for verification. If the verification was successful, you should see **Successfully verified contract** and there will be a link to the contract code on [Moonscan for Moonbase Alpha](https://moonbase.moonscan.io/){target=blank}.
 
+![Successful verification using hardhat-etherscan plugin](/images/builders/interact/verify-contracts/etherscan-plugins/plugins-3.png)
+
 If you're verifying a contract that has constructor arguments, you'll need to run the above command and add the constructor arguments used to deploy the contract at the end of the command. For example:
 
 ```
@@ -117,5 +119,7 @@ truffle run verify MyToken --network moonbase
 ```
 
 If the contract verification was successful, in your terminal, you should see **Pass - Verified** with a link to the contract code on [Moonscan for Moonbase Alpha](https://moonbase.moonscan.io/){target=blank}.
+
+![Successful verification using truffle-verify-plugin](/images/builders/interact/verify-contracts/etherscan-plugins/plugins-4.png)
 
 For further information on the plugin, please refer to the [README.md file](https://github.com/rkalis/truffle-plugin-verify#readme){target=blank} of the `truffle-plugin-verify` GitHub repository.
