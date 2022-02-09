@@ -19,11 +19,11 @@ As part of its Ethereum compatibility features, OpenZeppelin products can be sea
 
 Currently, the following OpenZeppelin products/solutions work on the different networks available on Moonbeam:
 
-|      **Product**      |  | **Moonbeam** |  | **Moonriver** |  | **Moonbase Alpha** |  | **Moonbase Dev Node** |
-|:---------------------:|::|:------------:|::|:-------------:|::|:------------------:|::|:---------------------:|
-| Contracts & Libraries |  |      ✓       |  |       ✓       |  |         ✓          |  |           ✓           |
-|    Contract Wizard    |  |      ✓       |  |       ✓       |  |         ✓          |  |           ✓           |
-|       Defender        |  |      ✓       |  |       ✓       |  |         ✓          |  |           X           |
+|      **Product**      | **Moonbeam** | **Moonriver** | **Moonbase Alpha** | **Moonbase Dev Node** |
+|:---------------------:|:------------:|:-------------:|:------------------:|:---------------------:|
+| Contracts & Libraries |      ✓       |       ✓       |         ✓          |           ✓           |
+|    Contract Wizard    |      ✓       |       ✓       |         ✓          |           ✓           |
+|       Defender        |      ✓       |       ✓       |         ✓          |           X           |
 
 You will find a corresponding tutorial for each product in the following links:
 

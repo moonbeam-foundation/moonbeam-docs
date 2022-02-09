@@ -170,12 +170,13 @@ contract MyToken is ERC721, ERC721Enumerable, ERC721Burnable, Ownable {
 
 This ERC-721 token smart contract was extracted from the [Contract Wizard](#openzeppelin-contract-wizard), setting the `Base URI` as `Test` and activating the `Mintable`, `Burnable`, and `Enumerable` features.
 
-With the contract compiled, head to the **Deploy & Run Transactions** tab. In here, you need to:
+With the contract compiled, next you will need to:
 
- 1. Change the environment to **Injected Web3**. This will use MetaMask's injected provider. Consequently, the contract will be deployed to whatever network MetaMask is connected to. MetaMask might show a pop-up outlining that Remix is trying to connect to your wallet
- 2. Select the proper contract to deploy. In this example, it is the `MyToken` contract inside the `ERC721.sol` file
- 3. If everything is ready, click on the **Deploy** button. Review the transaction information in MetaMask and confirm it
- 4. After a few seconds, the transaction should get confirmed, and you should see your contract under **Deployed Contracts**
+ 1. Head to the **Deploy & Run Transactions** tab
+ 2. Change the environment to **Injected Web3**. This will use MetaMask's injected provider. Consequently, the contract will be deployed to whatever network MetaMask is connected to. MetaMask might show a pop-up outlining that Remix is trying to connect to your wallet
+ 3. Select the proper contract to deploy. In this example, it is the `MyToken` contract inside the `ERC721.sol` file
+ 4. If everything is ready, click on the **Deploy** button. Review the transaction information in MetaMask and confirm it
+ 5. After a few seconds, the transaction should get confirmed, and you should see your contract under **Deployed Contracts**
 
 ![Deploy ERC-721 Contract with Remix](/images/builders/interact/oz-remix/oz-contracts-4.png)
 
@@ -232,12 +233,13 @@ contract MyToken is ERC1155, Ownable, Pausable {
 
 This ERC-1155 token smart contract was extracted from the [Contract Wizard](#openzeppelin-contract-wizard), setting no `Base URI` and activating `Pausable` feature. The constructor function was modified to include the minting of both a fungible and a non-fungible token.
 
-With the contract compiled, head to the **Deploy & Run Transactions** tab. In here, you need to:
+With the contract compiled, next you will need to:
 
- 1. Change the environment to **Injected Web3**. This will use MetaMask's injected provider. Consequently, the contract will be deployed to whatever network MetaMask is connected to. MetaMask might show a pop-up outlining that Remix is trying to connect to your wallet
- 2. Select the proper contract to deploy. In this example, it is the `MyToken` contract inside the `ERC1155.sol` file
- 3. If everything is ready, click on the **Deploy** button. Review the transaction information in MetaMask and confirm it
- 4. After a few seconds, the transaction should get confirmed, and you should see your contract under **Deployed Contracts**
+ 1. Head to the **Deploy & Run Transactions** tab
+ 2. Change the environment to **Injected Web3**. This will use MetaMask's injected provider. Consequently, the contract will be deployed to whatever network MetaMask is connected to. MetaMask might show a pop-up outlining that Remix is trying to connect to your wallet
+ 3. Select the proper contract to deploy. In this example, it is the `MyToken` contract inside the `ERC1155.sol` file
+ 4. If everything is ready, click on the **Deploy** button. Review the transaction information in MetaMask and confirm it
+ 5. After a few seconds, the transaction should get confirmed, and you should see your contract under **Deployed Contracts**
 
 ![Deploy ERC-1155 Contract with Remix](/images/builders/interact/oz-remix/oz-contracts-5.png)
 
