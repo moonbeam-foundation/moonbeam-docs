@@ -13,8 +13,8 @@ networks:
         hex_chain_id: '0x507'
         chain_spec: alphanet
         block_explorer: https://moonbase.moonscan.io/
-        parachain_release_tag: v0.18.1 # must be in this exact format for links to work
-        parachain_sha256sum: c866828124fb763cf1e11baf328bd21467a808aa6182bbc9c324d5430e180ccb
+        parachain_release_tag: v0.19.1 # must be in this exact format for links to work
+        parachain_sha256sum: cf3cc0671796baca0a8e4a6ba897c6ef78f6b16ba71763b3f1567d5cae965930
         tracing_tag: purestake/moonbeam-tracing:v0.16.0-1001-9ddc
         gas_block: 15M
         gas_tx: 12.995M
@@ -154,6 +154,7 @@ networks:
             staking: '0x0000000000000000000000000000000000000800'
             crowdloan: '0x0000000000000000000000000000000000000801'
             erc20: '0x0000000000000000000000000000000000000802'
+            democracy: '0x0000000000000000000000000000000000000803'
         substrate_api_sidecar:
             stable_version: 9.2.0
         tx_weight_to_gas_ratio: 25000
@@ -254,6 +255,7 @@ networks:
             staking: '0x0000000000000000000000000000000000000800'
             crowdloan: '0x0000000000000000000000000000000000000801'
             erc20: '0x0000000000000000000000000000000000000802'
+            democracy: '0x0000000000000000000000000000000000000803'
         chainlink:
             feed:
                 aggregator:
@@ -366,6 +368,7 @@ networks:
             staking: '0x0000000000000000000000000000000000000800'
             crowdloan: '0x0000000000000000000000000000000000000801'
             erc20: '0x0000000000000000000000000000000000000802'
+            democracy: '0x0000000000000000000000000000000000000803'
     relay_chain:
         p2p: 30334
         rpc: 9934
