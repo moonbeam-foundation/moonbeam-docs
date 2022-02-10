@@ -280,3 +280,8 @@ In summary, delegators will earn rewards based on their stake of the total deleg
 From the previous example, Alice was rewarded with `0.0044` tokens after two payout rounds:
 
 ![Staking Reward Example](/images/tokens/staking/stake/stake-11.png)
+
+--8<-- 'text/disclaimers/staking-risks.md'
+*Staked MOVR/GLMR tokens are locked up, and retrieving them requires a {{ networks.moonriver.delegator_timings.del_bond_less.days }} day/{{ networks.moonbeam.delegator_timings.del_bond_less.days }} day waiting period .*
+--8<-- 'text/disclaimers/staking-risks-part-2.md'
+

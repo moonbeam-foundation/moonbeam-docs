@@ -124,3 +124,5 @@ This will create an instance of the Aggregator interface that you can interact w
 Note that to obtain the real price, you must account for the decimals of the price feed, available with the `decimals()` method.
 
 If there is any specific pair you want us to include, feel free to reach out to us through our [Discord server](https://discord.com/invite/PfpUATX).
+
+--8<-- 'text/disclaimers/third-party-content.md'

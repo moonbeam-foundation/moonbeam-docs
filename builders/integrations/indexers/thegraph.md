@@ -315,3 +315,5 @@ The logs from the previous command should look similar to:
 ![The Graph deployed](/images/builders/integrations/indexers/the-graph/the-graph-1.png)
 
 DApps can now use the Subgraph endpoints to fetch the data indexed by The Graph protocol.
+
+--8<-- 'text/disclaimers/third-party-content.md'

@@ -240,3 +240,5 @@ We can execute this code with a node, and the following `dataQuery` output shoul
 ![Band Protocol JavaScript Library](/images/builders/integrations/oracles/band/band-console.png)
 
 Note that compared to the request done via smart contracts, the result is given directly in the correct units.
+
+--8<-- 'text/disclaimers/third-party-content.md'

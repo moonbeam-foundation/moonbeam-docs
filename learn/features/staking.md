@@ -151,3 +151,7 @@ For each delegator, the reward distribution (per block proposed and finalized by
 ![Staking Delegator Reward](/images/learn/features/staking/staking-overview-2.png)
 
 Where `amount_due` is the corresponding inflation being distributed in a specific block, the `stake` corresponds to the amount of tokens bonded by each delegator in respect to the total stake of that collator.
+
+--8<-- 'text/disclaimers/staking-risks.md'
+*Staked MOVR/GLMR tokens are locked up, and retrieving them requires a {{ networks.moonriver.delegator_timings.del_bond_less.days }} day/{{ networks.moonbeam.delegator_timings.del_bond_less.days }} day waiting period .*
+--8<-- 'text/disclaimers/staking-risks-part-2.md'

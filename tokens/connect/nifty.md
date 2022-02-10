@@ -107,3 +107,5 @@ Next, select the type of import from the dropdown and enter the necessary detail
 Your account will be imported and you'll be switched to the imported account.
 
 <img src="/images/tokens/connect/nifty/nifty-11.png" alt="Nifty create an account" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
+
+--8<-- 'text/disclaimers/third-party-content.md'

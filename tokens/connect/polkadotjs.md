@@ -67,3 +67,5 @@ After the transaction is signed using the password, Polkadot.js will display som
 ![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjs/polkadotjs-app-9.png)
 
 And that is it! We are excited about being able to support H160 accounts in Polkadot.js Apps, as we believe this will greatly enhance the user experience in the Moonbeam Network and its Ethereum compatibility features.
+
+--8<-- 'text/disclaimers/third-party-content.md'

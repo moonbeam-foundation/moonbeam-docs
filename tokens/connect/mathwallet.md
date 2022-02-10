@@ -107,3 +107,4 @@ For example, in Remix, when deploying a smart contract to Moonbase Alpha, make s
 
 By clicking on **Accept** you are signing this transaction, and the contract will be deployed to the Moonbase Alpha TestNet.
 
+--8<-- 'text/disclaimers/third-party-content.md'

@@ -294,3 +294,5 @@ You should see `5` or the value you have stored initially.
 Congratulations, you have completed the Hardhat tutorial!
 
 For more information on Hardhat, hardhat plugins, and other exciting functionality, please visit [hardhat.org](https://hardhat.org/).
+
+--8<-- 'text/disclaimers/third-party-content.md'

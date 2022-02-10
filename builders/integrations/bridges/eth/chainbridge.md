@@ -352,3 +352,4 @@ If you are interested in implementing this functionality, you can reach out dire
 
 If you want to play around with transferring ERC20S tokens from Moonbase Alpha to Kovan or Rinkeby without having to set up the contracts in Remix, you can checkout our [Moonbase Alpha ChainBridge UI](https://moonbase-chainbridge.netlify.app/transfer).
 
+--8<-- 'text/disclaimers/third-party-content.md'

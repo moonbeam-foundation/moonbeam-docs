@@ -150,7 +150,9 @@ Click on the Moonbeam Logo in your Remix IDE to open the Moonbeam Plugin. This p
 
 It's that easy! Once the contract is deployed, you'll see the address and all available read/write methods to interact with it.
 
-The Moonbeam Remix Plugin works seamlessly with Remix so you can freely switch between using the traditional Remix compile and deploy tabs and the Moonbeam Remix Plugin. 
+The Moonbeam Remix Plugin works seamlessly with Remix so you can freely switch between using the traditional Remix compile and deploy tabs and the Moonbeam Remix Plugin.
+
+--8<-- 'text/disclaimers/third-party-content.md'
 
 
 

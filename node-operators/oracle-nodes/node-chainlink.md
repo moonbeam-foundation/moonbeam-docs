@@ -218,3 +218,4 @@ And that is it! You have fully set up a Chainlink Oracle node that is running on
 
 To verify the Oracle is up and answering requests, follow our [using an Oracle](/builders/integrations/oracles/chainlink/) tutorial. The main idea is to deploy a client contract that requests to the Oracle, and the Oracle writes the requested data into the contract's storage.
 
+--8<-- 'text/disclaimers/third-party-content.md'

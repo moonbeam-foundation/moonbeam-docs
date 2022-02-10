@@ -69,3 +69,5 @@ Different methods are available inside `provider` and `wallet`. Depending on whi
 ## Tutorials {: #tutorials } 
 
 If you are interested in a more detailed step-by-step guide, you can go to our specific tutorials on using ethers.js on Moonbeam to [send a transaction](/builders/interact/eth-libraries/send-transaction/) or [deploy a contract](/builders/interact/eth-libraries/deploy-contract/).
+
+--8<-- 'text/disclaimers/third-party-content.md'

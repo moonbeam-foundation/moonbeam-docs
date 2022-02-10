@@ -399,3 +399,5 @@ Congratulations! You've deployed a contract to Moonbase Alpha using Waffle and M
 ## Example Project {: #example-project } 
 
 If you want to see a completed example of a Waffle and Mars project on Moonbeam, check out the [moonbeam-waffle-mars-example](https://github.com/EthWorks/moonbeam-waffle-mars-example) created by the team behind Waffle and Mars, EthWorks.
+
+--8<-- 'text/disclaimers/third-party-content.md'

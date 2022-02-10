@@ -42,3 +42,5 @@ Once the transaction is included, the contract appears in the "Deployed Contract
 ## Tutorial {: #tutorial } 
 
 If you are interested in a more detailed step-by-step guide, go to our specific tutorials about [using Remix](/builders/interact/remix/) with Moonbeam.
+
+--8<-- 'text/disclaimers/third-party-content.md'
