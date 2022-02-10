@@ -1,5 +1,7 @@
 # Indexing Moonbeam with SubQuery
 
+![](https://miro.medium.com/max/700/1*wNrtEnzBpVstVqGuufRBGA.png)
+
 ## Introduction
 
 SubQuery, a leading data indexing solution in Polkadot, supports indexing Moonbeam’s and Moonriver’s Ethereum Virtual Machine (EVM) and Substrate data.  A key advantage of using SubQuery is that you can flexibly collect query data across both Moonbeam's EVM and Substrate code with a single project and tool, and then query this data using GraphQL.
