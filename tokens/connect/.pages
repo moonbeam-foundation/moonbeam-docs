@@ -5,6 +5,6 @@ nav:
   - mathwallet.md
   - polkadotjs.md
   - coinbase-wallet.md
-  - ledger.md
+  - ledger
   - trezor.md
   - nifty.md
