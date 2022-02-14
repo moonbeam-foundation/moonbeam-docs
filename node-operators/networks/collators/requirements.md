@@ -71,10 +71,10 @@ Using the moonkey binary file is very straightforward. Every time you execute th
 
 This information includes:
 
-- Mnemonic seed: a 24-word mnemonic that represents your account in readable words. This gives direct access to your funds, so you need to store these words securely
-- Private key: the private key associated with your account, used for signing. This is derived from the mnemonic seed. This gives direct access to your funds, so you need to store it securely
-- Public address: your account’s address
-- Derivation path which tells the Hierarchical Deterministic (HD) wallet how to derive the specific key
+- **Mnemonic seed** - a 24-word mnemonic that represents your account in readable words. This gives direct access to your funds, so you need to store these words securely
+- **Private key** - the private key associated with your account, used for signing. This is derived from the mnemonic seed. This gives direct access to your funds, so you need to store it securely
+- **Public address** - your account’s address
+- **Derivation path** - tells the Hierarchical Deterministic (HD) wallet how to derive the specific key
 
 !!! note
     Please safely store the private key/mnemonic and do not share it with anyone. Private keys/mnemonics provide direct access to your funds.
@@ -145,4 +145,4 @@ Secondly, you will need a bond for key association. This bond is sent when [mapp
 
 ## Collator Questionnaire {: #collator-questionnaire }
 
-There is a [Collator Questionnaire](https://docs.google.com/forms/d/e/1FAIpQLSfjmcXdiOXWtquYlBhdgXBunCKWHadaQCgPuBtzih1fd0W3aA/viewform){target=blank}, that aims to assess the state of all collators on Moonbase Alpha. You should be running a collator node on Moonbase Alpha before filling out this form. You will be able to provide your contact information as well as some basic hardware specs. It provides a way to... "give us your contact info so we can contact you if we see your node isn't running well"
+There is a [Collator Questionnaire](https://docs.google.com/forms/d/e/1FAIpQLSfjmcXdiOXWtquYlBhdgXBunCKWHadaQCgPuBtzih1fd0W3aA/viewform){target=blank}, that aims to assess the state of all collators on Moonbase Alpha. You should be running a collator node on Moonbase Alpha before filling out this form.You will be able to provide your contact information as well as some basic hardware specs. It provides a way to open the lines of communication between you and the Moonbeam team in case any problems with your node arise.
