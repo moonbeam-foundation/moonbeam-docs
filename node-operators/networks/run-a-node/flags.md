@@ -16,9 +16,9 @@ This guide will cover some of the most common flags and show you how to access a
 ## Common Flags {: #common-flags }
 
 - **`--validator`** - enables validator mode for collator candidates and, if eligible, allows the node to actively participate in block production
-- **`--port`** - specifies the peer-to-peer protocol TCP port. The default port for parachains is {{ networks.parachain.p2p }} and {{ networks.relay_chain.p2p }} for the embedded relay chain
-- **`--rpc-port`**  - specifies the HTTP RPC server TCP port. The default port for parachains is {{ networks.parachain.rpc }}  and {{ networks.relay_chain.rpc }} for the embedded relay chain
-- **`--ws-port`** - specifies the WebSockets RPC server TCP port. The default port for parachains is {{ networks.parachain.ws }}  and {{ networks.relay_chain.ws }} for the embedded relay chain
+- **`--port`** - specifies the peer-to-peer protocol TCP port. The default port for parachains is `{{ networks.parachain.p2p }}` and `{{ networks.relay_chain.p2p }}` for the embedded relay chain
+- **`--rpc-port`**  - specifies the HTTP RPC server TCP port. The default port for parachains is `{{ networks.parachain.rpc }}`  and `{{ networks.relay_chain.rpc }}` for the embedded relay chain
+- **`--ws-port`** - specifies the WebSockets RPC server TCP port. The default port for parachains is `{{ networks.parachain.ws }}`  and `{{ networks.relay_chain.ws }}` for the embedded relay chain
 - **`--execution`** - specifies the execution strategy that should be used by all execution contexts. The Substrate runtime is compiled into a native executable and a WebAssembly (wasm) binary. The available options are:
     - **`native`** - only execute with the native build
     - **`wasm`** - only execute with the wasm build
@@ -29,7 +29,7 @@ This guide will cover some of the most common flags and show you how to access a
     - **`interpreted-i-know-what-i-do`** - uses the [wasmi interpreter](https://github.com/paritytech/wasmi){target=blank}
 - **`--pruning`** - specifies the state pruning mode. If running a node with the `--validator` flag, the default is to keep the full state of all blocks. Otherwise, the state is only kept for the last 256 blocks. The available options are:
     - **`archive`** - keeps the full state of all blocks
-    -**`<number-of-blocks>`** - specifies a custom number of blocks to keep the state for
+    - **`<number-of-blocks>`** - specifies a custom number of blocks to keep the state for
 - **`--state-cache-size`** - specifies the size of the internal state cache. The default is `67108864`. You can set this value to `1` to disable the cache and improve collator performance
 - **`--db-cache`** - specifies the memory the database cache is limited to use. It is recommended to set it to 50% of the actual RAM your server has. For example, for 32 GB RAM, the value should be set to `16000`. The minimum value is `2000`, but it is below the recommended specs 
 - **`--base-path`** - specifies the base path where your chain data is stored
