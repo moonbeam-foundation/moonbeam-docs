@@ -4,8 +4,9 @@ nav:
   - eth-libraries
   - eth-dev-env
   - precompiles
-  - explorers
+  - verify-contracts
   - wallets
+  - explorers.md
   - multisig-safe.md
   - debug-trace.md
   - pubsub.md
