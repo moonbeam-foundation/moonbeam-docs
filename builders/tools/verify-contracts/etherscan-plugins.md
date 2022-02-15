@@ -5,7 +5,7 @@ description: Learn about how to verify smart contracts on Moonbeam networks usin
 
 # Verify Smart Contracts with Etherscan Plugins
 
-![Etherscan Plugins Banner](/images/builders/interact/verify-contracts/etherscan-plugins/plugins-banner.png)
+![Etherscan Plugins Banner](/images/builders/tools/verify-contracts/etherscan-plugins/plugins-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -30,14 +30,14 @@ To generate a Moonscan API Key, you will need to sign up for an account. Dependi
 1. Click **Sign In**
 2. Select **Click to sign up** and then register your new account
 
-![Sign up for Moonscan](/images/builders/interact/verify-contracts/etherscan-plugins/plugins-1.png)
+![Sign up for Moonscan](/images/builders/tools/verify-contracts/etherscan-plugins/plugins-1.png)
 
 Once you have an account and are signed in, you will then be able to create an API key. 
 
 1. Select **API-KEYs** from the left side menu
 2. To add a new key, click the **+ Add** button
 
-![Add an API key](/images/builders/interact/verify-contracts/etherscan-plugins/plugins-2.png)
+![Add an API key](/images/builders/tools/verify-contracts/etherscan-plugins/plugins-2.png)
 
 You will then be prompted to enter in an **AppName** for your API key and once you enter a name and click **Continue** it will appear in your list of API keys. 
 
@@ -78,7 +78,7 @@ npx hardhat verify --network moonbase <CONTRACT-ADDRESS>
 
 In your terminal you should see the source code for your contract was successfully submitted for verification. If the verification was successful, you should see **Successfully verified contract** and there will be a link to the contract code on [Moonscan for Moonbase Alpha](https://moonbase.moonscan.io/){target=blank}.
 
-![Successful verification using hardhat-etherscan plugin](/images/builders/interact/verify-contracts/etherscan-plugins/plugins-3.png)
+![Successful verification using hardhat-etherscan plugin](/images/builders/tools/verify-contracts/etherscan-plugins/plugins-3.png)
 
 If you're verifying a contract that has constructor arguments, you'll need to run the above command and add the constructor arguments used to deploy the contract at the end of the command. For example:
 
@@ -125,6 +125,6 @@ truffle run verify MyToken --network moonbase
 
 If the contract verification was successful, in your terminal, you should see **Pass - Verified** with a link to the contract code on [Moonscan for Moonbase Alpha](https://moonbase.moonscan.io/){target=blank}.
 
-![Successful verification using truffle-verify-plugin](/images/builders/interact/verify-contracts/etherscan-plugins/plugins-4.png)
+![Successful verification using truffle-verify-plugin](/images/builders/tools/verify-contracts/etherscan-plugins/plugins-4.png)
 
 For further information on the plugin, please refer to the [README.md file](https://github.com/rkalis/truffle-plugin-verify#readme){target=blank} of the `truffle-plugin-verify` GitHub repository.

@@ -2,7 +2,6 @@ title: Interact
 nav:
  - index.md
  - eth-libraries
- - verify-contracts
  - remix.md
  - oz-remix.md
  - hardhat.md
