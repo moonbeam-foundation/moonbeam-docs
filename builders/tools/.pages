@@ -5,6 +5,7 @@ nav:
   - eth-dev-env
   - precompiles
   - verify-contracts
+  - wallets
   - explorers.md
   - multisig-safe.md
   - debug-trace.md
