@@ -1,9 +1,9 @@
 title: Connect to Moonbeam
 nav:
   - index.md
+  - ledger
   - metamask.md
   - mathwallet.md
   - polkadotjs.md
-  - ledger
   - trezor.md
   - nifty.md
