@@ -5,6 +5,7 @@ nav:
   - eth-dev-env
   - precompiles
   - explorers
+  - wallets
   - multisig-safe.md
   - debug-trace.md
   - pubsub.md
