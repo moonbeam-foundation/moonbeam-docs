@@ -51,5 +51,7 @@ First, you'll need to [create a DappRadar account](https://auth.dappradar.com/em
 
 Submissions are reviewed by the DappRadar team and will be published if the DApp is deemed suitable for listing. For any Moonbeam-related questions you can reach out to us in [Discord](https://discord.gg/moonbeam){target=_blank}. For DappRadar questions, support is available in the  [DappRadar Discord](https://discord.com/invite/4ybbssrHkm){target=_blank} or you can contact [developers@dappradar.com](mailto:developers@dappradar.com).
 
+## Disclaimer {: #disclaimer }
+
 *DappRadar contains user-generated content and Moonbeam Foundation has not vetted such user-generated content.*
 --8<-- 'text/disclaimers/user-generated-content.md'

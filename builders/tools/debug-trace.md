@@ -126,5 +126,3 @@ curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charse
 For this example, the `txpool_status` method will return the number of transactions currently pending or queued. 
 
 ![Txpool Request and Response](/images/builders/tools/debug-trace/debug-trace-4.png)
-
---8<-- 'text/disclaimers/third-party-content.md'

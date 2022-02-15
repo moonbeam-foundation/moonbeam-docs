@@ -99,5 +99,3 @@ While not a full-featured block explorer, Polkadot.js Apps is a convenient optio
 To connect it to a Moonbeam development node, you can follow the steps in [this tutorial](/builders/get-started/moonbeam-dev/#connecting-polkadot-js-apps-to-a-local-moonbeam-node). The default port for this is `9944`.
 
 ![Polkadot.js Local Node](/images/builders/tools/explorers/overview/explorers-6.png)
-
---8<-- 'text/disclaimers/third-party-content.md'

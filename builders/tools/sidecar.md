@@ -177,5 +177,3 @@ And Tx Weight is mapped to the following field of the block JSON object:
 ```
 extrinsics.{extrinsic number}.events.{event number}.data.0.weight
 ```
-
---8<-- 'text/disclaimers/third-party-content.md'

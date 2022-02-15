@@ -79,5 +79,3 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
 
 !!! note
     The ERC-20 Interface is currently only available on Moonriver and Moonbase Alpha.
-
---8<-- 'text/disclaimers/third-party-content.md'

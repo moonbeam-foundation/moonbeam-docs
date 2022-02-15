@@ -146,5 +146,3 @@ With pub/sub it is also possible to check whether a particular node you are subs
 
 ## Current Limitations {: #current-limitations } 
 The pub/sub implementation in [Frontier](https://github.com/paritytech/frontier) is still in active development. This first version allows DApp developers (or users in general) to subscribe to specific event types, but there are still some limitations. You may have noticed from previous examples that some of the fields are not showing proper information with the current version released, and that is because certain properties are yet to be supported by Frontier.
-
---8<-- 'text/disclaimers/third-party-content.md'

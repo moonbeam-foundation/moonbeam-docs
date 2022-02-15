@@ -104,5 +104,3 @@ Select **Solidity (Multi-part files)** under **Compiler Type** (step 3 of the ab
  ![Moonscan Multifile Page](/images/builders/tools/explorers/verify-contract/verify-contract-9.png)
 
 Aside from that, the process is the largely the same as verifying a single-file contracts on Moonscan.
-
---8<-- 'text/disclaimers/third-party-content.md'
