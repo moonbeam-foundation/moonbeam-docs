@@ -5,7 +5,7 @@ description: This guide walks you through how to use your Ledger hardware wallet
 
 # Interacting with Moonbeam Using Ledger and the Moonbeam App
 
-<create video for Moonbeam app>
+![Intro banner](/images/tokens/connect/ledger/ledger-banner.png)
 
 ## Introduction {: #introduction } 
 
