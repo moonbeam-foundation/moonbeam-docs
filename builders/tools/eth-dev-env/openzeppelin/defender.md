@@ -77,7 +77,7 @@ Once you have an OpenZeppelin Defender account, log into the [Defender App](http
 
 ![OpenZeppelin Defender Connect](/images/builders/tools/eth-dev-env/openzeppelin/oz-defender-1.png)
 
-If successful, you should see your address and a text stating **Connected to Moonbase Alpha.**
+If successful, you should see your address and a text stating **Connected to Moonbase Alpha**.
 
 ## Using the Admin Component {: #using-the-admin-component } 
 

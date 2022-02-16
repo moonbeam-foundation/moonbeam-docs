@@ -62,10 +62,10 @@ The interface also includes the following functions which are not currently supp
  
 ## Checking Prerequisites {: #checking-prerequisites } 
 
-The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonbeam and Moonriver. Before diving into the interface, it's best if you're familiar with [how to propose an action](/tokens/governance/proposals/) and [how to vote on a proposal](/tokens/governance/proposals/) in Moonbeam. Additionally, you should:  
+The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonbeam and Moonriver. Before diving into the interface, it's best if you're familiar with [how to propose an action](/tokens/governance/proposals/){target=blank} and [how to vote on a proposal](/tokens/governance/voting/){target=blank} in Moonbeam. Additionally, you should:  
 
- - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/)
- - Have an account with some DEV tokens. You can get these from [Mission Control](/builders/get-started/moonbase/#get-tokens/)
+ - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=blank}
+ - Have an account with some DEV tokens. You can get these from [Mission Control](/builders/get-started/moonbase/#get-tokens/){target=blank}
 
 ## Remix Set Up {: #remix-set-up } 
 
