@@ -21,35 +21,45 @@ for (language in supportedLanguages) {
 
 let classname = pathname.replace('/', '.').replaceAll('/', '-');
 
-if (classname !== '.') {
-  const section = document.querySelector(classname);
-
+// Append the cards
+const appendCards = (section) => {
   // Get the div to append the subsection cards to
   const wrapper = document.querySelector('.subsection-wrapper');
+  const href = section.href;
+  const title = section.innerText;
+  let image = href.split('/').slice(3, -1).join('/').toLowerCase();
+  let imagePath = `/images/index-pages/${image}.png`;
+  
+  // Modify the image paths so that it uses the absolute path
+  if (isRevamped) {
+    image = image.replace(`${currLanguage}/`, '');
+    imagePath = imagePath.replace(`${currLanguage}/`, '');
+  }
+  
+  wrapper.innerHTML += `
+  <div class="card">
+    <a href=${href}>
+      <h2 class="title">${title}</h2>
+      <img class="icon" src="${imagePath}" onerror="this.src='/images/index-pages/blank.png'; this.onerror = null">
+    </a>
+  </div>
+  `;
+};
 
-  // Append the cards
-  const appendCards = (section) => {
-    const href = section.href;
-    const title = section.innerText;
-    let image = href.split('/').slice(3, -1).join('/').toLowerCase();
-    let imagePath = `/images/index-pages/${image}.png`;
-
-    // Modify the image paths so that it uses the absolute path
-    if (isRevamped) {
-      image = image.replace(`${currLanguage}/`, '');
-      imagePath = imagePath.replace(`${currLanguage}/`, '');
-    }
-
-    wrapper.innerHTML += `
-    <div class="card">
-      <a href=${href}>
-        <h2 class="title">${title}</h2>
-        <img class="icon" src="${imagePath}" onerror="this.src='/images/index-pages/blank.png'; this.onerror = null">
-      </a>
-    </div>
-    `;
+// if user is on one of the main pages, add a `.main-page` class for styling purposes
+const addClassToContent = () => {
+  const mainPages = ['builders', 'node-operators', 'tokens', 'learn'];
+  const isMainPage = (mainPage) => {
+    return `.${mainPage}-` === classname;
   };
+  if (mainPages.find(isMainPage)) {
+    const innerContent = document.querySelector('.md-content__inner');
+    innerContent.classList.add('main-page');
+  }
+};
 
+if (classname !== '.') {
+  const section = document.querySelector(classname);
   if (section && section.children) {
     for (subsection of section.children) {
       // If it's a directory and is nested, we'll need to dig deeper to get the information for each nav item
@@ -60,4 +70,5 @@ if (classname !== '.') {
       }
     }
   }
+  addClassToContent();
 }

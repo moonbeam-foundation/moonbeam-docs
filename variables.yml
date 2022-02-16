@@ -244,6 +244,7 @@ networks:
       del_bond_less:
         rounds: 24
         hours: 48
+        days: 2
       rewards_payouts:
         rounds: 2
         hours: 4
@@ -360,6 +361,7 @@ networks:
       del_bond_less:
         rounds: 28
         hours: 168
+        days: 7
       rewards_payouts:
         rounds: 2
         hours: 12

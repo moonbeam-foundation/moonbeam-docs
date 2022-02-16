@@ -52,3 +52,4 @@ Depending on which network you want to connect to, you can set the `RPC_URL` to 
 
 If you are interested in a more detailed step-by-step guide, go to our specific tutorials about using web3.py on Moonbeam to [send a transaction](/builders/interact/eth-libraries/send-transaction/) or [deploy a contract](/builders/interact/eth-libraries/deploy-contract/).
 
+--8<-- 'text/disclaimers/third-party-content.md'

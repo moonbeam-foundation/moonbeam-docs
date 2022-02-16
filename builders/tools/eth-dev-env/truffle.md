@@ -78,3 +78,5 @@ module.exports = {
 ## Tutorial {: #tutorial } 
 
 If you are interested in a more detailed step-by-step guide, go to our specific tutorial about [using Truffle](/builders/interact/truffle/) with Moonbeam.
+
+--8<-- 'text/disclaimers/third-party-content.md'

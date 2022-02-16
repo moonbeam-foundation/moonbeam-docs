@@ -108,4 +108,5 @@ And that's it! You've successfully set up your Coinbase Wallet app, connected it
 
  - [Coinbase Wallet FAQ](https://wallet.coinbase.com/faq/){target=_blank}
  - [Coinbase Wallet Getting Started Guide](https://www.coinbase.com/wallet/getting-started-mobile){target=_blank}
- 
+
+--8<-- 'text/disclaimers/third-party-content.md' 

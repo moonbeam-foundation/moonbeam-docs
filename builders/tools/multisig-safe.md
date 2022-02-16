@@ -310,3 +310,5 @@ To double check that the correct text was set, you can go through the process ag
 ![Contract Interaction Call Result](/images/builders/tools/multisig-safe/safe-29.png)
 
 Congratulations, you've successfully interacted with a smart contract using the Safe!
+
+--8<-- 'text/disclaimers/third-party-content.md'

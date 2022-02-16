@@ -134,3 +134,4 @@ If you head back over to your terminal where you have your Moonbeam node running
 !!! note
     If you end up resetting your development node using the Substrate purge-chain command, you will need to reset your MetaMask genesis account. To do so click on the colored circle in the top right corner and from the menu click on **Settings**. Then click on **Advanced**, and **Reset Account**. This will clear the transaction history from your accounts and reset the nonce. Make sure you don’t erase anything that you want to keep!
  
+--8<-- 'text/disclaimers/third-party-content.md'

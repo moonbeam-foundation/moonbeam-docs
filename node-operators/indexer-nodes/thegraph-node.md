@@ -125,3 +125,5 @@ After a while, you should see logs related to the Graph Node syncing with the la
 ![Graph Node logs](/images/node-operators/indexer-nodes/the-graph/the-graph-node-3.png)
 
 And that is it! You have a Graph Node running against the Moonbase Alpha TestNet. Feel free to adapt this example for Moonbeam and Moonriver as well.
+
+--8<-- 'text/disclaimers/third-party-content.md'

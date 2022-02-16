@@ -149,3 +149,5 @@ However, if you want to use your Ledger hardware wallet for transactions related
     This option is necessary to use your Ledger device to interact with ERC-20 token contracts that might live inside the Moonbeam ecosystem.
 
 ![MetaMask Ledger Allow Contracts Tx](/images/tokens/connect/ledger/ledger-11.png)
+
+--8<-- 'text/disclaimers/third-party-content.md'

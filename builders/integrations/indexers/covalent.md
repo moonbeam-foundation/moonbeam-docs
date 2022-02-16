@@ -185,3 +185,5 @@ Covalent currently has libraries in Python, Node, and Go, which are built and ma
 
 !!! note
     These tools are NOT maintained by Covalent and users should do their due diligence in evaluating these tools before using them in their projects.
+
+--8<-- 'text/disclaimers/third-party-content.md'

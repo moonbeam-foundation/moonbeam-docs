@@ -2,6 +2,7 @@
 title: Razor Network
 description: How to use request data from a Razor Network Oracle in your Moonbeam Ethereum DApp using smart contracts
 ---
+
 # Razor Network Oracle
 
 ![Razor Network Moonbeam Diagram](/images/builders/integrations/oracles/razor/razor-banner.png)
@@ -138,4 +139,7 @@ This will create an instance of the demo contract that you can interact with. Us
 ![Razor check price](/images/builders/integrations/oracles/razor/razor-demo-2.png)
 
 ## Contact Us {: #contact-us } 
+
 If you have any feedback regarding implementing the Razor Network Oracle on your project or any other Moonbeam related topic, feel free to reach out through our official development [Discord server](https://discord.com/invite/PfpUATX).
+
+--8<-- 'text/disclaimers/third-party-content.md'

@@ -244,3 +244,5 @@ With the contract compiled, next you will need to:
 ![Deploy ERC-1155 Contract with Remix](/images/builders/interact/oz-remix/oz-contracts-5.png)
 
 And that is it! You've deployed an ERC-1155 token contract using OpenZeppelin's contracts and libraries. Next, you can interact with your token contract via Remix.
+
+--8<-- 'text/disclaimers/third-party-content.md'
