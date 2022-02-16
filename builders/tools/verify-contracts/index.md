@@ -1,5 +1,5 @@
 ---
-title: Block Explorers
+title: Verify Contracts
 template: main.html
 ---
 

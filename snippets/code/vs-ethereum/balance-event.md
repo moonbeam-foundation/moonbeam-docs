@@ -14,6 +14,7 @@ const main = async () => {
     typesBundle: typesBundlePre900 as any,
   });
 
+  // Subscribe to finalized blocks
   await polkadotApi.rpc.chain.subscribeFinalizedHeads(async (lastFinalizedHeader) => {
     const [{ block }, records] = await Promise.all([
       polkadotApi.rpc.chain.getBlock(lastFinalizedHeader.hash),
@@ -27,9 +28,17 @@ const main = async () => {
 
       const isEthereum = section == "ethereum" && method == "transact";
 
-      // Transfer do not include input data
-      const isEthereumTransfer =
-        isEthereum && (args[0] as any).input.length === 0 && (args[0] as any).action.isCall;
+      // Gets the transaction object
+      const tx = (args[0] as any);
+
+      // Convert to the correct Ethereum Transaction format
+      const ethereumTx = isEthereum && 
+        ((tx.isLegacy && tx.asLegacy) ||
+        (tx.isEip1559 && tx.asEip1559) ||
+        (tx.isEip2930 && tx.asEip2930));
+
+      // Check if the transaction is a transfer
+      const isEthereumTransfer = ethereumTx && ethereumTx.input.length === 0 && ethereumTx.action.isCall;
 
       // Retrieve all events for this extrinsic
       const events = records.filter(
