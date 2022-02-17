@@ -110,7 +110,6 @@ RESPONSE JSON Block Object:
             |--args
                 |--transaction
                     |--transaction type
-            |--tip
             |--hash
             |--events
                 |--{event number}
@@ -221,8 +220,7 @@ The EVM field mappings are then summarized as the following:
     | `Chain ID`             | extrinsics.{extrinsic number}.args.transaction.eip1559.chainId|   
     | `Nonce`                | extrinsics.{extrinsic number}.args.transaction.eip1559.nonce|
     | `MaxPriorityFeePerGas` | extrinsics.{extrinsic number}.args.transaction.eip1559.maxPriorityFeePerGas|
-    | `maxFeePerGas` | extrinsics.{extrinsic number}.args.transaction.eip1559.maxFeePerGas|
-    | `Tip`                  | extrinsics.{extrinsic number}.tip                          |
+    | `MaxFeePerGas` | extrinsics.{extrinsic number}.args.transaction.eip1559.maxFeePerGas|
     | `GasLimit`             | extrinsics.{extrinsic number}.args.transaction.eip1559.gasLimit|
     | `Access List`          | extrinsics.{extrinsic number}.args.transaction.eip1559.accessList|       
     | `Signature`            | extrinsics.{extrinsic number}.args.transaction.eip1559.oddYParity/r/s|
@@ -262,14 +260,14 @@ To calculate the gas spent or used during EVM execution of the transaction, the 
     ```
 === "EIP1559"
     ```
-    Gas Used =（Base Fee + Tip) * Tx Weight / {{ networks.moonbase.tx_weight_to_gas_ratio }}
+    Gas Used =（Base Fee + MaxPriorityFeePerGas) * Tx Weight / {{ networks.moonbase.tx_weight_to_gas_ratio }}
     ```
 === "EIP2930"
     ```
     Gas Used = GasPrice * Tx Weight / {{ networks.moonbase.tx_weight_to_gas_ratio }}
     ```
 
-The values of `GasPrice` and `Tip` for the applicable transaction types can be read from the block according to the above table. 
+The values of `GasPrice` and `MaxPriorityFeePerGas` for the applicable transaction types can be read from the block according to the above table. 
 
 The `Base Fee` for `EIP1559` type transactions is current static on Moonbeam networks and has the following assigned value:
 
