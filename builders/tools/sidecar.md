@@ -136,20 +136,6 @@ Moonbeam EVM transactions can be identify by the `method` field under the curren
 
 The Moonbeam EVM currently supports three transaction standards: `legacy`, `eip1559`, and `eip2930`. These correspond to the `transaction type` field in the above JSON object diagram. For each transaction type, the transaction payload contains the following fields:
 
-=== "Legacy"
-    ```JSON
-        ...
-        |--legacy
-            |--nonce
-            |--gasPrice
-            |--gasLimit
-            |--action
-            |--value
-            |--input
-            |--signature       
-        ...
-    ```
-
 === "EIP1559"
     ```JSON
         ...
@@ -168,6 +154,21 @@ The Moonbeam EVM currently supports three transaction standards: `legacy`, `eip1
             |--s      
         ...
     ```
+
+=== "Legacy"
+    ```JSON
+        ...
+        |--legacy
+            |--nonce
+            |--gasPrice
+            |--gasLimit
+            |--action
+            |--value
+            |--input
+            |--signature       
+        ...
+    ```
+
 === "EIP2930"
     ```JSON
         ...
@@ -199,22 +200,7 @@ To obtain the EVM sender address, recipient address, and EVM hash of any EVM tra
 
 The EVM field mappings are then summarized as the following:
 
-=== "Legacy"
-
-    | EVM Field              | Block JSON Field                                           |
-    |------------------------|------------------------------------------------------------|
-    | `Nonce`                | extrinsics.{extrinsic number}.args.transaction.legacy.nonce|
-    | `GasPrice`             | extrinsics.{extrinsic number}.args.transaction.legacy.gasPrice|
-    | `GasLimit`             | extrinsics.{extrinsic number}.args.transaction.legacy.gasLimit|
-    | `Value`                | extrinsics.{extrinsic number}.args.transaction.legacy.value|   
-    | `Signature`            | extrinsics.{extrinsic number}.args.transaction.legacy.signature|
-    | `Sender Address`       | extrinsics.{extrinsic number}.events.{event number}.data.0 |
-    | `Recipient Address`    | extrinsics.{extrinsic number}.events.{event number}.data.1 |
-    | `EVM Hash`             | extrinsics.{extrinsic number}.events.{event number}.data.2 |
-    | `EVM Execution Status` | extrinsics.{extrinsic number}.events.{event number}.data.3 |
-
 === "EIP1559"
-
     | EVM Field              | Block JSON Field                                           |
     |------------------------|------------------------------------------------------------|
     | `Chain ID`             | extrinsics.{extrinsic number}.args.transaction.eip1559.chainId|   
@@ -229,8 +215,20 @@ The EVM field mappings are then summarized as the following:
     | `EVM Hash`             | extrinsics.{extrinsic number}.events.{event number}.data.2 |
     | `EVM Execution Status` | extrinsics.{extrinsic number}.events.{event number}.data.3 |
 
-=== "EIP2930"
+=== "Legacy"
+    | EVM Field              | Block JSON Field                                           |
+    |------------------------|------------------------------------------------------------|
+    | `Nonce`                | extrinsics.{extrinsic number}.args.transaction.legacy.nonce|
+    | `GasPrice`             | extrinsics.{extrinsic number}.args.transaction.legacy.gasPrice|
+    | `GasLimit`             | extrinsics.{extrinsic number}.args.transaction.legacy.gasLimit|
+    | `Value`                | extrinsics.{extrinsic number}.args.transaction.legacy.value|   
+    | `Signature`            | extrinsics.{extrinsic number}.args.transaction.legacy.signature|
+    | `Sender Address`       | extrinsics.{extrinsic number}.events.{event number}.data.0 |
+    | `Recipient Address`    | extrinsics.{extrinsic number}.events.{event number}.data.1 |
+    | `EVM Hash`             | extrinsics.{extrinsic number}.events.{event number}.data.2 |
+    | `EVM Execution Status` | extrinsics.{extrinsic number}.events.{event number}.data.3 |
 
+=== "EIP2930"
     | EVM Field              | Block JSON Field                                           |
     |------------------------|------------------------------------------------------------|
     | `Chain ID`             | extrinsics.{extrinsic number}.args.transaction.eip2930.chainId|
@@ -254,13 +252,14 @@ The EVM field mappings are then summarized as the following:
 
 To calculate the gas spent or used during EVM execution of the transaction, the following formula can be used: 
 
-=== "Legacy"
-    ```
-    Gas Used = GasPrice * Tx Weight / {{ networks.moonbase.tx_weight_to_gas_ratio }}
-    ```
+
 === "EIP1559"
     ```
     Gas Used =（Base Fee + MaxPriorityFeePerGas) * Tx Weight / {{ networks.moonbase.tx_weight_to_gas_ratio }}
+    ```
+=== "Legacy"
+    ```
+    Gas Used = GasPrice * Tx Weight / {{ networks.moonbase.tx_weight_to_gas_ratio }}
     ```
 === "EIP2930"
     ```
