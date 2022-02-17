@@ -195,9 +195,9 @@ In the first part of [the script](/snippets/code/web3py-contract/deploy.py), the
 
 The private key and the public address associated with it are defined for signing the transaction and establishing the from address.
 
-In the second section, a contract instance is created with `web3.eth.contract()`, providing the ABI and bytecode imported from the compile file. Next, the constructor transaction can be built using the `constructor().buildTransaction()` method of the contract instance. Note that inside the `constructor()`, you need to specify the constructor input arguments. The `from` account needs to be outlined as well. Make sure to use the one associated with the private key. Also, the transaction count can be obtained with the `web3.eth.getTransactionCount(address)` method.
+In the second section, a contract instance is created with `web3.eth.contract()`, providing the ABI and bytecode imported from the compile file. Next, the constructor transaction can be built using the `constructor().buildTransaction()` method of the contract instance. Note that inside the `constructor()`, you need to specify the constructor input arguments. The `from` account needs to be outlined as well. Make sure to use the one associated with the private key. Also, the transaction count can be obtained with the `web3.eth.get_transaction_count(address)` method.
 
-The constructor transaction can be signed using `web3.eth.account.signTransaction()`, passing the constructor transaction and the private key.
+The constructor transaction can be signed using `web3.eth.account.sign_transaction()`, passing the constructor transaction and the private key.
 
 Lastly, the signed transaction is sent, and the contract's address is displayed in the terminal.
 
@@ -340,9 +340,9 @@ In the first part of the script ([increment](/snippets/code/web3py-contract/incr
 
 The private key and the public address associated with it are defined for signing the transaction and establishing the from address. Also, the contract's interface (ABI) and address are needed as well to interact with it.
 
-In the second section, a contract instance is created with `web3.eth.contract()` by providing the ABI and address. Next, you can build the transaction object with the `contract.functions.methodName(_input).buildTransaction` function, replacing `contract`, `methodName` and `_input` with the contract instance, function to call, and input of the function (if necessary). Inside `buildTransaction()`, the `from` account needs to be outlined. Make sure to use the one associated with the private key. Also, the transaction count can be obtained with the `web3.eth.getTransactionCount(address)` method.
+In the second section, a contract instance is created with `web3.eth.contract()` by providing the ABI and address. Next, you can build the transaction object with the `contract.functions.methodName(_input).buildTransaction` function, replacing `contract`, `methodName` and `_input` with the contract instance, function to call, and input of the function (if necessary). Inside `buildTransaction()`, the `from` account needs to be outlined. Make sure to use the one associated with the private key. Also, the transaction count can be obtained with the `web3.eth.get_transaction_count(address)` method.
 
-The transaction can be signed using `web3.eth.account.signTransaction()`, passing the transaction object of the previous step and the private key.
+The transaction can be signed using `web3.eth.account.sign_transaction()`, passing the transaction object of the previous step and the private key.
 
 Lastly, the transaction hash is displayed in the terminal.
 

@@ -125,9 +125,9 @@ The private key and the public address associated with it are defined for signin
 
 The `addressTo`, where the transaction will be sent, is also defined here, and it is required.
 
-In the second section, the transaction object is created with the `nonce`, `gasPrice`, `gas`, `to`, and `value` fields. These describe the transaction count, gas price (0 for development and Moonbase Alpha), gas (21000 in this case), the recipient, and the amount to send. Note that the transaction count can be obtained with the `web3.eth.getTransactionCount(address)` method. Also, you can use the `web3.toWei()` function to input the value in ETH (for example) and get the output in WEI. The transaction is signed with the private key using the `web3.eth.account.signTransaction()` method.
+In the second section, the transaction object is created with the `nonce`, `gasPrice`, `gas`, `to`, and `value` fields. These describe the transaction count, gas price (at least 1 GWei), gas (21000 in this case), the recipient, and the amount to send. Note that the transaction count can be obtained with the `web3.eth.get_transaction_count(address)` method. Also, you can use the `web3.toWei()` function to input the value in ETH or the gas price, and get the output in WEI. The transaction is signed with the private key using the `web3.eth.account.sign_transaction()` method.
 
-Next, with the transaction signed, you can send it by using the `web3.eth.sendSignedTransaction()` method, providing the signed transaction located in `createTransaction.rawTransaction`.
+Next, with the transaction signed, you can send it by using the `web3.eth.send_signed_transaction()` method, providing the signed transaction located in `tx_create.rawTransaction`.
 
 ## The Balance File {: #the-balance-file } 
 
@@ -174,7 +174,7 @@ In the second section, an asynchronous function wraps the provider method used t
 
 The first section of [the script](/snippets/code/web3py-tx/balances.py) is very similar to the one in [transaction file](/builders/interact/eth-libraries/send-transaction/#web3py). The main difference is that no private key is needed because there is no need to send a transaction.
 
-In the second section, the `web3.eth.getBalance(address)` method is used to fetch a target address's balance. Once again, you can leverage the `eb3.fromWei()` function to transform the balance into a more readable number in ETH.
+In the second section, the `web3.eth.get_balance(address)` method is used to fetch a target address's balance. Once again, you can leverage the `eb3.fromWei()` function to transform the balance into a more readable number in ETH.
 
 ## Running the Scripts {: #running-the-scripts } 
 

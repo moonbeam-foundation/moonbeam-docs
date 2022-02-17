@@ -33,15 +33,15 @@ Incrementer = web3.eth.contract(address=contract_address, abi=abi)
 increment_tx = Incrementer.functions.increment(value).buildTransaction(
     {
         'from': account_from['address'],
-        'nonce': web3.eth.getTransactionCount(account_from['address']),
+        'nonce': web3.eth.get_transaction_count(account_from['address']),
     }
 )
 
 # Sign Tx with PK
-tx_create = web3.eth.account.signTransaction(increment_tx, account_from['private_key'])
+tx_create = web3.eth.account.sign_transaction(increment_tx, account_from['private_key'])
 
 # Send Tx and Wait for Receipt
-tx_hash = web3.eth.sendRawTransaction(tx_create.rawTransaction)
-tx_receipt = web3.eth.waitForTransactionReceipt(tx_hash)
+tx_hash = web3.eth.send_raw_transaction(tx_create.rawTransaction)
+tx_receipt = web3.eth.wait_for_transaction_receipt(tx_hash)
 
 print(f'Tx successful with hash: { tx_receipt.transactionHash.hex() }')
