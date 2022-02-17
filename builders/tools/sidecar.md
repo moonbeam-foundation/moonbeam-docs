@@ -187,7 +187,7 @@ The Moonbeam EVM currently supports three transaction standards: `legacy`, `eip1
         ...
     ```
 
-For more information on the new [EIP1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank} and [EIP2930](https://eips.ethereum.org/EIPS/eip-2930){target=_blank} transaction types and what each field means, please refer to the respective official proposal specs. 
+For more information on the new [EIP1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank} and [EIP2930](https://eips.ethereum.org/EIPS/eip-2930){target=_blank} transaction types and what each field means, please refer to the respective official Ethereum proposal specs. 
 
 ### Transaction Field Mappings {: #transaction-field-mappings }
 
