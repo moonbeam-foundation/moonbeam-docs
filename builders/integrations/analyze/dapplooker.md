@@ -49,7 +49,7 @@ Moonbeam is a new Polkadot smart contract platform that makes it easy to build n
 
 - Click "Connect Dapp". Choose "Connect Subgraph" option
 
-  ![Connect dapp](/images/builders/integrations/analyze/dapplooker/dapplooker-7.png)
+  ![Connect dapp](/images/builders/integrations/analyze/dapplooker/dapplooker-4.png)
 
 - Fill in details about your Dapp as mentioned below ✍️.
 - Select network as "**Moonriver" or** "**Moonbeam(Moonbase Alpha)**"
@@ -57,7 +57,7 @@ Moonbeam is a new Polkadot smart contract platform that makes it easy to build n
 - Enter your website.
 - Click "Register" and data syncing will start. It can take some time for complete data to be synced.
 
-  ![Register your dapp](/images/builders/integrations/analyze/dapplooker/dapplooker-8.png)
+  ![Register your dapp](/images/builders/integrations/analyze/dapplooker/dapplooker-5.png)
 
 ## Create Dashboard {: #create-dashboard }
 
@@ -69,7 +69,7 @@ Moonbeam is a new Polkadot smart contract platform that makes it easy to build n
 Track metrics and dashboards of popular Moonriver Dapps from the Moonriver explorer:
 
 [https://dapplooker.com/category/moonriver?type=dashboard](https://dapplooker.com/category/moonriver?type=dashboard)
-![Register your dapp](/images/builders/integrations/analyze/dapplooker/dapplooker-9.png)
+![Register your dapp](/images/builders/integrations/analyze/dapplooker/dapplooker-6.png)
 
 ## Featured Moonriver Dashboards {: #featured-moonriver-dashboards }
 
@@ -85,7 +85,7 @@ Track metrics and dashboards of popular Moonriver Dapps from the Moonriver explo
 
 Track metrics and dashboards of popular Moonbeam Dapps from the Moonbeam explorer: [https://dapplooker.com/category/moonbeam?type=dashboard](https://dapplooker.com/category/moonbeam?type=dashboard)
 
-![Dapplooker Explorer](/images/builders/integrations/analyze/dapplooker/dapplooker-11.png)
+![Dapplooker Explorer](/images/builders/integrations/analyze/dapplooker/dapplooker-7.png)
 
 ## Featured Moonbeam Dashboards {: #featured-moonbeam-dashboards }
 
