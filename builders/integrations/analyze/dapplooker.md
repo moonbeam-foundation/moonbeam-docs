@@ -11,7 +11,10 @@ description: Build analytics and create dashboards to analyze Moonbeam/Moonriver
 
 Developers on Moonriver and Moonbeam can use the [Dapplooker](https://dapplooker.com/) platform to analyze their on-chain data. The integration gives projects the ability to create charts and dashboards to **track their smart contracts** and provide feedback on performance and adoption.
 
-Dapplooker is the perfect complement to the Moonbeam and Moonriver network by helping users make sense of smart contracts without having to rely on an engineer or analyst. Dapplooker’s intuitive Visual SQL helps browse smart contract data in tabular form and write SQL queries using easy to use editor. Users can create, fork and share dashboards with everyone.
+Dapplooker analytics platform complements Moonbeam/Moonriver network by helping users make sense of smart contracts without having to rely on an engineer or analyst. Dapplooker’s intuitive Visual SQL helps browse smart contract data in tabular form and write SQL queries using easy to use editor. Users can create, fork and share dashboards with everyone.
+
+This guide will cover all of the details needed to register your project with the Dapplooker platform and how to build analytics using SQL edit. This guide can be adapted for use on Moonbeam or Moonriver.
+
 
 ## Steps to Connect Smart Contracts {: #steps-to-connect-smart-contract}
 
@@ -58,7 +61,7 @@ Once project is registered, data syncing starts.
 
 ## Create Charts & Dashboard {: #create-dashboard }
 
-- After registration, user gets notification after data syncing is complete.
+- After registration is done, user gets notification when data syncing is complete.
 - Refer below step by step guide to create charts and dashboards
     - [Create Chart](https://dapplooker.notion.site/Create-Charts-9cd44e01cb0f472d835e8f2d954e517a)
     - [Create Dashboard](https://dapplooker.notion.site/Create-Dashboard-e2023db32c2342969194134a5fb9780b)
