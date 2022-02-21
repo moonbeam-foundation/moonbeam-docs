@@ -27,11 +27,9 @@ Moonbeam is a new Polkadot smart contract platform that makes it easy to build n
 
 - After you signup or log in, click on "**My Project**" button in the header section.
 
-  ![My Project link on header](/images/builders/integrations/analyze/dapplooker/dapplooker-2.png)
-
 - Click "Connect Dapp". Choose "**Connect Smart Contract**" option.
 
-  ![Connect dapp](/images/builders/integrations/analyze/dapplooker/dapplooker-3.png)
+  ![Connect dapp](/images/builders/integrations/analyze/dapplooker/dapplooker-2.png)
 
 - Fill in the details about your Dapp as shown below ✍️.
 - Select network as "**Moonriver" or** "**Moonbeam(Moonbase Alpha)**".
@@ -39,17 +37,15 @@ Moonbeam is a new Polkadot smart contract platform that makes it easy to build n
 - Enter your website.
 - Click "**Register**" and data syncing will start. It can take some time for complete data to be synced.
 
-  ![Register your dapp](/images/builders/integrations/analyze/dapplooker/dapplooker-4.png)
+  ![Register your dapp](/images/builders/integrations/analyze/dapplooker/dapplooker-3.png)
 
 ## Steps to Connect Moonriver or Moonbeam Subgraph {: #steps-to-connect-moonriver-or-moonbeam-subgraph}
 
 - Signup/Login to [https://dapplooker.com/login](https://dapplooker.com/login)
 
-  ![Login to Dapplooker](/images/builders/integrations/analyze/dapplooker/dapplooker-5.png)
+  ![Login to Dapplooker](/images/builders/integrations/analyze/dapplooker/dapplooker-1.png)
 
 - After you signup or log in, click on my project button in the header section
-
-  ![Register your dapp](/images/builders/integrations/analyze/dapplooker/dapplooker-6.png)
 
 - Click "Connect Dapp". Choose "Connect Subgraph" option
 
