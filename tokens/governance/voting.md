@@ -86,15 +86,41 @@ Here, you need to provide the following information:
  3. Set the vote conviction, which determines its weight (`vote_weight = tokens * conviction_multiplier`). The conviction multiplier is related to the number of enactment periods the tokens will be locked for. Consequently, the longer you are willing to lock your tokens, the stronger your vote will be weighted. You also have the option of not locking tokens at all, but vote weight is drastically reduced (tokens are still locked during the duration of the referendum)
  4. Click on "Vote Aye" to approve the proposal or "Vote Nay" to disapprove the proposal, and then sign the transaction
 
-   | Lock Periods |  | Conviction Multiplier |
-   |:------------:|::|:---------------------:|
-   |      0       |  |          0.1          |
-   |      1       |  |           1           |
-   |      2       |  |           2           |
-   |      4       |  |           3           |
-   |      8       |  |           4           |
-   |      16      |  |           5           |
-   |      32      |  |           6           |
+
+=== "Moonbeam"
+    |        Lock Periods         |  |                                          Conviction Multiplier                                                      || Approx. Lock Time  |
+    |:-----------------------:|::|:---------------------------------------------------------------------------------------------------------------------:|::|:----:|
+    |      0      |  | 0.1 | | None |
+    | 1 |  |    1            | | {{networks.moonbeam.democracy.lock_period.conviction_1}} days |
+    |       2       |  |  2  | | {{networks.moonbeam.democracy.lock_period.conviction_2}} days |
+    |       4       |  |  3  | | {{networks.moonbeam.democracy.lock_period.conviction_3}} days |
+    |       8       |  |  4  | | {{networks.moonbeam.democracy.lock_period.conviction_4}} days |
+    |       16      |  |  5  | | {{networks.moonbeam.democracy.lock_period.conviction_5}} days |
+    |       32      |  |  6  | | {{networks.moonbeam.democracy.lock_period.conviction_6}} days |
+
+=== "Moonriver"
+    |        Lock Periods          |  |                                     Conviction Multiplier                                                  || Approx. Lock Time  |
+    |:-----------------------:|::|:-----------------------------------------------------------------------------------------------------------------------:|::|:----:|
+    |      0      |  | 0.1 | | None |
+    | 1 |  |    1            | | {{networks.moonriver.democracy.lock_period.conviction_1}} days |
+    |       2       |  |  2  | | {{networks.moonriver.democracy.lock_period.conviction_2}} days |
+    |       4       |  |  3  | | {{networks.moonriver.democracy.lock_period.conviction_3}} days |
+    |       8       |  |  4  | | {{networks.moonriver.democracy.lock_period.conviction_4}} days |
+    |       16      |  |  5  | | {{networks.moonriver.democracy.lock_period.conviction_5}} days |
+    |       32      |  |  6  | | {{networks.moonriver.democracy.lock_period.conviction_6}} days |
+
+=== "Moonbase Alpha"
+    |        Lock Periods          |  |                                     Conviction Multiplier                                                  || Approx. Lock Time  |
+    |:-----------------------:|::|:-----------------------------------------------------------------------------------------------------------------------:|::|:----:|
+    |      0      |  | 0.1 | | None |
+    | 1 |  |    1            | | {{networks.moonbase.democracy.lock_period.conviction_1}} days |
+    |       2       |  |  2  | | {{networks.moonbase.democracy.lock_period.conviction_2}} days |
+    |       4       |  |  3  | | {{networks.moonbase.democracy.lock_period.conviction_3}} days |
+    |       8       |  |  4  | | {{networks.moonbase.democracy.lock_period.conviction_4}} days |
+    |       16      |  |  5  | | {{networks.moonbase.democracy.lock_period.conviction_5}} days |
+    |       32      |  |  6  | | {{networks.moonbase.democracy.lock_period.conviction_6}} days |
+
+
 
 
 ![Vote Submission](/images/tokens/governance/voting/vote-3.png)
