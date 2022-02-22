@@ -1,0 +1,8 @@
+title: Build a DApp
+hide: false
+nav:
+  - index.md
+  - eth-api
+  - substrate-api
+  - contracts
+  - wallets

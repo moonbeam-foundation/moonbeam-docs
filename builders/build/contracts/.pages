@@ -1,0 +1,6 @@
+title: Contracts
+nav:
+  - index.md
+  - precompiles
+  - verify-contracts
+  - canonical-contracts.md
