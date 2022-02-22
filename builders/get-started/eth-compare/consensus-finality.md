@@ -50,17 +50,17 @@ Moonbeam has added support for two new RPC endpoints, `moon_isBlockFinalized` an
     |   Variable   |                                      Value                                       |
     |:------------:|:--------------------------------------------------------------------------------|
     |   Endpoint |                        `moon_isBlockFinalized`                     |
-    |   Description   | Check for the finality of the block given by its block hash. |
-    |  Parameters |    `block_hash`: **STRING** The hash of the block, accepts either Substrate-style or ethereum-style block hash as its input.                     | 
-    |  Returns | `result`: **BOOLEAN** Returns `True` if the block is finalized, `False` if the block is not finalized or not found.  | 
+    |   Description   | Check for the finality of the block given by its block hash |
+    |  Parameters |    `block_hash`: **STRING** The hash of the block, accepts either Substrate-style or ethereum-style block hash as its input                     | 
+    |  Returns | `result`: **BOOLEAN** Returns `true` if the block is finalized, `false` if the block is not finalized or not found  | 
 
 === "moon_isTxFinalized"
     |   Variable   |                                      Value                                       |
     |:------------:|:--------------------------------------------------------------------------------|
     |   Endpoint |                        `moon_isTxFinalized`                     |
-    |   Description   | Check for the finality of the transaction given by its EVM tx hash. |
-    |  Parameters | `tx_hash`: **STRING** The EVM tx hash of the transaction.  | 
-    |  Returns |  `result`: **BOOLEAN** Returns `True` if the tx is finalized; `False` if the tx is not finalized or not found. | 
+    |   Description   | Check for the finality of the transaction given by its EVM tx hash |
+    |  Parameters | `tx_hash`: **STRING** The EVM tx hash of the transaction  | 
+    |  Returns |  `result`: **BOOLEAN** Returns `true` if the tx is finalized; `false` if the tx is not finalized or not found | 
 
 You can try out these endpoints with the following curl examples. These examples query the public RPC endpoint of Moonbase Alpha, but they can be modified to use with Moonbeam and Moonriver by changing the URL of the RPC endpoint to the corresponding [endpoints](https://docs.moonbeam.network/builders/get-started/endpoints/){target=_blank}. 
 
