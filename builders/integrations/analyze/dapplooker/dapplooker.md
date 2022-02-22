@@ -5,7 +5,7 @@ description: Dapplooker is a multi-chain community driven analytics and visualiz
 
 # Analyze Moonriver/Moonbeam with Dapplooker
 
-![Dapplooker Banner](/images/builders/integrations/analyze/dapplooker/subquery-banner.png)
+![Dapplooker Banner](/images/builders/integrations/analyze/dapplooker/dapplooker-banner.png)
 
 ## Introduction {: #introduction }
 
@@ -108,7 +108,7 @@ Track metrics and dashboards of popular Moonbeam Dapps from the Moonbeam explore
   ![DiaOracle Dashboard](/images/builders/integrations/analyze/dapplooker/dapplooker-14.png)
   ![DiaOracle Dashboard](/images/builders/integrations/analyze/dapplooker/dapplooker-15.png)
 
-  ## More Resources {: #more-resources }
+## More Resources {: #more-resources }
 
 - **Moonriver Staking Dashboard with APY data**: [https://moonbeam.dapplooker.com/](https://moonbeam.dapplooker.com/)
   - **Check detailed** [Moonbeam/Moonriver Staking Dashboard - APY Logic](https://www.notion.so/Moonbeam-Moonriver-Staking-Dashboard-APY-Logic-3c6a810f5a9f46b89effbe9a2cfc898f)
