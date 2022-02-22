@@ -1,4 +1,4 @@
-## Risk {: #risk }
+## Risks {: #risks }
 
 *Holders of MOVR/GLMR tokens should perform careful due diligence on collators before delegating. Being listed as a collator is not an endorsement or recommendation from the Moonbeam Network, the Moonriver Network, or Moonbeam Foundation. Neither the Moonbeam Network, Moonriver Network, nor Moonbeam Foundation has vetted the list collators and assumes no responsibility with regard to the selection, performance, security, accuracy, or use of any third-party offerings.  You alone are responsible for doing your own diligence to understand the applicable fees and all risks present, including actively monitoring the activity of your collators.*
 
