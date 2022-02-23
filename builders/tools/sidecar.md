@@ -109,7 +109,7 @@ RESPONSE JSON Block Object:
             |--nonce: 
             |--args
                 |--transaction
-                    |--transaction type
+                    |--{transaction type}
             |--hash
             |--events
                 |--{event number}
@@ -203,72 +203,71 @@ The EVM field mappings are then summarized as the following:
 === "EIP1559"
     | EVM Field              | Block JSON Field                                           |
     |------------------------|------------------------------------------------------------|
-    | `Chain ID`             | extrinsics.{extrinsic number}.args.transaction.eip1559.chainId|   
-    | `Nonce`                | extrinsics.{extrinsic number}.args.transaction.eip1559.nonce|
-    | `MaxPriorityFeePerGas` | extrinsics.{extrinsic number}.args.transaction.eip1559.maxPriorityFeePerGas|
-    | `MaxFeePerGas` | extrinsics.{extrinsic number}.args.transaction.eip1559.maxFeePerGas|
-    | `GasLimit`             | extrinsics.{extrinsic number}.args.transaction.eip1559.gasLimit|
-    | `Access List`          | extrinsics.{extrinsic number}.args.transaction.eip1559.accessList|       
-    | `Signature`            | extrinsics.{extrinsic number}.args.transaction.eip1559.oddYParity/r/s|
-    | `Sender Address`       | extrinsics.{extrinsic number}.events.{event number}.data.0 |
-    | `Recipient Address`    | extrinsics.{extrinsic number}.events.{event number}.data.1 |
-    | `EVM Hash`             | extrinsics.{extrinsic number}.events.{event number}.data.2 |
-    | `EVM Execution Status` | extrinsics.{extrinsic number}.events.{event number}.data.3 |
+    | Chain ID             | `extrinsics.{extrinsic number}.args.transaction.eip1559.chainId`|   
+    | Nonce                | `extrinsics.{extrinsic number}.args.transaction.eip1559.nonce`|
+    | Max Priority Fee Per Gas | `extrinsics.{extrinsic number}.args.transaction.eip1559.maxPriorityFeePerGas`|
+    | Max Fee Per Gas | `extrinsics.{extrinsic number}.args.transaction.eip1559.maxFeePerGas`|
+    | Gas Limit             | `extrinsics.{extrinsic number}.args.transaction.eip1559.gasLimit`|
+    | Access List          | `extrinsics.{extrinsic number}.args.transaction.eip1559.accessList`|       
+    | Signature            | `extrinsics.{extrinsic number}.args.transaction.eip1559.oddYParity/r/s`|
+    | Sender Address       | `extrinsics.{extrinsic number}.events.{event number}.data.0` |
+    | Recipient Address    | `extrinsics.{extrinsic number}.events.{event number}.data.1` |
+    | EVM Hash             | `extrinsics.{extrinsic number}.events.{event number}.data.2` |
+    | EVM Execution Status | `extrinsics.{extrinsic number}.events.{event number}.data.3` |
 
 === "Legacy"
     | EVM Field              | Block JSON Field                                           |
     |------------------------|------------------------------------------------------------|
-    | `Nonce`                | extrinsics.{extrinsic number}.args.transaction.legacy.nonce|
-    | `GasPrice`             | extrinsics.{extrinsic number}.args.transaction.legacy.gasPrice|
-    | `GasLimit`             | extrinsics.{extrinsic number}.args.transaction.legacy.gasLimit|
-    | `Value`                | extrinsics.{extrinsic number}.args.transaction.legacy.value|   
-    | `Signature`            | extrinsics.{extrinsic number}.args.transaction.legacy.signature|
-    | `Sender Address`       | extrinsics.{extrinsic number}.events.{event number}.data.0 |
-    | `Recipient Address`    | extrinsics.{extrinsic number}.events.{event number}.data.1 |
-    | `EVM Hash`             | extrinsics.{extrinsic number}.events.{event number}.data.2 |
-    | `EVM Execution Status` | extrinsics.{extrinsic number}.events.{event number}.data.3 |
+    | Nonce                | `extrinsics.{extrinsic number}.args.transaction.legacy.nonce`|
+    | Gas Price             | `extrinsics.{extrinsic number}.args.transaction.legacy.gasPrice`|
+    | Gas Limit             | `extrinsics.{extrinsic number}.args.transaction.legacy.gasLimit`|
+    | Value                | `extrinsics.{extrinsic number}.args.transaction.legacy.value`|   
+    | Signature            | `extrinsics.{extrinsic number}.args.transaction.legacy.signature`|
+    | Sender Address       | `extrinsics.{extrinsic number}.events.{event number}.data.0` |
+    | Recipient Address    | `extrinsics.{extrinsic number}.events.{event number}.data.1` |
+    | EVM Hash             | `extrinsics.{extrinsic number}.events.{event number}.data.2` |
+    | EVM Execution Status | `extrinsics.{extrinsic number}.events.{event number}.data.3` |
 
 === "EIP2930"
     | EVM Field              | Block JSON Field                                           |
     |------------------------|------------------------------------------------------------|
-    | `Chain ID`             | extrinsics.{extrinsic number}.args.transaction.eip2930.chainId|
-    | `Nonce`                | extrinsics.{extrinsic number}.args.transaction.eip2930.nonce |
-    | `GasPrice`             | extrinsics.{extrinsic number}.args.transaction.eip2930.gasPrice|
-    | `GasLimit`             | extrinsics.{extrinsic number}.args.transaction.eip2930.gasLimit|
-    | `Value`                | extrinsics.{extrinsic number}.args.transaction.eip2930.value| 
-    | `Access List`          | extrinsics.{extrinsic number}.args.transaction.eip2930.accessList|       
-    | `Signature`            | extrinsics.{extrinsic number}.args.transaction.eip2930.oddYParity/r/s|
-    | `Sender Address`       | extrinsics.{extrinsic number}.events.{event number}.data.0 |
-    | `Recipient Address`    | extrinsics.{extrinsic number}.events.{event number}.data.1 |
-    | `EVM Hash`             | extrinsics.{extrinsic number}.events.{event number}.data.2 |
-    | `EVM Execution Status` | extrinsics.{extrinsic number}.events.{event number}.data.3 |
+    | Chain ID             | `extrinsics.{extrinsic number}.args.transaction.eip2930.chainId`|
+    | Nonce                | `extrinsics.{extrinsic number}.args.transaction.eip2930.nonce`|
+    | GasPrice             | `extrinsics.{extrinsic number}.args.transaction.eip2930.gasPrice`|
+    | GasLimit             | `extrinsics.{extrinsic number}.args.transaction.eip2930.gasLimit`|
+    | Value                | `extrinsics.{extrinsic number}.args.transaction.eip2930.value`| 
+    | Access List          | `extrinsics.{extrinsic number}.args.transaction.eip2930.accessList`|       
+    | Signature            | `extrinsics.{extrinsic number}.args.transaction.eip2930.oddYParity/r/s`|
+    | Sender Address       | `extrinsics.{extrinsic number}.events.{event number}.data.0` |
+    | Recipient Address    | `extrinsics.{extrinsic number}.events.{event number}.data.1` |
+    | EVM Hash             | `extrinsics.{extrinsic number}.events.{event number}.data.2` |
+    | EVM Execution Status | `extrinsics.{extrinsic number}.events.{event number}.data.3` |
 
 
 !!! note
-    EVM transaction nonce and signature fields are under `extrinsics.{extrinsic number}.args.transaction.{transactiontype}`, whereas the `nonce` and `signature` fields under `extrinsics.{extrinsic number}` are the Substrate transaction nonce and signature, which are set to `null` for EVM transactions.
+    EVM transaction nonce and signature fields are under `extrinsics.{extrinsic number}.args.transaction.{transaction type}`, whereas the `nonce` and `signature` fields under `extrinsics.{extrinsic number}` are the Substrate transaction nonce and signature, which are set to `null` for EVM transactions.
 
 
 ### Computing Gas Used {: #computing-gas-used } 
 
 To calculate the gas spent or used during EVM execution of the transaction, the following formula can be used: 
 
-
 === "EIP1559"
     ```
-    Gas Used =（Base Fee + MaxPriorityFeePerGas) * Tx Weight / {{ networks.moonbase.tx_weight_to_gas_ratio }}
+    Gas Used =（Base Fee + Max Priority Fee Per Gas) * Transaction Weight / {{ networks.moonbase.tx_weight_to_gas_ratio }}
     ```
 === "Legacy"
     ```
-    Gas Used = GasPrice * Tx Weight / {{ networks.moonbase.tx_weight_to_gas_ratio }}
+    Gas Used = Gas Price * Transaction Weight / {{ networks.moonbase.tx_weight_to_gas_ratio }}
     ```
 === "EIP2930"
     ```
-    Gas Used = GasPrice * Tx Weight / {{ networks.moonbase.tx_weight_to_gas_ratio }}
+    Gas Used = Gas Price * Transaction Weight / {{ networks.moonbase.tx_weight_to_gas_ratio }}
     ```
 
-The values of `GasPrice` and `MaxPriorityFeePerGas` for the applicable transaction types can be read from the block according to the above table. 
+The values of `Gas Price` and `Max Priority Fee Per Gas` for the applicable transaction types can be read from the block according to the above table. 
 
-The `Base Fee` for `EIP1559` type transactions is current static on Moonbeam networks and has the following assigned value:
+The `Base Fee`, introduced in EIP 1559, is determined by the network itself. The `Base Fee` for `EIP1559` type transactions is current static on Moonbeam networks and has the following assigned value:
 
 === "Moonbeam"
     |      Variable      |                                     Value                                      |
@@ -285,13 +284,13 @@ The `Base Fee` for `EIP1559` type transactions is current static on Moonbeam net
     |:------------------:|:------------------------------------------------------------------------------:|
     | Base Fee | 1 Gwei |
 
-For all transactions types, `Tx Weight` can be retrieved under the event of the relevant extrinsic where the `method` field is set to: 
+`Transaction Weight` is a Substrate mechanism used to manage the time it takes to validate a block. For all transactions types, `Transaction Weight` can be retrieved under the event of the relevant extrinsic where the `method` field is set to: 
 
 ```
 pallet: "system", method: "ExtrinsicSuccess" 
 ```
 
-And the `Tx Weight` is mapped to the following field of the block JSON object:
+And then `Transaction Weight` is mapped to the following field of the block JSON object:
 
 ```
 extrinsics.{extrinsic number}.events.{event number}.data.0.weight
