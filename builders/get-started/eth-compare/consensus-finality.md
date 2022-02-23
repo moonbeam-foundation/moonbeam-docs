@@ -11,7 +11,7 @@ While Moonbeam strives to be compatible with Ethereum's Web3 API and EVM, there 
 
 In short, consensus is a way for different parties to agree on a shared state. As blocks are created, nodes in the network must decide which block will represent the next valid state. Finality defines when that valid state cannot be altered or reversed.
 
-At the time of writing, Ethereum uses a consensus protocol based on [Proof-of-Work (PoW)](https://ethereum.org/en/developers/docs/consensus-mechanisms/pow/), which provides probabilistic finality. In contrast, Moonbeam uses a hybrid consensus protocol based on Delegated Proof-of-Stake (DPoS), which provides deterministic finality. DPoS is an evolution of Polkadot's [Nominated Proof of Stake (NPoS)](https://wiki.polkadot.network/docs/learn-consensus) concept, that puts more power into the hands of token holders by allowing delegators to choose which collator candidate they want to support and in what magnitude.
+At the time of writing, Ethereum uses a consensus protocol based on [Proof-of-Work (PoW)](https://ethereum.org/en/developers/docs/consensus-mechanisms/pow/){target=_blank}, which provides probabilistic finality. In contrast, Moonbeam uses a hybrid consensus protocol based on Delegated Proof-of-Stake (DPoS), which provides deterministic finality. DPoS is an evolution of Polkadot's [Nominated Proof of Stake (NPoS)](https://wiki.polkadot.network/docs/learn-consensus){target=_blank} concept, that puts more power into the hands of token holders by allowing delegators to choose which collator candidate they want to support and in what magnitude.
 
 This guide will outline some of these main differences around consensus and finality, and what to expect when using Moonbeam for the first time.
 
@@ -19,13 +19,13 @@ This guide will outline some of these main differences around consensus and fina
 
 As stated before, Ethereum is currently using a PoW consensus protocol and the longest chain rule, where finality is probabilistic. 
 
-Probabilistic finality means that the probability that a block (and all its transactions) will not be reverted increases as more blocks are built on top of it. Therefore, the higher the number of blocks you wait, the higher the certainty that a transaction will not be re-organized, and consequently reverted. As suggested by [this blog on finality](https://blog.ethereum.org/2016/05/09/on-settlement-finality/) by Vitalik, _"you can wait 13 confirmations for a one-in-a-million chance of the attacker succeeding."_
+Probabilistic finality means that the probability that a block (and all its transactions) will not be reverted increases as more blocks are built on top of it. Therefore, the higher the number of blocks you wait, the higher the certainty that a transaction will not be re-organized, and consequently reverted. As suggested in [this blog on finality](https://blog.ethereum.org/2016/05/09/on-settlement-finality/){target=blank} by Vitalik, _"you can wait 13 confirmations for a one-in-a-million chance of the attacker succeeding."_
 
 ## Moonbeam Consensus and Finality {: #moonbeam-consensus-and-finality }
 
-In Polkadot, there are collators and validators. [Collators](https://wiki.polkadot.network/docs/en/learn-collator) maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the Relay Chain [validators](https://wiki.polkadot.network/docs/en/learn-validator). The collator set (nodes that produce blocks) are selected based on the [stake they have in the network](/learn/features/consensus/). 
+In Polkadot, there are collators and validators. [Collators](https://wiki.polkadot.network/docs/en/learn-collator){target=_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the Relay Chain [validators](https://wiki.polkadot.network/docs/en/learn-validator){target=_blank}. The collator set (nodes that produce blocks) are selected based on the [stake they have in the network](/learn/features/consensus/){target=_blank}. 
 
-For finality, Polkadot/Kusama rely on [GRANDPA](https://wiki.polkadot.network/docs/learn-consensus#finality-gadget-grandpa). GRANDPA provides deterministic finality for any given transaction (block). In other words, when a block/transaction is marked as final, it can't be reverted except via on-chain governance or forking. Moonbeam follows this deterministic finality.
+For finality, Polkadot/Kusama rely on [GRANDPA](https://wiki.polkadot.network/docs/learn-consensus#finality-gadget-grandpa){target=_blank}. GRANDPA provides deterministic finality for any given transaction (block). In other words, when a block/transaction is marked as final, it can't be reverted except via on-chain governance or forking. Moonbeam follows this deterministic finality.
 
 ## Main Differences {: #main-differences }
 
@@ -91,7 +91,7 @@ You can try out these endpoints with the following curl examples. These examples
 
 ## Checking Tx Finality with Ethereum Libraries {: #checking-tx-finality-with-ethereum-libraries }
 
-You can make calls to the Substrate JSON-RPC using the `send` method of both [Web3.js](https://web3js.readthedocs.io/) and [Ethers.js](https://docs.ethers.io/). Custom RPC requests are also possible using [Web3.py](https://web3py.readthedocs.io/) with the `make_request` method. You can use the Web3.js example as a baseline.
+You can make calls to the Substrate JSON-RPC using the `send` method of both [Web3.js](https://web3js.readthedocs.io/){target=_blank} and [Ethers.js](https://docs.ethers.io/){target=_blank}. Custom RPC requests are also possible using [Web3.py](https://web3py.readthedocs.io/){target=_blank} with the `make_request` method. You can use the Web3.js example as a baseline.
 
 The code snippets rely on two custom RPC requests from the Substrate JSON-RPC: `chain_getFinalizedHead` and `chain_getHeader`. The first request gets the block hash of the last finalized block. The second request gets the block header for a given block hash. The same is true for `eth_getBlockByNumber` and `eth_getTransactionReceipt`, to check if the given transaction hash is included in the block.
 
@@ -109,11 +109,11 @@ The code snippets rely on two custom RPC requests from the Substrate JSON-RPC: `
 
 ## Checking Tx Finality with Substrate Libraries {: #checking-tx-finality-with-substrate-libraries }
 
-The [Polkadot.js API package](https://polkadot.js.org/docs/api/start) and [Python Substrate Interface package](https://github.com/polkascan/py-substrate-interface) provides developers a way to interact with Substrate chains using Javascript and Python.
+The [Polkadot.js API package](https://polkadot.js.org/docs/api/start){target=_blank} and [Python Substrate Interface package](https://github.com/polkascan/py-substrate-interface){target=_blank} provides developers a way to interact with Substrate chains using Javascript and Python.
 
 Given a transaction hash (`tx_hash`), the following code snippets fetch the current finalized block and compare it with the block number of the transaction you've provided. The code relies on three RPC requests from the Substrate JSON-RPC: `chain_getFinalizedHead`, `chain_getHeader` and `eth_getTransactionReceipt`. The first request gets the block hash of the last finalized block. The second request gets the block header for a given block hash. The third request is fairly similar to the Ethereum JSON-RPC method, but it is done directly via the Substrate metadata.
 
-You can find more information about Polkadot.js and the Substrate JSON RPC in their [official documentation site](https://polkadot.js.org/docs/substrate/rpc), and more about Python Substrate Interface in their [official documentation site](https://polkascan.github.io/py-substrate-interface/).
+You can find more information about Polkadot.js and the Substrate JSON RPC in their [official documentation site](https://polkadot.js.org/docs/substrate/rpc){target=_blank}, and more about Python Substrate Interface in their [official documentation site](https://polkascan.github.io/py-substrate-interface/){target=_blank}.
 
 === "Polkadot.js"
     --8<-- 'code/vs-ethereum/polkadotjs.md'
