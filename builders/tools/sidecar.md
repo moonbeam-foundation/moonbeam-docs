@@ -267,7 +267,7 @@ To calculate the gas spent or used during EVM execution of the transaction, the 
 
 The values of `Gas Price` and `Max Priority Fee Per Gas` for the applicable transaction types can be read from the block according to the above table. 
 
-The `Base Fee`, introduced in EIP 1559, is determined by the network itself. The `Base Fee` for `EIP1559` type transactions is current static on Moonbeam networks and has the following assigned value:
+The `Base Fee`, introduced in EIP 1559, is determined by the network itself. The `Base Fee` for `EIP1559` type transactions is currently static on Moonbeam networks and has the following assigned value:
 
 === "Moonbeam"
     |      Variable      |                                     Value                                      |
