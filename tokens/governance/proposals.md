@@ -11,13 +11,9 @@ description: How to send a proposal to be voted on Moonbeam via governance featu
 
 As mentioned in the [governance overview page](/learn/features/governance/#definitions), a proposal is a submission to the chain in which a token holder suggests for an action to be enacted by the system.
 
-Proposals are one of the core elements of the governance system because they are the main tool for stakeholders to propose actions/changes, which other stakeholders then vote on.
+Proposals are one of the core elements of the governance system because they are the main tool for stakeholders to propose actions/changes, which other stakeholders then vote on. In Moonbeam, users will be able to create, second, and vote on proposals using their H160 address and private key, that is, their regular Ethereum account!
 
-In Moonbeam, users will be able to create, second, and vote on proposals using their H160 address and private key, that is, their regular Ethereum account!
-
-With the release of [Moonbase Alpha v6](https://github.com/PureStake/moonbeam/releases/tag/v0.6.0), users of the network can now submit proposals for public referenda in the TestNet. This guide outlines the process of how to create a proposal. The steps will go from its creation until it reaches public referenda. You can find a guide on how to vote on a proposal [here](/tokens/governance/voting/).
-
-More information can be found in Polkadot's Wiki pages related to [Governance](https://wiki.polkadot.network/docs/learn-governance#council) and [Participate in Democracy](https://wiki.polkadot.network/docs/maintain-guides-democracy).
+This guide outlines the process of how to create a proposal. The steps will go from its creation until it reaches public referenda. You can find a guide on how to vote on a proposal [here](/tokens/governance/voting/). More information can be found in Polkadot's Wiki pages related to [Governance](https://wiki.polkadot.network/docs/learn-governance#council) and [Participate in Democracy](https://wiki.polkadot.network/docs/maintain-guides-democracy).
 
 !!! note
     This guide was done with a customized version of Moonbeam with short Launch/Enactment periods for demonstration purposes only.

@@ -102,7 +102,7 @@ Here, you need to provide the following information:
     |        Lock Periods          |  |                                     Conviction Multiplier                                                  || Approx. Lock Time  |
     |:-----------------------:|::|:-----------------------------------------------------------------------------------------------------------------------:|::|:----:|
     |      0      |  | 0.1 | | None |
-    | 1 |  |    1            | | {{networks.moonriver.democracy.lock_period.conviction_1}} days |
+    | 1 |  |    1            | | {{networks.moonriver.democracy.lock_period.conviction_1}} day |
     |       2       |  |  2  | | {{networks.moonriver.democracy.lock_period.conviction_2}} days |
     |       4       |  |  3  | | {{networks.moonriver.democracy.lock_period.conviction_3}} days |
     |       8       |  |  4  | | {{networks.moonriver.democracy.lock_period.conviction_4}} days |
@@ -113,7 +113,7 @@ Here, you need to provide the following information:
     |        Lock Periods          |  |                                     Conviction Multiplier                                                  || Approx. Lock Time  |
     |:-----------------------:|::|:-----------------------------------------------------------------------------------------------------------------------:|::|:----:|
     |      0      |  | 0.1 | | None |
-    | 1 |  |    1            | | {{networks.moonbase.democracy.lock_period.conviction_1}} days |
+    | 1 |  |    1            | | {{networks.moonbase.democracy.lock_period.conviction_1}} day |
     |       2       |  |  2  | | {{networks.moonbase.democracy.lock_period.conviction_2}} days |
     |       4       |  |  3  | | {{networks.moonbase.democracy.lock_period.conviction_3}} days |
     |       8       |  |  4  | | {{networks.moonbase.democracy.lock_period.conviction_4}} days |
