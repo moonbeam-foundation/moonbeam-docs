@@ -26,7 +26,7 @@ Moonbeam uses the [Nimbus Parachain Consensus Framework](/learn/features/consens
  - The parachain staking filter selects the top candidates in terms of tokens staked in each network. For the exact number of top candidates per each network and the minimum bond amount, you can check out the [Minimum Collator Bond](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=blank} section of our documentation. This filtered pool is called selected candidates (also known as the active set), which are rotated every round
  - The fixed size subset filter picks a pseudo-random subset of the previously selected candidates for each block production slot
 
-Users can spin up full nodes on Moonbeam, Moonriver, and Moonbase Alpha and activate the `collate` feature to participate in the ecosystem as collator candidates. To do, you can checkout the [Run a Node](/node-operators/networks/run-a-node/){target=blank} section of the documentation and spin up a node using either [Docker](node-operators/networks/run-a-node/docker/){target=blank} or [Systemd](node-operators/networks/run-a-node/systemd/){target=blank}.
+Users can spin up full nodes on Moonbeam, Moonriver, and Moonbase Alpha and activate the `collate` feature to participate in the ecosystem as collator candidates. To do, you can checkout the [Run a Node](/node-operators/networks/run-a-node/){target=blank} section of the documentation and spin up a node using either [Docker](/node-operators/networks/run-a-node/docker/){target=blank} or [Systemd](/node-operators/networks/run-a-node/systemd/){target=blank}.
 
 ## Join the Discord {: #join-discord } 
 

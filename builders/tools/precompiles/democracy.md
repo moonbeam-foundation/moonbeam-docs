@@ -9,7 +9,7 @@ description: Moonbeam Democracy Solidity Precompile Interface Demo
 
 ## Introduction {: #introduction } 
 
-As a Polkadot parachain, Moonbeam features native on-chain governance thanks to the [substrate democracy pallet](https://marketplace-staging.substrate.dev/pallets/pallet-democracy){target=_blank}. The democracy pallet is coded in Rust and it is part of a pallet that is normally not accessible from the Ethereum side of Moonbeam. However, the democracy precompile allows you to access the governance functions of the substrate democracy pallet directly from a solidity interface. Additionally, this enables a vastly improved end-user experience. For example, token-holders can vote on referenda directly from MetaMask, rather than importing an account in Polkadot.Js Apps and navigating a complex UI. 
+As a Polkadot parachain, Moonbeam features native on-chain governance thanks to the [substrate democracy pallet](https://docs.substrate.io/rustdocs/latest/pallet_democracy/index.html){target=_blank}. The democracy pallet is coded in Rust and it is part of a pallet that is normally not accessible from the Ethereum side of Moonbeam. However, the democracy precompile allows you to access the governance functions of the substrate democracy pallet directly from a solidity interface. Additionally, this enables a vastly improved end-user experience. For example, token-holders can vote on referenda directly from MetaMask, rather than importing an account in Polkadot.Js Apps and navigating a complex UI. 
 
 The democracy precompile is located at the following address:
 
