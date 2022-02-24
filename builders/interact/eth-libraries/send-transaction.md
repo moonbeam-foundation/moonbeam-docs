@@ -97,7 +97,7 @@ The private key, and the public address associated with it, are defined for sign
 
 The `addressTo`, where the transaction will be sent, is also defined here, and it is required.
 
-In the second section, the transaction object is created with the `to`, `value`, and `gas` fields. These describe the recipient, the amount to send, and the gas consumed by the transaction (21000 in this case). You can use the `web3.utils.toWei()` function to input the value in ETH (for example) and get the output in WEI. The transaction is signed with the private key using the `web3.eth.accounts.signTransaction()` method. Note that this returns a promise that needs to be resolved.
+In the second section, the transaction object is created with the `to`, `value`, and `gas` fields. These describe the recipient, the amount to send, and the gas consumed by the transaction (21000 in this case). You can use the `web3.utils.toWei()` function to input the value in Ether (for example) and get the output in Wei. The transaction is signed with the private key using the `web3.eth.accounts.signTransaction()` method. Note that this returns a promise that needs to be resolved.
 
 Next, with the transaction signed (you can `console.log(createTransaction)` to see the v-r-s values), you can send it using the `web3.eth.sendSignedTransaction()` method, providing the signed transaction located in `createTransaction.rawTransaction`.
 
@@ -111,7 +111,7 @@ The private key is defined to create a wallet instance, which also requires the 
 
 The `addressTo`, where the transaction will be sent, is also defined here, and it is required.
 
-In the second section, an asynchronous function wraps the `wallet.sendTransaction(txObject)` method. The transaction object is quite simple. It only requires the recipient's address and the amount to send. Note that `ethers.utils.parseEther()` can be used, which handles the necessary unit conversions from ETH to WEI - similar to using `ethers.utils.parseUnits(value,'ether')`.
+In the second section, an asynchronous function wraps the `wallet.sendTransaction(txObject)` method. The transaction object is quite simple. It only requires the recipient's address and the amount to send. Note that `ethers.utils.parseEther()` can be used, which handles the necessary unit conversions from Ether to Wei - similar to using `ethers.utils.parseUnits(value, 'ether')`.
 
 Once the transaction is sent, you can get the transaction response (named `createReceipt` in this example), which has a few properties. For instance, you can call the `createReceipt.wait()` method to wait until the transaction is processed (receipt status is OK).
 
@@ -125,7 +125,11 @@ The private key and the public address associated with it are defined for signin
 
 The `addressTo`, where the transaction will be sent, is also defined here, and it is required.
 
-In the second section, the transaction object is created with the `nonce`, `gasPrice`, `gas`, `to`, and `value` fields. These describe the transaction count, gas price (at least 1 GWei), gas (21000 in this case), the recipient, and the amount to send. Note that the transaction count can be obtained with the `web3.eth.get_transaction_count(address)` method. Also, you can use the `web3.toWei()` function to input the value in ETH or the gas price, and get the output in WEI. The transaction is signed with the private key using the `web3.eth.account.sign_transaction()` method.
+In the second section, the transaction object is created with the `nonce`, `gasPrice`, `gas`, `to`, and `value` fields. These describe the transaction count, gas price, gas (21000 in this case), the recipient, and the amount to send.
+
+Note that the transaction count can be obtained with the `web3.eth.get_transaction_count(address)` method. The `gasPrice` can be obtained by using the [Web3.py Gas Price API](https://web3py.readthedocs.io/en/stable/gas_price.html){target=blank} to set a gas price strategy and then generate the gas price. In this case, you can use the `rpc_gas_price_strategy` which makes a call to the [`eth_gasPrice` JSON RPC method](https://eth.wiki/json-rpc/API){target=blank} and returns the current gas price in Wei.
+
+You can use the `web3.toWei()` function to input the value in Ether, and get the output in Wei. The transaction is signed with the private key using the `web3.eth.account.sign_transaction()` method.
 
 Next, with the transaction signed, you can send it by using the `web3.eth.send_signed_transaction()` method, providing the signed transaction located in `tx_create.rawTransaction`.
 
@@ -168,13 +172,13 @@ In the second section, an asynchronous function wraps the web3 method used to fe
 
 The first section of [the script](/snippets/code/ethers-tx-local/balances.js) is very similar to the one in [transaction file](/builders/interact/eth-libraries/send-transaction/#ethersjs). The main difference is that no private key is needed because there is no need to send a transaction. However, the `addressFrom` needs to be defined.
 
-In the second section, an asynchronous function wraps the provider method used to fetch the balance of an address, which is `provider.getBalance(address)`. Once again, you can leverage the `ethers.utils.formatEther()` function to transform the balance into a more readable number in ETH.
+In the second section, an asynchronous function wraps the provider method used to fetch the balance of an address, which is `provider.getBalance(address)`. Once again, you can leverage the `ethers.utils.formatEther()` function to transform the balance into a more readable number in Ether.
 
 ### Web3.py {: #web3py } 
 
 The first section of [the script](/snippets/code/web3py-tx/balances.py) is very similar to the one in [transaction file](/builders/interact/eth-libraries/send-transaction/#web3py). The main difference is that no private key is needed because there is no need to send a transaction.
 
-In the second section, the `web3.eth.get_balance(address)` method is used to fetch a target address's balance. Once again, you can leverage the `eb3.fromWei()` function to transform the balance into a more readable number in ETH.
+In the second section, the `web3.eth.get_balance(address)` method is used to fetch a target address's balance. Once again, you can leverage the `web3.fromWei()` function to transform the balance into a more readable number in Ether.
 
 ## Running the Scripts {: #running-the-scripts } 
 

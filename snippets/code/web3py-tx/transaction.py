@@ -1,4 +1,5 @@
 from web3 import Web3
+from web3.gas_strategies.rpc import rpc_gas_price_strategy
 
 #
 # -- Define Provider & Variables --
@@ -24,11 +25,14 @@ print(
     f'Attempting to send transaction from { account_from["address"] } to { address_to }'
 )
 
+# Set Gas Price Strategy
+web3.eth.set_gas_price_strategy(rpc_gas_price_strategy)
+
 # Sign Tx with PK
 tx_create = web3.eth.account.sign_transaction(
     {
         "nonce": web3.eth.get_transaction_count(account_from["address"]),
-        "gasPrice": web3.toWei("1", "gwei"),
+        "gasPrice": web3.eth.generate_gas_price(),
         "gas": 21000,
         "to": address_to,
         "value": web3.toWei("1", "ether"),
