@@ -9,7 +9,7 @@ description: As a Polkadot parachain, Moonbeam will use an on-chain governance s
 
 ## Introduction {: #introduction } 
 
-Moonbeam is a decentralized network that is governed by its community of token holders. The goal of Moonbeam’s governance mechanism is to advance the protocol according to the desires of the community. In that shared mission, the governance process seeks to include core developers, application developers, collators, users, and other contributors. Governance forums like [Polkassembly](https://moonbeam.polkassembly.network/){target=blank} enable open discussion and enable proposals to be refined based on community input. Autonomous enactments and [forkless upgrades](https://wiki.polkadot.network/docs/learn-runtime-upgrades#forkless-upgrades/){target=blank}  unite the community towards a shared mission to advance the protocol.
+Moonbeam is a decentralized network that is governed by its community of token holders. The goal of Moonbeam’s governance mechanism is to advance the protocol according to the desires of the community. In that shared mission, the governance process seeks to include core developers, application developers, collators, users, and other contributors. Governance forums like [Polkassembly](https://moonbeam.polkassembly.network/){target=blank} enable open discussion and enable proposals to be refined based on community input. Autonomous enactments and [forkless upgrades](https://wiki.polkadot.network/docs/learn-runtime-upgrades#forkless-upgrades/){target=blank} unite the community towards a shared mission to advance the protocol.
 
 ## General Definitions {: #general-definitions } 
 
@@ -29,34 +29,34 @@ With great power comes great responsibility. Some important parameters to unders
 ## Quick Reference {: #quick-reference }
 
 === "Moonbeam"
-    |         Variable         |  |                                                            Value                                                             |
-    |:------------------------:|::|:----------------------------------------------------------------------------------------------------------------------------:|
-    |      Voting Period       |  |     {{ networks.moonbeam.democracy.vote_period.blocks}} blocks ({{ networks.moonbeam.democracy.vote_period.days}} days)      |
-    | Fast-Track Voting Period |  | {{ networks.moonbeam.democracy.fast_vote_period.blocks}} blocks ({{ networks.moonbeam.democracy.fast_vote_period.days}} day) |
-    |     Enactment Period     |  |    {{ networks.moonbeam.democracy.enact_period.blocks}} blocks ({{ networks.moonbeam.democracy.enact_period.days}} days)     |
-    |     Cool-off Period      |  |     {{ networks.moonbeam.democracy.cool_period.blocks}} blocks ({{ networks.moonbeam.democracy.cool_period.days}} days)      |
-    |     Minimum Deposit      |  |                                      {{ networks.moonbeam.democracy.min_deposit }} GLMR                                      |
-    |    Maximum Proposals     |  |                                       {{ networks.moonbeam.democracy.max_proposals }}                                        |
+    |         Variable         |                                                            Value                                                             |
+    |:------------------------:|:----------------------------------------------------------------------------------------------------------------------------:|
+    |      Voting Period       |     {{ networks.moonbeam.democracy.vote_period.blocks}} blocks ({{ networks.moonbeam.democracy.vote_period.days}} days)      |
+    | Fast-Track Voting Period | {{ networks.moonbeam.democracy.fast_vote_period.blocks}} blocks ({{ networks.moonbeam.democracy.fast_vote_period.days}} day) |
+    |     Enactment Period     |    {{ networks.moonbeam.democracy.enact_period.blocks}} blocks ({{ networks.moonbeam.democracy.enact_period.days}} days)     |
+    |     Cool-off Period      |     {{ networks.moonbeam.democracy.cool_period.blocks}} blocks ({{ networks.moonbeam.democracy.cool_period.days}} days)      |
+    |     Minimum Deposit      |                                      {{ networks.moonbeam.democracy.min_deposit }} GLMR                                      |
+    |    Maximum Proposals     |                                       {{ networks.moonbeam.democracy.max_proposals }}                                        |
 
 === "Moonriver"
-    |         Variable         |  |                                                               Value                                                               |
-    |:------------------------:|::|:---------------------------------------------------------------------------------------------------------------------------------:|
-    |      Voting Period       |  |       {{ networks.moonriver.democracy.vote_period.blocks}} blocks ({{ networks.moonriver.democracy.vote_period.days}} days)       |
-    | Fast-Track Voting Period |  | {{ networks.moonriver.democracy.fast_vote_period.blocks}} blocks ({{ networks.moonriver.democracy.fast_vote_period.hours}} hours) |
-    |     Enactment Period     |  |      {{ networks.moonriver.democracy.enact_period.blocks}} blocks ({{ networks.moonriver.democracy.enact_period.days}} day)       |
-    |     Cool-off Period      |  |       {{ networks.moonriver.democracy.cool_period.blocks}} blocks ({{ networks.moonriver.democracy.cool_period.days}} days)       |
-    |     Minimum Deposit      |  |                                        {{ networks.moonriver.democracy.min_deposit }} MOVR                                        |
-    |    Minimum Proposals     |  |                                         {{ networks.moonriver.democracy.max_proposals }}                                          |
+    |         Variable         |                                                               Value                                                               |
+    |:------------------------:|:---------------------------------------------------------------------------------------------------------------------------------:|
+    |      Voting Period       |       {{ networks.moonriver.democracy.vote_period.blocks}} blocks ({{ networks.moonriver.democracy.vote_period.days}} days)       |
+    | Fast-Track Voting Period | {{ networks.moonriver.democracy.fast_vote_period.blocks}} blocks ({{ networks.moonriver.democracy.fast_vote_period.hours}} hours) |
+    |     Enactment Period     |      {{ networks.moonriver.democracy.enact_period.blocks}} blocks ({{ networks.moonriver.democracy.enact_period.days}} day)       |
+    |     Cool-off Period      |       {{ networks.moonriver.democracy.cool_period.blocks}} blocks ({{ networks.moonriver.democracy.cool_period.days}} days)       |
+    |     Minimum Deposit      |                                        {{ networks.moonriver.democracy.min_deposit }} MOVR                                        |
+    |    Minimum Proposals     |                                         {{ networks.moonriver.democracy.max_proposals }}                                          |
 
 === "Moonbase Alpha"
-    |         Variable         |  |                                                              Value                                                              |
-    |:------------------------:|::|:-------------------------------------------------------------------------------------------------------------------------------:|
-    |      Voting Period       |  |       {{ networks.moonbase.democracy.vote_period.blocks}} blocks ({{ networks.moonbase.democracy.vote_period.days}} days)       |
-    | Fast-Track Voting Period |  | {{ networks.moonbase.democracy.fast_vote_period.blocks}} blocks ({{ networks.moonbase.democracy.fast_vote_period.hours}} hours) |
-    |     Enactment Period     |  |      {{ networks.moonbase.democracy.enact_period.blocks}} blocks ({{ networks.moonbase.democracy.enact_period.days}} day)       |
-    |     Cool-off Period      |  |       {{ networks.moonbase.democracy.cool_period.blocks}} blocks ({{ networks.moonbase.democracy.cool_period.days}} days)       |
-    |     Minimum Deposit      |  |                                        {{ networks.moonbase.democracy.min_deposit }} DEV                                        |
-    |    Maximum Proposals     |  |                                         {{ networks.moonbase.democracy.max_proposals }}                                         |
+    |         Variable         |                                                              Value                                                              |
+    |:------------------------:|:-------------------------------------------------------------------------------------------------------------------------------:|
+    |      Voting Period       |       {{ networks.moonbase.democracy.vote_period.blocks}} blocks ({{ networks.moonbase.democracy.vote_period.days}} days)       |
+    | Fast-Track Voting Period | {{ networks.moonbase.democracy.fast_vote_period.blocks}} blocks ({{ networks.moonbase.democracy.fast_vote_period.hours}} hours) |
+    |     Enactment Period     |      {{ networks.moonbase.democracy.enact_period.blocks}} blocks ({{ networks.moonbase.democracy.enact_period.days}} day)       |
+    |     Cool-off Period      |       {{ networks.moonbase.democracy.cool_period.blocks}} blocks ({{ networks.moonbase.democracy.cool_period.days}} days)       |
+    |     Minimum Deposit      |                                        {{ networks.moonbase.democracy.min_deposit }} DEV                                        |
+    |    Maximum Proposals     |                                         {{ networks.moonbase.democracy.max_proposals }}                                         |
 
 ## Principles {: #principles } 
 
@@ -85,9 +85,9 @@ Some of the main components of this governance model include:
 
 For more details on how these Substrate frame pallets implement on-chain governance, you can checkout the [Walkthrough of Polkadot’s Governance](https://polkadot.network/a-walkthrough-of-polkadots-governance/){target=blank} blog post and the [Polkadot Governance Wiki](https://wiki.polkadot.network/docs/learn-governance){target=blank}.
 
-## Vote Weight {: #vote-weight } 
-A token holder’s influence in a referendum is determined by two parameters specified at the time of voting: lock balance and conviction. Lock balance is the number of tokens that a user commits to a vote (note, this is not the same as a user’s total account balance). Akin to Polkadot’s governance, Moonbeam uses a concept of voluntary locking that allows token holders to increase their voting power by locking tokens for a longer period of time. Specifying no lock period means a user’s vote is valued at 10% of their lock balance. Additional voting power can be achieved by specifying a greater conviction. For each increase in conviction (vote multiplier), the lock periods double. You can read more about conviction in [Vote on a Proposal.](/tokens/governance/voting/#how-to-vote)
+## Vote Weight {: #vote-weight }
 
+A token holder’s influence in a referendum is determined by two parameters specified at the time of voting: lock balance and conviction. Lock balance is the number of tokens that a user commits to a vote (note, this is not the same as a user’s total account balance). Akin to Polkadot’s governance, Moonbeam uses a concept of voluntary locking that allows token holders to increase their voting power by locking tokens for a longer period of time. Specifying no lock period means a user’s vote is valued at 10% of their lock balance. Additional voting power can be achieved by specifying a greater conviction. For each increase in conviction (vote multiplier), the lock periods double. You can read more about conviction in [Vote on a Proposal.](/tokens/governance/voting/#how-to-vote)
 
 ## Voting Rights of the Council and the Technical Committee {: #voting-rights-of-the-council-and-the-technical-committee } 
 
