@@ -5,13 +5,13 @@ description: You can deploy a Solidity DApp with a React UI and subgraph on Moon
 
 # Using Scaffold-ETH to Deploy a DApp on Moonbeam
 
+![Scaffold-ETH Banner](/images/builders/interact/scaffold-eth/scaffold-eth-banner.png)
+
 ## Introduction {: #introduction } 
 
 [Scaffold ETH](https://github.com/scaffold-eth/scaffold-eth){target=blank} is a collection of commonly used Ethereum development tools to quickly deploy a Solidity smart contract, and launch a DApp with a React frontend and a deployed subgraph. There are premade templates for common DApp types such as NFT’s, ERC20 tokens, multi-sig wallets, simple DEXs, and so on.
 
-Scaffold-ETH consists of several sub-components, including Hardhat, The Graph and a React UI. All of these components can be used on Moonbeam networks with some slight modifications. This guide will walk through the steps to deploy and run the sample contract, `YourContract.sol`, and DApp that Scaffold-ETH comes with on Moonbeam. 
-
- and [The Graph](/builders/intergrations/indexers/thegraph/){target=blank} with Moonbeam networks, if more details and information are required. 
+Scaffold-ETH consists of several sub-components, including Hardhat, The Graph and a React UI. All of these components can be used on Moonbeam networks with some slight modifications. This guide will walk through the steps to deploy and run the default sample contract and DApp that Scaffold-ETH comes with on a Moonbeam network. 
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
@@ -39,11 +39,13 @@ After the download completes, run:
 yarn install
 ```
 
-Once the dependencies have been installed without any errors, we can proceed to modifying the different components of Scaffold-ETH. 
+![Scaffold-ETH installation output](/images/builders/interact/scaffold-eth/scaffold-eth-1.png)
+
+Once the dependencies have been installed without any errors in the console output as in the above screenshot, we can proceed to modifying the different components of Scaffold-ETH. 
 
 ## Modify Configurations {: #modify-configurations }
 
-We need to make modifications to the configurations of the three major components of Scaffold-ETH.
+We need to make modifications to the configurations of the three major components that make up Scaffold-ETH.
 
 ### Hardhat Component {: #hardhat-component }
 
@@ -151,26 +153,60 @@ In The Graph component of Scaffold-ETH, we need to modify two files to point the
 
     === "Moonbeam"
         ```
-        dataSources:
-            Network: moonbeam 
+        network: moonbeam 
         ```
     === "Moonriver"
         ```
-        dataSources:
-            Network: moonriver
+        network: moonriver
         ```
     === "Moonbase Alpha"
         ```
-        dataSources:
-            Network: mbase 
+        network: mbase 
         ```
     === "Moonbeam Dev Node"
         ```
-        dataSources:
-            Network: mbase 
+        network: mbase 
         ```
 
-For more information on using The Graph with Moonbeam, please check the dedicated [The Graph page](/builders/intergrations/indexers/thegraph/){target=blank} for more details. Or the dedicated [The Graph Node page](/node-operators/indexer-nodes/thegraph-node/){target=blank} for more information on running a Graph node for Moonbeam.
+3. Next, in the same file, `subgraph.template.yaml`, we want to change the `dataSources/source/address` field to:
+
+    === "Moonbeam"
+        ```
+        address: "{{moonbeam_YourContractAddress}}"
+        ```
+    === "Moonriver"
+        ```
+        address: "{{moonriver_YourContractAddress}}"
+        ```
+    === "Moonbase Alpha"
+        ```
+        address: "{{moonbaseAlpha_YourContractAddress}}"
+        ```
+    === "Moonbeam Dev Node"
+        ```
+        address: "{{moonbeamDevNode_YourContractAddress}}"
+        ```
+
+4. And lastly, in the same file, `subgraph.template.yaml`, we want to change the `dataSources/mapping/abis/file` field to:
+
+    === "Moonbeam"
+        ```
+        file: ./abis/moonbeam_YourContract.json
+        ```
+    === "Moonriver"
+        ```
+        file: ./abis/moonriver_YourContract.json
+        ```
+    === "Moonbase Alpha"
+        ```
+        file: ./abis/moonbaseAlpha_YourContract.json
+        ```
+    === "Moonbeam Dev Node"
+        ```
+         file: ./abis/moonbeamDevNode_YourContract.json
+        ```
+
+For more information on using The Graph with Moonbeam, please check the dedicated [The Graph page](/builders/intergrations/indexers/thegraph/){target=blank} for more details; or the dedicated [The Graph Node page](/node-operators/indexer-nodes/thegraph-node/){target=blank} for more information on running a Graph node for Moonbeam.
 
 ### React Component {: #react-component }
 
@@ -257,29 +293,55 @@ Next, we need to modify two files in the React component to have
 
 ## Deploy and Launch the DApp {: #deploy-and-launch-the-dapp }
 
-After the all the modifications to the configuration files are done, we can launch our local The Graph node instance by typing:
+1. After the all the modifications to the configuration files are done, we can launch our local The Graph node instance by typing:
 
-```
-yarn run-graph-node
-```
+    ```
+    yarn run-graph-node
+    ```
 
-This will launch a local node instance through a Docker image, and the console output should show that it's indexing blocks of the network that it's being pointed to. 
+    This will launch a local node instance through a Docker image, and the console output should show that it's indexing blocks of the network that it's being pointed to. 
 
-After that, we can compile and deploy the smart contract and its sub-graph by running the command:
+    ![The Graph node output](/images/builders/interact/scaffold-eth/scaffold-eth-2.png)
 
-```
-yarn deploy-and-graph
-```
+2. Open a new tab or window in the terminal. Next, We can compile and deploy the smart contract by running the command:
 
-You will be prompted to enter a version name for the sub-graph being deployed. 
+    ```
+    yarn deploy
+    ```
 
-Finally, we can launch the React server by typing:
+    ![Contract deployment output](/images/builders/interact/scaffold-eth/scaffold-eth-3.png)
 
-```
-yarn start
-```
+3. We will create a local sub-graph by typing:
 
-This will launch the the React based DApp UI at `http://localhost:3000/` by default. 
+    ```
+    yarn graph-create-local
+    ```
+
+    ![Create sub-graph output](/images/builders/interact/scaffold-eth/scaffold-eth-4.png)
+
+4. Next, we will deploy the sub-graph to our local graph node: 
+
+    ```
+    yarn graph-ship-local
+    ```
+
+    You will be prompted to enter a version name for the sub-graph being deployed. 
+
+    ![Sub-graph deployment output](/images/builders/interact/scaffold-eth/scaffold-eth-5.png)
+
+5. Finally, we can launch the React server by typing:
+
+    ```
+    yarn start
+    ```
+
+    This will launch the the React based DApp UI at `http://localhost:3000/` by default. 
+
+    ![React server output](/images/builders/interact/scaffold-eth/scaffold-eth-6.png)
+
+6. You can then point your browser to `http://localhost:3000/` and interact with the React frontend.
+
+    ![React UI](/images/builders/interact/scaffold-eth/scaffold-eth-7.png)
 
 ### Verifying Contracting
 
@@ -297,3 +359,7 @@ If you would also like to use Scaffold-ETH to verify the smart contract deployed
     ```
     yarn verify --network moonbaseAlpha contract-deployment-address
     ```
+
+After a short wait, the console output will display the verification result and if successful, the URL to the verified contract on Moonscan. 
+
+![Contract verify output](/images/builders/interact/scaffold-eth/scaffold-eth-8.png)
