@@ -173,19 +173,27 @@ In The Graph component of Scaffold-ETH, we need to modify two files to point the
 
     === "Moonbeam"
         ```
+        {% raw %}
         address: "{{moonbeam_YourContractAddress}}"
+        {% endraw %}
         ```
     === "Moonriver"
         ```
+        {% raw %}
         address: "{{moonriver_YourContractAddress}}"
+        {% endraw %}
         ```
     === "Moonbase Alpha"
         ```
+        {% raw %}
         address: "{{moonbaseAlpha_YourContractAddress}}"
+        {% endraw %}
         ```
     === "Moonbeam Dev Node"
         ```
+        {% raw %}
         address: "{{moonbeamDevNode_YourContractAddress}}"
+        {% endraw %}
         ```
 
 4. And lastly, in the same file, `subgraph.template.yaml`, we want to change the `dataSources/mapping/abis/file` field to:
