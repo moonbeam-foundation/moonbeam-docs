@@ -19,7 +19,7 @@ In this tutorial, you will learn how to get started with your Ledger hardware wa
 
 --8<-- 'text/ledger/checking-prereqs.md'
 
-## Install the Ledger Live App {: install-the-ledger-live-app }
+## Install the Moonbeam Ledger Live App {: install-the-moonbeam-ledger-live-app }
 
 The Moonbeam app is dependent on the Ethereum app, so first you will need to install the Ethereum app. Once the Ethereum app is installed you will be able to install the Moonbeam app without a problem. Please note that the Moonbeam app is only for the Moonbeam network, it will not work for Moonriver or Moonbase Alpha.
 
