@@ -46,7 +46,7 @@ The interface includes the following functions:
  - **delegator_delegation_count**(*address* delegator) - read-only function that returns the number of delegations for the specified delegator address. Replaces the deprecated `nominator_nomination_count` extrinsic
  - **join_candidates**(*uint256* amount, *uint256* candidateCount) — allows the account to join the set of collator candidates with a specified bond amount and the current candidate count
  - **schedule_leave_candidates**(*uint256* candidateCount) - schedules a request for a candidate to remove themselves from the candidate pool. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `execute_leave_candidates` extrinsic. Replaces the deprecated `leave_candidates` extrinsic
- - **execute_leave_candidates**() - executes the due request to leave the set of collator candidates 
+ - **execute_leave_candidates**(*address* candidate, *uint256* candidateDelegationCount) - executes the due request to leave the set of collator candidates 
  - **cancel_leave_candidates**(*uint256* candidateCount) - allows a candidate to cancel a pending scheduled request to leave the candidate pool. Given the current number of candidates in the pool
  - **go_offline**() — temporarily leave the set of collator candidates without unbonding
  - **go_online**() — rejoin the set of collator candidates after previously calling go_offline()
@@ -56,7 +56,7 @@ The interface includes the following functions:
  - **cancel_candidate_bond_request**() - allows a candidate to cancel a pending scheduled request to decrease a candidates bond
  - **delegate**(*address* candidate, *uint256* amount, *uint256* candidateDelegationCount, *uint256* delegatorDelegationCount) — if the caller is not a delegator, this function adds them to the set of delegators. If the caller is already a delegator, then it adjusts their delegation amount. Replaces the deprecated `nominate` extrinsic
  - **schedule_leave_delegators**() — schedules a request to leave the set of delegators and revoke all ongoing delegations. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `execute_leave_delegators` extrinsic. Replaces the deprecated `leave_nominators` extrinsic
- - **execute_leave_delegators**(*uint256* delegatorDelegationCount) - executes the due request to leave the set of delegators and revoke all delegations
+ - **execute_leave_delegators**(*address* delegator, *uint256* delegatorDelegationCount) - executes the due request to leave the set of delegators and revoke all delegations
  - **cancel_leave_delegators**() - cancels a pending scheduled request to leave the set of delegators
  - **schedule_revoke_delegation**(*address* candidate) — schedules a request to revoke a delegation given the address of a candidate. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `execute_delegation_request` extrinsic. Replaces the deprecated `revoke_nominations` extrinsic
  - **delegator_bond_more**(*address* candidate, *uint256* more) — delegator increases bond to a collator by specified amount. Replaces the deprecated `nominator_bond_more` extrinsic
