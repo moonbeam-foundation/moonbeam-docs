@@ -372,3 +372,5 @@ If you would also like to use Scaffold-ETH to verify the smart contract deployed
 After a short wait, the console output will display the verification result and if successful, the URL to the verified contract on Moonscan. 
 
 ![Contract verify output](/images/builders/interact/scaffold-eth/scaffold-eth-8.png)
+
+For more information on verifying smart contracts on Moonbeam using Hardhat Etherscan plugin, please refer to the [Etherscan Plugins page](/builders/tools/verify-contracts/etherscan-plugins/#using-the-hardhat-etherscan-plugin){target=_blank}. 
