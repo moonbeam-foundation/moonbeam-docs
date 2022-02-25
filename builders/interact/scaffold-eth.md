@@ -120,6 +120,7 @@ Let's begin with making some modifications to the Hardhat component under the `/
       //);
     }
     ```
+
 For more information on using Hardhat with Moonbeam, please check the dedicated [Hardhat page](/builders/interact/hardhat/){target=blank} for more details.
 
 ### The Graph Component {: #the-graph-component }
@@ -343,7 +344,7 @@ Next, we need to modify two files in the React component to have
 
     ![React UI](/images/builders/interact/scaffold-eth/scaffold-eth-7.png)
 
-### Verifying Contracting
+### Verifying Contracts {: #Verifying-Contracts }
 
 If you would also like to use Scaffold-ETH to verify the smart contract deployed, and have entered the corresponding Moonscan API key into `hardhat.config.js`, you can use the following command to verify the smart contract.
 
