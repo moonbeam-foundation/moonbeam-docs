@@ -9,7 +9,7 @@ description: You can deploy a Solidity DApp with a React UI and subgraph on Moon
 
 ## Introduction {: #introduction } 
 
-[Scaffold ETH](https://github.com/scaffold-eth/scaffold-eth){target=blank} is a collection of commonly used Ethereum development tools to quickly deploy a Solidity smart contract, and launch a DApp with a React frontend and a deployed subgraph. There are premade templates for common DApp types such as NFT’s, ERC20 tokens, multi-sig wallets, simple DEXs, and so on.
+[Scaffold ETH](https://github.com/scaffold-eth/scaffold-eth){target=blank} is a collection of commonly used Ethereum development tools to quickly deploy a Solidity smart contract, and launch a DApp with a React frontend and a deployed subgraph. There are premade templates for common DApp types such as NFT’s, ERC-20 tokens, multi-sig wallets, simple DEXs, and so on.
 
 Scaffold-ETH consists of several sub-components, including Hardhat, The Graph and a React UI. All of these components can be used on Moonbeam networks with some slight modifications. This guide will walk through the steps to deploy and run the default sample contract and DApp that Scaffold-ETH comes with on a Moonbeam network. 
 
@@ -25,7 +25,7 @@ To run The Graph component of Scaffold-ETH, you also need to have the following 
 
 ### Installing Scaffold-ETH {: #installing-scaffold-eth } 
 
-First, we need to download Scaffold-ETH from its GitHub repository. 
+First, download Scaffold-ETH from its GitHub repository. 
 
 From the command line, enter:
 
@@ -41,23 +41,23 @@ yarn install
 
 ![Scaffold-ETH installation output](/images/builders/interact/scaffold-eth/scaffold-eth-1.png)
 
-Once the dependencies have been installed without any errors in the console output as in the above screenshot, we can proceed to modifying the different components of Scaffold-ETH. 
+Once the dependencies have been installed without any errors in the console output as in the above screenshot, you can proceed to modifying the different components of Scaffold-ETH. 
 
 ## Modify Configurations {: #modify-configurations }
 
-We need to make modifications to the configurations of the three major components that make up Scaffold-ETH.
+You need to make modifications to the configurations of the three major components that make up Scaffold-ETH.
 
 ### Hardhat Component {: #hardhat-component }
 
-Let's begin with making some modifications to the Hardhat component under the `/packages/hardhat` folder.
+You can begin with making modifications to the Hardhat component under the `/packages/hardhat` folder.
 
-1. The file we need to modify is `scaffold-eth/packages/hardhat/hardhat.config.js`. Under the `module.exports/networks` section, we want to add the network definitions for the Moonbeam network(s) that we would like to use, including the RPC endpoint, the chain ID, and the contract deployment account's private key. 
+1. The file you need to modify is `scaffold-eth/packages/hardhat/hardhat.config.js`. Under the `module.exports/networks` section, add the network definitions for the Moonbeam network(s) that you would like to use, including the RPC endpoint, the chain ID, and the contract deployment account's private key
 
     === "Moonbeam"
         ```js
         moonbeam: {
-            url: 'https://rpc.api.moonbeam.network',
-            chainId: 1284,  // 0x504 in hex,
+            url: '{{ networks.moonbeam.rpc_url }}',
+            chainId: {{ networks.moonbeam.chain_id }},  // {{ networks.moonbeam.hex_chain_id }} in hex,
             accounts: ["Deployment Account Private Key"]
         }
         ```
@@ -65,8 +65,8 @@ Let's begin with making some modifications to the Hardhat component under the `/
     === "Moonriver"
         ```js
         moonriver: {
-            url: 'https://rpc.api.moonriver.moonbeam.network',
-            chainId: 1285,  // 0x505 in hex,
+            url: '{{ networks.moonriver.rpc_url }}',
+            chainId: {{ networks.moonriver.chain_id }},  // {{ networks.moonriver.hex_chain_id }} in hex,
             accounts: ["Deployment Account Private Key"] 
         }
         ```
@@ -74,8 +74,8 @@ Let's begin with making some modifications to the Hardhat component under the `/
     === "Moonbase Alpha"
         ```js
         moonbaseAlpha: {
-            url: 'https://rpc.api.moonbase.moonbeam.network',
-            chainId: 1287,  // 0x507 in hex,
+            url: '{{ networks.moonbase.rpc_url }}',
+            chainId: {{ networks.moonbase.chain_id }},  // {{ networks.moonbase.hex_chain_id }} in hex,
             accounts: ["Deployment Account Private Key"]
         }
         ```
@@ -83,13 +83,13 @@ Let's begin with making some modifications to the Hardhat component under the `/
     === "Moonbeam Dev Node"
         ```js
         moonbeamDevNode: {
-            url: 'http://127.0.0.1:9933',
-            chainId: 1281,  // 0x501 in hex,
+            url: '{{ networks.development.rpc_url }}',
+            chainId: {{ networks.development.chain_id }},  // {{ networks.development.hex_chain_id }} in hex,
             accounts: ["Deployment Account Private Key"]
         }
         ```
 
-2. In the same file, set the constant `defaultNetwork` to the network you would like to deploy the smart contract to, using the network name we defined above. 
+2. In the same file, set the constant `defaultNetwork` to the network you would like to deploy the smart contract to, using the network name you defined above 
 
     === "Moonbeam"
         ```
@@ -108,10 +108,10 @@ Let's begin with making some modifications to the Hardhat component under the `/
         defaultNetwork = "moonbeamDevNode";
         ```
 
-3. Within the same file, under the `module.exports/etherscan/apiKey` section, we want to add the API key for [Moonscan](https://moonscan.io/){target=blank}, so we can verify our deployed smart contracts. Check this [Etherscan Plugins](/builders/tools/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank} section for how to generate a Moonscan API key. 
+3. Within the same file, under the `module.exports/etherscan/apiKey` section, add the API key for [Moonscan](https://moonscan.io/){target=blank}, so you can verify the deployed smart contracts. Check this [Etherscan Plugins](/builders/tools/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank} section for how to generate a Moonscan API key
 
 
-4. (Optional) Under the `function mnemonic()`, comment out a console warning for when the network is not set to `localhost`. 
+4. (Optional) Under the `function mnemonic()`, comment out a console warning for when the network is not set to `localhost` 
 
     ```js
     if (defaultNetwork !== "localhost") {
@@ -125,32 +125,32 @@ For more information on using Hardhat with Moonbeam, please check the dedicated 
 
 ### The Graph Component {: #the-graph-component }
 
-In The Graph component of Scaffold-ETH, we need to modify two files to point the local The Graph node instance to the corresponding Moonbeam RPC endpoint. 
+In The Graph component of Scaffold-ETH, you need to modify two files to point the local The Graph node instance to the corresponding Moonbeam RPC endpoint. 
 
 1. First, modify the file `scaffold-eth/packages/services/graph-node/docker-compose.yaml`, under `servers/graph-node/environment/ethereum` to change the RPC endpoint for The Graph node to index:
 
 
     === "Moonbeam"
         ```
-        'moonbeam:https://rpc.api.moonbeam.network'
+        'moonbeam:{{ networks.moonbeam.rpc_url }}'
         ```
     === "Moonriver"
         ```
-        'moonriver:https://moonriver.api.onfinality.io/public'
+        'moonriver:{{ networks.moonriver.rpc_url }}'
         ```
     === "Moonbase Alpha"
         ```
-        'mbase:https://rpc.api.moonbase.moonbeam.network'
+        'mbase:{{ networks.moonbase.rpc_url }}'
         ```
     === "Moonbeam Dev Node"
         ```
-        'mbase:http://127.0.0.1:9933'
+        'mbase:{{ networks.development.rpc_url }}'
         ```
 
     !!! note
-        We are using Moonbeam's public RPC endpoints for this example, but for production DApp's, it's recommended to use a private API endpoint provider. See [this page](/builders/get-started/endpoints/#endpoint-providers){target=_blank} for more information.
+        This example is using Moonbeam's public RPC endpoints, but for production DApp's, it's recommended to use a private API endpoint provider. See [this page](/builders/get-started/endpoints/#endpoint-providers){target=_blank} for more information.
 
-2. Next, we need to modify `subgraph/src/subgraph.template.yaml`. Change the `dataSources/network` field of the contract being deployed to the corresponding network name we defined in `docker-compose.yaml`:
+2. Next, you need to modify `subgraph/src/subgraph.template.yaml`. Change the `dataSources/network` field of the contract being deployed to the corresponding network name defined earlier in `docker-compose.yaml`:
 
     === "Moonbeam"
         ```
@@ -169,7 +169,7 @@ In The Graph component of Scaffold-ETH, we need to modify two files to point the
         network: mbase 
         ```
 
-3. Next, in the same file, `subgraph.template.yaml`, we want to change the `dataSources/source/address` field to:
+3. Next, in the same file, `subgraph.template.yaml`, change the `dataSources/source/address` field to:
 
     === "Moonbeam"
         ```
@@ -196,7 +196,7 @@ In The Graph component of Scaffold-ETH, we need to modify two files to point the
         {% endraw %}
         ```
 
-4. And lastly, in the same file, `subgraph.template.yaml`, we want to change the `dataSources/mapping/abis/file` field to:
+4. And lastly, in the same file, `subgraph.template.yaml`, change the `dataSources/mapping/abis/file` field to:
 
     === "Moonbeam"
         ```
@@ -219,16 +219,16 @@ For more information on using The Graph with Moonbeam, please check the dedicate
 
 ### React Component {: #react-component }
 
-Next, we need to modify two files in the React component to have 
+Next, you need to modify two files in the React component to add Moonbeam networks.
 
-1. First, we need to add the corresponding Moonbeam networks to `scaffold-eth/packages/react-app/src/constants.js`, under the `NETWORKS` constant:
+1. First, add the corresponding Moonbeam networks to `scaffold-eth/packages/react-app/src/constants.js`, under the `NETWORKS` constant:
 
     === "Moonbeam"
         ```js
         moonbeam: {
             name: "moonbeam",
             color: "#42A2A0",
-            chainId: 1284, // 0x504 in hex,
+            chainId: {{ networks.moonbeam.chain_id }}, // {{ networks.moonbeam.hex_chain_id }} in hex,
             blockExplorer: "https://moonbeam.moonscan.io/",
             rpcUrl: `https://rpc.api.moonbeam.network`,
             gasPrice: 100000000000,
@@ -241,7 +241,7 @@ Next, we need to modify two files in the React component to have
         moonriver: {
             name: "moonriver",
             color: "#42A2A0",
-            chainId: 1285, // 0x505 in hex,
+            chainId: {{ networks.moonriver.chain_id }}, // {{ networks.moonriver.hex_chain_id }} in hex,
             blockExplorer: "https://moonriver.moonscan.io/",
             rpcUrl: `https://rpc.api.moonriver.moonbeam.network`,
             gasPrice: 1000000000,
@@ -254,7 +254,7 @@ Next, we need to modify two files in the React component to have
         moonbaseAlpha: {
             name: "moonbaseAlpha",
             color: "#42A2A0",
-            chainId: 1287, // 0x507 in hex,
+            chainId: {{ networks.moonbase.chain_id }}, // {{ networks.moonbase.hex_chain_id }} in hex,
             blockExplorer: "https://moonbase.moonscan.io/",
             rpcUrl: `https://rpc.api.moonbase.moonbeam.network`,
             gasPrice: 1000000000,
@@ -267,7 +267,7 @@ Next, we need to modify two files in the React component to have
         moonbeamDevNode: {
             name: "moonbeamDevNode",
             color: "#42A2A0",
-            chainId: 1281, // 0x501 in hex,
+            chainId: {{ networks.development.chain_id }}, // {{ networks.development.hex_chain_id }} in hex,
             blockExplorer: "",
             rpcUrl: `http://127.0.0.1:9933`,
             gasPrice: 1000000000,
@@ -275,7 +275,7 @@ Next, we need to modify two files in the React component to have
         }
         ```
 
-2. Next, we need to modify `scaffold-eth/packages/react-app/src/App.jsx`. Set the `initialNetwork` constant to the corresponding network definition exported from `constants.js` to be the default network:
+2. Next, modify `scaffold-eth/packages/react-app/src/App.jsx` and set the `initialNetwork` constant to the corresponding network definition exported from `constants.js` to be the default network:
 
     === "Moonbeam"
         ```
@@ -302,7 +302,7 @@ Next, we need to modify two files in the React component to have
 
 ## Deploy and Launch the DApp {: #deploy-and-launch-the-dapp }
 
-1. After the all the modifications to the configuration files are done, we can launch our local The Graph node instance by typing:
+1. After the all the modifications to the configuration files are done, launch the local The Graph node instance by typing:
 
     ```
     yarn run-graph-node
@@ -312,7 +312,7 @@ Next, we need to modify two files in the React component to have
 
     ![The Graph node output](/images/builders/interact/scaffold-eth/scaffold-eth-2.png)
 
-2. Open a new tab or window in the terminal. Next, We can compile and deploy the smart contract by running the command:
+2. Open a new tab or window in the terminal. Next, compile and deploy the smart contract by running the command:
 
     ```
     yarn deploy
@@ -320,7 +320,7 @@ Next, we need to modify two files in the React component to have
 
     ![Contract deployment output](/images/builders/interact/scaffold-eth/scaffold-eth-3.png)
 
-3. We will create a local sub-graph by typing:
+3. Next, create a local sub-graph by typing:
 
     ```
     yarn graph-create-local
@@ -328,7 +328,7 @@ Next, we need to modify two files in the React component to have
 
     ![Create sub-graph output](/images/builders/interact/scaffold-eth/scaffold-eth-4.png)
 
-4. Next, we will deploy the sub-graph to our local graph node: 
+4. Next, deploy the sub-graph to the local graph node: 
 
     ```
     yarn graph-ship-local
@@ -338,7 +338,7 @@ Next, we need to modify two files in the React component to have
 
     ![Sub-graph deployment output](/images/builders/interact/scaffold-eth/scaffold-eth-5.png)
 
-5. Finally, we can launch the React server by typing:
+5. Finally, you can launch the React server by typing:
 
     ```
     yarn start
@@ -348,7 +348,7 @@ Next, we need to modify two files in the React component to have
 
     ![React server output](/images/builders/interact/scaffold-eth/scaffold-eth-6.png)
 
-6. You can then point your browser to `http://localhost:3000/` and interact with the React frontend.
+6. You can then point your browser to `http://localhost:3000/` and interact with the React frontend
 
     ![React UI](/images/builders/interact/scaffold-eth/scaffold-eth-7.png)
 
@@ -358,19 +358,19 @@ If you would also like to use Scaffold-ETH to verify the smart contract deployed
 
 === "Moonbeam"
     ```
-    yarn verify --network moonbeam contract-deployment-address
+    yarn verify --network moonbeam "contract-deployment-address"
     ```
 === "Moonriver"
     ```
-    yarn verify --network moonriver contract-deployment-address
+    yarn verify --network moonriver "contract-deployment-address"
     ```
 === "Moonbase Alpha"
     ```
-    yarn verify --network moonbaseAlpha contract-deployment-address
+    yarn verify --network moonbaseAlpha "contract-deployment-address"
     ```
 
 After a short wait, the console output will display the verification result and if successful, the URL to the verified contract on Moonscan. 
 
 ![Contract verify output](/images/builders/interact/scaffold-eth/scaffold-eth-8.png)
 
-For more information on verifying smart contracts on Moonbeam using Hardhat Etherscan plugin, please refer to the [Etherscan Plugins page](/builders/tools/verify-contracts/etherscan-plugins/#using-the-hardhat-etherscan-plugin){target=_blank}. 
+For more information about verifying smart contracts on Moonbeam using Hardhat Etherscan plugin, please refer to the [Etherscan Plugins page](/builders/tools/verify-contracts/etherscan-plugins/#using-the-hardhat-etherscan-plugin){target=_blank}. 
