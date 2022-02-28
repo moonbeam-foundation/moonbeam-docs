@@ -95,14 +95,17 @@ You can begin with making modifications to the Hardhat component under the `/pac
         ```
         defaultNetwork = "moonbeam";
         ```
+
     === "Moonriver"
         ```
         defaultNetwork = "moonriver";
         ```
+
     === "Moonbase Alpha"
         ```
         defaultNetwork = "moonbaseAlpha";
         ```
+        
     === "Moonbeam Dev Node"
         ```
         defaultNetwork = "moonbeamDevNode";
@@ -134,14 +137,17 @@ In The Graph component of Scaffold-ETH, you need to modify two files to point th
         ```
         'moonbeam:{{ networks.moonbeam.rpc_url }}'
         ```
+
     === "Moonriver"
         ```
         'moonriver:{{ networks.moonriver.rpc_url }}'
         ```
+
     === "Moonbase Alpha"
         ```
         'mbase:{{ networks.moonbase.rpc_url }}'
         ```
+
     === "Moonbeam Dev Node"
         ```
         'mbase:{{ networks.development.rpc_url }}'
@@ -156,14 +162,17 @@ In The Graph component of Scaffold-ETH, you need to modify two files to point th
         ```
         network: moonbeam 
         ```
+
     === "Moonriver"
         ```
         network: moonriver
         ```
+
     === "Moonbase Alpha"
         ```
         network: mbase 
         ```
+
     === "Moonbeam Dev Node"
         ```
         network: mbase 
@@ -177,18 +186,21 @@ In The Graph component of Scaffold-ETH, you need to modify two files to point th
         address: "{{moonbeam_YourContractAddress}}"
         {% endraw %}
         ```
+
     === "Moonriver"
         ```
         {% raw %}
         address: "{{moonriver_YourContractAddress}}"
         {% endraw %}
         ```
+
     === "Moonbase Alpha"
         ```
         {% raw %}
         address: "{{moonbaseAlpha_YourContractAddress}}"
         {% endraw %}
         ```
+        
     === "Moonbeam Dev Node"
         ```
         {% raw %}
@@ -202,14 +214,17 @@ In The Graph component of Scaffold-ETH, you need to modify two files to point th
         ```
         file: ./abis/moonbeam_YourContract.json
         ```
+
     === "Moonriver"
         ```
         file: ./abis/moonriver_YourContract.json
         ```
+
     === "Moonbase Alpha"
         ```
         file: ./abis/moonbaseAlpha_YourContract.json
         ```
+
     === "Moonbeam Dev Node"
         ```
          file: ./abis/moonbeamDevNode_YourContract.json
@@ -229,8 +244,8 @@ Next, you need to modify two files in the React component to add Moonbeam networ
             name: "moonbeam",
             color: "#42A2A0",
             chainId: {{ networks.moonbeam.chain_id }}, // {{ networks.moonbeam.hex_chain_id }} in hex,
-            blockExplorer: "https://moonbeam.moonscan.io/",
-            rpcUrl: `https://rpc.api.moonbeam.network`,
+            blockExplorer: "{{ networks.moonbeam.block_explorer }}",
+            rpcUrl: "{{ networks.moonbeam.rpc_url }}",
             gasPrice: 100000000000,
             faucet: "",
         },
@@ -242,8 +257,8 @@ Next, you need to modify two files in the React component to add Moonbeam networ
             name: "moonriver",
             color: "#42A2A0",
             chainId: {{ networks.moonriver.chain_id }}, // {{ networks.moonriver.hex_chain_id }} in hex,
-            blockExplorer: "https://moonriver.moonscan.io/",
-            rpcUrl: `https://rpc.api.moonriver.moonbeam.network`,
+            blockExplorer: "{{ networks.moonriver.block_explorer }}",
+            rpcUrl: "{{ networks.moonriver.rpc_url }}",
             gasPrice: 1000000000,
             faucet: "",
         },
@@ -255,8 +270,8 @@ Next, you need to modify two files in the React component to add Moonbeam networ
             name: "moonbaseAlpha",
             color: "#42A2A0",
             chainId: {{ networks.moonbase.chain_id }}, // {{ networks.moonbase.hex_chain_id }} in hex,
-            blockExplorer: "https://moonbase.moonscan.io/",
-            rpcUrl: `https://rpc.api.moonbase.moonbeam.network`,
+            blockExplorer: "{{ networks.moonbase.block_explorer }}",
+            rpcUrl: "{{ networks.moonbase.rpc_url }}",
             gasPrice: 1000000000,
             faucet: "https://discord.gg/SZNP8bWHZq",
         },
@@ -268,8 +283,8 @@ Next, you need to modify two files in the React component to add Moonbeam networ
             name: "moonbeamDevNode",
             color: "#42A2A0",
             chainId: {{ networks.development.chain_id }}, // {{ networks.development.hex_chain_id }} in hex,
-            blockExplorer: "",
-            rpcUrl: `http://127.0.0.1:9933`,
+            blockExplorer: "{{ networks.development.block_explorer }}",
+            rpcUrl: "{{ networks.development.rpc_url }}",
             gasPrice: 1000000000,
             faucet: "",
         }
@@ -281,14 +296,17 @@ Next, you need to modify two files in the React component to add Moonbeam networ
         ```
         const initialNetwork = NETWORKS.moonbeam;
         ```
+
     === "Moonriver"
         ```
         const initialNetwork = NETWORKS.moonriver;
         ```
+
     === "Moonbase Alpha"
         ```
         const initialNetwork = NETWORKS.moonbaseAlpha;
         ```
+
     === "Moonbeam Dev Node"
         ```
         const initialNetwork = NETWORKS.moonbeamDevNode;
@@ -308,7 +326,7 @@ Next, you need to modify two files in the React component to add Moonbeam networ
     yarn run-graph-node
     ```
 
-    This will launch a local node instance through a Docker image, and the console output should show that it's indexing blocks of the network that it's being pointed to. 
+    This will launch a local node instance through a Docker image, and the console output should show that it's indexing blocks of the network that it's being pointed to 
 
     ![The Graph node output](/images/builders/interact/scaffold-eth/scaffold-eth-2.png)
 
@@ -334,7 +352,7 @@ Next, you need to modify two files in the React component to add Moonbeam networ
     yarn graph-ship-local
     ```
 
-    You will be prompted to enter a version name for the sub-graph being deployed. 
+    You will be prompted to enter a version name for the sub-graph being deployed 
 
     ![Sub-graph deployment output](/images/builders/interact/scaffold-eth/scaffold-eth-5.png)
 
@@ -344,7 +362,7 @@ Next, you need to modify two files in the React component to add Moonbeam networ
     yarn start
     ```
 
-    This will launch the the React based DApp UI at `http://localhost:3000/` by default. 
+    This will launch the the React based DApp UI at `http://localhost:3000/` by default
 
     ![React server output](/images/builders/interact/scaffold-eth/scaffold-eth-6.png)
 
@@ -358,15 +376,17 @@ If you would also like to use Scaffold-ETH to verify the smart contract deployed
 
 === "Moonbeam"
     ```
-    yarn verify --network moonbeam "contract-deployment-address"
+    yarn verify --network moonbeam <CONTRACT-ADDRESS>
     ```
+
 === "Moonriver"
     ```
-    yarn verify --network moonriver "contract-deployment-address"
+    yarn verify --network moonriver <CONTRACT-ADDRESS>
     ```
+
 === "Moonbase Alpha"
     ```
-    yarn verify --network moonbaseAlpha "contract-deployment-address"
+    yarn verify --network moonbaseAlpha <CONTRACT-ADDRESS>
     ```
 
 After a short wait, the console output will display the verification result and if successful, the URL to the verified contract on Moonscan. 
