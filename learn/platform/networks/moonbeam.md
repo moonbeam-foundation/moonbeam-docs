@@ -5,7 +5,7 @@ description: An overview of the current configuration of the Moonbeam deployment
 
 # Moonbeam
 
-_Updated December 13th, 2021_
+_Updated February 28th, 2022_
 
 ## Goal {: #goal } 
 
