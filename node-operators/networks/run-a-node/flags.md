@@ -38,6 +38,7 @@ This guide will cover some of the most common flags and show you how to access a
 - **`--telemetry-url`** - specifies the URL of the telemetry server to connect to. This flag can be passed multiple times as a means to specify multiple telemetry endpoints. This flag takes two parameters: the URL and the verbosity level. Verbosity levels range from 0-9, with 0 denoting the least verbosity. Expected format is '<URL VERBOSITY>', e.g. `--telemetry-url 'wss://foo/bar 0'`.
 - **`--in-peers`** - specifies the maximum amount of accepted incoming connections. The default is `25`
 - **`--out-peers`** - specifies the maximum amount of outgoing connections to maintain. The default is `25`
+- **`--runtime-cache-size 32`** - configures the number of different runtime versions preserved in the in-memory cache to 32
 
 ## How to Access All of the Available Flags {: #how-to-access-all-of-the-available-flags }
 
