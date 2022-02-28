@@ -143,6 +143,14 @@ Secondly, you will need a bond for key association. This bond is sent when [mapp
     |:------------:|:-----------------------------------------------------:|
     | Minimum bond | {{ networks.moonbase.staking.collator_map_bond }} DEV |
 
+## Community Guidelines {: #community-guidelines }
+
+One of the primary goals of the Moonbeam Foundation is to maintain the decentralization of the Moonriver and Moonbeam networks.  To further this goal, The Moonbeam Foundation reserves the right to take action if any entity is running more than 4 collators in either network.
+
+In addition, there is a level of commitment to the community and the network that is necessary to gain trust from the community of delegators. It's important to build a brand, reputation, and community around your collation services. Becoming a known participant throughout the ecosystem is a great way to attract nominations and solidify longevity and sustainability as a collator.
+
+Since the relationship between collators and delegators is one built on trust, and as such, having direct lines of communication with delegators is a great way to build and reinforce that trust. [Joining the Discord](/node-operators/networks/collators/overview/#join-discord) and introducing yourself is one way to open the lines of communication.  There are many updates that can be given, such as nodes being updated to a new version, rewards were paid out, servers were migrated, new features or tools have been built, or just checking in to say hello. These kinds of gestures can be much appreciated in putting words and a person behind the name of someone running a server.
+
 ## Collator Questionnaire {: #collator-questionnaire }
 
 There is a [Collator Questionnaire](https://docs.google.com/forms/d/e/1FAIpQLSfjmcXdiOXWtquYlBhdgXBunCKWHadaQCgPuBtzih1fd0W3aA/viewform){target=blank}, that aims to assess the state of all collators on Moonbase Alpha. You should be running a collator node on Moonbase Alpha before filling out this form.You will be able to provide your contact information as well as some basic hardware specs. It provides a way to open the lines of communication between you and the Moonbeam team in case any problems with your node arise.
