@@ -92,7 +92,7 @@ Now that you have created the button, you need to add the `configureMoonbaseAlph
                     method: "wallet_addEthereumChain",
                     params: [
                         {
-                            chainId: "{{ networks.moonbase.hex_chain_id }}", // Moonbase Alpha's chainId is 1287, which is 0x507 in hex
+                            chainId: "{{ networks.moonbase.hex_chain_id }}", // Moonbase Alpha's chainId is {{ networks.moonbase.chain_id }}, which is {{ networks.moonbase.hex_chain_id }} in hex
                             chainName: "Moonbase Alpha",
                             nativeCurrency: {
                                 name: 'DEV',
