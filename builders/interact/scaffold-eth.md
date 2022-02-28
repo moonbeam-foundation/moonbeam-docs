@@ -9,7 +9,7 @@ description: You can deploy a Solidity DApp with a React UI and subgraph on Moon
 
 ## Introduction {: #introduction } 
 
-[Scaffold ETH](https://github.com/scaffold-eth/scaffold-eth){target=blank} is a collection of commonly used Ethereum development tools to quickly deploy a Solidity smart contract, and launch a DApp with a React frontend and a deployed subgraph. There are premade templates for common DApp types such as NFT’s, ERC-20 tokens, multi-sig wallets, simple DEXs, and so on.
+[Scaffold-ETH](https://github.com/scaffold-eth/scaffold-eth){target=blank} is a collection of commonly used Ethereum development tools to quickly deploy a Solidity smart contract, and launch a DApp with a React frontend and a deployed subgraph. There are premade templates for common DApp types such as NFT’s, ERC-20 tokens, multi-sig wallets, simple DEXs, and so on.
 
 Scaffold-ETH consists of several sub-components, including Hardhat, The Graph and a React UI. All of these components can be used on Moonbeam networks with some slight modifications. This guide will walk through the steps to deploy and run the default sample contract and DApp that Scaffold-ETH comes with on a Moonbeam network. 
 
@@ -105,7 +105,7 @@ You can begin with making modifications to the Hardhat component under the `/pac
         ```
         defaultNetwork = "moonbaseAlpha";
         ```
-        
+
     === "Moonbeam Dev Node"
         ```
         defaultNetwork = "moonbeamDevNode";
