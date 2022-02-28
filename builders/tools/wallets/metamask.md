@@ -125,7 +125,7 @@ It's possible that you'll have logic that relies on knowing whether a user is co
     const chainId = await provider.request({
         method: 'eth_chainId'
     })
-    // Moonbase Alpha's chainId is 1287, which is 0x507 in hex
+    // Moonbase Alpha's chainId is {{ networks.moonbase.chain_id }}, which is {{ networks.moonbase.hex_chain_id }} in hex
     if (chainId === "{{ networks.moonbase.hex_chain_id }}"){
         // At this point, you might want to disable the "Connect" button
         // or inform the user that they are already connected to the
