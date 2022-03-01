@@ -1,10 +1,11 @@
+// 1. Import packages
 const fs = require('fs');
 const solc = require('solc');
 
-// Get Path and Load Contract
+// 2. Get path and load contract
 const source = fs.readFileSync('Incrementer.sol', 'utf8');
 
-// Compile Contract
+// 3. Create input object
 const input = {
    language: 'Solidity',
    sources: {
@@ -20,8 +21,9 @@ const input = {
       },
    },
 };
+// 4. Compile the contract
 const tempFile = JSON.parse(solc.compile(JSON.stringify(input)));
 const contractFile = tempFile.contracts['Incrementer.sol']['Incrementer'];
 
-// Export Contract Data
+// 5. Export contract data
 module.exports = contractFile;

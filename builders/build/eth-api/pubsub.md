@@ -6,9 +6,11 @@ description: Use Ethereum-like publish-subscribe functionality to subscribe to s
 # Subscribe to Events in Moonbase Alpha
 
 ## Introduction {: #introduction } 
+
 The ability to subscribe to Ethereum-style events was added with the [release of Moonbase Alpha v2](https://moonbeam.network/announcements/testnet-upgrade-moonbase-alpha-v2/). In this guide, we will outline the subscription types available and current limitations.
 
 ## Checking Prerequisites {: #checking-prerequisites } 
+
 The examples in this guide are based on an Ubuntu 18.04 environment. You will also need the following:
 
  - Have MetaMask installed and [connected to Moonbase](/tokens/connect/metamask/)
@@ -32,6 +34,7 @@ npm ls web3
 As of writing this guide, the version used was 1.3.0. 
 
 ## Subscribing to Event Logs in Moonbase Alpha {: #subscribing-to-event-logs-in-moonbase-alpha } 
+
 Any contract that follows the ERC-20 token standard emits an event related to a transfer of tokens, that is, `event Transfer(address indexed from, address indexed to, uint256 value)`. For this example, we will subscribe to the logs of such events. Using the web3.js library, we need the following piece of code:
 
 ```js
@@ -84,6 +87,7 @@ Unindexed data is returned in the `data` field of the logs, but this is encoded 
 If the event returns multiple unindexed values, they will be appended one after the other in the same order the event emits them. Therefore, each value is then obtained by deconstructing data into separate 32 bytes (or 64 hex character long) pieces.
 
 ### Using Wildcards and Conditional Formatting {: #using-wildcards-and-conditional-formatting } 
+
 In the v2 release that introduced the subscribing to logs feature, there were some limitations regarding using wildcards and conditional formatting for the topics. Nevertheless, with the release of [Moonbase Alpha v3](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/), this is now possible.
 
 Using the same example as in the previous section, lets subscribe to the events of the token contract with the following code:
@@ -126,6 +130,7 @@ As shown, after we provided the two addresses with conditional formatting, we re
 This example showed how we could subscribe to just the event logs of a specific contract, but the web3.js library provides other subscription types that we’ll go over in the following sections.
 
 ## Subscribe to Incoming Pending Transactions {: #subscribe-to-incoming-pending-transactions } 
+
 In order to subscribe to pending transactions, we can use the `web3.eth.subscribe(‘pendingTransactions’, [, callback])` method, implementing the same callback function to check for the response. This is much simpler than our previous example, and it returns the transaction hash of the pending transactions.
 
 ![Subscribe pending transactions response](/images/builders/build/eth-api/pubsub/pubsub-5.png)
@@ -133,6 +138,7 @@ In order to subscribe to pending transactions, we can use the `web3.eth.subscrib
 We can verify that this transaction hash is the same as that shown in MetaMask (or Remix).
 
 ## Subscribe to Incoming Block Headers {: #subscribe-to-incoming-block-headers } 
+
 Another type available under the Web3.js library is to subscribe to new block headers. To do so, we use the `web3.eth.subscribe('newBlockHeaders' [, callback])` method, implementing the same callback function to check for the response. This subscription provides incoming block headers and can be used to track changes in the blockchain.
 
 ![Subscribe to block headers response](/images/builders/build/eth-api/pubsub/pubsub-6.png)
@@ -140,9 +146,11 @@ Another type available under the Web3.js library is to subscribe to new block he
 Note that only one block header is shown in the image. These messages are displayed for every block produced so they can fill up the terminal quite fast.
 
 ## Check if a Node is Synchronized with the Network {: #check-if-a-node-is-synchronized-with-the-network } 
+
 With pub/sub it is also possible to check whether a particular node you are subscribed to is currently synchronized with the network. For that, we can leverage the `web3.eth.subscribe(‘syncing' [, callback])` method, implementing the same callback function to check for the response. This subscription will return an object when the node is synced with the network.
 
 ![Subscribe to syncing response](/images/builders/build/eth-api/pubsub/pubsub-7.png)
 
 ## Current Limitations {: #current-limitations } 
+
 The pub/sub implementation in [Frontier](https://github.com/paritytech/frontier) is still in active development. This first version allows DApp developers (or users in general) to subscribe to specific event types, but there are still some limitations. You may have noticed from previous examples that some of the fields are not showing proper information with the current version released, and that is because certain properties are yet to be supported by Frontier.

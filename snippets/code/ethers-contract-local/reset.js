@@ -1,49 +1,31 @@
-const ethers = require('ethers');
+// 1. Import the contract ABI
 const { abi } = require('./compile');
 
-/*
-   -- Define Provider & Variables --
-*/
-// Provider
-const providerRPC = {
-  development: {
-    name: 'moonbeam-development',
-    rpc: 'http://localhost:9933',
-    chainId: 1281,
-  },
-  moonbase: {
-    name: 'moonbase-alpha',
-    rpc: 'https://rpc.api.moonbase.moonbeam.network',
-    chainId: 1287,
-  },
-};
-const provider = new ethers.providers.StaticJsonRpcProvider(providerRPC.development.rpc, {
-  chainId: providerRPC.development.chainId,
-  name: providerRPC.development.name,
-}); //Change to correct network
+// 2. Add the Ethers provider logic here:
+// {...}
 
-// Variables
+// 3. Create variables
 const account_from = {
   privateKey: 'YOUR-PRIVATE-KEY-HERE',
 };
 const contractAddress = 'CONTRACT-ADDRESS-HERE';
 
-// Create Wallet
+// 4. Create wallet
 let wallet = new ethers.Wallet(account_from.privateKey, provider);
 
-/*
-   -- Send Function --
-*/
-// Create Contract Instance with Signer
+// 5. Create contract instance with signer
 const incrementer = new ethers.Contract(contractAddress, abi, wallet);
+
+// 6. Create reset function
 const reset = async () => {
   console.log(`Calling the reset function in contract at address: ${contractAddress}`);
 
-  // Sign-Send Tx and Wait for Receipt
+  // 7. sign and send tx and wait for receipt
   const createReceipt = await incrementer.reset();
   await createReceipt.wait();
 
   console.log(`Tx successful with hash: ${createReceipt.hash}`);
 };
 
+// 8. Call the reset function
 reset();

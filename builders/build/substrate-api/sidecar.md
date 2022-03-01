@@ -1,5 +1,5 @@
 ---
-title: Substrate API Sidecar
+title: Sidecar
 description: Information on how to use Substrate-based REST service with Moonbeam networks
 ---
 

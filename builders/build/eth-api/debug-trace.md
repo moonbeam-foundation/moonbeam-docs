@@ -13,7 +13,7 @@ Geth's `debug` and `txpool` APIs and OpenEthereum's `trace` module provide non-s
 
 This guide will cover the supported RPC methods available on Moonbeam as well as how to invoke the methods using curl commands against a local Moonbase Alpha tracing node.
 
-## Supported RPC Methods
+## Supported RPC Methods {: #supported-rpc-methods }
 
 The following RPC methods are available: 
 
@@ -39,7 +39,7 @@ As *optional* parameters for the supported debug methods, you can provide the fo
  - **disableMemory**(*boolean*) — (default: _false_). Setting this to true disables memory capture
  - **disableStack**(*boolean*) — (default: _false_). Setting this to true disables stack capture
 
-## Txpool API
+## Txpool API {: #txpool-api }
 
 The txpool RPC implementations follow [Geth's txpool API guidelines](https://geth.ethereum.org/docs/rpc/ns-txpool):
 
@@ -65,7 +65,7 @@ There are a couple default values that you should be aware of:
 
 To change the default values you can add [Additional Flags](/node-operators/networks/tracing-node/#additional-flags) when spinning up your tracing node.
 
-## Checking Prerequisites
+## Checking Prerequisites {: #checking-prerequisites }
 
 For this guide, you will need to have a locally running instance of a Moonbase Alpha tracing node with the `debug`, `txpool`, and `tracing` flags enabled for this guide. You can also adapt the instructions for Moonbeam and Moonriver. 
 
@@ -75,7 +75,7 @@ If you have a running node, you should see a similar terminal log:
 
 ![Debug API](/images/builders/build/eth-api/debug-trace/debug-trace-1.png)
 
-## Using the Debug API
+## Using the Debug API {: #using-the-debug-api }
 
 Once you have a running tracing node, you can open another tab in your terminal where you can run curl commands and start to call any of the available JSON RPC methods. For example, for the `debug_traceTransaction` method, you can make the following JSON RPC request in your terminal (in this case, for the transaction hash `0x04978f83e778d715eb074352091b2159c0689b5ae2da2554e8fe8e609ab463bf`):
 
@@ -93,7 +93,7 @@ The node responds with the step-by-step replayed transaction information (respon
 
 ![Trace Debug Node Running](/images/builders/build/eth-api/debug-trace/debug-trace-2.png)
 
-## Using the Tracing Module
+## Using the Tracing Module {: #using-the-tracing-module }
 
 For the `trace_filter` call, you can make the following JSON RPC request in your terminal (in this case, the filter is from block 20000 to 25000, only for transactions where the recipient is  `0x4E0078423a39EfBC1F8B5104540aC2650a756577`, it will start with a zero offset and provide the first 20 traces):
 
@@ -110,7 +110,7 @@ The node responds with the trace information corresponding to the filter (respon
 
 ![Trace Filter Node Running](/images/builders/build/eth-api/debug-trace/debug-trace-3.png)
 
-## Using the Txpool API
+## Using the Txpool API {: #using-the-txpool-api }
 
 Since none of the currently supported txpool methods require a parameter, you can adapt the following curl command by changing the method for any of the txpool methods:
 

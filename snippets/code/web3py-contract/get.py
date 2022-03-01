@@ -1,28 +1,18 @@
-from compile import abi, bytecode
-from web3 import Web3
+# 1. Import the ABI
+from compile import abi
 
-#
-# -- Define Provider & Variables --
-#
-# Provider
-provider_rpc = {
-    'development': 'http://localhost:9933',
-    'alphanet': 'https://rpc.api.moonbase.moonbeam.network',
-}
-web3 = Web3(Web3.HTTPProvider(provider_rpc["development"]))  # Change to correct network
+# 2. Add the Web3 provider logic here:
+# {...}
 
-# Variables
+# 3. Create address variable
 contract_address = 'CONTRACT-ADDRESS-HERE'
 
-#
-#  -- Call Function --
-#
 print(f'Making a call to contract at address: { contract_address }')
 
-# Create Contract Instance
+# 4. Create contract instance
 Incrementer = web3.eth.contract(address=contract_address, abi=abi)
 
-# Call Contract
+# 5. Call Contract
 number = Incrementer.functions.number().call()
 
 print(f'The current number stored is: { number } ')

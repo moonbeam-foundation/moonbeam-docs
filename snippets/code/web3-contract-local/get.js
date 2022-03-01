@@ -1,32 +1,24 @@
-const Web3 = require('web3');
+// 1. Import the contract abi
 const { abi } = require('./compile');
 
-/*
-   -- Define Provider & Variables --
-*/
-// Provider
-const providerRPC = {
-  development: 'http://localhost:9933',
-  moonbase: 'https://rpc.api.moonbase.moonbeam.network',
-};
-const web3 = new Web3(providerRPC.development); //Change to correct network
+// 2. Add the Ethers provider logic here:
+// {...}
 
-// Variables
+// 3. Create address variables
 const contractAddress = 'CONTRACT-ADDRESS-HERE';
 
-/*
-   -- Call Function --
-*/
-// Create Contract Instance
+// 4. Create contract instance
 const incrementer = new web3.eth.Contract(abi, contractAddress);
 
+// 5. Create get function
 const get = async () => {
   console.log(`Making a call to contract at address: ${contractAddress}`);
 
-  // Call Contract
+  // 6. Call contract
   const data = await incrementer.methods.number().call();
 
   console.log(`The current number stored is: ${data}`);
 };
 
+// 7. Call get function
 get();

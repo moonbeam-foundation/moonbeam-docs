@@ -1,5 +1,5 @@
 ---
-title: Build a DApp
+title: Build
 template: main.html
 ---
 

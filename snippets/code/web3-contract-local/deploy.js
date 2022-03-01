@@ -1,51 +1,45 @@
-const Web3 = require('web3');
+// 1. Import the contract file
 const contractFile = require('./compile');
 
-/*
-   -- Define Provider & Variables --
-*/
-// Provider
-const providerRPC = {
-  development: 'http://localhost:9933',
-  moonbase: 'https://rpc.api.moonbase.moonbeam.network',
-};
-const web3 = new Web3(providerRPC.development); //Change to correct network
+// 2. Add the Ethers provider logic here:
+// {...}
 
-// Variables
-const account_from = {
+// 3. Create address variables
+const accountFrom = {
   privateKey: 'YOUR-PRIVATE-KEY-HERE',
   address: 'PUBLIC-ADDRESS-OF-PK-HERE',
 };
+
+// 4. Get the bytecode and API
 const bytecode = contractFile.evm.bytecode.object;
 const abi = contractFile.abi;
 
-/*
-   -- Deploy Contract --
-*/
+// 5. Create deploy function
 const deploy = async () => {
-  console.log(`Attempting to deploy from account ${account_from.address}`);
+  console.log(`Attempting to deploy from account ${accountFrom.address}`);
 
-  // Create Contract Instance
+  // 6. Create contract instance
   const incrementer = new web3.eth.Contract(abi);
 
-  // Create Constructor Tx
+  // 7. Create constructor tx
   const incrementerTx = incrementer.deploy({
     data: bytecode,
     arguments: [5],
   });
 
-  // Sign Transacation and Send
+  // 8. Sign transacation and send
   const createTransaction = await web3.eth.accounts.signTransaction(
     {
       data: incrementerTx.encodeABI(),
       gas: await incrementerTx.estimateGas(),
     },
-    account_from.privateKey
+    accountFrom.privateKey
   );
 
-  // Send Tx and Wait for Receipt
+  // 9. Send tx and wait for receipt
   const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction);
   console.log(`Contract deployed at address: ${createReceipt.contractAddress}`);
 };
 
+// 10. Call deploy function
 deploy();

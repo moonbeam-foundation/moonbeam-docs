@@ -1,47 +1,39 @@
-const Web3 = require('web3');
+// 1. Import the contract abi
 const { abi } = require('./compile');
 
-/*
-   -- Define Provider & Variables --
-*/
-// Provider
-const providerRPC = {
-  development: 'http://localhost:9933',
-  moonbase: 'https://rpc.api.moonbase.moonbeam.network',
-};
-const web3 = new Web3(providerRPC.development); //Change to correct network
+// 2. Add the Ethers provider logic here:
+// {...}
 
-// Variables
-const account_from = {
+// 3. Create variables
+const accountFrom = {
   privateKey: 'YOUR-PRIVATE-KEY-HERE',
 };
 const contractAddress = 'CONTRACT-ADDRESS-HERE';
 
-/*
-   -- Send Function --
-*/
-// Create Contract Instance
+// 4. Create Contract Instance
 const incrementer = new web3.eth.Contract(abi, contractAddress);
 
-// Build Reset Tx
+// 5. Build reset tx
 const resetTx = incrementer.methods.reset();
 
+// 6. Create reset function
 const reset = async () => {
   console.log(`Calling the reset function in contract at address: ${contractAddress}`);
 
-  // Sign Tx with PK
+  // 7. Sign tx with PK
   const createTransaction = await web3.eth.accounts.signTransaction(
     {
       to: contractAddress,
       data: resetTx.encodeABI(),
       gas: await resetTx.estimateGas(),
     },
-    account_from.privateKey
+    accountFrom.privateKey
   );
 
-  // Send Tx and Wait for Receipt
+  // 8. Send tx and wait for receipt
   const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction);
   console.log(`Tx successful with hash: ${createReceipt.transactionHash}`);
 };
 
+// 9. Call reset function
 reset();

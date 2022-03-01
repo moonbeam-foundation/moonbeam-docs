@@ -1,8 +1,7 @@
-title: Build a DApp
+title: Build
 hide: false
 nav:
   - index.md
   - eth-api
   - substrate-api
-  - contracts
-  - wallets
+  - canonical-contracts
