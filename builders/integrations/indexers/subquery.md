@@ -184,7 +184,7 @@ To update your sample SubQuery project to be used for Moonbeam, you can take the
     ```
 
     !!! note
-    You can also use the `filter` field to only listen to certain events or specific function calls. 
+        You can also use the `filter` field to only listen to certain events or specific function calls. 
 
 5. Generate the required GraphQL models defined in your GraphQL schema file:
 
@@ -199,7 +199,7 @@ To update your sample SubQuery project to be used for Moonbeam, you can take the
     ```
 
     !!! note
-    It may take some time to download the required packages for the first time but soon you'll see a running SubQuery node.
+        It may take some time to download the required packages for the first time but soon you'll see a running SubQuery node.
 
 7. Now you can query your project by opening your browser to http://localhost:3000, where you'll find a GraphQL playground. On the top right of the playground, you'll find a **Docs** button that will open a documentation drawer. This documentation is automatically generated and helps you find what entities and methods you can query
 
