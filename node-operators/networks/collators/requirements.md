@@ -9,11 +9,27 @@ description: Learn about the requirements for becoming a collator and maintainin
 
 ## Introduction {: #introduction } 
 
-There are some requirements to keep in mind before diving into running a collator node. You need to have top of the line hardware, securely created and stored accounts, meet bonding requirements, and fill out a collator questionnaire.
+There are some requirements to keep in mind before diving into running a collator node. Primarily, you need to follow the community guidelines and meet the technical requirements. You should have top of the line hardware, securely created and stored accounts, meet bonding requirements, and fill out a collator questionnaire.
 
 It is recommended to go through all of the necessary requirements on the Moonbase Alpha TestNet before collating on a production network like Moonbeam or Moonriver.
 
 This guide will help you to get started fulfilling the collator requirements so you can get your node up and running in no time.
+
+## Community Guidelines {: #community-guidelines }
+
+One of the primary goals of the Moonbeam Foundation is to maintain the decentralization of the Moonriver and Moonbeam networks. To further this goal, the Moonbeam Foundation reserves the right to take action if any of the following occur:
+
+- An entity is running more than 4 collators in either network
+- A collator acts in a nefarious manner that is uncharitable to the community or other collators
+
+In addition, there is a level of commitment to the community and the network that is necessary to gain trust from the community of delegators and attract more delegations. The following contains some suggestions for contributing to the community:
+
+- Be active in the community
+    - [Join the Discord](/node-operators/networks/collators/overview/#join-discord){target=blank} and introduce yourself, provide updates as needed, and help support community members or other collators
+- Create tutorials and educational content
+- [Become a Moonbeam Ambassador](https://moonbeam.network/community/ambassadors/){target=blank}
+- Contribute to open-source software relating to the ecosystem
+- Actively participate in governance and vote on proposals
 
 ## Hardware Requirements {: #hardware-requirements } 
 
@@ -142,14 +158,6 @@ Secondly, you will need a bond for key association. This bond is sent when [mapp
     |   Variable   |                         Value                         |
     |:------------:|:-----------------------------------------------------:|
     | Minimum bond | {{ networks.moonbase.staking.collator_map_bond }} DEV |
-
-## Community Guidelines {: #community-guidelines }
-
-One of the primary goals of the Moonbeam Foundation is to maintain the decentralization of the Moonriver and Moonbeam networks.  To further this goal, The Moonbeam Foundation reserves the right to take action if any entity is running more than 4 collators in either network.
-
-In addition, there is a level of commitment to the community and the network that is necessary to gain trust from the community of delegators. It's important to build a brand, reputation, and community around your collation services. Becoming a known participant throughout the ecosystem is a great way to attract nominations and solidify longevity and sustainability as a collator.
-
-The relationship between collators and delegators is one built on trust, and as such, having direct lines of communication with delegators is a great way to build and reinforce that trust. [Joining the Discord](/node-operators/networks/collators/overview/#join-discord) and introducing yourself is one way to open the lines of communication.  There are many updates that can be given, such as nodes being updated to a new version, rewards were paid out, servers were migrated, new features or tools have been built, or just checking in to say hello. These kinds of gestures can be much appreciated in putting words and a person behind the name of someone running a server.
 
 ## Collator Questionnaire {: #collator-questionnaire }
 
