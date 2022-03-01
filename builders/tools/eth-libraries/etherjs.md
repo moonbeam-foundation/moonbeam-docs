@@ -12,8 +12,6 @@ The [ethers.js](https://docs.ethers.io/) library provides a set of tools to inte
 
 ## Setup Ethers.js with Moonbeam {: #setup-ethersjs-with-moonbeam } 
 
-Before diving in you will need to have your own endpoint and API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=blank}. 
-
 To get started with the ethers.js library, install it using the following command:
 
 ```
@@ -38,7 +36,11 @@ const provider = new ethers.providers.StaticJsonRpcProvider('RPC_URL', {
 let wallet = new ethers.Wallet(privKey, provider);
 ```
 
-Different methods are available inside `provider` and `wallet`. Depending on which network you want to connect to, you can set the network configurations to the following values:
+Different methods are available inside `provider` and `wallet`. 
+
+--8<-- 'text/common/endpoint-setup.md'
+
+Depending on which network you want to connect to, you can set the network configurations to the following values:
 
 === "Moonbeam"
     |   Variable   |                                      Value                                       |

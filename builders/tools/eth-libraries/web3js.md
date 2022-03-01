@@ -12,8 +12,6 @@ description: Follow this tutorial to learn how to use the Ethereum Web3 JavaScri
 
 ## Setup Web3.js with Moonbeam {: #setup-web3js-with-moonbeam } 
 
-Before diving in you will need to have your own endpoint and API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=blank}. 
-
 To get started with the web3.js library, we first need to install it using the following command:
 
 ```
@@ -29,17 +27,9 @@ const Web3 = require('web3');
 const web3 = new Web3('RPC_URL');
 ```
 
-Depending on which network you want to connect to, you can set the `RPC_URL` to the following values:
+--8<-- 'text/common/endpoint-setup.md'
 
-=== "Moonbeam"
-    ```
-    {{ networks.moonbeam.rpc_url }}
-    ```
-
-=== "Moonriver"
-    ```
-    {{ networks.moonriver.rpc_url }}
-    ```
+If you want to connect to Moonbase Alpha or a Moonbeam development node, you can set the `RPC_URL` to the following values:
 
 === "Moonbase Alpha"
     ```

@@ -48,7 +48,7 @@ You can make calls to the Substrate JSON-RPC using the `send` method of both [We
 
 Custom RPC requests are also possible using [Web3.py](https://web3py.readthedocs.io/) with the `make_request` method. You can use the Web3.js example as a baseline.
 
-You will need to have your own endpoint and API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=blank}. 
+--8<-- 'text/common/endpoint-examples.md'
 
 !!! note
     The code snippets presented in the following sections are not meant for production environments. Please make sure you adapt it for each use-case.

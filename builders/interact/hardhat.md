@@ -23,7 +23,8 @@ Also, you will need the following:
 
  - Have MetaMask installed and [connected to Moonbase](/tokens/connect/metamask/)
  - Have an account with funds, which you can get from [Mission Control](/builders/get-started/moonbase/#get-tokens/)
- - Have your own endpoint and API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=blank}
+
+--8<-- 'text/common/endpoint-examples.md'
 
 Once all requirements have been met, you are ready to build with Hardhat.
 

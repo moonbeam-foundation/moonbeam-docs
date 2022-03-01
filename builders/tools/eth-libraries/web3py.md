@@ -12,8 +12,6 @@ description: Follow this tutorial to learn how to use the Ethereum Web3 Python L
 
 ## Setup Web3.py with Moonbeam {: #setup-web3py-with-moonbeam } 
 
-Before diving in you will need to have your own endpoint and API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=blank}. 
-
 To get started with the web3.py library, install it using the following command:
 
 ```
@@ -28,17 +26,9 @@ from web3 import Web3
 web3 = Web3(Web3.HTTPProvider('RPC_URL'))
 ```
 
-Depending on which network you want to connect to, you can set the `RPC_URL` to the following values:
+--8<-- 'text/common/endpoint-setup.md'
 
-=== "Moonbeam"
-    ```
-    {{ networks.moonbeam.rpc_url }}
-    ```
-
-=== "Moonriver"
-    ```
-    {{ networks.moonriver.rpc_url }}
-    ```
+If you want to connect to Moonbase Alpha or a Moonbeam development node, you can set the `RPC_URL` to the following values:
 
 === "Moonbase Alpha"
     ```

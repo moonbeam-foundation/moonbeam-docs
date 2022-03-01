@@ -33,7 +33,7 @@ As of this guide's publish date, the versions used were 15.12.0, 7.6.3, and 5.2.
 !!! note
     For the following examples, you don't need to have Truffle globally installed, as it is included as a dependency on the Moonbeam Truffle box. If you prefer, you can run `npx truffle` or `./node_modules/.bin/truffle` instead of `truffle`.
 
-You will need to have your own endpoint and API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=blank}. 
+--8<-- 'text/common/endpoint-examples.md'
 
 ## Getting Started with Truffle {: #getting-started-with-truffle } 
 

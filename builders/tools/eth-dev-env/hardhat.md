@@ -13,7 +13,7 @@ description: Learn how to configure Hardhat to add a local Moonbeam development 
 
 ## Configure Hardhat to Connect to Moonbeam {: #configure-hardhat-to-connect-to-moonbeam } 
 
-Before diving in you will need to have your own endpoint and API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=blank}. 
+--8<-- 'text/common/endpoint-setup.md'
 
 To get started with Hardhat you must have an npm project. If you do not yet have one, to create one you can run:
 
