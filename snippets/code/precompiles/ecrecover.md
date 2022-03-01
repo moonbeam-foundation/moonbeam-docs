@@ -2,7 +2,7 @@
 const Web3 = require('web3');
 
 // Provider
-const web3 = new Web3('{{ networks.moonbase.rpc_url }}');
+const web3 = new Web3('https://moonbeam-alpha.api.onfinality.io/rpc?apikey=<insert-api-key>');
 
 // Address and Private Key
 const address = '0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b';

@@ -13,6 +13,9 @@ description: Learn how to configure Mars for deploying Solidity smart contracts 
 
 ## Configure Mars to Connect to Moonbeam {: #configure-mars-to-connect-to-moonbeam } 
 
+Before diving in you will need to have your own API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=blank}. 
+
+
 Assuming you already have a JavaScript or TypeScript project, install Mars:
 
 ```

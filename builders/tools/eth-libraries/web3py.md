@@ -12,6 +12,8 @@ description: Follow this tutorial to learn how to use the Ethereum Web3 Python L
 
 ## Setup Web3.py with Moonbeam {: #setup-web3py-with-moonbeam } 
 
+Before diving in you will need to have your own API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=blank}. 
+
 To get started with the web3.py library, install it using the following command:
 
 ```

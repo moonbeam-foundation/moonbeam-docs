@@ -9,7 +9,7 @@ const txHash = 'tx_hash';
 const providerRPC = {
   moonbeam: {
     name: 'moonbeam',
-    rpc: 'https://rpc.api.moonbeam.network',
+    rpc: 'https://moonbeam.api.onfinality.io/rpc?apikey=<insert-api-key>',
     chainId: 1284,
   }
 };

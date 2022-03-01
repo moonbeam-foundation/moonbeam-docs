@@ -7,7 +7,7 @@ const contractFile = require('./compile');
 // Provider
 const providerRPC = {
   development: 'http://localhost:9933',
-  moonbase: 'https://rpc.api.moonbase.moonbeam.network',
+  moonbase: 'https://moonbeam-alpha.api.onfinality.io/rpc?apikey=<insert-api-key>',
 };
 const web3 = new Web3(providerRPC.development); //Change to correct network
 

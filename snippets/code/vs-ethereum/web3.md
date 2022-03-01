@@ -6,7 +6,7 @@ const txHash = 'tx_hash';
 
 // Define the Web3 provider for Moonbeam
 // This can also be adapted for Moonriver or Moonbase Alpha
-const web3 = new Web3('https://rpc.api.moonbeam.network');
+const web3 = new Web3('https://moonbeam-alpha.api.onfinality.io/rpc?apikey=<insert-api-key>');
 
 // Define the function for the Custom Web3 Request
 const customWeb3Request = async (web3Provider, method, params) => {

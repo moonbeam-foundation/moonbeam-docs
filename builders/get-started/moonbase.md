@@ -34,7 +34,7 @@ If you do not have MetaMask installed, or would like to follow a tutorial to get
 If you want to connect MetaMask by providing the network information, you can use the following data:
 
  - Network Name: `Moonbase Alpha`
- - RPC URL: `{{ networks.moonbase.rpc_url }}`
+ - RPC URL: `{{ networks.moonbase.public_rpc_url }}`
  - ChainID: `{{ networks.moonbase.chain_id }}` (hex: `{{ networks.moonbase.hex_chain_id }}`)
  - Symbol (Optional): `DEV`
  - Block Explorer (Optional): `{{ networks.moonbase.block_explorer }}`

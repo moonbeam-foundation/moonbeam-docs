@@ -12,6 +12,8 @@ description: Follow this tutorial to learn how to use the Ethereum Web3 JavaScri
 
 ## Setup Web3.js with Moonbeam {: #setup-web3js-with-moonbeam } 
 
+Before diving in you will need to have your own API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=blank}. 
+
 To get started with the web3.js library, we first need to install it using the following command:
 
 ```

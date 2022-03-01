@@ -13,7 +13,7 @@ const providerRPC = {
   },
   moonbase: {
     name: 'moonbase-alpha',
-    rpc: 'https://rpc.api.moonbase.moonbeam.network',
+    rpc: 'https://moonbeam-alpha.api.onfinality.io/rpc?apikey=<insert-api-key>',
     chainId: 1287,
   },
 };

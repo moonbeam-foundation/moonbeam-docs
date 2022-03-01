@@ -34,7 +34,7 @@ If you do not have MetaMask installed, or would like to follow a tutorial to get
 If you want to connect MetaMask by providing the network information, you can use the following data:
 
  - Network Name: `Moonbeam`
- - RPC URL: `{{ networks.moonbeam.rpc_url }}`
+ - RPC URL: `{{ networks.moonbeam.public_rpc_url }}`
  - ChainID: `{{ networks.moonbeam.chain_id }}` (hex: `{{ networks.moonbeam.hex_chain_id }}`)
  - Symbol (Optional): `GLMR`
  - Block Explorer (Optional): `{{ networks.moonbeam.block_explorer }}` 

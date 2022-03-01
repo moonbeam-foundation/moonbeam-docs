@@ -13,6 +13,9 @@ description: Learn how to configure Truffle to add a local Moonbeam development 
 
 ## Configure Truffle to Connect to Moonbeam {: #configure-truffle-to-connect-to-moonbeam } 
 
+Before diving in you will need to have your own API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=blank}. 
+
+
 If you haven't yet, you'll want to globally install Truffle:
 
 ```

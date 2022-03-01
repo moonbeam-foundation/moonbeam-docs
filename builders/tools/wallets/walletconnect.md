@@ -34,7 +34,7 @@ If you already have a DApp with WalletConnect support, and just want to add Moon
       network: "mainnet",
       chain_id: {{ networks.moonbeam.chain_id }},
       network_id: {{ networks.moonbeam.chain_id }},
-      rpc_url: "{{ networks.moonbeam.rpc_url }}",
+      rpc_url: "{{ networks.moonbeam.public_rpc_url }}",
       native_currency: {
         symbol: "GLMR",
         name: "Glimmer",
@@ -54,7 +54,7 @@ If you already have a DApp with WalletConnect support, and just want to add Moon
       network: "mainnet",
       chain_id: {{ networks.moonriver.chain_id }},
       network_id: {{ networks.moonriver.chain_id }},
-      rpc_url: "{{ networks.moonriver.rpc_url }}",
+      rpc_url: "{{ networks.moonriver.public_rpc_url }}",
       native_currency: {
         symbol: "MOVR",
         name: "Moonriver",
@@ -74,7 +74,7 @@ If you already have a DApp with WalletConnect support, and just want to add Moon
       network: "testnet",
       chain_id: {{ networks.moonbase.chain_id }},
       network_id: {{ networks.moonbase.chain_id }},
-      rpc_url: "{{ networks.moonbase.rpc_url }}",
+      rpc_url: "{{ networks.moonbase.public_rpc_url }}",
       native_currency: {
         symbol: "DEV",
         name: "DEV",
@@ -369,7 +369,7 @@ const onConnect = async (chainId, address) => {
     setChainId(chainId);
 
     // 1. Create an Ethers provider
-    const provider = new ethers.providers.StaticJsonRpcProvider(networkData.rpc_url, {
+    const provider = new ethers.providers.StaticJsonRpcProvider(networkData.public_rpc_url, {
       chainId,
       name: networkData.name
     });

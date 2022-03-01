@@ -27,6 +27,8 @@ Waffle and Mars can be used with a locally running Moonbeam development node, bu
 
 Once you've created an account you'll need to export the private key to be used in this guide. Before moving on, ensure your account has funds and, if needed, get `DEV` tokens from the [faucet](/builders/get-started/moonbase/#get-tokens/).
 
+You will need to have your own API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=blank}. 
+
 ## Create a TypeScript Project with Waffle & Mars {: #create-a-typescript-project-with-waffle-mars } 
 
 To get started, you'll create a TypeScript project and install and configure a few dependencies.

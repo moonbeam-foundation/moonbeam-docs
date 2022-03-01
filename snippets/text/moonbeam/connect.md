@@ -2,15 +2,11 @@
 
 ### Network Endpoints
 
-Moonbeam has two types of endpoints available for users to connect to: one for HTTPS and one for WSS. 
-
-If you're looking for your own endpoints suitable for production use, you can check out the [Endpoint Providers](/builders/get-started/endpoints/#endpoint-providers) section of our documentation. Otherwise, to get started quickly you can use one of the following public HTTPS or WSS endpoints:
-
---8<-- 'code/endpoints/moonbeam.md'
+Moonbeam has two types of endpoints available for users to connect to: one for HTTPS and one for WSS. You can check out the [Endpoint Providers](/builders/get-started/endpoints/){target=blank} section of the documentation to get your own API key from one of the supported providers.
 
 ### Quick Start {: #quick-start } 
 
-For the web3.js library, you can create a local Web3 instance and set the provider to connect to Moonbeam (both HTTP and WS are supported):
+Before getting started, make sure you've retrieved your own API key from one of the custom [Endpoint Providers](/builders/get-started/endpoints/){target=blank}. Then for the web3.js library, you can create a local Web3 instance and set the provider to connect to Moonbeam (both HTTP and WS are supported):
 
 ```js
 const Web3 = require('web3'); //Load Web3 library
@@ -18,7 +14,7 @@ const Web3 = require('web3'); //Load Web3 library
 .
 .
 //Create local Web3 instance - set Moonbeam as provider
-const web3 = new Web3("https://rpc.api.moonbeam.network"); 
+const web3 = new Web3("https://moonbeam.api.onfinality.io/rpc?apikey=<insert-api-key>"); 
 ```
 
 For the ethers.js library, define the provider by using `ethers.providers.StaticJsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonbeam:
@@ -26,7 +22,7 @@ For the ethers.js library, define the provider by using `ethers.providers.Static
 ```js
 const ethers = require('ethers');
 
-const providerURL = "https://rpc.api.moonbeam.network";
+const providerURL = "https://moonbeam.api.onfinality.io/rpc?apikey=<insert-api-key>";
 // Define Provider
 const provider = new ethers.providers.StaticJsonRpcProvider(providerURL, {
     chainId: 1284,

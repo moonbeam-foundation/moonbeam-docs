@@ -8,7 +8,8 @@ networks:
     container_name: moonbeam_development
     block_explorer: https://moonbeam-explorer.netlify.app/
   moonbase:
-    rpc_url: https://rpc.api.moonbase.moonbeam.network
+    public_rpc_url: https://rpc.api.moonbase.moonbeam.network # for wallets
+    rpc_url: https://moonbeam-alpha.api.onfinality.io/rpc?apikey=<insert-api-key>
     chain_id: 1287
     hex_chain_id: '0x507'
     chain_spec: alphanet
@@ -170,8 +171,9 @@ networks:
       stable_version: 11.3.9
     tx_weight_to_gas_ratio: 25000
   moonriver:
-    rpc_url: https://rpc.api.moonriver.moonbeam.network
-    wss_url: wss://wss.api.moonriver.moonbeam.network
+    public_rpc_url: https://rpc.api.moonriver.moonbeam.network # for wallets
+    rpc_url: https://moonriver.api.onfinality.io/rpc?apikey=<insert-api-key>
+    wss_url: wss://moonriver.api.onfinality.io/ws?apikey=<insert-api-key>
     chain_id: 1285
     hex_chain_id: '0x505'
     node_directory: /var/lib/moonriver-data
@@ -294,8 +296,9 @@ networks:
       stable_version: 11.3.3
     tx_weight_to_gas_ratio: 25000
   moonbeam:
-    rpc_url: https://rpc.api.moonbeam.network
-    wss_url: wss://wss.api.moonbeam.network
+    public_rpc_url: https://rpc.api.moonbeam.network # for wallets
+    rpc_url: https://moonbeam.api.onfinality.io/rpc?apikey=<insert-api-key>
+    wss_url: wss://moonbeam.api.onfinality.io/ws?apikey=<insert-api-key>
     chain_id: 1284
     hex_chain_id: '0x504'
     node_directory: /var/lib/moonbeam-data

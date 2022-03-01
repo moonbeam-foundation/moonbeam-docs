@@ -20,6 +20,8 @@ This guide walks through using three different Ethereum libraries to manually si
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
+To test out the examples in this guide, you will need to have your own API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=blank}.
+
 The examples using both web3.js and ethers.js require previous installation of Node.js and NPM. The example using web3.py requires Python and PIP. As of the writing of this guide, the versions used were:
 
  - Node.js v15.10.0
