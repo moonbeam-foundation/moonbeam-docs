@@ -9,7 +9,7 @@ networks:
     block_explorer: https://moonbeam-explorer.netlify.app/
   moonbase:
     public_rpc_url: https://rpc.api.moonbase.moonbeam.network # for wallets
-    rpc_url: https://moonbeam-alpha.api.onfinality.io/rpc?apikey=<insert-api-key>
+    rpc_url: RPC-API-ENDPOINT-HERE
     chain_id: 1287
     hex_chain_id: '0x507'
     chain_spec: alphanet
@@ -172,8 +172,8 @@ networks:
     tx_weight_to_gas_ratio: 25000
   moonriver:
     public_rpc_url: https://rpc.api.moonriver.moonbeam.network # for wallets
-    rpc_url: https://moonriver.api.onfinality.io/rpc?apikey=<insert-api-key>
-    wss_url: wss://moonriver.api.onfinality.io/ws?apikey=<insert-api-key>
+    rpc_url: RPC-API-ENDPOINT-HERE
+    wss_url: WSS-API-ENDPOINT-HERE
     chain_id: 1285
     hex_chain_id: '0x505'
     node_directory: /var/lib/moonriver-data
@@ -297,8 +297,8 @@ networks:
     tx_weight_to_gas_ratio: 25000
   moonbeam:
     public_rpc_url: https://rpc.api.moonbeam.network # for wallets
-    rpc_url: https://moonbeam.api.onfinality.io/rpc?apikey=<insert-api-key>
-    wss_url: wss://moonbeam.api.onfinality.io/ws?apikey=<insert-api-key>
+    rpc_url: RPC-API-ENDPOINT-HERE
+    wss_url: WSS-API-ENDPOINT-HERE
     chain_id: 1284
     hex_chain_id: '0x504'
     node_directory: /var/lib/moonbeam-data

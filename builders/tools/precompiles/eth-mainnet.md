@@ -32,7 +32,7 @@ npm ls web3
 ```
 As of writing this guide, the version used was 1.3.0. We will be also using [Remix](/builders/tools/remix/), connecting it to the Moonbase Alpha TestNet via [MetaMask](/tokens/connect/metamask/).
 
-You will also need to have your own API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=blank}.
+You will also need to have your own endpoint and API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=blank}.
 
 ## Verify Signatures with ECRECOVER {: #verify-signatures-with-ecrecover } 
 

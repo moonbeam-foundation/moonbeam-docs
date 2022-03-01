@@ -23,7 +23,7 @@ This guide is an adaptation of the [WalletConnect Example Dapp](https://example.
 
 ## Quick Start {: #quick-start }
 
-If you already have a DApp with WalletConnect support, and just want to add Moonbeam support. You can use the following network configurations:
+If you already have a DApp with WalletConnect support, and just want to add Moonbeam support, you can use the following network configurations:
 
 === "Moonbeam"
     ```
@@ -369,7 +369,7 @@ const onConnect = async (chainId, address) => {
     setChainId(chainId);
 
     // 1. Create an Ethers provider
-    const provider = new ethers.providers.StaticJsonRpcProvider(networkData.public_rpc_url, {
+    const provider = new ethers.providers.StaticJsonRpcProvider(networkData.rpc_url, {
       chainId,
       name: networkData.name
     });

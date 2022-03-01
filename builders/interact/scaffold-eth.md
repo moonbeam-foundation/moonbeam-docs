@@ -23,7 +23,7 @@ To run The Graph component of Scaffold-ETH, you also need to have the following 
  - [Docker Compose](https://docs.docker.com/compose/install/){target=blank}
  - [JQ](https://stedolan.github.io/jq/download/){target=blank}
 
-You will also need to have your own API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=blank}.
+You will also need to have your own endpoint and API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=blank}.
 
 ### Installing Scaffold-ETH {: #installing-scaffold-eth } 
 

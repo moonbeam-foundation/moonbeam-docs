@@ -24,7 +24,7 @@ Before diving into setting up a Graph Node, you neeed to have the following inst
  - [Docker Compose](https://docs.docker.com/compose/install/){target=blank}
  - [JQ](https://stedolan.github.io/jq/download/){target=blank}
 
-You will also need to have your own API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=blank}. 
+You will also need to have your own endpoint and API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=blank}. 
 
 In this guide, you will learn how to run a Graph node against a Moonbase Alpha tracing node with the `tracing` flag enabled. This guide can also be adapted for Moonbeam and Moonriver.
 

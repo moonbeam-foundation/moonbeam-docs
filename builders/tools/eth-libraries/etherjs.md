@@ -12,7 +12,7 @@ The [ethers.js](https://docs.ethers.io/) library provides a set of tools to inte
 
 ## Setup Ethers.js with Moonbeam {: #setup-ethersjs-with-moonbeam } 
 
-Before diving in you will need to have your own API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=blank}. 
+Before diving in you will need to have your own endpoint and API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=blank}. 
 
 To get started with the ethers.js library, install it using the following command:
 
