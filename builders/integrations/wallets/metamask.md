@@ -92,15 +92,15 @@ Now that you have created the button, you need to add the `configureMoonbaseAlph
                     method: "wallet_addEthereumChain",
                     params: [
                         {
-                            chainId: "0x507", // Moonbase Alpha's chainId is 1287, which is 0x507 in hex
+                            chainId: "{{ networks.moonbase.hex_chain_id }}", // Moonbase Alpha's chainId is {{ networks.moonbase.chain_id }}, which is {{ networks.moonbase.hex_chain_id }} in hex
                             chainName: "Moonbase Alpha",
                             nativeCurrency: {
                                 name: 'DEV',
                                 symbol: 'DEV',
                                 decimals: 18
                             },
-                        rpcUrls: ["https://rpc.testnet.moonbeam.network"],
-                        blockExplorerUrls: ["https://moonbase-blockscout.testnet.moonbeam.network/"]
+                        rpcUrls: ["{{ networks.moonbase.rpc_url }}"],
+                        blockExplorerUrls: ["{{ networks.moonbase.block_explorer }}"]
                         },
                     ]
                 })
@@ -125,8 +125,8 @@ It's possible that you'll have logic that relies on knowing whether a user is co
     const chainId = await provider.request({
         method: 'eth_chainId'
     })
-    // Moonbase Alpha's chainId is 1287, which is 0x507 in hex
-    if (chainId === "0x507"){
+    // Moonbase Alpha's chainId is {{ networks.moonbase.chain_id }}, which is {{ networks.moonbase.hex_chain_id }} in hex
+    if (chainId === "{{ networks.moonbase.hex_chain_id }}"){
         // At this point, you might want to disable the "Connect" button
         // or inform the user that they are already connected to the
         // Moonbase Alpha testnet

@@ -9,7 +9,7 @@ description: Learn how to integrate WalletConnect into a dApp built on any of th
 
 ## Introduction {: #introduction } 
 
-[WalletConnect](https://walletconnect.com/) is an open protocol to communicate securely between wallets and DApps. 
+[WalletConnect](https://walletconnect.com/){target=blank} is an open protocol to communicate securely between wallets and DApps. 
 
 WalletConnect establishes a remote connection between a DApp and mobile wallet by using a bridge server to relay payloads. The connection is initiated via a QR code displayed in a DApp, which will need to be scanned and approved by a mobile wallet. When a connection is established, the payloads between the DApp and wallet are encrypted through a shared key.
 
@@ -32,9 +32,9 @@ If you already have a DApp with WalletConnect support, and just want to add Moon
       short_name: "moonbeam",
       chain: "Moonbeam",
       network: "mainnet",
-      chain_id: 1284,
-      network_id: 1284,
-      rpc_url: "https:pc.api.moonbeam.network",
+      chain_id: {{ networks.moonbeam.chain_id }},
+      network_id: {{ networks.moonbeam.chain_id }},
+      rpc_url: "{{ networks.moonbeam.rpc_url }}",
       native_currency: {
         symbol: "GLMR",
         name: "Glimmer",
@@ -52,9 +52,9 @@ If you already have a DApp with WalletConnect support, and just want to add Moon
       short_name: "moonriver",
       chain: "Moonriver",
       network: "mainnet",
-      chain_id: 1285,
-      network_id: 1285,
-      rpc_url: "https://rpc.moonriver.moonbeam.network",
+      chain_id: {{ networks.moonriver.chain_id }},
+      network_id: {{ networks.moonriver.chain_id }},
+      rpc_url: "{{ networks.moonriver.rpc_url }}",
       native_currency: {
         symbol: "MOVR",
         name: "Moonriver",
@@ -72,9 +72,9 @@ If you already have a DApp with WalletConnect support, and just want to add Moon
       short_name: "moonbase",
       chain: "Moonbase",
       network: "testnet",
-      chain_id: 1287,
-      network_id: 1287,
-      rpc_url: "https://rpc.api.moonbase.moonbeam.network",
+      chain_id: {{ networks.moonbase.chain_id }},
+      network_id: {{ networks.moonbase.chain_id }},
+      rpc_url: "{{ networks.moonbase.rpc_url }}",
       native_currency: {
         symbol: "DEV",
         name: "DEV",
@@ -95,7 +95,7 @@ npm install ethers @walletconnect/client @walletconnect/qrcode-modal
 
 This guide will use MetaMask mobile for testing purposes. To install MetaMask mobile, you can go to [metamask.io/download/](https://metamask.io/download/){target=blank} and switch to either the **iOS** or **Android** tab.
 
-Lastly, you will need to have an account funded with DEV tokens, so that you can test out sending a transaction. To [get tokens](/builders/get-started/moonbase/#get-tokens) you can head to the faucet on [Discord](https://discord.com/invite/PfpUATX).
+Lastly, you will need to have an account funded with DEV tokens, so that you can test out sending a transaction. To [get tokens](/builders/get-started/moonbase/#get-tokens){target=blank} you can head to the faucet on [Discord](https://discord.com/invite/PfpUATX){target=blank}.
 
 ## Getting Started {: #getting-started }
 
@@ -113,7 +113,7 @@ There are a couple of ways you can connect your MetaMask mobile wallet to the Mo
 
 In this section, you will learn how to make a connection between your DApp and MetaMask mobile. WalletConnect establishes a remote connection between a DApp and mobile wallet by using a bridge server to relay payloads. The connection is initiated via a QR code displayed in the DApp, which will need to be scanned and approved by the mobile wallet.
 
-To get started, you can open up the [`App.js` file of the template](https://github.com/PureStake/moonbeam-walletconnect-template/blob/main/src/App.js) and the first changes will be made within the `connect` function. This function will handle the connection logic by creating a new instance of the WalletConnect connector. You'll notice that the `setFetching` state hook is already in place. This will be used to set the `fetching` state variable to `true` while the connection is being established. In general the `connect` function will:
+To get started, you can open up the [`App.js` file of the template](https://github.com/PureStake/moonbeam-walletconnect-template/blob/main/src/App.js){target=blank} and the first changes will be made within the `connect` function. This function will handle the connection logic by creating a new instance of the WalletConnect connector. You'll notice that the `setFetching` state hook is already in place. This will be used to set the `fetching` state variable to `true` while the connection is being established. In general the `connect` function will:
 
 1. Create the WalletConnect Connector and pass in the URL for the bridge server and the WalletConnect QR code modal
 2. Use the `setConnector` state hook to update the `connector` state variable

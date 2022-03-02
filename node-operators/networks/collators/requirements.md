@@ -9,11 +9,27 @@ description: Learn about the requirements for becoming a collator and maintainin
 
 ## Introduction {: #introduction } 
 
-There are some requirements to keep in mind before diving into running a collator node. You need to have top of the line hardware, securely created and stored accounts, meet bonding requirements, and fill out a collator questionnaire.
+There are some requirements to keep in mind before diving into running a collator node. Primarily, you need to follow the community guidelines and meet the technical requirements. You should have top of the line hardware, securely created and stored accounts, meet bonding requirements, and fill out a collator questionnaire.
 
 It is recommended to go through all of the necessary requirements on the Moonbase Alpha TestNet before collating on a production network like Moonbeam or Moonriver.
 
 This guide will help you to get started fulfilling the collator requirements so you can get your node up and running in no time.
+
+## Community Guidelines {: #community-guidelines }
+
+One of the primary goals of the Moonbeam Foundation is to maintain the decentralization of the Moonriver and Moonbeam networks. To further this goal, the Moonbeam Foundation reserves the right to take action if any of the following occur:
+
+- An entity is running more than 4 collators in either network
+- A collator acts in a nefarious manner that is uncharitable to the community or other collators
+
+In addition, there is a level of commitment to the community and the network that is necessary to gain trust from the community of delegators and attract more delegations. The following contains some suggestions for contributing to the community:
+
+- Be active in the community
+    - [Join the Discord](/node-operators/networks/collators/overview/#join-discord){target=blank} and introduce yourself, provide updates as needed, and help support community members or other collators
+- Create tutorials and educational content
+- [Become a Moonbeam Ambassador](https://moonbeam.network/community/ambassadors/){target=blank}
+- Contribute to open-source software relating to the ecosystem
+- Actively participate in governance and vote on proposals
 
 ## Hardware Requirements {: #hardware-requirements } 
 

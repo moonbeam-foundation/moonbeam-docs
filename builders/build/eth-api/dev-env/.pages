@@ -2,7 +2,8 @@ title: Dev Environments
 nav:
   - index.md
   - openzeppelin
+  - remix.md
   - hardhat.md
   - truffle.md
-  - remix.md
   - waffle-mars.md
+  - scaffold-eth.md

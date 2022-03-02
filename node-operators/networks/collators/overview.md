@@ -11,11 +11,7 @@ description: Instructions on how to dive in and become a collator in the Moonbea
 
 Collators are members of the network that maintain the parachains they take part in. They run a full node (for both their particular parachain and the relay chain), and they produce the state transition proof for relay chain validators.
 
-As a collator, there is a level of commitment to the community and the network that is necessary to gain trust from the community of delegators. It's important to build a brand, reputation, and community around your collation services. Becoming a known participant throughout the ecosystem is a great way to attract nominations and solidify longevity and sustainability as a collator.
-
-Since the relationship between collators and delegators is one built on trust, and as such, having direct lines of communication with delegators is a great way to build and reinforce that trust. [Joining the Discord](#join-the-discord) and introducing yourself is one way to open the lines of communication.  There are many updates that can be given, such as nodes being updated to a new version, rewards were paid out, servers were migrated, new features or tools have been built, or just checking in to say hello. These kinds of gestures can be much appreciated in putting words and a person behind the name of someone running a server.
-
-There are some additional [requirements](/node-operators/networks/collators/requirements/){target=blank} that need to be considered prior to becoming a collator candidate including machine, bonding, and account requirements. 
+There are some [requirements](/node-operators/networks/collators/requirements/){target=blank} that need to be considered prior to becoming a collator candidate including machine, bonding, account, and community requirements. 
 
 Candidates will need a minimum amount of tokens bonded (self-bonded) to be considered eligible. Only a certain number of the top collator candidates by total stake, including self-bonded and delegated stake, will be in the active set of collators. Otherwise, the collator will remain in the candidate pool.
 
