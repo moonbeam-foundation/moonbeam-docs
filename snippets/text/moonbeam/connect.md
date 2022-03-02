@@ -13,7 +13,7 @@ const Web3 = require('web3'); //Load Web3 library
 .
 .
 .
-//Create local Web3 instance - set Moonbeam as provider
+// Create local Web3 instance - set Moonbeam as provider
 const web3 = new Web3("RPC-API-ENDPOINT-HERE"); // Insert your RPC URL here
 ```
 
