@@ -32,6 +32,8 @@ npm ls web3
 ```
 As of writing this guide, the version used was 1.3.0. We will be also using [Remix](/builders/tools/remix/), connecting it to the Moonbase Alpha TestNet via [MetaMask](/tokens/connect/metamask/).
 
+--8<-- 'text/common/endpoint-examples.md'
+
 ## Verify Signatures with ECRECOVER {: #verify-signatures-with-ecrecover } 
 
 The main function of this precompile is to verify the signature of a message. In general terms, you feed `ecrecover` the transaction's signature values and it returns an address. The signature is verified if the address returned is the same as the public address that sent the transaction.

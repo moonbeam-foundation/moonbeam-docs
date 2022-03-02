@@ -23,6 +23,8 @@ To run The Graph component of Scaffold-ETH, you also need to have the following 
  - [Docker Compose](https://docs.docker.com/compose/install/){target=blank}
  - [JQ](https://stedolan.github.io/jq/download/){target=blank}
 
+--8<-- 'text/common/endpoint-examples.md'
+
 ### Installing Scaffold-ETH {: #installing-scaffold-eth } 
 
 First, download Scaffold-ETH from its GitHub repository. 
@@ -47,6 +49,8 @@ Once the dependencies have been installed without any errors in the console outp
 
 You need to make modifications to the configurations of the three major components that make up Scaffold-ETH.
 
+--8<-- 'text/common/endpoint-examples.md'
+
 ### Hardhat Component {: #hardhat-component }
 
 You can begin with making modifications to the Hardhat component under the `/packages/hardhat` folder.
@@ -56,18 +60,18 @@ You can begin with making modifications to the Hardhat component under the `/pac
     === "Moonbeam"
         ```js
         moonbeam: {
-            url: '{{ networks.moonbeam.rpc_url }}',
+            url: '{{ networks.moonbeam.rpc_url }}', // Insert your RPC URL here
             chainId: {{ networks.moonbeam.chain_id }},  // {{ networks.moonbeam.hex_chain_id }} in hex,
-            accounts: ["Deployment Account Private Key"]
+            accounts: ['PRIVATE-KEY-HERE'] // Insert your private key here
         }
         ```
 
     === "Moonriver"
         ```js
         moonriver: {
-            url: '{{ networks.moonriver.rpc_url }}',
-            chainId: {{ networks.moonriver.chain_id }},  // {{ networks.moonriver.hex_chain_id }} in hex,
-            accounts: ["Deployment Account Private Key"] 
+            url: '{{ networks.moonriver.rpc_url }}', // Insert your RPC URL here
+            chainId: {{ networks.moonriver.chain_id }}, // {{ networks.moonriver.hex_chain_id }} in hex,
+            accounts: ['PRIVATE-KEY-HERE'] // Insert your private key here
         }
         ```
 
@@ -76,7 +80,7 @@ You can begin with making modifications to the Hardhat component under the `/pac
         moonbaseAlpha: {
             url: '{{ networks.moonbase.rpc_url }}',
             chainId: {{ networks.moonbase.chain_id }},  // {{ networks.moonbase.hex_chain_id }} in hex,
-            accounts: ["Deployment Account Private Key"]
+            accounts: ['PRIVATE-KEY-HERE'] // Insert your private key here
         }
         ```
 
@@ -85,7 +89,7 @@ You can begin with making modifications to the Hardhat component under the `/pac
         moonbeamDevNode: {
             url: '{{ networks.development.rpc_url }}',
             chainId: {{ networks.development.chain_id }},  // {{ networks.development.hex_chain_id }} in hex,
-            accounts: ["Deployment Account Private Key"]
+            accounts: ['PRIVATE-KEY-HERE'] // Insert your private key here
         }
         ```
 
@@ -130,18 +134,9 @@ For more information on using Hardhat with Moonbeam, please check the dedicated 
 
 In The Graph component of Scaffold-ETH, you need to modify two files to point the local The Graph node instance to the corresponding Moonbeam RPC endpoint. 
 
-1. First, modify the file `scaffold-eth/packages/services/graph-node/docker-compose.yaml`, under `servers/graph-node/environment/ethereum` to change the RPC endpoint for The Graph node to index:
+1. First, modify the file `scaffold-eth/packages/services/graph-node/docker-compose.yaml`, under `servers/graph-node/environment/ethereum` to change the RPC endpoint for The Graph node to index.
 
-
-    === "Moonbeam"
-        ```
-        'moonbeam:{{ networks.moonbeam.rpc_url }}'
-        ```
-
-    === "Moonriver"
-        ```
-        'moonriver:{{ networks.moonriver.rpc_url }}'
-        ```
+    For Moonbeam or Moonriver, you can use your own [RPC API endpoint](/builders/get-started/endpoints/){target=blank}. For Moonbase Alpha or a Moonbeam development node, you can use the following:
 
     === "Moonbase Alpha"
         ```
@@ -152,9 +147,6 @@ In The Graph component of Scaffold-ETH, you need to modify two files to point th
         ```
         'mbase:{{ networks.development.rpc_url }}'
         ```
-
-    !!! note
-        This example is using Moonbeam's public RPC endpoints, but for production DApp's, it's recommended to use a private API endpoint provider. See [this page](/builders/get-started/endpoints/#endpoint-providers){target=_blank} for more information.
 
 2. Next, you need to modify `subgraph/src/subgraph.template.yaml`. Change the `dataSources/network` field of the contract being deployed to the corresponding network name defined earlier in `docker-compose.yaml`:
 
@@ -245,7 +237,7 @@ Next, you need to modify two files in the React component to add Moonbeam networ
             color: "#42A2A0",
             chainId: {{ networks.moonbeam.chain_id }}, // {{ networks.moonbeam.hex_chain_id }} in hex,
             blockExplorer: "{{ networks.moonbeam.block_explorer }}",
-            rpcUrl: "{{ networks.moonbeam.rpc_url }}",
+            rpcUrl: "{{ networks.moonbeam.rpc_url }}", // Insert your RPC URL here
             gasPrice: 100000000000,
             faucet: "",
         },
@@ -258,7 +250,7 @@ Next, you need to modify two files in the React component to add Moonbeam networ
             color: "#42A2A0",
             chainId: {{ networks.moonriver.chain_id }}, // {{ networks.moonriver.hex_chain_id }} in hex,
             blockExplorer: "{{ networks.moonriver.block_explorer }}",
-            rpcUrl: "{{ networks.moonriver.rpc_url }}",
+            rpcUrl: "{{ networks.moonriver.rpc_url }}", // Insert your RPC URL here
             gasPrice: 1000000000,
             faucet: "",
         },

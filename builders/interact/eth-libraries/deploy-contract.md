@@ -25,6 +25,8 @@ Besides, two other libraries will be used to compile the smart contract:
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
+--8<-- 'text/common/endpoint-examples.md'
+
 The examples using both web3.js and ethers.js need you to install Node.js and NPM previously. For the web3.py, you need Python and PIP. As of the writing of this guide, the versions used were:
 
  - Node.js v15.10.0

@@ -7,26 +7,6 @@ description: Use one of the supported API providers to connect to a public endpo
 
 ![API Providers banner](/images/builders/get-started/endpoints/endpoints-banner.png)
 
-## Public Endpoints
-
-Moonbeam-based networks have two endpoints available for users to connect to: one for HTTPS and one for WSS. 
-
-The endpoints in this section are for development purposes only and are not meant to be used in production applications.
-
-If you are looking for an API provider suitable for production use, you can check out the [Endpoint Providers](#endpoint-providers) section of this guide. 
-
-### Moonbeam Endpoints
-
---8<-- 'code/endpoints/moonbeam.md'
-
-### Moonriver Endpoints
-
---8<-- 'code/endpoints/moonriver.md'
-
-### Moonbase Alpha Endpoints
-
---8<-- 'code/endpoints/moonbase.md'
-
 ## Endpoint Providers
 
 You can create your own endpoint suitable for development or production use using any of the following API providers:

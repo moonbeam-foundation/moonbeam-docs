@@ -24,6 +24,8 @@ Also, you will need the following:
  - Have MetaMask installed and [connected to Moonbase](/tokens/connect/metamask/)
  - Have an account with funds, which you can get from [Mission Control](/builders/get-started/moonbase/#get-tokens/)
 
+--8<-- 'text/common/endpoint-examples.md'
+
 Once all requirements have been met, you are ready to build with Hardhat.
 
 ## Starting a Hardhat Project {: #starting-a-hardhat-project } 
@@ -120,7 +122,7 @@ Inside the `module.exports`, we need to provide the Solidity version (`0.8.1` ac
 === "Moonbeam"
     ```
     moonbeam: {
-        url: '{{ networks.moonbeam.rpc_url }}',
+        url: '{{ networks.moonbeam.rpc_url }}', // Insert your RPC URL here
         chainId: {{ networks.moonbeam.chain_id }}, //(hex: {{ networks.moonbeam.hex_chain_id }}),
         accounts: [privateKeyMoonbeam] // Insert your private key here
       },
@@ -129,7 +131,7 @@ Inside the `module.exports`, we need to provide the Solidity version (`0.8.1` ac
 === "Moonriver"
     ```
     moonriver: {
-        url: '{{ networks.moonriver.rpc_url }}',
+        url: '{{ networks.moonriver.rpc_url }}', // Insert your RPC URL here
         chainId: {{ networks.moonriver.chain_id }}, //(hex: {{ networks.moonriver.hex_chain_id }}),
         accounts: [privateKeyMoonriver] // Insert your private key here
       },
