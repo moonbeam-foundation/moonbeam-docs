@@ -96,6 +96,24 @@ Next, you will create the script for this file and complete the following steps:
 2. Define the `address_from` and `address_to` variables
 3. Get the balance for the accounts using the `web3.eth.get_balance` function and format the results using the `web3.fromWei`
 
+```python
+# 1. Add the Web3 provider logic here:
+# {...}
+
+# 2. Create address variables
+address_from = "ADDRESS-FROM-HERE"
+address_to = "ADDRESS-TO-HERE"
+
+# 3. Fetch balance data
+balance_from = web3.fromWei(web3.eth.get_balance(address_from), "ether")
+balance_to = web3.fromWei(web3.eth.get_balance(address_to), "ether")
+
+print(f"The balance of { address_from } is: { balance_from } ETH")
+print(f"The balance of { address_to } is: { balance_to } ETH")
+```
+
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/web3py-tx/balances.py){target=blank}.
+
 To run the script and fetch the account balances, you can run the following command:
 
 ```
@@ -121,6 +139,48 @@ Next, you will create the script for this file and complete the following steps:
 5. Create and sign the transaction using the `web3.eth.account.sign_transaction` function. Pass in the `nonce` `gas`, `gasPrice`, `to`, and `value` for the transaction along with the sender's `private_key`. To get the `nonce` you can use the `web3.eth.get_transaction_count` function and pass in the sender's address. To predetermine the `gasPrice` you'll use the `web3.eth.generate_gas_price` function. For the `value`, you can format the amount to send from an easily readable format to Wei using the `web3.toWei` function
 6. Using the signed transaction, you can then send it using the `web3.eth.send_raw_transaction` function and wait for the transaction receipt by using the `web3.eth.wait_for_transaction_receipt` function
 
+```python
+# 1. Import the gas strategy
+from web3.gas_strategies.rpc import rpc_gas_price_strategy
+
+# 2. Add the Web3 provider logic here:
+# {...}
+
+# 3. Create address variables
+account_from = {
+    "private_key": "YOUR-PRIVATE-KEY-HERE",
+    "address": "PUBLIC-ADDRESS-OF-PK-HERE",
+}
+address_to = "ADDRESS-TO-HERE"
+
+print(
+    f'Attempting to send transaction from { account_from["address"] } to { address_to }'
+)
+
+# 4. Set the gas price strategy
+web3.eth.set_gas_price_strategy(rpc_gas_price_strategy)
+
+# 5. Sign tx with PK
+tx_create = web3.eth.account.sign_transaction(
+    {
+        "nonce": web3.eth.get_transaction_count(account_from["address"]),
+        "gasPrice": web3.eth.generate_gas_price(),
+        "gas": 21000,
+        "to": address_to,
+        "value": web3.toWei("1", "ether"),
+    },
+    account_from["private_key"],
+)
+
+# 6. Send tx and wait for receipt
+tx_hash = web3.eth.send_raw_transaction(tx_create.rawTransaction)
+tx_receipt = web3.eth.wait_for_transaction_receipt(tx_hash)
+
+print(f"Transaction successful with hash: { tx_receipt.transactionHash.hex() }")
+```
+
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/web3py-tx/transaction.py){target=blank}.
+
 To run the script, you can run the following command in your terminal:
 
 ```
@@ -135,24 +195,9 @@ You can also use the `balances.py` script to check that the balances for the ori
 
 ## Deploy a Contract {: #deploy-a-contract }
 
-The contract you'll be compiling and deploying in the next couple of sections is a simple incrementer contract, arbitrarily named _Incrementer.sol_. You can get started by creating a file for the contract:
+--8<-- 'text/libraries/contract.md'
 
-```
-touch Incrementer.sol
-```
-
-Next you can add the Solidity code to the file:
-
-```solidity
---8<-- 'code/web3py-contract/Incrementer.sol'
-```
-
-The `constructor` function, which runs when the contract is deployed, sets the initial value of the number variable stored on-chain (default is 0). The `increment` function adds the `_value` provided to the current number, but a transaction needs to be sent, which modifies the stored data. Lastly, the `reset` function resets the stored value to zero.
-
-!!! note
-    This contract is a simple example for illustration purposes only and does not handle values wrapping around.
-
-### Compile Contract Script {: #compile-contract-script }  /// TODO: create snippet
+### Compile Contract Script {: #compile-contract-script } 
 
 In this section, you'll create a script that uses the Solidity compiler to output the bytecode and interface (ABI) for the `Incrementer.sol` contract. To get started, you can create a `compile.py` file by running:
 
@@ -167,7 +212,7 @@ Next, you will create the script for this file and complete the following steps:
 3. Compile the `Incrementer.sol` function using the `solcx.compile_files` function
 4. Export the contract's ABI and bytecode
 
-```js
+```python
 --8<-- 'code/web3py-contract/compile.py'
 ```
 
@@ -189,9 +234,43 @@ Next, you will create the script for this file and complete the following steps:
 6. Sign the transaction using the `web3.eth.account.sign_transaction` function and pass in the constructor transaction and the `private_key` of the sender
 7. Using the signed transaction, you can then send it using the `web3.eth.send_raw_transaction` function and wait for the transaction receipt by using the `web3.eth.wait_for_transaction_receipt` function
 
-```js
---8<-- 'code/web3py-contract/deploy.py'
+```python
+# 1. Import the ABI and bytecode
+from compile import abi, bytecode
+
+# 2. Add the Web3 provider logic here:
+# {...}
+
+# 3. Create address variable
+account_from = {
+    'private_key': 'YOUR-PRIVATE-KEY-HERE',
+    'address': 'PUBLIC-ADDRESS-OF-PK-HERE',
+}
+
+print(f'Attempting to deploy from account: { account_from["address"] }')
+
+# 4. Create contract instance
+Incrementer = web3.eth.contract(abi=abi, bytecode=bytecode)
+
+# 5. Build constructor tx
+construct_txn = Incrementer.constructor(5).buildTransaction(
+    {
+        'from': account_from['address'],
+        'nonce': web3.eth.get_transaction_count(account_from['address']),
+    }
+)
+
+# 6. Sign tx with PK
+tx_create = web3.eth.account.sign_transaction(construct_txn, account_from['private_key'])
+
+# 7. Send tx and wait for receipt
+tx_hash = web3.eth.send_raw_transaction(tx_create.rawTransaction)
+tx_receipt = web3.eth.wait_for_transaction_receipt(tx_hash)
+
+print(f'Contract deployed at address: { tx_receipt.contractAddress }')
 ```
+
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/web3py-contract/deploy.py){target=blank}.
 
 To run the script, you can enter the following command into your terminal:
 
@@ -221,9 +300,28 @@ Then you can take the following steps to create the script:
 4. Create a contract instance using the `web3.eth.contract` function and passing in the ABI and address of the deployed contract
 5. Using the contract instance, you can then call the `number` function
 
-```js
---8<-- 'code/web3py-contract/get.py'
+```python
+# 1. Import the ABI
+from compile import abi
+
+# 2. Add the Web3 provider logic here:
+# {...}
+
+# 3. Create address variable
+contract_address = 'CONTRACT-ADDRESS-HERE'
+
+print(f'Making a call to contract at address: { contract_address }')
+
+# 4. Create contract instance
+Incrementer = web3.eth.contract(address=contract_address, abi=abi)
+
+# 5. Call Contract
+number = Incrementer.functions.number().call()
+
+print(f'The current number stored is: { number } ')
 ```
+
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/web3py-contract/get.py){target=blank}.
 
 To run the script, you can enter the following command in your terminal:
 
@@ -251,9 +349,47 @@ Open the `increment.py` file and take the following steps to create the script:
 6. Sign the transaction using the `web3.eth.account.sign_transaction` function and pass in the increment transaction and the `private_key` of the sender
 7. Using the signed transaction, you can then send it using the `web3.eth.send_raw_transaction` function and wait for the transaction receipt by using the `web3.eth.wait_for_transaction_receipt` function
 
-```js
---8<-- 'code/web3py-contract/increment.py'
+```python
+# 1. Import the ABI
+from compile import abi
+
+# 2. Add the Web3 provider logic here:
+# {...}
+
+# 3. Create variables
+account_from = {
+    'private_key': 'YOUR-PRIVATE-KEY-HERE',
+    'address': 'PUBLIC-ADDRESS-OF-PK-HERE',
+}
+contract_address = 'CONTRACT-ADDRESS-HERE'
+value = 3
+
+print(
+    f'Calling the increment by { value } function in contract at address: { contract_address }'
+)
+
+# 4. Create contract instance
+Incrementer = web3.eth.contract(address=contract_address, abi=abi)
+
+# 5. Build increment tx
+increment_tx = Incrementer.functions.increment(value).buildTransaction(
+    {
+        'from': account_from['address'],
+        'nonce': web3.eth.get_transaction_count(account_from['address']),
+    }
+)
+
+# 6. Sign tx with PK
+tx_create = web3.eth.account.sign_transaction(increment_tx, account_from['private_key'])
+
+# 7. Send tx and wait for receipt
+tx_hash = web3.eth.send_raw_transaction(tx_create.rawTransaction)
+tx_receipt = web3.eth.wait_for_transaction_receipt(tx_hash)
+
+print(f'Tx successful with hash: { tx_receipt.transactionHash.hex() }')
 ```
+
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/web3py-contract/increment.py){target=blank}.
 
 To run the script, you can enter the following command in your terminal:
 
@@ -275,9 +411,44 @@ Next you can open the `reset.py` file and take the following steps to create the
 6. Sign the transaction using the `web3.eth.account.sign_transaction` function and pass in the reset transaction and the `private_key` of the sender
 7. Using the signed transaction, you can then send it using the `web3.eth.send_raw_transaction` function and wait for the transaction receipt by using the `web3.eth.wait_for_transaction_receipt` function
 
-```js
---8<-- 'code/web3py-contract/reset.py'
+```python
+# 1. Import the ABI
+from compile import abi
+
+# 2. Add the Web3 provider logic here:
+# {...}
+
+# 3. Create variables
+account_from = {
+    'private_key': 'YOUR-PRIVATE-KEY-HERE',
+    'address': 'PUBLIC-ADDRESS-OF-PK-HERE',
+}
+contract_address = 'CONTRACT-ADDRESS-HERE'
+
+print(f'Calling the reset function in contract at address: { contract_address }')
+
+# 4. Create contract instance
+Incrementer = web3.eth.contract(address=contract_address, abi=abi)
+
+# 5. Build reset tx
+reset_tx = Incrementer.functions.reset().buildTransaction(
+    {
+        'from': account_from['address'],
+        'nonce': web3.eth.get_transaction_count(account_from['address']),
+    }
+)
+
+# 6. Sign tx with PK
+tx_create = web3.eth.account.sign_transaction(reset_tx, account_from['private_key'])
+
+# 7. Send tx and wait for receipt
+tx_hash = web3.eth.send_raw_transaction(tx_create.rawTransaction)
+tx_receipt = web3.eth.wait_for_transaction_receipt(tx_hash)
+
+print(f'Tx successful with hash: { tx_receipt.transactionHash.hex() }')
 ```
+
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/web3py-contract/reset.py){target=blank}.
 
 To run the script, you can enter the following command in your terminal:
 

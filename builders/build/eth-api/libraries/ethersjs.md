@@ -169,8 +169,28 @@ Next, you will create the script for this file and complete the following steps:
 5. Lastly, run the `balances` function
 
 ```js
---8<-- 'code/ethers-tx-local/balances.js'
+// 1. Add the Ethers provider logic here:
+// {...}
+
+// 2. Create address variables
+const addressFrom = 'ADDRESS-FROM-HERE';
+const addressTo = 'ADDRESS-TO-HERE';
+
+// 3. Create balances function
+const balances = async () => {
+  // 4. Fetch balances
+  const balanceFrom = ethers.utils.formatEther(await provider.getBalance(addressFrom));
+  const balanceTo = ethers.utils.formatEther(await provider.getBalance(addressTo));
+
+  console.log(`The balance of ${addressFrom} is: ${balanceFrom} ETH`);
+  console.log(`The balance of ${addressTo} is: ${balanceTo} ETH`);
+};
+
+// 5. Call the balances function
+balances();
 ```
+
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/ethers-tx-local/balances.js){target=blank}.
 
 To run the script and fetch the account balances, you can run the following command:
 
@@ -199,8 +219,39 @@ Next, you will create the script for this file and complete the following steps:
 7. Lastly, run the `send` function
 
 ```js
---8<-- 'code/ethers-tx-local/transaction.js'
+// 1. Add the Ethers provider logic here:
+// {...}
+
+// 2. Create account variables
+const account_from = {
+  privateKey: 'YOUR-PRIVATE-KEY-HERE',
+};
+const addressTo = 'ADDRESS-TO-HERE';
+
+// 3. Create wallet
+let wallet = new ethers.Wallet(account_from.privateKey, provider);
+
+// 4. Create send function
+const send = async () => {
+  console.log(`Attempting to send transaction from ${wallet.address} to ${addressTo}`);
+
+  // 5. Create tx object
+  const tx = {
+    to: addressTo,
+    value: ethers.utils.parseEther('1'),
+  };
+
+  // 6. Sign and send tx - wait for receipt
+  const createReceipt = await wallet.sendTransaction(tx);
+  await createReceipt.wait();
+  console.log(`Transaction successful with hash: ${createReceipt.hash}`);
+};
+
+// 7. Call the send function
+send();
 ```
+
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/ethers-tx-local/transaction.js){target=blank}.
 
 To run the script, you can run the following command in your terminal:
 
@@ -216,42 +267,11 @@ You can also use the `balances.js` script to check that the balances for the ori
 
 ## Deploy a Contract {: #deploy-a-contract }
 
-The contract you'll be compiling and deploying in the next couple of sections is a simple incrementer contract, arbitrarily named _Incrementer.sol_. You can get started by creating a file for the contract:
-
-```
-touch Incrementer.sol
-```
-
-Next you can add the Solidity code to the file:
-
-```solidity
---8<-- 'code/web3-contract-local/Incrementer.sol'
-```
-
-The `constructor` function, which runs when the contract is deployed, sets the initial value of the number variable stored on-chain (default is 0). The `increment` function adds the `_value` provided to the current number, but a transaction needs to be sent, which modifies the stored data. Lastly, the `reset` function resets the stored value to zero.
-
-!!! note
-    This contract is a simple example for illustration purposes only and does not handle values wrapping around.
+--8<-- 'text/libraries/contract.md'
 
 ### Compile Contract Script {: #compile-contract-script }
 
-In this section, you'll create a script that uses the Solidity compiler to output the bytecode and interface (ABI) for the `Incrementer.sol` contract. To get started, you can create a `compile.js` file by running:
-
-```
-touch compile.js
-```
-
-Next, you will create the script for this file and complete the following steps:
-
-1. Import the `fs` and `solc` packages
-2. Using the `fs.readFileSync` function, you'll read and save the file contents of `Incrementer.sol` to `source`
-3. Build the `input` object for the Solidity compiler by specifying the `language`, `sources`, and `settings` to be used
-4. Using the `input` object, you can compile the contract using `solc.compile`
-5. Extract the compiled contract file and export it to be used in the deployment script
-
-```js
---8<-- 'code/web3-contract-local/compile.js'
-```
+--8<-- 'text/libraries/compile.md'
 
 ### Deploy Contract Script {: #deploy-contract-script }
 
@@ -274,8 +294,43 @@ Next, you will create the script for this file and complete the following steps:
 9. Lastly, run the `deploy` function
 
 ```js
---8<-- 'code/ethers-contract-local/deploy.js'
+// 1. Import the contract file
+const contractFile = require('./compile');
+
+// 2. Add the Ethers provider logic here:
+// {...}
+
+// 3. Create account variables
+const account_from = {
+  privateKey: 'YOUR-PRIVATE-KEY-HERE',
+};
+
+// 4. Save the bytecode and ABI
+const bytecode = contractFile.evm.bytecode.object;
+const abi = contractFile.abi;
+
+// 5. Create wallet
+let wallet = new ethers.Wallet(account_from.privateKey, provider);
+
+// 6. Create contract instance with signer
+const incrementer = new ethers.ContractFactory(abi, bytecode, wallet);
+
+// 7. Create deploy function
+const deploy = async () => {
+  console.log(`Attempting to deploy from account: ${wallet.address}`);
+
+  // 8. Send tx (initial value set to 5) and wait for receipt
+  const contract = await incrementer.deploy([5]);
+  await contract.deployed();
+
+  console.log(`Contract deployed at address: ${contract.address}`);
+};
+
+// 9. Call the deploy function
+deploy();
 ```
+
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/ethers-contract-local/deploy.js){target=blank}.
 
 To run the script, you can enter the following command into your terminal:
 
@@ -286,6 +341,7 @@ node deploy.js
 If successful, the contract's address will be displayed in the terminal.
 
 ![Deploy Contract Etherjs](/images/builders/build/eth-api/libraries/ethers/ethers-2.png)
+
 
 ### Read Contract Data (Call Methods) {: #read-contract-data }
 
@@ -308,8 +364,33 @@ Then you can take the following steps to create the script:
 7. Lastly, call the `get` function
 
 ```js
---8<-- 'code/ethers-contract-local/get.js'
+// 1. Import the ABI
+const { abi } = require('./compile');
+
+// 2. Add the Ethers provider logic here:
+// {...}
+
+// 3. Contract address variable
+const contractAddress = 'CONTRACT-ADDRESS-HERE';
+
+// 4. Create contract instance
+const incrementer = new ethers.Contract(contractAddress, abi, provider);
+
+// 5. Create get function
+const get = async () => {
+  console.log(`Making a call to contract at address: ${contractAddress}`);
+
+  // 6. Call contract 
+  const data = await incrementer.number();
+
+  console.log(`The current number stored is: ${data}`);
+};
+
+// 7. Call get function
+get();
 ```
+
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/ethers-contract-local/get.js){target=blank}.
 
 To run the script, you can enter the following command in your terminal:
 
@@ -339,8 +420,43 @@ Open the `increment.js` file and take the following steps to create the script:
 8. Lastly, call the `increment` function
 
 ```js
---8<-- 'code/ethers-contract-local/increment.js'
+// 1. Import the contract ABI
+const { abi } = require('./compile');
+
+// 2. Add the Ethers provider logic here:
+// {...}
+
+// 3. Create variables
+const account_from = {
+  privateKey: 'YOUR-PRIVATE-KEY-HERE',
+};
+const contractAddress = 'CONTRACT-ADDRESS-HERE';
+const _value = 3;
+
+// 4. Create wallet
+let wallet = new ethers.Wallet(account_from.privateKey, provider);
+
+// 5. Create contract instance with signer
+const incrementer = new ethers.Contract(contractAddress, abi, wallet);
+
+// 6. Create increment function
+const increment = async () => {
+  console.log(
+    `Calling the increment by ${_value} function in contract at address: ${contractAddress}`
+  );
+
+  // 7. Sign and send tx and wait for receipt
+  const createReceipt = await incrementer.increment([_value]);
+  await createReceipt.wait();
+
+  console.log(`Tx successful with hash: ${createReceipt.hash}`);
+};
+
+// 8. Call the increment function
+increment();
 ```
+
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/ethers-contract-local/increment.js){target=blank}.
 
 To run the script, you can enter the following command in your terminal:
 
@@ -364,13 +480,45 @@ Next you can open the `reset.js` file and take the following steps to create the
 8. Lastly, call the `reset` function
 
 ```js
---8<-- 'code/ethers-contract-local/reset.js'
+// 1. Import the contract ABI
+const { abi } = require('./compile');
+
+// 2. Add the Ethers provider logic here:
+// {...}
+
+// 3. Create variables
+const account_from = {
+  privateKey: 'YOUR-PRIVATE-KEY-HERE',
+};
+const contractAddress = 'CONTRACT-ADDRESS-HERE';
+
+// 4. Create wallet
+let wallet = new ethers.Wallet(account_from.privateKey, provider);
+
+// 5. Create contract instance with signer
+const incrementer = new ethers.Contract(contractAddress, abi, wallet);
+
+// 6. Create reset function
+const reset = async () => {
+  console.log(`Calling the reset function in contract at address: ${contractAddress}`);
+
+  // 7. sign and send tx and wait for receipt
+  const createReceipt = await incrementer.reset();
+  await createReceipt.wait();
+
+  console.log(`Tx successful with hash: ${createReceipt.hash}`);
+};
+
+// 8. Call the reset function
+reset();
 ```
+
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/ethers-contract-local/reset.js){target=blank}.
 
 To run the script, you can enter the following command in your terminal:
 
 ```
-node increment.js
+node reset.js
 ```
 
 If successful, the transaction hash will be displayed in the terminal. You can use the `get.js` script alongside the `reset.js` script to make sure that value is changing as expected:

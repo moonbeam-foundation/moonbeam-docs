@@ -103,8 +103,28 @@ Next, you will create the script for this file and complete the following steps:
 5. Lastly, run the `balances` function
 
 ```js
---8<-- 'code/web3-tx-local/balances.js'
+// 1. Add the Web3 provider logic here:
+// {...}
+
+// 2. Create address variables
+const addressFrom = 'ADDRESS-FROM-HERE';
+const addressTo = 'ADDRESS-TO-HERE';
+
+// 3. Create balances function
+const balances = async () => {
+  // 4. Fetch balance info
+  const balanceFrom = web3.utils.fromWei(await web3.eth.getBalance(addressFrom), 'ether');
+  const balanceTo = web3.utils.fromWei(await web3.eth.getBalance(addressTo), 'ether');
+
+  console.log(`The balance of ${addressFrom} is: ${balanceFrom} ETH`);
+  console.log(`The balance of ${addressTo} is: ${balanceTo} ETH`);
+};
+
+// 5. Call balances function
+balances();
 ```
+
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/web3-tx-local/balances.js){target=blank}.
 
 To run the script and fetch the account balances, you can run the following command:
 
@@ -132,8 +152,40 @@ Next, you will create the script for this file and complete the following steps:
 6. Lastly, run the `send` function
 
 ```js
---8<-- 'code/web3-tx-local/transaction.js'
+// 1. Add the Web3 provider logic here:
+// {...}
+
+// 2. Create account variables
+const accountFrom = {
+  privateKey: 'YOUR-PRIVATE-KEY-HERE',
+  address: 'PUBLIC-ADDRESS-OF-PK-HERE',
+};
+const addressTo = 'ADDRESS-TO-HERE'; // Change addressTo
+
+// 3. Create send function
+const send = async () => {
+  console.log(`Attempting to send transaction from ${accountFrom.address} to ${addressTo}`);
+
+  // 4. Sign tx with PK
+  const createTransaction = await web3.eth.accounts.signTransaction(
+    {
+      gas: 21000,
+      to: addressTo,
+      value: web3.utils.toWei('1', 'ether'),
+    },
+    accountFrom.privateKey
+  );
+
+  // 5. Send tx and wait for receipt
+  const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction);
+  console.log(`Transaction successful with hash: ${createReceipt.transactionHash}`);
+};
+
+// 6. Call send function
+send();
 ```
+
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/web3-tx-local/transaction.js){target=blank}.
 
 To run the script, you can run the following command in your terminal:
 
@@ -149,42 +201,11 @@ You can also use the `balances.js` script to check that the balances for the ori
 
 ## Deploy a Contract {: #deploy-a-contract }
 
-The contract you'll be compiling and deploying in the next couple of sections is a simple incrementer contract, arbitrarily named _Incrementer.sol_. You can get started by creating a file for the contract:
+--8<-- 'text/libraries/contract.md'
 
-```
-touch Incrementer.sol
-```
+### Compile Contract Script {: #compile-contract-script } 
 
-Next you can add the Solidity code to the file:
-
-```solidity
---8<-- 'code/web3-contract-local/Incrementer.sol'
-```
-
-The `constructor` function, which runs when the contract is deployed, sets the initial value of the number variable stored on-chain (default is 0). The `increment` function adds the `_value` provided to the current number, but a transaction needs to be sent, which modifies the stored data. Lastly, the `reset` function resets the stored value to zero.
-
-!!! note
-    This contract is a simple example for illustration purposes only and does not handle values wrapping around.
-
-### Compile Contract Script {: #compile-contract-script }  /// TODO: create snippet
-
-In this section, you'll create a script that uses the Solidity compiler to output the bytecode and interface (ABI) for the `Incrementer.sol` contract. To get started, you can create a `compile.js` file by running:
-
-```
-touch compile.js
-```
-
-Next, you will create the script for this file and complete the following steps:
-
-1. Import the `fs` and `solc` packages
-2. Using the `fs.readFileSync` function, you'll read and save the file contents of `Incrementer.sol` to `source`
-3. Build the `input` object for the Solidity compiler by specifying the `language`, `sources`, and `settings` to be used
-4. Using the `input` object, you can compile the contract using `solc.compile`
-5. Extract the compiled contract file and export it to be used in the deployment script
-
-```js
---8<-- 'code/web3-contract-local/compile.js'
-```
+--8<-- 'text/libraries/compile.md'
 
 ### Deploy Contract Script {: #deploy-contract-script }
 
@@ -208,8 +229,54 @@ Next, you will create the script for this file and complete the following steps:
 10. Lastly, run the `deploy` function
 
 ```js
---8<-- 'code/web3-contract-local/deploy.js'
+// 1. Import the contract file
+const contractFile = require('./compile');
+
+// 2. Add the Ethers provider logic here:
+// {...}
+
+// 3. Create address variables
+const accountFrom = {
+  privateKey: 'YOUR-PRIVATE-KEY-HERE',
+  address: 'PUBLIC-ADDRESS-OF-PK-HERE',
+};
+
+// 4. Get the bytecode and API
+const bytecode = contractFile.evm.bytecode.object;
+const abi = contractFile.abi;
+
+// 5. Create deploy function
+const deploy = async () => {
+  console.log(`Attempting to deploy from account ${accountFrom.address}`);
+
+  // 6. Create contract instance
+  const incrementer = new web3.eth.Contract(abi);
+
+  // 7. Create constructor tx
+  const incrementerTx = incrementer.deploy({
+    data: bytecode,
+    arguments: [5],
+  });
+
+  // 8. Sign transacation and send
+  const createTransaction = await web3.eth.accounts.signTransaction(
+    {
+      data: incrementerTx.encodeABI(),
+      gas: await incrementerTx.estimateGas(),
+    },
+    accountFrom.privateKey
+  );
+
+  // 9. Send tx and wait for receipt
+  const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction);
+  console.log(`Contract deployed at address: ${createReceipt.contractAddress}`);
+};
+
+// 10. Call deploy function
+deploy();
 ```
+
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/web3-contract-local/deploy.js){target=blank}.
 
 To run the script, you can enter the following command into your terminal:
 
@@ -242,8 +309,33 @@ Then you can take the following steps to create the script:
 7. Lastly, call the `get` function
 
 ```js
---8<-- 'code/web3-contract-local/get.js'
+// 1. Import the contract abi
+const { abi } = require('./compile');
+
+// 2. Add the Ethers provider logic here:
+// {...}
+
+// 3. Create address variables
+const contractAddress = 'CONTRACT-ADDRESS-HERE';
+
+// 4. Create contract instance
+const incrementer = new web3.eth.Contract(abi, contractAddress);
+
+// 5. Create get function
+const get = async () => {
+  console.log(`Making a call to contract at address: ${contractAddress}`);
+
+  // 6. Call contract
+  const data = await incrementer.methods.number().call();
+
+  console.log(`The current number stored is: ${data}`);
+};
+
+// 7. Call get function
+get();
 ```
+
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/web3-contract-local/get.js){target=blank}.
 
 To run the script, you can enter the following command in your terminal:
 
@@ -274,8 +366,51 @@ Open the `increment.js` file and take the following steps to create the script:
 9. Lastly, call the `increment` function
 
 ```js
---8<-- 'code/web3-contract-local/increment.js'
+// 1. Import the contract abi
+const { abi } = require('./compile');
+
+// 2. Add the Ethers provider logic here:
+// {...}
+
+// 3. Create variables
+const accountFrom = {
+  privateKey: 'YOUR-PRIVATE-KEY-HERE',
+};
+const contractAddress = 'CONTRACT-ADDRESS-HERE';
+const _value = 3;
+
+// 4. Create contract instance
+const incrementer = new web3.eth.Contract(abi, contractAddress);
+
+// 5. Build increment tx
+const incrementTx = incrementer.methods.increment(_value);
+
+// 6. Create increment function
+const increment = async () => {
+  console.log(
+    `Calling the increment by ${_value} function in contract at address: ${contractAddress}`
+  );
+
+  // Sign Tx with PK
+  const createTransaction = await web3.eth.accounts.signTransaction(
+    {
+      to: contractAddress,
+      data: incrementTx.encodeABI(),
+      gas: await incrementTx.estimateGas(),
+    },
+    accountFrom.privateKey
+  );
+
+  // Send Tx and Wait for Receipt
+  const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction);
+  console.log(`Tx successful with hash: ${createReceipt.transactionHash}`);
+};
+
+// 9. Call increment function
+increment();
 ```
+
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/web3-contract-local/increment.js){target=blank}.
 
 To run the script, you can enter the following command in your terminal:
 
@@ -300,8 +435,48 @@ Next you can open the `reset.js` file and take the following steps to create the
 9. Lastly, call the `reset` function
 
 ```js
---8<-- 'code/web3-contract-local/increment.js'
+// 1. Import the contract abi
+const { abi } = require('./compile');
+
+// 2. Add the Ethers provider logic here:
+// {...}
+
+// 3. Create variables
+const accountFrom = {
+  privateKey: 'YOUR-PRIVATE-KEY-HERE',
+};
+const contractAddress = 'CONTRACT-ADDRESS-HERE';
+
+// 4. Create Contract Instance
+const incrementer = new web3.eth.Contract(abi, contractAddress);
+
+// 5. Build reset tx
+const resetTx = incrementer.methods.reset();
+
+// 6. Create reset function
+const reset = async () => {
+  console.log(`Calling the reset function in contract at address: ${contractAddress}`);
+
+  // 7. Sign tx with PK
+  const createTransaction = await web3.eth.accounts.signTransaction(
+    {
+      to: contractAddress,
+      data: resetTx.encodeABI(),
+      gas: await resetTx.estimateGas(),
+    },
+    accountFrom.privateKey
+  );
+
+  // 8. Send tx and wait for receipt
+  const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction);
+  console.log(`Tx successful with hash: ${createReceipt.transactionHash}`);
+};
+
+// 9. Call reset function
+reset();
 ```
+
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/web3-contract-local/reset.js){target=blank}.
 
 To run the script, you can enter the following command in your terminal:
 
