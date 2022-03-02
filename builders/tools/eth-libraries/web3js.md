@@ -18,27 +18,45 @@ To get started with the web3.js library, we first need to install it using the f
 npm install web3
 ```
 
-Once done, the simplest setup to start using the library and its methods is the following:
-
-```js
-const Web3 = require('web3');
-
-//Create web3 instance
-const web3 = new Web3('RPC_URL');
-```
-
+You can configure ethers.js to work with any of the Moonbeam networks.
 --8<-- 'text/common/endpoint-setup.md'
 
-If you want to connect to Moonbase Alpha or a Moonbeam development node, you can set the `RPC_URL` to the following values:
+The simplest way to get started with each of the networks is as follows:
+
+=== "Moonbeam"
+
+    ```js
+    const Web3 = require('web3');
+
+    //Create web3 instance
+    const web3 = new Web3('{{ networks.moonbeam.rpc_url }}'); // Insert your RPC URL here
+    ```
+
+=== "Moonriver"
+
+    ```js
+    const Web3 = require('web3');
+
+    //Create web3 instance
+    const web3 = new Web3('{{ networks.moonriver.rpc_url }}'); // Insert your RPC URL here
+    ```
 
 === "Moonbase Alpha"
-    ```
-    {{ networks.moonbase.rpc_url }}
+
+    ```js
+    const Web3 = require('web3');
+
+    //Create web3 instance
+    const web3 = new Web3('{{ networks.moonbase.rpc_url }}');
     ```
 
 === "Moonbeam Dev Node"
-    ```
-    {{ networks.development.rpc_url }}
+
+    ```js
+    const Web3 = require('web3');
+
+    //Create web3 instance
+    const web3 = new Web3('{{ networks.development.rpc_url }}');
     ```
 
 ## Tutorials {: #tutorials } 

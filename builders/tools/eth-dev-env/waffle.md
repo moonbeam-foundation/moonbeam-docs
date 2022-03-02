@@ -13,13 +13,13 @@ description: Learn how to configure Waffle for testing Solidity smart contracts 
 
 ## Configure Waffle to Connect to Moonbeam {: #configure-waffle-to-connect-to-moonbeam } 
 
---8<-- 'text/common/endpoint-setup.md'
-
 Assuming you already have a JavaScript or TypeScript project, install Waffle:
 
 ```
 npm install ethereum-waffle
 ```
+
+--8<-- 'text/common/endpoint-setup.md'
 
 To configure Waffle to run tests against a Moonbeam development node or the Moonbase Alpha TestNet, within your tests create a custom provider and add network configurations:
 
@@ -28,8 +28,12 @@ To configure Waffle to run tests against a Moonbeam development node or the Moon
     ```js
     describe ('Test Contract', () => {
       // Use custom provider to connect to Moonbase Alpha or Moonbeam development node
-      const moonbaseAlphaProvider = new ethers.providers.JsonRpcProvider('{{ networks.moonbase.rpc_url }}');
-      const devProvider = new ethers.providers.JsonRpcProvider('{{ networks.development.rpc_url }}');
+      const moonbaseAlphaProvider = new ethers.providers.JsonRpcProvider(
+        '{{ networks.moonbase.rpc_url }}'
+      );
+      const devProvider = new ethers.providers.JsonRpcProvider(
+        '{{ networks.development.rpc_url }}'
+      );
     })
     ```
 
@@ -38,8 +42,12 @@ To configure Waffle to run tests against a Moonbeam development node or the Moon
     ```typescript
     describe ('Test Contract', () => {
       // Use custom provider to connect to Moonbase Alpha or Moonbeam development node
-      const moonbaseAlphaProvider: Provider = new ethers.providers.JsonRpcProvider('{{ networks.moonbase.rpc_url }}');
-      const devProvider: Provider = new ethers.providers.JsonRpcProvider('{{ networks.development.rpc_url }}');
+      const moonbaseAlphaProvider: Provider = new ethers.providers.JsonRpcProvider(
+        '{{ networks.moonbase.rpc_url }}'
+      );
+      const devProvider: Provider = new ethers.providers.JsonRpcProvider(
+        '{{ networks.development.rpc_url }}'
+      );
     })
     ```
 

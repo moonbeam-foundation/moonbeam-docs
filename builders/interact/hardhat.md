@@ -122,7 +122,7 @@ Inside the `module.exports`, we need to provide the Solidity version (`0.8.1` ac
 === "Moonbeam"
     ```
     moonbeam: {
-        url: '{{ networks.moonbeam.rpc_url }}',
+        url: '{{ networks.moonbeam.rpc_url }}', // Insert your RPC URL here
         chainId: {{ networks.moonbeam.chain_id }}, //(hex: {{ networks.moonbeam.hex_chain_id }}),
         accounts: [privateKeyMoonbeam] // Insert your private key here
       },
@@ -131,7 +131,7 @@ Inside the `module.exports`, we need to provide the Solidity version (`0.8.1` ac
 === "Moonriver"
     ```
     moonriver: {
-        url: '{{ networks.moonriver.rpc_url }}',
+        url: '{{ networks.moonriver.rpc_url }}', // Insert your RPC URL here
         chainId: {{ networks.moonriver.chain_id }}, //(hex: {{ networks.moonriver.hex_chain_id }}),
         accounts: [privateKeyMoonriver] // Insert your private key here
       },

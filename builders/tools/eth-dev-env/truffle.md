@@ -21,61 +21,88 @@ If you haven't yet, you'll want to globally install Truffle:
 npm install -g truffle
 ```
 
-In your `truffle-config.js` file, add network configurations for a Moonbeam development node and the Moonbase Alpha TestNet:
+In your `truffle-config.js` file, you'll need to add network configurations for any of the Moonbeam networks.
+--8<-- 'text/common/endpoint-setup.md'
 
-```javascript
-const HDWalletProvider = require('@truffle/hdwallet-provider');
-// Moonbeam Private Key - Note: This is for example purposes only. Never store your private keys in a JavaScript file.
-const privateKeyMoonbeam = "YOUR-PRIVATE-KEY-HERE";
-// Moonriver Private Key - Note: This is for example purposes only. Never store your private keys in a JavaScript file.
-const privateKeyMoonriver = "YOUR-PRIVATE-KEY-HERE";
-// Moonbase Alpha Private Key
-const privateKeyMoonbase = "YOUR-PRIVATE-KEY-HERE";
-// Moonbeam Development Node Private Key
-const privateKeyDev = '99B3C12287537E38C90A9219D4CB074A89A16E9CDB20BF85728EBD97C343E342';
+=== "Moonbeam"
 
-module.exports = {
-   networks: {
-      // Moonbeam
-      moonbeam: {
-        provider: () => {
-          return new HDWalletProvider(
-            privateKeyMoonbeam,
-            '{{ networks.moonbeam.rpc_url }}'
-          );
-        },
-        network_id: {{ networks.moonbeam.chain_id }}, // {{ networks.moonbeam.hex_chain_id }} in hex,
+    ```js
+    const HDWalletProvider = require('@truffle/hdwallet-provider');
+
+    module.exports = {
+      networks: {
+        moonbeam: {
+          provider: () => {
+            return new HDWalletProvider(
+              "YOUR-PRIVATE-KEY-HERE", // Insert your private key 
+              '{{ networks.moonbeam.rpc_url }}' // Insert your RPC URL
+            );
+          },
+          network_id: {{ networks.moonbeam.chain_id }}, // {{ networks.moonbeam.hex_chain_id }} in hex
+        }
       }
-      // Moonriver
-      moonriver: {
-        provider: () => {
-          return new HDWalletProvider(
-            privateKeyMoonriver,
-            '{{ networks.moonriver.rpc_url }}'
-          );
-        },
-        network_id: {{ networks.moonriver.chain_id }}, // {{ networks.moonriver.hex_chain_id }} in hex,
+    }
+    ```
+
+=== "Moonriver"
+
+    ```js
+    const HDWalletProvider = require('@truffle/hdwallet-provider');
+
+    module.exports = {
+      networks: {
+        moonriver: {
+          provider: () => {
+            return new HDWalletProvider(
+              "YOUR-PRIVATE-KEY-HERE", // Insert your private key 
+              '{{ networks.moonriver.rpc_url }}' // Insert your RPC URL
+            );
+          },
+          network_id: {{ networks.moonriver.chain_id }}, // {{ networks.moonriver.hex_chain_id }} in hex
+        }
       }
-      // Moonbase Alpha TestNet
-      moonbase: {
-        provider: () => {
-          return new HDWalletProvider(
-            privateKeyMoonbase,
-            '{{ networks.moonbase.rpc_url }}'
-          );
-        },
-        network_id: {{ networks.moonbase.chain_id }}, // {{ networks.moonbase.hex_chain_id }} in hex,
-      },
-      // Moonbeam Development Node
-      dev: {
-        provider: () => {
-          return new HDWalletProvider(privateKeyDev, '{{ networks.development.rpc_url }}')
-         },
-        network_id: {{ networks.development.chain_id }}, // {{ networks.development.hex_chain_id }} in hex,
-      },
-   },
-};
-```
+    }
+    ```
+
+=== "Moonbase Alpha"
+
+    ```js
+    const HDWalletProvider = require('@truffle/hdwallet-provider');
+
+    module.exports = {
+      networks: {
+        moonbase: {
+          provider: () => {
+            return new HDWalletProvider(
+              "YOUR-PRIVATE-KEY-HERE", // Insert your private key 
+              '{{ networks.moonbase.rpc_url }}'
+            );
+          },
+          network_id: {{ networks.moonbase.chain_id }}, // {{ networks.moonbase.hex_chain_id }} in hex
+        }
+      }
+    }
+    ```
+
+=== "Moonbeam Dev Node"
+
+    ```js
+    const HDWalletProvider = require('@truffle/hdwallet-provider');
+
+    module.exports = {
+      networks: {
+        dev: {
+          provider: () => {
+            return new HDWalletProvider(
+              "99B3C12287537E38C90A9219D4CB074A89A16E9CDB20BF85728EBD97C343E342",
+              '{{ networks.development.rpc_url }}'
+            );
+          },
+          network_id: {{ networks.development.chain_id }}, // {{ networks.development.hex_chain_id }} in hex
+        }
+      }
+    }
+    ```
 
 ## Tutorial {: #tutorial } 
 

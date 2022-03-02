@@ -18,26 +18,41 @@ To get started with the web3.py library, install it using the following command:
 pip3 install web3
 ```
 
-Once done, the simplest setup to start using the library and its methods is the following:
-
-```py
-from web3 import Web3
-
-web3 = Web3(Web3.HTTPProvider('RPC_URL'))
-```
-
+You can configure ethers.js to work with any of the Moonbeam networks.
 --8<-- 'text/common/endpoint-setup.md'
 
-If you want to connect to Moonbase Alpha or a Moonbeam development node, you can set the `RPC_URL` to the following values:
+The simplest way to get started with each of the networks is as follows:
+
+=== "Moonbeam"
+
+    ```python
+    from web3 import Web3
+
+    web3 = Web3(Web3.HTTPProvider('{{ networks.moonbeam.rpc_url }}')) # Insert your RPC URL here
+    ```
+
+=== "Moonriver"
+
+    ```python
+    from web3 import Web3
+
+    web3 = Web3(Web3.HTTPProvider('{{ networks.moonriver.rpc_url }}')) # Insert your RPC URL here
+    ```
 
 === "Moonbase Alpha"
-    ```
-    {{ networks.moonbase.rpc_url }}
+
+    ```python
+    from web3 import Web3
+
+    web3 = Web3(Web3.HTTPProvider('{{ networks.moonbase.rpc_url }}'))
     ```
 
 === "Moonbeam Dev Node"
-    ```
-    {{ networks.development.rpc_url }}
+
+    ```python
+    from web3 import Web3
+
+    web3 = Web3(Web3.HTTPProvider('{{ networks.development.rpc_url }}'))
     ```
 
 ## Tutorials {: #tutorials } 

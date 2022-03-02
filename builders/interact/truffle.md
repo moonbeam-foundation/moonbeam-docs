@@ -95,6 +95,7 @@ Note that we are using `HD-Wallet-Provider` from Truffle as the Hierarchical Det
 
 For deployments to Moonbeam-based networks, you need to provide the private key of an address that holds funds. If you decide to use a development node, it will come with 10 pre-funded accounts that you can use. Otherwise, you can [create an account in MetaMask](/tokens/connect/metamask) and fund it. For Moonbase Alpha, you can [get tokens](/builders/get-started/moonbase/#get-tokens/) from the faucet. Once you have an acouunt with funds, you will need to export its private key.
 
+--8<-- 'text/common/endpoint-examples.md'
 Below you can find network configurations for all of our networks:
 
 === "Moonbeam"
@@ -102,7 +103,10 @@ Below you can find network configurations for all of our networks:
     moonbeam: {
       provider: () => {
          ...
-         return new HDWalletProvider(privateKeyMoonbeam, '{{ networks.moonbeam.rpc_url }}') // Insert your private key here
+         return new HDWalletProvider(
+             privateKeyMoonbeam, // Insert your private key
+             '{{ networks.moonbeam.rpc_url }}' // Insert your RPC URL here
+          )
       },
       network_id: {{ networks.moonbeam.chain_id }} (hex: {{ networks.moonbeam.hex_chain_id }}),
     },
@@ -113,7 +117,10 @@ Below you can find network configurations for all of our networks:
     moonriver: {
       provider: () => {
          ...
-         return new HDWalletProvider(privateKeyMoonriver, '{{ networks.moonriver.rpc_url }}') // Insert your private key here
+         return new HDWalletProvider(
+             privateKeyMoonriver, // Insert your private key
+             '{{ networks.moonriver.rpc_url }}' // Insert your RPC URL here
+          )
       },
       network_id: {{ networks.moonriver.chain_id }} (hex: {{ networks.moonriver.hex_chain_id }}),
     },
@@ -124,7 +131,10 @@ Below you can find network configurations for all of our networks:
     moonbase: {
       provider: () => {
          ...
-         return new HDWalletProvider(privateKeyMoonbase, '{{ networks.moonbase.rpc_url }}') // Insert your private key here
+         return new HDWalletProvider(
+             privateKeyMoonbase, // Insert your private key
+             '{{ networks.moonbase.rpc_url }}'
+          )
       },
       network_id: {{ networks.moonbase.chain_id }} (hex: {{ networks.moonbase.hex_chain_id }}),
     },
@@ -135,7 +145,10 @@ Below you can find network configurations for all of our networks:
     dev: {
       provider: () => {
          ...
-         return new HDWalletProvider(privateKeyDev, '{{ networks.development.rpc_url }}') // Insert your private key here
+         return new HDWalletProvider(
+             privateKeyDev, // Insert your private key
+             '{{ networks.development.rpc_url }}'
+          )
       },
       network_id: {{ networks.development.chain_id }} (hex: {{ networks.development.hex_chain_id }}),
     },

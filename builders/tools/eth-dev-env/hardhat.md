@@ -13,8 +13,6 @@ description: Learn how to configure Hardhat to add a local Moonbeam development 
 
 ## Configure Hardhat to Connect to Moonbeam {: #configure-hardhat-to-connect-to-moonbeam } 
 
---8<-- 'text/common/endpoint-setup.md'
-
 To get started with Hardhat you must have an npm project. If you do not yet have one, to create one you can run:
 
 ```
@@ -33,47 +31,64 @@ Then to create a Hardhat config file in your project, run:
 npx hardhat
 ```
 
-In your `hardhat.config.js` file, add network configurations for a Moonbeam development node and the Moonbase Alpha TestNet:
+In your `hardhat.config.js` file, you'll need to add network configurations for any of the Moonbeam networks.
+--8<-- 'text/common/endpoint-setup.md'
 
-```javascript
-// Moonbeam Private Key - Note: This is for example purposes only. Never store your private keys in a JavaScript file.
-const privateKeyMoonbeam = "YOUR-PRIVATE-KEY-HERE";
-// Moonriver Private Key - Note: This is for example purposes only. Never store your private keys in a JavaScript file.
-const privateKeyMoonriver = "YOUR-PRIVATE-KEY-HERE";
-// Moonbase Alpha Private Key
-const privateKeyMoonbase = "YOUR-PRIVATE-KEY-HERE";
-// Moonbeam Development Node Private Key
-const privateKeyDev = '99B3C12287537E38C90A9219D4CB074A89A16E9CDB20BF85728EBD97C343E342';
+=== "Moonbeam"
 
-module.exports = {
-   networks: {
-      // Moonbeam
-      moonbeam: {
-        url: '{{ networks.moonbeam.rpc_url }}',
-        chainId: {{ networks.moonbeam.chain_id }},  // {{ networks.moonbeam.hex_chain_id }} in hex,
-        accounts: [privateKeyMoonbeam]
-      },
-      // Moonriver
-      moonriver: {
-        url: '{{ networks.moonriver.rpc_url }}',
-        chainId: {{ networks.moonriver.chain_id }},  // {{ networks.moonriver.hex_chain_id }} in hex,
-        accounts: [privateKeyMoonriver]
-      },
-      // Moonbase Alpha TestNet
-      moonbase: {
-        url: '{{ networks.moonbase.rpc_url }}',
-        chainId: {{ networks.moonbase.chain_id }},  // {{ networks.moonbase.hex_chain_id }} in hex,
-        accounts: [privateKeyMoonbase]
-      },
-      // Moonbeam Development Node
-      dev: {
-        url: '{{ networks.development.rpc_url }}',
-        chainId: {{ networks.development.chain_id }},  // {{ networks.development.hex_chain_id }} in hex,
-        accounts: [privateKeyDev]
-      },
-   },
-};
-```
+    ```js
+      module.exports = {
+        networks: {
+          moonbeam: {
+            url: '{{ networks.moonbeam.rpc_url }}', // Insert your RPC URL here
+            chainId: {{ networks.moonbeam.chain_id }},  // {{ networks.moonbeam.hex_chain_id }} in hex,
+            accounts: ["YOUR-PRIVATE-KEY-HERE"],
+          },
+        }
+      }
+    ```
+
+=== "Moonriver"
+
+    ```js
+      module.exports = {
+        networks: {
+          moonriver: {
+            url: '{{ networks.moonriver.rpc_url }}', // Insert your RPC URL here
+            chainId: {{ networks.moonriver.chain_id }},  // {{ networks.moonriver.hex_chain_id }} in hex,
+            accounts: ["YOUR-PRIVATE-KEY-HERE"],
+          },
+        }
+      }
+    ```
+
+=== "Moonbase Alpha"
+
+    ```js
+      module.exports = {
+        networks: {
+          moonbase: {
+            url: '{{ networks.moonbase.rpc_url }}',
+            chainId: {{ networks.moonbase.chain_id }},  // {{ networks.moonbase.hex_chain_id }} in hex,
+            accounts: ["YOUR-PRIVATE-KEY-HERE"],
+          },
+        }
+      }
+    ```
+
+=== "Moonbeam Dev Node"
+
+    ```js
+      module.exports = {
+        networks: {
+          dev: {
+            url: '{{ networks.development.rpc_url }}',
+            chainId: {{ networks.development.chain_id }},  // {{ networks.development.hex_chain_id }} in hex,
+            accounts: ["99B3C12287537E38C90A9219D4CB074A89A16E9CDB20BF85728EBD97C343E342"],
+          },
+        }
+      }
+    ```
 
 ## Tutorial {: #tutorial } 
 
