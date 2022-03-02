@@ -15,6 +15,17 @@ In this guide, you'll learn how to use the ethers.js library to send a transacti
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
+For the examples in this guide, you will need to have the following:
+
+ - An account with funds. For Moonbase Alpha, you can get DEV tokens for testing purposes from [Mission Control](/builders/get-started/moonbase/#get-tokens/)
+ - 
+--8<-- 'text/common/endpoint-examples.md'
+
+!!! note
+    --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
+
+## Create a JavaScript Project {: #create-a-javascript-project }
+
 To get started, you can create a directory to store all of the files you'll be creating throughout this guide:
 
 ```
@@ -27,14 +38,11 @@ For this guide, you'll need to install the ethers.js library and the Solidity co
 npm install ethers solc@0.8.0
 ```
 
-You will also need to have an account with funds, which you can get from [Mission Control](/builders/get-started/moonbase/#get-tokens/)
-
-!!! note
-    --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
-
 ## Setting up the Ethers Provider {: #setting-up-the-ethers-provider }
 
 Throughout this guide, you'll be creating a bunch of scripts that provide different functionality such as sending a transaction, deploying a contract, and interacting with a deployed contract. In most of these scripts you'll need to create an [Ethers provider](https://docs.ethers.io/v5/api/providers/){target=blank} to interact with the network.
+
+--8<-- 'text/common/endpoint-setup.md'
 
 To create a provider, you can take the following steps:
 
@@ -42,24 +50,101 @@ To create a provider, you can take the following steps:
 2. Define the `providerRPC` object, which can include the network configurations for any of the networks you want to send a transaction on. You'll include the `name`, `rpc`, and `chainId` for each network
 3. Create the `provider` using the `ethers.providers.StaticJsonRpcProvider` method. An alternative is to use the `ethers.providers.JsonRpcProvide(providerRPC)` method, which only requires the provider RPC endpoint address. This might create compatibility issues with individual project specifications
 
-```js
-// 1. Import ethers
-const ethers = require('ethers');
+=== "Moonbeam"
 
-// 2. Define network configurations
-const providerRPC = {
-  moonbase: {
-    name: 'moonbase-alpha',
-    rpc: 'https://rpc.api.moonbase.moonbeam.network',
-    chainId: 1287,
-  },
-};
-// 3. Create ethers provider
-const provider = new ethers.providers.StaticJsonRpcProvider(providerRPC.moonbase.rpc, {
-  chainId: providerRPC.moonbase.chainId,
-  name: providerRPC.moonbase.name,
-}); // Change to correct network
-```
+    ```js
+    // 1. Import ethers
+    const ethers = require('ethers');
+
+    // 2. Define network configurations
+    const providerRPC = {
+      moonbeam: {
+        name: 'moonbeam',
+        rpc: '{{ networks.moonbeam.rpc_url }}', // Insert your RPC URL here
+        chainId: '{{ networks.moonbeam.chain_id }}', // {{ networks.moonbeam.hex_chain_id }} in hex,
+      },
+    };
+    // 3. Create ethers provider
+    const provider = new ethers.providers.StaticJsonRpcProvider(
+      providerRPC.moonbeam.rpc, 
+      {
+        chainId: providerRPC.moonbeam.chainId,
+        name: providerRPC.moonbeam.name,
+      }
+    );
+    ```
+
+=== "Moonriver"
+
+    ```js
+    // 1. Import ethers
+    const ethers = require('ethers');
+
+    // 2. Define network configurations
+    const providerRPC = {
+      moonriver: {
+        name: 'moonriver',
+        rpc: '{{ networks.moonriver.rpc_url }}', // Insert your RPC URL here
+        chainId: '{{ networks.moonriver.chain_id }}', // {{ networks.moonriver.hex_chain_id }} in hex,
+      },
+    };
+    // 3. Create ethers provider
+    const provider = new ethers.providers.StaticJsonRpcProvider(
+      providerRPC.moonriver.rpc, 
+      {
+        chainId: providerRPC.moonriver.chainId,
+        name: providerRPC.moonriver.name,
+      }
+    );
+    ```
+
+=== "Moonbase Alpha"
+
+    ```js
+    // 1. Import ethers
+    const ethers = require('ethers');
+
+    // 2. Define network configurations
+    const providerRPC = {
+      moonbase: {
+        name: 'moonbase-alpha',
+        rpc: '{{ networks.moonbase.rpc_url }}',
+        chainId: '{{ networks.moonbase.chain_id }}', // {{ networks.moonbase.hex_chain_id }} in hex,
+      },
+    };
+    // 3. Create ethers provider
+    const provider = new ethers.providers.StaticJsonRpcProvider(
+      providerRPC.moonbase.rpc, 
+      {
+        chainId: providerRPC.moonbase.chainId,
+        name: providerRPC.moonbase.name,
+      }
+    );
+    ```
+
+=== "Moonbeam Dev Node"
+
+    ```js
+    // 1. Import ethers
+    const ethers = require('ethers');
+
+    // 2. Define network configurations
+    const providerRPC = {
+      dev: {
+        name: 'moonbeam-development',
+        rpc: '{{ networks.development.rpc_url }}',
+        chainId: '{{ networks.development.chain_id }}', // {{ networks.development.hex_chain_id }} in hex,
+      },
+    };
+    // 3. Create ethers provider
+    const provider = new ethers.providers.StaticJsonRpcProvider(
+      providerRPC.dev.rpc, 
+      {
+        chainId: providerRPC.dev.chainId,
+        name: providerRPC.dev.name,
+      }
+    );
+    ```
 
 ## Send a Transaction {: #send-a-transaction }
 

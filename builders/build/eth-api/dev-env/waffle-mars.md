@@ -23,6 +23,8 @@ You will need to have the following:
 
  - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=blank}
  - An account with funds, which you can get from [Mission Control](/builders/get-started/moonbase/#get-tokens/){target=blank}
+ - 
+--8<-- 'text/common/endpoint-examples.md'
 
 Once you've created an account you'll need to export the private key to be used in this guide.
 
@@ -168,7 +170,11 @@ After compiling your contracts, Waffle stores the JSON output in the `build` dir
 
 Before deploying your contract and sending it off into the wild, you should test it first. Waffle provides an advanced testing framework and has plenty of tools to help you with testing. 
 
-You'll be running tests against the Moonbase Alpha TestNet and will need the corresponding RPC URL to connect to it: `{{ networks.moonbase.rpc_url }}`. Since you will be running tests against the TestNet, it might take a couple minutes to run all of the tests. If you want a more efficient testing experience, you can [spin up a Moonbeam development node](/builders/get-started/moonbeam-dev/){target=blank} using [`instant seal`](/builders/get-started/moonbeam-dev/#node-options){target=blank}. Running a local Moonbeam development node with the `instant seal` feature is similar to the quick and iterative experience you would get with [Ganache](https://www.trufflesuite.com/ganache){target=blank}.
+You'll be running tests against the Moonbase Alpha TestNet and will need the corresponding RPC URL to connect to it: `{{ networks.moonbase.rpc_url }}`. 
+
+--8<-- 'text/common/endpoint-setup.md'
+
+Since you will be running tests against the TestNet, it might take a couple minutes to run all of the tests. If you want a more efficient testing experience, you can [spin up a Moonbeam development node](/builders/get-started/moonbeam-dev/) using [`instant seal`](/builders/get-started/moonbeam-dev/#node-options). Running a local Moonbeam development node with the `instant seal` feature is similar to the quick and iterative experience you would get with [Ganache](https://www.trufflesuite.com/ganache).
 
 1. Create a directory to contain your tests and a file to test your `MyToken` contract:
 
@@ -190,7 +196,9 @@ You'll be running tests against the Moonbase Alpha TestNet and will need the cor
 
     describe ('MyToken', () => {
       // Use custom provider to connect to Moonbase Alpha
-      let provider: Provider = new ethers.providers.JsonRpcProvider('{{ networks.moonbase.rpc_url }}');
+      let provider: Provider = new ethers.providers.JsonRpcProvider(
+        '{{ networks.moonbase.rpc_url }}'
+      );
       let wallet: Wallet;
       let walletTo: Wallet;
       let token: MyToken;
@@ -207,6 +215,7 @@ You'll be running tests against the Moonbase Alpha TestNet and will need the cor
 
     ```typescript
       beforeEach(async () => {
+        // This is for demo purposes only. Never store your private key in a JavaScript/TypeScript file
         const PRIVATE_KEY = '<insert-your-private-key-here>'
         // Create a wallet instance using your private key & connect it to the provider
         wallet = new Wallet(PRIVATE_KEY).connect(provider);
@@ -304,12 +313,15 @@ import { MyToken, MyTokenFactory } from '../build/types';
 use(solidity);
 
 describe ('MyToken', () => {
-  let provider: Provider = new ethers.providers.JsonRpcProvider('{{ networks.moonbase.rpc_url }}');
+  let provider: Provider = new ethers.providers.JsonRpcProvider(
+    '{{ networks.moonbase.rpc_url }}'
+  );
   let wallet: Wallet;
   let walletTo: Wallet;
   let token: MyToken;
 
   beforeEach(async () => {
+    // For demo purposes only. Never store your private key in a JavaScript/TypeScript file
     const PRIVATE_KEY = '<insert-your-private-key-here>'
     wallet = new Wallet(PRIVATE_KEY).connect(provider);
     walletTo = Wallet.createRandom().connect(provider);
@@ -336,6 +348,7 @@ If you want to write more tests on your own, you could consider testing transfer
 After you compile your contracts and before deployment, you will have to generate contract artifacts for Mars. Mars uses the contract artifacts for typechecks in deployments. Then you'll need to create a deployment script and deploy the `MyToken` smart contract.
 
 Remember, you will be deploying to Moonbase Alpha and will need to use the TestNet RPC URL: `{{ networks.moonbase.rpc_url }}`.
+--8<-- 'text/common/endpoint-setup.md'
 
 The deployment will be broken up into three sections: [generate artifacts](#generate-artifacts), [create a deployment script](#create-a-deployment-script), and [deploy with Mars](#deploy-with-mars). 
 
@@ -379,6 +392,7 @@ In this step, you'll create the deployment script which will define how the cont
     ```javascript
     import { deploy } from 'ethereum-mars';
 
+    // For demo purposes only. Never store your private key in a JavaScript/TypeScript file
     const privateKey = "<insert-your-private-key-here>";
     deploy({network: '{{ networks.moonbase.rpc_url }}', privateKey},(deployer) => {
       // Deployment logic will go here
@@ -391,6 +405,7 @@ In this step, you'll create the deployment script which will define how the cont
     import { deploy, contract } from 'ethereum-mars';
     import { MyToken } from '../build/artifacts';
 
+    // For demo purposes only. Never store your private key in a JavaScript/TypeScript file
     const privateKey = "<insert-your-private-key-here>";
     deploy({network: '{{ networks.moonbase.rpc_url }}', privateKey}, () => {
       contract('myToken', MyToken, [10]);

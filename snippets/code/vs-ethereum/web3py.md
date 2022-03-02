@@ -6,7 +6,7 @@ txHash = 'tx_hash'
 
 # Set the RPC_address for Moonbeam
 # This can also be adapted for Moonriver or Moonbase Alpha
-RPC_address = 'https://rpc.api.moonbeam.network'
+RPC_address = 'RPC-API-ENDPOINT-HERE' # Insert your RPC URL here
 
 # Define the Web3 provider
 web3Provider = Web3(Web3.HTTPProvider(RPC_address))

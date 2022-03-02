@@ -20,6 +20,8 @@ This guide will show you how to deploy a contract and interact with it using the
 
 As this guide will use the Moonbeam Truffle box and the Moonbeam Truffle plugin, you don't have to worry about creating an account and funding it. The Moonbeam development node comes with 10 pre-funded accounts. However, if you're adapting this guide for Moonbeam, Moonriver, or Moonbase Alpha you will need to have an account with funds. For Moonbase Alpha, you can get tokens for testing purposes from [Mission Control](/builders/get-started/moonbase/#get-tokens/){target=blank}.
 
+--8<-- 'text/common/endpoint-examples.md'
+
 To use the Moonbeam Truffle plugin, you will need to have [Docker](https://docs.docker.com/get-docker/){target=blank} installed.
 
 For the following examples, you don't need to have Truffle globally installed, as it is included as a dependency in the Moonbeam Truffle box. However, if you want to use the `truffle` commands directly instead of running `npx truffle` or `./node_modules/.bin/truffle`, you can globally install it by running: 
@@ -154,14 +156,19 @@ module.exports = {
 !!! note
     For the purpose of this guide, some of the configuration file was removed from the above example.
 
-If you're adapting this guide for Moonbeam, Moonriver, or Moonbase Alpha, you will need to update the configuration file with the appropriate network. You'll also need to update the private key to one that has funds on that network:
+If you're adapting this guide for Moonbeam, Moonriver, or Moonbase Alpha, you will need to update the configuration file with the appropriate network.
+--8<-- 'text/common/endpoint-setup.md'
+You'll also need to update the private key to one that has funds on that network:
 
 === "Moonbeam"
     ```
     moonbeam: {
       provider: () => {
         ...
-        return new HDWalletProvider(privateKeyMoonbeam, '{{ networks.moonbeam.rpc_url }}') // Insert your private key here
+        return new HDWalletProvider(
+          'PRIVATE-KEY-HERE',  // Insert your private key here
+          '{{ networks.moonbeam.rpc_url }}' // Insert your RPC URL here
+        )
       },
       network_id: {{ networks.moonbeam.chain_id }} (hex: {{ networks.moonbeam.hex_chain_id }}),
     },
@@ -172,7 +179,10 @@ If you're adapting this guide for Moonbeam, Moonriver, or Moonbase Alpha, you wi
     moonriver: {
       provider: () => {
         ...
-        return new HDWalletProvider(privateKeyMoonriver, '{{ networks.moonriver.rpc_url }}') // Insert your private key here
+        return new HDWalletProvider(
+          'PRIVATE-KEY-HERE',  // Insert your private key here
+          '{{ networks.moonriver.rpc_url }}' // Insert your RPC URL here
+        )
       },
       network_id: {{ networks.moonriver.chain_id }} (hex: {{ networks.moonriver.hex_chain_id }}),
     },
@@ -183,7 +193,10 @@ If you're adapting this guide for Moonbeam, Moonriver, or Moonbase Alpha, you wi
     moonbase: {
       provider: () => {
         ...
-        return new HDWalletProvider(privateKeyMoonbase, '{{ networks.moonbase.rpc_url }}') // Insert your private key here
+        return new HDWalletProvider(
+          'PRIVATE-KEY-HERE',  // Insert your private key here
+          '{{ networks.moonbase.rpc_url }}' // Insert your RPC URL here
+        )
       },
       network_id: {{ networks.moonbase.chain_id }} (hex: {{ networks.moonbase.hex_chain_id }}),
     },

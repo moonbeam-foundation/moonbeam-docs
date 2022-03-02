@@ -14,6 +14,17 @@ In this guide, you'll learn how to use the web3.py library to send a transaction
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
+For the examples in this guide, you will need to have the following:
+
+ - An account with funds. For Moonbase Alpha, you can get DEV tokens for testing purposes from [Mission Control](/builders/get-started/moonbase/#get-tokens/)
+ - 
+--8<-- 'text/common/endpoint-examples.md'
+
+!!! note
+    --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
+
+## Create a Python Project {: #create-a-python-project }
+
 To get started, you can create a directory to store all of the files you'll be creating throughout this guide:
 
 ```
@@ -26,41 +37,43 @@ For this guide, you'll need to install the web3.py library and the Solidity comp
 pip3 install web3 py-solc-x
 ```
 
-You will also need to have an account with funds, which you can get from [Mission Control](/builders/get-started/moonbase/#get-tokens/)
-
-!!! note
-    --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
-
 ## Setup Web3.py with Moonbeam {: #setup-web3-with-moonbeam } 
 
-The simplest setup to start using the library and its methods is the following:
+You can configure web3.py to work with any of the Moonbeam networks.
+--8<-- 'text/common/endpoint-setup.md'
 
-```py
-from web3 import Web3
-
-web3 = Web3(Web3.HTTPProvider('{{ networks.moonbase.rpc_url }}'))
-```
-
-Depending on which network you want to connect to, you can update the `RPC_URL` as needed:
+The simplest way to get started with each of the networks is as follows:
 
 === "Moonbeam"
-    ```
-    {{ networks.moonbeam.rpc_url }}
+
+    ```python
+    from web3 import Web3
+
+    web3 = Web3(Web3.HTTPProvider('{{ networks.moonbeam.rpc_url }}')) # Insert your RPC URL here
     ```
 
 === "Moonriver"
-    ```
-    {{ networks.moonriver.rpc_url }}
+
+    ```python
+    from web3 import Web3
+
+    web3 = Web3(Web3.HTTPProvider('{{ networks.moonriver.rpc_url }}')) # Insert your RPC URL here
     ```
 
 === "Moonbase Alpha"
-    ```
-    {{ networks.moonbase.rpc_url }}
+
+    ```python
+    from web3 import Web3
+
+    web3 = Web3(Web3.HTTPProvider('{{ networks.moonbase.rpc_url }}'))
     ```
 
 === "Moonbeam Dev Node"
-    ```
-    {{ networks.development.rpc_url }}
+
+    ```python
+    from web3 import Web3
+
+    web3 = Web3(Web3.HTTPProvider('{{ networks.development.rpc_url }}'))
     ```
 
 ## Send a Transaction {: #send-a-transaction }

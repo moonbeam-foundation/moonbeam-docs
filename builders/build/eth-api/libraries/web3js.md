@@ -14,6 +14,17 @@ In this guide, you'll learn how to use the web3.js library to send a transaction
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
+For the examples in this guide, you will need to have the following:
+
+ - An account with funds. For Moonbase Alpha, you can get DEV tokens for testing purposes from [Mission Control](/builders/get-started/moonbase/#get-tokens/)
+ - 
+--8<-- 'text/common/endpoint-examples.md'
+
+!!! note
+    --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
+
+## Create a Javascript Project {: #create-a-javascript-project }
+
 To get started, you can create a directory to store all of the files you'll be creating throughout this guide:
 
 ```
@@ -26,42 +37,47 @@ For this guide, you'll need to install the web3.js library and the Solidity comp
 npm install web3 solc@0.8.0
 ```
 
-You will also need to have an account with funds, which you can get from [Mission Control](/builders/get-started/moonbase/#get-tokens/)
-
-!!! note
-    --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
-
 ## Setup Web3.js with Moonbeam {: #setup-web3-with-moonbeam } 
 
-The simplest setup to start using the library and its methods is the following:
+You can configure web3.js to work with any of the Moonbeam networks.
+--8<-- 'text/common/endpoint-setup.md'
 
-```js
-const Web3 = require('web3');
-
-// Create web3 instance
-const web3 = new Web3('{{ networks.moonbase.rpc_url }}');
-```
-
-Depending on which network you want to connect to, you can update the `RPC_URL` as needed:
+The simplest way to get started with each of the networks is as follows:
 
 === "Moonbeam"
-    ```
-    {{ networks.moonbeam.rpc_url }}
+
+    ```js
+    const Web3 = require('web3');
+
+    //Create web3 instance
+    const web3 = new Web3('{{ networks.moonbeam.rpc_url }}'); // Insert your RPC URL here
     ```
 
 === "Moonriver"
-    ```
-    {{ networks.moonriver.rpc_url }}
+
+    ```js
+    const Web3 = require('web3');
+
+    //Create web3 instance
+    const web3 = new Web3('{{ networks.moonriver.rpc_url }}'); // Insert your RPC URL here
     ```
 
 === "Moonbase Alpha"
-    ```
-    {{ networks.moonbase.rpc_url }}
+
+    ```js
+    const Web3 = require('web3');
+
+    //Create web3 instance
+    const web3 = new Web3('{{ networks.moonbase.rpc_url }}');
     ```
 
 === "Moonbeam Dev Node"
-    ```
-    {{ networks.development.rpc_url }}
+
+    ```js
+    const Web3 = require('web3');
+
+    //Create web3 instance
+    const web3 = new Web3('{{ networks.development.rpc_url }}');
     ```
 
 ## Send a Transaction {: #send-a-transaction }

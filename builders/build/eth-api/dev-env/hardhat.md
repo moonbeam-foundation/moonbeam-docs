@@ -19,6 +19,8 @@ To get started, you will need the following:
 
  - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=blank}
  - Have an account with funds, which you can get from [Mission Control](/builders/get-started/moonbase/#get-tokens/){target=blank}
+ - 
+--8<-- 'text/common/endpoint-examples.md'
 
 ## Creating a Hardhat Project {: #creating-a-hardhat-project }
 
@@ -99,7 +101,7 @@ contract Box {
 
 Before you can deploy the contract to Moonbase Alpha, you'll need to modify the Hardhat configuration file and create a secure file to store your private key in.
 
-You can create a `secrets.json` file by running:
+You can create a `secrets.json` file to store your private key by running:
 
 ```
 touch secrets.json
@@ -152,18 +154,18 @@ You can modify the `hardhat.config.js` file to use any of the Moonbeam networks:
 === "Moonbeam"
     ```
     moonbeam: {
-        url: '{{ networks.moonbeam.rpc_url }}',
-        chainId: {{ networks.moonbeam.chain_id }}, //(hex: {{ networks.moonbeam.hex_chain_id }}),
-        accounts: [privateKey] // Insert your private key here
+        url: '{{ networks.moonbeam.rpc_url }}', // Insert your RPC URL here
+        chainId: {{ networks.moonbeam.chain_id }}, // (hex: {{ networks.moonbeam.hex_chain_id }}),
+        accounts: [privateKey]
       },
     ```
 
 === "Moonriver"
     ```
     moonriver: {
-        url: '{{ networks.moonriver.rpc_url }}',
-        chainId: {{ networks.moonriver.chain_id }}, //(hex: {{ networks.moonriver.hex_chain_id }}),
-        accounts: [privateKey] // Insert your private key here
+        url: '{{ networks.moonriver.rpc_url }}', // Insert your RPC URL here
+        chainId: {{ networks.moonriver.chain_id }}, // (hex: {{ networks.moonriver.hex_chain_id }}),
+        accounts: [privateKey]
       },
     ```
 
@@ -172,7 +174,7 @@ You can modify the `hardhat.config.js` file to use any of the Moonbeam networks:
     moonbase: {
         url: '{{ networks.moonbase.rpc_url }}',
         chainId: {{ networks.moonbase.chain_id }}, // (hex: {{ networks.moonbase.hex_chain_id }}),
-        accounts: [privateKey] // Insert your private key here
+        accounts: [privateKey]
       },
     ```
 
@@ -180,8 +182,8 @@ You can modify the `hardhat.config.js` file to use any of the Moonbeam networks:
     ```      
     dev: {
         url: '{{ networks.development.rpc_url }}',
-        chainId: {{ networks.development.chain_id }}, //(hex: {{ networks.development.hex_chain_id }}),
-        accounts: [privateKey] // Insert your private key here
+        chainId: {{ networks.development.chain_id }}, // (hex: {{ networks.development.hex_chain_id }}),
+        accounts: [privateKey]
       },
     ```
 
