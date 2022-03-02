@@ -2,7 +2,7 @@
 const Web3 = require('web3');
 
 // Provider
-const web3 = new Web3('RPC-API-ENDPOINT-HERE');
+const web3 = new Web3('https://rpc.api.moonbase.moonbeam.network');
 
 // Address and Private Key
 const address = '0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b';
