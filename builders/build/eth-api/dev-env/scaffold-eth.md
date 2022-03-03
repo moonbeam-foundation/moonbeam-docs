@@ -220,7 +220,7 @@ In The Graph component of Scaffold-ETH, you need to modify two files to point th
          file: ./abis/moonbeamDevNode_YourContract.json
         ```
 
-For more information on using The Graph with Moonbeam, please check the dedicated [The Graph page](/builders/intergrations/indexers/thegraph/){target=blank} for more details; or the dedicated [The Graph Node page](/node-operators/indexer-nodes/thegraph-node/){target=blank} for more information on running a Graph node for Moonbeam.
+For more information on using The Graph with Moonbeam, please check the dedicated [The Graph page](/builders/integrations/indexers/thegraph/){target=blank} for more details; or the dedicated [The Graph Node page](/node-operators/indexer-nodes/thegraph-node/){target=blank} for more information on running a Graph node for Moonbeam.
 
 ### React Component {: #react-component }
 

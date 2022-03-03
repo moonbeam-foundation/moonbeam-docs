@@ -17,7 +17,7 @@ This guide is divided into two sections. The first part describes the OpenZeppel
 
 ## OpenZeppelin Contract Wizard {: #openzeppelin-contract-wizard } 
 
-OpenZeppelin has developed an online web-based interactive contract generator tool that is probably the easiest and fastest way to write your smart contract using OpenZeppelin code, called [Contracts Wizard]((https://docs.openzeppelin.com/contracts/4.x/wizard)){target=blank}.
+OpenZeppelin has developed an online web-based interactive contract generator tool that is probably the easiest and fastest way to write your smart contract using OpenZeppelin code, called [Contracts Wizard](https://docs.openzeppelin.com/contracts/4.x/wizard){target=blank}.
 
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/l8RTwu6hGpY' frameborder='0' allowfullscreen></iframe></div>
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>In this video, we use Open Zeppelin Wizard to deploy an ERC-20 token to Moonbase Alpha</a></div>
