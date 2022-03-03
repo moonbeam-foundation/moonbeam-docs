@@ -19,6 +19,8 @@ Assuming you already have a JavaScript or TypeScript project, install Mars:
 npm install ethereum-mars
 ```
 
+--8<-- 'text/common/endpoint-setup.md'
+
 To configure Mars to deploy to a Moonbeam development node or the Moonbase Alpha TestNet, within your deployment scripts add the following network configurations:
 
 ```typescript

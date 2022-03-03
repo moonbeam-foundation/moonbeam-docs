@@ -32,8 +32,6 @@ Some important variables/configurations to note include:
     |   Target block time   |  {{ networks.moonriver.block_time }} seconds (expected to be 6     seconds)  |
     |    Block gas limit    | {{ networks.moonriver.gas_block }} (expected to increase by at     least 4x) |
     | Transaction gas limit |  {{ networks.moonriver.gas_tx }} (expected to increase by at     least 4x)   |
-    |     RPC endpoint      |                       {{ networks.moonriver.rpc_url }}                       |
-    |     WSS endpoint      |                       {{ networks.moonriver.wss_url }}                       |
 
 === "Governance"
     |         Variable         |                                                             Value                                                              |
@@ -54,7 +52,7 @@ Some important variables/configurations to note include:
     |  Maximum delegations per account  |                             {{ networks.moonriver.staking.max_del_per_del }}                              |
     |               Round               | {{ networks.moonriver.staking.round_blocks }} blocks ({{ networks.moonriver.staking.round_hours }} hours) |
     |           Bond duration           |                delegation takes effect in the next round (funds are withdrawn immediately)                |
-    |          Unbond duration          |                      {{ networks.moonriver.delegator_timings.del_bond_less.rounds }} rounds                      |
+    |          Unbond duration          |                  {{ networks.moonriver.delegator_timings.del_bond_less.rounds }} rounds                   |
 
 _*Read more about [token denominations](#token-denominations)_
 

@@ -4,3 +4,4 @@ nav:
   - overview.md
   - docker.md
   - systemd.md
+  - flags.md

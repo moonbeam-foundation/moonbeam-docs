@@ -30,11 +30,3 @@ If you already have MetaMask installed, you can easily connect MetaMask to Moonb
     MetaMask will popup asking for permission to add Moonbeam as a custom network. Once you approve permissions, MetaMask will switch your current network to Moonbeam.
 
 If you do not have MetaMask installed, or would like to follow a tutorial to get started, please check out the [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask/) guide.
-
-If you want to connect MetaMask by providing the network information, you can use the following data:
-
- - Network Name: `Moonbeam`
- - RPC URL: `{{ networks.moonbeam.rpc_url }}`
- - ChainID: `{{ networks.moonbeam.chain_id }}` (hex: `{{ networks.moonbeam.hex_chain_id }}`)
- - Symbol (Optional): `GLMR`
- - Block Explorer (Optional): `{{ networks.moonbeam.block_explorer }}` 
