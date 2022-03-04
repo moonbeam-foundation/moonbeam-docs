@@ -112,7 +112,7 @@ print(f"The balance of { address_from } is: { balance_from } ETH")
 print(f"The balance of { address_to } is: { balance_to } ETH")
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/web3py-tx/balances.py){target=blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/web3py-tx/balances.py){target=blank}.
 
 To run the script and fetch the account balances, you can run the following command:
 
@@ -179,7 +179,7 @@ tx_receipt = web3.eth.wait_for_transaction_receipt(tx_hash)
 print(f"Transaction successful with hash: { tx_receipt.transactionHash.hex() }")
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/web3py-tx/transaction.py){target=blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/web3py-tx/transaction.py){target=blank}.
 
 To run the script, you can run the following command in your terminal:
 
@@ -270,7 +270,7 @@ tx_receipt = web3.eth.wait_for_transaction_receipt(tx_hash)
 print(f'Contract deployed at address: { tx_receipt.contractAddress }')
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/web3py-contract/deploy.py){target=blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/web3py-contract/deploy.py){target=blank}.
 
 To run the script, you can enter the following command into your terminal:
 
@@ -321,7 +321,7 @@ number = Incrementer.functions.number().call()
 print(f'The current number stored is: { number } ')
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/web3py-contract/get.py){target=blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/web3py-contract/get.py){target=blank}.
 
 To run the script, you can enter the following command in your terminal:
 
@@ -389,7 +389,7 @@ tx_receipt = web3.eth.wait_for_transaction_receipt(tx_hash)
 print(f'Tx successful with hash: { tx_receipt.transactionHash.hex() }')
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/web3py-contract/increment.py){target=blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/web3py-contract/increment.py){target=blank}.
 
 To run the script, you can enter the following command in your terminal:
 
@@ -448,7 +448,7 @@ tx_receipt = web3.eth.wait_for_transaction_receipt(tx_hash)
 print(f'Tx successful with hash: { tx_receipt.transactionHash.hex() }')
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/web3py-contract/reset.py){target=blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/web3py-contract/reset.py){target=blank}.
 
 To run the script, you can enter the following command in your terminal:
 

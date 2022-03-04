@@ -124,7 +124,7 @@ const balances = async () => {
 balances();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/web3-tx-local/balances.js){target=blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/web3-tx-local/balances.js){target=blank}.
 
 To run the script and fetch the account balances, you can run the following command:
 
@@ -185,7 +185,7 @@ const send = async () => {
 send();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/web3-tx-local/transaction.js){target=blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/web3-tx-local/transaction.js){target=blank}.
 
 To run the script, you can run the following command in your terminal:
 
@@ -276,7 +276,7 @@ const deploy = async () => {
 deploy();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/web3-contract-local/deploy.js){target=blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/web3-contract-local/deploy.js){target=blank}.
 
 To run the script, you can enter the following command into your terminal:
 
@@ -335,7 +335,7 @@ const get = async () => {
 get();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/web3-contract-local/get.js){target=blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/web3-contract-local/get.js){target=blank}.
 
 To run the script, you can enter the following command in your terminal:
 
@@ -410,7 +410,7 @@ const increment = async () => {
 increment();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/web3-contract-local/increment.js){target=blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/web3-contract-local/increment.js){target=blank}.
 
 To run the script, you can enter the following command in your terminal:
 
@@ -476,7 +476,7 @@ const reset = async () => {
 reset();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/snippets/code/web3-contract-local/reset.js){target=blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/web3-contract-local/reset.js){target=blank}.
 
 To run the script, you can enter the following command in your terminal:
 
