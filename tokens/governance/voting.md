@@ -242,13 +242,13 @@ Where:
 
 In the previous example, these numbers were:
 
-|  Variable  |       Value       |
-|:----------:|:-----------------:|
-|  Approve   | 10800 (1800 x 6)  |
-|  Against   |  80 (800 x 0.1)   |
-|  Turnout   | 2600 (1800 + 800) |
-| Electorate |       1.22M       |
-| **Result** |                   |
+|  Variable  |         Value         |
+|:----------:|:---------------------:|
+|  Approve   |   10800 (1800 x 6)    |
+|  Against   |    80 (800 x 0.1)     |
+|  Turnout   |   2600 (1800 + 800)   |
+| Electorate |         1.22M         |
+| **Result** | 1.5 < 9.8 (Aye wins!) |
 
 In short, a heavy super-majority of aye votes is required to approve a proposal at low turnouts, but as turnout increases, it becomes a simple majority.
 

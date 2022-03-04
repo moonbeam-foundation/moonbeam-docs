@@ -1,9 +1,5 @@
 const ethers = require('ethers');
 
-/*
-   -- Define Provider & Variables --
-*/
-// Provider
 const providerRPC = {
   development: {
     name: 'moonbeam-development',
@@ -19,15 +15,11 @@ const providerRPC = {
 const provider = new ethers.providers.StaticJsonRpcProvider(providerRPC.development.rpc, {
   chainId: providerRPC.development.chainId,
   name: providerRPC.development.name,
-}); //Change to correct network
+}); //  Change to correct network
 
-// Variables
 const addressFrom = 'ADDRESS-FROM-HERE';
 const addressTo = 'ADDRESS-TO-HERE';
 
-/*
-   -- Balance Call Function --
-*/
 const balances = async () => {
   const balanceFrom = ethers.utils.formatEther(await provider.getBalance(addressFrom));
 
