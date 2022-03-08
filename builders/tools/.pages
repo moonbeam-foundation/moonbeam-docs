@@ -2,6 +2,7 @@ title: Tools
 nav:
   - index.md
   - eth-libraries
+  - substrate-libraries
   - eth-dev-env
   - precompiles
   - verify-contracts

@@ -3,6 +3,7 @@ networks:
     build_tag: v0.20.1
     tracing_tag: purestake/moonbeam-tracing:v0.21.0-1300-99fa
     rpc_url: http://127.0.0.1:9933
+    wss_url: WSS-API-ENDPOINT-HERE
     chain_id: 1281
     hex_chain_id: '0x501'
     container_name: moonbeam_development
@@ -10,6 +11,7 @@ networks:
   moonbase:
     public_rpc_url: https://rpc.api.moonbase.moonbeam.network # for wallets
     rpc_url: https://rpc.api.moonbase.moonbeam.network
+    wss_url: WSS-API-ENDPOINT-HERE
     chain_id: 1287
     hex_chain_id: '0x507'
     chain_spec: alphanet
