@@ -1,9 +1,0 @@
-title: Eth Dev Environments
-nav:
-  - index.md
-  - openzeppelin
-  - remix.md
-  - hardhat.md
-  - truffle.md
-  - waffle.md
-  - mars.md

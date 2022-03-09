@@ -95,6 +95,8 @@ You can make calls to the Substrate JSON-RPC using the `send` method of both [We
 
 The code snippets rely on two custom RPC requests from the Substrate JSON-RPC: `chain_getFinalizedHead` and `chain_getHeader`. The first request gets the block hash of the last finalized block. The second request gets the block header for a given block hash. The same is true for `eth_getBlockByNumber` and `eth_getTransactionReceipt`, to check if the given transaction hash is included in the block.
 
+--8<-- 'text/common/endpoint-examples.md'
+
 !!! note
     The code snippets presented in the following sections are not meant for production environments. Please make sure you adapt it for each use-case.
 

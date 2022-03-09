@@ -79,7 +79,7 @@ The following features are available:
     - Introduced a new consensus mechanism, called Nimbus. Nimbus provides different filters to choose a random subset of the current active collator pool to produce the next block. Furthermore, block authors now sign blocks using session keys, which are mapped via an extrinsic to an H160 address for rewards payment. You can read more about Nimbus [here](/learn/features/consensus/)
     - Added a [Staking precompiled contract](https://github.com/PureStake/moonbeam/pull/358) contract at address `{{ networks.moonbase.precompiles.staking }}`. An interface to interact with the contract can be found on [this link](https://raw.githubusercontent.com/PureStake/moonbeam/master/precompiles/parachain-staking/StakingInterface.sol)
     - Added [preliminary logs bloom filtering](https://github.com/paritytech/frontier/pull/364) to match user requests through Frontier. This feature was [further optmized](https://github.com/paritytech/frontier/pull/372) to achieve faster response times and a more predictable performance
-    - Added the [parachain Crowdloan pallet](https://github.com/paritytech/polkadot/blob/master/runtime/common/src/crowdloan.rs) to test the distribution of rewards
+    - Added the [parachain Crowdloan pallet](https://github.com/PureStake/crowdloan-rewards) to test the distribution of rewards
     - Many improvements that aim to enhance network stability
     - Minimum gas price has been increased to 1 GDEV (analog to GWei on Ethereum)
 

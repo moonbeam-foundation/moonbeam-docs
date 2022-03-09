@@ -18,15 +18,17 @@ There are two ways you can set up a Graph Node: you can use Docker to run an all
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
-Before diving into setting up a Graph Node, you neeed to have the following installed on your system:
+Before diving into setting up a Graph Node, you need to have the following installed on your system:
 
  - [Docker](https://docs.docker.com/get-docker/){target=blank}
  - [Docker Compose](https://docs.docker.com/compose/install/){target=blank}
  - [JQ](https://stedolan.github.io/jq/download/){target=blank}
 
-In this guide, you will learn how to run a Graph node against a Moonbase Alpha tracing node with the `tracing` flag enabled. This guide can also be adapted for Moonbeam and Moonriver.
 
-To spin up a full node with the `tracing` flag enabled, check out the [Debug & Trace](/node-operators/networks/tracing-node){target=blank} guide.
+In this guide, you will learn how to run a Graph node against a Moonbase Alpha tracing node with the `tracing` flag enabled. To spin up a full node with the `tracing` flag enabled, check out the [Debug & Trace](/node-operators/networks/tracing-node){target=blank} guide.
+
+This guide can also be adapted for Moonbeam and Moonriver.
+--8<-- 'text/common/endpoint-examples.md'
 
 ## Running a Graph Node {: #running-a-graph-node } 
 

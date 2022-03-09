@@ -11,7 +11,7 @@ description: How you can list your project on DappRadar
 
 [DappRadar](https://dappradar.com/){target=_blank} was started in 2018 with the goal of delivering high quality, accurate insights on decentralized applications to the world. Since then, DappRadar has become a defacto standard for DApp discovery with nearly ten thousand applications listed across twenty protocols. In their own words, *“DappRadar filters through dapp data, removes fake and irrelevant activity and provides actionable market intelligence. Dapps are tracked in terms of their active users, token volume and transaction activity to provide insight into the trends in the dapp ecosystem.”*
 
-Moonbean and Moonriver are [now live on DappRadar](https://dappradar.com/blog/dappradar-now-tracking-dapps-on-moonbeam-moonriver){target=_blank}. DappRadar maintains homepages for [the top Moonbeam DApps](https://dappradar.com/rankings/protocol/moonbeam){target=_blank} and [the top Moonriver DApps](https://dappradar.com/rankings/protocol/moonriver){target=_blank}. Prior to the DappRadar integration, a [crowd-sourced Moonbeam DApps listing](https://github.com/PureStake/moonbeam-project-directory){target=_blank} was maintained as part of the Moonbeam docs site. That registry is deprecated and replaced by DappRadar & [State of the DApps](/learn/dapps-list/state-of-the-dapps/). 
+Moonbeam and Moonriver are [now live on DappRadar](https://dappradar.com/blog/dappradar-now-tracking-dapps-on-moonbeam-moonriver){target=_blank}. DappRadar maintains homepages for [the top Moonbeam DApps](https://dappradar.com/rankings/protocol/moonbeam){target=_blank} and [the top Moonriver DApps](https://dappradar.com/rankings/protocol/moonriver){target=_blank}. Prior to the DappRadar integration, a [crowd-sourced Moonbeam DApps listing](https://github.com/PureStake/moonbeam-project-directory){target=_blank} was maintained as part of the Moonbeam docs site. That registry is deprecated and replaced by DappRadar & [State of the DApps](/learn/dapps-list/state-of-the-dapps/). 
 
 ![DappRadar Home Page](/images/learn/dapps-list/dapp-radar/dapp-radar-1.png)
 
@@ -51,7 +51,8 @@ First, you'll need to [create a DappRadar account](https://auth.dappradar.com/em
 
 Submissions are reviewed by the DappRadar team and will be published if the DApp is deemed suitable for listing. For any Moonbeam-related questions you can reach out to us in [Discord](https://discord.gg/moonbeam){target=_blank}. For DappRadar questions, support is available in the  [DappRadar Discord](https://discord.com/invite/4ybbssrHkm){target=_blank} or you can contact [developers@dappradar.com](mailto:developers@dappradar.com).
 
-## Disclaimer {: #disclaimer }
 
-*DappRadar contains user-generated content and Moonbeam Foundation has not vetted such user-generated content.*
---8<-- 'text/disclaimers/user-generated-content.md'
+<div class="page-disclaimer">
+  DappRadar contains user-generated content and Moonbeam Foundation has not vetted such user-generated content.
+  --8<-- 'text/disclaimers/user-generated-content.md'
+</div>

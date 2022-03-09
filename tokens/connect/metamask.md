@@ -79,7 +79,7 @@ Here you can configure MetaMask for the following networks:
     |         Variable          |                                      Value                                       |
     |:-------------------------:|:--------------------------------------------------------------------------------:|
     |       Network Name        |                                    `Moonbeam`                                    |
-    |          RPC URL          |                        `{{ networks.moonbeam.rpc_url }}`                         |
+    |          RPC URL          |                       `{{ networks.moonbeam.public_rpc_url }}`                       |
     |          ChainID          | `{{ networks.moonbeam.chain_id }}` (hex: `{{ networks.moonbeam.hex_chain_id }}`) |
     |     Symbol (Optional)     |                                      `GLMR`                                      |
     | Block Explorer (Optional) |                     `{{ networks.moonbeam.block_explorer }}`                     |
@@ -88,7 +88,7 @@ Here you can configure MetaMask for the following networks:
     |         Variable          |                                       Value                                        |
     |:-------------------------:|:----------------------------------------------------------------------------------:|
     |       Network Name        |                                    `Moonriver`                                     |
-    |          RPC URL          |                         `{{ networks.moonriver.rpc_url }}`                         |
+    |          RPC URL          |                       `{{ networks.moonriver.public_rpc_url }}`                        |
     |          ChainID          | `{{ networks.moonriver.chain_id }}` (hex: `{{ networks.moonriver.hex_chain_id }}`) |
     |     Symbol (Optional)     |                                       `MOVR`                                       |
     | Block Explorer (Optional) |                     `{{ networks.moonriver.block_explorer }}`                      |
@@ -97,7 +97,7 @@ Here you can configure MetaMask for the following networks:
     |         Variable          |                                      Value                                       |
     |:-------------------------:|:--------------------------------------------------------------------------------:|
     |       Network Name        |                                 `Moonbase Alpha`                                 |
-    |          RPC URL          |                        `{{ networks.moonbase.rpc_url }}`                         |
+    |          RPC URL          |                       `{{ networks.moonbase.public_rpc_url }}`                       |
     |          ChainID          | `{{ networks.moonbase.chain_id }}` (hex: `{{ networks.moonbase.hex_chain_id }}`) |
     |     Symbol (Optional)     |                                      `DEV`                                       |
     | Block Explorer (Optional) |                     `{{ networks.moonbase.block_explorer }}`                     |

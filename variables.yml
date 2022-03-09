@@ -1,13 +1,14 @@
 networks:
   development:
     build_tag: v0.20.1
-    tracing_tag: purestake/moonbeam-tracing:v0.20.1-1201-5590
+    tracing_tag: purestake/moonbeam-tracing:v0.21.0-1300-99fa
     rpc_url: http://127.0.0.1:9933
     chain_id: 1281
     hex_chain_id: '0x501'
     container_name: moonbeam_development
     block_explorer: https://moonbeam-explorer.netlify.app/
   moonbase:
+    public_rpc_url: https://rpc.api.moonbase.moonbeam.network # for wallets
     rpc_url: https://rpc.api.moonbase.moonbeam.network
     chain_id: 1287
     hex_chain_id: '0x507'
@@ -15,7 +16,7 @@ networks:
     block_explorer: https://moonbase.moonscan.io/
     parachain_release_tag: v0.20.1 # must be in this exact format for links to work
     parachain_sha256sum: d61a9a9496df4bff1b981b8d32d71da90aad39fa3cecba419eb2814261d19e83
-    tracing_tag: purestake/moonbeam-tracing:v0.20.1-1201-5590
+    tracing_tag: purestake/moonbeam-tracing:v0.21.0-1300-99fa
     gas_block: 15M
     gas_tx: 12.995M
     node_directory: /var/lib/alphanet-data
@@ -95,6 +96,13 @@ networks:
       min_preim_deposit: 0.004
       max_votes: 100
       max_proposals: 100
+      lock_period:
+        conviction_1: 1
+        conviction_2: 2
+        conviction_3: 4
+        conviction_4: 8
+        conviction_5: 16
+        conviction_6: 32
     inflation:
       total_annual_inflation: 5
       delegator_reward_inflation: 50
@@ -105,7 +113,7 @@ networks:
       min_can_stk: 500
       min_can_stk_wei: 500000000000000000000
       collator_map_bond: 100
-      max_candidates: 60
+      max_candidates: 80
       round_blocks: 600
       round_hours: 2
       min_del_stake: 5
@@ -160,17 +168,18 @@ networks:
       xcm_transactor: '0x0000000000000000000000000000000000000806'
       author_mapping: '0x0000000000000000000000000000000000000807'
     substrate_api_sidecar:
-      stable_version: 9.2.0
+      stable_version: 11.3.9
     tx_weight_to_gas_ratio: 25000
   moonriver:
-    rpc_url: https://rpc.api.moonriver.moonbeam.network
-    wss_url: wss://wss.api.moonriver.moonbeam.network
+    public_rpc_url: https://rpc.api.moonriver.moonbeam.network # for wallets
+    rpc_url: RPC-API-ENDPOINT-HERE
+    wss_url: WSS-API-ENDPOINT-HERE
     chain_id: 1285
     hex_chain_id: '0x505'
     node_directory: /var/lib/moonriver-data
     parachain_release_tag: v0.20.1
     parachain_sha256sum: d61a9a9496df4bff1b981b8d32d71da90aad39fa3cecba419eb2814261d19e83
-    tracing_tag: purestake/moonbeam-tracing:v0.20.1-1201-5590
+    tracing_tag: purestake/moonbeam-tracing:v0.21.0-1300-99fa
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
     binary_name: moonbeam
@@ -202,6 +211,13 @@ networks:
       max_votes: 100
       min_preim_deposit: 0.004
       max_proposals: 100
+      lock_period:
+        conviction_1: 1
+        conviction_2: 2
+        conviction_3: 4
+        conviction_4: 8
+        conviction_5: 16
+        conviction_6: 32
     inflation:
       total_annual_inflation: 5
       delegator_reward_inflation: 50
@@ -280,14 +296,15 @@ networks:
       stable_version: 11.3.3
     tx_weight_to_gas_ratio: 25000
   moonbeam:
-    rpc_url: https://rpc.api.moonbeam.network
-    wss_url: wss://wss.api.moonbeam.network
+    public_rpc_url: https://rpc.api.moonbeam.network # for wallets
+    rpc_url: RPC-API-ENDPOINT-HERE
+    wss_url: WSS-API-ENDPOINT-HERE
     chain_id: 1284
     hex_chain_id: '0x504'
     node_directory: /var/lib/moonbeam-data
     parachain_release_tag: v0.20.1
     parachain_sha256sum: d61a9a9496df4bff1b981b8d32d71da90aad39fa3cecba419eb2814261d19e83
-    tracing_tag: purestake/moonbeam-tracing:v0.20.1-1201-5590
+    tracing_tag: purestake/moonbeam-tracing:v0.21.0-1300-99fa
     chain_spec: moonbeam
     block_explorer: https://moonscan.io
     binary_name: moonbeam
@@ -319,6 +336,13 @@ networks:
       max_votes: 100
       min_preim_deposit: 0.04
       max_proposals: 100
+      lock_period:
+        conviction_1: 2
+        conviction_2: 4
+        conviction_3: 8
+        conviction_4: 16
+        conviction_5: 32
+        conviction_6: 64
     inflation:
       total_annual_inflation: 5
       delegator_reward_inflation: 50
@@ -329,7 +353,7 @@ networks:
       min_can_stk: 100000
       min_can_stk_wei: 100000000000000000000000
       collator_map_bond: 10000
-      max_candidates: 53
+      max_candidates: 64
       round_blocks: 1800
       round_hours: 6
       min_del_stake: 50

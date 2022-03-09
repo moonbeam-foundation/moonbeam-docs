@@ -5,7 +5,7 @@ description: An overview of the current configuration of the Moonbeam deployment
 
 # Moonbeam
 
-_Updated December 13th, 2021_
+_Updated February 28th, 2022_
 
 ## Goal {: #goal } 
 
@@ -13,7 +13,7 @@ Moonbeam onboarded as a parachain to Polkadot on December 17th 2021. Moonbeam is
 
 ## Initial Configurations {: #initial-configurations } 
 
-Once fully launched, Moonbeam will have the following configurations:
+Currently, Moonbeam has the following configurations:
 
 - Runs as a parachain connected to the Polkadot relay chain
 - Has an active set of {{ networks.moonbeam.staking.max_candidates }} collators
@@ -58,7 +58,7 @@ _*Read more about [token denominations](#token-denominations)_
 
 ## Tokens {: #tokens } 
 
-The tokens on Moonbeam will also be called Glimmer (GLMR). Check out the Moonbeam Foundation site for more information on the [Glimmer](https://moonbeam.foundation/glimmer-token/) token. 
+The tokens on Moonbeam are called Glimmer (GLMR). Check out the Moonbeam Foundation site for more information on the [Glimmer](https://moonbeam.foundation/glimmer-token/) token. 
 
 ### Token Denominations {: #token-denominations } 
 
@@ -77,7 +77,7 @@ The smallest unit of Glimmer (GMLR), similarly to Ethereum, is a Wei. It takes 1
 
 ## Proof of Stake {: #proof-of-stake } 
 
-Over the course of the 3-phase Moonbean launch, the network will progressively be updated to a fully decentralized Proof of Stake network. For a breakdown of what will occur during each phase, check out the [Network Launch Status](https://moonbeam.network/networks/moonbeam/launch/) page.
+The Moonriver network is a fully decentralized Delegated Proof of Stake network where users of the network can delegate collator candidates to produce blocks and earn rewards. It uses the [Nimbus framework](/learn/features/consensus/) framework for parachain consensus. The number of candidates in the active set will be subject to governance. The active set will consist of the top candidates by stake, including delegations. 
 
 ## Limitations {: #limitations } 
 
