@@ -9,9 +9,9 @@ description: Follow this tutorial to learn how to use the Ethereum EtherJS Libra
 
 ## Introduction {: #introduction } 
 
-The [ethers.js](https://docs.ethers.io/){target=blank} library provides a set of tools to interact with Ethereum Nodes with JavaScript, similar to web3.js. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations. Therefore, developers can leverage this compatibility and use the ethers.js library to interact with a Moonbeam node as if they were doing so on Ethereum. You can read more about ethers.js on this [blog post](https://medium.com/l4-media/announcing-ethers-js-a-web3-alternative-6f134fdd06f3){target=blank}.
+The [ethers.js](https://docs.ethers.io/){target=_blank} library provides a set of tools to interact with Ethereum Nodes with JavaScript, similar to web3.js. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations. Therefore, developers can leverage this compatibility and use the ethers.js library to interact with a Moonbeam node as if they were doing so on Ethereum. You can read more about ethers.js on this [blog post](https://medium.com/l4-media/announcing-ethers-js-a-web3-alternative-6f134fdd06f3){target=_blank}.
 
-In this guide, you'll learn how to use the ethers.js library to send a transaction and deploy a contract on Moonbase Alpha. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=blank}.
+In this guide, you'll learn how to use the ethers.js library to send a transaction and deploy a contract on Moonbase Alpha. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=_blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=_blank}.
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
@@ -40,7 +40,7 @@ npm install ethers solc@0.8.0
 
 ## Setting up the Ethers Provider {: #setting-up-the-ethers-provider }
 
-Throughout this guide, you'll be creating a bunch of scripts that provide different functionality such as sending a transaction, deploying a contract, and interacting with a deployed contract. In most of these scripts you'll need to create an [Ethers provider](https://docs.ethers.io/v5/api/providers/){target=blank} to interact with the network.
+Throughout this guide, you'll be creating a bunch of scripts that provide different functionality such as sending a transaction, deploying a contract, and interacting with a deployed contract. In most of these scripts you'll need to create an [Ethers provider](https://docs.ethers.io/v5/api/providers/){target=_blank} to interact with the network.
 
 --8<-- 'text/common/endpoint-setup.md'
 
@@ -190,7 +190,7 @@ const balances = async () => {
 balances();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-tx-local/balances.js){target=blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-tx-local/balances.js){target=_blank}.
 
 To run the script and fetch the account balances, you can run the following command:
 
@@ -251,7 +251,7 @@ const send = async () => {
 send();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-tx-local/transaction.js){target=blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-tx-local/transaction.js){target=_blank}.
 
 To run the script, you can run the following command in your terminal:
 
@@ -330,7 +330,7 @@ const deploy = async () => {
 deploy();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-contract-local/deploy.js){target=blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-contract-local/deploy.js){target=_blank}.
 
 To run the script, you can enter the following command into your terminal:
 
@@ -390,7 +390,7 @@ const get = async () => {
 get();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-contract-local/get.js){target=blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-contract-local/get.js){target=_blank}.
 
 To run the script, you can enter the following command in your terminal:
 
@@ -456,7 +456,7 @@ const increment = async () => {
 increment();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-contract-local/increment.js){target=blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-contract-local/increment.js){target=_blank}.
 
 To run the script, you can enter the following command in your terminal:
 
@@ -513,7 +513,7 @@ const reset = async () => {
 reset();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-contract-local/reset.js){target=blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-contract-local/reset.js){target=_blank}.
 
 To run the script, you can enter the following command in your terminal:
 

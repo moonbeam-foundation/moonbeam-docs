@@ -10,7 +10,7 @@ description: Learn how to use one of the most popular Ethereum developer tools, 
 
 ## Introduction {: #introduction } 
 
-[Remix](https://remix.ethereum.org/){target=blank} is one of the commonly used development environments for smart contracts on Ethereum. Given Moonbeam’s Ethereum compatibility features, Remix can be used directly with any of the Moonbeam networks.
+[Remix](https://remix.ethereum.org/){target=_blank} is one of the commonly used development environments for smart contracts on Ethereum. Given Moonbeam’s Ethereum compatibility features, Remix can be used directly with any of the Moonbeam networks.
 
 This guide walks through the process of creating and deploying a Solidity-based smart contract to a Moonbeam development node using the Remix IDE. This guide can be adapted for Moonbeam, Moonriver, or Moonbase Alpha.
 
@@ -18,8 +18,8 @@ This guide walks through the process of creating and deploying a Solidity-based 
 
 For the purposes of this guide, you'll need to have the following:
 
-- A locally running [Moonbeam development node](/builders/get-started/moonbeam-dev/){target=blank}
-- [MetaMask installed and configured](/tokens/connect/metamask/){target=blank} to use your development node
+- A locally running [Moonbeam development node](/builders/get-started/moonbeam-dev/){target=_blank}
+- [MetaMask installed and configured](/tokens/connect/metamask/){target=_blank} to use your development node
 
 If you followed the guides above, you should have a local Moonbeam node which will begin to author blocks as transactions arrive.
 
@@ -29,11 +29,11 @@ Your development node comes with 10 pre-funded accounts. You should have MetaMas
 
 ![MetaMask installation with a balance](/images/builders/build/eth-api/dev-env/remix/using-remix-2.png)
 
-If you're adapting this guide for Moonbeam, Moonriver, or Moonbase Alpha make sure you are connected to the correct network and have an account with funds. For Moonbase Alpha, you can get tokens for testing purposes from [Mission Control](/builders/get-started/moonbase/#get-tokens/){target=blank}.
+If you're adapting this guide for Moonbeam, Moonriver, or Moonbase Alpha make sure you are connected to the correct network and have an account with funds. For Moonbase Alpha, you can get tokens for testing purposes from [Mission Control](/builders/get-started/moonbase/#get-tokens/){target=_blank}.
 
 ## Getting Started with Remix {: #getting-started-with-remix } 
 
-Now, you can head to [Remix](https://remix.ethereum.org/){target=blank} to get started. In the main screen, under **Environments**, select **Solidity** to configure Remix for Solidity development, then navigate to the **File Explorers** view.
+Now, you can head to [Remix](https://remix.ethereum.org/){target=_blank} to get started. In the main screen, under **Environments**, select **Solidity** to configure Remix for Solidity development, then navigate to the **File Explorers** view.
 
 ![File explorer](/images/builders/build/eth-api/dev-env/remix/using-remix-3.png)
 
@@ -134,7 +134,7 @@ Once you've added the plugin, a Moonbeam logo will appear on the left hand side,
 
 ### Getting Started with the Moonbeam Remix Plugin
 
-Click on the Moonbeam logo in your Remix IDE to open the Moonbeam plugin. This part assumes you already have a contract in Remix ready to be compiled. You can generate an [ERC-20 contract here](https://wizard.openzeppelin.com/){target=blank}. To deploy an ERC-20 Token to Moonbase Alpha using the Moonbeam Remix plugin, you can take the following steps:
+Click on the Moonbeam logo in your Remix IDE to open the Moonbeam plugin. This part assumes you already have a contract in Remix ready to be compiled. You can generate an [ERC-20 contract here](https://wizard.openzeppelin.com/){target=_blank}. To deploy an ERC-20 Token to Moonbase Alpha using the Moonbeam Remix plugin, you can take the following steps:
 
  1. Press **Connect** to connect Metamask to Remix
  2. Ensure you're on the correct network. For this example, you should be on Moonbase Alpha

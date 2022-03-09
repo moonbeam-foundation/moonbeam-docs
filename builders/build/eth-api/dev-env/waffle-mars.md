@@ -9,9 +9,9 @@ description: Learn how to use Waffle and Mars to write, compile, test, and deplo
 
 ## Introduction {: #introduction } 
 
-[Waffle](https://getwaffle.io/){target=blank} is a library for compiling and testing smart contracts, and [Mars](https://github.com/EthWorks/Mars){target=blank} is a deployment manager. Together, Waffle and Mars can be used to write, compile, test, and deploy Ethereum smart contracts. Since Moonbeam is Ethereum compatible, Waffle and Mars can be used to deploy smart contracts to a Moonbeam development node or the Moonbase Alpha TestNet. 
+[Waffle](https://getwaffle.io/){target=_blank} is a library for compiling and testing smart contracts, and [Mars](https://github.com/EthWorks/Mars){target=_blank} is a deployment manager. Together, Waffle and Mars can be used to write, compile, test, and deploy Ethereum smart contracts. Since Moonbeam is Ethereum compatible, Waffle and Mars can be used to deploy smart contracts to a Moonbeam development node or the Moonbase Alpha TestNet. 
 
-Waffle uses minimal dependencies, has syntax that is easy to learn and extend, and provides fast execution times when compiling and testing smart contracts. Furthermore, it is [TypeScript](https://www.typescriptlang.org/){target=blank} compatible and uses [Chai matchers](https://ethereum-waffle.readthedocs.io/en/latest/matchers.html){target=blank} to make tests easy to read and write. 
+Waffle uses minimal dependencies, has syntax that is easy to learn and extend, and provides fast execution times when compiling and testing smart contracts. Furthermore, it is [TypeScript](https://www.typescriptlang.org/){target=_blank} compatible and uses [Chai matchers](https://ethereum-waffle.readthedocs.io/en/latest/matchers.html){target=_blank} to make tests easy to read and write. 
 
 Mars provides a simple, TypeScript compatible framework for creating advanced deployment scripts and staying in sync with state changes. Mars focuses on infrastructure-as-code, allowing developers to specify how their smart contracts should be deployed and then using those specifications to automatically handle state changes and deployments.
 
@@ -21,8 +21,8 @@ In this guide, you'll be creating a TypeScript project to write, compile, and te
 
 You will need to have the following:
 
- - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=blank}
- - An account with funds, which you can get from [Mission Control](/builders/get-started/moonbase/#get-tokens/){target=blank}
+ - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
+ - An account with funds, which you can get from [Mission Control](/builders/get-started/moonbase/#get-tokens/){target=_blank}
  - 
 --8<-- 'text/common/endpoint-examples.md'
 
@@ -446,6 +446,6 @@ Congratulations! You've deployed a contract to Moonbase Alpha using Waffle and M
 
 ## Example Project {: #example-project } 
 
-If you want to see a completed example of a Waffle and Mars project on Moonbeam, check out the [moonbeam-waffle-mars-example](https://github.com/EthWorks/moonbeam-waffle-mars-example){target=blank} created by the team behind Waffle and Mars, EthWorks.
+If you want to see a completed example of a Waffle and Mars project on Moonbeam, check out the [moonbeam-waffle-mars-example](https://github.com/EthWorks/moonbeam-waffle-mars-example){target=_blank} created by the team behind Waffle and Mars, EthWorks.
 
 --8<-- 'text/disclaimers/third-party-content.md'

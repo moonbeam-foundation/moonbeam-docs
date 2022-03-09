@@ -9,7 +9,7 @@ description: Use Hardhat to compile, deploy, and debug Ethereum smart contracts 
 
 ## Introduction {: #introduction } 
 
-[Hardhat](https://hardhat.org/){target=blank} is an Ethereum development environment that helps developers manage and automate the recurring tasks inherent to building smart contracts and DApps. Hardhat can directly interact with Moonbeam's Ethereum API so it can also be used to deploy smart contracts into Moonbeam.
+[Hardhat](https://hardhat.org/){target=_blank} is an Ethereum development environment that helps developers manage and automate the recurring tasks inherent to building smart contracts and DApps. Hardhat can directly interact with Moonbeam's Ethereum API so it can also be used to deploy smart contracts into Moonbeam.
 
 This guide will cover how to use Hardhat to compile, deploy, and debug Ethereum smart contracts on the Moonbase Alpha TestNet. This guide can also be adapted for Moonbeam, Moonriver, or Moonbeam development node.
 
@@ -17,8 +17,8 @@ This guide will cover how to use Hardhat to compile, deploy, and debug Ethereum 
 
 To get started, you will need the following:
 
- - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=blank}
- - Have an account with funds, which you can get from [Mission Control](/builders/get-started/moonbase/#get-tokens/){target=blank}
+ - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
+ - Have an account with funds, which you can get from [Mission Control](/builders/get-started/moonbase/#get-tokens/){target=_blank}
  - 
 --8<-- 'text/common/endpoint-examples.md'
 
@@ -52,7 +52,7 @@ You will need to create a Hardhat project if you don't already have one. You can
 
 This will create a Hardhat config file (`hardhat.config.js`) in your project directory.
 
-Once you have your Hardhat project, you can also install the [ethers plugin](https://hardhat.org/plugins/nomiclabs-hardhat-ethers.html){target=blank}. This provides a convenient way to use the [ethers.js](/builders/tools/eth-libraries/etherjs/){target=blank} library to interact with the network. To install it, run the following command:
+Once you have your Hardhat project, you can also install the [ethers plugin](https://hardhat.org/plugins/nomiclabs-hardhat-ethers.html){target=_blank}. This provides a convenient way to use the [ethers.js](/builders/tools/eth-libraries/etherjs/){target=_blank} library to interact with the network. To install it, run the following command:
 
 ```
 npm install @nomiclabs/hardhat-ethers ethers

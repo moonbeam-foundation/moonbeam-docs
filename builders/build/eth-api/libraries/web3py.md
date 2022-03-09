@@ -10,7 +10,7 @@ description: Follow this tutorial to learn how to use the Ethereum Web3 Python L
 
 [Web3.py](https://web3py.readthedocs.io/) is a set of libraries that allow developers to interact with Ethereum nodes using HTTP, IPC, or WebSocket protocols with Python. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations. Therefore, developers can leverage this compatibility and use the web3.py library to interact with a Moonbeam python3 as if they were doing so on Ethereum.
 
-In this guide, you'll learn how to use the web3.py library to send a transaction and deploy a contract on Moonbase Alpha. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=blank}.
+In this guide, you'll learn how to use the web3.py library to send a transaction and deploy a contract on Moonbase Alpha. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=_blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=_blank}.
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
@@ -112,7 +112,7 @@ print(f"The balance of { address_from } is: { balance_from } ETH")
 print(f"The balance of { address_to } is: { balance_to } ETH")
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/web3py-tx/balances.py){target=blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/web3py-tx/balances.py){target=_blank}.
 
 To run the script and fetch the account balances, you can run the following command:
 
@@ -135,7 +135,7 @@ Next, you will create the script for this file and complete the following steps:
 1. Import the `rpc_gas_price_strategy` which will be used in the following steps to get the gas price used for the transaction
 2. [Set up the Web3 provider](#setup-web3-with-moonbeam)
 3. Define the `account_from`, including the `private_key`, and the `address_to` variables. The private key is required to sign the transaction. **Note: This is for example purposes only. Never store your private keys in a JavaScript file**
-4. Use the [Web3.py Gas Price API](https://web3py.readthedocs.io/en/stable/gas_price.html){target=blank} to set a gas price strategy. For this example, you'll use the imported `rpc_gas_price_strategy`
+4. Use the [Web3.py Gas Price API](https://web3py.readthedocs.io/en/stable/gas_price.html){target=_blank} to set a gas price strategy. For this example, you'll use the imported `rpc_gas_price_strategy`
 5. Create and sign the transaction using the `web3.eth.account.sign_transaction` function. Pass in the `nonce` `gas`, `gasPrice`, `to`, and `value` for the transaction along with the sender's `private_key`. To get the `nonce` you can use the `web3.eth.get_transaction_count` function and pass in the sender's address. To predetermine the `gasPrice` you'll use the `web3.eth.generate_gas_price` function. For the `value`, you can format the amount to send from an easily readable format to Wei using the `web3.toWei` function
 6. Using the signed transaction, you can then send it using the `web3.eth.send_raw_transaction` function and wait for the transaction receipt by using the `web3.eth.wait_for_transaction_receipt` function
 
@@ -179,7 +179,7 @@ tx_receipt = web3.eth.wait_for_transaction_receipt(tx_hash)
 print(f"Transaction successful with hash: { tx_receipt.transactionHash.hex() }")
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/web3py-tx/transaction.py){target=blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/web3py-tx/transaction.py){target=_blank}.
 
 To run the script, you can run the following command in your terminal:
 
@@ -270,7 +270,7 @@ tx_receipt = web3.eth.wait_for_transaction_receipt(tx_hash)
 print(f'Contract deployed at address: { tx_receipt.contractAddress }')
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/web3py-contract/deploy.py){target=blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/web3py-contract/deploy.py){target=_blank}.
 
 To run the script, you can enter the following command into your terminal:
 
@@ -321,7 +321,7 @@ number = Incrementer.functions.number().call()
 print(f'The current number stored is: { number } ')
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/web3py-contract/get.py){target=blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/web3py-contract/get.py){target=_blank}.
 
 To run the script, you can enter the following command in your terminal:
 
@@ -389,7 +389,7 @@ tx_receipt = web3.eth.wait_for_transaction_receipt(tx_hash)
 print(f'Tx successful with hash: { tx_receipt.transactionHash.hex() }')
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/web3py-contract/increment.py){target=blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/web3py-contract/increment.py){target=_blank}.
 
 To run the script, you can enter the following command in your terminal:
 
@@ -448,7 +448,7 @@ tx_receipt = web3.eth.wait_for_transaction_receipt(tx_hash)
 print(f'Tx successful with hash: { tx_receipt.transactionHash.hex() }')
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/web3py-contract/reset.py){target=blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/web3py-contract/reset.py){target=_blank}.
 
 To run the script, you can enter the following command in your terminal:
 

@@ -9,7 +9,7 @@ description: You can deploy a Solidity DApp with a React UI and subgraph on Moon
 
 ## Introduction {: #introduction } 
 
-[Scaffold-ETH](https://github.com/scaffold-eth/scaffold-eth){target=blank} is a collection of commonly used Ethereum development tools to quickly deploy a Solidity smart contract, and launch a DApp with a React frontend and a deployed subgraph. There are premade templates for common DApp types such as NFT’s, ERC-20 tokens, multi-sig wallets, simple DEXs, and so on.
+[Scaffold-ETH](https://github.com/scaffold-eth/scaffold-eth){target=_blank} is a collection of commonly used Ethereum development tools to quickly deploy a Solidity smart contract, and launch a DApp with a React frontend and a deployed subgraph. There are premade templates for common DApp types such as NFT’s, ERC-20 tokens, multi-sig wallets, simple DEXs, and so on.
 
 Scaffold-ETH consists of several sub-components, including Hardhat, The Graph and a React UI. All of these components can be used on Moonbeam networks with some slight modifications. This guide will walk through the steps to deploy and run the default sample contract and DApp that Scaffold-ETH comes with on a Moonbeam network. 
 
@@ -17,9 +17,9 @@ Scaffold-ETH consists of several sub-components, including Hardhat, The Graph an
 
 To run The Graph component of Scaffold-ETH, you also need to have the following installed on your system to run a local The Graph node from Docker:
 
- - [Docker](https://docs.docker.com/get-docker/){target=blank}
- - [Docker Compose](https://docs.docker.com/compose/install/){target=blank}
- - [JQ](https://stedolan.github.io/jq/download/){target=blank}
+ - [Docker](https://docs.docker.com/get-docker/){target=_blank}
+ - [Docker Compose](https://docs.docker.com/compose/install/){target=_blank}
+ - [JQ](https://stedolan.github.io/jq/download/){target=_blank}
 
 --8<-- 'text/common/endpoint-examples.md'
 
@@ -113,7 +113,7 @@ You can begin with making modifications to the Hardhat component under the `/pac
         defaultNetwork = "moonbeamDevNode";
         ```
 
-3. Within the same file, under the `module.exports/etherscan/apiKey` section, add the API key for [Moonscan](https://moonscan.io/){target=blank}, so you can verify the deployed smart contracts. Check this [Etherscan Plugins](/builders/tools/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank} section for how to generate a Moonscan API key
+3. Within the same file, under the `module.exports/etherscan/apiKey` section, add the API key for [Moonscan](https://moonscan.io/){target=_blank}, so you can verify the deployed smart contracts. Check this [Etherscan Plugins](/builders/tools/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank} section for how to generate a Moonscan API key
 
 
 4. (Optional) Under the `function mnemonic()`, comment out a console warning for when the network is not set to `localhost` 
@@ -126,7 +126,7 @@ You can begin with making modifications to the Hardhat component under the `/pac
     }
     ```
 
-For more information on using Hardhat with Moonbeam, please check the dedicated [Hardhat page](/builders/interact/hardhat/){target=blank} for more details.
+For more information on using Hardhat with Moonbeam, please check the dedicated [Hardhat page](/builders/interact/hardhat/){target=_blank} for more details.
 
 ### The Graph Component {: #the-graph-component }
 
@@ -134,7 +134,7 @@ In The Graph component of Scaffold-ETH, you need to modify two files to point th
 
 1. First, modify the file `scaffold-eth/packages/services/graph-node/docker-compose.yaml`, under `servers/graph-node/environment/ethereum` to change the RPC endpoint for The Graph node to index.
 
-    For Moonbeam or Moonriver, you can use your own [RPC API endpoint](/builders/get-started/endpoints/){target=blank}. For Moonbase Alpha or a Moonbeam development node, you can use the following:
+    For Moonbeam or Moonriver, you can use your own [RPC API endpoint](/builders/get-started/endpoints/){target=_blank}. For Moonbase Alpha or a Moonbeam development node, you can use the following:
 
     === "Moonbase Alpha"
         ```
@@ -220,7 +220,7 @@ In The Graph component of Scaffold-ETH, you need to modify two files to point th
          file: ./abis/moonbeamDevNode_YourContract.json
         ```
 
-For more information on using The Graph with Moonbeam, please check the dedicated [The Graph page](/builders/integrations/indexers/thegraph/){target=blank} for more details; or the dedicated [The Graph Node page](/node-operators/indexer-nodes/thegraph-node/){target=blank} for more information on running a Graph node for Moonbeam.
+For more information on using The Graph with Moonbeam, please check the dedicated [The Graph page](/builders/integrations/indexers/thegraph/){target=_blank} for more details; or the dedicated [The Graph Node page](/node-operators/indexer-nodes/thegraph-node/){target=_blank} for more information on running a Graph node for Moonbeam.
 
 ### React Component {: #react-component }
 
