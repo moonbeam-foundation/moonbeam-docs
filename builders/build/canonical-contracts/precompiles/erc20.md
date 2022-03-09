@@ -13,20 +13,20 @@ The native token ERC-20 precompiled contract on Moonbeam allows developers to in
 
 One of the main benefits of this precompile is that it removes the necessity of having a wrapped representation of the protocol token as an ERC-20 smart contract, such as WETH on Ethereum. Furthermore, it prevents having multiple wrapped representations of the same protocol token. Consequently, DApps that need to interact with the protocol token via an ERC-20 interface can do so without needing a separate smart contract.
 
-Under the hood, the [ERC-20 precompile](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/src/lib.rs) executes specific Substrate actions related to the Substrate balances pallet, which is coded in Rust. The balances pallet provides functionality for handling the [various types of balances in Moonbeam](/builders/get-started/eth-compare/balances/#moonbeam-account-balances), setting the free balance, transferring balances, and more.
+Under the hood, the [ERC-20 precompile](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/src/lib.rs){target=_blank} executes specific Substrate actions related to the Substrate balances pallet, which is coded in Rust. The balances pallet provides functionality for handling the [various types of balances in Moonbeam](/builders/get-started/eth-compare/balances/#moonbeam-account-balances){target=_blank}, setting the free balance, transferring balances, and more.
 
 This guide will show you how to interact with DEV tokens, the native protocol tokens for the Moonbase Alpha TestNet, via the ERC-20 precompile.
 
 ## The ERC-20 Interface {: #the-erc20-interface }
 
-The [ERC20.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol) interface on Moonbeam follows the [EIP-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20) which is the standard API interface for tokens within smart contracts. The standard defines the required functions and events that a token contract must implement to be interoperable with different applications.
+The [ERC20.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=_blank} interface on Moonbeam follows the [EIP-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20){target=_blank} which is the standard API interface for tokens within smart contracts. The standard defines the required functions and events that a token contract must implement to be interoperable with different applications.
 
 The precompile is located at the following address:
 
-<!-- === "Moonbeam"
+=== "Moonbeam"
      ```
      {{networks.moonbeam.precompiles.erc20 }}
-     ``` -->
+     ```
 
 === "Moonriver"
      ```
@@ -47,9 +47,9 @@ The precompile is located at the following address:
 
 To follow along with this tutorial, you will need to have:
 
-- [MetaMask installed and connected to the Moonbase Alpha](/tokens/connect/metamask/) TestNet
+- [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
 - Create or have two accounts on Moonbase Alpha to test out the different features in the ERC-20 precompile
-- At least one of the accounts will need to be funded with `DEV` tokens. You can obtain tokens for testing purposes from the Moonbase Alpha [faucet](/builders/get-started/moonbase/#get-tokens/)
+- At least one of the accounts will need to be funded with `DEV` tokens. You can obtain tokens for testing purposes from [Mission Control](/builders/get-started/moonbase/#get-tokens/){target=_blank}
 
 ## Add Token to MetaMask {: #add-token-to-metamask }
 

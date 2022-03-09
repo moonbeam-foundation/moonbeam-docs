@@ -13,7 +13,7 @@ Running a full node on a Moonbeam-based network allows you to connect to the net
 
 ## Installation Instructions {: #installation-instructions }
 
-A Moonbeam node can be spun up quickly using Docker. For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/){target=blank}. At the time of writing, the Docker version used was 19.03.6. When connecting to Moonriver on Kusama or Moonbeam on Polkadot, it will take a few days to completely sync the embedded relay chain. Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview#requirements){target=blank}.
+A Moonbeam node can be spun up quickly using Docker. For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/){target=_blank}. At the time of writing, the Docker version used was 19.03.6. When connecting to Moonriver on Kusama or Moonbeam on Polkadot, it will take a few days to completely sync the embedded relay chain. Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview#requirements){target=_blank}.
 
 Create a local directory to store the chain data:
 
@@ -187,7 +187,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
-If you're using MacOS, there are adapted [code snippets](https://www.github.com/PureStake/moonbeam-docs/blob/master/.snippets/text/full-node/macos-node.md){target=blank} specific for MacOS which can be used instead.
+If you're using MacOS, there are adapted [code snippets](https://www.github.com/PureStake/moonbeam-docs/blob/master/.snippets/text/full-node/macos-node.md){target=_blank} specific for MacOS which can be used instead.
 
 Once Docker pulls the necessary images, your full Moonbeam (or Moonriver) node will start, displaying lots of information, such as the chain specification, node name, role, genesis state, and more:
 
@@ -209,7 +209,7 @@ During the syncing process, you will see messages from both the embedded relay c
 ![Full Node Starting](/images/node-operators/networks/run-a-node/docker/full-node-docker-2.png)
 
 !!! note
-    It may take a few days to completely sync the embedded relay chain. Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview#requirements){target=blank}. 
+    It may take a few days to completely sync the embedded relay chain. Make sure that your system meets the [requirements](/node-operators/networks/run-a-node/overview#requirements){target=_blank}. 
 
 If you followed the installation instructions for Moonbase Alpha, once synced, you will have a node of the Moonbase Alpha TestNet running locally!
 
@@ -217,7 +217,7 @@ If you followed the installation instructions for Moonbeam/Moonriver, once synce
 
 ## Update the Client {: #update-the-client } 
 
-As Moonbeam development continues, it will sometimes be necessary to upgrade your node software. Node operators will be notified on our [Discord channel](https://discord.gg/PfpUATX){target=blank} when upgrades are available and whether they are necessary (some client upgrades are optional). The upgrade process is straightforward and is the same for a full node or collator.
+As Moonbeam development continues, it will sometimes be necessary to upgrade your node software. Node operators will be notified on our [Discord channel](https://discord.gg/PfpUATX){target=_blank} when upgrades are available and whether they are necessary (some client upgrades are optional). The upgrade process is straightforward and is the same for a full node or collator.
 
 1. Stop the docker container:
 
@@ -225,7 +225,7 @@ As Moonbeam development continues, it will sometimes be necessary to upgrade you
     sudo docker stop `CONTAINER_ID`
     ```
 
-2. Get the latest version of Moonbeam from the [Moonbeam GitHub Release](https://github.com/PureStake/moonbeam/releases/){target=blank} page
+2. Get the latest version of Moonbeam from the [Moonbeam GitHub Release](https://github.com/PureStake/moonbeam/releases/){target=_blank} page
 
 3. Use the latest version to spin up your node. To do so, replace the version in the [Full Node](#full-node) or [Collator](#collator) command with the latest and run it
 
