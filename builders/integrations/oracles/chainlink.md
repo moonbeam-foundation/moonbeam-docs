@@ -64,18 +64,42 @@ Currently, there are Data Feed contracts for the the following price pairs:
 
 
 === "Moonriver"
-    | Base/Quote  |  |                     Data Feed Contract                      |
-    |:-----------:|--|:-----------------------------------------------------------:|
-    | BTC to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.btc_usd }}  |
-    | ETH to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.eth_usd }}  |
-    | KSM to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.ksm_usd }}  |
-    | LINK to USD |  | {{ networks.moonriver.chainlink.feed.aggregator.link_usd }} |
-    | BNB to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.bnb_usd }}  |
-    | FRAX to USD |  | {{ networks.moonriver.chainlink.feed.aggregator.frax_usd }} |
-    | MIM to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.mim_usd }}  |
-    | MOVR to USD |  | {{ networks.moonriver.chainlink.feed.aggregator.movr_usd }} |
-    | USDT to USD |  | {{ networks.moonriver.chainlink.feed.aggregator.usdt_usd }} |
-    
+    |  Base/Quote  |  |                      Data Feed Contract                      |
+    |:------------:|--|:------------------------------------------------------------:|
+    | 1INCH to USD |  | {{ networks.moonriver.chainlink.feed.aggregator.inch_usd }} |
+    | AAVE to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.aave_usd }}  |
+    | ANKR to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.ankr_usd }}  |
+    | AVAX to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.avax_usd }}  |
+    |  AXS to USD  |  |  {{ networks.moonriver.chainlink.feed.aggregator.axs_usd }}  |
+    |  BNB to USD  |  |  {{ networks.moonriver.chainlink.feed.aggregator.bnb_usd }}  |
+    |  BTC to USD  |  |  {{ networks.moonriver.chainlink.feed.aggregator.btc_usd }}  |
+    | CAKE to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.cake_usd }}  |
+    | COMP to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.comp_usd }}  |
+    |  CRV to USD  |  |  {{ networks.moonriver.chainlink.feed.aggregator.crv_usd }}  |
+    |  DAI to USD  |  |  {{ networks.moonriver.chainlink.feed.aggregator.dai_usd }}  |
+    |  DOT to USD  |  |  {{ networks.moonriver.chainlink.feed.aggregator.dot_usd }}  |
+    |  ETH to USD  |  |  {{ networks.moonriver.chainlink.feed.aggregator.eth_usd }}  |
+    |  EUR to USD  |  |  {{ networks.moonriver.chainlink.feed.aggregator.eur_usd }}  |
+    | FRAX to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.frax_usd }}  |
+    |  FTM to USD  |  |  {{ networks.moonriver.chainlink.feed.aggregator.ftm_usd }}  |
+    |  FXS to USD  |  |  {{ networks.moonriver.chainlink.feed.aggregator.fxs_usd }}  |
+    |  KSM to USD  |  |  {{ networks.moonriver.chainlink.feed.aggregator.ksm_usd }}  |
+    | LINK to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.link_usd }}  |
+    | LUNA to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.luna_usd }}  |
+    | MANA to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.mana_usd }}  |
+    |  MIM to USD  |  |  {{ networks.moonriver.chainlink.feed.aggregator.mim_usd }}  |
+    |  MKR to USD  |  |  {{ networks.moonriver.chainlink.feed.aggregator.mkr_usd }}  |
+    | MOVR to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.movr_usd }}  |
+    | SAND to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.sand_usd }}  |
+    |  SNX to USD  |  |  {{ networks.moonriver.chainlink.feed.aggregator.snx_usd }}  |
+    | SUSHI to USD |  | {{ networks.moonriver.chainlink.feed.aggregator.sushi_usd }} |
+    | THETA to USD |  | {{ networks.moonriver.chainlink.feed.aggregator.theta_usd }} |
+    |  UNI to USD  |  |  {{ networks.moonriver.chainlink.feed.aggregator.uni_usd }}  |
+    | USDC to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.usdc_usd }}  |
+    | USDT to USD  |  | {{ networks.moonriver.chainlink.feed.aggregator.usdt_usd }}  |
+    |  XRP to USD  |  |  {{ networks.moonriver.chainlink.feed.aggregator.xrp_usd }}  |
+    |  YFI to USD  |  |  {{ networks.moonriver.chainlink.feed.aggregator.yfi_usd }}  |
+
 === "Moonbase Alpha"
     |  Base/Quote  |  |                     Data Feed Contract                      |
     |:------------:|--|:-----------------------------------------------------------:|
