@@ -15,7 +15,6 @@ Dapplooker analytics platform complements Moonbeam/Moonriver network by helping 
 
 This guide will cover all of the details needed to register your project with the Dapplooker platform and how to build analytics using SQL edit. This guide can be adapted for use on Moonbeam or Moonriver.
 
-
 ## Steps to Connect Smart Contracts {: #steps-to-connect-smart-contract}
 
 - Signup or Login to [https://dapplooker.com/login](https://dapplooker.com/login)
@@ -56,16 +55,14 @@ This guide will cover all of the details needed to register your project with th
 
   ![Register your dapp](/images/builders/integrations/analyze/dapplooker/dapplooker-5.png)
 
-
 Once project is registered, data syncing starts.
 
 ## Create Charts & Dashboard {: #create-dashboard }
 
 - After registration is done, user gets notification when data syncing is complete.
 - Refer below step by step guide to create charts and dashboards
-    - [Create Chart](https://dapplooker.notion.site/Create-Charts-9cd44e01cb0f472d835e8f2d954e517a)
-    - [Create Dashboard](https://dapplooker.notion.site/Create-Dashboard-e2023db32c2342969194134a5fb9780b)
-
+  - [Create Chart](https://dapplooker.notion.site/Create-Charts-9cd44e01cb0f472d835e8f2d954e517a)
+  - [Create Dashboard](https://dapplooker.notion.site/Create-Dashboard-e2023db32c2342969194134a5fb9780b)
 
 ## Moonriver Popular Dashboards {: #moonriver-explorer }
 
@@ -77,7 +74,16 @@ Track metrics and dashboards of popular Moonriver projects from the Moonriver ex
 
 ## More Resources {: #more-resources }
 
-- **Moonbeam/Moonriver Staking Dashboard with APY data**: [https://network.dapplooker.com/moonbeam/collator](https://network.dapplooker.com/moonbeam/collator)
+- **Moonbeam/Moonriver Staking Dashboard with APY data**:
+
+  - Click to open Moonbeam Staking Dashboard [Moonbeam Staking Dashboard](https/network.dapplooker.com/moonbeam/collator)
+
+  - Click to open Moonriver Staking Dashboard [Moonriver Staking Dashboard](https/network.dapplooker.com/moonriver/collator)
+
   - **Check detailed** [Moonbeam/Moonriver Staking Dashboard - APY Logic](https://www.notion.so/Moonbeam-Moonriver-Staking-Dashboard-APY-Logic-3c6a810f5a9f46b89effbe9a2cfc898f)
 
-  - **Browse & Build your Own Analytics on Moonbeam Staking Data:** [https://analytics.dapplooker.com/browse/2/schema/moonbeam](https://analytics.dapplooker.com/browse/2/schema/moonriver)
+  - **Browse & Build your Own Analytics on Moonbeam Staking Data:**
+    [Moonbeam Indexed Staking Data](https://analytics.dapplooker.com/browse/2/schema/moonbeam). You can follow the documentaion for creating [charts and dashboards](https://dapplooker.notion.site/Features-1454c891aef34dedb4e3067195e02245) on indexed data.
+
+  - **Browse & Build your Own Analytics on Moonriver Staking Data:**
+    [Moonriver Indexed Staking Data](https://analytics.dapplooker.com/browse/2/schema/moonriver). You can follow the documentaion for creating [charts and dashboards](https://dapplooker.notion.site/Features-1454c891aef34dedb4e3067195e02245) on indexed data.
