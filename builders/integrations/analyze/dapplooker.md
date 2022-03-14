@@ -31,7 +31,7 @@ This guide will cover all of the details needed to register your project with Da
 - Select network as "**Moonbeam**" or "**Moonriver**" or "**Moonbase Alpha**".
 - Type your contract address. If the contract address is verified on moonscan, it will start appearing in autocomplete. You can select the contract address from autocomplete.
 - If no contract address appears in autcomplete, you can input your contract address and upload ABI.
-- Enter your website.
+- Enter your project website.
 - Click "**Register**" and smart contract transactions events data syncing will start. It can take some time for complete data to be synced.
 
   ![Register your dapp](/images/builders/integrations/analyze/dapplooker/dapplooker-3.png)
