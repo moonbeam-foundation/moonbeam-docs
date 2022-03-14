@@ -2,11 +2,11 @@
 
 ### Network Endpoints
 
-Moonbeam has two types of endpoints available for users to connect to: one for HTTPS and one for WSS. You can check out the [Endpoint Providers](/builders/get-started/endpoints/){target=blank} section of the documentation to get your own endpoint and API key from one of the supported providers.
+Moonbeam has two types of endpoints available for users to connect to: one for HTTPS and one for WSS. You can check out the [Endpoint Providers](/builders/get-started/endpoints/){target=_blank} section of the documentation to get your own endpoint and API key from one of the supported providers.
 
 ### Quick Start {: #quick-start } 
 
-Before getting started, make sure you've retrieved your own endpoint and API key from one of the custom [Endpoint Providers](/builders/get-started/endpoints/){target=blank}. Then for the web3.js library, you can create a local Web3 instance and set the provider to connect to Moonbeam (both HTTP and WS are supported):
+Before getting started, make sure you've retrieved your own endpoint and API key from one of the custom [Endpoint Providers](/builders/get-started/endpoints/){target=_blank}. Then for the web3.js library, you can create a local Web3 instance and set the provider to connect to Moonbeam (both HTTP and WS are supported):
 
 ```js
 const Web3 = require('web3'); //Load Web3 library

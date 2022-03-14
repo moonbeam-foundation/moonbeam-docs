@@ -13,9 +13,9 @@ Once a proposal reaches public referenda, token holders can vote on it using the
 
 Referenda are simple, inclusive, and stake-based voting schemes. Each referendum has a proposal associated with it that suggests an action to take place. They have a fixed duration, after which votes are tallied, and the action is enacted if the vote is approved.
 
-In Moonbeam, users will be able to create, second, and vote on proposals using their H160 address and private key, that is, their regular Ethereum account! This guide outlines how to vote on a proposal that has reached a public referendum. There is a seperate guide on [How to Create a Proposal](/tokens/governance/proposals/){target=blank}.
+In Moonbeam, users will be able to create, second, and vote on proposals using their H160 address and private key, that is, their regular Ethereum account! This guide outlines how to vote on a proposal that has reached a public referendum. There is a seperate guide on [How to Create a Proposal](/tokens/governance/proposals/){target=_blank}.
 
-More information related to [Governance](https://wiki.polkadot.network/docs/learn-governance){target=blank} and [Participate in Democracy](https://wiki.polkadot.network/docs/maintain-guides-democracy){target=blank} can be found in Polkadot's Wiki pages.
+More information related to [Governance](https://wiki.polkadot.network/docs/learn-governance){target=_blank} and [Participate in Democracy](https://wiki.polkadot.network/docs/maintain-guides-democracy){target=_blank} can be found in Polkadot's Wiki pages.
 
 !!! note
     This guide was done with a customized version of Moonbeam with short Launch/Enactment periods for demonstration purposes only.
@@ -63,9 +63,9 @@ This guide will show you how to vote on a referendum on Moonbase Alpha. It can b
 
 ## Voting on a Referendum {: #voting-on-a-referendum } 
 
-This section goes over the process of voting on a referendum. The guide assumes that there is one already taking place, in this case, the one created in the [How to Propose an Action](/tokens/governance/proposals/){target=blank} guide.
+This section goes over the process of voting on a referendum. The guide assumes that there is one already taking place, in this case, the one created in the [How to Propose an Action](/tokens/governance/proposals/){target=_blank} guide.
 
-To vote on a proposal in the network, you need to use the Polkadot.js Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do by following the [Creating or Importaning an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=blank} guide. For this example, three accounts were imported and named with super original names: Alice, Bob, and Charley.
+To vote on a proposal in the network, you need to use the Polkadot.js Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do by following the [Creating or Importaning an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=_blank} guide. For this example, three accounts were imported and named with super original names: Alice, Bob, and Charley.
 
 ![Accounts in Polkadot.js](/images/tokens/governance/proposals/proposals-1.png)
 

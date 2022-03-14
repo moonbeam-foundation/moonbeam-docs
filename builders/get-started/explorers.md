@@ -64,7 +64,7 @@ Other Moonscan features include:
 
 As main features, Blockscout offers:
 
- - Open source development, meaning all code is open to the community to explore and improve. You can find the code [here](https://github.com/blockscout/blockscout){target=_blank}
+ - Open source development, meaning all code is open to the community to explore and improve. You can find the [code on GitHub](https://github.com/blockscout/blockscout){target=_blank}
  - Real-time transaction tracking
  - Smart contract interaction
  - Full-featured [API with GraphQL](https://blockscout.moonriver.moonbeam.network/graphiql){target=_blank}, where users can test API calls directly from a web interface
@@ -97,6 +97,6 @@ While not a full-featured block explorer, Polkadot.js Apps is a convenient optio
 
 ![Polkadot.js Moonriver](/images/builders/get-started/explorers/explorers-5.png)
 
-To connect it to a Moonbeam development node, you can follow the steps in [this tutorial](/builders/get-started/moonbeam-dev/#connecting-polkadot-js-apps-to-a-local-moonbeam-node). The default port for this is `9944`.
+To connect it to a Moonbeam development node, you can follow the steps in the [Connecting Polkadot.js Apps to a Local Moonbeam Node](/builders/get-started/moonbeam-dev/#connecting-polkadot-js-apps-to-a-local-moonbeam-node){target=_blank} section of the [Getting Started with a Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev/){target=_blank} guide. The default port for this is `9944`.
 
 ![Polkadot.js Local Node](/images/builders/get-started/explorers/explorers-6.png)

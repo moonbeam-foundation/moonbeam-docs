@@ -9,7 +9,7 @@ description: As a Polkadot parachain, Moonbeam will use an on-chain governance s
 
 ## Introduction {: #introduction } 
 
-Moonbeam is a decentralized network that is governed by its community of token holders. The goal of Moonbeam’s governance mechanism is to advance the protocol according to the desires of the community. In that shared mission, the governance process seeks to include core developers, application developers, collators, users, and other contributors. Governance forums like [Polkassembly](https://moonbeam.polkassembly.network/){target=blank} enable open discussion and enable proposals to be refined based on community input. Autonomous enactments and [forkless upgrades](https://wiki.polkadot.network/docs/learn-runtime-upgrades#forkless-upgrades/){target=blank} unite the community towards a shared mission to advance the protocol.
+Moonbeam is a decentralized network that is governed by its community of token holders. The goal of Moonbeam’s governance mechanism is to advance the protocol according to the desires of the community. In that shared mission, the governance process seeks to include core developers, application developers, collators, users, and other contributors. Governance forums like [Polkassembly](https://moonbeam.polkassembly.network/){target=_blank} enable open discussion and enable proposals to be refined based on community input. Autonomous enactments and [forkless upgrades](https://wiki.polkadot.network/docs/learn-runtime-upgrades#forkless-upgrades/){target=_blank} unite the community towards a shared mission to advance the protocol.
 
 ## General Definitions {: #general-definitions } 
 
@@ -69,11 +69,11 @@ Guiding "soft" principles for engagement with Moonbeam's governance process incl
  - Acting at all times as a moral agent that considers the consequences of action (or inaction) from a moral standpoint
  - Being patient and generous in our interactions with other token holders, but not tolerating abusive or destructive language, actions, and behavior
 
-These points were heavily inspired by Vlad Zamfir’s writings on governance. Refer to his articles, especially the [How to Participate in Blockchain Governance in Good Faith (and with Good Manners)](https://medium.com/@Vlad_Zamfir/how-to-participate-in-blockchain-governance-in-good-faith-and-with-good-manners-bd4e16846434){target=blank} Medium article.
+These points were heavily inspired by Vlad Zamfir’s writings on governance. Refer to his articles, especially the [How to Participate in Blockchain Governance in Good Faith (and with Good Manners)](https://medium.com/@Vlad_Zamfir/how-to-participate-in-blockchain-governance-in-good-faith-and-with-good-manners-bd4e16846434){target=_blank} Medium article.
 
 ## On-Chain Governance Mechanics {: #on-chain-governance-mechanics } 
 
-The "hard" governance process for Moonbeam will be driven by an on-chain process and will leverage the Democracy, Council, and Treasury [Substrate frame pallets](/learn/platform/glossary/#substrate-frame-pallets){target=blank}, similar to how Kusama and the Polkadot relay chain are governed. The overall intent of these modules are to allow the majority of tokens on the network to determine the outcomes of key decisions around the network. These decision points come in the form of stake-weighted voting on proposed referenda.
+The "hard" governance process for Moonbeam will be driven by an on-chain process and will leverage the Democracy, Council, and Treasury [Substrate frame pallets](/learn/platform/glossary/#substrate-frame-pallets){target=_blank}, similar to how Kusama and the Polkadot relay chain are governed. The overall intent of these modules are to allow the majority of tokens on the network to determine the outcomes of key decisions around the network. These decision points come in the form of stake-weighted voting on proposed referenda.
 
 Some of the main components of this governance model include:
 
@@ -83,7 +83,7 @@ Some of the main components of this governance model include:
  - **Technical Committee** — a group of individuals elected by the Council who have special voting rights. As in Polkadot and Kusama, the Technical Committee has the ability to (along with the Council) fast-track emergency referenda voting and implementation in urgent circumstances. A fast-tracked referendum can be created alongside existing active referenda. That is to say, an emergency referendum does not replace currently active referenda
  - **Treasury** — a collection of funds that can be spent by submitting a proposal along with a deposit. Spending proposals must be approved by the council. Rejected proposals will result in the proposer losing their deposit
 
-For more details on how these Substrate frame pallets implement on-chain governance, you can checkout the [Walkthrough of Polkadot’s Governance](https://polkadot.network/a-walkthrough-of-polkadots-governance/){target=blank} blog post and the [Polkadot Governance Wiki](https://wiki.polkadot.network/docs/learn-governance){target=blank}.
+For more details on how these Substrate frame pallets implement on-chain governance, you can checkout the [Walkthrough of Polkadot’s Governance](https://polkadot.network/a-walkthrough-of-polkadots-governance/){target=_blank} blog post and the [Polkadot Governance Wiki](https://wiki.polkadot.network/docs/learn-governance){target=_blank}.
 
 ## Vote Weight {: #vote-weight }
 

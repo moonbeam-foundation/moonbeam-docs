@@ -38,7 +38,7 @@ If you are familiar with running Chainlink Oracle nodes, this information will g
  - Moonbase Alpha WSS EndPoint: `wss://wss.api.moonbase.moonbeam.network`
  - Moonbase Alpha ChainId: `{{ networks.moonbase.chain_id }}` (hex: `{{ networks.moonbase.hex_chain_id}}`)
  - LINK Token on Moonbase Alpha: `0xa36085F69e2889c224210F603D836748e7dC0088`
- - Get Moonbase Alpha tokens from [our Faucet](/builders/get-started/moonbase/#get-tokens/)
+ - Get Moonbase Alpha tokens from [Mission Control](/builders/get-started/moonbase/#get-tokens/)
 
 ## Getting Started {: #getting-started } 
 
@@ -54,7 +54,7 @@ This guide will walk through the process of setting up the Oracle node, summariz
 The basic requirements are:
 
  - Docker for running Postgres DB and ChainLink node containers. For more information on installing Docker, please visit [this page](https://docs.docker.com/get-docker/)
- - An account with funds. You can create one with [Metamask](/tokens/connect/metamask/), which can be funded via [our Faucet](/builders/get-started/moonbase/#get-tokens/)
+ - An account with funds. You can create one with [Metamask](/tokens/connect/metamask/), which can be funded via [Mission Control](/builders/get-started/moonbase/#get-tokens/)
  - Access to the Remix IDE in case you want to use it to deploy the Oracle contract. You can find more information about Remix on Moonbeam [here](/builders/tools/remix/)
 
 ## Node Setup {: #node-setup } 
@@ -142,7 +142,7 @@ First, we need to retrieve the address that the Oracle node will use to send tra
 
 ![Chainlink login](/images/node-operators/oracle-nodes/chainlink/chainlink-node-2.png)
 
-Go to the 'Configuration Page` and copy the node address. Use the [Moonbeam Faucet](/builders/get-started/moonbase/#get-tokens/) to fund it.
+Go to the 'Configuration Page` and copy the node address. Use the [Mission Control](/builders/get-started/moonbase/#get-tokens/) faucet to fund it.
 
 ![Chainlink address](/images/node-operators/oracle-nodes/chainlink/chainlink-node-3.png)
 

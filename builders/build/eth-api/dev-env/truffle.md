@@ -12,17 +12,17 @@ description: Moonbeam makes it incredibly easy to deploy a Solidity-based smart 
 
 This guide walks through the process of deploying a Solidity-based smart contract to a Moonbeam node using [Truffle](https://www.trufflesuite.com/){target=blnk}, a commonly used development tool for smart contracts on Ethereum. Given Moonbeam’s Ethereum compatibility features, Truffle can be used directly with any of the Moonbeam networks.
 
-To ease the process of getting started with Truffle, you can use the [Moonbeam Truffle box](https://github.com/PureStake/moonbeam-truffle-box){target=blank}. This provides a boilerplate setup to speed up the process to deploy contracts on Moonbeam. The Moonbeam Truffle box comes with the [Moonbeam Truffle plugin](https://github.com/purestake/moonbeam-truffle-plugin){target=blank}, which enables you to get started with a [Moonbeam development node](/builders/get-started/moonbeam-dev/){target=blank} quickly.
+To ease the process of getting started with Truffle, you can use the [Moonbeam Truffle box](https://github.com/PureStake/moonbeam-truffle-box){target=_blank}. This provides a boilerplate setup to speed up the process to deploy contracts on Moonbeam. The Moonbeam Truffle box comes with the [Moonbeam Truffle plugin](https://github.com/purestake/moonbeam-truffle-plugin){target=_blank}, which enables you to get started with a [Moonbeam development node](/builders/get-started/moonbeam-dev/){target=_blank} quickly.
 
 This guide will show you how to deploy a contract and interact with it using the Moonbeam Truffle box and the Moonbeam Truffle plugin on a locally running development node. You can adapt the instructions in this guide for Moonbeam, Moonriver, or the Moonbase Alpha TestNet.
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
-As this guide will use the Moonbeam Truffle box and the Moonbeam Truffle plugin, you don't have to worry about creating an account and funding it. The Moonbeam development node comes with 10 pre-funded accounts. However, if you're adapting this guide for Moonbeam, Moonriver, or Moonbase Alpha you will need to have an account with funds. For Moonbase Alpha, you can get tokens for testing purposes from [Mission Control](/builders/get-started/moonbase/#get-tokens/){target=blank}.
+As this guide will use the Moonbeam Truffle box and the Moonbeam Truffle plugin, you don't have to worry about creating an account and funding it. The Moonbeam development node comes with 10 pre-funded accounts. However, if you're adapting this guide for Moonbeam, Moonriver, or Moonbase Alpha you will need to have an account with funds. For Moonbase Alpha, you can get tokens for testing purposes from [Mission Control](/builders/get-started/moonbase/#get-tokens/){target=_blank}.
 
 --8<-- 'text/common/endpoint-examples.md'
 
-To use the Moonbeam Truffle plugin, you will need to have [Docker](https://docs.docker.com/get-docker/){target=blank} installed.
+To use the Moonbeam Truffle plugin, you will need to have [Docker](https://docs.docker.com/get-docker/){target=_blank} installed.
 
 For the following examples, you don't need to have Truffle globally installed, as it is included as a dependency in the Moonbeam Truffle box. However, if you want to use the `truffle` commands directly instead of running `npx truffle` or `./node_modules/.bin/truffle`, you can globally install it by running: 
 
@@ -59,16 +59,16 @@ To get started with the Moonbeam Truffle box, you can take the following steps:
 If you look inside of the `moonbeam-truffle-box` directory, you'll find the following notable directories and files:
 
 - **`contracts`** - a directory that is meant to store any Solidity contracts you create including the following ones that come in the Moonbeam Truffle box:
-    - **`Migrations.sol`** - required contract to use Truffle's [migration](https://trufflesuite.com/docs/truffle/getting-started/running-migrations.html){target=blank} feature
+    - **`Migrations.sol`** - required contract to use Truffle's [migration](https://trufflesuite.com/docs/truffle/getting-started/running-migrations.html){target=_blank} feature
     - **`MyToken.sol`** - example contract
 - **`migrations`** - contains the JavaScript files that help you deploy contracts to the network. It comes with the following scripts:
     - **`1_initial_migration.js`** - script that deploys the `Migrations.sol` contract. Since this contract would need to be deployed first to use migrations, it begins with `1` and from there you can create new migrations with increasing numbered prefixes
     - **`2_deploy_contracts.js`** - script that deploys the example `MyToken.sol` contract
-- **`truffle-config.js`** - the [configuration file](https://trufflesuite.com/docs/truffle/reference/configuration){target=blank} for your project where you can define the networks your project can be deployed to, the compiler to use when compiling your contracts, and more
+- **`truffle-config.js`** - the [configuration file](https://trufflesuite.com/docs/truffle/reference/configuration){target=_blank} for your project where you can define the networks your project can be deployed to, the compiler to use when compiling your contracts, and more
 
 ## Using the Moonbeam Truffle Plugin to Run a Node {: #using-the-moonbeam-truffle-plugin-to-run-a-node } 
 
-Now that you have created a simple Truffle project, you can spin up a local Moonbeam development node to deploy the contract to. The Moonbeam Truffle plugin provides a way to get started with a development node quickly by using [Docker](https://www.docker.com/){target=blank} under the hood.
+Now that you have created a simple Truffle project, you can spin up a local Moonbeam development node to deploy the contract to. The Moonbeam Truffle plugin provides a way to get started with a development node quickly by using [Docker](https://www.docker.com/){target=_blank} under the hood.
 
 To start a Moonbeam development node in your local environment, you need to:
 
@@ -121,7 +121,7 @@ The Truffle configuration file already includes everything you need to get start
 2. The `privateKeyDev` variable corresponds to the private key of one of your development accounts, which should hold some development funds. Your development node comes with 10 pre-funded accounts
 3. Under the `networks` object, you'll see the `dev` network configuration which is configured to use the port your local development node is running on along with the private key of your development account. Both of which are needed to deploy a contract to your local development node
 4. Under `compilers`, the solc version listed should be set to support the version of any contracts you wish to deploy. For this example it's set to support version `0.7.0` and up
-5. Under the `plugins` object, you'll see the `moonbeam-truffle-plugin` which enables you to quickly spin up a local Moonbeam development node. You'll also find the `truffle-plugin-verify` plugin which automates the contract verification process for you. Please check out the [Verify Smart Contracts with Etherscan Plugins](/builders/build/eth-api/verify-contracts/etherscan-plugins/){target=blank} for more information on how to use the plugin
+5. Under the `plugins` object, you'll see the `moonbeam-truffle-plugin` which enables you to quickly spin up a local Moonbeam development node. You'll also find the `truffle-plugin-verify` plugin which automates the contract verification process for you. Please check out the [Verify Smart Contracts with Etherscan Plugins](/builders/build/eth-api/verify-contracts/etherscan-plugins/){target=_blank} for more information on how to use the plugin
 
 ```js
 // 1. Import HDWalletProvider
@@ -220,7 +220,7 @@ contract MyToken is ERC20 {
 }
 ```
 
-This is a simple ERC-20 contract based on the [OpenZepplin](/builders/build/eth-api/dev-env/openzeppelin/overview/){target=blank} ERC-20 contract template. It creates `MyToken` which has `MYTOK` as the symbol and the standard 18 decimal places. Furthermore, it assigns the created initial token supply to the contract creator.
+This is a simple ERC-20 contract based on the [OpenZepplin](/builders/build/eth-api/dev-env/openzeppelin/overview/){target=_blank} ERC-20 contract template. It creates `MyToken` which has `MYTOK` as the symbol and the standard 18 decimal places. Furthermore, it assigns the created initial token supply to the contract creator.
 
 ## The Migration Script {: #the-migration-script }
 
