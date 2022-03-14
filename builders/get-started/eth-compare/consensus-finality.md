@@ -51,7 +51,7 @@ Moonbeam has added support for two new RPC endpoints, `moon_isBlockFinalized` an
     |:------------:|:--------------------------------------------------------------------------------|
     |   Endpoint |                        `moon_isBlockFinalized`                     |
     |   Description   | Check for the finality of the block given by its block hash |
-    |  Parameters |    `block_hash`: **STRING** The hash of the block, accepts either Substrate-style or ethereum-style block hash as its input                     | 
+    |  Parameters |    `block_hash`: **STRING** The hash of the block, accepts either Substrate-style or Ethereum-style block hash as its input                     | 
     |  Returns | `result`: **BOOLEAN** Returns `true` if the block is finalized, `false` if the block is not finalized or not found  | 
 
 === "moon_isTxFinalized"

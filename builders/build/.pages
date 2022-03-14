@@ -4,4 +4,5 @@ nav:
   - index.md
   - eth-api
   - substrate-api
+  - moonbeam-custom-api.md
   - canonical-contracts
