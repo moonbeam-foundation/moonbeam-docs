@@ -34,26 +34,25 @@ Some of the key parameters for this guide are the following:
  - **Delegation** — the act of transferring your voting power to another account for up to a certain conviction
 
 === "Moonbeam"
-    |        Variable         |                                                        Value                                                        |
-    |:-----------------------:|:-------------------------------------------------------------------------------------------------------------------:|
-    |      Enact Period       |                                                                                                                     |
-    | Maximum Number of Votes |                                     {{ networks.moonbeam.democracy.max_votes}}                                      |
-    |       Vote Period       | {{ networks.moonbeam.democracy.vote_period.blocks}} blocks ({{ networks.moonbeam.democracy.vote_period.days}} days) |
-
-=== "Moonriver"
     |        Variable         |                                                         Value                                                         |
     |:-----------------------:|:---------------------------------------------------------------------------------------------------------------------:|
-    |      Enact Period       |                                                                                                                       |
-    | Maximum Number of Votes |                                      {{ networks.moonriver.democracy.max_votes}}                                      |
-    |       Vote Period       | {{ networks.moonriver.democracy.vote_period.blocks}} blocks ({{ networks.moonriver.democracy.vote_period.days}} days) |
+    |      Enact Period       | {{ networks.moonbeam.democracy.enact_period.blocks}} blocks ({{ networks.moonbeam.democracy.enact_period.days}} days) |
+    | Maximum Number of Votes |                                      {{ networks.moonbeam.democracy.max_votes}}                                       |
+    |       Vote Period       |  {{ networks.moonbeam.democracy.vote_period.blocks}} blocks ({{ networks.moonbeam.democracy.vote_period.days}} days)  |
+
+=== "Moonriver"
+    |        Variable         |                                                          Value                                                          |
+    |:-----------------------:|:-----------------------------------------------------------------------------------------------------------------------:|
+    |      Enact Period       | {{ networks.moonriver.democracy.enact_period.blocks}} blocks ({{ networks.moonriver.democracy.enact_period.days}} days) |
+    | Maximum Number of Votes |                                       {{ networks.moonriver.democracy.max_votes}}                                       |
+    |       Vote Period       |  {{ networks.moonriver.democracy.vote_period.blocks}} blocks ({{ networks.moonriver.democracy.vote_period.days}} days)  |
 
 === "Moonbase Alpha"
-    |        Variable         |                                                        Value                                                        |
-    |:-----------------------:|:-------------------------------------------------------------------------------------------------------------------:|
-    |      Enact Period       |                                                                                                                     |
-    | Maximum Number of Votes |                                     {{ networks.moonbase.democracy.max_votes}}                                      |
-    |       Vote Period       | {{ networks.moonbase.democracy.vote_period.blocks}} blocks ({{ networks.moonbase.democracy.vote_period.days}} days) |
-
+    |        Variable         |                                                         Value                                                         |
+    |:-----------------------:|:---------------------------------------------------------------------------------------------------------------------:|
+    |      Enact Period       | {{ networks.moonbase.democracy.enact_period.blocks}} blocks ({{ networks.moonbase.democracy.enact_period.days}} days) |
+    | Maximum Number of Votes |                                      {{ networks.moonbase.democracy.max_votes}}                                       |
+    |       Vote Period       |  {{ networks.moonbase.democracy.vote_period.blocks}} blocks ({{ networks.moonbase.democracy.vote_period.days}} days)  |
 
 This guide will show you how to vote on a referendum on Moonbase Alpha. It can be adapted for Moonbeam or Moonriver.
 
@@ -143,7 +142,6 @@ From voting, there are some key takeaways:
 After the voting period has expired, the proposal will be visible under the **Dispatch** tab if approved. In here, you can also see the time remaining until the proposal is enacted.
 
 ![Proposal Enactment](/images/tokens/governance/voting/vote-5.png)
-
 
 ### Delegate Voting {: #delegate-voting } 
 
@@ -251,4 +249,3 @@ In the previous example, these numbers were:
 | **Result** | 1.5 < 9.8 (Aye wins!) |
 
 In short, a heavy super-majority of aye votes is required to approve a proposal at low turnouts, but as turnout increases, it becomes a simple majority.
-
