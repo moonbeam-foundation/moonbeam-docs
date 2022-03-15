@@ -27,7 +27,7 @@ Moonbeam node has added support for two custom JSON RPC endpoints, `moon_isBlock
     |  Parameters | `tx_hash`: **STRING** The EVM tx hash of the transaction  | 
     |  Returns |  `result`: **BOOLEAN** Returns `true` if the tx is finalized; `false` if the tx is not finalized or not found | 
 
-You can try out these endpoints with the following curl examples. These examples query the public RPC endpoint of Moonbase Alpha, but they can be modified to use with Moonbeam and Moonriver by changing the URL of the RPC endpoint to the corresponding [endpoints](https://docs.moonbeam.network/builders/get-started/endpoints/){target=blank}. 
+You can try out these endpoints with the following curl examples. These examples query the public RPC endpoint of Moonbase Alpha, but they can be modified to use with Moonbeam and Moonriver by changing the URL of the RPC endpoint to use your own endpoint and API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=_blank}.
 
 === "moon_isBlockFinalized"
     ```
@@ -38,7 +38,7 @@ You can try out these endpoints with the following curl examples. These examples
             "method":"moon_isBlockFinalized",
             "params":["Put-Block-Hash-Here"
         ]}]' 
-        https://rpc.api.moonbase.moonbeam.network
+        {{ networks.moonbase.rpc_url }}
     ```
 
 === "moon_isTxFinalized"
@@ -50,6 +50,6 @@ You can try out these endpoints with the following curl examples. These examples
             "method":"moon_isTxFinalized",
             "params":["Put-Tx-Hash-Here"
         ]}]' 
-        https://rpc.api.moonbase.moonbeam.network
+        {{ networks.moonbase.rpc_url }}
     ```
 
