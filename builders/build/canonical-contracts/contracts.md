@@ -12,31 +12,36 @@ description: A brief overview of the canonical contracts available on Moonbeam, 
 The following contracts addresses have been established:
 
 === "Moonbeam"
-    |                                                       Contract                                                       |                  Address                   |
-    |:--------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
-    |   [WGLMR](https://blockscout.moonbeam.network/address/0xAcc15dC74880C9944775448304B263D191c6077F/){target=_blank}    | 0xAcc15dC74880C9944775448304B263D191c6077F |
-    | [Multicall](https://blockscout.moonbeam.network/address/0x83e3b61886770de2F64AAcaD2724ED4f08F7f36B/){target=_blank}  | 0x83e3b61886770de2F64AAcaD2724ED4f08F7f36B |
-    | [Multicall2](https://blockscout.moonbeam.network/address/0x6477204E12A7236b9619385ea453F370aD897bb2/){target=_blank} | 0x6477204E12A7236b9619385ea453F370aD897bb2 |
-    |                          [EIP 1820](https://eips.ethereum.org/EIPS/eip-1820){target=_blank}                          | 0x1820a4b7618bde71dce8cdc73aab6c95905fad24 |
+    |                                                        Contract                                                         |                  Address                   |
+    |:-----------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
+    |      [WGLMR](https://moonbeam.moonscan.io/address/0xAcc15dC74880C9944775448304B263D191c6077F#code){target=_blank}       | 0xAcc15dC74880C9944775448304B263D191c6077F |
+    |    [Multicall](https://moonbeam.moonscan.io/address/0x83e3b61886770de2F64AAcaD2724ED4f08F7f36B#code){target=_blank}     | 0x83e3b61886770de2F64AAcaD2724ED4f08F7f36B |
+    |    [Multicall2](https://moonbeam.moonscan.io/address/0x6477204E12A7236b9619385ea453F370aD897bb2#code){target=_blank}    | 0x6477204E12A7236b9619385ea453F370aD897bb2 |
+    |    [Multicall3](https://moonbeam.moonscan.io/address/0xca11bde05977b3631167028862be2a173976ca11#code){target=_blank}    | 0xcA11bde05977b3631167028862bE2a173976CA11 |
+    | [Multisig Factory](https://moonbeam.moonscan.io/address/0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2#code){target=_blank} | 0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2 |
+    |                           [EIP 1820](https://eips.ethereum.org/EIPS/eip-1820){target=_blank}                            | 0x1820a4b7618bde71dce8cdc73aab6c95905fad24 |
 
 === "Moonriver"
-    |                                                       Contract                                                       |                  Address                   |
-    |:--------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
-    |      [WMOVR](https://moonriver.moonscan.io/address/0xf50225a84382c74CbdeA10b0c176f71fc3DE0C4d/){target=_blank}       | 0xf50225a84382c74CbdeA10b0c176f71fc3DE0C4d |
-    |    [Multicall](https://moonriver.moonscan.io/address/0x270f2F35bED92B7A59eA5F08F6B3fd34c8D9D9b5/){target=_blank}*    | 0x270f2F35bED92B7A59eA5F08F6B3fd34c8D9D9b5 |
-    |    [Multicall2](https://moonriver.moonscan.io/address/0xaef00a0cf402d9dedd54092d9ca179be6f9e5ce3/){target=_blank}    | 0xaef00a0cf402d9dedd54092d9ca179be6f9e5ce3 |
-    | [Multisig Factory](https://moonriver.moonscan.io/address/0x4e59b44847b379578588920cA78FbF26c0B4956C/){target=_blank} | 0x4e59b44847b379578588920cA78FbF26c0B4956C |
-    |                          [EIP 1820](https://eips.ethereum.org/EIPS/eip-1820){target=_blank}                          | 0x1820a4b7618bde71dce8cdc73aab6c95905fad24 |
+    |                                                         Contract                                                         |                  Address                   |
+    |:------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
+    |      [WMOVR](https://moonriver.moonscan.io/address/0xf50225a84382c74CbdeA10b0c176f71fc3DE0C4d#code){target=_blank}       | 0xf50225a84382c74CbdeA10b0c176f71fc3DE0C4d |
+    |    [Multicall](https://moonriver.moonscan.io/address/0x30f283Cc0284482e9c29dFB143bd483B5C19954b#code){target=_blank}*    | 0x30f283Cc0284482e9c29dFB143bd483B5C19954b |
+    |    [Multicall2](https://moonriver.moonscan.io/address/0xaef00a0cf402d9dedd54092d9ca179be6f9e5ce3#code){target=_blank}    | 0xaef00a0cf402d9dedd54092d9ca179be6f9e5ce3 |
+    |   [Multicall3](https://moonriver.moonscan.io/address/0xca11bde05977b3631167028862be2a173976ca11#code/){target=_blank}    | 0xcA11bde05977b3631167028862bE2a173976CA11 |
+    | [Multisig Factory](https://moonriver.moonscan.io/address/0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2#code){target=_blank} | 0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2 |
+    |                            [EIP 1820](https://eips.ethereum.org/EIPS/eip-1820){target=_blank}                            | 0x1820a4b7618bde71dce8cdc73aab6c95905fad24 |
 
     _*Deployed by SushiSwap_
 
 === "Moonbase Alpha"
-    |                                                                  Contract                                                                   |                  Address                   |
-    |:-------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
-    |       [WDEV](https://moonbase-blockscout.testnet.moonbeam.network/address/0xD909178CC99d318e4D46e7E66a972955859670E1/){target=_blank}       | 0xD909178CC99d318e4D46e7E66a972955859670E1 |
-    |    [Multicall](https://moonbase-blockscout.testnet.moonbeam.network/address/0x4E2cfca20580747AdBA58cd677A998f8B261Fc21/){target=_blank}*    | 0x4E2cfca20580747AdBA58cd677A998f8B261Fc21 |
-    | [Multisig Factory](https://moonbase-blockscout.testnet.moonbeam.network/address/0x4e59b44847b379578588920cA78FbF26c0B4956C/){target=_blank} | 0x4e59b44847b379578588920cA78FbF26c0B4956C |
-    |                                     [EIP 1820](https://eips.ethereum.org/EIPS/eip-1820){target=_blank}                                      | 0x1820a4b7618bde71dce8cdc73aab6c95905fad24 |
+    |                                                        Contract                                                         |                  Address                   |
+    |:-----------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
+    |       [WDEV](https://moonbase.moonscan.io/address/0xD909178CC99d318e4D46e7E66a972955859670E1#code){target=_blank}       | 0xD909178CC99d318e4D46e7E66a972955859670E1 |
+    |    [Multicall](https://moonbase.moonscan.io/address/0x4E2cfca20580747AdBA58cd677A998f8B261Fc21#code){target=_blank}*    | 0x4E2cfca20580747AdBA58cd677A998f8B261Fc21 |
+    |    [Multicall2](https://moonbase.moonscan.io/address/0x37084d0158C68128d6Bc3E5db537Be996f7B6979#code){target=_blank}    | 0x37084d0158C68128d6Bc3E5db537Be996f7B6979 |
+    |   [Multicall3](https://moonbase.moonscan.io/address/0xca11bde05977b3631167028862be2a173976ca11#code/){target=_blank}    | 0xcA11bde05977b3631167028862bE2a173976CA11 |
+    | [Multisig Factory](https://moonbase.moonscan.io/address/0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2#code){target=_blank} | 0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2 |
+    |                           [EIP 1820](https://eips.ethereum.org/EIPS/eip-1820){target=_blank}                            | 0x1820a4b7618bde71dce8cdc73aab6c95905fad24 |
 
     _*Deployed in the [UniswapV2 Demo Repo](https://github.com/PureStake/moonbeam-uniswap/tree/main/uniswap-contracts-moonbeam){target=_blank}_
 
