@@ -46,7 +46,7 @@ With great power comes great responsibility. Some important parameters to unders
     |     Enactment Period     |      {{ networks.moonriver.democracy.enact_period.blocks}} blocks ({{ networks.moonriver.democracy.enact_period.days}} day)       |
     |     Cool-off Period      |       {{ networks.moonriver.democracy.cool_period.blocks}} blocks ({{ networks.moonriver.democracy.cool_period.days}} days)       |
     |     Minimum Deposit      |                                        {{ networks.moonriver.democracy.min_deposit }} MOVR                                        |
-    |    Minimum Proposals     |                                         {{ networks.moonriver.democracy.max_proposals }}                                          |
+    |    Maximum Proposals     |                                         {{ networks.moonriver.democracy.max_proposals }}                                          |
 
 === "Moonbase Alpha"
     |         Variable         |                                                              Value                                                              |

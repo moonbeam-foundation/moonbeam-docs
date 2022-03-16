@@ -223,7 +223,7 @@ Next, you will create the script for this file and complete the following steps:
 4. Save the `bytecode` and `abi` for the compiled contract
 5. Create the asynchronous `deploy` function that will be used to deploy the contract
 6. Create the contract instance using the `web3.eth.Contract` function
-7. Create the constructor and pass in the `bytecode` and the initial value for the incrementer. For this example, you can se the initial value to `5`
+7. Create the constructor and pass in the `bytecode` and the initial value for the incrementer. For this example, you can set the initial value to `5`
 8. Create and sign the transaction using the `web3.eth.accounts.signTransaction` function. Pass in the `data` and the `gas` for the transaction along with the sender's `privateKey`
 9. Send the signed transaction using the `web3.eth.sendSignedTransaction` method and pass in the raw transaction. Then use `await` to wait until the transaction is processed and the transaction receipt is returned
 10. Lastly, run the `deploy` function
