@@ -75,9 +75,9 @@ The [Polkadot.js API package](https://polkadot.js.org/docs/api/start){target=_bl
 
 Given a transaction hash (`tx_hash`), the following code snippets fetch the current finalized block and compare it with the block number of the transaction you've provided. The code relies on three RPC requests from the Substrate JSON-RPC: 
 
-1. `chain_getFinalizedHead`: The first request gets the block hash of the last finalized block
-2. `chain_getHeader`: The second request gets the block header for a given block hash
-3. `eth_getTransactionReceipt`: This retrieves the ETH transaction receipt given the transaction hash.
+- `chain_getFinalizedHead` - the first request gets the block hash of the last finalized block
+- `chain_getHeader` - the second request gets the block header for a given block hash
+- `eth_getTransactionReceipt` - this retrieves the ETH transaction receipt given the transaction hash.
 
 You can find more information about Polkadot.js and the Substrate JSON RPC in their [official documentation site](https://polkadot.js.org/docs/substrate/rpc){target=_blank}, and more about Python Substrate Interface in their [official documentation site](https://polkascan.github.io/py-substrate-interface/){target=_blank}.
 
