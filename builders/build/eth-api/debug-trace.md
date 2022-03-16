@@ -30,8 +30,8 @@ The following RPC methods are available:
 The debug RPC implementations follow [Geth's debug API guidelines](https://geth.ethereum.org/docs/rpc/ns-debug):
 
   - [`debug_traceTransaction`](https://geth.ethereum.org/docs/rpc/ns-debug#debug_tracetransaction) - requires the hash of the transaction to be traced
-  - [`debug_traceBlockByNumber`](https://geth.ethereum.org/docs/rpc/ns-debug#debug_traceblockbynumber) - requires the block number of the block to be traced
-  - [`debug_traceBlockByHash`](https://geth.ethereum.org/docs/rpc/ns-debug#debug_traceblockbyhash) - requires the hash of the block to be traced 
+  - [`debug_traceBlockByNumber`](https://geth.ethereum.org/docs/rpc/ns-debug#debug_traceblockbynumber) - requires the block number of the block to be traced and an additional parameter that sets the tracer to `callTracer` (i.e. `{"tracer": "callTracer"}`)
+  - [`debug_traceBlockByHash`](https://geth.ethereum.org/docs/rpc/ns-debug#debug_traceblockbyhash) - requires the hash of the block to be traced and an additional parameter that sets the tracer to `callTracer` (i.e. `{"tracer": "callTracer"}`)
 
 As *optional* parameters for the supported debug methods, you can provide the following:
 
@@ -79,7 +79,7 @@ If you have a running node, you should see a similar terminal log:
 
 Once you have a running tracing node, you can open another tab in your terminal where you can run curl commands and start to call any of the available JSON RPC methods. For example, for the `debug_traceTransaction` method, you can make the following JSON RPC request in your terminal (in this case, for the transaction hash `0x04978f83e778d715eb074352091b2159c0689b5ae2da2554e8fe8e609ab463bf`):
 
-```
+```sh
 curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
   '{
     "jsonrpc":"2.0",
@@ -93,11 +93,23 @@ The node responds with the step-by-step replayed transaction information (respon
 
 ![Trace Debug Node Running](/images/builders/build/eth-api/debug-trace/debug-trace-2.png)
 
+If you're using the `debug_traceBlockByNumber` or `debug_traceBlockByHash` methods, you will need to add `{"tracer": "callTracer"}` to the `"params"`. The `callTracer` will only return transactions and subcalls. Otherwise, the tracer will attempt to default to `raw`, which is not supported at this time due to the heavy nature of the call. For example, for the `debug_traceBlockByHash` method, you can make the following JSON RPC request in your terminal (in this case, for the block hash `0x2633b66050c99d80f65fe96de6485fd407b87f0f59b485c33ab8f119e2c6f255`):
+
+```sh
+curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
+  '{
+    "jsonrpc":"2.0",
+    "id":1,
+    "method":"debug_traceBlockByHash",
+    "params": ["0x2633b66050c99d80f65fe96de6485fd407b87f0f59b485c33ab8f119e2c6f255", {"tracer": "callTracer"}]
+  }'
+```
+
 ## Using the Tracing Module {: #using-the-tracing-module }
 
 For the `trace_filter` call, you can make the following JSON RPC request in your terminal (in this case, the filter is from block 20000 to 25000, only for transactions where the recipient is  `0x4E0078423a39EfBC1F8B5104540aC2650a756577`, it will start with a zero offset and provide the first 20 traces):
 
-```
+```sh
 curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
   '{
     "jsonrpc":"2.0",
@@ -114,7 +126,7 @@ The node responds with the trace information corresponding to the filter (respon
 
 Since none of the currently supported txpool methods require a parameter, you can adapt the following curl command by changing the method for any of the txpool methods:
 
-```
+```sh
 curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
   '{
     "jsonrpc":"2.0",
