@@ -33,9 +33,9 @@ yarn add @polkadot/api
 For decoding Moonbeam custom events and types, you will need to include the [Moonbeam Types Bundle](https://www.npmjs.com/package/moonbeam-types-bundle){target=blank} into your project by adding the following package information to your `package.json`:
 
 ```json
-"@polkadot/api": "^6.9.1",
-"moonbeam-types-bundle": "^2.0.1",
-"typescript": "4.3.2"
+"@polkadot/api": "^{{ networks.moonbase.moonbeam_types_bundle.stable_version }}",
+"moonbeam-types-bundle": "^{{ networks.moonbase.moonbeam_types_bundle.polkadot_js_dependency_version }}",
+"typescript": "{{ networks.moonbase.moonbeam_types_bundle.typescript_dependency_version }}"
 ```
 
 And add this import statement to the start of your project file:
@@ -100,18 +100,17 @@ Similar to ETH API libraries, you must first instantiate an API instance of polk
     console.log(api.genesisHash.toHex());
     ```
 
-
-## Querying for Information {: #querying-for-information }
-
-In this section, you will learn how to query for on-chain information using polkadot.js API library. 
-
 ### Metadata and Dynamic API Decoration {: #metadata-and-dynamic-api-decoration }
 
-Before diving into the details of running different types of queries via polkadot.js API library, it's useful to understand some basic workings of the library. 
+Before diving into the details of performing different tasks via polkadot.js API library, it's useful to understand some basic workings of the library. 
 
 When the polkadot.js API connects to a node, one of the first things it does is to retrieve the metadata and decorate the API based on the metadata information. The metadata effectively provides data in the form of `api.<type>.<module>.<section>` that fits into one of the following categories: `consts`, `query` and `tx`. 
 
 And therefore, none of the information contained in the `api.{consts, query, tx}.<module>.<method>` endpoints are hard coded in the API. This allows parachains like Moonbeam to have custom endpoints through its pallets that can be directly accessed via polkadot.js API library.
+
+## Querying for Information {: #querying-for-information }
+
+In this section, you will learn how to query for on-chain information using polkadot.js API library. 
 
 ### State Queries {: #state-queries }
 
@@ -174,13 +173,11 @@ const unsub = await api.query.system.account(ADDR, ({ nonce, data: balance }) =>
 });
 ```
 
-## Keyrings and Transactions {: #keyrings-and-transactions }
-
-### Keyrings {: #keyrings }
+## Keyrings {: #keyrings }
 
 The Keyring object is used for maintaining key pairs, and the signing of any data, whether it's a transfer, a message or a contract interaction.  
 
-#### Creating a Keyring Instance {: #creating-a-keyring-instance }
+### Creating a Keyring Instance {: #creating-a-keyring-instance }
 
 You can create an instance by just creating an instance of the Keyring class, and specifying the default type of wallet address used. For Moonbeam networks, the recommended default wallet type is `ethereum`.
 
@@ -192,7 +189,7 @@ import { Keyring } from '@polkadot/api';
 const keyring = new Keyring({ type: 'ethereum' });
 ```
 
-#### Adding Accounts {: #adding-accounts }
+### Adding Accounts {: #adding-accounts }
 
 There are a number of ways to add an account to the keyring instance, including from the mnemonic phase, and from the shortform private key. The following sample code will provide some examples:
 
@@ -229,11 +226,11 @@ const otherPair = await keyringESDSA.addFromUri(privateKey);
 console.log(`Derived Address from Private Key: ${otherPair.address}`);
 ```
 
-### Transactions {: #transactions }
+## Transactions {: #transactions }
 
 Transaction endpoints are exposed, as determined by the metadata, on the `api.tx` endpoint. These allow you to submit transactions for inclusion in blocks, be it transfers, deploying contracts, interacting with pallets, or anything else Moonbeam supports.
 
-#### Sending Basic Transactions {: #sending-basic-transactions }
+### Sending Basic Transactions {: #sending-basic-transactions }
 
 Here is an example of sending a basic transaction from Alice to Bob:
 
@@ -254,7 +251,7 @@ Note that the `signAndSend` can also accept optional parameters, such as `nonce`
 const nonce = await api.rpc.system.accountNextIndex(sender);
 ```
 
-#### Transaction Events {: #transaction-events }
+### Transaction Events {: #transaction-events }
 
 Any transaction will emit events, as a bare minimum this will always be either a system.ExtrinsicSuccess or system.ExtrinsicFailed event for the specific transaction. These provide the overall execution result for the transaction, i.e. execution has succeeded or failed.
 
@@ -262,7 +259,7 @@ Depending on the transaction sent, some other events may however be emitted, for
 
 The Transfer API page includes a [code snippet](/builders/get-started/eth-compare/transfers-api/#monitor-all-balance-transfers-with-the-substrate-api){target=blank} for subscribing to new finalized block headers, and retrieving all `balance.Transfer` events. 
 
-#### Batching Transactions {: #batching-transactions }
+### Batching Transactions {: #batching-transactions }
 
 Polkadot.js API allows transactions to be batch processed via the `utility.batch` method. The batched transactions are processed sequentially from a single sender. The transaction fee can be estimated using the `.paymentInfo` helper method. 
 
