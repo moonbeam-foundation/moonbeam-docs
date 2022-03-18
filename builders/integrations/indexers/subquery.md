@@ -9,7 +9,7 @@ description: Learn how to use SubQuery to index Substrate and EVM data for Moonb
 
 ## Introduction {: #introduction }
 
-[SubQuery](https://subquery.network/){target=blank} is a data aggregation layer that operates between the layer-1 blockchains (such as Moonbeam and Polkadot) and DApps. This service unlocks blockchain data and transforms it to a queryable state so that it can be used in intuitive applications. It allows DApp developers to focus on their core use case and front end, without needing to waste time on building a custom back end for data processing.
+[SubQuery](https://subquery.network/){target=_blank} is a data aggregation layer that operates between the layer-1 blockchains (such as Moonbeam and Polkadot) and DApps. This service unlocks blockchain data and transforms it to a queryable state so that it can be used in intuitive applications. It allows DApp developers to focus on their core use case and front end, without needing to waste time on building a custom back end for data processing.
 
 SubQuery supports indexing the Ethereum Virtual Machine (EVM) and Substrate data for any of the Moonbeam networks. A key advantage of using SubQuery is that you can flexibly collect query data across both Moonbeam's EVM and Substrate code with a single project and tool, and then query this data using GraphQL.
 
@@ -19,12 +19,12 @@ For example, SubQuery can filter and query EVM logs and transactions in addition
 
 Later on in this guide, you have the option of deploying your project to a locally running SubQuery node. To do so, you need to have the following installed on your system:
 
- - [Docker](https://docs.docker.com/get-docker/){target=blank}
- - [Docker Compose](https://docs.docker.com/compose/install/){target=blank}
+ - [Docker](https://docs.docker.com/get-docker/){target=_blank}
+ - [Docker Compose](https://docs.docker.com/compose/install/){target=_blank}
 
 ## Getting Started {: #getting-started }
 
-To get started, you'll need to [create a SubQuery project](https://doc.subquery.network/create/introduction/){target=blank}.
+To get started, you'll need to [create a SubQuery project](https://doc.subquery.network/create/introduction/){target=_blank}.
 
 In general, you will need to:
 
@@ -46,7 +46,7 @@ In general, you will need to:
     subql init PROJECT_NAME
     ```
 
-    You'll be prompted to enter a series of questions. For the **Select a network** question, you can choose any of the Moonbeam networks: **Moonbeam**, **Moonriver**, **Moonbeam Alpha**. For the RPC endpoint question, you can enter in the [Network Endpoint](/builders/get-started/endpoints/){target=blank} for the specific network you're creating the project for
+    You'll be prompted to enter a series of questions. For the **Select a network** question, you can choose any of the Moonbeam networks: **Moonbeam**, **Moonriver**, **Moonbeam Alpha**. For the RPC endpoint question, you can enter in the [Network Endpoint](/builders/get-started/endpoints/){target=_blank} for the specific network you're creating the project for
 
 4. Install dependencies from within your project directory:
 
@@ -56,25 +56,25 @@ In general, you will need to:
 
 After the initialization is complete, you'll have a base SubQuery project that contains the following files (among others):
 
-- **`project.yaml`** - the [Manifest File](https://doc.subquery.network/create/manifest/){target=blank} which acts as the entry point of your project
-- **`schema.graphql`** - the [GraphQL Schema](https://doc.subquery.network/create/graphql/){target=blank} which defines the shape of your data
-- **`src/mappings/mappingHandlers.ts`** - exports the [Mapping](https://doc.subquery.network/create/mapping/){target=blank} functions which are used to define how chain data is transformed into the GraphQL entities that are defined in the schema
+- **`project.yaml`** - the [Manifest File](https://doc.subquery.network/create/manifest/){target=_blank} which acts as the entry point of your project
+- **`schema.graphql`** - the [GraphQL Schema](https://doc.subquery.network/create/graphql/){target=_blank} which defines the shape of your data
+- **`src/mappings/mappingHandlers.ts`** - exports the [Mapping](https://doc.subquery.network/create/mapping/){target=_blank} functions which are used to define how chain data is transformed into the GraphQL entities that are defined in the schema
 
-The process to index Moonbeam data takes only two steps: [adding the Moonbeam custom data source](#adding-the-moonbeam-custom-data-source){target=blank} and then [indexing the Moonbeam data](#indexing-moonbeam-data){target=blank}.
+The process to index Moonbeam data takes only two steps: [adding the Moonbeam custom data source](#adding-the-moonbeam-custom-data-source){target=_blank} and then [indexing the Moonbeam data](#indexing-moonbeam-data){target=_blank}.
 
 ## Adding the Moonbeam Custom Data Source {: #adding-the-moonbeam-custom-data-source }
 
 A data source defines the data that will be filtered and extracted. It also defines the location of the mapping function handler for the data transformation to be applied.
 
-SubQuery has created a data processor specifically made to work with Moonbeam’s implementation of [Frontier](https://github.com/paritytech/frontier){target=blank}. It allows you to reference specific ABI resources used by the processor to parse arguments and the smart contract address that the events are from or the call is made to. In general, it acts as middleware that can provider extra filtering and data transformation.
+SubQuery has created a data processor specifically made to work with Moonbeam’s implementation of [Frontier](https://github.com/paritytech/frontier){target=_blank}. It allows you to reference specific ABI resources used by the processor to parse arguments and the smart contract address that the events are from or the call is made to. In general, it acts as middleware that can provider extra filtering and data transformation.
 
-1. From within your SubQuery project, you can add the custom data source as a dependency by running the following [NPM](https://www.npmjs.com/){target=blank} command:
+1. From within your SubQuery project, you can add the custom data source as a dependency by running the following [NPM](https://www.npmjs.com/){target=_blank} command:
 
     ```
     npm install @subql/contract-processors
     ```
 
-2. Add the [Moonbeam custom data source](https://doc.subquery.network/create/moonbeam/#data-source-spec){target=blank} to your `project.yaml` manifest file:
+2. Add the [Moonbeam custom data source](https://doc.subquery.network/create/moonbeam/#data-source-spec){target=_blank} to your `project.yaml` manifest file:
 
     ```yaml
     dataSources:
@@ -90,7 +90,7 @@ The fields in the above configuration can be broken down as follows:
 
 - **kind** - *required* field that specifies the custom Moonbeam data processor
 - **processor.file** - *required* field that references the file where the data processor code lives
-- **processor.options** - includes [options](https://doc.subquery.network/create/moonbeam/#processor-options){target=blank} specific to the Moonbeam processor including the `abi` that is used by the processor to parse arguments. As well as the `address` where the contract event is from or the call is made to
+- **processor.options** - includes [options](https://doc.subquery.network/create/moonbeam/#processor-options){target=_blank} specific to the Moonbeam processor including the `abi` that is used by the processor to parse arguments. As well as the `address` where the contract event is from or the call is made to
 - **assets** - an object of external asset ABI files
 - **mapping** - the mapping specification. This includes the path to the mapping entry, the mapping functions, and their corresponding handler types, with any additional mapping filters
 
@@ -118,7 +118,7 @@ type Approval @entity {
 
 ## Indexing Moonbeam Data {: #indexing-moonbeam-data }
 
-Next, you can add the mapping specification and handlers for the custom data source to your code. The mapping specification includes the [mapping functions](https://doc.subquery.network/create/mapping/#){target=blank} that define how chain data is transformed.
+Next, you can add the mapping specification and handlers for the custom data source to your code. The mapping specification includes the [mapping functions](https://doc.subquery.network/create/mapping/#){target=_blank} that define how chain data is transformed.
 
 Your sample SubQuery project contains three mapping functions which are found under `src/mappings/mappingHandlers.ts`. These mapping functions transform off chain data to the GraphQL entities that you define. The three handlers are as follows:
 
@@ -126,7 +126,7 @@ Your sample SubQuery project contains three mapping functions which are found un
 - **Event handler** - used to capture information where certain events are emitted within a new block. As this function will be called anytime an event is emitted, you can use mapping filters to only handle events you need. This will improve performance and reduce indexing times
 - **Call handler** - used to capture information for certain extrinsics
 
-In your sample SubQuery project, you'll notice that the event passed in to the `handleEvent` mapping function is a `SubstrateEvent`. Similarly, the extrinsic passed into the `handleCall` mapping function is a `SubstrateExtrinsic`. For Moonbeam, your mapping functions will receive a [`MoonbeamEvent`](https://doc.subquery.network/create/moonbeam/#moonbeamevent){target=blank}  and a [`MoonbeamCall`](https://doc.subquery.network/create/moonbeam/#moonbeamcall){target=blank} instead. These are based on Ether's [TransactionResponse](https://docs.ethers.io/v5/api/providers/types/#providers-TransactionResponse){target=blank} or [Log](https://docs.ethers.io/v5/api/providers/types/#providers-Log){target=blank} type.
+In your sample SubQuery project, you'll notice that the event passed in to the `handleEvent` mapping function is a `SubstrateEvent`. Similarly, the extrinsic passed into the `handleCall` mapping function is a `SubstrateExtrinsic`. For Moonbeam, your mapping functions will receive a [`MoonbeamEvent`](https://doc.subquery.network/create/moonbeam/#moonbeamevent){target=_blank}  and a [`MoonbeamCall`](https://doc.subquery.network/create/moonbeam/#moonbeamcall){target=_blank} instead. These are based on Ether's [TransactionResponse](https://docs.ethers.io/v5/api/providers/types/#providers-TransactionResponse){target=_blank} or [Log](https://docs.ethers.io/v5/api/providers/types/#providers-Log){target=_blank} type.
 
 To update your sample SubQuery project to be used for Moonbeam, you can take the following steps:
 
@@ -192,7 +192,7 @@ To update your sample SubQuery project to be used for Moonbeam, you can take the
     npm run codegen
     ```
 
-6. Either [publish your project](https://doc.subquery.network/publish/publish/){target=blank} to [SubQuery Projects](https://project.subquery.network/){target=blank} or [run a SubQuery node locally](https://doc.subquery.network/run/run/){target=blank} using Docker
+6. Either [publish your project](https://doc.subquery.network/publish/publish/){target=_blank} to [SubQuery Projects](https://project.subquery.network/){target=_blank} or [run a SubQuery node locally](https://doc.subquery.network/run/run/){target=_blank} using Docker
 
     ```
     docker-compose pull && docker-compose up
@@ -215,14 +215,14 @@ Congratulations! You now have a Moonbeam SubQuery project that accepts GraphQL A
 
 ## Example Projects {: #example-projects }
 
-To view the complete example project that you just created, you can check out the [GitHub repository](https://github.com/subquery/tutorials-moonriver-evm-starter){target=blank} or it's also accessible via the [live SubQuery project on the SubQuery Explorer](https://explorer.subquery.network/subquery/subquery/moonriver-evm-starter-project){target=blank}.
+To view the complete example project that you just created, you can check out the [GitHub repository](https://github.com/subquery/tutorials-moonriver-evm-starter){target=_blank} or it's also accessible via the [live SubQuery project on the SubQuery Explorer](https://explorer.subquery.network/subquery/subquery/moonriver-evm-starter-project){target=_blank}.
 
-If you have any questions about this make sure you check out the [SubQuery documentation for Moonbeam](https://doc.subquery.network/create/moonbeam){target=blank} or reach out to the SubQuery team on the #technical-support channel in the [SubQuery Discord](https://discord.com/invite/subquery){target=blank}.
+If you have any questions about this make sure you check out the [SubQuery documentation for Moonbeam](https://doc.subquery.network/create/moonbeam){target=_blank} or reach out to the SubQuery team on the #technical-support channel in the [SubQuery Discord](https://discord.com/invite/subquery){target=_blank}.
 
-Feel free to clone the [example project on GitHub](https://github.com/subquery/tutorials-moonriver-evm-starter){target=blank}.
+Feel free to clone the [example project on GitHub](https://github.com/subquery/tutorials-moonriver-evm-starter){target=_blank}.
 
 As you can see, creating a Moonbeam, Moonriver, or Moonbase Alpha project that indexes both Substrate and EVM data in a single project is extremely simple. You can use SubQuery’s advanced scaffolding tools to speed up your DApp development and take advantage of richer indexing for your data to build more intuitive DApps.
 
 ### Moonbuilders Tutorial
 
-SubQuery joined the [Moonbuilders workshop](https://www.crowdcast.io/e/moonbuilders-ws/10){target=blank} in December to show off live how to create a simple SubQuery project. You can try out the [resulting sample project](https://github.com/stwiname/moonbuilders-demo){target=blank} by yourself.
+SubQuery joined the [Moonbuilders workshop](https://www.crowdcast.io/e/moonbuilders-ws/10){target=_blank} in December to show off live how to create a simple SubQuery project. You can try out the [resulting sample project](https://github.com/stwiname/moonbuilders-demo){target=_blank} by yourself.

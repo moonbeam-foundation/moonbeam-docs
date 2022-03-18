@@ -3,7 +3,6 @@ hide: false
 nav:
   - index.md
   - get-started
-  - interact
-  - tools
+  - build
   - xcm
   - integrations
