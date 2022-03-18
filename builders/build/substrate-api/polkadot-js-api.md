@@ -1,5 +1,5 @@
 ---
-title: Polkadot.js API Library
+title: Polkadot.js API
 description: Follow this tutorial to learn the basic of how to use the polkadot.js API library to interact with Moonbeam networks.
 ---
 # Polkadot.js API Library
