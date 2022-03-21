@@ -120,7 +120,7 @@ If you own the account that you sent the tokens to, you can add the token asset 
 
 The Moonbeam Team has built a Remix plugin that makes it even easier to develop and deploy your Ethereum smart contracts on Moonbeam. The Moonbeam Remix plugin combines all of the important functions needed to compile, deploy, and interact with your smart contracts from one place - no switching tabs needed. The Moonbeam Remix plugin supports Moonbeam, Moonriver, and the Moonbase Alpha TestNet. 
 
-### Installing the Moonbeam Remix Plugin
+### Installing the Moonbeam Remix Plugin {: #installing-the-moonbeam-remix-plugin }
 
 To install the Moonbeam Remix plugin, take the following steps:
 
@@ -132,7 +132,7 @@ To install the Moonbeam Remix plugin, take the following steps:
 
 Once you've added the plugin, a Moonbeam logo will appear on the left hand side, representing the Moonbeam Remix plugin tab.
 
-### Getting Started with the Moonbeam Remix Plugin
+### Getting Started with the Moonbeam Remix Plugin {: #getting-started-with-the-moonbeam-remix-plugin }
 
 Click on the Moonbeam logo in your Remix IDE to open the Moonbeam plugin. This part assumes you already have a contract in Remix ready to be compiled. You can generate an [ERC-20 contract here](https://wizard.openzeppelin.com/){target=_blank}. To deploy an ERC-20 Token to Moonbase Alpha using the Moonbeam Remix plugin, you can take the following steps:
 
