@@ -96,6 +96,8 @@ As of the latest runtime upgrade, [runtime version 1001](https://moonbeam.networ
 
 To stop collating and leave the candidate pool, you must first schedule a request to leave the pool. Scheduling a request does not automatically remove you from the candidate pool, you must wait an [exit delay](#collator-timings). After the delay you will be able to execute the request and stop collating. While you are waiting the specified number of rounds, you will still be eligible to produce blocks and earn rewards if you're in the active set.
 
+Similar to [Polkadot's `chill()`](https://wiki.polkadot.network/docs/maintain-guides-how-to-chill){target=_blank} functionality, you can [temporarily leave the candidate pool](#temporarily-leave-the-candidate-pool) without unbonding your tokens.
+
 ### Schedule Request to Leave Candidates
 
 To get started and schedule a request, take the following steps:
@@ -138,6 +140,23 @@ If you scheduled a request to leave the candidate pool but changed your mind, as
 
 ![Cancel leave candidates request](/images/node-operators/networks/collators/activities/activities-5.png)
 
+### Temporarily Leave the Candidate Pool {: #temporarily-leave-the-candidate-pool }
+
+If you want to temporarily leave the candidate pool, you can easily do so using the `goOffline` method. This can be useful, for example, if you need to temporarily leave to perform maintenance operations. Once you're done, you can then rejoin the pool using the `goOnline` method.
+
+To temporarily leave, you can take the following steps:
+
+ 1. Navigate to the **Developer** tab 
+ 2. Click on **Extrinsics**
+ 3. Select your candidate account
+ 4. Select **parachainStaking** pallet under the **submit the following extrinsic** menu
+ 5. Select the **goOffline** extrinsic
+ 6. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
+
+![Temporarily leave candidates pool](/images/node-operators/networks/collators/activities/activities-6.png) 
+
+Then, whenever you wish to rejoin, you can use the `goOnline` method, by following the same steps outline above and then in step 5, choose the `goOnline` extrinsic. Please note that you can only call `goOnline` if you have previously called `goOffline`.
+
 ## Change Self-Bond Amount {: #change-self-bond-amount }
 
 As a candidate, changing your self-bond amount varies slightly depending on if you're bonding more or less. If you're bonding more, it is a straightforward process where you can increase your stake via the `candidateBondMore()` extrinsic. You do not have to wait any delays and you do not need to schedule a request and then execute it, instead your request will be executed instantly and automatically.
@@ -156,7 +175,7 @@ As a candidate, there are two options for increasing one's stake. The first and 
  6. Specify the additional amount to be bonded in the **more: BalanceOf** field
  7. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
-![Collator Bond More](/images/node-operators/networks/collators/activities/activities-6.png)
+![Collator Bond More](/images/node-operators/networks/collators/activities/activities-7.png)
 
 ### Bond Less {: #bond-less}
 
@@ -176,7 +195,7 @@ To schedule a request to bond less, you can follow these steps:
  6. Specify the amount to decrease the bond by in the  **less: BalanceOf** field
  7. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
  
-![Schedule Candidate Bond Less](/images/node-operators/networks/collators/activities/activities-7.png)
+![Schedule Candidate Bond Less](/images/node-operators/networks/collators/activities/activities-8.png)
 
 Once the transaction is confirmed, you must wait the duration of the exit delay and then you will be able to execute and decrease the bond amount. If you try to execute the request before the exit delay, your extrinsic will fail and you'll see an error in Polkadot.js for `parachainStaking.PendingDelegationRequest`.
 
@@ -192,7 +211,7 @@ After the exit delay has passed from scheduling a request to decrease your bond,
  6. Select the target candidate account (anyone can execute the request after the exit delay has passed since the `scheduleCandidateBondLess` was submitted)
  7. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
-![Execute Candidate Bond Less](/images/node-operators/networks/collators/activities/activities-8.png)
+![Execute Candidate Bond Less](/images/node-operators/networks/collators/activities/activities-9.png)
 
 Once the transaction has been confirmed, you can check your free and reserved balances from the **Accounts** tab and notice now that the execution has gone through, your balances have been updated.
 
@@ -207,4 +226,4 @@ If you scheduled a request to bond more or less but changed your mind, as long a
  5. Select the **cancelCandidateBondRequest** extrinsic
  6. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 
-![Cancel leave candidates request](/images/node-operators/networks/collators/activities/activities-9.png)
+![Cancel leave candidates request](/images/node-operators/networks/collators/activities/activities-10.png)
