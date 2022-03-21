@@ -83,7 +83,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --db-cache <50% RAM in MB> \
     -- \
     --execution wasm \
-    --pruning archive \
+    --pruning 1000 \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
@@ -102,7 +102,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --db-cache <50% RAM in MB> \
     -- \
     --execution wasm \
-    --pruning archive \
+    --pruning 1000 \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
@@ -121,7 +121,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --db-cache <50% RAM in MB> \
     -- \
     --execution wasm \
-    --pruning archive \
+    --pruning 1000 \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
@@ -143,7 +143,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --db-cache <50% RAM in MB> \
     -- \
     --execution wasm \
-    --pruning archive \
+    --pruning 1000 \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
@@ -163,7 +163,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --db-cache <50% RAM in MB> \
     -- \
     --execution wasm \
-    --pruning archive \
+    --pruning 1000 \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
     
@@ -183,7 +183,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --db-cache <50% RAM in MB> \
     -- \
     --execution wasm \
-    --pruning archive \
+    --pruning 1000 \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 

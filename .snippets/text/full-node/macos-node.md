@@ -18,7 +18,8 @@ purestake/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
 --pruning archive \
 --state-cache-size 1 \
 -- \
---pruning archive \
+--execution wasm \
+--pruning 1000 \
 --name="YOUR-NODE-NAME (Embedded Relay)"
 ```
 
@@ -37,7 +38,8 @@ purestake/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
 --pruning archive \
 --state-cache-size 1 \
 -- \
---pruning archive \
+--execution wasm \
+--pruning 1000 \
 --name="YOUR-NODE-NAME (Embedded Relay)"
 ```
 ## Moonriver Full Node {: #moonriver-full-node } 
@@ -54,7 +56,8 @@ purestake/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
 --pruning archive \
 --state-cache-size 1 \
 -- \
---pruning archive \
+--execution wasm \
+--pruning 1000 \
 --name="YOUR-NODE-NAME (Embedded Relay)"
 ```
 
@@ -73,7 +76,8 @@ purestake/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
 --pruning archive \
 --state-cache-size 1 \
 -- \
---pruning archive \
+--execution wasm \
+--pruning 1000 \
 --name="YOUR-NODE-NAME (Embedded Relay)"
 ```
 
@@ -91,7 +95,8 @@ purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
 --pruning archive \
 --state-cache-size 1 \
 -- \
---pruning archive \
+--execution wasm \
+--pruning 1000 \
 --name="YOUR-NODE-NAME (Embedded Relay)"
 ```
 
@@ -110,6 +115,7 @@ purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
 --pruning archive \
 --state-cache-size 1 \
 -- \
---pruning archive \
+--execution wasm \
+--pruning 1000 \
 --name="YOUR-NODE-NAME (Embedded Relay)"
 ```

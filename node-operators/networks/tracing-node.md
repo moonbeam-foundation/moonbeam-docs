@@ -98,7 +98,7 @@ The complete command for running a tracing node is as follows:
     --runtime-cache-size 32 \
     -- \
     --execution wasm \
-    --pruning archive \
+    --pruning 1000 \
     --name="Moonbeam-Tutorial (Embedded Relay)"
     ```
 
@@ -118,7 +118,7 @@ The complete command for running a tracing node is as follows:
     --runtime-cache-size 32 \
     -- \
     --execution wasm \
-    --pruning archive \
+    --pruning 1000 \
     --name="Moonbeam-Tutorial (Embedded Relay)"
     ```
 
@@ -138,7 +138,7 @@ The complete command for running a tracing node is as follows:
     --runtime-cache-size 32 \
     -- \
     --execution wasm \
-    --pruning archive \
+    --pruning 1000 \
     --name="Moonbeam-Tutorial (Embedded Relay)"
     ```
 
