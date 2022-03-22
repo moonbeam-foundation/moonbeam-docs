@@ -187,7 +187,7 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
-If you're using MacOS, there are adapted [code snippets](https://www.github.com/PureStake/moonbeam-docs/blob/master/.snippets/text/full-node/macos-node.md){target=_blank} specific for MacOS which can be used instead.
+If you're using MacOS, there are adapted [code snippets](https://www.github.com/PureStake/moonbeam-docs-cn/blob/master/.snippets/text/full-node/macos-node.md){target=_blank} specific for MacOS which can be used instead.
 
 Once Docker pulls the necessary images, your full Moonbeam (or Moonriver) node will start, displaying lots of information, such as the chain specification, node name, role, genesis state, and more:
 
