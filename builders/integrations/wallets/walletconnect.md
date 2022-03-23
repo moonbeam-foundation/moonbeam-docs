@@ -74,7 +74,7 @@ If you already have a DApp with WalletConnect support, and just want to add Moon
       network: "testnet",
       chain_id: {{ networks.moonbase.chain_id }},
       network_id: {{ networks.moonbase.chain_id }},
-      rpc_url: "{{ networks.moonbase.public_rpc_url }}",
+      rpc_url: "{{ networks.moonbase.rpc_url }}",
       native_currency: {
         symbol: "DEV",
         name: "DEV",

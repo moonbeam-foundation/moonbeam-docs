@@ -7,14 +7,33 @@ description: Use one of the supported API providers to connect to a public endpo
 
 ![API Providers banner](/images/builders/get-started/endpoints/endpoints-banner.png)
 
-## Endpoint Providers
+## Public Endpoints {: #public-endpoints }
+
+There are public endpoints available for development on the Moonbase Alpha TestNet. For Moonbeam or Moonriver, you'll need to get your own endpoint from one of the supported [Endpoint Providers](#endpoint-providers).
+
+Moonbase Alpha has two endpoints available for users to connect to: one for HTTPS and one for WSS.
+
+### HTTPS {: #https }
+
+--8<-- 'code/endpoints/moonbase-https.md'
+
+### WSS {: #wss }
+
+--8<-- 'code/endpoints/moonbase-wss.md'
+
+### Relay Chain {: #relay-chain }
+
+--8<-- 'text/testnet/relay-chain.md'
+
+
+## Endpoint Providers {: #endpoint-providers }
 
 You can create your own endpoint suitable for development or production use using any of the following API providers:
 
 - [Bware Labs](#bware-labs)
 - [OnFinality](#onfinality)
 
-### Bware Labs
+### Bware Labs {: #bware-labs }
 
 As a user of the [Bware Labs](https://bwarelabs.com/) platform, you will be able to obtain your own free endpoint allowing you to interact with Moonbeam, just by performing a few simple clicks within a user-friendly interface.
 
@@ -27,7 +46,7 @@ To get started, you'll need to head to [Bware Labs](https://app.bwarelabs.com/),
 
 ![Bware Labs](/images/builders/get-started/endpoints/endpoints-1.png)
 
-### OnFinality
+### OnFinality {: #onfinality }
 
 [OnFinality](https://onfinality.io/) provides a free API key based endpoint for customers that provide higher rate limits and performance than the free public endpoint. You also receive more in depth analytics of the usage of your application.
 

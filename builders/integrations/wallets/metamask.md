@@ -99,7 +99,7 @@ Now that you have created the button, you need to add the `configureMoonbaseAlph
                                 symbol: 'DEV',
                                 decimals: 18
                             },
-                        rpcUrls: ["{{ networks.moonbase.public_rpc_url }}"],
+                        rpcUrls: ["{{ networks.moonbase.rpc_url }}"],
                         blockExplorerUrls: ["{{ networks.moonbase.block_explorer }}"]
                         },
                     ]

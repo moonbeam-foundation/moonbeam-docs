@@ -2,7 +2,21 @@
 
 ### Network Endpoints
 
-Moonbase Alpha has two types of endpoints available for users to connect to: one for HTTPS and one for WSS. You can check out the [Endpoint Providers](/builders/get-started/endpoints/) section of the documentation to get your own endpoint and API key from one of the supported providers.
+Moonbase Alpha has two types of endpoints available for users to connect to: one for HTTPS and one for WSS.
+
+If you're looking for your own endpoints suitable for production use, you can check out the [Endpoint Providers](/builders/get-started/endpoints/#endpoint-providers) section of our documentation. Otherwise, to get started quickly you can use one of the following public HTTPS or WSS endpoints.
+
+#### HTTPS {: #https }
+
+--8<-- 'code/endpoints/moonbase-https.md'
+
+#### WSS {: #wss }
+
+--8<-- 'code/endpoints/moonbase-wss.md'
+
+#### Relay Chain {: #relay-chain }
+
+--8<-- 'text/testnet/relay-chain.md'
 
 ### Quick Start {: #quick-start } 
 
