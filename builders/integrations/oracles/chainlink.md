@@ -195,7 +195,7 @@ If you want to run your own custom client contract but use the oracle node being
 | Oracle Contract | {{ networks.moonbase.chainlink.oracle_contract }} |
 |   LINK Token    |  {{ networks.moonbase.chainlink.link_contract }}  |
 
-Keep in mind that the LINK token payment is set to zero.
+If you decide to go this route, please keep in mind that the oracle node only supports the job IDs listed in the previous section. You'll only be able to access the pricing data for the supported pairs. If you need more functionality or want to use another API, please check out the [Create Custom Contracts using your own Oracle Node](#create-custom-contracts-using-your-own-oracle-node) section.
 
 To build your own client contract using the `ChainlinkClient`, you'll need to start by importing the contract:
 
@@ -204,6 +204,8 @@ import "https://github.com/smartcontractkit/chainlink/evm-contracts/src/v0.8/Cha
 ```
 
 You can checkout out the [Chainlink documentation on ChainlinkClient API Reference](https://docs.chain.link/docs/chainlink-framework/){target=_blank} for more information.
+
+Keep in mind that the LINK token payment is set to zero.
 
 ### Create Custom Contracts using your own Oracle Node {: #create-custom-contracts-using-your-own-oracle-node } 
 
