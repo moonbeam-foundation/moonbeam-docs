@@ -23,9 +23,9 @@ There are a few ways you can get started fetching data from an oracle on Moonbea
 - You can create your own custom client contract instead of the pre-deployed client contract to be used with the Moonbeam oracle node
 - You can create your own custom contracts and run your own oracle node
 
-The pre-deployed contracts and oracle node run by Moonbeam support a limited set of job IDs that can be used to fetch price data for various asset pairs. If you need additional data, please refer to the [Other Requests](#other-requests) section below to learn how to get started.
+The pre-deployed contracts and oracle node run by Moonbeam support a limited set of job IDs that can be used to fetch price data for various asset pairs. If you need additional data, please refer to the [Create Custom Contracts using your own Oracle Node](#create-custom-contracts-using-your-own-oracle-node) section below to learn how to get started.
 
-It's also important to note that the client contract must have a LINK tokens balance to be able to pay for requests. For the pre-deployed setup, the LINK value has been set to zero. If you deploy your own setup, you can also set the LINK value to zero in your `ChainlinkClient.sol` contract, but you still need to have the LINK token contract deployed.
+It's also important to note that the client contract must have a LINK tokens balance to be able to pay for requests. For the pre-deployed setup, the LINK value has been set to zero. If you deploy your own setup, you can also set the LINK value to zero in your `ChainlinkClient.sol` contract, and you can choose to deploy your own LINK token contract or use the pre-deployed one.
 
 ### Use Pre-deployed Contracts {: #use-pre-deployed-contracts }
 
@@ -211,7 +211,7 @@ To get started with your own setup, including your own client contract, oracle c
 
 If you [created a job to be used with any API](/node-operators/oracle-nodes/node-chainlink/#using-any-api){target=_blank}, you can then create a client contract that sets the API endpoint URL to perform the GET request on.
 
-Note that the client contract must have a LINK tokens balance to be able to pay for requests. Therefore, you will need to set the LINK value to zero in your `ChainlinkClient.sol` contract. You'll also need to make sure that your oracle node has a `MINIMUM_CONTRACT_PAYMENT` of `0`. You can verify that it has been set to `0` by checking out the [**Configuration** section of your node](http://localhost:6688/config){target=_blank}.
+Note that the client contract must have a LINK tokens balance to be able to pay for requests. Therefore, you will need to set the LINK value to zero in your `ChainlinkClient.sol` contract. You'll also need to make sure that your oracle node has a `MINIMUM_CONTRACT_PAYMENT` of `0`. You can verify that it has been set to zero by checking out the [**Configuration** section of your node](http://localhost:6688/config){target=_blank}.
 
 The following client contract is an example of how to use any API from within your client contract:
 
@@ -288,7 +288,7 @@ Once you've deployed the contract on Remix, you can begin to request the volume 
 
 Before going into fetching the data itself, it is important to understand the basics of price feeds.
 
-In a standard configuration, each price feed is updated by a decentralized oracle network. Each oracle node is rewarded for publishing the price data to the aggregator contract. The aggregator contract receives periodic data updates from the network of oracles and aggregates and stores the data on-chain so that consumers can easily fetch it. However, the information is only updated if a minimum number of responses from oracle nodes are received (during an aggregation round).
+In a standard configuration, each price feed is updated by a decentralized oracle network. Each oracle node is rewarded for publishing the price data to the [aggregator contract](https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol){target=_blank}. The aggregator contract receives periodic data updates from the network of oracles and aggregates and stores the data on-chain so that consumers can easily fetch it. However, the information is only updated if a minimum number of responses from oracle nodes are received (during an aggregation round).
 
 The end-user can retrieve price feeds with read-only operations via an aggregator interface, or via a Consumer interface through the Proxy.
 
@@ -333,7 +333,7 @@ interface AggregatorV3Interface {
 
 As seen above in the interface, there are five functions for fetching data: `decimal`, `description`, `version`, `getRoundData`, and `latestRoundData`.
 
-Currently, there are data feed contracts for the the following price pairs:
+Currently, there are [data feed contracts](https://docs.chain.link/docs/data-feeds-moonriver/){target=_blank} for the the following price pairs:
 
 === "Moonriver"
     |  Base/Quote  |                      Data Feed Contract                      |
@@ -419,6 +419,6 @@ This will create an instance of the aggregator interface that you can interact w
 
 Note that to obtain the real price, you must account for the decimals of the price feed, available with the `decimals()` method.
 
-If there is any specific pair you want to be included, feel free to reach out through [Discord](https://discord.com/invite/PfpUATX).
+If there is any specific pair you want to be included, feel free to reach out through [Discord](https://discord.com/invite/PfpUATX){target=_blank}.
 
 --8<-- 'text/disclaimers/third-party-content.md'
