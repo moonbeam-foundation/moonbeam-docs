@@ -12,7 +12,7 @@ If you're looking for your own endpoints suitable for production use, you can ch
 
 #### WSS {: #wss }
 
---8<-- 'code/endpoints/moonbase-https.md'
+--8<-- 'code/endpoints/moonbase-wss.md'
 
 #### Relay Chain {: #relay-chain }
 
