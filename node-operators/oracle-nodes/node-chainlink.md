@@ -156,7 +156,7 @@ With the oracle node running, you can start to configure the smart contract side
 
 Next, you'll need to deploy the oracle contract, which is the middleware between the chain and the node. The contract emits an event with all the necessary information, which is read by the oracle node. Then, the node fulfills the request and writes the requested data in the caller's contract.
 
-The source code of the oracle contract can be found in [Chainlink's official GitHub repository](https://github.com/smartcontractkit/chainlink/tree/develop/contracts/src/v0.6){target=_blank}. For this example, you can use Remix to interact with Moonbase Alpha and deploy the contract. In [Remix](https://remix.ethereum.org/){target=_blank}, you can create a new file and copy the following code:
+The source code of the oracle contract can be found in [Chainlink's official GitHub repository](https://github.com/smartcontractkit/chainlink/tree/develop/contracts/src/v0.6/Oracle.sol){target=_blank}. For this example, you can use Remix to interact with Moonbase Alpha and deploy the contract. In [Remix](https://remix.ethereum.org/){target=_blank}, you can create a new file and copy the following code:
 
 ```
 pragma solidity ^0.6.6;
@@ -183,7 +183,7 @@ Lastly, you have to bond the oracle node and the oracle smart contract. A node c
 
 ![Authorize Chainlink Oracle Node](/images/node-operators/oracle-nodes/chainlink/chainlink-node-5.png)
 
-## Create Job on the Oracle node {: #create-job-on-the-oracle-node } 
+## Creating a Job {: #creating-a-job } 
 
 The last step to have a fully configured Chainlink oracle is to create a job. Referring to [Chainlink’s official documentation](https://docs.chain.link/docs/job-specifications){target=_blank}:
 
@@ -191,7 +191,7 @@ The last step to have a fully configured Chainlink oracle is to create a job. Re
 
 Seeing an oracle as an API service, a job here would be one of the functions that we can call and that will return a result. To get started creating your first job, take the following steps:
 
-1. Go to the [Jobs sections of your node](http://localhost:6688/jobs)
+1. Go to the [Jobs sections of your node](http://localhost:6688/jobs){target=_blank}
 2. Click on **New Job**
 
 ![Chainlink oracle New Job](/images/node-operators/oracle-nodes/chainlink/chainlink-node-6.png)
@@ -233,6 +233,34 @@ Next, you can create the new job:
 ![Chainlink New Job JSON Blob](/images/node-operators/oracle-nodes/chainlink/chainlink-node-7.png)
 
 And that is it! You have fully set up a Chainlink oracle node that is running on Moonbase Alpha.
+
+### Using Any API {: #using-any-api }
+
+You can also create and use a job spec to work with any API. You can search for pre-existing jobs from an independent listing service such as [market.link](https://market.link/){target=_blank}. Please note that although the jobs might be implented for other networks, you'll be able to use the job spec to create the job for your oracle node on Moonbase Alpha.
+
+Once you find a job that fits your needs, you can click on the job details to get the job spec. Under the **Job Spec** tab, you can copy the JSON and use it to create a new job.
+
+For example, the previous job spec can be altered to be more generic so it can be used for any API:
+
+```json
+{
+  "initiators": [
+    {
+      "type": "runlog",
+      "params": { "address": "YOUR-ORACLE-CONTRACT-ADDRESS" }
+    }
+  ],
+  "tasks": [
+    { "type": "httpget" },
+    { "type": "jsonparse" },
+    { "type": "multiply" },
+    { "type": "ethuint256" },
+    { "type": "ethtx" }
+  ]
+}
+```
+
+If you need a more custom solution, you can check out Chainlink's documentation to learn how to build your own [External Adapter](https://docs.chain.link/docs/developers/){target=_blank}. 
 
 ## Test the Oracle {: #test-the-oracle } 
 

@@ -15,7 +15,7 @@ Developers can now use [Chainlink's decentralized Oracle network](https://chain.
 
 --8<-- 'text/chainlink/brm.md'
 
-### Getting Started {: #getting-started }
+## Fetching Data {: #fetching-data }
 
 There are a few ways you can get started fetching data from an oracle on Moonbeam:
 
@@ -186,7 +186,7 @@ For this example, you can go ahead and use the interface contract with the `BTC 
 
 If there is any specific pair you want to be included, feel free to reach out to the Moonbeam team through [Discord](https://discord.com/invite/PfpUATX){target=_blank}.
 
-### Use your own Client Contract {: #use-your-own-client-contract } 
+### Create a Custom Client Contract {: #create-a-custom-client-contract } 
 
 If you want to run your own custom client contract but use the oracle node being run by Moonbeam, you can do so with the following information:
 
@@ -197,13 +197,92 @@ If you want to run your own custom client contract but use the oracle node being
 
 Keep in mind that the LINK token payment is set to zero.
 
-### Other Requests {: #other-requests } 
+To build your own client contract using the `ChainlinkClient`, you'll need to start by importing the contract:
 
-Chainlink's oracles can tentatively provide many different types of data feeds with the use of external adapters. However, for simplicity, the oracle node run by Moonbeam is configured to deliver only price feeds.
+```
+import "https://github.com/smartcontractkit/chainlink/evm-contracts/src/v0.8/ChainlinkClient.sol";
+```
 
-If you are interested in running your own oracle node, please visit the [Run a Chainlink Oracle Node on Moonbeam](/node-operators/oracle-nodes/node-chainlink/){target=_blank} guide. Also, it is recommended to go through [Chainlink's documentation site](https://docs.chain.link/docs){target=_blank}.
+You can checkout out the [Chainlink documentation on ChainlinkClient API Reference](https://docs.chain.link/docs/chainlink-framework/){target=_blank} for more information.
 
-Note that the client contract must have a LINK tokens balance to be able to pay for requests. Therefore, you will need to set the LINK value to zero in your `ChainlinkClient.sol` contract.
+### Create Custom Contracts using your own Oracle Node {: #create-custom-contracts-using-your-own-oracle-node } 
+
+To get started with your own setup, including your own client contract, oracle contract, and oracle node, you'll need to start off running an oracle node. You can follow the [Run a Chainlink Oracle Node on Moonbeam](/node-operators/oracle-nodes/node-chainlink/){target=_blank} guide to spin up your own oracle node. You'll also learn how to setup your oracle contract and create jobs. 
+
+If you [created a job to be used with any API](/node-operators/oracle-nodes/node-chainlink/#using-any-api){target=_blank}, you can then create a client contract that sets the API endpoint URL to perform the GET request on.
+
+Note that the client contract must have a LINK tokens balance to be able to pay for requests. Therefore, you will need to set the LINK value to zero in your `ChainlinkClient.sol` contract. You'll also need to make sure that your oracle node has a `MINIMUM_CONTRACT_PAYMENT` of `0`. You can verify that it has been set to `0` by checking out the [**Configuration** section of your node](http://localhost:6688/config){target=_blank}.
+
+The following client contract is an example of how to use any API from within your client contract:
+
+```
+pragma solidity ^0.8.7;
+
+import "@chainlink/contracts/src/v0.8/ChainlinkClient.sol";
+
+contract Client is ChainlinkClient {
+    using Chainlink for Chainlink.Request;
+
+    address private oracle;
+    bytes32 private jobId;
+    uint256 private fee;
+    uint256 public volume;
+
+    /**
+    This example uses the LINK token address on Moonbase Alpha.
+    Make sure to update the oracle and jobId.
+    */
+    constructor() {
+        setChainlinkToken(address(0xa36085F69e2889c224210F603D836748e7dC0088));
+        oracle = {INSERT-YOUR-ORACLE-NODE-ADDRESS};
+        jobId = "{INSERT-YOUR-JOB-ID}";
+        fee = 0;
+    }
+
+    /**
+     * Create a Chainlink request to retrieve API response, find the target
+     * data, then multiply by 1000000000000000000 (to remove decimal places from data).
+     */
+    function requestVolumeData() public returns (bytes32 requestId) {
+        Chainlink.Request memory request = buildChainlinkRequest(jobId, address(this), this.fulfill.selector);
+
+        // Set the URL to perform the GET request on
+        request.add("get", "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH&tsyms=USD");
+
+        // Set the path to find the desired data in the API response, where the response format is:
+        // {"RAW":
+        //   {"ETH":
+        //    {"USD":
+        //     {
+        //      "VOLUME24HOUR": xxx.xxx,
+        //     }
+        //    }
+        //   }
+        //  }
+        request.add("path", "RAW.ETH.USD.VOLUME24HOUR");
+
+        // Multiply the result by 1000000000000000000 to remove decimals
+        int timesAmount = 10**18;
+        request.addInt("times", timesAmount);
+
+        // Sends the request
+        return sendChainlinkRequestTo(oracle, request, fee);
+    }
+
+    /**
+     * Receive the response in the form of uint256
+     */ 
+    function fulfill(bytes32 _requestId, uint256 _volume) public recordChainlinkFulfillment(_requestId)
+    {
+        volume = _volume;
+    }
+}
+```
+
+!!! note
+    The above example uses the pre-deployed LINK token contract address. You also have the option of deploying your own LINK token contract and using that instead.
+
+Once you've deployed the contract on Remix, you can begin to request the volume data. After you make a request, you can check the status of the job by going to the [**Jobs** section of your node](http://localhost:6688/jobs){target=_blank}.
 
 ## Price Feeds {: #price-feeds } 
 
