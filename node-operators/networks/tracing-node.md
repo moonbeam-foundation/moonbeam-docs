@@ -98,7 +98,7 @@ The complete command for running a tracing node is as follows:
     --runtime-cache-size 32 \
     -- \
     --execution wasm \
-    --pruning archive \
+    --pruning 1000 \
     --name="Moonbeam-Tutorial (Embedded Relay)"
     ```
 
@@ -118,7 +118,7 @@ The complete command for running a tracing node is as follows:
     --runtime-cache-size 32 \
     -- \
     --execution wasm \
-    --pruning archive \
+    --pruning 1000 \
     --name="Moonbeam-Tutorial (Embedded Relay)"
     ```
 
@@ -138,7 +138,7 @@ The complete command for running a tracing node is as follows:
     --runtime-cache-size 32 \
     -- \
     --execution wasm \
-    --pruning archive \
+    --pruning 1000 \
     --name="Moonbeam-Tutorial (Embedded Relay)"
     ```
 
@@ -159,7 +159,7 @@ The complete command for running a tracing node is as follows:
 
 You should see a terminal log similar to the following if you spun up a Moonbase Alpha tracing node:
 
-![Debug API](/images/builders/tools/debug-trace/debug-trace-1.png)
+![Debug API](/images/builders/build/eth-api/debug-trace/debug-trace-1.png)
 
 ## Additional Flags {: #additional-flags }
 

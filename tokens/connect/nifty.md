@@ -39,12 +39,12 @@ Enter the RPC URL for Moonbeam in the **New RPC URL** field:
 
 === "Moonbeam"
     ```
-      {{ networks.moonbeam.rpc_url }}
+      {{ networks.moonbeam.public_rpc_url }}
     ```
 
 === "Moonriver"
     ```
-      {{ networks.moonriver.rpc_url }}
+      {{ networks.moonriver.public_rpc_url }}
     ```
     
 === "Moonbase Alpha"
@@ -75,7 +75,7 @@ In Remix, when deploying a smart contract, make sure you select the **Injected W
 
 <img src="/images/tokens/connect/nifty/nifty-5.png" alt="Nifty sign transaction" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 
-Since this example is on Moonbase Alpha, ensure you have DEV tokens in your account and, if necessary, head to the [faucet](/builders/get-started/moonbase/#get-tokens/) to obtain some tokens. By clicking on **Submit**, you are signing this transaction, and the contract will be deployed to the Moonbase Alpha TestNet.
+Since this example is on Moonbase Alpha, ensure you have DEV tokens in your account and, if necessary, head to [Mission Control](/builders/get-started/moonbase/#get-tokens/) to obtain some tokens. By clicking on **Submit**, you are signing this transaction, and the contract will be deployed to the Moonbase Alpha TestNet.
 
 !!! note
     Please note that although your account balance shows ETH, it is not real ETH, and just DEV tokens. 

@@ -221,7 +221,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
-         --pruning=archive \
+         --pruning=1000 \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
     [Install]
@@ -260,7 +260,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
-         --pruning=archive \
+         --pruning=1000 \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
     [Install]
@@ -299,7 +299,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
-         --pruning=archive \
+         --pruning=1000 \
          --name="YOUR-NODE-NAME (Embedded Relay)"
 
     [Install]
@@ -341,7 +341,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
-         --pruning=archive \
+         --pruning=1000 \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
     [Install]
@@ -381,7 +381,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
-         --pruning=archive \
+         --pruning=1000 \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
     [Install]
@@ -421,7 +421,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
-         --pruning=archive \
+         --pruning=1000 \
          --name="YOUR-NODE-NAME (Embedded Relay)"
 
     [Install]

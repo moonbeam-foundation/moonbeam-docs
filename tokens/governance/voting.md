@@ -13,9 +13,9 @@ Once a proposal reaches public referenda, token holders can vote on it using the
 
 Referenda are simple, inclusive, and stake-based voting schemes. Each referendum has a proposal associated with it that suggests an action to take place. They have a fixed duration, after which votes are tallied, and the action is enacted if the vote is approved.
 
-In Moonbeam, users will be able to create, second, and vote on proposals using their H160 address and private key, that is, their regular Ethereum account! This guide outlines how to vote on a proposal that has reached a public referendum. There is a seperate guide on [How to Create a Proposal](/tokens/governance/proposals/){target=blank}.
+In Moonbeam, users will be able to create, second, and vote on proposals using their H160 address and private key, that is, their regular Ethereum account! This guide outlines how to vote on a proposal that has reached a public referendum. There is a seperate guide on [How to Create a Proposal](/tokens/governance/proposals/){target=_blank}.
 
-More information related to [Governance](https://wiki.polkadot.network/docs/learn-governance){target=blank} and [Participate in Democracy](https://wiki.polkadot.network/docs/maintain-guides-democracy){target=blank} can be found in Polkadot's Wiki pages.
+More information related to [Governance](https://wiki.polkadot.network/docs/learn-governance){target=_blank} and [Participate in Democracy](https://wiki.polkadot.network/docs/maintain-guides-democracy){target=_blank} can be found in Polkadot's Wiki pages.
 
 !!! note
     This guide was done with a customized version of Moonbeam with short Launch/Enactment periods for demonstration purposes only.
@@ -34,26 +34,25 @@ Some of the key parameters for this guide are the following:
  - **Delegation** — the act of transferring your voting power to another account for up to a certain conviction
 
 === "Moonbeam"
-    |        Variable         |                                                        Value                                                        |
-    |:-----------------------:|:-------------------------------------------------------------------------------------------------------------------:|
-    |      Enact Period       |                                                                                                                     |
-    | Maximum Number of Votes |                                     {{ networks.moonbeam.democracy.max_votes}}                                      |
-    |       Vote Period       | {{ networks.moonbeam.democracy.vote_period.blocks}} blocks ({{ networks.moonbeam.democracy.vote_period.days}} days) |
-
-=== "Moonriver"
     |        Variable         |                                                         Value                                                         |
     |:-----------------------:|:---------------------------------------------------------------------------------------------------------------------:|
-    |      Enact Period       |                                                                                                                       |
-    | Maximum Number of Votes |                                      {{ networks.moonriver.democracy.max_votes}}                                      |
-    |       Vote Period       | {{ networks.moonriver.democracy.vote_period.blocks}} blocks ({{ networks.moonriver.democracy.vote_period.days}} days) |
+    |      Enact Period       | {{ networks.moonbeam.democracy.enact_period.blocks}} blocks ({{ networks.moonbeam.democracy.enact_period.days}} days) |
+    | Maximum Number of Votes |                                      {{ networks.moonbeam.democracy.max_votes}}                                       |
+    |       Vote Period       |  {{ networks.moonbeam.democracy.vote_period.blocks}} blocks ({{ networks.moonbeam.democracy.vote_period.days}} days)  |
+
+=== "Moonriver"
+    |        Variable         |                                                          Value                                                          |
+    |:-----------------------:|:-----------------------------------------------------------------------------------------------------------------------:|
+    |      Enact Period       | {{ networks.moonriver.democracy.enact_period.blocks}} blocks ({{ networks.moonriver.democracy.enact_period.days}} days) |
+    | Maximum Number of Votes |                                       {{ networks.moonriver.democracy.max_votes}}                                       |
+    |       Vote Period       |  {{ networks.moonriver.democracy.vote_period.blocks}} blocks ({{ networks.moonriver.democracy.vote_period.days}} days)  |
 
 === "Moonbase Alpha"
-    |        Variable         |                                                        Value                                                        |
-    |:-----------------------:|:-------------------------------------------------------------------------------------------------------------------:|
-    |      Enact Period       |                                                                                                                     |
-    | Maximum Number of Votes |                                     {{ networks.moonbase.democracy.max_votes}}                                      |
-    |       Vote Period       | {{ networks.moonbase.democracy.vote_period.blocks}} blocks ({{ networks.moonbase.democracy.vote_period.days}} days) |
-
+    |        Variable         |                                                         Value                                                         |
+    |:-----------------------:|:---------------------------------------------------------------------------------------------------------------------:|
+    |      Enact Period       | {{ networks.moonbase.democracy.enact_period.blocks}} blocks ({{ networks.moonbase.democracy.enact_period.days}} days) |
+    | Maximum Number of Votes |                                      {{ networks.moonbase.democracy.max_votes}}                                       |
+    |       Vote Period       |  {{ networks.moonbase.democracy.vote_period.blocks}} blocks ({{ networks.moonbase.democracy.vote_period.days}} days)  |
 
 This guide will show you how to vote on a referendum on Moonbase Alpha. It can be adapted for Moonbeam or Moonriver.
 
@@ -63,9 +62,9 @@ This guide will show you how to vote on a referendum on Moonbase Alpha. It can b
 
 ## Voting on a Referendum {: #voting-on-a-referendum } 
 
-This section goes over the process of voting on a referendum. The guide assumes that there is one already taking place, in this case, the one created in the [How to Propose an Action](/tokens/governance/proposals/){target=blank} guide.
+This section goes over the process of voting on a referendum. The guide assumes that there is one already taking place, in this case, the one created in the [How to Propose an Action](/tokens/governance/proposals/){target=_blank} guide.
 
-To vote on a proposal in the network, you need to use the Polkadot.js Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do by following the [Creating or Importaning an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=blank} guide. For this example, three accounts were imported and named with super original names: Alice, Bob, and Charley.
+To vote on a proposal in the network, you need to use the Polkadot.js Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do by following the [Creating or Importing an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=_blank} guide. For this example, three accounts were imported and named with super original names: Alice, Bob, and Charley.
 
 ![Accounts in Polkadot.js](/images/tokens/governance/proposals/proposals-1.png)
 
@@ -143,7 +142,6 @@ From voting, there are some key takeaways:
 After the voting period has expired, the proposal will be visible under the **Dispatch** tab if approved. In here, you can also see the time remaining until the proposal is enacted.
 
 ![Proposal Enactment](/images/tokens/governance/voting/vote-5.png)
-
 
 ### Delegate Voting {: #delegate-voting } 
 
@@ -242,13 +240,12 @@ Where:
 
 In the previous example, these numbers were:
 
-|  Variable  |       Value       |
-|:----------:|:-----------------:|
-|  Approve   | 10800 (1800 x 6)  |
-|  Against   |  80 (800 x 0.1)   |
-|  Turnout   | 2600 (1800 + 800) |
-| Electorate |       1.22M       |
-| **Result** |                   |
+|  Variable  |         Value         |
+|:----------:|:---------------------:|
+|  Approve   |   10800 (1800 x 6)    |
+|  Against   |    80 (800 x 0.1)     |
+|  Turnout   |   2600 (1800 + 800)   |
+| Electorate |         1.22M         |
+| **Result** | 1.5 < 9.8 (Aye wins!) |
 
 In short, a heavy super-majority of aye votes is required to approve a proposal at low turnouts, but as turnout increases, it becomes a simple majority.
-

@@ -9,11 +9,11 @@ description: How to send a proposal to be voted on Moonbeam via governance featu
 
 ## Introduction {: #introduction } 
 
-As mentioned in the [governance overview page](/learn/features/governance/#definitions){target=blank}, a proposal is a submission to the chain in which a token holder suggests for an action to be enacted by the system.
+As mentioned in the [governance overview page](/learn/features/governance/#definitions){target=_blank}, a proposal is a submission to the chain in which a token holder suggests for an action to be enacted by the system.
 
 Proposals are one of the core elements of the governance system because they are the main tool for stakeholders to propose actions/changes, which other stakeholders then vote on. In Moonbeam, users will be able to create, second, and vote on proposals using their H160 address and private key, that is, their regular Ethereum account!
 
-This guide outlines the process of how to create a proposal. The steps will go from its creation until it reaches public referenda. There is a separate guide on [How to Vote on a Proposal](/tokens/governance/voting/){target=blank}. More information can be found in Polkadot's Wiki pages related to [Governance](https://wiki.polkadot.network/docs/learn-governance#council){target=blank} and [Participate in Democracy](https://wiki.polkadot.network/docs/maintain-guides-democracy){target=blank}.
+This guide outlines the process of how to create a proposal. The steps will go from its creation until it reaches public referenda. There is a separate guide on [How to Vote on a Proposal](/tokens/governance/voting/){target=_blank}. More information can be found in Polkadot's Wiki pages related to [Governance](https://wiki.polkadot.network/docs/learn-governance#council){target=_blank} and [Participate in Democracy](https://wiki.polkadot.network/docs/maintain-guides-democracy){target=_blank}.
 
 !!! note
     This guide was done with a customized version of Moonbeam with short Launch/Enactment periods for demonstration purposes only.
@@ -65,7 +65,7 @@ This guide will show you how to submit a proposal on Moonbase Alpha. It can be a
 
 This section goes over the process of creating a proposal, from a preimage until it reaches public referenda. Instead of making a generic example, this guide will actually create a real proposal that will serve as a base for this guide and others.
 
-To make a proposal in the network, you need to use the Polkadot.js Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do following the [Creating or Importing an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=blank} guide. For this example, three accounts were imported and named with super original names: Alice, Bob, and Charley.
+To make a proposal in the network, you need to use the Polkadot.js Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do following the [Creating or Importing an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=_blank} guide. For this example, three accounts were imported and named with super original names: Alice, Bob, and Charley.
 
 ![Accounts in Polkadot.js](/images/tokens/governance/proposals/proposals-1.png)
 

@@ -19,7 +19,7 @@ This guide will cover how to manage your collator account including generating a
 
 Collators will need to sign blocks using an author ID, which is basically a [session key](https://wiki.polkadot.network/docs/learn-keys#session-keys){target=_blank}. To match the Substrate standard, Moonbeam collator's session keys are [SR25519](https://wiki.polkadot.network/docs/learn-keys#what-is-sr25519-and-where-did-it-come-from){target=_blank}. This guide will show you how you can create/rotate your session keys associated with your collator node.
 
-First, make sure you're [running a collator node](/node-operators/networks/run-a-node/overview/){target=blank}. Once you have your collator node running, your terminal should print similar logs:
+First, make sure you're [running a collator node](/node-operators/networks/run-a-node/overview/){target=_blank}. Once you have your collator node running, your terminal should print similar logs:
 
 ![Collator Terminal Logs](/images/node-operators/networks/collators/account-management/account-1.png)
 
@@ -66,7 +66,7 @@ The module also adds the following RPC calls (chain state):
 
 ### Mapping Extrinsic {: #mapping-extrinsic } 
 
-To map your author ID to your account, you need to be inside the [candidate pool](/node-operators/networks/collators/activities/#become-a-candidate){target=blank}. Once you are a candidate, you need to send a mapping extrinsic. Note that this will bond tokens per author ID registered. To do so, take the following steps:
+To map your author ID to your account, you need to be inside the [candidate pool](/node-operators/networks/collators/activities/#become-a-candidate){target=_blank}. Once you are a candidate, you need to send a mapping extrinsic. Note that this will bond tokens per author ID registered. To do so, take the following steps:
 
  1. Head to the **Developer** tab
  2. Select the **Extrinsics** option
@@ -78,7 +78,7 @@ To map your author ID to your account, you need to be inside the [candidate pool
 
 ![Author ID Mapping to Account Extrinsic](/images/node-operators/networks/collators/account-management/account-3.png)
 
-If the transaction is successful, you will see a confirmation notification on your screen. If not, make sure you've [joined the candidate pool](/node-operators/networks/collators/activities/#become-a-candidate){target=blank}.
+If the transaction is successful, you will see a confirmation notification on your screen. If not, make sure you've [joined the candidate pool](/node-operators/networks/collators/activities/#become-a-candidate){target=_blank}.
 
 ![Author ID Mapping to Account Extrinsic Successful](/images/node-operators/networks/collators/account-management/account-4.png)
 
@@ -101,10 +101,10 @@ You should be able to see the H160 account associated with the author ID provide
 
 Setting an on-chain identity enables your collator node to be easily identifiable. As opposed to showing your account address, your chosen display name will be displayed instead. 
 
-There are a couple of ways you can set your identity, to learn how to set an identity for your collator node please check out the [Managing your Account Identity](/builders/interact/identity/){target=blank} page of our documentation.
+There are a couple of ways you can set your identity, to learn how to set an identity for your collator node please check out the [Managing your Account Identity](/builders/interact/identity/){target=_blank} page of our documentation.
 
 ## Proxy Accounts {: #proxy-accounts }
 
 Proxy accounts are accounts that can be enabled to perform a limited number of actions on your behalf. Proxies allow users to keep a primary account securely in cold storage while using the proxy to actively participate in the network on behalf of the primary account. You can remove authorization of the proxy account at any time. As an additional layer of security, you can setup your proxy with a delay period. This delay period would provide you time to review the transaction, and cancel if needed, before it automatically gets executed. 
 
-To learn how to setup a proxy account, please refer to the [Setting up a Proxy Account](/builders/interact/proxy-accounts/){target=blank} page of our documentation.
+To learn how to setup a proxy account, please refer to the [Setting up a Proxy Account](/builders/interact/proxy-accounts/){target=_blank} page of our documentation.

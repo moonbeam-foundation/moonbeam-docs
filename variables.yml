@@ -1,6 +1,6 @@
 networks:
   development:
-    build_tag: v0.20.1
+    build_tag: v0.21.0
     tracing_tag: purestake/moonbeam-tracing:v0.21.0-1300-99fa
     rpc_url: http://127.0.0.1:9933
     chain_id: 1281
@@ -13,8 +13,8 @@ networks:
     hex_chain_id: '0x507'
     chain_spec: alphanet
     block_explorer: https://moonbase.moonscan.io/
-    parachain_release_tag: v0.20.1 # must be in this exact format for links to work
-    parachain_sha256sum: d61a9a9496df4bff1b981b8d32d71da90aad39fa3cecba419eb2814261d19e83
+    parachain_release_tag: v0.21.0 # must be in this exact format for links to work
+    parachain_sha256sum: ab84cece3189554d98d1010f677a53a8663360eb0e78b65900ec636ffa2782b1
     tracing_tag: purestake/moonbeam-tracing:v0.21.0-1300-99fa
     gas_block: 15M
     gas_tx: 12.995M
@@ -170,13 +170,14 @@ networks:
       stable_version: 11.3.9
     tx_weight_to_gas_ratio: 25000
   moonriver:
-    rpc_url: https://rpc.api.moonriver.moonbeam.network
-    wss_url: wss://wss.api.moonriver.moonbeam.network
+    public_rpc_url: https://rpc.api.moonriver.moonbeam.network # for wallets
+    rpc_url: RPC-API-ENDPOINT-HERE
+    wss_url: WSS-API-ENDPOINT-HERE
     chain_id: 1285
     hex_chain_id: '0x505'
     node_directory: /var/lib/moonriver-data
-    parachain_release_tag: v0.20.1
-    parachain_sha256sum: d61a9a9496df4bff1b981b8d32d71da90aad39fa3cecba419eb2814261d19e83
+    parachain_release_tag: v0.21.0
+    parachain_sha256sum: ab84cece3189554d98d1010f677a53a8663360eb0e78b65900ec636ffa2782b1
     tracing_tag: purestake/moonbeam-tracing:v0.21.0-1300-99fa
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
@@ -281,26 +282,51 @@ networks:
     chainlink:
       feed:
         aggregator:
+          inch_usd: '0x1466b4bD0C4B6B8e1164991909961e0EE6a66d8c'
+          aave_usd: '0x37f35ef6735c594e6E803bC81577bAC759d8179C'
+          ankr_usd: '0x94Ee35E8b9B1b4Cd3BDB720242d6d1796b43C2Ff'
+          avax_usd: '0x992F9B8Aa09B8e084acf4e3213d8b2da5D366D6a'
+          axs_usd: '0x9322CeAd48BA0C76Fecc78e82499ce8a829Eab89'
           bnb_usd: '0xD6B013A65C22C372F995864CcdAE202D0194f9bf'
           btc_usd: '0x1B5C6cF9Df1CBF30387C24CC7DB1787CCf65C797'
+          cake_usd: '0xc44ecD8C11fd1F281A3d6044CA65e649484B228c'
+          comp_usd: '0x29710821d57a1Fc46E2D9FdDE65Df2cF205bad2A'
+          crv_usd: '0x03d44d68EdF41c540A90C6eB2BE27C4a75ee689f'
+          dai_usd: '0x7ba0e3EbCe25DD3b5A0f36dd7aB34019B863b08D'
+          dot_usd: '0x54B584eb643375C41c55ddD8Da4b90124b18d05c'
           eth_usd: '0xc3cF399566220dc5Ed6C8CFbf8247214Af103C72'
+          eur_usd: '0xe6Ccbe1Cb33dF799a59E37a1382c7009dbaBE9ff'
           frax_usd: '0xD080d4760318710e795B0a59f181f6C1512ffB15'
+          ftm_usd: '0x5e70fC5f38cB930F9BE8BEAEaF80CF927Af3B17E'
+          fxs_usd: '0xE5B624e1098C25C94279bA20A0CC68Fa9215e63b'
           ksm_usd: '0x6e0513145FCE707Cd743528DB7C1cAB537DE9d1B'
           link_usd: '0xdD27789b504fEd690F406A82F16B45a0901172C0'
+          luna_usd: '0x5F8E0c452EcA522a2208Fff7443515AaFF3cAaE6'
+          mana_usd: '0x424807fA7B16f747CbD30963fAe25fB8Db0b97bF'
           mim_usd: '0xdD6296BD7515271F7E4b10C3A87A2f9863fECa97'
+          mkr_usd: '0xD8542f327FaD60b80D8C19025147E6b9d857bb99'
           movr_usd: '0x3f8BFbDc1e79777511c00Ad8591cef888C2113C1'
+          sand_usd: '0x5403385DF6eb607fc1fA6983eF5801A11eC7fD9a'
+          snx_usd: '0x26E3F9273abC8a01228bE97a106E60FA38b98df2'
+          sushi_usd: '0x28A9E2747a10eE94D2d7359DEB60023D19FfdD96'
+          theta_usd: '0xA0784167e040906b5580e3c4a53932B288f615ce'
+          uni_usd: '0x05Ec3Fb5B7CB3bE9D7150FBA1Fb0749407e5Aa8a'
+          usdc_usd: '0x12870664a77Dd55bBdcDe32f91EB3244F511eF2e'
           usdt_usd: '0xF80DAd54AF79257D41c30014160349896ca5370a'
+          xrp_usd: '0x3FD363679fb59596d45881bbfBe4bb864f3545A2'
+          yfi_usd: '0xE3324ea60FA272BBB4511dDBD4776feFE4674fa0'
     substrate_api_sidecar:
       stable_version: 11.3.3
     tx_weight_to_gas_ratio: 25000
   moonbeam:
-    rpc_url: https://rpc.api.moonbeam.network
-    wss_url: wss://wss.api.moonbeam.network
+    public_rpc_url: https://rpc.api.moonbeam.network # for wallets
+    rpc_url: RPC-API-ENDPOINT-HERE
+    wss_url: WSS-API-ENDPOINT-HERE
     chain_id: 1284
     hex_chain_id: '0x504'
     node_directory: /var/lib/moonbeam-data
-    parachain_release_tag: v0.20.1
-    parachain_sha256sum: d61a9a9496df4bff1b981b8d32d71da90aad39fa3cecba419eb2814261d19e83
+    parachain_release_tag: v0.21.0
+    parachain_sha256sum: ab84cece3189554d98d1010f677a53a8663360eb0e78b65900ec636ffa2782b1
     tracing_tag: purestake/moonbeam-tracing:v0.21.0-1300-99fa
     chain_spec: moonbeam
     block_explorer: https://moonscan.io
@@ -397,7 +423,7 @@ networks:
       staking: '0x0000000000000000000000000000000000000800'
       crowdloan: '0x0000000000000000000000000000000000000801'
       erc20: '0x0000000000000000000000000000000000000802'
-      democracy: '0x0000000000000000000000000000000000000803'
+      democracy: 'not available yet'
       xtokens: '0x0000000000000000000000000000000000000804'
       relay_encoder: '0x0000000000000000000000000000000000000805'
       xcm_transactor: '0x0000000000000000000000000000000000000806'
