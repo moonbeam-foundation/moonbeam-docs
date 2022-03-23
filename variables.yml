@@ -8,7 +8,6 @@ networks:
     container_name: moonbeam_development
     block_explorer: https://moonbeam-explorer.netlify.app/
   moonbase:
-    public_rpc_url: https://rpc.api.moonbase.moonbeam.network # for wallets
     rpc_url: https://rpc.api.moonbase.moonbeam.network
     chain_id: 1287
     hex_chain_id: '0x507'
