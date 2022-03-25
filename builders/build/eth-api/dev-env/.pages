@@ -6,4 +6,5 @@ nav:
   - hardhat.md
   - truffle.md
   - waffle-mars.md
+  - brownie.md
   - scaffold-eth.md
