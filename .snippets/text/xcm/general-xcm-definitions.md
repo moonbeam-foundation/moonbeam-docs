@@ -1,0 +1,7 @@
+## General XCM Definitions
+
+ - **XCM** — stands for cross-consensus message, it is a general way for consesus systems to communicate with eachother
+ - **VMP** — stands for vertical message passing, it allows parachains to exchange messages with the relay chain. *UMP* (upward message passing) allows parachains to send messages to their relay chain, while *DMP* (downward message passing) allows the relay chain to pass messages down to one of their parachains
+ - **XCMP** — stands for cross-consensus message passing, it allows parachains to exchange messages with other parachains on the same relay chain
+ - **HRMP** — stands for horizontal relay-routed message passing, a stop-gap protocol while a full XCMP implementation is launched. Same interface as XCMP, but messages are stored on the relay chain
+ - **Multilocation** —  a way to specify a point in the entire Relay Chain/Parachain ecosystem from a given origin. For example, it can be used to specify a specific parachain, asset, account, or even a pallet inside a parachain. In general terms, a multilocation is defined with a `parents` and an `interior`. Parents refers to how many "hops" into a parent blockchain you need to take from a given origin. The interior, refers to how many fields you need to define the target point. For example, to target a parachain with ID `1000` from another parachain, the multilocation would be `{ "parents": 1, "interior": { "X1": [{ "Parachain": 1000 }]}}`
