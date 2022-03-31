@@ -193,7 +193,7 @@ Now, you're ready to return to Remix to vote on the referendum via the democracy
 1. Expand the Democracy precompile contract to see the available functions if it is not already open
 2. Find the **standard_vote** function and press the button to expand the section
 3. Enter the index of the referendum to vote on
-4. Enter 0 for nay or 1 for aye. In the context of a referendum, nay is a vote to keep the status quo unchanged. Aye is a vote to enact the action proposed by the referendum
+4. Leave this field empty for nay or input 1 for aye. In the context of a referendum, nay is a vote to keep the status quo unchanged. Aye is a vote to enact the action proposed by the referendum
 5. Enter the number of tokens to lock in WEI. Avoid entering your full balance here because you need to pay for transaction fees
 6. Enter a conviction between 0-6 inclusive that represents the desired lock period for the tokens committed to the vote, where 0 represents no lock period and 6 represents the maximum lock period. For more information on lock periods, see [voting on a proposal](/tokens/governance/voting/)
 7. Press **transact** and confirm the transaction in MetaMask
