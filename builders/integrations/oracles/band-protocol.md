@@ -1,13 +1,13 @@
 ---
 title: Band Protocol
-description: How to use request data from a Band Protocol Oracle in your Moonbeam Ethereum DApp using smart contracts or javascript
+description: How to use request data from a Band Protocol Oracle in your Moonbeam Ethereum DApp using smart contracts or JavaScript
 ---
 # Band Protocol Oracle
 
 ![Band Protocol Moonbeam Diagram](/images/builders/integrations/oracles/band/band-banner.png)
 
 ## Introduction {: #introduction } 
-Developers have two ways to fetch prices from Band’s oracle infrastructure. On one hand, they can use Band’s smart contracts on Moonbeam. Doing so, they access data that is on-chain and is updated either at regular intervals or when price slippage is more than a target amount (different for each token). On the other hand, devs can use the Javascript helper library, which uses an API endpoint to fetch the data using similar functions as those from the smart contracts, but this implementation bypasses the blockchain entirely.  This can be useful if your DApp front-end needs direct access to the data.
+Developers have two ways to fetch prices from Band’s oracle infrastructure. On one hand, they can use Band’s smart contracts on Moonbeam. Doing so, they access data that is on-chain and is updated either at regular intervals or when price slippage is more than a target amount (different for each token). On the other hand, devs can use the JavaScript helper library, which uses an API endpoint to fetch the data using similar functions as those from the smart contracts, but this implementation bypasses the blockchain entirely.  This can be useful if your DApp front-end needs direct access to the data.
 
 The Aggregator Contract address can be found in the following table:
 
@@ -28,7 +28,7 @@ At the time of writing, the list of supported symbols can be found by following 
 As stated before, developers can leverage two methods to query prices from Band's oracle: 
 
  - Band's smart contract on Moonbeam (deployed to Moonbase Alpha TestNet for now)
- - Javascript helper library
+ - JavaScript helper library
 
 ## Get Data Using Smart Contracts {: #get-data-using-smart-contracts } 
 Contracts can query on-chain data, such as token prices, from Band's oracle by implementing the interface of the `StdReference` contract, which exposes the `getReferenceData` and `getReferenceDataBulk` functions.
@@ -180,7 +180,7 @@ This will create an instance of the demo contract that you can interact with. Us
 
 ![Band Protocol Remix check price](/images/builders/integrations/oracles/band/band-demo-2.png)
 
-## BandChain.js Javascript Helper Library {: #bandchainjs-javascript-helper-library } 
+## BandChain.js JavaScript Helper Library {: #bandchainjs-javascript-helper-library } 
 
 The helper library also supports a similar `getReferenceData` function. To get started, the library needs to be installed:
 
@@ -219,7 +219,7 @@ Where `lastUpdatedBase` and `lastUpdatedQuote` are the last time when the base a
 
 ### Example Usage {: #example-usage } 
 
-The following Javascript script provides a simple example of the `getReferenceData` function.
+The following JavaScript script provides a simple example of the `getReferenceData` function.
 
 ```js
 const BandChain = require('@bandprotocol/bandchain.js');

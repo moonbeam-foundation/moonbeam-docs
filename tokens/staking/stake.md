@@ -234,7 +234,7 @@ If you want to remove all ongoing delegations, you can adapt the **Extrinsics** 
 1. Select the account to remove all the delegations for
 2. Choose the **parachainStaking** pallet
 3. Choose the **executeLeaveDelegators** extrinsic
-4. Enter the total number of all delegations to revoke using the `delegationCount` [you retrieved from the Javascript console](#get-your-number-of-existing-delegations). This is `0` if you haven't yet delegated a candidate
+4. Enter the total number of all delegations to revoke using the `delegationCount` [you retrieved from the JavaScript console](#get-your-number-of-existing-delegations). This is `0` if you haven't yet delegated a candidate
 5. Click the **Submit Transaction** button and sign the transaction
 
 ![Staking Execute Leave Delegators Extrinsic](/images/tokens/staking/stake/stake-20.png)

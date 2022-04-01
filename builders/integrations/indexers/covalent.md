@@ -99,7 +99,7 @@ curl https://api.covalenthq.com/v1/1287/tokens/\
 
 Unless you already owned some ERTH tokens, your address will be missing from that list. Head over to the [Moonbase Alpha ERC-20 Faucet](https://moonbase-minterc20.netlify.app/) to generate some ERTH tokens for yourself. Now repeat the same Covalent API request as above. The Covalent API updates in real-time, so you should now see your address in the list of token holders for the ERTH token.
 
-## Javascript Examples {: #javascript-examples } 
+## JavaScript Examples {: #javascript-examples } 
 
 Copy and paste the below code block into your preferred environment, or [JSFiddle](https://jsfiddle.net/). After setting the API key, set the address constant. Remember for Moonbase Alpha the chain ID is `{{ networks.moonbase.chain_id }}`.
 
@@ -155,7 +155,7 @@ Copy and paste the below code block into your preferred environment, or [JSFiddl
 
 The balances endpoint returns a list of all ERC-20 and NFT token balances, including ERC-721 and ERC-1155 balances, along with their current spot prices (if available).
 
-![Javascript Console Output](/images/builders/integrations/indexers/covalent/covalentjs.png)
+![JavaScript Console Output](/images/builders/integrations/indexers/covalent/covalentjs.png)
 
 ## Python Example {: #python-example } 
 

@@ -1,6 +1,6 @@
 ---
 title: Chainlink
-description: How to use request data from a Chainlink Oracle in your Moonbeam Ethereum Dapp using smart contracts or Javascript
+description: How to use request data from a Chainlink Oracle in your Moonbeam Ethereum Dapp using smart contracts or JavaScript
 ---
 
 # Chainlink Oracle
