@@ -8,13 +8,15 @@ description: Follow this tutorial to learn the basic of how to use the polkadot.
 
 ## Introduction {: #introduction }
 
-Polkadot.js API library allows application developers to query a Moonbeam node and interact with the node's Polkadot or Substrate interfaces using Javascript. Here you will find an overview of the available functionalities and some commonly used code examples to get you started on interacting with Moonbeam networks using polkadot.js API library. 
+[Polkadot.js API](https://polkadot.js.org/docs/api/){target=_blank} library allows application developers to query a Moonbeam node and interact with the node's Polkadot or Substrate interfaces using JavaScript. Here you will find an overview of the available functionalities and some commonly used code examples to get you started on interacting with Moonbeam networks using polkadot.js API library. 
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
 Installing and using polkadot.js API library requires node.js to be installed. 
 
 --8<-- 'text/common/install-nodejs.md'
+
+--8<-- 'text/common/endpoint-examples.md'
 
 ### Installing Polkadot.js API library {: #installing-polkadot.js-api-library } 
 
@@ -43,6 +45,8 @@ import { typesBundlePre900 } from "moonbeam-types-bundle"
 ## Creating an API Provider Instance {: #creating-an-API-provider-instance }
 
 Similar to ETH API libraries, you must first instantiate an API instance of polkadot.js API. Create the `WsProvider` using the websocket endpoint of the Moonbeam network you wish to interact with. 
+
+--8<-- 'text/common/endpoint-examples.md'
 
 === "Moonbeam"
     ```javascript
@@ -107,7 +111,7 @@ Here is a code sample for retrieving basic account information given its address
 ...
 
 // Define wallet address
-const addr = 'INSERT-MOONBEAM-WALLET-ADDRESS';
+const addr = 'MOONBEAM-WALLET-ADDRESS-HERE';
 
 // Retrieve the last timestamp
 const now = await api.query.timestamp.now();
@@ -115,11 +119,13 @@ const now = await api.query.timestamp.now();
 // Retrieve the account balance & current nonce via the system module
 const { nonce, data: balance } = await api.query.system.account(addr);
 
-// retrieve the given account's next index/nonce, taking txs in the pool into account
+// Retrieve the given account's next index/nonce, taking txs in the pool into account
 const nextNonce = await api.rpc.system.accountNextIndex(addr);
 
 console.log(`${now}: balance of ${balance.free} and a current nonce of ${nonce} and next nonce of ${nextNonce}`);
 ```
+
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/substrate-api/state-queries.js){target=_blank}.
 
 ### RPC Queries {: #rpc-queries }
 
@@ -141,6 +147,8 @@ const lastHeader = await api.rpc.chain.getHeader();
 console.log(`${chain}: last block #${lastHeader.number} has hash ${lastHeader.hash}`);
 ```
 
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/substrate-api/rpc-queries.js){target=_blank}.
+
 ### Query Subscriptions {: #query-subscriptions }
 
 The RPCs lend themselves to using subscriptions. We can adapt the previous example to start using subscriptions to listen to new blocks.
@@ -148,6 +156,9 @@ The RPCs lend themselves to using subscriptions. We can adapt the previous examp
 ```javascript
 // Initialize the API provider as in the previous section
 ...
+
+// Retrieve the chain name
+const chain = await api.rpc.system.chain();
 
 // Subscribe to the new headers
 await api.rpc.chain.subscribeNewHeads((lastHeader) => {
@@ -164,17 +175,19 @@ Other calls under `api.query.*` can be modifed in a similar fashion to use subsc
 ...
 
 // Define wallet address
-const addr = 'INSERT-MOONBEAM-WALLET-ADDRESS';
+const addr = 'MOONBEAM-WALLET-ADDRESS-HERE';
 
 // Subscribe to balance changes for a specified account
-const unsub = await api.query.system.account(addr, ({ nonce, data: balance }) => {
+await api.query.system.account(addr, ({ nonce, data: balance }) => {
   console.log(`free balance is ${balance.free} with ${balance.reserved} reserved and a nonce of ${nonce}`);
 });
 ```
 
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/substrate-api/query-subscriptions.js){target=_blank}.
+
 ## Keyrings {: #keyrings }
 
-The Keyring object is used for maintaining key pairs, and the signing of any data, whether it's a transfer, a message or a contract interaction.  
+The Keyring object is used for maintaining key pairs, and the signing of any data, whether it's a transfer, a message, or a contract interaction.  
 
 ### Creating a Keyring Instance {: #creating-a-keyring-instance }
 
@@ -190,17 +203,17 @@ const keyring = new Keyring({ type: 'ethereum' });
 
 ### Adding Accounts {: #adding-accounts }
 
-There are a number of ways to add an account to the keyring instance, including from the mnemonic phase, and from the shortform private key. The following sample code will provide some examples:
+There are a number of ways to add an account to the keyring instance, including from the mnemonic phrase, and from the shortform private key. The following sample code will provide some examples:
 
 ```javascript
-// Import the required classes
+// Import the required packages
 import Keyring from '@polkadot/keyring';
 import { u8aToHex } from '@polkadot/util';
 import { mnemonicToLegacySeed, hdEthereum} from '@polkadot/util-crypto';
 
-// Import Ethereum Account from Mnemonic
+// Import Ethereum account from mnemonic
 const keyringECDSA = new Keyring({ type: 'ethereum' });
-const mnemonic = 'INSERT-MNEMONIC';
+const mnemonic = 'MNEMONIC-HERE';
 
 // Define index of the derivation path and the derivation path
 const index = 0;
@@ -209,7 +222,7 @@ const subsDerPath = '//hard/soft';
 console.log(`Mnemonic: ${mnemonic}`);
 console.log(`--------------------------\n`);
 
-// Extract Eth address from mnemonic
+// Extract Ethereum address from mnemonic
 const newPairEth = keyringECDSA.addFromUri(`${mnemonic}/${ethDerPath}`);
 console.log(`Ethereum Derivation Path: ${ethDerPath}`);
 console.log(`Derived Ethereum Address from Mnemonic: ${newPairEth.address}`);
@@ -238,13 +251,12 @@ Here is an example of sending a basic transaction from Alice to Bob:
 // Initialize the API provider as in the previous section
 ...
 
-//Initialize the keyring instance as in the previous section
+// Initialize the keyring instance as in the previous section
 ...
 
 // Initialize wallet key pairs
 const alice = keyring.addFromUri('ALICE-ACCOUNT-PRIVATE-KEY');
-const bob = keyring.addFromUri('BOB-ACCOUNT-PRIVATE-KEY');
-const charlie = keyring.addFromUri('CHARLIE-ACCOUNT-PRIVATE-KEY');
+const bob = 'BOB-ACCOUNT-PUBLIC-KEY';
 
 // Sign and send a transfer from Alice to Bob
 const txHash = await api.tx.balances
@@ -255,19 +267,21 @@ const txHash = await api.tx.balances
 console.log(`Submitted with hash ${txHash}`);
 ```
 
-Note that the `signAndSend` can also accept optional parameters, such as `nonce`. For example: `signAndSend(alice, { nonce: aliceNonce })`. You can use the previous section's [sample code](/builders/build/substrate-api/polkadot-js-api/##state-queries){target=_blank} to retrieve the correct nonce, including tx's in the mempool.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/substrate-api/basic-transactions.js){target=_blank}.
+
+Note that the `signAndSend` function can also accept optional parameters, such as the `nonce`. For example, `signAndSend(alice, { nonce: aliceNonce })`. You can use the [sample code from the State Queries](/builders/build/substrate-api/polkadot-js-api/#state-queries){target=_blank} section to retrieve the correct nonce, including transactions in the mempool.
 
 ### Transaction Events {: #transaction-events }
 
 Any transaction will emit events, as a bare minimum this will always be either a `system.ExtrinsicSuccess` or `system.ExtrinsicFailed` event for the specific transaction. These provide the overall execution result for the transaction, i.e. execution has succeeded or failed.
 
-Depending on the transaction sent, some other events may however be emitted, for instance for a balance transfer event, this could include one or more of `balance.Transfer` events.
+Depending on the transaction sent, some other events may however be emitted, for instance for a balance transfer event, this could include one or more `balance.Transfer` events.
 
-The Transfer API page includes a [code snippet](/builders/get-started/eth-compare/transfers-api/#monitor-all-balance-transfers-with-the-substrate-api){target=_blank} for subscribing to new finalized block headers, and retrieving all `balance.Transfer` events. 
+The Transfer API page includes an [example code snippet](/builders/get-started/eth-compare/transfers-api/#monitor-all-balance-transfers-with-the-substrate-api){target=_blank} for subscribing to new finalized block headers, and retrieving all `balance.Transfer` events. 
 
 ### Batching Transactions {: #batching-transactions }
 
-Polkadot.js API allows transactions to be batch processed via the `utility.batch` method. The batched transactions are processed sequentially from a single sender. The transaction fee can be estimated using the `.paymentInfo` helper method. 
+Polkadot.js API allows transactions to be batch processed via the `api.tx.utility.batch` method. The batched transactions are processed sequentially from a single sender. The transaction fee can be estimated using the `paymentInfo` helper method. The following example makes a couple of transfers and also uses the `api.tx.parachainStaking` module to schedule a request to decrease the bond of a specific collator candidate:
 
 ```javascript
 // Initialize the API provider as in the previous section
@@ -279,20 +293,23 @@ Polkadot.js API allows transactions to be batch processed via the `utility.batch
 // Initialize wallet key pairs as in the previous section
 ...
 
-// construct a list of transactions we want to batch
+// Construct a list of transactions we want to batch
+const collator = 'COLLATOR-ACCOUNT-PUBLIC-KEY';
 const txs = [
   api.tx.balances.transfer(bob, 12345),
   api.tx.balances.transfer(charlie, 12345),
-  api.tx.staking.unbond(12345)
+  api.tx.parachainStaking.scheduleDelegatorBondLess(collator, 12345)
 ];
 
-// estimate the fees as RuntimeDispatchInfo, using the signer (either
+// Estimate the fees as RuntimeDispatchInfo, using the signer (either
 // address or locked/unlocked keypair) 
 const info = await api.tx.utility
   .batch(txs)
   .paymentInfo(alice);
 
-// construct the batch and send the transactions
+console.log(`estimated fees: ${info}`);
+
+// Construct the batch and send the transactions
 api.tx.utility
   .batch(txs)
   .signAndSend(alice, ({ status }) => {
@@ -302,11 +319,14 @@ api.tx.utility
   });
 ```
 
-You can view [the complete version](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/substrate-api/polkadot-js-examples.js){target=_blank} of the sample code included on this page on GitHub. 
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/substrate-api/batch-transactions.js){target=_blank}.
+
+!!! note
+    You can check out all of the available functions for the `parachainStaking` module by adding `console.log(api.tx.parachainStaking);` to your code.
 
 ## Custom RPC Requests {: #custom-rpc-requests }
 
-RPCs are exposed as a method on a specific module. This means that once available, you can call any rpc via `api.rpc.<module>.<method>(...params[])`. This also works for accessing Ethereum RPC's using polkadot.js API, in the form of `polkadotApi.rpc.eth.*`.
+RPCs are exposed as a method on a specific module. This means that once available, you can call any rpc via `api.rpc.<module>.<method>(...params[])`. This also works for accessing Ethereum RPCs using polkadot.js API, in the form of `polkadotApi.rpc.eth.*`.
 
 You can check for a list of exposed RPC endpoints by calling `api.rpc.rpc.methods()`, which is the list of known RPCs the node exposes. 
 

@@ -71,7 +71,7 @@ The code snippets rely on two custom RPC requests from the Substrate JSON-RPC: `
 
 ## Checking Tx Finality with Substrate Libraries {: #checking-tx-finality-with-substrate-libraries }
 
-The [Polkadot.js API package](https://polkadot.js.org/docs/api/start){target=_blank} and [Python Substrate Interface package](https://github.com/polkascan/py-substrate-interface){target=_blank} provides developers a way to interact with Substrate chains using Javascript and Python.
+The [Polkadot.js API package](https://polkadot.js.org/docs/api/start){target=_blank} and [Python Substrate Interface package](https://github.com/polkascan/py-substrate-interface){target=_blank} provides developers a way to interact with Substrate chains using JavaScript and Python.
 
 Given a transaction hash (`tx_hash`), the following code snippets fetch the current finalized block and compare it with the block number of the transaction you've provided. The code relies on three RPC requests from the Substrate JSON-RPC: 
 

@@ -23,7 +23,7 @@ For the examples in this guide, you will need to have the following:
 !!! note
     --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
 
-## Create a Javascript Project {: #create-a-javascript-project }
+## Create a JavaScript Project {: #create-a-javascript-project }
 
 To get started, you can create a directory to store all of the files you'll be creating throughout this guide:
 
