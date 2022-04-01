@@ -190,7 +190,7 @@ The bytes array (`bytes[]`) defines the interior and its content within the mult
 |  [XYZ, ABC]  | *2*  |      *X2*      |
 | [XYZ, ... N] | *N*  |      *XN*      |
 
-If the bytes array contains data. The first byte (2 hexadecimal numbers) of each element corresponds to the selector of that `XN` field. For example:
+Suppose the bytes array contains data. Each element's first byte (2 hexadecimal numbers) corresponds to the selector of that `XN` field. For example:
 
 | Byte Value |     Selector     | Data Type |
 |:----------:|:----------------:|-----------|
@@ -202,7 +202,7 @@ If the bytes array contains data. The first byte (2 hexadecimal numbers) of each
 |    0x05    |  *GeneralIndex*  | *u128*    |
 |    0x06    |   *GeneralKey*   | *bytes[]* |
 
-Next, depending on the selector and its data type, the following bytes correspond to the actual data being provided. Note that for `AccountId32`, `AccountIndex64` and `AccountKey20`, the `network` field seen in the Polkadot.js Apps example is actually appended at the end. For example:
+Next, depending on the selector and its data type, the following bytes correspond to the actual data being provided. Note that for `AccountId32`, `AccountIndex64`, and `AccountKey20`, the `network` field seen in the Polkadot.js Apps example is appended at the end. For example:
 
 |    Selector    |        Data Value        |         Represents          |
 |:--------------:|:------------------------:|:---------------------------:|
@@ -214,7 +214,7 @@ Next, depending on the selector and its data type, the following bytes correspon
 !!! note
     The `interior` data usually needs to be wrapped around quotes. On the contrary, you might get an `invalid tuple value` error.
 
-The following code snippet goes through some example of `Multilocation` structures, as they would need to be fed into the X-Tokens precompile functions:
+The following code snippet goes through some examples of `Multilocation` structures, as they would need to be fed into the X-Tokens precompile functions:
 
 
 ```js
