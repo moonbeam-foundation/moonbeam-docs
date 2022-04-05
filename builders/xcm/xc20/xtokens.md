@@ -1,11 +1,11 @@
 ---
-title: X-Tokens 
+title: Send XC-20s
 description:  Learn how to send XC-20s to other chains using the X-Tokens pallet. In addition, the X-Tokens precompile allows you to access core functions via the Ethereum API.
 ---
 
-# Using the X-Tokens Pallet
+# Using the X-Tokens Pallet To Send XC-20s
 
-![X-Tokens Precompile Contracts Banner](/images/builders/xcm/xc20/xtokens-banner.png)
+![X-Tokens Precompile Contracts Banner](/images/builders/xcm/xc20/xtokens/xtokens-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -55,7 +55,7 @@ To be able to send the extrinsics in Polkadot.js Apps, you need to have an [acco
 
 In addition, you'll need `xcUNIT`, which is the [XC-20](/builders/xcm/xc20/){target=_blank}  representation of the Alphanet relay chain token `UNIT`. You can acquire some by swapping for `DEV` tokens (Moonbase Alpha's native token) on [Moonbeam-Swap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha.
 
-![Moonbeam Swap xcUNITs](/images/builders/xcm/xtokens/xtokens-1.png)
+![Moonbeam Swap xcUNITs](/images/builders/xcm/xc20/xtokens/xtokens-1.png)
 
 To check your `xcUNIT` balance, you can add the XC-20 to MetaMask with the following address: `0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080`. You can check the [XC-20](/builders/xcm/xc20/#calculate-xc20-address){target=_blank} page to learn how to calculate this address.
 
@@ -88,7 +88,7 @@ If you've [checked the prerequisites](#xtokens-check-prerequisites), head to the
 !!! note
     The encoded call data for the extrinsict configured above is `0x1e00018080778c30c20fa2ebc0ed18d2cbca1f0010a5d4e800000000000000000000000101010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300ca9a3b00000000`.
 
-![XCM X-Tokens Transfer Extrinsic](/images/builders/xcm/xtokens/xtokens-2.png)
+![XCM X-Tokens Transfer Extrinsic](/images/builders/xcm/xc20/xtokens/xtokens-2.png)
 
 Once the transaction is processed, the **TargetAccount** should have received the transferred amount minus a small fee that is deducted to execute the XCM on the destination chain. On Polkadot.js Apps, can check the relevant extrinsics and events in [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer/query/0xf163f304b939bc10b6d6abcd9fd12ea00b6f6cd3f12bb2a32b759b56d2f1a40d){target=_blank}  and the [relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/explorer/query/0x5b997e806303302007c6829ab8e5b166a8aafc6a68f10950cc5aa8c6981ea605){target=_blank} 
 
@@ -128,7 +128,7 @@ If you've [checked the prerequisites](#xtokens-check-prerequisites), head to the
 !!! note
     The encoded call data for the extrinsict configured above is `0x1e010100010000070010a5d4e80101010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300ca9a3b00000000`.
 
-![XCM X-Tokens Transfer Extrinsic](/images/builders/xcm/xtokens/xtokens-3.png)
+![XCM X-Tokens Transfer Extrinsic](/images/builders/xcm/xc20/xtokens/xtokens-3.png)
 
 Once the transaction is processed, the **TargetAccount** should have received the transferred amount minus a small fee that is deducted to execute the XCM on the destination chain. On Polkadot.js Apps, you can check the relevant extrinsics and events in [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer/query/0x7711a9bb672782acf6702ebb235cdcbd982d536835e6d00fb07ba716eb1ec982){target=_blank} and the [relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/explorer/query/0x03d402f171aa4ab52d6c72d693fb6e76399b88fd44587f748aa685e9b53727ea){target=_blank}.
 
