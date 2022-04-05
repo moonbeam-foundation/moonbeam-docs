@@ -26,12 +26,12 @@ XC-20s need to be registered and linked to another asset in the ecosystem before
 The current list of available XC-20 assets per network is the following:
 
 === "Moonriver"
-    | Symbol  |  Origin   |                                                                 XC-20 Address                                                                  |
-    |:-------:|:---------:|:----------------------------------------------------------------------------------------------------------------------------------------------:|
-    |  xcKSM  |  Kusama   | [0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080](https://moonriver.moonscan.io//address/0xffffffff1fcacbd218edc0eba20fc2308c778080){target=_blank} |
-    |  xcKAR  |  Karura   | [0xFfFFFFfF08220AD2E6e157f26eD8bD22A336A0A5](https://moonriver.moonscan.io//address/0xFfFFFFfF08220AD2E6e157f26eD8bD22A336A0A5){target=_blank} |
-    | xcKINT  | Kintsugi  | [0xfffFFFFF83F4f317d3cbF6EC6250AeC3697b3fF2](https://moonriver.moonscan.io//address/0xfffFFFFF83F4f317d3cbF6EC6250AeC3697b3fF2){target=_blank} |
-    | xcMRMRK | Statemine | [0xffffffFF893264794d9d57E1E0E21E0042aF5A0A](https://moonriver.moonscan.io//address/0xffffffFF893264794d9d57E1E0E21E0042aF5A0A){target=_blank} |
+    | Symbol  |  Origin   |                                                                 XC-20 Address                                                                 |
+    |:-------:|:---------:|:---------------------------------------------------------------------------------------------------------------------------------------------:|
+    |  xcKSM  |  Kusama   | [0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080](https://moonriver.moonscan.io/address/0xffffffff1fcacbd218edc0eba20fc2308c778080){target=_blank} |
+    |  xcKAR  |  Karura   | [0xFfFFFFfF08220AD2E6e157f26eD8bD22A336A0A5](https://moonriver.moonscan.io/address/0xFfFFFFfF08220AD2E6e157f26eD8bD22A336A0A5){target=_blank} |
+    | xcKINT  | Kintsugi  | [0xfffFFFFF83F4f317d3cbF6EC6250AeC3697b3fF2](https://moonriver.moonscan.io/address/0xfffFFFFF83F4f317d3cbF6EC6250AeC3697b3fF2){target=_blank} |
+    | xcMRMRK | Statemine | [0xffffffFF893264794d9d57E1E0E21E0042aF5A0A](https://moonriver.moonscan.io/address/0xffffffFF893264794d9d57E1E0E21E0042aF5A0A){target=_blank} |
 
      _*You can check each Asset ID [here](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonriver.moonbeam.network#/assets){target=_blank}_
 
