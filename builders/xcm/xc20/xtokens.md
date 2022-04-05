@@ -47,7 +47,7 @@ The only read-method that the pallet provides is `palletVersion`, which provides
 This guide covers the process of building an XCM message using the X-Tokens pallet, more specifically, with the `transfer` and `transferMultiasset` functions. Nevertheless, these two cases can be extrapolated to the other functions, especially once familiar with multilocations.
 
 !!! note
-    Each parachain can allow/forbid specific methods from a pallet. Consequently, developers must ensure to use methods that are allowed. On the contrary, the transaction will fail with an error similar to `system.CallFiltered`
+    Each parachain can allow/forbid specific methods from a pallet. Consequently, developers must ensure to use methods that are allowed. On the contrary, the transaction will fail with an error similar to `system.CallFiltered`.
 
 ## Checking Prerequisites {: #xtokens-check-prerequisites}
 
@@ -67,13 +67,13 @@ You can check the [XC-20](/builders/xcm/xc20/#calculate-xc20-address){target=_bl
 
 ### X-Tokens Transfer Function {: #xtokens-transfer-function}
 
-In this example, you'll build an XCM message to transfer `xcUNIT` from Moonbase Alpha back to its [relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} through the `trasnfer function of the X-Tokens pallet.
+In this example, you'll build an XCM message to transfer `xcUNIT` from Moonbase Alpha back to its [relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} through the `transfer function of the X-Tokens pallet.
 
 If you've [checked the prerequisites](#xtokens-check-prerequisites), head to the extrinsic page of [Polkadot JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} and set the following options:
 
 1. Select the account from which you want to send the XCM
 2. Choose the **xTokens** pallet
-3. Choose the **trasfer** extrinsic
+3. Choose the **transfer** extrinsic
 4. Set the currency ID to **OtherReserve**. This is because you are not transferring DEV tokens (*SelfReserve*)
 5. Enter the asset ID. For this example, `xcUNIT` has an asset id of `42259045809535163221576417993425387648`. You can check all available assets IDs in the [XC-20 address section](/builders/xcm/xc20/#current-xc20-assets){target=_blank} 
 6. Set the number of tokens to send. For this example, you are sending 1 `xcUNIT`, but you have to account for the 12 decimals of `xcUNIT`. To learn how many decimals a XC-20 token has, you can [check its metadata](/builders/xcm/xc20/#x-chain-assets-metadata){target=_blank} 
@@ -96,7 +96,7 @@ If you've [checked the prerequisites](#xtokens-check-prerequisites), head to the
 
 ![XCM X-Tokens Transfer Extrinsic](/images/builders/xcm/xc20/xtokens/xtokens-2.png)
 
-Once the transaction is processed, the **TargetAccount** should have received the transferred amount minus a small fee that is deducted to execute the XCM on the destination chain. On Polkadot.js Apps, can check the relevant extrinsics and events in [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer/query/0xf163f304b939bc10b6d6abcd9fd12ea00b6f6cd3f12bb2a32b759b56d2f1a40d){target=_blank}  and the [relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/explorer/query/0x5b997e806303302007c6829ab8e5b166a8aafc6a68f10950cc5aa8c6981ea605){target=_blank} 
+Once the transaction is processed, the **TargetAccount** should have received the transferred amount minus a small fee that is deducted to execute the XCM on the destination chain. On Polkadot.js Apps, can check the relevant extrinsics and events in [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer/query/0xf163f304b939bc10b6d6abcd9fd12ea00b6f6cd3f12bb2a32b759b56d2f1a40d){target=_blank} and the [relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/explorer/query/0x5b997e806303302007c6829ab8e5b166a8aafc6a68f10950cc5aa8c6981ea605){target=_blank}. 
 
 ### X-Tokens Transfer MultiAsset Function {: #xtokens-transfer-multiasset-function}
 
@@ -185,7 +185,7 @@ Note that each multilocation has a `parents` element, defined in this case by a 
 | Parachain A | Relay Chain |       1       |
 | Parachain A | Parachain B |       1       |
 
-The bytes array (`bytes[]`) defines the interior and its content within the multilocation. The size of the array defines the `interior` value as follows::
+The bytes array (`bytes[]`) defines the interior and its content within the multilocation. The size of the array defines the `interior` value as follows:
 
 |    Array     | Size | Interior Value |
 |:------------:|:----:|:--------------:|
