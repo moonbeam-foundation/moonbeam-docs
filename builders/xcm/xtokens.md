@@ -13,7 +13,7 @@ Building an XCM message for fungible asset transfers is not an easy task. Conseq
 
 One example of such wrappers is the [X-Tokens](https://github.com/open-web3-stack/open-runtime-module-library/tree/master/xtokens){target=_blank}  pallet, which provides different methods to transfer fungible assets via XCM.
 
-This guide will show you how to leverage the X-Tokens pallet to send XC-20s from a Moonbeam-based network to other chains in the ecosystem. Moreover, you'll also learn how to use the X-Tokens precompile to perform the same actions via the Ethereum API.
+This guide will show you how to leverage the X-Tokens pallet to send XC-20s from a Moonbeam-based network to other chains in the ecosystem (relay chain/parachains). Moreover, you'll also learn how to use the X-Tokens precompile to perform the same actions via the Ethereum API.
 
 **Developers must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
 
@@ -25,10 +25,10 @@ The X-Tokens pallet provides the following extrinsics (functions):
 
  - **transfer(currencyId, amount, dest, destWeight)** — transfer a currency, defined as either the native token (self reserved), or with the asset ID
  - **transferMultiasset(asset, dest, destWeight)** — transfer a fungible asset, defined by its multilocation
- - **transferMultiassetWithFee(asset, fee, dest, destWeight)** — transfer a fungible asset, but it allows to pay the fee with a different asset. Both are defined by their multilocation
+ - **transferMultiassetWithFee(asset, fee, dest, destWeight)** — transfer a fungible asset, but it allows the sender to pay the fee with a different asset. Both are defined by their multilocation
  - **transferMultiassets(assets, feeItem, dest, destWeight)** — transfer several fungible assets, specifying which is used as the fee. Each asset is defined by its multilocation
  - **transferMulticurrencies(currencies, feeItem, dest, destWeight)** — transfer different curriencies, specifying which is used as the fee. Each currency is defined as either the native token (self reserved) or with the asset ID
- - **transferWithFee(currencyId, amount, fee, dest, destWeight)** — transfer a currency, but it allows to pay the fee with a different asset. Both are defined by their multilocation
+ - **transferWithFee(currencyId, amount, fee, dest, destWeight)** — transfer a currency, but it allows the sender to pay the fee with a different asset. Both are defined by their multilocation
 
 Where the inputs that need to be provided can be defined as:
 
@@ -82,7 +82,7 @@ If you've [checked the prerequisites](#xtokens-check-prerequisites), head to the
     |  Network  |      Any      |
     |    Id     | TargetAccount |
 
-8. Set the destination weight to `1000000000`. Note that on Moonbase Alpha, each XCM instruction costs around 100000000 weight units. A `transfer` consists of 4 XCM instructions, so a destination weight of 400000000 should be enough
+8. Set the destination weight to `1000000000`. Note that on Moonbase Alpha, each XCM instruction costs around `100000000` weight units. A `transfer` consists of 4 XCM instructions, so a destination weight of `400000000` should be enough
 9. Click the **Submit Transaction** button and sign the transaction
 
 !!! note
@@ -122,7 +122,7 @@ If you've [checked the prerequisites](#xtokens-check-prerequisites), head to the
     |  Network  |      Any      |
     |    Id     | TargetAccount |
 
-8. Set the destination weight to `1000000000`. Note that on Moonbase Alpha, each XCM instruction costs around 100000000 weight units. A `transferMultiasset` consists of 4 XCM instructions, so a destination weight of 400000000 should be enough
+8. Set the destination weight to `1000000000`. Note that on Moonbase Alpha, each XCM instruction costs around `100000000` weight units. A `transferMultiasset` consists of 4 XCM instructions, so a destination weight of `400000000` should be enough
 9. Click the **Submit Transaction** button and sign the transaction
 
 !!! note
