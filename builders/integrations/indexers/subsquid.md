@@ -55,7 +55,7 @@ Next, clone the created repository (be careful of changing `<account>` with your
 git clone git@github.com:<account>/squid-template.git
 ```
 
-For reference on the complete work, you can find the entire project [here](https://github.com/subsquid/squid-examples/tree/main/squid-moonsama-erc721).
+For reference on the complete work, you can find the entire project [here](https://github.com/subsquid/squid-evm-template).
 The next sections will take the template and customise it, one aspect at a time, to obtain the right data and process it as we intend to.
 
 ## Install current and additional dependencies
@@ -563,9 +563,9 @@ You can also check out other projects hosted there, by heading to the [Aquarium]
 
 ## Example Projects repository {: #example-projects-repository }
 
-Subsquid is creating [a repository full of example projects](https://github.com/subsquid/squid-examples/){target=_blank} and the one in this guide is one of them, under the name `squid-moonsama-erc721`. You can check out the examples repository and [view the finalised and complete project there](https://github.com/subsquid/squid-examples/tree/main/squid-moonsama-erc721){target=_blank}. The repository is going to grow over time and will include more and more examples.
+Subsquid is creating example projects that can be used as templates and the one in this guide is one of them. You can check out the example repository and [view the finalised and complete project there](https://github.com/subsquid/squid-evm-template){target=_blank}. Subsquid's GitHub account is going to grow over time and will include more and more examples.
 
-Subsquid SDK has been created to facilitate developing Web3 apps on top of blockchain data, thanks to its automated code generation tools, the type-safe interface and robustness against Runtime upgrades. [Subsquid template repository](https://github.com/subsquid/squid-template){target=_blank} is the starting point for experimenting with the framework and start building your DApp, easier, faster.
+Subsquid SDK has been created to facilitate developing Web3 apps on top of blockchain data, thanks to its automated code generation tools, the type-safe interface and robustness against Runtime upgrades. [Subsquid template repository](https://github.com/subsquid/squid-template){target=_blank} and its [EVM logs version](https://github.com/subsquid/squid-evm-template){target=_blank} are the starting point for experimenting with the framework and start building your DApp, easier, faster.
 
 [Subsquid documentation](https://docs.subsquid.io/){target=_blank} contains informative material and it's the best place to start, if you are curious about some aspect that were not fully explained in this guide.
 
