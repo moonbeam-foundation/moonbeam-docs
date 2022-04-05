@@ -5,4 +5,4 @@ nav:
   - erc20.md
   - staking.md
   - democracy.md
-  - 'X-Tokens': '/builders/xcm/xtokens/#xtokens-precompile'
+  - 'X-Tokens': '/builders/xcm/xc20/xtokens/#xtokens-precompile'

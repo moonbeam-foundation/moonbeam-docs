@@ -53,11 +53,17 @@ This guide covers the process of building an XCM message using the X-Tokens pall
 
 To be able to send the extrinsics in Polkadot.js Apps, you need to have an [account](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/accounts){target=_blank} with [funds](https://docs.moonbeam.network/builders/get-started/networks/moonbase/#get-tokens){target=_blank}.
 
-In addition, you'll need `xcUNIT`, which is the [XC-20](/builders/xcm/xc20/){target=_blank}  representation of the Alphanet relay chain token `UNIT`. You can acquire some by swapping for `DEV` tokens (Moonbase Alpha's native token) on [Moonbeam-Swap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha.
+In addition, you'll need to have some `xcUNIT` tokens for this tutorial, which is the [XC-20](/builders/xcm/xc20/){target=_blank} representation of the Alphanet relay chain token `UNIT`. You can acquire some by swapping for `DEV` tokens (Moonbase Alpha's native token) on [Moonbeam-Swap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha.
 
 ![Moonbeam Swap xcUNITs](/images/builders/xcm/xc20/xtokens/xtokens-1.png)
 
-To check your `xcUNIT` balance, you can add the XC-20 to MetaMask with the following address: `0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080`. You can check the [XC-20](/builders/xcm/xc20/#calculate-xc20-address){target=_blank} page to learn how to calculate this address.
+To check your `xcUNIT` balance, you can add the XC-20 to MetaMask with the following address:
+
+```
+0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080
+```
+
+You can check the [XC-20](/builders/xcm/xc20/#calculate-xc20-address){target=_blank} page to learn how to calculate this address.
 
 ### X-Tokens Transfer Function {: #xtokens-transfer-function}
 
@@ -86,7 +92,7 @@ If you've [checked the prerequisites](#xtokens-check-prerequisites), head to the
 9. Click the **Submit Transaction** button and sign the transaction
 
 !!! note
-    The encoded call data for the extrinsict configured above is `0x1e00018080778c30c20fa2ebc0ed18d2cbca1f0010a5d4e800000000000000000000000101010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300ca9a3b00000000`.
+    The encoded call data for the extrinsict configured above is `0x1e00018080778c30c20fa2ebc0ed18d2cbca1f0010a5d4e800000000000000000000000101010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300ca9a3b00000000`. It also includes a specific recipient that you'll need to change.
 
 ![XCM X-Tokens Transfer Extrinsic](/images/builders/xcm/xc20/xtokens/xtokens-2.png)
 
@@ -126,7 +132,7 @@ If you've [checked the prerequisites](#xtokens-check-prerequisites), head to the
 9. Click the **Submit Transaction** button and sign the transaction
 
 !!! note
-    The encoded call data for the extrinsict configured above is `0x1e010100010000070010a5d4e80101010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300ca9a3b00000000`.
+    The encoded call data for the extrinsict configured above is `0x1e010100010000070010a5d4e80101010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300ca9a3b00000000`. It also includes a specific recipient that you'll need to change.
 
 ![XCM X-Tokens Transfer Extrinsic](/images/builders/xcm/xc20/xtokens/xtokens-3.png)
 
