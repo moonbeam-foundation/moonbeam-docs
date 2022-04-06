@@ -65,6 +65,7 @@ Want another Ethereum tool listed here? [Let us know!](https://discord.gg/PfpUAT
  - [Web3.py](/builders/tools/eth-libraries/web3py/)
  - [The Graph](/builders/integrations/indexers/thegraph/)
  - [Covalent API](/builders/integrations/indexers/covalent/)
+ - [Subsquid](/builders/integrations/indexers/subsquid/)
  - [Debug & Trace](/builders/tools/debug-trace/)
 
 ### Oracles {: #oracles } 
