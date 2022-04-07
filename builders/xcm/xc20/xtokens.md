@@ -140,7 +140,7 @@ Once the transaction is processed, the **TargetAccount** should have received th
 
 ## X-Tokens Precompile {: #xtokens-precompile}
 
-The X-Tokens precompile contract allows developers to access XCM token transfer features through the Ethereum API of Moonbeam-based networks. As with other [precompile contracts](/builders/canonical-contracts/precompiles/){target=_blank}, the X-Tokens precompile is located at the following addresses:
+The X-Tokens precompile contract allows developers to access XCM token transfer features through the Ethereum API of Moonbeam-based networks. As with other [precompile contracts](/builders/build/canonical-contracts/precompiles/){target=_blank}, the X-Tokens precompile is located at the following addresses:
 
 === "Moonbeam"
      ```
