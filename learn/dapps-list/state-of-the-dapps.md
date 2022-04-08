@@ -1,5 +1,5 @@
 ---
-title: State of the DApps
+title: How to List your Project on State of the DApps
 description: How you can list your project on State of the DApps
 ---
 

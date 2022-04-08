@@ -1,5 +1,5 @@
 ---
-title: Razor Network
+title: Razor Network Oracle
 description: How to use request data from a Razor Network Oracle in your Moonbeam Ethereum DApp using smart contracts
 ---
 

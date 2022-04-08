@@ -1,5 +1,5 @@
 ---
-title: Graph Node
+title: Running a Graph Node on Moonbeam
 description: Build APIs using The Graph indexing protocol on Moonbeam
 ---
 

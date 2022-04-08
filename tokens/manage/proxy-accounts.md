@@ -1,5 +1,5 @@
 ---
-title: Proxy Accounts
+title: Setting up a Proxy Account
 description: Learn how to set up a proxy account on Moonbeam-based networks.
 ---
 

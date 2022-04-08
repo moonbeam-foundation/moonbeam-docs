@@ -1,5 +1,5 @@
 ---
-title: Debug & Trace
+title: Debug API & Trace Module
 description:  Learn how to leverage Geth's Debug and Txpool APIs, and OpenEthereum's Trace module to call non-standard RPC methods on Moonbeam
 ---
 

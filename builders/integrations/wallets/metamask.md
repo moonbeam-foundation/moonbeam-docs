@@ -1,5 +1,5 @@
 ---
-title: MetaMask
+title: Integrate MetaMask into a DApp
 description: Learn how to use MetaMask with the Moonbeam TestNet. This tutorial shows you how to integrate MetaMask into a DApp and automatically connect users to Moonbase Alpha.
 ---
 

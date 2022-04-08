@@ -1,7 +1,8 @@
 ---
-title: Web3.js
+title: Web3.js JavaScript Library
 description: Follow this tutorial to learn how to use the Ethereum Web3 JavaScript Library to deploy Solidity smart contracts to Moonbeam.
 ---
+
 # Web3.js JavaScript Library
 
 ![Intro diagram](/images/builders/build/eth-api/libraries/web3js/web3js-banner.png)

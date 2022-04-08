@@ -2,4 +2,4 @@ title: Ethereum
 hide: false
 nav:
   - index.md
-  - chainbridge.md
+  - 'ChainBridge': 'chainbridge.md'

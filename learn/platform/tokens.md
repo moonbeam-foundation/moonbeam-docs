@@ -1,5 +1,5 @@
 ---
-title: Tokens
+title: Introduction
 description: Like all smart contract platforms, the Moonbeam Network will require a utility token to function, which is called Glimmer (GLMR) for Polkadot, and Moonriver (MOVR) for Kusama.
 ---
 

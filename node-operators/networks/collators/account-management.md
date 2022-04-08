@@ -1,5 +1,5 @@
 ---
-title: Account Management
+title: Collator Account Management
 description: Learn how to manage your collator account including generating and rotating your session keys, mapping your author ID, setting an identity, and creating proxy accounts.
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Hardhat
+title: Using Hardhat to Deploy To Moonbeam
 description: Use Hardhat to compile, deploy, and debug Ethereum smart contracts on Moonbeam.
 ---
 

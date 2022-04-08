@@ -1,5 +1,5 @@
 ---
-title: Covalent API
+title: Getting Started with the Covalent API
 description: Querying Blockchain Data with the Covalent API Moonbeam
 ---
 

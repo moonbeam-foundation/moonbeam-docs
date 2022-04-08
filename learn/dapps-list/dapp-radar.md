@@ -1,5 +1,5 @@
 ---
-title: DappRadar 
+title: How to List your Project on DappRadar
 description: How you can list your project on DappRadar
 ---
 

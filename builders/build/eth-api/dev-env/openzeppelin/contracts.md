@@ -1,5 +1,5 @@
 ---
-title: Contract Wizard
+title: Using OpenZeppelin Contracts and Remix To Deploy To Moonbeam
 description:  Learn how to create common OpenZeppelin contracts with their Contracts Wizard easily and how to deploy them on Moonbeam thanks to its Ethereum compatibility features
 ---
 

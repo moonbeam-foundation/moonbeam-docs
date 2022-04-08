@@ -1,5 +1,5 @@
 ---
-title: WalletConnect
+title: Integrate WalletConnect into a DApp
 description: Learn how to integrate WalletConnect into a dApp built on any of the Moonbeam networks
 ---
 

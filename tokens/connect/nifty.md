@@ -1,5 +1,5 @@
 ---
-title: Using Nifty
+title: Interacting with Moonbeam Using Nifty Wallet
 description: This guide walks you through how to connect Nifty Wallet, a browser-based wallet that works with Ethereum, to Moonbeam.
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: The Graph
+title: Using The Graph on Moonbeam
 description: Build APIs using The Graph indexing protocol on Moonbeam
 ---
 

@@ -1,7 +1,7 @@
 title: Run a Node
 nav:
   - index.md
-  - overview.md
-  - docker.md
-  - systemd.md
-  - flags.md
+  - 'Overview': 'overview.md'
+  - 'Using Docker': 'docker.md'
+  - 'Using Systemd': 'systemd.md'
+  - 'Flags': 'flags.md'

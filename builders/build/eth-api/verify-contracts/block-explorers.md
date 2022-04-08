@@ -1,5 +1,5 @@
 ---
-title: Block Explorers
+title: Verify Smart Contracts using Block Explorers
 description: Learn about how to verify smart contracts on Moonbeam networks using one of the available block explorers. 
 ---
 

@@ -1,7 +1,8 @@
 ---
-title: ChainBridge
+title: Transfer Tokens with ChainBridge's Ethereum Moonbeam Bridge
 description: How to use ChainBridge to connect assets between Ethereum and Moonbeam using smart contracts
 ---
+
 # Transfer Tokens with ChainBridge's Ethereum Moonbeam Bridge
 
 ![ChainBridge Moonbeam banner](/images/builders/integrations/bridges/eth/chainbridge/chainbridge-banner.png)

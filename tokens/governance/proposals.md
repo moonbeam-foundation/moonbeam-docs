@@ -1,5 +1,5 @@
 ---
-title: Propose an Action
+title: How to Propose an Action
 description: How to send a proposal to be voted on Moonbeam via governance features
 ---
 

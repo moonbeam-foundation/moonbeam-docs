@@ -1,5 +1,5 @@
 ---
-title: Flags
+title: Helpful Flags for Running a Node on Moonbeam
 description: Helpful flags for running a full parachain node on Moonbeam
 ---
 

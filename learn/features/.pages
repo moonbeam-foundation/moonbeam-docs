@@ -1,10 +1,10 @@
 title: Features
 nav:
   - index.md
-  - eth-compatibility.md
-  - unified-accounts.md
-  - xchain-plans.md
-  - staking.md
-  - governance.md
-  - treasury.md
-  - consensus.md
+  - 'Eth Compatibility': 'eth-compatibility.md'
+  - 'Unified Accounts': 'unified-accounts.md'
+  - 'Cross-Chain Integration': 'xchain-plans.md'
+  - 'Staking': 'staking.md'
+  - 'Governance': 'governance.md'
+  - 'Treasury': 'treasury.md'
+  - 'Parachain Consensus': 'consensus.md'

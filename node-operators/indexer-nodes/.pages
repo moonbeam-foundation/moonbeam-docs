@@ -1,4 +1,4 @@
 title: Indexer Nodes
 nav:
   - index.md
-  - thegraph-node.md
+  - 'Graph Node': 'thegraph-node.md'

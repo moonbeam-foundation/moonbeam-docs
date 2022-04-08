@@ -1,5 +1,5 @@
 ---
-title: Remix
+title: Using Remix to Deploy to Moonbeam
 description: Learn how to use one of the most popular Ethereum developer tools, the Remix IDE, to interact with a local Moonbeam node.
 ---
 

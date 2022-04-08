@@ -2,4 +2,4 @@ title: Oracle Nodes
 hide: false
 nav:
   - index.md
-  - node-chainlink.md
+  - 'Chainlink Node': 'node-chainlink.md'

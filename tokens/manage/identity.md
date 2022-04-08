@@ -1,5 +1,5 @@
 ---
-title: Managing an Identity
+title: Managing your Account Identity
 description: Learn how to create and clear an identity, including personal information such as your name and social handles, on Moonbeam-based networks.
 ---
 
