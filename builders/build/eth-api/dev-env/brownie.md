@@ -22,6 +22,8 @@ To get started, you will need the following:
  - 
 --8<-- 'text/common/endpoint-examples.md'
 
+For this guide, Python version 3.9.10, pip version 22.0.3, and pipx version 1.0.0 were used.
+
 ## Creating a Brownie Project {: #creating-a-brownie-project }
 
 You will need to install Brownie and create a Brownie project if you don't already have one. You can choose to either create an empty project or use a [Brownie mix](https://eth-brownie.readthedocs.io/en/stable/init.html?highlight=brownie%20mix#creating-a-project-from-a-template){target=_blank}, which is essentially a template to build your project on. For this example, you can create an empty project. You can get started by completing the following steps:
@@ -36,13 +38,15 @@ You will need to install Brownie and create a Brownie project if you don't alrea
     python3 -m pipx ensurepath
     ```
 
-2. [Install Brownie using `pipx`](https://eth-brownie.readthedocs.io/en/stable/install.html){target=_blank}. If you don't have `pipx` installed, you ca
+3. [Install Brownie using `pipx`](https://eth-brownie.readthedocs.io/en/stable/install.html){target=_blank}
     ```
     pipx install eth-brownie
     ```
+
     !!! note
         [`pipx`](https://github.com/pypa/pipx){target=_blank} is used to run executables installed locally in your project. Brownie will be installed into a virtual environment and be available directly from the command line.
-3. Create an project
+
+4. Create an project
     ```
     brownie init
     ```
@@ -62,7 +66,7 @@ Another important file to note that is not included in an empty project is the `
 
 ## Network Configuration  {: #network-configuration } 
 
-To deploy to a Moonbeam network, you'll need to add and configure the network.
+To deploy to a Moonbeam-based network, you'll need to add and configure the network.
 
 Network configurations in Brownie are added from the command line. Brownie can be used with both development and live environments. Under the hood, Brownie uses Ganache for development environments. However, since a Moonbeam development node acts as your own personal development environment, Ganache isn't needed. Therefore, you can configure a development node the same way you would for a "live" network such as Moonriver or Moonbase Alpha.
 
@@ -204,11 +208,11 @@ brownie compile
 ![Compile Brownie project](/images/builders/build/eth-api/dev-env/brownie/brownie-4.png)
 
 !!! note
-    The first time you compile your contracts it may take longer than usual while the `solc` binary is installing.
+    The first time you compile your contracts it may take longer than usual while the `solc` binary is installed.
 
 After compilation, you'll find the build artifacts in the `build/contracts` directory. The artifacts contain the bytecode and metadata of the contract, which are `.json` files. The `build` directory should already be in the `.gitignore` file but if it's not, it’s a good idea to add it there.
 
-If you want to specify the compiler version or settings, you can do so in the `brownie-config.yaml` file. Please note that if you haven't already created this file, you will need to do so. Then you can specify the compiler like so:
+If you want to specify the compiler version or compilation settings, you can do so in the `brownie-config.yaml` file. Please note that if you haven't already created this file, you will need to do so. Then you can specify the compiler like so:
 
 ```yaml
 compiler:
@@ -284,6 +288,10 @@ Congratulations, your contract is live! Save the address, as you will use it to 
 
 ## Interacting with the Contract {: #interacting-with-the-contract } 
 
+You can interact with contracts using the Brownie console for quick debugging and testing or you can also write a script to interact.
+
+### Using Brownie Console {: #using-brownie-console }
+
 To interact with your newly deployed contract, you can launch the Brownie `console` by running:
 
 === "Moonbeam"
@@ -330,6 +338,60 @@ You should see `5` or the value you have stored initially.
 
 ![Interact with Brownie project](/images/builders/build/eth-api/dev-env/brownie/brownie-6.png)
 
+### Using a Script {: #using-a-script }
+
+You can also write a script to interact with your newly deployed contract. To get started, you can create a new file in the `scripts` directory:
+
+```
+cd scripts && touch store-and-retrieve.py
+```
+
+Next, you need to write your script that will store and then retrieve a value. To get started start, take the following steps:
+
+1. Import the `Box` contract and the `accounts` module from `brownie`
+2. Load your account using `accounts.load()` which decrypts a keystore file and returns the account information for the given account name
+3. Create a variable for the `Box` contract
+4. Use the `store` and `retrieve` functions to store a value and then retrieve it and print it to the console
+
+```py
+# scripts/store-and-retrieve.py
+from brownie import Box, accounts
+
+def main():
+    account = accounts.load('alice')
+    box = Box[0]
+    store = box.store(5, {'from': accounts.load('alice'), 'gas_limit': '50000'})
+    retrieve = box.retrieve({'from': accounts.load('alice')})
+
+    print("Transaction hash for updating the stored value: " + store)
+    print("Stored value: " + retrieve)
+```
+
+To run the script, you can use the following command:
+
+=== "Moonbeam"
+    ```
+    brownie run scripts/store-and-retrieve.py --network moonbeam-mainnet
+    ```
+
+=== "Moonriver"
+    ```
+    brownie run scripts/store-and-retrieve.py --network moonriver-mainnet
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    brownie run scripts/store-and-retrieve.py --network moonbeam-testnet
+    ```
+
+=== "Moonbeam Dev Node"
+    ```
+    brownie run scripts/store-and-retrieve.py --network moonbeam-dev
+    ```
+
+You'll need to enter the password for Alice to send the transaction to update the stored value. Once the transaction goes through, you should see a transaction hash and a value of `5` printed to the console.
+
 Congratulations, you have successfully deployed and interacted with a contract using Brownie!
 
 --8<-- 'text/disclaimers/third-party-content.md'
+
