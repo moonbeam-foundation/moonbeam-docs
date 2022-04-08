@@ -68,7 +68,13 @@ Another important file to note that is not included in an empty project is the `
 
 To deploy to a Moonbeam-based network, you'll need to add and configure the network.
 
-Network configurations in Brownie are added from the command line. Brownie can be used with both development and live environments. Under the hood, Brownie uses Ganache for development environments. However, since a Moonbeam development node acts as your own personal development environment, Ganache isn't needed. Therefore, you can configure a development node the same way you would for a "live" network such as Moonriver or Moonbase Alpha.
+Network configurations in Brownie are added from the command line. Brownie can be used with both development and live environments.
+
+Moonbeam is supported out of the box with Brownie, but if you're looking to deploy a contract to Moonriver, Moonbase Alpha, or a Moonbeam development node you'll need to add the network configurations.
+
+If you're familiar with Brownie, you're probably used to the `Mainnet` and `Testnet` network setup. To be consistent, you can add Moonbase Alpha and Moonbeam development node configurations nestled under the pre-existing Moonbeam network configuration. Since Moonriver is it's own MainNet, you can add an entirely new configuration for Moonriver.
+
+Under the hood, Brownie uses Ganache for development environments. However, since a Moonbeam development node acts as your own personal development environment, Ganache isn't needed. Therefore, you can configure a development node the same way you would for a "live" network such as Moonriver or Moonbase Alpha.
 
 To add Moonriver, Moonbase Alpha, or a Moonbeam development node, you can run the following command:
 
