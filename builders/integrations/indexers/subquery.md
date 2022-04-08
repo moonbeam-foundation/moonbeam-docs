@@ -1,6 +1,6 @@
 ---
 title: Indexing Moonbeam with SubQuery
-description: Learn how to use SubQuery to index Substrate and EVM data for Moonbeam and Moonriver
+description: Learn how to use SubQuery to index Substrate and EVM chain data for Moonbeam and Moonriver
 ---
 
 # Indexing Moonbeam with SubQuery

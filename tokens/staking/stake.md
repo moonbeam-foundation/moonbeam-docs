@@ -1,6 +1,6 @@
 ---
-title: How to Stake your Tokens
-description: A guide that shows how you can stake your tokens in Moonbeam by delegating collator candidates
+title: How to Stake on Moonbeam
+description: A guide that shows how you can stake your tokens and earn rewards in Moonbeam by delegating collator candidates.
 ---
 
 # How to Stake your Tokens

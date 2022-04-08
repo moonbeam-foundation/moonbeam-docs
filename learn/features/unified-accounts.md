@@ -1,6 +1,6 @@
 ---
-title: Unified Accounts
-description: Moonbeam now uses the Ethereum based H160 account system natively and is supported by Polkadot.js Apps
+title: Moonbeam's Unified Accounts System
+description: Moonbeam now uses the Ethereum-based H160 account system natively and is supported by Polkadot.js Apps
 ---
 
 # Unified Accounts

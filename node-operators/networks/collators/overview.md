@@ -1,5 +1,5 @@
 ---
-title: Run a Collator on Moonbeam
+title: Run a Collator Node on Moonbeam
 description: Instructions on how to dive in and become a collator in the Moonbeam Network once you are running a node
 ---
 

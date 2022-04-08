@@ -1,5 +1,5 @@
 ---
-title: OpenZeppelin
+title: An Overview of OpenZeppelin on Moonbeam
 description:  Learn how to use OpenZeppelin products on Moonbeam thanks to its Ethereum compatibility features
 ---
 

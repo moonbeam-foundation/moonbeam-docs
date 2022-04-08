@@ -1,6 +1,7 @@
 ---
-title:  Native Token ERC-20 Precompile
-description:  Learn how to access and interact with an ERC-20 representation of native token on Moonbeam, and check how this is done on the Moonbase Alpha TestNet by using the ERC-20 precompiled contract.
+title:  Native Token ERC-20 Precompile on Moonbeam
+description:  Learn how to access and interact with an ERC-20 representation of the native token on Moonbeam through the precompiled ERC-20 Interface.
+keywords: solidity, ethereum, native, token, moonbeam, precompiled, contracts
 ---
 
 #  Native Token ERC-20 Precompile

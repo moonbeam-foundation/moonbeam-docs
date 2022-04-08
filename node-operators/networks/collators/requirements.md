@@ -1,6 +1,6 @@
 ---
-title: Collator Requirements
-description: Learn about the requirements for becoming a collator and maintaining a collator node on Moonbeam networks
+title: Moonbeam Collator Requirements
+description: Learn about the requirements for becoming and maintaining a collator node on Moonbeam networks, including requirements for hardware, bonds, and more.
 ---
 
 # Collator Requirements

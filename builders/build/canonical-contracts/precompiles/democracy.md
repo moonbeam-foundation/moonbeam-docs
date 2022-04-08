@@ -1,6 +1,7 @@
 ---
-title: Interacting with the Democracy Precompile
-description: Moonbeam Democracy Solidity Precompile Interface Demo
+title: Interacting with the Democracy Precompile on Moonbeam
+description: How to use the Moonbeam democracy Solidity precompile interface to interact with democracy functions using the Ethereum API
+keywords: solidity, ethereum, democracy, moonbeam, precompiled, contracts
 ---
 
 # Interacting with the Democracy Precompile

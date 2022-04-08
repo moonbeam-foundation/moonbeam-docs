@@ -1,6 +1,6 @@
 ---
-title: Using Hardhat to Deploy To Moonbeam
-description: Use Hardhat to compile, deploy, and debug Ethereum smart contracts on Moonbeam.
+title: Using Hardhat to Deploy Smart Contracts To Moonbeam
+description: Learn how to use Hardhat to compile, deploy, and debug Ethereum smart contracts on Moonbeam.
 ---
 
 # Using Hardhat to Deploy To Moonbeam

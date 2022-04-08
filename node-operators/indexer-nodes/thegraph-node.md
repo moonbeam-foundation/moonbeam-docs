@@ -1,6 +1,6 @@
 ---
 title: Running a Graph Node on Moonbeam
-description: Build APIs using The Graph indexing protocol on Moonbeam
+description: Build APIs using The Graph indexing protocol on Moonbeam. Run your own Graph node on Moonbeam.
 ---
 
 # Running a Graph Node on Moonbeam

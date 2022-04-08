@@ -1,5 +1,5 @@
 ---
-title: Why We're Building on Polkadot
+title: Why Moonbeam is Built on Polkadot
 description: Moonbeam is built on the Substrate framework and connected to the Polkadot network, adding speed and security to the platform.
 ---
 

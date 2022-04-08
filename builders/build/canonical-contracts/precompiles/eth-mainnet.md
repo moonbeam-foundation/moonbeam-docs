@@ -1,6 +1,7 @@
 ---
-title: Ethereum MainNet Precompiled Contracts on Moonbase Alpha
-description:  Learn how to use precompiled contracts on Moonbase Alpha, the Moonbeam Network TestNet that is unique for its complete Ethereum compatibility. 
+title: Ethereum MainNet Precompiled Contracts on Moonbeam
+description: Learn how to use the standard precompiled contracts availble on Ethereum such as ECRECOVER, SHA256, and more on Moonbeam.
+keywords: ethereum, moonbeam, ecrecover, sha256, sha3FIPS256, ripemd-160, Bn128Add, Bn128Mul, Bn128Pairing
 ---
 
 # Ethereum MainNet Precompiled Contracts on Moonbase Alpha

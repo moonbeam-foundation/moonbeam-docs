@@ -1,5 +1,5 @@
 ---
-title: Using the X-Tokens Pallet To Send XC-20s
+title: Send XC-20s (Cross Chain Assets) on Moonbeam
 description:  Learn how to send XC-20s to other chains using the X-Tokens pallet. In addition, the X-Tokens precompile allows you to access core functions via the Ethereum API.
 ---
 

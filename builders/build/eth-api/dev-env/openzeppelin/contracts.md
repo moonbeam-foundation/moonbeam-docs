@@ -1,6 +1,6 @@
 ---
 title: Using OpenZeppelin Contracts and Remix To Deploy To Moonbeam
-description:  Learn how to create common OpenZeppelin contracts with their Contracts Wizard easily and how to deploy them on Moonbeam thanks to its Ethereum compatibility features
+description:  Learn how to create common OpenZeppelin contracts such as ERC-20 and ERC-721 tokens with the OpenZeppelin Contracts Wizard and deploy them on Moonbeam
 ---
 
 # Using OpenZeppelin Contracts and Remix To Deploy To Moonbeam

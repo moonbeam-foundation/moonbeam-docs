@@ -1,5 +1,5 @@
 ---
-title: Interacting with Moonbeam Safe
+title: Interact with Multisig Moonbeam Safe
 description: Learn how to use and manage funds with the Moonbeam Safe. Create a new multisig safe and receive and send tokens to the safe, as well as ERC-20s, on Moonbeam.
 ---
 

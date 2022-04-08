@@ -1,6 +1,6 @@
 ---
-title: Collator Activities
-description: Instructions on how to dive in and learn about the related activites for becoming and being a collator in the Moonbeam Network
+title: Moonbeam Collator Activities
+description: Instructions on how to dive in and learn about the related activites for becoming and being a collator in the Moonbeam Network.
 ---
 
 # Collator Activities

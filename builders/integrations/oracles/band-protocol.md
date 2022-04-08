@@ -1,6 +1,6 @@
 ---
-title: Band Protocol Oracle
-description: How to use request data from a Band Protocol Oracle in your Moonbeam Ethereum DApp using smart contracts or JavaScript
+title: Band Protocol Oracle on Moonbeam
+description: How to request data from a Band Protocol Oracle in your Moonbeam Ethereum DApp using smart contracts or JavaScript.
 ---
 
 # Band Protocol Oracle

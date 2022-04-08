@@ -1,5 +1,5 @@
 ---
-title: Frequently Asked Questions
+title: Frequently Asked Questions for Moonbeam Collators
 description: Some frequently asked questions around becoming a collator, collator activities, and things to be aware of when running and operating a collator node on Moonbeam
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Interacting with Moonbeam Using the Coinbase Wallet Mobile App  
+title: Connect Coinbase Wallet Mobile App to Moonbeam
 description: This guide walks you through how to use the Coinbase Wallet extension and the Mobile App.
 ---
 

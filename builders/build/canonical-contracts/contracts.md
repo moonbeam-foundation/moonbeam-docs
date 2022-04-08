@@ -1,6 +1,7 @@
 ---
-title: Canonical Contracts
+title: Canonical Contract Addresses on Moonbeam
 description: A brief overview of the canonical contracts available on Moonbeam, Moonriver, and Moonbase Alpha. It includes some common-goods contract as well as some precompiles.
+keywords: canonical, ethereum, moonbeam, precompiled, contracts
 ---
 
 # Canonical Contracts

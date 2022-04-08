@@ -1,5 +1,5 @@
 ---
-title: XC-20s and Cross-Chain Assets
+title: XC-20s and Cross-Chain Assets on Moonbeam
 description:  Learn how to access and interact with an ERC-20 interface for cross-chain tokens on Moonbeam, and check how this is done on the Moonbase Alpha TestNet by using the assets precompiled contract.
 ---
 

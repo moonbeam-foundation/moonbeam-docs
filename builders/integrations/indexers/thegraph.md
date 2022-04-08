@@ -1,6 +1,6 @@
 ---
-title: Using The Graph on Moonbeam
-description: Build APIs using The Graph indexing protocol on Moonbeam
+title: Using The Graph to Index Data on Moonbeam
+description: Learn how to build APIs and create a simple subgraph using The Graph indexing protocol on Moonbeam.
 ---
 
 # Using The Graph on Moonbeam

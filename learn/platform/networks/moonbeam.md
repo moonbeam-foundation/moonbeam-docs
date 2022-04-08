@@ -1,5 +1,5 @@
 ---
-title: Moonbeam
+title: Moonbeam Network Overview
 description: An overview of the current configuration of the Moonbeam deployment on Polkadot, Moonbeam, and information on how to start building on it using Solidity.
 ---
 

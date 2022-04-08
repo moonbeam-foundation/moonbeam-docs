@@ -1,5 +1,5 @@
 ---
-title: Subscribe to Events in Moonbase Alpha
+title: Subscribe to Ethereum-style Events on Moonbeam
 description: Use Ethereum-like publish-subscribe functionality to subscribe to specific events on Moonbeam's Ethereum-compatible chain.
 ---
 

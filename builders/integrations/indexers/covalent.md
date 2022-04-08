@@ -1,11 +1,11 @@
 ---
-title: Getting Started with the Covalent API
-description: Querying Blockchain Data with the Covalent API Moonbeam
+title: Using the Covalent API on Moonbeam
+description: Querying blockchain data such as balances, transactions, transfers, token holders, and event logs on Moonbeam with the Covalent API.
 ---
 
 # Getting Started with the Covalent API
 
-![The Graph on Moonbeam](/images/builders/integrations/indexers/covalent/covalent-banner.png)
+![Covalent on Moonbeam](/images/builders/integrations/indexers/covalent/covalent-banner.png)
 
 ## Introduction {: #introduction } 
 
