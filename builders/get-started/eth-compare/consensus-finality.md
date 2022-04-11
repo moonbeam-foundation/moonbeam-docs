@@ -23,7 +23,7 @@ Probabilistic finality means that the probability that a block (and all its tran
 
 ## Moonbeam Consensus and Finality {: #moonbeam-consensus-and-finality }
 
-In Polkadot, there are collators and validators. [Collators](https://wiki.polkadot.network/docs/en/learn-collator){target=_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the Relay Chain [validators](https://wiki.polkadot.network/docs/en/learn-validator){target=_blank}. The collator set (nodes that produce blocks) are selected based on the [stake they have in the network](/learn/features/consensus/){target=_blank}. 
+In Polkadot, there are collators and validators. [Collators](https://wiki.polkadot.network/docs/en/learn-collator){target=_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.network/docs/en/learn-validator){target=_blank}. The collator set (nodes that produce blocks) are selected based on the [stake they have in the network](/learn/features/consensus/){target=_blank}. 
 
 For finality, Polkadot/Kusama rely on [GRANDPA](https://wiki.polkadot.network/docs/learn-consensus#finality-gadget-grandpa){target=_blank}. GRANDPA provides deterministic finality for any given transaction (block). In other words, when a block/transaction is marked as final, it can't be reverted except via on-chain governance or forking. Moonbeam follows this deterministic finality.
 
