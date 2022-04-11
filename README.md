@@ -27,21 +27,21 @@ Moonbeam will also be a parachain on the Polkadot network. That means it will ge
 
 Currently, there are a few ways you can start building on Moonbeam: 
 
- - Build your own Moonbeam instance as a [development node](/builders/get-started/moonbeam-dev/)
- - [Connect](/builders/get-started/moonbeam/) to [Moonbeam](/learn/platform/networks/moonbeam/)
- - [Connect](/builders/get-started/moonriver/) to [Moonriver](/learn/platform/networks/moonriver/)
- - [Connect](/builders/get-started/moonbase/) to the [Moonbase Alpha TestNet](/learn/platform/networks/moonbase/)
+ - Build your own Moonbeam instance as a [development node](/builders/get-started/moonbeam-dev.md)
+ - [Connect](/builders/get-started/networks/moonbeam.md) to [Moonbeam](/learn/platform/networks/moonbeam.md)
+ - [Connect](/builders/get-started/networks/moonriver.md) to [Moonriver](/learn/platform/networks/moonriver.md)
+ - [Connect](/builders/get-started/networks/moonbase.md) to the [Moonbase Alpha TestNet](/learn/platform/networks/moonbase.md)
 
 ### Wallets {: #wallets } 
 
 Currently, we have tested Moonbeam with the following wallets:
 
- - [MetaMask](/tokens/connect/metamask/)
- - [MathWallet](/tokens/connect/mathwallet/)
- - [Polkadot.js Apps](/tokens/connect/polkadotjs/)
- - [Ledger](/tokens/connect/ledger/)
- - [Trezor](/tokens/connect/trezor/)
- - [Nifty](/tokens/connect/nifty/)
+ - [MetaMask](/tokens/connect/metamask.md)
+ - [MathWallet](/tokens/connect/mathwallet.md)
+ - [Polkadot.js Apps](/tokens/connect/polkadotjs.md)
+ - [Ledger](/tokens/connect/ledger.md)
+ - [Trezor](/tokens/connect/trezor.md)
+ - [Nifty](/tokens/connect/nifty.md)
 
 However, any wallet that works with an Ethereum custom network should work with Moonbeam as well!
 
@@ -60,27 +60,32 @@ Want another Ethereum tool listed here? [Let us know!](https://discord.gg/PfpUAT
 
 ### Tools and Integrations {: #tools-and-integrations } 
 
- - [Web3.js](/builders/tools/eth-libraries/web3js/)
- - [Ethers.js](/builders/tools/eth-libraries/etherjs/)
- - [Web3.py](/builders/tools/eth-libraries/web3py/)
- - [The Graph](/builders/integrations/indexers/thegraph/)
- - [Covalent API](/builders/integrations/indexers/covalent/)
+ - [Web3.js](/builders/build/eth-api/libraries/web3js.md)
+ - [Ethers.js](/builders/build/eth-api/libraries/etherjs.md)
+ - [Web3.py](/builders/build/eth-api/libraries/web3py.md)
+ - [The Graph](/builders/integrations/indexers/thegraph.md)
+ - [Covalent API](/builders/integrations/indexers/covalent.md)
  - [Debug & Trace](/builders/tools/debug-trace/)
 
 ### Oracles {: #oracles } 
 
  We also have a number of Oracles that can serve as data feed to your smart contracts:
 
- - [Chainlink](/builders/integrations/oracles/chainlink/)
- - [Band Protocol](/builders/integrations/oracles/band-protocol/)
- - [Razor Network](/builders/integrations/oracles/razor-network/)
+ - [Chainlink](/builders/integrations/oracles/chainlink.md)
+ - [Band Protocol](/builders/integrations/oracles/band-protocol.md)
+ - [Razor Network](/builders/integrations/oracles/razor-network.md)
 
 ### Bridges {: #bridges } 
 
 Currently, we have a fully functioning bridge implementation that connects Ethereum's Rinkeby/Kovan TestNets and Moonbase Alpha:
 
- - [ChainBridge](/builders/integrations/bridges/eth/chainbridge/)
+ - [ChainBridge](/builders/integrations/bridges/eth/chainbridge.md)
 
+### XCM {: #xcm }
+
+  - [XCM](/builders/xcm/overview.md)
+  - [xc20 Overview](/builders/xcm/xc20.md)
+  - [xc20 xTokens](/builders/xcm/xc20/xtokens.md)
 ---
 
 ## How to Engage With the Moonbeam Community {: #how-to-engage-with-the-moonbeam-community } 
