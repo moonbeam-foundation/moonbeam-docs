@@ -1,6 +1,6 @@
 ---
-title: Using Polkadot.js Apps
-description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereum-standard H160 addresses with Substrate-based apps like Polkadot.js.
+title: Connect Polkadot.js Apps to Moonbeam
+description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereum-standard H160 addresses and send transactions with Polkadot.js.
 ---
 
 # Interacting with Moonbeam Using Polkadot.js Apps

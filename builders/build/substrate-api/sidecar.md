@@ -1,6 +1,6 @@
 ---
-title: Sidecar
-description: Information on how to use Substrate-based REST service with Moonbeam networks
+title: Using Substrate API Sidecar with Moonbeam
+description: Learn how to use Substrate-based REST service with Moonbeam-based networks to access blocks, account balance, compute gas used, and more.
 ---
 
 # Using Substrate API Sidecar with Moonbeam

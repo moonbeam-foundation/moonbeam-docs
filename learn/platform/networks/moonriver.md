@@ -1,5 +1,5 @@
 ---
-title: Moonriver
+title: Moonriver Network Overview
 description: An overview of the current configuration of the Moonbeam deployment on Kusama, Moonriver, and information on how to start building on it using Solidity.
 ---
 

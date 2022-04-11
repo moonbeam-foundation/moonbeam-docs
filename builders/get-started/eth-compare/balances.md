@@ -1,7 +1,9 @@
 ---
-title: Account Balances
-description: A description of the main differences that Ethereum developers need to understand in terms of account balances on Moonbeam.
+title: Moonbeam Account Balances
+description: A description of the main differences that Ethereum developers need to understand in terms of account balances on Moonbeam and how they differ from Ethereum.
 ---
+
+# Moonbeam Account Balances
 
 ![Moonbeam v Ethereum - Account Balances Banner](/images/builders/get-started/eth-compare/balances-banner.png)
 
@@ -39,7 +41,7 @@ As with Ethereum, there are two main types of accounts: user-owned and contract 
 
 ## Main Differences
 
-The main difference between account balances on Ethereum and Moonbeam lies in the concept of locked and reserved balance in Moonbeam. These are tokens that are still owned by that account, but they are not spendable (yet).
+The main difference between account balances on Ethereum and Moonbeam lies in the concept of locked and reserved balance on Moonbeam. These are tokens that are still owned by that account, but they are not spendable (yet).
 
 From the Ethereum's API perspective, an account might show that it has a certain balance (called `reducible` balance). However, after an on-chain action, this value might increase (or decrease) without an actual balance transfer.
 

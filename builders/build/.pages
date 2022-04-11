@@ -4,5 +4,5 @@ nav:
   - index.md
   - eth-api
   - substrate-api
-  - moonbeam-custom-api.md
+  - 'Moonbeam Custom API': 'moonbeam-custom-api.md'
   - canonical-contracts

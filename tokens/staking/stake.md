@@ -1,6 +1,6 @@
 ---
-title: How to Stake
-description: A guide that shows how you can stake your tokens in Moonbeam by delegating collator candidates
+title: How to Stake on Moonbeam
+description: A guide that shows how you can stake your tokens and earn rewards on Moonbeam by delegating collator candidates.
 ---
 
 # How to Stake your Tokens
@@ -17,7 +17,7 @@ Once a candidate joins the active set of collators, they are eligible to produce
 
 This guide will show you how to stake on Moonbase Alpha via Polkadot.js Apps, but similar steps can be taken for any of the Moonbeam and Moonriver. Token holders that want to easily stake their tokens can use the [Moonbeam dApp](https://apps.moonbeam.network/) to do so.
 
-For more general information on staking, please check out the [Staking in Moonbeam](/learn/features/staking/) overview.
+For more general information on staking, please check out the [Staking on Moonbeam](/learn/features/staking/) overview.
 
 ## Extrinsics Definitions {: #extrinsics-definitions } 
 
@@ -75,7 +75,7 @@ Then to retrieve the various staking parameters, you'll need to:
 
 ![Retrieving staking parameters](/images/tokens/staking/stake/stake-12.png)
 
-You should then see the maximum delegations per delegator, which can also be found in the [Staking in Moonbeam](/learn/features/staking/#quick-reference) overview.
+You should then see the maximum delegations per delegator, which can also be found in the [Staking on Moonbeam](/learn/features/staking/#quick-reference) overview.
 
 ## How to Stake via Polkadot.js Apps {: #how-to-delegate-a-candidate } 
 

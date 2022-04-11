@@ -3,5 +3,5 @@ nav:
   - index.md
   - networks
   - eth-compare
-  - endpoints.md
-  - explorers.md
+  - 'Network Endpoints': 'endpoints.md'
+  - 'Block Explorers': 'explorers.md'

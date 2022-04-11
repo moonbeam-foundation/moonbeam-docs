@@ -1,6 +1,7 @@
 ---
-title: Democracy 
-description: Moonbeam Democracy Solidity Precompile Interface Demo
+title: Interacting with the Democracy Precompile on Moonbeam
+description: How to use the Moonbeam democracy Solidity precompile interface to interact with democracy functions using the Ethereum API
+keywords: solidity, ethereum, democracy, moonbeam, precompiled, contracts
 ---
 
 # Interacting with the Democracy Precompile
@@ -62,7 +63,7 @@ The interface also includes the following functions which are not currently supp
  
 ## Checking Prerequisites {: #checking-prerequisites } 
 
-The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonbeam and Moonriver. Before diving into the interface, it's best if you're familiar with [how to propose an action](/tokens/governance/proposals/){target=_blank} and [how to vote on a proposal](/tokens/governance/voting/){target=_blank} in Moonbeam. Additionally, you should:  
+The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonbeam and Moonriver. Before diving into the interface, it's best if you're familiar with [how to propose an action](/tokens/governance/proposals/){target=_blank} and [how to vote on a proposal](/tokens/governance/voting/){target=_blank} on Moonbeam. Additionally, you should:  
 
  - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
  - Have an account with some DEV tokens. You can get these from [Mission Control](/builders/get-started/moonbase/#get-tokens/){target=_blank}
@@ -140,7 +141,7 @@ After your transaction has been confirmed you can return to the Democracy sectio
 
 ## Second a Proposal {: #second-a-proposal } 
 
-Seconding a proposal allows it to move to referendum status and requires a bond equivalent to the bond furnished by the proposer. Seconded proposals transition to referendum status once per launch period, which is approximately {{ networks.moonbase.democracy.launch_period.days}} day in Moonbase Alpha, {{ networks.moonbase.democracy.launch_period.days}} day in Moonriver, and {{ networks.moonbeam.democracy.launch_period.days}} days in Moonbeam. 
+Seconding a proposal allows it to move to referendum status and requires a bond equivalent to the bond furnished by the proposer. Seconded proposals transition to referendum status once per launch period, which is approximately {{ networks.moonbase.democracy.launch_period.days}} day on Moonbase Alpha, {{ networks.moonbase.democracy.launch_period.days}} day on Moonriver, and {{ networks.moonbeam.democracy.launch_period.days}} days on Moonbeam. 
 
 ### Get the Proposal Index {: #get-the-proposal-index } 
 
@@ -173,7 +174,7 @@ And that's it! To review your seconded proposal, you can revisit [Polkadot.JS Ap
 
 ## Vote on a Referendum {: #vote-on-a-referendum } 
 
-Seconded proposals transition to referendum status once per launch period, which is approximately {{ networks.moonbase.democracy.launch_period.days}} day in Moonbase Alpha, {{ networks.moonbase.democracy.launch_period.days}} day in Moonriver, and {{ networks.moonbeam.democracy.launch_period.days}} days in Moonbeam. If there are no active referenda currently up for vote in Moonbase Alpha, you may need to wait for the launch period to pass for the proposal you seconded in the prior step to make it to referendum status.
+Seconded proposals transition to referendum status once per launch period, which is approximately {{ networks.moonbase.democracy.launch_period.days}} day on Moonbase Alpha, {{ networks.moonbase.democracy.launch_period.days}} day on Moonriver, and {{ networks.moonbeam.democracy.launch_period.days}} days on Moonbeam. If there are no active referenda currently up for vote on Moonbase Alpha, you may need to wait for the launch period to pass for the proposal you seconded in the prior step to make it to referendum status.
 
 ### Get the Referendum Index {: #get-the-referendum-index } 
 

@@ -1,7 +1,8 @@
 ---
-title: Web3.py
+title: Web3.py Python Library
 description: Follow this tutorial to learn how to use the Ethereum Web3 Python Library to deploy Solidity smart contracts to Moonbeam.
 ---
+
 # Web3.py Python Library
 
 ![Intro diagram](/images/builders/build/eth-api/libraries/web3py/web3py-banner.png)

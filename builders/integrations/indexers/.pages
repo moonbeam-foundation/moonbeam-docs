@@ -2,6 +2,6 @@ title: Indexers
 hide: false
 nav:
   - index.md
-  - thegraph.md
-  - covalent.md
-  - subquery.md
+  - 'The Graph': 'thegraph.md'
+  - 'Covalent API': 'covalent.md'
+  - 'SubQuery': 'subquery.md'

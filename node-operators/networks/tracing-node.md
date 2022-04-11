@@ -1,5 +1,5 @@
 ---
-title: Run a Tracing Node
+title: Run a Tracing Node on Moonbeam
 description:  Learn how to leverage Geth's Debug and Txpool APIs, and OpenEthereum's Trace module to run a tracing node on Moonbeam
 ---
 

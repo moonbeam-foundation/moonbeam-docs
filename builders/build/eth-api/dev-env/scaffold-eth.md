@@ -1,5 +1,5 @@
 ---
-title: Scaffold-ETH
+title: Using Scaffold-ETH to Deploy a DApp on Moonbeam
 description: You can deploy a Solidity DApp with a React UI and subgraph on Moonbeam in minutes by using Scaffold-ETH. Learn how in this tutorial.
 ---
 

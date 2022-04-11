@@ -1,7 +1,8 @@
 ---
-title: Polkadot.js API
-description: Follow this tutorial to learn the basic of how to use the polkadot.js API library to interact with Moonbeam networks.
+title: Use the Polkadot.js API to Build on Moonbeam
+description: Follow this tutorial to learn the basic of how to use the polkadot.js API library to query chain data, send transactions, and more on Moonbeam networks.
 ---
+
 # Polkadot.js API Library
 
 ![Intro diagram](/images/builders/build/substrate-api/polkadot-js-api/polkadot-js-api-banner.png)

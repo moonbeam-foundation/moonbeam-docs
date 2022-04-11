@@ -1,6 +1,6 @@
 ---
-title: Network Endpoints
-description: Use one of the supported API providers to connect to a public endpoint or create custom JSON RPC and WSS endpoints to Moonbeam-based networks.
+title: Moonbeam API Providers and Endpoints
+description: Use one of the supported API providers to connect to a public endpoint or create custom JSON RPC and WSS endpoints for Moonbeam-based networks.
 ---
 
 # Network Endpoints
