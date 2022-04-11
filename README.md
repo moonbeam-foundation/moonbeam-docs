@@ -49,19 +49,18 @@ However, any wallet that works with an Ethereum custom network should work with 
 
 Because of Moonbeam's Ethereum compatibility features, you can use the development tools you know and love to deploy a contract:
 
- - [Ethereum Libraries](/builders/interact/eth-libraries/)
- - [Remix](/builders/interact/remix/)
- - [OpenZeppelin and Remix](/builders/interact/oz-remix/)
- - [HardHat](/builders/interact/hardhat/)
- - [Truffle](/builders/interact/truffle/)
- - [Waffle and Mars](/builders/interact/waffle-mars/)
+ - [Remix](/builders/build/eth-api/dev-env/remix.md)
+ - [OpenZeppelin and Remix](/builders/build/eth-api/dev-env/openzeppelin/contracts.md)
+ - [HardHat](/builders/build/eth-api/dev-env/hardhat.md)
+ - [Truffle](/builders/build/eth-api/dev-env/truffle.md)
+ - [Waffle and Mars](/builders/build/eth-api/dev-env/waffle-mars.md)
 
 Want another Ethereum tool listed here? [Let us know!](https://discord.gg/PfpUATX)
 
 ### Tools and Integrations {: #tools-and-integrations } 
 
  - [Web3.js](/builders/build/eth-api/libraries/web3js.md)
- - [Ethers.js](/builders/build/eth-api/libraries/etherjs.md)
+ - [Ethers.js](/builders/build/eth-api/libraries/ethersjs.md)
  - [Web3.py](/builders/build/eth-api/libraries/web3py.md)
  - [The Graph](/builders/integrations/indexers/thegraph.md)
  - [Covalent API](/builders/integrations/indexers/covalent.md)
