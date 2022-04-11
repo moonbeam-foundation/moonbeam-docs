@@ -64,7 +64,7 @@ Want another Ethereum tool listed here? [Let us know!](https://discord.gg/PfpUAT
  - [Web3.py](/builders/build/eth-api/libraries/web3py.md)
  - [The Graph](/builders/integrations/indexers/thegraph.md)
  - [Covalent API](/builders/integrations/indexers/covalent.md)
- - [Debug & Trace](/builders/tools/debug-trace/)
+ - [Debug & Trace](/builders/build/eth-api/debug-trace.md)
 
 ### Oracles {: #oracles } 
 
@@ -83,8 +83,8 @@ Currently, we have a fully functioning bridge implementation that connects Ether
 ### XCM {: #xcm }
 
   - [XCM](/builders/xcm/overview.md)
-  - [xc20 Overview](/builders/xcm/xc20.md)
-  - [xc20 xTokens](/builders/xcm/xc20/xtokens.md)
+  - [XC-20 Overview](/builders/xcm/xc20/overview.md)
+  - [Send XC-20 using the xTokens Pallet](//builders/xcm/xc20/xtokens.md)
 ---
 
 ## How to Engage With the Moonbeam Community {: #how-to-engage-with-the-moonbeam-community } 
