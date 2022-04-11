@@ -61,7 +61,7 @@ A channel for XCMs between the relay chain and parachain is automatically opened
     * Maximum number of messages in the destination queue
     * Maximum size of the messages to be sent
 
-The transaction fees are paid in the cross-chain (xc) representation of the relay chain asset (_xcRelayChainAsset_). For example, for Kusama/Moonriver, the transaction fees would be paid in _xcKSM_. Therefore, the account paying for the fees must have enough _xcRelayChainAsset_. This might be tackled in Moonbeam/Moonriver by having fees from incoming XCM messages, which are paid in the origin chain asset, sent to the treasury, and using the treasury account to pay for the channel registration extrinsic.
+The transaction fees are paid in the cross-chain (xc) representation of the relay chain asset (_xcRelayChainAsset_). For example, for Kusama/Moonriver, the transaction fees would be paid in _xcKSM_. Therefore, the account paying for the fees must have enough _xcRelayChainAsset_. This might be tackled on Moonbeam/Moonriver by having fees from incoming XCM messages, which are paid in the origin chain asset, sent to the treasury, and using the treasury account to pay for the channel registration extrinsic.
 
 Even though parachain A has expressed its intentions of opening an XCM channel with parachain B, the latter has not signaled to the relay chain its intentions to receive messages from parachain A. Therefore, to have an established channel, parachain B must also send an extrinsic (which is also an XCM) to the relay chain. The accepting channel extrinsic is similar to the previous one. However, the encoded call data only includes the new method (accept channel) and the parachain ID of the sender (parachain A in this example). Once both parachains have agreed, the channel is opened within the next epoch change.
 
@@ -110,7 +110,7 @@ As Moonbeam is a parachain within the Polkadot ecosystem, XCM + VMP allows DOT t
 
 Once a project is onboarded as a parachain it automatically has a bi-directional communication channel with the relay chain. Therefore, there is no need for chain registration. However, the relay chain native token needs to be registered on the parachain.
 
-Alice (Polkadot) wants to transfer a certain amount of DOTs from Polkadot to her account in Moonbeam, named Alith. Therefore, she initiates an XCM that expresses her intentions. For such transfers, Moonbeam owns a Sovereign account on Polkadot.
+Alice (Polkadot) wants to transfer a certain amount of DOTs from Polkadot to her account on Moonbeam, named Alith. Therefore, she initiates an XCM that expresses her intentions. For such transfers, Moonbeam owns a Sovereign account on Polkadot.
 
 Consequently, the XCM message execution on Polkadot will transfer the amount of DOTs to Moonbeam's Sovereign account on Polkadot. Once the assets are deposited, the second part of the message is sent to Moonbeam.
 

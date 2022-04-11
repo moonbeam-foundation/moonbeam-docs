@@ -1,6 +1,6 @@
 ---
 title: Connect Trezor Hardware Wallet to Moonbeam
-description: This guide walks you through how to connect and use your Trezor hardware wallet to sign transactions in Moonbeam, leveraging its Ethereum compatibility features.
+description: This guide walks you through how to connect and use your Trezor hardware wallet to sign transactions on Moonbeam, leveraging its Ethereum compatibility features.
 ---
 
 # Interacting with Moonbeam Using Trezor Hardware Wallet

@@ -260,7 +260,7 @@ Congratulations, your contract is live! Save the address, as you will use it to 
 
 ## Interacting with the Contract {: #interacting-with-the-contract } 
 
-To interact with your newly deployed contract in Moonbase Alpha, you can launch the Hardhat `console` by running:
+To interact with your newly deployed contract on Moonbase Alpha, you can launch the Hardhat `console` by running:
 
 ```
 npx hardhat console --network moonbase

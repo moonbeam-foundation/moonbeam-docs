@@ -15,7 +15,7 @@ Indexing protocols organize information in a way that applications can access it
 
 Furthermore, developers can build APIs, called Subgraphs. Users or other developers can use Subgraphs to query data specific to a set of smart contracts. Data is fetched with a standard GraphQL API. You can visit The Graph's documentation site to read more [about The Graph protocol](https://thegraph.com/docs/about/introduction#what-the-graph-is){target=_blank}.
 
-Due to the support of Ethereum tracing modules in Moonbeam, The Graph is capable of indexing blockchain data in Moonbeam. This guide takes you through the creation of a simple subgraph for a Lottery contract on Moonbase Alpha. This guide can be adapted for Moonbeam and Moonriver.
+Due to the support of Ethereum tracing modules on Moonbeam, The Graph is capable of indexing blockchain data on Moonbeam. This guide takes you through the creation of a simple subgraph for a Lottery contract on Moonbase Alpha. This guide can be adapted for Moonbeam and Moonriver.
 
 ## Quick Start
 
