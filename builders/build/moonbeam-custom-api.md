@@ -1,6 +1,6 @@
 ---
-title: Moonbeam Custom API
-description: This page contains information on Moonbeam custom API endpoints. 
+title: Moonbeam Custom API and JSON RPC Methods
+description: This page contains information on Moonbeam custom API endpoints and JSON RPC methods specific to Moonbeam.
 ---
 
 # Moonbeam Custom API 

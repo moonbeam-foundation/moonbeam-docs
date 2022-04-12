@@ -1,5 +1,5 @@
 title: Governance
 nav:
   - index.md
-  - proposals.md
-  - voting.md
+  - 'Propose an Action': 'proposals.md'
+  - 'Vote on a Proposal': 'voting.md'

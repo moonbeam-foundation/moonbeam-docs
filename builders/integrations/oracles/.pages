@@ -2,6 +2,6 @@ title: Oracles
 hide: false
 nav:
   - index.md
-  - band-protocol.md
-  - chainlink.md
-  - razor-network.md
+  - 'Band Protocol': 'band-protocol.md'
+  - 'Chainlink': 'chainlink.md'
+  - 'Razor Network': 'razor-network.md'

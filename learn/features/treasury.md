@@ -1,9 +1,9 @@
 ---
-title: Treasury
+title: Treasury on Moonbeam
 description: As a Polkadot parachain, Moonbeam will use an on-chain treasury controlled by council members, that allows for stakeholders to submit proposals to further the network.
 ---
 
-# Treasury in Moonbeam
+# Treasury on Moonbeam
 
 ![Treasury Moonbeam Banner](/images/learn/features/treasury/treasury-overview-banner.png)
 

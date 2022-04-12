@@ -1,9 +1,9 @@
 ---
-title: Events Subscription
+title: Subscribe to Ethereum-style Events on Moonbeam
 description: Use Ethereum-like publish-subscribe functionality to subscribe to specific events on Moonbeam's Ethereum-compatible chain.
 ---
 
-# Subscribe to Events in Moonbase Alpha
+# Subscribe to Events on Moonbase Alpha
 
 ## Introduction {: #introduction } 
 
@@ -33,7 +33,7 @@ npm ls web3
 
 As of writing this guide, the version used was 1.3.0. 
 
-## Subscribing to Event Logs in Moonbase Alpha {: #subscribing-to-event-logs-in-moonbase-alpha } 
+## Subscribing to Event Logs on Moonbase Alpha {: #subscribing-to-event-logs-in-moonbase-alpha } 
 
 Any contract that follows the ERC-20 token standard emits an event related to a transfer of tokens, that is, `event Transfer(address indexed from, address indexed to, uint256 value)`. For this example, we will subscribe to the logs of such events. Using the web3.js library, we need the following piece of code:
 

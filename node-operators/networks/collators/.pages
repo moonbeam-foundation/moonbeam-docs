@@ -1,8 +1,8 @@
 title: Collators
 nav:
   - index.md
-  - overview.md
-  - faq.md
-  - requirements.md
-  - account-management.md
-  - activities.md
+  - 'Overview': 'overview.md'
+  - 'FAQ': 'faq.md'
+  - 'Requirements': 'requirements.md'
+  - 'Account Management': 'account-management.md'
+  - 'Collator Activities': 'activities.md'

@@ -1,5 +1,5 @@
 ---
-title: Overview
+title: XC-20s and Cross-Chain Assets on Moonbeam
 description:  Learn how to access and interact with an ERC-20 interface for cross-chain tokens on Moonbeam, and check how this is done on the Moonbase Alpha TestNet by using the assets precompiled contract.
 ---
 
@@ -13,7 +13,7 @@ The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-cro
 
 Substrate assets are natively interoperable. However, developers need to tap into the Substrate API to interact with them, making the developer experience unideal, especially for those from the Ethereum world. Consequently, to help developers tap into the native interoperability that Polkadot/Kusama offers, Moonbeam introduced the concept of XC-20s.
 
-XC-20s are a unique asset class in Moonbeam. It combines the power of Substrate assets (native interoperability) but allows users and developers to interact with them through a familiar [ERC-20 interface](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol) via a precompile contract (Ethereum API). Moreover, developers can integrate XC-20s with regular Ethereum development frameworks or dApps. 
+XC-20s are a unique asset class on Moonbeam. It combines the power of Substrate assets (native interoperability) but allows users and developers to interact with them through a familiar [ERC-20 interface](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol) via a precompile contract (Ethereum API). Moreover, developers can integrate XC-20s with regular Ethereum development frameworks or dApps. 
 
 ![Moonbeam XC-20 XCM Integration With Polkadot](/images/builders/xcm/overview/overview-4.png)
 
@@ -28,23 +28,26 @@ The current list of available XC-20 assets per network is the following:
 === "Moonriver"
     | Symbol  |  Origin   |                                                                 XC-20 Address                                                                 |
     |:-------:|:---------:|:---------------------------------------------------------------------------------------------------------------------------------------------:|
-    |  xcKSM  |  Kusama   | [0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080](https://moonriver.moonscan.io/address/0xffffffff1fcacbd218edc0eba20fc2308c778080){target=_blank} |
-    |  xcKAR  |  Karura   | [0xFfFFFFfF08220AD2E6e157f26eD8bD22A336A0A5](https://moonriver.moonscan.io/address/0xFfFFFFfF08220AD2E6e157f26eD8bD22A336A0A5){target=_blank} |
-    | xcKINT  | Kintsugi  | [0xfffFFFFF83F4f317d3cbF6EC6250AeC3697b3fF2](https://moonriver.moonscan.io/address/0xfffFFFFF83F4f317d3cbF6EC6250AeC3697b3fF2){target=_blank} |
-    | xcMRMRK | Statemine | [0xffffffFF893264794d9d57E1E0E21E0042aF5A0A](https://moonriver.moonscan.io/address/0xffffffFF893264794d9d57E1E0E21E0042aF5A0A){target=_blank} |
+    | xc-KSM  |  Kusama   | [0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080](https://moonriver.moonscan.io/address/0xffffffff1fcacbd218edc0eba20fc2308c778080){target=_blank} |
+    | xc-BNC  |  Bifrost  | [0xFFfFFfFFF075423be54811EcB478e911F22dDe7D](https://moonriver.moonscan.io/address/0xFFfFFfFFF075423be54811EcB478e911F22dDe7D){target=_blank} |
+    | xc-KAR  |  Karura   | [0xFfFFFFfF08220AD2E6e157f26eD8bD22A336A0A5](https://moonriver.moonscan.io/address/0xFfFFFFfF08220AD2E6e157f26eD8bD22A336A0A5){target=_blank} |
+    | xc-aUSD |  Karura   | [0xFfFffFFfa1B026a00FbAA67c86D5d1d5BF8D8228](https://moonriver.moonscan.io/address/0xFfFffFFfa1B026a00FbAA67c86D5d1d5BF8D8228){target=_blank} |
+    | xc-KINT | Kintsugi  | [0xfffFFFFF83F4f317d3cbF6EC6250AeC3697b3fF2](https://moonriver.moonscan.io/address/0xfffFFFFF83F4f317d3cbF6EC6250AeC3697b3fF2){target=_blank} |
+    | xc-kBTC | Kintsugi  | [0xFFFfFfFfF6E528AD57184579beeE00c5d5e646F0](https://moonriver.moonscan.io/address/0xFFFfFfFfF6E528AD57184579beeE00c5d5e646F0){target=_blank} |
+    | xc-RMRK | Statemine | [0xffffffFF893264794d9d57E1E0E21E0042aF5A0A](https://moonriver.moonscan.io/address/0xffffffFF893264794d9d57E1E0E21E0042aF5A0A){target=_blank} |
 
      _*You can check each Asset ID [here](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonriver.moonbeam.network#/assets){target=_blank}_
 
 === "Moonbase Alpha"
-    | Symbol  |        Origin        |                                                                XC-20 Address                                                                 |
-    |:-------:|:--------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------:|
-    | xcUNIT  | Relay Chain Alphanet | [0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080](https://moonbase.moonscan.io/address/0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080){target=_blank} |
-    |  xcBNC  |   Bifrost Alphanet   | [0xFffFFFfF1FAE104Dc4C134306bCA8e2E1990aCfd](https://moonbase.moonscan.io/address/0xFffFFFfF1FAE104Dc4C134306bCA8e2E1990aCfd){target=_blank} |
-    |  xcKAR  |   Karura Alphanet    | [0xFfFFFFfF08220AD2E6e157f26eD8bD22A336A0A5](https://moonbase.moonscan.io/address/0xFfFFFFfF08220AD2E6e157f26eD8bD22A336A0A5){target=_blank} |
-    | xcKUSD  |   Karura Alphanet    | [0xFfFffFFfa1B026a00FbAA67c86D5d1d5BF8D8228](https://moonbase.moonscan.io/address/0xFfFffFFfa1B026a00FbAA67c86D5d1d5BF8D8228){target=_blank} |
-    | xcKINT  |  Kintsugi Alphanet   | [0xFFFfffff27C019790DFBEE7cB70F5996671B2882](https://moonbase.moonscan.io/address/0xFFFfffff27C019790DFBEE7cB70F5996671B2882){target=_blank} |
-    | xcKBTC  |  Kintsugi Alphanet   | [0xFffFfFff5C2Ec77818D0863088929C1106635d26](https://moonbase.moonscan.io/address/0xFffFfFff5C2Ec77818D0863088929C1106635d26){target=_blank} |
-    | xcMRMRK |  Statemine Alphanet  | [0xFFffffFfd2aaD7f60626608Fa4a5d34768F7892d](https://moonbase.moonscan.io/address/0xFFffffFfd2aaD7f60626608Fa4a5d34768F7892d){target=_blank} |
+    |  Symbol  |        Origin        |                                                                XC-20 Address                                                                 |
+    |:--------:|:--------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------:|
+    | xc-UNIT  | Relay Chain Alphanet | [0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080](https://moonbase.moonscan.io/address/0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080){target=_blank} |
+    |  xc-BNC  |   Bifrost Alphanet   | [0xFffFFFfF1FAE104Dc4C134306bCA8e2E1990aCfd](https://moonbase.moonscan.io/address/0xFffFFFfF1FAE104Dc4C134306bCA8e2E1990aCfd){target=_blank} |
+    |  xc-KAR  |   Karura Alphanet    | [0xFfFFFFfF08220AD2E6e157f26eD8bD22A336A0A5](https://moonbase.moonscan.io/address/0xFfFFFFfF08220AD2E6e157f26eD8bD22A336A0A5){target=_blank} |
+    | xc-kUSD  |   Karura Alphanet    | [0xFfFffFFfa1B026a00FbAA67c86D5d1d5BF8D8228](https://moonbase.moonscan.io/address/0xFfFffFFfa1B026a00FbAA67c86D5d1d5BF8D8228){target=_blank} |
+    | xc-KINT  |  Kintsugi Alphanet   | [0xFFFfffff27C019790DFBEE7cB70F5996671B2882](https://moonbase.moonscan.io/address/0xFFFfffff27C019790DFBEE7cB70F5996671B2882){target=_blank} |
+    | xc-kBTC  |  Kintsugi Alphanet   | [0xFffFfFff5C2Ec77818D0863088929C1106635d26](https://moonbase.moonscan.io/address/0xFffFfFff5C2Ec77818D0863088929C1106635d26){target=_blank} |
+    | xc-MRMRK |  Statemine Alphanet  | [0xFFffffFfd2aaD7f60626608Fa4a5d34768F7892d](https://moonbase.moonscan.io/address/0xFFffffFfd2aaD7f60626608Fa4a5d34768F7892d){target=_blank} |
 
      _*You can check each Asset ID [here](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/assets){target=_blank}_
 

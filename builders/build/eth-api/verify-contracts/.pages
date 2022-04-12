@@ -1,5 +1,5 @@
 title: Verify Contracts
 nav:
- - index.md
- - block-explorers.md
- - etherscan-plugins.md
+  - index.md
+  - 'Block Explorers': 'block-explorers.md'
+  - 'Etherscan Plugins': 'etherscan-plugins.md'

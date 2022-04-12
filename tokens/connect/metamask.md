@@ -1,6 +1,6 @@
 ---
-title: Using MetaMask
-description: This guide walks you through how to connect MetaMask, an browser-based Ethereum wallet, to Moonriver, the Moonbase Alpha TestNet, or a Moonbeam development node.
+title: Connect MetaMask to Moonbeam
+description: This guide walks you through how to connect MetaMask, an browser-based Ethereum wallet, to Moonbeam-based networks and how to transfer funds.
 ---
 
 # Interacting with Moonbeam Using MetaMask

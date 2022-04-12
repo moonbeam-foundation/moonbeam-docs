@@ -1,6 +1,6 @@
 title: Libraries
 nav:
- - index.md
- - ethersjs.md
- - web3js.md
- - web3py.md
+  - index.md
+  - 'Ethers.js': 'ethersjs.md'
+  - 'Web3.js': 'web3js.md'
+  - 'Web3.py': 'web3py.md'

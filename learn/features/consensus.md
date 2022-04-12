@@ -1,5 +1,5 @@
 ---
-title: Parachain Consensus
+title: Moonbeam's Nimbus Consensus Framework
 description: Learn about all the parts of Moonbeam's Nimbus consensus framework and how it works as part of the Polkadot's shared security model
 ---
 
@@ -24,7 +24,7 @@ For example, Moonbeam uses a two-layer approach. The first layer comprises the p
 
 Notice that Nimbus can only answer which collator(s) are eligible to produce a parachain block in the next available slot. It is the [Cumulus](https://wiki.polkadot.network/docs/build-pdk#cumulus) consensus mechanism that marks this parachain block as best, and ultimately the [BABE](https://wiki.polkadot.network/docs/learn-consensus#babe) and [GRANDPA](https://wiki.polkadot.network/docs/learn-consensus#grandpa-finality-gadget) hybrid consensus model (of the relay chain) that will include this parachain block in the relay chain and finalize it. Once any relay chain forks are resolved at a relay chain level, that parachain block is deterministically finalized.
 
-The following two sections go over the filtering strategy currently used in Moonbeam.
+The following two sections go over the filtering strategy currently used on Moonbeam.
 
 ## Parachain Staking Filtering {: #parachain-staking-filtering } 
 

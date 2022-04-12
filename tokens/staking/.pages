@@ -1,4 +1,4 @@
 title: Staking
 nav:
   - index.md
-  - stake.md
+  - 'How to Stake': 'stake.md'

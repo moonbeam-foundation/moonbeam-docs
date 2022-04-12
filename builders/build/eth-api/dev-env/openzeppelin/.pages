@@ -2,6 +2,6 @@ title: OpenZeppelin
 hide: false
 nav:
   - index.md
-  - overview.md
-  - contracts.md
-  - defender.md
+  - 'Overview': 'overview.md'
+  - 'Contract Wizard': 'contracts.md'
+  - 'Defender': 'defender.md'
