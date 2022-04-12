@@ -5,3 +5,4 @@ nav:
   - 'The Graph': 'thegraph.md'
   - 'Covalent API': 'covalent.md'
   - 'SubQuery': 'subquery.md'
+  - 'Subsquid': 'subsquid.md'
