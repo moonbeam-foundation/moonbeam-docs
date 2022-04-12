@@ -1,6 +1,6 @@
 ---
-title: Collator Activities
-description: Instructions on how to dive in and learn about the related activites for becoming and being a collator in the Moonbeam Network
+title: Moonbeam Collator Activities
+description: Instructions on how to dive in and learn about the related activites for becoming and being a collator in the Moonbeam Network.
 ---
 
 # Collator Activities
@@ -79,7 +79,7 @@ Once your node is running and in sync with the network, you become a candidate (
  3. Confirm your account is funded with at least the [minimum stake required](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=_blank} plus some extra for transaction fees 
  4. Select **parachainStaking** pallet under the **submit the following extrinsic** menu
  5. Open the drop-down menu, which lists all the possible extrinsics related to staking, and select the **joinCandidates()** function
- 6. Set the bond to at least the [minimum amount](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=_blank} to be considered a candidate. You'll need to enter this amount in `Wei`. As an example, the minimum bond of {{ networks.moonbase.staking.min_can_stk }} DEV in Moonbase Alpha would be `{{ networks.moonbase.staking.min_can_stk_wei }}` in Wei ({{ networks.moonbase.staking.min_can_stk }} + 18 extra zeros). Only the candidate bond counts for this check. Additional delegations do not count
+ 6. Set the bond to at least the [minimum amount](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=_blank} to be considered a candidate. You'll need to enter this amount in `Wei`. As an example, the minimum bond of {{ networks.moonbase.staking.min_can_stk }} DEV on Moonbase Alpha would be `{{ networks.moonbase.staking.min_can_stk_wei }}` in Wei ({{ networks.moonbase.staking.min_can_stk }} + 18 extra zeros). Only the candidate bond counts for this check. Additional delegations do not count
  7. Set the candidate count as the candidate pool size. To learn how to retrieve this value, check the [Get the Size of the Candidate Pool](#get-the-size-of-the-candidate-pool) section
  8. Submit the transaction. Follow the wizard and sign the transaction using the password you set for the account
 

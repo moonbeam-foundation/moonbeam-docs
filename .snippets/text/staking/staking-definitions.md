@@ -1,4 +1,4 @@
-Some important parameters to understand in relation to the staking system in Moonbeam include:
+Some important parameters to understand in relation to the staking system on Moonbeam include:
 
  - **Round** — a specific number of blocks around which staking actions are enforced. For example, new delegations are enacted when the next round starts. When bonding less or revoking delegations, funds are returned after a certain amount of rounds
  - **Candidates** - node operators that are eligible to become block producers if they can acquire enough stake to be in the active set

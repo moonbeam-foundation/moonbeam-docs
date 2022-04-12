@@ -2,9 +2,9 @@ title: Dev Environments
 nav:
   - index.md
   - openzeppelin
-  - remix.md
-  - hardhat.md
-  - truffle.md
-  - waffle-mars.md
-  - brownie.md
-  - scaffold-eth.md
+  - 'Remix': 'remix.md'
+  - 'Hardhat': 'hardhat.md'
+  - 'Truffle': 'truffle.md'
+  - 'Waffle & Mars': 'waffle-mars.md'
+  - 'Brownie': 'brownie.md'
+  - 'Scaffold-ETH': 'scaffold-eth.md'

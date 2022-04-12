@@ -1,5 +1,5 @@
 ---
-title: Moonriver
+title: Get Started with Moonriver
 description: Learn how to get started and connect to Moonriver, the Moonbeam deployment on Kusama, via RPC and WSS endpoints.
 ---
 

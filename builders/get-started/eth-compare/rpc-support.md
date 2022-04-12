@@ -1,6 +1,6 @@
 ---
-title: RPC Support
-description: A description of the main differences that Ethereum developers need to understand in terms of the Ethereum RPC support Moonbeam Provides.
+title: Supported JSON RPC Methods on Moonbeam
+description: A description of the main differences that Ethereum developers need to understand in terms of the Ethereum RPC support Moonbeam provides.
 ---
 
 ![Moonbeam v Ethereum - RPC Support Banner](/images/builders/get-started/eth-compare/rpc-support-banner.png)
@@ -48,8 +48,8 @@ At the time of writing, the basic JSON RPC methods from the Ethereum API support
  - **[eth_getUncleByBlockNumberAndIndex](https://eth.wiki/json-rpc/API#eth_getunclebyblocknumberandindex)** — Returns `null` by default
  - **[eth_getLogs](https://eth.wiki/json-rpc/API#eth_getlogs)** — Returns the transaction receipt of a given transaction hash
  - **[eth_getWork](https://eth.wiki/json-rpc/API#eth_getwork)** — Returns `["0x0","0x0","0x0"]` by default
- - **[eth_submitWork](https://eth.wiki/json-rpc/API#eth_submitwork)** — Not supported in Moonbeam
- - **[eth_submitHashrate](https://eth.wiki/json-rpc/API#eth_submithashrate)** — Not supported in Moonbeam
+ - **[eth_submitWork](https://eth.wiki/json-rpc/API#eth_submitwork)** — Not supported on Moonbeam
+ - **[eth_submitHashrate](https://eth.wiki/json-rpc/API#eth_submithashrate)** — Not supported on Moonbeam
 
 ## Filter-related Ethereum JSON RPC Methods
 

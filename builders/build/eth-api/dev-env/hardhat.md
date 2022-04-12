@@ -1,6 +1,6 @@
 ---
-title: Hardhat
-description: Use Hardhat to compile, deploy, and debug Ethereum smart contracts on Moonbeam.
+title: Using Hardhat to Deploy Smart Contracts To Moonbeam
+description: Learn how to use Hardhat to compile, deploy, and debug Ethereum smart contracts on Moonbeam.
 ---
 
 # Using Hardhat to Deploy To Moonbeam
@@ -260,7 +260,7 @@ Congratulations, your contract is live! Save the address, as you will use it to 
 
 ## Interacting with the Contract {: #interacting-with-the-contract } 
 
-To interact with your newly deployed contract in Moonbase Alpha, you can launch the Hardhat `console` by running:
+To interact with your newly deployed contract on Moonbase Alpha, you can launch the Hardhat `console` by running:
 
 ```
 npx hardhat console --network moonbase

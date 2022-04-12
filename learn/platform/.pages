@@ -2,11 +2,11 @@ title: Platform
 nav:
   - index.md
   - networks
-  - vision.md
-  - why-polkadot.md
-  - roadmap.md
-  - technology.md
-  - tokens.md
-  - code.md
-  - links.md
-  - glossary.md
+  - 'Vision': 'vision.md'
+  - 'Why Polkadot': 'why-polkadot.md'
+  - 'Roadmap': 'roadmap.md'
+  - 'Technology': 'technology.md'
+  - 'Tokens': 'tokens.md'
+  - 'Source Code': 'code.md'
+  - 'Important Links': 'links.md'
+  - 'Glossary': 'glossary.md'

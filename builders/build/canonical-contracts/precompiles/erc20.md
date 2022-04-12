@@ -1,6 +1,7 @@
 ---
-title: Native Token ERC-20
-description:  Learn how to access and interact with an ERC-20 representation of native token on Moonbeam, and check how this is done on the Moonbase Alpha TestNet by using the ERC-20 precompiled contract.
+title:  Native Token ERC-20 Precompile on Moonbeam
+description:  Learn how to access and interact with an ERC-20 representation of the native token on Moonbeam through the precompiled ERC-20 Interface.
+keywords: solidity, ethereum, native, token, moonbeam, precompiled, contracts
 ---
 
 #  Native Token ERC-20 Precompile
@@ -13,7 +14,7 @@ The native token ERC-20 precompiled contract on Moonbeam allows developers to in
 
 One of the main benefits of this precompile is that it removes the necessity of having a wrapped representation of the protocol token as an ERC-20 smart contract, such as WETH on Ethereum. Furthermore, it prevents having multiple wrapped representations of the same protocol token. Consequently, DApps that need to interact with the protocol token via an ERC-20 interface can do so without needing a separate smart contract.
 
-Under the hood, the [ERC-20 precompile](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/src/lib.rs){target=_blank} executes specific Substrate actions related to the Substrate balances pallet, which is coded in Rust. The balances pallet provides functionality for handling the [various types of balances in Moonbeam](/builders/get-started/eth-compare/balances/#moonbeam-account-balances){target=_blank}, setting the free balance, transferring balances, and more.
+Under the hood, the [ERC-20 precompile](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/src/lib.rs){target=_blank} executes specific Substrate actions related to the Substrate balances pallet, which is coded in Rust. The balances pallet provides functionality for handling the [various types of balances on Moonbeam](/builders/get-started/eth-compare/balances/#moonbeam-account-balances){target=_blank}, setting the free balance, transferring balances, and more.
 
 This guide will show you how to interact with DEV tokens, the native protocol tokens for the Moonbase Alpha TestNet, via the ERC-20 precompile.
 
