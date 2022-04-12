@@ -1,11 +1,11 @@
 ---
-title: Cross-Chain Assets
+title: Overview
 description:  Learn how to access and interact with an ERC-20 interface for cross-chain tokens on Moonbeam, and check how this is done on the Moonbase Alpha TestNet by using the assets precompiled contract.
 ---
 
-# Interacting with Cross-Chain Assets
+# XC-20s and Cross-Chain Assets
 
-![Cross-Chain Assets Precompiled Contracts Banner](/images/builders/xcm/xc20/xc20-banner.png)
+![Cross-Chain Assets Precompiled Contracts Banner](/images/builders/xcm/xc20/overview/xc20-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -21,6 +21,33 @@ XC-20 assets will be differentiated by having `xc` prepended to their name. For 
 
 XC-20s need to be registered and linked to another asset in the ecosystem before being used. This is done through a whitelisting process via a democracy proposal. If you are interested in testing XCM features in our TestNet, please contact us through our [Discord Server](https://discord.gg/PfpUATX). For more information on XCM, you can check out the [XCM Overview](/builders/xcm/overview/) page of our documentation.
 
+## Current XC-20 Assets {: #current-xc20-assets}
+
+The current list of available XC-20 assets per network is the following:
+
+=== "Moonriver"
+    | Symbol  |  Origin   |                                                                 XC-20 Address                                                                 |
+    |:-------:|:---------:|:---------------------------------------------------------------------------------------------------------------------------------------------:|
+    |  xcKSM  |  Kusama   | [0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080](https://moonriver.moonscan.io/address/0xffffffff1fcacbd218edc0eba20fc2308c778080){target=_blank} |
+    |  xcKAR  |  Karura   | [0xFfFFFFfF08220AD2E6e157f26eD8bD22A336A0A5](https://moonriver.moonscan.io/address/0xFfFFFFfF08220AD2E6e157f26eD8bD22A336A0A5){target=_blank} |
+    | xcKINT  | Kintsugi  | [0xfffFFFFF83F4f317d3cbF6EC6250AeC3697b3fF2](https://moonriver.moonscan.io/address/0xfffFFFFF83F4f317d3cbF6EC6250AeC3697b3fF2){target=_blank} |
+    | xcMRMRK | Statemine | [0xffffffFF893264794d9d57E1E0E21E0042aF5A0A](https://moonriver.moonscan.io/address/0xffffffFF893264794d9d57E1E0E21E0042aF5A0A){target=_blank} |
+
+     _*You can check each Asset ID [here](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonriver.moonbeam.network#/assets){target=_blank}_
+
+=== "Moonbase Alpha"
+    | Symbol  |        Origin        |                                                                XC-20 Address                                                                 |
+    |:-------:|:--------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------:|
+    | xcUNIT  | Relay Chain Alphanet | [0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080](https://moonbase.moonscan.io/address/0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080){target=_blank} |
+    |  xcBNC  |   Bifrost Alphanet   | [0xFffFFFfF1FAE104Dc4C134306bCA8e2E1990aCfd](https://moonbase.moonscan.io/address/0xFffFFFfF1FAE104Dc4C134306bCA8e2E1990aCfd){target=_blank} |
+    |  xcKAR  |   Karura Alphanet    | [0xFfFFFFfF08220AD2E6e157f26eD8bD22A336A0A5](https://moonbase.moonscan.io/address/0xFfFFFFfF08220AD2E6e157f26eD8bD22A336A0A5){target=_blank} |
+    | xcKUSD  |   Karura Alphanet    | [0xFfFffFFfa1B026a00FbAA67c86D5d1d5BF8D8228](https://moonbase.moonscan.io/address/0xFfFffFFfa1B026a00FbAA67c86D5d1d5BF8D8228){target=_blank} |
+    | xcKINT  |  Kintsugi Alphanet   | [0xFFFfffff27C019790DFBEE7cB70F5996671B2882](https://moonbase.moonscan.io/address/0xFFFfffff27C019790DFBEE7cB70F5996671B2882){target=_blank} |
+    | xcKBTC  |  Kintsugi Alphanet   | [0xFffFfFff5C2Ec77818D0863088929C1106635d26](https://moonbase.moonscan.io/address/0xFffFfFff5C2Ec77818D0863088929C1106635d26){target=_blank} |
+    | xcMRMRK |  Statemine Alphanet  | [0xFFffffFfd2aaD7f60626608Fa4a5d34768F7892d](https://moonbase.moonscan.io/address/0xFFffffFfd2aaD7f60626608Fa4a5d34768F7892d){target=_blank} |
+
+     _*You can check each Asset ID [here](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/assets){target=_blank}_
+
 This guide will show you how to retrieve the available XC-20s and calculate their precompile addresses for the Moonbase Alpha TestNet using Polkadot.js Apps. In addition, you will learn how to interact with an XC-20 precompile using Remix.
 
 ## XC-20 vs ERC-20 {: #xc-20-vs-erc-20 }
@@ -31,7 +58,7 @@ First and foremost, XC-20s are Substrate-based assets, and as such, they are als
 
 Nevertheless, XC-20s can be interacted with through an ERC-20 interface, so they have the additional benefit of being accessible from both the Substrate and Ethereum APIs. This ultimately provides greater flexibility for developers when working with these types of assets and allows seamless integrations with EVM-based smart contracts such as DEXs, lending platforms, among others.
 
-## Retrieve List of Cross-Chain Assets
+## Retrieve List of Cross-Chain Assets {: #list-xchain-assets }
 
 To fetch a list of the XC-20s currently available on the Moonbase Alpha TestNet, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=_blank} and make sure you're connected to Moonbase Alpha. Then click on the **Developer** tab and select **Chain State** from the dropdown. To query the available XC-20s, you can follow these steps:
 
@@ -40,9 +67,13 @@ To fetch a list of the XC-20s currently available on the Moonbase Alpha TestNet,
 3. Disable the **include option** slider
 4. Send the query by clicking on the **+** button
 
-![Fetch list of cross-chain assets](/images/builders/xcm/xc20/xc20-1.png)
+![Fetch list of cross-chain assets](/images/builders/xcm/xc20/overview/xc20-1.png)
 
-The result will display the asset ID along with some additional information for all of the registered XC-20s on Moonbase Alpha. To quickly get more information about a specific XC-20 such as the name and symbol of the asset, you can use the **metadata** extrinsic to return metadata:
+The result will display the asset ID along with some additional information for all of the registered XC-20s on Moonbase Alpha. 
+
+## Retrieve Cross-Chain Assets Metadata {: #x-chain-assets-metadata }
+
+To quickly get more information about a specific XC-20 such as the name, symbol and multi location of the asset, you can use the **metadata** extrinsic to return metadata:
 
 1. From the **selected state query** dropdown, choose **assets**
 2. Select the **metadata** extinsic
@@ -50,11 +81,11 @@ The result will display the asset ID along with some additional information for 
 4. Enter in the asset ID that was returned from calling the **asset** extrinsic. Please note that if you copy and paste the asset ID with the commas, the commas will automatically be removed and the number might be cut off. Make sure it's the exact same number as the ID. For this example, you can use asset ID `42259045809535163221576417993425387648`
 4. Send the query by clicking on the **+** button 
 
-![Get asset metadata](/images/builders/xcm/xc20/xc20-2.png)
+![Get asset metadata](/images/builders/xcm/xc20/overview/xc20-2.png)
 
 With the results from the metadata, you can see that the asset ID corresponds to the VUNIT XC-20.
 
-## Calculate Precompile Addresses
+## Calculate Precompile Addresses {: #calculate-xc20-address}
 
 Now that you have retrieved a list of the available XC-20s, before you can interact with them via the precompile, you need to derive the precompile address from the asset ID.
 
@@ -95,7 +126,7 @@ You can interact with the XC-20 precompile using [Remix](https://remix.ethereum.
 1. Get a copy of [ERC20.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol) 
 2. Paste the file contents into a Remix file named **IERC20.sol**
 
-![Load the interface in Remix](/images/builders/xcm/xc20/xc20-3.png)
+![Load the interface in Remix](/images/builders/xcm/xc20/overview/xc20-3.png)
 
 ### Compile the Contract {: #compile-the-contract } 
 
@@ -104,7 +135,7 @@ Once you have the ERC-20 interface loaded in Remix, you will need to compile it:
 1. Click on the **Compile** tab, second from top
 2. Compile the **IER20.sol** file
 
-![Compiling IERC20.sol](/images/builders/xcm/xc20/xc20-4.png)
+![Compiling IERC20.sol](/images/builders/xcm/xc20/overview/xc20-4.png)
 
 If the interface was compiled successfully, you will see a green checkmark next to the **Compile** tab.
 
@@ -118,13 +149,13 @@ Instead of deploying the ERC-20 precompile, you will access the interface given 
 4. Ensure **IERC20 - IERC20.sol** is selected in the **Contract** dropdown. Since this is a precompiled contract, there is no need to deploy any code. Instead we are going to provide the address of the precompile in the **At Address** Field
 5. Provide the address of the XC-20 precompile calculated in the [Calculate Precompile Address](#calculate-precompile-address) section, `0xFFFFFFFF1FCACBD218EDC0EBA20FC2308C778080`, and click **At Address**
 
-![Access the address](/images/builders/xcm/xc20/xc20-5.png)
+![Access the address](/images/builders/xcm/xc20/overview/xc20-5.png)
 
 !!! note
     Optionally, you can checksum the XC-20 precompile address by going to your search engine of choice and searching for a tool to checksum the address. Once the address has been checksummed, you can use it in the **At Address** field instead. 
 
 The **IERC20** precompile for the XC-20 will appear in the list of **Deployed Contracts**. Now you can feel free to call any of the standard ERC-20 functions to get information about the XC-20 or transfer the XC-20. 
 
-![Interact with the precompile functions](/images/builders/xcm/xc20/xc20-6.png)
+![Interact with the precompile functions](/images/builders/xcm/xc20/overview/xc20-6.png)
 
 To learn how to interact with each of the functions, you can check out the [ERC-20 Precompile](/builders/tools/precompiles/erc20) guide and modify it for interacting with the XC-20 precompile.

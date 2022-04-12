@@ -13,6 +13,12 @@ description: An overview of how cross-consensus messaging (XCM) works, and how d
 
 To do so, a [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-crosschain){target=_blank} format defines a language around how the message transfer between two interoperating blockchains should be performed. XCM is not specific to Polkadot, as it aims to be a generic and extensible language between different consensus systems.
 
+This page is an brief introduction and overview of XCM and other related elements. More information can be found in [Polkadot's Wiki](https://wiki.polkadot.network/docs/learn-crosschain){target=_blank}.
+
+--8<-- 'text/xcm/general-xcm-definitions.md'
+
+## XCM Transport Protocols
+
 Polkadot implements two cross-consensus or transport protocols for acting on XCM messages between its constituent parachains, Moonbeam being one of them:
 
 - **Vertical Message Passing (VMP)** — divided into two kinds of message-passing transport protocols:

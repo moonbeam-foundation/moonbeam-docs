@@ -1,5 +1,5 @@
 // These language variables are also used in other scripts
-const supportedLanguages = ['cn', 'es', 'fr', 'ru'];
+const supportedLanguages = ['cn'];
 const revampedLanguageSites = ['cn'];
 
 const selectWrapper = document.querySelector('.language-select-wrapper');
