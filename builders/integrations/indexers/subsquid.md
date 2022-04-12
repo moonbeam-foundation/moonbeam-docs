@@ -42,6 +42,9 @@ To view the complete project, you can check out the [`squid-evm-template` reposi
 
 The next sections will take the template and customize it, one aspect at a time, to obtain the right data and process it.
 
+!!! note
+    Subsquid has created a second template, specific for EVM projects, available [here](https://github.com/subsquid/squid-evm-template). This is exactly how the project in this guide should look in the end. It is the perfect starting point for future projects, but this guide is intended in showing how to customise a template and for this reasons, it starts from a non-EVM one.
+
 ### Install Dependencies {: #install-dependencies}
 
 The subsquid template is a Node.js project and comes with a `package.json` file, defining its dependencies, which you need to install, by running:
@@ -264,8 +267,6 @@ export const CONTRACT_ADDRESS = "0xb654611f84a8dc429ba3cb4fda9fad236c505a1a";
 
 // API constants
 export const CHAIN_NODE = "wss://wss.api.moonriver.moonbeam.network";
-export const ARCHIVE =
-  "https://moonriver-beta.indexer.gc.subsquid.io/v4/graphql";
 export const BATCH_SIZE = 500;
 export const API_RETRIES = 5;
 
@@ -417,8 +418,17 @@ import { lookupArchive } from "@subsquid/archive-registry";
 import { CHAIN_NODE, BATCH_SIZE, CONTRACT_ADDRESS } from "./constants";
 import { contractLogsHandler, createContractEntity } from "./helpers/events";
 import { events } from "./abis/erc721";
+```
 
-const processor = new SubstrateEvmProcessor("moonriver-substrate");
+!!! note
+    It's worth mentioning, that the `lookupArchive` function is used to consult the Archive registry (available at [this repository](https://github.com/subsquid/archive-registry)) and yield the right Archive address, given a network name. Network names should be in lower caps.
+
+Next, we are going to take the line that instantiates `SubstrateProcessor` and substitute it with the newly imported class (`SubstrateEvmProcessor`). This is also a good time to change the data source and types bundle to the right values for the Moonriver network and instantiate the `SubstrateEvmProcessor` with an appropriate name. This last part is purely to give a name metadata to the class instance and the only effect it has is saving the state of chain exploration under a namespace with the chosen name.
+Here is what it should look like:
+
+```typescript
+const processor = new SubstrateEvmProcessor("moonriver-substrate");  // we could call this new SubstrateEvmProcessor("my-personal-processor");
+
 
 processor.setBatchSize(BATCH_SIZE);
 
@@ -563,10 +573,17 @@ The guided procedure is very simple to follow, but should you need more info and
 
 You can also check out other projects hosted there, by heading to the [Aquarium](https://app.subsquid.io/aquarium){target=_blank}, because that's where Squids are!
 
-## Example Projects Repository {: #example-projects-repository }
+## Explore a different blockchain {: #explore-different-blockchain}
 
-Subsquid is creating example projects that can be used as templates and the one in this guide is one of them. You can check out the example repository and [view the finalized and complete project on GitHub](https://github.com/subsquid/squid-evm-template){target=_blank}. Subsquid's GitHub account is going to grow over time and will include more and more examples.
+As it has been said in the beginning of this guide, the showcased project is configured for the Moonriver network. If, for example, you wanted to process data from Moonbeam instead of Moonriver, there are a couple necessary changes to make.
+When [configuring the processor](#configuring-the-processor), the `CHAIN_NODE` constant and `lookupArchive` function are responsible for the connection parameters of the processor, so those should be changed to the appropriate values (`lookupArchive("moonbeam")[0].url` should do the trick) and since Moonriver and Moonbeam share the same types, we already set the types bundle to Moonsama (`processor.setTypesBundle("moonbeam");`) so no need for changes there.
 
-Subsquid SDK has been created to facilitate developing Web3 apps on top of blockchain data, thanks to its automated code generation tools, the type-safe interface and robustness against runtime upgrades. The [Subsquid template repository](https://github.com/subsquid/squid-template){target=_blank} and its [EVM logs version](https://github.com/subsquid/squid-evm-template){target=_blank} are the starting point for experimenting with the framework and starting to build your DApp easier and faster.
+This is different for Moonbase Alpha, for which Subsquid has not launched an Archive (yet). In this case, Subsquid documentation offers a guide on how to launch your own Archive with a subsection dedicate to [launching an EVM-compatible Archive](https://docs.subsquid.io/recipes/how-to-launch-a-squid-archive#launch-archives-for-evm-compatible-blockchain).
 
-[Subsquid's documentation](https://docs.subsquid.io/){target=_blank} contains informative material and it's the best place to start, if you are curious about some aspects that were not fully explained in this guide.
+## Example Projects repository {: #example-projects-repository }
+
+Subsquid is creating example projects that can be used as templates and the one in this guide is one of them. You can check out the example repository and [view the finalised and complete project there](https://github.com/subsquid/squid-evm-template){target=_blank}. Subsquid's GitHub account is going to grow over time and will include more and more examples.
+
+Subsquid SDK has been created to facilitate developing Web3 apps on top of blockchain data, thanks to its automated code generation tools, the type-safe interface and robustness against Runtime upgrades. The [Subsquid template repository](https://github.com/subsquid/squid-template){target=_blank} and its [EVM logs version](https://github.com/subsquid/squid-evm-template){target=_blank} are the starting point for experimenting with the framework and start building your DApp, easier, faster.
+
+[Subsquid documentation](https://docs.subsquid.io/){target=_blank} contains informative material and it's the best place to start, if you are curious about some aspect that were not fully explained in this guide.
