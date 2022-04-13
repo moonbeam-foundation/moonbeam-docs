@@ -88,3 +88,4 @@ Another place you can start to view and build off of data is from the list of [M
 - [Dapplooker Explorer for Moonriver](https://dapplooker.com/category/moonriver?type=dashboard){target=_blank} - find popular dashboards on Moonbeam
 
 
+--8<-- 'text/disclaimers/third-party-content.md'

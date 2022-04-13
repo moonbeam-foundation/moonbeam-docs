@@ -1,8 +1,8 @@
 title: Integrate
 nav:
- - index.md
- - bridges
- - indexers
- - oracles
- - wallets
- - analytics
+  - index.md
+  - analytics
+  - bridges
+  - indexers
+  - oracles
+  - wallets
