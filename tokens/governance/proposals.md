@@ -1,6 +1,6 @@
 ---
 title: How to Propose an Action on Moonbeam
-description: Learn how to send a proposal to be voted on Moonbeam via governance features.
+description: Learn about the roadmap of a proposal and how to propose an action, send it to be voted on, and second a proposal on Moonbeam via governance features.
 ---
 
 # How to Propose an Action

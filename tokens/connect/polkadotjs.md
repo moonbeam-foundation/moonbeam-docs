@@ -1,5 +1,5 @@
 ---
-title: Connect Polkadot.js Apps to Moonbeam
+title: Create an Account on Polkadot.js Apps
 description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereum-standard H160 addresses and send transactions with Polkadot.js.
 ---
 

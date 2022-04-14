@@ -1,5 +1,5 @@
 ---
-title: Chainlink Oracle on Moonbeam
+title: Chainlink Oracle
 description: How to request data from a Chainlink Oracle in your Moonbeam Ethereum Dapp using smart contracts or JavaScript. Review the available price feeds on Moonriver.
 ---
 

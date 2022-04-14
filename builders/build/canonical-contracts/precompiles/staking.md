@@ -1,5 +1,5 @@
 ---
-title: Interacting with the Staking Precompile on Moonbeam
+title: Staking Precompile Contract
 description: Learn how to use the Staking Precompile that allows developers to access staking features using the Ethereum API in a precompiled contract
 keywords: solidity, ethereum, staking, moonbeam, precompiled, contracts
 ---

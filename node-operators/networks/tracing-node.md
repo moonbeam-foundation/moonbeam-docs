@@ -1,5 +1,5 @@
 ---
-title: Run a Tracing Node on Moonbeam
+title: Run a Tracing Node
 description:  Learn how to leverage Geth's Debug and Txpool APIs, and OpenEthereum's Trace module to run a tracing node on Moonbeam
 ---
 
@@ -177,4 +177,4 @@ Blocks processed by requests are temporarily stored on cache for a certain amoun
 
 ## Using a Tracing Node {: #using-a-tracing-node }
 
-To explore the different non-standard RPC methods available on Moonbeam, and how to use these methods with a tracing node, check out the [Debug & Trace](/builders/tools/debug-trace/) guide.
+To explore the different non-standard RPC methods available on Moonbeam, and how to use these methods with a tracing node, check out the [Debug & Trace](/builders/build/eth-api/debug-trace/) guide.

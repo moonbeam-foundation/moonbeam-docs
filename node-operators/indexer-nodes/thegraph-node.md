@@ -1,6 +1,6 @@
 ---
-title: Running a Graph Node on Moonbeam
-description: Build APIs using The Graph indexing protocol on Moonbeam. Run your own Graph node on Moonbeam.
+title: Run a Graph Node
+description: Use Docker to spin up and run your own Graph node to provide indexing and querying services of on-chain data on Moonbeam.
 ---
 
 # Running a Graph Node on Moonbeam
