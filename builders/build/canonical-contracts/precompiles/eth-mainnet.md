@@ -1,5 +1,5 @@
 ---
-title: Ethereum MainNet Precompiled Contracts on Moonbeam
+title: Ethereum MainNet Precompiles
 description: Learn how to use the standard precompiled contracts availble on Ethereum such as ECRECOVER, SHA256, and more on Moonbeam.
 keywords: ethereum, moonbeam, ecrecover, sha256, sha3FIPS256, ripemd-160, Bn128Add, Bn128Mul, Bn128Pairing
 ---

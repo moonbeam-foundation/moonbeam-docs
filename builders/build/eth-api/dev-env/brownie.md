@@ -1,6 +1,6 @@
 ---
 title: Brownie
-description: Use Brownie to compile, deploy, and debug Ethereum smart contracts on Moonbeam using Python.
+description: Use Brownie, an Ethereum development environment, to compile, deploy, and debug smart contracts using Python on Moonbeam, thanks to its Ethereum compatibility.
 ---
 
 # Using Brownie to Deploy To Moonbeam

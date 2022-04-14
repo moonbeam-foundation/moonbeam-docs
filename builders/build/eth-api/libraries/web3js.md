@@ -1,5 +1,5 @@
 ---
-title: Use Web3.js to Send Transactions and Deploy Contracts on Moonbeam
+title: Send Transactions & Deploy Contracts with Web3.js
 description: Follow this tutorial to learn how to use the Ethereum Web3 JavaScript Library to deploy Solidity smart contracts to Moonbeam.
 ---
 

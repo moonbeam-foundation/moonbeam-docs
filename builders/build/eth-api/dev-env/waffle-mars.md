@@ -1,5 +1,5 @@
 ---
-title: Using Waffle & Mars to Deploy Smart Contracts to Moonbeam
+title: Deploy Smart Contracts with Waffle & Mars
 description: Learn how to use Waffle and Mars to write, compile, test, and deploy Ethereum smart contracts on Moonbeam.
 ---
 

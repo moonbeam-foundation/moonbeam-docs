@@ -1,5 +1,5 @@
 ---
-title: Getting Started with a Moonbeam Development Node
+title: Run a Moonbeam Development Node
 description: Follow this tutorial to learn how to set up your first Moonbeam node. You’ll also learn how to connect it to and control it with the Polkadot.js GUI.
 ---
 

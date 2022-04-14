@@ -1,5 +1,5 @@
 ---
-title: Using the Covalent API on Moonbeam
+title: Covalent API
 description: Querying blockchain data such as balances, transactions, transfers, token holders, and event logs on Moonbeam with the Covalent API.
 ---
 

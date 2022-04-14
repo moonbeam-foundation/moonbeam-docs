@@ -1,6 +1,6 @@
 ---
-title: Manage your Moonbeam Collator Account
-description: Learn how to manage your collator account including generating and rotating your session keys, mapping your author ID, setting an identity, and creating proxy accounts.
+title: Collator Account Management
+description: Learn how to manage your collator account including generating session keys, mapping author IDs, setting an identity, and creating proxy accounts.
 ---
 
 # Collator Account Management
@@ -101,10 +101,10 @@ You should be able to see the H160 account associated with the author ID provide
 
 Setting an on-chain identity enables your collator node to be easily identifiable. As opposed to showing your account address, your chosen display name will be displayed instead. 
 
-There are a couple of ways you can set your identity, to learn how to set an identity for your collator node please check out the [Managing your Account Identity](/builders/interact/identity/){target=_blank} page of our documentation.
+There are a couple of ways you can set your identity, to learn how to set an identity for your collator node please check out the [Managing your Account Identity](/tokens/manage/identity/){target=_blank} page of our documentation.
 
 ## Proxy Accounts {: #proxy-accounts }
 
 Proxy accounts are accounts that can be enabled to perform a limited number of actions on your behalf. Proxies allow users to keep a primary account securely in cold storage while using the proxy to actively participate in the network on behalf of the primary account. You can remove authorization of the proxy account at any time. As an additional layer of security, you can setup your proxy with a delay period. This delay period would provide you time to review the transaction, and cancel if needed, before it automatically gets executed. 
 
-To learn how to setup a proxy account, please refer to the [Setting up a Proxy Account](/builders/interact/proxy-accounts/){target=_blank} page of our documentation.
+To learn how to setup a proxy account, please refer to the [Setting up a Proxy Account](/tokens/manage/proxy-accounts/){target=_blank} page of our documentation.

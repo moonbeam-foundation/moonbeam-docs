@@ -1,5 +1,5 @@
 ---
-title: Add MetaMask to a DApp on Moonbeam
+title: Add MetaMask to a DApp
 description: This tutorial shows you how to integrate MetaMask into a DApp and automatically connect users to Moonbeam with the click of a button.
 ---
 

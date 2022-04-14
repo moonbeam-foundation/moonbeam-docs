@@ -1,5 +1,5 @@
 ---
-title: The Moonbeam Roadmap
+title: Roadmap
 description: Moonbeam launched its first TestNet in September 2020, a MainNet on Kusama in June 2021, and a MainNet on Polkadot in December 2021.
 ---
 

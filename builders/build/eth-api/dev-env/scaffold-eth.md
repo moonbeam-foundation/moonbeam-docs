@@ -1,5 +1,5 @@
 ---
-title: Using Scaffold-ETH to Deploy a DApp on Moonbeam
+title: Create a DApp with Scaffold-ETH
 description: You can deploy a Solidity DApp with a React UI and subgraph on Moonbeam in minutes by using Scaffold-ETH. Learn how in this tutorial.
 ---
 
@@ -113,7 +113,7 @@ You can begin with making modifications to the Hardhat component under the `/pac
         defaultNetwork = "moonbeamDevNode";
         ```
 
-3. Within the same file, under the `module.exports/etherscan/apiKey` section, add the API key for [Moonscan](https://moonscan.io/){target=_blank}, so you can verify the deployed smart contracts. Check this [Etherscan Plugins](/builders/tools/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank} section for how to generate a Moonscan API key
+3. Within the same file, under the `module.exports/etherscan/apiKey` section, add the API key for [Moonscan](https://moonscan.io/){target=_blank}, so you can verify the deployed smart contracts. Check this [Etherscan Plugins](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank} section for how to generate a Moonscan API key
 
 
 4. (Optional) Under the `function mnemonic()`, comment out a console warning for when the network is not set to `localhost` 

@@ -1,6 +1,6 @@
 ---
-title: Helpful Flags for Running a Node on Moonbeam
-description: Helpful flags for running a full parachain node on Moonbeam
+title: Run a Node Flags & Options
+description: A list of helpful flags for spinning up a full parachain node on Moonbeam. Also learn how to access all of the flags available for node operators.
 ---
 
 # Helpful Flags for Running a Node on Moonbeam
