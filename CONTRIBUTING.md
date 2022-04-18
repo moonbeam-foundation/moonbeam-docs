@@ -1,6 +1,6 @@
 # Contribution Guidelines
 
-The documentation source files are written in [Markdown](https://daringfireball.net/projects/markdown/){target=_blank} and generally follow the [Google developer documentation style guide](https://developers.google.com/style){target=_blank}.
+The documentation source files are written in [Markdown](https://daringfireball.net/projects/markdown/) and generally follow the [Google developer documentation style guide](https://developers.google.com/style).
 
 Please review the guidelines mentioned throughout this document, and when ready, you can open a PR against the `master` branch. Typically from there, someone from the Moonbeam Developer Relations team will review the PR and request any changes as needed. From there, the team will merge them into a local branch and make sure that all of the formatting changes look good on the local site. Once everything is all set and done the changes will be published to the live site.
 
@@ -9,18 +9,18 @@ Thank you for your contributions, they are greatly appreciated 💜.
 ## Previewing Changes in VS Code
 
 Unfortunately, there is not currrently a way to review the changes locally.
-However, if you're using Visual Studio Code, you can preview the changes you're making to `.md` files before committing them. To learn how, please check out the [Markdown and Visual Studio Code](https://code.visualstudio.com/docs/languages/markdown){target=_blank} guide from the Visual Studio docs site.
+However, if you're using Visual Studio Code, you can preview the changes you're making to `.md` files before committing them. To learn how, please check out the [Markdown and Visual Studio Code](https://code.visualstudio.com/docs/languages/markdown) guide from the Visual Studio docs site.
 
 ## Structure
 
 In the root directory and every subdirectory, in addition to the content directories and pages, you'll find the following files: 
 
 - `.pages` - defines the structure of the documentation site
-- `index.md`- represents the [landing pages](https://docs.moonbeam.network/builders/){target=_blank} you see throughout the docs site
+- `index.md`- represents the [landing pages](https://docs.moonbeam.network/builders/) you see throughout the docs site
 
 ### Example `.pages` file
 
-Below is an example of the [Canonical Contracts](https://docs.moonbeam.network/builders/build/canonical-contracts/){target=_blank} `.pages` file:
+Below is an example of the [Canonical Contracts](https://docs.moonbeam.network/builders/build/canonical-contracts/) `.pages` file:
 
 ```markdown
 title: Canonical Contracts
@@ -37,13 +37,13 @@ Some important things to note:
 - Files follow the convention of 'Display Name': 'file-name.md'
 - Subdirectories are listed by their directory name in the source code
 
-Both, **Canonical Contracts** and **Contract Addresses** are displayed in the left side navigation menu and on the landing page. The **Precompiled Contracts** title, comes from the `title` of the [`.pages` file for the `precompiles` subdirectory](https://github.com/PureStake/moonbeam-docs/blob/master/builders/build/canonical-contracts/precompiles/.pages){target=_blank}.
+Both, **Canonical Contracts** and **Contract Addresses** are displayed in the left side navigation menu and on the landing page. The **Precompiled Contracts** title, comes from the `title` of the [`.pages` file for the `precompiles` subdirectory](https://github.com/PureStake/moonbeam-docs/blob/master/builders/build/canonical-contracts/precompiles/.pages).
 
 ![Display titles](/images/contributing/contributing-1.png)
 
 ### Example `index.md` file
 
-Below is an example of the [Canonical Contracts](https://docs.moonbeam.network/builders/build/canonical-contracts/){target=_blank} `index.md` file: 
+Below is an example of the [Canonical Contracts](https://docs.moonbeam.network/builders/build/canonical-contracts/) `index.md` file: 
 
 ```markdown
 ---
@@ -76,7 +76,7 @@ All landing pages require a logo or relevant icon. You can use the `_index-page-
 
 Ultimately, images displayed on the website should be in `.png` format.
 
-To add an image to your page, you should have [alt text](https://developers.google.com/style/images#alt-text){target=_blank} and use the following syntax:
+To add an image to your page, you should have [alt text](https://developers.google.com/style/images#alt-text) and use the following syntax:
 
 ```markdown
 ![Alt text goes here](/images/<subdirectory>/<image-file-name>.png)
@@ -98,7 +98,7 @@ Code snippets can be written in Markdown or the programming language itself, for
 
 Here are some resources to help you create good titles and descriptions for SEO:
 
-- [Google's recommendation on good titles](https://developers.google.com/search/docs/advanced/appearance/title-link?hl=en){target=_blank}
-- [Google's recommendation on good descriptions](https://developers.google.com/search/docs/advanced/appearance/snippet?hl=en){target=_blank}
+- [Google's recommendation on good titles](https://developers.google.com/search/docs/advanced/appearance/title-link?hl=en)
+- [Google's recommendation on good descriptions](https://developers.google.com/search/docs/advanced/appearance/snippet?hl=en)
 
 In general, titles should be between 50 and 60 characters and descriptions should be between 110 and 160 characters.
