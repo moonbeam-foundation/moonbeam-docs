@@ -1,5 +1,5 @@
 ---
-title: Supported JSON RPC Methods on Moonbeam
+title: Supported RPC Methods
 description: A description of the main differences that Ethereum developers need to understand in terms of the Ethereum RPC support Moonbeam provides.
 ---
 

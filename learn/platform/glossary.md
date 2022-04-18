@@ -1,5 +1,5 @@
 ---
-title: Glossary for Moonbeam
+title: Glossary
 description: We've compiled a glossary of terms related to Polkadot that'll make it easier to learn more about the ecosystem.
 ---
 

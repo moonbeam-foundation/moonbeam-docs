@@ -1,6 +1,6 @@
 ---
-title: Transfer Tokens with ChainBridge's Ethereum Moonbeam Bridge
-description: How to use ChainBridge to connect assets between Ethereum and Moonbeam using smart contracts
+title: Transfer Tokens with ChainBridge
+description: How to use ChainBridge to connect and transfer assets such as ERC-20 and ERC-721 tokens between Ethereum and Moonbeam using smart contracts.
 ---
 
 # Transfer Tokens with ChainBridge's Ethereum Moonbeam Bridge
@@ -37,7 +37,6 @@ On both sides of the bridge, there are a set of smart contracts, where each has 
  - **Target contract** — as the name suggests, this is the contract we are going to interact with on each side of the bridge
 
 ### General Workflow {: #general-workflow } 
-
 
 The general workflow is the following (from Chain A to Chain B):
  

@@ -1,5 +1,5 @@
 ---
-title: Using Truffle to Deploy Smart Contracts to Moonbeam
+title: Deploy Contracts with Truffle
 description: Moonbeam makes it incredibly easy to deploy a Solidity-based smart contract to Moonbeam-based networks using Truffle. Learn how in this tutorial.
 ---
 

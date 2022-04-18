@@ -1,5 +1,5 @@
 ---
-title: Use the Ethereum Debug API & Trace Module on Moonbeam
+title: Debug & Trace Transactions
 description:  Learn how to leverage Geth's Debug and Txpool APIs, and OpenEthereum's Trace module to call non-standard RPC methods on Moonbeam.
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Set up a Proxy Account on Moonbeam
+title: Setting up a Proxy Account
 description: Learn how to set up a proxy account on Moonbeam-based networks so you can keep your underlying account safe in cold storage.
 ---
 

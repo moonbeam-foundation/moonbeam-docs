@@ -1,5 +1,5 @@
 ---
-title: Staking on Moonbeam
+title: Staking
 description: Moonbeam provides staking features where token holders delegate collator candidates with their tokens and earn rewards.
 ---
 

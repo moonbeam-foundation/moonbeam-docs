@@ -1,5 +1,5 @@
 ---
-title: Connect Ledger Hardware Wallet to Moonbeam
+title: Connect & Use Ledger
 description: This guide walks you through how to use your Ledger hardware wallet to sign transactions on Moonbeam, leveraging its Ethereum compatibility features
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Connect MathWallet to Moonbeam
+title: Connect MathWallet
 description: This guide walks you through how to connect Mathwallet, a browser-based wallet that works with Ethereum, to Moonbeam.
 ---
 

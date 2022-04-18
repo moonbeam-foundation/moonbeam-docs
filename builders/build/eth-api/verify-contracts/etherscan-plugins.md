@@ -1,5 +1,5 @@
 ---
-title: Verify Smart Contracts with Etherscan Plugins on Moonbeam
+title: Verify Smart Contracts with Plugins
 description: Learn about how to verify smart contracts on Moonbeam networks using the Etherscan plugins made available by Hardhat and Truffle.
 ---
 
@@ -43,7 +43,7 @@ You will then be prompted to enter in an **AppName** for your API key and once y
 
 ## Using the Hardhat Etherscan Plugin {: #using-the-hardhat-etherscan-plugin }
 
-The example in this section of the guide will be based off of the `Box.sol` contract that was created in the [Using Hardhat to Deploy To Moonbeam](/builders/interact/hardhat/){target=_blank} guide. 
+The example in this section of the guide will be based off of the `Box.sol` contract that was created in the [Using Hardhat to Deploy To Moonbeam](/builders/build/eth-api/dev-env/hardhat/){target=_blank} guide. 
 
 To get started with the Hardhat Etherscan plugin, you will need to first install the plugin library:
 
@@ -96,7 +96,7 @@ Please refer to the [Hardhat Etherscan documentation](https://hardhat.org/plugin
 
 ## Using the Truffle Verify Plugin {: #using-the-truffle-verify-plugin }
 
-The example in this section of the guide will use the `MyToken.sol` contract that was created in the [Using Truffle to Deploy to Moonbeam](/builders/interact/truffle/){target=_blank} guide.
+The example in this section of the guide will use the `MyToken.sol` contract that was created in the [Using Truffle to Deploy to Moonbeam](/builders/build/eth-api/dev-env/truffle/){target=_blank} guide.
 
 To get started with `truffle-plugin-verify`, open your Truffle project and install the plugin:
 
