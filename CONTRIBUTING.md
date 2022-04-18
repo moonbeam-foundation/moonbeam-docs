@@ -2,7 +2,7 @@
 
 The documentation source files are written in [Markdown](https://daringfireball.net/projects/markdown/) and generally follow the [Google developer documentation style guide](https://developers.google.com/style).
 
-Please review the guidelines mentioned throughout this document, and when ready, you can open a PR against the `master` branch. Typically from there, someone from the Moonbeam Developer Relations team will review the PR and request any changes as needed. From there, the team will merge them into a local branch and make sure that all of the formatting changes look good on the local site. Once everything is all set and done the changes will be published to the live site.
+Please review the guidelines mentioned throughout this document, and when ready, you can open a PR against the `master` branch. Typically from there, someone from the Moonbeam Developer Relations team will review the PR and request any changes as needed. Then the team will merge your PR into a local branch and make sure that all of the formatting changes look good on the local site. Once everything is all set and done the changes will be published to the live site.
 
 Thank you for your contributions, they are greatly appreciated 💜.
 
