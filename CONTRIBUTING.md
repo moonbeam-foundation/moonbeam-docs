@@ -15,8 +15,8 @@ However, if you're using Visual Studio Code, you can preview the changes you're 
 
 In the root directory and every subdirectory, in addition to the content directories and pages, you'll find the following files: 
 
-- `.pages` - defines the structure of the documentation site
-- `index.md`- represents the [landing pages](https://docs.moonbeam.network/builders/) you see throughout the docs site
+- **`.pages`** - defines the structure of the documentation site
+- **`index.md`**- represents the [landing pages](https://docs.moonbeam.network/builders/) you see throughout the docs site
 
 ### Example `.pages` file
 
@@ -65,6 +65,39 @@ Some important things to note:
 The **Canonical Contracts** landing page is rendered and retrieves the `title`s from the `.pages` files.
 
 ![Landing page](/images/contributing/contributing-2.png)
+
+## Content Pages
+
+When adding a new content page, you should have the following components:
+
+- **`title`** - represents the <title> tag and is used for SEO purposes (not displayed on the published site)
+- **`description`** - represents the meta-description and is also used for SEO purposes (not displayed on the published site)
+- **Page title** - a title to be displayed at the top of the page 
+- **`## Introduction` section** - 2-3 paragraphs to serve as an introduction. This should be long-lived, meaning it will not require changes in the future
+
+Optionally, you should also consider including the following sections:
+
+- **`## Checking Prerequisites` section** - if the guide requires the user to have certain developer tools installed, for example Docker or MetaMask, it should be listed here
+- **`## Getting Started` section** - if this is a 3rd party integration, having links that point to the most important parts of your project's documentation site that helps users to get started with your project
+
+For example:
+
+```
+---
+title: Title for SEO purposes
+description: Description for SEO purposes.
+---
+
+# Page Title
+
+![Banner Image](/images/<subdirectory>/<project>-banner.png)
+
+## Introduction
+
+Write 2-3 paragraphs to serve as the introduction here.
+
+...
+```
 
 ## Images
 
