@@ -1,0 +1,137 @@
+# Contribution Guidelines
+
+The documentation source files are written in [Markdown](https://daringfireball.net/projects/markdown/) and generally follow the [Google developer documentation style guide](https://developers.google.com/style).
+
+Please review the guidelines mentioned throughout this document, and when ready, you can open a PR against the `master` branch. Typically from there, someone from the Moonbeam Developer Relations team will review the PR and request any changes as needed. Then the team will merge your PR into a local branch and make sure that all of the formatting changes look good on the local site. Once everything is all set and done the changes will be published to the live site.
+
+Thank you for your contributions, they are greatly appreciated 💜.
+
+## Previewing Changes in VS Code
+
+Unfortunately, there is not currrently a way to review the changes locally.
+However, if you're using Visual Studio Code, you can preview the changes you're making to `.md` files before committing them. To learn how, please check out the [Markdown and Visual Studio Code](https://code.visualstudio.com/docs/languages/markdown) guide from the Visual Studio docs site.
+
+## Structure
+
+In the root directory and every subdirectory, in addition to the content directories and pages, you'll find the following files: 
+
+- **`.pages`** - defines the structure of the documentation site
+- **`index.md`**- represents the [landing pages](https://docs.moonbeam.network/builders/) you see throughout the docs site
+
+### Example `.pages` file
+
+Below is an example of the [Canonical Contracts](https://docs.moonbeam.network/builders/build/canonical-contracts/) `.pages` file:
+
+```markdown
+title: Canonical Contracts
+nav:
+  - index.md
+  - 'Contract Addresses': 'contracts.md'
+  - precompiles
+```
+
+Some important things to note:
+
+- The `title` field at the top of the page represents the display name for the subdirectory
+- The `index.md` page should always be the first item in the list
+- Files follow the convention of 'Display Name': 'file-name.md'
+- Subdirectories are listed by their directory name in the source code
+
+Both, **Canonical Contracts** and **Contract Addresses** are displayed in the left side navigation menu and on the landing page. The **Precompiled Contracts** title, comes from the `title` of the [`.pages` file for the `precompiles` subdirectory](https://github.com/PureStake/moonbeam-docs/blob/master/builders/build/canonical-contracts/precompiles/.pages).
+
+![Display titles](/images/readme-contributing/contributing-1.png)
+
+### Example `index.md` file
+
+Below is an example of the [Canonical Contracts](https://docs.moonbeam.network/builders/build/canonical-contracts/) `index.md` file: 
+
+```markdown
+---
+title: Canonical & Precompiled Contracts
+description: Here you can find canonical contract addresses for Moonbeam, and precompiled contracts for interacting with Substrate features using the Ethereum API.
+template: main.html
+---
+
+<div class='subsection-wrapper'></div>
+```
+
+Some important things to note:
+
+- The `title` represents the <title> tag and is used for SEO purposes
+- The `description` represents the meta-description and is also used for SEO purposes
+- The `template` defines the template to be used. It should always be `main.html`
+- The `<div>` is populated with links to any pages or subdirectories and is populated automatically by a script at runtime that builds the landing pages
+
+The **Canonical Contracts** landing page is rendered and retrieves the `title`s from the `.pages` files.
+
+![Landing page](/images/readme-contributing/contributing-2.png)
+
+## Content Pages
+
+When adding a new content page, you should have the following components:
+
+- **`title`** - represents the <title> tag and is used for SEO purposes (not displayed on the published site)
+- **`description`** - represents the meta-description and is also used for SEO purposes (not displayed on the published site)
+- **Page title** - a title to be displayed at the top of the page 
+- **`## Introduction` section** - 2-3 paragraphs to serve as an introduction. This should be long-lived, meaning it will not require changes in the future
+
+Optionally, you should also consider including the following sections:
+
+- **`## Checking Prerequisites` section** - if the guide requires the user to have certain developer tools installed, for example Docker or MetaMask, it should be listed here
+- **`## Getting Started` section** - if this is a 3rd party integration, having links that point to the most important parts of your project's documentation site that helps users to get started with your project
+
+For example:
+
+```
+---
+title: Title for SEO purposes
+description: Description for SEO purposes.
+---
+
+# Page Title
+
+![Banner Image](/images/<subdirectory>/<project>-banner.png)
+
+## Introduction
+
+Write 2-3 paragraphs to serve as the introduction here.
+
+...
+```
+
+## Images
+
+Images are stored in the `images` subdirectory. They are organized to mirror the structure of the docs site. So, for example, if you are creating a new page for the `builders` section and need to add images, those would go under the `images/builders/` subdirectory.
+
+All pages should have a banner image, you can use the `_banner-template.svg` found in the root of the `images` directory to create your own. 
+
+All landing pages require a logo or relevant icon. You can use the `_index-page-template.svg` that is in the root of the `images` subdirectory to create your own that is the correct size. These images are stored in the `images/index-pages` subdirectory.
+
+Ultimately, images displayed on the website should be in `.png` format.
+
+To add an image to your page, you should have [alt text](https://developers.google.com/style/images#alt-text) and use the following syntax:
+
+```markdown
+![Alt text goes here](/images/<subdirectory>/<image-file-name>.png)
+```
+
+## Snippets
+
+Snippets can be used to manage reusable lines of code or text. There is a subdirectory for `text` and `code`. The `text` snippets will get translated for the Chinese version of the documentation site. On the other hand, the `code` snippets should only contain code and therefore do not get translated.
+
+To link to a snippet, you can use the following syntax in the Markdown file:
+
+```markdown
+--8<-- 'code/<subdirectory>/<snippet-file-name>.md'
+```
+
+Code snippets can be written in Markdown or the programming language itself, for example, `.py` for Python, `.js` for JavaScript, etc.
+
+## Search Enging Optimization (SEO)
+
+Here are some resources to help you create good titles and descriptions for SEO:
+
+- [Google's recommendation on good titles](https://developers.google.com/search/docs/advanced/appearance/title-link?hl=en)
+- [Google's recommendation on good descriptions](https://developers.google.com/search/docs/advanced/appearance/snippet?hl=en)
+
+In general, titles should be between 50 and 60 characters and descriptions should be between 110 and 160 characters.
