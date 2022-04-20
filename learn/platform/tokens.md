@@ -30,4 +30,4 @@ You can find more information about Moonriver on the [Moonbeam Foundation](https
 
 In the Moonbeam TestNet (called Moonbase Alpha), the token is called DEV. This token can be acquired freely, as its only purpose is to drive development and testing on Moonbase Alpha.
 
-You can access free DEV tokens from our [Mission Control](/builders/get-started/moonbase/#get-tokens/).
+You can access free DEV tokens from our [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/).

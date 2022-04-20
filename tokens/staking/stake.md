@@ -267,7 +267,7 @@ If you scheduled a request to stop delegations but changed your mind, as long as
 
 ## Staking Rewards {: #staking-rewards } 
 
-As candidates in the active set of collators receive rewards from block production, delegators get rewards as well. A brief overview on how the rewards are calculated can be found in [this page](/staking/overview/#reward-distribution).
+As candidates in the active set of collators receive rewards from block production, delegators get rewards as well. A brief overview on how the rewards are calculated can be found in [this page](/learn/features/staking/#reward-distribution).
 
 In summary, delegators will earn rewards based on their stake of the total delegations for the collator being rewarded (including the collator's stake as well).
 

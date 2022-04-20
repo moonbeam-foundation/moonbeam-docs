@@ -15,7 +15,7 @@ This page will outline the steps for verifying smart contracts on Moonbeam netwo
 
 ## Deploying the Contract {: #deploying-the-contract }
 
-In order to verify a smart contract on a block explorer, the contract must be first deployed on the target network first. This tutorial will be deploying the smart contract to [Moonbase Alpha](/builders/get-started/moonbase/). 
+In order to verify a smart contract on a block explorer, the contract must be first deployed on the target network first. This tutorial will be deploying the smart contract to [Moonbase Alpha](/builders/get-started/networks/moonbase/). 
 
 You can check this page for a tutorial on [deploying smart contracts](/builders/build/eth-api/libraries/) using Ethereum libraries on Moonbeam. You may also use a developer tool such as [Remix](/builders/build/eth-api/dev-env/remix/#deploying-a-contract-to-moonbeam-using-remix), [Truffle](/builders/build/eth-api/dev-env/truffle/#deploying-a-contract-to-moonbeam-using-truffle), or another tool if preferred, to deploy the smart contract to Moonbeam. 
 

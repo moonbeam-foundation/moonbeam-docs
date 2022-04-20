@@ -17,7 +17,7 @@ In this guide, you'll learn how to use the web3.js library to send a transaction
 
 For the examples in this guide, you will need to have the following:
 
- - An account with funds. For Moonbase Alpha, you can get DEV tokens for testing purposes from [Mission Control](/builders/get-started/moonbase/#get-tokens/)
+ - An account with funds. For Moonbase Alpha, you can get DEV tokens for testing purposes from [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/)
  - 
 --8<-- 'text/common/endpoint-examples.md'
 

@@ -128,7 +128,7 @@ With it, you will have two view functions available, very similar to our previou
  - getPrice: provides the price feed for a single job ID given as input to the function. For example, to fetch the price of `ETH` in `USD`, we will need to send the Job ID `1`
  - getMultiPrices: provides the price feed for multiple Job IDs given as an array input to the function. For example, to fetch the price of `ETH` and `BTC` in `USD`, we will need to send the job IDs `[1,2]`
 
-Let's use [Remix](/builders/tools/remix/) to fetch the `BTC` price in `USD`.
+Let's use [Remix](/builders/build/eth-api/dev-env/remix/) to fetch the `BTC` price in `USD`.
 
 After creating the file and compiling the contract, head to the "Deploy and Run Transactions" tab, enter the contract address (`{{ networks.moonbase.razor.bridge_address }}`), and click on "At Address." Make sure you have set the "Environment" to "Injected Web3" so that you are connected to Moonbase Alpha (through the Web3 provider of the wallet). 
 
