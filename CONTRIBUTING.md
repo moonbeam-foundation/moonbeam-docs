@@ -39,7 +39,7 @@ Some important things to note:
 
 Both, **Canonical Contracts** and **Contract Addresses** are displayed in the left side navigation menu and on the landing page. The **Precompiled Contracts** title, comes from the `title` of the [`.pages` file for the `precompiles` subdirectory](https://github.com/PureStake/moonbeam-docs/blob/master/builders/build/canonical-contracts/precompiles/.pages).
 
-![Display titles](/images/contributing/contributing-1.png)
+![Display titles](/images/readme-contributing/contributing-1.png)
 
 ### Example `index.md` file
 
@@ -64,7 +64,7 @@ Some important things to note:
 
 The **Canonical Contracts** landing page is rendered and retrieves the `title`s from the `.pages` files.
 
-![Landing page](/images/contributing/contributing-2.png)
+![Landing page](/images/readme-contributing/contributing-2.png)
 
 ## Content Pages
 
