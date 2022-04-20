@@ -22,7 +22,7 @@ In this guide, you'll be creating a TypeScript project to write, compile, and te
 You will need to have the following:
 
  - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
- - An account with funds, which you can get from [Mission Control](/builders/get-started/moonbase/#get-tokens/){target=_blank}
+ - An account with funds, which you can get from [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/){target=_blank}
  - 
 --8<-- 'text/common/endpoint-examples.md'
 
@@ -174,7 +174,7 @@ You'll be running tests against the Moonbase Alpha TestNet and will need the cor
 
 --8<-- 'text/common/endpoint-setup.md'
 
-Since you will be running tests against the TestNet, it might take a couple minutes to run all of the tests. If you want a more efficient testing experience, you can [spin up a Moonbeam development node](/builders/get-started/moonbeam-dev/) using [`instant seal`](/builders/get-started/moonbeam-dev/#node-options). Running a local Moonbeam development node with the `instant seal` feature is similar to the quick and iterative experience you would get with [Ganache](https://www.trufflesuite.com/ganache).
+Since you will be running tests against the TestNet, it might take a couple minutes to run all of the tests. If you want a more efficient testing experience, you can [spin up a Moonbeam development node](/builders/get-started/networks/moonbeam-dev/) using [`instant seal`](/builders/get-started/networks/moonbeam-dev/#node-options). Running a local Moonbeam development node with the `instant seal` feature is similar to the quick and iterative experience you would get with [Ganache](https://www.trufflesuite.com/ganache).
 
 1. Create a directory to contain your tests and a file to test your `MyToken` contract:
 

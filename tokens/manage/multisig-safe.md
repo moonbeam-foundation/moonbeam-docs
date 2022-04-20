@@ -26,7 +26,7 @@ Before diving into the guide, you'll need to have a few [MetaMask accounts](#met
 For this guide, you will be creating a Safe on Moonbase Alpha to interact and manage your funds with. To connect to the Safe, you will need to have:
 
  - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/)
- - At least two accounts each loaded with funds. You can get DEV tokens from [Mission Control](/builders/get-started/moonbase/#get-tokens/)
+ - At least two accounts each loaded with funds. You can get DEV tokens from [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/)
 
 You will need at least two accounts because you will be setting up a multisig Safe with 3 owners, and 2/3 confirmations for any transaction to get executed. Therefore, throughout this guide you will need to switch back and forth between at least two of the accounts to be able to confirm and send transactions. 
 
@@ -38,11 +38,11 @@ This guide will use the following accounts:
 
 ### ERC-20 Tokens
 
-Later on in this guide, you will be learning how to send and receive ERC-20 tokens to and from the Safe. So you will need to have deployed some ERC-20 tokens and added them to your MetaMask account. To do so, you can check out the [Using Remix to Deploy to Moonbeam](https://docs.moonbeam.network/builders/interact/remix/) guide, in particular the [Deploying a Contract to Moonbeam](https://docs.moonbeam.network/builders/interact/remix/#deploying-a-contract-to-moonbeam-using-remix) and [Interact with a Moonbeam-based ERC-20](https://docs.moonbeam.network/builders/interact/remix/#interacting-with-a-moonbeam-based-erc-20-from-metamask) sections will show you how to deploy an ERC-20 token and import it into MetaMask.
+Later on in this guide, you will be learning how to send and receive ERC-20 tokens to and from the Safe. So you will need to have deployed some ERC-20 tokens and added them to your MetaMask account. To do so, you can check out the [Using Remix to Deploy to Moonbeam](/builders/build/eth-api/dev-env/remix/) guide, in particular the [Deploying a Contract to Moonbeam](/builders/build/eth-api/dev-env/remix/#deploying-a-contract-to-moonbeam-using-remix) and [Interact with a Moonbeam-based ERC-20](/builders/build/eth-api/dev-env/remix/#interacting-with-a-moonbeam-based-erc-20-from-metamask) sections will show you how to deploy an ERC-20 token and import it into MetaMask.
 
 ### Deployed Smart Contract
 
-Towards the end of this guide, you will be learning how to interact with a smart contract using the Safe. So you will need to have a smart contract deployed to interact with. If you would like detailed instructions, you can refer to the [Deploying a Contract to Moonbeam using Remix](/builders/tools/remix/#deploying-a-contract-to-moonbeam){target=_blank} guide. 
+Towards the end of this guide, you will be learning how to interact with a smart contract using the Safe. So you will need to have a smart contract deployed to interact with. If you would like detailed instructions, you can refer to the [Deploying a Contract to Moonbeam using Remix](/builders/build/eth-api/dev-env/remix/#deploying-a-contract-to-moonbeam){target=_blank} guide. 
 
 You can head to [Remix](https://remix.ethereum.org/){target=_blank} and create a new file for the following `SetText.sol` contract:
 
@@ -222,7 +222,7 @@ You'll need to get the Safe's address again, you can do so by clicking on the **
  1. Switch to the **Assets** tab and select **MYTOK** from the list
  2. Click **Send** 
  3. Paste in the Safe's address
- 4. Enter amount of MYTOKs to send. You should have minted 8M MYTOK tokens in the [Using Remix to Deploy to Moonbeam](https://docs.moonbeam.network/builders/interact/remix/){target=_blank} guide. So for this example, you can enter 1000 MYTOKs for the amount to send
+ 4. Enter amount of MYTOKs to send. You should have minted 8M MYTOK tokens in the [Using Remix to Deploy to Moonbeam](/builders/build/eth-api/dev-env/remix/){target=_blank} guide. So for this example, you can enter 1000 MYTOKs for the amount to send
  5. Click **Next**
  6. Review the transaction details and then click **Confirm** to send the transaction.
 

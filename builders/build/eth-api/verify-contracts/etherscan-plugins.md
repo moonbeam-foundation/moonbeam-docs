@@ -20,7 +20,7 @@ This guide will show you how to use both plugins to verify smart contracts deplo
 To follow along with this tutorial, you will need to have:
 
 - [MetaMask installed and connected to the Moonbase Alpha](/tokens/connect/metamask/){target=_blank} TestNet
-- An account funded with `DEV` tokens. You can obtain tokens for testing purposes from [Mission Control](/builders/get-started/moonbase/#get-tokens/){target=_blank}
+- An account funded with `DEV` tokens. You can obtain tokens for testing purposes from [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/){target=_blank}
 - A Moonscan API key for the network you're trying to verify a contract on. For Moonbeam and Moonbase Alpha, you'll need a [Moonbeam Moonscan](https://moonscan.io/){target=_blank} API key. For Moonriver, you'll need a [Moonriver Moonscan](https://moonriver.moonscan.io/){target=_blank} API key
 
 ## Generating a Moonscan API Key {: generating-a-moonscan-api-key }

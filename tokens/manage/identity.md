@@ -48,7 +48,7 @@ For this guide, you will need the following:
 
 - To connect to the [Moonbase Alpha TestNet](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network){target=_blank} on the Polkadot.js Apps explorer. You can also follow along and adapt the instructions for [Moonbeam](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network){target=_blank} or [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonriver.moonbeam.network){target=_blank}.
 - To [create or import an account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account) into Polkadot.js Apps
-- Make sure you have funded your account. For Moonbase Alpha, you can [get DEV tokens from Mission Control](/builders/get-started/moonbase/#get-tokens)
+- Make sure you have funded your account. For Moonbase Alpha, you can [get DEV tokens from Mission Control](/builders/get-started/networks/moonbase/#get-tokens)
 
 ## Getting Started
 

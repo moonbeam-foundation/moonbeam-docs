@@ -126,7 +126,7 @@ You can begin with making modifications to the Hardhat component under the `/pac
     }
     ```
 
-For more information on using Hardhat with Moonbeam, please check the dedicated [Hardhat page](/builders/interact/hardhat/){target=_blank} for more details.
+For more information on using Hardhat with Moonbeam, please check the dedicated [Hardhat page](/builders/build/eth-api/dev-env/hardhat/){target=_blank} for more details.
 
 ### The Graph Component {: #the-graph-component }
 
@@ -383,6 +383,6 @@ After a short wait, the console output will display the verification result and 
 
 ![Contract verify output](/images/builders/build/eth-api/dev-env/scaffold-eth/scaffold-eth-8.png)
 
-For more information about verifying smart contracts on Moonbeam using Hardhat Etherscan plugin, please refer to the [Etherscan Plugins page](/builders/tools/verify-contracts/etherscan-plugins/#using-the-hardhat-etherscan-plugin){target=_blank}. 
+For more information about verifying smart contracts on Moonbeam using Hardhat Etherscan plugin, please refer to the [Etherscan Plugins page](/builders/build/eth-api/verify-contracts/etherscan-plugins/#using-the-hardhat-etherscan-plugin){target=_blank}. 
 
 --8<-- 'text/disclaimers/third-party-content.md'

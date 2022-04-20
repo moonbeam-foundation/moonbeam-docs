@@ -14,8 +14,8 @@ The ability to subscribe to Ethereum-style events was added with the [release of
 The examples in this guide are based on an Ubuntu 18.04 environment. You will also need the following:
 
  - Have MetaMask installed and [connected to Moonbase](/tokens/connect/metamask/)
- - Have an account with funds. You can get this from [Mission Control](/builders/get-started/moonbase/#get-tokens/)
- - Deploy your own ERC-20 token on Moonbase. You can do following [our Remix tutorial](/builders/interact/remix/), while first pointing MetaMask to Moonbase
+ - Have an account with funds. You can get this from [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/)
+ - Deploy your own ERC-20 token on Moonbase. You can do following [our Remix tutorial](/builders/build/eth-api/dev-env/remix/), while first pointing MetaMask to Moonbase
 
 --8<-- 'text/common/install-nodejs.md'
 

@@ -116,7 +116,7 @@ To try the bridge with this sample ERC-20 token, we must do the following steps 
 !!! note
     Remember that tokens will be transferred only if the handler contract has enough allowance to spend tokens on behalf of the owner. If the process fails, check the allowance.
 
-Let's send some ERC20S tokens from **Moonbase Alpha** to **Kovan**. If you wanted to try it out with Rinkeby, the steps and addresses are the same. For this, we'll use [Remix](/builders/tools/remix/). First, we can use the following interface to interact with this contract and mint the tokens:
+Let's send some ERC20S tokens from **Moonbase Alpha** to **Kovan**. If you wanted to try it out with Rinkeby, the steps and addresses are the same. For this, we'll use [Remix](/builders/build/eth-api/dev-env/remix/). First, we can use the following interface to interact with this contract and mint the tokens:
 
 ```solidity
 pragma solidity ^0.8.1;
@@ -234,7 +234,7 @@ Instead of interacting with the Bridge contract and calling the function `deposi
 
 In simple terms, the modified bridge contract used to initiate the transfer will create the _chainID_ and _resourceID_ for this example based on the destination chain ID that you provide. Therefore, it builds the _calldata_ object from the user's input, which is only the recipient address and the token ID to be sent.
 
-Let's send an ERC721M token from **Moonbase Alpha** to **Kovan**. For that, we'll use [Remix](/builders/tools/remix/). The following interface can be used to interact with the source ERC721M contract and mint the tokens. The `tokenOfOwnerByIndex()` function also can be used to check the token IDs owned by a specific address, passing the address and the index to query (each token ID is stored as an array element associated to the address):
+Let's send an ERC721M token from **Moonbase Alpha** to **Kovan**. For that, we'll use [Remix](/builders/build/eth-api/dev-env/remix/). The following interface can be used to interact with the source ERC721M contract and mint the tokens. The `tokenOfOwnerByIndex()` function also can be used to check the token IDs owned by a specific address, passing the address and the index to query (each token ID is stored as an array element associated to the address):
 
 ```solidity
 pragma solidity ^0.8.1;
