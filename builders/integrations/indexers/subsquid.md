@@ -9,15 +9,9 @@ description: Learn how to use Subsquid to process Substrate and EVM data for Moo
 
 ## Introduction {: #introduction }
 
-[Subsquid](https://subsquid.io){target=_blank} is a query node framework for Substrate-based blockchains. In very simple terms, Subsquid can be thought of as an ETL (Extract, Transform, and Load) tool, with a GraphQL server included.
+[Subsquid](https://subsquid.io){target=_blank} is a query node framework for Substrate-based blockchains. In very simple terms, Subsquid can be thought of as an ETL (Extract, Transform, and Load) tool, with a GraphQL server included. It enables comprehensive filtering, pagination, and even full-text search capabilities
 
-Subsquid's [multi-layer approach](https://docs.subsquid.io/key-concepts/architecture){target=_blank} aims to pre-process and decode raw chain data and store it for easier access by query nodes, providing increased performance over direct RPC calls.
-
-Thanks to Subsquid, the complexity of fetching and transforming blockchain data can be vastly reduced. On top of that, developers get a batteries-included GraphQL server with comprehensive filtering, pagination, and even full-text search capabilities.
-
-Subsquid has native and full support for both the Ethereum Virtual Machine and Substrate data. This allows developers to extract on-chain data from any of the Moonbeam networks and process EVM logs as well as Substrate entities (events, extrinsics and storage items) in one single project and serve the resulting data with one single GraphQL endpoint.
-
-Thanks to unparalleled features such as filtering by EVM topic, by contract address, and by block range, Subsquid provides developers with the necessary tools and flexibility to build the best data projects possible.
+Subsquid has native and full support for both the Ethereum Virtual Machine and Substrate data. This allows developers to extract on-chain data from any of the Moonbeam networks and process EVM logs as well as Substrate entities (events, extrinsics and storage items) in one single project and serve the resulting data with one single GraphQL endpoint. With Subsquid, filtering by EVM topic, contract address, and block range are all possible.
 
 This guide will explain how to create a Subsquid project (also known as a *"Squid"*) that indexes ERC-721 token transfers on the Moonriver network. As such, you'll be looking at the `Transfer` EVM event topics. This guide can be adapted for Moonbeam or Moonbase Alpha.
 
@@ -41,27 +35,21 @@ You can create a project by using the template repository made available by Subs
     git clone git@github.com:<account>/squid-template.git
     ```
 
-To view the complete project, you can check out the [`squid-evm-template` repository on GitHub](https://github.com/subsquid/squid-evm-template){target=_blank}.
+5. Then you can install the dependencies from within the project directory:
 
-The next sections will take the template and customize it, one aspect at a time, to obtain the right data and process it.
+    ```bash
+    cd squid-template && npm i
+    ```
 
-### Install Dependencies {: #install-dependencies}
+6. You'll also need to install a few additional dependencies to index EVM data:
 
-The subsquid template is a Node.js project and comes with a `package.json` file, defining its dependencies, which you need to install, by running:
-
-```bash
-npm i
-```
-
-The template was originally developed to process balance transfers on the Kusama network; since the project you are going to build in this guide indexes ERC-721 token transfers, you have to install some additional packages. You can do so with this command:
-
-```bash
-npm i @ethersproject/abi ethers @subsquid/substrate-evm-processor
-```
+    ```bash
+    npm i @ethersproject/abi ethers @subsquid/substrate-evm-processor
+    ```
 
 [![Image from Gyazo](https://i.gyazo.com/a6d785e88ce366a327ce2bd60735df87.gif)](https://gyazo.com/a6d785e88ce366a327ce2bd60735df87)
 
-These packages will be useful with the ERC-721 ABI definition that will be discussed in the following sections.
+The next sections will take the template and customize it, one aspect at a time, to obtain the right data and process it. To view the complete project, you can check out the [`squid-evm-template` repository on GitHub](https://github.com/subsquid/squid-evm-template){target=_blank}.
 
 ## Define Entity Schema {: #define-entity-schema }
 
@@ -107,16 +95,13 @@ type Transfer @entity {
 }
 ```
 
-!!! note
-    It's worth noting a couple of things in this schema:
+It's worth noting a couple of things in this [schema definition](https://docs.subsquid.io/reference/openreader-schema){target=_blank}:
 
-    - The `@entity` directive signals that this type will be translated into an ORM model that is going to be persisted in the database
-    - A type's field referring to another type definition (`from: Owner`), is establishing a relation between two entities
-    - The `@derivedFrom` directive signals that the field tagged with it will not be persisted on the database, it will rather be derived, as the directive name suggests
-    
-    For more information on GraphQL schema definitions and the more advanced options available, please refer to the [schema section on Subsquid's documentation site](https://docs.subsquid.io/reference/openreader-schema){target=_blank}.
+  - **`@entity`** - signals that this type will be translated into an ORM model that is going to be persisted in the database
+  - **`@derivedFrom`** - signals the field will not be persisted on the database, it will rather be derived
+  - **type references** (i.e. `from: Owner`) - establishes a relation between two entities
 
-To generate TypeScript entity classes for the schema definition you will need to run the `codegen` tool:
+To generate TypeScript entity classes for the schema definition, you'll run the `codegen` tool:
 
 ```bash
 npx sqd codegen
@@ -128,11 +113,11 @@ You will find the auto-generated files under `src/model/generated`.
 
 ## ABI Definition and Wrapper {: #abi-definition-and-wrapper}
 
-Subsquid offers support for exploring the chain's metadata and automatically building TypeScript type-safe interfaces for Substrate data sources (events, extrinsics, storage items). Changes are also automatically detected in the runtime. This feature is not yet available for EVM contracts, but it's in the Subsquid roadmap. For the time being, TypeScript interfaces for EVM events have to be built manually.
+Subsquid offers support for automatically building TypeScript type-safe interfaces for Substrate data sources (events, extrinsics, storage items). Changes are automatically detected in the runtime. This feature is not yet available for EVM contracts, therefore TypeScript interfaces for EVM events have to be built manually.
 
-In order to be able to extract and process ERC-721 data, it is necessary to obtain the definition of its Application Binary Interface (ABI). This can be obtained in the form of a JSON file, which then needs to be imported in the project. This will allow it to process all contracts using such an interface.
+To extract and process ERC-721 data, it is necessary to obtain the definition of its Application Binary Interface (ABI). This can be obtained in the form of a JSON file, which will be imported into the project.
 
-1. Create a dedicated `abis` folder in the project and then create a JSON file for the ERC-721 ABI. The `abis` folder is useful if you want to use multiple types of contracts, with different ABIs
+1. Create an `abis` foldet and create a JSON file for the ERC-721 ABI
 
     ```bash
     mkdir src/abis
@@ -142,15 +127,11 @@ In order to be able to extract and process ERC-721 data, it is necessary to obta
 2. Copy the [ABI for the ERC-721 Interface](https://www.github.com/PureStake/moonbeam-docs-cn/blob/master/.snippets/code/subsquid/erc721.md){target=_blank} and paste it in the `ERC721.json` file
 
 !!! note
-    The ERC-721 ABI defines the signatures of all events in the contract.
-    A quick search for the `Transfer` event (which is central to the project in this guide) shows that it has three arguments, named: `from`, `to`, and `tokenId`. Their types are, respectively, `address`, `address`, and `uint256`.
-    As such, the actual definition of the `Transfer` event looks like this: `Transfer(address, address, uint256)`.
-
-In the following steps you are going to write some additional code to import and manage this interface definition into your project.
+    The ERC-721 ABI defines the signatures of all events in the contract. The `Transfer` event has three arguments, named: `from`, `to`, and `tokenId`. Their types are, respectively, `address`, `address`, and `uint256`. As such, the actual definition of the `Transfer` event looks like this: `Transfer(address, address, uint256)`.
 
 ### Adjust TypeScript Configuration {: #adjust-typescript-configuration }
 
-In order to be able to read and import the ABI JSON file in TypeScript code, you need to add an option to the `tsconfig.json` file in the project's root folder. Open the file and add the `"resolveJsonModule": true` option to the `"compilerOptions"` section:
+In order to be able to read and import the ABI JSON file in TypeScript code, you need to add an option to the `tsconfig.json` file. Open the file and add the `"resolveJsonModule": true` option to the `"compilerOptions"` section:
 
 ```json
 // tsconfig.json
@@ -165,7 +146,7 @@ In order to be able to read and import the ABI JSON file in TypeScript code, you
 
 ### Use the ABI to Get and Decode Event Data {: #get-and-decode-event-data }
 
-Now you'll want to create a TypeScript file and set up the logic to create a data interface and decode event data using the ABI
+Next, create a TypeScript file for creating a data interface and decoding event data using the ABI
 
 1. In the `src/abis` folder, create a new file named `erc721.ts`:
 
@@ -212,27 +193,13 @@ export const events = {
 };
 ```
 
-You'll be using the `events` map to decode the `Transfer` event in the next section.
-
-### Clean up {: #clean-up }
-
-Subsquid automatically generates TypeScript interfaces for Substrate entities, but, unfortunately, this is not yet available for EVM logs. These interfaces are stored under the `src/types` folder and since they are not going to be used, you can remove them from the project, by deleting the entire `types` folder:
-
-```
-rm -r src/types
-```
-
 ## Define and Bind Event Handler(s) {: #define-and-bind-event-handlers }
 
-At this point, it is worth explaining what a [processor](https://docs.subsquid.io/key-concepts/processor){target=_blank} is and how it works. The Subsquid SDK provides users with a class, named `SubstrateProcessor` or, in this specific case [`SubstrateEvmProcessor`](https://docs.subsquid.io/reference/evm-processor){target=_blank} that connects to the [Subsquid archive](https://docs.subsquid.io/key-concepts/architecture#archive){target=_blank}. The processor starts to loop, from the configured starting block, until the configured end block, or until data is available or new data is added to the chain.
+The Subsquid SDK provides users with a [processor](https://docs.subsquid.io/key-concepts/processor){target=_blank} class, named `SubstrateProcessor` or, in this specific case [`SubstrateEvmProcessor`](https://docs.subsquid.io/reference/evm-processor){target=_blank}. The processor connects to the [Subsquid archive](https://docs.subsquid.io/key-concepts/architecture#archive){target=_blank} to get chain data. It loops from the configured starting block, until the configured end block, or until new data is added to the chain.
 
-Such a class exposes methods to "attach" functions that will "handle" specific data (Substrate events, extrinsics, storage items, or, in the case of this project, EVM logs). These methods can be configured by specifying the event or extrinsic name, or the EVM log contract address, for example.
+The processor exposes methods to "attach" functions that will "handle" specific data such as Substrate events, extrinsics, storage items, or EVM logs. These methods can be configured by specifying the event or extrinsic name, or the EVM log contract address, for example. As the processor loops over the data, when it encounters one of the configured event names, it will execute the logic in the "handler" function.
 
-While looping through the chain data, provided by the archive, when the processor encounters one of the configured event names, it will trigger the provided "handler" function, so any custom logic that you implement will be executed.
-
-You can find more information about these [key concepts on Subsquid's documentation](https://docs.subsquid.io/key-concepts){target=_blank}.
-
-Before getting started with the event handler, it is necessary to define some constants and some helper functions. It is general good practice to separate these concerns from the main file of the project and for this reason, you can create two additional files:
+Before getting started with the event handler, it is necessary to define some constants and some helper functions. You can create two additional files for these items:
 
 ```
 mkdir src/helpers
@@ -241,7 +208,7 @@ touch src/constants.ts src/helpers/events.ts
 
 ### Constants Definitions {: #constants-definitions }
 
-In the `src/constants.ts` file, you are going to define a few constants that will later be useful. For this example, you can use the Moonsama contract on Moonriver and the ERC-721 token ABI.
+In the `src/constants.ts` file, you can define a few constants. For this example, you can use the Moonsama contract on Moonriver and the ERC-721 token ABI.
 
 1. Define the ERC-721 token contract address
 2. Define the API endpoint and configurations
@@ -297,11 +264,7 @@ In the `src/helpers/events.ts` file, you'll take the following steps:
 
 1. Define interfaces to pass data around
 2. Define functions to fetch a contract interface from the database or create one
-3. Create a contract log handler function. The handler function can be named `contractLogsHandler` and its purpose is to:
-
-    - Decode the event (using the mapping defined in the previous section)
-    - Obtain information about token transfers
-    - Write this data to the correct fields of the right entities and save them to the database
+3. Create a contract log handler function, `contractLogsHandler`, to decode event data, get token transfer information, and map and save data to the database
 
 ```typescript
 // src/helpers/events.ts
@@ -400,20 +363,20 @@ export async function contractLogsHandler(
 }
 ```
 
-A "handler" function is simply a TypeScript function that takes in a `Context` of the correct type (`EvmLogHandlerContext`, in this case). Its purpose is to use this context, which contains the triggering event and the interface to store data, to extract data, process it with the custom business logic, and save the refined data to the database.
+The "handler" function takes in a `Context` of the correct type (`EvmLogHandlerContext`, in this case). The context contains the triggering event and the interface to store data, and is used to extract and process data and save it to the database.
 
 !!! note
-    Defining a separate function for handling events is not strictly necessary. It is also possible to bind an "arrow function" to the processor, but it is still advisable and considered good practice to do so.
+    For the event handler, it is also possible to bind an "arrow function" to the processor.
 
 ### Create Processor and Attach Handler {: #create-processor-and-attach-handler }
 
-After having imported the ABI contract, defined the necessary constants and business logic, it is time to attach the handler function to the processor and configuring the latter for execution. This is done by editing the `src/processor.ts` file in the project folder. 
+Now you can attach the handler function to the processor and configure the processor for execution. This is done by editing the `src/processor.ts` file. 
 
 1. Remove the pre-existing code
-2. Update the imports to include the `CONTRACT_ADDRESS` constant, the two helper functions defined in the previous section, as well as the `events` mapping defined in the `erc721.ts` file
-3. Create a processor using the `SubstrateEvmProcessor`, designed specifically to sift through EVM logs, and pass in a name of your choice. For this example, you can use `moonriver-substrate` or feel free to update it for the network you're developing on
+2. Update the imports to include the `CONTRACT_ADDRESS` constant, the `contractsLogHandler` and `createContractEntity` helper functions, and the `events` mapping
+3. Create a processor using the `SubstrateEvmProcessor` and pass in a name of your choice. For this example, you can use `moonriver-substrate` or feel free to update it for the network you're developing on
 4. Update the data source and types bundle
-5. Attach the EVM log handler function that will filter the `Transfer` events and a pre-block hook, for good measure (this last one will be responsible for creating and saving a contract entity in the database)
+5. Attach the EVM log handler function and a pre-block hook which will create and save a contract entity in the database
 
 ```typescript
 // src/processor.ts
@@ -449,7 +412,7 @@ processor.addEvmLogHandler(
 processor.run();
 ```
 
-If you are adapting this guide for Moonbeam or Moonbase Alpha, be sure to update the data source so it uses the correct network:
+If you are adapting this guide for Moonbeam or Moonbase Alpha, be sure to update the data source to the correct network:
 
 === "Moonbeam"
     ```
@@ -475,31 +438,23 @@ If you are adapting this guide for Moonbeam or Moonbase Alpha, be sure to update
     });
     ```
 
-The `lookupArchive` function is used to consult the [archive registry](https://github.com/subsquid/archive-registry){target=_blank} and yield the right archive address, given a network name. Network names should be in lowercase.
-
-The `addEvmLogHandler` function takes in three arguments, in this case:
-
-  1. The contract address
-  2. An object containing options for defining further filtering (the event topic in this case, but you could also define a block range)
-  3. The handler function itself
+!!! note
+    The `lookupArchive` function is used to consult the [archive registry](https://github.com/subsquid/archive-registry){target=_blank} and yield the archive address, given a network name. Network names should be in lowercase.
 
 ## Launch and Set Up the Database {: #launch-and-set-up-the-database }
 
-A Squid needs a database to store data to, as it has been mentioned in previous sections. When running the project locally, as it is the case for this guide, it is possible to use the `docker-compose.yml` file that comes with the template and launch a PostgreSQL container. In order to do so, simply open a console window launch the following command in the terminal:
+When running the project locally, as it is the case for this guide, it is possible to use the `docker-compose.yml` file that comes with the template to launch a PostgreSQL container. To do so, run the following command in your terminal:
 
 ```bash
 docker-compose up -d
 ```
 
-This should be the terminal output:
-
 [![Image from Gyazo](https://i.gyazo.com/71e9b457a3267e0a1d40496abcfc6e0a.gif)](https://gyazo.com/71e9b457a3267e0a1d40496abcfc6e0a)
 
 !!! note
-    The `-d` parameter launches the container in `daemon` mode, which means the terminal will not be blocked and no further output will be visible.
-    It is possible to omit this parameter and maintain monitoring of the container, however, this is also possible via the `docker logs` command.
+    The `-d` parameter is optional, it launches the container in `daemon` mode so the terminal will not be blocked and no further output will be visible.
 
-Squid projects automatically manage the database connection and schema, via an [ORM abstraction](https://en.wikipedia.org/wiki/Object%E2%80%93relational\_mapping){target=_blank}. As such, you should be using the provided automated tools to manage the database schema and migrations.
+Squid projects automatically manage the database connection and schema, via an [ORM abstraction](https://en.wikipedia.org/wiki/Object%E2%80%93relational\_mapping){target=_blank}. 
 
 To set up the database, you can take the following steps:
 
@@ -540,19 +495,15 @@ To launch the processor (this will block the current terminal), you can run the 
 node -r dotenv/config lib/processor.js
 ```
 
-You should see some log messages about the progress:
-
 [![Image from Gyazo](https://i.gyazo.com/13223997aa1e9738c842634826b39654.gif)](https://gyazo.com/13223997aa1e9738c842634826b39654)
 
-Finally, in a separate command line console window, launch the GraphQL server:
+Finally, in a separate terminal window, launch the GraphQL server:
 
 ```bash
 npx squid-graphql-server
 ```
 
-And see for yourself the result of your hard work, by visiting [`localhost:4350/graphql`](http://localhost:4350/graphql){target=_blank} and accessing the [GraphiQl](https://github.com/graphql/graphiql){target=_blank} console.
-
-From this window, you can perform queries such as this one, to find out the account owners with the biggest balances:
+Visit [`localhost:4350/graphql`](http://localhost:4350/graphql){target=_blank} to access the [GraphiQl](https://github.com/graphql/graphiql){target=_blank} console. From this window, you can perform queries such as this one, to find out the account owners with the biggest balances:
 
 ```graphql
 query MyQuery {
@@ -585,18 +536,12 @@ Have some fun playing around with queries, after all, it's a *playground*!
 
 ## Publish the Project {: #publish-the-project }
 
-So far, you have tested your project locally, including running the database and serving the GraphQL server.
-
-Subsquid offers a SaaS solution to host projects created by its community. To access this platform, check out [Subsquid's SaaS home page](https://app.subsquid.io/dashboard){target=_blank} and login with your GitHub account.
-
-The guided procedure is very simple to follow, but should you need more info and guidance, please head over to the dedicated [Deploy your Squid tutorial](https://docs.subsquid.io/tutorial/deploy-your-squid){target=_blank} on Subquid's documentation site.
+Subsquid offers a SaaS solution to host projects created by its community. Please refer to the [Deploy your Squid tutorial](https://docs.subsquid.io/tutorial/deploy-your-squid){target=_blank} on Subquid's documentation site for more information.
 
 You can also check out other projects hosted there, by heading to the [Aquarium](https://app.subsquid.io/aquarium){target=_blank}, because that's where Squids are!
 
-## Example Projects Repository {: #example-projects-repository }
+## Example Project Repository {: #example-project-repository }
 
-Subsquid is creating example projects that can be used as templates and the one in this guide is one of them. You can check out the example repository and [view the finalized and complete project on GitHub](https://github.com/subsquid/squid-evm-template){target=_blank}. Subsquid's GitHub account is going to grow over time and will include more and more examples.
-
-Subsquid SDK has been created to facilitate developing Web3 apps on top of blockchain data, thanks to its automated code generation tools, the type-safe interface and robustness against runtime upgrades. The [Subsquid template repository](https://github.com/subsquid/squid-template){target=_blank} and its [EVM logs version](https://github.com/subsquid/squid-evm-template){target=_blank} are the starting point for experimenting with the framework and starting to build your DApp easier and faster.
+You can [view the finalized and complete project on GitHub](https://github.com/subsquid/squid-evm-template){target=_blank}.
 
 [Subsquid's documentation](https://docs.subsquid.io/){target=_blank} contains informative material and it's the best place to start, if you are curious about some aspects that were not fully explained in this guide.
