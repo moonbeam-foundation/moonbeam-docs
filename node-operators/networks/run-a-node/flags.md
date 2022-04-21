@@ -1,6 +1,6 @@
 ---
-title: Helpful Flags for Running a Node on Moonbeam
-description: Helpful flags for running a full parachain node on Moonbeam
+title: Run a Node Flags & Options
+description: A list of helpful flags for spinning up a full parachain node on Moonbeam. Also learn how to access all of the flags available for node operators.
 ---
 
 # Helpful Flags for Running a Node on Moonbeam
@@ -39,6 +39,8 @@ This guide will cover some of the most common flags and show you how to access a
 - **`--in-peers`** - specifies the maximum amount of accepted incoming connections. The default is `25`
 - **`--out-peers`** - specifies the maximum amount of outgoing connections to maintain. The default is `25`
 - **`--runtime-cache-size 32`** - configures the number of different runtime versions preserved in the in-memory cache to 32
+- **`--eth-log-block-cache`** - size in bytes the LRU cache for block data is limited to use. This flag mostly pertains to RPC providers. The default is `300000000`
+- **`--eth-statuses-cache`** - size in bytes the LRU cache for transaction statuses data is limited to use. This flag mostly pertains to RPC providers. The default is `300000000` 
 
 ## How to Access All of the Available Flags {: #how-to-access-all-of-the-available-flags }
 

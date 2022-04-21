@@ -1,5 +1,5 @@
 ---
-title: Get Started with Moonriver
+title: Moonriver Get Started Guide
 description: Learn how to get started and connect to Moonriver, the Moonbeam deployment on Kusama, via RPC and WSS endpoints.
 ---
 
@@ -16,7 +16,7 @@ For Moonriver, you can use any of the following block explorers:
  - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=Moonriver){target=_blank}
  - **Substrate API** — [Subscan](https://moonriver.subscan.io/){target=_blank} or [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonriver.moonbeam.network#/explorer){target=_blank}
  
-For more information on each of the available block explorers, please head to the [Block Explorers](/builders/tools/explorers) section of the documentation.
+For more information on each of the available block explorers, please head to the [Block Explorers](/builders/get-started/explorers/) section of the documentation.
 
 ## Connect MetaMask {: #connect-metamask }
 

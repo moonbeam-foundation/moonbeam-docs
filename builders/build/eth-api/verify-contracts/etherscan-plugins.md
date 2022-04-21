@@ -1,5 +1,5 @@
 ---
-title: Verify Smart Contracts with Etherscan Plugins on Moonbeam
+title: Verify Smart Contracts with Plugins
 description: Learn about how to verify smart contracts on Moonbeam networks using the Etherscan plugins made available by Hardhat and Truffle.
 ---
 
@@ -20,7 +20,7 @@ This guide will show you how to use both plugins to verify smart contracts deplo
 To follow along with this tutorial, you will need to have:
 
 - [MetaMask installed and connected to the Moonbase Alpha](/tokens/connect/metamask/){target=_blank} TestNet
-- An account funded with `DEV` tokens. You can obtain tokens for testing purposes from [Mission Control](/builders/get-started/moonbase/#get-tokens/){target=_blank}
+- An account funded with `DEV` tokens. You can obtain tokens for testing purposes from [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/){target=_blank}
 - A Moonscan API key for the network you're trying to verify a contract on. For Moonbeam and Moonbase Alpha, you'll need a [Moonbeam Moonscan](https://moonscan.io/){target=_blank} API key. For Moonriver, you'll need a [Moonriver Moonscan](https://moonriver.moonscan.io/){target=_blank} API key
 
 ## Generating a Moonscan API Key {: generating-a-moonscan-api-key }
@@ -43,7 +43,7 @@ You will then be prompted to enter in an **AppName** for your API key and once y
 
 ## Using the Hardhat Etherscan Plugin {: #using-the-hardhat-etherscan-plugin }
 
-The example in this section of the guide will be based off of the `Box.sol` contract that was created in the [Using Hardhat to Deploy To Moonbeam](/builders/interact/hardhat/){target=_blank} guide. 
+The example in this section of the guide will be based off of the `Box.sol` contract that was created in the [Using Hardhat to Deploy To Moonbeam](/builders/build/eth-api/dev-env/hardhat/){target=_blank} guide. 
 
 To get started with the Hardhat Etherscan plugin, you will need to first install the plugin library:
 
@@ -96,7 +96,7 @@ Please refer to the [Hardhat Etherscan documentation](https://hardhat.org/plugin
 
 ## Using the Truffle Verify Plugin {: #using-the-truffle-verify-plugin }
 
-The example in this section of the guide will use the `MyToken.sol` contract that was created in the [Using Truffle to Deploy to Moonbeam](/builders/interact/truffle/){target=_blank} guide.
+The example in this section of the guide will use the `MyToken.sol` contract that was created in the [Using Truffle to Deploy to Moonbeam](/builders/build/eth-api/dev-env/truffle/){target=_blank} guide.
 
 To get started with `truffle-plugin-verify`, open your Truffle project and install the plugin:
 

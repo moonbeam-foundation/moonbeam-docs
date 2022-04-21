@@ -1,5 +1,5 @@
 ---
-title: Add WalletConnect to a DApp on Moonbeam
+title: Add WalletConnect to a DApp
 description: Learn how to integrate WalletConnect into a dApp built on any of the Moonbeam networks, specifically so users can connect with their mobile wallets.
 ---
 
@@ -95,7 +95,7 @@ npm install ethers @walletconnect/client @walletconnect/qrcode-modal
 
 This guide will use MetaMask mobile for testing purposes. To install MetaMask mobile, you can go to [metamask.io/download/](https://metamask.io/download/){target=_blank} and switch to either the **iOS** or **Android** tab.
 
-Lastly, you will need to have an account funded with DEV tokens, so that you can test out sending a transaction. To [get tokens from Mission Control](/builders/get-started/moonbase/#get-tokens){target=_blank} you can head to [Discord](https://discord.com/invite/PfpUATX){target=_blank}.
+Lastly, you will need to have an account funded with DEV tokens, so that you can test out sending a transaction. To [get tokens from Mission Control](/builders/get-started/networks/moonbase/#get-tokens){target=_blank} you can head to [Discord](https://discord.com/invite/PfpUATX){target=_blank}.
 
 ## Getting Started {: #getting-started }
 

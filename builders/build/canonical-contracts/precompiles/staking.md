@@ -1,5 +1,5 @@
 ---
-title: Interacting with the Staking Precompile on Moonbeam
+title: Staking Precompile Contract
 description: Learn how to use the Staking Precompile that allows developers to access staking features using the Ethereum API in a precompiled contract
 keywords: solidity, ethereum, staking, moonbeam, precompiled, contracts
 ---
@@ -115,7 +115,7 @@ Some of the aforementioned staking interface functions include exit delays that 
 The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonbeam and Moonriver.
 
  - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/)
- - Have an account with over `{{networks.moonbase.staking.min_del_stake}}` tokens. You can get this from [Mission Control](/builders/get-started/moonbase/#get-tokens/)
+ - Have an account with over `{{networks.moonbase.staking.min_del_stake}}` tokens. You can get this from [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/)
 
 !!! note
     The example below requires more than `{{networks.moonbase.staking.min_del_stake}}` tokens due to the minimum delegation amount plus gas fees. If you need more than the faucet dispenses, please contact us on Discord and we will be happy to help you. 

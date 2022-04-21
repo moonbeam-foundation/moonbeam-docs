@@ -1,6 +1,6 @@
 ---
-title: Transfer Tokens with ChainBridge's Ethereum Moonbeam Bridge
-description: How to use ChainBridge to connect assets between Ethereum and Moonbeam using smart contracts
+title: Transfer Tokens with ChainBridge
+description: How to use ChainBridge to connect and transfer assets such as ERC-20 and ERC-721 tokens between Ethereum and Moonbeam using smart contracts.
 ---
 
 # Transfer Tokens with ChainBridge's Ethereum Moonbeam Bridge
@@ -37,7 +37,6 @@ On both sides of the bridge, there are a set of smart contracts, where each has 
  - **Target contract** — as the name suggests, this is the contract we are going to interact with on each side of the bridge
 
 ### General Workflow {: #general-workflow } 
-
 
 The general workflow is the following (from Chain A to Chain B):
  
@@ -117,7 +116,7 @@ To try the bridge with this sample ERC-20 token, we must do the following steps 
 !!! note
     Remember that tokens will be transferred only if the handler contract has enough allowance to spend tokens on behalf of the owner. If the process fails, check the allowance.
 
-Let's send some ERC20S tokens from **Moonbase Alpha** to **Kovan**. If you wanted to try it out with Rinkeby, the steps and addresses are the same. For this, we'll use [Remix](/builders/tools/remix/). First, we can use the following interface to interact with this contract and mint the tokens:
+Let's send some ERC20S tokens from **Moonbase Alpha** to **Kovan**. If you wanted to try it out with Rinkeby, the steps and addresses are the same. For this, we'll use [Remix](/builders/build/eth-api/dev-env/remix/). First, we can use the following interface to interact with this contract and mint the tokens:
 
 ```solidity
 pragma solidity ^0.8.1;
@@ -235,7 +234,7 @@ Instead of interacting with the Bridge contract and calling the function `deposi
 
 In simple terms, the modified bridge contract used to initiate the transfer will create the _chainID_ and _resourceID_ for this example based on the destination chain ID that you provide. Therefore, it builds the _calldata_ object from the user's input, which is only the recipient address and the token ID to be sent.
 
-Let's send an ERC721M token from **Moonbase Alpha** to **Kovan**. For that, we'll use [Remix](/builders/tools/remix/). The following interface can be used to interact with the source ERC721M contract and mint the tokens. The `tokenOfOwnerByIndex()` function also can be used to check the token IDs owned by a specific address, passing the address and the index to query (each token ID is stored as an array element associated to the address):
+Let's send an ERC721M token from **Moonbase Alpha** to **Kovan**. For that, we'll use [Remix](/builders/build/eth-api/dev-env/remix/). The following interface can be used to interact with the source ERC721M contract and mint the tokens. The `tokenOfOwnerByIndex()` function also can be used to check the token IDs owned by a specific address, passing the address and the index to query (each token ID is stored as an array element associated to the address):
 
 ```solidity
 pragma solidity ^0.8.1;

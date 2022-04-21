@@ -1,6 +1,6 @@
 ---
-title: Using Hardhat to Deploy Smart Contracts To Moonbeam
-description: Learn how to use Hardhat to compile, deploy, and debug Ethereum smart contracts on Moonbeam.
+title: Deploy Contracts with Hardhat
+description: Learn how to use Hardhat, an Ethereum development environment, to compile, deploy, and debug Solidity smart contracts on Moonbeam.
 ---
 
 # Using Hardhat to Deploy To Moonbeam
@@ -18,7 +18,7 @@ This guide will cover how to use Hardhat to compile, deploy, and debug Ethereum 
 To get started, you will need the following:
 
  - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
- - Have an account with funds, which you can get from [Mission Control](/builders/get-started/moonbase/#get-tokens/){target=_blank}
+ - Have an account with funds, which you can get from [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/){target=_blank}
  - 
 --8<-- 'text/common/endpoint-examples.md'
 
@@ -52,7 +52,7 @@ You will need to create a Hardhat project if you don't already have one. You can
 
 This will create a Hardhat config file (`hardhat.config.js`) in your project directory.
 
-Once you have your Hardhat project, you can also install the [ethers plugin](https://hardhat.org/plugins/nomiclabs-hardhat-ethers.html){target=_blank}. This provides a convenient way to use the [ethers.js](/builders/tools/eth-libraries/etherjs/){target=_blank} library to interact with the network. To install it, run the following command:
+Once you have your Hardhat project, you can also install the [ethers plugin](https://hardhat.org/plugins/nomiclabs-hardhat-ethers.html){target=_blank}. This provides a convenient way to use the [ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=_blank} library to interact with the network. To install it, run the following command:
 
 ```
 npm install @nomiclabs/hardhat-ethers ethers

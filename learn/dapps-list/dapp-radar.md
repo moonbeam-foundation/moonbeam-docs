@@ -1,5 +1,5 @@
 ---
-title: List your Moonbeam Project on DappRadar
+title: List your DApp on DappRadar
 description: How you can list your Moonbeam or Moonriver project on DappRadar, a listing and ranking platform for smart contracts and dapps deployed to Moonbeam.
 ---
 

@@ -1,6 +1,6 @@
 ---
-title: XC-20s and Cross-Chain Assets on Moonbeam
-description:  Learn how to access and interact with an ERC-20 interface for cross-chain tokens on Moonbeam, and check how this is done on the Moonbase Alpha TestNet by using the assets precompiled contract.
+title: XC-20s and Cross-Chain Assets
+description:  Learn how to access and interact with an ERC-20 interface for cross-chain tokens on Moonbeam using the assets precompiled Solidity contract.
 ---
 
 # XC-20s and Cross-Chain Assets
@@ -120,7 +120,7 @@ To approve a spend or transfer XC-20s via the XC-20 precompile, you will need:
 
 - [MetaMask installed and connected to the Moonbase Alpha](/tokens/connect/metamask/) TestNet
 - Create or have two accounts on Moonbase Alpha
-- At least one of the accounts will need to be funded with `DEV` tokens. You can obtain tokens for testing purposes from [Mission Control](/builders/get-started/moonbase/#get-tokens/)
+- At least one of the accounts will need to be funded with `DEV` tokens. You can obtain tokens for testing purposes from [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/)
 
 ## Interact with the Precompile Using Remix {: #interact-with-the-precompile-using-remix } 
 
@@ -161,4 +161,4 @@ The **IERC20** precompile for the XC-20 will appear in the list of **Deployed Co
 
 ![Interact with the precompile functions](/images/builders/xcm/xc20/overview/xc20-6.png)
 
-To learn how to interact with each of the functions, you can check out the [ERC-20 Precompile](/builders/tools/precompiles/erc20) guide and modify it for interacting with the XC-20 precompile.
+To learn how to interact with each of the functions, you can check out the [ERC-20 Precompile](/builders/build/canonical-contracts/precompiles/erc20/) guide and modify it for interacting with the XC-20 precompile.

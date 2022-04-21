@@ -1,5 +1,5 @@
 ---
-title: Using Scaffold-ETH to Deploy a DApp on Moonbeam
+title: Create a DApp with Scaffold-ETH
 description: You can deploy a Solidity DApp with a React UI and subgraph on Moonbeam in minutes by using Scaffold-ETH. Learn how in this tutorial.
 ---
 
@@ -113,7 +113,7 @@ You can begin with making modifications to the Hardhat component under the `/pac
         defaultNetwork = "moonbeamDevNode";
         ```
 
-3. Within the same file, under the `module.exports/etherscan/apiKey` section, add the API key for [Moonscan](https://moonscan.io/){target=_blank}, so you can verify the deployed smart contracts. Check this [Etherscan Plugins](/builders/tools/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank} section for how to generate a Moonscan API key
+3. Within the same file, under the `module.exports/etherscan/apiKey` section, add the API key for [Moonscan](https://moonscan.io/){target=_blank}, so you can verify the deployed smart contracts. Check this [Etherscan Plugins](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank} section for how to generate a Moonscan API key
 
 
 4. (Optional) Under the `function mnemonic()`, comment out a console warning for when the network is not set to `localhost` 
@@ -126,7 +126,7 @@ You can begin with making modifications to the Hardhat component under the `/pac
     }
     ```
 
-For more information on using Hardhat with Moonbeam, please check the dedicated [Hardhat page](/builders/interact/hardhat/){target=_blank} for more details.
+For more information on using Hardhat with Moonbeam, please check the dedicated [Hardhat page](/builders/build/eth-api/dev-env/hardhat/){target=_blank} for more details.
 
 ### The Graph Component {: #the-graph-component }
 
@@ -383,6 +383,6 @@ After a short wait, the console output will display the verification result and 
 
 ![Contract verify output](/images/builders/build/eth-api/dev-env/scaffold-eth/scaffold-eth-8.png)
 
-For more information about verifying smart contracts on Moonbeam using Hardhat Etherscan plugin, please refer to the [Etherscan Plugins page](/builders/tools/verify-contracts/etherscan-plugins/#using-the-hardhat-etherscan-plugin){target=_blank}. 
+For more information about verifying smart contracts on Moonbeam using Hardhat Etherscan plugin, please refer to the [Etherscan Plugins page](/builders/build/eth-api/verify-contracts/etherscan-plugins/#using-the-hardhat-etherscan-plugin){target=_blank}. 
 
 --8<-- 'text/disclaimers/third-party-content.md'

@@ -1,5 +1,5 @@
 ---
-title:  Native Token ERC-20 Precompile on Moonbeam
+title:  Native Token ERC-20 Precompile
 description:  Learn how to access and interact with an ERC-20 representation of the native token on Moonbeam through the precompiled ERC-20 Interface.
 keywords: solidity, ethereum, native, token, moonbeam, precompiled, contracts
 ---
@@ -50,7 +50,7 @@ To follow along with this tutorial, you will need to have:
 
 - [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
 - Create or have two accounts on Moonbase Alpha to test out the different features in the ERC-20 precompile
-- At least one of the accounts will need to be funded with `DEV` tokens. You can obtain tokens for testing purposes from [Mission Control](/builders/get-started/moonbase/#get-tokens/){target=_blank}
+- At least one of the accounts will need to be funded with `DEV` tokens. You can obtain tokens for testing purposes from [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/){target=_blank}
 
 ## Add Token to MetaMask {: #add-token-to-metamask }
 

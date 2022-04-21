@@ -1,5 +1,5 @@
 ---
-title: Supported JSON RPC Methods on Moonbeam
+title: Supported RPC Methods
 description: A description of the main differences that Ethereum developers need to understand in terms of the Ethereum RPC support Moonbeam provides.
 ---
 
@@ -78,4 +78,4 @@ At the time of writing, the [supported subscriptions](https://geth.ethereum.org/
  - **[newPendingTransactions](https://geth.ethereum.org/docs/rpc/pubsub#newpendingtransactions)** — Returns the hash for all transactions that are added to the pending state
  - **[syncing](https://geth.ethereum.org/docs/rpc/pubsub#syncing)** — Indicates when the node starts or stop synchronizing with the network
 
-For a dedicated tutorial for these subscriptions checkout the [Events Subscription](/builders/tools/pubsub/) guide.
+For a dedicated tutorial for these subscriptions checkout the [Events Subscription](/builders/build/eth-api/pubsub/) guide.

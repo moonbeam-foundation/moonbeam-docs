@@ -1,6 +1,6 @@
 ---
-title: Using The Graph to Index Data on Moonbeam
-description: Learn how to build APIs and create a simple subgraph using The Graph indexing protocol on Moonbeam.
+title: Build APIs with The Graph
+description: Learn how to build APIs, called subgraphs, to store and fetch on-chain data for a given smart contract using The Graph indexing protocol on Moonbeam. 
 ---
 
 # Using The Graph on Moonbeam
@@ -74,7 +74,7 @@ The Graph uses the events emitted by the contract to index data. The lottery con
 
 ## Creating a Subgraph {: #creating-a-subgraph } 
 
-This section goes through the process of creating a Subgraph. For the Lottery Subgraph, a [GitHub repository](https://github.com/PureStake/moonlotto-subgraph){target=_blank} was prepared with everything you need to help you get started. The repository also includes the Lottery contract, as well as a Hardhat configuration file and deployment script. If you are not familiar with it, you can check our [Hardhat integration guide](/builders/interact/hardhat/){target=_blank} to learn about the configuration file and how to deploy a contract using Hardhat. 
+This section goes through the process of creating a Subgraph. For the Lottery Subgraph, a [GitHub repository](https://github.com/PureStake/moonlotto-subgraph){target=_blank} was prepared with everything you need to help you get started. The repository also includes the Lottery contract, as well as a Hardhat configuration file and deployment script. If you are not familiar with it, you can check our [Hardhat integration guide](/builders/build/eth-api/dev-env/hardhat/){target=_blank} to learn about the configuration file and how to deploy a contract using Hardhat. 
 
 To get started, first clone the repository and install the dependencies:
 

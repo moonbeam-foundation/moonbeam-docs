@@ -1,5 +1,5 @@
 ---
-title: Connect MetaMask to Moonbeam
+title: How to Connect MetaMask
 description: This guide walks you through how to connect MetaMask, an browser-based Ethereum wallet, to Moonbeam-based networks and how to transfer funds.
 ---
 
@@ -31,7 +31,7 @@ If you already have MetaMask installed, you can easily connect MetaMask to the n
 !!! note
     MetaMask will popup asking for permission to add a a custom network. Once you approve permissions, MetaMask will switch your current network.
 
-Learn [how to integrate a Connect MetaMask button](/builders/interact/metamask-dapp/) into your DApp, so that users can connect to Moonbase Alpha with a simple click of a button. The guide can also be adapted for the other Moonbeam-based networks.
+Learn [how to integrate a Connect MetaMask button](/builders/integrations/wallets/metamask/) into your DApp, so that users can connect to Moonbase Alpha with a simple click of a button. The guide can also be adapted for the other Moonbeam-based networks.
 
 ## Install the MetaMask Extension {: #install-the-metamask-extension } 
 

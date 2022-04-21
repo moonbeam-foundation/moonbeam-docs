@@ -1,5 +1,5 @@
 ---
-title: Moonriver Network Overview
+title: Moonriver Overview
 description: An overview of the current configuration of the Moonbeam deployment on Kusama, Moonriver, and information on how to start building on it using Solidity.
 ---
 
@@ -87,5 +87,5 @@ The Moonriver network is a fully decentralized Delegated Proof of Stake network 
 
 ## Limitations {: #limitations } 
 
-Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts) are yet to be included. You can check a list of supported precompiles [here](/builders/tools/precompiles/). However, all built-in functions are available.
+Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts) are yet to be included. You can check a list of supported precompiles [here](/builders/build/canonical-contracts/precompiles/). However, all built-in functions are available.
 

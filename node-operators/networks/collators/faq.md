@@ -1,6 +1,6 @@
 ---
-title: Frequently Asked Questions for Moonbeam Collators
-description: Some frequently asked questions around becoming a collator, collator activities, and things to be aware of when running and operating a collator node on Moonbeam
+title: Collators FAQ
+description: Some FAQ around becoming a collator, collator activities, and things to be aware of when running and operating a collator node on Moonbeam.
 ---
 
 # Frequently Asked Questions
@@ -170,4 +170,4 @@ The second is the [bond for key association](/node-operators/networks/collators/
 
 **Q: How do I set an identity on my collator account?**  
 
-**A:** Setting an identity on chain will help to identify your node and attract delegations. You can set an identity by following the instructions on the [Managing an Identity](/builders/interact/identity/) page of our documentation.
+**A:** Setting an identity on chain will help to identify your node and attract delegations. You can set an identity by following the instructions on the [Managing an Identity](/tokens/manage/identity/) page of our documentation.

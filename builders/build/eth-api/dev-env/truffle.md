@@ -1,5 +1,5 @@
 ---
-title: Using Truffle to Deploy Smart Contracts to Moonbeam
+title: Deploy Contracts with Truffle
 description: Moonbeam makes it incredibly easy to deploy a Solidity-based smart contract to Moonbeam-based networks using Truffle. Learn how in this tutorial.
 ---
 
@@ -12,13 +12,13 @@ description: Moonbeam makes it incredibly easy to deploy a Solidity-based smart 
 
 This guide walks through the process of deploying a Solidity-based smart contract to a Moonbeam node using [Truffle](https://www.trufflesuite.com/){target=blnk}, a commonly used development tool for smart contracts on Ethereum. Given Moonbeam’s Ethereum compatibility features, Truffle can be used directly with any of the Moonbeam networks.
 
-To ease the process of getting started with Truffle, you can use the [Moonbeam Truffle box](https://github.com/PureStake/moonbeam-truffle-box){target=_blank}. This provides a boilerplate setup to speed up the process to deploy contracts on Moonbeam. The Moonbeam Truffle box comes with the [Moonbeam Truffle plugin](https://github.com/purestake/moonbeam-truffle-plugin){target=_blank}, which enables you to get started with a [Moonbeam development node](/builders/get-started/moonbeam-dev/){target=_blank} quickly.
+To ease the process of getting started with Truffle, you can use the [Moonbeam Truffle box](https://github.com/PureStake/moonbeam-truffle-box){target=_blank}. This provides a boilerplate setup to speed up the process to deploy contracts on Moonbeam. The Moonbeam Truffle box comes with the [Moonbeam Truffle plugin](https://github.com/purestake/moonbeam-truffle-plugin){target=_blank}, which enables you to get started with a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=_blank} quickly.
 
 This guide will show you how to deploy a contract and interact with it using the Moonbeam Truffle box and the Moonbeam Truffle plugin on a locally running development node. You can adapt the instructions in this guide for Moonbeam, Moonriver, or the Moonbase Alpha TestNet.
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
-As this guide will use the Moonbeam Truffle box and the Moonbeam Truffle plugin, you don't have to worry about creating an account and funding it. The Moonbeam development node comes with 10 pre-funded accounts. However, if you're adapting this guide for Moonbeam, Moonriver, or Moonbase Alpha you will need to have an account with funds. For Moonbase Alpha, you can get tokens for testing purposes from [Mission Control](/builders/get-started/moonbase/#get-tokens/){target=_blank}.
+As this guide will use the Moonbeam Truffle box and the Moonbeam Truffle plugin, you don't have to worry about creating an account and funding it. The Moonbeam development node comes with 10 pre-funded accounts. However, if you're adapting this guide for Moonbeam, Moonriver, or Moonbase Alpha you will need to have an account with funds. For Moonbase Alpha, you can get tokens for testing purposes from [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/){target=_blank}.
 
 --8<-- 'text/common/endpoint-examples.md'
 

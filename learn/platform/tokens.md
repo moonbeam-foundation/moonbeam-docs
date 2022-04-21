@@ -1,6 +1,6 @@
 ---
-title: Tokens on Moonbeam | GLMR | MOVR
-description: Like all smart contract platforms, the Moonbeam Network will require a utility token to function, which is called Glimmer (GLMR) for Polkadot, and Moonriver (MOVR) for Kusama.
+title: Utility Tokens
+description: Each of the Moonbeam networks will require a utility token to function. Glimmer (GLMR) for Moonbeam on Polkadot and Moonriver (MOVR) for Moonriver on Kusama.
 ---
 
 # Introduction
@@ -30,4 +30,4 @@ You can find more information about Moonriver on the [Moonbeam Foundation](https
 
 In the Moonbeam TestNet (called Moonbase Alpha), the token is called DEV. This token can be acquired freely, as its only purpose is to drive development and testing on Moonbase Alpha.
 
-You can access free DEV tokens from our [Mission Control](/builders/get-started/moonbase/#get-tokens/).
+You can access free DEV tokens from our [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/).
