@@ -75,6 +75,8 @@ You will also need to start your node with the following flag(s) depending on th
   - **`--ethapi=trace`** - optional flag that enables `trace_filter` 
   - **`--ethapi=txpool`** - optional flag that enables `txpool_content`, `txpool_inspect`, and `txpool_status`
   - **`--wasm-runtime-overrides=/moonbeam/<network>-substitutes-tracing`** - **required** flag for tracing that specifies the path where the local WASM runtimes are stored. Accepts the network as a parameter: `moonbeam`, `moonriver`, or `moonbase` (for development nodes and Moonbase Alpha)
+  - **`--runtime-cache-size 32`** - **required** flag that configures the number of different runtime versions preserved in the in-memory cache to 32
+
 The complete command for running a tracing node is as follows:
 
 !!! note
@@ -93,9 +95,10 @@ The complete command for running a tracing node is as follows:
     --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonbeam-substitutes-tracing \
+    --runtime-cache-size 32 \
     -- \
     --execution wasm \
-    --pruning archive \
+    --pruning 1000 \
     --name="Moonbeam-Tutorial (Embedded Relay)"
     ```
 
@@ -112,9 +115,10 @@ The complete command for running a tracing node is as follows:
     --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonriver-substitutes-tracing \
+    --runtime-cache-size 32 \
     -- \
     --execution wasm \
-    --pruning archive \
+    --pruning 1000 \
     --name="Moonbeam-Tutorial (Embedded Relay)"
     ```
 
@@ -131,9 +135,10 @@ The complete command for running a tracing node is as follows:
     --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
+    --runtime-cache-size 32 \
     -- \
     --execution wasm \
-    --pruning archive \
+    --pruning 1000 \
     --name="Moonbeam-Tutorial (Embedded Relay)"
     ```
 
@@ -145,6 +150,7 @@ The complete command for running a tracing node is as follows:
     --name="Moonbeam-Tutorial" \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
+    --runtime-cache-size 32 \
     --dev
     ```
 
@@ -153,7 +159,7 @@ The complete command for running a tracing node is as follows:
 
 You should see a terminal log similar to the following if you spun up a Moonbase Alpha tracing node:
 
-![Debug API](/images/builders/tools/debug-trace/debug-trace-1.png)
+![Debug API](/images/builders/build/eth-api/debug-trace/debug-trace-1.png)
 
 ## Additional Flags {: #additional-flags }
 
@@ -171,4 +177,4 @@ Blocks processed by requests are temporarily stored on cache for a certain amoun
 
 ## Using a Tracing Node {: #using-a-tracing-node }
 
-To explore the different non-standard RPC methods available on Moonbeam, and how to use these methods with a tracing node, check out the [Debug & Trace](/builders/tools/debug-trace/) guide.
+To explore the different non-standard RPC methods available on Moonbeam, and how to use these methods with a tracing node, check out the [Debug & Trace](/builders/build/eth-api/debug-trace/) guide.

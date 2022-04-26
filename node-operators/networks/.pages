@@ -2,5 +2,5 @@ title: Networks
 nav:
   - index.md
   - run-a-node
-  - tracing-node.md
+  - 'Run a Tracing Node': 'tracing-node.md'
   - collators

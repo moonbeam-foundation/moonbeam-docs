@@ -1,6 +1,6 @@
 ---
-title: FAQ
-description: Some frequently asked questions around becoming a collator, collator activities, and things to be aware of when running and operating a collator node on Moonbeam
+title: Collators FAQ
+description: Some FAQ around becoming a collator, collator activities, and things to be aware of when running and operating a collator node on Moonbeam.
 ---
 
 # Frequently Asked Questions
@@ -17,19 +17,19 @@ Running a Moobeam collator requires Linux systems administration skills, careful
 
 **Q: Where can I get help?**
 
-**A:** There is an active and friendly [Discord](https://discord.gg/RyVefR79FA){target=blank} community for collators. Join the server and introduce yourself even before you need help. Send **PureStake-Gil#0433** or **PureStake-Art#6950** a DM and let them know who you are, and they can reach out to you if they see any issues with your node.
+**A:** There is an active and friendly [Discord](https://discord.gg/RyVefR79FA){target=_blank} community for collators. Join the server and introduce yourself even before you need help. Send **PureStake-Gil#0433** or **PureStake-Art#6950** a DM and let them know who you are, and they can reach out to you if they see any issues with your node.
 
 ***
 
 **Q: How do I stay up to date?**
 
-**A:** All upgrades and important technical information are announced on [Discord](https://discord.gg/PhfEbKYqak){target=blank}, in the **#tech-upgrades-announcements** channel. Join and follow this channel. You can set up integrations to Slack or Telegram if those are your preferred communication channels.
+**A:** All upgrades and important technical information are announced on [Discord](https://discord.gg/PhfEbKYqak){target=_blank}, in the **#tech-upgrades-announcements** channel. Join and follow this channel. You can set up integrations to Slack or Telegram if those are your preferred communication channels.
 
 ***
 
 **Q: How do I register my node?**
 
-**A:** There is a [questionnaire](https://docs.google.com/forms/d/e/1FAIpQLSfjmcXdiOXWtquYlBhdgXBunCKWHadaQCgPuBtzih1fd0W3aA/viewform){target=blank}, in which you will be able to provide your contact information as well as some basic hardware specs. You must be running a collator node on Moonbase Alpha to fill out the questionnaire.
+**A:** There is a [questionnaire](https://docs.google.com/forms/d/e/1FAIpQLSfjmcXdiOXWtquYlBhdgXBunCKWHadaQCgPuBtzih1fd0W3aA/viewform){target=_blank}, in which you will be able to provide your contact information as well as some basic hardware specs. You must be running a collator node on Moonbase Alpha to fill out the questionnaire.
 
 ***
 
@@ -87,7 +87,7 @@ Hardware recommendations:
 
 **Q: Is there a CPU optimized binary?** 
 
-**A:** On each [release page](https://github.com/PureStake/moonbeam/releases){target=blank} are CPU optimized binaries. Select the binary for your CPU architecture.
+**A:** On each [release page](https://github.com/PureStake/moonbeam/releases){target=_blank} are CPU optimized binaries. Select the binary for your CPU architecture.
 
 - **Moonbeam-znver3** - Ryzen 9
 - **Moonbeam-skylake** - Intel 
@@ -97,7 +97,7 @@ Hardware recommendations:
 
 **Q: What are the recommendations on monitoring my node?** 
 
-**A:** Monitoring is very important for the health of the network and to maximize your rewards. We recommend using [Grafana Labs](https://grafana.com){target=blank}. They have a free tier which should handle 6+ moonbeam servers.
+**A:** Monitoring is very important for the health of the network and to maximize your rewards. We recommend using [Grafana Labs](https://grafana.com){target=_blank}. They have a free tier which should handle 6+ moonbeam servers.
 
 ***
 
@@ -109,13 +109,13 @@ Hardware recommendations:
 
 **Q: How should I setup alerting?**
 
-**A:** Alerting is critical to keeping your moonbeam node producing blocks and earning rewards. We recommend [pagerduty.com](https://www.pagerduty.com/){target=blank}, which is supported by [Grafana Labs](https://grafana.com){target=blank}. Use the [KPI query](#:~:text=substrate_proposer_block_constructed_count) above and set an alert when this drops below 1. The alert should page the person on-call 24/7.  
+**A:** Alerting is critical to keeping your moonbeam node producing blocks and earning rewards. We recommend [pagerduty.com](https://www.pagerduty.com/){target=_blank}, which is supported by [Grafana Labs](https://grafana.com){target=_blank}. Use the [KPI query](#:~:text=substrate_proposer_block_constructed_count) above and set an alert when this drops below 1. The alert should page the person on-call 24/7.  
  
 ***
 
 **Q: What are Nimbus keys?**
 
-**A:** Nimbus keys are just like [session keys in Polkadot](https://wiki.polkadot.network/docs/learn-keys#session-keys){target=blank}. You should have unique keys on your primary and backup servers. Save the key output somewhere safe where you can access it in the middle of the night if you receive an alert. To create your keys, please refer to the [Session Keys](/node-operators/networks/collators/account-management/#session-keys){target=blank} section of the documentation.
+**A:** Nimbus keys are just like [session keys in Polkadot](https://wiki.polkadot.network/docs/learn-keys#session-keys){target=_blank}. You should have unique keys on your primary and backup servers. Save the key output somewhere safe where you can access it in the middle of the night if you receive an alert. To create your keys, please refer to the [Session Keys](/node-operators/networks/collators/account-management/#session-keys){target=_blank} section of the documentation.
 
 ***
 
@@ -127,7 +127,7 @@ Hardware recommendations:
 
 **Q: Should I set up centralized logging?**
 
-**A:** [Grafana Labs](https://grafana.com){target=blank} can also be configured for centralized logging and is recommended. You can see all your nodes in one place. [Kibana](https://www.elastic.co/kibana/){target=blank} has a more robust centralized logging offering, but Grafana is simple and good enough to start.
+**A:** [Grafana Labs](https://grafana.com){target=_blank} can also be configured for centralized logging and is recommended. You can see all your nodes in one place. [Kibana](https://www.elastic.co/kibana/){target=_blank} has a more robust centralized logging offering, but Grafana is simple and good enough to start.
 
 ***
 
@@ -170,4 +170,4 @@ The second is the [bond for key association](/node-operators/networks/collators/
 
 **Q: How do I set an identity on my collator account?**  
 
-**A:** Setting an identity on chain will help to identify your node and attract delegations. You can set an identity by following the instructions on the [Managing an Identity](/builders/interact/identity/) page of our documentation.
+**A:** Setting an identity on chain will help to identify your node and attract delegations. You can set an identity by following the instructions on the [Managing an Identity](/tokens/manage/identity/) page of our documentation.

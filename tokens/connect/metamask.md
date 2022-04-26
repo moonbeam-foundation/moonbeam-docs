@@ -1,6 +1,6 @@
 ---
-title: Using MetaMask
-description: This guide walks you through how to connect MetaMask, an browser-based Ethereum wallet, to Moonriver, the Moonbase Alpha TestNet, or a Moonbeam development node.
+title: How to Connect MetaMask
+description: This guide walks you through how to connect MetaMask, an browser-based Ethereum wallet, to Moonbeam-based networks and how to transfer funds.
 ---
 
 # Interacting with Moonbeam Using MetaMask
@@ -31,7 +31,7 @@ If you already have MetaMask installed, you can easily connect MetaMask to the n
 !!! note
     MetaMask will popup asking for permission to add a a custom network. Once you approve permissions, MetaMask will switch your current network.
 
-Learn [how to integrate a Connect MetaMask button](/builders/interact/metamask-dapp/) into your DApp, so that users can connect to Moonbase Alpha with a simple click of a button. The guide can also be adapted for the other Moonbeam-based networks.
+Learn [how to integrate a Connect MetaMask button](/builders/integrations/wallets/metamask/) into your DApp, so that users can connect to Moonbase Alpha with a simple click of a button. The guide can also be adapted for the other Moonbeam-based networks.
 
 ## Install the MetaMask Extension {: #install-the-metamask-extension } 
 
@@ -79,7 +79,7 @@ Here you can configure MetaMask for the following networks:
     |         Variable          |                                      Value                                       |
     |:-------------------------:|:--------------------------------------------------------------------------------:|
     |       Network Name        |                                    `Moonbeam`                                    |
-    |          RPC URL          |                        `{{ networks.moonbeam.rpc_url }}`                         |
+    |          RPC URL          |                       `{{ networks.moonbeam.public_rpc_url }}`                       |
     |          ChainID          | `{{ networks.moonbeam.chain_id }}` (hex: `{{ networks.moonbeam.hex_chain_id }}`) |
     |     Symbol (Optional)     |                                      `GLMR`                                      |
     | Block Explorer (Optional) |                     `{{ networks.moonbeam.block_explorer }}`                     |
@@ -88,7 +88,7 @@ Here you can configure MetaMask for the following networks:
     |         Variable          |                                       Value                                        |
     |:-------------------------:|:----------------------------------------------------------------------------------:|
     |       Network Name        |                                    `Moonriver`                                     |
-    |          RPC URL          |                         `{{ networks.moonriver.rpc_url }}`                         |
+    |          RPC URL          |                       `{{ networks.moonriver.public_rpc_url }}`                        |
     |          ChainID          | `{{ networks.moonriver.chain_id }}` (hex: `{{ networks.moonriver.hex_chain_id }}`) |
     |     Symbol (Optional)     |                                       `MOVR`                                       |
     | Block Explorer (Optional) |                     `{{ networks.moonriver.block_explorer }}`                      |
@@ -97,7 +97,7 @@ Here you can configure MetaMask for the following networks:
     |         Variable          |                                      Value                                       |
     |:-------------------------:|:--------------------------------------------------------------------------------:|
     |       Network Name        |                                 `Moonbase Alpha`                                 |
-    |          RPC URL          |                        `{{ networks.moonbase.rpc_url }}`                         |
+    |          RPC URL          |                       `{{ networks.moonbase.rpc_url }}`                       |
     |          ChainID          | `{{ networks.moonbase.chain_id }}` (hex: `{{ networks.moonbase.hex_chain_id }}`) |
     |     Symbol (Optional)     |                                      `DEV`                                       |
     | Block Explorer (Optional) |                     `{{ networks.moonbase.block_explorer }}`                     |
@@ -134,3 +134,4 @@ If you head back over to your terminal where you have your Moonbeam node running
 !!! note
     If you end up resetting your development node using the Substrate purge-chain command, you will need to reset your MetaMask genesis account. To do so click on the colored circle in the top right corner and from the menu click on **Settings**. Then click on **Advanced**, and **Reset Account**. This will clear the transaction history from your accounts and reset the nonce. Make sure you don’t erase anything that you want to keep!
  
+--8<-- 'text/disclaimers/third-party-content.md'

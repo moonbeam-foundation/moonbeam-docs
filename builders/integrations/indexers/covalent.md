@@ -1,11 +1,11 @@
 ---
 title: Covalent API
-description: Querying Blockchain Data with the Covalent API Moonbeam
+description: Querying blockchain data such as balances, transactions, transfers, token holders, and event logs on Moonbeam with the Covalent API.
 ---
 
 # Getting Started with the Covalent API
 
-![The Graph on Moonbeam](/images/builders/integrations/indexers/covalent/covalent-banner.png)
+![Covalent on Moonbeam](/images/builders/integrations/indexers/covalent/covalent-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -76,7 +76,7 @@ To get started with the Covalent API, you will need to have the following:
 
  - A free [Covalent API Key](https://www.covalenthq.com/platform/#/auth/register/)
  - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/)
- - An account with funds, which you can get from [Mission Control](/builders/get-started/moonbase/#get-tokens/)
+ - An account with funds, which you can get from [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/)
 
 ## Try it Out {: #try-it-out } 
 
@@ -99,7 +99,7 @@ curl https://api.covalenthq.com/v1/1287/tokens/\
 
 Unless you already owned some ERTH tokens, your address will be missing from that list. Head over to the [Moonbase Alpha ERC-20 Faucet](https://moonbase-minterc20.netlify.app/) to generate some ERTH tokens for yourself. Now repeat the same Covalent API request as above. The Covalent API updates in real-time, so you should now see your address in the list of token holders for the ERTH token.
 
-## Javascript Examples {: #javascript-examples } 
+## JavaScript Examples {: #javascript-examples } 
 
 Copy and paste the below code block into your preferred environment, or [JSFiddle](https://jsfiddle.net/). After setting the API key, set the address constant. Remember for Moonbase Alpha the chain ID is `{{ networks.moonbase.chain_id }}`.
 
@@ -155,7 +155,7 @@ Copy and paste the below code block into your preferred environment, or [JSFiddl
 
 The balances endpoint returns a list of all ERC-20 and NFT token balances, including ERC-721 and ERC-1155 balances, along with their current spot prices (if available).
 
-![Javascript Console Output](/images/builders/integrations/indexers/covalent/covalentjs.png)
+![JavaScript Console Output](/images/builders/integrations/indexers/covalent/covalentjs.png)
 
 ## Python Example {: #python-example } 
 
@@ -185,3 +185,5 @@ Covalent currently has libraries in Python, Node, and Go, which are built and ma
 
 !!! note
     These tools are NOT maintained by Covalent and users should do their due diligence in evaluating these tools before using them in their projects.
+
+--8<-- 'text/disclaimers/third-party-content.md'

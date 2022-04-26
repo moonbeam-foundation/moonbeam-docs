@@ -1,17 +1,23 @@
 ---
-title: Overview
+title: Cross-Consensus Messaging (XCM)
 description: An overview of how cross-consensus messaging (XCM) works, and how developers can leverage polkadot/kusama xcm to gain access to new assets
 ---
 
 # Cross-Consensus Messaging (XCM)
 
-![XCM Overview Banner](/images/builders/xcm/overview-banner.png)
+![XCM Overview Banner](/images/builders/xcm/overview/overview-banner.png)
 
 ## Introduction
 
 [Polkadot's architecture](https://wiki.polkadot.network/docs/learn-architecture){target=_blank} allows parachains to natively interoperate with each other, enabling cross-blockchain transfers of any type of data or asset.
 
 To do so, a [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-crosschain){target=_blank} format defines a language around how the message transfer between two interoperating blockchains should be performed. XCM is not specific to Polkadot, as it aims to be a generic and extensible language between different consensus systems.
+
+This page is an brief introduction and overview of XCM and other related elements. More information can be found in [Polkadot's Wiki](https://wiki.polkadot.network/docs/learn-crosschain){target=_blank}.
+
+--8<-- 'text/xcm/general-xcm-definitions.md'
+
+## XCM Transport Protocols
 
 Polkadot implements two cross-consensus or transport protocols for acting on XCM messages between its constituent parachains, Moonbeam being one of them:
 
@@ -25,14 +31,14 @@ Polkadot implements two cross-consensus or transport protocols for acting on XCM
 !!! note
     Currently, while XCMP is being developed, there is a stop-gap protocol implemented called Horizontal Relay-routed Message Passing (HRMP), in which the messages are stored in and read from the relay chain. This will be deprecated in the future for the full XCMP implementation
 
-![Vertical Message Passing and Cross-chain Messge Passing Overview](/images/builders/xcm/overview-1.png)
+![Vertical Message Passing and Cross-chain Messge Passing Overview](/images/builders/xcm/overview/overview-1.png)
 
 Furthermore, the two most common use-cases for XCM messages, at least in the early stages of its implementations, are:
 
 - **Asset Teleporting** — consists of moving an asset from one blockchain to another by destroying the amount being transferred in the origin chain and creating a clone (same amount as destroyed) on the target chain. In such cases, each chain holds the native asset as reserve, similar to a burn-mint bridging mechanism. The model requires a certain degree of trust, as any of the two chains could maliciously mint more assets
 - **Remote Transfers** — consists of moving an asset from one blockchain to another via an intermediate account in the origin chain that is trustlessly owned by the target chain. This intermediate account is known as the "Sovereign" account. In such cases, the origin chain asset is not destroyed but held by the Sovereign account. The XCM execution in the target chain mints a wrapped (also referred to as "virtual" or  "cross-chain" asset) representation to a target address. The wrapped representation is always interchangeable on a 1:1 basis with the native asset. This is similar to a lock-mint / burn-unlock bridging mechanism
 
-![Asset Teleporting and Remote Transfers](/images/builders/xcm/overview-2.png)
+![Asset Teleporting and Remote Transfers](/images/builders/xcm/overview/overview-2.png)
 
 A much more detailed article about XCM can be found in the [Polkadot Wiki](https://wiki.polkadot.network/docs/learn-crosschain){target=_blank}.
 
@@ -55,11 +61,11 @@ A channel for XCMs between the relay chain and parachain is automatically opened
     * Maximum number of messages in the destination queue
     * Maximum size of the messages to be sent
 
-The transaction fees are paid in the cross-chain (xc) representation of the relay chain asset (_xcRelayChainAsset_). For example, for Kusama/Moonriver, the transaction fees would be paid in _xcKSM_. Therefore, the account paying for the fees must have enough _xcRelayChainAsset_. This might be tackled in Moonbeam/Moonriver by having fees from incoming XCM messages, which are paid in the origin chain asset, sent to the treasury, and using the treasury account to pay for the channel registration extrinsic.
+The transaction fees are paid in the cross-chain (xc) representation of the relay chain asset (_xcRelayChainAsset_). For example, for Kusama/Moonriver, the transaction fees would be paid in _xcKSM_. Therefore, the account paying for the fees must have enough _xcRelayChainAsset_. This might be tackled on Moonbeam/Moonriver by having fees from incoming XCM messages, which are paid in the origin chain asset, sent to the treasury, and using the treasury account to pay for the channel registration extrinsic.
 
 Even though parachain A has expressed its intentions of opening an XCM channel with parachain B, the latter has not signaled to the relay chain its intentions to receive messages from parachain A. Therefore, to have an established channel, parachain B must also send an extrinsic (which is also an XCM) to the relay chain. The accepting channel extrinsic is similar to the previous one. However, the encoded call data only includes the new method (accept channel) and the parachain ID of the sender (parachain A in this example). Once both parachains have agreed, the channel is opened within the next epoch change.
 
-![XCM Channel Registration Overview](/images/builders/xcm/overview-3.png)
+![XCM Channel Registration Overview](/images/builders/xcm/overview/overview-3.png)
 
 All the actions mentioned above can be executed via SUDO (if available), or through Democracy (technical committee or referenda).
 
@@ -90,7 +96,7 @@ As Moonbeam is a parachain within the Polkadot ecosystems, one of the most direc
 
 Expanding on Moonbeam's unique Ethereum compatibility features, foreign assets will be represented via a standard [ERC-20 interface](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=_blank} through a precompiled contract. XCM assets on Moonbeam are called XC-20s, to differentiate native XCM assets from ERC-20 generated via the EVM. The precompile contract will access the necessary Substrate functions to perform the required actions. Nevertheless, from a developer's perspective, XC-20s are ERC-20 tokens with the added benefit of being a XCM cross-chain asset, and dApps can easily support them through a familiar ERC-20 interface.  
 
-![Moonbeam XC-20 XCM Integration With Polkadot](/images/builders/xcm/overview-4.png)
+![Moonbeam XC-20 XCM Integration With Polkadot](/images/builders/xcm/overview/overview-4.png)
 
 The precompile itself does not support cross-chain transfers to stay as close as possible to the original ERC-20 interface. Consequently, developers will have to rely on the Substrate API and XCMs to move the assets back to their original chain, or on a different [precompile contract](https://github.com/PureStake/moonbeam/tree/master/precompiles/xtokens) to access XCM based features from the Ethereum API.
 
@@ -104,13 +110,13 @@ As Moonbeam is a parachain within the Polkadot ecosystem, XCM + VMP allows DOT t
 
 Once a project is onboarded as a parachain it automatically has a bi-directional communication channel with the relay chain. Therefore, there is no need for chain registration. However, the relay chain native token needs to be registered on the parachain.
 
-Alice (Polkadot) wants to transfer a certain amount of DOTs from Polkadot to her account in Moonbeam, named Alith. Therefore, she initiates an XCM that expresses her intentions. For such transfers, Moonbeam owns a Sovereign account on Polkadot.
+Alice (Polkadot) wants to transfer a certain amount of DOTs from Polkadot to her account on Moonbeam, named Alith. Therefore, she initiates an XCM that expresses her intentions. For such transfers, Moonbeam owns a Sovereign account on Polkadot.
 
 Consequently, the XCM message execution on Polkadot will transfer the amount of DOTs to Moonbeam's Sovereign account on Polkadot. Once the assets are deposited, the second part of the message is sent to Moonbeam.
 
 Moonbeam will locally execute the action the XCM message is programmed to do. In this case, it is to mint and transfer the same amount of _xcDOTs_ (cross-chain DOTs) to the account defined by Alice, which in this case is Alith. The fee to execute the XCM in the target parachain is paid in the asset being transferred (_xcDOTs_ for this example).
 
-![Transfers from the Relay Chain to Moonbeam](/images/builders/xcm/overview-5.png)
+![Transfers from the Relay Chain to Moonbeam](/images/builders/xcm/overview/overview-5.png)
 
 Note the following:
 
@@ -124,7 +130,7 @@ Consequently, the XCM message execution on Moonbeam will burn the number of _xcD
 
 Polkadot will execute the action locally the XCM message is programmed to do locally. In this case, it is to transfer the same amount of _xcDOTs_ burned from the Moonbeam Sovereign account to the account defined by Charleth, which in this case is Charley.
 
-![Transfers Back from Moonbeam to the Relay Chain](/images/builders/xcm/overview-6.png)
+![Transfers Back from Moonbeam to the Relay Chain](/images/builders/xcm/overview/overview-6.png)
 
 ### Moonbeam & Other Parachains
 
@@ -136,6 +142,6 @@ Then, when Alith (Moonbeam) transfers a certain amount of GLMRs from Moonbeam to
 
 As the XCM message is executed in the target parachain, it is expected that this will mint and transfer the same amount of _xcGLMRs_ (cross-chain GLMRs) to the account defined by Alith, which in this case is Alice. The fee to execute the XCM in the target parachain is paid in the transferred asset (_xcGLMRs_ for this example).
 
-![Transfers from Moonbeam to another Parachain](/images/builders/xcm/overview-7.png)
+![Transfers from Moonbeam to another Parachain](/images/builders/xcm/overview/overview-7.png)
 
 The process is similar for _xcGLMRs_ to move back to Moonbeam as explained in the previous section. First, the XCM message execution burns the number of _xcGLMRs_ returned to Moonbeam. Once burned, the remnant part of the message is sent to Moonbeam via the relay chain. Moonbeam will locally execute the XCM message's, and transfer GLMRs (the same amount of burned _xcGLMRs_) from the target parachain Sovereign account to the specified address.

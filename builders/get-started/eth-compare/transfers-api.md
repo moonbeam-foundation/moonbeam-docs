@@ -1,7 +1,9 @@
 ---
-title: Transfers API
-description: A description of the main differences that developers need to understand in terms of the different balance transfers available on Moonbeam.
+title: Transfer & Monitor Balances on Moonbeam
+description: A description of the main differences that developers need to understand in terms of the different balance transfers available on Moonbeam compared to Ethereum.
 ---
+
+# Balance Transfers on Moonbeam
 
 ![Moonbeam v Ethereum - Transfers API Banner](/images/builders/get-started/eth-compare/transfers-api-banner.png)
 
@@ -41,7 +43,7 @@ All the scenarios described above will effectively transfer base layer network t
 
 ## Monitor All Balance Transfers with the Substrate API
 
-The [Polkadot.js API package](https://polkadot.js.org/docs/api/start) provides developers a way to interact with Substrate chains using Javascript.
+The [Polkadot.js API package](https://polkadot.js.org/docs/api/start) provides developers a way to interact with Substrate chains using JavaScript.
 
 The following code snippet uses [`subscribeFinalizedHeads`](https://polkadot.js.org/docs/substrate/rpc/#subscribefinalizedheads-header) to subscribe to new finalized block headers, and loops through extrinsics fetched from the block, and retrieves the events of each extrinsic. Then, it checks if any event corresponds to a `balances.Transfer` event. If so, it will extract the `from`, `to`, `amount`, and the `tx hash` of the transfer and display it on the console. Note that the `amount` is shown in the smallest unit (Wei).  You can find all the available information about Polkadot.js and the Substrate JSON RPC in their [official documentation site](https://polkadot.js.org/docs/substrate/rpc).
 

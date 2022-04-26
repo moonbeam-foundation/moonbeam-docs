@@ -1,6 +1,6 @@
 ---
-title: Moonriver App
-description: This guide walks you through how to use your Ledger hardware wallet to sign transactions in Moonriver, leveraging its Ethereum compatibility features
+title: Using the Moonriver Ledger App
+description: This guide walks you through how to use your Ledger hardware wallet to sign transactions on Moonriver, using the native Moonriver Ledger Live app.
 ---
 
 # Interacting with Moonriver Using Ledger and the Moonriver App
@@ -89,3 +89,5 @@ And that is it! You've signed a transaction and sent some MOVR tokens using your
 --8<-- 'text/ledger/blind-signing.md'
 
 ![MetaMask Ledger Allow Contracts Tx](/images/tokens/connect/ledger/moonriver/ledger-11.png)
+
+--8<-- 'text/disclaimers/third-party-content.md'

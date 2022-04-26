@@ -1,6 +1,6 @@
 title: Ledger
 nav:
   - index.md
-  - moonbeam.md
-  - moonriver.md
-  - ethereum.md
+  - 'Moonbeam App': moonbeam.md
+  - 'Moonriver App': moonriver.md
+  - 'Ethereum App': ethereum.md

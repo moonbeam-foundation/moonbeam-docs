@@ -1,5 +1,5 @@
 ---
-title: Using Coinbase Wallet
+title: Connect Coinbase Wallet Mobile App to Moonbeam
 description: This guide walks you through how to use the Coinbase Wallet extension and the Mobile App.
 ---
 
@@ -47,7 +47,7 @@ You can find all of the relevant parameters for each network below:
     |         Variable          |                                      Value                                       |
     |:-------------------------:|:--------------------------------------------------------------------------------:|
     |       Network Name        |                                    `Moonbeam`                                    |
-    |          RPC URL          |                        `{{ networks.moonbeam.rpc_url }}`                         |
+    |          RPC URL          |                       `{{ networks.moonbeam.public_rpc_url }}`                       |
     |          ChainID          | `{{ networks.moonbeam.chain_id }}` (hex: `{{ networks.moonbeam.hex_chain_id }}`) |
     |     Symbol (Optional)     |                                      `GLMR`                                      |
     | Block Explorer (Optional) |                     `{{ networks.moonbeam.block_explorer }}`                     |
@@ -56,7 +56,7 @@ You can find all of the relevant parameters for each network below:
     |         Variable          |                                       Value                                        |
     |:-------------------------:|:----------------------------------------------------------------------------------:|
     |       Network Name        |                                    `Moonriver`                                     |
-    |          RPC URL          |                         `{{ networks.moonriver.rpc_url }}`                         |
+    |          RPC URL          |                       `{{ networks.moonriver.public_rpc_url }}`                        |
     |          ChainID          | `{{ networks.moonriver.chain_id }}` (hex: `{{ networks.moonriver.hex_chain_id }}`) |
     |     Symbol (Optional)     |                                       `MOVR`                                       |
     | Block Explorer (Optional) |                     `{{ networks.moonriver.block_explorer }}`                      |
@@ -65,7 +65,7 @@ You can find all of the relevant parameters for each network below:
     |         Variable          |                                      Value                                       |
     |:-------------------------:|:--------------------------------------------------------------------------------:|
     |       Network Name        |                                 `Moonbase Alpha`                                 |
-    |          RPC URL          |                        `{{ networks.moonbase.rpc_url }}`                         |
+    |          RPC URL          |                       `{{ networks.moonbase.rpc_url }}`                       |
     |          ChainID          | `{{ networks.moonbase.chain_id }}` (hex: `{{ networks.moonbase.hex_chain_id }}`) |
     |     Symbol (Optional)     |                                      `DEV`                                       |
     | Block Explorer (Optional) |                     `{{ networks.moonbase.block_explorer }}`                     |
@@ -108,4 +108,5 @@ And that's it! You've successfully set up your Coinbase Wallet app, connected it
 
  - [Coinbase Wallet FAQ](https://wallet.coinbase.com/faq/){target=_blank}
  - [Coinbase Wallet Getting Started Guide](https://www.coinbase.com/wallet/getting-started-mobile){target=_blank}
- 
+
+--8<-- 'text/disclaimers/third-party-content.md' 

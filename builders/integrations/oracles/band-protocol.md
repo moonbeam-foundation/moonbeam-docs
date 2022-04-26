@@ -1,13 +1,14 @@
 ---
-title: Band Protocol
-description: How to use request data from a Band Protocol Oracle in your Moonbeam Ethereum DApp using smart contracts or javascript
+title: Band Protocol Oracle
+description: How to request data from a Band Protocol Oracle in your Moonbeam Ethereum DApp using smart contracts or JavaScript.
 ---
+
 # Band Protocol Oracle
 
 ![Band Protocol Moonbeam Diagram](/images/builders/integrations/oracles/band/band-banner.png)
 
 ## Introduction {: #introduction } 
-Developers have two ways to fetch prices from Band’s oracle infrastructure. On one hand, they can use Band’s smart contracts on Moonbeam. Doing so, they access data that is on-chain and is updated either at regular intervals or when price slippage is more than a target amount (different for each token). On the other hand, devs can use the Javascript helper library, which uses an API endpoint to fetch the data using similar functions as those from the smart contracts, but this implementation bypasses the blockchain entirely.  This can be useful if your DApp front-end needs direct access to the data.
+Developers have two ways to fetch prices from Band’s oracle infrastructure. On one hand, they can use Band’s smart contracts on Moonbeam. Doing so, they access data that is on-chain and is updated either at regular intervals or when price slippage is more than a target amount (different for each token). On the other hand, devs can use the JavaScript helper library, which uses an API endpoint to fetch the data using similar functions as those from the smart contracts, but this implementation bypasses the blockchain entirely.  This can be useful if your DApp front-end needs direct access to the data.
 
 The Aggregator Contract address can be found in the following table:
 
@@ -28,7 +29,7 @@ At the time of writing, the list of supported symbols can be found by following 
 As stated before, developers can leverage two methods to query prices from Band's oracle: 
 
  - Band's smart contract on Moonbeam (deployed to Moonbase Alpha TestNet for now)
- - Javascript helper library
+ - JavaScript helper library
 
 ## Get Data Using Smart Contracts {: #get-data-using-smart-contracts } 
 Contracts can query on-chain data, such as token prices, from Band's oracle by implementing the interface of the `StdReference` contract, which exposes the `getReferenceData` and `getReferenceDataBulk` functions.
@@ -170,7 +171,7 @@ With it, you will have two view functions available - very similar to our previo
  - **getPrice**(*string* base, *string* quote): provides the price feed for a single base/quote pair that is given as input to the function, that is, "BTC", "USD"
  - **getMultiPrices**(*string[]* bases, *string[]* quotes): provides the price feed for a multiple base/quote pairs that are given as input to the function, that is, ["BTC", "ETH", "ETH"], ["USD", "USD", "EUR"]
 
-For example, using [Remix](/builders/tools/remix/), we can easily query the `BTC/USD` price pair using this interface.
+For example, using [Remix](/builders/build/eth-api/dev-env/remix/), we can easily query the `BTC/USD` price pair using this interface.
 
 After creating the file and compiling the contract, head to the "Deploy and Run Transactions" tab, enter the contract address (`0xf15c870344c1c02f5939a5C4926b7cDb90dEc655`) and click on "At Address." Make sure you have set the "Environment" to "Injected Web3" so you are connected to Moonbase Alpha. 
 
@@ -180,7 +181,7 @@ This will create an instance of the demo contract that you can interact with. Us
 
 ![Band Protocol Remix check price](/images/builders/integrations/oracles/band/band-demo-2.png)
 
-## BandChain.js Javascript Helper Library {: #bandchainjs-javascript-helper-library } 
+## BandChain.js JavaScript Helper Library {: #bandchainjs-javascript-helper-library } 
 
 The helper library also supports a similar `getReferenceData` function. To get started, the library needs to be installed:
 
@@ -219,7 +220,7 @@ Where `lastUpdatedBase` and `lastUpdatedQuote` are the last time when the base a
 
 ### Example Usage {: #example-usage } 
 
-The following Javascript script provides a simple example of the `getReferenceData` function.
+The following JavaScript script provides a simple example of the `getReferenceData` function.
 
 ```js
 const BandChain = require('@bandprotocol/bandchain.js');
@@ -240,3 +241,5 @@ We can execute this code with a node, and the following `dataQuery` output shoul
 ![Band Protocol JavaScript Library](/images/builders/integrations/oracles/band/band-console.png)
 
 Note that compared to the request done via smart contracts, the result is given directly in the correct units.
+
+--8<-- 'text/disclaimers/third-party-content.md'

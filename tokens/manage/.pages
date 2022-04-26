@@ -1,0 +1,6 @@
+title: Account Management
+nav:
+  - index.md
+  - 'Proxy Accounts': 'proxy-accounts.md'
+  - 'Moonbeam Safe': 'multisig-safe.md'
+  - 'Managing an Identity': 'identity.md'

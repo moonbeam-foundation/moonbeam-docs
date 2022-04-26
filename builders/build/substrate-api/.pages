@@ -1,0 +1,5 @@
+title: Substrate API
+nav:
+  - index.md
+  - 'Polkadot.js API': 'polkadot-js-api.md'
+  - 'Sidecar': 'sidecar.md'

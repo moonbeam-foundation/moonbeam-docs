@@ -1,0 +1,5 @@
+title: Wallets
+nav:
+  - index.md
+  - 'MetaMask': 'metamask.md'
+  - 'WalletConnect': 'walletconnect.md'

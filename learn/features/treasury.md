@@ -1,9 +1,9 @@
 ---
 title: Treasury
-description: As a Polkadot parachain, Moonbeam will use an on-chain treasury controlled by council members, that allows for stakeholders to submit proposals to further the network.
+description: As a Polkadot parachain, Moonbeam has an on-chain treasury controlled by council members, enabling stakeholders to submit proposals to further the network.
 ---
 
-# Treasury in Moonbeam
+# Treasury on Moonbeam
 
 ![Treasury Moonbeam Banner](/images/learn/features/treasury/treasury-overview-banner.png)
 
@@ -56,7 +56,7 @@ Some important terminology to understand in regards to treasuries:
 
 To fund the Treasury, a percentage of each block's transactions fees will be allocated to it. The remaining percentage of the fees are burned (check table above). The Treasury allows stakeholders to submit spending proposals to be reviewed and voted on by the Council. These spending proposals should include initiatives to further the network or boost network engagement. Some network initiatives could include funding integrations or collaborations, community events, network outreach, and more. 
 
-To deter spam, proposals must be submitted with a deposit, also known as a proposal bond.The proposal bond needs to be higher than the minimum amount, known as the proposal bond minimum, which can be changed by a governance proposal. So, any token holder that has enough tokens to cover the deposit can submit a proposal. If the proposer doesn't have enough funds to cover the deposit, the extrinsic will fail due to insufficient funds, but transaction fees will still be deducted. 
+To deter spam, proposals must be submitted with a deposit, also known as a proposal bond. The proposal bond needs to be higher than the minimum amount, known as the proposal bond minimum, which can be changed by a governance proposal. So, any token holder that has enough tokens to cover the deposit can submit a proposal. If the proposer doesn't have enough funds to cover the deposit, the extrinsic will fail due to insufficient funds, but transaction fees will still be deducted. 
 
 Once a proposal has been submitted, is subject to governance, and the council votes on it. If the proposal gets rejected, the deposit will be lost and transfered to the treasury pot. If approved by the council, the proposal enters a queue to be placed into a spend period. If the spending queue happens to contain the number of maximum approved proposals, the proposal submission will fail similarly to how it would if the proposer's balance is too low.
 

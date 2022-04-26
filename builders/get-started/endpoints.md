@@ -1,57 +1,57 @@
 ---
-title: Network Endpoints
-description: Use one of the supported API providers to connect to a public endpoint or create custom JSON RPC and WSS endpoints to Moonbeam-based networks.
+title: Moonbeam API Providers and Endpoints
+description: Use one of the supported API providers to connect to a public endpoint or create custom JSON RPC and WSS endpoints for Moonbeam-based networks.
 ---
 
 # Network Endpoints
 
 ![API Providers banner](/images/builders/get-started/endpoints/endpoints-banner.png)
 
-## Public Endpoints
+## Public Endpoints {: #public-endpoints }
 
-Moonbeam-based networks have two endpoints available for users to connect to: one for HTTPS and one for WSS. 
+There are public endpoints available for development on the Moonbase Alpha TestNet. For Moonbeam or Moonriver, you'll need to get your own endpoint from one of the supported [Endpoint Providers](#endpoint-providers).
 
-The endpoints in this section are for development purposes only and are not meant to be used in production applications.
+Moonbase Alpha has two endpoints available for users to connect to: one for HTTPS and one for WSS.
 
-If you are looking for an API provider suitable for production use, you can check out the [Endpoint Providers](#endpoint-providers) section of this guide. 
+### HTTPS {: #https }
 
-### Moonbeam Endpoints
+--8<-- 'code/endpoints/moonbase-https.md'
 
---8<-- 'code/endpoints/moonbeam.md'
+### WSS {: #wss }
 
-### Moonriver Endpoints
+--8<-- 'code/endpoints/moonbase-wss.md'
 
---8<-- 'code/endpoints/moonriver.md'
+### Relay Chain {: #relay-chain }
 
-### Moonbase Alpha Endpoints
+--8<-- 'text/testnet/relay-chain.md'
 
---8<-- 'code/endpoints/moonbase.md'
 
-## Endpoint Providers
+## Endpoint Providers {: #endpoint-providers }
 
 You can create your own endpoint suitable for development or production use using any of the following API providers:
 
-- [Bware Labs](#bware-labs)
+- [Blast](#blast)
 - [OnFinality](#onfinality)
 
-### Bware Labs
+### Blast {: #blast}
 
-As a user of the [Bware Labs](https://bwarelabs.com/) platform, you will be able to obtain your own free endpoint allowing you to interact with Moonbeam, just by performing a few simple clicks within a user-friendly interface.
+As a user of [Blast](https://blastapi.io/){target=_blank} powered by Bware Labs, you will be able to obtain your own free endpoint allowing you to interact with Moonbeam, just by performing a few simple clicks within a user-friendly interface.
 
-To get started, you'll need to head to [Bware Labs](https://app.bwarelabs.com/), and launch the app, and connect your wallet. Once your wallet is connected you will be able to generate your own custom endpoint. To generate an endpoint:
+To get started, you'll need to head to [Blast](https://blastapi.io/){target=_blank}, and launch the app, and connect your wallet. Once your wallet is connected you will be able to create a project and then generate your own custom endpoint. To generate an endpoint:
 
-1. Select a network for your endpoint. There are three options to choose from: Moonbeam, Moonriver and Moonbase Alpha
-2. Give your endpoint a name
-3. Select the network from the dropdown
-4. Click **Create Endpoint**
+1. Create a new project
+2. Click on **Available Endpoints**
+3. Select a network for your endpoint. There are three options to choose from: Moonbeam, Moonriver and Moonbase Alpha
+4. Confirm the selected network and Press **Activate**
+5. You'll now see your chosen network under **Active Endpoints**. Click on the network and you'll see your custom RPC and WSS endpoints on the next page 
 
 ![Bware Labs](/images/builders/get-started/endpoints/endpoints-1.png)
 
-### OnFinality
+### OnFinality {: #onfinality }
 
-[OnFinality](https://onfinality.io/) provides a free API key based endpoint for customers that provide higher rate limits and performance than the free public endpoint. You also receive more in depth analytics of the usage of your application.
+[OnFinality](https://onfinality.io/){target=_blank} provides a free API key based endpoint for customers that provide higher rate limits and performance than the free public endpoint. You also receive more in depth analytics of the usage of your application.
 
-To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io/) and sign up, or if you already have signed up you can go ahead and log in. From the OnFinality **Dashboard**, you can:
+To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io/){target=_blank} and sign up, or if you already have signed up you can go ahead and log in. From the OnFinality **Dashboard**, you can:
 
 1. Click on **API Service**
 2. Select the network from the dropdown

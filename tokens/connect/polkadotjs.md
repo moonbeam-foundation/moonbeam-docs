@@ -1,6 +1,6 @@
 ---
-title: Using Polkadot.js Apps
-description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereum-standard H160 addresses with Substrate-based apps like Polkadot.js.
+title: Create an Account on Polkadot.js Apps
+description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereum-standard H160 addresses and send transactions with Polkadot.js.
 ---
 
 # Interacting with Moonbeam Using Polkadot.js Apps
@@ -67,3 +67,5 @@ After the transaction is signed using the password, Polkadot.js will display som
 ![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjs/polkadotjs-app-9.png)
 
 And that is it! We are excited about being able to support H160 accounts in Polkadot.js Apps, as we believe this will greatly enhance the user experience in the Moonbeam Network and its Ethereum compatibility features.
+
+--8<-- 'text/disclaimers/third-party-content.md'

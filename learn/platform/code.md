@@ -1,5 +1,5 @@
 ---
-title: Source Code
+title: Moonbeam Source Code
 description: Moonbeam is an open source project in the Polkadot ecosystem, with publicly available and auditable source code.
 ---
 

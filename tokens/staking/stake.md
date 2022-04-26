@@ -1,6 +1,6 @@
 ---
-title: How to Stake
-description: A guide that shows how you can stake your tokens in Moonbeam by delegating collator candidates
+title: How to Stake your MOVR & GLMR Tokens
+description: A guide that shows how you can stake your tokens and earn rewards on Moonbeam by delegating collator candidates.
 ---
 
 # How to Stake your Tokens
@@ -17,7 +17,7 @@ Once a candidate joins the active set of collators, they are eligible to produce
 
 This guide will show you how to stake on Moonbase Alpha via Polkadot.js Apps, but similar steps can be taken for any of the Moonbeam and Moonriver. Token holders that want to easily stake their tokens can use the [Moonbeam dApp](https://apps.moonbeam.network/) to do so.
 
-For more general information on staking, please check out the [Staking in Moonbeam](/learn/features/staking/) overview.
+For more general information on staking, please check out the [Staking on Moonbeam](/learn/features/staking/) overview.
 
 ## Extrinsics Definitions {: #extrinsics-definitions } 
 
@@ -75,11 +75,20 @@ Then to retrieve the various staking parameters, you'll need to:
 
 ![Retrieving staking parameters](/images/tokens/staking/stake/stake-12.png)
 
-You should then see the maximum delegations per delegator, which can also be found in the [Staking in Moonbeam](/learn/features/staking/#quick-reference) overview.
+You should then see the maximum delegations per delegator, which can also be found in the [Staking on Moonbeam](/learn/features/staking/#quick-reference) overview.
 
 ## How to Stake via Polkadot.js Apps {: #how-to-delegate-a-candidate } 
 
-This section goes over the process of delegating collator candidates. But before staking via Polkadot.js Apps, you need to retrieve some important parameters.
+This section goes over the process of delegating collator candidates.
+
+The tutorial will use the following candidates on Moonbase Alpha as a reference:
+
+|  Variable   |  |                       Address                       |
+|:-----------:|::|:---------------------------------------------------:|
+| Candidate 1 |  | {{ networks.moonbase.staking.candidates.address1 }} |
+| Candidate 2 |  | {{ networks.moonbase.staking.candidates.address2 }} |
+
+Before staking via Polkadot.js Apps, you need to retrieve some important parameters.
 
 ### Retrieving the List of Candidates {: #retrieving-the-list-of-candidates } 
 
@@ -100,28 +109,20 @@ Each extrinsic provides a different response:
 
 ### Get the Candidate Delegation Count {: #get-the-candidate-delegation-count } 
 
-First, you need to get the `candidateDelegationCount` as you'll need to submit this parameter in a later transaction. To do so, you'll have to run the following JavaScript code snippet from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/js){target=_blank}:
+First, you need to get the `candidateInfo`, which will contain the delegator count, as you'll need to submit this parameter in a later transaction. To retrieve the parameter, make sure you're still on the **Chain State** tab of the **Devloper** page, and then take the following steps:
 
-```js
-// Simple script to get candidate_delegation_count
-// Remember to replace COLLATOR_ADDRESS with the address of desired collator.
-const candidateAccount = 'COLLATOR_CANDIDATE_ADDRESS'; 
-const candidateInfo = await api.query.parachainStaking.candidateState(candidateAccount);
-console.log(candidateInfo.toHuman()["delegators"].length);
-```
-
- 1. Head to the **Developer** tab 
- 2. Click on **JavaScript**
- 3. Copy the code from the previous snippet and paste it inside the code editor box 
- 4. (Optional) Click the save icon and set a name for the code snippet, for example, **Get candidate delegator count**. This will save the code snippet locally
- 5. To execute the code, click on the run button
+ 1. Choose the **parachainStaking** pallet to interact with
+ 2. Choose the **candidateInfo** state to query
+ 3. Make sure the **include option** slider is enabled
+ 4. Enter the collator candidate's address
+ 5. Send the state query by clicking on the **+** button
  6. Copy the result as you'll need it when initiating a delegation
 
 ![Get candidate delegation count](/images/tokens/staking/stake/stake-14.png)
 
 ### Get your Number of Existing Delegations {: #get-your-number-of-existing-delegations } 
 
-If you've never made a delegation from your address you can skip this section. However, if you're unsure how many existing delegations you have, you'll want to run the following JavaScript code snippet to get `delegator_delegation_count` from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/js){target=_blank}:
+If you've never made a delegation from your address you can skip this section. However, if you're unsure how many existing delegations you have, you'll want to run the following JavaScript code snippet to get `delegationCount` from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/js){target=_blank}:
 
 ```js
 // Simple script to get your number of existing delegations.
@@ -142,13 +143,6 @@ console.log(delegatorInfo.toHuman()["delegations"].length);
 
 ### Staking your Tokens
 
-The tutorial will use the following candidates on Moonbase Alpha as a reference:
-
-|  Variable   |  |                       Address                       |
-|:-----------:|::|:---------------------------------------------------:|
-| Candidate 1 |  | {{ networks.moonbase.staking.candidates.address1 }} |
-| Candidate 2 |  | {{ networks.moonbase.staking.candidates.address2 }} |
-
 To access staking features, you need to use the Polkadot.js Apps interface. To do so, you need to import/create an Ethereum-style account first (H160 address), which you can do by following [this guide](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account).
 
 For this example, an account was imported and named with a super original name: Alice. Alice's address is `0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac`.
@@ -164,8 +158,8 @@ To delegate a candidate, provide the following information:
  3. Choose the **delegate** extrinsic
  4. Set the candidate's address to delegate. In this case, it is set to `{{ networks.moonbase.staking.candidates.address1 }}`
  5. Set the number of tokens you want to stake
- 6. Input the `candidate_delegation_count` you [retrieved above from the JavaScript console](#get-the-candidate-delegation-count)
- 7. Input the `delegator_delegation_count` [you retrieved from the JavaScript console](#get-your-number-of-existing-delegations). This is `0` if you haven't yet delegated a candidate
+ 6. Input the `candidateDelegationCount` you [retrieved previously from querying `candidateInfo`](#get-the-candidate-delegation-count)
+ 7. Input the `delegationCount` [you retrieved from the JavaScript console](#get-your-number-of-existing-delegations). This is `0` if you haven't yet delegated a candidate
  8. Click the **Submit Transaction** button and sign the transaction
 
 ![Staking Join Delegators Extrinsics](/images/tokens/staking/stake/stake-15.png)
@@ -240,7 +234,7 @@ If you want to remove all ongoing delegations, you can adapt the **Extrinsics** 
 1. Select the account to remove all the delegations for
 2. Choose the **parachainStaking** pallet
 3. Choose the **executeLeaveDelegators** extrinsic
-4. Enter the total number of all delegations to revoke using the `delegator_delegation_count` [you retrieved from the Javascript console](#get-your-number-of-existing-delegations). This is `0` if you haven't yet delegated a candidate
+4. Enter the total number of all delegations to revoke using the `delegationCount` [you retrieved from the JavaScript console](#get-your-number-of-existing-delegations). This is `0` if you haven't yet delegated a candidate
 5. Click the **Submit Transaction** button and sign the transaction
 
 ![Staking Execute Leave Delegators Extrinsic](/images/tokens/staking/stake/stake-20.png)
@@ -273,10 +267,15 @@ If you scheduled a request to stop delegations but changed your mind, as long as
 
 ## Staking Rewards {: #staking-rewards } 
 
-As candidates in the active set of collators receive rewards from block production, delegators get rewards as well. A brief overview on how the rewards are calculated can be found in [this page](/staking/overview/#reward-distribution).
+As candidates in the active set of collators receive rewards from block production, delegators get rewards as well. A brief overview on how the rewards are calculated can be found in [this page](/learn/features/staking/#reward-distribution).
 
 In summary, delegators will earn rewards based on their stake of the total delegations for the collator being rewarded (including the collator's stake as well).
 
 From the previous example, Alice was rewarded with `0.0044` tokens after two payout rounds:
 
 ![Staking Reward Example](/images/tokens/staking/stake/stake-11.png)
+
+--8<-- 'text/disclaimers/staking-risks.md'
+*Staked MOVR/GLMR tokens are locked up, and retrieving them requires a {{ networks.moonriver.delegator_timings.del_bond_less.days }} day/{{ networks.moonbeam.delegator_timings.del_bond_less.days }} day waiting period .*
+--8<-- 'text/disclaimers/staking-risks-part-2.md'
+

@@ -1,5 +1,5 @@
 ---
-title: Using Systemd
+title: Run a Node on Moonbeam Using Systemd
 description: How to run a full Parachain node so you can have your own RPC endpoint or produce blocks for the Moonbeam Network using Systemd
 ---
 
@@ -145,21 +145,21 @@ Next, create a directory to store the binary and data (you might need `sudo`):
     mkdir {{ networks.moonbase.node_directory }}
     ```
 
-Now, copy the binary built in the last section to the created folder. If you [compiled the binary](#compile-the-binary) yourself, you'll need to copy the binary in the target directory (`./target/release/`). Otherwise, copy the Moonbeam binary in the root (you might need sudo):
+Now, move the binary built in the last section to the created folder. If you [compiled the binary](#compile-the-binary) yourself, you'll need to move the binary in the target directory (`./target/release/`). Otherwise, move the Moonbeam binary in the root (you might need sudo):
 
 === "Moonbeam"
     ```
-    cp ./{{ networks.moonbeam.binary_name }} {{ networks.moonbeam.node_directory }}
+    mv ./{{ networks.moonbeam.binary_name }} {{ networks.moonbeam.node_directory }}
     ```
 
 === "Moonriver"
     ```
-    cp ./{{ networks.moonriver.binary_name }} {{ networks.moonriver.node_directory }}
+    mv ./{{ networks.moonriver.binary_name }} {{ networks.moonriver.node_directory }}
     ```
 
 === "Moonbase Alpha"
     ```
-    cp ./{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
+    mv ./{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
     ```
 
 Next, make sure you set the ownership and permissions accordingly for the local directory that stores the chain data:
@@ -221,7 +221,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
-         --pruning=archive \
+         --pruning=1000 \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
     [Install]
@@ -260,7 +260,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
-         --pruning=archive \
+         --pruning=1000 \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
     [Install]
@@ -299,7 +299,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
-         --pruning=archive \
+         --pruning=1000 \
          --name="YOUR-NODE-NAME (Embedded Relay)"
 
     [Install]
@@ -341,7 +341,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
-         --pruning=archive \
+         --pruning=1000 \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
     [Install]
@@ -381,7 +381,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
-         --pruning=archive \
+         --pruning=1000 \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
     [Install]
@@ -421,7 +421,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
-         --pruning=archive \
+         --pruning=1000 \
          --name="YOUR-NODE-NAME (Embedded Relay)"
 
     [Install]
@@ -497,33 +497,33 @@ If you want to update your client, you can keep your existing chain data in tact
 
     If you want to compile the binary, please refer back to the [Compile the Binary](#compile-the-binary) instructions, making sure you `git checkout` to the latest version.
 
-5. Copy the binary to the data directory:
+5. Move the binary to the data directory:
 
     === "Moonbeam"
         ```
         # If you used the release binary:
-        cp ./{{ networks.moonbeam.binary_name }} {{ networks.moonbeam.node_directory }}
+        mv ./{{ networks.moonbeam.binary_name }} {{ networks.moonbeam.node_directory }}
 
         # Or if you compiled the binary:
-        cp ./target/release/{{ networks.moonbeam.binary_name }} {{ networks.moonbeam.node_directory }}
+        mv ./target/release/{{ networks.moonbeam.binary_name }} {{ networks.moonbeam.node_directory }}
         ```
 
     === "Moonriver"
         ```
         # If you used the release binary:
-        cp ./{{ networks.moonriver.binary_name }} {{ networks.moonriver.node_directory }}
+        mv ./{{ networks.moonriver.binary_name }} {{ networks.moonriver.node_directory }}
 
         # Or if you compiled the binary:
-        cp ./target/release/{{ networks.moonriver.binary_name }} {{ networks.moonriver.node_directory }}
+        mv ./target/release/{{ networks.moonriver.binary_name }} {{ networks.moonriver.node_directory }}
         ```
 
     === "Moonbase Alpha"
         ```
         # If you used the release binary:
-        cp ./{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
+        mv ./{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
 
         # Or if you compiled the binary:
-        cp ./target/release/{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
+        mv ./target/release/{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
         ```
 
 6. Update permissions:

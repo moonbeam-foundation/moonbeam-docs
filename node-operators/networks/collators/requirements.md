@@ -1,6 +1,6 @@
 ---
-title: Requirements
-description: Learn about the requirements for becoming a collator and maintaining a collator node on Moonbeam networks
+title: Moonbeam Collator Requirements
+description: Learn about the requirements for becoming and maintaining a collator node on Moonbeam networks, including requirements for hardware, bonds, and more.
 ---
 
 # Collator Requirements
@@ -9,11 +9,27 @@ description: Learn about the requirements for becoming a collator and maintainin
 
 ## Introduction {: #introduction } 
 
-There are some requirements to keep in mind before diving into running a collator node. You need to have top of the line hardware, securely created and stored accounts, meet bonding requirements, and fill out a collator questionnaire.
+There are some requirements to keep in mind before diving into running a collator node. Primarily, you need to follow the community guidelines and meet the technical requirements. You should have top of the line hardware, securely created and stored accounts, meet bonding requirements, and fill out a collator questionnaire.
 
 It is recommended to go through all of the necessary requirements on the Moonbase Alpha TestNet before collating on a production network like Moonbeam or Moonriver.
 
 This guide will help you to get started fulfilling the collator requirements so you can get your node up and running in no time.
+
+## Community Guidelines {: #community-guidelines }
+
+One of the primary goals of the Moonbeam Foundation is to maintain the decentralization of the Moonriver and Moonbeam networks. To further this goal, the Moonbeam Foundation reserves the right to take action if any of the following occur:
+
+- An entity is running more than 4 collators in either network
+- A collator acts in a nefarious manner that is uncharitable to the community or other collators
+
+In addition, there is a level of commitment to the community and the network that is necessary to gain trust from the community of delegators and attract more delegations. The following contains some suggestions for contributing to the community:
+
+- Be active in the community
+    - [Join the Discord](/node-operators/networks/collators/overview/#join-discord){target=_blank} and introduce yourself, provide updates as needed, and help support community members or other collators
+- Create tutorials and educational content
+- [Become a Moonbeam Ambassador](https://moonbeam.network/community/ambassadors/){target=_blank}
+- Contribute to open-source software relating to the ecosystem
+- Actively participate in governance and vote on proposals
 
 ## Hardware Requirements {: #hardware-requirements } 
 
@@ -71,10 +87,10 @@ Using the moonkey binary file is very straightforward. Every time you execute th
 
 This information includes:
 
-- Mnemonic seed: a 24-word mnemonic that represents your account in readable words. This gives direct access to your funds, so you need to store these words securely
-- Private key: the private key associated with your account, used for signing. This is derived from the mnemonic seed. This gives direct access to your funds, so you need to store it securely
-- Public address: your account’s address
-- Derivation path which tells the Hierarchical Deterministic (HD) wallet how to derive the specific key
+- **Mnemonic seed** - a 24-word mnemonic that represents your account in readable words. This gives direct access to your funds, so you need to store these words securely
+- **Private key** - the private key associated with your account, used for signing. This is derived from the mnemonic seed. This gives direct access to your funds, so you need to store it securely
+- **Public address** - your account’s address
+- **Derivation path** - tells the Hierarchical Deterministic (HD) wallet how to derive the specific key
 
 !!! note
     Please safely store the private key/mnemonic and do not share it with anyone. Private keys/mnemonics provide direct access to your funds.
@@ -145,4 +161,4 @@ Secondly, you will need a bond for key association. This bond is sent when [mapp
 
 ## Collator Questionnaire {: #collator-questionnaire }
 
-There is a [Collator Questionnaire](https://docs.google.com/forms/d/e/1FAIpQLSfjmcXdiOXWtquYlBhdgXBunCKWHadaQCgPuBtzih1fd0W3aA/viewform){target=blank}, that aims to assess the state of all collators on Moonbase Alpha. You should be running a collator node on Moonbase Alpha before filling out this form. You will be able to provide your contact information as well as some basic hardware specs. It provides a way to... "give us your contact info so we can contact you if we see your node isn't running well"
+There is a [Collator Questionnaire](https://docs.google.com/forms/d/e/1FAIpQLSfjmcXdiOXWtquYlBhdgXBunCKWHadaQCgPuBtzih1fd0W3aA/viewform){target=_blank}, that aims to assess the state of all collators on Moonbase Alpha. You should be running a collator node on Moonbase Alpha before filling out this form.You will be able to provide your contact information as well as some basic hardware specs. It provides a way to open the lines of communication between you and the Moonbeam team in case any problems with your node arise.

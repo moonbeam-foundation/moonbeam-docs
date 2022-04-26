@@ -1,5 +1,5 @@
 ---
-title: Using Nifty
+title: How to Connect & Use Nifty Wallet
 description: This guide walks you through how to connect Nifty Wallet, a browser-based wallet that works with Ethereum, to Moonbeam.
 ---
 
@@ -39,12 +39,12 @@ Enter the RPC URL for Moonbeam in the **New RPC URL** field:
 
 === "Moonbeam"
     ```
-      {{ networks.moonbeam.rpc_url }}
+      {{ networks.moonbeam.public_rpc_url }}
     ```
 
 === "Moonriver"
     ```
-      {{ networks.moonriver.rpc_url }}
+      {{ networks.moonriver.public_rpc_url }}
     ```
     
 === "Moonbase Alpha"
@@ -69,13 +69,13 @@ And that is it, you now have Nifty Wallet connected to the Moonbeam!
 
 ## Using Nifty Wallet {: #using-nifty-wallet } 
 
-Nifty Wallet serves as a Web3 provider in tools such as [Remix](/builders/tools/remix/). By having Nifty Wallet connected to any of the Moonbeam networks, you can deploy contracts as you would like using MetaMask, signing the transactions with Nifty instead. This example will use the Moonbase Alpha TestNet, but it can be adapted for Moonbeam and Moonriver.
+Nifty Wallet serves as a Web3 provider in tools such as [Remix](/builders/build/eth-api/dev-env/remix/). By having Nifty Wallet connected to any of the Moonbeam networks, you can deploy contracts as you would like using MetaMask, signing the transactions with Nifty instead. This example will use the Moonbase Alpha TestNet, but it can be adapted for Moonbeam and Moonriver.
 
 In Remix, when deploying a smart contract, make sure you select the **Injected Web3** option in the **Environment** menu. If you have Nifty Wallet connected, you will see the Moonbeam chain ID just below the box and your Nifty Wallet account injected into Remix as well. When sending a transaction, you should see a similar pop-up from Nifty:
 
 <img src="/images/tokens/connect/nifty/nifty-5.png" alt="Nifty sign transaction" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 
-Since this example is on Moonbase Alpha, ensure you have DEV tokens in your account and, if necessary, head to the [faucet](/builders/get-started/moonbase/#get-tokens/) to obtain some tokens. By clicking on **Submit**, you are signing this transaction, and the contract will be deployed to the Moonbase Alpha TestNet.
+Since this example is on Moonbase Alpha, ensure you have DEV tokens in your account and, if necessary, head to [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/) to obtain some tokens. By clicking on **Submit**, you are signing this transaction, and the contract will be deployed to the Moonbase Alpha TestNet.
 
 !!! note
     Please note that although your account balance shows ETH, it is not real ETH, and just DEV tokens. 
@@ -107,3 +107,5 @@ Next, select the type of import from the dropdown and enter the necessary detail
 Your account will be imported and you'll be switched to the imported account.
 
 <img src="/images/tokens/connect/nifty/nifty-11.png" alt="Nifty create an account" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
+
+--8<-- 'text/disclaimers/third-party-content.md'

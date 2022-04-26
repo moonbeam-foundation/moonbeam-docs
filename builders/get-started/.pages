@@ -1,9 +1,7 @@
 title: Get Started
 nav:
   - index.md
+  - networks
   - eth-compare
-  - moonbeam-dev.md
-  - moonbase.md
-  - moonriver.md
-  - moonbeam.md
-  - endpoints.md
+  - 'Network Endpoints': 'endpoints.md'
+  - 'Block Explorers': 'explorers.md'

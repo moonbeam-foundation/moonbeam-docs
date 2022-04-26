@@ -1,6 +1,6 @@
 ---
 title: Ethereum App
-description: This guide walks you through how to use your Ledger hardware wallet to sign transactions in Moonbeam-based networks using the Ethereum app on Ledger Live
+description: This guide walks you through how to use your Ledger hardware wallet to sign transactions in Moonbeam-based networks using the Ethereum app on Ledger Live.
 ---
 
 # Interacting with Moonbeam Using Ledger and the Ethereum App
@@ -92,3 +92,5 @@ And that is it! You've signed a transaction and sent some tokens on Moonbeam usi
 --8<-- 'text/ledger/blind-signing.md'
 
 ![MetaMask Ledger Allow Contracts Tx](/images/tokens/connect/ledger/ethereum/ledger-11.png)
+
+--8<-- 'text/disclaimers/third-party-content.md'

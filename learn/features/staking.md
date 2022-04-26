@@ -1,21 +1,21 @@
 ---
 title: Staking
-description: Moonbeam provides staking features where token holders delegate collator candidates with their tokens and earn rewards
+description: Moonbeam provides staking features where token holders delegate collator candidates with their tokens and earn rewards.
 ---
 
-# Staking in Moonbeam
+# Staking on Moonbeam
 
 ![Staking Moonbeam Banner](/images/learn/features/staking/staking-overview-banner.png)
 
 ## Introduction {: #introduction } 
 
-Moonbeam uses a block production mechanism based on [Polkadot's Proof-of-Stake model](https://wiki.polkadot.network/docs/learn-consensus){target=blank}, where there are collators and validators. [Collators](https://wiki.polkadot.network/docs/learn-collator){target=blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.network/docs/learn-validator){target=blank}.
+Moonbeam uses a block production mechanism based on [Polkadot's Proof-of-Stake model](https://wiki.polkadot.network/docs/learn-consensus){target=_blank}, where there are collators and validators. [Collators](https://wiki.polkadot.network/docs/learn-collator){target=_blank} maintain parachains (in this case, Moonbeam) by collecting transactions from users and producing state transition proofs for the relay chain [validators](https://wiki.polkadot.network/docs/learn-validator){target=_blank}.
 
 The candidates in the active set of collators (nodes that produce blocks) are selected based on their stake in the network. And here is where staking comes in.
 
 Collator candidates (and token holders if they delegate) have a stake in the network. The top N candidates by staked amount are chosen to produce blocks with a valid set of transactions, where N is a configurable parameter. Part of each block reward goes to the collators that produced the block, who then shares it with the delegators considering their percental contributions towards the collator's stake. In such a way, network members are incentivized to stake tokens to improve the overall security.
 
-To easily manage staking related actions, you can visit the [Moonbeam Network DApp](https://apps.moonbeam.network/){target=blank} and use the network tabs at the top of the page to easily switch between Moonbeam networks. To learn how to use the DApp, you can check out the [How to Stake MOVR Tokens](https://moonbeam.network/tutorial/stake-movr/){target=blank} guide or or [video tutorial](https://www.youtube.com/watch?v=D2wPnqfoeIg){target=blank}, both of which can be adapted for the Moonbeam and the Moonbase Alpha TestNet.
+To easily manage staking related actions, you can visit the [Moonbeam Network DApp](https://apps.moonbeam.network/){target=_blank} and use the network tabs at the top of the page to easily switch between Moonbeam networks. To learn how to use the DApp, you can check out the [How to Stake MOVR Tokens](https://moonbeam.network/tutorial/stake-movr/){target=_blank} guide or or [video tutorial](https://www.youtube.com/watch?v=D2wPnqfoeIg){target=_blank}, both of which can be adapted for the Moonbeam and the Moonbase Alpha TestNet.
 
 ## General Definitions {: #general-definitions } 
 
@@ -62,9 +62,9 @@ To easily manage staking related actions, you can visit the [Moonbeam Network DA
     |     Revoke delegations delay     | {{ networks.moonbase.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbase.delegator_timings.revoke_delegations.hours }} hours) |
     |      Leave delegators delay      |   {{ networks.moonbase.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonbase.delegator_timings.leave_delegators.hours }} hours)   |
     
-To learn how to get the current value of any of the parameters around staking, check out the [Retrieving Staking Parameters](/tokens/staking/stake/#retrieving-staking-parameters){target=blank} section of the [How to Stake your Tokens](/tokens/staking/stake/){target=blank} guide. 
+To learn how to get the current value of any of the parameters around staking, check out the [Retrieving Staking Parameters](/tokens/staking/stake/#retrieving-staking-parameters){target=_blank} section of the [How to Stake your Tokens](/tokens/staking/stake/){target=_blank} guide. 
 
-If you're looking for candidate or collator-specific requirements and information, you can take a look at the [Collators](/node-operators/networks/collators/requirements/#bonding-requirements){target=blank} guide.
+If you're looking for candidate or collator-specific requirements and information, you can take a look at the [Collators](/node-operators/networks/collators/requirements/#bonding-requirements){target=_blank} guide.
 
 ## Resources for Selecting a Collator {: #resources-for-selecting-a-collator}
 
@@ -151,3 +151,7 @@ For each delegator, the reward distribution (per block proposed and finalized by
 ![Staking Delegator Reward](/images/learn/features/staking/staking-overview-2.png)
 
 Where `amount_due` is the corresponding inflation being distributed in a specific block, the `stake` corresponds to the amount of tokens bonded by each delegator in respect to the total stake of that collator.
+
+--8<-- 'text/disclaimers/staking-risks.md'
+*Staked MOVR/GLMR tokens are locked up, and retrieving them requires a {{ networks.moonriver.delegator_timings.del_bond_less.days }} day/{{ networks.moonbeam.delegator_timings.del_bond_less.days }} day waiting period .*
+--8<-- 'text/disclaimers/staking-risks-part-2.md'

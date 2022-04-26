@@ -1,5 +1,5 @@
 ---
-title: Technology
+title: Technology & Architecture
 description: Moonbeam is built using Rust and the Substrate framework, enabling rich tools for implementation, but also allowing for specialization and optimization.
 ---
 

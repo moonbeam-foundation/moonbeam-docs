@@ -1,6 +1,6 @@
 ---
-title: State of the DApps
-description: How you can list your project on State of the DApps
+title: List your Dapp on State of the DApps
+description: How you can list your Moonbeam or Moonriver project on State of the DApps, a listing and ranking platform for smart contracts and dapps deployed to Moonbeam.
 ---
 
 # How to List your Project on State of the DApps
@@ -55,3 +55,8 @@ Once you have gathered the above required content, you can head to the [Submit a
 ![How to Submit your DApp](/images/learn/dapps-list/state-of-the-dapps/state-of-the-dapps-2.png)
 
 Submissions are typically reviewed by the State of the DApps team in one business day. For any Moonbeam-related questions you can reach out to us in [Discord](https://discord.gg/moonbeam){target=_blank}. For State of the DApps support, you can contact [support@stateofthedapps.com](mailto:support@stateofthedapps.com)
+
+<div class="page-disclaimer">
+  The State of Dapps contains user-generated content and Moonbeam Foundation has not vetted such user-generated content.
+  --8<-- 'text/disclaimers/user-generated-content.md'
+</div>
