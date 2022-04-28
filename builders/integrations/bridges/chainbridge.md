@@ -11,10 +11,13 @@ description: How to use ChainBridge to connect and transfer assets such as ERC-2
 
 A bridge allows two economically sovereign and technologically different chains to communicate with each other. They can range from centralized and trusted, to decentralized and trust minimized. One of the currently available solutions is [ChainBridge](https://github.com/ChainSafe/ChainBridge#installation){target=_blank}, a modular multi-directional blockchain bridge built by [ChainSafe](https://chainsafe.io/){target=_blank}.
 
-A ChainBridge implementation is now available on Moonbeam, which connects the Moonbase Alpha TestNet to the following networks:
+A ChainBridge implementation is now available on Moonbeam, which connects the following networks:
 
-- Kovan TestNet on Ethereum
-- Rinkeby TestNet on Ethereum
+|     Chain A    | Chain B |
+|:--------------:|:-------:|
+| Moonbase Alpha | Kovan   |
+| Moonbase Alpha | Rinkeby |
+
 
 This guide is broken down into two main sections. In the first part, the general workflow of the bridge will be explained. In the second part, there will be a couple of examples using the bridge to transfer ERC-20 and ERC-721 assets between Moonbase Alpha and Kovan/Rinkeby. 
     
