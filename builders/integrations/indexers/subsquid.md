@@ -166,7 +166,7 @@ Before getting started with the event handler, it is necessary to define some co
 touch src/contract.ts
 ```
 
-### Managing the EVM contract {: #event-handler-and-helper-functions }
+### Manage the EVM contract {: #event-handler-and-helper-functions }
 
 In the `src/contract.ts` file, you'll take the following steps:
 
