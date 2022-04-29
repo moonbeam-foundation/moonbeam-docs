@@ -1,9 +1,9 @@
 title: Connect to Moonbeam
 nav:
   - index.md
+  - ledger
   - 'Using MetaMask': 'metamask.md'
   - 'Using MathWallet': 'mathwallet.md'
   - 'Using Polkadot.js Apps': 'polkadotjs.md'
-  - 'Using Ledger': 'ledger.md'
   - 'Using Trezor': 'trezor.md'
   - 'Using Nifty': 'nifty.md'
