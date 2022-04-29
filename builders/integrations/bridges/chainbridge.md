@@ -13,10 +13,11 @@ A bridge allows two economically sovereign and technologically different chains 
 
 A ChainBridge implementation is now available on Moonbeam, which connects the following networks:
 
-|     Chain A    | Chain B |
-|:--------------:|:-------:|
-| Moonbase Alpha | Kovan   |
-| Moonbase Alpha | Rinkeby |
+=== "Moonbase Alpha"
+    |       Networks        |
+    |:---------------------:|
+    |  Kovan TestNet (ETH)  |
+    | Rinkeby TestNet (ETH) |
 
 
 This guide is broken down into two main sections. In the first part, the general workflow of the bridge will be explained. In the second part, there will be a couple of examples using the bridge to transfer ERC-20 and ERC-721 assets between Moonbase Alpha and Kovan/Rinkeby. 
