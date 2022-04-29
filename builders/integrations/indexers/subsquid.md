@@ -113,10 +113,7 @@ You will find the auto-generated files under `src/model/generated`.
 
 ## ABI Definition and Wrapper {: #abi-definition-and-wrapper}
 
-Subsquid offers support for automatically building TypeScript type-safe interfaces for Substrate data sources (events, extrinsics, storage items). Changes are automatically detected in the runtime. 
-
-!!! note
-    Subsquid has just released an `evm-typegen` tool to generate TypeScript interfaces and decoding functions for EVM logs! See next section
+Subsquid offers support for automatically building TypeScript type-safe interfaces for Substrate data sources (events, extrinsics, storage items). Changes are automatically detected in the runtime. To generate TypeScript interfaces and decode functions specifically for EVM logs, you can use Subsquid's `evm-typegen` tool.
 
 To extract and process ERC-721 data, it is necessary to obtain the definition of its Application Binary Interface (ABI). This can be obtained in the form of a JSON file, which will be imported into the project.
 
@@ -149,7 +146,7 @@ In order to be able to read and import the ABI JSON file in TypeScript code, you
 
 ### Use the ABI to Get and Decode Event Data {: #get-and-decode-event-data }
 
-To automatically generate TypeScript interfaces from an ABI definition, and decode event data, simply run this command from the project's root folder
+To automatically generate TypeScript interfaces from an ABI definition, and decode event data, simply run this command from the project's root folder:
 
 ```bash
 npx squid-evm-typegen --abi src/abi/ERC721.json --output src/abi/erc721.ts
@@ -179,7 +176,7 @@ In the `src/contract.ts` file, you'll take the following steps:
 4. Define the `processTransfer` EVM log handler, implementing logic to track token transfers
 
 ```typescript
-// src/helpers/events.ts
+// src/contracts.ts
 import { assertNotNull, Store } from "@subsquid/substrate-evm-processor";
 import { ethers } from "ethers";
 import * as erc721 from "./abi/erc721";
@@ -265,13 +262,12 @@ The "handler" function takes in a `Context` of the correct type (`EvmLogHandlerC
 !!! note
     For the event handler, it is also possible to bind an "arrow function" to the processor.
 
-
 ### Create Processor and Attach Handler {: #create-processor-and-attach-handler }
 
 Now you can attach the handler function to the processor and configure the processor for execution. This is done by editing the `src/processor.ts` file.
 
 1. Remove the pre-existing code
-2. Update the imports to include the `CHAIN_NODE` and `contract` constant, the `getContractEntity` and `createContractEntity` helper functions, the `processTransfer` handler function and `events` mapping
+2. Update the imports to include the `CHAIN_NODE` and `contract` constant, the `getContractEntity` and `createContractEntity` helper functions, the `processTransfer` handler function, and `events` mapping
 3. Create a processor using the `SubstrateEvmProcessor` and pass in a name of your choice. For this example, you can use `moonriver-substrate` or feel free to update it for the network you're developing on
 4. Update the data source and types bundle
 5. Attach the EVM log handler function and a pre-block hook which will create and save a contract entity in the database
@@ -291,7 +287,7 @@ const processor = new SubstrateEvmProcessor("moonriver-substrate");
 
 processor.setDataSource({
   chain: CHAIN_NODE,
-  archive: lookupArchive("moonbeam")[0].url,
+  archive: lookupArchive("moonriver")[0].url,
 });
 
 processor.addPreHook({ range: { from: 0, to: 0 } }, async (ctx) => {
