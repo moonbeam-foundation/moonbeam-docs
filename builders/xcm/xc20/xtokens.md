@@ -53,11 +53,11 @@ This guide covers the process of building an XCM message using the X-Tokens pall
 
 To be able to send the extrinsics in Polkadot.js Apps, you need to have an [account](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/accounts){target=_blank} with [funds](https://docs.moonbeam.network/builders/get-started/networks/moonbase/#get-tokens){target=_blank}.
 
-In addition, you'll need to have some `xcUNIT` tokens for this tutorial, which is the [XC-20](/builders/xcm/xc20/){target=_blank} representation of the Alphanet relay chain token `UNIT`. You can acquire some by swapping for `DEV` tokens (Moonbase Alpha's native token) on [Moonbeam-Swap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha.
+In addition, you'll need to have some `xc-UNIT` tokens for this tutorial, which is the [XC-20](/builders/xcm/xc20/){target=_blank} representation of the Alphanet relay chain token `UNIT`. You can acquire some by swapping for `DEV` tokens (Moonbase Alpha's native token) on [Moonbeam-Swap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha.
 
-![Moonbeam Swap xcUNITs](/images/builders/xcm/xc20/xtokens/xtokens-1.png)
+![Moonbeam Swap xc-UNITs](/images/builders/xcm/xc20/xtokens/xtokens-1.png)
 
-To check your `xcUNIT` balance, you can add the XC-20 to MetaMask with the following address:
+To check your `xc-UNIT` balance, you can add the XC-20 to MetaMask with the following address:
 
 ```
 0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080
@@ -67,7 +67,7 @@ You can check the [XC-20](/builders/xcm/xc20/#calculate-xc20-address){target=_bl
 
 ### X-Tokens Transfer Function {: #xtokens-transfer-function}
 
-In this example, you'll build an XCM message to transfer `xcUNIT` from Moonbase Alpha back to its [relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} through the `transfer function of the X-Tokens pallet.
+In this example, you'll build an XCM message to transfer `xc-UNIT` from Moonbase Alpha back to its [relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} through the `transfer` function of the X-Tokens pallet.
 
 If you've [checked the prerequisites](#xtokens-check-prerequisites), head to the extrinsic page of [Polkadot JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} and set the following options:
 
@@ -100,7 +100,7 @@ Once the transaction is processed, the **TargetAccount** should have received th
 
 ### X-Tokens Transfer MultiAsset Function {: #xtokens-transfer-multiasset-function}
 
-In this example, you'll build an XCM message to transfer `xcUNIT` from Moonbase Alpha back to its [relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} using the `transferMultiasset` function of the X-Tokens pallet.
+In this example, you'll build an XCM message to transfer `xc-UNIT` from Moonbase Alpha back to its [relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} using the `transferMultiasset` function of the X-Tokens pallet.
 
 If you've [checked the prerequisites](#xtokens-check-prerequisites), head to the extrinsic page of [Polkadot JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} and set the following options:
 
@@ -116,7 +116,7 @@ If you've [checked the prerequisites](#xtokens-check-prerequisites), head to the
     | Interior  | Here  |
 
 5. Set the asset type as **Fungible**
-6. Set the number of tokens to send. For this example, you are sending 1 `xcUNIT`, but you have to account for the 12 decimals
+6. Set the number of tokens to send. For this example, you are sending 1 `xc-UNIT`, but you have to account for the 12 decimals
 7. To define the XCM destination multilocation, you have to target an account in the relay chain from Moonbase Alpha as the origin. Therefore, set the following parameters:
 
     | Parameter |     Value     |
@@ -166,7 +166,7 @@ The interface includes the following functions:
  - **transfer**(*address* currency_address, *uint256* amount, *Multilocation* *memory* destination, *uint64* weight) — function that represents the `transfer` method described in the previous example. However, instead of using the currency ID, you need to provide the [XC-20 address](/builders/xcm/xc20/#current-xc20-assets){target=_blank}. The multilocation is built in a particular way that is described in the following section
  - **transfer_multiasset**(*Multilocation* *memory* asset, *uint256* amount, *Multilocation* *memory* destination, *uint64* weight) — function that represents the `transferMultiasset` method described in the previous example. Both multilocations are built in a particular way that is described in the following section
 
-### Building the Precompile Multilocation
+### Building the Precompile Multilocation {: #building-the-precompile-multilocation }
 
 In the X-Tokens precompile interface, the `Multilocation` structure is defined as follows:
 

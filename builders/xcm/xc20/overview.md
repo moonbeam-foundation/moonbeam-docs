@@ -9,21 +9,28 @@ description:  Learn how to access and interact with an ERC-20 interface for cros
 
 ## Introduction {: #introduction } 
 
-The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-crosschain) format defines how messages can be sent between interoperable blockchains. This format opens the door to transfer messages and assets (Substrate assets) between Moonbeam/Moonriver and the relay chain or other parachains in the Polkadot/Kusama ecosystems. 
+The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-crosschain){target=_blank} format defines how messages can be sent between interoperable blockchains. This format opens the door to transfer messages and assets (Substrate assets) between Moonbeam/Moonriver and the relay chain or other parachains in the Polkadot/Kusama ecosystems. 
 
 Substrate assets are natively interoperable. However, developers need to tap into the Substrate API to interact with them, making the developer experience unideal, especially for those from the Ethereum world. Consequently, to help developers tap into the native interoperability that Polkadot/Kusama offers, Moonbeam introduced the concept of XC-20s.
 
-XC-20s are a unique asset class on Moonbeam. It combines the power of Substrate assets (native interoperability) but allows users and developers to interact with them through a familiar [ERC-20 interface](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol) via a precompile contract (Ethereum API). Moreover, developers can integrate XC-20s with regular Ethereum development frameworks or dApps. 
+XC-20s are a unique asset class on Moonbeam. It combines the power of Substrate assets (native interoperability) but allows users and developers to interact with them through a familiar [ERC-20 interface](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=_blank} via a precompile contract (Ethereum API). Moreover, developers can integrate XC-20s with regular Ethereum development frameworks or dApps. 
 
 ![Moonbeam XC-20 XCM Integration With Polkadot](/images/builders/xcm/overview/overview-4.png)
 
-XC-20 assets will be differentiated by having `xc` prepended to their name. For example, Kusama's KSM representation on Moonriver will be known as _xcKSM_. Please note that XC-20 precompiles do not support cross-chain transfers, and this is intentionally done to stay as close as possible to the standard ERC-20 interface.
+XC-20 assets will be differentiated by having `xc` prepended to their name. For example, Polkadot's DOT representation on Moonbeam is known as _xc-DOT_ and Kusama's KSM representation on Moonriver is _xc-KSM_. Please note that XC-20 precompiles do not support cross-chain transfers, and this is intentionally done to stay as close as possible to the standard ERC-20 interface.
 
-XC-20s need to be registered and linked to another asset in the ecosystem before being used. This is done through a whitelisting process via a democracy proposal. If you are interested in testing XCM features in our TestNet, please contact us through our [Discord Server](https://discord.gg/PfpUATX). For more information on XCM, you can check out the [XCM Overview](/builders/xcm/overview/) page of our documentation.
+XC-20s need to be registered and linked to another asset in the ecosystem before being used. This is done through a whitelisting process via a democracy proposal. If you are interested in testing XCM features in our TestNet, please contact us through our [Discord Server](https://discord.gg/PfpUATX){target=_blank}. For more information on XCM, you can check out the [XCM Overview](/builders/xcm/overview/){target=_blank} page of our documentation.
 
 ## Current XC-20 Assets {: #current-xc20-assets}
 
 The current list of available XC-20 assets per network is the following:
+
+=== "Moonbeam"
+    |  Origin  | Symbol |                                                            XC-20 Address                                                            |
+    |:--------:|:------:|:-----------------------------------------------------------------------------------------------------------------------------------:|
+    | Polkadot | xc-DOT | [0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080](https://moonscan.io/address/0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080){target=_blank} |
+
+     _*You can check each Asset ID from the [Assets tab on Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/assets){target=_blank}_
 
 === "Moonriver"
     |  Origin   | Symbol  |                                                                 XC-20 Address                                                                 |
@@ -37,7 +44,7 @@ The current list of available XC-20 assets per network is the following:
     | Statemine | xc-RMRK | [0xffffffFF893264794d9d57E1E0E21E0042aF5A0A](https://moonriver.moonscan.io/address/0xffffffFF893264794d9d57E1E0E21E0042aF5A0A){target=_blank} |
     | Statemine | xc-USDT | [0xFFFFFFfFea09FB06d082fd1275CD48b191cbCD1d](https://moonriver.moonscan.io/address/0xFFFFFFfFea09FB06d082fd1275CD48b191cbCD1d){target=_blank} |
 
-     _*You can check each Asset ID [here](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonriver.moonbeam.network#/assets){target=_blank}_
+     _*You can check each Asset ID from the [Assets tab on Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonriver.moonbeam.network#/assets){target=_blank}_
 
 === "Moonbase Alpha"
     |         Origin          |  Symbol  |                                                                XC-20 Address                                                                 |
@@ -57,7 +64,7 @@ The current list of available XC-20 assets per network is the following:
     |   Statemine Alphanet    | xc-MRMRK | [0xFFffffFfd2aaD7f60626608Fa4a5d34768F7892d](https://moonbase.moonscan.io/address/0xFFffffFfd2aaD7f60626608Fa4a5d34768F7892d){target=_blank} |
     
 
-     _*You can check each Asset ID [here](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/assets){target=_blank}_
+     _*You can check each Asset ID from the [Assets tab on Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/assets){target=_blank}_
 
 This guide will show you how to retrieve the available XC-20s and calculate their precompile addresses for the Moonbase Alpha TestNet using Polkadot.js Apps. In addition, you will learn how to interact with an XC-20 precompile using Remix.
 
@@ -65,7 +72,7 @@ This guide will show you how to retrieve the available XC-20s and calculate thei
 
 Although XC-20s and ERC-20s are very similar, some distinct differences are to be aware of. 
 
-First and foremost, XC-20s are Substrate-based assets, and as such, they are also subject to be directly impacted by Substrate features such as governance. In addition, XC-20s transactions done via the Substrate API won't be visible from EVM-based block explorers such as [Moonscan](https://moonscan.io). Only transactions done via the Ethereum API are visible through such explorers.
+First and foremost, XC-20s are Substrate-based assets, and as such, they are also subject to be directly impacted by Substrate features such as governance. In addition, XC-20s transactions done via the Substrate API won't be visible from EVM-based block explorers such as [Moonscan](https://moonscan.io){target=_blank}. Only transactions done via the Ethereum API are visible through such explorers.
 
 Nevertheless, XC-20s can be interacted with through an ERC-20 interface, so they have the additional benefit of being accessible from both the Substrate and Ethereum APIs. This ultimately provides greater flexibility for developers when working with these types of assets and allows seamless integrations with EVM-based smart contracts such as DEXs, lending platforms, among others.
 
@@ -126,15 +133,15 @@ The [ERC20.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/as
 
 To approve a spend or transfer XC-20s via the XC-20 precompile, you will need:
 
-- [MetaMask installed and connected to the Moonbase Alpha](/tokens/connect/metamask/) TestNet
+- [MetaMask installed and connected to the Moonbase Alpha](/tokens/connect/metamask/){target=_blank} TestNet
 - Create or have two accounts on Moonbase Alpha
-- At least one of the accounts will need to be funded with `DEV` tokens. You can obtain tokens for testing purposes from [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/)
+- At least one of the accounts will need to be funded with `DEV` tokens. You can obtain tokens for testing purposes from [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/){target=_blank}
 
 ## Interact with the Precompile Using Remix {: #interact-with-the-precompile-using-remix } 
 
-You can interact with the XC-20 precompile using [Remix](https://remix.ethereum.org/). First, you will need to add the ERC-20 interface to Remix:
+You can interact with the XC-20 precompile using [Remix](https://remix.ethereum.org/){target=_blank}. First, you will need to add the ERC-20 interface to Remix:
 
-1. Get a copy of [ERC20.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol) 
+1. Get a copy of [ERC20.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=_blank} 
 2. Paste the file contents into a Remix file named **IERC20.sol**
 
 ![Load the interface in Remix](/images/builders/xcm/xc20/overview/xc20-3.png)
@@ -169,4 +176,4 @@ The **IERC20** precompile for the XC-20 will appear in the list of **Deployed Co
 
 ![Interact with the precompile functions](/images/builders/xcm/xc20/overview/xc20-6.png)
 
-To learn how to interact with each of the functions, you can check out the [ERC-20 Precompile](/builders/build/canonical-contracts/precompiles/erc20/) guide and modify it for interacting with the XC-20 precompile.
+To learn how to interact with each of the functions, you can check out the [ERC-20 Precompile](/builders/build/canonical-contracts/precompiles/erc20/){target=_blank} guide and modify it for interacting with the XC-20 precompile.
