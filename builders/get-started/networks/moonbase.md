@@ -75,7 +75,7 @@ There are a variety of DApps deployed to Moonbase Alpha enabling you to experime
 | [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank}  | Chainlink Demo  | [https://github.com/PureStake/moonlink-dashboard](https://github.com/PureStake/moonlink-dashboard){target=_blank}  |
 | [MoonLotto Lottery](https://moonbase-moonlotto.netlify.app/){target=_blank}  | TheGraph Demo  | [Interface](https://github.com/PureStake/moonlotto-interface){target=_blank}, [Subgraph](https://github.com/PureStake/moonlotto-subgraph){target=_blank}  |
 | [Moonbeam WalletConnect](https://moonbeam-walletconnect-demo.netlify.app/){target=_blank}  | WalletConnect Demo  | [https://github.com/PureStake/moonbeam-walletconnect-demo](https://github.com/PureStake/moonbeam-walletconnect-demo){target=_blank}  |
-| [Moonbase Chainbridge](https://moonbase-chainbridge.netlify.app/transfer){target=_blank}  | Chainbridge Demo  | [https://github.com/PureStake/chainbridge-ui](https://github.com/PureStake/chainbridge-ui){target=_blank}  |
+| [Moonbase ChainBridge](https://moonbase-chainbridge.netlify.app/transfer){target=_blank}  | Chainbridge Demo  | [https://github.com/PureStake/chainbridge-ui](https://github.com/PureStake/chainbridge-ui){target=_blank}  |
 | [MoonGas](https://moonbeam-gasinfo.netlify.app/){target=_blank}  | Gas Price Tracker  | [https://github.com/albertov19/moonbeam-gas-station](https://github.com/albertov19/moonbeam-gas-station){target=_blank}  |
 
 
@@ -90,7 +90,7 @@ The Moonbase ERC20 Minter enables you to mint a variety of ERC-20 test tokens co
 
 ### Moonbeam Uniswap {: #moonbeam-uniswap } 
 
-[Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank} is a fork of [Uniswap-V2](https://uniswap.org/blog/uniswap-v2){target=_blank} deployed to Moonbase Alpha. Notably, Moonbeam Uniswap allows developers to easily make a swap to acquire cross chain assets such as xcKarura or xcUnits for XCM testing purposes. To perform your first swap, take the following steps:
+[Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank} is a fork of [Uniswap-V2](https://uniswap.org/blog/uniswap-v2){target=_blank} deployed to Moonbase Alpha. Notably, Moonbeam Uniswap allows developers to easily make a swap to acquire [cross chain assets](/builders/xcm/xc20/) such as xcKarura or xcUnits for XCM testing purposes. To perform your first swap, take the following steps:
 
 1. Connect your MetaMask Wallet and ensure you're on the Moonbase Alpha network
 2. Press **Select a token** and Press **Choose a List** on the prompt
@@ -126,16 +126,17 @@ The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank}
 
 ### Moonbase Chainbridge {: #moonbase-chainbridge } 
 
-[Moonbase Chainbridge](https://moonbase-chainbridge.netlify.app/transfer){target=_blank} enables you to bridge ERC-20 tokens from Moonbase Alpha to Ethereum's Rinkeby and Kovan testnets and vice versa. For more information on Chainbridge's Ethereum Moonbeam Bridge, be sure to check out [this step-by-step guide](/builders/integrations/bridges/eth/chainbridge/) on using Chainbridge's ERC-20, ERC-721, and Generic Handlers. You can also check out the [DApp's repository](https://github.com/PureStake/chainbridge-ui){target=_blank}. To initiate a bridge transfer, take the following steps:
+[Moonbase Chainbridge](https://moonbase-chainbridge.netlify.app/transfer){target=_blank} enables you to bridge ERC-20 tokens from Moonbase Alpha to Ethereum's Rinkeby and Kovan testnets and vice versa. For more information on Chainbridge's Ethereum Moonbeam Bridge, be sure to check out [this step-by-step guide](/builders/integrations/bridges/eth/chainbridge/) on using Chainbridge's ERC-20, ERC-721, and Generic Handlers. You can also check out the [Moonbase Chainbridge repository](https://github.com/PureStake/chainbridge-ui){target=_blank}. To initiate a bridge transfer, take the following steps:
 
-1. Connect your MetaMask Wallet and ensure you're on the Moonbase Alpha network, then click on **Mint**
-2. You can ignore the destination network at this time. Select ERC20S from the Token dropdown
-3. Press **Mint Tokens** and confirm the transaction in MetaMask
-4. Return to the **Transfer** tab and select the destination network
-5. Select ERC20S from the Token dropdown
-6. Specify the amount to bridge
-7. Enter a destination address or check **I want to send funds to my address**
-8. Press Start Transfer and Confirm the Transaction in MetaMask. The DApp will update you on the status of the bridge transfer. 
+1. Connect your MetaMask Wallet and ensure you're on the Moonbase Alpha network, then click **Mint**
+2. Specify a destination network (although the minted tokens will be the same regardless of destination)
+3. Select ERC20S from the Token dropdown
+4. Press **Mint Tokens** and confirm the transaction in MetaMask
+5. Return to the **Transfer** tab and select the destination network
+6. Select ERC20S from the Token dropdown
+7. Specify the amount to bridge
+8. Enter a destination address or check **I want to send funds to my address**
+9. Press Start Transfer and Confirm the Transaction in MetaMask. The DApp will update you on the status of the bridge transfer. 
 
 ![Moonbase Chainbridge](/images/builders/get-started/networks/moonbase/moonbase-8.png)
 
