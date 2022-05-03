@@ -47,7 +47,7 @@ The current list of available XC-20 assets per network is the following:
      _*You can check each Asset ID from the [Assets tab on Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonriver.moonbeam.network#/assets){target=_blank}_
 
 === "Moonbase Alpha"
-    |         Origin          | Symbol  |                                                                 XC20 Address                                                                 |
+    |         Origin          | Symbol  |                                                                XC-20 Address                                                                 |
     |:-----------------------:|:-------:|:--------------------------------------------------------------------------------------------------------------------------------------------:|
     |  Relay Chain Alphanet   | xcUNIT  | [0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080](https://moonbase.moonscan.io/address/0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080){target=_blank} |
     |    Basilisk Alphanet    |  xcBSX  | [0xFFfFfFfF4d0Ff56d0097BBd14920eaC488540BFA](https://moonbase.moonscan.io/address/0xFFfFfFfF4d0Ff56d0097BBd14920eaC488540BFA){target=_blank} |
