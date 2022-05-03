@@ -6,8 +6,9 @@ Please explain the changes this PR addresses here.
 
 - [ ] If this requires translations for the `moonbeam-docs-cn` repo, I have created a ticket for the translations in Jira
 - [ ] If pages have been moved around, I have created an additional PR in `moonbeam-mkdocs` to update redirects
+- [ ] If pages have been moved around, I have run the `move-pages.py` script to move the pages and update the image paths on the chinese repo
+    - [ ] After the script has been run, I have created an additional PR in `moonbeam-docs-cn`
 - [ ] If images have been added, I have run the `compress-images.py` script to compress the images.
-- [ ] If images have been moved, I have created an additional PR in `moonbeam-docs-cn` to update images to their new paths
 - [ ] If variables (in variables.yml) need to be updated (such as a name change), I have updated the `moonbeam-docs-cn` repo to use the new variables
 
 ### Corresponding PRs
