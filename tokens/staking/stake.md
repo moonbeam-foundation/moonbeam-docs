@@ -109,7 +109,7 @@ Each extrinsic provides a different response:
 
 ### Get the Candidate Delegation Count {: #get-the-candidate-delegation-count } 
 
-First, you need to get the `candidateInfo`, which will contain the delegator count, as you'll need to submit this parameter in a later transaction. To retrieve the parameter, make sure you're still on the **Chain State** tab of the **Devloper** page, and then take the following steps:
+First, you need to get the `candidateInfo`, which will contain the delegator count, as you'll need to submit this parameter in a later transaction. To retrieve the parameter, make sure you're still on the **Chain State** tab of the **Developer** page, and then take the following steps:
 
  1. Choose the **parachainStaking** pallet to interact with
  2. Choose the **candidateInfo** state to query
