@@ -17,7 +17,7 @@ XC-20s are a unique asset class on Moonbeam. It combines the power of Substrate 
 
 ![Moonbeam XC-20 XCM Integration With Polkadot](/images/builders/xcm/overview/overview-4.png)
 
-XC-20 assets will be differentiated by having `xc` prepended to their name. For example, Polkadot's DOT representation on Moonbeam is known as _xcDOT_ and Kusama's KSM representation on Moonriver is _xcKSM_. Please note that XC-20 precompiles do not support cross-chain transfers, and this is intentionally done to stay as close as possible to the standard ERC-20 interface.
+XC-20 assets will be differentiated by having `xc` prepended to their name. For example, Polkadot's DOT representation on Moonbeam is known as _xcDOT_ and Kusama's KSM representation on Moonriver is _xcKSM_. Please note that XC-20 precompiles do not support cross-chain transfers within the contract itself, and this is intentionally done to stay as close as possible to the standard ERC-20 interface. Cross-chain transfer of XC-20s are done using the [X-Tokens pallet](/builders/xcm/xc20/xtokens/).
 
 XC-20s need to be registered and linked to another asset in the ecosystem before being used. This is done through a whitelisting process via a democracy proposal. If you are interested in testing XCM features in our TestNet, please contact us through our [Discord Server](https://discord.gg/PfpUATX){target=_blank}. For more information on XCM, you can check out the [XCM Overview](/builders/xcm/overview/){target=_blank} page of our documentation.
 
