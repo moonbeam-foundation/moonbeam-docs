@@ -68,7 +68,7 @@ You've now successfully imported a Moonbeam compatible account from your Ledger 
 
 Next, you will need to obtain some GLMR, MOVR, or DEV tokens and using the address you just copied, send the tokens to your account. After the transaction has successfully gone through, you will see your balance update.
 
-If you need DEV tokens for the Moonbase Alpha TestNet, you can head to the faucet to [Get Tokens](/builders/get-started/moonbase/#get-tokens).
+If you need DEV tokens for the Moonbase Alpha TestNet, you can head to the faucet to [Get Tokens](/builders/get-started/networks/moonbase/#get-tokens).
 
 ## Send Tokens {: #send-tokens } 
 

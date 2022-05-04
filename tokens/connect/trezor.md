@@ -36,7 +36,7 @@ To get started, you need to have set up a wallet (either standard or a hidden wa
  1. Click on the top-right logo to expand the menu
  2. Select "Connect Hardware Wallet"
 
-![MetaMask Connect Hardware Wallet](/images/tokens/connect/ledger/ledger-2.png)
+![MetaMask Connect Hardware Wallet](/images/tokens/connect/ledger/ethereum/ledger-2.png)
 
 Right after, you are prompted to select which hardware wallet you'll like to use in MetaMask. At the moment of writing, only Ledger and Trezor hardware wallets are supported. If you have your Trezor device ready to go, take the following steps:
 
