@@ -1,4 +1,4 @@
-## General XCM Definitions
+## General XCM Definitions {: #general-xcm-definitions }
 
  - **XCM** — stands for cross-consensus message, it is a general way for consesus systems to communicate with eachother
  - **VMP** — stands for vertical message passing, it allows parachains to exchange messages with the relay chain. *UMP* (upward message passing) allows parachains to send messages to their relay chain, while *DMP* (downward message passing) allows the relay chain to pass messages down to one of their parachains
