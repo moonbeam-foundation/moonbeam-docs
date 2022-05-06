@@ -43,7 +43,7 @@ The collator node should respond with the corresponding public key of the new se
 
 ![Collator Terminal Logs RPC Rotate Keys](/images/node-operators/networks/collators/account-management/account-2.png)
 
-Make sure you write down the public key for each of the session keys. Each of your servers, your primary and backup, should have their own unique keys. Since the keys never leave your servers, you can consider them a unique ID for that server.
+Remember, you'll need to call `author_rotateKeys` for each session key you need to generate. Make sure you write down the public key for each of the session keys. Each of your servers, your primary and backup, should have their own unique keys. Since the keys never leave your servers, you can consider them a unique ID for that server.
 
 Next, you'll need to register your session keys and map the author ID session key to an H160 Ethereum-styled address to which the block rewards are paid.
 
@@ -74,16 +74,14 @@ The module also adds the following RPC calls (chain state):
 
 Once you've generated your session keys, the next step is to register the session keys and map the author ID to your H160 account (an Ethereum-style address). Make sure you hold the private keys to this account, as this is where the block rewards are paid out to.
 
-To map your author ID to your account, you need to be inside the [candidate pool](/node-operators/networks/collators/activities/#become-a-candidate){target=_blank}. Once you are a candidate, you need to send a mapping extrinsic. Note that this will bond tokens per author ID registered. To do so, take the following steps:
+To map your author ID to your account, you need to be inside the [candidate pool](/node-operators/networks/collators/activities/#become-a-candidate){target=_blank}. Once you are a candidate, you need to send a mapping extrinsic. Note that this will bond tokens per author ID registered. To do so, click on **Developer** at the top of the page, choose the **Extrinsics** option from the dropdown, and take the following steps:
 
- 1. Head to the **Developer** tab
- 2. Select the **Extrinsics** option
- 3. Choose the account that you want to map your author ID to be associated with, from which you'll sign this transaction
- 4. Select the **authorMapping** extrinsic
- 5. Set the method to **registerKeys()**
- 6. Enter the **authorId** (**NimbusId**). In this case, it was obtained via the RPC call `author_rotateKeys` in the previous section
- 7. For the **keys** field, enter the VRF key. This should have been obtained via an additional `author_rotateKeys` RPC call
- 8. Click on **Submit Transaction**
+ 1. Choose the account that you want to map your author ID to be associated with, from which you'll sign this transaction
+ 2. Select the **authorMapping** extrinsic
+ 3. Set the method to **registerKeys()**
+ 4. Enter the **authorId** (**NimbusId**). In this case, it was obtained via the RPC call `author_rotateKeys` in the previous section
+ 5. For the **keys** field, enter the VRF key. This should have been obtained via an additional `author_rotateKeys` RPC call
+ 6. Click on **Submit Transaction**
 
 ![Author ID Mapping to Account Extrinsic](/images/node-operators/networks/collators/account-management/account-3.png)
 
@@ -93,14 +91,12 @@ If the transaction is successful, you will see a confirmation notification on yo
 
 ### Checking the Mappings {: #checking-the-mappings } 
 
-You can also check the current on-chain mappings by verifying the chain state. To do so, take the following steps:
+You can also check the current on-chain mappings by verifying the chain state. You'll need to click on **Developer** at the top of the page, then choose **Chain State** from the dropdown, and take the following steps:
 
- 1. Head to the **Developer** tab
- 2. Select the **Chain state** option
- 3. Choose **authorMapping** as the state to query
- 4. Select the **mappingWithDeposit** method
- 5. Provide an author ID to query. Optionally, you can disable the slider to retrieve all mappings 
- 6. Click on the **+** button to send the RPC call
+ 1. Choose **authorMapping** as the state to query
+ 2. Select the **mappingWithDeposit** method
+ 3. Provide an author ID (Nimbus ID) to query. Optionally, you can disable the slider to retrieve all mappings 
+ 4. Click on the **+** button to send the RPC call
 
 ![Author ID Mapping Chain State](/images/node-operators/networks/collators/account-management/account-5.png)
 
