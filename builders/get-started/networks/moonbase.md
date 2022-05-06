@@ -142,7 +142,7 @@ The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank}
 
 ### MoonGas {: #moongas } 
 
-[MoonGas](https://moonbeam-gasinfo.netlify.app/){target=_blank} is a convenient dashboard for viewing the minimum, maximum, and average gas price of transactions in the prior block across all Moonbeam networks. Note, these statistics can fluctuate widely by block and occasionally include outlier values. You can check out the [repository for MoonGas here](https://github.com/albertov19/moonbeam-gas-station){target=_blank}. 
+[MoonGas](https://moonbeam-gasinfo.netlify.app/){target=_blank} is a convenient dashboard for viewing the minimum, maximum, and average gas price of transactions in the prior block across all Moonbeam networks. Note, these statistics can fluctuate widely by block and occasionally include outlier values. You can check out the [repository for MoonGas](https://github.com/albertov19/moonbeam-gas-station){target=_blank}. 
 
 You'll notice that the minimum gas price for Moonbeam is 100 Gwei, while the minimum for Moonriver and Moonbase Alpha is only 1 Gwei. This difference stems from the [100 to 1 re-denomination of GLMR](https://moonbeam.foundation/news/moonbeam-community-announcement/){target=_blank} and thus the 100 Gwei minimum on Moonbeam corresponds to a 1 Gwei minimum on Moonriver and Moonbeam. 
 
