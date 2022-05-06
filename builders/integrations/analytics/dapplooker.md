@@ -85,7 +85,7 @@ Another place you can start to view and build off of data is from the list of [M
 - [Moonbeam Staking Dashboard](https://network.dapplooker.com/moonbeam/collator){target=_blank} - staking dashboards for collators and delegators on Moonbeam that includes APY data
 - [Moonriver Staking Dashboard](https://network.dapplooker.com/moonriver/collator){target=_blank} - staking dashboards for collators and delegators on Moonriver that includes APY data
 - [Dapplooker Explorer for Moonbeam](https://dapplooker.com/category/moonbeam?type=dashboard){target=_blank} - find popular dashboards on Moonbeam
-- [Dapplooker Explorer for Moonriver](https://dapplooker.com/category/moonriver?type=dashboard){target=_blank} - find popular dashboards on Moonbeam
+- [Dapplooker Explorer for Moonriver](https://dapplooker.com/category/moonriver?type=dashboard){target=_blank} - find popular dashboards on Moonriver
 
 
 --8<-- 'text/disclaimers/third-party-content.md'
