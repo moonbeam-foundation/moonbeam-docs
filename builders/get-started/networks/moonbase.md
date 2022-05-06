@@ -70,7 +70,7 @@ There are a variety of DApps deployed to Moonbase Alpha enabling you to experime
 
 |  DApp  | Description |                Repository                  |
 |:------------:|:------------:|:-------------------------------------------------:|
-| [Moonbase ERC20 Minter](https://moonbase-minterc20.netlify.app/){target=_blank} | ERC-20 Faucet  |[https://github.com/PureStake/moonbase-mintableERC20](https://github.com/PureStake/moonbase-mintableERC20){target=_blank} |
+| [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app/){target=_blank} | ERC-20 Faucet  |[https://github.com/PureStake/moonbase-mintableERC20](https://github.com/PureStake/moonbase-mintableERC20){target=_blank} |
 | [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}  |  Uniswap V2 Fork  | [https://github.com/PureStake/moonbeam-uniswap](https://github.com/PureStake/moonbeam-uniswap){target=_blank}  |
 | [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank}  | Chainlink Demo  | [https://github.com/PureStake/moonlink-dashboard](https://github.com/PureStake/moonlink-dashboard){target=_blank}  |
 | [MoonLotto Lottery](https://moonbase-moonlotto.netlify.app/){target=_blank}  | TheGraph Demo  | [Interface](https://github.com/PureStake/moonlotto-interface){target=_blank}, [Subgraph](https://github.com/PureStake/moonlotto-subgraph){target=_blank}  |
