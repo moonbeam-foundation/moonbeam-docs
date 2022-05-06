@@ -84,7 +84,7 @@ There are a variety of DApps deployed to Moonbase Alpha enabling you to experime
 
 ### Moonbase ERC20 Minter {: #moonbase-erc20-minter } 
 
-The Moonbase ERC20 Minter enables you to mint a variety of ERC-20 test tokens corresponding to the 8 planets of the Solar System, and Pluto. To mint tokens, first press **Connect MetaMask** in the upper right hand corner. Then scroll to the Mint Tokens section and the choose desired ERC20 contract. Press **Submit Tx** and confirm the transaction in MetaMask. Each mint will grant you 100 tokens, and you can mint tokens for each contract once per hour.
+The [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app/){target=_blank} enables you to mint a variety of ERC-20 test tokens corresponding to the 8 planets of the solar system, and Pluto. To mint tokens, first press **Connect MetaMask** in the upper right hand corner. Then scroll to the **Mint Tokens** section and the choose desired ERC-20 contract. Press **Submit Tx** and confirm the transaction in MetaMask. Each mint will grant you 100 tokens, and you can mint tokens for each contract once per hour.
 
 ![ERC20 Minter](/images/builders/get-started/networks/moonbase/moonbase-3.png)
 
