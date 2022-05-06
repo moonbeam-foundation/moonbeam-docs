@@ -64,18 +64,18 @@ Mission Control will send you 5 DEV tokens and display your current account bala
 
 ## Demo DApps {: #Demo-DApps }
 
-There are a variety of DApps deployed to Moonbase Alpha enabling you to experiment with various apps and integrations. You can also acquire a variety of test tokens thru the [Moonbase ERC20 Minter](https://moonbase-minterc20.netlify.app/){target=_blank} or [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank} DApps. For example, [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank} can help you acquire cross chain assets such as xcUnits or xcKarura for testing XCM related functions. In the below table, you'll find each sample DApp, its associated URL, and GitHub respository.
+There are a variety of DApps deployed to Moonbase Alpha enabling you to experiment with various apps and integrations. You can also acquire a variety of test tokens through the [Moonbase ERC20 Minter](https://moonbase-minterc20.netlify.app/){target=_blank} or [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank} DApps. For example, [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank} can help you acquire cross chain assets such as xcUNITs or xcKarura for testing XCM related functions. In the below table, you'll find each sample DApp, its associated URL, and GitHub repository.
 
-### Quick Links
+### Quick Links {: #quick-links }
 
 |  DApp  | Description |                Repository                  |
 |:------------:|:------------:|:-------------------------------------------------:|
-| [Moonbase ERC20 Minter](https://moonbase-minterc20.netlify.app/){target=_blank} | ERC-20 Faucet  |[https://github.com/PureStake/moonbase-mintableERC20](https://github.com/PureStake/moonbase-mintableERC20){target=_blank} |
+| [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app/){target=_blank} | ERC-20 Faucet  |[https://github.com/PureStake/moonbase-mintableERC20](https://github.com/PureStake/moonbase-mintableERC20){target=_blank} |
 | [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}  |  Uniswap V2 Fork  | [https://github.com/PureStake/moonbeam-uniswap](https://github.com/PureStake/moonbeam-uniswap){target=_blank}  |
 | [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank}  | Chainlink Demo  | [https://github.com/PureStake/moonlink-dashboard](https://github.com/PureStake/moonlink-dashboard){target=_blank}  |
 | [MoonLotto Lottery](https://moonbase-moonlotto.netlify.app/){target=_blank}  | TheGraph Demo  | [Interface](https://github.com/PureStake/moonlotto-interface){target=_blank}, [Subgraph](https://github.com/PureStake/moonlotto-subgraph){target=_blank}  |
 | [Moonbeam WalletConnect](https://moonbeam-walletconnect-demo.netlify.app/){target=_blank}  | WalletConnect Demo  | [https://github.com/PureStake/moonbeam-walletconnect-demo](https://github.com/PureStake/moonbeam-walletconnect-demo){target=_blank}  |
-| [Moonbase ChainBridge](https://moonbase-chainbridge.netlify.app/transfer){target=_blank}  | Chainbridge Demo  | [https://github.com/PureStake/chainbridge-ui](https://github.com/PureStake/chainbridge-ui){target=_blank}  |
+| [Moonbase ChainBridge](https://moonbase-chainbridge.netlify.app/transfer){target=_blank}  | ChainBridge Demo  | [https://github.com/PureStake/chainbridge-ui](https://github.com/PureStake/chainbridge-ui){target=_blank}  |
 | [MoonGas](https://moonbeam-gasinfo.netlify.app/){target=_blank}  | Gas Price Tracker  | [https://github.com/albertov19/moonbeam-gas-station](https://github.com/albertov19/moonbeam-gas-station){target=_blank}  |
 
 
@@ -84,7 +84,7 @@ There are a variety of DApps deployed to Moonbase Alpha enabling you to experime
 
 ### Moonbase ERC20 Minter {: #moonbase-erc20-minter } 
 
-The Moonbase ERC20 Minter enables you to mint a variety of ERC-20 test tokens corresponding to the 8 planets of the Solar System, and Pluto. To mint tokens, first press **Connect MetaMask** in the upper right hand corner. Then scroll to the Mint Tokens section and the choose desired ERC20 contract. Press **Submit Tx** and confirm the transaction in MetaMask. Each mint will grant you 100 tokens, and you can mint tokens for each contract once per hour.
+The [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app/){target=_blank} enables you to mint a variety of ERC-20 test tokens corresponding to the 8 planets of the solar system, and Pluto. To mint tokens, first press **Connect MetaMask** in the upper right hand corner. Then scroll to the **Mint Tokens** section and the choose desired ERC-20 contract. Press **Submit Tx** and confirm the transaction in MetaMask. Each mint will grant you 100 tokens, and you can mint tokens for each contract once per hour.
 
 ![ERC20 Minter](/images/builders/get-started/networks/moonbase/moonbase-3.png)
 
@@ -124,7 +124,7 @@ The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank}
 
 ![MoonBeam WalletConnect](/images/builders/get-started/networks/moonbase/moonbase-7.png)
 
-### Moonbase Chainbridge {: #moonbase-chainbridge } 
+### Moonbase ChainBridge {: #moonbase-chainbridge } 
 
 [Moonbase Chainbridge](https://moonbase-chainbridge.netlify.app/transfer){target=_blank} enables you to bridge ERC-20 tokens from Moonbase Alpha to Ethereum's Rinkeby and Kovan testnets and vice versa. For more information on Chainbridge's Ethereum Moonbeam Bridge, be sure to check out [this step-by-step guide](/builders/integrations/bridges/eth/chainbridge/) on using Chainbridge's ERC-20, ERC-721, and Generic Handlers. You can also check out the [Moonbase Chainbridge repository](https://github.com/PureStake/chainbridge-ui){target=_blank}. To initiate a bridge transfer, take the following steps:
 
@@ -136,13 +136,13 @@ The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank}
 6. Select ERC20S from the Token dropdown
 7. Specify the amount to bridge
 8. Enter a destination address or check **I want to send funds to my address**
-9. Press Start Transfer and Confirm the Transaction in MetaMask. The DApp will update you on the status of the bridge transfer. 
+9. Press **Start Transfer** and **Confirm** the transaction in MetaMask. The DApp will update you on the status of the bridge transfer
 
 ![Moonbase Chainbridge](/images/builders/get-started/networks/moonbase/moonbase-8.png)
 
 ### MoonGas {: #moongas } 
 
-[MoonGas](https://moonbeam-gasinfo.netlify.app/){target=_blank} is a convenient dashboard for viewing the minimum, maximum, and average gas price of transactions in the prior block across all Moonbeam networks. Note, these statistics can fluctuate widely by block and occasionally include outlier values. You can check out the [repository for MoonGas here](https://github.com/albertov19/moonbeam-gas-station){target=_blank}. 
+[MoonGas](https://moonbeam-gasinfo.netlify.app/){target=_blank} is a convenient dashboard for viewing the minimum, maximum, and average gas price of transactions in the prior block across all Moonbeam networks. Note, these statistics can fluctuate widely by block and occasionally include outlier values. You can check out the [repository for MoonGas](https://github.com/albertov19/moonbeam-gas-station){target=_blank}. 
 
 You'll notice that the minimum gas price for Moonbeam is 100 Gwei, while the minimum for Moonriver and Moonbase Alpha is only 1 Gwei. This difference stems from the [100 to 1 re-denomination of GLMR](https://moonbeam.foundation/news/moonbeam-community-announcement/){target=_blank} and thus the 100 Gwei minimum on Moonbeam corresponds to a 1 Gwei minimum on Moonriver and Moonbeam. 
 
