@@ -124,7 +124,7 @@ The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank}
 
 ![MoonBeam WalletConnect](/images/builders/get-started/networks/moonbase/moonbase-7.png)
 
-### Moonbase Chainbridge {: #moonbase-chainbridge } 
+### Moonbase ChainBridge {: #moonbase-chainbridge } 
 
 [Moonbase Chainbridge](https://moonbase-chainbridge.netlify.app/transfer){target=_blank} enables you to bridge ERC-20 tokens from Moonbase Alpha to Ethereum's Rinkeby and Kovan testnets and vice versa. For more information on Chainbridge's Ethereum Moonbeam Bridge, be sure to check out [this step-by-step guide](/builders/integrations/bridges/eth/chainbridge/) on using Chainbridge's ERC-20, ERC-721, and Generic Handlers. You can also check out the [Moonbase Chainbridge repository](https://github.com/PureStake/chainbridge-ui){target=_blank}. To initiate a bridge transfer, take the following steps:
 
