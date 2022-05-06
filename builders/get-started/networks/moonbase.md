@@ -64,7 +64,7 @@ Mission Control will send you 5 DEV tokens and display your current account bala
 
 ## Demo DApps {: #Demo-DApps }
 
-There are a variety of DApps deployed to Moonbase Alpha enabling you to experiment with various apps and integrations. You can also acquire a variety of test tokens thru the [Moonbase ERC20 Minter](https://moonbase-minterc20.netlify.app/){target=_blank} or [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank} DApps. For example, [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank} can help you acquire cross chain assets such as xcUnits or xcKarura for testing XCM related functions. In the below table, you'll find each sample DApp, its associated URL, and GitHub respository.
+There are a variety of DApps deployed to Moonbase Alpha enabling you to experiment with various apps and integrations. You can also acquire a variety of test tokens through the [Moonbase ERC20 Minter](https://moonbase-minterc20.netlify.app/){target=_blank} or [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank} DApps. For example, [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank} can help you acquire cross chain assets such as xcUNITs or xcKarura for testing XCM related functions. In the below table, you'll find each sample DApp, its associated URL, and GitHub repository.
 
 ### Quick Links
 
