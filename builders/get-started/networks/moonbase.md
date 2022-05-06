@@ -136,7 +136,7 @@ The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank}
 6. Select ERC20S from the Token dropdown
 7. Specify the amount to bridge
 8. Enter a destination address or check **I want to send funds to my address**
-9. Press Start Transfer and Confirm the Transaction in MetaMask. The DApp will update you on the status of the bridge transfer. 
+9. Press **Start Transfer** and **Confirm** the transaction in MetaMask. The DApp will update you on the status of the bridge transfer
 
 ![Moonbase Chainbridge](/images/builders/get-started/networks/moonbase/moonbase-8.png)
 
