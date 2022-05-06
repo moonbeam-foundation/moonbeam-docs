@@ -92,7 +92,7 @@ The Moonbase ERC20 Minter enables you to mint a variety of ERC-20 test tokens co
 
 [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank} is a fork of [Uniswap-V2](https://uniswap.org/blog/uniswap-v2){target=_blank} deployed to Moonbase Alpha. Notably, Moonbeam Uniswap allows developers to easily make a swap to acquire [cross chain assets](/builders/xcm/xc20/) such as xcKarura or xcUnits for XCM testing purposes. To perform your first swap, take the following steps:
 
-1. Connect your MetaMask Wallet and ensure you're on the Moonbase Alpha network
+1. Connect your MetaMask wallet and ensure you're on the Moonbase Alpha network
 2. Press **Select a token** and Press **Choose a List** on the prompt
 3. Select **Moon Menu** 
 4. Search for or select your desired asset from the list then continue with the swap
@@ -112,7 +112,7 @@ The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank}
 
 [MoonLotto](https://moonbase-moonlotto.netlify.app/){target=_blank} is a simple lottery game on Moonbase Alpha derived from [TheGraph's Example Subgraph](https://github.com/graphprotocol/example-subgraph){target=_blank}.  Purchasing a ticket costs 1 DEV and a winner is chosen each half hour if there are at least 10 participants. [MoonLotto.sol](https://github.com/PureStake/moonlotto-subgraph/blob/main/contracts/MoonLotto.sol){target=_blank} holds the contract logic for the lottery. To participate, take the following steps:
 
-1. Connect your MetaMask Wallet and ensure you're on the Moonbase Alpha network
+1. Connect your MetaMask wallet and ensure you're on the Moonbase Alpha network
 2. Enter the address of the recipient of lotto ticket or check **I want to buy a ticket for my address**
 3. Press **Submit on MetaMask** and confirm the transaction in MetaMask
 
@@ -128,7 +128,7 @@ The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank}
 
 [Moonbase Chainbridge](https://moonbase-chainbridge.netlify.app/transfer){target=_blank} enables you to bridge ERC-20 tokens from Moonbase Alpha to Ethereum's Rinkeby and Kovan testnets and vice versa. For more information on Chainbridge's Ethereum Moonbeam Bridge, be sure to check out [this step-by-step guide](/builders/integrations/bridges/eth/chainbridge/) on using Chainbridge's ERC-20, ERC-721, and Generic Handlers. You can also check out the [Moonbase Chainbridge repository](https://github.com/PureStake/chainbridge-ui){target=_blank}. To initiate a bridge transfer, take the following steps:
 
-1. Connect your MetaMask Wallet and ensure you're on the Moonbase Alpha network, then click **Mint**
+1. Connect your MetaMask wallet and ensure you're on the Moonbase Alpha network, then click **Mint**
 2. Specify a destination network (although the minted tokens will be the same regardless of destination)
 3. Select ERC20S from the Token dropdown
 4. Press **Mint Tokens** and confirm the transaction in MetaMask
