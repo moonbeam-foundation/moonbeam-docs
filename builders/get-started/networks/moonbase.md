@@ -75,7 +75,7 @@ There are a variety of DApps deployed to Moonbase Alpha enabling you to experime
 | [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank}  | Chainlink Demo  | [https://github.com/PureStake/moonlink-dashboard](https://github.com/PureStake/moonlink-dashboard){target=_blank}  |
 | [MoonLotto Lottery](https://moonbase-moonlotto.netlify.app/){target=_blank}  | TheGraph Demo  | [Interface](https://github.com/PureStake/moonlotto-interface){target=_blank}, [Subgraph](https://github.com/PureStake/moonlotto-subgraph){target=_blank}  |
 | [Moonbeam WalletConnect](https://moonbeam-walletconnect-demo.netlify.app/){target=_blank}  | WalletConnect Demo  | [https://github.com/PureStake/moonbeam-walletconnect-demo](https://github.com/PureStake/moonbeam-walletconnect-demo){target=_blank}  |
-| [Moonbase ChainBridge](https://moonbase-chainbridge.netlify.app/transfer){target=_blank}  | Chainbridge Demo  | [https://github.com/PureStake/chainbridge-ui](https://github.com/PureStake/chainbridge-ui){target=_blank}  |
+| [Moonbase ChainBridge](https://moonbase-chainbridge.netlify.app/transfer){target=_blank}  | ChainBridge Demo  | [https://github.com/PureStake/chainbridge-ui](https://github.com/PureStake/chainbridge-ui){target=_blank}  |
 | [MoonGas](https://moonbeam-gasinfo.netlify.app/){target=_blank}  | Gas Price Tracker  | [https://github.com/albertov19/moonbeam-gas-station](https://github.com/albertov19/moonbeam-gas-station){target=_blank}  |
 
 
