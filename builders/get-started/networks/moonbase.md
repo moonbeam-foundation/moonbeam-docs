@@ -39,9 +39,9 @@ To start building on Moonbase Alpha, you can get DEV tokens from our faucet, nam
 
 To request tokens automatically, we've created a Discord bot (named Mission Control :sunglasses:) that will automatically send a maximum of 5 DEV tokens every 24 hours (per Discord user) when you enter your address. You can check it out on our [Discord channel](https://discord.gg/PfpUATX).
  
-Under the category "Miscellaneous," you will find our **#Moonbase-Faucet** channel. 
+Under the category **Miscellaneous**, you will find our **#Moonbase-Faucet** channel. 
 
-![Discord1](/images/builders/get-started/networks/moonbase/moonbase-1.png)
+![Moonbase faucet channel on Discord](/images/builders/get-started/networks/moonbase/moonbase-1.png)
 
 To check your balance, enter the following message, replacing `<enter-address-here->` with your H160 address:
 
@@ -57,7 +57,7 @@ To get DEV tokens, enter the following message, replacing `<enter-address-here->
 
 Mission Control will send you 5 DEV tokens and display your current account balance. Remember that Mission Control is limited to dispense once every 24 hours per Discord user.
 
-![Discord2](/images/builders/get-started/networks/moonbase/moonbase-2.png)
+![Faucet send command example](/images/builders/get-started/networks/moonbase/moonbase-2.png)
 
 !!! note
     Moonbase Alpha DEV tokens have no value. Please don't spam the faucet with unnecessary requests.
@@ -92,10 +92,11 @@ The [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app/){target=_bl
 
 [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank} is a fork of [Uniswap-V2](https://uniswap.org/blog/uniswap-v2){target=_blank} deployed to Moonbase Alpha. Notably, Moonbeam Uniswap allows developers to easily make a swap to acquire [cross chain assets](/builders/xcm/xc20/) such as xcKarura or xcUNITs for XCM testing purposes. To perform your first swap, take the following steps:
 
-1. Connect your MetaMask wallet and ensure you're on the Moonbase Alpha network
-2. Press **Select a token** and press **Choose a List** on the prompt
-3. Select **Moon Menu** 
-4. Search for or select your desired asset from the list then continue with the swap
+1. Press **Select a token** 
+2. Connect your MetaMask wallet and ensure you're on the Moonbase Alpha network
+3. Press **Choose a List** on the prompt
+4. Select **Moon Menu** 
+5. Search for or select your desired asset from the list then continue with the swap
 
 ![Moonbeam Swap](/images/builders/get-started/networks/moonbase/moonbase-4.png)
 
@@ -120,25 +121,29 @@ The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank}
 
 ### Moonbeam WalletConnect {: #moonbeam-walletconnect } 
 
-[Moonbeam WalletConnect](https://moonbeam-walletconnect-demo.netlify.app/){target=_blank} shows how easy it is to integrate [WalletConnect](https://walletconnect.com/){target=_blank} into your DApps and unlock support for a great variety of crypto wallets. Be sure to check out the [demo app repository](https://github.com/PureStake/moonbeam-walletconnect-demo){target=_blank} to see exactly how the WalletConnect integration works. To get started, press **Connect Wallet** and scan the QR code using a [wallet compatible with WalletConnect.](https://walletconnect.com/registry?type=wallet){target=_blank}
+[Moonbeam WalletConnect](https://moonbeam-walletconnect-demo.netlify.app/){target=_blank} shows how easy it is to integrate [WalletConnect](https://walletconnect.com/){target=_blank} into your DApps and unlock support for a great variety of crypto wallets. Be sure to check out the [demo app repository](https://github.com/PureStake/moonbeam-walletconnect-demo){target=_blank} to see exactly how the WalletConnect integration works. To get started, you can take the following steps:
 
-![MoonBeam WalletConnect](/images/builders/get-started/networks/moonbase/moonbase-7.png)
+1. Press **Connect Wallet**
+2. Scan the QR code using a [wallet compatible with WalletConnect](https://walletconnect.com/registry?type=wallet){target=_blank}
+
+![Moonbeam WalletConnect](/images/builders/get-started/networks/moonbase/moonbase-7.png)
 
 ### Moonbase ChainBridge {: #moonbase-chainbridge } 
 
-[Moonbase ChainBridge](https://moonbase-chainbridge.netlify.app/transfer){target=_blank} enables you to bridge ERC-20 tokens from Moonbase Alpha to Ethereum's Rinkeby and Kovan testnets and vice versa. Be sure to check out [the step-by-step guide on using ChainBridge's Ethereum Moonbeam Bridge](/builders/integrations/bridges/chainbridge/){target=_blank} for more information on using ChainBridge's ERC-20, ERC-721, and Generic Handlers. You can also check out the [Moonbase ChainBridge repository](https://github.com/PureStake/chainbridge-ui){target=_blank}. To initiate a bridge transfer, take the following steps:
+[Moonbase ChainBridge](https://moonbase-chainbridge.netlify.app/transfer){target=_blank} enables you to bridge ERC-20 tokens from Moonbase Alpha to Ethereum's Rinkeby and Kovan testnets and vice versa. Be sure to check out [the step-by-step guide on using ChainBridge's Ethereum Moonbeam Bridge](/builders/integrations/bridges/chainbridge/){target=_blank} for more information on using ChainBridge's ERC-20, ERC-721, and Generic Handlers. You can also check out the [Moonbase ChainBridge repository](https://github.com/PureStake/chainbridge-ui){target=_blank}. To initiate a bridge transfer, connect your MetaMask wallet and ensure you're on the Moonbase Alpha network, and take the following steps:
 
-1. Connect your MetaMask wallet and ensure you're on the Moonbase Alpha network, then click **Mint**
+1. Click **Mint ERC20S**
 2. Specify a destination network (although the minted tokens will be the same regardless of destination)
 3. Select **ERC20S** from the **Token** dropdown
 4. Press **Mint Tokens** and confirm the transaction in MetaMask
-5. Return to the **Transfer** tab and select the destination network
-6. Select **ERC20S** from the **Token** dropdown
-7. Specify the amount to bridge
-8. Enter a destination address or check **I want to send funds to my address**
-9. Press **Start Transfer** and **Confirm** the transaction in MetaMask. The DApp will update you on the status of the bridge transfer
+5. Return to the **Transfer** tab
+6. Select the destination network
+7. Select **ERC20S** from the **Token** dropdown
+8. Specify the amount to bridge
+9. Enter a destination address or check **I want to send funds to my address**
+10. Press **Start Transfer** and **Confirm** the transaction in MetaMask. The DApp will update you on the status of the bridge transfer
 
-![Moonbase Chainbridge](/images/builders/get-started/networks/moonbase/moonbase-8.png)
+![Moonbase ChainBridge](/images/builders/get-started/networks/moonbase/moonbase-8.png)
 
 ### MoonGas {: #moongas } 
 
@@ -146,4 +151,4 @@ The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank}
 
 You'll notice that the minimum gas price for Moonbeam is 100 Gwei, while the minimum for Moonriver and Moonbase Alpha is only 1 Gwei. This difference stems from the [100 to 1 re-denomination of GLMR](https://moonbeam.foundation/news/moonbeam-community-announcement/){target=_blank} and thus the 100 Gwei minimum on Moonbeam corresponds to a 1 Gwei minimum on Moonriver and Moonbeam. 
 
-![MoonBeam WalletConnect](/images/builders/get-started/networks/moonbase/moonbase-9.png)
+![MoonGas](/images/builders/get-started/networks/moonbase/moonbase-9.png)
