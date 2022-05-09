@@ -67,7 +67,7 @@ You can check the [XC-20](/builders/xcm/xc20/#calculate-xc20-address){target=_bl
 
 ### X-Tokens Transfer Function {: #xtokens-transfer-function}
 
-In this example, you'll build an XCM message to transfer `xcUNIT` from Moonbase Alpha back to its [relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} through the `transfer function of the X-Tokens pallet.
+In this example, you'll build an XCM message to transfer `xcUNIT` from Moonbase Alpha back to its [relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} through the `transfer` function of the X-Tokens pallet.
 
 If you've [checked the prerequisites](#xtokens-check-prerequisites), head to the extrinsic page of [Polkadot JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} and set the following options:
 
@@ -166,7 +166,7 @@ The interface includes the following functions:
  - **transfer**(*address* currency_address, *uint256* amount, *Multilocation* *memory* destination, *uint64* weight) — function that represents the `transfer` method described in the previous example. However, instead of using the currency ID, you need to provide the [XC-20 address](/builders/xcm/xc20/#current-xc20-assets){target=_blank}. The multilocation is built in a particular way that is described in the following section
  - **transfer_multiasset**(*Multilocation* *memory* asset, *uint256* amount, *Multilocation* *memory* destination, *uint64* weight) — function that represents the `transferMultiasset` method described in the previous example. Both multilocations are built in a particular way that is described in the following section
 
-### Building the Precompile Multilocation
+### Building the Precompile Multilocation {: #building-the-precompile-multilocation }
 
 In the X-Tokens precompile interface, the `Multilocation` structure is defined as follows:
 

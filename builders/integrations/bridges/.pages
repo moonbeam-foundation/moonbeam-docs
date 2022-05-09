@@ -2,4 +2,4 @@ title: Bridges
 hide: false
 nav:
   - index.md
-  - eth
+  - 'ChainBridge': 'chainbridge.md'

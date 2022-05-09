@@ -14,7 +14,7 @@ As an open, permissionless network, anyone may choose to operate an oracle provi
 This article provides an overview in regards to setting up a Chainlink oracle on Moonbase Alpha.
 
 !!! note
-    The examples provided are for demonstration purposes only. Passwords **MUST** be managed securely and never stored in plaintext. These examples assume an Ubuntu 18.04-based environment, but call-outs for MacOs are included. This guide is for a development setup only, do not use this for a production environment.
+    The examples provided are for demonstration purposes only. Passwords **MUST** be managed securely and never stored in plaintext. These examples assume an Ubuntu 18.04-based environment, but call-outs for MacOS are included. This guide is for a development setup only, do not use this for a production environment.
 
 ## Basic Request Model {: #basic-request-model } 
 
@@ -59,7 +59,7 @@ To get the node setup, you can take the following steps:
     mkdir -p ~/.chainlink-moonbeam && cd ~/.chainlink-moonbeam
     ```
 
-2. Create a Postgres DB with Docker (MacOs users may replace `--network host \` with `-p 5432:5432`)
+2. Create a Postgres DB with Docker (MacOS users may replace `--network host \` with `-p 5432:5432`)
 
     ```
     docker run -d --name chainlink_postgres_db \
@@ -72,7 +72,7 @@ To get the node setup, you can take the following steps:
 
     Make sure to replace `{YOUR-PASSWORD-HERE}` with an actual password. Docker will proceed to download the necessary images if they haven't already been downloaded
 
-3. Create an environment file for Chainlink in the `chainlink-moonbeam` directory. This file is read on the creation of the Chainlink container. MacOs users may replace `localhost` with `host.docker.internal`
+3. Create an environment file for Chainlink in the `chainlink-moonbeam` directory. This file is read on the creation of the Chainlink container. MacOS users may replace `localhost` with `host.docker.internal`
 
     ```
     echo "ROOT=/chainlink
@@ -116,7 +116,7 @@ To get the node setup, you can take the following steps:
     echo "{THIRD-PASSWORD}" > ~/.chainlink-moonbeam/.password
     ```
 
-8. Launch the containers (MacOs users may replace `--network host \` with `-p 6688:6688`)
+8. Launch the containers (MacOS users may replace `--network host \` with `-p 6688:6688`)
 
     ```
     docker run -d --name chainlink_oracle_node \
