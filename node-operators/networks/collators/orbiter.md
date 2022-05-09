@@ -114,12 +114,12 @@ Each Orbiter will be active for a certain number of rounds before the next Orbit
 
 === "Moonriver"
     ```
-    {{ networks.moonriver.orbiter.active.rounds }} rounds ({{ networks.moonriver.orbiter.active.hours }} hours)
+    {{ networks.moonriver.orbiter.active.rounds }} rounds (~{{ networks.moonriver.orbiter.active.hours }} hours)
     ```
 
 === "Moonbase Alpha"
     ```
-    {{ networks.moonbase.orbiter.active.rounds }} rounds ({{ networks.moonbase.orbiter.active.hours }} hours)
+    {{ networks.moonbase.orbiter.active.rounds }} rounds (~{{ networks.moonbase.orbiter.active.hours }} hours)
     ```
 
 
