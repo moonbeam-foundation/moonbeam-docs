@@ -68,7 +68,6 @@ As previously mentioned, each Orbiter must submit a bond to join the program. Th
     {{ networks.moonbase.orbiter.bond }} DEV
     ```
 
-
 ## Orbiters and Program Collators Configuration {: #configuration }
 
 Program collators are maintained by the Moonbeam Foundation, and will assign authority to each of the Orbiters to produce blocks. The maximum number of Orbiters per Program Collator for each network is as follows:
@@ -121,7 +120,6 @@ Each Orbiter will be active for a certain number of rounds before the next Orbit
     ```
     {{ networks.moonbase.orbiter.active.rounds }} rounds (~{{ networks.moonbase.orbiter.active.hours }} hours)
     ```
-
 
 ## Rewards {: #rewards }
 
