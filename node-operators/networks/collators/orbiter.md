@@ -25,10 +25,10 @@ This program is currently in a trial period while the Moonbeam Foundation assess
 
 To participate in the Orbiter program, you must meet the following eligibility criteria:
 
-- Due to the nature of the program, each Orbiter must pass a KYC check, and cannot be a resident of certain jurisdictions
-- Each Orbiter must post a bond.  This bond is posted to protect against bad behavior and will be subject to slashing
+- Due to the nature of the program, each Orbiter must pass a identity verification check, and cannot be a resident of certain jurisdictions
+- Each Orbiter must post a bond. This bond is posted to protect against bad behavior and will be subject to slashing
 - Each entity (person or group) may only run one Orbiter per network (i.e., one on Moonriver and one on Moonbeam)
-- Orbiters cannot run another collator on the same network as their Orbiter. They can, however, run a collator on Moonbeam and an Orbiter on Moonriver, or vice versa, as long as they do not also have both on the same network
+- Orbiters cannot run another active collator on the same network as their Orbiter. They can, however, run a active collator on Moonbeam and an Orbiter on Moonriver, or vice versa, as long as they do not also have both on the same network
 
 ## Communication {: #communication }
 
@@ -36,13 +36,13 @@ A private discord group will be created for this program, and most communication
 
 ## Application and Onboarding Process {: #application-and-onboarding-process }
 
-To join the Orbiter program, you'll need to start by filling out an application where you'll need to submit contact information, social media handles, and collator and node details. At the end of the form, you'll also need to follow the instructions to complete KYC.
+To join the Orbiter program, you'll need to start by filling out an application where you'll need to submit contact information, social media handles, and collator and node details. At the end of the form, you'll also need to follow the instructions to complete identity verification.
 
 <div class="button-wrapper">
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSewdSAFgs0ZbgvlflmZbHrSpe6uH9HdXdGIL7i07AB2pFgxVQ/viewform" target="_blank" class="md-button">Moonbeam Orbiter Program Application</a>
 </div>
 
-Once you've passed KYC and have been accepted into the program, you'll be notified and then the onboarding process will begin. An outline of the onboarding process is as follows:
+Once you've passed identity verification and have been accepted into the program, you'll be notified and then the onboarding process will begin. An outline of the onboarding process is as follows:
 
 1. Once notified, run an Orbiter on Moonbase Alpha
 2. After completing the Moonbase Alpha trial period, you will be notified of Moonriver eligibility 
@@ -91,7 +91,7 @@ Program collators are maintained by the Moonbeam Foundation, and will assign aut
     {{ networks.moonbase.orbiter.max_orbiters_per_collator }} Orbiters/Program Collator
     ```
 
-For Moonbeam and Moonriver there is also a maximum number of Program Collators that will allowed to be in the active set. For Moonbase Alpha, there will be as many Program Collators as needed. The maximum is as follows:
+For Moonbeam and Moonriver there is also a maximum number of Program Collators that will be allowed in the active set. For Moonbase Alpha, there will be as many Program Collators as needed. The maximum is as follows:
 
 === "Moonbeam"
     ```
