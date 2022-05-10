@@ -277,7 +277,7 @@ If you would also like to use Scaffold-ETH to verify the smart contract deployed
 
 === "Moonbeam"
     ```
-    yarn verify --network moonbeam <CONTRACT-ADDRESS> 
+    yarn verify --network moonbeam <CONTRACT-ADDRESS>
     ```
 
 === "Moonriver"
