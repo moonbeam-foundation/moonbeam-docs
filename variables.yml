@@ -175,6 +175,13 @@ networks:
       stable_version: 6.9.1
       polkadot_js_dependency_version: 2.0.1
       typescript_dependency_version: 4.3.2
+    orbiter:
+      max_orbiters_per_collator: 4
+      max_collators: Unlimited
+      active:
+        rounds: 3
+        hours: 6
+      bond: 100
   moonriver:
     public_rpc_url: https://rpc.api.moonriver.moonbeam.network # for wallets
     rpc_url: RPC-API-ENDPOINT-HERE
@@ -328,6 +335,13 @@ networks:
       stable_version: 6.9.1
       polkadot_js_dependency_version: 2.0.1
       typescript_dependency_version: 4.3.2
+    orbiter:
+      max_orbiters_per_collator: 4
+      max_collators: 4
+      active:
+        rounds: 3
+        hours: 6
+      bond: 400
   moonbeam:
     public_rpc_url: https://rpc.api.moonbeam.network # for wallets
     rpc_url: RPC-API-ENDPOINT-HERE
@@ -444,7 +458,14 @@ networks:
     moonbeam_types_bundle:
       stable_version: 6.9.1
       polkadot_js_dependency_version: 2.0.1
-      typescript_dependency_version: 4.3.2    
+      typescript_dependency_version: 4.3.2
+    orbiter:
+      max_orbiters_per_collator: TBA
+      max_collators: TBA
+      active:
+        rounds: TBA
+        hours: TBA 
+      bond: TBA
   relay_chain:
     p2p: 30334
     rpc: 9934
