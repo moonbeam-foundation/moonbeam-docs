@@ -1,4 +1,6 @@
 title: Analytics
 nav:
   - index.md
-  - dapplooker.md
+  - 'DappLooker': dapplooker.md
+
+  'ChainBridge': 
