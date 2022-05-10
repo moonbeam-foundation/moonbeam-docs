@@ -13,7 +13,7 @@ description: Follow this tutorial to learn the basic of how to use the Polkadot.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
-Installing and using Polkadot.js API library requires node.js to be installed. 
+Installing and using Polkadot.js API library requires Node.js to be installed. 
 
 --8<-- 'text/common/install-nodejs.md'
 

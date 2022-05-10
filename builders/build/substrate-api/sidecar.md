@@ -17,7 +17,7 @@ There are multiple ways of installing and running the Substrate API Sidecar. Thi
 
 ### Checking Prerequisites {: #checking-prerequisites }
 
-Running this service locally through NPM requires node.js to be installed. 
+Running this service locally through NPM requires Node.js to be installed. 
 
 --8<-- 'text/common/install-nodejs.md'
 
