@@ -352,7 +352,7 @@ You can also write a script to interact with your newly deployed contract. To ge
 cd scripts && touch store-and-retrieve.py
 ```
 
-Next, you need to write your script that will store and then retrieve a value. To get started start, take the following steps:
+Next, you need to write your script that will store and then retrieve a value. To get started, take the following steps:
 
 1. Import the `Box` contract and the `accounts` module from `brownie`
 2. Load your account using `accounts.load()` which decrypts a keystore file and returns the account information for the given account name
