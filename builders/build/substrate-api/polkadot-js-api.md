@@ -1,6 +1,6 @@
 ---
 title: How to use the Polkadot.js API
-description: Follow this tutorial to learn the basic of how to use the polkadot.js API library to query chain data, send transactions, and more on Moonbeam networks.
+description: Follow this tutorial to learn the basic of how to use the Polkadot.js API library to query chain data, send transactions, and more on Moonbeam networks.
 ---
 
 # Polkadot.js API Library
@@ -9,11 +9,11 @@ description: Follow this tutorial to learn the basic of how to use the polkadot.
 
 ## Introduction {: #introduction }
 
-[Polkadot.js API](https://polkadot.js.org/docs/api/){target=_blank} library allows application developers to query a Moonbeam node and interact with the node's Polkadot or Substrate interfaces using JavaScript. Here you will find an overview of the available functionalities and some commonly used code examples to get you started on interacting with Moonbeam networks using polkadot.js API library. 
+[Polkadot.js API](https://polkadot.js.org/docs/api/){target=_blank} library allows application developers to query a Moonbeam node and interact with the node's Polkadot or Substrate interfaces using JavaScript. Here you will find an overview of the available functionalities and some commonly used code examples to get you started on interacting with Moonbeam networks using Polkadot.js API library. 
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
-Installing and using polkadot.js API library requires node.js to be installed. 
+Installing and using Polkadot.js API library requires node.js to be installed. 
 
 --8<-- 'text/common/install-nodejs.md'
 
@@ -21,7 +21,7 @@ Installing and using polkadot.js API library requires node.js to be installed.
 
 ### Installing Polkadot.js API library {: #installing-polkadot.js-api-library } 
 
-First, you need to install polkadot.js API library for your project through a package manager such as `yarn`. Install it in your project directory with the following command:
+First, you need to install Polkadot.js API library for your project through a package manager such as `yarn`. Install it in your project directory with the following command:
 
 ```
 yarn add @polkadot/api
@@ -45,7 +45,7 @@ import { typesBundlePre900 } from "moonbeam-types-bundle"
 
 ## Creating an API Provider Instance {: #creating-an-API-provider-instance }
 
-Similar to ETH API libraries, you must first instantiate an API instance of polkadot.js API. Create the `WsProvider` using the websocket endpoint of the Moonbeam network you wish to interact with. 
+Similar to ETH API libraries, you must first instantiate an API instance of Polkadot.js API. Create the `WsProvider` using the websocket endpoint of the Moonbeam network you wish to interact with. 
 
 --8<-- 'text/common/endpoint-examples.md'
 
@@ -91,15 +91,15 @@ Similar to ETH API libraries, you must first instantiate an API instance of polk
 
 ### Metadata and Dynamic API Decoration {: #metadata-and-dynamic-api-decoration }
 
-Before diving into the details of performing different tasks via polkadot.js API library, it's useful to understand some basic workings of the library. 
+Before diving into the details of performing different tasks via Polkadot.js API library, it's useful to understand some basic workings of the library. 
 
-When the polkadot.js API connects to a node, one of the first things it does is to retrieve the metadata and decorate the API based on the metadata information. The metadata effectively provides data in the form of `api.<type>.<module>.<section>` that fits into one of the following `<type>` categories: `consts`, `query` and `tx`. 
+When the Polkadot.js API connects to a node, one of the first things it does is to retrieve the metadata and decorate the API based on the metadata information. The metadata effectively provides data in the form of `api.<type>.<module>.<section>` that fits into one of the following `<type>` categories: `consts`, `query` and `tx`. 
 
-And therefore, none of the information contained in the `api.{consts, query, tx}.<module>.<method>` endpoints are hard coded in the API. This allows parachains like Moonbeam to have custom endpoints through its pallets that can be directly accessed via polkadot.js API library.
+And therefore, none of the information contained in the `api.{consts, query, tx}.<module>.<method>` endpoints are hard coded in the API. This allows parachains like Moonbeam to have custom endpoints through its pallets that can be directly accessed via Polkadot.js API library.
 
 ## Querying for Information {: #querying-for-information }
 
-In this section, you will learn how to query for on-chain information using polkadot.js API library. 
+In this section, you will learn how to query for on-chain information using Polkadot.js API library. 
 
 ### State Queries {: #state-queries }
 
@@ -327,7 +327,7 @@ You can view the [complete script on GitHub](https://raw.githubusercontent.com/P
 
 ## Custom RPC Requests {: #custom-rpc-requests }
 
-RPCs are exposed as a method on a specific module. This means that once available, you can call any rpc via `api.rpc.<module>.<method>(...params[])`. This also works for accessing Ethereum RPCs using polkadot.js API, in the form of `polkadotApi.rpc.eth.*`.
+RPCs are exposed as a method on a specific module. This means that once available, you can call any rpc via `api.rpc.<module>.<method>(...params[])`. This also works for accessing Ethereum RPCs using Polkadot.js API, in the form of `polkadotApi.rpc.eth.*`.
 
 You can check for a list of exposed RPC endpoints by calling `api.rpc.rpc.methods()`, which is the list of known RPCs the node exposes. 
 
