@@ -290,7 +290,7 @@ If you would also like to use Scaffold-ETH to verify the smart contract deployed
     yarn verify --network moonbaseAlpha <CONTRACT-ADDRESS>
     ```
 
-!!! Note
+!!! note
     If the smart contract you are verifying has constructor method parameters, you will also need to append the parameters used to the end of the above command. 
 
 After a short wait, the console output will display the verification result and if successful, the URL to the verified contract on Moonscan. 
