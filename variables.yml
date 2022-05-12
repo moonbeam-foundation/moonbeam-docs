@@ -175,6 +175,10 @@ networks:
       stable_version: 6.9.1
       polkadot_js_dependency_version: 2.0.1
       typescript_dependency_version: 4.3.2
+    mintable_xc20:
+      asset_deposit: 100
+      metadata_based_deposit: 1.0068
+      metadata_byte_deposit: .0001
   moonriver:
     public_rpc_url: https://rpc.api.moonriver.moonbeam.network # for wallets
     rpc_url: RPC-API-ENDPOINT-HERE
@@ -328,6 +332,10 @@ networks:
       stable_version: 6.9.1
       polkadot_js_dependency_version: 2.0.1
       typescript_dependency_version: 4.3.2
+    mintable_xc20:
+      asset_deposit: 100
+      metadata_base_deposit: 1.0068
+      metadata_byte_deposit: .0001
   moonbeam:
     public_rpc_url: https://rpc.api.moonbeam.network # for wallets
     rpc_url: RPC-API-ENDPOINT-HERE
