@@ -7,7 +7,7 @@ description: Some FAQ around becoming a collator, collator activities, and thing
 
 ![Collator FAQ Banner](/images/node-operators/networks/collators/faq-banner.png)
 
-## Introduction
+## Introduction {: #introduction }
 
 Collators are an integral part of the parachains they take part in. They receive transactions and create state transition proofs for the relay chain validators.
 
@@ -121,7 +121,7 @@ Hardware recommendations:
 
 **Q: What is the failover process if my primary node is down?**
 
-**A:** When the primary server is down, the best way to perform a failover to the backup server is to perform a key association update. Each server should have a unique set of [keys](#:~:text=What are Nimbus keys) already. Run the `updateAssociation` author mapping extrinsic. You can follow the [Mapping Extrinsic](/node-operators/networks/collators/account-management/#mapping-extrinsic) instructions and modify the instructions to use the `updateAssociation` extrinsic.
+**A:** When the primary server is down, the best way to perform a failover to the backup server is to perform a key association update. Each server should have a unique set of [keys](#:~:text=What are Nimbus keys) already. Run the `setKeys` author mapping extrinsic. You can follow the [Mapping Extrinsic](/node-operators/networks/collators/account-management/#mapping-extrinsic){target=_blank} instructions and modify the instructions to use the `setKeys` extrinsic.
 
 ***
 
@@ -154,13 +154,13 @@ The relay chain takes much longer to sync than the parachain. You will not see a
 
 **A:** There are two bonds you need to be aware of. Make sure your node is configured and in sync before proceeding with these steps.
 
-The first is the [bond to join the collators](/node-operators/networks/collators/activities/#become-a-candidate) pool:
+The first is the [bond to join the collators](/node-operators/networks/collators/activities/#become-a-candidate){target=_blank} pool:
 
 - **Moonbeam** - minimum of {{ networks.moonbeam.staking.min_can_stk }} GLMR
 - **Moonriver** - minimum of {{ networks.moonriver.staking.min_can_stk }} MOVR
 - **Moonbase Alpha** - minimum of {{ networks.moonbase.staking.min_can_stk }} DEV
 
-The second is the [bond for key association](/node-operators/networks/collators/account-management/#map-author-id-to-your-account):
+The second is the [bond for key association](/node-operators/networks/collators/account-management/#map-author-id-set-session-keys){target=_blank}:
 
 - **Moonbeam** - minimum of {{ networks.moonbeam.staking.collator_map_bond }} GLMR
 - **Moonriver** - minimum of {{ networks.moonriver.staking.collator_map_bond }} MOVR
@@ -170,4 +170,4 @@ The second is the [bond for key association](/node-operators/networks/collators/
 
 **Q: How do I set an identity on my collator account?**  
 
-**A:** Setting an identity on chain will help to identify your node and attract delegations. You can set an identity by following the instructions on the [Managing an Identity](/tokens/manage/identity/) page of our documentation.
+**A:** Setting an identity on chain will help to identify your node and attract delegations. You can set an identity by following the instructions on the [Managing an Identity](/tokens/manage/identity/){target=_blank} page of our documentation.
