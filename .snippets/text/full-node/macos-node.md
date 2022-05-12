@@ -7,11 +7,11 @@ title: Full Node Docker Commands for MacOS
 ## Moonbeam Full Node {: #moonbeam-full-node } 
 
 ```
-docker run -p 9933:9933 -p 9944:9944 -v "{{ networks.moonbeam.node_directory }}:/data" \
+docker run -p 9933:9933 -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
 -u $(id -u ${USER}):$(id -g ${USER}) \
-purestake/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
+purestake/moonbeam:v0.23.0 \
 --base-path=/data \
---chain {{ networks.moonbeam.chain_spec }} \
+--chain moonbeam \
 --name="YOUR-NODE-NAME" \
 --execution wasm \
 --wasm-execution compiled \
@@ -26,11 +26,11 @@ purestake/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
 ## Moonbeam Collator {: #moonbeam-collator } 
 
 ```
-docker run -p 9933:9933 -p 9944:9944 -v "{{ networks.moonbeam.node_directory }}:/data" \
+docker run -p 9933:9933 -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
 -u $(id -u ${USER}):$(id -g ${USER}) \
-purestake/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
+purestake/moonbeam:v0.23.0 \
 --base-path=/data \
---chain {{ networks.moonbeam.chain_spec }} \
+--chain moonbeam \
 --name="YOUR-NODE-NAME" \
 --validator \
 --execution wasm \
@@ -45,11 +45,11 @@ purestake/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
 ## Moonriver Full Node {: #moonriver-full-node } 
 
 ```
-docker run -p 9933:9933 -p 9944:9944 -v "{{ networks.moonriver.node_directory }}:/data" \
+docker run -p 9933:9933 -p 9944:9944 -v "/var/lib/moonriver-data:/data" \
 -u $(id -u ${USER}):$(id -g ${USER}) \
-purestake/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
+purestake/moonbeam:v0.23.0 \
 --base-path=/data \
---chain {{ networks.moonriver.chain_spec }} \
+--chain moonriver \
 --name="YOUR-NODE-NAME" \
 --execution wasm \
 --wasm-execution compiled \
@@ -64,11 +64,11 @@ purestake/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
 ## Moonriver Collator {: #moonriver-collator } 
 
 ```
-docker run -p 9933:9933 -p 9944:9944 -v "{{ networks.moonriver.node_directory }}:/data" \
+docker run -p 9933:9933 -p 9944:9944 -v "/var/lib/moonriver-data:/data" \
 -u $(id -u ${USER}):$(id -g ${USER}) \
-purestake/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
+purestake/moonbeam:v0.23.0 \
 --base-path=/data \
---chain {{ networks.moonriver.chain_spec }} \
+--chain moonriver \
 --name="YOUR-NODE-NAME" \
 --validator \
 --execution wasm \
@@ -84,11 +84,11 @@ purestake/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
 ## Moonbase Alpha Full Node {: #moonbase-alpha-full-node } 
 
 ```
-docker run -p 9933:9933 -p 9944:9944 -v "{{ networks.moonbase.node_directory }}:/data" \
+docker run -p 9933:9933 -p 9944:9944 -v "/var/lib/alphanet-data:/data" \
 -u $(id -u ${USER}):$(id -g ${USER}) \
-purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
+purestake/moonbeam:v0.23.0 \
 --base-path=/data \
---chain {{ networks.moonbase.chain_spec }} \
+--chain alphanet \
 --name="YOUR-NODE-NAME" \
 --execution wasm \
 --wasm-execution compiled \
@@ -103,11 +103,11 @@ purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
 ## Moonbase Alpha Collator {: #moonbase-alpha-collator } 
 
 ```
-docker run -p 9933:9933 -p 9944:9944 -v "{{ networks.moonbase.node_directory }}:/data" \
+docker run -p 9933:9933 -p 9944:9944 -v "/var/lib/alphanet-data:/data" \
 -u $(id -u ${USER}):$(id -g ${USER}) \
-purestake/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
+purestake/moonbeam:v0.23.0 \
 --base-path=/data \
---chain {{ networks.moonbase.chain_spec }} \
+--chain alphanet \
 --name="YOUR-NODE-NAME" \
 --validator \
 --execution wasm \
