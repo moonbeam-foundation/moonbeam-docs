@@ -28,8 +28,8 @@ At the time of writing, the basic JSON RPC methods from the Ethereum API support
  - **[eth_blockNumber](https://eth.wiki/json-rpc/API#eth_blocknumber)** — Returns the highest available block number
  - **[eth_getBalance](https://eth.wiki/json-rpc/API#eth_getbalance)** — Returns the balance of the given address
  - **[eth_getStorageAt](https://eth.wiki/json-rpc/API#eth_getstorageat)** — Returns content of the storage at a given address
- - **[eth_getBlockByHash](https://eth.wiki/json-rpc/API#eth_getblockbyhash)** — Returns the block of the given hash
- - **[eth_getBlockByNumber](https://eth.wiki/json-rpc/API#eth_getblockbynumber)** — Returns the block of the given block number
+ - **[eth_getBlockByHash](https://eth.wiki/json-rpc/API#eth_getblockbyhash)** — Returns information about the block of the given hash including `baseFeePerGas` on post-London blocks
+ - **[eth_getBlockByNumber](https://eth.wiki/json-rpc/API#eth_getblockbynumber)** — Returns information about the block specified by block number including `baseFeePerGas` on post-London blocks
  - **[eth_getTransactionCount](https://eth.wiki/json-rpc/API#eth_gettransactioncount)** — Returns the number of transactions sent from the given address (nonce)
  - **[eth_getBlockTransactionCountByHash](https://eth.wiki/json-rpc/API#eth_getblocktransactioncountbyhash)** — Returns the number of transactions in a block with a given block hash
  - **[eth_getBlockTransactionCountByNumber](https://eth.wiki/json-rpc/API#eth_getblocktransactioncountbynumber)** — Returns the number of transactions in a block with a given block number
@@ -39,12 +39,12 @@ At the time of writing, the basic JSON RPC methods from the Ethereum API support
  - **[eth_sendTransaction](https://eth.wiki/json-rpc/API#eth_sendtransaction)** — Creates new message call transaction or a contract creation, if the data field contains code. Returns the transaction hash, or the zero hash if the transaction is not yet available
  - **[eth_sendRawTransaction](https://eth.wiki/json-rpc/API#eth_sendrawtransaction)** — Creates new message call transaction or a contract creation for signed transactions. Returns the transaction hash, or the zero hash if the transaction is not yet available
  - **[eth_call](https://eth.wiki/json-rpc/API#eth_call)** — Executes a new message call immediately without creating a transaction on the block chain, returning the value of the executed call
- - **[eth_estimateGas](https://eth.wiki/json-rpc/API#eth_estimategas)** — Returns an estimate amount of how much gas is necessary for a given transaction to succeed
+ - **[eth_estimateGas](https://eth.wiki/json-rpc/API#eth_estimategas)** — Returns an estimate amount of how much gas is necessary for a given transaction to succeed. You can optionally specify a `gasPrice` or `maxFeePerGas` and `maxPriorityFeePerGas`
   - **[eth_feeHistory](https://github.com/ethereum/execution-apis/blob/main/src/eth/fee_market.json)** — Returns baseFeePerGas, gasUsedRatio, oldestBlock, and reward for a specified range of up to 1024 blocks
- - **[eth_getTransactionByHash](https://eth.wiki/json-rpc/API#eth_gettransactionbyhash)** — Returns the information about a transaction with a given hash
- - **[eth_getTransactionByBlockHashAndIndex](https://eth.wiki/json-rpc/API#eth_gettransactionbyblockhashandindex)** — Returns information about a transaction at a given block hash, and a given index position
- - **[eth_getTransactionByBlockNumberAndIndex](https://eth.wiki/json-rpc/API#eth_gettransactionbyblocknumberandindex)** — Returns information about a transaction at a given block number, and a given index position
- - **[eth_getTransactionReceipt](https://eth.wiki/json-rpc/API#eth_gettransactionreceipt)** — Returns the transaction receipt of a given transaction hash
+ - **[eth_getTransactionByHash](https://eth.wiki/json-rpc/API#eth_gettransactionbyhash)** — Returns the information about a transaction with a given hash. EIP-1559 transactions have `maxPriorityFeePerGas` and `maxFeePerGas` fields
+ - **[eth_getTransactionByBlockHashAndIndex](https://eth.wiki/json-rpc/API#eth_gettransactionbyblockhashandindex)** — Returns information about a transaction at a given block hash, and a given index position. EIP-1559 transactions have `maxPriorityFeePerGas` and `maxFeePerGas` fields
+ - **[eth_getTransactionByBlockNumberAndIndex](https://eth.wiki/json-rpc/API#eth_gettransactionbyblocknumberandindex)** — Returns information about a transaction at a given block number, and a given index position. EIP-1559 transactions have `maxPriorityFeePerGas` and `maxFeePerGas` fields
+ - **[eth_getTransactionReceipt](https://eth.wiki/json-rpc/API#eth_gettransactionreceipt)** — Returns the transaction receipt of a given transaction hash. After London Support was added in Runtime 1200, a new field named `effectiveGasPrice` has been added to the receipt, specifying the gas price of the transaction
  - **[eth_getUncleByBlockHashAndIndex](https://eth.wiki/json-rpc/API#eth_getunclebyblockhashandindex)** — Returns `null` by default
  - **[eth_getUncleByBlockNumberAndIndex](https://eth.wiki/json-rpc/API#eth_getunclebyblocknumberandindex)** — Returns `null` by default
  - **[eth_getLogs](https://eth.wiki/json-rpc/API#eth_getlogs)** — Returns an array of all logs matching a given filter object
