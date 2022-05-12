@@ -23,7 +23,7 @@ At the time of writing, the basic JSON RPC methods from the Ethereum API support
  - **[eth_coinbase](https://eth.wiki/json-rpc/API#eth_coinbase)** — Returns the latest block author. Not necessarily a finalized block
  - **[eth_mining](https://eth.wiki/json-rpc/API#eth_mining)** — Returns `false` by default
  - **[eth_chainId](https://eth.wiki/json-rpc/API#eth_chainid)** — Returns the chain ID used for signing at the current block
- - **[eth_gasPrice](https://eth.wiki/json-rpc/API#eth_gasprice)** — Returns the current gas price
+ - **[eth_gasPrice](https://eth.wiki/json-rpc/API#eth_gasprice)** — Returns the base fee per unit of gas used. This is currently the minimum gas price for each network
  - **[eth_accounts](https://eth.wiki/json-rpc/API#eth_accounts)** — Returns a list of addresses owned by the client
  - **[eth_blockNumber](https://eth.wiki/json-rpc/API#eth_blocknumber)** — Returns the highest available block number
  - **[eth_getBalance](https://eth.wiki/json-rpc/API#eth_getbalance)** — Returns the balance of the given address
@@ -47,7 +47,7 @@ At the time of writing, the basic JSON RPC methods from the Ethereum API support
  - **[eth_getTransactionReceipt](https://eth.wiki/json-rpc/API#eth_gettransactionreceipt)** — Returns the transaction receipt of a given transaction hash
  - **[eth_getUncleByBlockHashAndIndex](https://eth.wiki/json-rpc/API#eth_getunclebyblockhashandindex)** — Returns `"null"` by default
  - **[eth_getUncleByBlockNumberAndIndex](https://eth.wiki/json-rpc/API#eth_getunclebyblocknumberandindex)** — Returns `null` by default
- - **[eth_getLogs](https://eth.wiki/json-rpc/API#eth_getlogs)** — Returns the transaction receipt of a given transaction hash
+ - **[eth_getLogs](https://eth.wiki/json-rpc/API#eth_getlogs)** — Returns an array of all logs matching a given filter object
  - **[eth_getWork](https://eth.wiki/json-rpc/API#eth_getwork)** — Returns `["0x0","0x0","0x0"]` by default
  - **[eth_submitWork](https://eth.wiki/json-rpc/API#eth_submitwork)** — Not supported on Moonbeam
  - **[eth_submitHashrate](https://eth.wiki/json-rpc/API#eth_submithashrate)** — Not supported on Moonbeam
