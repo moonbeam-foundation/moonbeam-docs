@@ -91,7 +91,7 @@ The complete command for running a tracing node is as follows:
     --chain {{ networks.moonbeam.chain_spec }} \
     --name="Moonbeam-Tutorial" \
     --pruning archive \
-    --state-cache-size 1 \
+    --state-cache-size 0 \
     --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonbeam-substitutes-tracing \
@@ -111,7 +111,7 @@ The complete command for running a tracing node is as follows:
     --chain {{ networks.moonriver.chain_spec }} \
     --name="Moonbeam-Tutorial" \
     --pruning archive \
-    --state-cache-size 1 \
+    --state-cache-size 0 \
     --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonriver-substitutes-tracing \
@@ -131,7 +131,7 @@ The complete command for running a tracing node is as follows:
     --chain {{ networks.moonbase.chain_spec }} \
     --name="Moonbeam-Tutorial" \
     --pruning archive \
-    --state-cache-size 1 \
+    --state-cache-size 0 \
     --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
