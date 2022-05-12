@@ -40,6 +40,7 @@ At the time of writing, the basic JSON RPC methods from the Ethereum API support
  - **[eth_sendRawTransaction](https://eth.wiki/json-rpc/API#eth_sendrawtransaction)** — Creates new message call transaction or a contract creation for signed transactions. Returns the transaction hash, or the zero hash if the transaction is not yet available
  - **[eth_call](https://eth.wiki/json-rpc/API#eth_call)** — Executes a new message call immediately without creating a transaction on the block chain, returning the value of the executed call
  - **[eth_estimateGas](https://eth.wiki/json-rpc/API#eth_estimategas)** — Returns an estimate amount of how much gas is necessary for a given transaction to succeed
+  - **[eth_feeHistory](https://github.com/ethereum/execution-apis/blob/main/src/eth/fee_market.json)** — Returns baseFeePerGas, gasUsedRatio, oldestBlock, and reward for a specified range of up to 1024 blocks
  - **[eth_getTransactionByHash](https://eth.wiki/json-rpc/API#eth_gettransactionbyhash)** — Returns the information about a transaction with a given hash
  - **[eth_getTransactionByBlockHashAndIndex](https://eth.wiki/json-rpc/API#eth_gettransactionbyblockhashandindex)** — Returns information about a transaction at a given block hash, and a given index position
  - **[eth_getTransactionByBlockNumberAndIndex](https://eth.wiki/json-rpc/API#eth_gettransactionbyblocknumberandindex)** — Returns information about a transaction at a given block number, and a given index position
