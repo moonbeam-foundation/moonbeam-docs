@@ -29,6 +29,8 @@ The current list of available XC-20 assets per network is the following:
     |  Origin  | Symbol |                                                            XC-20 Address                                                            |
     |:--------:|:------:|:-----------------------------------------------------------------------------------------------------------------------------------:|
     | Polkadot | xcDOT  | [0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080](https://moonscan.io/address/0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080){target=_blank} |
+    |  Acala   | xcaUSD | [0xfFfFFFFF52C56A9257bB97f4B2b6F7B2D624ecda](https://moonscan.io/address/0xfFfFFFFF52C56A9257bB97f4B2b6F7B2D624ecda){target=_blank} |
+    |  Acala   | xcACA  | [0xffffFFffa922Fef94566104a6e5A35a4fCDDAA9f](https://moonscan.io/address/0xffffFFffa922Fef94566104a6e5A35a4fCDDAA9f){target=_blank} |
 
      _*You can check each Asset ID from the [Assets tab on Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/assets){target=_blank}_
 
