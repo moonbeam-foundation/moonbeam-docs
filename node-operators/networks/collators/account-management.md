@@ -17,16 +17,15 @@ This guide will cover how to manage your collator account including generating a
 
 ## Generating Session Keys {: #session-keys } 
 
-To match the Substrate standard, Moonbeam collator's session keys are [SR25519](https://wiki.polkadot.network/docs/learn-keys#what-is-sr25519-and-where-did-it-come-from){target=_blank}. This guide will show you how you can create/rotate your session keys associated with your collator node. You'll need to a generate session key for each of the following:
-
-- An author ID which will be used to sign blocks and create an association to your H160 account for block rewards to be paid out
-- A [VRF](https://wiki.polkadot.network/docs/learn-randomness#vrf){target=_blank} key required for block production
+To match the Substrate standard, Moonbeam collator's session keys are [SR25519](https://wiki.polkadot.network/docs/learn-keys#what-is-sr25519-and-where-did-it-come-from){target=_blank}. This guide will show you how you can create/rotate your session keys associated with your collator node.
 
 First, make sure you're [running a collator node](/node-operators/networks/run-a-node/overview/){target=_blank}. Once you have your collator node running, your terminal should print similar logs:
 
 ![Collator Terminal Logs](/images/node-operators/networks/collators/account-management/account-1.png)
 
-Next, session keys can be created/rotated by sending an RPC call to the HTTP endpoint with the `author_rotateKeys` method. For reference, if your collator's HTTP endpoint is at port `9933`, the JSON-RPC call might look like this:
+Next, session keys can be created/rotated by sending an RPC call to the HTTP endpoint with the `author_rotateKeys` method. When you call `author_rotateKeys`, the response will contain an author ID (Nimbus key) and a VRF key. The author ID will be used to sign blocks and create an association to your H160 account for block rewards to be paid out. The [VRF](https://wiki.polkadot.network/docs/learn-randomness#vrf){target=_blank} key is required for block production.
+
+For reference, if your collator's HTTP endpoint is at port `9933`, the JSON-RPC call might look like this:
 
 ```
 curl http://127.0.0.1:9933 -H \
@@ -39,11 +38,11 @@ curl http://127.0.0.1:9933 -H \
   }'
 ```
 
-The collator node should respond with the corresponding public key of the new session key.
+The collator node should respond with the corresponding public keys of your new session keys.
 
 ![Collator Terminal Logs RPC Rotate Keys](/images/node-operators/networks/collators/account-management/account-2.png)
 
-Remember, you'll need to call `author_rotateKeys` for each session key you need to generate. Make sure you write down the public key for each of the session keys. Each of your servers, your primary and backup, should have their own unique keys. Since the keys never leave your servers, you can consider them a unique ID for that server.
+Make sure you write down the public key for each of the session keys. Each of your servers, your primary and backup, should have their own unique keys. Since the keys never leave your servers, you can consider them a unique ID for that server.
 
 Next, you'll need to register your session keys and map the author ID session key to an H160 Ethereum-styled address to which the block rewards are paid.
 
@@ -80,7 +79,7 @@ To map your author ID to your account, you need to be inside the [candidate pool
  2. Select the **authorMapping** extrinsic
  3. Set the method to **registerKeys()**
  4. Enter the **authorId** (**NimbusId**). In this case, it was obtained via the RPC call `author_rotateKeys` in the previous section
- 5. For the **keys** field, enter the VRF key. This should have been obtained via an additional `author_rotateKeys` RPC call
+ 5. For the **keys** field, enter the VRF key. This was also obtained via the RPC call `author_rotateKeys`
  6. Click on **Submit Transaction**
 
 ![Author ID Mapping to Account Extrinsic](/images/node-operators/networks/collators/account-management/account-3.png)
@@ -113,7 +112,3 @@ There are a couple of ways you can set your identity, to learn how to set an ide
 Proxy accounts are accounts that can be enabled to perform a limited number of actions on your behalf. Proxies allow users to keep a primary account securely in cold storage while using the proxy to actively participate in the network on behalf of the primary account. You can remove authorization of the proxy account at any time. As an additional layer of security, you can setup your proxy with a delay period. This delay period would provide you time to review the transaction, and cancel if needed, before it automatically gets executed. 
 
 To learn how to setup a proxy account, please refer to the [Setting up a Proxy Account](/tokens/manage/proxy-accounts/){target=_blank} page of our documentation.
-
-
-000000000000000000000000dbe47e1d60d8f1d68cdc786d2ff18139ed4e0636
-0000000000000000000000000000000000000000000000000000000000000001
