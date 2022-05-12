@@ -113,7 +113,3 @@ There are a couple of ways you can set your identity, to learn how to set an ide
 Proxy accounts are accounts that can be enabled to perform a limited number of actions on your behalf. Proxies allow users to keep a primary account securely in cold storage while using the proxy to actively participate in the network on behalf of the primary account. You can remove authorization of the proxy account at any time. As an additional layer of security, you can setup your proxy with a delay period. This delay period would provide you time to review the transaction, and cancel if needed, before it automatically gets executed. 
 
 To learn how to setup a proxy account, please refer to the [Setting up a Proxy Account](/tokens/manage/proxy-accounts/){target=_blank} page of our documentation.
-
-
-000000000000000000000000dbe47e1d60d8f1d68cdc786d2ff18139ed4e0636
-0000000000000000000000000000000000000000000000000000000000000001
