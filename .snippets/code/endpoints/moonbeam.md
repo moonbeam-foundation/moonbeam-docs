@@ -1,0 +1,12 @@
+=== "HTTPS"
+    |  Provider  |                                        RPC URL                                        |
+    |:----------:|:-------------------------------------------------------------------------------------:|
+    | OnFinality | <pre style="padding-right: 2em">```https://moonbeam.api.onfinality.io/public```</pre> |
+    | PureStake  |     <pre style="padding-right: 2em">```https://rpc.api.moonbeam.network```</pre>      |
+
+        
+=== "WSS"
+    |  Provider  |                                        RPC URL                                         |
+    |:----------:|:--------------------------------------------------------------------------------------:|
+    | OnFinality | <pre style="padding-right: 2em">```wss://moonbeam.api.onfinality.io/public-ws```</pre> |
+    | PureStake  |       <pre style="padding-right: 2em">```wss://wss.api.moonbeam.network```</pre>       |
