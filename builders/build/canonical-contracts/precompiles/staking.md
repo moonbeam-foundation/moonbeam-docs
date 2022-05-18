@@ -43,8 +43,14 @@ The interface includes the following functions:
  - **points**(*uint256* round) - read-only function that gets the total points awarded to all collators in a given round
  - **min_delegation**() — read-only function that gets the minimum delegation amount. Replaces the deprecated `min_nomination` extrinsic
  - **candidate_count**() - read-only function that gets the current amount of collator candidates
+ - **round**() - read-only function that returns the current round number
  - **candidate_delegation_count**(*address* candidate) - read-only function that returns the number of delegations for the specified collator candidate address. Replaces the deprecated `collator_nomination_count` extrinsic
  - **delegator_delegation_count**(*address* delegator) - read-only function that returns the number of delegations for the specified delegator address. Replaces the deprecated `nominator_nomination_count` extrinsic
+ - **selected_candidates**() - read-only function that gets the selected candidates for the current round
+ - **delegation_request_is_pending**(*address* delegator, *address* candidate) - returns a boolean to indicate whether there is a pending delegation request made by a given delegator for a given candidate
+ - **delegator_exit_is_pending**(*address* delegator) - returns a boolean to indicate whether a pending exit exists for a specific delegator
+ - **candidate_exit_is_pending**(*address* candidate) - returns a boolean to indicate whether a pending exit exists for a specific candidate
+- **candidate_request_is_pending**(*address* candidate) - returns a boolean to indicate whether there is a pending bond less request made by a given candidate
  - **join_candidates**(*uint256* amount, *uint256* candidateCount) — allows the account to join the set of collator candidates with a specified bond amount and the current candidate count
  - **schedule_leave_candidates**(*uint256* candidateCount) - schedules a request for a candidate to remove themselves from the candidate pool. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `execute_leave_candidates` extrinsic. Replaces the deprecated `leave_candidates` extrinsic
  - **execute_leave_candidates**(*address* candidate, *uint256* candidateDelegationCount) - executes the due request to leave the set of collator candidates 
