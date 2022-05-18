@@ -10,7 +10,7 @@ networks:
     block_explorer: https://moonbeam-explorer.netlify.app/
   moonbase:
     rpc_url: https://rpc.api.moonbase.moonbeam.network
-    wss_url: wss://moonbeam-alpha.api.onfinality.io/public-ws
+    wss_url: wss://wss.api.moonbase.moonbeam.network
     chain_id: 1287
     hex_chain_id: '0x507'
     chain_spec: alphanet
