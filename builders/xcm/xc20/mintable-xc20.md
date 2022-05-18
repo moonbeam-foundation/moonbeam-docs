@@ -9,19 +9,50 @@ description: Learn about cross chain assets that can be minted and burned on a M
 
 ## Introduction {: #introduction } 
 
-[XC-20s](/builders/xcm/xc20/overview){target=_blank} are native Substrate assets that can be transferred to Moonbeam from the relay chain, or other parachains within the Polkadot/Kusama ecosystem.
+As covered in the [XC-20 Overview](/builders/xcm/xc20/overview){target=_blank}, there are two [types of XC-20s](/builders/xcm/xc20/overview#types-of-xc-20s): [deposited](/builders/xcm/xc20/deposited-xc20){target=_blank} and mintable. The key distinction between deposited and mintable XC-20s, is that mintable assets are burned and minted directly on Moonbeam, and can then be transferred to other paracahins or the relay chain and back to Moonbeam. Deposited XC-20s are native assets from other parachains or the relay chain transferred to Moonbeam. This guide will cover mintable XC-20s.
 
-There are two types of XC-20s: deposited and mintable. [Deposited XC-20s](/builders/xcm/xc20/deposited-xc20/){target=_blank} are native cross-chain assets that can be transferred from another parachain or the relay chain to Moonbeam and back. Mintable XC-20s are also cross-chain assets, however, they are minted and burned directly on Moonbeam. They can be transferred to other parachains or the relay chain and back to Moonbeam.
-
-Similarly to deposited XC-20s, mintable XC-20s at their core are Substrate assets. Typically with Substrate assets, developers need to interact directly with the Substrate API. However, Moonbeam removes the need for Substrate knowledge and allows users and developers to interact with these assets through an ERC-20 interface via a precompile contract. Therefore, developers can use standard Ethereum developer tooling to interact with both deposited and mintable XC-20s. There are some additional functions available specifically for managing mintable XC-20s.
-
-Unlike deposited XC-20s, the name of mintable XC-20s are completely configurable and will not neccessarily have _xc_ prepended to the asset name or symbol. In addition, the number of decimals the asset has is configurable.
+All XC-20s are Substrate assets at their core. Typically with Substrate assets, developers need to interact directly with the Substrate API. However, Moonbeam removes the need for Substrate knowledge and allows users and developers to interact with these assets through an ERC-20 interface via a precompile contract. Therefore, developers can use standard Ethereum developer tooling to interact with these assets. Mintable XC-20s include an extension of the ERC-20 interface with some additional functionality for managing the asset and setting the metadata, such as the name, symbol, and decimals for the asset. There are also some additional roles in place for asset registration and management.
 
 In order to create a new mintable XC-20 asset, a proposal has to go through democracy and be voted on via on-chain governance. Once the proposal has received majority votes and has been approved the asset can then be registered and minted on Moonbeam. They can also be transferred to other chains in the future and are subject to channel and asset registration as covered in the [XCM overview](/builders/xcm/overview/){target=_blank} page.
 
+## Mintable XC-20 Roles {: #mintable-xc-20-roles }
+
+There are some roles that are important to take note of when registering and managing mintable XC-20s. These roles, with the exception of the creator, can all be designated to other accounts by the owner via the [`set_team` extrinsic](#additional-functions). The roles are as follows:
+
+- **Owner** - the account which owns the contract and has the ability to manage the asset
+- **Creator** - the account responsible for creating the asset and paying the associated deposit
+- **Issuer** - the designated account capable of issuing or minting tokens. Defaults to the owner
+- **Admin** - the designated account capable of burning tokens and unfreezing accounts and assets. Defaults to the owner
+- **Freezer** - the designated account capable of freezing accounts and assets. Defaults to the owner
+
+The breakdown of responsibilities for each role is as follows:
+
+| **Role** | **Mint** | **Burn** | **Freeze** | **Thaw** |
+|:--------:|:--------:|:--------:|:----------:|:--------:|
+|  Owner   |    ✓     |    ✓     |     ✓      |    ✓     |
+| Creator  |    X     |    X     |     X      |    X     |
+|  Issuer  |    ✓     |    X     |     X      |    X     |
+|  Admin   |    X     |    ✓     |     X      |    ✓     |
+| Freezer  |    X     |    X     |     ✓      |    X     |
+
+## Mintable XC-20 Specific Functions {: #additional-functions }
+
+Mintable XC-20s include additional functions that only the owner or the designated account is allowed to call. They are declared in the [LocalAsset.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/LocalAsset.sol){target=_blank} interface, and are as follows:
+
+- **mint(*address* to, *uint256* value)** - mints a given amount of tokens to a specified address. Only the owner and the issuer are capable of calling this function
+- **burn(*address* from, *uint256* value)** - burns a given amount of tokens from a specified address. Only the owner and the admin are capable of calling this function
+- **freeze(*address* account)** - freezes a specified account so that the tokens for that account are locked and any further transactions are not allowed. Only the owner and the freezer are capable of calling this function
+- **thaw(*address* account)** - unfreezes an account so now the specified account can interact with the tokens again. Only the owner and the admin are capable of calling this function
+- **freeze_asset()** - freezes the entire asset operations and locks up the tokens. Only the owner and the freezer are capable of calling this function
+- **thaw_asset()** - unfreezes the entire asset operations and unlocks the tokens. Only the owner and the admin are capable of calling this function
+- **transfer_ownership(*address* owner)** transfers the ownership of an asset to a new specified account. Only the owner is capable of calling this function
+- **set_team(*address* issuer, *address* admin, *address* freezer)** - enables the owner to specify the issuer, admin, and freezer of the tokens. Please check out the [Mintable XC-20 Roles](#mintable-xc-20-roles) section for a description of each role. Only the owner is capable of calling this function
+- **set_metadata(*string calldata* name, *string calldata* symbol, *uint8* decimals)** - sets the name, symbol, and decimal of the asset. The decimals are also configurable and not confined to the same amount of decimals as the native Moonbeam assets
+- **clear_metadata()** - clears the existing name, symbol, and decimals of the asset
+
 ## Retrieve List of Mintable XC-20s {: #retrieve-list-of-mintable-xc-20s }
 
-To fetch a list of the mintable XC-20s currently available on the Moonbase Alpha TestNet, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=_blank} and make sure you're connected to Moonbase Alpha. Then click on the **Developer** tab and select **Chain State** from the dropdown. To query the available mintable XC-20s, you can follow these steps:
+To fetch a list of the mintable XC-20s currently available on the Moonbase Alpha TestNet, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=_blank} and make sure you're connected to Moonbase Alpha. Unlike deposited XC-20s, mintable XC-20s will not show up under the **Assets** page on Polkadot.js Apps. To query the available mintable XC-20s, you have to navigate to the **Developer** tab and select **Chain State** from the dropdown, and take the following steps:
 
 1. From the **selected state query** dropdown, choose **localAssets**
 --8<-- 'text/xc-20/list-of-assets.md'
@@ -43,7 +74,7 @@ With the results from the metadata, you can see that the asset ID corresponds to
 
 ## Calculate Mintable XC-20 Precompile Addresses {: #calculate-xc20-address }
 
-Now that you have retrieved a list of the available mintable XC-20s, before you can interact with them via the precompile, you need to derive the precompile address from the asset ID.
+Now that you have retrieved a list of the available mintable XC-20s, before you can interact with them via the precompile, you need to derive the precompile address from the asset ID. The asset ID can be retrieved by following the instructions in the [Retrieve List of Mintable XC-20s](#retrieve-list-of-mintable-xc-20s) section.
 
 The mintable XC-20 precompile address is calculated using the following:
 
@@ -59,44 +90,12 @@ The hex value that was already calculated is 32 characters long, so prepending t
 
 Now that you've calculated the mintable XC-20 precompile address, you can use the address to interact with the XC-20 like you would with any other ERC-20 in Remix.
 
-## Mintable XC-20 Specific Functions {: #additional-functions }
-
-Mintable XC-20s include additional functions that only the owner or the designated account is allowed to call. They are declared in the [LocalAsset.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/LocalAsset.sol){target=_blank} interface, and are as follows:
-
-- **mint(*address* to, *uint256* value)** - mints a given amount of tokens to a specified address. Only the owner and the issuer are capable of calling this function
-- **burn(*address* from, *uint256* value)** - burns a given amount of tokens from a specified address. Only the owner and the admin are capable of calling this function
-- **freeze(*address* account)** - freezes a specified account so that the tokens for that account are locked and any further transactions are not allowed. Only the owner and the freezer are capable of calling this function
-- **thaw(*address* account)** - unfreezes an account so now the specified account can interact with the tokens again. Only the owner and the admin are capable of calling this function
-- **freeze_asset()** - freezes the entire asset operations and locks up the tokens. Only the owner and the freezer are capable of calling this function
-- **thaw_asset()** - unfreezes the entire asset operations and unlocks the tokens. Only the owner and the admin are capable of calling this function
-- **transfer_ownership(*address* owner)** transfers the ownership of an asset to a new specified account. Only the owner is capable of calling this function
-- **set_team(*address* issuer, *address* admin, *address* freezer)** - enables the owner to specify the issuer, admin, and freezer of the tokens. Please check out the [Mintable XC-20 Roles](#mintable-xc-20-roles) section for a description of each role. Only the owner is capable of calling this function
-- **set_metadata(*string calldata* name, *string calldata* symbol, *uint8* decimals)** - sets the name, symbol, and decimal of the asset. The decimals are also configurable and not confined to the same amount of decimals as the native Moonbeam assets
-- **clear_metadata()** - clears the existing name, symbol, and decimals of the asset (Does this mean you can reset the meta data at any time?? More than once?? )
-
-## Mintable XC-20 Roles {: #mintable-xc-20-roles }
-
-There are some roles that are important to take note of when registering and managing mintable XC-20s. These roles, with the exception of the creator, can all be designated to other accounts by the owner via the `set_team` extrinsic. The roles are as follows:
-
-- **Owner** - the account which owns the contract and has the ability to manage the asset
-- **Creator** - the account responsible for creating the asset and paying the associated deposit
-- **Issuer** - the designated account capable of issuing or minting tokens. Defaults to the owner
-- **Admin** - the designated account capable of burning tokens and unfreezing accounts and assets. Defaults to the owner
-- **Freezer** - the designated account capable of freezing accounts and assets. Defaults to the owner
-
-The breakdown of responsibilities for each role is as follows:
-
-| **Role** | **Mint** | **Burn** | **Freeze** | **Thaw** |
-|:--------:|:--------:|:--------:|:----------:|:--------:|
-|  Owner   |    ✓     |    ✓     |     ✓      |    ✓     |
-| Creator  |    X     |    X     |     X      |    X     |
-|  Issuer  |    ✓     |    X     |     X      |    X     |
-|  Admin   |    X     |    ✓     |     X      |    ✓     |
-| Freezer  |    X     |    X     |     ✓      |    X     |
-
 ## Register a Mintable XC-20 {: #register-a-mxc-20 }
 
 This section of the guide will show you how to register an asset on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=_blank} and interact with the mintable XC-20 specific functions using [Remix](https://remix.ethereum.org/){target=_blank}. If you simply want to interact with a mintable XC-20 through the standard ERC-20 interface, please refer to the [Interact with the Precompile Using Remix](/builders/xcm/xc20/overview/#interact-with-the-precompile-using-remix){target=_blank} section of the XC-20 precompile page.
+
+Once you've successfully registered an asset, an asset ID will automatically be generated for the asset. The asset ID is calculated by hashing a local asset counter.
+The ID is then used to calculate the precompile address and interact with the asset.
 
 ### Checking Prerequisites {: #checking-prerequisites } 
 
@@ -126,7 +125,7 @@ To get started, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss
 3. Then select the **registerLocalAsset** extrinsic
 4. Enter the address of the creator
 5. Enter the address of the owner
-6. Set **isSufficient**. If the asset is sufficient it....
+6. Set **isSufficient**. If the asset is sufficient is set to `true` it can be transferred to another account without a balance 
 7. Set the **minBalance**
 8. Copy the **preimage hash** as you'll need it in the following steps
 9. Click on **+ Submit preimage**

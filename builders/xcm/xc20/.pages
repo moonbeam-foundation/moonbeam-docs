@@ -1,7 +1,7 @@
 title: XC-20s
 nav:
   - index.md
-  - 'XC-20 Overview': 'overview.md'
+  - 'Overview': 'overview.md'
   - 'Deposited XC-20s': 'deposited-xc20.md'
   - 'Mintable XC-20s': 'mintable-xc20.md'
   - 'Send XC-20s': 'xtokens.md'

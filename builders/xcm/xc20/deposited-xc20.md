@@ -9,15 +9,19 @@ description:  Learn how to access and interact with an ERC-20 interface for cros
 
 ## Introduction {: #introduction } 
 
-As covered in the [XC-20 Overview](/builders/xcm/xc20/overview){target=_blank}, there are two types of XC-20s: deposited and [mintable](/builders/xcm/xc20/mintable-xc20){target=_blank}. The key distinction between deposited and mintable XC-20s, is that mintable assets are burned and minted directly on Moonbeam. Whereas deposited XC-20s are native assets from other parachains or the relay chain transferred to Moonbeam. This guide will cover deposited XC-20s.
+As covered in the [XC-20 Overview](/builders/xcm/xc20/overview){target=_blank}, there are two [types of XC-20s](/builders/xcm/xc20/overview#types-of-xc-20s): deposited and [mintable](/builders/xcm/xc20/mintable-xc20){target=_blank}. The key distinction between deposited and mintable XC-20s, is that mintable assets are burned and minted directly on Moonbeam. Whereas deposited XC-20s are native assets from other parachains or the relay chain transferred to Moonbeam. This guide will cover deposited XC-20s.
 
-Deposited XC-20 assets will all have `xc` prepended to their name. For example, Kusama's KSM representation on Moonriver will be known as _xcKSM_. Please note that XC-20 precompiles do not support cross-chain transfers, and this is intentionally done to stay as close as possible to the standard ERC-20 interface.
+Although XC-20s are Substrate assets, Moonbeam has abstracted away low-level interactions with the Substrate API via an easy to use ERC-20 interface via a precompile contract. This allows developers to interact with XC-20s as they would with any other ERC-20. Please note that XC-20 precompiles do not support cross-chain transfers, and this is intentionally done to stay as close as possible to the standard ERC-20 interface.
 
-Deposited XC-20s need to be registered and linked to another asset in the ecosystem before being used. This is done through a whitelisting process via a democracy proposal. If you are interested in testing XCM features in the Moonbase Alpha TestNet, please contact us through our [Discord Server](https://discord.gg/PfpUATX){target=_blank}. For more information on XCM, you can check out the [XCM Overview](/builders/xcm/overview/){target=_blank} page of our documentation.
+Deposited XC-20 assets will all have _xc_ prepended to their name. For example, Kusama's KSM representation on Moonriver will be known as _xcKSM_. They will need to be registered and linked to another asset in the ecosystem before being used. This is done through a whitelisting process via a democracy proposal. 
+
+If you are interested in testing XCM features in the Moonbase Alpha TestNet, please contact us through our [Discord Server](https://discord.gg/PfpUATX){target=_blank}. For more information on XCM, you can check out the [XCM Overview](/builders/xcm/overview/){target=_blank} page of our documentation.
+
+This guide will show you how to retrieve the available deposited XC-20s and calculate their precompile addresses for the Moonbase Alpha TestNet using Polkadot.js Apps.
 
 ## Current Deposited XC-20 Assets {: #current-xc20-assets }
 
-The current list of available deposited XC-20 assets per network is the following:
+The current list of available deposited XC-20 assets per network is as follows:
 
 === "Moonriver"
     |  Origin   | Symbol  |                                                                 XC-20 Address                                                                 |
@@ -31,7 +35,7 @@ The current list of available deposited XC-20 assets per network is the followin
     | Statemine | xc-RMRK | [0xffffffFF893264794d9d57E1E0E21E0042aF5A0A](https://moonriver.moonscan.io/address/0xffffffFF893264794d9d57E1E0E21E0042aF5A0A){target=_blank} |
     | Statemine | xc-USDT | [0xFFFFFFfFea09FB06d082fd1275CD48b191cbCD1d](https://moonriver.moonscan.io/address/0xFFFFFFfFea09FB06d082fd1275CD48b191cbCD1d){target=_blank} |
 
-     _*You can check each Asset ID [here](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonriver.moonbeam.network#/assets){target=_blank}_
+    _*You can check each [Asset ID](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonriver.moonbeam.network#/assets){target=_blank} on Polkadot.js Apps_
 
 === "Moonbase Alpha"
     |         Origin          |  Symbol  |                                                                XC-20 Address                                                                 |
@@ -53,8 +57,6 @@ The current list of available deposited XC-20 assets per network is the followin
 
      _*You can check each [Asset ID](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/assets){target=_blank} on Polkadot.js Apps_
 
-This guide will show you how to retrieve the available deposited XC-20s and calculate their precompile addresses for the Moonbase Alpha TestNet using Polkadot.js Apps. In addition, you will learn how to interact with an XC-20 precompile using Remix.
-
 ## Retrieve List of Deposited XC-20s {: #list-xchain-assets }
 
 To fetch a list of the deposited XC-20s currently available on the Moonbase Alpha TestNet, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=_blank} and make sure you're connected to Moonbase Alpha. Then click on the **Developer** tab and select **Chain State** from the dropdown. To query the available deposited XC-20s, you can follow these steps:
@@ -68,7 +70,7 @@ The result will display the asset ID along with some additional information for 
 
 ## Retrieve Metadata for Deposited XC-20s {: #x-chain-assets-metadata }
 
-To quickly get more information about a specific deposited XC-20 such as the name, symbol, and multi location of the asset, you can use the **metadata** extrinsic to return metadata. For this example, you can feel free to use asset ID `42259045809535163221576417993425387648`, and take the following steps:
+To quickly get more information about a specific deposited XC-20 such as the name, symbol, and decimals of the asset, you can use the **metadata** extrinsic to return metadata. For this example, you can feel free to use asset ID `42259045809535163221576417993425387648`, and take the following steps:
 
 1. From the **selected state query** dropdown, choose **assets**
 --8<-- 'text/xc-20/retrieve-metadata.md'

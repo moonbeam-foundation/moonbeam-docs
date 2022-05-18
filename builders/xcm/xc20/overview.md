@@ -17,9 +17,15 @@ XC-20s are a unique asset class on Moonbeam. It combines the power of Substrate 
 
 ![Moonbeam XC-20 XCM Integration With Polkadot](/images/builders/xcm/overview/overview-4.png)
 
-There are two types of XC-20s: [deposited](/builders/xcm/xc20/deposited-xc20){target=_blank} and [mintable](/builders/xcm/xc20/mintable-xc20){target=_blank} Deposited XC-20s are native cross-chain assets that are transferred from another parachain or the relay chain to Moonbeam. Mintable XC-20s are also cross-chain assets, however, they are minted and burned directly on Moonbeam and can be transferred to other parachains or the relay chain.
+## Types of XC-20s {: #types-of-xc-20s }
 
-## XC-20 vs ERC-20 {: #xc-20-vs-erc-20 }
+There are two types of XC-20s: [deposited](/builders/xcm/xc20/deposited-xc20){target=_blank} and [mintable](/builders/xcm/xc20/mintable-xc20){target=_blank}. Deposited XC-20s are native cross-chain assets that are transferred from another parachain or the relay chain to Moonbeam. Mintable XC-20s are also cross-chain assets, however, they are minted and burned directly on Moonbeam and can be transferred to other parachains or the relay chain. 
+
+Deposited XC-20s will all have _xc_ prepended to their name to distinguish them as native cross-chain assets. Since mintable XC-20s are created on Moonbeam and are not native to another parachain or relay chain, the name, symbol, and decimals for the asset are all completely configurable. As such, they will not neccessarily have _xc_ prepended to the asset name or symbol.
+
+Both, mintable and deposited, XC-20s are Substrate assets at their core and at a low-level are interacted with via the Substrate API. However, Moonbeam provides an ERC-20 interface to interact with these assets so that no knowledge of Substrate is required. From a user's perspective, both types of XC-20s are interacted with in the same way. The only difference here is that mintable XC-20s include an extension of the ERC-20 interface with some additional functionality for managing the assets, such as minting and burning.
+
+## XC-20s vs ERC-20 {: #xc-20-vs-erc-20 }
 
 Although XC-20s and ERC-20s are very similar, some distinct differences are to be aware of. 
 
