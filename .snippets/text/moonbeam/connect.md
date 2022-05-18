@@ -1,10 +1,12 @@
-## Connect to Moonbeam
+## Network Endpoints {: #network-endpoints }
 
-### Network Endpoints
+Moonbeam has two types of endpoints available for users to connect to: one for HTTPS and one for WSS. 
 
-Moonbeam has two types of endpoints available for users to connect to: one for HTTPS and one for WSS. You can check out the [Endpoint Providers](/builders/get-started/endpoints/){target=_blank} section of the documentation to get your own endpoint and API key from one of the supported providers.
+If you're looking for your own endpoints suitable for production use, you can check out the [Endpoint Providers](/builders/get-started/endpoints/#endpoint-providers) section of our documentation. Otherwise, to get started quickly you can use one of the following public HTTPS or WSS endpoints:
 
-### Quick Start {: #quick-start } 
+--8<-- 'code/endpoints/moonbeam.md'
+
+## Quick Start {: #quick-start } 
 
 Before getting started, make sure you've retrieved your own endpoint and API key from one of the custom [Endpoint Providers](/builders/get-started/endpoints/){target=_blank}. Then for the web3.js library, you can create a local Web3 instance and set the provider to connect to Moonbeam (both HTTP and WS are supported):
 
@@ -33,6 +35,6 @@ const provider = new ethers.providers.StaticJsonRpcProvider(providerURL, {
 
 Any Ethereum wallet should be able to generate a valid address for Moonbeam (for example, [MetaMask](https://metamask.io/)).
 
-### Chain ID {: #chain-id } 
+## Chain ID {: #chain-id } 
 
 Moonbeam chain ID is: `1284`, or `0x504` in hex.
