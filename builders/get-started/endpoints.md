@@ -25,6 +25,25 @@ Moonbase Alpha has two endpoints available for users to connect to: one for HTTP
 
 --8<-- 'text/testnet/relay-chain.md'
 
+Moonriver has two endpoints available for users to connect to: one for HTTPS and one for WSS.
+
+### HTTPS {: #https }
+
+--8<-- 'code/endpoints/moonriver-https.md'
+
+### WSS {: #wss }
+
+--8<-- 'code/endpoints/moonriver-wss.md'
+
+Moonbeam has two endpoints available for users to connect to: one for HTTPS and one for WSS.
+
+### HTTPS {: #https }
+
+--8<-- 'code/endpoints/moonbeam-https.md'
+
+### WSS {: #wss }
+
+--8<-- 'code/endpoints/moonbeam-wss.md'
 
 ## Endpoint Providers {: #endpoint-providers }
 
