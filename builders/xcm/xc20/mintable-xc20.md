@@ -59,7 +59,7 @@ To fetch a list of the mintable XC-20s currently available on the Moonbase Alpha
 
 ![Fetch list of cross-chain assets](/images/builders/xcm/xc20/mintable-xc20/mintable-xc20-1.png)
 
-The result will display the asset ID along with some additional information for all of the registered mintable XC-20s on Moonbase Alpha. 
+The result will display the asset ID along with some additional information for all of the registered mintable XC-20s on Moonbase Alpha. The asset ID is automatically generated and is calculated by BLAKE2 hashing a nonce that represents the number of local assets created. The ID is then used to access the asset and calculate the precompile address.
 
 ## Retrieve Metadata for Mintable XC-20s {: #retrieve-metadata-for-mintable-xc-20s }
 
@@ -93,9 +93,6 @@ Now that you've calculated the mintable XC-20 precompile address, you can use th
 ## Register a Mintable XC-20 {: #register-a-mxc-20 }
 
 This section of the guide will show you how to register an asset on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=_blank} and interact with the mintable XC-20 specific functions using [Remix](https://remix.ethereum.org/){target=_blank}. If you simply want to interact with a mintable XC-20 through the standard ERC-20 interface, please refer to the [Interact with the Precompile Using Remix](/builders/xcm/xc20/overview/#interact-with-the-precompile-using-remix){target=_blank} section of the XC-20 precompile page.
-
-Once you've successfully registered an asset, an asset ID will automatically be generated for the asset. The asset ID is calculated by hashing a local asset counter.
-The ID is then used to calculate the precompile address and interact with the asset.
 
 ### Checking Prerequisites {: #checking-prerequisites } 
 
