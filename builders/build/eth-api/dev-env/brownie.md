@@ -46,7 +46,7 @@ You will need to install Brownie and create a Brownie project if you don't alrea
     !!! note
         [`pipx`](https://github.com/pypa/pipx){target=_blank} is used to run executables installed locally in your project. Brownie will be installed into a virtual environment and be available directly from the command line.
 
-4. Create an project
+4. Create a project
     ```
     brownie init
     ```
