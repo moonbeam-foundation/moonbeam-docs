@@ -3,14 +3,14 @@ networks:
     build_tag: v0.23.0
     tracing_tag: purestake/moonbeam-tracing:v0.23.0-1502-3c9c
     rpc_url: http://127.0.0.1:9933
-    wss_url: WSS-API-ENDPOINT-HERE
+    wss_url: ws://127.0.0.1:9944
     chain_id: 1281
     hex_chain_id: '0x501'
     container_name: moonbeam_development
     block_explorer: https://moonbeam-explorer.netlify.app/
   moonbase:
     rpc_url: https://rpc.api.moonbase.moonbeam.network
-    wss_url: WSS-API-ENDPOINT-HERE
+    wss_url: wss://moonbeam-alpha.api.onfinality.io/public-ws
     chain_id: 1287
     hex_chain_id: '0x507'
     chain_spec: alphanet
