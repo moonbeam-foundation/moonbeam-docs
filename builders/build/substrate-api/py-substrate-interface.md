@@ -248,7 +248,7 @@ You can sign any arbitrary data using the keypair through the [`sign`](https://p
 
 The [`compose_call`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.compose_call){target=_blank} method can be used to compose a call payload which can be used as an unsigned extrinsic or a proposal.
 
-Then the payload can be signed using a Keypair through the [`create_signed_extrinsic`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.create_signed_extrinsic){target=_blank} method. 
+Then the payload can be signed using a keypair through the [`create_signed_extrinsic`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.create_signed_extrinsic){target=_blank} method. 
 
 The signed extrinsic can then be submitted using the [`submit_extrinsic`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.submit_extrinsic){target=_blank} method. 
 
