@@ -117,7 +117,7 @@ ws_provider = SubstrateInterface(
 constant_list = ws_provider.get_metadata_constants()
 print(constant_list)
 
-# Retrieve the Existential Deposit constant on Moonbeam, which is 0. 
+# Retrieve the Existential Deposit constant on Moonbeam, which is 0
 constant = ws_provider.get_constant("Balances", "ExistentialDeposit")
 print(constant.value)
 
