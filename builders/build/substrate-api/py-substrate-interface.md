@@ -234,7 +234,7 @@ print(candidate_pool_info)
 
 ## Signing and Transactions {: #signing-and-transactions }
 
-### Creating a Keypairs {: #creating-a-keypair }
+### Creating a Keypair {: #creating-a-keypair }
 
 The Keypair object in Python Substrate Interface is used in the signing of any data, whether it's a transfer, a message, or a contract interaction.  
 
