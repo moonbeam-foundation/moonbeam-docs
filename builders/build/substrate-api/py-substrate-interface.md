@@ -291,7 +291,7 @@ call = ws_provider.compose_call(
 # Form a signed extrinsic
 extrinsic = ws_provider.create_signed_extrinsic(call=call, keypair=keypair)
 
-#Submit the extrinsic
+# Submit the extrinsic
 try:
     receipt = ws_provider.submit_extrinsic(extrinsic, wait_for_inclusion=True)
     print("Extrinsic '{}' sent and included in block '{}'".format(receipt.extrinsic_hash, receipt.block_hash)) 
