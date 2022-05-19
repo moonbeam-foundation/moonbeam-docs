@@ -266,7 +266,7 @@ ws_provider = SubstrateInterface(
     url="{{ networks.moonbase.wss_url }}",
 ) 
 
-# Define the Ethereum TxHash to Check Finality
+# Define the Ethereum tx hash to check finality
 privatekey = bytes.fromhex("enter-shortform-private-key")
 mnemonic = 'enter-account-mnemonic'
 
