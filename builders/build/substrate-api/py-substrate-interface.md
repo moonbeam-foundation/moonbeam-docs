@@ -238,7 +238,7 @@ print(candidate_pool_info)
 
 The Keypair object in Python Substrate Interface is used in the signing of any data, whether it's a transfer, a message, or a contract interaction.  
 
-You can create a Keypair instance from the shortform private key or from the mnemonic. For Moonbeam networks, you also need to specify the KeypairType to be `KeypairType.ECDSA`.
+You can create a keypair instance from the shortform private key or from the mnemonic. For Moonbeam networks, you also need to specify the `KeypairType` to be `KeypairType.ECDSA`.
 
 #### Signing Data {: #signing-data }
 
