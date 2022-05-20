@@ -167,9 +167,9 @@ for extrinsic in block['extrinsics']:
     The block hash used in the above code sample is the Substrate block hash. The standard methods in Python Substrate Interface assume you are using the Substrate version of primitives, such as block or tx hashes.
 
 
-#### Subscribe to New Block Headers {: #subscribe-to-new-block-headers }
+### Subscribe to New Block Headers {: #subscribe-to-new-block-headers }
 
-We can also adapt the previous example to use a subscription based model to listen to new block headers.
+You can also adapt the previous example to use a subscription based model to listen to new block headers.
 
 ```python
 # Import
@@ -240,9 +240,20 @@ The keypair object in Python Substrate Interface is used in the signing of any d
 
 You can create a keypair instance from the shortform private key or from the mnemonic. For Moonbeam networks, you also need to specify the `KeypairType` to be `KeypairType.ECDSA`.
 
-#### Signing Data {: #signing-data }
+```python
+# Import
+from substrateinterface import Keypair, KeypairType
 
-You can sign any arbitrary data using the keypair through the [`sign`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.Keypair.sign){target=_blank} method.
+# Define the shortform private key and mnemonic
+privatekey = bytes.fromhex("enter-shortform-private-key")
+mnemonic = 'enter-account-mnemonic'
+
+# Generate the keypair from shortform private key
+keypair = Keypair.create_from_private_key(privatekey, crypto_type=KeypairType.ECDSA)
+
+# Generate the keypair from mnemonic
+keypair = Keypair.create_from_mnemonic(mnemonic, crypto_type=KeypairType.ECDSA)
+```
 
 ### Forming and Sending a Transaction {: #forming-and-sending-a-transaction }
 
@@ -254,29 +265,24 @@ The signed extrinsic can then be submitted using the [`submit_extrinsic`](https:
 
 This method will also return an `ExtrinsicReceipt` object which contains information about the on-chain execution of the extrinsic. You can set the `wait_for_inclusion` to `True` when submitting the extrinsic if you need to examine the receipt object, to wait until the extrinsic is successfully included into the block. 
 
-The following sample code will show a complete example. 
+The following sample code will show a complete example for sending a transaction. 
 
 ```python
 
 # Import
-from substrateinterface import SubstrateInterface
+from substrateinterface import SubstrateInterface, Keypair, KeypairType
+from substrateinterface.exceptions import SubstrateRequestException
 
 # Construct the API provider
 ws_provider = SubstrateInterface(
     url="{{ networks.moonbase.wss_url }}",
 ) 
 
-# Define the Ethereum tx hash to check finality
+# Define the shortform private key of the sending account
 privatekey = bytes.fromhex("enter-shortform-private-key")
-mnemonic = 'enter-account-mnemonic'
 
 # Generate the keypair
 keypair = Keypair.create_from_private_key(privatekey, crypto_type=KeypairType.ECDSA)
-#keypair = Keypair.create_from_mnemonic(mnemonic, crypto_type=KeypairType.ECDSA)
-
-# Sign a message
-signature = keypair.sign("TestMoonbeam")
-print(signature)
 
 # Form a transaction call
 call = ws_provider.compose_call(
@@ -299,6 +305,98 @@ except SubstrateRequestException as e:
     print("Failed to send: {}".format(e))
 
 ``` 
+
+### Offline Signing {: #offline-signing }
+
+You can sign any arbitrary data using the keypair through the [`sign`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.Keypair.sign){target=_blank} method. This can be used for offline signing of transactions.
+
+1. First, generate the signature payload on the online machine:
+
+    ```python
+    # Import
+    from substrateinterface import SubstrateInterface
+
+    # Construct the API provider
+    ws_provider = SubstrateInterface(
+        url="{{ networks.moonbase.wss_url }}",
+    ) 
+  
+    # Construct a transaction call
+    call = ws_provider.compose_call(
+        call_module='Balances',
+        call_function='transfer',
+        call_params={
+            'dest': '0x44236223aB4291b93EEd10E4B511B37a398DEE55',
+            'value': 1 * 10**18
+        }
+    )
+
+    # Generate the signature payload
+    signature_payload = ws_provider.generate_signature_payload(call=call)
+    ```
+
+2. On an offline machine, create a keypair with the private key of the sending account, and sign the signature payload:
+
+    ```python
+    # Import
+    from substrateinterface import Keypair, KeypairType
+
+    # Define the signature payload from the offline machine
+    signature_payload = "signature payload from offline machine"
+
+    # Define the shortform private key of the sending account
+    privatekey = bytes.fromhex("enter-shortform-private-key")
+
+    # Generate the keypair from shortform private key
+    keypair = Keypair.create_from_private_key(privatekey, crypto_type=KeypairType.ECDSA)
+
+    # Sign the signature_payload 
+    signature = keypair.sign(signature_payload)
+    ```
+
+3. On an online machine, create a keypair with the public key of the sending account, and submit the extrinsic with the generated signature from the offline machine:
+
+    ```python
+
+    # Import
+    from substrateinterface import SubstrateInterface, Keypair, KeypairType
+
+    # Construct the API provider
+    ws_provider = SubstrateInterface(
+        url="{{ networks.moonbase.wss_url }}",
+    ) 
+
+    # Define the signature from the offline machine
+    signature = "generated signature from offline machine"
+
+    # Construct a keypair with the public key of the sending account
+    keypair = Keypair(public_key="hex string of the public key of the sending account")
+
+    # Construct the same transaction call that was signed
+    call = ws_provider.compose_call(
+        call_module='Balances',
+        call_function='transfer',
+        call_params={
+            'dest': '0x44236223aB4291b93EEd10E4B511B37a398DEE55',
+            'value': 1 * 10**18
+        }
+    )
+
+    # Construct the signed extrinsic with the generated signature
+    extrinsic = substrate.create_signed_extrinsic(
+        call=call,
+        keypair=keypair,
+        signature=signature
+    )
+
+    # Submit the signed extrinsic
+    result = substrate.submit_extrinsic(
+        extrinsic=extrinsic
+    )
+
+    # Print the execution result
+    print(result.extrinsic_hash)
+    ``` 
 
 ## Custom RPC Requests {: #custom-rpc-requests }
 
