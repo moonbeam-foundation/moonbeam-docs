@@ -263,7 +263,7 @@ Then the payload can be signed using a keypair through the [`create_signed_extri
 
 The signed extrinsic can then be submitted using the [`submit_extrinsic`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.submit_extrinsic){target=_blank} method. 
 
-This method will also return an `ExtrinsicReceipt` object which contains information about the on-chain execution of the extrinsic. You can set the `wait_for_inclusion` to `True` when submitting the extrinsic if you need to examine the receipt object, to wait until the extrinsic is successfully included into the block. 
+This method will also return an `ExtrinsicReceipt` object which contains information about the on-chain execution of the extrinsic. If you need to examine the receipt object, you can set the `wait_for_inclusion` to `True` when submitting the extrinsic to wait until the extrinsic is successfully included into the block. 
 
 The following sample code will show a complete example for sending a transaction. 
 
