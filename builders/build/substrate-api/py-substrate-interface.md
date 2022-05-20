@@ -49,10 +49,10 @@ Similar to ETH API libraries, you must first instantiate an API instance of Pyth
 === "Moonbeam"
 
     ```python
-    # Import
+    # Imports
     from substrateinterface import SubstrateInterface
 
-    # Construct API provider
+    # Construct the API provider
     ws_provider = SubstrateInterface(
         url="{{ networks.moonbeam.wss_url }}",
     )   
@@ -61,10 +61,10 @@ Similar to ETH API libraries, you must first instantiate an API instance of Pyth
 === "Moonriver"
 
     ```python
-    # Import
+    # Imports
     from substrateinterface import SubstrateInterface
 
-    # Construct API provider
+    # Construct the API provider
     ws_provider = SubstrateInterface(
         url="{{ networks.moonriver.wss_url }}",
     )   
@@ -73,10 +73,10 @@ Similar to ETH API libraries, you must first instantiate an API instance of Pyth
 === "Moonbase Alpha"
 
     ```python
-    # Import
+    # Imports
     from substrateinterface import SubstrateInterface
 
-    # Construct API provider
+    # Construct the API provider
     ws_provider = SubstrateInterface(
         url="{{ networks.moonbase.wss_url }}",
     )   
@@ -88,7 +88,7 @@ Similar to ETH API libraries, you must first instantiate an API instance of Pyth
     # Import
     from substrateinterface import SubstrateInterface
 
-    # Construct API provider
+    # Construct the API provider
     ws_provider = SubstrateInterface(
         url="{{ networks.development.wss_url }}",
     )   
@@ -105,7 +105,7 @@ All runtime constants are provided in the metadata. You can use the [`get_metada
 Runtime constants available in the metadata can be queried through the [`get_constant`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.get_constant){target=_blank} method.
 
 ```python
-# Import
+# Imports
 from substrateinterface import SubstrateInterface
 
 # Construct the API provider
@@ -123,14 +123,16 @@ print(constant.value)
 
 ```
 
-### Retrieve Blocks and Extrinsics {: #retrieve-blocks-and-extrinsics }
+### Retrieving Block Information {: #retrieving-block-information }
 
-You can retrieve basic information about Moonbeam networks, such as blocks and extrinsics, using the Python Substrate Interface API. 
+You can retrieve basic information about Moonbeam networks, such as blocks and block headers, using the Python Substrate Interface API. 
 
-To retrieve a block, you can use the [`get_block`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.get_block){target=_blank} method. You can also access extrinsics and their data fields inside a block object, which is simply a Python dictionary. 
+To retrieve a raw block object, you can use the [`get_chain_block`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.get_chain_block){target=_blank} method. 
+
+To retrieve a block header, you can use the [`get_block_header`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.get_block_header){target=_blank} method.  
 
 ```python
-# Import
+# Imports
 from substrateinterface import SubstrateInterface
 
 # Construct the API provider
@@ -139,28 +141,16 @@ ws_provider = SubstrateInterface(
 )   
 
 # Retrieve the latest block
-block = ws_provider.get_block()
+block = ws_provider.get_chain_block()
 
-# Retrieve the latest finalized block
-block = ws_provider.get_block_header(finalized_only = True)
+# Retrieve the latest finalized block header
+block_header = ws_provider.get_block_header(finalized_only = True)
 
-# Retrieve a block given its hash
+# Retrieve a block header given its hash
 block_hash = "0xa499d4ebccdabe31218d232460c0f8b91bd08f72aca25f9b25b04b6dfb7a2acb"
-block = ws_provider.get_block(block_hash=block_hash)
+block_header = ws_provider.get_block_header(block_hash=block_hash)
 
-for extrinsic in block['extrinsics']:
-
-    if 'address' in extrinsic:
-        signed_by_address = extrinsic['address'].value
-    else:
-        signed_by_address = None
-
-    print('\nPallet: {}\nCall: {}\nSigned by: {}'.format(
-        extrinsic["call"]["call_module"].name,
-        extrinsic["call"]["call_function"].name,
-        signed_by_address
-    ))
-
+print(block_header)
 ```
 
 !!! note
@@ -172,23 +162,23 @@ for extrinsic in block['extrinsics']:
 You can also adapt the previous example to use a subscription based model to listen to new block headers.
 
 ```python
-# Import
+# Imports
 from substrateinterface import SubstrateInterface
 
 # Construct the API provider
 ws_provider = SubstrateInterface(
-    url="{{ networks.moonbase.wss_url }}",
+    url="wss://wss.api.moonbase.moonbeam.network",
 ) 
 
 def subscription_handler(obj, update_nr, subscription_id):
 
-    print(f"New block #{obj['header']['number']} produced by {obj['author']}")
+    print(obj)
 
     if update_nr > 10:
         return {'message': 'Subscription will cancel when a value is returned', 'updates_processed': update_nr}
 
 
-block_header = ws_provider.subscribe_block_headers(subscription_handler, include_author=True)
+block_header = ws_provider.subscribe_block_headers(subscription_handler)
 ```
 
 ### Query for Storage Information {: #query-for-storage-information }
@@ -200,7 +190,7 @@ Chain states that are provided in the metadata through storage functions can be 
 System modules can be queried to provide basic information such as account nonce and balance. The available functions are read from the metadata dynamically, so it's also possible to query for storage information on Moonbeam custom modules such as `ParachainStaking` for state information that's specific to Moonbeam. 
 
 ```python
-# Import
+# Imports
 from substrateinterface import SubstrateInterface
 
 # Construct the API provider
@@ -241,12 +231,14 @@ The keypair object in Python Substrate Interface is used in the signing of any d
 You can create a keypair instance from the shortform private key or from the mnemonic. For Moonbeam networks, you also need to specify the `KeypairType` to be `KeypairType.ECDSA`.
 
 ```python
-# Import
+# Imports
 from substrateinterface import Keypair, KeypairType
 
-# Define the shortform private key and mnemonic
-privatekey = bytes.fromhex("enter-shortform-private-key")
-mnemonic = 'enter-account-mnemonic'
+# Define the shortform private key
+privatekey = bytes.fromhex("enter-shortform-private-key-without-0x-prefix")
+
+# Define the account mnenomic
+mnemonic = "enter-account-mnemonic"
 
 # Generate the keypair from shortform private key
 keypair = Keypair.create_from_private_key(privatekey, crypto_type=KeypairType.ECDSA)
@@ -269,7 +261,7 @@ The following sample code will show a complete example for sending a transaction
 
 ```python
 
-# Import
+# Imports
 from substrateinterface import SubstrateInterface, Keypair, KeypairType
 from substrateinterface.exceptions import SubstrateRequestException
 
@@ -279,7 +271,7 @@ ws_provider = SubstrateInterface(
 ) 
 
 # Define the shortform private key of the sending account
-privatekey = bytes.fromhex("enter-shortform-private-key")
+privatekey = bytes.fromhex("enter-shortform-private-key-without-0x-prefix")
 
 # Generate the keypair
 keypair = Keypair.create_from_private_key(privatekey, crypto_type=KeypairType.ECDSA)
@@ -306,6 +298,7 @@ except SubstrateRequestException as e:
 
 ``` 
 
+<!-- 
 ### Offline Signing {: #offline-signing }
 
 You can sign any arbitrary data using the keypair through the [`sign`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.Keypair.sign){target=_blank} method. This can be used for offline signing of transactions.
@@ -313,7 +306,7 @@ You can sign any arbitrary data using the keypair through the [`sign`](https://p
 1. First, generate the signature payload on the online machine:
 
     ```python
-    # Import
+    # Imports
     from substrateinterface import SubstrateInterface
 
     # Construct the API provider
@@ -338,14 +331,14 @@ You can sign any arbitrary data using the keypair through the [`sign`](https://p
 2. On an offline machine, create a keypair with the private key of the sending account, and sign the signature payload:
 
     ```python
-    # Import
+    # Imports
     from substrateinterface import Keypair, KeypairType
 
     # Define the signature payload from the offline machine
     signature_payload = "signature payload from offline machine"
 
     # Define the shortform private key of the sending account
-    privatekey = bytes.fromhex("enter-shortform-private-key")
+    privatekey = bytes.fromhex("enter-shortform-private-key-without-0x-prefix")
 
     # Generate the keypair from shortform private key
     keypair = Keypair.create_from_private_key(privatekey, crypto_type=KeypairType.ECDSA)
@@ -358,7 +351,7 @@ You can sign any arbitrary data using the keypair through the [`sign`](https://p
 
     ```python
 
-    # Import
+    # Imports
     from substrateinterface import SubstrateInterface, Keypair, KeypairType
 
     # Construct the API provider
@@ -397,6 +390,7 @@ You can sign any arbitrary data using the keypair through the [`sign`](https://p
     # Print the execution result
     print(result.extrinsic_hash)
     ``` 
+-->
 
 ## Custom RPC Requests {: #custom-rpc-requests }
 
