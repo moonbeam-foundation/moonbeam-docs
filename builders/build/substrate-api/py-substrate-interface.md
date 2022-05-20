@@ -221,7 +221,7 @@ candidate_pool_info = ws_provider.query(
 print(candidate_pool_info)
 ```
 
-## Keypairs and Transactions {: #keypairs-and-transactions }
+## Signing and Transactions {: #signing-and-transactions }
 
 ### Creating a Keypair {: #creating-a-keypair }
 
@@ -299,9 +299,9 @@ except SubstrateRequestException as e:
 
 ### Offline Signing {: #offline-signing }
 
-You can sign any arbitrary data using the keypair through the [`sign`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.Keypair.sign){target=_blank} method. This can be used for offline signing of transactions.
+You can sign transaction payloads or any arbitrary data using a keypair object through the [`sign`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.Keypair.sign){target=_blank} method. This can be used for offline signing of transactions.
 
-1. First, generate the signature payload on the online machine:
+1. First, generate the signature payload on an online machine:
 
     ```python
     # Imports
