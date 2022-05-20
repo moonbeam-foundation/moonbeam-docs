@@ -13,24 +13,15 @@ description: Learn the basic of how to use the Python Substrate Interface librar
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
-Installing and using Python Substrate Interface library requires `pip` to be installed. 
+For the examples in this guide, you will need to have the following:
 
-Use the following command to install `pip` for Python 3:
+ - An account with funds. For Moonbase Alpha, you can get DEV tokens for testing purposes from [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/)
+ - 
+--8<-- 'text/common/endpoint-examples.md'
+ - Have [`pip`](https://pypi.org/project/pip/){target=_blank} installed
 
-1. Start by updating the package list using the following command:
-```
-sudo apt update
-```
-
-2. Use the following command to install pip for Python 3:
-```
-sudo apt install python3-pip
-```
-
-3. Once the installation is complete, verify the installation by checking the pip version:
-```
-pip --version
-```
+!!! note
+    --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
 
 ### Installing Python Substrate Interface {: #installing-python-substrate-interface } 
 
@@ -100,7 +91,7 @@ In this section, you will learn how to query for on-chain information of Moonbea
 
 ### Accessing Runtime Constants {: #accessing-runtime-constants }
 
-All runtime constants are provided in the metadata. You can use the [`get_metadata_constants`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.get_metadata_constants){target=_blank} method to see a list of available runtime constants within Moonbeam network's metadata. 
+All runtime constants, such as `BlockWeights`, `DefaultBlocksPerRound` and `ExistentialDeposit`, are provided in the metadata. You can use the [`get_metadata_constants`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.get_metadata_constants){target=_blank} method to see a list of available runtime constants within Moonbeam network's metadata. 
 
 Runtime constants available in the metadata can be queried through the [`get_constant`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.get_constant){target=_blank} method.
 
@@ -187,7 +178,7 @@ You can use the [`get_metadata_storage_functions`](https://polkascan.github.io/p
 
 Chain states that are provided in the metadata through storage functions can be queried through the [`query`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.query){target=_blank} method. 
 
-System modules can be queried to provide basic information such as account nonce and balance. The available functions are read from the metadata dynamically, so it's also possible to query for storage information on Moonbeam custom modules such as `ParachainStaking` for state information that's specific to Moonbeam. 
+The Substrate system modules, such as `System`, `Timestamp`, and `Balances`, can be queried to provide basic information such as account nonce and balance. The available storage functions are read from the metadata dynamically, so you can also query for storage information on Moonbeam custom modules, such as `ParachainStaking` and `Democracy`, for state information that's specific to Moonbeam. 
 
 ```python
 # Imports
@@ -222,7 +213,7 @@ candidate_pool_info = ws_provider.query(
 print(candidate_pool_info)
 ```
 
-## Signing and Transactions {: #signing-and-transactions }
+## Keypairs and Transactions {: #keypairs-and-transactions }
 
 ### Creating a Keypair {: #creating-a-keypair }
 
