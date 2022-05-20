@@ -118,9 +118,7 @@ print(constant.value)
 
 You can retrieve basic information about Moonbeam networks, such as blocks and block headers, using the Python Substrate Interface API. 
 
-To retrieve a raw block object, you can use the [`get_chain_block`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.get_chain_block){target=_blank} method. 
-
-To retrieve a block header, you can use the [`get_block_header`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.get_block_header){target=_blank} method.  
+To retrieve a raw block object, you can use the [`get_chain_block`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.get_chain_block){target=_blank} method. To retrieve a block header, you can use the [`get_block_header`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.get_block_header){target=_blank} method.  
 
 ```python
 # Imports
