@@ -113,12 +113,13 @@ constant = ws_provider.get_constant("Balances", "ExistentialDeposit")
 print(constant.value)
 
 ```
+### Retrieving Blocks and Extrinsics {: #retrieving-blocks-and-extrinsics }
 
-### Retrieving Block Information {: #retrieving-block-information }
+You can retrieve basic information about Moonbeam networks, such as blocks and extrinsics, using the Python Substrate Interface API. 
 
-You can retrieve basic information about Moonbeam networks, such as blocks and block headers, using the Python Substrate Interface API. 
+To retrieve a block, you can use the [`get_block`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.get_block){target=_blank} method. You can also access extrinsics and their data fields inside a block object, which is simply a Python dictionary. 
 
-To retrieve a raw block object, you can use the [`get_chain_block`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.get_chain_block){target=_blank} method. To retrieve a block header, you can use the [`get_block_header`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.get_block_header){target=_blank} method.  
+To retrieve a block header, you can use the [`get_block_header`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.get_block_header){target=_blank} method.  
 
 ```python
 # Imports
@@ -130,23 +131,32 @@ ws_provider = SubstrateInterface(
 )   
 
 # Retrieve the latest block
-block = ws_provider.get_chain_block()
+block = ws_provider.get_block()
 
-# Retrieve the latest finalized block header
-block_header = ws_provider.get_block_header(finalized_only = True)
+# Retrieve the latest finalized block
+block = ws_provider.get_block_header(finalized_only = True)
 
-# Retrieve a block header given its hash
+# Retrieve a block given its Substrate block hash
 block_hash = "0xa499d4ebccdabe31218d232460c0f8b91bd08f72aca25f9b25b04b6dfb7a2acb"
-block_header = ws_provider.get_block_header(block_hash=block_hash)
+block = ws_provider.get_block(block_hash=block_hash)
 
-print(block_header)
+# Iterate through the extrinsics inside the block
+for extrinsic in block['extrinsics']:
+    if 'address' in extrinsic:
+        signed_by_address = extrinsic['address'].value
+    else:
+        signed_by_address = None
+    print('\nPallet: {}\nCall: {}\nSigned by: {}'.format(
+        extrinsic["call"]["call_module"].name,
+        extrinsic["call"]["call_function"].name,
+        signed_by_address
+    ))
 ```
 
 !!! note
     The block hash used in the above code sample is the Substrate block hash. The standard methods in Python Substrate Interface assume you are using the Substrate version of primitives, such as block or tx hashes.
 
-
-### Subscribe to New Block Headers {: #subscribe-to-new-block-headers }
+### Subscribing to New Block Headers {: #subscribing-to-new-block-headers }
 
 You can also adapt the previous example to use a subscription based model to listen to new block headers.
 
@@ -156,21 +166,21 @@ from substrateinterface import SubstrateInterface
 
 # Construct the API provider
 ws_provider = SubstrateInterface(
-    url="wss://wss.api.moonbase.moonbeam.network",
+    url="{{ networks.moonbase.wss_url }}",
 ) 
 
 def subscription_handler(obj, update_nr, subscription_id):
 
-    print(obj)
+    print(f"New block #{obj['header']['number']}")
 
     if update_nr > 10:
         return {'message': 'Subscription will cancel when a value is returned', 'updates_processed': update_nr}
 
 
-block_header = ws_provider.subscribe_block_headers(subscription_handler)
+result = ws_provider.subscribe_block_headers(subscription_handler)
 ```
 
-### Query for Storage Information {: #query-for-storage-information }
+### Querying for Storage Information {: #querying-for-storage-information }
 
 You can use the [`get_metadata_storage_functions`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.SubstrateInterface.get_metadata_storage_functions){target=_blank} to see a list of available storage functions within Moonbeam network's metadata. 
 
@@ -287,7 +297,6 @@ except SubstrateRequestException as e:
 
 ``` 
 
-<!-- 
 ### Offline Signing {: #offline-signing }
 
 You can sign any arbitrary data using the keypair through the [`sign`](https://polkascan.github.io/py-substrate-interface/#substrateinterface.Keypair.sign){target=_blank} method. This can be used for offline signing of transactions.
@@ -326,7 +335,7 @@ You can sign any arbitrary data using the keypair through the [`sign`](https://p
     # Define the signature payload from the offline machine
     signature_payload = "signature payload from offline machine"
 
-    # Define the shortform private key of the sending account
+    # Define the shortform private key of the sender account
     privatekey = bytes.fromhex("enter-shortform-private-key-without-0x-prefix")
 
     # Generate the keypair from shortform private key
@@ -351,8 +360,8 @@ You can sign any arbitrary data using the keypair through the [`sign`](https://p
     # Define the signature from the offline machine
     signature = "generated signature from offline machine"
 
-    # Construct a keypair with the public key of the sending account
-    keypair = Keypair(public_key="hex string of the public key of the sending account")
+    # Construct a keypair with the Ethereum style wallet address of the sending account
+    keypair = Keypair(public_key="enter-sender-wallet-address-without-0x", crypto_type=KeypairType.ECDSA)
 
     # Construct the same transaction call that was signed
     call = ws_provider.compose_call(
@@ -379,7 +388,6 @@ You can sign any arbitrary data using the keypair through the [`sign`](https://p
     # Print the execution result
     print(result.extrinsic_hash)
     ``` 
--->
 
 ## Custom RPC Requests {: #custom-rpc-requests }
 
