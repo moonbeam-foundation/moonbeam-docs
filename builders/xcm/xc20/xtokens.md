@@ -75,7 +75,7 @@ If you've [checked the prerequisites](#xtokens-check-prerequisites), head to the
 2. Choose the **xTokens** pallet
 3. Choose the **transfer** extrinsic
 4. Set the currency ID to **OtherReserve**. This is because you are not transferring DEV tokens (*SelfReserve*)
-5. Enter the asset ID. For this example, `xcUNIT` has an asset id of `42259045809535163221576417993425387648`. You can check all available assets IDs in the [XC-20 address section](/builders/xcm/xc20/#current-xc20-assets){target=_blank} 
+5. Enter the asset ID. For this example, `xcUNIT` has an asset id of `42259045809535163221576417993425387648`. You can check all available assets IDs in the [XC-20 address section](/builders/xcm/xc20/overview/#current-xc20-assets){target=_blank} 
 6. Set the number of tokens to send. For this example, you are sending 1 `xcUNIT`, but you have to account for the 12 decimals of `xcUNIT`. To learn how many decimals a XC-20 token has, you can [check its metadata](/builders/xcm/xc20/#x-chain-assets-metadata){target=_blank} 
 7. To define the XCM destination multilocation, you have to target an account in the relay chain from Moonbase Alpha as the origin. Therefore, set the following parameters:
 
@@ -163,7 +163,7 @@ The X-Tokens precompile contract allows developers to access XCM token transfer 
 
 The interface includes the following functions:
 
- - **transfer**(*address* currency_address, *uint256* amount, *Multilocation* *memory* destination, *uint64* weight) — function that represents the `transfer` method described in the previous example. However, instead of using the currency ID, you need to provide the [XC-20 address](/builders/xcm/xc20/#current-xc20-assets){target=_blank}. The multilocation is built in a particular way that is described in the following section
+ - **transfer**(*address* currency_address, *uint256* amount, *Multilocation* *memory* destination, *uint64* weight) — function that represents the `transfer` method described in the previous example. However, instead of using the currency ID, you need to provide the [XC-20 address](/builders/xcm/xc20/overview/#current-xc20-assets){target=_blank}. The multilocation is built in a particular way that is described in the following section
  - **transfer_multiasset**(*Multilocation* *memory* asset, *uint256* amount, *Multilocation* *memory* destination, *uint64* weight) — function that represents the `transferMultiasset` method described in the previous example. Both multilocations are built in a particular way that is described in the following section
 
 ### Building the Precompile Multilocation {: #building-the-precompile-multilocation }

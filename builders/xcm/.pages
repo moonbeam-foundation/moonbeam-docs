@@ -3,3 +3,4 @@ nav:
   - index.md
   - 'Overview': 'overview.md'
   - xc20
+  - 'Remote Execution': 'xcm-transactor.md'
