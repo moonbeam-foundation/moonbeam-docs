@@ -5,7 +5,7 @@ description: Learn about cross chain assets that can be minted and burned on a M
 
 # Mintable XC-20s
 
-![Cross-Chain Assets Precompiled Contracts Banner](/images/builders/xcm/xc20/overview/xc20-banner.png)
+![Cross-Chain Assets Precompiled Contracts Banner](/images/builders/xcm/xc20/mintable-xc20/mintable-xc20-banner.png)
 
 ## Introduction {: #introduction } 
 
