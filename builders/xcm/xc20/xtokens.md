@@ -188,7 +188,7 @@ The interface includes the following functions:
  - **transfer**(*address* currency_address, *uint256* amount, *Multilocation* *memory* destination, *uint64* weight) — function that represents the `transfer` method described in the previous example. However, instead of using the currency ID, you need to provide the [XC-20 address](/builders/xcm/xc20/xc20/#current-xc20-assets){target=_blank}. The multilocation is built in a particular way that is described in the following section
  - **transfer_multiasset**(*Multilocation* *memory* asset, *uint256* amount, *Multilocation* *memory* destination, *uint64* weight) — function that represents the `transferMultiasset` method described in the previous example. Both multilocations are built in a particular way that is described in the following section
 
-### Building the Precompile Multilocation
+### Building the Precompile Multilocation {: #building-the-precompile-multilocation }
 
 In the X-Tokens precompile interface, the `Multilocation` structure is defined as follows:
 

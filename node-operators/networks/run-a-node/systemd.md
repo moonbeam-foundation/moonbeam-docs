@@ -211,7 +211,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --execution wasm \
          --wasm-execution compiled \
          --pruning=archive \
-         --state-cache-size 1 \
+         --state-cache-size 0 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonbeam.node_directory }} \
          --chain {{ networks.moonbeam.chain_spec }} \
@@ -250,7 +250,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --execution wasm \
          --wasm-execution compiled \
          --pruning=archive \
-         --state-cache-size 1 \
+         --state-cache-size 0 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonriver.node_directory }} \
          --chain {{ networks.moonriver.chain_spec }} \
@@ -289,7 +289,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --execution wasm \
          --wasm-execution compiled \
          --pruning=archive \
-         --state-cache-size 1 \
+         --state-cache-size 0 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonbase.node_directory }} \
          --chain {{ networks.moonbase.chain_spec }} \
@@ -331,7 +331,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --execution wasm \
          --wasm-execution compiled \
          --pruning=archive \
-         --state-cache-size 1 \
+         --state-cache-size 0 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonbeam.node_directory }} \
          --chain {{ networks.moonbeam.chain_spec }} \
@@ -371,7 +371,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --execution wasm \
          --wasm-execution compiled \
          --pruning=archive \
-         --state-cache-size 1 \
+         --state-cache-size 0 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonriver.node_directory }} \
          --chain {{ networks.moonriver.chain_spec }} \
@@ -411,7 +411,7 @@ The next step is to create the systemd configuration file. If you are setting up
          --execution wasm \
          --wasm-execution compiled \
          --pruning=archive \
-         --state-cache-size 1 \
+         --state-cache-size 0 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonbase.node_directory }} \
          --chain {{ networks.moonbase.chain_spec }} \
@@ -429,7 +429,7 @@ The next step is to create the systemd configuration file. If you are setting up
     ```
 
 !!! note
-    If you want to run an RPC endpoint, to connect Polkadot.js Apps, or to run your own application, use the flags `--unsafe-rpc-external` and/or `--unsafe-ws-external` to run the full node with external access to the RPC ports.  More details are available by running `moonbeam --help`. This is **not** recommended for Collators. 
+    If you want to run an RPC endpoint, to connect Polkadot.js Apps, or to run your own application, use the flags `--unsafe-rpc-external` and/or `--unsafe-ws-external` to run the full node with external access to the RPC ports.  More details are available by running `moonbeam --help`. This is **not** recommended for Collators. For an overview of the above flags, please refer to the [Flags](/node-operators/networks/run-a-node/flags){target=_blank} page of our documentation.
 
 !!! note
     You can specify a custom Prometheus port with the `--prometheus-port XXXX` flag (replacing `XXXX` with the actual port number). This is possible for both the parachain and embedded relay chain.

@@ -9,22 +9,23 @@ description: Use one of the supported API providers to connect to a public endpo
 
 ## Public Endpoints {: #public-endpoints }
 
-There are public endpoints available for development on the Moonbase Alpha TestNet. For Moonbeam or Moonriver, you'll need to get your own endpoint from one of the supported [Endpoint Providers](#endpoint-providers).
+Moonbeam-based networks have two endpoints available for users to connect to: one for HTTPS and one for WSS. 
 
-Moonbase Alpha has two endpoints available for users to connect to: one for HTTPS and one for WSS.
+The endpoints in this section are for development purposes only and are not meant to be used in production applications.
 
-### HTTPS {: #https }
+If you are looking for an API provider suitable for production use, you can check out the [Endpoint Providers](#endpoint-providers) section of this guide. 
 
---8<-- 'code/endpoints/moonbase-https.md'
+### Moonbeam {: #moonbeam }
 
-### WSS {: #wss }
+--8<-- 'code/endpoints/moonbeam.md'
 
---8<-- 'code/endpoints/moonbase-wss.md'
+### Moonriver {: #moonriver }
 
-### Relay Chain {: #relay-chain }
+--8<-- 'code/endpoints/moonriver.md'
 
---8<-- 'text/testnet/relay-chain.md'
+### Moonbase Alpha {: #moonbase-alpha }
 
+--8<-- 'code/endpoints/moonbase.md'
 
 ## Endpoint Providers {: #endpoint-providers }
 

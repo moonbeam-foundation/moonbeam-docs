@@ -30,7 +30,7 @@ This guide will cover some of the most common flags and show you how to access a
 - **`--pruning`** - specifies the state pruning mode. If running a node with the `--validator` flag, the default is to keep the full state of all blocks. Otherwise, the state is only kept for the last 256 blocks. The available options are:
     - **`archive`** - keeps the full state of all blocks
     - **`<number-of-blocks>`** - specifies a custom number of blocks to keep the state for
-- **`--state-cache-size`** - specifies the size of the internal state cache. The default is `67108864`. You can set this value to `1` to disable the cache and improve collator performance
+- **`--state-cache-size`** - specifies the size of the internal state cache. The default is `67108864`. You can set this value to `0` to disable the cache and improve collator performance
 - **`--db-cache`** - specifies the memory the database cache is limited to use. It is recommended to set it to 50% of the actual RAM your server has. For example, for 32 GB RAM, the value should be set to `16000`. The minimum value is `2000`, but it is below the recommended specs 
 - **`--base-path`** - specifies the base path where your chain data is stored
 - **`--chain`** - specifies the chain specification to use. It can be a predefined chainspec such as `{{ networks.moonbeam.chain_spec }}`, `{{ networks.moonriver.chain_spec }}`, or `{{ networks.moonbase.chain_spec }}`. Or it can be a path to a file with the chainspec (such as the one exported by the `build-spec` command)
@@ -38,7 +38,7 @@ This guide will cover some of the most common flags and show you how to access a
 - **`--telemetry-url`** - specifies the URL of the telemetry server to connect to. This flag can be passed multiple times as a means to specify multiple telemetry endpoints. This flag takes two parameters: the URL and the verbosity level. Verbosity levels range from 0-9, with 0 denoting the least verbosity. Expected format is '<URL VERBOSITY>', e.g. `--telemetry-url 'wss://foo/bar 0'`.
 - **`--in-peers`** - specifies the maximum amount of accepted incoming connections. The default is `25`
 - **`--out-peers`** - specifies the maximum amount of outgoing connections to maintain. The default is `25`
-- **`--runtime-cache-size 32`** - configures the number of different runtime versions preserved in the in-memory cache to 32
+- **`--runtime-cache-size 64`** - configures the number of different runtime versions preserved in the in-memory cache to 64
 - **`--eth-log-block-cache`** - size in bytes the LRU cache for block data is limited to use. This flag mostly pertains to RPC providers. The default is `300000000`
 - **`--eth-statuses-cache`** - size in bytes the LRU cache for transaction statuses data is limited to use. This flag mostly pertains to RPC providers. The default is `300000000` 
 

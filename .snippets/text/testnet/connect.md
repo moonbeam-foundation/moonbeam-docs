@@ -1,24 +1,12 @@
-## Connect to Moonbase Alpha
-
-### Network Endpoints
+## Network Endpoints
 
 Moonbase Alpha has two types of endpoints available for users to connect to: one for HTTPS and one for WSS.
 
 If you're looking for your own endpoints suitable for production use, you can check out the [Endpoint Providers](/builders/get-started/endpoints/#endpoint-providers) section of our documentation. Otherwise, to get started quickly you can use one of the following public HTTPS or WSS endpoints.
 
-#### HTTPS {: #https }
+--8<-- 'code/endpoints/moonbase.md'
 
---8<-- 'code/endpoints/moonbase-https.md'
-
-#### WSS {: #wss }
-
---8<-- 'code/endpoints/moonbase-wss.md'
-
-#### Relay Chain {: #relay-chain }
-
---8<-- 'text/testnet/relay-chain.md'
-
-### Quick Start {: #quick-start } 
+## Quick Start {: #quick-start } 
 
 For the web3.js library, you can create a local Web3 instance and set the provider to connect to Moonbase Alpha (both HTTP and WS are supported):
 
@@ -45,10 +33,6 @@ const provider = new ethers.providers.StaticJsonRpcProvider(providerURL, {
 
 Any Ethereum wallet should be able to generate a valid address for Moonbeam (for example, [MetaMask](https://metamask.io/)).
 
-### Chain ID {: #chain-id } 
+## Chain ID {: #chain-id } 
 
 Moonbase Alpha TestNet chain ID is: `1287`, which is `0x507` in hex.
-
-### Relay Chain {: #relay-chain } 
-
---8<-- 'text/testnet/relay-chain.md'

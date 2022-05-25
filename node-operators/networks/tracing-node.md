@@ -75,7 +75,7 @@ You will also need to start your node with the following flag(s) depending on th
   - **`--ethapi=trace`** - optional flag that enables `trace_filter` 
   - **`--ethapi=txpool`** - optional flag that enables `txpool_content`, `txpool_inspect`, and `txpool_status`
   - **`--wasm-runtime-overrides=/moonbeam/<network>-substitutes-tracing`** - **required** flag for tracing that specifies the path where the local WASM runtimes are stored. Accepts the network as a parameter: `moonbeam`, `moonriver`, or `moonbase` (for development nodes and Moonbase Alpha)
-  - **`--runtime-cache-size 32`** - **required** flag that configures the number of different runtime versions preserved in the in-memory cache to 32
+  - **`--runtime-cache-size 64`** - **required** flag that configures the number of different runtime versions preserved in the in-memory cache to 64
 
 The complete command for running a tracing node is as follows:
 
@@ -91,11 +91,11 @@ The complete command for running a tracing node is as follows:
     --chain {{ networks.moonbeam.chain_spec }} \
     --name="Moonbeam-Tutorial" \
     --pruning archive \
-    --state-cache-size 1 \
+    --state-cache-size 0 \
     --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonbeam-substitutes-tracing \
-    --runtime-cache-size 32 \
+    --runtime-cache-size 64 \
     -- \
     --execution wasm \
     --pruning 1000 \
@@ -111,11 +111,11 @@ The complete command for running a tracing node is as follows:
     --chain {{ networks.moonriver.chain_spec }} \
     --name="Moonbeam-Tutorial" \
     --pruning archive \
-    --state-cache-size 1 \
+    --state-cache-size 0 \
     --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonriver-substitutes-tracing \
-    --runtime-cache-size 32 \
+    --runtime-cache-size 64 \
     -- \
     --execution wasm \
     --pruning 1000 \
@@ -131,11 +131,11 @@ The complete command for running a tracing node is as follows:
     --chain {{ networks.moonbase.chain_spec }} \
     --name="Moonbeam-Tutorial" \
     --pruning archive \
-    --state-cache-size 1 \
+    --state-cache-size 0 \
     --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
-    --runtime-cache-size 32 \
+    --runtime-cache-size 64 \
     -- \
     --execution wasm \
     --pruning 1000 \
@@ -150,7 +150,7 @@ The complete command for running a tracing node is as follows:
     --name="Moonbeam-Tutorial" \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
-    --runtime-cache-size 32 \
+    --runtime-cache-size 64 \
     --dev
     ```
 

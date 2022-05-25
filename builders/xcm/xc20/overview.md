@@ -25,6 +25,8 @@ External XC-20s will all have _xc_ prepended to their name to distinguish them a
 
 Both, mintable and external, XC-20s are Substrate assets at their core and at a low-level are interacted with via the Substrate API. However, Moonbeam provides an ERC-20 interface to interact with these assets so that no knowledge of Substrate is required. From a user's perspective, both types of XC-20s are interacted with in the same way. The only difference here is that mintable XC-20s include an extension of the ERC-20 interface with some additional functionality for managing the assets, such as minting and burning.
 
+Cross-chain transfer of XC-20s are done using the [X-Tokens pallet](/builders/xcm/xc20/xtokens/){target=_blank}. The instructions for transferring mintable and external XC-20s are slightly different depending on the multilocation of the given asset.
+
 ## XC-20s vs ERC-20 {: #xc-20-vs-erc-20 }
 
 Although XC-20s and ERC-20s are very similar, some distinct differences are to be aware of. 
@@ -60,7 +62,7 @@ To approve a spend or transfer XC-20s via the XC-20 precompile, you will need:
 
 You can interact with the XC-20 precompile using [Remix](https://remix.ethereum.org/){target=_blank}. First, you will need to add the ERC-20 interface to Remix:
 
-1. Get a copy of [ERC20.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol) 
+1. Get a copy of [ERC20.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=_blank} 
 2. Paste the file contents into a Remix file named **IERC20.sol**
 
 ![Load the interface in Remix](/images/builders/xcm/xc20/overview/overview-1.png)
@@ -93,4 +95,4 @@ The **IERC20** precompile for the XC-20 will appear in the list of **Deployed Co
 
 ![Interact with the precompile functions](/images/builders/xcm/xc20/overview/overview-4.png)
 
-To learn how to interact with each of the functions, you can check out the [ERC-20 Precompile](/builders/build/canonical-contracts/precompiles/erc20/) guide and modify it for interacting with the XC-20 precompile.
+To learn how to interact with each of the functions, you can check out the [ERC-20 Precompile](/builders/build/canonical-contracts/precompiles/erc20/){target=_blank} guide and modify it for interacting with the XC-20 precompile.

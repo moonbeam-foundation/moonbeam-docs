@@ -1,4 +1,4 @@
 title: Analytics
 nav:
   - index.md
-  - dapplooker.md
+  - 'Dapplooker': 'dapplooker.md'

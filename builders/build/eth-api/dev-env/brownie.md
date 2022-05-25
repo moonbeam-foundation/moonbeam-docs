@@ -46,7 +46,7 @@ You will need to install Brownie and create a Brownie project if you don't alrea
     !!! note
         [`pipx`](https://github.com/pypa/pipx){target=_blank} is used to run executables installed locally in your project. Brownie will be installed into a virtual environment and be available directly from the command line.
 
-4. Create an project
+4. Create a project
     ```
     brownie init
     ```
@@ -66,44 +66,25 @@ Another important file to note that is not included in an empty project is the `
 
 ## Network Configuration  {: #network-configuration } 
 
-To deploy to a Moonbeam-based network, you'll need to add and configure the network.
+To deploy to a Moonbeam-based network, you'll need to add and configure the network. Network configurations in Brownie are added from the command line. Brownie can be used with both development and live environments.
 
-Network configurations in Brownie are added from the command line. Brownie can be used with both development and live environments.
-
-Moonbeam is supported out of the box with Brownie, but if you're looking to deploy a contract to Moonriver, Moonbase Alpha, or a Moonbeam development node you'll need to add the network configurations.
-
-If you're familiar with Brownie, you're probably used to the `Mainnet` and `Testnet` network setup. To be consistent, you can add Moonbase Alpha and Moonbeam development node configurations nestled under the pre-existing Moonbeam network configuration. Since Moonriver is it's own MainNet, you can add an entirely new configuration for Moonriver.
-
-Under the hood, Brownie uses Ganache for development environments. However, since a Moonbeam development node acts as your own personal development environment, Ganache isn't needed. Therefore, you can configure a development node the same way you would for a "live" network such as Moonriver or Moonbase Alpha.
-
-To add Moonriver, Moonbase Alpha, or a Moonbeam development node, you can run the following command:
-
-=== "Moonriver"
-    ```
-    brownie networks add Moonriver moonriver-main host={{ networks.moonriver.public_rpc_url }} name=Mainnet chainid={{ networks.moonriver.chain_id }}
-    ```
-
-=== "Moonbase Alpha"
-    ```
-    brownie networks add Moonbeam moonbeam-testnet host={{ networks.moonbase.rpc_url }} name=Testnet chainid={{ networks.moonbase.chain_id }}
-    ```
-
-=== "Moonbeam Dev Node"
-    ```
-    brownie networks add Moonbeam moonbeam-dev host={{ networks.development.rpc_url }} name=Development chainid={{ networks.development.chain_id }}
-    ```
-
-If you successfully added the network, you'll see a success message along with the network details in the terminal.
-
-![Add network ](/images/builders/build/eth-api/dev-env/brownie/brownie-2.png)
-
-You can view the complete list of supported networks by running the following command:
+Moonbeam, Moonriver, and Moonbase Alpha are supported out of the box with Brownie as of version 1.18.2. To view the complete list of supported networks, you can run the following command:
 
 ```
 brownie networks list
 ```
 
-If you added Moonbase Alpha, you should see it listed as a subset of Moonbeam. Additionally, if you added Moonriver, you should see that it's listed as its own network towards the bottom of the list.
+![Network list](/images/builders/build/eth-api/dev-env/brownie/brownie-2.png)
+
+If you're looking to deploy a contract to a Moonbeam development node you'll need to add the network configurations. Under the hood, Brownie uses Ganache for development environments. However, since a Moonbeam development node acts as your own personal development environment, Ganache isn't needed. Therefore, you can configure a development node as a "live" network.
+
+To add Moonbeam development node configurations, you can run the following command:
+
+```
+brownie networks add Moonbeam moonbeam-dev host={{ networks.development.rpc_url }} name=Development chainid={{ networks.development.chain_id }}
+```
+
+If you successfully added the network, you'll see a success message along with the network details in the terminal.
 
 To deploy to a Moonbeam network, or run tests on a specific network, you can specify the network by appending the following to the given command:
 
@@ -352,7 +333,7 @@ You can also write a script to interact with your newly deployed contract. To ge
 cd scripts && touch store-and-retrieve.py
 ```
 
-Next, you need to write your script that will store and then retrieve a value. To get started start, take the following steps:
+Next, you need to write your script that will store and then retrieve a value. To get started, take the following steps:
 
 1. Import the `Box` contract and the `accounts` module from `brownie`
 2. Load your account using `accounts.load()` which decrypts a keystore file and returns the account information for the given account name
