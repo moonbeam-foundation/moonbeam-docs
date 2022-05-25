@@ -127,9 +127,29 @@ Now that you've calculated the XC-20 precompile address, you can use the address
 
 ## The ERC-20 Interface {: #the-erc20-interface }
 
-The [ERC20.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol) interface on Moonbeam follows the [EIP-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20) which is the standard API interface for tokens within smart contracts. The standard defines the required functions and events that a token contract must implement to be interoperable with different applications.
+The [ERC20.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=_blank} interface on Moonbeam follows the [EIP-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20){target=_blank} which is the standard API interface for tokens within smart contracts. The standard defines the required functions and events that a token contract must implement to be interoperable with different applications.
 
 --8<-- 'text/erc20-interface/erc20-interface.md'
+
+## The ERC-20 Permit Interface {: #the-erc20-permit-interface }
+
+The [Permit.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol){target=_blank} interface on Moonbeam follows the [EIP-2612 standard](https://eips.ethereum.org/EIPS/eip-2612){target=_blank} which extends the ERC-20 interface with the `permit` function. Permits are signed messages that can be used to change an account's ERC-20 allowance.
+
+The standard ERC-20 `approve` function is limited in it's design as the `allowance` can only be modified by the sender of the transaction, the `msg.sender`. This can be seen in [OpenZeppelin's implentation of the ERC-20 interface](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol#L136){target=_blank}, that sets the `owner` through the [`msgSender` function](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Context.sol#L17){target=_blank}, which ultimately sets it to the `msg.sender`.
+
+Instead of signing the `approve` transaction, a user can sign a message and that signature can be used to call the `permit` function to modify the `allowance`.  As such, it allows for gas-less token transfers. In addition, users no longer need to send two transactions to approve and transfer tokens. To see an example of the `permit` function, you can check out [OpenZeppelin's implentation of the ERC-20 Permit extension](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/token/ERC20/extensions/draft-ERC20Permit.sol#L41){target=_blank}.
+
+The Permit.sol interface includes the following functions:
+
+- **permit(*address* owner, *address* spender, *uint256*, value, *uint256*, deadline, *uint8* v, *bytes32* r, *bytes32* s)** - consumes an approval permit which can be called by anyone
+- **nonces(*address* owner)** - returns the current nonce for the given owner
+- **DOMAIN_SEPARATOR()** - returns the EIP-712 domain separator which is used to avoid replay attacks
+
+To prevent the signature from being re-used or used unintentionally, there are additional parameters used under the hood such as the domain separator that is defined in the [EIP-712 standard](https://eips.ethereum.org/EIPS/eip-712){target=_blank}. The domain separator ([`domainSeparator`](https://eips.ethereum.org/EIPS/eip-712#definition-of-domainseparator){target=_blank}) is calculated using a combination of the `keccak256` hash and `abi.encode` functions to ensure the signature is only used for a specific ERC-20 on a given network. An example can be seen in [OpenZeppelin's implementation](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/cryptography/draft-EIP712.sol#L70-L84){target=_blank}.
+
+The [`hashStruct`](https://eips.ethereum.org/EIPS/eip-712#definition-of-hashstruct){target=_blank} ensures that the signature can only be used for the `permit` function with the given function arguments. It uses a given nonce to ensure the signature is not subject to a replay attack. The hash is also calculated using a combination of the `keccak256` hash and `abi.encode` functions. An example can be seen in [OpenZeppelin's implementation](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/token/ERC20/extensions/draft-ERC20Permit.sol#L52){target=_blank}
+
+The domain separator and the hash struct can be used to build the [final hash](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/cryptography/draft-EIP712.sol#L101){target=_blank} of the fully encoded EIP-712 message. With the final hash and the `v`, `r`, and `s` values, the signature can be verified with the [ECRECOVER precompile](/builders/build/canonical-contracts/precompiles/eth-mainnet/#verify-signatures-with-ecrecover){target=_blank}. If successfully verified, the allowance will be updated.
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
@@ -138,6 +158,8 @@ To approve a spend or transfer XC-20s via the XC-20 precompile, you will need:
 - [MetaMask installed and connected to the Moonbase Alpha](/tokens/connect/metamask/){target=_blank} TestNet
 - Create or have two accounts on Moonbase Alpha
 - At least one of the accounts will need to be funded with `DEV` tokens. You can obtain tokens for testing purposes from [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/){target=_blank}
+
+This guide will cover how to interact with the [ERC20.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=_blank} interface. You can adapt the following instructions and use the [Permit.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol){target=_blank} interface.
 
 ## Interact with the Precompile Using Remix {: #interact-with-the-precompile-using-remix } 
 
@@ -179,3 +201,4 @@ The **IERC20** precompile for the XC-20 will appear in the list of **Deployed Co
 ![Interact with the precompile functions](/images/builders/xcm/xc20/overview/xc20-6.png)
 
 To learn how to interact with each of the functions, you can check out the [ERC-20 Precompile](/builders/build/canonical-contracts/precompiles/erc20/){target=_blank} guide and modify it for interacting with the XC-20 precompile.
+
