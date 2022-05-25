@@ -19,11 +19,11 @@ XC-20s are a unique asset class on Moonbeam. It combines the power of Substrate 
 
 ## Types of XC-20s {: #types-of-xc-20s }
 
-There are two types of XC-20s: [deposited](/builders/xcm/xc20/deposited-xc20){target=_blank} and [mintable](/builders/xcm/xc20/mintable-xc20){target=_blank}. Deposited XC-20s are native cross-chain assets that are transferred from another parachain or the relay chain to Moonbeam. Mintable XC-20s are also cross-chain assets, however, they are minted and burned directly on Moonbeam and can be transferred to other parachains or the relay chain. 
+There are two types of XC-20s: [external](/builders/xcm/xc20/xc20){target=_blank} and [mintable](/builders/xcm/xc20/mintable-xc20){target=_blank}. External XC-20s are native cross-chain assets that are transferred from another parachain or the relay chain to Moonbeam. Mintable XC-20s are also cross-chain assets, however, they are minted and burned directly on Moonbeam and can be transferred to other parachains or the relay chain. 
 
-Deposited XC-20s will all have _xc_ prepended to their name to distinguish them as native cross-chain assets. Since mintable XC-20s are created on Moonbeam and are not native to another parachain or relay chain, the name, symbol, and decimals for the asset are all completely configurable. As such, they will not neccessarily have _xc_ prepended to the asset name or symbol.
+External XC-20s will all have _xc_ prepended to their name to distinguish them as native cross-chain assets. Since mintable XC-20s are created on Moonbeam and are not native to another parachain or relay chain, the name, symbol, and decimals for the asset are all completely configurable. As such, they will not neccessarily have _xc_ prepended to the asset name or symbol.
 
-Both, mintable and deposited, XC-20s are Substrate assets at their core and at a low-level are interacted with via the Substrate API. However, Moonbeam provides an ERC-20 interface to interact with these assets so that no knowledge of Substrate is required. From a user's perspective, both types of XC-20s are interacted with in the same way. The only difference here is that mintable XC-20s include an extension of the ERC-20 interface with some additional functionality for managing the assets, such as minting and burning.
+Both, mintable and external, XC-20s are Substrate assets at their core and at a low-level are interacted with via the Substrate API. However, Moonbeam provides an ERC-20 interface to interact with these assets so that no knowledge of Substrate is required. From a user's perspective, both types of XC-20s are interacted with in the same way. The only difference here is that mintable XC-20s include an extension of the ERC-20 interface with some additional functionality for managing the assets, such as minting and burning.
 
 ## XC-20s vs ERC-20 {: #xc-20-vs-erc-20 }
 
@@ -43,7 +43,7 @@ Mintable XC-20s also include additional functions that only the owner of the tok
 
 ## Interact with the Precompile Using Remix {: #interact-with-the-precompile-using-remix } 
 
-Regardless if the asset is deposited or minted, they can be interacted with in the same way. However, if you are the owner of a mintable token contract or a desginated account with specific capabilities, there are some additional functions that you can interact with. For more information on how to interact with mintable XC-20 specific functions, please check out the [Interact with Mintable XC-20 Specific Functions](/builders/xcm/xc20/mintable-xc20/#interact-with-the-precompile-using-remix){target=_blank} section of the Mintable XC-20 page.
+Regardless if the asset is external or minted, they can be interacted with in the same way. However, if you are the owner of a mintable token contract or a desginated account with specific capabilities, there are some additional functions that you can interact with. For more information on how to interact with mintable XC-20 specific functions, please check out the [Interact with Mintable XC-20 Specific Functions](/builders/xcm/xc20/mintable-xc20/#interact-with-the-precompile-using-remix){target=_blank} section of the Mintable XC-20 page.
 
 ### Checking Prerequisites {: #checking-prerequisites } 
 
@@ -52,8 +52,8 @@ To approve a spend or transfer XC-20s via the XC-20 precompile, you will need:
 - [MetaMask installed and connected to the Moonbase Alpha](/tokens/connect/metamask/){target=_blank} TestNet
 - Create or have two accounts on Moonbase Alpha
 - At least one of the accounts will need to be funded with `DEV` tokens. You can obtain tokens for testing purposes from [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/){target=_blank}
-- The precompile address of the XC-20 you want to interact with. The instructions for calculating the precompile address are slightly different depending on whether the XC-20 was deposited to or minted on Moonbeam:
-    - [Calculate Deposited XC-20 Precompile Addresses](/builders/xcm/xc20/deposited-xc20/#calculate-xc20-address){target=_blank}
+- The precompile address of the XC-20 you want to interact with. The instructions for calculating the precompile address are slightly different depending on whether the XC-20 is external and imported in or minted directly on Moonbeam:
+    - [Calculate External XC-20 Precompile Addresses](/builders/xcm/xc20/xc20/#calculate-xc20-address){target=_blank}
     - [Calculate Mintable XC-20 Precompile Addresses](/builders/xcm/xc20/mintable-xc20/#calculate-xc20-address){target=_blank}
 
 ### Add & Compile the Interface {: #add-the-interface-to-remix }
@@ -82,7 +82,7 @@ Instead of deploying the ERC-20 precompile, you will access the interface given 
 2. Make sure **Injected Web3** is selected in the **Environment** dropdown. Once you select **Injected Web3**, you might be prompted by MetaMask to connect your account to Remix
 3. Make sure the correct account is displayed under **Account**
 4. Ensure **IERC20 - IERC20.sol** is selected in the **Contract** dropdown. Since this is a precompiled contract, there is no need to deploy any code. Instead we are going to provide the address of the precompile in the **At Address** Field
-5. Provide the address of the XC-20 precompile calculated in the [Calculate Deposited XC-20 Precompile Addresses](/builders/xcm/xc20/deposited-xc20){target=_blank} or the [Calculate Mintable XC-20 Precompile Addresses](/builders/xcm/xc20/mintable-xc20){target=_blank} instructions. For this example you can use `0xFFFFFFFF1FCACBD218EDC0EBA20FC2308C778080`, and click **At Address**
+5. Provide the address of the XC-20 precompile calculated in the [Calculate External XC-20 Precompile Addresses](/builders/xcm/xc20/xc20){target=_blank} or the [Calculate Mintable XC-20 Precompile Addresses](/builders/xcm/xc20/mintable-xc20){target=_blank} instructions. For this example you can use `0xFFFFFFFF1FCACBD218EDC0EBA20FC2308C778080`, and click **At Address**
 
 ![Access the address](/images/builders/xcm/xc20/overview/xc20-3.png)
 

@@ -9,7 +9,7 @@ description: Learn about cross chain assets that can be minted and burned on a M
 
 ## Introduction {: #introduction } 
 
-As covered in the [XC-20 Overview](/builders/xcm/xc20/overview){target=_blank}, there are two [types of XC-20s](/builders/xcm/xc20/overview#types-of-xc-20s): [deposited](/builders/xcm/xc20/deposited-xc20){target=_blank} and mintable. The key distinction between deposited and mintable XC-20s, is that mintable assets are burned and minted directly on Moonbeam, and can then be transferred to other paracahins or the relay chain and back to Moonbeam. Deposited XC-20s are native assets from other parachains or the relay chain transferred to Moonbeam. This guide will cover mintable XC-20s.
+As covered in the [XC-20 Overview](/builders/xcm/xc20/overview){target=_blank}, there are two [types of XC-20s](/builders/xcm/xc20/overview#types-of-xc-20s): [external](/builders/xcm/xc20/xc20){target=_blank} and mintable. The key distinction between external and mintable XC-20s, is that mintable assets are burned and minted directly on Moonbeam, and can then be transferred to other paracahins or the relay chain and back to Moonbeam. External XC-20s are native assets from other parachains or the relay chain transferred to Moonbeam. This guide will cover mintable XC-20s.
 
 All XC-20s are Substrate assets at their core. Typically with Substrate assets, developers need to interact directly with the Substrate API. However, Moonbeam removes the need for Substrate knowledge and allows users and developers to interact with these assets through an ERC-20 interface via a precompile contract. Therefore, developers can use standard Ethereum developer tooling to interact with these assets. Mintable XC-20s include an extension of the ERC-20 interface with some additional functionality for managing the asset and setting the metadata, such as the name, symbol, and decimals for the asset. There are also some additional roles in place for asset registration and management.
 
@@ -52,7 +52,7 @@ Mintable XC-20s include additional functions that only the owner or the designat
 
 ## Retrieve List of Mintable XC-20s {: #retrieve-list-of-mintable-xc-20s }
 
-To fetch a list of the mintable XC-20s currently available on the Moonbase Alpha TestNet, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=_blank} and make sure you're connected to Moonbase Alpha. Unlike deposited XC-20s, mintable XC-20s will not show up under the **Assets** page on Polkadot.js Apps. To query the available mintable XC-20s, you have to navigate to the **Developer** tab and select **Chain State** from the dropdown, and take the following steps:
+To fetch a list of the mintable XC-20s currently available on the Moonbase Alpha TestNet, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=_blank} and make sure you're connected to Moonbase Alpha. Unlike external XC-20s, mintable XC-20s will not show up under the **Assets** page on Polkadot.js Apps. To query the available mintable XC-20s, you have to navigate to the **Developer** tab and select **Chain State** from the dropdown, and take the following steps:
 
 1. From the **selected state query** dropdown, choose **localAssets**
 --8<-- 'text/xc-20/list-of-assets.md'
