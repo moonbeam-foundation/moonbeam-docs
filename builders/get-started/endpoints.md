@@ -33,6 +33,7 @@ You can create your own endpoint suitable for development or production use usin
 
 - [Blast](#blast)
 - [OnFinality](#onfinality)
+- [Dwellir](#dwellir)
 
 ### Blast {: #blast}
 
@@ -59,3 +60,15 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 3. Your custom API endpoint will be generated automatically
 
 ![OnFinality](/images/builders/get-started/endpoints/endpoints-2.png)
+
+### Dwellir {: #dwellir }
+
+[Dwellir](https://dwellir.com/development-nodes/){target=_blank} provides free endpoints for developers and dedicated nodes on our owned and operated bare-metal cluster. We're building custom data solutions and tooling so get in touch.
+
+To get started go to [Dwellir](https://dwellir.com/development-nodes/){target=_blank}:
+
+1. Click on **Get your Node**
+2. Select the network(s) from the list
+3. Your custom endpoint will be delivered
+
+![Dwellir](/images/builders/get-started/endpoints/endpoints-3.png)
