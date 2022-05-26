@@ -70,7 +70,7 @@ Tokens on Moonbase Alpha, named DEV, will be issued on demand. **DEV tokens hold
 
 ### Discord - Mission Control {: #discord-mission-control } 
 
-To [request tokens](/builders/get-started/networks/moonbase/#get-tokens/){target=_blank} automatically, there is a Discord bot, named Mission Control, that will automatically send a maximum of {{ networks.moonbase.faucet_amount }} DEV token every 24 hours (per Discord user) when you enter your address. You can check out the **#moonbase-faucet** channel on [Discord](https://discord.gg/PfpUATX){target=_blank}.
+To [request tokens](/builders/get-started/networks/moonbase/#get-tokens/){target=_blank} automatically, there is a Discord bot, named Mission Control, that will automatically send a maximum of {{ networks.moonbase.faucet_amount }} every 24 hours (per Discord user) when you enter your address. You can check out the **#moonbase-faucet** channel on [Discord](https://discord.gg/PfpUATX){target=_blank}.
  
 Under the category **Miscellaneous**, you will find the **#moonbase-faucet** channel. Enter the following message, replacing `<enter-address-here>` with your H160 address:
  
