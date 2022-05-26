@@ -9,11 +9,11 @@ description: Learn about cross chain assets that can be minted and burned on a M
 
 ## Introduction {: #introduction } 
 
-As covered in the [XC-20 Overview](/builders/xcm/xc20/overview){target=_blank}, there are two [types of XC-20s](/builders/xcm/xc20/overview#types-of-xc-20s): [external](/builders/xcm/xc20/xc20){target=_blank} and mintable. The key distinction between external and mintable XC-20s, is that mintable assets are burned and minted directly on Moonbeam, and can then be transferred to other paracahins or the relay chain and back to Moonbeam. External XC-20s are native assets from other parachains or the relay chain transferred to Moonbeam. This guide will cover mintable XC-20s.
+As covered in the [XC-20 Overview](/builders/xcm/xc20/overview){target=_blank}, there are two [types of XC-20s](/builders/xcm/xc20/overview#types-of-xc-20s): [external](/builders/xcm/xc20/xc20){target=_blank} and mintable. The key distinction between external and mintable XC-20s, is that mintable XC-20s represent assets that are minted/burned in Moonbeam directly, but have native XCM interoperability features. Also, mintable XC-20s can be transferred to any other parachain as long as it is registered as an XCM asset on that chain, as covered in the [XCM overview](/builders/xcm/overview/){target=_blank} page. In contrast, external XC-20s represent assets that are locked in Moonbeam's sovereign account in either the relay chain or other parachains, and are registered as such on Moonbeam. This guide will cover mintable XC-20s.
 
 All XC-20s are Substrate assets at their core. Typically with Substrate assets, developers need to interact directly with the Substrate API. However, Moonbeam removes the need for Substrate knowledge and allows users and developers to interact with these assets through an ERC-20 interface via a precompile contract. Therefore, developers can use standard Ethereum developer tooling to interact with these assets. Mintable XC-20s include an extension of the ERC-20 interface with some additional functionality for managing the asset and setting the metadata, such as the name, symbol, and decimals for the asset. There are also some additional roles in place for asset registration and management.
 
-In order to create a new mintable XC-20 asset, a proposal has to go through democracy and be voted on via on-chain governance. Once the proposal has received majority votes and has been approved the asset can then be registered and minted on Moonbeam. They can also be transferred to other chains in the future and are subject to channel and asset registration as covered in the [XCM overview](/builders/xcm/overview/){target=_blank} page.
+Currently,  mintable XC-20 assets need to be created through democracy proposals and be voted on via on-chain governance. Once a proposal has received majority votes and has been approved the asset can then be registered and minted on Moonbeam. In addition, there is a [deposit](#create-a-proposal) (bond) associated to the creation of a mintable XC-20 token. 
 
 ## Mintable XC-20 Roles {: #mintable-xc-20-roles }
 
@@ -103,8 +103,12 @@ To register a mintable XC-20 on Moonbase Alpha, you'll need to have the followin
 
 ### Create a Proposal {: #create-a-proposal }
 
-The first step to get your mintable XC-20 registered on Moonbeam is to create a proposal. The creator of the asset will need to submit a deposit. The deposit for each network is as follows:
+The first step to get your mintable XC-20 registered on Moonbeam is to create a proposal. The creator-role of the asset will need to submit a deposit. The deposit for each network is as follows:
 
+=== "Moonbeam"
+    ```
+    {{ networks.moonbeam.mintable_xc20.asset_deposit }} GLMR
+    ```
 === "Moonriver"
     ```
     {{ networks.moonriver.mintable_xc20.asset_deposit }} MOVR
@@ -122,7 +126,7 @@ To get started, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss
 3. Then select the **registerLocalAsset** extrinsic
 4. Enter the address of the creator
 5. Enter the address of the owner
-6. Set **isSufficient**. If the asset is sufficient is set to `true` it can be transferred to another account without a balance 
+6. Set **isSufficient**. If set to `true`, it can be transferred to another account without a native token balance 
 7. Set the **minBalance**
 8. Copy the **preimage hash** as you'll need it in the following steps
 9. Click on **+ Submit preimage**
@@ -145,6 +149,11 @@ Your proposal will then be subject to democracy and on-chain governance, please 
 ### Set Asset Metadata {: #set-asset-metadata }
 
 Once the proposal is approved and enacted, the account you specified as the owner can set the metadata for the asset. The metadata includes the asset name, symbol, and decimals. There is a deposit required to set the metadata, it is as follows for each of the networks:
+
+=== "Moonbeam"
+    ```
+    {{ networks.moonbeam.mintable_xc20.metadata_base_deposit }} GLMR base fee + ({{ networks.moonbeam.mintable_xc20.metadata_byte_deposit }} GLMR x number of bytes stored)
+    ```
 
 === "Moonriver"
     ```

@@ -19,11 +19,13 @@ XC-20s are a unique asset class on Moonbeam. It combines the power of Substrate 
 
 ## Types of XC-20s {: #types-of-xc-20s }
 
-There are two types of XC-20s: [external](/builders/xcm/xc20/xc20){target=_blank} and [mintable](/builders/xcm/xc20/mintable-xc20){target=_blank}. External XC-20s are native cross-chain assets that are transferred from another parachain or the relay chain to Moonbeam. Mintable XC-20s are also cross-chain assets, however, they are minted and burned directly on Moonbeam and can be transferred to other parachains or the relay chain. 
+There are two types of XC-20s: [external](/builders/xcm/xc20/xc20){target=_blank} and [mintable](/builders/xcm/xc20/mintable-xc20){target=_blank}. 
 
-External XC-20s will all have _xc_ prepended to their name to distinguish them as native cross-chain assets. Since mintable XC-20s are created on Moonbeam and are not native to another parachain or relay chain, the name, symbol, and decimals for the asset are all completely configurable. As such, they will not neccessarily have _xc_ prepended to the asset name or symbol.
+External XC-20s are native cross-chain assets that are transferred from another parachain or the relay chain to Moonbeam. Consequently, the actual tokens reside in Moonbeam's sovereign account in each of these chains. External XC-20s will all have _xc_ prepended to their name to distinguish them as native cross-chain assets. 
 
-Both, mintable and external, XC-20s are Substrate assets at their core and at a low-level are interacted with via the Substrate API. However, Moonbeam provides an ERC-20 interface to interact with these assets so that no knowledge of Substrate is required. From a user's perspective, both types of XC-20s are interacted with in the same way. The only difference here is that mintable XC-20s include an extension of the ERC-20 interface with some additional functionality for managing the assets, such as minting and burning.
+Mintable XC-20s are also cross-chain assets, however, they are minted and burned directly on Moonbeam and can be transferred to other parachains. Since mintable XC-20s are created on Moonbeam and are not native to another parachain or relay chain, the name, symbol, and decimals for the asset are all completely configurable. As such, they will not neccessarily have _xc_ prepended to the asset name or symbol.
+
+Both type of XC-20s are Substrate assets at their core and at a low-level are interacted with via the Substrate API. However, Moonbeam provides an ERC-20 interface to interact with these assets so that no knowledge of Substrate is required. From a user's perspective, both types of XC-20s are interacted with in the same way. The only difference here is that mintable XC-20s include an extension of the ERC-20 interface with some additional functionality for managing the assets, such as minting and burning.
 
 Cross-chain transfer of XC-20s are done using the [X-Tokens pallet](/builders/xcm/xc20/xtokens/){target=_blank}. The instructions for transferring mintable and external XC-20s are slightly different depending on the multilocation of the given asset.
 

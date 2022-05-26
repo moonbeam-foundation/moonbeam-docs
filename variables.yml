@@ -467,12 +467,16 @@ networks:
       stable_version: 6.9.1
       polkadot_js_dependency_version: 2.0.1
       typescript_dependency_version: 4.3.2
+    mintable_xc20:
+      asset_deposit: 10000
+      metadata_base_deposit: 10.68
+      metadata_byte_deposit: .01
     orbiter:
       max_orbiters_per_collator: TBA
       max_collators: TBA
       active:
         rounds: TBA
-        hours: TBA 
+        hours: TBA
       bond: TBA
   relay_chain:
     p2p: 30334
