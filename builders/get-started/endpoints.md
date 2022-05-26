@@ -63,7 +63,7 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 
 ### Dwellir {: #dwellir }
 
-[Dwellir](https://dwellir.com/development-nodes/){target=_blank} provides free endpoints for developers and dedicated nodes on our owned and operated bare-metal cluster. We're building custom data solutions and tooling so get in touch.
+[Dwellir](https://dwellir.com/development-nodes/){target=_blank} provides free endpoints for developers and dedicated nodes on our owned and operated bare-metal cluster. Dwellir is building custom data solutions and tooling so get in touch.
 
 To get started go to [Dwellir](https://dwellir.com/development-nodes/){target=_blank}:
 
