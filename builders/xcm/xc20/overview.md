@@ -139,17 +139,38 @@ The standard ERC-20 `approve` function is limited in it's design as the `allowan
 
 Instead of signing the `approve` transaction, a user can sign a message and that signature can be used to call the `permit` function to modify the `allowance`.  As such, it allows for gas-less token transfers. In addition, users no longer need to send two transactions to approve and transfer tokens. To see an example of the `permit` function, you can check out [OpenZeppelin's implentation of the ERC-20 Permit extension](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/token/ERC20/extensions/draft-ERC20Permit.sol#L41){target=_blank}.
 
-The Permit.sol interface includes the following functions:
+The [Permit.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol){target=_blank} interface includes the following functions:
 
 - **permit(*address* owner, *address* spender, *uint256*, value, *uint256*, deadline, *uint8* v, *bytes32* r, *bytes32* s)** - consumes an approval permit which can be called by anyone
 - **nonces(*address* owner)** - returns the current nonce for the given owner
-- **DOMAIN_SEPARATOR()** - returns the EIP-712 domain separator which is used to avoid replay attacks
+- **DOMAIN_SEPARATOR()** - returns the EIP-712 domain separator which is used to avoid replay attacks. It follows the [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612/#specification) implementation
 
-To prevent the signature from being re-used or used unintentionally, there are additional parameters used under the hood such as the domain separator that is defined in the [EIP-712 standard](https://eips.ethereum.org/EIPS/eip-712){target=_blank}. The domain separator ([`domainSeparator`](https://eips.ethereum.org/EIPS/eip-712#definition-of-domainseparator){target=_blank}) is calculated using a combination of the `keccak256` hash and `abi.encode` functions to ensure the signature is only used for a specific ERC-20 on a given network. An example can be seen in [OpenZeppelin's implementation](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/cryptography/draft-EIP712.sol#L70-L84){target=_blank}.
+The **DOMAIN_SEPARATOR()** is defined in the [EIP-712 standard](https://eips.ethereum.org/EIPS/eip-712){target=_blank}, and is calculated as:
 
-The [`hashStruct`](https://eips.ethereum.org/EIPS/eip-712#definition-of-hashstruct){target=_blank} ensures that the signature can only be used for the `permit` function with the given function arguments. It uses a given nonce to ensure the signature is not subject to a replay attack. The hash is also calculated using a combination of the `keccak256` hash and `abi.encode` functions. An example can be seen in [OpenZeppelin's implementation](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/token/ERC20/extensions/draft-ERC20Permit.sol#L52){target=_blank}
+```
+keccak256(PERMIT_DOMAIN, name, version, chain_id, address)
+```
 
-The domain separator and the hash struct can be used to build the [final hash](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/cryptography/draft-EIP712.sol#L101){target=_blank} of the fully encoded EIP-712 message. With the final hash and the `v`, `r`, and `s` values, the signature can be verified with the [ECRECOVER precompile](/builders/build/canonical-contracts/precompiles/eth-mainnet/#verify-signatures-with-ecrecover){target=_blank}. If successfully verified, the allowance will be updated.
+Where:
+
+ - **PERMIT_DOMAIN** - is the `keccak256` of `EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)`
+ - **name** - is the token name but with the following considerations:
+     - If the token has a name defined, the **name** for the domain is `XC20: <name>`, where `<name>` is the token name
+     - If the token has no name defined, the **name** for the domain is `XC20: No name`
+ - **version** - is the version of the signing domain. For this case **version** is set to `1`
+ - **chainId** - is the chain ID of the network
+ - **verifyingContract** - is the XC-20 address
+
+!!! note
+    The **name** field does not follow the standard [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612#specification){target=_blank} implementation. This will be fixed in runtime upgrade 1600.
+
+The calculation of the domain separator can be seen in [Moonbeam's EIP-2612](https://github.com/PureStake/moonbeam/blob/perm-runtime-1502/precompiles/assets-erc20/src/eip2612.rs#L130-L154){target=_blank} implementation, with a practical example shown in this [OpenZeppelin's contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/cryptography/draft-EIP712.sol#L70-L84){target=_blank}.
+
+Aside from the domain separator, the [`hashStruct`](https://eips.ethereum.org/EIPS/eip-712#definition-of-hashstruct){target=_blank} guarantees that the signature can only be used for the `permit` function with the given function arguments. It uses a given nonce to ensure the signature is not subject to a replay attack. The calculation of the hash struct can be seen in [Moonbeam's EIP-2612](https://github.com/PureStake/moonbeam/blob/perm-runtime-1502/precompiles/assets-erc20/src/eip2612.rs#L169-L177) implementation, with a practical example shown in this [OpenZeppelin's contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/token/ERC20/extensions/draft-ERC20Permit.sol#L52){target=_blank}.
+
+The domain separator and the hash struct can be used to build the [final hash](https://github.com/PureStake/moonbeam/blob/perm-runtime-1502/precompiles/assets-erc20/src/eip2612.rs#L180-L183){target=_blank} of the fully encoded message. A practical example is shown in this [OpenZepellin's contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/cryptography/draft-EIP712.sol#L101){target=_blank}.
+
+With the final hash and the `v`, `r`, and `s` values, the signature can be verified with the [ECRECOVER precompile](/builders/build/canonical-contracts/precompiles/eth-mainnet/#verify-signatures-with-ecrecover){target=_blank}. If successfully verified, the allowance will be updated.
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
