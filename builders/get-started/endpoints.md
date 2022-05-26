@@ -67,7 +67,7 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 
 To get started go to [Dwellir](https://dwellir.com/development-nodes/){target=_blank}:
 
-1. Click on **Get your Node**
+1. Enter your Name and Email
 2. Select the network(s) from the list
 3. Your custom endpoint will be delivered
 
