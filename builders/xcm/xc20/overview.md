@@ -45,6 +45,47 @@ The [ERC20.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/as
 
 Mintable XC-20s also include additional functions that only the owner of the token contract or a designated account is allowed to call. Please check out the [Mintable XC-20](/builders/xcm/xc20/mintable-xc20){target=_blank} page for more details on the additional functions and the designated roles available.
 
+## The ERC-20 Permit Interface {: #the-erc20-permit-interface }
+
+The [Permit.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol){target=_blank} interface on Moonbeam follows the [EIP-2612 standard](https://eips.ethereum.org/EIPS/eip-2612){target=_blank} which extends the ERC-20 interface with the `permit` function. Permits are signed messages that can be used to change an account's ERC-20 allowance.
+
+The standard ERC-20 `approve` function is limited in it's design as the `allowance` can only be modified by the sender of the transaction, the `msg.sender`. This can be seen in [OpenZeppelin's implentation of the ERC-20 interface](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol#L136){target=_blank}, that sets the `owner` through the [`msgSender` function](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Context.sol#L17){target=_blank}, which ultimately sets it to the `msg.sender`.
+
+Instead of signing the `approve` transaction, a user can sign a message and that signature can be used to call the `permit` function to modify the `allowance`.  As such, it allows for gas-less token transfers. In addition, users no longer need to send two transactions to approve and transfer tokens. To see an example of the `permit` function, you can check out [OpenZeppelin's implentation of the ERC-20 Permit extension](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/token/ERC20/extensions/draft-ERC20Permit.sol#L41){target=_blank}.
+
+The [Permit.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol){target=_blank} interface includes the following functions:
+
+- **permit(*address* owner, *address* spender, *uint256*, value, *uint256*, deadline, *uint8* v, *bytes32* r, *bytes32* s)** - consumes an approval permit which can be called by anyone
+- **nonces(*address* owner)** - returns the current nonce for the given owner
+- **DOMAIN_SEPARATOR()** - returns the EIP-712 domain separator which is used to avoid replay attacks. It follows the [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612/#specification){target=_blank} implementation
+
+The **DOMAIN_SEPARATOR()** is defined in the [EIP-712 standard](https://eips.ethereum.org/EIPS/eip-712){target=_blank}, and is calculated as:
+
+```
+keccak256(PERMIT_DOMAIN, name, version, chain_id, address)
+```
+
+The parameters of the hash can be broken down as follows:
+
+ - **PERMIT_DOMAIN** - is the `keccak256` of `EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)`
+ - **name** - is the token name but with the following considerations:
+     - If the token has a name defined, the **name** for the domain is `XC20: <name>`, where `<name>` is the token name
+     - If the token has no name defined, the **name** for the domain is `XC20: No name`
+ - **version** - is the version of the signing domain. For this case **version** is set to `1`
+ - **chainId** - is the chain ID of the network
+ - **verifyingContract** - is the XC-20 address
+
+!!! note
+    Prior to runtime upgrade 1600, the **name** field does not follow the standard [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612#specification){target=_blank} implementation.
+
+The calculation of the domain separator can be seen in [Moonbeam's EIP-2612](https://github.com/PureStake/moonbeam/blob/perm-runtime-1502/precompiles/assets-erc20/src/eip2612.rs#L130-L154){target=_blank} implementation, with a practical example shown in [OpenZeppelin's `EIP712` contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/cryptography/draft-EIP712.sol#L70-L84){target=_blank}.
+
+Aside from the domain separator, the [`hashStruct`](https://eips.ethereum.org/EIPS/eip-712#definition-of-hashstruct){target=_blank} guarantees that the signature can only be used for the `permit` function with the given function arguments. It uses a given nonce to ensure the signature is not subject to a replay attack. The calculation of the hash struct can be seen in [Moonbeam's EIP-2612](https://github.com/PureStake/moonbeam/blob/perm-runtime-1502/precompiles/assets-erc20/src/eip2612.rs#L169-L177){target=_blank} implementation, with a practical example shown in [OpenZeppelin's `ERC20Permit` contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/token/ERC20/extensions/draft-ERC20Permit.sol#L52){target=_blank}.
+
+The domain separator and the hash struct can be used to build the [final hash](https://github.com/PureStake/moonbeam/blob/perm-runtime-1502/precompiles/assets-erc20/src/eip2612.rs#L180-L183){target=_blank} of the fully encoded message. A practical example is shown in [OpenZeppelin's `EIP712` contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/cryptography/draft-EIP712.sol#L101){target=_blank}.
+
+With the final hash and the `v`, `r`, and `s` values, the signature can be verified with the [ECRECOVER precompile](/builders/build/canonical-contracts/precompiles/eth-mainnet/#verify-signatures-with-ecrecover){target=_blank}. If successfully verified, the allowance will be updated.
+
 ## Interact with the Precompile Using Remix {: #interact-with-the-precompile-using-remix } 
 
 Regardless if the asset is external or minted, they can be interacted with in the same way. However, if you are the owner of a mintable token contract or a desginated account with specific capabilities, there are some additional functions that you can interact with. For more information on how to interact with mintable XC-20 specific functions, please check out the [Interact with Mintable XC-20 Specific Functions](/builders/xcm/xc20/mintable-xc20/#interact-with-the-precompile-using-remix){target=_blank} section of the Mintable XC-20 page.
@@ -60,7 +101,9 @@ To approve a spend or transfer XC-20s via the XC-20 precompile, you will need:
     - [Calculate External XC-20 Precompile Addresses](/builders/xcm/xc20/xc20/#calculate-xc20-address){target=_blank}
     - [Calculate Mintable XC-20 Precompile Addresses](/builders/xcm/xc20/mintable-xc20/#calculate-xc20-address){target=_blank}
 
-### Add & Compile the Interface {: #add-the-interface-to-remix }
+This guide will cover how to interact with the [ERC20.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=_blank} interface. You can adapt the following instructions and use the [Permit.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol){target=_blank} interface.
+
+### Add & Compile the Interface {: #add-the-interface-to-remix } 
 
 You can interact with the XC-20 precompile using [Remix](https://remix.ethereum.org/){target=_blank}. First, you will need to add the ERC-20 interface to Remix:
 
