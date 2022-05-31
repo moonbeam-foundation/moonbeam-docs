@@ -185,7 +185,7 @@ The X-Tokens precompile contract allows developers to access XCM token transfer 
 
 The interface includes the following functions:
 
- - **transfer**(*address* currency_address, *uint256* amount, *Multilocation* *memory* destination, *uint64* weight) — function that represents the `transfer` method described in the previous example. However, instead of using the currency ID, you need to provide the [XC-20 address](/builders/xcm/xc20/xc20/#current-xc20-assets){target=_blank}. The multilocation is built in a particular way that is described in the following section
+ - **transfer**(*address* currency_address, *uint256* amount, *Multilocation* *memory* destination, *uint64* weight) — function that represents the `transfer` method described in the previous example. However, instead of using the currency ID, you need to provide the [XC-20 precompile address](/builders/xcm/xc20/xc20/#current-xc20-assets){target=_blank}. If the XC-20 is a [mintable XC-20](/builders/xcm/xc20/mintable-xc20){target=_blank}, you can follow the instructions for [calculating the precompile address](/builders/xcm/xc20/mintable-xc20/#calculate-xc20-address){target=_blank}. The multilocation is built in a particular way that is described in the following section
  - **transfer_multiasset**(*Multilocation* *memory* asset, *uint256* amount, *Multilocation* *memory* destination, *uint64* weight) — function that represents the `transferMultiasset` method described in the previous example. Both multilocations are built in a particular way that is described in the following section
 
 ### Building the Precompile Multilocation {: #building-the-precompile-multilocation }
