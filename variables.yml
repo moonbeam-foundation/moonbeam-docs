@@ -177,7 +177,7 @@ networks:
       typescript_dependency_version: 4.3.2
     mintable_xc20:
       asset_deposit: 100
-      metadata_based_deposit: 1.0068
+      metadata_base_deposit: 1.0068
       metadata_byte_deposit: .0001
     orbiter:
       max_orbiters_per_collator: 4
