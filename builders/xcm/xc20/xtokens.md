@@ -60,7 +60,7 @@ To be able to send the extrinsics in Polkadot.js Apps, you need to have the foll
     - For external XC-20s, you can get the [list of asset IDs from Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/assets){target=_blank}
     - For mintable XC-20s, please refer to the [Retrieve List of Mintable XC-20s](/builders/xcm/xc20/mintable-xc20/#retrieve-list-of-mintable-xc-20s){target=_blank} section of the Mintable XC-20s page
 - The number of decimals the asset you're transferring has
-    - For external XC-20s, please refer to the [Retrieve Metadata for External XC-20s](builders/xcm/xc20/xc20/#x-chain-assets-metadata){target=_blank} section of the External XC-20 page
+    - For external XC-20s, please refer to the [Retrieve Metadata for External XC-20s](/builders/xcm/xc20/xc20/#x-chain-assets-metadata){target=_blank} section of the External XC-20 page
     - For mintable XC-20s, please refer to the [Retrieve Metadata for Mintable XC-20s](/builders/xcm/xc20/mintable-xc20/#retrieve-metadata-for-mintable-xc-20s){target=_blank} section of the Mintable XC-20s page
 - Some `xcUNIT` tokens. You can swap `DEV` tokens (Moonbase Alpha's native token) for `xcUNIT`s on [Moonbeam-Swap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha
 
