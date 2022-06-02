@@ -16,13 +16,13 @@ This guide is meant for people with experience compiling [Substrate](https://sub
 !!! note
     Moonbase Alpha is still considered an Alphanet, and as such _will not_ have 100% uptime. The parachain might be purged as needed. During the development of your application, make sure you implement a method to redeploy your contracts and accounts to a fresh parachain quickly. If a chain purge is required, it will be announced via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
 
-## Installation Instructions {: #installation-instructions } 
+## Getting Started {: #getting-started } 
 
-This section goes through the process of using the binary and running a Moonbeam full node as a systemd service. The following steps were tested on an Ubuntu 18.04 installation. Moonbeam may work with other Linux flavors, but Ubuntu is currently the only tested version.
+The following sections go through the process of using the binary and running a Moonbeam full node as a systemd service. The following steps were tested on an Ubuntu 18.04 installation. Moonbeam may work with other Linux flavors, but Ubuntu is currently the only tested version.
 
 To get started quickly without the hassle of compiling the binary yourself, you can use [The Release Binary](#the-release-binary). Or if you prefer to manually build the binaries yourself, which could take around 30 minutes to install the dependencies and compile, you can check out the [Compile the Binary](#compile-the-binary) section.
 
-### The Release Binary {: #the-release-binary } 
+## The Release Binary {: #the-release-binary } 
 
 To get started use `wget` to grab the latest [release binary](https://github.com/PureStake/moonbeam/releases):
 
@@ -60,42 +60,42 @@ To verify that you have downloaded the correct version, you can run `sha256sum m
 
 Once you've retrieved the binary, you can skip ahead to the [Running the Systemd Service](#running-the-systemd-service) section to get started running your node.
 
-### Compile the Binary {: #compile-the-binary } 
+## Compile the Binary {: #compile-the-binary } 
 
 Manually compiling the binary can take around 30 minutes and requires 32GB of memory.
 
 The following commands will build the latest release of the Moonbeam parachain.
 
-First, let's start by cloning the moonbeam repo.
+1. Clone the Moonbeam repo
 
-```
-git clone https://github.com/PureStake/moonbeam
-cd moonbeam
-```
+    ```
+    git clone https://github.com/PureStake/moonbeam
+    cd moonbeam
+    ```
 
-Let's check out the latest release:
+2. Check out to the latest release:
 
-```
-git checkout tags/$(git describe --tags)
-```
+    ```
+    git checkout tags/$(git describe --tags)
+    ```
 
-If you already have Rust installed, you can skip the next two steps. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://www.rust-lang.org/tools/install){target=_blank} by executing:
+3. If you already have Rust installed, you can skip the next two steps. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://www.rust-lang.org/tools/install){target=_blank} by executing:
 
-```
---8<-- 'code/setting-up-node/installrust.md'
-```
+    ```
+    --8<-- 'code/setting-up-node/installrust.md'
+    ```
 
-Next, update your PATH environment variable by running:
+4. Update your `PATH` environment variable by running:
 
-```
---8<-- 'code/setting-up-node/updatepath.md'
-```
+    ```
+    --8<-- 'code/setting-up-node/updatepath.md'
+    ```
 
-Lastly, build the parachain binary:
+5. Build the parachain binary:
 
-```
-cargo build --release
-```
+    ```
+    cargo build --release
+    ```
 
 ![Compiling Binary](/images/node-operators/networks/run-a-node/systemd/full-node-binary-1.png)
 
@@ -107,77 +107,79 @@ If a _cargo not found error_ shows up in the terminal, manually add Rust to your
 
 Now you can use the Moonbeam binary to run a systemd service.
 
-### Running the Systemd Service {: #running-the-systemd-service } 
+## Setup the Service {: #setup-the-service }
 
 The following commands will set up everything regarding running the service.
 
-First, let's create a service account to run the service:
+1. Create a service account to run the service:
 
-=== "Moonbeam"
-    ```
-    adduser moonbeam_service --system --no-create-home
-    ```
+    === "Moonbeam"
+        ```
+        adduser moonbeam_service --system --no-create-home
+        ```
 
-=== "Moonriver"
-    ```
-    adduser moonriver_service --system --no-create-home
-    ```
+    === "Moonriver"
+        ```
+        adduser moonriver_service --system --no-create-home
+        ```
 
-=== "Moonbase Alpha"
-    ```
-    adduser moonbase_service --system --no-create-home
-    ```
+    === "Moonbase Alpha"
+        ```
+        adduser moonbase_service --system --no-create-home
+        ```
 
-Next, create a directory to store the binary and data (you might need `sudo`):
+2. Create a directory to store the binary and data (you might need `sudo`):
 
-=== "Moonbeam"
-    ```
-    mkdir {{ networks.moonbeam.node_directory }}
-    ```
+    === "Moonbeam"
+        ```
+        mkdir {{ networks.moonbeam.node_directory }}
+        ```
 
-=== "Moonriver"
-    ```
-    mkdir {{ networks.moonriver.node_directory }}
-    ```
+    === "Moonriver"
+        ```
+        mkdir {{ networks.moonriver.node_directory }}
+        ```
 
-=== "Moonbase Alpha"
-    ```
-    mkdir {{ networks.moonbase.node_directory }}
-    ```
+    === "Moonbase Alpha"
+        ```
+        mkdir {{ networks.moonbase.node_directory }}
+        ```
 
-Now, move the binary built in the last section to the created folder. If you [compiled the binary](#compile-the-binary) yourself, you'll need to move the binary in the target directory (`./target/release/`). Otherwise, move the Moonbeam binary in the root (you might need sudo):
+3. Move the binary built in the last section to the created folder. If you [compiled the binary](#compile-the-binary) yourself, you'll need to move the binary in the target directory (`./target/release/`). Otherwise, move the Moonbeam binary in the root (you might need sudo):
 
-=== "Moonbeam"
-    ```
-    mv ./{{ networks.moonbeam.binary_name }} {{ networks.moonbeam.node_directory }}
-    ```
+    === "Moonbeam"
+        ```
+        mv ./{{ networks.moonbeam.binary_name }} {{ networks.moonbeam.node_directory }}
+        ```
 
-=== "Moonriver"
-    ```
-    mv ./{{ networks.moonriver.binary_name }} {{ networks.moonriver.node_directory }}
-    ```
+    === "Moonriver"
+        ```
+        mv ./{{ networks.moonriver.binary_name }} {{ networks.moonriver.node_directory }}
+        ```
 
-=== "Moonbase Alpha"
-    ```
-    mv ./{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
-    ```
+    === "Moonbase Alpha"
+        ```
+        mv ./{{ networks.moonbase.binary_name }} {{ networks.moonbase.node_directory }}
+        ```
 
-Next, make sure you set the ownership and permissions accordingly for the local directory that stores the chain data:
+4. Make sure you set the ownership and permissions accordingly for the local directory that stores the chain data:
 
-=== "Moonbeam"
-    ```
-    sudo chown -R moonbeam_service {{ networks.moonbeam.node_directory }}
-    ```
+    === "Moonbeam"
+        ```
+        sudo chown -R moonbeam_service {{ networks.moonbeam.node_directory }}
+        ```
 
-=== "Moonriver"
-    ```
-    sudo chown -R moonriver_service {{ networks.moonriver.node_directory }}
-    ```
+    === "Moonriver"
+        ```
+        sudo chown -R moonriver_service {{ networks.moonriver.node_directory }}
+        ```
 
-=== "Moonbase Alpha"
-    ```
-    sudo chown -R moonbase_service {{ networks.moonbase.node_directory }}
-    ```
+    === "Moonbase Alpha"
+        ```
+        sudo chown -R moonbase_service {{ networks.moonbase.node_directory }}
+        ```
+
+## Create the Configuration File {: #create-the-configuration-file }
 
 The next step is to create the systemd configuration file. If you are setting up a collator node, make sure to follow the code snippets for "Collator". Note that you have to:
 
@@ -187,7 +189,7 @@ The next step is to create the systemd configuration file. If you are setting up
  - Double-check the base path if you've used a different directory
  - Name the file `/etc/systemd/system/moonbeam.service`
 
-#### Full Node {: #full-node } 
+### Full Node {: #full-node } 
 
 === "Moonbeam"
     ```
@@ -306,7 +308,7 @@ The next step is to create the systemd configuration file. If you are setting up
     WantedBy=multi-user.target
     ```
 
-#### Collator {: #collator } 
+### Collator {: #collator } 
 
 === "Moonbeam"
     ```
@@ -434,18 +436,9 @@ The next step is to create the systemd configuration file. If you are setting up
 !!! note
     You can specify a custom Prometheus port with the `--prometheus-port XXXX` flag (replacing `XXXX` with the actual port number). This is possible for both the parachain and embedded relay chain.
 
-Almost there! Register and start the service by running:
+## Run the Service {: #run-the-service }
 
-```
-systemctl enable moonbeam.service
-systemctl start moonbeam.service
-```
-
-And lastly, verify the service is running:
-
-```
-systemctl status moonbeam.service
-```
+--8<-- 'text/systemd/run-service.md'
 
 ![Service Status](/images/node-operators/networks/run-a-node/systemd/full-node-binary-2.png)
 
@@ -457,6 +450,11 @@ journalctl -f -u moonbeam.service
 
 ![Service Logs](/images/node-operators/networks/run-a-node/systemd/full-node-binary-3.png)
 
+If you need to stop the service for any reason, you can run:
+
+```
+systemctl stop moonbeam.service
+```
 
 ## Update the Client {: #update-the-client } 
 

@@ -68,7 +68,7 @@ Some technical benefits of Nimbus are considered in the following sections.
 
 Nimbus puts the author-checking execution in a [Substrate pallet](https://substrate.dev/docs/en/knowledgebase/runtime/pallets). At first glance, you might think this adds a higher execution load to a single block compared to doing this check off-chain. But consider this from a validator’s perspective
 
-The validators will also have to check the author. By putting the author-checking execution logic in a pallet, the execution time can be benchmarked and quantified with weights. If this execution time is not accounted for, there is the risk of a block exceeding the relay chain WASM execution limit (currently 0.5 seconds).
+The validators will also have to check the author. By putting the author-checking execution logic in a pallet, the execution time can be benchmarked and quantified with weights. If this execution time is not accounted for, there is the risk of a block exceeding the relay chain Wasm execution limit (currently 0.5 seconds).
 
 In practice, this check will be fast and will most likely not push execution time over the limit. But from a theoretical perspective, accounting for its weight is better for implementation purposes.
 
