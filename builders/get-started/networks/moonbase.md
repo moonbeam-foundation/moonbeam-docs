@@ -33,7 +33,11 @@ If you do not have MetaMask installed, or would like to follow a tutorial to get
 
 ## Get Tokens {: #get-tokens } 
 
-To start building on Moonbase Alpha, you can get DEV tokens from our faucet, named [Mission Control](https://discord.gg/PfpUATX), in our Discord Channel. For specific amounts, you can always reach out directly to us via our community channels.
+To start building on Moonbase Alpha, you can get DEV tokens from the Moonbase Alpha Faucet or on Discord via a bot, named [Mission Control](https://discord.gg/PfpUATX). For specific amounts, you can always reach out directly to us via our community channels.
+
+### Moonbase Alpha Faucet {: #moonbase-alpha-faucet }
+
+You can enter your address to automatically request DEV tokens from the [Moonbase Alpha Faucet](https://apps.moonbeam.network/moonbase-alpha/faucet/){target=_blank} website. The faucet dispenses 5 DEV tokens every 24 hours.
 
 ### Discord - Mission Control {: #discord-mission-control } 
 

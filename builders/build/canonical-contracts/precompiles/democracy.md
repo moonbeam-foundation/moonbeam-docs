@@ -66,7 +66,8 @@ The interface also includes the following functions which are not currently supp
 The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonbeam and Moonriver. Before diving into the interface, it's best if you're familiar with [how to propose an action](/tokens/governance/proposals/){target=_blank} and [how to vote on a proposal](/tokens/governance/voting/){target=_blank} on Moonbeam. Additionally, you should:  
 
  - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
- - Have an account with some DEV tokens. You can get these from [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/){target=_blank}
+ - Have an account with some DEV tokens. 
+ --8<-- 'text/faucet/faucet-list-item.md'
 
 ## Remix Set Up {: #remix-set-up } 
 

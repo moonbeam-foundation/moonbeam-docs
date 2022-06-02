@@ -75,7 +75,9 @@ In Remix, when deploying a smart contract, make sure you select the **Injected W
 
 <img src="/images/tokens/connect/nifty/nifty-5.png" alt="Nifty sign transaction" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
 
-Since this example is on Moonbase Alpha, ensure you have DEV tokens in your account and, if necessary, head to [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/) to obtain some tokens. By clicking on **Submit**, you are signing this transaction, and the contract will be deployed to the Moonbase Alpha TestNet.
+Since this example is on Moonbase Alpha, ensure you have DEV tokens in your account.
+ --8<-- 'text/faucet/faucet-sentence.md'
+By clicking on **Submit**, you are signing this transaction, and the contract will be deployed to the Moonbase Alpha TestNet.
 
 !!! note
     Please note that although your account balance shows ETH, it is not real ETH, and just DEV tokens. 

@@ -99,7 +99,8 @@ This section of the guide will show you how to register an asset on [Polkadot.js
 To register a mintable XC-20 on Moonbase Alpha, you'll need to have the following:
 
 - [MetaMask installed and connected to the Moonbase Alpha](/tokens/connect/metamask/){target=_blank} TestNet
-- An account funded with `DEV` tokens. You can obtain tokens for testing purposes from [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/){taget=_blank}
+- An account funded with `DEV` tokens. 
+ --8<-- 'text/faucet/faucet-list-item.md'
 
 ### Create a Proposal {: #create-a-proposal }
 

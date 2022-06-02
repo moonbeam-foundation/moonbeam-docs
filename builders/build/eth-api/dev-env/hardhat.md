@@ -18,7 +18,8 @@ This guide will cover how to use Hardhat to compile, deploy, and debug Ethereum 
 To get started, you will need the following:
 
  - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
- - Have an account with funds, which you can get from [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/){target=_blank}
+ - Have an account with funds. 
+  --8<-- 'text/faucet/faucet-list-item.md'
  - 
 --8<-- 'text/common/endpoint-examples.md'
 
