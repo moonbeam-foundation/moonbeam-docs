@@ -40,15 +40,23 @@ The XCM-Transactor pallet provides the following extrinsics (functions):
      - **transactExtraWeight** — which is estimated to be at least 10% over what it is actually used by the remote XCM instructions execution (`WithdrawAsset`, `BuyExecution` and `Transact`)
      - **feePerSecond** — it is the token units per second of XCM execution that will be charged to the sender of the XCM-Transactor extrinsic
      - **maxWeight** — maximum weight units allowed for the remote XCM execution
- - **transactThroughDerivative(destination, feeItem, dest, destWeight)** — transfer different curriencies, specifying which is used as the fee. Each currency is defined as either the native token (self reserved) or with the asset ID
- - **transferWithFee(currencyId, amount, fee, dest, destWeight)** — transfer a currency, but it allows the sender to pay the fee with a different asset. Both are defined by their multilocation
+ - **transactThroughDerivative(destination, index, currencyID, destWeight, innerCall)** — sends an XCM message with instructions to remotely execute a given call in the given destination (wrapped with the `asDerivative` option). The remote call will be signed by the origin parachain sovereign account (who pays the fees), but the transaction is dispatched from the sovereign's derivative account for the given index. The XCM-transactor pallet calculates the fees for the remote execution, and charges the sender of the extrinsict the estimated amount in the corresponding [XC-20 Token](/builders/xcm/xc20/overview/) given by the asset ID
+ - **transactThroughDerivativeMultilocation(destination, index, feeLocation, destWeight, innerCall)** — sends an XCM message with instructions to remotely execute a given call in the given destination (wrapped with the `asDerivative` option). The remote call will be signed by the origin parachain sovereign account (who pays the fees), but the transaction is dispatched from the sovereign's derivative account for the given index. The XCM-transactor pallet calculates the fees for the remote execution, and charges the sender of the extrinsict the estimated amount in the corresponding [XC-20 Token](/builders/xcm/xc20/overview/) given by the asset multilocation
+ - **transactThroughSovereign(destination, feePayer, feeLocation, destWeight, call, originKind)** —sends an XCM message with instructions to remotely execute a given call in the given destination. The remote call will be signed by the origin parachain sovereign account (who pays the fees), but the transaction is dispatched from a given origin . The XCM-transactor pallet calculates the fees for the remote execution, and charges the a given account the estimated amount in the corresponding [XC-20 Token](/builders/xcm/xc20/overview/) given by the asset multilocation
 
 Where the inputs that need to be provided can be defined as:
 
- - **currencyId/currencies** — the ID/IDs of the currency/currencies being sent via XCM. Different runtimes have different ways to define the IDs. In the case of Moonbeam-based networks, `SelfReserve` refers to the native token, and `OtherReserve` refers to the asset
- - **amount** — the number of tokens that are going to be sent via XCM
- - **dest** — a multilocation to define the destination address for the tokens being sent via XCM. It supports different address formats such as 20 or 32 bytes addresses (Ethereum or Substrate)
+the [`originKind`](https://github.com/paritytech/polkadot/blob/0a34022e31c85001f871bb4067b7d5f5cab91207/xcm/src/v0/mod.rs#L60)
+
+
+ - **index** — value to be used to calculate the derivative account. In the context of the XCM-Transactor pallet, this is a derivative account of the parachain sovereign account in another chain
+ - **location** — a multilocation representing a chain in the ecosystem. The value is used to set or retrieve the transact information
+ - **destination** — a multilocation representing a chain in the ecosystem where the XCM message is being sent to
+
+ - **currencyID** — the ID of the currency being used to pay for the remote call execution. Different runtimes have different ways to define the IDs. In the case of Moonbeam-based networks, `SelfReserve` refers to the native token, and `ForeignAsset` refers to the asset ID of the XC-20 (not to be confused with the XC-20 address)
  - **destWeight** — the maximum amount of execution time you want to provide in the destination chain to execute the XCM message being sent. If not enough weight is provided, the execution of the XCM will fail, and funds might get locked in either the sovereign account or a special pallet. **It is important to correctly set the destination weight to avoid failed XCM executions**
+ - **dest** — a multilocation to define the destination address for the tokens being sent via XCM. It supports different address formats such as 20 or 32 bytes addresses (Ethereum or Substrate)
+ 
  - **asset/assets** — a multilocation to define the asset/assets being sent via XCM. Each parachain has a different way to reference assets. For example, Moonbeam-based networks reference their native tokens with the pallet balances index
  - **fee** — a multilocation to define the asset used to pay for the XCM execution in the target chain
  - **feeItem** — an index to define the asset position of an array of assets being sent, used to pay for the XCM execution in the target chain. For example, if only one asset is being sent, the `feeItem` would be `0`
