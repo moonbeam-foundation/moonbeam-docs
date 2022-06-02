@@ -17,7 +17,10 @@ This guide will show you how to leverage the X-Tokens pallet to send XC-20s from
 
 **Developers must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
 
+## Relevant XCM Definitions {: #relevant-xcm-definitions }
+
 --8<-- 'text/xcm/general-xcm-definitions.md'
+--8<-- 'text/xcm/general-xcm-definitions2.md'
 
 ## X-Tokens Pallet Interface {: #x-tokens-pallet-interface}
 

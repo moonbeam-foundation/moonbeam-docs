@@ -15,7 +15,10 @@ To do so, a [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/l
 
 This page is a brief introduction and overview of XCM and other related elements. More information can be found in [Polkadot's Wiki](https://wiki.polkadot.network/docs/learn-crosschain){target=_blank}.
 
+## General XCM Definitions {: #general-xcm-definitions }
+
 --8<-- 'text/xcm/general-xcm-definitions.md'
+--8<-- 'text/xcm/general-xcm-definitions2.md'
 
 ## XCM Instructions {: #xcm-instructions }
 
