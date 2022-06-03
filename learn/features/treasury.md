@@ -30,6 +30,7 @@ Some important terminology to understand in regards to treasuries:
     |:-------------------------------:|::|:--------------------------------------------------------------------------------------------------------------------:|
     |          Proposal bond          |  |                        {{ networks.moonbeam.treasury.proposal_bond }}% of the proposed spend                         |
     |      Proposal bond minimum      |  |                               {{ networks.moonbeam.treasury.proposal_bond_min }} GLMR                                |
+    |      Proposal bond maximum      |  |                                  {{ networks.moonbeam.treasury.proposal_bond_max }}                                  |
     |          Spend period           |  | {{ networks.moonbeam.treasury.spend_period_blocks }} blocks ({{ networks.moonbeam.treasury.spend_period_days}} days) |
     |   Maximum approved proposals    |  |                               {{ networks.moonbeam.treasury.max_approved_proposals }}                                |
     | % of transaction fees allocated |  |                                  {{ networks.moonbeam.treasury.tx_fees_allocated }}                                  |
@@ -39,6 +40,7 @@ Some important terminology to understand in regards to treasuries:
     |:-------------------------------:|::|:----------------------------------------------------------------------------------------------------------------------:|
     |          Proposal bond          |  |                         {{ networks.moonriver.treasury.proposal_bond }}% of the proposed spend                         |
     |      Proposal bond minimum      |  |                                {{ networks.moonriver.treasury.proposal_bond_min }} MOVR                                |
+    |      Proposal bond maximum      |  |                                  {{ networks.moonriver.treasury.proposal_bond_max }}                                   |
     |          Spend period           |  | {{ networks.moonriver.treasury.spend_period_blocks }} blocks ({{ networks.moonriver.treasury.spend_period_days}} days) |
     |   Maximum approved proposals    |  |                                {{ networks.moonriver.treasury.max_approved_proposals }}                                |
     | % of transaction fees allocated |  |                                  {{ networks.moonriver.treasury.tx_fees_allocated }}                                   |
@@ -48,6 +50,7 @@ Some important terminology to understand in regards to treasuries:
     |:-------------------------------:|::|:--------------------------------------------------------------------------------------------------------------------:|
     |          Proposal bond          |  |                        {{ networks.moonbase.treasury.proposal_bond }}% of the proposed spend                         |
     |      Proposal bond minimum      |  |                                {{ networks.moonbase.treasury.proposal_bond_min }} DEV                                |
+    |      Proposal bond maximum      |  |                                  {{ networks.moonbase.treasury.proposal_bond_max }}                                  |
     |          Spend period           |  | {{ networks.moonbase.treasury.spend_period_blocks }} blocks ({{ networks.moonbase.treasury.spend_period_days}} days) |
     |   Maximum approved proposals    |  |                               {{ networks.moonbase.treasury.max_approved_proposals }}                                |
     | % of transaction fees allocated |  |                                  {{ networks.moonbase.treasury.tx_fees_allocated }}                                  |

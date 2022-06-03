@@ -128,6 +128,7 @@ networks:
     treasury:
       proposal_bond: 5
       proposal_bond_min: 1
+      proposal_bond_max: uncapped
       spend_period_blocks: 43200
       spend_period_days: 6
       max_approved_proposals: 100
@@ -255,6 +256,7 @@ networks:
     treasury:
       proposal_bond: 5
       proposal_bond_min: 1
+      proposal_bond_max: uncapped
       spend_period_blocks: 43200
       spend_period_days: 6
       max_approved_proposals: 100
@@ -419,6 +421,7 @@ networks:
     treasury:
       proposal_bond: 5
       proposal_bond_min: 100
+      proposal_bond_max: uncapped
       spend_period_blocks: 43200
       spend_period_days: 6
       max_approved_proposals: 100
