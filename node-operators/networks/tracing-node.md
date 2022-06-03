@@ -182,6 +182,10 @@ You'll need to create a directory for the Wasm runtime overrides and obtain them
 You can clone the repository to any location on your local machine. For simplicity, you can use the directory where you're storing on-chain data. To set up the Wasm override files, you can take the following steps:
 
 1. Clone the [Moonbeam Runtime Overrides repository](https://github.com/PureStake/moonbeam-runtime-overrides){target=_blank}
+    ```
+    git clone https://github.com/PureStake/moonbeam-runtime-overrides.git
+    ```
+
 2. Move the Wasm overrides into your on-chain data directory:
 
     === "Moonbeam"
@@ -375,6 +379,18 @@ The next step is to create the systemd configuration file, you'll need to:
 ### Run the Service {: #run-the-service }
 
 --8<-- 'text/systemd/run-service.md'
+
+![Service Status](/images/node-operators/networks/tracing-node/tracing-1.png)
+
+You can also run the following command to see logs of the tracing node spinning up:
+
+```
+journalctl -f -u moonbeam.service
+```
+
+Your terminal should display lgos similar to the following:
+
+![Service logs of wasm rutime overrides being processed](/images/node-operators/networks/tracing-node/tracing-2.png)
 
 ## Using a Tracing Node {: #using-a-tracing-node }
 
