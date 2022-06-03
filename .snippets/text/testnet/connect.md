@@ -1,4 +1,4 @@
-## Network Endpoints
+## Network Endpoints {: #network-endpoints }
 
 Moonbase Alpha has two types of endpoints available for users to connect to: one for HTTPS and one for WSS.
 

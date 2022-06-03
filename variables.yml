@@ -23,6 +23,7 @@ networks:
     node_directory: /var/lib/alphanet-data
     node_db_loc: /chains/moonbase_alpha/db
     binary_name: moonbeam
+    faucet_amount: 1 DEV token
     node:
       cores: 8
       ram: 16
@@ -42,7 +43,7 @@ networks:
     chainlink:
       oracle_contract: '0x1d693d883BeAeE16edD0D7588D6a9f7E1967E798'
       link_contract: '0xa36085F69e2889c224210F603D836748e7dC0088'
-      client_contract: '0xe88ec866D05e637074B5a0D0d931f292d7871613'
+      client_contract: '0x8ea35EdC1709ea0Ea2C86241C7D1C84Fd0dDeB11'
       basic:
         aave_usd: '541b8f7db7374d78b38285ef1b8bfacc'
         algo_usd: 'cdb48696e2314133a1dc8ea27922dd24'
