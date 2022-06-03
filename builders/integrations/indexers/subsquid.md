@@ -1,6 +1,6 @@
 ---
 title: Index Moonbeam Data with Subsquid
-description: Learn how to use Subsquid to process Substrate and EVM data for Moonbeam and Moonriver.
+description: Learn how to use Subsquid, a query node framework for Substrate-based chains, to index and process Substrate and EVM data for Moonbeam and Moonriver.
 ---
 
 # Indexing Moonbeam with Subsquid
