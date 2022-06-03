@@ -19,13 +19,13 @@ This guide will cover some of the most common flags and show you how to access a
 - **`--port`** - specifies the peer-to-peer protocol TCP port. The default port for parachains is `{{ networks.parachain.p2p }}` and `{{ networks.relay_chain.p2p }}` for the embedded relay chain
 - **`--rpc-port`**  - specifies the HTTP RPC server TCP port. The default port for parachains is `{{ networks.parachain.rpc }}`  and `{{ networks.relay_chain.rpc }}` for the embedded relay chain
 - **`--ws-port`** - specifies the WebSockets RPC server TCP port. The default port for parachains is `{{ networks.parachain.ws }}`  and `{{ networks.relay_chain.ws }}` for the embedded relay chain
-- **`--execution`** - specifies the execution strategy that should be used by all execution contexts. The Substrate runtime is compiled into a native executable which is included locally as part of the node and a WebAssembly (Wasm) binary that is stored on-chain. The available options are:
+- **`--execution`** - specifies the execution strategy that should be used by all execution contexts. The Substrate runtime is compiled into a native executable which is included locally as part of the node and a WebAssembly (wasm) binary that is stored on-chain. The available options are:
     - **`native`** - only execute with the native build
-    - **`wasm`** - only execute with the Wasm build
-    - **`both`** - execute with both native and Wasm builds
-    - **`nativeelsewasm`** - execute with the native build if possible and if it fails, then execute with Wasm
-- **`--wasm-execution`** - specifies the method for executing Wasm runtime code. The available options are:
-    - **`compiled`** - this is the default and uses the [Wasmtime](https://github.com/paritytech/wasmtime){target=_blank} compiled runtime
+    - **`wasm`** - only execute with the wasm build
+    - **`both`** - execute with both native and wasm builds
+    - **`nativeelsewasm`** - execute with the native build if possible and if it fails, then execute with wasm
+- **`--wasm-execution`** - specifies the method for executing wasm runtime code. The available options are:
+    - **`compiled`** - this is the default and uses the [wasmtime](https://github.com/paritytech/wasmtime){target=_blank} compiled runtime
     - **`interpreted-i-know-what-i-do`** - uses the [wasmi interpreter](https://github.com/paritytech/wasmi){target=_blank}
 - **`--pruning`** - specifies the state pruning mode. If running a node with the `--validator` flag, the default is to keep the full state of all blocks. Otherwise, the state is only kept for the last 256 blocks. The available options are:
     - **`archive`** - keeps the full state of all blocks
