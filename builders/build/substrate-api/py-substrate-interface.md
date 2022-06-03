@@ -396,6 +396,6 @@ You can also make custom RPC requests with the [`rpc_request`](https://polkascan
 
 This is particularly useful for interacting with Moonbeam's [ETH JSON RPC](/builders/get-started/eth-compare/rpc-support/){target=_blank} endpoints or Moonbeam's [custom RPC](/builders/build/moonbeam-custom-api/){target=_blank} endpoints. 
 
-The [Consensus and Finality page](https://docs.moonbeam.network/builders/get-started/eth-compare/consensus-finality/#checking-tx-finality-with-substrate-libraries) has examples for using the custom RPC calls through Python Substrate Interface to check the finality of a transaction given its tx hash. 
+The [Consensus and Finality page](/builders/get-started/eth-compare/consensus-finality/#checking-tx-finality-with-substrate-libraries) has examples for using the custom RPC calls through Python Substrate Interface to check the finality of a transaction given its tx hash. 
 
 --8<-- 'text/disclaimers/third-party-content.md'

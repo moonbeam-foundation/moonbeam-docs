@@ -55,7 +55,7 @@ In this guide, you'll transfer `xcUNIT` tokens, which is the [XC-20](/builders/x
 
 To be able to send the extrinsics in Polkadot.js Apps, you need to have the following:
 
-- An [account loaded in Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/accounts){target=_blank} funded with [DEV tokens](https://docs.moonbeam.network/builders/get-started/networks/moonbase/#get-tokens){target=_blank}
+- An [account loaded in Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/accounts){target=_blank} funded with [DEV tokens](/builders/get-started/networks/moonbase/#get-tokens){target=_blank}
 - The asset ID of the asset you're transferring
     - For external XC-20s, you can get the [list of asset IDs from Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/assets){target=_blank}
     - For mintable XC-20s, please refer to the [Retrieve List of Mintable XC-20s](/builders/xcm/xc20/mintable-xc20/#retrieve-list-of-mintable-xc-20s){target=_blank} section of the Mintable XC-20s page
