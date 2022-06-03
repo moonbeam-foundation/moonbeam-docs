@@ -44,6 +44,9 @@ You can enter your address to automatically request DEV tokens from the [Moonbas
 ### Discord - Mission Control {: #discord-mission-control } 
 
 To request tokens automatically, we've created a Discord bot (named Mission Control :sunglasses:) that will automatically send a maximum of {{ networks.moonbase.discord_faucet_amount }} every 24 hours (per Discord user) when you enter your address. You can check it out on our [Discord channel](https://discord.gg/PfpUATX).
+
+!!! note
+    The Discord faucet will be deprecated by end of June 2022.
  
 Under the category **Miscellaneous**, you will find our **#Moonbase-Faucet** channel. 
 
