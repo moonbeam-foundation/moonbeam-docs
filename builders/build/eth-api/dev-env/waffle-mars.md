@@ -22,7 +22,8 @@ In this guide, you'll be creating a TypeScript project to write, compile, and te
 You will need to have the following:
 
  - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
- - An account with funds, which you can get from [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/){target=_blank}
+ - An account with funds.
+  --8<-- 'text/faucet/faucet-list-item.md'
  - 
 --8<-- 'text/common/endpoint-examples.md'
 

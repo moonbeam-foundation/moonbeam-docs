@@ -96,7 +96,8 @@ To approve a spend or transfer XC-20s via the XC-20 precompile, you will need:
 
 - [MetaMask installed and connected to the Moonbase Alpha](/tokens/connect/metamask/){target=_blank} TestNet
 - Create or have two accounts on Moonbase Alpha
-- At least one of the accounts will need to be funded with `DEV` tokens. You can obtain tokens for testing purposes from [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/){target=_blank}
+- At least one of the accounts will need to be funded with `DEV` tokens. 
+ --8<-- 'text/faucet/faucet-list-item.md'
 - The precompile address of the XC-20 you want to interact with. The instructions for calculating the precompile address are slightly different depending on whether the XC-20 is external and imported in or minted directly on Moonbeam:
     - [Calculate External XC-20 Precompile Addresses](/builders/xcm/xc20/xc20/#calculate-xc20-address){target=_blank}
     - [Calculate Mintable XC-20 Precompile Addresses](/builders/xcm/xc20/mintable-xc20/#calculate-xc20-address){target=_blank}

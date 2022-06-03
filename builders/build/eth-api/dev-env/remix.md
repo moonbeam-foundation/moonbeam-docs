@@ -29,7 +29,8 @@ Your development node comes with 10 pre-funded accounts. You should have MetaMas
 
 ![MetaMask installation with a balance](/images/builders/build/eth-api/dev-env/remix/using-remix-2.png)
 
-If you're adapting this guide for Moonbeam, Moonriver, or Moonbase Alpha make sure you are connected to the correct network and have an account with funds. For Moonbase Alpha, you can get tokens for testing purposes from [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/){target=_blank}.
+If you're adapting this guide for Moonbeam, Moonriver, or Moonbase Alpha make sure you are connected to the correct network and have an account with funds.  
+--8<-- 'text/faucet/faucet-sentence.md'
 
 ## Getting Started with Remix {: #getting-started-with-remix } 
 

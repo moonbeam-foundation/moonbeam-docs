@@ -18,7 +18,8 @@ This guide will show you how to deploy a contract and interact with it using the
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
-As this guide will use the Moonbeam Truffle box and the Moonbeam Truffle plugin, you don't have to worry about creating an account and funding it. The Moonbeam development node comes with 10 pre-funded accounts. However, if you're adapting this guide for Moonbeam, Moonriver, or Moonbase Alpha you will need to have an account with funds. For Moonbase Alpha, you can get tokens for testing purposes from [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/){target=_blank}.
+As this guide will use the Moonbeam Truffle box and the Moonbeam Truffle plugin, you don't have to worry about creating an account and funding it. The Moonbeam development node comes with 10 pre-funded accounts. However, if you're adapting this guide for Moonbeam, Moonriver, or Moonbase Alpha you will need to have an account with funds. 
+ --8<-- 'text/faucet/faucet-sentence.md'
 
 --8<-- 'text/common/endpoint-examples.md'
 

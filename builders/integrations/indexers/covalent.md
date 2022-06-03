@@ -76,7 +76,8 @@ To get started with the Covalent API, you will need to have the following:
 
  - A free [Covalent API Key](https://www.covalenthq.com/platform/#/auth/register/)
  - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/)
- - An account with funds, which you can get from [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/)
+ - An account with funds.
+  --8<-- 'text/faucet/faucet-list-item.md'
 
 ## Try it Out {: #try-it-out } 
 
