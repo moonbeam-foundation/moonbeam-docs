@@ -58,7 +58,7 @@ There are also some [precompiles](https://github.com/paritytech/frontier/tree/4c
 - **[pallet-evm-precompile-bn128](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_bn128/index.html){target=_blank}** - includes three BN128 precompiles: BN128Add, BN128Mul, and BN128Pairing
 - **[pallet-evm-precompile-modexp](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_modexp/struct.Modexp.html){target=_blank}** - includes the modular exponentiation precompile 
 - **[pallet-evm-precompile-sha3fips](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_sha3fips/struct.Sha3FIPS256.html){target=_blank}** -includes the standard SHA3 precompile
-- **[pallet-evm-precompile-dispatch](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_dispatch/struct.Dispatch.html){target=_blank** - includes the dipatch precompile
+- **[pallet-evm-precompile-dispatch](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_dispatch/struct.Dispatch.html){target=_blank}** - includes the dipatch precompile
 
 You can find an overview of most of these precompiles on the [Ethereum MainNet Precompiled Contracts](/builders/build/canonical-contracts/precompiles/eth-mainnet){target=_blank} page.
 
