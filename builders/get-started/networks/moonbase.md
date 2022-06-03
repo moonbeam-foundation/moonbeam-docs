@@ -37,13 +37,13 @@ To start building on Moonbase Alpha, you can get DEV tokens from the Moonbase Al
 
 ### Moonbase Alpha Faucet {: #moonbase-alpha-faucet }
 
-You can enter your address to automatically request DEV tokens from the [Moonbase Alpha Faucet](https://apps.moonbeam.network/moonbase-alpha/faucet/){target=_blank} website. The faucet dispenses 5 DEV tokens every 24 hours.
+You can enter your address to automatically request DEV tokens from the [Moonbase Alpha Faucet](https://apps.moonbeam.network/moonbase-alpha/faucet/){target=_blank} website. The faucet dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours.
 
 ![Moonbase Alpha Faucet Web](/images/builders/get-started/networks/moonbase/moonbase-1.png)
 
 ### Discord - Mission Control {: #discord-mission-control } 
 
-To request tokens automatically, we've created a Discord bot (named Mission Control :sunglasses:) that will automatically send a maximum of {{ networks.moonbase.faucet_amount }} every 24 hours (per Discord user) when you enter your address. You can check it out on our [Discord channel](https://discord.gg/PfpUATX).
+To request tokens automatically, we've created a Discord bot (named Mission Control :sunglasses:) that will automatically send a maximum of {{ networks.moonbase.discord_faucet_amount }} every 24 hours (per Discord user) when you enter your address. You can check it out on our [Discord channel](https://discord.gg/PfpUATX).
  
 Under the category **Miscellaneous**, you will find our **#Moonbase-Faucet** channel. 
 
@@ -61,7 +61,7 @@ To get DEV tokens, enter the following message, replacing `<enter-address-here->
 !faucet send <enter-address-here->
 ```
 
-Mission Control will send you {{ networks.moonbase.faucet_amount }} and display your current account balance. Remember that Mission Control is limited to dispense once every 24 hours per Discord user.
+Mission Control will send you {{ networks.moonbase.discord_faucet_amount }} and display your current account balance. Remember that Mission Control is limited to dispense once every 24 hours per Discord user.
 
 ![Faucet send command example](/images/builders/get-started/networks/moonbase/moonbase-3.png)
 

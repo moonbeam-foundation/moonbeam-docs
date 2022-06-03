@@ -23,7 +23,8 @@ networks:
     node_directory: /var/lib/alphanet-data
     node_db_loc: /chains/moonbase_alpha/db
     binary_name: moonbeam
-    faucet_amount: 1 DEV token
+    discord_faucet_amount: 1 DEV token
+    website_faucet_amount: 5 DEV tokens
     node:
       cores: 8
       ram: 16
