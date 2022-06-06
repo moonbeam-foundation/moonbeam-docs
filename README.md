@@ -12,7 +12,7 @@ The content in this repository is displayed on the Moonbeam documentation site, 
 
 ## Contributing
 
-If you're interested in contributing to this repository, please feel free to clone the repo, make changes, and open a PR ✨. Please review the guidelines in the [`CONTRIBUTING.md` file](https://github.com/PureStake/moonbeam-docs/blob/master/CONTRIBUTING.md) before making any changes.
+If you're interested in contributing to this repository, please feel free to clone the repo, make changes, and open a PR ✨. Please review the guidelines in the [`.CONTRIBUTING.md` file](https://github.com/PureStake/moonbeam-docs/blob/master/.CONTRIBUTING.md) before making any changes.
 
 You can also [open an issue](https://github.com/PureStake/moonbeam-docs/issues/new). Thank you for taking your time to contribute to this repository 💜.
 
