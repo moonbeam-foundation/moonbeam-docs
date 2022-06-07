@@ -325,12 +325,66 @@ You can view the [complete script on GitHub](https://raw.githubusercontent.com/P
 !!! note
     You can check out all of the available functions for the `parachainStaking` module by adding `console.log(api.tx.parachainStaking);` to your code.
 
+## Substrate JSON-RPC {: #substrate-json-rpc }
+
+Some of the methods availabe through the Polkadot.js API interface are also available as JSON RPC endpoints on Substrate based nodes, including Moonbeam nodes. 
+
+This section will provide some examples; for the full list of available Substrate JSON RPC calls, please check the Polkadot.js API [JSON-RPC](https://polkadot.js.org/docs/substrate/rpc/){target=_blank} page and the `rpc_methods` endpoint below. 
+
+- [`methods()`](https://polkadot.js.org/docs/substrate/rpc/#methods-rpcmethods): `RpcMethods`
+    - interface: `api.rpc.rpc.methods`
+    - jsonrpc: `rpc_methods`
+    - summary: Retrieves the list of RPC methods that are exposed by the node
+    - sample request:
+      ```bash
+      curl --location --request POST 'https://rpc.api.moonbase.moonbeam.network' \
+      --header 'Content-Type: application/json' \
+      --data-raw '{
+          "jsonrpc":"2.0",
+          "id":1,
+          "method":"rpc_methods",
+          "params": []
+        }'
+      ```
+
+- [`getBlock(hash?: BlockHash)`](https://polkadot.js.org/docs/substrate/rpc/#getblockhash-blockhash-signedblock): `SignedBlock`
+    - interface: `api.rpc.chain.getBlock`
+    - jsonrpc: `chain_getBlock`
+    - summary: Get header and body of a chain block
+    - sample request:
+      ```bash
+      curl --location --request POST 'https://rpc.api.moonbase.moonbeam.network' \
+      --header 'Content-Type: application/json' \
+      --data-raw '{
+          "jsonrpc":"2.0",
+          "id":1,
+          "method":"chain_getBlock",
+          "params": ["0x870ad0935a27ed8684048860ffb341d469e091abc2518ea109b4d26b8c88dd96"]
+        }'
+      ```
+
+- [`getFinalizedHead()`](https://polkadot.js.org/docs/substrate/rpc/#getfinalizedhead-blockhash): `BlockHash`
+    * interface: `api.rpc.chain.getFinalizedHead`
+    * jsonrpc: `chain_getFinalizedHead`
+    * summary: Get hash of the last finalized block in the canon chain
+    * sample request:
+      ```bash
+      curl --location --request POST '{{ networks.moonbase.rpc_url }}' \
+      --header 'Content-Type: application/json' \
+      --data-raw '{
+          "jsonrpc":"2.0",
+          "id":1,
+          "method":"chain_getHeader",
+          "params": []
+        }'
+      ```
+
 ## Custom RPC Requests {: #custom-rpc-requests }
 
 RPCs are exposed as a method on a specific module. This means that once available, you can call any rpc via `api.rpc.<module>.<method>(...params[])`. This also works for accessing Ethereum RPCs using Polkadot.js API, in the form of `polkadotApi.rpc.eth.*`.
 
 You can check for a list of exposed RPC endpoints by calling `api.rpc.rpc.methods()`, which is the list of known RPCs the node exposes. 
 
-The [Consensus and Finality page](/builders/get-started/eth-compare/consensus-finality/#) has examples for using the custom RPC calls to check the finality of a given transaction. 
+The [Consensus and Finality page](/builders/get-started/eth-compare/consensus-finality/#){target=_blank} has examples for using the custom RPC calls to check the finality of a given transaction. 
 
 --8<-- 'text/disclaimers/third-party-content.md'
