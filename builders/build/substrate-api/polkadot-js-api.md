@@ -367,7 +367,7 @@ The [Consensus and Finality page](/builders/get-started/eth-compare/consensus-fi
 
 ## Utilities {: #utilities }
 
-Polkadot.js API also includes a number of utility libraries for computing commonly used cryptographic primitives and hashing functions. 
+Polkadot.js API also includes a number of utility libraries for computing commonly used cryptographic primitives and hash functions. 
 
 The following example computes the deterministic transaction hash of a raw Ethereum legacy transaction by first computing its RLP ([Recursive Length Prefix](https://eth.wiki/fundamentals/rlp){target=_blank}) encoding, then hashing the result with keccak256. 
 
