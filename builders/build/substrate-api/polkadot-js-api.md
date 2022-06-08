@@ -405,8 +405,3 @@ console.log(keccakAsHex(encoded_tx))
 You can check the respective [NPM repository page](https://www.npmjs.com/package/@polkadot/util-crypto/v/0.32.19){target=_blank} for a list of available methods in the @polkadot/util-crypto library and their descriptions.
 
 --8<-- 'text/disclaimers/third-party-content.md'
-
-
-
-
-
