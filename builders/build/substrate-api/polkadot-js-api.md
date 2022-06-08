@@ -27,22 +27,6 @@ First, you need to install Polkadot.js API library for your project through a pa
 yarn add @polkadot/api
 ```
 
-### Installing Moonbeam Types Bundle {: #moonbeam-types-bundle }
-
-For decoding Moonbeam custom events and types, you will need to include the [Moonbeam Types Bundle](https://www.npmjs.com/package/moonbeam-types-bundle){target=_blank} into your project by adding the following package information to your `package.json`:
-
-```json
-"@polkadot/api": "^{{ networks.moonbase.moonbeam_types_bundle.stable_version }}",
-"moonbeam-types-bundle": "^{{ networks.moonbase.moonbeam_types_bundle.polkadot_js_dependency_version }}",
-"typescript": "{{ networks.moonbase.moonbeam_types_bundle.typescript_dependency_version }}"
-```
-
-And add this import statement to the start of your project file:
-
-```javascript
-import { typesBundlePre900 } from "moonbeam-types-bundle"
-```
-
 ## Creating an API Provider Instance {: #creating-an-API-provider-instance }
 
 Similar to ETH API libraries, you must first instantiate an API instance of Polkadot.js API. Create the `WsProvider` using the websocket endpoint of the Moonbeam network you wish to interact with. 
