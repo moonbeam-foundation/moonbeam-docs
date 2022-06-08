@@ -58,14 +58,16 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
 
 |                                                              Contract                                                              |                  Address                   |
 |:----------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
-|               [ECRECOVER](/builders/build/canonical-contracts/precompiles/eth-mainnet/#verify-signatures-with-ecrecover/){target=_blank}               | 0x0000000000000000000000000000000000000001 |
-|                       [SHA256](/builders/build/canonical-contracts/precompiles/eth-mainnet/#hashing-with-sha256/){target=_blank}                       | 0x0000000000000000000000000000000000000002 |
-|                   [RIPEMD160](/builders/build/canonical-contracts/precompiles/eth-mainnet/#hashing-with-ripemd-160/){target=_blank}                    | 0x0000000000000000000000000000000000000003 |
-|                     [Identity](/builders/build/canonical-contracts/precompiles/eth-mainnet/#the-identity-function/){target=_blank}                     | 0x0000000000000000000000000000000000000004 |
-|             [Modular Exponentiation](/builders/build/canonical-contracts/precompiles/eth-mainnet/#modular-exponentiation/){target=_blank}              | 0x0000000000000000000000000000000000000005 |
+|     [ECRECOVER](/builders/build/canonical-contracts/precompiles/eth-mainnet/#verify-signatures-with-ecrecover/){target=_blank}     | 0x0000000000000000000000000000000000000001 |
+|             [SHA256](/builders/build/canonical-contracts/precompiles/eth-mainnet/#hashing-with-sha256/){target=_blank}             | 0x0000000000000000000000000000000000000002 |
+|         [RIPEMD160](/builders/build/canonical-contracts/precompiles/eth-mainnet/#hashing-with-ripemd-160/){target=_blank}          | 0x0000000000000000000000000000000000000003 |
+|           [Identity](/builders/build/canonical-contracts/precompiles/eth-mainnet/#the-identity-function/){target=_blank}           | 0x0000000000000000000000000000000000000004 |
+|   [Modular Exponentiation](/builders/build/canonical-contracts/precompiles/eth-mainnet/#modular-exponentiation/){target=_blank}    | 0x0000000000000000000000000000000000000005 |
 |     [Bn128Add](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_bn128/struct.Bn128Add.html){target=_blank}     | 0x0000000000000000000000000000000000000006 |
 |     [Bn128Mul](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_bn128/struct.Bn128Mul.html){target=_blank}     | 0x0000000000000000000000000000000000000007 |
 | [Bn128Pairing](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_bn128/struct.Bn128Pairing.html){target=_blank} | 0x0000000000000000000000000000000000000008 |
+|      [Blake2](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html){target=_blank}      | 0x0000000000000000000000000000000000000009 |
+
 
 ### Non-Moonbeam Specific nor Ethereum Precompiles {: #non-moonbeam-specific-nor-ethereum-precompiles }
 
@@ -88,6 +90,7 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
     |        [Relay Encoder](https://github.com/PureStake/moonbeam/blob/master/precompiles/relay-encoder/RelayEncoder.sol){target=_blank}        | {{networks.moonbeam.precompiles.relay_encoder}}  |
     |      [XCM Transactor](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm_transactor/XcmTransactor.sol){target=_blank}       | {{networks.moonbeam.precompiles.xcm_transactor}} |
     |  [Author Mapping](https://github.com/PureStake/moonbeam/blob/master/precompiles/author-mapping/AuthorMappingInterface.sol){target=_blank}  | {{networks.moonbeam.precompiles.author_mapping}} |
+    |                   [Batch](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank}                    |     {{networks.moonbeam.precompiles.batch}}      |
 
 === "Moonriver"
     |                                                                  Contract                                                                  |                      Address                      |
@@ -100,6 +103,7 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
     |        [Relay Encoder](https://github.com/PureStake/moonbeam/blob/master/precompiles/relay-encoder/RelayEncoder.sol){target=_blank}        | {{networks.moonriver.precompiles.relay_encoder}}  |
     |      [XCM Transactor](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm_transactor/XcmTransactor.sol){target=_blank}       | {{networks.moonriver.precompiles.xcm_transactor}} |
     |  [Author Mapping](https://github.com/PureStake/moonbeam/blob/master/precompiles/author-mapping/AuthorMappingInterface.sol){target=_blank}  | {{networks.moonriver.precompiles.author_mapping}} |
+    |                   [Batch](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank}                    |     {{networks.moonriver.precompiles.batch}}      |
 
 === "Moonbase Alpha"
     |                                                                  Contract                                                                  |                     Address                      |
@@ -112,4 +116,5 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
     |        [Relay Encoder](https://github.com/PureStake/moonbeam/blob/master/precompiles/relay-encoder/RelayEncoder.sol){target=_blank}        | {{networks.moonbase.precompiles.relay_encoder}}  |
     |      [XCM Transactor](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm_transactor/XcmTransactor.sol){target=_blank}       | {{networks.moonbase.precompiles.xcm_transactor}} |
     |  [Author Mapping](https://github.com/PureStake/moonbeam/blob/master/precompiles/author-mapping/AuthorMappingInterface.sol){target=_blank}  | {{networks.moonbase.precompiles.author_mapping}} |
+    |                   [Batch](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank}                    |     {{networks.moonbase.precompiles.batch}}      |
 
