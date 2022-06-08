@@ -309,11 +309,11 @@ You can view the [complete script on GitHub](https://raw.githubusercontent.com/P
 !!! note
     You can check out all of the available functions for the `parachainStaking` module by adding `console.log(api.tx.parachainStaking);` to your code.
 
-## Substrate JSON-RPC {: #substrate-json-rpc }
+## Substrate and Custom JSON-RPC Endpoints {: #substrate-and-custom-json-rpc-endpoints }
 
-Some of the methods availabe through the Polkadot.js API interface are also available as JSON RPC endpoints on Substrate based nodes, including Moonbeam nodes. 
+RPCs are exposed as a method on a specific module. This means that once available, you can call any rpc via `api.rpc.<module>.<method>(...params[])`. This also works for accessing Ethereum RPCs using Polkadot.js API, in the form of `polkadotApi.rpc.eth.*`.
 
-This section will provide some examples; for the full list of available Substrate JSON RPC calls, please check the Polkadot.js API [JSON-RPC](https://polkadot.js.org/docs/substrate/rpc/){target=_blank} page and the `rpc_methods` endpoint below. 
+Some of the methods availabe through the Polkadot.js API interface are also available as JSON-RPC endpoints on Moonbeam nodes. This section will provide some examples; you can check for a list of exposed RPC endpoints by calling `api.rpc.rpc.methods()` or the `rpc_methods` endpoint listed below. 
 
 - [`methods()`](https://polkadot.js.org/docs/substrate/rpc/#methods-rpcmethods): `RpcMethods`
     - interface: `api.rpc.rpc.methods`
@@ -363,12 +363,50 @@ This section will provide some examples; for the full list of available Substrat
         }'
       ```
 
-## Custom RPC Requests {: #custom-rpc-requests }
+The [Consensus and Finality page](/builders/get-started/eth-compare/consensus-finality/#){target=_blank} has examples for using the exposed custom and Substrate RPC calls to check the finality of a given transaction. 
 
-RPCs are exposed as a method on a specific module. This means that once available, you can call any rpc via `api.rpc.<module>.<method>(...params[])`. This also works for accessing Ethereum RPCs using Polkadot.js API, in the form of `polkadotApi.rpc.eth.*`.
+## Utilities {: #utilities }
 
-You can check for a list of exposed RPC endpoints by calling `api.rpc.rpc.methods()`, which is the list of known RPCs the node exposes. 
+Polkadot.js API also includes a number of utility libraries for computing commonly used cryptographic primitives and hashing functions. 
 
-The [Consensus and Finality page](/builders/get-started/eth-compare/consensus-finality/#){target=_blank} has examples for using the custom RPC calls to check the finality of a given transaction. 
+The following example computes the deterministic transaction hash of a raw Ethereum legacy transaction by first computing its RLP ([Recursive Length Prefix](https://eth.wiki/fundamentals/rlp){target=_blank}) encoding, then hashing the result with keccak256. 
+
+```javascript
+import { encode } from '@polkadot/util-rlp';
+import { keccakAsHex } from '@polkadot/util-crypto';
+import { numberToHex } from '@polkadot/util'
+
+// Define the raw signed transaction
+const txData = {
+    nonce: numberToHex(1),
+    gasPrice: numberToHex(21000000000),
+    gasLimit: numberToHex(21000),
+    to: '0xc390cC49a32736a58733Cf46bE42f734dD4f53cb',
+    value: numberToHex(1000000000000000000),
+    data: '',
+    v: "0507",
+    r: "0x5ab2f48bdc6752191440ce62088b9e42f20215ee4305403579aa2e1eba615ce8",
+    s: "0x3b172e53874422756d48b449438407e5478c985680d4aaa39d762fe0d1a11683"
+}
+
+// Extract the values to an array
+var txDataArray = Object.keys(txData)
+    .map(function (key) {
+        return txData[key];
+    });
+
+// Calculate the RLP encoded transaction
+var encoded_tx = encode(txDataArray)
+
+// Hash the encoded tx using keccak
+console.log(keccakAsHex(encoded_tx))
+```
+
+You can check the respective [NPM repository page](https://www.npmjs.com/package/@polkadot/util-crypto/v/0.32.19){target=_blank} for a list of available methods in the @polkadot/util-crypto library and their descriptions.
 
 --8<-- 'text/disclaimers/third-party-content.md'
+
+
+
+
+
