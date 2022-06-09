@@ -251,11 +251,11 @@ const tx = await api.tx.balances
 const encodedCalldata = tx.method.toHex()
 console.log(encodedCallData)
 
-//Sign and send the tx
+// Sign and send the transaction
 const txHash = await tx
     .signAndSend(alice);
 
-// Show the tx hash
+// Show the transaction hash
 console.log(`Submitted with hash ${txHash}`);
 ```
 
@@ -322,7 +322,7 @@ RPCs are exposed as a method on a specific module. This means that once availabl
 
 Some of the methods availabe through the Polkadot.js API interface are also available as JSON-RPC endpoints on Moonbeam nodes. This section will provide some examples; you can check for a list of exposed RPC endpoints by calling `api.rpc.rpc.methods()` or the `rpc_methods` endpoint listed below. 
 
-- [`methods()`](https://polkadot.js.org/docs/substrate/rpc/#methods-rpcmethods): `RpcMethods`
+- [`methods()`](https://polkadot.js.org/docs/substrate/rpc/#methods-rpcmethods){target=_blank}: `RpcMethods`
     - interface: `api.rpc.rpc.methods`
     - jsonrpc: `rpc_methods`
     - summary: Retrieves the list of RPC methods that are exposed by the node
@@ -338,7 +338,7 @@ Some of the methods availabe through the Polkadot.js API interface are also avai
         }'
       ```
 
-- [`getBlock(hash?: BlockHash)`](https://polkadot.js.org/docs/substrate/rpc/#getblockhash-blockhash-signedblock): `SignedBlock`
+- [`getBlock(hash?: BlockHash)`](https://polkadot.js.org/docs/substrate/rpc/#getblockhash-blockhash-signedblock){target=_blank}: `SignedBlock`
     - interface: `api.rpc.chain.getBlock`
     - jsonrpc: `chain_getBlock`
     - summary: Get header and body of a chain block
@@ -354,7 +354,7 @@ Some of the methods availabe through the Polkadot.js API interface are also avai
         }'
       ```
 
-- [`getFinalizedHead()`](https://polkadot.js.org/docs/substrate/rpc/#getfinalizedhead-blockhash): `BlockHash`
+- [`getFinalizedHead()`](https://polkadot.js.org/docs/substrate/rpc/#getfinalizedhead-blockhash){target=_blank}: `BlockHash`
     * interface: `api.rpc.chain.getFinalizedHead`
     * jsonrpc: `chain_getFinalizedHead`
     * summary: Get hash of the last finalized block in the canon chain
@@ -405,7 +405,7 @@ var txDataArray = Object.keys(txData)
 // Calculate the RLP encoded transaction
 var encoded_tx = encode(txDataArray)
 
-// Hash the encoded tx using keccak
+// Hash the encoded transaction using keccak
 console.log(keccakAsHex(encoded_tx))
 ```
 
