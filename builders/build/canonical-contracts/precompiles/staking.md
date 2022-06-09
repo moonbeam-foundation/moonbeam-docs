@@ -187,7 +187,7 @@ Now that you have obtained the [candidate delegator count](#get-the-candidate-de
 
 1. Find and expand the **delegate** function
 2. Enter the candidate address you would like to delegate (`{{ networks.moonbase.staking.candidates.address1 }}`)
-3. Provide the amount to delegate in WEI. There is a minimum of `{{networks.moonbase.staking.min_del_stake}}` tokens to delegate, so the lowest amount in WEI is `5000000000000000000`
+3. Provide the amount to delegate in Wei. There is a minimum of `{{networks.moonbase.staking.min_del_stake}}` tokens to delegate, so the lowest amount in Wei is `5000000000000000000`
 4. Enter the delegation count for the candidate
 5. Enter your delegation count
 6. Press **transact**

@@ -122,7 +122,7 @@ On the next screen, take the following steps:
 1. Expand the Democracy precompile contract to see the available functions
 2. Find the **propose** function and press the button to expand the section
 3. Enter the hash of the proposal
-4. Enter the value in WEI of the tokens to bond. The minimum bond is  {{ networks.moonbase.democracy.min_deposit }} DEV, {{ networks.moonriver.democracy.min_deposit }} MOVR or {{ networks.moonbeam.democracy.min_deposit }} GLMR. For this example 4 DEV or `4000000000000000000` was entered
+4. Enter the value in Wei of the tokens to bond. The minimum bond is  {{ networks.moonbase.democracy.min_deposit }} DEV, {{ networks.moonriver.democracy.min_deposit }} MOVR or {{ networks.moonbeam.democracy.min_deposit }} GLMR. For this example 4 DEV or `4000000000000000000` was entered
 5. Press **transact** and confirm the transaction in MetaMask
 
 ![Call the propose function](/images/builders/build/canonical-contracts/precompiles/democracy/democracy-6.png)
@@ -196,7 +196,7 @@ Now, you're ready to return to Remix to vote on the referendum via the democracy
 2. Find the **standard_vote** function and press the button to expand the section
 3. Enter the index of the referendum to vote on
 4. Leave this field empty for nay or input 1 for aye. In the context of a referendum, nay is a vote to keep the status quo unchanged. Aye is a vote to enact the action proposed by the referendum
-5. Enter the number of tokens to lock in WEI. Avoid entering your full balance here because you need to pay for transaction fees
+5. Enter the number of tokens to lock in Wei. Avoid entering your full balance here because you need to pay for transaction fees
 6. Enter a conviction between 0-6 inclusive that represents the desired lock period for the tokens committed to the vote, where 0 represents no lock period and 6 represents the maximum lock period. For more information on lock periods, see [voting on a proposal](/tokens/governance/voting/)
 7. Press **transact** and confirm the transaction in MetaMask
 
