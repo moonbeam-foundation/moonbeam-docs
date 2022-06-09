@@ -21,7 +21,7 @@ Running this service locally through NPM requires Node.js to be installed.
 
 --8<-- 'text/common/install-nodejs.md'
 
-#### Installing the Substrate API Sidecar {: #installing-the-substrate-api-sidecar }
+### Installing the Substrate API Sidecar {: #installing-the-substrate-api-sidecar }
 
 To install the Substrate API Sidecar service in the current directory, run this from the command line:
 
@@ -243,10 +243,59 @@ The EVM field mappings are then summarized as the following:
     |       EVM Hash       |      `extrinsics.{extrinsic number}.events.{event number}.data.2`       |
     | EVM Execution Status |      `extrinsics.{extrinsic number}.events.{event number}.data.3`       |
 
-
 !!! note
     EVM transaction nonce and signature fields are under `extrinsics.{extrinsic number}.args.transaction.{transaction type}`, whereas the `nonce` and `signature` fields under `extrinsics.{extrinsic number}` are the Substrate transaction nonce and signature, which are set to `null` for EVM transactions.
 
+!!! note
+    A successfully executed EVM transaction will return either `succeed: "Stopped"` or `succeed: "Returned"` under the "EVM Execution Status" field.
+
+### ERC-20 Token Transfers {: #erc-20-token-transfers }
+
+Events emitted by smart contracts such as an ERC-20 token contract deployed on Moonbeam can be decoded from Sidecar block JSON objects. The nesting structure is as following:
+
+```JSON
+RESPONSE JSON Block Object:
+    |--extrinsics
+        |--{extrinsic number}
+            |--method
+                |--pallet: "ethereum"
+                |--method: "transact"
+            |--signature:
+            |--nonce: 
+            |--args
+                |--transaction
+                    |--{transaction type}
+            |--hash
+            |--events
+                |--{event number}
+                    |--method
+                        |--pallet: "evm"
+                        |--method: "Log"
+                    |--data
+                        |--0
+                            |-- address
+                            |-- topics
+                                |--0
+                                |--1
+                                |--2
+					        |-- data
+            ...
+    ...
+
+```
+
+Moonbeam ERC-20 token transfers will emit the [`Transfer`](https://eips.ethereum.org/EIPS/eip-20){target=_blank} event which can be decoded as the following:
+
+
+|      Tx Information  |                            Block JSON Field                             |
+|:--------------------:|:-----------------------------------------------------------------------:|
+| ERC-20 Contract Address | `extrinsics.{extrinsic number}.events.{event number}.data.0.address` |
+| Event Signature Hash |     `extrinsics.{extrinsic number}.events.{event number}.data.0.topics.0`|
+|   Sender Address     |    `extrinsics.{extrinsic number}.events.{event number}.data.0.topics.1`    |
+|   Recipient Address  |    `extrinsics.{extrinsic number}.events.{event number}.data.0.topics.2`    |
+|  Amount  |     `extrinsics.{extrinsic number}.events.{event number}.data.0.data`      |
+
+Other events emitted by EVM smart contracts can be decoded in a similar fashion, but the content of the topics and data fields will change depending on the definition of the specific event. 
 
 ### Computing Gas Used {: #computing-gas-used } 
 
