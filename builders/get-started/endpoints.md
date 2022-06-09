@@ -72,7 +72,7 @@ To get your own endpoint, go to [Pocket Network](https://mainnet.portal.pokt.net
 3. Enter the name of your dapp and select your corresponding network
 4. Your new endpoint will be generated and displayed for you in the following **App** screen
 
-![Pocket Network](/images/builders/get-started/endpoints/endpoints-3.png)
+![Pocket Network](/images/builders/get-started/endpoints/endpoints-4.png)
 
 You don't have to generate a new dapp for every endpoint! You can add a new chain to your preexisting dapp:  
 
