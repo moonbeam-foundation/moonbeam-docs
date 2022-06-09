@@ -32,7 +32,9 @@ If you are looking for an API provider suitable for production use, you can chec
 You can create your own endpoint suitable for development or production use using any of the following API providers:
 
 - [Blast](#blast)
+- [Dwellir](#dwellir)
 - [OnFinality](#onfinality)
+
 
 ### Blast {: #blast}
 
@@ -47,6 +49,18 @@ To get started, you'll need to head to [Blast](https://blastapi.io/){target=_bla
 5. You'll now see your chosen network under **Active Endpoints**. Click on the network and you'll see your custom RPC and WSS endpoints on the next page 
 
 ![Bware Labs](/images/builders/get-started/endpoints/endpoints-1.png)
+
+### Dwellir {: #dwellir }
+
+[Dwellir](https://dwellir.com/development-nodes/){target=_blank} provides free endpoints for developers and dedicated nodes on owned and self-operated bare-metal cluster. Dwellir is building custom data solutions and tooling so get in touch.
+
+To get started go to [Dwellir](https://dwellir.com/development-nodes/){target=_blank}:
+
+1. Enter your Name and Email
+2. Select the network(s) from the list
+3. Your custom endpoint will be delivered
+
+![Dwellir](/images/builders/get-started/endpoints/endpoints-3.png)
 
 ### OnFinality {: #onfinality }
 
