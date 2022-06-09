@@ -83,10 +83,10 @@ This section goes over the process of delegating collator candidates.
 
 The tutorial will use the following candidates on Moonbase Alpha as a reference:
 
-|  Variable   |  |                       Address                       |
-|:-----------:|::|:---------------------------------------------------:|
-| Candidate 1 |  | {{ networks.moonbase.staking.candidates.address1 }} |
-| Candidate 2 |  | {{ networks.moonbase.staking.candidates.address2 }} |
+|  Variable   |                       Address                       |
+|:-----------:|:---------------------------------------------------:|
+| Candidate 1 | {{ networks.moonbase.staking.candidates.address1 }} |
+| Candidate 2 | {{ networks.moonbase.staking.candidates.address2 }} |
 
 Before staking via Polkadot.js Apps, you need to retrieve some important parameters.
 

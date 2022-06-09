@@ -61,14 +61,14 @@ The Covalent API has two classes of endpoints:
 
 ### Request Formatting {: #request-formatting } 
 
-| Endpoint                    |  | Format                                                              |
-|:----------------------------|::|:--------------------------------------------------------------------|
-| Balances                    |  | api.covalenthq.com/v1/1287/address/{address}/balances_v2/           |
-| Transactions                |  | api.covalenthq.com/v1/1287/address/{address}/transactions_v2/       |
-| Transfers                   |  | api.covalenthq.com/v1/1287/address/{address}/transfers_v2/          |
-| Token Holders               |  | api.covalenthq.com/v1/1287/tokens/{contract_address}/token_holders/ |
-| Log Events (Smart Contract) |  | api.covalenthq.com/v1/1287/events/address/{contract_address}/       |
-| Log Events (Topic Hash)     |  | api.covalenthq.com/v1/1287/events/topics/{topic}/                   |
+|          Endpoint           |                               Format                                |
+|:---------------------------:|:-------------------------------------------------------------------:|
+|          Balances           |      api.covalenthq.com/v1/1287/address/{address}/balances_v2/      |
+|        Transactions         |    api.covalenthq.com/v1/1287/address/{address}/transactions_v2/    |
+|          Transfers          |     api.covalenthq.com/v1/1287/address/{address}/transfers_v2/      |
+|        Token holders        | api.covalenthq.com/v1/1287/tokens/{contract_address}/token_holders/ |
+| Log events (smart contract) |    api.covalenthq.com/v1/1287/events/address/{contract_address}/    |
+|   Log events (topic hash)   |          api.covalenthq.com/v1/1287/events/topics/{topic}/          |
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 

@@ -36,23 +36,23 @@ Some of the key parameters for this guide are the following:
 === "Moonbeam"
     |        Variable         |                                                         Value                                                         |
     |:-----------------------:|:---------------------------------------------------------------------------------------------------------------------:|
-    |      Enact Period       | {{ networks.moonbeam.democracy.enact_period.blocks}} blocks ({{ networks.moonbeam.democracy.enact_period.days}} days) |
-    | Maximum Number of Votes |                                      {{ networks.moonbeam.democracy.max_votes}}                                       |
-    |       Vote Period       |  {{ networks.moonbeam.democracy.vote_period.blocks}} blocks ({{ networks.moonbeam.democracy.vote_period.days}} days)  |
+    |      Enact period       | {{ networks.moonbeam.democracy.enact_period.blocks}} blocks ({{ networks.moonbeam.democracy.enact_period.days}} days) |
+    | Maximum number of votes |                                      {{ networks.moonbeam.democracy.max_votes}}                                       |
+    |       Vote period       |  {{ networks.moonbeam.democracy.vote_period.blocks}} blocks ({{ networks.moonbeam.democracy.vote_period.days}} days)  |
 
 === "Moonriver"
     |        Variable         |                                                          Value                                                          |
     |:-----------------------:|:-----------------------------------------------------------------------------------------------------------------------:|
-    |      Enact Period       | {{ networks.moonriver.democracy.enact_period.blocks}} blocks ({{ networks.moonriver.democracy.enact_period.days}} days) |
-    | Maximum Number of Votes |                                       {{ networks.moonriver.democracy.max_votes}}                                       |
-    |       Vote Period       |  {{ networks.moonriver.democracy.vote_period.blocks}} blocks ({{ networks.moonriver.democracy.vote_period.days}} days)  |
+    |      Enact period       | {{ networks.moonriver.democracy.enact_period.blocks}} blocks ({{ networks.moonriver.democracy.enact_period.days}} days) |
+    | Maximum number of votes |                                       {{ networks.moonriver.democracy.max_votes}}                                       |
+    |       Vote period       |  {{ networks.moonriver.democracy.vote_period.blocks}} blocks ({{ networks.moonriver.democracy.vote_period.days}} days)  |
 
 === "Moonbase Alpha"
     |        Variable         |                                                         Value                                                         |
     |:-----------------------:|:---------------------------------------------------------------------------------------------------------------------:|
-    |      Enact Period       | {{ networks.moonbase.democracy.enact_period.blocks}} blocks ({{ networks.moonbase.democracy.enact_period.days}} days) |
-    | Maximum Number of Votes |                                      {{ networks.moonbase.democracy.max_votes}}                                       |
-    |       Vote Period       |  {{ networks.moonbase.democracy.vote_period.blocks}} blocks ({{ networks.moonbase.democracy.vote_period.days}} days)  |
+    |      Enact period       | {{ networks.moonbase.democracy.enact_period.blocks}} blocks ({{ networks.moonbase.democracy.enact_period.days}} days) |
+    | Maximum number of votes |                                      {{ networks.moonbase.democracy.max_votes}}                                       |
+    |       Vote period       |  {{ networks.moonbase.democracy.vote_period.blocks}} blocks ({{ networks.moonbase.democracy.vote_period.days}} days)  |
 
 This guide will show you how to vote on a referendum on Moonbase Alpha. It can be adapted for Moonbeam or Moonriver.
 
