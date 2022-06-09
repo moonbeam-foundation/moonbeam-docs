@@ -297,6 +297,10 @@ Moonbeam ERC-20 token transfers will emit the [`Transfer`](https://eips.ethereum
 
 Other events emitted by EVM smart contracts can be decoded in a similar fashion, but the content of the topics and data fields will change depending on the definition of the specific event. 
 
+!!! note
+    The amount transferred is given in wei and in hexadecimal format. 
+
+
 ### Computing Gas Used {: #computing-gas-used } 
 
 To calculate the gas spent or used during EVM execution of the transaction, the following formula can be used: 
