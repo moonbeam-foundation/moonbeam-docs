@@ -13,11 +13,11 @@ Running a full node on a Moonbeam-based network allows you to connect to the net
 
 There are multiple deployments of Moonbeam, including the Moonbase Alpha TestNet, Moonriver on Kusama, and Moonbeam on Polkadot. Here's how these environments are named and their corresponding [chain specification file](https://substrate.dev/docs/en/knowledgebase/integrate/chain-spec) names:
 
-|    Network     |  | Hosted By |  |             Chain Name              |
-|:--------------:|::|:---------:|::|:-----------------------------------:|
-| Moonbase Alpha |  | PureStake |  | {{ networks.moonbase.chain_spec }}  |
-|   Moonriver    |  |  Kusama   |  | {{ networks.moonriver.chain_spec }} |
-|    Moonbeam    |  | Polkadot  |  | {{ networks.moonbeam.chain_spec }}  |
+|    Network     | Hosted By |             Chain Name              |
+|:--------------:|:---------:|:-----------------------------------:|
+| Moonbase Alpha | PureStake | {{ networks.moonbase.chain_spec }}  |
+|   Moonriver    |  Kusama   | {{ networks.moonriver.chain_spec }} |
+|    Moonbeam    | Polkadot  | {{ networks.moonbeam.chain_spec }}  |
 
 !!! note
     Moonbase Alpha is still considered an Alphanet, and as such _will not_ have 100% uptime. The parachain might be purged as needed. During the development of your application, make sure you implement a method to redeploy your contracts and accounts to a fresh parachain quickly. If a chain purge is required, it will be announced via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
@@ -29,28 +29,28 @@ Running a parachain node is similar to a typical Substrate node, but there are s
 The minimum specs recommended to run a node are shown in the following table. For our Kusama and Polkadot MainNet deployments, disk requirements will be higher as the network grows.
 
 === "Moonbeam"
-    |  Component   |  | Requirement                                                                                                                |
-    |:------------:|::|:---------------------------------------------------------------------------------------------------------------------------|
-    |   **CPU**    |  | {{ networks.moonbeam.node.cores }} Cores (Fastest per core speed)                                                          |
-    |   **RAM**    |  | {{ networks.moonbeam.node.ram }} GB                                                                                        |
-    |   **SSD**    |  | {{ networks.moonbeam.node.hd }} GB (to start)                                                                              |
-    | **Firewall** |  | P2P port must be open to incoming traffic:<br>&nbsp; &nbsp; - Source: Any<br>&nbsp; &nbsp; - Destination: 30333, 30334 TCP |
+    |  Component   |                                                        Requirement                                                         |
+    |:------------:|:--------------------------------------------------------------------------------------------------------------------------:|
+    |   **CPU**    |                             {{ networks.moonbeam.node.cores }} Cores (Fastest per core speed)                              |
+    |   **RAM**    |                                            {{ networks.moonbeam.node.ram }} GB                                             |
+    |   **SSD**    |                                       {{ networks.moonbeam.node.hd }} GB (to start)                                        |
+    | **Firewall** | P2P port must be open to incoming traffic:<br>&nbsp; &nbsp; - Source: Any<br>&nbsp; &nbsp; - Destination: 30333, 30334 TCP |
 
 === "Moonriver"
-    |  Component   |  | Requirement                                                                                                                |
-    |:------------:|::|:---------------------------------------------------------------------------------------------------------------------------|
-    |   **CPU**    |  | {{ networks.moonriver.node.cores }} Cores (Fastest per core speed)                                                         |
-    |   **RAM**    |  | {{ networks.moonriver.node.ram }} GB                                                                                       |
-    |   **SSD**    |  | {{ networks.moonriver.node.hd }} GB (to start)                                                                             |
-    | **Firewall** |  | P2P port must be open to incoming traffic:<br>&nbsp; &nbsp; - Source: Any<br>&nbsp; &nbsp; - Destination: 30333, 30334 TCP |
+    |  Component   |                                                        Requirement                                                         |
+    |:------------:|:--------------------------------------------------------------------------------------------------------------------------:|
+    |   **CPU**    |                             {{ networks.moonriver.node.cores }} Cores (Fastest per core speed)                             |
+    |   **RAM**    |                                            {{ networks.moonriver.node.ram }} GB                                            |
+    |   **SSD**    |                                       {{ networks.moonriver.node.hd }} GB (to start)                                       |
+    | **Firewall** | P2P port must be open to incoming traffic:<br>&nbsp; &nbsp; - Source: Any<br>&nbsp; &nbsp; - Destination: 30333, 30334 TCP |
 
 === "Moonbase Alpha"
-    |  Component   |  | Requirement                                                                                                                |
-    |:------------:|::|:---------------------------------------------------------------------------------------------------------------------------|
-    |   **CPU**    |  | {{ networks.moonbase.node.cores }} Cores (Fastest per core speed)                                                          |
-    |   **RAM**    |  | {{ networks.moonbase.node.ram }} GB                                                                                        |
-    |   **SSD**    |  | {{ networks.moonbase.node.hd }} GB (to start)                                                                              |
-    | **Firewall** |  | P2P port must be open to incoming traffic:<br>&nbsp; &nbsp; - Source: Any<br>&nbsp; &nbsp; - Destination: 30333, 30334 TCP |
+    |  Component   |                                                        Requirement                                                         |
+    |:------------:|:--------------------------------------------------------------------------------------------------------------------------:|
+    |   **CPU**    |                             {{ networks.moonbase.node.cores }} Cores (Fastest per core speed)                              |
+    |   **RAM**    |                                            {{ networks.moonbase.node.ram }} GB                                             |
+    |   **SSD**    |                                       {{ networks.moonbase.node.hd }} GB (to start)                                        |
+    | **Firewall** | P2P port must be open to incoming traffic:<br>&nbsp; &nbsp; - Source: Any<br>&nbsp; &nbsp; - Destination: 30333, 30334 TCP |
 
 !!! note
     If you don't see an `Imported` message (without the `[Relaychain]` tag) when running a node, you might need to double-check your port configuration.
@@ -63,21 +63,21 @@ The only ports that need to be open for incoming traffic are those designated fo
 
 ### Default Ports for a Parachain Full-Node {: #default-ports-for-a-parachain-full-node } 
 
-|  Description   |  |                Port                 |
-|:--------------:|::|:-----------------------------------:|
-|    **P2P**     |  | {{ networks.parachain.p2p }} (TCP)  |
-|    **RPC**     |  |    {{ networks.parachain.rpc }}     |
-|     **WS**     |  |     {{ networks.parachain.ws }}     |
-| **Prometheus** |  | {{ networks.parachain.prometheus }} |
+|  Description   |                Port                 |
+|:--------------:|:-----------------------------------:|
+|    **P2P**     | {{ networks.parachain.p2p }} (TCP)  |
+|    **RPC**     |    {{ networks.parachain.rpc }}     |
+|     **WS**     |     {{ networks.parachain.ws }}     |
+| **Prometheus** | {{ networks.parachain.prometheus }} |
 
 ### Default Ports of Embedded Relay Chain {: #default-ports-of-embedded-relay-chain } 
 
-|  Description   |  |                 Port                  |
-|:--------------:|::|:-------------------------------------:|
-|    **P2P**     |  | {{ networks.relay_chain.p2p }} (TCP)  |
-|    **RPC**     |  |    {{ networks.relay_chain.rpc }}     |
-|     **WS**     |  |     {{ networks.relay_chain.ws }}     |
-| **Prometheus** |  | {{ networks.relay_chain.prometheus }} |
+|  Description   |                 Port                  |
+|:--------------:|:-------------------------------------:|
+|    **P2P**     | {{ networks.relay_chain.p2p }} (TCP)  |
+|    **RPC**     |    {{ networks.relay_chain.rpc }}     |
+|     **WS**     |     {{ networks.relay_chain.ws }}     |
+| **Prometheus** | {{ networks.relay_chain.prometheus }} |
 
 ## Installation {: #installation }
 

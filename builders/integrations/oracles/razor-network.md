@@ -13,19 +13,19 @@ Developers can now fetch prices from Razor Network’s oracle using a Bridge con
 
 To access these price feeds, we need to interact with the Bridge contract address, which can be found in the following table:
 
-|     Network    | |         Contract Address        |
-|:--------------:|-|:------------------------------------------:|
-| Moonbase Alpha | | 0x53f7660Ea48289B5DA42f1d79Eb9d4F5eB83D3BE |
+|    Network     |              Contract Address              |
+|:--------------:|:------------------------------------------:|
+| Moonbase Alpha | 0x53f7660Ea48289B5DA42f1d79Eb9d4F5eB83D3BE |
 
 ## Jobs {: #jobs } 
 
 Each data-feed has a Job ID attached to it. For example:
 
-|    Job ID    | |    Underlying Price [USD]  |
-|:------------:|-|:--------------------------:|
-|       1      | |            ETH             |
-|       2      | |            BTC             |
-|       3      | |      Microsoft Stocks      |
+| Job ID | Underlying Price [USD] |
+|:------:|:----------------------:|
+|   1    |          ETH           |
+|   2    |          BTC           |
+|   3    |    Microsoft Stocks    |
 
 You can check Job IDs for each data-feed at the following [link](https://razorscan.io/#/custom). Price feeds are updated every 5 minutes. More information can be found in [Razor's documentation website][https://docs.razor.network/].
 
