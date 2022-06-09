@@ -56,9 +56,12 @@ To get started, you'll need to head to [Blast](https://blastapi.io/){target=_bla
 
 To get started go to [Dwellir](https://dwellir.com/development-nodes/){target=_blank}:
 
-1. Enter your Name and Email
+1. Enter your **Name** and **Email**
 2. Select the network(s) from the list
-3. Your custom endpoint will be delivered
+3. Select which **Service Level** you would like
+4. Click **Sign up**
+
+Your custom endpoint will be delivered.
 
 ![Dwellir](/images/builders/get-started/endpoints/endpoints-3.png)
 
