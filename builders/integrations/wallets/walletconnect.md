@@ -207,7 +207,7 @@ Now that you have all of the logic required to handle the disconnection, you wil
 )}
 ```
 
-If you go to test the disconnection logic and nothing happens when you click **Connect Wallet**, make sure you have manually ended any pre-existing sessions from MetaMask mobile. If you're still running into problems, do a hard refresh on your browser.
+If you go to test the disconnection logic and nothing happens when you click **Connect Wallet**, make sure you have manually ended any preexisting sessions from MetaMask mobile. If you're still running into problems, do a hard refresh on your browser.
 
 Now when a user clicks on **Disconnect** the DApp will be reset, the connection will be disconnected on the user's mobile wallet, and the **Connect Wallet** button will be displayed again.
 

@@ -197,7 +197,7 @@ Now to update your sample SubQuery project to be used for Moonbeam, you can take
     type ApproveCallArgs = [string, BigNumber] & { _spender: string; _value: BigNumber; }
     ```
 
-3. You can remove the pre-existing `handleBlock` function
+3. You can remove the preexisting `handleBlock` function
 
 4. Replace the `handleEvent` function with a Moonbeam-specific mapping function. For this example, the `handleMoonbeamEvent` function will build a new transaction based off of a transaction event and save it: 
 
