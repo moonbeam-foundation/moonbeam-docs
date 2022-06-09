@@ -36,7 +36,6 @@ You can create your own endpoint suitable for development or production use usin
 - [OnFinality](#onfinality)
 - [Pocket Network](#pokt)
 
-
 ### Blast {: #blast}
 
 As a user of [Blast](https://blastapi.io/){target=_blank} powered by Bware Labs, you will be able to obtain your own free endpoint allowing you to interact with Moonbeam, just by performing a few simple clicks within a user-friendly interface.
