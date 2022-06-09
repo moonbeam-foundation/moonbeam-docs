@@ -230,7 +230,7 @@ Transaction endpoints are exposed, as determined by the metadata, on the `api.tx
 
 ### Sending Basic Transactions {: #sending-basic-transactions }
 
-Here is an example of sending a basic transaction from Alice to Bob:
+Here is an example of sending a basic transaction. This code sample will also retrieve the encoded call data of the transaction, as well as the transaction hash after submitting. 
 
 ```javascript
 // Initialize the API provider as in the previous section
@@ -243,12 +243,19 @@ Here is an example of sending a basic transaction from Alice to Bob:
 const alice = keyring.addFromUri('ALICE-ACCOUNT-PRIVATE-KEY');
 const bob = 'BOB-ACCOUNT-PUBLIC-KEY';
 
-// Sign and send a transfer from Alice to Bob
-const txHash = await api.tx.balances
+// Form the transaction
+const tx = await api.tx.balances
   .transfer(bob, 12345)
-  .signAndSend(alice);
 
-// Show the hash
+// Retrieve the encoded call data of the transaction
+const encodedCallData = tx.method.toHex()
+console.log(encodedCallData)
+
+//Sign and send the tx
+const txHash = await tx
+    .signAndSend(alice);
+
+// Show the tx hash
 console.log(`Submitted with hash ${txHash}`);
 ```
 
