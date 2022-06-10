@@ -322,11 +322,11 @@ RPCs are exposed as a method on a specific module. This means that once availabl
 
 Some of the methods availabe through the Polkadot.js API interface are also available as JSON-RPC endpoints on Moonbeam nodes. This section will provide some examples; you can check for a list of exposed RPC endpoints by calling `api.rpc.rpc.methods()` or the `rpc_methods` endpoint listed below. 
 
-- [`methods()`](https://polkadot.js.org/docs/substrate/rpc/#methods-rpcmethods){target=_blank}: `RpcMethods`
-    - interface: `api.rpc.rpc.methods`
-    - jsonrpc: `rpc_methods`
-    - summary: Retrieves the list of RPC methods that are exposed by the node
-    - sample request:
+- [`methods()`](https://polkadot.js.org/docs/substrate/rpc/#methods-rpcmethods){target=_blank}
+    - Interface: `api.rpc.rpc.methods`
+    - JSON-RPC: `rpc_methods`
+    - Returns: The list of RPC methods that are exposed by the node
+    - Example:
       ```bash
       curl --location --request POST 'https://rpc.api.moonbase.moonbeam.network' \
       --header 'Content-Type: application/json' \
@@ -338,11 +338,11 @@ Some of the methods availabe through the Polkadot.js API interface are also avai
         }'
       ```
 
-- [`getBlock(hash?: BlockHash)`](https://polkadot.js.org/docs/substrate/rpc/#getblockhash-blockhash-signedblock){target=_blank}: `SignedBlock`
-    - interface: `api.rpc.chain.getBlock`
-    - jsonrpc: `chain_getBlock`
-    - summary: Get header and body of a chain block
-    - sample request:
+- [`getBlock(hash?: BlockHash)`](https://polkadot.js.org/docs/substrate/rpc/#getblockhash-blockhash-signedblock){target=_blank}
+    - Interface: `api.rpc.chain.getBlock`
+    - JSON-RPC: `chain_getBlock`
+    - Returns: The header and body of a block as specified by the block hash parameter
+    - Example:
       ```bash
       curl --location --request POST 'https://rpc.api.moonbase.moonbeam.network' \
       --header 'Content-Type: application/json' \
@@ -354,11 +354,11 @@ Some of the methods availabe through the Polkadot.js API interface are also avai
         }'
       ```
 
-- [`getFinalizedHead()`](https://polkadot.js.org/docs/substrate/rpc/#getfinalizedhead-blockhash){target=_blank}: `BlockHash`
-    * interface: `api.rpc.chain.getFinalizedHead`
-    * jsonrpc: `chain_getFinalizedHead`
-    * summary: Get hash of the last finalized block in the canon chain
-    * sample request:
+- [`getFinalizedHead()`](https://polkadot.js.org/docs/substrate/rpc/#getfinalizedhead-blockhash){target=_blank}
+    * Interface: `api.rpc.chain.getFinalizedHead`
+    * JSON-RPC: `chain_getFinalizedHead`
+    * Returns: The block hash of the last finalized block in the canonical chain
+    * Example:
       ```bash
       curl --location --request POST '{{ networks.moonbase.rpc_url }}' \
       --header 'Content-Type: application/json' \
@@ -370,7 +370,7 @@ Some of the methods availabe through the Polkadot.js API interface are also avai
         }'
       ```
 
-The [Consensus and Finality page](/builders/get-started/eth-compare/consensus-finality/#){target=_blank} has examples for using the exposed custom and Substrate RPC calls to check the finality of a given transaction. 
+The [Consensus and Finality page](/builders/get-started/eth-compare/consensus-finality/#){target=_blank} has sample code for using the exposed custom and Substrate RPC calls to check the finality of a given transaction. 
 
 ## Utilities {: #utilities }
 
@@ -381,7 +381,7 @@ The following example computes the deterministic transaction hash of a raw Ether
 ```javascript
 import { encode } from '@polkadot/util-rlp';
 import { keccakAsHex } from '@polkadot/util-crypto';
-import { numberToHex } from '@polkadot/util'
+import { numberToHex } from '@polkadot/util';
 
 // Define the raw signed transaction
 const txData = {
