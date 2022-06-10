@@ -405,7 +405,7 @@ var txDataArray = Object.keys(txData)
 // Calculate the RLP encoded transaction
 var encoded_tx = encode(txDataArray)
 
-// Hash the encoded transaction using keccak
+// Hash the encoded transaction using keccak256
 console.log(keccakAsHex(encoded_tx))
 ```
 
