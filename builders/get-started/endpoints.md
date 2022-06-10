@@ -34,7 +34,7 @@ You can create your own endpoint suitable for development or production use usin
 - [Blast](#blast)
 - [Dwellir](#dwellir)
 - [OnFinality](#onfinality)
-
+- [Pocket Network](#pokt)
 
 ### Blast {: #blast}
 
@@ -76,3 +76,23 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 3. Your custom API endpoint will be generated automatically
 
 ![OnFinality](/images/builders/get-started/endpoints/endpoints-2.png)
+
+### Pocket Network {: #pokt }
+
+[Pocket Network](https://pokt.network/){target=_blank} is a decentralized node service that provides a free personal endpoint to DApps on Moonbeam & Moonriver.  
+
+To get your own endpoint, go to [Pocket Network](https://mainnet.portal.pokt.network/#/){target=_blank} and sign up or log in. From the **Portal**, you can:  
+
+1. Click on **Apps**
+2. Select **Create**
+3. Enter the name of your DApp and select your corresponding network
+4. Your new endpoint will be generated and displayed for you in the following app screen
+
+![Pocket Network](/images/builders/get-started/endpoints/endpoints-4.png)
+
+You don't have to generate a new DApp for every endpoint! You can add a new chain to your preexisting DApp:  
+
+1. Click on your preexisting app in the **Apps** menu
+2. In the **Endpoint** section, select the **Add new** button and search for your desired network in the dropdown
+3. Your new endpoint will be generated and displayed for you
+
