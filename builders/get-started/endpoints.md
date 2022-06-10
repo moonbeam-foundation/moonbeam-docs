@@ -92,7 +92,7 @@ To get your own endpoint, go to [Pocket Network](https://mainnet.portal.pokt.net
 
 You don't have to generate a new DApp for every endpoint! You can add a new chain to your preexisting DApp:  
 
-1. Click on your preexisting app in the **Apps** menu.
+1. Click on your preexisting app in the **Apps** menu
 2. In the **Endpoint** section, select the **Add new** button and search for your desired network in the dropdown
 3. Your new endpoint will be generated and displayed for you
 
