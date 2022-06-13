@@ -101,7 +101,7 @@ And that's it! You've successfully set up your Coinbase Wallet app, connected it
 ## Limitations {: #limitations } 
 
  - At this time, Coinbase Wallet displays only outgoing transactions in your transaction history in the app. You can see your full transaction history, including incoming transactions, by looking up your address on a blockchain explorer such as [Moonscan](https://moonscan.io/){target=_blank}
- - Coinbase Wallet does not support the importing or exporting of private keys. If you need to import additional pre-existing accounts to your wallet, you should use another wallet such as [MetaMask](/tokens/connect/metamask/) 
+ - Coinbase Wallet does not support the importing or exporting of private keys. If you need to import additional preexisting accounts to your wallet, you should use another wallet such as [MetaMask](/tokens/connect/metamask/) 
  - Remember that Coinbase Wallet and Coinbase Exchange are distinct products - holding a token in your Coinbase Wallet does not imply it is supported on Coinbase Exchange. If you send a token from your Coinbase Wallet to Coinbase Exchange that is not supported by the exchange, you will lose those funds forever.  
 
 ## Additional Resources {: #additional-resources } 

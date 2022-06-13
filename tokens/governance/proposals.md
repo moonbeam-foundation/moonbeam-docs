@@ -33,26 +33,26 @@ Some of the key parameters for this guide are the following:
 === "Moonbeam"
     |         Variable         |                                                          Value                                                          |
     |:------------------------:|:-----------------------------------------------------------------------------------------------------------------------:|
-    |      Launch Period       | {{ networks.moonbeam.democracy.launch_period.blocks}} blocks ({{ networks.moonbeam.democracy.launch_period.days}} days) |
-    |     Cool-off Period      |   {{ networks.moonbeam.democracy.cool_period.blocks}} blocks ({{ networks.moonbeam.democracy.cool_period.days}} days)   |
-    | Minimum Preimage Deposit |                                 {{ networks.moonbeam.democracy.min_preim_deposit}} GLMR                                 |
-    | Minimum Proposal Deposit |                                    {{ networks.moonbeam.democracy.min_deposit}} GLMR                                    |
+    |      Launch period       | {{ networks.moonbeam.democracy.launch_period.blocks}} blocks ({{ networks.moonbeam.democracy.launch_period.days}} days) |
+    |     Cool-off period      |   {{ networks.moonbeam.democracy.cool_period.blocks}} blocks ({{ networks.moonbeam.democracy.cool_period.days}} days)   |
+    | Minimum preimage deposit |                                 {{ networks.moonbeam.democracy.min_preim_deposit}} GLMR                                 |
+    | Minimum proposal deposit |                                    {{ networks.moonbeam.democracy.min_deposit}} GLMR                                    |
 
 === "Moonriver"
     |         Variable         |                                                           Value                                                           |
     |:------------------------:|:-------------------------------------------------------------------------------------------------------------------------:|
-    |      Launch Period       | {{ networks.moonriver.democracy.launch_period.blocks}} blocks ({{ networks.moonriver.democracy.launch_period.days}} days) |
-    |     Cool-off Period      |   {{ networks.moonriver.democracy.cool_period.blocks}} blocks ({{ networks.moonriver.democracy.cool_period.days}} days)   |
-    | Minimum Preimage Deposit |                                 {{ networks.moonriver.democracy.min_preim_deposit}} MOVR                                  |
-    | Minimum Proposal Deposit |                                    {{ networks.moonriver.democracy.min_deposit}} MOVR                                     |
+    |      Launch period       | {{ networks.moonriver.democracy.launch_period.blocks}} blocks ({{ networks.moonriver.democracy.launch_period.days}} days) |
+    |     Cool-off period      |   {{ networks.moonriver.democracy.cool_period.blocks}} blocks ({{ networks.moonriver.democracy.cool_period.days}} days)   |
+    | Minimum preimage deposit |                                 {{ networks.moonriver.democracy.min_preim_deposit}} MOVR                                  |
+    | Minimum proposal deposit |                                    {{ networks.moonriver.democracy.min_deposit}} MOVR                                     |
 
 === "Moonbase Alpha"
     |         Variable         |                                                          Value                                                          |
     |:------------------------:|:-----------------------------------------------------------------------------------------------------------------------:|
-    |      Launch Period       | {{ networks.moonbase.democracy.launch_period.blocks}} blocks ({{ networks.moonbase.democracy.launch_period.days}} days) |
-    |     Cool-off Period      |   {{ networks.moonbase.democracy.cool_period.blocks}} blocks ({{ networks.moonbase.democracy.cool_period.days}} days)   |
-    | Minimum Preimage Deposit |                                 {{ networks.moonbase.democracy.min_preim_deposit}} DEV                                  |
-    | Minimum Proposal Deposit |                                    {{ networks.moonbase.democracy.min_deposit}} DEV                                     |
+    |      Launch period       | {{ networks.moonbase.democracy.launch_period.blocks}} blocks ({{ networks.moonbase.democracy.launch_period.days}} days) |
+    |     Cool-off period      |   {{ networks.moonbase.democracy.cool_period.blocks}} blocks ({{ networks.moonbase.democracy.cool_period.days}} days)   |
+    | Minimum preimage deposit |                                 {{ networks.moonbase.democracy.min_preim_deposit}} DEV                                  |
+    | Minimum proposal deposit |                                    {{ networks.moonbase.democracy.min_deposit}} DEV                                     |
 
 
 This guide will show you how to submit a proposal on Moonbase Alpha. It can be adapted for Moonbeam or Moonriver.

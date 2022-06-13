@@ -1,6 +1,6 @@
 ---
 title: Index Moonbeam Data with Subsquid
-description: Learn how to use Subsquid to process Substrate and EVM data for Moonbeam and Moonriver.
+description: Learn how to use Subsquid, a query node framework for Substrate-based chains, to index and process Substrate and EVM data for Moonbeam and Moonriver.
 ---
 
 # Indexing Moonbeam with Subsquid
@@ -266,7 +266,7 @@ The "handler" function takes in a `Context` of the correct type (`EvmLogHandlerC
 
 Now you can attach the handler function to the processor and configure the processor for execution. This is done by editing the `src/processor.ts` file.
 
-1. Remove the pre-existing code
+1. Remove the preexisting code
 2. Update the imports to include the `CHAIN_NODE` and `contract` constant, the `getContractEntity` and `createContractEntity` helper functions, the `processTransfer` handler function, and `events` mapping
 3. Create a processor using the `SubstrateEvmProcessor` and pass in a name of your choice. For this example, you can use `moonriver-substrate` or feel free to update it for the network you're developing on
 4. Update the data source and types bundle

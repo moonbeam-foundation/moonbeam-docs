@@ -5,119 +5,89 @@ description: An overview of the current configuration of the Moonbeam TestNet, M
 
 # The Moonbase Alpha TestNet
 
-_Updated December 9th, 2021_
+_Updated May 26th, 2022_
 
 !!! note
-    With the release of [Moonbase Alpha v8](https://github.com/PureStake/moonbeam/releases/tag/v0.8.0), the minimum gas price has been set to 1 GDEV (similar to GWei on Ethereum). This might be a breaking change if you've previously specified a gas price of `0` for your deployment.
+    With the release of [Moonbase Alpha v8](https://github.com/PureStake/moonbeam/releases/tag/v0.8.0){target=_blank}, the minimum gas price has been set to 1 GDEV (similar to GWei on Ethereum). This might be a breaking change if you've previously specified a gas price of `0` for your deployment.
 
 ## Goal {: #goal } 
 
-The first Moonbeam TestNet, named Moonbase Alpha, aims to provide developers with a place to start experimenting and building on Moonbeam in a shared environment. Since Moonbeam will be deployed as a parachain on Kusama and Polkadot, we want our TestNet to reflect our production configuration. For this reason, we decided that it needed to be a parachain-based configuration rather than a Substrate development setup.
+The first Moonbeam TestNet, named Moonbase Alpha, aims to provide developers with a place to start experimenting and building on Moonbeam in a shared environment. Since Moonbeam is deployed as a parachain on Kusama and Polkadot, the goal of the TestNet is to reflect the production configurations. For this reason, it was decided that it needed to be a parachain-based configuration rather than a Substrate development setup.
 
-In order to collect as much feedback as possible and provide fast issue resolution, we have set up a [Discord with a dedicated Moonbase AlphaNet channel](https://discord.gg/PfpUATX).
+In order to collect as much feedback as possible and provide fast issue resolution, please join the [Moonbeam Discord](https://discord.gg/PfpUATX){target=_blank}.
 
 ## Initial Configuration {: #initial-configuration } 
 
 Moonbase Alpha has the following configuration:
 
- - Moonbase Alpha runs as a parachain connected to a relay chain
- - The parachain has two collators (hosted by PureStake) that are collating blocks. External collators can join the network. Only the top {{ networks.moonbase.staking.max_candidates }} collator nodes by stake are chosen in the active set
- - The relay chain hosts three validators (hosted by PureStake) to finalize relay chain blocks. One of them is selected to finalize each block collated by Moonbeam's collators. This setup provides room to expand to a two-parachain configuration in the future
- - There are two RPC endpoints (hosted by PureStake). People can run full nodes to access their own private RPC endpoints
+ - Runs as a parachain connected to a relay chain
+ - Has an active set of {{ networks.moonbase.staking.max_candidates }} collator nodes, including some run by PureStake
+ - The relay chain hosts validators run by PureStake to finalize relay chain blocks. One of them is selected to finalize each block collated by Moonbeam's collators. This setup provides room to expand to a two-parachain configuration in the future
+ - Has infrastructure providers that provide [API endpoints](/builders/get-started/endpoints/){target=_blank} to connect to the network. Projects can also [run their own node](/node-operators/networks/run-a-node/){target=_blank} to have access to their own private endpoints
 
 ![TestNet Diagram](/images/learn/platform/networks/moonbase-diagram-v7.png)
 
-## Features {: #features } 
+Some important variables/configurations to note include:
 
-The following features are available:
+=== "General"
+    |       Variable        |                                  Value                                  |
+    |:---------------------:|:-----------------------------------------------------------------------:|
+    |   Minimum gas price   |               {{ networks.moonbase.min_gas_price }} Gwei                |
+    |   Target block time   |  {{ networks.moonbase.block_time }} seconds (expected to be 6 seconds)  |
+    |    Block gas limit    | {{ networks.moonbase.gas_block }} (expected to increase by at least 4x) |
+    | Transaction gas limit |  {{ networks.moonbase.gas_tx }} (expected to increase by at least 4x)   |
 
-??? release v1 "_September 2020_"
-    - Fully-emulated Ethereum block production in Substrate (Ethereum pallet)
-    - Dispatchable functions to interact with the Rust EVM implementation ([EVM pallet](https://docs.rs/pallet-evm/2.0.1/pallet_evm/))
-    - Native Ethereum RPC support (Web3) in Substrate ([Frontier](https://github.com/paritytech/frontier)). This provides compatibility with Ethereum developer tools such as MetaMask, Remix, and Truffle 
+=== "Governance"
+    |         Variable         |                                                            Value                                                             |
+    |:------------------------:|:----------------------------------------------------------------------------------------------------------------------------:|
+    |      Voting period       |      {{ networks.moonbase.democracy.vote_period.blocks}} blocks ({{networks.moonbase.democracy.vote_period.days}} days)      |
+    | Fast-track voting period | {{ networks.moonbase.democracy.fast_vote_period.blocks}} blocks ({{networks.moonbase.democracy.fast_vote_period.days}} days) |
+    |     Enactment period     |     {{ networks.moonbase.democracy.enact_period.blocks}} blocks ({{networks.moonbase.democracy.enact_period.days}} day)      |
+    |     Cool-off period      |      {{ networks.moonbase.democracy.cool_period.blocks}} blocks ({{networks.moonbase.democracy.cool_period.days}} days)      |
+    |     Minimum deposit      |                                      {{ networks.moonbase.democracy.min_deposit }} DEV                                       |
+    |      Maximum votes       |                                         {{ networks.moonbase.democracy.max_votes }}                                          |
+    |    Maximum proposals     |                                       {{ networks.moonbase.democracy.max_proposals }}                                        |
 
-??? release v2 "_October 2020_"
-    - Event subscription support (pub/sub), which is a missing component on the Web3 RPC side and commonly used by DApp developers. You can find a tutorial on how to subscribe to events [here](/builders/build/eth-api/pubsub/)
-    - Support for the following precompile contracts: [ecrecover](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-01-ecrecover-hash-v-r-s), [sha256](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-02-sha-256-data), [ripemd160](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-03-ripemd-160-data) and the [identity function](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x-04-datacopy-data) (or datacopy)
-
-??? release v3 "_November 2020_"
-    - Unification of Substrate and Ethereum accounts under the H160 format, an effort we are calling [Unified Accounts](https://medium.com/moonbeam-network/moonbase-alpha-v3-introducing-unified-accounts-88fae3564cda). Consequently, there will be only one kind of account in the system represented by a single address
-    - Upgrades to the event subscription support, adding the possibility of using wildcards and conditional formatting for topics. You can find more information [here](/builders/build/eth-api/pubsub/#using-wildcards-and-conditional-formatting)
-    - Polkadot.js Apps now natively supports H160 addresses and ECDSA keys. You can use your Ethereum-style address for Substrate functions (when available) like staking, balances, and governance. You can find more information [here](/tokens/connect/polkadotjs/)
-
-??? release v4 "_December 2020_"
-    - Updated to the newest version of the Polkadot parachain protocol ([Parachains V1](https://w3f.github.io/parachain-implementers-guide/)), which fixed several issues with node syncing, paving the way to have multiple collators to sync in the same parachain
-    - Multiple improvements to our Etheruem Compatibility features:
-        * Event subscription ID now returns an Ethereum-styled subscription ID
-        * Fixed gas estimation issues for specific usecases
-        * Added support for revert reason message
-        * Support for Ethereum transactions without ChainId
-
-??? release v5 "_January 2021_"      
-    - Added a custom version of the [Staking pallet](https://wiki.polkadot.network/docs/learn-staking) (for testing and development purposes only)
-    - Added support for querying pending transactions while they are in the pool 
-    - Fixed some issues when retrieving past events and other minor fixes related to smart contract events
-    - Multiple under-the-hood improvements that include an optimization of the EVM execution time, making it 15-50 times faster
-    - Support for the [modexp](https://docs.klaytn.com/smart-contract/precompiled-contracts#address-0x05-bigmodexp-base-exp-mod) precompile contracts
-
-??? release v6 "_February 2021_"      
-    - Public release of the custom [Staking pallet](https://wiki.polkadot.network/docs/learn-staking). Now token holders can delegate candidates and earn rewards
-    - Added the [Democracy pallet](https://github.com/paritytech/substrate/tree/HEAD/frame/democracy). Token holders can now [submit proposals](/tokens/governance/proposals/) and [vote on them](/tokens/governance/voting/)
-    - Updated to the latest version of [Frontier RPC](https://github.com/paritytech/frontier), which increases EVM execution efficiency by a factor of 5
-    - The gas limit has been bump to 15M per block, with a 13M per transaction limit
-
-??? release v7 "_April 2021_"      
-    - Added support for Ethereum debug/tracing modules. These are turned off by default, to use them you need to spin up a full-node and turn on the feature
-    - Fixed block propagation issues so that is no longer limited to collator candidates, improving network stability
-    - Added Councils and Technical Committee, expanding governance features
-    - Staking module has been refactored, with new names to improve the end-user experience
-    - Added three new precompiles: [Bn128Add](https://eips.ethereum.org/EIPS/eip-196), [Bn128Mul](https://eips.ethereum.org/EIPS/eip-196) and [Bn128Pairing](https://eips.ethereum.org/EIPS/eip-197)
-
-??? release v8 "_May 2021_"      
-    - Added the [Treasury pallet](https://substrate.dev/rustdocs/latest/pallet_treasury/index.html), to bring [Treasury functionalities](https://wiki.polkadot.network/docs/learn-treasury) to Moonbase Alpha. Two separate treasuries were set up: one receiving 20% of the transaction fees and governed by democracy/councils, and the other receiving 30% of the block rewards that will serve to secure future parachain slots
-    - Added the [Proxy pallet](https://substrate.dev/rustdocs/latest/pallet_proxy/index.html), which enables the use of [Proxy accounts](https://wiki.polkadot.network/docs/learn-proxies) on Moonbase Alpha
-    - Introduced a new consensus mechanism, called Nimbus. Nimbus provides different filters to choose a random subset of the current active collator pool to produce the next block. Furthermore, block authors now sign blocks using session keys, which are mapped via an extrinsic to an H160 address for rewards payment. You can read more about Nimbus [here](/learn/features/consensus/)
-    - Added a [Staking precompiled contract](https://github.com/PureStake/moonbeam/pull/358) contract at address `{{ networks.moonbase.precompiles.staking }}`. An interface to interact with the contract can be found on [this link](https://raw.githubusercontent.com/PureStake/moonbeam/master/precompiles/parachain-staking/StakingInterface.sol)
-    - Added [preliminary logs bloom filtering](https://github.com/paritytech/frontier/pull/364) to match user requests through Frontier. This feature was [further optmized](https://github.com/paritytech/frontier/pull/372) to achieve faster response times and a more predictable performance
-    - Added the [parachain Crowdloan pallet](https://github.com/PureStake/crowdloan-rewards) to test the distribution of rewards
-    - Many improvements that aim to enhance network stability
-    - Minimum gas price has been increased to 1 GDEV (analog to GWei on Ethereum)
-
-### Release Notes {: #release-notes } 
-
-For more details regarding the updates of Moonbase Alpha, please refer to the following release notes:
-
- - [Moonbase Alpha v2](https://github.com/PureStake/moonbeam/releases/tag/v0.2.0)
- - [Moonbase Alpha v3](https://github.com/PureStake/moonbeam/releases/tag/v0.3.0)
- - [Moonbase Alpha v4](https://github.com/PureStake/moonbeam/releases/tag/v0.4.0)
- - [Moonbase Alpha v5](https://github.com/PureStake/moonbeam/releases/tag/v0.5.0)
- - [Moonbase Alpha v6](https://github.com/PureStake/moonbeam/releases/tag/v0.6.0)
- - [Moonbase Alpha v7](https://github.com/PureStake/moonbeam/releases/tag/v0.7.0)
- - [Moonbase Alpha v8](https://github.com/PureStake/moonbeam/releases/tag/v0.8.0)
+=== "Staking"
+    |             Variable              |                                                  Value                                                  |
+    |:---------------------------------:|:-------------------------------------------------------------------------------------------------------:|
+    |     Minimum delegation stake      |                            {{ networks.moonbase.staking.min_del_stake }} DEV                            |
+    | Maximum delegators per candidates |                             {{ networks.moonbase.staking.max_del_per_can }}                             |
+    |  Maximum delegations per account  |                             {{ networks.moonbase.staking.max_del_per_del }}                             |
+    |               Round               | {{ networks.moonbase.staking.round_blocks }} blocks ({{ networks.moonbase.staking.round_hours }} hours) |
+    |           Bond duration           |               delegation takes effect in the next round (funds are withdrawn immediately)               |
+    |          Unbond duration          |                  {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds                  |
 
 --8<-- 'text/testnet/connect.md'
 
 ## Telemetry {: #telemetry } 
 
-You can see current Moonbase Alpha telemetry information visiting [this link](https://telemetry.polkadot.io/#list/Moonbase%20Alpha).
+You can see current Moonbase Alpha telemetry information by visiting [Polkadot's Telemetry dashboard](https://telemetry.polkadot.io/#list/0x91bc6e169807aaa54802737e1c504b2577d4fafedd5a02c10293b1cd60e39527){target=_blank}.
 
 ## Tokens {: #tokens } 
 
-Tokens on Moonbase Alpha, named DEV, will be issued on demand. **DEV tokens hold no value and can be freely acquired**. Currently, there are two ways you can get access to this token: through a Discord bot, or manually.
+Tokens on Moonbase Alpha, named DEV, will be issued on demand. **DEV tokens hold no value and can be freely acquired**. Currently, there are a few ways you can get access to this token: through the Moonbase Alpha Faucet, a Discord bot, or manually.
+
+### Moonbase Alpha Faucet {: #moonbase-alpha-faucet }
+
+You can enter your address to automatically request DEV tokens from the [Moonbase Alpha Faucet](https://apps.moonbeam.network/moonbase-alpha/faucet/){target=_blank} website. The faucet dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours.
 
 ### Discord - Mission Control {: #discord-mission-control } 
 
-To request tokens automatically, we've created a Discord bot (named Mission Control :sunglasses:) that will automatically send a maximum of 5 DEV tokens every 24 hours (per Discord user) when you enter your address. You can check it out on our [Discord channel](https://discord.gg/PfpUATX). For more information, please visit [this site](/builders/get-started/networks/moonbase/#get-tokens/).
+To request tokens automatically, we've created a Discord bot (named Mission Control :sunglasses:) that will automatically send a maximum of {{ networks.moonbase.discord_faucet_amount }} every 24 hours (per Discord user) when you enter your address. You can check it out on our [Discord channel](https://discord.gg/PfpUATX). For more information, please visit [this site](/builders/get-started/networks/moonbase/#get-tokens/).
  
-Under the category "Miscellaneous", you will find our AlphaNet bot channel. Enter the following message, replacing `<enter-address-here->` with your H160 address:
+!!! note
+    The Discord faucet will be deprecated by end of June 2022.
+
+Under the category **Miscellaneous**, you will find the **#moonbase-faucet** channel. Enter the following message, replacing `<enter-address-here>` with your H160 address:
  
 ```
-!faucet send <enter-address-here->
+!faucet send <enter-address-here>
 ```
 
 ### Manual Procedure {: #manual-procedure } 
 
-For token requests of more than the limited account allowed by our Discord bot, contact a moderator directly via our [Discord channel](https://discord.gg/PfpUATX). We are happy to provide the tokens needed to test your applications.
+For token requests of more than the limited account allowed by our Discord bot, contact a moderator directly via the [Moonbeam Discord server](https://discord.gg/PfpUATX){target=_blank}. We are happy to provide the tokens needed to test your applications.
 
 ## Proof of Stake {: #proof-of-stake } 
 
@@ -127,8 +97,6 @@ The Moonbase Alpha TestNet is a fully decentralized Delegated Proof of Stake net
 
 This is the first TestNet for Moonbeam, so there are some limitations.
 
-Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts) are yet to be included. You can check a list of supported precompiles [here](/builders/build/canonical-contracts/precompiles/). However, all built-in functions are available.
+Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts){target=_blank} are yet to be included. You can check out the list of supported precompiles on the [Canonical Contract page](/builders/build/canonical-contracts/precompiles/){target=_blank}. However, all built-in functions are available.
 
 Since the release of Moonbase Alpha v6, the maximum gas limit per block has been set to {{ networks.moonbase.gas_block }}, with a maximum gas limit per transaction of {{ networks.moonbase.gas_tx }}.
-
-Users only have access to the Moonbeam parachain. In future networks, we will add access to the relay chain so users can test transferring tokens.

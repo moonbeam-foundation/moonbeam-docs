@@ -197,7 +197,7 @@ After adding the Bridge contract to Remix and compiling it, in order to send ERC
 1. Load the bridge contract address and click **At Address**
 2. To call the `sendERC20SToken()` function, enter the destination chain ID (For this example Kovan is being used: `42`)
 3. Enter the recipient address on the other side of the bridge
-4. Add the amount to transfer in WEI
+4. Add the amount to transfer in Wei
 5. Click **transact** and then MetaMask should pop-up asking you to sign the transaction 
 
 Once the transaction is confirmed, the process can take around 3 minutes to complete, after which you should have received the tokens in Kovan!

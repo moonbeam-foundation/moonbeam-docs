@@ -5,11 +5,13 @@ description: An overview of the current configuration of the Moonbeam deployment
 
 # Moonbeam
 
-_Updated February 28th, 2022_
+_Updated May 26th, 2022_
 
 ## Goal {: #goal } 
 
 Moonbeam onboarded as a parachain to Polkadot on December 17th 2021. Moonbeam is the most Ethereum compatible smart-contract parachain in the Polkadot ecosystem. It allows developers to port their projects with minimal to no code changes, enabling them to tap into the Polkadot ecosystem and all its assets.
+
+In order to collect as much feedback as possible and provide fast issue resolution, you can check out the dedicated [Moonbeam Network section on Discord](https://discord.gg/PfpUATX){target=_blank}.
 
 ## Initial Configurations {: #initial-configurations } 
 
@@ -17,7 +19,7 @@ Currently, Moonbeam has the following configurations:
 
 - Runs as a parachain connected to the Polkadot relay chain
 - Has an active set of {{ networks.moonbeam.staking.max_candidates }} collators
-- It has infrastructure providers that provide [API endpoints](/builders/get-started/endpoints/) to connect to the network. Projects can also [run their own node](/node-operators/networks/run-a-node/) to have access to their own private endpoints
+- Has infrastructure providers that provide [API endpoints](/builders/get-started/endpoints/){target=_blank} to connect to the network. Projects can also [run their own node](/node-operators/networks/run-a-node/){target=_blank} to have access to their own private endpoints
 
 ![Moonbeam Diagram](/images/learn/platform/networks/moonbeam-diagram.png)
 
@@ -34,13 +36,13 @@ Some important variables/configurations to note include (still subject to change
 === "Governance"
     |         Variable         |                                                            Value                                                             |
     |:------------------------:|:----------------------------------------------------------------------------------------------------------------------------:|
-    |      Voting Period       |      {{ networks.moonbeam.democracy.vote_period.blocks}} blocks ({{networks.moonbeam.democracy.vote_period.days}} days)      |
-    | Fast-Track Voting Period | {{ networks.moonbeam.democracy.fast_vote_period.blocks}} blocks ({{networks.moonbeam.democracy.fast_vote_period.days}} days) |
-    |     Enactment Period     |     {{ networks.moonbeam.democracy.enact_period.blocks}} blocks ({{networks.moonbeam.democracy.enact_period.days}} day)      |
-    |     Cool-off Period      |      {{ networks.moonbeam.democracy.cool_period.blocks}} blocks ({{networks.moonbeam.democracy.cool_period.days}} days)      |
-    |     Minimum Deposit      |                                      {{ networks.moonbeam.democracy.min_deposit }} GLMR                                      |
-    |      Maximum Votes       |                                         {{ networks.moonbeam.democracy.max_votes }}                                          |
-    |    Maximum Proposals     |                                       {{ networks.moonbeam.democracy.max_proposals }}                                        |
+    |      Voting period       |      {{ networks.moonbeam.democracy.vote_period.blocks}} blocks ({{networks.moonbeam.democracy.vote_period.days}} days)      |
+    | Fast-track voting period | {{ networks.moonbeam.democracy.fast_vote_period.blocks}} blocks ({{networks.moonbeam.democracy.fast_vote_period.days}} days) |
+    |     Enactment period     |     {{ networks.moonbeam.democracy.enact_period.blocks}} blocks ({{networks.moonbeam.democracy.enact_period.days}} day)      |
+    |     Cool-off period      |      {{ networks.moonbeam.democracy.cool_period.blocks}} blocks ({{networks.moonbeam.democracy.cool_period.days}} days)      |
+    |     Minimum deposit      |                                      {{ networks.moonbeam.democracy.min_deposit }} GLMR                                      |
+    |      Maximum votes       |                                         {{ networks.moonbeam.democracy.max_votes }}                                          |
+    |    Maximum proposals     |                                       {{ networks.moonbeam.democracy.max_proposals }}                                        |
 
 === "Staking"
     |             Variable              |                                                  Value                                                  |
@@ -56,9 +58,13 @@ _*Read more about [token denominations](#token-denominations)_
 
 --8<-- 'text/moonbeam/connect.md'
 
+## Telemetry {: #telemetry } 
+
+You can see current Moonbeam telemetry information by visiting [Polkadot's Telemetry dashboard](https://telemetry.polkadot.io/#list/0xfe58ea77779b7abda7da4ec526d14db9b1e9cd40a217c34892af80a9b332b76d){target=_blank}.
+
 ## Tokens {: #tokens } 
 
-The tokens on Moonbeam are called Glimmer (GLMR). Check out the Moonbeam Foundation site for more information on the [Glimmer](https://moonbeam.foundation/glimmer-token/) token. 
+The tokens on Moonbeam are called Glimmer (GLMR). Check out the Moonbeam Foundation site for more information on the [Glimmer](https://moonbeam.foundation/glimmer-token/){target=_blank} token. 
 
 ### Token Denominations {: #token-denominations } 
 
@@ -77,9 +83,9 @@ The smallest unit of Glimmer (GMLR), similarly to Ethereum, is a Wei. It takes 1
 
 ## Proof of Stake {: #proof-of-stake } 
 
-The Moonriver network is a fully decentralized Delegated Proof of Stake network where users of the network can delegate collator candidates to produce blocks and earn rewards. It uses the [Nimbus framework](/learn/features/consensus/) framework for parachain consensus. The number of candidates in the active set will be subject to governance. The active set will consist of the top candidates by stake, including delegations. 
+The Moonriver network is a fully decentralized Delegated Proof of Stake network where users of the network can delegate collator candidates to produce blocks and earn rewards. It uses the [Nimbus framework](/learn/features/consensus/){target=_blank} framework for parachain consensus. The number of candidates in the active set will be subject to governance. The active set will consist of the top candidates by stake, including delegations. 
 
 ## Limitations {: #limitations } 
 
-Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts) are yet to be included. You can check a list of supported precompiles [here](/builders/build/canonical-contracts/precompiles/). However, all built-in functions are available.
+Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts){target=_blank} are yet to be included. You can check a list of supported precompiles on the [Canonical Contract page](/builders/build/canonical-contracts/precompiles/){target=_blank}. However, all built-in functions are available.
 

@@ -95,7 +95,8 @@ npm install ethers @walletconnect/client @walletconnect/qrcode-modal
 
 This guide will use MetaMask mobile for testing purposes. To install MetaMask mobile, you can go to [metamask.io/download/](https://metamask.io/download/){target=_blank} and switch to either the **iOS** or **Android** tab.
 
-Lastly, you will need to have an account funded with DEV tokens, so that you can test out sending a transaction. To [get tokens from Mission Control](/builders/get-started/networks/moonbase/#get-tokens){target=_blank} you can head to [Discord](https://discord.com/invite/PfpUATX){target=_blank}.
+Lastly, you will need to have an account funded with DEV tokens, so that you can test out sending a transaction. 
+ --8<-- 'text/faucet/faucet-sentence.md'
 
 ## Getting Started {: #getting-started }
 
@@ -206,7 +207,7 @@ Now that you have all of the logic required to handle the disconnection, you wil
 )}
 ```
 
-If you go to test the disconnection logic and nothing happens when you click **Connect Wallet**, make sure you have manually ended any pre-existing sessions from MetaMask mobile. If you're still running into problems, do a hard refresh on your browser.
+If you go to test the disconnection logic and nothing happens when you click **Connect Wallet**, make sure you have manually ended any preexisting sessions from MetaMask mobile. If you're still running into problems, do a hard refresh on your browser.
 
 Now when a user clicks on **Disconnect** the DApp will be reset, the connection will be disconnected on the user's mobile wallet, and the **Connect Wallet** button will be displayed again.
 

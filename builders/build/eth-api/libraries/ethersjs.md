@@ -1,5 +1,5 @@
 ---
-title: Send Transactions & Deploy Contracts with Ethers
+title: How to use Ethers.js Ethereum Library
 description: Follow this tutorial to learn how to use the Ethereum EtherJS Library to send transactions and deploy Solidity smart contracts to Moonbeam.
 ---
 
@@ -17,7 +17,8 @@ In this guide, you'll learn how to use the ethers.js library to send a transacti
 
 For the examples in this guide, you will need to have the following:
 
- - An account with funds. For Moonbase Alpha, you can get DEV tokens for testing purposes from [Mission Control](/builders/get-started/networks/moonbase/#get-tokens/)
+ - An account with funds.
+  --8<-- 'text/faucet/faucet-list-item.md'
  - 
 --8<-- 'text/common/endpoint-examples.md'
 

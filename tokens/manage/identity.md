@@ -24,23 +24,23 @@ To store your information on-chain, you must bond some funds, which eventually w
 === "Moonbeam"
     |       Variable        |                               Definition                                |                      Value                      |
     |:---------------------:|:-----------------------------------------------------------------------:|:-----------------------------------------------:|
-    |     Basic Deposit     |           The amount held on deposit for setting an identity            | {{ networks.moonbeam.identity.basic_dep }} GLMR |
-    |     Field Deposit     | The amount held on deposit per additional field for setting an identity | {{ networks.moonbeam.identity.field_dep }} GLMR |
-    | Max Additional Fields |     Maximum number of additional fields that may be stored in an ID     |   {{ networks.moonbeam.identity.max_fields }}   |
+    |     Basic deposit     |           The amount held on deposit for setting an identity            | {{ networks.moonbeam.identity.basic_dep }} GLMR |
+    |     Field deposit     | The amount held on deposit per additional field for setting an identity | {{ networks.moonbeam.identity.field_dep }} GLMR |
+    | Max additional fields |     Maximum number of additional fields that may be stored in an ID     |   {{ networks.moonbeam.identity.max_fields }}   |
 
 === "Moonriver"
     |       Variable        |                               Definition                                |                      Value                       |
     |:---------------------:|:-----------------------------------------------------------------------:|:------------------------------------------------:|
-    |     Basic Deposit     |           The amount held on deposit for setting an identity            | {{ networks.moonriver.identity.basic_dep }} MOVR |
-    |     Field Deposit     | The amount held on deposit per additional field for setting an identity | {{ networks.moonriver.identity.field_dep }} MOVR |
-    | Max Additional Fields |     Maximum number of additional fields that may be stored in an ID     |   {{ networks.moonriver.identity.max_fields }}   |
+    |     Basic deposit     |           The amount held on deposit for setting an identity            | {{ networks.moonriver.identity.basic_dep }} MOVR |
+    |     Field deposit     | The amount held on deposit per additional field for setting an identity | {{ networks.moonriver.identity.field_dep }} MOVR |
+    | Max additional fields |     Maximum number of additional fields that may be stored in an ID     |   {{ networks.moonriver.identity.max_fields }}   |
 
 === "Moonbase Alpha"
     |       Variable        |                               Definition                                |                     Value                      |
     |:---------------------:|:-----------------------------------------------------------------------:|:----------------------------------------------:|
-    |     Basic Deposit     |           The amount held on deposit for setting an identity            | {{ networks.moonbase.identity.basic_dep }} DEV |
-    |     Field Deposit     | The amount held on deposit per additional field for setting an identity | {{ networks.moonbase.identity.field_dep }} DEV |
-    | Max Additional Fields |     Maximum number of additional fields that may be stored in an ID     |  {{ networks.moonbase.identity.max_fields }}   |
+    |     Basic deposit     |           The amount held on deposit for setting an identity            | {{ networks.moonbase.identity.basic_dep }} DEV |
+    |     Field deposit     | The amount held on deposit per additional field for setting an identity | {{ networks.moonbase.identity.field_dep }} DEV |
+    | Max additional fields |     Maximum number of additional fields that may be stored in an ID     |  {{ networks.moonbase.identity.max_fields }}   |
 
 ## Checking Prerequisites { : #checking-prerequisites }
 
@@ -48,7 +48,8 @@ For this guide, you will need the following:
 
 - To connect to the [Moonbase Alpha TestNet](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network){target=_blank} on the Polkadot.js Apps explorer. You can also follow along and adapt the instructions for [Moonbeam](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network){target=_blank} or [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonriver.moonbeam.network){target=_blank}.
 - To [create or import an account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account) into Polkadot.js Apps
-- Make sure you have funded your account. For Moonbase Alpha, you can [get DEV tokens from Mission Control](/builders/get-started/networks/moonbase/#get-tokens)
+- Make sure you have funded your account. 
+ --8<-- 'text/faucet/faucet-list-item.md'
 
 ## Getting Started
 

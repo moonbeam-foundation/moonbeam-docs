@@ -33,15 +33,24 @@ If you do not have MetaMask installed, or would like to follow a tutorial to get
 
 ## Get Tokens {: #get-tokens } 
 
-To start building on Moonbase Alpha, you can get DEV tokens from our faucet, named [Mission Control](https://discord.gg/PfpUATX), in our Discord Channel. For specific amounts, you can always reach out directly to us via our community channels.
+To start building on Moonbase Alpha, you can get DEV tokens from the Moonbase Alpha Faucet or on Discord via a bot, named [Mission Control](https://discord.gg/PfpUATX). For specific amounts, you can always reach out directly to us via our community channels.
+
+### Moonbase Alpha Faucet {: #moonbase-alpha-faucet }
+
+You can enter your address to automatically request DEV tokens from the [Moonbase Alpha Faucet](https://apps.moonbeam.network/moonbase-alpha/faucet/){target=_blank} website. The faucet dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours.
+
+![Moonbase Alpha Faucet Web](/images/builders/get-started/networks/moonbase/moonbase-1.png)
 
 ### Discord - Mission Control {: #discord-mission-control } 
 
-To request tokens automatically, we've created a Discord bot (named Mission Control :sunglasses:) that will automatically send a maximum of 1 DEV token every 24 hours (per Discord user) when you enter your address. You can check it out on our [Discord channel](https://discord.gg/PfpUATX).
+To request tokens automatically, we've created a Discord bot (named Mission Control :sunglasses:) that will automatically send a maximum of {{ networks.moonbase.discord_faucet_amount }} every 24 hours (per Discord user) when you enter your address. You can check it out on our [Discord channel](https://discord.gg/PfpUATX).
+
+!!! note
+    The Discord faucet will be deprecated by end of June 2022.
  
 Under the category **Miscellaneous**, you will find our **#Moonbase-Faucet** channel. 
 
-![Moonbase faucet channel on Discord](/images/builders/get-started/networks/moonbase/moonbase-1.png)
+![Moonbase faucet channel on Discord](/images/builders/get-started/networks/moonbase/moonbase-2.png)
 
 To check your balance, enter the following message, replacing `<enter-address-here->` with your H160 address:
 
@@ -55,9 +64,9 @@ To get DEV tokens, enter the following message, replacing `<enter-address-here->
 !faucet send <enter-address-here->
 ```
 
-Mission Control will send you 1 DEV token and display your current account balance. Remember that Mission Control is limited to dispense once every 24 hours per Discord user.
+Mission Control will send you {{ networks.moonbase.discord_faucet_amount }} and display your current account balance. Remember that Mission Control is limited to dispense once every 24 hours per Discord user.
 
-![Faucet send command example](/images/builders/get-started/networks/moonbase/moonbase-2.png)
+![Faucet send command example](/images/builders/get-started/networks/moonbase/moonbase-3.png)
 
 !!! note
     Moonbase Alpha DEV tokens have no value. Please don't spam the faucet with unnecessary requests.
@@ -68,15 +77,15 @@ There are a variety of DApps deployed to Moonbase Alpha enabling you to experime
 
 ### Quick Links {: #quick-links }
 
-|  DApp  | Description |                Repository                  |
-|:------------:|:------------:|:-------------------------------------------------:|
-| [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app/){target=_blank} | ERC-20 Faucet  |[https://github.com/PureStake/moonbase-mintableERC20](https://github.com/PureStake/moonbase-mintableERC20){target=_blank} |
-| [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}  |  Uniswap V2 Fork  | [https://github.com/PureStake/moonbeam-uniswap](https://github.com/PureStake/moonbeam-uniswap){target=_blank}  |
-| [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank}  | Chainlink Demo  | [https://github.com/PureStake/moonlink-dashboard](https://github.com/PureStake/moonlink-dashboard){target=_blank}  |
-| [MoonLotto Lottery](https://moonbase-moonlotto.netlify.app/){target=_blank}  | TheGraph Demo  | [Interface](https://github.com/PureStake/moonlotto-interface){target=_blank}, [Subgraph](https://github.com/PureStake/moonlotto-subgraph){target=_blank}  |
-| [Moonbeam WalletConnect](https://moonbeam-walletconnect-demo.netlify.app/){target=_blank}  | WalletConnect Demo  | [https://github.com/PureStake/moonbeam-walletconnect-demo](https://github.com/PureStake/moonbeam-walletconnect-demo){target=_blank}  |
-| [Moonbase ChainBridge](https://moonbase-chainbridge.netlify.app/transfer){target=_blank}  | ChainBridge Demo  | [https://github.com/PureStake/chainbridge-ui](https://github.com/PureStake/chainbridge-ui){target=_blank}  |
-| [MoonGas](https://moonbeam-gasinfo.netlify.app/){target=_blank}  | Gas Price Tracker  | [https://github.com/albertov19/moonbeam-gas-station](https://github.com/albertov19/moonbeam-gas-station){target=_blank}  |
+|                                           DApp                                            |    Description     |                                                                        Repository                                                                        |
+|:-----------------------------------------------------------------------------------------:|:------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|     [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app/){target=_blank}      |   ERC-20 Faucet    |                [https://github.com/PureStake/moonbase-mintableERC20](https://github.com/PureStake/moonbase-mintableERC20){target=_blank}                 |
+|        [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}        |  Uniswap V2 Fork   |                      [https://github.com/PureStake/moonbeam-uniswap](https://github.com/PureStake/moonbeam-uniswap){target=_blank}                       |
+|       [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank}        |   Chainlink Demo   |                    [https://github.com/PureStake/moonlink-dashboard](https://github.com/PureStake/moonlink-dashboard){target=_blank}                     |
+|        [MoonLotto Lottery](https://moonbase-moonlotto.netlify.app/){target=_blank}        |   TheGraph Demo    | [Interface](https://github.com/PureStake/moonlotto-interface){target=_blank}, [Subgraph](https://github.com/PureStake/moonlotto-subgraph){target=_blank} |
+| [Moonbeam WalletConnect](https://moonbeam-walletconnect-demo.netlify.app/){target=_blank} | WalletConnect Demo |           [https://github.com/PureStake/moonbeam-walletconnect-demo](https://github.com/PureStake/moonbeam-walletconnect-demo){target=_blank}            |
+| [Moonbase ChainBridge](https://moonbase-chainbridge.netlify.app/transfer){target=_blank}  |  ChainBridge Demo  |                        [https://github.com/PureStake/chainbridge-ui](https://github.com/PureStake/chainbridge-ui){target=_blank}                         |
+|              [MoonGas](https://moonbeam-gasinfo.netlify.app/){target=_blank}              | Gas Price Tracker  |                 [https://github.com/albertov19/moonbeam-gas-station](https://github.com/albertov19/moonbeam-gas-station){target=_blank}                  |
 
 
 !!! note
@@ -86,7 +95,7 @@ There are a variety of DApps deployed to Moonbase Alpha enabling you to experime
 
 The [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app/){target=_blank} enables you to mint a variety of ERC-20 test tokens corresponding to the 8 planets of the solar system, and Pluto. To mint tokens, first press **Connect MetaMask** in the upper right hand corner. Then scroll to the **Mint Tokens** section and the choose desired ERC-20 contract. Press **Submit Tx** and confirm the transaction in MetaMask. Each mint will grant you 100 tokens, and you can mint tokens for each contract once per hour.
 
-![ERC20 Minter](/images/builders/get-started/networks/moonbase/moonbase-3.png)
+![ERC20 Minter](/images/builders/get-started/networks/moonbase/moonbase-4.png)
 
 ### Moonbeam Uniswap {: #moonbeam-uniswap } 
 
@@ -98,7 +107,7 @@ The [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app/){target=_bl
 4. Select **Moon Menu** 
 5. Search for or select your desired asset from the list then continue with the swap
 
-![Moonbeam Swap](/images/builders/get-started/networks/moonbase/moonbase-4.png)
+![Moonbeam Swap](/images/builders/get-started/networks/moonbase/moonbase-5.png)
 
 !!! note
     If you see only a partial list of assets under **Moon Menu**, your browser may have cached an older version of **Moon Menu**. Clearing the cache and re-adding **Moon Menu** will resolve this. 
@@ -107,7 +116,7 @@ The [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app/){target=_bl
 
 The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank} showcases Chainlink price feeds in action. For more information, including a full listing of all Chainlink price feeds across all Moonbeam networks and a step-by-step guide of how to fetch price feed data, [head to the Oracles section of the Moonbeam Docs Site](/builders/integrations/oracles/chainlink/). You can also check out the [repository for the MoonLink Dashboard](https://github.com/PureStake/moonlink-dashboard){target=_blank}. 
 
-![MoonLink Dashboard](/images/builders/get-started/networks/moonbase/moonbase-5.png)
+![MoonLink Dashboard](/images/builders/get-started/networks/moonbase/moonbase-6.png)
 
 ### MoonLotto Lottery {: #moonlotto-lottery } 
 
@@ -117,7 +126,7 @@ The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank}
 2. Enter the address of the recipient of lotto ticket or check **I want to buy a ticket for my address**
 3. Press **Submit on MetaMask** and confirm the transaction in MetaMask
 
-![MoonLotto Lottery](/images/builders/get-started/networks/moonbase/moonbase-6.png)
+![MoonLotto Lottery](/images/builders/get-started/networks/moonbase/moonbase-7.png)
 
 ### Moonbeam WalletConnect {: #moonbeam-walletconnect } 
 
@@ -126,7 +135,7 @@ The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank}
 1. Press **Connect Wallet**
 2. Scan the QR code using a [wallet compatible with WalletConnect](https://walletconnect.com/registry?type=wallet){target=_blank}
 
-![Moonbeam WalletConnect](/images/builders/get-started/networks/moonbase/moonbase-7.png)
+![Moonbeam WalletConnect](/images/builders/get-started/networks/moonbase/moonbase-8.png)
 
 ### Moonbase ChainBridge {: #moonbase-chainbridge } 
 
@@ -143,7 +152,7 @@ The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank}
 9. Enter a destination address or check **I want to send funds to my address**
 10. Press **Start Transfer** and **Confirm** the transaction in MetaMask. The DApp will update you on the status of the bridge transfer
 
-![Moonbase ChainBridge](/images/builders/get-started/networks/moonbase/moonbase-8.png)
+![Moonbase ChainBridge](/images/builders/get-started/networks/moonbase/moonbase-9.png)
 
 ### MoonGas {: #moongas } 
 
@@ -151,4 +160,4 @@ The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank}
 
 You'll notice that the minimum gas price for Moonbeam is 100 Gwei, while the minimum for Moonriver and Moonbase Alpha is only 1 Gwei. This difference stems from the [100 to 1 re-denomination of GLMR](https://moonbeam.foundation/news/moonbeam-community-announcement/){target=_blank} and thus the 100 Gwei minimum on Moonbeam corresponds to a 1 Gwei minimum on Moonriver and Moonbeam. 
 
-![MoonGas](/images/builders/get-started/networks/moonbase/moonbase-9.png)
+![MoonGas](/images/builders/get-started/networks/moonbase/moonbase-10.png)

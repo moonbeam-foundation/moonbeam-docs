@@ -3,14 +3,14 @@ networks:
     build_tag: v0.23.0
     tracing_tag: purestake/moonbeam-tracing:v0.23.0-1502-3c9c
     rpc_url: http://127.0.0.1:9933
-    wss_url: WSS-API-ENDPOINT-HERE
+    wss_url: ws://127.0.0.1:9944
     chain_id: 1281
     hex_chain_id: '0x501'
     container_name: moonbeam_development
     block_explorer: https://moonbeam-explorer.netlify.app/
   moonbase:
     rpc_url: https://rpc.api.moonbase.moonbeam.network
-    wss_url: WSS-API-ENDPOINT-HERE
+    wss_url: wss://wss.api.moonbase.moonbeam.network
     chain_id: 1287
     hex_chain_id: '0x507'
     chain_spec: alphanet
@@ -23,6 +23,8 @@ networks:
     node_directory: /var/lib/alphanet-data
     node_db_loc: /chains/moonbase_alpha/db
     binary_name: moonbeam
+    discord_faucet_amount: 1 DEV token
+    website_faucet_amount: 5 DEV tokens
     node:
       cores: 8
       ram: 16
@@ -42,7 +44,7 @@ networks:
     chainlink:
       oracle_contract: '0x1d693d883BeAeE16edD0D7588D6a9f7E1967E798'
       link_contract: '0xa36085F69e2889c224210F603D836748e7dC0088'
-      client_contract: '0xe88ec866D05e637074B5a0D0d931f292d7871613'
+      client_contract: '0x8ea35EdC1709ea0Ea2C86241C7D1C84Fd0dDeB11'
       basic:
         aave_usd: '541b8f7db7374d78b38285ef1b8bfacc'
         algo_usd: 'cdb48696e2314133a1dc8ea27922dd24'
@@ -126,6 +128,7 @@ networks:
     treasury:
       proposal_bond: 5
       proposal_bond_min: 1
+      proposal_bond_max: uncapped
       spend_period_blocks: 43200
       spend_period_days: 6
       max_approved_proposals: 100
@@ -168,6 +171,7 @@ networks:
       relay_encoder: '0x0000000000000000000000000000000000000805'
       xcm_transactor: '0x0000000000000000000000000000000000000806'
       author_mapping: '0x0000000000000000000000000000000000000807'
+      batch: '0x0000000000000000000000000000000000000808'
     substrate_api_sidecar:
       stable_version: 11.3.9
     tx_weight_to_gas_ratio: 25000
@@ -175,6 +179,10 @@ networks:
       stable_version: 6.9.1
       polkadot_js_dependency_version: 2.0.1
       typescript_dependency_version: 4.3.2
+    mintable_xc20:
+      asset_deposit: 100
+      metadata_base_deposit: 1.0068
+      metadata_byte_deposit: .0001
     orbiter:
       max_orbiters_per_collator: 4
       max_collators: Unlimited
@@ -249,6 +257,7 @@ networks:
     treasury:
       proposal_bond: 5
       proposal_bond_min: 1
+      proposal_bond_max: uncapped
       spend_period_blocks: 43200
       spend_period_days: 6
       max_approved_proposals: 100
@@ -292,6 +301,7 @@ networks:
       relay_encoder: '0x0000000000000000000000000000000000000805'
       xcm_transactor: '0x0000000000000000000000000000000000000806'
       author_mapping: '0x0000000000000000000000000000000000000807'
+      batch: '0x0000000000000000000000000000000000000808'
     chainlink:
       feed:
         aggregator:
@@ -335,6 +345,10 @@ networks:
       stable_version: 6.9.1
       polkadot_js_dependency_version: 2.0.1
       typescript_dependency_version: 4.3.2
+    mintable_xc20:
+      asset_deposit: 100
+      metadata_base_deposit: 1.0068
+      metadata_byte_deposit: .0001
     orbiter:
       max_orbiters_per_collator: 4
       max_collators: 4
@@ -409,6 +423,7 @@ networks:
     treasury:
       proposal_bond: 5
       proposal_bond_min: 100
+      proposal_bond_max: uncapped
       spend_period_blocks: 43200
       spend_period_days: 6
       max_approved_proposals: 100
@@ -447,11 +462,12 @@ networks:
       staking: '0x0000000000000000000000000000000000000800'
       crowdloan: '0x0000000000000000000000000000000000000801'
       erc20: '0x0000000000000000000000000000000000000802'
-      democracy: 'not available yet'
-      xtokens: 'not available yet'
+      democracy: '0x0000000000000000000000000000000000000803'
+      xtokens: '0x0000000000000000000000000000000000000804'
       relay_encoder: '0x0000000000000000000000000000000000000805'
       xcm_transactor: '0x0000000000000000000000000000000000000806'
       author_mapping: '0x0000000000000000000000000000000000000807'
+      batch: '0x0000000000000000000000000000000000000808'
     substrate_api_sidecar:
       stable_version: 11.3.3
       tx_weight_to_gas_ratio: 25000
@@ -459,12 +475,16 @@ networks:
       stable_version: 6.9.1
       polkadot_js_dependency_version: 2.0.1
       typescript_dependency_version: 4.3.2
+    mintable_xc20:
+      asset_deposit: 10000
+      metadata_base_deposit: 10.68
+      metadata_byte_deposit: .01
     orbiter:
       max_orbiters_per_collator: TBA
       max_collators: TBA
       active:
         rounds: TBA
-        hours: TBA 
+        hours: TBA
       bond: TBA
   relay_chain:
     p2p: 30334

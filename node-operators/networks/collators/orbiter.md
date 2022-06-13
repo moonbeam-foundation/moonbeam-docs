@@ -131,7 +131,7 @@ Rewards for Orbiters will be split between the other Orbiters assigned to the sa
 
 ## Performance Metrics {: #performance-metrics }
 
-Each Orbiter’s performance will be assessed over a period of time to determine they are active and producing blocks, and if their performance is within a range of all other program collators. Orbiters are expected to run top tier hardware to stay within range. For more information on hardware requirements, please check out the [Collator Requirements page](https://docs.moonbeam.network/node-operators/networks/collators/requirements/){target=_blank}. 
+Each Orbiter’s performance will be assessed over a period of time to determine they are active and producing blocks, and if their performance is within a range of all other program collators. Orbiters are expected to run top tier hardware to stay within range. For more information on hardware requirements, please check out the [Collator Requirements page](/node-operators/networks/collators/requirements/){target=_blank}. 
 
 Metrics will be assessed over 7 day periods. The performance metrics are as follows:
 
