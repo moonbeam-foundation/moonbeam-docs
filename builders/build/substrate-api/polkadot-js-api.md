@@ -27,22 +27,6 @@ First, you need to install Polkadot.js API library for your project through a pa
 yarn add @polkadot/api
 ```
 
-### Installing Moonbeam Types Bundle {: #moonbeam-types-bundle }
-
-For decoding Moonbeam custom events and types, you will need to include the [Moonbeam Types Bundle](https://www.npmjs.com/package/moonbeam-types-bundle){target=_blank} into your project by adding the following package information to your `package.json`:
-
-```json
-"@polkadot/api": "^{{ networks.moonbase.moonbeam_types_bundle.stable_version }}",
-"moonbeam-types-bundle": "^{{ networks.moonbase.moonbeam_types_bundle.polkadot_js_dependency_version }}",
-"typescript": "{{ networks.moonbase.moonbeam_types_bundle.typescript_dependency_version }}"
-```
-
-And add this import statement to the start of your project file:
-
-```javascript
-import { typesBundlePre900 } from "moonbeam-types-bundle"
-```
-
 ## Creating an API Provider Instance {: #creating-an-API-provider-instance }
 
 Similar to ETH API libraries, you must first instantiate an API instance of Polkadot.js API. Create the `WsProvider` using the websocket endpoint of the Moonbeam network you wish to interact with. 
@@ -246,7 +230,7 @@ Transaction endpoints are exposed, as determined by the metadata, on the `api.tx
 
 ### Sending Basic Transactions {: #sending-basic-transactions }
 
-Here is an example of sending a basic transaction from Alice to Bob:
+Here is an example of sending a basic transaction. This code sample will also retrieve the encoded calldata of the transaction, as well as the transaction hash after submitting. 
 
 ```javascript
 // Initialize the API provider as in the previous section
@@ -259,12 +243,19 @@ Here is an example of sending a basic transaction from Alice to Bob:
 const alice = keyring.addFromUri('ALICE-ACCOUNT-PRIVATE-KEY');
 const bob = 'BOB-ACCOUNT-PUBLIC-KEY';
 
-// Sign and send a transfer from Alice to Bob
-const txHash = await api.tx.balances
+// Form the transaction
+const tx = await api.tx.balances
   .transfer(bob, 12345)
-  .signAndSend(alice);
 
-// Show the hash
+// Retrieve the encoded calldata of the transaction
+const encodedCalldata = tx.method.toHex()
+console.log(encodedCallData)
+
+// Sign and send the transaction
+const txHash = await tx
+    .signAndSend(alice);
+
+// Show the transaction hash
 console.log(`Submitted with hash ${txHash}`);
 ```
 
@@ -325,12 +316,99 @@ You can view the [complete script on GitHub](https://raw.githubusercontent.com/P
 !!! note
     You can check out all of the available functions for the `parachainStaking` module by adding `console.log(api.tx.parachainStaking);` to your code.
 
-## Custom RPC Requests {: #custom-rpc-requests }
+## Substrate and Custom JSON-RPC Endpoints {: #substrate-and-custom-json-rpc-endpoints }
 
 RPCs are exposed as a method on a specific module. This means that once available, you can call any rpc via `api.rpc.<module>.<method>(...params[])`. This also works for accessing Ethereum RPCs using Polkadot.js API, in the form of `polkadotApi.rpc.eth.*`.
 
-You can check for a list of exposed RPC endpoints by calling `api.rpc.rpc.methods()`, which is the list of known RPCs the node exposes. 
+Some of the methods availabe through the Polkadot.js API interface are also available as JSON-RPC endpoints on Moonbeam nodes. This section will provide some examples; you can check for a list of exposed RPC endpoints by calling `api.rpc.rpc.methods()` or the `rpc_methods` endpoint listed below. 
 
-The [Consensus and Finality page](/builders/get-started/eth-compare/consensus-finality/#) has examples for using the custom RPC calls to check the finality of a given transaction. 
+- **[`methods()`](https://polkadot.js.org/docs/substrate/rpc/#methods-rpcmethods){target=_blank}**
+    - **Interface** -  `api.rpc.rpc.methods`
+    - **JSON-RPC** - `rpc_methods`
+    - **Returns** - The list of RPC methods that are exposed by the node
+
+    ```bash
+      curl --location --request POST 'https://rpc.api.moonbase.moonbeam.network' \
+      --header 'Content-Type: application/json' \
+      --data-raw '{
+        "jsonrpc":"2.0",
+        "id":1,
+        "method":"rpc_methods",
+        "params": []
+      }'
+    ```
+
+- **[`getBlock(hash?: BlockHash)`](https://polkadot.js.org/docs/substrate/rpc/#getblockhash-blockhash-signedblock){target=_blank}**
+    - **Interface** - `api.rpc.chain.getBlock`
+    - **JSON-RPC** - `chain_getBlock`
+    - **Returns** - The header and body of a block as specified by the block hash parameter
+
+    ```bash
+      curl --location --request POST 'https://rpc.api.moonbase.moonbeam.network' \
+      --header 'Content-Type: application/json' \
+      --data-raw '{
+        "jsonrpc":"2.0",
+        "id":1,
+        "method":"chain_getBlock",
+        "params": ["0x870ad0935a27ed8684048860ffb341d469e091abc2518ea109b4d26b8c88dd96"]
+      }'
+    ```
+
+- **[`getFinalizedHead()`](https://polkadot.js.org/docs/substrate/rpc/#getfinalizedhead-blockhash){target=_blank}**
+    - **Interface** `api.rpc.chain.getFinalizedHead`
+    - **JSON-RPC** `chain_getFinalizedHead`
+    - **Returns** The block hash of the last finalized block in the canonical chain
+
+    ```bash
+      curl --location --request POST '{{ networks.moonbase.rpc_url }}' \
+      --header 'Content-Type: application/json' \
+      --data-raw '{
+        "jsonrpc":"2.0",
+        "id":1,
+        "method":"chain_getHeader",
+        "params": []
+      }'
+    ```
+
+The [Consensus and Finality page](/builders/get-started/eth-compare/consensus-finality/#){target=_blank} has sample code for using the exposed custom and Substrate RPC calls to check the finality of a given transaction. 
+
+## Utilities {: #utilities }
+
+Polkadot.js API also includes a number of utility libraries for computing commonly used cryptographic primitives and hash functions. 
+
+The following example computes the deterministic transaction hash of a raw Ethereum legacy transaction by first computing its RLP ([Recursive Length Prefix](https://eth.wiki/fundamentals/rlp){target=_blank}) encoding, then hashing the result with keccak256. 
+
+```javascript
+import { encode } from '@polkadot/util-rlp';
+import { keccakAsHex } from '@polkadot/util-crypto';
+import { numberToHex } from '@polkadot/util';
+
+// Define the raw signed transaction
+const txData = {
+    nonce: numberToHex(1),
+    gasPrice: numberToHex(21000000000),
+    gasLimit: numberToHex(21000),
+    to: '0xc390cC49a32736a58733Cf46bE42f734dD4f53cb',
+    value: numberToHex(1000000000000000000),
+    data: '',
+    v: "0507",
+    r: "0x5ab2f48bdc6752191440ce62088b9e42f20215ee4305403579aa2e1eba615ce8",
+    s: "0x3b172e53874422756d48b449438407e5478c985680d4aaa39d762fe0d1a11683"
+}
+
+// Extract the values to an array
+var txDataArray = Object.keys(txData)
+    .map(function (key) {
+        return txData[key];
+    });
+
+// Calculate the RLP encoded transaction
+var encoded_tx = encode(txDataArray)
+
+// Hash the encoded transaction using keccak256
+console.log(keccakAsHex(encoded_tx))
+```
+
+You can check the respective [NPM repository page](https://www.npmjs.com/package/@polkadot/util-crypto/v/0.32.19){target=_blank} for a list of available methods in the @polkadot/util-crypto library and their descriptions.
 
 --8<-- 'text/disclaimers/third-party-content.md'

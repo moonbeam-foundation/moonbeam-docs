@@ -9,8 +9,13 @@ const keyring = new Keyring({ type: 'ethereum' });
 const alice = keyring.addFromUri('ALICE-ACCOUNT-PRIVATE-KEY-HERE');
 const bob = 'BOB-ACCOUNT-PUBLIC-KEY-HERE';
 
-const txHash = await api.tx.balances
+const tx = await api.tx.balances
   .transfer(bob, 12345)
+
+const encodedCallData = tx.method.toHex()
+console.log(encodedCallData)
+
+const txHash = await tx
   .signAndSend(alice);
 
 console.log(`Submitted with hash ${txHash}`);

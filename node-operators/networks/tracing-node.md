@@ -388,7 +388,7 @@ You can also run the following command to see logs of the tracing node spinning 
 journalctl -f -u moonbeam.service
 ```
 
-Your terminal should display lgos similar to the following:
+Your terminal should display logs similar to the following:
 
 ![Service logs of wasm rutime overrides being processed](/images/node-operators/networks/tracing-node/tracing-2.png)
 
