@@ -57,7 +57,7 @@ Where the inputs that need to be provided can be defined as:
  - **call** — similar to `innerCall`, but it is not wrapped with the `asDerivative` extrinsic
  - **originKind** — dispatcher of the remote call in the destination chain. There are [four types of dispatchers](https://github.com/paritytech/polkadot/blob/0a34022e31c85001f871bb4067b7d5f5cab91207/xcm/src/v0/mod.rs#L60){target=_blank} available
 
-The XCM-Transactor pallet provides three read-method:
+The XCM-Transactor pallet provides three read-methods:
 
  - **indexToAccount(index)** — returns the origin chain account associated with the given derivative index
  - **transactInfoWithWeightLimit(location)** — returns the transact information for a given multilocation
@@ -92,7 +92,7 @@ You can check the [XC-20](/builders/xcm/xc20/#calculate-xc20-address){target=_bl
 
 In this example, you'll build an XCM message to execute a remote call in the relay chain from Moonbase Alpha through the `transactThroughDerivative` function of the XCM-Transactor pallet.
 
-If you've [checked the prerequisites](#xtokens-check-prerequisites), head to the extrinsic page of [Polkadot JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} and set the following options:
+If you've [checked the prerequisites](#xcmtransactor-check-prerequisites), head to the extrinsic page of [Polkadot JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} and set the following options:
 
 1. Select the account from which you want to send the XCM. Make sure the account complies with all the [prerequisites](#xcmtransactor-check-prerequisites)
 2. Choose the **xcmTransactor** pallet
@@ -126,7 +126,7 @@ To fetch a list of all registered addresses allowed to operate through the Moonb
 
 ## XCM-Transactor Precompile {: #xcmtransactor-precompile}
 
-The XCM-Transactor precompile contract allows developers to access the XCM-Transactor pallet features through the Ethereum API of Moonbeam-based networks. As with other [precompile contracts](/builders/build/canonical-contracts/precompiles/){target=_blank}, the XCM-Transactor precompile is located at the following addresses:
+The XCM-Transactor precompile contract allows developers to access the XCM-Transactor pallet features through the Ethereum API of Moonbeam-based networks. Similar to other [precompile contracts](/builders/build/canonical-contracts/precompiles/){target=_blank}, the XCM-Transactor precompile is located at the following addresses:
 
 === "Moonbeam"
      ```
@@ -145,7 +145,7 @@ The XCM-Transactor precompile contract allows developers to access the XCM-Trans
 
 ### The XCM-Transactor Solidity Interface {: #xcmtrasactor-solidity-interface } 
 
-[XcmTransactor.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm_transactor/XcmTransactor.sol){target=_blank} is an interface through which developers can interact with the XCM-Transactor pallet using the Ethereum API.
+[XcmTransactor.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm-transactor/XcmTransactor.sol){target=_blank} is an interface through which developers can interact with the XCM-Transactor pallet using the Ethereum API.
 
 The interface includes the following functions:
 

@@ -88,7 +88,7 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
     |     [Democracy](https://github.com/PureStake/moonbeam/blob/master/precompiles/pallet-democracy/DemocracyInterface.sol){target=_blank}      |   {{networks.moonbeam.precompiles.democracy}}    |
     |                [Xtokens](https://github.com/PureStake/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=_blank}                 |    {{networks.moonbeam.precompiles.xtokens}}     |
     |        [Relay Encoder](https://github.com/PureStake/moonbeam/blob/master/precompiles/relay-encoder/RelayEncoder.sol){target=_blank}        | {{networks.moonbeam.precompiles.relay_encoder}}  |
-    |      [XCM Transactor](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm_transactor/XcmTransactor.sol){target=_blank}       | {{networks.moonbeam.precompiles.xcm_transactor}} |
+    |      [XCM Transactor](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm-transactor/XcmTransactor.sol){target=_blank}       | {{networks.moonbeam.precompiles.xcm_transactor}} |
     |  [Author Mapping](https://github.com/PureStake/moonbeam/blob/master/precompiles/author-mapping/AuthorMappingInterface.sol){target=_blank}  | {{networks.moonbeam.precompiles.author_mapping}} |
     |                   [Batch](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank}                    |     {{networks.moonbeam.precompiles.batch}}      |
 
@@ -101,7 +101,7 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
     |     [Democracy](https://github.com/PureStake/moonbeam/blob/master/precompiles/pallet-democracy/DemocracyInterface.sol){target=_blank}      |   {{networks.moonriver.precompiles.democracy}}    |
     |                [Xtokens](https://github.com/PureStake/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=_blank}                 |    {{networks.moonriver.precompiles.xtokens}}     |
     |        [Relay Encoder](https://github.com/PureStake/moonbeam/blob/master/precompiles/relay-encoder/RelayEncoder.sol){target=_blank}        | {{networks.moonriver.precompiles.relay_encoder}}  |
-    |      [XCM Transactor](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm_transactor/XcmTransactor.sol){target=_blank}       | {{networks.moonriver.precompiles.xcm_transactor}} |
+    |      [XCM Transactor](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm-transactor/XcmTransactor.sol){target=_blank}       | {{networks.moonriver.precompiles.xcm_transactor}} |
     |  [Author Mapping](https://github.com/PureStake/moonbeam/blob/master/precompiles/author-mapping/AuthorMappingInterface.sol){target=_blank}  | {{networks.moonriver.precompiles.author_mapping}} |
     |                   [Batch](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank}                    |     {{networks.moonriver.precompiles.batch}}      |
 
@@ -114,7 +114,7 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
     |     [Democracy](https://github.com/PureStake/moonbeam/blob/master/precompiles/pallet-democracy/DemocracyInterface.sol){target=_blank}      |   {{networks.moonbase.precompiles.democracy}}    |
     |                [Xtokens](https://github.com/PureStake/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=_blank}                 |    {{networks.moonbase.precompiles.xtokens}}     |
     |        [Relay Encoder](https://github.com/PureStake/moonbeam/blob/master/precompiles/relay-encoder/RelayEncoder.sol){target=_blank}        | {{networks.moonbase.precompiles.relay_encoder}}  |
-    |      [XCM Transactor](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm_transactor/XcmTransactor.sol){target=_blank}       | {{networks.moonbase.precompiles.xcm_transactor}} |
+    |      [XCM Transactor](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm-transactor/XcmTransactor.sol){target=_blank}       | {{networks.moonbase.precompiles.xcm_transactor}} |
     |  [Author Mapping](https://github.com/PureStake/moonbeam/blob/master/precompiles/author-mapping/AuthorMappingInterface.sol){target=_blank}  | {{networks.moonbase.precompiles.author_mapping}} |
     |                   [Batch](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank}                    |     {{networks.moonbase.precompiles.batch}}      |
 

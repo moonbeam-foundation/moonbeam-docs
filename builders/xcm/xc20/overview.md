@@ -57,7 +57,7 @@ The [Permit.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/a
 
 - **permit(*address* owner, *address* spender, *uint256*, value, *uint256*, deadline, *uint8* v, *bytes32* r, *bytes32* s)** - consumes an approval permit which can be called by anyone
 - **nonces(*address* owner)** - returns the current nonce for the given owner
-- **DOMAIN_SEPARATOR()** - returns the EIP-712 domain separator which is used to avoid replay attacks. It follows the [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612/#specification){target=_blank} implementation
+- **DOMAIN_SEPARATOR()** - returns the EIP-712 domain separator which is used to avoid replay attacks. It follows the [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612#specification){target=_blank} implementation
 
 The **DOMAIN_SEPARATOR()** is defined in the [EIP-712 standard](https://eips.ethereum.org/EIPS/eip-712){target=_blank}, and is calculated as:
 
