@@ -22,6 +22,9 @@ The bytes array (`bytes[]`) defines the interior and its content within the mult
 |  [XYZ, ABC]  |  2   |       X2       |
 | [XYZ, ... N] |  N   |       XN       |
 
+!!! note
+    Interior value `Here` is often used for the relay chain (either as a destination or to target the relay chain asset).
+
 Suppose the bytes array contains data. Each element's first byte (2 hexadecimal numbers) corresponds to the selector of that `XN` field. For example:
 
 | Byte Value |    Selector    | Data Type |

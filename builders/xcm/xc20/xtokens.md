@@ -132,13 +132,13 @@ Head to the extrinsic page of [Polkadot JS Apps](https://polkadot.js.org/apps/?r
 
     If you're adapting this guide for a mintable XC-20, you have to to specify the pallet where the asset was created and the asset ID. Therefore, you would set the following parameters:
 
-    |   Parameter    |     Value      |
-    |:--------------:|:--------------:|
-    |    Version     |       V1       |
-    |    Parents     |       1        |
-    |    Interior    |       X2       |
-    | PalletInstance |       36       |
-    |  GeneralIndex  |    Asset ID    |
+    |   Parameter    |  Value   |
+    |:--------------:|:--------:|
+    |    Version     |    V1    |
+    |    Parents     |    1     |
+    |    Interior    |    X2    |
+    | PalletInstance |    36    |
+    |  GeneralIndex  | Asset ID |
 
 5. Set the asset type as **Fungible**
 6. Set the number of tokens to send. For this example, you are sending 1 `xcUNIT`, but you have to account for the 12 decimals
@@ -206,7 +206,7 @@ The following code snippet goes through some examples of `Multilocation` structu
 
 
 ```js
-// Multilocation targeting the relay chain asset from a parachain
+// Multilocation targeting the relay chain or its asset from a parachain
 {
     1, // parents = 1
     [] // interior = here
