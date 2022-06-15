@@ -124,7 +124,7 @@ To extract and process ERC-721 data, it is necessary to obtain the definition of
     touch src/abis/ERC721.json
     ```
 
-2. Copy the [ABI for the ERC-721 Interface](https://www.github.com/PureStake/moonbeam-docs-cn/blob/master/.snippets/code/subsquid/erc721.md){target=_blank} and paste it in the `ERC721.json` file
+2. Copy the [ABI for the ERC-721 Interface](https://www.github.com/PureStake/moonbeam-docs/blob/master/.snippets/code/subsquid/erc721.md){target=_blank} and paste it in the `ERC721.json` file
 
 !!! note
     The ERC-721 ABI defines the signatures of all events in the contract. The `Transfer` event has three arguments, named: `from`, `to`, and `tokenId`. Their types are, respectively, `address`, `address`, and `uint256`. As such, the actual definition of the `Transfer` event looks like this: `Transfer(address, address, uint256)`.
