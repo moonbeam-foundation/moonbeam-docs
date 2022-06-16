@@ -1,6 +1,6 @@
 ---
 title: Chainlink Oracle
-description: How to request data from a Chainlink Oracle in your Moonbeam Ethereum Dapp using smart contracts or JavaScript. Review the available price feeds on Moonriver.
+description: Review price feed contracts for Moonbeam and learn how to request Moonbeam data from a Chainlink Oracle in your Dapp using smart contracts or JavaScript. 
 ---
 
 # Chainlink Oracle
@@ -9,7 +9,7 @@ description: How to request data from a Chainlink Oracle in your Moonbeam Ethere
 
 ## Introduction {: #introduction } 
 
-Developers can now use [Chainlink's decentralized Oracle network](https://chain.link/){target=_blank} to fetch data in the Moonbase Alpha TestNet and Moonriver. [Price Feeds](https://docs.chain.link/docs/architecture-decentralized-model){target=_blank} contain real-time price data that is continuously updated by Oracle operators in a smart contract so that other smart contracts can fetch and consume it. This guide will cover the available price feeds and how to fetch the latest price data on Moonriver. 
+Developers can now use [Chainlink's decentralized Oracle network](https://chain.link/){target=_blank} to fetch data from a Moonbeam-based network. [Price Feeds](https://docs.chain.link/docs/architecture-decentralized-model){target=_blank} contain real-time price data that is continuously updated by Oracle operators in a smart contract so that other smart contracts can fetch and consume it. This guide will cover the available price feeds and how to fetch the latest price data. 
 
 ## Basic Request Model {: #basic-request-model } 
 
@@ -299,7 +299,7 @@ The end-user can retrieve price feeds with read-only operations via an aggregato
 
 ### Fetch Price Data {: #fetch-price-data } 
 
-There are data feed contracts available for both Moonbase Alpha and Moonriver to help simplify the process of requesting price feeds. In the current configuration for Moonbase Alpha, the Moonbeam team is running only one oracle node that fetches the price from a single API source. Price data is checked every minute and updated in the smart contracts every hour unless there is a price deviation of 1 %. The Moonriver data feed contracts are updated by multiple Chainlink nodes on a regular basis.
+There are data feed contracts available for Moonbeam-based networks to help simplify the process of requesting price feeds. In the current configuration for Moonbase Alpha, the Moonbeam team is running only one oracle node that fetches the price from a single API source. Price data is checked every minute and updated in the smart contracts every hour unless there is a price deviation of 1 %. The Moonbeam and Moonriver data feed contracts are updated by multiple Chainlink nodes on a regular basis.
 
 The data lives in a series of smart contracts (one per price feed) and can be fetched with the aggregator interface:
 
@@ -336,7 +336,19 @@ interface AggregatorV3Interface {
 
 As seen above in the interface, there are five functions for fetching data: `decimal`, `description`, `version`, `getRoundData`, and `latestRoundData`.
 
-Currently, there are [data feed contracts](https://docs.chain.link/docs/data-feeds-moonriver/){target=_blank} for the the following price pairs:
+Currently, there are data feed contracts for [Moonbeam](https://docs.chain.link/docs/data-feeds-moonbeam/){target=_blank}, [Moonriver](https://docs.chain.link/docs/data-feeds-moonriver/){target=_blank}, and Moonbase Alpha for the the following price pairs:
+
+=== "Moonbeam"
+
+    | Base/Quote  |                     Data Feed Contract                      |
+    |:-----------:|:-----------------------------------------------------------:|
+    | ATOM to USD | {{ networks.moonbeam.chainlink.feed.aggregator.atom_usd }} |
+    | BNB to USD  | {{ networks.moonbeam.chainlink.feed.aggregator.bnb_usd }}  |
+    | BTC to USD  | {{ networks.moonbeam.chainlink.feed.aggregator.btc_usd }}  |
+    | ETH to USD  | {{ networks.moonbeam.chainlink.feed.aggregator.eth_usd }}  |
+    | GLMR to USD | {{ networks.moonbeam.chainlink.feed.aggregator.glmr_usd }} |
+    | LINK to USD | {{ networks.moonbeam.chainlink.feed.aggregator.link_usd }} |
+    | USDC to USD | {{ networks.moonbeam.chainlink.feed.aggregator.usdc_usd }} |
 
 === "Moonriver"
     |  Base/Quote  |                      Data Feed Contract                      |
@@ -391,7 +403,7 @@ Currently, there are [data feed contracts](https://docs.chain.link/docs/data-fee
 
 For example, you can use the aggregator interface to fetch the price feed of `BTC to USD` using [Remix](https://remix.ethereum.org/){target=_blank}. If you need help loading a contract into Remix, check out the [Using Remix](/builders/build/eth-api/dev-env/remix/){target=_blank} page of the documentation site.
 
-You will need to connect your MetaMask account to Remix, so make sure you have MetaMask installed and are connected to the Moonbase Alpha TestNet or Moonriver. To get help setting up MetaMask, check out the [Interacting with Moonbeam Using MetaMask](/tokens/connect/metamask/#install-the-metamask-extension){target=_blank} guide.
+You will need to connect your MetaMask account to Remix, so make sure you have MetaMask installed and are connected to the correct network. To get help setting up MetaMask, check out the [Interacting with Moonbeam Using MetaMask](/tokens/connect/metamask/#install-the-metamask-extension){target=_blank} guide.
 
 After creating the file and compiling the contract, you will need to follow these steps:
 
@@ -400,6 +412,11 @@ After creating the file and compiling the contract, you will need to follow thes
 3. If your MetaMask is already connected it will appear in the **Account** selector. Otherwise, you will be prompted by MetaMask to select and connect your account(s)
 4. Select the `AggregatorV3Interface` contract from the **Contract** dropdown
 5. Enter the Data Feed contract address corresponding to `BTC to USD` in the **At Address** field and click the **At Address** button:
+
+    === "Moonbeam"
+        ```
+        {{ networks.moonbeam.chainlink.feed.aggregator.btc_usd }}
+        ```
 
     === "Moonriver"
         ```
