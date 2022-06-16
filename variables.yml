@@ -468,6 +468,16 @@ networks:
       xcm_transactor: '0x0000000000000000000000000000000000000806'
       author_mapping: '0x0000000000000000000000000000000000000807'
       batch: '0x0000000000000000000000000000000000000808'
+    chainlink:
+      feed:
+        aggregator:
+          atom_usd: '0x4F152D143c97B5e8d2293bc5B2380600f274a5dd'
+          bnb_usd: '0x0147f2Ad7F1e2Bc51F998CC128a8355d5AE8C32D'
+          btc_usd: '0x8c4425e141979c66423A83bE2ee59135864487Eb'
+          eth_usd: '0x9ce2388a1696e22F870341C3FC1E89710C7569B5'
+          glmr_usd: '0x4497B606be93e773bbA5eaCFCb2ac5E2214220Eb'
+          link_usd: '0xd61D7398B7734aBe7C4B143fE57dC666D2fe83aD'
+          usdc_usd: '0xA122591F60115D63421f66F752EF9f6e0bc73abC'
     substrate_api_sidecar:
       stable_version: 11.3.3
       tx_weight_to_gas_ratio: 25000
