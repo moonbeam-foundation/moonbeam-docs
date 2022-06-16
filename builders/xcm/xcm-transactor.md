@@ -75,8 +75,8 @@ This guide covers building an XCM message for remote executions using the XCM-Tr
 To be able to send the extrinsics in Polkadot.js Apps, you need to have:
 
  - An [account](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/accounts){target=_blank} with [funds](https://docs.moonbeam.network/builders/get-started/networks/moonbase/#get-tokens){target=_blank}
- - The account from which you are going to send the XCM through the XCM-Transactor pallet must also be registered in a given index to be able to operate through a derivative account of the sovereign account. The registration is done through the root account (SUDO in Moonbase Alpha), so contact us to get it registered
- - Remote calls through XCM-Transactor require `xcUNIT` tokens to pay for the execution fees, which is the [XC-20](/builders/xcm/xc20/){target=_blank} representation of the Alphanet relay chain token `UNIT`. You can acquire some by swapping for DEV tokens (Moonbase Alpha's native token) on [Moonbeam-Swap](https://moonbeam-swap.netlify.app){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha
+ - The account from which you are going to send the XCM through the XCM-Transactor pallet must also be registered in a given index to be able to operate through a derivative account of the sovereign account. The registration is done through the root account (SUDO in Moonbase Alpha), so [contact us](https://discord.gg/PfpUATX) to get it registered. For this example, Alice's account was registered at index `42`
+ - Remote calls through XCM-Transactor require the destination chain fee token to pay for that execution. Because the action is initited in Moonbeam, you'll need to hold its [XC-20](/builders/xcm/xc20/){target=_blank} representation. For this example, because you are sending an XCM message to the relay chain, you need `xcUNIT` tokens to pay for the execution fees, which is the Moonbase Alpha representation of the Alphanet relay chain token `UNIT`. You can acquire some by swapping for DEV tokens (Moonbase Alpha's native token) on [Moonbeam-Swap](https://moonbeam-swap.netlify.app){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha
 
 ![Moonbeam Swap xcUNITs](/images/builders/xcm/xc20/xtokens/xtokens-1.png)
 
@@ -98,7 +98,7 @@ If you've [checked the prerequisites](#xcmtransactor-check-prerequisites), head 
 2. Choose the **xcmTransactor** pallet
 3. Choose the **transactThroughDerivative** extrinsic
 4. Set the destination to **Relay**, to target the relay chain
-5. Enter the index of the derivative account you've been registered to. For this example, the index value is `42`
+5. Enter the index of the derivative account you've been registered to. For this example, the index value is `42`. Remember that the derivate account depends on the index
 6. Set the currency ID to **ForeignAsset**. This is because you are not transferring DEV tokens (*SelfReserve*)
 7. Enter the asset ID. For this example, `xcUNIT` has an asset id of `42259045809535163221576417993425387648`. You can check all available assets IDs in the [XC-20 address section](/builders/xcm/xc20/overview/#current-xc20-assets){target=_blank} 
 8. Set the destination weight. The value must include the `asDerivative` extrinsic as well. However, the weight of the XCM instructions is added by the XCM-Transactor pallet. For this example, `1000000000` is enough
