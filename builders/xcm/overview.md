@@ -129,7 +129,7 @@ Expanding on Moonbeam's unique Ethereum compatibility features, foreign assets w
 
 ![Moonbeam XC-20 XCM Integration With Polkadot](/images/builders/xcm/overview/overview-4.png)
 
-The precompile does not support cross-chain transfers to stay as close as possible to the original ERC-20 interface. Consequently, developers will have to rely on the Substrate API and XCMs to move the assets back to their original chain, or on a different [precompile contract](https://github.com/PureStake/moonbeam/tree/master/precompiles/xtokens) to access XCM based features from the Ethereum API.
+The precompile does not support cross-chain transfers to stay as close as possible to the original ERC-20 interface. Consequently, developers will have to rely on the Substrate API and XCMs to move the assets back to their original chain, or on a different [precompile contract](https://github.com/PureStake/moonbeam/tree/master/precompiles/xtokens){target=_blank} to access XCM based features from the Ethereum API.
 
 Depending on the target blockchain, asset transfers can be done via teleporting or remote transfers, the latter being the most common method used. Initially, Moonbeam will only support remote transfers.
 
