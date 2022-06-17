@@ -313,17 +313,25 @@ To double check that the correct text was set, you can go through the process ag
 
 Congratulations, you've successfully interacted with a smart contract using the Safe!
 
-## Using Moonbeam Safe APIs
-There are APIs available to read from and interact with Moonbeam Safes for Moonbase Alpha, Moonriver, and Moonbeam.
+## Using Moonbeam Safe APIs {: #using-moonbeam-safe-apis }
+There are APIs available to read from and interact with Moonbeam Safes for Moonbeam, Moonriver, and Moonbase Alpha.
 
-|     Network    |                                           Multisig API Page                                              |
-|:--------------:|:--------------------------------------------------------------------------------------------------------:|
-|    Moonbeam    |  [{{ networks.moonbeam.multisig.api_page }}]({{ networks.moonbeam.multisig.api_page }}){target=_blank}   |
-|    Moonriver   | [{{ networks.moonriver.multisig.api_page }}]({{ networks.moonriver.multisig.api_page }}){target=_blank}  |
-| Moonbase Alpha |  [{{ networks.moonbase.multisig.api_page }}]({{ networks.moonbase.multisig.api_page }}){target=_blank}   |
+=== "Moonbeam"
+     ```
+     {{networks.moonbeam.multisig.api_page }}
+     ```
 
-### Retrieve Safe Information
-You can retrieve information about Safes from the Moonbeam Safe API. From the Safe page, copy the address of your Safe:
+=== "Moonriver"
+     ```
+     {{networks.moonriver.multisig.api_page}}
+     ```
+
+=== "Moonbase Alpha"
+     ```
+     {{networks.moonbase.multisig.api_page}}
+     ```
+
+As an example of using the API, try retrieving information about Safes from the Moonbeam Safe API. From the Safe page, copy the address of your Safe:
 
 ![Contract Interaction Call Result](/images/tokens/manage/multisig-safe/safe-30.png)
 
