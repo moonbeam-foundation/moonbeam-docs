@@ -17,7 +17,10 @@ This guide will show you how to leverage the X-Tokens pallet to send XC-20s from
 
 **Developers must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
 
+## Relevant XCM Definitions {: #relevant-xcm-definitions }
+
 --8<-- 'text/xcm/general-xcm-definitions.md'
+--8<-- 'text/xcm/general-xcm-definitions2.md'
 
 ## X-Tokens Pallet Interface {: #x-tokens-pallet-interface}
 
@@ -32,7 +35,7 @@ The X-Tokens pallet provides the following extrinsics (functions):
 
 Where the inputs that need to be provided can be defined as:
 
- - **currencyId/currencies** — the ID/IDs of the currency/currencies being sent via XCM. Different runtimes have different ways to define the IDs. In the case of Moonbeam-based networks, `SelfReserve` refers to the native token, and `OtherReserve` refers to the asset
+ - **currencyId/currencies** — the ID/IDs of the currency/currencies being sent via XCM. Different runtimes have different ways to define the IDs. In the case of Moonbeam-based networks, `SelfReserve` refers to the native token, and `ForeignAsset` refers to the asset ID of the XC-20 (not to be confused with the XC-20 address)
  - **amount** — the number of tokens that are going to be sent via XCM
  - **dest** — a multilocation to define the destination address for the tokens being sent via XCM. It supports different address formats such as 20 or 32 bytes addresses (Ethereum or Substrate)
  - **destWeight** — the maximum amount of execution time you want to provide in the destination chain to execute the XCM message being sent. If not enough weight is provided, the execution of the XCM will fail, and funds might get locked in either the sovereign account or a special pallet. **It is important to correctly set the destination weight to avoid failed XCM executions**
@@ -49,7 +52,7 @@ This guide covers the process of building an XCM message using the X-Tokens pall
 !!! note
     Each parachain can allow/forbid specific methods from a pallet. Consequently, developers must ensure to use methods that are allowed. On the contrary, the transaction will fail with an error similar to `system.CallFiltered`.
 
-In this guide, you'll transfer `xcUNIT` tokens, which is the [XC-20](/builders/xcm/xc20/overview){target=_blank} representation of the Alphanet relay chain token `UNIT`. An `xcUNIT` is an [external XC-20](/builders/xcm/xc20/xc20){target=_blank}. You can adapt this guide for another external XC-20 or a [mintable XC-20](/builders/xcm/xc20/mintable-xc20){target=_blank}.
+You'll be transfering `xcUNIT` tokens, which is the [XC-20](/builders/xcm/xc20/overview){target=_blank} representation of the Alphanet relay chain token `UNIT`. An `xcUNIT` is an [external XC-20](/builders/xcm/xc20/xc20){target=_blank}. You can adapt this guide for another external XC-20 or a [mintable XC-20](/builders/xcm/xc20/mintable-xc20){target=_blank}.
 
 ### Checking Prerequisites {: #xtokens-check-prerequisites}
 
@@ -81,14 +84,14 @@ If you're interested in how the precompile address is calculated, you can check 
 
 In this example, you'll build an XCM message to transfer `xcUNIT` from Moonbase Alpha back to its [relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} through the `transfer` function of the X-Tokens pallet.
 
-Head to the extrinsic page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} and set the following options:
+Head to the extrinsic page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} and set the following options (you can adapt for [mintable XC-20s](/builders/xcm/xc20/mintable-xc20/){target=_blank}):
 
 1. Select the account from which you want to send the XCM
 2. Choose the **xTokens** pallet
 3. Choose the **transfer** extrinsic
 4. Set the currency ID to **ForeignAsset** for external XC-20s or **LocalAssetReserve** for mintable XC-20s. Since `xcUNIT` is an external XC-20, you can choose **ForeignAsset**
 5. Enter the asset ID. For this example, `xcUNIT` has an asset id of `42259045809535163221576417993425387648`
-6. Set the number of tokens to send. For this example, you are sending 1 `xcUNIT`, but you have to account for the 12 decimals of `xcUNIT`, so you can use `1000000000000`
+6. Set the number of tokens to send. For this example, you are sending 1 `xcUNIT`, but you have to account for the 12 decimals of `xcUNIT`
 7. To define the XCM destination multilocation, you have to target an account in the relay chain from Moonbase Alpha as the origin. Therefore, set the following parameters:
 
     | Parameter |     Value      |
@@ -107,6 +110,7 @@ Head to the extrinsic page of [Polkadot.js Apps](https://polkadot.js.org/apps/?r
     The encoded call data for the extrinsict configured above is `0x1e00018080778c30c20fa2ebc0ed18d2cbca1f0010a5d4e800000000000000000000000101010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300ca9a3b00000000`. It also includes a specific recipient that you'll need to change.
 
 ![XCM X-Tokens Transfer Extrinsic](/images/builders/xcm/xc20/xtokens/xtokens-2.png)
+
 
 Once the transaction is processed, the **TargetAccount** should have received the transferred amount minus a small fee that is deducted to execute the XCM on the destination chain. On Polkadot.js Apps, can check the relevant extrinsics and events in [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer/query/0xf163f304b939bc10b6d6abcd9fd12ea00b6f6cd3f12bb2a32b759b56d2f1a40d){target=_blank} and the [relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/explorer/query/0x5b997e806303302007c6829ab8e5b166a8aafc6a68f10950cc5aa8c6981ea605){target=_blank}. 
 
@@ -129,13 +133,13 @@ Head to the extrinsic page of [Polkadot JS Apps](https://polkadot.js.org/apps/?r
 
     If you're adapting this guide for a mintable XC-20, you have to to specify the pallet where the asset was created and the asset ID. Therefore, you would set the following parameters:
 
-    |   Parameter    |     Value      |
-    |:--------------:|:--------------:|
-    |    Version     |       V1       |
-    |    Parents     |       1        |
-    |    Interior    |       X2       |
-    | PalletInstance |       36       |
-    |  GeneralIndex  |    Asset ID    |
+    |   Parameter    |  Value   |
+    |:--------------:|:--------:|
+    |    Version     |    V1    |
+    |    Parents     |    1     |
+    |    Interior    |    X2    |
+    | PalletInstance |    36    |
+    |  GeneralIndex  | Asset ID |
 
 5. Set the asset type as **Fungible**
 6. Set the number of tokens to send. For this example, you are sending 1 `xcUNIT`, but you have to account for the 12 decimals
@@ -179,7 +183,7 @@ The X-Tokens precompile contract allows developers to access XCM token transfer 
      {{networks.moonbase.precompiles.xtokens}}
      ```
 
-### The X-Tokens Solidity Interface {: #the-democracy-solidity-interface } 
+### The X-Tokens Solidity Interface {: #xtokens-solidity-interface } 
 
 [Xtokens.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=_blank} is an interface through which developers can interact with the X-Tokens pallet using the Ethereum API.
 
@@ -198,59 +202,13 @@ The interface includes the following functions:
 
 In the X-Tokens precompile interface, the `Multilocation` structure is defined as follows:
 
-```js
- struct Multilocation {
-    uint8 parents;
-    bytes [] interior;
-}
-```
-
-Note that each multilocation has a `parents` element, defined in this case by a `uint8`, and an array of bytes. Parents refer to how many "hops" in the upwards direction you have to do if you are going through the relay chain. Being a `uint8`, the normal values you would see are:
-
-|   Origin    | Destination | Parents Value |
-|:-----------:|:-----------:|:-------------:|
-| Parachain A | Parachain A |       0       |
-| Parachain A | Relay Chain |       1       |
-| Parachain A | Parachain B |       1       |
-
-The bytes array (`bytes[]`) defines the interior and its content within the multilocation. The size of the array defines the `interior` value as follows:
-
-|    Array     | Size | Interior Value |
-|:------------:|:----:|:--------------:|
-|      []      |  0   |      Here      |
-|    [XYZ]     |  1   |       X1       |
-|  [XYZ, ABC]  |  2   |       X2       |
-| [XYZ, ... N] |  N   |       XN       |
-
-Suppose the bytes array contains data. Each element's first byte (2 hexadecimal numbers) corresponds to the selector of that `XN` field. For example:
-
-| Byte Value |    Selector    | Data Type |
-|:----------:|:--------------:|-----------|
-|    0x00    |   Parachain    | bytes4    |
-|    0x01    |  AccountId32   | bytes32   |
-|    0x02    | AccountIndex64 | u64       |
-|    0x03    |  AccountKey20  | bytes20   |
-|    0x04    | PalletInstance | byte      |
-|    0x05    |  GeneralIndex  | u128      |
-|    0x06    |   GeneralKey   | bytes[]   |
-
-Next, depending on the selector and its data type, the following bytes correspond to the actual data being provided. Note that for `AccountId32`, `AccountIndex64`, and `AccountKey20`, the `network` field seen in the Polkadot.js Apps example is appended at the end. For example:
-
-|    Selector    |       Data Value       |        Represents         |
-|:--------------:|:----------------------:|:-------------------------:|
-|   Parachain    |    "0x00+000007E7"     |     Parachain ID 2023     |
-|  AccountId32   | "0x01+AccountId32+00"  | AccountId32, Network Any  |
-|  AccountKey20  | "0x03+AccountKey20+00" | AccountKey20, Network Any |
-| PalletInstance |       "0x04+03"        |     Pallet Instance 3     |
-
-!!! note
-    The `interior` data usually needs to be wrapped around quotes. On the contrary, you might get an `invalid tuple value` error.
+--8<-- 'text/xcm/xcm-precompile-multilocation.md'
 
 The following code snippet goes through some examples of `Multilocation` structures, as they would need to be fed into the X-Tokens precompile functions:
 
 
 ```js
-// Multilocation targeting the relay chain asset from a parachain
+// Multilocation targeting the relay chain or its asset from a parachain
 {
     1, // parents = 1
     [] // interior = here
