@@ -1,6 +1,6 @@
 ---
 title: Cross-Consensus Messaging (XCM)
-description: An overview of how cross-consensus messaging (XCM) works and how developers can leverage polkadot/kusama xcm to gain access to new assets
+description: An overview of how cross-consensus messaging (XCM) works and how developers can leverage Polkadot/Kusama XCM  xcm to gain access to new assets.
 ---
 
 # Cross-Consensus Messaging (XCM)
@@ -27,10 +27,10 @@ XCM messages contain a series of actions/instructions that are executed by the C
 Some of the most common [XCM instructions](https://github.com/paritytech/xcm-format#5-the-xcvm-instruction-set){target=_blank} include:
 
  - **DepositReserveAsset** — removes the assets(s) from holding and deposits them into the sovereign account of a given destination. Sends an onward XCM message to the specified destination
- - **ReserveAssetDeposited** — accrue into hold derivative assets that represent assets in the origin blockchain
+ - **ReserveAssetDeposited** — accrue into hold derivative asset(s) that represent asset(s) in the origin blockchain
  - **BuyExecution** — pay for the execution of the current message. Funds must be on hold
- - **Transact** — executes the encoded function all
- - **DepositAsset** — subtract the asset(s) that are on hold and deposit equivalent assets (representation) to a given 
+ - **Transact** — executes the encoded function call
+ - **DepositAsset** — subtract the asset(s) that are on hold and deposit equivalent assets (representation) to a given account
 
 For example, an XCM message that transfers KSM from Kusama to Moonriver will include the following XCM instructions (in that order), which are partly executed on Kusama and partly executed on Moonriver:
 
