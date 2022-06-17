@@ -121,11 +121,11 @@ Some of the aforementioned staking interface functions include exit delays that 
 The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonbeam and Moonriver.
 
  - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/)
- - Have an account with over `{{networks.moonbase.staking.min_del_stake}}` tokens. 
+ - Have an account with over `{{networks.moonbase.staking.min_del_stake}}` token. 
   --8<-- 'text/faucet/faucet-list-item.md'
 
 !!! note
-    The example below requires more than `{{networks.moonbase.staking.min_del_stake}}` tokens due to the minimum delegation amount plus gas fees. If you need more than the faucet dispenses, please contact us on Discord and we will be happy to help you. 
+    The example below requires more than `{{networks.moonbase.staking.min_del_stake}}` token due to the minimum delegation amount plus gas fees. If you need more than the faucet dispenses, please contact us on Discord and we will be happy to help you. 
 
 ## Remix Set Up {: #remix-set-up } 
 
@@ -153,7 +153,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 
 ## Delegate a Collator {: #delegate-a-collator } 
 
-For this example, we are going to be delegating a collator on Moonbase Alpha. Delegators are token holders who stake tokens, vouching for specific candidates. Any user that holds a minimum amount of {{networks.moonbase.staking.min_del_stake}} tokens as free balance can become a delegator. 
+For this example, we are going to be delegating a collator on Moonbase Alpha. Delegators are token holders who stake tokens, vouching for specific candidates. Any user that holds a minimum amount of {{networks.moonbase.staking.min_del_stake}} token as free balance can become a delegator. 
 
 You can do your own research and select the candidate you desire. For this guide, the following candidate address will be used: `{{ networks.moonbase.staking.candidates.address1 }}`.
 
@@ -187,7 +187,7 @@ Now that you have obtained the [candidate delegator count](#get-the-candidate-de
 
 1. Find and expand the **delegate** function
 2. Enter the candidate address you would like to delegate (`{{ networks.moonbase.staking.candidates.address1 }}`)
-3. Provide the amount to delegate in Wei. There is a minimum of `{{networks.moonbase.staking.min_del_stake}}` tokens to delegate, so the lowest amount in Wei is `5000000000000000000`
+3. Provide the amount to delegate in Wei. There is a minimum of `{{networks.moonbase.staking.min_del_stake}}` token to delegate, so the lowest amount in Wei is `5000000000000000000`
 4. Enter the delegation count for the candidate
 5. Enter your delegation count
 6. Press **transact**

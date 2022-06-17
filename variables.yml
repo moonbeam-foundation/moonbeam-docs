@@ -119,7 +119,7 @@ networks:
       max_candidates: 80
       round_blocks: 600
       round_hours: 2
-      min_del_stake: 5
+      min_del_stake: 1
       max_del_per_can: 300
       max_del_per_del: 100
       candidates:
