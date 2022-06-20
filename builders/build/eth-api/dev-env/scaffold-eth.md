@@ -97,19 +97,19 @@ In The Graph component of Scaffold-ETH, you need to modify two files to point th
 
 1. First, modify the file `scaffold-eth/packages/services/graph-node/docker-compose.yaml`, under `servers/graph-node/environment/ethereum` to change the RPC endpoint for The Graph node to index.
 
-    For Moonbeam or Moonriver, you can use your own [RPC API endpoint](/builders/get-started/endpoints/){target=_blank}. For Moonbase Alpha or a Moonbeam development node, you can use the following:
+    For Moonbeam or Moonriver, you can use your own [RPC API endpoint](/builders/get-started/endpoints/){target=_blank} and the corresponding network name prefix. For Moonbase Alpha or a Moonbeam development node, you can use the following:
 
     === "Moonbase Alpha"
         ```
-        'mbase:{{ networks.moonbase.rpc_url }}'
+        ethereum: "moonbaseAlpha:{{ networks.moonbase.rpc_url }}"
         ```
 
     === "Moonbeam Dev Node"
         ```
-        'mbase:{{ networks.development.rpc_url }}'
+        ethereum: "moonbeamDevNode:{{ networks.development.rpc_url }}"
         ```
 
-2. Next, you need to modify `subgraph/src/subgraph.template.yaml`. Change the `dataSources/network` field of the contract being deployed to the corresponding network name defined earlier in `docker-compose.yaml`:
+2. Next, you need to modify `subgraph/subgraph.yaml`. Change the `dataSources/network` field of the contract being deployed to the corresponding network name defined earlier in `docker-compose.yaml`:
 
     === "Moonbeam"
         ```
@@ -123,15 +123,15 @@ In The Graph component of Scaffold-ETH, you need to modify two files to point th
 
     === "Moonbase Alpha"
         ```
-        network: mbase 
+        network: moonbaseAlpha 
         ```
 
     === "Moonbeam Dev Node"
         ```
-        network: mbase 
+        network: moonbeamDevNode 
         ```
 
-3. Next, in the same file, `subgraph.template.yaml`, change the `dataSources/source/address` field to:
+3. Next, in the same file, `subgraph.yaml`, change the `dataSources/source/address` field to:
 
     === "Moonbeam"
         ```
