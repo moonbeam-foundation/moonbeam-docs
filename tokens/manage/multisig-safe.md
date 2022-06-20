@@ -179,7 +179,8 @@ A pop-up will appear where you can enter the recipient and the amount of DEV tok
 
 ![Send 1 DEV Token from the Safe to Bob](/images/tokens/manage/multisig-safe/safe-13.png)
 
-Then review the details and click **Submit**. MetaMask will pop-up and you'll notice that instead of sending a transaction, you're sending a message. Click **Sign** to sign the message.
+ 1. Review the details and click **Submit**. MetaMask will pop-up and you'll notice that instead of sending a transaction, you're sending a message
+ 2. Click **Sign** to sign the message
 
 ![Submit Transaction and Sign Message](/images/tokens/manage/multisig-safe/safe-14.png)
 
