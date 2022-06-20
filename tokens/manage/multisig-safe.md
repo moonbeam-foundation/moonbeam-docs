@@ -291,6 +291,7 @@ The **Contract interaction** pop-up will appear and you can fill in the contract
 ![Create Contract Interaction](/images/tokens/manage/multisig-safe/safe-25.png)
 
 If the details look ok, go ahead and:
+
  1. Click **Submit**. MetaMask will pop-up and you'll notice that instead of sending a transaction, you're sending a message
  2. Click **Sign** to sign the message
 
@@ -311,5 +312,45 @@ To double check that the correct text was set, you can go through the process ag
 ![Contract Interaction Call Result](/images/tokens/manage/multisig-safe/safe-29.png)
 
 Congratulations, you've successfully interacted with a smart contract using the Safe!
+
+## Using Moonbeam Safe APIs {: #using-moonbeam-safe-apis }
+There are APIs available to read from and interact with Moonbeam Safes for Moonbeam, Moonriver, and Moonbase Alpha.
+
+=== "Moonbeam"
+     ```
+     {{networks.moonbeam.multisig.api_page }}
+     ```
+
+=== "Moonriver"
+     ```
+     {{networks.moonriver.multisig.api_page}}
+     ```
+
+=== "Moonbase Alpha"
+     ```
+     {{networks.moonbase.multisig.api_page}}
+     ```
+
+As an example of using the API, try retrieving information about Safes from the Moonbeam Safe API. From the Safe page, copy the address of your Safe:
+
+![Contract Interaction Call Result](/images/tokens/manage/multisig-safe/safe-30.png)
+
+Now you can use the API:
+
+ 1. Open the corresponding network page from the Multisig API table above
+ 2. Scroll down to the **safes** section and click on the **/safes/{address}/** endpoint section to expand its panel
+ 3. Click the **Try it out** button on the right
+
+![Contract Interaction Call Result](/images/tokens/manage/multisig-safe/safe-31.png)
+
+A large **Execute** button should appear in the panel.
+
+ 1. Paste the address of your Safe into the **address** input
+ 2. Press **Execute**
+ 3. Information about your safe will appear below
+
+![Contract Interaction Call Result](/images/tokens/manage/multisig-safe/safe-32.png)
+
+Congratulations! You have successfully used the API for Moonbeam Safes. There are still many other endpoints to use, either for convenience or to add into your own app.
 
 --8<-- 'text/disclaimers/third-party-content.md'

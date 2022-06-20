@@ -190,6 +190,8 @@ networks:
         rounds: 3
         hours: 6
       bond: 100
+    multisig:
+      api_page: https://transaction.moonbase.multisig.moonbeam.network/
   moonriver:
     public_rpc_url: https://rpc.api.moonriver.moonbeam.network # for wallets
     rpc_url: RPC-API-ENDPOINT-HERE
@@ -356,6 +358,8 @@ networks:
         rounds: 3
         hours: 6
       bond: 400
+    multisig:
+      api_page: https://transaction.moonriver.multisig.moonbeam.network/
   moonbeam:
     public_rpc_url: https://rpc.api.moonbeam.network # for wallets
     rpc_url: RPC-API-ENDPOINT-HERE
@@ -496,6 +500,8 @@ networks:
         rounds: TBA
         hours: TBA
       bond: TBA
+    multisig:
+      api_page: https://transaction.multisig.moonbeam.network/
   relay_chain:
     p2p: 30334
     rpc: 9934
