@@ -97,19 +97,19 @@ In The Graph component of Scaffold-ETH, you need to modify two files to point th
 
 1. First, modify the file `scaffold-eth/packages/services/graph-node/docker-compose.yaml`, under `servers/graph-node/environment/ethereum` to change the RPC endpoint for The Graph node to index.
 
-    For Moonbeam or Moonriver, you can use your own [RPC API endpoint](/builders/get-started/endpoints/){target=_blank}. For Moonbase Alpha or a Moonbeam development node, you can use the following:
+    For Moonbeam or Moonriver, you can use your own [RPC API endpoint](/builders/get-started/endpoints/){target=_blank} and the corresponding network name prefix. For Moonbase Alpha or a Moonbeam development node, you can use the following:
 
     === "Moonbase Alpha"
         ```
-        'mbase:{{ networks.moonbase.rpc_url }}'
+        ethereum: "moonbaseAlpha:{{ networks.moonbase.rpc_url }}"
         ```
 
     === "Moonbeam Dev Node"
         ```
-        'mbase:{{ networks.development.rpc_url }}'
+        ethereum: "moonbeamDevNode:{{ networks.development.rpc_url }}"
         ```
 
-2. Next, you need to modify `subgraph/src/subgraph.template.yaml`. Change the `dataSources/network` field of the contract being deployed to the corresponding network name defined earlier in `docker-compose.yaml`:
+2. Next, you need to modify `subgraph/subgraph.yaml`. Change the `dataSources/network` field of the contract being deployed to the corresponding network name defined earlier in `docker-compose.yaml`:
 
     === "Moonbeam"
         ```
@@ -123,43 +123,15 @@ In The Graph component of Scaffold-ETH, you need to modify two files to point th
 
     === "Moonbase Alpha"
         ```
-        network: mbase 
+        network: moonbaseAlpha 
         ```
 
     === "Moonbeam Dev Node"
         ```
-        network: mbase 
+        network: moonbeamDevNode 
         ```
 
-3. Next, in the same file, `subgraph.template.yaml`, change the `dataSources/source/address` field to:
-
-    === "Moonbeam"
-        ```
-        {% raw %}
-        address: "{{moonbeam_YourContractAddress}}"
-        {% endraw %}
-        ```
-
-    === "Moonriver"
-        ```
-        {% raw %}
-        address: "{{moonriver_YourContractAddress}}"
-        {% endraw %}
-        ```
-
-    === "Moonbase Alpha"
-        ```
-        {% raw %}
-        address: "{{moonbaseAlpha_YourContractAddress}}"
-        {% endraw %}
-        ```
-        
-    === "Moonbeam Dev Node"
-        ```
-        {% raw %}
-        address: "{{moonbeamDevNode_YourContractAddress}}"
-        {% endraw %}
-        ```
+3. Next, in the same file, `subgraph.yaml`, change the `dataSources/source/address` field to the contract's `0x` prefixed deployed address
 
 4. And lastly, in the same file, `subgraph.template.yaml`, change the `dataSources/mapping/abis/file` field to:
 
@@ -182,6 +154,9 @@ In The Graph component of Scaffold-ETH, you need to modify two files to point th
         ```
         file: ./abis/moonbeamDevNode_YourContract.json
         ```
+
+    !!! note
+        This file name here will be different if you are not deploying the example contract, but follows the same `<Network Name>_<Contract File Name>` format. 
 
 For more information on using The Graph with Moonbeam, please check the dedicated [The Graph page](/builders/integrations/indexers/thegraph/){target=_blank} for more details; or the dedicated [The Graph Node page](/node-operators/indexer-nodes/thegraph-node/){target=_blank} for more information on running a Graph node for Moonbeam.
 
@@ -237,6 +212,8 @@ Next, you need to modify two files in the React component to add Moonbeam networ
 
     ![Contract deployment output](/images/builders/build/eth-api/dev-env/scaffold-eth/scaffold-eth-3.png)
 
+    If you are going to use The Graph, be sure to edit `subgraph.yaml` with the deployed contract's address from the output. If not, you can skip to step 5 to start the React server
+
 3. Next, create a local sub-graph by typing:
 
     ```
@@ -245,11 +222,29 @@ Next, you need to modify two files in the React component to add Moonbeam networ
 
     ![Create sub-graph output](/images/builders/build/eth-api/dev-env/scaffold-eth/scaffold-eth-4.png)
 
-4. Next, deploy the sub-graph to the local graph node: 
+4. Next, deploy the sub-graph to the local graph node by typing: 
 
-    ```
-    yarn graph-ship-local
-    ```
+
+    === "Moonbeam"
+        ```
+        yarn graph-codegen && yarn graph-build --network moonbeam && yarn graph-deploy-local
+        ```
+
+    === "Moonriver"
+        ```
+        yarn graph-codegen && yarn graph-build --network moonriver && yarn graph-deploy-local
+        ```
+
+    === "Moonbase Alpha"
+        ```
+        yarn graph-codegen && yarn graph-build --network moonbaseAlpha && yarn graph-deploy-local
+        ```
+
+    === "Moonbeam Dev Node"
+        ```
+        yarn graph-codegen && yarn graph-build --network moonbeamDevNode && yarn graph-deploy-local
+        ```
+
 
     You will be prompted to enter a version name for the sub-graph being deployed 
 
