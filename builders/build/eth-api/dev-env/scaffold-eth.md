@@ -212,7 +212,7 @@ Next, you need to modify two files in the React component to add Moonbeam networ
 
     ![Contract deployment output](/images/builders/build/eth-api/dev-env/scaffold-eth/scaffold-eth-3.png)
 
-    Be sure to edit `subgraph.yaml` with the deployed contract's address from the output if you are going to use The Graph. If not, you can skip to step 5 to start the React server
+    If you are going to use The Graph, be sure to edit `subgraph.yaml` with the deployed contract's address from the output. If not, you can skip to step 5 to start the React server
 
 3. Next, create a local sub-graph by typing:
 
