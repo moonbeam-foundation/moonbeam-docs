@@ -339,7 +339,7 @@ As an example of using the API, try retrieving information about Safes from the 
 
 Now you can use the API:
 
- 1. Open the corresponding network page from the Multisig API table above
+ 1. Open the API page for the corresponding network
  2. Scroll down to the **safes** section and click on the **/safes/{address}/** endpoint section to expand its panel
  3. Click the **Try it out** button on the right
 
