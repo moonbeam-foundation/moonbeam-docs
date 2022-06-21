@@ -39,9 +39,9 @@ The breakdown of responsibilities for each role is as follows:
 
 The Solidity interface for Mintable XC-20 tokens is a combination of the following three interfaces:
 
- - [ERC-20 Interface](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol) — as described in the [XC-20 overview page](/builders/xcm/xc20/overview/#the-erc20-interface)
- - [Permit Interface (EIP-712 compliant)](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol) — as described in the [XC-20 overview page](/builders/xcm/xc20/overview/#the-erc20-permit-interface)
- - [Mintable interface](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/LocalAsset.sol) — as described in the [following section](#additional-functions)
+ - [ERC-20 Interface](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=_blank} — as described in the [XC-20 overview page](/builders/xcm/xc20/overview/#the-erc20-interface){target=_blank}
+ - [Permit Interface (EIP-712 compliant)](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol){target=_blank} — as described in the [XC-20 overview page](/builders/xcm/xc20/overview/#the-erc20-permit-interface){target=_blank}
+ - [Mintable interface](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/LocalAsset.sol){target=_blank} — as described in the [following section](#additional-functions)
 
 ## Mintable XC-20 Specific Functions {: #additional-functions }
 
