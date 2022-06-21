@@ -6,7 +6,7 @@ keywords: ethereum, moonbeam, ecrecover, sha256, sha3FIPS256, ripemd-160, Bn128A
 
 # Ethereum MainNet Precompiled Contracts
 
-![Precomiled Contracts Banner](/images/builders/build/canonical-contracts/precompiles/eth-mainnet/eth-mainnet-banner.png)
+![Precompiled Contracts Banner](/images/builders/build/canonical-contracts/precompiles/eth-mainnet/eth-mainnet-banner.png)
 
 ## Introduction {: #introduction } 
 

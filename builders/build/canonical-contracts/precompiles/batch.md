@@ -1,127 +1,124 @@
 ---
-title:  Native Token ERC-20 Precompile
-description:  Learn how to access and interact with an ERC-20 representation of the native token on Moonbeam through the precompiled ERC-20 Interface.
-keywords: solidity, ethereum, native, token, moonbeam, precompiled, contracts
+title:  Batch Precompile
+description:  Learn how to send multiple transactions in one with Moonbeam's precompiled batch contract.
+keywords: solidity, ethereum, batch, transaction, moonbeam, precompiled, contracts
 ---
 
-#  Native Token ERC-20 Precompile
+#  Batch Precompile
 
-![Precompiled Contracts Banner](/images/builders/build/canonical-contracts/precompiles/erc20/erc20-banner.png)
+![Precomiled Contracts Banner](/images/builders/build/canonical-contracts/precompiles/erc20/erc20-banner.png)
 
 ## Introduction {: #introduction } 
 
-The native token ERC-20 precompiled contract on Moonbeam allows developers to interact with the native protocol token through an ERC-20 interface.
+The batch precompiled contract on Moonbeam allows developers to combine multiple calls into one.
 
-One of the main benefits of this precompile is that it removes the necessity of having a wrapped representation of the protocol token as an ERC-20 smart contract, such as WETH on Ethereum. Furthermore, it prevents having multiple wrapped representations of the same protocol token. Consequently, DApps that need to interact with the protocol token via an ERC-20 interface can do so without needing a separate smart contract.
+An application that requires multiple transactions can enhance its user experience by batching its transactions into one. Additionally, gas fees can be reduced by avoiding the initiation of multiple transactions.
 
-Under the hood, the [ERC-20 precompile](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/src/lib.rs){target=_blank} executes specific Substrate actions related to the Substrate balances pallet, which is coded in Rust. The balances pallet provides functionality for handling the [various types of balances on Moonbeam](/builders/get-started/eth-compare/balances/#moonbeam-account-balances){target=_blank}, setting the free balance, transferring balances, and more.
-
-This guide will show you how to interact with DEV tokens, the native protocol tokens for the Moonbase Alpha TestNet, via the ERC-20 precompile.
-
-## The ERC-20 Interface {: #the-erc20-interface }
-
-The [ERC20.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=_blank} interface on Moonbeam follows the [EIP-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20){target=_blank} which is the standard API interface for tokens within smart contracts. The standard defines the required functions and events that a token contract must implement to be interoperable with different applications.
+The precompile interacts directly with substrate's evm pallet. Every call provided to one of its functions will act as if it is a [delegate call](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol).
 
 The precompile is located at the following address:
 
 === "Moonbeam"
      ```
-     {{networks.moonbeam.precompiles.erc20 }}
+     {{networks.moonbeam.precompiles.batch }}
      ```
 
 === "Moonriver"
      ```
-     {{networks.moonriver.precompiles.erc20 }}
+     {{networks.moonriver.precompiles.batch }}
      ```
 
 === "Moonbase Alpha"
      ```
-     {{networks.moonriver.precompiles.erc20 }}
+     {{networks.moonriver.precompiles.batch }}
      ```
 
---8<-- 'text/erc20-interface/erc20-interface.md'
+## The Batch Interface {: #the-batch-interface }
 
-!!! note 
-    The ERC-20 precompile does not include `deposit` and `withdraw` functions and subsequent events that are expected from a wrapped token contract, such as WETH.
+[Batch.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank} is an interface that allows developers to interact with the precompile's three methods.
+
+--8<-- 'text/batch/batch-interface.md'
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
 To follow along with this tutorial, you will need to have:
 
 - [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
-- Create or have two accounts on Moonbase Alpha to test out the different features in the ERC-20 precompile
-- At least one of the accounts will need to be funded with `DEV` tokens. 
+- Create or have an account on Moonbase Alpha to test out the different features in the batch precompile
+- At least one of the accounts will need to be funded with `DEV` tokens.
  --8<-- 'text/faucet/faucet-list-item.md'
-
-## Add Token to MetaMask {: #add-token-to-metamask }
-
-If you want to interact with Moonbase Alpha DEV tokens like you would with an ERC-20 in MetaMask, you can create a custom token using the precompile address.
-
-To get started, open up MetaMask and make sure you are [connected to Moonbase Alpha](/tokens/connect/metamask/) and:
-
-1. Switch to the **Assets** tab
-2. Click on **Import tokens**
-
-![Import Tokens from Assets Tab in MetaMask](/images/builders/build/canonical-contracts/precompiles/erc20/erc20-1.png)
-
-Now, you can create a custom token:
-
-1. Enter the precompile address for the token contract address - `{{networks.moonbase.precompiles.erc20 }}`. As soon as you enter the address, the token symbol and decimal should automatically populate. If they don't you can enter `DEV` for the symbol and `18` for the decimal places
-2. Click **Add Custom Token**
-
-![Add Custom Token](/images/builders/build/canonical-contracts/precompiles/erc20/erc20-2.png)
-
-MetaMask will prompt you to import the tokens. You can review the token details and click **Import Tokens** to import DEV tokens into your wallet. 
-
-![Confirm and Import Tokens](/images/builders/build/canonical-contracts/precompiles/erc20/erc20-3.png)
-
-And that's it! You've successfully added the DEV token as a custom ERC-20 token on the Moonbase Alpha TestNet.
 
 ## Interact with the Precompile Using Remix {: #interact-with-the-precompile-using-remix } 
 
-You can interact with the ERC-20 precompile using [Remix](https://remix.ethereum.org/). To add the precompile to Remix, you will need to:
+You can interact with the batch precompile using [Remix](https://remix.ethereum.org/). To add the precompile to Remix and follow along with the tutorial, you will need to:
 
-1. Get a copy of [ERC20.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol) 
+1. Get a copy of [Batch.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank}
 2. Paste the file contents into a Remix file named **IERC20.sol**
+3. Get a copy of [SimpleMessage.sol](#simple-message)
+4. Paste the file contents into a Remix file named **SimpleMessage.sol**
+
+### SimpleMessage.sol {: #simple-message}
+
+The contract `SimpleMessage.sol` will be used as an example of batching contract interactions, but in practice any contract can be interacted with.
+
+ --8<-- 'text/batch/simple-message.md'
 
 ### Compile the Contract {: #compile-the-contract } 
 
-Next, you will need to compile the interface in Remix:
+Next, you will need to compile both files in Remix:
 
-1. Click on the **Compile** tab, second from top
-2. Compile the **IER20.sol** file
+1. Make sure that you have the **Batch.sol** file open
+2. Click on the **Compile** tab, second from top
+3. Compile the **Batch.sol** file
 
-![Compiling IERC20.sol](/images/builders/build/canonical-contracts/precompiles/erc20/erc20-4.png)
+![Compiling IERC20.sol](/images/builders/build/canonical-contracts/precompiles/batch/batch-1.png)
 
 If the interface was compiled successfully, you will see a green checkmark next to the **Compile** tab.
 
-### Access the Contract {: #access-the-contract } 
+### Access the Precompile {: #access-the-precompile } 
 
-Instead of deploying the ERC-20 precompile, you will access the interface given the address of the precompiled contract:
+Instead of deploying the Batch precompile, you will access the interface given the address of the precompiled contract:
 
 1. Click on the **Deploy and Run** tab directly below the **Compile** tab in Remix. Please note the precompiled contract is already deployed
 2. Make sure **Injected Web3** is selected in the **Environment** dropdown. Once you select **Injected Web3**, you might be prompted by MetaMask to connect your account to Remix
 3. Make sure the correct account is displayed under **Account**
-4. Ensure **IERC20 - IERC20.sol** is selected in the **Contract** dropdown. Since this is a precompiled contract, there is no need to deploy any code. Instead we are going to provide the address of the precompile in the **At Address** Field
-5. Provide the address of the ERC-20 precompile: `{{networks.moonbase.precompiles.erc20}}` and click **At Address**
+4. Ensure **Batch - Batch.sol** is selected in the **Contract** dropdown. Since this is a precompiled contract, there is no need to deploy any code. Instead we are going to provide the address of the precompile in the **At Address** Field
+5. Provide the address of the Batch precompile: `{{networks.moonbase.precompiles.batch}}` and click **At Address**
 
-![Access the address](/images/builders/build/canonical-contracts/precompiles/erc20/erc20-5.png)
+![Access the address](/images/builders/build/canonical-contracts/precompiles/batch/batch-2.png)
 
 The **IERC20** precompile will appear in the list of **Deployed Contracts**.
 
-### Get Basic Token Information {: #get-basic-token-information } 
+### Deploy SimpleMessage
 
-The ERC-20 interface allows you to quickly obtain token information, including the token's total supply, name, symbol, and decimal places. You can get this information by following these steps:
+On the other hand, SimpleMessage.sol will be deployed as a new contract. Before starting this section, repeat the [compilation step](#compile-the-contract) with the **SimpleMessage.sol** file.
 
-1. Expand the IERC20 contract under **Deployed Contracts**
-2. Click **`decimals`** to get the decimal places of the Moonbase Alpha native protocol token
-3. Click **`name`** to get the name of the token
-4. Click **`symbol`** to get the symbol of the token
-5. Click **`totalSupply`** to obtain the total supply of tokens in existence on Moonbase Alpha
+1. Click on the **Deploy and Run** tab directly below the **Compile** tab in Remix
+2. Make sure **Injected Web3** is selected in the **Environment** dropdown. Once you select **Injected Web3**, you might be prompted by MetaMask to connect your account to Remix
+3. Make sure the correct account is displayed under **Account**
+4. Ensure **SimpleMessage - SimpleMessage.sol** is selected in the **Contract** dropdown
+5. Click **Deploy**
+6. Confirm the Metamask transaction that appears by clicking **Confirm**
+
+![Deploy SimpleMessage](/images/builders/build/canonical-contracts/precompiles/batch/batch-3.png)
+
+### Finding a Contract Interaction's Call Data {: #finding-a-contract-interactions-call-data } 
+
+Visual interfaces like Remix and handy libraries like ethers.js hide the way that ethereum transactions interact with solidity smart contracts. The name and input types of a function are hashed into a [function selector](https://docs.soliditylang.org/en/latest/abi-spec.html#function-selector-and-argument-encoding) and the input data is encoded. These two pieces are then combined and sent as the transaction's call data. To send a subtransaction within a batch transaction, the sender to know its call data beforehand. 
+
+Try finding a transaction's call data using remix:
+
+1. Expand the SimpleMessage contract under **Deployed Contracts**
+2. Expand the **`setMessage`** function
+3. Enter a number and a message of your choice for **id** & **message**. In this example, **id** will be 1 and **message** will be "moonbeam"
+4. Instead of sending the transaction, click the copy button next to the **transact** button to copy the call data
 
 ![Total Supply](/images/builders/build/canonical-contracts/precompiles/erc20/erc20-6.png)
 
-The response for each call will be displayed under the corresponding function. 
+Now you have the transaction's call data! Considering the example values of 1 and "moonbeam", we can keep an eye out for their encoded values in the call data:
+
+ --8<-- 'text/batch/simple-message-call-data.md'
+
 
 ### Get Account Balance {: #get-account-balance } 
 
