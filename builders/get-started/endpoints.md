@@ -17,15 +17,15 @@ If you are looking for an API provider suitable for production use, you can chec
 
 ### Moonbeam {: #moonbeam }
 
---8<-- 'code/endpoints/moonbeam.md'
+--8<-- 'text/endpoints/moonbeam.md'
 
 ### Moonriver {: #moonriver }
 
---8<-- 'code/endpoints/moonriver.md'
+--8<-- 'text/endpoints/moonriver.md'
 
 ### Moonbase Alpha {: #moonbase-alpha }
 
---8<-- 'code/endpoints/moonbase.md'
+--8<-- 'text/endpoints/moonbase.md'
 
 ## Endpoint Providers {: #endpoint-providers }
 
