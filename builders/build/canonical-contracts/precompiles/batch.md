@@ -12,9 +12,9 @@ keywords: solidity, ethereum, batch, transaction, moonbeam, precompiled, contrac
 
 The batch precompiled contract on Moonbeam allows developers to combine multiple calls into one.
 
-An application that requires multiple transactions can enhance its user experience by batching its transactions into one. Additionally, gas fees can be reduced by avoiding the initiation of multiple transactions.
+Developers can enhance user experience with batched transactions. Additionally, gas fees can be reduced by avoiding the initiation of multiple transactions.
 
-The precompile interacts directly with substrate's evm pallet. Every call provided to one of its functions will act as if it is a [delegate call](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol).
+The precompile interacts directly with substrate's evm pallet. Every call provided to one of its sfunctions will act as if it is a [delegate call](https://docs.soliditylang.org/en/v0.8.15/introduction-to-smart-contracts.html#delegatecall-callcode-and-libraries){target=_blank}.
 
 The precompile is located at the following address:
 
@@ -44,13 +44,13 @@ The precompile is located at the following address:
 To follow along with this tutorial, you will need to have:
 
 - [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
-- Create or have an account on Moonbase Alpha to test out the different features in the batch precompile
+- Create or have two accounts on Moonbase Alpha to test out the different features in the batch precompile
 - At least one of the accounts will need to be funded with `DEV` tokens.
  --8<-- 'text/faucet/faucet-list-item.md'
 
 ## Interact with the Precompile Using Remix {: #interact-with-the-precompile-using-remix } 
 
-You can interact with the batch precompile using [Remix](https://remix.ethereum.org/). To add the precompile to Remix and follow along with the tutorial, you will need to:
+You can interact with the batch precompile using [Remix](https://remix.ethereum.org/){target=_blank}. To add the precompile to Remix and follow along with the tutorial, you will need to:
 
 1. Get a copy of [Batch.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank}
 2. Paste the file contents into a Remix file named **IERC20.sol**
@@ -102,9 +102,34 @@ On the other hand, SimpleMessage.sol will be deployed as a new contract. Before 
 
 ![Deploy SimpleMessage](/images/builders/build/canonical-contracts/precompiles/batch/batch-3.png)
 
+### Send Native Currency via Precompile
+
+Sending native currency with the batch precompile is more involved than pressing a few buttons in Remix or Metamask. 
+
+Transactions have a value field to specify the amount of native currency being sent with it. In Remix, this is represented by the **VALUE** input in the **DEPLOY & RUN TRANSACTIONS** tab. However, for the batch precompile, this data is provided within the *value* array input of the batch functions.
+
+Try transferring native currency to two wallets of your choice via the batch precompile on Moonbase Alpha:
+
+1. Make sure that you have at least 0.5 DEV in your connected wallet
+2. Expand the Batch contract under **Deployed Contracts**
+3. Expand the **batchAll** function
+4. For the *to* input, insert your addresses in the following format: `["0xADDRESS1", "0xADDRESS2"]`, where 0xADDRESS1 is the address of the first wallet of your choice and 0xADDRESS2 is the address of the second wallet of your choice
+5. For the value input, insert the amount you wish to transfer in wei for each address. For example, `["100000000000000000", "200000000000000000"]` will transfer 0.1 DEV to 0xADDRESS1 and 0.2 DEV to 0xADDRESS2
+6. For both of the remaining *call_data* and *gas_limit* inputs, insert `[]`. Call data and gas limit are not a concern for transferring native tokens
+7. Press **transact**
+8. Press **Confirm** in the Metamask extension to confirm the transaction
+
+![Send Batch Transfer](/images/builders/build/canonical-contracts/precompiles/batch/batch-4.png)
+
+Once the transaction is complete, be sure to check both of the accounts' balances, either in Metamask or in a [block explorer](/builders/get-started/explorers/){target=_blank}.  
+
+!!! note
+     Typically if you wanted to send the native currency, you would have to set the value within the overall transaction and interact with a payable function. However, since the Batch precompile interacts directly with Substrate code, this is not necessary.
+
+
 ### Finding a Contract Interaction's Call Data {: #finding-a-contract-interactions-call-data } 
 
-Visual interfaces like Remix and handy libraries like ethers.js hide the way that ethereum transactions interact with solidity smart contracts. The name and input types of a function are hashed into a [function selector](https://docs.soliditylang.org/en/latest/abi-spec.html#function-selector-and-argument-encoding) and the input data is encoded. These two pieces are then combined and sent as the transaction's call data. To send a subtransaction within a batch transaction, the sender to know its call data beforehand. 
+Visual interfaces like Remix and handy libraries like ethers.js hide the way that ethereum transactions interact with solidity smart contracts. The name and input types of a function are hashed into a [function selector](https://docs.soliditylang.org/en/latest/abi-spec.html#function-selector-and-argument-encoding){target=_blank} and the input data is encoded. These two pieces are then combined and sent as the transaction's call data. To send a subtransaction within a batch transaction, the sender to know its call data beforehand. 
 
 Try finding a transaction's call data using remix:
 
@@ -113,87 +138,25 @@ Try finding a transaction's call data using remix:
 3. Enter a number and a message of your choice for **id** & **message**. In this example, **id** will be 1 and **message** will be "moonbeam"
 4. Instead of sending the transaction, click the copy button next to the **transact** button to copy the call data
 
-![Total Supply](/images/builders/build/canonical-contracts/precompiles/erc20/erc20-6.png)
+![Transaction Call Data](/images/builders/build/canonical-contracts/precompiles/batch/batch-5.png)
 
 Now you have the transaction's call data! Considering the example values of 1 and "moonbeam", we can keep an eye out for their encoded values in the call data:
 
  --8<-- 'text/batch/simple-message-call-data.md'
 
+The calldata can be broken into 5 lines, where the first line is the function selector and the next four are the input data. 
 
-### Get Account Balance {: #get-account-balance } 
+Note that the second line is equal to 1, which is the **id** that was provided. 
 
-You can check the balance of any address on Moonbase Alpha by calling the `balanceOf` function and passing in an address:
+What's left has to do with the **message** input. These last three lines are tricky, since strings are encoded with [RLP encoding](https://ethereum.org/en/developers/docs/data-structures-and-encoding/rlp/){target=_blank}. For sake of simplicity, understand that the third line refers to an offset, the fourth line refers to the string's length, and the fifth line is "moonbeam" in hexadecimal format with zeros for padding.
 
-1. Expand the **`balanceOf`** function
-2. Enter an address you would like to check the balance of for the **owner**
-2. Click **call**
+### Batching Subtransactions
 
-![Get Balance of an Account](/images/builders/build/canonical-contracts/precompiles/erc20/erc20-7.png)
 
-Your balance will be displayed under the `balanceOf` function.
 
-### Approve a Spend {: #approve-a-spend } 
+## Batch.sol with Ethers.js
 
-To approve a spend, you'll need to provide an address for the spender and the number of tokens  that the spender is allowed to spend. The spender can be an externally owned account or a smart contract. For this example, you can approve the spender to spend 1 DEV token. To get started, please follow these steps:
 
-1. Expand the **`approve`** function
-2. Enter the address of the spender. You should have created two accounts before starting, so you can use the second account as the spender
-3. Enter the amount of tokens the spender can spend for the **value**. For this example, you can allow the spender to spend 1 DEV token in Wei units (`1000000000000000000`) 
-4. Click **transact**
-5. MetaMask will pop up, and you will be prompted to review the transaction details. Click **View full transaction details** to review the amount to be sent and the address of the spender
-6. If everything looks ok, you can click **Confirm** to send the transaction
 
-![Confirm Approve Transaction](/images/builders/build/canonical-contracts/precompiles/erc20/erc20-8.png)
-
-After the transaction has successfully gone through, you'll notice that the balance of your account hasn't changed. This is because you have only approved the spend for the given amount, and the spender hasn't spent the funds. In the next section, you will use the `allowance` function to verify that the spender is able to spend 1 DEV token on your behalf.
-
-### Get Allowance of Spender {: #get-allowance-of-spender } 
-
-To check that the spender received the allowance approved in the [Approve a Spend](#approve-a-spend) section, you can:
-
-1. Expand the **`allowance`** function
-2. Enter your address for the **owner**
-3. Enter the address of the **spender** that you used in the previous section
-4. Click **call**
-
-![Get Allowance of Spender](/images/builders/build/canonical-contracts/precompiles/erc20/erc20-9.png)
-
-Once the call is complete, the allowance of the spender will be displayed, which should be equivalent to 1 DEV token (`1000000000000000000`).
-
-### Send Transfer {: #send-transfer }
-
-To do a standard transfer and send tokens from your account directly to another account, you can call the `transfer` function by following these steps:
-
-1. Expand the **`transfer`** function
-2. Enter the address to send DEV tokens to. You should have created two accounts before starting, so you can use the second account as the recipient
-3. Enter the amount of DEV tokens to send. For this example, you can send 1 DEV token (`1000000000000000000`)
-4. Click **transact**
-5. MetaMask will pop up, you can review the transaction details, and if everything looks good, click **Confirm**
-
-![Send Standard Transfer](/images/builders/build/canonical-contracts/precompiles/erc20/erc20-10.png)
-
-Once the transaction is complete, you can [check your balance](#get-account-balance) using the `balanceOf` function or by looking at MetaMask, and notice that this time your balance decreased by 1 DEV token. You can also use the `balanceOf` function to ensure that the recipients balance has increased by 1 DEV token as expected.
-
-### Send TransferFrom {: #send-transferfrom }
-
-So far, you should have approved an allowance of 1 DEV token for the spender and sent 1 DEV token via the standard `transfer` function. The `transferFrom` function varies from the standard `transfer` function as it allows you to define the address to which you want to send the tokens. So you can specify an address that has an allowance or your address as long as you have funds. For this example, you will use the spender's account to initiate a transfer of the allowed funds from the owner to the spender. The spender can send the funds to any account, but you can send the funds from the owner to the spender for this example.
-
-First, you need to switch to the spender's account in MetaMask. Once you switch to the spender's account, you'll notice that the selected address in Remix under the **Accounts** tab is now the spender's.
-
-![Switch accounts Remix](/images/builders/build/canonical-contracts/precompiles/erc20/erc20-11.png)
-
-Next, you can initiate and send the transfer, to do so:
-
-1. Expand the **`transferFrom`** function
-2. Enter your address as the owner in the **from** field
-3. Enter the recipient address, which should be the spender's address, in the **to** field
-4. Enter the amount of DEV tokens to send. Again, the spender is currently only allowed to send 1 DEV token, so enter `1000000000000000000`
-5. Click **transact**
-
-![Send Standard Transfer](/images/builders/build/canonical-contracts/precompiles/erc20/erc20-12.png)
-
-Once the transaction is complete, you can [check the balance](#get-account-balance) of the owner and spender using the `balanceOf` function. The spender's balance should have increased by 1 DEV token, and their allowance should now be depleted. To verify that the spender no longer has an allowance, you can call the `allowance` function, passing in the owner and spender's addresses. You should receive a result of 0.
-
-![Zero Allowance](/images/builders/build/canonical-contracts/precompiles/erc20/erc20-13.png)
 
 And that's it! You've successfully interacted with the ERC-20 precompile using MetaMask and Remix!
