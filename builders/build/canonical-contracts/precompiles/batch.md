@@ -102,6 +102,8 @@ On the other hand, SimpleMessage.sol will be deployed as a new contract. Before 
 
 ![Deploy SimpleMessage](/images/builders/build/canonical-contracts/precompiles/batch/batch-3.png)
 
+The **SimpleMessage** contract will appear in the list of **Deployed Contracts**.
+
 ### Send Native Currency via Precompile {: #send-native-currency-via-precompile }
 
 Sending native currency with the batch precompile is more involved than pressing a few buttons in Remix or Metamask. 
@@ -115,7 +117,7 @@ Try transferring native currency to two wallets of your choice via the batch pre
 3. Expand the **batchAll** function
 4. For the *to* input, insert your addresses in the following format: `["0xADDRESS1", "0xADDRESS2"]`, where 0xADDRESS1 is the address of the first wallet of your choice and 0xADDRESS2 is the address of the second wallet of your choice
 5. For the value input, insert the amount you wish to transfer in wei for each address. For example, `["100000000000000000", "200000000000000000"]` will transfer 0.1 DEV to 0xADDRESS1 and 0.2 DEV to 0xADDRESS2
-6. For both of the remaining *call_data* and *gas_limit* inputs, insert `[]`. Call data and gas limit are not a concern for transferring native tokens
+6. For both of the remaining *call_data* and *gas_limit* inputs, insert `[]`. Call data and gas limit are not a concern for transferring native currency
 7. Press **transact**
 8. Press **Confirm** in the Metamask extension to confirm the transaction
 
@@ -124,14 +126,14 @@ Try transferring native currency to two wallets of your choice via the batch pre
 Once the transaction is complete, be sure to check both of the accounts' balances, either in Metamask or in a [block explorer](/builders/get-started/explorers/){target=_blank}. Congratulations! You've now sent a batched transfer via the Batch precompile.
 
 !!! note
-     Typically if you wanted to send the native currency, you would have to set the value within the overall transaction and interact with a payable function. However, since the Batch precompile interacts directly with Substrate code, this is not necessary.
+     Typically if you wanted to send the native currency to or through a contract, you would have to set the value within the overall transaction and interact with a payable function. However, since the Batch precompile interacts directly with Substrate code, this is not necessary.
 
 
 ### Finding a Contract Interaction's Call Data {: #finding-a-contract-interactions-call-data } 
 
 Visual interfaces like Remix and handy libraries like ethers.js hide the way that ethereum transactions interact with solidity smart contracts. The name and input types of a function are hashed into a [function selector](https://docs.soliditylang.org/en/latest/abi-spec.html#function-selector-and-argument-encoding){target=_blank} and the input data is encoded. These two pieces are then combined and sent as the transaction's call data. To send a subtransaction within a batch transaction, the sender to know its call data beforehand. 
 
-Try finding a transaction's call data using remix:
+Try finding a transaction's call data using Remix:
 
 1. Expand the SimpleMessage contract under **Deployed Contracts**
 2. Expand the **`setMessage`** function
@@ -162,7 +164,7 @@ Try using the precompile to send a transaction:
 2. Expand the Batch contract under **Deployed Contracts**
 3. Expand the **batchAll** function
 4. For the *to* input, insert your addresses in the following format: `["0xSIMPLEMESSAGEADDRESS"]`, where 0xSIMPLEMESSAGEADDRESS is the address of the SimpleMessage contract that you previously copied
-5. For the value input, since SimpleMessage does not require any native tokens to be paid to it, insert `["0"]` for 0 Wei
+5. For the value input, since SimpleMessage does not require any native currency to be paid to it, insert `["0"]` for 0 Wei
 6. For the *call_data* input, insert your call data in the following format: `["CALL_DATA"]`, where CALL_DATA is the call data that you found in the previous section
 7. For the *gas_limit* input, insert `[]`. You can put in a gas limit value, but it is optional 
 8. Press **transact**
@@ -216,8 +218,8 @@ And that's it! You've successfully interacted with the ERC-20 precompile using M
 
 ## Finding Call Data with Ethers.js {: #finding-call-data-with-ethers }
 
-If you have only followed the [Ethers.js tutorial](/builders/build/eth-api/libraries/ethersjs/) on Moonbeam, you may find it difficult to find the call data for a function. The answer is hidden within Ether's `utils.Interface` object, where the [encodeFunctionData]() function allows you to input your function name and inputs to receive the resultant call data.
+If you have only followed the [Ethers.js tutorial](/builders/build/eth-api/libraries/ethersjs/) on Moonbeam, you may find it difficult to find the call data for a function. The answer is hidden within Ether's `utils.Interface` object, where the [encodeFunctionData](https://docs.ethers.io/v5/api/utils/abi/interface/#Interface--encoding){target=_blank} function allows you to input your function name and inputs to receive the resultant call data.
 
- --8<-- 'code/batch/ethers-batch.js'
+ --8<-- 'code/batch/ethers-batch.md'
 
 Afterwards, you should be all set to interact with the batch precompile as one typically would with a contract in Ethers.
