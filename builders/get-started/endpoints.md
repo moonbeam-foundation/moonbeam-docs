@@ -47,9 +47,7 @@ To get started, head to the [Ankr Protocol](https://www.ankr.com/protocol/){targ
 2. Select the [Moonbeam Network](https://www.ankr.com/protocol/public/moonbeam/){target=_blank}
 3. Copy the URL provided and start making requests instantly. No sign up or KYC required
 
-![Ankr](/images/builders/get-started/endpoints/endpoints-5.png)
-
-
+![Ankr](/images/builders/get-started/endpoints/endpoints-1.png)
 
 ### Blast {: #blast}
 
@@ -63,7 +61,7 @@ To get started, you'll need to head to [Blast](https://blastapi.io/){target=_bla
 4. Confirm the selected network and Press **Activate**
 5. You'll now see your chosen network under **Active Endpoints**. Click on the network and you'll see your custom RPC and WSS endpoints on the next page 
 
-![Bware Labs](/images/builders/get-started/endpoints/endpoints-1.png)
+![Bware Labs](/images/builders/get-started/endpoints/endpoints-2.png)
 
 ### Dwellir {: #dwellir }
 
@@ -90,7 +88,7 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 2. Select the network from the dropdown
 3. Your custom API endpoint will be generated automatically
 
-![OnFinality](/images/builders/get-started/endpoints/endpoints-2.png)
+![OnFinality](/images/builders/get-started/endpoints/endpoints-4.png)
 
 ### Pocket Network {: #pokt }
 
@@ -103,7 +101,7 @@ To get your own endpoint, go to [Pocket Network](https://mainnet.portal.pokt.net
 3. Enter the name of your DApp and select your corresponding network
 4. Your new endpoint will be generated and displayed for you in the following app screen
 
-![Pocket Network](/images/builders/get-started/endpoints/endpoints-4.png)
+![Pocket Network](/images/builders/get-started/endpoints/endpoints-5.png)
 
 You don't have to generate a new DApp for every endpoint! You can add a new chain to your preexisting DApp:  
 
