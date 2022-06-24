@@ -62,15 +62,19 @@ From within your Hardhat project, open your `hardhat.config.js` file. You'll nee
 ```js
 require("@nomiclabs/hardhat-etherscan");
 
-const { privateKey, moonscanApiKey } = require('./secrets.json');
+const { privateKey, moonbeamMoonscanAPIKey, moonriverMoonscanAPIKey } = require('./secrets.json');
 
 module.exports = {
   networks: {
+    moonbeam: { ... },
+    moonriver: { ... },
     moonbase: { ... }
   },
   etherscan: {
     apiKey: {
-      moonbaseAlpha: moonscanApiKey
+      moonbeam: moonbeamMoonscanAPIKey, // Moonbeam Moonscan API Key
+      moonriver: moonriverMoonscanAPIKey, // Moonriver Moonscan API Key
+      moonbaseAlpha: moonbeamMoonscanAPIKey, // Moonbeam Moonscan API Key    
     }
   }
 };
