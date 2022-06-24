@@ -23,7 +23,7 @@ First, make sure you're [running a collator node](/node-operators/networks/run-a
 
 ![Collator Terminal Logs](/images/node-operators/networks/collators/account-management/account-1.png)
 
-Next, session keys can be created/rotated by sending an RPC call to the HTTP endpoint with the `author_rotateKeys` method. When you call `author_rotateKeys`, the response will contain an author ID (Nimbus key) and a VRF key. The author ID will be used to sign blocks and create an association to your H160 account for block rewards to be paid out. The [VRF](https://wiki.polkadot.network/docs/learn-randomness#vrf){target=_blank} key is required for block production.
+Next, session keys can be created/rotated by sending an RPC call to the HTTP endpoint with the `author_rotateKeys` method. When you call `author_rotateKeys`, the result is the size of two keys. The response will contain a concatenated author ID (Nimbus key) and VRF key. The author ID will be used to sign blocks and create an association to your H160 account for block rewards to be paid out. The [VRF](https://wiki.polkadot.network/docs/learn-randomness#vrf){target=_blank} key is required for block production.
 
 For reference, if your collator's HTTP endpoint is at port `9933`, the JSON-RPC call might look like this:
 
@@ -38,11 +38,11 @@ curl http://127.0.0.1:9933 -H \
   }'
 ```
 
-The collator node should respond with the corresponding public keys of your new session keys.
+The collator node should respond with the concatenated public keys of your new session keys. The first 64 hexadecimal characters after the `0x` prefix represent your author ID and the last 64 hexadecimal characters are the public key of your VRF session key. 
 
 ![Collator Terminal Logs RPC Rotate Keys](/images/node-operators/networks/collators/account-management/account-2.png)
 
-Make sure you write down the public key for each of the session keys. Each of your servers, your primary and backup, should have their own unique keys. Since the keys never leave your servers, you can consider them a unique ID for that server.
+Make sure you write down the concatenated public keys. Each of your servers, your primary and backup, should have their own unique keys. Since the keys never leave your servers, you can consider them a unique ID for that server.
 
 Next, you'll need to register your session keys and map the author ID session key to an H160 Ethereum-styled address to which the block rewards are paid.
 
@@ -56,14 +56,14 @@ There is a bond that is sent when mapping your author ID with your account. This
 
 The `authorMapping` module has the following extrinsics programmed:
 
- - **registerKeys**(*address* authorID, *address* keys) — maps your author ID to your H160 account from which the transaction is being sent, ensuring it is the true owner of its private keys. It not only adds the association but also sets the session keys in one call. It requires a [bond](#:~:text=The bond set is as follows). Replaces the deprecated `addAssociation` extrinsic
- - **clearAssociation**(*address* authorID) — clears the association of an author ID to the H160 account from which the transaction is being sent, which needs to be the owner of that author ID. Also refunds the bond
- - **setKeys**(*address* oldAuthorID, *address* newAuthorID, *address* newKeys) —  updates the mapping from an old author ID to a new one and sets the session keys at once. Useful after a key rotation or migration. The `registerKeys` and `clear` association extrinsics are executed automically, enabling key rotation without needing a second bond. Replaces the deprecated `updateAssociation` extrinsic
+ - **setKeys**(*address* keys) — accepts the result of calling `author_rotateKeys`, which is the concatenated public keys of your Nimbus and VRF keys, and sets the author ID and the session keys at once. Useful after a key rotation or migration. Calling `setKeys` requires a [bond](#:~:text=The bond set is as follows). Replaces the deprecated `addAssociation` and `updateAssociation` extrinsics
+- **removeKeys**() - removes the author ID and session keys. Replaces the deprecated `clearAssociation` extrinsic
 
 The following methods are **deprecated**, but will still exist for backwards compatibility:
 
  - **addAssociation**(*address* authorID) — maps your author ID to the H160 account from which the transaction is being sent, ensuring it is the true owner of its private keys. It requires a [bond](#:~:text=The bond set is as follows). This method maintains backwards compatibility by setting the `keys` to the author ID by default
  - **updateAssociation**(*address* oldAuthorID, *address* newAuthorID) —  updates the mapping from an old author ID to a new one. Useful after a key rotation or migration. It executes both the `add` and `clear` association extrinsics automically, enabling key rotation without needing a second bond. This method maintains backwards compatibility by setting the `newKeys` to the author ID by default
+ - **clearAssociation**(*address* authorID) — clears the association of an author ID to the H160 account from which the transaction is being sent, which needs to be the owner of that author ID. Also refunds the bond
 
 The module also adds the following RPC calls (chain state):
 
@@ -77,20 +77,32 @@ To map your author ID to your account, you need to be inside the [candidate pool
 
  1. Choose the account that you want to map your author ID to be associated with, from which you'll sign this transaction
  2. Select the **authorMapping** extrinsic
- 3. Set the method to **registerKeys()**
- 4. Enter the **authorId** (**NimbusId**). In this case, it was obtained via the RPC call `author_rotateKeys` in the previous section
- 5. For the **keys** field, enter the VRF key. This was also obtained via the RPC call `author_rotateKeys`
- 6. Click on **Submit Transaction**
+ 3. Set the method to **setKeys()**
+ 4. Enter the **keys**. In this case, it is the response obtained via the RPC call `author_rotateKeys` in the previous section
+ 5. Click on **Submit Transaction**
 
 ![Author ID Mapping to Account Extrinsic](/images/node-operators/networks/collators/account-management/account-3.png)
 
 If the transaction is successful, you will see a confirmation notification on your screen. If not, make sure you've [joined the candidate pool](/node-operators/networks/collators/activities/#become-a-candidate){target=_blank}.
 
-![Author ID Mapping to Account Extrinsic Successful](/images/node-operators/networks/collators/account-management/account-4.png)
-
 ### Checking the Mappings {: #checking-the-mappings } 
 
-You can also check the current on-chain mappings by verifying the chain state. You'll need to click on **Developer** at the top of the page, then choose **Chain State** from the dropdown, and take the following steps:
+You can check the current on-chain mappings for a specific author ID or you can also check all of the mappings stored on-chain. For checking a specific author ID, you can take the first 64 hexadecimal characters of the concatenated public keys to get the author ID. To verify that the author ID is correct, you can run the following command with the first 64 characters passed into the `params` array:
+
+```
+curl http://127.0.0.1:9933 -H "Content-Type:application/json;charset=utf-8" -d   '{
+  "jsonrpc":"2.0",
+  "id":1,
+  "method":"author_hasKey",
+  "params": ["72c7ca7ef07941a3caeb520806576b52cb085f7577cc12cd36c2d64dbf73757a", "nmbs"]
+}'
+```
+
+If it's correct the response should return `"result": true`.
+
+![Check Nimbus Key](/images/node-operators/networks/collators/account-management/account-4.png)
+
+You can check the current on-chain mappings by verifying the chain state. You'll need to click on **Developer** at the top of the page, then choose **Chain State** from the dropdown, and take the following steps:
 
  1. Choose **authorMapping** as the state to query
  2. Select the **mappingWithDeposit** method
