@@ -2,12 +2,9 @@
 // Import the contract ABI
 // const { abi } = require('./YOUR-ABI-PATH');
 
-// Use ABI to create an interface
-const yourContractInterface = new ethers.utils.Interface(abi);
-
 // Find call data for the setMessage function.
-const callData = yourContractInterface.encodeFunctionData(
-  'FUNCTION_NAME',
+const callData = web3.eth.abi.encodeFunctionCall(
+  abi
   [
     INPUT_1,
     INPUT_2,

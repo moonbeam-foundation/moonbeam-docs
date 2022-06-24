@@ -14,7 +14,7 @@ The batch precompiled contract on Moonbeam allows developers to combine multiple
 
 Developers can enhance user experience with batched transactions as it minimizes the number of transactions a user is required to confirm. Additionally, gas fees can be reduced since batching avoids multiple base gas fees (the initial 21000 uints of gas spent to begin a transaction).
 
-The precompile interacts directly with Substrate's EVM pallet. Every call provided to one of its functions will act as if it is a [delegate call](https://docs.soliditylang.org/en/v0.8.15/introduction-to-smart-contracts.html#delegatecall-callcode-and-libraries){target=_blank}.
+The precompile interacts directly with Substrate's EVM pallet. The caller of the batch function will have their address act as the `msg.sender` for all subtransactions, but unlike [delegate calls](https://docs.soliditylang.org/en/v0.8.15/introduction-to-smart-contracts.html#delegatecall-callcode-and-libraries){target=_blank}, the target contract will still have its own storage be affected. It is effectively the same as if the user signed multiple transactions, but with only one confirmation.
 
 The precompile is located at the following address:
 
@@ -94,7 +94,7 @@ The **IERC20** precompile will appear in the list of **Deployed Contracts**.
 On the other hand, SimpleMessage.sol will be deployed as a new contract. Before starting this section, repeat the [compilation step](#compile-the-contract) with the **SimpleMessage.sol** file.
 
 1. Click on the **Deploy and Run** tab directly below the **Compile** tab in Remix
-2. Make sure **Injected Web3** is selected in the **Environment** dropdown. Once you select **Injected Web3**, you might be prompted by MetaMask to connect your account to Remix
+2. Make sure **Injected Web3** is selected in the **Environment** dropdown. Once you select **Injected Web3**, you might be prompted by MetaMask to connect your account to Remix. You should be able to see the network's chain ID below the dropdown box
 3. Make sure the correct account is displayed under **Account**
 4. Ensure **SimpleMessage - SimpleMessage.sol** is selected in the **Contract** dropdown
 5. Click **Deploy**
@@ -160,7 +160,7 @@ Interacting with a function is very similar to [sending a native currency](#send
 
 The *call_data* and *gas_limit* transactions more relevant for subtransactions that interact with contracts. For each function in the Batch interface, the *call_data* input is an array that corresponds to the call data for each subtransaction. If its length is less than the *to* input, the remaining subtransactions will have no call data. The *gas_limit* input is an array that corresponds to the amount of gas that each can spend for each subtransaction. If its length is less than the *to* input, the remaining transactions will have all of the batch transaction's remaining gas forwarded.
 
-Try using the precompile to send an atomic transaction:
+To use the precompile to send an atomic batch transaction, take the following steps:
 
 1. Copy the SimpleMessage contract's address with the copy button on the right side of its header. Be sure to also have the [call data from the previous section](#finding-a-contract-interactions-call-data) 
 2. Expand the Batch contract under **Deployed Contracts**
@@ -218,10 +218,20 @@ Try sending a batched transaction with these inputs in Remix the same way [you d
 
 And that's it! You've successfully interacted with the ERC-20 precompile using MetaMask and Remix!
 
-## Finding Call Data with Ethers.js {: #finding-call-data-with-ethers }
+## Using Ethereum Developer Libraries {: #using-ethereum-developer-libraries }
 
-If you have only followed the [Ethers.js tutorial](/builders/build/eth-api/libraries/ethersjs/) on Moonbeam, you may find it difficult to find the call data for a function. The answer is hidden within Ether's `utils.Interface` object, where the [encodeFunctionData](https://docs.ethers.io/v5/api/utils/abi/interface/#Interface--encoding){target=_blank} function allows you to input your function name and inputs to receive the resultant call data.
+If you have only followed the [Ethers.js tutorial](/builders/build/eth-api/libraries/ethersjs/) on Moonbeam, you may find it difficult to find the call data for a function. The answer is hidden within Ether's `utils.Interface` object, where the [encodeFunctionData](https://docs.ethers.io/v5/api/utils/abi/interface/#Interface--encoding){target=_blank} function allows you to input your function name and inputs to receive the resultant call data. Web3js has a similar function, [encodeFunctionCall](https://web3js.readthedocs.io/en/v1.2.11/web3-eth-abi.html#encodefunctioncall){target=_blank}.
 
- --8<-- 'code/batch/ethers-batch.md'
+!!! note
+    The code snippets presented in the following sections are not meant for production environments. Please make sure you adapt it for each use-case.
+
+=== "web3.js"
+     --8<-- 'code/batch/web3js-batch.md'
+
+=== "ethers.js"
+     --8<-- 'code/batch/ethers-batch.md'
+
+=== "web3.py"
+     --8<-- 'code/batch/web3py-batch.md'
 
 Afterwards, you should be all set to interact with the batch precompile as one typically would with a contract in Ethers.
