@@ -44,7 +44,7 @@ You can create your own endpoint suitable for development or production use usin
 To get started, head to the [Ankr Protocol](https://www.ankr.com/protocol/){target=_blank} page to make your first call!
 
 1. Click on **Public RPCs**
-2. Select the [Moonbeam Network](https://www.ankr.com/protocol/public/moonbeam/)
+2. Select the [Moonbeam Network](https://www.ankr.com/protocol/public/moonbeam/){target=_blank}
 3. Copy the URL provided and start making requests instantly. No sign up or KYC required
 
 ![Ankr](/images/builders/get-started/endpoints/endpoints-5.png)
