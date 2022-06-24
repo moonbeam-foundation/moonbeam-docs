@@ -158,7 +158,7 @@ This section's example will be using the **batchAll** function that will ensure 
 
 Interacting with a function is very similar to [sending a native currency](#send-native-currency-via-precompile), since they are both transactions. However, call data is required to properly provide input to functions and a sender may desire to limit the amount of gas spent in each subtransaction. 
 
-The *call_data* and *gas_limit* transactions more relevant for subtransactions that interact with contracts. For each function in the Batch interface, the *call_data* input is an array that corresponds to the call data for each subtransaction. If its length is less than the *to* input, the remaining subtransactions will have no call data. The *gas_limit* input is an array that corresponds to the amount of gas that each can spend for each subtransaction. If its length is less than the *to* input, the remaining transactions will have all of the batch transaction's remaining gas forwarded.
+The *call_data* and *gas_limit* fields are more relevant for subtransactions that interact with contracts. For each function in the Batch interface, the *call_data* input is an array where each index corresponds to the call data for each  recipient of the subtransaction, that is, each *to* input. If the size of the *call_data* array is less than the *to* array, the remaining subtransactions will have no call data (functions with no inputs). The *gas_limit* input is an array that corresponds to the amount of gas that each can spend for each subtransaction. If its length is less than the *to* array, the remaining gas of the previous subtrasanction is forwarded.
 
 To use the precompile to send an atomic batch transaction, take the following steps:
 
