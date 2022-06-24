@@ -59,7 +59,7 @@ You can interact with the batch precompile using [Remix](https://remix.ethereum.
 
 ### SimpleMessage.sol {: #simple-message}
 
-The contract `SimpleMessage.sol` will be used as an example of batching contract interactions, but in practice any contract can be interacted with.
+The contract `SimpleMessage.sol` will be used as an example of batching contract interactions, but in practice, any contract can be interacted with.
 
  --8<-- 'text/batch/simple-message.md'
 
@@ -80,7 +80,7 @@ If the interface was compiled successfully, you will see a green checkmark next 
 Instead of deploying the Batch precompile, you will access the interface given the address of the precompiled contract:
 
 1. Click on the **Deploy and Run** tab directly below the **Compile** tab in Remix. Please note the precompiled contract is already deployed
-2. Make sure **Injected Web3** is selected in the **Environment** dropdown. Once you select **Injected Web3**, you might be prompted by MetaMask to connect your account to Remix
+2. Make sure **Injected Web3** is selected in the **Environment** dropdown. Once you select **Injected Web3**, you might be prompted by MetaMask to connect your account to Remix. You should be able to see the network's chain ID below the dropdown box
 3. Make sure the correct account is displayed under **Account**
 4. Ensure **Batch - Batch.sol** is selected in the **Contract** dropdown. Since this is a precompiled contract, there is no need to deploy any code. Instead we are going to provide the address of the precompile in the **At Address** Field
 5. Provide the address of the Batch precompile: `{{networks.moonbase.precompiles.batch}}` and click **At Address**
@@ -106,7 +106,7 @@ The **SimpleMessage** contract will appear in the list of **Deployed Contracts**
 
 ### Send Native Currency via Precompile {: #send-native-currency-via-precompile }
 
-Sending native currency with the batch precompile is more involved than pressing a few buttons in Remix or Metamask. 
+Sending native currency with the batch precompile is more involved than pressing a few buttons in Remix or Metamask. For this example, you will be using the **batchAll** function to send native currency atomically.
 
 Transactions have a value field to specify the amount of native currency being sent with it. In Remix, this is represented by the **VALUE** input in the **DEPLOY & RUN TRANSACTIONS** tab. However, for the batch precompile, this data is provided within the *value* array input of the batch functions.
 
@@ -126,18 +126,18 @@ Try transferring native currency to two wallets of your choice via the batch pre
 Once the transaction is complete, be sure to check both of the accounts' balances, either in Metamask or in a [block explorer](/builders/get-started/explorers/){target=_blank}. Congratulations! You've now sent a batched transfer via the Batch precompile.
 
 !!! note
-     Typically if you wanted to send the native currency to or through a contract, you would have to set the value within the overall transaction and interact with a payable function. However, since the Batch precompile interacts directly with Substrate code, this is not necessary.
+     Typically if you wanted to send the native currency to or through a contract, you would have to set the value within the overall transaction object and interact with a payable function. However, since the Batch precompile interacts directly with Substrate code, this is not a typical Ethereum transaction and is thus not necessary.
 
 
 ### Finding a Contract Interaction's Call Data {: #finding-a-contract-interactions-call-data } 
 
-Visual interfaces like Remix and handy libraries like ethers.js hide the way that ethereum transactions interact with solidity smart contracts. The name and input types of a function are hashed into a [function selector](https://docs.soliditylang.org/en/latest/abi-spec.html#function-selector-and-argument-encoding){target=_blank} and the input data is encoded. These two pieces are then combined and sent as the transaction's call data. To send a subtransaction within a batch transaction, the sender to know its call data beforehand. 
+Visual interfaces like Remix and handy libraries like ethers.js hide the way that Ethereum transactions interact with Solidity smart contracts. The name and input types of a function are hashed into a [function selector](https://docs.soliditylang.org/en/latest/abi-spec.html#function-selector-and-argument-encoding){target=_blank} and the input data is encoded. These two pieces are then combined and sent as the transaction's call data. To send a subtransaction within a batch transaction, the sender to know its call data beforehand. 
 
 Try finding a transaction's call data using Remix:
 
 1. Expand the SimpleMessage contract under **Deployed Contracts**
 2. Expand the **`setMessage`** function
-3. Enter a number and a message of your choice for **id** & **message**. In this example, **id** will be 1 and **message** will be "moonbeam"
+3. Enter the input of the function. For this example, **id** will be 1 and **message** will be "moonbeam"
 4. Instead of sending the transaction, click the copy button next to the **transact** button to copy the call data
 
 ![Transaction Call Data](/images/builders/build/canonical-contracts/precompiles/batch/batch-5.png)
@@ -150,15 +150,17 @@ The calldata can be broken into 5 lines, where the first line is the function se
 
 Note that the second line is equal to 1, which is the **id** that was provided. 
 
-What's left has to do with the **message** input. These last three lines are tricky, since strings are a [dynamic type](https://docs.soliditylang.org/en/v0.8.15/abi-spec.html#use-of-dynamic-types){target=_blank} with its own format. For sake of simplicity, understand that the third line refers to an offset, the fourth line refers to the string's length, and the fifth line is "moonbeam" in hexadecimal format with zeros for padding.
+What's left has to do with the **message** input. These last three lines are tricky, since strings are a [dynamic type](https://docs.soliditylang.org/en/v0.8.15/abi-spec.html#use-of-dynamic-types){target=_blank} with a dynamic length. The third line refers to an offset to define where the string's data starts. The fourth line refers to the string's length, in this case 8 because "moonbeam" is 8 bytes long. Finally, the fifth line is "moonbeam" in hexadecimal format (8 ASCII characters are 16 hexidecimal characters) with zeros for padding.
 
 ### Function Interaction via Precompile {: #function-interaction-via-precompile }
+
+This section's example will be using the **batchAll** function that will ensure the transactions are resolved atomically. Keep in mind that there are also two other batch functions that can either continue subtransactions despite errors or halt subsequent subtransactions but not revert previous ones.
 
 Interacting with a function is very similar to [sending a native currency](#send-native-currency-via-precompile), since they are both transactions. However, call data is required to properly provide input to functions and a sender may desire to limit the amount of gas spent in each subtransaction. 
 
 The *call_data* and *gas_limit* transactions more relevant for subtransactions that interact with contracts. For each function in the Batch interface, the *call_data* input is an array that corresponds to the call data for each subtransaction. If its length is less than the *to* input, the remaining subtransactions will have no call data. The *gas_limit* input is an array that corresponds to the amount of gas that each can spend for each subtransaction. If its length is less than the *to* input, the remaining transactions will have all of the batch transaction's remaining gas forwarded.
 
-Try using the precompile to send a transaction:
+Try using the precompile to send an atomic transaction:
 
 1. Copy the SimpleMessage contract's address with the copy button on the right side of its header. Be sure to also have the [call data from the previous section](#finding-a-contract-interactions-call-data) 
 2. Expand the Batch contract under **Deployed Contracts**
@@ -172,7 +174,7 @@ Try using the precompile to send a transaction:
 
 ![Batch Function Interaction](/images/builders/build/canonical-contracts/precompiles/batch/batch-6.png)
 
-If you used the same call data as the tutorial, let's check to make sure that an actual change has been made:
+If you used the same call data as the tutorial, check to make sure that the transaction has been successful:
 
 1. Expand the SimpleMessage contract under **Deployed Contracts**
 2. To the right of the **`messages`** button, insert `1`
