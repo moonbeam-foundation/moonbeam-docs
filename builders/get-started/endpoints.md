@@ -39,7 +39,7 @@ You can create your own endpoint suitable for development or production use usin
 
 ### Ankr {: #ankr}
 
-[Ankr](https://www.ankr.com/){target=_blank} supports free, public RPC endpoints to 15 different blockchain ecosystems, with additional networks constantly being added. The Ankr Public RPC layer provides fast and reliable access via API endpoints for anybody in the world to connect to a growing number of networks including  Moonbeam. 
+[Ankr](https://www.ankr.com/){target=_blank} supports free, public RPC endpoints to 15 different blockchain ecosystems, with additional networks constantly being added. The Ankr public RPC layer provides fast and reliable access via API endpoints for anybody in the world to connect to a growing number of networks including Moonbeam. 
 
 To get started, head to the [Ankr Protocol](https://www.ankr.com/protocol/){target=_blank} page to make your first call!
 
