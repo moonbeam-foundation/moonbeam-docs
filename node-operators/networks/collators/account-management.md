@@ -38,7 +38,7 @@ curl http://127.0.0.1:9933 -H \
   }'
 ```
 
-The collator node should respond with the concatenated public keys of your new session keys. The first 64 hexadecimal characters after the `0x` prefix represent your author ID and the last 64 hexadecimal characters are the public key of your VRF session key. 
+The collator node should respond with the concatenated public keys of your new session keys. The first 64 hexadecimal characters after the `0x` prefix represent your author ID and the last 64 hexadecimal characters are the public key of your VRF session key. You'll use the concatenated public keys when mapping your author ID and setting the session keys in the next section.
 
 ![Collator Terminal Logs RPC Rotate Keys](/images/node-operators/networks/collators/account-management/account-2.png)
 
@@ -78,7 +78,7 @@ To map your author ID to your account, you need to be inside the [candidate pool
  1. Choose the account that you want to map your author ID to be associated with, from which you'll sign this transaction
  2. Select the **authorMapping** extrinsic
  3. Set the method to **setKeys()**
- 4. Enter the **keys**. In this case, it is the response obtained via the RPC call `author_rotateKeys` in the previous section
+ 4. Enter the **keys**. It is the response obtained via the RPC call `author_rotateKeys` in the previous section, which is the concatenated public keys of your author ID and VRF key
  5. Click on **Submit Transaction**
 
 ![Author ID Mapping to Account Extrinsic](/images/node-operators/networks/collators/account-management/account-3.png)
