@@ -10,11 +10,11 @@ keywords: solidity, ethereum, batch, transaction, moonbeam, precompiled, contrac
 
 ## Introduction {: #introduction } 
 
-The batch precompiled contract on Moonbeam allows developers to combine multiple calls into one.
+The batch precompiled contract on Moonbeam allows developers to combine multiple EVM calls into one.
 
-Developers can enhance user experience with batched transactions. Additionally, gas fees can be reduced by avoiding the initiation of multiple transactions.
+Developers can enhance user experience with batched transactions as it minimizes the number of transactions a user is required to confirm. Additionally, gas fees can be reduced since batching avoids multiple base gas fees (the initial 21000 uints of gas spent to begin a transaction).
 
-The precompile interacts directly with substrate's evm pallet. Every call provided to one of its functions will act as if it is a [delegate call](https://docs.soliditylang.org/en/v0.8.15/introduction-to-smart-contracts.html#delegatecall-callcode-and-libraries){target=_blank}.
+The precompile interacts directly with Substrate's EVM pallet. Every call provided to one of its functions will act as if it is a [delegate call](https://docs.soliditylang.org/en/v0.8.15/introduction-to-smart-contracts.html#delegatecall-callcode-and-libraries){target=_blank}.
 
 The precompile is located at the following address:
 
@@ -33,9 +33,9 @@ The precompile is located at the following address:
      {{networks.moonriver.precompiles.batch }}
      ```
 
-## The Batch Interface {: #the-batch-interface }
+## The Batch Solidity Interface {: #the-batch-interface }
 
-[Batch.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank} is an interface that allows developers to interact with the precompile's three methods.
+[Batch.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's three methods.
 
 --8<-- 'text/batch/batch-interface.md'
 
@@ -150,7 +150,7 @@ The calldata can be broken into 5 lines, where the first line is the function se
 
 Note that the second line is equal to 1, which is the **id** that was provided. 
 
-What's left has to do with the **message** input. These last three lines are tricky, since strings are encoded with [RLP encoding](https://ethereum.org/en/developers/docs/data-structures-and-encoding/rlp/){target=_blank}. For sake of simplicity, understand that the third line refers to an offset, the fourth line refers to the string's length, and the fifth line is "moonbeam" in hexadecimal format with zeros for padding.
+What's left has to do with the **message** input. These last three lines are tricky, since strings are a [dynamic type](https://docs.soliditylang.org/en/v0.8.15/abi-spec.html#use-of-dynamic-types){target=_blank} with its own format. For sake of simplicity, understand that the third line refers to an offset, the fourth line refers to the string's length, and the fifth line is "moonbeam" in hexadecimal format with zeros for padding.
 
 ### Function Interaction via Precompile {: #function-interaction-via-precompile }
 
