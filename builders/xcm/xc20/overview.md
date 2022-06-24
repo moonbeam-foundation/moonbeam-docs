@@ -116,7 +116,7 @@ You can interact with the XC-20 precompile using [Remix](https://remix.ethereum.
 Once you have the ERC-20 interface loaded in Remix, you will need to compile it:
 
 1. Click on the **Compile** tab, second from top
-2. Compile the **IER20.sol** file
+2. Compile the **IERC20.sol** file
 
 ![Compiling IERC20.sol](/images/builders/xcm/xc20/overview/overview-2.png)
 
