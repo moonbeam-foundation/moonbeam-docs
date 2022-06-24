@@ -129,7 +129,7 @@ The first step to get your mintable XC-20 registered on Moonbeam is to create a 
     {{ networks.moonbase.mintable_xc20.asset_deposit }} DEV
     ```
 
-To get started, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=_blank} and make sure you're connected to Moonbase Alpha. Then click on **Governance** at the top of the page and then select **Democracy** from the dropdown. Then you can select **++ Submit preimage** and take the following steps:
+To get started, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=_blank} and make sure you're connected to Moonbase Alpha. Then click on **Governance** at the top of the page and then select **Democracy** from the dropdown. Then you can select **+ Submit preimage** and take the following steps:
 
 1. Select the account you want to create the proposal with
 2. From the **propose** dropdown, choose **assetManager**
