@@ -27,13 +27,13 @@ There are some roles that are important to take note of when registering and man
 
 The breakdown of responsibilities for each role is as follows:
 
-| **Role** | **Mint** | **Burn** | **Freeze** | **Thaw** |
-|:--------:|:--------:|:--------:|:----------:|:--------:|
-|  Owner   |    ✓     |    ✓     |     ✓      |    ✓     |
-| Creator  |    X     |    X     |     X      |    X     |
-|  Issuer  |    ✓     |    X     |     X      |    X     |
-|  Admin   |    X     |    ✓     |     X      |    ✓     |
-| Freezer  |    X     |    X     |     ✓      |    X     |
+|  Role   | Mint | Burn | Freeze | Thaw |
+|:-------:|:----:|:----:|:------:|:----:|
+|  Owner  |  ✓   |  ✓   |   ✓    |  ✓   |
+| Creator |  X   |  X   |   X    |  X   |
+| Issuer  |  ✓   |  X   |   X    |  X   |
+|  Admin  |  X   |  ✓   |   X    |  ✓   |
+| Freezer |  X   |  X   |   ✓    |  X   |
 
 ## The Mintable XC-20 Solidity Interface {: #the-mintable-xc20-interface }
 
