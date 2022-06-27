@@ -7,7 +7,7 @@ const yourContractInterface = new ethers.utils.Interface(abi);
 
 // Find call data for the setMessage function.
 const callData = yourContractInterface.encodeFunctionData(
-  'FUNCTION_NAME',
+  'FUNCTION-NAME-HERE',
   [
     INPUT_1,
     INPUT_2,
