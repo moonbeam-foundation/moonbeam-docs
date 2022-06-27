@@ -15,7 +15,7 @@ The candidates in the active set of collators (nodes that produce blocks) are se
 
 Collator candidates (and token holders if they delegate) have a stake in the network. The top N candidates by staked amount are chosen to produce blocks with a valid set of transactions, where N is a configurable parameter. Part of each block reward goes to the collators that produced the block, who then shares it with the delegators considering their percental contributions towards the collator's stake. In such a way, network members are incentivized to stake tokens to improve the overall security.
 
-To easily manage staking related actions, you can visit the [Moonbeam Network DApp](https://apps.moonbeam.network/){target=_blank} and use the network tabs at the top of the page to easily switch between Moonbeam networks. To learn how to use the DApp, you can check out the [How to Stake MOVR Tokens](https://moonbeam.network/tutorial/stake-movr/){target=_blank} guide or or [video tutorial](https://www.youtube.com/watch?v=D2wPnqfoeIg){target=_blank}, both of which can be adapted for the Moonbeam and the Moonbase Alpha TestNet.
+To easily manage staking related actions, you can visit the [Moonbeam Network DApp](https://apps.moonbeam.network/){target=_blank} and use the network tabs at the top of the page to easily switch between Moonbeam networks. To learn how to use the DApp, you can check out the [How to Stake MOVR Tokens](https://moonbeam.network/tutorial/stake-movr/){target=_blank} guide or or [video tutorial](https://www.youtube.com/watch?v=8GwetYmzEJM){target=_blank}, both of which can be adapted for the Moonbeam and the Moonbase Alpha TestNet.
 
 ## General Definitions {: #general-definitions } 
 
