@@ -6,7 +6,7 @@ keywords: solidity, ethereum, batch, transaction, moonbeam, precompiled, contrac
 
 # Interacting with the Batch Precompile
 
-![Precomiled Contracts Banner](/images/builders/build/canonical-contracts/precompiles/erc20/erc20-banner.png)
+![Precomiled Contracts Banner](/images/builders/build/canonical-contracts/precompiles/batch/batch-banner.png)
 
 ## Introduction {: #introduction } 
 
