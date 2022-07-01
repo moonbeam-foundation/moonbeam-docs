@@ -71,7 +71,7 @@ Next, you will need to compile both files in Remix:
 2. Click on the **Compile** tab, second from top
 3. To compile the contract, click on **Compile Batch.sol**
 
-![Compiling IERC20.sol](/images/builders/build/canonical-contracts/precompiles/batch/batch-1.png)
+![Compiling Batch.sol](/images/builders/build/canonical-contracts/precompiles/batch/batch-1.png)
 
 If the interface was compiled successfully, you will see a green checkmark next to the **Compile** tab.
 
