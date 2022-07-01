@@ -1,6 +1,6 @@
 ```javascript
 // Import the contract ABI
-// const { abi } = require('./YOUR-ABI-PATH');
+const { abi } = require('./YOUR-ABI-PATH');
 
 // Use ABI to create an interface
 const yourContractInterface = new ethers.utils.Interface(abi);
@@ -9,8 +9,8 @@ const yourContractInterface = new ethers.utils.Interface(abi);
 const callData = yourContractInterface.encodeFunctionData(
   'FUNCTION-NAME-HERE',
   [
-    INPUT_1,
-    INPUT_2,
+    "INPUT-1-HERE",
+    "INPUT-2-HERE",
     ...
   ]
 );

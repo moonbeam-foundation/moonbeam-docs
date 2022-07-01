@@ -6,6 +6,6 @@ from compile import abi, bytecode
 your_contract = web3.eth.contract(abi=abi, bytecode=bytecode)
 
 # Encode the contract call
-call_data = your_contract.encodeABI(fn_name='YOUR-METHOD', args=['INPUT-1', 'INPUT-2', ...])
+call_data = your_contract.encodeABI(fn_name='FUNCTION-NAME-HERE', args=['INPUT-1-HERE', 'INPUT-2-HERE', ...])
 
 ```
