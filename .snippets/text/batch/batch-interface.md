@@ -6,5 +6,5 @@ The interface includes the following functions:
 
 The interface also includes the following required events:
 
-- **SubcallSucceeded(*uint256* index)** - emitted when a subcall succeeds
-- **SubcallFailed(*uint256* index)** - emitted when a subcall fails
+- **SubcallSucceeded(*uint256* index)** - emitted when subcall of the given index succeeds
+- **SubcallFailed(*uint256* index)** - emitted when a subcall of the given index  fails
