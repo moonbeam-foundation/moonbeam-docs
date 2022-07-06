@@ -352,8 +352,8 @@ networks:
       metadata_base_deposit: 1.0068
       metadata_byte_deposit: .0001
     orbiter:
-      max_orbiters_per_collator: 4
-      max_collators: 4
+      max_orbiters_per_collator: 3
+      max_collators: 8
       active:
         rounds: 3
         hours: 6
