@@ -9,9 +9,9 @@ description: Learn how to verify smart contracts on Moonbeam-based networks usin
 
 ## Introduction {: #introduction } 
 
-Verifying smart contracts on a block explorer is great way of improving the transparency and security of deployed smart contracts on Moonbeam. Users can directly view the source code for verified smart contracts, and for some block explorers, can also directly interact with the contract's public methods through the block explorer's interface. 
+Verifying smart contracts on a block explorer is a great way of improving the transparency and security of deployed smart contracts on Moonbeam. Users can directly view the source code for verified smart contracts, and for some block explorers, can also directly interact with the contract's public methods through the block explorer's interface. 
 
-This page will outline the steps for verifying smart contracts on Moonbeam networks.
+This page will outline the steps for verifying smart contracts on Moonbeam networks through block explorers.
 
 ## Deploying the Contract {: #deploying-the-contract }
 
