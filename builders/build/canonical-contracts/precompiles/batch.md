@@ -12,7 +12,7 @@ keywords: solidity, ethereum, batch, transaction, moonbeam, precompiled, contrac
 
 The batch precompiled contract on Moonbeam allows developers to combine multiple EVM calls into one. 
 
-Currently, having users interact with multiple contracts would require multiple transaction confirmations in the user's wallet. An example would be approving a smart contract's access to a token, then transferring it. With the batch precompile, developers can enhance user experience with batched transactions as it minimizes the number of transactions a user is required to confirm to one. Additionally, gas fees can be reduced since batching avoids multiple base gas fees (the initial 21000 uints of gas spent to begin a transaction).
+Currently, having users interact with multiple contracts would require multiple transaction confirmations in the user's wallet. An example would be approving a smart contract's access to a token, then transferring it. With the batch precompile, developers can enhance user experience with batched transactions as it minimizes the number of transactions a user is required to confirm to one. Additionally, gas fees can be reduced since batching avoids multiple base gas fees (the initial 21000 units of gas spent to begin a transaction).
 
 The precompile interacts directly with Substrate's EVM pallet. The caller of the batch function will have their address act as the `msg.sender` for all subtransactions, but unlike [delegate calls](https://docs.soliditylang.org/en/v0.8.15/introduction-to-smart-contracts.html#delegatecall-callcode-and-libraries){target=_blank}, the target contract will still affect its own storage. It is effectively the same as if the user signed multiple transactions, but with only one confirmation.
 
@@ -80,7 +80,7 @@ If the interface was compiled successfully, you will see a green checkmark next 
 Instead of deploying the Batch precompile, you will access the interface given the address of the precompiled contract:
 
 1. Click on the **Deploy and Run** tab directly below the **Compile** tab in Remix. Please note the precompiled contract is already deployed
-2. Make sure **Injected Web3** is selected in the **ENVIRONMENT** dropdown. Once you select **Injected Web3**, you might be prompted by MetaMask to connect your account to Remix. You should be able to see the network's chain ID below the dropdown box
+2. Make sure **Injected Web3** is selected in the **ENVIRONMENT** dropdown. Once you select **Injected Web3**, you might be prompted by MetaMask to connect your account to Remix
 3. Make sure the correct account is displayed under **ACCOUNT**
 4. Ensure **Batch - Batch.sol** is selected in the **CONTRACT** dropdown. Since this is a precompiled contract, there is no need to deploy any code. Instead we are going to provide the address of the precompile in the **At Address** Field
 5. Provide the address of the Batch precompile: `{{networks.moonbase.precompiles.batch}}` and click **At Address**
@@ -94,7 +94,7 @@ The **BATCH** precompile will appear in the list of **Deployed Contracts**.
 On the other hand, `SimpleContract.sol` will be deployed as a new contract. Before starting this section, repeat the [compilation step](#compile-the-contract) with the `SimpleContract.sol` file.
 
 1. Click on the **Deploy and Run** tab directly below the **Compile** tab in Remix
-2. Make sure **Injected Web3** is selected in the **ENVIRONMENT** dropdown. Once you select **Injected Web3**, you might be prompted by MetaMask to connect your account to Remix. You should be able to see the network's chain ID below the dropdown box
+2. Make sure **Injected Web3** is selected in the **ENVIRONMENT** dropdown. Once you select **Injected Web3**, you might be prompted by MetaMask to connect your account to Remix
 3. Make sure the correct account is displayed under **ACCOUNT**
 4. Ensure **SimpleContract - SimpleContract.sol** is selected in the **CONTRACT** dropdown
 5. Click **Deploy**
@@ -143,13 +143,13 @@ Try finding a transaction's call data using Remix:
 
 Now you have the transaction's call data! Considering the example values of `1` and `"moonbeam"`, we can keep an eye out for their encoded values in the call data:
 
- --8<-- 'text/code/simple-message-call-data.md'
+ --8<-- 'code/batch/simple-message-call-data.md'
 
-The call data can be broken into five lines, where the first line is the function selector and the next four are the input data. 
+The call data can be broken into five lines, where:
 
-Note that the second line is equal to 1, which is the **id** that was provided. 
-
-What's left has to do with the **m** (message) input. These last three lines are tricky, since strings are a [dynamic type](https://docs.soliditylang.org/en/v0.8.15/abi-spec.html#use-of-dynamic-types){target=_blank} with a dynamic length. The third line refers to an offset to define where the string's data starts. The fourth line refers to the string's length, in this case 8 because "moonbeam" is 8 bytes long. Finally, the fifth line is "moonbeam" in hexadecimal format (8 ASCII characters are 16 hexidecimal characters) with zeros for padding.
+ - The first line is the function selector
+ - The second line is equal to 1, which is the **id** that was provided
+ - What's left has to do with the **m** (message) input. These last three lines are tricky, since strings are a [dynamic type](https://docs.soliditylang.org/en/v0.8.15/abi-spec.html#use-of-dynamic-types){target=_blank} with a dynamic length. The third line refers to an offset to define where the string's data starts. The fourth line refers to the string's length, in this case 8 because "moonbeam" is 8 bytes long . Finally, the fifth line is "moonbeam" in hexadecimal format (8 ASCII characters are 16 hexidecimal characters) left aligned and with zeros for padding
 
 ### Function Interaction via Precompile {: #function-interaction-via-precompile }
 
