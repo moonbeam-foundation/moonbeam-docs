@@ -29,20 +29,20 @@ The Moonscan API URL for Moonbeam networks is as follows:
 
 === "Moonbeam"
     ```
-    https://api-moonbeam.moonscan.io/
+    https://api-moonbeam.moonscan.io/api
     ```
 
 === "Moonriver"
     ```
-    https://api-moonriver.moonscan.io/
+    https://api-moonriver.moonscan.io/api
     ```
 
 === "Moonbase Alpha"
     ```
-    https://api-moonbase.moonscan.io/
+    https://api-moonbase.moonscan.io/api
     ```
 
-### Verify Contract {: #verify-contract }
+### Verify Source Code {: #verify-source-code }
 
 To verify a deployed contract's source code using the Moonscan API, you must form a POST request containing all the relevant contract creation information, and send the request to Moonscan's REST API. The following is sample code using Javascript:
 
@@ -189,35 +189,40 @@ To verify a deployed contract's source code using the Moonscan API, you must for
 
 Upon successful submission, a GUID will be returned as a part of the result. This GUID can be used to check for the submission status. 
 
-```javascript
-//Check Source Code Verification Status
-$.ajax({
-    type: "GET",
-    url: "//api.etherscan.io/api",
-    data: {
-        apikey: $('#apikey').val(), 
-        guid: 'ezq878u486pzijkvvmerl6a9mzwhv6sefgvqi5tkwceejc7tvn', //Replace with your Source Code GUID receipt above
-        module: "contract",
-        action: "checkverifystatus"
-    },
-    success: function (result) {
-        console.log("status : " + result.status);   //0=Error, 1=Pass 
-        console.log("message : " + result.message); //OK, NOTOK
-        console.log("result : " + result.result);   //result explanation
-        $('#guidstatus').html(">> " + result.result);
-    },
-    error: function (result) {
-        alert('error');
-    }
-});
-```
+=== "Moonbeam"
+    ```bash
+    curl https://api-moonbeam.moonscan.io/api
+            ?module=contract
+            &action=checkverifystatus
+            &guid=GUIDFromResponse
+            &apikey=YourApiKeyToken
+    ```
+
+=== "Moonriver"
+    ```bash
+    curl https://api-moonriver.moonscan.io/api
+            ?module=contract
+            &action=checkverifystatus
+            &guid=GUIDFromResponse
+            &apikey=YourApiKeyToken
+    ```
+
+=== "Moonbase Alpha"
+    ```bash
+    curl https://api-moonbase.moonscan.io/api
+            ?module=contract
+            &action=checkverifystatus
+            &guid=GUIDFromResponse
+            &apikey=YourApiKeyToken
+    ```
+
 ### Retrieve Contract ABI for Verified Contracts {: #retrieve-contract-abi-for-verified-contracts }
 
 Once your contract is verified on Moonscan, you can use the following endpoint to retrieve the contract ABI:
 
 === "Moonbeam"
-    ```html
-    curl https://api-moonbeam.moonscan.io/
+    ```bash
+    curl https://api-moonbeam.moonscan.io/api
             ?module=contract
             &action=getabi
             &address=YourContractAddress
@@ -225,8 +230,8 @@ Once your contract is verified on Moonscan, you can use the following endpoint t
     ```
 
 === "Moonriver"
-    ```html
-    curl https://api-moonriver.moonscan.io/
+    ```bash
+    curl https://api-moonriver.moonscan.io/api
             ?module=contract
             &action=getabi
             &address=YourContractAddress
@@ -234,8 +239,8 @@ Once your contract is verified on Moonscan, you can use the following endpoint t
     ```
 
 === "Moonbase Alpha"
-    ```html
-    curl https://api-moonbase.moonscan.io/
+    ```bash
+    curl https://api-moonbase.moonscan.io/api
             ?module=contract
             &action=getabi
             &address=YourContractAddress
@@ -247,8 +252,8 @@ Once your contract is verified on Moonscan, you can use the following endpoint t
 Once your contract is verified on Moonscan, you can use the following endpoint to retrieve the contract source code:
 
 === "Moonbeam"
-    ```html
-    curl https://api-moonbeam.moonscan.io/
+    ```bash
+    curl https://api-moonbeam.moonscan.io/api
             ?module=contract
             &action=getsourcecode
             &address=YourContractAddress
@@ -256,8 +261,8 @@ Once your contract is verified on Moonscan, you can use the following endpoint t
     ```
 
 === "Moonriver"
-    ```html
-    curl https://api-moonriver.moonscan.io/
+    ```bash
+    curl https://api-moonriver.moonscan.io/api
             ?module=contract
             &action=getsourcecode
             &address=YourContractAddress
@@ -265,8 +270,8 @@ Once your contract is verified on Moonscan, you can use the following endpoint t
     ```
 
 === "Moonbase Alpha"
-    ```html
-    curl https://api-moonbase.moonscan.io/
+    ```bash
+    curl https://api-moonbase.moonscan.io/api
             ?module=contract
             &action=getsourcecode
             &address=YourContractAddress
@@ -282,12 +287,12 @@ Once your contract is verified on Moonscan, you can use the following endpoint t
 Soucify API endpoints can be accessed through the following public servers: 
 
 === "Production"
-    ```html
+    ```bash
     https://sourcify.dev/server
     ```
 
 === "Staging"
-    ```html
+    ```bash
     https://staging.sourcify.dev/server
     ```
 
@@ -296,18 +301,18 @@ Soucify API endpoints can be accessed through the following public servers:
 Sourcify uses Chain ID's to identify the target network(s) for the request. The chain ID's of Moonbeam networks are as follows:
 
 === "Moonbeam"
-    ```html
-    1284
+    ```bash
+    {{ networks.moonbeam.chain_id }}
     ```
 
 === "Moonriver"
-    ```html
-    1285
+    ```bash
+    {{ networks.moonriver.chain_id }}
     ```
 
 === "Moonbase"
-    ```html
-    1287
+    ```bash
+    {{ networks.moonbase.chain_id }}
     ```
 
 ### Perfect vs. Partial Match {: #full-vs-partial-match }
@@ -330,7 +335,7 @@ A POST request is used to verify a contract on Sourcify. The following is sample
         url: "//sourcify.dev/server/verify",
         data: {
             "address": $('#contractaddress').val(), //Contract Address starts with 0x... 
-            "chain": 1284, // Chain ID of Moonbeam
+            "chain": {{ networks.moonbeam.chain_id }}, // Chain ID of Moonbeam
             "files": {
                 "metadata-1.json": $('#metadata_1').val(), // Metadata file for contract file 1
                 "metadata-2.json": $('#metadata_2').val(), // Metadata file for contract file 2
@@ -372,7 +377,7 @@ A POST request is used to verify a contract on Sourcify. The following is sample
         url: "//sourcify.dev/server/verify",
         data: {
             "address": $('#contractaddress').val(), //Contract Address starts with 0x... 
-            "chain": 1285, // Chain ID of Moonriver
+            "chain": {{ networks.moonriver.chain_id }}, // Chain ID of Moonriver
             "files": {
                 "metadata-1.json": $('#metadata_1').val(), // Metadata file for contract file 1
                 "metadata-2.json": $('#metadata_2').val(), // Metadata file for contract file 2
@@ -414,7 +419,7 @@ A POST request is used to verify a contract on Sourcify. The following is sample
         url: "//sourcify.dev/server/verify",
         data: {
             "address": $('#contractaddress').val(), //Contract Address starts with 0x... 
-            "chain": 1287, // Chain ID of Moonbase Alpha
+            "chain": {{ networks.moonbase.chain_id }}, // Chain ID of Moonbase Alpha
             "files": {
                 "metadata-1.json": $('#metadata_1').val(), // Metadata file for contract file 1
                 "metadata-2.json": $('#metadata_2').val(), // Metadata file for contract file 2
@@ -457,13 +462,13 @@ Sourcify provides endpoints for checking the verification status of contracts on
 There are two variations of this endpoint, one for perfect matching and one for partial matching:
 
 === "Perfect Match"
-    ```html
+    ```bash
     curl https://sourcify.dev/server/check-by-addresses
             ?addresses={address1, address2, ...}
             &chainIds={chainId1, chainId2, ...}
     ```
 === "Partial Match"
-    ```html
+    ```bash
     curl https://sourcify.dev/server/check-all-by-addresses
             ?addresses={address1, address2, ...}
             &chainIds={chainId1, chainId2, ...}
@@ -482,7 +487,7 @@ An example response will be a JSON object of the following structure:
   },
   {
     "address": "address2",
-    "status": "perfect",
+    "status": "partial",
     "chainIds": [
       "chaindId2"
     ]
@@ -497,29 +502,29 @@ You can also retrieve the source files of verified contracts from the Sourcify r
 There are two variations of this endpoint, one for the source files of perfect matches: 
 
 === "Moonbeam"
-    ```html
-    curl https://sourcify.dev/server/files/1284/your_contract_address
+    ```bash
+    curl https://sourcify.dev/server/files/{{ networks.moonbeam.chain_id }}/your_contract_address
     ```
 === "Moonriver"
-    ```html
-    curl https://sourcify.dev/server/files/1285/your_contract_address
+    ```bash
+    curl https://sourcify.dev/server/files/{{ networks.moonriver.chain_id }}/your_contract_address
     ```
 === "Moonbase"
-    ```html
-    curl https://sourcify.dev/server/files/1287/your_contract_address
+    ```bash
+    curl https://sourcify.dev/server/files/{{ networks.moonbase.chain_id }}/your_contract_address
     ```
 
 And one for the source files of both perfect and partial matches:
 
 === "Moonbeam"
-    ```html
-    curl https://sourcify.dev/server/files/any/1284/your_contract_address
+    ```bash
+    curl https://sourcify.dev/server/files/any/{{ networks.moonbeam.chain_id }}/your_contract_address
     ```
 === "Moonriver"
-    ```html
-    curl https://sourcify.dev/server/files/any/1285/your_contract_address
+    ```bash
+    curl https://sourcify.dev/server/files/any/{{ networks.moonriver.chain_id }}/your_contract_address
     ```
 === "Moonbase"
-    ```html
-    curl https://sourcify.dev/server/files/any/1287/your_contract_address
+    ```bash
+    curl https://sourcify.dev/server/files/any/{{ networks.moonbase.chain_id }}/your_contract_address
     ```
