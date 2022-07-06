@@ -6,7 +6,7 @@ keywords: solidity, ethereum, native, token, moonbeam, precompiled, contracts
 
 #  Native Token ERC-20 Precompile
 
-![Precomiled Contracts Banner](/images/builders/build/canonical-contracts/precompiles/erc20/erc20-banner.png)
+![Precompiled Contracts Banner](/images/builders/build/canonical-contracts/precompiles/erc20/erc20-banner.png)
 
 ## Introduction {: #introduction } 
 
