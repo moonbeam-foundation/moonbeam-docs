@@ -27,13 +27,21 @@ There are some roles that are important to take note of when registering and man
 
 The breakdown of responsibilities for each role is as follows:
 
-| **Role** | **Mint** | **Burn** | **Freeze** | **Thaw** |
-|:--------:|:--------:|:--------:|:----------:|:--------:|
-|  Owner   |    ✓     |    ✓     |     ✓      |    ✓     |
-| Creator  |    X     |    X     |     X      |    X     |
-|  Issuer  |    ✓     |    X     |     X      |    X     |
-|  Admin   |    X     |    ✓     |     X      |    ✓     |
-| Freezer  |    X     |    X     |     ✓      |    X     |
+|  Role   | Mint | Burn | Freeze | Thaw |
+|:-------:|:----:|:----:|:------:|:----:|
+|  Owner  |  ✓   |  ✓   |   ✓    |  ✓   |
+| Creator |  X   |  X   |   X    |  X   |
+| Issuer  |  ✓   |  X   |   X    |  X   |
+|  Admin  |  X   |  ✓   |   X    |  ✓   |
+| Freezer |  X   |  X   |   ✓    |  X   |
+
+## The Mintable XC-20 Solidity Interface {: #the-mintable-xc20-interface }
+
+The Solidity interface for Mintable XC-20 tokens is a combination of the following three interfaces:
+
+ - [ERC-20 Interface](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=_blank} — as described in the [XC-20 overview page](/builders/xcm/xc20/overview/#the-erc20-interface){target=_blank}
+ - [Permit Interface (EIP-712 compliant)](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol){target=_blank} — as described in the [XC-20 overview page](/builders/xcm/xc20/overview/#the-erc20-permit-interface){target=_blank}
+ - [Mintable interface](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/LocalAsset.sol){target=_blank} — as described in the [following section](#additional-functions)
 
 ## Mintable XC-20 Specific Functions {: #additional-functions }
 
@@ -121,7 +129,7 @@ The first step to get your mintable XC-20 registered on Moonbeam is to create a 
     {{ networks.moonbase.mintable_xc20.asset_deposit }} DEV
     ```
 
-To get started, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=_blank} and make sure you're connected to Moonbase Alpha. Then click on **Governance** at the top of the page and then select **Democracy** from the dropdown. Then you can select **++ Submit preimage** and take the following steps:
+To get started, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=_blank} and make sure you're connected to Moonbase Alpha. Then click on **Governance** at the top of the page and then select **Democracy** from the dropdown. Then you can select **+ Submit preimage** and take the following steps:
 
 1. Select the account you want to create the proposal with
 2. From the **propose** dropdown, choose **assetManager**

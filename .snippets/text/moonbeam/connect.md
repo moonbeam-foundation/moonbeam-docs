@@ -4,7 +4,7 @@ Moonbeam has two types of endpoints available for users to connect to: one for H
 
 If you're looking for your own endpoints suitable for production use, you can check out the [Endpoint Providers](/builders/get-started/endpoints/#endpoint-providers) section of our documentation. Otherwise, to get started quickly you can use one of the following public HTTPS or WSS endpoints:
 
---8<-- 'code/endpoints/moonbeam.md'
+--8<-- 'text/endpoints/moonbeam.md'
 
 ## Quick Start {: #quick-start } 
 

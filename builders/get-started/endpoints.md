@@ -17,24 +17,37 @@ If you are looking for an API provider suitable for production use, you can chec
 
 ### Moonbeam {: #moonbeam }
 
---8<-- 'code/endpoints/moonbeam.md'
+--8<-- 'text/endpoints/moonbeam.md'
 
 ### Moonriver {: #moonriver }
 
---8<-- 'code/endpoints/moonriver.md'
+--8<-- 'text/endpoints/moonriver.md'
 
 ### Moonbase Alpha {: #moonbase-alpha }
 
---8<-- 'code/endpoints/moonbase.md'
+--8<-- 'text/endpoints/moonbase.md'
 
 ## Endpoint Providers {: #endpoint-providers }
 
 You can create your own endpoint suitable for development or production use using any of the following API providers:
 
+- [Ankr](#ankr)
 - [Blast](#blast)
 - [Dwellir](#dwellir)
 - [OnFinality](#onfinality)
 - [Pocket Network](#pokt)
+
+### Ankr {: #ankr}
+
+[Ankr](https://www.ankr.com/){target=_blank} supports free, public RPC endpoints to 15 different blockchain ecosystems, with additional networks constantly being added. The Ankr public RPC layer provides fast and reliable access via API endpoints for anybody in the world to connect to a growing number of networks including Moonbeam. 
+
+To get started, head to the [Ankr Protocol](https://www.ankr.com/protocol/){target=_blank} page to make your first call!
+
+1. Click on **Public RPCs**
+2. Select the [Moonbeam Network](https://www.ankr.com/protocol/public/moonbeam/){target=_blank}
+3. Copy the URL provided and start making requests instantly. No sign up or KYC required
+
+![Ankr](/images/builders/get-started/endpoints/endpoints-1.png)
 
 ### Blast {: #blast}
 
@@ -48,7 +61,7 @@ To get started, you'll need to head to [Blast](https://blastapi.io/){target=_bla
 4. Confirm the selected network and Press **Activate**
 5. You'll now see your chosen network under **Active Endpoints**. Click on the network and you'll see your custom RPC and WSS endpoints on the next page 
 
-![Bware Labs](/images/builders/get-started/endpoints/endpoints-1.png)
+![Bware Labs](/images/builders/get-started/endpoints/endpoints-2.png)
 
 ### Dwellir {: #dwellir }
 
@@ -75,7 +88,7 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 2. Select the network from the dropdown
 3. Your custom API endpoint will be generated automatically
 
-![OnFinality](/images/builders/get-started/endpoints/endpoints-2.png)
+![OnFinality](/images/builders/get-started/endpoints/endpoints-4.png)
 
 ### Pocket Network {: #pokt }
 
@@ -88,7 +101,7 @@ To get your own endpoint, go to [Pocket Network](https://mainnet.portal.pokt.net
 3. Enter the name of your DApp and select your corresponding network
 4. Your new endpoint will be generated and displayed for you in the following app screen
 
-![Pocket Network](/images/builders/get-started/endpoints/endpoints-4.png)
+![Pocket Network](/images/builders/get-started/endpoints/endpoints-5.png)
 
 You don't have to generate a new DApp for every endpoint! You can add a new chain to your preexisting DApp:  
 

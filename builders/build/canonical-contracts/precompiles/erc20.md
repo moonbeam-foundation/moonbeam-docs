@@ -18,7 +18,7 @@ Under the hood, the [ERC-20 precompile](https://github.com/PureStake/moonbeam/bl
 
 This guide will show you how to interact with DEV tokens, the native protocol tokens for the Moonbase Alpha TestNet, via the ERC-20 precompile.
 
-## The ERC-20 Interface {: #the-erc20-interface }
+## The ERC-20 Solidity Interface {: #the-erc20-interface }
 
 The [ERC20.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=_blank} interface on Moonbeam follows the [EIP-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20){target=_blank} which is the standard API interface for tokens within smart contracts. The standard defines the required functions and events that a token contract must implement to be interoperable with different applications.
 

@@ -17,15 +17,15 @@ To help manage singlesig and multisig wallets, [Gnosis Safe](https://gnosis-safe
 
 This guide will show you how to create a multisig Safe on the Moonbase Alpha TestNet. You will also learn how to send DEV and ERC-20 tokens to and from the Safe, and how to interact with smart contracts using the Safe. This guide can be adapted for Moonbeam and Moonriver.
 
-## Checking Prerequisites
+## Checking Prerequisites {: #checking-prerequisites }
 
 Before diving into the guide, you'll need to have a few [MetaMask accounts](#metamask-accounts) loaded up with funds, some [ERC-20 tokens](#erc-20-tokens) on hand to send to the Safe, and a [deployed smart contract](#deployed-smart-contract) to interact with.
 
-### MetaMask Accounts
+### MetaMask Accounts {: #metamask-accounts }
 
 For this guide, you will be creating a Safe on Moonbase Alpha to interact and manage your funds with. To connect to the Safe, you will need to have:
 
- - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/)
+ - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
  - At least two accounts each loaded with funds. 
  --8<-- 'text/faucet/faucet-list-item.md'
 
@@ -37,11 +37,11 @@ This guide will use the following accounts:
  - **Bob** — 0x3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0
  - **Charlie** — 0x798d4Ba9baf0064Ec19eB4F0a1a45785ae9D6DFc
 
-### ERC-20 Tokens
+### ERC-20 Tokens {: #erc20-tokens }
 
-Later on in this guide, you will be learning how to send and receive ERC-20 tokens to and from the Safe. So you will need to have deployed some ERC-20 tokens and added them to your MetaMask account. To do so, you can check out the [Using Remix to Deploy to Moonbeam](/builders/build/eth-api/dev-env/remix/) guide, in particular the [Deploying a Contract to Moonbeam](/builders/build/eth-api/dev-env/remix/#deploying-a-contract-to-moonbeam-using-remix) and [Interact with a Moonbeam-based ERC-20](/builders/build/eth-api/dev-env/remix/#interacting-with-a-moonbeam-based-erc-20-from-metamask) sections will show you how to deploy an ERC-20 token and import it into MetaMask.
+Later on in this guide, you will be learning how to send and receive ERC-20 tokens to and from the Safe. So you will need to have deployed some ERC-20 tokens and added them to your MetaMask account. To do so, you can check out the [Using Remix to Deploy to Moonbeam](/builders/build/eth-api/dev-env/remix/){target=_blank} guide, in particular the [Deploying a Contract to Moonbeam](/builders/build/eth-api/dev-env/remix/#deploying-a-contract-to-moonbeam-using-remix){target=_blank} and [Interact with a Moonbeam-based ERC-20](/builders/build/eth-api/dev-env/remix/#interacting-with-a-moonbeam-based-erc-20-from-metamask){target=_blank} sections will show you how to deploy an ERC-20 token and import it into MetaMask.
 
-### Deployed Smart Contract
+### Deployed Smart Contract {: #deployed-smart-contract }
 
 Towards the end of this guide, you will be learning how to interact with a smart contract using the Safe. So you will need to have a smart contract deployed to interact with. If you would like detailed instructions, you can refer to the [Deploying a Contract to Moonbeam using Remix](/builders/build/eth-api/dev-env/remix/#deploying-a-contract-to-moonbeam){target=_blank} guide. 
 
@@ -63,11 +63,11 @@ This is a simple contract with a single function, `setTextData`, that accepts a 
 
 You will need the contract address and the ABI, so make sure you have copied those somewhere or have access to them for later on.
 
-## Create a Safe 
+## Create a Safe {: #create-a-safe }
 
 To get started creating a Safe, navigate to the [Moonbeam Safe](https://multisig.moonbeam.network/moonbase){target=_blank}. For the purpose of this guide, you'll create a Safe on Moonbase Alpha, but you can also adapt the instructions to create a Safe on [Moonbeam](https://multisig.moonbeam.network/moonbeam){target=_blank} or [Moonriver](https://multisig.moonbeam.network/moonriver){target=_blank}. To switch networks, simply click the network dropdown in the top right hand corner of the page. 
 
-### Connect MetaMask
+### Connect MetaMask {: #connect-metamask }
 
 Once on the [Moonbase Alpha](https://multisig.moonbeam.network/moonbase/){target=_blank} page, you can begin to create a Safe by first connecting your wallet:
 
@@ -87,7 +87,7 @@ If you're not already signed into MetaMask, you will be prompted to sign in. You
 
 Now, in the top right hand corner, you can confirm you are connected to your MetaMask account on the Moonbase Alpha network. If you're using the development accounts, you should see Alice's account address. If not, double check your MetaMask and switch to Alice's account.
 
-### Create New Safe
+### Create New Safe {: #create-new-safe }
 
 To create a new Safe on Moonbase Alpha, click **Create new Safe**. You will be taken to a wizard that will walk you through creating your new Safe. By going through these steps and creating your Safe, you are consenting to the terms of use and the privacy policy. So, feel free to look those over before getting started.
 
@@ -127,7 +127,7 @@ It could take a few minutes to process the transaction and create the Safe, but 
 
 ![Safe Created Successfully](/images/tokens/manage/multisig-safe/safe-7.png)
 
-## Configure Safe
+## Configure Safe {: #configure-safe }
 
 You can always manage your Safe and change some of the parameters set when creating it. To do you can click in the **Settings** option on the left hand side menu. 
 
@@ -140,9 +140,9 @@ In there you have the following options:
  - **Policies** — allows you to initiate a on-chain proposal to change the multisig threshold to execute the proposal as a transaction
  - **Advanced** — allows you to check other parameters from the Safe, such as the nonce, modules, and transaction guard
  
-## Receive and Send Tokens
+## Receive and Send Tokens {: #receive-and-send-tokens }
 
-### Receive Tokens 
+### Receive Tokens {: #receive-tokens }
 
 Now that you have created your Safe, you can start interacting with it. First, load up the Safe by sending some DEV tokens to it. You can send funds to the Safe from any account with DEV tokens. For this example, you can use Alice's account. Hover over **DEV** in the list of assets to reveal the **Send** and **Receive** buttons. Then click **Receive**.
 
@@ -164,7 +164,7 @@ Next, open up your MetaMask to initiate a transaction:
 
 The transaction will be sent and your balance for DEV tokens will be updated on the Safe. 
 
-### Send Tokens
+### Send Tokens {: #send-tokens }
 
 Now that you have funds in the Safe, you can send funds from the Safe to another account. For this example, you can send 1 DEV token to Bob's address. Hover over **DEV** in the list of assets, and this time click on **Send**.
 
@@ -179,7 +179,8 @@ A pop-up will appear where you can enter the recipient and the amount of DEV tok
 
 ![Send 1 DEV Token from the Safe to Bob](/images/tokens/manage/multisig-safe/safe-13.png)
 
-Then review the details and click **Submit**. MetaMask will pop-up and you'll notice that instead of sending a transaction, you're sending a message. Click **Sign** to sign the message.
+ 1. Review the details and click **Submit**. MetaMask will pop-up and you'll notice that instead of sending a transaction, you're sending a message
+ 2. Click **Sign** to sign the message
 
 ![Submit Transaction and Sign Message](/images/tokens/manage/multisig-safe/safe-14.png)
 
@@ -187,7 +188,7 @@ Now, if you go back to the Safe, under the **Transactions** tab, you should be a
 
 ![Transaction Needs Confirmations](/images/tokens/manage/multisig-safe/safe-15.png)
 
-### Transaction Confirmation
+### Transaction Confirmation {: #transaction-confirmation }
 
 The process of confirming (or rejecting) a transaction proposal is similar for all the use cases of a multisig Safe. One of the owners initiates the proposal to execute an action. The other owners can approve or reject the proposal. Once the signature threshold is reached, any owner can execute the transaction proposal if approved, or discard the transaction proposal if rejected.
 
@@ -210,9 +211,9 @@ The transaction will be removed from the **QUEUE** tab and a record of the trans
 
 Congratulations, you've successfully received and sent DEV tokens to and from the Safe!
 
-## Receive and Send ERC-20 Tokens
+## Receive and Send ERC-20 Tokens {: #receive-and-send-erc20-tokens }
 
-### Receive ERC-20 Tokens
+### Receive ERC-20 Tokens {: #receive-erc20-tokens }
 
 Next up is to receive and send ERC-20s to and from the Safe. You should already have loaded up your MetaMask with **MYTOK** ERC-20 tokens. If not, please refer back to the [ERC-20 Tokens](#erc-20-tokens) section of the prerequisites.
 
@@ -231,7 +232,7 @@ You'll need to get the Safe's address again, you can do so by clicking on the **
 
 If you navigate back to the Safe, in the list of **Assets** you should now see **MyToken** and a balance of 1000 MYTOKs. It could take a few minutes for **MyToken** to appear, but there is nothing for you to do to add the asset, it will appear on it's own.
 
-### Send ERC-20 Tokens
+### Send ERC-20 Tokens {: #send-erc20-tokens }
 
 Now that you have loaded your Safe with MYTOKs, you can send some from the Safe to another account. For this example, you can send 10 MYTOKs to Charlie.  
 
@@ -248,7 +249,7 @@ A pop-up will appear where you can enter the recipient and the amount of MYTOK t
 
 ![Send ERC-20s to Charlie from the Safe](/images/tokens/manage/multisig-safe/safe-20.png)
 
-If everything looks ok, you can:
+If everything looks ok, you can: 
 
  1. Click **Submit**. MetaMask will pop-up and you'll notice that instead of sending a transaction, you're sending a message
  2. Click **Sign** to sign the message
@@ -267,9 +268,9 @@ Once the transaction has been confirmed from one of the other two accounts, the 
 
 Congratulations! You've successfully received and sent ERC-20 tokens to and from the Safe!
 
-## Interact with a Smart Contract
+## Interact with a Smart Contract {: #interact-with-a-smart-contract }
 
-For this section, you will be interacting with a smart contract using the Safe. You should have already deployed the `SetText.sol` contract using Remix, if not please refer back to the [Deployed Smart Contract](#deployed-smart-contract){target=_blank} section of the prerequisites.
+For this section, you will be interacting with a smart contract using the Safe. You should have already deployed the `SetText.sol` contract using Remix, if not please refer back to the [Deployed Smart Contract](#deployed-smart-contract) section of the prerequisites.
 
 You should still be connected to Alice's account for this section of the guide.
 
@@ -291,6 +292,7 @@ The **Contract interaction** pop-up will appear and you can fill in the contract
 ![Create Contract Interaction](/images/tokens/manage/multisig-safe/safe-25.png)
 
 If the details look ok, go ahead and:
+
  1. Click **Submit**. MetaMask will pop-up and you'll notice that instead of sending a transaction, you're sending a message
  2. Click **Sign** to sign the message
 
@@ -311,5 +313,46 @@ To double check that the correct text was set, you can go through the process ag
 ![Contract Interaction Call Result](/images/tokens/manage/multisig-safe/safe-29.png)
 
 Congratulations, you've successfully interacted with a smart contract using the Safe!
+
+## Using Moonbeam Safe APIs {: #using-moonbeam-safe-apis }
+
+There are APIs available to read from and interact with Moonbeam Safes for Moonbeam, Moonriver, and Moonbase Alpha.
+
+=== "Moonbeam"
+     ```
+     {{networks.moonbeam.multisig.api_page }}
+     ```
+
+=== "Moonriver"
+     ```
+     {{networks.moonriver.multisig.api_page}}
+     ```
+
+=== "Moonbase Alpha"
+     ```
+     {{networks.moonbase.multisig.api_page}}
+     ```
+
+As an example of using the API, try retrieving information about Safes from the Moonbeam Safe API. From the Safe page, copy the address of your Safe:
+
+![Contract Interaction Call Result](/images/tokens/manage/multisig-safe/safe-30.png)
+
+Now you can use the API:
+
+ 1. Open the API page for the corresponding network
+ 2. Scroll down to the **safes** section and click on the **/safes/{address}/** endpoint section to expand its panel
+ 3. Click the **Try it out** button on the right
+
+![Contract Interaction Call Result](/images/tokens/manage/multisig-safe/safe-31.png)
+
+A large **Execute** button should appear in the panel.
+
+ 1. Paste the address of your Safe into the **address** input
+ 2. Press **Execute**
+ 3. Information about your safe will appear below
+
+![Contract Interaction Call Result](/images/tokens/manage/multisig-safe/safe-32.png)
+
+Congratulations! You have successfully used the API for Moonbeam Safes. There are still many other endpoints to use, either for convenience or to add into your own app.
 
 --8<-- 'text/disclaimers/third-party-content.md'

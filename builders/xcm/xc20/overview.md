@@ -37,7 +37,7 @@ First and foremost, XC-20s are Substrate-based assets, and as such, they are als
 
 Nevertheless, XC-20s can be interacted with through an ERC-20 interface, so they have the additional benefit of being accessible from both the Substrate and Ethereum APIs. This ultimately provides greater flexibility for developers when working with these types of assets and allows seamless integrations with EVM-based smart contracts such as DEXs, lending platforms, among others.
 
-## The ERC-20 Interface {: #the-erc20-interface }
+## The ERC-20 Solidity Interface {: #the-erc20-interface }
 
 The [ERC20.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=_blank} interface on Moonbeam follows the [EIP-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20){target=_blank} which is the standard API interface for tokens within smart contracts. The standard defines the required functions and events that a token contract must implement to be interoperable with different applications.
 
@@ -45,7 +45,7 @@ The [ERC20.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/as
 
 Mintable XC-20s also include additional functions that only the owner of the token contract or a designated account is allowed to call. Please check out the [Mintable XC-20](/builders/xcm/xc20/mintable-xc20){target=_blank} page for more details on the additional functions and the designated roles available.
 
-## The ERC-20 Permit Interface {: #the-erc20-permit-interface }
+## The ERC-20 Permit Solidity Interface {: #the-erc20-permit-interface }
 
 The [Permit.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol){target=_blank} interface on Moonbeam follows the [EIP-2612 standard](https://eips.ethereum.org/EIPS/eip-2612){target=_blank} which extends the ERC-20 interface with the `permit` function. Permits are signed messages that can be used to change an account's ERC-20 allowance.
 
@@ -116,7 +116,7 @@ You can interact with the XC-20 precompile using [Remix](https://remix.ethereum.
 Once you have the ERC-20 interface loaded in Remix, you will need to compile it:
 
 1. Click on the **Compile** tab, second from top
-2. Compile the **IER20.sol** file
+2. Compile the **IERC20.sol** file
 
 ![Compiling IERC20.sol](/images/builders/xcm/xc20/overview/overview-2.png)
 
