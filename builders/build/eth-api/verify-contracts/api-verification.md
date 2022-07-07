@@ -5,7 +5,7 @@ description: Learn how to verify smart contracts on Moonbeam-based networks usin
 
 # API-based Contract Verification
 
-![Explorer Banner](/images/builders/build/eth-api/verify-contracts/block-explorers/verify-contract-banner.png)
+![Explorer Banner](/images/builders/build/eth-api/verify-contracts/api-verification/api-verification-banner.png)
 
 ## Introduction {: #introduction } 
 
