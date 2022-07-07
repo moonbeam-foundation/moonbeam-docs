@@ -34,15 +34,15 @@ Some important variables/configurations to note include:
     | Transaction gas limit |  {{ networks.moonriver.gas_tx }} (expected to increase by at least 4x)   |
 
 === "Governance"
-    |         Variable         |                                                             Value                                                              |
-    |:------------------------:|:------------------------------------------------------------------------------------------------------------------------------:|
-    |      Voting period       |      {{ networks.moonriver.democracy.vote_period.blocks}} blocks ({{networks.moonriver.democracy.vote_period.days}} days)      |
-    | Fast-track voting period | {{ networks.moonriver.democracy.fast_vote_period.blocks}} blocks ({{networks.moonriver.democracy.fast_vote_period.days}} days) |
-    |     Enactment period     |     {{ networks.moonriver.democracy.enact_period.blocks}} blocks ({{networks.moonriver.democracy.enact_period.days}} day)      |
-    |     Cool-off period      |      {{ networks.moonriver.democracy.cool_period.blocks}} blocks ({{networks.moonriver.democracy.cool_period.days}} days)      |
-    |     Minimum deposit      |                                      {{ networks.moonriver.democracy.min_deposit }} MOVR                                       |
-    |      Maximum votes       |                                          {{ networks.moonriver.democracy.max_votes }}                                          |
-    |    Maximum proposals     |                                        {{ networks.moonriver.democracy.max_proposals }}                                        |
+    |         Variable         |                                                              Value                                                               |
+    |:------------------------:|:--------------------------------------------------------------------------------------------------------------------------------:|
+    |      Voting period       |       {{ networks.moonriver.democracy.vote_period.blocks}} blocks ({{networks.moonriver.democracy.vote_period.days}} days)       |
+    | Fast-track voting period | {{ networks.moonriver.democracy.fast_vote_period.blocks}} blocks ({{networks.moonriver.democracy.fast_vote_period.hours}} hours) |
+    |     Enactment period     |      {{ networks.moonriver.democracy.enact_period.blocks}} blocks ({{networks.moonriver.democracy.enact_period.days}} day)       |
+    |     Cool-off period      |       {{ networks.moonriver.democracy.cool_period.blocks}} blocks ({{networks.moonriver.democracy.cool_period.days}} days)       |
+    |     Minimum deposit      |                                       {{ networks.moonriver.democracy.min_deposit }} MOVR                                        |
+    |      Maximum votes       |                                           {{ networks.moonriver.democracy.max_votes }}                                           |
+    |    Maximum proposals     |                                         {{ networks.moonriver.democracy.max_proposals }}                                         |
 
 === "Staking"
     |             Variable              |                                                   Value                                                   |
