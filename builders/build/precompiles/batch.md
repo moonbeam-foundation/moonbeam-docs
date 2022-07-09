@@ -39,7 +39,9 @@ The precompile is located at the following address:
 
 --8<-- 'text/batch/batch-interface.md'
 
-## Checking Prerequisites {: #checking-prerequisites } 
+### Interact with the Solidity Interface {: #interact-with-the-solidity-interface }
+
+### Checking Prerequisites {: #checking-prerequisites } 
 
 To follow along with this tutorial, you will need to have:
 
@@ -48,7 +50,7 @@ To follow along with this tutorial, you will need to have:
 - At least one of the accounts will need to be funded with `DEV` tokens.
  --8<-- 'text/faucet/faucet-list-item.md'
 
-## Interact with the Precompile Using Remix {: #interact-with-the-precompile-using-remix } 
+### Remix Set Up {: #remix-set-up } 
 
 You can interact with the batch precompile using [Remix](https://remix.ethereum.org/){target=_blank}. To add the precompile to Remix and follow along with the tutorial, you will need to:
 
@@ -77,13 +79,13 @@ If the interface was compiled successfully, you will see a green checkmark next 
 
 ### Access the Precompile {: #access-the-precompile } 
 
-Instead of deploying the Batch precompile, you will access the interface given the address of the precompiled contract:
+Instead of deploying the batch precompile, you will access the interface given the address of the precompiled contract:
 
 1. Click on the **Deploy and Run** tab directly below the **Compile** tab in Remix. Please note the precompiled contract is already deployed
 2. Make sure **Injected Web3** is selected in the **ENVIRONMENT** dropdown. Once you select **Injected Web3**, you might be prompted by MetaMask to connect your account to Remix
 3. Make sure the correct account is displayed under **ACCOUNT**
 4. Ensure **Batch - Batch.sol** is selected in the **CONTRACT** dropdown. Since this is a precompiled contract, there is no need to deploy any code. Instead we are going to provide the address of the precompile in the **At Address** Field
-5. Provide the address of the Batch precompile: `{{networks.moonbase.precompiles.batch}}` and click **At Address**
+5. Provide the address of the batch precompile: `{{networks.moonbase.precompiles.batch}}` and click **At Address**
 
 ![Access the address](/images/builders/build/canonical-contracts/precompiles/batch/batch-2.png)
 
@@ -225,7 +227,7 @@ Try sending a batched transaction with these inputs in Remix the same way [you b
 
 And that's it! You've successfully interacted with the ERC-20 precompile using MetaMask and Remix!
 
-## Using Ethereum Developer Libraries {: #using-ethereum-developer-libraries }
+## Ethereum Development Libraries {: #ethereum-development-libraries }
 
 If you have followed the [Ethers.js tutorial](/builders/build/eth-api/libraries/ethersjs/){target=_blank} on Moonbeam, you may find it difficult to find the call data for a function. The answer is hidden within Ether's `utils.Interface` object, where the [encodeFunctionData](https://docs.ethers.io/v5/api/utils/abi/interface/#Interface--encoding){target=_blank} function allows you to input your function name and inputs to receive the resultant call data. Web3js has a similar function, [encodeFunctionCall](https://web3js.readthedocs.io/en/v1.2.11/web3-eth-abi.html#encodefunctioncall){target=_blank}.
 
