@@ -23,6 +23,8 @@ networks:
     node_directory: /var/lib/alphanet-data
     node_db_loc: /chains/moonbase_alpha/db
     binary_name: moonbeam
+    min_gas_price: 1
+    block_time: 12
     discord_faucet_amount: 1 DEV token
     website_faucet_amount: 5 DEV tokens
     node:
@@ -352,8 +354,8 @@ networks:
       metadata_base_deposit: 1.0068
       metadata_byte_deposit: .0001
     orbiter:
-      max_orbiters_per_collator: 4
-      max_collators: 4
+      max_orbiters_per_collator: 3
+      max_collators: 8
       active:
         rounds: 3
         hours: 6

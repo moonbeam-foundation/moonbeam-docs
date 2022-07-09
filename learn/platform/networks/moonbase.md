@@ -38,15 +38,15 @@ Some important variables/configurations to note include:
     | Transaction gas limit |  {{ networks.moonbase.gas_tx }} (expected to increase by at least 4x)   |
 
 === "Governance"
-    |         Variable         |                                                            Value                                                             |
-    |:------------------------:|:----------------------------------------------------------------------------------------------------------------------------:|
-    |      Voting period       |      {{ networks.moonbase.democracy.vote_period.blocks}} blocks ({{networks.moonbase.democracy.vote_period.days}} days)      |
-    | Fast-track voting period | {{ networks.moonbase.democracy.fast_vote_period.blocks}} blocks ({{networks.moonbase.democracy.fast_vote_period.days}} days) |
-    |     Enactment period     |     {{ networks.moonbase.democracy.enact_period.blocks}} blocks ({{networks.moonbase.democracy.enact_period.days}} day)      |
-    |     Cool-off period      |      {{ networks.moonbase.democracy.cool_period.blocks}} blocks ({{networks.moonbase.democracy.cool_period.days}} days)      |
-    |     Minimum deposit      |                                      {{ networks.moonbase.democracy.min_deposit }} DEV                                       |
-    |      Maximum votes       |                                         {{ networks.moonbase.democracy.max_votes }}                                          |
-    |    Maximum proposals     |                                       {{ networks.moonbase.democracy.max_proposals }}                                        |
+    |         Variable         |                                                             Value                                                              |
+    |:------------------------:|:------------------------------------------------------------------------------------------------------------------------------:|
+    |      Voting period       |       {{ networks.moonbase.democracy.vote_period.blocks}} blocks ({{networks.moonbase.democracy.vote_period.days}} days)       |
+    | Fast-track voting period | {{ networks.moonbase.democracy.fast_vote_period.blocks}} blocks ({{networks.moonbase.democracy.fast_vote_period.hours}} hours) |
+    |     Enactment period     |      {{ networks.moonbase.democracy.enact_period.blocks}} blocks ({{networks.moonbase.democracy.enact_period.days}} day)       |
+    |     Cool-off period      |       {{ networks.moonbase.democracy.cool_period.blocks}} blocks ({{networks.moonbase.democracy.cool_period.days}} days)       |
+    |     Minimum deposit      |                                       {{ networks.moonbase.democracy.min_deposit }} DEV                                        |
+    |      Maximum votes       |                                          {{ networks.moonbase.democracy.max_votes }}                                           |
+    |    Maximum proposals     |                                        {{ networks.moonbase.democracy.max_proposals }}                                         |
 
 === "Staking"
     |             Variable              |                                                  Value                                                  |
