@@ -6,7 +6,7 @@ keywords: solidity, ethereum, democracy, moonbeam, precompiled, contracts
 
 # Interacting with the Democracy Precompile
 
-![Staking Moonbeam Banner](/images/builders/build/canonical-contracts/precompiles/democracy/democracy-banner.png)
+![Democracy Moonbeam Banner](/images/builders/build/canonical-contracts/precompiles/democracy/democracy-banner.png)
 
 ## Introduction {: #introduction } 
 

@@ -6,6 +6,8 @@ keywords: democracy, substrate, pallet, moonbeam, polkadot
 
 # The Democracy Pallet
 
+![Democracy Moonbeam Banner](/images/builders/build/pallets/democracy-banner.png)
+
 ## Introduction {: #introduction }
 
 As a Polkadot parachain, Moonbeam features native on-chain governance thanks to the [Substrate democracy pallet](https://docs.rs/pallet-democracy/latest/pallet_democracy/){target=_blank}.
