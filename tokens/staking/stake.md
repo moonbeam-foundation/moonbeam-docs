@@ -177,7 +177,7 @@ Here, provide the following information:
 
  1. Choose the pallet you want to interact with. In this case, it is the **parachainStaking** pallet
  2. Choose the state to query. In this case, it is the **delegatorState**
- 3. Verify the selected address is correct. In this case, we are looking at Alice's account
+ 3. Verify the selected address is correct. In this case, you are looking at Alice's account
  4. Make sure to enable the **include option** slider
  5. Send the state query by clicking on the **+** button
 

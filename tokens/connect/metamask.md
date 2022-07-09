@@ -10,7 +10,7 @@ description: This guide walks you through how to connect MetaMask, an browser-ba
 
 ## Introduction {: #introduction } 
 
-Developers can leverage Moonbeam's Ethereum compatibility features to integrate tools, such as [MetaMask](https://metamask.io/), into their DApps. By doing so, they can use the injected library MetaMask provides to interact with the blockchain.
+Developers can leverage Moonbeam's Ethereum compatibility features to integrate tools, such as [MetaMask](https://metamask.io/){target=_blank}, into their DApps. By doing so, they can use the injected library MetaMask provides to interact with the blockchain.
 
 Currently, MetaMask can be configured to connect to a few networks: Moonbeam, Moonriver, the Moonbase Alpha TestNet, and a Moonbeam development node.
 
@@ -31,15 +31,15 @@ If you already have MetaMask installed, you can easily connect MetaMask to the n
 !!! note
     MetaMask will popup asking for permission to add a a custom network. Once you approve permissions, MetaMask will switch your current network.
 
-Learn [how to integrate a Connect MetaMask button](/builders/integrations/wallets/metamask/) into your DApp, so that users can connect to Moonbase Alpha with a simple click of a button. The guide can also be adapted for the other Moonbeam-based networks.
+Learn [how to integrate a Connect MetaMask button](/builders/integrations/wallets/metamask/){target=_blank} into your DApp, so that users can connect to Moonbase Alpha with a simple click of a button. The guide can also be adapted for the other Moonbeam-based networks.
 
 ## Install the MetaMask Extension {: #install-the-metamask-extension } 
 
-First, we start with a fresh and default [MetaMask](https://metamask.io/) installation from the Chrome store. After downloading, installing, and initializing the extension, follow the **Get Started** guide. In there, you need to create a wallet, set a password, and store your secret backup phrase (this gives direct access to your funds, so make sure to store these in a secure place). 
+First, you'll start with a fresh and default [MetaMask](https://metamask.io/){target=_blank} installation from the Chrome store. After downloading, installing, and initializing the extension, follow the **Get Started** guide. In there, you need to create a wallet, set a password, and store your secret backup phrase (this gives direct access to your funds, so make sure to store these in a secure place). 
 
 ## Create a Wallet {: #create-a-wallet } 
 
-After installing [MetaMask](https://metamask.io), the setup will automatically open a new task with a welcome screen. Click **Get Started** to begin the setup process.
+After installing [MetaMask](https://metamask.io){target=_blank}, the setup will automatically open a new task with a welcome screen. Click **Get Started** to begin the setup process.
 
 ![MetaMask1](/images/tokens/connect/metamask/metamask-1.png)
 
@@ -69,7 +69,7 @@ You should end up with an imported **Account 2** that looks like this:
 
 ## Connect MetaMask to Moonbeam {: #connect-metamask-to-moonbeam } 
 
-Once you have [MetaMask](https://metamask.io/) installed and have created or imported an account, you can connect it to Moonbeam by clicking on the network dropdown and selecting **Add Network**.
+Once you have [MetaMask](https://metamask.io/){target=_blank} installed and have created or imported an account, you can connect it to Moonbeam by clicking on the network dropdown and selecting **Add Network**.
 
 ![MetaMask3](/images/tokens/connect/metamask/metamask-6.png)
 
@@ -123,7 +123,7 @@ Once you have submitted the transaction, you will see it **pending** until it is
 
 ![Transaction confirmation](/images/tokens/connect/metamask/metamask-9.png)
 
-Note that the Account 2 balance has been decreased by the sent amount + gas fees. Flipping over to Account 1, we see the 100 sent tokens have arrived:
+Note that the Account 2 balance has been decreased by the sent amount + gas fees. Flipping over to Account 1, you can see the 100 sent tokens have arrived:
 
 ![New balance in Account 1](/images/tokens/connect/metamask/metamask-10.png)
 

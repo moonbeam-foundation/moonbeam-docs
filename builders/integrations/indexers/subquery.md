@@ -172,7 +172,7 @@ In your sample SubQuery project, you'll notice that the event passed in to the `
 
 For this example, the `FrontierEvmEvent` will be used to handle and filter `Transfer` events and the `FrontierEvmCall` will be used to handle and filter `approve` function calls.
 
-Before updating your project for Moonbeam, you'll need to install [ethers.js](https://docs.ethers.io/){target=_blank} which will be used to specify types for the transfer and approval event arguments:
+Before updating your project for Moonbeam, you'll need to install [Ethers.js](https://docs.ethers.io/){target=_blank} which will be used to specify types for the transfer and approval event arguments:
 
 ```
 yarn add ethers

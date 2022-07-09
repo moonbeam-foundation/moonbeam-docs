@@ -107,7 +107,7 @@ This section of the guide will show you how to register an asset on [Polkadot.js
 To register a mintable XC-20 on Moonbase Alpha, you'll need to have the following:
 
 - [MetaMask installed and connected to the Moonbase Alpha](/tokens/connect/metamask/){target=_blank} TestNet
-- An account funded with `DEV` tokens. 
+- An account funded with `DEV` tokens.
  --8<-- 'text/faucet/faucet-list-item.md'
 
 ### Create a Proposal {: #create-a-proposal }
@@ -213,9 +213,9 @@ If the interface was compiled successfully, you will see a green checkmark next 
 Instead of deploying the precompile, you will access the interface given the address of the XC-20 precompile:
 
 1. Click on the **Deploy and Run** tab directly below the **Compile** tab in Remix. Please note the precompiled contract is already deployed
-2. Make sure **Injected Web3** is selected in the **Environment** dropdown. Once you select **Injected Web3**, you might be prompted by MetaMask to connect your account to Remix
-3. Make sure the correct account is displayed under **Account**
-4. Ensure **ILocalAsset - ILocalAsset.sol** is selected in the **Contract** dropdown. Since this is a precompiled contract, there is no need to deploy any code. Instead we are going to provide the address of the precompile in the **At Address** Field
+2. Make sure **Injected Web3** is selected in the **ENVIRONMENT** dropdown. Once you select **Injected Web3**, you might be prompted by MetaMask to connect your account to Remix
+3. Make sure the correct account is displayed under **ACCOUNT**
+4. Ensure **ILocalAsset - ILocalAsset.sol** is selected in the **CONTRACT** dropdown. Since this is a precompiled contract, there is no need to deploy any code. Instead you are going to provide the address of the precompile in the **At Address** field
 5. Provide the address of the XC-20 precompile calculated in the [Calculate Precompile Address](#calculate-precompile-address) section, `0xFFFFFFFE6D1492E39F1674F65A6F600B4589ABD7`, and click **At Address**
 
 ![Access the address](/images/builders/xcm/xc20/mintable-xc20/mintable-xc20-8.png)

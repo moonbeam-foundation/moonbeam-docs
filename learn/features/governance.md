@@ -19,7 +19,7 @@ With great power comes great responsibility. Some important parameters to unders
  - **Referendum** — when the most seconded proposal is voted on by the community. There can be a maximum of five active referenda at a time unless there is an emergency referendum in progress
  - **Launch period** — how often new public referenda are launched
  - **Voting period** — time token holders have to vote for a referendum (duration of a referendum)
- - **Fast-Track Voting period** — duration for voting for emergency proposals that address critical issues
+ - **Fast-track voting period** — duration for voting for emergency proposals that address critical issues
 - **Voting** — referenda are voted on by token holders on a stake and conviction weighted basis. Conviction refers to the time that token holders voluntarily lock their tokens when voting: the longer they are locked, the more weight their vote has. Referenda that pass are subject to delayed enactment so that people who disagree with the direction of the decision have time to exit the network
  - **Enactment period** — time between a proposal being approved and enacted (make law). It is also the minimum period necessary to lock funds to propose an action
  - **Lock period** — time (after the proposal enactment) that the tokens of the winning voters are locked. Users can still use these tokens for staking or voting

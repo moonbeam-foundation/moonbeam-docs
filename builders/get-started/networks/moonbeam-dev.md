@@ -13,14 +13,14 @@ description: Follow this tutorial to learn how to set up your first Moonbeam nod
 This guide outlines the steps needed to create a development node for testing the Ethereum compatibility features of Moonbeam.
 
 !!! note
-    This tutorial was created using the {{ networks.development.build_tag }} tag of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/{{ networks.development.build_tag }}). The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier) components it relies on for Substrate-based Ethereum compatibility are still under very active development.
+    This tutorial was created using the {{ networks.development.build_tag }} tag of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/{{ networks.development.build_tag }}){target=_blank}. The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier){target=_blank} components it relies on for Substrate-based Ethereum compatibility are still under very active development.
     --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
 
 A Moonbeam development node is your own personal development environment for building and testing applications on Moonbeam. For Ethereum developers, it is comparable to Ganache. It enables you to get started quickly and easily without the overhead of a relay chain. You can spin up your node with the `--sealing` option to author blocks instantly, manually, or at a custom interval after transactions are received. By default a block will be created when a transaction is received, which is similar to Ganache's instamine feature. 
 
 If you follow to the end of this guide, you will have a Moonbeam development node running in your local environment, with 10 [pre-funded accounts](#pre-funded-development-accounts), and will be able to connect it to the default Polkadot.js GUI.
 
-There are two ways to get started running a Moonbeam node: you can use [Docker to run a pre-built binary](#getting-started-with-docker) or you can [compile the binary locally](#getting-started-with-the-binary-file) and set up a development node yourself. Using Docker is a quick and convenient way to get started as you won't have to install Substrate and all the dependencies, and you can skip the building the node process as well. It does require you to [install Docker](https://docs.docker.com/get-docker/). On the other hand, if you decide you want to go through the process of building your own development node, it could take roughly 30 minutes or longer to complete depending on your hardware.
+There are two ways to get started running a Moonbeam node: you can use [Docker to run a pre-built binary](#getting-started-with-docker) or you can [compile the binary locally](#getting-started-with-the-binary-file) and set up a development node yourself. Using Docker is a quick and convenient way to get started as you won't have to install Substrate and all the dependencies, and you can skip the building the node process as well. It does require you to [install Docker](https://docs.docker.com/get-docker/){target=_blank}. On the other hand, if you decide you want to go through the process of building your own development node, it could take roughly 30 minutes or longer to complete depending on your hardware.
 
 ## Getting Started with Docker {: #getting-started-with-docker } 
 
@@ -77,11 +77,11 @@ To continue on with the tutorial, the next section is not necessary as you've al
 ## Getting Started with the Binary File {: #getting-started-with-the-binary-file } 
 
 !!! note
-    If you know what you are doing, you can directly download the precompiled binaries attached to each release on the [Moonbeam-release page](https://github.com/PureStake/moonbeam/releases). These will not work in all systems. For example, the binaries only work with x86-64 Linux with specific versions of dependencies. The safest way to ensure compatibility is to compile the binary in the system where it will be run from.
+    If you know what you are doing, you can directly download the precompiled binaries attached to each release on the [Moonbeam-release page](https://github.com/PureStake/moonbeam/releases){target=_blank}. These will not work in all systems. For example, the binaries only work with x86-64 Linux with specific versions of dependencies. The safest way to ensure compatibility is to compile the binary in the system where it will be run from.
 
 First, start by cloning a specific tag of the Moonbeam repo that you can find here:
 
-[https://github.com/PureStake/moonbeam/](https://github.com/PureStake/moonbeam/)
+[https://github.com/PureStake/moonbeam/](https://github.com/PureStake/moonbeam/){target=_blank}
 
 ```
 git clone -b {{ networks.development.build_tag }} https://github.com/PureStake/moonbeam
@@ -120,7 +120,7 @@ Then, you will want to run the node in dev mode using the following command:
 ```
 
 !!! note
-    For people not familiar with Substrate, the `--dev` flag is a way to run a Substrate-based node in a single node developer configuration for testing purposes. You can learn more about `--dev` in [this Substrate tutorial](https://substrate.dev/docs/en/tutorials/create-your-first-substrate-chain/interact).
+    For people not familiar with Substrate, the `--dev` flag is a way to run a Substrate-based node in a single node developer configuration for testing purposes. You can learn more about `--dev` in [this Substrate tutorial](https://substrate.dev/docs/en/tutorials/create-your-first-substrate-chain/interact){target=_blank}.
 
 You should see an output that looks like the following, showing an idle state waiting for blocks to be produced:
 
@@ -138,11 +138,11 @@ The development node is a Substrate-based node, so you can interact with it usin
  - **HTTP** - `http://127.0.0.1:9933`
  - **WS** - `ws://127.0.0.1:9944` 
 
-Start by connecting to it with Polkadot.js Apps. Open a browser to: [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/#/explorer). This will open Polkadot.js Apps, which automatically connects to Polkadot MainNet.
+Start by connecting to it with Polkadot.js Apps. Open a browser to: [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/#/explorer){target=_blank}. This will open Polkadot.js Apps, which automatically connects to Polkadot MainNet.
 
 ![Polkadot.js Apps](/images/builders/get-started/networks/moonbeam-dev/moonbeam-dev-5.png)
 
-Click on the top left corner to open the menu to configure the networks, and then navigate down to open the Development sub-menu. In there, you will want to toggle the "Local Node" option, which points Polkadot.js Apps to `ws://127.0.0.1:9944`. Next, select the Switch button, and the site should connect to your Moonbeam development node.
+Click on the top left corner to open the menu to configure the networks, and then navigate down to open the Development sub-menu. In there, you will want to toggle the **Local Node** option, which points Polkadot.js Apps to `ws://127.0.0.1:9944`. Next, select the Switch button, and the site should connect to your Moonbeam development node.
 
 ![Select Local Node](/images/builders/get-started/networks/moonbeam-dev/moonbeam-dev-6.png)
 
@@ -152,9 +152,9 @@ With Polkadot.js Apps connected, you will see the Moonbeam development node wait
 
 ## Querying Account State {: #querying-account-state } 
 
-With the release of [Moonbase Alpha v3](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/), Moonbeam now works under a single account format, which is the Ethereum-styled H160 and is now also supported in Polkadot.js Apps. To check the balance of an address, you can simply import your account in the Accounts tab. You can find more information in the [Unified Accounts](/learn/features/unified-accounts/) section.
+With the release of [Moonbase Alpha v3](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/){target=_blank}, Moonbeam now works under a single account format, which is the Ethereum-styled H160 and is now also supported in Polkadot.js Apps. To check the balance of an address, you can simply import your account in the Accounts tab. You can find more information in the [Unified Accounts](/learn/features/unified-accounts/){target=_blank} section.
  
-Nevertheless, leveraging the Ethereum full RPC capabilities of Moonbeam, you can use [MetaMask](/tokens/connect/metamask/) to check the balance of that address as well. In addition, you can also use other development tools, such as [Remix](/builders/build/eth-api/dev-env/remix/) and [Truffle](/builders/build/eth-api/dev-env/truffle/).
+Nevertheless, leveraging the Ethereum full RPC capabilities of Moonbeam, you can use [MetaMask](/tokens/connect/metamask/){target=_blank} to check the balance of that address as well. In addition, you can also use other development tools, such as [Remix](/builders/build/eth-api/dev-env/remix/){target=_blank} and [Truffle](/builders/build/eth-api/dev-env/truffle/){target=_blank}.
 
 ## Commands, Flags and Options {: #common-commands-flags-and-options } 
 
@@ -166,7 +166,7 @@ When running a node via the binary file, data is stored in a local directory typ
 ./target/release/moonbeam purge-chain --dev -y
 ```
 
-This will remove the data folder, note that all chain data is now lost. To learn more about all of the available `purge-chain` commands, you can checkout the [Purging Binary Data](/node-operators/networks/run-a-node/systemd/#purging-compiled-binary) section of our documentation.
+This will remove the data folder, note that all chain data is now lost. To learn more about all of the available `purge-chain` commands, you can checkout the [Purging Binary Data](/node-operators/networks/run-a-node/systemd/#purging-compiled-binary){target=_blank} section of our documentation.
 
 If you spun up your node using Docker along with the `-v` flag to specify a a mounted directory for your container, you will need to purge that directory. To do so, you can run the following command:
 
@@ -213,7 +213,7 @@ For a complete list of flags and options, spin up your Moonbeam development node
 
 You can also gain access to some non-standard RPC methods by running a tracing node, which allow developers to inspect and debug transactions during runtime. Tracing nodes use a different Docker image than a standard Moonbeam development node. 
 
-To learn how to run a Moonbeam development tracing node, check out the [Run a Tracing Node](/node-operators/networks/tracing-node) guide and be sure to switch to the **Moonbeam Development Node** tab throughout the instructions. Then to access the non-standard RPC methods with your tracing node, check out the [Debug & Trace](/builders/build/eth-api/debug-trace) guide.
+To learn how to run a Moonbeam development tracing node, check out the [Run a Tracing Node](/node-operators/networks/tracing-node){target=_blank} guide and be sure to switch to the **Moonbeam Development Node** tab throughout the instructions. Then to access the non-standard RPC methods with your tracing node, check out the [Debug & Trace](/builders/build/eth-api/debug-trace){target=_blank} guide.
 
 ## Pre-funded Development Accounts {: #pre-funded-development-accounts } 
 
@@ -225,15 +225,15 @@ bottom drive obey lake curtain smoke basket hold race lonely fit walk
 
 --8<-- 'code/setting-up-node/dev-accounts.md'
 
-Checkout the [Using MetaMask](/tokens/connect/metamask/) section to get started interacting with your accounts.
+Checkout the [Using MetaMask](/tokens/connect/metamask/){target=_blank} section to get started interacting with your accounts.
 
 Also, included with the development node is a prefunded account used for testing purposes:
 
 --8<-- 'code/setting-up-node/dev-testing-account.md'
 
-## Block Explorers
+## Block Explorers {: #block-explorers }
 
 For a Moonbeam development node, you can use any of the following block explorers:
 
- - **Substrate API** — [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/explorer) on WS port `9944`
- - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=MoonbeamDevNode) on HTTP port `9933`
+ - **Substrate API** — [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/explorer){target=_blank} on WS port `9944`
+ - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=MoonbeamDevNode){target=_blank} on HTTP port `9933`

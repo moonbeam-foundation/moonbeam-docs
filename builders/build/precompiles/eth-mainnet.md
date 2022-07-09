@@ -50,7 +50,7 @@ This code will return the following object in the terminal:
 
 --8<-- 'code/precompiles/ecrecoverresult.md'
 
-With the necessary values, you can go to [Remix](/builders/build/eth-api/dev-env/remix/){target=_blank} to test the precompiled contract. Note that this can also be verified with the Web3 JS library, but in this case, you can go to Remix to be sure that it is using the precompiled contract on the blockchain. The Solidity code you can use to verify the signature is the following:
+With the necessary values, you can go to [Remix](/builders/build/eth-api/dev-env/remix/){target=_blank} to test the precompiled contract. Note that this can also be verified with the Web3.js library, but in this case, you can go to Remix to be sure that it is using the precompiled contract on the blockchain. The Solidity code you can use to verify the signature is the following:
 
 --8<-- 'code/precompiles/ecrecoverremix.md'
 
@@ -74,9 +74,9 @@ Currently there is no SHA3-256 support in Solidity, so it needs to be called wit
 
 Using the [Remix compiler and deployment](/builders/build/eth-api/dev-env/remix/){target=_blank} and with [MetaMask pointing to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}, you can deploy the contract and call the `sha3fips(bytes memory data)` method to return the encoded string of the data parameter.
 
-## Hashing with RIPEMD-160 {: #hashing-with-ripemd-160 } 
+## Hashing with RIPEMD160 {: #hashing-with-ripemd-160 } 
 
-This hashing function returns a RIPEMD-160 hash from the given data. To test this precompile, you can use this [RIPEMD160 Hash Calculator tool](https://md5calc.com/hash/ripemd160){target=_blank} to calculate the RIPEMD-160 hash of any string. In this case, you'll do so again with `Hello World!`. You'll reuse the same code as before, but use the `ripemd160` function. Note that it returns a `bytes20` type variable:
+This hashing function returns a RIPEMD160 hash from the given data. To test this precompile, you can use this [RIPEMD160 Hash Calculator tool](https://md5calc.com/hash/ripemd160){target=_blank} to calculate the RIPEMD160 hash of any string. In this case, you'll do so again with `Hello World!`. You'll reuse the same code as before, but use the `ripemd160` function. Note that it returns a `bytes20` type variable:
 
 --8<-- 'code/precompiles/ripemd160.md'
 

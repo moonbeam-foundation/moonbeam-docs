@@ -7,7 +7,7 @@ description: A description of the main differences that developers need to under
 
 ![Moonbeam v Ethereum - Transfers API Banner](/images/builders/get-started/eth-compare/transfers-api-banner.png)
 
-## Introduction
+## Introduction {: #introduction }
 
 While Moonbeam strives to be compatible with Ethereum's Web3 API and EVM, there are some important Moonbeam differences that developers should know and understand in terms of balance transfers of the base network token (for example, GLMR and MOVR).
 
@@ -17,13 +17,13 @@ Developers need to be aware that token holders can leverage both APIs to transfe
 
 This guide will outline some of these main differences around both APIs for base layer network token balance transfers and what to expect when using Moonbeam for the first time.
 
-## Ethereum Transfers
+## Ethereum Transfers {: #ethereum-transfers }
 
 A simple balance transfer using the Ethereum API relies on the `eth_sendRawTransaction` JSON RPC. This can be directly from one account to another or via a smart contract.
 
 There are different strategies to listen for transfers or balance changes on Ethereum, which are not covered in this documentation. But they are all focused on different strategies using the Ethereum JSON RPC.
 
-## Moonbeam Transfers
+## Moonbeam Transfers {: #moonbeam-transfers }
 
 As stated before, Moonbeam enables token holders to execute base layer network token transfers via both the Ethereum and Substrate API. There are multiple scenarios to trigger token transfer on Moonbeam. Consequently, to monitor all transfers, **you should use the Polkadot.js SDK** (Substrate API).
 
@@ -35,18 +35,18 @@ Before going over the different scenarios, there are two different elements asso
 The different transfer scenarios are:
 
  - **Substrate transfer** — it will create an extrinsic, either `balances.transfer` or `balances.transferKeepAlive`. It will trigger **one** `balances.Transfer` event
- - **Substrate feature** — some native Substrate features can create extrinsic that would send tokens to an address. For example, [Treasury](/learn/features/treasury/) can create an extrinsic such as `treasury.proposeSend`, which will trigger **one or multiple** `balances.Transfer` events
+ - **Substrate feature** — some native Substrate features can create extrinsic that would send tokens to an address. For example, [Treasury](/learn/features/treasury/){target=_blank} can create an extrinsic such as `treasury.proposeSend`, which will trigger **one or multiple** `balances.Transfer` events
  - **Ethereum transfer** — it will create an `ethereum.transact` extrinsic, with an empty input. It will trigger **one** `balances.Transfer` event
  - **Ethereum transfers via smart contracts** — it will create an `ethereum.transact` extrinsic, with some data as input. It will trigger **one or multiple** `balances.Transfer` events
 
 All the scenarios described above will effectively transfer base layer network tokens. The easiest way to monitor them all is to rely on the `balances.Transfer` event.
 
-## Monitor All Balance Transfers with the Substrate API
+## Monitor All Balance Transfers with the Substrate API {: #monitor-transfers }
 
-The [Polkadot.js API package](https://polkadot.js.org/docs/api/start) provides developers a way to interact with Substrate chains using JavaScript.
+The [Polkadot.js API package](https://polkadot.js.org/docs/api/start){target=_blank} provides developers a way to interact with Substrate chains using JavaScript.
 
-The following code snippet uses [`subscribeFinalizedHeads`](https://polkadot.js.org/docs/substrate/rpc/#subscribefinalizedheads-header) to subscribe to new finalized block headers, and loops through extrinsics fetched from the block, and retrieves the events of each extrinsic. Then, it checks if any event corresponds to a `balances.Transfer` event. If so, it will extract the `from`, `to`, `amount`, and the `tx hash` of the transfer and display it on the console. Note that the `amount` is shown in the smallest unit (Wei).  You can find all the available information about Polkadot.js and the Substrate JSON RPC in their [official documentation site](https://polkadot.js.org/docs/substrate/rpc).
+The following code snippet uses [`subscribeFinalizedHeads`](https://polkadot.js.org/docs/substrate/rpc/#subscribefinalizedheads-header){target=_blank} to subscribe to new finalized block headers, and loops through extrinsics fetched from the block, and retrieves the events of each extrinsic. Then, it checks if any event corresponds to a `balances.Transfer` event. If so, it will extract the `from`, `to`, `amount`, and the `tx hash` of the transfer and display it on the console. Note that the `amount` is shown in the smallest unit (Wei).  You can find all the available information about Polkadot.js and the Substrate JSON RPC in their [official documentation site](https://polkadot.js.org/docs/substrate/rpc){target=_blank}.
 
 --8<-- 'code/vs-ethereum/balance-event.md'
 
-In addition, you can find more sample code snippets related to more specific cases around balance transfers at this [GitHub page](https://gist.github.com/crystalin/b2ce44a208af60d62b5ecd1bad513bce).
+In addition, you can find more sample code snippets related to more specific cases around balance transfers at this [GitHub page](https://gist.github.com/crystalin/b2ce44a208af60d62b5ecd1bad513bce){target=_blank}.

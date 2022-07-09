@@ -23,7 +23,7 @@ Price queries with any denomination are available as long as the base and quote 
  - `BTC/ETH`
  - `ETH/EUR`
 
-At the time of writing, the list of supported symbols can be found by following [this link](https://data.bandprotocol.com). There are more than 146 price pairs available to query.
+At the time of writing, the list of supported symbols can be found on the [Band Standard Dataset](https://data.bandprotocol.com){target=_blank} page of the Band website. There are more than 146 price pairs available to query.
 
 ## Querying Prices {: #querying-prices } 
 As stated before, developers can leverage two methods to query prices from Band's oracle: 
@@ -50,7 +50,7 @@ struct ReferenceData {
 }
 ```
 
-The second function, `getReferenceDataBulk`, takes information as data arrays. For example, if we pass in `['BTC','BTC','ETH']` as base and `['USD','ETH','EUR']` as quote, the `ReferenceData`returned array contains the information regarding the following pairs:
+The second function, `getReferenceDataBulk`, takes information as data arrays. For example, if you pass in `['BTC','BTC','ETH']` as base and `['USD','ETH','EUR']` as quote, the `ReferenceData`returned array contains the information regarding the following pairs:
 
  - `BTC/USD`
  - `BTC/ETH`
@@ -86,12 +86,12 @@ interface IStdReference {
 }
 ```
 
-Next, we can use the following `DemoOracle` script. It provides four functions:
+Next, you can use the following `DemoOracle` script. It provides four functions:
 
- - **getPrice**(*string[]* base, *string[]* quotes): a _view_ function that queries a single base. In this example, the price of `BTC` quoted in `USD`
- - **getMultiPrices**(*string[]* bases, *string[]* quotes): a _view_ function that queries multiple bases. In this example, the price of `BTC` and `ETH`, both quoted in `USD`
- - **savePrice**(*string* base, *string* quote): a _public_ function that queries the _base/quote_ pair. Each element is provided as separate strings, for example `_base = "BTC", _quotes = "USD"`. This sends a transaction and modifies the `price` variable stored in the contract
- - **saveMultiPrices**(*string[]* bases, *string[]* quotes): a _public_  function that queries each _base/quote_ pair. Each element is provided as a string array. For example, `_bases = ["BTC","ETH"], _quotes = ["USD","USD"]`. This sends a transaction and modifies the `prices` array stored in the contract, which will hold the price of each pair in the same order as specified in the input
+ - **getPrice**(*string[]* base, *string[]* quotes) - a _view_ function that queries a single base. In this example, the price of `BTC` quoted in `USD`
+ - **getMultiPrices**(*string[]* bases, *string[]* quotes) - a _view_ function that queries multiple bases. In this example, the price of `BTC` and `ETH`, both quoted in `USD`
+ - **savePrice**(*string* base, *string* quote) - a _public_ function that queries the _base/quote_ pair. Each element is provided as separate strings, for example `_base = "BTC", _quotes = "USD"`. This sends a transaction and modifies the `price` variable stored in the contract
+ - **saveMultiPrices**(*string[]* bases, *string[]* quotes) - a _public_  function that queries each _base/quote_ pair. Each element is provided as a string array. For example, `_bases = ["BTC","ETH"], _quotes = ["USD","USD"]`. This sends a transaction and modifies the `prices` array stored in the contract, which will hold the price of each pair in the same order as specified in the input
 
  When deployed, the constructor function needs the Aggregator Contract address for the target network.
 
@@ -153,7 +153,7 @@ contract DemoOracle {
 
 ### Try it in Moonbase Alpha {: #try-it-in-moonbase alpha } 
 
-We've deployed a contract available in the Moonbase Alpha TestNet (at address `0xf15c870344c1c02f5939a5C4926b7cDb90dEc655`) so you can easily check the information fed from Band Protocol's oracle. To do so, you need the following interface contract:
+There is predeployed contract available in the Moonbase Alpha TestNet (at address `0xf15c870344c1c02f5939a5C4926b7cDb90dEc655`) so you can easily check the information fed from Band Protocol's oracle. To do so, you need the following interface contract:
 
 ```solidity
 pragma solidity 0.6.11;
@@ -166,14 +166,14 @@ interface TestInterface {
 }
 ```
 
-With it, you will have two view functions available - very similar to our previous examples:
+With it, you will have two view functions available - very similar to the previous examples:
 
- - **getPrice**(*string* base, *string* quote): provides the price feed for a single base/quote pair that is given as input to the function, that is, "BTC", "USD"
- - **getMultiPrices**(*string[]* bases, *string[]* quotes): provides the price feed for a multiple base/quote pairs that are given as input to the function, that is, ["BTC", "ETH", "ETH"], ["USD", "USD", "EUR"]
+ - **getPrice**(*string* base, *string* quote) - provides the price feed for a single base/quote pair that is given as input to the function, that is, "BTC", "USD"
+ - **getMultiPrices**(*string[]* bases, *string[]* quotes) - provides the price feed for a multiple base/quote pairs that are given as input to the function, that is, ["BTC", "ETH", "ETH"], ["USD", "USD", "EUR"]
 
-For example, using [Remix](/builders/build/eth-api/dev-env/remix/), we can easily query the `BTC/USD` price pair using this interface.
+For example, using [Remix](/builders/build/eth-api/dev-env/remix/){target=_blank}, you can easily query the `BTC/USD` price pair using this interface.
 
-After creating the file and compiling the contract, head to the "Deploy and Run Transactions" tab, enter the contract address (`0xf15c870344c1c02f5939a5C4926b7cDb90dEc655`) and click on "At Address." Make sure you have set the "Environment" to "Injected Web3" so you are connected to Moonbase Alpha. 
+After creating the file and compiling the contract, head to the **Deploy and Run Transactions** tab, enter the contract address (`0xf15c870344c1c02f5939a5C4926b7cDb90dEc655`) and click on **At Address**. Make sure you have set the **ENVIRONMENT** to **Injected Web3** so you are connected to Moonbase Alpha. 
 
 ![Band Protocol Remix deploy](/images/builders/integrations/oracles/band/band-demo-1.png)
 
@@ -216,6 +216,7 @@ Then, it returns an array object with the following structure:
   }
 ]
 ```
+
 Where `lastUpdatedBase` and `lastUpdatedQuote` are the last time when the base and quote prices were updated respectively (since UNIX epoch).
 
 ### Example Usage {: #example-usage } 
@@ -236,7 +237,7 @@ const queryData = async () => {
 queryData();
 ```
 
-We can execute this code with a node, and the following `dataQuery` output should look like this:
+You can execute this code with a node, and the following `dataQuery` output should look like this:
 
 ![Band Protocol JavaScript Library](/images/builders/integrations/oracles/band/band-console.png)
 

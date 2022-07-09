@@ -136,7 +136,7 @@ You can view the [complete script on GitHub](https://raw.githubusercontent.com/P
 
 ### Query Subscriptions {: #query-subscriptions }
 
-The RPCs lend themselves to using subscriptions. We can adapt the previous example to start using subscriptions to listen to new blocks.
+The RPCs lend themselves to using subscriptions. You can adapt the previous example to start using subscriptions to listen to new blocks.
 
 ```javascript
 // Initialize the API provider as in the previous section
@@ -285,7 +285,7 @@ Polkadot.js API allows transactions to be batch processed via the `api.tx.utilit
 // Initialize wallet key pairs as in the previous section
 ...
 
-// Construct a list of transactions we want to batch
+// Construct a list of transactions to batch
 const collator = 'COLLATOR-ACCOUNT-PUBLIC-KEY';
 const txs = [
   api.tx.balances.transfer(bob, 12345),

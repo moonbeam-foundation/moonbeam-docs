@@ -7,17 +7,17 @@ description: A description of the main differences that Ethereum developers need
 
 ![Moonbeam v Ethereum - Account Balances Banner](/images/builders/get-started/eth-compare/balances-banner.png)
 
-## Introduction
+## Introduction {: #introduction }
 
 While Moonbeam strives to be compatible with Ethereum's Web3 API and EVM, there are some important Moonbeam differences that developers should know and understand in terms of account balances.
 
 One of the design goals of Moonbeam is to create an environment that is as close as possible to Ethereum, and to offer a set of Web3 RPC endpoints that are compatible with Ethereum. However, Moonbeam is also a Substrate based chain, which means that it exposes Substrate RPCs, and that it has integral functionality that is powered by Substrate such as Staking, Governance, and other features which are not part of the Ethereum API.
 
-Moonbeam [unified accounts](/learn/features/unified-accounts/) are one way that Moonbeam achieves Ethereum compatibility, by changing the underlying account type in the protocol to be Ethereum-like (H160 or 20 byte addresses starting with `0x`). Unified accounts are used by both the Substrate and Ethereum APIs, and map to the same underlying data storage on the blockchain. Nevertheless, there are important differences that users coming from Ethereum should understand when using Moonbeam accounts via the Ethereum API.
+Moonbeam [unified accounts](/learn/features/unified-accounts/){target=_blank} are one way that Moonbeam achieves Ethereum compatibility, by changing the underlying account type in the protocol to be Ethereum-like (H160 or 20 byte addresses starting with `0x`). Unified accounts are used by both the Substrate and Ethereum APIs, and map to the same underlying data storage on the blockchain. Nevertheless, there are important differences that users coming from Ethereum should understand when using Moonbeam accounts via the Ethereum API.
 
 This guide will outline some of these main differences and what to expect when using Moonbeam for the first time.
 
-## Ethereum Account Balances
+## Ethereum Account Balances {: #ethereum-account-balances }
 
 An account on Ethereum is an entity with a token balance (Ether or ETH in this case). Account-holders can send Ether transactions on Ethereum and accounts can be controlled by either users (with the private key for signing) or smart contracts.
 
@@ -25,11 +25,11 @@ Therefore, Ethereum has two main types of accounts: user-owned and contract-owne
 
 ![Ethereum balances diagram](/images/builders/get-started/eth-compare/balances-1.png)
 
-## Moonbeam Account Balances
+## Moonbeam Account Balances {: #moonbeam-account-balances }
 
 An account on Moonbeam is also an entity with a token balance (the token will depend on the network). Like on Ethereum, account holders can send token transactions on the Moonbeam Network they are connected to. In addition, accounts can be controlled by users (with the private key for signing) or smart contracts.
 
-As with Ethereum, there are two main types of accounts: user-owned and contract owned. However, on Moonbeam, within both account types, there are also [proxy accounts](https://wiki.polkadot.network/docs/learn-proxies), which can perform a limited number of actions on behalf of another account. In terms of balances, all of Moonbeam account types have five (5) different [balance types](https://wiki.polkadot.network/docs/learn-accounts#balance-types):
+As with Ethereum, there are two main types of accounts: user-owned and contract owned. However, on Moonbeam, within both account types, there are also [proxy accounts](https://wiki.polkadot.network/docs/learn-proxies){target=_blank}, which can perform a limited number of actions on behalf of another account. In terms of balances, all of Moonbeam account types have five (5) different [balance types](https://wiki.polkadot.network/docs/learn-accounts#balance-types){target=_blank}:
 
  - **Free** — refers to the balance that can be used (not locked/frozen) from the Substrate API. The concept of `free` balance depends on the action to be executed. For example, voting in democracy will not subtract the allocated balance to the vote from `free` balance, but token holders won't be able to transfers that balance
  - **Reducible** — refers to the balance that can be used (not locked/frozen) through the Ethereum API on Moonbeam. For example, this is the balance displayed by MetaMask. It is the real spendable balance, accounting for all democracy locks (displayed as transferable in Polkadot.js Apps)
@@ -39,7 +39,7 @@ As with Ethereum, there are two main types of accounts: user-owned and contract 
 
 ![Moonbeam balances diagram](/images/builders/get-started/eth-compare/balances-2.png)
 
-## Main Differences
+## Main Differences {: #main-differences }
 
 The main difference between account balances on Ethereum and Moonbeam lies in the concept of locked and reserved balance on Moonbeam. These are tokens that are still owned by that account, but they are not spendable (yet).
 

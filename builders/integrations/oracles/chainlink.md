@@ -177,7 +177,7 @@ Currently, the oracle node has a set of Job IDs for different price data for the
 For this example, you can go ahead and use the interface contract with the `BTC to USD` job ID in [Remix](/builders/build/eth-api/dev-env/remix/){target=_blank}. After creating the file and compiling the contract, you can take the following steps:
 
 1. Head to the **Deploy and Run Transactions** tab
-2. Make sure you have set the **Environment** to **Injected Web3**, and you have your MetaMask connected to Moonbase Alpha
+2. Make sure you have set the **ENVIRONMENT** to **Injected Web3**, and you have your MetaMask connected to Moonbase Alpha
 3. Enter the client contract address, `{{ networks.moonbase.chainlink.client_contract }}`, and click on **At Address**. This will create an instance of the client contract that you can interact with
 4. Under the **Deployed Contracts** section, use the `requestPrice()` function to query the data of the corresponding job ID
 5. Confirm the transaction. You will have to wait until the whole request process that was previously explained occurs
@@ -408,9 +408,9 @@ You will need to connect your MetaMask account to Remix, so make sure you have M
 After creating the file and compiling the contract, you will need to follow these steps:
 
 1. Head to the **Deploy and Run Transactions** tab
-2. Set the **Environment** to **Injected Web3**
-3. If your MetaMask is already connected it will appear in the **Account** selector. Otherwise, you will be prompted by MetaMask to select and connect your account(s)
-4. Select the `AggregatorV3Interface` contract from the **Contract** dropdown
+2. Set the **ENVIRONMENT** to **Injected Web3**
+3. If your MetaMask is already connected it will appear in the **ACCOUNT** selector. Otherwise, you will be prompted by MetaMask to select and connect your account(s)
+4. Select the `AggregatorV3Interface` contract from the **CONTRACT** dropdown
 5. Enter the Data Feed contract address corresponding to `BTC to USD` in the **At Address** field and click the **At Address** button:
 
     === "Moonbeam"
