@@ -44,147 +44,110 @@ The Moonscan API URL for Moonbeam networks is as follows:
 
 ### Verify Source Code {: #verify-source-code }
 
-To verify a deployed contract's source code using the Moonscan API, you must form a POST request containing all the relevant contract creation information, and send the request to Moonscan's REST API. The following is sample code using JavaScript:
+To verify a deployed contract's source code using the Moonscan API, you must form a POST request containing all the relevant contract creation information, and send the request to Moonscan's REST API. The following is sample code using JavaScript and [Axios](https://axios-http.com/docs/intro){target=_blank}, an HTTP client:
 
 === "Moonbeam"
     ```javascript
     // Submit Source Code for Verification
-    $.ajax({
-        type: "POST", //Only POST supported  
-        url: "//api-moonbeam.moonscan.io/api", // for Moonbeam network
-        data: {
-            apikey: $('#apikey').val(),                     // A valid API-Key is required        
-            module: 'contract',                             // Do not change
-            action: 'verifysourcecode',                     // Do not change
-            contractaddress: $('#contractaddress').val(),   // Contract Address starts with 0x...     
-            sourceCode: $('#sourceCode').val(),             // Contract Source Code (Flattened if necessary)
-            codeformat: $('#codeformat').val(),             // solidity-single-file (default) or solidity-standard-json-input (for std-input-json-format support
-            contractname: $('#contractname').val(),         // ContractName (if codeformat=solidity-standard-json-input, then enter contractname as ex: erc20.sol:erc20)
-            compilerversion: $('#compilerversion').val(),   // See https://etherscan.io/solcversions for list of support versions
-            optimizationUsed: $('#optimizationUsed').val(), // 0 = No Optimization, 1 = Optimization used (applicable when codeformat=solidity-single-file)
-            runs: 200,                                      // Set to 200 as default unless otherwise  (applicable when codeformat=solidity-single-file)        
-            constructorArguements: $('#constructorArguements').val(),   //if applicable
-            evmversion: $('#evmVersion').val(),             // Leave blank for compiler default, homestead, tangerineWhistle, spuriousDragon, byzantium, constantinople, petersburg, istanbul (applicable when codeformat=solidity-single-file)
-            licenseType: $('#licenseType').val(),           // Valid codes 1-14 where 1=No License .. 14=Business Source License 1.1, see https://etherscan.io/contract-license-types
-            libraryname1: $('#libraryname1').val(),         //  If applicable, a matching pair with libraryaddress1 required, can include up to 10 external libraries
-            libraryaddress1: $('#libraryaddress1').val()    // If applicable, a matching pair with libraryname1 required, can include up to 10 external libraries
-            libraryname2: $('#libraryname2').val(),         // If applicable, matching pair required
-            libraryaddress2: $('#libraryaddress2').val(),   // If applicable, matching pair required
-            //...
-        },
-        success: function (result) {
-            console.log(result);
-            if (result.status == "1") {
-                // 1 = submission success, use the guid returned (result.result) to check the status of your submission.
-                // Average time of processing is 30-60 seconds
-                document.getElementById("postresult").innerHTML = result.status + ";" + result.message + ";" + result.result;
-                // result.result is the GUID receipt for the submission, you can use this guid for checking the verification status
-            } else {
-                // 0 = error
-                document.getElementById("postresult").innerHTML = result.status + ";" + result.message + ";" + result.result;
-            }
-            console.log("status : " + result.status);
-            console.log("result : " + result.result);
-        },
-        error: function (result) {
-            console.log("error!");
-            document.getElementById("postresult").innerHTML = "Unexpected Error"
-        }
-    });
+    const response = await axios.post("https://api-moonbeam.moonscan.io/api", {
+        apikey: "INSERT-API-KEY-HERE",
+        module: "contract",
+        action: "verifysourcecode",
+        contractAddress: "INSERT-CONTRACT-ADDRESS-HERE",
+        sourceCode: "INSERT-SOURCE-CODE-HERE", // flattened if necessary
+        codeformat: "solidity-single-file" // or you can use "solidity-standard-json-input"
+        contractname: "INSERT-CONTRACT-NAME-HERE", // if codeformat = solidity-standard-json-input, then enter contractname as ex: erc20.sol:erc20
+        compilerversion: "INSERT-COMPILER-VERSION-HERE" // see https://etherscan.io/solcversions for list of support versions
+        optimizationUsed: 0 // 0 = no optimization, 1 = optimization was used (applicable when codeformat=solidity-single-file)
+        runs: 200 // set to 200 as default unless otherwise (applicable when codeformat=solidity-single-file) 
+        constructorArguements: "INSERT-CONSTRUCTOR-ARGUMENTS" // if applicable
+        evmversion: "INSERT-EVM-VERSION-HERE", // options: homestead, tangerineWhistle, spuriousDragon, byzantium, constantinople, petersburg, istanbul (applicable when codeformat=solidity-single-file)
+        licenseType: $('#licenseType').val(), // valid codes 1-14 where 1=No License ... 14=Business Source License 1.1, see https://etherscan.io/contract-license-types
+        libraryname1: "INSERT-LIBRARY-NAME" // if applicable, enter the name of the first library used, i.e. SafeMath (up to 10 libraries can be used)
+        libraryaddress1: $('#libraryaddress1').val() // if applicable, enter the address of the first library used
+        libraryname2: $('#libraryname2').val(), // if applicable, enter the name of the second library used
+        libraryaddress2: $('#libraryaddress2').val(), // if applicable, enter the address of the second library used
+        // ...
+    }, headers: { "Content-Type": "application/x-www-form-urlencoded" })
+
+    if (response.data.status == "1") {
+        // 1 = submission success, use the guid returned (response.data.response.data) to check the status of your submission
+        // average time of processing is 30-60 seconds
+        console.log(response.data.status + "; " + response.data.message + "; " + response.data.result)
+        // response.data.response.data is the GUID receipt for the submission, you can use this guid for checking the verification status
+    } else {
+        // 0 = error
+        console.log(response.data.status + "; " + response.data.message + "; " + response.data.result)
+    }
     ```
 
 === "Moonriver"
     ```javascript
-    //Submit Source Code for Verification
-    $.ajax({
-        type: "POST", // Only POST supported  
-        url: "//api-moonriver.moonscan.io/api", // For Moonriver network
-        data: {
-            apikey: $('#apikey').val(),                     // A valid API-Key is required        
-            module: 'contract',                             // Do not change
-            action: 'verifysourcecode',                     // Do not change
-            contractaddress: $('#contractaddress').val(),   // Contract Address starts with 0x...     
-            sourceCode: $('#sourceCode').val(),             // Contract Source Code (Flattened if necessary)
-            codeformat: $('#codeformat').val(),             // solidity-single-file (default) or solidity-standard-json-input (for std-input-json-format support
-            contractname: $('#contractname').val(),         // ContractName (if codeformat=solidity-standard-json-input, then enter contractname as ex: erc20.sol:erc20)
-            compilerversion: $('#compilerversion').val(),   // See https://etherscan.io/solcversions for list of support versions
-            optimizationUsed: $('#optimizationUsed').val(), // 0 = No Optimization, 1 = Optimization used (applicable when codeformat=solidity-single-file)
-            runs: 200,                                      // Set to 200 as default unless otherwise  (applicable when codeformat=solidity-single-file)        
-            constructorArguements: $('#constructorArguements').val(),   //if applicable
-            evmversion: $('#evmVersion').val(),             // Leave blank for compiler default, homestead, tangerineWhistle, spuriousDragon, byzantium, constantinople, petersburg, istanbul (applicable when codeformat=solidity-single-file)
-            licenseType: $('#licenseType').val(),           // Valid codes 1-14 where 1=No License .. 14=Business Source License 1.1, see https://etherscan.io/contract-license-types
-            libraryname1: $('#libraryname1').val(),         //  If applicable, a matching pair with libraryaddress1 required, can include up to 10 external libraries
-            libraryaddress1: $('#libraryaddress1').val()    // If applicable, a matching pair with libraryname1 required, can include up to 10 external libraries
-            libraryname2: $('#libraryname2').val(),         // If applicable, matching pair required
-            libraryaddress2: $('#libraryaddress2').val(),   // If applicable, matching pair required
-            //...
-        },
-        success: function (result) {
-            console.log(result);
-            if (result.status == "1") {
-                // 1 = submission success, use the guid returned (result.result) to check the status of your submission.
-                // Average time of processing is 30-60 seconds
-                document.getElementById("postresult").innerHTML = result.status + ";" + result.message + ";" + result.result;
-                // result.result is the GUID receipt for the submission, you can use this guid for checking the verification status
-            } else {
-                // 0 = error
-                document.getElementById("postresult").innerHTML = result.status + ";" + result.message + ";" + result.result;
-            }
-            console.log("status : " + result.status);
-            console.log("result : " + result.result);
-        },
-        error: function (result) {
-            console.log("error!");
-            document.getElementById("postresult").innerHTML = "Unexpected Error"
-        }
-    });
-    ```
+    // Submit Source Code for Verification
+    const response = await axios.post("https://api-moonriver.moonscan.io/api", {
+        apikey: "INSERT-API-KEY-HERE",
+        module: "contract",
+        action: "verifysourcecode",
+        contractAddress: "INSERT-CONTRACT-ADDRESS-HERE",
+        sourceCode: "INSERT-SOURCE-CODE-HERE", // flattened if necessary
+        codeformat: "solidity-single-file" // or you can use "solidity-standard-json-input"
+        contractname: "INSERT-CONTRACT-NAME-HERE", // if codeformat = solidity-standard-json-input, then enter contractname as ex: erc20.sol:erc20
+        compilerversion: "INSERT-COMPILER-VERSION-HERE" // see https://etherscan.io/solcversions for list of support versions
+        optimizationUsed: 0 // 0 = no optimization, 1 = optimization was used (applicable when codeformat=solidity-single-file)
+        runs: 200 // set to 200 as default unless otherwise (applicable when codeformat=solidity-single-file) 
+        constructorArguements: "INSERT-CONSTRUCTOR-ARGUMENTS" // if applicable
+        evmversion: "INSERT-EVM-VERSION-HERE", // options: homestead, tangerineWhistle, spuriousDragon, byzantium, constantinople, petersburg, istanbul (applicable when codeformat=solidity-single-file)
+        licenseType: $('#licenseType').val(), // valid codes 1-14 where 1=No License ... 14=Business Source License 1.1, see https://etherscan.io/contract-license-types
+        libraryname1: "INSERT-LIBRARY-NAME" // if applicable, enter the name of the first library used, i.e. SafeMath (up to 10 libraries can be used)
+        libraryaddress1: $('#libraryaddress1').val() // if applicable, enter the address of the first library used
+        libraryname2: $('#libraryname2').val(), // if applicable, enter the name of the second library used
+        libraryaddress2: $('#libraryaddress2').val(), // if applicable, enter the address of the second library used
+        // ...
+    }, headers: { "Content-Type": "application/x-www-form-urlencoded" })
+
+    if (response.data.status == "1") {
+        // 1 = submission success, use the guid returned (response.data.response.data) to check the status of your submission
+        // average time of processing is 30-60 seconds
+        console.log(response.data.status + "; " + response.data.message + "; " + response.data.result)
+        // response.data.response.data is the GUID receipt for the submission, you can use this guid for checking the verification status
+    } else {
+        // 0 = error
+        console.log(response.data.status + "; " + response.data.message + "; " + response.data.result)
+    }
     
 === "Moonbase"
     ```javascript
-    //Submit Source Code for Verification
-    $.ajax({
-        type: "POST", // Only POST supported  
-        url: "//api-moonbase.moonscan.io/api", // For Moonbase Alpha network
-        data: {
-            apikey: $('#apikey').val(),                     // A valid API-Key is required        
-            module: 'contract',                             // Do not change
-            action: 'verifysourcecode',                     // Do not change
-            contractaddress: $('#contractaddress').val(),   // Contract Address starts with 0x...     
-            sourceCode: $('#sourceCode').val(),             // Contract Source Code (Flattened if necessary)
-            codeformat: $('#codeformat').val(),             // solidity-single-file (default) or solidity-standard-json-input (for std-input-json-format support
-            contractname: $('#contractname').val(),         // ContractName (if codeformat=solidity-standard-json-input, then enter contractname as ex: erc20.sol:erc20)
-            compilerversion: $('#compilerversion').val(),   // See https://etherscan.io/solcversions for list of support versions
-            optimizationUsed: $('#optimizationUsed').val(), // 0 = No Optimization, 1 = Optimization used (applicable when codeformat=solidity-single-file)
-            runs: 200,                                      // Set to 200 as default unless otherwise  (applicable when codeformat=solidity-single-file)        
-            constructorArguements: $('#constructorArguements').val(),   //if applicable
-            evmversion: $('#evmVersion').val(),             // Leave blank for compiler default, homestead, tangerineWhistle, spuriousDragon, byzantium, constantinople, petersburg, istanbul (applicable when codeformat=solidity-single-file)
-            licenseType: $('#licenseType').val(),           // Valid codes 1-14 where 1=No License .. 14=Business Source License 1.1, see https://etherscan.io/contract-license-types
-            libraryname1: $('#libraryname1').val(),         //  If applicable, a matching pair with libraryaddress1 required, can include up to 10 external libraries
-            libraryaddress1: $('#libraryaddress1').val()    // If applicable, a matching pair with libraryname1 required, can include up to 10 external libraries
-            libraryname2: $('#libraryname2').val(),         // If applicable, matching pair required
-            libraryaddress2: $('#libraryaddress2').val(),   // If applicable, matching pair required
-            //...
-        },
-        success: function (result) {
-            console.log(result);
-            if (result.status == "1") {
-                // 1 = submission success, use the guid returned (result.result) to check the status of your submission.
-                // Average time of processing is 30-60 seconds
-                document.getElementById("postresult").innerHTML = result.status + ";" + result.message + ";" + result.result;
-                // result.result is the GUID receipt for the submission, you can use this guid for checking the verification status
-            } else {
-                // 0 = error
-                document.getElementById("postresult").innerHTML = result.status + ";" + result.message + ";" + result.result;
-            }
-            console.log("status : " + result.status);
-            console.log("result : " + result.result);
-        },
-        error: function (result) {
-            console.log("error!");
-            document.getElementById("postresult").innerHTML = "Unexpected Error"
-        }
-    });
+    // Submit Source Code for Verification
+    const response = await axios.post("https://api-moonbase.moonscan.io/api", {
+        apikey: "INSERT-API-KEY-HERE",
+        module: "contract",
+        action: "verifysourcecode",
+        contractAddress: "INSERT-CONTRACT-ADDRESS-HERE",
+        sourceCode: "INSERT-SOURCE-CODE-HERE", // flattened if necessary
+        codeformat: "solidity-single-file" // or you can use "solidity-standard-json-input"
+        contractname: "INSERT-CONTRACT-NAME-HERE", // if codeformat = solidity-standard-json-input, then enter contractname as ex: erc20.sol:erc20
+        compilerversion: "INSERT-COMPILER-VERSION-HERE" // see https://etherscan.io/solcversions for list of support versions
+        optimizationUsed: 0 // 0 = no optimization, 1 = optimization was used (applicable when codeformat=solidity-single-file)
+        runs: 200 // set to 200 as default unless otherwise (applicable when codeformat=solidity-single-file) 
+        constructorArguements: "INSERT-CONSTRUCTOR-ARGUMENTS" // if applicable
+        evmversion: "INSERT-EVM-VERSION-HERE", // options: homestead, tangerineWhistle, spuriousDragon, byzantium, constantinople, petersburg, istanbul (applicable when codeformat=solidity-single-file)
+        licenseType: $('#licenseType').val(), // valid codes 1-14 where 1=No License ... 14=Business Source License 1.1, see https://etherscan.io/contract-license-types
+        libraryname1: "INSERT-LIBRARY-NAME" // if applicable, enter the name of the first library used, i.e. SafeMath (up to 10 libraries can be used)
+        libraryaddress1: $('#libraryaddress1').val() // if applicable, enter the address of the first library used
+        libraryname2: $('#libraryname2').val(), // if applicable, enter the name of the second library used
+        libraryaddress2: $('#libraryaddress2').val(), // if applicable, enter the address of the second library used
+        // ...
+    }, headers: { "Content-Type": "application/x-www-form-urlencoded" })
+
+    if (response.data.status == "1") {
+        // 1 = submission success, use the guid returned (response.data.response.data) to check the status of your submission
+        // average time of processing is 30-60 seconds
+        console.log(response.data.status + "; " + response.data.message + "; " + response.data.result)
+        // response.data.response.data is the GUID receipt for the submission, you can use this guid for checking the verification status
+    } else {
+        // 0 = error
+        console.log(response.data.status + "; " + response.data.message + "; " + response.data.result)
+    }
     ```
 
 Upon successful submission, a GUID will be returned as a part of the result. This GUID can be used to check for the submission status. 
@@ -194,8 +157,8 @@ Upon successful submission, a GUID will be returned as a part of the result. Thi
     curl https://api-moonbeam.moonscan.io/api
             ?module=contract
             &action=checkverifystatus
-            &guid=GUID-FROM-RESPONSE-HERE
-            &apikey=YOUR-API-KEY-TOKEN-HERE
+            &guid=INSERT-GUID-FROM-RESPONSE-HERE
+            &apikey=INSERT-API-KEY-TOKEN-HERE
     ```
 
 === "Moonriver"
@@ -203,8 +166,8 @@ Upon successful submission, a GUID will be returned as a part of the result. Thi
     curl https://api-moonriver.moonscan.io/api
             ?module=contract
             &action=checkverifystatus
-            &guid=GUID-FROM-RESPONSE-HERE
-            &apikey=YOUR-API-KEY-TOKEN-HERE
+            &guid=INSERT-GUID-FROM-RESPONSE-HERE
+            &apikey=INSERT-API-KEY-TOKEN-HERE
     ```
 
 === "Moonbase Alpha"
@@ -212,8 +175,8 @@ Upon successful submission, a GUID will be returned as a part of the result. Thi
     curl https://api-moonbase.moonscan.io/api
             ?module=contract
             &action=checkverifystatus
-            &guid=GUID-FROM-RESPONSE-HERE
-            &apikey=YOUR-API-KEY-TOKEN-HERE
+            &guid=INSERT-GUID-FROM-RESPONSE-HERE
+            &apikey=INSERT-API-KEY-TOKEN-HERE
     ```
 
 ### Retrieve Contract ABI for Verified Contracts {: #retrieve-contract-abi-for-verified-contracts }
@@ -225,8 +188,8 @@ Once your contract is verified on Moonscan, you can use the following endpoint t
     curl https://api-moonbeam.moonscan.io/api
             ?module=contract
             &action=getabi
-            &address=YOUR-CONTRACT-ADDRESS
-            &apikey=YOUR-API-KEY-TOKEN-HERE
+            &address=INSERT-CONTRACT-ADDRESS-HERE
+            &apikey=INSERT-API-KEY-TOKEN-HERE
     ```
 
 === "Moonriver"
@@ -234,8 +197,8 @@ Once your contract is verified on Moonscan, you can use the following endpoint t
     curl https://api-moonriver.moonscan.io/api
             ?module=contract
             &action=getabi
-            &address=YOUR-CONTRACT-ADDRESS
-            &apikey=YOUR-API-KEY-TOKEN-HERE
+            &address=INSERT-CONTRACT-ADDRESS-HERE
+            &apikey=INSERT-API-KEY-TOKEN-HERE
     ```
 
 === "Moonbase Alpha"
@@ -243,8 +206,8 @@ Once your contract is verified on Moonscan, you can use the following endpoint t
     curl https://api-moonbase.moonscan.io/api
             ?module=contract
             &action=getabi
-            &addressYOUR-CONTRACT-ADDRESS
-            &apikey=YOUR-API-KEY-TOKEN-HERE
+            &address=INSERT-CONTRACT-ADDRESS-HERE
+            &apikey=INSERT-API-KEY-TOKEN-HERE
     ```
 
 ### Retrieve Contract Source Code for Verified Contracts {: #retrieve-contract-source-code-for-verified-contracts }
@@ -256,8 +219,8 @@ Once your contract is verified on Moonscan, you can use the following endpoint t
     curl https://api-moonbeam.moonscan.io/api
             ?module=contract
             &action=getsourcecode
-            &address=YOUR-CONTRACT-ADDRESS
-            &apikey=YOUR-API-KEY-TOKEN-HERE
+            &address=INSERT-CONTRACT-ADDRESS-HERE
+            &apikey=INSERT-API-KEY-TOKEN-HERE
     ```
 
 === "Moonriver"
@@ -265,8 +228,8 @@ Once your contract is verified on Moonscan, you can use the following endpoint t
     curl https://api-moonriver.moonscan.io/api
             ?module=contract
             &action=getsourcecode
-            &address=YOUR-CONTRACT-ADDRESS
-            &apikey=YOUR-API-KEY-TOKEN-HERE
+            &address=INSERT-CONTRACT-ADDRESS-HERE
+            &apikey=INSERT-API-KEY-TOKEN-HERE
     ```
 
 === "Moonbase Alpha"
@@ -274,8 +237,8 @@ Once your contract is verified on Moonscan, you can use the following endpoint t
     curl https://api-moonbase.moonscan.io/api
             ?module=contract
             &action=getsourcecode
-            &address=YOUR-CONTRACT-ADDRESS
-            &apikey=YOUR-API-KEY-TOKEN-HERE
+            &address=INSERT-CONTRACT-ADDRESS-HERE
+            &apikey=INSERT-API-KEY-TOKEN-HERE
     ```
 
 ## Using Sourcify API {: #using-sourcify-api }
@@ -325,132 +288,90 @@ Partial matches refer to cases when the deployed bytecode of the onchain contrac
 
 ### Verify Contract {: #verify-contract }
 
-A POST request is used to verify a contract on Sourcify. The following is sample code using JavaScript.
+A POST request is used to verify a contract on Sourcify. The following is sample code using JavaScript:
 
 === "Moonbeam"
     ```javascript
     // Submit Contract Source Code and Metadata for Verification
-    $.ajax({
-        type: "POST", // Only POST supported  
-        url: "//sourcify.dev/server/verify",
-        data: {
-            "address": $('#contractaddress').val(), // Contract Address starts with 0x... 
-            "chain": {{ networks.moonbeam.chain_id }}, // Chain ID of Moonbeam
-            "files": {
-                "metadata-1.json": $('#metadata_1').val(), // Metadata file for contract file 1
-                "metadata-2.json": $('#metadata_2').val(), // Metadata file for contract file 2
-                "file1-name.sol": $('#file_1').val(), // Contract source file 1
-                "file2-name.sol": $('#file_2').val() // Contract source file 2
-                //...
-            },
-            "chosenContract": 1 // Optional. Index of the contract, if the provided files contain multiple metadata files  
+    const response = await axios.post("https://sourcify.dev/server/verify", {
+        "address": "INSERT-CONTRACT-ADDRESS-HERE"
+        "chain": {{ networks.moonbeam.chain_id }}, // chain ID of Moonbeam
+        "files": {
+            "metadata-1.json": "INSERT-JSON-FILE-HERE", // metadata file for contract file 1
+            "metadata-2.json": "INSERT-JSON-FILE-HERE", // metadata file for contract file 2
+            "file1-name.sol": "INSERT-SOL-FILE-HERE", // contract source file 1
+            "file2-name.sol": "INSERT-SOL-FILE-HERE" // contract source file 2
+            //...
         },
-        success: function (result) {
-            console.log(result);
-            if (result.status == "perfect") {
-                // Perfect match
-                document.getElementById("postresult").innerHTML = result.status + ";" + result.address;
-            } 
-            elseif (result.status == "partial") {
-                // Partial match
-                document.getElementById("postresult").innerHTML = result.status + ";" + result.address;
-            }
-            else {
-                // Non matching
-                document.getElementById("postresult").innerHTML = result.error + result.message;
-            }
-            console.log("status : " + result.status);
-            console.log("result : " + result.result);
-        },
-        error: function (result) {
-            console.log("error!");
-            document.getElementById("postresult").innerHTML = "Unexpected Error"
-        }
-    });
+        "chosenContract": 1 // (optional) index of the contract, if the provided files contain multiple metadata files          
+    })
+
+    if (result.status == "perfect") {
+        // perfect match
+        console.log(result.status + ";" + result.address);
+    } elseif (result.status == "partial") {
+        // partial match
+        console.log(result.status + ";" + result.address);
+    } else {
+        // non-matching
+        console.log(result.status + ";" + result.address);
+    }
     ```
 
 === "Moonriver"
     ```javascript
     // Submit Contract Source Code and Metadata for Verification
-    $.ajax({
-        type: "POST", // Only POST supported  
-        url: "//sourcify.dev/server/verify",
-        data: {
-            "address": $('#contractaddress').val(), // Contract Address starts with 0x... 
-            "chain": {{ networks.moonriver.chain_id }}, // Chain ID of Moonriver
-            "files": {
-                "metadata-1.json": $('#metadata_1').val(), // Metadata file for contract file 1
-                "metadata-2.json": $('#metadata_2').val(), // Metadata file for contract file 2
-                "file1-name.sol": $('#file_1').val(), // Contract source file 1
-                "file2-name.sol": $('#file_2').val() // Contract source file 2
-                //...
-            },
-            "chosenContract": 1 // Optional. Index of the contract, if the provided files contain multiple metadata files  
+    const response = await axios.post("https://sourcify.dev/server/verify", {
+        "address": "INSERT-CONTRACT-ADDRESS-HERE"
+        "chain": {{ networks.moonriver.chain_id }}, // chain ID of Moonriver
+        "files": {
+            "metadata-1.json": "INSERT-JSON-FILE-HERE", // metadata file for contract file 1
+            "metadata-2.json": "INSERT-JSON-FILE-HERE", // metadata file for contract file 2
+            "file1-name.sol": "INSERT-SOL-FILE-HERE", // contract source file 1
+            "file2-name.sol": "INSERT-SOL-FILE-HERE" // contract source file 2
+            //...
         },
-        success: function (result) {
-            console.log(result);
-            if (result.status == "perfect") {
-                // Perfect match
-                document.getElementById("postresult").innerHTML = result.status + ";" + result.address;
-            } 
-            elseif (result.status == "partial") {
-                // Partial match
-                document.getElementById("postresult").innerHTML = result.status + ";" + result.address;
-            }
-            else {
-                // Non matching
-                document.getElementById("postresult").innerHTML = result.error + result.message;
-            }
-            console.log("status : " + result.status);
-            console.log("result : " + result.result);
-        },
-        error: function (result) {
-            console.log("error!");
-            document.getElementById("postresult").innerHTML = "Unexpected Error"
-        }
-    });
+        "chosenContract": 1 // (optional) index of the contract, if the provided files contain multiple metadata files          
+    })
+
+    if (result.status == "perfect") {
+        // perfect match
+        console.log(result.status + ";" + result.address);
+    } elseif (result.status == "partial") {
+        // partial match
+        console.log(result.status + ";" + result.address);
+    } else {
+        // non-matching
+        console.log(result.status + ";" + result.address);
+    }
     ```
 
 === "Moonbase"
     ```javascript
     // Submit Contract Source Code and Metadata for Verification
-    $.ajax({
-        type: "POST", // Only POST supported  
-        url: "//sourcify.dev/server/verify",
-        data: {
-            "address": $('#contractaddress').val(), // Contract Address starts with 0x... 
-            "chain": {{ networks.moonbase.chain_id }}, // Chain ID of Moonbase Alpha
-            "files": {
-                "metadata-1.json": $('#metadata_1').val(), // Metadata file for contract file 1
-                "metadata-2.json": $('#metadata_2').val(), // Metadata file for contract file 2
-                "file1-name.sol": $('#file_1').val(), // Contract source file 1
-                "file2-name.sol": $('#file_2').val() // Contract source file 2
-                //...
-            },
-            "chosenContract": 1 // Optional. Index of the contract, if the provided files contain multiple metadata files  
+    const response = await axios.post("https://sourcify.dev/server/verify", {
+        "address": "INSERT-CONTRACT-ADDRESS-HERE"
+        "chain": {{ networks.moonbase.chain_id }}, // chain ID of Moonbase Alpha
+        "files": {
+            "metadata-1.json": "INSERT-JSON-FILE-HERE", // metadata file for contract file 1
+            "metadata-2.json": "INSERT-JSON-FILE-HERE", // metadata file for contract file 2
+            "file1-name.sol": "INSERT-SOL-FILE-HERE", // contract source file 1
+            "file2-name.sol": "INSERT-SOL-FILE-HERE" // contract source file 2
+            //...
         },
-        success: function (result) {
-            console.log(result);
-            if (result.status == "perfect") {
-                // Perfect match
-                document.getElementById("postresult").innerHTML = result.status + ";" + result.address;
-            } 
-            elseif (result.status == "partial") {
-                // Partial match
-                document.getElementById("postresult").innerHTML = result.status + ";" + result.address;
-            }
-            else {
-                // Non matching
-                document.getElementById("postresult").innerHTML = result.error + result.message;
-            }
-            console.log("status : " + result.status);
-            console.log("result : " + result.result);
-        },
-        error: function (result) {
-            console.log("error!");
-            document.getElementById("postresult").innerHTML = "Unexpected Error"
-        }
-    });
+        "chosenContract": 1 // (optional) index of the contract, if the provided files contain multiple metadata files          
+    })
+
+    if (result.status == "perfect") {
+        // perfect match
+        console.log(result.status + ";" + result.address);
+    } elseif (result.status == "partial") {
+        // partial match
+        console.log(result.status + ";" + result.address);
+    } else {
+        // non-matching
+        console.log(result.status + ";" + result.address);
+    }
     ```
 
 Alternatively, you can also use [the Sourcify hosted GUI](https://sourcify.dev/#/verifier){target=_blank} to submit a contract for verification.  
@@ -464,17 +385,18 @@ There are two variations of this endpoint, one for perfect matching and one for 
 === "Perfect Match"
     ```bash
     curl https://sourcify.dev/server/check-by-addresses
-            ?addresses={address1, address2, ...}
-            &chainIds={chainId1, chainId2, ...}
+            ?addresses={INSERT-ADDRESS-1-HERE, INSERT-ADDRESS-2-HERE, ...}
+            &chainIds={INSERT-CHAIN-ID-1, INSERT-CHAIN-ID-2, ...}
     ```
 === "Partial Match"
     ```bash
     curl https://sourcify.dev/server/check-all-by-addresses
-            ?addresses={address1, address2, ...}
-            &chainIds={chainId1, chainId2, ...}
+            ?addresses={INSERT-ADDRESS-1-HERE, INSERT-ADDRESS-2-HERE, ...}
+            &chainIds={INSERT-CHAIN-ID-1, INSERT-CHAIN-ID-2, ...}
     ```
 
 An example response will be a JSON object of the following structure:
+
 ```json
 [
   {
@@ -503,28 +425,28 @@ There are two variations of this endpoint, one for the source files of perfect m
 
 === "Moonbeam"
     ```bash
-    curl https://sourcify.dev/server/files/{{ networks.moonbeam.chain_id }}/your_contract_address
+    curl https://sourcify.dev/server/files/{{ networks.moonbeam.chain_id }}/INSERT-YOUR-CONTRACT-ADDRESS-HERE
     ```
 === "Moonriver"
     ```bash
-    curl https://sourcify.dev/server/files/{{ networks.moonriver.chain_id }}/your_contract_address
+    curl https://sourcify.dev/server/files/{{ networks.moonriver.chain_id }}/INSERT-YOUR-CONTRACT-ADDRESS-HERE
     ```
 === "Moonbase"
     ```bash
-    curl https://sourcify.dev/server/files/{{ networks.moonbase.chain_id }}/your_contract_address
+    curl https://sourcify.dev/server/files/{{ networks.moonbase.chain_id }}/INSERT-YOUR-CONTRACT-ADDRESS-HERE
     ```
 
 And one for the source files of both perfect and partial matches:
 
 === "Moonbeam"
     ```bash
-    curl https://sourcify.dev/server/files/any/{{ networks.moonbeam.chain_id }}/your_contract_address
+    curl https://sourcify.dev/server/files/any/{{ networks.moonbeam.chain_id }}/INSERT-YOUR-CONTRACT-ADDRESS-HERE
     ```
 === "Moonriver"
     ```bash
-    curl https://sourcify.dev/server/files/any/{{ networks.moonriver.chain_id }}/your_contract_address
+    curl https://sourcify.dev/server/files/any/{{ networks.moonriver.chain_id }}/INSERT-YOUR-CONTRACT-ADDRESS-HERE
     ```
 === "Moonbase"
     ```bash
-    curl https://sourcify.dev/server/files/any/{{ networks.moonbase.chain_id }}/your_contract_address
+    curl https://sourcify.dev/server/files/any/{{ networks.moonbase.chain_id }}/INSERT-YOUR-CONTRACT-ADDRESS-HERE
     ```
