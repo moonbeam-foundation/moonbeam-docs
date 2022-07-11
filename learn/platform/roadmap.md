@@ -3,7 +3,11 @@ title: Roadmap
 description: Moonbeam launched its first TestNet in September 2020, a MainNet on Kusama in June 2021, and a MainNet on Polkadot in December 2021.
 ---
 
-# Roadmap
+# Moonbeam & Moonriver Roadmap
+
+![Moonbeam & Moonriver roadmap site](/images/learn/platform/roadmap/roadmap-banner.png)
+
+## Introduction {: #introduction }
 
 Moonbeam is still being actively developed. 
 
@@ -13,4 +17,8 @@ In June 2021, Moonriver went [live on Kusama](https://moonbeam.network/announcem
 
 In December 2021, Moonbeam went [live on Polkadot](https://moonbeam.network/announcements/moonbeam-now-producing-blocks-polkadot/){target=_blank}, as one of the first parachains in the ecosystem.
 
+## Roadmap {: #roadmap }
+
 You can check out what is currently in development, just launched, planned, and under consideration on the [Moonbeam & Moonriver Product Roadmap](https://roadmap.moonbeam.network/){target=_blank} site. From there, you can also submit feature requests and add your opinion on any of the open items to let us know what features are most important to you.
+
+![Moonbeam & Moonriver roadmap site](/images/learn/platform/roadmap/roadmap.png)
