@@ -95,7 +95,7 @@ type Transfer @entity {
 }
 ```
 
-It's worth noting a couple of things in this [schema definition](https://docs.subsquid.io/reference/openreader-schema){target=_blank}:
+It's worth noting a couple of things in this [schema definition](https://docs.subsquid.io/docs/query-squid/openreader-schema/annotations-directives){target=_blank}:
 
   - **`@entity`** - signals that this type will be translated into an ORM model that is going to be persisted in the database
   - **`@derivedFrom`** - signals the field will not be persisted on the database, it will rather be derived
@@ -156,7 +156,7 @@ The `abi` parameter points at the JSON file previously created, and the `output`
 
 ## Define and Bind Event Handler(s) {: #define-and-bind-event-handlers }
 
-The Subsquid SDK provides users with a [processor](https://docs.subsquid.io/key-concepts/processor){target=_blank} class, named `SubstrateProcessor` or, in this specific case [`SubstrateEvmProcessor`](https://docs.subsquid.io/reference/evm-processor){target=_blank}. The processor connects to the [Subsquid archive](https://docs.subsquid.io/key-concepts/architecture#archive){target=_blank} to get chain data. It loops from the configured starting block, until the configured end block, or until new data is added to the chain.
+The Subsquid SDK provides users with a [processor](https://docs.subsquid.io/docs/develop-a-squid/squid-processor){target=_blank} class, named `SubstrateProcessor` or, in this specific case [`SubstrateEvmProcessor`](https://docs.subsquid.io/docs/develop-a-squid/evm-support/evm-processor){target=_blank}. The processor connects to the [Subsquid archive](https://docs.subsquid.io/docs/archives/){target=_blank} to get chain data. It loops from the configured starting block, until the configured end block, or until new data is added to the chain.
 
 The processor exposes methods to "attach" functions that will "handle" specific data such as Substrate events, extrinsics, storage items, or EVM logs. These methods can be configured by specifying the event or extrinsic name, or the EVM log contract address, for example. As the processor loops over the data, when it encounters one of the configured event names, it will execute the logic in the "handler" function.
 
@@ -430,7 +430,7 @@ Have some fun playing around with queries, after all, it's a *playground*!
 
 ## Publish the Project {: #publish-the-project }
 
-Subsquid offers a SaaS solution to host projects created by its community. Please refer to the [Deploy your Squid tutorial](https://docs.subsquid.io/tutorial/deploy-your-squid){target=_blank} on Subquid's documentation site for more information.
+Subsquid offers a SaaS solution to host projects created by its community. Please refer to the [Deploy your Squid tutorial](https://docs.subsquid.io/docs/deploy-squid/){target=_blank} on Subquid's documentation site for more information.
 
 You can also check out other projects hosted there, by heading to the [Aquarium](https://app.subsquid.io/aquarium){target=_blank}, because that's where Squids are!
 
