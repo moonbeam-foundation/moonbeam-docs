@@ -60,13 +60,13 @@ To verify a deployed contract's source code using the Moonscan API, you must for
         compilerversion: "INSERT-COMPILER-VERSION-HERE" // see https://etherscan.io/solcversions for list of support versions
         optimizationUsed: 0 // 0 = no optimization, 1 = optimization was used (applicable when codeformat=solidity-single-file)
         runs: 200 // set to 200 as default unless otherwise (applicable when codeformat=solidity-single-file) 
-        constructorArguements: "INSERT-CONSTRUCTOR-ARGUMENTS" // if applicable
+        constructorArguements: "INSERT-CONSTRUCTOR-ARGUMENTS-HERE" // if applicable
         evmversion: "INSERT-EVM-VERSION-HERE", // options: homestead, tangerineWhistle, spuriousDragon, byzantium, constantinople, petersburg, istanbul (applicable when codeformat=solidity-single-file)
-        licenseType: $('#licenseType').val(), // valid codes 1-14 where 1=No License ... 14=Business Source License 1.1, see https://etherscan.io/contract-license-types
-        libraryname1: "INSERT-LIBRARY-NAME" // if applicable, enter the name of the first library used, i.e. SafeMath (up to 10 libraries can be used)
-        libraryaddress1: $('#libraryaddress1').val() // if applicable, enter the address of the first library used
-        libraryname2: $('#libraryname2').val(), // if applicable, enter the name of the second library used
-        libraryaddress2: $('#libraryaddress2').val(), // if applicable, enter the address of the second library used
+        licenseType: 1, // valid codes 1-14 where 1=No License ... 14=Business Source License 1.1, see https://etherscan.io/contract-license-types
+        libraryname1: "INSERT-LIBRARY-NAME-HERE" // if applicable, enter the name of the first library used, i.e. SafeMath (up to 10 libraries can be used)
+        libraryaddress1: "INSERT-LIBRARY-ADDRESS-HERE" // if applicable, enter the address of the first library used
+        libraryname2: "INSERT-LIBRARY-NAME-HERE", // if applicable, enter the name of the second library used
+        libraryaddress2: "INSERT-LIBRARY-ADDRESS-HERE", // if applicable, enter the address of the second library used
         // ...
     }, headers: { "Content-Type": "application/x-www-form-urlencoded" })
 
@@ -95,13 +95,13 @@ To verify a deployed contract's source code using the Moonscan API, you must for
         compilerversion: "INSERT-COMPILER-VERSION-HERE" // see https://etherscan.io/solcversions for list of support versions
         optimizationUsed: 0 // 0 = no optimization, 1 = optimization was used (applicable when codeformat=solidity-single-file)
         runs: 200 // set to 200 as default unless otherwise (applicable when codeformat=solidity-single-file) 
-        constructorArguements: "INSERT-CONSTRUCTOR-ARGUMENTS" // if applicable
+        constructorArguements: "INSERT-CONSTRUCTOR-ARGUMENTS-HERE" // if applicable
         evmversion: "INSERT-EVM-VERSION-HERE", // options: homestead, tangerineWhistle, spuriousDragon, byzantium, constantinople, petersburg, istanbul (applicable when codeformat=solidity-single-file)
-        licenseType: $('#licenseType').val(), // valid codes 1-14 where 1=No License ... 14=Business Source License 1.1, see https://etherscan.io/contract-license-types
-        libraryname1: "INSERT-LIBRARY-NAME" // if applicable, enter the name of the first library used, i.e. SafeMath (up to 10 libraries can be used)
-        libraryaddress1: $('#libraryaddress1').val() // if applicable, enter the address of the first library used
-        libraryname2: $('#libraryname2').val(), // if applicable, enter the name of the second library used
-        libraryaddress2: $('#libraryaddress2').val(), // if applicable, enter the address of the second library used
+        licenseType: 1, // valid codes 1-14 where 1=No License ... 14=Business Source License 1.1, see https://etherscan.io/contract-license-types
+        libraryname1: "INSERT-LIBRARY-NAME-HERE" // if applicable, enter the name of the first library used, i.e. SafeMath (up to 10 libraries can be used)
+        libraryaddress1: "INSERT-LIBRARY-ADDRESS-HERE" // if applicable, enter the address of the first library used
+        libraryname2: "INSERT-LIBRARY-NAME-HERE", // if applicable, enter the name of the second library used
+        libraryaddress2: "INSERT-LIBRARY-ADDRESS-HERE", // if applicable, enter the address of the second library used
         // ...
     }, headers: { "Content-Type": "application/x-www-form-urlencoded" })
 
@@ -130,13 +130,13 @@ To verify a deployed contract's source code using the Moonscan API, you must for
         compilerversion: "INSERT-COMPILER-VERSION-HERE" // see https://etherscan.io/solcversions for list of support versions
         optimizationUsed: 0 // 0 = no optimization, 1 = optimization was used (applicable when codeformat=solidity-single-file)
         runs: 200 // set to 200 as default unless otherwise (applicable when codeformat=solidity-single-file) 
-        constructorArguements: "INSERT-CONSTRUCTOR-ARGUMENTS" // if applicable
+        constructorArguements: "INSERT-CONSTRUCTOR-ARGUMENTS-HERE" // if applicable
         evmversion: "INSERT-EVM-VERSION-HERE", // options: homestead, tangerineWhistle, spuriousDragon, byzantium, constantinople, petersburg, istanbul (applicable when codeformat=solidity-single-file)
-        licenseType: $('#licenseType').val(), // valid codes 1-14 where 1=No License ... 14=Business Source License 1.1, see https://etherscan.io/contract-license-types
-        libraryname1: "INSERT-LIBRARY-NAME" // if applicable, enter the name of the first library used, i.e. SafeMath (up to 10 libraries can be used)
-        libraryaddress1: $('#libraryaddress1').val() // if applicable, enter the address of the first library used
-        libraryname2: $('#libraryname2').val(), // if applicable, enter the name of the second library used
-        libraryaddress2: $('#libraryaddress2').val(), // if applicable, enter the address of the second library used
+        licenseType: 1, // valid codes 1-14 where 1=No License ... 14=Business Source License 1.1, see https://etherscan.io/contract-license-types
+        libraryname1: "INSERT-LIBRARY-NAME-HERE" // if applicable, enter the name of the first library used, i.e. SafeMath (up to 10 libraries can be used)
+        libraryaddress1: "INSERT-LIBRARY-ADDRESS-HERE" // if applicable, enter the address of the first library used
+        libraryname2: "INSERT-LIBRARY-NAME-HERE", // if applicable, enter the name of the second library used
+        libraryaddress2: "INSERT-LIBRARY-ADDRESS-HERE", // if applicable, enter the address of the second library used
         // ...
     }, headers: { "Content-Type": "application/x-www-form-urlencoded" })
 
