@@ -15,21 +15,21 @@ Token holders can add to candidates' stake using their tokens, a process called 
 
 Once a candidate joins the active set of collators, they are eligible to produce blocks and receive partial block rewards as part of the token inflationary model. They share these as staking rewards with their delegators, considering their proportional contribution toward their stake in the network.
 
-This guide will show you how to stake on Moonbase Alpha via Polkadot.js Apps, but similar steps can be taken for any of the Moonbeam and Moonriver. Token holders that want to easily stake their tokens can use the [Moonbeam dApp](https://apps.moonbeam.network/) to do so.
+This guide will show you how to stake on Moonbase Alpha via Polkadot.js Apps, but similar steps can be taken for any of the Moonbeam and Moonriver. Token holders that want to easily stake their tokens can use the [Moonbeam dApp](https://apps.moonbeam.network/){target=_blank} to do so.
 
-For more general information on staking, please check out the [Staking on Moonbeam](/learn/features/staking/) overview.
+For more general information on staking, please check out the [Staking on Moonbeam](/learn/features/staking/){target=_blank} overview.
 
 ## Extrinsics Definitions {: #extrinsics-definitions } 
 
-There are many extrinsics related to the staking pallet, so all of them are not covered in this guide. However, the following list defines all of the extrinsics associated with the delegation process. After [runtime upgrade 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/), some extrinsics where deprecated.
+There are many extrinsics related to the staking pallet, so all of them are not covered in this guide. However, the following list defines all of the extrinsics associated with the delegation process. After [runtime upgrade 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/){target=_blank}, some extrinsics were deprecated.
 
 !!! note
     Extrinsics might change in the future as the staking pallet is updated.
 
-### Join or Leave The Delegator Set
+### Join or Leave The Delegator Set {: #join-or-leave-the-delegator-set }
 
  - **delegate**(*address* candidate, *uint256* amount, *uint256* candidateDelegationCount, *uint256* delegatorDelegationCount) - extrinsic to delegate a collator. The amount needs to be greater than the minimum delegation stake. Replaces the deprecated `nominate` extrinsic
- - **scheduleLeaveDelegators**() - extrinsic to schedule to leave the set of delegators. There is an [exit delay](/learn/features/staking/#quick-reference) before you can execute the request via the `executeLeaveDelegators` extrinsic and actually leave the set of delegators. Replaces the deprecated `leaveNominators` extrinsic
+ - **scheduleLeaveDelegators**() - extrinsic to schedule to leave the set of delegators. There is an [exit delay](/learn/features/staking/#quick-reference){target=_blank} before you can execute the request via the `executeLeaveDelegators` extrinsic and actually leave the set of delegators. Replaces the deprecated `leaveNominators` extrinsic
  - **executeLeaveDelegators**(*uint256* delegatorDelegationCount) - extrinsic to execute and leave the set of delegators. This extrinsic should only be used after a leave has been scheduled and the exit delay has passed. Consequently, all ongoing delegations will be revoked
  - **cancelLeaveDelegators**() - extrinsic to cancel a scheduled request to leave the set of delegators
 
@@ -38,10 +38,10 @@ The following extrinsics are deprecated:
  - **nominate**(*address* collator, *uint256* amount, *uint256* collatorNominationCount, *uint256* nominatorNominationCount) — extrinsic to delegate a collator. The amount needs to be greater than the minimum delegation stake
  - **leaveNominators**(*uint256* nominatorNominationCount) — extrinsic to leave the set of delegators. Consequently, all ongoing delegations will be revoked
  
-### Bond More or Less 
+### Bond More or Less  {: #bond-more-or-less }
 
  - **delegatorBondMore**(*address* candidate, *uint256* more) - extrinsic to request to increase the amount of staked tokens for an already delegated collator. Replaces the deprecated `nominatorBondMore` extrinsic
- - **scheduleDelegatorBondLess**(*address* candidate, *uint256* less) - extrinsic to request to reduce the amount of staked tokens for an already delegated collator. The amount must not decrease your overall total staked below the minimum delegation stake. There will be a [bond less delay](/learn/features/staking/#quick-reference) before you can execute the request via the `executeCandidateBondRequest` extrinsic. Replaces the deprecated `nominatorBondLess` extrinsic
+ - **scheduleDelegatorBondLess**(*address* candidate, *uint256* less) - extrinsic to request to reduce the amount of staked tokens for an already delegated collator. The amount must not decrease your overall total staked below the minimum delegation stake. There will be a [bond less delay](/learn/features/staking/#quick-reference){target=_blank} before you can execute the request via the `executeCandidateBondRequest` extrinsic. Replaces the deprecated `nominatorBondLess` extrinsic
  - **executeCandidateBondRequest**(*address* candidate) - extrinsic to execute a decrease in the bond for a specific candidate. This extrinsic should only be used after a bond request has been scheduled and the exit delay has passed
  - **cancelCandidateBondLess**() - extrinsic to cancel a scheduled request to increase or decrease the bond for a specific candidate
 
@@ -50,7 +50,7 @@ The following extrinsics are deprecated:
  - **nominatorBondLess**(*address* collator, *uint256* less) — extrinsic to reduce the amount of staked tokens for an already delegated collator. The amount must not decrease your overall total staked below the minimum delegation stake
  - **nominatorBondMore**(*address* collator, *uint256* more) — extrinsic to increase the amount of staked tokens for an already delegated collator
 
-### Revoke Delegations
+### Revoke Delegations {: #revoke-delegations }
 
  - **scheduleRevokeDelegation**(*address* collator) - extrinsic to schedule to remove an existing delegation entirely. There will be a [revoke delegation delay](/learn/features/staking/#quick-reference) before you can execute the request via the `executeDelegationRequest` extrinsic. Replaces the deprecated `revokeNomination` extrinsic 
  - **executeDelegationRequest**(*address* delegator, *address* candidate) - extrinsic to execute and pending delegation requests. This extrinsic should only be used after a request has been scheduled and the exit delay has passed 
@@ -75,7 +75,7 @@ Then to retrieve the various staking parameters, you'll need to:
 
 ![Retrieving staking parameters](/images/tokens/staking/stake/stake-12.png)
 
-You should then see the maximum delegations per delegator, which can also be found in the [Staking on Moonbeam](/learn/features/staking/#quick-reference) overview.
+You should then see the maximum delegations per delegator, which can also be found in the [Staking on Moonbeam](/learn/features/staking/#quick-reference){target=_blank} overview.
 
 ## How to Stake via Polkadot.js Apps {: #how-to-delegate-a-candidate } 
 
@@ -141,9 +141,9 @@ console.log(delegatorInfo.toHuman()["delegations"].length);
 
 ![Get existing delegation count](/images/tokens/staking/stake/stake-13.png)
 
-### Staking your Tokens
+### Staking your Tokens {: #staking-your-tokens }
 
-To access staking features, you need to use the Polkadot.js Apps interface. To do so, you need to import/create an Ethereum-style account first (H160 address), which you can do by following [this guide](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account).
+To access staking features, you need to use the Polkadot.js Apps interface. To do so, you need to import/create an Ethereum-style account first (H160 address), which you can do by following the [Creating or Importing an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=_blank} section of the Polkadot.js guide.
 
 For this example, an account was imported and named with a super original name: Alice. Alice's address is `0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac`.
 
@@ -167,9 +167,9 @@ To delegate a candidate, provide the following information:
 !!! note
     The parameters used in steps 6 and 7 are for gas estimation purposes and do not need to be exact. However, they should not be lower than the actual values. 
 
-Once the transaction is confirmed, you can head back to the **Accounts** tab to verify that you have a reserved balance (equal to the number of tokens staked).
+### Verifying Delegations {: #verifying-delegations }
 
-To verify a delegation, you can navigate to **Chain state** under the **Developer** tab.
+Once the transaction is confirmed, you can verify your delegation by navigating to **Chain state** under the **Developer** tab.
 
 ![Staking Account and Chain State](/images/tokens/staking/stake/stake-7.png)
 
@@ -189,11 +189,11 @@ You can follow the same steps as described to delegate other candidates in the n
 
 ## How to Stop Delegations {: #how-to-stop-delegations } 
 
-As of [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/), there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled.
+As of [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/){target=_blank}, there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled.
 
-If you want to make an exit and stop a delegation, you have to first schedule it, wait an exit delay, and then execute the exit. If you are already a delegator, you have two options to request to stop your delegations: using the `scheduleRevokeDelegation` extrinsic to request to unstake your tokens from a specific collator candidate, or using the `scheduleLeaveDelegators` extrinsic to request to revoke all ongoing delegations. Scheduling a request does not automatically revoke your delegations, you must wait an [exit delay](/learn/features/staking/#quick-reference) and then execute the request by using either the `executeDelegationRequest` method or the `executeLeaveDelegators` method. 
+If you want to make an exit and stop a delegation, you have to first schedule it, wait an exit delay, and then execute the exit. If you are already a delegator, you have two options to request to stop your delegations: using the `scheduleRevokeDelegation` extrinsic to request to unstake your tokens from a specific collator candidate, or using the `scheduleLeaveDelegators` extrinsic to request to revoke all ongoing delegations. Scheduling a request does not automatically revoke your delegations, you must wait an [exit delay](/learn/features/staking/#quick-reference){target=_blank} and then execute the request by using either the `executeDelegationRequest` method or the `executeLeaveDelegators` method. 
 
-### Schedule Request to Stop Delegations
+### Schedule Request to Stop Delegations {: #schedule-request-to-stop-delegations }
 
 This example is a continuation of the previous section, and assumes that you have at least two active delegations.
 
@@ -214,9 +214,9 @@ As mentioned before, you can also remove all ongoing delegations with the `sched
 
 ![Staking Leave Delegators Extrinsic](/images/tokens/staking/stake/stake-18.png)
 
-Once you have scheduled an exit, you must wait an [exit delay](/learn/features/staking/#quick-reference) before you can then execute it. If you try to execute it before the exit delay is up the extrinsic will fail and you'll see an error from Polkadot.js Apps for `parachainStaking.PendingDelegationRequest`.
+Once you have scheduled an exit, you must wait an [exit delay](/learn/features/staking/#quick-reference){target=_blank} before you can then execute it. If you try to execute it before the exit delay is up the extrinsic will fail and you'll see an error from Polkadot.js Apps for `parachainStaking.PendingDelegationRequest`.
 
-### Execute Request to Stop Delegations
+### Execute Request to Stop Delegations {: #execute-request-to-stop-delegations }
 
 After the exit delay has passed after initiating the scheduled request, you can go back to the **Developer** tab of the **Extrinsics** menu and follow these steps to execute the request:
 
@@ -234,7 +234,7 @@ If you want to remove all ongoing delegations, you can adapt the **Extrinsics** 
 1. Select the account to remove all the delegations for
 2. Choose the **parachainStaking** pallet
 3. Choose the **executeLeaveDelegators** extrinsic
-4. Enter the total number of all delegations to revoke using the `delegationCount` [you retrieved from the JavaScript console](#get-your-number-of-existing-delegations). This is `0` if you haven't yet delegated a candidate
+4. Enter the total number of all delegations to revoke using the `delegationCount` [you retrieved from the JavaScript console](#get-your-number-of-existing-delegations){target=_blank}. This is `0` if you haven't yet delegated a candidate
 5. Click the **Submit Transaction** button and sign the transaction
 
 ![Staking Execute Leave Delegators Extrinsic](/images/tokens/staking/stake/stake-20.png)
@@ -251,9 +251,9 @@ Once the transaction is confirmed, you can verify that your delegation was remov
 
 In the response, you should see your account (in this case, Alice's account) with a list of the remaining delegations. Each delegation contains the target address of the candidate, and the amount. There should no longer be an entry for `{{ networks.moonbase.staking.candidates.address2 }}`. Or if you left the delegator set, you should see a response of `<none>`.
 
-You can also check your free and reserved balances from the **Accounts** tab and notice now that the execution has gone through, your balances have been updated.
+To ensure the revocation went through as expected, you can follow the steps in the [Verifying Delegations](#verifying-delegations) section above.
 
-### Cancel Request to Stop Delegations
+### Cancel Request to Stop Delegations {: #cancel-request-to-stop-delegations }
 
 If you scheduled a request to stop delegations but changed your mind, as long as the request has not been executed, you can cancel the request at any time and all of your delegations will remain as is. If you scheduled a request via the `scheduleRevokeDelegation` extrinsic, you will need to call `cancelDelegationRequest`. On the other hand, if you scheduled a request via the `scheduleRevokeDelegation` extrinsic, you will need to call the `cancelLeaveDelegators` extrinsic. To cancel the request you can follow these steps:
 
@@ -267,7 +267,7 @@ If you scheduled a request to stop delegations but changed your mind, as long as
 
 ## Staking Rewards {: #staking-rewards } 
 
-As candidates in the active set of collators receive rewards from block production, delegators get rewards as well. A brief overview on how the rewards are calculated can be found in [this page](/learn/features/staking/#reward-distribution).
+As candidates in the active set of collators receive rewards from block production, delegators get rewards as well. A brief overview on how the rewards are calculated can be found in the [Reward Distribution section](/learn/features/staking/#reward-distribution){target=_blank} of the Staking on Moonbeam overview page.
 
 In summary, delegators will earn rewards based on their stake of the total delegations for the collator being rewarded (including the collator's stake as well).
 
