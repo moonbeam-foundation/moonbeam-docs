@@ -74,7 +74,7 @@ In general, you will need to:
 
 After the initialization is complete, you'll have a base SubQuery project that contains the following files (among others):
 
-- **[`project.yaml`](https://github.com/subquery/tutorials-frontier-evm-starter/blob/moonriver/project.yaml){target=_blank}** - the [Manifest File](https://doc.subquery.network/build/manifest.html){target=_blank} which acts as the entry point of your project. The template i
+- **[`project.yaml`](https://github.com/subquery/tutorials-frontier-evm-starter/blob/moonriver/project.yaml){target=_blank}** - the [Manifest File](https://doc.subquery.network/build/manifest.html){target=_blank} which acts as the entry point of your project
 - **[`schema.graphql`](https://github.com/subquery/tutorials-frontier-evm-starter/blob/moonriver/schema.graphql){target=_blank}** - the [GraphQL Schema](https://doc.subquery.network/build/graphql.html){target=_blank} which defines the shape of your data. The template includes `Transaction` and `Approval` entities
 - **[`src/mappings/mappingHandlers.ts`](https://github.com/subquery/tutorials-frontier-evm-starter/blob/moonriver/src/mappings/mappingHandlers.ts){target=_blank}** - exports the [Mapping](https://doc.subquery.network/build/mapping.html){target=_blank} functions which are used to define how chain data is transformed into the GraphQL entities that are defined in the schema
 - **[`src/chaintypes.ts`](https://github.com/subquery/tutorials-frontier-evm-starter/blob/moonriver/src/chaintypes.ts){target=_blank}** - exports the chain types specifically for Moonbeam so you can index Moonbeam data
