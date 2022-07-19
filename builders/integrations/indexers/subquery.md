@@ -40,7 +40,7 @@ In general, you will need to:
     ```
 
     !!! note
-    At time of writing this guide, the version used was 1.3.1. 
+        At time of writing this guide, the version used was 1.3.1. 
 
 2. Initialize your SubQuery project using the following command:
 
