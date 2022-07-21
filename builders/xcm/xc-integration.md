@@ -13,29 +13,30 @@ While Cross-Chain Message Passing (XCMP) is being developed, a stop-gap protocol
 
 All XCMP channel integrations with Moonbeam are unidirectional, meaning messages flow only in one direction. If chain A initiates a channel to chain B, chain A will only be allowed to send messages to B, and B will not be able to send messages back to A. As such, chain B will also need to initiate a channel to chain A to be able to send messages back and forth between the two chains.
 
-Once the XCMP channels have been opened, to be able to transfer assets through XCM, the assets from both chains will need to be registered on the opposing chain.
+Once the XCMP (or HRMP) channels have been opened, the corresponding assets from both chains will need to be registered on the opposing chain before being able to transfer them.
 
-This guide will cover how to open and accept an HRMP channel between a parachain and a Moonbeam-based network. In addition, you'll learn how to register your parachain's asset on Moonbeam and how to register Moonbeam's asset on your parachain.
+This guide will cover how to open and accept an HRMP channel between a parachain and a Moonbeam-based network. In addition, the guide provides the necessary data to register Moonbeam-based networks assets in your parachain, and the data required to register your asset in any of the Moonbeam-based networks.
 
 ## Overview of the Integration Process {: #overview-of-integration }
 
-The first step for a Moonriver/Moonbeam XCM integration, is to integrate with the Moonbase Alpha TestNet. Then a Moonriver integration must be completed before proceeding with Moonbeam.
+The first step for a Moonriver/Moonbeam XCM integration, is to integrate with the Moonbase Alpha TestNet, through the Alphanet relay chain. Then a Moonriver integration must be completed before proceeding with Moonbeam (if applies).
 
 ### Moonbase Alpha {: #moonbase-alpha }
 
 The entire process to get started with Moonbase Alpha can be summarized as follows:
 
-1. Sync a node with the Moonbase Alpha relay chain
+1. Sync a node with the Alphanet relay chain
 2. Provide the WASM/Geneiss head hash and your parachain ID for onboarding
-3. Calculate and fund the parachain sovereign account on the Moonbase Alpha relay chain
-4. Open an HRMP channel to Moonbase Alpha from your parachain (through SUDO or via governance)
-5. Accept the HRMP channel from Moonbase Alpha (through SUDO or via governance)
-6. Provide asset details of your parachain's asset so it can be registered on Moonbase Alpha
-7. Register Moonbase Alpha's DEV token on your parachain
+3. Calculate your parachain sovereign account on the Alphanet relay chain (to be funded by the Moonbeam team)
+4. Provide asset details of your parachain's asset so it can be registered on Moonbase Alpha
+5. Open an HRMP channel to Moonbase Alpha from your parachain (through SUDO or via governance)
+6. Accept the HRMP channel from Moonbase Alpha (through SUDO or via governance)
+7. Register Moonbase Alpha's DEV token on your parachain (optional)
 8. For testing the XCM integration, please send some tokens to:
 
     ```
-    5GWpSdqkkKGZmdKQ9nkSF7TmHp6JWt28BMGQNuG4MXtSvq3e (0xc4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a063)
+    AccoundId: 5GWpSdqkkKGZmdKQ9nkSF7TmHp6JWt28BMGQNuG4MXtSvq3e
+    Hex:       0xc4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a063
     ```
 
 9. Test the XCM integration
@@ -62,11 +63,11 @@ The process to create a HRMP channel with Moonriver and Moonbeam is mostly the s
 5. Exchange $50 worth of tokens for testing the XCM integration. Please send the tokens to:
 
     ```
-    5DnP2NuCTxfW4E9rJvzbt895sEsYRD7HC9QEgcqmNt7VWkD4 (0x4c0524ef80ae843b694b225880e50a7a62a6b86f7fb2af3cecd893deea80b926)
+    AccoundId: 5DnP2NuCTxfW4E9rJvzbt895sEsYRD7HC9QEgcqmNt7VWkD4
+    Hex:       0x4c0524ef80ae843b694b225880e50a7a62a6b86f7fb2af3cecd893deea80b926)
     ```
 
 6. Provide an Ethereum-styled address for MOVR/GMLR
-
 7. Test the XCM integration with the provided tokens
 
 Once these steps are complete, marketing efforts can be coordinated and the new XC-20 on Moonriver/Moonbeam can be added to the Cross Chain Assets section of the [Moonbeam DApp](https://apps.moonbeam.network/){target=_blank}.
@@ -84,11 +85,11 @@ Releases prior to version 0.9.16 do not compute this re-anchoring correctly, and
 
 To sync a node, you can use the [Alphanet relay chain specs](https://drive.google.com/drive/folders/1JVyj518T8a77xKXOBgcBe77EEsjnSFFO){target=_blank} (note: the relay chain is Westend based, and will probably take 1 day to sync). 
 
-For reference, you can use [Moonbase Alpha’s spec file](https://raw.githubusercontent.com/PureStake/moonbeam/runtime-1103/specs/alphanet/parachain-embedded-specs-v8.json){target=_blank}.
+For reference, you can use [Moonbase Alpha’s spec file](https://raw.githubusercontent.com/PureStake/moonbeam/runtime-1103/specs/alphanet/parachain-embedded-specs-v8.json){target=_blank}. You'll need ot adapt it to your chain.
 
 To onboard your parachain, please provide the following:
 - Genesis head/wasm hash
-- Parachain ID (1000-1002, 2000, 2001, 2004, 2005, 2012, 2024, 2084, 2085, 2090, 2105, 2106 are taken)
+- Parachain ID. You can find the Parachain IDs that have been already used in the [relay chain Polkadot.js Apps page](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/parachains)
 
 There are also some [snapshots for the Alphanet ecosystem relay chain](http://snapshots.moonbeam.network.s3-website.us-east-2.amazonaws.com/){target=_blank} you can use to quickly get started.
 
@@ -110,7 +111,7 @@ Sovereign Account Address on other Parachains (Generic): 0x7369626ce803000000000
 Sovereign Account Address on Moonbase Alpha: 0x7369626ce8030000000000000000000000000000
 ```
 
-When getting started with the Moonbase Alpha relay chain, once you have your sovereign account’s address, please contact us on [Telegram](https://t.me/Moonbeam_Official){target=_blank} or [Discord](https://discord.gg/PfpUATX){target=_blank}, so we can fund it at a relay chain level. If not, you won’t be able to create the HRMP channel.
+When getting started with the Moonbase Alpha relay chain, once you have your sovereign account’s address, please contact the team on [Telegram](https://t.me/Moonbeam_Official){target=_blank} or [Discord](https://discord.gg/PfpUATX){target=_blank}, so the team can fund it at a relay chain level. If not, you won’t be able to create the HRMP channel.
 
 ## Create an HRMP Channel {: #create-an-hrmp-channel }
 
@@ -407,11 +408,11 @@ The multilocation of each Moonbeam-based network asset is as follows:
 Once the channel has been opened and accepted, your parachain's asset will need to be registered on Moonbeam. For that, the following information is needed:
 
 - Multilocation of your asset (as seen by Moonbase Alpha/Moonriver/Moonbeam). Please indicate the parachain ID and the interior (if you use pallet index, general index, etc.)
-- Asset Name (we will prepend _xc_)
-- Asset symbol (we will prepend _xc_)
+- Asset Name
+- Asset symbol (_xc_ will be prepended to the symbol)
 - Number of decimals
 
-We will confirm once the asset is registered. We will also provide the asset ID, the [XC-20 precompile](/builders/xcm/xc20/overview/#the-erc20-interface){target=_blank} address, and set an arbitrary `UnitsPerSecond`, which is the number of tokens charged per second of execution of the XCM message.
+The team will confirm once the asset is registered. In addition, the team will provide the asset ID, the [XC-20 precompile](/builders/xcm/xc20/overview/#the-erc20-interface){target=_blank} address, and set an arbitrary `UnitsPerSecond`, which is the number of tokens charged per second of execution of the XCM message. The target cost for an XCM transfer is `$0.02` at the time of registration. The `UnitsPerSecond` might get updated as token price fluctuates.  
 
 Your XC-20 precompile address is calculated by converting the asset ID decimal number to hex, and prepending it with F’s until you get a 40 hex character (plus the “0x”) address. For more information on how it is calculated, please refer to the [Calculate External XC-20 Precompile Addresses](/builders/xcm/xc20/xc20/#calculate-xc20-address){target=_blank} section of the External XC-20 guide.
 
@@ -420,30 +421,31 @@ After the asset is successfully registered, you can try transferring tokens from
 !!! note 
     Remember that Moonbeam-based networks use AccountKey20 (Ethereum-style addresses).
 
-For testing, please also provide your parachain WSS endpoint so we can connect to it. Lastly, we would need some funds to the following account:
+For testing, please also provide your parachain WSS endpoint the Moonbeam dApp can connect to it. Lastly, please fund the corresponding account:
 
 === "Moonbeam"
     ```
-    5DnP2NuCTxfW4E9rJvzbt895sEsYRD7HC9QEgcqmNt7VWkD4
+    AccoundId: 5DnP2NuCTxfW4E9rJvzbt895sEsYRD7HC9QEgcqmNt7VWkD4
+    Hex:       0x4c0524ef80ae843b694b225880e50a7a62a6b86f7fb2af3cecd893deea80b926
     ```
 
 === "Moonriver"
     ```
-    5DnP2NuCTxfW4E9rJvzbt895sEsYRD7HC9QEgcqmNt7VWkD4
+    AccoundId: 5DnP2NuCTxfW4E9rJvzbt895sEsYRD7HC9QEgcqmNt7VWkD4
+    Hex:       0x4c0524ef80ae843b694b225880e50a7a62a6b86f7fb2af3cecd893deea80b926
     ```
 
 === "Moonbase Alpha"
     ```
-    5GWpSdqkkKGZmdKQ9nkSF7TmHp6JWt28BMGQNuG4MXtSvq3e
+    AccountId: 5GWpSdqkkKGZmdKQ9nkSF7TmHp6JWt28BMGQNuG4MXtSvq3e
+    Hex:       0xc4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a063
     ```
 
 !!! note
-    For Moonbeam and Moonriver testing, we ask the you please send $50 worth of tokens to the aforementioned account.
+    For Moonbeam and Moonriver testing, please send $50 worth of tokens to the aforementioned account. In addition, provide an Ethereum-styled account to send 50$ worth of GLMR/MOVR for testing purposes.
 
 ## Use your Asset on Moonbeam {: #use-your-asset-on-moonbeam }
 
-[XC-20s](/builders/xcm/xc20/){target=_blank} are Substrate based assets with an [ERC-20 interface](/builders/xcm/xc20/overview/#the-erc20-interface){target=_blank}. This means they can be added to MetaMask, and can be composed with any EVM DApp that exists in the ecosystem. We are happy to connect you with any DApp you find relevant for an XC-20 integration.
+[XC-20s](/builders/xcm/xc20/){target=_blank} are Substrate based assets with an [ERC-20 interface](/builders/xcm/xc20/overview/#the-erc20-interface){target=_blank}. This means they can be added to MetaMask, and can be composed with any EVM DApp that exists in the ecosystem. The team can connect you with any DApp you find relevant for an XC-20 integration.
 
-If you need DEV tokens (the native token for Moonbase Alpha) to use your XC-20 asset, you can get some from the [Moonbase Alpha Faucet](/builders/get-started/networks/moonbase/#moonbase-alpha-faucet){target=_blank}, which dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours. If you need more, feel free to reach out to us on [Telegram](https://t.me/Moonbeam_Official){target=_blank} or [Discord](https://discord.gg/PfpUATX){target=_blank}. 
-
-For Moonriver or Moonbeam, please provide us with an Ethereum-styled address for MOVR/GMLR.
+If you need DEV tokens (the native token for Moonbase Alpha) to use your XC-20 asset, you can get some from the [Moonbase Alpha Faucet](/builders/get-started/networks/moonbase/#moonbase-alpha-faucet){target=_blank}, which dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours. If you need more, feel free to reach out to us on [Telegram](https://t.me/Moonbeam_Official){target=_blank} or [Discord](https://discord.gg/PfpUATX){target=_blank}.
