@@ -5,7 +5,7 @@ description: Learn how to use Foundry, an Ethereum development environment, to c
 
 # Using Foundry to Deploy To Moonbeam
 
-![Foundry Create Project](/images/builders/build/eth-api/dev-env/hardhat/hardhat-banner.png)
+![Foundry Create Project](/images/builders/build/eth-api/dev-env/foundry/foundry-banner.png)
 
 ## Introduction {: #introduction } 
 
