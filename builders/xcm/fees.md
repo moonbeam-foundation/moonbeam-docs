@@ -11,7 +11,7 @@ description: Learn about the XCM instructions involved in handling XCM execution
 
 XCM aims to be a language that communicates ideas between consensus systems. It is designed to be general, extensible, and efficient so that it remains useful and future-proof throughout a growing ecosystem. As such, the generality applies to concepts including payments of fees for XCM execution. 
 
-In Ethereum, fees are baked into the transaction protocol, whereas in the Polkadot ecosystem each parachain has the flexibility to define how XCM fees are handled. If fees are required, XCM provides the ability to buy execution resources with assets.
+In Ethereum, fees are baked into the transaction protocol, whereas in the Polkadot ecosystem, each chain has the flexibility to define how XCM fees are handled.
 
 This guide will cover aspects of fee payment such as who is responsible to pay XCM execution fees, how it is paid for, and how the fees are calculated on Moonbeam.
 
