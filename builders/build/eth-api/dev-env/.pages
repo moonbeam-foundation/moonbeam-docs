@@ -8,3 +8,4 @@ nav:
   - 'Waffle & Mars': 'waffle-mars.md'
   - 'Brownie': 'brownie.md'
   - 'Scaffold-ETH': 'scaffold-eth.md'
+  - 'Foundry': 'foundry.md'
