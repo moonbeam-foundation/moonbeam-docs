@@ -4,3 +4,4 @@ nav:
   - 'Overview': 'overview.md'
   - xc20
   - 'Remote Execution': 'xcm-transactor.md'
+  - 'XCM Fees': 'fees.md'
