@@ -6,7 +6,7 @@ keywords: democracy, substrate, pallet, moonbeam, polkadot
 
 # The Democracy Pallet
 
-![Democracy Moonbeam Banner](/images/builders/build/pallets/democracy-banner.png)
+![Democracy Moonbeam Banner](/images/builders/pallets-precompiles/pallets/democracy-banner.png)
 
 ## Introduction {: #introduction }
 

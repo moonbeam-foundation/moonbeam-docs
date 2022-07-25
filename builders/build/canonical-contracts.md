@@ -6,7 +6,7 @@ keywords: canonical, ethereum, moonbeam, precompiled, contracts
 
 # Canonical Contracts
 
-![Canonical contracts banner](/images/builders/build/canonical-contracts/contract-addresses/canonical-contracts-banner.png)
+![Canonical contracts banner](/images/builders/build/canonical-contracts/canonical-contracts-banner.png)
 
 ## Common-goods Contracts {: #common-goods-contracts }
 

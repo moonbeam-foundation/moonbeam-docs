@@ -6,7 +6,7 @@ keywords: utility, batch, substrate, pallet, moonbeam, polkadot
 
 # The Utility Pallet
 
-![Utility Moonbeam Banner](/images/builders/build/pallets/utility-banner.png)
+![Utility Moonbeam Banner](/images/builders/pallets-precompiles/pallets/utility-banner.png)
 
 ## Introduction {: #introduction }
 

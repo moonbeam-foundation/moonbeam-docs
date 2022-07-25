@@ -6,7 +6,7 @@ keywords: solidity, ethereum, staking, moonbeam, precompiled, contracts
 
 # Interacting with the Staking Precompile
 
-![Staking Moonbeam Banner](/images/builders/build/canonical-contracts/precompiles/staking/staking-banner.png)
+![Staking Moonbeam Banner](/images/builders/pallets-precompiles/precompiles/staking/staking-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -31,7 +31,36 @@ The staking module is coded in Rust and it is part of a pallet that is normally 
 
 This guide will cover the available methods in the staking precompile interface. In addition, it will show you how to interact with the staking pallet through the staking precompile and the Ethereum API. The examples in this guide are done on Moonbase Alpha, but they can be adapted for Moonbeam or Moonriver.
 
---8<-- 'text/staking/exit-delays.md'
+## Exit Delays {: #exit-delays }
+
+Some of the staking pallet extrinsics include exit delays that you must wait before the request can be executed. The exit delays to note are as follows:
+
+=== "Moonbeam"
+    |        Variable         |                                                                         Value                                                                         |
+    |:-----------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
+    | Decrease candidate bond |       {{ networks.moonbeam.collator_timings.can_bond_less.rounds }} rounds ({{ networks.moonbeam.collator_timings.can_bond_less.hours }} hours)       |
+    | Decrease delegator bond |      {{ networks.moonbeam.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbeam.delegator_timings.del_bond_less.hours }} hours)      |
+    |    Revoke delegation    | {{ networks.moonbeam.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbeam.delegator_timings.revoke_delegations.hours }} hours) |
+    |    Leave candidates     |    {{ networks.moonbeam.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonbeam.collator_timings.leave_candidates.hours }} hours)    |
+    |    Leave delegators     |   {{ networks.moonbeam.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonbeam.delegator_timings.leave_delegators.hours }} hours)   |
+
+=== "Moonriver"
+    |        Variable         |                                                                          Value                                                                          |
+    |:-----------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    | Decrease candidate bond |       {{ networks.moonriver.collator_timings.can_bond_less.rounds }} rounds ({{ networks.moonriver.collator_timings.can_bond_less.hours }} hours)       |
+    | Decrease delegator bond |      {{ networks.moonriver.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonriver.delegator_timings.del_bond_less.hours }} hours)      |
+    |    Revoke delegation    | {{ networks.moonriver.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonriver.delegator_timings.revoke_delegations.hours }} hours) |
+    |    Leave candidates     |    {{ networks.moonriver.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonriver.collator_timings.leave_candidates.hours }} hours)    |
+    |    Leave delegators     |   {{ networks.moonriver.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonriver.delegator_timings.leave_delegators.hours }} hours)   |
+
+=== "Moonbase Alpha"
+    |        Variable         |                                                                         Value                                                                         |
+    |:-----------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
+    | Decrease candidate bond |       {{ networks.moonbase.collator_timings.can_bond_less.rounds }} rounds ({{ networks.moonbase.collator_timings.can_bond_less.hours }} hours)       |
+    | Decrease delegator bond |      {{ networks.moonbase.delegator_timings.del_bond_less.rounds }} rounds ({{ networks.moonbase.delegator_timings.del_bond_less.hours }} hours)      |
+    |    Revoke delegation    | {{ networks.moonbase.delegator_timings.revoke_delegations.rounds }} rounds ({{ networks.moonbase.delegator_timings.revoke_delegations.hours }} hours) |
+    |    Leave candidates     |    {{ networks.moonbase.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonbase.collator_timings.leave_candidates.hours }} hours)    |
+    |    Leave delegators     |   {{ networks.moonbase.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonbase.delegator_timings.leave_delegators.hours }} hours)   |
 
 ## Parachain Staking Solidity Interface {: #the-parachain-staking-solidity-interface } 
 
@@ -104,14 +133,14 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 1. Get a copy of [StakingInterface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol)
 2. Copy and paste the file contents into a Remix file named `StakingInterface.sol`
 
-![Copying and Pasting the Staking Interface into Remix](/images/builders/build/canonical-contracts/precompiles/staking/staking-1.png)
+![Copying and Pasting the Staking Interface into Remix](/images/builders/pallets-precompiles/precompiles/staking/staking-1.png)
 
 ### Compile the Contract {: #compile-the-contract } 
 
 1. Click on the **Compile** tab, second from top
 2. Then to compile the interface, click on **Compile StakingInterface.sol**
 
-![Compiling StakingInteface.sol](/images/builders/build/canonical-contracts/precompiles/staking/staking-2.png)
+![Compiling StakingInteface.sol](/images/builders/pallets-precompiles/precompiles/staking/staking-2.png)
 
 ### Access the Contract {: #access-the-contract } 
 
@@ -121,7 +150,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 4. Provide the address of the staking precompile for Moonbase Alpha: `{{networks.moonbase.precompiles.staking}}` and click **At Address**
 5. The Parachain Staking precompile will appear in the list of **Deployed Contracts**
 
-![Provide the address](/images/builders/build/canonical-contracts/precompiles/staking/staking-3.png)
+![Provide the address](/images/builders/pallets-precompiles/precompiles/staking/staking-3.png)
 
 ### Delegate a Collator {: #delegate-a-collator } 
 
@@ -138,7 +167,7 @@ To obtain the candidate delegator count, you can call a function that the stakin
 3. Click **call**
 4. After the call is complete, the results will be displayed
 
-![Call collator delegation count](/images/builders/build/canonical-contracts/precompiles/staking/staking-4.png)
+![Call collator delegation count](/images/builders/pallets-precompiles/precompiles/staking/staking-4.png)
 
 If you don't know your existing number of delegations, you can easily get them by following these steps:
 
@@ -147,7 +176,7 @@ If you don't know your existing number of delegations, you can easily get them b
 3. Click **call**
 4. After the call is complete, the results will be displayed
 
-![Call delegator delegation count](/images/builders/build/canonical-contracts/precompiles/staking/staking-5.png)
+![Call delegator delegation count](/images/builders/pallets-precompiles/precompiles/staking/staking-5.png)
 
 Now that you have obtained the [candidate delegator count](#:~:text=To obtain the candidate delegator count) and your [number of existing delegations](#:~:text=If you don't know your existing number of delegations), you have all of the information you need to delegate a candidate. To get started:
 
@@ -159,7 +188,7 @@ Now that you have obtained the [candidate delegator count](#:~:text=To obtain th
 6. Press **transact**
 7. MetaMask will pop-up, you can review the details and confirm the transaction
 
-![Delegate a Collator](/images/builders/build/canonical-contracts/precompiles/staking/staking-6.png)
+![Delegate a Collator](/images/builders/pallets-precompiles/precompiles/staking/staking-6.png)
 
 ### Verify Delegation {: #verify-delegation } 
 
@@ -171,7 +200,7 @@ To verify your delegation was successful, you can check the chain state in Polka
 4. Provide a nickname for the account
 5. Click **Save**
 
-![Add to Address Book](/images/builders/build/canonical-contracts/precompiles/staking/staking-7.png)
+![Add to Address Book](/images/builders/pallets-precompiles/precompiles/staking/staking-7.png)
 
 To verify your delegation was successful, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/chainstate){target=_blank} and navigate to **Developer** and then **Chain State**
 
@@ -184,7 +213,7 @@ To verify your delegation was successful, head to [Polkadot.js Apps](https://pol
 !!! note
     You do not have to enter anything in the **blockhash to query at** field if you are looking for an overview of your delegations.
 
-![Verify delegation](/images/builders/build/canonical-contracts/precompiles/staking/staking-8.png)
+![Verify delegation](/images/builders/pallets-precompiles/precompiles/staking/staking-8.png)
 
 ### Revoke a Delegation {: #revoke-a-delegation } 
 
@@ -201,7 +230,7 @@ To revoke a delegation and receive your tokens back, head back over to Remix, th
 3. Click **transact**
 4. MetaMask will pop, you can review the transaction details, and click **Confirm**
 
-![Revoke delegation](/images/builders/build/canonical-contracts/precompiles/staking/staking-9.png)
+![Revoke delegation](/images/builders/pallets-precompiles/precompiles/staking/staking-9.png)
 
 Once the transaction is confirmed, you must wait the duration of the exit delay before you can execute and revoke the delegation request. If you try to revoke it before the exit delay is up, your extrinsic will fail.
 
