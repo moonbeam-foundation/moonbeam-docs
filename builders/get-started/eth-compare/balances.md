@@ -5,7 +5,7 @@ description: A description of the main differences that Ethereum developers need
 
 # Moonbeam Account Balances
 
-![Moonbeam v Ethereum - Account Balances Banner](/images/builders/get-started/eth-compare/balances-banner.png)
+![Moonbeam v Ethereum - Account Balances Banner](/images/builders/get-started/eth-compare/balances/balances-banner.png)
 
 ## Introduction
 
@@ -23,7 +23,7 @@ An account on Ethereum is an entity with a token balance (Ether or ETH in this c
 
 Therefore, Ethereum has two main types of accounts: user-owned and contract-owned. No matter the type, an Ethereum account has a single balance field that represents the number of Wei owned by this address, where Wei is a denomination of ETH (1 x 10^18 Wei per ETH).
 
-![Ethereum balances diagram](/images/builders/get-started/eth-compare/balances-1.png)
+![Ethereum balances diagram](/images/builders/get-started/eth-compare/balances/balances-1.png)
 
 ## Moonbeam Account Balances
 
@@ -37,7 +37,20 @@ As with Ethereum, there are two main types of accounts: user-owned and contract 
  - **Misc frozen** — represents a balance that the `free` balance may not drop below when withdrawing funds, except for transaction fee payment. For example, funds being used to vote on a governance proposal are shown as `misc frozen`. These funds are **not** accessible via the Ethereum API until they are freed
  - **Fee frozen** — represents a balance that the `free` balance may not drop below when specifically paying for transaction fees. These funds are **not** accessible via the Ethereum API until they are freed
 
-![Moonbeam balances diagram](/images/builders/get-started/eth-compare/balances-2.png)
+![Moonbeam balances diagram](/images/builders/get-started/eth-compare/balances/balances-2.png)
+
+You can check on your balances using [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=_blank}.
+
+![View balances on Polkadot.js Apps](/images/builders/get-started/eth-compare/balances/balances-3.png)
+
+You can also view your balance locks. Before getting started, make sure Polkadot.js Apps is connected to the correct network. Then go ahead and select the **Developer** tab, then choose **Chain State**, and take the following steps:
+
+1. Select **balances** from the **selected state query** dropdown
+2. Choose the **locks** extrinsic
+3. Enter your address
+4. Click the **+** button to submit the extrinsic
+
+![View locks on Polkadot.js Apps](/images/builders/get-started/eth-compare/balances/balances-4.png)
 
 ## Main Differences
 
