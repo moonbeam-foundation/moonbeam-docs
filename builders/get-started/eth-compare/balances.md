@@ -39,7 +39,7 @@ As with Ethereum, there are two main types of accounts: user-owned and contract 
 
 ![Moonbeam balances diagram](/images/builders/get-started/eth-compare/balances/balances-2.png)
 
-You can check on your balances using [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=_blank}.
+You can check on your balances, including your free (or transferrable) and reserved balances (if exists), using [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=_blank}.
 
 ![View balances on Polkadot.js Apps](/images/builders/get-started/eth-compare/balances/balances-3.png)
 
