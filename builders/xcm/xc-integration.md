@@ -245,7 +245,7 @@ To get started, head to [Polkadot.js Apps](https://polkadot.js.org/apps/#/explor
         |  Network  |                       Any                        |
         |    Id     | { enter the relay chain sovereign account here } |
 
-        The soveriegn account addresses are as follows:
+        The sovereign account addresses are as follows:
                 
         === "Polkadot"
             ```
