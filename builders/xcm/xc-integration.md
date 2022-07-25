@@ -1,5 +1,5 @@
 ---
-title: Open a Cross-Chain Channel with Moonbeam
+title: Open a Cross-Chain Channel
 description: Learn how to establish a cross-chain integration with a Moonbeam-based network. Inclduding opening and accepting an HRMP channel, and registering assets.
 ---
 
@@ -47,8 +47,8 @@ Once all of these steps are completed and both teams have successfully tested as
 
 The process to create a HRMP channel with Moonriver and Moonbeam is mostly the same, and is as follows:
 
-1. Create a proposal to open an HRMP channel to Moonriver/Moonbeam. Optionally, you can create a batched proposal to register MOVR/GLMR or register it any time
-2. Provide asset details of your parachain's asset so it can be registered on Moonriver/Moonbeam
+1. Provide asset details of your parachain's asset so it can be registered on Moonriver/Moonbeam
+2. Create a proposal to open an HRMP channel to Moonriver/Moonbeam. Optionally, you can create a batched proposal to register MOVR/GLMR or register it any time
 3. Once the proposal in step 1 gets enacted, a batched proposal will be done by Moonbeam to:
     1. Accept the incoming HRMP channel
     2. Propose an outgoing HRMP channel from Moonriver/Moonbeam
@@ -89,7 +89,7 @@ For reference, you can use [Moonbase Alpha’s spec file](https://raw.githubuser
 
 To onboard your parachain, please provide the following:
 - Genesis head/wasm hash
-- Parachain ID. You can find the parachain IDs that have been already used in the [relay chain Polkadot.js Apps page](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/parachains)
+- Parachain ID. You can find the parachain IDs that have been already used in the [relay chain Polkadot.js Apps page](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/parachains){target=_blank}
 
 There are also some [snapshots for the Alphanet ecosystem relay chain](http://snapshots.moonbeam.network.s3-website.us-east-2.amazonaws.com/){target=_blank} you can use to quickly get started.
 
