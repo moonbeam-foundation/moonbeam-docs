@@ -41,7 +41,7 @@ The following is an overview of each of these instructions:
 - **`BuyExecution(fees: MultiAsset, weight_limit: Option<Weight>)`** - takes asset(s) from holding to pay for execution fees. The amount that is actually used is determined by the interpreting system. If the fees are more than the specified amount then the instruction will result in error. You can optionally provide the amount of weight to be purchased. If the given amount of weight is lower than the estimated weight, an error will be thrown
 - **`DepositAsset(assets: MultiAssetFilter, max_assets: Compact, beneficiary: MultiLocation`** - removes asset(s) from holding to be sent to a destination account. The maximum assets defines the maximum number of unique assets to remove from holding, any remaining assets stay in holding
 
-## Calculation of Fees for Native Assets {: #calculation-of-fees-native }
+## Calculation of Fees {: #calculation-of-fees-native }
 
 Substrate has introduced a weight system that determines how heavy an extrinsic is. When it comes to paying fees, users will pay a transaction fee that is proportionate to the weight of the call that is being made. One unit of weight is defined as one picosecond of execution time.
 
@@ -51,7 +51,7 @@ There are two databases available in Polkadot and Kusama, RocksDB (which is the 
 
 ### Polkadot {: #polkadot }
 
-As previously mentioned, Polkadot currently uses a fixed amount of weight for all XCM instructions, which is `1,000,000,000` weight units.
+As previously mentioned, Polkadot currently uses a [fixed amount of weight](https://github.com/paritytech/polkadot/blob/e76cd144f9dad8c1304fd1476f92495bbb9ad22e/runtime/polkadot/src/xcm_config.rs#L95){target=_blank} for all XCM instructions, which is `1,000,000,000` weight units.
 
 Although Polkadot doesn't currently use database weight units to calculate costs, the weight units for database operations are shared here for reference.
 
@@ -62,7 +62,7 @@ Although Polkadot doesn't currently use database weight units to calculate costs
 
 With the instruction weight cost established, you can calculate the cost of the instruction in DOT. 
 
-In Polkadot, the `ExtrinsicBaseWeight` is set to `85,212,000` which is mapped to 1/10 cents. Where 1 cent is `10^10 / 10,000`. Therefore, the formula for calculating the final fee in DOT looks like this:
+In Polkadot, the [`ExtrinsicBaseWeight`](https://github.com/paritytech/polkadot/blob/master/runtime/polkadot/constants/src/weights/extrinsic_weights.rs#L56){target=_blank} is set to `85,212,000` which is mapped to 1/10th of a cent. Where 1 cent is `10^10 / 10,000`. Therefore, the formula for calculating the final fee in DOT looks like this:
 
 ```
 Total-Planck-DOT = TotalWeight * PlanckDOT * (1 / ExtrinsicBaseWeight)
@@ -91,7 +91,7 @@ The breakdown of weight costs for database read and write operations are as foll
 
 Now that you are aware of the weight costs for database reads and writes on Kusama, you can calculate the weight cost for a given instruction using the base weight for an instruction. 
 
-The `WithdrawAsset` instruction has a base weight of `20,385,000`, and includes one database read, and one database write. Therefore, the total weight cost of the `WithdrawAsset` instruction is calculated like so:
+The [`WithdrawAsset` instruction](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L49-L53){target=_blank} has a base weight of `20,385,000`, and includes one database read, and one database write. Therefore, the total weight cost of the `WithdrawAsset` instruction is calculated like so:
 
 ```
 20,385,000 + 25,000,000 + 100,000,000 = 145,385,000
@@ -99,9 +99,11 @@ The `WithdrawAsset` instruction has a base weight of `20,385,000`, and includes 
 
 The `BuyExecution` instruction has a base weight of `3,109,000` and doesn't include any database reads or writes. Therefore, the total weight cost of the `BuyExecution` instruction is `3,109,000`.
 
+On Kusama, the base weights are broken up into two categories: fungible and generic. Fungible weights are for XCM instructions that involve moving assets, and generic weights are for everything else. You can view the current weights for [fungible assets](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L45){target=_blank} and [generic assets](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L46){target=_blank} directly in the Kusama Runtime code.
+
 With the instruction weight cost established, you can calculate the cost of the instruction in KSM. 
 
-In Kusama, the `ExtrinsicBaseWeight` is set to `86,309,000` which is mapped to 1/10 cents. Where 1 cent is `10^12 / 30,000`. Therefore, the formula for calculating the final fee in KSM looks like this:
+In Kusama, the [`ExtrinsicBaseWeight`](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/constants/src/weights/extrinsic_weights.rs#L56){target=_blank} is set to `86,309,000` which is mapped to 1/10th of a cent. Where 1 cent is `10^12 / 30,000`. Therefore, the formula for calculating the final fee in KSM looks like this:
 
 ```
 Total-Planck-KSM = TotalWeight * PlanckKSM * (1 / ExtrinsicBaseWeight)
@@ -168,8 +170,6 @@ DEV = 5000000000000 / (10^18)
 ```
 
 The total cost is `0.000005 DEV` for an XCM instruction on Moonbase Alpha.
-
-## Calculation of Fees for External Assets on Moonbeam {: #calculation-of-fees-external-asset }
 
 In the previous example with Alice, her fees were taken out of Alith's xcDOT balance. To determine the amount of a particular asset, such as xcDOT, to charge per second of local XCM execution, Moonbeam uses a concept called `UnitsPerSecond`. This concept is used by parachains to determine how much to charge in the target parachain. Nevertheless, fees can be charged in another token, for example, DOT.
 
