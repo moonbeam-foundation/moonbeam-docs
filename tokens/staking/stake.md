@@ -29,7 +29,7 @@ There are many extrinsics related to the staking pallet, so all of them are not 
 ### Join or Leave The Delegator Set {: #join-or-leave-the-delegator-set }
 
  - **delegate**(*address* candidate, *uint256* amount, *uint256* candidateDelegationCount, *uint256* delegatorDelegationCount) - extrinsic to delegate a collator. The amount needs to be greater than the minimum delegation stake. Replaces the deprecated `nominate` extrinsic
- - **scheduleLeaveDelegators**() - extrinsic to schedule to leave the set of delegators. There is an [exit delay](/learn/features/staking/#quick-reference){target=_blank} before you can execute the request via the `executeLeaveDelegators` extrinsic and actually leave the set of delegators. Replaces the deprecated `leaveNominators` extrinsic
+ - **scheduleLeaveDelegators**() - extrinsic to schedule to leave the set of delegators. There is an [exit delay](/learn/features/staking/#quick-reference/#:~:text=Leave delegators delay){target=_blank} before you can execute the request via the `executeLeaveDelegators` extrinsic and actually leave the set of delegators. Replaces the deprecated `leaveNominators` extrinsic
  - **executeLeaveDelegators**(*uint256* delegatorDelegationCount) - extrinsic to execute and leave the set of delegators. This extrinsic should only be used after a leave has been scheduled and the exit delay has passed. Consequently, all ongoing delegations will be revoked
  - **cancelLeaveDelegators**() - extrinsic to cancel a scheduled request to leave the set of delegators
 
@@ -41,7 +41,7 @@ The following extrinsics are deprecated:
 ### Bond More or Less  {: #bond-more-or-less }
 
  - **delegatorBondMore**(*address* candidate, *uint256* more) - extrinsic to request to increase the amount of staked tokens for an already delegated collator. Replaces the deprecated `nominatorBondMore` extrinsic
- - **scheduleDelegatorBondLess**(*address* candidate, *uint256* less) - extrinsic to request to reduce the amount of staked tokens for an already delegated collator. The amount must not decrease your overall total staked below the minimum delegation stake. There will be a [bond less delay](/learn/features/staking/#quick-reference){target=_blank} before you can execute the request via the `executeCandidateBondRequest` extrinsic. Replaces the deprecated `nominatorBondLess` extrinsic
+ - **scheduleDelegatorBondLess**(*address* candidate, *uint256* less) - extrinsic to request to reduce the amount of staked tokens for an already delegated collator. The amount must not decrease your overall total staked below the minimum delegation stake. There will be a [bond less delay](/learn/features/staking/#quick-reference/#:~:text=Decrease delegation delay){target=_blank} before you can execute the request via the `executeCandidateBondRequest` extrinsic. Replaces the deprecated `nominatorBondLess` extrinsic
  - **executeCandidateBondRequest**(*address* candidate) - extrinsic to execute a decrease in the bond for a specific candidate. This extrinsic should only be used after a bond request has been scheduled and the exit delay has passed
  - **cancelCandidateBondLess**() - extrinsic to cancel a scheduled request to increase or decrease the bond for a specific candidate
 
@@ -52,7 +52,7 @@ The following extrinsics are deprecated:
 
 ### Revoke Delegations {: #revoke-delegations }
 
- - **scheduleRevokeDelegation**(*address* collator) - extrinsic to schedule to remove an existing delegation entirely. There will be a [revoke delegation delay](/learn/features/staking/#quick-reference) before you can execute the request via the `executeDelegationRequest` extrinsic. Replaces the deprecated `revokeNomination` extrinsic 
+ - **scheduleRevokeDelegation**(*address* collator) - extrinsic to schedule to remove an existing delegation entirely. There will be a [revoke delegation delay](/learn/features/staking/#quick-reference/#:~:text=Revoke delegations delay){target=_blank} before you can execute the request via the `executeDelegationRequest` extrinsic. Replaces the deprecated `revokeNomination` extrinsic 
  - **executeDelegationRequest**(*address* delegator, *address* candidate) - extrinsic to execute and pending delegation requests. This extrinsic should only be used after a request has been scheduled and the exit delay has passed 
  - **cancelDelegationRequest**(*address* candidate) - extrinsic to cancel a scheduled request to revoke a delegation
 
