@@ -62,7 +62,7 @@ deposit base + deposit factor * number of proxies
     | Deposit factor | {{ networks.moonbase.proxy.deposit_factor }} DEV  |
     |  Max proxies   | {{ networks.moonbase.proxy.max_proxies }} proxies |
 
-## Proxy Types
+## Proxy Types {: #proxy-types }
 
 When creating a proxy account, you must choose a type of proxy which will define how the proxy can be used. The available options are:
 
@@ -72,11 +72,19 @@ When creating a proxy account, you must choose a type of proxy which will define
 - **`Governance`** - allows the proxy account to make transactions related to governance, such as voting or proposing democracy proposals
 - **`NonTransfer`** - this type of proxy account is allowed to submit any type of transaction with the exception of balance transfers
 - **`Balances`** - allows the proxy account to only make transactions related to sending funds
+- **`IdentityJudgement`** - allows the proxy account to request judgement on an [account's identity](/tokens/manage/identity){target=_blank} from a registrar. The following judgements can be issued:
+    - **unknown** - (default) no judgement has been made yet
+    - **fee paid** - to indicate a user has requested judgement and it is in progress
+    - **reasonable** - the information appears reasonable, but no in-depth checks (i.e. formal KYC process) were performed
+    - **known good** - the information has been certified as correct
+    - **out of date** - the information used to be good, but is now out of date
+    - **low quality** - the information is low quality or imprecise, but can be fixed with an update
+    - **erroneous** - the information is erroneous and may indicate malicious intent
 - **`Any`** - allows the proxy account to use any function supported by the proxy pallet
 
 For the purposes of this guide, you will be setting up a proxy account using the balances proxy type. Since this type enables the proxy to spend funds on behalf of the primary account, you should exercise caution and only provide access to accounts you trust. The proxy will have access to transfer all of the funds within the primary account, and if not trusted, the proxy could drain the primary account. Also make sure not to forget to remove the proxy as needed.
 
-## Creating a Proxy Account
+## Creating a Proxy Account {: #creating-a-proxy }
 
 There are a couple of ways you can create proxy accounts in Polkadot.js Apps, either from the **Extrinsics** page or the **Accounts** page. However, to create a time-delayed proxy, you will need to use the **Extrinsics** page. A time delay provides an additional layer of security to proxies by specifying a delay period based on a number of blocks. This will prevent the proxy account from executing a transaction until the delay period ends. The delay allows time for the primary account that controls the proxy to review pending transactions, potentially for malicious actions, and cancel if necessary before execution. 
 
@@ -111,7 +119,7 @@ A pop-up will appear and you will be able to enter in the required information, 
 
 In the next section, you will learn how to verify that your proxy account was set up successfully. 
 
-## Verifying your Proxy Account
+## Verifying your Proxy Account {: #verifying-your-proxy }
 
 There are a couple of ways that you can verify your proxy account has been successfully set up. Either through the **Accounts** page or via the **Chain state** page.
 
@@ -136,7 +144,7 @@ A pop-up will appear where you can view an overview of all of your proxy account
 
 ![Proxy Overview Pop-up](/images/tokens/manage/proxy-accounts/proxies-7.png)
 
-## Executing a Proxy Transaction
+## Executing a Proxy Transaction {: #executing-a-proxy-transaction }
 
 Now that you have created a proxy account and verified that it was successfuly set up, you can execute a transaction using the proxy account on behalf of the primary account.
 
@@ -160,7 +168,7 @@ If the transaction successfully went through, you should see a couple of notific
 
 That's it! You've successfully executed a transaction using a proxy account on behalf of your primary account. 
 
-## Removing a Proxy Account
+## Removing a Proxy Account {: #removing-a-proxy }
 
 Similarly to adding a proxy account, there are a couple of ways that you can remove a proxy account, either from the **Extrinsics** page or the **Accounts** page. Regardless of which page you use, you can elect to remove a single proxy account or all proxies associated with your primary account.
 
