@@ -23,10 +23,10 @@ Running this service locally through NPM requires Node.js to be installed.
 
 ### Installing the Substrate API Sidecar {: #installing-the-substrate-api-sidecar }
 
-To install the Substrate API Sidecar service in the current directory, run this from the command line:
+To install the Substrate API Sidecar service locally in the current directory, run this from the command line:
 
 ```
-npm install @substrate/api-sidecar@{{ networks.moonbase.substrate_api_sidecar.stable_version }}
+mkdir node_modules && npm install @substrate/api-sidecar@{{ networks.moonbase.substrate_api_sidecar.stable_version }}
 ```
 
 Substrate API Sidecar v{{ networks.moonbase.substrate_api_sidecar.stable_version }} is the current stable version that has been tested to work with Moonbeam networks. You can verify the installation was successful by typing from the installation directory root:

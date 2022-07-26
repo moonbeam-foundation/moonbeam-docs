@@ -7,7 +7,7 @@ description: Use Ethereum-like publish-subscribe functionality to subscribe to s
 
 ## Introduction {: #introduction } 
 
-The ability to subscribe to Ethereum-style events was added with the [release of Moonbase Alpha v2](https://moonbeam.network/announcements/testnet-upgrade-moonbase-alpha-v2/). In this guide, we will outline the subscription types available and current limitations.
+The ability to subscribe to Ethereum-style events was added with the [release of Moonbase Alpha v2](https://moonbeam.network/announcements/testnet-upgrade-moonbase-alpha-v2/){target=_blank}. In this guide, we will outline the subscription types available and current limitations.
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
@@ -16,7 +16,7 @@ The examples in this guide are based on an Ubuntu 18.04 environment. You will al
  - Have MetaMask installed and [connected to Moonbase](/tokens/connect/metamask/)
  - Have an account with funds. 
   --8<-- 'text/faucet/faucet-list-item.md'
- - Deploy your own ERC-20 token on Moonbase. You can do following [our Remix tutorial](/builders/build/eth-api/dev-env/remix/), while first pointing MetaMask to Moonbase
+ - Deploy your own ERC-20 token on Moonbase. You can do following [our Remix tutorial](/builders/build/eth-api/dev-env/remix/){target=_blank}, while first pointing MetaMask to Moonbase
 
 --8<-- 'text/common/install-nodejs.md'
 
@@ -57,7 +57,7 @@ web3.eth.subscribe('logs', {
     });
 ```
 
-Note that we are connecting to the WebSocket endpoint of Moonbase Alpha. We use the `web3.eth.subscribe(‘logs’,  options [, callback])` method to subscribe to the logs, filtered by the given options. In our case, the options are the contract’s address where the events are emitted from and the topics used to describe the event. More information about topics can be found in [this Medium post](https://medium.com/mycrypto/understanding-event-logs-on-the-ethereum-blockchain-f4ae7ba50378). If no topics are included, you subscribe to all events emitted by the contract. In order to only filter the Transfer event, we need to include the signature of the event, calculated as:
+Note that we are connecting to the WebSocket endpoint of Moonbase Alpha. We use the `web3.eth.subscribe(‘logs’,  options [, callback])` method to subscribe to the logs, filtered by the given options. In our case, the options are the contract’s address where the events are emitted from and the topics used to describe the event. More information about topics can be found in [this Medium post](https://medium.com/mycrypto/understanding-event-logs-on-the-ethereum-blockchain-f4ae7ba50378){target=_blank}. If no topics are included, you subscribe to all events emitted by the contract. In order to only filter the Transfer event, we need to include the signature of the event, calculated as:
 
 ```js
 EventSignature = keccak256(Transfer(address,address,uint256))
@@ -83,13 +83,13 @@ Let's break down the response received. Our target event sends two pieces of ind
 
 Consequently, you can see that the `from` and `to` addresses are contained inside the topics returned by the logs. Ethereum addresses are 40 hex characters long (1 hex character is 4 bits, hence 160 bits or H160 format). Thus, the extra 24 zeros are needed to fill the gap to H256, which is 64 hex characters long. 
 
-Unindexed data is returned in the `data` field of the logs, but this is encoded in bytes32/hex. To decode it we can use, for example, this [online tool](https://web3-type-converter.onbrn.com/), and verify that the `data` is in fact 1 (plus 18 zeros). 
+Unindexed data is returned in the `data` field of the logs, but this is encoded in bytes32/hex. To decode it we can use, for example, this [online tool](https://web3-type-converter.onbrn.com/){target=_blank}, and verify that the `data` is in fact 1 (plus 18 zeros). 
 
 If the event returns multiple unindexed values, they will be appended one after the other in the same order the event emits them. Therefore, each value is then obtained by deconstructing data into separate 32 bytes (or 64 hex character long) pieces.
 
 ### Using Wildcards and Conditional Formatting {: #using-wildcards-and-conditional-formatting } 
 
-In the v2 release that introduced the subscribing to logs feature, there were some limitations regarding using wildcards and conditional formatting for the topics. Nevertheless, with the release of [Moonbase Alpha v3](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/), this is now possible.
+In the v2 release that introduced the subscribing to logs feature, there were some limitations regarding using wildcards and conditional formatting for the topics. Nevertheless, with the release of [Moonbase Alpha v3](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/){target=_blank}, this is now possible.
 
 Using the same example as in the previous section, lets subscribe to the events of the token contract with the following code:
 
@@ -148,10 +148,9 @@ Note that only one block header is shown in the image. These messages are displa
 
 ## Check if a Node is Synchronized with the Network {: #check-if-a-node-is-synchronized-with-the-network } 
 
-With pub/sub it is also possible to check whether a particular node you are subscribed to is currently synchronized with the network. For that, we can leverage the `web3.eth.subscribe(‘syncing' [, callback])` method, implementing the same callback function to check for the response. This subscription will return an object when the node is synced with the network.
+With pub/sub it is also possible to check whether a particular node you are subscribed to is currently synchronizing with the network. For that, we can leverage the [`web3.eth.subscribe(‘syncing' [, callback])`](https://web3js.readthedocs.io/en/v1.2.11/web3-eth-subscribe.html#subscribe-syncing){target=_blank} method, implementing the same callback function to check for the response. This subscription will either return a boolean when `syncing` is false, or an object describing the syncing progress when `syncing` is true, as seen below. 
 
 ![Subscribe to syncing response](/images/builders/build/eth-api/pubsub/pubsub-7.png)
 
-## Current Limitations {: #current-limitations } 
-
-The pub/sub implementation in [Frontier](https://github.com/paritytech/frontier) is still in active development. This first version allows DApp developers (or users in general) to subscribe to specific event types, but there are still some limitations. You may have noticed from previous examples that some of the fields are not showing proper information with the current version released, and that is because certain properties are yet to be supported by Frontier.
+!!! note
+    The pub/sub implementation in [Frontier](https://github.com/paritytech/frontier){target=_blank} is still in active development. This current version allows users to subscribe to specific event types, but there may still be some limitations.
