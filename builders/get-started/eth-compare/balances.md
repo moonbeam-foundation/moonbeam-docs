@@ -43,7 +43,7 @@ You can check on your balances, including your free (or transferrable) and reser
 
 ![View balances on Polkadot.js Apps](/images/builders/get-started/eth-compare/balances/balances-3.png)
 
-You can also view your balance locks. Before getting started, make sure Polkadot.js Apps is connected to the correct network. Then go ahead and select the **Developer** tab, then choose **Chain State**, and take the following steps:
+You can also view your balance locks using Polkadot.js Apps. Before getting started, make sure Polkadot.js Apps is connected to the correct network. Then go ahead and select the **Developer** tab, then choose **Chain State**, and take the following steps:
 
 1. Select **balances** from the **selected state query** dropdown
 2. Choose the **locks** extrinsic
