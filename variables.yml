@@ -1,7 +1,7 @@
 networks:
   development:
-    build_tag: v0.24.0
-    tracing_tag: purestake/moonbeam-tracing:sha-8369da6d-1605-fd19
+    build_tag: v0.25.0
+    tracing_tag: purestake/moonbeam-tracing:v0.25.0-1701-e8cc
     rpc_url: http://127.0.0.1:9933
     wss_url: ws://127.0.0.1:9944
     chain_id: 1281
