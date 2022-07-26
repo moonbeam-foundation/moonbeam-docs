@@ -75,7 +75,7 @@ Then to retrieve the various staking parameters, you'll need to:
 
 ![Retrieving staking parameters](/images/tokens/staking/stake/stake-12.png)
 
-You should then see the maximum delegations per delegator, which can also be found in the [Staking on Moonbeam](/learn/features/staking/#quick-reference/#:~:text=Maximum delegations){target=_blank} overview.
+You should then see the maximum delegations per delegator, which can also be found in the [Staking on Moonbeam](/learn/features/staking/#quick-reference){target=_blank} overview.
 
 ## How to Stake via Polkadot.js Apps {: #how-to-delegate-a-candidate } 
 
