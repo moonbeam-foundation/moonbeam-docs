@@ -27,7 +27,7 @@ Each chain can configure what happens with the XCM fees. For example, on Polkado
 
 Consider the following scenario: Alice has some DOT on Polkadot and she wants to transfer it to Alith on Moonbeam. She sends an XCM message with a set of XCM instructions that will retrieve a given amount of DOT from her account on Polkadot and mint them as xcDOT into Alith's account. Part of the instructions are executed on Polkadot and the other part are executed on Moonbeam. 
 
-How does Alice pay Moonbeam to execute these instructions and fulfill her request? Her request is fulfilled through a series of XCM instructions that are included in the XCM message, which enables her to buy execution time minus any related XCM execution fees. The execution time is used to issue and transfer xcDOT, a representation of DOT on Moonbeam. This means that when Alice sends some DOT to her Alith account on Moonbeam, she'll receive a 1:1 representation of her DOT as xcDOT minus any XCM execution fees.
+How does Alice pay Moonbeam to execute these instructions and fulfill her request? Her request is fulfilled through a series of XCM instructions that are included in the XCM message, which enables her to buy execution time minus any related XCM execution fees. The execution time is used to issue and transfer xcDOT, a representation of DOT on Moonbeam. This means that when Alice sends some DOT to Alith's account on Moonbeam, she'll receive a 1:1 representation of her DOT as xcDOT minus any XCM execution fees.
 
 The exact process for Alice's transfer is as follows:
 
@@ -217,7 +217,7 @@ The total cost is `{{ networks.moonbeam.xcm.instructions.glmr_cost }} GLMR` for 
 
 ## Fee Calculation for External Assets {: #fee-calc-external-assets }
 
-Considering the scenario with Alice sending DOT to her Alith account on Moonbeam, the fees are taken from the amount of xcDOT Alith receives. To determine how much to charge, Moonbeam uses a concept called `UnitsPerSecond`, which refers to the units of tokens that the network charges per second of XCM execution time (considering decimals). This concept is used by parachains to determine how much to charge for XCM execution using a different asset than its reserve. Nevertheless, fees can be charged in another token, for example, DOT.
+Considering the scenario with Alice sending DOT to Alith's account on Moonbeam, the fees are taken from the amount of xcDOT Alith receives. To determine how much to charge, Moonbeam uses a concept called `UnitsPerSecond`, which refers to the units of tokens that the network charges per second of XCM execution time (considering decimals). This concept is used by parachains to determine how much to charge for XCM execution using a different asset than its reserve. Nevertheless, fees can be charged in another token, for example, DOT.
 
 To find out the `UnitsPerSecond` for a given asset, you can query `assetManager.assetTypeUnitsPerSecond` and pass in the multilocation of the asset in question.
 
@@ -261,7 +261,7 @@ Which means that four XCM instructions cost `{{ networks.moonbeam.xcm.message.tr
 
 To calculate the total cost in xcDOT, you'll also need the number of decimals the asset in question uses, which for xcDOT is 10 decimals. You can determine the number of decimals for any asset by [querying the asset metadata](/builders/xcm/xc20/xc20/#x-chain-assets-metadata){target=_blank}.
 
-The block execution formula can then be used to determine how much Alice's transfer of DOT to her Alith account on Moonbeam costs. The formula for finding the total cost is as follows:
+The block execution formula can then be used to determine how much Alice's transfer of DOT to Alith's account on Moonbeam costs. The formula for finding the total cost is as follows:
 
 ```
 Cost = (UnitsPerSecond / DecimalConversion) * ExecutionTime
@@ -273,4 +273,4 @@ Then the calculation for the transfer is:
 Cost = ({{ networks.moonbeam.xcm.units_per_second.xcdot.numbers_only }} / 10^10) * {{ networks.moonbeam.xcm.message.transfer.exec_time }}
 ```
 
-The total cost to transfer Alice's DOT to her Alith account for xcDOT is `{{ networks.moonbeam.xcm.message.transfer.xcdot_cost }} xcDOT`.
+The total cost to transfer Alice's DOT to Alith's account for xcDOT is `{{ networks.moonbeam.xcm.message.transfer.xcdot_cost }} xcDOT`.
