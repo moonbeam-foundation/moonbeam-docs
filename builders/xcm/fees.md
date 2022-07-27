@@ -17,17 +17,19 @@ This guide will cover aspects of fee payment such as who is responsible to pay X
 
 ## Payment of Fees {: #payment-of-fees }
 
-Consider the following scenario: Alice has some DOT on Polkadot and she wants to transfer it to Moonbeam, to her account name Alith. She sends an XCM message along with a given amount of DOT on Polkadot with instructions to deposit the DOT as xcDOT into her Alith account. Part of the instructions are executed on Polkdot and the other part are executed on Moonbeam. 
-
-How does Alice pay Moonbeam to execute these instructions and fulfill her request? It is fulfilled through a series of XCM instructions that are included in the XCM message which enables her to buy execution time minus any related XCM execution fees. The execution time is used to issue and transfer xcDOT, a representation of DOT on Moonbeam. This means that when Alice sends some DOT to her Alith account on Moonbeam, she'll receive a 1:1 representation of her DOT as xcDOT minus any XCM execution fees.
-
-In general, the process can be described as follows:
+Generally speaking, the fee payment process can be described as follows:
 
 1. Some assets need to be provided
 2. The exchange of assets for compute time (or weight) must be negotiated
 3. The XCM operations will be performed as instructed and any leftover assets will be sent to a destination account
 
-To take it a step further, the exact process for transfers into Moonbeam is as follows:
+Each chain can configure what happens with the XCM fees. For example, on Polkadot and Kusama the fees are given to the validator of the block. On Moonbeam and Moonriver, the fees are sent to the treasury.
+
+Consider the following scenario: Alice has some DOT on Polkadot and she wants to transfer it to Moonbeam, to her account name Alith. She sends an XCM message along with a given amount of DOT on Polkadot with instructions to deposit the DOT as xcDOT into her Alith account. Part of the instructions are executed on Polkdot and the other part are executed on Moonbeam. 
+
+How does Alice pay Moonbeam to execute these instructions and fulfill her request? It is fulfilled through a series of XCM instructions that are included in the XCM message which enables her to buy execution time minus any related XCM execution fees. The execution time is used to issue and transfer xcDOT, a representation of DOT on Moonbeam. This means that when Alice sends some DOT to her Alith account on Moonbeam, she'll receive a 1:1 representation of her DOT as xcDOT minus any XCM execution fees.
+
+The exact process for Alice's transfer is as follows:
 
 1. Assets are sent to an account on Polkadot that is owned by Moonbeam, known as the sovereign account. After the assets are received, an XCM message is sent to Moonbeam
 2. The XCM message in Moonbeam will:
@@ -35,27 +37,34 @@ To take it a step further, the exact process for transfers into Moonbeam is as f
     2. Buy the corresponding execution time
     3. Use that execution time to deposit the representation (minus fees) to the destination account
 
-Each chain can configure what happens with the XCM fee. For example, on Polkadot and Kusama the fees are given to the validator of the block. On Moonbeam and Moonriver, the fees are sent to the treasury.
-
 ### XCM Instructions {: #xcm-instructions }
 
-There are a number of XCM instructions that can be used to provide assets, including the `WithdrawAsset` and `ReserveAssetDeposited` instructions. If the assets are provided via the `ReserveAssetDeposited` instruction, the assets are not always relayed from a trusted source. As such, the `ClearOrigin` instruction can be used to ensure that later instructions cannot act with the authority of the original origin.
+An XCM message is comprised of a series of XCM instructions. As a result, different combinations of XCM instructions result in different actions. For example, to move DOT to Moonbeam, the following XCM instructions are used:
 
-To exchange the assets for compute time, the `BuyExecution` instruction is used. Then with any remaining assets the `DepositAsset` instruction can be used to send the assets to a beneficiary.
+1. [TransferReserveAsset](https://github.com/paritytech/xcm-format#transferreserveasset){target=_blank} - gets executed in Polkadot. Moves assets from the origin account and deposits them into a destination account. In this case, the destination account is Moonbeam's sovereign account on Polkadot. It then sends an XCM message to the destination, which is Moonbeam, with the XCM instructions that are to be executed
+2. [`ReserveAssetDeposited`](https://github.com/paritytech/xcm-format#reserveassetdeposited){target=_blank} - gets executed in Moonbeam. Takes a representation of the assets received in the sovereign account and places them into the holding register, a temporary position in the Cross-Consensus Virtual Machine (XCVM)
+3. [`ClearOrigin`](https://github.com/paritytech/xcm-format#clearorigin){target=_blank} - gets executed in Moonbeam. Ensures that later XCM instructions cannot command the authority of the XCM author
+4. [`BuyExecution`](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} - gets executed in Moonbeam. Takes the assets from holding to pay for execution fees. The amount of fees to pay are determined by the target chain, which in this case is Moonbeam
+5. [`DepositAsset`](https://github.com/paritytech/xcm-format#depositasset){target=_blank} - gets executed in Moonbeam. Removes the assets from holding and sends them to a destination account on Moonbeam
 
-The following is an overview of each of these instructions:
+To check how the instructions for an XCM message are built to transfer self reserve assets to a target chain, such as DOT to Moonbeam, you can refer to the [X-Tokens Open Runtime Module Library](https://github.com/open-web3-stack/open-runtime-module-library/tree/master/xtokens){target=_blank} repository. You'll want to take a look at the [`transfer_self_reserve_asset`](https://github.com/open-web3-stack/open-runtime-module-library/blob/8c625a5ab43c1c56cdeed5f8d814a891566d4cf8/xtokens/src/lib.rs#L660){target=_blank} function. You'll notice that it calls `TransferReserveAsset` and passes in `assets`, `dest`, and `xcm` as parameters. In particular, the `xcm` parameter includes the `BuyExecution` and `DepositAsset` instructions. If you then head over to the Polkadot GitHub repository and find the [`TransferReserveAsset` instruction](https://github.com/paritytech/polkadot/blob/master/xcm/xcm-executor/src/lib.rs#L304){target=_blank}, it accepts these parameters. Then the XCM message is constructed by combining the `ReserveAssetDeposited` and `ClearOrigin` instructions with the `xcm` parameter, which as mentioned includes the `BuyExecution` and `DepositAsset` instructions.
 
-- **`WithdrawAsset(assets: MultiAssets)`** - removes the on-chain asset(s) and holds them in the Holding Register, a temporary position in the Cross-Consensus Virtual Machine (XCVM), which can then be used to pay for XCM execution fees
-- **`ReserveAssetDeposited(assets: MultiAssets)`** - accrues the asset(s) which have been received into the sovereign account of the local consensus system into holding
-- **`ClearOrigin`** - clears the origin to ensure that later instructions cannot command the authority of the original origin. Useful in cases where the instructions are being relayed from an untrusted source, as often is the case with `ReserveAssetDeposited`
-- **`BuyExecution(fees: MultiAsset, weight_limit: Option<Weight>)`** - takes asset(s) from holding to pay for execution fees. The amount that is actually used is determined by the interpreting system. If the fees are more than the specified amount then the instruction will result in error. You can optionally provide the amount of weight to be purchased. If the given amount of weight is lower than the estimated weight, an error will be thrown
-- **`DepositAsset(assets: MultiAssetFilter, max_assets: Compact, beneficiary: MultiLocation`** - removes asset(s) from holding to be sent to a destination account. The maximum assets defines the maximum number of unique assets to remove from holding, any remaining assets stay in holding
+To move xcDOT from Moonbeam back to Polkadot, the instructions that are used are:
 
-## Calculation of Fees {: #calculation-of-fees-native }
+1. [WithdrawAsset](https://github.com/paritytech/xcm-format#withdrawasset){target=_blank} - gets executed in Moonbeam. Removes assets and places them into the holding register
+2. [InitiateReserveWithdraw](https://github.com/paritytech/xcm-format#initiatereservewithdraw){target=_blank} - gets executed in Moonbeam. Removes the assets from holding and sends an XCM message to the destination chain starting with the `WithdrawAsset` instruction
+3. [WithdrawAsset](https://github.com/paritytech/xcm-format#withdrawasset){target=_blank} - gets executed in Polkadot. Removes assets and places them into the holding register
+4. [`ClearOrigin`](https://github.com/paritytech/xcm-format#clearorigin){target=_blank} - gets executed in Polkadot. Ensures that later XCM instructions cannot command the authority of the XCM author
+5. [`BuyExecution`](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} - gets executed in Polkadot. Takes the assets from holding to pay for execution fees. The amount of fees to pay are determined by the target chain, which in this case is Polkadot
+6. [`DepositAsset`](https://github.com/paritytech/xcm-format#depositasset){target=_blank} - gets executed in Polkadot. Removes the assets from holding and sends them to a destination account on Polkadot
+
+To check how the instructions for an XCM message are built to transfer reserve assets to a target chain, such as xcDOT to Polkadot, you can refer to the [X-Tokens Open Runtime Module Library](https://github.com/open-web3-stack/open-runtime-module-library/tree/master/xtokens){target=_blank} repository. You'll want to take a look at the [`transfer_to_reserve`](https://github.com/open-web3-stack/open-runtime-module-library/blob/8c625a5ab43c1c56cdeed5f8d814a891566d4cf8/xtokens/src/lib.rs#L677){target=_blank} function. You'll notice that it calls `WithdrawAsset`, then `InitiateReserveWithdraw` and passes in `assets`, `dest`, and `xcm` as parameters. In particular, the `xcm` parameter includes the `BuyExecution` and `DepositAsset` instructions. If you then head over to the Polkadot GitHub repository and find the [`InitiateReserveWithdraw` instruction](https://github.com/paritytech/polkadot/blob/master/xcm/xcm-executor/src/lib.rs#L410){target=_blank}, it accepts these parameters. Then the XCM message is constructed by combining the `WithdrawAsset` and `ClearOrigin` instructions with the `xcm` parameter, which as mentioned includes the `BuyExecution` and `DepositAsset` instructions.
+
+## Fee Calculation for Reserve Assets {: #fee-calc-reserve-assets }
 
 Substrate has introduced a weight system that determines how heavy or, in other words, how expensive from a computational cost perspective an extrinsic is. When it comes to paying fees, users will pay a transaction fee that is based on the weight of the call that is being made, in addition to factors such as network congestion. One unit of weight is defined as one picosecond of execution time.
 
-The following sections will break down how to calculate XCM fees for Polkadot, Kusama, and Moonbeam-based networks. It's important to note that Kusama uses benchmarking and database read and write weight costs to determine the total weight costs for XCM instructions. Whereas Polkadot and Moonbeam-based networks use a fixed weight cost in their calculations. 
+The following sections will break down how to calculate XCM fees for Polkadot, Kusama, and Moonbeam-based networks. It's important to note that Kusama in particular uses benchmarked data to determine the total weight costs for XCM instructions.
 
 There are two databases available in Polkadot and Kusama, RocksDB (which is the default) and ParityDB, both of which have their own associated weight costs for each network. 
 
@@ -63,7 +72,7 @@ There are two databases available in Polkadot and Kusama, RocksDB (which is the 
 
 As previously mentioned, Polkadot currently uses a [fixed amount of weight](https://github.com/paritytech/polkadot/blob/e76cd144f9dad8c1304fd1476f92495bbb9ad22e/runtime/polkadot/src/xcm_config.rs#L95){target=_blank} for all XCM instructions, which is `1,000,000,000` weight units.
 
-Although Polkadot doesn't currently use database weight units to calculate costs, the weight units for database operations are shared here for reference.
+Although Polkadot doesn't currently use database weight units to calculate costs, the weight units for database operations, which have been benchmarked, are shared here for reference.
 
 |     Database      |    Read    |   Write    |
 |:-----------------:|:----------:|:----------:|
@@ -72,27 +81,47 @@ Although Polkadot doesn't currently use database weight units to calculate costs
 
 With the instruction weight cost established, you can calculate the cost of the instruction in DOT. 
 
-In Polkadot, the [`ExtrinsicBaseWeight`](https://github.com/paritytech/polkadot/blob/master/runtime/polkadot/constants/src/weights/extrinsic_weights.rs#L56){target=_blank} is set to `85,212,000` which is mapped to 1/10th of a cent. Where 1 cent is `10^10 / 10,000`. Therefore, the formula for calculating the final fee in DOT looks like this:
+In Polkadot, the [`ExtrinsicBaseWeight`](https://github.com/paritytech/polkadot/blob/master/runtime/polkadot/constants/src/weights/extrinsic_weights.rs#L56){target=_blank} is set to `85,212,000` which is mapped to 1/10th of a cent. Where 1 cent is `10^10 / 10,000`. Therefore, a constant exists in the formula for calculating the final fee in DOT:
 
 ```
-Total-Planck-DOT = TotalWeight * PlanckDOT * (1 / ExtrinsicBaseWeight)
-DOT = Total-Planck-DOT / 10^10
+Planck-DOT-Weight =  PlanckDOT * (1 / ExtrinsicBaseWeight)
+```
+
+Where the constant is calculated as follows:
+
+```
+Planck-DOT-Weight = (10^10 / 1000) * (1 / 85212000)
+```
+
+As a result, `Planck-DOT-Weight` is equal to `0.117354363 Planck-DOT`. Now, you can begin to calculate the final fee in DOT, using `Planck-DOT-Weight` as the constant and `TotalWeight` as the variable:
+
+```
+Total-Planck-DOT = TotalWeight * Planck-DOT-Weight
+DOT = Total-Planck-DOT / DOTConversion
 ```
 
 Therefore, the actual calculation for one XCM instruction is:
 
 ```
-Total-Planck-DOT = 1000000000 * (10^10 / 1000) * (1 / 85212000)
+Total-Planck-DOT = 1000000000 * 0.117354363 
 DOT = 117354360 / 10^10
 ```
 
 The total cost is `0.0117354363 DOT`.
 
+As an example, you can calculate the total cost of DOT for sending an XCM message that transfers xcDOT to DOT on Polkadot using the following weights and instruction costs:
+
+|  Instruction  |      Weight       |         Cost         |
+|:-------------:|:-----------------:|:--------------------:|
+| WithdrawAsset |   1,000,000,000   |   0.0117354363 DOT   |
+|  ClearOrigin  |   1,000,000,000   |   0.0117354363 DOT   |
+| BuyExecution  |   1,000,000,000   |   0.0117354363 DOT   |
+| DepositAsset  |   1,000,000,000   |   0.0117354363 DOT   |
+|   **TOTAL**   | **4,000,000,000** | **0.0469417452 DOT** |
+
 ### Kusama {: #kusama }
 
-Kusama doesn't used fixed weights, but bases the weights off of measured results from benchmarking data. The weights on Kusama take into consideration database reads and writes in addition to the weight required for a given instruction. 
-
-The breakdown of weight costs for database read and write operations are as follows:
+The total weight costs on Kusama take into consideration database reads and writes in addition to the weight required for a given instruction. Database read and write operations have not been benchmarked, while instruction weights have been. The breakdown of weight costs for the database operations are as follows:
 
 |     Database      |    Read    |    Write    |
 |:-----------------:|:----------:|:-----------:|
@@ -113,21 +142,43 @@ On Kusama, the base weights are broken up into two categories: fungible and gene
 
 With the instruction weight cost established, you can calculate the cost of the instruction in KSM. 
 
-In Kusama, the [`ExtrinsicBaseWeight`](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/constants/src/weights/extrinsic_weights.rs#L56){target=_blank} is set to `86,309,000` which is mapped to 1/10th of a cent. Where 1 cent is `10^12 / 30,000`. Therefore, the formula for calculating the final fee in KSM looks like this:
+In Kusama, the [`ExtrinsicBaseWeight`](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/constants/src/weights/extrinsic_weights.rs#L56){target=_blank} is set to `86,309,000` which is mapped to 1/10th of a cent. Where 1 cent is `10^12 / 30,000`. Therefore, a constant exists in the formula for calculating the final fee in DOT:
 
 ```
-Total-Planck-KSM = TotalWeight * PlanckKSM * (1 / ExtrinsicBaseWeight)
-KSM = Total-Planck-KSM / 10^12
+Planck-KSM-Weight =  PlanckKSM * (1 / ExtrinsicBaseWeight)
+```
+
+Where `Planck-KSM-Weight` is calculated as follows:
+
+```
+Planck-KSM-Weight = (10^12 / 30000 * 10) * (1 / 86309000)
+```
+
+As a result, `Planck-KSM-Weight` is equal to `0.03862092404422868221545068687313 Planck-KSM`. Now, you can begin to calculate the final fee in KSM, using `Planck-KSM-Weight` as the constant and `TotalWeight` as the variable:
+
+```
+Total-Planck-KSM = TotalWeight * Planck-KSM-Weight
+KSM = Total-Planck-KSM / KSMConversion
 ```
 
 Therefore, the actual calculation for the `WithdrawAsset` instruction is:
 
 ```
-Total-Planck-KSM = 145,385,000 * (10^12 / 30000 * 10) * (1 / 86309000)
+Total-Planck-KSM = 145,385,000 * 0.03862092404422868221545068687313
 KSM = 5614903.04216 / 10^12
 ```
 
 The total cost is `0.00000561490304213694 KSM`.
+
+As an example, you can calculate the total cost of DOT for sending an XCM message that transfers xcKSM to KSM on Kusama using the following weights and instruction costs:
+
+|  Instruction  |     Weight      |            Cost            |
+|:-------------:|:---------------:|:--------------------------:|
+| WithdrawAsset |   145,385,000   | 0.00000561490304213694 KSM |
+|  ClearOrigin  |    3,111,000    |   0.000000120149695 KSM    |
+| BuyExecution  |    3,109,000    |   0.000000120072453 KSM    |
+| DepositAsset  |   146,763,000   |   0.000005668122676 KSM    |
+|   **TOTAL**   | **298,368,000** | **0.000011523247866 KSM**  |
 
 ### Moonbeam-based Networks {: #moonbeam-based-networks }
 
@@ -176,10 +227,12 @@ Therefore, the actual calculation is:
 
 ```
 Wei = 5000000 * 200000000
-GLMR = 5000000000000 / (10^18)
+GLMR = 1000000000000000 / (10^18)
 ```
 
 The total cost is `0.001 GLMR` for an XCM instruction on Moonbase Alpha.
+
+## Fee Calculation for External Assets {: #fee-calc-external-assets }
 
 To determine the amount Alith was charged in xcDOT, Moonbeam uses a concept called `UnitsPerSecond`, which refers to the units of tokens that the network charges per second of XCM execution time. This concept is used by parachains to determine how much to charge in the target parachain. Nevertheless, fees can be charged in another token, for example, DOT.
 
@@ -187,7 +240,7 @@ To find out the `UnitsPerSecond` for a given asset, you can query `assetManager.
 
 If you're unsure of the multilocation, you can retrieve it using the `assetManager.assetIdType` query.
 
-For example, you can navigate to Polkadot.js Apps and under the **Developer** dropdown, choose **Chain State**. From there you can take the following steps:
+For example, you can navigate to Polkadot.js Apps page for Moonbeam and under the **Developer** dropdown, choose **Chain State**. From there you can take the following steps:
 
 1. For the **selected state query** dropdown, choose **assetManager**
 2. Select the **assetIdType** extrinsic
@@ -200,7 +253,7 @@ You can take the result of the query and then use it to query the **assetTypeUni
 
 1. Make sure **assetManager** is selected
 2. Select the **assetTypeUnitsPerSecond** extrinsic
-3. For **MoonbaseRuntimeXcmConfigAssetType**, choose **Xcm**
+3. For **MoonbeamRuntimeXcmConfigAssetType**, choose **Xcm**
 4. Enter `1` for **parents**
 5. Select `Here` for **interior**
 6. Click the **+** button to submit the query
@@ -220,21 +273,21 @@ ExecutionTime = Weight / Picosecond
 The calculation for Moonbeam, for example, is as follows:
 
 ```
-ExecutionTime = 200000000 / 10^12
+ExecutionTime = 100000000 / 10^12
 ```
 
-Which means that one XCM instruction costs `0.0002` seconds of block execution time.
+Which means that one XCM instruction costs `0.0001` seconds of block execution time.
 
 The block exuection formula can then be used to determine how much the Alice's transfer of xcDOT to Alith costs. The formula for finding the total cost is as follows:
 
 ```
-Cost = (UnitsPerSecond / Picosecond) * ExecutionTime * NumberOfInstructions
+Cost = (UnitsPerSecond / xcDOTConversion) * ExecutionTime * NumberOfInstructions
 ```
 
 Then the calculation for the transfer is:
 
 ```
-Cost = (11285231116 / 10^12) * 0.0002 * 4
+Cost = (11285231116 / 10^12) * 0.0001 * 4
 ```
 
-The total cost to transfer Alice's DOT to her Alith account for xcDOT is `0.00000902818 xcDOT`.
+The total cost to transfer Alice's DOT to her Alith account for xcDOT is `0.00000451409 xcDOT`.
