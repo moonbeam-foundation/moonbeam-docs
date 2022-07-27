@@ -123,20 +123,20 @@ As an example, you can calculate the total cost of DOT for sending an XCM messag
 
 The total weight costs on Kusama take into consideration database reads and writes in addition to the weight required for a given instruction. Database read and write operations have not been benchmarked, while instruction weights have been. The breakdown of weight costs for the database operations are as follows:
 
-|     Database      |                   Read                   |                   Write                   |
-|:-----------------:|:----------------------------------------:|:-----------------------------------------:|
-| RocksDB (default) | {{ networks.kusama.rocks_db.read_cost}}  | {{ networks.kusama.rocks_db.write_cost}}  |
-|     ParityDB      | {{ networks.kusama.parity_db.read_cost}} | {{ networks.kusama.parity_db.write_cost}} |
+|     Database      |                    Read                    |                    Write                    |
+|:-----------------:|:------------------------------------------:|:-------------------------------------------:|
+| RocksDB (default) | {{ networks.kusama.rocks_db.read_weight}}  | {{ networks.kusama.rocks_db.write_weight}}  |
+|     ParityDB      | {{ networks.kusama.parity_db.read_weight}} | {{ networks.kusama.parity_db.write_weight}} |
 
 Now that you are aware of the weight costs for database reads and writes on Kusama, you can calculate the weight cost for a given instruction using the base weight for an instruction. 
 
-The [`WithdrawAsset` instruction](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L49-L53){target=_blank} has a base weight of `{{ networks.kusama.xcm_instruction.withdraw_base_cost }}`, and includes one database read, and one database write. Therefore, the total weight cost of the `WithdrawAsset` instruction is calculated like so:
+The [`WithdrawAsset` instruction](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L49-L53){target=_blank} has a base weight of `{{ networks.kusama.xcm_instruction.withdraw_base_weight }}`, and includes one database read, and one database write. Therefore, the total weight cost of the `WithdrawAsset` instruction is calculated like so:
 
 ```
-{{ networks.kusama.xcm_instruction.withdraw_cost }} + {{ networks.kusama.rocks_db.read_cost}} + {{ networks.kusama.rocks_db.write_cost}} = {{ networks.kusama.xcm_instruction.withdraw_total_cost }}
+{{ networks.kusama.xcm_instruction.withdraw_base_weight }} + {{ networks.kusama.rocks_db.read_weight}} + {{ networks.kusama.rocks_db.write_weight}} = {{ networks.kusama.xcm_instruction.withdraw_total_weight }}
 ```
 
-The `BuyExecution` instruction has a base weight of `{{ networks.kusama.xcm_instruction.buy_exec_base_cost }}` and doesn't include any database reads or writes. Therefore, the total weight cost of the [`BuyExecution` instruction](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L59-L61){target=_blank} is `{{ networks.kusama.xcm_instruction.buy_exec_total_cost }}`.
+The `BuyExecution` instruction has a base weight of `{{ networks.kusama.xcm_instruction.buy_exec_base_weight }}` and doesn't include any database reads or writes. Therefore, the total weight cost of the [`BuyExecution` instruction](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L59-L61){target=_blank} is `{{ networks.kusama.xcm_instruction.buy_exec_total_weight }}`.
 
 On Kusama, the base weights are broken up into two categories: fungible and generic. Fungible weights are for XCM instructions that involve moving assets, and generic weights are for everything else. You can view the current weights for [fungible assets](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L45){target=_blank} and [generic assets](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L46){target=_blank} directly in the Kusama Runtime code.
 
@@ -168,53 +168,36 @@ Total-Planck-KSM = {{ networks.kusama.xcm_instruction.withdraw_total_weight }} *
 KSM = {{ networks.kusama.xcm_instruction.withdraw_planck_ksm_cost }} / 10^12
 ```
 
-The total cost is `{{ networks.kusama.xcm_instruction.withdraw_ksm_cost }} KSM`.
+The total cost is `0.00000561490304213694 KSM`.
 
 As an example, you can calculate the total cost of DOT for sending an XCM message that transfers xcKSM to KSM on Kusama using the following weights and instruction costs:
 
-|  Instruction  |                           Weight                            |                            Cost                             |
-|:-------------:|:-----------------------------------------------------------:|:-----------------------------------------------------------:|
-| WithdrawAsset | {{ networks.kusama.xcm_instruction.withdraw_total_weight }} | {{ networks.kusama.xcm_instruction.withdraw_ksm_cost }} KSM |
-|  ClearOrigin  |                          3,111,000                          |                    0.000000120149695 KSM                    |
-| BuyExecution  |  {{ networks.kusama.xcm_instruction.buy_exec_total_cost }}  |                    0.000000120072453 KSM                    |
-| DepositAsset  |                         146,763,000                         |                    0.000005668122676 KSM                    |
-|   **TOTAL**   |                       **298,368,000**                       |                  **0.000011523247866 KSM**                  |
+|  Instruction  |                           Weight                            |            Cost            |
+|:-------------:|:-----------------------------------------------------------:|:--------------------------:|
+| WithdrawAsset | {{ networks.kusama.xcm_instruction.withdraw_total_weight }} | 0.00000561490304213694 KSM |
+|  ClearOrigin  |                          3,111,000                          |   0.000000120149695 KSM    |
+| BuyExecution  | {{ networks.kusama.xcm_instruction.buy_exec_total_weight }} |   0.000000120072453 KSM    |
+| DepositAsset  |                         146,763,000                         |   0.000005668122676 KSM    |
+|   **TOTAL**   |                       **298,368,000**                       | **0.000011523247866 KSM**  |
 
 ### Moonbeam-based Networks {: #moonbeam-based-networks }
 
-Moonbeam uses a fixed amount of weight for each XCM instruction. The amount for each of the Moonbeam-based networks is as follows:
+Moonbeam uses a fixed amount of weight for each XCM instruction. Then the weight units are converted to balance units as part of the fee calculation. The amount of weight and Wei per weight for each of the Moonbeam-based networks is as follows:
 
 === "Moonbeam"
-    ```
-    [{{ networks.moonbeam.xcm.instructions.weight_units.display }} weight units](https://github.com/PureStake/moonbeam/blob/f19ba9de013a1c789425d3b71e8a92d54f2191af/runtime/moonbeam/src/xcm_config.rs#L201){target=_blank}
-    ```
+    |                            Weight                             |                         Wei per weight                          |
+    |:-------------------------------------------------------------:|:---------------------------------------------------------------:|
+    | [{{ networks.moonbeam.xcm.instructions.weight_units.display }}](https://github.com/PureStake/moonbeam/blob/f19ba9de013a1c789425d3b71e8a92d54f2191af/runtime/moonbeam/src/xcm_config.rs#L201){target=_blank} | [{{ networks.moonbeam.xcm.instructions.wei_per_weight.display }}](https://github.com/PureStake/moonbeam/blob/master/runtime/moonbeam/src/lib.rs#L128){target=_blank} |
 
 === "Moonriver"
-    ```
-    [{{ networks.moonriver.xcm.instructions.weight_units.display }} weight units](https://github.com/PureStake/moonbeam/blob/f19ba9de013a1c789425d3b71e8a92d54f2191af/runtime/moonriver/src/xcm_config.rs#L208){target=_blank}
-    ```
+    |                            Weight                             |                         Wei per weight                          |
+    |:-------------------------------------------------------------:|:---------------------------------------------------------------:|
+    | [{{ networks.moonriver.xcm.instructions.weight_units.display }}](https://github.com/PureStake/moonbeam/blob/f19ba9de013a1c789425d3b71e8a92d54f2191af/runtime/moonriver/src/xcm_config.rs#L208){target=_blank} | [{{ networks.moonriver.xcm.instructions.wei_per_weight.display }}](https://github.com/PureStake/moonbeam/blob/master/runtime/moonbeam/src/lib.rs#L128){target=_blank} |
 
 === "Moonbase Alpha"
-    ```
-    [{{ networks.moonbase.xcm.instructions.weight_units.display }} weight units](https://github.com/PureStake/moonbeam/blob/f19ba9de013a1c789425d3b71e8a92d54f2191af/runtime/moonbase/src/xcm_config.rs#L219){target=_blank}
-    ```
-
-Weight units are converted to balance units as part of the fee calculation. For XCM related weight, the cost is fixed for each Moonbeam-based network as follows:
-
-=== "Moonbeam"
-    ```
-    [{{ networks.moonbeam.xcm.instructions.wei_per_weight.display }} Wei per weight](https://github.com/PureStake/moonbeam/blob/master/runtime/moonbeam/src/lib.rs#L128){target=_blank}
-    ```
-
-=== "Moonriver"
-    ```
-    [{{ networks.moonriver.xcm.instructions.wei_per_weight.display }} Wei per weight](https://github.com/PureStake/moonbeam/blob/master/runtime/moonriver/src/lib.rs#L129){target=_blank}
-    ```
-
-=== "Moonbase Alpha"
-    ```
-    [{{ networks.moonbase.xcm.instructions.wei_per_weight.display }} Wei per weight](https://github.com/PureStake/moonbeam/blob/f19ba9de013a1c789425d3b71e8a92d54f2191af/runtime/moonbase/src/lib.rs#L135){target=_blank}
-    ```
+    |                            Weight                             |                         Wei per weight                          |
+    |:-------------------------------------------------------------:|:---------------------------------------------------------------:|
+    | [{{ networks.moonbase.xcm.instructions.weight_units.display }}](https://github.com/PureStake/moonbeam/blob/f19ba9de013a1c789425d3b71e8a92d54f2191af/runtime/moonbase/src/xcm_config.rs#L219){target=_blank} | [{{ networks.moonbase.xcm.instructions.wei_per_weight.display }}](https://github.com/PureStake/moonbeam/blob/f19ba9de013a1c789425d3b71e8a92d54f2191af/runtime/moonbase/src/lib.rs#L135){target=_blank} |
 
 This means that on Moonbeam, for example, the formula to calculate the cost of one XCM instruction is as follows:
 
@@ -230,11 +213,11 @@ Wei = {{ networks.moonbeam.xcm.instructions.weight_units.numbers_only }} * {{ ne
 GLMR = {{ networks.moonbeam.xcm.instructions.wei_cost }} / (10^18)
 ```
 
-The total cost is `0.001 GLMR` for an XCM instruction on Moonbase Alpha.
+The total cost is `0.001 GLMR` for an XCM instruction on Moonbeam.
 
 ## Fee Calculation for External Assets {: #fee-calc-external-assets }
 
-To determine the amount Alith was charged in xcDOT, Moonbeam uses a concept called `UnitsPerSecond`, which refers to the units of tokens that the network charges per second of XCM execution time. This concept is used by parachains to determine how much to charge in the target parachain. Nevertheless, fees can be charged in another token, for example, DOT.
+Considering the scenario with Alice sending DOT to her Alith account on Moonbeam, the fees are taken from the amount of xcDOT Alith receives. To determine how much to charge, Moonbeam uses a concept called `UnitsPerSecond`, which refers to the units of tokens that the network charges per second of XCM execution time. This concept is used by parachains to determine how much to charge in the target parachain. Nevertheless, fees can be charged in another token, for example, DOT.
 
 To find out the `UnitsPerSecond` for a given asset, you can query `assetManager.assetTypeUnitsPerSecond` and pass in the multilocation of the asset in question.
 
@@ -262,32 +245,32 @@ The `UnitsPerSecond` for xcDOT is `{{ networks.moonbeam.xcm.units_per_second.xcd
 
 ![Get the xcUNIT units per second value](/images/builders/xcm/fees/fees-2.png)
 
-To calculate the total cost, you'll also need the number of decimals the asset in question uses, which for xcDOT is 12 decimals. You can determine the number of decimals for any asset by [querying the asset metadata](/builders/xcm/xc20/xc20/#x-chain-assets-metadata){target=_blank}.
-
-Remember that one unit of weight is defined as one picosecond of execution time. Therefore, to get the cost of execution time in seconds for a single instruction, you can use the following formula:
+Remember that one unit of weight is defined as one picosecond of execution time. Therefore, the formula to determine execution time is as follows:
 
 ```
-ExecutionTime = Weight / Picosecond
+ExecutionTime = Weight / Picosecond * NumberOfInstructions
 ```
 
-The calculation for Moonbeam, for example, is as follows:
+To determine the execution time for Alice's transfer of DOT to Moonbeam, which contains four XCM instructions, you can use the following calculation:
 
 ```
-ExecutionTime = {{ networks.polkadot.xcm_instruction.weight.numbers_only }} / 10^12
+ExecutionTime = ({{ networks.moonbeam.xcm.instructions.weight_units.numbers_only }} / 10^12) * 4
 ```
 
-Which means that one XCM instruction costs `0.0001` seconds of block execution time.
+Which means that four XCM instructions cost `0.0008` seconds of block execution time.
 
-The block exuection formula can then be used to determine how much the Alice's transfer of xcDOT to Alith costs. The formula for finding the total cost is as follows:
+To calculate the total cost in xcDOT, you'll also need the number of decimals the asset in question uses, which for xcDOT is 10 decimals. You can determine the number of decimals for any asset by [querying the asset metadata](/builders/xcm/xc20/xc20/#x-chain-assets-metadata){target=_blank}.
+
+The block execution formula can then be used to determine how much Alice's transfer of DOT to her Alith account on Moonbeam costs. The formula for finding the total cost is as follows:
 
 ```
-Cost = (UnitsPerSecond / xcDOTConversion) * ExecutionTime * NumberOfInstructions
+Cost = (UnitsPerSecond / DecimalConversion) * ExecutionTime
 ```
 
 Then the calculation for the transfer is:
 
 ```
-Cost = ({{ networks.moonbeam.xcm.units_per_second.xcdot.numbers_only }} / 10^12) * 0.0001 * 4
+Cost = ({{ networks.moonbeam.xcm.units_per_second.xcdot.numbers_only }} / 10^10) * 0.0008
 ```
 
-The total cost to transfer Alice's DOT to her Alith account for xcDOT is `0.00000451409 xcDOT`.
+The total cost to transfer Alice's DOT to her Alith account for xcDOT is `0.00090281848 xcDOT`.
