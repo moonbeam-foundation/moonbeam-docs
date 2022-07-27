@@ -123,10 +123,10 @@ As an example, you can calculate the total cost of DOT for sending an XCM messag
 
 The total weight costs on Kusama take into consideration database reads and writes in addition to the weight required for a given instruction. Database read and write operations have not been benchmarked, while instruction weights have been. The breakdown of weight costs for the database operations are as follows:
 
-|     Database      |                    Read                    |                    Write                    |
-|:-----------------:|:------------------------------------------:|:-------------------------------------------:|
-| RocksDB (default) | {{ networks.kusama.rocks_db.read_weight}}  | {{ networks.kusama.rocks_db.write_weight}}  |
-|     ParityDB      | {{ networks.kusama.parity_db.read_weight}} | {{ networks.kusama.parity_db.write_weight}} |
+|     Database      |                   Read                    |                   Write                    |
+|:-----------------:|:-----------------------------------------:|:------------------------------------------:|
+| RocksDB (default) | {{ networks.kusama.rocks_db.read_weight}} | {{ networks.kusama.rocks_db.write_weight}} |
+|     ParityDB      |                 8,000,000                 |                 50,000,000                 |
 
 Now that you are aware of the weight costs for database reads and writes on Kusama, you can calculate the weight cost for a given instruction using the base weight for an instruction. 
 
@@ -185,18 +185,18 @@ As an example, you can calculate the total cost of DOT for sending an XCM messag
 Moonbeam uses a fixed amount of weight for each XCM instruction. Then the weight units are converted to balance units as part of the fee calculation. The amount of weight and Wei per weight for each of the Moonbeam-based networks is as follows:
 
 === "Moonbeam"
-    |                            Weight                             |                         Wei per weight                          |
-    |:-------------------------------------------------------------:|:---------------------------------------------------------------:|
+    |                                                                                                   Weight                                                                                                    |                                                                            Wei per weight                                                                            |
+    |:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
     | [{{ networks.moonbeam.xcm.instructions.weight_units.display }}](https://github.com/PureStake/moonbeam/blob/f19ba9de013a1c789425d3b71e8a92d54f2191af/runtime/moonbeam/src/xcm_config.rs#L201){target=_blank} | [{{ networks.moonbeam.xcm.instructions.wei_per_weight.display }}](https://github.com/PureStake/moonbeam/blob/master/runtime/moonbeam/src/lib.rs#L128){target=_blank} |
 
 === "Moonriver"
-    |                            Weight                             |                         Wei per weight                          |
-    |:-------------------------------------------------------------:|:---------------------------------------------------------------:|
+    |                                                                                                    Weight                                                                                                     |                                                                            Wei per weight                                                                             |
+    |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
     | [{{ networks.moonriver.xcm.instructions.weight_units.display }}](https://github.com/PureStake/moonbeam/blob/f19ba9de013a1c789425d3b71e8a92d54f2191af/runtime/moonriver/src/xcm_config.rs#L208){target=_blank} | [{{ networks.moonriver.xcm.instructions.wei_per_weight.display }}](https://github.com/PureStake/moonbeam/blob/master/runtime/moonbeam/src/lib.rs#L128){target=_blank} |
 
 === "Moonbase Alpha"
-    |                            Weight                             |                         Wei per weight                          |
-    |:-------------------------------------------------------------:|:---------------------------------------------------------------:|
+    |                                                                                                   Weight                                                                                                    |                                                                                             Wei per weight                                                                                             |
+    |:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
     | [{{ networks.moonbase.xcm.instructions.weight_units.display }}](https://github.com/PureStake/moonbeam/blob/f19ba9de013a1c789425d3b71e8a92d54f2191af/runtime/moonbase/src/xcm_config.rs#L219){target=_blank} | [{{ networks.moonbase.xcm.instructions.wei_per_weight.display }}](https://github.com/PureStake/moonbeam/blob/f19ba9de013a1c789425d3b71e8a92d54f2191af/runtime/moonbase/src/lib.rs#L135){target=_blank} |
 
 This means that on Moonbeam, for example, the formula to calculate the cost of one XCM instruction is as follows:

@@ -554,9 +554,6 @@ networks:
     rocks_db:
       read_weight: 25,000,000 
       write_weight: 100,000,000
-    parity_db:
-      read_weight: 8,000,000
-      write_weight: 50,000,000
     xcm_instruction:
       buy_exec_base_weight: 3,109,000
       buy_exec_total_weight: 3,109,000
