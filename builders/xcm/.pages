@@ -3,5 +3,6 @@ nav:
   - index.md
   - 'Overview': 'overview.md'
   - xc20
+  - 'XC Channel Registration': 'xc-integration.md'
   - 'Remote Execution': 'xcm-transactor.md'
   - 'XCM Fees': 'fees.md'

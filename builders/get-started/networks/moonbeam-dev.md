@@ -202,7 +202,7 @@ Options accept an argument to the right side of the option. For example:
 --8<-- 'code/setting-up-node/runnodewithsealinginterval.md'
 ```
 
-- **`-l <log pattern>` or `--log <log pattern>`** - sets a custom logging filter. The syntax for the log pattern is `<target>=<level>`. For example, to print all of the RPC logs, the command would look like this: `-l rpc=trace`
+- **`-l <log pattern>` or `--log <log pattern>`** - sets a custom logging filter. The syntax for the log pattern is `<target>=<level>`. For example, to print all of the JSON RPC logs, the command would look like this: `-l json=trace`
 - **`--sealing <interval>`** - when blocks should be sealed in the dev service. Accepted arguments for interval: `instant`, `manual`, or a number representing the timer interval in milliseconds (for example, `6000` will have the node produce blocks every 6 seconds). The default is `instant`
 - **`--rpc-port <port>`** - sets the HTTP RPC server TCP port. Accepts a port as the argument
 - **`--ws-port <port>`**: sets the WebSockets RPC server TCP port. Accepts a port as the argument
