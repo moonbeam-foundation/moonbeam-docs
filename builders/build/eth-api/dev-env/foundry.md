@@ -103,26 +103,26 @@ After compilation, two folders will be created: `out` and `cache`. The abi and b
 
 ## Deploying the Contract {: #deploying-the-contract } 
 
-Deploying the contract with Forge takes a single command, but you will need to include an rpc endpoint and a funded private key. You can deploy the `MyToken.sol` contract using the command for the correct network:
+Deploying the contract with Forge takes a single command, but you will need to include an rpc endpoint, a funded private key, and constructor arguments. `MyToken.sol` asks for an initial supply of tokens in its constructor, so each of the following commands include 100 as a constructor argument. You can deploy the `MyToken.sol` contract using the command for the correct network:
 
 === "Moonbeam"
     ```
-    forge create --rpc-url {{ networks.moonbeam.rpc_url }} --private-key YOUR_PRIVATE_KEY src/MyToken.sol:MyToken
+    forge create --rpc-url {{ networks.moonbeam.rpc_url }} --private-key YOUR_PRIVATE_KEY src/MyToken.sol:MyToken --constructor-args 100
     ```
 
 === "Moonriver"
     ```
-    forge create --rpc-url {{ networks.moonriver.rpc_url }} --private-key YOUR_PRIVATE_KEY src/MyToken.sol:MyToken
+    forge create --rpc-url {{ networks.moonriver.rpc_url }} --private-key YOUR_PRIVATE_KEY src/MyToken.sol:MyToken --constructor-args 100
     ```
 
 === "Moonbase Alpha"
     ```
-    forge create --rpc-url {{ networks.moonbase.rpc_url }} --private-key YOUR_PRIVATE_KEY src/MyToken.sol:MyToken
+    forge create --rpc-url {{ networks.moonbase.rpc_url }} --private-key YOUR_PRIVATE_KEY src/MyToken.sol:MyToken --constructor-args 100
     ```
 
 === "Moonbeam Dev Node"
     ```      
-    forge create --rpc-url {{ networks.development.rpc_url }} --private-key YOUR_PRIVATE_KEY src/MyToken.sol:MyToken
+    forge create --rpc-url {{ networks.development.rpc_url }} --private-key YOUR_PRIVATE_KEY src/MyToken.sol:MyToken --constructor-args 100
     ```
 
 After a few seconds, the contract is deployed, and you should see the address in the terminal.
@@ -133,39 +133,60 @@ Congratulations, your contract is live! Save the address, as you will use it to 
 
 ## Interacting with the Contract {: #interacting-with-the-contract } 
 
-To interact with your newly deployed contract on Moonbase Alpha, you can launch the Hardhat `console` by running:
+Foundry includes cast, a CLI for performing Ethereum RPC calls. 
 
-```
-npx hardhat console --network moonbase
-```
+Try to retreive your token's name using cast, where YOUR_CONTRACT_ADDRESS is the address of the contract that you deployed in the previous section:
 
-Next you can take the following steps, entering in one line at a time:
-
-1. Create a local instance of the `Box.sol` contract
-    ```js
-    const Box = await ethers.getContractFactory('Box');
+=== "Moonbeam"
     ```
-2. Connect the local instance to the deployed contract, using the address of the contract
-    ```js
-    const box = await Box.attach('0x425668350bD782D80D457d5F9bc7782A24B8c2ef');
-    ```
-3. Interact with the attached contract. For this example, you can call the `store` method and store a simple value
-    ```js
-    await box.store(5)
+    cast call YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.moonbeam.rpc_url }}
     ```
 
-The transaction will be signed by your Moonbase account and broadcast to the network. The output should look similar to:
+=== "Moonriver"
+    ```
+    cast call YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.moonbeam.rpc_url }}
+    ```
 
-![Transaction output](/images/builders/build/eth-api/dev-env/hardhat/hardhat-4.png)
+=== "Moonbase Alpha"
+    ```
+    cast call YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.moonbeam.rpc_url }}
+    ```
 
-Notice your address labeled `from`, the address of the contract, and the `data` that is being passed. Now, you can retrieve the value by running:
+=== "Moonbeam Dev Node"
+    ```      
+    cast call YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.moonbeam.rpc_url }}
+    ```
 
-```js
-(await box.retrieve()).toNumber()
-```
+"MyToken" should have been printed in the console:
 
-You should see `5` or the value you have stored initially.
+(INSERT IMAGE)
 
-Congratulations, you have successfully deployed and interacted with a contract using Hardhat!
+You can also mutate data with cast as well. Try burning tokens by sending them to the zero address.
+
+=== "Moonbeam"
+    ```
+    cast call YOUR_CONTRACT_ADDRESS "transfer(address,uint256)" --rpc-url {{ networks.moonbeam.rpc_url }}
+    ```
+
+=== "Moonriver"
+    ```
+    cast call YOUR_CONTRACT_ADDRESS "transfer(address,uint256)" --rpc-url {{ networks.moonbeam.rpc_url }}
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    cast call YOUR_CONTRACT_ADDRESS "transfer(address,uint256)" --rpc-url {{ networks.moonbeam.rpc_url }}
+    ```
+
+=== "Moonbeam Dev Node"
+    ```      
+    cast call YOUR_CONTRACT_ADDRESS "transfer(address,uint256)" --rpc-url {{ networks.moonbeam.rpc_url }}
+    ```
+
+The transaction will be signed by your Moonbase account and be broadcasted to the network. The output should look similar to:
+
+(INSERT IMAGE HERE)
+
+Congratulations, you have successfully deployed and interacted with a contract using Foundry!
 
 --8<-- 'text/disclaimers/third-party-content.md'
