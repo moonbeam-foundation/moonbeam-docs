@@ -223,7 +223,7 @@ To find out the `UnitsPerSecond` for a given asset, you can query `assetManager.
 
 If you're unsure of the multilocation, you can retrieve it using the `assetManager.assetIdType` query.
 
-For example, you can navigate to Polkadot.js Apps page for Moonbeam and under the **Developer** dropdown, choose **Chain State**. From there you can take the following steps:
+For example, you can navigate to the [Polkadot.js Apps page for Moonbeam](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/chainstate){target=_blank} and under the **Developer** dropdown, choose **Chain State**. From there you can take the following steps:
 
 1. For the **selected state query** dropdown, choose **assetManager**
 2. Select the **assetIdType** extrinsic
