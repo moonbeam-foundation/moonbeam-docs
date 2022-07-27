@@ -248,7 +248,7 @@ The `UnitsPerSecond` for xcDOT is `{{ networks.moonbeam.xcm.units_per_second.xcd
 Remember that one unit of weight is defined as one picosecond of execution time. Therefore, the formula to determine execution time is as follows:
 
 ```
-ExecutionTime = Weight / Picosecond * NumberOfInstructions
+ExecutionTime = (Weight / Picosecond) * NumberOfInstructions
 ```
 
 To determine the execution time for Alice's transfer of DOT to Moonbeam, which contains four XCM instructions, you can use the following calculation:
