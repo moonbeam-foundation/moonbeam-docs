@@ -3,11 +3,15 @@ title: Subscribe to Ethereum-style Events on Moonbeam
 description: Use Ethereum-like publish-subscribe functionality to subscribe to specific events on Moonbeam's Ethereum-compatible chain.
 ---
 
-# Subscribe to Events on Moonbase Alpha
+# Subscribe to Events
 
 ## Introduction {: #introduction } 
 
-The ability to subscribe to Ethereum-style events was added with the [release of Moonbase Alpha v2](https://moonbeam.network/announcements/testnet-upgrade-moonbase-alpha-v2/){target=_blank}. In this guide, you will outline the subscription types available and current limitations.
+Moonbeam supports events subscription for Ethereum-style events. This allows you to wait for events and handle them accordingly instead of polling for them.
+
+It works by subscribing to particular events and for each subscription an id is returned. For each event that matches the subscription a notification with relevant data is sent together with the subscription id. 
+
+In this guide, you will learn how to subscribe to event logs, incoming pending transactions, and incoming block headers on Moonbase Alpha. This guide can also be adapted for Moonbeam or Moonriver.
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
@@ -34,7 +38,7 @@ npm ls web3
 
 As of writing this guide, the version used was 1.3.0. 
 
-## Subscribing to Event Logs on Moonbase Alpha {: #subscribing-to-event-logs-in-moonbase-alpha } 
+## Subscribe to Event Logs {: #subscribing-to-event-logs-in-moonbase-alpha } 
 
 Any contract that follows the ERC-20 token standard emits an event related to a transfer of tokens, that is, `event Transfer(address indexed from, address indexed to, uint256 value)`. For this example, you will subscribe to the logs of such events. Using the Web3.js library, you need the following piece of code:
 
@@ -87,7 +91,7 @@ Unindexed data is returned in the `data` field of the logs, but this is encoded 
 
 If the event returns multiple unindexed values, they will be appended one after the other in the same order the event emits them. Therefore, each value is then obtained by deconstructing data into separate 32 bytes (or 64 hex character long) pieces.
 
-### Using Wildcards and Conditional Formatting {: #using-wildcards-and-conditional-formatting } 
+### Use Wildcards and Conditional Formatting {: #using-wildcards-and-conditional-formatting } 
 
 In the v2 release that introduced the subscribing to logs feature, there were some limitations regarding using wildcards and conditional formatting for the topics. Nevertheless, with the release of [Moonbase Alpha v3](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/){target=_blank}, this is now possible.
 
@@ -148,10 +152,9 @@ Note that only one block header is shown in the image. These messages are displa
 
 ## Check if a Node is Synchronized with the Network {: #check-if-a-node-is-synchronized-with-the-network } 
 
-With pub/sub it is also possible to check whether a particular node you are subscribed to is currently synchronized with the network. For that, you can leverage the `web3.eth.subscribe(‘syncing' [, callback])` method, implementing the same callback function to check for the response. This subscription will return an object when the node is synced with the network.
+With pub/sub it is also possible to check whether a particular node you are subscribed to is currently synchronizing with the network. For that, we can leverage the [`web3.eth.subscribe(‘syncing' [, callback])`](https://web3js.readthedocs.io/en/v1.2.11/web3-eth-subscribe.html#subscribe-syncing){target=_blank} method, implementing the same callback function to check for the response. This subscription will either return a boolean when `syncing` is false, or an object describing the syncing progress when `syncing` is true, as seen below. 
 
 ![Subscribe to syncing response](/images/builders/build/eth-api/pubsub/pubsub-7.png)
 
-## Current Limitations {: #current-limitations } 
-
-The pub/sub implementation in [Frontier](https://github.com/paritytech/frontier){target=_blank} is still in active development. This first version allows DApp developers (or users in general) to subscribe to specific event types, but there are still some limitations. You may have noticed from previous examples that some of the fields are not showing proper information with the current version released, and that is because certain properties are yet to be supported by Frontier.
+!!! note
+    The pub/sub implementation in [Frontier](https://github.com/paritytech/frontier){target=_blank} is still in active development. This current version allows users to subscribe to specific event types, but there may still be some limitations.

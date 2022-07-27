@@ -72,6 +72,14 @@ When creating a proxy account, you must choose a type of proxy which will define
 - **`Governance`** - allows the proxy account to make transactions related to governance, such as voting or proposing democracy proposals
 - **`NonTransfer`** - this type of proxy account is allowed to submit any type of transaction with the exception of balance transfers
 - **`Balances`** - allows the proxy account to only make transactions related to sending funds
+- **`IdentityJudgement`** - allows the proxy account to request judgement on an [account's identity](/tokens/manage/identity){target=_blank} from a registrar. The following judgements can be issued:
+    - **unknown** - (default) no judgement has been made yet
+    - **fee paid** - to indicate a user has requested judgement and it is in progress
+    - **reasonable** - the information appears reasonable, but no in-depth checks (i.e. formal KYC process) were performed
+    - **known good** - the information has been certified as correct
+    - **out of date** - the information used to be good, but is now out of date
+    - **low quality** - the information is low quality or imprecise, but can be fixed with an update
+    - **erroneous** - the information is erroneous and may indicate malicious intent
 - **`Any`** - allows the proxy account to use any function supported by the proxy pallet
 
 For the purposes of this guide, you will be setting up a proxy account using the balances proxy type. Since this type enables the proxy to spend funds on behalf of the primary account, you should exercise caution and only provide access to accounts you trust. The proxy will have access to transfer all of the funds within the primary account, and if not trusted, the proxy could drain the primary account. Also make sure not to forget to remove the proxy as needed.

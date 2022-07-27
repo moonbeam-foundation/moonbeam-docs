@@ -1,7 +1,7 @@
 networks:
   development:
-    build_tag: v0.24.0
-    tracing_tag: purestake/moonbeam-tracing:sha-8369da6d-1605-fd19
+    build_tag: v0.25.0
+    tracing_tag: purestake/moonbeam-tracing:v0.25.0-1701-e8cc
     rpc_url: http://127.0.0.1:9933
     wss_url: ws://127.0.0.1:9944
     chain_id: 1281
@@ -15,9 +15,9 @@ networks:
     hex_chain_id: '0x507'
     chain_spec: alphanet
     block_explorer: https://moonbase.moonscan.io/
-    parachain_release_tag: v0.24.0 # must be in this exact format for links to work
-    parachain_sha256sum: 20466828dec7a3035e209402c2d85bf3190b08f5477c6d51fa02f8cf7e985412
-    tracing_tag: purestake/moonbeam-tracing:sha-8369da6d-1605-fd19
+    parachain_release_tag: v0.25.0 # must be in this exact format for links to work
+    parachain_sha256sum: a468d7f8fd834dda504d38138db8021573b0f0afbed3207957e773a6bf79072b
+    tracing_tag: purestake/moonbeam-tracing:v0.25.0-1701-e8cc
     gas_block: 15M
     gas_tx: 12.995M
     node_directory: /var/lib/alphanet-data
@@ -81,6 +81,12 @@ networks:
           link_usd: '0x446b93236B4d34642732B8dcbeB3cb4f4FA03C70'
           sushi_usd: '0x4a6Cf10C0f5c4D4e7cf7385bFfecDAec0778357C'
           uni_usd: '0x326997c21451DaB916F9f01684991B6169dAf3E5'
+    xcm:
+      instructions: 
+        weight_units:
+          display: 100,000,000
+        wei_per_weight:
+          display: 50,000
     democracy:
       launch_period:
         days: 1
@@ -201,9 +207,9 @@ networks:
     chain_id: 1285
     hex_chain_id: '0x505'
     node_directory: /var/lib/moonriver-data
-    parachain_release_tag: v0.24.0
-    parachain_sha256sum: 20466828dec7a3035e209402c2d85bf3190b08f5477c6d51fa02f8cf7e985412
-    tracing_tag: purestake/moonbeam-tracing:sha-8369da6d-1605-fd19
+    parachain_release_tag: v0.25.0
+    parachain_sha256sum: a468d7f8fd834dda504d38138db8021573b0f0afbed3207957e773a6bf79072b
+    tracing_tag: purestake/moonbeam-tracing:v0.25.0-1701-e8cc
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
     binary_name: moonbeam
@@ -215,6 +221,12 @@ networks:
       cores: 8
       ram: 16
       hd: 500
+    xcm:
+      instructions: 
+        weight_units:
+          display: 200,000,000
+        wei_per_weight: 
+          display: 50,000
     democracy:
       launch_period:
         days: 1
@@ -383,6 +395,24 @@ networks:
       cores: 8
       ram: 16
       hd: 500
+    xcm:
+      instructions: 
+        weight_units: 
+          display: 200,000,000
+          numbers_only: 200000000
+        wei_per_weight: 
+          display: 5,000,000
+          numbers_only: 5000000
+        wei_cost: 1000000000000000
+        glmr_cost: 0.001
+      units_per_second:
+        xcdot: 
+          display: 11,285,231,116
+          numbers_only: 11285231116
+      message:
+        transfer:
+          exec_time: 0.0008
+          xcdot_cost: 0.00090281848
     democracy:
       launch_period:
         days: 7
@@ -514,3 +544,55 @@ networks:
     rpc: 9933
     ws: 9944
     prometheus: 9615
+  polkadot:
+    rocks_db:
+      read_weight: 20,499,000 
+      write_weight: 83,471,000
+    parity_db:
+      read_weight: 11,826,000 
+      write_weight: 30,052,000
+    xcm_instruction:
+      weight: 
+        display: 1,000,000,000
+        numbers_only: 1000000000
+      planck_dot_weight: 0.117354363 
+      planck_dot_cost: 117354360
+      dot_cost: 0.0117354363
+    xcm_message:
+      transfer:
+        weight: 4,000,000,000
+        cost: 0.0469417452
+    extrinsic_base_weight:
+      display: 85,212,000
+      numbers_only: 85212000
+  kusama:
+    rocks_db:
+      read_weight: 25,000,000 
+      write_weight: 100,000,000
+    parity_db:
+      read_weight: 8,000,000 
+      write_weight: 50,000,000
+    xcm_message:
+      transfer:
+        weight: 298,368,000
+        cost: '0.000011523247866'
+    xcm_instruction:
+      buy_exec:
+        base_weight: 3,109,000
+        total_weight: 3,109,000
+        ksm_cost: '0.000000120072453'
+      withdraw:
+        base_weight: 20,385,000 
+        total_weight: 145,385,000
+        planck_ksm_cost: 5614903.04216
+        ksm_cost: '0.00000561490304213694'
+      clear_origin:
+        total_weight: 3,111,000
+        ksm_cost: '0.000000120149695'
+      deposit_asset:
+        total_weight: 146,763,000
+        ksm_cost: '0.000011523247866'
+      planck_ksm_weight: 0.03862092404422868221545068687313
+    extrinsic_base_weight:
+      display: 86,309,000
+      numbers_only: 86309000
