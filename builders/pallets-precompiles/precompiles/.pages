@@ -1,4 +1,4 @@
-title: Precompiled Contracts
+title: Solidity Precompiles
 nav:
   - index.md
   - 'Ethereum Native': 'eth-mainnet.md'

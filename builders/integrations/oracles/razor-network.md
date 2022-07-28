@@ -11,7 +11,7 @@ description: How to request data from a Razor Network Oracle in your Moonbeam Et
 
 Developers can now fetch prices from Razor Network’s oracle using a Bridge contract deployed on the Moonbase Alpha TestNet. This Bridge acts as middleware, and events emitted by it are fetched by the Razor Network's oracle infrastructure, sending prices to the Bridge contract.
 
-To access these price feeds, we need to interact with the Bridge contract address, which can be found in the following table:
+To access these price feeds, you need to interact with the Bridge contract address, which can be found in the following table:
 
 |    Network     |              Contract Address              |
 |:--------------:|:------------------------------------------:|
@@ -27,7 +27,7 @@ Each data-feed has a Job ID attached to it. For example:
 |   2    |          BTC           |
 |   3    |    Microsoft Stocks    |
 
-You can check Job IDs for each data-feed at the following [link](https://razorscan.io/#/custom). Price feeds are updated every 5 minutes. More information can be found in [Razor's documentation website][https://docs.razor.network/].
+You can check Job IDs for each data-feed on the [Razor Network Explorer](https://razorscan.io/#/custom){target=_blank}. Price feeds are updated every 5 minutes. More information can be found in [Razor's documentation website](https://docs.razor.network/){target=_blank}.
 
 ## Get Data From Bridge Contract {: #get-data-from-bridge-contract } 
 
@@ -44,23 +44,22 @@ interface Razor {
 }
 ```
 
-The first function, `getResult`, takes the Job ID associated with the data-feed and fetches the price. For example, if we pass in `1`, we will receive the price of the data-feed related to the Job ID.
+The first function, `getResult`, takes the Job ID associated with the data-feed and fetches the price. For example, if you pass in `1`, you will receive the price of the data-feed related to the Job ID.
 
 The second function, `getJob`, takes the Job ID associated with the data-feed and fetches the general information regarding the data-feed, such as the name of the data-feed, the price, and the URL being used to fetch the prices.
 
 ### Example Contract {: #example-contract } 
 
-We've deployed the bridge contract in the Moonbase Alpha TestNet (at address `{{ networks.moonbase.razor.bridge_address }}`) so you can quickly check the information fed from Razor Network's oracle. 
+There is a predeployed bridge contract in the Moonbase Alpha TestNet (at address `{{ networks.moonbase.razor.bridge_address }}`) so you can quickly check the information fed from Razor Network's oracle. 
 
 The only requirement is the Bridge interface, which defines `getResult` structure and makes the functions available to the contract for queries.
 
+You can use the following `Demo` contract. It provides various functions:
 
-We can use the following `Demo` script. It provides various functions:
-
- - fetchPrice: a _view_ function that queries a single Job ID. For example, to fetch the price of `ETH` in `USD`, we will need to send the Job ID `1`
- - fetchMultiPrices: a _view_ function that queries multiple Job IDs. For example, to fetch the price of `ETH` and `BTC` in `USD`, we will need to send the Job IDs `[1,2]`
- - savePrice: a _public_ function that queries a single Job ID. This sends a transaction and modifies the `price` variable stored in the contract.
- - saveMultiPrices: a _public_ function that queries multiple Job IDs. For example, to fetch the price of `ETH` and `BTC` in `USD`, we will need to send the Job IDs `[1,2]`. This sends a transaction and modifies the `pricesArr` array stored in the contract, which will hold the price of each pair in the same order as specified in the input
+ - **fetchPrice** - a _view_ function that queries a single Job ID. For example, to fetch the price of `ETH` in `USD`, you will need to send the Job ID `1`
+ - **fetchMultiPrices** - a _view_ function that queries multiple Job IDs. For example, to fetch the price of `ETH` and `BTC` in `USD`, you will need to send the Job IDs `[1,2]`
+ - **savePrice** - a _public_ function that queries a single Job ID. This sends a transaction and modifies the `price` variable stored in the contract.
+ - **saveMultiPrices** - a _public_ function that queries multiple Job IDs. For example, to fetch the price of `ETH` and `BTC` in `USD`, you will need to send the Job IDs `[1,2]`. This sends a transaction and modifies the `pricesArr` array stored in the contract, which will hold the price of each pair in the same order as specified in the input
 
 ```solidity
 pragma solidity 0.6.11;
@@ -123,14 +122,14 @@ interface Razor {
 }
 ```
 
-With it, you will have two view functions available, very similar to our previous examples:
+With it, you will have two view functions available, very similar to the previous examples:
 
- - getPrice: provides the price feed for a single job ID given as input to the function. For example, to fetch the price of `ETH` in `USD`, we will need to send the Job ID `1`
- - getMultiPrices: provides the price feed for multiple Job IDs given as an array input to the function. For example, to fetch the price of `ETH` and `BTC` in `USD`, we will need to send the job IDs `[1,2]`
+ - **getPrice** - provides the price feed for a single job ID given as input to the function. For example, to fetch the price of `ETH` in `USD`, you will need to send the Job ID `1`
+ - **getMultiPrices** - provides the price feed for multiple Job IDs given as an array input to the function. For example, to fetch the price of `ETH` and `BTC` in `USD`, you will need to send the job IDs `[1,2]`
 
-Let's use [Remix](/builders/build/eth-api/dev-env/remix/) to fetch the `BTC` price in `USD`.
+You can use [Remix](/builders/build/eth-api/dev-env/remix/){target=_blank} to fetch the `BTC` price in `USD`.
 
-After creating the file and compiling the contract, head to the "Deploy and Run Transactions" tab, enter the contract address (`{{ networks.moonbase.razor.bridge_address }}`), and click on "At Address." Make sure you have set the "Environment" to "Injected Web3" so that you are connected to Moonbase Alpha (through the Web3 provider of the wallet). 
+After creating the file and compiling the contract, head to the **Deploy and Run Transactions** tab, enter the contract address (`{{ networks.moonbase.razor.bridge_address }}`), and click on **At Address**. Make sure you have set the **ENVIRONMENT** to **Injected Web3** so that you are connected to Moonbase Alpha (through the Web3 provider of the wallet). 
 
 ![Razor Remix deploy](/images/builders/integrations/oracles/razor/razor-demo-1.png)
 

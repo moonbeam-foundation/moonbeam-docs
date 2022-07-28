@@ -154,9 +154,9 @@ Note that the ERC-20 token contract's mint function was also modified to approve
 After adding the Custom ERC-20 contract to Remix and compiling it, the next steps are to mint ERC20S tokens:
 
 1. Navigate to the **Deploy & Run Transactions** page on Remix
-2. Select Injected Web3 from the **Environment** dropdown
+2. Select Injected Web3 from the **ENVIRONMENT** dropdown
 3. Load the custom ERC-20 token contract address and click **At Address**
-4. Call the `mintTokens()` function and sign the transaction. 
+4. Call the `mintTokens()` function and sign the transaction
 5. Once the transaction is confirmed, you should have received 5 ERC20S tokens. You can check your balance by adding the token to [MetaMask](/tokens/connect/metamask/){target=_blank}
 
 ![ChainBridge ERC-20 mint Tokens](/images/builders/integrations/bridges/chainbridge/chainbridge-3.png)
@@ -280,9 +280,9 @@ Note that the ERC-721 token contract's mint function was also modified to approv
 After adding the contract to Remix and compiling it, next you'll want to mint an ERC721M token:
 
 1. Navigate to the **Deploy & Run Transactions** page on Remix
-2. Select Injected Web3 from the **Environment** dropdown
+2. Select Injected Web3 from the **ENVIRONMENT** dropdown
 3. Load the custom ERC721M token contract address and click **At Address**
-4. Call the `mintTokens()` function and sign the transaction. 
+4. Call the `mintTokens()` function and sign the transaction
 5. Once the transaction is confirmed, you should have received an ERC721M token. You can check your balance by adding the token to [MetaMask](/tokens/connect/metamask/){target=_blank}
 
 ![ChainBridge ERC-721 mint Tokens](/images/builders/integrations/bridges/chainbridge/chainbridge-7.png) 
@@ -321,7 +321,7 @@ interface IBridge {
 Now you can proceed to send the ERC721M token over the bridge to the target chain. In this case, remember that you'll do it from Moonbase Alpha to Kovan. To transfer the ERC721M token over the bridge:
 
 1. Load the bridge contract address and click **At Address**
-2. Call the `sendERC721MoonToken()` function to initiate the transfer of ERC721M tokens originally minted on Moonbase Alpha by providing the destination chain ID (For this example Kovan is being used: `42`)
+2. Call the `sendERC721MoonToken()` function to initiate the transfer of ERC721M tokens originally minted on Moonbase Alpha by providing the destination chain ID. For this example Kovan is being used: `42`
 3. Enter the recipient address on the other side of the bridge
 4. Add the token ID to transfer
 5. Click **transact** and then MetaMask should pop-up asking you to sign the transaction

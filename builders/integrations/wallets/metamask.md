@@ -35,7 +35,7 @@ npm install @metamask/detect-provider
 
 You'll start off by adding a button that will be used to connect MetaMask to Moonbase Alpha. You want to start with the button so when you create the logic in the next step you can test the code as you make your way through the guide. 
 
-The function we will create in the next section of the guide will be called `configureMoonbaseAlpha`. So the button on click should call `configureMoonbaseAlpha`.
+The function you will create in the next section of the guide will be called `configureMoonbaseAlpha`. So the button on click should call `configureMoonbaseAlpha`.
 
 ```html
 <button onClick={configureMoonbaseAlpha()}>Connect to Moonbase Alpha</button>

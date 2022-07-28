@@ -22,7 +22,7 @@ Moonbeam provides two different kind of explorers: ones to query the Ethereum AP
     |                              [Blockscout](https://blockscout.moonbeam.network/){target=_blank}                               |    EVM    |          https://blockscout.moonbeam.network/           |
     |                     [Expedition](https://moonbeam-explorer.netlify.app/?network=Moonbeam){target=_blank}                     |    EVM    | https://moonbeam-explorer.netlify.app/?network=Moonbeam |
     |                                    [Subscan](https://moonbeam.subscan.io/){target=_blank}                                    | Substrate |              https://moonbeam.subscan.io/               |
-    | [Polkadot.Js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam.api.onfinality.io%2Fpublic-ws#/explorer){target=_blank} | Substrate |         https://polkadot.js.org/apps/#/explorer         |
+    | [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam.api.onfinality.io%2Fpublic-ws#/explorer){target=_blank} | Substrate |         https://polkadot.js.org/apps/#/explorer         |
 
 
 === "Moonriver"
@@ -32,7 +32,7 @@ Moonbeam provides two different kind of explorers: ones to query the Ethereum AP
     |                          [Blockscout](https://blockscout.moonriver.moonbeam.network/){target=_blank}                          |    EVM    |      https://blockscout.moonriver.moonbeam.network/      |
     |                     [Expedition](https://moonbeam-explorer.netlify.app/?network=Moonriver){target=_blank}                     |    EVM    | https://moonbeam-explorer.netlify.app/?network=Moonriver |
     |                                    [Subscan](https://moonriver.subscan.io/){target=_blank}                                    | Substrate |              https://moonriver.subscan.io/               |
-    | [Polkadot.Js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonriver.api.onfinality.io%2Fpublic-ws#/explorer){target=_blank} | Substrate |         https://polkadot.js.org/apps/#/explorer          |
+    | [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonriver.api.onfinality.io%2Fpublic-ws#/explorer){target=_blank} | Substrate |         https://polkadot.js.org/apps/#/explorer          |
 
 === "Moonbase Alpha"
     |                                                     Block Explorer                                                      |   Type    |                             URL                              |
@@ -41,7 +41,7 @@ Moonbeam provides two different kind of explorers: ones to query the Ethereum AP
     |                   [Blockscout](https://moonbase-blockscout.testnet.moonbeam.network/){target=_blank}                    |    EVM    |    https://moonbase-blockscout.testnet.moonbeam.network/     |
     |                [Expedition](https://moonbeam-explorer.netlify.app/?network=MoonbaseAlpha){target=_blank}                |    EVM    | https://moonbeam-explorer.netlify.app/?network=MoonbaseAlpha |
     |                                 [Subscan](https://moonbase.subscan.io/){target=_blank}                                  | Substrate |                 https://moonbase.subscan.io/                 |
-    | [Polkadot.Js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=_blank} | Substrate |           https://polkadot.js.org/apps/#/explorer            |
+    | [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=_blank} | Substrate |           https://polkadot.js.org/apps/#/explorer            |
 
 ## Ethereum API {: #ethereum-api } 
 

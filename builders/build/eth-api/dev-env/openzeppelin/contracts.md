@@ -13,14 +13,14 @@ description:  Learn how to create common OpenZeppelin contracts such as ERC-20, 
 
 Because Moonbeam is fully Ethereum compatible, all of OpenZeppelin's contracts and libraries can be implemented without any changes.
 
-This guide is divided into two sections. The first part describes the OpenZeppelin Contracts Wizard, a great online tool to help you create smart contracts using OpenZeppelin code. The second section provides a step-by-step guide on how you can deploy these contracts using [Remix](https://remix.ethereum.org/) on Moonbeam.
+This guide is divided into two sections. The first part describes the OpenZeppelin Contracts Wizard, a great online tool to help you create smart contracts using OpenZeppelin code. The second section provides a step-by-step guide on how you can deploy these contracts using [Remix](https://remix.ethereum.org/){target=_blank} on Moonbeam.
 
 ## OpenZeppelin Contract Wizard {: #openzeppelin-contract-wizard } 
 
 OpenZeppelin has developed an online web-based interactive contract generator tool that is probably the easiest and fastest way to write your smart contract using OpenZeppelin code, called [Contracts Wizard](https://docs.openzeppelin.com/contracts/4.x/wizard){target=_blank}.
 
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/l8RTwu6hGpY' frameborder='0' allowfullscreen></iframe></div>
-<style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>In this video, we use Open Zeppelin Wizard to deploy an ERC-20 token to Moonbase Alpha</a></div>
+<style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style><div class='caption'>In this video, Open Zeppelin Wizard is used to deploy an ERC-20 token to Moonbase Alpha</a></div>
 
 Currently, the Contracts Wizard support the following ERC standards:
 
@@ -64,8 +64,8 @@ The steps described in this section assume you have [MetaMask](https://metamask.
 
 For this example, an ERC-20 token will be deployed to Moonbase Alpha. The final code used combines different contracts from OpenZeppelin:
 
- - **ERC20.sol** — ERC-20 token implementation with the optional features from the base interface. Includes the supply mechanism with a `mint` function but needs to be explicitly called from within the main contract
- - **Ownable.sol** — extension to restrict access to certain functions
+ - **`ERC20.sol`** — ERC-20 token implementation with the optional features from the base interface. Includes the supply mechanism with a `mint` function but needs to be explicitly called from within the main contract
+ - **`Ownable.sol`** — extension to restrict access to certain functions
 
 The mintable ERC-20 OpenZeppelin token contract provides a `mint` function that the owner of the contract can only call. By default, the owner is the contract's deployer address. There is also a premint of `1000` tokens sent to the contract's deployer configured in the `constructor` function.
 
@@ -120,10 +120,10 @@ And that is it! You've deployed an ERC-20 token contract using OpenZeppelin's co
 
 For this example, an ERC-721 token will be deployed to Moonbase Alpha. The final code used combines different contracts from OpenZeppelin:
 
- - **ERC-721** — ERC-721 token implementation with the optional features from the base interface. Includes the supply mechanism with a `_mint` function but needs to be explicitly called from within the main contract
- - **Burnable** — extension to allow tokens to be destroyed by their owners (or approved addresses)
- - **Enumerable** — extension to allow on-chain enumeration of tokens
- - **Ownable.sol** — extension to restrict access to certain functions
+ - **`ERC721.sol`** — ERC-721 token implementation with the optional features from the base interface. Includes the supply mechanism with a `_mint` function but needs to be explicitly called from within the main contract
+ - **`ERC721Burnable.sol`** — extension to allow tokens to be destroyed by their owners (or approved addresses)
+ - **`ERC721Enumerable.sol`** — extension to allow on-chain enumeration of tokens
+ - **`Ownable.sol`** — extension to restrict access to certain functions
 
 The mintable ERC-721 OpenZeppelin token contract provides a `mint` function that can only be called by the owner of the contract. By default, the owner is the contract's deployer address.
 
@@ -186,9 +186,9 @@ And that is it! You've deployed an ERC-721 token contract using OpenZeppelin's c
 
 For this example, an ERC-1155 token will be deployed to Moonbase Alpha. The final code used combines different contracts from OpenZeppelin:
 
- - **ERC-1155** — ERC-1155 token implementation with the optional features from the base interface. Includes the supply mechanism with a `_mint` function but needs to be explicitly called from within the main contract
- - **Pausable** — extension to allows pausing tokens transfer, mintings and burnings
- - **Ownable.sol** — extension to restrict access to certain functions
+ - **`ERC1155.sol`** — ERC-1155 token implementation with the optional features from the base interface. Includes the supply mechanism with a `_mint` function but needs to be explicitly called from within the main contract
+ - **`Pausable.sol`** — extension to allows pausing tokens transfer, mintings and burnings
+ - **`Ownable.sol`** — extension to restrict access to certain functions
 
 OpenZeppelin's ERC-1155 token contract provides a `_mint` function that can only be called in the `constructor` function. Therefore, this example creates 1000 tokens with an ID of `0`, and 1 unique token with an ID of `1`.
 

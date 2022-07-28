@@ -6,7 +6,7 @@ keywords: canonical, ethereum, moonbeam, precompiled, contracts
 
 # Canonical Contracts
 
-![Canonical contracts banner](/images/builders/build/canonical-contracts/contract-addresses/canonical-contracts-banner.png)
+![Canonical contracts banner](/images/builders/build/canonical-contracts/canonical-contracts-banner.png)
 
 ## Common-goods Contracts {: #common-goods-contracts }
 
@@ -20,7 +20,7 @@ The following contracts addresses have been established:
     |    [Multicall2](https://moonbeam.moonscan.io/address/0x6477204E12A7236b9619385ea453F370aD897bb2#code){target=_blank}    | 0x6477204E12A7236b9619385ea453F370aD897bb2 |
     |    [Multicall3](https://moonbeam.moonscan.io/address/0xca11bde05977b3631167028862be2a173976ca11#code){target=_blank}    | 0xcA11bde05977b3631167028862bE2a173976CA11 |
     | [Multisig Factory](https://moonbeam.moonscan.io/address/0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2#code){target=_blank} | 0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2 |
-    |                           [EIP 1820](https://eips.ethereum.org/EIPS/eip-1820){target=_blank}                            | 0x1820a4b7618bde71dce8cdc73aab6c95905fad24 |
+    |                           [EIP-1820](https://eips.ethereum.org/EIPS/eip-1820){target=_blank}                            | 0x1820a4b7618bde71dce8cdc73aab6c95905fad24 |
 
 === "Moonriver"
     |                                                         Contract                                                         |                  Address                   |
@@ -30,7 +30,7 @@ The following contracts addresses have been established:
     |    [Multicall2](https://moonriver.moonscan.io/address/0xaef00a0cf402d9dedd54092d9ca179be6f9e5ce3#code){target=_blank}    | 0xaef00a0cf402d9dedd54092d9ca179be6f9e5ce3 |
     |   [Multicall3](https://moonriver.moonscan.io/address/0xca11bde05977b3631167028862be2a173976ca11#code/){target=_blank}    | 0xcA11bde05977b3631167028862bE2a173976CA11 |
     | [Multisig Factory](https://moonriver.moonscan.io/address/0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2#code){target=_blank} | 0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2 |
-    |                            [EIP 1820](https://eips.ethereum.org/EIPS/eip-1820){target=_blank}                            | 0x1820a4b7618bde71dce8cdc73aab6c95905fad24 |
+    |                            [EIP-1820](https://eips.ethereum.org/EIPS/eip-1820){target=_blank}                            | 0x1820a4b7618bde71dce8cdc73aab6c95905fad24 |
 
     _*Deployed by SushiSwap_
 
@@ -42,7 +42,7 @@ The following contracts addresses have been established:
     |    [Multicall2](https://moonbase.moonscan.io/address/0x37084d0158C68128d6Bc3E5db537Be996f7B6979#code){target=_blank}    | 0x37084d0158C68128d6Bc3E5db537Be996f7B6979 |
     |   [Multicall3](https://moonbase.moonscan.io/address/0xca11bde05977b3631167028862be2a173976ca11#code/){target=_blank}    | 0xcA11bde05977b3631167028862bE2a173976CA11 |
     | [Multisig Factory](https://moonbase.moonscan.io/address/0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2#code){target=_blank} | 0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2 |
-    |                           [EIP 1820](https://eips.ethereum.org/EIPS/eip-1820){target=_blank}                            | 0x1820a4b7618bde71dce8cdc73aab6c95905fad24 |
+    |                           [EIP-1820](https://eips.ethereum.org/EIPS/eip-1820){target=_blank}                            | 0x1820a4b7618bde71dce8cdc73aab6c95905fad24 |
 
     _*Deployed in the [UniswapV2 Demo Repo](https://github.com/PureStake/moonbeam-uniswap/tree/main/uniswap-contracts-moonbeam){target=_blank}_
 
@@ -56,24 +56,24 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
 
 ### Ethereum MainNet Precompiles {: #ethereum-mainnet-precompiles }
 
-|                                                              Contract                                                              |                  Address                   |
-|:----------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
-|     [ECRECOVER](/builders/build/canonical-contracts/precompiles/eth-mainnet/#verify-signatures-with-ecrecover/){target=_blank}     | 0x0000000000000000000000000000000000000001 |
-|             [SHA256](/builders/build/canonical-contracts/precompiles/eth-mainnet/#hashing-with-sha256/){target=_blank}             | 0x0000000000000000000000000000000000000002 |
-|         [RIPEMD160](/builders/build/canonical-contracts/precompiles/eth-mainnet/#hashing-with-ripemd-160/){target=_blank}          | 0x0000000000000000000000000000000000000003 |
-|           [Identity](/builders/build/canonical-contracts/precompiles/eth-mainnet/#the-identity-function/){target=_blank}           | 0x0000000000000000000000000000000000000004 |
-|   [Modular Exponentiation](/builders/build/canonical-contracts/precompiles/eth-mainnet/#modular-exponentiation/){target=_blank}    | 0x0000000000000000000000000000000000000005 |
-|     [Bn128Add](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_bn128/struct.Bn128Add.html){target=_blank}     | 0x0000000000000000000000000000000000000006 |
-|     [Bn128Mul](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_bn128/struct.Bn128Mul.html){target=_blank}     | 0x0000000000000000000000000000000000000007 |
-| [Bn128Pairing](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_bn128/struct.Bn128Pairing.html){target=_blank} | 0x0000000000000000000000000000000000000008 |
-|      [Blake2](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html){target=_blank}      | 0x0000000000000000000000000000000000000009 |
+|                                                           Contract                                                            |                  Address                   |
+|:-----------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
+|  [ECRECOVER](/builders/build/canonical-contracts/precompiles/eth-mainnet/#verify-signatures-with-ecrecover/){target=_blank}   | 0x0000000000000000000000000000000000000001 |
+|          [SHA256](/builders/build/canonical-contracts/precompiles/eth-mainnet/#hashing-with-sha256/){target=_blank}           | 0x0000000000000000000000000000000000000002 |
+|       [RIPEMD160](/builders/build/canonical-contracts/precompiles/eth-mainnet/#hashing-with-ripemd-160/){target=_blank}       | 0x0000000000000000000000000000000000000003 |
+|        [Identity](/builders/build/canonical-contracts/precompiles/eth-mainnet/#the-identity-function/){target=_blank}         | 0x0000000000000000000000000000000000000004 |
+| [Modular Exponentiation](/builders/build/canonical-contracts/precompiles/eth-mainnet/#modular-exponentiation/){target=_blank} | 0x0000000000000000000000000000000000000005 |
+|                           [BN128Add](/builders/build/pallets/eth-mainnet/#bn128add){target=_blank}                            | 0x0000000000000000000000000000000000000006 |
+|                           [BN128Mul](/builders/build/pallets/eth-mainnet/#bn128mul){target=_blank}                            | 0x0000000000000000000000000000000000000007 |
+|                       [BN128Pairing](/builders/build/pallets/eth-mainnet/#bn128pairing){target=_blank}                        | 0x0000000000000000000000000000000000000008 |
+|   [Blake2](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html){target=_blank}    | 0x0000000000000000000000000000000000000009 |
 
 
 ### Non-Moonbeam Specific nor Ethereum Precompiles {: #non-moonbeam-specific-nor-ethereum-precompiles }
 
 |                                                                    Contract                                                                     |                  Address                   |
 |:-----------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
-|       [Sha3FIPS256](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_sha3fips/struct.Sha3FIPS256.html){target=_blank}       | 0x0000000000000000000000000000000000000400 |
+|                           [SHA3FIPS256](/builders/build/pallets/eth-mainnet/#hashing-with-sha3fips256){target=_blank}                           | 0x0000000000000000000000000000000000000400 |
 |          [Dispatch](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_dispatch/struct.Dispatch.html){target=_blank}          | 0x0000000000000000000000000000000000000401 |
 | [ECRecoverPublicKey](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_simple/struct.ECRecoverPublicKey.html){target=_blank} | 0x0000000000000000000000000000000000000402 |
 

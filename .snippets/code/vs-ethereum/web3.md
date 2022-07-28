@@ -1,14 +1,14 @@
 ```js
 import Web3 from 'web3';
 
-// Define the TxHash to Check Finality
+// Define the transaction hash to check finality
 const txHash = 'tx_hash';
 
 // Define the Web3 provider for Moonbeam
 // This can also be adapted for Moonriver or Moonbase Alpha
 const web3 = new Web3('RPC-API-ENDPOINT-HERE'); // Insert your RPC URL here
 
-// Define the function for the Custom Web3 Request
+// Define the function for the custom Web3 request
 const customWeb3Request = async (web3Provider, method, params) => {
   try {
     return await requestPromise(web3Provider, method, params);
@@ -17,7 +17,7 @@ const customWeb3Request = async (web3Provider, method, params) => {
   }
 };
 
-// In Web3.js we need to return a promise
+// In Web3.js you need to return a promise
 const requestPromise = async (web3Provider, method, params) => {
   return new Promise((resolve, reject) => {
     web3Provider.send(

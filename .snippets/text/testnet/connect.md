@@ -8,7 +8,7 @@ If you're looking for your own endpoints suitable for production use, you can ch
 
 ## Quick Start {: #quick-start } 
 
-For the web3.js library, you can create a local Web3 instance and set the provider to connect to Moonbase Alpha (both HTTP and WS are supported):
+For the Web3.js library, you can create a local Web3 instance and set the provider to connect to Moonbase Alpha (both HTTP and WS are supported):
 
 ```js
 const Web3 = require('web3'); //Load Web3 library
@@ -18,7 +18,7 @@ const Web3 = require('web3'); //Load Web3 library
 //Create local Web3 instance - set Moonbase Alpha as provider
 const web3 = new Web3('https://rpc.api.moonbase.moonbeam.network'); 
 ```
-For the ethers.js library, define the provider by using `ethers.providers.StaticJsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonbase Alpha:
+For the Ethers.js library, define the provider by using `ethers.providers.StaticJsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonbase Alpha:
 
 ```js
 const ethers = require('ethers');
@@ -31,7 +31,7 @@ const provider = new ethers.providers.StaticJsonRpcProvider(providerURL, {
 });
 ```
 
-Any Ethereum wallet should be able to generate a valid address for Moonbeam (for example, [MetaMask](https://metamask.io/)).
+Any Ethereum wallet should be able to generate a valid address for Moonbeam (for example, [MetaMask](https://metamask.io/){target=_blank}).
 
 ## Chain ID {: #chain-id } 
 

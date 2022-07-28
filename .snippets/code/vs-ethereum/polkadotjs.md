@@ -25,7 +25,7 @@ const main = async () => {
   // Get the transaction receipt of the given tx hash
   const txReceipt = (await polkadotApi.rpc.eth.getTransactionReceipt(txHash)).toJSON();
 
-  // We can not verify if the tx is in block because polkadotApi.rpc.eth.getBlockByNumber
+  // You can not verify if the tx is in the block because polkadotApi.rpc.eth.getBlockByNumber
   // does not return the list of tx hash
 
   // If block number of receipt is not null, compare it against finalized head

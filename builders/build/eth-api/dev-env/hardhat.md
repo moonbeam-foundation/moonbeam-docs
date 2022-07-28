@@ -18,7 +18,7 @@ This guide will cover how to use Hardhat to compile, deploy, and debug Ethereum 
 To get started, you will need the following:
 
  - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
- - Have an account with funds. 
+ - Have an account with funds.
   --8<-- 'text/faucet/faucet-list-item.md'
  - 
 --8<-- 'text/common/endpoint-examples.md'
@@ -45,7 +45,7 @@ You will need to create a Hardhat project if you don't already have one. You can
     ```
 
     !!! note
-        `npx` is used to run executables installed locally in your project. Although Hardhat can be installed globally, we recommend installing locally in each project so that you can control the version on a project by project basis.
+        `npx` is used to run executables installed locally in your project. Although Hardhat can be installed globally, it is recommended to install it locally in each project so that you can control the version on a project by project basis.
             
 5. A menu will appear which will allow you to create a new project or use a sample project. For this example, you can choose **Create an empty hardhat.config.js**
 
@@ -53,7 +53,7 @@ You will need to create a Hardhat project if you don't already have one. You can
 
 This will create a Hardhat config file (`hardhat.config.js`) in your project directory.
 
-Once you have your Hardhat project, you can also install the [ethers plugin](https://hardhat.org/plugins/nomiclabs-hardhat-ethers.html){target=_blank}. This provides a convenient way to use the [ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=_blank} library to interact with the network. To install it, run the following command:
+Once you have your Hardhat project, you can also install the [Ethers plugin](https://hardhat.org/plugins/nomiclabs-hardhat-ethers.html){target=_blank}. This provides a convenient way to use the [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=_blank} library to interact with the network. To install it, run the following command:
 
 ```
 npm install @nomiclabs/hardhat-ethers ethers
@@ -129,7 +129,7 @@ Next you can take the following steps to modify the `hardhat.config.js` file and
 4. Add the Moonbase Alpha network configuration
 
 ```js
-// 1. Import the ethers plugin required to interact with the contract
+// 1. Import the Ethers plugin required to interact with the contract
 require('@nomiclabs/hardhat-ethers');
 
 // 2. Import your private key from your pre-funded Moonbase Alpha testing account
