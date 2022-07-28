@@ -12,7 +12,7 @@ keywords: democracy, substrate, pallet, moonbeam, polkadot
 
 As a Polkadot parachain, Moonbeam features native on-chain governance thanks to the [Substrate democracy pallet](https://docs.rs/pallet-democracy/latest/pallet_democracy/){target=_blank}.
 
-Some of the functionality of the democracy pallet is also available through a democracy precompile. The precompile is a Solidity interface that enables you to perform governance functions using the Ethereum API. Please refer to the [Democracy Precompile](/builders/build/precompiles/democracy){target=_blank} guide for more information.
+Some of the functionality of the democracy pallet is also available through a democracy precompile. The precompile is a Solidity interface that enables you to perform governance functions using the Ethereum API. Please refer to the [Democracy Precompile](/builders/pallets-precompiles/precompiles/democracy){target=_blank} guide for more information.
 
 This guide will provide an overview of the extrinsics, storage methods, and getters for the pallet constants available in the democracy pallet on Moonbeam.
 
