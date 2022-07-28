@@ -23,11 +23,11 @@ Generally speaking, the fee payment process can be described as follows:
 2. The exchange of assets for compute time (or weight) must be negotiated
 3. The XCM operations will be performed as instructed, with the provided weight limit or funds available for execution
 
-Each chain can configure what happens with the XCM fees. For example, on Polkadot and Kusama the fees are given to the validator of the block. On Moonbeam and Moonriver, the fees are sent to the treasury.
+Each chain can configure what happens with the XCM fees, and in which tokens they can be paid (either the native reserve token, or an external one). For example, on Polkadot and Kusama the fees are paid in DOT or KSM (respectively) and given to the validator of the block. On Moonbeam and Moonriver, the XCM execution fees can be paid in the reserve asset (GLMR or MOVR respectively), but also, in assets originated in other chains, and fees are sent to the treasury.
 
 Consider the following scenario: Alice has some DOT on Polkadot and she wants to transfer it to Alith on Moonbeam. She sends an XCM message with a set of XCM instructions that will retrieve a given amount of DOT from her account on Polkadot and mint them as xcDOT into Alith's account. Part of the instructions are executed on Polkadot and the other part are executed on Moonbeam. 
 
-How does Alice pay Moonbeam to execute these instructions and fulfill her request? Her request is fulfilled through a series of XCM instructions that are included in the XCM message, which enables her to buy execution time minus any related XCM execution fees. The execution time is used to issue and transfer xcDOT, a representation of DOT on Moonbeam. This means that when Alice sends some DOT to Alith's account on Moonbeam, she'll receive a 1:1 representation of her DOT as xcDOT minus any XCM execution fees.
+How does Alice pay Moonbeam to execute these instructions and fulfill her request? Her request is fulfilled through a series of XCM instructions that are included in the XCM message, which enables her to buy execution time minus any related XCM execution fees. The execution time is used to issue and transfer xcDOT, a representation of DOT on Moonbeam. This means that when Alice sends some DOT to Alith's account on Moonbeam, she'll receive a 1:1 representation of her DOT as xcDOT minus any XCM execution fees. Note that in this scenario, XCM execution fees are paid in xcDOT.
 
 The exact process for Alice's transfer is as follows:
 
@@ -217,7 +217,9 @@ The total cost is `{{ networks.moonbeam.xcm.instructions.glmr_cost }} GLMR` for 
 
 ## Fee Calculation for External Assets {: #fee-calc-external-assets }
 
-Considering the scenario with Alice sending DOT to Alith's account on Moonbeam, the fees are taken from the amount of xcDOT Alith receives. To determine how much to charge, Moonbeam uses a concept called `UnitsPerSecond`, which refers to the units of tokens that the network charges per second of XCM execution time (considering decimals). This concept is used by parachains to determine how much to charge for XCM execution using a different asset than its reserve. Nevertheless, fees can be charged in another token, for example, DOT.
+Considering the scenario with Alice sending DOT to Alith's account on Moonbeam, the fees are taken from the amount of xcDOT Alith receives. To determine how much to charge, Moonbeam uses a concept called `UnitsPerSecond`, which refers to the units of tokens that the network charges per second of XCM execution time (considering decimals). This concept is used by Moonbeam (and maybe other parachains) to determine how much to charge for XCM execution using a different asset than its reserve.
+
+Moreover, XCM execution on Moonbeam can be paid by multiple assets that originate in the chain where the asset is coming from. For example, at the time of writing, an XCM message sent from [Statemine](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fstatemine-rpc.polkadot.io#/explorer){target=_blank} can be paid in xcKSM, xcRMRK or xcUSDT. As long as that asset has an `UnitsPerSecond` set in Moonbeam/Moonriver, it can be used to pay XCM execution for an XCM message coming from that specific chain.
 
 To find out the `UnitsPerSecond` for a given asset, you can query `assetManager.assetTypeUnitsPerSecond` and pass in the multilocation of the asset in question.
 
