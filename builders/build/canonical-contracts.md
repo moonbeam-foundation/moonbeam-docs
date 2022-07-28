@@ -117,4 +117,5 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
     |      [XCM Transactor](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm-transactor/XcmTransactor.sol){target=_blank}       | {{networks.moonbase.precompiles.xcm_transactor}} |
     |  [Author Mapping](https://github.com/PureStake/moonbeam/blob/master/precompiles/author-mapping/AuthorMappingInterface.sol){target=_blank}  | {{networks.moonbase.precompiles.author_mapping}} |
     |                   [Batch](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank}                    |     {{networks.moonbase.precompiles.batch}}      |
-
+    |            [Randomness](https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/Randomness.sol){target=_blank}            |   {{networks.moonbase.precompiles.randomness}}   |
+    |           [Call Permit](https://github.com/PureStake/moonbeam/blob/master/precompiles/call-permit/CallPermit.sol){target=_blank}           |  {{networks.moonbase.precompiles.call_permit }}  |
