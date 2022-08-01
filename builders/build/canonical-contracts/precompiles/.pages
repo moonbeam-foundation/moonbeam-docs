@@ -8,3 +8,4 @@ nav:
   - 'Batch': 'batch.md'
   - 'X-Tokens': '/builders/xcm/xc20/xtokens/#xtokens-precompile'
   - 'XCM-Transactor': '/builders/xcm/xcm-transactor/#xcmtransactor-precompile'
+  - 'Call Permit': 'call-permit.md'
