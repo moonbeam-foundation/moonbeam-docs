@@ -164,11 +164,11 @@ You should get this data in hexidecimal format:
 
 This is far from readable, but you can use cast to convert it into your desired format. In this case, we're expecting the data to be text, so we will convert it into ascii characters to see "My Token":
 
+![Foundry Contract View](/images/builders/build/eth-api/dev-env/foundry/foundry-3.png)
+
 ```
 cast --to-ascii 0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000074d79546f6b656e00000000000000000000000000000000000000000000000000
 ```
-
-![Foundry Contract Interaction](/images/builders/build/eth-api/dev-env/foundry/foundry-3.png)
 
 You can also mutate data with cast as well. Try burning tokens by sending them to the zero address.
 
@@ -194,7 +194,7 @@ You can also mutate data with cast as well. Try burning tokens by sending them t
 
 The transaction will be signed by your Moonbase account and be broadcasted to the network. The output should look similar to:
 
-(INSERT IMAGE HERE)
+![Foundry Contract Interaction](/images/builders/build/eth-api/dev-env/foundry/foundry-4.png)
 
 Congratulations, you have successfully deployed and interacted with a contract using Foundry!
 
