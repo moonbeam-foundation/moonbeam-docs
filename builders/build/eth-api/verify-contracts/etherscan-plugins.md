@@ -23,6 +23,7 @@ To follow along with this tutorial, you will need to have:
 - An account funded with `DEV` tokens. 
  --8<-- 'text/faucet/faucet-list-item.md'
 - A Moonscan API key for the network you're trying to verify a contract on. For Moonbeam and Moonbase Alpha, you'll need a [Moonbeam Moonscan](https://moonscan.io/){target=_blank} API key. For Moonriver, you'll need a [Moonriver Moonscan](https://moonriver.moonscan.io/){target=_blank} API key
+- Git installed and configured
 
 ## Generating a Moonscan API Key {: generating-a-moonscan-api-key }
 
@@ -138,3 +139,7 @@ If the contract verification was successful, in your terminal, you should see **
 ![Successful verification using truffle-verify-plugin](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-4.png)
 
 For further information on the plugin, please refer to the [README.md file](https://github.com/rkalis/truffle-plugin-verify#readme){target=_blank} of the `truffle-plugin-verify` GitHub repository.
+
+## Using Foundry {: #using-the-foundry-verify-plugin }
+
+Foundry's forge tool has etherscan verification built in. 
