@@ -9,15 +9,15 @@ description: Follow this tutorial to learn how to use the Ethereum Web3 Python L
 
 ## Introduction {: #introduction } 
 
-[Web3.py](https://web3py.readthedocs.io/) is a set of libraries that allow developers to interact with Ethereum nodes using HTTP, IPC, or WebSocket protocols with Python. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations. Therefore, developers can leverage this compatibility and use the web3.py library to interact with a Moonbeam python3 as if they were doing so on Ethereum.
+[Web3.py](https://web3py.readthedocs.io/) is a set of libraries that allow developers to interact with Ethereum nodes using HTTP, IPC, or WebSocket protocols with Python. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations. Therefore, developers can leverage this compatibility and use the Web3.py library to interact with a Moonbeam python3 as if they were doing so on Ethereum.
 
-In this guide, you'll learn how to use the web3.py library to send a transaction and deploy a contract on Moonbase Alpha. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=_blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=_blank}.
+In this guide, you'll learn how to use the Web3.py library to send a transaction and deploy a contract on Moonbase Alpha. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=_blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=_blank}.
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
 For the examples in this guide, you will need to have the following:
 
- - An account with funds. 
+ - An account with funds.
   --8<-- 'text/faucet/faucet-list-item.md'
  - 
 --8<-- 'text/common/endpoint-examples.md'
@@ -41,7 +41,7 @@ pip3 install web3 py-solc-x
 
 ## Setup Web3.py with Moonbeam {: #setup-web3-with-moonbeam } 
 
-You can configure web3.py to work with any of the Moonbeam networks.
+You can configure Web3.py to work with any of the Moonbeam networks.
 --8<-- 'text/common/endpoint-setup.md'
 
 The simplest way to get started with each of the networks is as follows:

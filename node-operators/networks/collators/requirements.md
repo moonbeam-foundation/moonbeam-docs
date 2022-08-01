@@ -55,13 +55,13 @@ In addition, you should take into account the following considerations:
 
 Similar to Polkadot validators, you need to create an account. For Moonbeam, this is an H160 account or an Ethereum-style account from which you hold the private keys. As a collator, you are responsible for correctly managing your own keys. Incorrectly doing so can result in a loss of funds.
 
-There are many Ethereum wallets that can be used, but for production purposes it is recommended to generate keys as securely as possible. It is also recommended to generate backup keys. You can actually generate keys using the Moonbeam binary through a tool called Moonkey. It can be used to generate both ethereum-style accounts and substrate-style accounts. 
+There are many Ethereum wallets that can be used, but for production purposes it is recommended to generate keys as securely as possible. It is also recommended to generate backup keys. You can actually generate keys using the Moonbeam binary through a tool called Moonkey. It can be used to generate both Ethereum-style accounts and Substrate-style accounts. 
 
 To generate keys securely it is recommended to do so on an air-gapped machine. Once you generate your keys make sure you store them safely. To securely store your keys, here are some recommendations, from least to most secure:
 
 - Write down and laminate your keys
 - Engrave your keys into a metal plate
-- Shard your keys using a tool like [Horcrux](https://gitlab.com/unit410/horcrux)
+- Shard your keys using a tool like [Horcrux](https://gitlab.com/unit410/horcrux){target=_blank}
 
 As always, it is recommended to do your own research and use tools that you vet as trustworthy.
 
@@ -142,7 +142,7 @@ First, you will need a minimum amount of tokens staked (self-bonded) to be consi
 
 ### Key Association Bond {: #key-association-bond }
 
-Secondly, you will need a bond for key association. This bond is sent when [mapping your author ID](/node-operators/networks/collators/account-management) (session keys) with your account for block rewards, and is per author ID registered.
+Secondly, you will need a bond for key association. This bond is sent when [mapping your author ID](/node-operators/networks/collators/account-management){target=_blank} (session keys) with your account for block rewards, and is per author ID registered.
 
 === "Moonbeam"
     |   Variable   |                         Value                          |

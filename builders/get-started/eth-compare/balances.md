@@ -7,7 +7,7 @@ description: A description of the main differences that Ethereum developers need
 
 ![Moonbeam v Ethereum - Account Balances Banner](/images/builders/get-started/eth-compare/balances/balances-banner.png)
 
-## Introduction
+## Introduction {: #introduction }
 
 While Moonbeam strives to be compatible with Ethereum's Web3 API and EVM, there are some important Moonbeam differences that developers should know and understand in terms of account balances.
 
@@ -17,7 +17,7 @@ Moonbeam [unified accounts](/learn/features/unified-accounts/){target=_blank} ar
 
 This guide will outline some of these main differences and what to expect when using Moonbeam for the first time.
 
-## Ethereum Account Balances
+## Ethereum Account Balances {: #ethereum-account-balances }
 
 An account on Ethereum is an entity with a token balance (Ether or ETH in this case). Account-holders can send Ether transactions on Ethereum and accounts can be controlled by either users (with the private key for signing) or smart contracts.
 
@@ -25,7 +25,7 @@ Therefore, Ethereum has two main types of accounts: user-owned and contract-owne
 
 ![Ethereum balances diagram](/images/builders/get-started/eth-compare/balances/balances-1.png)
 
-## Moonbeam Account Balances
+## Moonbeam Account Balances {: #moonbeam-account-balances }
 
 An account on Moonbeam is also an entity with a token balance (the token will depend on the network). Like on Ethereum, account holders can send token transactions on the Moonbeam Network they are connected to. In addition, accounts can be controlled by users (with the private key for signing) or smart contracts.
 
@@ -52,7 +52,7 @@ You can also view your balance locks using Polkadot.js Apps. Before getting star
 
 ![View locks on Polkadot.js Apps](/images/builders/get-started/eth-compare/balances/balances-4.png)
 
-## Main Differences
+## Main Differences {: #main-differences }
 
 The main difference between account balances on Ethereum and Moonbeam lies in the concept of locked and reserved balance on Moonbeam. These are tokens that are still owned by that account, but they are not spendable (yet).
 

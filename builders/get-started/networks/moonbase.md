@@ -16,7 +16,7 @@ For Moonbase Alpha, you can use any of the following block explorers:
  - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=MoonbaseAlpha){target=_blank}
  - **Substrate API** — [Subscan](https://moonbase.subscan.io/){target=_blank} or [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=_blank}
  
-For more information on each of the available block explorers, please head to the [Block Explorers](/builders/get-started/explorers/) section of the documentation.
+For more information on each of the available block explorers, please head to the [Block Explorers](/builders/get-started/explorers/){target=_blank} section of the documentation.
 
 ## Connect MetaMask
 
@@ -29,11 +29,11 @@ If you already have MetaMask installed, you can easily connect MetaMask to the M
 !!! note
     MetaMask will popup asking for permission to add Moonbase Alpha as a custom network. Once you approve permissions, MetaMask will switch your current network to Moonbase Alpha.
 
-If you do not have MetaMask installed, or would like to follow a tutorial to get started, please check out the [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask/) guide.
+If you do not have MetaMask installed, or would like to follow a tutorial to get started, please check out the [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask/){target=_blank} guide.
 
 ## Get Tokens {: #get-tokens } 
 
-To start building on Moonbase Alpha, you can get DEV tokens from the Moonbase Alpha Faucet or on Discord via a bot, named [Mission Control](https://discord.gg/PfpUATX). For specific amounts, you can always reach out directly to us via our community channels.
+To start building on Moonbase Alpha, you can get DEV tokens from the Moonbase Alpha Faucet or on Discord via a bot, named [Mission Control](https://discord.gg/PfpUATX){target=_blank}. For specific amounts, you can always reach out directly to us via our community channels.
 
 ### Moonbase Alpha Faucet {: #moonbase-alpha-faucet }
 
@@ -43,7 +43,7 @@ You can enter your address to automatically request DEV tokens from the [Moonbas
 
 ### Discord - Mission Control {: #discord-mission-control } 
 
-To request tokens automatically, we've created a Discord bot (named Mission Control :sunglasses:) that will automatically send a maximum of {{ networks.moonbase.discord_faucet_amount }} every 24 hours (per Discord user) when you enter your address. You can check it out on our [Discord channel](https://discord.gg/PfpUATX).
+To request tokens automatically, we've created a Discord bot (named Mission Control :sunglasses:) that will automatically send a maximum of {{ networks.moonbase.discord_faucet_amount }} every 24 hours (per Discord user) when you enter your address. You can check it out on our [Discord channel](https://discord.gg/PfpUATX){target=_blank}.
 
 !!! note
     The Discord faucet will be deprecated by end of June 2022.
@@ -99,7 +99,7 @@ The [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app/){target=_bl
 
 ### Moonbeam Uniswap {: #moonbeam-uniswap } 
 
-[Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank} is a fork of [Uniswap-V2](https://uniswap.org/blog/uniswap-v2){target=_blank} deployed to Moonbase Alpha. Notably, Moonbeam Uniswap allows developers to easily make a swap to acquire [cross chain assets](/builders/xcm/xc20/) such as xcKarura or xcUNITs for XCM testing purposes. To perform your first swap, take the following steps:
+[Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank} is a fork of [Uniswap-V2](https://uniswap.org/blog/uniswap-v2){target=_blank} deployed to Moonbase Alpha. Notably, Moonbeam Uniswap allows developers to easily make a swap to acquire [cross chain assets](/builders/xcm/xc20/){target=_blank} such as xcKarura or xcUNITs for XCM testing purposes. To perform your first swap, take the following steps:
 
 1. Press **Select a token** 
 2. Connect your MetaMask wallet and ensure you're on the Moonbase Alpha network
@@ -114,7 +114,7 @@ The [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app/){target=_bl
 
 ### MoonLink Dashboard {: #moonlink-dashboard } 
 
-The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank} showcases Chainlink price feeds in action. For more information, including a full listing of all Chainlink price feeds across all Moonbeam networks and a step-by-step guide of how to fetch price feed data, [head to the Oracles section of the Moonbeam Docs Site](/builders/integrations/oracles/chainlink/). You can also check out the [repository for the MoonLink Dashboard](https://github.com/PureStake/moonlink-dashboard){target=_blank}. 
+The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank} showcases Chainlink price feeds in action. For more information, including a full listing of all Chainlink price feeds across all Moonbeam networks and a step-by-step guide of how to fetch price feed data, [head to the Oracles section of the Moonbeam Docs Site](/builders/integrations/oracles/chainlink/){target=_blank}. You can also check out the [repository for the MoonLink Dashboard](https://github.com/PureStake/moonlink-dashboard){target=_blank}. 
 
 ![MoonLink Dashboard](/images/builders/get-started/networks/moonbase/moonbase-6.png)
 
@@ -133,7 +133,7 @@ The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank}
 [Moonbeam WalletConnect](https://moonbeam-walletconnect-demo.netlify.app/){target=_blank} shows how easy it is to integrate [WalletConnect](https://walletconnect.com/){target=_blank} into your DApps and unlock support for a great variety of crypto wallets. Be sure to check out the [demo app repository](https://github.com/PureStake/moonbeam-walletconnect-demo){target=_blank} to see exactly how the WalletConnect integration works. To get started, you can take the following steps:
 
 1. Press **Connect Wallet**
-2. Scan the QR code using a [wallet compatible with WalletConnect](https://walletconnect.com/registry?type=wallet){target=_blank}
+2. Scan the QR code using a [wallet compatible with WalletConnect](https://explorer.walletconnect.com/registry?type=wallet){target=_blank}
 
 ![Moonbeam WalletConnect](/images/builders/get-started/networks/moonbase/moonbase-8.png)
 

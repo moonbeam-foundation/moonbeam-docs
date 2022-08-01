@@ -36,7 +36,7 @@ If you are familiar with running Chainlink oracle nodes, this information will g
 To follow along with this guide, you will need to have:
 
  - [Docker installed](https://docs.docker.com/get-docker/){target=_blank} for running Postgres DB and ChainLink node containers
- - An account with funds. You can create one with [Metamask](/tokens/connect/metamask/){target=_blank}. 
+ - An account with funds. You can create one with [MetaMask](/tokens/connect/metamask/){target=_blank}.
  --8<-- 'text/faucet/faucet-list-item.md'
  - Access to the [Remix IDE](https://remix.ethereum.org/){target=_blank} in case you want to use it to deploy the oracle contract. For more information you can check out the [Using Remix to Deploy to Moonbeam](/builders/build/eth-api/dev-env/remix/){target=_blank} tutorial
 
@@ -192,7 +192,7 @@ The last step to have a fully configured Chainlink oracle is to create a job. Re
 
 > A Job specifications, or specs, contain the sequential tasks that the node must perform to produce a final result. A spec contains at least one initiator and one task, which are discussed in detail below. Specs are defined using standard JSON so that they are human-readable and can be easily parsed by the Chainlink node.
 
-Seeing an oracle as an API service, a job here would be one of the functions that we can call and that will return a result. To get started creating your first job, take the following steps:
+Seeing an oracle as an API service, a job here would be one of the functions that you can call and that will return a result. To get started creating your first job, take the following steps:
 
 1. Go to the [Jobs sections of your node](http://localhost:6688/jobs){target=_blank}
 2. Click on **New Job**

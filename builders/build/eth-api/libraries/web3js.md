@@ -9,9 +9,9 @@ description: Follow this tutorial to learn how to use the Ethereum Web3 JavaScri
 
 ## Introduction {: #introduction } 
 
-[Web3.js](https://web3js.readthedocs.io/){target=_blank} is a set of libraries that allow developers to interact with Ethereum nodes using HTTP, IPC, or WebSocket protocols with JavaScript. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations. Therefore, developers can leverage this compatibility and use the web3.js library to interact with a Moonbeam node as if they were doing so on Ethereum.
+[Web3.js](https://web3js.readthedocs.io/){target=_blank} is a set of libraries that allow developers to interact with Ethereum nodes using HTTP, IPC, or WebSocket protocols with JavaScript. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations. Therefore, developers can leverage this compatibility and use the Web3.js library to interact with a Moonbeam node as if they were doing so on Ethereum.
 
-In this guide, you'll learn how to use the web3.js library to send a transaction and deploy a contract on Moonbase Alpha. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=_blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=_blank}.
+In this guide, you'll learn how to use the Web3.js library to send a transaction and deploy a contract on Moonbase Alpha. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=_blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=_blank}.
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
@@ -33,7 +33,7 @@ To get started, you can create a directory to store all of the files you'll be c
 mkdir web3-examples && cd web3-examples
 ```
 
-For this guide, you'll need to install the web3.js library and the Solidity compiler. To install both NPM packages, you can run the following command:
+For this guide, you'll need to install the Web3.js library and the Solidity compiler. To install both NPM packages, you can run the following command:
 
 ```
 npm install web3 solc@0.8.0
@@ -41,7 +41,7 @@ npm install web3 solc@0.8.0
 
 ## Setup Web3.js with Moonbeam {: #setup-web3-with-moonbeam } 
 
-You can configure web3.js to work with any of the Moonbeam networks.
+You can configure Web3.js to work with any of the Moonbeam networks.
 --8<-- 'text/common/endpoint-setup.md'
 
 The simplest way to get started with each of the networks is as follows:
@@ -51,7 +51,7 @@ The simplest way to get started with each of the networks is as follows:
     ```js
     const Web3 = require('web3');
 
-    //Create web3 instance
+    // Create Web3 instance
     const web3 = new Web3('{{ networks.moonbeam.rpc_url }}'); // Insert your RPC URL here
     ```
 
@@ -60,7 +60,7 @@ The simplest way to get started with each of the networks is as follows:
     ```js
     const Web3 = require('web3');
 
-    //Create web3 instance
+    // Create Web3 instance
     const web3 = new Web3('{{ networks.moonriver.rpc_url }}'); // Insert your RPC URL here
     ```
 
@@ -69,7 +69,7 @@ The simplest way to get started with each of the networks is as follows:
     ```js
     const Web3 = require('web3');
 
-    //Create web3 instance
+    // Create Web3 instance
     const web3 = new Web3('{{ networks.moonbase.rpc_url }}');
     ```
 
@@ -78,7 +78,7 @@ The simplest way to get started with each of the networks is as follows:
     ```js
     const Web3 = require('web3');
 
-    //Create web3 instance
+    // Create Web3 instance
     const web3 = new Web3('{{ networks.development.rpc_url }}');
     ```
 

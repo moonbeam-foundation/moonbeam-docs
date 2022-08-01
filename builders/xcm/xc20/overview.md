@@ -55,9 +55,9 @@ Instead of signing the `approve` transaction, a user can sign a message and that
 
 The [Permit.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol){target=_blank} interface includes the following functions:
 
-- **permit(*address* owner, *address* spender, *uint256*, value, *uint256*, deadline, *uint8* v, *bytes32* r, *bytes32* s)** - consumes an approval permit which can be called by anyone
-- **nonces(*address* owner)** - returns the current nonce for the given owner
-- **DOMAIN_SEPARATOR()** - returns the EIP-712 domain separator which is used to avoid replay attacks. It follows the [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612#specification){target=_blank} implementation
+- **permit**(*address* owner, *address* spender, *uint256*, value, *uint256*, deadline, *uint8* v, *bytes32* r, *bytes32* s) - consumes an approval permit which can be called by anyone
+- **nonces**(*address* owner) - returns the current nonce for the given owner
+- **DOMAIN_SEPARATOR**() - returns the EIP-712 domain separator which is used to avoid replay attacks. It follows the [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612#specification){target=_blank} implementation
 
 --8<-- 'text/permits/domain-separator.md'
 
@@ -79,7 +79,7 @@ To approve a spend or transfer XC-20s via the XC-20 precompile, you will need:
 
 - [MetaMask installed and connected to the Moonbase Alpha](/tokens/connect/metamask/){target=_blank} TestNet
 - Create or have two accounts on Moonbase Alpha
-- At least one of the accounts will need to be funded with `DEV` tokens. 
+- At least one of the accounts will need to be funded with `DEV` tokens.
  --8<-- 'text/faucet/faucet-list-item.md'
 - The precompile address of the XC-20 you want to interact with. The instructions for calculating the precompile address are slightly different depending on whether the XC-20 is external and imported in or minted directly on Moonbeam:
     - [Calculate External XC-20 Precompile Addresses](/builders/xcm/xc20/xc20/#calculate-xc20-address){target=_blank}
@@ -110,9 +110,9 @@ If the interface was compiled successfully, you will see a green checkmark next 
 Instead of deploying the ERC-20 precompile, you will access the interface given the address of the XC-20 precompile:
 
 1. Click on the **Deploy and Run** tab directly below the **Compile** tab in Remix. Please note the precompiled contract is already deployed
-2. Make sure **Injected Web3** is selected in the **Environment** dropdown. Once you select **Injected Web3**, you might be prompted by MetaMask to connect your account to Remix
-3. Make sure the correct account is displayed under **Account**
-4. Ensure **IERC20 - IERC20.sol** is selected in the **Contract** dropdown. Since this is a precompiled contract, there is no need to deploy any code. Instead we are going to provide the address of the precompile in the **At Address** Field
+2. Make sure **Injected Web3** is selected in the **ENVIRONMENT** dropdown. Once you select **Injected Web3**, you might be prompted by MetaMask to connect your account to Remix
+3. Make sure the correct account is displayed under **ACCOUNT**
+4. Ensure **IERC20 - IERC20.sol** is selected in the **CONTRACT** dropdown. Since this is a precompiled contract, there is no need to deploy any code. Instead you are going to provide the address of the precompile in the **At Address** field
 5. Provide the address of the XC-20 precompile calculated in the [Calculate External XC-20 Precompile Addresses](/builders/xcm/xc20/xc20){target=_blank} or the [Calculate Mintable XC-20 Precompile Addresses](/builders/xcm/xc20/mintable-xc20){target=_blank} instructions. For this example you can use `0xFFFFFFFF1FCACBD218EDC0EBA20FC2308C778080`, and click **At Address**
 
 ![Access the address](/images/builders/xcm/xc20/overview/overview-3.png)

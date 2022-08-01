@@ -62,13 +62,13 @@ The code snippets rely on two custom RPC requests from the Substrate JSON-RPC: `
 !!! note
     The code snippets presented in the following sections are not meant for production environments. Please make sure you adapt it for each use-case.
 
-=== "web3.js"
+=== "Web3.js"
     --8<-- 'code/vs-ethereum/web3.md'
 
-=== "ethers.js"
+=== "Ethers.js"
     --8<-- 'code/vs-ethereum/ethers.md'
 
-=== "web3.py"
+=== "Web3.py"
     --8<-- 'code/vs-ethereum/web3py.md'
 
 ## Checking Tx Finality with Substrate Libraries {: #checking-tx-finality-with-substrate-libraries }

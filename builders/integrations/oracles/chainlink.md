@@ -177,7 +177,7 @@ Currently, the oracle node has a set of Job IDs for different price data for the
 For this example, you can go ahead and use the interface contract with the `BTC to USD` job ID in [Remix](/builders/build/eth-api/dev-env/remix/){target=_blank}. After creating the file and compiling the contract, you can take the following steps:
 
 1. Head to the **Deploy and Run Transactions** tab
-2. Make sure you have set the **Environment** to **Injected Web3**, and you have your MetaMask connected to Moonbase Alpha
+2. Make sure you have set the **ENVIRONMENT** to **Injected Web3**, and you have your MetaMask connected to Moonbase Alpha
 3. Enter the client contract address, `{{ networks.moonbase.chainlink.client_contract }}`, and click on **At Address**. This will create an instance of the client contract that you can interact with
 4. Under the **Deployed Contracts** section, use the `requestPrice()` function to query the data of the corresponding job ID
 5. Confirm the transaction. You will have to wait until the whole request process that was previously explained occurs
@@ -336,70 +336,86 @@ interface AggregatorV3Interface {
 
 As seen above in the interface, there are five functions for fetching data: `decimal`, `description`, `version`, `getRoundData`, and `latestRoundData`.
 
-Currently, there are data feed contracts for [Moonbeam](https://docs.chain.link/docs/data-feeds-moonbeam/){target=_blank}, [Moonriver](https://docs.chain.link/docs/data-feeds-moonriver/){target=_blank}, and Moonbase Alpha for the the following price pairs:
+Currently, there are data feed contracts for [Moonbeam](https://docs.chain.link/docs/data-feeds-moonbeam/){target=_blank}, [Moonriver](https://docs.chain.link/docs/data-feeds-moonriver/){target=_blank}, and Moonbase Alpha for the the following price pairs (proxy addresses):
 
 === "Moonbeam"
-
-    | Base/Quote  |                     Data Feed Contract                      |
-    |:-----------:|:-----------------------------------------------------------:|
-    | ATOM to USD | {{ networks.moonbeam.chainlink.feed.aggregator.atom_usd }} |
-    | BNB to USD  | {{ networks.moonbeam.chainlink.feed.aggregator.bnb_usd }}  |
-    | BTC to USD  | {{ networks.moonbeam.chainlink.feed.aggregator.btc_usd }}  |
-    | ETH to USD  | {{ networks.moonbeam.chainlink.feed.aggregator.eth_usd }}  |
-    | GLMR to USD | {{ networks.moonbeam.chainlink.feed.aggregator.glmr_usd }} |
-    | LINK to USD | {{ networks.moonbeam.chainlink.feed.aggregator.link_usd }} |
-    | USDC to USD | {{ networks.moonbeam.chainlink.feed.aggregator.usdc_usd }} |
+    | Base/Quote  |          Data Feed Contract  (Proxy Address)          |
+    |:-----------:|:-----------------------------------------------------:|
+    | ATOM to USD | {{ networks.moonbeam.chainlink.feed.proxy.atom_usd }} |
+    | BNB to USD  | {{ networks.moonbeam.chainlink.feed.proxy.bnb_usd }}  |
+    | BTC to USD  | {{ networks.moonbeam.chainlink.feed.proxy.btc_usd }}  |
+    | DOT to USD  | {{ networks.moonbeam.chainlink.feed.proxy.dot_usd }}  |
+    | ETH to USD  | {{ networks.moonbeam.chainlink.feed.proxy.eth_usd }}  |
+    | FRAX to USD | {{ networks.moonbeam.chainlink.feed.proxy.frax_usd }} |
+    | GLMR to USD | {{ networks.moonbeam.chainlink.feed.proxy.glmr_usd }} |
+    | LINK to USD | {{ networks.moonbeam.chainlink.feed.proxy.link_usd }} |
+    | USDC to USD | {{ networks.moonbeam.chainlink.feed.proxy.usdc_usd }} |
 
 === "Moonriver"
-    |  Base/Quote  |                      Data Feed Contract                      |
-    |:------------:|:------------------------------------------------------------:|
-    | 1INCH to USD | {{ networks.moonriver.chainlink.feed.aggregator.inch_usd }}  |
-    | AAVE to USD  | {{ networks.moonriver.chainlink.feed.aggregator.aave_usd }}  |
-    | ANKR to USD  | {{ networks.moonriver.chainlink.feed.aggregator.ankr_usd }}  |
-    | AVAX to USD  | {{ networks.moonriver.chainlink.feed.aggregator.avax_usd }}  |
-    |  AXS to USD  |  {{ networks.moonriver.chainlink.feed.aggregator.axs_usd }}  |
-    |  BNB to USD  |  {{ networks.moonriver.chainlink.feed.aggregator.bnb_usd }}  |
-    |  BTC to USD  |  {{ networks.moonriver.chainlink.feed.aggregator.btc_usd }}  |
-    | CAKE to USD  | {{ networks.moonriver.chainlink.feed.aggregator.cake_usd }}  |
-    | COMP to USD  | {{ networks.moonriver.chainlink.feed.aggregator.comp_usd }}  |
-    |  CRV to USD  |  {{ networks.moonriver.chainlink.feed.aggregator.crv_usd }}  |
-    |  DAI to USD  |  {{ networks.moonriver.chainlink.feed.aggregator.dai_usd }}  |
-    |  DOT to USD  |  {{ networks.moonriver.chainlink.feed.aggregator.dot_usd }}  |
-    |  ETH to USD  |  {{ networks.moonriver.chainlink.feed.aggregator.eth_usd }}  |
-    |  EUR to USD  |  {{ networks.moonriver.chainlink.feed.aggregator.eur_usd }}  |
-    | FRAX to USD  | {{ networks.moonriver.chainlink.feed.aggregator.frax_usd }}  |
-    |  FTM to USD  |  {{ networks.moonriver.chainlink.feed.aggregator.ftm_usd }}  |
-    |  FXS to USD  |  {{ networks.moonriver.chainlink.feed.aggregator.fxs_usd }}  |
-    |  KSM to USD  |  {{ networks.moonriver.chainlink.feed.aggregator.ksm_usd }}  |
-    | LINK to USD  | {{ networks.moonriver.chainlink.feed.aggregator.link_usd }}  |
-    | LUNA to USD  | {{ networks.moonriver.chainlink.feed.aggregator.luna_usd }}  |
-    | MANA to USD  | {{ networks.moonriver.chainlink.feed.aggregator.mana_usd }}  |
-    |  MIM to USD  |  {{ networks.moonriver.chainlink.feed.aggregator.mim_usd }}  |
-    |  MKR to USD  |  {{ networks.moonriver.chainlink.feed.aggregator.mkr_usd }}  |
-    | MOVR to USD  | {{ networks.moonriver.chainlink.feed.aggregator.movr_usd }}  |
-    | SAND to USD  | {{ networks.moonriver.chainlink.feed.aggregator.sand_usd }}  |
-    |  SNX to USD  |  {{ networks.moonriver.chainlink.feed.aggregator.snx_usd }}  |
-    | SUSHI to USD | {{ networks.moonriver.chainlink.feed.aggregator.sushi_usd }} |
-    | THETA to USD | {{ networks.moonriver.chainlink.feed.aggregator.theta_usd }} |
-    |  UNI to USD  |  {{ networks.moonriver.chainlink.feed.aggregator.uni_usd }}  |
-    | USDC to USD  | {{ networks.moonriver.chainlink.feed.aggregator.usdc_usd }}  |
-    | USDT to USD  | {{ networks.moonriver.chainlink.feed.aggregator.usdt_usd }}  |
-    |  XRP to USD  |  {{ networks.moonriver.chainlink.feed.aggregator.xrp_usd }}  |
-    |  YFI to USD  |  {{ networks.moonriver.chainlink.feed.aggregator.yfi_usd }}  |
+    |  Base/Quote  |           Data Feed Contract  (Proxy Address)           |
+    |:------------:|:-------------------------------------------------------:|
+    | 1INCH to USD | {{ networks.moonriver.chainlink.feed.proxy.inch_usd }}  |
+    | AAVE to USD  | {{ networks.moonriver.chainlink.feed.proxy.aave_usd }}  |
+    | ANKR to USD  | {{ networks.moonriver.chainlink.feed.proxy.ankr_usd }}  |
+    | AVAX to USD  | {{ networks.moonriver.chainlink.feed.proxy.avax_usd }}  |
+    |  AXS to USD  |  {{ networks.moonriver.chainlink.feed.proxy.axs_usd }}  |
+    |  BNB to USD  |  {{ networks.moonriver.chainlink.feed.proxy.bnb_usd }}  |
+    |  BTC to USD  |  {{ networks.moonriver.chainlink.feed.proxy.btc_usd }}  |
+    | BUSD to USD  | {{ networks.moonriver.chainlink.feed.proxy.busd_usd }}  |
+    | CAKE to USD  | {{ networks.moonriver.chainlink.feed.proxy.cake_usd }}  |
+    | COMP to USD  | {{ networks.moonriver.chainlink.feed.proxy.comp_usd }}  |
+    |  CRV to USD  |  {{ networks.moonriver.chainlink.feed.proxy.crv_usd }}  |
+    |  DAI to USD  |  {{ networks.moonriver.chainlink.feed.proxy.dai_usd }}  |
+    |  DOT to USD  |  {{ networks.moonriver.chainlink.feed.proxy.dot_usd }}  |
+    |  ETH to USD  |  {{ networks.moonriver.chainlink.feed.proxy.eth_usd }}  |
+    |  EUR to USD  |  {{ networks.moonriver.chainlink.feed.proxy.eur_usd }}  |
+    | FRAX to USD  | {{ networks.moonriver.chainlink.feed.proxy.frax_usd }}  |
+    |  FTM to USD  |  {{ networks.moonriver.chainlink.feed.proxy.ftm_usd }}  |
+    |  FXS to USD  |  {{ networks.moonriver.chainlink.feed.proxy.fxs_usd }}  |
+    |  KSM to USD  |  {{ networks.moonriver.chainlink.feed.proxy.ksm_usd }}  |
+    | LINK to USD  | {{ networks.moonriver.chainlink.feed.proxy.link_usd }}  |
+    | LUNA to USD  | {{ networks.moonriver.chainlink.feed.proxy.luna_usd }}  |
+    | MANA to USD  | {{ networks.moonriver.chainlink.feed.proxy.mana_usd }}  |
+    |  MIM to USD  |  {{ networks.moonriver.chainlink.feed.proxy.mim_usd }}  |
+    |  MKR to USD  |  {{ networks.moonriver.chainlink.feed.proxy.mkr_usd }}  |
+    | MOVR to USD  | {{ networks.moonriver.chainlink.feed.proxy.movr_usd }}  |
+    | SAND to USD  | {{ networks.moonriver.chainlink.feed.proxy.sand_usd }}  |
+    |  SNX to USD  |  {{ networks.moonriver.chainlink.feed.proxy.snx_usd }}  |
+    | SUSHI to USD | {{ networks.moonriver.chainlink.feed.proxy.sushi_usd }} |
+    | THETA to USD | {{ networks.moonriver.chainlink.feed.proxy.theta_usd }} |
+    |  UNI to USD  |  {{ networks.moonriver.chainlink.feed.proxy.uni_usd }}  |
+    | USDC to USD  | {{ networks.moonriver.chainlink.feed.proxy.usdc_usd }}  |
+    | USDT to USD  | {{ networks.moonriver.chainlink.feed.proxy.usdt_usd }}  |
+    |  XRP to USD  |  {{ networks.moonriver.chainlink.feed.proxy.xrp_usd }}  |
+    |  YFI to USD  |  {{ networks.moonriver.chainlink.feed.proxy.yfi_usd }}  |
 
 === "Moonbase Alpha"
-    |  Base/Quote  |                     Data Feed Contract                      |
-    |:------------:|:-----------------------------------------------------------:|
-    | AAVE to USD  | {{ networks.moonbase.chainlink.feed.aggregator.aave_usd }}  |
-    | ALGO to USD  | {{ networks.moonbase.chainlink.feed.aggregator.algo_usd }}  |
-    | BAND to USD  | {{ networks.moonbase.chainlink.feed.aggregator.band_usd }}  |
-    |  BTC to USD  |  {{ networks.moonbase.chainlink.feed.aggregator.btc_usd }}  |
-    |  DOT to USD  |  {{ networks.moonbase.chainlink.feed.aggregator.dot_usd }}  |
-    |  ETH to USD  |  {{ networks.moonbase.chainlink.feed.aggregator.eth_usd }}  |
-    |  KSM to USD  |  {{ networks.moonbase.chainlink.feed.aggregator.ksm_usd }}  |
-    | LINK to USD  | {{ networks.moonbase.chainlink.feed.aggregator.link_usd }}  |
-    | SUSHI to USD | {{ networks.moonbase.chainlink.feed.aggregator.sushi_usd }} |
-    |  UNI to USD  |  {{ networks.moonbase.chainlink.feed.aggregator.uni_usd }}  |
+    |  Base/Quote  |          Data Feed Contract  (Proxy Address)           |
+    |:------------:|:------------------------------------------------------:|
+    | AAVE to USD  | {{ networks.moonbase.chainlink.feed.proxy.aave_usd }}  |
+    | ALGO to USD  | {{ networks.moonbase.chainlink.feed.proxy.algo_usd }}  |
+    | AVAX to USD  | {{ networks.moonbase.chainlink.feed.proxy.avax_usd }}  |
+    | BAND to USD  | {{ networks.moonbase.chainlink.feed.proxy.band_usd }}  |
+    |  BNB to USD  |  {{ networks.moonbase.chainlink.feed.proxy.bnb_usd }}  |
+    |  BTC to USD  |  {{ networks.moonbase.chainlink.feed.proxy.btc_usd }}  |
+    | COMP to USD  | {{ networks.moonbase.chainlink.feed.proxy.comp_usd }}  |
+    |  CRV to USD  |  {{ networks.moonbase.chainlink.feed.proxy.crv_usd }}  |
+    |  CVX to USD  |  {{ networks.moonbase.chainlink.feed.proxy.cvx_usd }}  |
+    |  DAI to USD  |  {{ networks.moonbase.chainlink.feed.proxy.dai_usd }}  |
+    |  DOT to USD  |  {{ networks.moonbase.chainlink.feed.proxy.dot_usd }}  |
+    |  ETH to USD  |  {{ networks.moonbase.chainlink.feed.proxy.eth_usd }}  |
+    | FRAX to USD  | {{ networks.moonbase.chainlink.feed.proxy.frax_usd }}  |
+    |  FTM to USD  |  {{ networks.moonbase.chainlink.feed.proxy.ftm_usd }}  |
+    |  KSM to USD  |  {{ networks.moonbase.chainlink.feed.proxy.ksm_usd }}  |
+    | LINK to USD  | {{ networks.moonbase.chainlink.feed.proxy.link_usd }}  |
+    |  MKR to USD  |  {{ networks.moonbase.chainlink.feed.proxy.mkr_usd }}  |
+    |  OP to USD   |  {{ networks.moonbase.chainlink.feed.proxy.op_usd }}   |
+    | stETH to USD | {{ networks.moonbase.chainlink.feed.proxy.steth_usd }} |
+    | SUSHI to USD | {{ networks.moonbase.chainlink.feed.proxy.sushi_usd }} |
+    |  UNI to USD  |  {{ networks.moonbase.chainlink.feed.proxy.uni_usd }}  |
+    | USDC to USD  | {{ networks.moonbase.chainlink.feed.proxy.usdc_usd }}  |
+    | USDT to USD  | {{ networks.moonbase.chainlink.feed.proxy.usdt_usd }}  |
+    |  YFI to USD  |  {{ networks.moonbase.chainlink.feed.proxy.yfi_usd }}  |
 
 For example, you can use the aggregator interface to fetch the price feed of `BTC to USD` using [Remix](https://remix.ethereum.org/){target=_blank}. If you need help loading a contract into Remix, check out the [Using Remix](/builders/build/eth-api/dev-env/remix/){target=_blank} page of the documentation site.
 
@@ -408,24 +424,24 @@ You will need to connect your MetaMask account to Remix, so make sure you have M
 After creating the file and compiling the contract, you will need to follow these steps:
 
 1. Head to the **Deploy and Run Transactions** tab
-2. Set the **Environment** to **Injected Web3**
-3. If your MetaMask is already connected it will appear in the **Account** selector. Otherwise, you will be prompted by MetaMask to select and connect your account(s)
-4. Select the `AggregatorV3Interface` contract from the **Contract** dropdown
+2. Set the **ENVIRONMENT** to **Injected Web3**
+3. If your MetaMask is already connected it will appear in the **ACCOUNT** selector. Otherwise, you will be prompted by MetaMask to select and connect your account(s)
+4. Select the `AggregatorV3Interface` contract from the **CONTRACT** dropdown
 5. Enter the Data Feed contract address corresponding to `BTC to USD` in the **At Address** field and click the **At Address** button:
 
     === "Moonbeam"
         ```
-        {{ networks.moonbeam.chainlink.feed.aggregator.btc_usd }}
+        {{ networks.moonbeam.chainlink.feed.proxy.btc_usd }}
         ```
 
     === "Moonriver"
         ```
-        {{ networks.moonriver.chainlink.feed.aggregator.btc_usd }}
+        {{ networks.moonriver.chainlink.feed.proxy.btc_usd }}
         ```
 
     === "Moonbase Alpha"
         ```
-        {{ networks.moonbase.chainlink.feed.aggregator.btc_usd }}
+        {{ networks.moonbase.chainlink.feed.proxy.btc_usd }}
         ```
 
 ![Load the Chainlink Price Feed Aggregator Interface on Moonriver](/images/builders/integrations/oracles/chainlink/chainlink-2.png)

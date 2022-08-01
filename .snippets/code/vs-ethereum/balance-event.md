@@ -45,11 +45,11 @@ const main = async () => {
         ({ phase }) => phase.isApplyExtrinsic && phase.asApplyExtrinsic.eq(index)
       );
 
-      // This hash will only exist if the transaction was executed through ethereum.
+      // This hash will only exist if the transaction was executed through Ethereum.
       let ethereumHash = "";
 
       if (isEthereum) {
-        // Search for ethereum execution
+        // Search for Ethereum execution
         events.forEach(({ event }) => {
           if (event.section == "ethereum" && event.method == "Executed") {
             ethereumHash = event.data[2].toString();

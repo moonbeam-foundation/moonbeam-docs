@@ -21,7 +21,7 @@ You can check this page for a tutorial on [deploying smart contracts](/builders/
 
 This tutorial will use the same contract as the above deployment tutorial for the contract verification example. 
 
-The contract used is a simple incrementer, arbitrarily named _Incrementer.sol_. The Solidity code is the following:
+The contract used is a simple incrementer, arbitrarily named `Incrementer.sol`. The Solidity code is the following:
 
 ```solidity
 --8<-- 'code/web3-contract-local/Incrementer.sol'
