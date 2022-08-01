@@ -6,7 +6,7 @@ keywords: solidity, ethereum, call permit, permit, gasless transaction, moonbeam
 
 # Interacting with the Call Permit Precompile
 
-![Precomiled Contracts Banner](/images/builders/build/canonical-contracts/precompiles/call-permit/call-permit-banner.png)
+![Precomiled Contracts Banner](/images/builders/pallets-precompiles/precompiles/call-permit/call-permit-banner.png)
 
 ## Introduction {: #introduction } 
 
