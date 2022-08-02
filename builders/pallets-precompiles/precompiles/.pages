@@ -1,11 +1,11 @@
 title: Solidity Precompiles
 nav:
   - index.md
+  - 'Batch': 'batch.md'
+  - 'Call Permit': 'call-permit.md'
+  - 'Democracy': 'democracy.md'
   - 'Ethereum Native': 'eth-mainnet.md'
   - 'Native Token ERC-20': 'erc20.md'
   - 'Staking Functions': 'staking.md'
-  - 'Democracy': 'democracy.md'
-  - 'Batch': 'batch.md'
   - 'X-Tokens': '/builders/xcm/xc20/xtokens/#xtokens-precompile'
   - 'XCM-Transactor': '/builders/xcm/xcm-transactor/#xcmtransactor-precompile'
-  - 'Call Permit': 'call-permit.md'

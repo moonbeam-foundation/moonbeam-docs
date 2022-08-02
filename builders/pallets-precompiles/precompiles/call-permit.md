@@ -52,13 +52,10 @@ keccak256(PERMIT_DOMAIN, name, version, chain_id, address)
 The parameters of the hash can be broken down as follows:
 
  - **PERMIT_DOMAIN** - is the `keccak256` of `EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)`
- - **name** - is the name of the signing domain, i.e. the name of the DApp or protocol
+ - **name** - is the name of the signing domain and must be `"Call Permit Precompile"` exactly
  - **version** - is the version of the signing domain. For this case **version** is set to `1`
  - **chainId** - is the chain ID of the network
  - **verifyingContract** - is the address of the contract that will verify the signature. In this case, the call permit precompile address
-
-!!! note
-    Prior to runtime upgrade 1600, the **name** field does not follow the standard [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612#specification){target=_blank} implementation.
 
 When `dispatch` is called, the permit needs to be verified before the call is dispatched. The first step is to [compute the domain separator](https://github.com/PureStake/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L138){target=_blank}. The calculation can be seen in [Moonbeam's implementation](https://github.com/PureStake/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L112-L126){target=_blank} or you can check out a a practical example in [OpenZeppelin's EIP712 contract](ttps://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/cryptography/draft-EIP712.sol#L70-L84){target=_blank}.
 
@@ -163,7 +160,7 @@ Regardless of which method you choose to generate the signature, the following s
 
 1. The `message` will be created and includes some of the data that is needed to create the call permit. It includes the arguments that will be passed into the `dispatch` function and the nonce of the signer
 2. A JSON structure of the data the user needs to sign will be assembled for the call permit and include all of the types for the `dispatch` arguments and the nonce. This will result in the `CallPermit` type and will be saved as the `primaryType`
-3. The domain separator will be created using the name of the DApp or protocol, the version of your DApp or platform, the chain ID of the network the signature is to be used on, and the address of the contract that will verify the signature
+3. The domain separator will be created using `"Call Permit Precompile"` exactly for the name, the version of your DApp or platform, the chain ID of the network the signature is to be used on, and the address of the contract that will verify the signature
 4. All of the assembled data, the `types`, `domain`, `primaryType` and `message`, will be signed using MetaMask (either in the browser or through the MetaMask's JavaScript signing library)
 5. The signature will be returned and you can use [Ethers.js](https://docs.ethers.io/v5/){target=_blank} [`splitSignature` method](https://docs.ethers.io/v5/api/utils/bytes/#utils-splitSignature){target=_blank} to return the `v`, `r`, and `s` values of the signature
 
