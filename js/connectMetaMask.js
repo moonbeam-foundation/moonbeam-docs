@@ -48,8 +48,8 @@ const supportedNetworks = {
     rpcUrls: ['https://bobabase.boba.network/'],
     blockExplorerUrls: ['https://blockexplorer.bobabase.boba.network/'],
     nativeCurrency: {
-      name: 'DEV',
-      symbol: 'DEV',
+      name: 'BOBA',
+      symbol: 'BOBA',
       decimals: 18,
     },
   },
