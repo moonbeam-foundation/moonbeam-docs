@@ -139,7 +139,3 @@ If the contract verification was successful, in your terminal, you should see **
 ![Successful verification using truffle-verify-plugin](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-4.png)
 
 For further information on the plugin, please refer to the [README.md file](https://github.com/rkalis/truffle-plugin-verify#readme){target=_blank} of the `truffle-plugin-verify` GitHub repository.
-
-## Using Foundry {: #using-the-foundry-verify-plugin }
-
-Foundry's forge tool has etherscan verification built in. 

@@ -174,22 +174,22 @@ You can also mutate data with cast as well. Try burning tokens by sending them t
 
 === "Moonbeam"
     ```
-    cast call YOUR_CONTRACT_ADDRESS "transfer(address,uint256)" --rpc-url {{ networks.moonbeam.rpc_url }}
+    cast send --private-key YOUR_PRIVATE_KEY --rpc-url {{ networks.moonbeam.rpc_url }} --chain {{ networks.moonbeam.chain_id }} YOUR_CONTRACT_ADDRESS "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
     ```
 
 === "Moonriver"
     ```
-    cast call YOUR_CONTRACT_ADDRESS "transfer(address,uint256)" --rpc-url {{ networks.moonriver.rpc_url }}
+    cast send --private-key YOUR_PRIVATE_KEY --rpc-url {{ networks.moonriver.rpc_url }} --chain {{ networks.moonriver.chain_id }} YOUR_CONTRACT_ADDRESS "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
     ```
 
 === "Moonbase Alpha"
     ```
-    cast call YOUR_CONTRACT_ADDRESS "transfer(address,uint256)" --rpc-url {{ networks.moonbase.rpc_url }}
+    cast send --private-key YOUR_PRIVATE_KEY --rpc-url {{ networks.moonbase.rpc_url }} --chain {{ networks.moonbase.chain_id }} YOUR_CONTRACT_ADDRESS "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
     ```
 
 === "Moonbeam Dev Node"
     ```      
-    cast call YOUR_CONTRACT_ADDRESS "transfer(address,uint256)" --rpc-url {{ networks.development.rpc_url }}
+    cast send --private-key YOUR_PRIVATE_KEY --rpc-url {{ networks.development.rpc_url }} --chain {{ networks.development.chain_id }} YOUR_CONTRACT_ADDRESS "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
     ```
 
 The transaction will be signed by your Moonbase account and be broadcasted to the network. The output should look similar to:
