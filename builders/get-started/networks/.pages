@@ -5,3 +5,4 @@ nav:
   - 'Moonbase Alpha': 'moonbase.md'
   - 'Moonriver': 'moonriver.md'
   - 'Moonbeam': 'moonbeam.md'
+  - layer2
