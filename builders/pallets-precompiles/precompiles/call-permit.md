@@ -33,7 +33,7 @@ The interface includes the following functions:
      - `from` - the signer of the permit. The call will be dispatched on behalf of this address
      - `to` - the address the call is made to
      - `value` - the value being transferred from the `from` account
-     - `data` - the call data
+     - `data` - the call data, or action to be executed
      - `gasLimit` - the gas limit the dispatched call requires. Providing an argument for this parameter prevents the dispatcher from manipulating the gas limit
      - `deadline` - the time in UNIX seconds after which the permit will no longer be valid. In JavaScript, you can get the current time in UNIX seconds by running `console.log(Date.now())` in a JavaScript script or a browser console
      - `v` - the recovery ID of the signature. The last one byte of the concatenated signature
