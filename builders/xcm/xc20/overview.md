@@ -59,7 +59,24 @@ The [Permit.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/a
 - **nonces**(*address* owner) - returns the current nonce for the given owner
 - **DOMAIN_SEPARATOR**() - returns the EIP-712 domain separator which is used to avoid replay attacks. It follows the [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612#specification){target=_blank} implementation
 
---8<-- 'text/permits/domain-separator.md'
+The **DOMAIN_SEPARATOR()** is defined in the [EIP-712 standard](https://eips.ethereum.org/EIPS/eip-712){target=_blank}, and is calculated as:
+
+```
+keccak256(PERMIT_DOMAIN, name, version, chain_id, address)
+```
+
+The parameters of the hash can be broken down as follows:
+
+ - **PERMIT_DOMAIN** - is the `keccak256` of `EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)`
+ - **name** - is the token name but with the following considerations:
+     - If the token has a name defined, the **name** for the domain is `XC20: <name>`, where `<name>` is the token name
+     - If the token has no name defined, the **name** for the domain is `XC20: No name`
+ - **version** - is the version of the signing domain. For this case **version** is set to `1`
+ - **chainId** - is the chain ID of the network
+ - **verifyingContract** - is the XC-20 address
+
+!!! note
+    Prior to runtime upgrade 1600, the **name** field does not follow the standard [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612#specification){target=_blank} implementation.
 
 The calculation of the domain separator can be seen in [Moonbeam's EIP-2612](https://github.com/PureStake/moonbeam/blob/perm-runtime-1502/precompiles/assets-erc20/src/eip2612.rs#L130-L154){target=_blank} implementation, with a practical example shown in [OpenZeppelin's `EIP712` contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/cryptography/draft-EIP712.sol#L70-L84){target=_blank}.
 
