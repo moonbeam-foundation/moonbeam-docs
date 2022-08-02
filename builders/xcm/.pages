@@ -2,7 +2,8 @@ title: XCM Interoperability
 nav:
   - index.md
   - 'Overview': 'overview.md'
-  - xc20
   - 'XC Channel Registration': 'xc-integration.md'
+  - xc20
   - 'Remote Execution': 'xcm-transactor.md'
+  - 'Remote EVM Calls': 'remote-evm-calls.md'
   - 'XCM Fees': 'fees.md'
