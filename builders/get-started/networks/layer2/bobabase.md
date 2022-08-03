@@ -19,7 +19,7 @@ Boba is a compute-focused Layer 2 (L2) built on the Optimistic Rollup developed 
 Bobabase chain ID is: `1297`, which is `0x511` in hex.
 
 ## Block Explorer
-The Bobabase Block Explorer is an [instance of Blockscout](https://blockexplorer.bobabase.boba.network/){target=_blank}.
+The Bobabase Block Explorer is an [instance of Blockscout]({{ networks.bobabase.gateway }}){target=_blank}.
 
 ## Connect MetaMask {: #connect-metamask }
 
@@ -36,11 +36,11 @@ If you do not have MetaMask installed, or would like to follow a tutorial to get
 
 ## Get Tokens with the Faucet {: #get-tokens-with-the-faucet } 
 
-Testnet BOBA is distributed via a Tweet-authenticated faucet on [Bobabase Gateway](https://gateway.bobabase.boba.network/){target=_blank}, a home for your Boba Layer 2 activities akin to [Apps.Moonbeam.Network](https://apps.moonbeam.network/){target=_blank}. Bobabase allows fee payment in either DEV or testnet BOBA, and you can toggle this setting via a dropdown in the upper right corner.
+Testnet BOBA is distributed via a Tweet-authenticated faucet on [Bobabase Gateway]({{ networks.bobabase.gateway }}){target=_blank}, a home for your Boba Layer 2 activities akin to [Apps.Moonbeam.Network](https://apps.moonbeam.network/){target=_blank}. Bobabase allows fee payment in either DEV or testnet BOBA, and you can toggle this setting via a dropdown in the upper right corner.
 
 To get some testnet BOBA, take the following steps:
 
-1. Head to [Bobabase Gateway](https://gateway.bobabase.boba.network/){target=_blank}
+1. Head to [Bobabase Gateway]({{ networks.bobabase.gateway }}){target=_blank}
 2. Ensure you're on the [BobaBase Network](#connect-metamask) and Click **Connect** to Connect your MetaMask Wallet
 3. Press **Tweet Now**, and Send the Public Tweet
 4. Copy the link to the tweet and paste it in the box 
@@ -52,9 +52,9 @@ If you don't have a Twitter account, you can contact us on [Discord](https://dis
 
 ## Bridge from Moonbase Alpha to Bobabase {: #bridge-from-moonbase-alpha-to-bobabase }
 
-[Bobabase Gateway](https://gateway.bobabase.boba.network/){target=_blank} enables you to bridge various assets to and from Bobabase. To bridge assets from Moonbase Alpha to Bobabase, take the following steps:
+[Bobabase Gateway]({{ networks.bobabase.gateway }}){target=_blank} enables you to bridge various assets to and from Bobabase. To bridge assets from Moonbase Alpha to Bobabase, take the following steps:
 
-1. Head to [Bobabase Gateway](https://gateway.bobabase.boba.network/){target=_blank} and Press **Connect**
+1. Head to [Bobabase Gateway]({{ networks.bobabase.gateway }}){target=_blank} and Press **Connect**
 2. Click on **Moonbase Wallet** in the upper left corner 
 3. Next to the asset you'd like to bridge, press **Bridge to L2**
 4. Enter the amount you'd like to bridge and press **Bridge**
@@ -64,9 +64,9 @@ If you don't have a Twitter account, you can contact us on [Discord](https://dis
 
 ## Bridge from Bobabase to Moonbase Alpha {: #bridge-from-bobabase-to-moonbase-alpha }
 
-[Bobabase Gateway](https://gateway.bobabase.boba.network/){target=_blank} enables you to bridge various assets to and from Bobabase. Note, when bridging back from the Layer 2, there is a 7-day delay before your funds are available on Moonbase Alpha. This delay is an inherent safety feature of the optimistic rollup architecture and applies only when bridging from the Layer 2 back to the Layer 1. To bridge assets from Bobabase to Moonbase Alpha, take the following steps:
+[Bobabase Gateway]({{ networks.bobabase.gateway }}){target=_blank} enables you to bridge various assets to and from Bobabase. Note, when bridging back from the Layer 2, there is a 7-day delay before your funds are available on Moonbase Alpha. This delay is an inherent safety feature of the optimistic rollup architecture and applies only when bridging from the Layer 2 back to the Layer 1. To bridge assets from Bobabase to Moonbase Alpha, take the following steps:
 
-1. Head to [Bobabase Gateway](https://gateway.bobabase.boba.network/){target=_blank} and Press **Connect**
+1. Head to [Bobabase Gateway]({{ networks.bobabase.gateway }}){target=_blank} and Press **Connect**
 2. Click on **Boba Wallet** in the upper left corner
 3. Next to the asset you'd like to bridge, press **Bridge to L1** 
 4. Enter the amount you'd like to bridge and press **Bridge**
