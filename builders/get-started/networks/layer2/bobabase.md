@@ -19,7 +19,8 @@ description: Bobabase is the official TestNet for the Boba Layer Two Deployment 
 Bobabase chain ID is: `1297`, which is `0x511` in hex.
 
 ## Block Explorer
-The Bobabase Block Explorer is an [instance of Blockscout](https://blockexplorer.bobabase.boba.network/){target=_blank}.
+
+The Bobabase block explorer is an [instance of Blockscout](https://blockexplorer.bobabase.boba.network/){target=_blank}.
 
 ## Connect MetaMask {: #connect-metamask }
 
