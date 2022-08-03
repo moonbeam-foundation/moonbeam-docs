@@ -16,11 +16,11 @@ description: Bobabase is the official TestNet for the Boba Layer Two Deployment 
 
 ## Chain ID {: #chain-id } 
 
-Bobabase chain ID is: `1297`, which is `0x511` in hex.
+Bobabase chain ID is: `{{ networks.bobabase.chain_id }}`, which is `{{ networks.bobabase.hex_chain_id }}` in hex.
 
 ## Block Explorer
 
-The Bobabase Block Explorer is an [instance of Blockscout]({{ networks.bobabase.gateway }}){target=_blank}.
+The Bobabase block explorer is an [instance of Blockscout]({{ networks.bobabase.block_explorer }}){target=_blank}.
 
 
 ## Connect MetaMask {: #connect-metamask }
@@ -38,10 +38,10 @@ If you do not have MetaMask installed, or would like to follow a tutorial to get
 
 ## Get Tokens with the Faucet {: #get-tokens-with-the-faucet } 
 
-Testnet BOBA is distributed via a Tweet-authenticated faucet on [Bobabase Gateway]({{ networks.bobabase.gateway }}){target=_blank}, a home for your Boba Layer 2 activities akin to [Apps.Moonbeam.Network](https://apps.moonbeam.network/){target=_blank}. Bobabase allows fee payment in either DEV or testnet BOBA, and you can toggle this setting via a dropdown in the upper right corner.
+TestNet BOBA is distributed via a tweet-authenticated faucet on [Bobabase Gateway]({{ networks.bobabase.gateway }}){target=_blank}, a home for your Boba Layer 2 activities akin to [apps.moonbeam.network](https://apps.moonbeam.network/){target=_blank}. Bobabase allows fee payment in either DEV or TestNet BOBA, and you can toggle this setting via a dropdown in the upper right corner.
 
 
-To get some testnet BOBA, take the following steps:
+To get some TestNet BOBA, take the following steps:
 
 1. Head to [Bobabase Gateway]({{ networks.bobabase.gateway }}){target=_blank}
 2. Ensure you're on the [BobaBase Network](#connect-metamask) and Click **Connect** to Connect your MetaMask Wallet
@@ -51,7 +51,7 @@ To get some testnet BOBA, take the following steps:
 
 ![Bobabase Faucet](/images/builders/get-started/networks/bobabase/bobabase-1.png)
 
-If you don't have a Twitter account, you can contact us on [Discord](https://discord.gg/PfpUATX){target=_blank} to receive testnet BOBA.
+If you don't have a Twitter account, you can contact us on [Discord](https://discord.gg/PfpUATX){target=_blank} to receive TestNet BOBA.
 
 ## Bridge from Moonbase Alpha to Bobabase {: #bridge-from-moonbase-alpha-to-bobabase }
 

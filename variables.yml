@@ -609,10 +609,10 @@ networks:
       display: 86,309,000
       numbers_only: 86309000
   bobabase:
-    rpc_url: https://rpc.api.moonbase.moonbeam.network
-    wss_url: wss://wss.api.moonbase.moonbeam.network
-    gateway: https://gateway.bobabase.boba.network
-    chain_id: 1287
-    hex_chain_id: '0x507'
-    chain_spec: alphanet
-    block_explorer: https://moonbase.moonscan.io/
+    rpc_url: https://bobabase.boba.network/
+    replica_rpc_url: https://replica.bobabase.boba.network/
+    wss_url: wss://wss.bobabase.boba.network/
+    gateway: https://gateway.bobabase.boba.network/
+    chain_id: 1297
+    hex_chain_id: '0x511'
+    block_explorer: https://blockexplorer.bobabase.boba.network/
