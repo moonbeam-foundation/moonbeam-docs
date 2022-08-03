@@ -72,6 +72,6 @@ If you don't have a Twitter account, you can contact us on [Discord](https://dis
 3. Next to the asset you'd like to bridge, press **Bridge to L1** 
 4. Enter the amount you'd like to bridge and press **Bridge**
 5. Confirm the transaction in MetaMask
-6. Your funds will be available on Moonbase Alpha in 7 days. Note, there is no follow up claim transaction necessary- Boba automatically handles this step on your behalf
+6. Your funds will be available on Moonbase Alpha in 7 days. Note, there is no follow up claim transaction necessary, Boba automatically handles this step on your behalf
 
 ![Bridge to Bobabase](/images/builders/get-started/networks/bobabase/bobabase-3.png)
