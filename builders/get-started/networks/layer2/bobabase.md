@@ -14,6 +14,33 @@ description: Bobabase is the official TestNet for the Boba Layer Two Deployment 
 
 --8<-- 'text/endpoints/bobabase.md'
 
+## Quick Start {: #quick-start } 
+
+It's easy to get started building on Bobabase. If you're using the Web3.js library, you can create a local Web3 instance and set the provider to connect to Bobabase (both HTTP and WS are supported):
+
+```js
+const Web3 = require('web3'); //Load Web3 library
+
+//Create local Web3 instance - set Bobabase as provider
+const web3 = new Web3('{{ networks.bobabase.rpc_url }}');
+```
+
+For the Ethers.js library, define the provider by using `ethers.providers.StaticJsonRpcProvider(providerURL, {object})` and setting the provider URL to Bobabase:
+
+```js
+const ethers = require('ethers');
+
+const providerURL = '{{ networks.bobabase.rpc_url }}';
+
+// Define Provider
+const provider = new ethers.providers.StaticJsonRpcProvider(providerURL, {
+    chainId: {{ networks.bobabase.chain_id }},
+    name: 'bobabase'
+});
+```
+
+For more detailed tutorials on working with Ethers.js and Web3.js, head to [Ethereum API Libraries](/builders/build/eth-api/libraries/){target=_blank}. Any Ethereum wallet should be able to generate a valid address for Bobabase (for example, [MetaMask](https://metamask.io/)).
+
 ## Chain ID {: #chain-id } 
 
 Bobabase chain ID is: `{{ networks.bobabase.chain_id }}`, which is `{{ networks.bobabase.hex_chain_id }}` in hex.
