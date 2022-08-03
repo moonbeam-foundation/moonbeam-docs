@@ -30,7 +30,7 @@ networks:
     node:
       cores: 8
       ram: 16
-      hd: 250
+      hd: 1
     thegraph:
       lotto_contract: '0x44ddD2EC5BE2A7f3e4A465C21600bE8df644093f'
       block_number: 132605
@@ -225,7 +225,7 @@ networks:
     node:
       cores: 8
       ram: 16
-      hd: 500
+      hd: 1
     xcm:
       instructions:
         weight_units:
@@ -402,7 +402,7 @@ networks:
     node:
       cores: 8
       ram: 16
-      hd: 500
+      hd: 1
     xcm:
       instructions:
         weight_units:
