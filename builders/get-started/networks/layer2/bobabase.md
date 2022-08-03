@@ -8,7 +8,7 @@ description: Bobabase is the official testnet for the Boba Layer Two Deployment 
 ![Bobabase Banner](/images/builders/get-started/networks/bobabase/bobabase-banner.png)
 
 ## Introduction
-Boba is a compute-focused Layer 2 (L2) built on the Optimistic Rollup developed by [Optimism](https://www.optimism.io/){target=_blank}. Boba augments the compute capabilities of EVM-compatible blockchains with a variety of features including [Turing hybrid compute](https://docs.boba.network/turing/turing){target=_blank}. After launching on Ethereum, Boba has brought its Layer 2 scaling solution to Moonbeam. Bobabase is the name of Boba's testnet deployment on Moonbase Alpha. Bobabeam (not yet live) refers to Boba's mainnet deployment on Moonbeam.
+[Boba](https://boba.network/){target=_blank} is a compute-focused Layer 2 (L2) built on the Optimistic Rollup developed by [Optimism](https://www.optimism.io/){target=_blank}. Boba augments the compute capabilities of EVM-compatible blockchains with a variety of features including [Turing hybrid compute](https://docs.boba.network/turing/turing){target=_blank}. After launching on Ethereum, Boba has brought its Layer 2 scaling solution to Moonbeam. Bobabase is the name of Boba's TestNet deployment on Moonbase Alpha. Bobabeam (not yet live) refers to Boba's MainNet deployment on Moonbeam.
 
 ## Network Endpoints {: #network-endpoints }
 
