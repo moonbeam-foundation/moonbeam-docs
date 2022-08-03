@@ -33,7 +33,7 @@ If you already have MetaMask installed, you can easily connect MetaMask to Bobab
 !!! note
     MetaMask will popup asking for permission to add Bobabase as a custom network. Once you approve permissions, MetaMask will switch your current network to Bobabase.
 
-If you do not have MetaMask installed, or would like to follow a tutorial to get started, please check out the [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask/) guide.
+If you do not have MetaMask installed, or would like to follow a tutorial to get started, please check out the [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask/){target=_blank} guide.
 
 ## Get Tokens with the Faucet {: #get-tokens-with-the-faucet } 
 
