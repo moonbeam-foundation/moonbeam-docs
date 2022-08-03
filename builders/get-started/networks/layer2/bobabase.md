@@ -44,7 +44,7 @@ TestNet BOBA is distributed via a tweet-authenticated faucet on [Bobabase Gatewa
 To get some TestNet BOBA, take the following steps:
 
 1. Head to [Bobabase Gateway]({{ networks.bobabase.gateway }}){target=_blank}
-2. Ensure you're on the [BobaBase Network](#connect-metamask) and Click **Connect** to Connect your MetaMask Wallet
+2. Ensure you're on the [BobaBase network](#connect-metamask) and click **Connect** to connect your MetaMask wallet
 3. Press **Tweet Now**, and Send the Public Tweet
 4. Copy the link to the tweet and paste it in the box 
 5. Press **Authenticated Faucet** and sign the following MetaMask popup
