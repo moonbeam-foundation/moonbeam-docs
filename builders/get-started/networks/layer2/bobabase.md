@@ -1,6 +1,6 @@
 ---
 title: Bobabase
-description: Bobabase is the official testnet for the Boba Layer Two Deployment on Moonbeam. Follow this tutorial to connect to Bobabase.
+description: Bobabase is the official TestNet for the Boba Layer Two Deployment on Moonbeam. Follow this tutorial to connect to Bobabase.
 ---
 
 # Get Started with Bobabase
@@ -8,7 +8,7 @@ description: Bobabase is the official testnet for the Boba Layer Two Deployment 
 ![Bobabase Banner](/images/builders/get-started/networks/bobabase/bobabase-banner.png)
 
 ## Introduction
-Boba is a compute-focused Layer 2 (L2) built on the Optimistic Rollup developed by [Optimism](https://www.optimism.io/){target=_blank}. Boba augments the compute capabilities of EVM-compatible blockchains with a variety of features including [Turing hybrid compute](https://docs.boba.network/turing/turing){target=_blank}. After launching on Ethereum, Boba has brought its Layer 2 scaling solution to Moonbeam. Bobabase is the name of Boba's testnet deployment on Moonbase Alpha. Bobabeam (not yet live) refers to Boba's mainnet deployment on Moonbeam.
+[Boba](https://boba.network/){target=_blank} is a compute-focused Layer 2 (L2) built on the Optimistic Rollup developed by [Optimism](https://www.optimism.io/){target=_blank}. Boba augments the compute capabilities of EVM-compatible blockchains with a variety of features including [Turing hybrid compute](https://docs.boba.network/turing/turing){target=_blank}. After launching on Ethereum, Boba has brought its Layer 2 scaling solution to Moonbeam. Bobabase is the name of Boba's TestNet deployment on Moonbase Alpha. Bobabeam (not yet live) refers to Boba's MainNet deployment on Moonbeam.
 
 ## Network Endpoints {: #network-endpoints }
 
@@ -19,7 +19,9 @@ Boba is a compute-focused Layer 2 (L2) built on the Optimistic Rollup developed 
 Bobabase chain ID is: `1297`, which is `0x511` in hex.
 
 ## Block Explorer
+
 The Bobabase Block Explorer is an [instance of Blockscout]({{ networks.bobabase.gateway }}){target=_blank}.
+
 
 ## Connect MetaMask {: #connect-metamask }
 
@@ -32,11 +34,12 @@ If you already have MetaMask installed, you can easily connect MetaMask to Bobab
 !!! note
     MetaMask will popup asking for permission to add Bobabase as a custom network. Once you approve permissions, MetaMask will switch your current network to Bobabase.
 
-If you do not have MetaMask installed, or would like to follow a tutorial to get started, please check out the [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask/) guide.
+If you do not have MetaMask installed, or would like to follow a tutorial to get started, please check out the [Interacting with Moonbeam using MetaMask](/tokens/connect/metamask/){target=_blank} guide.
 
 ## Get Tokens with the Faucet {: #get-tokens-with-the-faucet } 
 
 Testnet BOBA is distributed via a Tweet-authenticated faucet on [Bobabase Gateway]({{ networks.bobabase.gateway }}){target=_blank}, a home for your Boba Layer 2 activities akin to [Apps.Moonbeam.Network](https://apps.moonbeam.network/){target=_blank}. Bobabase allows fee payment in either DEV or testnet BOBA, and you can toggle this setting via a dropdown in the upper right corner.
+
 
 To get some testnet BOBA, take the following steps:
 
@@ -71,6 +74,6 @@ If you don't have a Twitter account, you can contact us on [Discord](https://dis
 3. Next to the asset you'd like to bridge, press **Bridge to L1** 
 4. Enter the amount you'd like to bridge and press **Bridge**
 5. Confirm the transaction in MetaMask
-6. Your funds will be available on Moonbase Alpha in 7 days. Note, there is no follow up claim transaction necessary- Boba automatically handles this step on your behalf
+6. Your funds will be available on Moonbase Alpha in 7 days. Note, there is no follow up claim transaction necessary, Boba automatically handles this step on your behalf
 
 ![Bridge to Bobabase](/images/builders/get-started/networks/bobabase/bobabase-3.png)
