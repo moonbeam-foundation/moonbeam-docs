@@ -37,7 +37,7 @@ If you do not have MetaMask installed, or would like to follow a tutorial to get
 
 ## Get Tokens with the Faucet {: #get-tokens-with-the-faucet } 
 
-Testnet BOBA is distributed via a Tweet-authenticated faucet on [Bobabase Gateway](https://gateway.bobabase.boba.network/){target=_blank}, a home for your Boba Layer 2 activities akin to [Apps.Moonbeam.Network](https://apps.moonbeam.network/){target=_blank}. Bobabase allows fee payment in either DEV or testnet BOBA, and you can toggle this setting via a dropdown in the upper right corner.
+Testnet BOBA is distributed via a tweet-authenticated faucet on [Bobabase Gateway](https://gateway.bobabase.boba.network/){target=_blank}, a home for your Boba Layer 2 activities akin to [apps.moonbeam.network](https://apps.moonbeam.network/){target=_blank}. Bobabase allows fee payment in either DEV or TestNet BOBA, and you can toggle this setting via a dropdown in the upper right corner.
 
 To get some testnet BOBA, take the following steps:
 
