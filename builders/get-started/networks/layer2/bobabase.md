@@ -39,7 +39,7 @@ const provider = new ethers.providers.StaticJsonRpcProvider(providerURL, {
 });
 ```
 
-For more detailed tutorials on working with Ethers.js and Web3.js, head to [Ethereum API Libraries](/builders/build/eth-api/libraries/){target=_blank}. Any Ethereum wallet should be able to generate a valid address for Bobabase (for example, [MetaMask](https://metamask.io/)).
+For more detailed tutorials on working with Ethers.js and Web3.js, head to [Ethereum API Libraries](/builders/build/eth-api/libraries/){target=_blank}. Any Ethereum wallet should be able to generate a valid address for Bobabase (for example, [MetaMask](https://metamask.io/){target=_blank}).
 
 ## Chain ID {: #chain-id } 
 
