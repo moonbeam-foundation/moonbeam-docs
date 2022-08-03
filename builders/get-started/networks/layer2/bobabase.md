@@ -1,6 +1,6 @@
 ---
 title: Bobabase
-description: Bobabase is the official testnet for the Boba Layer Two Deployment on Moonbeam. Follow this tutorial to connect to Bobabase.
+description: Bobabase is the official TestNet for the Boba Layer Two Deployment on Moonbeam. Follow this tutorial to connect to Bobabase.
 ---
 
 # Get Started with Bobabase
