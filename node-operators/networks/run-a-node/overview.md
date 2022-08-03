@@ -33,7 +33,7 @@ The minimum specs recommended to run a node are shown in the following table. Fo
     |:------------:|:--------------------------------------------------------------------------------------------------------------------------:|
     |   **CPU**    |                             {{ networks.moonbeam.node.cores }} Cores (Fastest per core speed)                              |
     |   **RAM**    |                                            {{ networks.moonbeam.node.ram }} GB                                             |
-    |   **SSD**    |                                       {{ networks.moonbeam.node.hd }} GB (to start)                                        |
+    |   **SSD**    |                                      {{ networks.moonbeam.node.hd }} TB (recommended)                                      |
     | **Firewall** | P2P port must be open to incoming traffic:<br>&nbsp; &nbsp; - Source: Any<br>&nbsp; &nbsp; - Destination: 30333, 30334 TCP |
 
 === "Moonriver"
@@ -41,7 +41,7 @@ The minimum specs recommended to run a node are shown in the following table. Fo
     |:------------:|:--------------------------------------------------------------------------------------------------------------------------:|
     |   **CPU**    |                             {{ networks.moonriver.node.cores }} Cores (Fastest per core speed)                             |
     |   **RAM**    |                                            {{ networks.moonriver.node.ram }} GB                                            |
-    |   **SSD**    |                                       {{ networks.moonriver.node.hd }} GB (to start)                                       |
+    |   **SSD**    |                                     {{ networks.moonriver.node.hd }} TB (recommended)                                      |
     | **Firewall** | P2P port must be open to incoming traffic:<br>&nbsp; &nbsp; - Source: Any<br>&nbsp; &nbsp; - Destination: 30333, 30334 TCP |
 
 === "Moonbase Alpha"
@@ -49,7 +49,7 @@ The minimum specs recommended to run a node are shown in the following table. Fo
     |:------------:|:--------------------------------------------------------------------------------------------------------------------------:|
     |   **CPU**    |                             {{ networks.moonbase.node.cores }} Cores (Fastest per core speed)                              |
     |   **RAM**    |                                            {{ networks.moonbase.node.ram }} GB                                             |
-    |   **SSD**    |                                       {{ networks.moonbase.node.hd }} GB (to start)                                        |
+    |   **SSD**    |                                      {{ networks.moonbase.node.hd }} TB (recommended)                                      |
     | **Firewall** | P2P port must be open to incoming traffic:<br>&nbsp; &nbsp; - Source: Any<br>&nbsp; &nbsp; - Destination: 30333, 30334 TCP |
 
 !!! note
