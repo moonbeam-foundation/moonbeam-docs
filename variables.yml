@@ -609,10 +609,12 @@ networks:
       display: 86,309,000
       numbers_only: 86309000
   bobabase:
-    rpc_url: https://bobabase.boba.network/
-    replica_rpc_url: https://replica.bobabase.boba.network/
-    wss_url: wss://wss.bobabase.boba.network/
-    gateway: https://gateway.bobabase.boba.network/
+    rpc_url: https://bobabase.boba.network
+    replica_rpc_url: https://replica.bobabase.boba.network
+    wss_url: wss://wss.bobabase.boba.network
+    replica_wss_url: wss://replica-wss.bobabase.boba.network
+    gateway: https://gateway.bobabase.boba.network
     chain_id: 1297
     hex_chain_id: '0x511'
-    block_explorer: https://blockexplorer.bobabase.boba.network/
+    block_explorer: https://blockexplorer.bobabase.boba.network
+    exit_delay_period_days: 7

@@ -9,3 +9,4 @@
     |  Name  |                                           RPC URL                                            |
     |:----------:|:--------------------------------------------------------------------------------------------:|
     |   WSS    |     <pre style="padding-right: 2em">```wss://wss.bobabase.boba.network/```</pre>      |
+    |   Replica WSS  |     <pre style="padding-right: 2em">```wss://replica-wss.bobabase.boba.network/```</pre>      |
