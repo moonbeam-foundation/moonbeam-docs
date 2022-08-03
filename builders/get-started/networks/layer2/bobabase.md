@@ -67,7 +67,7 @@ If you don't have a Twitter account, you can contact us on [Discord](https://dis
 
 [Bobabase Gateway](https://gateway.bobabase.boba.network/){target=_blank} enables you to bridge various assets to and from Bobabase. Note, when bridging back from the Layer 2, there is a 7-day delay before your funds are available on Moonbase Alpha. This delay is an inherent safety feature of the optimistic rollup architecture and applies only when bridging from the Layer 2 back to the Layer 1. To bridge assets from Bobabase to Moonbase Alpha, take the following steps:
 
-1. Head to [Bobabase Gateway](https://gateway.bobabase.boba.network/){target=_blank} and Press **Connect**
+1. Head to [Bobabase Gateway](https://gateway.bobabase.boba.network/){target=_blank} and press **Connect**
 2. Click on **Boba Wallet** in the upper left corner
 3. Next to the asset you'd like to bridge, press **Bridge to L1** 
 4. Enter the amount you'd like to bridge and press **Bridge**
