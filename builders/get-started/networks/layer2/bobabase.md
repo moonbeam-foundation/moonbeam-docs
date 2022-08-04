@@ -89,7 +89,7 @@ If you don't have a Twitter account, you can contact us on [Discord](https://dis
 3. Next to the asset you'd like to bridge, press **Bridge to L2**
 4. Enter the amount you'd like to bridge and press **Bridge**
 5. Confirm the transaction in MetaMask
-6. Your funds will be available shortly on Bobabase. To confirm arrival, click on **Boba Wallet** in the upper left corner or look up your account on [Bobabase explorer]({{ networks.bobabase.block_explorer }}){target=_blank}. 
+6. Your funds will be available shortly on Bobabase. To confirm arrival, click on **Boba Wallet** in the upper left corner or look up your account on [Bobabase explorer]({{ networks.bobabase.block_explorer }}){target=_blank}
 
 ![Bridge to Bobabase](/images/builders/get-started/networks/bobabase/bobabase-2.png)
 
