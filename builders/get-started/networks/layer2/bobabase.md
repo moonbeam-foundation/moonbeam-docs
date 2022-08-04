@@ -19,9 +19,9 @@ description: Bobabase is the official TestNet for the Boba Layer Two Deployment 
 It's easy to get started building on Bobabase. If you're using the Web3.js library, you can create a local Web3 instance and set the provider to connect to Bobabase (both HTTP and WS are supported):
 
 ```js
-const Web3 = require('web3'); //Load Web3 library
+const Web3 = require('web3'); // Load Web3 library
 
-//Create local Web3 instance - set Bobabase as provider
+// Create local Web3 instance - set Bobabase as provider
 const web3 = new Web3('{{ networks.bobabase.rpc_url }}');
 ```
 
