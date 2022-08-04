@@ -13,11 +13,13 @@ description: Use Dapplooker to analyze and query on-chain data, and create dashb
 
 Gelato is live on both Moonbeam and Moonriver, enabling developers and end-users to automate smart contract interactions with Gelato Relay SDK and Gelato Ops. First, this guide will demonstrate a step-by-step tutorial to automating a smart contract interaction with Gelato Ops. Next, you'll interact with the Gelato Relay SDK via a hands-on demo.   
 
-## Getting Started with Gelato Ops {: #getting-started-with-gelato-ops }
+## Gelato Ops {: #gelato-ops }
 
 [Gelato Ops](https://app.gelato.network/){target=_blank} is a front-end for interacting with the Gelato network and managing your transaction automation. There's no sign up or registration step - your account is tied directly to your wallet. In this guide, you'll deploy a signature Gelato ice cream NFT that can be licked via a function call. Then, you'll automate the lick function according to specific parameters.
 
 ![Gelato Ops 1](/images/builders/integrations/relayers/gelato/gelato-1.png)
+
+### Try It Out {: #try-it-out }
 
 To get started with this guide, you'll need to have some GLMR or MOVR in your free balance. Then, head to [Gelato Ops](https://app.gelato.network/tutorial){target=_blank} and ensure that your wallet is connected. To kick off the tutorial, you'll need to press **Mint NFT** and confirm the transaction in MetaMask. 
 
@@ -36,25 +38,27 @@ Then, take the following steps:
 
 ![Gelato Ops 2](/images/builders/integrations/relayers/gelato/gelato-2.png)
 
-And that's it! You've successfully set up your first recurring smart contract interaction with Gelato. Your automated smart contract interactions will continue according to the set schedule until paused or until the remaining funds for gas are drained. 
+And that's it! You've successfully set up your first recurring smart contract interaction with Gelato. Your automated smart contract interactions will continue according to the set schedule until the remaining funds for gas are drained or the automation is paused on Gelato Ops. 
 
-## Managing your Automated Tasks {: #managing-your-automated-tasks }
+### Managing your Automated Tasks {: #managing-your-automated-tasks }
 
-On [app.gelato.network,](https://app.gelato.network/){target=_blank} you'll see all of your automations and their associated statuses. You can click on an automation to see more details about the task and its execution history. Here you can also make any changes to the automated task, including pausing or resuming the task. To pause a task, press **Pause** in the upper right corner and confirm the transaction in your wallet. You can resume the automation at any time by pressing **Restart** and confirming the transaction in your wallet.
+On [app.gelato.network](https://app.gelato.network/){target=_blank}, you'll see all of your automations and their associated statuses. You can click on an automation to see more details about the task and its execution history. Here you can also make any changes to the automated task, including pausing or resuming the task. To pause a task, press **Pause** in the upper right corner and confirm the transaction in your wallet. You can resume the automation at any time by pressing **Restart** and confirming the transaction in your wallet.
 
 At the bottom of the page, you can see your task's execution history including the transaction status and the gas cost. Note, Gelato does not charge any fees - the only fees are gas costs. You can click on the **Task Logs** tab to see a detailed debugging level history of your automated tasks, which may be especially helpful in the event a transaction failed or did not execute.  
 
 ![Gelato Ops 3](/images/builders/integrations/relayers/gelato/gelato-3.png)
 
-## Managing your Gas Funds {: #managing-your-automated-tasks }
+### Managing your Gas Funds {: #managing-your-gas-funds }
 
-To manage your gas funds on [app.gelato.network](https://app.gelato.network/tutorial){target=_blank}, click on the **Funds** Box in the upper left corner. Here, you can top up your balance of gas funds or withdraw them. You can also register be notified with low balance alerts. 
+To manage your gas funds on [app.gelato.network](https://app.gelato.network/){target=_blank}, click on the **Funds** Box in the upper left corner. Here, you can top up your balance of gas funds or withdraw them. You can also register be notified with low balance alerts. 
 
 To deposit funds for gas, take the following steps:
 
 1. Click on the **Funds** Box in the upper left corner
 2. Enter the amount of funds you'd like to deposit
 3. Click **Deposit** and confirm the transaction in your wallet
+
+You can follow a similar set of steps to withdraw your gas funds from Gelato. 
 
 ![Gelato Ops 4](/images/builders/integrations/relayers/gelato/gelato-4.png)
 
