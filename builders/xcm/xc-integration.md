@@ -159,7 +159,7 @@ To get the call data to be executed in step 3, you can head to Polkdot.js Apps a
 
     === "Moonbase Alpha"
         ```
-        8
+        1000
         ```
 
  5. Enter the **proposedMaxMessageSize**. This value is set to the respective relay chain's configuration (`configuration.activeConfig.hrmpChannelMaxMessageSize`)
@@ -176,10 +176,10 @@ To get the call data to be executed in step 3, you can head to Polkdot.js Apps a
 
     === "Moonbase Alpha"
         ```
-        1024
+        102400
         ```
 
-  6. Copy the encoded call data, which will be required for the `Transact` XCM instruction as previously mentioned. For example, on Moonbase Alpha the encoded call data is `0x3300e80300000800000000040000`
+  6. Copy the encoded call data, which will be required for the `Transact` XCM instruction as previously mentioned. For example, on Moonbase Alpha the encoded call data is `0x3300e8030000e803000000900100`
 
 ![Get open HRMP channel relay chain call data on Polkadot.js Apps](/images/builders/xcm/xc-integration/xc-integration-1.png)
 
@@ -265,7 +265,7 @@ To get started, head to [Polkadot.js Apps](https://polkadot.js.org/apps/#/explor
  5. Click **Submit Transaction**
 
 !!! note
-    Using the above example values and the Moonbase Alpha relay chain sovereign account address, the encoded call data for the extrinsic is `0x1c000101000214000400000000070010a5d4e81300000000070010a5d4e800060002286bee383300e80300000800000000040000140d0100040001010070617261e8030000000000000000000000000000000000000000000000000000`.
+    Using the above example values and the Moonbase Alpha relay chain sovereign account address, the encoded call data for the extrinsic is `0x1c000101000214000400000000070010a5d4e81300000000070010a5d4e800060002286bee383300e8030000e803000000900100140d0100040001010070617261e8030000000000000000000000000000000000000000000000000000`.
 
 ![Open HRMP channel XCM message on Polkadot.js Apps](/images/builders/xcm/xc-integration/xc-integration-2.png)
 
