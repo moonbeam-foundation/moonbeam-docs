@@ -141,7 +141,7 @@ To fetch a list of all registered addresses allowed to operate through the Moonb
 
 ## XCM-Transactor Precompile {: #xcmtransactor-precompile}
 
-The XCM-transactor precompile contract allows developers to access the XCM-transactor pallet features through the Ethereum API of Moonbeam-based networks. Similar to other [precompile contracts](/builders/build/canonical-contracts/precompiles/){target=_blank}, the XCM-transactor precompile is located at the following addresses:
+The XCM-transactor precompile contract allows developers to access the XCM-transactor pallet features through the Ethereum API of Moonbeam-based networks. Similar to other [precompile contracts](/builders/pallets-precompiles/precompiles/){target=_blank}, the XCM-transactor precompile is located at the following addresses:
 
 === "Moonbeam"
      ```
