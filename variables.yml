@@ -25,7 +25,6 @@ networks:
     binary_name: moonbeam
     min_gas_price: 1
     block_time: 12
-    discord_faucet_amount: 1 DEV token
     website_faucet_amount: 5 DEV tokens
     node:
       cores: 8
