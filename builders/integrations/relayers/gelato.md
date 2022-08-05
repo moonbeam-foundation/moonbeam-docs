@@ -115,7 +115,7 @@ In this step, we'll create a new test account that will submit the gasless trans
 
 #### Add Request Data:
 
-In this step we have to provide the abi-encoded call data for the function we want to interact with. You can generate this by taking the following steps:
+In this step we have to provide the ABI-encoded call data for the function we want to interact with. You can generate this by taking the following steps:
 
 1. Navigate to the **Write Contract** heading of the [Hello World Contract on Moonscan](https://moonscan.io/address/0x3456E168d2D7271847808463D6D383D079Bd5Eaa#writeContract){target=_blank} 
 2. Press  **Connect to Web3**. After you accept the terms and conditions, you can connect your wallet
@@ -123,6 +123,10 @@ In this step we have to provide the abi-encoded call data for the function we wa
 4. Press **Write**
 5. Without confirming the transaction in MetaMask, click on the **Hex** tab
 6. Press **Copy Raw Transaction Data**
+
+The resulting ABI-encodeded call data should look like `0x4b327067000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeaeeeeeeeeeeeeeeeee`
+
+![Gelato Relay SDK](/images/builders/integrations/relayers/gelato/gelato-5.png)
 
 There are some additional parameters defined here, such as paymentType, maxFee, and gas limit. There are a variety of possible [payment types](https://docs.gelato.network/developer-products/gelato-relay-sdk/payment-types){target=_blank} you can choose from. For simplicity, replay protection has not been considered in this example. 
 
@@ -147,7 +151,7 @@ There are some additional parameters defined here, such as paymentType, maxFee, 
 
 #### Putting it All Together
 
-The last few steps are building the request object, hashing it, and finally, signing it. The last step is to submit the request and the signature to the Gelato Relay API. You can copy and paste the below code into a javascript file. You can name the `hello-world.js` or a similar name. 
+The last few steps are building the request object, hashing it, and finally, signing it. The last step is to submit the request and the signature to the Gelato Relay API. You can copy and paste the below code into a javascript file. You can name the file `hello-world.js` or a similar name. 
 
 ```
 import { Wallet, utils } from "ethers";
@@ -223,7 +227,7 @@ To execute the script and dispatch the gasless transaction to Gelato Relay API, 
 node hello-world.js
 ```
 
-You should see a message logged to the console that says `ForwardRequest submitted!` You can also verify your relayed transaction was successfully executed by checking [this Gelato contract on Moonscan](https://moonscan.io/address/0x91f2a140ca47ddf438b9c583b7e71987525019bb){target=_blank}.
+You should see a message logged to the console that says `ForwardRequest submitted!` You can also verify your relayed transaction was successfully executed by checking the latest transactions of [this Gelato contract on Moonscan](https://moonscan.io/address/0x91f2a140ca47ddf438b9c583b7e71987525019bb){target=_blank}.
 
 
 --8<-- 'text/disclaimers/third-party-content.md'
