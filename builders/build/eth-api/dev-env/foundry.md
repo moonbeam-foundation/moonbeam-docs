@@ -11,7 +11,8 @@ description: Learn how to use Foundry, an Ethereum development environment, to c
 
 [Foundry](https://github.com/foundry-rs/foundry){target=_blank} is an Ethereum development environment written in Rust that helps developers manage dependencies, compile projects, run tests, deploy contracts, and interact with blockchains from the command line. Foundry can directly interact with Moonbeam's Ethereum API so it can be used to deploy smart contracts into Moonbeam.
 
-There are three tools that make up Foundry:
+There are three tools that make up Foundry:  
+
 - Forge: compiles, tests, and deploys contracts
 - Cast: a command line interface for interacting with contracts
 - Anvil: a local testnet node for development purposes that can fork preexisting networks
@@ -51,7 +52,8 @@ You will need to create a Hardhat project if you don't already have one. You can
     forge init foundry
     ```
 
-With the default project created, you should see three folders. 
+With the default project created, you should see three folders.  
+
 - `lib`: all of the project's dependencies in the form of git submodules
 - `src`: where to put your smart contracts (with functionality)
 - `test`: where to put the forge tests for your project, which are written in solidity
