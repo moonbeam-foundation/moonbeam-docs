@@ -11,7 +11,7 @@ description: Use Dapplooker to analyze and query on-chain data, and create dashb
 
 [Gelato Network](https://www.gelato.network/){target=_blank} is a decentralized automation network for Web3, enabling developers to automate & relay arbitrary smart contract executions on and across EVM-based compatible blockchains. The network relies on a broad set of transaction relayers called [executors](https://docs.gelato.network/introduction/executor-operators){target=_blank} that are rewarded for the infrastructure and automation services they provide. Gelato is designed to be a more robust, decentralized, and cost-efficient alternative to running your own bot infrastructure.
 
-Gelato is live on both Moonbeam and Moonriver, enabling developers and end-users to automate smart contract interactions with Gelato Relay SDK and Gelato Ops. First, this guide will demonstrate a step-by-step tutorial to automating a smart contract interaction with Gelato Ops. Next, you'll interact with the Gelato Relay SDK via a hands-on demo.   
+Gelato is live on both Moonbeam and Moonriver, enabling developers and end-users to automate smart contract interactions with Gelato Ops and the Gelato Relay SDK. First, this guide will demonstrate a step-by-step tutorial to automating a smart contract interaction with Gelato Ops. Next, you'll interact with the Gelato Relay SDK via a hands-on demo.   
 
 ## Gelato Ops {: #gelato-ops }
 
@@ -38,7 +38,7 @@ Then, take the following steps:
 
 ![Gelato Ops 2](/images/builders/integrations/relayers/gelato/gelato-2.png)
 
-And that's it! You've successfully set up your first recurring smart contract interaction with Gelato. Your automated smart contract interactions will continue according to the set schedule until the remaining funds for gas are drained or the automation is paused on Gelato Ops. 
+And that's it! You've successfully set up your first recurring smart contract interaction with Gelato. Your automated smart contract interactions will continue according to the set schedule until the remaining funds for gas are drained or the automation is paused on Gelato Ops. This example was a simple demo, but you can automate much more complex interactions and build increasingly sophisticated logic into your automated tasks. Be sure to check out [docs.gelato.network](https://docs.gelato.network/developer-products/gelato-ops-smart-contract-automation-hub){target=_blank} for more information.
 
 ### Managing your Automated Tasks {: #managing-your-automated-tasks }
 
@@ -61,5 +61,26 @@ To deposit funds for gas, take the following steps:
 You can follow a similar set of steps to withdraw your gas funds from Gelato. 
 
 ![Gelato Ops 4](/images/builders/integrations/relayers/gelato/gelato-4.png)
+
+## Gelato Relay SDK {: #gelato-relay-sdk }
+
+[Gelato Relay SDK](https://docs.gelato.network/developer-products/gelato-relay-sdk){target=_blank} is a collection of functions that enable you to interact with the Gelato Relay API. Per Gelato Docs, *Gelato Relay API is a service that allows users and developers to get transactions mined fast, reliably and securely, without having to deal with the low-level complexities of blockchains.* A key feature of this offering is the ability to provide users with gasless transactions. 
+
+### Checking Prerequisites {: #checking-prerequisites }
+
+Running this service locally through NPM requires Node.js to be installed. 
+
+--8<-- 'text/common/install-nodejs.md'
+
+### Installation {: #installation }
+
+Gelato Relay SDK is an [NPM package](https://www.npmjs.com/package/@gelatonetwork/gelato-relay-sdk){target=_blank} that can be installed locally in the current directory with the following command:
+
+```
+npm install @gelatonetwork/gelato-relay-sdk
+```
+
+### Try out the Gelato Relay SDK {: #try-out-the-gelato-relay-sdk }
+
 
 --8<-- 'text/disclaimers/third-party-content.md'
