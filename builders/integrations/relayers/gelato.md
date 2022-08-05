@@ -44,17 +44,17 @@ And that's it! You've successfully set up your first recurring smart contract in
 
 On [app.gelato.network](https://app.gelato.network/){target=_blank}, you'll see all of your automations and their associated statuses. You can click on an automation to see more details about the task and its execution history. Here you can also make any changes to the automated task, including pausing or resuming the task. To pause a task, press **Pause** in the upper right corner and confirm the transaction in your wallet. You can resume the automation at any time by pressing **Restart** and confirming the transaction in your wallet.
 
-At the bottom of the page, you can see your task's execution history including the transaction status and the gas cost. Note, Gelato does not charge any fees - the only fees are gas costs. You can click on the **Task Logs** tab to see a detailed debugging level history of your automated tasks, which may be especially helpful in the event a transaction failed or did not execute.  
+At the bottom of the page, you can see your task's execution history including the transaction status and the gas cost. You can click on the **Task Logs** tab to see a detailed debugging level history of your automated tasks, which may be especially helpful in the event a transaction failed or did not execute.  
 
 ![Gelato Ops 3](/images/builders/integrations/relayers/gelato/gelato-3.png)
 
 ### Managing your Gas Funds {: #managing-your-gas-funds }
 
-To manage your gas funds on [app.gelato.network](https://app.gelato.network/){target=_blank}, click on the **Funds** Box in the upper left corner. Here, you can top up your balance of gas funds or withdraw them. You can also register be notified with low balance alerts. 
+To manage your gas funds on [app.gelato.network](https://app.gelato.network/){target=_blank}, click on the **Funds** box in the upper left corner. Here, you can top up your balance of gas funds or withdraw them. You can also register be notified with low balance alerts. 
 
 To deposit funds for gas, take the following steps:
 
-1. Click on the **Funds** Box in the upper left corner
+1. Click on the **Funds** box in the upper left corner
 2. Enter the amount of funds you'd like to deposit
 3. Click **Deposit** and confirm the transaction in your wallet
 
@@ -81,9 +81,9 @@ npm install @gelatonetwork/gelato-relay-sdk
 ```
 
 ### Try out the Gelato Relay SDK {: #try-out-the-gelato-relay-sdk }
-In this demo, we'll ask Gelato Relay SDK to call a `HelloWorld` smart contract on our behalf. Note, there is no dependency on RPC providers - once the transaction and signature are built, we simply pass it along to the Gelato Relay API. 
+In this demo, we'll ask Gelato Relay SDK to call a `HelloWorld` smart contract on our behalf. The script being built is sourced from the [quick start guide](https://docs.gelato.network/developer-products/gelato-relay-sdk/quick-start){target=_blank} on Gelato Docs. Note, there is no dependency on RPC providers - once the transaction and signature are built, we simply pass them along to the Gelato Relay API. 
 
-#### Setup
+#### Setup {: #setup }
 First, we need to import the Gelato Relay SDK and EthersJS:
 
 ```
@@ -91,7 +91,7 @@ First, we need to import the Gelato Relay SDK and EthersJS:
   import { GelatoRelaySDK } from "@gelatonetwork/gelato-relay-sdk";
 ```
 
-#### Define the ChainID and Target Contract:
+#### Define the ChainID and Target Contract {: #define-the-chainid-and-target-contract }
 Next, we'll define the chain ID and the [HelloWorld contract](https://moonscan.io/address/0x3456E168d2D7271847808463D6D383D079Bd5Eaa){target=_blank} that we want to interact with.
 
 ```
@@ -100,8 +100,8 @@ Next, we'll define the chain ID and the [HelloWorld contract](https://moonscan.i
   const target = "0x3456E168d2D7271847808463D6D383D079Bd5Eaa";
 ```
 
-#### Create a Test Account:
-In this step, we'll create a new test account that will submit the gasless transaction. This account is insecure and should not be used in production. We've defined a test_token with a default value since we won't actually be submitting any real funds with this gasless transaction. 
+#### Create a Test Account {: #create-a-test-account }
+In this step, we'll create a new test account that will submit the gasless transaction. This account is insecure and should not be used in production. We've defined a `test_token` with a default value for demonstration purposes. 
 
 ```
   const test_token = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
@@ -113,13 +113,13 @@ In this step, we'll create a new test account that will submit the gasless trans
 ```
 
 
-#### Add Request Data:
+#### Add Request Data {: #add-request-data }
 
 In this step we have to provide the ABI-encoded call data for the function we want to interact with. You can generate this by taking the following steps:
 
 1. Navigate to the **Write Contract** heading of the [Hello World Contract on Moonscan](https://moonscan.io/address/0x3456E168d2D7271847808463D6D383D079Bd5Eaa#writeContract){target=_blank} 
 2. Press  **Connect to Web3**. After you accept the terms and conditions, you can connect your wallet
-3. Head to the `2. sayHiVanilla` function and provide the following default value for the `_feeToken` parameter: `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE`
+3. Head to the `sayHiVanilla` function and provide the following default value for the `_feeToken` parameter: `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE`
 4. Press **Write**
 5. Without confirming the transaction in MetaMask, click on the **Hex** tab
 6. Press **Copy Raw Transaction Data**
@@ -133,6 +133,7 @@ There are some additional parameters defined here, such as paymentType, maxFee, 
 ```
   // abi encode for HelloWorld.sayHiVanilla(address _feeToken)
   const data = `0x4b327067000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeaeeeeeeeeeeeeeeeee`;
+  
   // Async Gas Tank payment model (won't be enforced on testnets, 
   // hence no need to deposit into Gelato's Gas Tank smart contract)
   const paymentType = 1;
@@ -140,6 +141,7 @@ There are some additional parameters defined here, such as paymentType, maxFee, 
   const maxFee = "1000000000000000000";
   // Gas limit
   const gas = "200000";
+  
   // We do not enforce smart contract nonces to simplify the example.
   // In reality, this decision depends whether or not target
   // address already implements replay protection. (More info in the docs)
@@ -149,7 +151,7 @@ There are some additional parameters defined here, such as paymentType, maxFee, 
   const enforceSponsorNonceOrdering = false;
 ```
 
-#### Putting it All Together
+#### Putting it All Together {: #putting-it-all-together }
 
 The last few steps are building the request object, hashing it, and finally, signing it. The last step is to submit the request and the signature to the Gelato Relay API. You can copy and paste the below code into a javascript file. You can name the file `hello-world.js` or a similar name. 
 
