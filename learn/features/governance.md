@@ -104,4 +104,4 @@ Token holders can submit proposals and vote on referenda on Moonbeam, Moonriver,
 
  - [Submit a proposal](/tokens/governance/proposals/)
  - [Vote on a proposal](/tokens/governance/voting/)
- - [Interact with DemocracyInterface.sol](/builders/build/canonical-contracts/precompiles/democracy/)
+ - [Interact with DemocracyInterface.sol](/builders/pallets-precompiles/precompiles/democracy/)
