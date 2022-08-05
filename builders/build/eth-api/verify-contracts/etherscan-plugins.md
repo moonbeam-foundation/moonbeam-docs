@@ -139,3 +139,43 @@ If the contract verification was successful, in your terminal, you should see **
 ![Successful verification using truffle-verify-plugin](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-4.png)
 
 For further information on the plugin, please refer to the [README.md file](https://github.com/rkalis/truffle-plugin-verify#readme){target=_blank} of the `truffle-plugin-verify` GitHub repository.
+
+## Using Foundry to Verify {: #using-foundry-to-verify }
+
+The example in this section of the guide will use the `MyToken.sol` contract that was created in the [Using Foundry to Deploy to Moonbeam](/builders/build/eth-api/dev-env/foundry/){target=_blank} guide.
+
+In addition to the Foundry project, you will need a [Moonbeam Moonscan](https://moonscan.io/){target=_blank} API key. If you want to verify a contract on Moonriver, you'll need a [Moonriver Moonscan](https://moonriver.moonscan.io/){target=_blank} API key. 
+
+If you have already deployed the example contract, you can verify it with the `verify-contract` command:
+
+=== "Moonbeam"
+    ```
+    forge verify-contract --chain-id {{ networks.moonbeam.chain_id }} YOUR_CONTRACT_ADDRESS src/MyToken.sol:MyToken YOUR_MOONSCAN_API_KEY
+    ```
+
+=== "Moonriver"
+    ```
+    forge verify-contract --chain-id {{ networks.moonriver.chain_id }} YOUR_CONTRACT_ADDRESS src/MyToken.sol:MyToken YOUR_MOONSCAN_API_KEY
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    forge verify-contract --chain-id {{ networks.moonbase.chain_id }} YOUR_CONTRACT_ADDRESS src/MyToken.sol:MyToken YOUR_MOONSCAN_API_KEY
+    ```
+
+If you wanted to deploy the example contract and verify at the same time, then you would use the following command:
+
+=== "Moonbeam"
+    ```
+    cast send --private-key YOUR_PRIVATE_KEY --rpc-url {{ networks.moonbeam.rpc_url }} --etherscan-api-key YOUR_MOONSCAN_API_KEY --verify --chain {{ networks.moonbeam.chain_id }} YOUR_CONTRACT_ADDRESS "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
+    ```
+
+=== "Moonriver"
+    ```
+    cast send --private-key YOUR_PRIVATE_KEY --rpc-url {{ networks.moonriver.rpc_url }} --etherscan-api-key YOUR_MOONSCAN_API_KEY --verify --chain {{ networks.moonriver.chain_id }} YOUR_CONTRACT_ADDRESS "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    cast send --private-key YOUR_PRIVATE_KEY --rpc-url {{ networks.moonbase.rpc_url }} --etherscan-api-key YOUR_MOONSCAN_API_KEY --verify --chain {{ networks.moonbase.chain_id }} YOUR_CONTRACT_ADDRESS "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
+    ```
