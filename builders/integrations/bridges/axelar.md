@@ -1,35 +1,28 @@
 ---
-title: Bridging Assets through the Axelar Network
-description: Learn how to bridge assets from multiple blockchains to Moonbeam using the Axelar Network
+title: Going Cross-Chain Via Axelar Network
+description: Learn how to bridge assets, plus other ways you can connect your Moonbeam dApp to assets and functions on multiple blockchains using Axelar network & APIs.
 ---
 
 # Axelar Network
 
-Insert Axelar banner
-
 ## Introduction 
 
-Write 2-3 paragraphs about Axelar and how it works. These should be long-lived, meaning they will not require changes in the future.
+Axelar delivers secure cross-chain communication for Web3. Our infrastructure enables dApp users to interact with any asset or application, on any connected chain, with one click. Powered by a permissionless Proof-of-Stake validator set, Axelar network allows dApps to pass arbitrary messages across chains using Turing-complete calls.
 
-Axelar delivers secure cross-chain communication for Web3. Secure means Axelar is built on proof-of-stake, the battle-tested approach used by Avalanche, Cosmos, Eth2, etc. Cross-chain communication means you can build a complete experience for your users that lets them interact with any asset, any application, on any chain with one click.
+Axelar is a full-stack transport layer that supports asset transfer, General Message Passing and composability of programs. It securely connects all blockchain ecosystems, applications, assets and users to deliver Web3 interoperability. Axelar is composed of a decentralized network of validators, secure gateway contracts, uniform translation, routing architecture, and a suite of protocols and application programming interfaces (APIs). Take a look at the [Tech Stack Diagram](https://axelar.network/blog/an-introduction-to-the-axelar-network) for more details.
+
+The Axelar APIs provide a rich suite for developing Web3 applications, ensuring that developers have the tools they need for building. With these tools and APIs, developers can use the Axelar network and its APIs to write dApps that can be easily deployed across all Axelar-connected ecosystems. In other words, Axelar distills cross-chain interoperability down to a simple set of API requests.
+
 
 ## Getting Started
 
-A short section that points to the most important parts of your documentation site that helps developers get started with Axelar
-
-https://docs.axelar.dev/dev/intro
+Check out our [developer documentation](https://docs.axelar.dev/dev/intro) to start building cross-chain applications with Axelar.
 
 ## Contracts
 
-A short section that points to the main Axelar contracts deployed on Moonbeam
+See the list of Axelar contracts deployed to Moonbeam, and the networks connected to Moonbeam through Axelar.
 
-Mainnet
+Mainnet Contracts: [Moonbeam](https://docs.axelar.dev/dev/build/contract-addresses/mainnet)
 
-Gateway Contract:
-0x4F4495243837681061C4743b74B3eEdf548D56A5
-
-Gas Receiver Contract:
-0x27927CD55db998b720214205e598aA9AD614AEE3
-
-
+Testnet Contracts: [Moonbase Alpha](https://docs.axelar.dev/dev/build/contract-addresses/testnet)
 
