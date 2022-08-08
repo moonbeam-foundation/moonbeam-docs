@@ -367,17 +367,17 @@ From the response, you can see that the `transactExtraWeightSigned` is `400,000,
 
 PICTURE_HERE
 
-Note that this `UnitsPerSecond` is related to the cost estimated in the [Relay Chain XCM Fee Calculation](/builders/xcm/fees/#polkadot){target=_blank} section. As before, calculating the associated XCM execution fee is as simple as multiplying the `transactExtraWeight` times the `UnitsPerSecond`:
+Note that this `UnitsPerSecond` is related to the cost estimated in the [Relay Chain XCM Fee Calculation](/builders/xcm/fees/#polkadot){target=_blank} section. You'll need to find the correct value to ensure that the amount of tokens the multilocation-derivative account holds is correct. As before, calculating the associated XCM execution fee is as simple as multiplying the `transactExtraWeight` times the `UnitsPerSecond`:
 
 ```
-Total-Planck-DOT = transactExtraWeight * UnitsPerSecond
-DOT = Total-Planck-DOT / DOTDecimalConversion
+Total-Wei-Tokens = transactExtraWeight * UnitsPerSecond
+Tokens = Total-Wei-DOT / TokensDecimalConversion
 ```
 
 Therefore, the actual calculation for one XCM-transactor transact through derivative call is:
 
 ```
-Total-Planck-DOT = 1000000000 * 120692776537
+Total-Wei-Tokens = 1000000000 * 120692776537
 DOT = 362078329.611 / 10^10
 ```
 
