@@ -13,9 +13,9 @@ description: Learn how to use Foundry, an Ethereum development environment, to c
 
 There are three tools that make up Foundry:  
 
-- Forge: compiles, tests, and deploys contracts
-- Cast: a command line interface for interacting with contracts
-- Anvil: a local testnet node for development purposes that can fork preexisting networks
+- **Forge** - compiles, tests, and deploys contracts
+- **Cast** - a command line interface for interacting with contracts
+- **Anvil** - a local TestNet node for development purposes that can fork preexisting networks
 
 This guide will cover how to use Foundry to compile, deploy, and debug Ethereum smart contracts on the Moonbase Alpha TestNet. This guide can also be adapted for Moonbeam, Moonriver, or Moonbeam development node.
 
