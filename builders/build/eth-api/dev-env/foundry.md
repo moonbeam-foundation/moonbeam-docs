@@ -31,7 +31,7 @@ To get started, you will need the following:
 
 ## Creating a Foundry Project {: #creating-a-foundry-project }
 
-You will need to create a Hardhat project if you don't already have one. You can create one by completing the following steps:
+You will need to create a Foundry project if you don't already have one. You can create one by completing the following steps:
 
 1. Install Foundry if you haven't already. If on Linux or MacOS, you can run these commands:
   
@@ -85,7 +85,7 @@ contract MyToken is ERC20 {
 }
 ```
 
-Before you attempt to compile, install OpenZeppelin contracts as a dependency. By default, Foundry uses git submodules instead of npm packages, so the traditional npm import path and command are not used. Instead, use the name of OpenZeppelin's Github repository:
+Before you attempt to compile, install OpenZeppelin contracts as a dependency. You may have to commit previous changes to git beforehand. By default, Foundry uses git submodules instead of npm packages, so the traditional npm import path and command are not used. Instead, use the name of OpenZeppelin's Github repository:
 
 ```
 forge install OpenZeppelin/openzeppelin-contracts

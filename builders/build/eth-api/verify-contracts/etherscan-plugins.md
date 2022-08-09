@@ -11,7 +11,7 @@ description: Learn about how to verify smart contracts on Moonbeam networks usin
 
 Verifying smart contracts is a great way of improving the transparency and security of contracts deployed on Moonbeam. There are a couple of plugins that integrate with Etherscan's contract verification service, including the [`hardhat-etherscan` plugin](https://hardhat.org/plugins/nomiclabs-hardhat-etherscan.html){target=_blank} and the [`truffle-plugin-verify` plugin](https://github.com/rkalis/truffle-plugin-verify){target=_blank}. Both plugins can be used to automate the process of verifying contracts by locally detecting which contracts to verify and which Solidity libraries are required, if any.
 
-The Hardhat plugin integrates seamlessly into your [Hardhat](https://hardhat.org/){target=_blank} project, and likewise the Truffle plugin integrates into your [Truffle](https://trufflesuite.com/){target=_blank} project.
+The Hardhat plugin integrates seamlessly into your [Hardhat](https://hardhat.org/){target=_blank} project, and likewise the Truffle plugin integrates into your [Truffle](https://trufflesuite.com/){target=_blank} project. [Foundry](https://github.com/foundry-rs/foundry){target=_blank} also has Etherscan capabilities, but they are built into its Forge tool instead of being included in a separate plugin.
 
 This guide will show you how to use both plugins to verify smart contracts deployed on Moonbase Alpha. This guide can also be adapted for Moonbeam and Moonriver.
 
@@ -144,7 +144,7 @@ For further information on the plugin, please refer to the [README.md file](http
 
 The example in this section of the guide will use the `MyToken.sol` contract that was created in the [Using Foundry to Deploy to Moonbeam](/builders/build/eth-api/dev-env/foundry/){target=_blank} guide.
 
-In addition to the Foundry project, you will need a [Moonbeam Moonscan](https://moonscan.io/){target=_blank} API key. If you want to verify a contract on Moonriver, you'll need a [Moonriver Moonscan](https://moonriver.moonscan.io/){target=_blank} API key. 
+In addition to the Foundry project, you will need a [Moonbeam Moonscan](https://moonscan.io/){target=_blank} API key. This API key can be used for both the Moonbeam and Moonbase Alpha networks. If you want to verify a contract on Moonriver, you'll need a [Moonriver Moonscan](https://moonriver.moonscan.io/){target=_blank} API key. 
 
 If you have already deployed the example contract, you can verify it with the `verify-contract` command:
 
@@ -163,19 +163,24 @@ If you have already deployed the example contract, you can verify it with the `v
     forge verify-contract --chain-id {{ networks.moonbase.chain_id }} YOUR_CONTRACT_ADDRESS src/MyToken.sol:MyToken YOUR_MOONSCAN_API_KEY
     ```
 
+![Foundry Verify](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-5.png)
+
 If you wanted to deploy the example contract and verify at the same time, then you would use the following command:
 
 === "Moonbeam"
     ```
-    cast send --private-key YOUR_PRIVATE_KEY --rpc-url {{ networks.moonbeam.rpc_url }} --etherscan-api-key YOUR_MOONSCAN_API_KEY --verify --chain {{ networks.moonbeam.chain_id }} YOUR_CONTRACT_ADDRESS "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
+    forge create --rpc-url {{ networks.moonbeam.rpc_url }} --constructor-args 100 --etherscan-api-key YOUR_MOONSCAN_API_KEY --verify --private-key YOUR_PRIVATE_KEY src/MyToken.sol:MyToken     
     ```
 
 === "Moonriver"
     ```
-    cast send --private-key YOUR_PRIVATE_KEY --rpc-url {{ networks.moonriver.rpc_url }} --etherscan-api-key YOUR_MOONSCAN_API_KEY --verify --chain {{ networks.moonriver.chain_id }} YOUR_CONTRACT_ADDRESS "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
+    forge create --rpc-url {{ networks.moonriver.rpc_url }} --constructor-args 100 --etherscan-api-key YOUR_MOONSCAN_API_KEY --verify --private-key YOUR_PRIVATE_KEY src/MyToken.sol:MyToken     
     ```
 
 === "Moonbase Alpha"
     ```
-    cast send --private-key YOUR_PRIVATE_KEY --rpc-url {{ networks.moonbase.rpc_url }} --etherscan-api-key YOUR_MOONSCAN_API_KEY --verify --chain {{ networks.moonbase.chain_id }} YOUR_CONTRACT_ADDRESS "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
+    forge create --rpc-url {{ networks.moonbase.rpc_url }} --constructor-args 100 --etherscan-api-key YOUR_MOONSCAN_API_KEY --verify --private-key YOUR_PRIVATE_KEY src/MyToken.sol:MyToken 
     ```
+
+![Foundry Contract Deploy and Verify](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-6.png)
+
