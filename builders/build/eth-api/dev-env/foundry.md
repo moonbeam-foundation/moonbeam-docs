@@ -17,7 +17,7 @@ There are three tools that make up Foundry:
 - **Cast** - a command line interface for interacting with contracts
 - **Anvil** - a local TestNet node for development purposes that can fork preexisting networks
 
-This guide will cover how to use Foundry to compile, deploy, and debug Ethereum smart contracts on the Moonbase Alpha TestNet. This guide can also be adapted for Moonbeam, Moonriver, or Moonbeam development node.
+This guide will cover how to use Foundry to compile, deploy, and debug Ethereum smart contracts on the Moonbase Alpha TestNet. This guide can also be adapted for Moonbeam, Moonriver, or a Moonbeam development node.
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
@@ -54,15 +54,15 @@ You will need to create a Hardhat project if you don't already have one. You can
 
 With the default project created, you should see three folders.  
 
-- `lib`: all of the project's dependencies in the form of git submodules
-- `src`: where to put your smart contracts (with functionality)
-- `test`: where to put the forge tests for your project, which are written in solidity
+- `lib` - all of the project's dependencies in the form of git submodules
+- `src` - where to put your smart contracts (with functionality)
+- `test` - where to put the forge tests for your project, which are written in Solidity
 
 In addition to these three folders, a git project will also be created along with a prewritten `.gitignore` file with relevant file types and folders ignored.
 
 ## The Source Folder {: #the-src-folder } 
 
-The `src` folder may already contain `Contract.sol`, a minimal solidity contract. Feel free to delete it. Instead, you will be deploying an ERC-20 contract. In the contracts directory, you can create the `MyToken.sol` file:
+The `src` folder may already contain `Contract.sol`, a minimal Solidity contract. Feel free to delete it. Instead, you will be deploying an ERC-20 contract. In the contracts directory, you can create the `MyToken.sol` file:
 
 ```
 cd src
@@ -77,7 +77,7 @@ pragma solidity ^0.8.0;
 // Import OpenZeppelin Contract
 import "openzeppelin-contracts/contracts/token/ERC20/ERC20.sol";
 
-// This ERC-20 contract mints the specified amount of tokens to the contract creator.
+// This ERC-20 contract mints the specified amount of tokens to the contract creator
 contract MyToken is ERC20 {
   constructor(uint256 initialSupply) ERC20("MyToken", "MYTOK") {
     _mint(msg.sender, initialSupply);
@@ -85,7 +85,7 @@ contract MyToken is ERC20 {
 }
 ```
 
-Before you attempt to compile, install OpenZeppelin contracts as a dependency. By default, Foundry uses git submodules instead of npm packages, so the traditional npm import path & command are not used. Instead, use the name of OpenZeppelin's Github repository:
+Before you attempt to compile, install OpenZeppelin contracts as a dependency. By default, Foundry uses git submodules instead of npm packages, so the traditional npm import path and command are not used. Instead, use the name of OpenZeppelin's Github repository:
 
 ```
 forge install OpenZeppelin/openzeppelin-contracts
@@ -101,11 +101,11 @@ forge build
 
 ![Foundry Contract Compile](/images/builders/build/eth-api/dev-env/foundry/foundry-1.png)
 
-After compilation, two folders will be created: `out` and `cache`. The abi and bytecode for your contracts will be contained within the `out` folder. These two folders are already ignored by the `.gitignore` included in the default Foundry project initialization.
+After compilation, two folders will be created: `out` and `cache`. The ABI and bytecode for your contracts will be contained within the `out` folder. These two folders are already ignored by the `.gitignore` included in the default Foundry project initialization.
 
 ## Deploying the Contract {: #deploying-the-contract } 
 
-Deploying the contract with Forge takes a single command, but you will need to include an rpc endpoint, a funded private key, and constructor arguments. `MyToken.sol` asks for an initial supply of tokens in its constructor, so each of the following commands include 100 as a constructor argument. You can deploy the `MyToken.sol` contract using the command for the correct network:
+Deploying the contract with Forge takes a single command, but you will need to include an RPC endpoint, a funded private key, and constructor arguments. `MyToken.sol` asks for an initial supply of tokens in its constructor, so each of the following commands include 100 as a constructor argument. You can deploy the `MyToken.sol` contract using the command for the correct network:
 
 === "Moonbeam"
     ```
