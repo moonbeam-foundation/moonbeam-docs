@@ -19,7 +19,7 @@ Gelato is live on both Moonbeam and Moonriver, enabling developers and end-users
 
 ![Gelato Ops 1](/images/builders/integrations/relayers/gelato/gelato-1.png)
 
-### Try It Out {: #try-it-out }
+### Automate a Smart Contract Interaction {: #automate-a-smart-contract-interaction }
 
 To get started with this guide, you'll need to have some GLMR or MOVR in your free balance. Then, head to [Gelato Ops](https://app.gelato.network/tutorial){target=_blank} and ensure that you have selected the Moonbeam or Moonriver network in your wallet and connected it to Gelato. To kick off the tutorial, press **Start Tutorial**, then press **Mint NFT** and confirm the transaction in MetaMask. 
 
@@ -81,10 +81,10 @@ npm install @gelatonetwork/gelato-relay-sdk
 ```
 
 ### Try out the Gelato Relay SDK {: #try-out-the-gelato-relay-sdk }
-In this demo, we'll ask Gelato Relay SDK to call a `HelloWorld` smart contract on our behalf. The script being built is sourced from the [quick start guide](https://docs.gelato.network/developer-products/gelato-relay-sdk/quick-start){target=_blank} on Gelato Docs. Note, there is no dependency on RPC providers - once the transaction and signature are built, we simply pass them along to the Gelato Relay API. 
+In this demo, you'll ask Gelato Relay SDK to call a `HelloWorld` smart contract on your behalf. The script being built is sourced from the [quick start guide](https://docs.gelato.network/developer-products/gelato-relay-sdk/quick-start){target=_blank} on Gelato Docs. Note, there is no dependency on RPC providers - once the transaction and signature are built, you simply pass them along to the Gelato Relay API. 
 
 #### Setup {: #setup }
-First, we need to import the Gelato Relay SDK and EthersJS:
+First, you need to import the Gelato Relay SDK and EthersJS:
 
 ```
   import { Wallet, utils } from "ethers";
@@ -92,7 +92,7 @@ First, we need to import the Gelato Relay SDK and EthersJS:
 ```
 
 #### Define the ChainID and Target Contract {: #define-the-chainid-and-target-contract }
-Next, we'll define the chain ID and the [HelloWorld contract](https://moonscan.io/address/0x3456E168d2D7271847808463D6D383D079Bd5Eaa){target=_blank} that we want to interact with.
+Next, you'll define the chain ID and the [HelloWorld contract](https://moonscan.io/address/0x3456E168d2D7271847808463D6D383D079Bd5Eaa){target=_blank} that you want to interact with.
 
 ```
   const chainId = 1284;
@@ -101,7 +101,7 @@ Next, we'll define the chain ID and the [HelloWorld contract](https://moonscan.i
 ```
 
 #### Create a Test Account {: #create-a-test-account }
-In this step, we'll create a new test account that will submit the gasless transaction. This account is insecure and should not be used in production. We've defined a `test_token` with a default value for demonstration purposes. 
+In this step, you'll create a new test account that will submit the gasless transaction. This account is insecure and should not be used in production. You'll define a `test_token` with a default value for demonstration purposes. 
 
 ```
   const test_token = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
@@ -115,7 +115,7 @@ In this step, we'll create a new test account that will submit the gasless trans
 
 #### Add Request Data {: #add-request-data }
 
-In this step we have to provide the ABI-encoded call data for the function we want to interact with. You can generate this by taking the following steps:
+In this step you have to provide the ABI-encoded call data for the function you want to interact with. You can generate this by taking the following steps:
 
 1. Navigate to the **Write Contract** heading of the [Hello World Contract on Moonscan](https://moonscan.io/address/0x3456E168d2D7271847808463D6D383D079Bd5Eaa#writeContract){target=_blank} 
 2. Press  **Connect to Web3**. After you accept the terms and conditions, you can connect your wallet
@@ -142,7 +142,7 @@ There are some additional parameters defined here, such as paymentType, maxFee, 
   // Gas limit
   const gas = "200000";
   
-  // We do not enforce smart contract nonces to simplify the example.
+  // Smart contract nonces are not enforced to simplify the example.
   // In reality, this decision depends whether or not target
   // address already implements replay protection. (More info in the docs)
   const sponsorNonce = 0;
@@ -183,7 +183,7 @@ const forwardRequestExample = async () => {
   // Gas limit
   const gas = "200000";
  
-  // We do not enforce smart contract nonces to simplify the example.
+  // Smart contract nonces are not enforced to simplify the example.
   // In reality, this decision depends whether or not target 
   // address already implements replay protection. (More info in the docs)
   const sponsorNonce = 0;
