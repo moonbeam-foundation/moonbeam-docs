@@ -1,6 +1,6 @@
 ---
-title: Gelato
-description: Use Dapplooker to analyze and query on-chain data, and create dashboards to visualize analytics for Moonbeam and Moonriver.
+title: Gelato Ops and Relay SDK
+description: Use Gelato to automate your smart contract interactions and outsource your Moonbeam and Moonriver dev ops needs to the most reliable multi-chain bot network. 
 ---
 
 # Getting Started with Gelato
@@ -21,7 +21,7 @@ Gelato is live on both Moonbeam and Moonriver, enabling developers and end-users
 
 ### Try It Out {: #try-it-out }
 
-To get started with this guide, you'll need to have some GLMR or MOVR in your free balance. Then, head to [Gelato Ops](https://app.gelato.network/tutorial){target=_blank} and ensure that your wallet is connected. To kick off the tutorial, you'll need to press **Mint NFT** and confirm the transaction in MetaMask. 
+To get started with this guide, you'll need to have some GLMR or MOVR in your free balance. Then, head to [Gelato Ops](https://app.gelato.network/tutorial){target=_blank} and ensure that you have selected the Moonbeam or Moonriver network in your wallet and connected it to Gelato. To kick off the tutorial, press **Start Tutorial**, then press **Mint NFT** and confirm the transaction in MetaMask. 
 
 Then, take the following steps:
 
