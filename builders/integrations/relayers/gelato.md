@@ -19,7 +19,7 @@ Gelato is live on both Moonbeam and Moonriver, enabling developers and end-users
 
 ![Gelato Ops 1](/images/builders/integrations/relayers/gelato/gelato-1.png)
 
-### Automate a Smart Contract Interaction {: #automate-a-smart-contract-interaction }
+### Creating an Automated Task {: #creating-an-automated-task }
 
 To get started with this guide, you'll need to have some GLMR or MOVR in your free balance. Then, head to [Gelato Ops](https://app.gelato.network/tutorial){target=_blank} and ensure that you have selected the Moonbeam or Moonriver network in your wallet and connected it to Gelato. To kick off the tutorial, press **Start Tutorial**, then press **Mint NFT** and confirm the transaction in MetaMask. 
 
@@ -66,12 +66,6 @@ You can follow a similar set of steps to withdraw your gas funds from Gelato.
 
 [Gelato Relay SDK](https://docs.gelato.network/developer-products/gelato-relay-sdk){target=_blank} is a collection of functions that enable you to interact with the Gelato Relay API. Per Gelato Docs, *Gelato Relay API is a service that allows users and developers to get transactions mined fast, reliably and securely, without having to deal with the low-level complexities of blockchains.* A key feature of this offering is the ability to provide users with gasless transactions. 
 
-### Checking Prerequisites {: #checking-prerequisites }
-
-Running this service locally through NPM requires Node.js to be installed. 
-
---8<-- 'text/common/install-nodejs.md'
-
 ### Installation {: #installation }
 
 Gelato Relay SDK is an [NPM package](https://www.npmjs.com/package/@gelatonetwork/gelato-relay-sdk){target=_blank} that can be installed locally in the current directory with the following command:
@@ -80,10 +74,12 @@ Gelato Relay SDK is an [NPM package](https://www.npmjs.com/package/@gelatonetwor
 npm install @gelatonetwork/gelato-relay-sdk
 ```
 
-### Try out the Gelato Relay SDK {: #try-out-the-gelato-relay-sdk }
+### Send a Gasless Transaction with Gelato Relay SDK {: #send-a-gasless-transaction-with-gelato-relay-sdk }
+
 In this demo, you'll ask Gelato Relay SDK to call a `HelloWorld` smart contract on your behalf. The script being built is sourced from the [quick start guide](https://docs.gelato.network/developer-products/gelato-relay-sdk/quick-start){target=_blank} on Gelato Docs. Note, there is no dependency on RPC providers - once the transaction and signature are built, you simply pass them along to the Gelato Relay API. 
 
 #### Setup {: #setup }
+
 First, you need to import the Gelato Relay SDK and EthersJS:
 
 ```
@@ -92,6 +88,7 @@ First, you need to import the Gelato Relay SDK and EthersJS:
 ```
 
 #### Define the ChainID and Target Contract {: #define-the-chainid-and-target-contract }
+
 Next, you'll define the chain ID and the [HelloWorld contract](https://moonscan.io/address/0x3456E168d2D7271847808463D6D383D079Bd5Eaa){target=_blank} that you want to interact with.
 
 ```
@@ -101,6 +98,7 @@ Next, you'll define the chain ID and the [HelloWorld contract](https://moonscan.
 ```
 
 #### Create a Test Account {: #create-a-test-account }
+
 In this step, you'll create a new test account that will submit the gasless transaction. This account is insecure and should not be used in production. You'll define a `test_token` with a default value for demonstration purposes. 
 
 ```
