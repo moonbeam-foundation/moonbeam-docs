@@ -146,21 +146,39 @@ The example in this section of the guide will use the `MyToken.sol` contract tha
 
 In addition to the Foundry project, you will need a [Moonbeam Moonscan](https://moonscan.io/){target=_blank} API key. This API key can be used for both the Moonbeam and Moonbase Alpha networks. If you want to verify a contract on Moonriver, you'll need a [Moonriver Moonscan](https://moonriver.moonscan.io/){target=_blank} API key. 
 
-If you have already deployed the example contract, you can verify it with the `verify-contract` command:
+If you have already deployed the example contract, you can verify it with the `verify-contract` command. Before you can verify the contract, you will need to ABI-encode the constructor arguments. To do so for the example contract, you can run the following command:
+
+```
+cast abi-encode "constructor(uint256)" 100
+```
+
+The result should be `0x0000000000000000000000000000000000000000000000000000000000000064`. You can then verify the contract using the following command:
 
 === "Moonbeam"
     ```
-    forge verify-contract --chain-id {{ networks.moonbeam.chain_id }} YOUR_CONTRACT_ADDRESS src/MyToken.sol:MyToken YOUR_MOONSCAN_API_KEY
+    forge verify-contract --chain-id {{ networks.moonbeam.chain_id }} \
+    YOUR_CONTRACT_ADDRESS \
+    --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
+    src/MyToken.sol:MyToken \
+    YOUR_MOONSCAN_API_KEY
     ```
 
 === "Moonriver"
     ```
-    forge verify-contract --chain-id {{ networks.moonriver.chain_id }} YOUR_CONTRACT_ADDRESS src/MyToken.sol:MyToken YOUR_MOONSCAN_API_KEY
+    forge verify-contract --chain-id {{ networks.moonriver.chain_id }} \
+    YOUR_CONTRACT_ADDRESS \
+    --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
+    src/MyToken.sol:MyToken \
+    YOUR_MOONSCAN_API_KEY
     ```
 
 === "Moonbase Alpha"
     ```
-    forge verify-contract --chain-id {{ networks.moonbase.chain_id }} YOUR_CONTRACT_ADDRESS src/MyToken.sol:MyToken YOUR_MOONSCAN_API_KEY
+    forge verify-contract --chain-id {{ networks.moonbase.chain_id }} \
+    YOUR_CONTRACT_ADDRESS \
+    --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
+    src/MyToken.sol:MyToken \
+    YOUR_MOONSCAN_API_KEY
     ```
 
 ![Foundry Verify](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-5.png)
@@ -169,17 +187,29 @@ If you wanted to deploy the example contract and verify at the same time, then y
 
 === "Moonbeam"
     ```
-    forge create --rpc-url {{ networks.moonbeam.rpc_url }} --constructor-args 100 --etherscan-api-key YOUR_MOONSCAN_API_KEY --verify --private-key YOUR_PRIVATE_KEY src/MyToken.sol:MyToken     
+    forge create --rpc-url {{ networks.moonbeam.rpc_url }} \
+    --constructor-args 100 \
+    --etherscan-api-key YOUR_MOONSCAN_API_KEY \
+    --verify --private-key YOUR_PRIVATE_KEY \
+    src/MyToken.sol:MyToken     
     ```
 
 === "Moonriver"
     ```
-    forge create --rpc-url {{ networks.moonriver.rpc_url }} --constructor-args 100 --etherscan-api-key YOUR_MOONSCAN_API_KEY --verify --private-key YOUR_PRIVATE_KEY src/MyToken.sol:MyToken     
+    forge create --rpc-url {{ networks.moonriver.rpc_url }} \
+    --constructor-args 100 \
+    --etherscan-api-key YOUR_MOONSCAN_API_KEY \
+    --verify --private-key YOUR_PRIVATE_KEY \
+    src/MyToken.sol:MyToken     
     ```
 
 === "Moonbase Alpha"
     ```
-    forge create --rpc-url {{ networks.moonbase.rpc_url }} --constructor-args 100 --etherscan-api-key YOUR_MOONSCAN_API_KEY --verify --private-key YOUR_PRIVATE_KEY src/MyToken.sol:MyToken 
+    forge create --rpc-url {{ networks.moonbase.rpc_url }} \
+    --constructor-args 100 \
+    --etherscan-api-key YOUR_MOONSCAN_API_KEY \
+    --verify --private-key YOUR_PRIVATE_KEY \
+    src/MyToken.sol:MyToken 
     ```
 
 ![Foundry Contract Deploy and Verify](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-6.png)

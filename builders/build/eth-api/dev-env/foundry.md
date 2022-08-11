@@ -109,22 +109,34 @@ Deploying the contract with Forge takes a single command, but you will need to i
 
 === "Moonbeam"
     ```
-    forge create --rpc-url {{ networks.moonbeam.rpc_url }} --constructor-args 100 --private-key YOUR_PRIVATE_KEY src/MyToken.sol:MyToken 
+    forge create --rpc-url {{ networks.moonbeam.rpc_url }} \
+    --constructor-args 100 \
+    --private-key YOUR_PRIVATE_KEY \
+    src/MyToken.sol:MyToken 
     ```
 
 === "Moonriver"
     ```
-    forge create --rpc-url {{ networks.moonriver.rpc_url }} --constructor-args 100 --private-key YOUR_PRIVATE_KEY src/MyToken.sol:MyToken 
+    forge create --rpc-url {{ networks.moonriver.rpc_url }} \
+    --constructor-args 100 \
+    --private-key YOUR_PRIVATE_KEY \
+    src/MyToken.sol:MyToken 
     ```
 
 === "Moonbase Alpha"
     ```
-    forge create --rpc-url {{ networks.moonbase.rpc_url }} --constructor-args 100 --private-key YOUR_PRIVATE_KEY src/MyToken.sol:MyToken 
+    forge create --rpc-url {{ networks.moonbase.rpc_url }} \
+    --constructor-args 100 \
+    --private-key YOUR_PRIVATE_KEY \
+    src/MyToken.sol:MyToken 
     ```
 
 === "Moonbeam Dev Node"
     ```      
-    forge create --rpc-url {{ networks.development.rpc_url }} --constructor-args 100 --private-key YOUR_PRIVATE_KEY src/MyToken.sol:MyToken 
+    forge create --rpc-url {{ networks.development.rpc_url }} \
+    --constructor-args 100 \
+    --private-key YOUR_PRIVATE_KEY \
+    src/MyToken.sol:MyToken 
     ```
 
 After a few seconds, the contract is deployed, and you should see the address in the terminal.
@@ -137,7 +149,7 @@ Congratulations, your contract is live! Save the address, as you will use it to 
 
 Foundry includes cast, a CLI for performing Ethereum RPC calls. 
 
-Try to retreive your token's name using cast, where YOUR_CONTRACT_ADDRESS is the address of the contract that you deployed in the previous section:
+Try to retreive your token's name using cast, where `YOUR_CONTRACT_ADDRESS` is the address of the contract that you deployed in the previous section:
 
 === "Moonbeam"
     ```
@@ -164,7 +176,7 @@ You should get this data in hexidecimal format:
 0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000074d79546f6b656e00000000000000000000000000000000000000000000000000
 ```
 
-This is far from readable, but you can use cast to convert it into your desired format. In this case, we're expecting the data to be text, so we will convert it into ascii characters to see "My Token":
+This is far from readable, but you can use cast to convert it into your desired format. In this case, the data is text, so you can convert it into ascii characters to see "My Token":
 
 ![Foundry Contract View](/images/builders/build/eth-api/dev-env/foundry/foundry-3.png)
 
@@ -176,22 +188,38 @@ You can also mutate data with cast as well. Try burning tokens by sending them t
 
 === "Moonbeam"
     ```
-    cast send --private-key YOUR_PRIVATE_KEY --rpc-url {{ networks.moonbeam.rpc_url }} --chain {{ networks.moonbeam.chain_id }} YOUR_CONTRACT_ADDRESS "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
+    cast send --private-key YOUR_PRIVATE_KEY \
+    --rpc-url {{ networks.moonbeam.rpc_url }} \
+    --chain {{ networks.moonbeam.chain_id }} \
+    YOUR_CONTRACT_ADDRESS \
+    "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
     ```
 
 === "Moonriver"
     ```
-    cast send --private-key YOUR_PRIVATE_KEY --rpc-url {{ networks.moonriver.rpc_url }} --chain {{ networks.moonriver.chain_id }} YOUR_CONTRACT_ADDRESS "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
+    cast send --private-key YOUR_PRIVATE_KEY \
+    --rpc-url {{ networks.moonriver.rpc_url }} \
+    --chain {{ networks.moonriver.chain_id }} \
+    YOUR_CONTRACT_ADDRESS \
+    "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
     ```
 
 === "Moonbase Alpha"
     ```
-    cast send --private-key YOUR_PRIVATE_KEY --rpc-url {{ networks.moonbase.rpc_url }} --chain {{ networks.moonbase.chain_id }} YOUR_CONTRACT_ADDRESS "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
+    cast send --private-key YOUR_PRIVATE_KEY \
+    --rpc-url {{ networks.moonbase.rpc_url }} \
+    --chain {{ networks.moonbase.chain_id }} \
+    YOUR_CONTRACT_ADDRESS \
+    "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
     ```
 
 === "Moonbeam Dev Node"
     ```      
-    cast send --private-key YOUR_PRIVATE_KEY --rpc-url {{ networks.development.rpc_url }} --chain {{ networks.development.chain_id }} YOUR_CONTRACT_ADDRESS "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
+    cast send --private-key YOUR_PRIVATE_KEY \
+    --rpc-url {{ networks.development.rpc_url }} \
+    --chain {{ networks.development.chain_id }} \
+    YOUR_CONTRACT_ADDRESS \
+    "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
     ```
 
 The transaction will be signed by your Moonbase account and be broadcasted to the network. The output should look similar to:
