@@ -19,7 +19,7 @@ Gelato is live on both Moonbeam and Moonriver, enabling developers and end-users
 
 ![Gelato Ops 1](/images/builders/integrations/relayers/gelato/gelato-1.png)
 
-### Creating an Automated Task {: #creating-an-automated-task }
+### Create an Automated Task {: #creating-an-automated-task }
 
 To get started with this guide, you'll need to have some GLMR or MOVR in your free balance. Then, head to [Gelato Ops](https://app.gelato.network/tutorial){target=_blank} and ensure that you have selected the Moonbeam or Moonriver network in your wallet and connected it to Gelato. To kick off the tutorial, press **Start Tutorial**, then press **Mint NFT** and confirm the transaction in MetaMask. 
 
@@ -40,7 +40,7 @@ Then, take the following steps:
 
 And that's it! You've successfully set up your first recurring smart contract interaction with Gelato. Your automated smart contract interactions will continue according to the set schedule until the remaining funds for gas are drained or the automation is paused on Gelato Ops. This example was a simple demo, but you can automate much more complex interactions and build increasingly sophisticated logic into your automated tasks. Be sure to check out [docs.gelato.network](https://docs.gelato.network/developer-products/gelato-ops-smart-contract-automation-hub){target=_blank} for more information.
 
-### Managing your Automated Tasks {: #managing-your-automated-tasks }
+### Manage your Automated Tasks {: #managing-your-automated-tasks }
 
 On [app.gelato.network](https://app.gelato.network/){target=_blank}, you'll see all of your automations and their associated statuses. You can click on an automation to see more details about the task and its execution history. Here you can also make any changes to the automated task, including pausing or resuming the task. To pause a task, press **Pause** in the upper right corner and confirm the transaction in your wallet. You can resume the automation at any time by pressing **Restart** and confirming the transaction in your wallet.
 
@@ -48,7 +48,7 @@ At the bottom of the page, you can see your task's execution history including t
 
 ![Gelato Ops 3](/images/builders/integrations/relayers/gelato/gelato-3.png)
 
-### Managing your Gas Funds {: #managing-your-gas-funds }
+### Manage your Gas Funds {: #managing-your-gas-funds }
 
 To manage your gas funds on [app.gelato.network](https://app.gelato.network/){target=_blank}, click on the **Funds** box in the upper left corner. Here, you can top up your balance of gas funds or withdraw them. You can also register be notified with low balance alerts. 
 
@@ -72,8 +72,7 @@ Gasless transactions, also referred to as meta transactions, allow end-users to 
 
 In this demo, you'll ask Gelato Relay SDK to call a `HelloWorld.sol` contract on your behalf. The script being built is sourced from the [quick start guide](https://docs.gelato.network/developer-products/gelato-relay-sdk/quick-start){target=_blank} on Gelato Docs. Note, there is no dependency on RPC providers - once the transaction and signature are built, you simply pass them along to the Gelato Relay API. 
 
-
-### Getting Started {: #getting-started }
+### Get Started {: #getting-started }
 
 Gelato Relay SDK is an [NPM package](https://www.npmjs.com/package/@gelatonetwork/gelato-relay-sdk){target=_blank} that can be installed locally in the current directory with the following command:
 
@@ -213,7 +212,36 @@ Lastly, the `forwardRequest` object is created with all of the relevant paramete
 
 ### Send Request Data {: #send-request-data }
 
-The last few steps include hashing the request object and signing the resulting hash. The ultimate step is to submit the request and the signature to the Gelato Relay API. You can copy and paste the below code into a javascript file. You can name the file `hello-world.js` or a similar name. 
+The last few steps include hashing the request object and signing the resulting hash. The ultimate step is to submit the request and the signature to the Gelato Relay API. You can copy and paste the below code after the `forwardRequest` object:
+
+```
+  // Get EIP-712 hash (aka digest) of forwardRequest
+  const digest = GelatoRelaySDK.getForwardRequestDigestToSign(forwardRequest);
+
+  // Sign digest using mock private key
+  const sponsorSignature = utils.BytesLike = utils.joinSignature(
+    await wallet._signingKey().signDigest(digest)
+  );
+
+  // Send forwardRequest and its sponsorSignature to Gelato Relay API
+  await GelatoRelaySDK.sendForwardRequest(forwardRequest, sponsorSignature);
+
+  console.log("ForwardRequest submitted!");
+```
+
+The [EIP-712 standard](https://eips.ethereum.org/EIPS/eip-712){target=_blank} provides important context to users about the action they're authorizing. Instead of signing a long, unrecognizable bytestring (which is dangerous and could be exploited by bad actors), [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=_blank} provides a framework for encoding and displaying the contents of the message in a readable manner, making it substantially safer for end-users. 
+
+To execute the script and dispatch the gasless transaction to Gelato Relay API, use the following command: 
+
+```
+node hello-world.js
+```
+
+You should see a message logged to the console that says `ForwardRequest submitted!` You can also verify your relayed transaction was successfully executed by checking the latest transactions of [this Gelato contract on Moonscan](https://moonscan.io/address/0x91f2a140ca47ddf438b9c583b7e71987525019bb){target=_blank}.
+
+### Complete Script {: #complete-script }
+
+The entire `hello-world.js` file should contain the following:
 
 ```
 import { Wallet, utils } from "ethers";
@@ -279,16 +307,5 @@ const forwardRequestExample = async () => {
 
 forwardRequestExample();
 ```
-
-The [EIP-712 standard](https://eips.ethereum.org/EIPS/eip-712){target=_blank} provides important context to users about the action they're authorizing. Instead of signing a long, unrecognizable bytestring (which is dangerous and could be exploited by bad actors), [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=_blank} provides a framework for encoding and displaying the contents of the message in a readable manner, making it substantially safer for end-users. 
-
-To execute the script and dispatch the gasless transaction to Gelato Relay API, use the following command: 
-
-```
-node hello-world.js
-```
-
-You should see a message logged to the console that says `ForwardRequest submitted!` You can also verify your relayed transaction was successfully executed by checking the latest transactions of [this Gelato contract on Moonscan](https://moonscan.io/address/0x91f2a140ca47ddf438b9c583b7e71987525019bb){target=_blank}.
-
 
 --8<-- 'text/disclaimers/third-party-content.md'
