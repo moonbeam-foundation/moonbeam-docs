@@ -66,7 +66,11 @@ You can follow a similar set of steps to withdraw your gas funds from Gelato.
 
 [Gelato Relay SDK](https://docs.gelato.network/developer-products/gelato-relay-sdk){target=_blank} is a collection of functions that enable you to interact with the Gelato Relay API. Per Gelato Docs, *Gelato Relay API is a service that allows users and developers to get transactions mined fast, reliably and securely, without having to deal with the low-level complexities of blockchains.* A key feature of this offering is the ability to provide users with gasless transactions. 
 
-### Installation {: #installation }
+### Send a Gasless Transaction with Gelato Relay SDK {: #send-a-gasless-transaction-with-gelato-relay-sdk }
+
+In this demo, you'll ask Gelato Relay SDK to call a `HelloWorld` smart contract on your behalf. The script being built is sourced from the [quick start guide](https://docs.gelato.network/developer-products/gelato-relay-sdk/quick-start){target=_blank} on Gelato Docs. Note, there is no dependency on RPC providers - once the transaction and signature are built, you simply pass them along to the Gelato Relay API. 
+
+### Getting Started {: #getting-started }
 
 Gelato Relay SDK is an [NPM package](https://www.npmjs.com/package/@gelatonetwork/gelato-relay-sdk){target=_blank} that can be installed locally in the current directory with the following command:
 
@@ -74,20 +78,26 @@ Gelato Relay SDK is an [NPM package](https://www.npmjs.com/package/@gelatonetwor
 npm install @gelatonetwork/gelato-relay-sdk
 ```
 
-### Send a Gasless Transaction with Gelato Relay SDK {: #send-a-gasless-transaction-with-gelato-relay-sdk }
+You'll also want to install the Ethers.js library and the Solidity compiler. To install both NPM packages, you can run the following command:
 
-In this demo, you'll ask Gelato Relay SDK to call a `HelloWorld` smart contract on your behalf. The script being built is sourced from the [quick start guide](https://docs.gelato.network/developer-products/gelato-relay-sdk/quick-start){target=_blank} on Gelato Docs. Note, there is no dependency on RPC providers - once the transaction and signature are built, you simply pass them along to the Gelato Relay API. 
+```
+npm install ethers solc@0.8.0
+```
 
-#### Setup {: #setup }
+Next, you'll need to create a javascript file for your script. You can create a `hello-world.js` file by running:
 
-First, you need to import the Gelato Relay SDK and EthersJS:
+```
+touch hello-world.js
+```
+
+Now you're ready to build. First, you need to import the Gelato Relay SDK and EthersJS:
 
 ```
   import { Wallet, utils } from "ethers";
   import { GelatoRelaySDK } from "@gelatonetwork/gelato-relay-sdk";
 ```
 
-#### Define the ChainID and Target Contract {: #define-the-chainid-and-target-contract }
+### Define the ChainID and Target Contract {: #define-the-chainid-and-target-contract }
 
 Next, you'll define the chain ID and the [HelloWorld contract](https://moonscan.io/address/0x3456E168d2D7271847808463D6D383D079Bd5Eaa){target=_blank} that you want to interact with.
 
@@ -97,13 +107,13 @@ Next, you'll define the chain ID and the [HelloWorld contract](https://moonscan.
   const target = "0x3456E168d2D7271847808463D6D383D079Bd5Eaa";
 ```
 
-#### Create a Test Account {: #create-a-test-account }
+### Create a Test Account {: #create-a-test-account }
 
 In this step, you'll create a new test account that will submit the gasless transaction. This account is insecure and should not be used in production. You'll define a `test_token` with a default value for demonstration purposes. 
 
 ```
   const test_token = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
-  // Create Mock wallet
+  // Create mock wallet
   const wallet = Wallet.createRandom();
   const sponsor = await wallet.getAddress();
   console.log(`Mock PK: ${await wallet._signingKey().privateKey}`);
@@ -111,7 +121,7 @@ In this step, you'll create a new test account that will submit the gasless tran
 ```
 
 
-#### Add Request Data {: #add-request-data }
+### Add Request Data {: #add-request-data }
 
 In this step you have to provide the ABI-encoded call data for the function you want to interact with. You can generate this by taking the following steps:
 
@@ -129,11 +139,8 @@ The resulting ABI-encodeded call data should look like `0x4b32706700000000000000
 There are some additional parameters defined here, such as paymentType, maxFee, and gas limit. There are a variety of possible [payment types](https://docs.gelato.network/developer-products/gelato-relay-sdk/payment-types){target=_blank} you can choose from. For simplicity, replay protection has not been considered in this example. 
 
 ```
-  // abi encode for HelloWorld.sayHiVanilla(address _feeToken)
+  // ABI encode for HelloWorld.sayHiVanilla(address _feeToken)
   const data = `0x4b327067000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeaeeeeeeeeeeeeeeeee`;
-  
-  // Async Gas Tank payment model (won't be enforced on testnets, 
-  // hence no need to deposit into Gelato's Gas Tank smart contract)
   const paymentType = 1;
   // Maximum fee that sponsor is willing to pay worth of test_token
   const maxFee = "1000000000000000000";
@@ -145,11 +152,11 @@ There are some additional parameters defined here, such as paymentType, maxFee, 
   // address already implements replay protection. (More info in the docs)
   const sponsorNonce = 0;
   const enforceSponsorNonce = false;
-  // Only relevant when enforceSponsorNonce=true
+  // Only relevant when enforceSponsorNonce = true
   const enforceSponsorNonceOrdering = false;
 ```
 
-#### Putting it All Together {: #putting-it-all-together }
+### Putting it All Together {: #putting-it-all-together }
 
 The last few steps are building the request object, hashing it, and finally, signing it. The last step is to submit the request and the signature to the Gelato Relay API. You can copy and paste the below code into a javascript file. You can name the file `hello-world.js` or a similar name. 
 
@@ -164,17 +171,14 @@ const forwardRequestExample = async () => {
   const target = "0x3456E168d2D7271847808463D6D383D079Bd5Eaa";
   const test_token = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
   
-  // Create Mock wallet
+  // Create mock wallet
   const wallet = Wallet.createRandom();
   const sponsor = await wallet.getAddress();
   console.log(`Mock PK: ${await wallet._signingKey().privateKey}`);
   console.log(`Mock wallet address: ${sponsor}`);
   
-  // abi encode for HelloWorld.sayHiVanilla(address _feeToken)
+  // ABI encode for HelloWorld.sayHiVanilla(address _feeToken)
   const data = `0x4b327067000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeaeeeeeeeeeeeeeeeee`;
-  
-  // Async Gas Tank payment model (won't be enforced on testnets, 
-  // hence no need to deposit into Gelato's Gas Tank smart contract)
   const paymentType = 1;
   // Maximum fee that sponsor is willing to pay worth of test_token
   const maxFee = "1000000000000000000";
@@ -186,7 +190,7 @@ const forwardRequestExample = async () => {
   // address already implements replay protection. (More info in the docs)
   const sponsorNonce = 0;
   const enforceSponsorNonce = false;
-  // Only relevant when enforceSponsorNonce=true
+  // Only relevant when enforceSponsorNonce = true
   const enforceSponsorNonceOrdering = false;
 
   // Build ForwardRequest object
@@ -206,7 +210,7 @@ const forwardRequestExample = async () => {
   // Get EIP-712 hash (aka digest) of forwardRequest
   const digest = GelatoRelaySDK.getForwardRequestDigestToSign(forwardRequest);
 
-  // Sign digest using Mock private key
+  // Sign digest using mock private key
   const sponsorSignature = utils.BytesLike = utils.joinSignature(
     await wallet._signingKey().signDigest(digest)
   );
