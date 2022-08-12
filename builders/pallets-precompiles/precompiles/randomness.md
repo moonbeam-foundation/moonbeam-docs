@@ -92,7 +92,7 @@ The consumer interface includes the following functions:
 
 Local VRF randomness is generated on a block-by-block basis at the beginning of the block using the previous block's VRF output along with the public key of the current block author's VRF key. The generated randomness result is stored and used to fulfill all randomness requests for the current block.
 
-If your contract could have concurrent requests open, you can use the `requestId` returned from the `requestLocalVRFRandomWords` method to track which response is associated with which randomness request. Colliding `requestId`s are cryptographically impossible as long as the salts differ.
+If your contract could have concurrent requests open, you can use the `requestId` returned from the `requestLocalVRFRandomWords` method to track which response is associated with which randomness request.
 
 ## BABE Epoch Randomness {: #babe-epoch-randomness }
 
