@@ -37,7 +37,7 @@ The randomness pallet includes the following read-only storage methods to obtain
 - **randomnessResults**(PalletRandomnessRequestType) - snapshot of randomness to fulfill all requests that are for the same raw randomness
 - **relayEpoch**() - returns the relay epoch
 - **requestCount**() - returns the number of randomness requests made so far, and is used to generate the next request's uid
-- **requests**(u64) - returns a given randomness request or all of the randomness requests or that have not been fulfilled or purged yet
+- **requests**(u64) - returns a given randomness request or all of the randomness requests that have not been fulfilled nor purged yet
 
 ### Pallet Constants {: #constants }
 
