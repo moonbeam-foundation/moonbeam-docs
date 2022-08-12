@@ -441,12 +441,12 @@ networks:
       min_preim_deposit: 0.04
       max_proposals: 100
       lock_period:
-        conviction_1: 2
-        conviction_2: 4
-        conviction_3: 8
-        conviction_4: 16
-        conviction_5: 32
-        conviction_6: 64
+        conviction_1: 7
+        conviction_2: 14
+        conviction_3: 28
+        conviction_4: 56
+        conviction_5: 112
+        conviction_6: 224
     inflation:
       total_annual_inflation: 5
       delegator_reward_inflation: 50
