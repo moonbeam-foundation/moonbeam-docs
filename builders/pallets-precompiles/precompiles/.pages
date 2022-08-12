@@ -6,5 +6,6 @@ nav:
   - 'Staking Functions': 'staking.md'
   - 'Democracy': 'democracy.md'
   - 'Batch': 'batch.md'
+  - 'Randomness': 'randomness.md'
   - 'X-Tokens': '/builders/xcm/xc20/xtokens/#xtokens-precompile'
   - 'XCM-Transactor': '/builders/xcm/xcm-transactor/#xcmtransactor-precompile'
