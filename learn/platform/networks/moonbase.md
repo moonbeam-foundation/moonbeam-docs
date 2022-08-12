@@ -66,28 +66,11 @@ You can see current Moonbase Alpha telemetry information by visiting [Polkadot's
 
 ## Tokens {: #tokens } 
 
-Tokens on Moonbase Alpha, named DEV, will be issued on demand. **DEV tokens hold no value and can be freely acquired**. Currently, there are a few ways you can get access to this token: through the Moonbase Alpha Faucet, a Discord bot, or manually.
-
-### Moonbase Alpha Faucet {: #moonbase-alpha-faucet }
+Tokens on Moonbase Alpha, named DEV, will be issued on demand. **DEV tokens hold no value and can be freely acquired**. 
 
 You can enter your address to automatically request DEV tokens from the [Moonbase Alpha Faucet](https://apps.moonbeam.network/moonbase-alpha/faucet/){target=_blank} website. The faucet dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours.
 
-### Discord - Mission Control {: #discord-mission-control } 
-
-To [request tokens](/builders/get-started/networks/moonbase/#get-tokens/){target=_blank} automatically, we've created a Discord bot (named Mission Control :sunglasses:) that will automatically send a maximum of {{ networks.moonbase.discord_faucet_amount }} every 24 hours (per Discord user) when you enter your address. You can check it out on our [Discord channel](https://discord.gg/PfpUATX).
- 
-!!! note
-    The Discord faucet will be deprecated by end of June 2022.
-
-Under the category **Miscellaneous**, you will find the **#moonbase-faucet** channel. Enter the following message, replacing `<enter-address-here>` with your H160 address:
- 
-```
-!faucet send <enter-address-here>
-```
-
-### Manual Procedure {: #manual-procedure } 
-
-For token requests of more than the limited account allowed by our Discord bot, contact a moderator directly via the [Moonbeam Discord server](https://discord.gg/PfpUATX){target=_blank}. We are happy to provide the tokens needed to test your applications.
+For token requests of more than the limited amount allowed by the faucet, contact a moderator directly via the [Moonbeam Discord server](https://discord.gg/PfpUATX){target=_blank}. We are happy to provide the tokens needed to test your applications.
 
 ## Proof of Stake {: #proof-of-stake } 
 
@@ -97,6 +80,6 @@ The Moonbase Alpha TestNet is a fully decentralized Delegated Proof of Stake net
 
 This is the first TestNet for Moonbeam, so there are some limitations.
 
-Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts){target=_blank} are yet to be included. You can check out the list of supported precompiles on the [Canonical Contract page](/builders/build/canonical-contracts/precompiles/){target=_blank}. However, all built-in functions are available.
+Some [precompiles](https://docs.klaytn.com/smart-contract/precompiled-contracts){target=_blank} are yet to be included. You can check out the list of supported precompiles on the [Canonical Contract page](/builders/pallets-precompiles/precompiles/){target=_blank}. However, all built-in functions are available.
 
 Since the release of Moonbase Alpha v6, the maximum gas limit per block has been set to {{ networks.moonbase.gas_block }}, with a maximum gas limit per transaction of {{ networks.moonbase.gas_tx }}.

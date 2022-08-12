@@ -3,7 +3,7 @@ nav:
   - index.md
   - 'Democracy': 'democracy.md'
   - 'Parachain Staking': 'staking.md'
-  - 'Utility': 'utility.md'
   - 'Randomness': 'randomness.md'
+  - 'Utility': 'utility.md'
   - 'X-Tokens': '/builders/xcm/xc20/xtokens/#x-tokens-pallet-interface'
   - 'XCM-Transactor': '/builders/xcm/xcm-transactor/#xcm-transactor-pallet-interface'

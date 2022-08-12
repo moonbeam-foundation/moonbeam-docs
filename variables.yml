@@ -25,12 +25,11 @@ networks:
     binary_name: moonbeam
     min_gas_price: 1
     block_time: 12
-    discord_faucet_amount: 1 DEV token
-    website_faucet_amount: 5 DEV tokens
+    website_faucet_amount: 1.1 DEV tokens
     node:
       cores: 8
       ram: 16
-      hd: 250
+      hd: 1
     thegraph:
       lotto_contract: '0x44ddD2EC5BE2A7f3e4A465C21600bE8df644093f'
       block_number: 132605
@@ -59,35 +58,38 @@ networks:
         sushi_usd: 'b4b07d0fc218455caaff2223a05ec208'
         uni_usd: '22b567acabdb419abe8136a2bab6ade8'
       feed:
-        consumer:
-          aave_usd: '0xD1e52C81FD72fFc6dA3bF083297E6C37852E93DA'
-          algo_usd: '0x0183d1C98442510DD7aaB0E2d09863c47FFF4dF1'
-          band_usd: '0x124A3EE742737BC30307d1F82c5406bf79aBa4d6'
-          btc_usd: '0x86f11CffCB1A86Ecb79643FCa1a3C666a61F84Fd'
-          dot_usd: '0x235A40b872e543b6238df7Ff55E2D8eCAE80a6bd'
-          eth_usd: '0xE33691Ba3cF532D4025cF0f47679eFe430d4A618'
-          ksm_usd: '0x9Df2E2179ddb4D9197451946104068e08eD3E49F'
-          link_usd: '0xC58B34ea686Db2d567835de7AB58fC678b6f186A'
-          sushi_usd: '0x21B52fFF227cD9F425E817f9E1eaA0eB8cd647e1'
-          uni_usd: '0x5Cd72748F94a8597f563D92687A8D2A5074b10E5'
-        aggregator:
-          aave_usd: '0x64B22D2B8c3CA311a0C2de34bf799f8101c89362'
-          algo_usd: '0x9fc3b0BF1156868085AFC1cFf4Bf6D85ea301371'
-          band_usd: '0xC5aeD933FEb49794A8Bf2FB0e73D9c958c8a07ba'
-          btc_usd: '0xCf88A8d7fc1A687895fC8ffAad567f303926B094'
-          dot_usd: '0xA873F6b30aD79fCAF9b03A0A883d6D1f18D661d7'
-          eth_usd: '0x3669da30c33D27A6A579548fCfc345fE5dEdda6e'
-          ksm_usd: '0x0C515E77897b2A7181C875c88FaF9BC8E5661E3b'
-          link_usd: '0x446b93236B4d34642732B8dcbeB3cb4f4FA03C70'
-          sushi_usd: '0x4a6Cf10C0f5c4D4e7cf7385bFfecDAec0778357C'
-          uni_usd: '0x326997c21451DaB916F9f01684991B6169dAf3E5'
+        proxy:
+          aave_usd: '0x9DA76AE39AECA424801DF1b63e9E2750643F9e76'
+          algo_usd: '0x49E1021974902B4a279fC7D359b4890FC38F8261'
+          avax_usd: '0xA356990bCDed8Cc6865Be606D64E7381bfe00B72'
+          band_usd: '0x8997c0A8Dc9d13061FCf303711D1db4278e53a1B'
+          bnb_usd: '0x4ADfBA6138A5bdA31f980EF5D59Fc7f8440A5D92'
+          btc_usd: '0xa39d8684B8cd74821db73deEB4836Ea46E145300'
+          comp_usd: '0xaa18FFaF5E2f410250D318b57EAd2C68603A382c'
+          crv_usd: '0x1a435D01CB50E6B1F8e429a32EE03BF164B43ece'
+          cvx_usd: '0x3A1Ac4DA79a3c813b2B335d1a631adEec360A59c'
+          dai_usd: '0x5A5737F6C0683be63863131bfCAd793a9F828DDa'
+          dot_usd: '0xA8B2138c8E765288D4f6fb7D3ebCe2507A006a9C'
+          eth_usd: '0x0BAA6E884cfD628b33867F9E081B44a76276fA2D'
+          frax_usd: '0xB616464cB6135AF542de908FAa3FbE3a0b3048e4'
+          ftm_usd: '0xD23f056ceD090Bc9Cf6c75d2FB43c0ccC35AD542'
+          ksm_usd: '0x4E9A1ebc0bEebe3516a8A9a911D781c37414bb39'
+          link_usd: '0x5310f2d4B531BCEA8126e2aEE40BAd71B707f530'
+          mkr_usd: '0x2257c46D4ddF160bACBD00cd67cD6Fd87C48c581'
+          op_usd: '0xC5837B50a86fD87e1D2FbE4FEbFe7C042a9CFBE8'
+          steth_usd: '0x49CEee3f8e9e05f26A81f1122A78D058Ef3c05a9'
+          sushi_usd: '0xd265FAfc809108D9cf47b6970d750419ba9355B8'
+          uni_usd: '0x326fAFb9E9B5188d7c2e95C0D782ECB19E5EfDF9'
+          usdc_usd: '0xCb1c08B86C6EaC617b1bEd5D1E9cD7Fd308FdA4d'
+          usdt_usd: '0x141Ec95dB9298cB4Bb20CbAC422A42A047a764b1'
+          yfi_usd: '0x8E812AA9f56BBAa5B936c8F08B0a260f3eF7cF46'
     randomness:
       max_random_words: 100
       min_vrf_blocks_delay: 2
       max_vrf_blocks_delay: 2000
       req_deposit_amount: 1000000000000000000
     xcm:
-      instructions: 
+      instructions:
         weight_units:
           display: 100,000,000
         wei_per_weight:
@@ -186,6 +188,7 @@ networks:
       author_mapping: '0x0000000000000000000000000000000000000807'
       batch: '0x0000000000000000000000000000000000000808'
       randomness: '0x0000000000000000000000000000000000000809'
+      call_permit: '0x000000000000000000000000000000000000080a'
     substrate_api_sidecar:
       stable_version: 11.3.9
     tx_weight_to_gas_ratio: 25000
@@ -226,12 +229,12 @@ networks:
     node:
       cores: 8
       ram: 16
-      hd: 500
+      hd: 1
     xcm:
-      instructions: 
+      instructions:
         weight_units:
           display: 200,000,000
-        wei_per_weight: 
+        wei_per_weight:
           display: 50,000
     democracy:
       launch_period:
@@ -325,9 +328,10 @@ networks:
       author_mapping: '0x0000000000000000000000000000000000000807'
       batch: '0x0000000000000000000000000000000000000808'
       randomness: '0x0000000000000000000000000000000000000809'
+      call_permit: '0x000000000000000000000000000000000000080a'
     chainlink:
       feed:
-        aggregator:
+        proxy:
           inch_usd: '0x1466b4bD0C4B6B8e1164991909961e0EE6a66d8c'
           aave_usd: '0x37f35ef6735c594e6E803bC81577bAC759d8179C'
           ankr_usd: '0x94Ee35E8b9B1b4Cd3BDB720242d6d1796b43C2Ff'
@@ -335,6 +339,7 @@ networks:
           axs_usd: '0x9322CeAd48BA0C76Fecc78e82499ce8a829Eab89'
           bnb_usd: '0xD6B013A65C22C372F995864CcdAE202D0194f9bf'
           btc_usd: '0x1B5C6cF9Df1CBF30387C24CC7DB1787CCf65C797'
+          busd_usd: '0x596129F6ABCaB2E6E81D19284B78eA73C176D170'
           cake_usd: '0xc44ecD8C11fd1F281A3d6044CA65e649484B228c'
           comp_usd: '0x29710821d57a1Fc46E2D9FdDE65Df2cF205bad2A'
           crv_usd: '0x03d44d68EdF41c540A90C6eB2BE27C4a75ee689f'
@@ -401,19 +406,19 @@ networks:
     node:
       cores: 8
       ram: 16
-      hd: 500
+      hd: 1
     xcm:
-      instructions: 
-        weight_units: 
+      instructions:
+        weight_units:
           display: 200,000,000
           numbers_only: 200000000
-        wei_per_weight: 
+        wei_per_weight:
           display: 5,000,000
           numbers_only: 5000000
         wei_cost: 1000000000000000
         glmr_cost: 0.001
       units_per_second:
-        xcdot: 
+        xcdot:
           display: 11,285,231,116
           numbers_only: 11285231116
       message:
@@ -512,13 +517,16 @@ networks:
       author_mapping: '0x0000000000000000000000000000000000000807'
       batch: '0x0000000000000000000000000000000000000808'
       randomness: '0x0000000000000000000000000000000000000809'
+      call_permit: '0x000000000000000000000000000000000000080a'
     chainlink:
       feed:
-        aggregator:
+        proxy:
           atom_usd: '0x4F152D143c97B5e8d2293bc5B2380600f274a5dd'
           bnb_usd: '0x0147f2Ad7F1e2Bc51F998CC128a8355d5AE8C32D'
           btc_usd: '0x8c4425e141979c66423A83bE2ee59135864487Eb'
+          dot_usd: '0x1466b4bD0C4B6B8e1164991909961e0EE6a66d8c'
           eth_usd: '0x9ce2388a1696e22F870341C3FC1E89710C7569B5'
+          frax_usd: '0x05Ec3Fb5B7CB3bE9D7150FBA1Fb0749407e5Aa8a'
           glmr_usd: '0x4497B606be93e773bbA5eaCFCb2ac5E2214220Eb'
           link_usd: '0xd61D7398B7734aBe7C4B143fE57dC666D2fe83aD'
           usdc_usd: '0xA122591F60115D63421f66F752EF9f6e0bc73abC'
@@ -554,16 +562,16 @@ networks:
     prometheus: 9615
   polkadot:
     rocks_db:
-      read_weight: 20,499,000 
+      read_weight: 20,499,000
       write_weight: 83,471,000
     parity_db:
-      read_weight: 11,826,000 
+      read_weight: 11,826,000
       write_weight: 30,052,000
     xcm_instruction:
-      weight: 
+      weight:
         display: 1,000,000,000
         numbers_only: 1000000000
-      planck_dot_weight: 0.117354363 
+      planck_dot_weight: 0.117354363
       planck_dot_cost: 117354360
       dot_cost: 0.0117354363
     xcm_message:
@@ -575,10 +583,10 @@ networks:
       numbers_only: 85212000
   kusama:
     rocks_db:
-      read_weight: 25,000,000 
+      read_weight: 25,000,000
       write_weight: 100,000,000
     parity_db:
-      read_weight: 8,000,000 
+      read_weight: 8,000,000
       write_weight: 50,000,000
     xcm_message:
       transfer:
@@ -590,7 +598,7 @@ networks:
         total_weight: 3,109,000
         ksm_cost: '0.000000120072453'
       withdraw:
-        base_weight: 20,385,000 
+        base_weight: 20,385,000
         total_weight: 145,385,000
         planck_ksm_cost: 5614903.04216
         ksm_cost: '0.00000561490304213694'
@@ -604,3 +612,13 @@ networks:
     extrinsic_base_weight:
       display: 86,309,000
       numbers_only: 86309000
+  bobabase:
+    rpc_url: https://bobabase.boba.network
+    replica_rpc_url: https://replica.bobabase.boba.network
+    wss_url: wss://wss.bobabase.boba.network
+    replica_wss_url: wss://replica-wss.bobabase.boba.network
+    gateway: https://gateway.bobabase.boba.network
+    chain_id: 1297
+    hex_chain_id: '0x511'
+    block_explorer: https://blockexplorer.bobabase.boba.network
+    exit_delay_period_days: 7

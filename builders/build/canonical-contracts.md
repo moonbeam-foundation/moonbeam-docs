@@ -56,24 +56,24 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
 
 ### Ethereum MainNet Precompiles {: #ethereum-mainnet-precompiles }
 
-|                                                           Contract                                                            |                  Address                   |
-|:-----------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
-|  [ECRECOVER](/builders/build/canonical-contracts/precompiles/eth-mainnet/#verify-signatures-with-ecrecover/){target=_blank}   | 0x0000000000000000000000000000000000000001 |
-|          [SHA256](/builders/build/canonical-contracts/precompiles/eth-mainnet/#hashing-with-sha256/){target=_blank}           | 0x0000000000000000000000000000000000000002 |
-|       [RIPEMD160](/builders/build/canonical-contracts/precompiles/eth-mainnet/#hashing-with-ripemd-160/){target=_blank}       | 0x0000000000000000000000000000000000000003 |
-|        [Identity](/builders/build/canonical-contracts/precompiles/eth-mainnet/#the-identity-function/){target=_blank}         | 0x0000000000000000000000000000000000000004 |
-| [Modular Exponentiation](/builders/build/canonical-contracts/precompiles/eth-mainnet/#modular-exponentiation/){target=_blank} | 0x0000000000000000000000000000000000000005 |
-|                           [BN128Add](/builders/build/pallets/eth-mainnet/#bn128add){target=_blank}                            | 0x0000000000000000000000000000000000000006 |
-|                           [BN128Mul](/builders/build/pallets/eth-mainnet/#bn128mul){target=_blank}                            | 0x0000000000000000000000000000000000000007 |
-|                       [BN128Pairing](/builders/build/pallets/eth-mainnet/#bn128pairing){target=_blank}                        | 0x0000000000000000000000000000000000000008 |
-|   [Blake2](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html){target=_blank}    | 0x0000000000000000000000000000000000000009 |
+|                                                         Contract                                                         |                  Address                   |
+|:------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
+|   [ECRECOVER](/builders/pallets-precompiles/precompiles/eth-mainnet/#verify-signatures-with-ecrecover){target=_blank}   | 0x0000000000000000000000000000000000000001 |
+|           [SHA256](/builders/pallets-precompiles/precompiles/eth-mainnet/#hashing-with-sha256){target=_blank}           | 0x0000000000000000000000000000000000000002 |
+|       [RIPEMD160](/builders/pallets-precompiles/precompiles/eth-mainnet/#hashing-with-ripemd-160){target=_blank}        | 0x0000000000000000000000000000000000000003 |
+|         [Identity](/builders/pallets-precompiles/precompiles/eth-mainnet/#the-identity-function){target=_blank}         | 0x0000000000000000000000000000000000000004 |
+| [Modular Exponentiation](/builders/pallets-precompiles/precompiles/eth-mainnet/#modular-exponentiation){target=_blank}  | 0x0000000000000000000000000000000000000005 |
+|                [BN128Add](/builders/pallets-precompiles/precompiles/eth-mainnet/#bn128add){target=_blank}                | 0x0000000000000000000000000000000000000006 |
+|                [BN128Mul](/builders/pallets-precompiles/precompiles/eth-mainnet/#bn128mul){target=_blank}                | 0x0000000000000000000000000000000000000007 |
+|            [BN128Pairing](/builders/pallets-precompiles/precompiles/eth-mainnet/#bn128pairing){target=_blank}            | 0x0000000000000000000000000000000000000008 |
+| [Blake2](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_blake2/struct.Blake2F.html){target=_blank} | 0x0000000000000000000000000000000000000009 |
 
 
 ### Non-Moonbeam Specific nor Ethereum Precompiles {: #non-moonbeam-specific-nor-ethereum-precompiles }
 
 |                                                                    Contract                                                                     |                  Address                   |
 |:-----------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
-|                           [SHA3FIPS256](/builders/build/pallets/eth-mainnet/#hashing-with-sha3fips256){target=_blank}                           | 0x0000000000000000000000000000000000000400 |
+|                  [SHA3FIPS256](/builders/pallets-precompiles/precompiles/eth-mainnet/#hashing-with-sha3fips256){target=_blank}                  | 0x0000000000000000000000000000000000000400 |
 |          [Dispatch](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_dispatch/struct.Dispatch.html){target=_blank}          | 0x0000000000000000000000000000000000000401 |
 | [ECRecoverPublicKey](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_simple/struct.ECRecoverPublicKey.html){target=_blank} | 0x0000000000000000000000000000000000000402 |
 
@@ -117,4 +117,5 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
     |      [XCM Transactor](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm-transactor/XcmTransactor.sol){target=_blank}       | {{networks.moonbase.precompiles.xcm_transactor}} |
     |  [Author Mapping](https://github.com/PureStake/moonbeam/blob/master/precompiles/author-mapping/AuthorMappingInterface.sol){target=_blank}  | {{networks.moonbase.precompiles.author_mapping}} |
     |                   [Batch](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank}                    |     {{networks.moonbase.precompiles.batch}}      |
-
+    |            [Randomness](https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/Randomness.sol){target=_blank}            |   {{networks.moonbase.precompiles.randomness}}   |
+    |           [Call Permit](https://github.com/PureStake/moonbeam/blob/master/precompiles/call-permit/CallPermit.sol){target=_blank}           |  {{networks.moonbase.precompiles.call_permit }}  |

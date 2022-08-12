@@ -11,11 +11,11 @@ If you're looking for your own endpoints suitable for production use, you can ch
 For the Web3.js library, you can create a local Web3 instance and set the provider to connect to Moonbase Alpha (both HTTP and WS are supported):
 
 ```js
-const Web3 = require('web3'); //Load Web3 library
+const Web3 = require('web3'); // Load Web3 library
 .
 .
 .
-//Create local Web3 instance - set Moonbase Alpha as provider
+// Create local Web3 instance - set Moonbase Alpha as provider
 const web3 = new Web3('https://rpc.api.moonbase.moonbeam.network'); 
 ```
 For the Ethers.js library, define the provider by using `ethers.providers.StaticJsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonbase Alpha:

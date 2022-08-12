@@ -42,7 +42,7 @@ Next, if you want to create a new account make sure you store the private key di
 - **Public address** - `0x44236223aB4291b93EEd10E4B511B37a398DEE55` 
 
 !!! note
-    Never reveal your private keys as they give direct access to your funds. The steps in this guide are for demostration purposes only. 
+    Never reveal your private keys as they give direct access to your funds. The steps in this guide are for demonstration purposes only. 
     
 Make sure to include the prefix in the private key, i.e., `0x`. If you entered the information correctly, the corresponding public address should appear in the upper left corner of the window.
 
