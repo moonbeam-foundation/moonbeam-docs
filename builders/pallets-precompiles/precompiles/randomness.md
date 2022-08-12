@@ -114,9 +114,13 @@ When randomness is requested through the precompile's `requestLocalVRFRandomWord
 
 After the delay, fulfillment of the request can be manually executed by anyone through the `fulfillRequest` method using the fee that was initially set aside for the request.
 
-When fulfilling the randomness request via the precompile's `fulfillRequest` method, the `rawFulfillRandomWords` function in the `RandomnessConsumer.sol` contract will be called, which will verify that the sender is the randomness precompile. From there, `fulfillRandomWords` is called and the requested number of random words are computed using the current block's randomness result and a given salt and returned. If the fulfillment was successful, the `FulfillmentSucceeded` event will be emitted; otherwise the `FulfillmentFailed` event will be emitted. Any excess fees are transferred to the specified refund address.
+When fulfilling the randomness request via the precompile's `fulfillRequest` method, the `rawFulfillRandomWords` function in the `RandomnessConsumer.sol` contract will be called, which will verify that the sender is the randomness precompile. From there, `fulfillRandomWords` is called and the requested number of random words are computed using the current block's randomness result and a given salt and returned. If the fulfillment was successful, the `FulfillmentSucceeded` event will be emitted; otherwise the `FulfillmentFailed` event will be emitted. 
+
+For fulfilled requests, the cost of execution will be refunded from the request fee to the caller of `fulfillRequest`. Then any excess fees and the request deposit are transferred to the specified refund address.
 
 Your contract's `fulfillRandomWords` callback is responsible for handling the fulfillment. For example, in a lottery contract, the callback would use the random words to choose a winner and payout the winnings.
+
+If a request expires it can be purged through the precompile's `purgeExpiredRequest` function. When this function is called the request fee is paid out to the caller and the deposit will be returned to the original requester.
 
 ## Security Considerations {: #security-considerations }
 
