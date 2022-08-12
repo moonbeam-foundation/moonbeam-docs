@@ -68,7 +68,10 @@ You can follow a similar set of steps to withdraw your gas funds from Gelato.
 
 ### Send a Gasless Transaction with Gelato Relay SDK {: #send-a-gasless-transaction-with-gelato-relay-sdk }
 
+Gasless transactions, also referred to as meta transactions, allow end-users to interact with smart contracts without paying for gas. Instead of confirming a transaction in a wallet, a user signs a message that enables a transaction to take place once a relayer submits the transaction and pays the associated gas fee. [EIP-2771](https://eips.ethereum.org/EIPS/eip-2771){target=_blank} is a common standard that enables meta transactions, and is implemented by the [`HelloWorld.sol` contract](https://moonscan.io/address/0x3456E168d2D7271847808463D6D383D079Bd5Eaa#code){target=_blank} referenced later in the tutorial.   
+
 In this demo, you'll ask Gelato Relay SDK to call a `HelloWorld.sol` contract on your behalf. The script being built is sourced from the [quick start guide](https://docs.gelato.network/developer-products/gelato-relay-sdk/quick-start){target=_blank} on Gelato Docs. Note, there is no dependency on RPC providers - once the transaction and signature are built, you simply pass them along to the Gelato Relay API. 
+
 
 ### Getting Started {: #getting-started }
 
@@ -78,10 +81,10 @@ Gelato Relay SDK is an [NPM package](https://www.npmjs.com/package/@gelatonetwor
 npm install @gelatonetwork/gelato-relay-sdk
 ```
 
-You'll also want to install the Ethers.js library and the Solidity compiler. To install both NPM packages, you can run the following command:
+You'll also want to install the Ethers.js library with the following command:
 
 ```
-npm install ethers solc@0.8.0
+npm install ethers
 ```
 
 Next, you'll need to create a javascript file for your script. You can create a `hello-world.js` file by running:
@@ -97,7 +100,15 @@ Now you're ready to build. First, you need to import the Gelato Relay SDK and Et
   import { GelatoRelaySDK } from "@gelatonetwork/gelato-relay-sdk";
 ```
 
-Next, you'll define the chain ID and the [`HelloWorld.sol` contract](https://moonscan.io/address/0x3456E168d2D7271847808463D6D383D079Bd5Eaa#code){target=_blank} that you want to interact with.
+Then, create a function to contain the logic of the script:
+
+```
+const forwardRequestExample = async () => {
+
+}
+```
+
+Within the `forwardRequestExample` function, define the chain ID and the [`HelloWorld.sol` contract](https://moonscan.io/address/0x3456E168d2D7271847808463D6D383D079Bd5Eaa#code){target=_blank} that you want to interact with.
 
 ```
   const chainId = {{ networks.moonbeam.chain_id }};
@@ -163,7 +174,7 @@ The resulting ABI-encodeded call data should look like `0x4b32706700000000000000
 
 ![Gelato Relay SDK](/images/builders/integrations/relayers/gelato/gelato-5.png)
 
-You've seen how to fetch the ABI-encoded call data via MetaMask. You can also access do the same in Remix, but typically you would fetch the ABI-encoded call data programmatically via Ethers.js or Web3.js. There are some additional parameters defined in the following example, such as `paymentType`, `maxFee`, and `gas`. There are a variety of possible [payment types](https://docs.gelato.network/developer-products/gelato-relay-sdk/payment-types){target=_blank} you can choose from. For simplicity, replay protection has not been considered in this example. 
+The ABI-encoded call data specifies the contract function to call as well as any relevant parameters, and can be fetched via MetaMask or Remix. More commonly, you might fetch the ABI-encoded call data programmatically via Ethers.js or Web3.js. There are some additional parameters defined in the following example, such as `paymentType`, `maxFee`, and `gas`. There are a variety of possible [payment types](https://docs.gelato.network/developer-products/gelato-relay-sdk/payment-types){target=_blank} you can choose from. For simplicity, replay protection has not been considered in this example. 
 
 ```
   // ABI encode for HelloWorld.sayHiVanilla(address _feeToken)
@@ -202,7 +213,7 @@ Lastly, the `forwardRequest` object is created with all of the relevant paramete
 
 ### Send Request Data {: #send-request-data }
 
-The last few steps are building the request object, hashing it, and finally, signing it. The last step is to submit the request and the signature to the Gelato Relay API. You can copy and paste the below code into a javascript file. You can name the file `hello-world.js` or a similar name. 
+The last few steps include hashing the request object and signing the resulting hash. The ultimate step is to submit the request and the signature to the Gelato Relay API. You can copy and paste the below code into a javascript file. You can name the file `hello-world.js` or a similar name. 
 
 ```
 import { Wallet, utils } from "ethers";
@@ -268,6 +279,8 @@ const forwardRequestExample = async () => {
 
 forwardRequestExample();
 ```
+
+The [EIP-712 standard](https://eips.ethereum.org/EIPS/eip-712){target=_blank} provides important context to users about the action they're authorizing. Instead of signing a long, unrecognizable bytestring (which is dangerous and could be exploited by bad actors), [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=_blank} provides a framework for encoding and displaying the contents of the message in a readable manner, making it substantially safer for end-users. 
 
 To execute the script and dispatch the gasless transaction to Gelato Relay API, use the following command: 
 
