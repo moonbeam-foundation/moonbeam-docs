@@ -68,7 +68,7 @@ You can follow a similar set of steps to withdraw your gas funds from Gelato.
 
 ### Send a Gasless Transaction with Gelato Relay SDK {: #send-a-gasless-transaction-with-gelato-relay-sdk }
 
-In this demo, you'll ask Gelato Relay SDK to call a `HelloWorld` smart contract on your behalf. The script being built is sourced from the [quick start guide](https://docs.gelato.network/developer-products/gelato-relay-sdk/quick-start){target=_blank} on Gelato Docs. Note, there is no dependency on RPC providers - once the transaction and signature are built, you simply pass them along to the Gelato Relay API. 
+In this demo, you'll ask Gelato Relay SDK to call a `HelloWorld.sol` contract on your behalf. The script being built is sourced from the [quick start guide](https://docs.gelato.network/developer-products/gelato-relay-sdk/quick-start){target=_blank} on Gelato Docs. Note, there is no dependency on RPC providers - once the transaction and signature are built, you simply pass them along to the Gelato Relay API. 
 
 ### Getting Started {: #getting-started }
 
@@ -97,19 +97,47 @@ Now you're ready to build. First, you need to import the Gelato Relay SDK and Et
   import { GelatoRelaySDK } from "@gelatonetwork/gelato-relay-sdk";
 ```
 
-### Define the ChainID and Target Contract {: #define-the-chainid-and-target-contract }
-
-Next, you'll define the chain ID and the [HelloWorld contract](https://moonscan.io/address/0x3456E168d2D7271847808463D6D383D079Bd5Eaa){target=_blank} that you want to interact with.
+Next, you'll define the chain ID and the [`HelloWorld.sol` contract](https://moonscan.io/address/0x3456E168d2D7271847808463D6D383D079Bd5Eaa#code){target=_blank} that you want to interact with.
 
 ```
-  const chainId = 1284;
-  // Hello World smart contract on Moonbeam
+  const chainId = {{ networks.moonbeam.chain_id }};
+  // `HelloWorld.sol` contract on Moonbeam
   const target = "0x3456E168d2D7271847808463D6D383D079Bd5Eaa";
 ```
 
-### Create a Test Account {: #create-a-test-account }
+The [`HelloWorld.sol` contract](https://moonscan.io/address/0x3456E168d2D7271847808463D6D383D079Bd5Eaa#code){target=_blank}, reproduced below, is configured to have gasless transaction support.
 
-In this step, you'll create a new test account that will submit the gasless transaction. This account is insecure and should not be used in production. You'll define a `test_token` with a default value for demonstration purposes. 
+```
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.13;
+
+import {ERC2771Context} from "@openzeppelin/contracts/metatx/ERC2771Context.sol";
+
+/// @title HelloWorld with meta transaction support (EIP-2771)
+contract HelloWorld is ERC2771Context {
+    event Success(
+        address indexed user,
+        address indexed feeToken,
+        string message
+    );
+
+    constructor(address _gelatoMetaBox) ERC2771Context(_gelatoMetaBox) {}
+
+    function sayHiVanilla(address _feeToken) external {
+        string memory message = "Hello World";
+
+        emit Success(msg.sender, _feeToken, message);
+    }
+
+    function sayHi(address _feeToken) external {
+        string memory message = "Hello World";
+
+        emit Success(_msgSender(), _feeToken, message);
+    }
+}
+```
+
+Next, you'll create a new test account that will submit the gasless transaction. This account is insecure and should not be used in production. This example defines a `test_token` with a default value for demonstration purposes, but you can specify any token here that you'd like.
 
 ```
   const test_token = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
@@ -120,12 +148,11 @@ In this step, you'll create a new test account that will submit the gasless tran
   console.log(`Mock wallet address: ${sponsor}`);
 ```
 
-
 ### Add Request Data {: #add-request-data }
 
 In this step you have to provide the ABI-encoded call data for the function you want to interact with. You can generate this by taking the following steps:
 
-1. Navigate to the **Write Contract** heading of the [Hello World Contract on Moonscan](https://moonscan.io/address/0x3456E168d2D7271847808463D6D383D079Bd5Eaa#writeContract){target=_blank} 
+1. Navigate to the **Write Contract** heading of the [`HelloWorld.sol` contract on Moonscan](https://moonscan.io/address/0x3456E168d2D7271847808463D6D383D079Bd5Eaa#writeContract){target=_blank} 
 2. Press  **Connect to Web3**. After you accept the terms and conditions, you can connect your wallet
 3. Head to the `sayHiVanilla` function and provide the following default value for the `_feeToken` parameter: `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE`
 4. Press **Write**
@@ -136,7 +163,7 @@ The resulting ABI-encodeded call data should look like `0x4b32706700000000000000
 
 ![Gelato Relay SDK](/images/builders/integrations/relayers/gelato/gelato-5.png)
 
-There are some additional parameters defined here, such as paymentType, maxFee, and gas limit. There are a variety of possible [payment types](https://docs.gelato.network/developer-products/gelato-relay-sdk/payment-types){target=_blank} you can choose from. For simplicity, replay protection has not been considered in this example. 
+You've seen how to fetch the ABI-encoded call data via MetaMask. You can also access do the same in Remix, but typically you would fetch the ABI-encoded call data programmatically via Ethers.js or Web3.js. There are some additional parameters defined in the following example, such as `paymentType`, `maxFee`, and `gas`. There are a variety of possible [payment types](https://docs.gelato.network/developer-products/gelato-relay-sdk/payment-types){target=_blank} you can choose from. For simplicity, replay protection has not been considered in this example. 
 
 ```
   // ABI encode for HelloWorld.sayHiVanilla(address _feeToken)
@@ -154,9 +181,26 @@ There are some additional parameters defined here, such as paymentType, maxFee, 
   const enforceSponsorNonce = false;
   // Only relevant when enforceSponsorNonce = true
   const enforceSponsorNonceOrdering = false;
+
+  // Build ForwardRequest object
+  const forwardRequest = GelatoRelaySDK.forwardRequest(
+    chainId,
+    target,
+    data,
+    test_token,
+    paymentType,
+    maxFee,
+    gas,
+    sponsorNonce,
+    enforceSponsorNonce,
+    sponsor
+  );
+
 ```
 
-### Putting it All Together {: #putting-it-all-together }
+Lastly, the `forwardRequest` object is created with all of the relevant parameters defined in prior steps. In the final step, the `forwardRequest` object will be sent to the Gelato Relay API with the required signature.
+
+### Send Request Data {: #send-request-data }
 
 The last few steps are building the request object, hashing it, and finally, signing it. The last step is to submit the request and the signature to the Gelato Relay API. You can copy and paste the below code into a javascript file. You can name the file `hello-world.js` or a similar name. 
 
@@ -166,8 +210,8 @@ import { GelatoRelaySDK } from "@gelatonetwork/gelato-relay-sdk";
 
 const forwardRequestExample = async () => {
 
-  const chainId = 1284;
-  // Hello World smart contract on Moonbeam
+  const chainId = {{ networks.moonbeam.chain_id }};
+  // `HelloWorld.sol` contract on Moonbeam
   const target = "0x3456E168d2D7271847808463D6D383D079Bd5Eaa";
   const test_token = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
   
