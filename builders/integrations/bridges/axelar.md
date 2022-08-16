@@ -6,6 +6,7 @@ description: Learn how to bridge assets, plus other ways you can connect your Mo
 # Axelar Network
 
 ![ChainBridge Moonbeam banner](/images/builders/integrations/bridges/axelar/axelar-banner.png)
+
 ## Introduction {: #introduction }
 
 [Axelar](https://axelar.network/){target=_blank} delivers secure cross-chain communication for Web3. Axelar's infrastructure enables dApp users to interact with any asset or application, on any connected chain, with one click. Powered by a permissionless Proof-of-Stake validator set, Axelar network allows dApps to pass arbitrary messages across chains using Turing-complete calls.
@@ -14,16 +15,23 @@ Axelar is a full-stack transport layer that supports asset transfer, [General Me
 
 The Axelar APIs provide a rich suite for developing Web3 applications, ensuring that developers have the tools they need for building. With these tools and APIs, developers can use the Axelar network and its APIs to write dApps that can be easily deployed across all Axelar-connected ecosystems. In other words, Axelar distills cross-chain interoperability down to a simple set of API requests.
 
-
 ## Getting Started {: #getting-started }
 
-Check out the [developer documentation](https://docs.axelar.dev/dev/intro){target=_blank} to start building cross-chain applications with Axelar.
+There are a couple of resources to get you started building cross-chain applications with Axelar:
+
+- **[Developer documentation](https://docs.axelar.dev/dev/intro){target=_blank}** - for technical guides
+- **[Satellite](https://satellite.money/){target=_blank}** - a bridging UI used to transfer assets across chains
+
+There is also a block explorer available to track your cross-chain transfers and more:
+
+- **[Axelarscan for MainNet](https://axelarscan.io/)**
+- **[Axelarscan for TestNet](https://testnet.axelarscan.io/){target=_blank}**
 
 ## Contracts {: #contracts }
 
 See the list of Axelar contracts deployed to Moonbeam, and the networks connected to Moonbeam through Axelar.
 
-MainNet Contracts - [Moonbeam](https://docs.axelar.dev/dev/build/contract-addresses/mainnet){target=_blank}
+- **MainNet Contracts** - [Moonbeam](https://docs.axelar.dev/dev/build/contract-addresses/mainnet){target=_blank}
 
-TestNet Contracts - [Moonbase Alpha](https://docs.axelar.dev/dev/build/contract-addresses/testnet){target=_blank}
+- **TestNet Contracts** - [Moonbase Alpha](https://docs.axelar.dev/dev/build/contract-addresses/testnet){target=_blank}
 
