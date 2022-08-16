@@ -306,7 +306,7 @@ Therefore, XCM execution in the target chain consist of 3 to 4 XCM instructions,
 
 The transacting through derivative method consists of 3 XCM instructions: [`WithdrawAsset`](https://github.com/paritytech/xcm-format#withdrawasset){target=_blank}, [`BuyExecution`](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} and [`Transact`](https://github.com/paritytech/xcm-format#transact){target=_blank}.
 
-When [transacting through the sovereign-derivative account](/builders/xcm/xcm-transactor/#xcmtransactor-transact-through-derivative){target=_blank}, the transaction fees are paid by the sovereign account of the origin chain in the destination chain, but the derivative account dispatches the transaction. Consequently, the XCM-transactor pallet will burn a certain amount of the corresponding XC-20 token to free up some balance in the sovereign account for XCM fee execution payment.
+When [transacting through the sovereign-derivative account](/builders/xcm/xcm-transactor/#xcmtransactor-transact-through-derivative){target=_blank}, the transaction fees are paid by the sovereign account of the origin chain in the destination chain, but the derivative account dispatches the transaction. Consequently, the XCM-transactor pallet will burn a certain amount of the corresponding XC-20 token to free up some balance in the sovereign account for XCM execution fee payment.
 
 Consider the following scenario: Alice wants to remotely transact in Polkadot from Moonbeam using the transact through sovereign extrinsic (she already has an index registered to her account). To estimate how many XC-20 tokens will be burned from Alice's account, you need to check the transact information specific to the relay chain. To do so, head to the chain state page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/chainstate){target=_blank} and set the following options:
 
@@ -362,23 +362,23 @@ From the response, you can see that the `transactExtraWeightSigned` is `400,000,
 
 1. Choose the **xcmTransactor** pallet
 2. Choose the **destinationAssetFeePerSecond** method
-3. Set the multilocation for the destination chain from which you want to query the transact information. For this example, you can set `parents` to `1` and `interior` to `X1: {"Parachain": 888}`
+3. Set the multilocation for the destination chain from which you want to query the transact information. For this example, you can set `parents` to `1` and `interior` to `X2: [{"Parachain": 888},{"PalletInstance":3}]`
 4. Click on `+`
 
 PICTURE_HERE
 
-Note that this `UnitsPerSecond` is related to the cost estimated in the [Relay Chain XCM Fee Calculation](/builders/xcm/fees/#polkadot){target=_blank} section. You'll need to find the correct value to ensure that the amount of tokens the multilocation-derivative account holds is correct. As before, calculating the associated XCM execution fee is as simple as multiplying the `transactExtraWeight` times the `UnitsPerSecond`:
+Note that this `UnitsPerSecond` is related to the cost estimated in the [Relay Chain XCM Fee Calculation](/builders/xcm/fees/#polkadot){target=_blank} section. You'll need to find the correct value to ensure that the amount of tokens the multilocation-derivative account holds is correct. As before, calculating the associated XCM execution fee is as simple as multiplying the `transactExtraWeight` times the `UnitsPerSecond` (for an estimation):
 
 ```
 Total-Wei-Tokens = transactExtraWeight * UnitsPerSecond
-Tokens = Total-Wei-DOT / TokensDecimalConversion
+Tokens = Total-Wei-Tokens / TokensDecimalConversion
 ```
 
 Therefore, the actual calculation for one XCM-transactor transact through derivative call is:
 
 ```
-Total-Wei-Tokens = 1000000000 * 120692776537
-DOT = 362078329.611 / 10^10
+Total-Wei-Tokens = 400000000 * 50000000000000000
+DOT = 20000000000000000000000000 / 10^18
 ```
 
 The total cost is `0.0362078329611 DOT`. **Note that this does not include the cost of the call being remotely executed, only XCM execution fees.** Consequently, the amount of XC-20 tokens that are burned, consider also the destination weight provided as input in the function call, which can be added to the `transactExtraWeight` in the calculations.
