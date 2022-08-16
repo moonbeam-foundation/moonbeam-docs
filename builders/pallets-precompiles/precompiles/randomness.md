@@ -134,11 +134,11 @@ Since the output of the random words generated for `requestLocalVRFRandomWords` 
 
 Since the output of the random words generated for `requestRelayBabeEpochRandomWords` is dependent on the relay chain validator producing the blocks during an epoch, it is possible for the last validator of an epoch to choose between two possible VRF outputs by skipping the production of a block. However, such an attack would incur the cost of losing the block reward to the validator. It is not possible for a parachain collator to predict or influence the output of the relay chain VRF, not to censor the fulfillment, as long as there is one honest collator.
 
-## Interact with the Solidity Interfaces {: #interact-with-the-solidity-interfaces }
+## Interact with the Solidity Interfaces via Lottery Contract {: #interact-with-the-solidity-interfaces }
+
+In the following sections of this tutorial, you'll learn how to interact with the randomness precompile, in addition to a lottery contract that requires you to have multiple accounts which you can use to participate in a lottery. The default lottery contract sets the minimum number of participants to three, however you can feel free to change the number in the contract. 
 
 ### Checking Prerequisites {: #checking-prerequisites } 
-
-In this tutorial, you'll interact with a lottery contract that requires you to have multiple accounts which you can use to participate in a lottery. The default contract sets the minimum number of participants to three, however you can feel free to change the number in the contract. 
 
 Assuming you use the default contract, you will need to have the following:
 
@@ -149,7 +149,7 @@ Assuming you use the default contract, you will need to have the following:
 
 ### Example Lottery Contract {: #example-contract }
 
-In this tutorial, you'll interact with a lottery contract that uses the randomness precompile and consumer. You'll be generating random words which will be used to select the winner of the lottery fairly. You can find a copy of the lottery contract that will be used for this tutorial, [`RandomnessLotteryDemo.sol`](https://github.com/PureStake/moonbeam/blob/4e2a5785424be6faa01cd14e90155d9d2ec734ee/tests/contracts/solidity/RandomnessLotteryDemo.sol){target=_blank}, in the Moonbeam GitHub repository.
+In this tutorial, you'll interact with a lottery contract that uses the randomness precompile and consumer. You'll be generating random words which will be used to select the winner of the lottery fairly. You can find a copy of the lottery contract that will be used for this tutorial, [`RandomnessLotteryDemo.sol`](https://raw.githubusercontent.com/PureStake/moonbeam-docs/blob/master/.snippets/code/randomness/RandomnessLotteryDemo.sol){target=_blank}, in the Moonbeam Docs GitHub repository.
 
 The lottery contract imports the `Randomness.sol` precompile and the `RandomnessConsumer.sol` interface, and inherits from the consumer contract. In the constructor of the contract, you can specify the source of randomness to be either local VRF or BABE epoch randomness.
 
@@ -161,46 +161,10 @@ There are also some constants in the contract that can be edited as you see fit,
 
 You can interact with the randomness precompile and consumer using [Remix](https://remix.ethereum.org/){target=_blank}. To add the interfaces to Remix and follow along with the tutorial, you will need to:
 
-1. Get a copy of [`Randomness.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/Randomness.sol){target=_blank}
-2. Paste the file contents into a Remix file named **Randomness.sol**
-3. Get a copy of [`RandomnessConsumer.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/RandomnessConsumer.sol){target=_blank}
-4. Paste the file contents into a Remix file named **RandomnessConsumer.sol**
-5. Get a copy of [`RandomnessLotteryDemo.sol`](https://github.com/PureStake/moonbeam/blob/4e2a5785424be6faa01cd14e90155d9d2ec734ee/tests/contracts/solidity/RandomnessLotteryDemo.sol){target=_blank}
-6. Paste the file contents into a Remix file named **RandomnessLotteryDemo.sol**
+1. Get a copy of [`RandomnessLotteryDemo.sol`](https://github.com/PureStake/moonbeam/blob/4e2a5785424be6faa01cd14e90155d9d2ec734ee/tests/contracts/solidity/RandomnessLotteryDemo.sol){target=_blank}
+2. Paste the file contents into a Remix file named **RandomnessLotteryDemo.sol**
 
 ![Add contracts to Remix](/images/builders/pallets-precompiles/precompiles/randomness/randomness-1.png)
-
-You'll need to update the import paths in the `RandomnessLotteryDemo.sol` file to:
-
-```
-import "Randomness.sol";
-import "RandomnessConsumer.sol";
-```
-
-For this example, you can change the `PARTICIPATION_FEE` to a lower amount, such as `100000 gwei`, to maximize the amount of DEV tokens you received from the faucet.
-
-### Compile & Access the Randomness Precompile {: #compile-randomness }
-
-Next, you will need to compile the `Randomness.sol` file in Remix. To get started, make sure you have the **Randomness.sol** file open and take the following steps:
-
-1. Click on the **Compile** tab, second from top
-2. To compile the contract, click on **Compile Randomness.sol**
-
-![Compiling Randomness.sol](/images/builders/pallets-precompiles/precompiles/randomness/randomness-2.png)
-
-If the contract was compiled successfully, you will see a green checkmark next to the **Compile** tab.
-
-Instead of deploying the randomness precompile, you will access the interface given the address of the precompiled contract:
-
-1. Click on the **Deploy and Run** tab directly below the **Compile** tab in Remix. Please note the precompiled contract is already deployed
-2. Make sure **Injected Provider - Metamask** is selected in the **ENVIRONMENT** dropdown. Once selected, you might be prompted by MetaMask to connect your account to Remix
-3. Make sure the correct account is displayed under **ACCOUNT**
-4. Ensure **Randomness - Randomness.sol** is selected in the **CONTRACT** dropdown. Since this is a precompiled contract, there is no need to deploy any code. Instead we are going to provide the address of the precompile in the **At Address** Field
-5. Provide the address of the batch precompile: `{{ networks.moonbase.precompiles.randomness }}` and click **At Address**
-
-![Access the address](/images/builders/pallets-precompiles/precompiles/randomness/randomness-3.png)
-
-The **RANDOMNESS** precompile will appear in the list of **Deployed Contracts**. You will use this to fulfill the randomness request made from the lottery contract later on in this tutorial.
 
 ### Compile & Deploy the Lottery Contract {: #compile-lottery }
 
@@ -209,6 +173,8 @@ Next, you will need to compile the `RandomnessLotteryDemo.sol` file in Remix:
 1. Make sure that you have the **RandomnessLotteryDemo.sol** file open
 2. Click on the **Compile** tab, second from top
 3. To compile the contract, click on **Compile RandomnessLotteryDemo.sol**
+
+![Compile RandomnessLotteryDemo](/images/builders/pallets-precompiles/precompiles/randomness/randomness-2.png)
 
 If the contract was compiled successfully, you will see a green checkmark next to the **Compile** tab.
 
@@ -222,7 +188,7 @@ Once the contract has been compiled, you can deploy the contract by taking the f
 6. Next to **Deploy** enter the source of randomness. This corresponds to the [`RandomnessSource`](#enums) enum. For local VRF, enter `0`, and for BABE epoch randomness, enter `1`. To follow along with this example, you can select `0` and click **Deploy**
 7. Confirm the MetaMask transaction that appears by clicking **Confirm**
 
-![Deploy RandomnessLotteryDemo](/images/builders/pallets-precompiles/precompiles/randomness/randomness-4.png)
+![Deploy RandomnessLotteryDemo](/images/builders/pallets-precompiles/precompiles/randomness/randomness-3.png)
 
 The **RANDOMNESSLOTTERYDEMO** contract will appear in the list of **Deployed Contracts**.
 
@@ -231,11 +197,11 @@ The **RANDOMNESSLOTTERYDEMO** contract will appear in the list of **Deployed Con
 The default contract has a minimum requirement of three participants. To participate you can take the following steps:
 
 1. Make sure you've switched to the account you want to participate with in MetaMask. You can verify the account that is connected under **ACCOUNT** 
-2. Enter the amount you want to contribute to the lottery in the **VALUE** field. It must be greater than or equal to the `PARTICIPATION_FEE` which should be set to `100000 gwei` in the contract
+2. Enter the amount you want to contribute to the lottery in the **VALUE** field. It must be greater than or equal to the `PARTICIPATION_FEE` which is set to `100000 gwei` in the default contract
 3. Click on **participate**
 4. Confirm the transaction in MetaMask
 
-![Participate in the lottery](/images/builders/pallets-precompiles/precompiles/randomness/randomness-5.png)
+![Participate in the lottery](/images/builders/pallets-precompiles/precompiles/randomness/randomness-4.png)
 
 Since there is a minimum of three participants required to start the lottery, you'll need to repeat these steps until you've participated from three different accounts.
 
@@ -246,30 +212,25 @@ If you take a closer look at the `RandomnessLotteryDemo.sol` contract's `startLo
 To start the lottery and submit the randomness request, which will call the precompile's `requestLocalVRFRandomWords`, you can take the following steps:
 
 1. Confirm the account is the owner
-2. To start the lottery you need to pay a fee which will be used to fulfill the randomness request. You can set the **VALUE** to `100000` and choose **Gwei**. The excess fee will be returned to the `msg.sender`
+2. To start the lottery you need to pay a fee which will be used to fulfill the randomness request. You can set the **VALUE** to `200000` and choose **Gwei**. The excess fee will be returned to the `msg.sender`
 3. Click on **startLottery**
 4. Confirm the transaction in MetaMask
 
-![Start the lottery](/images/builders/pallets-precompiles/precompiles/randomness/randomness-6.png)
+![Start the lottery](/images/builders/pallets-precompiles/precompiles/randomness/randomness-5.png)
 
 Once the transaction goes through, the lottery will start and no more participants will be able to join. Before you can fulfill the randomness request in order to pick the winners, you'll need to wait the delay. The default `VRF_BLOCKS_DELAY` is set to `2` blocks.
 
 ### Pick the Winners {: #pick-the-winners }
 
-To fulfill the request, you can do so using the `fulfillRequest` function of the randomness precompile, passing in the request ID. The request will be fulfilled and generate the random words and execute the `fulfillRandomWords` function defined in the `RandomnessLotteryDemo.sol` contract. The `fulfillRandomWords` function callback then calls `pickWinners` and the jackpot is distributed to the randomly selected winners.
-
-To get the request ID, you can click on the **requestId** button and the ID will appear under the function.
-
-![Get the request ID](/images/builders/pallets-precompiles/precompiles/randomness/randomness-7.png)
+To fulfill the request, you can do so using the `fulfillRequest` function which will use the contract's `requestId` variable to call the `fulfillRequest` function of the randomness precompile. If successful, the request will be fulfilled and generate the random words and execute the `fulfillRandomWords` function defined in the `RandomnessLotteryDemo.sol` contract. The `fulfillRandomWords` function callback then calls `pickWinners` and the jackpot is distributed to the randomly selected winners. In addition, the cost of execution will be refunded from the request fee to the caller of `fulfillRequest`. Then any excess fees and the request deposit are transferred to the specified refund address.
 
 You can initiate the fulfillment from any account after the delay has passed, to do so you'll need to:
 
-1. Expand the **RANDOMNESS** contract
-2. For the **fulfillRequest** function, enter the **requestId**
-3. Click on **transact**
-4. Confirm the transaction in MetaMask
+1. Ensure you're connected to the account that you want to fulfill the request from, it can be any account you choose
+2. Click on **fulfillRequest**
+3. Confirm the transaction in MetaMask
 
-![Fulfill the randomness request](/images/builders/pallets-precompiles/precompiles/randomness/randomness-8.png)
+![Fulfill the randomness request](/images/builders/pallets-precompiles/precompiles/randomness/randomness-6.png)
 
 If the transaction reverts with the following error you may need to call `increaseRequestFee`:
 
@@ -283,13 +244,67 @@ If the transaction reverts with the following error you may need to call `increa
 
 The `data` field converted to ASCII text reads: `Gas limit at current price must be less than fees allotted`. As such, you can use the `increaseRequestFee` function to increase the fees for the transaction and try again.
 
-Once the transaction goes through, you can search for the contract's address on [Moonscan](https://moonbase.moonscan.io){target=_blank} and look under the **Events** tab to see the events that were emitted. You should see three events: one `Ended` event and two `Awarded` events.
+Once the transaction goes through, you can take a look at the transaction details in the Remix console. If you scroll down til you see the **logs**, you should see four events and the event details. The events you should see are:
 
-- **`Ended`** - event sent when the lottery ends, which emits the number of participants, the jackpot, and the total winners. Defined in the `RandomnessLotteryDemo.sol` contract
-- **`Awarded`** - event sent when a winner is awarded, which should get emitted twice since there are two winners per the default contract. It emits the winner, the random word, and the amount won. Defined in the `RandomnessLotteryDemo.sol` contract
+- **`"event": "Ended"`** - event sent when the lottery ends, which emits the number of participants, the jackpot, and the total winners. Defined in the `RandomnessLotteryDemo.sol` contract
+- **`"event": "Awarded"`** - event sent when a winner is awarded, which should get emitted twice since there are two winners per the default contract. It emits the winner, the random word, and the amount won. Defined in the `RandomnessLotteryDemo.sol` contract
+- **`"event": "FulFillmentSucceeded"`** - event sent when a request has been fulfilled successfully. Defined in the `Randomness.sol` precompile
 
-You can expand each of the events to obtain more information.
-
-![Fulfill the randomness request](/images/builders/pallets-precompiles/precompiles/randomness/randomness-9.png)
+![Fulfill the randomness request](/images/builders/pallets-precompiles/precompiles/randomness/randomness-7.png)
 
 Congratulations! You've successfully used the randomness precompile and consumer to participate in and start a lottery, and use the generated random words to select a winner.
+
+## Interact with the Precompile Solidity Interface Directly {: #interact-directly }
+
+In addition to interacting with the randomness precompile via a smart contract, you can also interact with it directly in Remix to perform operations such as creating a randomness request, checking on the status of a request, and purging expired requests. Remember, you need to have a contract that inherits from the consumer contract in order to fulfill requests, as such if you fulfill a request using the precompile directly there will be no way to consume the results.
+
+### Remix Set Up {: #remix-set-up } 
+
+To add the interfaces to Remix and follow along with this section of the tutorial, you will need to:
+
+1. Get a copy of [`Randomness.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/Randomness.sol){target=_blank}
+2. Paste the file contents into a Remix file named **Randomness.sol**
+
+![Add precompile to Remix](/images/builders/pallets-precompiles/precompiles/randomness/randomness-8.png)
+
+### Compile & Access the Randomness Precompile {: #compile-randomness }
+
+Next, you will need to compile the `Randomness.sol` file in Remix. To get started, make sure you have the **Randomness.sol** file open and take the following steps:
+
+1. Click on the **Compile** tab, second from top
+2. To compile the contract, click on **Compile Randomness.sol**
+
+If the contract was compiled successfully, you will see a green checkmark next to the **Compile** tab.
+
+Instead of deploying the randomness precompile, you will access the interface given the address of the precompiled contract:
+
+1. Click on the **Deploy and Run** tab directly below the **Compile** tab in Remix. Please note the precompiled contract is already deployed
+2. Make sure **Injected Provider - Metamask** is selected in the **ENVIRONMENT** dropdown. Once selected, you might be prompted by MetaMask to connect your account to Remix
+3. Make sure the correct account is displayed under **ACCOUNT**
+4. Ensure **Randomness - Randomness.sol** is selected in the **CONTRACT** dropdown. Since this is a precompiled contract, there is no need to deploy any code. Instead we are going to provide the address of the precompile in the **At Address** Field
+5. Provide the address of the batch precompile: `{{ networks.moonbase.precompiles.randomness }}` and click **At Address**
+
+![Access the address](/images/builders/pallets-precompiles/precompiles/randomness/randomness-9.png)
+
+The **RANDOMNESS** precompile will appear in the list of **Deployed Contracts**. You will use this to fulfill the randomness request made from the lottery contract later on in this tutorial.
+
+### Get Request Status & Purge Expired Request {: #get-request-status-and-purge }
+
+Anyone can purge expired requests. You do not need to be the one who requested the randomness to be able to purge it. When you purge an expired request, the request fees will be transferred to you, and the deposit for the request will be returned to the original requester.
+
+To purge a request, first you have to make sure that the request has expired. To do so, you can verify the status of a request using the `getRequestStatus` function of the precompile. The number that is returned from this call corresponds to the index of the value in the [`RequestStatus`](#enums) enum. As a result, you'll want to verify the number returned is `3` for `Expired`.
+
+Once you've verified that the request is expired, you can call the `purgeExpiredRequest` function to purge the request. 
+
+To verify and purge a request, you can take the following steps:
+
+1. Expand the **RANDOMNESS** contract
+2. Enter the request ID of the request you want to verify has expired and click on **getRequestStatus**
+3. The response will appear just underneath the function. Verify that you received a `3`
+4. Expand the **purgeExpiredRequest** function and enter the request ID
+5. Click on **transact**
+6. MetaMask will pop-up and you can confirm the transaction
+
+![Purge an exired request](/images/builders/pallets-precompiles/precompiles/randomness/randomness-10.png)
+
+Once the transaction goes through, you can verify the request has been purged by calling the **getRequestStatus** function again with the same request ID. You should receive a status of `0`, or `DoesNotExist`. You can also expect the amount of the request fees to be transferred to your account.
