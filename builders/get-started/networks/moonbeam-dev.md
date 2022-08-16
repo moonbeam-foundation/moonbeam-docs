@@ -142,19 +142,25 @@ Start by connecting to it with Polkadot.js Apps. Open a browser to: [https://pol
 
 ![Polkadot.js Apps](/images/builders/get-started/networks/moonbeam-dev/moonbeam-dev-5.png)
 
-Click on the top left corner to open the menu to configure the networks, and then navigate down to open the Development sub-menu. In there, you will want to toggle the **Local Node** option, which points Polkadot.js Apps to `ws://127.0.0.1:9944`. Next, select the Switch button, and the site should connect to your Moonbeam development node.
+Click on the top left corner to open the menu to configure the networks, then take the following steps:
 
-![Select Local Node](/images/builders/get-started/networks/moonbeam-dev/moonbeam-dev-6.png)
+1. Navigate down to open the **Development** sub-menu
+2. Click on **Local Node**, which points Polkadot.js Apps to `ws://127.0.0.1:9944`. If not, you can enter it under **custom endpoint**
+3. Select the **Switch** button, and the site should connect to your Moonbeam development node
+
+![Select local node](/images/builders/get-started/networks/moonbeam-dev/moonbeam-dev-6.png)
 
 With Polkadot.js Apps connected, you will see the Moonbeam development node waiting for transactions to arrive to begin producing blocks.
 
-![Select Local Node](/images/builders/get-started/networks/moonbeam-dev/moonbeam-dev-7.png)
+![Connected to a local node](/images/builders/get-started/networks/moonbeam-dev/moonbeam-dev-7.png)
 
 ## Querying Account State {: #querying-account-state } 
 
-With the release of [Moonbase Alpha v3](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/){target=_blank}, Moonbeam now works under a single account format, which is the Ethereum-styled H160 and is now also supported in Polkadot.js Apps. To check the balance of an address, you can simply import your account in the Accounts tab. You can find more information in the [Unified Accounts](/learn/features/unified-accounts/){target=_blank} section.
+Moonbeam has a [unified accounts](/learn/features/unified-accounts){target=_blank} system, which enables users to have an Ethereum-styled H160 account that can interact with the Substrate API and the Ethereum API. As a result, you can check the balance of your account through Polkadot.js Apps or MetaMask.
+
+To check the balance of an address using Polkadot.js Apps, you can simply import your account in the **Accounts** tab. You can find more information in the [Interacting with Moonbeam Using Polkadot.js Apps](/tokens/connect/polkadotjs){target=_blank} guide.
  
-Nevertheless, leveraging the Ethereum full RPC capabilities of Moonbeam, you can use [MetaMask](/tokens/connect/metamask/){target=_blank} to check the balance of that address as well. In addition, you can also use other development tools, such as [Remix](/builders/build/eth-api/dev-env/remix/){target=_blank} and [Truffle](/builders/build/eth-api/dev-env/truffle/){target=_blank}.
+As mentioned, you can also use [MetaMask](/tokens/connect/metamask/){target=_blank} to check the balance of that address. In addition, you can also use other development tools, such as [Remix](/builders/build/eth-api/dev-env/remix/){target=_blank} and [Truffle](/builders/build/eth-api/dev-env/truffle/){target=_blank}.
 
 ## Commands, Flags and Options {: #common-commands-flags-and-options } 
 

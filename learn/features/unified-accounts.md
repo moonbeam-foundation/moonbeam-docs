@@ -9,15 +9,15 @@ description: Moonbeam now uses the Ethereum-based H160 account system natively a
 
 ## Introduction {: #introduction } 
 
-With the [release of the v3 upgrade](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/) for the Moonbase Alpha TestNet, we have made significant updates to the underlying account system on Moonbeam, replacing the default Substrate-style accounts and keys with Ethereum-style accounts and keys.
+As Moonbeam is designed to be an Ethereum-compatible parachain on Polkadot, the underlying account system replaces the default Substrate-style accounts and keys with Ethereum-style accounts and keys. As a result, you can interact with your Moonbeam account using [MetaMask](/tokens/connect/metamask){target=_blank} and Ethereum tools you may already be familiar with, such as [Remix](/builders/build/eth-api/dev-env/remix){target=_blank} and [Hardhat](/builders/build/eth-api/dev-env/hardhat){target=_blank}.
 
-The Polkadot.js Apps interface was updated as well so that it natively supports H160 addresses and ECDSA keys. You can check out [this tutorial](/tokens/connect/polkadotjs/) to see more about this integration.
+You can also interact with your Moonbeam account using Polkadot.js Apps as it natively supports H160 addresses and ECDSA keys. For more information on this integration, you can check out the [Interacting with Moonbeam Using Polkadot.js Apps](/tokens/connect/polkadotjs/){target=_blank} guide.
 
 ## Substrate EVM Compatible Blockchain {: #substrate-evm-compatible-blockchain } 
 
-Any parachain in the Polkadot ecosystem can offer a full EVM implementation, which provides the possibility of executing Solidity-based smart contracts with minimal to no changes. Substrate makes this integration possible - just plug the [EVM pallet](https://docs.rs/pallet-evm/2.0.1/pallet_evm/) into your runtime for EVM support, and the [Ethereum Pallet with Frontier](https://github.com/paritytech/frontier) to have Ethereum RPC compatibility. The availability of these open-source modules that Moonbeam has developed with Parity has led multiple parachains to offer Ethereum compatibility on their chains.
+Any parachain in the Polkadot ecosystem can offer a full EVM implementation, which provides the possibility of executing Solidity-based smart contracts with minimal to no changes. Substrate makes this integration possible - just plug the [EVM pallet](https://docs.rs/pallet-evm/2.0.1/pallet_evm/){target=_blank} into your runtime for EVM support, and the [Ethereum Pallet with Frontier](https://github.com/paritytech/frontier){target=_blank} to have Ethereum RPC compatibility. The availability of these open-source modules that Moonbeam has developed with Parity has led multiple parachains to offer Ethereum compatibility on their chains.
 
-But there is an important catch. With the configuration described above, a user (let’s say Alice) can have an Ethereum-style address (H160 format), which is 40+2 hex-characters long, in a Substrate based chain. This address matches a private key, which can be used to sign transactions in the Ethereum side of the chain. Furthermore, the address is mapped into a storage slot inside the Substrate Balance pallet to a Substrate-style address (H256 format). 
+But there is an important catch. With the configuration described above, a user, for example, Alice, can have an Ethereum-style address (H160 format), which is 40+2 hex-characters long, in a Substrate based chain. This address matches a private key, which can be used to sign transactions in the Ethereum side of the chain. Furthermore, the address is mapped into a storage slot inside the Substrate Balance pallet to a Substrate-style address (H256 format). 
 
 However, Alice only knows the private key of the H160 address, and not of the mapped version. Therefore, she is unable to send transactions with her H256 address and is limited only to do read-only operations through Substrate’s API. As a consequence, Alice needs another H256 address matching a different private key to be able to operate in the Substrate side of the chain, which include, among others, staking, balances, and governance. 
 
@@ -31,7 +31,7 @@ This can creates friction and a poor user experience for Alice. First, she has t
 
 Moonbeam’s focus is to create a fully Ethereum-compatible environment on Polkadot with the best user experience possible. This extends beyond the base Ethereum feature set, with additional features such as on-chain governance, staking, and cross-chain integrations.
 
-With Unified Accounts, a user (let's call him Bob) will only need a single H160 address, with its corresponding private key, to do everything we mentioned above including both EVM and Substrate functions.
+With unified accounts, a user, for example, Bob, will only need a single H160 address, with its corresponding private key, to do everything we mentioned above, including both EVM and Substrate functions.
 
 The diagram for this new configuration looks as follows.
 
