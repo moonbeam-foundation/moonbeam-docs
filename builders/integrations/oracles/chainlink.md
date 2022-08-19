@@ -165,14 +165,28 @@ Currently, the oracle node has a set of Job IDs for different price data for the
 |:------------:|:-------------------------------------------------:|
 | AAVE to USD  | {{ networks.moonbase.chainlink.basic.aave_usd }}  |
 | ALGO to USD  | {{ networks.moonbase.chainlink.basic.algo_usd }}  |
+| AVAX to USD  | {{ networks.moonbase.chainlink.basic.avax_usd }}  |
 | BAND to USD  | {{ networks.moonbase.chainlink.basic.band_usd }}  |
+|  BNB to USD  |  {{ networks.moonbase.chainlink.basic.bnb_usd }}  |
 |  BTC to USD  |  {{ networks.moonbase.chainlink.basic.btc_usd }}  |
+| COMP to USD  | {{ networks.moonbase.chainlink.basic.comp_usd }}  |
+|  CRV to USD  |  {{ networks.moonbase.chainlink.basic.crv_usd }}  |
+|  CVX to USD  |  {{ networks.moonbase.chainlink.basic.cvx_usd }}  |
+|  DAI to USD  |  {{ networks.moonbase.chainlink.basic.dai_usd }}  |
 |  DOT to USD  |  {{ networks.moonbase.chainlink.basic.dot_usd }}  |
 |  ETH to USD  |  {{ networks.moonbase.chainlink.basic.eth_usd }}  |
+| FRAX to USD  | {{ networks.moonbase.chainlink.basic.frax_usd }}  |
+|  FTM to USD  |  {{ networks.moonbase.chainlink.basic.ftm_usd }}  |
 |  KSM to USD  |  {{ networks.moonbase.chainlink.basic.ksm_usd }}  |
 | LINK to USD  | {{ networks.moonbase.chainlink.basic.link_usd }}  |
+|  MKR to USD  |  {{ networks.moonbase.chainlink.basic.mkr_usd }}  |
+|  OP to USD   |  {{ networks.moonbase.chainlink.basic.op_usd }}   |
+| stETH to USD | {{ networks.moonbase.chainlink.basic.steth_usd }} |
 | SUSHI to USD | {{ networks.moonbase.chainlink.basic.sushi_usd }} |
 |  UNI to USD  |  {{ networks.moonbase.chainlink.basic.uni_usd }}  |
+| USDC to USD  | {{ networks.moonbase.chainlink.basic.usdc_usd }}  |
+| USDT to USD  | {{ networks.moonbase.chainlink.basic.usdt_usd }}  |
+|  YFI to USD  |  {{ networks.moonbase.chainlink.basic.yfi_usd }}  |
 
 For this example, you can go ahead and use the interface contract with the `BTC to USD` job ID in [Remix](/builders/build/eth-api/dev-env/remix/){target=_blank}. After creating the file and compiling the contract, you can take the following steps:
 
