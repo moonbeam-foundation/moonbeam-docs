@@ -234,7 +234,7 @@ Next, you will create the script for this file and complete the following steps:
 // 1. Import the contract file
 const contractFile = require('./compile');
 
-// 2. Add the Ethers provider logic here:
+// 2. Add the Web3 provider logic here:
 // {...}
 
 // 3. Create address variables
@@ -314,7 +314,7 @@ Then you can take the following steps to create the script:
 // 1. Import the contract abi
 const { abi } = require('./compile');
 
-// 2. Add the Ethers provider logic here:
+// 2. Add the Web3 provider logic here:
 // {...}
 
 // 3. Create address variables
@@ -371,7 +371,7 @@ Open the `increment.js` file and take the following steps to create the script:
 // 1. Import the contract abi
 const { abi } = require('./compile');
 
-// 2. Add the Ethers provider logic here:
+// 2. Add the Web3 provider logic here:
 // {...}
 
 // 3. Create variables
@@ -440,7 +440,7 @@ Next you can open the `reset.js` file and take the following steps to create the
 // 1. Import the contract abi
 const { abi } = require('./compile');
 
-// 2. Add the Ethers provider logic here:
+// 2. Add the Web3 provider logic here:
 // {...}
 
 // 3. Create variables
