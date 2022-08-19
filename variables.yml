@@ -88,6 +88,8 @@ networks:
       min_vrf_blocks_delay: 2
       max_vrf_blocks_delay: 2000
       req_deposit_amount: 1000000000000000000
+      block_expiration: 10000 
+      epoch_expiration: 10000 
     xcm:
       instructions:
         weight_units:
