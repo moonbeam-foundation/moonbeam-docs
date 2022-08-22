@@ -247,3 +247,19 @@ The following code snippet goes through some examples of `Multilocation` structu
     ]
 }
 ```
+### Using Libraries to Interact with X-Tokens {: #using-libraries-to-interact-with-xtokens}
+
+The Multilocation structs can be formatted like any other struct when using libraries to interact with the Ethereum API. The following code snippet include the previous [x-tokens transfer function](#xtokens-transfer-function) and [x-tokens multiasset transfer function](#xtokens-transfer-multiasset-function) examples as well as an extra local asset transfer example:
+
+=== "Ethers.js"
+    --8<-- 'code/xtokens/ethersjs.md'
+
+=== "Web3.js"
+     ```
+     {{networks.moonriver.precompiles.xtokens}}
+     ```
+
+=== "Ethers.py"
+     ```
+     {{networks.moonbase.precompiles.xtokens}}
+     ```
