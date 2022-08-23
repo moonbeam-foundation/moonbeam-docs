@@ -105,3 +105,12 @@ If you don't have a Twitter account, you can contact us on [Discord](https://dis
 6. Your funds will be available on Moonbase Alpha in {{ networks.bobabase.exit_delay_period_days }} days. Note, there is no follow up claim transaction necessary, Boba automatically handles this step on your behalf
 
 ![Bridge to Bobabase](/images/builders/get-started/networks/bobabase/bobabase-3.png)
+
+## Changing your Gas Fee Token {: #changing-your-gas-fee-token }
+Either DEV or BOBA can be used to pay for gas for transactions on Bobabase. If you want to use DEV as a gas token, you must have at least 0.5 DEV bridged to Bobabase. See [Bridge from Moonbase Alpha to Bobabase](#bridge-from-moonbase-alpha-to-bobabase) to learn how to bridge DEV or BOBA to Bobabase. By default, the selected gas fee token is set to BOBA. To change it to DEV, take the following steps:
+
+1. Press the fee dropdown at the top right
+2. Click on **DEV** or **BOBA** to select the new gas fee token 
+3. Confirm the transaction in MetaMask
+
+![Change gas fee token](/images/builders/get-started/networks/bobabase/bobabase-4.png)
