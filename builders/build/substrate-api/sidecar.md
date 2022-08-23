@@ -351,3 +351,7 @@ And then `Transaction Weight` is mapped to the following field of the block JSON
 ```
 extrinsics.{extrinsic number}.events.{event number}.data.0.weight
 ```
+
+## Sample Code for Monitoring Native Token Transfers { #sample-code-for-monitoring-native-token-transfers }
+
+The [Transfers API page](/builders/build/get-started/eth-compare/transfers-api/#using-substrate-api-sidecar){target=_blank} has a code snippet demonstrating how to use Substrate API Sidecar to retrieve and decode native token transfers on Moonbeam networks. You can reference that as a starting point to build out backends that utilizes Sidecar to listen to transfers on Moonbeam networks. 
