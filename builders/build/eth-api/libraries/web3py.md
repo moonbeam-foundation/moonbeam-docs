@@ -136,7 +136,7 @@ Next, you will create the script for this file and complete the following steps:
 
 1. Import the `rpc_gas_price_strategy` which will be used in the following steps to get the gas price used for the transaction
 2. [Set up the Web3 provider](#setup-web3-with-moonbeam)
-3. Define the `account_from`, including the `private_key`, and the `address_to` variables. The private key is required to sign the transaction. **Note: This is for example purposes only. Never store your private keys in a JavaScript file**
+3. Define the `account_from`, including the `private_key`, and the `address_to` variables. The private key is required to sign the transaction. **Note: This is for example purposes only. Never store your private keys in a Python file**
 4. Use the [Web3.py Gas Price API](https://web3py.readthedocs.io/en/stable/gas_price.html){target=_blank} to set a gas price strategy. For this example, you'll use the imported `rpc_gas_price_strategy`
 5. Create and sign the transaction using the `web3.eth.account.sign_transaction` function. Pass in the `nonce` `gas`, `gasPrice`, `to`, and `value` for the transaction along with the sender's `private_key`. To get the `nonce` you can use the `web3.eth.get_transaction_count` function and pass in the sender's address. To predetermine the `gasPrice` you'll use the `web3.eth.generate_gas_price` function. For the `value`, you can format the amount to send from an easily readable format to Wei using the `web3.toWei` function
 6. Using the signed transaction, you can then send it using the `web3.eth.send_raw_transaction` function and wait for the transaction receipt by using the `web3.eth.wait_for_transaction_receipt` function
@@ -230,7 +230,7 @@ Next, you will create the script for this file and complete the following steps:
 
 1. Import the ABI and bytecode
 2. [Set up the Web3 provider](#setup-web3-with-moonbeam)
-3. Define the `account_from`, including the `private_key`. The private key is required to sign the transaction. **Note: This is for example purposes only. Never store your private keys in a JavaScript file**
+3. Define the `account_from`, including the `private_key`. The private key is required to sign the transaction. **Note: This is for example purposes only. Never store your private keys in a Python file**
 4. Create a contract instance using the `web3.eth.contract` function and passing in the ABI and bytecode of the contract
 5. Build a constructor transaction using the contract instance and passing in the value to increment by. For this example, you can use `5`. You'll then use the `buildTransaction` function to pass in the transaction information including the `from` address and the `nonce` for the sender. To get the `nonce` you can use the `web3.eth.get_transaction_count` function 
 6. Sign the transaction using the `web3.eth.account.sign_transaction` function and pass in the constructor transaction and the `private_key` of the sender
@@ -298,7 +298,7 @@ Then you can take the following steps to create the script:
 
 1. Import the ABI
 2. [Set up the Web3 provider](#setup-web3-with-moonbeam)
-3. Define the `account_from`, including the `private_key`. The private key is required to sign the transaction. **Note: This is for example purposes only. Never store your private keys in a JavaScript file**
+3. Define the `account_from`, including the `private_key`. The private key is required to sign the transaction. **Note: This is for example purposes only. Never store your private keys in a Python file**
 4. Create a contract instance using the `web3.eth.contract` function and passing in the ABI and address of the deployed contract
 5. Using the contract instance, you can then call the `number` function
 
@@ -345,7 +345,7 @@ Open the `increment.py` file and take the following steps to create the script:
 
 1. Import the ABI
 2. [Set up the Web3 provider](#setup-web3-with-moonbeam)
-3. Define the `account_from`, including the `private_key`, the `contract_address` of the deployed contract, and the `value` to increment by. The private key is required to sign the transaction. **Note: This is for example purposes only. Never store your private keys in a JavaScript file**
+3. Define the `account_from`, including the `private_key`, the `contract_address` of the deployed contract, and the `value` to increment by. The private key is required to sign the transaction. **Note: This is for example purposes only. Never store your private keys in a Python file**
 4. Create a contract instance using the `web3.eth.contract` function and passing in the ABI and address of the deployed contract
 5. Build the increment transaction using the contract instance and passing in the value to increment by. You'll then use the `buildTransaction` function to pass in the transaction information including the `from` address and the `nonce` for the sender. To get the `nonce` you can use the `web3.eth.get_transaction_count` function 
 6. Sign the transaction using the `web3.eth.account.sign_transaction` function and pass in the increment transaction and the `private_key` of the sender
@@ -407,7 +407,7 @@ Next you can open the `reset.py` file and take the following steps to create the
 
 1. Import the ABI
 2. [Set up the Web3 provider](#setup-web3-with-moonbeam)
-3. Define the `account_from`, including the `private_key`, and the `contract_address` of the deployed contract. The private key is required to sign the transaction. **Note: This is for example purposes only. Never store your private keys in a JavaScript file**
+3. Define the `account_from`, including the `private_key`, and the `contract_address` of the deployed contract. The private key is required to sign the transaction. **Note: This is for example purposes only. Never store your private keys in a Python file**
 4. Create a contract instance using the `web3.eth.contract` function and passing in the ABI and address of the deployed contract
 5. Build the reset transaction using the contract instance. You'll then use the `buildTransaction` function to pass in the transaction information including the `from` address and the `nonce` for the sender. To get the `nonce` you can use the `web3.eth.get_transaction_count` function 
 6. Sign the transaction using the `web3.eth.account.sign_transaction` function and pass in the reset transaction and the `private_key` of the sender
