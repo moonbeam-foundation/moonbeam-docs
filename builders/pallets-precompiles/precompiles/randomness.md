@@ -62,10 +62,10 @@ Where the inputs that need to be provided can be defined as:
 
 The interface includes the following constants:
 
-- **MAX_RANDOM_WORDS** - the maximum number of random words being requested. Set to {{ networks.moonbase.randomness.max_random_words }} words
-- **MIN_VRF_BLOCKS_DELAY** - the minimum number of blocks before a request can be fulfilled for local VRF requests. Set to {{ networks.moonbase.randomness.min_vrf_blocks_delay }} blocks
-- **MAX_VRF_BLOCKS_DELAY** - the maximum number of blocks before a request can be fulfilled for local VRF requests. Set to {{ networks.moonbase.randomness.max_vrf_blocks_delay }} blocks
-- **REQUEST_DEPOSIT_AMOUNT** - the deposit amount needed to request random words. There is one deposit per request. Set to {{ networks.moonbase.randomness.req_deposit_amount.dev }} DEV
+- **MAX_RANDOM_WORDS** - the maximum number of random words being requested 
+- **MIN_VRF_BLOCKS_DELAY** - the minimum number of blocks before a request can be fulfilled for local VRF requests
+- **MAX_VRF_BLOCKS_DELAY** - the maximum number of blocks before a request can be fulfilled for local VRF requests
+- **REQUEST_DEPOSIT_AMOUNT** - the deposit amount needed to request random words. There is one deposit per request
 
 === "Moonbase Alpha"
     |        Variable        |                             Value                              |
@@ -102,11 +102,11 @@ The consumer interface includes the following functions:
 
 To consume randomness, you must have a contract that does the following:
 
-  - imports the `Randomness.sol` precompile and `RandomnessConsumer.sol` interface
-  - inherits from the `RandomnessConsumer.sol` interface
-  - requests randomness through the precompile's [`requestLocalVRFRandomWords` method](#:~:text=requestLocalVRFRandomWords) or [`requestRelayBabeEpochRandomWords` method](#:~:text=requestRelayBabeEpochRandomWords), depending on the source of randomness you want to use
-  - requests fulfillment through the precompile's [`fulfillRequest` method](#:~:text=fulfillRequest)
-  - consumes randomness through a `fulfillRandomWords` method with the same [signature as the `fulfillRandomWords` method](#:~:text=fulfillRandomWords(uint256 requestId, uint256[] memory randomWords)) of the `RandomnessConsumer.sol` contract
+  - Imports the `Randomness.sol` precompile and `RandomnessConsumer.sol` interface
+  - Inherits from the `RandomnessConsumer.sol` interface
+  - Requests randomness through the precompile's [`requestLocalVRFRandomWords` method](#:~:text=requestLocalVRFRandomWords) or [`requestRelayBabeEpochRandomWords` method](#:~:text=requestRelayBabeEpochRandomWords), depending on the source of randomness you want to use
+  - Requests fulfillment through the precompile's [`fulfillRequest` method](#:~:text=fulfillRequest)
+  - Consumes randomness through a `fulfillRandomWords` method with the same [signature as the `fulfillRandomWords` method](#:~:text=fulfillRandomWords(uint256 requestId, uint256[] memory randomWords)) of the `RandomnessConsumer.sol` contract
 
 When randomness is requested through the precompile's `requestLocalVRFRandomWords` or `requestRelayBabeEpochRandomWords` method, a fee is set aside to pay for the fulfillment of the request. When using local VRF, to increase unpredictability, a specified delay period (in blocks) must pass before the request can be fulfilled. At the very least, the delay period must be greater than one block. For BABE epoch randomness, you do not need to specify a delay but can fulfill the request at the beginning of the 2nd epoch following the current one.
 
