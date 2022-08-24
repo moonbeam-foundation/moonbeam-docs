@@ -33,7 +33,7 @@ To get started, you can create a directory to store all of the files you'll be c
 mkdir web3-examples && cd web3-examples
 ```
 
-For this guide, you'll need to install the web3.py library and the Solidity compiler. To install both packages, you can run the following command:
+For this guide, you'll need to install the Web3.py library and the Solidity compiler. To install both packages, you can run the following command:
 
 ```
 pip3 install web3 py-solc-x
