@@ -90,6 +90,9 @@ networks:
           display: 100,000,000
         wei_per_weight:
           display: 50,000
+      units_per_second:
+        xcbetadev:
+          transact_numbers_only: 50000000000000000
     democracy:
       launch_period:
         days: 1
@@ -415,8 +418,9 @@ networks:
         glmr_cost: 0.001
       units_per_second:
         xcdot:
-          display: 11,285,231,116
-          numbers_only: 11285231116
+          transfer: 11,285,231,116
+          transfer_numbers_only: 11285231116
+          transact_numbers_only: 120692776537
       message:
         transfer:
           exec_time: 0.0008
@@ -574,6 +578,11 @@ networks:
       transfer:
         weight: 4,000,000,000
         cost: 0.0469417452
+      transact:
+        weight: 3,000,000,000
+        numbers_only: 3000000000
+        planck_dot_cost: 362078329.611
+        dot_cost: 0.0362078329611
     extrinsic_base_weight:
       display: 85,212,000
       numbers_only: 85212000
@@ -608,3 +617,10 @@ networks:
     extrinsic_base_weight:
       display: 86,309,000
       numbers_only: 86309000
+  moonbase_beta:
+    xcm_message:
+      transact:
+        weight: 400,000,000
+        numbers_only: 400000000
+        wei_betadev_cost: 20000000000000
+        betadev_cost: 0.00002
