@@ -15,7 +15,7 @@ Moonbeam utilizes verifiable random functions (VRF) to generate randomness that 
 
 There are two available sources of randomness that provide random inputs based on block producers' VRF keys and past randomness results: [local VRF](#local-vrf) and [BABE epoch randomness](#babe-epoch-randomness). Local VRF is determined directly within Moonbeam using the collator of the block's VRF key and the last block's VRF output. On the other hand, [BABE](https://wiki.polkadot.network/docs/learn-consensus#block-production-babe){target=_blank} epoch randomness is based on all the VRF produced by the relay chain validators during a complete [epoch](https://wiki.polkadot.network/docs/glossary#epoch){target=_blank}.
 
-You can interact with and request on-chain randomness using the randomness precompile contract, a Solidity interface that enables smart contract developers to access the randomness functionality through the Ethereum API. For more information, please check out the [Interacting with the Randomness Precompile](/builders/pallets-precompiles/precompiles/randomness){target=_blank} guide. You can also take a look at the [The Randomness Pallet](/builders/pallets-precompiles/pallets/randomness){target=_blank}, which can be used to obtain current randomness requests and results.
+You can interact with and request on-chain randomness using the randomness precompile contract, a Solidity interface that enables smart contract developers to access the randomness functionality through the Ethereum API. For more information, please check out the [Interacting with the Randomness Precompile](/builders/pallets-precompiles/precompiles/randomness){target=_blank} guide. You can also take a look at the [Randomness Pallet](/builders/pallets-precompiles/pallets/randomness){target=_blank}, which can be used to obtain current randomness requests and results.
 
 ## General Definitions {: #general-definitions } 
 
@@ -73,8 +73,8 @@ In general, the request and fulfill process for randomness is as follows:
     - for local VRF, the delay period in blocks, which is used to increase unpredictability. It must be between the [minimum and maximum number of blocks](#quick-reference) as listed above. For BABE epoch randomness, you do not need to specify a delay but can fulfill the request after the [epoch delay](#quick-reference) has passed
 
 3. Wait for the delay period to pass
-4. Fulfill the randomness request, which triggers the random words to be computed using the current block's randomness result and the given salt. This can manually be done by anyone using the fee that was initially set aside for the request.
-5. For fulfilled requests, the random words are returned and the cost of execution will be refunded from the request fee to the address that initiated the fulfillment. Then any excess fees and the request deposit are transferred to the specified refund address.
+4. Fulfill the randomness request, which triggers the random words to be computed using the current block's randomness result and the given salt. This can manually be done by anyone using the fee that was initially set aside for the request
+5. For fulfilled requests, the random words are returned and the cost of execution will be refunded from the request fee to the address that initiated the fulfillment. Then any excess fees and the request deposit are transferred to the specified refund address
 
 If a request expires it can be purged by anyone. When this happens, the request fee is paid out to the address that initiated the purge and the deposit is returned to the original requester.
 
