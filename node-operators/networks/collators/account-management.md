@@ -85,6 +85,8 @@ To map your author ID to your account, you need to be inside the [candidate pool
 
 If the transaction is successful, you will see a confirmation notification on your screen. If not, make sure you've [joined the candidate pool](/node-operators/networks/collators/activities/#become-a-candidate){target=_blank}.
 
+If you receive the following error, you may need to try rotating and mapping your keys again: `VRF PreDigest was not included in the digests (check rand key is in keystore)`
+
 ### Checking the Mappings {: #checking-the-mappings } 
 
 You can check the current on-chain mappings for a specific author ID or you can also check all of the mappings stored on-chain. For checking a specific author ID, you can take the first 64 hexadecimal characters of the concatenated public keys to get the author ID. To verify that the author ID is correct, you can run the following command with the first 64 characters passed into the `params` array:

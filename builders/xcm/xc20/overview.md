@@ -141,4 +141,4 @@ The **IERC20** precompile for the XC-20 will appear in the list of **Deployed Co
 
 ![Interact with the precompile functions](/images/builders/xcm/xc20/overview/overview-4.png)
 
-To learn how to interact with each of the functions, you can check out the [ERC-20 Precompile](/builders/build/canonical-contracts/precompiles/erc20/){target=_blank} guide and modify it for interacting with the XC-20 precompile.
+To learn how to interact with each of the functions, you can check out the [ERC-20 Precompile](/builders/pallets-precompiles/precompiles/erc20/){target=_blank} guide and modify it for interacting with the XC-20 precompile.

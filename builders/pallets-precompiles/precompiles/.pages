@@ -6,6 +6,7 @@ nav:
   - 'Democracy': 'democracy.md'
   - 'Ethereum Native': 'eth-mainnet.md'
   - 'Native Token ERC-20': 'erc20.md'
+  - 'Randomness': 'randomness.md'
   - 'Staking Functions': 'staking.md'
   - 'X-Tokens': '/builders/xcm/xc20/xtokens/#xtokens-precompile'
   - 'XCM-Transactor': '/builders/xcm/xcm-transactor/#xcmtransactor-precompile'

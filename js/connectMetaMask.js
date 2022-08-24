@@ -2,6 +2,7 @@ const provider = window.ethereum;
 const moonbeamChainId = '0x504';
 const moonriverChainId = '0x505';
 const moonbaseAlphaChainId = '0x507';
+const bobabaseChainId = '0x511';
 
 /**  Add event listener to the Connect MetaMask buttons */
 const metaMaskButtons = document.querySelectorAll('.connectMetaMask');
@@ -38,6 +39,17 @@ const supportedNetworks = {
     nativeCurrency: {
       name: 'DEV',
       symbol: 'DEV',
+      decimals: 18,
+    },
+  },
+  bobabase: {
+    chainId: bobabaseChainId,
+    chainName: 'Bobabase',
+    rpcUrls: ['https://bobabase.boba.network/'],
+    blockExplorerUrls: ['https://blockexplorer.bobabase.boba.network/'],
+    nativeCurrency: {
+      name: 'BOBA',
+      symbol: 'BOBA',
       decimals: 18,
     },
   },

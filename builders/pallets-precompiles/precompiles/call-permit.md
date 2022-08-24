@@ -106,9 +106,9 @@ contract SetMessage {
 You can use [Remix](https://remix.ethereum.org/){target=_blank} to compile the example contract and deploy it. To add the contract, you can take the following steps:
 
 1. Copy the [`SetMessage.sol`](#example-contract){target=_blank} contract
-2. Paste the file contents into a Remix file named **SetMessage.sol**
+2. Paste the file contents into a Remix file named `SetMessage.sol`
 3. Get a copy of [`CallPermit.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/call-permit/CallPermit.sol){target=_blank}
-4. Paste the file contents into a Remix file named **CallPermit.sol**
+4. Paste the file contents into a Remix file named `CallPermit.sol`
 
 ![Copying and pasting the example contract into Remix](/images/builders/pallets-precompiles/precompiles/call-permit/call-1.png)
 

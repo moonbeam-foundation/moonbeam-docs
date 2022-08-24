@@ -2,4 +2,5 @@ title: Bridges
 hide: false
 nav:
   - index.md
+  - 'Axelar': 'axelar.md'
   - 'ChainBridge': 'chainbridge.md'

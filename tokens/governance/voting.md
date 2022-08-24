@@ -117,7 +117,8 @@ Here, you need to provide the following information:
     |      16      |           5           | {{networks.moonbase.democracy.lock_period.conviction_5}} days |
     |      32      |           6           | {{networks.moonbase.democracy.lock_period.conviction_6}} days |
 
-
+!!! note
+    The lock time approximations are based upon regular {{networks.moonbeam.block_time}}-second block times. Block production may vary and thus the displayed lock times should not be deemed exact.
 
 
 ![Vote Submission](/images/tokens/governance/voting/vote-3.png)

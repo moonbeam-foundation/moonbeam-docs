@@ -282,7 +282,7 @@ Next you can take the following steps, entering in one line at a time:
     await box.store(5)
     ```
 
-The transaction will be signed by your Moonbase account and broadcast to the network. The output should look similar to:
+The transaction will be signed by your Moonbase account and be broadcasted to the network. The output should look similar to:
 
 ![Transaction output](/images/builders/build/eth-api/dev-env/hardhat/hardhat-4.png)
 

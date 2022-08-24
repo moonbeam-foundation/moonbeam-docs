@@ -11,11 +11,11 @@ If you're looking for your own endpoints suitable for production use, you can ch
 Before getting started, make sure you've retrieved your own endpoint and API key from one of the custom [Endpoint Providers](/builders/get-started/endpoints/){target=_blank}. Then for the Web3.js library, you can create a local Web3 instance and set the provider to connect to Moonriver (both HTTP and WS are supported):
 
 ```js
-const Web3 = require('web3'); //Load Web3 library
+const Web3 = require('web3'); // Load Web3 library
 .
 .
 .
-//Create local Web3 instance - set Moonriver as provider
+// Create local Web3 instance - set Moonriver as provider
 const web3 = new Web3("RPC-API-ENDPOINT-HERE"); // Insert your RPC URL here
 ```
 
