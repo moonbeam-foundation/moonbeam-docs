@@ -10,7 +10,7 @@ keywords: solidity, ethereum, staking, moonbeam, precompiled, contracts
 
 ## Introduction {: #introduction } 
 
-Moonbeam uses a Delegated Proof of Stake system through the [parachain staking](/builders/pallets-precompiles/pallets/staking){target=_blank} pallet, allowing token holders (delegators) to express exactly which collator candidates they would like to support and with what quantity of stake. The design of the parachain staking pallet is such that it enforces shared risk/reward on chain between delegators and candidates.
+Moonbeam uses a Delegated Proof of Stake system through the [parachain staking](/builders/pallets-precompiles/pallets/staking){target=_blank} pallet, allowing token holders (delegators) to express exactly which collator candidates they would like to support and with what quantity of stake. The design of the parachain staking pallet is such that it enforces shared risk/reward on chain between delegators and candidates. For general information on staking, such as general terminology, staking variables, and more, please refer to the [Staking on Moonbeam](/learn/features/staking){target=_blank} page.
 
 The staking module is coded in Rust and it is part of a pallet that is normally not accessible from the Ethereum side of Moonbeam. However, a staking precompile allows developers to access the staking features using the Ethereum API in a precompiled contract located at address:
 
@@ -64,7 +64,7 @@ Some of the staking pallet extrinsics include exit delays that you must wait bef
 
 ## Parachain Staking Solidity Interface {: #the-parachain-staking-solidity-interface } 
 
-[StakingInterface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol) is an interface through which Solidity contracts can interact with parachain-staking. The beauty is that Solidity developers don’t have to learn the Substrate API. Instead, they can interact with staking functions using the Ethereum interface they are familiar with.
+[StakingInterface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank} is an interface through which Solidity contracts can interact with parachain-staking. The beauty is that Solidity developers don’t have to learn the Substrate API. Instead, they can interact with staking functions using the Ethereum interface they are familiar with.
 
 The Solidity interface includes the following functions:
 

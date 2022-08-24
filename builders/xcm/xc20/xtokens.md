@@ -55,7 +55,7 @@ The x-tokens pallet includes the following read-only storage method:
 
 The x-tokens pallet includes the following read-only functions to obtain pallet constants:
 
-- **baseXcmWeigh**() - returns the base XCM weight required for execution
+- **baseXcmWeight**() - returns the base XCM weight required for execution
 - **selfLocation**() - returns the multilocation of the chain
 
 ## Building an XCM Message with the X-Tokens Pallet {: #build-xcm-xtokens-pallet}
