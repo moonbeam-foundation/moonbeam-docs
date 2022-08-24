@@ -29,11 +29,11 @@ const web3 = new Web3('{{ networks.bobabeam.rpc_url }}');
 For the Ethers.js library, define the provider by using `ethers.providers.StaticJsonRpcProvider(providerURL, {object})` and setting the provider URL to Bobabeam:
 
 ```js
-const ethers = require('ethers');
+const ethers = require('ethers'); // Load Ethers library
 
 const providerURL = '{{ networks.bobabeam.rpc_url }}';
 
-// Define Provider
+// Define provider
 const provider = new ethers.providers.StaticJsonRpcProvider(providerURL, {
     chainId: {{ networks.bobabeam.chain_id }},
     name: 'bobabeam'
