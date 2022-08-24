@@ -104,7 +104,7 @@ To consume randomness, you must have a contract that does the following:
 
   - imports the `Randomness.sol` precompile and `RandomnessConsumer.sol` interface
   - inherits from the `RandomnessConsumer.sol` interface
-  - requests randomness through the precompile's [`requestLocalVRFRandomWords` method](#:~:text=requestLocalVRFRandomWords) or [`requestRelayBabeEpochRandomWords` method](#:~:text=requestRelayBabeEpochRandomWords)  depending on the source of randomness you want to use
+  - requests randomness through the precompile's [`requestLocalVRFRandomWords` method](#:~:text=requestLocalVRFRandomWords) or [`requestRelayBabeEpochRandomWords` method](#:~:text=requestRelayBabeEpochRandomWords), depending on the source of randomness you want to use
   - fulfills randomness through a `fulfillRandomWords` method with the same [signature as the `fulfillRandomWords` method](#:~:text=fulfillRandomWords(uint256 requestId, uint256[] memory randomWords)) of the `RandomnessConsumer.sol` contract
 
 When randomness is requested through the precompile's `requestLocalVRFRandomWords` or `requestRelayBabeEpochRandomWords` method, a fee is set aside to pay for the fulfillment of the request. When using local VRF, to increase unpredictability, a specified delay period (in blocks) must pass before the request can be fulfilled. At the very least, the delay period must be greater than one block. For BABE epoch randomness, you do not need to specify a delay but can fulfill the request at the beginning of the 2nd epoch following the current one.
