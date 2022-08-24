@@ -105,11 +105,12 @@ To consume randomness, you must have a contract that does the following:
   - imports the `Randomness.sol` precompile and `RandomnessConsumer.sol` interface
   - inherits from the `RandomnessConsumer.sol` interface
   - requests randomness through the precompile's [`requestLocalVRFRandomWords` method](#:~:text=requestLocalVRFRandomWords) or [`requestRelayBabeEpochRandomWords` method](#:~:text=requestRelayBabeEpochRandomWords), depending on the source of randomness you want to use
-  - fulfills randomness through a `fulfillRandomWords` method with the same [signature as the `fulfillRandomWords` method](#:~:text=fulfillRandomWords(uint256 requestId, uint256[] memory randomWords)) of the `RandomnessConsumer.sol` contract
+  - requests fulfillment through the precompile's [`fulfillRequest` method](#:~:text=fulfillRequest)
+  - consumes randomness through a `fulfillRandomWords` method with the same [signature as the `fulfillRandomWords` method](#:~:text=fulfillRandomWords(uint256 requestId, uint256[] memory randomWords)) of the `RandomnessConsumer.sol` contract
 
 When randomness is requested through the precompile's `requestLocalVRFRandomWords` or `requestRelayBabeEpochRandomWords` method, a fee is set aside to pay for the fulfillment of the request. When using local VRF, to increase unpredictability, a specified delay period (in blocks) must pass before the request can be fulfilled. At the very least, the delay period must be greater than one block. For BABE epoch randomness, you do not need to specify a delay but can fulfill the request at the beginning of the 2nd epoch following the current one.
 
-After the delay, fulfillment of the request can be manually executed by anyone through the [`fulfillRequest`](#:~:text=fulfillRequest) method using the fee that was initially set aside for the request.
+After the delay, fulfillment of the request can be manually executed by anyone through the `fulfillRequest` method using the fee that was initially set aside for the request.
 
 When fulfilling the randomness request via the precompile's `fulfillRequest` method, the [`rawFulfillRandomWords`](#:~:text=rawFulfillRandomWords(uint256 requestId, uint256[] memory randomWords)) function in the `RandomnessConsumer.sol` contract will be called, which will verify that the sender is the randomness precompile. From there, [`fulfillRandomWords`](#:~:text=fulfillRandomWords(uint256 requestId, uint256[] memory randomWords)) is called and the requested number of random words are computed using the current block's randomness result and a given salt and returned. If the fulfillment was successful, the [`FulfillmentSucceeded` event](#:~:text=FulfillmentSucceeded) will be emitted; otherwise the [`FulfillmentFailed` event](#:~:text=FulfillmentFailed) will be emitted. 
 
