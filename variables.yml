@@ -97,6 +97,16 @@ networks:
           usdc_usd: '0xCb1c08B86C6EaC617b1bEd5D1E9cD7Fd308FdA4d'
           usdt_usd: '0x141Ec95dB9298cB4Bb20CbAC422A42A047a764b1'
           yfi_usd: '0x8E812AA9f56BBAa5B936c8F08B0a260f3eF7cF46'
+    randomness:
+      max_random_words: 100
+      min_vrf_blocks_delay: 2
+      max_vrf_blocks_delay: 2000
+      req_deposit_amount: 
+        dev: 1
+        wei: 1000000000000000000
+      block_expiration: 10000 
+      epoch_expiration: 10000
+      epoch_fulfillment_delay: 2
     xcm:
       instructions:
         weight_units:
