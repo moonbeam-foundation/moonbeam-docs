@@ -43,7 +43,7 @@ All the scenarios described above will effectively transfer base layer network t
 
 ## Monitor Native Token Balance Transfers {: #monitor-transfers }
 
-The following code samples will illustrate how to listen to both types of transfers, sent via Substrate or Ethereum API, using either the [Polkadot.js API library](https://polkadot.js.org/docs/api/start){target=_blank} or [Substrate API Sidecar](https://github.com/paritytech/substrate-api-sidecar){target=_blank}. The following code snippets are for demo purposes only and should not be used without modification and testing in a production environment. 
+The following code samples will demonstrate how to listen to both types of native token transfers, sent via Substrate or Ethereum API, using either the [Polkadot.js API library](https://polkadot.js.org/docs/api/start){target=_blank} or [Substrate API Sidecar](https://github.com/paritytech/substrate-api-sidecar){target=_blank}. The following code snippets are for demo purposes only and should not be used without modification and further testing in a production environment. 
 
 ### Using Polkadot.js API {: #using-polkadotjs-api }
 
