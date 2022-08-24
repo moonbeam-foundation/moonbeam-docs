@@ -3,6 +3,7 @@ const moonbeamChainId = '0x504';
 const moonriverChainId = '0x505';
 const moonbaseAlphaChainId = '0x507';
 const bobabaseChainId = '0x511';
+const bobabeamChainId = '0x50E';
 
 /**  Add event listener to the Connect MetaMask buttons */
 const metaMaskButtons = document.querySelectorAll('.connectMetaMask');
@@ -47,6 +48,17 @@ const supportedNetworks = {
     chainName: 'Bobabase',
     rpcUrls: ['https://bobabase.boba.network/'],
     blockExplorerUrls: ['https://blockexplorer.bobabase.boba.network/'],
+    nativeCurrency: {
+      name: 'BOBA',
+      symbol: 'BOBA',
+      decimals: 18,
+    },
+  },
+  bobabeam: {
+    chainId: bobabeamChainId,
+    chainName: 'Bobabeam',
+    rpcUrls: ['https://bobabeam.boba.network/'],
+    blockExplorerUrls: ['https://blockexplorer.bobabeam.boba.network/'],
     nativeCurrency: {
       name: 'BOBA',
       symbol: 'BOBA',
