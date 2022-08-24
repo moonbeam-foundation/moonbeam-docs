@@ -249,7 +249,7 @@ The following code snippet goes through some examples of `Multilocation` structu
 ```
 ### Using Libraries to Interact with X-Tokens {: #using-libraries-to-interact-with-xtokens}
 
-The Multilocation structs can be formatted like any other struct when using libraries to interact with the Ethereum API. The following code snippet include the previous [x-tokens transfer function](#xtokens-transfer-function), the [x-tokens multiasset transfer function](#xtokens-transfer-multiasset-function), and sample Multilocation struct examples. You can find the [xTokens ABI on Github](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/xtokens/abi.js){target=_blank}.
+The Multilocation structs can be formatted like any other struct when using libraries to interact with the Ethereum API. The following code snippet include the previous [x-tokens transfer function](#xtokens-transfer-function), the [x-tokens multiasset transfer function](#xtokens-transfer-multiasset-function), and sample Multilocation struct examples. You can find the [x-tokens ABI on Github](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/xtokens/abi.js){target=_blank}.
 
 === "Ethers.js"
     --8<-- 'code/xtokens/ethersjs.md'

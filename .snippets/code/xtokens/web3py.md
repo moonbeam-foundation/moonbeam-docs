@@ -1,7 +1,7 @@
 ```python
 from web3 import Web3
 
-abi = 'XTOKENS_ABI_HERE' # Paste or import the xTokens ABI
+abi = 'XTOKENS_ABI_HERE' # Paste or import the x-tokens ABI
 privateKey = 'YOUR_PRIVATE_KEY_HERE' # This is for demo purposes, never store your private key in plain text
 address = 'YOUR_ADDRESS_HERE' # The wallet address that corresponds to your private key
 

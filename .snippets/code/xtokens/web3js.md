@@ -1,5 +1,5 @@
 ```javascript
-import abi from './xtokensABI.js'; // Import the xTokens ABI
+import abi from './xtokensABI.js'; // Import the x-tokens ABI
 import Web3 from 'web3'; // Import Web3 library
 const PRIVATE_KEY = 'YOUR_PRIVATE_KEY_HERE';
 
