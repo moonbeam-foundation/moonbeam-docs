@@ -43,6 +43,8 @@ All the scenarios described above will effectively transfer base layer network t
 
 ## Monitor Native Token Balance Transfers {: #monitor-transfers }
 
+The following code samples will illustrate how to listen to both types of transfers, sent via Substrate or Ethereum API, using either the [Polkadot.js API library](https://polkadot.js.org/docs/api/start){target=_blank} or [Substrate API Sidecar](https://github.com/paritytech/substrate-api-sidecar){target=_blank}. The following code snippets are for demo purposes only and should not be used without modification and testing in a production environment. 
+
 ### Using Polkadot.js API {: #using-polkadotjs-api }
 
 The [Polkadot.js API package](https://polkadot.js.org/docs/api/start){target=_blank} provides developers a way to interact with Substrate chains using JavaScript.
@@ -55,7 +57,7 @@ In addition, you can find more sample code snippets related to more specific cas
 
 ### Using Substrate API Sidecar {: #using-substrate-api-sidecar }
 
-Developers can also retrieve Moonbeam blocks and monitor transactions using [Substrate API Sidecar](https://github.com/paritytech/substrate-api-sidecar){target=_blank}, a REST API service for interacting with blockchains built with the Substrate framework. 
+Developers can also retrieve Moonbeam blocks and monitor transactions sent via both the Substrate and Ethereum API using [Substrate API Sidecar](https://github.com/paritytech/substrate-api-sidecar){target=_blank}, a REST API service for interacting with blockchains built with the Substrate framework. 
 
 The following code snippet uses the Axios HTTP client to query the Sidecar endpoint `/blocks/head`(https://paritytech.github.io/substrate-api-sidecar/dist/){target=_blank} for the latest finalized block, and then decodes the block for the the `from`, `to`, `value`, `tx hash` and `transaction status` of native token transfers at both the EVM and Substrate API level. 
 
