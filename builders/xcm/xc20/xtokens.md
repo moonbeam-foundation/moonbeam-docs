@@ -259,3 +259,6 @@ The Multilocation structs can be formatted like any other struct when using libr
 
 === "Web3.py"
     --8<-- 'code/xtokens/web3py.md'
+
+!!! note
+    To test out the above examples on Moonbeam or Moonriver, you can replace the RPC URL with your own endpoint and API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=_blank}.
