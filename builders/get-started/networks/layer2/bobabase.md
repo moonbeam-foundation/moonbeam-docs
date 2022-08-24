@@ -7,8 +7,9 @@ description: Bobabase is the official TestNet for the Boba Layer Two Deployment 
 
 ![Bobabase Banner](/images/builders/get-started/networks/bobabase/bobabase-banner.png)
 
-## Introduction
-[Boba](https://boba.network/){target=_blank} is a compute-focused Layer 2 (L2) built on the Optimistic Rollup developed by [Optimism](https://www.optimism.io/){target=_blank}. Boba augments the compute capabilities of EVM-compatible blockchains with a variety of features including [Turing hybrid compute](https://docs.boba.network/turing/turing){target=_blank}. After launching on Ethereum, Boba has brought its Layer 2 scaling solution to Moonbeam. Bobabase is the name of Boba's TestNet deployment on Moonbase Alpha. Bobabeam (not yet live) refers to Boba's MainNet deployment on Moonbeam.
+## Introduction {: #introduction }
+
+[Boba](https://boba.network/){target=_blank} is a compute-focused Layer 2 (L2) built on the Optimistic Rollup developed by [Optimism](https://www.optimism.io/){target=_blank}. Boba augments the compute capabilities of EVM-compatible blockchains with a variety of features including [Turing hybrid compute](https://docs.boba.network/turing/turing){target=_blank}. After launching on Ethereum, Boba has brought its Layer 2 scaling solution to Moonbeam. Bobabase is the name of Boba's TestNet deployment on Moonbase Alpha. [Bobabeam](/builders/get-started/networks/layer2/bobabeam){target=_blank} refers to Boba's MainNet deployment on Moonbeam.
 
 ## Network Endpoints {: #network-endpoints }
 
@@ -45,7 +46,7 @@ For more detailed tutorials on working with Ethers.js and Web3.js, head to [Ethe
 
 Bobabase chain ID is: `{{ networks.bobabase.chain_id }}`, which is `{{ networks.bobabase.hex_chain_id }}` in hex.
 
-## Block Explorer
+## Block Explorer {: #block-explorer }
 
 The Bobabase block explorer is an [instance of Blockscout]({{ networks.bobabase.block_explorer }}){target=_blank}.
 
@@ -107,9 +108,10 @@ If you don't have a Twitter account, you can contact us on [Discord](https://dis
 ![Bridge to Bobabase](/images/builders/get-started/networks/bobabase/bobabase-3.png)
 
 ## Changing your Gas Fee Token {: #changing-your-gas-fee-token }
+
 Either DEV or BOBA can be used to pay for gas for transactions on Bobabase. If you want to use DEV as a gas token, you must have at least 0.5 DEV bridged to Bobabase. See [Bridge from Moonbase Alpha to Bobabase](#bridge-from-moonbase-alpha-to-bobabase) to learn how to bridge DEV or BOBA to Bobabase. By default, the selected gas fee token is set to BOBA. To change it to DEV, take the following steps:
 
-1. Press the fee dropdown at the top right
+1. Press the **Fee** dropdown at the top right
 2. Click on **DEV** or **BOBA** to select the new gas fee token 
 3. Confirm the transaction in MetaMask
 

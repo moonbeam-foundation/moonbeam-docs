@@ -7,8 +7,9 @@ description: Bobabeam is a compute-focused, Optimistic Layer Two (L2) Deployment
 
 ![Bobabeam Banner](/images/builders/get-started/networks/bobabeam/bobabeam-banner.png)
 
-## Introduction
-[Boba](https://boba.network/){target=_blank} is a compute-focused Layer 2 (L2) built on the Optimistic Rollup developed by [Optimism](https://www.optimism.io/){target=_blank}. Boba augments the compute capabilities of EVM-compatible blockchains with a variety of features including [Turing hybrid compute](https://docs.boba.network/turing/turing){target=_blank}. After launching on Ethereum, Boba has brought its Layer 2 scaling solution to Moonbeam. [Bobabase](/builders/get-started/networks/layer2/bobabase) is the name of Boba's TestNet deployment on Moonbeam, while Bobabeam refers to Boba's MainNet deployment on Moonbeam.
+## Introduction {: #introduction }
+
+[Boba](https://boba.network/){target=_blank} is a compute-focused Layer 2 (L2) built on the Optimistic Rollup developed by [Optimism](https://www.optimism.io/){target=_blank}. Boba augments the compute capabilities of EVM-compatible blockchains with a variety of features including [Turing hybrid compute](https://docs.boba.network/turing/turing){target=_blank}. After launching on Ethereum, Boba has brought its Layer 2 scaling solution to Moonbeam. [Bobabase](/builders/get-started/networks/layer2/bobabase){target=_blank} is the name of Boba's TestNet deployment on Moonbeam, while Bobabeam refers to Boba's MainNet deployment on Moonbeam.
 
 ## Network Endpoints {: #network-endpoints }
 
@@ -45,10 +46,9 @@ For more detailed tutorials on working with Ethers.js and Web3.js, head to [Ethe
 
 Bobabeam chain ID is: `{{ networks.bobabeam.chain_id }}`, which is `{{ networks.bobabeam.hex_chain_id }}` in hex.
 
-## Block Explorer
+## Block Explorer {: #block-explorer}
 
 The Bobabeam block explorer is an [instance of Blockscout]({{ networks.bobabeam.block_explorer }}){target=_blank}.
-
 
 ## Connect MetaMask {: #connect-metamask }
 
@@ -92,9 +92,10 @@ Before you can make a transaction on Bobabeam, you'll need to have at least 1 BO
 ![Bridge to Moonbeam](/images/builders/get-started/networks/bobabeam/bobabeam-2.png)
 
 ## Changing your Gas Fee Token {: #changing-your-gas-fee-token }
+
 Either GLMR or BOBA can be used to pay for gas for transactions on Bobabeam. Note that in either case, the token you use for gas must be located on the Bobabeam network. See [Bridge from Moonbeam to Bobabeam](#bridge-from-moonbeam-to-bobabeam) to learn how to bridge GLMR or BOBA to Bobabeam. By default, the selected gas fee token is set to BOBA. To change it to GLMR, take the following steps:
 
-1. Press the fee dropdown at the top right
+1. Press the **Fee** dropdown at the top right
 2. Click on **GLMR** or **BOBA** to select the new gas fee token 
 3. Confirm the transaction in MetaMask
 
