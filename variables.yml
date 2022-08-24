@@ -87,9 +87,12 @@ networks:
       max_random_words: 100
       min_vrf_blocks_delay: 2
       max_vrf_blocks_delay: 2000
-      req_deposit_amount: 1000000000000000000
+      req_deposit_amount: 
+        dev: 1
+        wei: 1000000000000000000
       block_expiration: 10000 
-      epoch_expiration: 10000 
+      epoch_expiration: 10000
+      epoch_fulfillment_delay: 2
     xcm:
       instructions:
         weight_units:

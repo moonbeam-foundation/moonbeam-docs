@@ -65,7 +65,15 @@ The interface includes the following constants:
 - **MAX_RANDOM_WORDS** - the maximum number of random words being requested. Set to {{ networks.moonbase.randomness.max_random_words }} words
 - **MIN_VRF_BLOCKS_DELAY** - the minimum number of blocks before a request can be fulfilled for local VRF requests. Set to {{ networks.moonbase.randomness.min_vrf_blocks_delay }} blocks
 - **MAX_VRF_BLOCKS_DELAY** - the maximum number of blocks before a request can be fulfilled for local VRF requests. Set to {{ networks.moonbase.randomness.max_vrf_blocks_delay }} blocks
-- **REQUEST_DEPOSIT_AMOUNT** - the deposit amount needed to request random words. There is one deposit per request. Set to {{ networks.moonbase.randomness.req_deposit_amount }} Wei
+- **REQUEST_DEPOSIT_AMOUNT** - the deposit amount needed to request random words. There is one deposit per request. Set to {{ networks.moonbase.randomness.req_deposit_amount.dev }} DEV
+
+=== "Moonbase Alpha"
+    |        Variable        |                             Value                              |
+    |:----------------------:|:--------------------------------------------------------------:|
+    |    MAX_RANDOM_WORDS    |   {{ networks.moonbase.randomness.max_random_words }} words    |
+    |  MIN_VRF_BLOCKS_DELAY  | {{ networks.moonbase.randomness.min_vrf_blocks_delay }} blocks |
+    |  MAX_VRF_BLOCKS_DELAY  | {{ networks.moonbase.randomness.max_vrf_blocks_delay }} blocks |
+    | REQUEST_DEPOSIT_AMOUNT | {{ networks.moonbase.randomness.req_deposit_amount.dev }} DEV  |
 
 ### Events {: #events }
 
@@ -89,6 +97,31 @@ The consumer interface includes the following functions:
 
 - **fulfillRandomWords**(*uint256* requestId, *uint256[] memory* randomWords) - handles the VRF response for  given request. This method is triggered by a call to `rawFulfillRandomWords`
 - **rawFulfillRandomWords**(*uint256* requestId, *uint256[] memory* randomWords) - executed when the [`fulfillRequest` function](#:~:text=fulfillRequest(uint256 requestId)) of the randomness precompile is called. The origin of the call is validated, ensuring the randomness precompile is the origin, and then the `fulfillRandomWords` method is called
+
+## Request & Fulfill Process {: #request-and-fulfill-process }
+
+To consume randomness, you must have a contract that does the following:
+
+  - imports the `Randomness.sol` precompile and `RandomnessConsumer.sol` interface
+  - inherits from the `RandomnessConsumer.sol` interface
+  - requests randomness through the precompile's [`requestLocalVRFRandomWords` method](#:~:text=requestLocalVRFRandomWords) or [`requestRelayBabeEpochRandomWords` method](#:~:text=requestRelayBabeEpochRandomWords)  depending on the source of randomness you want to use
+  - fulfills randomness through a `fulfillRandomWords` method with the same [signature as the `fulfillRandomWords` method](#:~:text=fulfillRandomWords(uint256 requestId, uint256[] memory randomWords)) of the `RandomnessConsumer.sol` contract
+
+When randomness is requested through the precompile's `requestLocalVRFRandomWords` or `requestRelayBabeEpochRandomWords` method, a fee is set aside to pay for the fulfillment of the request. When using local VRF, to increase unpredictability, a specified delay period (in blocks) must pass before the request can be fulfilled. At the very least, the delay period must be greater than one block. For BABE epoch randomness, you do not need to specify a delay but can fulfill the request at the beginning of the 2nd epoch following the current one.
+
+After the delay, fulfillment of the request can be manually executed by anyone through the [`fulfillRequest`](#:~:text=fulfillRequest) method using the fee that was initially set aside for the request.
+
+When fulfilling the randomness request via the precompile's `fulfillRequest` method, the [`rawFulfillRandomWords`](#:~:text=rawFulfillRandomWords(uint256 requestId, uint256[] memory randomWords)) function in the `RandomnessConsumer.sol` contract will be called, which will verify that the sender is the randomness precompile. From there, [`fulfillRandomWords`](#:~:text=fulfillRandomWords(uint256 requestId, uint256[] memory randomWords)) is called and the requested number of random words are computed using the current block's randomness result and a given salt and returned. If the fulfillment was successful, the [`FulfillmentSucceeded` event](#:~:text=FulfillmentSucceeded) will be emitted; otherwise the [`FulfillmentFailed` event](#:~:text=FulfillmentFailed) will be emitted. 
+
+For fulfilled requests, the cost of execution will be refunded from the request fee to the caller of `fulfillRequest`. Then any excess fees and the request deposit are transferred to the specified refund address.
+
+Your contract's `fulfillRandomWords` callback is responsible for handling the fulfillment. For example, in a lottery contract, the callback would use the random words to choose a winner and payout the winnings.
+
+If a request expires it can be purged through the precompile's [`purgeExpiredRequest` function](/buildxers/pallets-precompiles/precompiles/randomness/#:~:text=purgeExpiredRequest){target=_blank}. When this function is called the request fee is paid out to the caller and the deposit will be returned to the original requester.
+
+The happy path for a randomness request is shown in the following diagram:
+
+![Randomness request happy path diagram](/images/learn/features/randomness/randomness-1.png)
 
 ## Interact with the Solidity Interfaces via Lottery Contract {: #interact-with-the-solidity-interfaces }
 
@@ -139,7 +172,7 @@ Once the contract has been compiled, you can deploy the contract by taking the f
 1. Click on the **Deploy and Run** tab directly below the **Compile** tab in Remix
 2. Make sure **Injected Provider - Metamask** is selected in the **ENVIRONMENT** dropdown. Once selected, you might be prompted by MetaMask to connect your account to Remix
 3. Make sure the correct account is displayed under **ACCOUNT**
-4. You'll need to pay the required deposit for a randomness request. For this contract, the required deposit is {{ networks.moonbase.randomness.req_deposit_amount }} Wei. So set the value to `{{ networks.moonbase.randomness.req_deposit_amount }}` and choose **Wei** from the dropdown on the right
+4. You'll need to pay the required deposit for a randomness request. For this contract, the required deposit is {{ networks.moonbase.randomness.req_deposit_amount.dev }} DEV. So set the value to `{{ networks.moonbase.randomness.req_deposit_amount.wei }}` and choose **Wei** from the dropdown on the right
 5. Ensure **RandomnessLotteryDemo - RandomnessLotteryDemo.sol** is selected in the **CONTRACT** dropdown
 6. Next to **Deploy** enter the source of randomness. This corresponds to the [`RandomnessSource`](#enums) enum. For local VRF, enter `0`, and for BABE epoch randomness, enter `1`. To follow along with this example, you can select `0` and click **Deploy**
 7. Confirm the MetaMask transaction that appears by clicking **Confirm**

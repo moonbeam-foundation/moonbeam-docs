@@ -23,21 +23,23 @@ You can interact with and request on-chain randomness using the randomness preco
 - **Deposit** - an amount of funds required to request random words. There is one deposit per request. Once the request has been fulfilled, the deposit will be returned to the account that requested the randomness
 - **Block expiration delay** - the number of blocks that must pass before a local VRF request expires and can be purged
 - **Epoch expiration delay** - the number of epochs that must pass before a BABE request expires and can be purged
-- **Minimum block delay** - the minimum number of blocks before a request can be fulfilled for local VRF requests. Set to {{ networks.moonbase.randomness.min_vrf_blocks_delay }} blocks
+- **Minimum block delay** - the minimum number of blocks before a request can be fulfilled for local VRF requests
 - **Maximum block delay** - the maximum number of blocks before a request can be fulfilled for local VRF requests
 - **Maximum random words** - the maximum number of random words being requested
+- **Epoch fulfillment delay** - the delay in epochs before a request can be fulfilled for a BABE request
 
 ## Quick Reference {: #quick-reference }
 
 === "Moonbase Alpha"
-    |        Variable        |                             Value                              |
-    |:----------------------:|:--------------------------------------------------------------:|
-    |        Deposit         |   {{ networks.moonbase.randomness.req_deposit_amount }} Wei    |
-    | Block expiration delay |   {{ networks.moonbase.randomness.block_expiration }} blocks   |
-    | Epoch expiration delay |   {{ networks.moonbase.randomness.epoch_expiration }} epochs   |
-    |  Minimum block delay   | {{ networks.moonbase.randomness.min_vrf_blocks_delay }} blocks |
-    |  Maximum block delay   | {{ networks.moonbase.randomness.max_vrf_blocks_delay }} blocks |
-    |  Maximum random words  |   {{ networks.moonbase.randomness.max_random_words }} words    |
+    |        Variable         |                                             Value                                             |
+    |:-----------------------:|:---------------------------------------------------------------------------------------------:|
+    |         Deposit         |                   {{ networks.moonbase.randomness.req_deposit_amount.dev }} DEV                   |
+    | Block expiration delay  |                  {{ networks.moonbase.randomness.block_expiration }} blocks                   |
+    | Epoch expiration delay  |                  {{ networks.moonbase.randomness.epoch_expiration }} epochs                   |
+    |   Minimum block delay   |                {{ networks.moonbase.randomness.min_vrf_blocks_delay }} blocks                 |
+    |   Maximum block delay   |                {{ networks.moonbase.randomness.max_vrf_blocks_delay }} blocks                 |
+    |  Maximum random words   |                   {{ networks.moonbase.randomness.max_random_words }} words                   |
+    | Epoch fulfillment delay | {{ networks.moonbase.randomness.epoch_fulfillment_delay }} epochs (following the current one) |
 
 ## Local VRF {: #local-vrf }
 
@@ -59,28 +61,26 @@ At the beginning of each relay chain epoch change, the randomness from one epoch
 
 ## Request & Fulfill Process {: #request-and-fulfill-process }
 
-To consume randomness, you must have a contract that inherits from the [`RandomnessConsumer.sol` interface](/builders/pallets-precompiles/precompiles/randomness/#randomness-consumer-solidity-interface){target=_blank} and imports the [`Randomness.sol` precompile](/builders/pallets-precompiles/precompiles/randomness/){target=_blank}. 
+In general, the request and fulfill process for randomness is as follows:
 
-Your contract should be able to request randomness through the precompile's [`requestLocalVRFRandomWords` method](/builders/pallets-precompiles/precompiles/randomness/#:~:text=requestLocalVRFRandomWords){target=_blank} method or [`requestRelayBabeEpochRandomWords` method](/builders/pallets-precompiles/precompiles/randomness/#:~:text=requestRelayBabeEpochRandomWords){target=_blank} method depending on the source of randomness you want to use. 
+1. Pay the deposit required to request random words
+2. Request the randomness either using the local VRF or BABE epoch source of randomness. When requesting randomness you'll need to specify a few things:
 
-Your contract should also have a `fulfillRandomWords` method with the same [signature as the `fulfillRandomWords` method](/builders/pallets-precompiles/precompiles/randomness/#:~:text=fulfillRandomWords(uint256 requestId, uint256[] memory randomWords)){target=_blank} of the `RandomnessConsumer.sol` contract.
+    - a refund address where any excess fees will be sent to
+    - the amount of fees which will be set aside to pay for fulfillment. If the specified amount is not enough you can always increase the request fees later, or if it's more than enough you'll be refunded the excess fees to the specified address after fulfillment
+    - a unique salt that will be used to generate different random words
+    - the number of random words you would like to request
+    - for local VRF, the delay period in blocks, which is used to increase unpredictability. It must be between the [minimum and maximum number of blocks](#quick-reference) as listed above. For BABE epoch randomness, you do not need to specify a delay but can fulfill the request after the [epoch delay](#quick-reference) has passed
 
-When randomness is requested through the precompile's `requestLocalVRFRandomWords` or `requestRelayBabeEpochRandomWords` method, a fee is set aside to pay for the fulfillment of the request. When using local VRF, to increase unpredictability, a specified delay period in blocks, must pass before the request can be fulfilled. At the very least, the delay period must be greater than one block. For BABE epoch randomness, you do not need to specify a delay but can fulfill the request at the beginning of the 2nd epoch following the current one.
+3. Wait for the delay period to pass
+4. Fulfill the randomness request, which triggers the random words to be computed using the current block's randomness result and the given salt. This can manually be done by anyone using the fee that was initially set aside for the request.
+5. For fulfilled requests, the random words are returned and the cost of execution will be refunded from the request fee to the address that initiated the fulfillment. Then any excess fees and the request deposit are transferred to the specified refund address.
 
-After the delay, fulfillment of the request can be manually executed by anyone through the [`fulfillRequest`](/builders/pallets-precompiles/precompiles/randomness/#:~:text=fulfillRequest){target=_blank} method using the fee that was initially set aside for the request.
-
-When fulfilling the randomness request via the precompile's `fulfillRequest` method, the [`rawFulfillRandomWords`](/builders/pallets-precompiles/precompiles/randomness/#:~:text=rawFulfillRandomWords(uint256 requestId, uint256[] memory randomWords)){target=_blank} function in the `RandomnessConsumer.sol` contract will be called, which will verify that the sender is the randomness precompile. From there, [`fulfillRandomWords`](/builders/pallets-precompiles/precompiles/randomness/#:~:text=fulfillRandomWords(uint256 requestId, uint256[] memory randomWords)){target=_blank} is called and the requested number of random words are computed using the current block's randomness result and a given salt and returned. If the fulfillment was successful, the [`FulfillmentSucceeded` event](/builders/pallets-precompiles/precompiles/randomness/#:~:text=FulfillmentSucceeded){target=_blank} will be emitted; otherwise the [`FulfillmentFailed` event](/builders/pallets-precompiles/precompiles/randomness/#:~:text=FulfillmentFailed){target=_blank} will be emitted. 
-
-For fulfilled requests, the cost of execution will be refunded from the request fee to the caller of `fulfillRequest`. Then any excess fees and the request deposit are transferred to the specified refund address.
-
-Your contract's `fulfillRandomWords` callback is responsible for handling the fulfillment. For example, in a lottery contract, the callback would use the random words to choose a winner and payout the winnings.
-
-If a request expires it can be purged through the precompile's [`purgeExpiredRequest` function](/buildxers/pallets-precompiles/precompiles/randomness/#:~:text=purgeExpiredRequest){target=_blank}. When this function is called the request fee is paid out to the caller and the deposit will be returned to the original requester.
+If a request expires it can be purged by anyone. When this happens, the request fee is paid out to the address that initiated the purge and the deposit is returned to the original requester.
 
 The happy path for a randomness request is shown in the following diagram:
 
 ![Randomness request happy path diagram](/images/learn/features/randomness/randomness-1.png)
-
 
 ## Security Considerations {: #security-considerations }
 
