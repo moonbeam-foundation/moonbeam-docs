@@ -23,7 +23,7 @@ The relevant [XCM instructions](/builders/xcm/overview/#xcm-instructions) to per
  - [`BuyExecution`](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} - gets executed in the target chain. Takes the assets from holding to pay for execution fees. The fees to pay are determined by the target chain
  - [`Transact`](https://github.com/paritytech/xcm-format#transact){target=_blank} - gets executed in the target chain. Dispatches the encoded call data from a given origin
 
-When the XCM message built by the XCM-transactor pallet is executed, fees must be paid. All the relevant information can be found in the [XCM-transactor fees section](/builders/xcm/fees/#xcm-transactor-fees) of the [XCM fees](/builders/xcm/fees/) page.
+When the XCM message built by the XCM-transactor pallet is executed, fees must be paid. All the relevant information can be found in the [XCM-transactor fees section](/builders/xcm/fees/#xcm-transactor-fees){target=_blank} of the [XCM fees](/builders/xcm/fees/){target=_blank} page.
 
 This guide will show you how to use the XCM-transactor pallet to send XCM messages from a Moonbeam-based network to other chains in the ecosystem (relay chain/parachains). In addition, you'll also learn how to use the XCM-transactor precompile to perform the same actions via the Ethereum API. 
 
@@ -168,7 +168,7 @@ This section covers building an XCM message for remote executions using the XCM-
 To be able to send the extrinsics in Polkadot.js Apps, you need to have:
 
  - An [account](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/accounts){target=_blank} in the origin chain with [funds](/builders/get-started/networks/moonbase/#get-tokens){target=_blank}
- - Funds in the multilocation-derivative account on the target chain. You can calculate this address by using this [script](https://github.com/albertov19/xcmTools/blob/main/calculateMultilocationDerivative.ts){target=_blank}
+ - Funds in the multilocation-derivative account on the target chain. You can calculate this address by using the [`calculateMultilocationDerivative.ts` script](https://github.com/albertov19/xcmTools/blob/main/calculateMultilocationDerivative.ts){target=_blank}
 
 For this example, the following accounts will be used:
 
