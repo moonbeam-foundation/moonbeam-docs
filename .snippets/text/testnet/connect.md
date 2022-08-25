@@ -21,10 +21,10 @@ const web3 = new Web3('https://rpc.api.moonbase.moonbeam.network');
 For the Ethers.js library, define the provider by using `ethers.providers.StaticJsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonbase Alpha:
 
 ```js
-const ethers = require('ethers');
+const ethers = require('ethers'); // Load Ethers library
 
 const providerURL = 'https://rpc.api.moonbase.moonbeam.network';
-// Define Provider
+// Define provider
 const provider = new ethers.providers.StaticJsonRpcProvider(providerURL, {
     chainId: 1287,
     name: 'moonbase-alphanet'

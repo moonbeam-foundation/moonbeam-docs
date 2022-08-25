@@ -153,7 +153,7 @@ networks:
       min_can_stk: 500
       min_can_stk_wei: 500000000000000000000
       collator_map_bond: 100
-      max_candidates: 80
+      max_candidates: 45
       round_blocks: 600
       round_hours: 2
       min_del_stake: 1
@@ -295,7 +295,7 @@ networks:
       min_can_stk: 500
       min_can_stk_wei: 500000000000000000000
       collator_map_bond: 100
-      max_candidates: 64
+      max_candidates: 72
       round_blocks: 600
       round_hours: 2
       min_del_stake: 5
@@ -657,3 +657,13 @@ networks:
     hex_chain_id: '0x511'
     block_explorer: https://blockexplorer.bobabase.boba.network
     exit_delay_period_days: 7
+  bobabeam:
+    rpc_url: https://bobabeam.boba.network
+    replica_rpc_url: https://replica.bobabeam.boba.network
+    wss_url: wss://wss.bobabeam.boba.network
+    replica_wss_url: wss://replica-wss.bobabeam.boba.network
+    gateway: https://gateway.bobabeam.boba.network
+    chain_id: 1294
+    hex_chain_id: '0x50E'
+    block_explorer: https://blockexplorer.bobabeam.boba.network
+    exit_delay_period_days: 7 
