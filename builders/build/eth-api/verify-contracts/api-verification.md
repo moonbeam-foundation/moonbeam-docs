@@ -451,3 +451,78 @@ And one for the source files of both perfect and partial matches:
     ```bash
     curl https://sourcify.dev/server/files/any/{{ networks.moonbase.chain_id }}/INSERT-YOUR-CONTRACT-ADDRESS-HERE
     ```
+
+### Using Sourcify with Foundry {: #using-sourcify-with-foundry }
+
+Foundry's Forge tool has built-in support for Sourcify verification similar to how it has [built-in support for Etherscan](/builders/build/eth-api/verify-contracts/etherscan-plugins#using-foundry-to-verify){target=_blank}. The example in this section of the guide will use the `MyToken.sol` contract that was created in the [Using Foundry to Deploy to Moonbeam](/builders/build/eth-api/dev-env/foundry/){target=_blank} guide.
+
+A Foundry project that uses Sourcify must have their compiler emit metadata files. This can be configured in the `foundry.toml` file:
+
+```
+[profile.default]
+# Input your custom or default config options here
+extra_output_files = ["metadata"]
+```
+
+If you have already deployed the example contract, you can verify it with the `verify-contract` command. Before you can verify the contract, you will need to ABI-encode the constructor arguments. To do so for the example contract, you can run the following command:
+
+```
+cast abi-encode "constructor(uint256)" 100
+```
+
+The result should be `0x0000000000000000000000000000000000000000000000000000000000000064`. You can then verify the contract using the following command:
+
+=== "Moonbeam"
+    ```
+    forge verify-contract --chain-id {{ networks.moonbeam.chain_id }} \
+    --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
+    --verifier sourcify YOUR_CONTRACT_ADDRESS src/MyToken.sol:MyToken 
+    ```
+
+=== "Moonriver"
+    ```
+    forge verify-contract --chain-id {{ networks.moonriver.chain_id }} \
+    --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
+    --verifier sourcify YOUR_CONTRACT_ADDRESS src/MyToken.sol:MyToken 
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    forge verify-contract --chain-id {{ networks.moonbase.chain_id }} \
+    --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
+    --verifier sourcify YOUR_CONTRACT_ADDRESS src/MyToken.sol:MyToken 
+    ```
+
+![Foundry Verify](/images/builders/build/eth-api/verify-contracts/api-verification/api-1.png)
+
+If you wanted to deploy the example contract and verify at the same time, then you would use the following command:
+
+=== "Moonbeam"
+    ```
+    forge create --rpc-url {{ networks.moonbeam.rpc_url }} \
+    --constructor-args 100 \
+    --verify --verifier sourcify \
+    --private-key YOUR_PRIVATE_KEY \
+    src/MyToken.sol:MyToken  
+    ```
+
+=== "Moonriver"
+    ```
+    forge create --rpc-url {{ networks.moonriver.rpc_url }} \
+    --constructor-args 100 \
+    --verify --verifier sourcify \
+    --private-key YOUR_PRIVATE_KEY \
+    src/MyToken.sol:MyToken  
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    forge create --rpc-url {{ networks.moonbase.rpc_url }} \
+    --constructor-args 100 \
+    --verify --verifier sourcify \
+    --private-key YOUR_PRIVATE_KEY \
+    src/MyToken.sol:MyToken    
+    ```
+
+![Foundry Contract Deploy and Verify](/images/builders/build/eth-api/verify-contracts/api-verification/api-2.png)
+
