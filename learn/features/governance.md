@@ -1,5 +1,5 @@
 ---
-title: Governance on Moonbeam
+title: Governance
 description: As a Polkadot parachain, Moonbeam will use an on-chain governance system, allowing for a stake-weighted vote on public referenda.
 ---
 
@@ -104,4 +104,4 @@ Token holders can submit proposals and vote on referenda on Moonbeam, Moonriver,
 
  - [Submit a proposal](/tokens/governance/proposals/)
  - [Vote on a proposal](/tokens/governance/voting/)
- - [Interact with DemocracyInterface.sol](/builders/build/canonical-contracts/precompiles/democracy/)
+ - [Interact with DemocracyInterface.sol](/builders/pallets-precompiles/precompiles/democracy/)

@@ -89,7 +89,7 @@ The XCM-transactor pallet includes the following read-only storage method:
 
 The XCM-transactor pallet includes the following read-only functions to obtain pallet constants:
 
-- **baseXcmWeigh**() - returns the base XCM weight required for execution
+- **baseXcmWeight**() - returns the base XCM weight required for execution
 - **selfLocation**() - returns the multilocation of the chain
 
 ## XCM-Transactor Transact Through Derivative {: #xcmtransactor-transact-through-derivative}
@@ -207,7 +207,7 @@ Once the transaction is processed, Alice should've received one token in her add
 
 ## XCM-Transactor Precompile {: #xcmtransactor-precompile}
 
-The XCM-transactor precompile contract allows developers to access the XCM-transactor pallet features through the Ethereum API of Moonbeam-based networks. Similar to other [precompile contracts](/builders/build/canonical-contracts/precompiles/){target=_blank}, the XCM-transactor precompile is located at the following addresses:
+The XCM-transactor precompile contract allows developers to access the XCM-transactor pallet features through the Ethereum API of Moonbeam-based networks. Similar to other [precompile contracts](/builders/pallets-precompiles/precompiles/){target=_blank}, the XCM-transactor precompile is located at the following addresses:
 
 === "Moonbeam"
      ```

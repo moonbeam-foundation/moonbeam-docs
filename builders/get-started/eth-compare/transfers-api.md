@@ -41,7 +41,11 @@ The different transfer scenarios are:
 
 All the scenarios described above will effectively transfer base layer network tokens. The easiest way to monitor them all is to rely on the `balances.Transfer` event.
 
-## Monitor All Balance Transfers with the Substrate API {: #monitor-transfers }
+## Monitor Native Token Balance Transfers {: #monitor-transfers }
+
+The following code samples will demonstrate how to listen to both types of native token transfers, sent via Substrate or Ethereum API, using either the [Polkadot.js API library](https://polkadot.js.org/docs/api/start){target=_blank} or [Substrate API Sidecar](https://github.com/paritytech/substrate-api-sidecar){target=_blank}. The following code snippets are for demo purposes only and should not be used without modification and further testing in a production environment. 
+
+### Using Polkadot.js API {: #using-polkadotjs-api }
 
 The [Polkadot.js API package](https://polkadot.js.org/docs/api/start){target=_blank} provides developers a way to interact with Substrate chains using JavaScript.
 
@@ -50,3 +54,13 @@ The following code snippet uses [`subscribeFinalizedHeads`](https://polkadot.js.
 --8<-- 'code/vs-ethereum/balance-event.md'
 
 In addition, you can find more sample code snippets related to more specific cases around balance transfers at this [GitHub page](https://gist.github.com/crystalin/b2ce44a208af60d62b5ecd1bad513bce){target=_blank}.
+
+### Using Substrate API Sidecar {: #using-substrate-api-sidecar }
+
+Developers can also retrieve Moonbeam blocks and monitor transactions sent via both the Substrate and Ethereum API using [Substrate API Sidecar](https://github.com/paritytech/substrate-api-sidecar){target=_blank}, a REST API service for interacting with blockchains built with the Substrate framework. 
+
+The following code snippet uses the Axios HTTP client to query the Sidecar endpoint `/blocks/head`(https://paritytech.github.io/substrate-api-sidecar/dist/){target=_blank} for the latest finalized block, and then decodes the block for the the `from`, `to`, `value`, `tx hash` and `transaction status` of native token transfers at both the EVM and Substrate API level. 
+
+--8<-- 'code/vs-ethereum/sidecar-transfer.md'
+
+You can reference the [Substrate API Sidecar page](/builders/build/substrate-api/sidecar/) for information on installing and running your own Sidecar service instance, as well as more details on how to decode Sidecar blocks for Moonbeam transactions. 
