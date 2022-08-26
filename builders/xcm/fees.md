@@ -9,23 +9,23 @@ description: Learn about the XCM instructions involved in handling XCM execution
 
 ## Introduction {: #introduction}
 
-XCM aims to be a language that communicates ideas between consensus systems. Sending an XCM message consists of a series of instructions that are executed in both the origin and the destination chain. The combination of XCM instructions result in actions such as token transfers. In order to process and execute each XCM instruction, there are typically associated fees that must be paid.
+XCM aims to be a language that communicates ideas between consensus systems. Sending an XCM message consists of a series of instructions that are executed in both the origin and the destination chain. The combination of XCM instructions results in actions such as token transfers. In order to process and execute each XCM instruction, there are typically associated fees that must be paid.
 
-However, XCM is designed to be general, extensible, and efficient so that it remains useful and future-proof throughout a growing ecosystem. As such, the generality applies to concepts including payments of fees for XCM execution. In Ethereum, fees are baked into the transaction protocol, whereas in the Polkadot ecosystem, each chain has the flexibility to define how XCM fees are handled.
+However, XCM is designed to be general, extensible, and efficient so that it remains valuable and future-proof throughout a growing ecosystem. As such, the generality applies to concepts including payments of fees for XCM execution. In Ethereum, fees are baked into the transaction protocol, whereas in the Polkadot ecosystem, each chain has the flexibility to define how XCM fees are handled.
 
-This guide will cover aspects of fee payment such as who is responsible to pay XCM execution fees, how it is paid for, and how the fees are calculated on Moonbeam.
+This guide will cover aspects of fee payment, such as who is responsible for paying XCM execution fees, how it is paid for, and how the fees are calculated on Moonbeam.
 
 ## Payment of Fees {: #payment-of-fees }
 
 Generally speaking, the fee payment process can be described as follows:
 
 1. Some assets need to be provided
-2. The exchange of assets for compute time (or weight) must be negotiated
+2. The exchange of assets for computing time (or weight) must be negotiated
 3. The XCM operations will be performed as instructed, with the provided weight limit or funds available for execution
 
-Each chain can configure what happens with the XCM fees, and in which tokens they can be paid (either the native reserve token, or an external one). For example, on Polkadot and Kusama the fees are paid in DOT or KSM (respectively) and given to the validator of the block. On Moonbeam and Moonriver, the XCM execution fees can be paid in the reserve asset (GLMR or MOVR respectively), but also, in assets originated in other chains, and fees are sent to the treasury.
+Each chain can configure what happens with the XCM fees and in which tokens they can be paid (either the native reserve token or an external one). For example, on Polkadot and Kusama, the fees are paid in DOT or KSM (respectively) and given to the validator of the block. On Moonbeam and Moonriver, the XCM execution fees can be paid in the reserve asset (GLMR or MOVR, respectively), but also in assets originated in other chains, and fees are sent to the treasury.
 
-Consider the following scenario: Alice has some DOT on Polkadot and she wants to transfer it to Alith on Moonbeam. She sends an XCM message with a set of XCM instructions that will retrieve a given amount of DOT from her account on Polkadot and mint them as xcDOT into Alith's account. Part of the instructions are executed on Polkadot and the other part are executed on Moonbeam. 
+Consider the following scenario: Alice has some DOT on Polkadot, and she wants to transfer it to Alith on Moonbeam. She sends an XCM message with a set of XCM instructions that will retrieve a given amount of DOT from her account on Polkadot and mint them as xcDOT into Alith's account. Part of the instructions are executed on Polkadot, and the other part are executed on Moonbeam. 
 
 How does Alice pay Moonbeam to execute these instructions and fulfill her request? Her request is fulfilled through a series of XCM instructions that are included in the XCM message, which enables her to buy execution time minus any related XCM execution fees. The execution time is used to issue and transfer xcDOT, a representation of DOT on Moonbeam. This means that when Alice sends some DOT to Alith's account on Moonbeam, she'll receive a 1:1 representation of her DOT as xcDOT minus any XCM execution fees. Note that in this scenario, XCM execution fees are paid in xcDOT.
 
@@ -44,10 +44,10 @@ An XCM message is comprised of a series of XCM instructions. As a result, differ
 1. [`TransferReserveAsset`](https://github.com/paritytech/xcm-format#transferreserveasset){target=_blank} - gets executed in Polkadot. Moves assets from the origin account and deposits them into a destination account. In this case, the destination account is Moonbeam's sovereign account on Polkadot. It then sends an XCM message to the destination, which is Moonbeam, with the XCM instructions that are to be executed
 2. [`ReserveAssetDeposited`](https://github.com/paritytech/xcm-format#reserveassetdeposited){target=_blank} - gets executed in Moonbeam. Takes a representation of the assets received in the sovereign account and places them into the holding register, a temporary position in the Cross-Consensus Virtual Machine (XCVM)
 3. [`ClearOrigin`](https://github.com/paritytech/xcm-format#clearorigin){target=_blank} - gets executed in Moonbeam. Ensures that later XCM instructions cannot command the authority of the XCM author
-4. [`BuyExecution`](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} - gets executed in Moonbeam. Takes the assets from holding to pay for execution fees. The amount of fees to pay are determined by the target chain, which in this case is Moonbeam
+4. [`BuyExecution`](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} - gets executed in Moonbeam. Takes the assets from holding to pay for execution fees. The fees to pay are determined by the target chain, which in this case is Moonbeam
 5. [`DepositAsset`](https://github.com/paritytech/xcm-format#depositasset){target=_blank} - gets executed in Moonbeam. Removes the assets from holding and sends them to a destination account on Moonbeam
 
-To check how the instructions for an XCM message are built to transfer self reserve assets to a target chain, such as DOT to Moonbeam, you can refer to the [X-Tokens Open Runtime Module Library](https://github.com/open-web3-stack/open-runtime-module-library/tree/master/xtokens){target=_blank} repository (as an example). You'll want to take a look at the [`transfer_self_reserve_asset`](https://github.com/open-web3-stack/open-runtime-module-library/blob/8c625a5ab43c1c56cdeed5f8d814a891566d4cf8/xtokens/src/lib.rs#L660){target=_blank} function. You'll notice that it calls `TransferReserveAsset` and passes in `assets`, `dest`, and `xcm` as parameters. In particular, the `xcm` parameter includes the `BuyExecution` and `DepositAsset` instructions. If you then head over to the Polkadot GitHub repository, you can find the [`TransferReserveAsset` instruction](https://github.com/paritytech/polkadot/blob/master/xcm/xcm-executor/src/lib.rs#L304){target=_blank}. The XCM message is constructed by combining the `ReserveAssetDeposited` and `ClearOrigin` instructions with the `xcm` parameter, which as mentioned includes the `BuyExecution` and `DepositAsset` instructions.
+To check how the instructions for an XCM message are built to transfer self-reserve assets to a target chain, such as DOT to Moonbeam, you can refer to the [X-Tokens Open Runtime Module Library](https://github.com/open-web3-stack/open-runtime-module-library/tree/master/xtokens){target=_blank} repository (as an example). You'll want to take a look at the [`transfer_self_reserve_asset`](https://github.com/open-web3-stack/open-runtime-module-library/blob/8c625a5ab43c1c56cdeed5f8d814a891566d4cf8/xtokens/src/lib.rs#L660){target=_blank} function. You'll notice it calls `TransferReserveAsset` and passes in `assets`, `dest`, and `xcm` as parameters. In particular, the `xcm` parameter includes the `BuyExecution` and `DepositAsset` instructions. If you then head over to the Polkadot GitHub repository, you can find the [`TransferReserveAsset` instruction](https://github.com/paritytech/polkadot/blob/master/xcm/xcm-executor/src/lib.rs#L304){target=_blank}. The XCM message is constructed by combining the `ReserveAssetDeposited` and `ClearOrigin` instructions with the `xcm` parameter, which as mentioned includes the `BuyExecution` and `DepositAsset` instructions.
 
 To move xcDOT from Moonbeam back to Polkadot, the instructions that are used are:
 
@@ -55,16 +55,16 @@ To move xcDOT from Moonbeam back to Polkadot, the instructions that are used are
 2. [`InitiateReserveWithdraw`](https://github.com/paritytech/xcm-format#initiatereservewithdraw){target=_blank} - gets executed in Moonbeam. Removes the assets from holding and sends an XCM message to the destination chain starting with the `WithdrawAsset` instruction
 3. [`WithdrawAsset`](https://github.com/paritytech/xcm-format#withdrawasset){target=_blank} - gets executed in Polkadot. Removes assets and places them into the holding register
 4. [`ClearOrigin`](https://github.com/paritytech/xcm-format#clearorigin){target=_blank} - gets executed in Polkadot. Ensures that later XCM instructions cannot command the authority of the XCM author
-5. [`BuyExecution`](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} - gets executed in Polkadot. Takes the assets from holding to pay for execution fees. The amount of fees to pay are determined by the target chain, which in this case is Polkadot
+5. [`BuyExecution`](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} - gets executed in Polkadot. Takes the assets from holding to pay for execution fees. The fees to pay are determined by the target chain, which in this case is Polkadot
 6. [`DepositAsset`](https://github.com/paritytech/xcm-format#depositasset){target=_blank} - gets executed in Polkadot. Removes the assets from holding and sends them to a destination account on Polkadot
 
 To check how the instructions for an XCM message are built to transfer reserve assets to a target chain, such as xcDOT to Polkadot, you can refer to the [X-Tokens Open Runtime Module Library](https://github.com/open-web3-stack/open-runtime-module-library/tree/master/xtokens){target=_blank} repository. You'll want to take a look at the [`transfer_to_reserve`](https://github.com/open-web3-stack/open-runtime-module-library/blob/8c625a5ab43c1c56cdeed5f8d814a891566d4cf8/xtokens/src/lib.rs#L677){target=_blank} function. You'll notice that it calls `WithdrawAsset`, then `InitiateReserveWithdraw` and passes in `assets`, `dest`, and `xcm` as parameters. In particular, the `xcm` parameter includes the `BuyExecution` and `DepositAsset` instructions. If you then head over to the Polkadot GitHub repository, you can find the [`InitiateReserveWithdraw` instruction](https://github.com/paritytech/polkadot/blob/master/xcm/xcm-executor/src/lib.rs#L410){target=_blank}. The XCM message is constructed by combining the `WithdrawAsset` and `ClearOrigin` instructions with the `xcm` parameter, which as mentioned includes the `BuyExecution` and `DepositAsset` instructions.
 
-## Fee Calculation for Reserve Assets {: #fee-calc-reserve-assets }
+## Relay Chain XCM Fee Calculation  {: #rel-chain-xcm-fee-calc }
 
-Substrate has introduced a weight system that determines how heavy or, in other words, how expensive from a computational cost perspective an extrinsic is. When it comes to paying fees, users will pay a transaction fee based on the weight of the call that is being made, in addition to factors such as network congestion. One unit of weight is defined as one picosecond of execution time.
+Substrate has introduced a weight system that determines how heavy or, in other words, how expensive from a computational cost perspective an extrinsic is. One unit of weight is defined as one picosecond of execution time. When it comes to paying fees, users will pay a transaction fee based on the weight of the call that is being made, in addition to factors such as network congestion. 
 
-The following sections will break down how to calculate XCM fees for Polkadot, Kusama, and Moonbeam-based networks. It's important to note that Kusama in particular uses benchmarked data to determine the total weight costs for XCM instructions, and that some XCM instructions might include database reads/writes, which add weight to the call.
+The following sections will break down how to calculate XCM fees for Polkadot and Kusama. It's important to note that Kusama, in particular, uses benchmarked data to determine the total weight costs for XCM instructions and that some XCM instructions might include database reads/writes, which add weight to the call.
 
 There are two databases available in Polkadot and Kusama, RocksDB (which is the default) and ParityDB, both of which have their own associated weight costs for each network. 
 
@@ -79,35 +79,43 @@ Although Polkadot doesn't currently use database weight units to calculate costs
 | RocksDB (default) | {{ networks.polkadot.rocks_db.read_weight }}  | {{ networks.polkadot.rocks_db.write_weight }}  |
 |     ParityDB      | {{ networks.polkadot.parity_db.read_weight }} | {{ networks.polkadot.parity_db.write_weight }} |
 
-With the instruction weight cost established, you can calculate the cost of the instruction in DOT. 
+With the instruction weight cost established, you can calculate the cost of each instruction in DOT. 
 
-In Polkadot, the [`ExtrinsicBaseWeight`](https://github.com/paritytech/polkadot/blob/master/runtime/polkadot/constants/src/weights/extrinsic_weights.rs#L56){target=_blank} is set to `{{ networks.polkadot.extrinsic_base_weight.display }}` which is mapped to 1/10th of a cent. Where 1 cent is `10^10 / 10,000`. Therefore, a constant exists in the formula for calculating the final fee in DOT:
+In Polkadot, the [`ExtrinsicBaseWeight`](https://github.com/paritytech/polkadot/blob/master/runtime/polkadot/constants/src/weights/extrinsic_weights.rs#L56){target=_blank} is set to `{{ networks.polkadot.extrinsic_base_weight.display }}` which is [mapped to 1/10th](https://github.com/paritytech/polkadot/blob/master/runtime/polkadot/constants/src/lib.rs#L87){targer=blank} of a cent. Where 1 cent is `10^10 / 100`. 
 
-```
-Planck-DOT-Weight =  PlanckDOT-Mapped * (1 / ExtrinsicBaseWeight)
-```
-
-Where the constant is calculated as follows:
+Therefore, to calculate the cost of executing an XCM instruction, you can use the following formula:
 
 ```
-Planck-DOT-Weight = (10^10 / 10000) * (1 / {{ networks.polkadot.extrinsic_base_weight.numbers_only }})
+XCM-DOT-Cost = XCMInstrWeight * DOTWeightToFeeCoefficient
 ```
 
-As a result, `Planck-DOT-Weight` is equal to `{{ networks.polkadot.xcm_instruction.planck_dot_weight }} Planck-DOT`. Now, you can begin to calculate the final fee in DOT, using `Planck-DOT-Weight` as a constant, and `TotalWeight` as the variable:
+Where `DOTWeightToFeeCoefficient` is a constant (map to 1 cent), and can be calculated as:
 
 ```
-Total-Planck-DOT = TotalWeight * Planck-DOT-Weight
-DOT = Total-Planck-DOT / DOTDecimalConversion
+DOTWeightToFeeCoefficient = ( 10^10 / ( 10 * 100 )) * ( 1 / DOTExtrinsicBaseWeight )
+```
+
+Using the actual values:
+
+```
+DOTWeightToFeeCoefficient = ( 10^10 / ( 10 * 100 * {{ networks.polkadot.extrinsic_base_weight.numbers_only }} )
+```
+
+As a result, `DOTWeightToFeeCoefficient` is equal to `{{ networks.polkadot.xcm_instruction.planck_dot_weight }} Planck-DOT`. Now, you can begin to calculate the final fee in DOT, using `DOTWeightToFeeCoefficient` as a constant and `TotalWeight` as the variable:
+
+```
+XCM-Planck-DOT-Cost = TotalWeight * DOTWeightToFeeCoefficient
+XCM-DOT-Cost = XCM-Planck-DOT-Cost / DOTDecimalConversion
 ```
 
 Therefore, the actual calculation for one XCM instruction is:
 
 ```
-Total-Planck-DOT = {{ networks.polkadot.xcm_instruction.weight.numbers_only }} * {{ networks.polkadot.xcm_instruction.planck_dot_weight }} 
-DOT = {{ networks.polkadot.xcm_instruction.planck_dot_cost }} / 10^10
+XCM-Planck-DOT-Cost = {{ networks.polkadot.xcm_instruction.weight.numbers_only }} * {{ networks.polkadot.xcm_instruction.planck_dot_weight }} 
+XCM-DOT-Cost = {{ networks.polkadot.xcm_instruction.planck_dot_cost }} / 10^10
 ```
 
-The total cost is `{{ networks.polkadot.xcm_instruction.dot_cost }} DOT`.
+The total cost is `{{ networks.polkadot.xcm_instruction.dot_cost }} DOT` per instruction.
 
 As an example, you can calculate the total cost of DOT for sending an XCM message that transfers xcDOT to DOT on Polkadot using the following weights and instruction costs:
 
@@ -121,7 +129,7 @@ As an example, you can calculate the total cost of DOT for sending an XCM messag
 
 ### Kusama {: #kusama }
 
-The total weight costs on Kusama take into consideration database reads and writes in addition to the weight required for a given instruction. Database read and write operations have not been benchmarked, while instruction weights have been. The breakdown of weight costs for the database operations are as follows:
+The total weight costs on Kusama take into consideration database reads and writes in addition to the weight required for a given instruction. Database read and write operations have not been benchmarked, while instruction weights have been. The breakdown of weight costs for the database operations is as follows:
 
 |     Database      |                    Read                     |                    Write                     |
 |:-----------------:|:-------------------------------------------:|:--------------------------------------------:|
@@ -130,7 +138,7 @@ The total weight costs on Kusama take into consideration database reads and writ
 
 Now that you are aware of the weight costs for database reads and writes on Kusama, you can calculate the weight cost for a given instruction using the base weight for an instruction. 
 
-The [`WithdrawAsset` instruction](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L49-L53){target=_blank} has a base weight of `{{ networks.kusama.xcm_instruction.withdraw.base_weight }}`, and includes one database read, and one database write. Therefore, the total weight cost of the `WithdrawAsset` instruction is calculated like so:
+The [`WithdrawAsset` instruction](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L49-L53){target=_blank} has a base weight of `{{ networks.kusama.xcm_instruction.withdraw.base_weight }}`, and includes one database read, and one database write. Therefore, the total weight cost of the `WithdrawAsset` instruction is calculated as:
 
 ```
 {{ networks.kusama.xcm_instruction.withdraw.base_weight }} + {{ networks.kusama.rocks_db.read_weight}} + {{ networks.kusama.rocks_db.write_weight}} = {{ networks.kusama.xcm_instruction.withdraw.total_weight }}
@@ -142,33 +150,41 @@ On Kusama, the benchmarked base weights are broken up into two categories: fungi
 
 With the instruction weight cost established, you can calculate the cost of the instruction in KSM. 
 
-In Kusama, the [`ExtrinsicBaseWeight`](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/constants/src/weights/extrinsic_weights.rs#L56){target=_blank} is set to `{{ networks.kusama.extrinsic_base_weight.display }}` which is mapped to 1/10th of a cent. Where 1 cent is `10^12 / 30,000`. Therefore, a constant exists in the formula for calculating the final fee in DOT:
+In Kusama, the [`ExtrinsicBaseWeight`](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/constants/src/weights/extrinsic_weights.rs#L56){target=_blank} is set to `{{ networks.kusama.extrinsic_base_weight.display }}` which is [mapped to 1/10th](https://github.com/paritytech/kusama/blob/master/runtime/polkadot/constants/src/lib.rs#L85){targer=blank} of a cent. Where 1 cent is `10^12 / 30,000`.
+
+Therefore, to calculate the cost of executing an XCM instruction, you can use the following formula:
 
 ```
-Planck-KSM-Weight =  PlanckKSM-Mapped * (1 / ExtrinsicBaseWeight)
+XCM-KSM-Cost = XCMInstrWeight * KSMWeightToFeeCoefficient
 ```
 
-Where `Planck-KSM-Weight` is calculated as follows:
+Where `KSMWeightToFeeCoefficient` is a constant (map to 1 cent), and can be calculated as:
 
 ```
-Planck-KSM-Weight = (10^12 / 30000 * 10) * (1 / {{ networks.kusama.extrinsic_base_weight.numbers_only }})
+KSMWeightToFeeCoefficient = ( 10^12 / ( 10 * 30000 )) * ( 1 / KSMExtrinsicBaseWeight )
 ```
 
-As a result, `Planck-KSM-Weight` is equal to `{{ networks.kusama.xcm_instruction.planck_ksm_weight }} Planck-KSM`. Now, you can begin to calculate the final fee in KSM, using `Planck-KSM-Weight` as a constant, and `TotalWeight` as the variable:
+Using the actual values:
 
 ```
-Total-Planck-KSM = TotalWeight * Planck-KSM-Weight
-KSM = Total-Planck-KSM / KSMDecimalConversion
+KSMWeightToFeeCoefficient = ( 10^12 / ( 10 * 30000 * {{ networks.kusama.extrinsic_base_weight.numbers_only }} )
+```
+
+As a result, `KSMWeightToFeeCoefficient` is equal to `{{ networks.kusama.xcm_instruction.planck_ksm_weight }} Planck-KSM`. Now, you can begin to calculate the final fee in KSM, using `KSMWeightToFeeCoefficient` as a constant and `TotalWeight` as the variable:
+
+```
+XCM-Planck-KSM-Cost = TotalWeight * KSMWeightToFeeCoefficient
+XCM-KSM-Cost = XCM-Planck-KSM-Cost / KSMDecimalConversion
 ```
 
 Therefore, the actual calculation for the `WithdrawAsset` instruction is:
 
 ```
-Total-Planck-KSM = {{ networks.kusama.xcm_instruction.withdraw.total_weight }} * {{ networks.kusama.xcm_instruction.planck_ksm_weight }}
-KSM = {{ networks.kusama.xcm_instruction.withdraw.planck_ksm_cost }} / 10^12
+XCM-Planck-KSM-Cost = {{ networks.kusama.xcm_instruction.withdraw.total_weight }} * {{ networks.kusama.xcm_instruction.planck_ksm_weight }} 
+XCM-KSM-Cost = {{ networks.kusama.xcm_instruction.withdraw.planck_ksm_cost }} / 10^12
 ```
 
-The total cost is `{{ networks.kusama.xcm_instruction.withdraw.ksm_cost }} KSM`.
+The total cost for that particular instruction is `{{ networks.kusama.xcm_instruction.withdraw.ksm_cost }} KSM`.
 
 As an example, you can calculate the total cost of KSMs for sending an XCM message that transfers xcKSM to KSM on Kusama using the following weights and instruction costs:
 
@@ -180,52 +196,57 @@ As an example, you can calculate the total cost of KSMs for sending an XCM messa
 | DepositAsset  | {{ networks.kusama.xcm_instruction.deposit_asset.total_weight }} | {{ networks.kusama.xcm_instruction.deposit_asset.ksm_cost }} KSM |
 |   **TOTAL**   |      **{{ networks.kusama.xcm_message.transfer.weight }}**       |     **{{ networks.kusama.xcm_message.transfer.cost }} KSM**      |
 
-### Moonbeam-based Networks {: #moonbeam-based-networks }
 
-Moonbeam uses a fixed amount of weight for each XCM instruction. Then the weight units are converted to balance units as part of the fee calculation. The amount of weight and Wei per weight for each of the Moonbeam-based networks is as follows:
+## Moonbeam-based Networks XCM Fee Calculation  {: #moonbeam-xcm-fee-calc }
 
-=== "Moonbeam"
-    |                                                                                                   Weight                                                                                                    |                                                                            Wei per weight                                                                            |
-    |:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-    | [{{ networks.moonbeam.xcm.instructions.weight_units.display }}](https://github.com/PureStake/moonbeam/blob/f19ba9de013a1c789425d3b71e8a92d54f2191af/runtime/moonbeam/src/xcm_config.rs#L201){target=_blank} | [{{ networks.moonbeam.xcm.instructions.wei_per_weight.display }}](https://github.com/PureStake/moonbeam/blob/master/runtime/moonbeam/src/lib.rs#L128){target=_blank} |
+Substrate has introduced a weight system that determines how heavy or, in other words, how expensive an extrinsic is from a computational cost perspective. One unit of weight is defined as one picosecond of execution time. When it comes to paying fees, users will pay a transaction fee based on the weight of the call that is being made, and each parachain can decide how to convert from weight to fee, for example, accounting for additional costs for transaction size, and storage costs.
 
-=== "Moonriver"
-    |                                                                                                    Weight                                                                                                     |                                                                            Wei per weight                                                                             |
-    |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-    | [{{ networks.moonriver.xcm.instructions.weight_units.display }}](https://github.com/PureStake/moonbeam/blob/f19ba9de013a1c789425d3b71e8a92d54f2191af/runtime/moonriver/src/xcm_config.rs#L208){target=_blank} | [{{ networks.moonriver.xcm.instructions.wei_per_weight.display }}](https://github.com/PureStake/moonbeam/blob/master/runtime/moonbeam/src/lib.rs#L128){target=_blank} |
+Moonbeam-based networks use a fixed amount of weight for each XCM instruction, set as:
 
-=== "Moonbase Alpha"
-    |                                                                                                   Weight                                                                                                    |                                                                                             Wei per weight                                                                                             |
-    |:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-    | [{{ networks.moonbase.xcm.instructions.weight_units.display }}](https://github.com/PureStake/moonbeam/blob/f19ba9de013a1c789425d3b71e8a92d54f2191af/runtime/moonbase/src/xcm_config.rs#L219){target=_blank} | [{{ networks.moonbase.xcm.instructions.wei_per_weight.display }}](https://github.com/PureStake/moonbeam/blob/f19ba9de013a1c789425d3b71e8a92d54f2191af/runtime/moonbase/src/lib.rs#L135){target=_blank} |
+|                                                                                                  Moonbeam                                                                                                   |                                                                                                   Moonriver                                                                                                   |                                                                                               Moonbase Alpha                                                                                                |
+|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| [{{ networks.moonbeam.xcm.instructions.weight_units.display }}](https://github.com/PureStake/moonbeam/blob/f19ba9de013a1c789425d3b71e8a92d54f2191af/runtime/moonbeam/src/xcm_config.rs#L201){target=_blank} | [{{ networks.moonriver.xcm.instructions.weight_units.display }}](https://github.com/PureStake/moonbeam/blob/f19ba9de013a1c789425d3b71e8a92d54f2191af/runtime/moonriver/src/xcm_config.rs#L208){target=_blank} | [{{ networks.moonbase.xcm.instructions.weight_units.display }}](https://github.com/PureStake/moonbeam/blob/f19ba9de013a1c789425d3b71e8a92d54f2191af/runtime/moonbase/src/xcm_config.rs#L219){target=_blank} |
 
-This means that on Moonbeam, for example, the formula to calculate the cost of one XCM instruction is as follows:
+The following sections will break down how to calculate XCM fees for Moonbeam-based networks. There are two main scenarios:
+
+ - Fees paid in the reserve token (native tokens like GLMR, MOVR, or DEV)
+ - Fees paid in external assets (XC-20s)
+
+### Fee Calculation for Reserve Assets {: #moonbeam-reserve-assets }
+
+For each XCM instruction, the weight units are converted to balance units as part of the fee calculation. The amount of Wei per weight unit for each of the Moonbeam-based networks is as follows:
+
+|                                                                               Moonbeam                                                                               |                                                                               Moonriver                                                                               |                                                                                             Moonbase Alpha                                                                                             |
+|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| [{{ networks.moonbeam.xcm.instructions.wei_per_weight.display }}](https://github.com/PureStake/moonbeam/blob/master/runtime/moonbeam/src/lib.rs#L129){target=_blank} | [{{ networks.moonriver.xcm.instructions.wei_per_weight.display }}](https://github.com/PureStake/moonbeam/blob/master/runtime/moonbeam/src/lib.rs#L129){target=_blank} | [{{ networks.moonbase.xcm.instructions.wei_per_weight.display }}](https://github.com/PureStake/moonbeam/blob/f19ba9de013a1c789425d3b71e8a92d54f2191af/runtime/moonbase/src/lib.rs#L135){target=_blank} |
+
+This means that on Moonbeam, for example, the formula to calculate the cost of one XCM instruction in the reserve asset is as follows:
 
 ```
-Wei = Weight * Wei_Per_Weight
+Wei = XCMInstrWeight * Wei_Per_Weight
 GLMR = Wei / (10^18)
 ```
 
 Therefore, the actual calculation is:
 
 ```
-Wei = {{ networks.moonbeam.xcm.instructions.weight_units.numbers_only }} * {{ networks.moonbeam.xcm.instructions.wei_per_weight.display }}
-GLMR = {{ networks.moonbeam.xcm.instructions.wei_cost }} / (10^18)
+XCM-Wei-Cost = {{ networks.moonbeam.xcm.instructions.weight_units.numbers_only }} * {{ networks.moonbeam.xcm.instructions.wei_per_weight.display }}
+XCM-GLMR-Cost = {{ networks.moonbeam.xcm.instructions.wei_cost }} / (10^18)
 ```
 
 The total cost is `{{ networks.moonbeam.xcm.instructions.glmr_cost }} GLMR` for an XCM instruction on Moonbeam.
 
-## Fee Calculation for External Assets {: #fee-calc-external-assets }
+### Fee Calculation for External Assets {: #fee-calc-external-assets }
 
 Considering the scenario with Alice sending DOT to Alith's account on Moonbeam, the fees are taken from the amount of xcDOT Alith receives. To determine how much to charge, Moonbeam uses a concept called `UnitsPerSecond`, which refers to the units of tokens that the network charges per second of XCM execution time (considering decimals). This concept is used by Moonbeam (and maybe other parachains) to determine how much to charge for XCM execution using a different asset than its reserve.
 
-Moreover, XCM execution on Moonbeam can be paid by multiple assets that originate in the chain where the asset is coming from. For example, at the time of writing, an XCM message sent from [Statemine](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fstatemine-rpc.polkadot.io#/explorer){target=_blank} can be paid in xcKSM, xcRMRK or xcUSDT. As long as that asset has an `UnitsPerSecond` set in Moonbeam/Moonriver, it can be used to pay XCM execution for an XCM message coming from that specific chain.
+Moreover, XCM execution on Moonbeam can be paid by multiple assets ([XC-20s](/builders/xcm/xc20/overview/){target=_blank}) that originate in the chain where the asset is coming from. For example, at the time of writing, an XCM message sent from [Statemine](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fstatemine-rpc.polkadot.io#/explorer){target=_blank} can be paid in xcKSM, xcRMRK or xcUSDT. As long as that asset has an `UnitsPerSecond` set in Moonbeam/Moonriver, it can be used to pay XCM execution for an XCM message coming from that specific chain.
 
 To find out the `UnitsPerSecond` for a given asset, you can query `assetManager.assetTypeUnitsPerSecond` and pass in the multilocation of the asset in question.
 
 If you're unsure of the multilocation, you can retrieve it using the `assetManager.assetIdType` query.
 
-For example, you can navigate to the [Polkadot.js Apps page for Moonbeam](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/chainstate){target=_blank} and under the **Developer** dropdown, choose **Chain State**. From there you can take the following steps:
+For example, you can navigate to the [Polkadot.js Apps page for Moonbeam](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/chainstate){target=_blank} and under the **Developer** dropdown, choose **Chain State**. From there, you can take the following steps:
 
 1. For the **selected state query** dropdown, choose **assetManager**
 2. Select the **assetIdType** extrinsic
@@ -243,7 +264,7 @@ You can take the result of the query and then use it to query the **assetTypeUni
 5. Select `Here` for **interior**
 6. Click the **+** button to submit the query
 
-The `UnitsPerSecond` for xcDOT is `{{ networks.moonbeam.xcm.units_per_second.xcdot.display }}`.
+The `UnitsPerSecond` for xcDOT is `{{ networks.moonbeam.xcm.units_per_second.xcdot.transfer }}`.
 
 ![Get the xcUNIT units per second value](/images/builders/xcm/fees/fees-2.png)
 
@@ -266,13 +287,123 @@ To calculate the total cost in xcDOT, you'll also need the number of decimals th
 The block execution formula can then be used to determine how much Alice's transfer of DOT to Alith's account on Moonbeam costs. The formula for finding the total cost is as follows:
 
 ```
-Cost = (UnitsPerSecond / DecimalConversion) * ExecutionTime
+XCM-Cost = (UnitsPerSecond / DecimalConversion) * ExecutionTime
 ```
 
 Then the calculation for the transfer is:
 
 ```
-Cost = ({{ networks.moonbeam.xcm.units_per_second.xcdot.numbers_only }} / 10^10) * {{ networks.moonbeam.xcm.message.transfer.exec_time }}
+XCM-Cost = ({{ networks.moonbeam.xcm.units_per_second.xcdot.transfer_numbers_only }} / 10^10) * {{ networks.moonbeam.xcm.message.transfer.exec_time }}
 ```
 
 The total cost to transfer Alice's DOT to Alith's account for xcDOT is `{{ networks.moonbeam.xcm.message.transfer.xcdot_cost }} xcDOT`.
+
+## XCM-Transactor Fees {: #xcm-transactor-fees }
+
+The [XCM-transactor pallet](/builders/xcm/xcm-transactor/){target=_blank} builds an XCM message to remotely transact in other chains of the ecosystem. 
+
+There are two different ways developers can remotely transact through the pallet:
+
+1. [`transactThroughDerivative`](/builders/xcm/xcm-transactor/#xcmtransactor-transact-through-derivative){target=_blank}
+2. [`transactThroughSigned`](/builders/xcm/xcm-transactor/#xcmtransactor-transact-through-signed){target=_blank}, in which the dispatcher account in the destination chain is a multilocation-derived account and must have enough funds to cover XCM execution fees plus whatever call is being remotely executed
+
+Generally speaking, the XCM instructions normally involved for remote execution are:
+
+ - The first instruction handles tokens in the origin chain. This can be either moving tokens to a sovereign account or burning the corresponding [XC-20](/builders/xcm/xc20/overview/){target=_blank} so that it can be used in the target chain. These instructions get executed in the origin chain
+ - [`DescendOrigin`](https://github.com/paritytech/xcm-format#descendorigin){target=_blank} (optional) - mutates the origin with the multilocation provided in the instruction. This is only used for the `transactThroughSigned` and `transactThroughSignedMultilocation` extrinsics, as the origin is no longer the sovereign account, but the [multilocation-derivative account](/builders/xcm/xcm-transactor/#general-xcm-definitions){target=_blank}
+ - [`WithdrawAsset`](https://github.com/paritytech/xcm-format#withdrawasset){target=_blank} - gets executed in the target chain. Removes assets and places them into the holding register
+ - [`BuyExecution`](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} - gets executed in the target chain. Takes the assets from holding to pay for execution fees. The fees to pay are determined by the target chain
+ - [`Transact`](https://github.com/paritytech/xcm-format#transact){target=_blank} - gets executed in the target chain. Dispatches the encoded call data from a given origin
+
+Therefore, XCM execution in the target chain consists of three to four XCM instructions, depending on the extrinsic being used. This section covers how XCM fees are estimated for each of the scenarios described above, as it is handled very differently.
+
+### Transact Through Derivative Fees {: #transact-through-derivative-fees }
+
+The transacting through derivative method consists of three XCM instructions: [`WithdrawAsset`](https://github.com/paritytech/xcm-format#withdrawasset){target=_blank}, [`BuyExecution`](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} and [`Transact`](https://github.com/paritytech/xcm-format#transact){target=_blank}.
+
+When [transacting through the sovereign-derivative account](/builders/xcm/xcm-transactor/#xcmtransactor-transact-through-derivative){target=_blank}, the transaction fees are paid by the sovereign account of the origin chain in the destination chain, but the derivative account dispatches the transaction. Consequently, the XCM-transactor pallet will burn a certain amount of the corresponding XC-20 token to free up some balance in the sovereign account for XCM execution fee payment.
+
+Consider the following scenario: Alice wants to remotely transact in Polkadot from Moonbeam using the transact through sovereign extrinsic (she already has an index registered to her account). To estimate how many XC-20 tokens will be burned from Alice's account, you need to check the transact information specific to the relay chain. To do so, head to the chain state page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/chainstate){target=_blank} and set the following options:
+
+1. Choose the **xcmTransactor** pallet
+2. Choose the **transactInfoWithWeightLimit** method
+3. Set the multilocation for the destination chain from which you want to query the transact information. For this example, you can set **parents** to `1`
+4. Select `Here` for **interior**
+5. Click on **+**
+
+![Get the Transact Through Derivative Weight Info for Polkadot](/images/builders/xcm/fees/fees-3.png)
+
+From the response, you can see that the `transactExtraWeight` is `{{ networks.polkadot.xcm_message.transact.weight }}`. This is the weight needed to execute the three XCM instructions for this remote call in that specific destination chain. Next, you need to find the `UnitsPerSecond` for that particular chain. In the same [Polkadot.js Apps page](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/chainstate){target=_blank}, set the following options:
+
+1. Choose the **xcmTransactor** pallet
+2. Choose the **destinationAssetFeePerSecond** method
+3. Set the multilocation for the destination chain from which you want to query the transact information. For this example, you can set **parents** to `1`
+4. Select `Here` for **interior**
+5. Click on **+**
+
+![Get the Units Per Second for Transact Through Derivative for Polkadot](/images/builders/xcm/fees/fees-4.png)
+
+Note that this `UnitsPerSecond` is related to the cost estimated in the [Relay Chain XCM Fee Calculation](#polkadot) section, or to the [Wei per weight](#moonbeam-reserve-assets) if the target is another parachain. As before, calculating the associated XCM execution fee is as simple as multiplying the `transactExtraWeight` times the `UnitsPerSecond`:
+
+```
+XCM-Planck-DOT-Cost = transactExtraWeight * UnitsPerSecond / WeightToSeconds
+XCM-DOT-Cost = XCM-Planck-DOT-Cost / DOTDecimalConversion
+```
+
+Therefore, the actual calculation for one XCM-transactor transact through derivative call is:
+
+```
+XCM-Planck-DOT-Cost = {{ networks.polkadot.xcm_message.transact.numbers_only }} * {{ networks.moonbeam.xcm.units_per_second.xcdot.transact_numbers_only }} / 10^12
+XCM-DOT-Cost = {{ networks.polkadot.xcm_message.transact.planck_dot_cost }} / 10^10
+```
+
+The cost for transacting through derivative is `{{ networks.polkadot.xcm_message.transact.dot_cost }} DOT`. **Note that this does not include the cost of the call being remotely executed, only XCM execution fees.** Consequently, the amount of XC-20 tokens that are burned, consider also the destination weight provided as input in the function call, which can be added to the `transactExtraWeight` in the calculations.
+
+### Transact Through Signed Fees {: #transact-through-signed-fees }
+
+The transacting through signed method (multilocation derivative account) consists of four XCM instructions: [`DescendOrigin`](https://github.com/paritytech/xcm-format#descendorigin){target=_blank}, [`WithdrawAsset`](https://github.com/paritytech/xcm-format#withdrawasset){target=_blank}, [`BuyExecution`](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} and [`Transact`](https://github.com/paritytech/xcm-format#transact){target=_blank}.
+
+When [transacting through the multilocation-derivative account](/builders/xcm/xcm-transactor/#xcmtransactor-transact-through-derivative){target=_blank}, the transaction fees are paid by the same account from which the call is dispatched, which is a multilocation-derived account in the destination chain. Consequently, multilocation-derived account must hold the necessary funds to pay for the entire execution. Note that the destination token, in which fees are paid, does not need to be register as an XC-20 in the origin chain.
+
+Consider the following scenario: Alice wants to remotely transact in another chain (Parachain ID 888, in the Moonbase Alpha relay chain ecosystem) from Moonbase Alpha using the transact through signed extrinsic. To estimate the amount of tokens Alice's multilocation-derivative account will need to have to execute the remote call, you need to check the transact information specific to the destination chain. To do so, head to the chain state page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/chainstate){target=_blank} and set the following options:
+
+
+1. Choose the **xcmTransactor** pallet
+2. Choose the **transactInfoWithWeightLimit** method
+3. Set the multilocation for the destination chain from which you want to query the transact information. For this example, you can set **parents** to `1`
+4. Select `X1` for **interior**
+5. Select `Parachain` in the  **X1** field
+6. Set **Parachain** to `888`
+7. Click on **+**
+
+![Get the Transact Through Derivative Weight Info for another Parachain](/images/builders/xcm/fees/fees-5.png)
+
+From the response, you can see that the `transactExtraWeightSigned` is `{{ networks.moonbase_beta.xcm_message.transact.weight }}`. This is the weight needed to execute the four XCM instructions for this remote call in that specific destination chain. Next, you need to find how much the destination chain charges per weight of XCM execution. Normally, you would look into the `UnitsPerSecond` for that particular chain. But in this scenario, no XC-20 tokens are burned. Therefore, `UnitsPerSecond` can be use for reference, but do not ensure that the amount of tokens estimated are correct. To get the `UnitsPerSecond` as a reference value, in the same [Polkadot.js Apps page](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/chainstate){target=_blank}, set the following options:
+
+1. Choose the **xcmTransactor** pallet
+2. Choose the **destinationAssetFeePerSecond** method
+3. Set the multilocation for the destination chain from which you want to query the transact information. For this example, you can set **parents** to `1`
+4. Select `X2` for **interior**
+5. Select `Parachain` in the  **X1** field
+6. Set **Parachain** to `888`
+7. Select `PalletInstance` in the  **X2** field
+8. Set **PalletInstance** to `3`
+9. Click on **+**
+
+![Get the Units Per Second for Transact Through Derivative for another Parachain](/images/builders/xcm/fees/fees-6.png)
+
+Note that this `UnitsPerSecond` is related to the cost estimated in the [Relay Chain XCM Fee Calculation](/builders/xcm/fees/#polkadot){target=_blank} section, or to the one shown in the [Units per weight](/builders/xcm/fees/#moonbeam-reserve-assets){target=_blank} section if the target is another parachain. You'll need to find the correct value to ensure that the amount of tokens the multilocation-derivative account holds is correct. As before, calculating the associated XCM execution fee is as simple as multiplying the `transactExtraWeight` times the `UnitsPerSecond` (for an estimation):
+
+```
+XCM-Wei-Token-Cost = transactExtraWeight * UnitsPerSecond / WeightToSeconds
+XCM-Token-Cost = XCM-Wei-Token-Cost / TokensDecimalConversion
+```
+
+Therefore, the actual calculation for one XCM-transactor transact through derivative call is:
+
+```
+XCM-Wei-Token-Cost = {{ networks.moonbase_beta.xcm_message.transact.numbers_only }} * {{ networks.moonbase.xcm.units_per_second.xcbetadev.transact_numbers_only }}
+XCM-Token-Cost = {{ networks.moonbase_beta.xcm_message.transact.wei_betadev_cost }} / 10^18
+```
+
+The cost for transacting through signed is `{{ networks.moonbase_beta.xcm_message.transact.betadev_cost }} TOKEN`. **Note that this does not include the cost of the call being remotely executed, only XCM execution fees.**
