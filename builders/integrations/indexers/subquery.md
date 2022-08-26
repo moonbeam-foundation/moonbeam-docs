@@ -256,3 +256,5 @@ If you have any questions about this make sure you check out the [SubQuery docum
 ### Moonbuilders Tutorial {: #moonbuilders-tutorial }
 
 SubQuery joined the [Moonbuilders workshop](https://www.crowdcast.io/e/moonbuilders-ws/10){target=_blank} in December to show off live how to create a simple SubQuery project. You can try out the [resulting sample project](https://github.com/stwiname/moonbuilders-demo){target=_blank} by yourself.
+
+--8<-- 'text/disclaimers/third-party-content.md'

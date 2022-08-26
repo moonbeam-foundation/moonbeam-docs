@@ -116,3 +116,5 @@ Either DEV or BOBA can be used to pay for gas for transactions on Bobabase. If y
 3. Confirm the transaction in MetaMask
 
 ![Change gas fee token](/images/builders/get-started/networks/bobabase/bobabase-4.png)
+
+--8<-- 'text/disclaimers/third-party-content.md'

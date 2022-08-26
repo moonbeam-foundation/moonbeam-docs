@@ -439,3 +439,5 @@ You can also check out other projects hosted there, by heading to the [Aquarium]
 You can [view the finalized and complete project on GitHub](https://github.com/subsquid/squid-evm-template){target=_blank}.
 
 [Subsquid's documentation](https://docs.subsquid.io/){target=_blank} contains informative material and it's the best place to start, if you are curious about some aspects that were not fully explained in this guide.
+
+--8<-- 'text/disclaimers/third-party-content.md'

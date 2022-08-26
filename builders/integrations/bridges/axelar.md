@@ -37,3 +37,4 @@ See the list of Axelar contracts deployed to Moonbeam, and the networks connecte
 
 - **TestNet Contracts** - [Moonbase Alpha](https://docs.axelar.dev/dev/build/contract-addresses/testnet){target=_blank}
 
+--8<-- 'text/disclaimers/third-party-content.md'

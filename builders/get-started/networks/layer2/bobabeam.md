@@ -100,3 +100,5 @@ Either GLMR or BOBA can be used to pay for gas for transactions on Bobabeam. Not
 3. Confirm the transaction in MetaMask
 
 ![Change gas fee token](/images/builders/get-started/networks/bobabeam/bobabeam-3.png)
+
+--8<-- 'text/disclaimers/third-party-content.md'
