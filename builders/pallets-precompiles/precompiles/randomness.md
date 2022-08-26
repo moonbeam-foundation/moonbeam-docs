@@ -139,7 +139,7 @@ Assuming you use the default contract, you will need to have the following:
 
 ### Example Lottery Contract {: #example-contract }
 
-In this tutorial, you'll interact with a lottery contract that uses the randomness precompile and consumer. You'll be generating random words which will be used to select the winner of the lottery fairly. You can find a copy of the lottery contract that will be used for this tutorial, [`RandomnessLotteryDemo.sol`](https://raw.githubusercontent.com/PureStake/moonbeam-docs/blob/master/.snippets/code/randomness/RandomnessLotteryDemo.sol){target=_blank}, in the Moonbeam Docs GitHub repository.
+In this tutorial, you'll interact with a lottery contract that uses the randomness precompile and consumer. You'll be generating random words which will be used to select the winner of the lottery fairly. You can find a copy of the lottery contract that will be used for this tutorial, [`RandomnessLotteryDemo.sol`](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/randomness/RandomnessLotteryDemo.sol){target=_blank}, in the Moonbeam Docs GitHub repository.
 
 The lottery contract imports the `Randomness.sol` precompile and the `RandomnessConsumer.sol` interface, and inherits from the consumer contract. In the constructor of the contract, you can specify the source of randomness to be either local VRF or BABE epoch randomness.
 
@@ -151,7 +151,7 @@ There are also some constants in the contract that can be edited as you see fit,
 
 You can interact with the randomness precompile and consumer using [Remix](https://remix.ethereum.org/){target=_blank}. To add the interfaces to Remix and follow along with the tutorial, you will need to:
 
-1. Get a copy of [`RandomnessLotteryDemo.sol`](https://github.com/PureStake/moonbeam/blob/4e2a5785424be6faa01cd14e90155d9d2ec734ee/tests/contracts/solidity/RandomnessLotteryDemo.sol){target=_blank}
+1. Get a copy of [`RandomnessLotteryDemo.sol`](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/randomness/RandomnessLotteryDemo.sol){target=_blank}
 2. Paste the file contents into a Remix file named **RandomnessLotteryDemo.sol**
 
 ![Add contracts to Remix](/images/builders/pallets-precompiles/precompiles/randomness/randomness-1.png)
