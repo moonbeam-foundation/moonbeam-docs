@@ -309,7 +309,7 @@ There are two different ways developers can remotely transact through the pallet
 
 Generally speaking, the XCM instructions normally involved for remote execution are:
 
- - Instructions to handle tokens in the origin chain. This can be either moving tokens to a sovereign account or burning the corresponding [XC-20](/builders/xcm/xc20/overview/){target=_blank} so that it can be used in the target chain. These instructions get executed in the origin chain
+ - The first instruction handles tokens in the origin chain. This can be either moving tokens to a sovereign account or burning the corresponding [XC-20](/builders/xcm/xc20/overview/){target=_blank} so that it can be used in the target chain. These instructions get executed in the origin chain
  - [`Descend Origin`](https://github.com/paritytech/xcm-format#descendorigin){target=_blank} (optional) - mutates the origin with the multilocation provided in the instruction. This is only used for the `transactThroughSigned` and `transactThroughSignedMultilocation` extrinsics, as the origin is no longer the sovereign account, but the [multilocation-derivative account](/builders/xcm/xcm-transactor/#general-xcm-definitions){target=_blank}
  - [`WithdrawAsset`](https://github.com/paritytech/xcm-format#withdrawasset){target=_blank} - gets executed in the target chain. Removes assets and places them into the holding register
  - [`BuyExecution`](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} - gets executed in the target chain. Takes the assets from holding to pay for execution fees. The fees to pay are determined by the target chain
