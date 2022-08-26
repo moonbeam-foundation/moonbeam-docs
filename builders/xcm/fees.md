@@ -327,19 +327,21 @@ Consider the following scenario: Alice wants to remotely transact in Polkadot fr
 
 1. Choose the **xcmTransactor** pallet
 2. Choose the **transactInfoWithWeightLimit** method
-3. Set the multilocation for the destination chain from which you want to query the transact information. For this example, you can set `parents` to `1` and `interior` to `here`
-4. Click on **+**
+3. Set the multilocation for the destination chain from which you want to query the transact information. For this example, you can set **parents** to `1`
+4. Select `Here` for **interior**
+5. Click on **+**
 
-PICTURE_HERE
+![Get the Transact Through Derivative Weight Info for Polkadot](/images/builders/xcm/fees/fees-3.png)
 
 From the response, you can see that the `transactExtraWeight` is `{{ networks.polkadot.xcm_message.transact.weight }}`. This is the weight needed to execute the 3 XCM instructions for this remote call in that specific destination chain. Next, you need to find the `UnitsPerSecond` for that particular chain. In the same [Polkadot.js Apps page](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/chainstate){target=_blank}, set the following options:
 
 1. Choose the **xcmTransactor** pallet
 2. Choose the **destinationAssetFeePerSecond** method
-3. Set the multilocation for the destination chain from which you want to query the transact information. For this example, you can set `parents` to `1` and `interior` to `here`
-4. Click on **+**
+3. Set the multilocation for the destination chain from which you want to query the transact information. For this example, you can set **parents** to `1`
+4. Select `Here` for **interior**
+5. Click on **+**
 
-PICTURE_HERE
+![Get the Units Per Second for Transact Through Derivative for Polkadot](/images/builders/xcm/fees/fees-4.png)
 
 Note that this `UnitsPerSecond` is related to the cost estimated in the [Relay Chain XCM Fee Calculation](#polkadot) section, or to the [Wei per weight](#moonbeam-reserve-assets) if the target is another parachain. As before, calculating the associated XCM execution fee is as simple as multiplying the `transactExtraWeight` times the `UnitsPerSecond`:
 
@@ -368,19 +370,27 @@ Consider the following scenario: Alice wants to remotely transact in another cha
 
 1. Choose the **xcmTransactor** pallet
 2. Choose the **transactInfoWithWeightLimit** method
-3. Set the multilocation for the destination chain from which you want to query the transact information. For this example, you can set `parents` to `1` and `interior` to `X1: {"Parachain": 888}`
-4. Click on **+**
+3. Set the multilocation for the destination chain from which you want to query the transact information. For this example, you can set **parents** to `1`
+4. Select `X1` for **interior**
+5. Select `Parachain` in the  **X1** field
+6. Set **Parachain** to `888`
+7. Click on **+**
 
-PICTURE_HERE
+![Get the Transact Through Derivative Weight Info for another Parachain](/images/builders/xcm/fees/fees-5.png)
 
 From the response, you can see that the `transactExtraWeightSigned` is `{{ networks.moonbase_beta.xcm_message.transact.weight }}`. This is the weight needed to execute the 4 XCM instructions for this remote call in that specific destination chain. Next, you need to find how much the destination chain charges per weight of XCM execution. Normally, you would look into the `UnitsPerSecond` for that particular chain. But in this scenario, no XC-20 tokens are burned. Therefore, `UnitsPerSecond` can be use for reference, but do not ensure that the amount of tokens estimated are correct. To get the `UnitsPerSecond` as a reference value, in the same [Polkadot.js Apps page](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/chainstate){target=_blank}, set the following options:
 
 1. Choose the **xcmTransactor** pallet
 2. Choose the **destinationAssetFeePerSecond** method
-3. Set the multilocation for the destination chain from which you want to query the transact information. For this example, you can set `parents` to `1` and `interior` to `X2: [{"Parachain": 888},{"PalletInstance":3}]`
-4. Click on `+`
+3. Set the multilocation for the destination chain from which you want to query the transact information. For this example, you can set **parents** to `1`
+4. Select `X2` for **interior**
+5. Select `Parachain` in the  **X1** field
+6. Set **Parachain** to `888`
+7. Select `PalletInstance` in the  **X2** field
+8. Set **PalletInstance** to `3`
+9. Click on **+**
 
-PICTURE_HERE
+![Get the Units Per Second for Transact Through Derivative for another Parachain](/images/builders/xcm/fees/fees-6.png)
 
 Note that this `UnitsPerSecond` is related to the cost estimated in the [Relay Chain XCM Fee Calculation](/builders/xcm/fees/#polkadot){target=_blank} section, or to the one shown in the [Units per weight](/builders/xcm/fees/#moonbeam-reserve-assets){target=_blank} section if the target is another parachain. You'll need to find the correct value to ensure that the amount of tokens the multilocation-derivative account holds is correct. As before, calculating the associated XCM execution fee is as simple as multiplying the `transactExtraWeight` times the `UnitsPerSecond` (for an estimation):
 

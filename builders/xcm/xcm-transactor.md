@@ -196,12 +196,12 @@ If you've [checked the prerequisites](#xcmtransactor-signed-check-prerequisites)
 6. Enter the asset ID. For this example, the XC-20 token has an asset id of `35487752324713722007834302681851459189`. You can check all available assets IDs in the [assets section](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/assets){target=_blank} of Polkadot.js Apps
 7. Set the destination weight used to execute the remote call. However, the weight of the XCM instructions is added by the XCM-transactor pallet. For this example, `1000000000` is enough
 8.  Enter the inner call that will be executed in the destination chain. This is the encoded call data of the pallet, method, and input values to be called. It can be constructed in Polakdot.js Apps (must be connected to the destination chain), or using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank}. For this example, the inner call is `0x030044236223ab4291b93eed10e4b511b37a398dee5513000064a7b3b6e00d`, which is a simple balance transfer of 1 token of the destination chain to Alice's account there
-10. Click the **Submit Transaction** button and sign the transaction
+9. Click the **Submit Transaction** button and sign the transaction
 
 !!! note
     The encoded call data for the extrinsic configured above is `0x210701010100e10d017576e5e612ff054915d426c546b1b21a00e40b54020000007c030044236223ab4291b93eed10e4b511b37a398dee5513000064a7b3b6e00d`.
 
-PICTURE_HERE
+![XCM-Transactor Transact Through Signed Extrinsic](/images/builders/xcm/xcm-transactor/xcmtransactor-3.png)
 
 Once the transaction is processed, Alice should've received one token in her address but on the destination chain.
 
