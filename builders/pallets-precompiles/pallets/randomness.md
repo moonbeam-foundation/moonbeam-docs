@@ -36,6 +36,6 @@ The randomness pallet includes the following read-only functions to obtain palle
 - **blockExpirationDelay**() - the number of blocks that must pass before a local VRF request expires and can be purged
 - **deposit**() - the amount that should be taken as a security deposit when requesting random words. There is one deposit per request
 - **epochExpirationDelay**() - the number of epochs that must pass before a BABE request expires and can be purged
-- **maxBlockDelay**() - the minimum number of blocks (after the block in which the request was made) that must pass before a local VRF request can be fulfilled
+- **maxBlockDelay**() - the maximum number of blocks (after the block in which the request was made) that can pass before a local VRF request is fulfilled
 - **maxRandomWords**() - the maximum number of random words that can be requested
 - **minBlockDelay**() - the minimum number of blocks (after the block in which the request was made) that must pass before a local VRF request can be fulfilled

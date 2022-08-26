@@ -179,7 +179,7 @@ As a candidate, there are two options for increasing one's stake. The first and 
 
 ### Bond Less {: #bond-less}
 
-As of the latest runtime upgrade, [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/), there have been significant changes to the way users can interact with various staking features, including the way staking exits are handled. As a collator or collator candidate you may decrease your amount bonded as long as you have more than the [minimum self-bond amount](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=_blank} after the decrease.
+As of [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/), there have been significant changes to the way users can interact with various staking features, including the way staking exits are handled. As a collator or collator candidate you may decrease your amount bonded as long as you have more than the [minimum self-bond amount](/node-operators/networks/collators/requirements/#minimum-collator-bond){target=_blank} after the decrease.
 
 In order to bond less, you have to first schedule a request, wait the duration of the [exit delay](#collator-timings), and then execute the request. You can [cancel a request](#cancel-bond-less-request) at any time, as long as the request hasn't been executed yet.
 
