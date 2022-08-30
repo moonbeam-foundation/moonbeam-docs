@@ -33,7 +33,7 @@ You can create your own endpoint suitable for development or production use usin
 
 - [Ankr](#ankr)
 - [Blast](#blast)
-- [Dwellir](#dwellir)
+<!-- - [Dwellir](#dwellir) -->
 - [OnFinality](#onfinality)
 - [Pocket Network](#pokt)
 
