@@ -33,7 +33,7 @@ You can create your own endpoint suitable for development or production use usin
 
 - [Ankr](#ankr)
 - [Blast](#blast)
-- [Dwellir](#dwellir)
+<!-- - [Dwellir](#dwellir) -->
 - [OnFinality](#onfinality)
 - [Pocket Network](#pokt)
 
@@ -63,7 +63,7 @@ To get started, you'll need to head to [Blast](https://blastapi.io/){target=_bla
 
 ![Bware Labs](/images/builders/get-started/endpoints/endpoints-2.png)
 
-### Dwellir {: #dwellir }
+<!-- ### Dwellir {: #dwellir }
 
 [Dwellir](https://dwellir.com/development-nodes/){target=_blank} provides free endpoints for developers and dedicated nodes on owned and self-operated bare-metal cluster. Dwellir is building custom data solutions and tooling so get in touch.
 
@@ -76,7 +76,8 @@ To get started go to [Dwellir](https://dwellir.com/development-nodes/){target=_b
 
 Your custom endpoint will be delivered.
 
-![Dwellir](/images/builders/get-started/endpoints/endpoints-3.png)
+![Dwellir](/images/builders/get-started/endpoints/endpoints-3.png)-->
+
 
 ### OnFinality {: #onfinality }
 
