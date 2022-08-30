@@ -50,46 +50,48 @@ The XCM-transactor pallet provides the following extrinsics (functions):
 
  - **deregister**(index) — deregisters a derivative account for a given index. This prevents the previously registered account from using a derivative address for remote execution. This extrinsic is only callable by *root*, for example, through a democracy proposal
  - **register**(address, index) — registers a given address as a derivative account at a given index. This extrinsic is only callable by *root*, for example, through a democracy proposal
+ - **removeFeePerSecond**(assetLocation) — remove the fee per second information for a given asset in its reserve chain. The asset is defined as a multilocation
  - **removeTransactInfo**(location) — remove the transact information for a given chain, defined as a multilocation
- - **setTransactInfo**(location, transactExtraWeight, feePerSecond, maxWeight) — sets the transact information for a given chain, defined as a multilocation. The transact information includes:
+ - **setFeePerSecond**(assetLocation, feePerSecond) — sets the fee per second information for a given asset on its reserve chain. The asset is defined as a multilocation. The **feePerSecond** is the token units per second of XCM execution that will be charged to the sender of the XCM-transactor extrinsic
+ - **setTransactInfo**(location, transactExtraWeight, maxWeight) — sets the transact information for a given chain, defined as a multilocation. The transact information includes:
      - **transactExtraWeight** — weight to cover XCM instructions executions fees (`WithdrawAsset`, `BuyExecution`, and `Transact`), which is estimated to be at least 10% over what the remote XCM instructions execution uses 
-     - **feePerSecond** — it is the token units per second of XCM execution that will be charged to the sender of the XCM-transactor extrinsic
      - **maxWeight** — maximum weight units allowed for the remote XCM execution
-     - **transactExtraWeightSigned** — weight to cover XCM instructions executions fees (`DescendOrigin`, `WithdrawAsset`, `BuyExecution`, and `Transact`), which is estimated to be at least 10% over what the remote XCM instructions execution uses 
- - **transactThroughDerivative**(destination, index, currencyID, destWeight, innerCall) — sends an XCM message with instructions to remotely execute a given call in the given destination (wrapped with the `asDerivative` option). The remote call will be signed by the origin parachain sovereign account (who pays the fees), but the transaction is dispatched from the sovereign-derivative account for the given index. The XCM-transactor pallet calculates the fees for the remote execution and charges the sender of the extrinsic the estimated amount in the corresponding [XC-20 token](/builders/xcm/xc20/overview/){target=_blank} given by the asset ID
- - **transactThroughDerivativeMultilocation**(destination, index, feeLocation, destWeight, innerCall) — same as `transactThroughDerivative`, but the remote execution fees are charged in the corresponding [XC-20 token](/builders/xcm/xc20/overview/){target=_blank} given by the asset multilocation
- - **transactThroughSigned**(destination, index, feeCurrencyID, destWeight, innerCall) — sends an XCM message with instructions to remotely execute a given call in the given destination. The remote call will be signed and executed by a new account that the destination parachain must derivate. For Moonbeam-based network, this account is the `blake2` hash of the descended multilocation, truncated to the correct length. The XCM-transactor pallet calculates the fees for the remote execution and charges the sender of the extrinsic the estimated amount in the corresponding [XC-20 token](/builders/xcm/xc20/overview/){target=_blank} given by the asset ID
- - **transactThroughSignedMultilocation**(destination, index, feeLocation, destWeight, innerCall) — same as `transactThroughSigned`, but the remote execution fees are charged in the corresponding [XC-20 token](/builders/xcm/xc20/overview/){target=_blank} given by the asset multilocation
- - **transactThroughSovereign**(destination, feePayer, feeLocation, destWeight, call, originKind) — sends an XCM message with instructions to remotely execute a given call in the given destination. The remote call will be signed by the origin parachain sovereign account (who pays the fees), but the transaction is dispatched from a given origin. The XCM-transactor pallet calculates the fees for the remote execution and charges the given account the estimated amount in the corresponding [XC-20 token](/builders/xcm/xc20/overview/){target=_blank} given by the asset multilocation
+     - **transactExtraWeightSigned** — (optional) weight to cover XCM instructions executions fees (`DescendOrigin`, `WithdrawAsset`, `BuyExecution`, and `Transact`), which is estimated to be at least 10% over what the remote XCM instructions execution uses 
+ - **transactThroughDerivative**(destination, index, fee, innerCall, weightInfo) — sends an XCM message with instructions to remotely execute a given call in the given destination (wrapped with the `asDerivative` option). The remote call will be signed by the origin parachain sovereign account (who pays the fees), but the transaction is dispatched from the sovereign-derivative account for the given index. The XCM-transactor pallet calculates the fees for the remote execution and charges the sender of the extrinsic the estimated amount in the corresponding [XC-20 token](/builders/xcm/xc20/overview/){target=_blank} given by the asset ID
+ - **transactThroughSigned**(destination, fee, call, weightInfo) — sends an XCM message with instructions to remotely execute a given call in the given destination. The remote call will be signed and executed by a new account that the destination parachain must derivate. For Moonbeam-based network, this account is the `blake2` hash of the descended multilocation, truncated to the correct length. The XCM-transactor pallet calculates the fees for the remote execution and charges the sender of the extrinsic the estimated amount in the corresponding [XC-20 token](/builders/xcm/xc20/overview/){target=_blank} given by the asset ID
+ - **transactThroughSovereign**(destination, feePayer, fee, call, originKind, weightInfo) — sends an XCM message with instructions to remotely execute a given call in the given destination. The remote call will be signed by the origin parachain sovereign account (who pays the fees), but the transaction is dispatched from a given origin. The XCM-transactor pallet calculates the fees for the remote execution and charges the given account the estimated amount in the corresponding [XC-20 token](/builders/xcm/xc20/overview/){target=_blank} given by the asset multilocation
 
 Where the inputs that need to be provided can be defined as:
 
  - **index** — value to be used to calculate the derivative account. In the context of the XCM-transactor pallet, this is a derivative account of the parachain sovereign account in another chain
+ - **assetLocation** — a multilocation representing an asset on its reserve chain. The value is used to set or retrieve the fee per second information
  - **location** — a multilocation representing a chain in the ecosystem. The value is used to set or retrieve the transact information
  - **destination** — a multilocation representing a chain in the ecosystem where the XCM message is being sent to
- - **currencyID** — the ID of the currency being used to pay for the remote call execution. Different runtimes have different ways of defining the IDs. In the case of Moonbeam-based networks, `SelfReserve` refers to the native token, and `ForeignAsset` refers to the asset ID of the XC-20 (not to be confused with the XC-20 address)
- - **destWeight** — the maximum amount of execution time you want to provide in the destination chain to execute the XCM message being sent. If not enough weight is provided, the execution of the XCM will fail, and funds might get locked in either the sovereign account or a special pallet. For transacts through derivative, you have to take into account the `asDerivative` extrinsic as well, but the XCM-transactor pallet adds the weight for the XCM instructions with the transact information set before. **It is essential to correctly set the destination weight to avoid failed XCM executions**
- - **innerCall** — encoded call data of the call that will be executed in the destination chain. This is wrapped with the `asDerivative` option if transacting through the derivative account
- - **feeLocation** — a multilocation representing the currency being used to pay for the remote call execution
- - **feePayer** — the address that will pay for the remote XCM execution in the transact through sovereign extrinsic. The fee is charged in the corresponding [XC-20 token](/builders/xcm/xc20/overview/){target=_blank}
+ - **fee** — an enum that provides developers two options on how to define the XCM execution fee item. Both options rely on the `feeAmount`, which is the units of the asset per second of XCM execution you provide to execute the XCM message you are sending. The two different ways to set the fee item are: 
+     - **AsCurrencyID** — is the ID of the currency being used to pay for the remote call execution. Different runtimes have different ways of defining the IDs. In the case of Moonbeam-based networks, `SelfReserve` refers to the native token, and `ForeignAsset` refers to the asset ID of the XC-20 (not to be confused with the XC-20 address)
+     - **AsMultiLocation** — is the multilocation that represents the asset to be used for fee payment when executing the XCM
+ - **innerCall** — encoded call data of the call that will be executed in the destination chain. This is wrapped with the `asDerivative` option if transacting through the sovereign derivative account
+ - **weightInfo** — a structure that contains all the weight related information. If not enough weight is provided, the execution of the XCM will fail, and funds might get locked in either the sovereign account or a special pallet. Consequently, **it is essential to correctly set the destination weight to avoid failed XCM executions**. The structure contains two fields:
+     - **transactRequiredWeightAtMost** — weight related to the execution of the `Transact` call itself. For transacts through sovereign-derivative, you have to take into account the weight of the `asDerivative` extrinsic as well. However, this does not include the cost (in weight) of all the XCM instructions
+     - **overallWeight** — the total weight the XCM-transactor extrinsic can use. This includes all the XCM instructions plus the weight of the call itself (**transactRequiredWeightAtMost**)
  - **call** — similar to `innerCall`, but it is not wrapped with the `asDerivative` extrinsic
+ - **feePayer** — the address that will pay for the remote XCM execution in the transact through sovereign extrinsic. The fee is charged in the corresponding [XC-20 token](/builders/xcm/xc20/overview/){target=_blank}
  - **originKind** — dispatcher of the remote call in the destination chain. There are [four types of dispatchers](https://github.com/paritytech/polkadot/blob/0a34022e31c85001f871bb4067b7d5f5cab91207/xcm/src/v0/mod.rs#L60){target=_blank} available
-
 
 ### Storage Methods {: #storage-methods }
 
 The XCM-transactor pallet includes the following read-only storage method:
 
- - **destinationAssetFeePerSecond**() - returns the fee per second for an asset given a multilocation. This enables conversion from weight to fee
+ - **destinationAssetFeePerSecond**() - returns the fee per second for an asset given a multilocation. This enables conversion from weight to fee. The storage element is read by the pallet extrinsicts if `feeAmount` is set to `None`
  - **indexToAccount**(index) — returns the origin chain account associated with the given derivative index
  - **palletVersion**() — returns current pallet version from storage
- - **transactInfoWithWeightLimit**(location) — returns the transact information for a given multilocation
+ - **transactInfoWithWeightLimit**(location) — returns the transact information for a given multilocation. The storage element is read by the pallet extrinsicts if `feeAmount` is set to `None`
 
 ### Pallet Constants {: #constants }
 
 The XCM-transactor pallet includes the following read-only functions to obtain pallet constants:
 
-- **baseXcmWeight**() - returns the base XCM weight required for execution
+- **baseXcmWeight**() - returns the base XCM weight required for execution, per XCM instruction
 - **selfLocation**() - returns the multilocation of the chain
 
 ## XCM-Transactor Transact Through Derivative {: #xcmtransactor-transact-through-derivative}
