@@ -63,6 +63,22 @@ To get started, you'll need to head to [Blast](https://blastapi.io/){target=_bla
 
 ![Bware Labs](/images/builders/get-started/endpoints/endpoints-2.png)
 
+<!-- ### Dwellir {: #dwellir }
+
+[Dwellir](https://dwellir.com/development-nodes/){target=_blank} provides free endpoints for developers and dedicated nodes on owned and self-operated bare-metal cluster. Dwellir is building custom data solutions and tooling so get in touch.
+
+To get started go to [Dwellir](https://dwellir.com/development-nodes/){target=_blank}:
+
+1. Enter your **Name** and **Email**
+2. Select the network(s) from the list
+3. Select which **Service Level** you would like
+4. Click **Sign up**
+
+Your custom endpoint will be delivered.
+
+![Dwellir](/images/builders/get-started/endpoints/endpoints-3.png)-->
+
+
 ### OnFinality {: #onfinality }
 
 [OnFinality](https://onfinality.io/){target=_blank} provides a free API key based endpoint for customers that provide higher rate limits and performance than the free public endpoint. You also receive more in depth analytics of the usage of your application.
