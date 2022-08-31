@@ -118,7 +118,7 @@ For fulfilled requests, the cost of execution will be refunded from the request 
 
 Your contract's `fulfillRandomWords` callback is responsible for handling the fulfillment. For example, in a lottery contract, the callback would use the random words to choose a winner and payout the winnings.
 
-If a request expires it can be purged through the precompile's [`purgeExpiredRequest` function](/buildxers/pallets-precompiles/precompiles/randomness/#:~:text=purgeExpiredRequest){target=_blank}. When this function is called the request fee is paid out to the caller and the deposit will be returned to the original requester.
+If a request expires it can be purged through the precompile's [`purgeExpiredRequest` function](/builders/pallets-precompiles/precompiles/randomness/#:~:text=purgeExpiredRequest){target=_blank}. When this function is called the request fee is paid out to the caller and the deposit will be returned to the original requester.
 
 The happy path for a randomness request is shown in the following diagram:
 
