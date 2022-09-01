@@ -96,7 +96,7 @@ The XCM-transactor pallet includes the following read-only functions to obtain p
 
 ## XCM-Transactor Transact Through Derivative {: #xcmtransactor-transact-through-derivative}
 
-This section covers building an XCM message for remote executions using the XCM-transactor pallet, specifically with the `transactThroughDerivative` function. The steps to use the `transactThroughDerivativeMultilocation` function are identical, but instead of the currency ID, you specify a multilocation for the fee token.
+This section covers building an XCM message for remote executions using the XCM-transactor pallet using the `transactThroughDerivative` function.
 
 !!! note
     You need to ensure that the call you are going to execute remotely is allowed in the destination chain!
@@ -132,18 +132,25 @@ If you've [checked the prerequisites](#xcmtransactor-derivative-check-prerequisi
 3. Choose the **transactThroughDerivative** extrinsic
 4. Set the destination to **Relay**, to target the relay chain
 5. Enter the index of the derivative account you've been registered to. For this example, the index value is `42`. Remember that the derivate account depends on the index
-6. Set the currency ID to **ForeignAsset**. This is because you are not transferring DEV tokens (*SelfReserve*)
-7. Enter the asset ID. For this example, `xcUNIT` has an asset id of `42259045809535163221576417993425387648`. You can check all available assets IDs in the [XC-20 address section](/builders/xcm/xc20/overview/#current-xc20-assets){target=_blank} 
-8. Set the destination weight. The value must include the `asDerivative` extrinsic as well. However, the weight of the XCM instructions is added by the XCM-transactor pallet. For this example, `1000000000` is enough
-9. Enter the inner call that will be executed in the destination chain. This is the encoded call data of the pallet, method, and input values to be called. It can be constructed in Polakdot.js Apps (must be connected to the destination chain), or using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank}. For this example, the inner call is `0x04000030fcfb53304c429689c8f94ead291272333e16d77a2560717f3a7a410be9b208070010a5d4e8`, which is a simple balance transfer of 1 `UNIT` to Alice's account in the relay chain. You can decode the call in [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/extrinsics/decode){target=_blank}
-10. Click the **Submit Transaction** button and sign the transaction
+6. Select the **fee** type. For this example, set it to **AsCurrencyId**
+7. Select **ForeignAsset** as the currency ID. This is because you are not transferring DEV tokens (*SelfReserve*), but interacting with an XC-20
+8. Enter the asset ID. For this example, `xcUNIT` has an asset id of `42259045809535163221576417993425387648`. You can check all available assets IDs in the [XC-20 address section](/builders/xcm/xc20/overview/#current-xc20-assets){target=_blank}
+9. (Optional) Set the **feeAmount**. This is the units per second, of the selected fee token (XC-20), that will be burned to free up the corresponding balance in the sovereign account on the destination chain. For this example, it was set to `13764626000000` units per second. If you do not provide this value, the pallet will use the element in storage (if exists)
+10. Enter the inner call that will be executed in the destination chain. This is the encoded call data of the pallet, method, and input values to be called. It can be constructed in Polakdot.js Apps (must be connected to the destination chain), or using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank}. For this example, the inner call is `0x04000030fcfb53304c429689c8f94ead291272333e16d77a2560717f3a7a410be9b208070010a5d4e8`, which is a simple balance transfer of 1 `UNIT` to Alice's account in the relay chain. You can decode the call in [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/extrinsics/decode){target=_blank}
+11. Set the **transactRequiredWeightAtMost** weight value of the **weightInfo** struct. The value must include the `asDerivative` extrinsic as well. However, this does not include the weight of the XCM instructions. For this example, `1000000000` weight units are enough
+12. (Optional) Set the **overallWeight** weight value of the **weightInfo** struct. The value must be the total of **transactRequiredWeightAtMost** plus the weight needed to cover the XCM instructions execution costs in the destination chain. If you do not provide this value, the pallet will use the element in storage (if exists), and add it to **transactRequiredWeightAtMost**. For this example, `2000000000` weight units are enough
+13. Click the **Submit Transaction** button and sign the transaction
 
 !!! note
-    The encoded call data for the extrinsic configured above is `0x2103002a00018080778c30c20fa2ebc0ed18d2cbca1f00ca9a3b00000000a404000030fcfb53304c429689c8f94ead291272333e16d77a2560717f3a7a410be9b208070010a5d4e8`.
+    The encoded call data for the extrinsic configured above is 
+    `0x2102002a0000018080778c30c20fa2ebc0ed18d2cbca1f0180a8a4d3840c00000000000000000000a404000030fcfb53304c429689c8f94ead291272333e16d77a2560717f3a7a410be9b208070010a5d4e800ca9a3b00000000010094357700000000`.
 
 ![XCM-Transactor Transact Through Derivative Extrinsic](/images/builders/xcm/xcm-transactor/xcmtransactor-1.png)
 
-Once the transaction is processed, you can check the relevant extrinsics and events in [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer/query/0x14cebfb2b4a4c0bf72cb2562344e6803263f45491d2ab14e7b91115ebd52e706){target=_blank} and the [relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/explorer/query/0x630456e6578d5b414db2e83486a6961ff90dc06bf979988b370dcb0e57550e41){target=_blank}. Note that, in Moonbase Alpha, there is an event associated with the `transactThroughDerivative` method, but also some `xcUNIT` tokens are burned to repay the sovereign account for the transactions fees. In the relay chain, the `paraInherent.enter` extrinsic shows a `balance.Transfer` event, where 1 `UNIT` token is transferred to Alice's address. Still, the transaction fees are paid by the Moonbase Alpha sovereign account.
+Once the transaction is processed, you can check the relevant extrinsics and events in [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer/query/0xa90b23a54f2bb691ba2f04ae3228b1de2d2e7231b98490bf6f94e491baf09185){target=_blank} and the [relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/explorer/query/0xb5a0ecc0c2f7f1363ede2e3aebab2702dd2e7b9036a6ba23a694db2b4002cd7f){target=_blank}. Note that, in Moonbase Alpha, there is an event associated with the `transactThroughDerivative` method, but also some `xcUNIT` tokens are burned to repay the sovereign account for the transactions fees. In the relay chain, the `paraInherent.enter` extrinsic shows a `balance.Transfer` event, where 1 `UNIT` token is transferred to Alice's address. Still, the transaction fees are paid by the Moonbase Alpha sovereign account.
+
+!!! note
+    The `AssetsTrapped` event on the relay chain is because the XCM-transactor pallet does not handle refunds yet. Therefore, overestimating weight will result in assets being trapped when the XCM is executed in the destination chain.
 
 ### Retrieve Registered Derivative Indexes
 
@@ -160,7 +167,7 @@ To fetch a list of all registered addresses allowed to operate through the Moonb
 
 ## XCM-Transactor Transact Through Signed {: #xcmtransactor-transact-through-signed}
 
-This section covers building an XCM message for remote executions using the XCM-transactor pallet, specifically with the `transactThroughSigned` function. The steps to use the `transactThroughSignedMultilocation` function are identical, but instead of the currency ID, you specify a multilocation for the fee token. However, you'll not be able to follow along as the destination parachain is not publicly available.
+This section covers building an XCM message for remote executions using the XCM-transactor pallet, specifically with the `transactThroughSigned` function. However, you'll not be able to follow along as the destination parachain is not publicly available.
 
 !!! note
     You need to ensure that the call you are going to execute remotely is allowed in the destination chain!
@@ -194,14 +201,17 @@ If you've [checked the prerequisites](#xcmtransactor-signed-check-prerequisites)
     |    X1     |  Parachain  |
     | Parachain | ParachainID |
 
-5. Set the fee currency ID to **ForeignAsset**. Note that this is the token that will be withdrawn from the multilocation-derivative account to pay for XCM execution fees. In this case, the native reserve token of the destination chain is being used, but it can be any other token as long as it is accepted as XCM execution fee token
-6. Enter the asset ID. For this example, the XC-20 token has an asset id of `35487752324713722007834302681851459189`. You can check all available assets IDs in the [assets section](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/assets){target=_blank} of Polkadot.js Apps
-7. Set the destination weight used to execute the remote call. However, the weight of the XCM instructions is added by the XCM-transactor pallet. For this example, `1000000000` is enough
-8.  Enter the inner call that will be executed in the destination chain. This is the encoded call data of the pallet, method, and input values to be called. It can be constructed in Polakdot.js Apps (must be connected to the destination chain), or using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank}. For this example, the inner call is `0x030044236223ab4291b93eed10e4b511b37a398dee5513000064a7b3b6e00d`, which is a simple balance transfer of 1 token of the destination chain to Alice's account there
-9. Click the **Submit Transaction** button and sign the transaction
+5. Select the **fee** type. For this example, set it to **AsCurrencyId** 
+6. Set the currency ID to **ForeignAsset**. Note that this is the token that will be withdrawn from the multilocation-derivative account to pay for XCM execution fees. In this case, the native reserve token of the destination chain is being used, but it can be any other token as long as it is accepted as XCM execution fee token
+7. Enter the asset ID. For this example, the XC-20 token has an asset id of `35487752324713722007834302681851459189`. You can check all available assets IDs in the [assets section](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/assets){target=_blank} of Polkadot.js Apps
+8. (Optional) Set the **feeAmount**. This is the units per second, of the selected fee token (XC-20), that will be withdrawn from the multilocation-derivative account to pay for XCM execution fees. For this example, it was set to `50000000000000000` units per second. If you do not provide this value, the pallet will use the element in storage (if exists). Note that the element in storage might not be up to date
+9. Enter the inner call that will be executed in the destination chain. This is the encoded call data of the pallet, method, and input values to be called. It can be constructed in Polakdot.js Apps (must be connected to the destination chain), or using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank}. For this example, the inner call is `0x030044236223ab4291b93eed10e4b511b37a398dee5513000064a7b3b6e00d`, which is a simple balance transfer of 1 token of the destination chain to Alice's account there
+10. Set the **transactRequiredWeightAtMost** weight value of the **weightInfo** struct. This does not include the weight of the XCM instructions. For this example, `1000000000` is enough
+11. (Optional) Set the **overallWeight** weight value of the **weightInfo** struct. The value must be the total of **transactRequiredWeightAtMost** plus the weight needed to cover the XCM instructions execution costs in the destination chain. If you do not provide this value, the pallet will use the element in storage (if exists), and add it to **transactRequiredWeightAtMost**. For this example, `2000000000` weight units are enough
+12. Click the **Submit Transaction** button and sign the transaction
 
 !!! note
-    The encoded call data for the extrinsic configured above is `0x210701010100e10d017576e5e612ff054915d426c546b1b21a00e40b54020000007c030044236223ab4291b93eed10e4b511b37a398dee5513000064a7b3b6e00d`.
+    The encoded call data for the extrinsic configured above is `0x210601010100e10d00017576e5e612ff054915d426c546b1b21a010000c52ebca2b10000000000000000007c030044236223ab4291b93eed10e4b511b37a398dee5513000064a7b3b6e00d00ca9a3b00000000010094357700000000`.
 
 ![XCM-Transactor Transact Through Signed Extrinsic](/images/builders/xcm/xcm-transactor/xcmtransactor-3.png)
 
