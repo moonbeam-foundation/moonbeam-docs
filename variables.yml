@@ -101,10 +101,10 @@ networks:
       max_random_words: 100
       min_vrf_blocks_delay: 2
       max_vrf_blocks_delay: 2000
-      req_deposit_amount: 
+      req_deposit_amount:
         dev: 1
         wei: 1000000000000000000
-      block_expiration: 10000 
+      block_expiration: 10000
       epoch_expiration: 10000
       epoch_fulfillment_delay: 2
     xcm:
@@ -669,4 +669,4 @@ networks:
     chain_id: 1294
     hex_chain_id: '0x50E'
     block_explorer: https://blockexplorer.bobabeam.boba.network
-    exit_delay_period_days: 7 
+    exit_delay_period_days: 7
