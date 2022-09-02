@@ -58,11 +58,11 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
 
 |                                                         Contract                                                         |                  Address                   |
 |:------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
-|   [ECRECOVER](/builders/pallets-precompiles/precompiles/eth-mainnet/#verify-signatures-with-ecrecover){target=_blank}   | 0x0000000000000000000000000000000000000001 |
-|           [SHA256](/builders/pallets-precompiles/precompiles/eth-mainnet/#hashing-with-sha256){target=_blank}           | 0x0000000000000000000000000000000000000002 |
-|       [RIPEMD160](/builders/pallets-precompiles/precompiles/eth-mainnet/#hashing-with-ripemd-160){target=_blank}        | 0x0000000000000000000000000000000000000003 |
-|         [Identity](/builders/pallets-precompiles/precompiles/eth-mainnet/#the-identity-function){target=_blank}         | 0x0000000000000000000000000000000000000004 |
-| [Modular Exponentiation](/builders/pallets-precompiles/precompiles/eth-mainnet/#modular-exponentiation){target=_blank}  | 0x0000000000000000000000000000000000000005 |
+|   [ECRECOVER](/builders/pallets-precompiles/precompiles/eth-mainnet/#verify-signatures-with-ecrecover){target=_blank}    | 0x0000000000000000000000000000000000000001 |
+|           [SHA256](/builders/pallets-precompiles/precompiles/eth-mainnet/#hashing-with-sha256){target=_blank}            | 0x0000000000000000000000000000000000000002 |
+|        [RIPEMD160](/builders/pallets-precompiles/precompiles/eth-mainnet/#hashing-with-ripemd-160){target=_blank}        | 0x0000000000000000000000000000000000000003 |
+|         [Identity](/builders/pallets-precompiles/precompiles/eth-mainnet/#the-identity-function){target=_blank}          | 0x0000000000000000000000000000000000000004 |
+|  [Modular Exponentiation](/builders/pallets-precompiles/precompiles/eth-mainnet/#modular-exponentiation){target=_blank}  | 0x0000000000000000000000000000000000000005 |
 |                [BN128Add](/builders/pallets-precompiles/precompiles/eth-mainnet/#bn128add){target=_blank}                | 0x0000000000000000000000000000000000000006 |
 |                [BN128Mul](/builders/pallets-precompiles/precompiles/eth-mainnet/#bn128mul){target=_blank}                | 0x0000000000000000000000000000000000000007 |
 |            [BN128Pairing](/builders/pallets-precompiles/precompiles/eth-mainnet/#bn128pairing){target=_blank}            | 0x0000000000000000000000000000000000000008 |
@@ -80,42 +80,43 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
 ### Moonbeam-Specific Precompiles {: #moonbeam-specific-precompiles }
 
 === "Moonbeam"
-    |                                                                  Contract                                                                  |                     Address                      |
-    |:------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------:|
-    |  [Parachain Staking](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank}  |    {{networks.moonbeam.precompiles.staking}}     |
-    | [Crowdloan Rewards](https://github.com/PureStake/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=_blank} |   {{networks.moonbeam.precompiles.crowdloan }}   |
-    |         [ERC-20 Interface](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=_blank}          |     {{networks.moonbeam.precompiles.erc20 }}     |
-    |     [Democracy](https://github.com/PureStake/moonbeam/blob/master/precompiles/pallet-democracy/DemocracyInterface.sol){target=_blank}      |   {{networks.moonbeam.precompiles.democracy}}    |
-    |                [Xtokens](https://github.com/PureStake/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=_blank}                 |    {{networks.moonbeam.precompiles.xtokens}}     |
-    |        [Relay Encoder](https://github.com/PureStake/moonbeam/blob/master/precompiles/relay-encoder/RelayEncoder.sol){target=_blank}        | {{networks.moonbeam.precompiles.relay_encoder}}  |
-    |      [XCM Transactor](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm-transactor/src/v1/XcmTransactorV1.sol){target=_blank}       | {{networks.moonbeam.precompiles.xcm_transactor}} |
-    |  [Author Mapping](https://github.com/PureStake/moonbeam/blob/master/precompiles/author-mapping/AuthorMappingInterface.sol){target=_blank}  | {{networks.moonbeam.precompiles.author_mapping}} |
-    |                   [Batch](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank}                    |     {{networks.moonbeam.precompiles.batch}}      |
+    |                                                                  Contract                                                                  |                         Address                         |
+    |:------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------:|
+    |  [Parachain Staking](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank}  |        {{networks.moonbeam.precompiles.staking}}        |
+    | [Crowdloan Rewards](https://github.com/PureStake/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=_blank} |      {{networks.moonbeam.precompiles.crowdloan }}       |
+    |         [ERC-20 Interface](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=_blank}          |        {{networks.moonbeam.precompiles.erc20 }}         |
+    |     [Democracy](https://github.com/PureStake/moonbeam/blob/master/precompiles/pallet-democracy/DemocracyInterface.sol){target=_blank}      |       {{networks.moonbeam.precompiles.democracy}}       |
+    |                [Xtokens](https://github.com/PureStake/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=_blank}                 |        {{networks.moonbeam.precompiles.xtokens}}        |
+    |        [Relay Encoder](https://github.com/PureStake/moonbeam/blob/master/precompiles/relay-encoder/RelayEncoder.sol){target=_blank}        |     {{networks.moonbeam.precompiles.relay_encoder}}     |
+    |  [XCM Transactor](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm-transactor/src/v1/XcmTransactorV1.sol){target=_blank}  | {{networks.moonbeam.precompiles.xcm_transactor_legacy}} |
+    |  [Author Mapping](https://github.com/PureStake/moonbeam/blob/master/precompiles/author-mapping/AuthorMappingInterface.sol){target=_blank}  |    {{networks.moonbeam.precompiles.author_mapping}}     |
+    |                   [Batch](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank}                    |         {{networks.moonbeam.precompiles.batch}}         |
 
 === "Moonriver"
-    |                                                                  Contract                                                                  |                      Address                      |
-    |:------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------:|
-    |  [Parachain Staking](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank}  |    {{networks.moonriver.precompiles.staking}}     |
-    | [Crowdloan Rewards](https://github.com/PureStake/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=_blank} |   {{networks.moonriver.precompiles.crowdloan }}   |
-    |         [ERC-20 Interface](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=_blank}          |     {{networks.moonriver.precompiles.erc20 }}     |
-    |     [Democracy](https://github.com/PureStake/moonbeam/blob/master/precompiles/pallet-democracy/DemocracyInterface.sol){target=_blank}      |   {{networks.moonriver.precompiles.democracy}}    |
-    |                [Xtokens](https://github.com/PureStake/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=_blank}                 |    {{networks.moonriver.precompiles.xtokens}}     |
-    |        [Relay Encoder](https://github.com/PureStake/moonbeam/blob/master/precompiles/relay-encoder/RelayEncoder.sol){target=_blank}        | {{networks.moonriver.precompiles.relay_encoder}}  |
-    |      [XCM Transactor](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm-transactor/src/v1/XcmTransactorV1.sol){target=_blank}       | {{networks.moonriver.precompiles.xcm_transactor}} |
-    |  [Author Mapping](https://github.com/PureStake/moonbeam/blob/master/precompiles/author-mapping/AuthorMappingInterface.sol){target=_blank}  | {{networks.moonriver.precompiles.author_mapping}} |
-    |                   [Batch](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank}                    |     {{networks.moonriver.precompiles.batch}}      |
+    |                                                                  Contract                                                                  |                         Address                          |
+    |:------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------:|
+    |  [Parachain Staking](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank}  |        {{networks.moonriver.precompiles.staking}}        |
+    | [Crowdloan Rewards](https://github.com/PureStake/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=_blank} |      {{networks.moonriver.precompiles.crowdloan }}       |
+    |         [ERC-20 Interface](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=_blank}          |        {{networks.moonriver.precompiles.erc20 }}         |
+    |     [Democracy](https://github.com/PureStake/moonbeam/blob/master/precompiles/pallet-democracy/DemocracyInterface.sol){target=_blank}      |       {{networks.moonriver.precompiles.democracy}}       |
+    |                [Xtokens](https://github.com/PureStake/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=_blank}                 |        {{networks.moonriver.precompiles.xtokens}}        |
+    |        [Relay Encoder](https://github.com/PureStake/moonbeam/blob/master/precompiles/relay-encoder/RelayEncoder.sol){target=_blank}        |     {{networks.moonriver.precompiles.relay_encoder}}     |
+    |  [XCM Transactor](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm-transactor/src/v1/XcmTransactorV1.sol){target=_blank}  | {{networks.moonriver.precompiles.xcm_transactor_legacy}} |
+    |  [Author Mapping](https://github.com/PureStake/moonbeam/blob/master/precompiles/author-mapping/AuthorMappingInterface.sol){target=_blank}  |    {{networks.moonriver.precompiles.author_mapping}}     |
+    |                   [Batch](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank}                    |         {{networks.moonriver.precompiles.batch}}         |
 
 === "Moonbase Alpha"
-    |                                                                  Contract                                                                  |                     Address                      |
-    |:------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------:|
-    |  [Parachain Staking](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank}  |    {{networks.moonbase.precompiles.staking}}     |
-    | [Crowdloan Rewards](https://github.com/PureStake/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=_blank} |   {{networks.moonbase.precompiles.crowdloan }}   |
-    |         [ERC-20 Interface](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=_blank}          |     {{networks.moonbase.precompiles.erc20 }}     |
-    |     [Democracy](https://github.com/PureStake/moonbeam/blob/master/precompiles/pallet-democracy/DemocracyInterface.sol){target=_blank}      |   {{networks.moonbase.precompiles.democracy}}    |
-    |                [Xtokens](https://github.com/PureStake/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=_blank}                 |    {{networks.moonbase.precompiles.xtokens}}     |
-    |        [Relay Encoder](https://github.com/PureStake/moonbeam/blob/master/precompiles/relay-encoder/RelayEncoder.sol){target=_blank}        | {{networks.moonbase.precompiles.relay_encoder}}  |
-    |      [XCM Transactor](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm-transactor/src/v1/XcmTransactorV1.sol){target=_blank}       | {{networks.moonbase.precompiles.xcm_transactor}} |
-    |  [Author Mapping](https://github.com/PureStake/moonbeam/blob/master/precompiles/author-mapping/AuthorMappingInterface.sol){target=_blank}  | {{networks.moonbase.precompiles.author_mapping}} |
-    |                   [Batch](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank}                    |     {{networks.moonbase.precompiles.batch}}      |
-    |            [Randomness](https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/Randomness.sol){target=_blank}            |   {{networks.moonbase.precompiles.randomness}}   |
-    |           [Call Permit](https://github.com/PureStake/moonbeam/blob/master/precompiles/call-permit/CallPermit.sol){target=_blank}           |  {{networks.moonbase.precompiles.call_permit }}  |
+    |                                                                    Contract                                                                     |                         Address                         |
+    |:-----------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------:|
+    |    [Parachain Staking](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank}     |        {{networks.moonbase.precompiles.staking}}        |
+    |   [Crowdloan Rewards](https://github.com/PureStake/moonbeam/blob/master/precompiles/crowdloan-rewards/CrowdloanInterface.sol){target=_blank}    |      {{networks.moonbase.precompiles.crowdloan }}       |
+    |            [ERC-20 Interface](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=_blank}            |        {{networks.moonbase.precompiles.erc20 }}         |
+    |        [Democracy](https://github.com/PureStake/moonbeam/blob/master/precompiles/pallet-democracy/DemocracyInterface.sol){target=_blank}        |       {{networks.moonbase.precompiles.democracy}}       |
+    |                   [Xtokens](https://github.com/PureStake/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=_blank}                   |        {{networks.moonbase.precompiles.xtokens}}        |
+    |          [Relay Encoder](https://github.com/PureStake/moonbeam/blob/master/precompiles/relay-encoder/RelayEncoder.sol){target=_blank}           |     {{networks.moonbase.precompiles.relay_encoder}}     |
+    | [XCM Transactor Legacy](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm-transactor/src/v1/XcmTransactorV1.sol){target=_blank} | {{networks.moonbase.precompiles.xcm_transactor_legacy}} |
+    |    [Author Mapping](https://github.com/PureStake/moonbeam/blob/master/precompiles/author-mapping/AuthorMappingInterface.sol){target=_blank}     |    {{networks.moonbase.precompiles.author_mapping}}     |
+    |                      [Batch](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank}                      |         {{networks.moonbase.precompiles.batch}}         |
+    |              [Randomness](https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/Randomness.sol){target=_blank}               |      {{networks.moonbase.precompiles.randomness}}       |
+    |             [Call Permit](https://github.com/PureStake/moonbeam/blob/master/precompiles/call-permit/CallPermit.sol){target=_blank}              |     {{networks.moonbase.precompiles.call_permit }}      |
+    |    [XCM Transactor](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm-transactor/src/v2/XcmTransactorV2.sol){target=_blank}     |    {{networks.moonbase.precompiles.xcm_transactor}}     |
