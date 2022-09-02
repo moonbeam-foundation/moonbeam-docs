@@ -221,19 +221,26 @@ Once the transaction is processed, Alice should've received one token in her add
 
 The XCM-transactor precompile contract allows developers to access the XCM-transactor pallet features through the Ethereum API of Moonbeam-based networks. Similar to other [precompile contracts](/builders/pallets-precompiles/precompiles/){target=_blank}, the XCM-transactor precompile is located at the following addresses:
 
+=== "Moonbase Alpha"
+     ```
+     {{networks.moonbase.precompiles.xcm_transactor}}
+     ```
+
+The XCM-transactor legacy precompile is still available in all Moonbeam-based networks. However, **the legacy version will be depecrated in the near future**, so all implementations must migrate to the newer interface. The XCM-transactor legacy precompile is located at the following addresses:
+
 === "Moonbeam"
      ```
-     {{networks.moonbeam.precompiles.xcm_transactor}}
+     {{networks.moonbeam.precompiles.xcm_transactor_legacy}}
      ```
 
 === "Moonriver"
      ```
-     {{networks.moonriver.precompiles.xcm_transactor}}
+     {{networks.moonriver.precompiles.xcm_transactor_legacy}}
      ```
 
 === "Moonbase Alpha"
      ```
-     {{networks.moonbase.precompiles.xcm_transactor}}
+     {{networks.moonbase.precompiles.xcm_transactor_legacy}}
      ```
 
 ### The XCM-Transactor Solidity Interface {: #xcmtrasactor-solidity-interface } 
