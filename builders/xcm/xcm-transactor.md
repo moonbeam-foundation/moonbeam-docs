@@ -301,6 +301,14 @@ The following code snippet goes through some examples of `Multilocation` structu
 
 The XCM-utils precompile contract gives developers polkadot related utility functions directly within the EVM. This allows for easier transactions and interactions with other XCM related precompiles. Similar to other [precompile contracts](/builders/pallets-precompiles/precompiles/){target=_blank}, the XCM-utils precompile is located at the following addresses:
 
+=== "Moonbeam"
+     ```
+     {{networks.moonbeam.precompiles.xcm_utils}}
+     ```
+=== "Moonriver"
+     ```
+     {{networks.moonriver.precompiles.xcm_utils}}
+     ```
 === "Moonbase Alpha"
      ```
      {{networks.moonbase.precompiles.xcm_utils}}
