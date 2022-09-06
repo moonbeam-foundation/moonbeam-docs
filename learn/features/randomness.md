@@ -33,7 +33,7 @@ You can interact with and request on-chain randomness using the randomness preco
 === "Moonbeam"
     |        Variable         |                                             Value                                             |
     |:-----------------------:|:---------------------------------------------------------------------------------------------:|
-    |         Deposit         |                {{ networks.moonbeam.randomness.req_deposit_amount.dev }} GLMR                 |
+    |         Deposit         |                {{ networks.moonbeam.randomness.req_deposit_amount.glmr }} GLMR                 |
     | Block expiration delay  |                  {{ networks.moonbeam.randomness.block_expiration }} blocks                   |
     | Epoch expiration delay  |                  {{ networks.moonbeam.randomness.epoch_expiration }} epochs                   |
     |   Minimum block delay   |                {{ networks.moonbeam.randomness.min_vrf_blocks_delay }} blocks                 |
@@ -44,7 +44,7 @@ You can interact with and request on-chain randomness using the randomness preco
 === "Moonriver"
     |        Variable         |                                             Value                                              |
     |:-----------------------:|:----------------------------------------------------------------------------------------------:|
-    |         Deposit         |                {{ networks.moonriver.randomness.req_deposit_amount.dev }} MOVR                 |
+    |         Deposit         |                {{ networks.moonriver.randomness.req_deposit_amount.movr }} MOVR                 |
     | Block expiration delay  |                  {{ networks.moonriver.randomness.block_expiration }} blocks                   |
     | Epoch expiration delay  |                  {{ networks.moonriver.randomness.epoch_expiration }} epochs                   |
     |   Minimum block delay   |                {{ networks.moonriver.randomness.min_vrf_blocks_delay }} blocks                 |
