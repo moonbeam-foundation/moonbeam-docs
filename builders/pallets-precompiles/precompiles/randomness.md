@@ -20,7 +20,17 @@ Moonbeam provides a randomness precompile, which is a Solidity interface that en
 
 This guide will show you how to use the randomness precompile and randomness consumer contract to create a lottery where the winners will randomly be selected. You'll also learn how to interact with the randomness precompile directly to perform actions such as purging an expired randomness request.
 
-The randomness precompile is currently only available on Moonbase Alpha and is located at the following address:
+The randomness precompile is located at the following address:
+
+=== "Moonbeam"
+     ```
+     {{ networks.moonbeam.precompiles.randomness }}
+     ```
+
+=== "Moonriver"
+     ```
+     {{ networks.moonriver.precompiles.randomness }}
+     ```
 
 === "Moonbase Alpha"
      ```
