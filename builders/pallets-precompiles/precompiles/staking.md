@@ -101,20 +101,6 @@ The Solidity interface includes the following functions:
  - **execute_delegation_request**(*address* delegator, *address* candidate) - executes any due delegation requests provided the address of a delegator and a candidate. Uses the [`executeDelegationRequest`](/builders/pallets-precompiles/pallets/staking/#:~:text=executeDelegationRequest(delegator, candidate)){target=_blank} method of the staking pallet
  - **cancel_delegation_request**(*address* candidate) - cancels any pending delegation requests provided the address of a candidate. Uses the [`cancelDelegationRequest`](/builders/pallets-precompiles/pallets/staking/#:~:text=cancelDelegationRequest(candidate)){target=_blank} method of the staking pallet
 
-The following methods are **deprecated** and will be removed in the future:
-
- - **is_nominator**(*address* nominator) — read-only function that checks whether the specified address is currently a staking delegator. Use `is_delegator` instead
- - **min_nomination**() — read-only function that gets the minimum delegation amount. Use `min_delegation` instead
- - **collator_nomination_count**(*address* collator) - read-only function that returns the number of delegations for the specified collator address. Use `candidate_delegation_count` instead
- - **nominator_nomination_count**(*address* nominator) - read-only function that returns the number of delegations for the specified delegator address. Use `delegator_delegation_count` instead
- - **leave_candidates**(*uint256* amount, *uint256* candidateCount) — immediately removes the account from the candidate pool to prevent others from selecting it as a collator and triggers unbonding. Use `schedule_leave_candidates` and `execute_leave_candidates` instead
- - **candidate_bond_less**(*uint256* less) — collator candidate decreases bond by specified amount. Use `schedule_candidate_bond_less` and `execute_candidate_bond_less` instead
- - **nominate**(*address* collator, *uint256* amount, *uint256* collatorNominationCount, *uint256* nominatorNominationCount) — if the caller is not a delegator, this function adds them to the set of delegators. If the caller is already a delegator, then it adjusts their delegation amount. Use `delegate` instead
- - **leave_nominators**(*uint256* nominatorNominationCount) — leave the set of delegators and revoke all ongoing delegations. Use `schedule_leave_delegators` and `execute_leave_delegators` instead
- - **revoke_nominations**(*address* collator) — revoke a specific delegation. Use `schedule_revoke_delegation` and `execute_delegation_request` instead
- - **nominator_bond_more**(*address* collator, *uint256* more) — delegator increases bond to a collator by specified amount. Use `delegator_bond_more` instead
- - **nominator_bond_less**(*address* collator, *uint256* less) — delegator decreases bond to a collator by specified amount. Use `schedule_delegator_bond_less` and `execute_delegation_request` instead
-
 ## Interact with the Solidity Interface {: #interact-with-solidity-interface }
 
 ### Checking Prerequisites {: #checking-prerequisites } 
