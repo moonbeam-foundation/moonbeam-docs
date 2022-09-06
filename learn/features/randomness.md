@@ -41,7 +41,6 @@ You can interact with and request on-chain randomness using the randomness preco
     |  Maximum random words   |                   {{ networks.moonbeam.randomness.max_random_words }} words                   |
     | Epoch fulfillment delay | {{ networks.moonbeam.randomness.epoch_fulfillment_delay }} epochs (following the current one) |
 
-
 === "Moonriver"
     |        Variable         |                                             Value                                              |
     |:-----------------------:|:----------------------------------------------------------------------------------------------:|
