@@ -17,6 +17,8 @@ To access these price feeds, you need to interact with the Bridge contract addre
 |:--------------:|:------------------------------------------:|
 | Moonbase Alpha | 0x53f7660Ea48289B5DA42f1d79Eb9d4F5eB83D3BE |
 
+--8<-- 'text/disclaimers/third-party-content-intro.md'
+
 ## Jobs {: #jobs } 
 
 Each data-feed has a Job ID attached to it. For example:

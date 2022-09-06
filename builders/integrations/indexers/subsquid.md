@@ -15,6 +15,8 @@ Subsquid has native and full support for both the Ethereum Virtual Machine and S
 
 This guide will explain how to create a Subsquid project (also known as a *"Squid"*) that indexes ERC-721 token transfers on the Moonriver network. As such, you'll be looking at the `Transfer` EVM event topics. This guide can be adapted for Moonbeam or Moonbase Alpha.
 
+--8<-- 'text/disclaimers/third-party-content-intro.md'
+
 ## Checking Prerequisites {: #checking-prerequisites}
 
 For a Squid project to be able to run, you need to have the following installed:

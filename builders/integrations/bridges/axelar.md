@@ -17,6 +17,8 @@ Axelar is a full-stack transport layer that supports asset transfer, [General Me
 
 The Axelar APIs provide a rich suite for developing Web3 applications, ensuring that developers have the tools they need for building. With these tools and APIs, developers can use the Axelar network and its APIs to write dApps that can be easily deployed across all Axelar-connected ecosystems. In other words, Axelar distills cross-chain interoperability down to a simple set of API requests.
 
+--8<-- 'text/disclaimers/third-party-content-intro.md'
+
 ## Getting Started {: #getting-started }
 
 There are a couple of resources to get you started building cross-chain applications with Axelar:

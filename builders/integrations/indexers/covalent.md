@@ -13,6 +13,8 @@ description: Querying blockchain data such as balances, transactions, transfers,
 
 This guide will cover all of the details needed to get started with the [Covalent API](https://www.covalenthq.com/docs/api/#/0/0/USD/1){target=_blank} and how to access the API endpoints for Moonbase Alpha using curl commands, and JavaScript and Python snippets. This guide can be adapted for use on Moonbeam or Moonriver.
 
+--8<-- 'text/disclaimers/third-party-content-intro.md'
+
 ## Quick Start {: #quick-start } 
 
 If you're familiar with Covalent and looking to learn how to dive right in on any of the Moonbeam-based networks, you only need to provide the chain ID:

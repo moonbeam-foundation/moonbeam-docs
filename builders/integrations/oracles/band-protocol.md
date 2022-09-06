@@ -16,6 +16,8 @@ The Aggregator Contract address can be found in the following table:
 |:--------------:|-|:------------------------------------------:|
 | Moonbase Alpha | | 0xDA7a001b254CD22e46d3eAB04d937489c93174C3 |
 
+--8<-- 'text/disclaimers/third-party-content-intro.md'
+
 ## Supported Token {: #supported-token } 
 Price queries with any denomination are available as long as the base and quote symbols are supported (_base_/_quote_). For example:
 
