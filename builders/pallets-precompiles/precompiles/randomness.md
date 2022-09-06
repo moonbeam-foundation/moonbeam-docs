@@ -83,7 +83,7 @@ The interface includes the following constants:
     |    MAX_RANDOM_WORDS    |   {{ networks.moonbeam.randomness.max_random_words }} words    |
     |  MIN_VRF_BLOCKS_DELAY  | {{ networks.moonbeam.randomness.min_vrf_blocks_delay }} blocks |
     |  MAX_VRF_BLOCKS_DELAY  | {{ networks.moonbeam.randomness.max_vrf_blocks_delay }} blocks |
-    | REQUEST_DEPOSIT_AMOUNT | {{ networks.moonbeam.randomness.req_deposit_amount.dev }} GLMR |
+    | REQUEST_DEPOSIT_AMOUNT | {{ networks.moonbeam.randomness.req_deposit_amount.glmr }} GLMR |
 
 === "Moonriver"
     |        Variable        |                             Value                              |
@@ -91,7 +91,7 @@ The interface includes the following constants:
     |    MAX_RANDOM_WORDS    |   {{ networks.moonriver.randomness.max_random_words }} words    |
     |  MIN_VRF_BLOCKS_DELAY  | {{ networks.moonriver.randomness.min_vrf_blocks_delay }} blocks |
     |  MAX_VRF_BLOCKS_DELAY  | {{ networks.moonriver.randomness.max_vrf_blocks_delay }} blocks |
-    | REQUEST_DEPOSIT_AMOUNT | {{ networks.moonriver.randomness.req_deposit_amount.dev }} MOVR |
+    | REQUEST_DEPOSIT_AMOUNT | {{ networks.moonriver.randomness.req_deposit_amount.movr }} MOVR |
 
 === "Moonbase Alpha"
     |        Variable        |                             Value                              |
