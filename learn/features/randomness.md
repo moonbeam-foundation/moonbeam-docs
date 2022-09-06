@@ -30,10 +30,33 @@ You can interact with and request on-chain randomness using the randomness preco
 
 ## Quick Reference {: #quick-reference }
 
+=== "Moonbeam"
+    |        Variable         |                                             Value                                             |
+    |:-----------------------:|:---------------------------------------------------------------------------------------------:|
+    |         Deposit         |                {{ networks.moonbeam.randomness.req_deposit_amount.dev }} GLMR                 |
+    | Block expiration delay  |                  {{ networks.moonbeam.randomness.block_expiration }} blocks                   |
+    | Epoch expiration delay  |                  {{ networks.moonbeam.randomness.epoch_expiration }} epochs                   |
+    |   Minimum block delay   |                {{ networks.moonbeam.randomness.min_vrf_blocks_delay }} blocks                 |
+    |   Maximum block delay   |                {{ networks.moonbeam.randomness.max_vrf_blocks_delay }} blocks                 |
+    |  Maximum random words   |                   {{ networks.moonbeam.randomness.max_random_words }} words                   |
+    | Epoch fulfillment delay | {{ networks.moonbeam.randomness.epoch_fulfillment_delay }} epochs (following the current one) |
+
+
+=== "Moonriver"
+    |        Variable         |                                             Value                                              |
+    |:-----------------------:|:----------------------------------------------------------------------------------------------:|
+    |         Deposit         |                {{ networks.moonriver.randomness.req_deposit_amount.dev }} MOVR                 |
+    | Block expiration delay  |                  {{ networks.moonriver.randomness.block_expiration }} blocks                   |
+    | Epoch expiration delay  |                  {{ networks.moonriver.randomness.epoch_expiration }} epochs                   |
+    |   Minimum block delay   |                {{ networks.moonriver.randomness.min_vrf_blocks_delay }} blocks                 |
+    |   Maximum block delay   |                {{ networks.moonriver.randomness.max_vrf_blocks_delay }} blocks                 |
+    |  Maximum random words   |                   {{ networks.moonriver.randomness.max_random_words }} words                   |
+    | Epoch fulfillment delay | {{ networks.moonriver.randomness.epoch_fulfillment_delay }} epochs (following the current one) |
+
 === "Moonbase Alpha"
     |        Variable         |                                             Value                                             |
     |:-----------------------:|:---------------------------------------------------------------------------------------------:|
-    |         Deposit         |                   {{ networks.moonbase.randomness.req_deposit_amount.dev }} DEV                   |
+    |         Deposit         |                 {{ networks.moonbase.randomness.req_deposit_amount.dev }} DEV                 |
     | Block expiration delay  |                  {{ networks.moonbase.randomness.block_expiration }} blocks                   |
     | Epoch expiration delay  |                  {{ networks.moonbase.randomness.epoch_expiration }} epochs                   |
     |   Minimum block delay   |                {{ networks.moonbase.randomness.min_vrf_blocks_delay }} blocks                 |
