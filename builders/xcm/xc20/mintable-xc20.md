@@ -17,7 +17,7 @@ Currently, mintable XC-20 assets need to be created through democracy proposals 
 
 ## Mintable XC-20 Roles {: #mintable-xc-20-roles }
 
-There are some roles that are important to take note of when registering and managing mintable XC-20s. These roles, with the exception of the creator, can all be designated to other accounts by the owner via the [`set_team` extrinsic](#additional-functions). The roles are as follows:
+There are some roles that are important to take note of when registering and managing mintable XC-20s. These roles, with the exception of the creator, can all be designated to other accounts by the owner via the [`setTeam` extrinsic](#additional-functions). The roles are as follows:
 
 - **Owner** - the account which owns the contract and has the ability to manage the asset
 - **Creator** - the account responsible for creating the asset and paying the associated deposit
@@ -51,12 +51,12 @@ Mintable XC-20s include additional functions that only the owner or the designat
 - **burn(*address* from, *uint256* value)** - burns a given amount of tokens from a specified address. Only the owner and the admin are capable of calling this function
 - **freeze(*address* account)** - freezes a specified account so that the tokens for that account are locked and any further transactions are not allowed. Only the owner and the freezer are capable of calling this function
 - **thaw(*address* account)** - unfreezes an account so now the specified account can interact with the tokens again. Only the owner and the admin are capable of calling this function
-- **freeze_asset()** - freezes the entire asset operations and locks up the tokens. Only the owner and the freezer are capable of calling this function
-- **thaw_asset()** - unfreezes the entire asset operations and unlocks the tokens. Only the owner and the admin are capable of calling this function
-- **transfer_ownership(*address* owner)** transfers the ownership of an asset to a new specified account. Only the owner is capable of calling this function
-- **set_team(*address* issuer, *address* admin, *address* freezer)** - enables the owner to specify the issuer, admin, and freezer of the tokens. Please check out the [Mintable XC-20 Roles](#mintable-xc-20-roles) section for a description of each role. Only the owner is capable of calling this function
-- **set_metadata(*string calldata* name, *string calldata* symbol, *uint8* decimals)** - sets the name, symbol, and decimal of the asset. The decimals are also configurable and not confined to the same amount of decimals as the native Moonbeam assets
-- **clear_metadata()** - clears the existing name, symbol, and decimals of the asset
+- **freezeAsset()** - freezes the entire asset operations and locks up the tokens. Only the owner and the freezer are capable of calling this function
+- **thawAsset()** - unfreezes the entire asset operations and unlocks the tokens. Only the owner and the admin are capable of calling this function
+- **transferOwnership(*address* owner)** transfers the ownership of an asset to a new specified account. Only the owner is capable of calling this function
+- **setTeam(*address* issuer, *address* admin, *address* freezer)** - enables the owner to specify the issuer, admin, and freezer of the tokens. Please check out the [Mintable XC-20 Roles](#mintable-xc-20-roles) section for a description of each role. Only the owner is capable of calling this function
+- **setMetadata(*string calldata* name, *string calldata* symbol, *uint8* decimals)** - sets the name, symbol, and decimal of the asset. The decimals are also configurable and not confined to the same amount of decimals as the native Moonbeam assets
+- **clearMetadata()** - clears the existing name, symbol, and decimals of the asset
 
 ## Retrieve List of Mintable XC-20s {: #retrieve-list-of-mintable-xc-20s }
 
