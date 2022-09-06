@@ -14,3 +14,4 @@ nav:
   - 'Staking Functions': 'staking.md'
   - 'X-Tokens': '/builders/xcm/xc20/xtokens/#xtokens-precompile'
   - 'XCM-Transactor': '/builders/xcm/xcm-transactor/#xcmtransactor-precompile'
+  - 'XCM-Utils': '/builders/xcm/xcm-transactor/#xcmutils-precompile'

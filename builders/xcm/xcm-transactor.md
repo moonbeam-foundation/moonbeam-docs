@@ -294,3 +294,24 @@ The following code snippet goes through some examples of `Multilocation` structu
     ]
 }
 ```
+
+## XCM-Utils Precompile {: #xcmutils-precompile}
+
+The XCM-utils precompile contract gives developers polkadot related utility functions directly within the EVM. This allows for easier transactions and interactions with other XCM related precompiles. Similar to other [precompile contracts](/builders/pallets-precompiles/precompiles/){target=_blank}, the XCM-utils precompile is located at the following addresses:
+
+=== "Moonbase Alpha"
+     ```
+     {{networks.moonbase.precompiles.xcm_utils}}
+     ```
+
+### The XCM-Utils Solidity Interface {: #xcmutils-solidity-interface } 
+[XcmUtils.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm-utils/XcmUtils.sol){target=_blank} is an interface to interact with the precompile.
+
+!!! note
+    While there is currently only one function, the precompile will be updated in the future to include additional features. Feel free to suggest additional utility functions in the [Discord](https://discord.gg/PfpUATX){target=_blank}.
+
+The interface includes the following functions:
+
+ - **multilocationToAddress**(*Multilocation memory* multilocation) — read-only function that returns the EVM-compatible address derived from a given Multilocation. For example, the Multilocation `[0, ["0x0344236223aB4291b93EEd10E4B511B37a398DEE5500"]]` will return `0x44236223aB4291b93EEd10E4B511B37a398DEE5500`
+
+The `Multilocation` structure in the XCM-utils precompile is built the [same as the XCM-transactor](#building-the-precompile-multilocation) precompile's `Multilocation`.
