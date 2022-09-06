@@ -123,4 +123,5 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
     |                      [Batch](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank}                      |         {{networks.moonbase.precompiles.batch}}         |
     |              [Randomness](https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/Randomness.sol){target=_blank}               |      {{networks.moonbase.precompiles.randomness}}       |
     |             [Call Permit](https://github.com/PureStake/moonbeam/blob/master/precompiles/call-permit/CallPermit.sol){target=_blank}              |     {{networks.moonbase.precompiles.call_permit }}      |
+    |                [XCM Utils](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm-utils/XcmUtils.sol){target=_blank}                 |       {{networks.moonbase.precompiles.xcm_utils}}       |
     |    [XCM Transactor](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm-transactor/src/v2/XcmTransactorV2.sol){target=_blank}     |    {{networks.moonbase.precompiles.xcm_transactor}}     |
