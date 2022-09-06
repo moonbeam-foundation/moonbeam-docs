@@ -108,8 +108,8 @@ RESPONSE JSON Block Object:
             |--method
                 |--pallet: "ethereum"
                 |--method: "transact"
-            |--signature:
-            |--nonce: 
+            |--signature
+            |--nonce 
             |--args
                 |--transaction
                     |--{transaction type}
@@ -303,54 +303,9 @@ Other events emitted by EVM smart contracts can be decoded in a similar fashion,
 !!! note
     The amount transferred is given in Wei and in hexadecimal format. 
 
+### Calculating Transaction Fees {: #calculating-transaction-fees } 
 
-### Computing Gas Used {: #computing-gas-used } 
-
-To calculate the gas spent or used during EVM execution of the transaction, the following formula can be used: 
-
-=== "EIP1559"
-    ```
-    Gas Used =（Base Fee + Max Priority Fee Per Gas) * Transaction Weight / {{ networks.moonbase.tx_weight_to_gas_ratio }}
-    ```
-=== "Legacy"
-    ```
-    Gas Used = Gas Price * Transaction Weight / {{ networks.moonbase.tx_weight_to_gas_ratio }}
-    ```
-=== "EIP2930"
-    ```
-    Gas Used = Gas Price * Transaction Weight / {{ networks.moonbase.tx_weight_to_gas_ratio }}
-    ```
-
-The values of `Gas Price` and `Max Priority Fee Per Gas` for the applicable transaction types can be read from the block according to the above table. 
-
-The `Base Fee`, introduced in EIP-1559, is determined by the network itself. The `Base Fee` for `EIP1559` type transactions is currently static on Moonbeam networks and has the following assigned value:
-
-=== "Moonbeam"
-    | Variable |  Value   |
-    |:--------:|:--------:|
-    | Base fee | 100 Gwei |
-
-=== "Moonriver"
-    | Variable | Value  |
-    |:--------:|:------:|
-    | Base fee | 1 Gwei |
-
-=== "Moonbase Alpha"
-    | Variable | Value  |
-    |:--------:|:------:|
-    | Base fee | 1 Gwei |
-
-`Transaction Weight` is a Substrate mechanism used to manage the time it takes to validate a block. For all transactions types, `Transaction Weight` can be retrieved under the event of the relevant extrinsic where the `method` field is set to: 
-
-```
-pallet: "system", method: "ExtrinsicSuccess" 
-```
-
-And then `Transaction Weight` is mapped to the following field of the block JSON object:
-
-```
-extrinsics.{extrinsic number}.events.{event number}.data.0.weight
-```
+For more detailed information on how to calculate the transaction fees of Moonbeam transactions using Sidecar block objects, please check the [Calculating Transaction Fees](){target=_blank} page.
 
 ## Sample Code for Monitoring Native Token Transfers { #sample-code-for-monitoring-native-token-transfers }
 
