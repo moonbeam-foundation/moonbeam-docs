@@ -72,10 +72,26 @@ Where the inputs that need to be provided can be defined as:
 
 The interface includes the following constants:
 
-- **MAX_RANDOM_WORDS** - the maximum number of random words being requested 
-- **MIN_VRF_BLOCKS_DELAY** - the minimum number of blocks before a request can be fulfilled for local VRF requests
-- **MAX_VRF_BLOCKS_DELAY** - the maximum number of blocks before a request can be fulfilled for local VRF requests
-- **REQUEST_DEPOSIT_AMOUNT** - the deposit amount needed to request random words. There is one deposit per request
+- **maxRandomWords** - the maximum number of random words being requested 
+- **minBlockDelay** - the minimum number of blocks before a request can be fulfilled for local VRF requests
+- **maxBlockDelay** - the maximum number of blocks before a request can be fulfilled for local VRF requests
+- **deposit** - the deposit amount needed to request random words. There is one deposit per request
+
+=== "Moonbeam"
+    |        Variable        |                             Value                              |
+    |:----------------------:|:--------------------------------------------------------------:|
+    |    MAX_RANDOM_WORDS    |   {{ networks.moonbeam.randomness.max_random_words }} words    |
+    |  MIN_VRF_BLOCKS_DELAY  | {{ networks.moonbeam.randomness.min_vrf_blocks_delay }} blocks |
+    |  MAX_VRF_BLOCKS_DELAY  | {{ networks.moonbeam.randomness.max_vrf_blocks_delay }} blocks |
+    | REQUEST_DEPOSIT_AMOUNT | {{ networks.moonbeam.randomness.req_deposit_amount.dev }} GLMR |
+
+=== "Moonriver"
+    |        Variable        |                             Value                              |
+    |:----------------------:|:--------------------------------------------------------------:|
+    |    MAX_RANDOM_WORDS    |   {{ networks.moonriver.randomness.max_random_words }} words    |
+    |  MIN_VRF_BLOCKS_DELAY  | {{ networks.moonriver.randomness.min_vrf_blocks_delay }} blocks |
+    |  MAX_VRF_BLOCKS_DELAY  | {{ networks.moonriver.randomness.max_vrf_blocks_delay }} blocks |
+    | REQUEST_DEPOSIT_AMOUNT | {{ networks.moonriver.randomness.req_deposit_amount.dev }} MOVR |
 
 === "Moonbase Alpha"
     |        Variable        |                             Value                              |
