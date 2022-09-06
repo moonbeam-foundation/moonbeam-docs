@@ -390,6 +390,16 @@ networks:
           usdt_usd: '0xF80DAd54AF79257D41c30014160349896ca5370a'
           xrp_usd: '0x3FD363679fb59596d45881bbfBe4bb864f3545A2'
           yfi_usd: '0xE3324ea60FA272BBB4511dDBD4776feFE4674fa0'
+    randomness:
+      max_random_words: 100
+      min_vrf_blocks_delay: 2
+      max_vrf_blocks_delay: 2000
+      req_deposit_amount:
+        movr: 1
+        wei: 1000000000000000000
+      block_expiration: 10000
+      epoch_expiration: 10000
+      epoch_fulfillment_delay: 2
     substrate_api_sidecar:
       stable_version: 11.3.3
     tx_weight_to_gas_ratio: 25000
@@ -556,6 +566,16 @@ networks:
           glmr_usd: '0x4497B606be93e773bbA5eaCFCb2ac5E2214220Eb'
           link_usd: '0xd61D7398B7734aBe7C4B143fE57dC666D2fe83aD'
           usdc_usd: '0xA122591F60115D63421f66F752EF9f6e0bc73abC'
+    randomness:
+      max_random_words: 100
+      min_vrf_blocks_delay: 2
+      max_vrf_blocks_delay: 2000
+      req_deposit_amount:
+        glmr: 1
+        wei: 1000000000000000000
+      block_expiration: 10000
+      epoch_expiration: 10000
+      epoch_fulfillment_delay: 2
     substrate_api_sidecar:
       stable_version: 11.3.3
       tx_weight_to_gas_ratio: 25000
