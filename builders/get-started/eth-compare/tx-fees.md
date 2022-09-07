@@ -13,6 +13,8 @@ Similar to [the Ethereum and Substrate APIs for sending transfers](/builders/get
 
 The following page will assume the developer is interacting with Moonbeam blocks via [the Substrate API Sidecar](/builders/build/substrate-api/sidecar/){target=_blank} service. There are other ways of interacting with Moonbeam blocks, such as using [the Polkadot.js API library](/builders/build/substrate-api/polkadot-js-api/){target=_blank}, the logic would be identical once the blocks are retrieved. 
 
+You can reference the [Substrate API Sidecar page](/builders/build/substrate-api/sidecar/) for information on installing and running your own Sidecar service instance, as well as more details on how to decode Sidecar blocks for Moonbeam transactions. 
+
 ## Substrate API Transaction Fees {: #substrate-api-transaction-fees }
 
 The fees of a transaction sent via the Substrate API on Moonbeam can be read directly from a Substrate API Sidecar block JSON object. The nesting structure is as the following:
@@ -178,4 +180,13 @@ The following curl example will return the gas information of the last 10 blocks
             "params": ["0xa", "latest"]
          }'
     ```
+
+## Sample Code for Calculating Transaction Fees
+
+The following code snippet uses the Axios HTTP client to query the Sidecar endpoint `/blocks/head`(https://paritytech.github.io/substrate-api-sidecar/dist/){target=_blank} for the latest finalized block, and then calculates the transaction fees of all transactions in the block according to the transaction type (for Ethereum API: legacy, EIP1559 or EIP2930 standards, and for Substrate API), as well as calculating the total transaction fees in the block. 
+
+The following code sample is for demo purposes only and should not be used without modification and further testing in a production environment. 
+
+--8<-- 'code/vs-ethereum/tx-fees-block.md'
+
 
