@@ -74,7 +74,7 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
 |                                                                    Contract                                                                     |                  Address                   |
 |:-----------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
 |                  [SHA3FIPS256](/builders/pallets-precompiles/precompiles/eth-mainnet/#hashing-with-sha3fips256){target=_blank}                  | 0x0000000000000000000000000000000000000400 |
-|          [Dispatch](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_dispatch/struct.Dispatch.html){target=_blank}          | 0x0000000000000000000000000000000000000401 |
+|                                  [Dispatch](/builders/pallets-precompiles/precompiles/dispatch){target=_blank}                                  | 0x0000000000000000000000000000000000000401 |
 | [ECRecoverPublicKey](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_simple/struct.ECRecoverPublicKey.html){target=_blank} | 0x0000000000000000000000000000000000000402 |
 
 ### Moonbeam-Specific Precompiles {: #moonbeam-specific-precompiles }
