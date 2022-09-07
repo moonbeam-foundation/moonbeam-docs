@@ -45,7 +45,7 @@ The interface includes the following functions:
 - **requestRelayBabeEpochRandomWords**(*address* refundAddress, *uint256* fee, *uint64* gasLimit, *bytes32* salt, *uint8* numWords) — request random words generated from the relay chain BABE consensus 
 - **fulfillRequest**(*uint256* requestId) — fulfill the request which will call the consumer contract method [`fulfillRandomWords`](#:~:text=rawFulfillRandomWords(uint256 requestId, uint256[] memory randomWords)). Fees of the caller are refunded if the request is fulfillable
 - **increaseRequestFee**(*uint256* requestId, *uint256* feeIncrease) — increases the fee associated with a given randomness request. This is needed if the gas price increases significantly before the request is fulfilled
-- **purgeExpiredRequest**(*uint256* requestId) — removes a given expired request from storage and transfers the request fees to the caller and the deposit back to the 
+- **purgeExpiredRequest**(*uint256* requestId) — removes a given expired request from storage and transfers the request fees to the caller and the deposit back to the original requester
 
 Where the inputs that need to be provided can be defined as:
 
