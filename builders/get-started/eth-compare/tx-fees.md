@@ -5,7 +5,7 @@ description: The page outlines the transaction fee model used in Moonbeam, and d
 
 # Calculating Transaction Fees on Moonbeam
 
-![Moonbeam v Ethereum - Transfers API Banner](/images/builders/get-started/eth-compare/transfers-api-banner.png)
+![Transaction Fees Banner](/images/builders/get-started/eth-compare/tx-fees-banner.png)
 
 ## Introduction {: #introduction }
 
@@ -42,7 +42,7 @@ RESPONSE JSON Block Object:
 
 ```
 
-The transaction fee related mappings are summarized as the following:
+The object mappings are summarized as the following:
 
 |     Tx Information      |                           Block JSON Field                            |
 |:-----------------------:|:---------------------------------------------------------------------:|
@@ -112,6 +112,16 @@ And then `Transaction Weight` is mapped to the following field of the block JSON
 extrinsics.{extrinsic number}.events.{event number}.data.0.weight
 ```
 
+### Key Differences with Ethereum {: #ethereum-api-transaction-fees} 
+
+As seen in the above section, there are some key differences between the transaction fee model on Moonbeam and the one on Ethereum that developers should be mindful of when developing on Moonbeam:
+
+  - The network base fee on Moonbeam networks is currently static. This has many implications, one of which is that transaction sent with gas price set to a value lower than the network base fee will always fail, even if the blocks aren't full currently on the network. This behavior is different from Ethereum, which does not have a floor on the gas price of a transaction to be accepted. 
+    
+    The network base fee could be changed to be variable in a future runtime update. 
+
+  - The amount of gas used in Moonbeam's transaction fee model is mapped from the transaction's Substrate extrinsic weight value via a fixed factor of {{ networks.moonbase.tx_weight_to_gas_ratio }}. This value is then multiplied with the unit gas price to calculate the transaction fee. This fee model means it can be potentially significantly cheaper to send transactions such as basic balance transfers via the Ethereum API than the Substrate API. 
+
 ### `eth_feeHistory` Endpoint {: #eth-feehistory-endpoint }
 
 Moonbeam networks implement the [`eth_feeHistory`](https://docs.alchemy.com/reference/eth-feehistory){target_blank} JSON-RPC endpoint as a part of the support for EIP1559. 
@@ -168,14 +178,4 @@ The following curl example will return the gas information of the last 10 blocks
             "params": ["0xa", "latest"]
          }'
     ```
-
-### Key Differences with Ethereum {: #ethereum-api-transaction-fees} 
-
-As seen in the above section, there are some key differences between the transaction fee model on Moonbeam and the one on Ethereum that developers should be mindful of when developing on Moonbeam:
-
-  - The network base fee on Moonbeam networks is currently static. This has many implications, one of which is that transaction sent with gas price set to a value lower than the network base fee will always fail, even if the blocks aren't full currently on the network. This behavior is different from Ethereum, which does not have a floor on the gas price of a transaction to be accepted. 
-    
-    The network base fee could be changed to be variable in a future runtime update. 
-
-  - The amount of gas used in Moonbeam's transaction fee model is mapped from the transaction's Substrate extrinsic weight value via a fixed factor of {{ networks.moonbase.tx_weight_to_gas_ratio }}. This value is then multiplied with the unit gas price to calculate the transaction fee. This fee model means it can be potentially significantly cheaper to send transactions such as basic balance transfers via the Ethereum API than the Substrate API. 
 
