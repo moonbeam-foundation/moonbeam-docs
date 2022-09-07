@@ -18,6 +18,8 @@ You also have the option of using the Ethereum app to connect to Moonriver. The 
 
 In this tutorial, you will learn how to get started with your Ledger hardware wallet on Moonriver using the Moonriver app. This guide only illustrates the steps for a Ledger Nano X device, but you can follow along with a Ledger Nano S as well. 
 
+--8<-- 'text/disclaimers/third-party-content-intro.md'
+
 --8<-- 'text/ledger/checking-prereqs.md'
 
 ## Install the Moonriver Ledger Live App {: install-the-moonriver-ledger-live-app }

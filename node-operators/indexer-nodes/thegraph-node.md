@@ -16,6 +16,8 @@ There are two ways you can set up a Graph Node: you can use Docker to run an all
 !!! note
     The steps described in this guide have been tested in both Ubuntu 18.04-based and MacOS environments, and they will need to be adapted accordingly for other systems.
 
+--8<-- 'text/disclaimers/third-party-content-intro.md'
+
 ## Checking Prerequisites {: #checking-prerequisites } 
 
 Before diving into setting up a Graph Node, you need to have the following installed on your system:

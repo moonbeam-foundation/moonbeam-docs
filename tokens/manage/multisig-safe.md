@@ -17,6 +17,8 @@ To help manage singlesig and multisig wallets, [Gnosis Safe](https://gnosis-safe
 
 This guide will show you how to create a multisig Safe on the Moonbase Alpha TestNet. You will also learn how to send DEV and ERC-20 tokens to and from the Safe, and how to interact with smart contracts using the Safe. This guide can be adapted for Moonbeam and Moonriver.
 
+--8<-- 'text/disclaimers/third-party-content-intro.md'
+
 ## Checking Prerequisites {: #checking-prerequisites }
 
 Before diving into the guide, you'll need to have a few [MetaMask accounts](#metamask-accounts) loaded up with funds, some [ERC-20 tokens](#erc-20-tokens) on hand to send to the Safe, and a [deployed smart contract](#deployed-smart-contract) to interact with.

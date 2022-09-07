@@ -13,6 +13,8 @@ description: This guide walks you through how to use the Coinbase Wallet extensi
     
 In this guide, you'll go through the process of setting up the Coinbase Wallet mobile application and configuring it for the Moonbeam Network. 
 
+--8<-- 'text/disclaimers/third-party-content-intro.md'
+
 ## Install the Coinbase Wallet App {: #install-the-coinbase-wallet-app } 
 
 You can [download the Coinbase Wallet app](https://wallet.coinbase.com/?_branch_match_id=977295450874474909&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT8%2FXS07SLddLzs%2FVD8%2FJynFKSy02zE4CAFZ0JzQfAAAA){target=_blank} from the iOS App Store or the Google Play Store.

@@ -17,6 +17,8 @@ This tutorial shows you how to get started with your Trezor hardware wallet on M
 
 Please note that your Trezor device will sign transactions in whichever MetaMask network is connected to.
 
+--8<-- 'text/disclaimers/third-party-content-intro.md'
+
 ## Checking Prerequisites {: #checking-prerequisites } 
 
 Before you get started, update [Trezor Suite](https://suite.trezor.io/){target=_blank} to the latest version available. Also, make sure you've your Trezor hardware wallet device running the latest firmware. The Trezor wiki offers tutorials on how to update the firmware of both [Trezor One](https://wiki.trezor.io/User_manual:Updating_the_Trezor_device_firmware__T1){target=_blank} and [Trezor Model T](https://wiki.trezor.io/User_manual:Updating_the_Trezor_device_firmware){target=_blank} devices.

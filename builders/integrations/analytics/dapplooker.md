@@ -15,6 +15,8 @@ Dapplooker analytics platform complements Moonbeam-based networks by helping use
 
 This guide will cover all of the details needed to register your project with the Dapplooker platform and how to build analytics using SQL editor. This guide can be adapted for use on Moonbeam, Moonriver, or Moonbase Alpha.
 
+--8<-- 'text/disclaimers/third-party-content-intro.md'
+
 ## Checking Prerequisites {: #checking-prerequisites }
 
 To get started with this guide, you'll need to create or have a Dapplooker account. You can [signup](https://dapplooker.com/signup){target=_blank} and create an account. If you already have signed up, you can [login](https://dapplooker.com/login){target=_blank} to your account. 

@@ -17,6 +17,8 @@ For Moonbeam and Moonriver you also have the option of using the dedicated [Moon
 
 In this tutorial, you will learn how to get started with your Ledger hardware wallet on Moonbeam using the Ethereum app. This guide only illustrates the steps for a Ledger Nano X device, but you can follow along with a Ledger Nano S as well. 
 
+--8<-- 'text/disclaimers/third-party-content-intro.md'
+
 --8<-- 'text/ledger/checking-prereqs.md'
 
 ## Install the Ledger Live App {: install-the-ledger-live-app }
