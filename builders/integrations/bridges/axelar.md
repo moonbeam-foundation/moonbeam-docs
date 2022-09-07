@@ -28,7 +28,7 @@ There are a couple of resources to get you started building cross-chain applicat
 
 There is also a block explorer available to track your cross-chain transfers and more:
 
-- **[Axelarscan for MainNet](https://axelarscan.io/)**
+- **[Axelarscan for MainNet](https://axelarscan.io/){target=_blank}**
 - **[Axelarscan for TestNet](https://testnet.axelarscan.io/){target=_blank}**
 
 ## Contracts {: #contracts }

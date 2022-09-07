@@ -16,7 +16,17 @@ When the call permit is dispatched, it is done so on behalf of the user who sign
 
 For example, Alice signs a call permit and Bob dispatches it and performs the call on behalf of Alice. Bob pays for the transaction fees and as such, Alice doesn't need to have any of the native currency to pay for the transaction, unless the call includes a transfer. 
 
-The call permit precompile is currently only available on Moonbase Alpha and is located at the following address:
+The call permit precompile is located at the following address:
+
+=== "Moonbeam"
+     ```
+     {{networks.moonbeam.precompiles.call_permit }}
+     ```
+
+=== "Moonriver"
+     ```
+     {{networks.moonriver.precompiles.call_permit }}
+     ```
 
 === "Moonbase Alpha"
      ```

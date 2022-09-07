@@ -20,7 +20,17 @@ Moonbeam provides a randomness precompile, which is a Solidity interface that en
 
 This guide will show you how to use the randomness precompile and randomness consumer contract to create a lottery where the winners will randomly be selected. You'll also learn how to interact with the randomness precompile directly to perform actions such as purging an expired randomness request.
 
-The randomness precompile is currently only available on Moonbase Alpha and is located at the following address:
+The randomness precompile is located at the following address:
+
+=== "Moonbeam"
+     ```
+     {{ networks.moonbeam.precompiles.randomness }}
+     ```
+
+=== "Moonriver"
+     ```
+     {{ networks.moonriver.precompiles.randomness }}
+     ```
 
 === "Moonbase Alpha"
      ```
@@ -62,10 +72,26 @@ Where the inputs that need to be provided can be defined as:
 
 The interface includes the following constants:
 
-- **MAX_RANDOM_WORDS** - the maximum number of random words being requested 
-- **MIN_VRF_BLOCKS_DELAY** - the minimum number of blocks before a request can be fulfilled for local VRF requests
-- **MAX_VRF_BLOCKS_DELAY** - the maximum number of blocks before a request can be fulfilled for local VRF requests
-- **REQUEST_DEPOSIT_AMOUNT** - the deposit amount needed to request random words. There is one deposit per request
+- **maxRandomWords** - the maximum number of random words being requested 
+- **minBlockDelay** - the minimum number of blocks before a request can be fulfilled for local VRF requests
+- **maxBlockDelay** - the maximum number of blocks before a request can be fulfilled for local VRF requests
+- **deposit** - the deposit amount needed to request random words. There is one deposit per request
+
+=== "Moonbeam"
+    |        Variable        |                             Value                              |
+    |:----------------------:|:--------------------------------------------------------------:|
+    |    MAX_RANDOM_WORDS    |   {{ networks.moonbeam.randomness.max_random_words }} words    |
+    |  MIN_VRF_BLOCKS_DELAY  | {{ networks.moonbeam.randomness.min_vrf_blocks_delay }} blocks |
+    |  MAX_VRF_BLOCKS_DELAY  | {{ networks.moonbeam.randomness.max_vrf_blocks_delay }} blocks |
+    | REQUEST_DEPOSIT_AMOUNT | {{ networks.moonbeam.randomness.req_deposit_amount.glmr }} GLMR |
+
+=== "Moonriver"
+    |        Variable        |                             Value                              |
+    |:----------------------:|:--------------------------------------------------------------:|
+    |    MAX_RANDOM_WORDS    |   {{ networks.moonriver.randomness.max_random_words }} words    |
+    |  MIN_VRF_BLOCKS_DELAY  | {{ networks.moonriver.randomness.min_vrf_blocks_delay }} blocks |
+    |  MAX_VRF_BLOCKS_DELAY  | {{ networks.moonriver.randomness.max_vrf_blocks_delay }} blocks |
+    | REQUEST_DEPOSIT_AMOUNT | {{ networks.moonriver.randomness.req_deposit_amount.movr }} MOVR |
 
 === "Moonbase Alpha"
     |        Variable        |                             Value                              |
@@ -118,7 +144,7 @@ For fulfilled requests, the cost of execution will be refunded from the request 
 
 Your contract's `fulfillRandomWords` callback is responsible for handling the fulfillment. For example, in a lottery contract, the callback would use the random words to choose a winner and payout the winnings.
 
-If a request expires it can be purged through the precompile's [`purgeExpiredRequest` function](/buildxers/pallets-precompiles/precompiles/randomness/#:~:text=purgeExpiredRequest){target=_blank}. When this function is called the request fee is paid out to the caller and the deposit will be returned to the original requester.
+If a request expires it can be purged through the precompile's [`purgeExpiredRequest` function](/builders/pallets-precompiles/precompiles/randomness/#:~:text=purgeExpiredRequest){target=_blank}. When this function is called the request fee is paid out to the caller and the deposit will be returned to the original requester.
 
 The happy path for a randomness request is shown in the following diagram:
 
@@ -139,7 +165,7 @@ Assuming you use the default contract, you will need to have the following:
 
 ### Example Lottery Contract {: #example-contract }
 
-In this tutorial, you'll interact with a lottery contract that uses the randomness precompile and consumer. You'll be generating random words which will be used to select the winner of the lottery fairly. You can find a copy of the lottery contract that will be used for this tutorial, [`RandomnessLotteryDemo.sol`](https://raw.githubusercontent.com/PureStake/moonbeam-docs/blob/master/.snippets/code/randomness/RandomnessLotteryDemo.sol){target=_blank}, in the Moonbeam Docs GitHub repository.
+In this tutorial, you'll interact with a lottery contract that uses the randomness precompile and consumer. You'll be generating random words which will be used to select the winner of the lottery fairly. You can find a copy of the lottery contract that will be used for this tutorial, [`RandomnessLotteryDemo.sol`](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/randomness/RandomnessLotteryDemo.sol){target=_blank}, in the Moonbeam Docs GitHub repository.
 
 The lottery contract imports the `Randomness.sol` precompile and the `RandomnessConsumer.sol` interface, and inherits from the consumer contract. In the constructor of the contract, you can specify the source of randomness to be either local VRF or BABE epoch randomness.
 
@@ -151,7 +177,7 @@ There are also some constants in the contract that can be edited as you see fit,
 
 You can interact with the randomness precompile and consumer using [Remix](https://remix.ethereum.org/){target=_blank}. To add the interfaces to Remix and follow along with the tutorial, you will need to:
 
-1. Get a copy of [`RandomnessLotteryDemo.sol`](https://github.com/PureStake/moonbeam/blob/4e2a5785424be6faa01cd14e90155d9d2ec734ee/tests/contracts/solidity/RandomnessLotteryDemo.sol){target=_blank}
+1. Get a copy of [`RandomnessLotteryDemo.sol`](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/randomness/RandomnessLotteryDemo.sol){target=_blank}
 2. Paste the file contents into a Remix file named **RandomnessLotteryDemo.sol**
 
 ![Add contracts to Remix](/images/builders/pallets-precompiles/precompiles/randomness/randomness-1.png)
