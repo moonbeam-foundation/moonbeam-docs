@@ -47,7 +47,7 @@ const RELAY_CHAIN_ASSET = [1, []];
 
 // Sends 1 xcUNIT to the relay chain using the transferMultiasset function
 async function transferMultiassetToAlice() {
-  const transferTx = xTokens.methods.transfer_multiasset(
+  const transferTx = xTokens.methods.transferMultiasset(
     RELAY_CHAIN_ASSET,      // Asset
     '1000000000000',        // Amount
     ALICE_RELAY_ACC,        // Destination

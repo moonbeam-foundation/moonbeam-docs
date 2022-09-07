@@ -1,7 +1,7 @@
 ```js
  struct Multilocation {
     uint8 parents;
-    bytes [] interior;
+    bytes[] interior;
 }
 ```
 
