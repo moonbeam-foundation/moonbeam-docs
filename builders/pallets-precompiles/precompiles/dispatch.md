@@ -31,7 +31,8 @@ For the examples in this guide, you will need to have the following:
  - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
  - Have an account with funds.
   --8<-- 'text/faucet/faucet-list-item.md'
---8<-- 'text/common/endpoint-examples.md'
+ - 
+--8<-- 'text/common/endpoint-setup.md'
 
 Once you've created an account you'll need to export the private key to be used in this guide.
 
