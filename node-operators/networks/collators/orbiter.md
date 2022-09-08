@@ -19,7 +19,7 @@ As long as an orbiter’s performance is within a range of their peers, they wil
 
 ## Duration {: #duration }
 
-This program is currently in a trial period while the Moonbeam Foundation assesses the results and makes adjustments. There is no specific end date, but the trial may come to an end or materially change throughout the trial period. Participants are both encouraged to give feedback throughout the program as well as be aware that it may change from the concept explained here.
+As the program progresses, the Moonbeam Foundation will assess the results and make adjustments. There is no specific end date, but the program may come to an end or materially change. Participants are both encouraged to give feedback throughout the program as well as be aware that it may change from the concept explained here.
 
 ## Eligibility {: #eligibility }
 
@@ -95,14 +95,14 @@ To join the orbiter program, you'll need to start by filling out an application 
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSewdSAFgs0ZbgvlflmZbHrSpe6uH9HdXdGIL7i07AB2pFgxVQ/viewform" target="_blank" class="md-button">Moonbeam Orbiter Program Application</a>
 </div>
 
-Once you've passed identity verification and have been accepted into the program, you'll be notified and then the onboarding process will begin. New orbiters must run a Moonbase Alpha node for two weeks to be eligible to run a Moonriver node. orbiters then must run a Moonriver node for four weeks to be elible to run a Moonbeam node.
+Once you've passed identity verification and have been accepted into the program, you'll be notified and then the onboarding process will begin. New orbiters must run a Moonbase Alpha node for two weeks to be eligible to run a Moonriver node. Orbiters then must run a Moonriver node for four weeks to be elible to run a Moonbeam node. Once you are eligible, you are not required to run orbiters on any network. You can leave other networks at any time by [unregistering](#leaving-the-program) and you will receive your bond back. To join again on that network you will need to re-register and will be at the end of the queue.
 
 An outline of the onboarding process is as follows:
 
 - [Prepare your node by syncing it](/node-operators/networks/run-a-node/overview){target=_blank}
 - Once fully synced, you can [generate your session keys](/node-operators/networks/collators/account-management/#session-keys){target=_blank}
 - [Register your session keys](/node-operators/networks/collators/account-management/#map-author-id-set-session-keys){target=_blank} and post the associated [mapping bond](#mapping-bond)
-- Once you are ready, register as an orbiter and post the associated [orbiter bond](#bond)
+- Once you are ready, register as an orbiter via the `moonbeamOrbiters.orbiterRegister()` extrinsic and post the associated [orbiter bond](#bond)
 - Orbiters will be placed in a waiting list for each network until a slot is available
 - Once a slot opens up, you'll begin producing blocks and receiving rewards on the respective network
 
@@ -162,8 +162,8 @@ Metrics will be assessed over seven day periods. The performance metrics are as 
 - Orbiter’s block weight is within two standard deviation of the seven day program mean
 
 !!! note
-    These factors are subject to change during this trial period.
+    These factors are subject to change as the program progresses.
 
 ## Leaving the Program {: #leaving-the-program }
 
-An orbiter may leave the program and receive their bond back without any delay. The only limitation on this is if the orbiter is currently active they cannot leave; once they are no longer active they can leave at any time by issuing an extrinsic.
+An orbiter may leave the program and receive their bond back without any delay. The only limitation on this is if the orbiter is currently active they cannot leave; once they are no longer active they can leave at any time by issuing the `moonbeamOrbiters.orbiterUnregister()` extrinsic. 
