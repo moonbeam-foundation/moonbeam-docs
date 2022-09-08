@@ -1,6 +1,6 @@
 ---
-title: Calculating Transaction Fees on Moonbeam
-description: The page outlines the transaction fee model used in Moonbeam, and differences with Ethereum that developers should be aware of. 
+title: Calculating Transaction Fees
+description: Learn about the transaction fee model used in Moonbeam and the differences compared to Ethereum that developers should be aware of. 
 ---
 
 # Calculating Transaction Fees on Moonbeam
@@ -9,15 +9,15 @@ description: The page outlines the transaction fee model used in Moonbeam, and d
 
 ## Introduction {: #introduction }
 
-Similar to [the Ethereum and Substrate APIs for sending transfers](/builders/get-started/eth-compare/transfers-api/){target=_blank}  on Moonbeam, the Substrate and EVM layers on Moonbeam also have distinct transaction fee models that developers should be aware of when they need to calculate and keep track of the transaction fees of their transactions. 
+Similar to [the Ethereum and Substrate APIs for sending transfers](/builders/get-started/eth-compare/transfers-api/){target=_blank} on Moonbeam, the Substrate and EVM layers on Moonbeam also have distinct transaction fee models that developers should be aware of when they need to calculate and keep track of the transaction fees of their transactions. 
 
-The following page will assume the developer is interacting with Moonbeam blocks via [the Substrate API Sidecar](/builders/build/substrate-api/sidecar/){target=_blank} service. There are other ways of interacting with Moonbeam blocks, such as using [the Polkadot.js API library](/builders/build/substrate-api/polkadot-js-api/){target=_blank}, the logic would be identical once the blocks are retrieved. 
+This guide assumes you are interacting with Moonbeam blocks via [the Substrate API Sidecar](/builders/build/substrate-api/sidecar/){target=_blank} service. There are other ways of interacting with Moonbeam blocks, such as using [the Polkadot.js API library](/builders/build/substrate-api/polkadot-js-api/){target=_blank}. The logic is identical once the blocks are retrieved. 
 
-You can reference the [Substrate API Sidecar page](/builders/build/substrate-api/sidecar/) for information on installing and running your own Sidecar service instance, as well as more details on how to decode Sidecar blocks for Moonbeam transactions. 
+You can reference the [Substrate API Sidecar page](/builders/build/substrate-api/sidecar/){target=_blank} for information on installing and running your own Sidecar service instance, as well as more details on how to decode Sidecar blocks for Moonbeam transactions. 
 
 ## Substrate API Transaction Fees {: #substrate-api-transaction-fees }
 
-The fees of a transaction sent via the Substrate API on Moonbeam can be read directly from a Substrate API Sidecar block JSON object. The nesting structure is as the following:
+The fees of a transaction sent via the Substrate API on Moonbeam can be read directly from a Sidecar block JSON object. The nesting structure is as follows:
 
 ```JSON
 RESPONSE JSON Block Object:
@@ -44,12 +44,12 @@ RESPONSE JSON Block Object:
 
 ```
 
-The object mappings are summarized as the following:
+The object mappings are summarized as follows:
 
 |     Tx Information      |                           Block JSON Field                            |
 |:-----------------------:|:---------------------------------------------------------------------:|
-| Fee Paying Account | `extrinsics.{extrinsic number}.events.{event number}.data.0`  |
-|  Total Fees Paid  | `extrinsics.{extrinsic number}.events.{event number}.data.1` |
+| Fee paying account | `extrinsics.{extrinsic number}.events.{event number}.data.0`  |
+|  Total fees paid  | `extrinsics.{extrinsic number}.events.{event number}.data.1` |
 |     Tip      | `extrinsics.{extrinsic number}.events.{event number}.data.2` |
 
 The transaction fee related information can be retrieved under the event of the relevant extrinsic where the `method` field is set to: 
@@ -70,7 +70,7 @@ extrinsics.{extrinsic number}.events.{event number}.data.1
 
 To calculate the fee incurred on a Moonbeam transaction sent via the Ethereum API, the following formula can be used:
 
-=== "EIP1559"
+=== "EIP-1559"
     ```
     Transaction Fee =（Base Fee + Max Priority Fee Per Gas) * Transaction Weight / {{ networks.moonbase.tx_weight_to_gas_ratio }}
     ```
@@ -78,12 +78,12 @@ To calculate the fee incurred on a Moonbeam transaction sent via the Ethereum AP
     ```
     Transaction Fee = Gas Price * Transaction Weight / {{ networks.moonbase.tx_weight_to_gas_ratio }}
     ```
-=== "EIP2930"
+=== "EIP-2930"
     ```
     Transaction Fee = Gas Price * Transaction Weight / {{ networks.moonbase.tx_weight_to_gas_ratio }}
     ```
 
-The values of `Gas Price` and `Max Priority Fee Per Gas` for the applicable transaction types can be read from the block JSON object according to data structure described in [the Sidecar API page](/builders/build/substrate-api/sidecar/#evm-fields-mapping-in-block-json-object){target=_blank}. 
+The values of `Gas Price` and `Max Priority Fee Per Gas` for the applicable transaction types can be read from the block JSON object according to the data structure described in [the Sidecar API page](/builders/build/substrate-api/sidecar/#evm-fields-mapping-in-block-json-object){target=_blank}. 
 
 The `Base Fee`, introduced in [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank}, is a value set by the network itself. The `Base Fee` for `EIP1559` type transactions is currently static on Moonbeam networks and has the following assigned value:
 
@@ -118,17 +118,17 @@ extrinsics.{extrinsic number}.events.{event number}.data.0.weight
 
 As seen in the above section, there are some key differences between the transaction fee model on Moonbeam and the one on Ethereum that developers should be mindful of when developing on Moonbeam:
 
-  - The network base fee on Moonbeam networks is currently static. This has many implications, one of which is that transaction sent with gas price set to a value lower than the network base fee will always fail, even if the blocks aren't full currently on the network. This behavior is different from Ethereum, which does not have a floor on the gas price of a transaction to be accepted. 
+  - The network base fee on Moonbeam networks is currently static. This has many implications, one of which is that a transaction sent with a gas price set to a value lower than the network base fee will always fail, even if the blocks aren't currently full on the network. This behavior is different from Ethereum, which does not have a floor on the gas price of a transaction to be accepted. 
     
     The network base fee could be changed to be variable in a future runtime update. 
 
-  - The amount of gas used in Moonbeam's transaction fee model is mapped from the transaction's Substrate extrinsic weight value via a fixed factor of {{ networks.moonbase.tx_weight_to_gas_ratio }}. This value is then multiplied with the unit gas price to calculate the transaction fee. This fee model means it can be potentially significantly cheaper to send transactions such as basic balance transfers via the Ethereum API than the Substrate API. 
+  - The amount of gas used in Moonbeam's transaction fee model is mapped from the transaction's Substrate extrinsic weight value via a fixed factor of {{ networks.moonbase.tx_weight_to_gas_ratio }}. This value is then multiplied with the unit gas price to calculate the transaction fee. This fee model means it can potentially be significantly cheaper to send transactions such as basic balance transfers via the Ethereum API than the Substrate API. 
 
 ### `eth_feeHistory` Endpoint {: #eth-feehistory-endpoint }
 
-Moonbeam networks implement the [`eth_feeHistory`](https://docs.alchemy.com/reference/eth-feehistory){target_blank} JSON-RPC endpoint as a part of the support for EIP1559. 
+Moonbeam networks implement the [`eth_feeHistory`](https://docs.alchemy.com/reference/eth-feehistory){target_blank} JSON-RPC endpoint as a part of the support for EIP-1559. 
 
-`eth_feeHistory` returns a collection of historical gas information from which you can reference and calculate what to set for the `Max Fee Per Gas` and `Max Priority Fee Per Gas` fields when submitting EIP1559 transactions. 
+`eth_feeHistory` returns a collection of historical gas information from which you can reference and calculate what to set for the `Max Fee Per Gas` and `Max Priority Fee Per Gas` fields when submitting EIP-1559 transactions. 
 
 The following curl example will return the gas information of the last 10 blocks starting from the latest block on the respective Moonbeam network using `eth_feeHistory`:
 
@@ -183,10 +183,8 @@ The following curl example will return the gas information of the last 10 blocks
 
 ## Sample Code for Calculating Transaction Fees
 
-The following code snippet uses the Axios HTTP client to query the Sidecar endpoint `/blocks/head`(https://paritytech.github.io/substrate-api-sidecar/dist/){target=_blank} for the latest finalized block, and then calculates the transaction fees of all transactions in the block according to the transaction type (for Ethereum API: legacy, EIP1559 or EIP2930 standards, and for Substrate API), as well as calculating the total transaction fees in the block. 
+The following code snippet uses the [Axios HTTP client](https://axios-http.com/){target=_blank} to query the [Sidecar endpoint `/blocks/head`](https://paritytech.github.io/substrate-api-sidecar/dist/){target=_blank} for the latest finalized block. It then calculates the transaction fees of all transactions in the block according to the transaction type (for Ethereum API: legacy, EIP-1559 or EIP-2930 standards, and for Substrate API), as well as calculating the total transaction fees in the block. 
 
 The following code sample is for demo purposes only and should not be used without modification and further testing in a production environment. 
 
 --8<-- 'code/vs-ethereum/tx-fees-block.md'
-
-

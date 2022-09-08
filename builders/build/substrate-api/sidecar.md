@@ -305,7 +305,7 @@ Other events emitted by EVM smart contracts can be decoded in a similar fashion,
 
 ## Sample Code for Monitoring Native Token Transfers { #sample-code-for-monitoring-native-token-transfers }
 
-The [Transfers API page](/builders/get-started/eth-compare/transfers-api/#using-substrate-api-sidecar){target=_blank} has a code snippet demonstrating how to use Substrate API Sidecar to retrieve and decode native token transfers sent with both Substrate and Ethereum API on Moonbeam networks. You can reference that as a starting point to build out backends that utilize Sidecar to listen to transfers on Moonbeam networks. 
+The [Transfers API page](/builders/get-started/eth-compare/transfers-api/#using-substrate-api-sidecar){target=_blank} has a code snippet demonstrating how to use Substrate API Sidecar to retrieve and decode native token transfers sent with both Substrate and Ethereum APIs on Moonbeam networks. You can reference that as a starting point to build out backends that utilize Sidecar to listen to transfers on Moonbeam networks. 
 
 ## Calculating Transaction Fees {: #calculating-transaction-fees } 
 
