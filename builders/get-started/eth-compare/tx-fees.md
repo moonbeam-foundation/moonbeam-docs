@@ -188,3 +188,5 @@ The following code snippet uses the [Axios HTTP client](https://axios-http.com/)
 The following code sample is for demo purposes only and should not be used without modification and further testing in a production environment. 
 
 --8<-- 'code/vs-ethereum/tx-fees-block.md'
+
+--8<-- 'text/disclaimers/third-party-content.md'
