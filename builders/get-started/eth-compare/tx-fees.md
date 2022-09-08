@@ -181,7 +181,7 @@ The following curl example will return the gas information of the last 10 blocks
          }'
     ```
 
-## Sample Code for Calculating Transaction Fees
+## Sample Code for Calculating Transaction Fees {: #sample-code }
 
 The following code snippet uses the [Axios HTTP client](https://axios-http.com/){target=_blank} to query the [Sidecar endpoint `/blocks/head`](https://paritytech.github.io/substrate-api-sidecar/dist/){target=_blank} for the latest finalized block. It then calculates the transaction fees of all transactions in the block according to the transaction type (for Ethereum API: legacy, EIP-1559 or EIP-2930 standards, and for Substrate API), as well as calculating the total transaction fees in the block. 
 
