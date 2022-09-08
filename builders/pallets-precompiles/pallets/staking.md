@@ -91,14 +91,14 @@ The parachain staking pallet includes the following read-only storage methods to
 - **bottomDelegations**(AccountId20) - returns at the most the bottom 50 delegations for all candidates or for a given candidate's address
 - **candidateInfo**(AccountId20) - returns candidate information such as the candidate's bond, delegation count, and more for all candidates or for a given candidate's address
 - **candidatePool**() - returns a list of each of the candidates in the pool and their total backing stake
-- **candidateState**(AccountId20) - *deprecated* - use `candidateInfo` instead
+- **candidateState**(AccountId20) - *deprecated as of runtime 1200* - use `candidateInfo` instead
 - **collatorCommission**() - returns the commission percent taken off of rewards for all collators
-- **collatorState2**(AccountId20) - *deprecated* - use `candidateInfo` instead
+- **collatorState2**(AccountId20) - *deprecated as of runtime 1001* - use `candidateInfo` instead
 - **delayedPayouts**(u32) - returns the delayed payouts for all rounds or for a given round
 - **delegationScheduledRequests**(AccountId20) - returns the outstanding scheduled delegation requests for all collators or for a given collator's address
 - **delegatorState**(AccountId20) - returns delegator information such as their delegations, delegation status, and total delegation amount for all delegators or for a given delegator's address
 - **inflationConfig**() - returns the inflation configuration
-- **nominatorState2**(AccountId20) - *deprecated* - use `delegatorState` instead
+- **nominatorState2**(AccountId20) - *deprecated as of runtime 1001* - use `delegatorState` instead
 - **palletVersion**() - returns the current pallet version
 - **parachainBondInfo**() - returns the parachain bond reserve account and the percentage of annual inflation
 - **points**(u32) - returns the total points awarded to collators for block production in all rounds or for a given round

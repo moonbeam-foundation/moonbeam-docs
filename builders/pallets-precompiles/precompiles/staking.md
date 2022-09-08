@@ -101,7 +101,7 @@ The Solidity interface includes the following functions:
  - **executeDelegationRequest**(*address* delegator, *address* candidate) - executes any due delegation requests provided the address of a delegator and a candidate. Uses the [`executeDelegationRequest`](/builders/pallets-precompiles/pallets/staking/#:~:text=executeDelegationRequest(delegator, candidate)){target=_blank} method of the staking pallet
  - **cancelDelegationRequest**(*address* candidate) - cancels any pending delegation requests provided the address of a candidate. Uses the [`cancelDelegationRequest`](/builders/pallets-precompiles/pallets/staking/#:~:text=cancelDelegationRequest(candidate)){target=_blank} method of the staking pallet
 
-The following methods are **deprecated** and will be removed in the future:
+As of runtime 1001, the following methods are **deprecated** and, as of runtime 1800, have been removed:
 
  - **is_nominator**(*address* nominator) — read-only function that checks whether the specified address is currently a staking delegator. Use `isDelegator` instead
  - **min_nomination**() — read-only function that gets the minimum delegation amount. Use `minDelegation` instead
