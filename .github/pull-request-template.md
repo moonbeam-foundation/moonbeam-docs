@@ -10,6 +10,7 @@ Please explain the changes this PR addresses here.
     - [ ] After the script has been run, I have created an additional PR in `moonbeam-docs-cn`
 - [ ] If images have been added, I have run the `compress-images.py` script to compress the images.
 - [ ] If variables (in variables.yml) need to be updated (such as a name change), I have updated the `moonbeam-docs-cn` repo to use the new variables
+- [ ] If this page requires a disclaimer, I have added one
 
 ### Corresponding PRs
 

@@ -3,7 +3,7 @@ export default [
         "inputs": [
             {
                 "internalType": "address",
-                "name": "currency_address",
+                "name": "currencyAddress",
                 "type": "address"
             },
             {
@@ -72,7 +72,7 @@ export default [
             },
             {
                 "internalType": "uint32",
-                "name": "fee_item",
+                "name": "feeItem",
                 "type": "uint32"
             },
             {
@@ -98,7 +98,7 @@ export default [
                 "type": "uint64"
             }
         ],
-        "name": "transfer_multi_assets",
+        "name": "transferMultiAssets",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -109,7 +109,7 @@ export default [
                 "components": [
                     {
                         "internalType": "address",
-                        "name": "currency_address",
+                        "name": "currencyAddress",
                         "type": "address"
                     },
                     {
@@ -124,7 +124,7 @@ export default [
             },
             {
                 "internalType": "uint32",
-                "name": "fee_item",
+                "name": "feeItem",
                 "type": "uint32"
             },
             {
@@ -150,7 +150,7 @@ export default [
                 "type": "uint64"
             }
         ],
-        "name": "transfer_multi_currencies",
+        "name": "transferMultiCurrencies",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -202,7 +202,7 @@ export default [
                 "type": "uint64"
             }
         ],
-        "name": "transfer_multiasset",
+        "name": "transferMultiasset",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -259,7 +259,7 @@ export default [
                 "type": "uint64"
             }
         ],
-        "name": "transfer_multiasset_with_fee",
+        "name": "transferMultiassetWithFee",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -268,7 +268,7 @@ export default [
         "inputs": [
             {
                 "internalType": "address",
-                "name": "currency_address",
+                "name": "currencyAddress",
                 "type": "address"
             },
             {
@@ -304,7 +304,7 @@ export default [
                 "type": "uint64"
             }
         ],
-        "name": "transfer_with_fee",
+        "name": "transferWithFee",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"

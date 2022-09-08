@@ -33,6 +33,8 @@ If you already have MetaMask installed, you can easily connect MetaMask to the n
 
 Learn [how to integrate a Connect MetaMask button](/builders/integrations/wallets/metamask/){target=_blank} into your DApp, so that users can connect to Moonbase Alpha with a simple click of a button. The guide can also be adapted for the other Moonbeam-based networks.
 
+--8<-- 'text/disclaimers/third-party-content-intro.md'
+
 ## Install the MetaMask Extension {: #install-the-metamask-extension } 
 
 First, you'll start with a fresh and default [MetaMask](https://metamask.io/){target=_blank} installation from the Chrome store. After downloading, installing, and initializing the extension, follow the **Get Started** guide. In there, you need to create a wallet, set a password, and store your secret backup phrase (this gives direct access to your funds, so make sure to store these in a secure place). 

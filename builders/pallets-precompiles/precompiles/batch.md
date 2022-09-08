@@ -119,7 +119,7 @@ Try transferring native currency to two wallets of your choice via the batch pre
 3. Expand the **batchAll** function
 4. For the **to** input, insert your addresses in the following format: `["ADDRESS-1-HERE", "ADDRESS-2-HERE"]`, where the first address corresponds to the first wallet of your choice and the second address corresponds to the second wallet of your choice
 5. For the **value** input, insert the amount you wish to transfer in Wei for each address. For example, `["100000000000000000", "200000000000000000"]` will transfer 0.1 DEV to the first address and 0.2 DEV to the second address
-6. For both of the remaining **call_data** and **gas_limit** inputs, insert `[]`. Call data and gas limit are not a concern for transferring native currency
+6. For both of the remaining **callData** and **gasLimit** inputs, insert `[]`. Call data and gas limit are not a concern for transferring native currency
 7. Press **transact**
 8. Press **Confirm** in the MetaMask extension to confirm the transaction
 
@@ -159,7 +159,7 @@ This section's example will be using the **batchAll** function that will ensure 
 
 Interacting with a function is very similar to [sending a native currency](#send-native-currency-via-precompile), since they are both transactions. However, call data is required to properly provide input to functions and a sender may desire to limit the amount of gas spent in each subtransaction. 
 
-The `call_data` and `gas_limit` fields are more relevant for subtransactions that interact with contracts. For each function in the batch interface, the `call_data` input is an array where each index corresponds to the call data for each recipient of the subtransaction, that is, each `to` input. If the size of the `call_data` array is less than the `to` array, the remaining subtransactions will have no call data (functions with no inputs). The `gas_limit` input is an array that corresponds to the amount of gas that each can spend for each subtransaction. If its value at an index is 0 or the index is the size of the array or greater (and smaller than the `to` array's size), all of the remaining gas from the previous subtransaction is forwarded.
+The `callData` and `gasLimit` fields are more relevant for subtransactions that interact with contracts. For each function in the batch interface, the `callData` input is an array where each index corresponds to the call data for each recipient of the subtransaction, that is, each `to` input. If the size of the `callData` array is less than the `to` array, the remaining subtransactions will have no call data (functions with no inputs). The `gasLimit` input is an array that corresponds to the amount of gas that each can spend for each subtransaction. If its value at an index is 0 or the index is the size of the array or greater (and smaller than the `to` array's size), all of the remaining gas from the previous subtransaction is forwarded.
 
 To use the precompile to send an atomic batch transaction, take the following steps:
 
@@ -168,8 +168,8 @@ To use the precompile to send an atomic batch transaction, take the following st
 3. Expand the **batchAll** function
 4. For the **to** input, insert the address of the `SimpleContract.sol` contract that you previously copied in the following format: `["SIMPLE-CONTRACT-ADDRESS-HERE"]`
 5. For the value input, since `SimpleContract.sol` does not require any native currency to be paid to it, insert `["0"]` for 0 Wei
-6. For the **call_data** input, insert your call data from the previous section in the following format: `["CALL-DATA-HERE"]`
-7. For the **gas_limit** input, insert `[]`. You can put in a gas limit value, but it is optional 
+6. For the **callData** input, insert your call data from the previous section in the following format: `["CALL-DATA-HERE"]`
+7. For the **gasLimit** input, insert `[]`. You can put in a gas limit value, but it is optional 
 8. Press **transact**
 9. Press **Confirm** in the MetaMask extension to confirm the transaction
 
@@ -207,7 +207,7 @@ There will also be three values for the `value` array. The first address in the 
 ["1000000000000000000", "0", "0"]
 ```
 
-We will need three values for the `call_data` array. Since transferring native currency does not require call data, the string is simply blank. The second and third values in the array correspond to invokations of **setMessage** that set messages to ids 5 and 6.
+We will need three values for the `callData` array. Since transferring native currency does not require call data, the string is simply blank. The second and third values in the array correspond to invokations of **setMessage** that set messages to ids 5 and 6.
 
 ```
 [

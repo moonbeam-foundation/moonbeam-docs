@@ -13,6 +13,8 @@ With the [release of the v3 upgrade](https://www.purestake.com/news/moonbeam-net
 
 The Polkadot.js Apps interface was updated as well so that it natively supports H160 addresses and ECDSA keys. So, in this tutorial you can check out this new integration of Ethereum-based accounts on the Polkadot.js Apps site.
 
+--8<-- 'text/disclaimers/third-party-content-intro.md'
+
 ## Connecting to Moonbase Alpha {: #connecting-to-moonbase-alpha } 
 
 First, you need to connect it to the Moonbase Alpha TestNet by clicking the logo in the top left corner, then scroll down to the **Test Networks** section, select Moonbase Alpha, and scroll back to the top and click **Switch**. 

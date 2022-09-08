@@ -68,52 +68,52 @@ Some of the staking pallet extrinsics include exit delays that you must wait bef
 
 The Solidity interface includes the following functions:
 
- - **is_delegator**(*address* delegator) — read-only function that checks whether the specified address is currently a staking delegator. Uses the [`delegatorState`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegatorState(AccountId20)){target=_blank} method of the staking pallet
- - **is_candidate**(*address* candidate) — read-only function that checks whether the specified address is currently a collator candidate. Uses the [`candidateState`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateState(AccountId20)){target=_blank} method of the staking pallet
- - **is_selected_candidate**(*address* candidate) - read-only function that checks whether the specified address is currently part of the active collator set. Uses the [`selectedCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=selectedCandidates()){target=_blank} method of the staking pallet
+ - **isDelegator**(*address* delegator) — read-only function that checks whether the specified address is currently a staking delegator. Uses the [`delegatorState`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegatorState(AccountId20)){target=_blank} method of the staking pallet
+ - **isCandidate**(*address* candidate) — read-only function that checks whether the specified address is currently a collator candidate. Uses the [`candidateState`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateState(AccountId20)){target=_blank} method of the staking pallet
+ - **isSelectedCandidate**(*address* candidate) - read-only function that checks whether the specified address is currently part of the active collator set. Uses the [`selectedCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=selectedCandidates()){target=_blank} method of the staking pallet
  - **points**(*uint256* round) - read-only function that gets the total points awarded to all collators in a given round. Uses the [`points`](/builders/pallets-precompiles/pallets/staking/#:~:text=points(u32)){target=_blank} method of the staking pallet
- - **min_delegation**() — read-only function that gets the minimum delegation amount. Uses the [`minDelegation`](/builders/pallets-precompiles/pallets/staking/#:~:text=minDelegation()){target=_blank} method of the staking pallet
- - **candidate_count**() - read-only function that gets the current amount of collator candidates. Uses the [`candidatePool`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidatePool()){target=_blank} method of the staking pallet
+ - **minDelegation**() — read-only function that gets the minimum delegation amount. Uses the [`minDelegation`](/builders/pallets-precompiles/pallets/staking/#:~:text=minDelegation()){target=_blank} method of the staking pallet
+ - **candidateCount**() - read-only function that gets the current amount of collator candidates. Uses the [`candidatePool`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidatePool()){target=_blank} method of the staking pallet
  - **round**() - read-only function that returns the current round number. Uses the [`round`](/builders/pallets-precompiles/pallets/staking/#:~:text=round()){target=_blank} method of the staking pallet
- - **candidate_delegation_count**(*address* candidate) - read-only function that returns the number of delegations for the specified collator candidate address. Uses the [`candidateInfo`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateInfo(AccountId20)){target=_blank} method of the staking pallet
- - **delegator_delegation_count**(*address* delegator) - read-only function that returns the number of delegations for the specified delegator address. Uses the [`delegatorState`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegatorState(AccountId20)){target=_blank} method of the staking pallet
- - **selected_candidates**() - read-only function that gets the selected candidates for the current round. Uses the [`selectedCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=selectedCandidates()){target=_blank} method of the staking pallet
- - **delegation_request_is_pending**(*address* delegator, *address* candidate) - returns a boolean to indicate whether there is a pending delegation request made by a given delegator for a given candidate
- - **candidate_exit_is_pending**(*address* candidate) - returns a boolean to indicate whether a pending exit exists for a specific candidate. Uses the [`candidateInfo`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateInfo(AccountId20)){target=_blank} method of the staking pallet
- - **candidate_request_is_pending**(*address* candidate) - returns a boolean to indicate whether there is a pending bond less request made by a given candidate. Uses the [`candidateInfo`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateInfo(AccountId20)){target=_blank} method of the staking pallet
- - **join_candidates**(*uint256* amount, *uint256* candidateCount) — allows the account to join the set of collator candidates with a specified bond amount and the current candidate count. Uses the [`joinCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=joinCandidates(bond, candidateCount)){target=_blank} method of the staking pallet
- - **schedule_leave_candidates**(*uint256* candidateCount) - schedules a request for a candidate to remove themselves from the candidate pool. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `execute_leave_candidates` extrinsic. Uses the [`scheduleLeaveCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=scheduleLeaveCandidates(candidateCount)){target=_blank} method of the staking pallet
- - **execute_leave_candidates**(*address* candidate, *uint256* candidateDelegationCount) - executes the due request to leave the set of collator candidates. Uses the [`executeLeaveCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=executeLeaveCandidates(candidate, candidateDelegationCount)){target=_blank} method of the staking pallet
- - **cancel_leave_candidates**(*uint256* candidateCount) - allows a candidate to cancel a pending scheduled request to leave the candidate pool. Given the current number of candidates in the pool. Uses the [`cancelLeaveCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=cancelLeaveCandidates(candidateCount)){target=_blank} method of the staking pallet 
- - **go_offline**() — temporarily leave the set of collator candidates without unbonding. Uses the [`goOffline`](/builders/pallets-precompiles/pallets/staking/#:~:text=goOffline()){target=_blank} method of the staking pallet
- - **go_online**() — rejoin the set of collator candidates after previously calling `go_offline()`. Uses the [`goOnline`](/builders/pallets-precompiles/pallets/staking/#:~:text=goOnline()){target=_blank} method of the staking pallet
- - **candidate_bond_more**(*uint256* more) — collator candidate increases bond by specified amount. Uses the [`candidateBondMore`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateBondMore(more)){target=_blank} method of the staking pallet
- - **schedule_candidate_bond_less**(*uint256* less) - schedules a request to decrease a candidates bond by a specified amount. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `execute_candidate_bond_request` extrinsic. Uses the [`scheduleCandidateBondLess`](/builders/pallets-precompiles/pallets/staking/#:~:text=scheduleCandidateBondLess(less)){target=_blank} method of the staking pallet
- - **execute_candidate_bond_less**(*address* candidate) - executes any due requests to decrease a specified candidates bond amount. Uses the [`executeCandidateBondLess`](/builders/pallets-precompiles/pallets/staking/#:~:text=executeCandidateBondLess(candidate)){target=_blank} method of the staking pallet
- - **cancel_candidate_bond_less**() - allows a candidate to cancel a pending scheduled request to decrease a candidates bond. Uses the [`cancelCandidateBondLess`](/builders/pallets-precompiles/pallets/staking/#:~:text=cancelCandidateBondLess()){target=_blank} method of the staking pallet
+ - **candidateDelegationCount**(*address* candidate) - read-only function that returns the number of delegations for the specified collator candidate address. Uses the [`candidateInfo`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateInfo(AccountId20)){target=_blank} method of the staking pallet
+ - **delegatorDelegationCount**(*address* delegator) - read-only function that returns the number of delegations for the specified delegator address. Uses the [`delegatorState`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegatorState(AccountId20)){target=_blank} method of the staking pallet
+ - **selectedCandidates**() - read-only function that gets the selected candidates for the current round. Uses the [`selectedCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=selectedCandidates()){target=_blank} method of the staking pallet
+ - **delegationRequestIsPending**(*address* delegator, *address* candidate) - returns a boolean to indicate whether there is a pending delegation request made by a given delegator for a given candidate
+ - **candidateExitIsPending**(*address* candidate) - returns a boolean to indicate whether a pending exit exists for a specific candidate. Uses the [`candidateInfo`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateInfo(AccountId20)){target=_blank} method of the staking pallet
+ - **candidateRequestIsPending**(*address* candidate) - returns a boolean to indicate whether there is a pending bond less request made by a given candidate. Uses the [`candidateInfo`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateInfo(AccountId20)){target=_blank} method of the staking pallet
+ - **joinCandidates**(*uint256* amount, *uint256* candidateCount) — allows the account to join the set of collator candidates with a specified bond amount and the current candidate count. Uses the [`joinCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=joinCandidates(bond, candidateCount)){target=_blank} method of the staking pallet
+ - **scheduleLeaveCandidates**(*uint256* candidateCount) - schedules a request for a candidate to remove themselves from the candidate pool. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeLeaveCandidates` extrinsic. Uses the [`scheduleLeaveCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=scheduleLeaveCandidates(candidateCount)){target=_blank} method of the staking pallet
+ - **executeLeaveCandidates**(*address* candidate, *uint256* candidateDelegationCount) - executes the due request to leave the set of collator candidates. Uses the [`executeLeaveCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=executeLeaveCandidates(candidate, candidateDelegationCount)){target=_blank} method of the staking pallet
+ - **cancelLeaveCandidates**(*uint256* candidateCount) - allows a candidate to cancel a pending scheduled request to leave the candidate pool. Given the current number of candidates in the pool. Uses the [`cancelLeaveCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=cancelLeaveCandidates(candidateCount)){target=_blank} method of the staking pallet 
+ - **goOffline**() — temporarily leave the set of collator candidates without unbonding. Uses the [`goOffline`](/builders/pallets-precompiles/pallets/staking/#:~:text=goOffline()){target=_blank} method of the staking pallet
+ - **goOnline**() — rejoin the set of collator candidates after previously calling `goOffline()`. Uses the [`goOnline`](/builders/pallets-precompiles/pallets/staking/#:~:text=goOnline()){target=_blank} method of the staking pallet
+ - **candidateBondMore**(*uint256* more) — collator candidate increases bond by specified amount. Uses the [`candidateBondMore`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateBondMore(more)){target=_blank} method of the staking pallet
+ - **scheduleCandidateBondLess**(*uint256* less) - schedules a request to decrease a candidates bond by a specified amount. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `execute_candidate_bond_request` extrinsic. Uses the [`scheduleCandidateBondLess`](/builders/pallets-precompiles/pallets/staking/#:~:text=scheduleCandidateBondLess(less)){target=_blank} method of the staking pallet
+ - **executeCandidateBondLess**(*address* candidate) - executes any due requests to decrease a specified candidates bond amount. Uses the [`executeCandidateBondLess`](/builders/pallets-precompiles/pallets/staking/#:~:text=executeCandidateBondLess(candidate)){target=_blank} method of the staking pallet
+ - **cancelCandidateBondLess**() - allows a candidate to cancel a pending scheduled request to decrease a candidates bond. Uses the [`cancelCandidateBondLess`](/builders/pallets-precompiles/pallets/staking/#:~:text=cancelCandidateBondLess()){target=_blank} method of the staking pallet
  - **delegate**(*address* candidate, *uint256* amount, *uint256* candidateDelegationCount, *uint256* delegatorDelegationCount) — if the caller is not a delegator, this function adds them to the set of delegators. If the caller is already a delegator, then it adjusts their delegation amount. Uses the [`delegate`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegate(candidate, amount, candidateDelegationCount, delegationCount)){target=_blank} method of the staking pallet
- - **schedule_leave_delegators**() — schedules a request to leave the set of delegators and revoke all ongoing delegations. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `execute_leave_delegators` extrinsic. Uses the [`scheduleLeaveDelegators`](/builders/pallets-precompiles/pallets/staking/#:~:text=scheduleLeaveDelegators()){target=_blank} method of the staking pallet
- - **execute_leave_delegators**(*address* delegator, *uint256* delegatorDelegationCount) - executes the due request to leave the set of delegators and revoke all delegations. Uses the [`executeLeaveDelegators`](/builders/pallets-precompiles/pallets/staking/#:~:text=executeLeaveDelegators(delegator, delegationCount)){target=_blank} method of the staking pallet
- - **cancel_leave_delegators**() - cancels a pending scheduled request to leave the set of delegators. Uses the [`cancelLeaveDelegators`](/builders/pallets-precompiles/pallets/staking/#:~:text=cancelLeaveDelegators()){target=_blank} method of the staking pallet
- - **schedule_revoke_delegation**(*address* candidate) — schedules a request to revoke a delegation given the address of a candidate. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `execute_delegation_request` extrinsic. Uses the [`scheduleRevokeDelegation`](/builders/pallets-precompiles/pallets/staking/#:~:text=scheduleRevokeDelegation(collator)){target=_blank} method of the staking pallet
- - **delegator_bond_more**(*address* candidate, *uint256* more) — delegator increases bond to a collator by specified amount. Uses the [`delegatorBondMore`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegatorBondMore(candidate, more)){target=_blank} method of the staking pallet
- - **schedule_delegator_bond_less**(*address* candidate, *uint256* less) — schedules a request for a delegator to bond less with respect to a specific candidate. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `execute_delegation_request` extrinsic. Uses the [`scheduleDelegatorBondLess`](/builders/pallets-precompiles/pallets/staking/#:~:text=scheduleDelegatorBondLess(candidate, less)){target=_blank} method of the staking pallet
- - **execute_delegation_request**(*address* delegator, *address* candidate) - executes any due delegation requests provided the address of a delegator and a candidate. Uses the [`executeDelegationRequest`](/builders/pallets-precompiles/pallets/staking/#:~:text=executeDelegationRequest(delegator, candidate)){target=_blank} method of the staking pallet
- - **cancel_delegation_request**(*address* candidate) - cancels any pending delegation requests provided the address of a candidate. Uses the [`cancelDelegationRequest`](/builders/pallets-precompiles/pallets/staking/#:~:text=cancelDelegationRequest(candidate)){target=_blank} method of the staking pallet
+ - **scheduleLeaveDelegators**() — schedules a request to leave the set of delegators and revoke all ongoing delegations. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeLeaveDelegators` extrinsic. Uses the [`scheduleLeaveDelegators`](/builders/pallets-precompiles/pallets/staking/#:~:text=scheduleLeaveDelegators()){target=_blank} method of the staking pallet
+ - **executeLeaveDelegators**(*address* delegator, *uint256* delegatorDelegationCount) - executes the due request to leave the set of delegators and revoke all delegations. Uses the [`executeLeaveDelegators`](/builders/pallets-precompiles/pallets/staking/#:~:text=executeLeaveDelegators(delegator, delegationCount)){target=_blank} method of the staking pallet
+ - **cancelLeaveDelegators**() - cancels a pending scheduled request to leave the set of delegators. Uses the [`cancelLeaveDelegators`](/builders/pallets-precompiles/pallets/staking/#:~:text=cancelLeaveDelegators()){target=_blank} method of the staking pallet
+ - **scheduleRevokeDelegation**(*address* candidate) — schedules a request to revoke a delegation given the address of a candidate. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeDelegationRequest` extrinsic. Uses the [`scheduleRevokeDelegation`](/builders/pallets-precompiles/pallets/staking/#:~:text=scheduleRevokeDelegation(collator)){target=_blank} method of the staking pallet
+ - **delegatorBondMore**(*address* candidate, *uint256* more) — delegator increases bond to a collator by specified amount. Uses the [`delegatorBondMore`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegatorBondMore(candidate, more)){target=_blank} method of the staking pallet
+ - **scheduleDelegatorBondLess**(*address* candidate, *uint256* less) — schedules a request for a delegator to bond less with respect to a specific candidate. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeDelegationRequest` extrinsic. Uses the [`scheduleDelegatorBondLess`](/builders/pallets-precompiles/pallets/staking/#:~:text=scheduleDelegatorBondLess(candidate, less)){target=_blank} method of the staking pallet
+ - **executeDelegationRequest**(*address* delegator, *address* candidate) - executes any due delegation requests provided the address of a delegator and a candidate. Uses the [`executeDelegationRequest`](/builders/pallets-precompiles/pallets/staking/#:~:text=executeDelegationRequest(delegator, candidate)){target=_blank} method of the staking pallet
+ - **cancelDelegationRequest**(*address* candidate) - cancels any pending delegation requests provided the address of a candidate. Uses the [`cancelDelegationRequest`](/builders/pallets-precompiles/pallets/staking/#:~:text=cancelDelegationRequest(candidate)){target=_blank} method of the staking pallet
 
 The following methods are **deprecated** and will be removed in the future:
 
- - **is_nominator**(*address* nominator) — read-only function that checks whether the specified address is currently a staking delegator. Use `is_delegator` instead
- - **min_nomination**() — read-only function that gets the minimum delegation amount. Use `min_delegation` instead
- - **collator_nomination_count**(*address* collator) - read-only function that returns the number of delegations for the specified collator address. Use `candidate_delegation_count` instead
- - **nominator_nomination_count**(*address* nominator) - read-only function that returns the number of delegations for the specified delegator address. Use `delegator_delegation_count` instead
- - **leave_candidates**(*uint256* amount, *uint256* candidateCount) — immediately removes the account from the candidate pool to prevent others from selecting it as a collator and triggers unbonding. Use `schedule_leave_candidates` and `execute_leave_candidates` instead
- - **candidate_bond_less**(*uint256* less) — collator candidate decreases bond by specified amount. Use `schedule_candidate_bond_less` and `execute_candidate_bond_less` instead
+ - **is_nominator**(*address* nominator) — read-only function that checks whether the specified address is currently a staking delegator. Use `isDelegator` instead
+ - **min_nomination**() — read-only function that gets the minimum delegation amount. Use `minDelegation` instead
+ - **collator_nomination_count**(*address* collator) - read-only function that returns the number of delegations for the specified collator address. Use `candidateDelegationCount` instead
+ - **nominator_nomination_count**(*address* nominator) - read-only function that returns the number of delegations for the specified delegator address. Use `delegatorDelegationCount` instead
+ - **leave_candidates**(*uint256* amount, *uint256* candidateCount) — immediately removes the account from the candidate pool to prevent others from selecting it as a collator and triggers unbonding. Use `scheduleLeaveCandidates` and `executeLeaveCandidates` instead
+ - **candidate_bond_less**(*uint256* less) — collator candidate decreases bond by specified amount. Use `scheduleCandidateBondLess` and `executeCandidateBondLess` instead
  - **nominate**(*address* collator, *uint256* amount, *uint256* collatorNominationCount, *uint256* nominatorNominationCount) — if the caller is not a delegator, this function adds them to the set of delegators. If the caller is already a delegator, then it adjusts their delegation amount. Use `delegate` instead
- - **leave_nominators**(*uint256* nominatorNominationCount) — leave the set of delegators and revoke all ongoing delegations. Use `schedule_leave_delegators` and `execute_leave_delegators` instead
- - **revoke_nominations**(*address* collator) — revoke a specific delegation. Use `schedule_revoke_delegation` and `execute_delegation_request` instead
- - **nominator_bond_more**(*address* collator, *uint256* more) — delegator increases bond to a collator by specified amount. Use `delegator_bond_more` instead
- - **nominator_bond_less**(*address* collator, *uint256* less) — delegator decreases bond to a collator by specified amount. Use `schedule_delegator_bond_less` and `execute_delegation_request` instead
+ - **leave_nominators**(*uint256* nominatorNominationCount) — leave the set of delegators and revoke all ongoing delegations. Use `scheduleLeaveDelegators` and `executeLeaveDelegators` instead
+ - **revoke_nominations**(*address* collator) — revoke a specific delegation. Use `scheduleRevokeDelegation` and `executeDelegationRequest` instead
+ - **nominator_bond_more**(*address* collator, *uint256* more) — delegator increases bond to a collator by specified amount. Use `delegatorBondMore` instead
+ - **nominator_bond_less**(*address* collator, *uint256* less) — delegator decreases bond to a collator by specified amount. Use `scheduleDelegatorBondLess` and `executeDelegationRequest` instead
 
 ## Interact with the Solidity Interface {: #interact-with-solidity-interface }
 
@@ -162,7 +162,7 @@ In order to delegate a candidate, you'll need to determine the current candidate
 
 To obtain the candidate delegator count, you can call a function that the staking precompile provides. Expand the **PARACHAINSTAKING** contract found under the **Deployed Contracts** list, then:
 
-1. Find and expand the **candidate_delegation_count** function
+1. Find and expand the **candidateDelegationCount** function
 2. Enter the candidate address (`{{ networks.moonbase.staking.candidates.address1 }}`)
 3. Click **call**
 4. After the call is complete, the results will be displayed
@@ -171,7 +171,7 @@ To obtain the candidate delegator count, you can call a function that the stakin
 
 If you don't know your existing number of delegations, you can easily get them by following these steps:
 
-1. Find and expand the **delegator_delegation_count** function
+1. Find and expand the **delegatorDelegationCount** function
 2. Enter your address
 3. Click **call**
 4. After the call is complete, the results will be displayed
@@ -225,7 +225,7 @@ To revoke a delegation for a specific candidate and receive your tokens back, yo
 
 To revoke a delegation and receive your tokens back, head back over to Remix, then:
 
-1. From the list of **Deployed Contracts**, find and expand the **schedule_revoke_delegation** function
+1. From the list of **Deployed Contracts**, find and expand the **scheduleRevokeDelegation** function
 2. Enter the candidate address you would like to revoke the delegation for
 3. Click **transact**
 4. MetaMask will pop, you can review the transaction details, and click **Confirm**
@@ -236,7 +236,7 @@ Once the transaction is confirmed, you must wait the duration of the exit delay 
 
 After the exit delay has passed, you can go back to Remix and follow these steps to execute the due request:
 
-1. From the list of **Deployed Contracts**, find and expand the **execute_delegation_request** function
+1. From the list of **Deployed Contracts**, find and expand the **executeDelegationRequest** function
 2. Enter the address of the delegator you would like to revoke the delegation for
 3. Enter the candidate address you would like to revoke the delegation from
 4. Click **transact**
@@ -246,7 +246,7 @@ After the call is complete, the results will be displayed and the delegation wil
 
 If for any reason you need to cancel a pending scheduled request to revoke a delegation, you can do so by following these steps in Remix:
 
-1. From the list of **Deployed Contracts**, find and expand the **cancel_delegation_request** function
+1. From the list of **Deployed Contracts**, find and expand the **cancelDelegationRequest** function
 2. Enter the candidate address you would like to cancel the pending request for
 3. Click **transact**
 4. MetaMask will pop, you can review the transaction details, and click **Confirm**

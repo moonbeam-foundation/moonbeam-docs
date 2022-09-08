@@ -310,3 +310,5 @@ The [Transfers API page](/builders/get-started/eth-compare/transfers-api/#using-
 ## Calculating Transaction Fees {: #calculating-transaction-fees } 
 
 For more detailed information and sample code on how to calculate the transaction fees of Moonbeam transactions using Substrate Sidecar API, please check the [Calculating Transaction Fees on Moonbeam](/builders/get-started/eth-compare/tx-fees/){target=_blank} page.
+
+--8<-- 'text/disclaimers/third-party-content.md'

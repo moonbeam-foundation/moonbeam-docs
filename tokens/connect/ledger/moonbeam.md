@@ -7,6 +7,7 @@ description: This guide walks you through how to use your Ledger hardware wallet
 
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src="https://www.youtube.com/embed/-cbaLG1XOF8"  frameborder='0' allowfullscreen></iframe></div>
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style>
+
 ## Introduction {: #introduction } 
 
 Hardware wallets provide a safer way to store crypto funds because the private key (used for signing transactions) is stored offline. Ledger offers two hardware wallet solutions at the time of writing: Ledger Nano S and Ledger Nano X.
@@ -16,6 +17,8 @@ You can interact with Moonbeam using your Ledger hardware wallet through the Moo
 You also have the option of using the Ethereum app to connect to Moonbeam. The main difference between using the Moonbeam and the Ethereum app is that you have to specify the chain ID when you use the Etheruem app, which is 1284 for Moonbeam. If you're interested in using the Ethereum app instead, you can check out the [Interacting with Moonbeam Using Ledger and the Ethereum App](/tokens/connect/ledger/ethereum){target=_blank} guide.
 
 In this tutorial, you will learn how to get started with your Ledger hardware wallet on Moonbeam using the Moonbeam app. This guide only illustrates the steps for a Ledger Nano X device, but you can follow along with a Ledger Nano S as well. 
+
+--8<-- 'text/disclaimers/third-party-content-intro.md'
 
 --8<-- 'text/ledger/checking-prereqs.md'
 

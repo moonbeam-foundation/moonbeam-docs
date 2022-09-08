@@ -16,6 +16,8 @@ This article provides an overview in regards to setting up a Chainlink oracle on
 !!! note
     The examples provided are for demonstration purposes only. Passwords **MUST** be managed securely and never stored in plaintext. These examples assume an Ubuntu 18.04-based environment, but call-outs for MacOS are included. This guide is for a development setup only, do not use this for a production environment.
 
+--8<-- 'text/disclaimers/third-party-content-intro.md'
+
 ## Basic Request Model {: #basic-request-model } 
 
 --8<-- 'text/chainlink/brm.md'

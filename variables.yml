@@ -1,7 +1,7 @@
 networks:
   development:
     build_tag: v0.26.0
-    tracing_tag: purestake/moonbeam-tracing:sha-363761cd-opt-1800-a74b
+    tracing_tag: purestake/moonbeam-tracing:sha-363761cd-opt-1800-latest
     rpc_url: http://127.0.0.1:9933
     wss_url: ws://127.0.0.1:9944
     chain_id: 1281
@@ -17,7 +17,7 @@ networks:
     block_explorer: https://moonbase.moonscan.io/
     parachain_release_tag: v0.26.0 # must be in this exact format for links to work
     parachain_sha256sum: eff929c4ed6c5323cae16173eda048dcb647690c68ac06200d092e48de9b8655
-    tracing_tag: purestake/moonbeam-tracing:sha-363761cd-opt-1800-a74b
+    tracing_tag: purestake/moonbeam-tracing:sha-363761cd-opt-1800-latest
     gas_block: 15M
     gas_tx: 12.995M
     node_directory: /var/lib/alphanet-data
@@ -33,13 +33,6 @@ networks:
     thegraph:
       lotto_contract: '0x44ddD2EC5BE2A7f3e4A465C21600bE8df644093f'
       block_number: 132605
-    chainbridge:
-      bridge_address: '0x638285E837Db7124FF0947251c6f20ceEb2645DF'
-      ERC20_handler: '0x623b114e13bdef428f34fa3a76E3BbA580Fd5bb3'
-      ERC721_handler: '0xa60e3a1ef9EbD7b607cbE0cAcC1E3A9B5a6f10c4'
-      generic_handler: '0xaD8E9976Dfa86B33A7A4330bdc3Bb28c3A5f854D'
-      ERC20S: '0xFCefBC458DA5b11a10422C0703bea1D154887D76'
-      ERC721M: '0x13a4DFdA8B3f0509D340f6034Cd9106cf2DB6BAa'
     razor:
       bridge_address: '0xC6F33c0F15FE5e3A51A019524ac43574cFF29EFB'
     chainlink:
@@ -239,9 +232,9 @@ networks:
     chain_id: 1285
     hex_chain_id: '0x505'
     node_directory: /var/lib/moonriver-data
-    parachain_release_tag: v0.25.0
-    parachain_sha256sum: a468d7f8fd834dda504d38138db8021573b0f0afbed3207957e773a6bf79072b
-    tracing_tag: purestake/moonbeam-tracing:v0.25.0-1701-e8cc
+    parachain_release_tag: v0.26.0
+    parachain_sha256sum: eff929c4ed6c5323cae16173eda048dcb647690c68ac06200d092e48de9b8655
+    tracing_tag: purestake/moonbeam-tracing:sha-363761cd-opt-1800-latest   
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
     binary_name: moonbeam
@@ -390,6 +383,16 @@ networks:
           usdt_usd: '0xF80DAd54AF79257D41c30014160349896ca5370a'
           xrp_usd: '0x3FD363679fb59596d45881bbfBe4bb864f3545A2'
           yfi_usd: '0xE3324ea60FA272BBB4511dDBD4776feFE4674fa0'
+    randomness:
+      max_random_words: 100
+      min_vrf_blocks_delay: 2
+      max_vrf_blocks_delay: 2000
+      req_deposit_amount:
+        movr: 1
+        wei: 1000000000000000000
+      block_expiration: 10000
+      epoch_expiration: 10000
+      epoch_fulfillment_delay: 2
     substrate_api_sidecar:
       stable_version: 11.3.3
     tx_weight_to_gas_ratio: 25000
@@ -556,6 +559,16 @@ networks:
           glmr_usd: '0x4497B606be93e773bbA5eaCFCb2ac5E2214220Eb'
           link_usd: '0xd61D7398B7734aBe7C4B143fE57dC666D2fe83aD'
           usdc_usd: '0xA122591F60115D63421f66F752EF9f6e0bc73abC'
+    randomness:
+      max_random_words: 100
+      min_vrf_blocks_delay: 2
+      max_vrf_blocks_delay: 2000
+      req_deposit_amount:
+        glmr: 1
+        wei: 1000000000000000000
+      block_expiration: 10000
+      epoch_expiration: 10000
+      epoch_fulfillment_delay: 2
     substrate_api_sidecar:
       stable_version: 11.3.3
       tx_weight_to_gas_ratio: 25000

@@ -20,7 +20,17 @@ Moonbeam provides a randomness precompile, which is a Solidity interface that en
 
 This guide will show you how to use the randomness precompile and randomness consumer contract to create a lottery where the winners will randomly be selected. You'll also learn how to interact with the randomness precompile directly to perform actions such as purging an expired randomness request.
 
-The randomness precompile is currently only available on Moonbase Alpha and is located at the following address:
+The randomness precompile is located at the following address:
+
+=== "Moonbeam"
+     ```
+     {{ networks.moonbeam.precompiles.randomness }}
+     ```
+
+=== "Moonriver"
+     ```
+     {{ networks.moonriver.precompiles.randomness }}
+     ```
 
 === "Moonbase Alpha"
      ```
@@ -62,10 +72,26 @@ Where the inputs that need to be provided can be defined as:
 
 The interface includes the following constants:
 
-- **MAX_RANDOM_WORDS** - the maximum number of random words being requested 
-- **MIN_VRF_BLOCKS_DELAY** - the minimum number of blocks before a request can be fulfilled for local VRF requests
-- **MAX_VRF_BLOCKS_DELAY** - the maximum number of blocks before a request can be fulfilled for local VRF requests
-- **REQUEST_DEPOSIT_AMOUNT** - the deposit amount needed to request random words. There is one deposit per request
+- **maxRandomWords** - the maximum number of random words being requested 
+- **minBlockDelay** - the minimum number of blocks before a request can be fulfilled for local VRF requests
+- **maxBlockDelay** - the maximum number of blocks before a request can be fulfilled for local VRF requests
+- **deposit** - the deposit amount needed to request random words. There is one deposit per request
+
+=== "Moonbeam"
+    |        Variable        |                             Value                              |
+    |:----------------------:|:--------------------------------------------------------------:|
+    |    MAX_RANDOM_WORDS    |   {{ networks.moonbeam.randomness.max_random_words }} words    |
+    |  MIN_VRF_BLOCKS_DELAY  | {{ networks.moonbeam.randomness.min_vrf_blocks_delay }} blocks |
+    |  MAX_VRF_BLOCKS_DELAY  | {{ networks.moonbeam.randomness.max_vrf_blocks_delay }} blocks |
+    | REQUEST_DEPOSIT_AMOUNT | {{ networks.moonbeam.randomness.req_deposit_amount.glmr }} GLMR |
+
+=== "Moonriver"
+    |        Variable        |                             Value                              |
+    |:----------------------:|:--------------------------------------------------------------:|
+    |    MAX_RANDOM_WORDS    |   {{ networks.moonriver.randomness.max_random_words }} words    |
+    |  MIN_VRF_BLOCKS_DELAY  | {{ networks.moonriver.randomness.min_vrf_blocks_delay }} blocks |
+    |  MAX_VRF_BLOCKS_DELAY  | {{ networks.moonriver.randomness.max_vrf_blocks_delay }} blocks |
+    | REQUEST_DEPOSIT_AMOUNT | {{ networks.moonriver.randomness.req_deposit_amount.movr }} MOVR |
 
 === "Moonbase Alpha"
     |        Variable        |                             Value                              |

@@ -11,6 +11,8 @@ description: Bobabeam is a compute-focused, Optimistic Layer Two (L2) Deployment
 
 [Boba](https://boba.network/){target=_blank} is a compute-focused Layer 2 (L2) built on the Optimistic Rollup developed by [Optimism](https://www.optimism.io/){target=_blank}. Boba augments the compute capabilities of EVM-compatible blockchains with a variety of features including [Turing hybrid compute](https://docs.boba.network/turing/turing){target=_blank}. After launching on Ethereum, Boba has brought its Layer 2 scaling solution to Moonbeam. [Bobabase](/builders/get-started/networks/layer2/bobabase){target=_blank} is the name of Boba's TestNet deployment on Moonbeam, while Bobabeam refers to Boba's MainNet deployment on Moonbeam.
 
+--8<-- 'text/disclaimers/third-party-content-intro.md'
+
 ## Network Endpoints {: #network-endpoints }
 
 --8<-- 'text/endpoints/bobabeam.md'
@@ -100,3 +102,5 @@ Either GLMR or BOBA can be used to pay for gas for transactions on Bobabeam. Not
 3. Confirm the transaction in MetaMask
 
 ![Change gas fee token](/images/builders/get-started/networks/bobabeam/bobabeam-3.png)
+
+--8<-- 'text/disclaimers/third-party-content.md'

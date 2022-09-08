@@ -37,22 +37,22 @@ The democracy precompile is located at the following address:
 
 The interface includes the following functions:
 
- - **public_prop_count**() — read-only function that returns the total number of public proposals past and present. Uses the [`publicPropCount`](/builders/pallets-precompiles/pallets/democracy/#:~:text=publicPropCount()){target=_blank} method of the democracy pallet
- - **deposit_of**(*uint256* prop_index) — read-only function that returns the total number of tokens locked behind the proposal. Uses the [`depositOf`](/builders/pallets-precompiles/pallets/democracy/#:~:text=depositOf(u32)){target=_blank} method of the democracy pallet
- - **lowest_unbaked**() — read-only function that returns the referendum with the lowest index that is currently being voted on. For clarity, a baked referendum is one that has been closed (and if passed, scheduled for enactment). An unbaked referendum is therefore one in which voting is ongoing. Uses the [`lowestUnbaked`](/builders/pallets-precompiles/pallets/democracy/#:~:text=lowestUnbaked()){target=_blank} method of the democracy pallet
- - **propose**(*bytes32* proposal_hash, *uint256* value) — submit a proposal by providing a hash and the number of tokens to lock. Uses the [`propose`](/builders/pallets-precompiles/pallets/democracy/#:~:text=propose(proposalHash, value)){target=_blank} method of the democracy pallet
- - **second**(*uint256* prop_index, *uint256* seconds_upper_bound) — second a proposal by providing the proposal index and a number greater than or equal to the number of existing seconds for this proposal (necessary to calculate the weight of the call). An amount is not needed because seconds require the same amount the original proposer locked. Uses the [`second`](/builders/pallets-precompiles/pallets/democracy/#:~:text=second(proposal, secondsUpperBound)){target=_blank} method of the democracy pallet 
- - **standard_vote**(*uint256* ref_index, *bool* aye, *uint256* vote_amount, *uint256* conviction) — vote in a referendum by providing the proposal index, the vote direction (`true` is a vote to enact the proposal, `false` is a vote to keep the status quo), the number of tokens to lock, and the conviction. Conviction is an integer from `0` to `6` where `0` is no lock time and `6` is the maximum lock time. Uses the [`vote`](/builders/pallets-precompiles/pallets/democracy/#:~:text=vote(refIndex, vote)){target=_blank} method of the democracy pallet 
- - **remove_vote**(*uint256* ref_index) — this method is used to remove a vote for a referendum before clearing expired democracy locks. Note, this cannot be used to revoke or cancel a vote while a proposal is being voted on.  
+ - **publicPropCount**() — read-only function that returns the total number of public proposals past and present. Uses the [`publicPropCount`](/builders/pallets-precompiles/pallets/democracy/#:~:text=publicPropCount()){target=_blank} method of the democracy pallet
+ - **depositOf**(*uint256* propIndex) — read-only function that returns the total number of tokens locked behind the proposal. Uses the [`depositOf`](/builders/pallets-precompiles/pallets/democracy/#:~:text=depositOf(u32)){target=_blank} method of the democracy pallet
+ - **lowestUnbaked**() — read-only function that returns the referendum with the lowest index that is currently being voted on. For clarity, a baked referendum is one that has been closed (and if passed, scheduled for enactment). An unbaked referendum is therefore one in which voting is ongoing. Uses the [`lowestUnbaked`](/builders/pallets-precompiles/pallets/democracy/#:~:text=lowestUnbaked()){target=_blank} method of the democracy pallet
+ - **propose**(*bytes32* proposalHash, *uint256* value) — submit a proposal by providing a hash and the number of tokens to lock. Uses the [`propose`](/builders/pallets-precompiles/pallets/democracy/#:~:text=propose(proposalHash, value)){target=_blank} method of the democracy pallet
+ - **second**(*uint256* propIndex, *uint256* secondsUpperBound) — second a proposal by providing the proposal index and a number greater than or equal to the number of existing seconds for this proposal (necessary to calculate the weight of the call). An amount is not needed because seconds require the same amount the original proposer locked. Uses the [`second`](/builders/pallets-precompiles/pallets/democracy/#:~:text=second(proposal, secondsUpperBound)){target=_blank} method of the democracy pallet 
+ - **standardVote**(*uint256* refIndex, *bool* aye, *uint256* voteAmount, *uint256* conviction) — vote in a referendum by providing the proposal index, the vote direction (`true` is a vote to enact the proposal, `false` is a vote to keep the status quo), the number of tokens to lock, and the conviction. Conviction is an integer from `0` to `6` where `0` is no lock time and `6` is the maximum lock time. Uses the [`vote`](/builders/pallets-precompiles/pallets/democracy/#:~:text=vote(refIndex, vote)){target=_blank} method of the democracy pallet 
+ - **removeVote**(*uint256* refIndex) — this method is used to remove a vote for a referendum before clearing expired democracy locks. Note, this cannot be used to revoke or cancel a vote while a proposal is being voted on.  
  - **delegate**(*address* representative, *uint256* candidateCount, *uint256* amount) — delegate voting power to another account by specifying an account to whom the vote shall be delegated, a conviction factor which is used for all delegated votes, and the number of tokens to delegate. Uses the [`delegate`](/builders/pallets-precompiles/pallets/democracy/#:~:text=delegate(to, conviction, balance)){target=_blank} method of the democracy pallet 
- - **un_delegate**() — a method called by the delegator to undelegate voting power. Tokens are eligible to be unlocked once the conviction period specified by the original delegation has elapsed. Uses the [`undelegate`](/builders/pallets-precompiles/pallets/democracy/#:~:text=undelegate()){target=_blank} method of the democracy pallet 
- - **unlock**(*address* target) — unlock tokens that have an expired lock. You MUST call **remove_vote** for each proposal with tokens locked you seek to unlock prior to calling **unlock**, otherwise tokens will remain locked. This function may be called by any account. Uses the [`unlock`](/builders/pallets-precompiles/pallets/democracy/#:~:text=unlock(target)){target=_blank} method of the democracy pallet 
- - **note_preimage**(*bytes* encoded_proposal) — Registers a preimage for an upcoming proposal. This doesn't require the proposal to be in the dispatch queue but does require a deposit which is returned once enacted. Uses the [`notePreimage`](/builders/pallets-precompiles/pallets/democracy/#:~:text=notePreimage(encodedProposal)){target=_blank} method of the democracy pallet
- - **note_imminent_preimage**(*bytes* encoded_proposal) — Register the preimage for an upcoming proposal. This requires the proposal to be in the dispatch queue. No deposit is needed. When this call is successful, i.e. the preimage has not been uploaded before and matches some imminent proposal, no fee is paid. Uses the [`noteImminentPreimage`](/builders/pallets-precompiles/pallets/democracy/#:~:text=noteImminentPreimage(encodedProposal)){target=_blank} method of the democracy pallet
+ - **unDelegate**() — a method called by the delegator to undelegate voting power. Tokens are eligible to be unlocked once the conviction period specified by the original delegation has elapsed. Uses the [`undelegate`](/builders/pallets-precompiles/pallets/democracy/#:~:text=undelegate()){target=_blank} method of the democracy pallet 
+ - **unlock**(*address* target) — unlock tokens that have an expired lock. You MUST call **removeVote** for each proposal with tokens locked you seek to unlock prior to calling **unlock**, otherwise tokens will remain locked. This function may be called by any account. Uses the [`unlock`](/builders/pallets-precompiles/pallets/democracy/#:~:text=unlock(target)){target=_blank} method of the democracy pallet 
+ - **notePreimage**(*bytes* encodedProposal) — Registers a preimage for an upcoming proposal. This doesn't require the proposal to be in the dispatch queue but does require a deposit which is returned once enacted. Uses the [`notePreimage`](/builders/pallets-precompiles/pallets/democracy/#:~:text=notePreimage(encodedProposal)){target=_blank} method of the democracy pallet
+ - **noteImminentPreimage**(*bytes* encodedProposal) — Register the preimage for an upcoming proposal. This requires the proposal to be in the dispatch queue. No deposit is needed. When this call is successful, i.e. the preimage has not been uploaded before and matches some imminent proposal, no fee is paid. Uses the [`noteImminentPreimage`](/builders/pallets-precompiles/pallets/democracy/#:~:text=noteImminentPreimage(encodedProposal)){target=_blank} method of the democracy pallet
 
 The interface also includes the following functions which are not currently supported but may be supported in the future:
 
-  - **ongoing_referendum_info**(*uint256* ref_index) — read-only function that returns the details of the specified ongoing referendum in the form of a tuple that includes the following:
+  - **ongoingReferendumInfo**(*uint256* refIndex) — read-only function that returns the details of the specified ongoing referendum in the form of a tuple that includes the following:
     - Block in which the referendum ended (*uint256*)
     - The proposal hash (*bytes32*)
     - [The biasing mechanism](https://wiki.polkadot.network/docs/learn-governance#super-majority-approve){target=_blank} where 0 is SuperMajorityApprove, 1 is SuperMajorityAgainst, 2 is SimpleMajority (*uint256*)
@@ -61,7 +61,7 @@ The interface also includes the following functions which are not currently supp
     - The total nay note, including conviction (*uint256*)
     - The total turnout, not including conviction (*uint256*)
 
-  - **finished_referendum_info**(*uint256* ref_index) — read-only function that returns a boolean indicating whether a referendum passed and the block at which it finished
+  - **finishedReferendumInfo**(*uint256* refIndex) — read-only function that returns a boolean indicating whether a referendum passed and the block at which it finished
  
 ## Interact with the Solidity Interface {: #interact-with-the-solidity-interface }
 
@@ -112,12 +112,12 @@ You can submit a proposal via the [democracy precompile](https://github.com/Pure
 On the next screen, take the following steps:
 
  1. Press the triangle icon to reveal the encoded proposal in bytes
- 2. Copy the encoded proposal - you'll need this when calling the **note_preimage** function in a later step
+ 2. Copy the encoded proposal - you'll need this when calling the **notePreimage** function in a later step
 
 ![Get the encoded proposal](/images/builders/pallets-precompiles/precompiles/democracy/democracy-5.png)
 
 !!! note
-     You should NOT sign and submit the transaction here. You will submit this information via the **note_preimage** function in a later step.  
+     You should NOT sign and submit the transaction here. You will submit this information via the **notePreimage** function in a later step.  
 
 Next you can call the `propose` function of the Solidity interface by taking the following steps:
 
@@ -129,10 +129,10 @@ Next you can call the `propose` function of the Solidity interface by taking the
 
 ![Call the propose function](/images/builders/pallets-precompiles/precompiles/democracy/democracy-6.png)
 
-Now you can take the encoded proposal that you got from [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/democracy){target=_blank} and submit it via the `note_preimage` function of the democracy precompile. Despite its name, the preimage is not required to be submitted before the proposal. However, submitting the preimage is required before a proposal can be enacted. To submit the preimage via the `note_preimage` function, take the following steps:
+Now you can take the encoded proposal that you got from [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/democracy){target=_blank} and submit it via the `notePreimage` function of the democracy precompile. Despite its name, the preimage is not required to be submitted before the proposal. However, submitting the preimage is required before a proposal can be enacted. To submit the preimage via the `notePreimage` function, take the following steps:
 
 1. Expand the democracy precompile contract to see the available functions 
-2. Find the **note_preimage** function and press the button to expand the section
+2. Find the **notePreimage** function and press the button to expand the section
 3. Copy the encoded proposal that you noted in the prior section. Note, the encoded proposal is not the same as the preimage hash. Ensure you are are entering the correct value into this field
 4. Press **transact** and confirm the transaction in MetaMask
 
@@ -185,7 +185,7 @@ First, you'll need to get the index of the referendum you wish to vote on. Remem
 Now, you're ready to return to Remix to vote on the referendum via the democracy precompile. To do so, take the following steps:
 
 1. Expand the democracy precompile contract to see the available functions if it is not already open
-2. Find the **standard_vote** function and press the button to expand the section
+2. Find the **standardVote** function and press the button to expand the section
 3. Enter the index of the referendum to vote on
 4. Leave the field empty for **nay** or input `1` for **aye**. In the context of a referendum, nay is a vote to keep the status quo unchanged. Aye is a vote to enact the action proposed by the referendum
 5. Enter the number of tokens to lock in Wei. Avoid entering your full balance here because you need to pay for transaction fees
