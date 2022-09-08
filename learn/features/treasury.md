@@ -29,7 +29,7 @@ Some important terminology to understand in regards to treasuries:
 === "Moonbeam"
     |             Variable             |                                                            Value                                                            |
     |:--------------------------------:|:---------------------------------------------------------------------------------------------------------------------------:|
-    | Maximum treasury council members |                                {{ networks.moonbeam.treasury.council.max_members }} members                                 |
+    | Maximum treasury council members |                                {{ networks.moonbeam.treasury.council_max_members }} members                                 |
     |          Proposal bond           |                            {{ networks.moonbeam.treasury.proposal_bond }}% of the proposed spend                            |
     |      Proposal bond minimum       |                                   {{ networks.moonbeam.treasury.proposal_bond_min }} GLMR                                   |
     |      Proposal bond maximum       |                                     {{ networks.moonbeam.treasury.proposal_bond_max }}                                      |
@@ -41,7 +41,7 @@ Some important terminology to understand in regards to treasuries:
 === "Moonriver"
     |             Variable             |                                                             Value                                                             |
     |:--------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------:|
-    | Maximum treasury council members |                                 {{ networks.moonriver.treasury.council.max_members }} members                                 |
+    | Maximum treasury council members |                                 {{ networks.moonriver.treasury.council_max_members }} members                                 |
     |          Proposal bond           |                            {{ networks.moonriver.treasury.proposal_bond }}% of the proposed spend                             |
     |      Proposal bond minimum       |                                   {{ networks.moonriver.treasury.proposal_bond_min }} MOVR                                    |
     |      Proposal bond maximum       |                                      {{ networks.moonriver.treasury.proposal_bond_max }}                                      |
@@ -53,7 +53,7 @@ Some important terminology to understand in regards to treasuries:
 === "Moonbase Alpha"
     |             Variable             |                                                            Value                                                            |
     |:--------------------------------:|:---------------------------------------------------------------------------------------------------------------------------:|
-    | Maximum treasury council members |                                {{ networks.moonbase.treasury.council.max_members }} members                                 |
+    | Maximum treasury council members |                                {{ networks.moonbase.treasury.council_max_members }} members                                 |
     |          Proposal bond           |                            {{ networks.moonbase.treasury.proposal_bond }}% of the proposed spend                            |
     |      Proposal bond minimum       |                                   {{ networks.moonbase.treasury.proposal_bond_min }} DEV                                    |
     |      Proposal bond maximum       |                                     {{ networks.moonbase.treasury.proposal_bond_max }}                                      |
