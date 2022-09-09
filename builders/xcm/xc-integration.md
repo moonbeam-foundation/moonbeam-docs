@@ -49,7 +49,7 @@ The process to create a HRMP channel with Moonriver and Moonbeam is mostly the s
 
 1. Provide asset details of your parachain's asset so it can be registered on Moonriver/Moonbeam
 2. Create a proposal to open an HRMP channel to Moonriver/Moonbeam. Optionally, you can create a batched proposal to register MOVR/GLMR or register it any time
-3. Once the proposal in step 1 gets enacted, a batched proposal will be done by Moonbeam to:
+3. Once the proposal in step 2 gets enacted, a batched proposal will be done by Moonbeam to:
     1. Accept the incoming HRMP channel
     2. Propose an outgoing HRMP channel from Moonriver/Moonbeam
     3. Register the asset as an [XC-20 token](/builders/xcm/xc20/overview){target=_blank}
