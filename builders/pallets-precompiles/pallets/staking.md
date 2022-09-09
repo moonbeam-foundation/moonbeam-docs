@@ -58,21 +58,21 @@ The parachain staking pallet provides the following extrinsics (functions):
 - **cancelCandidateBondLess**()- cancels a pending scheduled request to decrease a candidate's self bond amount
 - **cancelDelegationRequest**(candidate) -  cancels any pending delegation requests provided the address of a candidate
 - **cancelLeaveCandidates**(candidateCount) -  cancels a candidate's pending scheduled request to leave the candidate pool given the current number of candidates in the pool
-- **cancelLeaveDelegators**() - cancels a pending scheduled request to leave the set of delegators
+- **cancelLeaveDelegators**() - *deprecated as of runtime 1800* - cancels a pending scheduled request to leave the set of delegators. Use the [batch utility](/builders/pallets-precompiles/pallets/utility/#using-the-batch-extrinsics){target=_blank} with `cancelDelegationRequest` for all delegations instead
 - **candidateBondMore**(more) - request to increase a candidate's self bond by a specified amount
 - **delegate**(candidate, amount, candidateDelegationCount, delegationCount) -  request to add a delegation to a specific candidate for a given amount. If the caller is not a delegator, this function adds them to the set of delegators. If the caller is already a delegator, then it adjusts their delegation amount
 - **delegatorBondMore**(candidate, more) - request to increase a delegator's amount delegated for a specific candidate
 - **executeCandidateBondLess**(candidate) - executes any scheduled due requests to decrease a candidate's self bond amount
 - **executeDelegationRequest**(delegator, candidate) - executes any scheduled due delegation requests for a specific delegator provided the address of the candidate
 - **executeLeaveCandidates**(candidate, candidateDelegationCount) -  executes any scheduled due requests to leave the set of collator candidates
-- **executeLeaveDelegators**(delegator, delegationCount) - executes a scheduled due request to leave the set of delegators and revoke all delegations
+- **executeLeaveDelegators**(delegator, delegationCount) - *deprecated as of runtime 1800* -  executes a scheduled due request to leave the set of delegators and revoke all delegations. Use the [batch utility](/builders/pallets-precompiles/pallets/utility/#using-the-batch-extrinsics){target=_blank} with `executeDelegationRequest` for all delegations instead
 - **goOffline**() - allows a collator candidate to temporarily leave the pool of candidates without unbonding
 - **goOnline**() - allows a collator candidate to rejoin the pool of candidates after previously calling `goOffline()`
 - **joinCandidates**(bond, candidateCount) - request to join the set of collator candidates with a specified bond amount and provided the current candidate count
 - **scheduleCandidateBondLess**(less) - schedules a request to decrease a candidate's self bond by a specified amount. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeCandidateBondLess` extrinsic.
 - **scheduleDelegatorBondLess**(candidate, less) - schedules a request for a delegator to bond less with respect to a specific candidate. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeDelegationRequest` extrinsic
 - **scheduleLeaveCandidates**(candidateCount) - schedules a request for a candidate to remove themselves from the candidate pool. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeLeaveCandidates` extrinsic
-- **scheduleLeaveDelegators**() - schedules a request to leave the set of delegators and revoke all ongoing delegations. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeLeaveDelegators` extrinsic
+- **scheduleLeaveDelegators**() - *deprecated as of runtime 1800* - schedules a request to leave the set of delegators and revoke all ongoing delegations. Use the [batch utility](/builders/pallets-precompiles/pallets/utility/#using-the-batch-extrinsics){target=_blank} with `scheduleRevokeDelegation` for all delegations instead
 - **scheduleRevokeDelegation**(collator) - schedules a request to revoke a delegation given the address of a candidate. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeDelegationRequest` extrinsic
 - **setBlocksPerRound**(new) - sets the blocks per round. If the `new` value is less than the length of the current round, the next block will transition immediately
 - **setCollatorCommission**(new) - sets the commission to a `new` value for all collators
@@ -91,14 +91,14 @@ The parachain staking pallet includes the following read-only storage methods to
 - **bottomDelegations**(AccountId20) - returns at the most the bottom 50 delegations for all candidates or for a given candidate's address
 - **candidateInfo**(AccountId20) - returns candidate information such as the candidate's bond, delegation count, and more for all candidates or for a given candidate's address
 - **candidatePool**() - returns a list of each of the candidates in the pool and their total backing stake
-- **candidateState**(AccountId20) - *deprecated* - use `candidateInfo` instead
+- **candidateState**(AccountId20) - *deprecated as of runtime 1200* - use `candidateInfo` instead
 - **collatorCommission**() - returns the commission percent taken off of rewards for all collators
-- **collatorState2**(AccountId20) - *deprecated* - use `candidateInfo` instead
+- **collatorState2**(AccountId20) - *deprecated as of runtime 1001* - use `candidateInfo` instead
 - **delayedPayouts**(u32) - returns the delayed payouts for all rounds or for a given round
 - **delegationScheduledRequests**(AccountId20) - returns the outstanding scheduled delegation requests for all collators or for a given collator's address
 - **delegatorState**(AccountId20) - returns delegator information such as their delegations, delegation status, and total delegation amount for all delegators or for a given delegator's address
 - **inflationConfig**() - returns the inflation configuration
-- **nominatorState2**(AccountId20) - *deprecated* - use `delegatorState` instead
+- **nominatorState2**(AccountId20) - *deprecated as of runtime 1001* - use `delegatorState` instead
 - **palletVersion**() - returns the current pallet version
 - **parachainBondInfo**() - returns the parachain bond reserve account and the percentage of annual inflation
 - **points**(u32) - returns the total points awarded to collators for block production in all rounds or for a given round
