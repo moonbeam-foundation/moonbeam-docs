@@ -74,7 +74,7 @@ Each orbiter will be active for a certain number of rounds before the next orbit
 
 === "Moonbeam"
     ```
-    {{ networks.moonbeam.orbiter.active.rounds }} (~{{ networks.moonbeam.orbiter.active.hours }} hours)
+    {{ networks.moonbeam.orbiter.active.rounds }} round (~{{ networks.moonbeam.orbiter.active.hours }} hours)
     ```
 
 === "Moonriver"
