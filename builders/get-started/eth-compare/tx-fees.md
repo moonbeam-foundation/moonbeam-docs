@@ -83,7 +83,22 @@ To calculate the fee incurred on a Moonbeam transaction sent via the Ethereum AP
     Transaction Fee = Gas Price * Transaction Weight / {{ networks.moonbase.tx_weight_to_gas_ratio }}
     ```
 
-The values of `Gas Price` and `Max Priority Fee Per Gas` for the applicable transaction types can be read from the block JSON object according to the data structure described in [the Sidecar API page](/builders/build/substrate-api/sidecar/#evm-fields-mapping-in-block-json-object){target=_blank}. 
+The values of `Gas Price` and `Max Priority Fee Per Gas` for the applicable transaction types can be read from the block JSON object according to the structure described in [the Sidecar API page](/builders/build/substrate-api/sidecar/#evm-fields-mapping-in-block-json-object){target=_blank}, also truncated and reproduced below: 
+
+=== "EIP1559"
+    |        EVM Field         |                               Block JSON Field                                |
+    |:------------------------:|:-----------------------------------------------------------------------------:|
+    | Max priority fee per gas | `extrinsics.{extrinsic number}.args.transaction.eip1559.maxPriorityFeePerGas` |
+
+=== "Legacy"
+    |      EVM Field       |                         Block JSON Field                          |
+    |:--------------------:|:-----------------------------------------------------------------:|
+    |      Gas price       | `extrinsics.{extrinsic number}.args.transaction.legacy.gasPrice`  |
+
+=== "EIP2930"
+    |      EVM Field       |                            Block JSON Field                             |
+    |:--------------------:|:-----------------------------------------------------------------------:|
+    |      Gas price       |    `extrinsics.{extrinsic number}.args.transaction.eip2930.gasPrice`    |
 
 The `Base Fee`, introduced in [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank}, is a value set by the network itself. The `Base Fee` for `EIP1559` type transactions is currently static on Moonbeam networks and has the following assigned value:
 
@@ -103,13 +118,11 @@ The `Base Fee`, introduced in [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559
     | Base fee | 1 Gwei |
 
 `Transaction Weight` is a Substrate mechanism used to manage the time it takes to validate a block. For all transactions types, `Transaction Weight` can be retrieved under the event of the relevant extrinsic where the `method` field is set to: 
-
 ```
 pallet: "system", method: "ExtrinsicSuccess" 
 ```
 
 And then `Transaction Weight` is mapped to the following field of the block JSON object:
-
 ```
 extrinsics.{extrinsic number}.events.{event number}.data.0.weight
 ```
