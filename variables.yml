@@ -595,7 +595,7 @@ networks:
       active:
         rounds: 1
         hours: 6
-      bond: 30,000
+      bond: 30000
     multisig:
       api_page: https://transaction.multisig.moonbeam.network/
   relay_chain:
