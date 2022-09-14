@@ -1,6 +1,6 @@
 ---
 title: Gelato Ops and Relay SDK
-description: Use Gelato to automate your smart contract interactions and outsource your Moonbeam and Moonriver dev ops needs to the most reliable multi-chain bot network. 
+description: Use Gelato to automate your smart contract interactions and outsource your Moonbeam and Moonriver dev ops needs to the most reliable multi-chain bot network.
 ---
 
 # Getting Started with Gelato
@@ -9,7 +9,7 @@ description: Use Gelato to automate your smart contract interactions and outsour
 
 ## Introduction {: #introduction }
 
-[Gelato Network](https://www.gelato.network/){target=_blank} is a decentralized automation network for Web3, enabling developers to automate & relay arbitrary smart contract executions on and across EVM-based compatible blockchains. The network relies on a broad set of transaction relayers called [executors](https://docs.gelato.network/introduction/executor-operators){target=_blank} that are rewarded for the infrastructure and automation services they provide. Gelato is designed to be a more robust, decentralized, and cost-efficient alternative to running your own bot infrastructure.
+[Gelato Network](https://www.gelato.network/){target=\_blank} is a decentralized automation network for Web3, enabling developers to automate & relay arbitrary smart contract executions on and across EVM-based compatible blockchains. The network relies on a broad set of transaction relayers called [executors](https://docs.gelato.network/introduction/executor-operators){target=\_blank} that are rewarded for the infrastructure and automation services they provide. Gelato is designed to be a more robust, decentralized, and cost-efficient alternative to running your own bot infrastructure.
 
 Gelato is live on both Moonbeam and Moonriver, enabling developers and end-users to automate smart contract interactions with Gelato Ops and the Gelato Relay SDK. First, this guide will demonstrate a step-by-step tutorial to automating a smart contract interaction with Gelato Ops. Next, you'll interact with the Gelato Relay SDK via a hands-on demo.
 
@@ -17,13 +17,13 @@ Gelato is live on both Moonbeam and Moonriver, enabling developers and end-users
 
 ## Gelato Ops {: #gelato-ops }
 
-[Gelato Ops](https://app.gelato.network/){target=_blank} is a front-end for interacting with the Gelato network and managing your transaction automation. There's no sign up or registration step - your account is tied directly to your wallet. In this guide, you'll deploy a signature Gelato ice cream NFT that can be licked via a function call. Then, you'll automate the lick function according to specific parameters.
+[Gelato Ops](https://app.gelato.network/){target=\_blank} is a front-end for interacting with the Gelato network and managing your transaction automation. There's no sign up or registration step - your account is tied directly to your wallet. In this guide, you'll deploy a signature Gelato ice cream NFT that can be licked via a function call. Then, you'll automate the lick function according to specific parameters.
 
 ![Gelato Ops 1](/images/builders/integrations/relayers/gelato/gelato-1.png)
 
 ### Create an Automated Task {: #creating-an-automated-task }
 
-To get started with this guide, you'll need to have some GLMR or MOVR in your free balance. Then, head to [Gelato Ops](https://app.gelato.network/tutorial){target=_blank} and ensure that you have selected the Moonbeam or Moonriver network in your wallet and connected it to Gelato. To kick off the tutorial, press **Start Tutorial**, then press **Mint NFT** and confirm the transaction in MetaMask. 
+To get started with this guide, you'll need to have some GLMR or MOVR in your free balance. Then, head to [Gelato Ops](https://app.gelato.network/tutorial){target=\_blank} and ensure that you have selected the Moonbeam or Moonriver network in your wallet and connected it to Gelato. To kick off the tutorial, press **Start Tutorial**, then press **Mint NFT** and confirm the transaction in MetaMask.
 
 Then, take the following steps:
 
@@ -36,23 +36,23 @@ Then, take the following steps:
 7. Next, choose how you'd like your automation scheduled. You can choose from a time-based schedule or Gelato can automatically execute the function whenever possible
 8. Select **Gelato Balance** to use your deposited funds to pay for the gas of the automated transactions
 9. Enter a task name
-10. Press **Create Task** and confirm the transaction in MetaMask. Then, sign the next pop-up in MetaMask to confirm your task name    
+10. Press **Create Task** and confirm the transaction in MetaMask. Then, sign the next pop-up in MetaMask to confirm your task name
 
 ![Gelato Ops 2](/images/builders/integrations/relayers/gelato/gelato-2.png)
 
-And that's it! You've successfully set up your first recurring smart contract interaction with Gelato. Your automated smart contract interactions will continue according to the set schedule until the remaining funds for gas are drained or the automation is paused on Gelato Ops. This example was a simple demo, but you can automate much more complex interactions and build increasingly sophisticated logic into your automated tasks. Be sure to check out [docs.gelato.network](https://docs.gelato.network/developer-products/gelato-ops-smart-contract-automation-hub){target=_blank} for more information.
+And that's it! You've successfully set up your first recurring smart contract interaction with Gelato. Your automated smart contract interactions will continue according to the set schedule until the remaining funds for gas are drained or the automation is paused on Gelato Ops. This example was a simple demo, but you can automate much more complex interactions and build increasingly sophisticated logic into your automated tasks. Be sure to check out [docs.gelato.network](https://docs.gelato.network/developer-products/gelato-ops-smart-contract-automation-hub){target=\_blank} for more information.
 
 ### Manage your Automated Tasks {: #managing-your-automated-tasks }
 
-On [app.gelato.network](https://app.gelato.network/){target=_blank}, you'll see all of your automations and their associated statuses. You can click on an automation to see more details about the task and its execution history. Here you can also make any changes to the automated task, including pausing or resuming the task. To pause a task, press **Pause** in the upper right corner and confirm the transaction in your wallet. You can resume the automation at any time by pressing **Restart** and confirming the transaction in your wallet.
+On [app.gelato.network](https://app.gelato.network/){target=\_blank}, you'll see all of your automations and their associated statuses. You can click on an automation to see more details about the task and its execution history. Here you can also make any changes to the automated task, including pausing or resuming the task. To pause a task, press **Pause** in the upper right corner and confirm the transaction in your wallet. You can resume the automation at any time by pressing **Restart** and confirming the transaction in your wallet.
 
-At the bottom of the page, you can see your task's execution history including the transaction status and the gas cost. You can click on the **Task Logs** tab to see a detailed debugging level history of your automated tasks, which may be especially helpful in the event a transaction failed or did not execute.  
+At the bottom of the page, you can see your task's execution history including the transaction status and the gas cost. You can click on the **Task Logs** tab to see a detailed debugging level history of your automated tasks, which may be especially helpful in the event a transaction failed or did not execute.
 
 ![Gelato Ops 3](/images/builders/integrations/relayers/gelato/gelato-3.png)
 
 ### Manage your Gas Funds {: #managing-your-gas-funds }
 
-To manage your gas funds on [app.gelato.network](https://app.gelato.network/){target=_blank}, click on the **Funds** box in the upper left corner. Here, you can top up your balance of gas funds or withdraw them. You can also register be notified with low balance alerts. 
+To manage your gas funds on [app.gelato.network](https://app.gelato.network/){target=\_blank}, click on the **Funds** box in the upper left corner. Here, you can top up your balance of gas funds or withdraw them. You can also register be notified with low balance alerts.
 
 To deposit funds for gas, take the following steps:
 
@@ -60,254 +60,239 @@ To deposit funds for gas, take the following steps:
 2. Enter the amount of funds you'd like to deposit
 3. Click **Deposit** and confirm the transaction in your wallet
 
-You can follow a similar set of steps to withdraw your gas funds from Gelato. 
+You can follow a similar set of steps to withdraw your gas funds from Gelato.
 
 ![Gelato Ops 4](/images/builders/integrations/relayers/gelato/gelato-4.png)
 
 ## Gelato Relay SDK {: #gelato-relay-sdk }
 
-[Gelato Relay SDK](https://docs.gelato.network/developer-products/gelato-relay-sdk){target=_blank} is a collection of functions that enable you to interact with the Gelato Relay API. Per Gelato Docs, *Gelato Relay API is a service that allows users and developers to get transactions mined fast, reliably and securely, without having to deal with the low-level complexities of blockchains.* A key feature of this offering is the ability to provide users with gasless transactions. 
+[Gelato Relay SDK](https://docs.gelato.network/developer-products/gelato-relay-sdk){target=\_blank} offers a convenient suite of functions in order to interact with Gelato Relay. Gelato Relay is a service that allows users and developers to get transactions validated fast, reliably and securely, without having to deal with the low-level complexities of blockchains.
 
-### Send a Gasless Transaction with Gelato Relay SDK {: #send-a-gasless-transaction-with-gelato-relay-sdk }
+![Gelato Relay SDK Overview](/images/builders/integrations/relayers/gelato/gelato-5.png)
 
-Gasless transactions, also referred to as meta transactions, allow end-users to interact with smart contracts without paying for gas. Instead of confirming a transaction in a wallet, a user signs a message that enables a transaction to take place once a relayer submits the transaction and pays the associated gas fee. [EIP-2771](https://eips.ethereum.org/EIPS/eip-2771){target=_blank} is a common standard that enables meta transactions, and is implemented by the [`HelloWorld.sol` contract](https://moonscan.io/address/0x3456E168d2D7271847808463D6D383D079Bd5Eaa#code){target=_blank} referenced later in the tutorial.   
+As requests are submitted to Gelato Relay, a network of decentralised Gelato Executors will execute and get the transactions validated as soon as possible. EIP-712 signatures enforce the integrity of data, while gas fee payments can be handled in any of our supported payment methods. In this way, developers can rely on Gelato's battle-tested blockchain infrastructure improving the UX, costs, security and liveness of their Web3 systems.​
 
-In this demo, you'll ask Gelato Relay SDK to call a `HelloWorld.sol` contract on your behalf. The script being built is sourced from the [quick start guide](https://docs.gelato.network/developer-products/gelato-relay-sdk/quick-start){target=_blank} on Gelato Docs. Note, there is no dependency on RPC providers - once the transaction and signature are built, you simply pass them along to the Gelato Relay API. 
+### Gasless transactions with Gelato Relay SDK {: #gasless-transactions-with-gelato-relay-sdk }
 
-### Get Started {: #getting-started }
+Gasless transactions (AKA [meta-transactions](https://docs.gelato.network/developer-products/gelato-relay-sdk/prerequisites#what-is-a-meta-transaction)) allow users to interact with their target smart contracts without requiring to have a native token balance, or even interact directly with the chain at all!
 
-Gelato Relay SDK is an [NPM package](https://www.npmjs.com/package/@gelatonetwork/gelato-relay-sdk){target=_blank} that can be installed locally in the current directory with the following command:
+Instead of confirming a transaction in a wallet, a user can pay Gelato during the call forward using their own smart contract logic (or use Gelato's [premade logic](https://docs.gelato.network/developer-products/gelato-relay-sdk/prerequisites#gelatos-relay-context) for easy integration). Otherwise, if they would like, they can sign a message using their wallet and send this signature using Gelato Relay SDK's [user authentication](https://docs.gelato.network/developer-products/gelato-relay-sdk/sdk-methods/relaywithsponsoreduserauthcall). Gelato's decentralised network of executors will then relay the message on-chain on the user's behalf.
 
-```
-npm install @gelatonetwork/gelato-relay-sdk
-```
+### How does Gelato Relay enable gasless transactions? {: #gelato-enabled-gasless }
 
-You'll also want to install the Ethers.js library with the following command:
+Gelato allows the user to send a transaction without a native token balance. We also give the option of utilising the excellent security of a user signature, but for the transaction to be sent by a different EOA, one controlled by a relayer. This is a very import context shift to understand. We have shifted from a user signing and sending a transaction themselves, to a user signing a standardised message and passing that on to a relayer. This relayer will, first, verify the user's signature for security, and then pass their message along on-chain. Gelato Relay does exactly this by taking a user's message off-chain and subsequently building a [meta-transaction](https://docs.gelato.network/developer-products/gelato-relay-sdk/prerequisites#what-is-a-meta-transaction) which is executed on chain.
 
-```
-npm install ethers
-```
+Gasless transactions are _not_ actually gasless. Of course, the blockchain primitive of gas is here to stay and rightly so for sake of the underlying network's security. What Gelato Relay does is abstract the _payment_ of gas away from the end-user. Someone still pays for the gas, but now it can be done using the [payment methods](https://docs.gelato.network/developer-products/gelato-relay-sdk/payment) that Gelato Relay supports, which offer superior features and convenience over on-ramps from fiat and KYC.
 
-Next, you'll need to create a javascript file for your script. You can create a `hello-world.js` file by running:
+### Why use Gelato Relay as a developer? {: #why-gelato-relay }
 
-```
-touch hello-world.js
-```
+Using Gelato Relay, we relay your user's transactions on-chain (with optional [ERC-2771](https://docs.gelato.network/developer-products/gelato-relay-sdk/prerequisites#erc-2771) support), enabling secure gasless transactions for an ultra smooth UX for your dApp. This allows for a variety of new web3 experiences, as the user can now pay by only signing a message, or their transaction costs can be sponsored by the dApp developer. As long as the gas costs are covered in one of the multiple [payment methods](https://docs.gelato.network/developer-products/gelato-relay-sdk/payment) that Gelato supports, we handle the rest reliably, quickly and securely.
 
-Now you're ready to build. First, you need to import the Gelato Relay SDK and EthersJS:
+### Installation {: #installation }
+
+#### Gelato Relay SDK
+
+Gelato Relay SDK is an [NPM package](https://www.npmjs.com/package/@gelatonetwork/relay-sdk){target=\_blank} that can be installed locally with the following command:
 
 ```
-  import { Wallet, utils } from "ethers";
-  import { GelatoRelaySDK } from "@gelatonetwork/gelato-relay-sdk";
+npm install @gelatonetwork/relay-sdk
 ```
 
-Then, create a function to contain the logic of the script:
+or
 
 ```
-const forwardRequestExample = async () => {
-
-}
+yarn add @gelatonetwork/relay-sdk
 ```
 
-Within the `forwardRequestExample` function, define the chain ID and the [`HelloWorld.sol` contract](https://moonscan.io/address/0x3456E168d2D7271847808463D6D383D079Bd5Eaa#code){target=_blank} that you want to interact with.
+#### Gelato Relay Context
+
+`GelatoRelayContext` is an [NPM package](https://www.npmjs.com/package/@gelatonetwork/relay-context){target=\_blank} which can be installed locally:
 
 ```
-  const chainId = {{ networks.moonbeam.chain_id }};
-  // `HelloWorld.sol` contract on Moonbeam
-  const target = "0x3456E168d2D7271847808463D6D383D079Bd5Eaa";
+npm install --save-dev @gelatonetwork/relay-context
 ```
 
-The [`HelloWorld.sol` contract](https://moonscan.io/address/0x3456E168d2D7271847808463D6D383D079Bd5Eaa#code){target=_blank}, reproduced below, is configured to have gasless transaction support.
+or
+
+```
+yarn add -DE @gelatonetwork/relay-context
+```
+
+If you would like your target contract to pay Gelato directly during the relay call forward, you can utilise your own logic (please make sure you have replay and re-entrancy protection and [whitelist GelatoRelay](https://docs.gelato.network/developer-products/gelato-relay-sdk/sdk-methods) for your target function) *or* you can inherit our ready-made `GelatoRelayContext` in your target contract. `GelatoRelayContext` is an extremely simple way to create a Gelato Relay compatible smart contract, with just one import. See more information [here](https://docs.gelato.network/developer-products/gelato-relay-sdk/prerequisites#gelatos-relay-context).
+
+
+### Smart Contract Example
+
+*Please find all Gelato Relay code examples with tests and documentation [here](https://github.com/gelatodigital/relay-docs-examples).*
+
+The [`myDummyWallet` contract](https://moonbeam.moonscan.io/address/0xA045eb75e78f4988d42c3cd201365bDD5D76D406) gives a simple example of using Gelato Relay with the [`SyncFee`](https://docs.gelato.network/developer-products/gelato-relay-sdk/payment#syncfee) payment method.
+
+Specifically, the target smart contract is `myDummyWallet` which has two functions: `sendToFriend` and `balanceOf`. These are the target functions that we can ask Gelato Relay to call on our behalf.
 
 ```
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.13;
+pragma solidity 0.8.16;
 
-import {ERC2771Context} from "@openzeppelin/contracts/metatx/ERC2771Context.sol";
+import {
+    GelatoRelayContext
+} from "@gelatonetwork/relay-context/contracts/GelatoRelayContext.sol";
 
-/// @title HelloWorld with meta transaction support (EIP-2771)
-contract HelloWorld is ERC2771Context {
-    event Success(
-        address indexed user,
-        address indexed feeToken,
-        string message
-    );
+import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {
+    SafeERC20
+} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 
-    constructor(address _gelatoMetaBox) ERC2771Context(_gelatoMetaBox) {}
+// Importing GelatoRelayContext gives access to:
+// 1. onlyGelatoRelayModifier
+// 2. payment methods, i.e. _transferRelayFee
+// 3. _getFeeCollector(), _getFeeToken(), _getFee()
+contract MyDummyWallet is GelatoRelayContext {
+    // emitting an event for testing purposes
+    event LogSendToFriend(address indexed to, uint256 amount);
+    event LogBalance(uint256 indexed balance);
 
-    function sayHiVanilla(address _feeToken) external {
-        string memory message = "Hello World";
+    // this function uses this contract's token balance to send
+    // an _amount of tokens to the _to address
+    function sendToFriend(
+        address _token,
+        address _to,
+        uint256 _amount
+    ) external onlyGelatoRelay {
+        // Payment to Gelato
+        // NOTE: be very careful here!
+        // if you do not use the onlyGelatoRelay modifier,
+        // anyone could encode themselves as the fee collector
+        // in the low-level data and drain tokens from this contract.
+        _transferRelayFee();
 
-        emit Success(msg.sender, _feeToken, message);
+        // transfer of ERC-20 tokens
+        SafeERC20.safeTransfer(IERC20(_token), _to, _amount);
+
+        emit LogSendToFriend(_to, _amount);
     }
 
-    function sayHi(address _feeToken) external {
-        string memory message = "Hello World";
 
-        emit Success(_msgSender(), _feeToken, message);
+    // this functions emits the current balance of the wallet contract
+    // in an event that we can check on-chain.
+    function balanceOf() external onlyGelatoRelay {
+        // Payment to Gelato
+        // NOTE: be very careful here!
+        // if you do not use the onlyGelatoRelay modifier,
+        // anyone could encode themselves as the fee collector
+        // in the low-level data and drain tokens from this contract.
+        _transferRelayFee();
+
+        emit LogBalance(address(this).balance);
+
     }
 }
 ```
 
-Next, you'll create a new test account that will submit the gasless transaction. This account is insecure and should not be used in production. This example defines a `test_token` with a default value for demonstration purposes, but you can specify any token here that you'd like.
+`sendToFriend` takes as arguments the address of a friend, the token contract address, and the amount one would like to send. Notice that `sendToFriend` uses the `onlyGelatoRelay` modifier, inherited from `GelatoRelayContext`, which is very important! It means that only the Gelato Relay smart contract can call your function (`0xaBcC9b596420A9E9172FD5938620E265a0f9Df92` on all supported networks!) `_transferRelayFee()` is a function inherited from `GelatoRelayContext` which allows you to pay Gelato directly during the call forward.
+
+Similarly, `balanceOf` is a very simple function, which takes no arguments, and emits an event with the current balance of the wallet. Let's try calling `balanceOf` on the [`myDummyWallet` contract](https://moonbeam.moonscan.io/address/0xA045eb75e78f4988d42c3cd201365bDD5D76D406) using Gelato Relay SDK!
+
+### `balanceOf` Javascript Example
+
+*Please find all Gelato Relay code examples with tests and documentation [here](https://github.com/gelatodigital/relay-docs-examples).* 
+
+Below is a javascript code example `balanceOf.js`, which uses Gelato Relay SDK to call `balanceOf` on [`myDummyWallet`](https://moonbeam.moonscan.io/address/0xA045eb75e78f4988d42c3cd201365bDD5D76D406).
 
 ```
-  const test_token = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
-  // Create mock wallet
-  const wallet = Wallet.createRandom();
-  const sponsor = await wallet.getAddress();
-  console.log(`Mock PK: ${await wallet._signingKey().privateKey}`);
-  console.log(`Mock wallet address: ${sponsor}`);
-```
+import GelatoRelaySDK from "@gelatonetwork/relay-sdk";
+import { ethers } from "ethers";
 
-### Add Request Data {: #add-request-data }
+// target contract address
+const myDummyWallet = "0xA045eb75e78f4988d42c3cd201365bDD5D76D406";
 
-In this step you have to provide the ABI-encoded call data for the function you want to interact with. You can generate this by taking the following steps:
+const { data } = "0x722713f7"; // `balanceOf` function signature
+const feeToken = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"; // native token, GLMR
 
-1. Navigate to the **Write Contract** heading of the [`HelloWorld.sol` contract on Moonscan](https://moonscan.io/address/0x3456E168d2D7271847808463D6D383D079Bd5Eaa#writeContract){target=_blank} 
-2. Press  **Connect to Web3**. After you accept the terms and conditions, you can connect your wallet
-3. Head to the `sayHiVanilla` function and provide the following default value for the `_feeToken` parameter: `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE`
-4. Press **Write**
-5. Without confirming the transaction in MetaMask, click on the **Hex** tab
-6. Press **Copy Raw Transaction Data**
-
-The resulting ABI-encodeded call data should look like `0x4b327067000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeaeeeeeeeeeeeeeeeee`
-
-![Gelato Relay SDK](/images/builders/integrations/relayers/gelato/gelato-5.png)
-
-The ABI-encoded call data specifies the contract function to call as well as any relevant parameters, and can be fetched via MetaMask or Remix. More commonly, you might fetch the ABI-encoded call data programmatically via Ethers.js or Web3.js. There are some additional parameters defined in the following example, such as `paymentType`, `maxFee`, and `gas`. There are a variety of possible [payment types](https://docs.gelato.network/developer-products/gelato-relay-sdk/payment-types){target=_blank} you can choose from. For simplicity, replay protection has not been considered in this example. 
-
-```
-  // ABI encode for HelloWorld.sayHiVanilla(address _feeToken)
-  const data = `0x4b327067000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeaeeeeeeeeeeeeeeeee`;
-  const paymentType = 1;
-  // Maximum fee that sponsor is willing to pay worth of test_token
-  const maxFee = "1000000000000000000";
-  // Gas limit
-  const gas = "200000";
-  
-  // Smart contract nonces are not enforced to simplify the example.
-  // In reality, this decision depends whether or not target
-  // address already implements replay protection. (More info in the docs)
-  const sponsorNonce = 0;
-  const enforceSponsorNonce = false;
-  // Only relevant when enforceSponsorNonce = true
-  const enforceSponsorNonceOrdering = false;
-
-  // Build ForwardRequest object
-  const forwardRequest = GelatoRelaySDK.forwardRequest(
-    chainId,
-    target,
-    data,
-    test_token,
-    paymentType,
-    maxFee,
-    gas,
-    sponsorNonce,
-    enforceSponsorNonce,
-    sponsor
-  );
-
-```
-
-Lastly, the `forwardRequest` object is created with all of the relevant parameters defined in prior steps. In the final step, the `forwardRequest` object will be sent to the Gelato Relay API with the required signature.
-
-### Send Request Data {: #send-request-data }
-
-The last few steps include hashing the request object and signing the resulting hash. The ultimate step is to submit the request and the signature to the Gelato Relay API. You can copy and paste the below code after the `forwardRequest` object:
-
-```
-  // Get EIP-712 hash (aka digest) of forwardRequest
-  const digest = GelatoRelaySDK.getForwardRequestDigestToSign(forwardRequest);
-
-  // Sign digest using mock private key
-  const sponsorSignature = utils.BytesLike = utils.joinSignature(
-    await wallet._signingKey().signDigest(digest)
-  );
-
-  // Send forwardRequest and its sponsorSignature to Gelato Relay API
-  await GelatoRelaySDK.sendForwardRequest(forwardRequest, sponsorSignature);
-
-  console.log("ForwardRequest submitted!");
-```
-
-The [EIP-712 standard](https://eips.ethereum.org/EIPS/eip-712){target=_blank} provides important context to users about the action they're authorizing. Instead of signing a long, unrecognizable bytestring (which is dangerous and could be exploited by bad actors), [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=_blank} provides a framework for encoding and displaying the contents of the message in a readable manner, making it substantially safer for end-users. 
-
-To execute the script and dispatch the gasless transaction to Gelato Relay API, use the following command: 
-
-```
-node hello-world.js
-```
-
-You should see a message logged to the console that says `ForwardRequest submitted!` You can also verify your relayed transaction was successfully executed by checking the latest transactions of [this Gelato contract on Moonscan](https://moonscan.io/address/0x91f2a140ca47ddf438b9c583b7e71987525019bb){target=_blank}.
-
-### Complete Script {: #complete-script }
-
-The entire `hello-world.js` file should contain the following:
-
-```
-import { Wallet, utils } from "ethers";
-import { GelatoRelaySDK } from "@gelatonetwork/gelato-relay-sdk";
-
-const forwardRequestExample = async () => {
-
-  const chainId = {{ networks.moonbeam.chain_id }};
-  // `HelloWorld.sol` contract on Moonbeam
-  const target = "0x3456E168d2D7271847808463D6D383D079Bd5Eaa";
-  const test_token = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
-  
-  // Create mock wallet
-  const wallet = Wallet.createRandom();
-  const sponsor = await wallet.getAddress();
-  console.log(`Mock PK: ${await wallet._signingKey().privateKey}`);
-  console.log(`Mock wallet address: ${sponsor}`);
-  
-  // ABI encode for HelloWorld.sayHiVanilla(address _feeToken)
-  const data = `0x4b327067000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeaeeeeeeeeeeeeeeeee`;
-  const paymentType = 1;
-  // Maximum fee that sponsor is willing to pay worth of test_token
-  const maxFee = "1000000000000000000";
-  // Gas limit
-  const gas = "200000";
- 
-  // Smart contract nonces are not enforced to simplify the example.
-  // In reality, this decision depends whether or not target 
-  // address already implements replay protection. (More info in the docs)
-  const sponsorNonce = 0;
-  const enforceSponsorNonce = false;
-  // Only relevant when enforceSponsorNonce = true
-  const enforceSponsorNonceOrdering = false;
-
-  // Build ForwardRequest object
-  const forwardRequest = GelatoRelaySDK.forwardRequest(
-    chainId,
-    target,
-    data,
-    test_token,
-    paymentType,
-    maxFee,
-    gas,
-    sponsorNonce,
-    enforceSponsorNonce,
-    sponsor
-  );
-
-  // Get EIP-712 hash (aka digest) of forwardRequest
-  const digest = GelatoRelaySDK.getForwardRequestDigestToSign(forwardRequest);
-
-  // Sign digest using mock private key
-  const sponsorSignature = utils.BytesLike = utils.joinSignature(
-    await wallet._signingKey().signDigest(digest)
-  );
-
-  // Send forwardRequest and its sponsorSignature to Gelato Relay API
-  await GelatoRelaySDK.sendForwardRequest(forwardRequest, sponsorSignature);
-
-  console.log("ForwardRequest submitted!");
-
+// populate the relay SDK request body
+const request = {
+  chainId: 1284; // Moonbeam
+  target: myDummyWallet; // 0xA045eb75e78f4988d42c3cd201365bDD5D76D406
+  data: data; // payload to call
+  feeToken: feeToken;
 };
 
-forwardRequestExample();
+// send relayRequest to Gelato Relay API
+const relayResponse =
+  await GelatoRelaySDK.relayWithSyncFee(request);
 ```
+
+To run this script, run this terminal command in the same directory:
+
+```
+node balanceOf.js
+```
+
+Perfect! You have submitted your first Gelato Relay SDK transaction? How does it feel? Awesome, I bet. 
+
+Now, go ahead and check the 'Events' tab on the moonscan page [here](https://moonscan.io/address/0xA045eb75e78f4988d42c3cd201365bDD5D76D406#events). Once Gelato receives the request, it will go ahead and execute the required transaction on-chain which calls `balanceOf` and, in turn, you should see an event emitted with the current balance. 
+
+*Bear in mind, this only works if the `myDummyWallet` contract has a balance for the requested token.*
+
+
+### Complete Front-end Code Example {: #complete-script }
+
+`balanceOf` is a nice indicative example, but let's try a real world use-case: using Gelato Relay to initiate a gasless token transfer using `sendToFriend`! This code can be run in any javascript front-end using MetaMask as the browser wallet. MetaMask provides the RPC connection in order to generate the payload for the function call using [ethers.js](https://docs.ethers.io/v5/single-page/).
+
+Any token can be used here, so feel free to create your own ERC-20 for testing and give the `myDummyWallet` contract a balance, or send GLMR to the contract, and send it back to yourself using `sendToFriend`! 
+
+*Remember, if `myDummyWallet` holds no balance for the specified token, the relay request will not proceed!*
+
+```
+import GelatoRelaySDK from "@gelatonetwork/relay-sdk";
+import { ethers } from "ethers";
+
+// target contract address
+const myDummyWallet = "0xA045eb75e78f4988d42c3cd201365bDD5D76D406";
+
+// using a human-readable ABI for generating the payload
+const abi = ["function sendToFriend(address _token,
+                                    address _to,
+                                    uint256 _amount");
+                                    
+// sendToFriend arguments                                 
+const feeToken = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"; // native token!
+const vitalik = "0xd8da6bf26964af9d7eed9e03e53415d37aa96045";
+const amountToSend = ethers.utils.parseUnits("0.05");
+
+// connect to the blockchain via a front-end provider
+const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+// generate the target payload
+const signer = provider.getSigner();
+const contract = new ethers.Contract(counterAddress, abi, signer);
+const { data } = 
+    await contract.populateTransaction.sendToFriend(feeToken,
+                                                    vitalik,
+                                                    amountToSend);
+
+// populate the relay SDK request body
+const request = {
+  chainId: provider.network.chainId; // make sure you are connected to Moonbeam!
+  target: myDummyWallet;
+  data: data;
+  feeToken: feeToken;
+};
+  
+// send relayRequest to Gelato Relay API
+const relayResponse = 
+  await GelatoRelaySDK.relayWithSyncFee(request);
+```
+
+Well done, you are now ready to incorporate Gelato Relay in your dApp!
+
+*With Gelato Relay, the possibilities are endless, we are really looking forward to seeing what you build!*
+
+### What's next?
+
+Head over to the [Gelato Relay SDK](https://docs.gelato.network/developer-products/gelato-relay-sdk){target=\_blank} documentation to learn more about relaying, specific [ERC-2771](https://docs.gelato.network/developer-products/gelato-relay-sdk/prerequisites#erc-2771) and [EIP-712](https://docs.gelato.network/developer-products/gelato-relay-sdk/prerequisites#what-is-a-meta-transaction) support for secure meta-transactions, and about more advanced payment methods such as [Gelato 1Balance](https://docs.gelato.network/developer-products/gelato-relay-sdk/payment#1balance).
+
+If you want to see more code examples and explainers, head over to our example [github repo](https://github.com/gelatodigital/relay-docs-examples) for more information!
+
+Finally, please feel free to join our [discord](https://discord.com/invite/ApbA39BKyJ) to chat, ask for support, and to learn about Gelato's ecosystem!
 
 --8<-- 'text/disclaimers/third-party-content.md'
