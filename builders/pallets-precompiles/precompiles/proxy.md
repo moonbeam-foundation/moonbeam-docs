@@ -10,59 +10,41 @@ keywords: solidity, ethereum, proxy, moonbeam, precompiled, contracts, substrate
 
 ## Introduction {: #introduction } 
 
-As a Polkadot parachain and decentralized network, Moonbeam features native on-chain governance that enables stakeholders to participate in the direction of the network. To learn more about governance, such as an overview of related terminology, principles, mechanics, and more, please refer to the [Governance on Moonbeam](/learn/features/governance){target=_blank} page. 
+The proxy precompile on Moonbeam allows accounts to set proxy accounts that can perform specific limited actions on their behalf, such as governance, staking, or balance transfers.
 
-The on-chain governance system is made possible thanks to the [Substrate democracy pallet](/builders/pallets-precompiles/pallets/democracy){target=_blank}. The democracy pallet is coded in Rust and it is part of a pallet that is normally not accessible from the Ethereum side of Moonbeam. However, the democracy precompile allows you to access the governance functions of the Substrate democracy pallet directly from a Solidity interface. Additionally, this enables a vastly improved end-user experience. For example, token-holders can vote on referenda directly from MetaMask, rather than importing an account in Polkadot.js Apps and navigating a complex UI. 
+If a user wanted to provide a second user access to a limited number of actions on their behalf, traditionally the only method to do so would be by providing the first account's private key to the second. However, Moonbeam has included the [Substrate proxy pallet](https://wiki.polkadot.network/docs/learn-proxies){target=_blank}, which enables proxy accounts. Proxy accounts ought to be used due to the additional layer of security that they provide, where many accounts can do actions for a main account. This is best if for example a user wanted to keep their wallet safe in cold storage but still wanted to access parts of the wallet's functionality like governance or staking.
 
 The proxy precompile is located at the following address:
-
-=== "Moonbeam"
-     ```
-     {{networks.moonbeam.precompiles.proxy}}
-     ```
-
-=== "Moonriver"
-     ```
-     {{networks.moonriver.precompiles.proxy}}
-     ```
 
 === "Moonbase Alpha"
      ```
      {{networks.moonbase.precompiles.proxy}}
      ```
 
-## The Democracy Solidity Interface {: #the-democracy-solidity-interface } 
+## The Proxy Solidity Interface {: #the-proxy-solidity-interface } 
 
-[`DemocracyInterface.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/pallet-democracy/DemocracyInterface.sol){target=_blank} is an interface through which Solidity contracts can interact with the democracy pallet. The beauty of the precompile is that you don’t have to learn the Substrate API — you can interact with staking functions using the Ethereum interface you're familiar with.
+[`Proxy.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/proxy/Proxy.sol){target=_blank} is an interface through which Solidity contracts can interact with the proxy pallet. You will not have to be familiar with the Substrate API, since you can interact with it using the Ethereum interface you're familiar with.
 
 The interface includes the following functions:
 
- - **publicPropCount**() — read-only function that returns the total number of public proposals past and present. Uses the [`publicPropCount`](/builders/pallets-precompiles/pallets/democracy/#:~:text=publicPropCount()){target=_blank} method of the democracy pallet
- - **depositOf**(*uint256* propIndex) — read-only function that returns the total number of tokens locked behind the proposal. Uses the [`depositOf`](/builders/pallets-precompiles/pallets/democracy/#:~:text=depositOf(u32)){target=_blank} method of the democracy pallet
- - **lowestUnbaked**() — read-only function that returns the referendum with the lowest index that is currently being voted on. For clarity, a baked referendum is one that has been closed (and if passed, scheduled for enactment). An unbaked referendum is therefore one in which voting is ongoing. Uses the [`lowestUnbaked`](/builders/pallets-precompiles/pallets/democracy/#:~:text=lowestUnbaked()){target=_blank} method of the democracy pallet
- - **propose**(*bytes32* proposalHash, *uint256* value) — submit a proposal by providing a hash and the number of tokens to lock. Uses the [`propose`](/builders/pallets-precompiles/pallets/democracy/#:~:text=propose(proposalHash, value)){target=_blank} method of the democracy pallet
- - **second**(*uint256* propIndex, *uint256* secondsUpperBound) — second a proposal by providing the proposal index and a number greater than or equal to the number of existing seconds for this proposal (necessary to calculate the weight of the call). An amount is not needed because seconds require the same amount the original proposer locked. Uses the [`second`](/builders/pallets-precompiles/pallets/democracy/#:~:text=second(proposal, secondsUpperBound)){target=_blank} method of the democracy pallet 
- - **standardVote**(*uint256* refIndex, *bool* aye, *uint256* voteAmount, *uint256* conviction) — vote in a referendum by providing the proposal index, the vote direction (`true` is a vote to enact the proposal, `false` is a vote to keep the status quo), the number of tokens to lock, and the conviction. Conviction is an integer from `0` to `6` where `0` is no lock time and `6` is the maximum lock time. Uses the [`vote`](/builders/pallets-precompiles/pallets/democracy/#:~:text=vote(refIndex, vote)){target=_blank} method of the democracy pallet 
- - **removeVote**(*uint256* refIndex) — this method is used to remove a vote for a referendum before clearing expired democracy locks. Note, this cannot be used to revoke or cancel a vote while a proposal is being voted on.  
- - **delegate**(*address* representative, *uint256* candidateCount, *uint256* amount) — delegate voting power to another account by specifying an account to whom the vote shall be delegated, a conviction factor which is used for all delegated votes, and the number of tokens to delegate. Uses the [`delegate`](/builders/pallets-precompiles/pallets/democracy/#:~:text=delegate(to, conviction, balance)){target=_blank} method of the democracy pallet 
- - **unDelegate**() — a method called by the delegator to undelegate voting power. Tokens are eligible to be unlocked once the conviction period specified by the original delegation has elapsed. Uses the [`undelegate`](/builders/pallets-precompiles/pallets/democracy/#:~:text=undelegate()){target=_blank} method of the democracy pallet 
- - **unlock**(*address* target) — unlock tokens that have an expired lock. You MUST call **removeVote** for each proposal with tokens locked you seek to unlock prior to calling **unlock**, otherwise tokens will remain locked. This function may be called by any account. Uses the [`unlock`](/builders/pallets-precompiles/pallets/democracy/#:~:text=unlock(target)){target=_blank} method of the democracy pallet 
- - **notePreimage**(*bytes* encodedProposal) — Registers a preimage for an upcoming proposal. This doesn't require the proposal to be in the dispatch queue but does require a deposit which is returned once enacted. Uses the [`notePreimage`](/builders/pallets-precompiles/pallets/democracy/#:~:text=notePreimage(encodedProposal)){target=_blank} method of the democracy pallet
- - **noteImminentPreimage**(*bytes* encodedProposal) — Register the preimage for an upcoming proposal. This requires the proposal to be in the dispatch queue. No deposit is needed. When this call is successful, i.e. the preimage has not been uploaded before and matches some imminent proposal, no fee is paid. Uses the [`noteImminentPreimage`](/builders/pallets-precompiles/pallets/democracy/#:~:text=noteImminentPreimage(encodedProposal)){target=_blank} method of the democracy pallet
-
-The interface also includes the following functions which are not currently supported but may be supported in the future:
-
-  - **ongoingReferendumInfo**(*uint256* refIndex) — read-only function that returns the details of the specified ongoing referendum in the form of a tuple that includes the following:
-    - Block in which the referendum ended (*uint256*)
-    - The proposal hash (*bytes32*)
-    - [The biasing mechanism](https://wiki.polkadot.network/docs/learn-governance#super-majority-approve){target=_blank} where 0 is SuperMajorityApprove, 1 is SuperMajorityAgainst, 2 is SimpleMajority (*uint256*)
-    - The enactment delay period (*uint256*)
-    - The total aye vote, including conviction (*uint256*)
-    - The total nay note, including conviction (*uint256*)
-    - The total turnout, not including conviction (*uint256*)
-
-  - **finishedReferendumInfo**(*uint256* refIndex) — read-only function that returns a boolean indicating whether a referendum passed and the block at which it finished
+ - **addProxy**(*address* delegate, *ProxyType* proxyType, *uint32* delay) — registers a proxy account for the sender after a specified number of delay blocks (generally zero)
+ - **removeProxy**(*address* delegate, *ProxyType* proxyType, *uint32* delay) — removes a registered proxy for the sender
+ - **removeProxies**() — removes all of the proxy accounts delegated to the sender
+ - **isProxy**(*address* real, *address* delegate, *ProxyType* proxyType, *uint32* delay) — returns a boolean, true if the delegate address is a proxy of type proxyType, for address real, with the specified delay
  
+## Proxy Types {: #proxy-types }
+
+There are multiple types of proxy roles that can be delegated to accounts, where are represented in `Proxy.sol` through the `ProxyType` enum. The following list includes all of the possible proxies and the type of transactions they can make on behalf of the delegator account:
+
+ - **Any** — the any proxy will allow the proxy account to make any type of transaction
+ - **NonTransfer** — the non-transfer proxy will allow the proxy account to make any type of transaction, except for balance transfers
+ - **Governance** - the governance proxy will allow the proxy account to make any type of governance related transaction (includes both democracy or council pallets)
+ - **Staking** - the staking proxy will allow the proxy account to make staking related transactions
+ - **CancelProxy** - the cancel proxy will allow the proxy account to reject and remove delayed proxy announcements (of the delegator account)
+ - **Balances** - the balances proxy will allow the proxy account to only make balance transfers
+ - **AuthorMapping** - ???
+ - **IdentityJudgement** - the identity judgement proxy will allow the proxy account to judge and certify the personal information associated with accounts on Polkadot
+
 ## Interact with the Solidity Interface {: #interact-with-the-solidity-interface }
 
 ### Checking Prerequisites {: #checking-prerequisites } 
