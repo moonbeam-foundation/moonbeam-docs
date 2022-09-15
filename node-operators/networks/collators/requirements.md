@@ -15,15 +15,22 @@ It is recommended to go through all of the necessary requirements on the Moonbas
 
 This guide will help you to get started fulfilling the collator requirements so you can get your node up and running in no time.
 
+## Responsibility to the Network {: #responsibility-to-network }
+
+Collators play a crucial role in securing the network and are rewarded in exchange for block validation and participation in consensus. As such, they have a responsibility to act honorably in favor of the network.
+
+- Collators have a responsibility to the network to act honorably
+- The following are forbidden items
+
 ## Community Guidelines {: #community-guidelines }
 
-One of the primary goals of the Moonbeam Foundation is to maintain the decentralization of the Moonriver and Moonbeam networks. To further this goal, the Moonbeam Foundation reserves the right to take action if any of the following forbidden offenses occur:
+Collators have a responsibility to the network to act honorably. If any of the following forbidden offenses occur, action may be taken via on-chain governance:
 
 - An entity is running more than four collators in either network
-- A collator is running multiple nodes using the same Nimbus key causing equivocation. Equivocation is the action of submitting multiple blocks at the same block height and is strictly forbidden due to the network degradation that it implies. This can be done by a malicious actor (trying to get more blocks included/produced) or by mistake (having a backup node running with the same key). Each node needs to have its own unique keys and any backup solutions need to ensure there can be no possibility of equivocation
+- A collator is running multiple nodes using the same Nimbus key causing equivocation. Equivocation is the action of submitting multiple blocks at the same block height, which forks the network. It is strictly forbidden due to the network degradation that it implies. This can be done by a malicious actor (trying to get more blocks included/produced) or by mistake (having a backup node running with the same key). Each node needs to have its own unique keys and any backup solutions need to ensure there can be no possibility of equivocation
 - A collator acts in a nefarious manner that is uncharitable to the community or other collators
 
-In addition, there is a level of commitment to the community and the network that is necessary to gain trust from the community of delegators and attract more delegations. The following contains some suggestions for contributing to the community:
+There is a level of commitment to the community and the network that is necessary to gain trust from the community of delegators and attract more delegations. The following contains some suggestions for contributing to the community:
 
 - Be active in the community
     - [Join the Discord](/node-operators/networks/collators/overview/#join-discord){target=_blank} and introduce yourself, provide updates as needed, and help support community members or other collators
