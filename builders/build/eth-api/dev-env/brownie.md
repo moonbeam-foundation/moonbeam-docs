@@ -101,7 +101,7 @@ To deploy to a Moonbeam network, or run tests on a specific network, you can spe
 
 === "Moonbase Alpha"
     ```
-    --network moonbeam-testnet
+    --network moonbeam-test
     ```
 
 === "Moonbeam Dev Node"
@@ -126,7 +126,7 @@ If you would like to set a default network, you can do so by adding the followin
 === "Moonbase Alpha"
     ```yaml
     networks:
-        default: moonbeam-testnet
+        default: moonbeam-test
     ```
 
 === "Moonbeam Dev Node"
@@ -260,7 +260,7 @@ You can now deploy the `Box.sol` contract using the `run` command and specifying
 
 === "Moonbase Alpha"
     ```
-    brownie run scripts/deploy.py --network moonbeam-testnet
+    brownie run scripts/deploy.py --network moonbeam-test
     ```
 
 === "Moonbeam Dev Node"
@@ -294,7 +294,7 @@ To interact with your newly deployed contract, you can launch the Brownie `conso
 
 === "Moonbase Alpha"
     ```
-    brownie console --network moonbeam-testnet
+    brownie console --network moonbeam-test
     ```
 
 === "Moonbeam Dev Node"
@@ -369,7 +369,7 @@ To run the script, you can use the following command:
 
 === "Moonbase Alpha"
     ```
-    brownie run scripts/store-and-retrieve.py --network moonbeam-testnet
+    brownie run scripts/store-and-retrieve.py --network moonbeam-test
     ```
 
 === "Moonbeam Dev Node"
