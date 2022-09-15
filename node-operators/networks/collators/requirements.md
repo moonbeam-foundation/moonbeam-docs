@@ -20,7 +20,7 @@ This guide will help you to get started fulfilling the collator requirements so 
 One of the primary goals of the Moonbeam Foundation is to maintain the decentralization of the Moonriver and Moonbeam networks. To further this goal, the Moonbeam Foundation reserves the right to take action if any of the following forbidden offenses occur:
 
 - An entity is running more than four collators in either network
-- A collator is running multiple nodes using the same Nimbus key causing equivocation. Equivocation is the action of submitting multiple blocks at the same block height. Each node needs to have its own unique keys and any backup solutions need to ensure there can be no possibility of equivocation
+- A collator is running multiple nodes using the same Nimbus key causing equivocation. Equivocation is the action of submitting multiple blocks at the same block height and is strictly forbidden due to the network degradation that it implies. This can be done by a malicious actor (trying to get more blocks included/produced) or by mistake (having a backup node running with the same key). Each node needs to have its own unique keys and any backup solutions need to ensure there can be no possibility of equivocation
 - A collator acts in a nefarious manner that is uncharitable to the community or other collators
 
 In addition, there is a level of commitment to the community and the network that is necessary to gain trust from the community of delegators and attract more delegations. The following contains some suggestions for contributing to the community:
