@@ -10,7 +10,7 @@ keywords: ethereum, dispatch, calldata, moonbeam, substrate, precompiled, contra
 
 ## Introduction {: #introduction }
 
-The dispatch precompiled contract on Moonbeam enables dispatching of any hex encoded calldata using the Ethereum API. This allows developers to interact with extrinsics from any of the [Substrate-based pallets on Moonbeam](/builders/pallets-precompiles/pallets/){target=_blank}, using familiar [Ethereum libraries](/builders/build/eth-api/libraries/){target=_blanl} such as [Ethers](/builders/build/eth-api/libraries/ethersjs){target=_blank} or [Web3](/builders/build/eth-api/libraries/web3js).
+The dispatch precompiled contract on Moonbeam enables dispatching of any hex encoded calldata using the Ethereum API. This allows developers to interact with extrinsics from any of the [Substrate-based pallets on Moonbeam](/builders/pallets-precompiles/pallets/){target=_blank}, using familiar [Ethereum libraries](/builders/build/eth-api/libraries/){target=_blank} such as [Ethers](/builders/build/eth-api/libraries/ethersjs){target=_blank} or [Web3](/builders/build/eth-api/libraries/web3js){target=_blank}.
 
 At a high level, the dispatch precompile works by sending a transaction as you normally would with an Ethereum library, except you'll pass in the hex encoded calldata in the `data` field and the dispatch precompile address in the `to` field.
 
