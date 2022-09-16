@@ -14,13 +14,13 @@ The dispatch precompiled contract on Moonbeam enables dispatching of any hex enc
 
 At a high level, the dispatch precompile works by sending a transaction as you normally would with an Ethereum library, except you'll pass in the hex encoded calldata in the `data` field and the dispatch precompile address in the `to` field.
 
+This guide will show you how to generate the hex encoded calldata with the Polkadot.js API and how to send the transaction with Ethers and Web3.
+
 The dispatch precompile is located at the following address:
 
 ```
 0x0000000000000000000000000000000000000401
 ```
-
-This guide will show you how to generate the hex encoded calldata with the Polkadot.js API and how to send the transaction with Ethers and Web3.
 
 ## Interact with the Dispatch Precompile {: #interact-with-dispatch-precompile }
 
