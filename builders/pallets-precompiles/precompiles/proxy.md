@@ -12,9 +12,9 @@ keywords: solidity, ethereum, proxy, moonbeam, precompiled, contracts, substrate
 
 The proxy precompile on Moonbeam allows accounts to set proxy accounts that can perform specific limited actions on their behalf, such as governance, staking, or balance transfers.
 
-If a user wanted to provide a second user access to a limited number of actions on their behalf, traditionally the only method to do so would be by providing the first account's private key to the second. However, Moonbeam has included the [Substrate proxy pallet](https://wiki.polkadot.network/docs/learn-proxies){target=_blank}, which enables proxy accounts. Proxy accounts ought to be used due to the additional layer of security that they provide, where many accounts can do actions for a main account. This is best if for example a user wanted to keep their wallet safe in cold storage but still wanted to access parts of the wallet's functionality like governance or staking.  
+If a user wanted to provide a second user access to a limited number of actions on their behalf, traditionally the only method to do so would be by providing the first account's private key to the second. However, Moonbeam has included the [Substrate proxy pallet](/builders/pallets-precompiles/pallets/proxy){target=_blank}, which enables proxy accounts. Proxy accounts ought to be used due to the additional layer of security that they provide, where many accounts can do actions for a main account. This is best if for example a user wanted to keep their wallet safe in cold storage but still wanted to access parts of the wallet's functionality like governance or staking.  
 
-To learn more about proxy accounts and how to set them up for your own purposes without use of the proxy precompile, view the [Setting up a Proxy Account](/tokens/manage/proxy-accounts) page.
+To learn more about proxy accounts and how to set them up for your own purposes without use of the proxy precompile, view the [Setting up a Proxy Account](/tokens/manage/proxy-accounts){target=_blank} page.
 
 The proxy precompile is located at the following address:
 
