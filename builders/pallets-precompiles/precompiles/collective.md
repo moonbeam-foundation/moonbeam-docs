@@ -88,7 +88,7 @@ If you're using a Moonbeam development node and the development accounts, you'll
 
 - Set your development node to seal blocks on a time interval such as every 6 seconds (6000 milliseconds) using the `--sealing 6000` flag
 - [Connect Polkadot.js Apps to your local Moonbeam development node](/builders/get-started/networks/moonbeam-dev/#connecting-polkadot-js-apps-to-a-local-moonbeam-node){target=_blank}
-- Import Balathar's, Charleth's, and/or Dorothy's accounts into [Polkadot.js Apps](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=_blank} and [MetaMask](/tokens/connect/metamask/#import-accounts){target=_blank}
+- Import Baltathar's, Charleth's, and/or Dorothy's accounts into [Polkadot.js Apps](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=_blank} and [MetaMask](/tokens/connect/metamask/#import-accounts){target=_blank}
 
 ### Remix Set Up {: #remix-set-up } 
 
