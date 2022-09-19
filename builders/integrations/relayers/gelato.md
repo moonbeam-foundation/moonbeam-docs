@@ -129,7 +129,7 @@ The [`myDummyWallet` contract](https://moonbeam.moonscan.io/address/0xA045eb75e7
 
 Specifically, the target smart contract is `myDummyWallet` which has two functions: `sendToFriend` and `balanceOf`. These are the target functions that we can ask Gelato Relay to call on our behalf.
 
-```
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.16;
 
@@ -192,15 +192,15 @@ contract MyDummyWallet is GelatoRelayContext {
 
 Similarly, `balanceOf` is a very simple function, which takes no arguments, and emits an event with the current balance of the wallet. Let's try calling `balanceOf` on the [`myDummyWallet` contract](https://moonbeam.moonscan.io/address/0xA045eb75e78f4988d42c3cd201365bDD5D76D406) using Gelato Relay SDK!
 
-### `balanceOf` Javascript Example
+### `balanceOf` Typescript Example
 
 *Please find all Gelato Relay code examples with tests and documentation [here](https://github.com/gelatodigital/relay-docs-examples).* 
 
-Below is a javascript code example `balanceOf.js`, which uses Gelato Relay SDK to call `balanceOf` on [`myDummyWallet`](https://moonbeam.moonscan.io/address/0xA045eb75e78f4988d42c3cd201365bDD5D76D406).
+Below is a javascript code example `balanceOf.ts`, which uses Gelato Relay SDK to call `balanceOf` on [`myDummyWallet`](https://moonbeam.moonscan.io/address/0xA045eb75e78f4988d42c3cd201365bDD5D76D406).
 
-```
-import GelatoRelaySDK from "@gelatonetwork/relay-sdk";
-import { ethers } from "ethers";
+```typescript
+import { GelatoRelaySDK } from "@gelatonetwork/relay-sdk";
+import { ethers, BytesLike } from "ethers";
 
 // target contract address
 const myDummyWallet = "0xA045eb75e78f4988d42c3cd201365bDD5D76D406";
@@ -212,7 +212,7 @@ const feeToken = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"; // native token, 
 const request = {
   chainId: 1284; // Moonbeam
   target: myDummyWallet; // 0xA045eb75e78f4988d42c3cd201365bDD5D76D406
-  data: data; // payload to call
+  data: data as BytesLike; // payload to call
   feeToken: feeToken;
 };
 
@@ -224,7 +224,7 @@ const relayResponse =
 To run this script, run this terminal command in the same directory:
 
 ```
-node balanceOf.js
+ts-node balanceOf.ts
 ```
 
 Perfect! You have submitted your first Gelato Relay SDK transaction? How does it feel? Awesome, I bet. 
@@ -242,17 +242,15 @@ Any token can be used here, so feel free to create your own ERC-20 for testing a
 
 *Remember, if `myDummyWallet` holds no balance for the specified token, the relay request will not proceed!*
 
-```
+```typescript
 import GelatoRelaySDK from "@gelatonetwork/relay-sdk";
-import { ethers } from "ethers";
+import { ethers, BytesLike } from "ethers";
 
 // target contract address
 const myDummyWallet = "0xA045eb75e78f4988d42c3cd201365bDD5D76D406";
 
 // using a human-readable ABI for generating the payload
-const abi = ["function sendToFriend(address _token,
-                                    address _to,
-                                    uint256 _amount");
+const abi = ["function sendToFriend(address _token, address _to, uint256 _amount");
                                     
 // sendToFriend arguments                                 
 const feeToken = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"; // native token!
@@ -274,13 +272,19 @@ const { data } =
 const request = {
   chainId: provider.network.chainId; // make sure you are connected to Moonbeam!
   target: myDummyWallet;
-  data: data;
+  data: data as BytesLike;
   feeToken: feeToken;
 };
   
 // send relayRequest to Gelato Relay API
 const relayResponse = 
   await GelatoRelaySDK.relayWithSyncFee(request);
+```
+
+To run this script, run this terminal command in the same directory:
+
+```
+ts-node sendToFriend.ts
 ```
 
 Well done, you are now ready to incorporate Gelato Relay in your dApp!
