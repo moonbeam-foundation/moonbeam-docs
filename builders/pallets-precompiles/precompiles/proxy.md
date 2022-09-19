@@ -36,13 +36,13 @@ The interface includes the following functions:
  
 ## Proxy Types {: #proxy-types }
 
-There are multiple types of proxy roles that can be delegated to accounts, where are represented in `Proxy.sol` through the `ProxyType` enum. The following list includes all of the possible proxies and the type of transactions they can make on behalf of the delegator account:
+There are multiple types of proxy roles that can be delegated to accounts, where are represented in `Proxy.sol` through the `ProxyType` enum. The following list includes all of the possible proxies and the type of transactions they can make on behalf of the primary account:
 
  - **Any** — the any proxy will allow the proxy account to make any type of transaction
  - **NonTransfer** — the non-transfer proxy will allow the proxy account to make any type of transaction, except for balance transfers
  - **Governance** - the governance proxy will allow the proxy account to make any type of governance related transaction (includes both democracy or council pallets)
  - **Staking** - the staking proxy will allow the proxy account to make staking related transactions
- - **CancelProxy** - the cancel proxy will allow the proxy account to reject and remove delayed proxy announcements (of the delegator account)
+ - **CancelProxy** - the cancel proxy will allow the proxy account to reject and remove delayed proxy announcements (of the primary account)
  - **Balances** - the balances proxy will allow the proxy account to only make balance transfers
  - **AuthorMapping** - this type of proxy account is used by collators to migrate services from one server to another
  - **IdentityJudgement** - the identity judgement proxy will allow the proxy account to judge and certify the personal information associated with accounts on Polkadot
@@ -98,10 +98,10 @@ You can add a proxy for your account via the proxy precompile if your account do
 
 ### Check a Proxy's Existence {: #check-proxy } 
 
-You can determine whether or not an account is a proxy account for a delegator account. In this example, you will insert the parameters of the [previously added proxy](#add-proxy) to determine if the proxy account was successfully added:
+You can determine whether or not an account is a proxy account for a primary account. In this example, you will insert the parameters of the [previously added proxy](#add-proxy) to determine if the proxy account was successfully added:
 
 1. Find the **isProxy** function and press the button to expand the section
-2. Insert your delegator account's address as *real*, your second account's address as *delegate*, `5` as *proxyType*, and `0` as *delay*
+2. Insert your primary account's address as *real*, your second account's address as *delegate*, `5` as *proxyType*, and `0` as *delay*
 3. Press **call**
 
 If everything went correctly, the output should be `true`.

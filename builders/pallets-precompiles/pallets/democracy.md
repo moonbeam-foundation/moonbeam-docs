@@ -71,7 +71,7 @@ The democracy pallet includes the following read-only storage methods to obtain 
 - **referendumCount**() - returns the number of referenda started so far
 - **referendumInfoOf**() - returns information for a referendum given the referendum's index
 - **storageVersion**() - returns the storage version of the pallet
-- **votingOf**(AccountId20) - returns a record of all of the votes for a particular voter given the address of the voter.
+- **votingOf**(AccountId20) - returns a record of all of the votes for a particular voter given the address of the voter
 
 ### Pallet Constants {: #constants }
 

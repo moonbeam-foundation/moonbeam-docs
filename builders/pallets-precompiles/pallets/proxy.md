@@ -22,20 +22,16 @@ This page will provide an overview of the extrinsics, storage methods, and gette
 
 The proxy pallet provides the following extrinsics (functions):
 
-- **addProxy**(delegate, proxyType, delay) - registers a proxy account for the sender that is able to make calls on the sender's behalf. If delay is set to a value greater than 0, the proxy account will have to announce a transaction and wait that value of blocks before the transaction is executed
-- **announce**(real, callHash) - 
-- **anonymous**(proxyType, delay, index) - creates a new account that cannot be accessed due to the private key being inaccessible. The sender will become a proxy for the account based on the type and delay specified. Be careful, as if the proxy is removed, the primary account will not be accessible
+- **addProxy**(delegate, proxyType, delay) - registers a proxy account for the sender that is able to make calls on the sender's behalf. If delay is set to a value greater than 0, the proxy account will have to announce a transaction and wait that value of blocks before attempting to execute it as a proxy. Emits a `ProxyAdded` event
+- **announce**(real, callHash) - registers an announcement of a proxy transaction by proxy accounts that require a delay. Emits an `Announced` event
+- **anonymous**(proxyType, delay, index) - creates a new account that cannot be accessed due to the private key being inaccessible. The sender will become a proxy for the account based on the type and delay specified. Be careful, as if the proxy is removed, the primary account will not be accessible. Emits an `AnonymousCreated` event
 - **killAnonymous**(spawner, proxyType, index, height, extIndex) - removes a previously spawned anonymous proxy
-- **proxy**(real, forceProxyType, call) - 
-- **proxyAnnounced**(delegate, real, forceProxyType, call) - 
-- **rejectAnnouncement**(delegate, callHash) - rejects a proxy account's delegate
+- **proxy**(real, forceProxyType, call) - makes a transaction as a proxy. Emits a `ProxyExecuted` event
+- **proxyAnnounced**(delegate, real, forceProxyType, call) - makes a transaction as a proxy and removes previous corresponding announcements. Emits a `ProxyExecuted` event
+- **rejectAnnouncement**(delegate, callHash) - if the sender is a prime account, this removes a specific announcement from their proxy account
+- **removeAnnouncement**(real, callHash) - if the sender is a proxy account, this removes a specific announcement to their prime account
 - **removeProxies**() - unregisters all proxy accounts for the sender
-- **removeProxy**(delegate, proxyType, delay) - unregisters a specific proxy account for the sender
-
-Some of the extrinsics in the proxy pallet can only be called by sudo or democracy:
-
-- **removeAnnouncement**(real, callHash) - 
-
+- **removeProxy**(delegate, proxyType, delay) - unregisters a specific proxy account for the sender. Emits a `ProxyRemoved` event
 
 ### Storage Methods {: #storage-methods }
 
