@@ -15,13 +15,6 @@ It is recommended to go through all of the necessary requirements on the Moonbas
 
 This guide will help you to get started fulfilling the collator requirements so you can get your node up and running in no time.
 
-## Responsibility to the Network {: #responsibility-to-network }
-
-Collators play a crucial role in securing the network and are rewarded in exchange for block validation and participation in consensus. As such, they have a responsibility to act honorably in favor of the network.
-
-- Collators have a responsibility to the network to act honorably
-- The following are forbidden items
-
 ## Community Guidelines {: #community-guidelines }
 
 Collators have a responsibility to the network to act honorably. If any of the following forbidden offenses occur, action may be taken via on-chain governance:
