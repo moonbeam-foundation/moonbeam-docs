@@ -71,11 +71,27 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
 
 ### Non-Moonbeam Specific nor Ethereum Precompiles {: #non-moonbeam-specific-nor-ethereum-precompiles }
 
-|                                                                    Contract                                                                     |                  Address                   |
-|:-----------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
-|                  [SHA3FIPS256](/builders/pallets-precompiles/precompiles/eth-mainnet/#hashing-with-sha3fips256){target=_blank}                  | 0x0000000000000000000000000000000000000400 |
-|                                  [Dispatch](/builders/pallets-precompiles/precompiles/dispatch){target=_blank}                                  | 0x0000000000000000000000000000000000000401 |
-| [ECRecoverPublicKey](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_simple/struct.ECRecoverPublicKey.html){target=_blank} | 0x0000000000000000000000000000000000000402 |
+=== "Moonbeam"
+    |                                                                    Contract                                                                     |                    Address                    |
+    |:-----------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------:|
+    |                  [SHA3FIPS256](/builders/pallets-precompiles/precompiles/eth-mainnet/#hashing-with-sha3fips256){target=_blank}                  | {{networks.moonbeam.precompiles.sha3fips256}} |
+    |                                  [Dispatch](/builders/pallets-precompiles/precompiles/dispatch){target=_blank}                                  |  {{networks.moonbeam.precompiles.dispatch}}   |
+    | [ECRecoverPublicKey](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_simple/struct.ECRecoverPublicKey.html){target=_blank} | {{networks.moonbeam.precompiles.ecrecoverpk}} |
+
+=== "Moonriver"
+    |                                                                    Contract                                                                     |                    Address                     |
+    |:-----------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------:|
+    |                  [SHA3FIPS256](/builders/pallets-precompiles/precompiles/eth-mainnet/#hashing-with-sha3fips256){target=_blank}                  | {{networks.moonriver.precompiles.sha3fips256}} |
+    |                                  [Dispatch](/builders/pallets-precompiles/precompiles/dispatch){target=_blank}                                  |  {{networks.moonriver.precompiles.dispatch}}   |
+    | [ECRecoverPublicKey](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_simple/struct.ECRecoverPublicKey.html){target=_blank} | {{networks.moonriver.precompiles.ecrecoverpk}} |
+
+=== "Moonbase Alpha"
+    |                                                                    Contract                                                                     |                    Address                    |
+    |:-----------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------:|
+    |                  [SHA3FIPS256](/builders/pallets-precompiles/precompiles/eth-mainnet/#hashing-with-sha3fips256){target=_blank}                  | {{networks.moonbase.precompiles.sha3fips256}} |
+    |                                  [Dispatch](/builders/pallets-precompiles/precompiles/dispatch){target=_blank}                                  |  {{networks.moonbase.precompiles.dispatch}}   |
+    | [ECRecoverPublicKey](https://paritytech.github.io/frontier/rustdocs/pallet_evm_precompile_simple/struct.ECRecoverPublicKey.html){target=_blank} | {{networks.moonbase.precompiles.ecrecoverpk}} |
+
 
 ### Moonbeam-Specific Precompiles {: #moonbeam-specific-precompiles }
 

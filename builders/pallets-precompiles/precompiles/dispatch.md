@@ -18,9 +18,21 @@ This guide will show you how to generate the hex encoded calldata with the Polka
 
 The dispatch precompile is located at the following address:
 
-```
-0x0000000000000000000000000000000000000401
-```
+=== "Moonbeam"
+    ```
+    {{networks.moonbeam.precompiles.dispatch}}
+    ```
+
+=== "Moonriver"
+    ```
+    {{networks.moonriver.precompiles.dispatch}}
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    {{networks.moonbase.precompiles.dispatch}}
+    ```
+
 
 ## Interact with the Dispatch Precompile {: #interact-with-dispatch-precompile }
 
@@ -56,6 +68,7 @@ To get started, you'll need to create a project directory, create a JavaScript f
     ```
 
 4. Install the Ethereum library of your choice
+    
     === "Ethers.js"
         ```
         npm install ethers
@@ -176,7 +189,7 @@ First you can assemble the transaction object, passing in the dispatch precompil
 
 ```js
 const tx = {
-    to: '0x0000000000000000000000000000000000000401',
+    to: '{{networks.moonbase.precompiles.dispatch}}',
     data: encodedCallData   
 }
 ```
@@ -247,6 +260,11 @@ Altogether, your `dispatch.js` script should resemble the following:
     const balancesCall = await polkadotApi.tx.balances.transfer(toAddress, amount);
     const encodedCallData = balancesCall.method.toHex();
 
+    const tx = {
+    to: '{{networks.moonbase.precompiles.dispatch}}',
+    data: encodedCallData   
+    }
+
     const send = async () => {
         const wallet = new ethers.Wallet('INSERT-YOUR-PRIVATE-KEY', provider);
 
@@ -273,6 +291,11 @@ Altogether, your `dispatch.js` script should resemble the following:
     const amount = '1000000000000000000';
     const balancesCall = await polkadotApi.tx.balances.transfer(toAddress, amount);
     const encodedCallData = balancesCall.method.toHex();
+
+    const tx = {
+    to: '{{networks.moonbase.precompiles.dispatch}}',
+    data: encodedCallData   
+    }
 
     const send = async () => {
         const createTransaction = await web3.eth.accounts.signTransaction(
