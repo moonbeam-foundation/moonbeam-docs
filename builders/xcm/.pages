@@ -6,3 +6,4 @@ nav:
   - 'XC Channel Registration': 'xc-integration.md'
   - 'Remote Execution': 'xcm-transactor.md'
   - 'XCM Fees': 'fees.md'
+  - 'XCM SDK': 'xcm-sdk.md'
