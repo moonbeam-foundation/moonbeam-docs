@@ -12,7 +12,7 @@ keywords: solidity, ethereum, collective, proposal, council technical, committee
 
 The collective precompile enables a user to directly interact with [Substrate's collective pallet](https://paritytech.github.io/substrate/master/pallet_collective/index.html){target=_blank} directly from a Solidity interface.
 
-A collective is a group of members that are responsible for specific democracy-related actions such as proposing, voting on, executing, and closing motions. There are three collectives within Moonbeam: the council collective, the technical committee collective, and the treasury council collective. As such, there is a collective precompile for each collective. For more information on the council and technical committee, please refer to the [Governance on Moonbeam](/learn/features/governance/){target=_blank} page, and for more information on the treasury council, please refer to the [Treasury on Moonbeam](/learn/features/treasury/){target=_blank} page.
+A collective is a group of members that are responsible for specific democracy-related actions such as proposing, voting on, executing, and closing motions. There are three collectives within Moonbeam: the council collective, the technical committee collective, and the treasury council collective. As such, there is a precompile for each collective. For more information on the council and technical committee, please refer to the [Governance on Moonbeam](/learn/features/governance/){target=_blank} page, and for more information on the treasury council, please refer to the [Treasury on Moonbeam](/learn/features/treasury/){target=_blank} page.
 
 This guide will show you how to propose, vote on, and close a proposal using the collective precompile.
 
@@ -46,7 +46,7 @@ The collective precompiles are located at the following addresses:
 The interface includes the following functions:
 
 - **execute**(*bytes memory* proposal) - executes a proposal as a single member of the collective. The sender must be a member of the collective. This will *not* revert if the Substrate proposal is dispatched but fails 
-- **propose**(*uint32* threshold, *bytes memory* proposal) - adds a new proposal to be voted on. The sender must be a member of the collective. If the threshold is less than two then the proposal will be dispatched and executed directly. If the threshold is met, the index of the new proposal is returned
+- **propose**(*uint32* threshold, *bytes memory* proposal) - adds a new proposal to be voted on. The sender must be a member of the collective. If the threshold is less than two then the proposal will be dispatched and executed directly, with the proposer as dispatcher. If the threshold is met, the index of the new proposal is returned
 - **vote**(*bytes32* proposalHash, *uint32* proposalIndex, *bool* approve) - votes on a proposal. The sender must be a member of the collective
 - **close**(*bytes32* proposalHash, *uint32* proposalIndex, *uint64* proposalWeightBound, *uint32* lengthBound) - closes a proposal. Can be called by anyone once there are enough votes. Returns a boolean indicating whether the proposal was executed or removed
 - **proposalHash**(*bytes memory* proposal) - computes the hash of a proposal
@@ -109,7 +109,7 @@ If you're using a Moonbeam development node and the development accounts, you'll
 1. Click on the **Deploy and Run** tab, directly below the **Compile** tab in Remix. Note: You are not deploying a contract here; instead you are accessing a precompiled contract that is already deployed
 2. Make sure **Injected Provider - Metamask** is selected in the **ENVIRONMENT** drop down
 3. Ensure **Collective - Collective.sol** is selected in the **CONTRACT** dropdown. Since this is a precompiled contract there is no need to deploy, instead you are going to provide the address of the precompile in the **At Address** Field
-4. Provide the address of the collective precompile,`{{networks.moonbase.precompiles.collective}}`, and click **At Address**
+4. Provide the address of the collective precompile,`{{networks.moonbase.precompiles.collective_treasury}}`, and click **At Address**
 5. The collective precompile will appear in the list of **Deployed Contracts**
 
 ![Access the precompile contract](/images/builders/pallets-precompiles/precompiles/collective/collective-3.png)
@@ -151,8 +151,7 @@ In order to approve a proposal using the collective precompile, you will need to
 
 ![Get encoded proposal](/images/builders/pallets-precompiles/precompiles/collective/collective-6.png)
 
-!!! note
-    The proposal's encoded call data for this example is `0x110200`.
+For this example, the proposal's encoded call data for this example is `0x110200`.
 
 With the encoded proposal, you can head back to Remix and expand the **COLLECTIVE** precompile contract under the **Deployed Contracts** section. Make sure you're connected to your account that is a member of the treasury council, and take the following steps to propose the approval:
 
