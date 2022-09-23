@@ -139,19 +139,19 @@ You should see the proposal appear in the **proposals** section. If this is the 
 
 Now that you have the proposal and the proposal index, you'll be able to approve the proposal in the following section using the collective precompile.
 
-### Appove a Proposal {: #approve-a-proposal }
+### Propose the Proposal {: #propose-te-proposal }
 
-In order to approve a proposal using the collective precompile, you will need to obtain the SCALE encoded proposal. You can get the encoded call data from Polkadot.js Apps. To do so, navigate to the **Developer** tab, select **Extrinsics**, and take the following steps:
+In order to propose a proposal using the collective precompile, so that the corresponding collective can vote on it, you will need to obtain the encoded call data of the call, to be executed by proposal. You can get the encoded call data from Polkadot.js Apps. For this example, you need to propose the **approveProposal** extrinsict of the treasury pallet. To do so, navigate to the **Developer** tab, select **Extrinsics**, and take the following steps:
 
 1. Select an account (any account is fine because you're not submitting any transaction here)
 2. Select the **treasury** pallet
 3. Choose the **approveProposal** extrinsic
-4. Enter the proposal index
+4. Enter the proposal index that the collective will vote on to approve
 5. Copy the **encoded call data** for the proposal
 
 ![Get encoded proposal](/images/builders/pallets-precompiles/precompiles/collective/collective-6.png)
 
-For this example, the proposal's encoded call data for this example is `0x110200`.
+For this example, the extrinsic encoded call data for the proposal in this example is `0x110200`.
 
 With the encoded proposal, you can head back to Remix and expand the **COLLECTIVE** precompile contract under the **Deployed Contracts** section. Make sure you're connected to your account that is a member of the treasury council, and take the following steps to propose the approval:
 
