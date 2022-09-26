@@ -117,7 +117,7 @@ The `Base Fee`, introduced in [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559
     |:--------:|:------:|
     | Base fee | 1 Gwei |
 
-`Transaction Weight` is a Substrate mechanism used to manage the time it takes to validate a block. For all transactions types, `Transaction Weight` can be retrieved under the event of the relevant extrinsic where the `method` field is set to: 
+`Transaction Weight` is a Substrate mechanism used to measure the execution time a given transaction takes to be executed within a block. For all transactions types, `Transaction Weight` can be retrieved under the event of the relevant extrinsic where the `method` field is set to: 
 ```
 pallet: "system", method: "ExtrinsicSuccess" 
 ```
