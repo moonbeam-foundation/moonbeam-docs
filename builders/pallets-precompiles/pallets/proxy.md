@@ -22,7 +22,7 @@ This page will provide an overview of the extrinsics, storage methods, and gette
 
 The proxy pallet provides the following extrinsics (functions):
 
-- **addProxy**(delegate, proxyType, delay) - registers a proxy account for the sender that is able to make calls on the sender's behalf. If delay is set to a value greater than 0, the proxy account will have to announce a transaction and wait that value of blocks before attempting to execute it as a proxy. Emits a `ProxyAdded` event
+- **addProxy**(delegate, proxyType, delay) - registers a proxy account for the sender that is able to make calls on the sender's behalf. If `delay` is set to a value greater than 0, the proxy account will have to announce a transaction and wait that value of blocks before attempting to execute it as a proxy. Emits a `ProxyAdded` event
 - **announce**(real, callHash) - registers an announcement of a proxy transaction by proxy accounts that require a delay. Emits an `Announced` event
 - **anonymous**(proxyType, delay, index) - creates a new account that cannot be accessed due to the private key being inaccessible. The sender will become a proxy for the account based on the type and delay specified. Be careful, as if the proxy is removed, the primary account will not be accessible. Emits an `AnonymousCreated` event
 - **killAnonymous**(spawner, proxyType, index, height, extIndex) - removes a previously spawned anonymous proxy
