@@ -139,7 +139,7 @@ You should see the proposal appear in the **proposals** section. If this is the 
 
 Now that you have the proposal and the proposal index, you'll be able to approve the proposal in the following section using the collective precompile.
 
-### Propose the Proposal {: #propose-te-proposal }
+### Propose the Proposal {: #propose-the-proposal }
 
 In order to propose a proposal using the collective precompile, so that the corresponding collective can vote on it, you will need to obtain the encoded call data of the call, to be executed by proposal. You can get the encoded call data from Polkadot.js Apps. For this example, you need to propose the **approveProposal** extrinsict of the treasury pallet. To do so, navigate to the **Developer** tab, select **Extrinsics**, and take the following steps:
 
