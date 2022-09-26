@@ -313,7 +313,7 @@ moonChain: {
 }
 ```
 
-### Subscribe to Assets Balance Information {: #subsscribe }
+### Subscribe to Assets Balance Information {: #subscribe }
 
 To subscribe to balance information, you can use the `subscribeToAssetsBalanceInfo` function and pass in the address you want to get the balance for and a callback function to handle the data:
 
@@ -551,7 +551,7 @@ chains: [
 
 #### To {: #to }
 
-The `to` function requires a chain key to be passed into it for the origin chain in which the assets are sent from and returns a `get` function. 
+The `to` function requires a chain key to be passed into it for the origin chain in which the assets are being withdrawn back to and returns a `get` function. 
 
 ```js
 const polkadot = ChainKey.Polkadot;
