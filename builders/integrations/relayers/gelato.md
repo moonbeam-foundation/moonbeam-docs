@@ -94,7 +94,7 @@ Next, you'll need to create a javascript file for your script. You can create a 
 touch hello-world.js
 ```
 
-Now you're ready to build. First, you need to import the Gelato Relay SDK and EthersJS:
+Now you're ready to build. First, you need to import the Gelato Relay SDK and Ethers.js:
 
 ```
   import { Wallet, utils } from "ethers";
