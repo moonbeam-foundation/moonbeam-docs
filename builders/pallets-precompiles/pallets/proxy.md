@@ -1,6 +1,6 @@
 ---
 title: Proxy Pallet
-description: Learn about the available extrinsics, storage methods, and constants in the proxy pallet on Moonbeam.
+description: Learn how to use the available extrinsics, storage methods, and constants in the proxy pallet on Moonbeam to make calls on an account's behalf.
 keywords: proxy, substrate, moonbeam, polkadot
 ---
 
@@ -12,7 +12,7 @@ keywords: proxy, substrate, moonbeam, polkadot
 
 Proxy accounts can be set up to perform a limited number of actions on behalf of users and are useful for keeping the underlying accounts safe. They allow users to keep their primary account secured safely in cold storage while enabling the proxy to actively perform functions and participate in the network with the weight of the tokens in the primary account.
 
-[Substrate's proxy pallet](https://wiki.polkadot.network/docs/learn-proxies){target=_blank} enables you to create proxy accounts, remove proxy accounts, make calls as a proxy account, and make announce proxy transactions. To add and remove proxy accounts, you can use the proxy precompile: a Solidity interface that can be interacted through the Ethereum API. For more information on how to use this contract, please refer to the [Proxy Precompile](/builders/pallets-precompiles/precompiles/proxy){target=_blank} guide.
+[Substrate's proxy pallet](https://wiki.polkadot.network/docs/learn-proxies){target=_blank} enables you to create proxy accounts, remove proxy accounts, make calls as a proxy account, and announce proxy transactions. To add and remove proxy accounts, you can use the proxy precompile: a Solidity interface that can be interacted through the Ethereum API. For more information on how to use this contract, please refer to the [Proxy Precompile](/builders/pallets-precompiles/precompiles/proxy){target=_blank} guide.
 
 This page will provide an overview of the extrinsics, storage methods, and getters for the pallet constants available in the proxy pallet.
 
@@ -32,6 +32,9 @@ The proxy pallet provides the following extrinsics (functions):
 - **removeAnnouncement**(real, callHash) - if the sender is a proxy account, this removes a specific announcement to their prime account
 - **removeProxies**() - unregisters all proxy accounts for the sender
 - **removeProxy**(delegate, proxyType, delay) - unregisters a specific proxy account for the sender. Emits a `ProxyRemoved` event
+
+!!! note
+    Anonymous proxies are disabled on Moonbeam networks because they are easy to misuse. Incorrect usage can cause a permanent loss of funds and unreserved balances.
 
 ### Storage Methods {: #storage-methods }
 
