@@ -16,7 +16,7 @@ The randomness pallet enables you to check on randomness requests that have not 
 
 This page will provide an overview of the storage methods and getters for the pallet constants available in the randomness pallet.
 
-## Randomness Pallet Interface {: #parachain-staking-pallet-interface }
+## Randomness Pallet Interface {: #randomness-pallet-interface }
 
 ### Storage Methods {: #storage-methods }
 
