@@ -44,7 +44,7 @@ When interacting with the `deposit` and `withdraw` functions of the XCM SDK, you
 
 You can pass, for example, a [MetaMask signer into Ethers](https://docs.ethers.io/v5/getting-started/#getting-started--connecting){target=_blank} or another compatible wallet. Similarly with Polkadot, you can [pass a compatible wallet to the signer using the `@polkadot/extension-dapp` library](https://polkadot.js.org/docs/extension/){target=_blank}.
 
-To create a signer for Ethers.js and Polkadot.js, you can refer to the following code snippets. Please note that this approach is not recommended for production applications. **Never store your private key or mnemonic in a JavaScript or TypeScriptfile.**
+To create a signer for Ethers.js and Polkadot.js, you can refer to the following code snippets. Please note that this approach is not recommended for production applications. **Never store your private key or mnemonic in a JavaScript or TypeScript file.**
 
 === "Moonbeam"
 
@@ -140,25 +140,29 @@ To be able to deposit, withdraw, and subscribe to balance information for all of
 === "Moonbeam"
 
     ```js
+    import { init } from '@moonbeam-network/xcm-sdk';
     const { moonbeam } = init()
     ```
 
 === "Moonriver"
 
     ```js
+    import { init } from '@moonbeam-network/xcm-sdk';
     const { moonriver } = init()
     ```
 
 === "Moonbase Alpha"
 
     ```js
+    import { init } from '@moonbeam-network/xcm-sdk';
     const { moonbase } = init()
     ```
     
-If you intend to support a specific wallet, you can pass a signer into the `init` function right away. Otherwise, you'll be able to pass a signer directly when building a deposit or withdraw request. To pass in a signer for Ethers and Polkadot, you can use the following snippet:
+If you intend to support a specific wallet, you can pass a signer into the `init` function right away. Otherwise, you'll be able to pass a signer directly when building a deposit or withdraw request. To pass in a signer for Ethers and Polkadot, you can use the following snippe (using Moonbeam as an example):
 
 ```js
-init({
+import { init } from '@moonbeam-network/xcm-sdk';
+const { moonbeam } = init({
   ethersSigner: 'INSERT-ETHERS-SIGNER',
   polkadotSigner: 'INSERT-POLKADOT-SIGNER'
 })
