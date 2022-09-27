@@ -11,16 +11,13 @@ description: Use the Moonbeam XCM SDK to easily deposit and withdraw cross chain
 
 The Moonbeam XCM SDK enables developers to easily deposit and withdraw assets to Moonbeam/Moonriver from the relay chain and other parachains in the Polkadot/Kusama ecosystem. With the SDK, you don't need to worry about determining the multilocation of the origin or destination assets or which extrinsics are used on which networks to send XCM transfers. To deposit or withdraw assets, you simply define the asset and origin chain you want to deposit from or withdraw back to, along with the sending account's signer, and the amount to send.
 
+The XCM SDK offers simple helper functions like `deposit` and `withdraw`, that provide a very simple interface to execute XCM transfers between chains in the Polkadot/Kusama ecosystem. In addition, the XCM config package allows any parachain project to add their information in a standard way, so they can be immediately supported by the XCM SDK.
+
 The examples in this guide are shown on Moonbeam, but can be adapted to be used on Moonriver or Moonbase Alpha.
-
-Please note that the SDK is currently in heavy development and is not production ready.
-
-The XCM SDK offers a simple helper functions like `deposit` and `withdraw`, that provide a very simple interface to execute XCM transfers between chains in the Polkadot/Kusama ecosystem. In addition, the XCM config package allows any parachain project to add their information in a standard way, so they can be immediatly supported by the XCM SDK.
 
 ## Getting Started {: #getting-started }
 
 To get started with the XCM SDK, you'll first need to install the corresponding NPM package. Next, you'll also need to create signers to be used to sign transactions to transfer assets between Moonbeam and another chain within the Polkadot ecosystem. Lastly, you'll need to initialize the API which will provide you with asset and chain information and the necessary functions to deposit, withdraw, and subscribe to balance information.
-
 
 ### Installation {: #installation }
 
@@ -35,10 +32,11 @@ To install the XCM SDK and XCM config packages, you can run the following comman
 ```
 npm install @moonbeam-network/xcm-sdk @moonbeam-network/xcm-config
 ```
+
 Both packages will install all the dependencies needed, like [Ethers.js](https://docs.ethers.io/v5/){target=_blank} and the [Polkadot.js API](https://polkadot.js.org/docs/api/){target=_blank}.
 
 !!! note
-    There is a [known issue](https://github.com/polkadot-js/api/issues/4315){target=_blank} when using the Moonbeam XCM packages alongside Polkadot.s with Node.js (Javascript)that will cause package conflict warnings to appear in the console. Using Typescript is recommended.
+    There is a [known issue](https://github.com/polkadot-js/api/issues/4315){target=_blank} when using the Moonbeam XCM packages alongside Polkadot.s with Node.js (JavaScript) that will cause package conflict warnings to appear in the console. Using TypeScript is recommended.
 
 ### Creating Signers {: creating-signers }
 
@@ -72,9 +70,7 @@ To create a signer for Ethers.js and Polkadot.js, you can refer to the following
     );
     const ethersSigner = new ethers.Wallet('INSERT-PRIVATE-KEY', provider);
 
-    // Set up Polkadot provider and signer
-    const wsProvider = new WsProvider('{{ networks.moonbeam.wss_url }}');
-    const api = await ApiPromise.create({ provider: wsProvider });
+    // Set up Polkadot signer
     const keyring = new Keyring({ type: 'sr25519' });
     const polkadotSigner = keyring.addFromUri(mnemonic);
     ```
@@ -103,9 +99,7 @@ To create a signer for Ethers.js and Polkadot.js, you can refer to the following
     );
     const ethersSigner = new ethers.Wallet('INSERT-PRIVATE-KEY', provider);
 
-    // Set up Polkadot provider and signer
-    const wsProvider = new WsProvider('{{ networks.moonriver.wss_url }}');
-    const api = await ApiPromise.create({ provider: wsProvider });
+    // Set up Polkadot signer
     const keyring = new Keyring({ type: 'sr25519' });
     const polkadotSigner = keyring.addFromUri('INSERT-MNEMONIC');
     ```
@@ -134,9 +128,7 @@ To create a signer for Ethers.js and Polkadot.js, you can refer to the following
     );
     const ethersSigner = new ethers.Wallet('INSERT-PRIVATE-KEY', provider);
 
-    // Set up Polkadot provider and signer
-    const wsProvider = new WsProvider('{{ networks.moonbase.wss_url }}');
-    const api = await ApiPromise.create({ provider: wsProvider });
+    // Set up Polkadot signer
     const keyring = new Keyring({ type: 'sr25519' });
     const polkadotSigner = keyring.addFromUri(mnemonic);
     ```
@@ -324,7 +316,6 @@ moonChain: {
 Here, the units per second refer to units of token (in this case Wei) that is charged per second of execution of the XCM message. You can find more information in the [XCM fees page](/builders/xcm/fees/#moonbeam-reserve-assets){target=_blank}.
 
 ### Subscribe to Assets Balance Information {: #subsscribe }
-
 
 To subscribe to balance information, you can use the `subscribeToAssetsBalanceInfo` function and pass in the address you want to get the balance for and a callback function to handle the data:
 
