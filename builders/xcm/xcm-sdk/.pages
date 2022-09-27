@@ -1,0 +1,6 @@
+title: XCM SDK
+nav:
+  - index.md
+  - 'Reference': 'reference.md'
+  - 'Using the SDK': 'xcm-sdk.md'
+
