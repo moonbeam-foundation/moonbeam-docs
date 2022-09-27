@@ -38,7 +38,7 @@ npm install @moonbeam-network/xcm-sdk @moonbeam-network/xcm-config
 Both packages will install all the dependencies needed, like [Ethers.js](https://docs.ethers.io/v5/){target=_blank} and the [Polkadot.js API](https://polkadot.js.org/docs/api/){target=_blank}.
 
 !!! note
-    There is a [known issue](https://github.com/polkadot-js/api/issues/4315){target=_blank} when using the Moonbeam XCM packages alongside Polkadot.s with Node.js (Javascript)that will cause package conflict warnings to appear in the console. Using Typescript is recommended.
+    There is a [known issue](https://github.com/polkadot-js/api/issues/4315){target=_blank} when using the Moonbeam XCM packages alongside Polkadot.s with Node.js (JavaScript) that will cause package conflict warnings to appear in the console. Using TypeScript is recommended.
 
 ### Creating Signers {: creating-signers }
 
@@ -46,7 +46,7 @@ When interacting with the `deposit` and `withdraw` functions of the XCM SDK, you
 
 You can pass, for example, a [MetaMask signer into Ethers](https://docs.ethers.io/v5/getting-started/#getting-started--connecting){target=_blank} or another compatible wallet. Similarly with Polkadot, you can [pass a compatible wallet to the signer using the `@polkadot/extension-dapp` library](https://polkadot.js.org/docs/extension/){target=_blank}.
 
-To create a signer for Ethers.js and Polkadot.js, you can refer to the following code snippets. Please note that this approach is not recommended for production applications. **Never store your private key or mnemonic in a JavaScript or TypeScriptfile.**
+To create a signer for Ethers.js and Polkadot.js, you can refer to the following code snippets. Please note that this approach is not recommended for production applications. **Never store your private key or mnemonic in a JavaScript or TypeScript file.**
 
 === "Moonbeam"
 
@@ -148,25 +148,29 @@ To be able to deposit, withdraw, and subscribe to balance information for all of
 === "Moonbeam"
 
     ```js
+    import { init } from '@moonbeam-network/xcm-sdk';
     const { moonbeam } = init()
     ```
 
 === "Moonriver"
 
     ```js
+    import { init } from '@moonbeam-network/xcm-sdk';
     const { moonriver } = init()
     ```
 
 === "Moonbase Alpha"
 
     ```js
+    import { init } from '@moonbeam-network/xcm-sdk';
     const { moonbase } = init()
     ```
     
-If you intend to support a specific wallet, you can pass a signer into the `init` function right away. Otherwise, you'll be able to pass a signer directly when building a deposit or withdraw request. To pass in a signer for Ethers and Polkadot, you can use the following snippet:
+If you intend to support a specific wallet, you can pass a signer into the `init` function right away. Otherwise, you'll be able to pass a signer directly when building a deposit or withdraw request. To pass in a signer for Ethers and Polkadot, you can use the following snippe (using Moonbeam as an example):
 
 ```js
-init({
+import { init } from '@moonbeam-network/xcm-sdk';
+const { moonbeam } = init({
   ethersSigner: 'INSERT-ETHERS-SIGNER',
   polkadotSigner: 'INSERT-POLKADOT-SIGNER'
 })
@@ -324,7 +328,6 @@ moonChain: {
 Here, the units per second refer to units of token (in this case Wei) that is charged per second of execution of the XCM message. You can find more information in the [XCM fees page](/builders/xcm/fees/#moonbeam-reserve-assets){target=_blank}.
 
 ### Subscribe to Assets Balance Information {: #subsscribe }
-
 
 To subscribe to balance information, you can use the `subscribeToAssetsBalanceInfo` function and pass in the address you want to get the balance for and a callback function to handle the data:
 
