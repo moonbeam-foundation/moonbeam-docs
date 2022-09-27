@@ -11,22 +11,29 @@ description: Use the Moonbeam XCM SDK to easily deposit and withdraw cross chain
 
 The Moonbeam XCM SDK enables developers to easily deposit and withdraw assets to Moonbeam/Moonriver from the relay chain and other parachains in the Polkadot/Kusama ecosystem. With the SDK, you don't need to worry about determining the multilocation of the origin or destination assets or which extrinsics are used on which networks to send XCM transfers.
 
+The XCM SDK offers a simple helper functions like `deposit` and `withdraw`, that provide a very simple interface to execute XCM transfers between chains in the Polkadot/Kusama ecosystem. In addition, the XCM config package allows any parachain project to add their information in a standard way, so they can be immediatly supported by the XCM SDK.
+
 ## Getting Started {: #getting-started }
 
-To get started with the XCM SDK, you'll first need to install the corresponding NPM package. You'll also need to create signers to be used to sign transactions to transfer assets between Moonbeam and another chain within the Polkadot ecosystem. Lastly, you'll need to initialize the API which will provide you with asset and chain information and the necessary functions to deposit, withdraw, and subscribe to balance information.
+To get started with the XCM SDK, you'll first need to install the corresponding NPM package. Next, you'll also need to create signers to be used to sign transactions to transfer assets between Moonbeam and another chain within the Polkadot ecosystem. Lastly, you'll need to initialize the API which will provide you with asset and chain information and the necessary functions to deposit, withdraw, and subscribe to balance information.
 
 ### Installation {: #installation }
 
-You'll need to install two packages for the purposes of this guide, the first being the XCM SDK package, and the second being the XCM config package. The XCM SDK package will enable you to easily deposit and withdraw assets, and subscribe to balance information for each of the supported assets. The XCM config package will be used to obtain origin asset and chain information for each of the supported assets. The config package also includes native asset and chain information for each of the Moonbeam-based networks, as well as some underlying functions of the SDK.
+For the purposes of this guide you'll need to install two packages: the XCM SDK package, and the XCM config package. 
+
+The XCM SDK package will enable you to easily deposit and withdraw assets, and subscribe to balance information for each of the supported assets. 
+
+The XCM config package will be used to obtain origin asset and chain information for each of the supported assets. The config package also includes native asset and chain information for each of the Moonbeam-based networks, as well as some underlying functions of the SDK.
 
 To install the XCM SDK and XCM config packages, you can run the following command:
 
 ```
 npm install @moonbeam-network/xcm-sdk @moonbeam-network/xcm-config
 ```
+Both packages will install all the dependencies needed, like [Ethers.js](https://docs.ethers.io/v5/){target=_blank} and the [Polkadot.js API](https://polkadot.js.org/docs/api/){target=_blank}.
 
 !!! note
-    There is a [known issue](https://github.com/polkadot-js/api/issues/4315){target=_blank} when using the Moonbeam XCM packages alongside Polkadot.js that will cause warnings to appear in the console.
+    There is a [known issue](https://github.com/polkadot-js/api/issues/4315){target=_blank} when using the Moonbeam XCM packages alongside Polkadot.s with Node.js (Javascript)that will cause package conflict warnings to appear in the console. Using Typescript is recommended.
 
 ### Creating Signers {: creating-signers }
 
@@ -34,7 +41,7 @@ When interacting with the `deposit` and `withdraw` functions of the XCM SDK, you
 
 You can pass, for example, a [MetaMask signer into Ethers](https://docs.ethers.io/v5/getting-started/#getting-started--connecting){target=_blank} or another compatible wallet. Similarly with Polkadot, you can [pass a compatible wallet to the signer using the `@polkadot/extension-dapp` library](https://polkadot.js.org/docs/extension/){target=_blank}.
 
-To create a signer for Ethers.js and Polkadot.js, you can refer to the following code snippets. Please note that this approach is not recommended for production applications. Never store your private key or mnemonic in a JavaScript file.
+To create a signer for Ethers.js and Polkadot.js, you can refer to the following code snippets. Please note that this approach is not recommended for production applications. **Never store your private key or mnemonic in a JavaScript file.**
 
 === "Moonbeam"
 
@@ -162,7 +169,7 @@ init({
 
 ## API {: #api }
 
-The API includes asset information for each of the supported assets, chain information for the initialized network, and functions to enable deposits, withdrawals, and subscription to balance information.
+The Moonbeam SDK provides an API which includes a series of interfaces to get asset information for each of the supported assets, chain information for the initialized network, and functions to enable deposits, withdrawals, and subscription to balance information.
 
 Make sure you have [intialized](#initialization) the Moonbeam network you want to interact with first.
 
@@ -309,6 +316,8 @@ moonChain: {
 }
 ```
 
+Here, the units per second refer to units of token (in this case Wei) that is charged per second of execution of the XCM message. You can find more information in the [XCM fees page](/builders/xcm/fees/#moonbeam-reserve-assets){target=_blank}.
+
 ### Subscribe to Assets Balance Information {: #subsscribe }
 
 To subscribe to balance information, you can use the `subscribeToAssetsBalanceInfo` function and pass in the address you want to get the balance for and a callback function to handle the data:
@@ -354,8 +363,8 @@ unsubscribe();
 
 To deposit an asset to Moonbeam from another network, you'll have to first build the request using information from the origin chain before you can send the request. To do so, you'll take the following steps:
 
-1. Call the `deposit` function and pass in the asset symbol for the asset to be deposited. This will return a `chains` array containing the asset's origin network information and a `from` function which will be used to continue to build the request
-2. Call the `from` function and pass in the chain key of the origin network, then call `get` and pass in the address of the account on Moonbeam you want to deposit the funds to and pass in the [Polkadot signer](#creating-signers). This will return information about the origin chain asset, the `xc` representation of the asset on Moonbeam, a `send` function which will be used in the next step, and more
+1. Call the `deposit` function and pass in the asset symbol for the asset to be deposited. This will return a `chains` array containing the asset's origin network information and a `from` function which will be used to build the request
+2. Call the `from` function and pass in the chain key of the origin network. Then, call `get` and pass in the address of the account on Moonbeam you want to deposit the funds to and pass in the [Polkadot signer](#creating-signers). This will return a `send` function which already contains all the necessary info to perform the deposit, and it is used in the next step. In addition, other elements such as information about the origin chain asset, the `xc` representation of the asset on Moonbeam, are returned and might be important for logging purposes
 3. The `send` function is used to send the built deposit request along with the amount to send. You can optionally provide a callback function to handle the extrinsic events
 
 To obtain some of the data required to build the deposit request, such as the asset symbol and chain key of the origin network, you can import `AssetSymbol` and `ChainKey` from the `@moonbeam-network/xcm-config` package.
@@ -390,6 +399,8 @@ async function deposit() {
 
   await send('INSERT-AMOUNT', (event) => console.log(event));
 }
+
+deposit();
 ```
 
 As previously mentioned, the `deposit` function returns a `chains` array and a `from` function. The `chains` array corresponds to the chains you can deposit the given asset from (for the asset that was initially passed into the `deposit` function). An example of the `chains` array is as follows:
@@ -411,7 +422,15 @@ chains: [
 The `from` function requires a chain key to be passed into it for the origin chain in which the assets are sent from and returns a `get` function. 
 
 ```js
+import { AssetSymbol, ChainKey } from '@moonbeam-network/xcm-config';
+
+...
+
+const dot = AssetSymbol.DOT;
 const polkadot = ChainKey.Polkadot;
+
+const { from } = moonbeam.deposit(dot);
+
 await from(polkadot);
 ```
 
@@ -462,13 +481,13 @@ There are two functions returned: `send` and `getFee`.
 
 #### Send {: #send-deposit }
 
-When calling `send`, you will actually send the deposit request that has been built using the `deposit`, `from`, and `get` functions. You simply have to pass in a specified amount to send and an optional callback for handling the extrinsic event. For example, entering `10000000000n` will send `1` DOT from Polkadot to Moonbeam.
+When calling `send`, you will actually send the deposit request that has been built using the `deposit`, `from`, and `get` functions. You simply have to pass in a specified amount to send and an optional callback for handling the extrinsic event. For example, entering `10000000000n` will send `1` DOT from Polkadot to Moonbeam, as DOT has 10 decimals.
 
 You can refer back to the example in the [Deposit](#deposit) section to see how the `send` function is used.
 
 #### Get Fee {: #get-fee-deposit }
 
-The `getFee` function estimates the fees for transferring a given amount of the asset specified in the `deposit` function. An example of getting the fee in DOT for transferring DOT to Moonbeam is as follows:
+The `getFee` function estimates the fees for transferring a given amount of the asset specified in the `deposit` function. An example of getting the fee in Polkadot for transferring DOT to Moonbeam is as follows:
 
 ```js
 import { AssetSymbol, ChainKey } from '@moonbeam-network/xcm-config';
@@ -486,17 +505,19 @@ async function getDepositFee() {
   const fee = await getFee('INSERT-AMOUNT'));
   console.log(`Fee to deposit is estimated to be: ${toDecimal(fee, asset.decimals)} ${dot}`);
 }
+
+getDepositFee();
 ```
 
 ### Withdraw {: #withdraw }
 
 To withdraw an asset from Moonbeam to send back to the origin network, you'll have to first build the request using information from the origin chain before you can send the request, to do so you'll take the following steps:
 
-1. Call the `withdraw` function and pass in the asset symbol for the asset to be deposited. This will return a `chains` array containing the asset's origin network information and a `to` function which will be used to continue to build the request
-2. Call the `to` function and pass in the chain key of the origin network, then call `get` and pass in the address of the account on the origin network you want to withdraw the funds to and pass in the [Ethers signer](#creating-signers) if you haven't already done so during [intialization](#initializing). This will return information about the origin (destination) chain asset, the `xc` representation of the asset on Moonbeam, a `send` function which will be used in the next step, and more
-3. The `send` function is used to send the built deposit request along with the amount to send. You can optionally provide a callback function to handle the extrinsic events
+1. Call the `withdraw` function and pass in the asset symbol for the asset to be deposited. This will return a `chains` array containing the asset's origin network information and a `to` function which will be used to build the request
+2. Call the `to` function and pass in the chain key of the origin network. Then, call `get` and pass in the address of the account on the origin network you want to withdraw the funds from and pass in the [Ethers signer](#creating-signers) if you haven't already done so during [intialization](#initializing). This will return information about the origin (destination) chain asset, the `xc` representation of the asset on Moonbeam. This will return a `send` function which already contains all the necessary info to perform the withdrawal, and it is used in the next step. In addition, other elements, such as information about the asset, are returned and might be important for logging purposes
+3. The `send` function is used to send the built withdraw request along with the amount to send. You can optionally provide a callback function to handle the extrinsic events
 
-To obtain some of the data required to build the deposit request, such as the asset symbol and chain key of the origin network, you can import `AssetSymbol` and `ChainKey` from the `@moonbeam-network/xcm-config` package.
+To obtain some of the data required to build the withdraw request, such as the asset symbol and chain key of the origin network, you can import `AssetSymbol` and `ChainKey` from the `@moonbeam-network/xcm-config` package.
 
 An example of the steps described above to withdraw xcDOT from Moonbeam to send back to DOT on Polkadot is as follows:
 
@@ -529,9 +550,11 @@ async function withdraw() {
 
   await send('INSERT-AMOUNT', (event) => console.log(event));
 }
+
+withdraw();
 ```
 
-As previously mentioned, the `withdraw` function returns a `chains` array and a `to` function. The `chains` array corresponds to the chains you can withdraw the given asset to (for the asset that was initially passed into the `withdraw` function). An example of the `chains` array is as follows:
+As previously mentioned, the `withdraw` function returns a `chains` array and a `to` function. The `chains` array corresponds to the chains you can withdraw the given asset from (for the asset that was initially passed into the `withdraw` function). An example of the `chains` array is as follows:
 
 ```js
 chains: [
@@ -550,7 +573,15 @@ chains: [
 The `to` function requires a chain key to be passed into it for the origin chain in which the assets are sent from and returns a `get` function. 
 
 ```js
+import { AssetSymbol, ChainKey } from '@moonbeam-network/xcm-config';
+
+...
+
+const dot = AssetSymbol.DOT;
 const polkadot = ChainKey.Polkadot;
+
+const { to } = moonbeam.withdraw(dot);
+
 await to(polkadot);
 ```
 
