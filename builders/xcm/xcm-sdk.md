@@ -160,13 +160,35 @@ To be able to deposit, withdraw, and subscribe to balance information for all of
     
 If you intend to support a specific wallet, you can pass a signer into the `init` function right away. Otherwise, you'll be able to pass a signer directly when building a deposit or withdraw request. To pass in a signer for Ethers and Polkadot, you can use the following snippe (using Moonbeam as an example):
 
-```js
-import { init } from '@moonbeam-network/xcm-sdk';
-const { moonbeam } = init({
-  ethersSigner: 'INSERT-ETHERS-SIGNER',
-  polkadotSigner: 'INSERT-POLKADOT-SIGNER'
-})
-```
+=== "Moonbeam"
+
+    ```js
+    import { init } from '@moonbeam-network/xcm-sdk';
+    const { moonbeam } = init({
+      ethersSigner: 'INSERT-ETHERS-SIGNER',
+      polkadotSigner: 'INSERT-POLKADOT-SIGNER'
+    })
+    ```
+
+=== "Moonriver"
+
+    ```js
+    import { init } from '@moonbeam-network/xcm-sdk';
+    const { moonriver } = init({
+      ethersSigner: 'INSERT-ETHERS-SIGNER',
+      polkadotSigner: 'INSERT-POLKADOT-SIGNER'
+    })
+    ```
+
+=== "Moonbase Alpha"
+
+    ```js
+    import { init } from '@moonbeam-network/xcm-sdk';
+    const { moonbase } = init({
+      ethersSigner: 'INSERT-ETHERS-SIGNER',
+      polkadotSigner: 'INSERT-POLKADOT-SIGNER'
+    })
+    ```
 
 ## API {: #api }
 
