@@ -654,6 +654,8 @@ async function getWithdrawFee() {
   const fee = await getFee('INSERT-AMOUNT'));
   console.log(`Fee to deposit is estimated to be: ${toDecimal(fee, moonbeam.moonChain.decimals)} ${moonbeam.moonAsset.originSymbol}`););
 }
+
+getWithdrawFee();
 ```
 
 ## Utility Functions {: #sdk-utils }
