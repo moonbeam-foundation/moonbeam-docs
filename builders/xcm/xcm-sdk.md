@@ -9,13 +9,18 @@ description: Use the Moonbeam XCM SDK to easily deposit and withdraw cross chain
 
 ## Introduction {: #introduction }
 
-The Moonbeam XCM SDK enables developers to easily deposit and withdraw assets to Moonbeam/Moonriver from the relay chain and other parachains in the Polkadot/Kusama ecosystem. With the SDK, you don't need to worry about determining the multilocation of the origin or destination assets or which extrinsics are used on which networks to send XCM transfers.
+The Moonbeam XCM SDK enables developers to easily deposit and withdraw assets to Moonbeam/Moonriver from the relay chain and other parachains in the Polkadot/Kusama ecosystem. With the SDK, you don't need to worry about determining the multilocation of the origin or destination assets or which extrinsics are used on which networks to send XCM transfers. To deposit or withdraw assets, you simply define the asset and origin chain you want to deposit from or withdraw back to, along with the sending account's signer, and the amount to send.
+
+The examples in this guide are shown on Moonbeam, but can be adapted to be used on Moonriver or Moonbase Alpha.
+
+Please note that the SDK is currently in heavy development and is not production ready.
 
 The XCM SDK offers a simple helper functions like `deposit` and `withdraw`, that provide a very simple interface to execute XCM transfers between chains in the Polkadot/Kusama ecosystem. In addition, the XCM config package allows any parachain project to add their information in a standard way, so they can be immediatly supported by the XCM SDK.
 
 ## Getting Started {: #getting-started }
 
 To get started with the XCM SDK, you'll first need to install the corresponding NPM package. Next, you'll also need to create signers to be used to sign transactions to transfer assets between Moonbeam and another chain within the Polkadot ecosystem. Lastly, you'll need to initialize the API which will provide you with asset and chain information and the necessary functions to deposit, withdraw, and subscribe to balance information.
+
 
 ### Installation {: #installation }
 
@@ -37,11 +42,11 @@ Both packages will install all the dependencies needed, like [Ethers.js](https:/
 
 ### Creating Signers {: creating-signers }
 
-When interacting with the `deposit` and `withdraw` functions of the XCM SDK, you'll need to provide an [Ethers.js](https://docs.ethers.io/){target=_blank} and [Polkadot.js](https://polkadot.js.org/docs/api/){target=_blank} signer which will be used to sign and send the transactions. The Ethers signer is used to sign transactions on Moonbeam, and the Polkadot signer will be used to sign transactions on the origin chain you're depositing assets from.
+When interacting with the `deposit` and `withdraw` functions of the XCM SDK, you'll need to provide an [Ethers.js](https://docs.ethers.io/){target=_blank} and [Polkadot.js](https://polkadot.js.org/docs/api/){target=_blank} signer, which will be used to sign and send the transactions. The Ethers signer is used to sign transactions on Moonbeam, and the Polkadot signer will be used to sign transactions on the origin chain you're depositing assets from.
 
 You can pass, for example, a [MetaMask signer into Ethers](https://docs.ethers.io/v5/getting-started/#getting-started--connecting){target=_blank} or another compatible wallet. Similarly with Polkadot, you can [pass a compatible wallet to the signer using the `@polkadot/extension-dapp` library](https://polkadot.js.org/docs/extension/){target=_blank}.
 
-To create a signer for Ethers.js and Polkadot.js, you can refer to the following code snippets. Please note that this approach is not recommended for production applications. **Never store your private key or mnemonic in a JavaScript file.**
+To create a signer for Ethers.js and Polkadot.js, you can refer to the following code snippets. Please note that this approach is not recommended for production applications. **Never store your private key or mnemonic in a JavaScript or TypeScriptfile.**
 
 === "Moonbeam"
 
@@ -320,6 +325,7 @@ Here, the units per second refer to units of token (in this case Wei) that is ch
 
 ### Subscribe to Assets Balance Information {: #subsscribe }
 
+
 To subscribe to balance information, you can use the `subscribeToAssetsBalanceInfo` function and pass in the address you want to get the balance for and a callback function to handle the data:
 
 === "Moonbeam"
@@ -570,7 +576,7 @@ chains: [
 
 #### To {: #to }
 
-The `to` function requires a chain key to be passed into it for the origin chain in which the assets are sent from and returns a `get` function. 
+The `to` function requires a chain key to be passed into it for the origin chain in which the assets are being withdrawn back to and returns a `get` function. 
 
 ```js
 import { AssetSymbol, ChainKey } from '@moonbeam-network/xcm-config';
