@@ -28,7 +28,7 @@ The SDK provides the following core interfaces, which can be accessed after [ini
 
 ## Core Methods {: #core-sdk-methods }
 
-The SDK provides the following core methods, which will be covered in this guide:
+The SDK provides the following core methods:
 
 |                                           Method                                            |                                      Description                                      |
 |:-------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------:|
@@ -44,22 +44,22 @@ The SDK provides the following core methods, which will be covered in this guide
 
 When building the transfer data needed for a deposit, you'll use multiple methods to build the underlying XCM message and send it:
 
-|                                   Method                                    |                                                                                     Description                                                                                      |
-|:---------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|    [`deposit()`](/builders/xcm/xcm-sdk/xcm-sdk/#deposit){target=_blank}     |                             Initiates a deposit to transfer assets from another chain to Moonbeam. **Must be called first before you can call `from()`**                             |
-|       [`from()`](/builders/xcm/xcm-sdk/xcm-sdk/#from){target=_blank}        |                                  Sets the source chain where the deposit will originate from. **Must be called first before you can call `get()`**                                   |
-|    [`get()`](/builders/xcm/xcm-sdk/xcm-sdk/#get-deposit){target=_blank}     | Sets the account on Moonbeam to deposit the funds to and the source account where the deposit will be sent from. **Must be called first before you can call `send()` or `getFee()`** |
-|    [`send()`](/builders/xcm/xcm-sdk/xcm-sdk/#send-deposit){target=_blank}    |                                                               Sends the deposit transfer data given an amount to send                                                                |
-| [`getFee()`](/builders/xcm/xcm-sdk/xcm-sdk/#get-fee-deposit){target=_blank} |                        Returns an estimate of the fee for transferring a given amount, which will be paid in the asset specified in the `deposit()` function                         |
+|                                   Method                                    |                                                                                                            Description                                                                                                            |
+|:---------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|    [`deposit()`](/builders/xcm/xcm-sdk/xcm-sdk/#deposit){target=_blank}     |                                                                               Initiates a deposit to transfer assets from another chain to Moonbeam                                                                               |
+|       [`from()`](/builders/xcm/xcm-sdk/xcm-sdk/#from){target=_blank}        |                                  Sets the source chain where the deposit will originate from. <br> This function is returned from the `deposit()` function. <br> **Must call `deposit()` first**                                  |
+|    [`get()`](/builders/xcm/xcm-sdk/xcm-sdk/#get-deposit){target=_blank}     |        Sets the account on Moonbeam to deposit the funds to and the <br> source account where the deposit will be sent from. <br> This function is returned from the `from()` function. <br> **Must call `from()` first**         |
+|   [`send()`](/builders/xcm/xcm-sdk/xcm-sdk/#send-deposit){target=_blank}    |                                          Sends the deposit transfer data given an amount to send. <br> This function is returned from the `get()` function. <br> **Must call `get()` first**                                           |
+| [`getFee()`](/builders/xcm/xcm-sdk/xcm-sdk/#get-fee-deposit){target=_blank} | Returns an estimate of the fee for transferring a given amount, <br> which will be paid in the asset specified in the `deposit()` function. <br> This function is returned from the `get()` function. <br> **Must call `get()` first** |
 
 ## Withdraw Methods {: #withdraw-methods }
 
 When building the transfer data needed for a withdraw, you'll use multiple methods to build the underlying XCM message and send it:
 
-|                                    Method                                    |                                                                  Description                                                                  |
-|:----------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------:|
-|    [`withdraw()`](/builders/xcm/xcm-sdk/xcm-sdk/#withdraw){target=_blank}    |          Initiates a withdraw to transfer assets from Moonbeam to another chain. **Must be called first before you can call `to()`**          |
-|          [`to()`](/builders/xcm/xcm-sdk/xcm-sdk/#to){target=_blank}          |            Sets the destination chain where the assets will be withdrawn to. **Must be called first before you can call `get()`**             |
-|    [`get()`](/builders/xcm/xcm-sdk/xcm-sdk/#get-withdraw){target=_blank}     | Sets the account on the destination chain to send the withdrawn funds to. **Must be called first before you can call `send()` or `getFee()`** |
-|   [`send()`](/builders/xcm/xcm-sdk/xcm-sdk/#send-withdraw){target=_blank}    |                                           Sends the withdraw transfer data given an amount to send                                            |
-| [`getFee()`](/builders/xcm/xcm-sdk/xcm-sdk/#get-fee-withdraw){target=_blank} |    Returns an estimate of the fee for transferring a given amount, which will be paid in the asset specified in the `withdraw()` function     |
+|                                    Method                                    |                                                                                                               Description                                                                                                               |
+|:----------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|    [`withdraw()`](/builders/xcm/xcm-sdk/xcm-sdk/#withdraw){target=_blank}    |                                                                                 Initiates a withdraw to transfer assets from Moonbeam to another chain                                                                                  |
+|          [`to()`](/builders/xcm/xcm-sdk/xcm-sdk/#to){target=_blank}          |                                 Sets the destination chain where the assets will be withdrawn to. <br> This function is returned from the `withdraw()` function. <br> **Must call `withdraw()` first**                                  |
+|    [`get()`](/builders/xcm/xcm-sdk/xcm-sdk/#get-withdraw){target=_blank}     |                                   Sets the account on the destination chain to send the withdrawn funds to. <br> This function is returned from the `to()` function. <br> **Must call `to()` first**                                    |
+|   [`send()`](/builders/xcm/xcm-sdk/xcm-sdk/#send-withdraw){target=_blank}    |                                          Sends the withdraw transfer data given an amount to send. <br> This function is returned from the `get()` function. <br> **Must call `get()` first**                                           |
+| [`getFee()`](/builders/xcm/xcm-sdk/xcm-sdk/#get-fee-withdraw){target=_blank} | Returns an estimate of the fee for transferring a given amount, <br> which will be paid in the asset specified in the `withdraw()` function. <br> This function is returned from the `get()` function. <br> **Must call `get()` first** |

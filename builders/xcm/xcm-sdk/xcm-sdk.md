@@ -191,7 +191,7 @@ If you intend to support a specific wallet, you can pass a signer into the `init
 
 ## Using the SDK Interfaces {: #using-the-api }
 
-The Moonbeam SDK provides an API which includes a series of interfaces to get asset information for each of the supported assets, chain information for the initialized network, and functions to enable deposits, withdrawals, and subscription to balance information.
+The Moonbeam SDK provides an API which includes a series of [interfaces](/builders/xcm/xcm-sdk/reference/#core-sdk-interfaces){target=_blank} to get asset information for each of the supported assets, chain information for the initialized network, and functions to enable deposits, withdrawals, and subscription to balance information.
 
 Make sure you have [intialized](#initialization) the Moonbeam network you want to interact with first.
 
@@ -342,7 +342,7 @@ Here, the units per second refer to units of token (in this case Wei) that is ch
 
 ## Using the SDK Methods {: #using-the-sdk-methods }
 
-The Moonbeam SDK provides an API that includes functions which enable deposits, withdrawals, and subscription to balance information, in addition to a few utility functions.
+The Moonbeam SDK provides an API that includes [functions](/builders/xcm/xcm-sdk/reference/#core-sdk-methods){target=_blank} which enable deposits, withdrawals, and subscription to balance information, in addition to a few utility functions.
 
 Make sure you have [intialized](#initialization) the Moonbeam network you want to interact with first. You'll also need to make sure you've [created signers](#creating-signers) in order to sign and send deposit and withdraw transfer data.
 
