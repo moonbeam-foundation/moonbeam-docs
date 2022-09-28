@@ -49,7 +49,7 @@ When building the transfer data needed for a deposit, you'll use multiple method
 |    [`deposit()`](/builders/xcm/xcm-sdk/xcm-sdk/#deposit){target=_blank}     |                             Initiates a deposit to transfer assets from another chain to Moonbeam. **Must be called first before you can call `from()`**                             |
 |       [`from()`](/builders/xcm/xcm-sdk/xcm-sdk/#from){target=_blank}        |                                  Sets the source chain where the deposit will originate from. **Must be called first before you can call `get()`**                                   |
 |    [`get()`](/builders/xcm/xcm-sdk/xcm-sdk/#get-deposit){target=_blank}     | Sets the account on Moonbeam to deposit the funds to and the source account where the deposit will be sent from. **Must be called first before you can call `send()` or `getFee()`** |
-|    [`send()`](/builders/xcm/xcm-sdk/xcm-sdk/#send-deposit{target=_blank}    |                                                               Sends the deposit transfer data given an amount to send                                                                |
+|    [`send()`](/builders/xcm/xcm-sdk/xcm-sdk/#send-deposit){target=_blank}    |                                                               Sends the deposit transfer data given an amount to send                                                                |
 | [`getFee()`](/builders/xcm/xcm-sdk/xcm-sdk/#get-fee-deposit){target=_blank} |                        Returns an estimate of the fee for transferring a given amount, which will be paid in the asset specified in the `deposit()` function                         |
 
 ## Withdraw Methods {: #withdraw-methods }
