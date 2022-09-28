@@ -1,13 +1,18 @@
 ---
 title: Remote EVM Calls Through XCM
-description: How to do remote call to Moonbeam EVM  from other chains through XCM. The XCM-Transactor precompile enables access to core functions via the Ethereum API.
+description: How to do remote call to Moonbeam EVM from other chains through XCM, and tap into the Moonbeam EVM ecosystem from any parachain in the Polkadot ecosystem
 ---
 
-# Using the XCM-Transactor Pallet for Remote Executions
+# Remote EVM Calls Through XCM
 
-![XCM-Transactor Precompile Contracts Banner](/images/builders/xcm/xcm-transactor/xcmtransactor-banner.png)
+![Remote EVM Calls Banner](/images/builders/xcm/remove-evm-calls/xcmevm-banner.png)
 
 ## Introduction {: #introduction}
+
+The [XCM-transactor pallet](/builders/xcm/xcm-transactor/){target=_blank} provides a simple interface to perform remote cross-chain calls through XCM. However, this does not consider the possibility to do remote calls to Moonbeam's EVM.
+
+To this end, the [Ethereum-XCM pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/ethereum-xcm){target=_blank} was introduced. It is a fork of the battle-tested [Ethereum pallet](https://github.com/paritytech/frontier/tree/master/frame/ethereum){target=_blank}, but with some custom modifications to allow EVM calls over XCM.
+
 
 XCM messages are comprised of a [series of instructions](/builders/xcm/overview/#xcm-instructions){target=_blank} that are executed by the Cross-Consensus Virtual Machine (XCVM). Combinations of these instructions result in predetermined actions such as cross-chain token transfers and, more interestingly, remote cross-chain execution.
 
