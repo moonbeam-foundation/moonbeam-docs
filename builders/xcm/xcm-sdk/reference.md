@@ -19,47 +19,47 @@ This page includes a list of the interfaces and methods available in the XCM SDK
 
 The SDK provides the following core interfaces, which can be accessed after [initialization](/builders/xcm/xcm-sdk/xcm-sdk/#initializing):
 
-|                            Interface                            |                                                                         Description                                                                         |
-|:---------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|       [`symbols`](/builders/xcm/xcm-sdk/xcm-sdk/#symbols)       |                   A list containing the asset's origin chain symbol for each of the supported assets for the initialized Moonbeam network                   |
-|        [`assets`](/builders/xcm/xcm-sdk/xcm-sdk/#assets)        |    A list of the supported assets for the initialized Moonbeam network along with their asset ID, precompiled address on Moonbeam, and the asset symbol     |
-|   [`moonAsset`](/builders/xcm/xcm-sdk/xcm-sdk/#native-assets)   |                      Contains the asset ID, precompile contract address, and native asset symbol for the initialized Moonbeam network                       |
-| [`moonChain`](/builders/xcm/xcm-sdk/xcm-sdk/#native-chain-data) | Contains the chain key, name, WSS endpoint, parachain ID, decimals of the native asset, chain ID, and units per second for the initialized Moonbeam network |
+|                                   Interface                                    |                                                                         Description                                                                         |
+|:------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|       [`symbols`](/builders/xcm/xcm-sdk/xcm-sdk/#symbols){target=_blank}       |                   A list containing the asset's origin chain symbol for each of the supported assets for the initialized Moonbeam network                   |
+|        [`assets`](/builders/xcm/xcm-sdk/xcm-sdk/#assets){target=_blank}        |    A list of the supported assets for the initialized Moonbeam network along with their asset ID, precompiled address on Moonbeam, and the asset symbol     |
+|   [`moonAsset`](/builders/xcm/xcm-sdk/xcm-sdk/#native-assets){target=_blank}   |                      Contains the asset ID, precompile contract address, and native asset symbol for the initialized Moonbeam network                       |
+| [`moonChain`](/builders/xcm/xcm-sdk/xcm-sdk/#native-chain-data){target=_blank} | Contains the chain key, name, WSS endpoint, parachain ID, decimals of the native asset, chain ID, and units per second for the initialized Moonbeam network |
 
 ## Core Methods {: #core-sdk-methods }
 
 The SDK provides the following core methods, which will be covered in this guide:
 
-|                                    Method                                    |                                    Description                                    |
-|:----------------------------------------------------------------------------:|:---------------------------------------------------------------------------------:|
-|           [`init()`](/builders/xcm/xcm-sdk/xcm-sdk/#initializing)            |  Initializes the XCM SDK. **Must be called first before any other SDK methods**   |
-|            [`deposit()`](/builders/xcm/xcm-sdk/xcm-sdk/#deposit)             |   Initiates a deposit request to transfer assets from another chain to Moonbeam   |
-|           [`withdraw()`](/builders/xcm/xcm-sdk/xcm-sdk/#withdraw)            |  Initiates a withdraw request to transfer assets from Moonbeam to another chain   |
-| [`subscribeToAssetsBalanceInfo()`](/builders/xcm/xcm-sdk/xcm-sdk/#subscribe) | Listens for balance changes for a given account for each of the supported assets  |
-|     [`isXcmSdkDeposit()`](/builders/xcm/xcm-sdk/xcm-sdk/#deposit-check)      | Returns a boolean indicating whether a given request is a deposit request or not  |
-|    [`isXcmSdkWithdraw()`](/builders/xcm/xcm-sdk/xcm-sdk/#withdraw-check)     | Returns a boolean indicating whether a given request is a withdraw request or not |
-|          [`toDecimals()`](/builders/xcm/xcm-sdk/xcm-sdk/#decimals)           |                     Returns a given balance in decimal format                     |
+|                                           Method                                            |                                      Description                                      |
+|:-------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------:|
+|           [`init()`](/builders/xcm/xcm-sdk/xcm-sdk/#initializing){target=_blank}            |    Initializes the XCM SDK. **Must be called first before any other SDK methods**     |
+|            [`deposit()`](/builders/xcm/xcm-sdk/xcm-sdk/#deposit){target=_blank}             |         Initiates a deposit to transfer assets from another chain to Moonbeam         |
+|           [`withdraw()`](/builders/xcm/xcm-sdk/xcm-sdk/#withdraw){target=_blank}            |        Initiates a withdraw to transfer assets from Moonbeam to another chain         |
+| [`subscribeToAssetsBalanceInfo()`](/builders/xcm/xcm-sdk/xcm-sdk/#subscribe){target=_blank} |   Listens for balance changes for a given account for each of the supported assets    |
+|     [`isXcmSdkDeposit()`](/builders/xcm/xcm-sdk/xcm-sdk/#deposit-check){target=_blank}      | Returns a boolean indicating whether the given transfer data is for a deposit or not  |
+|    [`isXcmSdkWithdraw()`](/builders/xcm/xcm-sdk/xcm-sdk/#withdraw-check){target=_blank}     | Returns a boolean indicating whether the given transfer data is for a withdraw or not |
+|          [`toDecimals()`](/builders/xcm/xcm-sdk/xcm-sdk/#decimals){target=_blank}           |                       Returns a given balance in decimal format                       |
 
-## Deposit {: #deposit }
+## Deposit Methods {: #deposit-methods }
 
-When building a deposit request, you'll use multiple methods to build the underlying XCM message and send it:
+When building the transfer data needed for a deposit, you'll use multiple methods to build the underlying XCM message and send it:
 
-|                            Method                            |                                                                                     Description                                                                                      |
-|:------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|    [`deposit()`](/builders/xcm/xcm-sdk/xcm-sdk/#deposit)     |                         Initiates a deposit request to transfer assets from another chain to Moonbeam. **Must be called first before you can call `from()`**                         |
-|       [`from()`](/builders/xcm/xcm-sdk/xcm-sdk/#from)        |                                  Sets the source chain where the deposit will originate from. **Must be called first before you can call `get()`**                                   |
-|    [`get()`](/builders/xcm/xcm-sdk/xcm-sdk/#get-deposit)     | Sets the account on Moonbeam to deposit the funds to and the source account where the deposit will be sent from. **Must be called first before you can call `send()` or `getFee()`** |
-|   [`send()`](/builders/xcm/xcm-sdk/xcm-sdk/#send-deposit)    |                                                                  Sends the deposit request given an amount to send                                                                   |
-| [`getFee()`](/builders/xcm/xcm-sdk/xcm-sdk/#get-fee-deposit) |                        Returns an estimate of the fee for transferring a given amount, which will be paid in the asset specified in the `deposit()` function                         |
+|                                   Method                                    |                                                                                     Description                                                                                      |
+|:---------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|    [`deposit()`](/builders/xcm/xcm-sdk/xcm-sdk/#deposit){target=_blank}     |                             Initiates a deposit to transfer assets from another chain to Moonbeam. **Must be called first before you can call `from()`**                             |
+|       [`from()`](/builders/xcm/xcm-sdk/xcm-sdk/#from){target=_blank}        |                                  Sets the source chain where the deposit will originate from. **Must be called first before you can call `get()`**                                   |
+|    [`get()`](/builders/xcm/xcm-sdk/xcm-sdk/#get-deposit){target=_blank}     | Sets the account on Moonbeam to deposit the funds to and the source account where the deposit will be sent from. **Must be called first before you can call `send()` or `getFee()`** |
+|    [`send()`](/builders/xcm/xcm-sdk/xcm-sdk/#send-deposit{target=_blank}    |                                                               Sends the deposit transfer data given an amount to send                                                                |
+| [`getFee()`](/builders/xcm/xcm-sdk/xcm-sdk/#get-fee-deposit){target=_blank} |                        Returns an estimate of the fee for transferring a given amount, which will be paid in the asset specified in the `deposit()` function                         |
 
 ## Withdraw Methods {: #withdraw-methods }
 
-When building a withdraw request, you'll use multiple methods to build the underlying XCM message and send it:
+When building the transfer data needed for a withdraw, you'll use multiple methods to build the underlying XCM message and send it:
 
-|                            Method                             |                                                                  Description                                                                  |
-|:-------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------:|
-|    [`withdraw()`](/builders/xcm/xcm-sdk/xcm-sdk/#withdraw)    |      Initiates a withdraw request to transfer assets from Moonbeam to another chain. **Must be called first before you can call `to()`**      |
-|          [`to()`](/builders/xcm/xcm-sdk/xcm-sdk/#to)          |            Sets the destination chain where the assets will be withdrawn to. **Must be called first before you can call `get()`**             |
-|    [`get()`](/builders/xcm/xcm-sdk/xcm-sdk/#get-withdraw)     | Sets the account on the destination chain to send the withdrawn funds to. **Must be called first before you can call `send()` or `getFee()`** |
-|   [`send()`](/builders/xcm/xcm-sdk/xcm-sdk/#send-withdraw)    |                                              Sends the withdraw request given an amount to send                                               |
-| [`getFee()`](/builders/xcm/xcm-sdk/xcm-sdk/#get-fee-withdraw) |    Returns an estimate of the fee for transferring a given amount, which will be paid in the asset specified in the `withdraw()` function     |
+|                                    Method                                    |                                                                  Description                                                                  |
+|:----------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------:|
+|    [`withdraw()`](/builders/xcm/xcm-sdk/xcm-sdk/#withdraw){target=_blank}    |          Initiates a withdraw to transfer assets from Moonbeam to another chain. **Must be called first before you can call `to()`**          |
+|          [`to()`](/builders/xcm/xcm-sdk/xcm-sdk/#to){target=_blank}          |            Sets the destination chain where the assets will be withdrawn to. **Must be called first before you can call `get()`**             |
+|    [`get()`](/builders/xcm/xcm-sdk/xcm-sdk/#get-withdraw){target=_blank}     | Sets the account on the destination chain to send the withdrawn funds to. **Must be called first before you can call `send()` or `getFee()`** |
+|   [`send()`](/builders/xcm/xcm-sdk/xcm-sdk/#send-withdraw){target=_blank}    |                                           Sends the withdraw transfer data given an amount to send                                            |
+| [`getFee()`](/builders/xcm/xcm-sdk/xcm-sdk/#get-fee-withdraw){target=_blank} |    Returns an estimate of the fee for transferring a given amount, which will be paid in the asset specified in the `withdraw()` function     |
