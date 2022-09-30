@@ -129,6 +129,7 @@ networks:
       min_preim_deposit: 0.004
       max_votes: 100
       max_proposals: 100
+      max_referenda: 5
       lock_period:
         conviction_1: 1
         conviction_2: 2
@@ -276,6 +277,7 @@ networks:
       max_votes: 100
       min_preim_deposit: 0.004
       max_proposals: 100
+      max_referenda: 5
       lock_period:
         conviction_1: 1
         conviction_2: 2
@@ -481,6 +483,7 @@ networks:
       max_votes: 100
       min_preim_deposit: 0.04
       max_proposals: 100
+      max_referenda: 2
       lock_period:
         conviction_1: 7
         conviction_2: 14
