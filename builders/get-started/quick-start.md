@@ -5,13 +5,13 @@ description: Everything you need to know to get started developing, deploying, a
 
 # Quick Start Guide for Developing on Moonbeam
 
-![API Providers banner](/images/builders/get-started/endpoints/endpoints-banner.png)
+![Get started banner](/images/builders/get-started/quick-start-banner.png)
 
 ## Quick Overview {: #overview }
 
 Moonbeam is a fully Ethereum-compatible smart contract platform on Polkadot. As such, you can interact with Moonbeam via the [Ethereum API](/builders/build/eth-api/){target=_blank} and [Substrate API](/builders/build/substrate-api/){target=_blank}.
 
-Although Moonbeam is a Substrate-based platform, Moonbeam uses a [unified accounts](/learn/features/unified-accounts){target=_blank} system, which replaces Substrate-style accounts and keys with Ethereum-style accounts and keys. As a result, you can interact with your Moonbeam account using [MetaMask](/tokens/connect/metamask){target=_blank}, [Ledger](/tokens/connect/ledger/){target=_blank}, and Ethereum [libraries](/builders/build/eth-api/libraries/){target=_blank} and [development environments](/builders/build/eth-api/dev-env/){target=_blank}.
+Although Moonbeam is a Substrate-based platform, Moonbeam uses a [unified accounts](/learn/features/unified-accounts){target=_blank} system, which replaces Substrate-style accounts and keys with Ethereum-style accounts and keys. As a result, you can interact with your Moonbeam account with [MetaMask](/tokens/connect/metamask){target=_blank}, [Ledger](/tokens/connect/ledger/), and other Ethereum-compatible wallets by simply adding Moonbeam's network configurations. Similarly, you can develop on Moonbeam using Ethereum [libraries](/builders/build/eth-api/libraries/){target=_blank} and [development environments](/builders/build/eth-api/dev-env/){target=_blank}.
 
 ## Moonbeam Networks {: #moonbeam-networks }
 
@@ -49,11 +49,19 @@ When working with developer tools, depending on the tool, you might need to conf
 
 === "Moonbase Alpha"
 
-    |    Variable     |                                                                                                                                  Value                                                                                                                                  |
-    |:---------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-    |    Chain ID     |                                                                                              <pre style="padding-right: 2em">```{{ networks.moonbase.chain_id }}```</pre>                                                                                               |
-    | Public RPC URLs | <pre style="padding-right: 2em">```https://moonbase-alpha.public.blastapi.io```</pre> <pre style="padding-right: 2em">```https://moonbeam-alpha.api.onfinality.io/public```</pre> <pre style="padding-right: 2em">```https://rpc.api.moonbase.moonbeam.network```</pre> |
-    | Public WSS URLs |  <pre style="padding-right: 2em">```wss://moonbase-alpha.public.blastapi.io```</pre> <pre style="padding-right: 2em">```wss://moonbeam-alpha.api.onfinality.io/public-ws```</pre> <pre style="padding-right: 2em">```wss://wss.api.moonbase.moonbeam.network```</pre>   |
+    |    Variable     |                                                                                                                             Value                                                                                                                             |
+    |:---------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |    Chain ID     |                                                                                         <pre style="padding-right: 2em">```{{ networks.moonbase.chain_id }}```</pre>                                                                                          |
+    | Public RPC URLs | <pre style="padding-right: 2em">```https://moonbase-alpha.public.blastapi.io```</pre> <pre style="padding-right: 2em">```https://moonbeam-alpha.api.onfinality.io/public```</pre> <pre style="padding-right: 2em">```{{ networks.moonbase.rpc_url }}```</pre> |
+    | Public WSS URLs | <pre style="padding-right: 2em">```wss://moonbase-alpha.public.blastapi.io```</pre> <pre style="padding-right: 2em">```wss://moonbeam-alpha.api.onfinality.io/public-ws```</pre> <pre style="padding-right: 2em">```{{ networks.moonbase.wss_url }}```</pre>  |
+
+=== "Moonbeam Dev Node"
+
+    |   Variable    |                                      Value                                      |
+    |:-------------:|:-------------------------------------------------------------------------------:|
+    |   Chain ID    | <pre style="padding-right: 2em">```{{ networks.development.chain_id }}```</pre> |
+    | Local RPC URL | <pre style="padding-right: 2em">```{{ networks.development.rpc_url }}```</pre>  |
+    | Local WSS URL | <pre style="padding-right: 2em">```{{ networks.development.wss_url }}```</pre>  |
 
 !!! note
     You can create your own endpoint suitable for development or production from one of the [supported RPC providers](/builders/get-started/endpoints/#endpoint-providers){target=_blank}.
@@ -62,42 +70,9 @@ When working with developer tools, depending on the tool, you might need to conf
 
 Moonbeam provides two different kind of explorers: ones to query the Ethereum API, and others dedicated to the Substrate API. All EVM-based transactions are accessible via the Ethereum API wheras the Substrate API can be relied upon for Substrate-native functions such as governance, staking, and some information about EVM-based transactions. For more information on each explorer, please check out the [Block Explorers](/builders/get-started/explorers){target=_blank} page.
 
-=== "Moonbeam"
-    |                                                        Block Explorer                                                        |   Type    |                           URL                           |
-    |:----------------------------------------------------------------------------------------------------------------------------:|:---------:|:-------------------------------------------------------:|
-    |                                   [Moonscan](https://moonbeam.moonscan.io/){target=_blank}                                   |    EVM    |              https://moonbeam.moonscan.io/              |
-    |                              [Blockscout](https://blockscout.moonbeam.network/){target=_blank}                               |    EVM    |          https://blockscout.moonbeam.network/           |
-    |                     [Expedition](https://moonbeam-explorer.netlify.app/?network=Moonbeam){target=_blank}                     |    EVM    | https://moonbeam-explorer.netlify.app/?network=Moonbeam |
-    |                                    [Subscan](https://moonbeam.subscan.io/){target=_blank}                                    | Substrate |              https://moonbeam.subscan.io/               |
-    | [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam.api.onfinality.io%2Fpublic-ws#/explorer){target=_blank} | Substrate |         https://polkadot.js.org/apps/#/explorer         |
+--8<-- 'text/explorers/explorers.md'
 
-
-=== "Moonriver"
-    |                                                        Block Explorer                                                         |   Type    |                           URL                            |
-    |:-----------------------------------------------------------------------------------------------------------------------------:|:---------:|:--------------------------------------------------------:|
-    |                                   [Moonscan](https://moonriver.moonscan.io/){target=_blank}                                   |    EVM    |              https://moonriver.moonscan.io/              |
-    |                          [Blockscout](https://blockscout.moonriver.moonbeam.network/){target=_blank}                          |    EVM    |      https://blockscout.moonriver.moonbeam.network/      |
-    |                     [Expedition](https://moonbeam-explorer.netlify.app/?network=Moonriver){target=_blank}                     |    EVM    | https://moonbeam-explorer.netlify.app/?network=Moonriver |
-    |                                    [Subscan](https://moonriver.subscan.io/){target=_blank}                                    | Substrate |              https://moonriver.subscan.io/               |
-    | [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonriver.api.onfinality.io%2Fpublic-ws#/explorer){target=_blank} | Substrate |         https://polkadot.js.org/apps/#/explorer          |
-
-=== "Moonbase Alpha"
-    |                                                     Block Explorer                                                      |   Type    |                             URL                              |
-    |:-----------------------------------------------------------------------------------------------------------------------:|:---------:|:------------------------------------------------------------:|
-    |                                [Moonscan](https://moonbase.moonscan.io/){target=_blank}                                 |    EVM    |                https://moonbase.moonscan.io/                 |
-    |                   [Blockscout](https://moonbase-blockscout.testnet.moonbeam.network/){target=_blank}                    |    EVM    |    https://moonbase-blockscout.testnet.moonbeam.network/     |
-    |                [Expedition](https://moonbeam-explorer.netlify.app/?network=MoonbaseAlpha){target=_blank}                |    EVM    | https://moonbeam-explorer.netlify.app/?network=MoonbaseAlpha |
-    |                                 [Subscan](https://moonbase.subscan.io/){target=_blank}                                  | Substrate |                 https://moonbase.subscan.io/                 |
-    | [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=_blank} | Substrate |           https://polkadot.js.org/apps/#/explorer            |
-
-
-## Moonbeam Accounts {: #moonbeam-accounts }
-
-Since Moonbeam accounts are H160 Ethereum-style accounts, you can use your Ethereum account or create an account using any of the supported [wallets](/tokens/connect/){target=_blank}. You'll simply need to add the Moonbeam network configurations to your wallet and switch to the Moonbeam network to see your account balance.
-
-You can also create an account using Ethereum libraries such as [Ethers.js](https://docs.ethers.io/v5/api/signer/#Wallet){target=_blank}, [Web3.js](https://web3js.readthedocs.io/en/v1.8.0/web3-eth-accounts.html#eth-accounts){target=_blank}, or [Web3.py](https://web3py.readthedocs.io/en/latest/web3.eth.account.html#eth-account){target=_blank}.
-
-### Funding TestNet Accounts {: #testnet-tokens }
+## Funding TestNet Accounts {: #testnet-tokens }
 
 To get started developing on one of the TestNets, you'll need to fund your account with DEV tokens to send transactions. Please note that DEV tokens have no real value and are for testing purposes only.
 
