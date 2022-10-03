@@ -13,7 +13,7 @@ The [XCM-transactor pallet](/builders/xcm/xcm-transactor/){target=_blank} provid
 
 Moonbeam's EVM is only accesible through the [Ethereum pallet](https://github.com/paritytech/frontier/tree/master/frame/ethereum){target=_blank}. Among many other things, this pallet handles validating transactions before going into the transaction pool. Then, it performs another validation step before inserting a transaction from the pool in a block. Lastly, it provides the interface through a `transact` function to execute a validated transaction. All these steps follow the same behaviour as an Ethereum transaction, in terms of structure and signature scheme.
 
-However, calling the [Ethereum pallet](https://github.com/paritytech/frontier/tree/master/frame/ethereum){target=_blank} directly through an XCM [Transact](https://github.com/paritytech/xcm-format#transact){target=_blank} is not feasible. Mainly because the dispatcher account for the remote EVM call (referred to as `msg.sender` in  Ethereum) does not sign the XCM transaction on the Moonbeam side. The XCM extrinsic is signed in the origin chain, and the XCM executor dispatches the call, through the [Transact](https://github.com/paritytech/xcm-format#transact){target=_blank} instruction, from a kwown caller linked to the sender in the origin chain. In this context, the Ethereum pallet will not be able to verify the signature, and ultimately, validate the transaction.
+However, calling the [Ethereum pallet](https://github.com/paritytech/frontier/tree/master/frame/ethereum){target=_blank} directly through an XCM [`Transact`](https://github.com/paritytech/xcm-format#transact){target=_blank} is not feasible. Mainly because the dispatcher account for the remote EVM call (referred to as `msg.sender` in  Ethereum) does not sign the XCM transaction on the Moonbeam side. The XCM extrinsic is signed in the origin chain, and the XCM executor dispatches the call, through the [`Transact`](https://github.com/paritytech/xcm-format#transact){target=_blank} instruction, from a kwown caller linked to the sender in the origin chain. In this context, the Ethereum pallet will not be able to verify the signature, and ultimately, validate the transaction.
 
 To this end, the [Ethereum-XCM pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/ethereum-xcm){target=_blank} was introduced. It acts as a middleware between the XCM [Transact](https://github.com/paritytech/xcm-format#transact){target=_blank} instruction and the [Ethereum pallet](https://github.com/paritytech/frontier/tree/master/frame/ethereum){target=_blank}, as special considerations need to be made when performing EVM calls remotely through XCM. The pallet performs the necessary checks and validates transaction. Next, the pallet calls the Ethereum pallet to dispatch the transaction to the EVM. Due to the difference of how the EVM is accessed, there are some differences between regular and remote EVM calls.
 
@@ -26,14 +26,30 @@ This guide will go through the differences between regular and remote EVM calls.
 
 ## Relevant XCM Definitions {: #general-xcm-definitions }
 
---8<-- 'text/xcm/general-xcm-definitions2.md'
+ - **Derivative accounts** — an account derivated from another account. Derivative accounts are keyless (the private key is unknown). Consequently, derivative accounts related to XCM-specific use cases can only be accessed through XCM extrinsics. For remote EVM calls, the main type is:
+  
+     - **Multilocation-derivative account** — this produces a keyless account derivated from the new origin set by the [`Descend Origin`](https://github.com/paritytech/xcm-format#descendorigin){target=_blank} XCM instruction, and the provided mulitlocation. For Moonbeam-based networks, [the derivation method](https://github.com/PureStake/moonbeam/blob/master/primitives/xcm/src/location_conversion.rs#L31-L37){target=_blank} is calculating the `blake2` hash of the multilocation, which includes the origin parachain ID, and truncating the hash to the correct length (20 bytes for Ethereum-styled account). The XCM call [origin conversion](https://github.com/paritytech/polkadot/blob/master/xcm/xcm-executor/src/lib.rs#L343){target=_blank} happens when the `Transact` instruction gets executed. Consequently, each parachain can convert the origin with its own desired procedure, so the user who initiated the transaction might have a different derivative account per parachain. This derivative account pays for transaction fees, and it is set as the dispatcher of the call
 
- - **Derivative account** — an account derivated from another account using a simple index. Because the private key of this account is unknown, transactions must be initiated with the `utility.asDerivative` method. When transacting through the derivative account, transaction fees are paid by the origin account, but the transaction is dispatched from the derivative account. For more information, please refer to the [Derivative Accounts](/builders/pallets-precompiles/pallets/utility/){target=_blank} section of the utility pallet page
- - **Transact information** — relates to extra weight and fee information for the XCM remote execution part of the XCM-transactor extrinsic. This is needed because the XCM transaction fee is paid by the sovereign account. Therefore, XCM-transactor calculates what this fee is, and charges the sender of the XCM-transactor extrinsic the estimated amount in the corresponding [XC-20 token](/builders/xcm/xc20/overview/){target=_blank}, to repay the sovereign account
+ - **Transact information** — relates to extra weight and fee information for the XCM remote execution part of the XCM-transactor extrinsic. This is needed because the XCM transaction fee is paid by the sovereign account. Therefore, XCM-transactor calculates what this fee is and charges the sender of the XCM-transactor extrinsic the estimated amount in the corresponding [XC-20 token](/builders/xcm/xc20/overview/){target=_blank}, to repay the sovereign account
 
 ## Differences Between Regular and Remote EVM Calls Through XCM
 
-As explained in the [introduction](#introduction), the paths that a regular and remote EVM call takes to get to the EVM is quite different.
+As explained in the [introduction](#introduction), the paths that a regular and remote EVM call takes to get to the EVM is quite different. The main reason behind this difference is in the dispatcher of the transaction.
+
+A regular EVM call has a clear sender, that is who signed the Ethereum transaction. With remote EVM calls, the signer signed an XCM transaction in another chain. Moonbeam receives that XCM message which must be constructed with the following instructions:
+
+ - [`Descend Origin`](https://github.com/paritytech/xcm-format#descendorigin){target=_blank}
+ - [`WithdrawAsset`](https://github.com/paritytech/xcm-format#withdrawasset){target=_blank} 
+ - [`BuyExecution`](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} 
+ - [`Transact`](https://github.com/paritytech/xcm-format#transact){target=_blank} 
+
+The first instruction, `DescendOrigin`, will mutate the origin of the XCM call on the Moonbeam side to a keyless account, through the `Multilocation-derivative account` mechanism described in the [Relevant XCM Definitions section](#general-xcm-definitions). The remote EVM call is dispatched from that keyless account (or a related [proxy](/tokens/manage/proxy-accounts/){target=_blank}), therefore this transaction is not signed (it does not have the real `v-r-s` values of the signature, but `0x1` instead).
+
+Because a remote EVM call does not have the real `v-r-s` values of the signature, there could be collusion problems of the EVM transaction hash, as it is calculated as the Keccak256 hash of the signed transaction blob. If two accounts with the same nonce submit the same transaction object, they will end up with the same EVM transaction hash. Consequently, all remote EVM transactions use a global nonce that is attached to the [Ethereum-XCM pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/ethereum-xcm){target=_blank}.
+
+Lastly, another major difference is in terms of the gas price. The fee of remote EVM calls is charged at a XCM execution level. Consequently, the EVM gas price is zero, and the EVM will not charge for the execution itself.
+
+
 
 ## XCM-Transactor Pallet Interface {: #xcm-transactor-pallet-interface}
 
