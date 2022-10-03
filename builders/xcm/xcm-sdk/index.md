@@ -1,6 +1,6 @@
 ---
-title: Cross-Chain Communication
-description: An overview of how cross-consensus messaging (XCM) works, and how developers can leverage polkadot/kusama XCM to transfer assets to and from Moonbeam.
+title: XCM SDK Guides
+description: Guides on the available methods and interfaces in the Moonbeam XCM SDK and how to use the XCM SDK to easily deposit and withdraw cross chain assets.
 template: main.html
 ---
 
