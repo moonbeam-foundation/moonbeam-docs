@@ -47,95 +47,137 @@ The first instruction, `DescendOrigin`, will mutate the origin of the XCM call o
 
 Because a remote EVM call does not have the real `v-r-s` values of the signature, there could be collusion problems of the EVM transaction hash, as it is calculated as the Keccak256 hash of the signed transaction blob. If two accounts with the same nonce submit the same transaction object, they will end up with the same EVM transaction hash. Consequently, all remote EVM transactions use a global nonce that is attached to the [Ethereum-XCM pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/ethereum-xcm){target=_blank}.
 
-Lastly, another major difference is in terms of the gas price. The fee of remote EVM calls is charged at a XCM execution level. Consequently, the EVM gas price is zero, and the EVM will not charge for the execution itself.
+Lastly, another major difference is in terms of the gas price. The fee of remote EVM calls is charged at a XCM execution level. Consequently, the EVM gas price is zero, and the EVM will not charge for the execution itself. This can also be seen in the receipt of a remote EVM call transaction.
 
+In summary, there are three main differences between regular and remote EVM calls:
 
+1. Remote EVM calls use a global nonce (owned by the [Ethereum-XCM pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/ethereum-xcm){target=_blank}), instead of a nonce per account
+2. The `v-r-s` values of the signature for remote EVM calls are `0x1`. The sender can't be retreive from the signature through standard methods (for example, through [ECRECOVER](/builders/pallets-precompiles/precompiles/eth-mainnet/#verify-signatures-with-ecrecover){target=_blank}). Nevertheless, the `from` is included in both the the transaction receipt and when getting the transaction by hash (using the Eth JSON RPC)
+3. The gas price for all remote EVM calls is zero. The EVM execution is charged at an XCM execution level, and not at an EVM level
 
-## XCM-Transactor Pallet Interface {: #xcm-transactor-pallet-interface}
+## Ethereum-XCM Pallet Interface {: #ethereum-xcm-pallet-interface}
 
 ### Extrinsics {: #extrinsics }
 
-The XCM-transactor pallet provides the following extrinsics (functions):
+The Ethereum-XCM pallet provides the following extrinsics (functions):
 
- - **deregister**(index) — deregisters a derivative account for a given index. This prevents the previously registered account from using a derivative address for remote execution. This extrinsic is only callable by *root*, for example, through a democracy proposal
- - **register**(address, index) — registers a given address as a derivative account at a given index. This extrinsic is only callable by *root*, for example, through a democracy proposal
- - **removeTransactInfo**(location) — remove the transact information for a given chain, defined as a multilocation
- - **setTransactInfo**(location, transactExtraWeight, feePerSecond, maxWeight) — sets the transact information for a given chain, defined as a multilocation. The transact information includes:
-     - **transactExtraWeight** — which is estimated to be at least 10% over what the remote XCM instructions execution uses (`WithdrawAsset`, `BuyExecution`, and `Transact`)
-     - **feePerSecond** — it is the token units per second of XCM execution that will be charged to the sender of the XCM-transactor extrinsic
-     - **maxWeight** — maximum weight units allowed for the remote XCM execution
- - **transactThroughDerivative**(destination, index, currencyID, destWeight, innerCall) — sends an XCM message with instructions to remotely execute a given call in the given destination (wrapped with the `asDerivative` option). The remote call will be signed by the origin parachain sovereign account (who pays the fees), but the transaction is dispatched from the sovereign's derivative account for the given index. The XCM-transactor pallet calculates the fees for the remote execution and charges the sender of the extrinsic the estimated amount in the corresponding [XC-20 token](/builders/xcm/xc20/overview/){target=_blank} given by the asset ID
- - **transactThroughDerivativeMultilocation**(destination, index, feeLocation, destWeight, innerCall) — same as `transactThroughDerivative`, but the remote execution fees are charged in the corresponding [XC-20 token](/builders/xcm/xc20/overview/){target=_blank} given by the asset multilocation
- - **transactThroughSovereign**(destination, feePayer, feeLocation, destWeight, call, originKind) — sends an XCM message with instructions to remotely execute a given call in the given destination. The remote call will be signed by the origin parachain sovereign account (who pays the fees), but the transaction is dispatched from a given origin. The XCM-transactor pallet calculates the fees for the remote execution and charges the given account the estimated amount in the corresponding [XC-20 token](/builders/xcm/xc20/overview/){target=_blank} given by the asset multilocation
+ - **transact**(xcmTransaction) — only callable through XCM
+ - **transactThroughProxy**(transactAs, xcmTransaction) — similar to the **transact** extrinsic, but with **transactAs** as an additional field. This function allows the remote EVM call to be dispatched from a given account. This account needs to have set the multilocation derivative as an **any** type proxy. On the contrary, the dispatch of the remote EVM call will fail
 
 Where the inputs that need to be provided can be defined as:
 
- - **index** — value to be used to calculate the derivative account. In the context of the XCM-transactor pallet, this is a derivative account of the parachain sovereign account in another chain
- - **location** — a multilocation representing a chain in the ecosystem. The value is used to set or retrieve the transact information
- - **destination** — a multilocation representing a chain in the ecosystem where the XCM message is being sent to
- - **currencyID** — the ID of the currency being used to pay for the remote call execution. Different runtimes have different ways of defining the IDs. In the case of Moonbeam-based networks, `SelfReserve` refers to the native token, and `ForeignAsset` refers to the asset ID of the XC-20 (not to be confused with the XC-20 address)
- - **destWeight** — the maximum amount of execution time you want to provide in the destination chain to execute the XCM message being sent. If not enough weight is provided, the execution of the XCM will fail, and funds might get locked in either the sovereign account or a special pallet. For transacts through derivative, you have to take into account the `asDerivative` extrinsic as well, but the XCM-transactor pallet adds the weight for the XCM instructions with the transact information set before. **It is essential to correctly set the destination weight to avoid failed XCM executions**
- - **innerCall** — encoded call data of the call that will be executed in the destination chain. This is wrapped with the `asDerivative` option if transacting through the derivative account
- - **feeLocation** — a multilocation representing the currency being used to pay for the remote call execution
- - **feePayer** — the address that will pay for the remote XCM execution in the transact through sovereign extrinsic. The fee is charged in the corresponding [XC-20 token](/builders/xcm/xc20/overview/){target=_blank}
- - **call** — similar to `innerCall`, but it is not wrapped with the `asDerivative` extrinsic
- - **originKind** — dispatcher of the remote call in the destination chain. There are [four types of dispatchers](https://github.com/paritytech/polkadot/blob/0a34022e31c85001f871bb4067b7d5f5cab91207/xcm/src/v0/mod.rs#L60){target=_blank} available
+ - **xcmTransaction** — XXX
+ - **transactAs** — account from which the remote EVM call will be dispatched from. This account needs to have set the multilocation derivative as an **any** type proxy
 
+## Building an remote EVM call through XCM with the XCM-Transactor Pallet {: #build-remove-evm-call-xcm}
 
-### Storage Methods {: #storage-methods }
+This guide covers building an XCM message for remote EVM calls using the XCM pallet from the relay chain to Moonbase Alpha. More specifically, it will use the `transact` function. The steps to use the `transactThroughProxy` function are identical, you'll need to provide the **transactAs** account, and make sure that this account has set the multilocation derivative as an **any** type proxy.
 
-The XCM-transactor pallet includes the following read-only storage method:
+### Checking Prerequisites {: #ethereumxcm-check-prerequisites}
 
- - **destinationAssetFeePerSecond**() - returns the fee per second for an asset given a multilocation. This enables conversion from weight to fee
- - **indexToAccount**(index) — returns the origin chain account associated with the given derivative index
- - **palletVersion**() — returns current pallet version from storage
- - **transactInfoWithWeightLimit**(location) — returns the transact information for a given multilocation
+To be able to send the extrinsics in Polkadot.js Apps from the relay chain, you need to have:
 
-### Pallet Constants {: #constants }
+ - An [account](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} on the relay chain with funds (`UNIT`) to pay for the transaction fees. You can acquire some `xcUNIT` by swapping for DEV tokens (Moonbase Alpha's native token) on [Moonbeam-Swap](https://moonbeam-swap.netlify.app){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha, and them [send them to the relay chain](/builders/xcm/xc20/xtokens/){target_blank}. On the contrary, you can [contact us](https://discord.gg/PfpUATX){target=_blank} to get some `UNIT` tokens directly
 
-The XCM-transactor pallet includes the following read-only functions to obtain pallet constants:
-
-- **baseXcmWeigh**() - returns the base XCM weight required for execution
-- **selfLocation**() - returns the multilocation of the chain
-
-## Building an XCM with the XCM-Transactor Pallet {: #build-xcm-xcmtransactor-pallet}
-
-This guide covers building an XCM message for remote executions using the XCM-transactor pallet, specifically with the `transactThroughDerivative` function. The steps to use the `transactThroughDerivativeMultilocation` function are identical, but instead of the currency ID, you specify a multilocation for the fee token.
-
+ - Fund the **multilocation-derivative account**, which you can obtained by following the steps [in the next section](#calculate-multilocation-derivative){target=_blank}. The account must have enough DEV tokens to cover the cost of the XCM execution of the remote EVM call. Note that this is the account where the remote EVM call will be dispatch from Consequently, the account will need to satisfy whatever conditions are requred for the EVM call to be executed correctly. For example, hold any relevant ERC-20 token if you are doing an ERC-20 transfer
+ 
 !!! note
-    You need to ensure that the call you are going to execute remotely is allowed in the destination chain!
+    If you are using the `transactAs` function, the **transactAs** account is the one that needs to hold the DEV tokens to cover the cost of the XCM execution of the remote EVM call, and it will need to satisfy whatever conditions are required for the EVM call to be executed correctly.
 
-### Checking Prerequisites {: #xcmtransactor-check-prerequisites}
+### Calculating the Multilocation-Derivative Account {: #calculate-multilocation-derivative}
 
-To be able to send the extrinsics in Polkadot.js Apps, you need to have:
+As mentioned before, a remote EVM call is dispatched from an account called the **multilocation-derivative account**. This is calculated using the information provided by the [`Descend Origin`](https://github.com/paritytech/xcm-format#descendorigin){target=_blank} instruction. Consequently, the calculated account depends directly on how the instruction is constructed.
 
- - An [account](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/accounts){target=_blank} with [funds](/builders/get-started/networks/moonbase/#get-tokens){target=_blank}
- - The account from which you are going to send the XCM through the XCM-transactor pallet must also be registered in a given index to be able to operate through a derivative account of the sovereign account. The registration is done through the root account (SUDO in Moonbase Alpha), so [contact us](https://discord.gg/PfpUATX){target=_blank} to get it registered. For this example, Alice's account was registered at index `42`
- - Remote calls through XCM-transactor require the destination chain fee token to pay for that execution. Because the action is initiated in Moonbeam, you'll need to hold its [XC-20](/builders/xcm/xc20/){target=_blank} representation. For this example, because you are sending an XCM message to the relay chain, you need `xcUNIT` tokens to pay for the execution fees, which is the Moonbase Alpha representation of the Alphanet relay chain token `UNIT`. You can acquire some by swapping for DEV tokens (Moonbase Alpha's native token) on [Moonbeam-Swap](https://moonbeam-swap.netlify.app){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha
-
-![Moonbeam Swap xcUNITs](/images/builders/xcm/xc20/xtokens/xtokens-1.png)
-
-To check your `xcUNIT` balance, you can add the XC-20 to MetaMask with the following address:
+For example, from the relay chain, the [`Descend Origin`](https://github.com/paritytech/xcm-format#descendorigin){target=_blank} instructions is natively injected by the [`xcmPallet`](https://github.com/paritytech/polkadot/blob/master/xcm/pallet-xcm/src/lib.rs){target=_blank}. In the case of Moonbase Alpha's relay chain (based on Westend), is with the following format:
 
 ```
-0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080
+{
+  "descendOrigin":
+    {
+	  "x1":
+	    {
+	      "accountId32":
+		    {
+		      "network":
+			    {
+			      "named":"0x57657374656e64"
+			    },
+			  "id":"decodedAddress"
+		    }  
+		  }
+	}
+}
 ```
 
-If you're interested in how the precompile address is calculated, you can check out the following guides:
+Where `named` value corresponds to `Westend` (in this example), and the `decodedAddress` corresponds to the address of the account who signed the transaction on the relay chain (in a 64 bytes format). When the XCM instruction gets to Moonbeam (Moonbase Alpha in this example), it is reanchored as follows:
 
-- [Calculate External XC-20 Precompile Addresses](/builders/xcm/xc20/xc20/#calculate-xc20-address){target=_blank}
-- [Calculate Mintable XC-20 Precompile Addresses](/builders/xcm/xc20/mintable-xc20/#calculate-xc20-address){target=_blank}
+```
+{
+  "descendOrigin":
+    {
+	  "parents":1,
+	  "interior":
+		{
+		  "x1":
+			{
+			  "accountId32":
+				{
+				  "network":
+				  {
+				    "named":"0x57657374656e64"
+				  },
+				 "id":"decodedAddress"
+				}
+			}
+		}
+	}
+}
+```
+Therefore, you can use this [calculate **multilocation-derivative account** script](https://github.com/albertov19/xcmTools/blob/main/calculateMultilocationDerivative.ts){target=_blank} to help you obtain its value. This example uses Alice's relay chain account, which decoded value is `0x26cf24c4f6f16e13422d11670db82ab3f537b98a7dbd851a8cb85fbc4050d64e`. Consequently, you can obtain its **multilocation-derivative account** for Moonbase Alpha's relay chain by running the following command:
 
-### XCM-Transactor Transact Through Derivative Function {: #xcmtransactor-transact-through-derivative}
+```sh
+ts-node calculateMultilocationDerivative.ts \
+--w wss://wss.api.moonbase.moonbeam.network \
+--a 0x26cf24c4f6f16e13422d11670db82ab3f537b98a7dbd851a8cb85fbc4050d64e \
+--n 0x57657374656e64
+```
 
-In this example, you'll build an XCM message to execute a remote call in the relay chain from Moonbase Alpha through the `transactThroughDerivative` function of the XCM-transactor pallet.
+The execution of the code should provide the following response:
 
-If you've [checked the prerequisites](#xcmtransactor-check-prerequisites), head to the extrinsic page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} and set the following options:
+```sh
+{"parents":1,"interior":{"x1":{"accountId32":{"network":{"named":"0x57657374656e64"},"id":"0x26cf24c4f6f16e13422d11670db82ab3f537b98a7dbd851a8cb85fbc4050d64e"}}}}
+32 byte address is 0xbf67dcc77cff57b8ddd2d25d61f6876f4e6e2fdd55db2c47f70dfffc352d6889
+20 byte address is 0xbf67dcc77cff57b8ddd2d25d61f6876f4e6e2fdd
+```
 
-1. Select the account from which you want to send the XCM. Make sure the account complies with all the [prerequisites](#xcmtransactor-check-prerequisites)
-2. Choose the **xcmTransactor** pallet
-3. Choose the **transactThroughDerivative** extrinsic
-4. Set the destination to **Relay**, to target the relay chain
+For this example, the **multilocation-derivative account** for Moonbase Alpha is `0xbf67dcc77cff57b8ddd2d25d61f6876f4e6e2fdd`.
+
+### Etherem-XCM Transact Function {: #ethereumxcm-transact}
+
+In this example, you'll build an XCM message to execute a remote EVM call in Moonbase Alpha from its relay chain through the [`Transact`](https://github.com/paritytech/xcm-format#transact){target=_blank} XCM instruction and the `transact` function of the Ethereum-XCM pallet.
+
+If you've [checked the prerequisites](#ethereumxcm-check-prerequisites), head to the extrinsic page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/extrinsics} and set the following options:
+
+1. Select the account from which you want to send the XCM. Make sure the account complies with all the [prerequisites](ethereumxcm-check-prerequisites)
+2. Choose the **xcmPallet** pallet
+3. Choose the **send** extrinsic
+4. Set the destination version to **v1**
+5. To target Moonbase Alpha, set the destination to:
+
+```
+{
+  "parents":0,
+  "interior":
+    {
+	  "x1":
+	    {
+		  "Parachain": 1000
+		}
+	}
+}
+```
+6. Set the message version to **v2**
+7. Add three elements and configure them in the following way:
 5. Enter the index of the derivative account you've been registered to. For this example, the index value is `42`. Remember that the derivate account depends on the index
 6. Set the currency ID to **ForeignAsset**. This is because you are not transferring DEV tokens (*SelfReserve*)
 7. Enter the asset ID. For this example, `xcUNIT` has an asset id of `42259045809535163221576417993425387648`. You can check all available assets IDs in the [XC-20 address section](/builders/xcm/xc20/overview/#current-xc20-assets){target=_blank} 
