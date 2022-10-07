@@ -17,12 +17,12 @@ Although Moonbeam is a Substrate-based platform, Moonbeam uses a [unified accoun
 
 To get started developing on Moonbeam, it's important to be aware of the various networks within the Moonbeam ecosystem.
 
-|                                             Network                                             | Network Type  |                                      Relay Chain                                       | Native Asset Symbol | Native Asset Decimals |
-|:-----------------------------------------------------------------------------------------------:|:-------------:|:--------------------------------------------------------------------------------------:|:-------------------:|:---------------------:|
-|           [Moonbeam](<br>/builders/get-started/networks/moonbeam<br>){target=_blank}            |    MainNet    |              [Polkadot](<br>https://polkadot.network/<br>){target=_blank}              |        GLMR         |          18           |
-|          [Moonriver](<br>/builders/get-started/networks/moonriver<br>){target=_blank}           |    MainNet    |                [Kusama](<br>https://kusama.network/<br>){target=_blank}                |        MOVR         |          18           |
-|        [Moonbase Alpha](<br>/builders/get-started/networks/moonbase<br>){target=_blank}         |    TestNet    | [Alphanet relay](<br>/learn/platform/networks/moonbase#relay-chain<br>){target=_blank} |         DEV         |          18           |
-| [Moonbeam Development Node](<br>/builders/get-started/networks/moonbeam-dev<br>){target=_blank} | Local TestNet |                                          None                                          |         DEV         |          18           |
+|                                         Network                                         | Network Type  |                                  Relay Chain                                   | Native Asset Symbol | Native Asset Decimals |
+|:---------------------------------------------------------------------------------------:|:-------------:|:------------------------------------------------------------------------------:|:-------------------:|:---------------------:|
+|           [Moonbeam](/builders/get-started/networks/moonbeam){target=_blank}            |    MainNet    |              [Polkadot](https://polkadot.network/){target=_blank}              |        GLMR         |          18           |
+|          [Moonriver](/builders/get-started/networks/moonriver){target=_blank}           |    MainNet    |                [Kusama](https://kusama.network/){target=_blank}                |        MOVR         |          18           |
+|        [Moonbase Alpha](/builders/get-started/networks/moonbase){target=_blank}         |    TestNet    | [Alphanet relay](/learn/platform/networks/moonbase#relay-chain){target=_blank} |         DEV         |          18           |
+| [Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev){target=_blank} | Local TestNet |                                      None                                      |         DEV         |          18           |
 
 !!! note
     A Moonbeam development node doesn't have a relay chain as its purpose is to be your own personal development environment where you can get started developing quickly without the overhead of a relay chain.
@@ -76,10 +76,10 @@ Moonbeam provides two different kind of explorers: ones to query the Ethereum AP
 
 To get started developing on one of the TestNets, you'll need to fund your account with DEV tokens to send transactions. Please note that DEV tokens have no real value and are for testing purposes only.
 
-|                                             TestNet                                             |                                                                                     Where To Get Tokens From                                                                                     |
-|:-----------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|        [Moonbase Alpha](<br>/builders/get-started/networks/moonbase<br>){target=_blank}         | The [Moonbase Alpha Faucet](https://apps.moonbeam.network/moonbase-alpha/faucet/){target=_blank} website. <br> The faucet dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours |
-| [Moonbeam Development Node](<br>/builders/get-started/networks/moonbeam-dev<br>){target=_blank} |           Any of the [ten pre-funded accounts](/builders/get-started/networks/moonbeam-dev/#pre-funded-development-accounts){target=_blank} that come with your <br> development node            |
+|                                         TestNet                                         |                                                                                     Where To Get Tokens From                                                                                     |
+|:---------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|        [Moonbase Alpha](/builders/get-started/networks/moonbase){target=_blank}         | The [Moonbase Alpha Faucet](https://apps.moonbeam.network/moonbase-alpha/faucet/){target=_blank} website. <br> The faucet dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours |
+| [Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev){target=_blank} |           Any of the [ten pre-funded accounts](/builders/get-started/networks/moonbeam-dev/#pre-funded-development-accounts){target=_blank} that come with your <br> development node            |
 
 ## Development Tools
 
