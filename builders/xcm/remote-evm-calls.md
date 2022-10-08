@@ -47,13 +47,16 @@ The first instruction, `DescendOrigin`, will mutate the origin of the XCM call o
 
 Because a remote EVM call does not have the real `v-r-s` values of the signature, there could be collusion problems of the EVM transaction hash, as it is calculated as the Keccak256 hash of the signed transaction blob. If two accounts with the same nonce submit the same transaction object, they will end up with the same EVM transaction hash. Consequently, all remote EVM transactions use a global nonce that is attached to the [Ethereum-XCM pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/ethereum-xcm){target=_blank}.
 
-Lastly, another major difference is in terms of the gas price. The fee of remote EVM calls is charged at a XCM execution level. Consequently, the EVM gas price is zero, and the EVM will not charge for the execution itself. This can also be seen in the receipt of a remote EVM call transaction.
+Another major difference is in terms of the gas price. The fee of remote EVM calls is charged at a XCM execution level. Consequently, the EVM gas price is zero, and the EVM will not charge for the execution itself. This can also be seen in the receipt of a remote EVM call transaction.
+
+Lastly, there is a lower gas limit that is available for remote EVM calls. An XCM message can only take `20,000,000,000` of weight (that is, `0.02` seconds of block execution time). For all Moonbeam-based networks, there is a ratio of [`25,000` units of gas per unit of weight](https://github.com/PureStake/moonbeam/blob/master/runtime/moonbase/src/lib.rs#L371-L375){target=_blank}. Considering that you need some of the XCM message weight limit to execute the XCM instructions themselves, a remote EVM call might have around `18,000,000,000` units of weight left, which is `720,000` gas units. Consequently, the maximum gas limit you can provide for a remote EVM call is around `720,000` gas units. Note that this might change in the future.
 
 In summary, there are three main differences between regular and remote EVM calls:
 
 1. Remote EVM calls use a global nonce (owned by the [Ethereum-XCM pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/ethereum-xcm){target=_blank}), instead of a nonce per account
 2. The `v-r-s` values of the signature for remote EVM calls are `0x1`. The sender can't be retreive from the signature through standard methods (for example, through [ECRECOVER](/builders/pallets-precompiles/precompiles/eth-mainnet/#verify-signatures-with-ecrecover){target=_blank}). Nevertheless, the `from` is included in both the the transaction receipt and when getting the transaction by hash (using the Eth JSON RPC)
 3. The gas price for all remote EVM calls is zero. The EVM execution is charged at an XCM execution level, and not at an EVM level
+4. The maximum gas limit you can set for a remote EVM call is `720,000` gas units
 
 ## Ethereum-XCM Pallet Interface {: #ethereum-xcm-pallet-interface}
 
@@ -66,7 +69,7 @@ The Ethereum-XCM pallet provides the following extrinsics (functions):
 
 Where the inputs that need to be provided can be defined as:
 
- - **xcmTransaction** — XXX
+ - **xcmTransaction** — contains the Ethereum transaction details of the call that will be dispatched 
  - **transactAs** — account from which the remote EVM call will be dispatched from. This account needs to have set the multilocation derivative as an **any** type proxy
 
 ## Building an remote EVM call through XCM with the XCM-Transactor Pallet {: #build-remove-evm-call-xcm}
@@ -154,9 +157,20 @@ For this example, the **multilocation-derivative account** for Moonbase Alpha is
 
 ### Etherem-XCM Transact Function {: #ethereumxcm-transact}
 
+Before you send the XCM message from the relay chain to Moonbase Alpha, you need to get the encoded call data that will be dispatched through the execution of the [`Transact`](https://github.com/paritytech/xcm-format#transact){target=_blank} XCM instruction. In this example, you'll build the encoded call data for the `transact` function of the Ethereum-XCM pallet. To do so, head to the extrinsic page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} and set the following options (note that the extrinsic page only shows when you have an account):
+
+1. Choose the **ethereumXcm** pallet
+2. Choose the **transact** extrinsic
+3. Set the XCM transaction version to **v2**. The previous version is deprecated and will be removed in a future release
+4. Set the gas limit to the desired value. It is recommended to manually execute an `eth_estimateGas` JSON RPC call to understand how much gas is needed 
+
+
+!!! note
+    The current implementation of the Ethereum-XCM pallet does not support the `CREATE` opereration. Therefore, you can't deploy a smart contract through remote EVM calls.
+
 In this example, you'll build an XCM message to execute a remote EVM call in Moonbase Alpha from its relay chain through the [`Transact`](https://github.com/paritytech/xcm-format#transact){target=_blank} XCM instruction and the `transact` function of the Ethereum-XCM pallet.
 
-If you've [checked the prerequisites](#ethereumxcm-check-prerequisites), head to the extrinsic page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/extrinsics} and set the following options:
+If you've [checked the prerequisites](#ethereumxcm-check-prerequisites), head to the extrinsic page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/extrinsics){target=_blank} and set the following options:
 
 1. Select the account from which you want to send the XCM. Make sure the account complies with all the [prerequisites](ethereumxcm-check-prerequisites)
 2. Choose the **xcmPallet** pallet
