@@ -425,20 +425,20 @@ For testing, please also provide your parachain WSS endpoint the Moonbeam dApp c
 
 === "Moonbeam"
     ```
-    AccoundId: 5DnP2NuCTxfW4E9rJvzbt895sEsYRD7HC9QEgcqmNt7VWkD4
-    Hex:       0x4c0524ef80ae843b694b225880e50a7a62a6b86f7fb2af3cecd893deea80b926
+    AccountId: {{ networks.moonbeam.xcm.channel.account_id }}
+    Hex:       {{ networks.moonbeam.xcm.channel.account_id_hex }}
     ```
 
 === "Moonriver"
     ```
-    AccoundId: 5DnP2NuCTxfW4E9rJvzbt895sEsYRD7HC9QEgcqmNt7VWkD4
-    Hex:       0x4c0524ef80ae843b694b225880e50a7a62a6b86f7fb2af3cecd893deea80b926
+    AccountId: {{ networks.moonriver.xcm.channel.account_id }}
+    Hex:       {{ networks.moonriver.xcm.channel.account_id_hex }}
     ```
 
 === "Moonbase Alpha"
     ```
-    AccountId: 5GWpSdqkkKGZmdKQ9nkSF7TmHp6JWt28BMGQNuG4MXtSvq3e
-    Hex:       0xc4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a063
+    AccountId: {{ networks.moonbase.xcm.channel.account_id }}
+    Hex:       {{ networks.moonbase.xcm.channel.account_id_hex }}
     ```
 
 !!! note
