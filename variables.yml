@@ -101,6 +101,9 @@ networks:
       epoch_expiration: 10000
       epoch_fulfillment_delay: 2
     xcm:
+      channel:
+        account_id: '5GWpSdqkkKGZmdKQ9nkSF7TmHp6JWt28BMGQNuG4MXtSvq3e'
+        account_id_hex: '0xc4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a063'
       instructions:
         weight_units:
           display: 100,000,000
@@ -238,7 +241,7 @@ networks:
     node_directory: /var/lib/moonriver-data
     parachain_release_tag: v0.26.0
     parachain_sha256sum: eff929c4ed6c5323cae16173eda048dcb647690c68ac06200d092e48de9b8655
-    tracing_tag: purestake/moonbeam-tracing:v0.26.0-1801-latest   
+    tracing_tag: purestake/moonbeam-tracing:v0.26.0-1801-latest
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
     binary_name: moonbeam
@@ -251,6 +254,9 @@ networks:
       ram: 16
       hd: 1
     xcm:
+      channel:
+        account_id: '5E6kHM4zFdH5KEJE3YEzX5QuqoETVKUQadeY8LVmeh2HyHGt'
+        account_id_hex: '0x5a071f642798f89d68b050384132eea7b65db483b00dbb05548d3ce472cfef48'
       instructions:
         weight_units:
           display: 200,000,000
@@ -443,6 +449,9 @@ networks:
       ram: 16
       hd: 1
     xcm:
+      channel:
+        account_id: '5E6kHM4zFdH5KEJE3YEzX5QuqoETVKUQadeY8LVmeh2HyHGt'
+        account_id_hex: '0x5a071f642798f89d68b050384132eea7b65db483b00dbb05548d3ce472cfef48'
       instructions:
         weight_units:
           display: 200,000,000
