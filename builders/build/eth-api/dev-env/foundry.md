@@ -13,9 +13,9 @@ description: Learn how to use Foundry, an Ethereum development environment, to c
 
 There are three tools that make up Foundry:  
 
-- **Forge** - compiles, tests, and deploys contracts
-- **Cast** - a command line interface for interacting with contracts
-- **Anvil** - a local TestNet node for development purposes that can fork preexisting networks
+- **[Forge](https://book.getfoundry.sh/forge/){target=_blank)** - compiles, tests, and deploys contracts
+- **[Cast](https://book.getfoundry.sh/cast/){target=_blank}** - a command line interface for interacting with contracts
+- **[Anvil](https://book.getfoundry.sh/anvil/){target=_blank}** - a local TestNet node for development purposes that can fork preexisting networks
 
 This guide will cover how to use Foundry to compile, deploy, and debug Ethereum smart contracts on the Moonbase Alpha TestNet. This guide can also be adapted for Moonbeam, Moonriver, or a Moonbeam development node.
 
@@ -227,5 +227,51 @@ The transaction will be signed by your Moonbase account and be broadcasted to th
 ![Foundry Contract Interaction](/images/builders/build/eth-api/dev-env/foundry/foundry-4.png)
 
 Congratulations, you have successfully deployed and interacted with a contract using Foundry!
+
+## Forking with Anvil {: #forking-with-cast-anvil }
+
+As previously mentioned, [Anvil](https://book.getfoundry.sh/anvil/){target=_blank} is a local TestNet node for development purposes that can fork preexisting networks. Forking Moonbeam allows you to interact with live contracts deployed on the network.
+
+There are some limitations to be aware of when forking with Anvil. Since Anvil is based on an EVM implementation, you cannot interact with any of the Moonbeam precompiled contracts and their functions. Precompiles are a part of the Substrate implementation and therefore cannot be replicated in the simulated EVM environment. This prohibits you from interacting with cross-chain assets on Moonbeam and Substrate-based functionality such as staking and governance.
+
+To fork Moonbeam or Moonriver, you will need to have your own endpoint and API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=_blank}.
+
+To fork Moonbeam from the command line, you can run the following command from within your Foundry project directory:
+
+=== "Moonbeam"
+
+    ```sh
+    anvil --fork-url {{ networks.moonbeam.rpc_url }}
+    ```
+
+=== "Moonriver"
+
+    ```sh
+    anvil --fork-url {{ networks.moonriver.rpc_url }}
+    ```
+
+=== "Moonbase Alpha"
+
+    ```sh
+    anvil --fork-url {{ networks.moonbase.rpc_url }}
+    ```
+
+Your forked instance will have 10 development accounts that are pre-funded with 10,000 test tokens. The forked instance is available at `http://127.0.0.1:8545/`. The output in your terminal should resemble the following:
+
+![Forking terminal screen](/images/builders/build/eth-api/dev-env/foundry/foundry-5.png)
+
+To verify you have forked the network, you can query the latest block number:
+
+```
+curl --data '{"method":"eth_blockNumber","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545 
+```
+
+If you convert the `result` from [hex to decimal](https://www.rapidtables.com/convert/number/hex-to-decimal.html){target=_blank}, you should get the latest block number from the time you forked the network. You can cross reference the block number using a [block explorer](/builders/get-started/explorers){target=_blank}.
+
+From here you can deploy new contracts to your forked instance of Moonbeam or interact with contracts already deployed. Building off of the previous example in this guide, you can make a call using Cast to check the balance of the minted MYTOK tokens in the account you deployed the contract with:
+
+```
+cast call INSERT-CONTRACT-ADDRESS  "balanceOf(address)(uint256)" INSERT-YOUR-ADDRESS --rpc-url http://localhost:8545
+```
 
 --8<-- 'text/disclaimers/third-party-content.md'

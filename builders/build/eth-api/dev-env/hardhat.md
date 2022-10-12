@@ -248,7 +248,7 @@ main()
 You can now deploy the `Box.sol` contract using the `run` command and specifying `moonbase` as the network:
 
 ```
-  npx hardhat run --network moonbase scripts/deploy.js
+npx hardhat run --network moonbase scripts/deploy.js
 ```
 
 If you're using another Moonbeam network, make sure that you specify the correct network. The network name needs to match how it's defined in the `hardhat.config.js`.
@@ -295,5 +295,218 @@ Notice your address labeled `from`, the address of the contract, and the `data` 
 You should see `5` or the value you have stored initially.
 
 Congratulations, you have successfully deployed and interacted with a contract using Hardhat!
+
+## Hardhat Forking {: #hardhat-forking }
+
+You can [fork](https://hardhat.org/hardhat-network/docs/guides/forking-other-networks){target=_blank} any EVM compatible chain using Hardhat, including Moonbeam. Forking simulates the live Moonbeam network locally, enabling you to interact with deployed contracts on Moonbeam in a local test environment. Since Hardhat forking is based on an EVM implementation, you can interact with the fork using standard Ethereum JSON RPC methods supported by [Moonbeam](/builders/get-started/eth-compare/rpc-support/){target=_blank} and [Hardhat](https://hardhat.org/hardhat-network/docs/reference#json-rpc-methods-support){target=_blank}. 
+
+There are some limitations to be aware of when using Hardhat forking. You cannot interact with any of the Moonbeam precompiled contracts and their functions. Precompiles are a part of the Substrate implementation and therefore cannot be replicated in the simulated EVM environment. This prohibits you from interacting with cross-chain assets on Moonbeam and Substrate-based functionality such as staking and governance.
+
+### Patching Hardhat {: #patching-hardhat }
+
+Before getting started, you'll need to apply a temporary patch to workaround an RPC error until Hardhat fixes the root issue. The error is as follows:
+
+```
+Error HH604: Error running JSON-RPC server: Invalid JSON-RPC response's result.
+
+Errors: Invalid value null supplied to : RpcBlockWithTransactions | null/transactions: RpcTransaction Array/0: RpcTransaction/accessList: Array<{ address: DATA, storageKeys: Array<DATA> | null }> | undefined, Invalid value null supplied to : RpcBlockWithTransactions | null/transactions: RpcTransaction Array/1: RpcTransaction/accessList: Array<{ address: DATA, storageKeys: Array<DATA> | null }> | undefined, Invalid value null supplied to : RpcBlockWithTransactions | null/transactions: RpcTransaction Array/2: RpcTransaction/accessList: Array<{ address: DATA, storageKeys: Array<DATA> | null }> | undefined
+```
+
+To patch Hardhat, you'll need to open the `node_modules/hardhat/internal/hardhat-network/jsonrpc/client.js` file of your project. Next, you'll add a `addAccessList` function and update the `_perform` and `_performBatch` functions. 
+
+To get started, you can remove the preexisting `_perform` and `_performBatch` functions and in their place add the following code snippet:
+
+```js
+  addAccessList(method, rawResult) {
+    if (
+      method.startsWith('eth_getBlock') &&
+      rawResult &&
+      rawResult.transactions?.length
+    ) {
+      rawResult.transactions.forEach((t) => {
+        if (t.accessList == null) t.accessList = [];
+      });
+    }
+  }
+  async _perform(method, params, tType, getMaxAffectedBlockNumber) {
+    const cacheKey = this._getCacheKey(method, params);
+    const cachedResult = this._getFromCache(cacheKey);
+    if (cachedResult !== undefined) {
+      return cachedResult;
+    }
+    if (this._forkCachePath !== undefined) {
+      const diskCachedResult = await this._getFromDiskCache(
+        this._forkCachePath,
+        cacheKey,
+        tType
+      );
+      if (diskCachedResult !== undefined) {
+        this._storeInCache(cacheKey, diskCachedResult);
+        return diskCachedResult;
+      }
+    }
+    const rawResult = await this._send(method, params);
+    this.addAccessList(method, rawResult);
+    const decodedResult = (0, decodeJsonRpcResponse_1.decodeJsonRpcResponse)(
+      rawResult,
+      tType
+    );
+    const blockNumber = getMaxAffectedBlockNumber(decodedResult);
+    if (this._canBeCached(blockNumber)) {
+      this._storeInCache(cacheKey, decodedResult);
+      if (this._forkCachePath !== undefined) {
+        await this._storeInDiskCache(this._forkCachePath, cacheKey, rawResult);
+      }
+    }
+    return decodedResult;
+  }
+  async _performBatch(batch, getMaxAffectedBlockNumber) {
+    // Perform Batch caches the entire batch at once.
+    // It could implement something more clever, like caching per request
+    // but it's only used in one place, and those other requests aren't
+    // used anywhere else.
+    const cacheKey = this._getBatchCacheKey(batch);
+    const cachedResult = this._getFromCache(cacheKey);
+    if (cachedResult !== undefined) {
+      return cachedResult;
+    }
+    if (this._forkCachePath !== undefined) {
+      const diskCachedResult = await this._getBatchFromDiskCache(
+        this._forkCachePath,
+        cacheKey,
+        batch.map((b) => b.tType)
+      );
+      if (diskCachedResult !== undefined) {
+        this._storeInCache(cacheKey, diskCachedResult);
+        return diskCachedResult;
+      }
+    }
+    const rawResults = await this._sendBatch(batch);
+    const decodedResults = rawResults.map((result, i) => {
+      this.addAccessList(batch[i].method, result);
+      return (0, decodeJsonRpcResponse_1.decodeJsonRpcResponse)(
+        result,
+        batch[i].tType
+      );
+    });
+    const blockNumber = getMaxAffectedBlockNumber(decodedResults);
+    if (this._canBeCached(blockNumber)) {
+      this._storeInCache(cacheKey, decodedResults);
+      if (this._forkCachePath !== undefined) {
+        await this._storeInDiskCache(this._forkCachePath, cacheKey, rawResults);
+      }
+    }
+    return decodedResults;
+  }
+```
+
+Then you can use [patch-package](https://www.npmjs.com/package/patch-package){target=_blank} to automatically patch the package by running the following command:
+
+```sh
+npx patch-package hardhat
+```
+
+A `patches` directory will be created and now you should be all set to fork Moonbeam without running into any errors.
+
+### Forking Moonbeam {: #forking-moonbeam }
+
+You can fork Moonbeam from the command line or configure your Hardhat project to always run the fork from your `hardhat.config.js` file. To fork Moonbeam or Moonriver, you will need to have your own endpoint and API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=_blank}.
+
+To fork Moonbeam from the command line, you can run the following command from within your Hardhat project directory:
+
+=== "Moonbeam"
+
+    ```sh
+    npx hardhat node --fork {{ networks.moonbeam.rpc_url }}
+    ```
+
+=== "Moonriver"
+
+    ```sh
+    npx hardhat node --fork {{ networks.moonriver.rpc_url }}
+    ```
+
+=== "Moonbase Alpha"
+
+    ```sh
+    npx hardhat node --fork {{ networks.moonbase.rpc_url }}
+    ```
+
+If you prefer to configure your Hardhat project, you can update your `hardhat.config.js` file with the following configurations:
+
+=== "Moonbeam"
+
+    ```js
+    ...
+    networks: {
+        hardhat: {
+            forking: {
+            url: "{{ networks.moonbeam.rpc_url }}",
+            }
+        }
+    }
+    ...
+    ```
+
+=== "Moonriver"
+
+    ```js
+    ...
+    networks: {
+        hardhat: {
+            forking: {
+            url: "{{ networks.moonriver.rpc_url }}",
+            }
+        }
+    }
+    ...
+    ```
+
+=== "Moonbase Alpha"
+
+    ```js
+    ...
+    networks: {
+        hardhat: {
+            forking: {
+            url: "{{ networks.moonbase.rpc_url }}",
+            }
+        }
+    }
+    ...
+    ```
+
+When you spin up the Hardhat fork, you'll have 20 development accounts that are pre-funded with 10,000 test tokens. The forked instance is available at `http://127.0.0.1:8545/`. The output in your terminal should resemble the following:
+
+![Forking terminal screen](/images/builders/build/eth-api/dev-env/hardhat/hardhat-5.png)
+
+To verify you have forked the network, you can query the latest block number:
+
+```
+curl --data '{"method":"eth_blockNumber","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545 
+```
+
+If you convert the `result` from [hex to decimal](https://www.rapidtables.com/convert/number/hex-to-decimal.html){target=_blank}, you should get the latest block number from the time you forked the network. You can cross reference the block number using a [block explorer](/builders/get-started/explorers){target=_blank}.
+
+From here you can deploy new contracts to your forked instance of Moonbeam or interact with contracts already deployed by creating a local instance of the deployed contract. 
+
+To interact with an already deployed contract, you can create a new script in the `scripts` directory using `ethers`. Because you'll be running it with Hardhat, you don't need to import any libraries. Inside the script, you can access a live contract on the network using the following snippet:
+
+```js
+const hre = require("hardhat");
+
+async function main() {
+  const provider = new ethers.providers.StaticJsonRpcProvider("http://127.0.0.1:8545/");
+  
+  const contract = new ethers.Contract(
+      'INSERT-CONTRACT-ADDRESS', 'INSERT-CONTRACT-ABI', provider
+  );
+}
+
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
+```
 
 --8<-- 'text/disclaimers/third-party-content.md'
