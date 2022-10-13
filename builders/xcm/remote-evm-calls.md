@@ -155,7 +155,7 @@ The execution of the code should provide the following response:
 
 For this example, the **multilocation-derivative account** for Moonbase Alpha is `0xbf67dcc77cff57b8ddd2d25d61f6876f4e6e2fdd`.
 
-### Etherem-XCM Transact Function {: #ethereumxcm-transact}
+### Etherem-XCM Transact Call Data {: #ethereumxcm-transact}
 
 Before you send the XCM message from the relay chain to Moonbase Alpha, you need to get the encoded call data that will be dispatched through the execution of the [`Transact`](https://github.com/paritytech/xcm-format#transact){target=_blank} XCM instruction. In this example, you'll build the encoded call data for the `transact` function of the Ethereum-XCM pallet. To do so, head to the extrinsic page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} and set the following options (note that the extrinsic page only shows when you have an account):
 
