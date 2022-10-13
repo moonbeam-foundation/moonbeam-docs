@@ -17,7 +17,7 @@ This page includes a list of the interfaces and methods available in the XCM SDK
 
 ## Core Interfaces {: #core-sdk-interfaces }
 
-The SDK provides the following core interfaces, which can be accessed after [initialization](/builders/xcm/xcm-sdk/xcm-sdk/#initializing):
+The SDK provides the following core interfaces, which can be accessed after [initialization](/builders/xcm/xcm-sdk/xcm-sdk/#initializing){target=_blank}:
 
 |                                   Interface                                    |                                                                         Description                                                                         |
 |:------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------:|
