@@ -168,7 +168,7 @@ networks:
       proposal_bond_max: uncapped
       spend_period_blocks: 43200
       spend_period_days: 6
-      max_approved_proposals: 20
+      max_approved_proposals: 100
       tx_fees_allocated: 20
       tx_fees_burned: 80
     proxy:
@@ -308,7 +308,7 @@ networks:
       max_del_per_can: 300
       max_del_per_del: 100
     treasury:
-      council_max_members: 9
+      current_council_members: 5
       motion_duration_days: 3
       motion_duration_blocks: 21600
       proposal_bond: 5
@@ -316,7 +316,7 @@ networks:
       proposal_bond_max: uncapped
       spend_period_blocks: 43200
       spend_period_days: 6
-      max_approved_proposals: 20
+      max_approved_proposals: 100
       tx_fees_allocated: 20
       tx_fees_burned: 80
     proxy:
@@ -517,7 +517,7 @@ networks:
       max_del_per_can: 300
       max_del_per_del: 100
     treasury:
-      council_max_members: 9
+      current_council_members: 5
       motion_duration_days: 3
       motion_duration_blocks: 21600
       proposal_bond: 5
@@ -525,7 +525,7 @@ networks:
       proposal_bond_max: uncapped
       spend_period_blocks: 43200
       spend_period_days: 6
-      max_approved_proposals: 20
+      max_approved_proposals: 100
       tx_fees_allocated: 20
       tx_fees_burned: 80
     proxy:
