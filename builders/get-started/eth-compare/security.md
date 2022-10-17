@@ -30,7 +30,7 @@ In the following sections, you'll learn about each of these security considerati
 
 ### Precompiles Can Override a Set Value {: #setting-a-value }
 
-On Ethereum, a smart contract that allows for arbitrary code execution could force the value of a call to be `0`, guaranteeing that no amount of native currency would be sent with the transaction. Whereas on Moonbeam, setting the value of an arbitrary call to `0` can be overridden by calling the native ERC-20 precompile contract and transferring the native asset through the Substrate API.
+On Ethereum, a smart contract that allows for arbitrary code execution could force the value of a call to be `0`, guaranteeing that no amount of native currency would be sent with the transaction. Whereas on Moonbeam, setting the value of an arbitrary call to `0` can be overridden by calling the native ERC-20 precompile contract and transferring the native asset through the Substrate API. Since ERC-20s and XC-20s are not native assets, setting a value to `0` doesn't provide any protection for these types of assets on Ethereum or Moonbeam.
 
 For example, if you have a contract that allows arbitrary code execution and you pass it encoded call data that transfers the balance of a contract to another address, you could essentially drain the given contract of it's balance.
 
@@ -58,11 +58,6 @@ function makeArbitraryCall(address _target, bytes calldata _bytes) public {
 ```
 
 The value of `0` will be overridden by the amount to be transferred as specified in the encoded call data, which in this example is the balance of the contract.
-
-// TODO: figure out if this impacts XCM precompiles because in one comment Alberto said:
-// Also note that value: 0 only would stop draining ETH on ethereum, not ERC-20s. So this is only for the native asset and not XC-20s
-// But then in his example contract he sent, he makes the comment "// Value: 0 does not protect against native ERC-20 precompile calls or XCM precompiles"
-// So that's somewhat contradicting it seems... 
 
 ### Whitelisting Safe Function Selectors {: #whitelisting-function-selectors }
 
