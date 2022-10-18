@@ -302,6 +302,8 @@ You can [fork](https://hardhat.org/hardhat-network/docs/guides/forking-other-net
 
 There are some limitations to be aware of when using Hardhat forking. You cannot interact with any of the Moonbeam precompiled contracts and their functions. Precompiles are a part of the Substrate implementation and therefore cannot be replicated in the simulated EVM environment. This prohibits you from interacting with cross-chain assets on Moonbeam and Substrate-based functionality such as staking and governance.
 
+There is currently an issue related to forking Moonbeam, so in order to fix the issue you'll need to manually patch Hardhat first. You can find out more information by following the [issue on GitHub](https://github.com/NomicFoundation/hardhat/issues/2395#issuecomment-1043838164){target=_blank}, as well as the related [PR](https://github.com/NomicFoundation/hardhat/pull/2313){target=_blank}.
+
 ### Patching Hardhat {: #patching-hardhat }
 
 Before getting started, you'll need to apply a temporary patch to workaround an RPC error until Hardhat fixes the root issue. The error is as follows:
