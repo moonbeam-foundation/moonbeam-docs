@@ -34,7 +34,6 @@ You can create your own endpoint suitable for development or production use usin
 - [Blast](#blast)
 - [OnFinality](#onfinality)
 - [Pocket Network](#pokt)
-- [Dwellir](#dwellir) 
 <!-- - [Ankr](#ankr) -->
 
 ### Blast {: #blast}
@@ -81,21 +80,6 @@ You don't have to generate a new DApp for every endpoint! You can add a new chai
 1. Click on your preexisting app in the **Apps** menu
 2. In the **Endpoint** section, select the **Add new** button and search for your desired network in the dropdown
 3. Your new endpoint will be generated and displayed for you
-
-### Dwellir {: #dwellir }
-
-[Dwellir](https://dwellir.com/development-nodes/){target=_blank} provides free endpoints for developers and dedicated nodes on owned and self-operated bare-metal cluster. Dwellir is building custom data solutions and tooling so get in touch.
-
-To get started go to [Dwellir](https://dwellir.com/development-nodes/){target=_blank}:
-
-1. Enter your **Name** and **Email**
-2. Select the network(s) from the list
-3. Select which **Service Level** you would like
-4. Click **Sign up**
-
-Your custom endpoint will be delivered.
-
-![Dwellir](/images/builders/get-started/endpoints/endpoints-4.png)
 
 <!-- ### Ankr {: #ankr}
 
