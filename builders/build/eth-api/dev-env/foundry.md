@@ -13,7 +13,7 @@ description: Learn how to use Foundry, an Ethereum development environment, to c
 
 There are three tools that make up Foundry:  
 
-- **[Forge](https://book.getfoundry.sh/forge/){target=_blank)** - compiles, tests, and deploys contracts
+- **[Forge](https://book.getfoundry.sh/forge/){target=_blank}** - compiles, tests, and deploys contracts
 - **[Cast](https://book.getfoundry.sh/cast/){target=_blank}** - a command line interface for interacting with contracts
 - **[Anvil](https://book.getfoundry.sh/anvil/){target=_blank}** - a local TestNet node for development purposes that can fork preexisting networks
 
