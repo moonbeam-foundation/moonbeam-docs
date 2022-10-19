@@ -9,7 +9,7 @@ description: How to do remote call to Moonbeam EVM from other chains through XCM
 
 ## Introduction {: #introduction}
 
-The [XCM-transactor pallet](/builders/xcm/xcm-transactor/){target=_blank} provides a simple interface to perform remote cross-chain calls through XCM. However, this does not consider the possibility to do remote calls to Moonbeam's EVM.
+The [XCM-transactor pallet](/builders/xcm/xcm-transactor/){target=_blank} provides a simple interface to perform remote cross-chain calls through XCM. However, this does not consider the possibility to do remote calls to Moonbeam's EVM, only to Substrate specific pallets (functionalities).
 
 Moonbeam's EVM is only accesible through the [Ethereum pallet](https://github.com/paritytech/frontier/tree/master/frame/ethereum){target=_blank}. Among many other things, this pallet handles validating transactions before going into the transaction pool. Then, it performs another validation step before inserting a transaction from the pool in a block. Lastly, it provides the interface through a `transact` function to execute a validated transaction. All these steps follow the same behaviour as an Ethereum transaction, in terms of structure and signature scheme.
 
@@ -25,6 +25,8 @@ This guide will go through the differences between regular and remote EVM calls.
 **Note that remote calls to Moonbeam's EVM through XCM is still being actively developed**. In addition, **developers must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
 
 ## Relevant XCM Definitions {: #general-xcm-definitions }
+
+--8<-- 'text/xcm/general-xcm-definitions2.md'
 
  - **Derivative accounts** — an account derivated from another account. Derivative accounts are keyless (the private key is unknown). Consequently, derivative accounts related to XCM-specific use cases can only be accessed through XCM extrinsics. For remote EVM calls, the main type is:
   
