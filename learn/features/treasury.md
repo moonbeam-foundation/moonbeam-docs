@@ -9,7 +9,7 @@ description: As a Polkadot parachain, Moonbeam has an on-chain treasury controll
 
 ## Introduction {: #introduction } 
 
-A Treasury is an on-chain managed collection of funds. Moonbeam has a community Treasury for supporting network initiatives to further the network. Each Moonbeam-based network has its own respective Treasury. Each Treasury is funded by a percentage of transaction fees of the network it is on and is managed by the Council.
+A Treasury is an on-chain managed collection of funds. Each Moonbeam-based network has a community Treasury for supporting network initiatives to further the network, funded by a percentage of transaction fees of the network it is on and managed by the Council. 
 
 As of October 19th, 2022 a community submitted referendum for an Interim Treasury Program was passed by the community. This 6-month program establishes a separate community Treasury Council to manage Treasury funds, a budget for Treasury spending, and a required discussion time to gather community feedback on possible future Treasury proposals.
 
