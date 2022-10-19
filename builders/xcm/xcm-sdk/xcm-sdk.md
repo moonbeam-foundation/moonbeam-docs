@@ -526,7 +526,7 @@ An example of the response for calling `get` to send DOT from Polkadot to Moonbe
   getFee: [AsyncFunction: getFee],
   send: [AsyncFunction: send]
 }
-``` 
+```
 
 Where the returned values are as follows:
 
