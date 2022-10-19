@@ -53,6 +53,7 @@ Some important terminology to understand in regards to treasuries:
 === "Moonbase Alpha"
     |                      Variable                      |                                                            Value                                                            |
     |:--------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------:|
+    |          Current Treasury Council members          |                              {{ networks.moonbase.treasury.current_council_members }} members                               |
     |                   Proposal bond                    |             {{ networks.moonbase.treasury.proposal_bond }}% of the proposed spend or the proposal bond minimum              |
     |               Proposal bond minimum                |                                   {{ networks.moonbase.treasury.proposal_bond_min }} DEV                                    |
     |               Proposal bond maximum                |                                     {{ networks.moonbase.treasury.proposal_bond_max }}                                      |

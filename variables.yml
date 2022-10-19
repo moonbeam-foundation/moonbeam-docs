@@ -160,7 +160,7 @@ networks:
         address1: '0x4c5A56ed5A4FF7B09aA86560AfD7d383F4831Cce'
         address2: '0x623c9E50647a049F92090fe55e22cC0509872FB6'
     treasury:
-      council_max_members: 9
+      current_council_members: 2
       motion_duration_days: 3
       motion_duration_blocks: 21600
       proposal_bond: 5
