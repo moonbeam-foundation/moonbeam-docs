@@ -141,7 +141,7 @@ Now that you have the proposal and the proposal index, you'll be able to approve
 
 ### Propose the Proposal {: #propose-the-proposal }
 
-In order to propose a proposal using the collective precompile, so that the corresponding collective can vote on it, you will need to obtain the encoded call data of the call, to be executed by proposal. You can get the encoded call data from Polkadot.js Apps. For this example, you need to propose the **approveProposal** extrinsict of the treasury pallet. To do so, navigate to the **Developer** tab, select **Extrinsics**, and take the following steps:
+In order to propose a proposal using the collective precompile, so that the corresponding collective can vote on it, you will need to obtain the encoded call data of the call, to be executed by proposal. You can get the encoded call data from Polkadot.js Apps. For this example, you need to propose the **approveProposal** extrinsic of the treasury pallet. To do so, navigate to the **Developer** tab, select **Extrinsics**, and take the following steps:
 
 1. Select an account (any account is fine because you're not submitting any transaction here)
 2. Select the **treasury** pallet
