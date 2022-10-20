@@ -75,8 +75,8 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 
 ### Remix Set Up {: #remix-set-up } 
 
-1. Get a copy of [`DemocracyInterface.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/pallet-democracy/DemocracyInterface.sol){target=_blank}
-2. Copy and paste the file contents into a [Remix file](https://remix.ethereum.org/){target=_blank} named `Democracy.sol`
+1. Click on the **File explorer** tab
+2. Paste a copy of [`DemocracyInterface.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/pallet-democracy/DemocracyInterface.sol){target=_blank} into a [Remix file](https://remix.ethereum.org/){target=_blank} named `Democracy.sol`
 
 ![Copying and Pasting the Democracy Interface into Remix](/images/builders/pallets-precompiles/precompiles/democracy/democracy-1.png)
 
@@ -90,8 +90,8 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 ### Access the Contract {: #access-the-contract } 
 
 1. Click on the **Deploy and Run** tab, directly below the **Compile** tab in Remix. Note: you are not deploying a contract here, instead you are accessing a precompiled contract that is already deployed
-2. Make sure **Injected Web3** is selected in the **ENVIRONMENT** drop down
-3. Ensure **Democracy.sol** is selected in the **CONTRACT** dropdown. Since this is a precompiled contract there is no need to deploy, instead you are going to provide the address of the precompile in the **At Address** Field
+2. Make sure **Injected Provider - Metamask** is selected in the **ENVIRONMENT** drop down
+3. Ensure **Democracy.sol** is selected in the **CONTRACT** dropdown. Since this is a precompiled contract there is no need to deploy, instead you are going to provide the address of the precompile in the **At Address** field
 4. Provide the address of the democracy precompile for Moonbase Alpha: `{{networks.moonbase.precompiles.democracy}}` and click **At Address**
 5. The democracy precompile will appear in the list of **Deployed Contracts**
 

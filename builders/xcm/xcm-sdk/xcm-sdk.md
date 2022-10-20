@@ -134,7 +134,7 @@ To create a signer for Ethers.js and Polkadot.js, you can refer to the following
 
 ### Initialization {: #initializing }
 
-To be able to deposit, withdraw, and subscribe to balance information for all of the supported assets, you'll need to start off by importing the `initi` function from the XCM SDK and call it:
+To be able to deposit, withdraw, and subscribe to balance information for all of the supported assets, you'll need to start off by importing the `init` function from the XCM SDK and call it:
 
 === "Moonbeam"
 
@@ -157,7 +157,7 @@ To be able to deposit, withdraw, and subscribe to balance information for all of
     const { moonbase } = init()
     ```
     
-If you intend to support a specific wallet, you can pass a signer into the `init` function right away. Otherwise, you'll be able to pass a signer directly when building the transfer data for a deposit or withdraw. To pass in a signer for Ethers and Polkadot, you can use the following snippet (using Moonbeam as an example):
+If you intend to support a specific wallet, you can pass a signer into the `init` function right away. Otherwise, you'll be able to pass a signer directly when building the transfer data for a deposit or withdraw. To pass in a signer for Ethers and Polkadot, you can use the following snippet:
 
 === "Moonbeam"
 
@@ -653,7 +653,7 @@ to(polkadot);
 
 #### Get {: #get-withdraw } 
 
-The `get` function requires that you pass in the receiving account on the destination chain and the Ethers signer for the sending account on Moonbeam, and it gets the data required for the deposit.
+The `get` function requires that you pass in the receiving account on the destination chain and the Ethers signer for the sending account on Moonbeam, and it gets the data required for the withdraw.
 
 ```js
 import { AssetSymbol, ChainKey } from '@moonbeam-network/xcm-config';

@@ -113,14 +113,13 @@ contract SetMessage {
 
 ### Remix Set Up {: #remix-set-up } 
 
-You can use [Remix](https://remix.ethereum.org/){target=_blank} to compile the example contract and deploy it. To add the contract, you can take the following steps:
+You can use [Remix](https://remix.ethereum.org/){target=_blank} to compile the example contract and deploy it. You'll need a copy of [`SetMessage.sol`](#example-contract){target=_blank} and [`CallPermit.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/call-permit/CallPermit.sol){target=_blank}. To add the contracts to Remix, you can take the following steps:
 
-1. Copy the [`SetMessage.sol`](#example-contract){target=_blank} contract
-2. Paste the file contents into a Remix file named `SetMessage.sol`
-3. Get a copy of [`CallPermit.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/call-permit/CallPermit.sol){target=_blank}
-4. Paste the file contents into a Remix file named `CallPermit.sol`
+1. Click on the **File explorer** tab
+2. Paste the `SetMessage.sol` contract into a Remix file named `SetMessage.sol`
+3. Paste the `CallPermit.sol` contraact into a Remix file named `CallPermit.sol`
 
-![Copying and pasting the example contract into Remix](/images/builders/pallets-precompiles/precompiles/call-permit/call-1.png)
+![Copying and pasting the example contract into Remix](/images/builders/pallets-precompiles/precompiles/call-permit/call-1-new.png)
 
 ### Compile & Deploy the Example Contract {: #compile-deploy-example-contract } 
 
@@ -156,7 +155,7 @@ Then instead of deploying the contract, you'll just need to access it given the 
 
 1. Click on the **Deploy and Run** tab, directly below the **Compile** tab in Remix. Note: you are not deploying a contract here, instead you are accessing a precompiled contract that is already deployed
 2. Make sure **Injected Provider - Metamask** is selected in the **ENVIRONMENT** drop down
-3. Ensure **CallPermit.sol** is selected in the **CONTRACT** dropdown. Since this is a precompiled contract there is no need to deploy, instead you are going to provide the address of the precompile in the **At Address** Field
+3. Ensure **CallPermit.sol** is selected in the **CONTRACT** dropdown. Since this is a precompiled contract there is no need to deploy, instead you are going to provide the address of the precompile in the **At Address** field
 4. Provide the address of the call permit precompile for Moonbase Alpha: `{{networks.moonbase.precompiles.call_permit}}` and click **At Address**
 5. The call permit precompile will appear in the list of **Deployed Contracts**
 
