@@ -15,11 +15,13 @@ This guide will outline and provide examples of some security considerations to 
 
 ## Arbitrary Code Execution {: #arbitrary-code-execution }
 
-Smart contracts can allow arbitrary code execution through low-level message passing to other smart contracts via the [`call()` function](https://solidity-by-example.org/call/){target=_blank}, which is an available method for the [address data type in Solidity](https://docs.soliditylang.org/en/latest/types.html#address){target=_blank}.
+Arbitrary code execution in Solidity is the ability to execute code and call functions of other contracts using an arbitrary number of arguments of any type.
 
-The `call()` function accepts ABI encoded call data that is then passed to the target contract. To get the encoded call data, you can use any of the [ABI encoding functions outlined in the Solidity docs](https://docs.soliditylang.org/en/latest/units-and-global-variables.html#abi-encoding-and-decoding-functions){target=_blank}, including `abi.encodeWithSelector` which will be used in the examples in this guide. 
+The [address data type in Solidity](https://docs.soliditylang.org/en/latest/types.html#address){target=_blank} provides access to the [`call()` function](https://solidity-by-example.org/call/){target=_blank}, of which is used to execute arbitrary code of a target contract. 
 
-As previously mentioned, one major concern of allowing low-level calls to arbitrarily execute code on Moonbeam is that Moonbeam has precompile contracts that can be called, which can be used to get around some protections that are typically available on Ethereum. To safely use arbitrary code execution on Moonbeam, you should consider the following, which **only applies to contracts that allow arbitrary code execution**:
+In practice, an origin contract enables arbitrary code execution by providing access to the `call()` function of a target contract. The `call()` function can then be called along with some arbitrary ABI encoded call data, which can then be used to call a function of the target contract.
+
+As previously mentioned, one major concern of arbitrarily executing code on Moonbeam is that Moonbeam has precompile contracts that can be called, which can be used to get around some protections that are typically available on Ethereum. To safely use arbitrary code execution on Moonbeam, you should consider the following, which **only applies to contracts that allow arbitrary code execution**:
 
 - Moonbeam [precompiled contracts](builders/pallets-precompiles/precompiles/){target=_blank} such as the Native ERC-20 precompile, XC-20 precompiles, and XCM-related precompiles allow users to manage and transfer assets without requiring access to the EVM. Instead, these actions are done using the Substrate API. So, if your contract holds native tokens or XC-20s and allows arbitrary code execution, these precompiles can be used to drain the balance of the contract, bypassing any security checks that are normally enforced by the EVM
 - Setting the value attribute of the transaction object to a fixed amount when using the `call()` function (for example, `call{value: 0}(...)`) can be bypassed by calling the native asset precompile and specifying an amount to transfer in the encoded call data
@@ -34,7 +36,7 @@ On Ethereum, a smart contract that allows for arbitrary code execution could for
 
 For example, if you have a contract that allows arbitrary code execution and you pass it encoded call data that transfers the balance of a contract to another address, you could essentially drain the given contract of it's balance.
 
-To get the encoded call data, you could use a function like the following:
+To get the encoded call data, you can use any of the [ABI encoding functions outlined in the Solidity docs](https://docs.soliditylang.org/en/latest/units-and-global-variables.html#abi-encoding-and-decoding-functions){target=_blank}, including `abi.encodeWithSelector` as seen in the following function:
 
 ```
 function getBytes(address _erc20Contract, address _arbitraryCallContract, address _to) public view returns (bytes memory) {
