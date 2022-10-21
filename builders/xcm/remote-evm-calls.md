@@ -176,7 +176,7 @@ With the contract interaction data, you can build the encoded call data for the 
 3. Set the XCM transaction version to **v2**. The previous version is deprecated and will be removed in a future release
 4. Set the gas limit to the desired value. It is recommended to manually execute an `eth_estimateGas` JSON RPC call to understand how much gas is needed. For this example, the gas limit was set to `71000`
 5. Set the action to **Call**
-6. Enter the address of the contract you want to interact with. For this example, it is the [incrementer contract]https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8#code){target=_blank} at address `0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8`
+6. Enter the address of the contract you want to interact with. For this example, it is the [incrementer contract](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8#code){target=_blank} at address `0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8`
 7. Set the value to **0**. Note that this is because this particular interaction does not need DEV (or GLMR/MOVR for Moonbeam/Moonriver). You'll need to modify this value accordingly
 8. Enter the encoded call data of the interaction with the smart contract. For this example, it is `0xd09de08a`
 9. Verify all the parameters, and copy the [Ethereum-XCM pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/ethereum-xcm){target=_blank} encoded call data
@@ -184,7 +184,7 @@ With the contract interaction data, you can build the encoded call data for the 
 !!! note
     The encoded call data for the extrinsic configured above is `0x260001581501000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00`.
 
-IMAGE HERE
+![Ethereum-XCM pallet encoded call data](/images/builders/xcm/remote-evm-calls/xcmevm-1.png)
 
 ### Building the XCM for Remote XCM Execution {: #build-xcm-remote-evm}
 
@@ -210,7 +210,7 @@ If you've [checked the prerequisites](#ethereumxcm-check-prerequisites) and you'
 }
 ```
 6. Set the message version to **v2**
-7. Add three elements and configure them in the following way:
+7. Add three items to the message and configure them in the following way (you may need to **Add item** for some of the instructions to add an asset):
 ```
 {
   "WithdrawAsset":
@@ -260,13 +260,13 @@ If you've [checked the prerequisites](#ethereumxcm-check-prerequisites) and you'
     }
 }
 ```
-10. Click the **Submit Transaction** button and sign the transaction
+8. Click the **Submit Transaction** button and sign the transaction
 
 !!! note
     The encoded call data for the extrinsic configured above is 
     `0x630001000100a10f020c00040000010403001300008a5d78456301130000010403001300008a5d784563010006010300286bee7901260001581501000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00`.
 
-IMAGE HERE
+![Remote XCM Call from Relay Chain](/images/builders/xcm/remote-evm-calls/xcmevm-2.png)
 
 Once the transaction is processed, you can check the relevant extrinsics and events in the [relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/explorer/query/0x2a0e40a2e5261e792190826ce338ed513fe44dec16dd416a12f547d358773f98){target=_blank} and[Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer/query/0x7570d6fa34b9dccd8b8839c2986260034eafef732bbc09f8ae5f857c28765145){target=_blank}. 
 
