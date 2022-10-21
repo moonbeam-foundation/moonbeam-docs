@@ -32,6 +32,7 @@ If you are looking for an API provider suitable for production use, you can chec
 You can create your own endpoint suitable for development or production use using any of the following API providers:
 
 - [Blast](#blast)
+- [GetBlock](#getblock)
 - [OnFinality](#onfinality)
 - [Pocket Network](#pokt)
 <!-- - [Ankr](#ankr) -->
@@ -50,6 +51,20 @@ To get started, you'll need to head to [Blast](https://blastapi.io/){target=_bla
 
 ![Bware Labs](/images/builders/get-started/endpoints/endpoints-1.png)
 
+### GetBlock {: #getblock }
+
+[GetBlock](https://getblock.io/){target=_blank} is a service that provides instant API access to Moonbeam and Moonriver and is available through shared and dedicated nodes. [Dedicated nodes](https://getblock.io/dedicated-nodes/){target=_blank} provide access to a private server with fast speeds and without rate limits. [Shared nodes](https://getblock.io/nodes/){target=_blank} provide a free API key based endpoint for you to get started quickly.
+
+To get started with GetBlock and obtain an API key, you can go the [GetBlock registration page](https://account.getblock.io/sign-up){target=_blank} and sign up. From the **GetBlock Dashboard**, you can view and manage your existing API keys and create new API keys.
+
+Creating a new API key is simple, all you have to do is:
+
+1. Click **Create a new API key**
+2. Enter a name for your API key
+3. Click **Create** to generate your API key
+
+![GetBlock](/images/builders/get-started/endpoints/endpoints-2.png)
+
 ### OnFinality {: #onfinality }
 
 [OnFinality](https://onfinality.io/){target=_blank} provides a free API key based endpoint for customers that provide higher rate limits and performance than the free public endpoint. You also receive more in depth analytics of the usage of your application.
@@ -60,7 +75,7 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 2. Select the network from the dropdown
 3. Your custom API endpoint will be generated automatically
 
-![OnFinality](/images/builders/get-started/endpoints/endpoints-2.png)
+![OnFinality](/images/builders/get-started/endpoints/endpoints-3.png)
 
 ### Pocket Network {: #pokt }
 
@@ -73,7 +88,7 @@ To get your own endpoint, go to [Pocket Network](https://mainnet.portal.pokt.net
 3. Enter the name of your DApp and select your corresponding network
 4. Your new endpoint will be generated and displayed for you in the following app screen
 
-![Pocket Network](/images/builders/get-started/endpoints/endpoints-3.png)
+![Pocket Network](/images/builders/get-started/endpoints/endpoints-4.png)
 
 You don't have to generate a new DApp for every endpoint! You can add a new chain to your preexisting DApp:  
 
