@@ -50,20 +50,19 @@ To follow along with this tutorial, you will need to have:
 - At least one of the accounts will need to be funded with `DEV` tokens.
  --8<-- 'text/faucet/faucet-list-item.md'
 
-### Remix Set Up {: #remix-set-up } 
-
-You can interact with the batch precompile using [Remix](https://remix.ethereum.org/){target=_blank}. To add the precompile to Remix and follow along with the tutorial, you will need to:
-
-1. Get a copy of [`Batch.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank}
-2. Paste the file contents into a Remix file named **Batch.sol**
-3. Get a copy of [`SimpleContract.sol`](#example-contract)
-4. Paste the file contents into a Remix file named **SimpleContract.sol**
-
 ### Example Contract {: #example-contract}
 
 The contract `SimpleContract.sol` will be used as an example of batching contract interactions, but in practice, any contract can be interacted with.
 
  --8<-- 'code/batch/simple-contract.md'
+
+### Remix Set Up {: #remix-set-up } 
+
+You can interact with the batch precompile using [Remix](https://remix.ethereum.org/){target=_blank}. You'll need a copy of [`Batch.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/proxy/Proxy.sol){target=_blank} and [`SimpleContract.sol`](#example-contract). To add the precompile to Remix and follow along with the tutorial, you will need to:
+
+1. Click on the **File explorer** tab
+2. Paste the `Batch.sol` contract into a Remix file named **Batch.sol**
+3. Paste the `SimpleContract.sol` contract into a Remix file named **SimpleContract.sol**
 
 ### Compile the Contract {: #compile-the-contract } 
 
@@ -82,9 +81,9 @@ If the interface was compiled successfully, you will see a green checkmark next 
 Instead of deploying the batch precompile, you will access the interface given the address of the precompiled contract:
 
 1. Click on the **Deploy and Run** tab directly below the **Compile** tab in Remix. Please note the precompiled contract is already deployed
-2. Make sure **Injected Web3** is selected in the **ENVIRONMENT** dropdown. Once you select **Injected Web3**, you might be prompted by MetaMask to connect your account to Remix
+2. Make sure **Injected Provider - Metamask** is selected in the **ENVIRONMENT** dropdown. Once you select **Injected Provider - Metamask**, you might be prompted by MetaMask to connect your account to Remix
 3. Make sure the correct account is displayed under **ACCOUNT**
-4. Ensure **Batch - Batch.sol** is selected in the **CONTRACT** dropdown. Since this is a precompiled contract, there is no need to deploy any code. Instead we are going to provide the address of the precompile in the **At Address** Field
+4. Ensure **Batch - Batch.sol** is selected in the **CONTRACT** dropdown. Since this is a precompiled contract, there is no need to deploy any code. Instead we are going to provide the address of the precompile in the **At Address** field
 5. Provide the address of the batch precompile: `{{networks.moonbase.precompiles.batch}}` and click **At Address**
 
 ![Access the address](/images/builders/pallets-precompiles/precompiles/batch/batch-2.png)
@@ -96,7 +95,7 @@ The **BATCH** precompile will appear in the list of **Deployed Contracts**.
 On the other hand, `SimpleContract.sol` will be deployed as a new contract. Before starting this section, repeat the [compilation step](#compile-the-contract) with the `SimpleContract.sol` file.
 
 1. Click on the **Deploy and Run** tab directly below the **Compile** tab in Remix
-2. Make sure **Injected Web3** is selected in the **ENVIRONMENT** dropdown. Once you select **Injected Web3**, you might be prompted by MetaMask to connect your account to Remix
+2. Make sure **Injected Provider - Metamask** is selected in the **ENVIRONMENT** dropdown. Once you select **Injected Provider - Metamask**, you might be prompted by MetaMask to connect your account to Remix
 3. Make sure the correct account is displayed under **ACCOUNT**
 4. Ensure **SimpleContract - SimpleContract.sol** is selected in the **CONTRACT** dropdown
 5. Click **Deploy**

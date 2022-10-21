@@ -281,4 +281,118 @@ Before you can deploy your contracts, you must compile them. As a reminder, you 
 
     ![Successful contract deployment actions](/images/builders/build/eth-api/dev-env/truffle/truffle-7.png)
 
+## Forking with Ganache {: #forking-with-ganache }
+
+[Ganache](https://trufflesuite.com/ganache/){target=_blank} is part of the Truffle suite of development tools and is your own personal blockchain for local development and testing. You can use Ganache to fork Moonbeam, which will simulate the live network locally, enabling you to interact with already deployed contracts on Moonbeam in a local test environment.
+
+There are some limitations to be aware of when forking with Ganache. Since Ganache is based on an EVM implementation, you cannot interact with any of the Moonbeam precompiled contracts and their functions. Precompiles are a part of the Substrate implementation and therefore cannot be replicated in the simulated EVM environment. This prohibits you from interacting with cross-chain assets on Moonbeam and Substrate-based functionality such as staking and governance.
+
+From your Truffle project, you can install Ganache CLI by running:
+
+```
+npm install ganache
+```
+
+Then you can add a script to run Ganache forking in your `package.json` file:
+
+=== "Moonbeam"
+
+    ```json
+    ...
+    "scripts": {
+      "ganache": "ganache --fork.url {{ networks.moonbeam.rpc_url }}"
+    },
+    ...
+    ```
+
+=== "Moonriver"
+
+    ```json
+    ...
+    "scripts": {
+      "ganache": "ganache --fork.url {{ networks.moonriver.rpc_url }}"
+    },
+    ...
+    ```
+    
+=== "Moonbase"
+
+    ```json
+    ...
+    "scripts": {
+      "ganache": "ganache --fork.url {{ networks.moonbase.rpc_url }}"
+    },
+    ...
+    ```
+
+When you spin up the forked instance, you'll have 10 development accounts that are pre-funded with 1,000 test tokens. The forked instance is available at `http://127.0.0.1:8545/`. The output in your terminal should resemble the following:
+
+![Forking terminal screen](/images/builders/build/eth-api/dev-env/truffle/truffle-8.png)
+
+To verify you have forked the network, you can query the latest block number:
+
+```
+curl --data '{"method":"eth_blockNumber","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545 
+```
+
+If you convert the `result` from [hex to decimal](https://www.rapidtables.com/convert/number/hex-to-decimal.html){target=_blank}, you should get the latest block number from the time you forked the network. You can cross reference the block number using a [block explorer](/builders/get-started/explorers){target=_blank}.
+
+From here you can deploy new contracts to your forked instance of Moonbeam or interact with contracts already deployed by creating a local instance of the deployed contract.
+
+To interact with an already deployed contract, you can create a new script in the `scripts` directory using Ethers.js or Web3.js. First, you'll need to install the JavaScript library of your choice:
+
+=== "Ethers.js"
+    ```
+    npm install ethers
+    ```
+
+=== "Web3.js"
+    ```
+    npm install web3
+    ```
+
+Then you can create a new script to access a live contract on the network:
+
+=== "Ethers.js"
+
+    ```js
+    const ethers = require("ethers");
+
+    async function main() {
+      const provider = new ethers.providers.StaticJsonRpcProvider("http://127.0.0.1:8545/");
+      
+      const contract = new ethers.Contract(
+          'INSERT-CONTRACT-ADDRESS', 'INSERT-CONTRACT-ABI', provider
+      );
+    }
+
+    main().catch((error) => {
+      console.error(error);
+      process.exitCode = 1;
+    });
+    ```
+
+=== "Web3.js"
+
+    ```js
+    const Web3 = require("web3");
+
+    async function main() {
+      const web3 = new Web3("http://127.0.0.1:8545/");
+      
+      const contract = new web3.eth.Contract('INSERT-CONTRACT-ADDRESS', 'INSERT-CONTRACT-ABI');
+    }
+
+    main().catch((error) => {
+      console.error(error);
+      process.exitCode = 1;
+    });
+    ```
+
+To run the script, you can use the following command:
+
+```
+truffle exec INSERT-PATH-TO-FILE
+```
+
 --8<-- 'text/disclaimers/third-party-content.md'

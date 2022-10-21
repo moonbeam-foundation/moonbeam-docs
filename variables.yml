@@ -1,7 +1,7 @@
 networks:
   development:
-    build_tag: v0.26.0
-    tracing_tag: purestake/moonbeam-tracing:v0.26.0-1801-latest
+    build_tag: v0.26.1
+    tracing_tag: purestake/moonbeam-tracing:v0.26.1-1802-latest
     rpc_url: http://127.0.0.1:9933
     wss_url: ws://127.0.0.1:9944
     chain_id: 1281
@@ -15,9 +15,9 @@ networks:
     hex_chain_id: '0x507'
     chain_spec: alphanet
     block_explorer: https://moonbase.moonscan.io/
-    parachain_release_tag: v0.26.0 # must be in this exact format for links to work
-    parachain_sha256sum: eff929c4ed6c5323cae16173eda048dcb647690c68ac06200d092e48de9b8655
-    tracing_tag: purestake/moonbeam-tracing:v0.26.0-1801-latest
+    parachain_release_tag: v0.26.1 # must be in this exact format for links to work
+    parachain_sha256sum: 16b17d45c8e492e1e4dd7fa2e113c7abfde473e33be1d9d0f0260a0d183470bc
+    tracing_tag: purestake/moonbeam-tracing:v0.26.1-1802-latest
     gas_block: 15M
     gas_tx: 12.995M
     node_directory: /var/lib/alphanet-data
@@ -101,6 +101,9 @@ networks:
       epoch_expiration: 10000
       epoch_fulfillment_delay: 2
     xcm:
+      channel:
+        account_id: '5GWpSdqkkKGZmdKQ9nkSF7TmHp6JWt28BMGQNuG4MXtSvq3e'
+        account_id_hex: '0xc4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a063'
       instructions:
         weight_units:
           display: 100,000,000
@@ -129,6 +132,7 @@ networks:
       min_preim_deposit: 0.004
       max_votes: 100
       max_proposals: 100
+      max_referenda: 5
       lock_period:
         conviction_1: 1
         conviction_2: 2
@@ -156,7 +160,7 @@ networks:
         address1: '0x4c5A56ed5A4FF7B09aA86560AfD7d383F4831Cce'
         address2: '0x623c9E50647a049F92090fe55e22cC0509872FB6'
     treasury:
-      council_max_members: 9
+      current_council_members: 2
       motion_duration_days: 3
       motion_duration_blocks: 21600
       proposal_bond: 5
@@ -164,7 +168,7 @@ networks:
       proposal_bond_max: uncapped
       spend_period_blocks: 43200
       spend_period_days: 6
-      max_approved_proposals: 20
+      max_approved_proposals: 100
       tx_fees_allocated: 20
       tx_fees_burned: 80
     proxy:
@@ -209,6 +213,9 @@ networks:
       call_permit: '0x000000000000000000000000000000000000080a'
       proxy: '0x000000000000000000000000000000000000080b'
       xcm_transactor: '0x000000000000000000000000000000000000080d'
+      collective_council: '0x000000000000000000000000000000000000080e'
+      collective_tech_committee: '0x000000000000000000000000000000000000080f'
+      collective_treasury: '0x0000000000000000000000000000000000000810'
     substrate_api_sidecar:
       stable_version: 11.3.9
     tx_weight_to_gas_ratio: 25000
@@ -236,9 +243,9 @@ networks:
     chain_id: 1285
     hex_chain_id: '0x505'
     node_directory: /var/lib/moonriver-data
-    parachain_release_tag: v0.26.0
-    parachain_sha256sum: eff929c4ed6c5323cae16173eda048dcb647690c68ac06200d092e48de9b8655
-    tracing_tag: purestake/moonbeam-tracing:v0.26.0-1801-latest   
+    parachain_release_tag: v0.26.1
+    parachain_sha256sum: 16b17d45c8e492e1e4dd7fa2e113c7abfde473e33be1d9d0f0260a0d183470bc
+    tracing_tag: purestake/moonbeam-tracing:v0.26.1-1802-latest   
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
     binary_name: moonbeam
@@ -251,6 +258,9 @@ networks:
       ram: 16
       hd: 1
     xcm:
+      channel:
+        account_id: '5E6kHM4zFdH5KEJE3YEzX5QuqoETVKUQadeY8LVmeh2HyHGt'
+        account_id_hex: '0x5a071f642798f89d68b050384132eea7b65db483b00dbb05548d3ce472cfef48'
       instructions:
         weight_units:
           display: 200,000,000
@@ -276,6 +286,7 @@ networks:
       max_votes: 100
       min_preim_deposit: 0.004
       max_proposals: 100
+      max_referenda: 5
       lock_period:
         conviction_1: 1
         conviction_2: 2
@@ -300,7 +311,7 @@ networks:
       max_del_per_can: 300
       max_del_per_del: 100
     treasury:
-      council_max_members: 9
+      current_council_members: 5
       motion_duration_days: 3
       motion_duration_blocks: 21600
       proposal_bond: 5
@@ -308,7 +319,7 @@ networks:
       proposal_bond_max: uncapped
       spend_period_blocks: 43200
       spend_period_days: 6
-      max_approved_proposals: 20
+      max_approved_proposals: 100
       tx_fees_allocated: 20
       tx_fees_burned: 80
     proxy:
@@ -354,6 +365,9 @@ networks:
       call_permit: '0x000000000000000000000000000000000000080a'
       proxy: '0x000000000000000000000000000000000000080b'
       xcm_transactor: '0x000000000000000000000000000000000000080d'
+      collective_council: '0x000000000000000000000000000000000000080e'
+      collective_tech_committee: '0x000000000000000000000000000000000000080f'
+      collective_treasury: '0x0000000000000000000000000000000000000810'
     chainlink:
       feed:
         proxy:
@@ -428,9 +442,9 @@ networks:
     chain_id: 1284
     hex_chain_id: '0x504'
     node_directory: /var/lib/moonbeam-data
-    parachain_release_tag: v0.26.0
-    parachain_sha256sum: eff929c4ed6c5323cae16173eda048dcb647690c68ac06200d092e48de9b8655
-    tracing_tag: purestake/moonbeam-tracing:v0.26.0-1801-latest
+    parachain_release_tag: v0.26.1
+    parachain_sha256sum: 16b17d45c8e492e1e4dd7fa2e113c7abfde473e33be1d9d0f0260a0d183470bc
+    tracing_tag: purestake/moonbeam-tracing:v0.26.1-1802-latest
     chain_spec: moonbeam
     block_explorer: https://moonscan.io
     binary_name: moonbeam
@@ -443,6 +457,9 @@ networks:
       ram: 16
       hd: 1
     xcm:
+      channel:
+        account_id: '5E6kHM4zFdH5KEJE3YEzX5QuqoETVKUQadeY8LVmeh2HyHGt'
+        account_id_hex: '0x5a071f642798f89d68b050384132eea7b65db483b00dbb05548d3ce472cfef48'
       instructions:
         weight_units:
           display: 200,000,000
@@ -481,6 +498,7 @@ networks:
       max_votes: 100
       min_preim_deposit: 0.04
       max_proposals: 100
+      max_referenda: 2
       lock_period:
         conviction_1: 7
         conviction_2: 14
@@ -505,7 +523,7 @@ networks:
       max_del_per_can: 300
       max_del_per_del: 100
     treasury:
-      council_max_members: 9
+      current_council_members: 5
       motion_duration_days: 3
       motion_duration_blocks: 21600
       proposal_bond: 5
@@ -513,7 +531,7 @@ networks:
       proposal_bond_max: uncapped
       spend_period_blocks: 43200
       spend_period_days: 6
-      max_approved_proposals: 20
+      max_approved_proposals: 100
       tx_fees_allocated: 20
       tx_fees_burned: 80
     proxy:
@@ -559,6 +577,9 @@ networks:
       call_permit: '0x000000000000000000000000000000000000080a'
       proxy: '0x000000000000000000000000000000000000080b'
       xcm_transactor: '0x000000000000000000000000000000000000080d'
+      collective_council: '0x000000000000000000000000000000000000080e'
+      collective_tech_committee: '0x000000000000000000000000000000000000080f'
+      collective_treasury: '0x0000000000000000000000000000000000000810'
     chainlink:
       feed:
         proxy:
