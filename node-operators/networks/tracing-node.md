@@ -32,6 +32,9 @@ Spinning up a `debug`, `txpool`, or `tracing` node is similar to [running a full
   - **`--ethapi-trace-max-count <uint>`** — sets the maximum number of trace entries to be returned by the node. The default maximum number of trace entries a single request of `trace_filter` returns is `500`
   - **`-ethapi-trace-cache-duration <uint>`** — sets the duration (in seconds) after which the cache of `trace_filter,` for a given block, is discarded. The default amount of time blocks are stored in the cache is `300` seconds
 
+!!! note
+    If you want to run an RPC endpoint, to connect to Polkadot.js Apps, or to run your own application, use the flags `--unsafe-rpc-external` and/or `--unsafe-ws-external` to run the full node with external access to the RPC ports.  More details are available by running `moonbeam --help`.  
+
 ## Run a Tracing Node with Docker {: #run-a-tracing-node-with-docker }
 
 If you haven't previously run a standard full Moonbeam node, you will need to setup a directory to store chain data:
@@ -82,10 +85,15 @@ Before getting started, you'll need to set the necessary permissions either for 
 
 Instead of the standard `purestake/moonbeam` docker image, you will need to use `purestake/moonbeam-tracing` image. The latest supported version can be found on the [Docker Hub for the `moonbeam-tracing` image](https://hub.docker.com/r/purestake/moonbeam-tracing/tags).
 
-The complete command for running a tracing node is as follows:
+Now, execute the docker run command. Note that you have to:
+ 
+ - Replace `YOUR-NODE-NAME` in two different places
+ - Replace `<50% RAM in MB>` for 50% of the actual RAM your server has. For example, for 32 GB RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
 
 !!! note
-    Make sure you replace `<50% RAM in MB>` for 50% of the actual RAM your server has. For example, for 32 GB RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
+    For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`.
+
+The complete command for running a tracing node is as follows:
 
 === "Moonbeam"
     ```
@@ -94,8 +102,8 @@ The complete command for running a tracing node is as follows:
     {{ networks.moonbeam.tracing_tag }} \
     --base-path=/data \
     --chain {{ networks.moonbeam.chain_spec }} \
-    --name="Moonbeam-Tutorial" \
-    --pruning archive \
+    --name="YOUR-NODE-NAME" \
+    --state-pruning archive \
     --state-cache-size 0 \
     --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
@@ -103,8 +111,7 @@ The complete command for running a tracing node is as follows:
     --runtime-cache-size 64 \
     -- \
     --execution wasm \
-    --pruning 1000 \
-    --name="Moonbeam-Tutorial (Embedded Relay)"
+    --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
 === "Moonriver"
@@ -114,8 +121,8 @@ The complete command for running a tracing node is as follows:
     {{ networks.moonriver.tracing_tag }} \
     --base-path=/data \
     --chain {{ networks.moonriver.chain_spec }} \
-    --name="Moonbeam-Tutorial" \
-    --pruning archive \
+    --name="YOUR-NODE-NAME" \
+    --state-pruning archive \
     --state-cache-size 0 \
     --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
@@ -123,8 +130,7 @@ The complete command for running a tracing node is as follows:
     --runtime-cache-size 64 \
     -- \
     --execution wasm \
-    --pruning 1000 \
-    --name="Moonbeam-Tutorial (Embedded Relay)"
+    --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
 === "Moonbase Alpha"
@@ -134,8 +140,8 @@ The complete command for running a tracing node is as follows:
     {{ networks.moonbase.tracing_tag }} \
     --base-path=/data \
     --chain {{ networks.moonbase.chain_spec }} \
-    --name="Moonbeam-Tutorial" \
-    --pruning archive \
+    --name="YOUR-NODE-NAME" \
+    --state-pruning archive \
     --state-cache-size 0 \
     --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
@@ -143,8 +149,7 @@ The complete command for running a tracing node is as follows:
     --runtime-cache-size 64 \
     -- \
     --execution wasm \
-    --pruning 1000 \
-    --name="Moonbeam-Tutorial (Embedded Relay)"
+    --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
 === "Moonbeam Dev Node"
@@ -152,15 +157,12 @@ The complete command for running a tracing node is as follows:
     docker run --network="host" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     {{ networks.development.tracing_tag }} \
-    --name="Moonbeam-Tutorial" \
+    --name="YOUR-NODE-NAME" \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
     --runtime-cache-size 64 \
     --dev
     ```
-
-!!! note
-    If you want to run an RPC endpoint, to connect polkadot.js.org, or to run your own application, use the flags `--unsafe-rpc-external` and/or `--unsafe-ws-external` to run the full node with external access to the RPC ports.  More details are available by running `moonbeam --help`.  
 
 You should see a terminal log similar to the following if you spun up a Moonbase Alpha tracing node:
 
@@ -250,6 +252,9 @@ The next step is to create the systemd configuration file, you'll need to:
  - Double-check the base path if you've used a different directory
  - Name the file `/etc/systemd/system/moonbeam.service`
 
+!!! note
+    For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`.
+
 === "Moonbeam"
     ```
     [Unit]
@@ -270,7 +275,7 @@ The next step is to create the systemd configuration file, you'll need to:
          --rpc-port {{ networks.parachain.rpc }} \
          --ws-port {{ networks.parachain.ws }} \
          --execution wasm \
-         --pruning=archive \
+         --state-pruning=archive \
          --state-cache-size 0 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonbeam.node_directory }} \
@@ -284,7 +289,6 @@ The next step is to create the systemd configuration file, you'll need to:
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
-         --pruning=1000 \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
     [Install]
@@ -311,7 +315,7 @@ The next step is to create the systemd configuration file, you'll need to:
          --rpc-port {{ networks.parachain.rpc }} \
          --ws-port {{ networks.parachain.ws }} \
          --execution wasm \
-         --pruning=archive \
+         --state-pruning=archive \
          --state-cache-size 0 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonriver.node_directory }} \
@@ -325,7 +329,6 @@ The next step is to create the systemd configuration file, you'll need to:
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
-         --pruning=1000 \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
     [Install]
@@ -352,7 +355,7 @@ The next step is to create the systemd configuration file, you'll need to:
          --rpc-port {{ networks.parachain.rpc }} \
          --ws-port {{ networks.parachain.ws }} \
          --execution wasm \
-         --pruning=archive \
+         --state-pruning=archive \
          --state-cache-size 0 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonbase.node_directory }} \
@@ -366,7 +369,6 @@ The next step is to create the systemd configuration file, you'll need to:
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
-         --pruning=1000 \
          --name="YOUR-NODE-NAME (Embedded Relay)"
 
     [Install]

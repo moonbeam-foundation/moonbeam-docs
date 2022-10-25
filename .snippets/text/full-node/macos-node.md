@@ -4,6 +4,8 @@ title: Full Node Docker Commands for MacOS
 
 # Code Snippets Collator/Full Node MacOS
 
+For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`.
+
 ## Moonbeam Full Node {: #moonbeam-full-node } 
 
 ```
@@ -15,11 +17,10 @@ purestake/moonbeam:v0.27.0 \
 --name="YOUR-NODE-NAME" \
 --execution wasm \
 --wasm-execution compiled \
---pruning archive \
+--state-pruning archive \
 --state-cache-size 0 \
 -- \
 --execution wasm \
---pruning 1000 \
 --name="YOUR-NODE-NAME (Embedded Relay)"
 ```
 
@@ -35,11 +36,9 @@ purestake/moonbeam:v0.27.0 \
 --validator \
 --execution wasm \
 --wasm-execution compiled \
---pruning archive \
 --state-cache-size 0 \
 -- \
 --execution wasm \
---pruning 1000 \
 --name="YOUR-NODE-NAME (Embedded Relay)"
 ```
 ## Moonriver Full Node {: #moonriver-full-node } 
@@ -53,11 +52,10 @@ purestake/moonbeam:v0.27.0 \
 --name="YOUR-NODE-NAME" \
 --execution wasm \
 --wasm-execution compiled \
---pruning archive \
+--state-pruning archive \
 --state-cache-size 0 \
 -- \
 --execution wasm \
---pruning 1000 \
 --name="YOUR-NODE-NAME (Embedded Relay)"
 ```
 
@@ -73,11 +71,9 @@ purestake/moonbeam:v0.27.0 \
 --validator \
 --execution wasm \
 --wasm-execution compiled \
---pruning archive \
 --state-cache-size 0 \
 -- \
 --execution wasm \
---pruning 1000 \
 --name="YOUR-NODE-NAME (Embedded Relay)"
 ```
 
@@ -92,11 +88,10 @@ purestake/moonbeam:v0.27.0 \
 --name="YOUR-NODE-NAME" \
 --execution wasm \
 --wasm-execution compiled \
---pruning archive \
+--state-pruning archive \
 --state-cache-size 0 \
 -- \
 --execution wasm \
---pruning 1000 \
 --name="YOUR-NODE-NAME (Embedded Relay)"
 ```
 
@@ -112,10 +107,8 @@ purestake/moonbeam:v0.27.0 \
 --validator \
 --execution wasm \
 --wasm-execution compiled \
---pruning archive \
 --state-cache-size 0 \
 -- \
 --execution wasm \
---pruning 1000 \
 --name="YOUR-NODE-NAME (Embedded Relay)"
 ```
