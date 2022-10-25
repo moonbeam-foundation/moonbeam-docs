@@ -95,7 +95,7 @@ The complete command for running a tracing node is as follows:
     --base-path=/data \
     --chain {{ networks.moonbeam.chain_spec }} \
     --name="Moonbeam-Tutorial" \
-    --pruning archive \
+    --state-pruning archive \
     --state-cache-size 0 \
     --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
@@ -103,7 +103,6 @@ The complete command for running a tracing node is as follows:
     --runtime-cache-size 64 \
     -- \
     --execution wasm \
-    --pruning 1000 \
     --name="Moonbeam-Tutorial (Embedded Relay)"
     ```
 
@@ -115,7 +114,7 @@ The complete command for running a tracing node is as follows:
     --base-path=/data \
     --chain {{ networks.moonriver.chain_spec }} \
     --name="Moonbeam-Tutorial" \
-    --pruning archive \
+    --state-pruning archive \
     --state-cache-size 0 \
     --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
@@ -123,7 +122,6 @@ The complete command for running a tracing node is as follows:
     --runtime-cache-size 64 \
     -- \
     --execution wasm \
-    --pruning 1000 \
     --name="Moonbeam-Tutorial (Embedded Relay)"
     ```
 
@@ -135,7 +133,7 @@ The complete command for running a tracing node is as follows:
     --base-path=/data \
     --chain {{ networks.moonbase.chain_spec }} \
     --name="Moonbeam-Tutorial" \
-    --pruning archive \
+    --state-pruning archive \
     --state-cache-size 0 \
     --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
@@ -143,7 +141,6 @@ The complete command for running a tracing node is as follows:
     --runtime-cache-size 64 \
     -- \
     --execution wasm \
-    --pruning 1000 \
     --name="Moonbeam-Tutorial (Embedded Relay)"
     ```
 
@@ -270,7 +267,7 @@ The next step is to create the systemd configuration file, you'll need to:
          --rpc-port {{ networks.parachain.rpc }} \
          --ws-port {{ networks.parachain.ws }} \
          --execution wasm \
-         --pruning=archive \
+         --state-pruning=archive \
          --state-cache-size 0 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonbeam.node_directory }} \
@@ -284,7 +281,6 @@ The next step is to create the systemd configuration file, you'll need to:
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
-         --pruning=1000 \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
     [Install]
@@ -311,7 +307,7 @@ The next step is to create the systemd configuration file, you'll need to:
          --rpc-port {{ networks.parachain.rpc }} \
          --ws-port {{ networks.parachain.ws }} \
          --execution wasm \
-         --pruning=archive \
+         --state-pruning=archive \
          --state-cache-size 0 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonriver.node_directory }} \
@@ -325,7 +321,6 @@ The next step is to create the systemd configuration file, you'll need to:
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
-         --pruning=1000 \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
     [Install]
@@ -352,7 +347,7 @@ The next step is to create the systemd configuration file, you'll need to:
          --rpc-port {{ networks.parachain.rpc }} \
          --ws-port {{ networks.parachain.ws }} \
          --execution wasm \
-         --pruning=archive \
+         --state-pruning=archive \
          --state-cache-size 0 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonbase.node_directory }} \
@@ -366,7 +361,6 @@ The next step is to create the systemd configuration file, you'll need to:
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
-         --pruning=1000 \
          --name="YOUR-NODE-NAME (Embedded Relay)"
 
     [Install]

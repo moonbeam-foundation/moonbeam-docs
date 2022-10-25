@@ -78,12 +78,11 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --name="YOUR-NODE-NAME" \
     --execution wasm \
     --wasm-execution compiled \
-    --pruning archive \
+    --state-pruning archive \
     --state-cache-size 0 \
     --db-cache <50% RAM in MB> \
     -- \
     --execution wasm \
-    --pruning 1000 \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
@@ -97,12 +96,11 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --name="YOUR-NODE-NAME" \
     --execution wasm \
     --wasm-execution compiled \
-    --pruning archive \
+    --state-pruning archive \
     --state-cache-size 0 \
     --db-cache <50% RAM in MB> \
     -- \
     --execution wasm \
-    --pruning 1000 \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
@@ -116,12 +114,11 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --name="YOUR-NODE-NAME" \
     --execution wasm \
     --wasm-execution compiled \
-    --pruning archive \
+    --state-pruning archive \
     --state-cache-size 0 \
     --db-cache <50% RAM in MB> \
     -- \
     --execution wasm \
-    --pruning 1000 \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
@@ -138,12 +135,10 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --validator \
     --execution wasm \
     --wasm-execution compiled \
-    --pruning archive \
     --state-cache-size 0 \
     --db-cache <50% RAM in MB> \
     -- \
     --execution wasm \
-    --pruning 1000 \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
@@ -158,12 +153,10 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --validator \
     --execution wasm \
     --wasm-execution compiled \
-    --pruning archive \
     --state-cache-size 0 \
     --db-cache <50% RAM in MB> \
     -- \
     --execution wasm \
-    --pruning 1000 \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
     
@@ -178,12 +171,10 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --validator \
     --execution wasm \
     --wasm-execution compiled \
-    --pruning archive \
     --state-cache-size 0 \
     --db-cache <50% RAM in MB> \
     -- \
     --execution wasm \
-    --pruning 1000 \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
