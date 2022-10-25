@@ -27,7 +27,7 @@ This guide will cover some of the most common flags and show you how to access a
 - **`--wasm-execution`** - specifies the method for executing Wasm runtime code. The available options are:
     - **`compiled`** - this is the default and uses the [Wasmtime](https://github.com/paritytech/wasmtime){target=_blank} compiled runtime
     - **`interpreted-i-know-what-i-do`** - uses the [wasmi interpreter](https://github.com/paritytech/wasmi){target=_blank}
-- **`--state-pruning`** - specifies the state pruning mode. If running a node with the `--validator` flag, the default is to keep the full state of all blocks. Otherwise, the state is only kept for the last 256 blocks. The available options are:
+- **`--state-pruning`** - specifies the state pruning mode. For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`. If running a node with the `--validator` flag, the default is to keep the full state of all blocks. Otherwise, the state is only kept for the last 256 blocks. The available options are:
     - **`archive`** - keeps the full state of all blocks
     - **`<number-of-blocks>`** - specifies a custom number of blocks to keep the state for
 - **`--state-cache-size`** - specifies the size of the internal state cache. The default is `67108864`. You can set this value to `0` to disable the cache and improve collator performance

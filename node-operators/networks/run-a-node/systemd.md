@@ -181,13 +181,16 @@ The following commands will set up everything regarding running the service.
 
 ## Create the Configuration File {: #create-the-configuration-file }
 
-The next step is to create the systemd configuration file. If you are setting up a collator node, make sure to follow the code snippets for "Collator". Note that you have to:
+The next step is to create the systemd configuration file. If you are setting up a collator node, make sure to follow the code snippets for [Collator](#collator--collator). Note that you have to:
 
  - Replace `YOUR-NODE-NAME` in two different places
  - Replace `<50% RAM in MB>` for 50% of the actual RAM your server has. For example, for 32 GB RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
  - Double-check that the binary is in the proper path as described below (_ExecStart_)
  - Double-check the base path if you've used a different directory
  - Name the file `/etc/systemd/system/moonbeam.service`
+
+!!! note
+    For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`.
 
 ### Full Node {: #full-node } 
 
@@ -305,6 +308,9 @@ The next step is to create the systemd configuration file. If you are setting up
     WantedBy=multi-user.target
     ```
 
+!!! note
+    If you want to run an RPC endpoint, to connect Polkadot.js Apps, or to run your own application, use the flags `--unsafe-rpc-external` and/or `--unsafe-ws-external` to run the full node with external access to the RPC ports. More details are available by running `moonbeam --help`. This is **not** recommended for Collators. For an overview of the available flags, please refer to the [Flags](/node-operators/networks/run-a-node/flags){target=_blank} page of our documentation.
+
 ### Collator {: #collator } 
 
 === "Moonbeam"
@@ -420,9 +426,6 @@ The next step is to create the systemd configuration file. If you are setting up
     [Install]
     WantedBy=multi-user.target
     ```
-
-!!! note
-    If you want to run an RPC endpoint, to connect Polkadot.js Apps, or to run your own application, use the flags `--unsafe-rpc-external` and/or `--unsafe-ws-external` to run the full node with external access to the RPC ports.  More details are available by running `moonbeam --help`. This is **not** recommended for Collators. For an overview of the above flags, please refer to the [Flags](/node-operators/networks/run-a-node/flags){target=_blank} page of our documentation.
 
 !!! note
     You can specify a custom Prometheus port with the `--prometheus-port XXXX` flag (replacing `XXXX` with the actual port number). This is possible for both the parachain and embedded relay chain.

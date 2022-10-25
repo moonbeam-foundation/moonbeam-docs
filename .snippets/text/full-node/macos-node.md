@@ -4,6 +4,8 @@ title: Full Node Docker Commands for MacOS
 
 # Code Snippets Collator/Full Node MacOS
 
+For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`.
+
 ## Moonbeam Full Node {: #moonbeam-full-node } 
 
 ```

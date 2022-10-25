@@ -61,10 +61,15 @@ Next, make sure you set the ownership and permissions accordingly for the local 
     sudo chown -R $(id -u):$(id -g) {{ networks.moonbase.node_directory }}
     ```
 
-Now, execute the docker run command. If you are setting up a collator node, make sure to follow the code snippets for "Collator". Note that you have to:
+Now, execute the docker run command. If you are setting up a collator node, make sure to follow the code snippets for [Collator](#collator--collator). Note that you have to:
  
  - Replace `YOUR-NODE-NAME` in two different places
  - Replace `<50% RAM in MB>` for 50% of the actual RAM your server has. For example, for 32 GB RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
+
+If you're using MacOS, there are adapted [code snippets](https://www.github.com/PureStake/moonbeam-docs/blob/master/.snippets/text/full-node/macos-node.md){target=_blank} specific for MacOS which can be used instead.
+
+!!! note
+    For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`.
 
 ### Full Node {: #full-node } 
 
@@ -121,6 +126,9 @@ Now, execute the docker run command. If you are setting up a collator node, make
     --execution wasm \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
+
+!!! note
+    If you want to run an RPC endpoint, to connect Polkadot.js Apps, or to run your own application, use the flags `--unsafe-rpc-external` and/or `--unsafe-ws-external` to run the full node with external access to the RPC ports.  More details are available by running `moonbeam --help`. This is **not** recommended for Collators. 
 
 ### Collator {: #collator } 
 
@@ -179,20 +187,14 @@ Now, execute the docker run command. If you are setting up a collator node, make
     ```
 
 !!! note
-    For an overview of the above flags, please refer to the [Flags](/node-operators/networks/run-a-node/flags){target=_blank} page of our documentation.
-
-If you're using MacOS, there are adapted [code snippets](https://www.github.com/PureStake/moonbeam-docs/blob/master/.snippets/text/full-node/macos-node.md){target=_blank} specific for MacOS which can be used instead.
+    For an overview of the above flags, please refer to the [Flags](/node-operators/networks/run-a-node/flags){target=_blank} page of our documentation. 
 
 Once Docker pulls the necessary images, your full Moonbeam (or Moonriver) node will start, displaying lots of information, such as the chain specification, node name, role, genesis state, and more:
 
-![Full Node Starting](/images/node-operators/networks/run-a-node/docker/full-node-docker-1.png)
-
-!!! note
-    If you want to run an RPC endpoint, to connect Polkadot.js Apps, or to run your own application, use the flags `--unsafe-rpc-external` and/or `--unsafe-ws-external` to run the full node with external access to the RPC ports.  More details are available by running `moonbeam --help`. This is **not** recommended for Collators.  
+![Full Node Starting](/images/node-operators/networks/run-a-node/docker/full-node-docker-1.png) 
 
 !!! note
     You can specify a custom Prometheus port with the `--prometheus-port XXXX` flag (replacing `XXXX` with the actual port number). This is possible for both the parachain and embedded relay chain.
-
 
 ```
 docker run -p {{ networks.relay_chain.p2p }}:{{ networks.relay_chain.p2p }} -p {{ networks.parachain.p2p }}:{{ networks.parachain.p2p }} -p {{ networks.parachain.rpc }}:{{ networks.parachain.rpc }} -p {{ networks.parachain.ws }}:{{ networks.parachain.ws }} #rest of code goes here
