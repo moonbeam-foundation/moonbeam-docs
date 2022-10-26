@@ -5,7 +5,7 @@ description: A description of the main differences that Ethereum developers need
 
 # Security Considerations
 
-![Moonbeam v Ethereum - Security Banner](/images/builders/get-started/eth-compare/security-banner.png)
+![Moonbeam v Ethereum - Security Banner](/images/builders/get-started/eth-compare/security/security-banner.png)
 
 ## Introduction {: #introduction }
 
@@ -17,9 +17,9 @@ This guide will outline and provide examples of some security considerations to 
 
 Arbitrary code execution in Solidity is the ability to execute code and call functions of other contracts using an arbitrary number of arguments of any type.
 
-The [address data type in Solidity](https://docs.soliditylang.org/en/latest/types.html#address){target=_blank} provides access to the [`call()` function](https://solidity-by-example.org/call/){target=_blank}, of which is used to execute arbitrary code of a target contract. 
+A smart contract allows arbitrary execution of another contract when it allows a user to invoke the `call()` function and pass in arbitrary call data. The [`call()` function](https://solidity-by-example.org/call/){target=_blank} is made available through the [address data type in Solidity](https://docs.soliditylang.org/en/latest/types.html#address){target=_blank}. When the `call()` function is invoked, the target contract is called using the arbitrary call data.
 
-In practice, an origin contract enables arbitrary code execution by providing access to the `call()` function of a target contract. The `call()` function can then be called along with some arbitrary ABI encoded call data, which can then be used to call a function of the target contract.
+![Arbitrary code execution](/images/builders/get-started/eth-compare/security/security-1.png)
 
 As previously mentioned, one major concern of arbitrarily executing code on Moonbeam is that Moonbeam has precompile contracts that can be called, which can be used to get around some protections that are typically available on Ethereum. To safely use arbitrary code execution on Moonbeam, you should consider the following, which **only applies to contracts that allow arbitrary code execution**:
 
