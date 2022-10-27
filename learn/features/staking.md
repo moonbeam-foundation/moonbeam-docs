@@ -101,12 +101,15 @@ There are a few resources you can check out to help you select a collator to del
 - The minimum bond for each collator tends to increase over time, so if your delegation is close to the minimum, there is a higher chance you might fall below the minimum and not receive rewards
 - Spreading delegations between multiple collators is more efficient in terms of rewards, but only recommended if you have enough to stay above the minimum bond of each collator
 - You can consider collator performance by reviewing the number of blocks each collator has produced recently
+- You can set up auto-compounding which will automatically restake a specified percentage of your delegation rewards
 
 ## Reward Distribution {: #reward-distribution } 
 
 Rewards for collators and their delegators are calculated at the start of every round for their work prior to the [reward payout delay](#quick-reference). For example, on Moonriver the rewards are calculated for the collators work from {{ networks.moonriver.delegator_timings.rewards_payouts.rounds }} rounds ago.
 
 The calculated rewards are then paid out on a block-by-block basis. For every block, one collator will be chosen to receive their entire reward payout from the prior round, along with their delegators, until all of the rewards have been paid for that round. For example, if there are {{ networks.moonriver.staking.max_candidates }} collators who produced blocks in the prior round, all of the collators and their delegators would be paid by block {{ networks.moonriver.staking.max_candidates }} of the new round.
+
+You can choose to auto-compound your delegation rewards so you no longer have to manually delegate rewards. If you choose to set up auto-compounding, you can specify the percentage of your rewards to be auto-compounded and they'll automatically be added to the delegation in which you received the rewards from.
 
 ### Annual Inflation {: #annual-inflation}
 

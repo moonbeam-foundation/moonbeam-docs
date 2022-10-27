@@ -12,4 +12,5 @@ Some important parameters to understand in relation to the staking system on Moo
  - **Reward pool** - a portion of the annual inflation that is set aside for collators and delegators
  - **Collator commission** - default fixed percent a collator takes off the top of the due staking rewards. Not related to the reward pool
  - **Delegator rewards** — the aggregate delegator rewards distributed over all eligible delegators, taking into account the relative size of stakes ([read more](/learn/features/staking/#reward-distribution))
+ - **Auto-compounding** - a setting that automatically applies a percentage of a delegator's rewards to their total amount delegated
  - **Slashing** — a mechanism to discourage collator misbehavior, where typically the collator and their delegators get slashed by losing a percentage of their stake. Currently, there is no slashing but this can be changed through governance. Collators who produce blocks that are not finalized by the relay chain won't receive rewards
