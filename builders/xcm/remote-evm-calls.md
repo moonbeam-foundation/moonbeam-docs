@@ -99,7 +99,7 @@ To be able to send the call in Polkadot.js Apps from the relay chain, you need t
  - Fund the **multilocation-derivative account**, which you can obtain by following the steps [in the next section](#calculate-multilocation-derivative){target=_blank}. The account must have enough DEV tokens (or GLMR/MOVR for Moonbeam/Moonriver) to cover the cost of the XCM execution of the remote EVM call. Note that this is the account from which the remote EVM call will be dispatched (the `msg.sender`). Consequently, the account must satisfy whatever conditions are required for the EVM call to be executed correctly. For example, hold any relevant ERC-20 token if you are doing an ERC-20 transfer
  
 !!! note
-    Suppose you are using the `transactThroughProxy` function. In that case, the `**`transactAs` account must satisfy whatever conditions are required for the EVM call to be executed correctly, as it acts as the `msg.sender`. However, the **multilocation-derivative account** is the one that needs to hold the DEV tokens (or GLMR/MOVR for Moonbeam/Moonriver) to cover the cost of the XCM execution of the remote EVM call.
+    Suppose you are using the `transactThroughProxy` function. In that case, the `transactAs` account must satisfy whatever conditions are required for the EVM call to be executed correctly, as it acts as the `msg.sender`. However, the **multilocation-derivative account** is the one that needs to hold the DEV tokens (or GLMR/MOVR for Moonbeam/Moonriver) to cover the cost of the XCM execution of the remote EVM call.
 
 ### Calculating the Multilocation-Derivative Account {: #calculate-multilocation-derivative}
 
