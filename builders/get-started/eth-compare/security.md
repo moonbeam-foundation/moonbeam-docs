@@ -19,7 +19,7 @@ Arbitrary code execution in Solidity is the ability to execute code and call fun
 
 A smart contract allows arbitrary execution of another contract when it allows a user to influence its own `call()` and pass in arbitrary call data and/or the `call()`s target. The [`call()` function](https://solidity-by-example.org/call/){target=_blank} is made available through the [address data type in Solidity](https://docs.soliditylang.org/en/latest/types.html#address){target=_blank}. When the `call()` function is invoked, the target contract is called using the arbitrary call data.
 
-Arbitrary code execution follows the pattern in the diagram below when `Contract A` allows a user to influence its call to `Contract B`.
+Arbitrary code execution follows the pattern in the diagram below when **Contract A** allows a user to influence its call to **Contract B**.
 
 ![Arbitrary code execution](/images/builders/get-started/eth-compare/security/security-1.png)
 
@@ -27,7 +27,7 @@ As previously mentioned, one major concern of arbitrarily executing code on Moon
 
 - Moonbeam [precompiled contracts](builders/pallets-precompiles/precompiles/){target=_blank} such as the Native ERC-20 precompile, XC-20 precompiles, and XCM-related precompiles allow users to manage and transfer assets without requiring access to the EVM. Instead, these actions are done using native Substrate code. So, if your contract holds native tokens or XC-20s and allows arbitrary code execution, these precompiles can be used to drain the balance of the contract, bypassing any security checks that are normally enforced by the EVM
 - Setting the value attribute of the transaction object to a fixed amount when using the `call()` function (for example, `call{value: 0}(...)`) can be bypassed by calling the native asset precompile and specifying an amount to transfer in the encoded call data
-- Providing the function selector for the function that you want to allow to be executed is considered safe, assuming that the function call is safe and does not call precompiles
+- Allowing users that consume your contract to pass in arbitrary call data that will execute any function on the target contract, especially if the contract being targeted is a precompile, is **not** safe. To be safe, you can hard code the function selector for a safe function that you want to allow to be executed
 - Blacklisting target contracts (including precompiles) in the function that executes arbitrary call data is **not** considered safe, as other precompiles might be added in the future. Providing whitelisted target contracts in the function that executes the arbitrary call data is considered safe, assuming that the contracts being called are not precompiles, or that in the case they are, the contract making the call does not hold the native token or any XC-20
 
 In the following sections, you'll learn about each of these security considerations through examples.
