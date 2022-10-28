@@ -58,9 +58,8 @@ At the time of writing, the basic JSON RPC methods from the Ethereum API support
 
 At the time of writing, the filter-related JSON RPC methods from the Ethereum API supported by Moonbeam are:
 
-- **[eth_newFilter](https://eth.wiki/json-rpc/API#eth_newfilter){target=_blank}** — creates a filter object based on the input provided. Returns a filter ID
+ - **[eth_newFilter](https://eth.wiki/json-rpc/API#eth_newfilter){target=_blank}** — creates a filter object based on the input provided. Returns a filter ID
  - **[eth_newBlockFilter](https://eth.wiki/json-rpc/API#eth_newblockfilter){target=_blank}** — creates a filter in the node to notify when a new block arrives. Returns a filter id
- - **[eth_newPendingTransactionFilter](https://eth.wiki/json-rpc/API#eth_newpendingtransactionfilter){target=_blank}** — creates a filter in the node to notify when a new pending transaction arrives. Returns a filter ID
  - **[eth_getFilterChanges](https://eth.wiki/json-rpc/API#eth_getfilterchanges){target=_blank}** — polling method for filters (see methods above). Returns an array of logs which occurred since last poll
  - **[eth_getFilterLogs](https://eth.wiki/json-rpc/API#eth_getfilterlogs){target=_blank}** — returns an array of all the logs matching the filter with a given ID
  - **[eth_uninstallFilter](https://eth.wiki/json-rpc/API#eth_uninstallfilter){target=_blank}** — uninstall a filter with a given ID. Should be used when polling is no longer needed. Filters timeout when they are not requested using `eth_getFilterChanges` after a period of time
@@ -69,8 +68,8 @@ At the time of writing, the filter-related JSON RPC methods from the Ethereum AP
 
 At the time of writing, the [event subscription JSON RPC methods](https://geth.ethereum.org/docs/rpc/pubsub){target=_blank} from the Ethereum API supported by Moonbeam are:
 
-- **[eth_subscribe](https://geth.ethereum.org/docs/rpc/pubsub#create-subscription){target=_blank}** — creates a subscription for a given subscription name. If successful, returns the subscription ID
-- **[eth_unsubscribe](https://geth.ethereum.org/docs/rpc/pubsub#cancel-subscription){target=_blank}** — cancels the subscription given by its ID
+ - **[eth_subscribe](https://geth.ethereum.org/docs/rpc/pubsub#create-subscription){target=_blank}** — creates a subscription for a given subscription name. If successful, returns the subscription ID
+ - **[eth_unsubscribe](https://geth.ethereum.org/docs/rpc/pubsub#cancel-subscription){target=_blank}** — cancels the subscription given by its ID
 
 ### Supported Subscription Parameters {: #supported-subscription }
 
