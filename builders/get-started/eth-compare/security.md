@@ -34,7 +34,7 @@ In the following sections, you'll learn about each of these security considerati
 
 ### Precompiles Can Override a Set Value {: #setting-a-value }
 
-On Ethereum, a smart contract that allows for arbitrary code execution could force the value of a call to be a specific amount (for example, `{value: 0}`), guaranteeing that only that amount of native currency would be sent with the transaction. Whereas on Moonbeam, setting the value of an arbitrary call can be overridden by calling the native ERC-20 precompile contract and transferring the native asset through the Substrate API. Since ERC-20s and XC-20s are not native assets, setting the value attribute doesn't provide any protection for these types of assets on Ethereum or Moonbeam.
+On Ethereum, a smart contract that allows for arbitrary code execution could force the value of a call to be a specific amount (for example, `{value: 0}`), guaranteeing that only that amount of native currency would be sent with the transaction. Whereas on Moonbeam, setting the value of an arbitrary call can be overridden by calling the [native ERC-20 precompile contract](builders/pallets-precompiles/precompiles/erc20){target=_blank} and transferring the native asset through the Substrate API. Since ERC-20s and XC-20s are not native assets, setting the value attribute doesn't provide any protection for these types of assets on Ethereum or Moonbeam.
 
 For example, if you have a contract that allows arbitrary code execution and you pass it encoded call data that transfers the balance of a contract to another address, you could essentially drain the given contract of it's balance.
 
@@ -51,7 +51,7 @@ function getBytes(address _erc20Contract, address _arbitraryCallContract, addres
 }
 ```
 
-Once you have the encoded call data, you could make an arbitrary call to the native ERC-20 precompile contract, set the value of the call to `0`, and pass in the call data in bytes:
+Once you have the encoded call data, you could make an arbitrary call to the [native ERC-20 precompile contract](builders/pallets-precompiles/precompiles/erc20){target=_blank}, set the value of the call to `0`, and pass in the call data in bytes:
 
 ```
 function makeArbitraryCall(address _target, bytes calldata _bytes) public {
