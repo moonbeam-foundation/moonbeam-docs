@@ -188,7 +188,7 @@ With the contract interaction data, you can build the encoded call data for the 
 4. Set the gas limit to the desired value. It is recommended to manually execute an `eth_estimateGas` JSON RPC call to understand how much gas is needed. For this example, the gas limit was set to `71000`
 5. Set the action to **Call**
 6. Enter the address of the contract you want to interact with. For this example, it is the [incrementer contract](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8#code){target=_blank} at address `0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8`
-7. Set the value to **0**. Note that this is because this particular interaction does not need DEV (or GLMR/MOVR for Moonbeam/Moonriver). You'll need to modify this value accordingly
+7. Set the value to `0`. Note that this is because this particular interaction does not need DEV (or GLMR/MOVR for Moonbeam/Moonriver). You'll need to modify this value accordingly
 8. Enter the encoded call data of the interaction with the smart contract. For this example, it is `0xd09de08a`
 9. Verify all the parameters, and copy the [Ethereum-XCM pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/ethereum-xcm){target=_blank} encoded call data
 
