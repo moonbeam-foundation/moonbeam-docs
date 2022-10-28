@@ -19,7 +19,7 @@ Arbitrary code execution in Solidity is the ability to execute code and call fun
 
 A smart contract allows arbitrary execution of another contract when it allows a user to influence its own `call()` and pass in arbitrary call data and/or the `call()`s target. The [`call()` function](https://solidity-by-example.org/call/){target=_blank} is made available through the [address data type in Solidity](https://docs.soliditylang.org/en/latest/types.html#address){target=_blank}. When the `call()` function is invoked, the target contract is called using the arbitrary call data.
 
-An example of arbitrary code execution, in it's simplest form, can be seen in the following diagram.
+Arbitrary code execution follows the pattern in the diagram below when `Contract A` allows a user to influence its call to `Contract B`.
 
 ![Arbitrary code execution](/images/builders/get-started/eth-compare/security/security-1.png)
 
