@@ -52,7 +52,7 @@ To follow along with this tutorial, you will need to have:
 
 - [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
 - Create or have two accounts on Moonbase Alpha to test out the different features in the ERC-20 precompile
-- At least one of the accounts will need to be funded with `DEV` tokens,
+- At least one of the accounts will need to be funded with `DEV` tokens.
  --8<-- 'text/faucet/faucet-list-item.md'
 
 ### Add Token to MetaMask {: #add-token-to-metamask }
