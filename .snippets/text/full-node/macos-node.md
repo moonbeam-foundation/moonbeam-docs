@@ -18,7 +18,7 @@ purestake/moonbeam:v0.27.0 \
 --execution wasm \
 --wasm-execution compiled \
 --state-pruning archive \
---state-cache-size 0 \
+--trie-cache-size 0 \
 -- \
 --execution wasm \
 --name="YOUR-NODE-NAME (Embedded Relay)"
@@ -36,7 +36,7 @@ purestake/moonbeam:v0.27.0 \
 --validator \
 --execution wasm \
 --wasm-execution compiled \
---state-cache-size 0 \
+--trie-cache-size 0 \
 -- \
 --execution wasm \
 --name="YOUR-NODE-NAME (Embedded Relay)"
@@ -53,7 +53,7 @@ purestake/moonbeam:v0.27.0 \
 --execution wasm \
 --wasm-execution compiled \
 --state-pruning archive \
---state-cache-size 0 \
+--trie-cache-size 0 \
 -- \
 --execution wasm \
 --name="YOUR-NODE-NAME (Embedded Relay)"
@@ -71,7 +71,7 @@ purestake/moonbeam:v0.27.0 \
 --validator \
 --execution wasm \
 --wasm-execution compiled \
---state-cache-size 0 \
+--trie-cache-size 0 \
 -- \
 --execution wasm \
 --name="YOUR-NODE-NAME (Embedded Relay)"
@@ -89,7 +89,7 @@ purestake/moonbeam:v0.27.0 \
 --execution wasm \
 --wasm-execution compiled \
 --state-pruning archive \
---state-cache-size 0 \
+--trie-cache-size 0 \
 -- \
 --execution wasm \
 --name="YOUR-NODE-NAME (Embedded Relay)"
@@ -107,7 +107,7 @@ purestake/moonbeam:v0.27.0 \
 --validator \
 --execution wasm \
 --wasm-execution compiled \
---state-cache-size 0 \
+--trie-cache-size 0 \
 -- \
 --execution wasm \
 --name="YOUR-NODE-NAME (Embedded Relay)"
