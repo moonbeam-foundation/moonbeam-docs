@@ -204,7 +204,7 @@ As an example, you can calculate the total cost of KSMs for sending an XCM messa
 
 Substrate has introduced a weight system that determines how heavy or, in other words, how expensive an extrinsic is from a computational cost perspective. One unit of weight is defined as one picosecond of execution time. When it comes to paying fees, users will pay a transaction fee based on the weight of the call that is being made, and each parachain can decide how to convert from weight to fee, for example, accounting for additional costs for transaction size, and storage costs.
 
-Both Moonbeam and Moonrive use a fixed amount of weight for each XCM instruction. However, Moonbase Alpha (TestNet) has the generic XCM instructions benchmarked, while the fungible XCM instructions still use a fixed amount of weight per instruction. As a consequence, the total weight cost of the benchmarked XCM instructions take into consideration the number of databse read/writes in addition to the weight required for a given instruction. The breakdown of weight cost for the database operations is as follows:
+Both Moonbeam and Moonriver use a fixed amount of weight for each XCM instruction. However, Moonbase Alpha (TestNet) has the generic XCM instructions benchmarked, while the fungible XCM instructions still use a fixed amount of weight per instruction. Consequently, the total weight cost of the benchmarked XCM instructions considers the number of database reads/writes in addition to the weight required for a given instruction. The breakdown of weight cost for the database operations is as follows:
 
 |     Database      |                    Read                     |                    Write                     |
 |:-----------------:|:-------------------------------------------:|:--------------------------------------------:|
@@ -214,7 +214,7 @@ Now that you know the weight costs for database reads and writes for Moonbase Al
 
 For example, the `WithdrawAsset` instruction is part of the fungible XCM instructions set. Therefore, it is not benchmarked, and the total weight cost of the `WithdrawAsset` instruction is `{{ networks.moonbase.xcm.instructions.weight_units.display }}`.
 
-The [`BuyExecution` instruction](https://github.com/PureStake/moonbeam/blob/master/pallets/moonbeam-xcm-benchmarks/src/weights/moonbeam_xcm_benchmarks_generic.rs#L220){target=_blank} has a base weight of `{{ networks.moonbase.xcm.instructions.buy_exec.base_weight }}`, and performs 4 database reads (`assetManager` pallet to get the `unitsPerSecond`). Therefore, the total weight cost of the `BuyExecution` instruction is calculated as:
+The [`BuyExecution` instruction](https://github.com/PureStake/moonbeam/blob/master/pallets/moonbeam-xcm-benchmarks/src/weights/moonbeam_xcm_benchmarks_generic.rs#L220){target=_blank} has a base weight of `{{ networks.moonbase.xcm.instructions.buy_exec.base_weight }}`, and performs four database reads (`assetManager` pallet to get the `unitsPerSecond`). Therefore, the total weight cost of the `BuyExecution` instruction is calculated as follows:
 
 ```
 {{ networks.moonbase.xcm.instructions.buy_exec.base_weight }} + 4*{{ networks.moonbase.db_weights.rocksdb_read }} = {{ networks.moonbase.xcm.instructions.buy_exec.total_weight }}
