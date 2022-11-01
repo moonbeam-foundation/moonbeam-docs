@@ -104,7 +104,7 @@ The complete command for running a tracing node is as follows:
     --chain {{ networks.moonbeam.chain_spec }} \
     --name="YOUR-NODE-NAME" \
     --state-pruning archive \
-    --state-cache-size 0 \
+    --trie-cache-size 0 \
     --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonbeam-substitutes-tracing \
@@ -123,7 +123,7 @@ The complete command for running a tracing node is as follows:
     --chain {{ networks.moonriver.chain_spec }} \
     --name="YOUR-NODE-NAME" \
     --state-pruning archive \
-    --state-cache-size 0 \
+    --trie-cache-size 0 \
     --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonriver-substitutes-tracing \
@@ -142,7 +142,7 @@ The complete command for running a tracing node is as follows:
     --chain {{ networks.moonbase.chain_spec }} \
     --name="YOUR-NODE-NAME" \
     --state-pruning archive \
-    --state-cache-size 0 \
+    --trie-cache-size 0 \
     --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
@@ -276,7 +276,7 @@ The next step is to create the systemd configuration file, you'll need to:
          --ws-port {{ networks.parachain.ws }} \
          --execution wasm \
          --state-pruning=archive \
-         --state-cache-size 0 \
+         --trie-cache-size 0 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonbeam.node_directory }} \
          --ethapi=debug,trace,txpool \
@@ -316,7 +316,7 @@ The next step is to create the systemd configuration file, you'll need to:
          --ws-port {{ networks.parachain.ws }} \
          --execution wasm \
          --state-pruning=archive \
-         --state-cache-size 0 \
+         --trie-cache-size 0 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonriver.node_directory }} \
          --ethapi=debug,trace,txpool \
@@ -356,7 +356,7 @@ The next step is to create the systemd configuration file, you'll need to:
          --ws-port {{ networks.parachain.ws }} \
          --execution wasm \
          --state-pruning=archive \
-         --state-cache-size 0 \
+         --trie-cache-size 0 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonbase.node_directory }} \
          --ethapi=debug,trace,txpool \
