@@ -2,6 +2,7 @@ title: Solidity Precompiles
 nav:
   - index.md
   - 'Overview': 'overview.md'
+  - 'Author Mapping': 'author-mapping.md'
   - 'Batch': 'batch.md'
   - 'Call Permit': 'call-permit.md'
   - 'Collective': 'collective.md'

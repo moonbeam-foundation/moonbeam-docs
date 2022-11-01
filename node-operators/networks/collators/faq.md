@@ -160,7 +160,7 @@ The first is the [bond to join the collators](/node-operators/networks/collators
 - **Moonriver** - minimum of {{ networks.moonriver.staking.min_can_stk }} MOVR
 - **Moonbase Alpha** - minimum of {{ networks.moonbase.staking.min_can_stk }} DEV
 
-The second is the [bond for key association](/node-operators/networks/collators/account-management/#map-author-id-set-session-keys){target=_blank}:
+The second is the [bond for key association](/node-operators/networks/collators/account-management/#mapping-bonds){target=_blank}:
 
 - **Moonbeam** - minimum of {{ networks.moonbeam.staking.collator_map_bond }} GLMR
 - **Moonriver** - minimum of {{ networks.moonriver.staking.collator_map_bond }} MOVR
