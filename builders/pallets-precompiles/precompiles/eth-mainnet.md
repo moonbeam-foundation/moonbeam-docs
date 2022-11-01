@@ -16,6 +16,8 @@ The following precompiles are currently included: ecrecover, sha256, sha3FIPS256
 
 These precompiles are natively available on Ethereum and, to maintain Ethereum compatibility, they are also available on Moonbeam.
 
+In this guide, you will learn how to use and/or verify these precompiles.
+
 ## Checking Prerequisites {: #checking-prerequisites } 
 
 --8<-- 'text/common/install-nodejs.md'
