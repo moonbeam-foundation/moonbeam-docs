@@ -114,7 +114,7 @@ To get started, get a copy of [`AuthorMappingInterface.sol`](https://github.com/
 ### Compile the Contract {: #compile-the-contract } 
 
 1. Click on the **Compile** tab, second from top
-2. Then to compile the interface, click on **Compile Proxy.sol**
+2. Then to compile the interface, click on **Compile AuthorMappingInterface.sol**
 
 ![Compiling AuthorMappingInterface.sol](/images/builders/pallets-precompiles/precompiles/author-mapping/author-mapping-2.png)
 
