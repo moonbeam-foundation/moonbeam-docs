@@ -1,54 +1,27 @@
 ---
-title: Canonical Contract Addresses on Moonbeam
-description: Overview of the canonical contracts available on Moonbeam, Moonriver, & Moonbase Alpha, including common-goods contracts and precompiles.
-keywords: canonical, ethereum, moonbeam, precompiled, contracts
+title: Solidity Precompiles
+description: An overview of the available Solidity precompiles on Moonbeam. Precompiles enable you to interact with Substrate features using the Ethereum API.
 ---
 
-# Canonical Contracts
+# Overview of the Precompiled Contracts on Moonbeam
 
-![Canonical contracts banner](/images/builders/build/canonical-contracts/canonical-contracts-banner.png)
+![Precompiled Contracts Banner](/images/builders/pallets-precompiles/precompiles/overview/overview-banner.png)
 
-## Common-goods Contracts {: #common-goods-contracts }
+## Overview {: #introduction } 
 
-The following contracts addresses have been established:
+On Moonbeam, a precompiled contract is native Substrate code that has an Ethereum-style address and can be called using the Ethereum API, like any other smart contract. The precompiles allow you to call the Substrate runtime directly which is not normally accessible from the Ethereum side of Moonbeam.
 
-=== "Moonbeam"
-    |                                                        Contract                                                         |                  Address                   |
-    |:-----------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
-    |      [WGLMR](https://moonbeam.moonscan.io/address/0xAcc15dC74880C9944775448304B263D191c6077F#code){target=_blank}       | 0xAcc15dC74880C9944775448304B263D191c6077F |
-    |    [Multicall](https://moonbeam.moonscan.io/address/0x83e3b61886770de2F64AAcaD2724ED4f08F7f36B#code){target=_blank}     | 0x83e3b61886770de2F64AAcaD2724ED4f08F7f36B |
-    |    [Multicall2](https://moonbeam.moonscan.io/address/0x6477204E12A7236b9619385ea453F370aD897bb2#code){target=_blank}    | 0x6477204E12A7236b9619385ea453F370aD897bb2 |
-    |    [Multicall3](https://moonbeam.moonscan.io/address/0xca11bde05977b3631167028862be2a173976ca11#code){target=_blank}    | 0xcA11bde05977b3631167028862bE2a173976CA11 |
-    | [Multisig Factory](https://moonbeam.moonscan.io/address/0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2#code){target=_blank} | 0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2 |
-    |                           [EIP-1820](https://eips.ethereum.org/EIPS/eip-1820){target=_blank}                            | 0x1820a4b7618bde71dce8cdc73aab6c95905fad24 |
+The Substrate code responsible for implementing precompiles can be found in the [EVM pallet](/learn/features/eth-compatibility/#evm-pallet){target=_blank}. The EVM pallet includes the [standard precompiles found on Ethereum and some additional precompiles that are not specific to Ethereum](https://github.com/paritytech/frontier/tree/master/frame/evm/precompile){target=_blank}. It also provides the ability to create and execute custom precompiles through the generic [`Precompiles` trait](https://paritytech.github.io/frontier/rustdocs/pallet_evm/trait.Precompile.html){target=_blank}. There are several custom Moonbeam-specific precompiles that have been created, all of which can be found in the [Moonbeam codebase](https://github.com/PureStake/moonbeam/tree/master/precompiles){target=_blank}.
 
-=== "Moonriver"
-    |                                                         Contract                                                         |                  Address                   |
-    |:------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
-    |      [WMOVR](https://moonriver.moonscan.io/address/0xf50225a84382c74CbdeA10b0c176f71fc3DE0C4d#code){target=_blank}       | 0xf50225a84382c74CbdeA10b0c176f71fc3DE0C4d |
-    |    [Multicall](https://moonriver.moonscan.io/address/0x30f283Cc0284482e9c29dFB143bd483B5C19954b#code){target=_blank}*    | 0x30f283Cc0284482e9c29dFB143bd483B5C19954b |
-    |    [Multicall2](https://moonriver.moonscan.io/address/0xaef00a0cf402d9dedd54092d9ca179be6f9e5ce3#code){target=_blank}    | 0xaef00a0cf402d9dedd54092d9ca179be6f9e5ce3 |
-    |   [Multicall3](https://moonriver.moonscan.io/address/0xca11bde05977b3631167028862be2a173976ca11#code/){target=_blank}    | 0xcA11bde05977b3631167028862bE2a173976CA11 |
-    | [Multisig Factory](https://moonriver.moonscan.io/address/0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2#code){target=_blank} | 0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2 |
-    |                            [EIP-1820](https://eips.ethereum.org/EIPS/eip-1820){target=_blank}                            | 0x1820a4b7618bde71dce8cdc73aab6c95905fad24 |
+The Ethereum precompiled contracts contain complex functionality that is computationally intensive, such as hashing and encryption. The custom precompiled contracts on Moonbeam provide access to Substrate-based functionality such as staking, governance, XCM-related functions, and more.
 
-    _*Deployed by SushiSwap_
+The Moonbeam-specific precompiles can be interacted with through familiar and easy-to-use Solidity interfaces using the Ethereum API, which are ultimately used to interact with the underlying Substrate interface. This flow is depicted in the following diagram:
 
-=== "Moonbase Alpha"
-    |                                                        Contract                                                         |                  Address                   |
-    |:-----------------------------------------------------------------------------------------------------------------------:|:------------------------------------------:|
-    |       [WDEV](https://moonbase.moonscan.io/address/0xD909178CC99d318e4D46e7E66a972955859670E1#code){target=_blank}       | 0xD909178CC99d318e4D46e7E66a972955859670E1 |
-    |    [Multicall](https://moonbase.moonscan.io/address/0x4E2cfca20580747AdBA58cd677A998f8B261Fc21#code){target=_blank}*    | 0x4E2cfca20580747AdBA58cd677A998f8B261Fc21 |
-    |    [Multicall2](https://moonbase.moonscan.io/address/0x37084d0158C68128d6Bc3E5db537Be996f7B6979#code){target=_blank}    | 0x37084d0158C68128d6Bc3E5db537Be996f7B6979 |
-    |   [Multicall3](https://moonbase.moonscan.io/address/0xca11bde05977b3631167028862be2a173976ca11#code/){target=_blank}    | 0xcA11bde05977b3631167028862bE2a173976CA11 |
-    | [Multisig Factory](https://moonbase.moonscan.io/address/0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2#code){target=_blank} | 0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2 |
-    |                           [EIP-1820](https://eips.ethereum.org/EIPS/eip-1820){target=_blank}                            | 0x1820a4b7618bde71dce8cdc73aab6c95905fad24 |
+![Precompiled Contracts Diagram](/images/builders/pallets-precompiles/precompiles/overview/overview-1.png)
 
-    _*Deployed in the [UniswapV2 Demo Repo](https://github.com/PureStake/moonbeam-uniswap/tree/main/uniswap-contracts-moonbeam){target=_blank}_
+## Precompiled Contract Addresses {: #precompiled-contract-addresses }
 
-## Precompiled Contracts {: #precompiled-contracts }
-
-There are a set of precompiled contracts included on Moonbeam, Moonriver, and Moonbase Alpha that are categorized by address and based on the origin network. If you were to convert the precompiled addresses to decimal format, and break them into categories by numeric value, the categories are as follows:
+The precompiled contracts are categorized by address and based on the origin network. If you were to convert the precompiled addresses to decimal format, and break them into categories by numeric value, the categories are as follows:
 
 - **0-1023** - [Ethereum MainNet precompiles](#ethereum-mainnet-precompiles)
 - **1024-2047** - precompiles that are [not in Ethereum and not Moonbeam specific](#non-moonbeam-specific-nor-ethereum-precomiles)
@@ -58,7 +31,7 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
 
 --8<-- 'text/precompiles/non-specific.md'
 
-### Moonbeam-Specific Precompiles {: #moonbeam-specific-precompiles }
+### Moonbeam Specific Precompiles {: #moonbeam-specific-precompiles }
 
 === "Moonbeam"
     |                                                                  Contract                                                                  |                           Address                            |

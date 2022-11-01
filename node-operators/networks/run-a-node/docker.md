@@ -84,7 +84,7 @@ If you're using MacOS, there are adapted [code snippets](https://www.github.com/
     --execution wasm \
     --wasm-execution compiled \
     --state-pruning archive \
-    --state-cache-size 0 \
+    --trie-cache-size 0 \
     --db-cache <50% RAM in MB> \
     -- \
     --execution wasm \
@@ -102,7 +102,7 @@ If you're using MacOS, there are adapted [code snippets](https://www.github.com/
     --execution wasm \
     --wasm-execution compiled \
     --state-pruning archive \
-    --state-cache-size 0 \
+    --trie-cache-size 0 \
     --db-cache <50% RAM in MB> \
     -- \
     --execution wasm \
@@ -120,7 +120,7 @@ If you're using MacOS, there are adapted [code snippets](https://www.github.com/
     --execution wasm \
     --wasm-execution compiled \
     --state-pruning archive \
-    --state-cache-size 0 \
+    --trie-cache-size 0 \
     --db-cache <50% RAM in MB> \
     -- \
     --execution wasm \
@@ -143,7 +143,7 @@ If you're using MacOS, there are adapted [code snippets](https://www.github.com/
     --validator \
     --execution wasm \
     --wasm-execution compiled \
-    --state-cache-size 0 \
+    --trie-cache-size 0 \
     --db-cache <50% RAM in MB> \
     -- \
     --execution wasm \
@@ -161,7 +161,7 @@ If you're using MacOS, there are adapted [code snippets](https://www.github.com/
     --validator \
     --execution wasm \
     --wasm-execution compiled \
-    --state-cache-size 0 \
+    --trie-cache-size 0 \
     --db-cache <50% RAM in MB> \
     -- \
     --execution wasm \
@@ -179,7 +179,7 @@ If you're using MacOS, there are adapted [code snippets](https://www.github.com/
     --validator \
     --execution wasm \
     --wasm-execution compiled \
-    --state-cache-size 0 \
+    --trie-cache-size 0 \
     --db-cache <50% RAM in MB> \
     -- \
     --execution wasm \

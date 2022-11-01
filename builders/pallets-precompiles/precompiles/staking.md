@@ -81,22 +81,25 @@ The Solidity interface includes the following functions:
  - **delegationRequestIsPending**(*address* delegator, *address* candidate) - returns a boolean to indicate whether there is a pending delegation request made by a given delegator for a given candidate
  - **candidateExitIsPending**(*address* candidate) - returns a boolean to indicate whether a pending exit exists for a specific candidate. Uses the [`candidateInfo`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateInfo(AccountId20)){target=_blank} method of the staking pallet
  - **candidateRequestIsPending**(*address* candidate) - returns a boolean to indicate whether there is a pending bond less request made by a given candidate. Uses the [`candidateInfo`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateInfo(AccountId20)){target=_blank} method of the staking pallet
- - **joinCandidates**(*uint256* amount, *uint256* candidateCount) — allows the account to join the set of collator candidates with a specified bond amount and the current candidate count. Uses the [`joinCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=joinCandidates(bond, candidateCount)){target=_blank} method of the staking pallet
+ - **delegationAutoCompound**(*address* delegator, *address* candidate) - returns the auto-compound percentage for a delegation given the delegator and candidate
+ - **joinCandidates**(*uint256* amount, *uint256* candidateCount) — allows the account to join the set of collator candidates with the specified bond amount and the current candidate count. Uses the [`joinCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=joinCandidates(bond, candidateCount)){target=_blank} method of the staking pallet
  - **scheduleLeaveCandidates**(*uint256* candidateCount) - schedules a request for a candidate to remove themselves from the candidate pool. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeLeaveCandidates` extrinsic. Uses the [`scheduleLeaveCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=scheduleLeaveCandidates(candidateCount)){target=_blank} method of the staking pallet
  - **executeLeaveCandidates**(*address* candidate, *uint256* candidateDelegationCount) - executes the due request to leave the set of collator candidates. Uses the [`executeLeaveCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=executeLeaveCandidates(candidate, candidateDelegationCount)){target=_blank} method of the staking pallet
  - **cancelLeaveCandidates**(*uint256* candidateCount) - allows a candidate to cancel a pending scheduled request to leave the candidate pool. Given the current number of candidates in the pool. Uses the [`cancelLeaveCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=cancelLeaveCandidates(candidateCount)){target=_blank} method of the staking pallet 
  - **goOffline**() — temporarily leave the set of collator candidates without unbonding. Uses the [`goOffline`](/builders/pallets-precompiles/pallets/staking/#:~:text=goOffline()){target=_blank} method of the staking pallet
  - **goOnline**() — rejoin the set of collator candidates after previously calling `goOffline()`. Uses the [`goOnline`](/builders/pallets-precompiles/pallets/staking/#:~:text=goOnline()){target=_blank} method of the staking pallet
- - **candidateBondMore**(*uint256* more) — collator candidate increases bond by specified amount. Uses the [`candidateBondMore`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateBondMore(more)){target=_blank} method of the staking pallet
- - **scheduleCandidateBondLess**(*uint256* less) - schedules a request to decrease a candidates bond by a specified amount. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `execute_candidate_bond_request` extrinsic. Uses the [`scheduleCandidateBondLess`](/builders/pallets-precompiles/pallets/staking/#:~:text=scheduleCandidateBondLess(less)){target=_blank} method of the staking pallet
+ - **candidateBondMore**(*uint256* more) — collator candidate increases bond by the specified amount. Uses the [`candidateBondMore`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateBondMore(more)){target=_blank} method of the staking pallet
+ - **scheduleCandidateBondLess**(*uint256* less) - schedules a request to decrease a candidates bond by the specified amount. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `execute_candidate_bond_request` extrinsic. Uses the [`scheduleCandidateBondLess`](/builders/pallets-precompiles/pallets/staking/#:~:text=scheduleCandidateBondLess(less)){target=_blank} method of the staking pallet
  - **executeCandidateBondLess**(*address* candidate) - executes any due requests to decrease a specified candidates bond amount. Uses the [`executeCandidateBondLess`](/builders/pallets-precompiles/pallets/staking/#:~:text=executeCandidateBondLess(candidate)){target=_blank} method of the staking pallet
  - **cancelCandidateBondLess**() - allows a candidate to cancel a pending scheduled request to decrease a candidates bond. Uses the [`cancelCandidateBondLess`](/builders/pallets-precompiles/pallets/staking/#:~:text=cancelCandidateBondLess()){target=_blank} method of the staking pallet
- - **delegate**(*address* candidate, *uint256* amount, *uint256* candidateDelegationCount, *uint256* delegatorDelegationCount) — if the caller is not a delegator, this function adds them to the set of delegators. If the caller is already a delegator, then it adjusts their delegation amount. Uses the [`delegate`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegate(candidate, amount, candidateDelegationCount, delegationCount)){target=_blank} method of the staking pallet
+ - **delegate**(*address* candidate, *uint256* amount, *uint256* candidateDelegationCount, *uint256* delegatorDelegationCount) — makes a delegation in support of a collator candidate and automatically sets the percent of rewards to auto-compound to `0`. If you want to set the percentage to auto-compound, you can use `delegateWithAutoCompound` instead or this extrinsic in conjuction with `setAutoCompoud`. If the caller is not a delegator, this function adds them to the set of delegators. If the caller is already a delegator, then it adjusts their delegation amount. Uses the [`delegate`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegate){target=_blank} method of the staking pallet
+ - **delegateWithAutoCompound**(*address* candidate, *uint256* amount, *uint8* autoCompound, *uint256* candidateDelegationCount, *uint256* candidateAutoCompoundingDelegationCount, *uint256* delegatorDelegationCount) - similar to `delegate` where it makes a delegation in support of a collator candidate. However, this also sets the percentage of rewards to be auto-compounded given an integer (no decimals) for the `amount` between 0-100. Uses the [`delegateWithAutoCompound`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegateWithAutoCompound){target=_blank} method of the staking pallet
  - **scheduleRevokeDelegation**(*address* candidate) — schedules a request to revoke a delegation given the address of a candidate. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeDelegationRequest` extrinsic. Uses the [`scheduleRevokeDelegation`](/builders/pallets-precompiles/pallets/staking/#:~:text=scheduleRevokeDelegation(collator)){target=_blank} method of the staking pallet
- - **delegatorBondMore**(*address* candidate, *uint256* more) — delegator increases bond to a collator by specified amount. Uses the [`delegatorBondMore`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegatorBondMore(candidate, more)){target=_blank} method of the staking pallet
+ - **delegatorBondMore**(*address* candidate, *uint256* more) — delegator increases bond to a collator by the specified amount. Uses the [`delegatorBondMore`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegatorBondMore(candidate, more)){target=_blank} method of the staking pallet
  - **scheduleDelegatorBondLess**(*address* candidate, *uint256* less) — schedules a request for a delegator to bond less with respect to a specific candidate. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeDelegationRequest` extrinsic. Uses the [`scheduleDelegatorBondLess`](/builders/pallets-precompiles/pallets/staking/#:~:text=scheduleDelegatorBondLess(candidate, less)){target=_blank} method of the staking pallet
  - **executeDelegationRequest**(*address* delegator, *address* candidate) - executes any due delegation requests provided the address of a delegator and a candidate. Uses the [`executeDelegationRequest`](/builders/pallets-precompiles/pallets/staking/#:~:text=executeDelegationRequest(delegator, candidate)){target=_blank} method of the staking pallet
  - **cancelDelegationRequest**(*address* candidate) - cancels any pending delegation requests provided the address of a candidate. Uses the [`cancelDelegationRequest`](/builders/pallets-precompiles/pallets/staking/#:~:text=cancelDelegationRequest(candidate)){target=_blank} method of the staking pallet
+ - **setAutoCompound**(*address* candidate, *uint8* value, *uint256* candidateAutoCompoundingDelegationCount, *uint256* delegatorDelegationCount) - sets an auto-compound value for an existing delegation given an integer (no decimals) for the `value` between 0-100. Uses the [`setAutoCompound`](/builders/pallets-precompiles/pallets/staking/#:~:text=setAutoCompound){target=_blank} method of the staking pallet
 
 As of runtime 1800, the following methods are **deprecated**:
 
@@ -111,12 +114,12 @@ As of runtime 1001, the following methods are **deprecated** and, as of runtime 
  - **collator_nomination_count**(*address* collator) - read-only function that returns the number of delegations for the specified collator address. Use `candidateDelegationCount` instead
  - **nominator_nomination_count**(*address* nominator) - read-only function that returns the number of delegations for the specified delegator address. Use `delegatorDelegationCount` instead
  - **leave_candidates**(*uint256* amount, *uint256* candidateCount) — immediately removes the account from the candidate pool to prevent others from selecting it as a collator and triggers unbonding. Use `scheduleLeaveCandidates` and `executeLeaveCandidates` instead
- - **candidate_bond_less**(*uint256* less) — collator candidate decreases bond by specified amount. Use `scheduleCandidateBondLess` and `executeCandidateBondLess` instead
+ - **candidate_bond_less**(*uint256* less) — collator candidate decreases bond by the specified amount. Use `scheduleCandidateBondLess` and `executeCandidateBondLess` instead
  - **nominate**(*address* collator, *uint256* amount, *uint256* collatorNominationCount, *uint256* nominatorNominationCount) — if the caller is not a delegator, this function adds them to the set of delegators. If the caller is already a delegator, then it adjusts their delegation amount. Use `delegate` instead
  - **leave_nominators**(*uint256* nominatorNominationCount) — leave the set of delegators and revoke all ongoing delegations. Use `scheduleLeaveDelegators` and `executeLeaveDelegators` instead
  - **revoke_nominations**(*address* collator) — revoke a specific delegation. Use `scheduleRevokeDelegation` and `executeDelegationRequest` instead
- - **nominator_bond_more**(*address* collator, *uint256* more) — delegator increases bond to a collator by specified amount. Use `delegatorBondMore` instead
- - **nominator_bond_less**(*address* collator, *uint256* less) — delegator decreases bond to a collator by specified amount. Use `scheduleDelegatorBondLess` and `executeDelegationRequest` instead
+ - **nominator_bond_more**(*address* collator, *uint256* more) — delegator increases bond to a collator by the specified amount. Use `delegatorBondMore` instead
+ - **nominator_bond_less**(*address* collator, *uint256* less) — delegator decreases bond to a collator by the specified amount. Use `scheduleDelegatorBondLess` and `executeDelegationRequest` instead
 
 ## Interact with the Solidity Interface {: #interact-with-solidity-interface }
 
@@ -136,14 +139,14 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 1. Click on the **File explorer** tab
 2. Get a copy of [`StakingInterface.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank} and paste the file contents into a Remix file named `StakingInterface.sol`
 
-![Copying and Pasting the Staking Interface into Remix](/images/builders/pallets-precompiles/precompiles/staking/staking-1.png)
+![Copying and Pasting the Staking Interface into Remix](/images/builders/pallets-precompiles/precompiles/staking/new/staking-1.png)
 
 ### Compile the Contract {: #compile-the-contract } 
 
 1. Click on the **Compile** tab, second from top
 2. Then to compile the interface, click on **Compile StakingInterface.sol**
 
-![Compiling StakingInteface.sol](/images/builders/pallets-precompiles/precompiles/staking/staking-2.png)
+![Compiling StakingInteface.sol](/images/builders/pallets-precompiles/precompiles/staking/new/staking-2.png)
 
 ### Access the Contract {: #access-the-contract } 
 
@@ -153,57 +156,80 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 4. Provide the address of the staking precompile for Moonbase Alpha: `{{networks.moonbase.precompiles.staking}}` and click **At Address**
 5. The Parachain Staking precompile will appear in the list of **Deployed Contracts**
 
-![Provide the address](/images/builders/pallets-precompiles/precompiles/staking/staking-3.png)
+![Provide the address](/images/builders/pallets-precompiles/precompiles/staking/new/staking-3.png)
 
-### Delegate a Collator {: #delegate-a-collator } 
+### Delegate a Collator with Auto-Compounding {: #delegate-a-collator } 
 
-For this example, you are going to be delegating a collator on Moonbase Alpha. Delegators are token holders who stake tokens, vouching for specific candidates. Any user that holds a minimum amount of {{networks.moonbase.staking.min_del_stake}} token in their free balance can become a delegator. 
+For this example, you are going to be delegating a collator and setting up the percentage of rewards to auto-compound on Moonbase Alpha. Delegators are token holders who stake tokens, vouching for specific candidates. Any user that holds a minimum amount of {{networks.moonbase.staking.min_del_stake}} token in their free balance can become a delegator. When delegating a candidate, you can simultaneously set up auto-compounding. You'll be able to specify a percentage of your rewards that will automatically be applied to your total delegation. You don't have to set up auto-compounding right away, you can always do it at a later time.
 
 You can do your own research and select the candidate you desire. For this guide, the following candidate address will be used: `{{ networks.moonbase.staking.candidates.address1 }}`.
 
-In order to delegate a candidate, you'll need to determine the current candidate delegation count and delegator delegation count. The candidate delegation count is the number of delegations backing a specific candidate. The delegator delegation account is the number of delegations made by the delegator.
+In order to delegate a candidate, you'll need to determine the candidate's current delegation count, their auto-compounding delegation count, and your own delegation count. 
 
-To obtain the candidate delegator count, you can call a function that the staking precompile provides. Expand the **PARACHAINSTAKING** contract found under the **Deployed Contracts** list, then:
+The candidate delegation count is the number of delegations backing a specific candidate. To obtain the candidate delegator count, you can call a function that the staking precompile provides. Expand the **PARACHAINSTAKING** contract found under the **Deployed Contracts** list, then:
 
 1. Find and expand the **candidateDelegationCount** function
 2. Enter the candidate address (`{{ networks.moonbase.staking.candidates.address1 }}`)
 3. Click **call**
 4. After the call is complete, the results will be displayed
 
-![Call collator delegation count](/images/builders/pallets-precompiles/precompiles/staking/staking-4.png)
+![Call collator delegation count](/images/builders/pallets-precompiles/precompiles/staking/new/staking-4.png)
 
-If you don't know your existing number of delegations, you can easily get them by following these steps:
+The auto-compounding delegation count is the amount of delegations that have auto-compounding configured. To determine the number of delegations that have auto-compounding set up, you can query the auto-compounding delegations for the candidate on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/js){target=_blank} using the following snippet:
+
+```js
+// Simple script to get the number of auto-compounding delegations for a given candidate.
+// Remember to replace CANDIDATE_ADDRESS_HERE with the candidate's address you want to delegate.
+const candidateAccount = 'CANDIDATE_ADDRESS_HERE'; 
+const autoCompoundingDelegations = await api.query.parachainStaking.autoCompoundingDelegations(candidateAccount);
+console.log(autoCompoundingDelegations.toHuman().length);
+``` 
+
+To run the snippet, make sure you're on the **JavaScript** page of Polkadot.js Apps (which can be selected from the **Developer** dropdown), and take the following steps:
+
+1. Copy the code from the previous snippet and paste it inside the code editor box 
+2. (Optional) Click the save icon and set a name for the code snippet, for example, **Get auto-compounding delegations**. This will save the code snippet locally
+3. To execute the code, click on the run button
+4. Copy the result as you'll need it when initiating a delegation
+
+![Get candidate auto-compounding delegation count](/images/builders/pallets-precompiles/precompiles/staking/new/staking-5.png)
+
+The last item you'll need to retrieve is your delegation count. If you don't know your existing number of delegations, you can easily get them by following these steps:
 
 1. Find and expand the **delegatorDelegationCount** function
 2. Enter your address
 3. Click **call**
 4. After the call is complete, the results will be displayed
 
-![Call delegator delegation count](/images/builders/pallets-precompiles/precompiles/staking/staking-5.png)
+![Call delegator delegation count](/images/builders/pallets-precompiles/precompiles/staking/new/staking-6.png)
 
-Now that you have obtained the [candidate delegator count](#:~:text=To obtain the candidate delegator count) and your [number of existing delegations](#:~:text=If you don't know your existing number of delegations), you have all of the information you need to delegate a candidate. To get started:
+Now that you have obtained the [candidate delegator count](#:~:text=To obtain the candidate delegator count), the [auto-compounding delegation count](#:~:text=To determine the number of delegations that have auto-compounding set up), and your [number of existing delegations](#:~:text=If you don't know your existing number of delegations), you have all of the information you need to delegate a candidate and set up auto-compounding. To get started:
 
-1. Find and expand the **delegate** function
-2. Enter the candidate address you would like to delegate (`{{ networks.moonbase.staking.candidates.address1 }}`)
-3. Provide the amount to delegate in Wei. There is a minimum of `{{networks.moonbase.staking.min_del_stake}}` token to delegate, so the lowest amount in Wei is `5000000000000000000`
-4. Enter the delegation count for the candidate
-5. Enter your delegation count
-6. Press **transact**
-7. MetaMask will pop-up, you can review the details and confirm the transaction
+1. Find and expand the **delegateWithAutoCompound** function
+2. Enter the candidate address you would like to delegate. For this example you can use `{{ networks.moonbase.staking.candidates.address1 }}`
+3. Provide the amount to delegate in Wei. There is a minimum of `{{networks.moonbase.staking.min_del_stake}}` token to delegate, so the lowest amount in Wei is `{{networks.moonbase.staking.min_del_stake_wei}}`
+4. Enter an integer (no decimals) between 0-100 to represent the percentage of rewards to auto-compound
+5. Enter the delegation count for the candidate
+6. Enter the auto-compounding delegation count for the candidate
+7. Enter your delegation count
+8. Press **transact**
+9. MetaMask will pop-up, you can review the details and confirm the transaction
 
-![Delegate a Collator](/images/builders/pallets-precompiles/precompiles/staking/staking-6.png)
+![Delegate a Collator](/images/builders/pallets-precompiles/precompiles/staking/new/staking-7.png)
+
+If you want to delegate without setting up auto-compounding, you can follow the previous steps, but instead of using **delegateWithAutoCompound**, you can use the **delegate** extrinsic.
 
 ### Verify Delegation {: #verify-delegation } 
 
 To verify your delegation was successful, you can check the chain state in Polkadot.js Apps. First, add your MetaMask address to the [address book in Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/addresses){target=_blank}. 
 
-1. Navigate to **Accounts** and then **Address Book**
-2. Click on **Add contact**
-3. Add your MetaMask address
-4. Provide a nickname for the account
-5. Click **Save**
+Navigate to **Accounts** and then **Address Book**, click on **Add contact**, and enter the following information:
 
-![Add to Address Book](/images/builders/pallets-precompiles/precompiles/staking/staking-7.png)
+1. Add your MetaMask address
+2. Provide a nickname for the account
+3. Click **Save**
+
+![Add to Address Book](/images/builders/pallets-precompiles/precompiles/staking/new/staking-8.png)
 
 To verify your delegation was successful, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/chainstate){target=_blank} and navigate to **Developer** and then **Chain State**
 
@@ -216,7 +242,37 @@ To verify your delegation was successful, head to [Polkadot.js Apps](https://pol
 !!! note
     You do not have to enter anything in the **blockhash to query at** field if you are looking for an overview of your delegations.
 
-![Verify delegation](/images/builders/pallets-precompiles/precompiles/staking/staking-8.png)
+![Verify delegation](/images/builders/pallets-precompiles/precompiles/staking/new/staking-9.png)
+
+### Confirm Auto-Compounding Percentage {: #confirm-auto-compounding }
+
+You can confirm the percentage of rewards you've set to auto-compound in Remix using the `delegationAutoCompound` function of the Solidity interface:
+
+1. Find and expand the **delegationAutoCompound** function
+2. Enter your account you used to delegate with
+3. Enter the candidate you've delegated
+4. Click **call**
+5. The response will appear below the **call** button
+
+![Verify auto-compound percentage](/images/builders/pallets-precompiles/precompiles/staking/new/staking-10.png)
+
+### Set or Change the Auto-Compounding Percentage {: #set-or-change-auto-compounding }
+
+If you initially set up your delegation without auto-compounding or if you want to update the percentage on an existing delegation with auto-compounding set up, you can use the `setAutoCompound` function of the Solidity interface.
+
+You'll need to get the number of delegations with auto-compounding set up for the candidate you want to set or update auto-compounding for. You'll also need to retrieve your own delegation count. You can follow the instructions in the [Delegate a Collator with Auto-Compounding](#delegate-a-collator) section to get both of these items.
+
+Once you have the necessary information, you can take the following steps in Remix:
+
+1. Find and expand the **setAutoCompound** function
+2. Enter the candidate's account you want to set or update auto-compounding for
+3. Enter a number 0-100 to represent the percentage of rewards you want to auto-compound
+4. Enter the auto-compounding delegation count for the candidate
+5. Enter your delegation count
+6. Press **transact**
+7. MetaMask will pop-up, you can review the details and confirm the transaction
+
+![Set or update auto-compound percentage](/images/builders/pallets-precompiles/precompiles/staking/new/staking-11.png)
 
 ### Revoke a Delegation {: #revoke-a-delegation } 
 
@@ -228,18 +284,18 @@ To revoke a delegation for a specific candidate and receive your tokens back, yo
 
 To revoke a delegation and receive your tokens back, head back over to Remix, then:
 
-1. From the list of **Deployed Contracts**, find and expand the **scheduleRevokeDelegation** function
+1. Find and expand the **scheduleRevokeDelegation** function
 2. Enter the candidate address you would like to revoke the delegation for
 3. Click **transact**
 4. MetaMask will pop, you can review the transaction details, and click **Confirm**
 
-![Revoke delegation](/images/builders/pallets-precompiles/precompiles/staking/staking-9.png)
+![Revoke delegation](/images/builders/pallets-precompiles/precompiles/staking/new/staking-12.png)
 
 Once the transaction is confirmed, you must wait the duration of the exit delay before you can execute and revoke the delegation request. If you try to revoke it before the exit delay is up, your extrinsic will fail.
 
 After the exit delay has passed, you can go back to Remix and follow these steps to execute the due request:
 
-1. From the list of **Deployed Contracts**, find and expand the **executeDelegationRequest** function
+1. Find and expand the **executeDelegationRequest** function
 2. Enter the address of the delegator you would like to revoke the delegation for
 3. Enter the candidate address you would like to revoke the delegation from
 4. Click **transact**
@@ -249,7 +305,7 @@ After the call is complete, the results will be displayed and the delegation wil
 
 If for any reason you need to cancel a pending scheduled request to revoke a delegation, you can do so by following these steps in Remix:
 
-1. From the list of **Deployed Contracts**, find and expand the **cancelDelegationRequest** function
+1. Find and expand the **cancelDelegationRequest** function
 2. Enter the candidate address you would like to cancel the pending request for
 3. Click **transact**
 4. MetaMask will pop, you can review the transaction details, and click **Confirm**
