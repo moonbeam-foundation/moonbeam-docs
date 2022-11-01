@@ -64,7 +64,7 @@ Some of the staking pallet extrinsics include exit delays that you must wait bef
 
 ## Parachain Staking Solidity Interface {: #the-parachain-staking-solidity-interface } 
 
-[StakingInterface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank} is an interface through which Solidity contracts can interact with parachain-staking. The beauty is that Solidity developers don’t have to learn the Substrate API. Instead, they can interact with staking functions using the Ethereum interface they are familiar with.
+[`StakingInterface.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank} is an interface through which Solidity contracts can interact with parachain-staking. The beauty is that Solidity developers don’t have to learn the Substrate API. Instead, they can interact with staking functions using the Ethereum interface they are familiar with.
 
 The Solidity interface includes the following functions:
 
@@ -134,7 +134,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 ### Remix Set Up {: #remix-set-up } 
 
 1. Click on the **File explorer** tab
-2. Get a copy of [StakingInterface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank} and paste the file contents into a Remix file named `StakingInterface.sol`
+2. Get a copy of [`StakingInterface.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank} and paste the file contents into a Remix file named `StakingInterface.sol`
 
 ![Copying and Pasting the Staking Interface into Remix](/images/builders/pallets-precompiles/precompiles/staking/staking-1.png)
 

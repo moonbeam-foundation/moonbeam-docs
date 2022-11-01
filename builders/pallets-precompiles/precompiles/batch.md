@@ -35,7 +35,7 @@ The precompile is located at the following address:
 
 ## The Batch Solidity Interface {: #the-batch-interface }
 
-[Batch.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's three methods.
+[`Batch.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's three methods.
 
 --8<-- 'text/batch/batch-interface.md'
 
