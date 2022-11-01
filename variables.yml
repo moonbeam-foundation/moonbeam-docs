@@ -105,8 +105,12 @@ networks:
         account_id: '5GWpSdqkkKGZmdKQ9nkSF7TmHp6JWt28BMGQNuG4MXtSvq3e'
         account_id_hex: '0xc4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a063'
       instructions:
+        buy_exec:
+          base_weight: 130,464,000
+          total_weight: 230,464,000
+          ksm_cost: '0.000000120072453'
         weight_units:
-          display: 100,000,000
+          display: 200,000,000
         wei_per_weight:
           display: 50,000
       units_per_second:
@@ -236,6 +240,9 @@ networks:
       bond: 100
     multisig:
       api_page: https://transaction.moonbase.multisig.moonbeam.network/
+    db_weights:
+      rocksdb_read: 25,000,000
+      rocksdb_write: 100,000,000
   moonriver:
     public_rpc_url: https://rpc.api.moonriver.moonbeam.network # for wallets
     rpc_url: RPC-API-ENDPOINT-HERE
@@ -639,7 +646,7 @@ networks:
     parity_db:
       read_weight: 11,826,000
       write_weight: 30,052,000
-    xcm_instruction:
+    xcm_instructions:
       weight:
         display: 1,000,000,000
         numbers_only: 1000000000
@@ -669,7 +676,7 @@ networks:
       transfer:
         weight: 298,368,000
         cost: '0.000011523247866'
-    xcm_instruction:
+    xcm_instructions:
       buy_exec:
         base_weight: 3,109,000
         total_weight: 3,109,000
