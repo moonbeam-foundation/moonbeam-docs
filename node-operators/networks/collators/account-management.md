@@ -17,7 +17,7 @@ This guide will cover how to manage your collator account including generating a
 
 ## Generate Session Keys {: #session-keys } 
 
---8<-- 'text/collaotrs/generate-session-keys.md'
+--8<-- 'text/collators/generate-session-keys.md'
 
 ## Mapping Bonds {: #mapping-bonds }
 
