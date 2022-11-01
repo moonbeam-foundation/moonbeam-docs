@@ -28,7 +28,7 @@ Moonbeam supports:
 
 ## Frontier {: #frontier }
 
-[Frontier](https://paritytech.github.io/frontier/){target=_blank} is an Ethereum compatibility layer for Substrate. The goal of Frontier is to allow standard Ethereum DApps to run without modification on Substrate-based chains. Frontier makes this possible by  offering some Substrate pallets that can be plugged into a Substrate runtime. The following pallets can be used independently, as needed, or collectively depending on the chain's desired functionality:
+[Frontier](https://paritytech.github.io/frontier/){target=_blank} is an Ethereum compatibility layer for Substrate. The goal of Frontier is to allow standard Ethereum DApps to run without modification on Substrate-based chains. Frontier makes this possible by offering some Substrate pallets that can be plugged into a Substrate runtime. The following pallets can be used independently, as needed, or collectively depending on the chain's desired functionality:
 
 - **[EVM pallet](#evm-pallet){target=_blank}** - handles EVM execution
 - **[Ethereum pallet](#ethereum-pallet){target=_blank}** - is responsible for storing block data and provides RPC compatibility
