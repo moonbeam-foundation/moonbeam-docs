@@ -157,6 +157,7 @@ networks:
       round_blocks: 600
       round_hours: 2
       min_del_stake: 1
+      min_del_stake_wei: 1000000000000000000
       max_del_per_can: 300
       max_del_per_del: 100
       candidates:
@@ -522,7 +523,7 @@ networks:
       min_can_stk: 100000
       min_can_stk_wei: 100000000000000000000000
       collator_map_bond: 10000
-      max_candidates: 64
+      max_candidates: 68
       round_blocks: 1800
       round_hours: 6
       min_del_stake: 50
