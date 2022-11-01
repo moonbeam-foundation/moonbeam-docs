@@ -82,7 +82,6 @@ There is a bond that is sent when mapping your session keys with your account. T
     {{ networks.moonbase.staking.collator_map_bond }} DEV
     ```
 
-
 ## Interact with the Solidity Interface {: #interact-with-the-solidity-interface }
 
 ### Checking Prerequisites {: #checking-prerequisites } 
@@ -98,7 +97,7 @@ As previously mentioned, you can use a Ledger by connecting it to MetaMask, plea
 
 ### Generate Session Keys {: #generate-session-keys }
 
---8<-- 'text/collaotrs/generate-session-keys.md'
+--8<-- 'text/collators/generate-session-keys.md'
 
 ### Remix Set Up {: #remix-set-up } 
 
