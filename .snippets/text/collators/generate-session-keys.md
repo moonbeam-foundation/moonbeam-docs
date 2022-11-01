@@ -4,7 +4,7 @@ First, make sure you're [running a collator node](/node-operators/networks/run-a
 
 ![Collator Terminal Logs](/images/node-operators/networks/collators/account-management/account-1.png)
 
-Next, session keys can be created/rotated by sending an RPC call to the HTTP endpoint with the `author_rotateKeys` method. When you call `author_rotateKeys`, the result is the size of two keys. The response will contain a concatenated Nimbus ID and VRF key. The Nimbus ID will be used to sign blocks and  the [VRF](https://wiki.polkadot.network/docs/learn-randomness#vrf){target=_blank} key is required for block production. The concatenated keys will be used to create an association to your H160 account for block rewards to be paid out.
+Next, session keys can be created/rotated by sending an RPC call to the HTTP endpoint with the `author_rotateKeys` method. When you call `author_rotateKeys`, the result is the size of two keys. The response will contain a concatenated Nimbus ID and VRF key. The Nimbus ID will be used to sign blocks and the [VRF](https://wiki.polkadot.network/docs/learn-randomness#vrf){target=_blank} key is required for block production. The concatenated keys will be used to create an association to your H160 account for block rewards to be paid out.
 
 For reference, if your collator's HTTP endpoint is at port `9933`, the JSON-RPC call might look like this:
 
