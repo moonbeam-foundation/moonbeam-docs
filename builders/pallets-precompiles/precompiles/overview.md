@@ -9,7 +9,7 @@ description: An overview of the available Solidity precompiles on Moonbeam. Prec
 
 ## Overview {: #introduction } 
 
-On Moonbeam, a precompiled contract is native Substrate code that has an Ethereum-style address and can be called using the Ethereum API, like any other smart contract. The precompiles provide access to Substrate pallets that are coded in Rust and not normally accessible from the Ethereum side of Moonbeam.
+On Moonbeam, a precompiled contract is native Substrate code that has an Ethereum-style address and can be called using the Ethereum API, like any other smart contract. The precompiles allow you to call the Substrate runtime directly which is not normally accessible from the Ethereum side of Moonbeam.
 
 The Substrate code responsible for implementing precompiles can be found in the [EVM pallet](/learn/features/eth-compatibility/#evm-pallet){target=_blank}. The EVM pallet includes the [standard precompiles found on Ethereum and some additional precompiles that are not specific to Ethereum](https://github.com/paritytech/frontier/tree/master/frame/evm/precompile){target=_blank}. It also provides the ability to create and execute custom precompiles through the generic [`Precompiles` trait](https://paritytech.github.io/frontier/rustdocs/pallet_evm/trait.Precompile.html){target=_blank}. There are several custom Moonbeam-specific precompiles that have been created, all of which can be found in the [Moonbeam codebase](https://github.com/PureStake/moonbeam/tree/master/precompiles){target=_blank}.
 
