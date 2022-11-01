@@ -108,7 +108,6 @@ networks:
         buy_exec:
           base_weight: 130,464,000
           total_weight: 230,464,000
-          ksm_cost: '0.000000120072453'
         weight_units:
           display: 200,000,000
         wei_per_weight:
@@ -683,7 +682,9 @@ networks:
         ksm_cost: '0.000000120072453'
       withdraw:
         base_weight: 20,385,000
-        total_weight: 145,385,000
+        total_weight:
+          display: 145,385,000
+          numbers_only: 145385000
         planck_ksm_cost: 5614903.04216
         ksm_cost: '0.00000561490304213694'
       clear_origin:
@@ -702,7 +703,7 @@ networks:
         weight: 400,000,000
         numbers_only: 400000000
         wei_betadev_cost: 20000000000000
-        betadev_cost: 0.00002
+        betadev_cost: '0.00002'
   bobabase:
     rpc_url: https://bobabase.boba.network
     replica_rpc_url: https://replica.bobabase.boba.network
