@@ -22,23 +22,15 @@ This page is a brief introduction and overview of XCM and other related elements
 
 ## XCM Instructions {: #xcm-instructions }
 
-XCM messages contain a series of actions/instructions that are executed by the Cross-Consensus Virtual Machine (XCVM). An action (for example, transferring a token from one blockchain to another) consists of instructions that the XCVM partly executes in the origin and destination chains.
+XCM messages contain a series of [actions/instructions](https://github.com/paritytech/xcm-format#5-the-xcvm-instruction-set){target=_blank} that are executed by the Cross-Consensus Virtual Machine (XCVM). An action (for example, transferring a token from one blockchain to another) consists of instructions that the XCVM partly executes in the origin and destination chains.
 
-Some of the most common [XCM instructions](https://github.com/paritytech/xcm-format#5-the-xcvm-instruction-set){target=_blank} include:
+For example, an XCM message that transfers DOT from Polkadot to Moonbeam will include the following XCM instructions (in that order), which are partly executed on Polkadot and partly executed on Moonbeam:
 
- - **DepositReserveAsset** — removes the assets(s) from holding and deposits them into the sovereign account of a given destination. Sends an onward XCM message to the specified destination
- - **ReserveAssetDeposited** — accrue into hold derivative asset(s) that represent asset(s) in the origin blockchain
- - **BuyExecution** — pay for the execution of the current message. Funds must be on hold
- - **Transact** — executes the encoded function call
- - **DepositAsset** — subtract the asset(s) that are on hold and deposit equivalent assets (representation) to a given account
-
-For example, an XCM message that transfers KSM from Kusama to Moonriver will include the following XCM instructions (in that order), which are partly executed on Kusama and partly executed on Moonriver:
-
- 1. [DepositReserveAsset](https://github.com/paritytech/xcm-format#reserveassetdeposited){target=_blank} — executed in Kusama
- 2. [ReserveAssetDepossited](https://github.com/paritytech/xcm-format#reserveassetdeposited){target=_blank} — executed in Moonriver
- 3. [ClearOrigin](https://github.com/paritytech/xcm-format#clearorigin){target=_blank} — executed in Moonriver
- 4. [BuyExecution](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} — executed in Moonriver
- 5. [DepositAsset](https://github.com/paritytech/xcm-format#depositasset){target=_blank} — executed in Moonriver
+ 1. [TransferReserveAsset](https://github.com/paritytech/xcm-format#transferreserveasset){target=_blank} — executed in Polkadot
+ 2. [ReserveAssetDepossited](https://github.com/paritytech/xcm-format#reserveassetdeposited){target=_blank} — executed in Moonbeam
+ 3. [ClearOrigin](https://github.com/paritytech/xcm-format#clearorigin){target=_blank} — executed in Moonbeam
+ 4. [BuyExecution](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} — executed in Moonbeam
+ 5. [DepositAsset](https://github.com/paritytech/xcm-format#depositasset){target=_blank} — executed in Moonbeam
 
 ## XCM Transport Protocols {: #xcm-transport-protocols }
 
