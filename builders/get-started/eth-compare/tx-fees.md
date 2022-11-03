@@ -48,9 +48,9 @@ The object mappings are summarized as follows:
 
 |     Tx Information      |                           Block JSON Field                            |
 |:-----------------------:|:---------------------------------------------------------------------:|
-| Fee paying account | `extrinsics.{extrinsic number}.events.{event number}.data.0`  |
-|  Total fees paid  | `extrinsics.{extrinsic number}.events.{event number}.data.1` |
-|     Tip      | `extrinsics.{extrinsic number}.events.{event number}.data.2` |
+| Fee paying account | `extrinsics[extrinsic_number].events[event_number].data[0]`  |
+|  Total fees paid  | `extrinsics[extrinsic_number].events[event_number].data[1]` |
+|     Tip      | `extrinsics[extrinsic_number].events[event_number].data[2]` |
 
 The transaction fee related information can be retrieved under the event of the relevant extrinsic where the `method` field is set to: 
 
@@ -61,7 +61,7 @@ pallet: "transactionPayment", method: "TransactionFeePaid"
 And then the total transaction fee paid for this extrinsic is mapped to the following field of the block JSON object:
 
 ```
-extrinsics.{extrinsic number}.events.{event number}.data.1
+extrinsics[extrinsic_number].events[event_number].data.1
 ```
 
 ## Ethereum API Transaction Fees {: #ethereum-api-transaction-fees }
@@ -88,17 +88,17 @@ The values of `Gas Price` and `Max Priority Fee Per Gas` for the applicable tran
 === "EIP1559"
     |        EVM Field         |                               Block JSON Field                                |
     |:------------------------:|:-----------------------------------------------------------------------------:|
-    | Max priority fee per gas | `extrinsics.{extrinsic number}.args.transaction.eip1559.maxPriorityFeePerGas` |
+    | Max priority fee per gas | `extrinsics[extrinsic_number].args.transaction.eip1559.maxPriorityFeePerGas` |
 
 === "Legacy"
     |      EVM Field       |                         Block JSON Field                          |
     |:--------------------:|:-----------------------------------------------------------------:|
-    |      Gas price       | `extrinsics.{extrinsic number}.args.transaction.legacy.gasPrice`  |
+    |      Gas price       | `extrinsics[extrinsic_number].args.transaction.legacy.gasPrice`  |
 
 === "EIP2930"
     |      EVM Field       |                            Block JSON Field                             |
     |:--------------------:|:-----------------------------------------------------------------------:|
-    |      Gas price       |    `extrinsics.{extrinsic number}.args.transaction.eip2930.gasPrice`    |
+    |      Gas price       |    `extrinsics[extrinsic_number].args.transaction.eip2930.gasPrice`    |
 
 The `Base Fee`, introduced in [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank}, is a value set by the network itself. The `Base Fee` for `EIP1559` type transactions is currently static on Moonbeam networks and has the following assigned value:
 
@@ -124,7 +124,7 @@ pallet: "system", method: "ExtrinsicSuccess"
 
 And then `Transaction Weight` is mapped to the following field of the block JSON object:
 ```
-extrinsics.{extrinsic number}.events.{event number}.data.0.weight.refTime
+extrinsics[extrinsic_number].events[event_number].data[0].weight.refTime
 ```
 
 ### Key Differences with Ethereum {: #ethereum-api-transaction-fees} 
