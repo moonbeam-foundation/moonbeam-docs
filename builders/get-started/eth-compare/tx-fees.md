@@ -124,7 +124,7 @@ pallet: "system", method: "ExtrinsicSuccess"
 
 And then `Transaction Weight` is mapped to the following field of the block JSON object:
 ```
-extrinsics.{extrinsic number}.events.{event number}.data.0.weight
+extrinsics.{extrinsic number}.events.{event number}.data.0.weight.refTime
 ```
 
 ### Key Differences with Ethereum {: #ethereum-api-transaction-fees} 
