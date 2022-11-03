@@ -9,11 +9,13 @@ description: Learn how to create and clear an identity, including personal infor
 
 ## Introduction {: #introduction } 
 
-The [Substrate](/learn/platform/technology/#substrate-framework) Identity pallet is an out-of-the-box solution for adding personal information to your on-chain account. Personal information can include default fields such as your legal name, display name, website, Twitter handle, Riot (now known as Element) name. You can also take advantage of custom fields to include any other relevant information. 
+The [Substrate](/learn/platform/technology/#substrate-framework){target=_blank} Identity pallet is an out-of-the-box solution for adding personal information to your on-chain account. Personal information can include default fields such as your legal name, display name, website, Twitter handle, Riot (now known as Element) name. You can also take advantage of custom fields to include any other relevant information.
 
-This guide will show you how to set an identity, and then clear it, on the Moonbase Alpha TestNet. This guide can also be adapted to be used on Moonbeam and Moonriver.
+Once your identity information is on-chain, you can request verification of your identity from a registrar. A registrar will perform proper due dilligence to verify the submitted identity information and based on their findings will provide their judgement on-chain and a green check mark will appear next to your account.
 
-## General Definitions
+This guide will show you how to set an identity, clear it, and request judgement on the Moonbase Alpha TestNet. This guide can also be adapted to be used on Moonbeam and Moonriver.
+
+## General Definitions {: #general-definitions }
 
 To store your information on-chain, you must bond some funds, which eventually will be returned once the identity has been cleared. There are two categories of fields: default and custom. If custom fields are used, you will be required to submit an additional deposit for each field. 
 
@@ -51,15 +53,15 @@ For this guide, you will need the following:
 - Make sure you have funded your account. 
  --8<-- 'text/faucet/faucet-list-item.md'
 
-## Getting Started
+## Get Started {: #get-started }
 
 There are a couple different ways to set and clear an identity using the Polkadot.js Apps, depending on the information to be included. If you intend to register your identity using only the default fields, you can follow the instructions for [Managing an Identity via the Accounts UI](#managing-an-identity-via-accounts).
 
 If you are looking for a more customizable experience and want to add custom fields beyond the default fields, you can follow the instructions for [Managing an Identity via the Extrinsics UI](#managing-an-identity-via-extrinsics).
 
-## Managing an Identity via Accounts
+## Manage an Identity via Accounts {: #manage-via-accounts }
 
-### Set an Identity
+### Set an Identity {: #set-identity-accounts }
 
 To get started with setting an identity using the Accounts UI, head to the [Accounts tab](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/accounts){target=_blank} on the Polkadot.js Apps explorer.
 
@@ -83,44 +85,38 @@ Next, the menu to register and set your identity will pop-up and you can start f
 
 ![Set your identity](/images/tokens/manage/identity/identity-3.png)
 
-You will then be prompted to sign the transaction. If everything looks good, you can enter your password and click Sign and Submit to sign and send the transaction.
-
-![Authorize transaction](/images/tokens/manage/identity/identity-4.png)
+You will then be prompted to sign the transaction. If everything looks good, you can enter your password and click **Sign and Submit** to sign and send the transaction.
 
 You should see status notifications pop-up in the top right hand corner. Once the transaction has been confirmed, you can click on your account name again and the panel will slide out on the right side of the page. Your balances will have changed, and you’ll also see your new identity information.
 
-![Updated account balances](/images/tokens/manage/identity/identity-5.png)
+![Updated account balances](/images/tokens/manage/identity/identity-4.png)
 
 If the identity information matches what you entered, you’ve successfully set an identity! 
 
 Once you clear your identity, the deposit in your reserved balance will get transferred back to your transferable balance. If you need to make changes to your identity, you can go through the process of setting your identity again. Please note that you will need to ensure all fields are re-entered, even if only one field needs to be changed, or they will be overwritten. You will not need to pay another deposit, unless custom fields are used, but you will need to pay gas fees.
 
-### Clear an Identity
+### Clear an Identity {: #clear-identity-accounts }
 
 To clear your identity from the [Accounts tab](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/accounts){target=_blank} of the Polkadot.js Apps UI, you'll need to:
 
 1. Click on the 3 vertical dots next to the account you would like to add identity information for
 2. A menu will pop up. Click **Set on-chain identity**
 
-![Set on-chain identity](/images/tokens/manage/identity/identity-6.png)
+![Set on-chain identity](/images/tokens/manage/identity/identity-5.png)
 
 The identity menu will pop-up with your information already filled out. You'll need to click **Clear Identity**.
 
-![Clear identity](/images/tokens/manage/identity/identity-7.png)
+![Clear identity](/images/tokens/manage/identity/identity-6.png)
 
-You will then be prompted to sign the transaction. If everything looks good, you can enter your password and click Sign and Submit to sign and send the transaction.
-
-![Authorize transaction](/images/tokens/manage/identity/identity-8.png)
+You will then be prompted to sign the transaction. If everything looks good, you can enter your password and click **Sign and Submit** to sign and send the transaction.
 
 You should see status notifications pop-up in the top right hand corner. Once the transaction has been confirmed, you can click on your account name again and the panel will slide out on the right side of the page. You can see your reserved balance was transferred back to your transferable balance, and your identity information has been removed.
 
-![Updated account balances](/images/tokens/manage/identity/identity-9.png)
-
 That’s it! You’ve successfully cleared your identity. If you want to add a new identity, you can do so at any time. 
 
-## Managing an Identity via Extrinsics
+## Manage an Identity via Extrinsics {: #manage-via-extrinsics }
 
-### Set an Identity
+### Set an Identity {: #set-identity-extrinsics }
 
 To register an identity using the extrinsics UI, navigate to the [Extrinsics page](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} on Polkadot.js Apps. Then, you'll need to:
 
@@ -131,7 +127,7 @@ To register an identity using the extrinsics UI, navigate to the [Extrinsics pag
     1. Select the format of the data. For this example, you can use **Raw** data but you also have the option of entering your data in BlackTwo256, Sha256, Keccak256, and ShaThree256 hashed format
     2. Enter the data in that format
 
-![Set your identity using the Extrinsics UI](/images/tokens/manage/identity/identity-10.png)
+![Set your identity using the Extrinsics UI](/images/tokens/manage/identity/identity-7.png)
 
 Optionally, if you would like to enter custom fields, you can do so by:
 
@@ -143,23 +139,19 @@ Optionally, if you would like to enter custom fields, you can do so by:
     1. Select the format of the data for the value. Again, you can use **Raw** data
     2. Enter the value in the selected format
 
-![Add custom fields](/images/tokens/manage/identity/identity-11.png)
+![Add custom fields](/images/tokens/manage/identity/identity-8.png)
 
 Finally, once all of your identity information has been added, you can scroll to the bottom of the page and click **Submit Transaction**.
 
-![Submit identity information](/images/tokens/manage/identity/identity-12.png)
+![Submit identity information](/images/tokens/manage/identity/identity-9.png)
 
 You will then be prompted to sign the transaction. Remember, there is an additional deposit required for each additional custom field. If everything looks good, you can enter your password and click **Sign and Submit** to sign and send the transaction.
 
-![Authorize transaction](/images/tokens/manage/identity/identity-13.png)
-
 You should see status notifications pop-up in the top right hand corner confirming the transaction. If successful, you’ve set an identity! Congratulations! To make sure everything went through and your identity information looks good, next you can confirm your identity.
 
-### Confirm an Identity
+### Confirm an Identity {: #confirm-identity-extrinsics }
 
 To verify the addition of your identity information, you can click on the **Developer** tab and then navigate to [Chain state](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/chainstate){target=_blank}.
-
-![Navigate to Chain State](/images/tokens/manage/identity/identity-14.png)
 
 On the **Chain State** UI, make sure **Storage** is selected. Then you can start to request your identity information:
 
@@ -168,27 +160,91 @@ On the **Chain State** UI, make sure **Storage** is selected. Then you can start
 3. Select your account
 4. Click the **+** button to get your identity information
 
-![Request identity information](/images/tokens/manage/identity/identity-15.png)
+![Request identity information](/images/tokens/manage/identity/identity-10.png)
 
 You can see now that you’ve successfully set an identity! Once you clear your identity, the deposit in your reserved balance will get transferred back to your transferable balance. If you need to make changes to your identity, you can go through the process of setting your identity again. Please note that you will need to ensure all fields are re-entered, even if only one field needs to be changed, or they will be overwritten. You will not need to pay another deposit, unless custom fields are used, but you will need to pay gas fees.
 
-### Clear an Identity
+### Clear an Identity {: #clear-identity-extrinsics }
 
 To clear your identity from the [Extrinsics tab](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} of the Polkadot.js Apps UI, you'll need to:
 
 1. Select your account from the **using the selected account** dropdown
-2. Select identity from the **submit the following extrinsic** dropdown
+2. Select **identity** from the **submit the following extrinsic** dropdown
 3. Then select the **clearIdentity()** function
 4. Click **Submit Transaction**
 
-![Clear an identity using the Extrinsics UI](/images/tokens/manage/identity/identity-16.png)
+![Clear an identity using the Extrinsics UI](/images/tokens/manage/identity/identity-11.png)
 
 You will then be prompted to sign the transaction. If everything looks good, you can enter your password and click **Sign and Submit** to sign and send the transaction.
-
-![Authorize transaction](/images/tokens/manage/identity/identity-17.png)
 
 You should see status notifications pop-up in the top right hand corner confirming the transaction. 
 
 To verify the removal of your identity information, you can follow the steps in the [Confirm an Identity](#confirm-an-identity) section again. Instead of seeing your identity information, this time you'll get a response of **none**. Meaning, you no longer have any identity information associated with your account. If you check your balances, you should see that the initial deposit for setting your identity has been returned to your transferable balance. That’s it! Your identity has been cleared. 
 
+## Identity Judgement {: #identity-judgement }
+
+After submitting your identity information, you can request verification of your identity from a registrar. Each registrar can set a fee for providing judgement. When you request judgement from a registrar, you'll need to specify the maximum fee that you're willing to pay for providing judgement. Only registrars that charge less than the amount you specify will provide judgement. The fee will be locked until the registrar completes the judgement process and only then will the fee be transferred to the registrar.
+
+Registrar applicants are appointed via on-chain democracy. If an appointed registrar issues incorrect judgements or proves to be untrustworthy, they can be removed through democracy.
+
+A registrar will perform proper due dilligence to verify the submitted identity information and based on their findings will provide judgement and assign up to seven levels of confidence:
+
+- **Unknown** - no judgement made yet. This is the default value
+- **Fee Paid** - indicates a user has requested judgement and it is in progress
+- **Reasonable** - the information appears reasonable, but no in-depth checks were performed using legal identity documents
+- **Known Good** - the information is correct and is based upon review of legal identity documents 
+- **Out of Date** - the information used to be good, but is now out of date 
+- **Low Quality** - the information is low quality or imprecise, but can be updated as needed
+- **Erroneous** - the information is erroneous and may indicate malicious intent. This state cannot be modified and can only be removed if the entire identity has been removed
+
+### Current Registrars {: #current-registrars }
+
+When requesting identity judgement, you'll need to provide the index of the registrar you want to complete your request.
+
+The current registrars are as follows:
+
+=== "Moonbase Alpha"
+    |                                      Registrar                                      |                   Address                  |
+    |:-----------------------------------------------------------------------------------:|:------------------------------------------:|
+    | [Registrar #1](https://www.chevdor.com/post/2020/07/14/reg-updates/){target=_blank} | 0x4aD549e07E96BaD335A8b99C8fd32e95EE538904 |
+
+You can get a complete list of the current registrars, including the fees that each registrar charges, by heading to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network){target=_blank}, selecting **Developer**, choosing **Chain State** from the dropdown, and taking the following steps:
+
+1. Select the **identity** pallet
+2. Choose the **registrars** extrinsic
+3. Click thee **+** button
+
+![View registrar list](/images/tokens/manage/identity/identity-12.png)
+
+### Request Identity Judgement {: #request-judgement }
+
+To request identity judgement, from the **Extrinsics** page, you can take the following steps:
+
+1. Select your account from the **using the selected account** dropdown
+2. Select **identity** from the **submit the following extrinsic** dropdown
+3. Then select the **requestJudgement()** function
+4. Enter the index of the registrar you want to review and provide judgement on your identity information
+5. Enter the maximum fee you're willing to pay in Wei. This must be higher than the fee set by the registrar, otherwise the transaction will fail
+6. Click **Submit Transaction**
+
+![Request identity judgement](/images/tokens/manage/identity/identity-13.png)
+
+Once the transaction goes through, the fee will be taken from your free balance and locked until the judgement is complete.
+
+After the judgement is complete, a green check mark will appear next to your account. From the **Accounts** page, you can click on your account name to review your identity information and your identity judgement results.
+
+![Identity verified](/images/tokens/manage/identity/identity-14.png)
+
+### Cancel Identity Judgement Request {: #cancel-judgement-request }
+
+If the registrar hasn't completed your judgement, you can cancel the request and receive the locked fee back. To do so, from the **Extrinsics** page, take the following steps:
+
+1. Select your account from the **using the selected account** dropdown
+2. Select **identity** from the **submit the following extrinsic** dropdown
+3. Then select the **cancelRequest()** function
+4. Click **Submit Transaction**
+
+![Cancel judgement request](/images/tokens/manage/identity/identity-15.png)
+
+You'll then be prompted to sign and send the transaction. Once it goes through, your locked funds will be returned to you.
 
