@@ -678,26 +678,26 @@ networks:
     xcm_message:
       transfer:
         weight: 298,368,000
-        cost: '0.000011523247866'
+        cost: '0.000011523248'
     xcm_instructions:
       buy_exec:
         base_weight: 3,109,000
         total_weight: 3,109,000
-        ksm_cost: '0.000000120072453'
+        ksm_cost: '0.000000120072'
       withdraw:
         base_weight: 20,385,000
         total_weight:
           display: 145,385,000
           numbers_only: 145385000
         planck_ksm_cost: 5614903.04216
-        ksm_cost: '0.00000561490304213694'
+        ksm_cost: '0.000005614903'
       clear_origin:
         total_weight: 3,111,000
-        ksm_cost: '0.000000120149695'
+        ksm_cost: '0.000000120150'
       deposit_asset:
         total_weight: 146,763,000
-        ksm_cost: '0.000011523247866'
-      planck_ksm_weight: 0.03862092404422868221545068687313
+        ksm_cost: '0.000005668123'
+      planck_ksm_weight: 0.038620924044
     extrinsic_base_weight:
       display: 86,309,000
       numbers_only: 86309000
