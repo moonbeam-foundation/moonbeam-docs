@@ -22,7 +22,7 @@ The fees of a transaction sent via the Substrate API on Moonbeam can be read dir
 ```JSON
 RESPONSE JSON Block Object:
     |--extrinsics
-        |--{extrinsic number}
+        |--{extrinsic_number}
             |--method
             |--signature
             |--nonce
@@ -32,7 +32,7 @@ RESPONSE JSON Block Object:
             |--info
             |--era
             |--events
-                |--{event number}
+                |--{event_number}
                     |--method
                         |--pallet: "transactionPayment"
                         |--method: "TransactionFeePaid"
@@ -61,7 +61,7 @@ pallet: "transactionPayment", method: "TransactionFeePaid"
 And then the total transaction fee paid for this extrinsic is mapped to the following field of the block JSON object:
 
 ```
-extrinsics[extrinsic_number].events[event_number].data.1
+extrinsics[extrinsic_number].events[event_number].data[1]
 ```
 
 ## Ethereum API Transaction Fees {: #ethereum-api-transaction-fees }
