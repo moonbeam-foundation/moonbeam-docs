@@ -183,7 +183,7 @@ To verify the removal of your identity information, you can follow the steps in 
 
 ## Identity Judgement {: #identity-judgement }
 
-After submitting your identity information, you can request verification of your identity from a registrar. Each registrar can set a fee for providing judgement. When you request judgement from a registrar, you'll need to specify the maximum fee that you're willing to pay for providing judgement. Only registrars that charge less than the amount you specify will provide judgement. The fee will be locked until the registrar completes the judgement process and only then will the fee be transferred to the registrar.
+After submitting your identity information, you can request verification of your identity from a registrar. Registrars are tasked with verifying the submitted identity information and can set a fee for their services. When you request judgement, you'll need to specify the registrar you want to verify your information and the maximum fee that you're willing to pay them for providing judgement. The request will only be processed if the selected registrar charges less than the maximum fee that you specified, otherwise the transaction will fail. The fee will be locked until the registrar completes the judgement process and only then will the fee be transferred to the registrar.
 
 Registrar applicants are appointed via on-chain democracy. If an appointed registrar issues incorrect judgements or proves to be untrustworthy, they can be removed through democracy.
 
@@ -204,15 +204,15 @@ When requesting identity judgement, you'll need to provide the index of the regi
 The current registrars are as follows:
 
 === "Moonbase Alpha"
-    |                                      Registrar                                      |                   Address                  |
-    |:-----------------------------------------------------------------------------------:|:------------------------------------------:|
-    | [Registrar #1](https://www.chevdor.com/post/2020/07/14/reg-updates/){target=_blank} | 0x4aD549e07E96BaD335A8b99C8fd32e95EE538904 |
+    |                                      Registrar                                      |                  Address                   | Index |
+    |:-----------------------------------------------------------------------------------:|:------------------------------------------:|:-----:|
+    | [Registrar #1](https://www.chevdor.com/post/2020/07/14/reg-updates/){target=_blank} | 0x4aD549e07E96BaD335A8b99C8fd32e95EE538904 |   1   |
 
-You can get a complete list of the current registrars, including the fees that each registrar charges, by heading to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network){target=_blank}, selecting **Developer**, choosing **Chain State** from the dropdown, and taking the following steps:
+You can get a complete list of the current registrars, including the fees that each registrar charges, by heading to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network){target=_blank}, selecting the **Developer** tab, choosing **Chain State** from the dropdown, and taking the following steps:
 
 1. Select the **identity** pallet
 2. Choose the **registrars** extrinsic
-3. Click thee **+** button
+3. Click the **+** button
 
 ![View registrar list](/images/tokens/manage/identity/identity-12.png)
 
