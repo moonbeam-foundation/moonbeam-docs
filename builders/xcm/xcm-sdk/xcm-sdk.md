@@ -35,7 +35,13 @@ To install the XCM SDK and XCM config packages, you can run the following comman
 npm install @moonbeam-network/xcm-sdk @moonbeam-network/xcm-config
 ```
 
-Both packages will install all the dependencies needed, like [Ethers.js](https://docs.ethers.io/v5/){target=_blank} and the [Polkadot.js API](https://polkadot.js.org/docs/api/){target=_blank}.
+You need to have peer dependencies, like [Ethers.js](https://docs.ethers.io/v5/){target=\_blank} and the [Polkadot.js API](https://polkadot.js.org/docs/api/){target=\_blank} installed.
+
+You can install them by running the following command:
+
+```
+npm i @polkadot/api-augment @polkadot/types @polkadot/util @polkadot/util-crypto ethers
+```
 
 !!! note
     There is a [known issue](https://github.com/polkadot-js/api/issues/4315){target=_blank} when using the Moonbeam XCM packages alongside Polkadot.s with Node.js (JavaScript) that will cause package conflict warnings to appear in the console. Using TypeScript is recommended.
