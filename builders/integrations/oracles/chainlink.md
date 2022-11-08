@@ -315,7 +315,7 @@ The end-user can retrieve price feeds with read-only operations via an aggregato
 
 ### Fetch Price Data {: #fetch-price-data } 
 
-There are data feed contracts available for Moonbeam-based networks to help simplify the process of requesting price feeds. In the current configuration for Moonbase Alpha, the Moonbeam team is running only one oracle node that fetches the price from a single API source. Price data is checked every minute and updated in the smart contracts every hour unless there is a price deviation of 1 %. The Moonbeam and Moonriver data feed contracts are updated by multiple Chainlink nodes on a regular basis.
+There are data feed contracts available for Moonbeam-based networks to help simplify the process of requesting price feeds. In the current configuration for Moonbase Alpha, the Moonbeam team is running only one oracle node that fetches the price from a single API source. Price data is checked every 12 hours and, if needed, updated in the smart contracts every 12 hours. As such, the price feeds on Moonbase Alpha are not authoritative and are for testing purposes only. The Moonbeam and Moonriver data feed contracts are updated by multiple Chainlink nodes on a regular basis.
 
 The data lives in a series of smart contracts (one per price feed) and can be fetched with the aggregator interface:
 
