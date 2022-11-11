@@ -137,7 +137,7 @@ Try finding a transaction's call data using Remix:
 
 1. Expand the `SimpleContract.sol` contract under **Deployed Contracts**
 2. Expand the **setMessage** function
-3. Enter the input of the function. For this example, **id** will be `1` and **m** (message) will be `"moonbeam"`
+3. Enter the input of the function. For this example, **id** will be `1` and **message** will be `"moonbeam"`
 4. Instead of sending the transaction, click the copy button next to the **transact** button to copy the call data
 
 ![Transaction Call Data](/images/builders/pallets-precompiles/precompiles/batch/batch-5.png)
@@ -150,7 +150,7 @@ The call data can be broken into five lines, where:
 
  - The first line is the function selector
  - The second line is equal to 1, which is the **id** that was provided
- - What's left has to do with the **m** (message) input. These last three lines are tricky, since strings are a [dynamic type](https://docs.soliditylang.org/en/v0.8.15/abi-spec.html#use-of-dynamic-types){target=_blank} with a dynamic length. The third line refers to an offset to define where the string's data starts. The fourth line refers to the string's length, in this case 8 because "moonbeam" is 8 bytes long . Finally, the fifth line is "moonbeam" in hexadecimal format (8 ASCII characters are 16 hexidecimal characters) left aligned and with zeros for padding
+ - What's left has to do with the **message** input. These last three lines are tricky, since strings are a [dynamic type](https://docs.soliditylang.org/en/v0.8.15/abi-spec.html#use-of-dynamic-types){target=_blank} with a dynamic length. The third line refers to an offset to define where the string's data starts. The fourth line refers to the string's length, in this case 8 because "moonbeam" is 8 bytes long . Finally, the fifth line is "moonbeam" in hexadecimal format (8 ASCII characters are 16 hexidecimal characters) left aligned and with zeros for padding
 
 ### Function Interaction via Precompile {: #function-interaction-via-precompile }
 
