@@ -58,7 +58,7 @@ The contract `SimpleContract.sol` will be used as an example of batching contrac
 
 ### Remix Set Up {: #remix-set-up } 
 
-You can interact with the batch precompile using [Remix](https://remix.ethereum.org/){target=_blank}. You'll need a copy of [`Batch.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/proxy/Proxy.sol){target=_blank} and [`SimpleContract.sol`](#example-contract). To add the precompile to Remix and follow along with the tutorial, you will need to:
+You can interact with the batch precompile using [Remix](https://remix.ethereum.org/){target=_blank}. You'll need a copy of [`Batch.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank} and [`SimpleContract.sol`](#example-contract). To add the precompile to Remix and follow along with the tutorial, you will need to:
 
 1. Click on the **File explorer** tab
 2. Paste the `Batch.sol` contract into a Remix file named **Batch.sol**
@@ -137,7 +137,7 @@ Try finding a transaction's call data using Remix:
 
 1. Expand the `SimpleContract.sol` contract under **Deployed Contracts**
 2. Expand the **setMessage** function
-3. Enter the input of the function. For this example, **id** will be `1` and **m** (message) will be `"moonbeam"`
+3. Enter the input of the function. For this example, **id** will be `1` and **message** will be `"moonbeam"`
 4. Instead of sending the transaction, click the copy button next to the **transact** button to copy the call data
 
 ![Transaction Call Data](/images/builders/pallets-precompiles/precompiles/batch/batch-5.png)
@@ -150,7 +150,7 @@ The call data can be broken into five lines, where:
 
  - The first line is the function selector
  - The second line is equal to 1, which is the **id** that was provided
- - What's left has to do with the **m** (message) input. These last three lines are tricky, since strings are a [dynamic type](https://docs.soliditylang.org/en/v0.8.15/abi-spec.html#use-of-dynamic-types){target=_blank} with a dynamic length. The third line refers to an offset to define where the string's data starts. The fourth line refers to the string's length, in this case 8 because "moonbeam" is 8 bytes long . Finally, the fifth line is "moonbeam" in hexadecimal format (8 ASCII characters are 16 hexidecimal characters) left aligned and with zeros for padding
+ - What's left has to do with the **message** input. These last three lines are tricky, since strings are a [dynamic type](https://docs.soliditylang.org/en/v0.8.15/abi-spec.html#use-of-dynamic-types){target=_blank} with a dynamic length. The third line refers to an offset to define where the string's data starts. The fourth line refers to the string's length, in this case 8 because "moonbeam" is 8 bytes long . Finally, the fifth line is "moonbeam" in hexadecimal format (8 ASCII characters are 16 hexidecimal characters) left aligned and with zeros for padding
 
 ### Function Interaction via Precompile {: #function-interaction-via-precompile }
 
@@ -210,7 +210,7 @@ We will need three values for the `callData` array. Since transferring native cu
 
 ```
 [
-  "", 
+  "0x", 
   "0x648345c8000000000000000000000000000000000000000000000000000000000000000500000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000009796f752061726520610000000000000000000000000000000000000000000000", 
   "0x648345c800000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000e61206d6f6f6e6265616d2070726f000000000000000000000000000000000000"
 ]
