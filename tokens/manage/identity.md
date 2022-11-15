@@ -204,9 +204,9 @@ When requesting identity judgement, you'll need to provide the index of the regi
 The current registrars are as follows:
 
 === "Moonbase Alpha"
-    |                                      Registrar                                      |                  Address                   | Index |
-    |:-----------------------------------------------------------------------------------:|:------------------------------------------:|:-----:|
-    | [Registrar #1](https://www.chevdor.com/post/2020/07/14/reg-updates/){target=_blank} | 0x4aD549e07E96BaD335A8b99C8fd32e95EE538904 |   1   |
+    |                                      Registrar                                      |                      Operator                      |                  Address                   | Index |
+    |:-----------------------------------------------------------------------------------:|:--------------------------------------------------:|:------------------------------------------:|:-----:|
+    | [Registrar #1](https://www.chevdor.com/post/2020/07/14/reg-updates/){target=_blank} | [Chevdor](https://www.chevdor.com/){target=_blank} | 0x4aD549e07E96BaD335A8b99C8fd32e95EE538904 |   1   |
 
 You can get a complete list of the current registrars, including the fees that each registrar charges, by heading to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network){target=_blank}, selecting the **Developer** tab, choosing **Chain State** from the dropdown, and taking the following steps:
 
