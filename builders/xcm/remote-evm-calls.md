@@ -365,7 +365,7 @@ The XCM-utils precompile contract gives developers polkadot related utility func
 The interface includes the following functions:
 
  - **multilocationToAddress**(*Multilocation memory* multilocation) — read-only function that returns the multilocation-derivative account from a given multilocation
- - **weightMessage**(*bytes memory* message) — read-only function that returns the weight that an XCM message will consume on the chain. The message parameter must be a scale encoded xcm mversioned xcm message
+ - **weightMessage**(*bytes memory* message) — read-only function that returns the weight that an XCM message will consume on the chain. The message parameter must be a SCALE encoded XCM versioned XCM message
  - **getUnitsPerSecond**(*Multilocation memory* multilocation) — read-only function that gets the units per second for a given asset in the form of a `Multilocation`. The multilocation must describe an asset that can be supported as a fee payment, such as an [external XC-20](/builders/xcm/xc20/xc20){target=_blank}, or else this function will revert
 
 The `Multilocation` struct in the XCM-utils precompile is built the [same as the XCM-transactor](/builders/xcm/xcm-transactor#building-the-precompile-multilocation) precompile's `Multilocation`.
