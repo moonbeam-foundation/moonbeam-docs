@@ -106,3 +106,24 @@ function makeArbitraryCall(address _target, bytes calldata _bytes) public {
     require(success);
 }
 ```
+
+## Bypassing `tx.origin == msg.sender` Requirement {: #bypassing-txorigin-msgsender-requirement }
+
+The transaction origin, or `tx.origin`, is the address of the externally owned account (EOA) the transaction originated from. Whereas the `msg.sender` is the address that has initiated the current call. The `msg.sender` can be an EOA or a contract. The two can be different values if one contract calls another contract, as opposed to directly calling a contract from an EOA. In this case, the `msg.sender` will be the calling contract and the `tx.origin` will be the EOA that initially called the calling contract.
+
+For example, if Alice calls a function in contract A that then calls a function in contract B, when looking at the call to contract B, the `tx.origin` is Alice and the `msg.sender` is contract A.
+
+You can use the [require function](https://docs.soliditylang.org/en/v0.8.17/control-structures.html#panic-via-assert-and-error-via-require){target=_blank} to compare the `tx.origin` and `msg.sender`. If they are the same address, you're ensuring that only EOAs can call the function. If the `msg.sender` is a contract address, an exception will be thrown.
+
+```
+function transferFunds(address payable _target) payable public {
+    require(tx.origin == msg.sender);
+    _target.call{value: msg.value};
+}
+```
+
+On Ethereum, you can use this check to ensure that a given contract function can only be called once by an EOA. This is because on Ethereum, EOAs can only interact with a contract once per transaction. However, on Moonbeam, **this check can be bypassed** as EOAs can interact with a contract multiple times at once through the [batch](/builders/pallets-precompiles/precompiles/batch){target=_blank} and [call permit](/builders/pallets-precompiles/precompiles/call-permit){target=_blank} precompiles.
+
+With the batch precompile, users can perform multiple calls to a contract atomically. The caller of the batch function will be the `msg.sender` and `tx.origin`, enabling multiple contract interactions at once.
+
+With the call permit precompile, if a user wants to interact with a contract multiple times in one transaction, they can do so by signing a permit for each contract interaction and dispatching all of the permits in a single function call. This will only bypass the `tx.origin == msg.sender` check if the dispatcher is the same account as the permit signer. Otherwise, the `msg.sender` will be the permit signer and the `tx.origin` will be the dispatcher, causing an exception to be thrown.
