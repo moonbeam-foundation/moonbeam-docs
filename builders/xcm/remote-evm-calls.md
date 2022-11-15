@@ -349,7 +349,7 @@ Note that the `v-r-s` values are set to `0x1`, and the gas price-related fields 
 
 ## XCM-Utils Precompile {: #xcmutils-precompile}
 
-The XCM-utils precompile contract gives developers polkadot related utility functions directly within the EVM. This allows for easier transactions and interactions with other XCM related precompiles. Similar to other [precompile contracts](/builders/pallets-precompiles/precompiles/){target=_blank}, the XCM-utils precompile is located at the following addresses:
+The XCM-utils precompile contract gives developers Polkadot-related utility functions directly within the EVM. This allows for easier transactions and interactions with other XCM-related precompiles. Similar to other [precompile contracts](/builders/pallets-precompiles/precompiles/){target=_blank}, the XCM-utils precompile is located at the following addresses:
 
 === "Moonbase Alpha"
      ```
