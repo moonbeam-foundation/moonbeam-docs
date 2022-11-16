@@ -122,7 +122,7 @@ function transferFunds(address payable _target) payable public {
 }
 ```
 
-On Ethereum, you can use this check to ensure that a given contract function can only be called once by an EOA. This is because on Ethereum, EOAs can only interact with a contract once per transaction. However, on Moonbeam, **this check can be bypassed** as EOAs can interact with a contract multiple times at once through the [batch](/builders/pallets-precompiles/precompiles/batch){target=_blank} and [call permit](/builders/pallets-precompiles/precompiles/call-permit){target=_blank} precompiles.
+On Ethereum, you can use this check to ensure that a given contract function can only be called once by an EOA. This is because on Ethereum, EOAs can only interact with a contract once per transaction. However, **this is not the case** on Moonbeam, as EOAs can interact with a contract multiple times at once through the [batch](/builders/pallets-precompiles/precompiles/batch){target=_blank} and [call permit](/builders/pallets-precompiles/precompiles/call-permit){target=_blank} precompiles.
 
 With the batch precompile, users can perform multiple calls to a contract atomically. The caller of the batch function will be the `msg.sender` and `tx.origin`, enabling multiple contract interactions at once.
 
