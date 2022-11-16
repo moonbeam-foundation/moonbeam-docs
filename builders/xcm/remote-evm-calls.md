@@ -367,6 +367,7 @@ The XCM-utils precompile contract gives developers Polkadot-related utility func
      ```
 
 ### The XCM-Utils Solidity Interface {: #xcmutils-solidity-interface } 
+
 [XcmUtils.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm-utils/XcmUtils.sol){target=_blank} is an interface to interact with the precompile.
 
 !!! note
@@ -378,10 +379,11 @@ The interface includes the following functions:
  - **weightMessage**(*bytes memory* message) — read-only function that returns the weight that an XCM message will consume on the chain. The message parameter must be a SCALE encoded XCM versioned XCM message
  - **getUnitsPerSecond**(*Multilocation memory* multilocation) — read-only function that gets the units per second for a given asset in the form of a `Multilocation`. The multilocation must describe an asset that can be supported as a fee payment, such as an [external XC-20](/builders/xcm/xc20/xc20){target=_blank}, or else this function will revert
 
-The `Multilocation` struct in the XCM-utils precompile is built the [same as the XCM-transactor](/builders/xcm/xcm-transactor#building-the-precompile-multilocation) precompile's `Multilocation`.
+The `Multilocation` struct in the XCM-utils precompile is built the [same as the XCM-transactor](/builders/xcm/xcm-transactor#building-the-precompile-multilocation){target=_blank} precompile's `Multilocation`.
 
 ### Using the XCM-Utils Precompile {: #using-the-xcmutils-precompile } 
-The XCM-Utils precompile allows users to read data off of the ethereum JSON-RPC instead of having to go through a Polkadot library. The functions are more for convenience, and less for smart contract use cases. 
+
+The XCM-Utils precompile allows users to read data off of the Ethereum JSON-RPC instead of having to go through a Polkadot library. The functions are more for convenience, and less for smart contract use cases. 
 
 For `multilocationToAddress`, one example use case is being able to allow transactions that originate from other parachains by whitelisting their multilocation-derived addresses. A user can whitelist a multilocation by calculating and storing an address.
 
@@ -410,6 +412,6 @@ contract MultilocationWhitelistExample {
         whitelistedAddresses[derivedAddress] = true;
     }
 
-    // ... additional functions that require whitelisting functionality ...
+    ...
 }
 ```
