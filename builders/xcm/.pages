@@ -8,4 +8,5 @@ nav:
   - 'Remote Execution': 'xcm-transactor.md'
   - 'Remote EVM Calls': 'remote-evm-calls.md'
   - 'XCM Fees': 'fees.md'
+  - 'XCM Utils': '/builders/pallets-precompiles/precompiles/xcm-utils'
 
