@@ -6,7 +6,7 @@
     ```
 
 === "MacOS"
-    ``` 
+    ```
     # You can use homebrew (https://docs.brew.sh/Installation)
     brew install node
 
