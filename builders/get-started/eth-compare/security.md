@@ -107,7 +107,7 @@ function makeArbitraryCall(address _target, bytes calldata _bytes) public {
 }
 ```
 
-## Bypassing `tx.origin == msg.sender` Requirement {: #bypassing-txorigin-msgsender-requirement }
+## Precompiles Can Override Caller Requirements {: #override-caller-requirements }
 
 The transaction origin, or `tx.origin`, is the address of the externally owned account (EOA) the transaction originated from. Whereas the `msg.sender` is the address that has initiated the current call. The `msg.sender` can be an EOA or a contract. The two can be different values if one contract calls another contract, as opposed to directly calling a contract from an EOA. In this case, the `msg.sender` will be the calling contract and the `tx.origin` will be the EOA that initially called the calling contract.
 
