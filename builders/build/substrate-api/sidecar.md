@@ -44,22 +44,22 @@ In the terminal that Sidecar will run, export the environmental variable for the
 
 === "Moonbeam"
     ```
-    export SAS_SUBSTRATE_WS_URL=wss://wss.api.moonbeam.network
+    export SAS_SUBSTRATE_URL=wss://wss.api.moonbeam.network
     ```
 
 === "Moonriver"
     ```
-    export SAS_SUBSTRATE_WS_URL=wss://wss.api.moonriver.moonbeam.network
+    export SAS_SUBSTRATE_URL=wss://wss.api.moonriver.moonbeam.network
     ```
 
 === "Moonbase Alpha"
     ```
-    export SAS_SUBSTRATE_WS_URL=wss://wss.api.moonbase.moonbeam.network
+    export SAS_SUBSTRATE_URL=wss://wss.api.moonbase.moonbeam.network
     ```
 
 === "Moonbeam Dev Node"
     ```
-    export SAS_SUBSTRATE_WS_URL=ws://127.0.0.1:9944
+    export SAS_SUBSTRATE_URL=ws://127.0.0.1:9944
     ```
 
 Please reference the [Public Endpoints](/builders/get-started/endpoints/) page for a full list of Moonbeam network endpoints.
@@ -67,7 +67,7 @@ Please reference the [Public Endpoints](/builders/get-started/endpoints/) page f
 After setting the environmental variable, you can use the `echo` command to check that the environmental variable has been set correctly, by typing:
 
 ```
-echo $SAS_SUBSTRATE_WS_URL
+echo $SAS_SUBSTRATE_URL
 ```
 
 And it should display the network endpoint you have just set. 
@@ -82,6 +82,7 @@ node_modules/.bin/substrate-api-sidecar
 
 If the installation and configuration are successful, you should see this output in the console: 
 
+XXX Modify Sidecar Version
 ![Successful Output](/images/builders/build/substrate-api/sidecar/sidecar-1.png)
 
 ## Substrate API Sidecar Endpoints {: #substrate-api-sidecar-endpoints } 

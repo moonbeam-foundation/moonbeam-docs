@@ -222,7 +222,7 @@ networks:
       collective_tech_committee: '0x000000000000000000000000000000000000080f'
       collective_treasury: '0x0000000000000000000000000000000000000810'
     substrate_api_sidecar:
-      stable_version: 11.3.9
+      stable_version: 14.1.1
     tx_weight_to_gas_ratio: 25000
     moonbeam_types_bundle:
       stable_version: 6.9.1
@@ -253,7 +253,7 @@ networks:
     node_directory: /var/lib/moonriver-data
     parachain_release_tag: v0.27.1
     parachain_sha256sum: b497f3e9f6f9c1e8591fbcbde5c18e24a5a5b4cdb98bc641ac7e643890a523fe
-    tracing_tag: purestake/moonbeam-tracing:v0.27.1-1901-latest   
+    tracing_tag: purestake/moonbeam-tracing:v0.27.1-1901-latest
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
     binary_name: moonbeam
