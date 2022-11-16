@@ -113,6 +113,9 @@ The transaction origin, or `tx.origin`, is the address of the externally owned a
 
 For example, if Alice calls a function in contract A that then calls a function in contract B, when looking at the call to contract B, the `tx.origin` is Alice and the `msg.sender` is contract A.
 
+!!! note
+    As a [best practice](https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/tx-origin/){target=_blank}, `tx.origin` should not be used for authorization. Instead, you should use `msg.sender`.
+
 You can use the [require function](https://docs.soliditylang.org/en/v0.8.17/control-structures.html#panic-via-assert-and-error-via-require){target=_blank} to compare the `tx.origin` and `msg.sender`. If they are the same address, you're ensuring that only EOAs can call the function. If the `msg.sender` is a contract address, an exception will be thrown.
 
 ```
@@ -122,7 +125,7 @@ function transferFunds(address payable _target) payable public {
 }
 ```
 
-On Ethereum, you can use this check to ensure that a given contract function can only be called once by an EOA. This is because on Ethereum, EOAs can only interact with a contract once per transaction. However, **this is not the case** on Moonbeam, as EOAs can interact with a contract multiple times at once through the [batch](/builders/pallets-precompiles/precompiles/batch){target=_blank} and [call permit](/builders/pallets-precompiles/precompiles/call-permit){target=_blank} precompiles.
+On Ethereum, you can use this check to ensure that a given contract function can only be called once by an EOA. This is because on Ethereum, EOAs can only interact with a contract once per transaction. However, **this is not the case** on Moonbeam, as EOAs can interact with a contract multiple times at once by using precompiled contracts, such as the [batch](/builders/pallets-precompiles/precompiles/batch){target=_blank} and [call permit](/builders/pallets-precompiles/precompiles/call-permit){target=_blank} precompiles.
 
 With the batch precompile, users can perform multiple calls to a contract atomically. The caller of the batch function will be the `msg.sender` and `tx.origin`, enabling multiple contract interactions at once.
 
