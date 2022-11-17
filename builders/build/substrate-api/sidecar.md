@@ -82,7 +82,6 @@ node_modules/.bin/substrate-api-sidecar
 
 If the installation and configuration are successful, you should see this output in the console: 
 
-XXX Modify Sidecar Version
 ![Successful Output](/images/builders/build/substrate-api/sidecar/sidecar-1.png)
 
 ## Substrate API Sidecar Endpoints {: #substrate-api-sidecar-endpoints } 
@@ -205,8 +204,8 @@ To obtain the EVM sender address, recipient address, and EVM hash of any EVM tra
 The EVM field mappings are then summarized as the following:
 
 === "EIP1559"
-    |        EVM Field         |                               Block JSON Field                                |
-    |:------------------------:|:-----------------------------------------------------------------------------:|
+    |        EVM Field         |                               Block JSON Field                               |
+    |:------------------------:|:----------------------------------------------------------------------------:|
     |         Chain ID         |       `extrinsics[extrinsic_number].args.transaction.eip1559.chainId`        |
     |          Nonce           |        `extrinsics[extrinsic_number].args.transaction.eip1559.nonce`         |
     | Max priority fee per gas | `extrinsics[extrinsic_number].args.transaction.eip1559.maxPriorityFeePerGas` |
@@ -220,8 +219,8 @@ The EVM field mappings are then summarized as the following:
     |   EVM execution status   |         `extrinsics[extrinsic_number].events[event_number].data[3]`          |
 
 === "Legacy"
-    |      EVM Field       |                         Block JSON Field                          |
-    |:--------------------:|:-----------------------------------------------------------------:|
+    |      EVM Field       |                         Block JSON Field                         |
+    |:--------------------:|:----------------------------------------------------------------:|
     |        Nonce         |   `extrinsics[extrinsic_number].args.transaction.legacy.nonce`   |
     |      Gas price       | `extrinsics[extrinsic_number].args.transaction.legacy.gasPrice`  |
     |      Gas limit       | `extrinsics[extrinsic_number].args.transaction.legacy.gasLimit`  |
@@ -233,8 +232,8 @@ The EVM field mappings are then summarized as the following:
     | EVM execution status |   `extrinsics[extrinsic_number].events[event_number].data[3]`    |
 
 === "EIP2930"
-    |      EVM Field       |                            Block JSON Field                             |
-    |:--------------------:|:-----------------------------------------------------------------------:|
+    |      EVM Field       |                            Block JSON Field                            |
+    |:--------------------:|:----------------------------------------------------------------------:|
     |       Chain ID       |    `extrinsics[extrinsic_number].args.transaction.eip2930.chainId`     |
     |        Nonce         |     `extrinsics[extrinsic_number].args.transaction.eip2930.nonce`      |
     |      Gas price       |    `extrinsics[extrinsic_number].args.transaction.eip2930.gasPrice`    |
@@ -293,11 +292,11 @@ Moonbeam ERC-20 token transfers will emit the [`Transfer`](https://eips.ethereum
 
 |     Tx Information      |                           Block JSON Field                            |
 |:-----------------------:|:---------------------------------------------------------------------:|
-| ERC-20 contract address | `extrinsics[extrinsic_number].events[event_number].data[0].address`  |
+| ERC-20 contract address |  `extrinsics[extrinsic_number].events[event_number].data[0].address`  |
 |  Event signature hash   | `extrinsics[extrinsic_number].events[event_number].data[0].topics[0]` |
 |     Sender address      | `extrinsics[extrinsic_number].events[event_number].data[0].topics[1]` |
 |    Recipient address    | `extrinsics[extrinsic_number].events[event_number].data[0].topics[2]` |
-|         Amount          |   `extrinsics[extrinsic_number].events[event_number].data[0].data`   |
+|         Amount          |   `extrinsics[extrinsic_number].events[event_number].data[0].data`    |
 
 Other events emitted by EVM smart contracts can be decoded in a similar fashion, but the content of the topics and data fields will change depending on the definition of the specific event. 
 
