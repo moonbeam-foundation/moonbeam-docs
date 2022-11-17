@@ -16,7 +16,7 @@ const baseFee = {
 const weightCorrection = {
   moonbeam: 86298000n,
   moonriver: 86298000n,
-  moonbase: 25000000n,
+  moonbase: 250000000n,
 };
 
 // Endpoint to retrieve the latest block
