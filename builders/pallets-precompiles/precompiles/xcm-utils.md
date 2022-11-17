@@ -10,7 +10,9 @@ keywords: solidity, ethereum, xcm, utils, moonbeam, precompiled, contracts
 
 ## Introduction {: #xcmutils-precompile}
 
-The XCM-utils precompile contract gives developers Polkadot-related utility functions directly within the EVM. This allows for easier transactions and interactions with other XCM-related precompiles. Similar to other [precompile contracts](/builders/pallets-precompiles/precompiles/){target=_blank}, the XCM-utils precompile is located at the following addresses:
+The XCM-utils precompile contract gives developers XCM-related utility functions directly within the EVM. This allows for easier transactions and interactions with other XCM-related precompiles. 
+
+Similar to other [precompile contracts](/builders/pallets-precompiles/precompiles/){target=_blank}, the XCM-utils precompile is located at the following addresses:
 
 === "Moonbeam"
      ```
