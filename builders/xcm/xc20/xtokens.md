@@ -196,6 +196,8 @@ The x-tokens precompile contract allows developers to access XCM token transfer 
      {{networks.moonbase.precompiles.xtokens}}
      ```
 
+--8<-- 'text/precompiles/security.md'
+
 ### The X-Tokens Solidity Interface {: #xtokens-solidity-interface } 
 
 [Xtokens.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=_blank} is an interface through which developers can interact with the x-tokens pallet using the Ethereum API.

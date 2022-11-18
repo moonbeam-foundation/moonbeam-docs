@@ -33,6 +33,8 @@ The call permit precompile is located at the following address:
      {{networks.moonbase.precompiles.call_permit }}
      ```
 
+--8<-- 'text/precompiles/security.md'
+
 ## The Call Permit Solidity Interface {: #the-call-permit-interface }
 
 [`CallPermit.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/call-permit/CallPermit.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's three methods.

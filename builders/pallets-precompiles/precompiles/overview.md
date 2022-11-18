@@ -19,6 +19,8 @@ The Moonbeam-specific precompiles can be interacted with through familiar and ea
 
 ![Precompiled Contracts Diagram](/images/builders/pallets-precompiles/precompiles/overview/overview-1.png)
 
+--8<-- 'text/precompiles/security.md'
+
 ## Precompiled Contract Addresses {: #precompiled-contract-addresses }
 
 The precompiled contracts are categorized by address and based on the origin network. If you were to convert the precompiled addresses to decimal format, and break them into categories by numeric value, the categories are as follows:

@@ -241,6 +241,8 @@ The XCM-transactor legacy precompile is still available in all Moonbeam-based ne
      {{networks.moonbase.precompiles.xcm_transactor_legacy}}
      ```
 
+--8<-- 'text/precompiles/security.md'
+
 ### The XCM-Transactor Solidity Interface {: #xcmtrasactor-solidity-interface } 
 
 [XcmTransactor.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm-transactor/src/v2/XcmTransactorV2.sol){target=_blank} is an interface through which developers can interact with the XCM-transactor pallet using the Ethereum API. 
