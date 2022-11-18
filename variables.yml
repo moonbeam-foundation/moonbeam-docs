@@ -224,10 +224,6 @@ networks:
     substrate_api_sidecar:
       stable_version: 14.1.1
     tx_weight_to_gas_ratio: 25000
-    moonbeam_types_bundle:
-      stable_version: 6.9.1
-      polkadot_js_dependency_version: 2.0.1
-      typescript_dependency_version: 4.3.2
     mintable_xc20:
       asset_deposit: 100
       metadata_base_deposit: 1.0068
@@ -425,12 +421,8 @@ networks:
       epoch_expiration: 10000
       epoch_fulfillment_delay: 2
     substrate_api_sidecar:
-      stable_version: 11.3.3
+      stable_version: 14.1.1
     tx_weight_to_gas_ratio: 25000
-    moonbeam_types_bundle:
-      stable_version: 6.9.1
-      polkadot_js_dependency_version: 2.0.1
-      typescript_dependency_version: 4.3.2
     mintable_xc20:
       asset_deposit: 100
       metadata_base_deposit: 1.0068
@@ -613,12 +605,8 @@ networks:
       epoch_expiration: 10000
       epoch_fulfillment_delay: 2
     substrate_api_sidecar:
-      stable_version: 11.3.3
+      stable_version: 14.1.1
       tx_weight_to_gas_ratio: 25000
-    moonbeam_types_bundle:
-      stable_version: 6.9.1
-      polkadot_js_dependency_version: 2.0.1
-      typescript_dependency_version: 4.3.2
     mintable_xc20:
       asset_deposit: 10000
       metadata_base_deposit: 10.68

@@ -72,9 +72,9 @@ To calculate the fee incurred on a Moonbeam transaction sent via the Ethereum AP
 
 === "EIP-1559"
     ```
-    Gas Price = BaseFee + MaxPriorityFeePerGas < MaxFeePerGas ? 
-                BaseFee + MaxPriorityFeePerGas : 
-                MaxFeePerGas;
+    Gas Price = Base Fee + Max Priority Fee Per Gas< Max Fee Per Gas ? 
+                Base Fee + Max Priority Fee Per Gas: 
+                Max Fee Per Gas;
     Transaction Fee = (Gas Price * Transaction Weight) / {{ networks.moonbase.tx_weight_to_gas_ratio }}
     ```
 === "Legacy"
@@ -101,13 +101,13 @@ With the introduction of RT1900, there is a `Transaction Weight` mismatch betwee
     250000000
     ```
 
-The values of `Gas Price`, `MaxFeePerGas` and `MaxPriorityFeePerGas` for the applicable transaction types can be read from the block JSON object according to the structure described in [the Sidecar API page](/builders/build/substrate-api/sidecar/#evm-fields-mapping-in-block-json-object){target=_blank}, also truncated and reproduced below: 
+The values of `Gas Price`, `Max Fee Per Gas` and `Max Priority Fee Per Gas` for the applicable transaction types can be read from the block JSON object according to the structure described in [the Sidecar API page](/builders/build/substrate-api/sidecar/#evm-fields-mapping-in-block-json-object){target=_blank}, also truncated and reproduced below: 
 
 === "EIP1559"
-    |      EVM Field       |                               Block JSON Field                               |
-    |:--------------------:|:----------------------------------------------------------------------------:|
-    |     MaxFeePerGas     |     `extrinsics[extrinsic_number].args.transaction.eip1559.maxFeePerGas`     |
-    | MaxPriorityFeePerGas | `extrinsics[extrinsic_number].args.transaction.eip1559.maxPriorityFeePerGas` |
+    |        EVM Field         |                               Block JSON Field                               |
+    |:------------------------:|:----------------------------------------------------------------------------:|
+    |     Max Fee Per Gas      |     `extrinsics[extrinsic_number].args.transaction.eip1559.maxFeePerGas`     |
+    | Max Priority Fee Per Gas | `extrinsics[extrinsic_number].args.transaction.eip1559.maxPriorityFeePerGas` |
 
 === "Legacy"
     | EVM Field |                        Block JSON Field                         |
@@ -119,22 +119,22 @@ The values of `Gas Price`, `MaxFeePerGas` and `MaxPriorityFeePerGas` for the app
     |:---------:|:----------------------------------------------------------------:|
     | Gas Price | `extrinsics[extrinsic_number].args.transaction.eip2930.gasPrice` |
 
-The `BaseFee`, introduced in [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank}, is a value set by the network itself. The `BaseFee` for `EIP1559` type transactions is currently static on Moonbeam networks and has the following assigned value:
+The `Base Fee`, introduced in [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank}, is a value set by the network itself. The `Base Fee` for `EIP1559` type transactions is currently static on Moonbeam networks and has the following assigned value:
 
 === "Moonbeam"
     | Variable |  Value   |
     |:--------:|:--------:|
-    | BaseFee  | 100 Gwei |
+    | Base Fee | 100 Gwei |
 
 === "Moonriver"
     | Variable | Value  |
     |:--------:|:------:|
-    | BaseFee  | 1 Gwei |
+    | Base Fee | 1 Gwei |
 
 === "Moonbase Alpha"
     | Variable | Value  |
     |:--------:|:------:|
-    | BaseFee  | 1 Gwei |
+    | Base Fee | 1 Gwei |
 
 `Transaction Weight` is a Substrate mechanism used to measure the execution time a given transaction takes to be executed within a block. For all transactions types, `Transaction Weight` can be retrieved under the event of the relevant extrinsic where the `method` field is set to:
 
