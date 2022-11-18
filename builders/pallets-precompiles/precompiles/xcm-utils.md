@@ -29,6 +29,8 @@ Similar to other [precompile contracts](/builders/pallets-precompiles/precompile
      {{networks.moonbase.precompiles.xcm_utils}}
      ```
 
+--8<-- 'text/precompiles/security.md'
+
 ## The XCM-Utils Solidity Interface {: #xcmutils-solidity-interface } 
 
 [XcmUtils.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm-utils/XcmUtils.sol){target=_blank} is an interface to interact with the precompile.

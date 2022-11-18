@@ -30,6 +30,8 @@ The precompile is located at the following address:
      ```
      {{networks.moonbase.precompiles.author_mapping }}
      ```
+    
+--8<-- 'text/precompiles/security.md'
 
 ## The Author Mapping Solidity Interface {: #the-solidity-interface }
 
