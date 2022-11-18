@@ -72,7 +72,7 @@ To calculate the fee incurred on a Moonbeam transaction sent via the Ethereum AP
 
 === "EIP-1559"
     ```
-    Gas Price = Base Fee + Max Priority Fee Per Gas< Max Fee Per Gas ? 
+    Gas Price = Base Fee + Max Priority Fee Per Gas < Max Fee Per Gas ? 
                 Base Fee + Max Priority Fee Per Gas: 
                 Max Fee Per Gas;
     Transaction Fee = (Gas Price * Transaction Weight) / {{ networks.moonbase.tx_weight_to_gas_ratio }}
