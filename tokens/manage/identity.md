@@ -55,9 +55,12 @@ For this guide, you will need the following:
 
 ## Get Started {: #get-started }
 
-There are a couple different ways to set and clear an identity using the Polkadot.js Apps, depending on the information to be included. If you intend to register your identity using only the default fields, you can follow the instructions for [Managing an Identity via the Accounts UI](#managing-an-identity-via-accounts).
+There are a couple different ways to set and clear an identity using the Polkadot.js Apps, depending on the information to be included. If you intend to register your identity using only the default fields, you can follow the instructions for [Managing an Identity via the Accounts UI](#managing-an-identity-via-accounts). **This is the recommended way to set and manage your identity**.
 
 If you are looking for a more customizable experience and want to add custom fields beyond the default fields, you can follow the instructions for [Managing an Identity via the Extrinsics UI](#managing-an-identity-via-extrinsics).
+
+!!! note
+    Please note that it is recommended to use the **Accounts** UI on Polkadot.js Apps to manage your identity as it provides an easy-to-use interface that enforces character limits. If you use the **Extrinsics** UI, please be aware that your input for each field (i.e, name, email, etc.) must be 32 characters or less, otherwise, your information will be cut off.
 
 ## Manage an Identity via Accounts {: #manage-via-accounts }
 
@@ -123,7 +126,7 @@ To register an identity using the extrinsics UI, navigate to the [Extrinsics pag
 1. Select your account
 2. Select identity from the **submit the following extrinsic** dropdown
 3. Then select the **setIdentity(info)** function
-4. Start filling in your identity information
+4. Start filling in your identity information. Please make sure that for each field, your input does not exceed 32 characters
     1. Select the format of the data. For this example, you can use **Raw** data but you also have the option of entering your data in BlackTwo256, Sha256, Keccak256, and ShaThree256 hashed format
     2. Enter the data in that format
 
@@ -132,7 +135,7 @@ To register an identity using the extrinsics UI, navigate to the [Extrinsics pag
 Optionally, if you would like to enter custom fields, you can do so by:
 
 1. Scrolling to the top and clicking on **Add item** 
-2. Two fields will appear: the first for the field name and the second for the value. Fill in the field name
+2. Two fields will appear: the first for the field name and the second for the value. Please make sure that for each field and value, your input does not exceed 32 characters. Fill in the field name
     1. Select the format of the data for the field name. Again, you can use **Raw** data
     2. Enter the field name in the selected format
 3. Fill in the value
@@ -183,7 +186,7 @@ To verify the removal of your identity information, you can follow the steps in 
 
 ## Identity Judgement {: #identity-judgement }
 
-After submitting your identity information, you can request verification of your identity from a registrar. Registrars are tasked with verifying the submitted identity information and can set a fee for their services. When you request judgement, you'll need to specify the registrar you want to verify your information and the maximum fee that you're willing to pay them for providing judgement. The request will only be processed if the selected registrar charges less than the maximum fee that you specified, otherwise the transaction will fail. The fee will be locked until the registrar completes the judgement process and only then will the fee be transferred to the registrar.
+After submitting your identity information, you can request verification of your identity from a registrar. Registrars are tasked with verifying the submitted identity information and can set a fee for their services. When you request judgement, you'll need to specify the registrar you want to verify your information and the maximum fee that you're willing to pay them for providing judgement. The request will only be processed if the selected registrar charges less than the maximum fee that you specified, otherwise the transaction will fail. The fee will be locked until the registrar completes the judgement process and only then will the fee be transferred to the registrar. The registrar fee is in addition to the deposit paid when you intially created your identity.
 
 Registrar applicants are appointed via on-chain democracy. If an appointed registrar issues incorrect judgements or proves to be untrustworthy, they can be removed through democracy.
 
@@ -202,6 +205,11 @@ A registrar will perform proper due dilligence to verify the submitted identity 
 When requesting identity judgement, you'll need to provide the index of the registrar you want to complete your request.
 
 The current registrars are as follows:
+
+=== "Moonriver"
+    |                                                       Registrar                                                       |      Operator       |                  Address                   | Index |
+    |:---------------------------------------------------------------------------------------------------------------------:|:-------------------:|:------------------------------------------:|:-----:|
+    | [Registrar #0](https://forum.moonbeam.foundation/t/proposal-32-status-voting-identity-registrar-0/187){target=_blank} | Moonbeam Foundation | 0x031590D13434CC554f7257A89B2E0B10d67CCCBa |   0   |
 
 === "Moonbase Alpha"
     |                                      Registrar                                      |                      Operator                      |                  Address                   | Index |
@@ -231,7 +239,7 @@ To request identity judgement, from the **Extrinsics** page, you can take the fo
 
 Once the transaction goes through, the fee will be taken from your free balance and locked until the judgement is complete.
 
-After the judgement is complete, a green check mark will appear next to your account. From the **Accounts** page, you can click on your account name to review your identity information and your identity judgement results.
+After the judgement is complete and you've been successfully verified, a green check mark will appear next to your account. If successful, your identity will be assigned one of these three levels of confidence: low quality, reasonable, or known good. From the **Accounts** page, you can click on your account name to review your identity information and your identity judgement results.
 
 ![Identity verified](/images/tokens/manage/identity/identity-14.png)
 
