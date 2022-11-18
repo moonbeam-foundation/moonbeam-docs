@@ -44,22 +44,22 @@ In the terminal that Sidecar will run, export the environmental variable for the
 
 === "Moonbeam"
     ```
-    export SAS_SUBSTRATE_WS_URL=wss://wss.api.moonbeam.network
+    export SAS_SUBSTRATE_URL=wss://wss.api.moonbeam.network
     ```
 
 === "Moonriver"
     ```
-    export SAS_SUBSTRATE_WS_URL=wss://wss.api.moonriver.moonbeam.network
+    export SAS_SUBSTRATE_URL=wss://wss.api.moonriver.moonbeam.network
     ```
 
 === "Moonbase Alpha"
     ```
-    export SAS_SUBSTRATE_WS_URL=wss://wss.api.moonbase.moonbeam.network
+    export SAS_SUBSTRATE_URL=wss://wss.api.moonbase.moonbeam.network
     ```
 
 === "Moonbeam Dev Node"
     ```
-    export SAS_SUBSTRATE_WS_URL=ws://127.0.0.1:9944
+    export SAS_SUBSTRATE_URL=ws://127.0.0.1:9944
     ```
 
 Please reference the [Public Endpoints](/builders/get-started/endpoints/) page for a full list of Moonbeam network endpoints.
@@ -67,7 +67,7 @@ Please reference the [Public Endpoints](/builders/get-started/endpoints/) page f
 After setting the environmental variable, you can use the `echo` command to check that the environmental variable has been set correctly, by typing:
 
 ```
-echo $SAS_SUBSTRATE_WS_URL
+echo $SAS_SUBSTRATE_URL
 ```
 
 And it should display the network endpoint you have just set. 
@@ -204,8 +204,8 @@ To obtain the EVM sender address, recipient address, and EVM hash of any EVM tra
 The EVM field mappings are then summarized as the following:
 
 === "EIP1559"
-    |        EVM Field         |                               Block JSON Field                                |
-    |:------------------------:|:-----------------------------------------------------------------------------:|
+    |        EVM Field         |                               Block JSON Field                               |
+    |:------------------------:|:----------------------------------------------------------------------------:|
     |         Chain ID         |       `extrinsics[extrinsic_number].args.transaction.eip1559.chainId`        |
     |          Nonce           |        `extrinsics[extrinsic_number].args.transaction.eip1559.nonce`         |
     | Max priority fee per gas | `extrinsics[extrinsic_number].args.transaction.eip1559.maxPriorityFeePerGas` |
@@ -219,8 +219,8 @@ The EVM field mappings are then summarized as the following:
     |   EVM execution status   |         `extrinsics[extrinsic_number].events[event_number].data[3]`          |
 
 === "Legacy"
-    |      EVM Field       |                         Block JSON Field                          |
-    |:--------------------:|:-----------------------------------------------------------------:|
+    |      EVM Field       |                         Block JSON Field                         |
+    |:--------------------:|:----------------------------------------------------------------:|
     |        Nonce         |   `extrinsics[extrinsic_number].args.transaction.legacy.nonce`   |
     |      Gas price       | `extrinsics[extrinsic_number].args.transaction.legacy.gasPrice`  |
     |      Gas limit       | `extrinsics[extrinsic_number].args.transaction.legacy.gasLimit`  |
@@ -232,8 +232,8 @@ The EVM field mappings are then summarized as the following:
     | EVM execution status |   `extrinsics[extrinsic_number].events[event_number].data[3]`    |
 
 === "EIP2930"
-    |      EVM Field       |                            Block JSON Field                             |
-    |:--------------------:|:-----------------------------------------------------------------------:|
+    |      EVM Field       |                            Block JSON Field                            |
+    |:--------------------:|:----------------------------------------------------------------------:|
     |       Chain ID       |    `extrinsics[extrinsic_number].args.transaction.eip2930.chainId`     |
     |        Nonce         |     `extrinsics[extrinsic_number].args.transaction.eip2930.nonce`      |
     |      Gas price       |    `extrinsics[extrinsic_number].args.transaction.eip2930.gasPrice`    |
@@ -292,11 +292,11 @@ Moonbeam ERC-20 token transfers will emit the [`Transfer`](https://eips.ethereum
 
 |     Tx Information      |                           Block JSON Field                            |
 |:-----------------------:|:---------------------------------------------------------------------:|
-| ERC-20 contract address | `extrinsics[extrinsic_number].events[event_number].data[0].address`  |
+| ERC-20 contract address |  `extrinsics[extrinsic_number].events[event_number].data[0].address`  |
 |  Event signature hash   | `extrinsics[extrinsic_number].events[event_number].data[0].topics[0]` |
 |     Sender address      | `extrinsics[extrinsic_number].events[event_number].data[0].topics[1]` |
 |    Recipient address    | `extrinsics[extrinsic_number].events[event_number].data[0].topics[2]` |
-|         Amount          |   `extrinsics[extrinsic_number].events[event_number].data[0].data`   |
+|         Amount          |   `extrinsics[extrinsic_number].events[event_number].data[0].data`    |
 
 Other events emitted by EVM smart contracts can be decoded in a similar fashion, but the content of the topics and data fields will change depending on the definition of the specific event. 
 
