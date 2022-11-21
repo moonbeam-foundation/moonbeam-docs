@@ -704,6 +704,11 @@ An example of the response for calling `get` to send xcDOT from Moonbeam back to
   destinationFee: 520000000n,
   existentialDeposit: 10000000000n,
   min: 10520000000n,
+  minXcmFeeAsset: {
+    amount: 0n,
+    decimals: 10,
+    symbol: "DOT",
+  },
   native: {
     id: '42259045809535163221576417993425387648',
     erc20Id: '0xffffffff1fcacbd218edc0eba20fc2308c778080',
@@ -717,6 +722,7 @@ An example of the response for calling `get` to send xcDOT from Moonbeam back to
     weight: 1000000000,
     parachainId: 0
   },
+  originXcmFeeAssetBalance: undefined,
   getFee: [AsyncFunction: getFee],
   send: [AsyncFunction: send]
 }
@@ -731,9 +737,11 @@ Where the returned values are as follows:
 | `destinationBalance` |                                                                                                                                           the balance of the asset being transferred on the destination chain                                                                                                                                           |
 |   `destinationFee`   |                                                                                                                                            the fee for the asset to be transferred on the destination chain                                                                                                                                             |
 | `existentialDeposit` | the [existential deposit](https://support.polkadot.network/support/solutions/articles/65000168651-what-is-the-existential-deposit-#:~:text=On%20the%20Polkadot%20network%2C%20an,the%20Existential%20Deposit%20(ED).){target=_blank}, or the minimum amount an address must <br> hold to be considered active if one exists, otherwise `0n` is returned |
-|        `min`         |                                                                                                                                                            the minimum transferrable amount                                                                                                                                                             |
+|        `min`         |                                                                                                                                                            the minimum transferable amount of the asset being transferred                                                                                                                                                            |
+|        `minXcmFeeAsset`         |                                                                                                                        the minimum transferable amount of the asset that needs to be sent along to pay for the fees                                                                                                                                                             |
 |       `native`       |                                                                                                                                                     the native [asset](#assets) of the source chain                                                                                                                                                     |
 |       `origin`       |                                                                                                                                  the chain information for where the asset being transferred natively originates from                                                                                                                                   |
+|       `originXcmFeeAssetBalance`       |                                                                                                                             the balance in the origin account of the asset that is sent along with the transfer to pay for the fees, if any                                                                                                                                   |
 |       `getFee`       |                                                                                                                                  a function that [estimates the fees](#get-fee-withdraw) for depositing a given amount                                                                                                                                  |
 |        `send`        |                                                                                                                                           a function that [sends](#send-withdraw) the withdraw transfer data                                                                                                                                            |
 
