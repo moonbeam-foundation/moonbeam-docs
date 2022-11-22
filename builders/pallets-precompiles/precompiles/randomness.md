@@ -37,6 +37,8 @@ The randomness precompile is located at the following address:
      {{ networks.moonbase.precompiles.randomness }}
      ```
 
+--8<-- 'text/precompiles/security.md'
+
 ## The Randomness Solidity Interface {: #the-randomness-interface }
 
 [Randomness.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/Randomness.sol#L4-L11){target=_blank} is a Solidity interface that allows developers to interact with the precompile's methods.

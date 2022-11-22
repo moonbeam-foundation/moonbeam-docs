@@ -31,6 +31,8 @@ The staking module is coded in Rust and it is part of a pallet that is normally 
 
 This guide will cover the available methods in the staking precompile interface. In addition, it will show you how to interact with the staking pallet through the staking precompile and the Ethereum API. The examples in this guide are done on Moonbase Alpha, but they can be adapted for Moonbeam or Moonriver.
 
+--8<-- 'text/precompiles/security.md'
+
 ## Exit Delays {: #exit-delays }
 
 Some of the staking pallet extrinsics include exit delays that you must wait before the request can be executed. The exit delays to note are as follows:

@@ -39,6 +39,8 @@ The collective precompiles are located at the following addresses:
      | Technical committee | {{networks.moonbase.precompiles.collective_tech_committee }} |
      |  Treasury council   |    {{networks.moonbase.precompiles.collective_treasury }}    |
 
+--8<-- 'text/precompiles/security.md'
+
 ## The Collective Solidity Interface {: #the-call-permit-interface }
 
 [`Collective.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/collective/Collective.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's five methods.

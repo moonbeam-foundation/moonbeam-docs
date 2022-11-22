@@ -31,6 +31,8 @@ The democracy precompile is located at the following address:
      {{networks.moonbase.precompiles.democracy}}
      ```
 
+--8<-- 'text/precompiles/security.md'
+
 ## The Democracy Solidity Interface {: #the-democracy-solidity-interface } 
 
 [`DemocracyInterface.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/pallet-democracy/DemocracyInterface.sol){target=_blank} is an interface through which Solidity contracts can interact with the democracy pallet. The beauty of the precompile is that you don’t have to learn the Substrate API — you can interact with functions using the Ethereum interface you're familiar with.

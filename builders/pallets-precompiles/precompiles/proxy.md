@@ -23,6 +23,8 @@ The proxy precompile is only available on Moonbase Alpha and is located at the f
      {{networks.moonbase.precompiles.proxy}}
      ```
 
+--8<-- 'text/precompiles/security.md'
+
 ## The Proxy Solidity Interface {: #the-proxy-solidity-interface } 
 
 [`Proxy.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/proxy/Proxy.sol){target=_blank} is an interface through which Solidity contracts can interact with the proxy pallet. You do not have to be familiar with the Substrate API since you can interact with it using the Ethereum interface you're familiar with.
