@@ -5,7 +5,7 @@ description: Learn how to bridge assets, set up a relayer, and other ways you ca
 
 # Wormhole Network
 
-insert banner image
+**insert banner image**
 
 ## Introduction
 
@@ -34,263 +34,73 @@ See the list of Wormhole contracts deployed to Moonbeam, and the networks connec
 
 ## Setting up a Specialized Relayer With the Relayer Engine {: #setting-up-a-specialized-relayer-with-the-relayer-engine }
 
-vvv Put this stuff in the relayer section vvv
+In this section, you will deploy a basic Wormhole connected smart contract and spin up a specialized relayer to send messages across chains.
 
-VAAs, or verifiable action approvals, are Wormhole’s version of validated cross-chain messages. If 13 out of Wormhole's 19 signing guardians validate a particular message, the message becomes approved and can be received on other chains. Adjacent to the guardian network (which act as the validators of Wormhole’s protocol) are the network spies. They don’t do any validation work. Instead, they watch the guardian network and act as an interface to allow users and applications to see what VAAs have been approved.
+First, some context. VAAs, or verifiable action approvals, are Wormhole’s version of validated cross-chain messages. If 13 out of Wormhole's 19 signing guardians validate a particular message, the message becomes approved and can be received on other chains. Adjacent to the guardian network (which act as the validators of Wormhole’s protocol) are the network spies. They don’t do any validation work. Instead, they watch the guardian network and act as an interface to allow users and applications to see what VAAs have been approved.
 
 The relayer’s role is to pay for the destination chain’s execution, and in many general relayers, in turn the relayer is paid by the user. Wormhole does not have this available yet, so instead Wormhole’s architecture requires dApp developers to create and maintain their own specialized relayers. A developer would have to design their own system if they wished to have the contract caller pay for gas on the destination chain. This might seem like a greater amount of work, but it allows for more fine-tuning of how messages are handled. For example, a relayer could send the same message to multiple chains at the same time.
 
+### Checking Prerequisites {: #checking-prerequisites } 
 
+To follow along with this tutorial, you will need to have:
 
+- [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
+- [Docker installed](https://docs.docker.com/get-docker/)
+- Have an account be funded with `DEV` tokens.
+ --8<-- 'text/faucet/faucet-list-item.md'
+- Have the same account be funded with native currency from a Wormhole connected EVM of your choice. Faucets [are in the table below](#deploying-the-wormhole-contract-with-remix-on-moonbase-alpha)
 
-Image from [Wormhole](https://wormhole.com/)
+### Deploying the Wormhole Contract with Remix on Moonbase Alpha {:deploying-the-wormhole-contract-with-remix-on-moonbase-alpha}
 
-To send a cross-chain message, you will need to use a smart contract. Every chain connected to Wormhole will have some sort of implementation of the [Wormhole core bridge](https://github.com/wormhole-foundation/wormhole/blob/dev.v2/ethereum/contracts/interfaces/IWormhole.sol), whose purpose is to publish and verify VAAs. Each implementation of the core bridge contract (one per chain) is watched by every guardian in the guardian network, which is how they know when to start validating a message.
-
-You as a developer will interact directly with the core wormhole smart contract by both sending and validating VAAs. You will also have to run a non-validating spy node and a specialized relayer. Don’t worry though, this blog will take you through it step by step to make it as understandable as possible.
-
-
-## Connected _SimpleGeneralMessage _Contract
+To send a cross-chain message, in this guide, you will need to deploy and use a smart contract. Every chain connected to Wormhole will have some sort of implementation of the [Wormhole core bridge](https://github.com/wormhole-foundation/wormhole/blob/dev.v2/ethereum/contracts/interfaces/IWormhole.sol), whose purpose is to publish and verify VAAs. Each implementation of the core bridge contract (one per chain) is watched by every guardian in the guardian network, which is how they know when to start validating a message.
 
 Unlike other cross-chain protocols, Wormhole doesn’t provide a parent smart contract to inherit from for users to build off of. This is because Wormhole’s first chain, Solana, doesn’t have typical inheritance in their smart contracts like Solidity provides. To keep the design experience similar on each chain, Wormhole has their solidity developers interact directly with the Wormhole core bridge smart contract on EVM chains.
 
-The [smart contract](https://github.com/jboetticher/relayer-engine/blob/main/SimpleGeneralMessage.sol) that you will be deploying today is stored in a Git repository that is forked from Wormhole’s relayer engine repository. You will deploy it with Remix, and the contract can be automatically accessed with [this Remix link](https://remix.ethereum.org/?#gist=6aac8f954e245d6394f685af5d404b4b&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.17+commit.8df45f5f.js).
+The [smart contract](https://github.com/jboetticher/relayer-engine/blob/main/SimpleGeneralMessage.sol) that you will be deploying today is stored in a Git repository that is forked from Wormhole’s relayer engine repository. It sends a string from one chain to another, and stores strings when received through Wormhole's protocol. To deploy the script, either copy and paste the contract into Remix or open up this [Remix gist link](https://remix.ethereum.org/?gist=6aac8f954e245d6394f685af5d404b4b).  
 
-First things first, the code in this smart contract is based off of [Wormhole’s best practices documentation](https://book.wormhole.com/technical/evm/bestPractices.html), but simplified in certain areas (like security). When writing a smart contract for production, review their documentation for a better understanding of standards. To be clear, **do not use the following smart contract in production**. For today’s demonstration purposes, however, you’re aiming to simply get the system to work.
+First things first, the code in this smart contract is based off of [Wormhole’s best practices documentation](https://book.wormhole.com/technical/evm/bestPractices.html), but simplified in certain areas (like security). When writing a smart contract for production, review their documentation for a better understanding of standards. To be clear, **do not use the following smart contract in production**.  
 
+1. Go to the Solidity Compiler tab
+2. Press the Compile button
+3. Then, go to the Deploy & Run Transactions tab of Remix 
+4. Set the environment to Injected Web3. This will use MetaMask as the Web3 provider. Ensure that your MetaMask is connected to the Moonbase Alpha network
 
-### Sending VAAs
-
-Take a look at the message sending portion of the smart contract in either the source file or the pictures below. The external facing _sendMessage_ function includes three parameters: the message string, the destination address, and a destination chainId. The _destChainId_ value to blockchain mapping can be found in [Wormhole’s documentation](https://book.wormhole.com/reference/contracts.html).
-
-Note that the destination address is an address type, and not a bytes32 type. This is significant because chains like NEAR, Algorand, and Solana use bytes32 addresses, which are larger. The _SimpleGeneralMessage_ smart contract uses the address type because previous blog posts also used this type, but if you were to build your own dApp it is recommended to use a bytes32 address input so that you can communicate with non-EVM blockchains.
-
-The function itself has two lines. The first invokes a private function that will interact with the Wormhole core bridge. The reason this functionality is segregated from the _sendMessage_ function is that Wormhole has a convention to return a sequence value from all message-publishing functions. The sequence value represents the number of times that a Wormhole message has been sent from a smart contract. For example, the first message sent will return 0, then the second message will return 1, and so on. This value can be helpful for receiving messages in order, but is out of scope for this blog post.
-
-The second line increases the global nonce (number used once) value. Nonces can be reused to batch VAAs together, but that is also out of scope for this blog post. In this case, each message will have a unique nonce value just for good practice to ensure that the nonce is, in fact, a nonce. Though you could leave the nonce as 0 for all messages and the system would still work.
-
-
-```
-   // Public facing function to send a message across chains
-   function sendMessage(
-       string memory message,
-       address destAddress,
-       uint16 destChainId
-   ) external payable {
-       // Wormhole recommends that message-publishing functions should return their sequence
-       _sendMessageToRecipient(destAddress, destChainId, message, nonce);
-       nonce++;
-   }
-```
-
-
-Continuing our break-down of message sending, take a look at the private function called by the _sendMessage_ function, __sendMessageToRecipient_, which is shown below. The first line of code encodes data into a bytes payload. It encodes the address of the recipient, the chainId that the message should be sent to, the sender of the message, and the message itself. This information will be important for both the relayer and the destination connected contract to parse.
-
-The second line of code interacts with the Wormhole core bridge contract to publish a message. Note that the inputs include a nonce, a payload, and a consistency level value. The nonce value was injected from _sendMessage_, and isn’t useful for this scenario. The payload is what was encoded in the previous line of code. The consistency level controls how many blocks since the transaction originally occurred the guardian network should wait before the message begins the validation process. This can be helpful for security reasons, as some blocks have slower finality than others, like Ethereum. For testing, however, 1 should be enough.
-
-
-```
-   // This function defines a super simple Wormhole 'module'.
-   // A module is just a piece of code which knows how to emit a composable message
-   // which can be utilized by other contracts.
-   function _sendMessageToRecipient(
-       address recipient,
-       uint16 _chainId,
-       string memory message,
-       uint32 _nonce
-   ) private returns (uint64) {
-       bytes memory payload = abi.encode(
-           recipient,
-           _chainId,
-           msg.sender,
-           message
-       );
-
-       // 1 is the consistency level, this message will be emitted after only 1 block
-       uint64 sequence = core_bridge.publishMessage(_nonce, payload, 1);
-       return sequence;
-   }
-```
-
-
-That’s it for sending the message. If you have experimented with other connected contract protocols, then you might notice that there is no method of paying for the destination chain’s transaction with the origin chain’s currency. That is because in protocols where that is possible, the relayer is managed by the protocol. The relayer pays for the destination chain’s execution, and in turn the relayer is paid by the user. In this case, however, you will be running your own relayer. You would have to design your own system if you wished to have the contract caller pay for gas on the destination chain.
-
-Moving forward, look at how the _SimpleGeneralMessage_ smart contract receives a VAA.
-
-
-### Receiving VAAs
-
-Wormhole recommends some sort of whitelisting of VAA emitters, so the function that receives a VAA will check for trusted addresses. To add trusted addresses, _SimpleGeneralMessage_ includes the helper function _addTrustedAddress_. In a production environment, this helper function should also check to see if the caller has permission to add a trusted address (such as using OpenZeppelin’s _onlyOwner_ modifier), but for a testnet, this is as far as you’ll go with security.
-
-
-```
-// TODO: A production app would add onlyOwner security, but this is for testing.
-   function addTrustedAddress(bytes32 sender, uint16 _chainId) external {
-       myTrustedContracts[sender][_chainId] = true;
-   }
-```
-
-
-Now into the thick of things. _processMyMessage_ (seen below) is how _SimpleGeneralMessage_ receives VAAs. This name was chosen arbitrarily, since the custom relayer will be able to call any function with any name. In other connected contract protocols, where a public generic relayer handles the destination chain’s execution, a specifically named external facing function is often required. But since Wormhole dApp developers run their own specialized relayer, the receiving function can be whatever the developer wants.
-
-The only parameter that _processMyMessage_ takes in is a bytes object called VAA. Developers won’t have to manually create the VAA object, since Wormhole largely automatically does it. The VAA has a lot of information packed into it, which gets decoded into a _VM_ struct if valid. This struct can be viewed in its entirety in [Wormhole’s repository](https://github.com/wormhole-foundation/wormhole/blob/dev.v2/ethereum/contracts/interfaces/IWormhole.sol). 
-
-This first line of code, with _core_bridge.parseAndVerifyVM_, has the Wormhole core bridge verify on-chain that the signatures included with the VAA are correct. It returns parsed data, a boolean to indicate success or failure, and a string to represent an error if it occurred. The second line of code reverts if the _parseAndVerifyVM_ function returns false for its boolean (VAA is not valid), and will display the reason for the failure.
-
-The third line of code, the _require_ statement with _myTrustedContracts_, invokes the whitelisting functionality that was previously mentioned. Trusted contracts are stored in a nested map, and checking it against the VAA’s emitter will ensure that the emitter (the connected contract on the origin chain) is trusted.
-
-The fourth line of code, another _require_ statement with _processedMessages_, checks to ensure that the VAA has not already been processed. Remember that VAAs can be picked up by anyone with a spy node, and if there are multiple relayers that are looking to do the same thing, then the message will attempt to be processed multiple times. You’ll see later (line eight) that the _processMyMessage_ function will write to _processedMessages_ with a VAA hash to make sure that the message its processing won’t be processed more than once.
-
-The fifth line of code with _abi.decode_ decodes the payload into four values so that the message can be stored. Note that it was decoded in the same way that it was encoded.
-
-The sixth line of code, a _require_ statement with _intendedRecipient_, checks to make sure that the _intendedRecipient_ of the message, which was included in the payload, is the same address as this smart contract. Cross-chain messages sent through the Wormhole protocol are only verified to occur. It does not verify if a message is meant to be sent to one or more specific contracts. This is why the contract must check manually if incoming messages are intended for it. Along similar lines, the seventh line of code checks to ensure that the message is sent to the right chain.
-
-The eighth line of code, which adds to the _processedMessages_ map, writes to a map within the smart contract to ensure that the same message doesn’t get parsed twice (told you that you’d see it later). The message hasn’t been completely processed at this point, but it might be better to finish this step lest a complex interaction (for contracts more important than this) further along the line leads to a reentrancy attack.
-
-Finally, on the ninth line with _lastMessage_, at long last, the string that was sent from the origin chain to the destination chain is written to the smart contract.
-
-
-```
-   // Verification accepts a single VAA, and is publicly callable.
-   function processMyMessage(bytes memory VAA) public {
-       // This call accepts single VAAs and headless VAAs
-       (IWormhole.VM memory vm, bool valid, string memory reason) = 
-           core_bridge.parseAndVerifyVM(VAA);
-
-       // Ensure core contract verifies the VAA
-       require(valid, reason);
-
-       // Ensure the emitterAddress of this VAA is a trusted address
-       require(
-           myTrustedContracts[vm.emitterAddress][vm.emitterChainId],
-           "Invalid emitter address!"
-       );
-
-       // Check that the VAA hasn't already been processed (replay protection)
-       require(!processedMessages[vm.hash], "Message already processed");
-
-       // Parse intended data
-       // You could attempt to parse the sender from the bytes32 but that's hard. 
-       // (hence why address was included in the payload)
-       (
-           address intendedRecipient,
-           uint16 _chainId,
-           address sender,
-           string memory message
-       ) = abi.decode(vm.payload, (address, uint16, address, string));
-
-       // Check that the contract which is processing this VAA is the intendedRecipient
-       // If the two aren't equal, this VAA may have bypassed its intended entrypoint.
-       // This exploit is referred to as 'scooping'.
-       require(
-           intendedRecipient == address(this),
-           "Not the intended receipient!"
-       );
-
-       // Check that the contract that is processing this VAA is the intended chain.
-       // By default, a message is accessible by all chains, 
-       // so we have to define a destination chain & check for it.
-       require(_chainId == chainId, "Not the intended chain!");
-
-       // Add the VAA to processed messages so it can't be replayed
-       processedMessages[vm.hash] = true;
-
-       // The message content can now be trusted, slap into messages
-       lastMessage[sender] = message;
-   }
-```
-
-
-You might want to take a bit of a breather, but soon you will deploy the contract! Doing is the best way to learn, so try to follow along with the deployment and message passing yourself on Moonbase Alpha. 
-
-
-## Deploying the Wormhole Contract with Remix on Moonbase Alpha
-
-The easiest way to deploy the single demo contract is [through Remix](https://docs.moonbeam.network/builders/build/eth-api/dev-env/remix/). You’ll need DEV to deploy on Moonbase Alpha, which you can get from [our faucet](https://apps.moonbeam.network/moonbase-alpha/faucet/) if you don’t have any already.
-
-To deploy the script, either copy and paste [the contract](https://gist.github.com/jboetticher/6aac8f954e245d6394f685af5d404b4b) into Remix or open up this [Remix gist link](https://remix.ethereum.org/?gist=6aac8f954e245d6394f685af5d404b4b). 
-
-
-
-1. Then compile in the **Solidity Compiler** tab. Ensure that your MetaMask is connected to the Moonbase Alpha network
-2. Then, go to the **Deploy & Run Transactions** tab of Remix 
-3. Set the environment to **Injected Web3**. This will use MetaMask as the Web3 provider
-
-
-
-
-image 3
-
+![Set up smart contract deployment](/images/builders/integrations/bridges/wormhole/wormhole-2.png)
 
 To deploy on each chain, you will need the local instance of the Wormhole core bridge and the chain Id of the chain mentioned. All of this data has been provided for a select few TestNets in the table below. You can find other networks’ endpoints on Wormhole’s [documentation site](https://book.wormhole.com/reference/contracts.html#testnet). Keep in mind that you should only use EVMs for this demonstration, since the smart contract and relayer designed for this blog post only supports EVMs.
 
-Once the contract has been deployed on Moonbase Alpha make sure to copy down its address and repeat the process with one of any of the other [EVM TestNets](https://layerzero.gitbook.io/docs/technical-reference/testnet/testnet-addresses) that are connected to Wormhole so that you can send a message across chains. 
+|                          Network & Faucet                           |             Core Bridge Address            | Wormhole Chain ID |
+|:-------------------------------------------------------------------:|:------------------------------------------:|:-----------------:|
+| [Polygon Mumbai](https://faucet.polygon.technology/){target=_blank} | 0x0CBE91CF822c73C2315FB05100C2F714765d5c20 |         5         |
+|    [Avalanche Fuji](https://faucet.avax.network/){target=_blank}    | 0x7bbcE28e64B3F8b84d876Ab298393c38ad7aac4C |         6         |
+|   [Fantom Testnet](https://faucet.fantom.network/){target=_blank}   | 0x1BB3B4119b7BA9dfad76B0545fb3F531383c3bB7 |         10        |
+|         [Goreli](https://goerlifaucet.com/){target=_blank}          | 0x706abc4E45D419950511e474C7B9Ed348A4a716c |         2         |
+| [Moonbase Alpha](https://docs.moonbeam.network/builders/get-started/networks/moonbase/#moonbase-alpha-faucet){target=_blank} | 0xa5B7D85a8f27dd7907dc8FdC21FA5657D5E2F901 | 16 |
 
+1. Ensure that the contract chosen is SimpleGeneralMessage
+2. Open up the deploy menu with the arrow button
+3. Input the relevant *chainID* in the **_CHAINID** input
+4. Input the relevant core bridge address in the **WORMHOLE_CORE_BRIDGE_ADDRESS** input
+5. Press the transact button to deploy
 
-<table>
-  <tr>
-   <td>Network & Faucet
-   </td>
-   <td>Wormhole Core Bridge
-   </td>
-   <td>Wormhole Chain ID
-   </td>
-  </tr>
-  <tr>
-   <td><a href="https://faucet.polygon.technology/">Polygon Mumbai</a>
-   </td>
-   <td>0x0CBE91CF822c73C2315FB05100C2F714765d5c20
-   </td>
-   <td>5
-   </td>
-  </tr>
-  <tr>
-   <td><a href="https://faucet.avax.network/">Avalanche Fuji</a>
-   </td>
-   <td>0x7bbcE28e64B3F8b84d876Ab298393c38ad7aac4C
-   </td>
-   <td>6
-   </td>
-  </tr>
-  <tr>
-   <td><a href="https://faucet.fantom.network/">Fantom</a>
-   </td>
-   <td>0x1BB3B4119b7BA9dfad76B0545fb3F531383c3bB7
-   </td>
-   <td>10
-   </td>
-  </tr>
-  <tr>
-   <td><a href="https://goerlifaucet.com/">Goerli</a>
-   </td>
-   <td>0x706abc4E45D419950511e474C7B9Ed348A4a716c
-   </td>
-   <td>2
-   </td>
-  </tr>
-  <tr>
-   <td><a href="https://docs.moonbeam.network/builders/get-started/networks/moonbase/#moonbase-alpha-faucet">Moonbase Alpha</a>
-   </td>
-   <td>0xa5B7D85a8f27dd7907dc8FdC21FA5657D5E2F901
-   </td>
-   <td>16
-   </td>
-  </tr>
-</table>
+**NEEDS A PICTURE TO ILLUSTRATE**
+
+Once the contract has been deployed on Moonbase Alpha make sure to copy down its address and repeat the process with one of any of the other [EVM TestNets](https://layerzero.gitbook.io/docs/technical-reference/testnet/testnet-addresses) that are connected to Wormhole so that you can send a message across chains. Remember that you will have to change your network in MetaMask to deploy to the right network. 
+
+### Whitelisting Moonbase Alpha’s Connected Contract {:whitelisting-moonbase-alpha-connected-contract}
+
+At this point, you should have the same smart contracts deployed twice. One on Moonbase Alpha, and another on another EVM chain.  
+
+Wormhole recommends to include a whitelisting system in their connected contracts, which you will have to use in *SimpleGeneralMessage* before attempting to send a cross-chain message.
+
+To add a whitelisted contract, you must invoke the _addTrustedAddress_ function, which requires a _bytes32 _formatted address and a domain ID. You can find the domain ID in the table above and on [Wormhole’s documentation](https://book.wormhole.com/reference/contracts.html#testnet).
 
 
 
-### Whitelisting Moonbase Alpha’s Connected Contract
-
-As previously mentioned, Wormhole recommends to include a whitelisting system in their connected contracts, which you will have to use in _SimpleGeneralMessage_ before attempting to send a cross-chain message.
-
-Recall that to add a whitelisted contract, you must invoke the _addTrustedAddress_ function, which requires a _bytes32 _formatted address and a domain ID. You can find the domain ID in the table above and on [Wormhole’s documentation](https://book.wormhole.com/reference/contracts.html#testnet).
-
-
-```
-   function addTrustedAddress(bytes32 sender, uint16 _chainId) external {
-       myTrustedContracts[sender][_chainId] = true;
-   }
+```javascript
+function addTrustedAddress(bytes32 sender, uint16 _chainId) external {
+    myTrustedContracts[sender][_chainId] = true;
+}
 ```
 
 
@@ -332,18 +142,13 @@ To add trusted remote addresses:
 When you are on the alternate EVM TestNet, set the **sender** as the properly formatted (padded with 24 zeros) address of the contract you deployed on Moonbase Alpha. Set the **_chainId** as the Moonbase Alpha’s Wormhole chainId (16). Finally, transact and confirm in MetaMask. 
 
 
-### 
-
-
-
 image 5
 
 
 In this section you should have sent two transactions on two chains to whitelist addresses in both contracts. Afterwards, you should be allowed to send messages between the connected contracts.
 
 
-## How to Run a Wormhole Testnet Relayer & Guardian Network Spy
-This project will require you to [install Docker](https://docs.docker.com/get-docker/)
+### Running a Wormhole Guardian Network Spy
 
 Now you will run a TestNet relayer for Wormhole! This walkthrough is based off of Wormhole’s [relayer-engine](https://github.com/wormhole-foundation/relayer-engine) Github repository, which as of time of writing, is on commit [dac6012](https://github.com/wormhole-foundation/relayer-engine/tree/dac6012cc7ed9c3ca79d911b47f39bfe9dd76a23). It’s in relatively active development, which can cause great changes in the structure of the folders. 
 
@@ -393,7 +198,7 @@ image 6
 
 
 
-### Listener Component
+### Setting up the Listener Component {:setting-up-the-listener-component}
 
 Now to break down the custom code and configurable component of the relayer. The listener component, aptly named, listens to the spy node for relevant messages. To define what the relevant messages are, you must edit a config file.
 
@@ -471,7 +276,7 @@ That’s all that’s necessary for the listener component. Fortunately, most of
 If you recall the list of components, the third is the Redis database component. Everything that has to do with the database is hidden from the user as well, since the _relayer-engine_ package will write & read from it, then inject any relevant data back into the plugin code. There’s nothing more that needs to be done for it, so feel free to take a break.
 
 
-### Executor Component
+### Setting up the Executor Component {:setting-up-the-executor-component}
 
 Finally, you must handle the executor component. Recall that the executor component takes workflow data from the Redis database and does some sort of execution action with that data. For most relayers, this execution will involve an on-chain transaction, since a relayer acts as a trustless oracle for VAAs.
 
