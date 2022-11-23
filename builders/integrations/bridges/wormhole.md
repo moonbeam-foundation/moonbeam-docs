@@ -83,7 +83,7 @@ To deploy on each chain, you will need the local instance of the Wormhole core b
 4. Input the relevant core bridge address in the **WORMHOLE_CORE_BRIDGE_ADDRESS** input
 5. Press the transact button to deploy
 
-**NEEDS A PICTURE TO ILLUSTRATE**
+**NEEDS A PICTURE (WORMHOLE-3) TO ILLUSTRATE**
 
 Once the contract has been deployed on Moonbase Alpha make sure to copy down its address and repeat the process with one of any of the other [EVM TestNets](https://layerzero.gitbook.io/docs/technical-reference/testnet/testnet-addresses) that are connected to Wormhole so that you can send a message across chains. Remember that you will have to change your network in MetaMask to deploy to the right network. 
 
@@ -93,9 +93,7 @@ At this point, you should have the same smart contracts deployed twice. One on M
 
 Wormhole recommends to include a whitelisting system in their connected contracts, which you will have to use in *SimpleGeneralMessage* before attempting to send a cross-chain message.
 
-To add a whitelisted contract, you must invoke the _addTrustedAddress_ function, which requires a _bytes32 _formatted address and a domain ID. You can find the domain ID in the table above and on [Wormhole’s documentation](https://book.wormhole.com/reference/contracts.html#testnet).
-
-
+To add a whitelisted contract, you must invoke the *addTrustedAddress* function, which requires a *bytes32* formatted address and a domain ID. You can find the domain ID in the [table above](#deploying-the-wormhole-contract-with-remix-on-moonbase-alpha) and on [Wormhole’s documentation](https://book.wormhole.com/reference/contracts.html#testnet).
 
 ```javascript
 function addTrustedAddress(bytes32 sender, uint16 _chainId) external {
@@ -103,49 +101,39 @@ function addTrustedAddress(bytes32 sender, uint16 _chainId) external {
 }
 ```
 
+Note that the *sender* parameter is a _bytes32_ instead of an _address_. Wormhole’s VAAs provide emitter (origin) addresses in the form of bytes32, so they are stored and checked as _bytes32_. To convert an _address_ type to _bytes32_, you will need to pad an additional 24 zeros. This is because an _address_ value is 20 bytes, less than the 32 for _bytes32_. Every byte has 2 hexadecimal characters, so:
 
-You might notice that the __router_ parameter is a _bytes32_ instead of an _address_. Even though this blog post only expects to work EVMs, Wormhole’s VAAs provide emitter (origin) addresses in the form of bytes32, so they are stored and checked as _bytes32_.
-
-To convert an _address_ type to _bytes32_, you will need to pad an additional 24 zeros. This is because an _address_ value is 20 bytes, less than the 32 for _bytes32_. Every byte has 2 hexadecimal characters, so:
-
+```
 (32 bytes - 20 bytes) * 2 “0”s to add/byte = 24 “0s” to add
+```
 
 For example, if your connected contract’s address was _0xaf108eF646c8214c9DD9C13CBC5fadf964Bbe293_, you would input the following into Remix:
 
 _0x000000000000000000000000af108ef646c8214c9dd9c13cbc5fadf964bbe293_
 
-Now go ahead and use Remix to ensure that your two connected contracts trust each other. You will have to do this on both contracts that you have deployed if you intend to send messages back and forth. To switch between contracts on different chains, connect to the destination network through MetaMask. 
-
-
+Now use Remix to ensure that your two connected contracts trust each other. You will have to do this on both contracts that you have deployed if you intend to send messages back and forth. To switch between contracts on different chains, connect to the destination network through MetaMask. 
 
 1. Make sure that you are in the **Injected** **Provider** environment
 2. Ensure that you are on the right account
-3. Also check that the contract is still **SimpleGeneralMessage**.
+3. Also check that the contract is still **SimpleGeneralMessage**
 4. Finally, take the address of the destination contract, and paste it into the **At Address **input
 
-
-
-
-
-
-image 4
-
+![At address](/images/builders/integrations/bridges/wormhole/wormhole-4.png)
 
 To add trusted remote addresses: 
 
-
-
-1. Find the _addTrustedAddress_ function within the deployed contract and open it. 
-2. When you are on Moonbase Alpha, set the **sender** as the properly formatted (padded with 24 zeros) address of the contract you deployed on the other EVM TestNet. 
+1. Find the _addTrustedAddress_ function within the deployed contract and open it
+2. When you are on Moonbase Alpha, set the **sender** as the properly formatted (padded with 24 zeros) address of the contract you deployed on the other EVM TestNet
 3. Set the **_chainId** as the Wormhole chainId of the chain that the other contract is deployed on. Afterwards, transact and confirm in MetaMask. 
 
 When you are on the alternate EVM TestNet, set the **sender** as the properly formatted (padded with 24 zeros) address of the contract you deployed on Moonbase Alpha. Set the **_chainId** as the Moonbase Alpha’s Wormhole chainId (16). Finally, transact and confirm in MetaMask. 
 
-
-image 5
-
+![Add trusted address](/images/builders/integrations/bridges/wormhole/wormhole-5.png)
 
 In this section you should have sent two transactions on two chains to whitelist addresses in both contracts. Afterwards, you should be allowed to send messages between the connected contracts.
+
+
+<!-- Haven't finished anything below this section. You can find some images in the blog post folder -->
 
 
 ### Running a Wormhole Guardian Network Spy
