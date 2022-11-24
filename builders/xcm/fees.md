@@ -189,7 +189,7 @@ XCM-KSM-Cost = {{ networks.kusama.xcm_instructions.withdraw.planck_ksm_cost }} /
 
 The total cost for that particular instruction is `{{ networks.kusama.xcm_instructions.withdraw.ksm_cost }} KSM`.
 
-As an example, you can calculate the total cost of KSMs for sending an XCM message that transfers xcKSM to KSM on Kusama using the following weights and instruction costs:
+As an example, you can calculate the total cost of KSM for sending an XCM message that transfers xcKSM to KSM on Kusama using the following weights and instruction costs:
 
 |  Instruction  |                                Weight                                |                               Cost                                |
 |:-------------:|:--------------------------------------------------------------------:|:-----------------------------------------------------------------:|
