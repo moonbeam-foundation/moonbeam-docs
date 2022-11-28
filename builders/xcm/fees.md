@@ -280,7 +280,7 @@ For example, you can navigate to the [Polkadot.js Apps page for Moonbeam](https:
 
 1. For the **selected state query** dropdown, choose **assetManager**
 2. Select the **assetIdType** extrinsic
-3. Under **Option** enter in the asset ID or toggle the **include option** off to return information for all of the assets. This example will get information for xcUNITs which has an asset ID of `42259045809535163221576417993425387648`
+3. Under **Option** enter in the asset ID or toggle the **include option** off to return information for all of the assets. This example will get information for xcUNIT which has an asset ID of `42259045809535163221576417993425387648`
 4. Click the **+** button to submit the query
 
 ![Get the xcUNIT asset multilocation](/images/builders/xcm/fees/fees-1.png)
