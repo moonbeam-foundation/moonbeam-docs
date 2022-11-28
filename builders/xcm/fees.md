@@ -189,7 +189,7 @@ XCM-KSM-Cost = {{ networks.kusama.xcm_instructions.withdraw.planck_ksm_cost }} /
 
 The total cost for that particular instruction is `{{ networks.kusama.xcm_instructions.withdraw.ksm_cost }} KSM`.
 
-As an example, you can calculate the total cost of KSMs for sending an XCM message that transfers xcKSM to KSM on Kusama using the following weights and instruction costs:
+As an example, you can calculate the total cost of KSM for sending an XCM message that transfers xcKSM to KSM on Kusama using the following weights and instruction costs:
 
 |  Instruction  |                                Weight                                |                               Cost                                |
 |:-------------:|:--------------------------------------------------------------------:|:-----------------------------------------------------------------:|
@@ -280,7 +280,7 @@ For example, you can navigate to the [Polkadot.js Apps page for Moonbeam](https:
 
 1. For the **selected state query** dropdown, choose **assetManager**
 2. Select the **assetIdType** extrinsic
-3. Under **Option** enter in the asset ID or toggle the **include option** off to return information for all of the assets. This example will get information for xcUNITs which has an asset ID of `42259045809535163221576417993425387648`
+3. Under **Option** enter in the asset ID or toggle the **include option** off to return information for all of the assets. This example will get information for xcUNIT which has an asset ID of `42259045809535163221576417993425387648`
 4. Click the **+** button to submit the query
 
 ![Get the xcUNIT asset multilocation](/images/builders/xcm/fees/fees-1.png)

@@ -80,7 +80,7 @@ To be able to send the extrinsics in Polkadot.js Apps, you need to have the foll
     - For mintable XC-20s, please refer to the [Retrieve Metadata for Mintable XC-20s](/builders/xcm/xc20/mintable-xc20/#retrieve-metadata-for-mintable-xc-20s){target=_blank} section of the Mintable XC-20s page
 - Some `xcUNIT` tokens. You can swap `DEV` tokens (Moonbase Alpha's native token) for `xcUNIT`s on [Moonbeam-Swap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha
 
-![Moonbeam Swap xcUNITs](/images/builders/xcm/xc20/xtokens/xtokens-1.png)
+![Moonbeam Swap xcUNIT](/images/builders/xcm/xc20/xtokens/xtokens-1.png)
 
 To check your `xcUNIT` balance, you can add the XC-20 to MetaMask with the following address:
 

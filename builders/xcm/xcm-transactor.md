@@ -107,7 +107,7 @@ To be able to send the extrinsics in Polkadot.js Apps, you need to have:
  - The account from which you are going to send the XCM through the XCM-transactor pallet must also be registered in a given index to be able to operate through a derivative account of the sovereign account. The registration is done through the root account (SUDO in Moonbase Alpha), so [contact us](https://discord.gg/PfpUATX){target=_blank} to get it registered. For this example, Alice's account was registered at index `42`
  - Remote calls through XCM-transactor require the destination chain fee token to pay for that execution. Because the action is initiated in Moonbeam, you'll need to hold its [XC-20](/builders/xcm/xc20/){target=_blank} representation. For this example, because you are sending an XCM message to the relay chain, you need `xcUNIT` tokens to pay for the execution fees, which is the Moonbase Alpha representation of the Alphanet relay chain token `UNIT`. You can acquire some by swapping for DEV tokens (Moonbase Alpha's native token) on [Moonbeam-Swap](https://moonbeam-swap.netlify.app){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha
 
-![Moonbeam Swap xcUNITs](/images/builders/xcm/xc20/xtokens/xtokens-1.png)
+![Moonbeam Swap xcUNIT](/images/builders/xcm/xc20/xtokens/xtokens-1.png)
 
 To check your `xcUNIT` balance, you can add the XC-20 to MetaMask with the following address:
 
