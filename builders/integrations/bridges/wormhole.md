@@ -5,7 +5,7 @@ description: Learn how to bridge assets, set up a relayer, and other ways you ca
 
 # Wormhole Network
 
-**insert banner image**
+![Wormhole Moonbeam banner](/images/builders/integrations/bridges/wormhole/wormhole-banner.png)
 
 ## Introduction
 
