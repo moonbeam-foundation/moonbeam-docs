@@ -15,23 +15,23 @@ There are actually two possible approaches for staking on Moonbeam remotely via 
 **Note that there are still limitations in what you can remotely execute through XCM messages.** In addition, **developers must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
 
 ## Prerequisites
-For development purposes we’ll be taking these steps on Moonbase Alpha and Moonbase Relay using testnet funds. As a prerequisite, you should have DEV tokens which you can acquire from the [Moonbase Alpha faucet](https://apps.moonbeam.network/moonbase-alpha/faucet/){target=_blank} as well as some UNIT, the native token of the Moonbase Relay Chain. You can swap some DEV for xcUNIT here on [Moonbeam Swap](https://moonbeam-swap.netlify.app/#/swap){target=_blank} and then withdraw them to [your account on the Moonbase Relay Chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} using [apps.moonbeam.network](https://apps.moonbeam.network/moonbase-alpha/){target=_blank}. 
+For development purposes we’ll be taking these steps on Moonbase Alpha and Moonbase Relay using TestNet funds. As a prerequisite, you should have DEV tokens which you can acquire from the [Moonbase Alpha faucet](https://apps.moonbeam.network/moonbase-alpha/faucet/){target=_blank} as well as some UNIT, the native token of the Moonbase Relay Chain. You can swap some DEV for xcUNIT here on [Moonbeam Swap](https://moonbeam-swap.netlify.app/#/swap){target=_blank} and then withdraw them to [your account on the Moonbase Relay Chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} using [apps.moonbeam.network](https://apps.moonbeam.network/moonbase-alpha/){target=_blank}. 
 
-Copy the account of your existing or newly created account on the [Moonbase Relay Chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank}. We’re going to need it to calculate the corresponding derivative account. A derivative account is a special type of account that’s keyless (the private key is unknown). Transactions from a derivative account can be initiated only via valid XCM instructions from the corresponding account on the relay chain. In other words, you are the only one who can initiate transactions on your derivative account - and if you lose access to your Moonbase Relay account, you’ll also lose access to your derivative account. 
+Copy the account of your existing or newly created account on the [Moonbase Relay Chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank}. You're going to need it to calculate the corresponding derivative account. A derivative account is a special type of account that’s keyless (the private key is unknown). Transactions from a derivative account can be initiated only via valid XCM instructions from the corresponding account on the relay chain. In other words, you are the only one who can initiate transactions on your derivative account - and if you lose access to your Moonbase Relay account, you’ll also lose access to your derivative account. 
 
 To generate the derivative account, first clone Alberto’s [xcmTools repo](https://github.com/albertov19/xcmTools){target=_blank}. Run `yarn` to install the necessary packages and then run:
 
-    ```
+
     ts-node calculateMultilocationDerivative.ts \
      --w wss://wss.api.moonbase.moonbeam.network \
      --a YOUR-MOONBASE-RELAY-ACCOUNT-HERE \
      --n 0x57657374656e64
-    ```
 
-The -w flag corresponds to the endpoint we’re using to fetch this information. The -n flag corresponds to the encoded form of “westend”, the name of the relay chain that Moonbase Relay is based on. The script will return 32-byte and 20-byte addresses. We’re interested in the ethereum-style account - the 20-byte one. Feel free to look up your derivative account on [Moonscan](https://moonbase.moonscan.io/){target=_blank}. You’ll note that this account is empty. You’ll now need to fund this account with at least 2 DEV. 
+
+The `-w` flag corresponds to the endpoint we’re using to fetch this information. The `-n` flag corresponds to the encoded form of “westend”, the name of the relay chain that Moonbase Relay is based on. The script will return 32-byte and 20-byte addresses. We’re interested in the ethereum-style account - the 20-byte one. Feel free to look up your derivative account on [Moonscan](https://moonbase.moonscan.io/){target=_blank}. You’ll note that this account is empty. You’ll now need to fund this account with at least 2 DEV. 
 
 ## Preparing to Stake on Moonbase Alpha
-First and foremost, you’ll need the address of the collator you want to delegate to. To locate it, head to the [Moonbase Alpha Staking dApp](https://apps.moonbeam.network/moonbase-alpha/staking){target=_blank} in a second window. Ensure you’re on the correct network, then press **Select a Collator**. Next to your desired collator, press the **Copy** icon. You’ll also need to make a note of the number of delegations your collator has. The PS-31 collator shown below has `60` delegations at the time of writing. 
+First and foremost, you’ll need the address of the collator you want to delegate to. To locate it, head to the [Moonbase Alpha Staking dApp](https://apps.moonbeam.network/moonbase-alpha/staking){target=_blank} in a second window. Ensure you’re on the correct network, then press **Select a Collator**. Next to your desired collator, press the **Copy** icon. You’ll also need to make a note of the number of delegations your collator has. The [PS-31 collator](https://moonbase.subscan.io/account/0x3A7D3048F3CB0391bb44B518e5729f07bCc7A45D){target=_blank} shown below has `60` delegations at the time of writing. 
 
 ![Moonbeam Network Apps Dashboard](/images/tutorials/remote-staking-via-xcm/xcm-stake-1.png)
 
@@ -44,14 +44,13 @@ In the following steps you will be preparing a transaction, but you’ll need to
 1. Select the `parachainStaking` Pallet
 2. Select the `delegate` function
 3. Paste in your selected collator’s address
-4. Paste your desired stake amount in Wei. In this example we’re specifying 1 DEV or `1000000000000000000` Wei. You can find a unit converter here on [Moonscan](https://moonscan.io/unitconverter){target=_blank}.
+4. Paste your desired stake amount in Wei. In the below example 1 DEV or `1000000000000000000` Wei is specified. You can find a unit converter here on [Moonscan](https://moonscan.io/unitconverter){target=_blank}.
 5. Enter the collator’s number of existing delegations (this can be found next to the collator’s name / address on the [Moonbase Alpha Staking dApp](https://apps.moonbeam.network/moonbase-alpha/staking){target=_blank}). 
-6. Enter your number of existing delegations from your derivative account. This is most likely 0 but because this estimation is only used to determine the weight of the call, we can specify an upper bound of `37` - the current number of collators in Moonbase Alpha.
-7. Finally, we’re going to copy the encoded call data. Copy this to a text file or another easily accessible place because we will need it later. Do not copy the encoded call hash, and do not submit the transaction! 
-
+6. Enter your number of existing delegations from your derivative account. This is most likely 0 but because this estimation is only used to determine the weight of the call, you can specify an upper bound of `37` - the current number of collators in Moonbase Alpha.
+7. Finally, copy the encoded call data to a text file or another easily accessible place because you will need it later. Do not copy the encoded call hash, and do not submit the transaction! 
 
 !!! note
-    Astute readers may notice the selected account below is named “Academy.” I mentioned that it does not matter which account you have selected in Moonbase Alpha Polkadot.js Apps. This is because we’re not submitting the transaction, only copying the encoded call data, which does not contain a reference to the sending account. 
+    Astute readers may notice the selected account below is named “Academy.” It does not matter which account you have selected in Moonbase Alpha Polkadot.js Apps. This is because you're not submitting the prepared transaction, only copying the encoded call data, which does not contain a reference to the sending account. 
 
 ![Moonbase Alpha Polkadot JS Apps Extrinsics Page](/images/tutorials/remote-staking-via-xcm/xcm-stake-3.png)
 
@@ -70,8 +69,8 @@ Let’s get started crafting our XCM message that will transport our remote exec
 4. Select version `v1`
 5. Select a parents value of `0`. Recall we’re creating the multilocation to identify the destination of our XCM message. In this case, we’re sending the message from the relay chain to the Moonbase alpha parachain. As we’re already at the relay chain level, we don’t need to “hop up” any levels so we’ll enter a parents value of `0`.
 6. We need one piece of information, namely, a parachain id to describe our destination of Moonbase Alpha, so enter `X1` here
-7. Select `parachain ID`. 
-8. Enter `1000`, the parachain ID of Moonbase Alpha. 
+7. Select `parachain ID` 
+8. Enter `1000`, the parachain ID of Moonbase Alpha 
 
 ![Moonbase Relay Polkadot JS Apps Extrinsics Page](/images/tutorials/remote-staking-via-xcm/xcm-stake-5.png)
 
@@ -105,9 +104,9 @@ Now we’re ready for the fun part! To construct the XCM message that will remot
 14. Select `PalletInstance`
 15. Specify PalletInstance `3` - this is the balances pallet. In other words, we are identifying the native asset of the Moonbase parachain, which is the DEV token
 16. Specify fungibility as `fungible`. DEV, like GLMR and MOVR, is a fungible asset  
-17. Specify `100000000000000000` Wei as the fungible amount. This is equivalent to `0.1` DEV and it is a safe overestimate of the fees that will actually need to be paid. In a production environment, we would consider including XCM instructions to refund unused fees, but for the sake of simplicity, that is not included in this tutorial
+17. Specify `100000000000000000` Wei as the fungible amount. This is equivalent to `0.1` DEV
 18. Select `Unlimited` for the weightLimit
-19. For our 3rd and most crucial XCM instruction, choose the `Transact` instruction.
+19. For our 3rd and most crucial XCM instruction, choose the `Transact` instruction
 20. Specify an origin of the `SovereignAccount`
 21. For requireWeightAtMost, specify `40000000000`. This is likely more than strictly necessary, but it is fine to overestimate
 22. Finally, paste the encoded call data of the staking operation that you prepared on Moonbase Alpha in Step 7 of the first section of this tutorial
