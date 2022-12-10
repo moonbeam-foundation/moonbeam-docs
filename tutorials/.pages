@@ -2,3 +2,4 @@ title: Tutorials
 hide: false
 nav:
   - index.md
+  - remote-staking-xcm.md
