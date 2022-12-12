@@ -1,21 +1,20 @@
 ---
-title: Cross-Chain Via Axelar
-description: Learn how to bridge assets, plus other ways you can connect your Moonbeam dApp to assets and functions on multiple blockchains using Axelar network & APIs.
+title: Cross-Chain Via Hyperlane
+description: Learn how to bridge assets, plus other ways you can connect your Moonbeam dApp to assets and functions on multiple blockchains using Hyperlane protocol & APIs.
 ---
 
-# Axelar Network
+# Hyperlane Protocol
 
-![Axelar Moonbeam banner](/images/builders/integrations/bridges/axelar/axelar-banner.png)
+![Hyperlane Moonbeam banner](/images/builders/integrations/bridges/hyperlane/hyperlane-banner.png)
 
 ## Introduction {: #introduction }
+[Hyperlane](https://hyperlane.xyz){target=_blank} is a security-modular cross-chain communication protocol for Web3. Hyperlane enables dApp users to interact with any asset or application, on any connected chain, with one click. It supports general asset transfer as well as custom cross-chain messaging.  
 
-[Axelar](https://axelar.network/){target=_blank} delivers secure cross-chain communication for Web3. Axelar's infrastructure enables dApp users to interact with any asset or application, on any connected chain, with one click. Powered by a permissionless Proof-of-Stake validator set, Axelar network allows dApps to pass arbitrary messages across chains using Turing-complete calls.
+Using a method called [sovereign consensus](https://docs.hyperlane.xyz/hyperlane-docs-1/protocol/security/sovereign-consensus){target=_blank}, Hyperlane allows developers to configure the method by which messages are sent and validated across chains. Hyperlane is composed of validators, relayers, and watchtowers. Validators will watch for and confirm cross-chain messages. Relayers spend the gas to send messages across chains. Watchtowers perform checks to ensure that validators are good-faith actors, securing the protocol. Take a look at the tech stack diagram and their [protocol documentation](https://docs.hyperlane.xyz/hyperlane-docs-1/protocol/overview){target=_blank} for more details.
 
-Axelar is a full-stack transport layer that supports asset transfer, [General Message Passing](https://docs.axelar.dev/dev/gmp-overview){target=_blank} and composability of programs. It securely connects all blockchain ecosystems, applications, assets and users to deliver Web3 interoperability. Axelar is composed of a decentralized network of validators, secure gateway contracts, uniform translation, routing architecture, and a suite of protocols and application programming interfaces (APIs). Take a look at the [Tech Stack Diagram](https://axelar.network/blog/an-introduction-to-the-axelar-network){target=_blank} for more details.
+![Hyperlane Technology Stack diagram](/images/builders/integrations/bridges/hyperlane/hyperlane-1.png)
 
-![Axelar Technology Stack diagram](/images/builders/integrations/bridges/axelar/axelar-1.png)
-
-The Axelar APIs provide a rich suite for developing Web3 applications, ensuring that developers have the tools they need for building. With these tools and APIs, developers can use the Axelar network and its APIs to write dApps that can be easily deployed across all Axelar-connected ecosystems. In other words, Axelar distills cross-chain interoperability down to a simple set of API requests.
+The Hyperlane APIs provide a rich suite for developing Web3 applications, ensuring that developers have the tools they need for building. With these tools and APIs, developers can use the Hyperlane protocol and its APIs to write dApps that can be easily deployed across all Hyperlane-connected ecosystems.
 
 --8<-- 'text/disclaimers/third-party-content-intro.md'
 
@@ -23,20 +22,15 @@ The Axelar APIs provide a rich suite for developing Web3 applications, ensuring 
 
 There are a couple of resources to get you started building cross-chain applications with Axelar:
 
-- **[Developer documentation](https://docs.axelar.dev/dev/intro){target=_blank}** - for technical guides
-- **[Satellite](https://satellite.money/){target=_blank}** - a bridging UI used to transfer assets across chains
-
-There is also a block explorer available to track your cross-chain transfers and more:
-
-- **[Axelarscan for MainNet](https://axelarscan.io/){target=_blank}**
-- **[Axelarscan for TestNet](https://testnet.axelarscan.io/){target=_blank}**
+- **[Developer documentation](https://docs.hyperlane.xyz/hyperlane-docs-1/introduction/readme){target=_blank}** - for technical guides
+- **[Hyperlane Explorer](https://explorer.hyperlane.xyz/){target=_blank}** - to track cross-chain transfers
 
 ## Contracts {: #contracts }
 
 See the list of Axelar contracts deployed to Moonbeam, and the networks connected to Moonbeam through Axelar.
 
-- **MainNet Contracts** - [Moonbeam](https://docs.axelar.dev/dev/build/contract-addresses/mainnet){target=_blank}
+- **MainNet Contracts** - [Moonbeam](https://docs.hyperlane.xyz/hyperlane-docs-1/developers-faq-and-troubleshooting/addresses#mainnet){target=_blank}
 
-- **TestNet Contracts** - [Moonbase Alpha](https://docs.axelar.dev/dev/build/contract-addresses/testnet){target=_blank}
+- **TestNet Contracts** - [Moonbase Alpha](https://docs.hyperlane.xyz/hyperlane-docs-1/developers-faq-and-troubleshooting/addresses#testnet2){target=_blank}
 
 --8<-- 'text/disclaimers/third-party-content.md'
