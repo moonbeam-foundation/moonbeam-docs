@@ -1,4 +1,4 @@
-use ethers::prelude::*;
+use ethers::{utils, prelude::*};
 use ethers_solc::Solc;
 use std::{path::Path, sync::Arc};
 
@@ -15,7 +15,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     send_transaction(&client).await?;
     print_balances(&provider).await?;
-    let addr = compile_deploy_script(&client).await?;
+    let addr = compile_deploy_contract(&client).await?;
     read_number(&client, &addr).await?;
     increment_number(&client, &addr).await?;
     read_number(&client, &addr).await?;
@@ -39,12 +39,12 @@ async fn send_transaction(client: &Client) -> Result<(), Box<dyn std::error::Err
     let address_to = "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045".parse::<Address>()?;
 
     println!(
-        "Beginning transfer of 1000 native currency from {} to {}.",
+        "Beginning transfer of 1 native currency from {} to {}.",
         address_from, address_to
     );
     let tx = TransactionRequest::new()
         .to(address_to)
-        .value(1000)
+        .value(U256::from(utils::parse_ether(1)?))
         .from(address_from);
     let tx = client.send_transaction(tx, None).await?.await?;
 
@@ -54,7 +54,7 @@ async fn send_transaction(client: &Client) -> Result<(), Box<dyn std::error::Err
 }
 
 // Need to install solc for this tutorial: https://github.com/crytic/solc-select
-async fn compile_deploy_script(client: &Client) -> Result<H160, Box<dyn std::error::Error>> {
+async fn compile_deploy_contract(client: &Client) -> Result<H160, Box<dyn std::error::Error>> {
     // Incrementer.sol is located in the root directory
     let source = Path::new(&env!("CARGO_MANIFEST_DIR"));
 

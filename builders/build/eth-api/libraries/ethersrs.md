@@ -63,7 +63,7 @@ There are multiple ways to create a provider and signer, but the easiest way is 
 
 1. Import `Provider` and `Http` from the `ethers` crate
 2. Use `try_from` to attempt to instantiate a JSON RPC provider object from an RPC endpoint
-3. Use a private key to create a wallet object (the private key will be used to sign transactions)
+3. Use a private key to create a wallet object (the private key will be used to sign transactions). **Note: This is for example purposes only. Never store your private keys in a plain Rust file**
 4. Wrap the provider and wallet together into a client by providing them to a `SignerMiddleware` object
 
 === "Moonbeam"
@@ -164,7 +164,7 @@ There are multiple ways to create a provider and signer, but the easiest way is 
 
 ## Send a Transaction {: #send-a-transaction }
 
-During this section, you'll be creating a couple of functions, which will be contained in the same `main.rs` file to avoid additional complexity from implementing modules. The first function will be to check the balances of your accounts before trying to send a transaction. The second script will actually send the transaction. To run each of these scripts, you will edit `main.rs` to reflect which script is running.  
+During this section, you'll be creating a couple of functions, which will be contained in the same `main.rs` file to avoid additional complexity from implementing modules. The first function will be to check the balances of your accounts before trying to send a transaction. The second function will actually send the transaction. To run each of these functions, you will edit the `main` function and run the `main.rs` script.  
 
 Copy and paste the following code into the `main.rs` file so that it looks like the following boiler-plate code. It includes an additional `Client` type for convenience, a `tokio` attribute for asynchronous excution, a provider, and client. All future functions will be based off of this template's imports.  
 
@@ -173,7 +173,7 @@ You must set up the provider and wallet in `main.rs` in the way described in the
 === "Moonbeam"
 
     ```rust
-    use ethers::prelude::*;
+    use ethers::{utils, prelude::*};
     use ethers_solc::Solc;
     use std::{path::Path, sync::Arc};
 
@@ -198,7 +198,7 @@ You must set up the provider and wallet in `main.rs` in the way described in the
 === "Moonriver"
 
     ```rust
-    use ethers::prelude::*;
+    use ethers::{utils, prelude::*};
     use ethers_solc::Solc;
     use std::{path::Path, sync::Arc};
 
@@ -223,7 +223,7 @@ You must set up the provider and wallet in `main.rs` in the way described in the
 === "Moonbase Alpha"
 
     ```rust
-    use ethers::prelude::*;
+    use ethers::{utils, prelude::*};
     use ethers_solc::Solc;
     use std::{path::Path, sync::Arc};
 
@@ -248,7 +248,7 @@ You must set up the provider and wallet in `main.rs` in the way described in the
 === "Moonbeam Dev Node"
 
     ```rust
-    use ethers::prelude::*;
+    use ethers::{utils, prelude::*};
     use ethers_solc::Solc;
     use std::{path::Path, sync::Arc};
 
@@ -280,7 +280,7 @@ Next, you will create the function for this file and complete the following step
 2. Define the `address` variable as the address you would like to check the balance of
 3. Use the `provider` object's `get_balance` function to receive the amount
 4. Print the resultant balance
-5. Call the `print_balances` function in main.
+5. Call the `print_balances` function in the `main` function
 
 ```rust
 // 1. Create an asynchronous function that takes a provider reference as input
@@ -317,145 +317,136 @@ If successful, the balances for the address you inserted into the script will be
 
 ### Send Transaction Script {: #send-transaction-script }
 
-You'll only need one file for executing a transaction between accounts. For this example, you'll be transferring 1 DEV token from an origin address (from which you hold the private key) to another address. To get started, you can create a `transaction.js` file by running:
+For this example, you'll be transferring 1 DEV from an origin address (of which you hold the private key) to another address.  
 
-```
-touch transaction.js
-```
+1. Create a new asynchronous function named `send_transaction` that takes a client object's reference as input
+2. Define the `address_from` and `address_to` variables as the addresses that the transaction should be sent from and to, respectively. Note: the `address_from` value should correspond to the private key that was used in the `main` function
+3. Create a `TransactionRequest` object, and include the `to`, `value`, and `from`. When writing the `value` input, use the `ethers::utils::parse_ether` function 
+4. Use the `client` object to send the transaction
+5. Print the transaction after it is confirmed
+6. Call the `send_transaction` function in the `main` function
 
-Next, you will create the script for this file and complete the following steps:
+```rust
+// 1. Define an asynchronous that takes a client provider as input
+async fn send_transaction(client: &Client) -> Result<(), Box<dyn std::error::Error>> {
+    // 2. Define address_from and address_to
+    let address_from = "YOUR ADDRESS FROM".parse::<Address>()?;
+    let address_to = "YOUR ADDRESS TO".parse::<Address>()?;
 
-1. [Set up the Ethers provider](#setting-up-the-ethers-provider)
-2. Define the `privateKey` and the `addressTo` variables. The private key is required to create a wallet instance. **Note: This is for example purposes only. Never store your private keys in a JavaScript file**
-3. Create a wallet using the `privateKey` and `provider` from the previous steps. The wallet instance is used to sign transactions
-4. Create the asynchronous `send` function which wraps the transaction object and the `wallet.sendTransaction` method
-5. Create the transaction object which only requires the recipient's address and the amount to send. Note that `ethers.utils.parseEther` can be used, which handles the necessary unit conversions from Ether to Wei - similar to using `ethers.utils.parseUnits(value, 'ether')`
-6. Send the transaction using the `wallet.sendTransaction` method and then use `await` to wait until the transaction is processed and the transaction receipt is returned
-7. Lastly, run the `send` function
+    println!(
+        "Beginning transfer of 1 native currency from {} to {}.",
+        address_from, address_to
+    );
 
-```js
-// 1. Add the Ethers provider logic here:
-// {...}
+    // 3. Create a TransactionRequest object
+    let tx = TransactionRequest::new()
+        .to(address_to)
+        .value(U256::from(utils::parse_ether(1)?))
+        .from(address_from);
+        
+    // 4. Send the transaction with the client
+    let tx = client.send_transaction(tx, None).await?.await?;
 
-// 2. Create account variables
-const account_from = {
-  privateKey: 'YOUR-PRIVATE-KEY-HERE',
-};
-const addressTo = 'ADDRESS-TO-HERE';
+    // 5. Print out the result
+    println!("Transaction Receipt: {}", serde_json::to_string(&tx)?);
 
-// 3. Create wallet
-let wallet = new ethers.Wallet(account_from.privateKey, provider);
+    Ok(())
+}
+// ...
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // ...
+    // 6. Call send_transaction function in main
+    send_transaction(&client).await?;
 
-// 4. Create send function
-const send = async () => {
-  console.log(`Attempting to send transaction from ${wallet.address} to ${addressTo}`);
-
-  // 5. Create tx object
-  const tx = {
-    to: addressTo,
-    value: ethers.utils.parseEther('1'),
-  };
-
-  // 6. Sign and send tx - wait for receipt
-  const createReceipt = await wallet.sendTransaction(tx);
-  await createReceipt.wait();
-  console.log(`Transaction successful with hash: ${createReceipt.hash}`);
-};
-
-// 7. Call the send function
-send();
+    Ok(())
+}
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-tx-local/transaction.js){target=_blank}.
+You can view the [complete function on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-rust/main.rs#L37){target=_blank}.
 
-To run the script, you can run the following command in your terminal:
+To run the script and fetch the account balances, you can run the following command:
 
 ```
-node transaction.js
+cargo run
 ```
 
-If the transaction was succesful, in your terminal you'll see the transaction hash has been printed out.
+If the transaction was succesful, in your terminal you'll see the transaction details printed out.  
 
-You can also use the `balances.js` script to check that the balances for the origin and receiving accounts have changed. The entire workflow would look like this:
-
-![Send Tx Etherjs](/images/builders/build/eth-api/libraries/ethers/ethers-1.png)
+**TODO: add the terminal screenshots here**
 
 ## Deploy a Contract {: #deploy-a-contract }
 
 --8<-- 'text/libraries/contract.md'
 
-### Compile Contract Script {: #compile-contract-script }
+During the rest of this section, you'll be creating a couple of functions, which will be contained in the same `main.rs` file to avoid additional complexity from implementing modules. The first function will be to compile and deploy the contract. The remaining functions will interact with the deployed contract.  
 
---8<-- 'text/libraries/compile.md'
+This section will also depend on the template introduced in the start of the [Send a Transaction section](#send-a-transaction). Please make sure that the `main.rs` file is set up accordingly.
 
-### Deploy Contract Script {: #deploy-contract-script }
+### Compile and Deploy Contract Script {: #compile-and-deploy-contract-script }
 
-With the script for compiling the `Incrementer.sol` contract in place, you can then use the results to send a signed transaction that deploys it. To do so, you can create a file for the deployment script called `deploy.js`:
+This example function will compile and deploy the `Incrementer.sol` smart contract you created in the previous section. The `Incrementer.sol` smart contract should be in the root directory.  
 
-```
-touch deploy.js
-```
+1. Create a new asynchronous function named `compile_deploy_contract` that takes a client object's reference as input, and returns an address in the form of `H160`
+2. Define a variable named `source` as the path for the directory that hosts all of the smart contracts that should be compiled, which is the root directory 
+3. Use the `Solc` crate to compile all of the smart contracts in the root directory
+4. Get the ABI and bytecode from the compiled result, searching for the `Incrementer` contract
+5. Create a contract factory for the smart contract using the ABI, bytecode, and client. The client must be wrapped into an `Arc` type for thread safety
+6. Use the factory to deploy. For this example, the value `5` is used as the initial value in the constructor
+7. Print out the address after the deployment
+8. Return the address
+9. Call the `compile_deploy_contract` function in `main`
 
-Next, you will create the script for this file and complete the following steps:
+```rust
+// 1. Define an asynchronous function that takes a client provider as input and returns H160
+async fn compile_deploy_contract(client: &Client) -> Result<H160, Box<dyn std::error::Error>> {
+    // 2. Define a path as the directory that hosts the smart contracts in the project
+    let source = Path::new(&env!("CARGO_MANIFEST_DIR"));
 
-1. Import the contract file from `compile.js`
-2. [Set up the Ethers provider](#setting-up-the-ethers-provider)
-3. Define the `privateKey` for the origin account. The private key is required to create a wallet instance. **Note: This is for example purposes only. Never store your private keys in a JavaScript file**
-4. Save the `bytecode` and `abi` for the compiled contract
-5. Create a wallet using the `privateKey` and `provider` from the previous steps. The wallet instance is used to sign transactions
-6. Create a contract instance with signer using the `ethers.ContractFactory` function, providing the `abi`, `bytecode`, and `wallet` as parameters
-7. Create the asynchronous `deploy` function that will be used to deploy the contract
-8. Within the `deploy` function, use the `incrementer` contract instance to call `deploy` and pass in the initial value. For this example, you can set the initial value to `5`. This will send the transaction for contract deployment. To wait for a transaction receipt you can use the `deployed` method of the contract deployment transaction
-9. Lastly, run the `deploy` function
+    // 3. Compile all of the smart contracts
+    let compiled = Solc::default()
+        .compile_source(source)
+        .expect("Could not compile contracts");
 
-```js
-// 1. Import the contract file
-const contractFile = require('./compile');
+    // 4. Get ABI & Bytecode for Incrementer.sol
+    let (abi, bytecode, _runtime_bytecode) = compiled
+        .find("Incrementer")
+        .expect("could not find contract")
+        .into_parts_or_default();
 
-// 2. Add the Ethers provider logic here:
-// {...}
+    // 5. Create a contract factory which will be used to deploy instances of the contract
+    let factory = ContractFactory::new(abi, bytecode, Arc::new(client.clone()));
 
-// 3. Create account variables
-const account_from = {
-  privateKey: 'YOUR-PRIVATE-KEY-HERE',
-};
+    // 6. Deploy
+    let contract = factory.deploy(U256::from(5))?.send().await?;
+    
+    // 7. Print out the address
+    let addr = contract.address();
+    println!("Incrementer.sol has been deployed to {:?}", addr);
 
-// 4. Save the bytecode and ABI
-const bytecode = contractFile.evm.bytecode.object;
-const abi = contractFile.abi;
+    // 8. Return the address
+    Ok(addr)
+}
+// ...
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // ...
+    // 9. Call compile_deploy_contract function in main
+    let addr = compile_deploy_contract(&client).await?;
 
-// 5. Create wallet
-let wallet = new ethers.Wallet(account_from.privateKey, provider);
-
-// 6. Create contract instance with signer
-const incrementer = new ethers.ContractFactory(abi, bytecode, wallet);
-
-// 7. Create deploy function
-const deploy = async () => {
-  console.log(`Attempting to deploy from account: ${wallet.address}`);
-
-  // 8. Send tx (initial value set to 5) and wait for receipt
-  const contract = await incrementer.deploy([5]);
-  await contract.deployed();
-
-  console.log(`Contract deployed at address: ${contract.address}`);
-};
-
-// 9. Call the deploy function
-deploy();
+    Ok(())
+}
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-contract-local/deploy.js){target=_blank}.
+You can view the [complete function on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-rust/main.rs#L57){target=_blank}.
 
 To run the script, you can enter the following command into your terminal:
 
 ```
-node deploy.js
+cargo run
 ```
 
 If successful, the contract's address will be displayed in the terminal.
 
-![Deploy Contract Etherjs](/images/builders/build/eth-api/libraries/ethers/ethers-2.png)
+**TODO: ADD THE TERMINAL IMAGE**
 
 
 ### Read Contract Data (Call Methods) {: #read-contract-data }
