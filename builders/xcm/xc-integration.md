@@ -340,6 +340,7 @@ The asset metadata for each Moonbeam-based network is as follows:
     Name: Glimmer
     Symbol: GLMR
     Decimals: 18
+    Existential Deposit: 1 (1 * 10^-18 GLMR)
     ```
 
 === "Moonriver"
@@ -347,6 +348,7 @@ The asset metadata for each Moonbeam-based network is as follows:
     Name: Moonriver Token
     Symbol: MOVR
     Decimals: 18
+    Existential Deposit: 1 (1 * 10^-18 MOVR)
     ```
 
 === "Moonbase Alpha"
@@ -354,6 +356,7 @@ The asset metadata for each Moonbeam-based network is as follows:
     Name: DEV
     Symbol: DEV
     Decimals: 18
+    Existential Deposit: 1 (1 * 10^-18 DEV)
     ```
 
 The multilocation of each Moonbeam-based network asset is as follows:
