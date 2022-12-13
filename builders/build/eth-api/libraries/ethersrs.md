@@ -5,7 +5,7 @@ description: Follow this tutorial to learn how to use the Ethereum EthersRS Libr
 
 # Ethers.rs Rust Library
 
-![Intro diagram](/images/builders/build/eth-api/libraries/ethers/ethersjs-banner.png)
+![Intro diagram](/images/builders/build/eth-api/libraries/ethersrs/ethers-rust-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -372,8 +372,6 @@ cargo run
 
 If the transaction was succesful, in your terminal you'll see the transaction details printed out.  
 
-**TODO: add the terminal screenshots here**
-
 ## Deploy a Contract {: #deploy-a-contract }
 
 --8<-- 'text/libraries/contract.md'
@@ -445,8 +443,6 @@ cargo run
 ```
 
 If successful, the contract's address will be displayed in the terminal.
-
-**TODO: ADD THE TERMINAL IMAGE**
 
 
 ### Read Contract Data (Call Methods) {: #read-contract-data }
@@ -604,8 +600,6 @@ cargo run
 
 If successful, the transaction receipt will be displayed in the terminal. You can use the `print_balances` function alongside the `increment_number` function in the `main` function to make sure that value is changing as expected.
 
-![Increment Contract Ethers](/images/builders/build/eth-api/libraries/ethers/ethers-3.png)
-
 Next you can interact with the reset function:
 
 1. Ensure that the abigen macro is called for the `Incrementer_ABI.json` somewhere in the `main.rs` file (if it is already in the `main.rs` file, you do not have to have a second one)
@@ -646,7 +640,5 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 ```
 
 If successful, the transaction receipt will be displayed in the terminal. You can use the `print_balances` function alongside the `reset` function in the `main` function to make sure that value is changing as expected.
-
-![Reset Contract Ethers](/images/builders/build/eth-api/libraries/ethers/ethers-4.png)
 
 --8<-- 'text/disclaimers/third-party-content.md'
