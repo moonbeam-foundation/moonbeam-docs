@@ -7,13 +7,9 @@ on:
 
 jobs:
   build-docs-site:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-
-      - name: Checkout Submodule
-        run: |
-          git submodule update --init
 
       - name: Allow to move dotfiles
         run: |
