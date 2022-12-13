@@ -113,3 +113,16 @@ async fn increment_number(client: &Client, contract_addr: &H160) -> Result<(), B
     
     Ok(())
 }
+
+async fn reset(client: &Client, contract_addr: &H160) -> Result<(), Box<dyn std::error::Error>> {
+    println!("Resetting number...");
+
+    // 3. Create contract instance
+    let contract = Incrementer::new(contract_addr.clone(), Arc::new(client.clone()));
+
+    // 4. Send contract transaction
+    let tx = contract.reset().send().await?.await?;
+    println!("Transaction Receipt: {}", serde_json::to_string(&tx)?);
+    
+    Ok(())
+}

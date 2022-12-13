@@ -25,7 +25,7 @@ For the examples in this guide, you will need to have the following:
  - Have [solc installed](https://docs.soliditylang.org/en/v0.8.9/installing-solidity.html) on your device. Using [solc-select](https://github.com/crytic/solc-select){target=_blank} is recommended by the Ethers.rs package
 
 !!! note
-    --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
+    The examples in this guide assumes you have a MacOS or Ubuntu 20.04-based environment and will need to be adapted accordingly for Windows.
 
 ## Create a Rust Project {: #create-a-rust-project }
 
@@ -389,7 +389,7 @@ This example function will compile and deploy the `Incrementer.sol` smart contra
 1. Create a new asynchronous function named `compile_deploy_contract` that takes a client object's reference as input, and returns an address in the form of `H160`
 2. Define a variable named `source` as the path for the directory that hosts all of the smart contracts that should be compiled, which is the root directory 
 3. Use the `Solc` crate to compile all of the smart contracts in the root directory
-4. Get the ABI and bytecode from the compiled result, searching for the `Incrementer` contract
+4. Get the ABI and bytecode from the compiled result, searching for the `Incrementer.sol` contract
 5. Create a contract factory for the smart contract using the ABI, bytecode, and client. The client must be wrapped into an `Arc` type for thread safety
 6. Use the factory to deploy. For this example, the value `5` is used as the initial value in the constructor
 7. Print out the address after the deployment
@@ -451,183 +451,201 @@ If successful, the contract's address will be displayed in the terminal.
 
 ### Read Contract Data (Call Methods) {: #read-contract-data }
 
-Call methods are the type of interaction that don't modify the contract's storage (change variables), meaning no transaction needs to be sent. They simply read various storage variables of the deployed contract.
+Call methods are the type of interaction that don't modify the contract's storage (change variables), meaning no transaction needs to be sent. They simply read various storage variables of the deployed contract.  
 
-To get started, you can create a file and name it `get.js`:
-
-```
-touch get.js
-```
-
-Then you can take the following steps to create the script:
-
-1. Import the `abi` from the `compile.js` file
-2. [Set up the Ethers provider](#setting-up-the-ethers-provider)
-3. Create the `contractAddress` variable using the address of the deployed contract
-4. Create an instance of the contract using the `ethers.Contract` function and passing in the `contractAddress`, `abi`, and `provider`
-5. Create the asynchronous `get` function
-6. Use the contract instance to call one of the contract's methods and pass in any inputs if necessary. For this example, you will call the `number` method which doesn't require any inputs. You can use `await` which will return the value requested once the request promise resolves
-7. Lastly, call the `get` function
-
-```js
-// 1. Import the ABI
-const { abi } = require('./compile');
-
-// 2. Add the Ethers provider logic here:
-// {...}
-
-// 3. Contract address variable
-const contractAddress = 'CONTRACT-ADDRESS-HERE';
-
-// 4. Create contract instance
-const incrementer = new ethers.Contract(contractAddress, abi, provider);
-
-// 5. Create get function
-const get = async () => {
-  console.log(`Making a call to contract at address: ${contractAddress}`);
-
-  // 6. Call contract 
-  const data = await incrementer.number();
-
-  console.log(`The current number stored is: ${data}`);
-};
-
-// 7. Call get function
-get();
-```
-
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-contract-local/get.js){target=_blank}.
-
-To run the script, you can enter the following command in your terminal:
+Rust is typesafe, which is why the ABI for the `Incrementer.sol` contract is required to generate a typesafe Rust struct. For this example, you should create a new file in the root of the Cargo project called `Incrementer_ABI.json`:
 
 ```
-node get.js
+touch Incrementer_ABI.json
 ```
 
-If successful, the value will be displayed in the terminal.
+The ABI for `Incrementer.sol` is below, which should be copied and pasted into the `Incrementer_ABI.json` file:
+
+```json
+[
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_value",
+                "type": "uint256"
+            }
+        ],
+        "name": "increment",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "number",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "reset",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }
+]
+```
+
+Then you can take the following steps to create a function that reads and returns the `number` method of the `Incrementer.sol` contract:
+
+1. Generate a type-safe interface for the Incrementer smart contract with the `abigen` macro
+2. Create a new asynchronous function named `read_number` that takes a client object's reference and a contract address reference as input, and returns a U256
+3. Create a new instance of the `Incrementer` object generated by the abigen macro with the client and contract address values
+4. Call the `number` function in the new `Incrementer` object
+5. Print out the resultant value
+6. Return the resultant value
+7. Call the `read_number` function in `main`
+
+```rust
+// 1. Generate a type-safe interface for the Incrementer smart contract
+abigen!(
+    Incrementer,
+    "./Incrementer_ABI.json",
+    event_derives(serde::Deserialize, serde::Serialize)
+);
+
+// 2. Define an asynchronous function that takes a client provider and address as input and returns a U256
+async fn read_number(client: &Client, contract_addr: &H160) -> Result<U256, Box<dyn std::error::Error>> {
+    // 3. Create contract instance
+    let contract = Incrementer::new(contract_addr.clone(), Arc::new(client.clone()));
+
+    // 4. Call contract's number function
+    let value = contract.number().call().await?;
+
+    // 5. Print out number
+    println!("Incrementer's number is {}", value);
+
+    // 6. Return the number
+    Ok(value)
+}
+// ...
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // ...
+    // 7. Call read_number function in main
+    read_number(&client, &addr).await?;
+
+    Ok(())
+}
+```
+
+You can view the [complete function on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-rust/main.rs#L85){target=_blank}.
+
+To run the script, you can enter the following command into your terminal:
+
+```
+cargo run
+```
+
+If successful, the number value will be displayed in the terminal.
 
 ### Interact with Contract (Send Methods) {: #interact-with-contract }
 
-Send methods are the type of interaction that modify the contract's storage (change variables), meaning a transaction needs to be signed and sent. In this section, you'll create two scripts: one to increment and one to reset the incrementer. To get started, you can create a file for each script and name them `increment.js` and `reset.js`:
+Send methods are the type of interaction that modify the contract's storage (change variables), meaning a transaction needs to be signed and sent. In this section, you'll create two functions: one to increment and one to reset the incrementer. This section will also require the `Incrementer_ABI.json` file initialized when [reading from the smart contract](#read-contract-data).  
 
-```
-touch increment.js reset.js
-```
+Take the following steps to create the function to increment:
 
-Open the `increment.js` file and take the following steps to create the script:
+1. Ensure that the abigen macro is called for the `Incrementer_ABI.json` somewhere in the `main.rs` file (if it is already in the `main.rs` file, you do not have to have a second one)
+2. Create a new asynchronous function named `increment_number` that takes a client object's reference and an address as input
+3. Create a new instance of the `Incrementer` object generated by the abigen macro with the client and contract address values
+4. Call the `increment` function in the new `Incrementer` object by including a `U256` object as input. In this instance, the value provided is 5
+5. Call the `read_number` function in `main`
 
-1. Import the `abi` from the `compile.js` file
-2. [Set up the Ethers provider](#setting-up-the-ethers-provider)
-3. Define the `privateKey` for the origin account, the `contractAddress` of the deployed contract, and the `_value` to increment by. The private key is required to create a wallet instance. **Note: This is for example purposes only. Never store your private keys in a JavaScript file**
-4. Create a wallet using the `privateKey` and `provider` from the previous steps. The wallet instance is used to sign transactions
-5. Create an instance of the contract using the `ethers.Contract` function and passing in the `contractAddress`, `abi`, and `provider`
-6. Create the asynchronous `increment` function
-7. Use the contract instance to call one of the contract's methods and pass in any inputs if necessary. For this example, you will call the `increment` method which requires the value to increment by as an input. You can use `await` which will return the value requested once the request promise resolves
-8. Lastly, call the `increment` function
+```rust
+// 1. Generate a type-safe interface for the Incrementer smart contract
+abigen!(
+    Incrementer,
+    "./Incrementer_ABI.json",
+    event_derives(serde::Deserialize, serde::Serialize)
+);
 
-```js
-// 1. Import the contract ABI
-const { abi } = require('./compile');
+// 2. Define an asynchronous function that takes a client provider and address as input
+async fn increment_number(client: &Client, contract_addr: &H160) -> Result<(), Box<dyn std::error::Error>> {
+    println!("Incrementing number...");
 
-// 2. Add the Ethers provider logic here:
-// {...}
+    // 3. Create contract instance
+    let contract = Incrementer::new(contract_addr.clone(), Arc::new(client.clone()));
 
-// 3. Create variables
-const account_from = {
-  privateKey: 'YOUR-PRIVATE-KEY-HERE',
-};
-const contractAddress = 'CONTRACT-ADDRESS-HERE';
-const _value = 3;
+    // 4. Send contract transaction
+    let tx = contract.increment(U256::from(5)).send().await?.await?;
+    println!("Transaction Receipt: {}", serde_json::to_string(&tx)?);
+    
+    Ok(())
+}
+// ...
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // ...
+    // 5. Call increment_number function in main
+    increment_number(&client, &addr).await?;
 
-// 4. Create wallet
-let wallet = new ethers.Wallet(account_from.privateKey, provider);
-
-// 5. Create contract instance with signer
-const incrementer = new ethers.Contract(contractAddress, abi, wallet);
-
-// 6. Create increment function
-const increment = async () => {
-  console.log(
-    `Calling the increment by ${_value} function in contract at address: ${contractAddress}`
-  );
-
-  // 7. Sign and send tx and wait for receipt
-  const createReceipt = await incrementer.increment([_value]);
-  await createReceipt.wait();
-
-  console.log(`Tx successful with hash: ${createReceipt.hash}`);
-};
-
-// 8. Call the increment function
-increment();
+    Ok(())
+}
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-contract-local/increment.js){target=_blank}.
+You can view the [complete function on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-rust/main.rs#L104){target=_blank}.
 
-To run the script, you can enter the following command in your terminal:
+To run the script, you can enter the following command into your terminal:
 
 ```
-node increment.js
+cargo run
 ```
 
-If successful, the transaction hash will be displayed in the terminal. You can use the `get.js` script alongside the `increment.js` script to make sure that value is changing as expected:
+If successful, the transaction receipt will be displayed in the terminal. You can use the `print_balances` function alongside the `increment_number` function in the `main` function to make sure that value is changing as expected.
 
 ![Increment Contract Ethers](/images/builders/build/eth-api/libraries/ethers/ethers-3.png)
 
-Next you can open the `reset.js` file and take the following steps to create the script:
+Next you can interact with the reset function:
 
-1. Import the `abi` from the `compile.js` file
-2. [Set up the Ethers provider](#setting-up-the-ethers-provider)
-3. Define the `privateKey` for the origin account and the `contractAddress` of the deployed contract. The private key is required to create a wallet instance. **Note: This is for example purposes only. Never store your private keys in a JavaScript file**
-4. Create a wallet using the `privateKey` and `provider` from the previous steps. The wallet instance is used to sign transactions
-5. Create an instance of the contract using the `ethers.Contract` function and passing in the `contractAddress`, `abi`, and `provider`
-6. Create the asynchronous `reset` function
-7. Use the contract instance to call one of the contract's methods and pass in any inputs if necessary. For this example, you will call the `reset` method which doesn't require any inputs. You can use `await` which will return the value requested once the request promise resolves
-8. Lastly, call the `reset` function
+1. Ensure that the abigen macro is called for the `Incrementer_ABI.json` somewhere in the `main.rs` file (if it is already in the `main.rs` file, you do not have to have a second one)
+2. Create a new asynchronous function named `reset` that takes a client object's reference and an address as input
+3. Create a new instance of the `Incrementer` object generated by the abigen macro with the client and contract address values
+4. Call the `reset` function in the new `Incrementer` object 
+5. Call the `reset` function in `main`
 
-```js
-// 1. Import the contract ABI
-const { abi } = require('./compile');
+```rust
+// 1. Generate a type-safe interface for the Incrementer smart contract
+abigen!(
+    Incrementer,
+    "./Incrementer_ABI.json",
+    event_derives(serde::Deserialize, serde::Serialize)
+);
 
-// 2. Add the Ethers provider logic here:
-// {...}
+// 2. Define an asynchronous function that takes a client provider and address as input
+async fn increment_number(client: &Client, contract_addr: &H160) -> Result<(), Box<dyn std::error::Error>> {
+    println!("Resetting number...");
 
-// 3. Create variables
-const account_from = {
-  privateKey: 'YOUR-PRIVATE-KEY-HERE',
-};
-const contractAddress = 'CONTRACT-ADDRESS-HERE';
+    // 3. Create contract instance
+    let contract = Incrementer::new(contract_addr.clone(), Arc::new(client.clone()));
 
-// 4. Create wallet
-let wallet = new ethers.Wallet(account_from.privateKey, provider);
+    // 4. Send contract transaction
+    let tx = contract.reset().send().await?.await?;
+    println!("Transaction Receipt: {}", serde_json::to_string(&tx)?);
+    
+    Ok(())
+}
+// ...
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // ...
+    // 5. Call reset function in main
+    reset(&client, &addr).await?;
 
-// 5. Create contract instance with signer
-const incrementer = new ethers.Contract(contractAddress, abi, wallet);
-
-// 6. Create reset function
-const reset = async () => {
-  console.log(`Calling the reset function in contract at address: ${contractAddress}`);
-
-  // 7. sign and send tx and wait for receipt
-  const createReceipt = await incrementer.reset();
-  await createReceipt.wait();
-
-  console.log(`Tx successful with hash: ${createReceipt.hash}`);
-};
-
-// 8. Call the reset function
-reset();
+    Ok(())
+}
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-contract-local/reset.js){target=_blank}.
-
-To run the script, you can enter the following command in your terminal:
-
-```
-node reset.js
-```
-
-If successful, the transaction hash will be displayed in the terminal. You can use the `get.js` script alongside the `reset.js` script to make sure that value is changing as expected:
+If successful, the transaction receipt will be displayed in the terminal. You can use the `print_balances` function alongside the `reset` function in the `main` function to make sure that value is changing as expected.
 
 ![Reset Contract Ethers](/images/builders/build/eth-api/libraries/ethers/ethers-4.png)
 
