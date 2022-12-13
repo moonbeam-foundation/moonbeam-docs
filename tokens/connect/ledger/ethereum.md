@@ -20,6 +20,7 @@ In this tutorial, you will learn how to get started with your Ledger hardware wa
 --8<-- 'text/disclaimers/third-party-content-intro.md'
 
 --8<-- 'text/ledger/checking-prereqs.md'
+--8<-- 'text/ledger/checking-prereqs-metamask.md'
 
 ## Install the Ledger Live App {: install-the-ledger-live-app }
 
