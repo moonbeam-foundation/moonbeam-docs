@@ -6,7 +6,7 @@ description: In this guide, we'll be leveraging remote execution to remotely sta
 # Remote Staking via XCM
 
 ![Banner Image](/images/tutorials/remote-staking-via-xcm/remote-staking-via-xcm-banner.png)
-December 14, 2022 | by Kevin
+December 14, 2022 | by Kevin Neilson
 
 ## Introduction {: #introduction } 
 
@@ -21,10 +21,10 @@ There are actually two possible approaches for staking on Moonbeam remotely via 
 For development purposes this tutorial is written for Moonbase Alpha and Moonbase relay using TestNet funds. For prerequisites:
 
 - A Moonbase Alpha relay chain account funded with some UNIT, the native token of the Moonbase relay chain. If you have a Moonbase Alpha account funded with DEV tokens, you can swap some DEV for xcUNIT here on [Moonbeam Swap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}. Then withdraw the xcUNIT from Moonbase Alpha to [your account on the Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} using [apps.moonbeam.network](https://apps.moonbeam.network/moonbase-alpha/){target=_blank} 
-- You'll need to [calculate the multilocation derivative account](#calculate-multilocation-derivative) of your Moonbase Alpha relay chain account and fund it with DEV tokens.
+- You'll need to [calculate the multilocation derivative account](#calculating-your-multilocation-derivative-account) of your Moonbase Alpha relay chain account and fund it with DEV tokens.
 --8<-- 'text/faucet/faucet-list-item.md'
 
-## Calculating your Multilocation Derivative Account {: #calculate-multilocation-derivative }
+## Calculating your Multilocation Derivative Account {: #calculating-your-multilocation-derivative-account }
 
 Copy the account of your existing or newly created account on the [Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank}. You're going to need it to calculate the corresponding multilocation derivative account, which is a special type of account that’s keyless (the private key is unknown). Transactions from a multilocation derivative account can be initiated only via valid XCM instructions from the corresponding account on the relay chain. In other words, you are the only one who can initiate transactions on your multilocation derivative account - and if you lose access to your Moonbase relay account, you’ll also lose access to your multilocation derivative account. 
 
@@ -94,7 +94,7 @@ console.log(collatorInfo.toHuman()["delegationCount"]);
 
 ![Get candidate delegation count](/images/tutorials/remote-staking-via-xcm/xcm-stake-6.png)
 
-### Get your Number of Existing Delegations {: #get-your-number-of-existing-delegations }
+### Getting your Number of Existing Delegations {: #getting-your-number-of-existing-delegations }
 
 If you've never made a delegation from your address you can skip this section. However, if you're unsure how many existing delegations you have, you'll want to run the following JavaScript code snippet to get `delegationCount` from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/js){target=_blank}:
 
