@@ -7,7 +7,7 @@ type Client = SignerMiddleware<Provider<Http>, Wallet<k256::ecdsa::SigningKey>>;
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let provider: Provider<Http> = Provider::<Http>::try_from("http://localhost:9933")?;
-    // Do not include the private key in plain text in any produciton code. This is just for demonstration purposes.
+    // Do not include the private key in plain text in any produciton code. This is just for demonstration purposes
     let wallet: LocalWallet = "99b3c12287537e38c90a9219d4cb074a89a16e9cdb20bf85728ebd97c343e342"
         .parse::<LocalWallet>()?
         .with_chain_id(Chain::MoonbeamDev);
