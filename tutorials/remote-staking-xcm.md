@@ -46,7 +46,7 @@ The script will return 32-byte and 20-byte addresses. We’re interested in the 
 
 ## Preparing to Stake on Moonbase Alpha {: #preparing-to-stake-on-moonbase-alpha }
 
-The following section will walk through fetching collator information via the [Moonbase Alpha Staking dApp](https://apps.moonbeam.network/moonbase-alpha/staking){target=_blank} and the Polkadot.js Apps UI. If you'd prefer to fetch this information programmatically via the Polkadot.js API, you can visit the [following section.](#retrieving-the-list-of-candidates)
+The following section will walk through fetching collator information via the [Moonbase Alpha Staking dApp](https://apps.moonbeam.network/moonbase-alpha/staking){target=_blank} and the Polkadot.js Apps UI. If you'd prefer to fetch this information programmatically via the Polkadot.js API, you can skip to the [following section.](#generating-the-encoded-call-data)
 
 First and foremost, you’ll need the address of the collator you want to delegate to. To locate it, head to the [Moonbase Alpha Staking dApp](https://apps.moonbeam.network/moonbase-alpha/staking){target=_blank} in a second window. Ensure you’re on the correct network, then press **Select a Collator**. Next to your desired collator, press the **Copy** icon. You’ll also need to make a note of the number of delegations your collator has. The [PS-31 collator](https://moonbase.subscan.io/account/0x3A7D3048F3CB0391bb44B518e5729f07bCc7A45D){target=_blank} shown below has `60` delegations at the time of writing. 
 
@@ -64,7 +64,7 @@ In the following steps you will be preparing a transaction, but you’ll need to
 2. Select the **delegate** function
 3. Paste in your selected collator’s address. You can retrieve a list of collator candidates [via the Polkadot.js API with these instructions](/tokens/staking/stake/#retrieving-the-list-of-candidates){target=_blank}
 4. Paste your desired stake amount in Wei. In the below example 1 DEV or `1000000000000000000` Wei is specified. You can find a unit converter here on [Moonscan](https://moonscan.io/unitconverter){target=_blank}
-5. Enter the collator’s number of existing delegations (this can be found next to the collator’s name / address on the [Moonbase Alpha Staking dApp](https://apps.moonbeam.network/moonbase-alpha/staking){target=_blank} or [fetched from the Polkadot.js API](/tokens/staking/stake/#get-the-candidate-delegation-count){target=_blank}) 
+5. Enter the collator’s number of existing delegations (this can be found next to the collator’s name / address on the [Moonbase Alpha Staking dApp](https://apps.moonbeam.network/moonbase-alpha/staking){target=_blank} or [fetched from the Polkadot.js API](/tokens/staking/stake/#get-the-candidate-delegation-count){target=_blank}). Alternatively, you can enter the upper bound of `{{networks.moonbase.staking.max_del_per_can}}` because this estimation is only used to determine the weight of the call
 6. Enter your number of existing delegations from your multilocation derivative account. This is most likely `0` but because this estimation is only used to determine the weight of the call, you can specify an upper bound here of `{{networks.moonbase.staking.max_del_per_del}}`. Or, if you'd prefer, you can use the Polkadot.js API to fetch your exact number of existing delegations according  to [these instructions](/tokens/staking/stake/#get-your-number-of-existing-delegations){target=_blank}
 7. Finally, copy the encoded call data to a text file or another easily accessible place because you will need it later. Do not copy the encoded call hash, and do not submit the transaction
 
@@ -176,5 +176,5 @@ Verify that the structure of your XCM message resembles the below image, then pr
 
 ![Assembling the complete XCM message](/images/tutorials/remote-staking-via-xcm/xcm-stake-7.png)
 
-And that’s it! To verify that your delegation was successful, you can visit [Subscan](https://moonbase.subscan.io/){target=_blank} to check your staking balance. Be advised that it may take a few moments before your staking balance is visible on Subscan. Additionally, be aware that you will not be able to see this staking operation on Moonscan, because we initiated the delegation action directly via the parachain Staking pallet (on the substrate side) rather than through the staking precompile (on the EVM). 
+And that’s it! To verify that your delegation was successful, you can visit [Subscan](https://moonbase.subscan.io/){target=_blank} to check your staking balance. Be advised that it may take a few minutes before your staking balance is visible on Subscan. Additionally, be aware that you will not be able to see this staking operation on Moonscan, because we initiated the delegation action directly via the parachain staking pallet (on the substrate side) rather than through the staking precompile (on the EVM). 
  
