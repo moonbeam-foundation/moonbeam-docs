@@ -52,75 +52,6 @@ First and foremost, you’ll need the address of the collator you want to delega
 
 ![Moonbeam Network Apps Dashboard](/images/tutorials/remote-staking-via-xcm/xcm-stake-1.png)
 
-You can also programmatically fetch all of the required staking information. Feel free to skip to the [next section](#generating-the-encoded-call-data) if you'd like.
-
-### Retrieve the List of Candidates {: #retrieve-the-list-of-candidates } 
-
-Prior to staking tokens, you’ll need the address of the collator you want to delegate to. To retrieve the list of collator candidates available in the network, head to the **Developer** tab, click on **Chain State**, and take the following steps:
-
- 1. Choose the pallet to interact with. In this case, it is the **parachainStaking** pallet
- 2. Choose the state to query. In this case, it is the **selectedCandidates** or **candidatePool** state
- 3. Send the state query by clicking on the **+** button
-
-Each extrinsic provides a different response:
-
- - **selectedCandidates** — returns the current active set of collators, that is, the top collator candidates by total tokens staked (including delegations). For example, on Moonbase Alpha it is the top {{ networks.moonbase.staking.max_candidates }} candidates
- - **candidatePool** — returns the current list of all the candidates, including those that are not in the active set
-
-![Staking Account](/images/tutorials/remote-staking-via-xcm/xcm-stake-4.png)
-
-### Get the Candidate Delegation Count {: #get-the-candidate-delegation-count } 
-
-First, you need to get the `candidateInfo`, which will contain the delegator count, as you'll need to submit this parameter in a later transaction. To retrieve the parameter, make sure you're still on the **Chain State** tab of the **Developer** page, and then take the following steps:
-
- 1. Choose the **parachainStaking** pallet to interact with
- 2. Choose the **candidateInfo** state to query
- 3. Make sure the **include option** slider is enabled
- 4. Enter the collator candidate's address
- 5. Send the state query by clicking on the **+** button
- 6. Copy the result as you'll need it when initiating a delegation
-
-![Get candidate delegation count](/images/tutorials/remote-staking-via-xcm/xcm-stake-5.png)
-
-Optionally, you can receive this information via the Polkadot.js API by running the following JavaScript code snippet in [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/js){target=_blank}:
-
-```js
-// Simple script to get the collator's number of existing delegations.
-// Remember to replace YOUR-ADDRESS-HERE with your collator address.
-const collatorAddress = 'COLLATOR-ADDRESS-HERE'; 
-const collatorInfo = await api.query.parachainStaking.candidateInfo(collatorAddress);
-console.log(collatorInfo.toHuman()["delegationCount"]);
-```
-
-![Get candidate delegation count](/images/tutorials/remote-staking-via-xcm/xcm-stake-6.png)
-
-### Getting your Number of Existing Delegations {: #getting-your-number-of-existing-delegations }
-
-It is likely that you have never before delegated from your multilocation derivative account. However, if you're unsure how many existing delegations you have, you'll want to run the following JavaScript code snippet to get `delegationCount` from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/js){target=_blank}:
-
-```js
-// Simple script to get your number of existing delegations.
-// Remember to replace YOUR-ADDRESS-HERE with your delegator address.
-const yourDelegatorAccount = 'YOUR-ADDRESS-HERE'; 
-const delegatorInfo = 
-  await api.query.parachainStaking.delegatorState(yourDelegatorAccount);
-
-if (delegatorInfo.toHuman()) {
-  console.log(delegatorInfo.toHuman()["delegations"].length);
-} else {
-  console.log(0)
-}
-```
-
-Head to the **Developer** tab and click on **JavaScript**. Then take the following steps:
-
- 1. Copy the code from the previous snippet and paste it inside the code editor box 
- 2. (Optional) Click the save icon and set a name for the code snippet, for example, **Get delegation count**. This will save the code snippet locally
- 3. To execute the code, click on the run button
- 4. Copy the result as you'll need it when initiating a delegation
-
-![Get existing delegation count](/images/tutorials/remote-staking-via-xcm/xcm-stake-7.png)
-
 ## Generating the Encoded Call Data {: #generating-the-encoded-call-data }
 
 Then, head to [Moonbase Alpha Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts){target=_blank}. In order to see the **Extrinsics** menu here, you’ll need to have at least one account accessible in Polkadot.js Apps. If you don’t, create one now. Then, head to the **Developer** tab and press **Extrinsics**. 
@@ -131,10 +62,10 @@ In the following steps you will be preparing a transaction, but you’ll need to
 
 1. Select the **parachainStaking** Pallet
 2. Select the **delegate** function
-3. Paste in your selected collator’s address
+3. Paste in your selected collator’s address. You can retrieve a list of collator candidates [via the Polkadot.js API with these instructions](/tokens/staking/stake/#retrieving-the-list-of-candidates){target=_blank}
 4. Paste your desired stake amount in Wei. In the below example 1 DEV or `1000000000000000000` Wei is specified. You can find a unit converter here on [Moonscan](https://moonscan.io/unitconverter){target=_blank}
-5. Enter the collator’s number of existing delegations (this can be found next to the collator’s name / address on the [Moonbase Alpha Staking dApp](https://apps.moonbeam.network/moonbase-alpha/staking){target=_blank}) 
-6. Enter your number of existing delegations from your multilocation derivative account. This is most likely `0` but because this estimation is only used to determine the weight of the call, you can specify an upper bound of `37` - the current number of collators in Moonbase Alpha
+5. Enter the collator’s number of existing delegations (this can be found next to the collator’s name / address on the [Moonbase Alpha Staking dApp](https://apps.moonbeam.network/moonbase-alpha/staking){target=_blank} or [fetched from the Polkadot.js API](/tokens/staking/stake/#get-the-candidate-delegation-count){target=_blank}) 
+6. Enter your number of existing delegations from your multilocation derivative account. This is most likely `0` but because this estimation is only used to determine the weight of the call, you can specify an upper bound here of `{{networks.moonbase.staking.max_del_per_del}}`. Or, if you'd prefer, you can use the Polkadot.js API to fetch your exact number of existing delegations according  to [these instructions](/tokens/staking/stake/#get-your-number-of-existing-delegations){target=_blank}
 7. Finally, copy the encoded call data to a text file or another easily accessible place because you will need it later. Do not copy the encoded call hash, and do not submit the transaction
 
 !!! note
@@ -146,7 +77,7 @@ In the following steps you will be preparing a transaction, but you’ll need to
 
 In another tab, head to [Moonbase relay Polkadot.Js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/extrinsics){target=_blank}. Click on the **Developer** tab and press **Extrinsics**. 
 
-![Moonbase Relay Polkadot JS Apps Home](/images/tutorials/remote-staking-via-xcm/xcm-stake-8.png)
+![Moonbase Relay Polkadot JS Apps Home](/images/tutorials/remote-staking-via-xcm/xcm-stake-4.png)
 
 ### Building the Destination Multilocation {: #building-the-destination-multilocation }
 
@@ -172,7 +103,7 @@ Let’s get started crafting our XCM message that will transport our remote exec
 ```
 6. Set the message version to **V2**
 
-![Moonbase Relay Polkadot JS Apps Extrinsics Page](/images/tutorials/remote-staking-via-xcm/xcm-stake-9.png)
+![Moonbase Relay Polkadot JS Apps Extrinsics Page](/images/tutorials/remote-staking-via-xcm/xcm-stake-5.png)
 
 In the next section, we’ll start assembling the XCM instructions. 
 
@@ -182,7 +113,7 @@ In the next section, we’ll start assembling the XCM instructions.
 2. Our XCM Message is going to have 3 distinct XCM instructions, so press the first **Add Item** button 3 times 
 3. Below the first XCM Instruction of **WithdrawAsset**, we need to add the asset we’re going to withdraw here, so press the **Add Item** button below **WithdrawAsset** once 
 
-![Preparing the structure of the XCM message](/images/tutorials/remote-staking-via-xcm/xcm-stake-10.png)
+![Preparing the structure of the XCM message](/images/tutorials/remote-staking-via-xcm/xcm-stake-6.png)
 
 ### Assembling the Contents of the XCM Message {: #assembling-the-contents-of-the-xcm-message }
 
@@ -243,7 +174,7 @@ Now we’re ready for the fun part! Construct the XCM message that will remotely
 
 Verify that the structure of your XCM message resembles the below image, then press **Submit Transaction**. Note that your encoded call data will vary based on your chosen collator.
 
-![Assembling the complete XCM message](/images/tutorials/remote-staking-via-xcm/xcm-stake-11.png)
+![Assembling the complete XCM message](/images/tutorials/remote-staking-via-xcm/xcm-stake-7.png)
 
 And that’s it! To verify that your delegation was successful, you can visit [Subscan](https://moonbase.subscan.io/){target=_blank} to check your staking balance. Be advised that it may take a few moments before your staking balance is visible on Subscan. Additionally, be aware that you will not be able to see this staking operation on Moonscan, because we initiated the delegation action directly via the parachain Staking pallet (on the substrate side) rather than through the staking precompile (on the EVM). 
  
