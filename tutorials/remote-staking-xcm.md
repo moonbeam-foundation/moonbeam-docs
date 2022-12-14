@@ -96,7 +96,7 @@ console.log(collatorInfo.toHuman()["delegationCount"]);
 
 ### Getting your Number of Existing Delegations {: #getting-your-number-of-existing-delegations }
 
-If you've never made a delegation from your address you can skip this section. However, if you're unsure how many existing delegations you have, you'll want to run the following JavaScript code snippet to get `delegationCount` from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/js){target=_blank}:
+It is likely that you have never before delegated from your multilocation derivative account. However, if you're unsure how many existing delegations you have, you'll want to run the following JavaScript code snippet to get `delegationCount` from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/js){target=_blank}:
 
 ```js
 // Simple script to get your number of existing delegations.
@@ -134,7 +134,7 @@ In the following steps you will be preparing a transaction, but you’ll need to
 3. Paste in your selected collator’s address
 4. Paste your desired stake amount in Wei. In the below example 1 DEV or `1000000000000000000` Wei is specified. You can find a unit converter here on [Moonscan](https://moonscan.io/unitconverter){target=_blank}
 5. Enter the collator’s number of existing delegations (this can be found next to the collator’s name / address on the [Moonbase Alpha Staking dApp](https://apps.moonbeam.network/moonbase-alpha/staking){target=_blank}) 
-6. Enter your number of existing delegations from your multilocation derivative account. This is most likely `0` but because this estimation is only used to determine the weight of the call, you can specify an upper bound of `37` - the current number of collators in Moonbase Alpha.
+6. Enter your number of existing delegations from your multilocation derivative account. This is most likely `0` but because this estimation is only used to determine the weight of the call, you can specify an upper bound of `37` - the current number of collators in Moonbase Alpha
 7. Finally, copy the encoded call data to a text file or another easily accessible place because you will need it later. Do not copy the encoded call hash, and do not submit the transaction
 
 !!! note
@@ -179,8 +179,8 @@ In the next section, we’ll start assembling the XCM instructions.
 ### Preparing the Structure of the XCM Message {: #preparing-the-structure-of-the-xcm-message }
 
 1. Select **V2** for **XcmVersionedXcm**
-2. Our XCM Message is going to have 3 distinct XCM instructions, so press the first **Add Item** button 3 times. 
-3. Below the first XCM Instruction of **WithdrawAsset**, we need to add the asset we’re going to withdraw here, so press the **Add Item** button below **WithdrawAsset** once. 
+2. Our XCM Message is going to have 3 distinct XCM instructions, so press the first **Add Item** button 3 times 
+3. Below the first XCM Instruction of **WithdrawAsset**, we need to add the asset we’re going to withdraw here, so press the **Add Item** button below **WithdrawAsset** once 
 
 ![Preparing the structure of the XCM message](/images/tutorials/remote-staking-via-xcm/xcm-stake-10.png)
 
