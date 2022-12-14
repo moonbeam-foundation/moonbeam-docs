@@ -78,7 +78,7 @@ There are multiple ways to create a provider and signer, but the easiest way is 
             "{{ networks.moonbeam.rpc_url }}"
         )?;
         // 3. Use a private key to create a wallet
-        // Do not include the private key in plain text in any production code. 
+        // Do not include the private key in plain text in any production code
         // This is just for demonstration purposes
         let wallet: LocalWallet = "YOUR PRIVATE KEY"
             .parse::<LocalWallet>()?
@@ -102,7 +102,7 @@ There are multiple ways to create a provider and signer, but the easiest way is 
             "{{ networks.moonriver.rpc_url }}"
         )?;
         // 3. Use a private key to create a wallet
-        // Do not include the private key in plain text in any production code. 
+        // Do not include the private key in plain text in any production code
         // This is just for demonstration purposes
         let wallet: LocalWallet = "YOUR PRIVATE KEY"
             .parse::<LocalWallet>()?
@@ -126,7 +126,7 @@ There are multiple ways to create a provider and signer, but the easiest way is 
             "{{ networks.moonbase.rpc_url }}"
         )?;
         // 3. Use a private key to create a wallet
-        // Do not include the private key in plain text in any production code. 
+        // Do not include the private key in plain text in any production code
         // This is just for demonstration purposes
         let wallet: LocalWallet = "YOUR PRIVATE KEY"
             .parse::<LocalWallet>()?
@@ -150,7 +150,7 @@ There are multiple ways to create a provider and signer, but the easiest way is 
             "{{ networks.development.rpc_url }}"
         )?;
         // 3. Use a private key to create a wallet
-        // Do not include the private key in plain text in any production code. 
+        // Do not include the private key in plain text in any production code
         // This is just for demonstration purposes
         let wallet: LocalWallet = "YOUR PRIVATE KEY"
             .parse::<LocalWallet>()?
@@ -184,7 +184,7 @@ You must set up the provider and wallet in `main.rs` in the way described in the
         let provider: Provider<Http> = Provider::<Http>::try_from(
           "{{ networks.moonbeam.rpc_url }}"
         )?;
-        // Do not include the private key in plain text in any produciton code. 
+        // Do not include the private key in plain text in any produciton code
         // This is just for demonstration purposes.
         let wallet: LocalWallet = "YOUR PRIVATE KEY"
             .parse::<LocalWallet>()?
@@ -209,7 +209,7 @@ You must set up the provider and wallet in `main.rs` in the way described in the
         let provider: Provider<Http> = Provider::<Http>::try_from(
           "{{ networks.moonriver.rpc_url }}"
         )?;
-        // Do not include the private key in plain text in any produciton code. 
+        // Do not include the private key in plain text in any produciton code
         // This is just for demonstration purposes.
         let wallet: LocalWallet = "YOUR PRIVATE KEY"
             .parse::<LocalWallet>()?
@@ -234,7 +234,7 @@ You must set up the provider and wallet in `main.rs` in the way described in the
         let provider: Provider<Http> = Provider::<Http>::try_from(
           "{{ networks.moonbase.rpc_url }}"
         )?;
-        // Do not include the private key in plain text in any produciton code. 
+        // Do not include the private key in plain text in any produciton code
         // This is just for demonstration purposes.
         let wallet: LocalWallet = "YOUR PRIVATE KEY"
             .parse::<LocalWallet>()?
@@ -259,7 +259,7 @@ You must set up the provider and wallet in `main.rs` in the way described in the
         let provider: Provider<Http> = Provider::<Http>::try_from(
           "{{ networks.development.rpc_url }}"
         )?;
-        // Do not include the private key in plain text in any produciton code. 
+        // Do not include the private key in plain text in any produciton code
         // This is just for demonstration purposes.
         let wallet: LocalWallet = "YOUR PRIVATE KEY"
             .parse::<LocalWallet>()?
