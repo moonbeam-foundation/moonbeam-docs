@@ -69,7 +69,7 @@ async fn compile_deploy_contract(client: &Client) -> Result<H160, Box<dyn std::e
         .expect("could not find contract")
         .into_parts_or_default();
 
-    //Create a contract factory which will be used to deploy instances of the contract
+    // Create a contract factory which will be used to deploy instances of the contract
     let factory = ContractFactory::new(abi, bytecode, Arc::new(client.clone()));
 
     // Deploy
@@ -117,10 +117,10 @@ async fn increment_number(client: &Client, contract_addr: &H160) -> Result<(), B
 async fn reset(client: &Client, contract_addr: &H160) -> Result<(), Box<dyn std::error::Error>> {
     println!("Resetting number...");
 
-    // 3. Create contract instance
+    // Create contract instance
     let contract = Incrementer::new(contract_addr.clone(), Arc::new(client.clone()));
 
-    // 4. Send contract transaction
+    // Send contract transaction
     let tx = contract.reset().send().await?.await?;
     println!("Transaction Receipt: {}", serde_json::to_string(&tx)?);
     

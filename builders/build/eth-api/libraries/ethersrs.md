@@ -1,6 +1,6 @@
 ---
 title: How to use Ethers.rs Ethereum Library
-description: Follow this tutorial to learn how to use the Ethereum EthersRS Library to send transactions and deploy Solidity smart contracts to Moonbeam via the Rust language.
+description: Learn how to use the Ethereum EthersRS Library to send transactions and deploy Solidity smart contracts to Moonbeam via the Rust language.
 ---
 
 # Ethers.rs Rust Library
@@ -79,7 +79,7 @@ There are multiple ways to create a provider and signer, but the easiest way is 
         )?;
         // 3. Use a private key to create a wallet
         // Do not include the private key in plain text in any production code. 
-        // This is just for demonstration purposes.
+        // This is just for demonstration purposes
         let wallet: LocalWallet = "YOUR PRIVATE KEY"
             .parse::<LocalWallet>()?
             .with_chain_id(Chain::Moonbeam);
@@ -103,7 +103,7 @@ There are multiple ways to create a provider and signer, but the easiest way is 
         )?;
         // 3. Use a private key to create a wallet
         // Do not include the private key in plain text in any production code. 
-        // This is just for demonstration purposes.
+        // This is just for demonstration purposes
         let wallet: LocalWallet = "YOUR PRIVATE KEY"
             .parse::<LocalWallet>()?
             .with_chain_id(Chain::Moonriver);
@@ -127,7 +127,7 @@ There are multiple ways to create a provider and signer, but the easiest way is 
         )?;
         // 3. Use a private key to create a wallet
         // Do not include the private key in plain text in any production code. 
-        // This is just for demonstration purposes.
+        // This is just for demonstration purposes
         let wallet: LocalWallet = "YOUR PRIVATE KEY"
             .parse::<LocalWallet>()?
             .with_chain_id(Chain::Moonbase);
@@ -151,7 +151,7 @@ There are multiple ways to create a provider and signer, but the easiest way is 
         )?;
         // 3. Use a private key to create a wallet
         // Do not include the private key in plain text in any production code. 
-        // This is just for demonstration purposes.
+        // This is just for demonstration purposes
         let wallet: LocalWallet = "YOUR PRIVATE KEY"
             .parse::<LocalWallet>()?
             .with_chain_id(Chain::MoonbeamDev);
@@ -291,7 +291,7 @@ async fn print_balances(provider: &Provider<Http>) -> Result<(), Box<dyn std::er
     // 3. Use the get_balance function
     let balance = provider.get_balance(address, None).await?;
 
-    // Print the resultant balance
+    // 4. Print the resultant balance
     println!("{} has {}", address, balance);
     Ok(())
 }
