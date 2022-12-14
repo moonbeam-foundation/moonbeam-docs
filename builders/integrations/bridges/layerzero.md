@@ -11,7 +11,7 @@ description: Learn how to bridge assets, plus other ways you can connect your Mo
 
 [LayerZero](https://layerzero.network/){target=_blank} delivers secure omnichain interoperability for Web3. It consists of an Oracle actor and a Relayer actor that work separately to provide secure messages from one chain to another. LayerZero's infrastructure enables dApp users to interact with any asset or application, on any connected chain, with one click.
 
-LayerZero is a transport layer that enables asset transfer with low-level communication primitives. dApps utilized LayerZero are known as User Applications, whose messages are relayed across chains by a Relayer, and whose messages are verified on the destination chain by an Oracle's block headers. Take a look at the tech stack diagram below and their [conceptual documentation](https://layerzero.gitbook.io/docs/faq/messaging-properties){target=_blank} for more details.
+LayerZero is a transport layer that enables asset transfer with low-level communication primitives. DApps that utilize LayerZero are known as User Applications, whose messages are relayed across chains by a Relayer, and whose messages are verified on the destination chain by an Oracle's block headers. Take a look at the tech stack diagram below and their [conceptual documentation](https://layerzero.gitbook.io/docs/faq/messaging-properties){target=_blank} for more details.
 
 ![LayerZero Technology Stack diagram](/images/builders/integrations/bridges/layerzero/layerzero-1.png)
 
