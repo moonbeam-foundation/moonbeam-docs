@@ -408,3 +408,5 @@ Use the Remix interface. This example is going to send a cross-chain message to 
 ![Send a transaction](/images/builders/integrations/bridges/wormhole/wormhole-8.png)
 
 After a few seconds to a minute, cross-chain messages should be properly relayed through the relayer that you are hosting on your local machine.
+
+--8<-- 'text/disclaimers/third-party-content.md'
