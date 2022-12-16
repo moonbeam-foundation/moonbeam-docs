@@ -38,7 +38,8 @@ The SDK provides the following core methods:
 | [`subscribeToAssetsBalanceInfo()`](/builders/xcm/xcm-sdk/xcm-sdk/#subscribe){target=_blank} |   Listens for balance changes for a given account for each of the supported assets    |
 |     [`isXcmSdkDeposit()`](/builders/xcm/xcm-sdk/xcm-sdk/#deposit-check){target=_blank}      | Returns a boolean indicating whether the given transfer data is for a deposit or not  |
 |    [`isXcmSdkWithdraw()`](/builders/xcm/xcm-sdk/xcm-sdk/#withdraw-check){target=_blank}     | Returns a boolean indicating whether the given transfer data is for a withdraw or not |
-|          [`toDecimals()`](/builders/xcm/xcm-sdk/xcm-sdk/#decimals){target=_blank}           |                       Returns a given balance in decimal format                       |
+|          [`toDecimal()`](/builders/xcm/xcm-sdk/xcm-sdk/#decimals){target=_blank}           |                       Returns a given balance in decimal format                       |
+|          [`toBigInt()`](/builders/xcm/xcm-sdk/xcm-sdk/#decimals){target=_blank}           |                       Returns a given decimal in BigInt format                       |
 
 ## Deposit Methods {: #deposit-methods }
 
