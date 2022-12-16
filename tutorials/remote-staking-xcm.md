@@ -117,7 +117,7 @@ In the next section, we’ll start assembling the XCM instructions.
 
 ### Assembling the Contents of the XCM Message {: #assembling-the-contents-of-the-xcm-message }
 
-Now we’re ready for the fun part! Construct the XCM message that will remotely stake funds on the Moonbase Alpha parachain as follows:
+Now we’re ready for the fun part! You'll need to press **Add Item** beneath the **BuyExecution** and **Transact** XCM instructions respectively. Construct the XCM message that will remotely stake funds on the Moonbase Alpha parachain as follows:
 
 ```
 {
@@ -175,6 +175,10 @@ Now we’re ready for the fun part! Construct the XCM message that will remotely
 Verify that the structure of your XCM message resembles the below image, then press **Submit Transaction**. Note that your encoded call data will vary based on your chosen collator.
 
 ![Assembling the complete XCM message](/images/tutorials/remote-staking-via-xcm/xcm-stake-7.png)
+
+!!! note
+    The encoded call data for the call configured above is `0x630001010100a10f020c00040000010403001300008a5d78456301130000010403001300008a5d784563010006010700902f5009b80c113a7d3048f3cb0391bb44b518e5729f07bcc7a45d000064a7b3b6e00d00000000000000002c01000025000000`.
+
 
 And that’s it! To verify that your delegation was successful, you can visit [Subscan](https://moonbase.subscan.io/){target=_blank} to check your staking balance. Be advised that it may take a few minutes before your staking balance is visible on Subscan. Additionally, be aware that you will not be able to see this staking operation on Moonscan, because we initiated the delegation action directly via the parachain staking pallet (on the substrate side) rather than through the staking precompile (on the EVM). 
  
