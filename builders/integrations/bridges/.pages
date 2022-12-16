@@ -3,4 +3,6 @@ hide: false
 nav:
   - index.md
   - 'Axelar': 'axelar.md'
+  - 'Hyperlane': 'hyperlane.md'
+  - 'LayerZero': 'layerzero.md'
   - 'Wormhole': 'wormhole.md'
