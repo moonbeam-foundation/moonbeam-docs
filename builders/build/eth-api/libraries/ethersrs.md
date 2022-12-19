@@ -53,6 +53,13 @@ serde = "1.0.149"
 
 This example is using the `ethers` and `ethers-solc` crate versions `1.0.2` for RPC interactions and Solidity compiling. It also includes the `tokio` crate to run asynchronous Rust environments, since interacting with RPCs requires asynchronous code. Finally, it includes the `serde_json` and `serde` crates to help serialize/deserialize this example's code.
 
+If this is your first time using `solc-select`, you'll need to install and configure the Solidity version using the following commands:
+
+```
+solc-select install 0.8.17 \
+solc-select use 0.8.17
+```
+
 ## Setting up the Ethers Provider and Client {: #setting-up-the-ethers-provider-and-client }
 
 Throughout this guide, you'll be writing multiple functions that provide different functionality such as sending a transaction, deploying a contract, and interacting with a deployed contract. In most of these scripts you'll need to use an [Ethers provider](https://docs.rs/ethers/latest/ethers/providers/index.html){target=_blank} or an [Ethers signer client](https://docs.rs/ethers/1.0.2/ethers/middleware/struct.SignerMiddleware.html){target=_blank} to interact with the network.
@@ -62,9 +69,11 @@ Throughout this guide, you'll be writing multiple functions that provide differe
 There are multiple ways to create a provider and signer, but the easiest way is through `try_from`:
 
 1. Import `Provider` and `Http` from the `ethers` crate
-2. Use `try_from` to attempt to instantiate a JSON RPC provider object from an RPC endpoint
-3. Use a private key to create a wallet object (the private key will be used to sign transactions). **Note: This is for example purposes only. Never store your private keys in a plain Rust file**
-4. Wrap the provider and wallet together into a client by providing them to a `SignerMiddleware` object
+2. Add a `Client` type for convenience, which will be used once you start to create the functions for sending a transaction and deploying a contract
+3. Add a `tokio` attribute above `async fn main()` for asynchronous excution
+4. Use `try_from` to attempt to instantiate a JSON RPC provider object from an RPC endpoint
+5. Use a private key to create a wallet object (the private key will be used to sign transactions). **Note: This is for example purposes only. Never store your private keys in a plain Rust file**
+6. Wrap the provider and wallet together into a client by providing them to a `SignerMiddleware` object
 
 === "Moonbeam"
 
@@ -72,19 +81,24 @@ There are multiple ways to create a provider and signer, but the easiest way is 
     // 1. Import ethers crate
     use ethers::providers::{Provider, Http};
 
+    // 2. Add client type
+    type Client = SignerMiddleware<Provider<Http>, Wallet<k256::ecdsa::SigningKey>>;
+
+    // 3. Add annotation
+    #[tokio::main]
     fn main() -> Result<(), Box<dyn std::error::Error>> {
-        // 2. Use try_from with RPC endpoint
+        // 4. Use try_from with RPC endpoint
         let provider = Provider::<Http>::try_from(
             "{{ networks.moonbeam.rpc_url }}"
         )?;
-        // 3. Use a private key to create a wallet
+        // 5. Use a private key to create a wallet
         // Do not include the private key in plain text in any production code
         // This is just for demonstration purposes
         let wallet: LocalWallet = "YOUR PRIVATE KEY"
             .parse::<LocalWallet>()?
             .with_chain_id(Chain::Moonbeam);
 
-        // 4. Wrap the provider and wallet together to create a signer client
+        // 6. Wrap the provider and wallet together to create a signer client
         let client = SignerMiddleware::new(provider.clone(), wallet.clone());
         Ok(())
     }
@@ -96,19 +110,24 @@ There are multiple ways to create a provider and signer, but the easiest way is 
     // 1. Import ethers crate
     use ethers::providers::{Provider, Http};
 
+    // 2. Add client type
+    type Client = SignerMiddleware<Provider<Http>, Wallet<k256::ecdsa::SigningKey>>;
+
+    // 3. Add annotation
+    #[tokio::main]
     fn main() -> Result<(), Box<dyn std::error::Error>> {
-        // 2. Use try_from with RPC endpoint
+        // 4. Use try_from with RPC endpoint
         let provider = Provider::<Http>::try_from(
             "{{ networks.moonriver.rpc_url }}"
         )?;
-        // 3. Use a private key to create a wallet
+        // 5. Use a private key to create a wallet
         // Do not include the private key in plain text in any production code
         // This is just for demonstration purposes
         let wallet: LocalWallet = "YOUR PRIVATE KEY"
             .parse::<LocalWallet>()?
             .with_chain_id(Chain::Moonriver);
 
-        // 4. Wrap the provider and wallet together to create a signer client
+        // 6. Wrap the provider and wallet together to create a signer client
         let client = SignerMiddleware::new(provider.clone(), wallet.clone());
         Ok(())
     }
@@ -120,19 +139,24 @@ There are multiple ways to create a provider and signer, but the easiest way is 
     // 1. Import ethers crate
     use ethers::providers::{Provider, Http};
 
+    // 2. Add client type
+    type Client = SignerMiddleware<Provider<Http>, Wallet<k256::ecdsa::SigningKey>>;
+
+    // 3. Add annotation
+    #[tokio::main]
     fn main() -> Result<(), Box<dyn std::error::Error>> {
-        // 2. Use try_from with RPC endpoint
+        // 4. Use try_from with RPC endpoint
         let provider = Provider::<Http>::try_from(
             "{{ networks.moonbase.rpc_url }}"
         )?;
-        // 3. Use a private key to create a wallet
+        // 5. Use a private key to create a wallet
         // Do not include the private key in plain text in any production code
         // This is just for demonstration purposes
         let wallet: LocalWallet = "YOUR PRIVATE KEY"
             .parse::<LocalWallet>()?
             .with_chain_id(Chain::Moonbase);
 
-        // 4. Wrap the provider and wallet together to create a signer client
+        // 6. Wrap the provider and wallet together to create a signer client
         let client = SignerMiddleware::new(provider.clone(), wallet.clone());
         Ok(())
     }
@@ -144,19 +168,24 @@ There are multiple ways to create a provider and signer, but the easiest way is 
     // 1. Import ethers crate
     use ethers::providers::{Provider, Http};
 
+    // 2. Add client type
+    type Client = SignerMiddleware<Provider<Http>, Wallet<k256::ecdsa::SigningKey>>;
+
+    // 3. Add annotation
+    #[tokio::main]
     fn main() -> Result<(), Box<dyn std::error::Error>> {
-        // 2. Use try_from with RPC endpoint
+        // 4. Use try_from with RPC endpoint
         let provider = Provider::<Http>::try_from(
             "{{ networks.development.rpc_url }}"
         )?;
-        // 3. Use a private key to create a wallet
+        // 5. Use a private key to create a wallet
         // Do not include the private key in plain text in any production code
         // This is just for demonstration purposes
         let wallet: LocalWallet = "YOUR PRIVATE KEY"
             .parse::<LocalWallet>()?
             .with_chain_id(Chain::MoonbeamDev);
 
-        // 4. Wrap the provider and wallet together to create a signer client
+        // 6. Wrap the provider and wallet together to create a signer client
         let client = SignerMiddleware::new(provider.clone(), wallet.clone());
         Ok(())
     }
@@ -166,223 +195,141 @@ There are multiple ways to create a provider and signer, but the easiest way is 
 
 During this section, you'll be creating a couple of functions, which will be contained in the same `main.rs` file to avoid additional complexity from implementing modules. The first function will be to check the balances of your accounts before trying to send a transaction. The second function will actually send the transaction. To run each of these functions, you will edit the `main` function and run the `main.rs` script.  
 
-Copy and paste the following code into the `main.rs` file so that it looks like the following boiler-plate code. It includes an additional `Client` type for convenience, a `tokio` attribute for asynchronous excution, a provider, and client. All future functions will be based off of this template's imports.  
+You should already have your provider and client set up in `main.rs` in the way described in the [previous section](#setting-up-the-ethers-provider-and-client). In order to send a transaction, you'll need to add a few more lines of code:
 
-You must set up the provider and wallet in `main.rs` in the way described in the [previous section](#setting-up-the-ethers-provider-and-client).
+1. Add `use ethers::{utils, prelude::*};` to your imports, which will provide you access to utility functions and the prelude imports all of the necessary data types and traits
+2. As you'll be sending a transaction from one address to another, you can specify the sending and receiving addresses in the `main` function. **Note: the `address_from` value should correspond to the private key that is used in the `main` function**
 
-=== "Moonbeam"
+```rust
+// ...
+// 1. Add to imports
+use ethers::{utils, prelude::*};
 
-    ```rust
-    use ethers::{utils, prelude::*};
-    use ethers_solc::Solc;
-    use std::{path::Path, sync::Arc};
+// ...
 
-    type Client = SignerMiddleware<Provider<Http>, Wallet<k256::ecdsa::SigningKey>>;
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // ...
 
-    #[tokio::main]
-    async fn main() -> Result<(), Box<dyn std::error::Error>> {
-        let provider: Provider<Http> = Provider::<Http>::try_from(
-          "{{ networks.moonbeam.rpc_url }}"
-        )?;
-        // Do not include the private key in plain text in any produciton code
-        // This is just for demonstration purposes.
-        let wallet: LocalWallet = "YOUR PRIVATE KEY"
-            .parse::<LocalWallet>()?
-            .with_chain_id(Chain::MoonbeamDev);
-        let client = SignerMiddleware::new(provider.clone(), wallet.clone());
-
-        Ok(())
-    }
-    ```
-
-=== "Moonriver"
-
-    ```rust
-    use ethers::{utils, prelude::*};
-    use ethers_solc::Solc;
-    use std::{path::Path, sync::Arc};
-
-    type Client = SignerMiddleware<Provider<Http>, Wallet<k256::ecdsa::SigningKey>>;
-
-    #[tokio::main]
-    async fn main() -> Result<(), Box<dyn std::error::Error>> {
-        let provider: Provider<Http> = Provider::<Http>::try_from(
-          "{{ networks.moonriver.rpc_url }}"
-        )?;
-        // Do not include the private key in plain text in any produciton code
-        // This is just for demonstration purposes.
-        let wallet: LocalWallet = "YOUR PRIVATE KEY"
-            .parse::<LocalWallet>()?
-            .with_chain_id(Chain::MoonbeamDev);
-        let client = SignerMiddleware::new(provider.clone(), wallet.clone());
-
-        Ok(())
-    }
-    ```
-
-=== "Moonbase Alpha"
-
-    ```rust
-    use ethers::{utils, prelude::*};
-    use ethers_solc::Solc;
-    use std::{path::Path, sync::Arc};
-
-    type Client = SignerMiddleware<Provider<Http>, Wallet<k256::ecdsa::SigningKey>>;
-
-    #[tokio::main]
-    async fn main() -> Result<(), Box<dyn std::error::Error>> {
-        let provider: Provider<Http> = Provider::<Http>::try_from(
-          "{{ networks.moonbase.rpc_url }}"
-        )?;
-        // Do not include the private key in plain text in any produciton code
-        // This is just for demonstration purposes.
-        let wallet: LocalWallet = "YOUR PRIVATE KEY"
-            .parse::<LocalWallet>()?
-            .with_chain_id(Chain::MoonbeamDev);
-        let client = SignerMiddleware::new(provider.clone(), wallet.clone());
-
-        Ok(())
-    }
-    ```
-
-=== "Moonbeam Dev Node"
-
-    ```rust
-    use ethers::{utils, prelude::*};
-    use ethers_solc::Solc;
-    use std::{path::Path, sync::Arc};
-
-    type Client = SignerMiddleware<Provider<Http>, Wallet<k256::ecdsa::SigningKey>>;
-
-    #[tokio::main]
-    async fn main() -> Result<(), Box<dyn std::error::Error>> {
-        let provider: Provider<Http> = Provider::<Http>::try_from(
-          "{{ networks.development.rpc_url }}"
-        )?;
-        // Do not include the private key in plain text in any produciton code
-        // This is just for demonstration purposes.
-        let wallet: LocalWallet = "YOUR PRIVATE KEY"
-            .parse::<LocalWallet>()?
-            .with_chain_id(Chain::MoonbeamDev);
-        let client = SignerMiddleware::new(provider.clone(), wallet.clone());
-
-        Ok(())
-    }
-    ```
-
-The provider and client objects will be injected into the following functions so that the same objects do not have to be recreated multiple times.  
+    // 2. Add from and to address
+    let address_from = "YOUR FROM ADDRESS"
+    let address_to = "YOUR TO ADDRESS"
+}
+```
 
 ### Check Balances Function {: #check-balances-function }
 
-Next, you will create the function for this file and complete the following steps:
+Next, you will create the function for getting the sending and receiving accounts' balances by completing the following steps:
 
-1. Create a new asynchronous function named `print_balances` that takes a provider object's reference as input
-2. Define the `address` variable as the address you would like to check the balance of
-3. Use the `provider` object's `get_balance` function to receive the amount
-4. Print the resultant balance
-5. Call the `print_balances` function in the `main` function
+1. Create a new asynchronous function named `print_balances` that takes a provider object's reference and the sending and receiving addresses as input
+2. Use the `provider` object's `get_balance` function to get the balances of the sending and receiving addresses of the transaction
+3. Print the resultant balances for the sending and receiving addresses
+4. Call the `print_balances` function in the `main` function
 
 ```rust
-// 1. Create an asynchronous function that takes a provider reference as input
-async fn print_balances(provider: &Provider<Http>) -> Result<(), Box<dyn std::error::Error>> {
-    // 2. Define the address variable as your address of choice
-    let address = "YOUR ADDRESS".parse::<Address>()?;
+// ...
 
-    // 3. Use the get_balance function
-    let balance = provider.get_balance(address, None).await?;
+// 1. Create an asynchronous function that takes a provider reference and from and to address as input
+async fn print_balances(provider: &Provider<Http>, address_from: Address, address_to: Address) -> Result<(), Box<dyn std::error::Error>> {
+    // 2. Use the get_balance function
+    let balance_from = provider.get_balance(address_from, None).await?;
+    let balance_to = provider.get_balance(address_to, None).await?;
 
-    // 4. Print the resultant balance
-    println!("{} has {}", address, balance);
+    // 3. Print the resultant balance
+    println!("{} has {}", address_from, balance_from);
+    println!("{} has {}", address_to, balance_to);
+
     Ok(())
 }
-// ...
+
+#[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // ...
-    // 5. Call print_balances function in main
+
+    // 4. Call print_balances function in main
     print_balances(&provider).await?;
 
     Ok(())
 }
 ```
 
-You can view the [complete function on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-rust/main.rs#L27){target=_blank}.
-
-To run the script and fetch the account balances, you can run the following command:
-
-```
-cargo run
-```
-
-If successful, the balances for the address you inserted into the script will be displayed in your terminal.
-
 ### Send Transaction Script {: #send-transaction-script }
 
 For this example, you'll be transferring 1 DEV from an origin address (of which you hold the private key) to another address.  
 
-1. Create a new asynchronous function named `send_transaction` that takes a client object's reference as input
-2. Define the `address_from` and `address_to` variables as the addresses that the transaction should be sent from and to, respectively. Note: the `address_from` value should correspond to the private key that was used in the `main` function
-3. Create a `TransactionRequest` object, and include the `to`, `value`, and `from`. When writing the `value` input, use the `ethers::utils::parse_ether` function 
-4. Use the `client` object to send the transaction
-5. Print the transaction after it is confirmed
-6. Call the `send_transaction` function in the `main` function
+1. Create a new asynchronous function named `send_transaction` that takes a client object's reference and the sending and receiving addresses as input
+2. Create the transaction object, and include the `to`, `value`, and `from`. When writing the `value` input, use the `ethers::utils::parse_ether` function 
+3. Use the `client` object to send the transaction
+4. Print the transaction after it is confirmed
+5. Call the `send_transaction` function in the `main` function
 
 ```rust
-// 1. Define an asynchronous that takes a client provider as input
-async fn send_transaction(client: &Client) -> Result<(), Box<dyn std::error::Error>> {
-    // 2. Define address_from and address_to
-    let address_from = "YOUR ADDRESS FROM".parse::<Address>()?;
-    let address_to = "YOUR ADDRESS TO".parse::<Address>()?;
+// ...
 
+// 1. Define an asynchronous function that takes a client provider and the from and to addresses as input
+async fn send_transaction(client: &Client, address_from: Address, address_to: Address) -> Result<(), Box<dyn std::error::Error>> {
     println!(
         "Beginning transfer of 1 native currency from {} to {}.",
         address_from, address_to
     );
 
-    // 3. Create a TransactionRequest object
+    // 2. Create a TransactionRequest object
     let tx = TransactionRequest::new()
         .to(address_to)
         .value(U256::from(utils::parse_ether(1)?))
         .from(address_from);
         
-    // 4. Send the transaction with the client
+    // 3. Send the transaction with the client
     let tx = client.send_transaction(tx, None).await?.await?;
 
-    // 5. Print out the result
+    // 4. Print out the result
     println!("Transaction Receipt: {}", serde_json::to_string(&tx)?);
 
     Ok(())
 }
-// ...
+
+#[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // ...
-    // 6. Call send_transaction function in main
-    send_transaction(&client).await?;
+
+    // 5. Call send_transaction function in main
+    send_transaction(&client, address_from, address_to).await?;
 
     Ok(())
 }
 ```
 
-You can view the [complete function on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-rust/main.rs#L37){target=_blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-rust/send-tx/main.rs){target=_blank}.
 
-To run the script and fetch the account balances, you can run the following command:
+To run the script, which will send the transaction and then check the balances once the transaction has been sent, you can run the following command:
 
 ```
 cargo run
 ```
 
-If the transaction was succesful, in your terminal you'll see the transaction details printed out.  
+If the transaction was succesful, in your terminal you'll see the transaction details printed out along with the balance of your address.
 
 ## Deploy a Contract {: #deploy-a-contract }
 
 --8<-- 'text/libraries/contract.md'
 
-During the rest of this section, you'll be creating a couple of functions, which will be contained in the same `main.rs` file to avoid additional complexity from implementing modules. The first function will be to compile and deploy the contract. The remaining functions will interact with the deployed contract.  
+During the rest of this section, you'll be creating a couple of functions, which will be contained in the `main.rs` file to avoid additional complexity from implementing modules. The first function will be to compile and deploy the contract. The remaining functions will interact with the deployed contract.  
 
-This section will also depend on the template introduced in the start of the [Send a Transaction section](#send-a-transaction). Please make sure that the `main.rs` file is set up accordingly.
+You should already have your provider and client set up in `main.rs` in the way described in the [Setting up the Ethers Provider and Client section](#setting-up-the-ethers-provider-and-client).
+
+Before getting started with the contract deployment, you'll need to add a few more imports to your `main.rs` file:
+
+```rust
+use ethers_solc::Solc;
+use ethers::{prelude::*};
+use std::{path::Path, sync::Arc};
+```
+
+The `ethers_solc` import will be used to compile the smart contract. The `prelude` from Ethers imports some necessary data types and traits. Lastly, the `std` imports will enables you to store your smart contracts and wrap the client into an `Arc` type for thread safety.
 
 ### Compile and Deploy Contract Script {: #compile-and-deploy-contract-script }
 
-This example function will compile and deploy the `Incrementer.sol` smart contract you created in the previous section. The `Incrementer.sol` smart contract should be in the root directory.  
+This example function will compile and deploy the `Incrementer.sol` smart contract you created in the previous section. The `Incrementer.sol` smart contract should be in the root directory. In the `main.rs` file, you can take the following steps: 
 
 1. Create a new asynchronous function named `compile_deploy_contract` that takes a client object's reference as input, and returns an address in the form of `H160`
 2. Define a variable named `source` as the path for the directory that hosts all of the smart contracts that should be compiled, which is the root directory 
@@ -395,6 +342,8 @@ This example function will compile and deploy the `Incrementer.sol` smart contra
 9. Call the `compile_deploy_contract` function in `main`
 
 ```rust
+// ...
+
 // 1. Define an asynchronous function that takes a client provider as input and returns H160
 async fn compile_deploy_contract(client: &Client) -> Result<H160, Box<dyn std::error::Error>> {
     // 2. Define a path as the directory that hosts the smart contracts in the project
@@ -424,26 +373,17 @@ async fn compile_deploy_contract(client: &Client) -> Result<H160, Box<dyn std::e
     // 8. Return the address
     Ok(addr)
 }
-// ...
+
+#[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // ...
+
     // 9. Call compile_deploy_contract function in main
     let addr = compile_deploy_contract(&client).await?;
 
     Ok(())
 }
 ```
-
-You can view the [complete function on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-rust/main.rs#L57){target=_blank}.
-
-To run the script, you can enter the following command into your terminal:
-
-```
-cargo run
-```
-
-If successful, the contract's address will be displayed in the terminal.
-
 
 ### Read Contract Data (Call Methods) {: #read-contract-data }
 
@@ -497,7 +437,7 @@ The ABI for `Incrementer.sol` is below, which should be copied and pasted into t
 
 Then you can take the following steps to create a function that reads and returns the `number` method of the `Incrementer.sol` contract:
 
-1. Generate a type-safe interface for the Incrementer smart contract with the `abigen` macro
+1. Generate a type-safe interface for the `Incrementer` smart contract with the `abigen` macro
 2. Create a new asynchronous function named `read_number` that takes a client object's reference and a contract address reference as input, and returns a U256
 3. Create a new instance of the `Incrementer` object generated by the abigen macro with the client and contract address values
 4. Call the `number` function in the new `Incrementer` object
@@ -506,6 +446,8 @@ Then you can take the following steps to create a function that reads and return
 7. Call the `read_number` function in `main`
 
 ```rust
+// ...
+
 // 1. Generate a type-safe interface for the Incrementer smart contract
 abigen!(
     Incrementer,
@@ -527,9 +469,13 @@ async fn read_number(client: &Client, contract_addr: &H160) -> Result<U256, Box<
     // 6. Return the number
     Ok(value)
 }
+
 // ...
+
+#[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // ...
+
     // 7. Call read_number function in main
     read_number(&client, &addr).await?;
 
@@ -537,9 +483,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
-You can view the [complete function on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-rust/main.rs#L85){target=_blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-rust/deploy-contract/main.rs){target=_blank}.
 
-To run the script, you can enter the following command into your terminal:
+To run the script, which will deploy the contract and return the current value stored in the `Incrementer` contract, you can enter the following command into your terminal:
 
 ```
 cargo run
@@ -556,10 +502,12 @@ Take the following steps to create the function to increment:
 1. Ensure that the abigen macro is called for the `Incrementer_ABI.json` somewhere in the `main.rs` file (if it is already in the `main.rs` file, you do not have to have a second one)
 2. Create a new asynchronous function named `increment_number` that takes a client object's reference and an address as input
 3. Create a new instance of the `Incrementer` object generated by the abigen macro with the client and contract address values
-4. Call the `increment` function in the new `Incrementer` object by including a `U256` object as input. In this instance, the value provided is 5
+4. Call the `increment` function in the new `Incrementer` object by including a `U256` object as input. In this instance, the value provided is `5`
 5. Call the `read_number` function in `main`
 
 ```rust
+// ...
+
 // 1. Generate a type-safe interface for the Incrementer smart contract
 abigen!(
     Incrementer,
@@ -580,9 +528,13 @@ async fn increment_number(client: &Client, contract_addr: &H160) -> Result<(), B
     
     Ok(())
 }
+
 // ...
+
+#[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // ...
+
     // 5. Call increment_number function in main
     increment_number(&client, &addr).await?;
 
@@ -590,7 +542,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
-You can view the [complete function on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-rust/main.rs#L104){target=_blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-rust/deploy-contract/main.rs){target=_blank}.
 
 To run the script, you can enter the following command into your terminal:
 
@@ -598,9 +550,9 @@ To run the script, you can enter the following command into your terminal:
 cargo run
 ```
 
-If successful, the transaction receipt will be displayed in the terminal. You can use the `print_balances` function alongside the `increment_number` function in the `main` function to make sure that value is changing as expected.
+If successful, the transaction receipt will be displayed in the terminal. You can use the `read_number` function in the `main` function to make sure that value is changing as expected.
 
-Next you can interact with the reset function:
+Next you can interact with the `reset` function:
 
 1. Ensure that the abigen macro is called for the `Incrementer_ABI.json` somewhere in the `main.rs` file (if it is already in the `main.rs` file, you do not have to have a second one)
 2. Create a new asynchronous function named `reset` that takes a client object's reference and an address as input
@@ -609,6 +561,8 @@ Next you can interact with the reset function:
 5. Call the `reset` function in `main`
 
 ```rust
+// ...
+
 // 1. Generate a type-safe interface for the Incrementer smart contract
 abigen!(
     Incrementer,
@@ -617,7 +571,7 @@ abigen!(
 );
 
 // 2. Define an asynchronous function that takes a client provider and address as input
-async fn increment_number(client: &Client, contract_addr: &H160) -> Result<(), Box<dyn std::error::Error>> {
+async fn reset(client: &Client, contract_addr: &H160) -> Result<(), Box<dyn std::error::Error>> {
     println!("Resetting number...");
 
     // 3. Create contract instance
@@ -629,9 +583,13 @@ async fn increment_number(client: &Client, contract_addr: &H160) -> Result<(), B
     
     Ok(())
 }
+
 // ...
+
+#[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // ...
+
     // 5. Call reset function in main
     reset(&client, &addr).await?;
 
@@ -639,6 +597,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
-If successful, the transaction receipt will be displayed in the terminal. You can use the `print_balances` function alongside the `reset` function in the `main` function to make sure that value is changing as expected.
+If successful, the transaction receipt will be displayed in the terminal. You can use the `read_number` function in the `main` function to make sure that value is changing as expected.
+
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-rust/deploy-contract/main.rs){target=_blank}.
 
 --8<-- 'text/disclaimers/third-party-content.md'
