@@ -12,8 +12,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .with_chain_id(Chain::Moonbase);  // Change to correct network
     let client = SignerMiddleware::new(provider.clone(), wallet.clone());
 
-    let address_from = "YOUR FROM ADDRESS";
-    let address_to = "YOUR TO ADDRESS";
+    let address_from = "YOUR FROM ADDRESS".parse::<Address>()?;
+    let address_to = "YOUR TO ADDRESS".parse::<Address>()?;
 
     send_transaction(&client, address_from, address_to).await?;
     print_balances(&provider, address_from, address_to).await?;

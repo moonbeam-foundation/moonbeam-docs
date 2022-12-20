@@ -56,8 +56,7 @@ This example is using the `ethers` and `ethers-solc` crate versions `1.0.2` for 
 If this is your first time using `solc-select`, you'll need to install and configure the Solidity version using the following commands:
 
 ```
-solc-select install 0.8.17 \
-solc-select use 0.8.17
+solc-select install 0.8.17 && solc-select use 0.8.17
 ```
 
 ## Setting up the Ethers Provider and Client {: #setting-up-the-ethers-provider-and-client }
@@ -212,8 +211,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // ...
 
     // 2. Add from and to address
-    let address_from = "YOUR FROM ADDRESS"
-    let address_to = "YOUR TO ADDRESS"
+    let address_from = "YOUR FROM ADDRESS".parse::<Address>()?
+    let address_to = "YOUR TO ADDRESS".parse::<Address>()?
 }
 ```
 
@@ -308,6 +307,8 @@ cargo run
 ```
 
 If the transaction was succesful, in your terminal you'll see the transaction details printed out along with the balance of your address.
+
+![Terminal logs from sending a transaction](/images/builders/build/eth-api/libraries/ethersrs/ethersrs-1.png)
 
 ## Deploy a Contract {: #deploy-a-contract }
 
@@ -491,7 +492,9 @@ To run the script, which will deploy the contract and return the current value s
 cargo run
 ```
 
-If successful, the number value will be displayed in the terminal.
+If successful, you'll see the deployed contract's address and initial value set, which should be `5`, displayed in the terminal.
+
+![Terminal logs from deploy the contract](/images/builders/build/eth-api/libraries/ethersrs/ethersrs-2.png)
 
 ### Interact with Contract (Send Methods) {: #interact-with-contract }
 
@@ -550,7 +553,9 @@ To run the script, you can enter the following command into your terminal:
 cargo run
 ```
 
-If successful, the transaction receipt will be displayed in the terminal. You can use the `read_number` function in the `main` function to make sure that value is changing as expected.
+If successful, the transaction receipt will be displayed in the terminal. You can use the `read_number` function in the `main` function to make sure that value is changing as expected. If you're using the `read_number` function after incrementing, you'll also see the incremented number, which should be `10`. 
+
+![Terminal logs from incrementing the number](/images/builders/build/eth-api/libraries/ethersrs/ethersrs-3.png)
 
 Next you can interact with the `reset` function:
 
@@ -597,7 +602,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
-If successful, the transaction receipt will be displayed in the terminal. You can use the `read_number` function in the `main` function to make sure that value is changing as expected.
+If successful, the transaction receipt will be displayed in the terminal. You can use the `read_number` function in the `main` function to make sure that value is changing as expected. If you're using the `read_number` function after resetting the number, you should see `0` printed to the terminal. 
+
+![Terminal logs from resetting the number](/images/builders/build/eth-api/libraries/ethersrs/ethersrs-4.png)
 
 You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-rust/deploy-contract/main.rs){target=_blank}.
 

@@ -1,5 +1,5 @@
 use ethers::providers::{Provider, Http};
-use ethers::{utils, prelude::*};
+use ethers::{prelude::*};
 use ethers_solc::Solc;
 use std::{path::Path, sync::Arc};
 
@@ -11,12 +11,19 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Do not include the private key in plain text in any produciton code. This is just for demonstration purposes
     let wallet: LocalWallet = "PRIVATE KEY OF YOUR FROM ADDRESS"
         .parse::<LocalWallet>()?
-        .with_chain_id(Chain::MoonbeamDev);
+        .with_chain_id(Chain::Moonbase);
     let client = SignerMiddleware::new(provider.clone(), wallet.clone());
 
+    // Deploy contract and read initial incrementer value
     let addr = compile_deploy_contract(&client).await?;
     read_number(&client, &addr).await?;
+
+    // Increment and read the incremented number
     increment_number(&client, &addr).await?;
+    read_number(&client, &addr).await?;
+
+    // Reset the incremented number and read it
+    reset(&client, &addr).await?;
     read_number(&client, &addr).await?;
 
     Ok(())
