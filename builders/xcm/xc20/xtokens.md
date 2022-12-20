@@ -40,7 +40,7 @@ Where the inputs that need to be provided can be defined as:
  - **currencyId/currencies** — the ID/IDs of the currency/currencies being sent via XCM. Different runtimes have different ways to define the IDs. In the case of Moonbeam-based networks, `SelfReserve` refers to the native token, and `ForeignAsset` refers to the asset ID of the XC-20 (not to be confused with the XC-20 address)
  - **amount** — the number of tokens that are going to be sent via XCM
  - **dest** — a multilocation to define the destination address for the tokens being sent via XCM. It supports different address formats such as 20 or 32 bytes addresses (Ethereum or Substrate)
- - **destWeight** — the maximum amount of execution time you want to provide in the destination chain to execute the XCM message being sent. If not enough weight is provided, the execution of the XCM will fail, and funds might get locked in either the sovereign account or a special pallet. **It is important to correctly set the destination weight to avoid failed XCM executions**
+ - **destWeight** — an enum that represents the maximum amount of execution time you want to provide in the destination chain to execute the XCM message being sent. The `Unlimited` option allows for all of the asset used for gas included to be used to pay for weight. The `Limited` option limits the amount used for gas to a particular value. If not enough weight is provided, the execution of the XCM will fail, and funds might get locked in either the sovereign account or a special pallet. **It is important to correctly set the destination weight to avoid failed XCM executions**
  - **asset/assets** — a multilocation to define the asset/assets being sent via XCM. Each parachain has a different way to reference assets. For example, Moonbeam-based networks reference their native tokens with the pallet balances index
  - **fee** — a multilocation to define the asset used to pay for the XCM execution in the target chain
  - **feeItem** — an index to define the asset position of an array of assets being sent, used to pay for the XCM execution in the target chain. For example, if only one asset is being sent, the `feeItem` would be `0`
@@ -116,11 +116,11 @@ Head to the extrinsic page of [Polkadot.js Apps](https://polkadot.js.org/apps/?r
     |  Network  |      Any       |
     |    Id     | Target Account |
 
-8. Set the destination weight to `1000000000`. Note that on Moonbase Alpha, each XCM instruction costs around `100000000` weight units. A `transfer` consists of 4 XCM instructions, so a destination weight of `400000000` should be enough
+8. Set the destination weight as `Limited`, and its value to `1000000000`. Note that on Moonbase Alpha, each XCM instruction costs around `100000000` weight units. A `transfer` consists of 4 XCM instructions, so a destination weight of `400000000` should be enough
 9. Click the **Submit Transaction** button and sign the transaction
 
 !!! note
-    The encoded call data for the extrinsict configured above is `0x1e00018080778c30c20fa2ebc0ed18d2cbca1f0010a5d4e800000000000000000000000101010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300ca9a3b00000000`. It also includes a specific recipient that you'll need to change.
+    The encoded call data for the extrinsic configured above is `0x1e00018080778c30c20fa2ebc0ed18d2cbca1f0010a5d4e800000000000000000000000101010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a0630102286bee`. It also includes a specific recipient that you'll need to change.
 
 ![XCM X-Tokens Transfer Extrinsic](/images/builders/xcm/xc20/xtokens/xtokens-2.png)
 
@@ -171,7 +171,7 @@ Head to the extrinsic page of [Polkadot.js Apps](https://polkadot.js.org/apps/?r
 9. Click the **Submit Transaction** button and sign the transaction
 
 !!! note
-    The encoded call data for the extrinsict configured above is `0x1e010100010000070010a5d4e80101010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300ca9a3b00000000`. It also includes a specific recipient that you'll need to change.
+    The encoded call data for the extrinsic configured above is `0x1e010100010000070010a5d4e80101010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a0630102286bee`. It also includes a specific recipient that you'll need to change.
 
 ![XCM X-Tokens Transfer Extrinsic](/images/builders/xcm/xc20/xtokens/xtokens-3.png)
 
