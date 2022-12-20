@@ -21,7 +21,7 @@ The Tenderly platform provides the following features:
 
 - **[Simulator](https://docs.tenderly.co/simulations-and-forks/how-to-simulate-a-transaction){target=_blank}** - simulate transactions in a forked development environment to learn how your transactions will behave without having to send them on-chain. This way, you can know the outcome of the transaction and make sure it works as expected before sending it to the network. You can experiment with different parameters, simulate historical and current transactions, and edit the contract source code. You can access the simulator from the Tenderly dashboard or you can use the [Tenderly Simulation API](https://docs.tenderly.co/simulations-and-forks/simulation-api){target=_blank} to take advantage of the simulator programmatically 
 
-- **[Forks](https://docs.tenderly.co/simulations-and-forks/how-to-create-a-fork){target=_blank}** - this feature simulates the live Moonbeam network in an isolated environment, which enables you to interact with deployed contracts and live on-chain data. Forking also takes transaction simulations a step further by enabling you to chain multiple simulations together chronologically. This allows for the testing of complex transaction scenarios where one transaction depends upon another, with the benefit of using live on-chain data
+- **[Forks](https://docs.tenderly.co/simulations-and-forks/how-to-create-a-fork){target=_blank}** - this feature simulates the live Moonbeam network in an isolated environment, which enables you to interact with deployed contracts and live on-chain data. Forking also takes transaction simulations a step further by enabling you to chain multiple simulations together chronologically. This allows for the testing of complex transaction scenarios where one transaction depends upon another, with the benefit of using live on-chain data. There are some limitations to be aware of when using Tenderly's forking feature. You cannot interact with any of the Moonbeam precompiled contracts and their functions. Precompiles are a part of the Substrate implementation and therefore cannot be replicated in the simulated EVM environment. This prohibits you from interacting with cross-chain assets on Moonbeam and Substrate-based functionality such as staking and governance
 
 - **[Alerting](https://docs.tenderly.co/alerts/alerting){target=_blank}** - configure real-time alerts to notify you whenever a specific event occurs, allowing you to stay informed about what's going on with your smart contracts
 
@@ -83,6 +83,8 @@ To take full advantage of the Tenderly tool set, it is recommended that you veri
 
 Tenderly's forking feature simulates the live Moonbeam network in an isolated environment, which enables you to interact with deployed contracts and live on-chain data.
 
+There are some limitations to be aware of when using Tenderly's forking feature. You cannot interact with any of the Moonbeam precompiled contracts and their functions. Precompiles are a part of the Substrate implementation and therefore cannot be replicated in the simulated EVM environment. This prohibits you from interacting with cross-chain assets on Moonbeam and Substrate-based functionality such as staking and governance.
+
 Tenderly makes creating a fork through the dashboard quite simple. To get started, click on **Forks** on the left-side menu and then click **Create Fork**. From there, you can take the following steps:
 
 1. Select **Moonbeam** or **Moonriver** from the **Network** dropdown
@@ -98,6 +100,8 @@ To deploy a contract to your fork, you can click on the **Deploy Contract** butt
 
 ![Fork simulations](/images/builders/build/eth-api/dev-env/tenderly/tenderly-6.png)
 
-To create additional simulations, you can click the **New Simulation** button and enter in the configurations for the simulation. For more information on how to create a simulation, please refer to [Tenderly's documentation](https://docs.tenderly.co/simulations-and-forks/how-to-simulate-a-transaction){target=_blank}.
+To create additional simulations, you can click the **New Simulation** button and enter in the configurations for the simulation. For more information on simulations, please refer to [Tenderly's How to Simulate a Transaction documentation](https://docs.tenderly.co/simulations-and-forks/how-to-simulate-a-transaction){target=_blank}.
+
+Now that you've learned how to get started with a few of Tenderly's features on Moonbeam, please feel free to dive in and check out the other tools available in their development platform. You can visit [Tenderly's documentation site](https://docs.tenderly.co/){target=_blank} for more information.
 
 --8<-- 'text/disclaimers/third-party-content.md'
