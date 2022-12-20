@@ -96,4 +96,6 @@ And that is it! You've signed a transaction and sent some tokens on Moonbeam usi
 
 ![MetaMask Ledger Allow Contracts Tx](/images/tokens/connect/ledger/ethereum/ledger-11.png)
 
+--8<-- 'text/ledger/ledger-live.md'
+
 --8<-- 'text/disclaimers/third-party-content.md'
