@@ -15,7 +15,7 @@ This guide assumes you are interacting with Moonbeam blocks via [the Substrate A
 
 You can reference the [Substrate API Sidecar page](/builders/build/substrate-api/sidecar/){target=_blank} for information on installing and running your own Sidecar service instance, as well as more details on how to decode Sidecar blocks for Moonbeam transactions.
 
-**Note that the information on this paged assumes you are running version {{ networks.moonbase.substrate_api_sidecar.stable_version }} of the Substrate Sidecar REST API.**
+**Note that the information on this page assumes you are running version {{ networks.moonbase.substrate_api_sidecar.stable_version }} of the Substrate Sidecar REST API.**
 
 ## Substrate API Transaction Fees {: #substrate-api-transaction-fees }
 
