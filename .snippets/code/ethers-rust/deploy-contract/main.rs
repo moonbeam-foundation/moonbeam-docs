@@ -9,6 +9,7 @@ type Client = SignerMiddleware<Provider<Http>, Wallet<k256::ecdsa::SigningKey>>;
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let provider: Provider<Http> = Provider::<Http>::try_from("https://rpc.api.moonbase.moonbeam.network")?; // Change to correct network
     // Do not include the private key in plain text in any produciton code. This is just for demonstration purposes
+    // Do not include '0x' at the start of the private key
     let wallet: LocalWallet = "PRIVATE KEY OF YOUR FROM ADDRESS"
         .parse::<LocalWallet>()?
         .with_chain_id(Chain::Moonbase);
