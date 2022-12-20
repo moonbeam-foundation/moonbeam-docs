@@ -20,6 +20,7 @@ In this tutorial, you will learn how to get started with your Ledger hardware wa
 --8<-- 'text/disclaimers/third-party-content-intro.md'
 
 --8<-- 'text/ledger/checking-prereqs.md'
+--8<-- 'text/ledger/checking-prereqs-metamask.md'
 
 ## Install the Ledger Live App {: install-the-ledger-live-app }
 
@@ -94,5 +95,7 @@ And that is it! You've signed a transaction and sent some tokens on Moonbeam usi
 --8<-- 'text/ledger/blind-signing.md'
 
 ![MetaMask Ledger Allow Contracts Tx](/images/tokens/connect/ledger/ethereum/ledger-11.png)
+
+--8<-- 'text/ledger/ledger-live.md'
 
 --8<-- 'text/disclaimers/third-party-content.md'
