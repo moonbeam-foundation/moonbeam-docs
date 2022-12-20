@@ -23,9 +23,9 @@ To get started with the XCM SDK, you'll first need to install the corresponding 
 
 ### Installation {: #installation }
 
-For the purposes of this guide you'll need to install two packages: the XCM SDK package, and the XCM config package. 
+For the purposes of this guide you'll need to install two packages: the XCM SDK package, and the XCM config package.
 
-The XCM SDK package will enable you to easily deposit and withdraw assets, and subscribe to balance information for each of the supported assets. 
+The XCM SDK package will enable you to easily deposit and withdraw assets, and subscribe to balance information for each of the supported assets.
 
 The XCM config package will be used to obtain origin asset and chain information for each of the supported assets. The config package also includes native asset and chain information for each of the Moonbeam-based networks, as well as some underlying functions of the SDK.
 
@@ -69,7 +69,7 @@ To create a signer for Ethers.js and Polkadot.js, you can refer to the following
       },
     };
     const provider = new ethers.providers.StaticJsonRpcProvider(
-      providerRPC.moonbeam.rpc, 
+      providerRPC.moonbeam.rpc,
       {
         chainId: providerRPC.moonbeam.chainId,
         name: providerRPC.moonbeam.name,
@@ -97,7 +97,7 @@ To create a signer for Ethers.js and Polkadot.js, you can refer to the following
       },
     };
     const provider = new ethers.providers.StaticJsonRpcProvider(
-      providerRPC.moonriver.rpc, 
+      providerRPC.moonriver.rpc,
       {
         chainId: providerRPC.moonriver.chainId,
         name: providerRPC.moonriver.name,
@@ -125,7 +125,7 @@ To create a signer for Ethers.js and Polkadot.js, you can refer to the following
       },
     };
     const provider = new ethers.providers.StaticJsonRpcProvider(
-      providerRPC.moonbase.rpc, 
+      providerRPC.moonbase.rpc,
       {
         chainId: providerRPC.moonbase.chainId,
         name: providerRPC.moonbase.name,
@@ -162,7 +162,7 @@ To be able to deposit, withdraw, and subscribe to balance information for all of
     import { init } from '@moonbeam-network/xcm-sdk';
     const { moonbase } = init()
     ```
-    
+
 If you intend to support a specific wallet, you can pass a signer into the `init` function right away. Otherwise, you'll be able to pass a signer directly when building the transfer data for a deposit or withdraw. To pass in a signer for Ethers and Polkadot, you can use the following snippet:
 
 === "Moonbeam"
@@ -361,7 +361,7 @@ The process for building and sending a deposit transfer data is as follows:
 1. Call the `deposit` function and pass in the [asset symbol](#asset-symbols) or the [asset object](#assets) for the asset to be deposited. This will return a [`chains` array](#chains-deposit) containing the asset's origin network information and a `from` function which will be used to build the transfer data
 2. Call the `from` function and pass in the chain key or the chain object of the origin network. You can get the chain object from the `chains` array returned from the `deposit` function. You can get the chain key one of two ways: by accessing the key property of the chain object (`chain.key`) or by directly importing `ChainKey` from the XCM config package (as seen in the example below)
 3. Call `get` and pass in the address of the account on Moonbeam you want to deposit the funds to and a signer or Polkadot address depending on how your code is configured, please refer to the [Get](#get-deposit) section for more information. For the purposes of this guide, you'll need to pass in a Polkadot.js `Keyring` to sign the transaction as created in the [Creating Signers](#creating-signers) section. The `get` function returns a `send` function which already contains all the necessary info to perform the deposit, and it is used in the next step. In addition, other elements such as information about the origin chain asset and the `xc` representation of the asset on Moonbeam are returned and might be important for logging purposes
-4. The `send` function is used to send the built deposit transfer data along with the amount to send. You can optionally provide a callback function to handle the extrinsic events    
+4. The `send` function is used to send the built deposit transfer data along with the amount to send. You can optionally provide a callback function to handle the extrinsic events
 
 To obtain some of the data required to build the deposit transfer data, such as the asset symbol and chain key of the origin network, you can import `AssetSymbol` and `ChainKey` from the `@moonbeam-network/xcm-config` package.
 
@@ -417,7 +417,7 @@ chains: [
 
 #### From {: #from }
 
-The `from` function requires a chain key to be passed into it for the origin chain in which the assets are sent from and returns a `get` function. 
+The `from` function requires a chain key to be passed into it for the origin chain in which the assets are sent from and returns a `get` function.
 
 ```js
 import { AssetSymbol, ChainKey } from '@moonbeam-network/xcm-config';
@@ -431,7 +431,7 @@ const { from } = moonbeam.deposit(dot);
 from(polkadot);
 ```
 
-#### Get {: #get-deposit } 
+#### Get {: #get-deposit }
 
 The `get` function requires that you pass in the receiving account on Moonbeam and a Polkadot signer or the sending account on Polkadot depending on how you set up your Polkadot signer, and it gets the data required for the deposit.
 
@@ -563,7 +563,8 @@ The `getFee` function estimates the fees for transferring a given amount of the 
 
 ```js
 import { AssetSymbol, ChainKey } from '@moonbeam-network/xcm-config';
-import { init, toDecimal } from '@moonbeam-network/xcm-sdk';
+import { init } from '@moonbeam-network/xcm-sdk';
+import { toDecimal } from '@moonbeam-network/xcm-utils';
 
 ...
 
@@ -648,7 +649,7 @@ chains: [
 
 #### To {: #to }
 
-The `to` function requires a chain key to be passed into it for the origin chain in which the assets are being withdrawn back to and returns a `get` function. 
+The `to` function requires a chain key to be passed into it for the origin chain in which the assets are being withdrawn back to and returns a `get` function.
 
 ```js
 import { AssetSymbol, ChainKey } from '@moonbeam-network/xcm-config';
@@ -663,7 +664,7 @@ const { to } = moonbeam.withdraw(dot);
 to(polkadot);
 ```
 
-#### Get {: #get-withdraw } 
+#### Get {: #get-withdraw }
 
 The `get` function requires that you pass in the receiving account on the destination chain and the Ethers signer for the sending account on Moonbeam, and it gets the data required for the withdraw.
 
@@ -678,7 +679,7 @@ const polkadot = ChainKey.Polkadot;
 const { to } = moonbeam.deposit(dot);
 const response =  await to(
     polkadot,
-  ).get('INSERT-POLKADOT-ADDRESS', 
+  ).get('INSERT-POLKADOT-ADDRESS',
   { ethersSigner: signer } // Only required if you didn't pass the signer in on initialization
 )
 ```
@@ -730,20 +731,20 @@ An example of the response for calling `get` to send xcDOT from Moonbeam back to
 
 Where the returned values are as follows:
 
-|        Value         |                                                                                                                                                                       Description                                                                                                                                                                       |
-|:--------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|       `asset`        |                                                                                                                                                         the [asset](#assets) to be transferred                                                                                                                                                          |
-|    `destination`     |                                                                                                                                            the chain information for where the asset is being transferred to                                                                                                                                            |
-| `destinationBalance` |                                                                                                                                           the balance of the asset being transferred on the destination chain                                                                                                                                           |
-|   `destinationFee`   |                                                                                                                                            the fee for the asset to be transferred on the destination chain                                                                                                                                             |
-| `existentialDeposit` | the [existential deposit](https://support.polkadot.network/support/solutions/articles/65000168651-what-is-the-existential-deposit-#:~:text=On%20the%20Polkadot%20network%2C%20an,the%20Existential%20Deposit%20(ED).){target=_blank}, or the minimum amount an address must <br> hold to be considered active if one exists, otherwise `0n` is returned |
-|        `min`         |                                                                                                                                                            the minimum transferable amount of the asset being transferred                                                                                                                                                            |
-|        `minXcmFeeAsset`         |                                                                                                                        the minimum transferable amount of the asset that needs to be sent along to pay for the fees                                                                                                                                                             |
-|       `native`       |                                                                                                                                                     the native [asset](#assets) of the source chain                                                                                                                                                     |
-|       `origin`       |                                                                                                                                  the chain information for where the asset being transferred natively originates from                                                                                                                                   |
-|       `originXcmFeeAssetBalance`       |                                                                                                                             the balance in the origin account of the asset that is sent along with the transfer to pay for the fees, if any                                                                                                                                   |
-|       `getFee`       |                                                                                                                                  a function that [estimates the fees](#get-fee-withdraw) for depositing a given amount                                                                                                                                  |
-|        `send`        |                                                                                                                                           a function that [sends](#send-withdraw) the withdraw transfer data                                                                                                                                            |
+|           Value            |                                                                                                                                                                       Description                                                                                                                                                                       |
+|:--------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|          `asset`           |                                                                                                                                                         the [asset](#assets) to be transferred                                                                                                                                                          |
+|       `destination`        |                                                                                                                                            the chain information for where the asset is being transferred to                                                                                                                                            |
+|    `destinationBalance`    |                                                                                                                                           the balance of the asset being transferred on the destination chain                                                                                                                                           |
+|      `destinationFee`      |                                                                                                                                            the fee for the asset to be transferred on the destination chain                                                                                                                                             |
+|    `existentialDeposit`    | the [existential deposit](https://support.polkadot.network/support/solutions/articles/65000168651-what-is-the-existential-deposit-#:~:text=On%20the%20Polkadot%20network%2C%20an,the%20Existential%20Deposit%20(ED).){target=_blank}, or the minimum amount an address must <br> hold to be considered active if one exists, otherwise `0n` is returned |
+|           `min`            |                                                                                                                                             the minimum transferable amount of the asset being transferred                                                                                                                                              |
+|      `minXcmFeeAsset`      |                                                                                                                              the minimum transferable amount of the asset that needs to be sent along to pay for the fees                                                                                                                               |
+|          `native`          |                                                                                                                                                     the native [asset](#assets) of the source chain                                                                                                                                                     |
+|          `origin`          |                                                                                                                                  the chain information for where the asset being transferred natively originates from                                                                                                                                   |
+| `originXcmFeeAssetBalance` |                                                                                                                     the balance in the origin account of the asset that is sent along with the transfer to pay for the fees, if any                                                                                                                     |
+|          `getFee`          |                                                                                                                                  a function that [estimates the fees](#get-fee-withdraw) for depositing a given amount                                                                                                                                  |
+|           `send`           |                                                                                                                                           a function that [sends](#send-withdraw) the withdraw transfer data                                                                                                                                            |
 
 #### Send {: #send-withdraw }
 
@@ -757,7 +758,8 @@ The `getFee` function estimates the fees for transferring a given amount of the 
 
 ```js
 import { AssetSymbol, ChainKey } from '@moonbeam-network/xcm-config';
-import { init, toDecimal } from '@moonbeam-network/xcm-sdk';
+import { init } from '@moonbeam-network/xcm-sdk';
+import { toDecimal } from '@moonbeam-network/xcm-utils';
 
 ...
 
@@ -821,7 +823,7 @@ unsubscribe();
 
 ### Utility Functions {: #sdk-utils }
 
-The XCM SDK provides three utility functions: `isXcmSdkDeposit`, `isXcmSdkWithdraw`, and `toDecimal`.
+The XCM SDK provides three utility functions: `isXcmSdkDeposit`, `isXcmSdkWithdraw`, and XCM UTILS `toDecimal`, and `toBigInt`.
 
 #### Check if Transfer Data is for a Deposit  {: #deposit-check }
 
@@ -871,15 +873,20 @@ const deposit = moonbeam.deposit(moonbeam.symbols[0])
 console.log(isXcmSdkDeposit(deposit)) // Returns false
 ```
 
-#### Convert Balances to Decimals {: #decimals }
+#### Convert Balance to Decimal or BigInt {: #decimals }
 
 To convert a balance to decimal format, you can use the `toDecimal` function which returns a given number in decimal format based on the number of decimals provided. You can optionally pass in a value a third argument to dictate the maximum number of decimal places used, otherwise the default is `6`.
+
+To convert from decimal number back to BigInt, you can use the `toBigInt` function which returns a given number in BigInt format based on the number of decimals provided.
 
 For example, to convert a balance on Moonbeam from Wei to Glimmer you can use the following code:
 
 ```js
-import { toDecimal } from '@moonbeam-network/xcm-sdk';
+import { toDecimal, toBigInt } from '@moonbeam-network/xcm-utils';
 
-const balance = toDecimal(3999947500000000000n, 18)
-console.log(balance) // Returns 3.999947
+const balance = toDecimal(3999947500000000000n, 18);
+console.log(balance); // Returns 3.999947
+
+const big = toBigInt(3.999947, 18);
+console.log(big); // Returns 3999947000000000000n
 ```

@@ -161,7 +161,7 @@ From a technical standpoint, the implementation of this relayer has four parts.
 
 There is a Docker container that takes care of the spy node, which is easy to spin up. The `relayer-engine` package, stored in the similarly named folder, contains much of the code for the listener and database portions. Much of the logic for the executor will depend on the plugin that the developer writes (which you cloned from the repo), but much of the boiler-plate code is still handled by the `relayer-engine` package.
 
-It’s best to tackle the configuration and setup of these four components in order, so start with the spy node. First, in the command line, make sure that you are in the `example-project` directory. The spy node uses docker, so ensure that docker is active before attempting to start the node. The command to start the container is long, so to simplify things, it’s been added as an npm script to the repository. Just run:
+It’s best to tackle the configuration and setup of these four components in order, so start with the spy node. First, in the command line, make sure that you are in the `example-project` directory. The spy node uses Docker, so ensure that Docker is active before attempting to start the node. The command to start the container is long, so to simplify things, it’s been added as an npm script to the repository. Just run:
 
 ```
 npm run spy
@@ -295,13 +295,13 @@ Now that the wallets are sorted out for the executor, look at the code of the ex
 
 The `handleWorkflow(workflow, providers, execute)` function is where all of the logic is, though there are some helper functions underneath it. This is the function that the `relayer-engine` package invokes when there is a workflow in the Redis database that’s to be used. Notice the three parameters that are injected into the function: `workflow`, `providers`, and `execute`. 
 
-* The `workflow` object provides the data that was stored in the database during the listener component’s execution of the `consumeEvent(vaa, stagingArea)` function. In this case, only the VAA and time it was received was stored in the database, which are stored in the local `payload` variable
-* The `providers` object injects ethers and other chains’ providers, which might be helpful for querying on-chain data or doing other blockchain related actions. As mentioned before, the only providers that are currently supported by the package are Solana and EVMs. The `providers` object isn’t used in this implementation
-* The `execute` object currently has two functions in it: `onEVM(options)` and `onSolana(options)`. These functions require a Wormhole chain ID and a callback function that has a wallet object injected into it. The wallet included is based off of the private key that was configured in the `executor.json` file
+- The `workflow` object provides the data that was stored in the database during the listener component’s execution of the `consumeEvent(vaa, stagingArea)` function. In this case, only the VAA and time it was received was stored in the database, which are stored in the local `payload` variable
+- The `providers` object injects Ethers and other chains’ providers, which might be helpful for querying on-chain data or doing other blockchain related actions. As mentioned before, the only providers that are currently supported by the package are Solana and EVMs. The `providers` object isn’t used in this implementation
+- The `execute` object currently has two functions in it: `onEVM(options)` and `onSolana(options)`. These functions require a Wormhole chain ID and a callback function that has a wallet object injected into it. The wallet included is based off of the private key that was configured in the `executor.json` file
 
-The first substantial thing this function does is parse the payload object, then parse its VAA with some helper functions. Afterwards, it takes the payload, converts it into a hexadecimal format, and uses the ethers utility to ABI-decode the payload into its separate values that were defined way-back-when in the smart contract. 
+The first substantial thing this function does is parse the payload object, then parse its VAA with some helper functions. Afterwards, it takes the payload, converts it into a hexadecimal format, and uses the Ethers utility to ABI-decode the payload into its separate values that were defined way-back-when in the smart contract. 
 
-With the data that was decoded by ethers, it’s possible to figure out to which contract and which chain the payload is being sent to, since that data was packaged into the message. The function checks if the specified destination chain ID belongs to an EVM, and will execute using the `execute.onEVM(options)` function mentioned before. Otherwise, it logs an error since this system doesn’t expect to interact with non-EVM chains for simplicity.
+With the data that was decoded by Ethers, it’s possible to figure out to which contract and which chain the payload is being sent to, since that data was packaged into the message. The function checks if the specified destination chain ID belongs to an EVM, and will execute using the `execute.onEVM(options)` function mentioned before. Otherwise, it logs an error since this system doesn’t expect to interact with non-EVM chains for simplicity.
 
 
 ```javascript
@@ -408,3 +408,5 @@ Use the Remix interface. This example is going to send a cross-chain message to 
 ![Send a transaction](/images/builders/integrations/bridges/wormhole/wormhole-8.png)
 
 After a few seconds to a minute, cross-chain messages should be properly relayed through the relayer that you are hosting on your local machine.
+
+--8<-- 'text/disclaimers/third-party-content.md'
