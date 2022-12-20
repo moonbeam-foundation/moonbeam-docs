@@ -95,7 +95,7 @@ With the introduction of RT1900, there is a `Transaction Weight` mismatch betwee
     86298000
     ```
 
-**The weight mismatch is fixed with RT2000.** This means that for networks running RT2000, you don't need to add any amount. The reported value is correct and should be used for the calculations shown above.
+**The weight mismatch is fixed with RT2000.** This means that for networks running RT2000, you don't need to add any amount. The reported value is correct and should be used for the calculations shown before.
 
 The values of `Gas Price`, `Max Fee Per Gas` and `Max Priority Fee Per Gas` for the applicable transaction types can be read from the block JSON object according to the structure described in [the Sidecar API page](/builders/build/substrate-api/sidecar/#evm-fields-mapping-in-block-json-object){target=_blank}, also truncated and reproduced below: 
 
@@ -145,7 +145,7 @@ extrinsics[extrinsic_number].events[event_number].data[0].weight
 ```
 
 !!! note
-    Please remember that runtime 190X there is a `Transaction Weight` mismatch. You need to add a constant to its value. Check the [Calculating Ethereum API Transaction Fees](#calculating-ethereum-api-transaction-fees) for more information.
+    Please remember that runtime 190X there is a `Transaction Weight` mismatch. You need to add a constant to its value. Check the [Calculating Ethereum API Transaction Fees](#calculating-ethereum-api-transaction-fees) for more information. This was fixed with the subsequent RT2000.
 
 ### Key Differences with Ethereum {: #ethereum-api-transaction-fees} 
 
