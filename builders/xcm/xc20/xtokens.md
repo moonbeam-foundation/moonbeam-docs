@@ -171,7 +171,7 @@ Head to the extrinsic page of [Polkadot.js Apps](https://polkadot.js.org/apps/?r
 9. Click the **Submit Transaction** button and sign the transaction
 
 !!! note
-    The encoded call data for the extrinsict configured above is `0x1e010100010000070010a5d4e80101010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a0630102286bee`. It also includes a specific recipient that you'll need to change.
+    The encoded call data for the extrinsic configured above is `0x1e010100010000070010a5d4e80101010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a0630102286bee`. It also includes a specific recipient that you'll need to change.
 
 ![XCM X-Tokens Transfer Extrinsic](/images/builders/xcm/xc20/xtokens/xtokens-3.png)
 
