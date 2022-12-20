@@ -13,7 +13,9 @@ Similar to [the Ethereum and Substrate APIs for sending transfers](/builders/get
 
 This guide assumes you are interacting with Moonbeam blocks via [the Substrate API Sidecar](/builders/build/substrate-api/sidecar/){target=_blank} service. There are other ways of interacting with Moonbeam blocks, such as using [the Polkadot.js API library](/builders/build/substrate-api/polkadot-js-api/){target=_blank}. The logic is identical once the blocks are retrieved. 
 
-You can reference the [Substrate API Sidecar page](/builders/build/substrate-api/sidecar/){target=_blank} for information on installing and running your own Sidecar service instance, as well as more details on how to decode Sidecar blocks for Moonbeam transactions. 
+You can reference the [Substrate API Sidecar page](/builders/build/substrate-api/sidecar/){target=_blank} for information on installing and running your own Sidecar service instance, as well as more details on how to decode Sidecar blocks for Moonbeam transactions.
+
+**Note that the information on this paged assumes you are running version {{ networks.moonbase.substrate_api_sidecar.stable_version }} of the Substrate Sidecar REST API.**
 
 ## Substrate API Transaction Fees {: #substrate-api-transaction-fees }
 
@@ -92,14 +94,8 @@ With the introduction of RT1900, there is a `Transaction Weight` mismatch betwee
     ```
     86298000
     ```
-=== "Moonriver"
-    ```
-    86298000
-    ```
-=== "Moonbase Alpha"
-    ```
-    250000000
-    ```
+
+**The weight mismatch is fixed with RT2000.** This means that for networks running RT2000, you don't need to add any amount. The reported value is correct and should be used for the calculations shown above.
 
 The values of `Gas Price`, `Max Fee Per Gas` and `Max Priority Fee Per Gas` for the applicable transaction types can be read from the block JSON object according to the structure described in [the Sidecar API page](/builders/build/substrate-api/sidecar/#evm-fields-mapping-in-block-json-object){target=_blank}, also truncated and reproduced below: 
 
