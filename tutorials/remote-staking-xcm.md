@@ -46,13 +46,13 @@ The script will return 32-byte and 20-byte addresses. We’re interested in the 
 
 ## Preparing to Stake on Moonbase Alpha {: #preparing-to-stake-on-moonbase-alpha }
 
-The following section will walk through fetching collator information via the [Moonbase Alpha Staking dApp](https://apps.moonbeam.network/moonbase-alpha/staking){target=_blank} and the Polkadot.js Apps UI. If you'd prefer to fetch this information programmatically via the Polkadot.js API, you can skip to the [following section.](#generating-the-encoded-call-data)
-
 First and foremost, you’ll need the address of the collator you want to delegate to. To locate it, head to the [Moonbase Alpha Staking dApp](https://apps.moonbeam.network/moonbase-alpha/staking){target=_blank} in a second window. Ensure you’re on the correct network, then press **Select a Collator**. Next to your desired collator, press the **Copy** icon. You’ll also need to make a note of the number of delegations your collator has. The [PS-31 collator](https://moonbase.subscan.io/account/0x3A7D3048F3CB0391bb44B518e5729f07bCc7A45D){target=_blank} shown below has `60` delegations at the time of writing. 
 
 ![Moonbeam Network Apps Dashboard](/images/tutorials/remote-staking-via-xcm/xcm-stake-1.png)
 
-## Generating the Encoded Call Data {: #generating-the-encoded-call-data }
+## Generating the Encoded Call Data via Polkadot.js Apps {: #generating-the-encoded-call-data-via-polkadot.js-apps }
+
+If you prefer to fetch this information programmatically via the Polkadot API, you can skip to the [following section](#generating-the-encoded-call-data-via-the-polkadot-api) 
 
 Then, head to [Moonbase Alpha Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts){target=_blank}. In order to see the **Extrinsics** menu here, you’ll need to have at least one account accessible in Polkadot.js Apps. If you don’t, create one now. Then, head to the **Developer** tab and press **Extrinsics**. 
 
@@ -72,6 +72,29 @@ In the following steps you will be preparing a transaction, but you’ll need to
     Astute readers may notice the selected account below is named “Academy.” It does not matter which account you have selected in Moonbase Alpha Polkadot.js Apps. This is because you're not submitting the prepared transaction, only copying the encoded call data, which does not contain a reference to the sending account. 
 
 ![Moonbase Alpha Polkadot JS Apps Extrinsics Page](/images/tutorials/remote-staking-via-xcm/xcm-stake-3.png)
+
+## Generating the Encoded Call Data via the Polkadot API {: #generating-the-encoded-call-data-via-the-polkadot-api }
+
+You can also generate the encoded call data via the Polkadot API as shown below. Just like the steps above, we are not submitting a transaction but simplying preparing one to get the encoded call data. Remember to update the `candidateDelegationCount` value. Feel free to run the below code snippet locally or in the [Javascript console of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/js){target=_blank}.
+
+```javascript
+import { ApiPromise, WsProvider } from '@polkadot/api';
+const provider = new WsProvider('wss://wss.api.moonbase.moonbeam.network');
+
+const candidate = '0x3A7D3048F3CB0391bb44B518e5729f07bCc7A45D'; //PS-31 Collator
+const amount = '1000000000000000000';
+const candidateDelegationCount = 60; //Update this value!
+const delegatorDelegationCount = 37;
+const main = async () => {
+  const api = await ApiPromise.create({ provider: provider });
+  // Create a transfer extrinsic
+  let tx = api.tx.parachainStaking.delegate(candidate, amount, candidateDelegationCount, delegatorDelegationCount);
+  // Get SCALE Encoded Call Data
+  let encodedCall = tx.toHex();
+  console.log(`Encoded Call Data: ${encodedCall}`);
+};
+main();
+```
 
 ## Sending the XCM Instructions from the Moonbase relay chain {: #sending-the-xcm-instructions-from-the-moonbase-relay-chain }
 
