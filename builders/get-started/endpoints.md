@@ -121,7 +121,7 @@ The collators involved in this initiative are:
 
 They also provide a [public Grafana dashboard](https://tinyurl.com/UnitedBloc-Dashboard){target=_blank} with some cool metrics.
 
-Check the [public endpoints section](#public-endpoints) to get the relevant URL. You can contact them via their [Telegram channel](){target=_blank}, or read more about their initiative on their [blogpost page](https://medium.com/@daniel_96988/unitedbloc-rpc-c84972f69457){target=_blank}.
+Check the [public endpoints section](#public-endpoints) to get the relevant URL. You can contact them via their [Telegram channel](https://t.me/+tRvy3z5-Kp1mMGMx){target=_blank}, or read more about their initiative on their [blogpost page](https://medium.com/@daniel_96988/unitedbloc-rpc-c84972f69457){target=_blank}.
 
 <!-- ### Ankr {: #ankr}
 
