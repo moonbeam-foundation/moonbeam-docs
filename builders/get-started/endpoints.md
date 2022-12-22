@@ -35,6 +35,7 @@ You can create your own endpoint suitable for development or production use usin
 - [GetBlock](#getblock)
 - [OnFinality](#onfinality)
 - [Pocket Network](#pokt)
+- [UnitedBloc](#unitedbloc)
 <!-- - [Ankr](#ankr) -->
 
 ### Blast {: #blast}
@@ -95,6 +96,32 @@ You don't have to generate a new DApp for every endpoint! You can add a new chai
 1. Click on your preexisting app in the **Apps** menu
 2. In the **Endpoint** section, select the **Add new** button and search for your desired network in the dropdown
 3. Your new endpoint will be generated and displayed for you
+
+### UnitedBloc {: #unitedbloc }
+
+[UnitedBloc](https://medium.com/@daniel_96988/unitedbloc-rpc-c84972f69457){target=_blank} is a collective of community collators from both Moonbeam and Moonriver. To provide value for the community, they offer public RPC services for the Moonbeam, Moonriver, and Moonbase Alpha networks.
+
+The public endpoint service is served by eight geographically distributed bare metal servers globally balanced via GeoDNS and regionally load balanced with NGINX. As the service is public, there are no sign-up or API keys to manage.
+
+The collators involved in this initiative are:
+
+ - Blockshard (CH)
+ - BloClick (ES)
+ - BrightlyStake (IN)
+ - CertHum (US)
+ - GPValidator (PT)
+ - Hetavalidation (AU)
+ - Legend (AE)
+ - PathrockNetwork (DE)
+ - Polkadotters
+ - SIK | crifferent.de (DE)
+ - StakeBaby (GR)
+ - StakeSquid (GE)
+ - TrueStaking (US)
+
+They also provide a [public Grafana dashboard](https://tinyurl.com/UnitedBloc-Dashboard){target=_blank} with some cool metrics.
+
+Check the [public endpoints section](#public-endpoints) to get the relevant URL. You can contact them via their [Telegram channel](){target=_blank}, or read more about their initiative on their [blogpost page](https://medium.com/@daniel_96988/unitedbloc-rpc-c84972f69457){target=_blank}.
 
 <!-- ### Ankr {: #ankr}
 
