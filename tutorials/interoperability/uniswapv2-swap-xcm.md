@@ -1,16 +1,25 @@
 ---
-title: Remote Staking via XCM
-description: In this guide, we'll be leveraging remote execution to remotely stake GLMR on Moonbeam using a series of XCM instructions.
+title: UniswapV2 Swap via XCM
+description: In this guide, we'll be leveraging remote EVM execution to perform an UniswapV2 style swap via XCM.
+template: main.html
 ---
 
-# Remote Staking via XCM
+# Uniswap V2 Swap from Polkadot via XCM
 
-![Banner Image](/images/tutorials/remote-staking-via-xcm/remote-staking-via-xcm-banner.png)
-December 14, 2022 | by Kevin Neilson
+![Banner Image](/images/tutorials/uniswapv2-swap-xcm/uniswapv2-swap-xcm-banner.png)
+_December 21, 2022 | by Alberto Viera_
 
 ## Introduction {: #introduction } 
 
-In this tutorial, we’ll stake DEV tokens remotely by sending XCM instructions from an account on the Moonbase relay chain (equivalent to the Polkadot relay chain). This tutorial assumes a basic familiarity with [XCM](/builders/xcm/overview/){target=_blank} and [Remote Execution via XCM](/builders/xcm/xcm-transactor/){target=_blank}. You don’t have to be an expert on these topics but you may find it helpful to have some XCM knowledge as background. 
+In this tutorial, we’ll perform a Uniswap V2 styled swap from a relay chain (what Polkadot is to Moonbeam) using Polkadot's intra-operability general message passing protocol called [XCM](https://github.com/paritytech/xcm-format){target=_blank}. To do so, we'll be using a special combination of XCM instructions that allow you to call Moonbeam's EVM through an XCM message. Consequently, any blockchain that is able to send an XCM message to Moonbeam can tap into its EVM and all the dApps built on top of it.
+
+For this example, you'll be working on top of the Moonbase Alpha TestNet, in which the Alphanet relay chain will act as Polkadot, and Moonbase Alpha as Moonbeam. The relay chain token is called UNIT, while Moonbase Alpha's token is called DEV. Doing this in TestNet is not as fun as doing it in production, but **developers must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
+
+This tutorial has a lot of moving parts, so let's summarize them in a list and a flow diagram:
+
+1. A user (called Alice) on the relay chain wants to do a swap on [Moonbeam-Swap](https://moonbeam-swap.netlify.app){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha. The user wants to swap DEV tokens, the native token of Moonbase Alpha, for MARS, an ERC-20 token that exists on Moonbase Alpha
+2. Alice needs to have UNITs on the relay chain to pay for transaction fees
+3. Alice controls an account on Moonbase Alpha that can only be accessed through XCM. This account is known as [multilocation-derivative account](/builders/xcm/xcm-transactor/#general-xcm-definitions){target=_blakn}. Even though this is a keyless account (private key is unknown), the public address can be [calculated in a deterministic way](/builders/xcm/remote-evm-calls/#calculate-multilocation-derivative){target=_blank}. This account must hold DEV tokens to fund the Uniswap V2 swap
 
 There are actually two possible approaches for staking on Moonbeam remotely via XCM. We could send a [remote EVM call](/builders/xcm/remote-evm-calls/){target=_blank} that calls the [staking precompile](/builders/pallets-precompiles/precompiles/staking/){target=_blank}, or we could use XCM to call the [parachain staking pallet](/builders/pallets-precompiles/pallets/staking/){target=_blank} directly without interacting with the EVM. For this tutorial, we’ll be taking the latter approach and interacting with the parachain staking pallet directly. 
 
