@@ -113,7 +113,7 @@ The collators involved in this initiative are:
  - Hetavalidation (AU)
  - Legend (AE)
  - PathrockNetwork (DE)
- - Polkadotters
+ - Polkadotters (CZ)
  - SIK | crifferent.de (DE)
  - StakeBaby (GR)
  - StakeSquid (GE)
