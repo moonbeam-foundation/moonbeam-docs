@@ -11,26 +11,28 @@ _December 21, 2022 | by Alberto Viera_
 
 ## Introduction {: #introduction } 
 
-In this tutorial, we’ll perform a Uniswap V2 styled swap from a relay chain (what Polkadot is to Moonbeam) using Polkadot's intra-operability general message passing protocol called [XCM](https://github.com/paritytech/xcm-format){target=_blank}. To do so, we'll be using a special combination of XCM instructions that allow you to call Moonbeam's EVM through an XCM message. Consequently, any blockchain that is able to send an XCM message to Moonbeam can tap into its EVM and all the dApps built on top of it.
+In this tutorial, we’ll perform a Uniswap V2 styled swap from a relay chain (what Polkadot is to Moonbeam) using Polkadot's intra-operability general message passing protocol called [XCM](https://github.com/paritytech/xcm-format){target=_blank}. To do so, we'll be using a special combination of XCM instructions that allow you to [call Moonbeam's EVM through an XCM message](/builders/xcm/remote-evm-calls/){target=_blank}. Consequently, any blockchain that is able to send an XCM message to Moonbeam can tap into its EVM and all the dApps built on top of it.
 
 For this example, you'll be working on top of the Moonbase Alpha TestNet, in which the Alphanet relay chain will act as Polkadot, and Moonbase Alpha as Moonbeam. The relay chain token is called UNIT, while Moonbase Alpha's token is called DEV. Doing this in TestNet is not as fun as doing it in production, but **developers must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
 
-This tutorial has a lot of moving parts, so let's summarize them in a list and a flow diagram:
+Throughout this tutorial, we will refer to the account performing the Uniswap V2 swap via XCM as Alice. The tutorial has a lot of moving parts, so let's summarize them in a list and a flow diagram:
 
-1. A user (called Alice) on the relay chain wants to do a swap on [Moonbeam-Swap](https://moonbeam-swap.netlify.app){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha. The user wants to swap DEV tokens, the native token of Moonbase Alpha, for MARS, an ERC-20 token that exists on Moonbase Alpha
-2. Alice needs to have UNITs on the relay chain to pay for transaction fees
-3. Alice controls an account on Moonbase Alpha that can only be accessed through XCM. This account is known as [multilocation-derivative account](/builders/xcm/xcm-transactor/#general-xcm-definitions){target=_blakn}. Even though this is a keyless account (private key is unknown), the public address can be [calculated in a deterministic way](/builders/xcm/remote-evm-calls/#calculate-multilocation-derivative){target=_blank}. This account must hold DEV tokens to fund the Uniswap V2 swap
+1. Alice has an account on the relay chain, and she wants to do a swap of DEV tokens for MARS tokens (ERC-20 on Moonbase Alpha) on [Moonbeam-Swap](https://moonbeam-swap.netlify.app){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha. Alice needs to send an XCM message to Moonbeam from her relay chain account
+2. The XCM message will be received by Moonbase Alpha and its instructions executed. The instructions state Alice's intention of buying some block space in Moonbase Alpha and execute a call to Moonbase's EVM, more specifically, the Uniswap V2 (Moonbeam-Swap) router contract. The EVM call is dispatched through a special account that Alice controls on Moonbase Alpha via XCM messages. This account is known as [multilocation-derivative account](/builders/xcm/xcm-transactor/#general-xcm-definitions){target=_blank}. Even though this is a keyless account (private key is unknown), the public address can be [calculated in a deterministic way](/builders/xcm/remote-evm-calls/#calculate-multilocation-derivative){target=_blank}
+3. The XCM execution will result in the swap being executed by the EVM, and Alice will receive her MARS tokens in her special account
+4. The execution of the remote EVM call through XCM will result in some EVM logs that are picked up by explorers. There is an EVM transaction and receipt that anyone can query to verify
 
-There are actually two possible approaches for staking on Moonbeam remotely via XCM. We could send a [remote EVM call](/builders/xcm/remote-evm-calls/){target=_blank} that calls the [staking precompile](/builders/pallets-precompiles/precompiles/staking/){target=_blank}, or we could use XCM to call the [parachain staking pallet](/builders/pallets-precompiles/pallets/staking/){target=_blank} directly without interacting with the EVM. For this tutorial, we’ll be taking the latter approach and interacting with the parachain staking pallet directly. 
+XXX FLOW DIAGRAM
 
-**Note that there are still limitations in what you can remotely execute through XCM messages.** In addition, **developers must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
+With the steps outlined, some prerequisites need to be taken into account, let's jump right into it!
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
-For development purposes this tutorial is written for Moonbase Alpha and Moonbase relay using TestNet funds. For prerequisites:
+Considering all the steps summarized in the [#introduction](#introduction), the following prerequisites need to be accounted for:
 
-- A Moonbase Alpha relay chain account funded with some UNIT, the native token of the Moonbase relay chain. If you have a Moonbase Alpha account funded with DEV tokens, you can swap some DEV for xcUNIT here on [Moonbeam Swap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}. Then withdraw the xcUNIT from Moonbase Alpha to [your account on the Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} using [apps.moonbeam.network](https://apps.moonbeam.network/moonbase-alpha/){target=_blank} 
-- You'll need to [calculate the multilocation derivative account](#calculating-your-multilocation-derivative-account) of your Moonbase Alpha relay chain account and fund it with DEV tokens.
+1. Alice needs to have UNITs on the relay chain to pay for transaction fees when sending the XCM
+2. Alice's [multilocation-derivative account](/builders/xcm/xcm-transactor/#general-xcm-definitions){target=_blank} must hold DEV tokens to fund the Uniswap V2 swap, and also pay for the XCM execution (although this could be paid in UNIT tokens as xcUNIT). We will calculate the multilocation-derivative account address in the next section
+
 --8<-- 'text/faucet/faucet-list-item.md'
 
 ## Calculating your Multilocation Derivative Account {: #calculating-your-multilocation-derivative-account }
