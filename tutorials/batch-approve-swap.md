@@ -7,7 +7,7 @@ description: Learn how to use the batch precompile on Moonbeam to batch an appro
 
 ![Banner Image](/images/tutorials/batch-approve-swap/batch-approve-swap-banner.png)
 
-December 21, 2022 | by Erin Shaben
+_December 21, 2022 | by Erin Shaben_
 
 ## Introduction {: #introduction } 
 
