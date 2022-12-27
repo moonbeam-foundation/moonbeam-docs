@@ -13,7 +13,7 @@ _December 21, 2022 | by Erin Shaben_
 
 Token approvals are critical for interacting with smart contracts securely, preventing smart contracts without permission from accessing a user's tokens. When a smart contract is given approval to access a user's tokens, the amount of tokens it has access to is often an unlimited amount, depending on the DApp.
 
-One of the reasons why many DApps use an unlimited amount is so that users don't need to continue to sign approval transactions every time they want to move their tokens. However, for users, this comes with the risk of the DApp transferring their tokens at any time, without requiring further approval. In addition, if a user no longer wants the DApp to have access to their tokens, they have to revoke the token approval.
+One of the reasons why many DApps use an unlimited amount is so that users don't need to continue to sign approval transactions every time they want to move their tokens. This is in addition to the second transaction required to actually swap the tokens. For networks like Ethereum, this can be expensive. However, if the approved smart contract has a vulnerability, it could be exploited and the users' tokens could be transferred at any time without requiring further approval. In addition, if a user no longer wants the DApp's contract to have access to their tokens, they have to revoke the token approval, which requires another transaction to be sent.
 
 As a DApp developer on Moonbeam, this process can be easily avoided, providing your users with more control over their assets. This can be done using the [batch precompile](/builders/pallets-precompiles/precompiles/batch){target=_blank} to batch an approval and swap into a single transaction, which allows for the approval amount to be the exact swap amount instead of having unlimited access to your users' tokens. 
 
@@ -25,7 +25,7 @@ For this tutorial, you'll need the following:
 
 - An account with funds.
   --8<-- 'text/faucet/faucet-list-item.md'
-- An empty Hardhat project that is configured for the Moonbase Alpha TestNet. For step-by-step instructions, please refer to the [Creating a Hardhat Project](https://docs.moonbeam.network/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project){target=_blank} and the [Hardhat Configuration File](https://docs.moonbeam.network/builders/build/eth-api/dev-env/hardhat/#hardhat-configuration-file){target=_blank} sections of our Hardhat documentation page
+- An empty Hardhat project that is configured for the Moonbase Alpha TestNet. For step-by-step instructions, please refer to the [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project){target=_blank} and the [Hardhat Configuration File](/builders/build/eth-api/dev-env/hardhat/#hardhat-configuration-file){target=_blank} sections of our Hardhat documentation page
 - 
 --8<-- 'text/common/endpoint-examples.md'
 
@@ -49,7 +49,7 @@ The following are the contracts that we'll be working with today:
 
 - `DemoToken.sol` - an ERC-20 contract for the `DemoToken` (DTOK) token, which on deployment mints an initial supply and assigns them to the contract owner. It's a standard ERC-20 token, you can review the [IERC20 interface](https://docs.openzeppelin.com/contracts/2.x/api/token/erc20#IERC20){target=_blank} for more information on the available methods
 
-- `SimpleDex.sol` - a simple example of a DEX that on deployment deploys the `DemoToken` contract, which mints 1000 DTOKs, and allows you to swap DEV token for DTOKs and vice versa. The `SimpleDex` contract contains the following methods:
+- `SimpleDex.sol` - a simple example of a DEX that on deployment deploys the `DemoToken` contract, which mints 1000 DTOKs, and allows you to swap DEV token for DTOKs and vice versa. **This contract is for demo purposes only**. The `SimpleDex` contract contains the following methods:
     - **token**() - a read-only method that returns the address of the `DemoToken` contract
     - **swapDevForDemoToken**() - a payable function that accepts DEV tokens in exchange for DTOK tokens. The function checks to make sure there are enough DTOK tokens held in the contract before making the transfer. After the transfer is made, a `Bought` event is emitted
     - **swapDemoTokenForDev**(*uint256* amount) - accepts the amount of DTOKs to swap for DEV tokens. The function checks to make sure the caller of the function has approved the contract to transfer their DTOKs before swapping the DTOKs back to DEV. After the transfer is made, a `Sold` event is emitted
@@ -92,20 +92,28 @@ contract SimpleDex {
         token = new DemoToken(1000000000000000000000);
     }
 
+    // Function to swap DEV for DTOK tokens
     function swapDevForDemoToken() payable public {
+        // Verify the contract has enough tokens for the requested amount
         uint256 amountTobuy = msg.value;
         uint256 dexBalance = token.balanceOf(address(this));
         require(amountTobuy > 0, "You need to send some DEV");
         require(amountTobuy <= dexBalance, "Not enough tokens in the reserve");
+        // If enough, swap the DEV to DTOKs
         token.transfer(msg.sender, amountTobuy);
         emit Bought(amountTobuy);
     }
 
+    // Function to swap DTOK for DEV tokens
     function swapDemoTokenForDev(uint256 amount) public {
+        // Make sure the requested amount is greater than 0 and the caller
+        // has approved the requested amount of tokens to be transferred
         require(amount > 0, "You need to sell at least some tokens");
         uint256 allowance = token.allowance(msg.sender, address(this));
         require(allowance >= amount, "Check the token allowance");
+        // Transfer the DTOKs to the contract
         token.transferFrom(msg.sender, address(this), amount);
+        // Transfer the DEV tokens back to the caller
         payable(msg.sender).transfer(amount);
         emit Sold(amount);
     }
@@ -132,6 +140,8 @@ In the `deploy.js` script, you can paste in the following code, which will deplo
 
 ```js
 async function main() {
+  // Deploy the SimpleDex contract, which will also automatically deploy
+  // the DemoToken contract
   const SimpleDex = await ethers.getContractFactory("SimpleDex",);
   const simpleDex = await SimpleDex.deploy()
   await simpleDex.deployed();
@@ -204,7 +214,7 @@ main();
 
 Next, we're going to create a helper function that will be used to check the balance of DTOK tokens the DEX and the signer account has. This will be particularly useful to see balance changes after the swaps are complete.
 
-In this function, you'll call the `balanceOf()` function of the `DemoToken` contract, passing in the address of the signer and the DEX, and then print the formatted results in DTOKs to the terminal:
+Since the `DemoToken` contract has an ERC-20 interface, you can check the balance of DTOKs an account has using the `balanceOf()` function. So, we'll call the `balanceOf()` function, passing in the address of the signer and the DEX, and then print the formatted results in DTOKs to the terminal:
 
 ```js
 async function checkBalances(demoToken) {
@@ -277,7 +287,7 @@ async function main() {
   // ...
 
   // Parse the value to swap to Wei
-  const amountDtok = ethers.utils.parseEther( "INSERT-AMOUNT-OF-DEV-TO-SWAP")
+  const amountDtok = ethers.utils.parseEther("INSERT-AMOUNT-OF-DTOK-TO-SWAP")
 
   // Get the encoded call data for the approval and swap
   const approvalCallData = demoToken.interface.encodeFunctionData("approve", [
@@ -289,6 +299,7 @@ async function main() {
     [amountDtok]
   );
 
+  // Assemble and send the batch transaction
   const batchAll = await batch.batchAll(
     [demoTokenAddress, simpleDexAddress], // to address
     [], // value of the native token to send 
