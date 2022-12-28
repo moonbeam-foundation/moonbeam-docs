@@ -5,11 +5,11 @@ description: How to do remote XCM calls in other chains using the XCM-Transactor
 
 # Using the XCM-Transactor Pallet for Remote Executions
 
-![XCM-Transactor Precompile Contracts Banner](/images/builders/xcm/xcm-transactor/xcmtransactor-banner.png)
+![XCM-Transactor Precompile Contracts Banner](/images/builders/interoperability/xcm/xcm-transactor/xcmtransactor-banner.png)
 
 ## Introduction {: #introduction}
 
-XCM messages are comprised of a [series of instructions](/builders/xcm/overview/#xcm-instructions){target=_blank} that are executed by the Cross-Consensus Virtual Machine (XCVM). Combinations of these instructions result in predetermined actions such as cross-chain token transfers and, more interestingly, remote cross-chain execution.
+XCM messages are comprised of a [series of instructions](/builders/interoperability/xcm/overview/#xcm-instructions){target=_blank} that are executed by the Cross-Consensus Virtual Machine (XCVM). Combinations of these instructions result in predetermined actions such as cross-chain token transfers and, more interestingly, remote cross-chain execution.
 
 Nevertheless, building an XCM message from scratch is somewhat tricky. Moreover, XCM messages are sent to other participants in the ecosystem from the root account (that is, SUDO or through a democratic vote), which is not ideal for projects that want to leverage remote cross-chain calls via a simple transaction. 
 
@@ -17,13 +17,13 @@ To overcome these issues, developers can leverage wrapper functions/pallets to u
 
 The two main extrinsics of the pallet are transacting through a sovereign derivative account or a derivative account calculated from a given multilocation. Each extrinsic is named accordingly.
 
-The relevant [XCM instructions](/builders/xcm/overview/#xcm-instructions) to perform remote execution through XCM are, but not limited to:
+The relevant [XCM instructions](/builders/interoperability/xcm/overview/#xcm-instructions) to perform remote execution through XCM are, but not limited to:
 
  - [`WithdrawAsset`](https://github.com/paritytech/xcm-format#withdrawasset){target=_blank} - gets executed in the target chain. Removes assets and places them into the holding register
  - [`BuyExecution`](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} - gets executed in the target chain. Takes the assets from holding to pay for execution fees. The fees to pay are determined by the target chain
  - [`Transact`](https://github.com/paritytech/xcm-format#transact){target=_blank} - gets executed in the target chain. Dispatches the encoded call data from a given origin
 
-When the XCM message built by the XCM-transactor pallet is executed, fees must be paid. All the relevant information can be found in the [XCM-transactor fees section](/builders/xcm/fees/#xcm-transactor-fees){target=_blank} of the [XCM fees](/builders/xcm/fees/){target=_blank} page.
+When the XCM message built by the XCM-transactor pallet is executed, fees must be paid. All the relevant information can be found in the [XCM-transactor fees section](/builders/interoperability/xcm/fees/#xcm-transactor-fees){target=_blank} of the [XCM fees](/builders/interoperability/xcm/fees/){target=_blank} page.
 
 This guide will show you how to use the XCM-transactor pallet to send XCM messages from a Moonbeam-based network to other chains in the ecosystem (relay chain/parachains). In addition, you'll also learn how to use the XCM-transactor precompile to perform the same actions via the Ethereum API. 
 
@@ -38,7 +38,7 @@ This guide will show you how to use the XCM-transactor pallet to send XCM messag
  - **Derivative accounts** — an account derivated from another account. Derivative accounts are keyless (the private key is unknown). Consequently, derivative accounts related to XCM-specific use cases can only be accessed through XCM extrinsics. For such applications, there are two types:
      - **Sovereign-derivative account** — this produces a keyless account derivated from the parachain sovereign account in the destination chain. The derivation method uses the `utility.asDerivative` extrinsic for the remote call. When transacting through this derivative account, transaction fees are paid by the origin account (sovereign account in this case), but the transaction is dispatched from the derivative account. For more information, please refer to the [Derivative Accounts](/builders/pallets-precompiles/pallets/utility/){target=_blank} section of the utility pallet page
      - **Multilocation-derivative account** — this produces a keyless account derivated from the new origin set by the [Descend Origin](https://github.com/paritytech/xcm-format#descendorigin){target=_blank} XCM instruction, and the provided mulitlocation. For Moonbeam-based networks, [the derivation method](https://github.com/PureStake/moonbeam/blob/master/primitives/xcm/src/location_conversion.rs#L31-L37){target=_blank} is calculating the `blake2` hash of the multilocation, which includes the origin parachain ID, and truncating the hash to the correct length (20 bytes for Ethereum-styled account). The XCM call [origin conversion](https://github.com/paritytech/polkadot/blob/master/xcm/xcm-executor/src/lib.rs#L343){target=_blank} happens when the `Transact` instruction gets executed. Consequently, each parachain can convert the origin with its own desired procedure, so the user who initiated the transaction might have a different derivative account per parachain. This derivative account pays for transaction fees, and it is set as the dispatcher of the call
- - **Transact information** — relates to extra weight and fee information for the XCM remote execution part of the XCM-transactor extrinsic. This is needed because the XCM transaction fee is paid by the sovereign account. Therefore, XCM-transactor calculates what this fee is and charges the sender of the XCM-transactor extrinsic the estimated amount in the corresponding [XC-20 token](/builders/xcm/xc20/overview/){target=_blank}, to repay the sovereign account
+ - **Transact information** — relates to extra weight and fee information for the XCM remote execution part of the XCM-transactor extrinsic. This is needed because the XCM transaction fee is paid by the sovereign account. Therefore, XCM-transactor calculates what this fee is and charges the sender of the XCM-transactor extrinsic the estimated amount in the corresponding [XC-20 token](/builders/interoperability/xcm/xc20/overview/){target=_blank}, to repay the sovereign account
 
 ## XCM-Transactor Pallet Interface {: #xcm-transactor-pallet-interface}
 
@@ -55,9 +55,9 @@ The XCM-transactor pallet provides the following extrinsics (functions):
      - **transactExtraWeight** — weight to cover XCM instructions executions fees (`WithdrawAsset`, `BuyExecution`, and `Transact`), which is estimated to be at least 10% over what the remote XCM instructions execution uses 
      - **maxWeight** — maximum weight units allowed for the remote XCM execution
      - **transactExtraWeightSigned** — (optional) weight to cover XCM instructions executions fees (`DescendOrigin`, `WithdrawAsset`, `BuyExecution`, and `Transact`), which is estimated to be at least 10% over what the remote XCM instructions execution uses 
- - **transactThroughDerivative**(destination, index, fee, innerCall, weightInfo) — sends an XCM message with instructions to remotely execute a given call in the given destination (wrapped with the `asDerivative` option). The remote call will be signed by the origin parachain sovereign account (who pays the fees), but the transaction is dispatched from the sovereign-derivative account for the given index. The XCM-transactor pallet calculates the fees for the remote execution and charges the sender of the extrinsic the estimated amount in the corresponding [XC-20 token](/builders/xcm/xc20/overview/){target=_blank} given by the asset ID
- - **transactThroughSigned**(destination, fee, call, weightInfo) — sends an XCM message with instructions to remotely execute a given call in the given destination. The remote call will be signed and executed by a new account that the destination parachain must derivate. For Moonbeam-based network, this account is the `blake2` hash of the descended multilocation, truncated to the correct length. The XCM-transactor pallet calculates the fees for the remote execution and charges the sender of the extrinsic the estimated amount in the corresponding [XC-20 token](/builders/xcm/xc20/overview/){target=_blank} given by the asset ID
- - **transactThroughSovereign**(destination, feePayer, fee, call, originKind, weightInfo) — sends an XCM message with instructions to remotely execute a given call in the given destination. The remote call will be signed by the origin parachain sovereign account (who pays the fees), but the transaction is dispatched from a given origin. The XCM-transactor pallet calculates the fees for the remote execution and charges the given account the estimated amount in the corresponding [XC-20 token](/builders/xcm/xc20/overview/){target=_blank} given by the asset multilocation
+ - **transactThroughDerivative**(destination, index, fee, innerCall, weightInfo) — sends an XCM message with instructions to remotely execute a given call in the given destination (wrapped with the `asDerivative` option). The remote call will be signed by the origin parachain sovereign account (who pays the fees), but the transaction is dispatched from the sovereign-derivative account for the given index. The XCM-transactor pallet calculates the fees for the remote execution and charges the sender of the extrinsic the estimated amount in the corresponding [XC-20 token](/builders/interoperability/xcm/xc20/overview/){target=_blank} given by the asset ID
+ - **transactThroughSigned**(destination, fee, call, weightInfo) — sends an XCM message with instructions to remotely execute a given call in the given destination. The remote call will be signed and executed by a new account that the destination parachain must derivate. For Moonbeam-based network, this account is the `blake2` hash of the descended multilocation, truncated to the correct length. The XCM-transactor pallet calculates the fees for the remote execution and charges the sender of the extrinsic the estimated amount in the corresponding [XC-20 token](/builders/interoperability/xcm/xc20/overview/){target=_blank} given by the asset ID
+ - **transactThroughSovereign**(destination, feePayer, fee, call, originKind, weightInfo) — sends an XCM message with instructions to remotely execute a given call in the given destination. The remote call will be signed by the origin parachain sovereign account (who pays the fees), but the transaction is dispatched from a given origin. The XCM-transactor pallet calculates the fees for the remote execution and charges the given account the estimated amount in the corresponding [XC-20 token](/builders/interoperability/xcm/xc20/overview/){target=_blank} given by the asset multilocation
 
 Where the inputs that need to be provided can be defined as:
 
@@ -73,7 +73,7 @@ Where the inputs that need to be provided can be defined as:
      - **transactRequiredWeightAtMost** — weight related to the execution of the `Transact` call itself. For transacts through sovereign-derivative, you have to take into account the weight of the `asDerivative` extrinsic as well. However, this does not include the cost (in weight) of all the XCM instructions
      - **overallWeight** — the total weight the XCM-transactor extrinsic can use. This includes all the XCM instructions plus the weight of the call itself (**transactRequiredWeightAtMost**)
  - **call** — similar to `innerCall`, but it is not wrapped with the `asDerivative` extrinsic
- - **feePayer** — the address that will pay for the remote XCM execution in the transact through sovereign extrinsic. The fee is charged in the corresponding [XC-20 token](/builders/xcm/xc20/overview/){target=_blank}
+ - **feePayer** — the address that will pay for the remote XCM execution in the transact through sovereign extrinsic. The fee is charged in the corresponding [XC-20 token](/builders/interoperability/xcm/xc20/overview/){target=_blank}
  - **originKind** — dispatcher of the remote call in the destination chain. There are [four types of dispatchers](https://github.com/paritytech/polkadot/blob/0a34022e31c85001f871bb4067b7d5f5cab91207/xcm/src/v0/mod.rs#L60){target=_blank} available
 
 ### Storage Methods {: #storage-methods }
@@ -105,9 +105,9 @@ To be able to send the extrinsics in Polkadot.js Apps, you need to have:
 
  - An [account](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/accounts){target=_blank} in the origin chain with [funds](/builders/get-started/networks/moonbase/#get-tokens){target=_blank}
  - The account from which you are going to send the XCM through the XCM-transactor pallet must also be registered in a given index to be able to operate through a derivative account of the sovereign account. The registration is done through the root account (SUDO in Moonbase Alpha), so [contact us](https://discord.gg/PfpUATX){target=_blank} to get it registered. For this example, Alice's account was registered at index `42`
- - Remote calls through XCM-transactor require the destination chain fee token to pay for that execution. Because the action is initiated in Moonbeam, you'll need to hold its [XC-20](/builders/xcm/xc20/){target=_blank} representation. For this example, because you are sending an XCM message to the relay chain, you need `xcUNIT` tokens to pay for the execution fees, which is the Moonbase Alpha representation of the Alphanet relay chain token `UNIT`. You can acquire some by swapping for DEV tokens (Moonbase Alpha's native token) on [Moonbeam-Swap](https://moonbeam-swap.netlify.app){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha
+ - Remote calls through XCM-transactor require the destination chain fee token to pay for that execution. Because the action is initiated in Moonbeam, you'll need to hold its [XC-20](/builders/interoperability/xcm/xc20/){target=_blank} representation. For this example, because you are sending an XCM message to the relay chain, you need `xcUNIT` tokens to pay for the execution fees, which is the Moonbase Alpha representation of the Alphanet relay chain token `UNIT`. You can acquire some by swapping for DEV tokens (Moonbase Alpha's native token) on [Moonbeam-Swap](https://moonbeam-swap.netlify.app){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha
 
-![Moonbeam Swap xcUNIT](/images/builders/xcm/xc20/xtokens/xtokens-1.png)
+![Moonbeam Swap xcUNIT](/images/builders/interoperability/xcm/xc20/xtokens/xtokens-1.png)
 
 To check your `xcUNIT` balance, you can add the XC-20 to MetaMask with the following address:
 
@@ -117,8 +117,8 @@ To check your `xcUNIT` balance, you can add the XC-20 to MetaMask with the follo
 
 If you're interested in how the precompile address is calculated, you can check out the following guides:
 
-- [Calculate External XC-20 Precompile Addresses](/builders/xcm/xc20/xc20/#calculate-xc20-address){target=_blank}
-- [Calculate Mintable XC-20 Precompile Addresses](/builders/xcm/xc20/mintable-xc20/#calculate-xc20-address){target=_blank}
+- [Calculate External XC-20 Precompile Addresses](/builders/interoperability/xcm/xc20/xc20/#calculate-xc20-address){target=_blank}
+- [Calculate Mintable XC-20 Precompile Addresses](/builders/interoperability/xcm/xc20/mintable-xc20/#calculate-xc20-address){target=_blank}
 
 
 ### Building the XCM {: #xcm-transact-through-derivative}
@@ -132,7 +132,7 @@ If you've [checked the prerequisites](#xcmtransactor-derivative-check-prerequisi
 5. Enter the index of the derivative account you've been registered to. For this example, the index value is `42`. Remember that the derivate account depends on the index
 6. Select the **fee** type. For this example, set it to **AsCurrencyId**
 7. Select **ForeignAsset** as the currency ID. This is because you are not transferring DEV tokens (*SelfReserve*), but interacting with an XC-20
-8. Enter the asset ID. For this example, `xcUNIT` has an asset id of `42259045809535163221576417993425387648`. You can check all available assets IDs in the [XC-20 address section](/builders/xcm/xc20/overview/#current-xc20-assets){target=_blank}
+8. Enter the asset ID. For this example, `xcUNIT` has an asset id of `42259045809535163221576417993425387648`. You can check all available assets IDs in the [XC-20 address section](/builders/interoperability/xcm/xc20/overview/#current-xc20-assets){target=_blank}
 9. (Optional) Set the **feeAmount**. This is the units per second, of the selected fee token (XC-20), that will be burned to free up the corresponding balance in the sovereign account on the destination chain. For this example, it was set to `13764626000000` units per second. If you do not provide this value, the pallet will use the element in storage (if exists)
 10. Enter the inner call that will be executed in the destination chain. This is the encoded call data of the pallet, method, and input values to be called. It can be constructed in Polkadot.js Apps (must be connected to the destination chain), or using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank}. For this example, the inner call is `0x04000030fcfb53304c429689c8f94ead291272333e16d77a2560717f3a7a410be9b208070010a5d4e8`, which is a simple balance transfer of 1 `UNIT` to Alice's account in the relay chain. You can decode the call in [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/extrinsics/decode){target=_blank}
 11. Set the **transactRequiredWeightAtMost** weight value of the **weightInfo** struct. The value must include the `asDerivative` extrinsic as well. However, this does not include the weight of the XCM instructions. For this example, `1000000000` weight units are enough
@@ -143,7 +143,7 @@ If you've [checked the prerequisites](#xcmtransactor-derivative-check-prerequisi
     The encoded call data for the extrinsic configured above is 
     `0x2102002a0000018080778c30c20fa2ebc0ed18d2cbca1f0180a8a4d3840c00000000000000000000a404000030fcfb53304c429689c8f94ead291272333e16d77a2560717f3a7a410be9b208070010a5d4e800ca9a3b00000000010094357700000000`.
 
-![XCM-Transactor Transact Through Derivative Extrinsic](/images/builders/xcm/xcm-transactor/xcmtransactor-1.png)
+![XCM-Transactor Transact Through Derivative Extrinsic](/images/builders/interoperability/xcm/xcm-transactor/xcmtransactor-1.png)
 
 Once the transaction is processed, you can check the relevant extrinsics and events in [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer/query/0xa90b23a54f2bb691ba2f04ae3228b1de2d2e7231b98490bf6f94e491baf09185){target=_blank} and the [relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/explorer/query/0xb5a0ecc0c2f7f1363ede2e3aebab2702dd2e7b9036a6ba23a694db2b4002cd7f){target=_blank}. Note that, in Moonbase Alpha, there is an event associated with the `transactThroughDerivative` method, but also some `xcUNIT` tokens are burned to repay the sovereign account for the transactions fees. In the relay chain, the `paraInherent.enter` extrinsic shows a `balance.Transfer` event, where 1 `UNIT` token is transferred to Alice's address. Still, the transaction fees are paid by the Moonbase Alpha sovereign account.
 
@@ -160,7 +160,7 @@ To fetch a list of all registered addresses allowed to operate through the Moonb
 4. If you've enabled the slider, enter the index to query
 5. Send the query by clicking on the **+** button
 
-![Check Registered Derivative Indexes](/images/builders/xcm/xcm-transactor/xcmtransactor-2.png)
+![Check Registered Derivative Indexes](/images/builders/interoperability/xcm/xcm-transactor/xcmtransactor-2.png)
 
 
 ## XCM-Transactor Transact Through Signed {: #xcmtransactor-transact-through-signed}
@@ -211,7 +211,7 @@ If you've [checked the prerequisites](#xcmtransactor-signed-check-prerequisites)
 !!! note
     The encoded call data for the extrinsic configured above is `0x210601010100e10d00017576e5e612ff054915d426c546b1b21a010000c52ebca2b10000000000000000007c030044236223ab4291b93eed10e4b511b37a398dee5513000064a7b3b6e00d00ca9a3b00000000010094357700000000`.
 
-![XCM-Transactor Transact Through Signed Extrinsic](/images/builders/xcm/xcm-transactor/xcmtransactor-3.png)
+![XCM-Transactor Transact Through Signed Extrinsic](/images/builders/interoperability/xcm/xcm-transactor/xcmtransactor-3.png)
 
 Once the transaction is processed, Alice should've received one token in her address but on the destination chain.
 
@@ -256,9 +256,9 @@ The interface includes the following functions:
   - **transactInfoWithSigned**(*Multilocation* *memory* multilocation) — read-only function that, for a given chain defined as a multilocation, returns the transact information considering the three XCM instructions associated with the external call execution (`transactExtraWeight`). It also returns extra weight information associated with the `DescendOrigin` XCM instruction for the transact through signed extrinsic (`transactExtraWeightSigned`)
  - **feePerSecond**(*Multilocation* *memory* multilocation) — read-only function that, for a given asset as a multilocation, returns units of token per second of the XCM execution that is charged as the XCM execution fee. This is useful when, for a given chain, there are multiple assets that can be used for fee payment
  - **transactThroughDerivativeMultilocation**(*uint8* transactor, *uint16* index, *Multilocation* *memory* feeAsset, *uint64* transactRequiredWeightAtMost, *bytes* *memory* innerCall, *uint256* feeAmount, *uint64* overallWeight) — function that represents the `transactThroughDerivative` method described in the [previous example](#xcmtransactor-transact-through-derivative), setting the **fee** type to **AsMultiLocation**. You need to provide the asset multilocation of the token that is used for fee payment instead of the XC-20 token `address`
- - **transactThroughDerivative**(*uint8* transactor, *uint16* index, *address* currencyId, *uint64* transactRequiredWeightAtMost, *bytes* *memory* innerCall, *uint256* feeAmount, *uint64* overallWeight) — function that represents the `transactThroughDerivative` method described in the [previous example](#xcmtransactor-transact-through-derivative), setting the **fee** type to **AsCurrencyId**. Instead of the asset ID, you'll need to provide the [asset XC-20 address](/builders/xcm/xc20/overview/#current-xc20-assets){target=_blank} of the token that is used for fee payment 
+ - **transactThroughDerivative**(*uint8* transactor, *uint16* index, *address* currencyId, *uint64* transactRequiredWeightAtMost, *bytes* *memory* innerCall, *uint256* feeAmount, *uint64* overallWeight) — function that represents the `transactThroughDerivative` method described in the [previous example](#xcmtransactor-transact-through-derivative), setting the **fee** type to **AsCurrencyId**. Instead of the asset ID, you'll need to provide the [asset XC-20 address](/builders/interoperability/xcm/xc20/overview/#current-xc20-assets){target=_blank} of the token that is used for fee payment 
  - **transactThroughSignedMultilocation**(*Multilocation* *memory* dest, *Multilocation* *memory* feeLocation, *uint64* transactRequiredWeightAtMost, *bytes* *memory* call, *uint256* feeAmount, *uint64* overallWeight) — function that represents the `transactThroughSigned` method described in the [previous example](#xcmtransactor-transact-through-signed), setting the **fee** type to **AsMultiLocation**. You need to provide the asset multilocation of the token that is used for fee payment instead of the XC-20 token `address`
- - **transactThroughSigned**(*Multilocation* *memory* dest, *address* feeLocationAddress, *uint64* transactRequiredWeightAtMost, *bytes* *memory* call, *uint256* feeAmount, *uint64* overallWeight) — function that represents the `transactThroughSigned` method described in the [previous example](#xcmtransactor-transact-through-signed), setting the **fee** type to **AsCurrencyId**.  Instead of the asset ID, you'll need to provide the [asset XC-20 address](/builders/xcm/xc20/overview/#current-xc20-assets){target=_blank} of the token that is used for fee payment 
+ - **transactThroughSigned**(*Multilocation* *memory* dest, *address* feeLocationAddress, *uint64* transactRequiredWeightAtMost, *bytes* *memory* call, *uint256* feeAmount, *uint64* overallWeight) — function that represents the `transactThroughSigned` method described in the [previous example](#xcmtransactor-transact-through-signed), setting the **fee** type to **AsCurrencyId**.  Instead of the asset ID, you'll need to provide the [asset XC-20 address](/builders/interoperability/xcm/xc20/overview/#current-xc20-assets){target=_blank} of the token that is used for fee payment 
 
 ### Building the Precompile Multilocation {: #building-the-precompile-multilocation }
 

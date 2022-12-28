@@ -5,7 +5,7 @@ description: Learn how to bridge assets, plus other ways you can connect your Mo
 
 # LayerZero Protocol
 
-![LayerZero Moonbeam banner](/images/builders/integrations/bridges/layerzero/layerzero-banner.png)
+![LayerZero Moonbeam banner](/images/builders/interoperability/protocols/layerzero/layerzero-banner.png)
 
 ## Introduction {: #introduction }
 
@@ -13,7 +13,7 @@ description: Learn how to bridge assets, plus other ways you can connect your Mo
 
 LayerZero is a transport layer that enables asset transfer with low-level communication primitives. DApps that utilize LayerZero are known as User Applications, whose messages are relayed across chains by a Relayer, and whose messages are verified on the destination chain by an Oracle's block headers. Take a look at the tech stack diagram below and their [conceptual documentation](https://layerzero.gitbook.io/docs/faq/messaging-properties){target=_blank} for more details.
 
-![LayerZero Technology Stack diagram](/images/builders/integrations/bridges/layerzero/layerzero-1.png)
+![LayerZero Technology Stack diagram](/images/builders/interoperability/protocols/layerzero/layerzero-1.png)
 
 The LayerZero APIs provide a rich suite for developing Web3 applications, ensuring that developers have the tools they need for building. With these tools and APIs, developers can use the LayerZero protocol and its APIs to write dApps that can be easily deployed across all Hyperlane-connected ecosystems.
 

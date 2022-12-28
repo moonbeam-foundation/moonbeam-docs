@@ -5,7 +5,7 @@ description: Learn how to establish a cross-chain integration with a Moonbeam-ba
 
 # Establishing a XC Integration with Moonbeam
 
-![XCM Overview Banner](/images/builders/xcm/xc-integration/xc-integration-banner.png)
+![XCM Overview Banner](/images/builders/interoperability/xcm/xc-integration/xc-integration-banner.png)
 
 ## Introduction {: #introduction }
 
@@ -52,7 +52,7 @@ The process to create a HRMP channel with Moonriver and Moonbeam is mostly the s
 3. Once the proposal in step 2 gets enacted, a batched proposal will be done by Moonbeam to:
     1. Accept the incoming HRMP channel
     2. Propose an outgoing HRMP channel from Moonriver/Moonbeam
-    3. Register the asset as an [XC-20 token](/builders/xcm/xc20/overview){target=_blank}
+    3. Register the asset as an [XC-20 token](/builders/interoperability/xcm/xc20/overview){target=_blank}
 
       The normal enactment times are as follows:
 
@@ -181,7 +181,7 @@ To get the call data to be executed in step 3, you can head to Polkdot.js Apps a
 
   6. Copy the encoded call data, which will be required for the `Transact` XCM instruction as previously mentioned. For example, on Moonbase Alpha the encoded call data is `0x3300e8030000e803000000900100`
 
-![Get open HRMP channel relay chain call data on Polkadot.js Apps](/images/builders/xcm/xc-integration/xc-integration-1.png)
+![Get open HRMP channel relay chain call data on Polkadot.js Apps](/images/builders/interoperability/xcm/xc-integration/xc-integration-1.png)
 
 ### Send an XCM Message to the Relay Chain {: #send-an-xcm-message-to-the-relay-chain-open }
 
@@ -267,7 +267,7 @@ To get started, head to [Polkadot.js Apps](https://polkadot.js.org/apps/#/explor
 !!! note
     Using the above example values and the Moonbase Alpha relay chain sovereign account address, the encoded call data for the extrinsic is `0x1c000101000214000400000000070010a5d4e81300000000070010a5d4e800060002286bee383300e8030000e803000000900100140d0100040001010070617261e8030000000000000000000000000000000000000000000000000000`.
 
-![Open HRMP channel XCM message on Polkadot.js Apps](/images/builders/xcm/xc-integration/xc-integration-2.png)
+![Open HRMP channel XCM message on Polkadot.js Apps](/images/builders/interoperability/xcm/xc-integration/xc-integration-2.png)
 
 Once the message has been sent, the relay chain should execute the content and the request to open the channel. Please contact us on [Telegram](https://t.me/Moonbeam_Official){target=_blank} or [Discord](https://discord.gg/PfpUATX){target=_blank} once you've requested opening the channel because the request needs to be accepted by Moonbeam.
 
@@ -302,7 +302,7 @@ To get the call data to be executed in step 3, you can head to Polkdot.js Apps a
 
 4. Copy the encoded call data. It will be required for the `Transact` XCM instruction. For example, on Moonbase Alpha the call data is `0x3301e8030000`
 
-![Get accept HRMP channel relay chain call data on Polkadot.js Apps](/images/builders/xcm/xc-integration/xc-integration-3.png)
+![Get accept HRMP channel relay chain call data on Polkadot.js Apps](/images/builders/interoperability/xcm/xc-integration/xc-integration-3.png)
 
 ### Send an XCM Message to the Relay Chain {: #send-an-xcm-message-to-the-relay-chain-accept }
 
@@ -310,7 +310,7 @@ The steps to build and send an XCM message are the same as for opening a channel
 
 Please refer back to the Create an HRMP Channel section and follow the steps to [Send an XCM Message to the Relay Chain](#send-an-xcm-message-to-the-relay-chain-open) and modify step 4c with the correct encoded call data.
 
-![Accept HRMP channel XCM message on Polkadot.js Apps](/images/builders/xcm/xc-integration/xc-integration-4.png)
+![Accept HRMP channel XCM message on Polkadot.js Apps](/images/builders/interoperability/xcm/xc-integration/xc-integration-4.png)
 
 ## Register Moonbeam's Asset on your Parachain {: #register-moonbeams-asset-on-your-parachain }
 
@@ -415,9 +415,9 @@ Once the channel has been opened and accepted, your parachain's asset will need 
 - Asset symbol (_xc_ will be prepended to the symbol)
 - Number of decimals
 
-The team will confirm once the asset is registered. In addition, the team will provide the asset ID, the [XC-20 precompile](/builders/xcm/xc20/overview/#the-erc20-interface){target=_blank} address, and set an arbitrary `UnitsPerSecond`, which is the number of tokens charged per second of execution of the XCM message. The target cost for an XCM transfer is `$0.02` at the time of registration. The `UnitsPerSecond` might get updated as token price fluctuates.  
+The team will confirm once the asset is registered. In addition, the team will provide the asset ID, the [XC-20 precompile](/builders/interoperability/xcm/xc20/overview/#the-erc20-interface){target=_blank} address, and set an arbitrary `UnitsPerSecond`, which is the number of tokens charged per second of execution of the XCM message. The target cost for an XCM transfer is `$0.02` at the time of registration. The `UnitsPerSecond` might get updated as token price fluctuates.  
 
-Your XC-20 precompile address is calculated by converting the asset ID decimal number to hex, and prepending it with F’s until you get a 40 hex character (plus the “0x”) address. For more information on how it is calculated, please refer to the [Calculate External XC-20 Precompile Addresses](/builders/xcm/xc20/xc20/#calculate-xc20-address){target=_blank} section of the External XC-20 guide.
+Your XC-20 precompile address is calculated by converting the asset ID decimal number to hex, and prepending it with F’s until you get a 40 hex character (plus the “0x”) address. For more information on how it is calculated, please refer to the [Calculate External XC-20 Precompile Addresses](/builders/interoperability/xcm/xc20/xc20/#calculate-xc20-address){target=_blank} section of the External XC-20 guide.
 
 After the asset is successfully registered, you can try transferring tokens from your parachain to Moonbase Alpha.
 
@@ -449,6 +449,6 @@ For testing, please also provide your parachain WSS endpoint the Moonbeam dApp c
 
 ## Use your Asset on Moonbeam {: #use-your-asset-on-moonbeam }
 
-[XC-20s](/builders/xcm/xc20/){target=_blank} are Substrate based assets with an [ERC-20 interface](/builders/xcm/xc20/overview/#the-erc20-interface){target=_blank}. This means they can be added to MetaMask, and can be composed with any EVM DApp that exists in the ecosystem. The team can connect you with any DApp you find relevant for an XC-20 integration.
+[XC-20s](/builders/interoperability/xcm/xc20/){target=_blank} are Substrate based assets with an [ERC-20 interface](/builders/interoperability/xcm/xc20/overview/#the-erc20-interface){target=_blank}. This means they can be added to MetaMask, and can be composed with any EVM DApp that exists in the ecosystem. The team can connect you with any DApp you find relevant for an XC-20 integration.
 
 If you need DEV tokens (the native token for Moonbase Alpha) to use your XC-20 asset, you can get some from the [Moonbase Alpha Faucet](/builders/get-started/networks/moonbase/#moonbase-alpha-faucet){target=_blank}, which dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours. If you need more, feel free to reach out to the team on [Telegram](https://t.me/Moonbeam_Official){target=_blank} or [Discord](https://discord.gg/PfpUATX){target=_blank}.

@@ -5,7 +5,7 @@ description: Learn about the XCM instructions involved in handling XCM execution
 
 # XCM Fees on Moonbeam
 
-![XCM Fees Banner](/images/builders/xcm/fees/fees-banner.png)
+![XCM Fees Banner](/images/builders/interoperability/xcm/fees/fees-banner.png)
 
 ## Introduction {: #introduction}
 
@@ -270,7 +270,7 @@ The total cost is `{{ networks.moonbeam.xcm.instructions.glmr_cost }} GLMR` for 
 
 Considering the scenario with Alice sending DOT to Alith's account on Moonbeam, the fees are taken from the amount of xcDOT Alith receives. To determine how much to charge, Moonbeam uses a concept called `UnitsPerSecond`, which refers to the units of tokens that the network charges per second of XCM execution time (considering decimals). This concept is used by Moonbeam (and maybe other parachains) to determine how much to charge for XCM execution using a different asset than its reserve.
 
-Moreover, XCM execution on Moonbeam can be paid by multiple assets ([XC-20s](/builders/xcm/xc20/overview/){target=_blank}) that originate in the chain where the asset is coming from. For example, at the time of writing, an XCM message sent from [Statemine](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fstatemine-rpc.polkadot.io#/explorer){target=_blank} can be paid in xcKSM, xcRMRK or xcUSDT. As long as that asset has an `UnitsPerSecond` set in Moonbeam/Moonriver, it can be used to pay XCM execution for an XCM message coming from that specific chain.
+Moreover, XCM execution on Moonbeam can be paid by multiple assets ([XC-20s](/builders/interoperability/xcm/xc20/overview/){target=_blank}) that originate in the chain where the asset is coming from. For example, at the time of writing, an XCM message sent from [Statemine](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fstatemine-rpc.polkadot.io#/explorer){target=_blank} can be paid in xcKSM, xcRMRK or xcUSDT. As long as that asset has an `UnitsPerSecond` set in Moonbeam/Moonriver, it can be used to pay XCM execution for an XCM message coming from that specific chain.
 
 To find out the `UnitsPerSecond` for a given asset, you can query `assetManager.assetTypeUnitsPerSecond` and pass in the multilocation of the asset in question.
 
@@ -283,7 +283,7 @@ For example, you can navigate to the [Polkadot.js Apps page for Moonbeam](https:
 3. Under **Option** enter in the asset ID or toggle the **include option** off to return information for all of the assets. This example will get information for xcUNIT which has an asset ID of `42259045809535163221576417993425387648`
 4. Click the **+** button to submit the query
 
-![Get the xcUNIT asset multilocation](/images/builders/xcm/fees/fees-1.png)
+![Get the xcUNIT asset multilocation](/images/builders/interoperability/xcm/fees/fees-1.png)
 
 You can take the result of the query and then use it to query the **assetTypeUnitsPerSecond** extrinsic:
 
@@ -296,7 +296,7 @@ You can take the result of the query and then use it to query the **assetTypeUni
 
 The `UnitsPerSecond` for xcDOT is `{{ networks.moonbeam.xcm.units_per_second.xcdot.transfer }}`.
 
-![Get the xcUNIT units per second value](/images/builders/xcm/fees/fees-2.png)
+![Get the xcUNIT units per second value](/images/builders/interoperability/xcm/fees/fees-2.png)
 
 Remember that one unit of weight is defined as one picosecond of execution time. Therefore, the formula to determine execution time is as follows:
 
@@ -312,7 +312,7 @@ ExecutionTime = ({{ networks.moonbeam.xcm.instructions.weight_units.numbers_only
 
 Which means that four XCM instructions cost `{{ networks.moonbeam.xcm.message.transfer.exec_time }}` seconds of block execution time.
 
-To calculate the total cost in xcDOT, you'll also need the number of decimals the asset in question uses, which for xcDOT is 10 decimals. You can determine the number of decimals for any asset by [querying the asset metadata](/builders/xcm/xc20/xc20/#x-chain-assets-metadata){target=_blank}.
+To calculate the total cost in xcDOT, you'll also need the number of decimals the asset in question uses, which for xcDOT is 10 decimals. You can determine the number of decimals for any asset by [querying the asset metadata](/builders/interoperability/xcm/xc20/xc20/#x-chain-assets-metadata){target=_blank}.
 
 The block execution formula can then be used to determine how much Alice's transfer of DOT to Alith's account on Moonbeam costs. The formula for finding the total cost is as follows:
 
@@ -330,17 +330,17 @@ The total cost to transfer Alice's DOT to Alith's account for xcDOT is `{{ netwo
 
 ## XCM-Transactor Fees {: #xcm-transactor-fees }
 
-The [XCM-transactor pallet](/builders/xcm/xcm-transactor/){target=_blank} builds an XCM message to remotely transact in other chains of the ecosystem. 
+The [XCM-transactor pallet](/builders/interoperability/xcm/xcm-transactor/){target=_blank} builds an XCM message to remotely transact in other chains of the ecosystem. 
 
 There are two different ways developers can remotely transact through the pallet:
 
-1. [`transactThroughDerivative`](/builders/xcm/xcm-transactor/#xcmtransactor-transact-through-derivative){target=_blank}
-2. [`transactThroughSigned`](/builders/xcm/xcm-transactor/#xcmtransactor-transact-through-signed){target=_blank}, in which the dispatcher account in the destination chain is a multilocation-derived account and must have enough funds to cover XCM execution fees plus whatever call is being remotely executed
+1. [`transactThroughDerivative`](/builders/interoperability/xcm/xcm-transactor/#xcmtransactor-transact-through-derivative){target=_blank}
+2. [`transactThroughSigned`](/builders/interoperability/xcm/xcm-transactor/#xcmtransactor-transact-through-signed){target=_blank}, in which the dispatcher account in the destination chain is a multilocation-derived account and must have enough funds to cover XCM execution fees plus whatever call is being remotely executed
 
 Generally speaking, the XCM instructions normally involved for remote execution are:
 
- - The first instruction handles tokens in the origin chain. This can be either moving tokens to a sovereign account or burning the corresponding [XC-20](/builders/xcm/xc20/overview/){target=_blank} so that it can be used in the target chain. These instructions get executed in the origin chain
- - [`DescendOrigin`](https://github.com/paritytech/xcm-format#descendorigin){target=_blank} (optional) - mutates the origin with the multilocation provided in the instruction. This is only used for the `transactThroughSigned` and `transactThroughSignedMultilocation` extrinsics, as the origin is no longer the sovereign account, but the [multilocation-derivative account](/builders/xcm/xcm-transactor/#general-xcm-definitions){target=_blank}
+ - The first instruction handles tokens in the origin chain. This can be either moving tokens to a sovereign account or burning the corresponding [XC-20](/builders/interoperability/xcm/xc20/overview/){target=_blank} so that it can be used in the target chain. These instructions get executed in the origin chain
+ - [`DescendOrigin`](https://github.com/paritytech/xcm-format#descendorigin){target=_blank} (optional) - mutates the origin with the multilocation provided in the instruction. This is only used for the `transactThroughSigned` and `transactThroughSignedMultilocation` extrinsics, as the origin is no longer the sovereign account, but the [multilocation-derivative account](/builders/interoperability/xcm/xcm-transactor/#general-xcm-definitions){target=_blank}
  - [`WithdrawAsset`](https://github.com/paritytech/xcm-format#withdrawasset){target=_blank} - gets executed in the target chain. Removes assets and places them into the holding register
  - [`BuyExecution`](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} - gets executed in the target chain. Takes the assets from holding to pay for execution fees. The fees to pay are determined by the target chain
  - [`Transact`](https://github.com/paritytech/xcm-format#transact){target=_blank} - gets executed in the target chain. Dispatches the encoded call data from a given origin
@@ -351,7 +351,7 @@ Therefore, XCM execution in the target chain consists of three to four XCM instr
 
 The transacting through derivative method consists of three XCM instructions: [`WithdrawAsset`](https://github.com/paritytech/xcm-format#withdrawasset){target=_blank}, [`BuyExecution`](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} and [`Transact`](https://github.com/paritytech/xcm-format#transact){target=_blank}.
 
-When [transacting through the sovereign-derivative account](/builders/xcm/xcm-transactor/#xcmtransactor-transact-through-derivative){target=_blank}, the transaction fees are paid by the sovereign account of the origin chain in the destination chain, but the derivative account dispatches the transaction. Consequently, the XCM-transactor pallet will burn a certain amount of the corresponding XC-20 token to free up some balance in the sovereign account for XCM execution fee payment.
+When [transacting through the sovereign-derivative account](/builders/interoperability/xcm/xcm-transactor/#xcmtransactor-transact-through-derivative){target=_blank}, the transaction fees are paid by the sovereign account of the origin chain in the destination chain, but the derivative account dispatches the transaction. Consequently, the XCM-transactor pallet will burn a certain amount of the corresponding XC-20 token to free up some balance in the sovereign account for XCM execution fee payment.
 
 Consider the following scenario: Alice wants to remotely transact in Polkadot from Moonbeam using the transact through sovereign extrinsic (she already has an index registered to her account). To estimate how many XC-20 tokens will be burned from Alice's account, you need to check the transact information specific to the relay chain. To do so, head to the chain state page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/chainstate){target=_blank} and set the following options:
 
@@ -361,7 +361,7 @@ Consider the following scenario: Alice wants to remotely transact in Polkadot fr
 4. Select `Here` for **interior**
 5. Click on **+**
 
-![Get the Transact Through Derivative Weight Info for Polkadot](/images/builders/xcm/fees/fees-3.png)
+![Get the Transact Through Derivative Weight Info for Polkadot](/images/builders/interoperability/xcm/fees/fees-3.png)
 
 From the response, you can see that the `transactExtraWeight` is `{{ networks.polkadot.xcm_message.transact.weight }}`. This is the weight needed to execute the three XCM instructions for this remote call in that specific destination chain. Next, you need to find the `UnitsPerSecond` for that particular chain. In the same [Polkadot.js Apps page](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/chainstate){target=_blank}, set the following options:
 
@@ -371,7 +371,7 @@ From the response, you can see that the `transactExtraWeight` is `{{ networks.po
 4. Select `Here` for **interior**
 5. Click on **+**
 
-![Get the Units Per Second for Transact Through Derivative for Polkadot](/images/builders/xcm/fees/fees-4.png)
+![Get the Units Per Second for Transact Through Derivative for Polkadot](/images/builders/interoperability/xcm/fees/fees-4.png)
 
 Note that this `UnitsPerSecond` is related to the cost estimated in the [Relay Chain XCM Fee Calculation](#polkadot) section, or to the [Wei per weight](#moonbeam-reserve-assets) if the target is another parachain. As before, calculating the associated XCM execution fee is as simple as multiplying the `transactExtraWeight` times the `UnitsPerSecond`:
 
@@ -393,7 +393,7 @@ The cost for transacting through derivative is `{{ networks.polkadot.xcm_message
 
 The transacting through signed method (multilocation derivative account) consists of four XCM instructions: [`DescendOrigin`](https://github.com/paritytech/xcm-format#descendorigin){target=_blank}, [`WithdrawAsset`](https://github.com/paritytech/xcm-format#withdrawasset){target=_blank}, [`BuyExecution`](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} and [`Transact`](https://github.com/paritytech/xcm-format#transact){target=_blank}.
 
-When [transacting through the multilocation-derivative account](/builders/xcm/xcm-transactor/#xcmtransactor-transact-through-derivative){target=_blank}, the transaction fees are paid by the same account from which the call is dispatched, which is a multilocation-derived account in the destination chain. Consequently, multilocation-derived account must hold the necessary funds to pay for the entire execution. Note that the destination token, in which fees are paid, does not need to be register as an XC-20 in the origin chain.
+When [transacting through the multilocation-derivative account](/builders/interoperability/xcm/xcm-transactor/#xcmtransactor-transact-through-derivative){target=_blank}, the transaction fees are paid by the same account from which the call is dispatched, which is a multilocation-derived account in the destination chain. Consequently, multilocation-derived account must hold the necessary funds to pay for the entire execution. Note that the destination token, in which fees are paid, does not need to be register as an XC-20 in the origin chain.
 
 Consider the following scenario: Alice wants to remotely transact in another chain (Parachain ID 888, in the Moonbase Alpha relay chain ecosystem) from Moonbase Alpha using the transact through signed extrinsic. To estimate the amount of tokens Alice's multilocation-derivative account will need to have to execute the remote call, you need to check the transact information specific to the destination chain. To do so, head to the chain state page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/chainstate){target=_blank} and set the following options:
 
@@ -406,7 +406,7 @@ Consider the following scenario: Alice wants to remotely transact in another cha
 6. Set **Parachain** to `888`
 7. Click on **+**
 
-![Get the Transact Through Derivative Weight Info for another Parachain](/images/builders/xcm/fees/fees-5.png)
+![Get the Transact Through Derivative Weight Info for another Parachain](/images/builders/interoperability/xcm/fees/fees-5.png)
 
 From the response, you can see that the `transactExtraWeightSigned` is `{{ networks.moonbase_beta.xcm_message.transact.weight }}`. This is the weight needed to execute the four XCM instructions for this remote call in that specific destination chain. Next, you need to find how much the destination chain charges per weight of XCM execution. Normally, you would look into the `UnitsPerSecond` for that particular chain. But in this scenario, no XC-20 tokens are burned. Therefore, `UnitsPerSecond` can be use for reference, but do not ensure that the amount of tokens estimated are correct. To get the `UnitsPerSecond` as a reference value, in the same [Polkadot.js Apps page](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network#/chainstate){target=_blank}, set the following options:
 
@@ -420,9 +420,9 @@ From the response, you can see that the `transactExtraWeightSigned` is `{{ netwo
 8. Set **PalletInstance** to `3`
 9. Click on **+**
 
-![Get the Units Per Second for Transact Through Derivative for another Parachain](/images/builders/xcm/fees/fees-6.png)
+![Get the Units Per Second for Transact Through Derivative for another Parachain](/images/builders/interoperability/xcm/fees/fees-6.png)
 
-Note that this `UnitsPerSecond` is related to the cost estimated in the [Relay Chain XCM Fee Calculation](/builders/xcm/fees/#polkadot){target=_blank} section, or to the one shown in the [Units per weight](/builders/xcm/fees/#moonbeam-reserve-assets){target=_blank} section if the target is another parachain. You'll need to find the correct value to ensure that the amount of tokens the multilocation-derivative account holds is correct. As before, calculating the associated XCM execution fee is as simple as multiplying the `transactExtraWeight` times the `UnitsPerSecond` (for an estimation):
+Note that this `UnitsPerSecond` is related to the cost estimated in the [Relay Chain XCM Fee Calculation](/builders/interoperability/xcm/fees/#polkadot){target=_blank} section, or to the one shown in the [Units per weight](/builders/interoperability/xcm/fees/#moonbeam-reserve-assets){target=_blank} section if the target is another parachain. You'll need to find the correct value to ensure that the amount of tokens the multilocation-derivative account holds is correct. As before, calculating the associated XCM execution fee is as simple as multiplying the `transactExtraWeight` times the `UnitsPerSecond` (for an estimation):
 
 ```
 XCM-Wei-Token-Cost = transactExtraWeight * UnitsPerSecond / WeightToSeconds
