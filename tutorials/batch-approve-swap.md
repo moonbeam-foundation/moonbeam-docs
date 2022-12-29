@@ -5,7 +5,7 @@ description: Learn how to use the batch precompile on Moonbeam to batch an appro
 
 # Use the Batch Precompile to Approve and Swap Tokens
 
-![Banner Image](/images/tutorials/batch-approve-swap/batch-approve-swap-banner.png)
+![Banner Image](/images/tutorials/batch-approve-swap/batch-banner.png)
 
 _December 21, 2022 | by Erin Shaben_
 
@@ -130,6 +130,8 @@ To compile the contracts, we'll go ahead and run the following Hardhat command:
 npx hardhat compile
 ```
 
+![Compile contracts](/images/tutorials/batch-approve-swap/batch-1.png)
+
 After compilation, an `artifacts` directory is created: it holds the bytecode and metadata of the contract, which are `.json` files. It’s a good idea to add this directory to the `.gitignore` file.
 
 Next, we can deploy the `SimpleDex` contract, which upon deployment will automatically deploy the `DemoToken` contract and mint 1000 DTOKs and assign them to the `SimpleDex` contract. Before you can deploy the contract, we'll need to create the deployment script. We'll create a new directory for the script and name it `scripts` and add a new file to it called `deploy.js`:
@@ -166,6 +168,8 @@ npx hardhat run --network moonbase scripts/deploy.js
 !!! note
     If you want to run the script in a standalone fashion using `node <script>`, you'll need to require the Hardhat Runtime Environment explicitly using `const hre = require("hardhat");` in the `deploy.js` file.
 
+![Deploy contracts](/images/tutorials/batch-approve-swap/batch-2.png)
+
 After a few seconds, the contract will be deployed, and you should see the address in the terminal. We'll need to use the address in the following sections to interact with the contract, so make sure you save it.
 
 ## Swap Tokens {: #swapping-tokens }
@@ -175,7 +179,7 @@ With the contract deployed, now we can create a script that will enable us to ge
 For simplicity, we'll create a single script to handle all of the logic needed to swap DEV to DTOKs and back, called `swap.js`. We'll add this file to the `scripts` directory:
 
 ```
-touch swap.js
+touch scripts/swap.js
 ```
 
 ### Create Contract Instances {: #create-contract-instances }
@@ -254,12 +258,12 @@ async function main() {
   // ...
 
   // Swap DEV for DTOKs and print the transaction hash
-  const amountDev = ethers.utils.parseEther( "INSERT-AMOUNT-OF-DEV-TO-SWAP");
+  const amountDev = ethers.utils.parseEther("INSERT-AMOUNT-OF-DEV-TO-SWAP");
   const swapDevForDemoToken = await simpleDex.swapDevForDemoToken({
-    amountDev
+    value: amountDev
   });
   await swapDevForDemoToken.wait();
-  console.log(`Swapped dev for demo tokens: ${swapDevForDemoToken.hash}`);
+  console.log(`Swapped DEV for DTOK tokens: ${swapDevForDemoToken.hash}`);
 
   // Check balances after the swap
   await checkBalances(demoToken);
@@ -309,7 +313,7 @@ async function main() {
     [] // gas limit
   );
   await batchAll.wait();
-  console.log(`Approve and swap demo tokens for dev tokens: ${batchAll.hash}`);
+  console.log(`Approve and swap DTOK tokens for DEV tokens: ${batchAll.hash}`);
 
   // Check balances after the swap
   await checkBalances(demoToken);
@@ -319,6 +323,23 @@ async function main() {
 So, if you set the amount to swap to be .2 DTOK, the DEX balance will increase by .2 DTOK, and the signing account's balance will decrease by .2 DTOK. The transaction hash for the swap will also be printed to the terminal, so you can use [Moonscan](https://moonbase.moonscan.io){target=_blank} to view more information on the transaction.
 
 You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/batch-approve-swap/swap.js){target=_blank}.
+
+To run the script, you can use the following command:
+
+```
+npx hardhat run --network moonbase scripts/swap.js
+```
+
+In the terminal, you should see the following items:
+
+- The transaction hash from swapping DEV to DTOKs
+- The DEX's DTOK balance after the initial swap
+- Your account's DTOK balance after the initial swap
+- The transaction hash for the batch approval and swap
+- The DEX's DTOK balance after the batch approval and swap
+- Your account's DTOK balance after the batch approval and swap
+
+![Swap tokens](/images/tutorials/batch-approve-swap/batch-3.png)
 
 And that's it! You've successfully used the batch precompile contract to batch an approval and swap into a single transaction, allowing for the approval amount to be the exact swap amount.
 

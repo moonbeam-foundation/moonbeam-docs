@@ -40,7 +40,7 @@ async function main() {
   // Swap DEV for DTOKs and print the transaction hash
   const amountDev = ethers.utils.parseEther( "INSERT-AMOUNT-OF-DEV-TO-SWAP")
   const swapDevForDemoToken = await simpleDex.swapDevForDemoToken({
-    amountDev
+    value: amountDev
   });
   await swapDevForDemoToken.wait();
   console.log(`Swapped dev for demo tokens: ${swapDevForDemoToken.hash}`);
