@@ -15,7 +15,7 @@ Token approvals are critical for interacting with smart contracts securely, prev
 
 One of the reasons why many DApps use an unlimited amount is so that users don't need to continue to sign approval transactions every time they want to move their tokens. This is in addition to the second transaction required to actually swap the tokens. For networks like Ethereum, this can be expensive. However, if the approved smart contract has a vulnerability, it could be exploited and the users' tokens could be transferred at any time without requiring further approval. In addition, if a user no longer wants the DApp's contract to have access to their tokens, they have to revoke the token approval, which requires another transaction to be sent.
 
-As a DApp developer on Moonbeam, this process can be easily avoided, providing your users with more control over their assets. This can be done using the [batch precompile](/builders/pallets-precompiles/precompiles/batch){target=_blank} to batch an approval and swap into a single transaction, which allows for the approval amount to be the exact swap amount instead of having unlimited access to your users' tokens. 
+As a DApp developer on Moonbeam, this process can be easily avoided, providing your users with more control over their assets. This can be done using the [batch precompile](/builders/pallets-precompiles/precompiles/batch){target=_blank} to batch an approval and swap into a single transaction, instead of the typical two transaction process. This allows for the approval amount to be the exact swap amount instead of having unlimited access to your users' tokens. 
 
 In this tutorial, we'll dive into the process of batching an approval and swap into one transaction using the `batchAll` function of the batch precompile contract. We'll create and deploy an ERC-20 contract and a simple DEX contract for the swap on the Moonbase Alpha TestNet using [Hardhat](/builders/build/eth-api/dev-env/hardhat){target=_blank} and [Ethers](/builders/build/eth-api/libraries/ethersjs){target=_blank}. 
 
@@ -63,7 +63,7 @@ mkdir contracts && cd contracts
 Then, you can create a single file that we'll use to store the code for the `DemoToken` and `SimpleDex` contract:
 
 ```
-touch SimpleDex.sol
+touch SimpleDex.sol Batch.sol
 ```
 
 In the `SimpleDex.sol` file, you can paste in the following code for the `DemoToken` and `SimpleDex` contracts:
@@ -119,6 +119,8 @@ contract SimpleDex {
     }
 }
 ```
+
+In the `Batch.sol` file, you can paste in the [batch precompile contract](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank}. 
 
 ### Compile & Deploy Contracts {: #compile-deploy-contracts }
 
@@ -178,9 +180,9 @@ touch swap.js
 
 ### Create Contract Instances {: #create-contract-instances }
 
-We'll need to create contract instances for each of our contracts so that we can access each contract's functions. For this, we're going to use the `getContractAt()` helper function of the Hardhat plugin.
+We'll need to create contract instances for each of our contracts so that we can access each contract's functions. For this, we're going to use the `getContractAt` helper function of the Hardhat plugin.
 
-For this step, we're going to need the contract address of the `SimpleDex` contract. Then we'll be able to use the `SimpleDex` contract instance to retrieve the `DemoToken` contract address through the `token()` function.
+For this step, we're going to need the contract address of the `SimpleDex` contract. Then we'll be able to use the `SimpleDex` contract instance to retrieve the `DemoToken` contract address through the `token` function.
 
 We'll also need to add a contract instance for the batch precompile, which is located at `{{ networks.moonbase.precompiles.batch }}`.
 
@@ -214,7 +216,7 @@ main();
 
 Next, we're going to create a helper function that will be used to check the balance of DTOK tokens the DEX and the signer account has. This will be particularly useful to see balance changes after the swaps are complete.
 
-Since the `DemoToken` contract has an ERC-20 interface, you can check the balance of DTOKs an account has using the `balanceOf()` function. So, we'll call the `balanceOf()` function, passing in the address of the signer and the DEX, and then print the formatted results in DTOKs to the terminal:
+Since the `DemoToken` contract has an ERC-20 interface, you can check the balance of DTOKs an account has using the `balanceOf` function. So, we'll call the `balanceOf` function, passing in the address of the signer and the DEX, and then print the formatted results in DTOKs to the terminal:
 
 ```js
 async function checkBalances(demoToken) {
@@ -237,22 +239,22 @@ async function checkBalances(demoToken) {
 }
 ```
 
-### Swap DEV for DTOKs {: #add-logic-to-swap-dev }
+### Swap DEV for Tokens {: #add-logic-to-swap-dev }
 
 Now we're going to create the logic to swap DEV tokens for DTOKs, so that in the following section we'll have DTOKs that we can approve the DEX to spend on our behalf.
 
-We'll use the `swapDevForDemoToken()` function of the `SimpleDex` contract and pass in the amount to swap in Wei. For convenience, you can use the `ethers.utils.parseEther()` function, which allows you to pass in an amount in DEV and have it converted to Wei for you. For example, you can replace `"INSERT-AMOUNT-OF-DEV-TO-SWAP"` with `.5` to swap .5 DEV in exchange for .5 DTOK.
+We'll use the `swapDevForDemoToken` function of the `SimpleDex` contract and pass in the amount to swap in Wei. For convenience, you can use the `ethers.utils.parseEther` function, which allows you to pass in an amount in DEV and have it converted to Wei for you. For example, you can replace `"INSERT-AMOUNT-OF-DEV-TO-SWAP"` with `.5` to swap .5 DEV in exchange for .5 DTOK.
 
-After the swap, we'll use the `checkBalances()` helper function to verify that the balances for the DEX and the signing account have changed as expected.
+After the swap, we'll use the `checkBalances` helper function to verify that the balances for the DEX and the signing account have changed as expected.
 
-Let's add the following snippet to our `main()` function:
+Let's add the following snippet to our `main` function:
 
 ```js
 async function main() {
   // ...
 
   // Swap DEV for DTOKs and print the transaction hash
-  const amountDev = ethers.utils.parseEther( "INSERT-AMOUNT-OF-DEV-TO-SWAP")
+  const amountDev = ethers.utils.parseEther( "INSERT-AMOUNT-OF-DEV-TO-SWAP");
   const swapDevForDemoToken = await simpleDex.swapDevForDemoToken({
     amountDev
   });
@@ -266,28 +268,28 @@ async function main() {
 
 So, if you set the amount to swap to be .5 DEV, the DEX balance will decrease by .5 DTOK to 999.5 DTOK (if this is the first swap made) and the signing account's balance will increase by .5 DTOK. The transaction hash for the swap will also be printed to the terminal, so you can use [Moonscan](https://moonbase.moonscan.io){target=_blank} to view more information on the transaction.
 
-### Approve & Swap DTOKs for DEV using the Batch Precompile {: #add-logic-to-swap-dtoks }
+### Approve & Swap Tokens for DEV using the Batch Precompile {: #add-logic-to-swap-dtoks }
 
 Now that you have some DTOKs in your signing account, we can approve the DEX to spend these tokens on our behalf so that we can swap the DTOKs back to DEVs. On Ethereum, for example, we would need to send two transactions to be able to swap the DTOKs back to DEVs: an approval and a transfer. However, on Moonbeam, thanks to the batch precompile contract, you can batch these two transactions into a single one. This allows us to set the approval amount for the exact amount of the swap.
 
-So instead of calling `demoToken.approve(spender, amount)` and then `simpleDex.swapDemoTokenForDev(amount)`, we'll get the encoded call data for each of these transactions and pass them into the batch precompile's `batchAll()` function. To get the encoded call data, we'll use Ether's `interface.encodeFunctionData()` function and pass in the necessary parameters. For example, we'll swap .2 DTOK back to .2 DEV. In this case, for the approval, we can pass in the DEX address as the spender and set the amount to .2 DTOK. We'll also set the amount to swap as .2 DTOK. Again, you can use the `ethers.utils.parseEther()` function to convert the amount in DTOK to Wei.
+So instead of calling `demoToken.approve(spender, amount)` and then `simpleDex.swapDemoTokenForDev(amount)`, we'll get the encoded call data for each of these transactions and pass them into the batch precompile's `batchAll` function. To get the encoded call data, we'll use Ether's `interface.encodeFunctionData` function and pass in the necessary parameters. For example, we'll swap .2 DTOK back to .2 DEV. In this case, for the approval, we can pass in the DEX address as the `spender` and set the `amount` to .2 DTOK. We'll also set the `amount` to swap as .2 DTOK. Again, you can use the `ethers.utils.parseEther` function to convert the amount in DTOK to Wei.
 
-Once we have the encoded call data, we can use it to call the `batchAll()` function of the batch precompile. This function performs multiple calls atomically, where the same index of each array combine into the information required for a single subcall. If a subcall reverts, all subcalls will revert. The following parameters are required by the `batchAll()` function:
+Once we have the encoded call data, we can use it to call the `batchAll` function of the batch precompile. This function performs multiple calls atomically, where the same index of each array combine into the information required for a single subcall. If a subcall reverts, all subcalls will revert. The following parameters are required by the `batchAll` function:
 
 --8<-- 'text/batch/batch-parameters.md'
 
 So, the first index of each array will correspond to the approval and the second will correspond to the swap.
 
-After the swap, we'll check the balances again using the `checkBalances()` function to make sure the balances have changed as expected.
+After the swap, we'll check the balances again using the `checkBalances` function to make sure the balances have changed as expected.
 
-We'll update the `main()` function to include the following logic:
+We'll update the `main` function to include the following logic:
 
 ```js
 async function main() {
   // ...
 
   // Parse the value to swap to Wei
-  const amountDtok = ethers.utils.parseEther("INSERT-AMOUNT-OF-DTOK-TO-SWAP")
+  const amountDtok = ethers.utils.parseEther("INSERT-AMOUNT-OF-DTOK-TO-SWAP");
 
   // Get the encoded call data for the approval and swap
   const approvalCallData = demoToken.interface.encodeFunctionData("approve", [
@@ -319,3 +321,76 @@ So, if you set the amount to swap to be .2 DTOK, the DEX balance will increase b
 You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/batch-approve-swap/swap.js){target=_blank}.
 
 And that's it! You've successfully used the batch precompile contract to batch an approval and swap into a single transaction, allowing for the approval amount to be the exact swap amount.
+
+## Uniswap V2 Implementation {: #uniswap-v2-implementation }
+
+If we had a Uniswap V2-style DEX, the typical process for a swap would involve the router, which provides methods to safely swap assets, including the `swapExactTokensForETH` function. This function can be compared to the `swapDemoTokenForDev` function of the SimpleDex contract in the example above, where it swaps tokens in exchange for the native asset.
+
+Before using the `swapExactTokensForETH` function, we would first need to approve the router as the spender and specify the approved amount to spend. Then, we could use the swap function once the router has been authorized to move our assets.
+
+Like our previous example, this two-transaction process can be modified to batch the approval and the `swapExactTokensForETH` function into a single transaction using the batch precompile.
+
+This example will be based off the [Uniswap V2 deployment on Moonbase Alpha](https://github.com/PureStake/moonbeam-uniswap){target=_blank}. We'll approve the router to spend ERTH tokens and then swap ERTH for DEV tokens. Before diving into this example, make sure you swap some DEV for ERTH tokens on the [Moonbeam-swap DApp](https://moonbeam-swap.netlify.app/#/swap){target=_blank}, so that you have some ERTH to approve and swap back to DEV.
+
+Again, we'll use the `batchAll` function of the batch precompile. So, we'll need to get the encoded call data for the approval and the swap. To get the encoded call data, we'll use Ether's `interface.encodeFunctionData` function and pass in the necessary parameters.
+
+For the `approve(spender, amount)` function, we'll need to pass in the Uniswap V2 router contract as the `spender`, as well as the amount of ERTH tokens approved to spend for the `amount`.
+
+For the `swapExactTokensForETH(amountIn, amountOutMin, path, to, deadline)` function, we'll need to specify the amount of tokens to send, the minimum amount of output tokens that must be received so the transaction won't revert, the token addresses for the swap, the recipient of the native asset, and the deadline after which the transaction will revert. To swap ERTH to DEV, the path will be ERTH to WETH, so the path array will need to include the ERTH token address and the WETH token address: `[0x08B40414525687731C23F430CEBb424b332b3d35, 0xD909178CC99d318e4D46e7E66a972955859670E1]`.
+
+In addition to the ERTH and WETH addresses, to create a contract instance of the router contract, you'll also need the [router address](https://github.com/PureStake/moonbeam-uniswap/blob/f494f9a7a07bd3c5b94ac46484c9c7e6c781203f/uniswap-contracts-moonbeam/address.json#L14){target=_blank}, which is `0x8a1932D6E26433F3037bd6c3A40C816222a6Ccd4`.
+
+The code will resemble the following:
+
+```js
+// Define contract addresses
+const erthTokenAddress = "0x08B40414525687731C23F430CEBb424b332b3d35";
+const routerAddress = "0x8a1932D6E26433F3037bd6c3A40C816222a6Ccd4";
+const wethTokenAddress = "0xD909178CC99d318e4D46e7E66a972955859670E1";
+
+async function main() {
+  // Create contract instances for the ERTH token, the Uniswap V2 router contract,
+  // and the batch precompile
+  // ...
+
+  // Access the interface of the ERTH contract instance to get the encoded 
+  // call data for the approval
+  const amountErth = ethers.utils.parseEther("INSERT-AMOUNT-OF-ERTH-TO-SWAP");
+  const approvalCallData = earth.interface.encodeFunctionData("approve", [
+    routerAddress,
+    amountErth,
+  ]);
+
+  // Access the interface of the Uniswap V2 router contract instance to get
+  // the encoded call data for the swap
+  const swapCallData = router.interface.encodeFunctionData(
+    "swapExactTokensForETH",
+    [
+      amountErth, // amountIn
+      "INSERT-AMOUNT-OUT-MIN", // amountOutMin
+     [
+      erthTokenAddress, // ERTH token address
+      wethTokenAddress // WETH token address
+      ], // path 
+     "INSERT-YOUR-ADDRESS", // to
+     "INSERT-DEADLINE" // deadline
+    ]
+  );
+
+  // Assemble and send the batch transaction
+  const batchAll = await batch.batchAll(
+    [erthTokenAddress, routerAddress], // to address
+    [], // value of the native token to send 
+    [approvalCallData, swapCallData], // call data
+    [] // gas limit
+  );
+  await batchAll.wait();
+  console.log(`Approve and swap ERTH tokens for DEV tokens: ${batchAll.hash}`);
+}
+main();
+```
+
+!!! note
+    If you need the ABI to create a contract instance for any of the contracts in this example, all of the contracts are verified on [Moonscan](https://moonbase.moonscan.io){target=_blank}. So, you can search for the contract addresses on Moonscan and head to the **Contract** tab to get the **Contract ABI**.
+
+This will result in the approval and swap being batched into a single transaction and the transaction hash will be printed to the console. You can now adapt and apply this logic to your Uniswap V2-style application!
