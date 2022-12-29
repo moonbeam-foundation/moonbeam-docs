@@ -415,3 +415,5 @@ main();
     If you need the ABI to create a contract instance for any of the contracts in this example, all of the contracts are verified on [Moonscan](https://moonbase.moonscan.io){target=_blank}. So, you can search for the contract addresses on Moonscan and head to the **Contract** tab to get the **Contract ABI**.
 
 This will result in the approval and swap being batched into a single transaction and the transaction hash will be printed to the console. You can now adapt and apply this logic to your Uniswap V2-style application!
+
+--8<-- 'text/disclaimers/third-party-content.md'
