@@ -9,7 +9,9 @@ description: An overview of the historical updates made on Moonbeam and Moonrive
 
 ## Introduction {: #introduction }
 
-This page provides an overview of historical updates made on Moonbeam and Moonriver, such as bug fixes and migrations applied to the Moonbeam source code.
+This page provides an overview of historical updates made on Moonbeam and Moonriver, such as bug fixes to the Moonbeam source code and data migrations applied.
+
+The objective of this page is to provide information around unexpected behaviors or data inconsistencies that are associated with updates which needed forced data migrations.
 
 ## Bug Fixes {: #bug-fixes }
 
@@ -55,7 +57,7 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 #### Incorrect Timestamp Units
 
-EIP-2612 and Ethereum blocks deal with timestamps in seconds, however the Substrate timestamp pallet that Moonbeam implements used milliseconds.
+EIP-2612 and Ethereum blocks deal with timestamps in seconds, however the Substrate timestamp pallet that Moonbeam implements used milliseconds. This only affected the EIP-2612 implementation and not the `block.timestamp` value.
 
 Introduced at network launch and fixed as of RT1501.
 
