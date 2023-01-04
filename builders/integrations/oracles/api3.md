@@ -134,18 +134,35 @@ uint32 public timestamp;
 
 ```
 
+### Calling a dAPI using Remix
+
+To call a dAPI using Remix IDE, [Click Here]().
+
+This smart contract imports `DapiServer.sol` and uses the function `readDataFeedWithDapiName(_dapi)` which populates the contract variables value and timestamp. This function is one of four functions available to call a dAPI.
+
+Select the SOLIDITY COMPILER pane and compile MyContract.sol. Note the version of the compiler matches the contract's declaration. Make sure you're on Moonbase Alpha before deploying the contract.
+
+
+
+Here are all the contract addresses:
+
 === "Moonbeam"
     | Contract  |          Addresses         |
     |:-----------:|:-----------------------------------------------------:|
     | AirnodeRrpV0 | {{ networks.moonbeam.api3.rrp }} |
+    | AirnodeRrpV0 | {{ networks.moonbeam.api3.rrp }} |
+
 
 === "Moonriver"
     |  Contract  |           Addresses          |
     |:------------:|:-------------------------------------------------------:|
     | AirnodeRrpV0 | {{ networks.moonriver.api3.rrp }}  |
+    | AirnodeRrpV0 | {{ networks.moonbeam.api3.rrp }} |
+
 
 
 === "Moonbase Alpha"
     |  Contract  |          Addresses           |
     |:------------:|:------------------------------------------------------:|
     | AirnodeRrpV0  | {{ networks.moonbase.api3.rrp }}  |
+    | AirnodeRrpV0 | {{ networks.moonbeam.api3.rrp }} |
