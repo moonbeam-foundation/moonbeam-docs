@@ -134,35 +134,53 @@ uint32 public timestamp;
 
 ```
 
-### Calling a dAPI using Remix
+### Calling a dAPI using Remix on Moonbeam
 
 To call a dAPI using Remix IDE, [Click Here]().
 
 This smart contract imports `DapiServer.sol` and uses the function `readDataFeedWithDapiName(_dapi)` which populates the contract variables value and timestamp. This function is one of four functions available to call a dAPI.
 
-Select the SOLIDITY COMPILER pane and compile MyContract.sol. Note the version of the compiler matches the contract's declaration. Make sure you're on Moonbase Alpha before deploying the contract.
+Select the SOLIDITY COMPILER pane and compile `MyContract.sol`.
 
+As we are going to deploy the Contract on Moonbeam, make sure you have enough funds in your wallet to deploy the Contract.
 
+Head to Deploy and run Transactions and select Injected Provider — MetaMask option under Environment. Connect your MetaMask. Make sure you’re on the right network.
+Deploy the contract and follow through with Metamask to confirm the transaction.
 
-Here are all the contract addresses:
+Because you are calling a dAPI on a testnet, a subscription for the dAPI AVAX/USD on Moonbeam is not needed. However you will need to get permission for your smart contract to call the dAPI.
+
+Copy the address of the contract. Select copy icon to the right of the contract name, `MyContract.sol`.
+
+Go to the API3 Market page for [AVAX/USD on Moonbeam➚](). Enter the contract address into the permissions widget to the right side of the page.
+
+Connect your wallet, click on Get Access and follow through Metamask to approve the transaction to grant permission to call the AVAX/USD dAPI for your Contract.
+
+Go back to Remix and call the `callDapi()` function. It will require two parameters:
+- `_dapiServerContractAddress` - The contract address for the `DapiServer.sol` contract on Mumbai. It and other network addresses for `DapiServer.sol` can be found below.
+
+- `_dapi` - A `bytes32` representation of AVAX/USD. Use `utils.formatBytes32String("AVAX/USD");` to get this encoded value. Try it in the [ethers playground➚]().
+
+After adding the parameters, click on `transact` and confirm the transaction on Metmamask.
+
+After the call to `callDapi()` is complete, the `timestamp` and `value` contract variables hold the results until the function is called again in which case these variables would be updated.
 
 === "Moonbeam"
     | Contract  |          Addresses         |
     |:-----------:|:-----------------------------------------------------:|
     | AirnodeRrpV0 | {{ networks.moonbeam.api3.rrp }} |
-    | AirnodeRrpV0 | {{ networks.moonbeam.api3.rrp }} |
+    | DapiServer | {{ networks.moonbeam.api3.rrp }} |
 
 
 === "Moonriver"
     |  Contract  |           Addresses          |
-    |:------------:|:-------------------------------------------------------:|
+    |:------------:|:----------------------------------------------------:|
     | AirnodeRrpV0 | {{ networks.moonriver.api3.rrp }}  |
-    | AirnodeRrpV0 | {{ networks.moonbeam.api3.rrp }} |
+    | DapiServer | {{ networks.moonriver.api3.rrp }}  |
 
 
 
 === "Moonbase Alpha"
     |  Contract  |          Addresses           |
-    |:------------:|:------------------------------------------------------:|
+    |:------------:|:-----------------------------------------------------:|
     | AirnodeRrpV0  | {{ networks.moonbase.api3.rrp }}  |
-    | AirnodeRrpV0 | {{ networks.moonbeam.api3.rrp }} |
+    | DapiServer  | {{ networks.moonbase.api3.rrp }}  |
