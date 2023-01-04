@@ -5,7 +5,7 @@ description: Use the Moonbeam XCM SDK to easily deposit and withdraw cross chain
 
 # Using the Moonbeam XCM SDK
 
-![XCM SDK Banner](/images/builders/xcm/sdk/xcm-sdk-banner.png)
+![XCM SDK Banner](/images/builders/interoperability/xcm/sdk/xcm-sdk-banner.png)
 
 ## Introduction {: #introduction }
 
@@ -13,7 +13,7 @@ The Moonbeam XCM SDK enables developers to easily deposit and withdraw assets to
 
 The XCM SDK offers simple helper functions like `deposit` and `withdraw`, that provide a very simple interface to execute XCM transfers between chains in the Polkadot/Kusama ecosystem. In addition, the XCM config package allows any parachain project to add their information in a standard way, so they can be immediately supported by the XCM SDK.
 
-For an overview of the available methods and interfaces in the Moonbeam XCM SDK, please refer to the [Reference](/builders/xcm/xcm-sdk/reference){target=_blank} page.
+For an overview of the available methods and interfaces in the Moonbeam XCM SDK, please refer to the [Reference](/builders/interoperability/xcm/xcm-sdk/reference){target=_blank} page.
 
 The examples in this guide are shown on Moonbeam, but can be adapted to be used on Moonriver or Moonbase Alpha.
 
@@ -197,7 +197,7 @@ If you intend to support a specific wallet, you can pass a signer into the `init
 
 ## Using the SDK Interfaces {: #using-the-api }
 
-The Moonbeam SDK provides an API which includes a series of [interfaces](/builders/xcm/xcm-sdk/reference/#core-sdk-interfaces){target=_blank} to get asset information for each of the supported assets, chain information for the initialized network, and functions to enable deposits, withdrawals, and subscription to balance information.
+The Moonbeam SDK provides an API which includes a series of [interfaces](/builders/interoperability/xcm/xcm-sdk/reference/#core-sdk-interfaces){target=_blank} to get asset information for each of the supported assets, chain information for the initialized network, and functions to enable deposits, withdrawals, and subscription to balance information.
 
 Make sure you have [intialized](#initialization) the Moonbeam network you want to interact with first.
 
@@ -344,11 +344,11 @@ moonChain: {
 }
 ```
 
-Here, the units per second refer to units of token (in this case Wei) that is charged per second of execution of the XCM message. You can find more information in the [XCM fees page](/builders/xcm/fees/#moonbeam-reserve-assets){target=_blank}.
+Here, the units per second refer to units of token (in this case Wei) that is charged per second of execution of the XCM message. You can find more information in the [XCM fees page](/builders/interoperability/xcm/fees/#moonbeam-reserve-assets){target=_blank}.
 
 ## Using the SDK Methods {: #using-the-sdk-methods }
 
-The Moonbeam SDK provides an API that includes [functions](/builders/xcm/xcm-sdk/reference/#core-sdk-methods){target=_blank} which enable deposits, withdrawals, and subscription to balance information, in addition to a few utility functions.
+The Moonbeam SDK provides an API that includes [functions](/builders/interoperability/xcm/xcm-sdk/reference/#core-sdk-methods){target=_blank} which enable deposits, withdrawals, and subscription to balance information, in addition to a few utility functions.
 
 Make sure you have [intialized](#initialization) the Moonbeam network you want to interact with first. You'll also need to make sure you've [created signers](#creating-signers) in order to sign and send deposit and withdraw transfer data.
 

@@ -5,11 +5,11 @@ description: How to do remote calls to smart contracts on Moonbeam EVM through X
 
 # Remote EVM Calls Through XCM
 
-![Remote EVM Calls Banner](/images/builders/xcm/remote-evm-calls/xcmevm-banner.png)
+![Remote EVM Calls Banner](/images/builders/interoperability/xcm/remote-evm-calls/xcmevm-banner.png)
 
 ## Introduction {: #introduction}
 
-The [XCM-transactor pallet](/builders/xcm/xcm-transactor/){target=_blank} provides a simple interface to perform remote cross-chain calls through XCM. However, this does not consider the possibility of doing remote calls to Moonbeam's EVM, only to Substrate specific pallets (functionalities).
+The [XCM-transactor pallet](/builders/interoperability/xcm/xcm-transactor/){target=_blank} provides a simple interface to perform remote cross-chain calls through XCM. However, this does not consider the possibility of doing remote calls to Moonbeam's EVM, only to Substrate specific pallets (functionalities).
 
 Moonbeam's EVM is only accessible through the [Ethereum pallet](https://github.com/paritytech/frontier/tree/master/frame/ethereum){target=_blank}. Among many other things, this pallet handles certain validations of transactions before getting them into the transaction pool. Then, it performs other validation step before inserting a transaction from the pool in a block. Lastly, it provides the interface through a `transact` function to execute a validated transaction. All these steps follow the same behavior as an Ethereum transaction in terms of structure and signature scheme.
 
@@ -19,12 +19,12 @@ To this end, the [Ethereum-XCM pallet](https://github.com/PureStake/moonbeam/tre
 
 The happy path for both regular and remote EVM calls through XCM is portrayed in the following diagram:
 
-![Happy parth for regular and remote EVM calls through XCM](/images/builders/xcm/remote-evm-calls/xcmevm-1.png)
+![Happy path for regular and remote EVM calls through XCM](/images/builders/interoperability/xcm/remote-evm-calls/xcmevm-1.png)
 
 This guide will go through the differences between regular and remote EVM calls. In addition, it will show you how to perform remote EVM calls through the extrinsic exposed by the [Ethereum-XCM pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/ethereum-xcm){target=_blank}. 
 
 !!! note
-    Remote EVM calls are done through the [XCM-transactor pallet](/builders/xcm/xcm-transactor/){target=_blank}. Therefore, it is recommended to get familiar with XCM-transactor concepts before trying to perform remote EVM calls through XCM.
+    Remote EVM calls are done through the [XCM-transactor pallet](/builders/interoperability/xcm/xcm-transactor/){target=_blank}. Therefore, it is recommended to get familiar with XCM-transactor concepts before trying to perform remote EVM calls through XCM.
 
 **Note that remote calls to Moonbeam's EVM through XCM are still being actively developed**. In addition, **developers must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
 
@@ -35,7 +35,7 @@ This guide will go through the differences between regular and remote EVM calls.
  - **Derivative accounts** — an account derivated from another account. Derivative accounts are keyless (the private key is unknown). Consequently, derivative accounts related to XCM-specific use cases can only be accessed through XCM-related extrinsics. For remote EVM calls, the primary type is:
      - **Multilocation-derivative account** — this produces a keyless account derivated from the new origin set by the [`DescendOrigin`](https://github.com/paritytech/xcm-format#descendorigin){target=_blank} XCM instruction, and the provided multilocation. For Moonbeam-based networks, [the derivation method](https://github.com/PureStake/moonbeam/blob/master/primitives/xcm/src/location_conversion.rs#L31-L37){target=_blank} is calculating the `blake2` hash of the multilocation, which includes the origin parachain ID, and truncating the hash to the correct length (20 bytes for Ethereum-styled account). The XCM call [origin conversion](https://github.com/paritytech/polkadot/blob/master/xcm/xcm-executor/src/lib.rs#L343){target=_blank} happens when the `Transact` instruction gets executed. Consequently, each parachain can convert the origin with its own desired procedure, so the user who initiated the transaction might have a different derivative account per parachain. This derivative account pays for transaction fees, and it is set as the dispatcher of the call
 
- - **Transact information** — relates to extra weight and fee information for the XCM remote execution part of the XCM-transactor extrinsic. This is needed because the sovereign account pays the XCM transaction fee. Therefore, XCM-transactor calculates what the fee is and charges the sender of the XCM-transactor extrinsic the estimated amount in the corresponding [XC-20 token](/builders/xcm/xc20/overview/){target=_blank} to repay the sovereign account
+ - **Transact information** — relates to extra weight and fee information for the XCM remote execution part of the XCM-transactor extrinsic. This is needed because the sovereign account pays the XCM transaction fee. Therefore, XCM-transactor calculates what the fee is and charges the sender of the XCM-transactor extrinsic the estimated amount in the corresponding [XC-20 token](/builders/interoperability/xcm/xc20/overview/){target=_blank} to repay the sovereign account
 
 ## Differences Between Regular and Remote EVM Calls Through XCM {: #differences-regular-remote-evm}
 
@@ -94,7 +94,7 @@ This guide covers building an XCM message for remote EVM calls using the XCM pal
 
 To be able to send the call in Polkadot.js Apps from the relay chain, you need to have the following:
 
- - An [account](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} on the relay chain with funds (`UNIT`) to pay for the transaction fees. You can acquire some `xcUNIT` by swapping for DEV tokens (Moonbase Alpha's native token) on [Moonbeam-Swap](https://moonbeam-swap.netlify.app){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha, and then [send them to the relay chain](/builders/xcm/xc20/xtokens/){target_blank}. Additionally, you can [contact us](https://discord.gg/PfpUATX){target=_blank} to get some `UNIT` tokens directly
+ - An [account](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} on the relay chain with funds (`UNIT`) to pay for the transaction fees. You can acquire some `xcUNIT` by swapping for DEV tokens (Moonbase Alpha's native token) on [Moonbeam-Swap](https://moonbeam-swap.netlify.app){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha, and then [send them to the relay chain](/builders/interoperability/xcm/xc20/xtokens/){target_blank}. Additionally, you can [contact us](https://discord.gg/PfpUATX){target=_blank} to get some `UNIT` tokens directly
 
  - Fund the **multilocation-derivative account**, which you can obtain by following the steps [in the next section](#calculate-multilocation-derivative){target=_blank}. The account must have enough DEV tokens (or GLMR/MOVR for Moonbeam/Moonriver) to cover the cost of the XCM execution of the remote EVM call. Note that this is the account from which the remote EVM call will be dispatched (the `msg.sender`). Consequently, the account must satisfy whatever conditions are required for the EVM call to be executed correctly. For example, hold any relevant ERC-20 token if you are doing an ERC-20 transfer
  
@@ -195,7 +195,7 @@ With the contract interaction data, you can build the encoded call data for the 
 !!! note
     The encoded call data for the call configured above is `0x260001581501000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00`.
 
-![Ethereum-XCM pallet encoded call data](/images/builders/xcm/remote-evm-calls/xcmevm-2.png)
+![Ethereum-XCM pallet encoded call data](/images/builders/interoperability/xcm/remote-evm-calls/xcmevm-2.png)
 
 ### Building the XCM for Remote XCM Execution {: #build-xcm-remote-evm}
 
@@ -277,7 +277,7 @@ If you've [checked the prerequisites](#ethereumxcm-check-prerequisites) and you'
     The encoded call data for the call configured above is 
     `0x630001000100a10f020c00040000010403001300008a5d78456301130000010403001300008a5d784563010006010300286bee7901260001581501000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00`.
 
-![Remote XCM Call from Relay Chain](/images/builders/xcm/remote-evm-calls/xcmevm-3.png)
+![Remote XCM Call from Relay Chain](/images/builders/interoperability/xcm/remote-evm-calls/xcmevm-3.png)
 
 Once the transaction is processed, you can check the relevant extrinsics and events in the [relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/explorer/query/0x2a0e40a2e5261e792190826ce338ed513fe44dec16dd416a12f547d358773f98){target=_blank} and [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer/query/0x7570d6fa34b9dccd8b8839c2986260034eafef732bbc09f8ae5f857c28765145){target=_blank}. 
 
