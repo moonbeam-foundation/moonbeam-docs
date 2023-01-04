@@ -5,11 +5,11 @@ description: Learn about cross chain assets that can be minted and burned on a M
 
 # Mintable XC-20s
 
-![Cross-Chain Assets Precompiled Contracts Banner](/images/builders/xcm/xc20/mintable-xc20/mintable-xc20-banner.png)
+![Cross-Chain Assets Precompiled Contracts Banner](/images/builders/interoperability/xcm/xc20/mintable-xc20/mintable-xc20-banner.png)
 
 ## Introduction {: #introduction } 
 
-As covered in the [XC-20 Overview](/builders/xcm/xc20/overview){target=_blank}, there are two [types of XC-20s](/builders/xcm/xc20/overview#types-of-xc-20s){target=_blank}: [external](/builders/xcm/xc20/xc20){target=_blank} and mintable. The key distinction between external and mintable XC-20s, is that mintable XC-20s represent assets that are minted/burned in Moonbeam directly, but have native XCM interoperability features. Also, mintable XC-20s can be transferred to any other parachain as long as it is registered as an XCM asset on that chain, as covered in the [XCM overview](/builders/xcm/overview/){target=_blank} page. In contrast, external XC-20s represent assets that are locked in Moonbeam's sovereign account in either the relay chain or other parachains, and are registered as such on Moonbeam. This guide will cover mintable XC-20s.
+As covered in the [XC-20 Overview](/builders/interoperability/xcm/xc20/overview){target=_blank}, there are two [types of XC-20s](/builders/interoperability/xcm/xc20/overview#types-of-xc-20s){target=_blank}: [external](/builders/interoperability/xcm/xc20/xc20){target=_blank} and mintable. The key distinction between external and mintable XC-20s, is that mintable XC-20s represent assets that are minted/burned in Moonbeam directly, but have native XCM interoperability features. Also, mintable XC-20s can be transferred to any other parachain as long as it is registered as an XCM asset on that chain, as covered in the [XCM overview](/builders/interoperability/xcm/overview/){target=_blank} page. In contrast, external XC-20s represent assets that are locked in Moonbeam's sovereign account in either the relay chain or other parachains, and are registered as such on Moonbeam. This guide will cover mintable XC-20s.
 
 All XC-20s are Substrate assets at their core. Typically with Substrate assets, developers need to interact directly with the Substrate API. However, Moonbeam removes the need for Substrate knowledge and allows users and developers to interact with these assets through an ERC-20 interface via a precompile contract. Therefore, developers can use standard Ethereum developer tooling to interact with these assets. Mintable XC-20s include an extension of the ERC-20 interface with some additional functionality for managing the asset and setting the metadata, such as the name, symbol, and decimals for the asset. There are also some additional roles in place for asset registration and management.
 
@@ -39,8 +39,8 @@ The breakdown of responsibilities for each role is as follows:
 
 The Solidity interface for Mintable XC-20 tokens is a combination of the following three interfaces:
 
- - [ERC-20 Interface](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=_blank} — as described in the [XC-20 overview page](/builders/xcm/xc20/overview/#the-erc20-interface){target=_blank}
- - [Permit Interface (EIP-712 compliant)](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol){target=_blank} — as described in the [XC-20 overview page](/builders/xcm/xc20/overview/#the-erc20-permit-interface){target=_blank}
+ - [ERC-20 Interface](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=_blank} — as described in the [XC-20 overview page](/builders/interoperability/xcm/xc20/overview/#the-erc20-interface){target=_blank}
+ - [Permit Interface (EIP-712 compliant)](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol){target=_blank} — as described in the [XC-20 overview page](/builders/interoperability/xcm/xc20/overview/#the-erc20-permit-interface){target=_blank}
  - [Mintable interface](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/LocalAsset.sol){target=_blank} — as described in the [following section](#additional-functions)
 
 ## Mintable XC-20 Specific Functions {: #additional-functions }
@@ -65,7 +65,7 @@ To fetch a list of the mintable XC-20s currently available on the Moonbase Alpha
 1. From the **selected state query** dropdown, choose **localAssets**
 --8<-- 'text/xc-20/list-of-assets.md'
 
-![Fetch list of cross-chain assets](/images/builders/xcm/xc20/mintable-xc20/mintable-xc20-1.png)
+![Fetch list of cross-chain assets](/images/builders/interoperability/xcm/xc20/mintable-xc20/mintable-xc20-1.png)
 
 The result will display the asset ID along with some additional information for all of the registered mintable XC-20s on Moonbase Alpha. The asset ID is automatically generated and is calculated by BLAKE2 hashing a nonce that represents the number of local assets created. The ID is then used to access the asset and calculate the precompile address.
 
@@ -76,7 +76,7 @@ To quickly get more information about a specific mintable XC-20 such as the name
 1. From the **selected state query** dropdown, choose **localAssets**
 --8<-- 'text/xc-20/retrieve-metadata.md'
 
-![Get asset metadata](/images/builders/xcm/xc20/mintable-xc20/mintable-xc20-2.png)
+![Get asset metadata](/images/builders/interoperability/xcm/xc20/mintable-xc20/mintable-xc20-2.png)
 
 With the results from the metadata, you can see that the asset ID corresponds to the TestLocalAsset mintable XC-20.
 
@@ -100,7 +100,7 @@ Now that you've calculated the mintable XC-20 precompile address, you can use th
 
 ## Register a Mintable XC-20 {: #register-a-mxc-20 }
 
-This section of the guide will show you how to register an asset on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=_blank} and interact with the mintable XC-20 specific functions using [Remix](https://remix.ethereum.org/){target=_blank}. If you simply want to interact with a mintable XC-20 through the standard ERC-20 interface, please refer to the [Interact with the Precompile Using Remix](/builders/xcm/xc20/overview/#interact-with-the-precompile-using-remix){target=_blank} section of the XC-20 precompile page.
+This section of the guide will show you how to register an asset on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=_blank} and interact with the mintable XC-20 specific functions using [Remix](https://remix.ethereum.org/){target=_blank}. If you simply want to interact with a mintable XC-20 through the standard ERC-20 interface, please refer to the [Interact with the Precompile Using Remix](/builders/interoperability/xcm/xc20/overview/#interact-with-the-precompile-using-remix){target=_blank} section of the XC-20 precompile page.
 
 ### Checking Prerequisites {: #checking-prerequisites } 
 
@@ -141,7 +141,7 @@ To get started, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss
 8. Copy the **preimage hash** as you'll need it in the following steps
 9. Click on **+ Submit preimage**
 
-![Create preimage to register the mintable XC-20](/images/builders/xcm/xc20/mintable-xc20/mintable-xc20-3.png)
+![Create preimage to register the mintable XC-20](/images/builders/interoperability/xcm/xc20/mintable-xc20/mintable-xc20-3.png)
 
 Once the preimage has been created and submitted, then you'll need to actually submit the proposal. To do so, you can click on **+ Submit proposal** and take the following steps:
 
@@ -150,7 +150,7 @@ Once the preimage has been created and submitted, then you'll need to actually s
 3. Optionally, you can update the deposit as you see fit
 4. Click on **+ Submit proposal**
 
-![Create proposal to register the mintable XC-20](/images/builders/xcm/xc20/mintable-xc20/mintable-xc20-4.png)
+![Create proposal to register the mintable XC-20](/images/builders/interoperability/xcm/xc20/mintable-xc20/mintable-xc20-4.png)
 
 You'll be prompted to submit and sign the proposal, and once you do so you'll see that the proposal appear under the **proposals** section of the **Democracy** page.
 
@@ -186,27 +186,27 @@ To set the asset metadata, you'll need to [retrieve the asset ID](#retrieve-list
 7. Set the decimals for the asset. This doesn't have to be 18 decimals like the Moonbeam native assets, it's completely configurable
 8. Click on **Submit Transaction**
 
-![Set metadata for mintable XC-20](/images/builders/xcm/xc20/mintable-xc20/mintable-xc20-5.png)
+![Set metadata for mintable XC-20](/images/builders/interoperability/xcm/xc20/mintable-xc20/mintable-xc20-5.png)
 
 You can use the **Extrinsics** page to perform other functions such as minting tokens, delegating a team, freeze and thaw assets or accounts, and more. 
 
 ### Interact with Mintable XC-20 Specific Functions Using Remix {: #interact-with-the-precompile-using-remix } 
 
-As previously mentioned, this section of the guide will only cover interacting with the mintable XC-20 specific functions available for the token contract owner or the designated accounts with special [roles](#mintable-xc-20-roles). If you simply want to interact with a mintable XC-20 through the standard ERC-20 interface, please refer to the [Interact with the Precompile Using Remix](/builders/xcm/xc20/overview/#interact-with-the-precompile-using-remix){target=_blank} section of the XC-20 precompile page.
+As previously mentioned, this section of the guide will only cover interacting with the mintable XC-20 specific functions available for the token contract owner or the designated accounts with special [roles](#mintable-xc-20-roles). If you simply want to interact with a mintable XC-20 through the standard ERC-20 interface, please refer to the [Interact with the Precompile Using Remix](/builders/interoperability/xcm/xc20/overview/#interact-with-the-precompile-using-remix){target=_blank} section of the XC-20 precompile page.
 
 First, you will need to add the `LocalAsset` interface to [Remix](https://remix.ethereum.org/){target=_blank}. Then you can take the following steps:
 
 1. Get a copy of [LocalAsset.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/LocalAsset.sol){target=_blank}
 2. Paste the file contents into a Remix file named **ILocalAsset.sol**
 
-![Load the interface in Remix](/images/builders/xcm/xc20/mintable-xc20/mintable-xc20-6.png)
+![Load the interface in Remix](/images/builders/interoperability/xcm/xc20/mintable-xc20/mintable-xc20-6.png)
 
 Once you have the interface loaded in Remix, you will need to compile it:
 
 1. Click on the **Compile** tab, second from top
 2. Compile the **ILocalAsset.sol** file
 
-![Compiling IERC20.sol](/images/builders/xcm/xc20/mintable-xc20/mintable-xc20-7.png)
+![Compiling IERC20.sol](/images/builders/interoperability/xcm/xc20/mintable-xc20/mintable-xc20-7.png)
 
 If the interface was compiled successfully, you will see a green checkmark next to the **Compile** tab.
 
@@ -218,11 +218,11 @@ Instead of deploying the precompile, you will access the interface given the add
 4. Ensure **ILocalAsset - ILocalAsset.sol** is selected in the **CONTRACT** dropdown. Since this is a precompiled contract, there is no need to deploy any code. Instead you are going to provide the address of the precompile in the **At Address** field
 5. Provide the address of the XC-20 precompile calculated in the [Calculate Precompile Address](#calculate-precompile-address) section, `0xFFFFFFFE6D1492E39F1674F65A6F600B4589ABD7`, and click **At Address**
 
-![Access the address](/images/builders/xcm/xc20/mintable-xc20/mintable-xc20-8.png)
+![Access the address](/images/builders/interoperability/xcm/xc20/mintable-xc20/mintable-xc20-8.png)
 
 !!! note
     Optionally, you can checksum the XC-20 precompile address by going to your search engine of choice and searching for a tool to checksum the address. Once the address has been checksummed, you can use it in the **At Address** field instead. 
 
 The precompile for the mintable XC-20 will appear in the list of **Deployed Contracts**. Now you can feel free to call any of the available functions.
 
-![Interact with the precompile functions](/images/builders/xcm/xc20/mintable-xc20/mintable-xc20-9.png)
+![Interact with the precompile functions](/images/builders/interoperability/xcm/xc20/mintable-xc20/mintable-xc20-9.png)
