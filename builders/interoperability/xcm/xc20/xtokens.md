@@ -32,7 +32,7 @@ The x-tokens pallet provides the following extrinsics (functions):
  - **transferMultiasset**(asset, dest, destWeight) — transfer a fungible asset, defined by its multilocation
  - **transferMultiassetWithFee**(asset, fee, dest, destWeight) — transfer a fungible asset, but it allows the sender to pay the fee with a different asset. Both are defined by their multilocation
  - **transferMultiassets**(assets, feeItem, dest, destWeight) — transfer several fungible assets, specifying which is used as the fee. Each asset is defined by its multilocation
- - **transferMulticurrencies**(currencies, feeItem, dest, destWeight) — transfer different curriencies, specifying which is used as the fee. Each currency is defined as either the native token (self reserved) or with the asset ID
+ - **transferMulticurrencies**(currencies, feeItem, dest, destWeight) — transfer different currencies, specifying which is used as the fee. Each currency is defined as either the native token (self reserved) or with the asset ID
  - **transferWithFee**(currencyId, amount, fee, dest, destWeight) — transfer a currency, but it allows the sender to pay the fee with a different asset. Both are defined by their multilocation
 
 Where the inputs that need to be provided can be defined as:
