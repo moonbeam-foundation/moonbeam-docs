@@ -154,7 +154,7 @@ In the `deploy.js` script, you can paste in the following code, which will deplo
 
 ```js
 async function main() {
-  // DEV liquidity to add
+  // Liquidity to add in DEV (i.e., ".5") to be converted to Wei
   const value = ethers.utils.parseEther("INSERT-AMOUNT-OF-DEV");
 
   // Deploy the SimpleDex contract, which will also automatically deploy
