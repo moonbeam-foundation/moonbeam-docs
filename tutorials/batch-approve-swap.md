@@ -77,7 +77,10 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract DemoToken is ERC20 {
     constructor(uint256 initialSupply) ERC20("DemoToken", "DTOK") {
-        _mint(msg.sender, initialSupply);
+        // Assign 500 DTOK tokens to the SimpleDex contract
+        _mint(msg.sender, initialSupply / 2);
+        // Assign 500 DTOK tokens to the EOA that deployed the SimpleDex contract
+        _mint(tx.origin, initialSupply / 2);
     }
 }
 
@@ -87,8 +90,11 @@ contract SimpleDex {
     event Bought(uint256 amount);
     event Sold(uint256 amount);
 
-    constructor() {
-        // Mint 1000 DTOK tokens
+    // Make constructor payable so that DEV liquidity exists for the contract
+    constructor() payable {
+        // Mint 1000 DTOK tokens. Half will be assigned to the SimpleDex contract 
+        // and the other half will be assigned to the EOA that deployed the
+        // SimpleDex contract
         token = new DemoToken(1000000000000000000000);
     }
 
@@ -134,7 +140,11 @@ npx hardhat compile
 
 After compilation, an `artifacts` directory is created: it holds the bytecode and metadata of the contract, which are `.json` files. It’s a good idea to add this directory to the `.gitignore` file.
 
-Next, we can deploy the `SimpleDex` contract, which upon deployment will automatically deploy the `DemoToken` contract and mint 1000 DTOKs and assign them to the `SimpleDex` contract. Before you can deploy the contract, we'll need to create the deployment script. We'll create a new directory for the script and name it `scripts` and add a new file to it called `deploy.js`:
+Next, we can deploy the `SimpleDex` contract, which upon deployment will automatically deploy the `DemoToken` contract and mint 1000 DTOKs and assign half of them to the `SimpleDex` contract and the other half to the address that you're initiating the deployment from.
+
+We'll also add some initial liquidity to the contract by passing in a `value` when calling `deploy`. Since the value needs to be in Wei, we can use `ethers.utils.parseEther` to pass in a value such as `"0.5"` DEV and it will convert the value to Wei for us.
+
+Before deploying the contract, we'll need to create the deployment script. We'll create a new directory for the script and name it `scripts` and add a new file to it called `deploy.js`:
 
 ```
 mkdir scripts && touch scripts/deploy.js
@@ -144,10 +154,13 @@ In the `deploy.js` script, you can paste in the following code, which will deplo
 
 ```js
 async function main() {
+  // DEV liquidity to add
+  const value = ethers.utils.parseEther("INSERT-AMOUNT-OF-DEV");
+
   // Deploy the SimpleDex contract, which will also automatically deploy
-  // the DemoToken contract
+  // the DemoToken contract and add liquidity to the contract
   const SimpleDex = await ethers.getContractFactory("SimpleDex",);
-  const simpleDex = await SimpleDex.deploy()
+  const simpleDex = await SimpleDex.deploy({ value })
   await simpleDex.deployed();
 
   console.log(`SimpleDex deployed to ${simpleDex.address}`);
@@ -243,40 +256,13 @@ async function checkBalances(demoToken) {
 }
 ```
 
-### Swap DEV for Tokens {: #add-logic-to-swap-dev }
-
-Now we're going to create the logic to swap DEV tokens for DTOKs, so that in the following section we'll have DTOKs that we can approve the DEX to spend on our behalf.
-
-We'll use the `swapDevForDemoToken` function of the `SimpleDex` contract and pass in the amount to swap in Wei. For convenience, you can use the `ethers.utils.parseEther` function, which allows you to pass in an amount in DEV and have it converted to Wei for you. For example, you can replace `"INSERT-AMOUNT-OF-DEV-TO-SWAP"` with `.5` to swap .5 DEV in exchange for .5 DTOK.
-
-After the swap, we'll use the `checkBalances` helper function to verify that the balances for the DEX and the signing account have changed as expected.
-
-Let's add the following snippet to our `main` function:
-
-```js
-async function main() {
-  // ...
-
-  // Swap DEV for DTOKs and print the transaction hash
-  const amountDev = ethers.utils.parseEther("INSERT-AMOUNT-OF-DEV-TO-SWAP");
-  const swapDevForDemoToken = await simpleDex.swapDevForDemoToken({
-    value: amountDev
-  });
-  await swapDevForDemoToken.wait();
-  console.log(`Swapped DEV for DTOK tokens: ${swapDevForDemoToken.hash}`);
-
-  // Check balances after the swap
-  await checkBalances(demoToken);
-}
-```
-
-So, if you set the amount to swap to be .5 DEV, the DEX balance will decrease by .5 DTOK to 999.5 DTOK (if this is the first swap made) and the signing account's balance will increase by .5 DTOK. The transaction hash for the swap will also be printed to the terminal, so you can use [Moonscan](https://moonbase.moonscan.io){target=_blank} to view more information on the transaction.
-
 ### Approve & Swap Tokens for DEV using the Batch Precompile {: #add-logic-to-swap-dtoks }
 
-Now that you have some DTOKs in your signing account, we can approve the DEX to spend these tokens on our behalf so that we can swap the DTOKs back to DEVs. On Ethereum, for example, we would need to send two transactions to be able to swap the DTOKs back to DEVs: an approval and a transfer. However, on Moonbeam, thanks to the batch precompile contract, you can batch these two transactions into a single one. This allows us to set the approval amount for the exact amount of the swap.
+At this point, you should already have some DTOKs in your signing account, and the `SimpleDex` contract should have some DEV liquidity. If not, you can use the `simpleDex.swapDevForDemoToken` function to acquire some DTOKs and add liquidity to the DEX. 
 
-So instead of calling `demoToken.approve(spender, amount)` and then `simpleDex.swapDemoTokenForDev(amount)`, we'll get the encoded call data for each of these transactions and pass them into the batch precompile's `batchAll` function. To get the encoded call data, we'll use Ether's `interface.encodeFunctionData` function and pass in the necessary parameters. For example, we'll swap .2 DTOK back to .2 DEV. In this case, for the approval, we can pass in the DEX address as the `spender` and set the `amount` to .2 DTOK. We'll also set the `amount` to swap as .2 DTOK. Again, you can use the `ethers.utils.parseEther` function to convert the amount in DTOK to Wei.
+Now, we can approve the DEX to spend some DTOK tokens on our behalf so that we can swap the DTOKs for DEVs. On Ethereum, for example, we would need to send two transactions to be able to swap the DTOKs back to DEVs: an approval and a transfer. However, on Moonbeam, thanks to the batch precompile contract, you can batch these two transactions into a single one. This allows us to set the approval amount for the exact amount of the swap.
+
+So instead of calling `demoToken.approve(spender, amount)` and then `simpleDex.swapDemoTokenForDev(amount)`, we'll get the encoded call data for each of these transactions and pass them into the batch precompile's `batchAll` function. To get the encoded call data, we'll use Ether's `interface.encodeFunctionData` function and pass in the necessary parameters. For example, we'll swap .2 DTOK for .2 DEV. In this case, for the approval, we can pass in the DEX address as the `spender` and set the `amount` to .2 DTOK. We'll also set the `amount` to swap as .2 DTOK. Again, we can use the `ethers.utils.parseEther` function to convert the amount in DTOK to Wei for us.
 
 Once we have the encoded call data, we can use it to call the `batchAll` function of the batch precompile. This function performs multiple calls atomically, where the same index of each array combine into the information required for a single subcall. If a subcall reverts, all subcalls will revert. The following parameters are required by the `batchAll` function:
 
@@ -284,7 +270,7 @@ Once we have the encoded call data, we can use it to call the `batchAll` functio
 
 So, the first index of each array will correspond to the approval and the second will correspond to the swap.
 
-After the swap, we'll check the balances again using the `checkBalances` function to make sure the balances have changed as expected.
+After the swap, we'll check the balances using the `checkBalances` function to make sure the balances have changed as expected.
 
 We'll update the `main` function to include the following logic:
 
@@ -332,9 +318,6 @@ npx hardhat run --network moonbase scripts/swap.js
 
 In the terminal, you should see the following items:
 
-- The transaction hash from swapping DEV to DTOKs
-- The DEX's DTOK balance after the initial swap
-- Your account's DTOK balance after the initial swap
 - The transaction hash for the batch approval and swap
 - The DEX's DTOK balance after the batch approval and swap
 - Your account's DTOK balance after the batch approval and swap
