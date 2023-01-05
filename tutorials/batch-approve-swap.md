@@ -45,7 +45,7 @@ npm install @nomiclabs/hardhat-ethers ethers @openzeppelin/contracts
 
 The following are the contracts that we'll be working with today:
 
-- `Batch.sol` - one of the precompile contracts on Moonbeam that allows you to combine multiple EVM calls into one. For more information on the available methods, please refer to [The Batch Solidity Interface](/builders/pallets-precompiles/precompiles/batch/#the-batch-interface){target=_blank} documentation
+- `Batch.sol` - one of the precompile contracts on Moonbeam that allows you to combine multiple EVM calls into one. For more information on the available methods, please refer to the [Batch Solidity Interface](/builders/pallets-precompiles/precompiles/batch/#the-batch-interface){target=_blank} documentation
 
 - `DemoToken.sol` - an ERC-20 contract for the `DemoToken` (DTOK) token, which on deployment mints an initial supply and assigns them to the contract owner. It's a standard ERC-20 token, you can review the [IERC20 interface](https://docs.openzeppelin.com/contracts/2.x/api/token/erc20#IERC20){target=_blank} for more information on the available methods
 
@@ -68,7 +68,7 @@ touch SimpleDex.sol Batch.sol
 
 In the `SimpleDex.sol` file, you can paste in the following code for the `DemoToken` and `SimpleDex` contracts:
 
-```
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
