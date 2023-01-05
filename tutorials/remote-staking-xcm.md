@@ -6,7 +6,7 @@ description: In this guide, we'll be leveraging remote execution to remotely sta
 # Remote Staking via XCM
 
 ![Banner Image](/images/tutorials/remote-staking-via-xcm/remote-staking-via-xcm-banner.png)
-December 14, 2022 | by Kevin Neilson
+_December 14, 2022 | by Kevin Neilson_
 
 ## Introduction {: #introduction } 
 
