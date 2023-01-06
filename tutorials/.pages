@@ -4,3 +4,4 @@ nav:
   - index.md
   - remote-staking-xcm.md
   - batch-approve-swap.md
+  - foundry-end-to-end.md
