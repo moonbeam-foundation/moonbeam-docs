@@ -236,6 +236,8 @@ There was a migration applied which moved preimages stored in the democracy pall
 
 As a result, any registered preimages in democracy at the time of migration were dropped and any associated balance was not unreserved. In addition, any proposals scheduled for dispatch by democracy at the time of migration were not executed.
 
+There was one preimage that was affected in Moonbeam, which was dropped from the scheduler queue and never executed: `0x14262a42aa6ccb3cae0a169b939ca5b185bc317bb7c449ca1741a0600008d306`.
+
 This migration was executed at the following runtimes and blocks:
 
 |    Network     | Executed Runtime | Block Applied |
