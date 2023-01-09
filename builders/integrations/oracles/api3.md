@@ -5,7 +5,7 @@ description:
 
 # API3
 
-![Band Protocol Moonbeam Diagram](/images/builders/integrations/oracles/api3/api3-banner.png)
+![API3 Moonbeam Diagram](/images/builders/integrations/oracles/api3/api3-banner.png)
 
 ## Introduction {: #introduction } 
 Developers can use [Airnode]() to request off-chain data inside their Smart Contracts on the Moonbeam Network. An Airnode is a first-party oracle that pushes off-chain API data to your on-chain contract. Airnode lets API providers easily run their own first-party oracle nodes. That way, they can provide data to any on-chain dApp that's interested in their services, all without an intermediary.
@@ -213,6 +213,82 @@ After the call to `callDapi()` is complete, the `timestamp` and `value` contract
 [API3 QRNG]() is a public utility we provide with the courtesy of Australian National University (ANU). It is powered by an Airnode hosted by ANU Quantum Random Numbers, meaning that it is a first-party service. It is served as a public good and is free of charge (apart from the gas costs), and it provides ‘true’ quantum randomness via an easy-to-use solution when requiring RNG on-chain.
 
 To request randomness on-chain, the requester submits a request for a random number to AirnodeRrpV0. The ANU Airnode gathers the request from the AirnodeRrpV0 protocol contract, retrieves the random number off-chain, and sends it back to AirnodeRrpV0. Once received, it performs a callback to the requester with the random number.
+
+Here is an example of a basic `QrngRequester` that requests a random number:
+
+```solidity
+//SPDX-License-Identifier: MIT
+pragma solidity 0.8.9;
+import "@api3/airnode-protocol/contracts/rrp/requesters/RrpRequesterV0.sol";
+
+contract RemixQrngExample is RrpRequesterV0 {
+    event RequestedUint256(bytes32 indexed requestId);
+    event ReceivedUint256(bytes32 indexed requestId, uint256 response);
+
+    address public airnode;
+    bytes32 public endpointIdUint256;
+    address public sponsorWallet;
+    mapping(bytes32 => bool) public waitingFulfillment;
+
+    // These are for Remix demonstration purposes, their use is not practical.
+    struct LatestRequest { 
+      bytes32 requestId;
+      uint256 randomNumber;
+    }
+    LatestRequest public latestRequest;
+
+    constructor(address _airnodeRrp) RrpRequesterV0(_airnodeRrp) {}
+
+    // Normally, this function should be protected, as in:
+    // require(msg.sender == owner, "Sender not owner");
+    function setRequestParameters(
+        address _airnode,
+        bytes32 _endpointIdUint256,
+        address _sponsorWallet
+    ) external {
+        airnode = _airnode;
+        endpointIdUint256 = _endpointIdUint256;
+        sponsorWallet = _sponsorWallet;
+    }
+
+    function makeRequestUint256() external {
+        bytes32 requestId = airnodeRrp.makeFullRequest(
+            airnode,
+            endpointIdUint256,
+            address(this),
+            sponsorWallet,
+            address(this),
+            this.fulfillUint256.selector,
+            ""
+        );
+        waitingFulfillment[requestId] = true;
+        latestRequest.requestId = requestId;
+        latestRequest.randomNumber = 0;
+        emit RequestedUint256(requestId);
+    }
+
+    function fulfillUint256(bytes32 requestId, bytes calldata data)
+        external
+        onlyAirnodeRrp
+    {
+        require(
+            waitingFulfillment[requestId],
+            "Request ID not known"
+        );
+        waitingFulfillment[requestId] = false;
+        uint256 qrngUint256 = abi.decode(data, (uint256));
+        // Do what you want with `qrngUint256` here...
+        latestRequest.randomNumber = qrngUint256;
+        emit ReceivedUint256(requestId, qrngUint256);
+    }
+}
+```
+
+- The `setRequestParameters()` takes in `airnode` (The ANU/Quintessence/byog Airnode address) , `endpointIdUint256`, `sponsorWallet` and sets these parameters. You can get Airnode address and the endpoint ID here.
+
+- The `makeRequestUint256()` function calls the `airnodeRrp.makeFullRequest()` function of the `AirnodeRrpV0.sol` protocol contract which adds the request to its storage and returns a `requestId`.
+
+- The targeted off-chain Airnode gathers the request and performs a callback to the requester with the random number.
 
 You can try QRNG on the networks listed below:
 
