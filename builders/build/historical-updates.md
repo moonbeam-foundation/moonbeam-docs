@@ -210,6 +210,44 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 ***
 
+### Base Fee Pallet {: #base-fee }
+
+#### Set Elasticity Storage Item Value {: #set-elasticity }
+
+This migration sets the `Elasticity` storage item of the base fee pallet to zero, which results in a constant `BaseFeePerGas`.
+
+This migration was executed at the following runtimes and blocks:
+
+|    Network     | Executed Runtime | Block Applied |
+|:--------------:|:----------------:|:-------------:|
+|    Moonbeam    |      RT1300      |    524762     |
+|   Moonriver    |      RT1300      |    1541735    |
+| Moonbase Alpha |      RT1300      |    1761128    |
+
+For more information, you can review the [relative PR on GitHub](https://github.com/PureStake/moonbeam/pull/1744){target=_blank}.
+
+***
+
+### Democracy Pallet {: #democracy }
+
+#### Preimage Storage Moved to New Preimage Pallet
+
+There was a migration applied which moved preimages stored in the democracy pallet to a new preimage pallet. This migration on Moonbeam was required as a result of an [upstream change to Polkadot](https://github.com/paritytech/substrate/pull/11649){target=_blank}.
+
+As a result, any registered preimages in democracy at the time of migration were dropped and any associated balance was not unreserved. In addition, any proposals scheduled for dispatch by democracy at the time of migration were not executed.
+
+This migration was executed at the following runtimes and blocks:
+
+|    Network     | Executed Runtime | Block Applied |
+|:--------------:|:----------------:|:-------------:|
+|    Moonbeam    |      RT2000      |    3310369    |
+|   Moonriver    |      RT2000      |    3202604    |
+| Moonbase Alpha |      RT2000      |    2673234    |
+
+For more information, you can review the [relative PR on GitHub](https://github.com/PureStake/moonbeam/pull/1962){target=_blank}.
+
+***
+
 ### Parachain Staking Pallet {: #parachain-staking }
 
 #### Update Collator State Storage Item {: #update-collator-state-storage-item }
@@ -457,24 +495,6 @@ This migration was executed at the following runtimes and blocks:
 | Moonbase Alpha |      RT1300      |    1761128    |
 
 For more information, you can review the [relative PR on GitHub](https://github.com/PureStake/moonbeam/pull/1118){target=_blank}.
-
-***
-
-### Base Fee Pallet {: #base-fee }
-
-#### Set Elasticity Storage Item Value {: #set-elasticity }
-
-This migration sets the `Elasticity` storage item of the base fee pallet to zero, which results in a constant `BaseFeePerGas`.
-
-This migration was executed at the following runtimes and blocks:
-
-|    Network     | Executed Runtime | Block Applied |
-|:--------------:|:----------------:|:-------------:|
-|    Moonbeam    |      RT1300      |    524762     |
-|   Moonriver    |      RT1300      |    1541735    |
-| Moonbase Alpha |      RT1300      |    1761128    |
-
-For more information, you can review the [relative PR on GitHub](https://github.com/PureStake/moonbeam/pull/1744){target=_blank}.
 
 ***
 
