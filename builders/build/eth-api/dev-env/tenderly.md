@@ -23,7 +23,7 @@ The Tenderly platform provides the following features:
 
 - **[Forks](https://docs.tenderly.co/simulations-and-forks/how-to-create-a-fork){target=_blank}** - this feature simulates the live Moonbeam network in an isolated environment, which enables you to interact with deployed contracts and live on-chain data. Forking also takes transaction simulations a step further by enabling you to chain multiple simulations together chronologically. This allows for the testing of complex transaction scenarios where one transaction depends upon another, with the benefit of using live on-chain data. There are some limitations to be aware of when using Tenderly's forking feature. You cannot interact with any of the Moonbeam precompiled contracts and their functions. Precompiles are a part of the Substrate implementation and therefore cannot be replicated in the simulated EVM environment. This prohibits you from interacting with cross-chain assets on Moonbeam and Substrate-based functionality such as staking and governance
 
-- **[Alerting](https://docs.tenderly.co/alerts/alerting){target=_blank}** - configure real-time alerts to notify you whenever a specific event occurs, allowing you to stay informed about what's going on with your smart contracts
+- **[Alerting](https://docs.tenderly.co/alerts/intro-to-alerts){target=_blank}** - configure real-time alerts to notify you whenever a specific event occurs, allowing you to stay informed about what's going on with your smart contracts
 
 - **[Web3 Actions](https://docs.tenderly.co/web3-actions/intro-to-web3-actions){target=_blank}** - create programmable functions in JavaScript or TypeScript that are executed automatically by Tenderly when a specific smart contract or chain event occurs
 
