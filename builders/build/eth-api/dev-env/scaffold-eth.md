@@ -194,7 +194,7 @@ Next, you need to modify two files in the React component to add Moonbeam networ
 
 ## Deploy and Launch the DApp {: #deploy-and-launch-the-dapp }
 
-1. After the all the modifications to the configuration files are done, launch the local The Graph node instance by typing:
+1. After all the modifications to the configuration files are done, launch the local The Graph node instance by typing:
 
     ```
     yarn run-graph-node
@@ -256,7 +256,7 @@ Next, you need to modify two files in the React component to add Moonbeam networ
     yarn start
     ```
 
-    This will launch the the React based DApp UI at `http://localhost:3000/` by default
+    This will launch the React based DApp UI at `http://localhost:3000/` by default
 
     ![React server output](/images/builders/build/eth-api/dev-env/scaffold-eth/scaffold-eth-6.png)
 
