@@ -264,9 +264,13 @@ const keyring = new Keyring({ type: 'sr25519' });
 const otherPair = await keyring.addFromUri('YOUR DEV SEED PHRASE HERE');
 console.log(`Derived Address from Private Key: ${otherPair.address}`);
 
-// Form the transaction
+// Create the destination multilocation (define where the message will be sent)
 const dest = { V1: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
+
+// Create the full XCM message which defines the action to take on the destination chain
 const message = { V2: [{WithdrawAsset:[{id:{concrete:{parents:0,interior:{X1:{PalletInstance: 3}}}},fun: {Fungible: 100000000000000000n}}]},{BuyExecution:[{id:{Concrete:{parents:0,interior:{X1:{PalletInstance: 3}}}},fun: {Fungible: 100000000000000000n}}, {unlimited:null}]},{Transact:{originType: "SovereignAccount",requireWeightAtMost:40000000000n,call:{encoded:'0x0c113a7d3048f3cb0391bb44b518e5729f07bcc7a45d000064a7b3b6e00d00000000000000002c01000025000000'}}}]};
+
+// Define the transaction using the send method of the xcm pallet
 let tx = api.tx.xcmPallet.send(dest, message);
 
 // Retrieve the encoded calldata of the transaction
