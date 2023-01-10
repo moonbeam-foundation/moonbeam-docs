@@ -51,11 +51,11 @@ First and foremost, you’ll need the address of the collator you want to delega
 
 ![Moonbeam Network Apps Dashboard](/images/tutorials/remote-staking-via-xcm/xcm-stake-1.png)
 
-## Generating the Encoded Call Data via Polkadot.js Apps {: #generating-the-encoded-call-data-via-polkadot.js-apps }
+## Remote Staking via XCM with Polkadot.js Apps {: #remote-staking-via-xcm-with-polkadot-js-apps }
 
-If you prefer to fetch this information programmatically via the Polkadot API, you can skip to the [following section](#generating-the-encoded-call-data-via-the-polkadot-api) 
+If you prefer to perform these steps programmatically via the Polkadot API, you can instead skip to the [following section](#remote-staking-via-xcm-with-the-polkadot-api). 
 
-Then, head to [Moonbase Alpha Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts){target=_blank}. In order to see the **Extrinsics** menu here, you’ll need to have at least one account accessible in Polkadot.js Apps. If you don’t, create one now. Then, head to the **Developer** tab and press **Extrinsics**. 
+First, generate the encoded call data of the staking action by heading to [Moonbase Alpha Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts){target=_blank}. In order to see the **Extrinsics** menu here, you’ll need to have at least one account accessible in Polkadot.js Apps. If you don’t, create one now. Then, head to the **Developer** tab and press **Extrinsics**. 
 
 ![Moonbase Alpha Polkadot JS Apps Home](/images/tutorials/remote-staking-via-xcm/xcm-stake-2.png)
 
@@ -74,70 +74,8 @@ In the following steps you will be preparing a transaction, but you’ll need to
 
 ![Moonbase Alpha Polkadot JS Apps Extrinsics Page](/images/tutorials/remote-staking-via-xcm/xcm-stake-3.png)
 
-## Generating the Encoded Call Data via the Polkadot API {: #generating-the-encoded-call-data-via-the-polkadot-api }
 
-You can also generate the encoded call data via the Polkadot API as shown below. Just like the steps above, we are not submitting a transaction but simplying preparing one to get the encoded call data. Remember to update `delegatorAccount` with your account. Feel free to run the below code snippet locally.
-
-```typescript
-import { ApiPromise, WsProvider } from '@polkadot/api';
-const provider = new WsProvider('wss://wss.api.moonbase.moonbeam.network');
-
-const candidate = '0x3A7D3048F3CB0391bb44B518e5729f07bCc7A45D';
-const delegatorAccount = 'YOUR-ACCOUNT-HERE';
-const amount = '1000000000000000000';
-
-const main = async () => {
-  const api = await ApiPromise.create({ provider: provider });
-  
-  // Fetch the your existing number of delegations and the collators existing delegations.
-  let delegatorInfo = await api.query.parachainStaking.delegatorState(delegatorAccount);
-  
-  if (delegatorInfo.toHuman()) {
-  delegatorDelegationCount = delegatorInfo.toHuman()['delegations'].length;
-} else {
-   delegatorDelegationCount = 0;
-}
-
-  const collatorInfo = await api.query.parachainStaking.candidateInfo(candidate);
-  const candidateDelegationCount = collatorInfo.toHuman()["delegationCount"];
-  let tx = api.tx.parachainStaking.delegate(candidate, amount, candidateDelegationCount, delegatorDelegationCount);
-  
-  // Get SCALE Encoded Call Data
-  let encodedCall = tx.method.toHex();
-  console.log(`Encoded Call Data: ${encodedCall}`);
-};
-main();
-```
-
-!!! note
-    If running this as a TypeScript project, be sure to set the `strict` flag under `compilerOptions` to `false` in your `tsconfig.json`.
-
-If you'd prefer not to set up a local environment you can run the below snippet in the [JavaScript console of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/js){target=_blank}.
-
-```javascript
-const candidate = '0x3A7D3048F3CB0391bb44B518e5729f07bCc7A45D';
-const delegatorAccount = 'YOUR-ACCOUNT-HERE';
-const amount = '1000000000000000000';
-  
-// Fetch the your existing number of delegations and the collators existing delegations
-let delegatorInfo = await api.query.parachainStaking.delegatorState(delegatorAccount);
-
-if (delegatorInfo.toHuman()) {
-  delegatorDelegationCount = delegatorInfo.toHuman()['delegations'].length;
-} else {
-   delegatorDelegationCount = 0;
-}
-
-const collatorInfo = await api.query.parachainStaking.candidateInfo(candidate);
-const candidateDelegationCount = collatorInfo.toHuman()["delegationCount"];
-let tx = api.tx.parachainStaking.delegate(candidate, amount, candidateDelegationCount, delegatorDelegationCount);
-  
-// Get SCALE Encoded Call Data
-let encodedCall = tx.method.toHex();
-console.log(`Encoded Call Data: ${encodedCall}`);
-```
-
-## Sending the XCM Instructions from Polkadot.js Apps {: #sending-the-xcm-instructions-from-polkadot-js-apps }
+### Sending the XCM Instructions from Polkadot.js Apps {: #sending-the-xcm-instructions-from-polkadot-js-apps }
 
 If you'd prefer to submit the XCM instructions programmatically via the Polkadot API, you can skip to the [following section](#sending-the-xcm-instructions-via-the-polkadot-api). Otherwise, in another tab, head to [Moonbase relay Polkadot.Js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/extrinsics){target=_blank}. Click on the **Developer** tab and press **Extrinsics**. 
 
@@ -245,9 +183,74 @@ Verify that the structure of your XCM message resembles the below image, then pr
 
 And that’s it! To verify that your delegation was successful, you can visit [Subscan](https://moonbase.subscan.io/){target=_blank} to check your staking balance. Be advised that it may take a few minutes before your staking balance is visible on Subscan. Additionally, be aware that you will not be able to see this staking operation on Moonscan, because we initiated the delegation action directly via the parachain staking pallet (on the substrate side) rather than through the staking precompile (on the EVM).
 
-## Sending the XCM Instructions via the Polkadot API {: #sending-the-xcm-instructions-via-the-polkadot-api }
+## Remote Staking via XCM with the Polkadot API {: #remote-staking-via-xcm-with-the-polkadot-api }
 
-In this section we'll be constructing and sending the XCM instructions via the Polkadot API. Just like the above sections, we'll be crafting an XCM message that will transport our remote execution instructions to the Moonbase Alpha parachain to ultimately stake our desired amount of DEV tokens to a chosen collator. After adding the seed phrase of your development account on Moonbase relay, you can construct and send the transaction via the Polkadot API as follows:
+Here, we'll be taking the same series of steps as above, only this time, we'll be relying on the Polkadot API instead of [using Polkadot.js Apps](#remote-staking-via-xcm-with-polkadot-js-apps).
+
+Start by generating the encoded call data via the Polkadot API as shown below. Here, we are not submitting a transaction but simplying preparing one to get the encoded call data. Remember to update `delegatorAccount` with your account. Feel free to run the below code snippet locally.
+
+```typescript
+import { ApiPromise, WsProvider } from '@polkadot/api';
+const provider = new WsProvider('wss://wss.api.moonbase.moonbeam.network');
+
+const candidate = '0x3A7D3048F3CB0391bb44B518e5729f07bCc7A45D';
+const delegatorAccount = 'YOUR-ACCOUNT-HERE';
+const amount = '1000000000000000000';
+
+const main = async () => {
+  const api = await ApiPromise.create({ provider: provider });
+  
+  // Fetch the your existing number of delegations and the collators existing delegations.
+  let delegatorInfo = await api.query.parachainStaking.delegatorState(delegatorAccount);
+  
+  if (delegatorInfo.toHuman()) {
+  delegatorDelegationCount = delegatorInfo.toHuman()['delegations'].length;
+} else {
+   delegatorDelegationCount = 0;
+}
+
+  const collatorInfo = await api.query.parachainStaking.candidateInfo(candidate);
+  const candidateDelegationCount = collatorInfo.toHuman()["delegationCount"];
+  let tx = api.tx.parachainStaking.delegate(candidate, amount, candidateDelegationCount, delegatorDelegationCount);
+  
+  // Get SCALE Encoded Call Data
+  let encodedCall = tx.method.toHex();
+  console.log(`Encoded Call Data: ${encodedCall}`);
+};
+main();
+```
+
+!!! note
+    If running this as a TypeScript project, be sure to set the `strict` flag under `compilerOptions` to `false` in your `tsconfig.json`.
+
+If you'd prefer not to set up a local environment you can run the below snippet in the [JavaScript console of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/js){target=_blank}.
+
+```javascript
+const candidate = '0x3A7D3048F3CB0391bb44B518e5729f07bCc7A45D';
+const delegatorAccount = 'YOUR-ACCOUNT-HERE';
+const amount = '1000000000000000000';
+  
+// Fetch the your existing number of delegations and the collators existing delegations
+let delegatorInfo = await api.query.parachainStaking.delegatorState(delegatorAccount);
+
+if (delegatorInfo.toHuman()) {
+  delegatorDelegationCount = delegatorInfo.toHuman()['delegations'].length;
+} else {
+   delegatorDelegationCount = 0;
+}
+
+const collatorInfo = await api.query.parachainStaking.candidateInfo(candidate);
+const candidateDelegationCount = collatorInfo.toHuman()["delegationCount"];
+let tx = api.tx.parachainStaking.delegate(candidate, amount, candidateDelegationCount, delegatorDelegationCount);
+  
+// Get SCALE Encoded Call Data
+let encodedCall = tx.method.toHex();
+console.log(`Encoded Call Data: ${encodedCall}`);
+```
+
+### Sending the XCM Instructions via the Polkadot API {: #sending-the-xcm-instructions-via-the-polkadot-api }
+
+In this section we'll be constructing and sending the XCM instructions via the Polkadot API. We'll be crafting an XCM message that will transport our remote execution instructions to the Moonbase Alpha parachain to ultimately stake our desired amount of DEV tokens to a chosen collator. After adding the seed phrase of your development account on Moonbase relay, you can construct and send the transaction via the Polkadot API as follows:
 
 ```javascript
 // Import
@@ -288,5 +291,7 @@ console.log(`Submitted with hash ${txHash}`);
 !!! note
     Remember that your multilocation derivative account must be funded with at least 1.1 DEV or more to ensure you have enough to cover the stake amount and transaction fees.
 
-In the above snippet, besides submitting the remote staking via XCM transaction, we also print out the encoded call data and the transaction hash to assist with any debugging. And that’s it! To verify that your delegation was successful, you can visit [Subscan](https://moonbase.subscan.io/){target=_blank} to check your staking balance. Be advised that it may take a few minutes before your staking balance is visible on Subscan. Additionally, be aware that you will not be able to see this staking operation on Moonscan, because we initiated the delegation action directly via the parachain staking pallet (on the Substrate side) rather than through the staking precompile (on the EVM). 
+In the above snippet, besides submitting the remote staking via XCM transaction, we also print out the encoded call data and the transaction hash to assist with any debugging. 
+
+And that’s it! To verify that your delegation was successful, you can visit [Subscan](https://moonbase.subscan.io/){target=_blank} to check your staking balance. Be advised that it may take a few minutes before your staking balance is visible on Subscan. Additionally, be aware that you will not be able to see this staking operation on Moonscan, because we initiated the delegation action directly via the parachain staking pallet (on the Substrate side) rather than through the staking precompile (on the EVM). 
  
