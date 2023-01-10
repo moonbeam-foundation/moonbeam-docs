@@ -118,7 +118,7 @@ const candidate = '0x3A7D3048F3CB0391bb44B518e5729f07bCc7A45D';
 const delegatorAccount = 'YOUR-ACCOUNT-HERE';
 const amount = '1000000000000000000';
   
-// Fetch the your existing number of delegations and the collators existing delegations.
+// Fetch the your existing number of delegations and the collators existing delegations
 let delegatorInfo = await api.query.parachainStaking.delegatorState(delegatorAccount);
 
 if (delegatorInfo.toHuman()) {
