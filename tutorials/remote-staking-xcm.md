@@ -246,7 +246,7 @@ And that’s it! To verify that your delegation was successful, you can visit [S
 
 ## Sending the XCM Instructions via the Polkadot API {: #sending-the-xcm-instructions-via-the-polkadot-api }
 
-In this section we'll be constructing and sending the XCM instructions via the Polkadot API. Just like the above sections, we'll be crafting an XCM message that will transport our remote execution instructions to the Moonbase Alpha parachain to ultimately stake our desired amount of DEV tokens to a chosen collator. After adding the seed phrase of your development account on Moonbase Relay, you can construct and send the transaction via the Polkadot API as follows:
+In this section we'll be constructing and sending the XCM instructions via the Polkadot API. Just like the above sections, we'll be crafting an XCM message that will transport our remote execution instructions to the Moonbase Alpha parachain to ultimately stake our desired amount of DEV tokens to a chosen collator. After adding the seed phrase of your development account on Moonbase relay, you can construct and send the transaction via the Polkadot API as follows:
 
 ```javascript
 // Import
