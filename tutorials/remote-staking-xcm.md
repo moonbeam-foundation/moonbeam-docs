@@ -265,7 +265,6 @@ const otherPair = await keyring.addFromUri('YOUR DEV SEED PHRASE HERE');
 console.log(`Derived Address from Private Key: ${otherPair.address}`);
 
 // Form the transaction
-//const tx = await api.tx.balances.transfer(bob, 1000000000000);
 const dest = { V1: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
 const message = { V2: [{WithdrawAsset:[{id:{concrete:{parents:0,interior:{X1:{PalletInstance: 3}}}},fun: {Fungible: 100000000000000000n}}]},{BuyExecution:[{id:{Concrete:{parents:0,interior:{X1:{PalletInstance: 3}}}},fun: {Fungible: 100000000000000000n}}, {unlimited:null}]},{Transact:{originType: "SovereignAccount",requireWeightAtMost:40000000000n,call:{encoded:'0x0c113a7d3048f3cb0391bb44b518e5729f07bcc7a45d000064a7b3b6e00d00000000000000002c01000025000000'}}}]};
 let tx = api.tx.xcmPallet.send(dest, message);
