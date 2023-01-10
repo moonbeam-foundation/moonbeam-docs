@@ -111,7 +111,7 @@ main();
 !!! note
     If running this as a TypeScript project, be sure to set the `strict` flag under `compilerOptions` to `false` in your `tsconfig.json`.
 
-If you'd prefer not to set up a local environment you can run the below snippet in the [Javascript console of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/js){target=_blank}.
+If you'd prefer not to set up a local environment you can run the below snippet in the [JavaScript console of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/js){target=_blank}.
 
 ```javascript
 const candidate = '0x3A7D3048F3CB0391bb44B518e5729f07bCc7A45D';
