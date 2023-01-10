@@ -109,7 +109,7 @@ main();
 ```
 
 !!! note
-    If running this as a Typescript project, be sure to set the `strict` flag under `compilerOptions` to `false` in your `tsconfig.json` 
+    If running this as a TypeScript project, be sure to set the `strict` flag under `compilerOptions` to `false` in your `tsconfig.json`.
 
 If you'd prefer not to set up a local environment you can run the below snippet in the [Javascript console of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/js){target=_blank}.
 
