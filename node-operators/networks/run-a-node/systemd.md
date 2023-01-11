@@ -93,11 +93,12 @@ The following commands will build the latest release of the Moonbeam parachain.
 
 5. Build the parachain binary:
 
-!!! note
-    If you are using Ubuntu 22.04 then you will need to run the following first:
-    ```
-    apt install protobuf-compiler libprotobuf-dev -y
-    ```
+    !!! note
+        If you are using Ubuntu 22.04, then you will need to install these additional dependencies before building the binary:
+
+        ```
+        apt install clang protobuf-compiler libprotobuf-dev -y 
+        ```
     
     ```
     cargo build --release
@@ -189,7 +190,7 @@ The following commands will set up everything regarding running the service.
 
 The next step is to create the systemd configuration file. If you are setting up a collator node, make sure to follow the code snippets for [Collator](#collator--collator). Note that you have to:
 
- - Replace `YOUR_NODE_NAME` in two different places
+ - Replace `YOUR-NODE-NAME` in two different places
  - Replace `<50% RAM in MB>` for 50% of the actual RAM your server has. For example, for 32 GB RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
  - Double-check that the binary is in the proper path as described below (_ExecStart_)
  - Double-check the base path if you've used a different directory
@@ -226,13 +227,13 @@ The next step is to create the systemd configuration file. If you are setting up
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonbeam.node_directory }} \
          --chain {{ networks.moonbeam.chain_spec }} \
-         --name "YOUR_NODE_NAME" \
+         --name "YOUR-NODE-NAME" \
          -- \
          --port {{ networks.relay_chain.p2p }} \
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
-         --name="YOUR_NODE_NAME_EMBEDDED_RELAY"
+         --name="YOUR-NODE-NAME (Embedded Relay)"
     
     [Install]
     WantedBy=multi-user.target
@@ -264,13 +265,13 @@ The next step is to create the systemd configuration file. If you are setting up
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonriver.node_directory }} \
          --chain {{ networks.moonriver.chain_spec }} \
-         --name "YOUR_NODE_NAME" \
+         --name "YOUR-NODE-NAME" \
          -- \
          --port {{ networks.relay_chain.p2p }} \
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
-         --name="YOUR_NODE_NAME_EMBEDDED_RELAY"
+         --name="YOUR-NODE-NAME (Embedded Relay)"
     
     [Install]
     WantedBy=multi-user.target
@@ -302,13 +303,13 @@ The next step is to create the systemd configuration file. If you are setting up
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonbase.node_directory }} \
          --chain {{ networks.moonbase.chain_spec }} \
-         --name "YOUR_NODE_NAME" \
+         --name "YOUR-NODE-NAME" \
          -- \
          --port {{ networks.relay_chain.p2p }} \
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
-         --name="YOUR_NODE_NAME_EMBEDDED_RELAY"
+         --name="YOUR-NODE-NAME (Embedded Relay)"
 
     [Install]
     WantedBy=multi-user.target
@@ -345,13 +346,13 @@ The next step is to create the systemd configuration file. If you are setting up
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonbeam.node_directory }} \
          --chain {{ networks.moonbeam.chain_spec }} \
-         --name "YOUR_NODE_NAME" \
+         --name "YOUR-NODE-NAME" \
          -- \
          --port {{ networks.relay_chain.p2p }} \
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
-         --name="YOUR_NODE_NAME_EMBEDDED_RELAY"
+         --name="YOUR-NODE-NAME (Embedded Relay)"
     
     [Install]
     WantedBy=multi-user.target
@@ -383,13 +384,13 @@ The next step is to create the systemd configuration file. If you are setting up
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonriver.node_directory }} \
          --chain {{ networks.moonriver.chain_spec }} \
-         --name "YOUR_NODE_NAME" \
+         --name "YOUR-NODE-NAME" \
          -- \
          --port {{ networks.relay_chain.p2p }} \
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
-         --name="YOUR_NODE_NAME_EMBEDDED_RELAY"
+         --name="YOUR-NODE-NAME (Embedded Relay)"
     
     [Install]
     WantedBy=multi-user.target
@@ -421,13 +422,13 @@ The next step is to create the systemd configuration file. If you are setting up
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonbase.node_directory }} \
          --chain {{ networks.moonbase.chain_spec }} \
-         --name "YOUR_NODE_NAME" \
+         --name "YOUR-NODE-NAME" \
          -- \
          --port {{ networks.relay_chain.p2p }} \
          --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
-         --name="YOUR_NODE_NAME_EMBEDDED_RELAY"
+         --name="YOUR-NODE-NAME (Embedded Relay)"
 
     [Install]
     WantedBy=multi-user.target
