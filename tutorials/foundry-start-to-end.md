@@ -5,7 +5,7 @@ description: Learn what to consider when using the Foundry library to build a pr
 
 # Using Foundry Start to End with Moonbeam
 
-![Banner Image](/images/tutorials/batch-approve-swap/batch-banner.png)
+![Banner Image](/images/tutorials/foundry-start-to-end/foundry-banner.png)
 
 _January 10th, 2022 | by Jeremy Boetticher_
 
@@ -24,6 +24,7 @@ To get started, you will need the following:
  - 
 --8<-- 'text/common/endpoint-examples.md'
  - Have [Foundry installed](https://book.getfoundry.sh/getting-started/installation){target=_blank}
+ - Have a [Moonscan API Key](/builders/build/eth-api/verify-contracts/api-verification/#generating-a-moonscan-api-key)
 
 ## Setup a Foundry Project {: #setup-a-foundry-project }
 
@@ -284,6 +285,69 @@ Now, when you run the test with `forge test`, you should see the following:
 
 ## Deploying in Foundry with Solidity Scripts {: #deploying-in-foundry-with-solidity-scripts }
 
-Not only are tests in Foundry written in Solidity, the scripts are too! Like other developer environments, scripts can be written to help interact with deployed smart contracts or can help along a complex deployment process that would be difficult to do manually. In this tutorial, we will be using Foundry's scripts to deploy both the `MyToken` and `Container` smart contracts.  
+Not only are tests in Foundry written in Solidity, the scripts are too! Like other developer environments, scripts can be written to help interact with deployed smart contracts or can help along a complex deployment process that would be difficult to do manually. Even though scripts are written in Solidity, they are never deployed to a chain. Instead, much of the logic is actually ran off-chain, so don't worry about any additional gas costs for using Foundry instead of a JavaScript environment like HardHat.  
 
-...
+In this tutorial, we will be using Foundry's scripts to deploy both the `MyToken` and `Container` smart contracts. To create the deployment scripts, create a new file in the `script` folder:  
+
+```
+cd script
+touch Container.s.sol
+```
+
+By convention, scripts should end with `s.sol`, and have a name similar to the script that it relates to. In this case, we are deploying the `Container` smart contract, so we have named the script `Container.s.sol`, though it's not the end of the world if you use some other suitable or more descriptive name.  
+
+In this script, add:  
+
+```solidity
+pragma solidity ^0.8.0;
+
+import "forge-std/Script.sol";
+import {MyToken} from "../src/MyToken.sol";
+import {Container} from "../src/Container.sol";
+
+contract ContainerDeployScript is Script {
+    function run() public {
+        // Get the private key from the .env
+        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
+        vm.startBroadcast(deployerPrivateKey);
+
+        // Make a new token
+        MyToken token = new MyToken(1000);
+
+        // Make a new container
+        new Container(token, 500);
+
+        vm.stopBroadcast();
+    }
+}
+```
+
+Let's break this script down. The first line is once again standard: declaring the solidity version. The imports include the two smart contracts you previously added, which will be deployed. This includes additional functionality to use in a Script, including the `Script` contract.  
+
+Now let's look at the logic in the contract. There is a single function, `run`, which is where the script logic is hosted. In this `run` function, the `vm` object is used often. This is where all of the Forge cheatcodes are stored, which determines the state of the virtual machine that the solidity is ran in.  
+
+In the first line within the `run` function, `vm.envUint` is used to get a private key from the system's environment variables (we will do this soon). In the second line, `vm.startBroadcast` starts a broadcast, which indicates that the following logic should take place on-chain. So when the `MyToken` and the `Container` contracts are instantiated with the `new` keyword, they are instantiated on-chain. The final line, `vm.stopBroadcast` ends the broadcast.  
+
+Before we run this script, let's set up some of our environment variables. Create a new `.env` file:  
+
+```
+touch .env
+```
+
+And within this file, add the following:  
+
+```
+PRIVATE_KEY=YOUR_PRIVATE_KEY
+MOONSCAN_API_KEY=YOUR_MOONSCAN_API_KEY
+```
+
+!!! note
+    Foundry provides [options for handling your private key](https://book.getfoundry.sh/reference/forge/forge-script#wallet-options---raw), other than providing it in the environment variables. It is up to you to decide whether or not you would rather use it in the console, have it stored in your device's environment, using a hardware wallet, or using a keystore.
+
+To add these environment variables, run the following command:  
+
+```
+source .env
+```
+
+
