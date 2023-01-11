@@ -350,4 +350,16 @@ To add these environment variables, run the following command:
 source .env
 ```
 
+Now your script and project should be ready for deployment! Use the following command to do so:  
 
+```
+forge script script/Container.s.sol:ContainerDeployScript --broadcast --verify -vvvv --rpc-url moonbase
+```
+
+What this command does is run the `ContainerDeployScript` contract as a script. The `--broadcast` option tells Forge to allow broadcasting of transactions, the `--verify` option tells Forge to verify to Moonscan when deploying, `-vvvv` makes the command output verbose, and `--rpc-url moonbase` sets the network to what *"moonbase"* was set to in `foundry.toml`.  
+
+You should see something like this as output:  
+
+**INSERT CONSOLE IMAGE HERE**  
+
+That's it! You've gone from nothing to a fully tested, deployed, and verified Foundry project. You can now adapt this so that you can use Foundry in your own projects!
