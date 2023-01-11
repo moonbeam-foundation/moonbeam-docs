@@ -41,7 +41,7 @@ The randomness precompile is located at the following address:
 
 ## The Randomness Solidity Interface {: #the-randomness-interface }
 
-[Randomness.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/Randomness.sol#L4-L11){target=_blank} is a Solidity interface that allows developers to interact with the precompile's methods.
+[Randomness.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/Randomness.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's methods.
 
 The interface includes functions, constants, events, and enums, as covered in the following sections.
 
@@ -240,13 +240,14 @@ Once the transaction goes through, the lottery will start and no more participan
 
 ### Pick the Winners {: #pick-the-winners }
 
-To fulfill the request, you can do so using the `fulfillRequest` function which will use the contract's `requestId` variable to call the `fulfillRequest` function of the randomness precompile. If successful, the request will be fulfilled and generate the random words and execute the `fulfillRandomWords` function defined in the `RandomnessLotteryDemo.sol` contract. The `fulfillRandomWords` function callback then calls `pickWinners` and the jackpot is distributed to the randomly selected winners. In addition, the cost of execution will be refunded from the request fee to the caller of `fulfillRequest`. Then any excess fees and the request deposit are transferred to the specified refund address.
+To fulfill the request, you can do so using the `fulfillRequest` function which will use the contract's `requestId` variable to send an internal transaction and call the `fulfillRequest` function of the randomness precompile. If successful, the request will be fulfilled and generate the random words and execute the `fulfillRandomWords` function defined in the `RandomnessLotteryDemo.sol` contract through another internal transaction. The `fulfillRandomWords` function callback then calls `pickWinners` and the jackpot is distributed through two more internal transactions, one for each of the randomly selected winners. In addition, the cost of execution will be refunded from the request fee to the caller of `fulfillRequest`. Then any excess fees and the request deposit are transferred to the specified refund address.
 
 You can initiate the fulfillment from any account after the delay has passed, to do so you'll need to:
 
 1. Ensure you're connected to the account that you want to fulfill the request from, it can be any account you choose
 2. Click on **fulfillRequest**
-3. Confirm the transaction in MetaMask
+3. MetaMask does not take into account internal transactions when estimating the gas limit for the transaction. As such, it is recommended to manually edit the gas limit in MetaMask to `200,000`
+4. Confirm the transaction in MetaMask
 
 ![Fulfill the randomness request](/images/builders/pallets-precompiles/precompiles/randomness/randomness-6.png)
 
