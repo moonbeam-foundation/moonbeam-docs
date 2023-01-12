@@ -11,7 +11,7 @@ _January 10th, 2022 | by Jeremy Boetticher_
 
 ## Introduction {: #introduction } 
 
-Foundry has become an increasingly popular developer environment to develop smart contracts with, since utilizing it only requires a single language: Solidity. Moonbeam offers [introductory documentation on using Foundry](/builders/build/eth-api/dev-env/foundry.md) with Moonbeam networks, which is recommended to read to get an introduction to using Foundry. In this tutorial we will be dipping our toes deeper into the library to get a more cohesive look at how to properly develop, test, and deploy.  
+Foundry has become an increasingly popular developer environment to develop smart contracts with, since utilizing it only requires a single language: Solidity. Moonbeam offers [introductory documentation on using Foundry](/builders/build/eth-api/dev-env/foundry) with Moonbeam networks, which is recommended to read to get an introduction to using Foundry. In this tutorial we will be dipping our toes deeper into the library to get a more cohesive look at how to properly develop, test, and deploy.  
 
 In this demonstration, we will deploy 2 smart contracts. One is a token and another will depend on that token. We will also write unit tests to ensure that the contracts work as expected. To deploy them, we will write a script that Foundry will use to determine the deployment logic. Finally, we will verify the smart contracts on a Moonbeam network's blockchain explorer.  
 
@@ -76,7 +76,7 @@ The first addition is a specification of the `solc_version`, underneath `profile
 
 ## Writing Smart Contracts {: #writing-smart-contracts-in-foundry }
 
-Smart contracts in Foundry that are meant to be deployed will by default belong in the `src` folder. In this tutorial, we'll write two smart contracts. Starting with the token:
+Smart contracts in Foundry that are meant to be deployed by default belong in the `src` folder. In this tutorial, we'll write two smart contracts. Starting with the token:
 
 ```
 touch MyToken.sol
@@ -158,9 +158,9 @@ The `Container` smart contract can have its status updated based on how many tok
 
 Before we deploy anything to a TestNet or MainNet, however, it's good to test your smart contracts. There are many types of tests:
 
-- Unit tests are tests that allow you to test specific parts of a smart contract's functionality. When writing your own smart contracts, it can be a good idea to break functionality into different sections so that it is easier to unit test
-- Fuzz tests are tests that allow you to test a smart contract with a wide variety of inputs to check for edge cases
-- Integration tests are tests that allow you to test a smart contract when it works in conjunction with other smart contracts, so that you know it works as expected in a deployed environment. Often you can do this by forking an EVM, so that you can simulate a transaction on a MainNet
+- Unit tests allow you to test specific parts of a smart contract's functionality. When writing your own smart contracts, it can be a good idea to break functionality into different sections so that it is easier to unit test
+- Fuzz tests allow you to test a smart contract with a wide variety of inputs to check for edge cases
+- Integration tests allow you to test a smart contract when it works in conjunction with other smart contracts, so that you know it works as expected in a deployed environment. Often you can do this by forking an EVM, so that you can simulate a transaction on a MainNet
 
 ### Unit Tests in Foundry {: #unit-tests-in-foundry}
 
@@ -171,7 +171,7 @@ cd test
 touch MyToken.t.sol
 ```
 
-By convention, all of your test should end with `.t.sol` and start with the name of the smart contract that it is testing. In practice, the test can be stored anywhere, and is considered a test if it has a function that starts with the word *"test"*. Let's start by writing a test for the token smart contract. Open up `MyToken.t.sol` and add:  
+By convention, all of your tests should end with `.t.sol` and start with the name of the smart contract that it is testing. In practice, the test can be stored anywhere, and is considered a test if it has a function that starts with the word *"test"*. Let's start by writing a test for the token smart contract. Open up `MyToken.t.sol` and add:  
 
 ```solidity
 pragma solidity ^0.8.0;
@@ -192,9 +192,9 @@ contract MyTokenTest is Test {
 }
 ```
 
-Let's break down what's happening here. The first line is typical for a Solidity file: setting the Solidity version. The next two lines are imports. `forge-std/Test.sol` is the standard library that forge (and thus Foundry) includes to help with testing. This includes the `Test` smart contract, certain assertations, and [forge cheatcodes](https://book.getfoundry.sh/forge/cheatcodes).  
+Let's break down what's happening here. The first line is typical for a Solidity file: setting the Solidity version. The next two lines are imports. `forge-std/Test.sol` is the standard library that forge (and thus Foundry) includes to help with testing. This includes the `Test` smart contract, certain assertions, and [forge cheatcodes](https://book.getfoundry.sh/forge/cheatcodes).  
 
-If you take a look at the `MyTokenTest` smart contract, you'll see two functions. The first is `setUp`, which is ran before each test. So in this test contract, a new instance of `MyToken` is deployed every time a test function is ran. You know if a function is a test function if it starts with the word *"test"*, so the second function, `testConstructorMint` is a test function.  
+If you take a look at the `MyTokenTest` smart contract, you'll see two functions. The first is `setUp`, which is run before each test. So in this test contract, a new instance of `MyToken` is deployed every time a test function is run. You know if a function is a test function if it starts with the word *"test"*, so the second function, `testConstructorMint` is a test function.  
 
 You can run the following test to see the result of the test:  
 
@@ -285,7 +285,7 @@ Now, when you run the test with `forge test`, you should see the following:
 
 ## Deploying in Foundry with Solidity Scripts {: #deploying-in-foundry-with-solidity-scripts }
 
-Not only are tests in Foundry written in Solidity, the scripts are too! Like other developer environments, scripts can be written to help interact with deployed smart contracts or can help along a complex deployment process that would be difficult to do manually. Even though scripts are written in Solidity, they are never deployed to a chain. Instead, much of the logic is actually ran off-chain, so don't worry about any additional gas costs for using Foundry instead of a JavaScript environment like HardHat.  
+Not only are tests in Foundry written in Solidity, the scripts are too! Like other developer environments, scripts can be written to help interact with deployed smart contracts or can help along a complex deployment process that would be difficult to do manually. Even though scripts are written in Solidity, they are never deployed to a chain. Instead, much of the logic is actually run off-chain, so don't worry about any additional gas costs for using Foundry instead of a JavaScript environment like HardHat.  
 
 In this tutorial, we will be using Foundry's scripts to deploy both the `MyToken` and `Container` smart contracts. To create the deployment scripts, create a new file in the `script` folder:  
 
@@ -322,9 +322,9 @@ contract ContainerDeployScript is Script {
 }
 ```
 
-Let's break this script down. The first line is once again standard: declaring the solidity version. The imports include the two smart contracts you previously added, which will be deployed. This includes additional functionality to use in a Script, including the `Script` contract.  
+Let's break this script down. The first line is standard: declaring the solidity version. The imports include the two smart contracts you previously added, which will be deployed. This includes additional functionality to use in a Script, including the `Script` contract.  
 
-Now let's look at the logic in the contract. There is a single function, `run`, which is where the script logic is hosted. In this `run` function, the `vm` object is used often. This is where all of the Forge cheatcodes are stored, which determines the state of the virtual machine that the solidity is ran in.  
+Now let's look at the logic in the contract. There is a single function, `run`, which is where the script logic is hosted. In this `run` function, the `vm` object is used often. This is where all of the Forge cheatcodes are stored, which determines the state of the virtual machine that the solidity is run in.  
 
 In the first line within the `run` function, `vm.envUint` is used to get a private key from the system's environment variables (we will do this soon). In the second line, `vm.startBroadcast` starts a broadcast, which indicates that the following logic should take place on-chain. So when the `MyToken` and the `Container` contracts are instantiated with the `new` keyword, they are instantiated on-chain. The final line, `vm.stopBroadcast` ends the broadcast.  
 
@@ -342,7 +342,7 @@ MOONSCAN_API_KEY=YOUR_MOONSCAN_API_KEY
 ```
 
 !!! note
-    Foundry provides [options for handling your private key](https://book.getfoundry.sh/reference/forge/forge-script#wallet-options---raw), other than providing it in the environment variables. It is up to you to decide whether or not you would rather use it in the console, have it stored in your device's environment, using a hardware wallet, or using a keystore.
+    Foundry provides [additional options for handling your private key](https://book.getfoundry.sh/reference/forge/forge-script#wallet-options---raw). It is up to you to decide whether or not you would rather use it in the console, have it stored in your device's environment, using a hardware wallet, or using a keystore.
 
 To add these environment variables, run the following command:  
 
