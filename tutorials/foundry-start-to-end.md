@@ -96,6 +96,12 @@ contract MyToken is ERC20 {
   constructor(uint256 initialSupply) ERC20("MyToken", "MYTOK") {
     _mint(msg.sender, initialSupply);
   }
+
+  // An external minting function allows anyone to mint as many tokens as they want.
+  function mint(uint256 toMint, address to) external {
+    require(toMint < 1 ether);
+    _mint(to, toMint);
+  }
 }
 ```
 
@@ -282,6 +288,50 @@ Now, when you run the test with `forge test`, you should see the following:
 ### Fuzzing Tests in Foundry {: #fuzzing-tests-in-foundry}
 
 ### Forking Tests in Foundry {: #forking-tests-in-foundry}
+
+In Foundry, you can locally fork a network so that you can test out how the contracts would work in an environment with already deployed smart contracts. For example, if someone deployed smart contract `A` on Moonbeam that required a token smart contract, you could fork the Moonbeam network and deploy your own token on the fork to test out how smart contract `A` would react to it.  
+
+!!! note
+    Moonbeam's custom precompile smart contracts currently do not work in Foundry forks because precompiles are substrate based whereas typical smart contracts are completely based on the EVM. Learn more about [forking on Moonbeam](/builders/build/eth-api/dev-env/foundry#forking-with-anvil) and the [differences between Moonbeam and Ethereum](/builders/get-started/eth-compare).
+
+In this tutorial, you will be testing out how your container smart contract interacts with an already deployed `MyToken` contract on Moonbase Alpha.  
+
+Let's add a new test function to the `ContainerTest` smart contract in `Container.t.sol` called `testAlternateTokenOnMoonbaseFork`:
+
+```solidity
+    function testAlternateTokenOnMoonbaseFork() public {
+        // Creates and selects a fork
+        uint256 moonbaseFork = vm.createFork("moonbase");
+        vm.selectFork(moonbaseFork);
+        assertEq(vm.activeFork(), moonbaseFork);
+
+        // Get token that's already deployed & deploys a container instance
+        token = MyToken(0x93e1e9EC6c1A8736266A595EFe97B5673ea0fEAc);
+        container = new Container(token, CAPACITY);
+
+        // Mint tokens to the container & update container status
+        token.mint(CAPACITY, address(container));
+        container.updateStatus();
+
+        // Assert that the capacity is full, just like the rest of the time.
+        assertEq(token.balanceOf(address(container)), CAPACITY);
+        assertTrue(container.status() == ContainerStatus.Full);
+    }
+```
+
+The first step (and thus first line) in this function is to have the test function fork a network with `vm.createFork`. Recall that `vm` is a cheatcode provided by the Forge standard library. All that's necessary to create a fork is an RPC URL, or an alias for an RPC URL that's stored in the `foundry.toml` file. In this case, we added an RPC URL for "moonbase" in [the setup step](#setup-a-foundry-project), so in the test function we will just pass the word "moonbase". This cheatcode function returns an ID for the fork created, which is necessary for activating the fork.  
+
+On the second line, after the fork has been created, the environment will select and use the fork in the test environment with `vm.selectFork`. The third line is just to demonstrate that the current fork, retrieved with `vm.activeFork`, is the same as the Moonbase Alpha fork.  
+
+The fourth line of code retrieves an already deployed instance of `MyToken`, which is what's useful about forking: you can use contracts that are already deployed.  
+
+The rest of the code tests capacity like you would expect a local test to. If you run the tests, you'll see that it passes:  
+
+```
+forge test --vvvv
+```
+
+**INSERT CONSOLE IMAGE HERE**
 
 ## Deploying in Foundry with Solidity Scripts {: #deploying-in-foundry-with-solidity-scripts }
 
