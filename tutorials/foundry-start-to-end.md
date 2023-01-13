@@ -113,7 +113,7 @@ The second smart contract will depend on this token contract:
 touch Container.sol
 ```
 
-Open the file and add the following ot it:
+Open the file and add the following to it:
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -281,11 +281,13 @@ Now, inside of the `ContainerTest` smart contract, you can add a new test that t
     }
 ```
 
-Now, when you run the test with `forge test`, you should see the following:  
+Now, when you run the test with `forge test`, you should see that `testIsOverflowingFalse` passes!  
 
-**PUT THE CONSOLE IMAGE HERE**  
 
 ### Fuzzing Tests in Foundry {: #fuzzing-tests-in-foundry}
+
+
+**PUT THE CONSOLE IMAGE HERE**  
 
 ### Forking Tests in Foundry {: #forking-tests-in-foundry}
 
@@ -331,7 +333,9 @@ The rest of the code tests capacity like you would expect a local test to. If yo
 forge test --vvvv
 ```
 
-**INSERT CONSOLE IMAGE HERE**
+**INSERT CONSOLE IMAGE HERE**  
+
+That's it for testing! You can see the complete [`Container.t.sol` file](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/foundry-start-to-end/Container.t.sol) and [`MyToken.t.sol` file](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/foundry-start-to-end/MyToken.t.sol) on GitHub.
 
 ## Deploying in Foundry with Solidity Scripts {: #deploying-in-foundry-with-solidity-scripts }
 
@@ -411,5 +415,7 @@ What this command does is run the `ContainerDeployScript` contract as a script. 
 You should see something like this as output:  
 
 **INSERT CONSOLE IMAGE HERE**  
+
+The entire deployment script is [available on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/foundry-start-to-end/Container.s.sol).  
 
 That's it! You've gone from nothing to a fully tested, deployed, and verified Foundry project. You can now adapt this so that you can use Foundry in your own projects!
