@@ -99,7 +99,7 @@ contract MyToken is ERC20 {
 
   // An external minting function allows anyone to mint as many tokens as they want.
   function mint(uint256 toMint, address to) external {
-    require(toMint < 1 ether);
+    require(toMint <= 1 ether);
     _mint(to, toMint);
   }
 }
@@ -286,6 +286,42 @@ Now, when you run the test with `forge test`, you should see that `testIsOverflo
 
 ### Fuzzing Tests in Foundry {: #fuzzing-tests-in-foundry}
 
+When you write a unit test, you can only use so many inputs to test. You can try testing edge cases, a few select values, perhaps one or two random ones. But when working with inputs, there are nearly an infinite amount of different ones to test! How can you be sure that they work for every value? Wouldn't you feel safer if you could test 10000 different inputs instead of less than 10?  
+
+One of the best ways that developers can test many inputs is through fuzzing, or fuzz tests. Foundry automatically fuzz tests when an input in a test function is included. To illustrate this, add the following test to the `MyTokenTest` contract in `MyToken.t.sol`.  
+
+```solidity
+    function testMintOneEtherOrBelow(uint256 amountToMint) public {
+        vm.assume(amountToMint <= 1 ether);
+
+        token.mint(amountToMint, msg.sender);
+        assertEq(token.balanceOf(msg.sender), amountToMint);
+    }
+```
+
+This test includes `uint256 amountToMint` as input, which tells Foundry to fuzz with `uint256` inputs! By default, Foundry will input 256 different inputs, but this can be configured with the [`FOUNDRY_FUZZ_RUNS` environment variable](https://book.getfoundry.sh/reference/config/testing#runs).  
+
+Additionally, the first line in the function uses `vm.assume` to only use inputs that are less than or equal to 1 ether, since the `mint` function reverts if someone tries to mint more than 1 ether at a time. This cheatcode helps you direct the fuzzing into the right range.  
+
+Let's look at another fuzzing test to put in the `MyTokenTest` contract, but this time where we expect to fail:  
+
+```solidity
+    function testFailMintAboveOneEther(uint256 amountToMint) public {
+        vm.assume(amountToMint > 1 ether);
+        
+        token.mint(amountToMint, msg.sender);
+    }
+```
+
+In Foundry, when you want to test for a failure, instead of just starting your test function with the world *"test"*, you start it with *"testFail"*. In this test, we assume that the `amountToMint` is above 1 ether, which should fail!  
+
+Now run the tests:  
+
+```
+forge test
+```
+
+You should see something similar to the following in the console:
 
 **PUT THE CONSOLE IMAGE HERE**  
 
@@ -308,7 +344,7 @@ Let's add a new test function to the `ContainerTest` smart contract in `Containe
         assertEq(vm.activeFork(), moonbaseFork);
 
         // Get token that's already deployed & deploys a container instance
-        token = MyToken(0x93e1e9EC6c1A8736266A595EFe97B5673ea0fEAc);
+        token = MyToken(0x359436610E917e477D73d8946C2A2505765ACe90);
         container = new Container(token, CAPACITY);
 
         // Mint tokens to the container & update container status
