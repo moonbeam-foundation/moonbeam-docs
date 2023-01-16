@@ -274,6 +274,6 @@ From here you can deploy new contracts to your forked instance of Moonbeam or in
 cast call INSERT-CONTRACT-ADDRESS  "balanceOf(address)(uint256)" INSERT-YOUR-ADDRESS --rpc-url http://localhost:8545
 ```
 
-If you want to learn more about Foundry, try following the [Foundry start-to-end tutorial](/tutorials/foundry-start-to-end) in our tutorial section. 
+If you want to learn more about Foundry, try following the [Foundry start-to-end tutorial](/tutorials/foundry-start-to-end){target=_blank} in our tutorial section. 
 
 --8<-- 'text/disclaimers/third-party-content.md'
