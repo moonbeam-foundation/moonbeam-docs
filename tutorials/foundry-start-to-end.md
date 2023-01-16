@@ -13,7 +13,7 @@ _January 10th, 2022 | by Jeremy Boetticher_
 
 Foundry has become an increasingly popular developer environment to develop smart contracts with, since utilizing it only requires a single language: Solidity. Moonbeam offers [introductory documentation on using Foundry](/builders/build/eth-api/dev-env/foundry) with Moonbeam networks, which is recommended to read to get an introduction to using Foundry. In this tutorial we will be dipping our toes deeper into the library to get a more cohesive look at how to properly develop, test, and deploy.  
 
-In this demonstration, we will deploy 2 smart contracts. One is a token and another will depend on that token. We will also write unit tests to ensure that the contracts work as expected. To deploy them, we will write a script that Foundry will use to determine the deployment logic. Finally, we will verify the smart contracts on a Moonbeam network's blockchain explorer.  
+In this demonstration, we will deploy two smart contracts. One is a token and another will depend on that token. We will also write unit tests to ensure that the contracts work as expected. To deploy them, we will write a script that Foundry will use to determine the deployment logic. Finally, we will verify the smart contracts on a Moonbeam network's blockchain explorer.  
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
@@ -36,7 +36,7 @@ forge init foundry
 
 This will have the forge utility initialize a new folder named `foundry` with a Foundry project initialized within it. The `script`, `src`, and `test` folders may have files in them already. Be sure to delete them, because we will be writing our own soon.  
 
-From here, there are a few things to do first before writing any code. First, we want to add a dependency to [OpenZeppelin's smart contracts](https://github.com/OpenZeppelin/openzeppelin-contracts), because they include helpful contracts to use when writing token smart contracts. To do so, add them using their github repository name:  
+From here, there are a few things to do first before writing any code. First, we want to add a dependency to [OpenZeppelin's smart contracts](https://github.com/OpenZeppelin/openzeppelin-contracts), because they include helpful contracts to use when writing token smart contracts. To do so, add them using their GitHub repository name:  
 
 ```
 forge install OpenZeppelin/openzeppelin-contracts
@@ -97,7 +97,7 @@ contract MyToken is ERC20 {
     _mint(msg.sender, initialSupply);
   }
 
-  // An external minting function allows anyone to mint as many tokens as they want.
+  // An external minting function allows anyone to mint as many tokens as they want
   function mint(uint256 toMint, address to) external {
     require(toMint <= 1 ether);
     _mint(to, toMint);
@@ -105,7 +105,7 @@ contract MyToken is ERC20 {
 }
 ```
 
-As you can see, the OpenZeppelin ERC20 smart contract is imported by the mapping defined in `remappings.txt`.  
+As you can see, the OpenZeppelin `ERC20` smart contract is imported by the mapping defined in `remappings.txt`.
 
 The second smart contract will depend on this token contract:  
 
@@ -128,7 +128,6 @@ enum ContainerStatus {
     Overflowing
 }
 
-// This ERC-20 contract mints the specified amount of tokens to the contract creator
 contract Container {
     MyToken token;
     uint256 capacity;
@@ -352,19 +351,19 @@ Let's add a new test function to the `ContainerTest` smart contract in `Containe
         token.mint(CAPACITY, address(container));
         container.updateStatus();
 
-        // Assert that the capacity is full, just like the rest of the time.
+        // Assert that the capacity is full, just like the rest of the time
         assertEq(token.balanceOf(address(container)), CAPACITY);
         assertTrue(container.status() == ContainerStatus.Full);
     }
 ```
 
-The first step (and thus first line) in this function is to have the test function fork a network with `vm.createFork`. Recall that `vm` is a cheatcode provided by the Forge standard library. All that's necessary to create a fork is an RPC URL, or an alias for an RPC URL that's stored in the `foundry.toml` file. In this case, we added an RPC URL for "moonbase" in [the setup step](#setup-a-foundry-project), so in the test function we will just pass the word "moonbase". This cheatcode function returns an ID for the fork created, which is necessary for activating the fork.  
+The first step (and thus first line) in this function is to have the test function fork a network with `vm.createFork`. Recall that `vm` is a cheatcode provided by the Forge standard library. All that's necessary to create a fork is an RPC URL, or an alias for an RPC URL that's stored in the `foundry.toml` file. In this case, we added an RPC URL for "moonbase" in [the setup step](#setup-a-foundry-project), so in the test function we will just pass the word `"moonbase"`. This cheatcode function returns an ID for the fork created, which is necessary for activating the fork.  
 
 On the second line, after the fork has been created, the environment will select and use the fork in the test environment with `vm.selectFork`. The third line is just to demonstrate that the current fork, retrieved with `vm.activeFork`, is the same as the Moonbase Alpha fork.  
 
 The fourth line of code retrieves an already deployed instance of `MyToken`, which is what's useful about forking: you can use contracts that are already deployed.  
 
-The rest of the code tests capacity like you would expect a local test to. If you run the tests (with the "-vvvv" tag for extra logging), you'll see that it passes:  
+The rest of the code tests capacity like you would expect a local test to. If you run the tests (with the `-vvvv` tag for extra logging), you'll see that it passes:  
 
 ```
 forge test --vvvv
@@ -413,7 +412,7 @@ contract ContainerDeployScript is Script {
 }
 ```
 
-Let's break this script down. The first line is standard: declaring the solidity version. The imports include the two smart contracts you previously added, which will be deployed. This includes additional functionality to use in a Script, including the `Script` contract.  
+Let's break this script down. The first line is standard: declaring the solidity version. The imports include the two smart contracts you previously added, which will be deployed. This includes additional functionality to use in a script, including the `Script` contract.  
 
 Now let's look at the logic in the contract. There is a single function, `run`, which is where the script logic is hosted. In this `run` function, the `vm` object is used often. This is where all of the Forge cheatcodes are stored, which determines the state of the virtual machine that the solidity is run in.  
 
@@ -447,7 +446,7 @@ Now your script and project should be ready for deployment! Use the following co
 forge script Container.s.sol:ContainerDeployScript --broadcast --verify -vvvv --rpc-url moonbase
 ```
 
-What this command does is run the `ContainerDeployScript` contract as a script. The `--broadcast` option tells Forge to allow broadcasting of transactions, the `--verify` option tells Forge to verify to Moonscan when deploying, `-vvvv` makes the command output verbose, and `--rpc-url moonbase` sets the network to what *"moonbase"* was set to in `foundry.toml`.  
+What this command does is run the `ContainerDeployScript` contract as a script. The `--broadcast` option tells Forge to allow broadcasting of transactions, the `--verify` option tells Forge to verify to Moonscan when deploying, `-vvvv` makes the command output verbose, and `--rpc-url moonbase` sets the network to what `moonbase` was set to in `foundry.toml`.  
 
 You should see something like this as output:  
 
