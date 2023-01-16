@@ -190,29 +190,38 @@ Here, we'll be taking the same series of steps as above, only this time, we'll b
 Start by generating the encoded call data via the Polkadot API as shown below. Here, we are not submitting a transaction but simplying preparing one to get the encoded call data. Remember to update `delegatorAccount` with your account. Feel free to run the below code snippet locally.
 
 ```typescript
-import { ApiPromise, WsProvider } from '@polkadot/api';
-const provider = new WsProvider('wss://wss.api.moonbase.moonbeam.network');
+import { ApiPromise, WsProvider } from "@polkadot/api";
+const provider = new WsProvider("wss://wss.api.moonbase.moonbeam.network");
 
-const candidate = '0x3A7D3048F3CB0391bb44B518e5729f07bCc7A45D';
-const delegatorAccount = 'YOUR-ACCOUNT-HERE';
-const amount = '1000000000000000000';
+const candidate = "0x3A7D3048F3CB0391bb44B518e5729f07bCc7A45D";
+const delegatorAccount = "YOUR-ACCOUNT-HERE";
+const amount = "1000000000000000000";
 
 const main = async () => {
   const api = await ApiPromise.create({ provider: provider });
-  
-  // Fetch the your existing number of delegations and the collators existing delegations.
-  let delegatorInfo = await api.query.parachainStaking.delegatorState(delegatorAccount);
-  
-  if (delegatorInfo.toHuman()) {
-  delegatorDelegationCount = delegatorInfo.toHuman()['delegations'].length;
-} else {
-   delegatorDelegationCount = 0;
-}
 
-  const collatorInfo = await api.query.parachainStaking.candidateInfo(candidate);
+  // Fetch the your existing number of delegations and the collators existing delegations
+  let delegatorInfo = await api.query.parachainStaking.delegatorState(
+    delegatorAccount
+  );
+
+  if (delegatorInfo.toHuman()) {
+    delegatorDelegationCount = delegatorInfo.toHuman()["delegations"].length;
+  } else {
+    delegatorDelegationCount = 0;
+  }
+
+  const collatorInfo = await api.query.parachainStaking.candidateInfo(
+    candidate
+  );
   const candidateDelegationCount = collatorInfo.toHuman()["delegationCount"];
-  let tx = api.tx.parachainStaking.delegate(candidate, amount, candidateDelegationCount, delegatorDelegationCount);
-  
+  let tx = api.tx.parachainStaking.delegate(
+    candidate,
+    amount,
+    candidateDelegationCount,
+    delegatorDelegationCount
+  );
+
   // Get SCALE Encoded Call Data
   let encodedCall = tx.method.toHex();
   console.log(`Encoded Call Data: ${encodedCall}`);
@@ -254,25 +263,62 @@ In this section we'll be constructing and sending the XCM instructions via the P
 
 ```javascript
 // Import
-import { ApiPromise, WsProvider } from '@polkadot/api';
+import { ApiPromise, WsProvider } from "@polkadot/api";
 
 // Construct API provider
-const wsProvider = new WsProvider('wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network');
+const wsProvider = new WsProvider(
+  "wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network"
+);
 const api = await ApiPromise.create({ provider: wsProvider });
 
 // Import the keyring as required
-import { Keyring } from '@polkadot/api';
+import { Keyring } from "@polkadot/api";
 
 // Initialize wallet key pairs
-const keyring = new Keyring({ type: 'sr25519' });
-const otherPair = await keyring.addFromUri('YOUR DEV SEED PHRASE HERE');
+const keyring = new Keyring({ type: "sr25519" });
+// For demo purposes only. Never store your private key or mnemonic in a JavaScript file
+const otherPair = await keyring.addFromUri("YOUR-DEV-SEED-PHRASE-HERE");
 console.log(`Derived Address from Private Key: ${otherPair.address}`);
 
 // Create the destination multilocation (define where the message will be sent)
 const dest = { V1: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
 
 // Create the full XCM message which defines the action to take on the destination chain
-const message = { V2: [{WithdrawAsset:[{id:{concrete:{parents:0,interior:{X1:{PalletInstance: 3}}}},fun: {Fungible: 100000000000000000n}}]},{BuyExecution:[{id:{Concrete:{parents:0,interior:{X1:{PalletInstance: 3}}}},fun: {Fungible: 100000000000000000n}}, {unlimited:null}]},{Transact:{originType: "SovereignAccount",requireWeightAtMost:40000000000n,call:{encoded:'0x0c113a7d3048f3cb0391bb44b518e5729f07bcc7a45d000064a7b3b6e00d00000000000000002c01000025000000'}}}]};
+const message = {
+  V2: [
+    {
+      WithdrawAsset: [
+        {
+          id: {
+            concrete: { parents: 0, interior: { X1: { PalletInstance: 3 } } },
+          },
+          fun: { Fungible: 100000000000000000n },
+        },
+      ],
+    },
+    {
+      BuyExecution: [
+        {
+          id: {
+            Concrete: { parents: 0, interior: { X1: { PalletInstance: 3 } } },
+          },
+          fun: { Fungible: 100000000000000000n },
+        },
+        { unlimited: null },
+      ],
+    },
+    {
+      Transact: {
+        originType: "SovereignAccount",
+        requireWeightAtMost: 40000000000n,
+        call: {
+          encoded:
+            "0x0c113a7d3048f3cb0391bb44b518e5729f07bcc7a45d000064a7b3b6e00d00000000000000002c01000025000000",
+        },
+      },
+    },
+  ],
+};
 
 // Define the transaction using the send method of the xcm pallet
 let tx = api.tx.xcmPallet.send(dest, message);
