@@ -30,7 +30,7 @@ jobs:
         run: |
           cd moonbeam-mkdocs
           # upgrade pip
-          pip3 install --upgrade pip setuptools
+          pip3 install --upgrade pip setuptools==65.7.0
           # install dependencies quietly
           pip3 install -r requirements.txt &> /dev/null && echo "Dependencies installed" || echo "Error while installing dependencies"
 
