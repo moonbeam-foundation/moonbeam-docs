@@ -2,7 +2,7 @@
 pragma solidity >=0.8.0;
 
 import "https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/Randomness.sol";
-import "https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/RandomnessConsumer.sol";
+import {RandomnessConsumer} from "https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/RandomnessConsumer.sol";
 
 /// @notice Smart contract to demonstrate how to use requestLocalVRFRandomWords
 contract RandomnessLotteryDemo is RandomnessConsumer {
