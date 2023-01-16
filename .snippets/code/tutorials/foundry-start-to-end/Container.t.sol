@@ -50,7 +50,7 @@ contract ContainerTest is Test {
         token.mint(CAPACITY, address(container));
         container.updateStatus();
 
-        // Assert that the capacity is full, just like the rest of the time.
+        // Assert that the capacity is full
         assertEq(token.balanceOf(address(container)), CAPACITY);
         assertTrue(container.status() == ContainerStatus.Full);
     }

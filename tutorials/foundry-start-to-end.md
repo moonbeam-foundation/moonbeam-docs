@@ -24,19 +24,19 @@ To get started, you will need the following:
  - 
 --8<-- 'text/common/endpoint-examples.md'
  - Have [Foundry installed](https://book.getfoundry.sh/getting-started/installation){target=_blank}
- - Have a [Moonscan API Key](/builders/build/eth-api/verify-contracts/api-verification/#generating-a-moonscan-api-key)
+ - Have a [Moonscan API Key](/builders/build/eth-api/verify-contracts/api-verification/#generating-a-moonscan-api-key){target=_blank}
 
 ## Setup a Foundry Project {: #setup-a-foundry-project }
 
 The first step to start a Foundry project is of course to create it. If you have Foundry installed, you can run:
 
 ```
-forge init foundry
+forge init foundry && cd foundry
 ```
 
 This will have the forge utility initialize a new folder named `foundry` with a Foundry project initialized within it. The `script`, `src`, and `test` folders may have files in them already. Be sure to delete them, because we will be writing our own soon.  
 
-From here, there are a few things to do first before writing any code. First, we want to add a dependency to [OpenZeppelin's smart contracts](https://github.com/OpenZeppelin/openzeppelin-contracts), because they include helpful contracts to use when writing token smart contracts. To do so, add them using their github repository name:  
+From here, there are a few things to do first before writing any code. First, we want to add a dependency to [OpenZeppelin's smart contracts](https://github.com/OpenZeppelin/openzeppelin-contracts){target=_blank}, because they include helpful contracts to use when writing token smart contracts. To do so, add them using their github repository name:  
 
 ```
 forge install OpenZeppelin/openzeppelin-contracts
@@ -140,6 +140,7 @@ contract Container {
         status = ContainerStatus.Unsatisfied;
     }
 
+    // Updates the status value based on the number of tokens that this contract has
     function updateStatus() public {
         address container = address(this);
         uint256 balance = token.balanceOf(container);
@@ -152,6 +153,7 @@ contract Container {
         }
     }
 
+    // Returns true if the contract should be in an overflowing state, false if otherwise
     function _isOverflowing(uint256 balance) internal view returns (bool) {
         return balance > capacity;
     }
@@ -188,17 +190,19 @@ import "../src/MyToken.sol";
 contract MyTokenTest is Test {
     MyToken public token;
 
+    // Runs before each test
     function setUp() public {
         token = new MyToken(100);
     }
 
+    // Tests if minting during the constructor happens properly
     function testConstructorMint() public {
         assertEq(token.balanceOf(address(this)), 100);
     }
 }
 ```
 
-Let's break down what's happening here. The first line is typical for a Solidity file: setting the Solidity version. The next two lines are imports. `forge-std/Test.sol` is the standard library that forge (and thus Foundry) includes to help with testing. This includes the `Test` smart contract, certain assertions, and [forge cheatcodes](https://book.getfoundry.sh/forge/cheatcodes).  
+Let's break down what's happening here. The first line is typical for a Solidity file: setting the Solidity version. The next two lines are imports. `forge-std/Test.sol` is the standard library that forge (and thus Foundry) includes to help with testing. This includes the `Test` smart contract, certain assertions, and [forge cheatcodes](https://book.getfoundry.sh/forge/cheatcodes){target=_blank}.  
 
 If you take a look at the `MyTokenTest` smart contract, you'll see two functions. The first is `setUp`, which is run before each test. So in this test contract, a new instance of `MyToken` is deployed every time a test function is run. You know if a function is a test function if it starts with the word *"test"*, so the second function, `testConstructorMint` is a test function.  
 
@@ -230,16 +234,19 @@ contract ContainerTest is Test {
 
     uint256 constant CAPACITY = 100;
 
+    // Runs before each test
     function setUp() public {
         token = new MyToken(1000);
         container = new Container(token, CAPACITY);
     }
 
+    // Tests if the container is unsatisfied right after constructing
     function testInitialUnsatisfied() public {
         assertEq(token.balanceOf(address(container)), 0);
         assertTrue(container.status() == ContainerStatus.Unsatisfied);
     }
 
+    // Tests if the container will be "full" once it reaches its capacity
     function testContainerFull() public {
         token.transfer(address(container), CAPACITY);
         container.updateStatus();
@@ -273,6 +280,7 @@ contract ContainerHarness is Container {
 Now, inside of the `ContainerTest` smart contract, you can add a new test that tests the previously unreachable `_isOverflowing` contract:  
 
 ```solidity
+    // Tests for negative cases of the internal _isOverflowing function
     function testIsOverflowingFalse() public {
         ContainerHarness harness = new ContainerHarness(token , CAPACITY);
         assertFalse(harness.exposed_isOverflowing(CAPACITY - 1));
@@ -292,6 +300,7 @@ When you write a unit test, you can only use so many inputs to test. You can try
 One of the best ways that developers can test many inputs is through fuzzing, or fuzz tests. Foundry automatically fuzz tests when an input in a test function is included. To illustrate this, add the following test to the `MyTokenTest` contract in `MyToken.t.sol`.  
 
 ```solidity
+    // Fuzz tests for success upon minting tokens one ether or below
     function testMintOneEtherOrBelow(uint256 amountToMint) public {
         vm.assume(amountToMint <= 1 ether);
 
@@ -300,13 +309,14 @@ One of the best ways that developers can test many inputs is through fuzzing, or
     }
 ```
 
-This test includes `uint256 amountToMint` as input, which tells Foundry to fuzz with `uint256` inputs! By default, Foundry will input 256 different inputs, but this can be configured with the [`FOUNDRY_FUZZ_RUNS` environment variable](https://book.getfoundry.sh/reference/config/testing#runs).  
+This test includes `uint256 amountToMint` as input, which tells Foundry to fuzz with `uint256` inputs! By default, Foundry will input 256 different inputs, but this can be configured with the [`FOUNDRY_FUZZ_RUNS` environment variable](https://book.getfoundry.sh/reference/config/testing#runs){target=_blank}.  
 
 Additionally, the first line in the function uses `vm.assume` to only use inputs that are less than or equal to 1 ether, since the `mint` function reverts if someone tries to mint more than 1 ether at a time. This cheatcode helps you direct the fuzzing into the right range.  
 
 Let's look at another fuzzing test to put in the `MyTokenTest` contract, but this time where we expect to fail:  
 
 ```solidity
+    // Fuzz tests for failure upon minting tokens above one ether
     function testFailMintAboveOneEther(uint256 amountToMint) public {
         vm.assume(amountToMint > 1 ether);
         
@@ -331,13 +341,14 @@ You should see something similar to the following in the console:
 In Foundry, you can locally fork a network so that you can test out how the contracts would work in an environment with already deployed smart contracts. For example, if someone deployed smart contract `A` on Moonbeam that required a token smart contract, you could fork the Moonbeam network and deploy your own token on the fork to test out how smart contract `A` would react to it.  
 
 !!! note
-    Moonbeam's custom precompile smart contracts currently do not work in Foundry forks because precompiles are substrate based whereas typical smart contracts are completely based on the EVM. Learn more about [forking on Moonbeam](/builders/build/eth-api/dev-env/foundry#forking-with-anvil) and the [differences between Moonbeam and Ethereum](/builders/get-started/eth-compare).
+    Moonbeam's custom precompile smart contracts currently do not work in Foundry forks because precompiles are substrate based whereas typical smart contracts are completely based on the EVM. Learn more about [forking on Moonbeam](/builders/build/eth-api/dev-env/foundry#forking-with-anvil){target=_blank} and the [differences between Moonbeam and Ethereum](/builders/get-started/eth-compare){target=_blank}.
 
 In this tutorial, you will be testing out how your container smart contract interacts with an already deployed `MyToken` contract on Moonbase Alpha.  
 
 Let's add a new test function to the `ContainerTest` smart contract in `Container.t.sol` called `testAlternateTokenOnMoonbaseFork`:
 
 ```solidity
+    // Fork tests in the Moonbase Alpha environment
     function testAlternateTokenOnMoonbaseFork() public {
         // Creates and selects a fork
         uint256 moonbaseFork = vm.createFork("moonbase");
@@ -372,7 +383,7 @@ forge test --vvvv
 
 ![Forking Tests in Foundry](/images/tutorials/foundry-start-to-end/foundry-4.png)
 
-That's it for testing! You can see the complete [`Container.t.sol` file](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/foundry-start-to-end/Container.t.sol) and [`MyToken.t.sol` file](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/foundry-start-to-end/MyToken.t.sol) on GitHub.
+That's it for testing! You can see the complete [`Container.t.sol` file](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/foundry-start-to-end/Container.t.sol){target=_blank} and [`MyToken.t.sol` file](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/foundry-start-to-end/MyToken.t.sol){target=_blank} on GitHub.
 
 ## Deploying in Foundry with Solidity Scripts {: #deploying-in-foundry-with-solidity-scripts }
 
@@ -397,6 +408,7 @@ import {MyToken} from "../src/MyToken.sol";
 import {Container} from "../src/Container.sol";
 
 contract ContainerDeployScript is Script {
+    // Runs the script; deploys MyToken and Container
     function run() public {
         // Get the private key from the .env
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
@@ -433,7 +445,7 @@ MOONSCAN_API_KEY=YOUR_MOONSCAN_API_KEY
 ```
 
 !!! note
-    Foundry provides [additional options for handling your private key](https://book.getfoundry.sh/reference/forge/forge-script#wallet-options---raw). It is up to you to decide whether or not you would rather use it in the console, have it stored in your device's environment, using a hardware wallet, or using a keystore.
+    Foundry provides [additional options for handling your private key](https://book.getfoundry.sh/reference/forge/forge-script#wallet-options---raw){target=_blank}. It is up to you to decide whether or not you would rather use it in the console, have it stored in your device's environment, using a hardware wallet, or using a keystore.
 
 To add these environment variables, run the following command:  
 
@@ -453,6 +465,6 @@ You should see something like this as output:
 
 ![Running a Script in Foundry](/images/tutorials/foundry-start-to-end/foundry-5.png)
 
-The entire deployment script is [available on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/foundry-start-to-end/Container.s.sol).  
+The entire deployment script is [available on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/foundry-start-to-end/Container.s.sol){target=_blank}.  
 
 That's it! You've gone from nothing to a fully tested, deployed, and verified Foundry project. You can now adapt this so that you can use Foundry in your own projects!
