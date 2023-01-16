@@ -208,8 +208,6 @@ You can run the following test to see the result of the test:
 forge test
 ```
 
-**PUT THE CONSOLE IMAGE HERE**  
-
 Great! Let's write some more tests, but for `Container`.  
 
 ```
@@ -252,7 +250,9 @@ contract ContainerTest is Test {
 }
 ```
 
-This test smart contract has two tests, so when running the tests, there will be two deployments of both `MyToken` and `Container`, for four smart contracts in total.  
+This test smart contract has two tests, so when running the tests, there will be two deployments of both `MyToken` and `Container`, for four smart contracts in total. When testing, you should see the following command:  
+
+![Unit Testing in Foundry](/images/tutorials/foundry-start-to-end/foundry-1.png)
 
 ### Test Harnesses in Foundry {: #test-harnesses-in-foundry }
 
@@ -283,6 +283,7 @@ Now, inside of the `ContainerTest` smart contract, you can add a new test that t
 
 Now, when you run the test with `forge test`, you should see that `testIsOverflowingFalse` passes!  
 
+![Test Harness in Foundry](/images/tutorials/foundry-start-to-end/foundry-2.png)
 
 ### Fuzzing Tests in Foundry {: #fuzzing-tests-in-foundry}
 
@@ -323,7 +324,7 @@ forge test
 
 You should see something similar to the following in the console:
 
-**PUT THE CONSOLE IMAGE HERE**  
+![Fuzzing Tests in Foundry](/images/tutorials/foundry-start-to-end/foundry-3.png)
 
 ### Forking Tests in Foundry {: #forking-tests-in-foundry}
 
@@ -363,13 +364,13 @@ On the second line, after the fork has been created, the environment will select
 
 The fourth line of code retrieves an already deployed instance of `MyToken`, which is what's useful about forking: you can use contracts that are already deployed.  
 
-The rest of the code tests capacity like you would expect a local test to. If you run the tests, you'll see that it passes:  
+The rest of the code tests capacity like you would expect a local test to. If you run the tests (with the "-vvvv" tag for extra logging), you'll see that it passes:  
 
 ```
 forge test --vvvv
 ```
 
-**INSERT CONSOLE IMAGE HERE**  
+![Forking Tests in Foundry](/images/tutorials/foundry-start-to-end/foundry-4.png)
 
 That's it for testing! You can see the complete [`Container.t.sol` file](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/foundry-start-to-end/Container.t.sol) and [`MyToken.t.sol` file](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/foundry-start-to-end/MyToken.t.sol) on GitHub.
 
@@ -443,14 +444,14 @@ source .env
 Now your script and project should be ready for deployment! Use the following command to do so:  
 
 ```
-forge script script/Container.s.sol:ContainerDeployScript --broadcast --verify -vvvv --rpc-url moonbase
+forge script Container.s.sol:ContainerDeployScript --broadcast --verify -vvvv --rpc-url moonbase
 ```
 
 What this command does is run the `ContainerDeployScript` contract as a script. The `--broadcast` option tells Forge to allow broadcasting of transactions, the `--verify` option tells Forge to verify to Moonscan when deploying, `-vvvv` makes the command output verbose, and `--rpc-url moonbase` sets the network to what *"moonbase"* was set to in `foundry.toml`.  
 
 You should see something like this as output:  
 
-**INSERT CONSOLE IMAGE HERE**  
+![Running a Script in Foundry](/images/tutorials/foundry-start-to-end/foundry-5.png)
 
 The entire deployment script is [available on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/foundry-start-to-end/Container.s.sol).  
 
