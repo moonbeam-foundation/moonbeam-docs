@@ -167,7 +167,7 @@ Before we deploy anything to a TestNet or MainNet, however, it's good to test yo
 
 - **Unit tests** — allow you to test specific parts of a smart contract's functionality. When writing your own smart contracts, it can be a good idea to break functionality into different sections so that it is easier to unit test
 - **Fuzz tests** — allow you to test a smart contract with a wide variety of inputs to check for edge cases
-- **Integration tests** — allow you to test a smart contract when it works in conjunction with other smart contracts, so that you know it works as expected in a deployed environment. 
+- **Integration tests** — allow you to test a smart contract when it works in conjunction with other smart contracts, so that you know it works as expected in a deployed environment
     - **Forking tests** - integration tests that allows you to make a fork (a carbon copy of a network), so that you can simulate a series of transactions on a preexisting network
 
 ### Unit Tests in Foundry {: #unit-tests-in-foundry}
