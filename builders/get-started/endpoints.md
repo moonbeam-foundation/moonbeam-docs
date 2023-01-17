@@ -31,12 +31,21 @@ If you are looking for an API provider suitable for production use, you can chec
 
 You can create your own endpoint suitable for development or production use using any of the following API providers:
 
+- [1RPC](#1rpc)
 - [Blast](#blast)
 - [GetBlock](#getblock)
 - [OnFinality](#onfinality)
 - [Pocket Network](#pokt)
 - [UnitedBloc](#unitedbloc)
 <!-- - [Ankr](#ankr) -->
+
+### 1RPC {: #1rpc}
+
+[1RPC] (https://1rpc.io/){target=_blank} is a free and private RPC relay that protects user privacy by preventing data collection, user tracking, phishing attempts from other parties. It tunnels user requests via distributed relays to other RPC providers whilst preventing the tracking of user metadata such as IP address, device information and wallet linkability with secure enclave technology.
+
+1RPC is created to be an open initiative from the blockchain infrastructure community. We are motivated by a common good mission to help build a better Web3 and we encourage anyone who values user privacy to join this open collaboration.
+
+Head over to [1RPC] (https://1rpc.io/){target=_blank} official site to set it up!
 
 ### Blast {: #blast}
 
