@@ -1,6 +1,6 @@
 ---
 title: Governance
-description: As a Polkadot parachain, Moonbeam will use an on-chain governance system, allowing for a stake-weighted vote on public referenda.
+description: As a Polkadot parachain, Moonbeam uses an on-chain governance system, allowing for a stake-weighted vote on public referenda.
 ---
 
 # Governance on Moonbeam
@@ -9,10 +9,10 @@ description: As a Polkadot parachain, Moonbeam will use an on-chain governance s
 
 ## Introduction {: #introduction } 
 
-The goal of Moonbeam’s governance mechanism is to advance the protocol according to the desires of the community. In that shared mission, the governance process seeks to include all token holders. All and any changes to the protocol must go through a referendum so that all token holders, weighted by stake, can have input on the decision. Governance forums like [Polkassembly](https://moonbeam.polkassembly.network/){target=_blank} enable open discussion and enable proposals to be refined based on community input. Autonomous enactments and [forkless upgrades](https://wiki.polkadot.network/docs/learn-runtime-upgrades#forkless-upgrades/){target=_blank} unite the community towards a shared mission to advance the protocol.
+The goal of Moonbeam’s governance mechanism is to advance the protocol according to the desires of the community. In that shared mission, the governance process seeks to include all token holders. All and any changes to the protocol must go through a referendum so that all token holders, weighted by stake, can have input on the decision. Governance forums like the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=_blank} and [Polkassembly](https://moonbeam.polkassembly.network/){target=_blank} enable open discussion and enable proposals to be refined based on community input. Autonomous enactments and [forkless upgrades](https://wiki.polkadot.network/docs/learn-runtime-upgrades#forkless-upgrades/){target=_blank} unite the community towards a shared mission to advance the protocol.
 
 !!! note "Upcoming Governance Changes"
-    The contents in this guide are subject to change. See [this pull request](https://github.com/paritytech/substrate/pull/10195){target=_blank} for more details on Polkadot's recent efforts to modify Polkadot Governance ("gov v2"). Note all changes to governance will go through governance and token-holder approval. 
+    The contents in this guide are subject to change. See [this pull request](https://github.com/paritytech/substrate/pull/10195){target=_blank} for more details on Polkadot's recent efforts to modify Polkadot Governance ("Gov2"). You can also check out [Gavin Wood's blog post](https://medium.com/polkadot-network/gov2-polkadots-next-generation-of-decentralised-governance-4d9ef657d11b){target=_blank} explaining the background of Gov2. Note all changes to governance will go through governance and token-holder approval.  
 
 ## General Definitions {: #general-definitions } 
 
