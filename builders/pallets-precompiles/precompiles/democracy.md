@@ -43,13 +43,13 @@ The interface includes the following functions:
  - **depositOf**(*uint256* propIndex) — read-only function that returns the total number of tokens locked behind the proposal. Uses the [`depositOf`](/builders/pallets-precompiles/pallets/democracy/#:~:text=depositOf(u32)){target=_blank} method of the democracy pallet
  - **lowestUnbaked**() — read-only function that returns the referendum with the lowest index that is currently being voted on. For clarity, a baked referendum is one that has been closed (and if passed, scheduled for enactment). An unbaked referendum is therefore one in which voting is ongoing. Uses the [`lowestUnbaked`](/builders/pallets-precompiles/pallets/democracy/#:~:text=lowestUnbaked()){target=_blank} method of the democracy pallet
  - **ongoingReferendumInfo**(*uint256* refIndex) — read-only function that returns the details of the specified ongoing referendum in the form of a tuple that includes the following:
-  - Block in which the referendum ended (*uint256*)
-  - The proposal hash (*bytes32*)
-  - [The biasing mechanism](https://wiki.polkadot.network/docs/learn-governance#super-majority-approve){target=_blank} where 0 is SuperMajorityApprove, 1 is SuperMajorityAgainst, 2 is SimpleMajority (*uint256*)
-  - The enactment delay period (*uint256*)
-  - The total aye vote, including conviction (*uint256*)
-  - The total nay note, including conviction (*uint256*)
-  - The total turnout, not including conviction (*uint256*)
+     - Block in which the referendum ended (*uint256*)
+     - The proposal hash (*bytes32*)
+     - [The biasing mechanism](https://wiki.polkadot.network/docs/learn-governance#super-majority-approve){target=_blank} where 0 is SuperMajorityApprove, 1 is SuperMajorityAgainst, 2 is SimpleMajority (*uint256*)
+     - The enactment delay period (*uint256*)
+     - The total aye vote, including conviction (*uint256*)
+     - The total nay note, including conviction (*uint256*)
+     - The total turnout, not including conviction (*uint256*)
 - **finishedReferendumInfo**(*uint256* refIndex) — read-only function that returns a boolean indicating whether a referendum passed and the block at which it finished
  - **propose**(*bytes32* proposalHash, *uint256* value) — submit a proposal by providing a hash and the number of tokens to lock. Uses the [`propose`](/builders/pallets-precompiles/pallets/democracy/#:~:text=propose(proposalHash, value)){target=_blank} method of the democracy pallet
  - **second**(*uint256* propIndex, *uint256* secondsUpperBound) — second a proposal by providing the proposal index and a number greater than or equal to the number of existing seconds for this proposal (necessary to calculate the weight of the call). An amount is not needed because seconds require the same amount the original proposer locked. Uses the [`second`](/builders/pallets-precompiles/pallets/democracy/#:~:text=second(proposal, secondsUpperBound)){target=_blank} method of the democracy pallet 
