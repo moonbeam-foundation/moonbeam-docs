@@ -65,7 +65,7 @@ This guide will show you how to submit a proposal on Moonbase Alpha. It can be a
 
 It's highly recommended that you preface any proposal with a post on [Moonbeam's Community Forum](https://forum.moonbeam.foundation/){target=_blank}. This especially important for treasury proposals because of the irrevocable bond required to submit a treasury spend proposal. You can submit your idea for a treasury spend proposal by following [these instructions](https://moonbeam.network/blog/using-moonbeam-community-forum/){target=_blank}. 
 
-![Moonbeam Forum Home](/images/tokens/governance/treasury-proposals/proposals-10.png)
+![Moonbeam Forum Home](/images/tokens/governance/treasury-proposals/treasury-proposal-1.png)
 
 ## Proposing an Action {: #proposing-an-action } 
 
@@ -75,7 +75,7 @@ This guide mainly focuses on the mechanics of submitting an on-chain treasury pr
 
 To get started, head to the **Governance** section and click on **Treasury**. Then click **Submit Proposal**.
 
-![Fill in the Proposal Information](/images/tokens/governance/treasury-proposals/treasury-proposal-1.png)
+![Treasury home](/images/tokens/governance/treasury-proposals/treasury-proposal-2.png)
 
 Then, take the following steps:
 
@@ -85,7 +85,7 @@ Then, take the following steps:
 4. Review each field for accuracy then press **Submit proposal** and sign the transaction
 
 
-![Fill in the Proposal Information](/images/tokens/governance/treasury-proposals/proposals-5.png)
+![Submitting a treasury spend proposal](/images/tokens/governance/treasury-proposals/treasury-proposal-3.png)
 
 
 After the submitting your treasury proposal, you can refresh Polkadot JS Apps and you should see your proposal listed. If you don't see your proposal appear here, your account may not have contained sufficient funds for the required bond. 
