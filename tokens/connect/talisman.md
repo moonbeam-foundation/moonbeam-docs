@@ -1,9 +1,9 @@
 ---
-title: Create an Account on Polkadot.js Apps using Talisman
+title: Interact with Moonbeam using Talisman to Inject Accounts into Polkadot.js Apps
 description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereum-standard H160 addresses and send transactions with Polkadot.js Apps and Talisman.
 ---
 
-# Interacting with Moonbeam Using Polkadot.js Apps and Talisman
+# Interacting with Moonbeam Using Talisman
 
 ![Banner image](/images/tokens/connect/talisman/talisman-banner.png)
 
@@ -11,7 +11,7 @@ description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereu
 
 As a Polkadot parachain, Moonbeam uses a [unified account structure](/learn/features/unified-accounts/) that allows you to interact with Substrate (Polkadot) functionality and Moonbeam's EVM, all from a single Ethereum-style address. This unified account structure means that you don't need to maintain both a substrate and an Ethereum account to interact with Moonbeam - instead, you can do it all with a single Ethereum private key.
 
-[Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/accounts){target=_blank} supports H160 accounts so long as they are injected into the browser via an extension like [Talisman](https://www.talisman.xyz/){target=_blank}. Note, Polkadot.js Apps no longer supports the addition of browser-based accounts. While you can continue to use any accounts that you've imported and stored in your browser locally via Polkadot.js Apps, you won't be able to add any new ones. This means that you'll need to use an extension like Talisman. Furthermore, injecting your account from an extension like Talisman is generally regarded to be safer than storing the account directly in the browser. 
+[Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/accounts){target=_blank} supports H160 accounts injected into the browser via an extension like [Talisman](https://www.talisman.xyz/){target=_blank}. Note, Polkadot.js Apps is phasing out support for [accounts stored locally in the browser's cache](/tokens/connect/polkadotjs/). While you can continue to use any accounts that you've imported and stored in your browser locally via Polkadot.js Apps, you won't be able to add any new ones. This means that you'll need to use an extension like Talisman. Furthermore, injecting your account from an extension like Talisman is generally regarded to be safer than storing the account directly in the browser. 
 
 This guide will include all of the steps for setting up an account in Talisman and using it to interact with Moonbeam through Polkadot.js Apps. 
 
