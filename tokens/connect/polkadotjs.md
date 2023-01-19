@@ -9,9 +9,9 @@ description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereu
 
 ## Introduction {: #introduction } 
 
-With the [release of the v3 upgrade](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/) for the Moonbase Alpha TestNet, we have made significant updates to the underlying account system on Moonbeam, replacing the default Substrate-style accounts and keys with Ethereum-style accounts and keys.
+As a Polkadot parachain, Moonbeam uses a [unified account structure](/learn/features/unified-accounts/) that allows you to interact with Substrate (Polkadot) functionality and Moonbeam's EVM, all from a single Ethereum-style address. This unified account structure means that you don't need to maintain both a substrate and an Ethereum account to interact with Moonbeam - instead, you can do it all with a single Ethereum private key.
 
-The Polkadot.js Apps interface was updated as well so that it natively supports H160 addresses and ECDSA keys. So, in this tutorial you can check out this new integration of Ethereum-based accounts on the Polkadot.js Apps site.
+The Polkadot.js Apps interface was updated as well so that it natively supports H160 addresses and ECDSA keys. So, in this tutorial you can check out this integration of Ethereum-based accounts on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/accounts){target=_blank}.
 
 --8<-- 'text/disclaimers/third-party-content-intro.md'
 
@@ -20,7 +20,7 @@ The Polkadot.js Apps interface was updated as well so that it natively supports 
 
 ## Connecting to Moonbase Alpha {: #connecting-to-moonbase-alpha } 
 
-First, you need to connect it to the Moonbase Alpha TestNet by clicking the logo in the top left corner, then scroll down to the **Test Networks** section, select Moonbase Alpha, and scroll back to the top and click **Switch**. 
+When launching [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/accounts){target=_blank} for the first time, you may or may not be connected to the desired network. You can change your selected network to the Moonbase Alpha TestNet by clicking the logo in the top left corner, then scroll down to the **Test Networks** section, select Moonbase Alpha, and scroll back to the top and click **Switch**. 
 
 ![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjs/polkadotjs-1.png)
 
