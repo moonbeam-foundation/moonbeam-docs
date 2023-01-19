@@ -85,7 +85,7 @@ Now, to demonstrate the potential of Moonbeam's [unified accounts](/learn/featur
 Click on Alice's **send** button, which opens another wizard that guides you through the process of sending a transaction. 
 
 1. Set the **send to address**
-2. Enter the **amount** to send, which for this example is 4 DEV token
+2. Enter the **amount** to send, which is 4 DEV tokens in this example
 3. When ready, click on the **Make Transfer** button
 4. Approve the transaction in the Talisman pop up
 
