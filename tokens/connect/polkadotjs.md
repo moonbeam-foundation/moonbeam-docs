@@ -95,6 +95,6 @@ After the transaction is confirmed, you should see the balances updated for each
 
 ![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjs/talisman-9.png)
 
-And that is it! These steps have demonstrated the ease coupled with the robust security of interacting with H160 accounts in Polkadot.js Apps with Talisman. All of this is possible because of Moonbeam's unified account structure, a great example of Moonbeam's commitment to providing the best user experience. 
+And that is it! These steps have demonstrated the ease coupled with the robust security of interacting with injected H160 accounts in Polkadot.js Apps with Talisman. All of this is possible because of Moonbeam's unified account structure, a great example of Moonbeam's commitment to providing the best user experience. 
 
 --8<-- 'text/disclaimers/third-party-content.md'
