@@ -1,23 +1,55 @@
 ---
-title: Create an Account on Polkadot.js Apps
-description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereum-standard H160 addresses and send transactions with Polkadot.js.
+title: Create an Account on Polkadot.js Apps using Talisman
+description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereum-standard H160 addresses and send transactions with Polkadot.js Apps and Talisman.
 ---
 
-# Interacting with Moonbeam Using Polkadot.js Apps
+# Interacting with Moonbeam Using Polkadot.js Apps and Talisman
 
-![Intro diagram](/images/tokens/connect/polkadotjs/polkadotjs-banner.png)
+![Banner image](/images/tokens/connect/polkadotjs/talisman-banner.png)
 
 ## Introduction {: #introduction } 
 
-With the [release of the v3 upgrade](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/) for the Moonbase Alpha TestNet, we have made significant updates to the underlying account system on Moonbeam, replacing the default Substrate-style accounts and keys with Ethereum-style accounts and keys.
+As a Polkadot parachain, Moonbeam uses a [unified account structure](/learn/features/unified-accounts/) that allows you to interact with Substrate (Polkadot) functionality and Moonbeam's EVM, all from a single Ethereum-style address. This unified account structure means that you don't need to maintain both a substrate and an Ethereum account to interact with Moonbeam - instead, you can do it all with a single Ethereum private key.
 
-The Polkadot.js Apps interface was updated as well so that it natively supports H160 addresses and ECDSA keys. So, in this tutorial you can check out this new integration of Ethereum-based accounts on the Polkadot.js Apps site.
+Polkadot.js Apps supports H160 accounts so long as they are injected into the browser via an extension like [Talisman](https://www.talisman.xyz/){target=_blank}. Note, Polkadot.js Apps no longer supports the addition of browser-based accounts. While you can continue to use any accounts that you've imported and stored in your browser locally via Polkadot.js Apps, you won't be able to add any new ones. This means that you'll need to use an extension like Talisman. Furthermore, injecting your account from an extension like Talisman is generally regarded to be safer than storing the account directly in the browser. 
+
+This guide will include all of the steps for setting up an account in Talisman and using it to interact with Moonbeam through Polkadot.js Apps. 
 
 --8<-- 'text/disclaimers/third-party-content-intro.md'
 
+## Setting up Talisman {: #setting-up-talisman }
+
+Talisman is a crypto-wallet that natively supports Substrate (Polkadot) and Ethereum accounts. The Talisman wallet browser extension is available on Google Chrome, Brave and Firefox, and a corresponding asset dashboard is accessible at [app.talisman.xyz](https://app.talisman.xyz/){target=_blank}
+
+First, download and install the [Talisman extension](https://www.talisman.xyz/){target=_blank}. Once the extension opens up, you'll be prompted to either create a new wallet or import an existing one. For the purposes of this demo, we'll create a new wallet. On the following screen you'll be prompted to create a password to secure the new wallet.  
+
+![Talisman prompt to create new wallet or import existing one](/images/tokens/connect/polkadotjs/polkadotjs-9.png)
+
+!!! Remember
+    Talisman does not require you to back up your seed phrase but will nudge you with a reminder at the bottom of the screen. If you don't back up your seed phrase, you could lose all of your assets.
+
+To back up your newly created wallet, take the following steps:
+
+1. Press **Backup Now**
+2. Enter the password to your Talisman wallet
+3. Press **View Recovery Phrase** and store it in a secure place
+
+![Talisman prompt to create new wallet or import existing one](/images/tokens/connect/polkadotjs/talisman-1.png)
+
+## Connecting Talisman to Polkadot.js Apps {: #connecting-talisman-to-polkadot.js-apps }
+Next, head to [Moonbase Alpha Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/explorer){target=_blank}. The Talisman extension will prompt you to select the accounts you'd like to use with Polkadot.js Apps. If it doesn't automatically pop up, you can open the Talisman extension and press the **Connected / Not Connected** button at the top. To configure Talisman to correctly interface with Moonbeam networks on Polkadot.js Apps, you should take the following steps:
+
+1. Check the box next to **Show Ethereum Accounts**
+2. Select **My Ethereum Account**. This is the default name assigned by Talisman which you can rename if you'd like
+3. Press **Connect 1**
+
+![Connect account to PolkadotJs Apps](/images/tokens/connect/polkadotjs/talisman-6.png)
+
+Your Talisman wallet is now connected to Polkadot.js Apps. After refreshing Polkadot.js Apps, you should see your Talisman account in the [Accounts page of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/accounts){target=_blank}. 
+
 ## Connecting to Moonbase Alpha {: #connecting-to-moonbase-alpha } 
 
-First, you need to connect it to the Moonbase Alpha TestNet by clicking the logo in the top left corner, then scroll down to the **Test Networks** section, select Moonbase Alpha, and scroll back to the top and click **Switch**. 
+When launching [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/explorer){target=_blank} for the first time, you may or may not be connected to the desired network. You can change your selected network to the Moonbase Alpha TestNet by clicking the logo in the top left corner, then scroll down to the **Test Networks** section, select Moonbase Alpha, and scroll back to the top and click **Switch**. 
 
 ![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjs/polkadotjs-1.png)
 
@@ -25,54 +57,44 @@ After switching, the Polkadot.js site will not only connect to Moonbase Alpha, b
 
 ![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjs/polkadotjs-2.png)
 
-## Creating or Importing an H160 Account {: #creating-or-importing-an-h160-account } 
+## Adding a New Account to Talisman {: #adding-a-new-account-to-talisman } 
 
 In this section, you'll learn how you can create a new account, or import an already existing MetaMask account to Polkadot.js Apps.
 
-1. Navigate to the accounts section
-2. Click on the **Add account** button
+1. Open the Talisman extension and click on the Talisman logo in the upper left hand corner
+2. Select **Add Account** 
+3. Select **New Account**
+4. Select **Ethereum** as the account type
+5. Give your new account a name
+6. Press **Create**
 
-![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjs/polkadotjs-3.png)
+![Add Account in Talisman](/images/tokens/connect/polkadotjs/talisman-2c.png)
 
-This will open a wizard pop-up that will guide you through the process of adding an account to the Polkadot.js Apps interface.
+Although our new account has been successfully created, Polkadot.js Apps isn't aware of it yet. To connect the new account to Polkadot.js Apps, take the following steps from [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/explorer){target=_blank}: 
 
-1. Click on the drop-down menu 
-2. Change the selection from **Mnemonic** to **Private Key**, this allows you to add an account through a private key
+1. Open the Talisman extension and Press the **Connected / Not-connected** button
+2. Ensure **Show Eth accounts** is checked 
+3. Click on the account you'd like to connect. The green dot next to the account will light up if it is selected
 
-!!! note
-    Currently, you can only create or import accounts in Polkadot.js via a private key. Doing so with the mnemonic will result in a different public address if you later try to import this account to an Ethereum wallet such as MetaMask. This is because Polkadot.js uses BIP39, whereas Ethereum uses BIP32 or BIP44.
-
-![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjs/polkadotjs-4.png)
-
-Next, if you want to create a new account make sure you store the private key displayed by the wizard. If you want to import an existing account, enter your private key that you can export from MetaMask.
-
-!!! note
-    Never reveal your private keys as they give direct access to your funds. The steps in this guide are for demonstration purposes only. 
-    
-Make sure to include the prefix in the private key, i.e., `0x`. If you entered the information correctly, the corresponding public address should appear in the upper left corner of the window, and then click **Next**.
-
-![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjs/polkadotjs-5.png)
-
-To finish the wizard, you can set an account name and password. After a confirmation message, you should see in the main **Accounts** tab the address with the corresponding balance: in this case, Bob's address. Moreover, you can overlay the MetaMask extension to see that both balances are the same.
-
-![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjs/polkadotjs-6.png)
+![Connect Talisman Account to Polkadot.js Apps](/images/tokens/connect/polkadotjs/talisman-3.png)
 
 ## Sending a Transaction Through Substrate's API {: #sending-a-transaction-through-substrates-api } 
 
-Now, to demonstrate the potential of Moonbeam's [unified accounts](/learn/features/unified-accounts){target=_blank} scheme you can make a transfer through the Substrate API using Polkadot.js Apps. Remember that you are interacting with Substrate using an Ethereum-style H160 address. To do so, you can import another account.
+Now, to demonstrate the potential of Moonbeam's [unified accounts](/learn/features/unified-accounts){target=_blank} scheme you can make a transfer through the Substrate API using Polkadot.js Apps. Remember that you are interacting with Substrate using an Ethereum-style H160 address. To do so, you can [add another account](#adding-a-new-account-to-talisman). The accounts in Talisman have been renamed to the familiar Alice and Bob accounts. To send some DEV funds from Alice to Bob, take the following steps:
 
-Next, click on Bob's **send** button, which opens another wizard that guides you through the process of sending a transaction. 
+Click on Alice's **send** button, which opens another wizard that guides you through the process of sending a transaction. 
 
 1. Set the **send to address**
-2. Enter the **amount** to send, which for this example is 1 DEV token
+2. Enter the **amount** to send, which for this example is 4 DEV token
 3. When ready, click on the **Make Transfer** button
+4. Approve the transaction in the Talisman pop up
 
-![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjs/polkadotjs-7.png)
+![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjs/talisman-4.png)
 
-Then you'll be prompted to enter your password and sign and submit the transaction. Once the transaction is confirmed, you should see the balances updated for each account.
+After the transaction is confirmed, you should see the balances updated for each account.
 
-![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjs/polkadotjs-8.png)
+![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjs/talisman-5.png)
 
-And that is it! We are excited about being able to support H160 accounts in Polkadot.js Apps, as we believe this will greatly enhance the user experience in the Moonbeam Network and its Ethereum compatibility features.
+And that is it! These steps have demonstrated the ease coupled with the robust security of interacting with H160 accounts in Polkadot.js Apps with Talisman. All of this is possible because of Moonbeam's unified account structure, a great example of Moonbeam's commitment to providing the best user experience. 
 
 --8<-- 'text/disclaimers/third-party-content.md'

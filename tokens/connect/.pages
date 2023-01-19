@@ -4,5 +4,5 @@ nav:
   - ledger
   - 'MetaMask': 'metamask.md'
   - 'MathWallet': 'mathwallet.md'
-  - 'Polkadot.js Apps': 'polkadotjs.md'
+  - 'Polkadot.js & Talisman': 'polkadotjs.md'
   - 'Trezor': 'trezor.md'
