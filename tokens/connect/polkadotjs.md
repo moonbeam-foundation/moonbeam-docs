@@ -15,6 +15,9 @@ The Polkadot.js Apps interface was updated as well so that it natively supports 
 
 --8<-- 'text/disclaimers/third-party-content-intro.md'
 
+!!! note
+    Polkadot.js Apps is phasing out support for accounts stored locally in the browser's cache. Instead, it is recommended that you use a browser extension like [Talisman to inject your accounts into Polkadot.js Apps](/tokens/connect/talisman) 
+
 ## Connecting to Moonbase Alpha {: #connecting-to-moonbase-alpha } 
 
 First, you need to connect it to the Moonbase Alpha TestNet by clicking the logo in the top left corner, then scroll down to the **Test Networks** section, select Moonbase Alpha, and scroll back to the top and click **Switch**. 
@@ -27,9 +30,17 @@ After switching, the Polkadot.js site will not only connect to Moonbase Alpha, b
 
 ## Creating or Importing an H160 Account {: #creating-or-importing-an-h160-account } 
 
-In this section, you'll learn how you can create a new account, or import an already existing MetaMask account to Polkadot.js Apps.
+In this section, you'll learn how you can create a new account, or import an already existing MetaMask account to Polkadot.js Apps. First, there is one prerequisite step. As part of the process of phasing out support for accounts stored locally in the browser's cache, you'll need to enable support for local storage of accounts in the **Settings** tab. To do so, take the following steps:
 
-1. Navigate to the accounts section
+1. Navigate to the **Settings** Tab
+2. Select **Allow in-browser local account storage** under the **in-browser account storage** heading
+3. Press **Save**
+
+![Allow local in-browser account storage](/images/tokens/connect/polkadotjs/polkadotjs-9.png)
+
+You can now head back to the [Accounts page of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/accounts){target=_blank} and proceed with the next steps. 
+
+1. Navigate to the **Accounts** section
 2. Click on the **Add account** button
 
 ![Connect to Moonbase Alpha](/images/tokens/connect/polkadotjs/polkadotjs-3.png)
