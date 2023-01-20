@@ -471,6 +471,8 @@ You should see something like this as output:
 
 ![Running a Script in Foundry](/images/tutorials/foundry-start-to-end/foundry-5.png)
 
+You should be able to see that your contracts were deployed, and are verified on Moonscan! For example, this is where my [`Container.sol` contract was deployed](https://moonbase.moonscan.io/address/0xe8bf2e654d7c1c1ba8f55fed280ddd241e46ced9#code){target=_blank}.  
+
 The entire deployment script is [available on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/foundry-start-to-end/Container.s.sol){target=_blank}.  
 
 ### Deploying on Moonbeam MainNet {: #deploying-on-moonbeam-mainnet }
