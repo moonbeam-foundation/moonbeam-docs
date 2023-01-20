@@ -26,7 +26,7 @@ To get started, you will need the following:
  - Have [Foundry installed](https://book.getfoundry.sh/getting-started/installation){target=_blank}
  - Have a [Moonscan API Key](/builders/build/eth-api/verify-contracts/api-verification/#generating-a-moonscan-api-key){target=_blank}
 
-## Setup a Foundry Project {: #setup-a-foundry-project }
+## Create a Foundry Project {: #create-a-foundry-project }
 
 The first step to start a Foundry project is of course to create it. If you have Foundry installed, you can run:
 
@@ -74,9 +74,9 @@ moonbase = { key = "${MOONSCAN_API_KEY}" }
 moonbeam = { key = "${MOONSCAN_API_KEY}" }
 ```
 
-The first addition is a specification of the `solc_version`, underneath `profile.default`. The `rpc_endpoints` tag allows you to define which RPC endpoints to use when deploying to a named network, in this case, Moonbase Alpha. The `etherscan` tag allows you to add Etherscan API keys for smart contract verification, which we will go over later.  
+The first addition is a specification of the `solc_version`, underneath `profile.default`. The `rpc_endpoints` tag allows you to define which RPC endpoints to use when deploying to a named network, in this case, Moonbase Alpha and Moonbeam. The `etherscan` tag allows you to add Etherscan API keys for smart contract verification, which we will go over later.  
 
-## Writing Smart Contracts {: #writing-smart-contracts-in-foundry }
+## Adding Smart Contracts {: #adding-smart-contracts-in-foundry }
 
 Smart contracts in Foundry that are meant to be deployed by default belong in the `src` folder. In this tutorial, we'll write two smart contracts. Starting with the token:
 
@@ -165,7 +165,7 @@ The `Container` smart contract can have its status updated based on how many tok
 
 `Container` requires a `MyToken` smart contract instance to function, so when we deploy it, we will need logic to ensure that it is deployed with a `MyToken` smart contract.  
 
-## Testing in Foundry {: #testing-in-foundry }
+## Write Tests {: #write-tests }
 
 Before we deploy anything to a TestNet or MainNet, however, it's good to test your smart contracts. There are many types of tests:
 
