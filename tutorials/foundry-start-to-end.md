@@ -67,9 +67,11 @@ solc_version = '0.8.17'
 
 [rpc_endpoints]
 moonbase = "https://rpc.api.moonbase.moonbeam.network"
+moonbeam = "https://rpc.api.moobeam.network"
 
 [etherscan]
 moonbase = { key = "${MOONSCAN_API_KEY}" }
+moonbeam = { key = "${MOONSCAN_API_KEY}" }
 ```
 
 The first addition is a specification of the `solc_version`, underneath `profile.default`. The `rpc_endpoints` tag allows you to define which RPC endpoints to use when deploying to a named network, in this case, Moonbase Alpha. The `etherscan` tag allows you to add Etherscan API keys for smart contract verification, which we will go over later.  
@@ -470,5 +472,15 @@ You should see something like this as output:
 ![Running a Script in Foundry](/images/tutorials/foundry-start-to-end/foundry-5.png)
 
 The entire deployment script is [available on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/foundry-start-to-end/Container.s.sol){target=_blank}.  
+
+### Deploying on Moonbeam MainNet {: #deploying-on-moonbeam-mainnet }
+
+Let's say that you're comfortable with your smart contracts and you want to deploy on the Moonbeam MainNet! The process isn't too different from what was just done, you just have to change the command's rpc-url: 
+
+```
+forge script Container.s.sol:ContainerDeployScript --broadcast --verify -vvvv --rpc-url moonbeam
+```
+
+It's important to note that there are additional, albeit more complex, [ways of handling private keys in Foundry](https://book.getfoundry.sh/reference/forge/forge-script#wallet-options---raw){target=_blank}. Some of these methods can be considered safer than storing a production private key in environment variables.  
 
 That's it! You've gone from nothing to a fully tested, deployed, and verified Foundry project. You can now adapt this so that you can use Foundry in your own projects!
