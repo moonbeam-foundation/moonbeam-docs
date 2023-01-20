@@ -159,7 +159,9 @@ contract Container {
 }
 ```
 
-The `Container` smart contract can have its status updated based on how many tokens it holds. It requires a `MyToken` smart contract instance to function, so when we deploy it, we will need logic to ensure that it is deployed with a `MyToken` smart contract.  
+The `Container` smart contract can have its status updated based on how many tokens it holds and what its initial capacity value was set to. If the number of tokens it holds is above its capacity, its status can be updated to `Overflowing`. If it holds tokens equal to capacity, its status can be updated to `Full`. Otherwise, the contract will start and stay in the `Unsatisfied` state.  
+
+`Container` requires a `MyToken` smart contract instance to function, so when we deploy it, we will need logic to ensure that it is deployed with a `MyToken` smart contract.  
 
 ## Testing in Foundry {: #testing-in-foundry }
 
@@ -206,12 +208,6 @@ Let's break down what's happening here. The first line is typical for a Solidity
 
 If you take a look at the `MyTokenTest` smart contract, you'll see two functions. The first is `setUp`, which is run before each test. So in this test contract, a new instance of `MyToken` is deployed every time a test function is run. You know if a function is a test function if it starts with the word *"test"*, so the second function, `testConstructorMint` is a test function.  
 
-You can run the following test to see the result of the test:  
-
-```
-forge test
-```
-
 Great! Let's write some more tests, but for `Container`.  
 
 ```
@@ -257,13 +253,19 @@ contract ContainerTest is Test {
 }
 ```
 
-This test smart contract has two tests, so when running the tests, there will be two deployments of both `MyToken` and `Container`, for four smart contracts in total. When testing, you should see the following command:  
+This test smart contract has two tests, so when running the tests, there will be two deployments of both `MyToken` and `Container`, for four smart contracts in total. You can run the following command to see the result of the test:  
+
+```
+forge test
+```
+
+When testing, you should see the following output:  
 
 ![Unit Testing in Foundry](/images/tutorials/foundry-start-to-end/foundry-1.png)
 
 ### Test Harnesses in Foundry {: #test-harnesses-in-foundry }
 
-Sometimes you'll want to test an `internal` function in a smart contract. To do so, you'll have to write a test harness smart contract, which inherits from the smart contract and exposes the internal function as a public one.  
+Sometimes you'll want to unit test an `internal` function in a smart contract. To do so, you'll have to write a test harness smart contract, which inherits from the smart contract and exposes the internal function as a public one.  
 
 For example, in `Container`, there is an internal function named `_isOverflowing`, which checks to see if the smart contract has more tokens than its capacity. To test this, add the following test harness smart contract to the `Container.t.sol` file:  
 
@@ -350,7 +352,7 @@ Let's add a new test function to the `ContainerTest` smart contract in `Containe
 ```solidity
     // Fork tests in the Moonbase Alpha environment
     function testAlternateTokenOnMoonbaseFork() public {
-        // Creates and selects a fork
+        // Creates and selects a fork, returns a fork ID
         uint256 moonbaseFork = vm.createFork("moonbase");
         vm.selectFork(moonbaseFork);
         assertEq(vm.activeFork(), moonbaseFork);
