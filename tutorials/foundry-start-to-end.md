@@ -42,7 +42,7 @@ From here, there are a few things to do first before writing any code. First, we
 forge install OpenZeppelin/openzeppelin-contracts
 ```
 
-This will add the OpenZeppelin git submodule to your `lib` folder. To be sure that this dependency is mapped and to learn about Foundry's remappings system, you can override the mappings in a special file, `remappings.txt`:  
+This will add the OpenZeppelin git submodule to your `lib` folder. To be sure that this dependency is mapped, you can override the mappings in a special file, `remappings.txt`:  
 
 ```
 forge remappings > remappings.txt
@@ -107,7 +107,7 @@ contract MyToken is ERC20 {
 
 As you can see, the OpenZeppelin `ERC20` smart contract is imported by the mapping defined in `remappings.txt`.
 
-The second smart contract will depend on this token contract:  
+The second smart contract, which we'll name `Container.sol`, will depend on this token contract. It is a simple contract that holds the ERC-20 token we'll deploy. You can create the file by executing:  
 
 ```
 touch Container.sol
@@ -179,7 +179,9 @@ cd test
 touch MyToken.t.sol
 ```
 
-By convention, all of your tests should end with `.t.sol` and start with the name of the smart contract that it is testing. In practice, the test can be stored anywhere, and is considered a test if it has a function that starts with the word *"test"*. Let's start by writing a test for the token smart contract. Open up `MyToken.t.sol` and add:  
+By convention, all of your tests should end with `.t.sol` and start with the name of the smart contract that it is testing. In practice, the test can be stored anywhere, and is considered a test if it has a function that starts with the word *"test"*. 
+
+Let's start by writing a test for the token smart contract. Open up `MyToken.t.sol` and add:  
 
 ```solidity
 pragma solidity ^0.8.0;
@@ -343,7 +345,7 @@ In Foundry, you can locally fork a network so that you can test out how the cont
 !!! note
     Moonbeam's custom precompile smart contracts currently do not work in Foundry forks because precompiles are substrate based whereas typical smart contracts are completely based on the EVM. Learn more about [forking on Moonbeam](/builders/build/eth-api/dev-env/foundry#forking-with-anvil){target=_blank} and the [differences between Moonbeam and Ethereum](/builders/get-started/eth-compare){target=_blank}.
 
-In this tutorial, you will be testing out how your container smart contract interacts with an already deployed `MyToken` contract on Moonbase Alpha.  
+In this tutorial, you will be testing out how your `Container` smart contract interacts with an already deployed `MyToken` contract on Moonbase Alpha.  
 
 Let's add a new test function to the `ContainerTest` smart contract in `Container.t.sol` called `testAlternateTokenOnMoonbaseFork`:
 
@@ -369,7 +371,7 @@ Let's add a new test function to the `ContainerTest` smart contract in `Containe
     }
 ```
 
-The first step (and thus first line) in this function is to have the test function fork a network with `vm.createFork`. Recall that `vm` is a cheatcode provided by the Forge standard library. All that's necessary to create a fork is an RPC URL, or an alias for an RPC URL that's stored in the `foundry.toml` file. In this case, we added an RPC URL for "moonbase" in [the setup step](#setup-a-foundry-project), so in the test function we will just pass the word `"moonbase"`. This cheatcode function returns an ID for the fork created, which is necessary for activating the fork.  
+The first step (and thus first line) in this function is to have the test function fork a network with `vm.createFork`. Recall that `vm` is a cheatcode provided by the Forge standard library. All that's necessary to create a fork is an RPC URL, or an alias for an RPC URL that's stored in the `foundry.toml` file. In this case, we added an RPC URL for "moonbase" in [the setup step](#setup-a-foundry-project), so in the test function we will just pass the word `"moonbase"`. This cheatcode function returns an ID for the fork created, which is stored in an `uint256` and is necessary for activating the fork.  
 
 On the second line, after the fork has been created, the environment will select and use the fork in the test environment with `vm.selectFork`. The third line is just to demonstrate that the current fork, retrieved with `vm.activeFork`, is the same as the Moonbase Alpha fork.  
 
