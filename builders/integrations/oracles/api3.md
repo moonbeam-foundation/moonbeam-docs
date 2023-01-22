@@ -133,9 +133,9 @@ uint32 public timestamp;
         bytes32 _dapi
     )  external {
 
-        // Call the DapiServer contract for the value and timestamp of AVAX/USD on Moonbase Alpha(testnet).
+        // Call the DapiServer contract for the value and timestamp of ETH/USD on Moonbase Alpha(testnet).
         // _dapiServerContractAddress: 0xCC5005Bd08b8882c9A132C0067E7D3f79796C251
-        // _dapi: AVAX/USD - 0x415641582f555344000000000000000000000000000000000000000000000000
+        // _dapi: ETH/USD - 0x415641582f555344000000000000000000000000000000000000000000000000
         (value, timestamp) =
             IDapiServer(_dapiServerContractAddress).readDataFeedWithDapiName(_dapi);
     }
@@ -160,18 +160,18 @@ Deploy the contract and follow through with Metamask to confirm the transaction.
 
 ![API3 Remix deploy](/images/builders/integrations/oracles/api3/SS2.png)
 
-Because you are calling a dAPI on a testnet, a subscription for the dAPI AVAX/USD on Moonbase Alpha is not needed. However you will need to get permission for your smart contract to call the dAPI.
+Because you are calling a dAPI on a testnet, a subscription for the dAPI ETH/USD on Moonbase Alpha is not needed. However you will need to get permission for your smart contract to call the dAPI.
 
 Copy the address of the contract. Select copy icon to the right of the contract name, `MyContract.sol`.
 
-Go to the API3 Market page for [AVAX/USD on Moonbase Alpha➚](). Enter the contract address into the permissions widget to the right side of the page.
+Go to the API3 Market page for [ETH/USD on Moonbase Alpha➚](). Enter the contract address into the permissions widget to the right side of the page.
 
-Connect your wallet, click on Get Access and follow through Metamask to approve the transaction to grant permission to call the AVAX/USD dAPI for your Contract.
+Connect your wallet, click on Get Access and follow through Metamask to approve the transaction to grant permission to call the ETH/USD dAPI for your Contract.
 
 Go back to Remix and call the `callDapi()` function. It will require two parameters:
 - `_dapiServerContractAddress` - The contract address for the `DapiServer.sol` contract on Moonbase Alpha. Other network addresses for `DapiServer.sol` can be found below.
 
-- `_dapi` - A `bytes32` representation of AVAX/USD. Use `utils.formatBytes32String("AVAX/USD");` to get this encoded value. Try it in the [ethers playground➚]().
+- `_dapi` - A `bytes32` representation of ETH/USD. Use `utils.formatBytes32String("ETH/USD");` to get this encoded value. Try it in the [ethers playground➚]().
 
 After adding the parameters, click on `transact` and confirm the transaction on Metmamask.
 
@@ -189,7 +189,7 @@ After the call to `callDapi()` is complete, the `timestamp` and `value` contract
     |:-----------:|:-----------------------------------------------------:|
     | AirnodeRrpV0 | {{ networks.moonbeam.api3.rrp }} |
     | DapiServer | {{ networks.moonbeam.api3.rrp }} |
-    | AVAX/USD Price Feed | {{ networks.moonbeam.api3.rrp }} |
+    | ETH/USD Price Feed | {{ networks.moonbeam.api3.rrp }} |
 
 
 === "Moonriver"
@@ -197,7 +197,7 @@ After the call to `callDapi()` is complete, the `timestamp` and `value` contract
     |:------------:|:----------------------------------------------------:|
     | AirnodeRrpV0 | {{ networks.moonriver.api3.rrp }}  |
     | DapiServer | {{ networks.moonriver.api3.rrp }}  |
-    | AVAX/USD Price Feed | {{ networks.moonriver.api3.rrp }} |
+    | ETH/USD Price Feed | {{ networks.moonriver.api3.rrp }} |
 
 
 
@@ -206,7 +206,7 @@ After the call to `callDapi()` is complete, the `timestamp` and `value` contract
     |:------------:|:-----------------------------------------------------:|
     | AirnodeRrpV0  | {{ networks.moonbase.api3.rrp }}  |
     | DapiServer  | {{ networks.moonbase.api3.rrp }}  |
-    | AVAX/USD Price Feed | {{ networks.moonbase.api3.rrp }} |
+    | ETH/USD Price Feed | {{ networks.moonbase.api3.rrp }} |
 
 ## API3 QRNG
 
