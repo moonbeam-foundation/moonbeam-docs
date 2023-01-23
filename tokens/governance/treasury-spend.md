@@ -86,7 +86,7 @@ Then, take the following steps:
 
 ![Submitting a treasury spend proposal](/images/tokens/governance/treasury-proposals/treasury-proposal-3.png)
 
-After the submitting your treasury proposal, you can refresh Polkadot JS Apps and you should see your proposal listed. If you don't see your proposal appear here, your account may not have contained sufficient funds for the required bond. 
+After submitting your Treasury proposal, you can refresh Polkadot.js Apps and you should see your proposal listed. If you don't see your proposal appear here, your account may not have contained sufficient funds for the required bond. 
 
 Optionally, you can login now to [Polkassembly](https://moonbeam.polkassembly.network/){target=_blank} with the same account that you used to create the treasury spend proposal. Polkassembly auto-generates a post for each proposal, however, you'll likely want to edit the title and description to provide more context for community members. 
 
