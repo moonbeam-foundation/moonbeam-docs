@@ -9,22 +9,22 @@ description: Learn about the full lifecycle of a Treasury proposal from initial 
 
 ## Introduction {: #introduction } 
 
-As mentioned in the [Treasury overview page](/learn/features/governance/#definitions){target=_blank}, the Moonbeam Treasury is an on-chain collection of funds that was launched at the genesis of the network. The Treasury was pre-funded with 0.5% of the total token supply at network launch and has been steadily accumulating GLMR from a portion of transaction fees (approx. 20% of transaction fees go to the Treasury). The Moonbeam Treasury is intended to help fund key projects that help maintain and further the growth of the Moonbeam network.
+As mentioned in the [Treasury overview page](/learn/features/governance/#definitions){target=_blank}, the Moonbeam Treasury is an on-chain collection of funds that was launched at the genesis of the network. The Treasury was pre-funded with 0.5% of the total token supply at network launch and has been steadily accumulating GLMR from a portion of transaction fees (approx. {{ networks.moonbeam.treasury.tx_fees_allocated }}% of transaction fees go to the Treasury). The Moonbeam Treasury is intended to help fund key projects that help maintain and further the growth of the Moonbeam network.
 
-Moonbeam has adopted an interim [community Treasury program](https://github.com/moonbeam-foundation/treasury/blob/main/interim/interim_treasury_proposal.md){target=_blank}, which established a Treasury Council comprised of two Moonbeam foundation members and three non-foundation members. The Treasury Council facilitates community discussions on spending ideas and votes on spending proposals. The community Treasury program kicked off in October of 2022 with an initial duration of six months. At the end of the six-month period the program will be evaluated and considered alongside relevant [Gov2](https://moonbeam.network/blog/opengov/){target=_blank} changes. If initial budgeting parameters are maintained, the on-chain Treasury has sufficient funds to operate for a period of not less than four years. 
+Moonbeam has adopted an interim [community Treasury program](https://moonbeam.foundation/news/proposal-treasury-program-approved/){target=_blank}, which established a Treasury Council comprised of two Moonbeam foundation members and three non-foundation members. The Treasury Council facilitates community discussions on spending ideas and votes on spending proposals. The community Treasury program kicked off in October of 2022 with an initial duration of six months. At the end of the six-month period the program will be evaluated and considered alongside relevant [Gov2](https://moonbeam.network/blog/opengov/){target=_blank} changes. If initial budgeting parameters are maintained, the on-chain Treasury has sufficient funds to operate for a period of not less than four years. 
 
-It is extremely important that you understand the [process of the community Treasury program](https://github.com/moonbeam-foundation/treasury/blob/main/interim/interim_treasury_proposal.md){target=_blank} prior to initiating an on-chain Treasury proposal. The outlined process allows for revisions based on feedback provided by the Treasury Council. Thoughtful interation based on feedback from the Treasury Council can improve the chances of your Treasury spend proposal successfully passing. 
+It is extremely important that you understand the [process of the community Treasury program](https://github.com/moonbeam-foundation/treasury/blob/main/interim/interim_treasury_proposal.md){target=_blank} prior to initiating an on-chain Treasury proposal. The outlined process allows for revisions based on feedback provided by the Treasury Council. Thoughtful iteration based on feedback from the Treasury Council can improve the chances of your Treasury spend proposal successfully passing. 
 
 Creating a Treasury proposal differs from proposing other types of governance actions. This guide outlines the process of how to create a Treasury proposal. There is a separate guide on [How to Propose an Action](/tokens/governance/proposals/){target=_blank} which discusses proposing governance actions unrelated to the Treasury.
 
 !!! note
-    Proposing a Treasury spend is not a riskless action. Bonds may be locked for an indefinite period of time and the entirety of your bond is burned if your proposal is rejected. You should carefully consider these ramifications and proceed with raising a Treasury spend proposal only at the advice of the Treasury Council.
+    Proposing a Treasury spend is not a riskless action. Bonds may be locked for an indefinite period of time and the entirety of your bond is forfeited if your proposal is rejected. You should carefully consider these ramifications and proceed with raising a Treasury spend proposal only at the advice of the Treasury Council.
 
 ## Definitions {: #definitions } 
 
 Some of the key parameters for this guide are the following:
 
- - **Proposal Bond** — the percentage of proposed Treasury spend amount required to be submitted at the origination of the proposal. These tokens might be locked for an indeterminate amount of time because there is no guarantee the proposal will be acted upon. This bond is burned if the proposal is rejected but refunded if the proposal is passed
+ - **Proposal Bond** — the percentage of proposed Treasury spend amount required to be submitted at the origination of the proposal. These tokens might be locked for an indeterminate amount of time because there is no guarantee the proposal will be acted upon. This bond is transferred to the Treasury if the proposal is rejected but refunded if the proposal is passed
  - **Minimum Bond** — the minimum bond accepted with a proposed Treasury spend regardless of the amount of the Treasury spend. This minimum bond amount may render small Treasury proposal amounts infeasible
  - **Treasury address** — the address where Treasury funds accrue and are disbursed from
  - **Beneficiary** — the address, such as a [Moonbeam Safe multisig](/tokens/manage/multisig-safe/){target=_blank}, that will receive the funds of the Treasury proposal if enacted
@@ -37,7 +37,7 @@ Some of the key parameters for this guide are the following:
     |      Proposal Bond       | {{ networks.moonbeam.treasury.proposal_bond}}% of proposed spend  |
     |     Minimum Bond     |   {{ networks.moonbeam.treasury.proposal_bond_min}} GLMR |
     |     Spend Period     |   {{ networks.moonbeam.treasury.spend_period_days}} days |
-    |     Treasury Address     |   [0x6d6f646C70792f74727372790000000000000000](https://moonscan.io/address/0x6d6f646C70792f74727372790000000000000000){target=_blank} |
+    |     Treasury Address     |   [0x6d6f646C70792f74727372790000000000000000](https://moonbeam.subscan.io/account/0x6d6f646C70792f74727372790000000000000000){target=_blank} |
 
 === "Moonriver"
     |         Variable         |                                                           Value                                                           |
@@ -45,27 +45,28 @@ Some of the key parameters for this guide are the following:
     |      Proposal Bond       | {{ networks.moonriver.treasury.proposal_bond}}% of proposed spend  |
     |     Minimum Bond     |   {{ networks.moonriver.treasury.proposal_bond_min}} MOVR |
     |     Spend Period     |   {{ networks.moonriver.treasury.spend_period_days}} days |
-    |     Treasury Address     |   [0x6d6f646C70792f74727372790000000000000000](https://moonriver.moonscan.io/address/0x6d6f646C70792f74727372790000000000000000){target=_blank} |
+    |     Treasury Address     |   [0x6d6f646C70792f74727372790000000000000000](https://moonriver.subscan.io/account/0x6d6f646C70792f74727372790000000000000000){target=_blank} |
     
 === "Moonbase Alpha"
     |         Variable         |                                                          Value                                                          |
     |:------------------------:|:-----------------------------------------------------------------------------------------------------------------------:|
-    |      Proposal Bond       | {{ networks.moonbase.treasury.proposal_bond}}%  |
+    |      Proposal Bond       | {{ networks.moonbase.treasury.proposal_bond}}% of proposed spend  |
     |     Minimum Bond     |   {{ networks.moonbase.treasury.proposal_bond_min}} DEV |
     |     Spend Period     |   {{ networks.moonbase.treasury.spend_period_days}} days |
+    |     Treasury Address     |   [0x6d6f646C70792f74727372790000000000000000](https://moonbase.subscan.io/account/0x6d6F646c70632f74727372790000000000000000){target=_blank} |
 
 
 This guide will show you how to submit a proposal on Moonbase Alpha. It can be adapted for Moonbeam or Moonriver. In any case, it's recommended that you familiarize yourself with the steps of submitting a Treasury proposal on Moonbase Alpha or a local dev node before taking the steps on Moonbeam or Moonriver. 
 
 ## Roadmap of a Treasury Proposal {: #roadmap-of-a-treasury-proposal } 
 
-You can find a full explanation of the [happy path for a treasury proposal here](/learn/features/treasury/){target=_blank}. For more information on the process, see this [guide to the interim community Treasury program](https://github.com/moonbeam-foundation/Treasury/blob/main/interim/interim_treasury_proposal.md){target=_blank}.
+You can find a full explanation of the [happy path for a Treasury proposal on the Treasury overview page](/learn/features/treasury/){target=_blank}. For more information on the process, see this [guide to the interim community Treasury program](https://moonbeam.foundation/news/proposal-treasury-program-approved/){target=_blank}.
 
 ![Proposal Roadmap](/images/tokens/governance/treasury-proposals/treasury-proposal-roadmap.png)
 
 ## Submitting your Idea to the Forum {: #submitting-your-idea-to-the-forum }
 
-It's highly recommended that you preface any proposal with a post on [Moonbeam's Community Forum](https://forum.moonbeam.foundation/){target=_blank}. This especially important for Treasury proposals because of the irrevocable bond required to submit a Treasury spend proposal. You can submit your idea for a Treasury spend proposal by following [these instructions](https://moonbeam.network/blog/using-moonbeam-community-forum/){target=_blank}. 
+It's highly recommended that you preface any proposal with a post on [Moonbeam's Community Forum](https://forum.moonbeam.foundation/){target=_blank}. You should allow a period of five days for the community to provide feedback on the Moonbeam Forum post. This especially important for Treasury proposals because of the irrevocable bond required to submit a Treasury spend proposal. You can submit your idea for a Treasury spend proposal by following [the instructions in the Using the Moonbeam Community Forum to Submit a Treasury Proposal guide](https://moonbeam.network/blog/using-moonbeam-community-forum/){target=_blank}. 
 
 ![Moonbeam Forum Home](/images/tokens/governance/treasury-proposals/treasury-proposal-1.png)
 
@@ -73,7 +74,11 @@ It's highly recommended that you preface any proposal with a post on [Moonbeam's
 
 This guide focuses on the mechanics of submitting an on-chain Treasury proposal after you have worked with the Treasury Council to refine your idea. If you haven't yet completed the prior steps of the Treasury proposal process, please take a moment to review the [guidelines of the community Treasury program](https://github.com/moonbeam-foundation/treasury/blob/main/interim/interim_treasury_proposal.md){target=_blank} and evaluate your standing. Engaging the community and revising your proposal based on feedback received is the most critical piece of your proposal. Submitting the on-chain Treasury proposal is the easy part, demonstrated in the following guide. 
 
-To get started, head to the **Governance** section and click on **Treasury**. Then click **Submit Proposal**.
+To get started, head to [Polkadot JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/treasury){target=_blank} and take the following steps: 
+
+1. Select the **Governance** heading
+2. Click on **Treasury** 
+3. Click **Submit Proposal**
 
 ![Treasury home](/images/tokens/governance/treasury-proposals/treasury-proposal-2.png)
 
