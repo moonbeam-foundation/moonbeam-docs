@@ -29,7 +29,7 @@ Some of the key parameters for this guide are the following:
  - **Treasury address** — the address where treasury funds accrue and are disbursed from
  - **Beneficiary** — the address, such as a [Moonbeam Safe multisig](/tokens/manage/multisig-safe/){target=_blank}, that will receive the funds of the treasury proposal if enacted
  - **Value** — the amount that is being asked for and will be allocated to the beneficiary address if the treasury proposal is enacted
- - **Spend period** — The waiting period after a treasury proposal has been approved but before the funds have been disbursed to the beneficiary
+ - **Spend period** — the waiting period after a Treasury proposal has been approved, but before the funds have been disbursed to the beneficiary
 
 === "Moonbeam"
     |         Variable         |                                                          Value                                                          |
