@@ -81,7 +81,7 @@ Then, take the following steps:
 
 1. Select the account that will be the creator of the Treasury proposal. Make sure that the account selected here is sufficiently funded with your proposal bond
 2. Select the beneficiary of the proposal. This should correspond to the account indicated in your forum post.
-3. Indicate the value of the spend proposal. The required bond is {{ networks.moonbeam.Treasury.proposal_bond}}% of the proposal's value. The bond committed to a Treasury spend proposal is irrevocable. 
+3. Indicate the value of the spend proposal. The required bond is {{ networks.moonbeam.treasury.proposal_bond}}% of the proposal's value. The bond committed to a Treasury spend proposal is irrevocable. 
 4. Review each field for accuracy then press **Submit proposal** and sign the transaction
 
 ![Submitting a Treasury spend proposal](/images/tokens/governance/treasury-proposals/treasury-proposal-3.png)
