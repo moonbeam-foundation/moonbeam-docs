@@ -93,6 +93,8 @@ Then, take the following steps:
 
 After submitting your Treasury proposal, you can refresh Polkadot.js Apps and you should see your proposal listed. If you don't see your proposal appear here, your account may not have contained sufficient funds for the required bond. 
 
-Optionally, you can login now to [Polkassembly](https://moonbeam.polkassembly.network/){target=_blank} with the same account that you used to create the Treasury spend proposal. Polkassembly auto-generates a post for each proposal, however, you'll likely want to edit the title and description to provide more context for community members. 
+If you login to [Polkassembly](https://moonbeam.polkassembly.network/){target=_blank} with the same account that you used to create the Treasury spend proposal, you'll be able to edit the description of the proposal to include a link to the proposal discussion on the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=_blank}. This is a helpful step because while Polkassembly auto-generates a post for each proposal, it doesn't provide context information on the contents of the proposal. 
+
+After submitting the on-chain proposal, you’ll need to edit your proposal on the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=_blank}. You will need to update the title to include the proposal ID, and the status will need to be changed to `Submitted` state. The full instructions to edit your Moonbeam Community Forum post are available on [this guide to using the Moonbeam Community Forum](https://moonbeam.network/blog/using-moonbeam-community-forum/){target=_blank}.
 
 ![Polkassembly](/images/tokens/governance/treasury-proposals/treasury-proposal-4.png)
