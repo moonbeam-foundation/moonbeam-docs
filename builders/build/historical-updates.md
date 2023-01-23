@@ -448,7 +448,7 @@ There was a migration applied to the `TransactInfo` storage item of the XCM-tran
 
 - `max_weight` is added to prevent transactors from stalling the queue in the destination chain
 - Removes `fee_per_byte`, `metadata_size`, and `base_weight` as these items are not necessary for XCM transactions
-- `fee_per_second` replaces `fee_per_weight` to better reflect cases (like Kusama) in which the `fee_per_eight` unit is lower than one
+- `fee_per_second` replaces `fee_per_weight` to better reflect cases (like Kusama) in which the `fee_per_weight` unit is lower than one
 
 This migration was executed at the following runtimes and blocks:
 
