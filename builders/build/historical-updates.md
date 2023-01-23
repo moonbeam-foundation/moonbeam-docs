@@ -234,9 +234,7 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 There was a migration applied which moved preimages stored in the democracy pallet to a new preimage pallet. This migration on Moonbeam was required as a result of an [upstream change to Polkadot](https://github.com/paritytech/substrate/pull/11649){target=_blank}.
 
-As a result, any registered preimages in democracy at the time of migration were dropped and any associated balance was not unreserved. In addition, any proposals scheduled for dispatch by democracy at the time of migration were not executed.
-
-There was one preimage that was affected in Moonbeam, which was dropped from the scheduler queue and never executed: `0x14262a42aa6ccb3cae0a169b939ca5b185bc317bb7c449ca1741a0600008d306`.
+There was one preimage that was affected in Moonbeam, which was dropped from the scheduler queue and never executed: `0x14262a42aa6ccb3cae0a169b939ca5b185bc317bb7c449ca1741a0600008d306`. This preimage was [manually removed](https://moonbeam.subscan.io/extrinsic/2693398-8){target=_blank} by the account that initially submitted the preimage.
 
 This migration was executed at the following runtimes and blocks:
 
