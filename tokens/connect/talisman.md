@@ -21,7 +21,7 @@ This guide will include all of the steps for setting up an account in Talisman a
 
 Talisman is a crypto-wallet that natively supports Substrate (Polkadot) and Ethereum accounts. The Talisman wallet browser extension is available on Google Chrome, Brave and Firefox, and a corresponding asset dashboard is accessible at [app.talisman.xyz](https://app.talisman.xyz/){target=_blank}
 
-First, download and install the [Talisman extension](https://www.talisman.xyz/){target=_blank}. Once the extension opens up, you'll be prompted to either create a new wallet or import an existing one. For the purposes of this demo, we'll create a new wallet. On the following screen you'll be prompted to create a password to secure the new wallet.  
+First, download and install the [Talisman extension](https://www.talisman.xyz/){target=_blank}. Once the extension opens up, you'll be prompted to either create a new wallet or import an existing one. For the purposes of this demo, you'll create a new wallet. On the following screen you'll be prompted to create a password to secure the new wallet.  
 
 ![Talisman prompt to create new wallet or import existing one](/images/tokens/connect/talisman/talisman-1.png)
 
