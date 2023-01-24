@@ -3,6 +3,7 @@ nav:
   - index.md
   - 'Democracy': 'democracy.md'
   - 'Parachain Staking': 'staking.md'
+  - 'Preimage': 'preimage.md'
   - 'Proxy': 'proxy.md'
   - 'Randomness': 'randomness.md'
   - 'Utility': 'utility.md'

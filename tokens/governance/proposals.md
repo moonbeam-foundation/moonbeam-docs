@@ -65,7 +65,7 @@ This guide will show you how to submit a proposal on Moonbase Alpha. It can be a
 
 This section goes over the process of creating a proposal, from a preimage until it reaches public referenda. Instead of making a generic example, this guide will actually create a real proposal that will serve as a base for this guide and others.
 
-To make a proposal in the network, you need to use the Polkadot.js Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do following the [Creating or Importing an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=_blank} guide. For this example, three accounts were imported and named with super original names: Alice, Bob, and Charley.
+To make a proposal in the network, you need to use the Polkadot.js Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do following the [Creating or Importing an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=_blank} guide. For this example, three accounts were imported and named with super original names: Alice, Bob, and Charlie.
 
 ![Accounts in Polkadot.js](/images/tokens/governance/proposals/proposals-1.png)
 
@@ -75,9 +75,7 @@ This proposal is to make permanent on-chain the remark "This is a unique string.
 
 The first step is to submit a preimage of the proposal. This is because the storage cost of large preimages can be pretty hefty, as the preimage contains all the information regarding the proposal itself. With this configuration, one account with more funds can submit a preimage and another account can submit the proposal.
 
-Everything related to governance lives under the **Democracy** tab. Once there, click on the **Submit preimage** button.
-
-![Submit Preimage](/images/tokens/governance/proposals/proposals-2.png)
+Everything related to governance lives under the **Governance** tab, including preimages. So, from the **Governance** dropdown, you can select **Preimages**. Once there, click on the **Add preimage** button.
 
 Here, you need to provide the following information:
 
@@ -92,11 +90,11 @@ Here, you need to provide the following information:
 !!! note
     Make sure you copy the preimage hash, as it is necessary to submit the proposal.
 
-Note that the storage cost of the preimage is displayed at the bottom left corner of this window. After the transaction is submitted, you will see some confirmations on the top right corner of the Polkadot.js Apps interface, but nothing will have changed in the main democracy screen. However, don't worry. If the transaction is confirmed, the preimage has been submitted.
+Note that the storage cost of the preimage is displayed at the bottom left corner of this window. After the transaction is submitted, you will see some confirmations on the top right corner of the Polkadot.js Apps interface and the preimage will be added to the list of **preimages**.
 
 ### Submitting a Proposal {: #submitting-a-proposal } 
 
-Once you have committed the preimage (check the previous section), the roadmap's next major milestone is to submit the proposal related to it. To do so, in the main democracy screen, click on **Submit proposal**.
+Once you have committed the preimage (check the previous section), the roadmap's next major milestone is to submit the proposal related to it. To do so, select **Democracy** from the **Governance** dropdown, and click on **Submit proposal**.
 
 ![Submit proposal](/images/tokens/governance/proposals/proposals-4.png)
 
@@ -114,8 +112,6 @@ Here, you need to provide the following information:
 
 After the transaction is submitted, you will see some confirmations on the top right corner of the Polkadot.js Apps interface. You should also see the proposal listed in the **Proposals** section, displaying the proposer and the amounts of tokens locked, and it is now ready to be seconded!
 
-![Proposal listed](/images/tokens/governance/proposals/proposals-6.png)
-
 ### Seconding a Proposal {: #seconding-a-proposal } 
 
 To second a proposal means that you agree with it and want to back it up with your tokens to help it reach public referenda. The amount of tokens to be locked is equal to the proposer's original deposit - no more, no less.
@@ -123,22 +119,22 @@ To second a proposal means that you agree with it and want to back it up with yo
 !!! note
     A single account can second a proposal multiple times. This is by design, as an account could just send tokens to different addresses and use them to second the proposal. What counts is the number of tokens backing up a proposal, not the number of vouches it has received.
 
-This section outlines the steps to second the proposal made in the previous section. To do so, click the **Second** button that is located to the right of the respective proposal.
+This section outlines the steps to second the proposal made in the previous section. To do so, click the **Endorse** button that is located to the right of the respective proposal.
 
-![Proposal listed to Second](/images/tokens/governance/proposals/proposals-7.png)
+![Proposal listed to Second](/images/tokens/governance/proposals/proposals-6.png)
 
 Here, you need to provide the following information:
 
- 1. Select the account you want to second the proposal with (in this case, Charley)
+ 1. Select the account you want to second the proposal with (in this case, Charlie)
  2. Verify the number of tokens required to second the proposal
- 3. Click the **Second** button and sign the transaction
+ 3. Click the **Endorse** button and sign the transaction
 
-![Fill in Second Information](/images/tokens/governance/proposals/proposals-8.png)
+![Fill in Endorse Information](/images/tokens/governance/proposals/proposals-7.png)
 
 !!! note
     Tokens might be locked for an indeterminate amount of time because it is unknown when a proposal may become a referendum (if ever)
 
 After the transaction is submitted, you will see some confirmations on the top right corner of the Polkadot.js Apps interface. You should also see the proposal listed in the **Proposals** section, displaying the proposer and the amounts of tokens locked and listing the users that have seconded this proposal!
 
-![Proposal Seconded](/images/tokens/governance/proposals/proposals-9.png)
+![Proposal Endorsed](/images/tokens/governance/proposals/proposals-8.png)
 

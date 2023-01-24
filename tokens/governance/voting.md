@@ -76,7 +76,7 @@ This section goes over the process of voting on a referendum. The guide assumes 
 
 To vote on a proposal in the network, you need to use the Polkadot.js Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do by following the [Creating or Importing an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=_blank} guide. For this example, three accounts were imported and named with super original names: Alice, Bob, and Charley.
 
-![Accounts in Polkadot.js](/images/tokens/governance/proposals/proposals-1.png)
+![Accounts in Polkadot.js](/images/tokens/governance/voting/vote-1.png)
 
 The proposal being voted will embed the remark "This is a unique string." on chain permanently.
 
