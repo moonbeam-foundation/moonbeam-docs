@@ -1,5 +1,5 @@
 ---
-title: How to Propose a Treasury Spend on Moonbeam
+title: How to Propose a Treasury Spend
 description: Learn about the full lifecycle of a Treasury proposal from initial proposal on Moonbeam's Community forum to initiating the on-chain Treasury spend with a bond.
 ---
 
@@ -74,7 +74,7 @@ It's highly recommended that you preface any proposal with a post on [Moonbeam's
 
 This guide focuses on the mechanics of submitting an on-chain Treasury proposal after you have worked with the Treasury Council to refine your idea. If you haven't yet completed the prior steps of the Treasury proposal process, please take a moment to review the [guidelines of the community Treasury program](https://github.com/moonbeam-foundation/treasury/blob/main/interim/interim_treasury_proposal.md){target=_blank} and evaluate your standing. Engaging the community and revising your proposal based on feedback received is the most critical piece of your proposal. Submitting the on-chain Treasury proposal is the easy part, demonstrated in the following guide. 
 
-To get started, head to [Polkadot JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/treasury){target=_blank} and take the following steps: 
+To get started, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/treasury){target=_blank} and take the following steps: 
 
 1. Select the **Governance** heading
 2. Click on **Treasury** 
@@ -85,8 +85,8 @@ To get started, head to [Polkadot JS Apps](https://polkadot.js.org/apps/?rpc=wss
 Then, take the following steps:
 
 1. Select the account that will be the creator of the Treasury proposal. Make sure that the account selected here is sufficiently funded with your proposal bond
-2. Select the beneficiary of the proposal. This should correspond to the account indicated in your forum post.
-3. Indicate the value of the spend proposal. The required bond is {{ networks.moonbeam.treasury.proposal_bond}}% of the proposal's value. The bond committed to a Treasury spend proposal is irrevocable. 
+2. Select the beneficiary of the proposal. This should correspond to the account indicated in your forum post
+3. Indicate the value of the spend proposal. The required bond is {{ networks.moonbeam.treasury.proposal_bond}}% of the proposal's value. The bond committed to a Treasury spend proposal is irrevocable
 4. Review each field for accuracy then press **Submit proposal** and sign the transaction
 
 ![Submitting a Treasury spend proposal](/images/tokens/governance/treasury-proposals/treasury-proposal-3.png)
