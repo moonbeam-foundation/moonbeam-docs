@@ -18,7 +18,7 @@ In Moonbeam, users will be able to create, second, and vote on proposals using t
 More information related to [Governance](https://wiki.polkadot.network/docs/learn-governance){target=_blank} and [Participate in Democracy](https://wiki.polkadot.network/docs/maintain-guides-democracy){target=_blank} can be found in Polkadot's Wiki pages.
 
 !!! note
-    This page goes through the mechanics on how to vote at a more techincal level. Token holders can leverage platoforms such as [Polkassembly](https://moonbeam.network/tutorial/participate-in-moonbeam-governance-with-polkassembly/){target=_blank} to vote using a more friendly user interface. 
+    This page goes through the mechanics on how to vote at a more techincal level. Token holders can leverage platforms such as [Polkassembly](https://moonbeam.network/tutorial/participate-in-moonbeam-governance-with-polkassembly/){target=_blank} to vote using a more friendly user interface. 
 
 ## Definitions {: #definitions } 
 
@@ -55,6 +55,12 @@ Some of the key parameters for this guide are the following:
     |       Vote period       |  {{ networks.moonbase.democracy.vote_period.blocks}} blocks ({{ networks.moonbase.democracy.vote_period.days}} days)  |
 
 This guide will show you how to vote on a referendum on Moonbase Alpha. It can be adapted for Moonbeam or Moonriver.
+
+## An Important Prerequisite {: #an-important-prerequisite } 
+
+A vote on a democracy referenda is a binary outcome. However, a tokenholder's opinion is often more nuanced than yes/no, which is why it's strongly recommend that you preface any proposal with a post on [Moonbeam's Community Forum](https://forum.moonbeam.foundation/){target=_blank}. The forum serves the critical role of providing a platform for discussion and allowing proposers to receive feedback from the community prior to an on-chain action. Creating a post on the forum is quick and easy as shown in the [Using the Moonbeam Community Forum](https://moonbeam.network/blog/using-moonbeam-community-forum/){target=_blank} guide. There are categories corresponding to each type of proposal, including democracy, treasury, and grant proposals. While this step is optional, explaining the details of the proposal and following up with any questions raised may increase the chances of the initiative being accepted and subsequently passed by the community. 
+
+![Moonbeam's Community Forum home](/images/tokens/governance/voting/vote-15.png)
 
 ## Roadmap of a Proposal {: #roadmap-of-a-proposal } 
 
