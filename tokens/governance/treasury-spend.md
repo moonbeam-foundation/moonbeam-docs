@@ -5,7 +5,7 @@ description: Learn about the full lifecycle of a Treasury proposal from initial 
 
 # How to Propose a Treasury Spend
 
-![Governance Moonbeam Banner](/images/tokens/governance/Treasury-proposals/treasury-proposal-banner.png)
+![Governance Moonbeam Banner](/images/tokens/governance/treasury-proposals/treasury-proposal-banner.png)
 
 ## Introduction {: #introduction } 
 
