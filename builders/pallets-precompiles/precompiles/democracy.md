@@ -105,7 +105,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 
 ### Submit a Proposal {: #submit-a-proposal } 
 
-You can submit a proposal via the `propose` function of the [democracy precompile](https://github.com/PureStake/moonbeam/blob/master/precompiles/pallet-democracy/DemocracyInterface.sol){target=_blank} as long as you have the preimage hash of the proposal. But before a proposal can be submitted, you'll first need to submit the preimage by passing in the encoded proposal data to the `notePreimage` function.
+You can submit a proposal via the `propose` function of the [democracy precompile](https://github.com/PureStake/moonbeam/blob/master/precompiles/pallet-democracy/DemocracyInterface.sol){target=_blank} as long as you have the preimage hash of the proposal. But before a proposal can be submitted, you'll first need to submit the preimage by passing in the encoded proposal data to the `notePreimage` function, which now belongs to the [preimage pallet](/builders/pallets-precompiles/pallets/preimage){target=_blank}.
 
 In this section, you'll get the preimage hash and the encoded proposal data for a proposal. First, you can get the preimage hash by navigating to the **Governance** tab of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/democracy){target=_blank} and selecting **Preimages** from the dropdown. From the **Preimages** page, click on **+ Add preimage**, and take the following steps:
 
