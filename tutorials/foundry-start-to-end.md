@@ -395,6 +395,8 @@ That's it for testing! You can see the complete [`Container.t.sol` file](https:/
 
 Not only are tests in Foundry written in Solidity, the scripts are too! Like other developer environments, scripts can be written to help interact with deployed smart contracts or can help along a complex deployment process that would be difficult to do manually. Even though scripts are written in Solidity, they are never deployed to a chain. Instead, much of the logic is actually run off-chain, so don't worry about any additional gas costs for using Foundry instead of a JavaScript environment like HardHat.  
 
+### Deploy on Moonbase Alpha {: #deploy-on-moonbase-alpha }
+
 In this tutorial, we will be using Foundry's scripts to deploy both the `MyToken` and `Container` smart contracts. To create the deployment scripts, create a new file in the `script` folder:  
 
 ```
@@ -477,7 +479,7 @@ The entire deployment script is [available on GitHub](https://raw.githubusercont
 
 ### Deploy on Moonbeam MainNet {: #deploy-on-moonbeam-mainnet }
 
-Let's say that you're comfortable with your smart contracts and you want to deploy on the Moonbeam MainNet! The process isn't too different from what was just done, you just have to change the command's rpc-url: 
+Let's say that you're comfortable with your smart contracts and you want to deploy on the Moonbeam MainNet! The process isn't too different from what was just done, you just have to change the command's rpc-url from `moonbase` to `moonbeam`, since you've already added Moonbeam MainNet's information in the `foundry.toml` file: 
 
 ```
 forge script Container.s.sol:ContainerDeployScript --broadcast --verify -vvvv --rpc-url moonbeam
