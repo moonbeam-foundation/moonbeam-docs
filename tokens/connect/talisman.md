@@ -1,5 +1,5 @@
 ---
-title: Interact with Moonbeam using Talisman to Inject Accounts into Polkadot.js Apps
+title: Using Talisman with Polkadot JS Apps
 description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereum-standard H160 addresses and send transactions with Polkadot.js Apps and Talisman.
 ---
 
