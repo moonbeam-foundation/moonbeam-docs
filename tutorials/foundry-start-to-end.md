@@ -76,7 +76,7 @@ moonbeam = { key = "${MOONSCAN_API_KEY}" }
 
 The first addition is a specification of the `solc_version`, underneath `profile.default`. The `rpc_endpoints` tag allows you to define which RPC endpoints to use when deploying to a named network, in this case, Moonbase Alpha and Moonbeam. The `etherscan` tag allows you to add Etherscan API keys for smart contract verification, which we will go over later.  
 
-## Adding Smart Contracts {: #adding-smart-contracts-in-foundry }
+## Add Smart Contracts {: #add-smart-contracts-in-foundry }
 
 Smart contracts in Foundry that are meant to be deployed by default belong in the `src` folder. In this tutorial, we'll write two smart contracts. Starting with the token:
 
@@ -391,7 +391,7 @@ forge test --vvvv
 
 That's it for testing! You can see the complete [`Container.t.sol` file](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/foundry-start-to-end/Container.t.sol){target=_blank} and [`MyToken.t.sol` file](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/foundry-start-to-end/MyToken.t.sol){target=_blank} on GitHub.
 
-## Deploying in Foundry with Solidity Scripts {: #deploying-in-foundry-with-solidity-scripts }
+## Deploy in Foundry with Solidity Scripts {: #deploy-in-foundry-with-solidity-scripts }
 
 Not only are tests in Foundry written in Solidity, the scripts are too! Like other developer environments, scripts can be written to help interact with deployed smart contracts or can help along a complex deployment process that would be difficult to do manually. Even though scripts are written in Solidity, they are never deployed to a chain. Instead, much of the logic is actually run off-chain, so don't worry about any additional gas costs for using Foundry instead of a JavaScript environment like HardHat.  
 
@@ -475,7 +475,7 @@ You should be able to see that your contracts were deployed, and are verified on
 
 The entire deployment script is [available on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/foundry-start-to-end/Container.s.sol){target=_blank}.  
 
-### Deploying on Moonbeam MainNet {: #deploying-on-moonbeam-mainnet }
+### Deploy on Moonbeam MainNet {: #deploy-on-moonbeam-mainnet }
 
 Let's say that you're comfortable with your smart contracts and you want to deploy on the Moonbeam MainNet! The process isn't too different from what was just done, you just have to change the command's rpc-url: 
 
