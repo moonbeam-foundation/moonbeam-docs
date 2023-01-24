@@ -16,7 +16,7 @@ The Polkadot.js Apps interface was updated as well so that it natively supports 
 --8<-- 'text/disclaimers/third-party-content-intro.md'
 
 !!! note
-    Polkadot.js Apps is phasing out support for accounts stored locally in the browser's cache. Instead, it is recommended that you use a browser extension like [Talisman to inject your accounts into Polkadot.js Apps](/tokens/connect/talisman) 
+    Polkadot.js Apps is phasing out support for accounts stored locally in the browser's cache. Instead, it is recommended that you use a browser extension like [Talisman to inject your accounts into Polkadot.js Apps](/tokens/connect/talisman){target=_blank}. 
 
 ## Connecting to Moonbase Alpha {: #connecting-to-moonbase-alpha } 
 
