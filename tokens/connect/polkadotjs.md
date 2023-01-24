@@ -30,6 +30,9 @@ After switching, the Polkadot.js site will not only connect to Moonbase Alpha, b
 
 ## Creating or Importing an H160 Account {: #creating-or-importing-an-h160-account } 
 
+!!! note
+    For security purposes it is recommended that you do not locally store accounts in the browser. A more secure method is using a browser extension like [Talisman to inject your accounts into Polkadot.js Apps](/tokens/connect/talisman){target=_blank}.
+
 In this section, you'll learn how you can create a new account, or import an already existing MetaMask account to Polkadot.js Apps. First, there is one prerequisite step. As part of the process of phasing out support for accounts stored locally in the browser's cache, you'll need to enable support for local storage of accounts in the **Settings** tab. To do so, take the following steps:
 
 1. Navigate to the **Settings** tab
