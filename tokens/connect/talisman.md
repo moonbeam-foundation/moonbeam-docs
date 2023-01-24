@@ -37,6 +37,7 @@ To back up your newly created wallet, take the following steps:
 ![Talisman prompt to create new wallet or import existing one](/images/tokens/connect/talisman/talisman-2.png)
 
 ## Connecting Talisman to Polkadot.js Apps {: #connecting-talisman-to-polkadot.js-apps }
+
 Next, head to [Moonbase Alpha Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/accounts){target=_blank}. The Talisman extension will prompt you to select the accounts you'd like to use with Polkadot.js Apps. If it doesn't automatically pop up, you can open the Talisman extension and press the **Connected / Not Connected** button at the top. To configure Talisman to correctly interface with Moonbeam networks on Polkadot.js Apps, you should take the following steps:
 
 1. Check the box next to **Show Ethereum Accounts**
