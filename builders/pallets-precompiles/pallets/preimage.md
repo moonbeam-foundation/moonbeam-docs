@@ -23,7 +23,7 @@ This guide will provide an overview of the extrinsics, storage methods, and gett
 The preimage pallet provides the following extrinsics (functions):
 
 - **notePreimage**(encodedProposal) - registers a preimage for an upcoming proposal given the encoded preimage of a proposal. If the preimage was previously requested, no fees or deposits are taken for providing the preimage. Otherwise, a deposit is taken proportional to the size of the preimage. Emits a `Noted` event
-- **requestPreimage**(bytes) - requests a preimage be uploaded to the chain without paying any fees or deposits. If the preimage requests has already been provided on-chain, we unreserve any deposit a user may have paid, and take the control of the preimage out of their hands. Emits a `Requested` event
+- **requestPreimage**(bytes) - requests a preimage to be uploaded to the chain without paying any fees or deposits. If the preimage requests has already been provided on-chain by a user, their the related deposit is unreserved, and they no longer control the preimage. Emits a `Requested` event
 - **unnotePreimage**(hash) - clears an unrequested preimage from the runtime storage given the hash of the preimage to be removed. Emits a `Cleared` event
 - **unrequestPreimage**(hash) - clears a previously made request for a preimage. Emits a `Cleared` event
 
