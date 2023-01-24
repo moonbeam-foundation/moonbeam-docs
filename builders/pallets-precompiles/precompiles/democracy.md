@@ -45,7 +45,7 @@ The interface includes the following functions:
  - **ongoingReferendumInfo**(*uint256* refIndex) — read-only function that returns the details of the specified ongoing referendum in the form of a tuple that includes the following:
      - Block in which the referendum ended (*uint256*)
      - The proposal hash (*bytes32*)
-     - [The biasing mechanism](https://wiki.polkadot.network/docs/learn-governance#super-majority-approve){target=_blank} where 0 is SuperMajorityApprove, 1 is SuperMajorityAgainst, 2 is SimpleMajority (*uint256*)
+     - [The biasing mechanism](https://wiki.polkadot.network/docs/learn-governance#super-majority-approve){target=_blank} where 0 is `SuperMajorityApprove`, 1 is `SuperMajorityAgainst`, 2 is `SimpleMajority` (*uint256*)
      - The enactment delay period (*uint256*)
      - The total aye vote, including conviction (*uint256*)
      - The total nay note, including conviction (*uint256*)
@@ -107,7 +107,15 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 
 You can submit a proposal via the `propose` function of the [democracy precompile](https://github.com/PureStake/moonbeam/blob/master/precompiles/pallet-democracy/DemocracyInterface.sol){target=_blank} as long as you have the preimage hash of the proposal. But before a proposal can be submitted, you'll first need to submit the preimage by passing in the encoded proposal data to the `notePreimage` function, which now belongs to the [preimage pallet](/builders/pallets-precompiles/pallets/preimage){target=_blank}.
 
-In this section, you'll get the preimage hash and the encoded proposal data for a proposal. First, you can get the preimage hash by navigating to the **Governance** tab of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/democracy){target=_blank} and selecting **Preimages** from the dropdown. From the **Preimages** page, click on **+ Add preimage**, and take the following steps:
+In this section, you'll get the preimage hash and the encoded proposal data for a proposal. To get the preimage hash, you can:
+
+ 1. Navigate to the [**Governance** tab of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/democracy){target=_blank}
+ 2. Select **Preimages** from the dropdown
+ 3. From the **Preimages** page, click on **+ Add preimage**
+
+![Add a new preimage](/images/builders/pallets-precompiles/precompiles/democracy/democracy-4.png)
+
+Then take the following steps:
 
  1. Select an account (any account is fine because you're not submitting any transaction here)
  2. Choose the pallet you want to interact with and the dispatchable function (or action) to propose. The action you choose will determine the fields that need to fill in the following steps. In this example, it is the **system** pallet and the **remark** function
@@ -115,14 +123,14 @@ In this section, you'll get the preimage hash and the encoded proposal data for 
  4. Copy the preimage hash, which represents the proposal, and save it as it will be used in the following steps to submit the proposal via the democracy precompile
  5. Click the **Submit preimage** button but don't sign or confirm the transaction on the next page 
 
-![Get the proposal hash](/images/builders/pallets-precompiles/precompiles/democracy/democracy-4.png)
+![Get the proposal hash](/images/builders/pallets-precompiles/precompiles/democracy/democracy-5.png)
 
 On the next screen, take the following steps:
 
  1. Press the triangle icon to reveal the encoded proposal in bytes
  2. Copy the encoded proposal - you'll need this when calling the **notePreimage** function in a later step
 
-![Get the encoded proposal](/images/builders/pallets-precompiles/precompiles/democracy/democracy-5.png)
+![Get the encoded proposal](/images/builders/pallets-precompiles/precompiles/democracy/democracy-6.png)
 
 !!! note
      You should NOT sign and submit the transaction here. You will submit this information via the **notePreimage** function in the next step.  
@@ -144,7 +152,7 @@ Next you can call the `propose` function of the Solidity interface by taking the
 4. Enter the value in Wei of the tokens to bond. The minimum bond is {{ networks.moonbeam.democracy.min_deposit }} GLMR, {{ networks.moonriver.democracy.min_deposit }} MOVR, or {{ networks.moonbase.democracy.min_deposit }} DEV. For this example 4 DEV or `4000000000000000000` was entered
 5. Press **transact** and confirm the transaction in MetaMask
 
-![Call the propose function](/images/builders/pallets-precompiles/precompiles/democracy/democracy-6.png)
+![Call the propose function](/images/builders/pallets-precompiles/precompiles/democracy/democracy-8.png)
 
 After your transaction has been confirmed you can return to the **Democracy** section of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/democracy){target=_blank} to see your proposal listed in the proposal queue.
 
@@ -160,7 +168,7 @@ First, you'll need to gather some information about the proposal you wish to sec
 4. Take note of the proposal number - this is the first parameter you'll need
 5. Take note of the number of existing seconds. If there are none, this space will be empty
 
-![Get the proposal information](/images/builders/pallets-precompiles/precompiles/democracy/democracy-8.png)
+![Get the proposal information](/images/builders/pallets-precompiles/precompiles/democracy/democracy-9.png)
 
 Now, you're ready to return to Remix to second the proposal via the democracy precompile. To do so, take the following steps:
 
@@ -172,7 +180,7 @@ Now, you're ready to return to Remix to second the proposal via the democracy pr
 
 And that's it! To review your seconded proposal, you can revisit [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/democracy){target=_blank} and look for your account in the list of seconds.  
 
-![Second via the precompile](/images/builders/pallets-precompiles/precompiles/democracy/democracy-9.png)
+![Second via the precompile](/images/builders/pallets-precompiles/precompiles/democracy/democracy-10.png)
 
 !!! note
     Proposal index numbers are not the same as referendum index numbers. When a proposal moves to referendum status, it will be assigned a new referendum index number.  
@@ -188,7 +196,7 @@ First, you'll need to get the index of the referendum you wish to vote on. Remem
 3. Look for the **Referenda** section and click on the triangle icon to see more details about a referendum. If there is no triangle icon, this means that only a proposal hash, and no preimage has been submitted for the proposal
 4. Take note of the referendum index
 
-![Get the referendum index](/images/builders/pallets-precompiles/precompiles/democracy/democracy-10.png)
+![Get the referendum index](/images/builders/pallets-precompiles/precompiles/democracy/democracy-11.png)
 
 Now, you're ready to return to Remix to vote on the referendum via the democracy precompile. To do so, take the following steps:
 
@@ -200,6 +208,6 @@ Now, you're ready to return to Remix to vote on the referendum via the democracy
 6. Enter a conviction between 0-6 inclusive that represents the desired lock period for the tokens committed to the vote, where 0 represents no lock period and 6 represents the maximum lock period. For more information on lock periods, see [voting on a proposal](/tokens/governance/voting/){target=_blank}
 7. Press **transact** and confirm the transaction in MetaMask
 
-![Call the vote function](/images/builders/pallets-precompiles/precompiles/democracy/democracy-11.png)
+![Call the vote function](/images/builders/pallets-precompiles/precompiles/democracy/democracy-12.png)
 
 And that's it! You've completed your introduction to the democracy precompile. There are a few more functions that are documented in [`DemocracyInterface.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/pallet-democracy/DemocracyInterface.sol){target=_blank} — feel free to reach out on [Discord](https://discord.gg/moonbeam){target=_blank} if you have any questions about those functions or any other aspect of the democracy precompile.

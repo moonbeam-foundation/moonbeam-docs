@@ -67,7 +67,7 @@ This section goes over the process of creating a proposal, from a preimage until
 
 To make a proposal in the network, you need to use the Polkadot.js Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do following the [Creating or Importing an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=_blank} guide. For this example, three accounts were imported and named with super original names: Alice, Bob, and Charlie.
 
-![Accounts in Polkadot.js](/images/tokens/governance/proposals/new/proposals-1.png)
+![Accounts in Polkadot.js](/images/tokens/governance/proposals/proposals-1.png)
 
 This proposal is to make permanent on-chain the remark "This is a unique string."
 
@@ -85,7 +85,7 @@ Here, you need to provide the following information:
  4. Copy the preimage hash. This represents the proposal. You will use this hash when submitting the actual proposal
  5. Click the **Submit preimage** button and sign the transaction
 
-![Fill in the Preimage Information](/images/tokens/governance/proposals/new/proposals-3.png)
+![Fill in the Preimage Information](/images/tokens/governance/proposals/proposals-3.png)
 
 !!! note
     Make sure you copy the preimage hash, as it is necessary to submit the proposal.
@@ -96,7 +96,7 @@ Note that the storage cost of the preimage is displayed at the bottom left corne
 
 Once you have committed the preimage (check the previous section), the roadmap's next major milestone is to submit the proposal related to it. To do so, select **Democracy** from the **Governance** dropdown, and click on **Submit proposal**.
 
-![Submit proposal](/images/tokens/governance/proposals/new/proposals-4.png)
+![Submit proposal](/images/tokens/governance/proposals/proposals-4.png)
 
 Here, you need to provide the following information:
 
@@ -105,7 +105,7 @@ Here, you need to provide the following information:
  3. Set the locked balance. This is the number of tokens the proposer bonds with his proposal. Remember that the proposal with the most amount of tokens locked goes to referendum. The minimum deposit is displayed just below this input tab
  4. Click the **Submit proposal** button and sign the transaction
 
-![Fill in the Proposal Information](/images/tokens/governance/proposals/new/proposals-5.png)
+![Fill in the Proposal Information](/images/tokens/governance/proposals/proposals-5.png)
 
 !!! note
     Tokens might be locked for an indeterminate amount of time because it is unknown when a proposal may become a referendum (if ever).
@@ -121,7 +121,7 @@ To second a proposal means that you agree with it and want to back it up with yo
 
 This section outlines the steps to second the proposal made in the previous section. To do so, click the **Endorse** button that is located to the right of the respective proposal.
 
-![Proposal listed to Second](/images/tokens/governance/proposals/new/proposals-6.png)
+![Proposal listed to Second](/images/tokens/governance/proposals/proposals-6.png)
 
 Here, you need to provide the following information:
 
@@ -129,12 +129,12 @@ Here, you need to provide the following information:
  2. Verify the number of tokens required to second the proposal
  3. Click the **Endorse** button and sign the transaction
 
-![Fill in Endorse Information](/images/tokens/governance/proposals/new/proposals-7.png)
+![Fill in Endorse Information](/images/tokens/governance/proposals/proposals-7.png)
 
 !!! note
     Tokens might be locked for an indeterminate amount of time because it is unknown when a proposal may become a referendum (if ever)
 
 After the transaction is submitted, you will see some confirmations on the top right corner of the Polkadot.js Apps interface. You should also see the proposal listed in the **Proposals** section, displaying the proposer and the amounts of tokens locked and listing the users that have seconded this proposal!
 
-![Proposal Endorsed](/images/tokens/governance/proposals/new/proposals-8.png)
+![Proposal Endorsed](/images/tokens/governance/proposals/proposals-8.png)
 

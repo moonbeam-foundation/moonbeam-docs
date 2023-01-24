@@ -12,7 +12,7 @@ keywords: democracy, substrate, pallet, moonbeam, polkadot, preimage
 
 The preimage pallet allows for the users and the runtime to store the preimage of a hash on chain. This can be used by other pallets for storing and managing large byte-blobs. For example, token holders can submit a democracy proposal through the democracy pallet using a preimage hash. 
 
-Some of the functionality of the preimage pallet is also available through the democracy precompile. The precompile is a Solidity interface that enables you to perform governance functions using the Ethereum API. Please refer to the [Democracy Precompile](/builders/pallets-precompiles/precompiles/democracy){target=_blank} guide for more information.
+Some of the functionality of the preimage pallet is also available through the democracy precompile. The precompile is a Solidity interface that enables you to perform governance functions using the Ethereum API. Please refer to the [Democracy Precompile](/builders/pallets-precompiles/precompiles/democracy){target=_blank} guide for more information. Please note that there will be a new preimage precompile with the release of runtime 2100, but in the meantime, the corresponding preimage methods are available through the democracy precompile.
 
 This guide will provide an overview of the extrinsics, storage methods, and getters for the pallet constants available in the preimage pallet on Moonbeam.
 
