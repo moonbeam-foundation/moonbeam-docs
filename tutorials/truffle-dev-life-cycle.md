@@ -3,7 +3,7 @@ title: Contract Development Life Cycle with Truffle
 description: Learn how to develop, test, and deploy smart contracts with Truffle and how to take your contracts from a local development node to Moonbeam MainNet.
 ---
 
-# Smart Contract Development: From a Local Moonbeam Development Node to Moonbeam MainNet
+# Smart Contract Development: From a Local Development Node to Moonbeam MainNet
 
 ![Banner Image](/images/tutorials/truffle-dev-life-cycle/truffle-banner.png)
 
@@ -13,7 +13,7 @@ _January 10, 2022 | by Erin Shaben_
 
 For this tutorial, we'll be going through the smart contract development life cycle with [Truffle](/builders/build/eth-api/dev-env/truffle){target=_blank}. As we're starting to develop our contracts, we'll use a [Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev){target=_blank} so we can quickly iterate on our code as we build it and test it. Then we'll progress to using the [Moonbase Alpha TestNet](/builders/get-started/networks/moonbase){target=_blank} so we can test our contracts on a live network with tokens that do not hold any real value, so we don't have to worry about paying for any mistakes. Finally, once we feel confident in our code, we'll deploy our contracts to [Moonbeam MainNet](/builders/get-started/networks/moonbeam){target=_blank}.
 
-For the purposes of this tutorial, we'll create a simple NFT marketplace to list and sell a NFT collection that we'll call Dizzy Dragons. We'll create two contracts in our Truffle project: the NFT marketplace contract where we'll list the Dizzy Dragon NFTs and a Dizzy Dragons contract that we'll use to mint the NFTs. Then we'll use Truffle's built-in testing features to test our contracts and ensure they work as expected before deploying them to each network. 
+For the purposes of this tutorial, we'll create a simple NFT marketplace to list and sell a NFT collection that we'll call Dizzy Dragons. We'll create two contracts in our Truffle project: the NFT marketplace contract where we'll list the Dizzy Dragon NFTs and a Dizzy Dragons contract that we'll use to mint the NFTs. Then we'll use Truffle's built-in testing features to test our contracts and ensure they work as expected before deploying them to each network. **Please note that the contracts we'll be creating today are for educational purposes and should not be used in a production environment**.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
@@ -23,6 +23,7 @@ For this tutorial, you'll need the following:
 - An account funded with DEV tokens to be used on the Moonbase Alpha TestNet and GLMR tokens to be used on Moonbeam MainNet.
   --8<-- 'text/faucet/faucet-list-item.md'
 - Your own endpoint and API key for Moonbeam, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=_blank}
+- To [generate a Moonscan API key](https://docs.moonbeam.network/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank} that will be used to verify our contracts
 
 ## Create a Truffle Project {: #create-a-truffle-project }
 
@@ -30,7 +31,10 @@ To quickly get started with Truffle, we're going to use the [Moonbeam Truffle Bo
 
 The Moonbeam Truffle Box comes pre-configured for a local Moonbeam development node and Moonbase Alpha. We'll need to add support for Moonbeam so when we're ready to deploy our contracts to MainNet, we'll be all set!
 
-It also comes with a couple of plugins: the [Moonbeam Truffle plugin](https://github.com/purestake/moonbeam-truffle-plugin){target=_blank} and the [Truffle verify plugin](https://github.com/rkalis/truffle-plugin-verify){target=_blank}. The Moonbeam Truffle plugin will help us quickly get started with a local Moonbeam development node. The Truffle verify plugin will allow us to verify our smart contracts directly from within our Truffle project.
+It also comes with a couple of plugins: the [Moonbeam Truffle plugin](https://github.com/purestake/moonbeam-truffle-plugin){target=_blank} and the [Truffle verify plugin](https://github.com/rkalis/truffle-plugin-verify){target=_blank}. The Moonbeam Truffle plugin will help us quickly get started with a local Moonbeam development node. The Truffle verify plugin will allow us to verify our smart contracts directly from within our Truffle project. We'll just need to configure a Moonscan API key to be able to use the Truffle verify plugin!
+
+!!! note
+    If you haven't done so already, you can follow the instructions to [generate a Moonscan API key](https://docs.moonbeam.network/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank}. Your Moonbeam Moonscan API key will also work on Moonbase Alpha, but if you want to deploy to Moonriver, you will need a [Moonriver Moonscan](https://moonriver.moonscan.io/){target=_blank} API key.
 
 Without further ado, let's create our project:
 
@@ -55,20 +59,28 @@ Without further ado, let's create our project:
     npm install
     ```
 
-3. Open the `truffle-config.js` file, where you'll find the network configurations for a local development node and Moonbase Alpha. We'll need to add the Moonbeam configurations here:
+3. Open the `truffle-config.js` file, where you'll find the network configurations for a local development node and Moonbase Alpha. You'll need to add the Moonbeam configurations and your Moonscan API key here:
 
     ```
     ...
-    moonbeam: {
-      provider: () => {
-        ...
-        return new HDWalletProvider(
-          'PRIVATE-KEY-HERE',  // Insert your private key here
-          '{{ networks.moonbeam.rpc_url }}' // Insert your RPC URL here
-        )
+    networks: {
+      ...
+      moonbeam: {
+        provider: () => {
+          ...
+          return new HDWalletProvider(
+            "PRIVATE-KEY-HERE",  // Insert your private key here
+            "{{ networks.moonbeam.rpc_url }}" // Insert your RPC URL here
+          )
+        },
+        network_id: {{ networks.moonbeam.chain_id }} // (hex: {{ networks.moonbeam.hex_chain_id }}),
       },
-      network_id: {{ networks.moonbeam.chain_id }} (hex: {{ networks.moonbeam.hex_chain_id }}),
     },
+    ...
+    api_keys: {
+      moonscan: "MOONSCAN-API-KEY-HERE"
+    },
+    ...
     ```
 
 Now we should have a Truffle project that is configured for each of the networks we'll be deploying smart contracts to in this guide.
@@ -79,7 +91,15 @@ For the sake of this guide, we can remove the `MyToken.sol` contract and the ass
 rm contracts/MyToken.sol test/test_MyToken.js
 ```
 
-## Add Simple NFT Marketplace Contract {: #example-nft-marketplace-contract }
+## Contract Setup {: #contract-setup }
+
+The contracts in the following sections import contracts from [OpenZeppelin](https://www.openzeppelin.com/contracts){target=_blank}. If you followed the steps in the [Create a Truffle Project](#create-a-truffle-project) section, the Moonbeam Truffle box comes with the `openzeppelin/contracts` dependency already installed. If you created your project a different way, you'll need to install the dependency yourself. You can do so using the following command:
+
+```
+npm i @openzeppelin/contracts
+```
+
+### Add Simple NFT Marketplace Contract {: #example-nft-marketplace-contract }
 
 As the goal is to go over the development life cycle, let's start off with a simple NFT marketplace contract with minimal functionality. We'll create this marketplace specifically for our new Dizzy Dragons NFT collection. 
 
@@ -94,6 +114,7 @@ touch contracts/NftMarketplace.sol
 In the `NftMarketplace.sol` file, we'll add the following example contract:
 
 ```Solidity
+// Inspired by https://github.com/PatrickAlphaC/hardhat-nft-marketplace-fcc/blob/main/contracts/NftMarketplace.sol
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.7;
 
@@ -187,7 +208,7 @@ contract NftMarketplace is ReentrancyGuard {
 !!! challenge
     Try to create a `getListing` function that, given the address of an NFT and its token ID, returns the listing.
 
-## Add NFT Contract {: #add-nft-contract }
+### Add NFT Contract {: #add-nft-contract }
 
 In order to test our NFT Marketplace contract, we'll need to mint a Dizzy Dragon NFT. To do so, we'll create a simple NFT contract named `DizzyDragons.sol`:
 
@@ -211,7 +232,7 @@ contract DizzyDragons is ERC721URIStorage {
   
   address nftMarketplace;
 
-  event NFTMinted(uint256);
+  event NftMinted(uint256);
 
   constructor(address _nftMarketplace) ERC721("DizzyDragons", "DDRGN") {
     nftMarketplace = _nftMarketplace;
@@ -227,18 +248,49 @@ contract DizzyDragons is ERC721URIStorage {
     _setTokenURI(newTokenId, _tokenURI);
     // Approve the NFT marketplace to transfer the NFT
     approve(nftMarketplace, newTokenId);
-    emit NFTMinted(newTokenId);
+    emit NftMinted(newTokenId);
   }
 }
+```
+
+### Compile the Contracts {: #compile-contracts }
+
+Now that we have created our contracts, we can go ahead and compile them, which will automatically generate artifacts for each contract. We'll use the artifacts later on when we're writing our tests and deploying our contracts. 
+
+To compile our contracts, we can run the following command:
+
+```
+npx truffle compile
+```
+
+![Run Truffle compile](/images/tutorials/truffle-dev-life-cycle/truffle-1.png)
+
+The artifacts will be written to the `build/contracts` directory.
+
+### Setup Deployment Script {: #setup-deployment-script }
+
+Let's update the deployment migratio script so that later on we can jump straight into deploying our contracts. We'll deploy the `NftMarketplace` contract followed by the `DizzyDragons` contract, as we'll need to pass in the address of the marketplace to the constructor of the `DizzyDragons` contract. 
+
+To update the deployment script, open up the `migrations/2_deploy_contracts.js` migration file and replace it with the following:
+
+```js
+var NftMarketplace = artifacts.require("NftMarketplace");
+var DizzyDragons = artifacts.require("DizzyDragons");
+
+module.exports = async function (deployer) {
+  // Deploy the NFT Marketplace
+  await deployer.deploy(NftMarketplace);
+  const nftMarketplace = await NftMarketplace.deployed();
+  // Deploy the Dizzy Dragons contract
+  await deployer.deploy(DizzyDragons, nftMarketplace.address);
+};
 ```
 
 ## Start up the Development Node {: #start-development-node }
 
 Before we jump into writing our tests, let's take some time now to start up our develpoment node so that we can run our tests against it.
 
-Since the Moonbeam Truffle box comes with the Moonbeam Truffle plugin, starting up a development node is a breeze.
-
-You'll need to install the latest Docker image by running:
+Since the Moonbeam Truffle box comes with the Moonbeam Truffle plugin, starting up a development node is a breeze. All you need is to have [Docker installed](https://docs.docker.com/get-docker/){target=_blank}. If you are all set with Docker, you need to fetch the latest Moonbeam Docker image by running:
 
 ```
 npx truffle run moonbeam install
@@ -252,9 +304,7 @@ npx truffle run moonbeam start
 
 Once your node has been successfully started, you should see the following output in your terminal:
 
-```
-Node has started - Endpoits: HTTP http://127.0.0.1:9933 WS ws://127.0.0.1:9944 - Container ID
-```
+![Install and spin up a Moonbeam development node](/images/tutorials/truffle-dev-life-cycle/truffle-2.png)
 
 You can check out all of the available commands in the [Using the Moonbeam Truffle Plugin to Run a Node](/builders/build/eth-api/dev-env/truffle/#using-the-moonbeam-truffle-plugin-to-run-a-node){target=_blank} section of our Truffle docs. 
 
@@ -272,16 +322,10 @@ Truffle also makes testing easier by including a `web3` instance in each test fi
 
 ### Test Setup {: #test-setup }
 
-Before getting started, we'll need to generate artifacts for our contract, which will be used in our tests. We can run the following command:
+To get started with our tests, we can add our test file, which will start with `test_` to indicate that it's a test file:
 
 ```
-npx truffle compile
-```
-
-The artifacts will be written to the `build/contracts` directory. Next, we can add our test file, which will start with `test_` to indicate that it's a test file:
-
-```
-touch test test_NftMarketplace.js
+touch test/test_NftMarketplace.js
 ```
 
 Now that we can set up our test file, let's take a minute to review what we'll need to do next:
@@ -289,7 +333,11 @@ Now that we can set up our test file, let's take a minute to review what we'll n
 - Import the artifacts for the `NftMarketplace` and `DizzyDragons` contracts using Truffle's `artifacts.require()`, which provides an abstraction instance of a contract
 - Create a `contract` function to group our tests. The `contract` function will also provide us with our account we have setup in our `truffle-config.js` file. As we used the Moonbeam Truffle box, our development account has been set up for us. When we move on to deploy and test our contracts on Moonbase Alpha and Moonbeam, we'll need to configure our accounts
 - For each test, we're going to need to deploy our contracts and mint an NFT. To do this, we can take advantage of the [`beforeEach` hook provided by Mocha](https://mochajs.org/#hooks){target=_blank}
-- As we'll be minting an NFT for each test, we'll need to have a `tokenUri`. The `tokenUri` that we'll use for our examples will be for Daizy, our first Dizzy Dragon NFT. The `tokenUri` will be set to `"https://gateway.pinata.cloud/ipfs/QmTCib5LvSrb7sshLhLvzmV7wdSdmSt3yjB4dqQaA58Td9"`
+- As we'll be minting an NFT for each test, we'll need to have a `tokenUri`. The `tokenUri` that we'll use for our examples will be for Daizy, our first Dizzy Dragon NFT. The `tokenUri` will be set to `"https://gateway.pinata.cloud/ipfs/QmTCib5LvSrb7sshLhLvzmV7wdSdmSt3yjB4dqQaA58Td9"`, which was created specifically for this tutorial and is for educational purposes only 
+
+You can enter the `tokenUri` into your web browser to view the metadata for Daizy and the [image for Daizy](https://gateway.pinata.cloud/ipfs/QmTzmrRb6TmEsP96dCoBv2kjdiCiojagBU7YJ95RaAuuF4?_gl=1*m58ja2*_ga*ODc3ODA3MjcwLjE2NzQ2NjQ2ODY.*_ga_5RMPXG14TE*MTY3NDY2NDY4Ni4xLjEuMTY3NDY2NDcwMi40NC4wLjA.){target=_blank} has also been pinned so you can easily see what Daizy looks like!
+
+![Daizy NFT metadata and image](/images/tutorials/truffle-dev-life-cycle/truffle-3.png)
 
 So, now that we have a game plan, let's implement it! In the `test_NftMarketplace.js` file, we can add the following code:
 
@@ -324,23 +372,45 @@ Now we're ready to start writing our tests!
 
 ### Test Minting NFTs {: #test-minting-nfts }
 
-For our first test, let's make sure that we are minting our new Dizzy Dragon NFT as expected. We'll use the event logs from the transaction to ensure that the `NftMinted` event of the `DizzyDragons` contract has been emitted. We'll also test that the token ID of the NFT is `1`, as we are deploying the `DizzyDragons` contract fresh before each test, so it should always be the first NFT minted.
+For our first test, let's make sure that we are minting our new Dizzy Dragon NFT as expected. We'll use the event logs from the transaction to ensure that the `NftMinted` event of the `DizzyDragons` contract has been emitted. The event logs will return the arguments passed to the `NftMinted` event, which will be the token ID:
+
+```sol
+event NftMinted(uint256);
+```
+
+The JavaScript event logs for the minting transaction will resemble the following:
+
+```js
+{
+  ...
+  event: 'NftMinted',
+  args: {
+    '0': BN // Token ID
+  }
+}
+```
+
+We'll need to convert the BN to a number using `toNumber()` and then we can also test that the token ID of the NFT is `1`. Since we are deploying the `DizzyDragons` contract fresh before each test, it should always be the first NFT minted.
 
 In place of the `// TODO: Add tests here` comment, you can add the following test:
 
 ```js
   it("should mint a new Dizzy Dragon NFT", async () => {
-      // Access the logs of the mint transaction
-      // Remember: mintedNft was created in the beforeEach function
-      const nftMintedLog = mintedNft.logs[2];
+    // Access the logs of the mint transaction
+    // Remember: mintedNft was created in the beforeEach function!
+    // We grab the 2nd index here, because in the mint function _safeMint is
+    // called, which emits a Transfer event. Then the approve function is called,
+    // which emits an Approval event, and lastly the NftMinted event is emitted
+    const nftMintedLog = mintedNft.logs[2];
 
-      const event = nftMintedLog.event;
-      const tokenId = nftMintedLog.args[0].toNumber();
+    // We'll use these variables from the event logs in our tests
+    const event = nftMintedLog.event;
+    const tokenId = nftMintedLog.args[0].toNumber();
 
-      // Use Mocha's assert to test that the NftMinted event was emitted
-      // and the token ID of the NFT is 1
-      assert.equal(event, "NftMinted");
-      assert.equal(tokenId, 1);
+    // Use Mocha's assert to test that the NftMinted event was emitted
+    // and the token ID of the NFT is 1
+    assert.equal(event, "NftMinted");
+    assert.equal(tokenId, 1);
   });
 ```
 
@@ -350,60 +420,119 @@ Assuming your [Moonbeam development node is up and running](#start-development-n
 npx truffle test --network dev
 ```
 
+![Run first test](/images/tutorials/truffle-dev-life-cycle/truffle-4.png)
+
 ### Test Listing NFTs {: #test-listing-nfts }
 
-For our next test, we're going to test that we can successfully list our freshly minted NFT using the `listNft` function of the `NftMarketplace` contract. So, again we'll use our event logs to test that the `NftListed` event has been emitted along with the correct state variables such as the seller and token ID.
+For our next test, we're going to test that we can successfully list our freshly minted NFT using the `listNft` function of the `NftMarketplace` contract. So, again we'll use our event logs to test that the `NftListed` event has been emitted along with the correct state variables such as the seller and token ID. The event logs will return the arguments passed to the `NftMinted` event, which will be the seller's address, the NFT's address, the token ID and the listing price:
 
-After our first test, we can go ahead and the following test:
+```sol
+event NftListed(
+    address indexed seller,
+    address indexed nftAddress,
+    uint256 indexed tokenId,
+    uint256 price
+);
+```
+
+So, our event logs should resemble the following:
+
+```js
+{
+  ...
+  event: 'NftListed',
+  args: {
+    ...
+    seller: '0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b',
+    nftAddress: '0x4D73053013F876e319f07B27B59158Cca01A64C5',
+    tokenId: [BN],
+    price: [BN]
+  }
+}
+```
+
+With this in mind, we can tackle our next test. So, after the first test, we can go ahead and the following:
 
 ```js
   it("should list a new Dizzy Dragon NFT", async () => {
-    // Access the logs of the mint transaction
+    // Access the logs of the mint transaction so we can grab
+    // the contract address of the NFT and the token ID
     const nftMintedLog = mintedNft.logs[2];
-    // Set the price for the NFT to 1 ether
-    const price = await web3.utils.toWei("1", "ether");
-    const nftAddress = nftMintedLog.address;
-    const tokenId = nftMintedLog.args[0]
+
+    // Assemble the arguments needed to list the NFT that was minted
+    // in the beforeEach function
+    const price = await web3.utils.toWei("1", "ether"); // Set the price of the NFT to 1 ether
+    const nftAddress = nftMintedLog.address; 
+    const mintTokenId = nftMintedLog.args[0].toNumber();
 
     // Call the listNft function of the NftMarketplace contract with the
     // address of the NFT, the token ID, and the price
     const listResult = await nftMarketplace.listNft(
       nftAddress,
-      tokenId,
+      mintTokenId,
       price
     );
     
+    // We'll use these variables from the event logs in our tests. Use
+    // the 0 index because the NftListed event is the only event emitted
     const event = listResult.logs[0].event;
-    const seller = listResult.logs[0].args[0];
-    const tokenId = listResult.logs[0].args[2];
+    const seller = listResult.logs[0].args.seller;
+    const tokenId = listResult.logs[0].args.tokenId.toNumber();
 
     // Use Mocha's assert to test that the NftListed event was emitted
     // with the correct arguments for the seller and token ID
-    assert.equal(event, 'NftListed')
-    assert.equal(seller, accounts[0])
-    assert.equal(tokenId.toNumber(), nftMintedLog.args[0].toNumber())
+    assert.equal(event, "NftListed");
+    assert.equal(seller, accounts[0]);
+    assert.equal(tokenId, mintTokenId);
   });
 ```
 
 Again, you can run the tests to make sure that the tests pass as expected.
 
+![Run first two tests](/images/tutorials/truffle-dev-life-cycle/truffle-5.png)
+
 ### Test Purchasing NFTs {: #test-purchasing-nfts }
 
-Finally, let's test that an NFT on our marketplace can be purchased using the `purchaseNft` function of the `NftMarketplace` contract. Similarly to our previous tests, we'll use the event logs to test that the `NftPurchased` event has been emitted along with the correct state variables such as the buyer and token ID.
+Finally, let's test that an NFT on our marketplace can be purchased using the `purchaseNft` function of the `NftMarketplace` contract. Similarly to our previous tests, we'll use the event logs to test that the `NftPurchased` event has been emitted along with the correct state variables such as the buyer and token ID. The event logs will return the arguments passed to the `NftPurchased` event, which will be the buyer's address, the NFT's address, the token ID and the purchase price:
 
-Let's add the following test:
+```sol
+event NftListed(
+    address indexed buyer,
+    address indexed nftAddress,
+    uint256 indexed tokenId,
+    uint256 price
+);
+```
+
+So, our event logs should resemble the following:
+
+```js
+{
+  ...
+  event: 'NftPurchased',
+  args: {
+    ...
+    buyer: '0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b',
+    nftAddress: '0xDdd543E793D91AD9282ACde331ac250A445C9079',
+    tokenId: [BN],
+    price: [BN]
+  }
+}
+```
+
+Let's jump into writing the next test by adding the following to our test file:
 
 ```js
   it("should buy a new Dizzy Dragon NFT", async () => {
     const nftMintedLog = mintedNft.logs[2];
 
     // List the NFT first
-    const price = await web3.utils.toWei("1", "ether");
+    const price = await web3.utils.toWei("1", "ether"); 
     const nftAddress = nftMintedLog.address;
-    const tokenId = nftMintedLog.args[0]
+    const mintTokenId = nftMintedLog.args[0].toNumber();
     await nftMarketplace.listNft(
       nftAddress,
-      tokenId,
+      mintTokenId,
       price
     );
     
@@ -412,19 +541,21 @@ Let's add the following test:
     // for the asking price of the NFT
     const purchaseNft = await nftMarketplace.purchaseNft(
         nftAddress,
-        tokenId,
-        {value: price}
+        mintTokenId,
+        { value: price }
     );
 
+    // We'll use these variables from the event logs in our tests. Use
+    // the 0 index because the NftListed event is the only event emitted
     const event = purchaseNft.logs[0].event;
-    const buyer = purchaseNft.logs[0].args[0];
-    const tokenId = listResult.logs[0].args[2];
+    const buyer = purchaseNft.logs[0].args.buyer;
+    const tokenId = listResult.logs[0].args.tokenId.toNumber();
 
     // Use Mocha's assert to test that the NftPurchased event was emitted
     // with the correct argument for the buyer and token ID
-    assert.equal(event, 'NftPurchased')
-    assert.equal(buyer, accounts[0])
-    assert.equal(tokenId.toNumber(), nftMintedLog.args[0].toNumber())
+    assert.equal(event, "NftPurchased"); 
+    assert.equal(buyer, accounts[0]);
+    assert.equal(tokenId, mintTokenId);
   });
 ```
 
@@ -434,42 +565,21 @@ That's it for the tests! To run them all, go ahead and run:
 npx truffle test --network dev
 ```
 
+![Run all tests](/images/tutorials/truffle-dev-life-cycle/truffle-6.png)
+
+With Mocha, you have the flexbility to test for a variety of edge cases and don't have to use `assert.equal` as we did in our examples. Since support for the Chai assertion library is included, you can also use [Chai's `assert` API](https://www.chaijs.com/guide/styles/#assert){target=_blank} or their [`expect`](https://www.chaijs.com/guide/styles/#expect){target=_blank} and [`should`](https://www.chaijs.com/guide/styles/#should){target=_blank} APIs. For example, you can also assert for failures using [Chai's `assert.fail` method](https://www.chaijs.com/api/assert/#method_fail){target=_blank}.
+
 !!! challenge
     Try adding a test that uses a `tokenUri` for an NFT that hasn't approved the `NftMarketplace` contract to transfer it. You should assert that the call will fail.
 
-## Deploy to a Local Development Node {: #deploy-to-local-dev-node }
-
-Now that we feel confident in our NFT marketplace, we can go ahead and deploy our contracts. First, we'll need to update the deployment migration so that we deploy the `NftMarketplace` contract followed by the `DizzyDragons` contract, as we'll need to pass in the address of the marketplace to the constructor of the `DizzyDragons` contract. 
-
-To update the deployment script, open up the `migrations/2_deploy_contracts.js` migration file and replace it with the following:
-
-```js
-var NftMarketplace = artifacts.require("NftMarketplace");
-var DizzyDragons = artifacts.require("DizzyDragons");
-
-module.exports = async function (deployer) {
-  // Deploy the NFT Marketplace
-  await deployer.deploy(NftMarketplace);
-  const nftMarketplace = await NftMarketplace.deployed();
-  // Deploy the Dizzy Dragons contract
-  await deployer.deploy(DizzyDragons, nftMarketplace.address);
-};
-```
-
-Now we're all set to deploy our contracts. To do deploy our contracts to our local development node, run this command:
-
-```
-npx truffle migrate --network dev
-```
-
-You should see the transaction hashes for the deployment of each contract in your terminal. With our contracts deployed, we could begin to build a dApp with a frontend that interacts with these contracts, but it's out of scope for this tutorial.
-
-Now that we're done testing on the Moonbeam development node, don't forget to stop and remove the node! You can do so by running:
+When you're done testing on the Moonbeam development node, don't forget to stop and remove the node! You can do so by running:
 
 ```
 npx truffle run moonbeam stop && \
 npx truffle run moonbeam remove
 ```
+
+![Stop the development node](/images/tutorials/truffle-dev-life-cycle/truffle-7.png)
 
 ## Deploying to Moonbase Alpha TestNet {: #deploying-to-moonbase-alpha }
 
@@ -483,11 +593,32 @@ Once you've set your account up, you can run your tests on Moonbase Alpha to mak
 npx truffle test --network moonbase
 ```
 
-If your tests all pass, you can feel free to deploy your contracts using this command:
+![Run all tests on Moonbase Alpha](/images/tutorials/truffle-dev-life-cycle/truffle-8.png)
+
+!!! note
+    To avoid hitting rate limits with the public endpoint, you can get your own endpoint from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=_blank}.
+
+Since we already updated our migration script, we're all set to deploy our contracts using this command:
 
 ```
 npx truffle migrate --network moonbase
 ```
+
+You should see the transaction hashes for the deployment of each contract in your terminal and that a total of three deployments have been made.
+
+![Deploy contracts on Moonbase Alpha](/images/tutorials/truffle-dev-life-cycle/truffle-9.png)
+
+With our contracts deployed, we could begin to build a dApp with a frontend that interacts with these contracts, but it's out of scope for this tutorial.
+
+Once you've deployed your contracts, don't forget to verify them! You will run the `run verify` command and pass in the deployed contracts' names and the network where they've been deployed to:
+
+```
+npx truffle run verify NftMarketplace DizzyDragons --network moonbase
+```
+
+![Verify contracts on Moonbase Alpha](/images/tutorials/truffle-dev-life-cycle/truffle-10.png)
+
+For reference, you can check out how the verified contracts will look on Moonscan for the [NftMarketplace](https://moonbase.moonscan.io/address/0x14138a5c7c6F0f33cB02aa63D45BDE2Cd0E17A90#code){target=_blank} and [DizzyDragons](https://moonbase.moonscan.io/address/0x747CB7cCD05BCb4A94e284af9Cc35189C3f9c540#code){target=_blank} contracts.
 
 Feel free to play around and interact with your contracts on the TestNet! Since DEV tokens have no real monetary value, now is a good time to work out any kinks before we deploy our contracts to Moonbeam MainNet where the tokens do have value!
 
@@ -512,7 +643,7 @@ module.exports = {
           '{{ networks.moonbeam.rpc_url }}' // Insert your RPC URL here
         )
       },
-      network_id: {{ networks.moonbeam.chain_id }} (hex: {{ networks.moonbeam.hex_chain_id }}),
+      network_id: {{ networks.moonbeam.chain_id }} // (hex: {{ networks.moonbeam.hex_chain_id }}),
     },
   }
 }
@@ -520,19 +651,27 @@ module.exports = {
 
 If you're using Truffle Dashboard, you'll need to [add the host/port configuration for your dashboard](https://trufflesuite.com/docs/truffle/how-to/use-the-truffle-dashboard/#connecting-to-the-dashboard){target=_blank}.
 
-Once you've set your account up, you can run your tests on Moonbeam:
+You can deploy your contracts using this command:
 
 ```
-npx truffle test --network moonbeam
+npx truffle migrate --network moonbeam
 ```
+
+You should see the transaction hashes for the deployment of each contract in your terminal and that a total of three deployments have been made.
+
+![Deploy contracts on Moonbeam](/images/tutorials/truffle-dev-life-cycle/truffle-11.png)
+
+Again, don't forget to verify the contracts! You will run the `run verify` command and pass in the deployed contracts' names and `moonbeam` as the network:
+
+```
+npx truffle run verify NftMarketplace DizzyDragons --network moonbeam
+```
+
+![Deploy contracts on Moonbeam](/images/tutorials/truffle-dev-life-cycle/truffle-12.png)
 
 !!! note
     If you're using a Truffle Dashboard, you'll replace `--network moonbeam` with `--network dashboard` for any of the Truffle commands.
 
-If your tests all pass, you can feel free to deploy your contracts using this command:
-
-```
-npx truffle migrate --network moonbase
-```
+For reference, you can check out how the verified contracts will look on Moonscan for the [NftMarketplace](https://moonbeam.moonscan.io/address/0x37d844beF1E617a3677b086Dd2C8186C1Fd48C34#code){target=_blank} and [DizzyDragons](https://moonbeam.moonscan.io/address/0x815bAe9E539fF8326D82dfEA9FE588633A93FEB5#code){target=_blank} contracts.
 
 And that's it! You've successfully deployed your contracts to Moonbeam MainNet after thoroughly testing them out on a local Moonbeam development node and the Moonbase Alpha TestNet! Congrats! You've gone through the entire development lifecycle using Truffle!
