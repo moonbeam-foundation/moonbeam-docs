@@ -19,10 +19,24 @@ You can reference the [Substrate API Sidecar page](/builders/build/substrate-api
 
 ## Substrate API Transaction Fees {: #substrate-api-transaction-fees }
 
-The fees of a transaction sent via the Substrate API on Moonbeam can be read directly from a Sidecar block JSON object. The nesting structure is as follows:
+You can get all of the relevant data to calculate a transaction's gas fees using Sidecar. As of RT2100, two calls to Sidecar's API are required for this calculation. Before RT2100, only a call to the block endpoint was necessary.
+
+### Using the Sidecar Block Endpoint {: #using-the-sidecar-block-endpoint}
+
+The majority of the information for transaction fee data will be from one of the following block endpoints:
+
+```
+GET /blocks/{blockId}
+GET /blocks/head
+```
+
+The block endpoints will return data relevant to one or more blocks. You can read more about the block endpoints on the [official Sidecar documentation](https://paritytech.github.io/substrate-api-sidecar/dist/#operations-tag-blocks).  
+
+The fees of a transaction sent via the Substrate API on Moonbeam can be read directly from the Sidecar block schema. Read as a JSON object, the relevant nesting structure is as follows:  
 
 ```JSON
 RESPONSE JSON Block Object:
+    ...
     |--extrinsics
         |--{extrinsic_number}
             |--method
@@ -66,6 +80,18 @@ And then the total transaction fee paid for this extrinsic is mapped to the foll
 extrinsics[extrinsic_number].events[event_number].data[1]
 ```
 
+### Using the Sidecar Pallets Endpoint {: #using-the-sidecar-block-endpoint}
+
+There is an additional API call that is required, which has to do with a block's base fee for EIP-1559 type transactions. To get that data, you will have to use a pallets endpoint in Sidecar.  
+
+The pallets endpoints for Sidecar returns data relevant to a pallet, such as data in a pallet's storage. The data at hand that's required from storage is the `nextFeeMultiplier`, which can be found in the `transaction-payment` pallet. This can be found using the following endpoint:  
+
+```
+GET /pallets/transaction-payment/storage/nextFeeMultiplier?at={blockId)}
+```
+
+
+
 ## Ethereum API Transaction Fees {: #ethereum-api-transaction-fees }
 
 ### Calculating Ethereum API Transaction Fees {: #calculating-ethereum-api-transaction-fees }
@@ -88,15 +114,6 @@ To calculate the fee incurred on a Moonbeam transaction sent via the Ethereum AP
     Transaction Fee = (Gas Price * Transaction Weight) / {{ networks.moonbase.tx_weight_to_gas_ratio }}
     ```
 
-With the introduction of RT1900, there is a `Transaction Weight` mismatch between what is reported by the Sidecar API and what is used for the EVM transaction fee. Consequently, you need to add the following amount to `Transaction Weight`:
-
-=== "Moonbeam"
-    ```
-    86298000
-    ```
-
-**The weight mismatch is fixed with RT2000.** This means that for networks running RT2000, you don't need to add any amount. The reported value is correct and should be used for the calculations shown before.
-
 The values of `Gas Price`, `Max Fee Per Gas` and `Max Priority Fee Per Gas` for the applicable transaction types can be read from the block JSON object according to the structure described in [the Sidecar API page](/builders/build/substrate-api/sidecar/#evm-fields-mapping-in-block-json-object){target=_blank}, also truncated and reproduced below: 
 
 === "EIP1559"
@@ -115,7 +132,11 @@ The values of `Gas Price`, `Max Fee Per Gas` and `Max Priority Fee Per Gas` for 
     |:---------:|:----------------------------------------------------------------:|
     | Gas Price | `extrinsics[extrinsic_number].args.transaction.eip2930.gasPrice` |
 
-The `Base Fee`, introduced in [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank}, is a value set by the network itself. The `Base Fee` for `EIP1559` type transactions is currently static on Moonbeam networks and has the following assigned value:
+The `Base Fee`, introduced in [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank}, is a value set by the network itself. The `Base Fee` for `EIP1559` type transactions can be calculated like so:
+
+
+
+**Before RT2100**, the `Base Fee` was static on Moonbeam networks and had the following assigned value:
 
 === "Moonbeam"
     | Variable |  Value   |
@@ -144,12 +165,28 @@ And then `Transaction Weight` is mapped to the following field of the block JSON
 extrinsics[extrinsic_number].events[event_number].data[0].weight
 ```
 
-!!! note
-    Please remember that runtime 190X there is a `Transaction Weight` mismatch. You need to add a constant to its value. Check the [Calculating Ethereum API Transaction Fees](#calculating-ethereum-api-transaction-fees) for more information. This was fixed with the subsequent RT2000.
+### RT1900 Transaction Weight Mismatch {: #RT1900-transaction-weight-mismatch }
+
+In RT1900, there is a `Transaction Weight` mismatch between what is reported by the Sidecar API and what is used for the EVM transaction fee. Consequently, to get the correct calculation, you need to add the following constant to the `Transaction Weight` value:
+
+=== "Moonbeam"
+    ```
+    86298000
+    ```
+=== "Moonriver"
+    ```
+    86298000
+    ```
+=== "Moonbase Alpha"
+    ```
+    250000000
+    ```
+
+**The weight mismatch is fixed with RT2000.** This means that for networks running RT2000, you don't need to add any amount. The reported value is correct and should be used for the calculations shown before.  
 
 ### Key Differences with Ethereum {: #ethereum-api-transaction-fees} 
 
-As seen in the above section, there are some key differences between the transaction fee model on Moonbeam and the one on Ethereum that developers should be mindful of when developing on Moonbeam:
+As seen in the sections above, there are some key differences between the transaction fee model on Moonbeam and the one on Ethereum that developers should be mindful of when developing on Moonbeam:
 
   - The network base fee on Moonbeam networks is currently static. This has many implications, one of which is that a transaction sent with a gas price set to a value lower than the network base fee will always fail, even if the blocks aren't currently full on the network. This behavior is different from Ethereum, which does not have a floor on the gas price of a transaction to be accepted. 
     
