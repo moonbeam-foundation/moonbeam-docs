@@ -675,3 +675,5 @@ npx truffle run verify NftMarketplace DizzyDragons --network moonbeam
 For reference, you can check out how the verified contracts will look on Moonscan for the [NftMarketplace](https://moonbeam.moonscan.io/address/0x37d844beF1E617a3677b086Dd2C8186C1Fd48C34#code){target=_blank} and [DizzyDragons](https://moonbeam.moonscan.io/address/0x815bAe9E539fF8326D82dfEA9FE588633A93FEB5#code){target=_blank} contracts.
 
 And that's it! You've successfully deployed your contracts to Moonbeam MainNet after thoroughly testing them out on a local Moonbeam development node and the Moonbase Alpha TestNet! Congrats! You've gone through the entire development lifecycle using Truffle!
+
+--8<-- 'text/disclaimers/third-party-content.md'
