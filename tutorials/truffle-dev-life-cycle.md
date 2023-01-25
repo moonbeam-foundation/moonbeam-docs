@@ -624,7 +624,7 @@ Feel free to play around and interact with your contracts on the TestNet! Since 
 
 ## Deploying to Production on Moonbeam MainNet {: #deploying-to-production }
 
-We thought we felt confident before, but now that we've tested our contracts on Moonbase Alpha we feel even more confident. So let's do it and test and deploy our contracts on Moonbeam!
+We thought we felt confident before, but now that we've tested our contracts on Moonbase Alpha we feel even more confident. So let's deploy our contracts on Moonbeam!
 
 Again, you'll need to update your `truffle-config.js` and add in the private key of your account on Moonbeam. If you're interested in a secure way to add your private keys, you can check out the [Truffle Dashboard](https://trufflesuite.com/blog/introducing-truffle-dashboard/){target=_blank}, which allows you to connect to your MetaMask wallet without any configuration. For more information, please refer to the [Truffle docs on using the Truffle Dashboard](https://trufflesuite.com/docs/truffle/how-to/use-the-truffle-dashboard/){target=_blank}. Whatever you do, **never store your private keys in a JavaScript file**.
 
