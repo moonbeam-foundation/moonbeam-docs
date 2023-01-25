@@ -546,7 +546,7 @@ Let's jump into writing the next test by adding the following to our test file:
     );
 
     // We'll use these variables from the event logs in our tests. Use
-    // the 0 index because the NftListed event is the only event emitted
+    // the 0 index because the NftPurchased event is the only event emitted
     const event = purchaseNft.logs[0].event;
     const buyer = purchaseNft.logs[0].args.buyer;
     const tokenId = listResult.logs[0].args.tokenId.toNumber();
