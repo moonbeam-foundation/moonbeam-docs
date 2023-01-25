@@ -5,18 +5,11 @@ const axios = require("axios");
 // according to the transaction type (For Ethereum API: legacy, EIP-1559 or EIP-2930 standards,
 //and Substrate API), as well as calculating the total fees in the block.
 
-// Define static basee fee per network
+// Define static base fee per network
 const baseFee = {
   moonbeam: 100000000000n,
   moonriver: 1000000000n,
   moonbase: 1000000000n,
-};
-
-// Define weight correction factor per network RT1901 ONLY!
-const weightCorrection = {
-  moonbeam: 86298000n,
-  moonriver: 86298000n,
-  moonbase: 250000000n,
 };
 
 // Endpoint to retrieve the latest block
@@ -55,7 +48,7 @@ async function main() {
           }
           if (event.method.pallet === "system" && event.method.method === "ExtrinsicSuccess") {
             // Add correction weight if needed to Transaction Weight!
-            transactionData["weight"] = BigInt(event.data[0].weight) + weightCorrection[transactionData["network"]];
+            transactionData["weight"] = BigInt(event.data[0].weight);
           }
         });
 

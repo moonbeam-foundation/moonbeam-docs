@@ -37,6 +37,7 @@ The fees of a transaction sent via the Substrate API on Moonbeam can be read dir
 ```JSON
 RESPONSE JSON Block Object:
     ...
+    |--number
     |--extrinsics
         |--{extrinsic_number}
             |--method
@@ -87,7 +88,7 @@ There is an additional API call that is required, which has to do with a block's
 The pallets endpoints for Sidecar returns data relevant to a pallet, such as data in a pallet's storage. You can read more about the pallets endpoint in the [official Sidecar documentation](https://paritytech.github.io/substrate-api-sidecar/dist/#operations-tag-pallets){target=_blank}. The data at hand that's required from storage is the `nextFeeMultiplier`, which can be found in the `transaction-payment` pallet. This can be found using the following endpoint:  
 
 ```
-GET /pallets/transaction-payment/storage/nextFeeMultiplier?at={blockId)}
+GET /pallets/transaction-payment/storage/nextFeeMultiplier?at={blockId}
 ```
 
 The stored `nextFeeMultiplier` value can be read directly from the Sidecar storage schema. Read as a JSON object, the relevant nesting structure is as follows:
@@ -267,10 +268,17 @@ The following curl example will return the gas information of the last 10 blocks
 
 ## Sample Code for Calculating Transaction Fees {: #sample-code }
 
-The following code snippet uses the [Axios HTTP client](https://axios-http.com/){target=_blank} to query the [Sidecar endpoint `/blocks/head`](https://paritytech.github.io/substrate-api-sidecar/dist/){target=_blank} for the latest finalized block. It then calculates the transaction fees of all transactions in the block according to the transaction type (for Ethereum API: legacy, EIP-1559 or EIP-2930 standards, and for Substrate API), as well as calculating the total transaction fees in the block. 
+The following code snippet uses the [Axios HTTP client](https://axios-http.com/){target=_blank} to query the [Sidecar endpoint `/blocks/head`](https://paritytech.github.io/substrate-api-sidecar/dist/#operations-tag-blocks){target=_blank} for the latest finalized block. It then calculates the transaction fees of all transactions in the block according to the transaction type (for Ethereum API: legacy, EIP-1559 or EIP-2930 standards, and for Substrate API), as well as calculating the total transaction fees in the block. 
 
 The following code sample is for demo purposes only and should not be used without modification and further testing in a production environment. 
 
---8<-- 'code/vs-ethereum/tx-fees-block.md'
+=== "RT2100"
+    --8<-- 'code/vs-ethereum/tx-fees-block-2100.md'
+
+=== "RT2000"
+    --8<-- 'code/vs-ethereum/tx-fees-block-2000.md'
+
+=== "RT1901"
+    --8<-- 'code/vs-ethereum/tx-fees-block-1901.md'
 
 --8<-- 'text/disclaimers/third-party-content.md'
