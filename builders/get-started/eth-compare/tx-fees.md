@@ -30,7 +30,7 @@ GET /blocks/{blockId}
 GET /blocks/head
 ```
 
-The block endpoints will return data relevant to one or more blocks. You can read more about the block endpoints on the [official Sidecar documentation](https://paritytech.github.io/substrate-api-sidecar/dist/#operations-tag-blocks).  
+The block endpoints will return data relevant to one or more blocks. You can read more about the block endpoints on the [official Sidecar documentation](https://paritytech.github.io/substrate-api-sidecar/dist/#operations-tag-blocks){target=_blank}.  
 
 The fees of a transaction sent via the Substrate API on Moonbeam can be read directly from the Sidecar block schema. Read as a JSON object, the relevant nesting structure is as follows:  
 
@@ -80,17 +80,31 @@ And then the total transaction fee paid for this extrinsic is mapped to the foll
 extrinsics[extrinsic_number].events[event_number].data[1]
 ```
 
-### Using the Sidecar Pallets Endpoint {: #using-the-sidecar-block-endpoint}
+### Using the Sidecar Pallets Endpoint {: #using-the-sidecar-pallets-endpoint}
 
 There is an additional API call that is required, which has to do with a block's base fee for EIP-1559 type transactions. To get that data, you will have to use a pallets endpoint in Sidecar.  
 
-The pallets endpoints for Sidecar returns data relevant to a pallet, such as data in a pallet's storage. The data at hand that's required from storage is the `nextFeeMultiplier`, which can be found in the `transaction-payment` pallet. This can be found using the following endpoint:  
+The pallets endpoints for Sidecar returns data relevant to a pallet, such as data in a pallet's storage. You can read more about the pallets endpoint in the [official Sidecar documentation](https://paritytech.github.io/substrate-api-sidecar/dist/#operations-tag-pallets){target=_blank}. The data at hand that's required from storage is the `nextFeeMultiplier`, which can be found in the `transaction-payment` pallet. This can be found using the following endpoint:  
 
 ```
 GET /pallets/transaction-payment/storage/nextFeeMultiplier?at={blockId)}
 ```
 
+The stored `nextFeeMultiplier` value can be read directly from the Sidecar storage schema. Read as a JSON object, the relevant nesting structure is as follows:
 
+```JSON
+RESPONSE JSON Storage Object:
+    |--at
+        |--hash
+        |--height
+    |--pallet
+    |--palletIndex
+    |--storageItem
+    |--keys
+    |--value
+```
+
+The relevant data will be stored in the `value` key of the JSON object.
 
 ## Ethereum API Transaction Fees {: #ethereum-api-transaction-fees }
 
@@ -104,6 +118,7 @@ To calculate the fee incurred on a Moonbeam transaction sent via the Ethereum AP
                 Base Fee + Max Priority Fee Per Gas: 
                 Max Fee Per Gas;
     Transaction Fee = (Gas Price * Transaction Weight) / {{ networks.moonbase.tx_weight_to_gas_ratio }}
+    Base Fee = Next Fee Multiplier * 1250000000 / 10^18
     ```
 === "Legacy"
     ```
@@ -113,6 +128,9 @@ To calculate the fee incurred on a Moonbeam transaction sent via the Ethereum AP
     ```
     Transaction Fee = (Gas Price * Transaction Weight) / {{ networks.moonbase.tx_weight_to_gas_ratio }}
     ```
+
+!!! note
+    The `Base Fee` value should only be calculated if calculating for RT2100 or later. Otherwise, you should use a constant value as described later in the section.
 
 The values of `Gas Price`, `Max Fee Per Gas` and `Max Priority Fee Per Gas` for the applicable transaction types can be read from the block JSON object according to the structure described in [the Sidecar API page](/builders/build/substrate-api/sidecar/#evm-fields-mapping-in-block-json-object){target=_blank}, also truncated and reproduced below: 
 
@@ -132,11 +150,7 @@ The values of `Gas Price`, `Max Fee Per Gas` and `Max Priority Fee Per Gas` for 
     |:---------:|:----------------------------------------------------------------:|
     | Gas Price | `extrinsics[extrinsic_number].args.transaction.eip2930.gasPrice` |
 
-The `Base Fee`, introduced in [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank}, is a value set by the network itself. The `Base Fee` for `EIP1559` type transactions can be calculated like so:
-
-
-
-**Before RT2100**, the `Base Fee` was static on Moonbeam networks and had the following assigned value:
+The `Base Fee`, introduced in [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank}, is a value set by the network itself. **Before RT2100**, the `Base Fee` was static on Moonbeam networks and had the following assigned value:
 
 === "Moonbeam"
     | Variable |  Value   |
