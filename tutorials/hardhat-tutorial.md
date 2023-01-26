@@ -225,11 +225,11 @@ In your terminal you should see the source code for your contract was successful
 
 A robust smart contract development workflow is incomplete without a testing suite. Hardhat has a number of tools that make it easy to write and run tests. In this section, you'll learn the basics of testing your smart contracts and some more advanced techniques such as using fixtures. 
 
-Hardhat tests are typically written with Mocha and Chai. [Mocha](https://mochajs.org/){target=_blank} is a Javascript testing framework and [Chai](https://www.chaijs.com/){target=_blank} is a BDD/TDD Javascript assertion library. BDD / TDD stands for behavior and test driven development respectively. Effective BDD / TDD necessitates writing your tests *before* writing your smart contract code. The structure of this tutorial doesn't strictly follow these guidelines, but you may wish adopt these principles in your development workflow. Hardhat previously recommended Hardhat Waffle plugin but has since [advised migrating to the Hardhat Toolbox](https://hardhat.org/hardhat-runner/docs/guides/migrating-from-hardhat-waffle){target=_blank}.
+Hardhat tests are typically written with Mocha and Chai. [Mocha](https://mochajs.org/){target=_blank} is a Javascript testing framework and [Chai](https://www.chaijs.com/){target=_blank} is a BDD/TDD Javascript assertion library. BDD / TDD stands for behavior and test driven development respectively. Effective BDD / TDD necessitates writing your tests *before* writing your smart contract code. The structure of this tutorial doesn't strictly follow these guidelines, but you may wish to adopt these principles in your development workflow. Hardhat previously recommended Hardhat Waffle plugin but has since [advised migrating to the Hardhat Toolbox](https://hardhat.org/hardhat-runner/docs/guides/migrating-from-hardhat-waffle){target=_blank}.
 
 ### Configuring the Test File {: #configuring-the-test-file }
 
-To get started, a create a folder called `tests` and a file named `Dao.js`. Then copy and paste the contents below to set up the initial structure of your test file. Be sure to read the comments as they can clarify the purpose of each line. 
+To get started, create a folder called `tests` and a file named `Dao.js`. Then copy and paste the contents below to set up the initial structure of your test file. Be sure to read the comments as they can clarify the purpose of each line. 
 
 ``` javascript
 const { ethers } = require("hardhat");
@@ -247,9 +247,9 @@ const targetCollator = "{{ networks.moonbase.staking.candidates.address1 }}";
 
 ### Using Fixtures {: #using-fixtures }
 
-A fixture is a function that configures the blockchain to a desired state. For example, our initial tests for the StakingDAO will be run after the StakingDAO has been deployed but before any contributions have been made. When a fixture is loaded for the first time, it is executed as normal to properly configure the state of the chain. When called a second time, the fixture is not execute again but rather the state of the network is reset to the point in time immediately after the fixture was initially executed. In other words, this resets state changes prior to the initial execution of the fixture and saves time.
+A fixture is a function that configures the blockchain to a desired state. For example, our initial tests for the StakingDAO will be run after the StakingDAO has been deployed but before any contributions have been made. When a fixture is loaded for the first time, it is executed as normal to properly configure the state of the chain. When called a second time, the fixture is not executed again but rather the state of the network is reset to the point in time immediately after the fixture was initially executed. In other words, this resets state changes prior to the initial execution of the fixture and saves time.
 
-The first fixture in the test file represents an "empty" stakingDAO but the second fixture will have one member (besides the DAO admin). Fixtures allow you to quickly switch between different states, simplifiying and speeding up the testing process. In this tutorial only two fixtures are specified but it's easy to imagine other states you'd like to test, such as a scenario with 100 DAO members or one with multiple admins of the DAO. 
+The first fixture in the test file represents an "empty" stakingDAO but the second fixture will have one member (besides the DAO admin). Fixtures allow you to quickly switch between different states, simplifying and speeding up the testing process. In this tutorial only two fixtures are specified but it's easy to imagine other states you'd like to test, such as a scenario with 100 DAO members or one with multiple admins of the DAO. 
 
 To define the two fixtures, add the following snippet to your test file:
 
@@ -291,11 +291,11 @@ describe("Dao contract", function () {
 
 ### Writing your First Test Cases {: #writing-your-first-test-cases }
 
-This tutorial deviates from the [test driven development philosophy](https://en.wikipedia.org/wiki/Test-driven_development){target=_blank} of writing your tests prior to your code. A few test cases will be cherrypicked for demonstration purposes. 
+This tutorial deviates from the [test driven development philosophy](https://en.wikipedia.org/wiki/Test-driven_development){target=_blank} of writing your tests prior to your code. A few test cases will be cherry picked for demonstration purposes. 
 
 First, you'll create a subsection called deployment to keep the test file organized. This isn't required but may be helpful for organization purposes. Next you'll define your first test case by using the `it` mocha function. A description that clearly indicates what the test is doing is provided as well as indication that the function is async. This first test is simply checking to see that the StakingDAO is correctly storing the address of the target collator.
 
-Next, a fixture is loaded - in this case, the "empty" stakingDAO fixture. Fixtures are easily interchangable within your test cases. 
+Next, a fixture is loaded - in this case, the "empty" stakingDAO fixture. Fixtures are easily interchangeable within your test cases. 
 
 ```javascript
 // You can nest describe calls to create subsections.
@@ -351,7 +351,7 @@ it("DAO members should be able to access member only functions", async function 
   });
 });
 ```
-And that's it! You're now ready to run your tests! Since this the last test case completing the test file, a series of closing brackets are added to the prior code snippet.  
+And that's it! You're now ready to run your tests! Since this is the last test case completing the test file, a series of closing brackets are added to the prior code snippet.  
 ### Running your Tests {: #running-your-tests }
 
 If you've followed all of the prior sections, your `Dao.js` test file should be all set to go. Otherwise, you can copy the below into your `Dao.js` test file. Comments have been removed for code readability, but you can refer to the prior sections for details on each step including comments.
