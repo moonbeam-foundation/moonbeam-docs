@@ -21,7 +21,7 @@ module.exports = {
   networks: {
     moonbeam: { ... },
     moonriver: { ... },
-    moonbase: { ... }
+    moonbaseAlpha: { ... }
   },
   etherscan: {
     apiKey: {
