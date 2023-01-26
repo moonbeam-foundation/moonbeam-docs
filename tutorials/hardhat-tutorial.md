@@ -225,7 +225,7 @@ In your terminal you should see the source code for your contract was successful
 
 A robust smart contract development workflow is incomplete without a testing suite. Hardhat has a number of tools that make it easy to write and run tests. In this section, you'll learn the basics of testing your smart contracts and some more advanced techniques such as using fixtures. 
 
-Hardhat tests are typically written with Mocha and Chai. [Mocha](https://mochajs.org/){target=_blank} is a Javascript testing framework and [Chai](https://www.chaijs.com/){target=_blank} is a BDD/TDD Javascript assertion library. BDD / TDD stands for behavior and test driven development respectively. Effective BDD / TDD necessitates writing your tests *before* writing your smart contract code. The structure of this tutorial doesn't strictly follow these guidelines, but you may wish to adopt these principles in your development workflow. Hardhat previously recommended Hardhat Waffle plugin but has since [advised migrating to the Hardhat Toolbox](https://hardhat.org/hardhat-runner/docs/guides/migrating-from-hardhat-waffle){target=_blank}.
+Hardhat tests are typically written with Mocha and Chai. [Mocha](https://mochajs.org/){target=_blank} is a Javascript testing framework and [Chai](https://www.chaijs.com/){target=_blank} is a BDD/TDD Javascript assertion library. BDD / TDD stands for behavior and test driven development respectively. Effective BDD / TDD necessitates writing your tests *before* writing your smart contract code. The structure of this tutorial doesn't strictly follow these guidelines, but you may wish to adopt these principles in your development workflow. Hardhat previously recommended the Hardhat Waffle plugin but has since [advised migrating to the Hardhat Toolbox](https://hardhat.org/hardhat-runner/docs/guides/migrating-from-hardhat-waffle){target=_blank}.
 
 ### Configuring the Test File {: #configuring-the-test-file }
 
@@ -262,6 +262,7 @@ To define the two fixtures, add the following snippet to your test file:
 // can't be an async function.
 describe("Dao contract", function () {
   async function deployDaoFixture() {
+
     // Get the ContractFactory and Signers here.
     const [deployer] = await ethers.getSigners();
     const delegationDao = await ethers.getContractFactory("DelegationDAO");
@@ -293,7 +294,7 @@ describe("Dao contract", function () {
 
 This tutorial deviates from the [test driven development philosophy](https://en.wikipedia.org/wiki/Test-driven_development){target=_blank} of writing your tests prior to your code. A few test cases will be cherry picked for demonstration purposes. 
 
-First, you'll create a subsection called deployment to keep the test file organized. This isn't required but may be helpful for organization purposes. Next you'll define your first test case by using the `it` mocha function. A description that clearly indicates what the test is doing is provided as well as indication that the function is async. This first test is simply checking to see that the StakingDAO is correctly storing the address of the target collator.
+First, you'll create a subsection called `deployment` to keep the test file organized. This isn't required but may be helpful for organization purposes. Next you'll define your first test case by using the `it` mocha function. A description that clearly indicates what the test is doing is provided as well as indication that the function is async. This first test is simply checking to see that the StakingDAO is correctly storing the address of the target collator.
 
 Next, a fixture is loaded - in this case, the "empty" stakingDAO fixture. Fixtures are easily interchangeable within your test cases. 
 
@@ -326,9 +327,9 @@ it("The DAO should initially have 0 funds in it", async function () {
 
 ### Function Reverts {: #function-reverts }
 
-To this point the two cases implemented have been simple but important. Now, you'll implement a more complex test case that differs in its architecture. In prior examples you've verified that a function returns an expected value. In this one, you'll actually be verifying that a function reverts. You'll also change the address of the caller to test an admin only function. 
+To this point the two cases implemented have been simple but important. Now, you'll implement a more complex test case that differs in its architecture. In prior examples you've verified that a function returns an expected value. In this one, you'll be verifying that a function reverts. You'll also change the address of the caller to test an admin-only function. 
 
-In the StakingDAO contract, only admins are authorized to add new members to the DAO. One could write a test that checks to see if the admin is authorized to add new members but perhaps a more important test is to ensure that *non-admins* can't add new members. To run this test case under a different account, you're going to ask for another address when you call `ethers.getSigners()` and specify the caller in the assertion with the following addition: `connect(otherAddress)`. Finally, after the function call to be tested you'll append `.to.be.reverted;` to indicate that the test case is successful if the function reverts. And if it doesn't revert it's a failed test! 
+In the [StakingDAO contract](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank}, only admins are authorized to add new members to the DAO. One could write a test that checks to see if the admin is authorized to add new members but perhaps a more important test is to ensure that *non-admins* can't add new members. To run this test case under a different account, you're going to ask for another address when you call `ethers.getSigners()` and specify the caller in the assertion with `connect(otherAddress)`. Finally, after the function call to be tested you'll append `.to.be.reverted;` to indicate that the test case is successful if the function reverts. And if it doesn't revert it's a failed test! 
 
 ```javascript
 it("Non-admins should not be able to grant membership", async function () {
@@ -354,7 +355,7 @@ it("DAO members should be able to access member only functions", async function 
 And that's it! You're now ready to run your tests! Since this is the last test case completing the test file, a series of closing brackets are added to the prior code snippet.  
 ### Running your Tests {: #running-your-tests }
 
-If you've followed all of the prior sections, your `Dao.js` test file should be all set to go. Otherwise, you can copy the below into your `Dao.js` test file. Comments have been removed for code readability, but you can refer to the prior sections for details on each step including comments.
+If you've followed all of the prior sections, your `Dao.js` test file should be all set to go. Otherwise, you can copy the complete snippet below into your `Dao.js` test file. Comments have been removed for code readability, but you can refer to the prior sections for details on each step including comments.
 
 ```javascript
 const { ethers } = require("hardhat");
@@ -418,7 +419,7 @@ If everything was set up correctly, you should see output like the following:
 
 ![Hardhat Run Tests](/images/tutorials/hardhat/hardhat4.png)
 
-And that's it! We covered a lot of ground in this tutorial but there's more resources available if you'd like to go deeper. Be sure to check out these additional resources:
+And that's it! We covered a lot of ground in this tutorial but there's more resources available if you'd like to go deeper, including the following:
 
 - [Hardhat Guide to Testing Contracts](https://hardhat.org/hardhat-runner/docs/guides/test-contracts){target=_blank}
 - [Writing Tests and Scripts](https://hardhat.org/hardhat-runner/docs/guides/tasks-and-scripts){target=_blank}
