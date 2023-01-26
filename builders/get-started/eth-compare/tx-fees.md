@@ -19,7 +19,7 @@ You can reference the [Substrate API Sidecar page](/builders/build/substrate-api
 
 ## Substrate API Transaction Fees {: #substrate-api-transaction-fees }
 
-All the information around fee data for transactions sent via the Substrate API can be extracted from the following block endpoints:
+All the information around fee data for transactions sent via the Substrate API can be extracted from the following block endpoint:
 
 ```
 GET /blocks/{blockId}
@@ -82,7 +82,7 @@ To calculate the fee incurred on a Moonbeam transaction sent via the Ethereum AP
     ```
     BaseFee = NextFeeMultiplier * 1250000000 / 10^18
     GasPrice = BaseFee + MaxPriorityFeePerGas < MaxFeePerGas ? 
-                BaseFee + MaxPriorityFeePerGas: 
+                BaseFee + MaxPriorityFeePerGas : 
                 MaxFeePerGas;
     Transaction Fee = (GasPrice * TransactionWeight) / {{ networks.moonbase.tx_weight_to_gas_ratio }}
     ```
@@ -104,7 +104,7 @@ The following sections describe in more detail each of the components to calcula
 
 The `BaseFee` was introduced in [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank}, and is a value set by the network itself. 
 
-**RT2100** introduced a new dynamic fee mechanism that closely ressembles [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank}, where the `BaseFee` is adjusted based on block congestion. Consequently, you need to estimate the `BaseFee` for each block using `NextFeeMultiplier`. The value of `NextFeeMultiplier` can be retrieved from the Substrate Sidecar API, via the following endpoint:
+**RT2100** introduced a new dynamic fee mechanism that closely resembles [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank}, where the `BaseFee` is adjusted based on block congestion. Consequently, you need to estimate the `BaseFee` for each block using `NextFeeMultiplier`. The value of `NextFeeMultiplier` can be retrieved from the Substrate Sidecar API, via the following endpoint:
 
 ```
 GET /pallets/transaction-payment/storage/nextFeeMultiplier?at={blockId}
@@ -124,7 +124,7 @@ RESPONSE JSON Storage Object:
     |--value
 ```
 
-The relevant data will be stored in the `value` key of the JSON object. Note that you must divide the retrieved value by `1000000000000000000`. Please review the [RT2100 sample code](/builders/get-started/eth-compare/tx-fees/#sample-code) provided at the end of this page.
+The relevant data will be stored in the `value` key of the JSON object. This value is a fixed point data type, hence the real value is found by divided the `value` by `10^18`. This is why [the calculation of `BaseFee`](#ethereum-api-transaction-fees) includes such an operation. Please review the [RT2100 sample code](/builders/get-started/eth-compare/tx-fees/#sample-code) provided at the end of this page.
 
 
 **Before RT2100**, the `BaseFee` was static on Moonbeam networks and had the following assigned value:
@@ -146,7 +146,13 @@ The relevant data will be stored in the `value` key of the JSON object. Note tha
 
 ### GasPrice, MaxFeePerGas and MaxPriorityFeePerGas {: #gasprice-maxfeepergas-maxpriorityfeepergas }
 
-The values of `GasPrice`, `MaxFeePerGas` and `MaxPriorityFeePerGas` for the applicable transaction types can be read from the block JSON object according to the structure described in [the Sidecar API page](/builders/build/substrate-api/sidecar/#evm-fields-mapping-in-block-json-object){target=_blank}, also truncated and reproduced below: 
+The values of `GasPrice`, `MaxFeePerGas` and `MaxPriorityFeePerGas` for the applicable transaction types can be read from the block JSON object according to the structure described in [the Sidecar API page](/builders/build/substrate-api/sidecar/#evm-fields-mapping-in-block-json-object){target=_blank}. The data for an Ethereum transaction in a particular block can be extracted from the following block endpoint: 
+
+```
+GET /blocks/{blockId}
+```
+
+The paths to the relevant values have also truncated and reproduced below: 
 
 === "EIP1559"
     |      EVM Field       |                               Block JSON Field                               |
