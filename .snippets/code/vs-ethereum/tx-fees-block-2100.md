@@ -46,7 +46,7 @@ async function main() {
           }
           if (event.method.pallet === "system" && event.method.method === "ExtrinsicSuccess") {
             // Add correction weight if needed to Transaction Weight!
-            transactionData["weight"] = BigInt(event.data[0].weight);
+            transactionData["weight"] = BigInt(event.data[0].weight.refTime);
           }
         });
 
@@ -59,7 +59,7 @@ async function main() {
           transactionData["txType"] = "eip1599";
           transactionData["maxFeePerGas"] = BigInt(extrinsic.args.transaction.eip1559.maxFeePerGas);
           transactionData["maxPriorityFeePerGas"] = BigInt(extrinsic.args.transaction.eip1559.maxPriorityFeePerGas);
-          transactionData["baseFee"] = BigInt(response_pallet.data.value) * 1250000000 / BigInt("1000000000000000000")
+          transactionData["baseFee"] = BigInt(response_pallet.data.value) * 1250000000n / BigInt("1000000000000000000")
 
           // Gas price dependes on the MaxFeePerGas and MaxPriorityFeePerGas set
           transactionData["gasPrice"] =
@@ -89,7 +89,7 @@ async function main() {
             transactionData["tip"] = event.data[1];
           }
           if (event.method.pallet === "system" && event.method.method === "ExtrinsicSuccess") {
-            transactionData["weight"] = event.data[0].weight;
+            transactionData["weight"] = event.data[0].weight.refTime;
           }
         });
       }

@@ -48,7 +48,7 @@ async function main() {
           }
           if (event.method.pallet === "system" && event.method.method === "ExtrinsicSuccess") {
             // Add correction weight if needed to Transaction Weight!
-            transactionData["weight"] = BigInt(event.data[0].weight);
+            transactionData["weight"] = BigInt(event.data[0].weight.refTime);
           }
         });
 
@@ -91,7 +91,7 @@ async function main() {
             transactionData["tip"] = event.data[1];
           }
           if (event.method.pallet === "system" && event.method.method === "ExtrinsicSuccess") {
-            transactionData["weight"] = event.data[0].weight;
+            transactionData["weight"] = event.data[0].weight.refTime;
           }
         });
       }

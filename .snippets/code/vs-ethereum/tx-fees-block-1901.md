@@ -12,7 +12,8 @@ const baseFee = {
   moonbase: 1000000000n,
 };
 
-// Define weight correction factor per network RT1901 ONLY!
+// In RT1900 & RT1901 ONLY, there is a `Transaction Weight` mismatch between what is reported by the Sidecar API and what is used for the EVM transaction fee. 
+// To get the correct calculation, you need to add the following constant per network to the `Transaction Weight` value:
 const weightCorrection = {
   moonbeam: 86298000n,
   moonriver: 86298000n,
@@ -55,7 +56,7 @@ async function main() {
           }
           if (event.method.pallet === "system" && event.method.method === "ExtrinsicSuccess") {
             // Add correction weight if needed to Transaction Weight!
-            transactionData["weight"] = BigInt(event.data[0].weight) + weightCorrection[transactionData["network"]];
+            transactionData["weight"] = BigInt(event.data[0].weight.refTime) + weightCorrection[transactionData["network"]];
           }
         });
 
@@ -98,7 +99,7 @@ async function main() {
             transactionData["tip"] = event.data[1];
           }
           if (event.method.pallet === "system" && event.method.method === "ExtrinsicSuccess") {
-            transactionData["weight"] = event.data[0].weight;
+            transactionData["weight"] = event.data[0].weight.refTime;
           }
         });
       }

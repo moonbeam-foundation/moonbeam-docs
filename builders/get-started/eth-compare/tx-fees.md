@@ -115,11 +115,11 @@ To calculate the fee incurred on a Moonbeam transaction sent via the Ethereum AP
 
 === "EIP-1559"
     ```
+    Base Fee = Next Fee Multiplier * 1250000000 / 10^18
     Gas Price = Base Fee + Max Priority Fee Per Gas < Max Fee Per Gas ? 
                 Base Fee + Max Priority Fee Per Gas: 
                 Max Fee Per Gas;
     Transaction Fee = (Gas Price * Transaction Weight) / {{ networks.moonbase.tx_weight_to_gas_ratio }}
-    Base Fee = Next Fee Multiplier * 1250000000 / 10^18
     ```
 === "Legacy"
     ```
@@ -182,7 +182,7 @@ extrinsics[extrinsic_number].events[event_number].data[0].weight
 
 ### RT1900 Transaction Weight Mismatch {: #RT1900-transaction-weight-mismatch }
 
-In RT1900, there is a `Transaction Weight` mismatch between what is reported by the Sidecar API and what is used for the EVM transaction fee. Consequently, to get the correct calculation, you need to add the following constant to the `Transaction Weight` value:
+
 
 === "Moonbeam"
     ```
