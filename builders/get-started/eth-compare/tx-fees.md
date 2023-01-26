@@ -180,25 +180,6 @@ And then `Transaction Weight` is mapped to the following field of the block JSON
 extrinsics[extrinsic_number].events[event_number].data[0].weight
 ```
 
-### RT1900 Transaction Weight Mismatch {: #RT1900-transaction-weight-mismatch }
-
-
-
-=== "Moonbeam"
-    ```
-    86298000
-    ```
-=== "Moonriver"
-    ```
-    86298000
-    ```
-=== "Moonbase Alpha"
-    ```
-    250000000
-    ```
-
-**The weight mismatch is fixed with RT2000.** This means that for networks running RT2000, you don't need to add any amount. The reported value is correct and should be used for the calculations shown before.  
-
 ### Key Differences with Ethereum {: #ethereum-api-transaction-fees} 
 
 As seen in the sections above, there are some key differences between the transaction fee model on Moonbeam and the one on Ethereum that developers should be mindful of when developing on Moonbeam:
