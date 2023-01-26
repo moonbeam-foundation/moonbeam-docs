@@ -21,7 +21,7 @@ Some important terminology to understand in regards to treasuries:
 - **Proposal** — a plan or suggestion to further the network that is put forth by stakeholders to be approved by the Treasury Council
 - **Proposal bond** — a deposit equal to a percentage of the total proposal spend amount, as long as it meets the proposal bond minimum, otherwise the deposit is equal to the minimum
 - **Proposal bond minimum** — minimum amount for a proposal bond. This is the lower limit of the bond for a Treasury proposal
-- **Proposal bond maximum** — maximum amount (cap) for a proposal bond. **Proposal bonds are currently uncapped in all Moonbeam-based networks** <Is this still true?>
+- **Proposal bond maximum** — maximum amount (cap) for a proposal bond. **Proposal bonds are currently uncapped in all Moonbeam-based networks**
 - **Motion duration** - the maximum amount of time, in blocks, for Treasury Council members to vote on motions. Motions may end in fewer blocks if enough votes are cast to determine the result
 - **Spend period** — the amount of days, in blocks, during which the Treasury funds as many proposals as possible without exceeding the maximum
 - **Maximum approved proposals** — the maximum amount of proposals that can wait in the spending queue
