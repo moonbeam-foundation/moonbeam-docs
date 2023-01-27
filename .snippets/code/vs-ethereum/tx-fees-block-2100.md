@@ -1,9 +1,10 @@
 ```ts
 const axios = require('axios');
 
-// This script calculates the transaction fees of all transactions in a Moonbeam block
-// according to the transaction type (For Ethereum API: legacy, EIP-1559 or EIP-2930 standards,
-//and Substrate API), as well as calculating the total fees in the block.
+// This script calculates the transaction fees of all transactions in a Moonbase Alpha
+// block (as of RT2100) according to the transaction type (For Ethereum API: legacy,
+// EIP-1559 or EIP-2930 standards, and Substrate API), as well as calculating the total
+// fees in the block.
 
 // Endpoint to retrieve the latest block
 const endpointBlock = 'http://127.0.0.1:8080/blocks/head';
