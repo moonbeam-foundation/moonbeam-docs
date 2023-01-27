@@ -74,10 +74,14 @@ The Solidity interface includes the following functions:
  - **isCandidate**(*address* candidate) — read-only function that checks whether the specified address is currently a collator candidate. Uses the [`candidateState`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateState(AccountId20)){target=_blank} method of the staking pallet
  - **isSelectedCandidate**(*address* candidate) - read-only function that checks whether the specified address is currently part of the active collator set. Uses the [`selectedCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=selectedCandidates()){target=_blank} method of the staking pallet
  - **points**(*uint256* round) - read-only function that gets the total points awarded to all collators in a given round. Uses the [`points`](/builders/pallets-precompiles/pallets/staking/#:~:text=points(u32)){target=_blank} method of the staking pallet
+ - **awardedPoints**(*uint32* round, *address* candidate) - read-only function that returns the total points awarded in a given round to a given collator. If `0` is returned, it could be because no blocks were produced or the storage for that round has been removed. Uses the [`points`](/builders/pallets-precompiles/pallets/staking/#:~:text=awardedPts(u32, AccountId20)){target=_blank} method of the staking pallet
+ - **delegationAmount**(*address* delegator, *address* candidate) - read-only function that returns the amount delegated by a given delegator in support of a given candidate. Uses the [`delegatorState`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegatorState(AccountId20)){target=_blank} method of the staking pallet
+ - **isInTopDelegations**(*address* delegator, *address* candidate) - read-only function that returns a boolean indicating whether the a given delegator is in the top delegations for the given candidate. Uses the [`topDelegations`](/builders/pallets-precompiles/pallets/staking/#:~:text=topDelegations(AccountId20)){target=_blank} method of the staking pallet
  - **minDelegation**() — read-only function that gets the minimum delegation amount. Uses the [`minDelegation`](/builders/pallets-precompiles/pallets/staking/#:~:text=minDelegation()){target=_blank} method of the staking pallet
  - **candidateCount**() - read-only function that gets the current amount of collator candidates. Uses the [`candidatePool`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidatePool()){target=_blank} method of the staking pallet
  - **round**() - read-only function that returns the current round number. Uses the [`round`](/builders/pallets-precompiles/pallets/staking/#:~:text=round()){target=_blank} method of the staking pallet
  - **candidateDelegationCount**(*address* candidate) - read-only function that returns the number of delegations for the specified collator candidate address. Uses the [`candidateInfo`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateInfo(AccountId20)){target=_blank} method of the staking pallet
+ - **candidateAutoCompoundingDelegationCount**(*address* candidate) - a read-only function that returns the number of auto-compounding delegations for the specified candidate. Uses the [`autoCompoundingDelegations`](/builders/pallets-precompiles/pallets/staking/#:~:text=autoCompoundingDelegations(AccountId20)){target=_blank} method of the staking pallet
  - **delegatorDelegationCount**(*address* delegator) - read-only function that returns the number of delegations for the specified delegator address. Uses the [`delegatorState`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegatorState(AccountId20)){target=_blank} method of the staking pallet
  - **selectedCandidates**() - read-only function that gets the selected candidates for the current round. Uses the [`selectedCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=selectedCandidates()){target=_blank} method of the staking pallet
  - **delegationRequestIsPending**(*address* delegator, *address* candidate) - returns a boolean to indicate whether there is a pending delegation request made by a given delegator for a given candidate
@@ -102,6 +106,8 @@ The Solidity interface includes the following functions:
  - **executeDelegationRequest**(*address* delegator, *address* candidate) - executes any due delegation requests provided the address of a delegator and a candidate. Uses the [`executeDelegationRequest`](/builders/pallets-precompiles/pallets/staking/#:~:text=executeDelegationRequest(delegator, candidate)){target=_blank} method of the staking pallet
  - **cancelDelegationRequest**(*address* candidate) - cancels any pending delegation requests provided the address of a candidate. Uses the [`cancelDelegationRequest`](/builders/pallets-precompiles/pallets/staking/#:~:text=cancelDelegationRequest(candidate)){target=_blank} method of the staking pallet
  - **setAutoCompound**(*address* candidate, *uint8* value, *uint256* candidateAutoCompoundingDelegationCount, *uint256* delegatorDelegationCount) - sets an auto-compound value for an existing delegation given an integer (no decimals) for the `value` between 0-100. Uses the [`setAutoCompound`](/builders/pallets-precompiles/pallets/staking/#:~:text=setAutoCompound){target=_blank} method of the staking pallet
+ - **getDelegatorTotalStaked**(*address* delegator) - read-only function that returns the total staked amount of a given delegator, regardless of the candidate. Uses the [`delegatorState`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegatorState(AccountId20)){target=_blank} method of the staking pallet
+ - **getCandidateTotalCounted**(*address* candidate) - read-only function that returns the total amount staked for a given candidate. Uses the [`candidateInfo`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateInfo(AccountId20)){target=_blank} method of the staking pallet
 
 As of runtime 1800, the following methods are **deprecated**:
 
@@ -177,22 +183,12 @@ The candidate delegation count is the number of delegations backing a specific c
 
 ![Call collator delegation count](/images/builders/pallets-precompiles/precompiles/staking/new/staking-4.png)
 
-The auto-compounding delegation count is the amount of delegations that have auto-compounding configured. To determine the number of delegations that have auto-compounding set up, you can query the auto-compounding delegations for the candidate on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/js){target=_blank} using the following snippet:
+The auto-compounding delegation count is the amount of delegations that have auto-compounding configured. To determine the number of delegations that have auto-compounding set up, you can
 
-```js
-// Simple script to get the number of auto-compounding delegations for a given candidate.
-// Remember to replace CANDIDATE_ADDRESS_HERE with the candidate's address you want to delegate.
-const candidateAccount = 'CANDIDATE_ADDRESS_HERE'; 
-const autoCompoundingDelegations = await api.query.parachainStaking.autoCompoundingDelegations(candidateAccount);
-console.log(autoCompoundingDelegations.toHuman().length);
-``` 
-
-To run the snippet, make sure you're on the **JavaScript** page of Polkadot.js Apps (which can be selected from the **Developer** dropdown), and take the following steps:
-
-1. Copy the code from the previous snippet and paste it inside the code editor box 
-2. (Optional) Click the save icon and set a name for the code snippet, for example, **Get auto-compounding delegations**. This will save the code snippet locally
-3. To execute the code, click on the run button
-4. Copy the result as you'll need it when initiating a delegation
+1. Find and expand the **candidateAutoCompoundingDelegationCount** function
+2. Enter the candidate address (`{{ networks.moonbase.staking.candidates.address1 }}`)
+3. Click **call**
+4. After the call is complete, the results will be displayed
 
 ![Get candidate auto-compounding delegation count](/images/builders/pallets-precompiles/precompiles/staking/new/staking-5.png)
 
