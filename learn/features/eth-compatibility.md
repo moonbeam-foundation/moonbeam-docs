@@ -35,7 +35,7 @@ Moonbeam supports:
 - **Base fee pallet** - adds support for EIP-1559 transactions and handles base fee calculations
 - **Dynamic fee pallet** - calculates the dynamic minimum gas price
 
-Moonbeam uses the EVM and Ethereum pallets to achieve full Ethereum compatibility. Moonbeam does not currently use the base fee pallet or dynamic fee pallet. However, prior to Runtime 2100, Moonbeam relied on the base fee pallet to calculate base transaction fees. These calculations now rely on [pallet EVM's minimum gas price method](https://paritytech.github.io/frontier/rustdocs/pallet_evm/trait.FeeCalculator.html#tymethod.min_gas_price){target=_blank}.
+Moonbeam uses the EVM and Ethereum pallets to achieve full Ethereum compatibility. Moonbeam does not use the base fee or dynamic fee pallets. Moonbeam has its own [dynamic fee mechanism](https://forum.moonbeam.foundation/t/proposal-status-idea-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=_blank} for base fee calculations, which, as of RT2100, has been rolled out to Moonbase Alpha. Currently, Moonbeam and Moonriver have a static, hard-coded base fee while the dynamic fee system is being tested on Moonbase Alpha.
 
 ### EVM Pallet {: #evm-pallet }
 
