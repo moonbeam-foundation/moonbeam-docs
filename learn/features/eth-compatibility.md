@@ -32,10 +32,10 @@ Moonbeam supports:
 
 - **[EVM pallet](#evm-pallet){target=_blank}** - handles EVM execution
 - **[Ethereum pallet](#ethereum-pallet){target=_blank}** - is responsible for storing block data and provides RPC compatibility
-- **[Base fee pallet](#base-fee-pallet){target=_blank}** - adds support for EIP-1559 transactions and handles base fee calculations
+- **Base fee pallet** - adds support for EIP-1559 transactions and handles base fee calculations
 - **Dynamic fee pallet** - calculates the dynamic minimum gas price
 
-Moonbeam uses the EVM, Ethereum, and base fee pallets to achieve full Ethereum compatibility. Moonbeam does not use the dynamic fee pallet.
+Moonbeam uses the EVM and Ethereum pallets to achieve full Ethereum compatibility. Moonbeam does not currently use the base fee pallet or dynamic fee pallet. However, prior to Runtime 2100, Moonbeam relied on the base fee pallet to calculate base transaction fees. These calculations now rely on [pallet EVM's minimum gas price method](https://paritytech.github.io/frontier/rustdocs/pallet_evm/trait.FeeCalculator.html#tymethod.min_gas_price){target=_blank}.
 
 ### EVM Pallet {: #evm-pallet }
 
@@ -71,7 +71,3 @@ The [Ethereum pallet](https://paritytech.github.io/frontier/frame/ethereum.html)
 When a user submits a raw Ethereum transaction, it gets converted into a Substrate transaction through the pallet Ethereum's `transact` extrinsic. Using the Ethereum pallet as the sole executor of the EVM pallet, forces all of the data to be stored and transacted with in an Ethereum-compatible way. This enables block explorers such as [Moonscan](/builders/get-started/explorers#moonscan), which is built by Etherscan, to be able to index block data.
 
 Along with support for Ethereum-style data, the Ethereum pallet combined with the [RPC module](https://github.com/paritytech/frontier/tree/master/client/rpc){target=_blank} provides RPC support. This enables usage of [basic Ethereum JSON-RPC methods](/builders/get-started/eth-compare/rpc-support#basic-ethereum-json-rpc-methods){target=_blank} which ultimately allows existing Ethereum DApps to be deployed to Moonbeam with minimal changes. 
-
-### Base Fee Pallet {: #base-fee-pallet }
-
-The base fee pallet is responsible for calculating the base fee for EIP-1559 transactions. The algorithm follows the one outlined in the [EIP-1559 standard](https://eips.ethereum.org/EIPS/eip-1559){target=_blank}. In conjuction with the EVM pallet and the Ethereum pallet, `maxFeePerGas` and `maxPriorityFeePerGas` can be used instead of `gasPrice`, ultimately adding support for EIP-1559 transactions on Moonbeam.
