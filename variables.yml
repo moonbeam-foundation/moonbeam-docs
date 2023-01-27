@@ -641,21 +641,21 @@ networks:
       weight:
         display: 1,000,000,000
         numbers_only: 1000000000
-      planck_dot_weight: 0.10473507263
-      planck_dot_cost: 104735072.63
-      dot_cost: 0.01047350726
+      planck_dot_weight: 0.10535853509
+      planck_dot_cost: 105358535.09
+      dot_cost: 0.0105358535
     xcm_message:
       transfer:
         weight: 4,000,000,000
-        cost: 0.04189402904
+        cost: 0.042143414
       transact:
         weight: 3,000,000,000
         numbers_only: 3000000000
         planck_dot_cost: 362078329.611
         dot_cost: 0.0362078329611
     extrinsic_base_weight:
-      display: 95,479,000
-      numbers_only: 95479000
+      display: 94,914,000
+      numbers_only: 94914000
   kusama:
     rocks_db:
       read_weight: 25,000,000
@@ -666,7 +666,7 @@ networks:
     xcm_message:
       transfer:
         weight: 298,368,000
-        cost: '0.00001048129'
+        cost: '0.00001046953'
     xcm_instructions:
       buy_exec:
         base_weight: 3,109,000
@@ -677,18 +677,18 @@ networks:
         total_weight:
           display: 145,385,000
           numbers_only: 145385000
-        planck_ksm_cost: 5107195.42392
-        ksm_cost: '0.000005107190'
+        planck_ksm_cost: 5095435.36358
+        ksm_cost: '0.00000509543'
       clear_origin:
         total_weight: 3,111,000
         ksm_cost: '0.000000109286'
       deposit_asset:
         total_weight: 146,763,000
         ksm_cost: '0.000005155600'
-      planck_ksm_weight: 0.03512876448
+      planck_ksm_weight: 0.03504787539
     extrinsic_base_weight:
-      display: 94,889,000
-      numbers_only: 94889000
+      display: 95,108,000
+      numbers_only: 95108000
   moonbase_beta:
     xcm_message:
       transact:
