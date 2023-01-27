@@ -2,7 +2,7 @@
 const axios = require("axios");
 
 // This script calculates the transaction fees of all transactions in a Moonbeam, Moonriver
-// or Moonbase Alpha (as of RT2000) block according to the transaction type (For Ethereum API: 
+// or Moonbase Alpha (prior to RT2100) block according to the transaction type (For Ethereum API: 
 // legacy, EIP-1559 or EIP-2930 standards, and Substrate API), as well as calculating
 // the total fees in the block.
 
