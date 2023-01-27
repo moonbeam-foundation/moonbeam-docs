@@ -66,7 +66,7 @@ You can find a full explanation of the [happy path for a Treasury proposal on th
 
 ## Submitting your Idea to the Forum {: #submitting-your-idea-to-the-forum }
 
-It's highly recommended that you preface any proposal with a post on [Moonbeam's Community Forum](https://forum.moonbeam.foundation/){target=_blank}. You should allow a period of five days for the community to provide feedback on the Moonbeam Forum post. This especially important for Treasury proposals because of the irrevocable bond required to submit a Treasury spend proposal. You can submit your idea for a Treasury spend proposal by following [the instructions in the Using the Moonbeam Community Forum to Submit a Treasury Proposal guide](https://moonbeam.network/blog/using-moonbeam-community-forum/){target=_blank}. 
+It's highly recommended that you preface any proposal with a post on [Moonbeam's Community Forum](https://forum.moonbeam.foundation/){target=_blank}. You should allow a period of five days for the community to provide feedback on the Moonbeam Forum post. This is especially important for Treasury proposals because of the irrevocable bond required to submit a Treasury spend proposal. You can submit your idea for a Treasury spend proposal by following [the instructions in the Using the Moonbeam Community Forum to Submit a Treasury Proposal guide](https://moonbeam.network/blog/using-moonbeam-community-forum/){target=_blank}. 
 
 ![Moonbeam Forum Home](/images/tokens/governance/treasury-proposals/treasury-proposal-1.png)
 

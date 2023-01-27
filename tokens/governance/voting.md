@@ -90,45 +90,8 @@ Here, you need to provide the following information:
 
  1. Select the account with which you want to vote
  2. Enter the number of tokens that you want to vote with. These will be locked for the amount of time specified in the next step. Remember, you need to save a small amount of tokens for gas. If you try to vote with your entire balance the transaction will fail.
- 3. Set the vote conviction, which determines its weight (`vote_weight = tokens * conviction_multiplier`). The conviction multiplier is related to the number of enactment periods the tokens will be locked for after the referenda is enacted (if approved). Consequently, the longer you are willing to lock your tokens, the stronger your vote will be weighted. You also have the option of not locking tokens at all, but vote weight is drastically reduced (tokens are still locked during the duration of the referendum)
+ 3. Set the vote conviction, which determines its weight (`vote_weight = tokens * conviction_multiplier`). Please refer to the [Conviction Multiplier](/learn/features/governance/#conviction-multiplier){target=_blank} docs for more information
  4. Click on **Vote Aye** to approve the proposal or **Vote Nay** to disapprove the proposal, and then sign the transaction
-
-=== "Moonbeam"
-    | Lock Periods After Enactment | Conviction Multiplier |                       Approx. Lock Time                       |
-    |:----------------------------:|:---------------------:|:-------------------------------------------------------------:|
-    |              0               |          0.1          |                             None                              |
-    |              1               |           1           | {{networks.moonbeam.democracy.lock_period.conviction_1}} days |
-    |              2               |           2           | {{networks.moonbeam.democracy.lock_period.conviction_2}} days |
-    |              4               |           3           | {{networks.moonbeam.democracy.lock_period.conviction_3}} days |
-    |              8               |           4           | {{networks.moonbeam.democracy.lock_period.conviction_4}} days |
-    |              16              |           5           | {{networks.moonbeam.democracy.lock_period.conviction_5}} days |
-    |              32              |           6           | {{networks.moonbeam.democracy.lock_period.conviction_6}} days |
-
-=== "Moonriver"
-    | Lock Periods After Enactment | Conviction Multiplier |                       Approx. Lock Time                        |
-    |:----------------------------:|:---------------------:|:--------------------------------------------------------------:|
-    |              0               |          0.1          |                              None                              |
-    |              1               |           1           | {{networks.moonriver.democracy.lock_period.conviction_1}} day  |
-    |              2               |           2           | {{networks.moonriver.democracy.lock_period.conviction_2}} days |
-    |              4               |           3           | {{networks.moonriver.democracy.lock_period.conviction_3}} days |
-    |              8               |           4           | {{networks.moonriver.democracy.lock_period.conviction_4}} days |
-    |              16              |           5           | {{networks.moonriver.democracy.lock_period.conviction_5}} days |
-    |              32              |           6           | {{networks.moonriver.democracy.lock_period.conviction_6}} days |
-
-=== "Moonbase Alpha"
-    | Lock Periods After Enactment | Conviction Multiplier |                       Approx. Lock Time                       |
-    |:----------------------------:|:---------------------:|:-------------------------------------------------------------:|
-    |              0               |          0.1          |                             None                              |
-    |              1               |           1           | {{networks.moonbase.democracy.lock_period.conviction_1}} day  |
-    |              2               |           2           | {{networks.moonbase.democracy.lock_period.conviction_2}} days |
-    |              4               |           3           | {{networks.moonbase.democracy.lock_period.conviction_3}} days |
-    |              8               |           4           | {{networks.moonbase.democracy.lock_period.conviction_4}} days |
-    |              16              |           5           | {{networks.moonbase.democracy.lock_period.conviction_5}} days |
-    |              32              |           6           | {{networks.moonbase.democracy.lock_period.conviction_6}} days |
-
-!!! note
-    The lock time approximations are based upon regular {{networks.moonbeam.block_time}}-second block times. Block production may vary and thus the displayed lock times should not be deemed exact.
-
 
 ![Vote Submission](/images/tokens/governance/voting/vote-3.png)
 
