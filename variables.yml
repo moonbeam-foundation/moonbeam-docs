@@ -309,6 +309,7 @@ networks:
       min_can_stk_wei: 500000000000000000000
       collator_map_bond: 100
       max_candidates: 72
+      paid_out_block: 73 # Update this whenever max_candidates is changed! Always max_candidates + 1!
       round_blocks: 600
       round_hours: 2
       min_del_stake: 5
