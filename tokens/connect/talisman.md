@@ -46,7 +46,14 @@ Next, head to [Moonbase Alpha Polkadot.js Apps](https://polkadot.js.org/apps/?rp
 
 ![Connect account to PolkadotJs Apps](/images/tokens/connect/talisman/talisman-3.png)
 
-Your Talisman wallet is now connected to Polkadot.js Apps. After refreshing Polkadot.js Apps, you should see your Talisman account in the [Accounts page of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/accounts){target=_blank}. 
+Your Talisman wallet is now connected to Polkadot.js Apps. After refreshing Polkadot.js Apps, you should see your Talisman account in the [Accounts page of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/accounts){target=_blank}. Talisman works with all Moonbeam networks after you've enabled your Ethereum account. You can also see your balances across all networks in the **Portfolio** tab by clicking on the Talisman logo in the upper left hand corner of the extension. By default, Talisman hides your testnet account balances, however, you can change this by taking the following steps: 
+
+1. Open the Talisman extension and click on the Talisman logo
+2. Select **Settings**
+3. Select **Ethereum Networks**
+4. Click **Enable Testnets**
+
+![How to see your testnet balances in Talisman](/images/tokens/connect/talisman/enable-testnets-in-talisman.png)
 
 ## Connecting to Moonbase Alpha {: #connecting-to-moonbase-alpha } 
 
