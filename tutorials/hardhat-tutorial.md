@@ -421,5 +421,5 @@ If everything was set up correctly, you should see output like the following:
 
 And that's it! We covered a lot of ground in this tutorial but there's more resources available if you'd like to go deeper, including the following:
 
-- [Hardhat Guide to Testing Contracts](https://hardhat.org/hardhat-runner/docs/guides/test-contracts){target=_blank}
-- [Writing Tests and Scripts](https://hardhat.org/hardhat-runner/docs/guides/tasks-and-scripts){target=_blank}
+- [Hardhat guide to Testing Contracts](https://hardhat.org/hardhat-runner/docs/guides/test-contracts){target=_blank}
+- [Writing tasks and scripts](https://hardhat.org/hardhat-runner/docs/guides/tasks-and-scripts){target=_blank}
