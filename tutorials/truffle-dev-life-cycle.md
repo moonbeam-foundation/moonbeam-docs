@@ -3,7 +3,7 @@ title: Contract Development Life Cycle with Truffle
 description: Learn how to develop, test, and deploy smart contracts with Truffle and how to take your contracts from a local development node to Moonbeam MainNet.
 ---
 
-# Smart Contract Development: From a Local Development Node to Moonbeam MainNet
+# Smart Contract Development with Truffle: From a Local Development Node to Moonbeam MainNet
 
 ![Banner Image](/images/tutorials/truffle-dev-life-cycle/truffle-banner.png)
 
