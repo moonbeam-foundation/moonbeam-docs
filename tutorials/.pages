@@ -5,3 +5,5 @@ nav:
   - remote-staking-xcm.md
   - batch-approve-swap.md
   - hardhat-tutorial.md
+  - foundry-start-to-end.md
+  - truffle-dev-life-cycle.md
