@@ -292,7 +292,7 @@ it("Non-admins should not be able to grant membership", async function () {
       const { deployedDao } = await deployDao();
 
       // We ask ethers for two accounts back this time.
-      const [admin, member1] = await ethers.getSigners();
+      const [deployer, member1] = await ethers.getSigners();
 
       // We use connect to call grant_member from member1's account instead of admin.
       // This test will succeed if the function call reverts and fails if the call succeeds.
@@ -309,7 +309,7 @@ it("DAO members should be able to access member only functions", async function 
       const { deployedDao } = await deployDao();
 
       // We ask ethers for two accounts back this time.
-      const [admin, member1] = await ethers.getSigners();
+      const [deployer, member1] = await ethers.getSigners();
 
       // This test will succeed if the DAO member can call the member only function.
       // We use connect here to call the function from the account of the new member.
@@ -363,17 +363,21 @@ When all is said and done your deployment script should look similar to the foll
 
 ```javascript
 // scripts/deploy.js
-
+//1. The PS-1 collator on Moonbase Alpha is chosen as the DAO's target
 const targetCollator = "{{ networks.moonbase.staking.candidates.address1 }}"
 
 async function main() {
 
+   // 2. Get the address of the deployer to later be set as the admin of the DAO.
    const [deployer] = await ethers.getSigners();
    console.log("Deploying contracts with the account:", deployer.address);
-
+   
+   // 3. Get an instance of DelegationDAO
    const delegationDao = await ethers.getContractFactory("DelegationDAO");
+   
+   // 4. Deploy the contract specifying two params: the desired collator to delegate
+   // to and the address of the deployer (synonymous with initial DAO admin)
    const deployedDao = await delegationDao.deploy(targetCollator, deployer.address);
-
    console.log("DAO address:", deployedDao.address);
    
 }
