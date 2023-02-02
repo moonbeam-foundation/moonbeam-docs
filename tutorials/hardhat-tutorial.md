@@ -1,6 +1,6 @@
 ---
 title: Hardhat Developer Workflow
-description: In this guide, we'll be doing a comprehensive, intermediate-level introduction to the Hardhat development environment.
+description: In this guide, we'll compile, test, deploy, and verify a staking DAO smart contract on Moonbeam, demonstrating the features of the Hardhat Development environment.
 ---
 
 # Hardhat Developer Workflow
