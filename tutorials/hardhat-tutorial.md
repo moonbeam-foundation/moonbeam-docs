@@ -188,7 +188,17 @@ Hardhat tests are typically written with Mocha and Chai. [Mocha](https://mochajs
 
 ### Configuring the Test File {: #configuring-the-test-file }
 
-To get started, create a folder called `tests` and a file named `Dao.js`. Then copy and paste the contents below to set up the initial structure of your test file. Be sure to read the comments as they can clarify the purpose of each line. 
+To set up your test file, take the following steps:
+
+1. Create a ```tests``` directory 
+    ```
+    mkdir tests
+    ```
+2. Create a new file called `Dao.js`
+    ```
+    touch tests/Dao.js
+    ```
+3. Then copy and paste the contents below to set up the initial structure of your test file. Be sure to read the comments as they can clarify the purpose of each line. 
 
 ``` javascript
 const { ethers } = require("hardhat");
