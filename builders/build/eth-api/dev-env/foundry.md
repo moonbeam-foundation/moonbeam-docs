@@ -371,6 +371,7 @@ You can even fork networks while using Chisel. In the following example, you wil
 
 **INSERT IMAGE HERE**  
 
+If you want to learn more about Chisel, download Foundry and refer to its [official reference page](https://book.getfoundry.sh/reference/chisel/).
 
 
 --8<-- 'text/disclaimers/third-party-content.md'
