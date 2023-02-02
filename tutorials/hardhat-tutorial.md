@@ -19,9 +19,12 @@ _The information presented herein is for informational purposes only and has bee
 
 To get started, you will need the following:
 
- - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
- - Have an account with funds.
+ - A Moonbase Alpha account funded with DEV. 
   --8<-- 'text/faucet/faucet-list-item.md'
+ - A [Moonscan API Key](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank}
+  - 
+--8<-- 'text/common/endpoint-examples.md'
+
 
 --8<-- 'text/common/install-nodejs.md'
 
