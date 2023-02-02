@@ -55,12 +55,12 @@ The smart contract featured in this tutorial is more complex than the one in the
 
 To get started, take the following steps:
 
-1. Create a contracts directory to hold your project's smart contracts by running: ```mkdir contracts && cd contracts```
+1. Create a ```contracts``` directory to hold your project's smart contracts and navigate to it by running: ```mkdir contracts && cd contracts```
 2. Create a new file called `DelegationDAO.sol` by running ```touch DelegationDAO.sol```
 3. Copy and paste the contents of [`DelegationDAO.sol`](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank} into `DelegationDAO.sol` 
-4. Create a new file called `StakingInterface.sol` by running ```touch StakingInterface.sol```. 
-5. Copy and paste the contents of [`StakingInterface.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank} into the `StakingInterface.sol` file also within the same `contracts` directory 
-5. `DelegationDAO.sol` relies on a couple of standard [OpenZeppelin](https://www.openzeppelin.com/){target=_blank} contracts. Add the library by running 
+4. Create a new file called `StakingInterface.sol` in the ```contracts``` directory by running ```touch StakingInterface.sol``` 
+5. Copy and paste the contents of [`StakingInterface.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank} into the `StakingInterface.sol` file
+6. `DelegationDAO.sol` relies on a couple of standard [OpenZeppelin](https://www.openzeppelin.com/){target=_blank} contracts. Add the library by running the following command:  
 
 ```
 npm install @openzeppelin/contracts
