@@ -119,7 +119,7 @@ module.exports = {
 
   networks: {
     // 4. Add the Moonbase Alpha network specification
-    moonbaseAlpha: {
+    moonbase: {
       url: '{{ networks.moonbase.rpc_url }}',
       chainId: {{ networks.moonbase.chain_id }}, // {{ networks.moonbase.hex_chain_id }} in hex,
       accounts: [privateKey]
@@ -390,10 +390,10 @@ main()
    });
 ```
 
-You can now deploy `DelegationDAO.sol` using the `run` command and specifying `moonbaseAlpha` as the network:
+You can now deploy `DelegationDAO.sol` using the `run` command and specifying `moonbase` as the network:
 
 ```
-npx hardhat run --network moonbaseAlpha scripts/deploy.js
+npx hardhat run --network moonbase scripts/deploy.js
 ```
 
 If you're using another Moonbeam network, make sure that you specify the correct network. The network name needs to match how it's defined in the `hardhat.config.js`.
@@ -421,7 +421,7 @@ Double check that your `secrets.json` file includes your API key for [Moonbeam M
 To verify the contract, you will run the `verify` command and pass in the network where the `DelegationDao` contract is deployed, the address of the contract, and the two constructor arguments that you specified in your `deploy.js` file, namely, the address of the target collator and the address you deployed the smart contract with (sourced from your `secrets.json` file).
 
 ```
-npx hardhat verify --network moonbaseAlpha <CONTRACT-ADDRESS> "{{ networks.moonbase.staking.candidates.address1 }}" "DEPLOYER-ADDRESS"
+npx hardhat verify --network moonbase <CONTRACT-ADDRESS> "{{ networks.moonbase.staking.candidates.address1 }}" "DEPLOYER-ADDRESS"
 ```
 
 In your terminal you should see the source code for your contract was successfully submitted for verification. If the verification was successful, you should see **Successfully verified contract** and there will be a link to the contract code on [Moonscan for Moonbase Alpha](https://moonbase.moonscan.io/){target=_blank}. If the plugin returns an error, double check that your API key is configured correctly and that you have specified all necessary parameters in the verification command. You can refer to the [guide to the Hardhat Etherscan plugin](/builders/build/eth-api/verify-contracts/etherscan-plugins/){target=_blank} for more information.
