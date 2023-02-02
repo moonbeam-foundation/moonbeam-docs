@@ -216,7 +216,7 @@ const targetCollator = "{{ networks.moonbase.staking.candidates.address1 }}";
 
 Before we can run any test cases we'll need to launch a staking DAO with an initial configuration. Our setup here is relatively simple - we'll be deploying a stakingDAO with a single administrator (the deployer) and then adding a new member to the DAO. This simple setup is perfect for demonstration purposes, but it's easy to imagine more complex configurations you'd like to test, such as a scenario with 100 DAO members or one with multiple admins of the DAO. 
 
-`Describe` is a Mocha function that that enables you to organize your tests. Multiple describe functions can be nested together. It's entirely optional but can be useful especially in a complex projects with large number of test cases.
+`Describe` is a Mocha function that that enables you to organize your tests. Multiple describe functions can be nested together. It's entirely optional but can be useful especially in a complex projects with large number of test cases. You can read more about constructing tests with Mocha on the [Mocha docs site](https://mochajs.org/#asynchronous-code){target=_blank}.
 
 We'll define a function called `deployDao` that will contain the setup steps for our staking DAO. To configure your test file, add the following snippet:
 
@@ -241,6 +241,10 @@ describe("Dao contract", function () {
     // Return the deployed DAO to allow the tests to access and interact with it
     return { deployedDao };
   }
+
+  // The following test cases should be added here.
+
+});
 ```
 
 ### Writing your First Test Cases {: #writing-your-first-test-cases }
@@ -266,7 +270,9 @@ describe("Deployment", function () {
       // `expect` receives a value and wraps it in an assertion object.
       // This test will pass if the DAO stored the correct target collator
       expect(await deployedDao.target()).to.equal(targetCollator);
-});
+    });
+
+    // The following test cases should be added here.
 });
 ```
 
@@ -314,10 +320,9 @@ it("DAO members should be able to access member only functions", async function 
       // This test will succeed if the DAO member can call the member only function.
       // We use connect here to call the function from the account of the new member.
       expect(await deployedDao.connect(member1).check_free_balance()).to.equal(0);
-    });
 });
 ```
-And that's it! You're now ready to run your tests! Since this is the last test case completing the test file, an extra closing bracket is added to the prior code snippet.
+And that's it! You're now ready to run your tests!
 
 ### Running your Tests {: #running-your-tests }
 
