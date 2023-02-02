@@ -281,7 +281,51 @@ One of Foundry's newer tools, Chisel is a Solidity REPL, or shell. It allows a d
 
 Since Chisel is mainly useful for quick testing, it can be used outside of a Foundry project. But, if executed within a Foundry project, it will keep the configurations within `foundry.toml` when running.  
 
-To get started using Chisel, run `chisel` in the command line.  
+For this example, you will be testing out some of the features of `abi` within Solidity because it is complex enough to demonstrate how Chisel could be useful. To get started using Chisel, run `chisel` in the command line to start the shell.  
 
+In the shell, you can write Solidity code as if it was running within a function:
+
+```solidity
+bytes memory myData = abi.encode(100, true, "Develop on Moonbeam");
+```
+
+You should see something like the following:  
+
+**INSERT IMAGE HERE**  
+ 
+Let's say you were interested in how `abi` encoded data, because you're looking into how to most efficiently store data on the blockchain and thus save gas. To view how the `myData` is stored in memory, you can use the following command while in the Chisel shell:  
+
+```
+!memdump
+```
+
+`memdump` will dump all of the data in your current session. You'll likely see something like this below. If you aren't good at reading hexadecimal or if you don't know how ABI encoding works, then you might not be able to find where the `myData` variable has been stored.
+
+**INSERT IMAGE HERE**  
+
+Fortunately, Chisel lets you easily figure out where this information is stored. Using the `!rawstack` command, you can find the location in the stack where the value of a variable:  
+
+```
+!rawstack myData
+```
+
+In this situation, since bytes is over 32 bytes in length, the memory pointer is displayed instead. But that's exactly what's needed, since you already know the entirety of the stack from the `!memdump` command.  
+
+**INSERT IMAGE HERE**  
+
+The `!rawstack` command shows that the `myData` variable is stored at `0x80`, so when comparing this with the memory dump retrieved form the `!memdump` command, it looks like `myData` is stored like this:  
+
+```
+[0x80:0xa0]: 0x00000000000000000000000000000000000000000000000000000000000000a0
+[0xa0:0xc0]: 0x0000000000000000000000000000000000000000000000000000000000000064
+[0xc0:0xe0]: 0x0000000000000000000000000000000000000000000000000000000000000001
+[0xe0:0x100]: 0x0000000000000000000000000000000000000000000000000000000000000060
+[0x100:0x120]: 0x0000000000000000000000000000000000000000000000000000000000000013
+[0x120:0x140]: 0x446576656c6f70206f6e204d6f6f6e6265616d00000000000000000000000000
+```
+
+At first glance this makes sense, since `0xa0` has a value of `0x64` which is equal to 100, and `0xc0` has a value of `0x01` which is equal to true. There are a lot of zeros in this method of data packing, so as a smart contract developer you might instead try to use structs or pack the data together better with bitwise code.  
+
+There's an even easier way to get all of this data.
 
 --8<-- 'text/disclaimers/third-party-content.md'
