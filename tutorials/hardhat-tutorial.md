@@ -301,7 +301,7 @@ describe("Dao contract", function () {
 
 This tutorial deviates from the [test driven development philosophy](https://en.wikipedia.org/wiki/Test-driven_development){target=_blank} of writing your tests prior to your code. A few test cases will be cherry picked for demonstration purposes. 
 
-First, you'll create a subsection called `deployment` to keep the test file organized. This isn't required but may be helpful for organization purposes. Next you'll define your first test case by using the `it` mocha function. A description that clearly indicates what the test is doing is provided as well as indication that the function is async. This first test is simply checking to see that the staking DAO is correctly storing the address of the target collator.
+First, you'll create a subsection called `Deployment` to keep the test file organized. This isn't required but may be helpful for organization purposes. Next you'll define your first test case by using the `it` Mocha function. A description that clearly indicates what the test is doing is provided as well as indication that the function is async. This first test is simply checking to see that the staking DAO is correctly storing the address of the target collator.
 
 Next, a fixture is loaded - in this case, the "empty" staking DAO fixture. Fixtures are easily interchangeable within your test cases. 
 
