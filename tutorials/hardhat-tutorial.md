@@ -211,7 +211,7 @@ Before beginning the contract verification process, you'll need to [acquire a Mo
 
 --8<-- 'text/hardhat/using-the-hardhat-etherscan-plugin.md'
 
-To verify the contract, you will run the `verify` command and pass in the address of the deployed contract, the network where it's deployed, and the two constructor arguments that you specified in your `deploy.js`, namely, the address of the target collator, and the address you deployed the smart contract with (sourced from your `secrets.json` file).
+To verify the contract, you will run the `verify` command and pass in the network where the `DelegationDao` contract is deployed, the address of the contract, and the two constructor arguments that you specified in your `deploy.js` file, namely, the address of the target collator and the address you deployed the smart contract with (sourced from your `secrets.json` file).
 
 ```
 npx hardhat verify --network moonbaseAlpha <CONTRACT-ADDRESS> "{{ networks.moonbase.staking.candidates.address1 }}" "DEPLOYER-ADDRESS"
