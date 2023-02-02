@@ -201,6 +201,7 @@ To set up your test file, take the following steps:
 3. Then copy and paste the contents below to set up the initial structure of your test file. Be sure to read the comments as they can clarify the purpose of each line 
 
 ``` javascript
+//Import hardhat and hardhat toolbox
 const { ethers } = require("hardhat");
 require("@nomicfoundation/hardhat-toolbox");
 
@@ -213,7 +214,7 @@ const targetCollator = "{{ networks.moonbase.staking.candidates.address1 }}";
 
 ### Deploying a Staking DAO for Testing {: #deploying-a-staking-dao-for-testing }
 
-Before we can run any test cases we'll need to launch a staking DAO with an initial configuration. Our setup here is relatively simple - we'll be deploying a stakingDAO with a single administrator (the deployer) and then adding a new member to the DAO. This simple staking DAO setup is perfect for demonstration purposes, but it's easy to imagine more complex configurations you'd like to test, such as a scenario with 100 DAO members or one with multiple admins of the DAO. 
+Before we can run any test cases we'll need to launch a staking DAO with an initial configuration. Our setup here is relatively simple - we'll be deploying a stakingDAO with a single administrator (the deployer) and then adding a new member to the DAO. This simple setup is perfect for demonstration purposes, but it's easy to imagine more complex configurations you'd like to test, such as a scenario with 100 DAO members or one with multiple admins of the DAO. 
 
 `Describe` is a Mocha function that that enables you to organize your tests. Multiple describe functions can be nested together. It's entirely optional but can be useful especially in a complex projects with large number of test cases.
 
@@ -274,9 +275,9 @@ Now, add another test case. When a staking DAO is launched, it shouldn't have an
 ```javascript
 it("The DAO should initially have 0 funds in it", async function () {
       const { deployedDao } = await deployDao();
+
+      //This test will pass if the DAO has no funds as expected before any contributions.
       expect(await deployedDao.totalStake()).to.equal(0);
-    });
-  });
 });
 ```
 
@@ -289,10 +290,13 @@ In the [staking DAO contract](https://github.com/PureStake/moonbeam-intro-course
 ```javascript
 it("Non-admins should not be able to grant membership", async function () {
       const { deployedDao } = await deployDao();
-      const [account1, otherAddress] = await ethers.getSigners();
-      await expect(deployedDao.connect(otherAddress).grant_member("0x0000000000000000000000000000000000000000")).to.be.reverted;
-    });
-  });
+
+      // We ask ethers for two accounts back this time.
+      const [admin, member1] = await ethers.getSigners();
+
+      // We use connect to call grant_member from member1's account instead of admin.
+      // This test will succeed if the function call reverts and fails if the call succeeds.
+      await expect(deployedDao.connect(member1).grant_member("0x0000000000000000000000000000000000000000")).to.be.reverted;
 });
 ```
 
@@ -305,16 +309,16 @@ it("DAO members should be able to access member only functions", async function 
       const { deployedDao } = await deployDao();
 
       // We ask ethers for two accounts back this time.
-      const [account1, member1] = await ethers.getSigners();
+      const [admin, member1] = await ethers.getSigners();
 
       // This test will succeed if the DAO member can call the member only function.
       // We use connect here to call the function from the account of the new member.
       expect(await deployedDao.connect(member1).check_free_balance()).to.equal(0);
     });
-  });
 });
 ```
-And that's it! You're now ready to run your tests! Since this is the last test case completing the test file, a series of closing brackets are added to the prior code snippet.  
+And that's it! You're now ready to run your tests! Since this is the last test case completing the test file, an extra closing bracket is added to the prior code snippet.
+
 ### Running your Tests {: #running-your-tests }
 
 If you've followed all of the prior sections, your [`Dao.js`](https://raw.githubusercontent.com/PureStake/moonbeam-intro-course-resources/main/delegation-dao-lesson-one/Dao.js){target=_blank} test file should be all set to go. Otherwise, you can copy the complete snippet below into your [`Dao.js`](https://raw.githubusercontent.com/PureStake/moonbeam-intro-course-resources/main/delegation-dao-lesson-one/Dao.js){target=_blank}  test file. Comments have been removed for code readability, but you can refer to the prior sections 
