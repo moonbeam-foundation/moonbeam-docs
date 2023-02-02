@@ -289,10 +289,6 @@ In the shell, you can write Solidity code as if it was running within a function
 bytes memory myData = abi.encode(100, true, "Develop on Moonbeam");
 ```
 
-You should see something like the following:  
-
-**INSERT IMAGE HERE**  
- 
 Let's say you were interested in how `abi` encoded data, because you're looking into how to most efficiently store data on the blockchain and thus save gas. To view how the `myData` is stored in memory, you can use the following command while in the Chisel shell:  
 
 ```
