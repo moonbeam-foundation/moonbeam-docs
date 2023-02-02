@@ -53,23 +53,14 @@ The smart contract featured in this tutorial is more complex than the one in the
 !!! note
     `DelegationDAO.sol` is unreviewed and unaudited. It is designed only for demonstration purposes and not intended for production use. It may contain bugs or logic errors that could result in loss of funds. 
 
-To get started, create a contracts directory to hold your project's smart contracts by running the following command:
+To get started, take the following steps:
 
-```
-mkdir contracts && cd contracts
-```
-
-Create a new file called `DelegationDAO.sol`:
-
-```
-touch DelegationDAO.sol
-```
-
-To set up the necessary contracts, take the following steps: 
-
-1. Copy and paste the contents of [`DelegationDAO.sol`](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank} into `DelegationDAO.sol` 
-2. You'll also need to fetch a copy of [`StakingInterface.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank} and copy and paste it into a file named `StakingInterface.sol` also within the same `contracts` directory 
-3. `DelegationDAO.sol` relies on a couple of standard OpenZeppelin contracts. Add the library by running 
+1. Create a contracts directory to hold your project's smart contracts by running: ```mkdir contracts && cd contracts```
+2. Create a new file called `DelegationDAO.sol` by running ```touch DelegationDAO.sol```
+3. Copy and paste the contents of [`DelegationDAO.sol`](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank} into `DelegationDAO.sol` 
+4. Create a new file called `StakingInterface.sol` by running ```touch StakingInterface.sol```. 
+5. Copy and paste the contents of [`StakingInterface.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank} into the `StakingInterface.sol` file also within the same `contracts` directory 
+5. `DelegationDAO.sol` relies on a couple of standard [OpenZeppelin](https://www.openzeppelin.com/){target=_blank} contracts. Add the library by running 
 
 ```
 npm install @openzeppelin/contracts
