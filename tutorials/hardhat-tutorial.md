@@ -11,7 +11,7 @@ _January 16, 2023 | by Kevin Neilson & Erin Shaben_
 
 ## Introduction {: #introduction } 
 
-In this tutorial, we'll walk through the [Hardhat development environment](https://hardhat.org/){target=_blank} in the context of launching a [pooled StakingDAO contract](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank}. We'll walk through the typical developer workflow in detail, including compilation, deployment, verification, and more. If this is your first time exploring Hardhat, you may wish to start with [this introduction to Hardhat](/builders/build/eth-api/dev-env/hardhat/){target=_blank}. 
+In this tutorial, we'll walk through the [Hardhat development environment](https://hardhat.org/){target=_blank} in the context of launching a [pooled staking DAO contract](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank}. We'll walk through the typical developer workflow in detail, including compilation, deployment, verification, and more. If this is your first time exploring Hardhat, you may wish to start with [this introduction to Hardhat](/builders/build/eth-api/dev-env/hardhat/){target=_blank}. 
 
 
 _The information presented herein is for informational purposes only and has been provided by third parties. Moonbeam does not endorse any project listed and described on the Moonbeam docs website (https://docs.moonbeam.network/)._
@@ -61,7 +61,7 @@ touch DelegationDAO.sol
 To set up the necessary contracts, take the following steps: 
 
 1. Copy and paste the contents of [DelegationDAO.sol](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank} into `DelegationDAO.sol` 
-2. You'll also need to fetch a copy of [StakingInterface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank} and copy and paste it into a file named `StakingInterface.sol` also within the same `contracts` directory 
+2. You'll also need to fetch a copy of [`StakingInterface.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank} and copy and paste it into a file named `StakingInterface.sol` also within the same `contracts` directory 
 3. DelegationDAO.sol relies on a couple of standard OpenZeppelin contracts. Add the library by running 
 
 ```
@@ -256,7 +256,7 @@ const targetCollator = "{{ networks.moonbase.staking.candidates.address1 }}";
 
 A fixture is a function that configures the blockchain to a desired state. For example, our initial tests for the staking DAO will be run after the staking DAO has been deployed but before any contributions have been made. When a fixture is loaded for the first time, it is executed as normal to properly configure the state of the chain. When called a second time, the fixture is not executed again but rather the state of the network is reset to the point in time immediately after the fixture was initially executed. In other words, this resets state changes prior to the initial execution of the fixture and saves time.
 
-The first fixture in the test file represents an "empty" stakingDAO but the second fixture will have one member (besides the DAO admin). Fixtures allow you to quickly switch between different states, simplifying and speeding up the testing process. In this tutorial only two fixtures are specified but it's easy to imagine other states you'd like to test, such as a scenario with 100 DAO members or one with multiple admins of the DAO. 
+The first fixture in the test file represents an "empty" staking DAO but the second fixture will have one member (besides the DAO admin). Fixtures allow you to quickly switch between different states, simplifying and speeding up the testing process. In this tutorial only two fixtures are specified but it's easy to imagine other states you'd like to test, such as a scenario with 100 DAO members or one with multiple admins of the DAO. 
 
 To define the two fixtures, add the following snippet to your test file:
 
@@ -274,7 +274,7 @@ describe("Dao contract", function () {
     const [deployer] = await ethers.getSigners();
     const delegationDao = await ethers.getContractFactory("DelegationDAO");
     
-    // To deploy our StakingDao, you need to call delegationDao.deploy() and await
+    // To deploy our staking DAO, you need to call delegationDao.deploy() and await
     // its deployed() method, which happens once its transaction has been mined
     const deployedDao = await delegationDao.deploy(targetCollator, deployer.address);
 
@@ -301,9 +301,9 @@ describe("Dao contract", function () {
 
 This tutorial deviates from the [test driven development philosophy](https://en.wikipedia.org/wiki/Test-driven_development){target=_blank} of writing your tests prior to your code. A few test cases will be cherry picked for demonstration purposes. 
 
-First, you'll create a subsection called `deployment` to keep the test file organized. This isn't required but may be helpful for organization purposes. Next you'll define your first test case by using the `it` mocha function. A description that clearly indicates what the test is doing is provided as well as indication that the function is async. This first test is simply checking to see that the StakingDAO is correctly storing the address of the target collator.
+First, you'll create a subsection called `deployment` to keep the test file organized. This isn't required but may be helpful for organization purposes. Next you'll define your first test case by using the `it` mocha function. A description that clearly indicates what the test is doing is provided as well as indication that the function is async. This first test is simply checking to see that the staking DAO is correctly storing the address of the target collator.
 
-Next, a fixture is loaded - in this case, the "empty" stakingDAO fixture. Fixtures are easily interchangeable within your test cases. 
+Next, a fixture is loaded - in this case, the "empty" staking DAO fixture. Fixtures are easily interchangeable within your test cases. 
 
 ```javascript
 // You can nest describe calls to create subsections
@@ -323,7 +323,7 @@ describe("Deployment", function () {
 });
 ```
 
-Let's add another test case. When a StakingDAO is launched, it shouldn't have any funds. This test verifies that is indeed the case. Go ahead and add the following test case to your `Dao.js` file:
+Let's add another test case. When a staking DAO is launched, it shouldn't have any funds. This test verifies that is indeed the case. Go ahead and add the following test case to your `Dao.js` file:
 
 ```javascript
 it("should initially have 0 funds in the DAO", async function () {
@@ -336,7 +336,7 @@ it("should initially have 0 funds in the DAO", async function () {
 
 To this point, the two cases implemented have been simple but important. Now, you'll implement a more complex test case that differs in its architecture. In prior examples, you've verified that a function returns an expected value. In this one, you'll be verifying that a function reverts. You'll also change the address of the caller to test an admin-only function. 
 
-In the [StakingDAO contract](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank}, only admins are authorized to add new members to the DAO. One could write a test that checks to see if the admin is authorized to add new members but perhaps a more important test is to ensure that *non-admins* can't add new members. To run this test case under a different account, you're going to ask for another address when you call `ethers.getSigners()` and specify the caller in the assertion with `connect(otherAddress)`. Finally, after the function call to be tested you'll append `.to.be.reverted;` to indicate that the test case is successful if the function reverts. And if it doesn't revert it's a failed test! 
+In the [staking DAO contract](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank}, only admins are authorized to add new members to the DAO. One could write a test that checks to see if the admin is authorized to add new members but perhaps a more important test is to ensure that *non-admins* can't add new members. To run this test case under a different account, you're going to ask for another address when you call `ethers.getSigners()` and specify the caller in the assertion with `connect(otherAddress)`. Finally, after the function call to be tested you'll append `.to.be.reverted;` to indicate that the test case is successful if the function reverts. And if it doesn't revert it's a failed test! 
 
 ```javascript
 it("should not allow non-admins to grant membership", async function () {
@@ -348,7 +348,7 @@ it("should not allow non-admins to grant membership", async function () {
 
 ### Swapping Fixtures {: #swapping-fixtures }
 
-For this example, you'll load another fixture - the one that has a DAO deployed with a member. Then, you'll check to verify whether that member can call the `check_free_balance()` function of StakingDAO, which has an access modifier such that only members can access it. 
+For this example, you'll load another fixture - the one that has a DAO deployed with a member. Then, you'll check to verify whether that member can call the `check_free_balance()` function of staking DAO, which has an access modifier such that only members can access it. 
 
 ```javascript
 it("DAO members should be able to access member only functions", async function () {
