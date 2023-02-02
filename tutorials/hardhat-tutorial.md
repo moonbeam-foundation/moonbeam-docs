@@ -13,6 +13,9 @@ _January 16, 2023 | by Kevin Neilson & Erin Shaben_
 
 In this tutorial, we'll walk through the [Hardhat development environment](https://hardhat.org/){target=_blank} in the context of launching a [pooled StakingDAO contract](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank}. We'll walk through the typical developer workflow in detail, including compilation, deployment, verification, and more. If this is your first time exploring Hardhat, you may wish to start with [this introduction to Hardhat](/builders/build/eth-api/dev-env/hardhat/){target=_blank}. 
 
+
+_The information presented herein is for informational purposes only and has been provided by third parties. Moonbeam does not endorse any project listed and described on the Moonbeam docs website (https://docs.moonbeam.network/)._
+
 ## Creating a Hardhat Project {: #creating-a-hardhat-project }
 
 --8<-- 'text/hardhat/creating-a-hardhat-project.md'
@@ -36,9 +39,9 @@ module.exports = {
 };
 ```
 
-## Writing and Compiling Smart Contracts {: #writing-and-compiling-smart-contracts }
+## Add Smart Contracts {: #add-smart-contracts }
 
-The smart contract featured in this tutorial is more complex than the one in the [Introduction to Hardhat](/builders/build/eth-api/dev-env/hardhat/){target=_blank} but the nature of the contract means it's perfect to demonstrate some of the advanced capabilities of Hardhat. [DelegationDAO.sol](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank} is a pooled staking DAO that uses the [Staking Precompile](/builders/pallets-precompiles/precompiles/staking/){target=_blank} autonomously delegate to a collator when it reaches a determined threshold. Pooled staking contracts such as [DelegationDAO.sol](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank} allow delegators with less than the protocol minimum bond to join together to delegate their pooled funds and earn a share of staking rewards. 
+The smart contract featured in this tutorial is more complex than the one in the [Introduction to Hardhat](/builders/build/eth-api/dev-env/hardhat/){target=_blank} but the nature of the contract means it's perfect to demonstrate some of the advanced capabilities of Hardhat. [DelegationDAO.sol](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank} is a pooled staking DAO that uses [`StakingInterface.sol`](/builders/pallets-precompiles/precompiles/staking/){target=_blank} autonomously delegate to a collator when it reaches a determined threshold. Pooled staking contracts such as [`DelegationDAO.sol`](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank} allow delegators with less than the protocol minimum bond to join together to delegate their pooled funds and earn a share of staking rewards. 
 
 !!! note
     `DelegationDAO.sol` is unreviewed and unaudited. It is designed only for demonstration purposes and not intended for production use. It may contain bugs or logic errors that could result in loss of funds. 
@@ -59,7 +62,11 @@ To set up the necessary contracts, take the following steps:
 
 1. Copy and paste the contents of [DelegationDAO.sol](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank} into `DelegationDAO.sol` 
 2. You'll also need to fetch a copy of [StakingInterface.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank} and copy and paste it into a file named `StakingInterface.sol` also within the same `contracts` directory 
-3. DelegationDAO.sol relies on a couple of standard OpenZeppelin contracts. Add the library by running ```npm install @openzeppelin/contracts```
+3. DelegationDAO.sol relies on a couple of standard OpenZeppelin contracts. Add the library by running 
+
+```
+npm install @openzeppelin/contracts
+```
 
 ## Hardhat Configuration File {: #hardhat-configuration-file } 
 
@@ -125,7 +132,7 @@ You can modify the `hardhat.config.js` file to use any of the Moonbeam networks:
       },
     ```
 
-Congratulations! You are now ready for deployment!
+You're now ready to move on to compilation and testing.
 
 ## Compiling the Contract {: #compiling-the-contract } 
 
@@ -142,7 +149,7 @@ After compilation, an `artifacts` directory is created: it holds the bytecode an
 
 ## Deploying the Contract {: #deploying-the-contract } 
 
-In the following steps, you'll be deploying the DelegationDAO to Moonbase Alpha. Note, because DelegationDAO relies on the [StakingPrecompile](/builders/pallets-precompiles/precompiles/staking/){target=_blank}, which is a substrate-based offering unique to Moonbeam Networks, DelegationDAO will not work properly if deployed to the local default Hardhat Network or a [forked network](builders/build/eth-api/dev-env/hardhat/#hardhat-forking){target=_blank}.
+In the following steps, you'll be deploying the DelegationDAO to Moonbase Alpha. Note, DelegationDAO relies on [`StakingInterface.sol`](/builders/pallets-precompiles/precompiles/staking/){target=_blank}, which is a substrate-based offering unique to Moonbeam Networks. The hardhat network and forked networks are simulated EVM environments which do not include the substrate-based precompiles like `StakingInterface.sol`. Therefore, DelegationDAO will not work properly if deployed to the local default Hardhat Network or a [forked network](/builders/build/eth-api/dev-env/hardhat/#forking-moonbeam){target=_blank}.
 
 To deploy `DelegationDAO.sol`, you can write a simple script. You can create a new directory for the script and name it `scripts` and add a new file to it called `deploy.js`:
 
