@@ -277,7 +277,7 @@ cast call INSERT-CONTRACT-ADDRESS  "balanceOf(address)(uint256)" INSERT-YOUR-ADD
 
 ## Using Chisel {: #using-chisel }
 
-One of Foundry's newer tools, Chisel is a Solidity REPL, or shell. It allows a developer to write solidity directly in the console for testing small snippets of Solidity code, letting developers skip the project setup and contract deployment steps for what should be a quick process.  
+Chisel is a Solidity REPL, or shell. It allows a developer to write Solidity directly in the console for testing small snippets of code, letting developers skip the project setup and contract deployment steps for what should be a quick process.  
 
 Since Chisel is mainly useful for quick testing, it can be used outside of a Foundry project. But, if executed within a Foundry project, it will keep the configurations within `foundry.toml` when running.  
 
@@ -324,8 +324,35 @@ The `!rawstack` command shows that the `myData` variable is stored at `0x80`, so
 [0x120:0x140]: 0x446576656c6f70206f6e204d6f6f6e6265616d00000000000000000000000000
 ```
 
-At first glance this makes sense, since `0xa0` has a value of `0x64` which is equal to 100, and `0xc0` has a value of `0x01` which is equal to true. There are a lot of zeros in this method of data packing, so as a smart contract developer you might instead try to use structs or pack the data together better with bitwise code.  
+At first glance this makes sense, since `0xa0` has a value of `0x64` which is equal to 100, and `0xc0` has a value of `0x01` which is equal to true. If you want to learn more about how ABI-encoding works, the [Solidity documentation for ABI is helpful](https://docs.soliditylang.org/en/v0.8.18/abi-spec.html){target=_blank}. In this case, there are a lot of zeros in this method of data packing, so as a smart contract developer you might instead try to use structs or pack the data together more efficiently with bitwise code.  
 
-There's an even easier way to get all of this data.
+Since you're done with this code, you can clear the state of Chisel so that it doesn't mess with any future logic that you want to try out (while running the same instance of Chisel, since Chisel doesn't persist state without explicitly telling it to):  
+
+```
+!clear
+```
+
+There's an even easier way to test with Chisel. When writing code that ends with a semicolon, `;`, Chisel will run them as a statement, storing its value in Chisel's runtime state. But if you really only needed to see how the ABI-encoded data was represented, then you could get away with running the code as an expression. To try this out with the same `abi` example, write the following in the Chisel shell:  
+
+```
+abi.encode(100, true, "Develop on Moonbeam")
+```
+
+You should see something like the following:  
+
+**INSERT IMAGE HERE**  
+
+While it doesn't display the data in the same way, you still get the contents of the data, and it also further breaks down how the information is coded, such as letting you know that the `0xa0` value defines the length of the data.  
+
+You can even fork networks while using Chisel. In the following example, you will query the balance of one of Moonbase Alpha's collators:  
+
+```
+!fork {{ networks.moonbase.rpc_url }}
+0x4c5A56ed5A4FF7B09aA86560AfD7d383F4831Cce.balance
+```
+
+**INSERT IMAGE HERE**  
+
+
 
 --8<-- 'text/disclaimers/third-party-content.md'
