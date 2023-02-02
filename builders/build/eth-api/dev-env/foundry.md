@@ -11,11 +11,12 @@ description: Learn how to use Foundry, an Ethereum development environment, to c
 
 [Foundry](https://github.com/foundry-rs/foundry){target=_blank} is an Ethereum development environment written in Rust that helps developers manage dependencies, compile projects, run tests, deploy contracts, and interact with blockchains from the command line. Foundry can directly interact with Moonbeam's Ethereum API so it can be used to deploy smart contracts into Moonbeam.
 
-There are three tools that make up Foundry:  
+There are four tools that make up Foundry:  
 
 - **[Forge](https://book.getfoundry.sh/forge/){target=_blank}** - compiles, tests, and deploys contracts
 - **[Cast](https://book.getfoundry.sh/cast/){target=_blank}** - a command line interface for interacting with contracts
 - **[Anvil](https://book.getfoundry.sh/anvil/){target=_blank}** - a local TestNet node for development purposes that can fork preexisting networks
+- **[Chisel](https://book.getfoundry.sh/chisel/){target=_blank}** - a Solidity REPL for quickly testing Solidity snippets
 
 This guide will cover how to use Foundry to compile, deploy, and debug Ethereum smart contracts on the Moonbase Alpha TestNet. This guide can also be adapted for Moonbeam, Moonriver, or a Moonbeam development node.
 
@@ -273,5 +274,14 @@ From here you can deploy new contracts to your forked instance of Moonbeam or in
 ```
 cast call INSERT-CONTRACT-ADDRESS  "balanceOf(address)(uint256)" INSERT-YOUR-ADDRESS --rpc-url http://localhost:8545
 ```
+
+## Using Chisel {: #using-chisel }
+
+One of Foundry's newer tools, Chisel is a Solidity REPL, or shell. It allows a developer to write solidity directly in the console for testing small snippets of Solidity code, letting developers skip the project setup and contract deployment steps for what should be a quick process.  
+
+Since Chisel is mainly useful for quick testing, it can be used outside of a Foundry project. But, if executed within a Foundry project, it will keep the configurations within `foundry.toml` when running.  
+
+To get started using Chisel, run `chisel` in the command line.  
+
 
 --8<-- 'text/disclaimers/third-party-content.md'
