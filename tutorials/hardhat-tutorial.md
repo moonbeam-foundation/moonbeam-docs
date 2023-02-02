@@ -323,62 +323,10 @@ it("DAO members should be able to access member only functions", async function 
 And that's it! You're now ready to run your tests! Since this is the last test case completing the test file, a series of closing brackets are added to the prior code snippet.  
 ### Running your Tests {: #running-your-tests }
 
-If you've followed all of the prior sections, your `Dao.js` test file should be all set to go. Otherwise, you can copy the complete snippet below into your `Dao.js` test file. Comments have been removed for code readability, but you can refer to the prior sections for details on each step including comments.
+If you've followed all of the prior sections, your [`Dao.js`](https://raw.githubusercontent.com/PureStake/moonbeam-intro-course-resources/main/delegation-dao-lesson-one/Dao.js){target=_blank} test file should be all set to go. Otherwise, you can copy the complete snippet below into your [`Dao.js`](https://raw.githubusercontent.com/PureStake/moonbeam-intro-course-resources/main/delegation-dao-lesson-one/Dao.js){target=_blank}  test file. Comments have been removed for code readability, but you can refer to the prior sections 
+for details on each step including comments.
 
-```javascript
-const { ethers } = require("hardhat");
-require("@nomicfoundation/hardhat-toolbox");
-const { expect } = require("chai");
-const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers");
-const targetCollator = "{{ networks.moonbase.staking.candidates.address1 }}"
-
-describe("Dao contract", function () {
-  async function deployDaoFixture() {
-
-    const [deployer] = await ethers.getSigners();
-    const delegationDao = await ethers.getContractFactory("DelegationDAO");
-    
-    const deployedDao = await delegationDao.deploy(targetCollator, deployer.address);
-    await deployedDao.deployed();
-    return { deployedDao };
-  }
-
-  async function deployDaoFixtureWithMembers() {
-    const [deployer, member1] = await ethers.getSigners();
-
-    const delegationDao = await ethers.getContractFactory("DelegationDAO");
-    const deployedDao = await delegationDao.deploy(targetCollator, deployer.address);
-
-    await deployedDao.deployed();
-    await deployedDao.grant_member(member1.address);
-    return { deployedDao};
-  }
-
-describe("Deployment", function () {
-    it("Should have correct target collator", async function () {
-      const { deployedDao, deployer } = await loadFixture(deployDaoFixture);
-      expect(await deployedDao.target()).to.equal(targetCollator);
-});
-
-    it("The DAO should initially have 0 funds in it", async function () {
-      const { deployedDao, deployer } = await loadFixture(deployDaoFixture);
-      expect(await deployedDao.totalStake()).to.equal(0);
-});
-
-    it("Non-admins should not be able to grant membership", async function () {
-      const { deployedDao, deployer } = await loadFixture(deployDaoFixture);
-      const [account1, otherAddress] = await ethers.getSigners();
-      await expect(deployedDao.connect(otherAddress).grant_member("0x0000000000000000000000000000000000000000")).to.be.reverted;
-});
-
-    it("DAO members should be able to access member only functions", async function () {
-      const { deployedDao, deployer } = await loadFixture(deployDaoFixtureWithMembers);
-      const [account1, member1] = await ethers.getSigners();
-      expect(await deployedDao.connect(member1).check_free_balance()).to.equal(0);
-    });
-  });
-});
-```
+--8<-- 'code/hardhat/dao-js-test-file.md'
 
 You can run your tests with the following command: 
 
@@ -470,7 +418,7 @@ To verify the contract, you will run the `verify` command and pass in the networ
 npx hardhat verify --network moonbaseAlpha <CONTRACT-ADDRESS> "{{ networks.moonbase.staking.candidates.address1 }}" "DEPLOYER-ADDRESS"
 ```
 
-In your terminal you should see the source code for your contract was successfully submitted for verification. If the verification was successful, you should see **Successfully verified contract** and there will be a link to the contract code on [Moonscan for Moonbase Alpha](https://moonbase.moonscan.io/){target=_blank}. If the plugin returns an error, double check that your [API key is configured correctly and that you have specified all necessary parameters in the verification command](/builders/build/eth-api/verify-contracts/etherscan-plugins/){target=_blank}.
+In your terminal you should see the source code for your contract was successfully submitted for verification. If the verification was successful, you should see **Successfully verified contract** and there will be a link to the contract code on [Moonscan for Moonbase Alpha](https://moonbase.moonscan.io/){target=_blank}. If the plugin returns an error, double check that your API key is configured correctly and that you have specified all necessary parameters in the verification command. You can refer to the [guide to the Hardhat Etherscan plugin](/builders/build/eth-api/verify-contracts/etherscan-plugins/){target=_blank} for more information.
 
 ![Successful verification using hardhat-etherscan plugin](/images/tutorials/hardhat/verify-contract-on-moonbase-alpha-with-etherscan-plugin.png)
 
