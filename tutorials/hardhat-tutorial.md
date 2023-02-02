@@ -23,6 +23,8 @@ To get started, you will need the following:
  - Have an account with funds.
   --8<-- 'text/faucet/faucet-list-item.md'
 
+--8<-- 'text/common/install-nodejs.md'
+
 ## Creating a Hardhat Project {: #creating-a-hardhat-project }
 
 You will need to create a Hardhat project if you don't already have one. You can create one by completing the following steps:
@@ -178,92 +180,6 @@ npx hardhat compile
 
 After compilation, an `artifacts` directory is created: it holds the bytecode and metadata of the contract, which are `.json` files. It’s a good idea to add this directory to your `.gitignore`.
 
-
-## Deploying the Contract {: #deploying-the-contract } 
-
-In the following steps, you'll be deploying the DelegationDAO to Moonbase Alpha. Note, DelegationDAO relies on [`StakingInterface.sol`](/builders/pallets-precompiles/precompiles/staking/){target=_blank}, which is a substrate-based offering unique to Moonbeam Networks. The hardhat network and forked networks are simulated EVM environments which do not include the substrate-based precompiles like `StakingInterface.sol`. Therefore, DelegationDAO will not work properly if deployed to the local default Hardhat Network or a [forked network](/builders/build/eth-api/dev-env/hardhat/#forking-moonbeam){target=_blank}.
-
-To deploy `DelegationDAO.sol`, you can write a simple script. You can create a new directory for the script and name it `scripts` and add a new file to it called `deploy.js`:
-
-```
-mkdir scripts && cd scripts
-touch deploy.js
-```
-
-Next, you need to write your deployment script which can be done using `ethers`. Because you'll be running it with Hardhat, you don't need to import any libraries.
-
-To get started, take the following steps:
-
-1. Specify the address of the active collator the DAO intends to delegate to. In this case, we've specified the address of the PS-1 Collator
-2. Specify the deployer address as the admin of the DAO. It's important that the deployer be the admin of the DAO to ensure later tests work as expected
-3. Create a local instance of the contract with the `getContractFactory` method
-4. Use the `deploy` method that exists within this instance to instantiate the smart contract
-5. Once deployed, you can fetch the address of the contract using the contract instance
-
-
-When all is said and done your deployment script should look similar to the following: 
-
-```javascript
-// scripts/deploy.js
-
-const targetCollator = "{{ networks.moonbase.staking.candidates.address1 }}"
-
-async function main() {
-
-   const [deployer] = await ethers.getSigners();
-   console.log("Deploying contracts with the account:", deployer.address);
-
-   const delegationDao = await ethers.getContractFactory("DelegationDAO");
-   const deployedDao = await delegationDao.deploy(targetCollator, deployer.address);
-
-   console.log("DAO address:", deployedDao.address);
-   
-}
-
-main()
-   .then(() => process.exit(0))
-   .catch((error) => {
-      console.error(error);
-      process.exit(1);
-   });
-```
-
-You can now deploy `DelegationDAO.sol` using the `run` command and specifying `moonbaseAlpha` as the network:
-
-```
-npx hardhat run --network moonbaseAlpha scripts/deploy.js
-```
-
-If you're using another Moonbeam network, make sure that you specify the correct network. The network name needs to match how it's defined in the `hardhat.config.js`.
-
-After a few seconds, the contract is deployed, and you should see the address in the terminal.
-
-![How to Deploy a Contract with HardHat Deployment script](/images/tutorials/hardhat/deploy-the-staking-dao-using-hardhat.png)
-
-Congratulations, your contract is live! Save the address, as you will use it to interact with this contract instance in the next step.
-
-## Contract Verification {: #contract-verification }
-
-Contract verification is an essential step of any developer's workflow, particularly in the theoretical example of this staking DAO. Potential participants in the DAO need to be assured that the smart contract works as intended - and verifying the contract allows anyone to observe and analyze the deployed smart contract. 
-
-Before beginning the contract verification process, you'll need to [acquire a Moonscan API Key](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank}. Note that Moonbeam and Moonbase Alpha use the same [Moonbeam Moonscan](https://moonscan.io/){target=_blank} API key, whereas you'll need a distinct API key for [Moonriver](https://moonriver.moonscan.io/){target=_blank}. 
-
---8<-- 'text/hardhat/using-the-hardhat-etherscan-plugin.md'
-
-Double check that your `secrets.json` file includes your API key for [Moonbeam Moonscan](https://moonscan.io/){target=_blank} and the private key of an account funded with DEV tokens. 
-
-![Add Moonscan API Key to Secret.json](/images/tutorials/hardhat/secrets-json.png)
-
-To verify the contract, you will run the `verify` command and pass in the network where the `DelegationDao` contract is deployed, the address of the contract, and the two constructor arguments that you specified in your `deploy.js` file, namely, the address of the target collator and the address you deployed the smart contract with (sourced from your `secrets.json` file).
-
-```
-npx hardhat verify --network moonbaseAlpha <CONTRACT-ADDRESS> "{{ networks.moonbase.staking.candidates.address1 }}" "DEPLOYER-ADDRESS"
-```
-
-In your terminal you should see the source code for your contract was successfully submitted for verification. If the verification was successful, you should see **Successfully verified contract** and there will be a link to the contract code on [Moonscan for Moonbase Alpha](https://moonbase.moonscan.io/){target=_blank}. If the plugin returns an error, double check that your [API key is configured correctly and that you have specified all necessary parameters in the verification command](/builders/build/eth-api/verify-contracts/etherscan-plugins/){target=_blank}.
-
-![Successful verification using hardhat-etherscan plugin](/images/tutorials/hardhat/hardhat3.png)
-
 ## Testing {: #testing }
 
 A robust smart contract development workflow is incomplete without a testing suite. Hardhat has a number of tools that make it easy to write and run tests. In this section, you'll learn the basics of testing your smart contracts and some more advanced techniques such as using fixtures. 
@@ -362,8 +278,8 @@ Now, add another test case. When a staking DAO is launched, it shouldn't have an
 
 ```javascript
 it("should initially have 0 funds in the DAO", async function () {
-	const { deployedDao, deployer } = await loadFixture(deployDaoFixture);
-	expect(await deployedDao.totalStake()).to.equal(0);
+    const { deployedDao, deployer } = await loadFixture(deployDaoFixture);
+    expect(await deployedDao.totalStake()).to.equal(0);
 });
 ```
 
@@ -375,9 +291,9 @@ In the [staking DAO contract](https://github.com/PureStake/moonbeam-intro-course
 
 ```javascript
 it("should not allow non-admins to grant membership", async function () {
-	const { deployedDao, deployer } = await loadFixture(deployDaoFixture);
-	const [account1, otherAddress] = await ethers.getSigners();
-	await expect(deployedDao.connect(otherAddress).grant_member("0x0000000000000000000000000000000000000000")).to.be.reverted;
+    const { deployedDao, deployer } = await loadFixture(deployDaoFixture);
+    const [account1, otherAddress] = await ethers.getSigners();
+    await expect(deployedDao.connect(otherAddress).grant_member("0x0000000000000000000000000000000000000000")).to.be.reverted;
 });
 ```
 
@@ -387,10 +303,10 @@ For this example, you'll load another fixture - the one that has a DAO deployed 
 
 ```javascript
 it("DAO members should be able to access member only functions", async function () {
-	const { deployedDao, deployer } = await loadFixture(deployDaoFixtureWithMembers);
+    const { deployedDao, deployer } = await loadFixture(deployDaoFixtureWithMembers);
     const [account1, member1] = await ethers.getSigners();
     expect(await deployedDao.connect(member1).check_free_balance()).to.equal(0);
-	});
+    });
   });
 });
 ```
@@ -435,14 +351,14 @@ describe("Deployment", function () {
 });
 
     it("The DAO should initially have 0 funds in it", async function () {
-  	  const { deployedDao, deployer } = await loadFixture(deployDaoFixture);
-  	  expect(await deployedDao.totalStake()).to.equal(0);
+      const { deployedDao, deployer } = await loadFixture(deployDaoFixture);
+      expect(await deployedDao.totalStake()).to.equal(0);
 });
 
     it("Non-admins should not be able to grant membership", async function () {
-  	  const { deployedDao, deployer } = await loadFixture(deployDaoFixture);
-  	  const [account1, otherAddress] = await ethers.getSigners();
- 	  await expect(deployedDao.connect(otherAddress).grant_member("0x0000000000000000000000000000000000000000")).to.be.reverted;
+      const { deployedDao, deployer } = await loadFixture(deployDaoFixture);
+      const [account1, otherAddress] = await ethers.getSigners();
+      await expect(deployedDao.connect(otherAddress).grant_member("0x0000000000000000000000000000000000000000")).to.be.reverted;
 });
 
     it("DAO members should be able to access member only functions", async function () {
@@ -461,6 +377,92 @@ You can run your tests with the following command:
 If everything was set up correctly, you should see output like the following: 
 
 ![Hardhat Run Tests](/images/tutorials/hardhat/hardhat4.png)
+
+
+## Deploying the Contract {: #deploying-the-contract } 
+
+In the following steps, you'll be deploying the DelegationDAO to Moonbase Alpha. Note, DelegationDAO relies on [`StakingInterface.sol`](/builders/pallets-precompiles/precompiles/staking/){target=_blank}, which is a substrate-based offering unique to Moonbeam Networks. The hardhat network and forked networks are simulated EVM environments which do not include the substrate-based precompiles like `StakingInterface.sol`. Therefore, DelegationDAO will not work properly if deployed to the local default Hardhat Network or a [forked network](/builders/build/eth-api/dev-env/hardhat/#forking-moonbeam){target=_blank}.
+
+To deploy `DelegationDAO.sol`, you can write a simple script. You can create a new directory for the script and name it `scripts` and add a new file to it called `deploy.js`:
+
+```
+mkdir scripts
+touch scripts/deploy.js
+```
+
+Next, you need to write your deployment script which can be done using `ethers`. Because you'll be running it with Hardhat, you don't need to import any libraries.
+
+To get started, take the following steps:
+
+1. Specify the address of the active collator the DAO intends to delegate to. In this case, we've specified the address of the PS-1 Collator
+2. Specify the deployer address as the admin of the DAO. It's important that the deployer be the admin of the DAO to ensure later tests work as expected
+3. Create a local instance of the contract with the `getContractFactory` method
+4. Use the `deploy` method that exists within this instance to instantiate the smart contract
+5. Once deployed, you can fetch the address of the contract using the contract instance
+
+
+When all is said and done your deployment script should look similar to the following: 
+
+```javascript
+// scripts/deploy.js
+
+const targetCollator = "{{ networks.moonbase.staking.candidates.address1 }}"
+
+async function main() {
+
+   const [deployer] = await ethers.getSigners();
+   console.log("Deploying contracts with the account:", deployer.address);
+
+   const delegationDao = await ethers.getContractFactory("DelegationDAO");
+   const deployedDao = await delegationDao.deploy(targetCollator, deployer.address);
+
+   console.log("DAO address:", deployedDao.address);
+   
+}
+
+main()
+   .then(() => process.exit(0))
+   .catch((error) => {
+      console.error(error);
+      process.exit(1);
+   });
+```
+
+You can now deploy `DelegationDAO.sol` using the `run` command and specifying `moonbaseAlpha` as the network:
+
+```
+npx hardhat run --network moonbaseAlpha scripts/deploy.js
+```
+
+If you're using another Moonbeam network, make sure that you specify the correct network. The network name needs to match how it's defined in the `hardhat.config.js`.
+
+After a few seconds, the contract is deployed, and you should see the address in the terminal.
+
+![How to Deploy a Contract with HardHat Deployment script](/images/tutorials/hardhat/deploy-the-staking-dao-using-hardhat.png)
+
+Congratulations, your contract is live! Save the address, as you will use it to interact with this contract instance in the next step.
+
+## Contract Verification {: #contract-verification }
+
+Contract verification is an essential step of any developer's workflow, particularly in the theoretical example of this staking DAO. Potential participants in the DAO need to be assured that the smart contract works as intended - and verifying the contract allows anyone to observe and analyze the deployed smart contract. 
+
+Before beginning the contract verification process, you'll need to [acquire a Moonscan API Key](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank}. Note that Moonbeam and Moonbase Alpha use the same [Moonbeam Moonscan](https://moonscan.io/){target=_blank} API key, whereas you'll need a distinct API key for [Moonriver](https://moonriver.moonscan.io/){target=_blank}. 
+
+--8<-- 'text/hardhat/using-the-hardhat-etherscan-plugin.md'
+
+Double check that your `secrets.json` file includes your API key for [Moonbeam Moonscan](https://moonscan.io/){target=_blank} and the private key of an account funded with DEV tokens. 
+
+![Add Moonscan API Key to Secret.json](/images/tutorials/hardhat/secrets-json.png)
+
+To verify the contract, you will run the `verify` command and pass in the network where the `DelegationDao` contract is deployed, the address of the contract, and the two constructor arguments that you specified in your `deploy.js` file, namely, the address of the target collator and the address you deployed the smart contract with (sourced from your `secrets.json` file).
+
+```
+npx hardhat verify --network moonbaseAlpha <CONTRACT-ADDRESS> "{{ networks.moonbase.staking.candidates.address1 }}" "DEPLOYER-ADDRESS"
+```
+
+In your terminal you should see the source code for your contract was successfully submitted for verification. If the verification was successful, you should see **Successfully verified contract** and there will be a link to the contract code on [Moonscan for Moonbase Alpha](https://moonbase.moonscan.io/){target=_blank}. If the plugin returns an error, double check that your [API key is configured correctly and that you have specified all necessary parameters in the verification command](/builders/build/eth-api/verify-contracts/etherscan-plugins/){target=_blank}.
+
+![Successful verification using hardhat-etherscan plugin](/images/tutorials/hardhat/verify-contract-on-moonbase-alpha-with-etherscan-plugin.png)
 
 And that's it! We covered a lot of ground in this tutorial but there's more resources available if you'd like to go deeper, including the following:
 
