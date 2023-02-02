@@ -27,7 +27,7 @@ To get started, you will need the following:
 
 --8<-- 'text/hardhat/creating-a-hardhat-project.md'
 
-You'll need the Hardhat Toolbox plugin later in this tutorial. It can be installed with the following command:
+You'll also need the [Hardhat Toolbox plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-toolbox){target=_blank}, which conveniently bundles together the packages that we'll need later on for testing. It can be installed with the following command:
 
 ```
 npm install --save-dev @nomicfoundation/hardhat-toolbox
@@ -55,16 +55,24 @@ The smart contract featured in this tutorial is more complex than the one in the
 
 To get started, take the following steps:
 
-1. Create a ```contracts``` directory to hold your project's smart contracts and navigate to it by running: ```mkdir contracts```
-2. Create a new file called `DelegationDAO.sol` by running ```touch contracts/DelegationDAO.sol```
+1. Create a ```contracts``` directory to hold your project's smart contracts
+    ```
+    mkdir contracts
+    ```
+2. Create a new file called `DelegationDAO.sol`
+    ```
+    touch contracts/DelegationDAO.sol
+    ```
 3. Copy and paste the contents of [`DelegationDAO.sol`](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank} into `DelegationDAO.sol` 
-4. Create a new file called `StakingInterface.sol` in the ```contracts``` directory by running ```touch contracts/StakingInterface.sol``` 
-5. Copy and paste the contents of [`StakingInterface.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank} into the `StakingInterface.sol` file
-6. `DelegationDAO.sol` relies on a couple of standard [OpenZeppelin](https://www.openzeppelin.com/){target=_blank} contracts. Add the library by running the following command:  
-
-```
-npm install @openzeppelin/contracts
-```
+4. Create a new file called `StakingInterface.sol` in the ```contracts``` directory
+    ```
+    touch contracts/StakingInterface.sol
+    ```
+5. Copy and paste the contents of [`StakingInterface.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank} into `StakingInterface.sol`
+6. `DelegationDAO.sol` relies on a couple of standard [OpenZeppelin](https://www.openzeppelin.com/){target=_blank} contracts. Add the library with the following command: 
+    ```
+    npm install @openzeppelin/contracts
+    ```
 
 ## Hardhat Configuration File {: #hardhat-configuration-file } 
 
