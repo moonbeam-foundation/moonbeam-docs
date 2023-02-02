@@ -326,7 +326,7 @@ The `!rawstack` command shows that the `myData` variable is stored at `0x80`, so
 
 At first glance this makes sense, since `0xa0` has a value of `0x64` which is equal to 100, and `0xc0` has a value of `0x01` which is equal to true. If you want to learn more about how ABI-encoding works, the [Solidity documentation for ABI is helpful](https://docs.soliditylang.org/en/v0.8.18/abi-spec.html){target=_blank}. In this case, there are a lot of zeros in this method of data packing, so as a smart contract developer you might instead try to use structs or pack the data together more efficiently with bitwise code.  
 
-Since you're done with this code, you can clear the state of Chisel so that it doesn't mess with any future logic that you want to try out (while running the same instance of Chisel, since Chisel doesn't persist state without explicitly telling it to):  
+Since you're done with this code, you can clear the state of Chisel so that it doesn't mess with any future logic that you want to try out (while running the same instance of Chisel):  
 
 ```
 !clear
@@ -343,6 +343,24 @@ You should see something like the following:
 **INSERT IMAGE HERE**  
 
 While it doesn't display the data in the same way, you still get the contents of the data, and it also further breaks down how the information is coded, such as letting you know that the `0xa0` value defines the length of the data.  
+
+By default, when you leave the Chisel shell, none of the data is persisted. But you can instruct chisel to do so. For example, store a `uint256` in Chisel, store the session with `!save`, and quit:  
+
+```
+uint256 myNumber = 101;
+!save 1
+!quit
+```
+
+When using the `!save` command, the number `1` was a save ID, which was chosen at random. You can view a list of saved Chisel states with `chisel list`, and you can load them with `chisel load`:  
+
+```
+chisel list
+chisel load 1
+!rawstack myNumber
+```  
+
+**INSERT IMAGE HERE**
 
 You can even fork networks while using Chisel. In the following example, you will query the balance of one of Moonbase Alpha's collators:  
 
