@@ -235,10 +235,10 @@ To get started, create a folder called `tests` and a file named `Dao.js`. Then c
 const { ethers } = require("hardhat");
 require("@nomicfoundation/hardhat-toolbox");
 
-// Import Chai to use its assertion functions here.
+// Import Chai to use its assertion functions here
 const { expect } = require("chai");
 
-// Use `loadFixture` to share common setups (or fixtures) between tests.
+// Use `loadFixture` to share common setups (or fixtures) between tests
 const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers");
 
 // Indicate the collator the DAO wants to delegate to
