@@ -319,7 +319,7 @@ describe("Deployment", function () {
 Let's add another test case. When a StakingDAO is launched, it shouldn't have any funds. This test verifies that is indeed the case. Go ahead and add the following test case to your `Dao.js` file:
 
 ```javascript
-it("The DAO should initially have 0 funds in it", async function () {
+it("should initially have 0 funds in the DAO", async function () {
 	const { deployedDao, deployer } = await loadFixture(deployDaoFixture);
 	expect(await deployedDao.totalStake()).to.equal(0);
 });
