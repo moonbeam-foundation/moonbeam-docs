@@ -262,20 +262,20 @@ To define the two fixtures, add the following snippet to your test file:
 
 ``` javascript
 // `describe` is a Mocha function that allows you to organize your tests. All Mocha
-// functions are available in the global scope.
+// functions are available in the global scope
 //
 // `describe` receives the name of a section of your test suite, and a
 // callback. The callback must define the tests of that section. This callback
-// can't be an async function.
+// can't be an async function
 describe("Dao contract", function () {
   async function deployDaoFixture() {
 
-    // Get the ContractFactory and Signers here.
+    // Get the ContractFactory and Signers here
     const [deployer] = await ethers.getSigners();
     const delegationDao = await ethers.getContractFactory("DelegationDAO");
     
     // To deploy our StakingDao, you need to call delegationDao.deploy() and await
-    // its deployed() method, which happens once its transaction has been mined.
+    // its deployed() method, which happens once its transaction has been mined
     const deployedDao = await delegationDao.deploy(targetCollator, deployer.address);
 
     await deployedDao.deployed();
@@ -306,19 +306,19 @@ First, you'll create a subsection called `deployment` to keep the test file orga
 Next, a fixture is loaded - in this case, the "empty" stakingDAO fixture. Fixtures are easily interchangeable within your test cases. 
 
 ```javascript
-// You can nest describe calls to create subsections.
+// You can nest describe calls to create subsections
 describe("Deployment", function () {
-    // `it` is another Mocha function. This is the one you use to define each
-    // of your tests. It receives the test name, and a callback function.
+    // `it` is another Mocha function This is the one you use to define each
+    // of your tests. It receives the test name, and a callback function
     //
-    // If the callback function is async, Mocha will `await` it.
+    // If the callback function is async, Mocha will `await` it
     it("Should have correct target collator", async function () {
       // We use loadFixture to setup our environment, and then assert that
       // things went well
       const { deployedDao, deployer } = await loadFixture(deployDaoFixture);
 
       // `expect` receives a value and wraps it in an assertion object. These
-      // objects have a lot of utility methods to assert values.
+      // objects have a lot of utility methods to assert values
       expect(await deployedDao.target()).to.equal(targetCollator);
 });
 ```
@@ -420,6 +420,7 @@ describe("Deployment", function () {
 ```
 
 You can run your tests with the following command: 
+
 ```npx hardhat test tests/Dao.js```
 
 If everything was set up correctly, you should see output like the following: 
