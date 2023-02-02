@@ -297,7 +297,7 @@ Let's say you were interested in how `abi` encoded data, because you're looking 
 
 `memdump` will dump all of the data in your current session. You'll likely see something like this below. If you aren't good at reading hexadecimal or if you don't know how ABI encoding works, then you might not be able to find where the `myData` variable has been stored.
 
-**INSERT IMAGE HERE**  
+![memdump in Chisel](/images/builders/build/eth-api/dev-env/foundry/foundry-6.png)
 
 Fortunately, Chisel lets you easily figure out where this information is stored. Using the `!rawstack` command, you can find the location in the stack where the value of a variable:  
 
@@ -307,7 +307,7 @@ Fortunately, Chisel lets you easily figure out where this information is stored.
 
 In this situation, since bytes is over 32 bytes in length, the memory pointer is displayed instead. But that's exactly what's needed, since you already know the entirety of the stack from the `!memdump` command.  
 
-**INSERT IMAGE HERE**  
+![rawstack in Chisel](/images/builders/build/eth-api/dev-env/foundry/foundry-7.png)
 
 The `!rawstack` command shows that the `myData` variable is stored at `0x80`, so when comparing this with the memory dump retrieved form the `!memdump` command, it looks like `myData` is stored like this:  
 
@@ -336,7 +336,7 @@ abi.encode(100, true, "Develop on Moonbeam")
 
 You should see something like the following:  
 
-**INSERT IMAGE HERE**  
+![Expressions in Chisel](/images/builders/build/eth-api/dev-env/foundry/foundry-8.png)
 
 While it doesn't display the data in the same way, you still get the contents of the data, and it also further breaks down how the information is coded, such as letting you know that the `0xa0` value defines the length of the data.  
 
@@ -356,7 +356,7 @@ chisel load 1
 !rawstack myNumber
 ```  
 
-**INSERT IMAGE HERE**
+![Saving state in Chisel](/images/builders/build/eth-api/dev-env/foundry/foundry-9.png)
 
 You can even fork networks while using Chisel. In the following example, you will query the balance of one of Moonbase Alpha's collators:  
 
@@ -365,9 +365,9 @@ You can even fork networks while using Chisel. In the following example, you wil
 0x4c5A56ed5A4FF7B09aA86560AfD7d383F4831Cce.balance
 ```
 
-**INSERT IMAGE HERE**  
+![Forking in Chisel](/images/builders/build/eth-api/dev-env/foundry/foundry-10.png)
 
-If you want to learn more about Chisel, download Foundry and refer to its [official reference page](https://book.getfoundry.sh/reference/chisel/).
+If you want to learn more about Chisel, download Foundry and refer to its [official reference page](https://book.getfoundry.sh/reference/chisel/){target=_blank}.
 
 
 --8<-- 'text/disclaimers/third-party-content.md'
