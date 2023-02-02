@@ -10,7 +10,7 @@ keywords: solidity, ethereum, call permit, permit, gasless transaction, moonbeam
 
 ## Introduction {: #introduction } 
 
-The call permit precompile on Moonbeam allows a user to sign a permit, an [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=_blank} signed message, for any EVM call and it can be dispatched by anyone or any smart contract. It is similar to the [ERC-20 Permit Solidity Interface](/builders/xcm/xc20/overview/#the-erc20-permit-interface){target=_blank}, except it applies to any EVM call instead of approvals only. 
+The call permit precompile on Moonbeam allows a user to sign a permit, an [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=_blank} signed message, for any EVM call and it can be dispatched by anyone or any smart contract. It is similar to the [ERC-20 Permit Solidity Interface](/builders/interoperability/xcm/xc20/overview/#the-erc20-permit-interface){target=_blank}, except it applies to any EVM call instead of approvals only. 
 
 When the call permit is dispatched, it is done so on behalf of the user who signed the permit and the user or contract that dispatches the permit is responsible for paying transaction fees. As such, the precompile can be used to perform gas-less transactions.
 
@@ -69,7 +69,7 @@ The parameters of the hash can be broken down as follows:
  - **chainId** - is the chain ID of the network
  - **verifyingContract** - is the address of the contract that will verify the signature. In this case, the call permit precompile address
 
-When `dispatch` is called, the permit needs to be verified before the call is dispatched. The first step is to [compute the domain separator](https://github.com/PureStake/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L138){target=_blank}. The calculation can be seen in [Moonbeam's implementation](https://github.com/PureStake/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L112-L126){target=_blank} or you can check out a a practical example in [OpenZeppelin's EIP712 contract](ttps://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/cryptography/draft-EIP712.sol#L70-L84){target=_blank}.
+When `dispatch` is called, the permit needs to be verified before the call is dispatched. The first step is to [compute the domain separator](https://github.com/PureStake/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L138){target=_blank}. The calculation can be seen in [Moonbeam's implementation](https://github.com/PureStake/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L112-L126){target=_blank} or you can check out a practical example in [OpenZeppelin's EIP712 contract](ttps://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/cryptography/draft-EIP712.sol#L70-L84){target=_blank}.
 
 From there, a [hash of the signature and the given arguments](https://github.com/PureStake/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L140-L151){target=_blank} is generated which guarantees that the signature can only be used for the call permit. It uses a given nonce to ensure the signature is not subject to a replay attack. It is similar to [OpenZeppelin's `ERC20Permit` contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/token/ERC20/extensions/draft-ERC20Permit.sol#L52){target=_blank}, except the `PERMIT_TYPEHASH` is for a call permit, and the arguments match that of the [dispatch function](#:~:text=The interface includes the following functions) plus the nonce.
 
@@ -119,7 +119,7 @@ You can use [Remix](https://remix.ethereum.org/){target=_blank} to compile the e
 
 1. Click on the **File explorer** tab
 2. Paste the `SetMessage.sol` contract into a Remix file named `SetMessage.sol`
-3. Paste the `CallPermit.sol` contraact into a Remix file named `CallPermit.sol`
+3. Paste the `CallPermit.sol` contract into a Remix file named `CallPermit.sol`
 
 ![Copying and pasting the example contract into Remix](/images/builders/pallets-precompiles/precompiles/call-permit/call-1-new.png)
 
@@ -466,7 +466,7 @@ When you send the `dispatch` function, you'll need the same arguments as you use
 7. Copy the `v` value you should have retrieved while generating the call permit signature and paste it into the **v** field
 8. Copy the `r` value you should have retrieved while generating the call permit signature and paste it into the **r** field
 9. Copy the `s` value you should have retrieved while generating the call permit signature and paste it into the **s** field
-10. Click **transact** to send the the transaction
+10. Click **transact** to send the transaction
 11. MetaMask should pop-up and you can confirm the transaction
 
 ![Dispatch the call permit](/images/builders/pallets-precompiles/precompiles/call-permit/call-11.png)

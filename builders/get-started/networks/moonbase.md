@@ -69,7 +69,7 @@ The [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app/){target=_bl
 
 ### Moonbeam Uniswap {: #moonbeam-uniswap } 
 
-[Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank} is a fork of [Uniswap-V2](https://uniswap.org/blog/uniswap-v2){target=_blank} deployed to Moonbase Alpha. Notably, Moonbeam Uniswap allows developers to easily make a swap to acquire [cross chain assets](/builders/xcm/xc20/){target=_blank} such as xcKarura or xcUNIT for XCM testing purposes. To perform your first swap, take the following steps:
+[Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank} is a fork of [Uniswap-V2](https://uniswap.org/blog/uniswap-v2){target=_blank} deployed to Moonbase Alpha. Notably, Moonbeam Uniswap allows developers to easily make a swap to acquire [cross chain assets](/builders/interoperability/xcm/xc20/){target=_blank} such as xcKarura or xcUNIT for XCM testing purposes. To perform your first swap, take the following steps:
 
 1. Press **Select a token** 
 2. Connect your MetaMask wallet and ensure you're on the Moonbase Alpha network

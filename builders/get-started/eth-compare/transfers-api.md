@@ -59,7 +59,7 @@ In addition, you can find more sample code snippets related to more specific cas
 
 Developers can also retrieve Moonbeam blocks and monitor transactions sent via both the Substrate and Ethereum API using [Substrate API Sidecar](https://github.com/paritytech/substrate-api-sidecar){target=_blank}, a REST API service for interacting with blockchains built with the Substrate framework. 
 
-The following code snippet uses the Axios HTTP client to query the Sidecar endpoint `/blocks/head`(https://paritytech.github.io/substrate-api-sidecar/dist/){target=_blank} for the latest finalized block, and then decodes the block for the the `from`, `to`, `value`, `tx hash` and `transaction status` of native token transfers at both the EVM and Substrate API level. 
+The following code snippet uses the Axios HTTP client to query the Sidecar endpoint `/blocks/head`(https://paritytech.github.io/substrate-api-sidecar/dist/){target=_blank} for the latest finalized block, and then decodes the block for the `from`, `to`, `value`, `tx hash` and `transaction status` of native token transfers at both the EVM and Substrate API level. 
 
 --8<-- 'code/vs-ethereum/sidecar-transfer.md'
 

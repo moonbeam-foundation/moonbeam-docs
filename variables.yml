@@ -1,7 +1,7 @@
 networks:
   development:
-    build_tag: v0.27.2
-    tracing_tag: purestake/moonbeam-tracing:v0.27.2-1901-latest
+    build_tag: v0.28.1
+    tracing_tag: purestake/moonbeam-tracing:v0.28.1-2000-latest
     rpc_url: http://127.0.0.1:9933
     wss_url: ws://127.0.0.1:9944
     chain_id: 1281
@@ -15,9 +15,9 @@ networks:
     hex_chain_id: '0x507'
     chain_spec: alphanet
     block_explorer: https://moonbase.moonscan.io/
-    parachain_release_tag: v0.27.2 # must be in this exact format for links to work
-    parachain_sha256sum: 05cba168277f22990e606bec390df0be912e1661f9315837451a134132b009c4
-    tracing_tag: purestake/moonbeam-tracing:v0.27.2-1901-latest
+    parachain_release_tag: v0.28.1 # must be in this exact format for links to work
+    parachain_sha256sum: 8b77ef15a150b0e1e83408d0ad0bab0b6b3514cfaaf0ad6efb696167a4473ad7
+    tracing_tag: purestake/moonbeam-tracing:v0.28.1-2000-latest
     gas_block: 15M
     gas_tx: 12.995M
     node_directory: /var/lib/alphanet-data
@@ -247,9 +247,9 @@ networks:
     chain_id: 1285
     hex_chain_id: '0x505'
     node_directory: /var/lib/moonriver-data
-    parachain_release_tag: v0.27.2
-    parachain_sha256sum: 05cba168277f22990e606bec390df0be912e1661f9315837451a134132b009c4
-    tracing_tag: purestake/moonbeam-tracing:v0.27.2-1901-latest
+    parachain_release_tag: v0.28.1
+    parachain_sha256sum: 8b77ef15a150b0e1e83408d0ad0bab0b6b3514cfaaf0ad6efb696167a4473ad7
+    tracing_tag: purestake/moonbeam-tracing:v0.28.1-2000-latest
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
     binary_name: moonbeam
@@ -309,6 +309,7 @@ networks:
       min_can_stk_wei: 500000000000000000000
       collator_map_bond: 100
       max_candidates: 72
+      paid_out_block: 73 # Update this whenever max_candidates is changed! Always max_candidates + 1!
       round_blocks: 600
       round_hours: 2
       min_del_stake: 5
@@ -443,9 +444,9 @@ networks:
     chain_id: 1284
     hex_chain_id: '0x504'
     node_directory: /var/lib/moonbeam-data
-    parachain_release_tag: v0.27.2
-    parachain_sha256sum: 05cba168277f22990e606bec390df0be912e1661f9315837451a134132b009c4
-    tracing_tag: purestake/moonbeam-tracing:v0.27.2-1901-latest
+    parachain_release_tag: v0.28.1
+    parachain_sha256sum: 8b77ef15a150b0e1e83408d0ad0bab0b6b3514cfaaf0ad6efb696167a4473ad7
+    tracing_tag: purestake/moonbeam-tracing:v0.28.1-2000-latest
     chain_spec: moonbeam
     block_explorer: https://moonscan.io
     binary_name: moonbeam
@@ -517,7 +518,7 @@ networks:
       min_can_stk: 100000
       min_can_stk_wei: 100000000000000000000000
       collator_map_bond: 10000
-      max_candidates: 68
+      max_candidates: 72
       round_blocks: 1800
       round_hours: 6
       min_del_stake: 50
@@ -641,13 +642,13 @@ networks:
       weight:
         display: 1,000,000,000
         numbers_only: 1000000000
-      planck_dot_weight: 0.117354363
-      planck_dot_cost: 117354360
-      dot_cost: 0.0117354363
+      planck_dot_weight: 0.11735436323
+      planck_dot_cost: 117354363.23
+      dot_cost: 0.01173543632
     xcm_message:
       transfer:
         weight: 4,000,000,000
-        cost: 0.0469417452
+        cost: 0.04694174528
       transact:
         weight: 3,000,000,000
         numbers_only: 3000000000
@@ -666,29 +667,29 @@ networks:
     xcm_message:
       transfer:
         weight: 298,368,000
-        cost: '0.000011523248'
+        cost: '0.00010457164'
     xcm_instructions:
       buy_exec:
         base_weight: 3,109,000
         total_weight: 3,109,000
-        ksm_cost: '0.000000120072'
+        ksm_cost: '0.00000108963'
       withdraw:
         base_weight: 20,385,000
         total_weight:
           display: 145,385,000
           numbers_only: 145385000
-        planck_ksm_cost: 5614903.04216
-        ksm_cost: '0.000005614903'
+        planck_ksm_cost: 50954353.6459
+        ksm_cost: '0.00005095435'
       clear_origin:
         total_weight: 3,111,000
-        ksm_cost: '0.000000120150'
+        ksm_cost: '0.00000109033'
       deposit_asset:
         total_weight: 146,763,000
-        ksm_cost: '0.000005668123'
-      planck_ksm_weight: 0.038620924044
+        ksm_cost: '0.00005143731'
+      planck_ksm_weight: 0.35047875397
     extrinsic_base_weight:
-      display: 86,309,000
-      numbers_only: 86309000
+      display: 95,108,000
+      numbers_only: 95108000
   moonbase_beta:
     xcm_message:
       transact:
