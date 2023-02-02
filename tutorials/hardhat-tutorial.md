@@ -25,7 +25,33 @@ To get started, you will need the following:
 
 ## Creating a Hardhat Project {: #creating-a-hardhat-project }
 
---8<-- 'text/hardhat/creating-a-hardhat-project.md'
+You will need to create a Hardhat project if you don't already have one. You can create one by completing the following steps:
+
+1. Create a directory for your project
+    ```
+    mkdir stakingDAO && cd stakingDAO
+    ```
+2. Initialize the project which will create a `package.json` file
+    ```
+    npm init -y
+    ```
+3. Install Hardhat
+    ```
+    npm install hardhat
+    ```
+4. Create a project
+    ```
+    npx hardhat
+    ```
+
+    !!! note
+        `npx` is used to run executables installed locally in your project. Although Hardhat can be installed globally, it is recommended to install it locally in each project so that you can control the version on a project by project basis.
+            
+5. A menu will appear which will allow you to create a new project or use a sample project. For this example, you can choose **Create an empty hardhat.config.js**
+
+![Hardhat Create Project](/images/tutorials/hardhat/create-empty-hardhat-config.png)
+
+This will create a Hardhat config file (`hardhat.config.js`) in your project directory.
 
 You'll also need the [Hardhat Toolbox plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-toolbox){target=_blank}, which conveniently bundles together the packages that we'll need later on for testing. It can be installed with the following command:
 

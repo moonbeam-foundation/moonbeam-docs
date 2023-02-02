@@ -25,9 +25,3 @@ You will need to create a Hardhat project if you don't already have one. You can
 ![Hardhat Create Project](/images/builders/build/eth-api/dev-env/hardhat/hardhat-1.png)
 
 This will create a Hardhat config file (`hardhat.config.js`) in your project directory.
-
-Once you have your Hardhat project, you can also install the [Ethers plugin](https://hardhat.org/plugins/nomiclabs-hardhat-ethers.html){target=_blank}. This provides a convenient way to use the [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=_blank} library to interact with the network. To install it, run the following command:
-
-```
-npm install @nomiclabs/hardhat-ethers ethers
-```
