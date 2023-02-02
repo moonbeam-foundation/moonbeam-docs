@@ -332,7 +332,7 @@ To this point, the two cases implemented have been simple but important. Now, yo
 In the [StakingDAO contract](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank}, only admins are authorized to add new members to the DAO. One could write a test that checks to see if the admin is authorized to add new members but perhaps a more important test is to ensure that *non-admins* can't add new members. To run this test case under a different account, you're going to ask for another address when you call `ethers.getSigners()` and specify the caller in the assertion with `connect(otherAddress)`. Finally, after the function call to be tested you'll append `.to.be.reverted;` to indicate that the test case is successful if the function reverts. And if it doesn't revert it's a failed test! 
 
 ```javascript
-it("Non-admins should not be able to grant membership", async function () {
+it("should not allow non-admins to grant membership", async function () {
 	const { deployedDao, deployer } = await loadFixture(deployDaoFixture);
 	const [account1, otherAddress] = await ethers.getSigners();
 	await expect(deployedDao.connect(otherAddress).grant_member("0x0000000000000000000000000000000000000000")).to.be.reverted;
