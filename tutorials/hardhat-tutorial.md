@@ -15,13 +15,19 @@ In this tutorial, we'll walk through the [Hardhat development environment](https
 
 _The information presented herein is for informational purposes only and has been provided by third parties. Moonbeam does not endorse any project listed and described on the Moonbeam docs website (https://docs.moonbeam.network/)._
 
+## Checking Prerequisites {: #checking-prerequisites } 
+
+To get started, you will need the following:
+
+ - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
+ - Have an account with funds.
+  --8<-- 'text/faucet/faucet-list-item.md'
+
 ## Creating a Hardhat Project {: #creating-a-hardhat-project }
 
 --8<-- 'text/hardhat/creating-a-hardhat-project.md'
 
-## Plugins
-
-Plugins are an essential component of Hardhat's flexibility and capability. On Hardhat's website you'll find [a complete list of official Hardhat plugins](https://hardhat.org/hardhat-runner/plugins){target=_blank}. You'll need the Hardhat Toolbox plugin later in this tutorial. It can be installed with the following command:
+You'll need the Hardhat Toolbox plugin later in this tutorial. It can be installed with the following command:
 
 ```
 npm install --save-dev @nomicfoundation/hardhat-toolbox
@@ -37,6 +43,8 @@ module.exports = {
   solidity: "0.8.17",
 };
 ```
+
+If you're curious about additional Hardhat plugins, here is [a complete list of official Hardhat plugins](https://hardhat.org/hardhat-runner/plugins){target=_blank}.
 
 ## Add Smart Contracts {: #add-smart-contracts }
 
