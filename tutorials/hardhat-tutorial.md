@@ -301,9 +301,9 @@ describe("Dao contract", function () {
 
 This tutorial deviates from the [test driven development philosophy](https://en.wikipedia.org/wiki/Test-driven_development){target=_blank} of writing your tests prior to your code. A few test cases will be cherry picked for demonstration purposes. 
 
-First, you'll create a subsection called `Deployment` to keep the test file organized. This isn't required but may be helpful for organization purposes. Next you'll define your first test case by using the `it` Mocha function. A description that clearly indicates what the test is doing is provided as well as indication that the function is async. This first test is simply checking to see that the staking DAO is correctly storing the address of the target collator.
+First, you'll create a subsection called `Deployment` to keep the test file organized. This will be nested within the `Dao contract` function. This isn't required but may be helpful for organization purposes. Next you'll define your first test case by using the `it` Mocha function. A description that clearly indicates what the test is doing is provided as well as indication that the function is async. This first test is simply checking to see that the staking DAO is correctly storing the address of the target collator.
 
-Next, a fixture is loaded - in this case, the "empty" staking DAO fixture. Fixtures are easily interchangeable within your test cases. 
+Next, a fixture is loaded - in this case, the "empty" staking DAO fixture. Fixtures are easily interchangeable within your test cases. Go ahead and add the below snippet to the end of your `Dao contract` function. 
 
 ```javascript
 // You can nest describe calls to create subsections
@@ -312,9 +312,8 @@ describe("Deployment", function () {
     // of your tests. It receives the test name, and a callback function
     //
     // If the callback function is async, Mocha will `await` it
-    it("Should have correct target collator", async function () {
-      // We use loadFixture to setup our environment, and then assert that
-      // things went well
+    it("The staking DAO should store the correct target collator", async function () {
+      // We use loadFixture to setup our environment, and then assert that things went well
       const { deployedDao, deployer } = await loadFixture(deployDaoFixture);
 
       // `expect` receives a value and wraps it in an assertion object. These
@@ -323,7 +322,7 @@ describe("Deployment", function () {
 });
 ```
 
-Let's add another test case. When a staking DAO is launched, it shouldn't have any funds. This test verifies that is indeed the case. Go ahead and add the following test case to your `Dao.js` file:
+Now, add another test case. When a staking DAO is launched, it shouldn't have any funds. This test verifies that is indeed the case. Go ahead and add the following test case to your `Dao.js` file:
 
 ```javascript
 it("should initially have 0 funds in the DAO", async function () {
