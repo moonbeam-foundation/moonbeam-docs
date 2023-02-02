@@ -182,7 +182,7 @@ After compilation, an `artifacts` directory is created: it holds the bytecode an
 
 ## Testing {: #testing }
 
-A robust smart contract development workflow is incomplete without a testing suite. Hardhat has a number of tools that make it easy to write and run tests. In this section, you'll learn the basics of testing your smart contracts and some more advanced techniques such as using fixtures. 
+A robust smart contract development workflow is incomplete without a testing suite. Hardhat has a number of tools that make it easy to write and run tests. In this section, you'll learn the basics of testing your smart contracts and some more advanced techniques. 
 
 Hardhat tests are typically written with Mocha and Chai. [Mocha](https://mochajs.org/){target=_blank} is a JavaScript testing framework and [Chai](https://www.chaijs.com/){target=_blank} is a BDD/TDD JavaScript assertion library. BDD/TDD stands for behavior and test driven development respectively. Effective BDD/TDD necessitates writing your tests *before* writing your smart contract code. The structure of this tutorial doesn't strictly follow these guidelines, but you may wish to adopt these principles in your development workflow. Hardhat recommendeds using [Hardhat Toolbox](https://hardhat.org/hardhat-runner/docs/guides/migrating-from-hardhat-waffle){target=_blank}, a plugin that bundles everything you need to get started with Hardhat, including Mocha and Chai. 
 
@@ -198,7 +198,7 @@ To set up your test file, take the following steps:
     ```
     touch tests/Dao.js
     ```
-3. Then copy and paste the contents below to set up the initial structure of your test file. Be sure to read the comments as they can clarify the purpose of each line. 
+3. Then copy and paste the contents below to set up the initial structure of your test file. Be sure to read the comments as they can clarify the purpose of each line 
 
 ``` javascript
 const { ethers } = require("hardhat");
@@ -207,55 +207,38 @@ require("@nomicfoundation/hardhat-toolbox");
 // Import Chai to use its assertion functions here
 const { expect } = require("chai");
 
-// Use `loadFixture` to share common setups (or fixtures) between tests
-const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers");
-
 // Indicate the collator the DAO wants to delegate to
 const targetCollator = "{{ networks.moonbase.staking.candidates.address1 }}";
 ```
 
-### Using Fixtures {: #using-fixtures }
+### Deploying a Staking DAO for Testing {: #deploying-a-staking-dao-for-testing }
 
-A fixture is a function that configures the blockchain to a desired state. For example, our initial tests for the staking DAO will be run after the staking DAO has been deployed but before any contributions have been made. When a fixture is loaded for the first time, it is executed as normal to properly configure the state of the chain. When called a second time, the fixture is not executed again but rather the state of the network is reset to the point in time immediately after the fixture was initially executed. In other words, this resets state changes prior to the initial execution of the fixture and saves time.
+Before we can run any test cases we'll need to launch a staking DAO with an initial configuration. Our setup here is relatively simple - we'll be deploying a stakingDAO with a single administrator (the deployer) and then adding a new member to the DAO. This simple staking DAO setup is perfect for demonstration purposes, but it's easy to imagine more complex configurations you'd like to test, such as a scenario with 100 DAO members or one with multiple admins of the DAO. 
 
-The first fixture in the test file represents an "empty" staking DAO but the second fixture will have one member (besides the DAO admin). Fixtures allow you to quickly switch between different states, simplifying and speeding up the testing process. In this tutorial only two fixtures are specified but it's easy to imagine other states you'd like to test, such as a scenario with 100 DAO members or one with multiple admins of the DAO. 
+`Describe` is a Mocha function that that enables you to organize your tests. Multiple describe functions can be nested together. It's entirely optional but can be useful especially in a complex projects with large number of test cases.
 
-To define the two fixtures, add the following snippet to your test file:
+We'll define a function called `deployDao` that will contain the setup steps for our staking DAO. To configure your test file, add the following snippet:
 
 ``` javascript
-// `describe` is a Mocha function that allows you to organize your tests. All Mocha
-// functions are available in the global scope
-//
 // `describe` receives the name of a section of your test suite, and a
 // callback. The callback must define the tests of that section. This callback
 // can't be an async function
 describe("Dao contract", function () {
-  async function deployDaoFixture() {
+  async function deployDao() {
 
     // Get the ContractFactory and Signers here
     const [deployer] = await ethers.getSigners();
     const delegationDao = await ethers.getContractFactory("DelegationDAO");
     
-    // To deploy our staking DAO, you need to call delegationDao.deploy() and await
-    // its deployed() method, which happens once its transaction has been mined
+    // Deploy the staking DAO and wait for the deployment transaction to be confirmed
     const deployedDao = await delegationDao.deploy(targetCollator, deployer.address);
-
     await deployedDao.deployed();
 
-    // Fixtures can return anything you consider useful for your tests
-    return { deployedDao };
-  }
-
-    async function deployDaoFixtureWithMembers() {
-    const [deployer, member1] = await ethers.getSigners();
-
-    const delegationDao = await ethers.getContractFactory("DelegationDAO");
-    const deployedDao = await delegationDao.deploy(targetCollator, deployer.address);
-
-    await deployedDao.deployed();
+    //Add a new member to the DAO
     await deployedDao.grant_member(member1.address);
 
-    return { deployedDao};
+    // Return the deployed DAO to allow the tests to access and interact with it
+    return { deployedDao };
   }
 ```
 
@@ -263,33 +246,37 @@ describe("Dao contract", function () {
 
 This tutorial deviates from the [test driven development philosophy](https://en.wikipedia.org/wiki/Test-driven_development){target=_blank} of writing your tests prior to your code. A few test cases will be cherry picked for demonstration purposes. 
 
-First, you'll create a subsection called `Deployment` to keep the test file organized. This will be nested within the `Dao contract` function. This isn't required but may be helpful for organization purposes. Next you'll define your first test case by using the `it` Mocha function. A description that clearly indicates what the test is doing is provided as well as indication that the function is async. This first test is simply checking to see that the staking DAO is correctly storing the address of the target collator.
+First, you'll create a subsection called `Deployment` to keep the test file organized. This will be nested within the `Dao contract` function. This isn't required but may be helpful for organizational purposes. Next you'll define your first test case by using the `it` Mocha function. A description that clearly indicates what the test is doing is provided as well as indication that the function is async. This first test is simply checking to see that the staking DAO is correctly storing the address of the target collator.
 
-Next, a fixture is loaded - in this case, the "empty" staking DAO fixture. Fixtures are easily interchangeable within your test cases. Go ahead and add the below snippet to the end of your `Dao contract` function. 
+Go ahead and add the below snippet to the end of your `Dao contract` function. 
 
 ```javascript
-// You can nest describe calls to create subsections
+// You can nest calls to create subsections
 describe("Deployment", function () {
     // `it` is another Mocha function This is the one you use to define each
     // of your tests. It receives the test name, and a callback function
     //
     // If the callback function is async, Mocha will `await` it
-    it("The staking DAO should store the correct target collator", async function () {
-      // We use loadFixture to setup our environment, and then assert that things went well
-      const { deployedDao, deployer } = await loadFixture(deployDaoFixture);
+    it("The DAO should store the correct target collator", async function () {
+      
+      //Set up our test environment by calling deployDao.
+      const { deployedDao } = await deployDao();
 
-      // `expect` receives a value and wraps it in an assertion object. These
-      // objects have a lot of utility methods to assert values
+      // `expect` receives a value and wraps it in an assertion object.
+      // This test will pass if the DAO stored the correct target collator
       expect(await deployedDao.target()).to.equal(targetCollator);
+});
 });
 ```
 
 Now, add another test case. When a staking DAO is launched, it shouldn't have any funds. This test verifies that is indeed the case. Go ahead and add the following test case to your `Dao.js` file:
 
 ```javascript
-it("should initially have 0 funds in the DAO", async function () {
-    const { deployedDao, deployer } = await loadFixture(deployDaoFixture);
-    expect(await deployedDao.totalStake()).to.equal(0);
+it("The DAO should initially have 0 funds in it", async function () {
+      const { deployedDao } = await deployDao();
+      expect(await deployedDao.totalStake()).to.equal(0);
+    });
+  });
 });
 ```
 
@@ -300,22 +287,29 @@ To this point, the two cases implemented have been simple but important. Now, yo
 In the [staking DAO contract](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank}, only admins are authorized to add new members to the DAO. One could write a test that checks to see if the admin is authorized to add new members but perhaps a more important test is to ensure that *non-admins* can't add new members. To run this test case under a different account, you're going to ask for another address when you call `ethers.getSigners()` and specify the caller in the assertion with `connect(otherAddress)`. Finally, after the function call to be tested you'll append `.to.be.reverted;` to indicate that the test case is successful if the function reverts. And if it doesn't revert it's a failed test! 
 
 ```javascript
-it("should not allow non-admins to grant membership", async function () {
-    const { deployedDao, deployer } = await loadFixture(deployDaoFixture);
-    const [account1, otherAddress] = await ethers.getSigners();
-    await expect(deployedDao.connect(otherAddress).grant_member("0x0000000000000000000000000000000000000000")).to.be.reverted;
+it("Non-admins should not be able to grant membership", async function () {
+      const { deployedDao } = await deployDao();
+      const [account1, otherAddress] = await ethers.getSigners();
+      await expect(deployedDao.connect(otherAddress).grant_member("0x0000000000000000000000000000000000000000")).to.be.reverted;
+    });
+  });
 });
 ```
 
-### Swapping Fixtures {: #swapping-fixtures }
+### Signing Transactions from Other Accounts {: #signing-transactions-from-other-accounts }
 
-For this example, you'll load another fixture - the one that has a DAO deployed with a member. Then, you'll check to verify whether that member can call the `check_free_balance()` function of staking DAO, which has an access modifier such that only members can access it. 
+For this example, you'll check to verify whether the newly added DAO member can call the `check_free_balance()` function of staking DAO, which has an access modifier such that only members can access it. 
 
 ```javascript
 it("DAO members should be able to access member only functions", async function () {
-    const { deployedDao, deployer } = await loadFixture(deployDaoFixtureWithMembers);
-    const [account1, member1] = await ethers.getSigners();
-    expect(await deployedDao.connect(member1).check_free_balance()).to.equal(0);
+      const { deployedDao } = await deployDao();
+
+      // We ask ethers for two accounts back this time.
+      const [account1, member1] = await ethers.getSigners();
+
+      // This test will succeed if the DAO member can call the member only function.
+      // We use connect here to call the function from the account of the new member.
+      expect(await deployedDao.connect(member1).check_free_balance()).to.equal(0);
     });
   });
 });
@@ -330,7 +324,9 @@ for details on each step including comments.
 
 You can run your tests with the following command: 
 
-```npx hardhat test tests/Dao.js```
+```
+npx hardhat test tests/Dao.js
+```
 
 If everything was set up correctly, you should see output like the following: 
 
