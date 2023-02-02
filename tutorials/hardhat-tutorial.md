@@ -327,7 +327,7 @@ it("should initially have 0 funds in the DAO", async function () {
 
 ### Function Reverts {: #function-reverts }
 
-To this point the two cases implemented have been simple but important. Now, you'll implement a more complex test case that differs in its architecture. In prior examples you've verified that a function returns an expected value. In this one, you'll be verifying that a function reverts. You'll also change the address of the caller to test an admin-only function. 
+To this point, the two cases implemented have been simple but important. Now, you'll implement a more complex test case that differs in its architecture. In prior examples, you've verified that a function returns an expected value. In this one, you'll be verifying that a function reverts. You'll also change the address of the caller to test an admin-only function. 
 
 In the [StakingDAO contract](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank}, only admins are authorized to add new members to the DAO. One could write a test that checks to see if the admin is authorized to add new members but perhaps a more important test is to ensure that *non-admins* can't add new members. To run this test case under a different account, you're going to ask for another address when you call `ethers.getSigners()` and specify the caller in the assertion with `connect(otherAddress)`. Finally, after the function call to be tested you'll append `.to.be.reverted;` to indicate that the test case is successful if the function reverts. And if it doesn't revert it's a failed test! 
 
