@@ -267,7 +267,7 @@ const targetCollator = "{{ networks.moonbase.staking.candidates.address1 }}";
 
 Before we can run any test cases we'll need to launch a staking DAO with an initial configuration. Our setup here is relatively simple - we'll be deploying a stakingDAO with a single administrator (the deployer) and then adding a new member to the DAO. This simple setup is perfect for demonstration purposes, but it's easy to imagine more complex configurations you'd like to test, such as a scenario with 100 DAO members or one with multiple admins of the DAO. 
 
-`Describe` is a Mocha function that that enables you to organize your tests. Multiple describe functions can be nested together. It's entirely optional but can be useful especially in a complex projects with large number of test cases. You can read more about constructing tests with Mocha on the [Mocha docs site](https://mochajs.org/#asynchronous-code){target=_blank}.
+`Describe` is a Mocha function that enables you to organize your tests. Multiple describe functions can be nested together. It's entirely optional but can be useful especially in complex projects with a large number of test cases. You can read more about constructing tests with Mocha on the [Mocha docs site](https://mochajs.org/#asynchronous-code){target=_blank}.
 
 We'll define a function called `deployDao` that will contain the setup steps for our staking DAO. To configure your test file, add the following snippet:
 
@@ -395,7 +395,7 @@ If everything was set up correctly, you should see output like the following:
 
 ## Deploying to Moonbase Alpha {: #deploying-to-moonbase-alpha } 
 
-In the following steps, we'll be deploying the DelegationDAO to the Moonbase Alpha testnet. Note, DelegationDAO relies on [`StakingInterface.sol`](/builders/pallets-precompiles/precompiles/staking/){target=_blank}, which is a substrate-based offering unique to Moonbeam Networks. The hardhat network and forked networks are simulated EVM environments which do not include the substrate-based precompiles like `StakingInterface.sol`. Therefore, DelegationDAO will not work properly if deployed to the local default Hardhat Network or a [forked network](/builders/build/eth-api/dev-env/hardhat/#forking-moonbeam){target=_blank}.
+In the following steps, we'll be deploying the DelegationDAO to the Moonbase Alpha testnet. DelegationDAO relies on [`StakingInterface.sol`](/builders/pallets-precompiles/precompiles/staking/){target=_blank}, which is a substrate-based offering unique to Moonbeam Networks. The hardhat network and forked networks are simulated EVM environments which do not include the substrate-based precompiles like `StakingInterface.sol`. Therefore, DelegationDAO will not work properly if deployed to the local default Hardhat Network or a [forked network](/builders/build/eth-api/dev-env/hardhat/#forking-moonbeam){target=_blank}.
 
 To deploy `DelegationDAO.sol`, you can write a simple script. You can create a new directory for the script and name it `scripts` and add a new file to it called `deploy.js`:
 
@@ -464,7 +464,7 @@ Congratulations, your contract is live on Moonbase Alpha! Save the address, as y
 
 Contract verification is an essential step of any developer's workflow, particularly in the theoretical example of this staking DAO. Potential participants in the DAO need to be assured that the smart contract works as intended - and verifying the contract allows anyone to observe and analyze the deployed smart contract. 
 
-While it's possible to verify smart contracts on the [Moonscan website](https://moonscan.io/verifyContract){target=_blank}, the Hardhat Etherscan plugin enables us to verify our staking DAO in a faster and easier manner. It's not an exaggeration to say that the plugin dramatically simplifies the contract verification process, especially for projects that includes multiple solidity files or libraries. 
+While it's possible to verify smart contracts on the [Moonscan website](https://moonscan.io/verifyContract){target=_blank}, the Hardhat Etherscan plugin enables us to verify our staking DAO in a faster and easier manner. It's not an exaggeration to say that the plugin dramatically simplifies the contract verification process, especially for projects that include multiple solidity files or libraries. 
 
 Before beginning the contract verification process, you'll need to [acquire a Moonscan API Key](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank}. Note that Moonbeam and Moonbase Alpha use the same [Moonbeam Moonscan](https://moonscan.io/){target=_blank} API key, whereas you'll need a distinct API key for [Moonriver](https://moonriver.moonscan.io/){target=_blank}. 
 
