@@ -71,7 +71,7 @@ require("@nomicfoundation/hardhat-toolbox");
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  solidity: "0.8.3",
+  solidity: "0.8.17",
 };
 ```
 
@@ -118,7 +118,7 @@ const { privateKey } = require('./secrets.json');
 
 module.exports = {
   // 3. Specify the Solidity version
-  solidity: "0.8.1",
+  solidity: "0.8.17",
 
   networks: {
     // 4. Add the Moonbase Alpha network specification
