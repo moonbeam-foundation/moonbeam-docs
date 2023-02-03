@@ -62,7 +62,7 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 ***
 
-### New Account Event Bug {: #new-account-event }
+#### New Account Event Bug {: #new-account-event }
 
 The `System.NewAccount` event is emitted when a new account is created. However, there was a bug where this event was not emitted at the time of creation for some accounts. A hotfix was applied that patched the impacted accounts and emitted the `System.NewAccount` at a later time.
 
@@ -84,6 +84,8 @@ This bug existed during the following runtimes and block ranges:
 | Moonbase Alpha |    RT40    | RT1400 |     0 - 1962557      |
 
 For more information, you can review the [relative Frontier PR on GitHub](https://github.com/PureStake/frontier/pull/46/files){target=_blank}.
+
+***
 
 #### Incorrect Timestamp Units {: #incorrect-timestamp-units }
 
