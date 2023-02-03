@@ -187,7 +187,7 @@ After compilation, an `artifacts` directory is created: it holds the bytecode an
 
 A robust smart contract development workflow is incomplete without a testing suite. Hardhat has a number of tools that make it easy to write and run tests. In this section, you'll learn the basics of testing your smart contracts and some more advanced techniques. 
 
-Hardhat tests are typically written with Mocha and Chai. [Mocha](https://mochajs.org/){target=_blank} is a JavaScript testing framework and [Chai](https://www.chaijs.com/){target=_blank} is a BDD/TDD JavaScript assertion library. BDD/TDD stands for behavior and test driven development respectively. Effective BDD/TDD necessitates writing your tests *before* writing your smart contract code. The structure of this tutorial doesn't strictly follow these guidelines, but you may wish to adopt these principles in your development workflow. Hardhat recommendeds using [Hardhat Toolbox](https://hardhat.org/hardhat-runner/docs/guides/migrating-from-hardhat-waffle){target=_blank}, a plugin that bundles everything you need to get started with Hardhat, including Mocha and Chai. 
+Hardhat tests are typically written with Mocha and Chai. [Mocha](https://mochajs.org/){target=_blank} is a JavaScript testing framework and [Chai](https://www.chaijs.com/){target=_blank} is a BDD/TDD JavaScript assertion library. BDD/TDD stands for behavior and test driven development respectively. Effective BDD/TDD necessitates writing your tests *before* writing your smart contract code. The structure of this tutorial doesn't strictly follow these guidelines, but you may wish to adopt these principles in your development workflow. Hardhat recommends using [Hardhat Toolbox](https://hardhat.org/hardhat-runner/docs/guides/migrating-from-hardhat-waffle){target=_blank}, a plugin that bundles everything you need to get started with Hardhat, including Mocha and Chai. 
 
 ### Configuring the Test File {: #configuring-the-test-file }
 
@@ -245,7 +245,7 @@ describe("Dao contract", function () {
     return { deployedDao };
   }
 
-  // The following test cases should be added here.
+  // The test cases should be added here.
 
 });
 ```
@@ -294,7 +294,7 @@ it("The DAO should initially have 0 funds in it", async function () {
 
 To this point, the two cases implemented have been simple but important. Now, you'll implement a more complex test case that differs in its architecture. In prior examples, you've verified that a function returns an expected value. In this one, you'll be verifying that a function reverts. You'll also change the address of the caller to test an admin-only function. 
 
-In the [staking DAO contract](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank}, only admins are authorized to add new members to the DAO. One could write a test that checks to see if the admin is authorized to add new members but perhaps a more important test is to ensure that *non-admins* can't add new members. To run this test case under a different account, you're going to ask for another address when you call `ethers.getSigners()` and specify the caller in the assertion with `connect(otherAddress)`. Finally, after the function call to be tested you'll append `.to.be.reverted;` to indicate that the test case is successful if the function reverts. And if it doesn't revert it's a failed test! 
+In the [staking DAO contract](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank}, only admins are authorized to add new members to the DAO. One could write a test that checks to see if the admin is authorized to add new members but perhaps a more important test is to ensure that *non-admins* can't add new members. To run this test case under a different account, you're going to ask for another address when you call `ethers.getSigners()` and specify the caller in the assertion with `connect(member1)`. Finally, after the function call to be tested you'll append `.to.be.reverted;` to indicate that the test case is successful if the function reverts. And if it doesn't revert it's a failed test! 
 
 ```javascript
 it("Non-admins should not be able to grant membership", async function () {
