@@ -5,7 +5,7 @@ description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereu
 
 # Interacting with Moonbeam Using Talisman
 
-![Interact with Moonbeam Using Talisman Wallet Extension](/images/tokens/connect/talisman/talisman-banner.png)
+![Interact with Moonbeam using Talisman wallet extension.](/images/tokens/connect/talisman/talisman-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -63,7 +63,7 @@ When launching [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2F
 
 After switching, the Polkadot.js site will not only connect to Moonbase Alpha, but also change its styling to make a perfect match.
 
-![Switch to Moonbase Alpha in Polkadot.js Apps](/images/tokens/connect/talisman/talisman-6.png)
+![Switch to Moonbase Alpha in Polkadot.js Apps.](/images/tokens/connect/talisman/talisman-6.png)
 
 ## Adding a New Account to Talisman {: #adding-a-new-account-to-talisman } 
 
@@ -84,7 +84,7 @@ Although our new account has been successfully created, Polkadot.js Apps isn't a
 2. Ensure **Show Eth accounts** is checked 
 3. Click on the account you'd like to connect. The green dot next to the account will light up if it is selected
 
-![Connect Talisman Account to Polkadot.js Apps.](/images/tokens/connect/talisman/talisman-8.png)
+![Connect Talisman account to Polkadot.js Apps.](/images/tokens/connect/talisman/talisman-8.png)
 
 ## Sending a Transaction Through Substrate's API {: #sending-a-transaction-through-substrates-api } 
 
@@ -97,11 +97,11 @@ Click on Alice's **send** button, which opens another wizard that guides you thr
 3. When ready, click on the **Make Transfer** button
 4. Approve the transaction in the Talisman pop up
 
-![Send a Moonbeam transaction through Substrate API with Talisman.](/images/tokens/connect/talisman/talisman-9.png)
+![Send a Moonbeam transaction through the Substrate API with Talisman.](/images/tokens/connect/talisman/talisman-9.png)
 
 After the transaction is confirmed, you should see the balances updated for each account.
 
-![You can see your balances updated in Polkadot.js Apps after successful transaction.](/images/tokens/connect/talisman/talisman-10.png)
+![You can see your balances updated in Polkadot.js Apps after a successful transaction.](/images/tokens/connect/talisman/talisman-10.png)
 
 And that is it! These steps have demonstrated the ease coupled with the robust security of interacting with injected H160 accounts in Polkadot.js Apps with Talisman. All of this is possible because of Moonbeam's unified account structure, a great example of Moonbeam's commitment to providing the best user experience. 
 
