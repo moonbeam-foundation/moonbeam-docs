@@ -11,7 +11,7 @@ _January 16, 2023 | by Kevin Neilson & Erin Shaben_
 
 ## Introduction {: #introduction } 
 
-In this tutorial, we'll walk through the [Hardhat development environment](https://hardhat.org/){target=_blank} in the context of launching a [pooled staking DAO contract](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank}. We'll walk through the typical developer workflow in detail. We'll assemble the components of the staking DAO and compile the necessary contracts. Then, we'll deploy the staking DAO to Moonbase Alpha and verify it programmatically. We'll build a test suite and wrap up by deploying the staking DAO to Moonbeam. If this is your first time exploring Hardhat, you may wish to start with [the introduction to Hardhat guide](/builders/build/eth-api/dev-env/hardhat/){target=_blank}. 
+In this tutorial, we'll walk through the [Hardhat development environment](https://hardhat.org/){target=_blank} in the context of launching a [pooled staking DAO contract](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank}. We'll walk through the typical developer workflow in detail from start to finish. We'll assemble the components of the staking DAO and compile the necessary contracts. Then, we'll build a test suite with a variety of test cases relevant to our staking DAO. Finally, we'll deploy the staking DAO to both Moonbase Alpha and Moonbeam and verify the contracts via the Hardhat Etherscan plugin. If this is your first time exploring Hardhat, you may wish to start with [the introduction to Hardhat guide](/builders/build/eth-api/dev-env/hardhat/){target=_blank}. 
 
 _The information presented herein is for informational purposes only and has been provided by third parties. Moonbeam does not endorse any project listed and described on the Moonbeam docs website (https://docs.moonbeam.network/)._
 
@@ -481,7 +481,7 @@ npx hardhat verify --network moonbase <CONTRACT-ADDRESS> "{{ networks.moonbase.s
 ```
 
 !!! note
-    If you're deploying `DelegationDAO.sol` verbatim without any changes, you may get an `Already Verified` Error because Moonscan automatically recognizes and verifies smart contracts that have matching bytecode. Your contract will still show as verified, so there is nothing else you need to do. However, if you'd prefer to verify your own `DelegationDAO.sol`, you can make a small change to the contract (such as changing a comment) and retrying the deployment and verification steps.
+    If you're deploying `DelegationDAO.sol` verbatim without any changes, you may get an `Already Verified` Error because Moonscan automatically recognizes and verifies smart contracts that have matching bytecode. Your contract will still show as verified, so there is nothing else you need to do. However, if you'd prefer to verify your own `DelegationDAO.sol`, you can make a small change to the contract (such as changing a comment) and repeating the compilation, deployment and verification steps.
 
 In your terminal you should see the source code for your contract was successfully submitted for verification. If the verification was successful, you should see **Successfully verified contract** and there will be a link to the contract code on [Moonscan for Moonbase Alpha](https://moonbase.moonscan.io/){target=_blank}. If the plugin returns an error, double check that your API key is configured correctly and that you have specified all necessary parameters in the verification command. You can refer to the [guide to the Hardhat Etherscan plugin](/builders/build/eth-api/verify-contracts/etherscan-plugins/){target=_blank} for more information.
 
@@ -550,6 +550,9 @@ To verify the contract, you will run the `verify` command and pass in the networ
 ```
 npx hardhat verify --network moonbeam <CONTRACT-ADDRESS> "0x1C86E56007FCBF759348dcF0479596a9857Ba105" "DEPLOYER-ADDRESS"
 ```
+
+!!! note
+    If you're deploying `DelegationDAO.sol` verbatim without any changes, you may get an `Already Verified` Error because Moonscan automatically recognizes and verifies smart contracts that have matching bytecode. Your contract will still show as verified, so there is nothing else you need to do. However, if you'd prefer to verify your own `DelegationDAO.sol`, you can make a small change to the contract (such as changing a comment) and repeating the compilation, deployment and verification steps.
 
 In your terminal you should see the source code for your contract was successfully submitted for verification. If the verification was successful, you should see **Successfully verified contract** and there will be a link to the contract code on [Moonbeam Moonscan](https://moonscan.io/){target=_blank}. If the plugin returns an error, double check that your API key is configured correctly and that you have specified all necessary parameters in the verification command. You can refer to the [guide to the Hardhat Etherscan plugin](/builders/build/eth-api/verify-contracts/etherscan-plugins/){target=_blank} for more information.
 
