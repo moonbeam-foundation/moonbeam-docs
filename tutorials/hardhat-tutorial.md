@@ -177,6 +177,10 @@ npm install --save-dev @nomiclabs/hardhat-etherscan
 
 You can add your Moonscan API key to the `secrets.json` file alongside your private key. Both Moonbeam and Moonbase Alpha utilize the same [Moonbeam Moonscan](https://moonscan.io/){target=_blank} API key. If you want to verify a contract on Moonriver, you'll need a [Moonriver Moonscan](https://moonriver.moonscan.io/){target=_blank} API key.
 
+After doing so, your `secrets.json` should resemble the following: 
+
+![Add Moonscan API Key to Secret.json](/images/tutorials/hardhat/secrets-json.png)
+
 From within your Hardhat project, open your `hardhat.config.js` file. You'll need to import the `hardhat-etherscan` plugin, your Moonscan API key, and add the config for Etherscan. After those steps, your `hardhat.config.js` should resemble the following: 
 
 ```js
@@ -391,7 +395,7 @@ If everything was set up correctly, you should see output like the following:
 
 ## Deploying to Moonbase Alpha {: #deploying-to-moonbase-alpha } 
 
-In the following steps, you'll be deploying the DelegationDAO to the Moonbase Alpha testnet. Note, DelegationDAO relies on [`StakingInterface.sol`](/builders/pallets-precompiles/precompiles/staking/){target=_blank}, which is a substrate-based offering unique to Moonbeam Networks. The hardhat network and forked networks are simulated EVM environments which do not include the substrate-based precompiles like `StakingInterface.sol`. Therefore, DelegationDAO will not work properly if deployed to the local default Hardhat Network or a [forked network](/builders/build/eth-api/dev-env/hardhat/#forking-moonbeam){target=_blank}.
+In the following steps, we'll be deploying the DelegationDAO to the Moonbase Alpha testnet. Note, DelegationDAO relies on [`StakingInterface.sol`](/builders/pallets-precompiles/precompiles/staking/){target=_blank}, which is a substrate-based offering unique to Moonbeam Networks. The hardhat network and forked networks are simulated EVM environments which do not include the substrate-based precompiles like `StakingInterface.sol`. Therefore, DelegationDAO will not work properly if deployed to the local default Hardhat Network or a [forked network](/builders/build/eth-api/dev-env/hardhat/#forking-moonbeam){target=_blank}.
 
 To deploy `DelegationDAO.sol`, you can write a simple script. You can create a new directory for the script and name it `scripts` and add a new file to it called `deploy.js`:
 
@@ -464,8 +468,6 @@ While it's possible to verify smart contracts on the [Moonscan website](https://
 
 Before beginning the contract verification process, you'll need to [acquire a Moonscan API Key](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank}. Note that Moonbeam and Moonbase Alpha use the same [Moonbeam Moonscan](https://moonscan.io/){target=_blank} API key, whereas you'll need a distinct API key for [Moonriver](https://moonriver.moonscan.io/){target=_blank}. 
 
-
-
 Double check that your `secrets.json` file includes your API key for [Moonbeam Moonscan](https://moonscan.io/){target=_blank}. 
 
 ![Add Moonscan API Key to Secret.json](/images/tutorials/hardhat/secrets-json.png)
@@ -482,11 +484,55 @@ In your terminal you should see the source code for your contract was successful
 
 ## Deploying to Production on Moonbeam Mainnet {: #deploying-to-production-on-moonbeam-mainnet }
 
-Steps.
+!!! note
+    `DelegationDAO.sol` is unreviewed and unaudited. It is designed only for demonstration purposes and not intended for production use. It may contain bugs or logic errors that could result in loss of funds. 
+
+In the following steps, we'll be deploying the DelegationDAO to the Moonbeam mainnet network. Before deploying DelegationDAO to Moonbeam, we need to change the address of the target collator, since our target collator on Moonbase Alpha does not exist on Moonbeam. Head to your deploy script and change the target collator to `0x1C86E56007FCBF759348dcF0479596a9857Ba105` or [another Moonbeam collator](https://apps.moonbeam.network/moonbeam/staking){target=_blank} of your choice. Your `deploy.js` script should thus look like the following: 
+
+```javascript
+// scripts/deploy.js
+//1. The PureStake-03 collator on Moonbeam is chosen as the DAO's target
+const targetCollator = "0x1C86E56007FCBF759348dcF0479596a9857Ba105"
+
+async function main() {
+
+   // 2. Get the address of the deployer to later be set as the admin of the DAO.
+   const [deployer] = await ethers.getSigners();
+   console.log("Deploying contracts with the account:", deployer.address);
+   
+   // 3. Get an instance of DelegationDAO
+   const delegationDao = await ethers.getContractFactory("DelegationDAO");
+   
+   // 4. Deploy the contract specifying two params: the desired collator to delegate
+   // to and the address of the deployer (synonymous with initial DAO admin)
+   const deployedDao = await delegationDao.deploy(targetCollator, deployer.address);
+   console.log("DAO address:", deployedDao.address);
+   
+}
+
+main()
+   .then(() => process.exit(0))
+   .catch((error) => {
+      console.error(error);
+      process.exit(1);
+   });
+```
+
+You can now deploy `DelegationDAO.sol` using the `run` command and specifying `moonbeam` as the network:
+
+```
+npx hardhat run --network moonbeam scripts/deploy.js
+```
+
+If you're using another Moonbeam network, make sure that you specify the correct network. The network name needs to match how it's defined in the `hardhat.config.js`.
+
+After a few seconds, the contract is deployed, and you should see the address in the terminal.
+
+![How to Deploy a Contract with HardHat Deployment script](/images/tutorials/hardhat/deploy-staking-dao-to-moonbeam.png)
+
+Congratulations, your contract is live on Moonbeam! Save the address, as you will use it to interact with this contract instance in the next step.
 
 ## Verifying Contracts on Moonbeam {: #verifying-contracts-on-moonbeam }
-
-Steps here.
 
 And that's it! We covered a lot of ground in this tutorial but there's more resources available if you'd like to go deeper, including the following:
 
