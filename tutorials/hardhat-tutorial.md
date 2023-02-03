@@ -94,12 +94,12 @@ To get started, take the following steps:
     ```
     touch contracts/DelegationDAO.sol
     ```
-3. Copy and paste the contents of [`DelegationDAO.sol`](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank} into `DelegationDAO.sol` 
+3. Copy and paste the contents of [`DelegationDAO.sol`](https://raw.githubusercontent.com/PureStake/moonbeam-intro-course-resources/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank} into `DelegationDAO.sol` 
 4. Create a new file called `StakingInterface.sol` in the ```contracts``` directory
     ```
     touch contracts/StakingInterface.sol
     ```
-5. Copy and paste the contents of [`StakingInterface.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank} into `StakingInterface.sol`
+5. Copy and paste the contents of [`StakingInterface.sol`](https://raw.githubusercontent.com/PureStake/moonbeam/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank} into `StakingInterface.sol`
 6. `DelegationDAO.sol` relies on a couple of standard [OpenZeppelin](https://www.openzeppelin.com/){target=_blank} contracts. Add the library with the following command: 
     ```
     npm install @openzeppelin/contracts
@@ -279,7 +279,7 @@ describe("Dao contract", function () {
   async function deployDao() {
 
     // Get the ContractFactory and Signers here
-    const [deployer] = await ethers.getSigners();
+    const [deployer, member1] = await ethers.getSigners();
     const delegationDao = await ethers.getContractFactory("DelegationDAO");
     
     // Deploy the staking DAO and wait for the deployment transaction to be confirmed
@@ -390,7 +390,7 @@ npx hardhat test tests/Dao.js
 
 If everything was set up correctly, you should see output like the following: 
 
-![Hardhat Run Tests](/images/tutorials/hardhat/hardhat4.png)
+![Hardhat Run Tests](/images/tutorials/hardhat/running-tests.png)
 
 
 ## Deploying to Moonbase Alpha {: #deploying-to-moonbase-alpha } 
@@ -431,9 +431,11 @@ async function main() {
    // 3. Get an instance of DelegationDAO
    const delegationDao = await ethers.getContractFactory("DelegationDAO");
    
-   // 4. Deploy the contract specifying two params: the desired collator to delegate
-   // to and the address of the deployer (synonymous with initial DAO admin)
+   // 4. Deploy the contract specifying two params: the desired collator to
+   // delegate to and the address of the deployer (the initial DAO admin)
    const deployedDao = await delegationDao.deploy(targetCollator, deployer.address);
+   
+   // 5. Print out the address of the deployed staking DAO contract
    console.log("DAO address:", deployedDao.address);
    
 }
@@ -477,6 +479,9 @@ To verify the contract, you will run the `verify` command and pass in the networ
 ```
 npx hardhat verify --network moonbase <CONTRACT-ADDRESS> "{{ networks.moonbase.staking.candidates.address1 }}" "DEPLOYER-ADDRESS"
 ```
+
+!!! note
+    If you're deploying `DelegationDAO.sol` verbatim without any changes, you may get an `Already Verified` Error because Moonscan automatically recognizes and verifies smart contracts that have matching bytecode. Your contract will still show as verified, so there is nothing else you need to do. However, if you'd prefer to verify your own `DelegationDAO.sol`, you can make a small change to the contract (such as changing a comment) and retrying the deployment and verification steps.
 
 In your terminal you should see the source code for your contract was successfully submitted for verification. If the verification was successful, you should see **Successfully verified contract** and there will be a link to the contract code on [Moonscan for Moonbase Alpha](https://moonbase.moonscan.io/){target=_blank}. If the plugin returns an error, double check that your API key is configured correctly and that you have specified all necessary parameters in the verification command. You can refer to the [guide to the Hardhat Etherscan plugin](/builders/build/eth-api/verify-contracts/etherscan-plugins/){target=_blank} for more information.
 
