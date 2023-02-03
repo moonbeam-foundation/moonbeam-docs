@@ -281,7 +281,11 @@ Chisel is a Solidity REPL, or shell. It allows a developer to write Solidity dir
 
 Since Chisel is mainly useful for quick testing, it can be used outside of a Foundry project. But, if executed within a Foundry project, it will keep the configurations within `foundry.toml` when running.  
 
-For this example, you will be testing out some of the features of `abi` within Solidity because it is complex enough to demonstrate how Chisel could be useful. To get started using Chisel, run `chisel` in the command line to start the shell.  
+For this example, you will be testing out some of the features of `abi` within Solidity because it is complex enough to demonstrate how Chisel could be useful. To get started using Chisel, run the following in the command line to start the shell:
+
+```
+chisel
+```
 
 In the shell, you can write Solidity code as if it was running within a function:
 
@@ -340,34 +344,56 @@ You should see something like the following:
 
 While it doesn't display the data in the same way, you still get the contents of the data, and it also further breaks down how the information is coded, such as letting you know that the `0xa0` value defines the length of the data.  
 
-By default, when you leave the Chisel shell, none of the data is persisted. But you can instruct chisel to do so. For example, store a `uint256` in Chisel, store the session with `!save`, and quit:  
+By default, when you leave the Chisel shell, none of the data is persisted. But you can instruct chisel to do so. For example, you can take the following steps to store a variable:
 
-```
-uint256 myNumber = 101;
-!save 1
-!quit
-```
+1. Store a `uint256` in Chisel
+    ```
+    uint256 myNumber = 101;
+    ```
 
-When using the `!save` command, the number `1` was a save ID, which was chosen at random. You can view a list of saved Chisel states with `chisel list`, and you can load them with `chisel load`:  
+2. Store the session with `!save`. For this example, you can use the number `1` as a save ID
+    ```
+    !save 1
+    ```
 
-```
-chisel list
-chisel load 1
-!rawstack myNumber
-```  
+3. Quit the sesseion  
+    ```
+    !quit
+    ```
+
+Then to view and interact with your stored Chisel states, you can take the following steps:
+
+1. View a list of saved Chisel states
+     ```
+     chisel list
+     ```
+
+2. Load your stored states
+    ```
+    chisel load
+    ```
+
+3. View the `uint256` saved in Chisel from the previous set of steps
+    ```
+    !rawstack myNumber
+    ```  
 
 ![Saving state in Chisel](/images/builders/build/eth-api/dev-env/foundry/foundry-9.png)
 
-You can even fork networks while using Chisel. In the following example, you will query the balance of one of Moonbase Alpha's collators:  
+You can even fork networks while using Chisel:
 
 ```
 !fork {{ networks.moonbase.rpc_url }}
+```
+
+Then, for example, you can query the balance of one of Moonbase Alpha's collators:  
+
+```
 0x4c5A56ed5A4FF7B09aA86560AfD7d383F4831Cce.balance
 ```
 
 ![Forking in Chisel](/images/builders/build/eth-api/dev-env/foundry/foundry-10.png)
 
 If you want to learn more about Chisel, download Foundry and refer to its [official reference page](https://book.getfoundry.sh/reference/chisel/){target=_blank}.
-
 
 --8<-- 'text/disclaimers/third-party-content.md'
