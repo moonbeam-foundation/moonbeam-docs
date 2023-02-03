@@ -377,8 +377,7 @@ And that's it! You're now ready to run your tests!
 
 ### Running your Tests {: #running-your-tests }
 
-If you've followed all of the prior sections, your [`Dao.js`](https://raw.githubusercontent.com/PureStake/moonbeam-intro-course-resources/main/delegation-dao-lesson-one/Dao.js){target=_blank} test file should be all set to go. Otherwise, you can copy the complete snippet below into your [`Dao.js`](https://raw.githubusercontent.com/PureStake/moonbeam-intro-course-resources/main/delegation-dao-lesson-one/Dao.js){target=_blank}  test file. Comments have been removed for code readability, but you can refer to the prior sections 
-for details on each step including comments.
+If you've followed all of the prior sections, your [`Dao.js`](https://raw.githubusercontent.com/PureStake/moonbeam-intro-course-resources/main/delegation-dao-lesson-one/Dao.js){target=_blank} test file should be all set to go. Otherwise, you can copy the complete snippet below into your [`Dao.js`](https://raw.githubusercontent.com/PureStake/moonbeam-intro-course-resources/main/delegation-dao-lesson-one/Dao.js){target=_blank}  test file.
 
 --8<-- 'code/hardhat/dao-js-test-file.md'
 
