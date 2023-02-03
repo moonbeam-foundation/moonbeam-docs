@@ -5,7 +5,7 @@ description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereu
 
 # Interacting with Moonbeam Using Talisman
 
-![Banner image](/images/tokens/connect/talisman/talisman-banner.png)
+![Interact with Moonbeam using Talisman wallet extension.](/images/tokens/connect/talisman/talisman-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -23,7 +23,7 @@ Talisman is a crypto-wallet that natively supports Substrate (Polkadot) and Ethe
 
 First, download and install the [Talisman extension](https://www.talisman.xyz/){target=_blank}. Once the extension opens up, you'll be prompted to either create a new wallet or import an existing one. For the purposes of this demo, you'll create a new wallet. On the following screen you'll be prompted to create a password to secure the new wallet.  
 
-![Talisman prompt to create new wallet or import existing one](/images/tokens/connect/talisman/talisman-1.png)
+![Create a new wallet or import an existing one into Talisman.](/images/tokens/connect/talisman/talisman-1.png)
 
 !!! Remember
     Talisman does not require you to back up your seed phrase but will nudge you with a reminder at the bottom of the screen. If you don't back up your seed phrase, you could lose all of your assets.
@@ -34,7 +34,7 @@ To back up your newly created wallet, take the following steps:
 2. Enter the password to your Talisman wallet
 3. Press **View Recovery Phrase** and store it in a secure place
 
-![Talisman prompt to create new wallet or import existing one](/images/tokens/connect/talisman/talisman-2.png)
+![Back up your Talisman recovery phrase.](/images/tokens/connect/talisman/talisman-2.png)
 
 ## Connecting Talisman to Polkadot.js Apps {: #connecting-talisman-to-polkadot.js-apps }
 
@@ -44,19 +44,26 @@ Next, head to [Moonbase Alpha Polkadot.js Apps](https://polkadot.js.org/apps/?rp
 2. Select **My Ethereum Account**. This is the default name assigned by Talisman which you can rename if you'd like
 3. Press **Connect 1**
 
-![Connect account to PolkadotJs Apps](/images/tokens/connect/talisman/talisman-3.png)
+![Enable Ethereum/Moonbeam accounts in Talisman.](/images/tokens/connect/talisman/talisman-3.png)
 
-Your Talisman wallet is now connected to Polkadot.js Apps. After refreshing Polkadot.js Apps, you should see your Talisman account in the [Accounts page of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/accounts){target=_blank}. 
+Your Talisman wallet is now connected to Polkadot.js Apps. After refreshing Polkadot.js Apps, you should see your Talisman account in the [Accounts page of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/accounts){target=_blank}. Talisman works with all Moonbeam networks after you've enabled your Ethereum account. You can also see your balances across all networks in the **Portfolio** tab by clicking on the Talisman logo in the upper left hand corner of the extension. By default, Talisman hides your testnet account balances, however, you can change this by taking the following steps: 
+
+1. Open the Talisman extension and click on the Talisman logo
+2. Select **Settings**
+3. Select **Ethereum Networks**
+4. Click **Enable Testnets**
+
+![See your Moonbase Alpha testnet account balances in Talisman.](/images/tokens/connect/talisman/talisman-4.png)
 
 ## Connecting to Moonbase Alpha {: #connecting-to-moonbase-alpha } 
 
 When launching [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/accounts){target=_blank} for the first time, you may or may not be connected to the desired network. You can change your selected network to the Moonbase Alpha TestNet by clicking the logo in the top left corner, then scroll down to the **Test Networks** section, select Moonbase Alpha, and scroll back to the top and click **Switch**. 
 
-![Connect to Moonbase Alpha](/images/tokens/connect/talisman/talisman-4.png)
+![Connect to Polkadot.js Apps.](/images/tokens/connect/talisman/talisman-5.png)
 
 After switching, the Polkadot.js site will not only connect to Moonbase Alpha, but also change its styling to make a perfect match.
 
-![Connect to Moonbase Alpha](/images/tokens/connect/talisman/talisman-5.png)
+![Switch to Moonbase Alpha in Polkadot.js Apps.](/images/tokens/connect/talisman/talisman-6.png)
 
 ## Adding a New Account to Talisman {: #adding-a-new-account-to-talisman } 
 
@@ -69,7 +76,7 @@ In this section, you'll learn how you can create a new account, or import an alr
 5. Give your new account a name
 6. Press **Create**
 
-![Add Account in Talisman](/images/tokens/connect/talisman/talisman-6.png)
+![Create a new Moonbeam account in Talisman.](/images/tokens/connect/talisman/talisman-7.png)
 
 Although our new account has been successfully created, Polkadot.js Apps isn't aware of it yet. To connect the new account to Polkadot.js Apps, take the following steps from [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/accounts){target=_blank}: 
 
@@ -77,7 +84,7 @@ Although our new account has been successfully created, Polkadot.js Apps isn't a
 2. Ensure **Show Eth accounts** is checked 
 3. Click on the account you'd like to connect. The green dot next to the account will light up if it is selected
 
-![Connect Talisman Account to Polkadot.js Apps](/images/tokens/connect/talisman/talisman-7.png)
+![Connect Talisman account to Polkadot.js Apps.](/images/tokens/connect/talisman/talisman-8.png)
 
 ## Sending a Transaction Through Substrate's API {: #sending-a-transaction-through-substrates-api } 
 
@@ -90,11 +97,11 @@ Click on Alice's **send** button, which opens another wizard that guides you thr
 3. When ready, click on the **Make Transfer** button
 4. Approve the transaction in the Talisman pop up
 
-![Connect to Moonbase Alpha](/images/tokens/connect/talisman/talisman-8.png)
+![Send a Moonbeam transaction through the Substrate API with Talisman.](/images/tokens/connect/talisman/talisman-9.png)
 
 After the transaction is confirmed, you should see the balances updated for each account.
 
-![Connect to Moonbase Alpha](/images/tokens/connect/talisman/talisman-9.png)
+![You can see your balances updated in Polkadot.js Apps after a successful transaction.](/images/tokens/connect/talisman/talisman-10.png)
 
 And that is it! These steps have demonstrated the ease coupled with the robust security of interacting with injected H160 accounts in Polkadot.js Apps with Talisman. All of this is possible because of Moonbeam's unified account structure, a great example of Moonbeam's commitment to providing the best user experience. 
 
