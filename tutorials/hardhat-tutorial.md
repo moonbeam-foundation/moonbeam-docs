@@ -528,11 +528,27 @@ If you're using another Moonbeam network, make sure that you specify the correct
 
 After a few seconds, the contract is deployed, and you should see the address in the terminal.
 
-![How to Deploy a Contract with HardHat Deployment script](/images/tutorials/hardhat/deploy-staking-dao-to-moonbeam.png)
+![How to Deploy a Contract with HardHat Deployment script](/images/tutorials/hardhat/deploy-staking-dao-to-moonbeam-new.png)
 
 Congratulations, your contract is live on Moonbeam! Save the address, as you will use it to interact with this contract instance in the next step.
 
 ## Verifying Contracts on Moonbeam {: #verifying-contracts-on-moonbeam }
+
+In this section, we'll be verifying the contract that was just deployed on Moonbeam. Before beginning the contract verification process, you'll need to [acquire a Moonscan API Key](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank}. Note that Moonbeam and Moonbase Alpha use the same [Moonbeam Moonscan](https://moonscan.io/){target=_blank} API key, whereas you'll need a distinct API key for [Moonriver](https://moonriver.moonscan.io/){target=_blank}. 
+
+Double check that your `secrets.json` file includes your API key for [Moonbeam Moonscan](https://moonscan.io/){target=_blank}. 
+
+![Add Moonscan API Key to Secret.json](/images/tutorials/hardhat/secrets-json.png)
+
+To verify the contract, you will run the `verify` command and pass in the network where the `DelegationDao` contract is deployed, the address of the contract, and the two constructor arguments that you specified in your `deploy.js` file, namely, the address of the target collator and the address you deployed the smart contract with (sourced from your `secrets.json` file). Remember that the target collator of the stakingDAO on Moonbeam is different from the target collator of the stakingDAO on Moonbase Alpha. 
+
+```
+npx hardhat verify --network moonbeam <CONTRACT-ADDRESS> "0x1C86E56007FCBF759348dcF0479596a9857Ba105" "DEPLOYER-ADDRESS"
+```
+
+In your terminal you should see the source code for your contract was successfully submitted for verification. If the verification was successful, you should see **Successfully verified contract** and there will be a link to the contract code on [Moonbeam Moonscan](https://moonscan.io/){target=_blank}. If the plugin returns an error, double check that your API key is configured correctly and that you have specified all necessary parameters in the verification command. You can refer to the [guide to the Hardhat Etherscan plugin](/builders/build/eth-api/verify-contracts/etherscan-plugins/){target=_blank} for more information.
+
+![Successful verification using hardhat-etherscan plugin](/images/tutorials/hardhat/verify-staking-dao-on-moonbeam.png)
 
 And that's it! We covered a lot of ground in this tutorial but there's more resources available if you'd like to go deeper, including the following:
 
