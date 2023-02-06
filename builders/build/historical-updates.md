@@ -68,7 +68,7 @@ The `System.NewAccount` event is emitted when a new account is created. However,
 
 The hotfix was applied in the following block ranges:
 
-|    Network     |                                                         Impacted Block Range                                                         |
+|    Network     |                                                             Block Range                                                              |
 |:--------------:|:------------------------------------------------------------------------------------------------------------------------------------:|
 |    Moonbeam    | [1041355 - 1041358 and 1100752](https://moonbeam.subscan.io/extrinsic?module=evm&call=hotfix_inc_account_sufficients){target=_blank} |
 |   Moonriver    |      [1835760 - 1835769](https://moonriver.subscan.io/extrinsic?module=evm&call=hotfix_inc_account_sufficients){target=_blank}       |
