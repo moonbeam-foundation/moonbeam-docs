@@ -7,7 +7,7 @@ template: main.html
 # Uniswap V2 Swap from Polkadot via XCM
 
 ![Banner Image](/images/tutorials/uniswapv2-swap-xcm/uniswapv2-swap-xcm-banner.png)
-_December 21, 2022 | by Alberto Viera_
+_February 2, 2023 | by Alberto Viera_
 
 ## Introduction {: #introduction } 
 
@@ -31,7 +31,7 @@ With the steps outlined, some prerequisites need to be taken into account, let's
 Considering all the steps summarized in the [#introduction](#introduction), the following prerequisites need to be accounted for:
 
 1. Alice needs to have UNITs on the relay chain to pay for transaction fees when sending the XCM
-2. Alice's [multilocation-derivative account](/builders/xcm/xcm-transactor/#general-xcm-definitions){target=_blank} must hold DEV tokens to fund the Uniswap V2 swap, and also pay for the XCM execution (although this could be paid in UNIT tokens as xcUNIT). We will calculate the multilocation-derivative account address in the next section
+2. Alice's [multilocation-derivative account](/builders/xcm/xcm-transactor/#general-xcm-definitions){target=_blank} must hold DEV tokens to fund the Uniswap V2 swap, and also pay for the XCM execution (although this could be paid in UNIT tokens as `xcUNIT`). We will calculate the multilocation-derivative account address in the next section
 
 --8<-- 'text/faucet/faucet-list-item.md'
 
@@ -39,13 +39,15 @@ Considering all the steps summarized in the [#introduction](#introduction), the 
 
 Copy the account of your existing or newly created account on the [Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank}. You're going to need it to calculate the corresponding multilocation derivative account, which is a special type of account that’s keyless (the private key is unknown). Transactions from a multilocation derivative account can be initiated only via valid XCM instructions from the corresponding account on the relay chain. In other words, you are the only one who can initiate transactions on your multilocation derivative account - and if you lose access to your Moonbase relay account, you’ll also lose access to your multilocation derivative account. 
 
-To generate the multilocation derivative account, first clone Alberto’s [xcmTools repo](https://github.com/albertov19/xcmTools){target=_blank}. Run `yarn` to install the necessary packages and then run:
+To generate the multilocation derivative account, first clone the [xcm-tools](https://github.com/PureStake/xcm-tools){target=_blank}. Run `yarn` to install the necessary packages, and then run:
 
 
-    ts-node calculateMultilocationDerivative.ts \
-     --w wss://wss.api.moonbase.moonbeam.network \
-     --a YOUR-MOONBASE-RELAY-ACCOUNT-HERE \
-     --n 0x57657374656e64
+```sh
+yarn calculate-multilocation-derivative-account \
+--w wss://wss.api.moonbase.moonbeam.network \
+--a YOUR-MOONBASE-RELAY-ACCOUNT-HERE \
+--n 0x57657374656e64
+```
 
 Let's review the parameters passed along with this command:
 
@@ -53,17 +55,86 @@ Let's review the parameters passed along with this command:
 - The `-a` flag corresponds to your Moonbase relay chain address
 - The `-n` flag corresponds to the encoded form of “westend”, the name of the relay chain that Moonbase relay is based on
 
-The script will return 32-byte and 20-byte addresses. We’re interested in the ethereum-style account - the 20-byte one. Feel free to look up your multilocation derivative account on [Moonscan](https://moonbase.moonscan.io/){target=_blank}. You’ll note that this account is empty. You’ll now need to fund this account with at least 1.1 DEV. As this is the amount that the faucet dispenses, you'll need to make a minimum of two faucet requests or you can always reach out to us on [Discord](https://discord.com/invite/amTRXQ9ZpW){target=_blank} for additional DEV tokens.
+For our case, we will be sending the remote EVM call via XCM from Alice's account which address is `5EnnmEp2R92wZ7T8J2fKMxpc1nPW5uP8r5K3YUQGiFrw8uG6`, so the command and response would look like the following image.
 
-## Preparing to Stake on Moonbase Alpha {: #preparing-to-stake-on-moonbase-alpha }
+![Calculating the multilocation-derivative account](/images/tutorials/remote-uniswapv2-swap-xcm/remote-uniswapv2-swap-xcm-2.png)
 
-The following section will walk through fetching collator information via the [Moonbase Alpha Staking dApp](https://apps.moonbeam.network/moonbase-alpha/staking){target=_blank} and the Polkadot.js Apps UI. If you'd prefer to fetch this information programmatically via the Polkadot.js API, you can skip to the [following section.](#generating-the-encoded-call-data)
+The script will return 32-byte and 20-byte addresses. We’re interested in the ethereum-style account - the 20-byte one, which is `0x4e21340c3465ec0aa91542de3d4c5f4fc1def526`. Feel free to look up your multilocation-derivative account on [Moonscan](https://moonbase.moonscan.io/){target=_blank}.
 
-First and foremost, you’ll need the address of the collator you want to delegate to. To locate it, head to the [Moonbase Alpha Staking dApp](https://apps.moonbeam.network/moonbase-alpha/staking){target=_blank} in a second window. Ensure you’re on the correct network, then press **Select a Collator**. Next to your desired collator, press the **Copy** icon. You’ll also need to make a note of the number of delegations your collator has. The [PS-31 collator](https://moonbase.subscan.io/account/0x3A7D3048F3CB0391bb44B518e5729f07bCc7A45D){target=_blank} shown below has `60` delegations at the time of writing. 
+--8<-- 'text/faucet/faucet-sentence.md'
 
-![Moonbeam Network Apps Dashboard](/images/tutorials/remote-staking-via-xcm/xcm-stake-1.png)
+## Getting the Uniswap V2 Swap Calldata {: #getting-uniswapv2-swap-calldata }
 
-## Generating the Encoded Call Data {: #generating-the-encoded-call-data }
+The following section will walk through the steps of getting the calldata for the Uniswap V2 swap, as we need to feed this calldata to the [remote EVM call](/builders/interoperability/xcm/remote-evm-calls/) that we will build via XCM.
+
+The function being targeted here is one from the Uniswap V2 router, more specifically [swapExactETHForTokens](https://github.com/Uniswap/v2-periphery/blob/master/contracts/UniswapV2Router02.sol#L252){target=_blank}. This function will swap an exact amount of protocol native tokens (in this case DEV) for another ERC-20 token. It has the following inputs:
+
+ - Minimum amount of tokens that you expect out of the swap (accounting for slippage)
+ - Path that the take will trade (if there is no direct pool, the swap might be routed through multiple pair-pools)
+ - Address of the recipient of the tokens swapped
+ - The deadline (in Unix time) from which the trade is no longer valid
+
+The easiest way to get the calldata is through the [Moonbeam Uniswap V2 Demo](https://moonbeam-swap.netlify.app/) page. Once you go in the website, take the following steps:
+
+ 1. Set the swap **from** value and token and also set the swap **to** token. For this example, we want to swap 1 `DEV` token for `MARS`
+ 2. Click on the **Swap** button. Metamask should pop-up, **do not sign the transaction**
+ 3. In Metamask, click on the **hex** tab, the encoded calldata should show up
+ 4. Click on the **Copy raw transaction data** button, this will copy the encoded call data to the clipboard
+
+![Calldata for UniswapV2 swap](/images/tutorials/remote-uniswapv2-swap-xcm/remote-uniswapv2-swap-xcm-3.png)
+
+!!! note
+    Other wallets also offer the same capabilities of checking the encoded calldata before signing the transaction.
+
+Once you have the encoded calldata, feel free to reject the transaction in your wallet. The swap calldata that we obtained is encoded as follows (all but the function selector are expressed in 32 bytes or 64 hexadecimal characters blobs):
+
+ 1. The function selector, which are 4 bytes (8 hexadecimal characters) that represents the function you are calling
+ 2. The amount, in this case `56983806981` is one `DEV` tokens in Wei units
+ 3. The location of the data part of the path parameter (which is of type dynamic). `80` in hex is `128` decimal, meaning that information about the path is presented after 128 bytes from the begining (without counting on the function selector). Consequently, the next bit of information about the path is presented in the element 6
+ 4. The address receiving the tokens after the swap, in this case is the `msg.sender` of the call
+ 5. The deadline limit for the swap
+ 6. The length of the address array representing the path
+ 7. First token involved in the swap, which is wrapped `DEV`
+ 8. Second token involved in the swap, which is `MARS` so it is the last 
+ 
+
+```
+1. 0x7ff36ab5
+2. 000000000000000000000000000000000000000000000006ac25438ffcc14f0e
+3. 0000000000000000000000000000000000000000000000000000000000000080
+4. 000000000000000000000000d720165d294224a7d16f22ffc6320eb31f3006e1 -> Receiving Address
+5. 0000000000000000000000000000000000000000000000000000000063dbcda5 -> Deadline
+6. 0000000000000000000000000000000000000000000000000000000000000002
+7. 000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e1
+8. 0000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f
+```
+
+In the calldata, we need to change two fields to ensure our swap will go through. First, we will switch the receiving address to our multilocation-derivative account. Next, we will change the deadline to provide a bit more flexibility for our swap, so you don't have to submit this immediatly. **This is OK because we are just testing things :), do not use this code in production!** Our encoded call data should look like this (the line breaks were left for visibility):
+
+```
+0x7ff36ab5
+0000000000000000000000000000000000000000000000000000056983806981
+0000000000000000000000000000000000000000000000000000000000000080
+0000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def526 -> New Address
+0000000000000000000000000000000000000000000000000000000064746425 -> New Deadline
+0000000000000000000000000000000000000000000000000000000000000002
+000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e1
+000000000000000000000000ffffffff1fcacbd218edc0eba20fc2308c778080
+```
+
+Which as a one liner is:
+
+```
+0x7ff36ab5000000000000000000000000000000000000000000000000000005698380698100000000000000000000000000000000000000000000000000000000000000800000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def52600000000000000000000000000000000000000000000000000000000647464250000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e1000000000000000000000000ffffffff1fcacbd218edc0eba20fc2308c778080
+```
+
+## Generating the Moonbeam Encoded Callcata {: #generating-the-moonbeam-encoded-call-data }
+
+Now that we have the UniswapV2 swap encoded calldata, we need to generate the bytes that the `transact` instruction from the XCM message will execute.
+
+
+
+
 
 Then, head to [Moonbase Alpha Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts){target=_blank}. In order to see the **Extrinsics** menu here, you’ll need to have at least one account accessible in Polkadot.js Apps. If you don’t, create one now. Then, head to the **Developer** tab and press **Extrinsics**. 
 
