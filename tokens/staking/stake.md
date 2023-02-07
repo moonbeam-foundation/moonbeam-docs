@@ -164,7 +164,7 @@ To delegate a candidate and set up auto-compounding for your staking rewards, ta
  5. Set the number of tokens you want to stake
  6. Set the percentage of rewards to auto-compound by entering a number 0-100
  7. Input the `candidateDelegationCount` you [retrieved previously from querying `candidateInfo`](#get-the-candidate-delegation-count)
- 8. Input the `candidateAutoCompoundingDelegationCount` you [retrieved previously from querying `autoCompoundingDelegations`](#gget-candidate-auto-compounding-count)
+ 8. Input the `candidateAutoCompoundingDelegationCount` you [retrieved previously from querying `autoCompoundingDelegations`](#get-candidate-auto-compounding-count)
  9. Input the `delegationCount` [you retrieved from the JavaScript console](#get-your-number-of-existing-delegations). This is `0` if you haven't yet delegated a candidate
  10. Click the **Submit Transaction** button and sign the transaction
 
@@ -227,9 +227,9 @@ You'll need to [get the number of delegations with auto-compounding set up](#get
  3. Choose the **setAutoCompound** extrinsic
  4. Set the candidate's address that you delegated. For this example, it is set to `{{ networks.moonbase.staking.candidates.address1 }}`
  5. Set the percentage of rewards to auto-compound by entering a number 0-100
- 7. For the **candidateAutoCompoundingDelegationHint** field, enter the candidate's number of delegations with auto-compounding configured
- 8. For the **delegationCountHint** field, enter your number of delegations
- 9. Click the **Submit Transaction** button and sign the transaction
+ 6. For the **candidateAutoCompoundingDelegationHint** field, enter the candidate's number of delegations with auto-compounding configured
+ 7. For the **delegationCountHint** field, enter your number of delegations
+ 8. Click the **Submit Transaction** button and sign the transaction
 
 ![Staking Chain State Query](/images/tokens/staking/stake/new/stake-9.png)
 
