@@ -100,6 +100,27 @@ contract Box {
 
 ## Hardhat Configuration File {: #hardhat-configuration-file } 
 
+Before you can deploy the contract to Moonbase Alpha, you'll need to modify the Hardhat configuration file and create a secure file to store your private key in.
+
+You can create a `secrets.json` file to store your private key by running:
+
+```
+touch secrets.json
+```
+
+Then add your private key to it:
+
+```json
+{
+    "privateKey": "YOUR-PRIVATE-KEY-HERE"
+}
+```
+
+Make sure to add the file to your project's `.gitignore`, and to never reveal your private key.
+
+!!! remember
+    Please always manage your private keys with a designated secret manager or similar service. Never save or commit your private keys inside your repositories.
+
 --8<-- 'text/hardhat/hardhat-configuration-file.md'
 
 ```js
