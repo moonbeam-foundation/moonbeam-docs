@@ -6,4 +6,5 @@ nav:
   - batch-approve-swap.md
   - foundry-start-to-end.md
   - truffle-dev-life-cycle.md
+  - cross-chain-dao.md
 
