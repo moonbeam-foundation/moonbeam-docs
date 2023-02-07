@@ -1,5 +1,5 @@
 ```js
-import ethers from 'ethers';
+import { ethers } from 'ethers';
 
 // Define the TxHash to Check Finality
 const txHash = 'tx_hash';
@@ -15,7 +15,7 @@ const providerRPC = {
 };
 
 // Define the Web3 provider
-const web3Provider = new ethers.providers.JsonRpcProvider(providerRPC.moonbeam.rpc, {
+const web3Provider = new ethers.JsonRpcProvider(providerRPC.moonbeam.rpc, {
   chainId: providerRPC.moonbeam.chainId,
   name: providerRPC.moonbeam.name,
 });

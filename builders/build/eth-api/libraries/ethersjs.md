@@ -41,7 +41,7 @@ npm install ethers solc@0.8.0
 
 ## Setting up the Ethers Provider {: #setting-up-the-ethers-provider }
 
-Throughout this guide, you'll be creating a bunch of scripts that provide different functionality such as sending a transaction, deploying a contract, and interacting with a deployed contract. In most of these scripts you'll need to create an [Ethers provider](https://docs.ethers.io/v5/api/providers/){target=_blank} to interact with the network.
+Throughout this guide, you'll be creating a bunch of scripts that provide different functionality such as sending a transaction, deploying a contract, and interacting with a deployed contract. In most of these scripts you'll need to create an [Ethers provider](https://docs.ethers.io/v6/api/providers/){target=_blank} to interact with the network.
 
 --8<-- 'text/common/endpoint-setup.md'
 
@@ -49,7 +49,7 @@ To create a provider, you can take the following steps:
 
 1. Import the `ethers` library
 2. Define the `providerRPC` object, which can include the network configurations for any of the networks you want to send a transaction on. You'll include the `name`, `rpc`, and `chainId` for each network
-3. Create the `provider` using the `ethers.providers.StaticJsonRpcProvider` method. An alternative is to use the `ethers.providers.JsonRpcProvide(providerRPC)` method, which only requires the provider RPC endpoint address. This might create compatibility issues with individual project specifications
+3. Create the `provider` using the `ethers.JsonRpcProvider` method. An alternative is to use the `ethers.providers.JsonRpcProvide(providerRPC)` method, which only requires the provider RPC endpoint address. This might create compatibility issues with individual project specifications
 
 === "Moonbeam"
 
@@ -66,7 +66,7 @@ To create a provider, you can take the following steps:
       },
     };
     // 3. Create ethers provider
-    const provider = new ethers.providers.StaticJsonRpcProvider(
+    const provider = new ethers.JsonRpcProvider(
       providerRPC.moonbeam.rpc, 
       {
         chainId: providerRPC.moonbeam.chainId,
@@ -90,7 +90,7 @@ To create a provider, you can take the following steps:
       },
     };
     // 3. Create ethers provider
-    const provider = new ethers.providers.StaticJsonRpcProvider(
+    const provider = new ethers.JsonRpcProvider(
       providerRPC.moonriver.rpc, 
       {
         chainId: providerRPC.moonriver.chainId,
@@ -114,7 +114,7 @@ To create a provider, you can take the following steps:
       },
     };
     // 3. Create ethers provider
-    const provider = new ethers.providers.StaticJsonRpcProvider(
+    const provider = new ethers.JsonRpcProvider(
       providerRPC.moonbase.rpc, 
       {
         chainId: providerRPC.moonbase.chainId,
@@ -138,7 +138,7 @@ To create a provider, you can take the following steps:
       },
     };
     // 3. Create ethers provider
-    const provider = new ethers.providers.StaticJsonRpcProvider(
+    const provider = new ethers.JsonRpcProvider(
       providerRPC.dev.rpc, 
       {
         chainId: providerRPC.dev.chainId,
@@ -166,7 +166,7 @@ Next, you will create the script for this file and complete the following steps:
 1. [Set up the Ethers provider](#setting-up-the-ethers-provider)
 2. Define the `addressFrom` and `addressTo` variables
 3. Create the asynchronous `balances` function which wraps the `provider.getBalance` method
-4. Use the `provider.getBalance` function to fetch the balances for the `addressFrom` and `addressTo` addresses. You can also leverage the `eths.utils.formatEther` function to transform the balance into a more readable number in ETH
+4. Use the `provider.getBalance` function to fetch the balances for the `addressFrom` and `addressTo` addresses. You can also leverage the `ethers.formatEther` function to transform the balance into a more readable number in ETH
 5. Lastly, run the `balances` function
 
 ```js
@@ -180,8 +180,8 @@ const addressTo = 'ADDRESS-TO-HERE';
 // 3. Create balances function
 const balances = async () => {
   // 4. Fetch balances
-  const balanceFrom = ethers.utils.formatEther(await provider.getBalance(addressFrom));
-  const balanceTo = ethers.utils.formatEther(await provider.getBalance(addressTo));
+  const balanceFrom = ethers.formatEther(await provider.getBalance(addressFrom));
+  const balanceTo = ethers.formatEther(await provider.getBalance(addressTo));
 
   console.log(`The balance of ${addressFrom} is: ${balanceFrom} ETH`);
   console.log(`The balance of ${addressTo} is: ${balanceTo} ETH`);
@@ -215,7 +215,7 @@ Next, you will create the script for this file and complete the following steps:
 2. Define the `privateKey` and the `addressTo` variables. The private key is required to create a wallet instance. **Note: This is for example purposes only. Never store your private keys in a JavaScript file**
 3. Create a wallet using the `privateKey` and `provider` from the previous steps. The wallet instance is used to sign transactions
 4. Create the asynchronous `send` function which wraps the transaction object and the `wallet.sendTransaction` method
-5. Create the transaction object which only requires the recipient's address and the amount to send. Note that `ethers.utils.parseEther` can be used, which handles the necessary unit conversions from Ether to Wei - similar to using `ethers.utils.parseUnits(value, 'ether')`
+5. Create the transaction object which only requires the recipient's address and the amount to send. Note that `ethers.parseEther` can be used, which handles the necessary unit conversions from Ether to Wei - similar to using `ethers.parseUnits(value, 'ether')`
 6. Send the transaction using the `wallet.sendTransaction` method and then use `await` to wait until the transaction is processed and the transaction receipt is returned
 7. Lastly, run the `send` function
 
@@ -239,7 +239,7 @@ const send = async () => {
   // 5. Create tx object
   const tx = {
     to: addressTo,
-    value: ethers.utils.parseEther('1'),
+    value: ethers.parseEther('1'),
   };
 
   // 6. Sign and send tx - wait for receipt
@@ -322,7 +322,7 @@ const deploy = async () => {
 
   // 8. Send tx (initial value set to 5) and wait for receipt
   const contract = await incrementer.deploy([5]);
-  await contract.deployed();
+  await contract.waitForDeployment();
 
   console.log(`Contract deployed at address: ${contract.address}`);
 };

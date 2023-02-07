@@ -12,10 +12,10 @@ const providerRPC = {
     chainId: 1287,
   },
 };
-const provider = new ethers.providers.StaticJsonRpcProvider(providerRPC.development.rpc, {
+const provider = new ethers.JsonRpcProvider(providerRPC.development.rpc, {
   chainId: providerRPC.development.chainId,
   name: providerRPC.development.name,
-}); //Change to correct network
+}); // Change to correct network
 
 const account_from = {
   privateKey: 'YOUR-PRIVATE-KEY-HERE',
@@ -29,7 +29,7 @@ const send = async () => {
 
   const tx = {
     to: addressTo,
-    value: ethers.utils.parseEther('1'),
+    value: ethers.parseEther('1'),
   };
 
   const createReceipt = await wallet.sendTransaction(tx);
