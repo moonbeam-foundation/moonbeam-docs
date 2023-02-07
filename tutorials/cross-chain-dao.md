@@ -32,23 +32,26 @@ The example project for this Tutorial will use Hardhat, prerequisite knowledge o
 
 DAO stands for "Decentralized Autonomous Organization". In order for a smart contract to be a DAO, it must be:  
 
-1. **Decentralized**: control is separated and distributed among many actors
-2. **Autonomous**: much of the execution must occur without the reliance on a single person or team
-3. **Organized**: there must be a way for actions to be taken
+- **Decentralized** — control is separated and distributed among many actors
+- **Autonomous** — much of the execution must occur without the reliance on a single person or team
+- **Organized** — there must be a way for actions to be taken
 
 One of the best single-chain DAOs is [Compound Finance's DAO](https://compound.finance/governance){target=_blank}. This DAO is a smart contract that allows proposals for on-chain transactions to be sent by the DAO, hence it is an organization that can take actions. It is decentralized because proposals are voted on by holders of the Compound Finance token. It is autonomous, because execution of the proposals are permissionless, and thus do not rely any specific person or team.  
 
-Let's take a look at the phases that a DAO takes:  
+Let's take a look at the phases that a proposal in a DAO takes:  
 
-**INSERT IMAGE HERE**
+![Typical DAO](/images/tutorials/cross-chain-dao/cross-chain-dao-1.png)
+
+1. **Proposal** — a user proposes that the DAO should execute one or more transactions
+2. **Voting** — after a voting delay time period, a voting period opens, which allows users to vote with their voting weight. The voting weight is determined by a token balances snapshot typically taken sometime between the proposal start and the end of the voting delay period  
+3. **Timelock** — an optional period that allows users to exit the ecosystem (sell their tokens) before the proposal can be executed
+4. **Execution** — if the vote is successful, any user can execute it trustlessly
 
 But what about a cross-chain DAO? In a cross chain DAO, the actions that you would typically should also be available cross-chain: proposals, votes, executions, cancellations, etc. This requires a more complex architecture, since a lot of information has to be replicated across-chains.  
 
-**INSERT IMAGE HERE**
+![Cross Chain DAO](/images/tutorials/cross-chain-dao/cross-chain-dao-2.png)
 
 *insert explanation of image and the architecture we're going with*
-
-There are of course, many other designs. For example, every single action could cause 
 
 ## Writing the Cross-Chain DAO {: #writing-the-cross-chain-dao }
 
@@ -56,11 +59,13 @@ A logical starting point for thinking about writing a cross-chain DAO is its pre
 
 A good way to play with the configurations of the Governance smart contract is to use the OpenZeppelin smart contract wizard. By going to the [OpenZeppelin website's contract page](https://www.openzeppelin.com/contracts){target=_blank}, scrolling down, and clicking on the Governance tab, you can view the different ways that you can configure the Governance smart contract. Open it up and play around with it to figure out a simple base for our cross-chain DAO.  
 
-![Compile contracts](/images/tutorials/cross-chain-dao/cross-chain-dao-1.png)
+![OpenZeppelin Contract Wizard](/images/tutorials/cross-chain-dao/cross-chain-dao-3.png)
 
 We're going to try to keep this base smart contract as simple as possible for demonstration purposes. Be sure to disable Timelock, 
 
 
 ## Deploying and Testing {: #deploying-and-testing }
+
+## Caveats and Other Designs {: #caveats-and-other-designs }
 
 --8<-- 'text/disclaimers/general.md'
