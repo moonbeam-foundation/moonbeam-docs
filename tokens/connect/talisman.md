@@ -45,7 +45,7 @@ Talisman works with all Moonbeam networks [after you enable Ethereum accounts](#
 3. Select **Ethereum Networks**
 4. Click **Enable Testnets**
 
-![See your Moonbase Alpha testnet account balances in Talisman.](/images/tokens/connect/talisman/talisman-4.png)
+![See your Moonbase Alpha testnet account balances in Talisman.](/images/tokens/connect/talisman/talisman-3.png)
 
 ## Connecting Talisman to Moonbase Alpha Polkadot.js Apps {: #connecting-talisman-to-moonbase-alpha-polkadot.js-apps }
 
@@ -55,7 +55,7 @@ Next, head to [Moonbase Alpha Polkadot.js Apps](https://polkadot.js.org/apps/?rp
 2. Select **My Ethereum Account**. This is the default name assigned by Talisman which you can rename if you'd like
 3. Press **Connect 1**
 
-![Enable Ethereum/Moonbeam accounts in Talisman.](/images/tokens/connect/talisman/talisman-3.png)
+![Enable Ethereum/Moonbeam accounts in Talisman.](/images/tokens/connect/talisman/talisman-4.png)
 
 Your Talisman wallet is now connected to Polkadot.js Apps. After refreshing Polkadot.js Apps, you should see your Talisman account in the [Accounts page of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/accounts){target=_blank}. When launching [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/accounts){target=_blank} for the first time, you may or may not be connected to the desired network. You can change your selected network to the Moonbase Alpha TestNet by clicking the logo in the top left corner, then scroll down to the **Test Networks** section, select Moonbase Alpha, and scroll back to the top and click **Switch**. 
 
