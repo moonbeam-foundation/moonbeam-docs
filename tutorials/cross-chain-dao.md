@@ -73,8 +73,66 @@ A good way to play with the configurations of the Governance smart contract is t
 
 ![OpenZeppelin Contract Wizard](/images/tutorials/cross-chain-dao/cross-chain-dao-3.png)
 
-We're going to try to keep this base smart contract as simple as possible for demonstration purposes. So be sure to disable Timelock, since this period is optional anyways. 
+We're going to try to keep this base smart contract as simple as possible for demonstration purposes. First, let's name the governor contract to be "CrossChainDAO", since that is what we'll turn it into. Be sure to set the voting delay as a single block or less to make it both easier for demonstrations and more difficult for certain attacks (more on that later). Additionally, be sure to set the voting period to something short, like 6 minutes. For calculating quorum (the minimum amount of vote weight required for a vote to pass), set it to the number (#) 1. Percentage increases complexity that won't add to this tutorial. Also disable Timelock, since the timelock period is optional anyways.  
 
+Something similar to this is what you should be seeing now:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.9;
+
+import "@openzeppelin/contracts/governance/Governor.sol";
+import "@openzeppelin/contracts/governance/extensions/GovernorSettings.sol";
+import "@openzeppelin/contracts/governance/extensions/GovernorCountingSimple.sol";
+import "@openzeppelin/contracts/governance/extensions/GovernorVotes.sol";
+
+contract CrossChainDAO is Governor, GovernorSettings, GovernorCountingSimple, GovernorVotes {
+    constructor(IVotes _token)
+        Governor("CrossChainDAO")
+        GovernorSettings(1 /* 1 block */, 30 /* 6 minutes */, 0)
+        GovernorVotes(_token)
+    {}
+
+    function quorum(uint256 blockNumber) public pure override returns (uint256) {
+        return 1e18;
+    }
+
+    // The following functions are overrides required by Solidity.
+
+    function votingDelay()
+        public
+        view
+        override(IGovernor, GovernorSettings)
+        returns (uint256)
+    {
+        return super.votingDelay();
+    }
+
+    function votingPeriod()
+        public
+        view
+        override(IGovernor, GovernorSettings)
+        returns (uint256)
+    {
+        return super.votingPeriod();
+    }
+
+    function proposalThreshold()
+        public
+        view
+        override(Governor, GovernorSettings)
+        returns (uint256)
+    {
+        return super.proposalThreshold();
+    }
+}
+```
+
+This is the base that we will work off of to create our DAO. Let's start at the basics and sort out how users will have their voting power calculated.
+
+### Cross-Chain DAO Token {: #cross-chain-dao-token }
+
+In the Compo
 
 ## Deploying and Testing {: #deploying-and-testing }
 
