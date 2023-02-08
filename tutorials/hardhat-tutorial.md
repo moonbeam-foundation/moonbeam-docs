@@ -23,7 +23,7 @@ To get started, you will need the following:
  - A Moonbase Alpha account funded with DEV. 
   --8<-- 'text/faucet/faucet-list-item.md'
  - A [Moonscan API Key](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank}
- - For the [Testing section](#running-your-tests) you'll need to have [a local Moonbeam node running](/builders/get-started/networks/moonbeam-dev/){target=_blank}
+ - For the [Testing section](#running-your-tests) you'll need to have [a local Moonbeam node up and running](/builders/get-started/networks/moonbeam-dev/){target=_blank}
   - 
 --8<-- 'text/common/endpoint-examples.md'
 
@@ -95,7 +95,7 @@ You can create a `secrets.json` file to store your private keys by running:
 touch secrets.json
 ```
 
-Then add your private keys and Moonscan API key to it. Here, we're adding two private keys because we'll need at least 2 separate accounts to properly test the staking DAO. 
+Then add your private keys and Moonscan API key to it. Here, we're adding two private keys because we'll need at least two separate accounts to properly test the staking DAO. 
 
 ```json
 {
