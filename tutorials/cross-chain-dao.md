@@ -51,7 +51,18 @@ But what about a cross-chain DAO? In a cross chain DAO, the actions that you wou
 
 ![Cross Chain DAO](/images/tutorials/cross-chain-dao/cross-chain-dao-2.png)
 
-*insert explanation of image and the architecture we're going with*
+Before we look through this, let's first talk a little about cross-chain models. There are many ways to architecture a cross-chain DApp. You could make a more distributed system, where data and logic are distributed to multiple chains to maximize their use. On the other hand, you could use a hub-and-spoke model, where the main logic and data are stored on a single chain, and cross-chain messages will interact with it.  
+
+The process shown above makes it so that anyone can vote from across chains, so long as they hold the DAO token. We are using a hybrid between a hub-and-spoke and a distributed graph. For holding information that is read-only, we will be storing it on a single chain. Rare one-off actions such as proposals, cancellations, and so on are best done as a hub-and-spoke model. For information regarding voting logic, since users will be voting on multiple chains, voting weight and vote sums will be stored on each spoke chain and only sent to the hub chain after voting is over.  
+
+Let's break down some of the steps in more detail:  
+1. **Proposal** — a user proposes that the DAO should execute one or more transactions on the **hub** chain. A cross-chain message is sent to the satellite smart contracts on the **spoke** chains to let them know the parameters of the vote to take place  
+2. **Voting** — after a voting delay time period, a voting period opens, which allows users to vote with their voting weight on every chain. The voting weight is determined by a cross-chain token's balance on each chain at a certain timestamp between the proposal start and end  
+3. **Collection** — after the voting period, the cross-chain DAO on the **hub** chain sends a request to the **spoke** chains to send the voting results of each chain to the **hub** chain  
+4. **Timelock** — an optional period that allows users to exit the ecosystem (sell their tokens) before the proposal can be executed  
+5. **Execution** — if the vote is successful, any user can execute it trustlessly on the **hub** chain   
+
+This is, of course, only one way to implement a cross-chain DAO, and you are encouraged to think of alternative and better ways. In the next section, we will look at an implementation.
 
 ## Writing the Cross-Chain DAO {: #writing-the-cross-chain-dao }
 
