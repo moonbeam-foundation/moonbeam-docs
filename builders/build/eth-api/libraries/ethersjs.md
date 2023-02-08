@@ -49,7 +49,7 @@ To create a provider, you can take the following steps:
 
 1. Import the `ethers` library
 2. Define the `providerRPC` object, which can include the network configurations for any of the networks you want to send a transaction on. You'll include the `name`, `rpc`, and `chainId` for each network
-3. Create the `provider` using the `ethers.JsonRpcProvider` method. An alternative is to use the `ethers.providers.JsonRpcProvide(providerRPC)` method, which only requires the provider RPC endpoint address. This might create compatibility issues with individual project specifications
+3. Create the `provider` using the `ethers.JsonRpcProvider` method
 
 === "Moonbeam"
 
