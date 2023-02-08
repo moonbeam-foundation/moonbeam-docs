@@ -23,6 +23,7 @@ To get started, you will need the following:
  - A Moonbase Alpha account funded with DEV. 
   --8<-- 'text/faucet/faucet-list-item.md'
  - A [Moonscan API Key](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank}
+ - For the [Testing section](#running-your-tests) you'll need to have [a local Moonbeam node running](/builders/get-started/networks/moonbeam-dev/){target=_blank}
   - 
 --8<-- 'text/common/endpoint-examples.md'
 
@@ -86,19 +87,20 @@ To get started, take the following steps:
 
 ## Hardhat Configuration File {: #hardhat-configuration-file } 
 
-Before you can deploy the contract to Moonbase Alpha, you'll need to modify the Hardhat configuration file and create a secure file to store your private key and your [Moonscan API key](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank} in.
+Before you can deploy the contract to Moonbase Alpha, you'll need to modify the Hardhat configuration file and create a secure file to store your private keys and your [Moonscan API key](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank} in.
 
-You can create a `secrets.json` file to store your private key by running:
+You can create a `secrets.json` file to store your private keys by running:
 
 ```
 touch secrets.json
 ```
 
-Then add your private key and Moonscan API key to it:
+Then add your private keys and Moonscan API key to it. Here, we're adding two private keys because we'll need at least 2 separate accounts to properly test the staking DAO. 
 
 ```json
 {
     "privateKey": "YOUR-PRIVATE-KEY-HERE",
+    "privateKey2": "YOUR-SECOND-PRIVATE-KEY-HERE",
     "moonbeamMoonscanAPIKey": "YOUR-MOONSCAN-API-KEY-HERE"
 }
 ```
@@ -132,7 +134,7 @@ require('@nomiclabs/hardhat-ethers');
 
 // 2. Import your private key from your pre-funded Moonbase Alpha testing 
 // account and your Moonscan API key
-const { privateKey, moonbeamMoonscanAPIKey } = require('./secrets.json');
+const { privateKey, privateKey2, moonbeamMoonscanAPIKey } = require('./secrets.json');
 
 module.exports = {
   // 3. Specify the Solidity version
@@ -143,8 +145,13 @@ module.exports = {
     moonbase: {
       url: '{{ networks.moonbase.rpc_url }}',
       chainId: {{ networks.moonbase.chain_id }}, // {{ networks.moonbase.hex_chain_id }} in hex
-      accounts: [privateKey]
-    }
+      accounts: [privateKey, privateKey2]
+    },
+    dev: {
+      url: 'http://127.0.0.1:9933',
+      chainId: 1281, // (hex: 0x501)
+      accounts: [privateKey, privateKey2]
+    },
   },
   // 5. Set up your Moonscan API key for contract verification
   etherscan: {
@@ -360,10 +367,17 @@ And that's it! You're now ready to run your tests!
 
 If you've followed all of the prior sections, your [`Dao.js`](https://raw.githubusercontent.com/PureStake/moonbeam-intro-course-resources/main/delegation-dao-lesson-one/Dao.js){target=_blank} test file should be all set to go. Otherwise, you can copy the [complete snippet from GitHub](https://github.com/PureStake/moonbeam-docs/blob/master/.snippets/code/hardhat/dao-js-test-file.js) into your `Dao.js` test file.
 
+Since our test cases encompass mostly configuration and setup of the staking DAO and don't involve actual delegation actions, we'll be running our tests on a Moonbeam dev node (local node). If you wrote different test cases that involved delegation to collators (e.g. when the DAO is funded sufficiently) you'll want to utilize Moonbase Alpha instead. You can use the flag `--network moonbase` to run the tests using Moonbase Alpha. In that case, be sure that your deployer address is sufficiently funded with DEV tokens. You can also omit the `--network` flag in which case the tests will run against a local hardhat network. 
+
+!!! challenge
+    Try to create an additional test case that verifies the stakingDAO successfully delegates to a collator once `minDelegationStk` is met. You'll need to test this on Moonbase Alpha rather than a local dev node.
+
+First, make sure that your local Moonbeam node is running by following the [instructions for launching a local dev node](/builders/get-started/networks/moonbeam-dev/){target=_blank}. Then, you'll need to send yourself some Moonbase DEV tokens from some of the pre-funded development accounts to fund the accounts stored in your `secrets.json` file. It is inadvisable to import the pre-funded development account private keys into your `secrets.json` file because you could inadvertently send real funds to those accounts, which would result in a loss of those funds.  
+
 You can run your tests with the following command: 
 
 ```
-npx hardhat test tests/Dao.js
+npx hardhat test --network dev tests/Dao.js
 ```
 
 If everything was set up correctly, you should see output like the following: 
