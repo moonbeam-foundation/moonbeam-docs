@@ -56,6 +56,7 @@ Before we look through this, let's first talk a little about cross-chain models.
 The process shown above makes it so that anyone can vote from across chains, so long as they hold the DAO token. We are using a hybrid between a hub-and-spoke and a distributed graph. For holding information that is read-only, we will be storing it on a single chain. Rare one-off actions such as proposals, cancellations, and so on are best done as a hub-and-spoke model. For information regarding voting logic, since users will be voting on multiple chains, voting weight and vote sums will be stored on each spoke chain and only sent to the hub chain after voting is over.  
 
 Let's break down some of the steps in more detail:  
+
 1. **Proposal** — a user proposes that the DAO should execute one or more transactions on the **hub** chain. A cross-chain message is sent to the satellite smart contracts on the **spoke** chains to let them know the parameters of the vote to take place  
 2. **Voting** — after a voting delay time period, a voting period opens, which allows users to vote with their voting weight on every chain. The voting weight is determined by a cross-chain token's balance on each chain at a certain timestamp between the proposal start and end  
 3. **Collection** — after the voting period, the cross-chain DAO on the **hub** chain sends a request to the **spoke** chains to send the voting results of each chain to the **hub** chain  
@@ -72,7 +73,7 @@ A good way to play with the configurations of the Governance smart contract is t
 
 ![OpenZeppelin Contract Wizard](/images/tutorials/cross-chain-dao/cross-chain-dao-3.png)
 
-We're going to try to keep this base smart contract as simple as possible for demonstration purposes. Be sure to disable Timelock, 
+We're going to try to keep this base smart contract as simple as possible for demonstration purposes. So be sure to disable Timelock, since this period is optional anyways. 
 
 
 ## Deploying and Testing {: #deploying-and-testing }
