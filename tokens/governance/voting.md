@@ -18,7 +18,7 @@ In Moonbeam, users will be able to create, second, and vote on proposals using t
 More information related to [Governance](https://wiki.polkadot.network/docs/learn-governance){target=_blank} and [Participate in Democracy](https://wiki.polkadot.network/docs/maintain-guides-democracy){target=_blank} can be found in Polkadot's Wiki pages.
 
 !!! note
-    This page goes through the mechanics on how to vote at a more techincal level. Token holders can leverage platoforms such as [Polkassembly](https://moonbeam.network/tutorial/participate-in-moonbeam-governance-with-polkassembly/){target=_blank} to vote using a more friendly user interface. 
+    This page goes through the mechanics on how to vote at a more techincal level. Token holders can leverage platforms such as [Polkassembly](https://moonbeam.network/tutorial/participate-in-moonbeam-governance-with-polkassembly/){target=_blank} to vote using a more friendly user interface. 
 
 ## Definitions {: #definitions } 
 
@@ -56,6 +56,12 @@ Some of the key parameters for this guide are the following:
 
 This guide will show you how to vote on a referendum on Moonbase Alpha. It can be adapted for Moonbeam or Moonriver.
 
+## An Important Prerequisite {: #an-important-prerequisite } 
+
+A vote on a democracy referenda is a binary outcome. However, a tokenholder's opinion is often more nuanced than yes/no, which is why it's strongly recommend that you preface any proposal with a post on [Moonbeam's Community Forum](https://forum.moonbeam.foundation/){target=_blank}. The forum serves the critical role of providing a platform for discussion and allowing proposers to receive feedback from the community prior to an on-chain action. Creating a post on the forum is quick and easy as shown in the [Using the Moonbeam Community Forum](https://moonbeam.network/blog/using-moonbeam-community-forum/){target=_blank} guide. There are categories corresponding to each type of proposal, including democracy, treasury, and grant proposals. While this step is optional, explaining the details of the proposal and following up with any questions raised may increase the chances of the initiative being accepted and subsequently passed by the community. 
+
+![Moonbeam's Community Forum home](/images/tokens/governance/voting/vote-15.png)
+
 ## Roadmap of a Proposal {: #roadmap-of-a-proposal } 
 
 --8<-- 'text/governance/roadmap.md'
@@ -70,7 +76,7 @@ This section goes over the process of voting on a referendum. The guide assumes 
 
 To vote on a proposal in the network, you need to use the Polkadot.js Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do by following the [Creating or Importing an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=_blank} guide. For this example, three accounts were imported and named with super original names: Alice, Bob, and Charley.
 
-![Accounts in Polkadot.js](/images/tokens/governance/proposals/proposals-1.png)
+![Accounts in Polkadot.js](/images/tokens/governance/voting/vote-1.png)
 
 The proposal being voted will embed the remark "This is a unique string." on chain permanently.
 
@@ -84,45 +90,8 @@ Here, you need to provide the following information:
 
  1. Select the account with which you want to vote
  2. Enter the number of tokens that you want to vote with. These will be locked for the amount of time specified in the next step. Remember, you need to save a small amount of tokens for gas. If you try to vote with your entire balance the transaction will fail.
- 3. Set the vote conviction, which determines its weight (`vote_weight = tokens * conviction_multiplier`). The conviction multiplier is related to the number of enactment periods the tokens will be locked for after the referenda is enacted (if approved). Consequently, the longer you are willing to lock your tokens, the stronger your vote will be weighted. You also have the option of not locking tokens at all, but vote weight is drastically reduced (tokens are still locked during the duration of the referendum)
+ 3. Set the vote conviction, which determines its weight (`vote_weight = tokens * conviction_multiplier`). Please refer to the [Conviction Multiplier](/learn/features/governance/#conviction-multiplier){target=_blank} docs for more information
  4. Click on **Vote Aye** to approve the proposal or **Vote Nay** to disapprove the proposal, and then sign the transaction
-
-=== "Moonbeam"
-    | Lock Periods After Enactment | Conviction Multiplier |                       Approx. Lock Time                       |
-    |:----------------------------:|:---------------------:|:-------------------------------------------------------------:|
-    |              0               |          0.1          |                             None                              |
-    |              1               |           1           | {{networks.moonbeam.democracy.lock_period.conviction_1}} days |
-    |              2               |           2           | {{networks.moonbeam.democracy.lock_period.conviction_2}} days |
-    |              4               |           3           | {{networks.moonbeam.democracy.lock_period.conviction_3}} days |
-    |              8               |           4           | {{networks.moonbeam.democracy.lock_period.conviction_4}} days |
-    |              16              |           5           | {{networks.moonbeam.democracy.lock_period.conviction_5}} days |
-    |              32              |           6           | {{networks.moonbeam.democracy.lock_period.conviction_6}} days |
-
-=== "Moonriver"
-    | Lock Periods After Enactment | Conviction Multiplier |                       Approx. Lock Time                        |
-    |:----------------------------:|:---------------------:|:--------------------------------------------------------------:|
-    |              0               |          0.1          |                              None                              |
-    |              1               |           1           | {{networks.moonriver.democracy.lock_period.conviction_1}} day  |
-    |              2               |           2           | {{networks.moonriver.democracy.lock_period.conviction_2}} days |
-    |              4               |           3           | {{networks.moonriver.democracy.lock_period.conviction_3}} days |
-    |              8               |           4           | {{networks.moonriver.democracy.lock_period.conviction_4}} days |
-    |              16              |           5           | {{networks.moonriver.democracy.lock_period.conviction_5}} days |
-    |              32              |           6           | {{networks.moonriver.democracy.lock_period.conviction_6}} days |
-
-=== "Moonbase Alpha"
-    | Lock Periods After Enactment | Conviction Multiplier |                       Approx. Lock Time                       |
-    |:----------------------------:|:---------------------:|:-------------------------------------------------------------:|
-    |              0               |          0.1          |                             None                              |
-    |              1               |           1           | {{networks.moonbase.democracy.lock_period.conviction_1}} day  |
-    |              2               |           2           | {{networks.moonbase.democracy.lock_period.conviction_2}} days |
-    |              4               |           3           | {{networks.moonbase.democracy.lock_period.conviction_3}} days |
-    |              8               |           4           | {{networks.moonbase.democracy.lock_period.conviction_4}} days |
-    |              16              |           5           | {{networks.moonbase.democracy.lock_period.conviction_5}} days |
-    |              32              |           6           | {{networks.moonbase.democracy.lock_period.conviction_6}} days |
-
-!!! note
-    The lock time approximations are based upon regular {{networks.moonbeam.block_time}}-second block times. Block production may vary and thus the displayed lock times should not be deemed exact.
-
 
 ![Vote Submission](/images/tokens/governance/voting/vote-3.png)
 

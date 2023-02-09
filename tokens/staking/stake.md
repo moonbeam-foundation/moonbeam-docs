@@ -38,7 +38,7 @@ The following list covers the extrinsics that you'll use in this guide and are a
  - **delegatorBondMore**(*address* candidate, *uint256* more) - extrinsic to request to increase the amount of staked tokens for an already delegated collator
  - **scheduleDelegatorBondLess**(*address* candidate, *uint256* less) - extrinsic to request to reduce the amount of staked tokens for an already delegated collator. The amount must not decrease your overall total staked below the minimum delegation stake. There will be a [bond less delay](/learn/features/staking/#quick-reference/#:~:text=Decrease delegation delay){target=_blank} before you can execute the request via the `executeDelegationRequest` extrinsic
  - **executeDelegationRequest**(*address* delegator, *address* candidate) - extrinsic to execute and pending delegation requests. This extrinsic should only be used after a request has been scheduled and the exit delay has passed 
- - **scheduleCandidateBondLess**(*uint256* less) - extrinsic that allows a collator candidate to request to decrease their self bond by a given amount. There will be a [bond less delay](/node-operators/networks/collators/activities/#collator-timings/#:~:text=Reduce self-delegation){target=_blank} before you can execute the request via the `executeCandidateBondLess` extrinsic
+ - **scheduleCandidateBondLess**(*uint256* less) - extrinsic that allows a collator candidate to request to decrease their self bond by a given amount. There will be a [bond less delay](/node-operators/networks/collators/activities/#collator-timings/#:~:text=Reduce self){target=_blank} before you can execute the request via the `executeCandidateBondLess` extrinsic
  - **executeCandidateBondLess**(*address* candidate) - extrinsic to execute a decrease a candidate's self bond amount. This extrinsic should only be used after a bond request has been scheduled and the exit delay has passed
  - **cancelCandidateBondLess**() - extrinsic to cancel a scheduled request to increase or decrease the bond for a specific candidate
 
@@ -164,7 +164,7 @@ To delegate a candidate and set up auto-compounding for your staking rewards, ta
  5. Set the number of tokens you want to stake
  6. Set the percentage of rewards to auto-compound by entering a number 0-100
  7. Input the `candidateDelegationCount` you [retrieved previously from querying `candidateInfo`](#get-the-candidate-delegation-count)
- 8. Input the `candidateAutoCompoundingDelegationCount` you [retrieved previously from querying `autoCompoundingDelegations`](#gget-candidate-auto-compounding-count)
+ 8. Input the `candidateAutoCompoundingDelegationCount` you [retrieved previously from querying `autoCompoundingDelegations`](#get-candidate-auto-compounding-count)
  9. Input the `delegationCount` [you retrieved from the JavaScript console](#get-your-number-of-existing-delegations). This is `0` if you haven't yet delegated a candidate
  10. Click the **Submit Transaction** button and sign the transaction
 
@@ -227,9 +227,9 @@ You'll need to [get the number of delegations with auto-compounding set up](#get
  3. Choose the **setAutoCompound** extrinsic
  4. Set the candidate's address that you delegated. For this example, it is set to `{{ networks.moonbase.staking.candidates.address1 }}`
  5. Set the percentage of rewards to auto-compound by entering a number 0-100
- 7. For the **candidateAutoCompoundingDelegationHint** field, enter the candidate's number of delegations with auto-compounding configured
- 8. For the **delegationCountHint** field, enter your number of delegations
- 9. Click the **Submit Transaction** button and sign the transaction
+ 6. For the **candidateAutoCompoundingDelegationHint** field, enter the candidate's number of delegations with auto-compounding configured
+ 7. For the **delegationCountHint** field, enter your number of delegations
+ 8. Click the **Submit Transaction** button and sign the transaction
 
 ![Staking Chain State Query](/images/tokens/staking/stake/new/stake-9.png)
 
