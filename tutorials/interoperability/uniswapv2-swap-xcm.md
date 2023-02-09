@@ -112,7 +112,7 @@ Once you have the encoded calldata, feel free to reject the transaction in your 
  
 ```
 1. 0x7ff36ab5
-2. 000000000000000000000000000000000000000000000006ac25438ffcc14f0e
+2. 00000000000000000000000000000000000000000000000010b3e6f66568aaee -> Min Amount Out
 3. 0000000000000000000000000000000000000000000000000000000000000080
 4. 000000000000000000000000d720165d294224a7d16f22ffc6320eb31f3006e1 -> Receiving Address
 5. 0000000000000000000000000000000000000000000000000000000063dbcda5 -> Deadline
@@ -121,11 +121,11 @@ Once you have the encoded calldata, feel free to reject the transaction in your 
 8. 0000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f
 ```
 
-In the calldata, we need to change two fields to ensure our swap will go through. First, we will switch the receiving address to our multilocation-derivative account. Next, we will change the deadline to provide a bit more flexibility for our swap, so you don't have to submit this immediatly. **This is OK because we are just testing things :), do not use this code in production!** Our encoded calldata should look like this (the line breaks were left for visibility):
+In the calldata, we need to change three fields to ensure our swap will go through. First, switch the minimum amount out, to account for slippage as the pool my have a difference `DEV/MARS` balance when you try this out. Next, switch the receiving address to our multilocation-derivative account. Finally, change the deadline to provide a bit more flexibility for our swap, so you don't have to submit this immediatly. **This is OK because we are just testing things :), do not use this code in production!** Our encoded calldata should look like this (the line breaks were left for visibility):
 
 ```
 0x7ff36ab5
-000000000000000000000000000000000000000000000006ac25438ffcc14f0e
+0000000000000000000000000000000000000000000000000de0b6b3a7640000 -> New Min Amount
 0000000000000000000000000000000000000000000000000000000000000080
 0000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def526 -> New Address
 0000000000000000000000000000000000000000000000000000000064746425 -> New Deadline
@@ -137,14 +137,17 @@ In the calldata, we need to change two fields to ensure our swap will go through
 Which as a one liner is:
 
 ```
-0x7ff36ab5000000000000000000000000000000000000000000000006ac25438ffcc14f0e00000000000000000000000000000000000000000000000000000000000000800000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def52600000000000000000000000000000000000000000000000000000000647464250000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f
+0x7ff36ab50000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def52600000000000000000000000000000000000000000000000000000000647464250000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f
 ```
 
-You can do something similar
+You can also get the calldata programatically using the [Uniswap V2 SDK](https://docs.uniswap.org/sdk/v2/overview){target=_blank}.
 
 ## Generating the Moonbeam Encoded Callcata {: #generating-the-moonbeam-encoded-call-data }
 
-Now that we have the UniswapV2 swap encoded calldata, we need to generate the bytes that the `transact` instruction from the XCM message will execute. To do so, we can leverage the following [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} script (note that it requires `@polkadot/api` and `ethers`).
+Now that we have the UniswapV2 swap encoded calldata, we need to generate the bytes that the `Transact` XCM instruction from the XCM message will execute. Note that this bytes represent the action that will be executed in the remote chain. In this example, we want the XCM message execution to enter the EVM and perform the swap, from which we got the encoded calldata before.
+
+ To get the SCALE (encoding type) encoded calldata for the transaction parameters, we can leverage the following [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} script (note that it requires `@polkadot/api` and `ethers`).
+
 
 ```js
 import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
@@ -154,7 +157,7 @@ import { ethers } from 'ethers'; // Version 6.0.2
 const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
 const uniswapV2Router = '0x8a1932D6E26433F3037bd6c3A40C816222a6Ccd4';
 const contractCall =
-  '0x7ff36ab5000000000000000000000000000000000000000000000006ac25438ffcc14f0e00000000000000000000000000000000000000000000000000000000000000800000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def52600000000000000000000000000000000000000000000000000000000647464250000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f';
+  '0x7ff36ab50000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def52600000000000000000000000000000000000000000000000000000000647464250000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f';
 
 const generateCallData = async () => {
   // 2. Create Substrate API Provider
@@ -166,7 +169,7 @@ const generateCallData = async () => {
   const gasLimit = await ethProvider.estimateGas({
     to: uniswapV2Router,
     data: contractCall,
-    value: ethers.parseEther('1'),
+    value: ethers.parseEther('0.01'),
   });
   console.log(`Gas required for call is ${gasLimit.toString()}`);
 
@@ -175,7 +178,7 @@ const generateCallData = async () => {
     V2: {
       gasLimit: gasLimit + 10000n, //Estimated plus some extra gas
       action: { Call: uniswapV2Router }, // Uniswap V2 router address
-      value: ethers.parseEther('1'), // 1 DEV
+      value: ethers.parseEther('0.01'), // 0.01 DEV
       input: contractCall, // Swap encoded calldata
     },
   };
@@ -204,7 +207,11 @@ Let's go through each of the main components of the snipped showed above:
  3. This step is mainly as a best practice. Here, we are estimating the gas of the EVM call that will be executed via XCM, as this is needed later on. You can also hardcode the gas limit value, but it is not recommended
  4. [Build the remote EVM call](/builders/interoperability/xcm/remote-evm-calls/#build-remove-evm-call-xcm){target=_blank}. We bumped the gas by `10000` units to provide a bit of room in case conditions change. The inputs are identical to those used for the gas estimation
  5. Create the Ethereum XCM pallet call to the `transact` method, providing the call parameters we previously built
- 6. Get the SCALE encoded calldata, this is what we need to provide to the `transact` XCM instruction later on
+ 6. Get the SCALE calldata of the specific transaction parameter, this is what we need to provide to the `Transact` XCM instruction later on. Note that in this particular scenario, because we need only the calldata of the transaction parameters, we have to use `tx.method.toHex()`
+
+Once you have the code set up, you can execute it with `node` and you'll get the Moonbase Alpha remote EVM calldata:
+
+![Getting the Moonbase Alpha remote EVM XCM calldata for Uniswap V2 swap](/images/tutorials/remote-uniswapv2-swap-xcm/remote-uniswapv2-swap-xcm-4.png)
 
 And that is it! You have everything you need to start crafting the XCM message itself! It has been a long journey but we are almost there.
 
@@ -219,7 +226,7 @@ The XCM message we are about to build is composed of the following instructions:
  - [`Transact`](https://github.com/paritytech/xcm-format#transact){target=_blank} — use part of the block execution time bought with the previous instruction to execute some arbitrary bytes
  - [`DepositAsset`](https://github.com/paritytech/xcm-format#depositasset){target=_blank} — takes assets from holding and deposits them to a given account
 
-To build the XCM message which will initiate the remote EVM call through XCM, you can use the following snippet:
+To build the XCM message which will initiate the remote EVM call through XCM, and get its SCALE encoded calldata, you can use the following snippet:
 
 ```js
 import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
@@ -231,7 +238,7 @@ const devMultiLocation = { parents: 0, interior: { X1: { PalletInstance: 3 } } }
 const weightTransact = BigInt(4350000000); // 25000 * Gas limit of EVM call
 const multiLocAccount = '0x4e21340c3465ec0aa91542de3d4c5f4fc1def526';
 const transactBytes =
-  '0x2600014963020000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd4000064a7b3b6e00d00000000000000000000000000000000000000000000000091037ff36ab5000000000000000000000000000000000000000000000006ac25438ffcc14f0e00000000000000000000000000000000000000000000000000000000000000800000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def52600000000000000000000000000000000000000000000000000000000647464250000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f00';
+  '0x260001f31a020000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd40000c16ff286230000000000000000000000000000000000000000000000000091037ff36ab50000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def52600000000000000000000000000000000000000000000000000000000647464250000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f00';
 
 // 2. XCM Destination (Moonbase Alpha Parachain ID 1000)
 const xcmDest = { V1: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
@@ -319,7 +326,14 @@ Let's go through each of the main components of the snipped showed above:
  7. Build the XCM message by concatenating the instructions inside a `V2` array
  8. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} provider
  9. Craft the `xcmPallet.send` extrinsic with the destination and XCM message. This method will append the [`DescendOrigin`](https://github.com/paritytech/xcm-format#descendorigin){target=_blank} XCM instruction to our XCM message, and it is the instruction that will provide the necessary information to calculate the multilocation-derivative account
- 10. Get the SCALE encoded calldata
+ 10. Get the SCALE encoded calldata. Note that in this particular scenario, because we need the entire SCALE encoded calldata, we have to use `tx.toHex()`. This is because we will submit this transaction using the calldata
+
+!!! challenge
+    Try a simpler example and perform a balance transfer from the multilocation-derivative account to any other account you like. You'll have to build the SCALE encoded calldata for a `balance.Transfer` extrinsic, or build the Ethereum call as a balance transfer transaction.
+
+Once you have the code set up, you can execute it with `node` and you'll get the relay chain XCM calldata:
+
+![Getting the Relay Chain XCM calldata for Uniswap V2 swap](/images/tutorials/remote-uniswapv2-swap-xcm/remote-uniswapv2-swap-xcm-5.png)
 
 Now that we have the SCALE encoded calldata, the last step is to submit the transaction which will send our XCM message to Moonbase Alpha, and do the remote EVM call!
 
@@ -329,7 +343,7 @@ In this section is where everything comes together, and where the magic happens!
 
  - We've a relay chain account that is funded with `UNIT` tokens (relay chain native token)
  - We determined its multilocation-derivative account on Moonbase Alpha, and funded this new address with `DEV` tokens (Moonbase Alpha native token)
- - We obtained the Uniswap V2 swap calldata, in which we'll be swapping `1 DEV` token for `MARS`, an ERC-20 that exists in Moonbase Alpha. We had to modified a couple of fields to adapt it to this particular example
+ - We obtained the Uniswap V2 swap calldata, in which we'll be swapping `0.01 DEV` token for `MARS`, an ERC-20 that exists in Moonbase Alpha. We had to modified a couple of fields to adapt it to this particular example
  - We built the SCALE encoded calldata in Moonbase Alpha to access its EVM via XCM
  - We crafted our transaction to send an XCM message to Moonbase Alpha, in which we will ask it to execute the SCALE encoded calldata that was previously built. This, in turn, will execute an EVM call which will perform the Uniswap V2 swap for the precious `MARS` tokens!
 
@@ -343,7 +357,7 @@ import Keyring from '@polkadot/keyring'; // Version 10.3.1
 const providerWsURL = 'wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network';
 const mnemonic = 'INSERT_MNEMONIC_HERE'; //Not safe, only for testing
 const txCall =
-  '0x410604630001000100a10f021000040000010403000f0080c6a47e8d03130000010403000f0080c6a47e8d030006010780bb470301fd042600014963020000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd4000064a7b3b6e00d00000000000000000000000000000000000000000000000091037ff36ab5000000000000000000000000000000000000000000000006ac25438ffcc14f0e00000000000000000000000000000000000000000000000000000000000000800000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def52600000000000000000000000000000000000000000000000000000000647464250000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f000d010004000103004e21340c3465ec0aa91542de3d4c5f4fc1def526';
+  '0x410604630001000100a10f021000040000010403000f0080c6a47e8d03130000010403000f0080c6a47e8d030006010780bb470301fd04260001f31a020000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd40000c16ff286230000000000000000000000000000000000000000000000000091037ff36ab50000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def52600000000000000000000000000000000000000000000000000000000647464250000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f000d010004000103004e21340c3465ec0aa91542de3d4c5f4fc1def526';
 
 // 2. Create Keyring Instance
 const keyring = new Keyring({ type: 'sr25519' });
@@ -360,12 +374,34 @@ const sendXCM = async () => {
   let tx = await api.tx(txCall).signAndSend(alice, (result) => {
     // 6. Check Transaction Status
     if (result.status.isInBlock) {
-      console.log(`Transaction included at blockHash ${result.status.asInBlock}`);
-    } else if (result.status.isFinalized) {
-      console.log(`Transaction finalized at blockHash ${result.status.asFinalized}`);
+      console.log(`Transaction included in blockHash ${result.status.asInBlock}`);
     }
   });
 };
 
 sendXCM();
 ```
+
+Once you have the code set up, you can execute it with `node` and the XCM message will be sent to initiate your Uniswap V2 swap in Moonbase Alpha:
+
+![Sending the XCM message from the Relay Chain to Moonbase Alpha for the Uniswap V2 swap](/images/tutorials/remote-uniswapv2-swap-xcm/remote-uniswapv2-swap-xcm-6.png)
+
+And that is it! You've sent an XCM message which performed a remote EVM call via  XCM, and resulted in an Uniswap V2 styled swap in Moonbase Alpha. But let's go into more detail about what happened.
+
+This action will emit different events. The first one is the only relevant [in the relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/explorer/query/0x85cad5f3cef5d578f6acc60c721ece14842be332fa333c9b9eafdfe078bc0290){target=_blank}, and it is named `xcmPallet.Sent`, which is from the `xcmPallet.send` extrinsic. In [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer/query/0x1f60aeb1f2acbc2cf6e19b7ad969661f21f4847f7b40457c459e7d39f6bc0779){target=_blank}, the following events emited by the `parachainSystem.setValidationData` extrinsic (where all inbout XCM messages are processed) are of interest:
+
+ - `parachainSystem.DownwardMessagesReceived` — states that there was an XCM message received
+ - `evm.Log` — internal events emitted by the different contract calls. The structure is the same: contract address, the topics, and relevant data
+ - `ethereum.Executed` — contains information of the `from` address, the `to` address, and the transaction hash of an EVM call done
+ - `polkadotXcm.AssetsTrapped` — flags that some assets where in holding and were not deposited to a given address. If the `Transact` XCM instruction does not exhaust the tokens allocated to it, it will execute a [`RefundSurplus`](https://github.com/paritytech/xcm-format#refundsurplus){target=_blank} after the XCM is processed. This instruction will take any leftover tokens from the execution bought and put them in registry. We could prevent this by adjusting the fee provided to the `Transact` instruction, or by adding the instruction right after the `Transact`
+ - `dmpQueue.ExecutedDownward`  — states that the result of executing a message received from the relay chain (a DMP message). In this case, the `outcome` is marked as `Complete`
+
+
+Our XCM was successfully executedf! If you visit [Moonbase Alpha Moonscan](https://moonbase.moonscan.io/){target=_blank} and search for [the transaction hash](https://moonbase.moonscan.io/tx/0xdb0705ae31aa046ba2797f0d85fab29c0f94299263ae4e184dce69a93d341d26){target=_blank}, you'll find the Uniswap V2 swap that was executed via the XCM message.
+
+!!! challenge
+    Do a Uniswap V2 swap of `MARS` for any other token you want. Note that in this case you'll have to remote execute an ERC-20 `approve` via XCM first to allow the Uniswap V2 Router to spend the tokens on your behalf. Once you remote execute the the approval, you can send the XCM message for the swap itself.
+
+--8<-- 'text/disclaimers/educational-tutorial.md'
+ 
+--8<-- 'text/disclaimers/third-party-content.md'

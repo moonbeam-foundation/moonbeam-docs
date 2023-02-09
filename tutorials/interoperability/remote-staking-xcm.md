@@ -340,5 +340,8 @@ console.log(`Submitted with hash ${txHash}`);
 
 In the above snippet, besides submitting the remote staking via XCM transaction, we also print out the encoded call data and the transaction hash to assist with any debugging. 
 
-And that’s it! To verify that your delegation was successful, you can visit [Subscan](https://moonbase.subscan.io/){target=_blank} to check your staking balance. Be advised that it may take a few minutes before your staking balance is visible on Subscan. Additionally, be aware that you will not be able to see this staking operation on Moonscan, because we initiated the delegation action directly via the parachain staking pallet (on the Substrate side) rather than through the staking precompile (on the EVM). 
+And that’s it! To verify that your delegation was successful, you can visit [Subscan](https://moonbase.subscan.io/){target=_blank} to check your staking balance. Be advised that it may take a few minutes before your staking balance is visible on Subscan. Additionally, be aware that you will not be able to see this staking operation on Moonscan, because we initiated the delegation action directly via the parachain staking pallet (on the Substrate side) rather than through the staking precompile (on the EVM).
+
+--8<-- 'text/disclaimers/educational-tutorial.md'
  
+--8<-- 'text/disclaimers/third-party-content.md'
