@@ -62,6 +62,31 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 ***
 
+#### New Account Event Bug {: #new-account-event }
+
+The `System.NewAccount` event is emitted when a new account is created. However, there was a bug where this event was not emitted at the time of creation for some accounts. A hotfix was applied that patched the impacted accounts and emitted the `System.NewAccount` at a later time.
+
+The hotfix was applied in the following block ranges:
+
+|    Network     |                                                             Block Range                                                              |
+|:--------------:|:------------------------------------------------------------------------------------------------------------------------------------:|
+|    Moonbeam    | [1041355 - 1041358 and 1100752](https://moonbeam.subscan.io/extrinsic?module=evm&call=hotfix_inc_account_sufficients){target=_blank} |
+|   Moonriver    |      [1835760 - 1835769](https://moonriver.subscan.io/extrinsic?module=evm&call=hotfix_inc_account_sufficients){target=_blank}       |
+| Moonbase Alpha |  [2097782 - 2097974](https://moonbase.subscan.io/extrinsic?address=&module=evm&call=hotfix_inc_account_sufficients){target=_blank}   |
+
+
+This bug existed during the following runtimes and block ranges:
+
+|    Network     | Introduced | Fixed  | Impacted Block Range |
+|:--------------:|:----------:|:------:|:--------------------:|
+|    Moonbeam    |   RT900    | RT1401 |      0 - 915320      |
+|   Moonriver    |    RT49    | RT1401 |     0 - 1705939      |
+| Moonbase Alpha |    RT40    | RT1400 |     0 - 1962557      |
+
+For more information, you can review the [relative Frontier PR on GitHub](https://github.com/PureStake/frontier/pull/46/files){target=_blank}.
+
+***
+
 #### Incorrect Timestamp Units {: #incorrect-timestamp-units }
 
 EIP-2612 and Ethereum blocks deal with timestamps in seconds, however the Substrate timestamp pallet that Moonbeam implements used milliseconds. This only affected the EIP-2612 implementation and not the `block.timestamp` value.
@@ -73,7 +98,6 @@ This bug existed during the following runtimes and block ranges:
 |    Moonbeam    |   RT900    | RT1606 |     0 - 1326697      |
 |   Moonriver    |    RT49    | RT1605 |     0 - 2077598      |
 | Moonbase Alpha |    RT40    | RT1603 |     0 - 2285346      |
-
 
 For more information, you can review the [relative PR on GitHub](https://github.com/PureStake/moonbeam/pull/1451){target=_blank}.
 
