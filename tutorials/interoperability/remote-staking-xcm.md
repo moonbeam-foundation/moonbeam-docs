@@ -6,7 +6,7 @@ template: main.html
 
 # Remote Staking via XCM
 
-![Banner Image](/images/tutorials/remote-staking-via-xcm/remote-staking-via-xcm-banner.png)
+![Banner Image](/images/tutorials/interoperability/remote-staking-via-xcm/remote-staking-via-xcm-banner.png)
 _December 14, 2022 | by Kevin Neilson_
 
 
@@ -50,7 +50,7 @@ The script will return 32-byte and 20-byte addresses. We’re interested in the 
 
 First and foremost, you’ll need the address of the collator you want to delegate to. To locate it, head to the [Moonbase Alpha Staking dApp](https://apps.moonbeam.network/moonbase-alpha/staking){target=_blank} in a second window. Ensure you’re on the correct network, then press **Select a Collator**. Next to your desired collator, press the **Copy** icon. You’ll also need to make a note of the number of delegations your collator has. The [PS-31 collator](https://moonbase.subscan.io/account/0x3A7D3048F3CB0391bb44B518e5729f07bCc7A45D){target=_blank} shown below has `60` delegations at the time of writing. 
 
-![Moonbeam Network Apps Dashboard](/images/tutorials/remote-staking-via-xcm/xcm-stake-1.png)
+![Moonbeam Network Apps Dashboard](/images/tutorials/interoperability/remote-staking-via-xcm/xcm-stake-1.png)
 
 ## Remote Staking via XCM with Polkadot.js Apps {: #remote-staking-via-xcm-with-polkadot-js-apps }
 
@@ -58,7 +58,7 @@ If you prefer to perform these steps programmatically via the Polkadot API, you 
 
 First, generate the encoded call data of the staking action by heading to [Moonbase Alpha Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.testnet.moonbeam.network#/accounts){target=_blank}. In order to see the **Extrinsics** menu here, you’ll need to have at least one account accessible in Polkadot.js Apps. If you don’t, create one now. Then, head to the **Developer** tab and press **Extrinsics**. 
 
-![Moonbase Alpha Polkadot JS Apps Home](/images/tutorials/remote-staking-via-xcm/xcm-stake-2.png)
+![Moonbase Alpha Polkadot JS Apps Home](/images/tutorials/interoperability/remote-staking-via-xcm/xcm-stake-2.png)
 
 In the following steps you will be preparing a transaction, but you’ll need to refrain from submitting the transaction here in order to complete this tutorial in its entirety. We’ll take the resulting encoded call data from preparing this staking operation, and send it via XCM from the relay chain in a later step. From the **Extrinsics** page, take the following steps:
 
@@ -73,14 +73,14 @@ In the following steps you will be preparing a transaction, but you’ll need to
 !!! note
     Astute readers may notice the selected account below is named “Academy.” It does not matter which account you have selected in Moonbase Alpha Polkadot.js Apps. This is because you're not submitting the prepared transaction, only copying the encoded call data, which does not contain a reference to the sending account. 
 
-![Moonbase Alpha Polkadot JS Apps Extrinsics Page](/images/tutorials/remote-staking-via-xcm/xcm-stake-3.png)
+![Moonbase Alpha Polkadot JS Apps Extrinsics Page](/images/tutorials/interoperability/remote-staking-via-xcm/xcm-stake-3.png)
 
 
 ### Sending the XCM Instructions from Polkadot.js Apps {: #sending-the-xcm-instructions-from-polkadot-js-apps }
 
 If you'd prefer to submit the XCM instructions programmatically via the Polkadot API, you can skip to the [following section](#sending-the-xcm-instructions-via-the-polkadot-api). Otherwise, in another tab, head to [Moonbase relay Polkadot.Js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/extrinsics){target=_blank}. Click on the **Developer** tab and press **Extrinsics**. 
 
-![Moonbase Relay Polkadot JS Apps Home](/images/tutorials/remote-staking-via-xcm/xcm-stake-4.png)
+![Moonbase Relay Polkadot JS Apps Home](/images/tutorials/interoperability/remote-staking-via-xcm/xcm-stake-4.png)
 
 ### Building the Destination Multilocation {: #building-the-destination-multilocation }
 
@@ -106,7 +106,7 @@ Let’s get started crafting our XCM message that will transport our remote exec
 ```
 6. Set the message version to **V2**
 
-![Moonbase Relay Polkadot JS Apps Extrinsics Page](/images/tutorials/remote-staking-via-xcm/xcm-stake-5.png)
+![Moonbase Relay Polkadot JS Apps Extrinsics Page](/images/tutorials/interoperability/remote-staking-via-xcm/xcm-stake-5.png)
 
 In the next section, we’ll start assembling the XCM instructions. 
 
@@ -116,7 +116,7 @@ In the next section, we’ll start assembling the XCM instructions.
 2. Our XCM Message is going to have 3 distinct XCM instructions, so press the first **Add Item** button 3 times 
 3. Below the first XCM Instruction of **WithdrawAsset**, we need to add the asset we’re going to withdraw here, so press the **Add Item** button below **WithdrawAsset** once 
 
-![Preparing the structure of the XCM message](/images/tutorials/remote-staking-via-xcm/xcm-stake-6.png)
+![Preparing the structure of the XCM message](/images/tutorials/interoperability/remote-staking-via-xcm/xcm-stake-6.png)
 
 ### Assembling the Contents of the XCM Message {: #assembling-the-contents-of-the-xcm-message }
 
@@ -177,7 +177,7 @@ Now we’re ready for the fun part! You'll need to press **Add Item** beneath th
 
 Verify that the structure of your XCM message resembles the below image, then press **Submit Transaction**. Note that your encoded call data will vary based on your chosen collator.
 
-![Assembling the complete XCM message](/images/tutorials/remote-staking-via-xcm/xcm-stake-7.png)
+![Assembling the complete XCM message](/images/tutorials/interoperability/remote-staking-via-xcm/xcm-stake-7.png)
 
 !!! note
     The encoded call data for the call configured above is `0x630001010100a10f020c00040000010403001300008a5d78456301130000010403001300008a5d784563010006010700902f5009b80c113a7d3048f3cb0391bb44b518e5729f07bcc7a45d000064a7b3b6e00d00000000000000002c01000025000000`.

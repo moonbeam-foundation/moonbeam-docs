@@ -5,7 +5,7 @@ description: Learn what to consider when using the Foundry library to build a pr
 
 # Using Foundry Start to End with Moonbeam
 
-![Banner Image](/images/tutorials/foundry-start-to-end/foundry-banner.png)
+![Banner Image](/images/tutorials/eth-api/foundry-start-to-end/foundry-banner.png)
 
 _January 10th, 2022 | by Jeremy Boetticher_
 
@@ -265,7 +265,7 @@ forge test
 
 When testing, you should see the following output:  
 
-![Unit Testing in Foundry](/images/tutorials/foundry-start-to-end/foundry-1.png)
+![Unit Testing in Foundry](/images/tutorials/eth-api/foundry-start-to-end/foundry-1.png)
 
 ### Test Harnesses in Foundry {: #test-harnesses-in-foundry }
 
@@ -297,7 +297,7 @@ Now, inside of the `ContainerTest` smart contract, you can add a new test that t
 
 Now, when you run the test with `forge test`, you should see that `testIsOverflowingFalse` passes!  
 
-![Test Harness in Foundry](/images/tutorials/foundry-start-to-end/foundry-2.png)
+![Test Harness in Foundry](/images/tutorials/eth-api/foundry-start-to-end/foundry-2.png)
 
 ### Fuzzing Tests in Foundry {: #fuzzing-tests-in-foundry}
 
@@ -340,7 +340,7 @@ forge test
 
 You should see something similar to the following in the console:
 
-![Fuzzing Tests in Foundry](/images/tutorials/foundry-start-to-end/foundry-3.png)
+![Fuzzing Tests in Foundry](/images/tutorials/eth-api/foundry-start-to-end/foundry-3.png)
 
 ### Forking Tests in Foundry {: #forking-tests-in-foundry}
 
@@ -387,9 +387,9 @@ The rest of the code tests capacity like you would expect a local test to. If yo
 forge test --vvvv
 ```
 
-![Forking Tests in Foundry](/images/tutorials/foundry-start-to-end/foundry-4.png)
+![Forking Tests in Foundry](/images/tutorials/eth-api/foundry-start-to-end/foundry-4.png)
 
-That's it for testing! You can see the complete [`Container.t.sol` file](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/foundry-start-to-end/Container.t.sol){target=_blank} and [`MyToken.t.sol` file](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/foundry-start-to-end/MyToken.t.sol){target=_blank} on GitHub.
+That's it for testing! You can see the complete [`Container.t.sol` file](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/eth-api/foundry-start-to-end/Container.t.sol){target=_blank} and [`MyToken.t.sol` file](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/eth-api/foundry-start-to-end/MyToken.t.sol){target=_blank} on GitHub.
 
 ## Deploy in Foundry with Solidity Scripts {: #deploy-in-foundry-with-solidity-scripts }
 
@@ -471,11 +471,11 @@ What this command does is run the `ContainerDeployScript` contract as a script. 
 
 You should see something like this as output:  
 
-![Running a Script in Foundry](/images/tutorials/foundry-start-to-end/foundry-5.png)
+![Running a Script in Foundry](/images/tutorials/eth-api/foundry-start-to-end/foundry-5.png)
 
 You should be able to see that your contracts were deployed, and are verified on Moonscan! For example, this is where my [`Container.sol` contract was deployed](https://moonbase.moonscan.io/address/0xe8bf2e654d7c1c1ba8f55fed280ddd241e46ced9#code){target=_blank}.  
 
-The entire deployment script is [available on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/foundry-start-to-end/Container.s.sol){target=_blank}.  
+The entire deployment script is [available on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/eth-api/foundry-start-to-end/Container.s.sol){target=_blank}.  
 
 ### Deploy on Moonbeam MainNet {: #deploy-on-moonbeam-mainnet }
 
