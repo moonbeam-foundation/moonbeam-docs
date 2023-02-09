@@ -676,4 +676,6 @@ For reference, you can check out how the verified contracts will look on Moonsca
 
 And that's it! You've successfully deployed your contracts to Moonbeam MainNet after thoroughly testing them out on a local Moonbeam development node and the Moonbase Alpha TestNet! Congrats! You've gone through the entire development lifecycle using Truffle!
 
+--8<-- 'text/disclaimers/educational-tutorial.md'
+
 --8<-- 'text/disclaimers/third-party-content.md'

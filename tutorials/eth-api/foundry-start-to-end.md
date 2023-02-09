@@ -488,3 +488,7 @@ forge script Container.s.sol:ContainerDeployScript --broadcast --verify -vvvv --
 It's important to note that there are additional, albeit more complex, [ways of handling private keys in Foundry](https://book.getfoundry.sh/reference/forge/forge-script#wallet-options---raw){target=_blank}. Some of these methods can be considered safer than storing a production private key in environment variables.  
 
 That's it! You've gone from nothing to a fully tested, deployed, and verified Foundry project. You can now adapt this so that you can use Foundry in your own projects!
+
+--8<-- 'text/disclaimers/educational-tutorial.md'
+
+--8<-- 'text/disclaimers/third-party-content.md'
