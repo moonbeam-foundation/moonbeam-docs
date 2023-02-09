@@ -271,6 +271,10 @@ If you've [checked the prerequisites](#ethereumxcm-check-prerequisites) and you'
     }
 }
 ```
+The three XCM instructions used are:
+    - [`WithdrawAsset`](https://github.com/paritytech/xcm-format#withdrawasset){target=_blank} — takes funds from the account dispatching the XCM in the destination chain and puts them in holding, a special take where funds can be used for later actions
+    - [`BuyExecution`](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} — buy a certain amount of block execution time, in this particular case, all the amount of weight (set to `Unlimited`) that `100000000000000000` tokens can buy
+    - [`Transact`](https://github.com/paritytech/xcm-format#transact){target=_blank} — use part of the block execution time bought with the previous instruction to execute some arbitrary bytes. It is recommended that the weight given to this instruction needs to be around 10% more of `25000` times the gas limit for the EVM call you want to execute via XCM
 8. Click the **Submit Transaction** button and sign the transaction
 
 !!! note
@@ -286,7 +290,7 @@ In the relay chain, the extrinsic is `xcmPallet.send`, and the associated event 
  - **parachainSystem.DownwardMessagesReceived** — event that signals that a message from the relay chain was received. With the current XCM implementation, messages from other parachains will show the same event
  - **balances.Withdraw** — event related to the withdrawing of tokens to pay for the execution of the call. Note that the ``who`` address is the **multilocation-derivative account** calculated before
  - **ethereum.Executed** — event associated with the execution of the remote EVM call. It provides the ``from``, ``to``, ``transactionHash`` (calculated with the non-standard signature and global pallet nonce), and the ``exitReason``. Currently, some common EVM errors, like out of gas, will show ``Reverted`` in the exit reason
- - **polkadotXcm.AssetsTrapped** — event that is emitted when part of the tokens withdrawn from the account (for fees) was not used. Generally, this happens when you provide more weight than required or there is no associated XCM refund instruction. These tokens are temporarily burned and can be retrieved through a democracy proposal
+ - **polkadotXcm.AssetsTrapped** — event that is emitted when part of the tokens withdrawn from the account (for fees) are not used. Generally, this happens when you provide more weight than required or there is no associated XCM refund instruction. These tokens are temporarily burned and can be retrieved through a democracy proposal. A `DepositAsset` XCM instruction can prevent from assets getting trapped
 
 To verify that the remote EVM call through XCM was successful, you can head to the [contract's page in Moonscan](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8#readContract){target=_blank} and verify the new value for the number and its timestamp.
 

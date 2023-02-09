@@ -180,7 +180,7 @@ You can create an instance by just creating an instance of the Keyring class, an
 
 ```javascript
 // Import the keyring as required
-import { Keyring } from '@polkadot/api';
+import Keyring from '@polkadot/keyring';
 
 // Create a keyring instance
 const keyring = new Keyring({ type: 'ethereum' });
