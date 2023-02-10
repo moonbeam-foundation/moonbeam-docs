@@ -324,7 +324,7 @@ const deploy = async () => {
   const contract = await incrementer.deploy([5]);
   await contract.waitForDeployment();
 
-  console.log(`Contract deployed at address: ${contract.address}`);
+  console.log(`Contract deployed at address: ${contract.target}`);
 };
 
 // 9. Call the deploy function
