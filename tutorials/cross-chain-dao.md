@@ -249,9 +249,99 @@ This smart contract isn't very special, since all it really does is add metadata
 
 The `CrossChainDAOToken` smart contract is ready for deployment, but we have other smart contracts to write first!  
 
-### Cross Chain DAO Contract {: #cross-chain-dao-contract }
+### Cross Chain DAO Contract Part 1 {: #cross-chain-dao-contract-part-1 }
 
-hoo boy
+Now to the meat and potatoes of this tutorial: the cross chain DAO. First off, not *all* of the cross-chain logic will be stored in the cross-chain DAO smart contract. Instead, we will separate the hub logic into one contract and the [spoke chain logic into another](#vote-aggregator-contract). This makes sense because of the hub-and-spoke model: some of the logic is stored on a single hub chain while the spoke chains interface with it through a simpler satellite contract. We don't need logic meant to be on spoke chains to be on the hub chain.  
+
+We've already got a base for the cross-chain DAO when we used the OpenZeppelin Wizard in a [previous step](#writing-the-cross-chain-dao). It's time to edit it so that it is cross-chain. Let's list out the different things that need to be added:  
+
+1. Support for cross-chain messaging (through LayerZero in this specific example)
+2. A new collection phase between voting and execution
+3. Requesting the collection of votes from spoke chains
+4. Receiving the collection of votes from spoke chains
+5. (Optional) Receiving cross-chain messages to do non-voting actions, like proposing or executing
+
+Let's start with the first thing: supporting cross-chain messaging. For this implementation, we will use the `NonblockingLzApp` smart contract provided by LayerZero to make it easy to receive and send cross-chain messages. Let's import the smart contract and add it to the parent smart contracts of `CrossChainDAO`:  
+
+```solidity
+// ...other imports go here
+import "@layerzerolabs/solidity-examples/contracts/lzApp/NonblockingLzApp.sol";
+
+contract CrossChainDAO is Governor, GovernorSettings, GovernorCountingSimple, GovernorVotes, NonblockingLzApp {
+    // ...
+}
+```
+
+The `NonblockingLzApp` smart contract also requires an addition to the constructor, because it takes in LayerZero's on-chain smart contract as an input:
+
+```solidity
+    constructor(IVotes _token, address lzEndpoint)
+        Governor("CrossChainDAO")
+        GovernorSettings(1 /* 1 block */, 30 /* 6 minutes */, 0)
+        GovernorVotes(_token)
+        NonblockingLzApp(lzEndpoint)
+    { }
+```
+
+If you run the compiler with `npx hardhat compile`, it will give you an error because the abstract contract `NonblockingLzApp` isn't satisfied. The smart contract needs instructions on what to do when it receives cross-chain data data. To do this, you should override the following function like so:  
+
+```solidity
+function _nonblockingLzReceive( uint16 _srcChainId, bytes memory, uint64, bytes memory _payload) internal override {
+
+}
+```
+
+Now, what to put in the function? Let's think back to the requirements. For incoming messages, we must be able to receive the voting data from other chains during the collection phase. But we might also want to receive messages that do other actions, like execute or propose (for sake of simplicity, we won't in this tutorial, but it's good to think about it). What to do?  
+
+Let's think about the EVM. How does a smart contract know that a transaction wants to call a specific function? Each function has a function selector, a hashed value that is mapped to a specific action. We can do the same thing, but with cross-chain messages and with integers instead of hashed hexadecimals.  
+
+Add the following code to the `_nonblockingLzReceive` function:  
+
+```solidity
+// Gets a function selector option, and more generic bytes
+(uint256 option, bytes memory payload) = abi.decode(_payload,(uint16, bytes));
+
+// Some options for cross-chain actions are: propose, vote, vote with reason, vote with reason and params, cancel, etc...
+if (option == 0) {
+    onReceiveSpokeVotingData(_srcChainId, payload);
+} else if (option == 1) {
+    // TODO: Feel free to put your own cross-chain actions (propose, execute, etc)...
+} else {
+    // TODO: you could revert here if you wanted to
+}
+```
+
+When cross-chain messages are received (from any cross-chain protocol), they come with an arbitrary bytes payload. Typically this bytes payload is created from an invocation of `abi.encode`, where multiple types of data are inserted. For the smart contract that receives this data, data must be decoded with `abi.decode`, where information is decoded in a manner that is expected. For example, if the receiving smart contract's logic requires a `uint16` and an `address` to function properly, it will decode by including `abi.decode(payload, (uint16, address))`.  
+
+When we have multiple functionalities packed into a message with a single payload, that payload might come in multiple formats. Hence, we double-pack the payload. We will revisit this concept when writing the [`VoteAggregator` contract](#vote-aggregator-contract).  
+
+So, the first line of code decodes the arbitrary payload injected into the function into:
+
+1. A function selector 
+2. Another arbitrary payload
+
+In the if statement below the initial decoding, the number 0 maps to the option to receive the voting data from the other chains. You could add additional functionality to the next number, 1, such as proposing or executing. Feel free to do so in your own time.  
+
+In the first block of the if statement, a function is being called, with the `_srcChainId` and the newly unwrapped `payload` being injected into it. We haven't written the `onReceiveSpokeVotingData` function yet, so let's add it to the smart contract:  
+
+```
+function onReceiveSpokeVotingData(uint16 _srcChainId, bytes memory payload) internal virtual {
+    // TODO: do something to store the external voting data for future use
+}
+```  
+
+We'll finish this function later, because we need to override one of the OpenZeppelin parent smart contracts first before we implement it properly.
+
+### Cross Chain Governor Counting Contract {: #cross-chain-governor-counting-contract }
+
+OpenZeppelin has divided many of the aspects of a DAO into multiple smart contracts, making it easier to replace sections of logic without having to change others. This helps with code base scalability and modularity, which we will take advantage of. We don't have to go over all of the different smart contracts that came with what came out of the OpenZeppelin smart contract wizard, but we do have to know about what the `GovernorCountingSimple` contract does.  
+
+The [`GovernorCountingSimple` contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/governance/extensions/GovernorCountingSimple.sol){target=_blank} defines how votes are counted, and what votes are. It stores how many votes have been cast per proposal, what a vote can be (for, against, abstain), and it controls whether or not quorum has been reached.  
+
+Fortunately, a lot of the counting logic does not change. The only difference between our cross-chain variant and the single-chain variant is that the cross-chain variant must account for the collection phase and the 
+
+### Cross Chain DAO Contract Part 2 {: #cross-chain-dao-contract-part-2 }
+
 
 ### Vote Aggregator Contract {: #vote-aggregator-contract }
 
@@ -277,5 +367,10 @@ contract SimpleIncrementer {
 ## Deploying and Testing {: #deploying-and-testing }
 
 ## Caveats and Other Designs {: #caveats-and-other-designs }
+
+### Division of the Cross-Chain Selector Into Multiple Contracts {: #division-of-the-cross-chain-selector-into-multiple-contracts }
+
+### Double-Weight Attack {: #double-weight-attack }
+
 
 --8<-- 'text/disclaimers/general.md'
