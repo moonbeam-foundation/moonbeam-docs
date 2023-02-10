@@ -31,10 +31,10 @@ const incrementer = new ethers.ContractFactory(abi, bytecode, wallet);
 const deploy = async () => {
   console.log(`Attempting to deploy from account: ${wallet.address}`);
 
-  const contract = await incrementer.deploy([5]);
-  await contract.waitForDeployment();
+  const contract = await incrementer.deploy(5);
+  const txReceipt = await contract.deploymentTransaction().wait();
 
-  console.log(`Contract deployed at address: ${contract.target}`);
+  console.log(`Contract deployed at address: ${txReceipt.contractAddress}`);
 };
 
 deploy();

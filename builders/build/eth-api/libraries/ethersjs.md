@@ -321,10 +321,10 @@ const deploy = async () => {
   console.log(`Attempting to deploy from account: ${wallet.address}`);
 
   // 8. Send tx (initial value set to 5) and wait for receipt
-  const contract = await incrementer.deploy([5]);
-  await contract.waitForDeployment();
+  const contract = await incrementer.deploy(5);
+  const txReceipt = await contract.deploymentTransaction().wait();
 
-  console.log(`Contract deployed at address: ${contract.target}`);
+  console.log(`Contract deployed at address: ${txReceipt.contractAddress}`);
 };
 
 // 9. Call the deploy function
