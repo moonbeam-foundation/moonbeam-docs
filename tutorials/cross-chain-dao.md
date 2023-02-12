@@ -265,7 +265,7 @@ We've already got a base for the cross-chain DAO when we used the OpenZeppelin W
 4. Receiving the collection of votes from spoke chains
 5. (Optional) Receiving cross-chain messages to do non-voting actions, like proposing or executing
 
-Let's start with the first thing: supporting cross-chain messaging. For this implementation, we will use the `NonblockingLzApp` smart contract provided by LayerZero to make it easy to receive and send cross-chain messages, but as long as the cross-chain protocol of your choice has the ability to receive a generic bytes payload, you can follow along. Let's import the smart contract and add it to the parent smart contracts of `CrossChainDAO`:  
+Let's start with the first thing: supporting cross-chain messaging. For this implementation, we will use the `NonblockingLzApp` smart contract provided by LayerZero to make it easy to receive and send cross-chain messages, but as long as the cross-chain protocol of your choice has the ability to receive a generic bytes payload, you can follow along with a different parent smart contract. Let's import the smart contract and add it to the parent smart contracts of `CrossChainDAO`:  
 
 ```solidity
 // ...other imports go here
@@ -574,24 +574,68 @@ If you wanted, you could turn the `requestCollections` function into a cross-cha
 
 ### DAO Satellite Contract {: #dao-satellite-contract }
 
-maybe better
+So far, we've only talked about the cross-chain DAO and its accompanying token. The cross-chain DAO is never deployed on the spoke chains, because it wouldn't be efficient to replicate *all* of the data across each spoke chain. But, we still need an interface to work with the `CrossChainDAO` smart contract on the spoke chains. Hence, we will create a satellite contract named `DAOSatellite`.  
 
-### Simple Incrementer Contract {: #simple-incrementer-contract }
-
-This is the quick and easy one, are you ready? We need an execution to take place when testing out this cross-chain DAO, so here's a very tiny smart contract that does a quick number add. Super easy to implement and super easy to test with.  
+Create a new file in the `contracts` folder called `DAOSatellite.sol`. Add the following dependencies and contract in the file:  
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.8.0;
+pragma solidity ^0.8.0;
 
-contract SimpleIncrementer {
-    uint256 public incrementer;
+import "@layerzerolabs/solidity-examples/contracts/lzApp/NonblockingLzApp.sol";
+import "@openzeppelin/contracts/utils/Timers.sol";
+import "@openzeppelin/contracts/utils/Checkpoints.sol";
+import "@openzeppelin/contracts/governance/utils/IVotes.sol";
 
-    function increment() external {
-        incrementer += 1;
-    }
+contract DAOSatellite is NonblockingLzApp { 
+    // TODO: add cross-chain interactions
 }
 ```
+
+Let's also add a constructor, some structs, and storage variables to use later:  
+
+```
+struct ProposalVote {
+    uint256 againstVotes;
+    uint256 forVotes;
+    uint256 abstainVotes;
+    mapping(address => bool) hasVoted;
+}
+
+enum VoteType {
+    Against,
+    For,
+    Abstain
+}
+
+struct RemoteProposal {
+    // Blocks provided by the hub chain as to when the local votes should start/finish.
+    uint256 localVoteStart;
+    bool voteFinished;
+}
+
+constructor(uint16 _hubChain, address _endpoint, IVotes _token, uint _targetSecondsPerBlock) 
+    NonblockingLzApp(_endpoint) payable {
+    hubChain = _hubChain;
+    token = _token;
+    targetSecondsPerBlock = _targetSecondsPerBlock;
+}
+
+uint16 public immutable hubChain;
+IVotes public immutable token;
+uint256 public immutable targetSecondsPerBlock;
+mapping(uint256 => RemoteProposal) public proposals;
+mapping(uint256 => ProposalVote) public proposalVotes;
+```
+
+The constructor defines what the hub chain is (every chain has its own ID in LayerZero, and every other cross-chain protocol), the LayerZero endpoing, the cross-chain token that defines voting weight, and the average seconds per block on this weight (more on that later).  
+
+Since this smart contract inherits from `NonblockingLzApp`, it requires a function to receive cross-chain messages. This smart contract communicates with the `CrossChainDAO` smart contract, and we know that there are currently two instances that the `CrossChainDAO` sends a message:  
+
+1. When the `CrossChainDAO` wants to notify the spoke chains of a new proposal
+2. When the `CrossChainDAO` wants the spoke chains to send their voting data to the hub chain  
+
+Keeping that in mind, let's write the 
 
 ## Deploying and Testing {: #deploying-and-testing }
 
@@ -617,11 +661,13 @@ What if you wanted users to be able to execute a proposal on multiple chains ins
 
 ### Double-Weight Attack from Snapshot Mismatch {: #double-weight-attack-from-snapshot-mismatch }
 
-One primary issue with the distribution of voting weight across chains via the `CrossChainDAOToken` is that blocks are not properly aligned, and instead . Essentially,
+One primary issue with the distribution of voting weight across chains via the `CrossChainDAOToken` is that blocks are not properly aligned, and instead . Essentially,  
 
+
+You could use an oracle to mitigate this
 
 ### Collection Phase Time Out {: collection-phase-time-out }
 
-In case you want to be safe, and you believe that a spoke chain might stall or even stop being supported, you would want to include a way to cap the amount of time that the collection phase takes and also add a way for your DAO's governance to add and remove spoke chains.
+In case you want to be safe, and you believe that a spoke chain might stall or even stop being supported, you would want to include a way to cap the amount of time that the collection phase takes and also add a way for your DAO's governance to add and remove spoke chains.  
 
 --8<-- 'text/disclaimers/general.md'
