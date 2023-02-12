@@ -15,6 +15,8 @@ Moonbeam works hard to support interoperability and cross-chain logic. Its conne
 
 In this tutorial, we will work through a thought process of writing smart contracts for a cross-chain DAO. The smart contracts in this example will be based off of OpenZeppelin's Governance smart contracts to demonstrate an evolution from single-chain to cross-chain and to highlight some incompatibilities that one might face when converting a dApp concept from single-chain to cross-chain. The cross-chain protocol used in this example will be [LayerZero](/builders/interoperability/protocols/layerzero){target=_blank}, but you are encouraged to adapt its concepts to any other protocol that you see fit, since cross-chain concepts often overlap between the protocols that Moonbeam hosts.  
 
+The purpose of this tutorial is not to be the end-all-be-all definition of what a cross-chain DAO would be like, but instead to help you think about the intricacies of writing a cross-chain dApp like a DAO. That being said, feel free to take inspiration from some of the design choices if you decide to write your own.  
+
 ## Checking Prerequisites {: #checking-prerequisites } 
 
 Before we get to any theorizing, you will need the following:
@@ -253,7 +255,7 @@ The `CrossChainDAOToken` smart contract is now ready for deployment. You can che
 
 ### Cross Chain DAO Contract Part 1 {: #cross-chain-dao-contract-part-1 }
 
-Now to the meat and potatoes of this tutorial: the cross chain DAO. First off, not *all* of the cross-chain logic will be stored in the cross-chain DAO smart contract. Instead, we will separate the hub logic into one contract and the [spoke chain logic into another](#vote-aggregator-contract). This makes sense because of the hub-and-spoke model: some of the logic is stored on a single hub chain while the spoke chains interface with it through a simpler satellite contract. We don't need logic meant to be on spoke chains to be on the hub chain.  
+Now to the meat and potatoes of this tutorial: the cross chain DAO. First off, not *all* of the cross-chain logic will be stored in the cross-chain DAO smart contract. Instead, we will separate the hub logic into one contract and the [spoke chain logic into another](#dao-satellite-contract). This makes sense because of the hub-and-spoke model: some of the logic is stored on a single hub chain while the spoke chains interface with it through a simpler satellite contract. We don't need logic meant to be on spoke chains to be on the hub chain.  
 
 We've already got a base for the cross-chain DAO when we used the OpenZeppelin Wizard in a [previous step](#writing-the-cross-chain-dao). It's time to edit it so that it is cross-chain. Let's list out the different things that need to be added:  
 
@@ -315,7 +317,7 @@ if (option == 0) {
 
 When cross-chain messages are received (from any cross-chain protocol), they come with an arbitrary bytes payload. Typically this bytes payload is created from an invocation of `abi.encode`, where multiple types of data are inserted. For the smart contract that receives this data, data must be decoded with `abi.decode`, where information is decoded in a manner that is expected. For example, if the receiving smart contract's logic requires a `uint16` and an `address` to function properly, it will decode by including `abi.decode(payload, (uint16, address))`.  
 
-When we have multiple functionalities packed into a message with a single payload, that payload might come in multiple formats. Hence, we double-pack the payload. We will revisit this concept when writing the [`VoteAggregator` contract](#vote-aggregator-contract).  
+When we have multiple functionalities packed into a message with a single payload, that payload might come in multiple formats. Hence, we double-pack the payload. We will revisit this concept when writing the [`DAOSatellite` contract](#dao-satellite-contract).  
 
 So, the first line of code decodes the arbitrary payload injected into the function into:
 
@@ -455,7 +457,7 @@ We can now store the data within the `spokeVotes` map defined in `CrossChainGove
 
 That's it for the `onReceiveSpokeVotingData` function. It required a lot of setup, but now the smart contract is ready to receive collection info. But what about proposing and requesting data?  
 
-OpenZeppelin's `Governor` smart contract came with a `propose` function, but unfortunately it doesn't work for our purposes. When we propose, we need to send a cross-chain message, but we also need to pay for the gas on the destination chain. Most cross-chain protocols currently require extra gas paid in the origin chain's native currency for the destination chain's transaction, and that can only be sent via a payable function. The `propose` function is not payable, hence why we must write our own cross-chain version.  
+OpenZeppelin's `Governor` smart contract came with a `propose` function, but unfortunately it doesn't work for our purposes. When a user sends a proposal, the smart contract needs to send cross-chain message to let the spoke chains know that there is a new proposal to vote on. But to transact those messages on the destination chains, we also need to pay for the gas. Most cross-chain protocols currently require extra gas paid in the origin chain's native currency for the destination chain's transaction, and that can only be sent via a payable function. The `propose` function is not payable, hence why we must write our own cross-chain version.  
 
 ```solidity
 function crossChainPropose(address[] memory targets, uint256[] memory values, bytes[] memory calldatas, string memory description) 
@@ -496,9 +498,81 @@ This cross-chain version uses the original `propose` function included in the `G
 !!! note
     By using LayerZero, multiple messages must be sent in a single transaction so that every spoke chain can receive data. LayerZero, along with other cross-chain protocols, [is **unicast** instead of **multicast**](https://layerzero.gitbook.io/docs/faq/messaging-properties#multicast){target=_blank}. As in, a cross-chain message can only arrive to a single destination. When designing a hub-and-spoke architecture, research if your [protocol supports multicast messaging](https://book.wormhole.com/wormhole/3_coreLayerContracts.html?highlight=multicast#multicasting){target=_blank}, as it may end up being more succinct. 
 
+Also note that in the cross-chain message, we are wrapping an `abi.encode` inside of another `abi.encode`. Remember when we designed the CrossChainDAO smart contract's receiving function to expect a function selector? This is the same idea, except now we're expecting the satellite smart contract to also implement these features. So in this case, `0` refers to receiving a new proposal.  
 
+Now, let's add functions to begin and end the collections phase. This can be done with a new public facing function similar to the `execute` and `propose` functions. 
 
-### Vote Aggregator Contract {: #vote-aggregator-contract }
+```solidity
+// Requests the voting data from all of the spoke chains
+function requestCollections(uint256 proposalId) public payable {
+    require(
+        block.number > proposalDeadline(proposalId),
+        "Cannot request for vote collection until after the vote period is over!"
+    );
+    require(
+        !collectionStarted[proposalId],
+        "Collection phase for this proposal has already started!"
+    );
+
+    collectionStarted[proposalId] = true;
+
+    // Sends an empty message to each of the aggregators. If they receive a message at all,
+    // it is their cue to send data back
+    uint256 crossChainFee = msg.value / spokeChains.length;
+    for (uint16 i = 0; i < spokeChains.length; i++) {
+        bytes memory payload = abi.encode(1, abi.encode(proposalId));
+        _lzSend({
+            _dstChainId: spokeChains[i],
+            _payload: payload,
+            _refundAddress: payable(address(this)),
+            _zroPaymentAddress: address(0x0),
+            _adapterParams: bytes(""),
+            _nativeFee: crossChainFee
+        });
+    }
+}
+```
+
+Starting the colleciton phase requires that a proposal must exist and that the collection phase for the proposal has not started. Similar to the proposal function, this function sends a cross-chain message to every spoke chain.  
+
+Finally, let's also make it so that the execution of a proposal cannot occur without the collection phase being finished:  
+
+```solidity
+function _beforeExecute(
+    uint256 proposalId,
+    address[] memory targets,
+    uint256[] memory values,
+    bytes[] memory calldatas,
+    bytes32 descriptionHash
+) internal override {
+    finishCollectionPhase(proposalId);
+
+    require(
+        collectionFinished[proposalId],
+        "Collection phase for this proposal is unfinished!"
+    );
+
+    super._beforeExecute(proposalId, targets, values, calldatas, descriptionHash);
+}
+
+// Marks a collection phase as true if all of the satellite chains have sent a cross-chain message back
+function finishCollectionPhase(uint256 proposalId) public {
+    bool phaseFinished = true;
+    for (uint16 i = 0; i < spokeChains.length && phaseFinished; i++) {
+        phaseFinished =
+            phaseFinished &&
+            spokeVotes[proposalId][spokeChains[i]].initialized;
+    }
+
+    collectionFinished[proposalId] = phaseFinished;
+}
+```
+
+Here, before a proposal is executed, the collection phase must be finished. This ensures that a proposal will not be executed until all of the votes from all of the chains are counted.  
+
+If you wanted, you could turn the `requestCollections` function into a cross-chain action as well, but this will not be included in this tutorial.  
+
+### DAO Satellite Contract {: #dao-satellite-contract }
 
 maybe better
 
@@ -533,7 +607,7 @@ For example, the `propose` function from the Governor smart contract couldn't be
 
 ### Division of the Cross-Chain Selector Into Multiple Contracts {: #division-of-the-cross-chain-selector-into-multiple-contracts }
 
-The cross-chain selection method that was used in the `CrossChainDAO` and `VoteAggregator` smart contracts works fine enough. But instead of having a selector within a single smart contract, you could have cross-chain messages be directed at multiple smart contracts that have special permissions within the `CrossChainDAO`.
+The cross-chain selection method that was used in the `CrossChainDAO` and `DAOSatellite` smart contracts works fine enough. But instead of having a selector within a single smart contract, you could have cross-chain messages be directed at multiple smart contracts that have special permissions within the `CrossChainDAO`.
 
 **Put a graph here of how it could look**
 
@@ -544,5 +618,10 @@ What if you wanted users to be able to execute a proposal on multiple chains ins
 ### Double-Weight Attack from Snapshot Mismatch {: #double-weight-attack-from-snapshot-mismatch }
 
 One primary issue with the distribution of voting weight across chains via the `CrossChainDAOToken` is that blocks are not properly aligned, and instead . Essentially,
+
+
+### Collection Phase Time Out {: collection-phase-time-out }
+
+In case you want to be safe, and you believe that a spoke chain might stall or even stop being supported, you would want to include a way to cap the amount of time that the collection phase takes and also add a way for your DAO's governance to add and remove spoke chains.
 
 --8<-- 'text/disclaimers/general.md'
