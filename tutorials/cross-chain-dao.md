@@ -1,11 +1,11 @@
 ---
-title: Building a Cross-Chain DAO off of OpenZeppelin's Governor
+title: Building a Cross-Chain DAO with OpenZeppelin's Governor
 description: Go over the elements of how a cross-chain DAO could be implemented on Moonbeam in this tutorial.
 ---
 
-# Building a Cross-Chain DAO off of OpenZeppelin's Governor Contract
+# Building a Cross-Chain DAO with OpenZeppelin's Governor Contract
 
-![Banner Image](/images/tutorials/foundry-start-to-end/foundry-banner.png)
+![Banner Image](/images/tutorials/cross-chain-dao/cross-chain-dao-banner.png)
 
 _February 12th, 2022 | by Jeremy Boetticher_
 
