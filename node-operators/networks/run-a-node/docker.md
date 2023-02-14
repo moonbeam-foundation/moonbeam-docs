@@ -140,7 +140,7 @@ If you're using MacOS, there are adapted [code snippets](https://www.github.com/
     --base-path=/data \
     --chain {{ networks.moonbeam.chain_spec }} \
     --name="YOUR-NODE-NAME" \
-    --validator \
+    --collator \
     --execution wasm \
     --wasm-execution compiled \
     --trie-cache-size 0 \
@@ -158,7 +158,7 @@ If you're using MacOS, there are adapted [code snippets](https://www.github.com/
     --base-path=/data \
     --chain {{ networks.moonriver.chain_spec }} \
     --name="YOUR-NODE-NAME" \
-    --validator \
+    --collator \
     --execution wasm \
     --wasm-execution compiled \
     --trie-cache-size 0 \
@@ -176,7 +176,7 @@ If you're using MacOS, there are adapted [code snippets](https://www.github.com/
     --base-path=/data \
     --chain {{ networks.moonbase.chain_spec }} \
     --name="YOUR-NODE-NAME" \
-    --validator \
+    --collator \
     --execution wasm \
     --wasm-execution compiled \
     --trie-cache-size 0 \
