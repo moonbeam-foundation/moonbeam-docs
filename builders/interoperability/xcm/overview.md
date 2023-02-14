@@ -22,7 +22,7 @@ This page is a brief introduction and overview of XCM and other related elements
 
 ## XCM Instructions {: #xcm-instructions }
 
-XCM messages contain a series of [actions/instructions](https://github.com/paritytech/xcm-format#5-the-xcvm-instruction-set){target=_blank} that are executed by the Cross-Consensus Virtual Machine (XCVM). An action (for example, transferring a token from one blockchain to another) consists of instructions that the XCVM partly executes in the origin and destination chains.
+XCM messages contain a series of [actions/instructions](https://github.com/paritytech/xcm-format#5-the-xcvm-instruction-set){target=_blank} that are executed by the Cross-Consensus Virtual Machine (XCVM). A combination of XCM instructions result in a given action in the destination chain. An action (for example, transferring a token from one blockchain to another) consists of instructions that the XCVM partly executes in the origin and destination chains.
 
 For example, an XCM message that transfers DOT from Polkadot to Moonbeam will include the following XCM instructions (in that order), which are partly executed on Polkadot and partly executed on Moonbeam:
 
