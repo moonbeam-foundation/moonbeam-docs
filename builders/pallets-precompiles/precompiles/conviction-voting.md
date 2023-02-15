@@ -1,6 +1,6 @@
 ---
 title: Conviction Voting Precompile Contract
-description:
+description: Learn how to vote on referenda, set up voting delegations, and more, directly through a Solidity interface with the Conviction Voting Precompile on Moonbeam.
 ---
 
 # Interacting with the Conviction Voting Precompile
