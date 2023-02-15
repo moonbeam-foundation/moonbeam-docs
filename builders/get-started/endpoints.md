@@ -74,7 +74,7 @@ To get started, you'll need to head to [BlockSpaces](https://www.blockspaces.com
 2. Submit your **email**
 3. Copy Moonbeam/Moonriver endpoint to your clipboard 
 
- ![BlockSpaces](https://user-images.githubusercontent.com/124404391/218831169-e0518e71-653c-4295-bda7-3e43377389e2.png)
+ ![BlockSpaces](/images/builders/get-started/endpoints/endpoints-3.png)
 
 
 ### GetBlock {: #getblock }
@@ -89,7 +89,7 @@ Creating a new API key is simple, all you have to do is:
 2. Enter a name for your API key
 3. Click **Create** to generate your API key
 
-![GetBlock](/images/builders/get-started/endpoints/endpoints-3.png)
+![GetBlock](/images/builders/get-started/endpoints/endpoints-4.png)
 
 ### OnFinality {: #onfinality }
 
@@ -101,7 +101,7 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 2. Select the network from the dropdown
 3. Your custom API endpoint will be generated automatically
 
-![OnFinality](/images/builders/get-started/endpoints/endpoints-4.png)
+![OnFinality](/images/builders/get-started/endpoints/endpoints-5.png)
 
 ### Pocket Network {: #pokt }
 
@@ -114,7 +114,7 @@ To get your own endpoint, go to [Pocket Network](https://mainnet.portal.pokt.net
 3. Enter the name of your DApp and select your corresponding network
 4. Your new endpoint will be generated and displayed for you in the following app screen
 
-![Pocket Network](/images/builders/get-started/endpoints/endpoints-5.png)
+![Pocket Network](/images/builders/get-started/endpoints/endpoints-6.png)
 
 You don't have to generate a new DApp for every endpoint! You can add a new chain to your preexisting DApp:  
 
