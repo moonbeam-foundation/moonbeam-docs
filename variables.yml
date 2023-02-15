@@ -115,6 +115,164 @@ networks:
       units_per_second:
         xcbetadev:
           transact_numbers_only: 50000000000000000
+    conviction:
+      lock_period:
+        conviction_1: 7
+        conviction_2: 14
+        conviction_3: 28
+        conviction_4: 56
+        conviction_5: 112
+        conviction_6: 224
+    governance:
+      tracks:
+        root:
+          max_deciding: 5
+          decision_deposit: 100000
+          prepare_period:
+            time: '1 day'
+            blocks: 7200
+          decision_period:
+            time: '14 days'
+            blocks: 100800
+          confirm_period:
+            time: '1 day'
+            blocks: 7200
+          min_enactment_period:
+            time: '1 day'
+            blocks: 7200
+          min_approval:
+            time0: 'Day 0'
+            percent0: 100
+            time1: 'Day 4'
+            percent1: 80
+            time2: 'Day 14'
+            percent2: 50
+          min_support:
+            time0: 'Day 0'
+            percent0: 25
+            time1: 'Day 14'
+            percent1: .5
+        whitelisted:
+          max_deciding: 100
+          decision_deposit: 10000
+          prepare_period:
+            time: '10 minutes'
+            blocks: 50
+          decision_period:
+            time: '14 days'
+            blocks: 100800
+          confirm_period:
+            time: '10 minutes'
+            blocks: 50
+          min_enactment_period:
+            time: '30 minutes'
+            blocks: 150
+          min_approval:
+            time0: 'Day 0'
+            percent0: 100
+            time1: 'Day 1'
+            percent1: 96
+            time2: 'Day 14'
+            percent2: 50
+          min_support:
+            time0: 'Day 0'
+            percent0: 2
+            time1: 'Hour 1'
+            percent1: 1
+            time2: 'Day 14'
+            percent2: 0
+        general_admin:
+          max_deciding: 10
+          decision_deposit: 500
+          prepare_period:
+            time: '1 hour'
+            blocks: 300
+          decision_period:
+            time: '14 days'
+            blocks: 100800
+          confirm_period:
+            time: '1 day'
+            blocks: 7200
+          min_enactment_period:
+            time: '1 day'
+            blocks: 7200
+          min_approval:
+            time0: 'Day 0'
+            percent0: 100
+            time1: 'Day 4'
+            percent1: 80
+            time2: 'Day 14'
+            percent2: 50
+          min_support:
+            time0: 'Day 0'
+            percent0: 50
+            time1: 'Day 7'
+            percent1: 10
+            time2: 'Day 14'
+            percent2: 0
+        canceller:
+          max_deciding: 20
+          decision_deposit: 10000
+          prepare_period:
+            time: '1 hour'
+            blocks: 300
+          decision_period:
+            time: '14 days'
+            blocks: 100800
+          confirm_period:
+            time: '3 hours'
+            blocks: 900
+          min_enactment_period:
+            time: '10 minutes'
+            blocks: 50
+          min_approval:
+            time0: 'Day 0'
+            percent0: 100
+            time1: 'Day 1'
+            percent1: 96
+            time2: 'Day 14'
+            percent2: 50
+          min_support:
+            time0: 'Day 0'
+            percent0: 50
+            time1: 'Day 1'
+            percent1: 1
+            time2: 'Day 14'
+            percent2: 0
+        killer:
+          max_deciding: 100
+          decision_deposit: 20000
+          prepare_period:
+            time: '1 hour'
+            blocks: 300
+          decision_period:
+            time: '14 days'
+            blocks: 100800
+          confirm_period:
+            time: '3 hours'
+            blocks: 900
+          min_enactment_period:
+            time: '10 minutes'
+            blocks: 50
+          min_approval:
+            time0: 'Day 0'
+            percent0: 100
+            time1: 'Day 1'
+            percent1: 96
+            time2: 'Day 14'
+            percent2: 50
+          min_support:
+            time0: 'Day 0'
+            percent0: 10
+            time1: 'Day 1'
+            percent1: 1
+            time2: 'Day 14'
+            percent2: 0
+      submission_deposit: 100
+      max_votes: 512
+    preimage:
+      base_deposit: 5
+      byte_deposit: 0.0001
     democracy:
       launch_period:
         days: 1
@@ -136,7 +294,7 @@ networks:
       max_votes: 100
       max_proposals: 100
       max_referenda: 5
-      lock_period:
+      lock_period: # delete these once translations are done
         conviction_1: 1
         conviction_2: 2
         conviction_3: 4
@@ -221,6 +379,10 @@ networks:
       collective_council: '0x000000000000000000000000000000000000080e'
       collective_tech_committee: '0x000000000000000000000000000000000000080f'
       collective_treasury: '0x0000000000000000000000000000000000000810'
+      referenda: '0x0000000000000000000000000000000000000811'
+      conviction_voting: '0x0000000000000000000000000000000000000812'
+      preimage: '0x0000000000000000000000000000000000000813'
+      collective_open_tech_committee: '0x0000000000000000000000000000000000000814'
     substrate_api_sidecar:
       stable_version: 14.1.1
     tx_weight_to_gas_ratio: 25000
@@ -270,6 +432,164 @@ networks:
           display: 200,000,000
         wei_per_weight:
           display: 50,000
+    conviction:
+      lock_period:
+        conviction_1: 7
+        conviction_2: 14
+        conviction_3: 28
+        conviction_4: 56
+        conviction_5: 112
+        conviction_6: 224
+    governance:
+      tracks:
+        root:
+          max_deciding: 5
+          decision_deposit: 100000
+          prepare_period:
+            time: '1 day'
+            blocks: 7200
+          decision_period:
+            time: '14 days'
+            blocks: 100800
+          confirm_period:
+            time: '1 day'
+            blocks: 7200
+          min_enactment_period:
+            time: '1 day'
+            blocks: 7200
+          min_approval:
+            time0: 'Day 0'
+            percent0: 100
+            time1: 'Day 4'
+            percent1: 80
+            time2: 'Day 14'
+            percent2: 50
+          min_support:
+            time0: 'Day 0'
+            percent0: 25
+            time1: 'Day 14'
+            percent1: .5
+        whitelisted:
+          max_deciding: 100
+          decision_deposit: 10000
+          prepare_period:
+            time: '10 minutes'
+            blocks: 50
+          decision_period:
+            time: '14 days'
+            blocks: 100800
+          confirm_period:
+            time: '10 minutes'
+            blocks: 50
+          min_enactment_period:
+            time: '30 minutes'
+            blocks: 150
+          min_approval:
+            time0: 'Day 0'
+            percent0: 100
+            time1: 'Day 1'
+            percent1: 96
+            time2: 'Day 14'
+            percent2: 50
+          min_support:
+            time0: 'Day 0'
+            percent0: 2
+            time1: 'Hour 1'
+            percent1: 1
+            time2: 'Day 14'
+            percent2: 0
+        general_admin:
+          max_deciding: 10
+          decision_deposit: 500
+          prepare_period:
+            time: '1 hour'
+            blocks: 300
+          decision_period:
+            time: '14 days'
+            blocks: 100800
+          confirm_period:
+            time: '1 day'
+            blocks: 7200
+          min_enactment_period:
+            time: '1 day'
+            blocks: 7200
+          min_approval:
+            time0: 'Day 0'
+            percent0: 100
+            time1: 'Day 4'
+            percent1: 80
+            time2: 'Day 14'
+            percent2: 50
+          min_support:
+            time0: 'Day 0'
+            percent0: 50
+            time1: 'Day 7'
+            percent1: 10
+            time2: 'Day 14'
+            percent2: 0
+        canceller:
+          max_deciding: 20
+          decision_deposit: 10000
+          prepare_period:
+            time: '1 hour'
+            blocks: 300
+          decision_period:
+            time: '14 days'
+            blocks: 100800
+          confirm_period:
+            time: '3 hours'
+            blocks: 900
+          min_enactment_period:
+            time: '10 minutes'
+            blocks: 50
+          min_approval:
+            time0: 'Day 0'
+            percent0: 100
+            time1: 'Day 1'
+            percent1: 96
+            time2: 'Day 14'
+            percent2: 50
+          min_support:
+            time0: 'Day 0'
+            percent0: 50
+            time1: 'Day 7'
+            percent1: 1
+            time2: 'Day 14'
+            percent2: 0
+        killer:
+          max_deciding: 100
+          decision_deposit: 20000
+          prepare_period:
+            time: '1 hour'
+            blocks: 300
+          decision_period:
+            time: '14 days'
+            blocks: 100800
+          confirm_period:
+            time: '3 hours'
+            blocks: 900
+          min_enactment_period:
+            time: '10 minutes'
+            blocks: 50
+          min_approval:
+            time0: 'Day 0'
+            percent0: 100
+            time1: 'Day 1'
+            percent1: 96
+            time2: 'Day 14'
+            percent2: 50
+          min_support:
+            time0: 'Day 0'
+            percent0: 10
+            time1: 'Day 1'
+            percent1: 1
+            time2: 'Day 14'
+            percent2: 0
+      submission_deposit: 100
+      max_votes: 512
+    preimage:
+      base_deposit: 5
+      byte_deposit: 0.0001
     democracy:
       launch_period:
         days: 1
@@ -291,7 +611,7 @@ networks:
       min_preim_deposit: 0.004
       max_proposals: 100
       max_referenda: 5
-      lock_period:
+      lock_period: # delete these when translations are done
         conviction_1: 1
         conviction_2: 2
         conviction_3: 4
@@ -374,6 +694,10 @@ networks:
       collective_council: '0x000000000000000000000000000000000000080e'
       collective_tech_committee: '0x000000000000000000000000000000000000080f'
       collective_treasury: '0x0000000000000000000000000000000000000810'
+      referenda: '0x0000000000000000000000000000000000000811'
+      conviction_voting: '0x0000000000000000000000000000000000000812'
+      preimage: '0x0000000000000000000000000000000000000813'
+      collective_open_tech_committee: '0x0000000000000000000000000000000000000814'
     chainlink:
       feed:
         proxy:
@@ -480,6 +804,9 @@ networks:
         transfer:
           exec_time: 0.0008
           xcdot_cost: 0.00090281848
+    preimage:
+      base_deposit: 500
+      byte_deposit: .01
     democracy:
       launch_period:
         days: 7
