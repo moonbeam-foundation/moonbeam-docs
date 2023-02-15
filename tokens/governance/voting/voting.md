@@ -144,7 +144,7 @@ To remove delegation, repeat the process described before, but select the `undel
 From vote delegation, there are some key takeaways:
 
  - If a token holder were to remove the vote delegation during a public referendum where the delegated votes were used, these would be removed from the tally
- - A token holder that delegated votes still has an economic buy-in. This means that if the option the delegator selected were to win, the tokens delegated are locked for the number of lock periods
+ - A token holder that delegated votes still has an economic buy-in. This means that if the option the delegator selected were to win, the tokens delegated are locked for the number of Lock Periods
  - The tokens delegated for voting are no longer part of the token holder's free balance. To read more about the types of balances, you can visit the Polkadot Wiki page on [Free vs. Reserved vs. Locked vs. Vesting Balance](https://wiki.polkadot.network/docs/build-protocol-info#free-vs-reserved-vs-locked-vs-vesting-balance)
  - A token holder that delegated tokens can't participate in public referendum. First, the token holder must undelegate his vote
  - A token holder that delegated tokens needs to manually unlock his locked tokens after the locking period has expired. For this, it is necessary to know the referendum index

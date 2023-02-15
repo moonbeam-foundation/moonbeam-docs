@@ -17,7 +17,7 @@ Moonbeam's governance system is in the process of getting revamped! This next ph
 
 This guide outlines the process of how to create a proposal in Governance v1 on Moonbeam. The steps will go from its creation until it reaches public referenda. There is a separate guide on [How to Vote on a Proposal](/tokens/governance/voting/voting){target=_blank} in Governance v1. 
 
-For more information on Moonbeam's governance system, including Governance v1 and Governance v2 (OpenGov), please refer to the [governance overview page](/learn/features/governance/){target=_blank}.
+For more information on Moonbeam's governance system, including Governance v1 and OpenGov (Governance v2), please refer to the [governance overview page](/learn/features/governance/){target=_blank}.
 
 ## Definitions {: #definitions } 
 

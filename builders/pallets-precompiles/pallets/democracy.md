@@ -22,7 +22,7 @@ This guide will provide an overview of the extrinsics, storage methods, and gett
 
 The democracy pallet provides the following extrinsics (functions):
 
-- **delegate**(to, conviction, balance) - delegates the voting power, with some given Conviction, of the sending account to a given account. The balance delegated is locked for as long as it's delegated, and thereafter for the time appropriate for the Conviction's lock period. The sending account must be delegating already or have no voting activity. Emits a `Delegated` event
+- **delegate**(to, conviction, balance) - delegates the voting power, with some given Conviction, of the sending account to a given account. The balance delegated is locked for as long as it's delegated, and thereafter for the time appropriate for the Conviction's Lock Period. The sending account must be delegating already or have no voting activity. Emits a `Delegated` event
 - **enactProposal**(proposalHash, index) - *deprecated as of runtime 2000* - enacts a proposal from a referendum given the proposal hash and the index of the referendum
 - **noteImminentPreimage**(encodedProposal) - *deprecated as of runtime 2000* - registers a preimage for an upcoming proposal in the dispatch queue given the encoded preimage of a proposal. Emits a `PreimageNoted` event
 - **notePreimage**(encodedProposal) - *deprecated as of runtime 2000* - registers a preimage for an upcoming proposal given the encoded preimage of a proposal. This odesn't require the proposal to be in the dispatch queue but does require a deposit that is returned once enacted. Emits a `PreimageNoted` event. **This extrinsic is now accessible through the [preimage pallet](/builders/pallets-precompiles/pallets/preimage/#extrinsics){target=_blank}**
@@ -35,7 +35,7 @@ The democracy pallet provides the following extrinsics (functions):
 - **removeOtherVote**(target, index) - removes a vote for a referendum given the account of the vote to be removed for and the index of the referendum. If the account passed in is the signer, then the functionality is the same as the `removeVote` function; otherwise the vote must have expired because the voter lost the referendum or the Conviction period is over
 - **removeVote**(index) - removes a vote for a referendum given the index of the referendum. The vote can only be removed if the referendum was cancelled, is ongoing, it ended and the vote was in opposition to the result, if there was no Conviction to the account's vote, or if the account made a split vote
 - **second**(proposal, secondsUpperBound) - seconds a proposal signaling agreement with the proposal given the index of the proposal and an upper bound on the current number of seconds on the proposal
-- **undelegate**() - undelegates the voting power of the sending account. Tokens may be unlocked once an amount of time consistent with the Conviction lock period has been passed. Emits an `Undelegated` event
+- **undelegate**() - undelegates the voting power of the sending account. Tokens may be unlocked once an amount of time consistent with the Conviction Lock Period has been passed. Emits an `Undelegated` event
 - **unlock**(target) - unlocks tokens that have an expired lock given the account to remove the lock on
 - **vote**(refIndex, vote) - vote in a referendum given the index of the referendum, the vote, Conviction, and amount of tokens to lock. If the vote is an "Aye", the vote is to enact the proposal; otherwise the vote is to not approve the proposal
 

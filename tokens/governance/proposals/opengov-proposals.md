@@ -17,7 +17,7 @@ Moonbeam's governance system is in the process of getting revamped! This next ph
 
 This guide will outline the process, with step-by-step instructions, of how to submit a proposal for other token holders to vote on in OpenGov (Governance v2). This guide will show you how to submit the proposal on Moonbase Alpha, but it can be easily adapted for Moonriver. There is a separate guide on [How to Vote on a Proposal in OpenGov](/tokens/governance/voting/opengov-voting){target=_blank}. 
 
-For more information on Moonbeam's governance system, including Governance v1 and Governance v2 (OpenGov), please refer to the [governance overview page](/learn/features/governance/){target=_blank}.
+For more information on Moonbeam's governance system, including Governance v1 and OpenGov (Governance v2), please refer to the [governance overview page](/learn/features/governance/){target=_blank}.
 
 ## Definitions {: #definitions } 
 
@@ -37,7 +37,7 @@ Make sure you check the [Governance Parameters](/learn/features/governance/#gove
 
 This guide will cover the first few steps outlined in the proposal roadmap, as highlighted in the diagram below. You'll learn how to submit your proposal idea to the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=_blank}, submit a preimage, and submit your proposal on-chain using the preimage hash.
 
-You can find a full explanation of the [happy path for a Governance v2 (OpenGov) proposal on the Governance overview page](/learn/features/governance/#roadmap-of-a-proposal-v2){target=_blank}.
+You can find a full explanation of the [happy path for a OpenGov (Governance v2) proposal on the Governance overview page](/learn/features/governance/#roadmap-of-a-proposal-v2){target=_blank}.
 
 ![Proposal Roadmap](/images/tokens/governance/proposals/v2/proposal-roadmap.png)
 
