@@ -19,7 +19,7 @@ This guide will cover how to open and accept an HRMP channel between a parachain
 
 ## Overview of the Integration Process {: #overview-of-integration }
 
-The first step for a Moonriver/Moonbeam XCM integration, is to integrate with the Moonbase Alpha TestNet, through the Alphanet relay chain. Then a Moonriver integration must be completed before proceeding with Moonbeam (if applies).
+The first step for a Moonriver/Moonbeam XCM integration, is to integrate with the Moonbase Alpha TestNet, through the Alphanet relay chain. Then a Moonriver integration must be completed before proceeding with Moonbeam (if applicable).  
 
 ### Moonbase Alpha {: #moonbase-alpha }
 
@@ -45,30 +45,31 @@ Once all of these steps are completed and both teams have successfully tested as
 
 ### Moonriver & Moonbeam {: #moonriver-moonbeam }
 
-The process to create a HRMP channel with Moonriver and Moonbeam is mostly the same, and is as follows:
+From a technical perspective, the process to create a HRMP channel with Moonriver and Moonbeam is nearly the same. However, engagement with the Moonbeam community is crucial and required before a proposal will pass. The process is as follows:
 
-1. Provide asset details of your parachain's asset so it can be registered on Moonriver/Moonbeam
-2. Create a proposal to open an HRMP channel to Moonriver/Moonbeam. Optionally, you can create a batched proposal to register MOVR/GLMR or register it any time
-3. Once the proposal in step 2 gets enacted, a batched proposal will be done by Moonbeam to:
+1. Add details of the asset and project to [the forum](/tokens/governance/proposals/#submitting-your-idea-to-the-forum){target=_blank} in the the XCM category.
+2. On the chain to connect, open an HRMP channel to Moonriver/Moonbeam. Optionally, you can create a batched proposal to register MOVR/GLMR or register it any time
+3. Once the proposal in step 2 gets enacted, you will create a batched proposal on Moonbeam to:
     1. Accept the incoming HRMP channel
     2. Propose an outgoing HRMP channel from Moonriver/Moonbeam
     3. Register the asset as an [XC-20 token](/builders/interoperability/xcm/xc20/overview){target=_blank}
 
-      The normal enactment times are as follows:
+      The normal enactment times are as follows:  
 
       - **Moonriver** - approximately a {{ networks.moonriver.democracy.vote_period.days }}-day voting period plus {{ networks.moonriver.democracy.enact_period.days }}-day enactment time
       - **Moonbeam** - approximately a {{ networks.moonbeam.democracy.vote_period.days }}-day voting period plus {{ networks.moonbeam.democracy.enact_period.days }}-day enactment time
 
-4. Accept the HRMP channel from Moonriver/Moonbeam
-5. Exchange $50 worth of tokens for testing the XCM integration. Please send the tokens to:
+4. Add details about the [connecting chain on Polkassembly](http://localhost:8000/tokens/governance/proposals/#submitting-a-proposal){target=_blank} so that community members can be informed when voting on the proposal
+5. Accept the HRMP channel from Moonriver/Moonbeam on the connecting chain
+6. Exchange $50 worth of tokens for testing the XCM integration. Please send the tokens to:
 
     ```
     AccoundId: 5DnP2NuCTxfW4E9rJvzbt895sEsYRD7HC9QEgcqmNt7VWkD4
     Hex:       0x4c0524ef80ae843b694b225880e50a7a62a6b86f7fb2af3cecd893deea80b926)
     ```
 
-6. Provide an Ethereum-styled address for MOVR/GMLR
-7. Test the XCM integration with the provided tokens
+7. Provide an Ethereum-styled address for MOVR/GMLR
+8. Test the XCM integration with the provided tokens
 
 Once these steps are complete, marketing efforts can be coordinated and the new XC-20 on Moonriver/Moonbeam can be added to the Cross Chain Assets section of the [Moonbeam DApp](https://apps.moonbeam.network/){target=_blank}.
 
