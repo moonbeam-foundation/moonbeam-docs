@@ -5,7 +5,7 @@ description: Learn how to view and submit proposals on-chain to be put forth for
 
 # Interacting with the Referenda Precompile
 
-![Precomiled Contracts Banner](/images/builders/pallets-precompiles/precompiles/...)
+![Precomiled Contracts Banner](/images/builders/pallets-precompiles/precompiles/referenda/referenda-banner.png)
 
 ## Introduction {: #introduction }
 

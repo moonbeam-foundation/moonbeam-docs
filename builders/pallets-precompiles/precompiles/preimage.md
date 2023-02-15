@@ -5,7 +5,7 @@ description: Learn how to take the first necessary step to submit a proposal on-
 
 # Interacting with the Preimage Precompile
 
-![Precomiled Contracts Banner](/images/builders/pallets-precompiles/precompiles/...)
+![Precomiled Contracts Banner](/images/builders/pallets-precompiles/precompiles/preimage/preimage-banner.png)
 
 ## Introduction {: #introduction }
 

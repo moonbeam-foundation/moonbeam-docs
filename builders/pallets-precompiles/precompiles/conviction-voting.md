@@ -5,7 +5,7 @@ description: Learn how to vote on referenda, set up voting delegations, and more
 
 # Interacting with the Conviction Voting Precompile
 
-![Precomiled Contracts Banner](/images/builders/pallets-precompiles/precompiles/...)
+![Precomiled Contracts Banner](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-banner.png)
 
 ## Introduction {: #introduction } 
 
