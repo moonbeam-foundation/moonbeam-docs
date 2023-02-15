@@ -1,9 +1,9 @@
 ---
-title: How to Vote on a Proposal
-description: Learn how to vote on a proposal so that it is enacted or rejected on Moonbeam via governance features.
+title: How to Vote on a Proposal 
+description: Learn how to vote on a proposal and lock your tokens to either support or reject a proposal put forth for a referendum on Moonbeam via Governance v1 features.
 ---
 
-# How to Vote on a Proposal
+# How to Vote on a Proposal in Governance v1
 
 ![Governance Moonbeam Banner](/images/tokens/governance/voting/voting-banner.png)
 
@@ -13,9 +13,11 @@ Once a proposal reaches public referenda, token holders can vote on it using the
 
 Referenda are simple, inclusive, and stake-based voting schemes. Each referendum has a proposal associated with it that suggests an action to take place. They have a fixed duration, after which votes are tallied, and the action is enacted if the vote is approved.
 
-In Moonbeam, users will be able to create, second, and vote on proposals using their H160 address and private key, that is, their regular Ethereum account! This guide outlines how to vote on a proposal that has reached a public referendum. There is a seperate guide on [How to Create a Proposal](/tokens/governance/proposals/){target=_blank}.
+In Moonbeam, users will be able to create, second, and vote on proposals using their H160 address and private key, that is, their regular Ethereum account!
 
-More information related to [Governance](https://wiki.polkadot.network/docs/learn-governance){target=_blank} and [Participate in Democracy](https://wiki.polkadot.network/docs/maintain-guides-democracy){target=_blank} can be found in Polkadot's Wiki pages.
+Moonbeam's governance system is in the process of getting revamped! This next phase of governance is known as Governance v2 or OpenGov. During the roll-out process, OpenGov will be rigorously tested on Moonriver before a proposal will be made to deploy it on Moonbeam. Until it launches on Moonbeam, Moonbeam will continue to use Governance v1. As such, **this guide is for proposals on Moonbeam only**. If you're looking to vote on a proposal on Moonriver or Moonbase Alpha, you can refer to the [How to Vote on a Proposal in Governance v2](/tokens/governance/voting/opengov-voting){target=_blank} guide.
+
+This guide will outline the process, with step-by-step instructions, of how to vote on referenda in Governance v1 on Moonbeam. For more information on Moonbeam's governance system, including Governance v1 and Governance v2 (OpenGov), please refer to the [governance overview page](/learn/features/governance/){target=_blank}.
 
 !!! note
     This page goes through the mechanics on how to vote at a more techincal level. Token holders can leverage platforms such as [Polkassembly](https://moonbeam.network/tutorial/participate-in-moonbeam-governance-with-polkassembly/){target=_blank} to vote using a more friendly user interface. 
@@ -24,45 +26,39 @@ More information related to [Governance](https://wiki.polkadot.network/docs/lear
 
 Some of the key parameters for this guide are the following:
 
- - **Voting period** — the time token holders have to vote for a referendum (duration of a referendum)
- - **Vote** — a tool used by token holders to either approve or reject a proposal. The weight a vote has is defined by two factors: the number of tokens locked, and lock duration (called conviction)
+ - **Voting Period** — the time token holders have to vote for a referendum (duration of a referendum)
+
+--8<-- 'text/governance/vote-conviction-definitions.md'
+
+    For more information on the vote multiplier parameters, please refer to the [Conviction Multiplier section of the Governance v1 docs](/learn/features/governance/#conviction-multiplier){target=_blank}
+
  - **Turnout** — the total number of voting tokens
  - **Electorate** — the total number of tokens issued in the network
  - **Maximum number of votes** — the maximum number of votes per account
- - **Enactment period** — the time between a proposal being approved and enacted (make law). It is also the minimum locking period when voting
- - **Lock period** — the time (after the proposal's enactment) that tokens of the winning voters are locked. Users can still use these tokens for staking or voting
+ - **Enactment Period** — the time between a proposal being approved and enacted (make law). It is also the minimum locking period when voting
+ - **Lock Period** — the time (after the proposal's enactment) that tokens of the winning voters are locked. Users can still use these tokens for staking or voting
  - **Delegation** — the act of transferring your voting power to another account for up to a certain conviction
 
 === "Moonbeam"
     |        Variable         |                                                         Value                                                         |
     |:-----------------------:|:---------------------------------------------------------------------------------------------------------------------:|
-    |      Enact period       | {{ networks.moonbeam.democracy.enact_period.blocks}} blocks ({{ networks.moonbeam.democracy.enact_period.days}} days) |
     | Maximum number of votes |                                      {{ networks.moonbeam.democracy.max_votes}}                                       |
-    |       Vote period       |  {{ networks.moonbeam.democracy.vote_period.blocks}} blocks ({{ networks.moonbeam.democracy.vote_period.days}} days)  |
-
-=== "Moonriver"
-    |        Variable         |                                                          Value                                                          |
-    |:-----------------------:|:-----------------------------------------------------------------------------------------------------------------------:|
-    |      Enact period       | {{ networks.moonriver.democracy.enact_period.blocks}} blocks ({{ networks.moonriver.democracy.enact_period.days}} days) |
-    | Maximum number of votes |                                       {{ networks.moonriver.democracy.max_votes}}                                       |
-    |       Vote period       |  {{ networks.moonriver.democracy.vote_period.blocks}} blocks ({{ networks.moonriver.democracy.vote_period.days}} days)  |
-
-=== "Moonbase Alpha"
-    |        Variable         |                                                         Value                                                         |
-    |:-----------------------:|:---------------------------------------------------------------------------------------------------------------------:|
-    |      Enact period       | {{ networks.moonbase.democracy.enact_period.blocks}} blocks ({{ networks.moonbase.democracy.enact_period.days}} days) |
-    | Maximum number of votes |                                      {{ networks.moonbase.democracy.max_votes}}                                       |
-    |       Vote period       |  {{ networks.moonbase.democracy.vote_period.blocks}} blocks ({{ networks.moonbase.democracy.vote_period.days}} days)  |
-
-This guide will show you how to vote on a referendum on Moonbase Alpha. It can be adapted for Moonbeam or Moonriver.
+    |      Voting Period      |  {{ networks.moonbeam.democracy.vote_period.blocks}} blocks ({{ networks.moonbeam.democracy.vote_period.days}} days)  |
+    |    Enactment Period     | {{ networks.moonbeam.democracy.enact_period.blocks}} blocks ({{ networks.moonbeam.democracy.enact_period.days}} days) |
 
 ## An Important Prerequisite {: #an-important-prerequisite } 
 
-A vote on a democracy referenda is a binary outcome. However, a tokenholder's opinion is often more nuanced than yes/no, which is why it's strongly recommend that you preface any proposal with a post on [Moonbeam's Community Forum](https://forum.moonbeam.foundation/){target=_blank}. The forum serves the critical role of providing a platform for discussion and allowing proposers to receive feedback from the community prior to an on-chain action. Creating a post on the forum is quick and easy as shown in the [Using the Moonbeam Community Forum](https://moonbeam.network/blog/using-moonbeam-community-forum/){target=_blank} guide. There are categories corresponding to each type of proposal, including democracy, treasury, and grant proposals. While this step is optional, explaining the details of the proposal and following up with any questions raised may increase the chances of the initiative being accepted and subsequently passed by the community. 
+A vote on a democracy referenda is a binary outcome. However, a token holder's opinion is often more nuanced than yes/no, which is why it's strongly recommend that you preface any proposal with a post on [Moonbeam's Community Forum](https://forum.moonbeam.foundation/){target=_blank}. The forum serves the critical role of providing a platform for discussion and allowing proposers to receive feedback from the community prior to an on-chain action. Creating a post on the forum is quick and easy as shown in the [Using the Moonbeam Community Forum](https://moonbeam.network/blog/using-moonbeam-community-forum/){target=_blank} guide. There are categories corresponding to each type of proposal, including democracy, treasury, and grant proposals. While this step is optional, explaining the details of the proposal and following up with any questions raised may increase the chances of the initiative being accepted and subsequently passed by the community. 
 
 ![Moonbeam's Community Forum home](/images/tokens/governance/voting/vote-15.png)
 
 ## Roadmap of a Proposal {: #roadmap-of-a-proposal } 
+
+This guide will cover the steps highlighted in pink in the proposal roadmap diagram below. Primarily, you'll be learning how to vote on public referenda.
+
+You can find a full explanation of the [happy path for a Governance v1 proposal on the Governance overview page](/learn/features/governance/#roadmap-of-a-proposal){target=_blank}.
+
+![Proposal Roadmap](/images/tokens/governance/voting/proposal-roadmap.png)
 
 --8<-- 'text/governance/roadmap.md'
 
@@ -71,8 +67,7 @@ A vote on a democracy referenda is a binary outcome. However, a tokenholder's op
 This section goes over the process of voting on a referendum. The guide assumes that there is one already taking place, in this case, the one created in the [How to Propose an Action](/tokens/governance/proposals/){target=_blank} guide.
 
 !!! note
-    This guide was done with a customized version of Moonbeam with short Launch/Enactment periods for demonstration purposes only.
-
+    This guide was done with a customized version of Moonbeam with short Launch/Enactment Periods for demonstration purposes only. You can adapt these instructions for Moonbeam.
 
 To vote on a proposal in the network, you need to use the Polkadot.js Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do by following the [Creating or Importing an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=_blank} guide. For this example, three accounts were imported and named with super original names: Alice, Bob, and Charley.
 
@@ -82,7 +77,7 @@ The proposal being voted will embed the remark "This is a unique string." on cha
 
 ### How to Vote {: #how-to-vote } 
 
-Voting on Moonbeam is pretty straightforward. Everything related to governance lives under the **Democracy** tab, where (in the image) you can note that there is a `1`, indicating there is one democracy item pending (either proposals or referenda). Once there, you can view the details of the referendum you want to vote by clicking on the arrow next to the description. The number next to the action and description it is called the referendum index (in this case, it is 0). When ready, click on the **Vote** button.
+To get started, you'll need to navigate to [Moonbeam's Polkadot.js Apps interface](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network){target=_blank}. Everything related to governance lives under the **Democracy** tab, where (in the image) you can note that there is a `1`, indicating there is one democracy item pending (either proposals or referenda). Once there, you can view the details of the referendum you want to vote by clicking on the arrow next to the description. The number next to the action and description it is called the referendum index (in this case, it is 0). When ready, click on the **Vote** button.
 
 ![Vote Button](/images/tokens/governance/voting/vote-2.png)
 
@@ -96,17 +91,17 @@ Here, you need to provide the following information:
 ![Vote Submission](/images/tokens/governance/voting/vote-3.png)
 
 !!! note
-    The lockup periods shown in the previous image are not to be taken as reference. This guide was done with a customized version of Moonbeam with short Launch/Enactment periods for demonstration purposes only.
+    The lockup periods shown in the previous image are not to be taken as reference. This guide was done with a customized version of Moonbeam with short Launch/Enactment Periods for demonstration purposes only.
 
-In this case, Alice and Bob have decided to **Vote Aye** on the proposal with a conviction of `6x`. On the other hand, Charley has decided to **Vote Nay** on the proposal but chose not to lock any tokens (his tokens are only locked during the duration of the referendum), so his conviction was `0.1x`. With such vote distributions, the partial results can be seen in the main **Democracy** tab.
+In this case, Alice and Bob have decided to **Vote Aye** on the proposal with a Conviction of `6x`. On the other hand, Charley has decided to **Vote Nay** on the proposal but chose not to lock any tokens (his tokens are only locked during the duration of the referendum), so his Conviction was `0.1x`. With such vote distributions, the partial results can be seen in the main **Democracy** tab.
 
 ![Vote Information](/images/tokens/governance/voting/vote-4.png)
 
 From voting, there are some key takeaways:
 
- - Alice's weighted vote is 60000 units. That is, her 10000 locked tokens multiplied her conviction by x6
- - Bob's weighted vote is 60 units. That is, his 10 locked tokens multiplied his conviction by x6
- - Charley's weighted vote is 0.8 units. That is, his 8 tokens with no locking period (only during referendum) made his conviction factor x0.1
+ - Alice's weighted vote is 60000 units. That is, her 10000 locked tokens multiplied her Conviction by x6
+ - Bob's weighted vote is 60 units. That is, his 10 locked tokens multiplied his Conviction by x6
+ - Charley's weighted vote is 0.8 units. That is, his 8 tokens with no locking period (only during referendum) made his Conviction factor x0.1
  - Both the remaining voting period and time before the proposal is enacted (if passed) are shown on the screen
  - The overall turnout (in percentage) is just 0.09%. This is calculated as the total number of voting tokens (10018) divided by the total amount of tokens in the network (11.13M in this case)
  - Even though the turnout is quite low, the proposal is tentatively approved because of the super-majority approval. More information can be found in the [Positive Turnout Bias](#positive-turnout-bias) section
@@ -118,7 +113,7 @@ After the voting period has expired, the proposal will be visible under the **Di
 
 ### Delegate Voting {: #delegate-voting } 
 
-Token holders have the option to delegate their vote to another account whose opinion they trust. The account being delegated does not need to make any particular action. When they vote, the vote weight (that is, tokens times the conviction multiplier chose by the delegator) is added to its vote.
+Token holders have the option to delegate their vote to another account whose opinion they trust. The account being delegated does not need to make any particular action. When they vote, the vote weight (that is, tokens times the Conviction multiplier chose by the delegator) is added to its vote.
 
 To delegate your vote, first, navigate to the **Extrinsics** menu under the **Developers** tab.
 
@@ -133,20 +128,20 @@ Here, you need to provide the following information:
  2. Choose the pallet you want to interact with. In this case, it is the `democracy` pallet
  3. Choose the extrinsic method to use for the transaction. This will determine the fields that need to fill in the following steps. In this case, it is `delegate` extrinsic
  4. Select the account to which you want to delegate your vote
- 5. Set the vote conviction, which determines its weight (`vote_weight = tokens * conviction_multiplier`). The conviction multiplier is related to the number of enactment periods the tokens will be locked for. Consequently, the longer you are willing to lock your tokens, the stronger your vote will be weighted. You also have the option of not locking tokens at all, but vote weight is drastically reduced
+ 5. Set the vote conviction, which determines its weight (`vote_weight = tokens * conviction_multiplier`). The Conviction multiplier is related to the number of enactment periods the tokens will be locked for. Consequently, the longer you are willing to lock your tokens, the stronger your vote will be weighted. You also have the option of not locking tokens at all, but vote weight is drastically reduced
  6. Set the number of tokens you want to delegate to the account provided before
  7. Click the **Submit Transaction** button and sign the transaction
 
 ![Extrinsics Transaction for Delegation](/images/tokens/governance/voting/vote-7.png)
 
-In this example, Alice delegated a total weight of 1000 (1000 tokens with an x1 conviction factor) to Charley. To verify the delegation, click the blue circle on the left that indicates a delegation exists.
+In this example, Alice delegated a total weight of 1000 (1000 tokens with an x1 Conviction factor) to Charley. To verify the delegation, click the blue circle on the left that indicates a delegation exists.
 
 ![View Delegation](/images/tokens/governance/voting/vote-8.png)
 
 !!! note
     Another way to delegate votes is under the **Accounts** tab. Click on the three dots of the account from which you want to delegate your vote and fill in the information as before.
 
-Once the account you have delegated your vote to votes, the total vote weight delegated will be allocated to the option that the account selected. For this example, Charley has decided to vote in favor of a proposal that is in public referendum. He voted with a total weight of 800 (800 tokens with an x1 conviction factor). But because Alice delegated 1000 vote weight to him, **Aye** votes total 1800 units.
+Once the account you have delegated your vote to votes, the total vote weight delegated will be allocated to the option that the account selected. For this example, Charley has decided to vote in favor of a proposal that is in public referendum. He voted with a total weight of 800 (800 tokens with an x1 Conviction factor). But because Alice delegated 1000 vote weight to him, **Aye** votes total 1800 units.
 
 ![Total Votes with Delegation](/images/tokens/governance/voting/vote-9.png)
 
@@ -164,8 +159,8 @@ From vote delegation, there are some key takeaways:
 
 When token holders vote, the tokens used are locked and cannot be transferred. You can verify if you have any locked tokens in the **Accounts** tab, expanding the address's account details to query. There, you will see different types of balances. If you hover over the icon next to **democracy**, an information panel will show telling you the current status of your lock. Different lock status includes:
 
- - Locked because of an ongoing referendum, meaning that you've used your tokens and have to wait until the referendum finishes, even if you've voted with a no-lock conviction factor
- - Locked because of the conviction multiplier selected, displaying the number of blocks and time left
+ - Locked because of an ongoing referendum, meaning that you've used your tokens and have to wait until the referendum finishes, even if you've voted with a no-lock Conviction factor
+ - Locked because of the Conviction multiplier selected, displaying the number of blocks and time left
  - Lock expired, meaning that you can now get your tokens back
 
 ![Account Lock Status](/images/tokens/governance/voting/vote-10.png)
@@ -197,28 +192,3 @@ For the next extrinsic, you need to provide the following information:
 Once the transaction goes through, the locked tokens should be unlocked. To double-check, you can go back to the **Accounts** tab and see that, for this example, Alice has her full balance as **transferable**.
 
 ![Check Balance](/images/tokens/governance/voting/vote-14.png)
-
-## Positive Turnout Bias {: #positive-turnout-bias } 
-
-Public referenda use a positive turnout bias metric, that is, a super-majority approval formula. The equation is the following:
-
-![Positive Turnout Bias](/images/tokens/governance/voting/vote-bias.png)
-
-Where:
-
- - **Approve** — number of **Aye** votes (includes the conviction multiplier)
- - **Against** — number of **Nay** votes (includes the conviction multiplier)
- - **Turnout** — the total number of voting tokens (without including the conviction multiplier)
- - **Electorate** — the total number of tokens issued in the network
-
-In the previous example, these numbers were:
-
-|  Variable  |         Value         |
-|:----------:|:---------------------:|
-|  Approve   |   10800 (1800 x 6)    |
-|  Against   |    80 (800 x 0.1)     |
-|  Turnout   |   2600 (1800 + 800)   |
-| Electorate |         1.22M         |
-| **Result** | 1.5 < 9.8 (Aye wins!) |
-
-In short, a heavy super-majority of aye votes is required to approve a proposal at low turnouts, but as turnout increases, it becomes a simple majority.
