@@ -75,7 +75,7 @@ The precompiled contracts are categorized by address and based on the origin net
     |             [Referenda](https://github.com/PureStake/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=_blank}              |           {{networks.moonriver.precompiles.referenda }}            |
     |  [Conviction Voting](https://github.com/PureStake/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=_blank}  |       {{networks.moonriver.precompiles.conviction_voting }}        |
     |               [Preimage](https://github.com/PureStake/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=_blank}               |            {{networks.moonriver.precompiles.preimage }}            |
-    |       [Open Tech Committee](https://github.com/PureStake/moonbeam/blob/master/precompiles/collective/Collective.sol){target=_blank}        | {{networks.moonriver.precompiles.collective_open_tech_committee }} |
+    |      [OpenGov Tech Committee](https://github.com/PureStake/moonbeam/blob/master/precompiles/collective/Collective.sol){target=_blank}      | {{networks.moonriver.precompiles.collective_open_tech_committee }} |
 
 === "Moonbase Alpha"
     |                                                                    Contract                                                                     |                              Address                              |
@@ -100,4 +100,4 @@ The precompiled contracts are categorized by address and based on the origin net
     |                [Referenda](https://github.com/PureStake/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=_blank}                |           {{networks.moonbase.precompiles.referenda }}            |
     |    [Conviction Voting](https://github.com/PureStake/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=_blank}     |       {{networks.moonbase.precompiles.conviction_voting }}        |
     |                 [Preimage](https://github.com/PureStake/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=_blank}                  |            {{networks.moonbase.precompiles.preimage }}            |
-    |          [Open Tech Committee](https://github.com/PureStake/moonbeam/blob/master/precompiles/collective/Collective.sol){target=_blank}          | {{networks.moonbase.precompiles.collective_open_tech_committee }} |
+    |        [OpenGov Tech Committee](https://github.com/PureStake/moonbeam/blob/master/precompiles/collective/Collective.sol){target=_blank}         | {{networks.moonbase.precompiles.collective_open_tech_committee }} |

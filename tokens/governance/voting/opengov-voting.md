@@ -11,11 +11,11 @@ description: Follow this guide to learn how to vote and lock your tokens to supp
 
 Referenda are simple, inclusive, and stake-based voting schemes. Each referendum has a proposal associated with it that suggests an action to take place. In OpenGov, each referendum will have a specified Origin class that the proposal will be executed with and each Origin has its own Track that proposals will process through. Although referenda are completed by a common process, the requirements for approval are Track-specific.
 
-Token holders can vote on referenda using their own tokens. Two factors defined the weight a vote has: the number of tokens locked and lock duration (called conviction). This is to ensure that there is an economic buy-in to the result to prevent vote-selling. Consequently, the longer you are willing to lock your tokens, the stronger your vote will be weighted. You also have the option of not locking tokens at all, but vote weight is drastically reduced.
+Token holders can vote on referenda using their own tokens. Two factors defined the weight a vote has: the number of tokens locked and lock duration (called Conviction). This is to ensure that there is an economic buy-in to the result to prevent vote-selling. Consequently, the longer you are willing to lock your tokens, the stronger your vote will be weighted. You also have the option of not locking tokens at all, but vote weight is drastically reduced.
 
 In Moonbeam, users will be able to create and vote on proposals using their H160 address and private key, that is, their regular Ethereum account! 
 
-Moonbeam's governance system is in the process of getting revamped! This next phase of governance is known as Governance v2 or OpenGov. During the roll-out process, OpenGov will be rigorously tested on Moonriver before a proposal will be made to deploy it on Moonbeam. Until it launches on Moonbeam, Moonbeam will continue to use Governance v1. As such, **this guide is for proposals on Moonriver or Moonbase Alpha only**. If you're looking to submit a proposal on Moonbeam, you can refer to the [How to Vote on a Proposal in Governance v1](/tokens/governance/voting/voting){target=_blank} guide.
+Moonbeam's governance system is in the process of getting revamped! This next phase of governance is known as OpenGov (Governance v2). During the roll-out process, OpenGov will be rigorously tested on Moonriver before a proposal will be made to deploy it on Moonbeam. Until it launches on Moonbeam, Moonbeam will continue to use Governance v1. As such, **this guide is for proposals on Moonriver or Moonbase Alpha only**. If you're looking to submit a proposal on Moonbeam, you can refer to the [How to Vote on a Proposal in Governance v1](/tokens/governance/voting/voting){target=_blank} guide.
 
 This guide will outline the process, with step-by-step instructions, of how to vote on referenda in Governance v2: OpenGov. This guide will show you how to vote on Moonbase Alpha, but it can be easily adapted for Moonriver. For more information on Moonbeam's governance system, including Governance v1 and Governance v2 (OpenGov), please refer to the [governance overview page](/learn/features/governance/){target=_blank}.
 
@@ -40,8 +40,6 @@ Some of the key parameters for this guide are the following:
         {{ networks.moonbase.governance.max_votes }} votes
         ```
 
---8<-- 'text/governance/delegation-definitions.md'
-
 --8<-- 'text/governance/approval-support-definitions.md'
 
 --8<-- 'text/governance/lead-in-definitions.md'
@@ -50,21 +48,23 @@ Some of the key parameters for this guide are the following:
  - **Confirm Period** - a period of time within the Decide Period where the referendum needs to have maintained enough Approval and Support to be approved and move to the Enactment Period
  - **Enactment Period** - a specified time, which is defined at the time the proposal was created, that meets at least the minimum amount of time that an approved referendum waits before it can be dispatched
 
-For an overview of the Track-specific parameters such as the length of the Decide, Confirm, and Enactment Period, the Approval and Support requirements, and more, please refer to the [Governance Parameters for Governance v2 section of the governance overview page](/learn/features/governance/#governance-parameters-v2){target=_blank}.
+--8<-- 'text/governance/delegation-definitions.md'
+
+For an overview of the Track-specific parameters such as the length of the Decide, Confirm, and Enactment Period, the Approval and Support requirements, and more, please refer to the [Governance Parameters for OpenGov (Governance v2) section of the governance overview page](/learn/features/governance/#governance-parameters-v2){target=_blank}.
 
 ## Roadmap of a Proposal {: #roadmap-of-a-proposal }
 
-This guide will cover how to vote on public referenda, as seen in the steps highlighted in pink in the proposal roadmap diagram below. In addition to learning how to vote on referenda, you'll learn how the proposal progresses through the Lead-in Period, the Decide and Confirm Period, and the Enactment Period. 
+This guide will cover how to vote on public referenda, as seen in the steps highlighted in the proposal roadmap diagram below. In addition to learning how to vote on referenda, you'll learn how the proposal progresses through the Lead-in Period, the Decide and Confirm Period, and the Enactment Period. 
 
-You can find a full explanation of the [happy path for a Governance v2 proposal on the Governance overview page](/learn/features/governance/#roadmap-of-a-proposal-v2){target=_blank}.
+You can find a full explanation of the [happy path for a OpenGov proposal on the Governance overview page](/learn/features/governance/#roadmap-of-a-proposal-v2){target=_blank}.
 
 ![Proposal Roadmap](/images/tokens/governance/voting/v2/proposal-roadmap.png)
 
---8<-- 'text/governance/roadmap.md'
+--8<-- 'text/governance/forum-discussion.md'
 
 ## Voting on a Referendum {: #voting-on-a-referendum } 
 
-This section goes over the process of voting on public referendum with Governance v2 on Moonbase Alpha. These steps can be adapted for Moonriver. The guide assumes that there is one already taking place. If there is an open referendum that you want to vote on, you can adapt these instructions to learn how to vote on it.
+This section goes over the process of voting on public referendum in OpenGov (Governance v2) on Moonbase Alpha. These steps can be adapted for Moonriver. The guide assumes that there is one already taking place. If there is an open referendum that you want to vote on, you can adapt these instructions to learn how to vote on it.
 
 To vote on a proposal in the network, you need to use the Polkadot.js Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do by following the [Creating or Importing an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=_blank} guide. For this example, three accounts were imported and named with super original names: Alice, Bob, and Charlie.
 
@@ -72,7 +72,7 @@ To vote on a proposal in the network, you need to use the Polkadot.js Apps inter
 
 To get started, you'll need to navigate to [Moonbase Alpha's Polkadot.js Apps interface](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network){target=_blank}. Everything related to governance lives under the **Governance** tab. To view all of the referenda, you can choose **Referenda** from the **Governance** dropdown. On the **Referenda** page, you'll see a list of referenda organized by Track. To view the details of a specific referendum, you can click on the arrow next to the description. The number next to the action and description is called the referendum index.
 
-### How to Submit the Decision Deposit {: #submit-decision-deposit }
+### How to Support a Proposal by Contributing to the Decision Deposit {: #submit-decision-deposit }
 
 In order for a referendum to move out of the Lead-in Period into the Decide Period, the Decision Deposit must be submitted. This deposit can be submitted by the author of the proposal or any other token-holder. The deposit varies depending upon the Track of the proposal.
 
@@ -105,9 +105,9 @@ To vote and lock tokens either in favor of or opposition of a referendum, you ca
 Then you can take the following steps to fill in the details of the vote:
 
 1. Select the **vote with account**
-2. Choose how you would like to vote on the referendum. You can choose **Aye** in favor of the referendum, **Nay** in opposition of it, or **Split** if you want to specify an "aye" vote value and "nay" vote value
+2. Choose how you would like to vote on the referendum. You can choose **Aye** in favor of the referendum, **Nay** in opposition of it, or **Split** if you want to specify an "Aye" vote value and "Nay" vote value
 3. Enter in the vote value
-4. Set the vote conviction, which determines the weight of your vote (`vote_weight = tokens * conviction_multiplier`). Please refer to the [Conviction Multiplier](/learn/features/governance/#conviction-multiplier){target=_blank} docs for more information
+4. Set the vote conviction, which determines the weight of your vote (`vote_weight = tokens * conviction_multiplier`). Please refer to the [Conviction multiplier](/learn/features/governance/#conviction-multiplier){target=_blank} docs for more information
 5. Click **Vote** and sign the transaction
 
 ![To submit a vote on a referendum, fill out the details of the vote and click on the "Vote" button on Polkadot.js Apps.](/images/tokens/governance/voting/v2/vote-4.png)
@@ -119,17 +119,28 @@ To see how your vote and all of the other votes for a referendum impacted the Ap
 
 ![View the Approval and Support curves for a referendum on Polkadot.js Apps.](/images/tokens/governance/voting/v2/vote-5.png)
 
-For the General Admin Track on Moonbase Alpha, the Approval curve starts at {{ networks.moonbase.governance.tracks.general_admin.min_approval.percent0 }}% on {{ networks.moonbase.governance.tracks.general_admin.min_approval.time0 }}, goes to {{ networks.moonbase.governance.tracks.general_admin.min_approval.percent1 }}% on {{ networks.moonbase.governance.tracks.general_admin.min_approval.time1 }}, and finishes the Decide Period on {{ networks.moonbase.governance.tracks.general_admin.min_approval.time2 }} with {{ networks.moonbase.governance.tracks.general_admin.min_approval.percent2 }}% Approval. So, if a referendum was to start off the Decide Period at 0% Approval because it had no prior votes from the Lead-in Period, then token holders began to vote and it increased to above {{ networks.moonbase.governance.tracks.general_admin.min_approval.percent1 }}% by {{ networks.moonbase.governance.tracks.general_admin.min_approval.time1 }}, it would need to remain above the Approval curve for the duration of the Confirm Period. Similarly, the referendum will need to have enough Support during the Confirm Period to pass. If both the Approval and Support requirements have continuously been met for the duration of the Confirm Period, the referendum will be approved and executed after the Enactment Period has passed.
+A proposal in the General Admin Track on Moonbase Alpha would have the following characteristics:
+
+ - The Approval curve starts at {{ networks.moonbase.governance.tracks.general_admin.min_approval.percent0 }}% on {{ networks.moonbase.governance.tracks.general_admin.min_approval.time0 }}, goes to {{ networks.moonbase.governance.tracks.general_admin.min_approval.percent1 }}% on {{ networks.moonbase.governance.tracks.general_admin.min_approval.time1 }}
+ - The Support curve starts at {{ networks.moonbase.governance.tracks.general_admin.min_support.percent0 }}% on {{ networks.moonbase.governance.tracks.general_admin.min_support.time0 }}, goes to {{ networks.moonbase.governance.tracks.general_admin.min_support.percent1 }}% on {{ networks.moonbase.governance.tracks.general_admin.min_support.time1 }}
+ - A referendum starts the Decide Period with 0% "Aye" votes (nobody voted in the Lead-in Period)
+ - Token holders begin to vote and the Approval increases to a value above {{ networks.moonbase.governance.tracks.general_admin.min_approval.percent1 }}% by {{ networks.moonbase.governance.tracks.general_admin.min_approval.time1 }}
+ - If the Approval and Support thresholds are met for the duration of the Confirm Period ({{ networks.moonbase.governance.tracks.general_admin.min_enactment_period.blocks }} blocks, approximately {{ networks.moonbase.governance.tracks.general_admin.min_enactment_period.time }}), the referendum is approved
+ - If the Approval and Support thresholds are not met during the Decision Period, the proposal is rejected. Note that the thresholds need to be met for the duration of the Confirm Period. Consequently, if they are met but the Decision Period expires before the completion of the Confirm Period, the proposal is rejected
 
 In the following image, you'll notice enough Approval and Support have been received and so the Confirm Period is underway. if the referendum maintains the Approval and Support levels, at block 124,962 the Confirm Period will end and then the Enactment Period will begin. You can hover over the charts to find out more information on each of these periods. Assuming this referendum maintains the levels of Approval and Support it has received, the Enactment Period will end at block 132,262 and the proposal action will be dispatched.
 
 ![View the Approval and Support curves for a referendum on Polkadot.js Apps.](/images/tokens/governance/voting/v2/vote-6.png)
 
-The Enactment Period is defined by the author of the proposal at the time it was initially submitted. If the referendum doesn't continuously receive enough Approval and Support during the Confirm Period, and there is time left in the Decide Period, it still has a chance to pass as long as the Approval and Support requirements are met again and continously for the duration of the Confirm Period. If the Decide Period ends and the referendum still hasn't received enough Approval and Support, the referenda will be rejected and the Decision Deposit is able to be refunded.
+If the referendum doesn't continuously receive enough Approval and Support during the Confirm Period, and there is time left in the Decide Period, it still has a chance to pass as long as the Approval and Support requirements are met again and continously for the duration of the Confirm Period. If the Decide Period ends and the referendum still hasn't received enough Approval and Support, the referenda will be rejected and the Decision Deposit is able to be refunded.
+
+The Enactment Period is defined by the author of the proposal at the time it was initially submitted, but it needs to be at least the minimum Enacment Period. 
 
 ### Delegate Voting {: #delegate-voting } 
 
-Token holders have the option to delegate their vote to another account whose opinion they trust. The account being delegated does not need to make any particular action. When they vote, the vote weight (that is, tokens times the Conviction multiplier chose by the delegator) is added to its vote. With the introduction of Governance v2, token holders can even delegate their vote on a Track-by-Track basis and specify different delegates for each Track, which is referred to as Multirole Delegation.
+Token holders have the option to delegate their vote to another account whose opinion they trust. The account being delegated does not need to make any particular action. When they vote, the vote weight (that is, tokens times the Conviction multiplier chose by the delegator) is added to its vote. 
+
+With the introduction of OpenGov (Governance v2), token holders can even delegate their vote on a Track-by-Track basis and specify different delegates for each Track, which is referred to as Multirole Delegation.
 
 From the [referenda page on Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/referenda){target=_blank}, you can click **Delegate** to get started.
 
@@ -147,7 +158,7 @@ Then you can take the following steps to fill in the details of the delegation:
 
 ![Submit a delegate vote on a referendum by filling in all of the delegation details and clicking on the "Delegate" button on Polkadot.js Apps.](/images/tokens/governance/voting/v2/vote-8.png)
 
-Now the account you selected to delegate your vote to will be able to vote on your behalf. Once this account votes, the total vote weight delegated will be allocated to the option that the account selected. For example, Bob can vote in favor of a referendum with a total weight of 20000 (10000 tokens with an x2 Conviction factor) using the vote weight that Charlie delegated to him.
+Now the account you selected to delegate your vote to will be able to vote on your behalf. Once this account votes, the total vote weight delegated will be allocated to the option that the account selected. For this example, Baltahar can vote in favor of a referendum with a total weight of 20000 (10000 tokens with an x2 Conviction factor) using the vote weight that Charleth delegated to him.
 
 You can continue the above process for each Track and delegate a different account with varying vote weights.
 
@@ -155,7 +166,7 @@ To undelegate a delegation, you'll need to head to the **Developer** tab and cli
 
 1. Select the account you have delegate from
 2. Choose the **convictionVoting** pallet and the **undelegate** extrinsic
-3. Enter the **class** of the Origin. For the General Admin Track, it is `2`. For the complete list of Track IDs, you can refer to the [Governance v2 section of the governance overview page](/learn/features/governance/#general-parameters-by-track){target=_blank}
+3. Enter the **class** of the Origin. For the General Admin Track, it is `2`. For the complete list of Track IDs, you can refer to the [OpenGov section of the governance overview page](/learn/features/governance/#general-parameters-by-track){target=_blank}
 4. Click **Submit transaction** and sign the transaction
 
 ![Undelegate a vote on Polkadot.js Apps.](/images/tokens/governance/voting/v2/vote-9.png)

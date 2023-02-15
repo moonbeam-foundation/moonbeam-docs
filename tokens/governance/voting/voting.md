@@ -9,15 +9,15 @@ description: Learn how to vote on a proposal and lock your tokens to either supp
 
 ## Introduction {: #introduction } 
 
-Once a proposal reaches public referenda, token holders can vote on it using their own tokens. Two factors defined the weight a vote has: the number of tokens locked and lock duration (called conviction). This is to ensure that there is an economic buy-in to the result to prevent vote-selling. Consequently, the longer you are willing to lock your tokens, the stronger your vote will be weighted. You also have the option of not locking tokens at all, but vote weight is drastically reduced.
+Once a proposal reaches public referenda, token holders can vote on it using their own tokens. Two factors defined the weight a vote has: the number of tokens locked and lock duration (called Conviction). This is to ensure that there is an economic buy-in to the result to prevent vote-selling. Consequently, the longer you are willing to lock your tokens, the stronger your vote will be weighted. You also have the option of not locking tokens at all, but vote weight is drastically reduced.
 
 Referenda are simple, inclusive, and stake-based voting schemes. Each referendum has a proposal associated with it that suggests an action to take place. They have a fixed duration, after which votes are tallied, and the action is enacted if the vote is approved.
 
 In Moonbeam, users will be able to create, second, and vote on proposals using their H160 address and private key, that is, their regular Ethereum account!
 
-Moonbeam's governance system is in the process of getting revamped! This next phase of governance is known as Governance v2 or OpenGov. During the roll-out process, OpenGov will be rigorously tested on Moonriver before a proposal will be made to deploy it on Moonbeam. Until it launches on Moonbeam, Moonbeam will continue to use Governance v1. As such, **this guide is for proposals on Moonbeam only**. If you're looking to vote on a proposal on Moonriver or Moonbase Alpha, you can refer to the [How to Vote on a Proposal in Governance v2](/tokens/governance/voting/opengov-voting){target=_blank} guide.
+Moonbeam's governance system is in the process of getting revamped! This next phase of governance is known as OpenGov (Governance). During the roll-out process, OpenGov will be rigorously tested on Moonriver before a proposal will be made to deploy it on Moonbeam. Until it launches on Moonbeam, Moonbeam will continue to use Governance v1. As such, **this guide is for proposals on Moonbeam only**. If you're looking to vote on a proposal on Moonriver or Moonbase Alpha, you can refer to the [How to Vote on a Proposal in OpenGov](/tokens/governance/voting/opengov-voting){target=_blank} guide.
 
-This guide will outline the process, with step-by-step instructions, of how to vote on referenda in Governance v1 on Moonbeam. For more information on Moonbeam's governance system, including Governance v1 and Governance v2 (OpenGov), please refer to the [governance overview page](/learn/features/governance/){target=_blank}.
+This guide will outline the process, with step-by-step instructions, of how to vote on referenda in Governance v1 on Moonbeam. For more information on Moonbeam's governance system, including Governance v1 and OpenGov (Governance v2), please refer to the [governance overview page](/learn/features/governance/){target=_blank}.
 
 !!! note
     This page goes through the mechanics on how to vote at a more techincal level. Token holders can leverage platforms such as [Polkassembly](https://moonbeam.network/tutorial/participate-in-moonbeam-governance-with-polkassembly/){target=_blank} to vote using a more friendly user interface. 
@@ -46,21 +46,15 @@ Some of the key parameters for this guide are the following:
     |      Voting Period      |  {{ networks.moonbeam.democracy.vote_period.blocks}} blocks ({{ networks.moonbeam.democracy.vote_period.days}} days)  |
     |    Enactment Period     | {{ networks.moonbeam.democracy.enact_period.blocks}} blocks ({{ networks.moonbeam.democracy.enact_period.days}} days) |
 
-## An Important Prerequisite {: #an-important-prerequisite } 
-
-A vote on a democracy referenda is a binary outcome. However, a token holder's opinion is often more nuanced than yes/no, which is why it's strongly recommend that you preface any proposal with a post on [Moonbeam's Community Forum](https://forum.moonbeam.foundation/){target=_blank}. The forum serves the critical role of providing a platform for discussion and allowing proposers to receive feedback from the community prior to an on-chain action. Creating a post on the forum is quick and easy as shown in the [Using the Moonbeam Community Forum](https://moonbeam.network/blog/using-moonbeam-community-forum/){target=_blank} guide. There are categories corresponding to each type of proposal, including democracy, treasury, and grant proposals. While this step is optional, explaining the details of the proposal and following up with any questions raised may increase the chances of the initiative being accepted and subsequently passed by the community. 
-
-![Moonbeam's Community Forum home](/images/tokens/governance/voting/vote-15.png)
-
 ## Roadmap of a Proposal {: #roadmap-of-a-proposal } 
 
-This guide will cover the steps highlighted in pink in the proposal roadmap diagram below. Primarily, you'll be learning how to vote on public referenda.
+This guide will cover the steps highlighted in the proposal roadmap diagram below. Primarily, you'll be learning how to vote on public referenda.
 
 You can find a full explanation of the [happy path for a Governance v1 proposal on the Governance overview page](/learn/features/governance/#roadmap-of-a-proposal){target=_blank}.
 
 ![Proposal Roadmap](/images/tokens/governance/voting/proposal-roadmap.png)
 
---8<-- 'text/governance/roadmap.md'
+--8<-- 'text/governance/forum-discussion.md'
 
 ## Voting on a Referendum {: #voting-on-a-referendum } 
 
@@ -77,7 +71,7 @@ The proposal being voted will embed the remark "This is a unique string." on cha
 
 ### How to Vote {: #how-to-vote } 
 
-To get started, you'll need to navigate to [Moonbeam's Polkadot.js Apps interface](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network){target=_blank}. Everything related to governance lives under the **Democracy** tab, where (in the image) you can note that there is a `1`, indicating there is one democracy item pending (either proposals or referenda). Once there, you can view the details of the referendum you want to vote by clicking on the arrow next to the description. The number next to the action and description it is called the referendum index (in this case, it is 0). When ready, click on the **Vote** button.
+To get started, you'll need to navigate to [Moonbeam's Polkadot.js Apps interface](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network){target=_blank}. Everything related to governance lives under the **Democracy** tab, where (in the image) you can note that there is a number next to it, indicating there are democracy items pending (either proposals or referenda). Once there, you can view the details of the referendum you want to vote by clicking on the arrow next to the description. The number next to the action and description it is called the referendum index (in this case, it is `20`). When ready, click on the **Vote** button.
 
 ![Vote Button](/images/tokens/governance/voting/vote-2.png)
 
@@ -104,7 +98,7 @@ From voting, there are some key takeaways:
  - Charley's weighted vote is 0.8 units. That is, his 8 tokens with no locking period (only during referendum) made his Conviction factor x0.1
  - Both the remaining voting period and time before the proposal is enacted (if passed) are shown on the screen
  - The overall turnout (in percentage) is just 0.09%. This is calculated as the total number of voting tokens (10018) divided by the total amount of tokens in the network (11.13M in this case)
- - Even though the turnout is quite low, the proposal is tentatively approved because of the super-majority approval. More information can be found in the [Positive Turnout Bias](#positive-turnout-bias) section
+ - Even though the turnout is quite low, the proposal is tentatively approved because of the super-majority approval. More information can be found in the [Positive Turnout Bias](/learn/features/governance/#positive-turnout-bias) section
  - It is important to write down the referendum index, as this is needed to unlock the tokens later when the locking period expires. Currently there is no way to retrieve the referendum index once it has been enacted
 
 After the voting period has expired, the proposal will be visible under the **Dispatch** tab if approved. In here, you can also see the time remaining until the proposal is enacted.

@@ -128,13 +128,13 @@ networks:
         root:
           max_deciding: 5
           decision_deposit: 100000
-          prepare_period: 
+          prepare_period:
             time: '1 day'
-            blocks: 7200  
+            blocks: 7200
           decision_period:
             time: '14 days'
             blocks: 100800
-          confirm_period: 
+          confirm_period:
             time: '1 day'
             blocks: 7200
           min_enactment_period:
@@ -155,13 +155,13 @@ networks:
         whitelisted:
           max_deciding: 100
           decision_deposit: 10000
-          prepare_period: 
-            time: '1 minute'
-            blocks: 50  
+          prepare_period:
+            time: '10 minutes'
+            blocks: 50
           decision_period:
             time: '14 days'
             blocks: 100800
-          confirm_period: 
+          confirm_period:
             time: '10 minutes'
             blocks: 50
           min_enactment_period:
@@ -183,14 +183,14 @@ networks:
             percent2: 0
         general_admin:
           max_deciding: 10
-          decision_deposit: 500000
-          prepare_period: 
+          decision_deposit: 500
+          prepare_period:
             time: '1 hour'
             blocks: 300
           decision_period:
             time: '14 days'
             blocks: 100800
-          confirm_period: 
+          confirm_period:
             time: '1 day'
             blocks: 7200
           min_enactment_period:
@@ -213,13 +213,13 @@ networks:
         canceller:
           max_deciding: 20
           decision_deposit: 10000
-          prepare_period: 
+          prepare_period:
             time: '1 hour'
-            blocks: 300  
+            blocks: 300
           decision_period:
             time: '14 days'
             blocks: 100800
-          confirm_period: 
+          confirm_period:
             time: '3 hours'
             blocks: 900
           min_enactment_period:
@@ -238,17 +238,17 @@ networks:
             time1: 'Day 1'
             percent1: 1
             time2: 'Day 14'
-            percent2: 0   
+            percent2: 0
         killer:
           max_deciding: 100
           decision_deposit: 20000
-          prepare_period: 
+          prepare_period:
             time: '1 hour'
-            blocks: 300  
+            blocks: 300
           decision_period:
             time: '14 days'
             blocks: 100800
-          confirm_period: 
+          confirm_period:
             time: '3 hours'
             blocks: 900
           min_enactment_period:
@@ -267,11 +267,12 @@ networks:
             time1: 'Day 1'
             percent1: 1
             time2: 'Day 14'
-            percent2: 0         
+            percent2: 0
       submission_deposit: 100
       max_votes: 512
     preimage:
-      min_deposit: 0.0001
+      base_deposit: 5
+      byte_deposit: 0.0001
     democracy:
       launch_period:
         days: 1
@@ -437,13 +438,13 @@ networks:
         root:
           max_deciding: 5
           decision_deposit: 100000
-          prepare_period: 
+          prepare_period:
             time: '1 day'
-            blocks: 7200  
+            blocks: 7200
           decision_period:
             time: '14 days'
             blocks: 100800
-          confirm_period: 
+          confirm_period:
             time: '1 day'
             blocks: 7200
           min_enactment_period:
@@ -464,18 +465,18 @@ networks:
         whitelisted:
           max_deciding: 100
           decision_deposit: 10000
-          prepare_period: 
-            time: '1 minute'
-            blocks: 50  
+          prepare_period:
+            time: '10 minutes'
+            blocks: 50
           decision_period:
             time: '14 days'
             blocks: 100800
-          confirm_period: 
+          confirm_period:
             time: '10 minutes'
-            blocks: 500
+            blocks: 50
           min_enactment_period:
             time: '30 minutes'
-            blocks: 1500
+            blocks: 150
           min_approval:
             time0: 'Day 0'
             percent0: 100
@@ -492,14 +493,14 @@ networks:
             percent2: 0
         general_admin:
           max_deciding: 10
-          decision_deposit: 500000
-          prepare_period: 
+          decision_deposit: 500
+          prepare_period:
             time: '1 hour'
             blocks: 300
           decision_period:
             time: '14 days'
             blocks: 100800
-          confirm_period: 
+          confirm_period:
             time: '1 day'
             blocks: 7200
           min_enactment_period:
@@ -522,13 +523,13 @@ networks:
         canceller:
           max_deciding: 20
           decision_deposit: 10000
-          prepare_period: 
+          prepare_period:
             time: '1 hour'
-            blocks: 300  
+            blocks: 300
           decision_period:
             time: '14 days'
             blocks: 100800
-          confirm_period: 
+          confirm_period:
             time: '3 hours'
             blocks: 900
           min_enactment_period:
@@ -547,17 +548,17 @@ networks:
             time1: 'Day 7'
             percent1: 1
             time2: 'Day 14'
-            percent2: 0   
+            percent2: 0
         killer:
           max_deciding: 100
           decision_deposit: 20000
-          prepare_period: 
+          prepare_period:
             time: '1 hour'
-            blocks: 300  
+            blocks: 300
           decision_period:
             time: '14 days'
             blocks: 100800
-          confirm_period: 
+          confirm_period:
             time: '3 hours'
             blocks: 900
           min_enactment_period:
@@ -576,11 +577,12 @@ networks:
             time1: 'Day 1'
             percent1: 1
             time2: 'Day 14'
-            percent2: 0    
+            percent2: 0
       submission_deposit: 100
       max_votes: 512
     preimage:
-      min_deposit: 0.0001
+      base_deposit: 5
+      byte_deposit: 0.0001
     democracy:
       launch_period:
         days: 1
@@ -789,7 +791,8 @@ networks:
           exec_time: 0.0008
           xcdot_cost: 0.00090281848
     preimage:
-      min_deposit: .01
+      base_deposit: 500
+      byte_deposit: .01
     democracy:
       launch_period:
         days: 7
