@@ -48,7 +48,7 @@ Once all of these steps are completed and both teams have successfully tested as
 From a technical perspective, the process to create a HRMP channel with Moonriver and Moonbeam is nearly the same. However, engagement with the Moonbeam community is crucial and required before a proposal will pass. The process is as follows:
 
 1. Add details of the asset and project to [the forum](/tokens/governance/proposals/#submitting-your-idea-to-the-forum){target=_blank} in the the XCM category.
-2. On the chain to connect, open an HRMP channel to Moonriver/Moonbeam. Optionally, you can create a batched proposal to register MOVR/GLMR or register it any time
+2. On the chain to connect, open an HRMP channel to Moonriver/Moonbeam. Optionally, you can create a batched proposal to register MOVR/GLMR or register at a later date
 3. Once the proposal in step 2 gets enacted, you will create a batched proposal on Moonbeam to:
     1. Accept the incoming HRMP channel
     2. Propose an outgoing HRMP channel from Moonriver/Moonbeam
@@ -114,7 +114,7 @@ Sovereign Account Address on Moonbase Alpha: 0x7369626ce803000000000000000000000
 
 When getting started with the Moonbase Alpha relay chain, once you have your sovereign account’s address, please contact the team on [Telegram](https://t.me/Moonbeam_Official){target=_blank} or [Discord](https://discord.gg/PfpUATX){target=_blank}, so the team can fund it at a relay chain level. If not, you won’t be able to create the HRMP channel.
 
-## Create an HRMP Channel {: #create-an-hrmp-channel }
+## Create an HRMP Channel To Moonbeam {: #create-an-hrmp-channel }
 
 To create an HRMP channel, you'll need to send an XCM message to the relay chain that will request a channel to be opened through the relay chain. The message will need to contain the following XCM instructions:
 
@@ -272,9 +272,24 @@ To get started, head to [Polkadot.js Apps](https://polkadot.js.org/apps/#/explor
 
 Once the message has been sent, the relay chain should execute the content and the request to open the channel. Please contact us on [Telegram](https://t.me/Moonbeam_Official){target=_blank} or [Discord](https://discord.gg/PfpUATX){target=_blank} once you've requested opening the channel because the request needs to be accepted by Moonbeam.
 
+## Propose a New HRMP Channel and Register an Asset {: #propose-a-new-hrmp-channel-and-register-an-asset }
+
+An XCMP/HRMP channel must be registered from Moonbeam to the connecting chain to send assets from Moonbeam to the connecting chain. Additionally, the connecting chain's asset(s) must be registered on Moonbeam for XCM transfers. On Moonbase Alpha, a channel and asset can be quickly registered with the help of the team, who use a sudo account. On Moonbeam and Moonriver, this must be done through governance. There are multiple ways that you can add these assets, but the [xcm-tools GitHub repo](https://github.com/PureStake/xcm-tools){target=_blank} is recommended.  
+
+### Send a Batched Proposal via XCM-Tools {: #send-a-batched-proposal-via-xcm-tools }
+
+When proposing an XCMP/HRMP channel registration on a Moonbeam network, you will wrap the channel and asset registrations into a single batched transaction so that during governance participants will have to vote on only one proposal. The xcm-tools GitHub repository should be cloned to aid with this process:  
+
+```
+git clone https://github.com/PureStake/xcm-tools.git
+cd xcm-tools
+```
+
+You will need a WebSocket endpoint for the Moonbeam network that you intend to register your chain on.
+
 ## Accept the HRMP Channel {: #accept-the-hrmp-channel }
 
-As previously mentioned, all XCMP channel integrations with Moonbeam are unidirectional. As such, once your parachain is onboarded there needs to be a channel that Moonbeam will request to send tokens back to your parachain, and you'll need to accept it.
+As previously mentioned, all XCMP/HRMP channel integrations with Moonbeam are unidirectional. As such, once your parachain is onboarded there needs to be a channel that Moonbeam will request to send tokens back to your parachain, and you'll need to accept it.
 
 The process of accepting the channel is similar to the one of opening, meaning that you have to construct an encoded call data in the relay chain, and then get it executed via an XCM message from your parachain. 
 
