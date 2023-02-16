@@ -41,13 +41,13 @@ The interface includes the following functions:
      - The proposal hash (*bytes32*)
      - [The biasing mechanism](https://wiki.polkadot.network/docs/learn-governance#super-majority-approve){target=_blank} where 0 is `SuperMajorityApprove`, 1 is `SuperMajorityAgainst`, 2 is `SimpleMajority` (*uint256*)
      - The enactment delay period (*uint256*)
-     - The total aye vote, including Conviction (*uint256*)
-     - The total nay note, including Conviction (*uint256*)
+     - The total "Aye" vote, including Conviction (*uint256*)
+     - The total "Nay" note, including Conviction (*uint256*)
      - The total turnout, not including Conviction (*uint256*)
 - **finishedReferendumInfo**(*uint256* refIndex) — read-only function that returns a boolean indicating whether a referendum passed and the block at which it finished
- - **propose**(*bytes32* proposalHash, *uint256* value) — submit a proposal by providing a hash and the number of tokens to lock. Uses the [`propose`](/builders/pallets-precompiles/pallets/democracy/#:~:text=propose(proposalHash, value)){target=_blank} method of the Democracy Pallet
- - **second**(*uint256* propIndex, *uint256* secondsUpperBound) — second a proposal by providing the proposal index and a number greater than or equal to the number of existing seconds for this proposal (necessary to calculate the weight of the call). An amount is not needed because seconds require the same amount the original proposer locked. Uses the [`second`](/builders/pallets-precompiles/pallets/democracy/#:~:text=second(proposal, secondsUpperBound)){target=_blank} method of the Democracy Pallet 
- - **standardVote**(*uint256* refIndex, *bool* aye, *uint256* voteAmount, *uint256* conviction) — vote in a referendum by providing the proposal index, the vote direction (`true` is a vote to enact the proposal, `false` is a vote to keep the status quo), the number of tokens to lock, and the conviction. Conviction is an integer from `0` to `6` where `0` is no lock time and `6` is the maximum lock time. Uses the [`vote`](/builders/pallets-precompiles/pallets/democracy/#:~:text=vote(refIndex, vote)){target=_blank} method of the Democracy Pallet 
+ - **propose**(*bytes32* proposalHash, *uint256* value) — submit a proposal by providing a hash and the number of tokens to lock. Uses the [`propose`](/builders/pallets-precompiles/pallets/democracy/#:~:text=propose(proposalHash, value)){target=_blank} method of the democracy pallet
+ - **second**(*uint256* propIndex, *uint256* secondsUpperBound) — second a proposal by providing the proposal index and a number greater than or equal to the number of existing seconds for this proposal (necessary to calculate the weight of the call). An amount is not needed because seconds require the same amount the original proposer locked. Uses the [`second`](/builders/pallets-precompiles/pallets/democracy/#:~:text=second(proposal, secondsUpperBound)){target=_blank} method of the democracy pallet 
+ - **standardVote**(*uint256* refIndex, *bool* aye, *uint256* voteAmount, *uint256* conviction) — vote in a referendum by providing the proposal index, the vote direction (`true` is a vote to enact the proposal, `false` is a vote to keep the status quo), the number of tokens to lock, and the Conviction. Conviction is an integer from `0` to `6` where `0` is no lock time and `6` is the maximum lock time. Uses the [`vote`](/builders/pallets-precompiles/pallets/democracy/#:~:text=vote(refIndex, vote)){target=_blank} method of the democracy pallet 
  - **removeVote**(*uint256* refIndex) — this method is used to remove a vote for a referendum before clearing expired democracy locks. Note, this cannot be used to revoke or cancel a vote while a proposal is being voted on.  
  - **delegate**(*address* representative, *uint256* candidateCount, *uint256* amount) — delegate voting power to another account by specifying an account to whom the vote shall be delegated, a Conviction factor which is used for all delegated votes, and the number of tokens to delegate. Uses the [`delegate`](/builders/pallets-precompiles/pallets/democracy/#:~:text=delegate(to, conviction, balance)){target=_blank} method of the Democracy Pallet 
  - **unDelegate**() — a method called by the delegator to undelegate voting power. Tokens are eligible to be unlocked once the Conviction period specified by the original delegation has elapsed. Uses the [`undelegate`](/builders/pallets-precompiles/pallets/democracy/#:~:text=undelegate()){target=_blank} method of the Democracy Pallet 
@@ -67,7 +67,7 @@ The interface also includes the following events:
 
 ### Checking Prerequisites {: #checking-prerequisites } 
 
-The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonbeam and Moonriver. Before diving into the interface, it's best if you're familiar with [how to propose an action](/tokens/governance/proposals/){target=_blank} and [how to vote on a proposal](/tokens/governance/voting/){target=_blank} on Moonbeam. Additionally, you should:  
+The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonbeam and Moonriver. Before diving into the interface, it's best if you're familiar with [how to propose an action](/tokens/governance/proposals/){target=_blank} and [how to vote on a referendum](/tokens/governance/voting/){target=_blank} on Moonbeam. Additionally, you should:  
 
  - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
  - Have an account with some DEV tokens.
@@ -171,7 +171,7 @@ Now, you're ready to return to Remix to vote on the referendum via the Democracy
 1. Expand the Democracy Precompile contract to see the available functions if it is not already open
 2. Find the **standardVote** function and press the button to expand the section
 3. Enter the index of the referendum to vote on
-4. Leave the field empty for **nay** or input `1` for **aye**. In the context of a referendum, nay is a vote to keep the status quo unchanged. Aye is a vote to enact the action proposed by the referendum
+4. Leave the field empty for **Nay** or input `1` for **Aye**. In the context of a referendum, "Nay" is a vote to keep the status quo unchanged. "Aye" is a vote to enact the action proposed by the referendum
 5. Enter the number of tokens to lock in Wei. Avoid entering your full balance here because you need to pay for transaction fees
 6. Enter a Conviction between 0-6 inclusive that represents the desired Lock Period for the tokens committed to the vote, where 0 represents no Lock Period and 6 represents the maximum Lock Period. For more information on Lock Periods, see [voting on a proposal](/tokens/governance/voting/){target=_blank}
 7. Press **transact** and confirm the transaction in MetaMask

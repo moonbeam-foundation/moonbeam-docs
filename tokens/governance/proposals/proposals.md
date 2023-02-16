@@ -17,7 +17,7 @@ Moonbeam's governance system is in the process of getting revamped! This next ph
 
 This guide outlines the process of how to create a proposal in Governance v1 on Moonbeam. The steps will go from its creation until it reaches public referenda. There is a separate guide on [How to Vote on a Proposal](/tokens/governance/voting/voting){target=_blank} in Governance v1. 
 
-For more information on Moonbeam's governance system, including Governance v1 and Governance v2 (OpenGov), please refer to the [governance overview page](/learn/features/governance/){target=_blank}.
+For more information on Moonbeam's governance system, including Governance v1 and OpenGov (Governance v2), please refer to the [governance overview page](/learn/features/governance/){target=_blank}.
 
 ## Definitions {: #definitions } 
 
@@ -29,21 +29,22 @@ Some of the key parameters for this guide are the following:
 
 --8<-- 'text/governance/preimage-definitions.md'
 
- - **Minimum proposal deposit** — minimum amount of tokens that the proposer needs to bond when submitting a proposal. Tokens might be locked for an indeterminate amount of time because it is unknown when a proposal may become a referendum (if ever). This is true for tokens bonded by both the proposer and users that second the proposal
+ - **Proposal deposit** — minimum amount of tokens that the proposer needs to bond when submitting a proposal. Tokens might be locked for an indeterminate amount of time because it is unknown when a proposal may become a referendum (if ever). This is true for tokens bonded by both the proposer and users that second the proposal
  - **Launch Period** — how often new public referenda are launched
  - **Cool-off Period** — duration (in blocks) in which a proposal may not be re-submitted after being vetoed
 
 === "Moonbeam"
-    |         Variable         |                                                          Value                                                          |
-    |:------------------------:|:-----------------------------------------------------------------------------------------------------------------------:|
-    | Minimum preimage deposit |                                    {{ networks.moonbeam.preimage.min_deposit }} GLMR                                    |
-    | Minimum proposal deposit |                                   {{ networks.moonbeam.democracy.min_deposit }} GLMR                                    |
-    |      Launch Period       | {{ networks.moonbeam.democracy.launch_period.blocks}} blocks ({{ networks.moonbeam.democracy.launch_period.days}} days) |
-    |     Cool-off Period      |   {{ networks.moonbeam.democracy.cool_period.blocks}} blocks ({{ networks.moonbeam.democracy.cool_period.days}} days)   |
+    |         Variable          |                                                          Value                                                          |
+    |:-------------------------:|:-----------------------------------------------------------------------------------------------------------------------:|
+    |   Preimage base deposit   |                                   {{ networks.moonbeam.preimage.base_deposit }} GLMR                                    |
+    | Preimage deposit per byte |                                   {{ networks.moonbeam.preimage.byte_deposit }} GLMR                                    |
+    |     Proposal deposit      |                                   {{ networks.moonbeam.democracy.min_deposit }} GLMR                                    |
+    |       Launch Period       | {{ networks.moonbeam.democracy.launch_period.blocks}} blocks ({{ networks.moonbeam.democracy.launch_period.days}} days) |
+    |      Cool-off Period      |   {{ networks.moonbeam.democracy.cool_period.blocks}} blocks ({{ networks.moonbeam.democracy.cool_period.days}} days)   |
 
 ## Roadmap of a Proposal {: #roadmap-of-a-proposal } 
 
-This guide will cover the first few steps outlined in the proposal roadmap, as highlighted in pink in the diagram below. You'll learn how to submit your proposal idea to the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=_blank}, submit a preimage, submit your proposal on-chain using the preimage hash, and finally how to second a proposal.
+This guide will cover the first few steps outlined in the proposal roadmap, as highlighted in the diagram below. You'll learn how to submit your proposal idea to the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=_blank}, submit a preimage, submit your proposal on-chain using the preimage hash, and finally how to second a proposal.
 
 You can find a full explanation of the [happy path for a Governance v1 proposal on the Governance overview page](/learn/features/governance/#roadmap-of-a-proposal){target=_blank}.
 
@@ -85,7 +86,9 @@ Here, you need to provide the following information:
 !!! note
     Make sure you copy the preimage hash, as it is necessary to submit the proposal.
 
-Note that the storage cost of the preimage is displayed at the bottom left corner of this window. After the transaction is submitted, you will see some confirmations on the top right corner of the Polkadot.js Apps interface and the preimage will be added to the list of **preimages**.
+Note that the storage cost of the preimage can be calculated as the base fee (per network) plus the fee per byte of the preimage being proposed. 
+
+After the transaction is submitted, you will see some confirmations on the top right corner of the Polkadot.js Apps interface and the preimage will be added to the list of **preimages**.
 
 ### Submitting a Proposal {: #submitting-a-proposal } 
 
@@ -136,3 +139,5 @@ Here, you need to provide the following information:
 After the transaction is submitted, you will see some confirmations on the top right corner of the Polkadot.js Apps interface. You should also see the proposal listed in the **Proposals** section, displaying the proposer and the amounts of tokens locked and listing the users that have seconded this proposal!
 
 ![Proposal Endorsed](/images/tokens/governance/proposals/proposals-10.png)
+
+At each Launch Period, the most seconded proposal becomes a referendum. To learn how to vote on a proposal, please refer to the [How to Vote on a Proposal in OpenGov](/tokens/governance/voting/voting){target=_blank} guide.

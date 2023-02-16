@@ -15,7 +15,7 @@ This guide will cover some of the most common flags and show you how to access a
 
 ## Common Flags {: #common-flags }
 
-- **`--validator`** - enables validator mode for collator candidates and, if eligible, allows the node to actively participate in block production
+- **`--collator`** - enables collator mode for collator candidates and, if eligible, allows the node to actively participate in block production
 - **`--port`** - specifies the peer-to-peer protocol TCP port. The default port for parachains is `{{ networks.parachain.p2p }}` and `{{ networks.relay_chain.p2p }}` for the embedded relay chain
 - **`--rpc-port`**  - specifies the HTTP RPC server TCP port. The default port for parachains is `{{ networks.parachain.rpc }}`  and `{{ networks.relay_chain.rpc }}` for the embedded relay chain
 - **`--ws-port`** - specifies the WebSockets RPC server TCP port. The default port for parachains is `{{ networks.parachain.ws }}`  and `{{ networks.relay_chain.ws }}` for the embedded relay chain
@@ -27,7 +27,7 @@ This guide will cover some of the most common flags and show you how to access a
 - **`--wasm-execution`** - specifies the method for executing Wasm runtime code. The available options are:
     - **`compiled`** - this is the default and uses the [Wasmtime](https://github.com/paritytech/wasmtime){target=_blank} compiled runtime
     - **`interpreted-i-know-what-i-do`** - uses the [wasmi interpreter](https://github.com/paritytech/wasmi){target=_blank}
-- **`--state-pruning`** - specifies the state pruning mode. For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`. If running a node with the `--validator` flag, the default is to keep the full state of all blocks. Otherwise, the state is only kept for the last 256 blocks. The available options are:
+- **`--state-pruning`** - specifies the state pruning mode. For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`. If running a node with the `--collator` flag, the default is to keep the full state of all blocks. Otherwise, the state is only kept for the last 256 blocks. The available options are:
     - **`archive`** - keeps the full state of all blocks
     - **`<number-of-blocks>`** - specifies a custom number of blocks to keep the state for
 - **`--trie-cache-size`** - specifies the size of the internal state cache. The default is `67108864`. You can set this value to `0` to disable the cache and improve collator performance. For client versions prior to v0.27.0, the `--trie-cache-size` flag was named `--state-cache-size`

@@ -3,21 +3,21 @@ title: How to Propose an Action in OpenGov
 description: Follow these step-by-step instructions to learn how to submit a Democracy proposal for other token holders to vote on in Governance v2 (OpenGov) on Moonbeam. 
 ---
 
-# How to Propose an Action in Governance v2: OpenGov
+# How to Propose an Action in OpenGov (Governance v2)
 
 ![Governance Moonbeam Banner](/images/tokens/governance/proposals/governance-proposal-banner.png)
 
 ## Introduction {: #introduction }
 
-A proposal is a submission to the chain in which a token holder suggests for an action to be enacted by the system. Proposals are one of the core elements of the governance system because they are the main tool for stakeholders to propose actions/changes, which other stakeholders then vote on. 
+A proposal is a submission to the chain in which a token holder suggests for an action to be enacted by the system. Proposals are one of the core elements of the governance system because they are the main tool for community members to propose actions/changes, which other token holders then vote on. 
 
 In Moonbeam, users are able to create and vote on proposals using their H160 address and private key, that is, their regular Ethereum account!
 
-Moonbeam's governance system is in the process of getting revamped! This next phase of governance is known as Governance v2 or OpenGov. During the roll-out process, OpenGov will be rigorously tested on Moonriver before a proposal will be made to deploy it on Moonbeam. Until it launches on Moonbeam, Moonbeam will continue to use Governance v1. As such, **this guide is for proposals on Moonriver or Moonbase Alpha only**. If you're looking to submit a proposal on Moonbeam, you can refer to the [How to Propose an Action in Governance v1](/tokens/governance/proposals/proposals){target=_blank} guide.
+Moonbeam's governance system is in the process of getting revamped! This next phase of governance is known as OpenGov (Goverance v2). During the roll-out process, OpenGov will be rigorously tested on Moonriver before a proposal will be made to deploy it on Moonbeam. Until it launches on Moonbeam, Moonbeam will continue to use Governance v1. As such, **this guide is for proposals on Moonriver or Moonbase Alpha only**. If you're looking to submit a proposal on Moonbeam, you can refer to the [How to Propose an Action in Governance v1](/tokens/governance/proposals/proposals){target=_blank} guide.
 
-This guide will outline the process, with step-by-step instructions, of how to submit a proposal for other token holders to vote on in Governance v2: OpenGov. This guide will show you how to submit the proposal on Moonbase Alpha, but it can be easily adapted for Moonriver. There is a separate guide on [How to Vote on a Proposal in OpenGov](/tokens/governance/voting/opengov-voting){target=_blank} in Governance v2. 
+This guide will outline the process, with step-by-step instructions, of how to submit a proposal for other token holders to vote on in OpenGov (Governance v2). This guide will show you how to submit the proposal on Moonbase Alpha, but it can be easily adapted for Moonriver. There is a separate guide on [How to Vote on a Proposal in OpenGov](/tokens/governance/voting/opengov-voting){target=_blank}. 
 
-For more information on Moonbeam's governance system, including Governance v1 and Governance v2 (OpenGov), please refer to the [governance overview page](/learn/features/governance/){target=_blank}.
+For more information on Moonbeam's governance system, including Governance v1 and OpenGov (Governance v2), please refer to the [governance overview page](/learn/features/governance/){target=_blank}.
 
 ## Definitions {: #definitions } 
 
@@ -31,43 +31,13 @@ Some of the key parameters for this guide are the following:
 
 --8<-- 'text/governance/lead-in-definitions.md'
 
-=== "Moonriver"
-    |         Variable         |                            Value                            |
-    |:------------------------:|:-----------------------------------------------------------:|
-    | Minimum preimage deposit |     {{ networks.moonriver.preimage.min_deposit }} MOVR      |
-    |    Submission Deposit    | {{ networks.moonriver.governance.submission_deposit }} MOVR |
-
-=== "Moonbase Alpha"
-    |         Variable         |                           Value                           |
-    |:------------------------:|:---------------------------------------------------------:|
-    | Minimum preimage deposit |     {{ networks.moonbase.preimage.min_deposit }} DEV      |
-    |    Submission Deposit    | {{ networks.moonbase.governance.submission_deposit }} DEV |
-
-The Lead-in Period is subject to Track-specific parameters, which are as follows:
-
-=== "Moonriver"
-    |         Track          |                                                                            Prepare Period                                                                            |                                    Capacity                                     |                                Decision Deposit                                |
-    |:----------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------:|:------------------------------------------------------------------------------:|
-    |          Root          |          {{ networks.moonriver.governance.tracks.root.prepare_period.blocks }} blocks ({{ networks.moonriver.governance.tracks.root.prepare_period.time }})          |     {{ networks.moonriver.governance.tracks.root.max_deciding }} proposals      |     {{ networks.moonriver.governance.tracks.root.decision_deposit }} MOVR      |
-    |      Whitelisted       |   {{ networks.moonriver.governance.tracks.whitelisted.prepare_period.blocks }} blocks ({{ networks.moonriver.governance.tracks.whitelisted.prepare_period.time }})   |  {{ networks.moonriver.governance.tracks.whitelisted.max_deciding }} proposals  |  {{ networks.moonriver.governance.tracks.whitelisted.decision_deposit }} MOVR  |
-    |     General Admin      | {{ networks.moonriver.governance.tracks.general_admin.prepare_period.blocks }} blocks ({{ networks.moonriver.governance.tracks.general_admin.prepare_period.time }}) | {{ networks.moonriver.governance.tracks.general_admin.max_deciding }} proposals | {{ networks.moonriver.governance.tracks.general_admin.decision_deposit }} MOVR |
-    | Emergency<br>Canceller |     {{ networks.moonriver.governance.tracks.canceller.prepare_period.blocks }} blocks ({{ networks.moonriver.governance.tracks.canceller.prepare_period.time }})     |   {{ networks.moonriver.governance.tracks.canceller.max_deciding }} proposals   |   {{ networks.moonriver.governance.tracks.canceller.decision_deposit }} MOVR   |
-    |  Emergency<br>Killer   |        {{ networks.moonriver.governance.tracks.killer.prepare_period.blocks }} blocks ({{ networks.moonriver.governance.tracks.killer.prepare_period.time }})        |    {{ networks.moonriver.governance.tracks.killer.max_deciding }} proposals     |    {{ networks.moonriver.governance.tracks.killer.decision_deposit }} MOVR     |
-
-=== "Moonbase"
-    |         Track          |                                                                           Prepare Period                                                                           |                                    Capacity                                    |                               Decision Deposit                               |
-    |:----------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------:|:----------------------------------------------------------------------------:|
-    |          Root          |          {{ networks.moonbase.governance.tracks.root.prepare_period.blocks }} blocks ({{ networks.moonbase.governance.tracks.root.prepare_period.time }})          |     {{ networks.moonbase.governance.tracks.root.max_deciding }} proposals      |     {{ networks.moonbase.governance.tracks.root.decision_deposit }} DEV      |
-    |      Whitelisted       |   {{ networks.moonbase.governance.tracks.whitelisted.prepare_period.blocks }} blocks ({{ networks.moonbase.governance.tracks.whitelisted.prepare_period.time }})   |  {{ networks.moonbase.governance.tracks.whitelisted.max_deciding }} proposals  |  {{ networks.moonbase.governance.tracks.whitelisted.decision_deposit }} DEV  |
-    |     General Admin      | {{ networks.moonbase.governance.tracks.general_admin.prepare_period.blocks }} blocks ({{ networks.moonbase.governance.tracks.general_admin.prepare_period.time }}) | {{ networks.moonbase.governance.tracks.general_admin.max_deciding }} proposals | {{ networks.moonbase.governance.tracks.general_admin.decision_deposit }} DEV |
-    | Emergency<br>Canceller |     {{ networks.moonbase.governance.tracks.canceller.prepare_period.blocks }} blocks ({{ networks.moonbase.governance.tracks.canceller.prepare_period.time }})     |   {{ networks.moonbase.governance.tracks.canceller.max_deciding }} proposals   |   {{ networks.moonbase.governance.tracks.canceller.decision_deposit }} DEV   |
-    |  Emergency<br>Killer   |        {{ networks.moonbase.governance.tracks.killer.prepare_period.blocks }} blocks ({{ networks.moonbase.governance.tracks.killer.prepare_period.time }})        |    {{ networks.moonbase.governance.tracks.killer.max_deciding }} proposals     |    {{ networks.moonbase.governance.tracks.killer.decision_deposit }} DEV     |
+Make sure you check the [Governance Parameters](/learn/features/governance/#governance-parameters-v2) for each network and track.
 
 ## Roadmap of a Proposal {: #roadmap-of-a-proposal }
 
-This guide will cover the first few steps outlined in the proposal roadmap, as highlighted in pink in the diagram below. You'll learn how to submit your proposal idea to the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=_blank}, submit a preimage, and submit your proposal on-chain using the preimage hash.
+This guide will cover the first few steps outlined in the proposal roadmap, as highlighted in the diagram below. You'll learn how to submit your proposal idea to the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=_blank}, submit a preimage, and submit your proposal on-chain using the preimage hash.
 
-You can find a full explanation of the [happy path for a Governance v2 (OpenGov) proposal on the Governance overview page](/learn/features/governance/#roadmap-of-a-proposal-v2){target=_blank}.
+You can find a full explanation of the [happy path for a OpenGov (Governance v2) proposal on the Governance overview page](/learn/features/governance/#roadmap-of-a-proposal-v2){target=_blank}.
 
 ![Proposal Roadmap](/images/tokens/governance/proposals/v2/proposal-roadmap.png)
 
@@ -75,13 +45,15 @@ You can find a full explanation of the [happy path for a Governance v2 (OpenGov)
 
 ## Proposing an Action {: #proposing-an-action }
 
-This section goes over the process of creating a proposal with Governance v2 on Moonbase Alpha. These steps can be adapted for Moonriver.
+This section goes over the process of creating a proposal with OpenGov (Governance v2) on Moonbase Alpha. These steps can be adapted for Moonriver.
 
 To make a proposal in the network, you can use the Polkadot.js Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do following the [Creating or Importing an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=_blank} guide. For this example, three accounts were imported and named with super original names: Alice, Bob, and Charlie.
 
 ![Accounts in Polkadot.js](/images/tokens/governance/proposals/proposals-3.png)
 
-For the proposal, you can choose anything you would like to propose, just make sure that you assign it to an Origin and Track that have enough privileges to execute the action. For the purposes of this guide, the action will be to register a new [mintable XC-20](/builders/interoperability/xcm/xc20/mintable-xc20){target=_blank} using the General Admin Origin and Track. 
+For the proposal, you can choose anything you would like to propose, just make sure that you assign it to the right Origin and Track, so that it has the right privileges to execute the action. 
+
+For the purposes of this guide, the action will be to register a new [mintable XC-20](/builders/interoperability/xcm/xc20/mintable-xc20){target=_blank} using the General Admin Origin and Track. 
 
 ### Submitting a Preimage of the Proposal {: #submitting-a-preimage-of-the-proposal } 
 
@@ -104,24 +76,26 @@ Here, you need to provide the following information:
 !!! note
     Make sure you copy the preimage hash, as it is necessary to submit the proposal.
 
-Note that the storage cost of the preimage is displayed at the bottom left corner of this window. After the transaction is submitted, you will see some confirmations on the top right corner of the Polkadot.js Apps interface and the preimage will be added to the list of **preimages**.
+Note that the storage cost of the preimage can be calculated as the base fee (per network) plus the fee per byte of the preimage being proposed. 
+
+After the transaction is submitted, you will see some confirmations on the top right corner of the Polkadot.js Apps interface and the preimage will be added to the list of **preimages**.
 
 ### Submitting a Proposal {: #submitting-a-proposal-v2 } 
 
 Once you have committed the preimage (check the previous section), the roadmap's next major milestone is to submit the proposal related to it. To do so, select **Referenda** from the **Governance** dropdown, and click on **Submit proposal**.
 
-In order to submit a proposal, you'll need to choose which Origin class you want your proposal to be executed with. For more information on each Origin class, please refer to the [Governance v2 section of the governance overview page](/learn/features/governance/#general-definitions-gov2){target=_blank}.
+In order to submit a proposal, you'll need to choose which Origin class you want your proposal to be executed with. **Choosing the wrong Track/Origin might result in your proposal failing at execution**. For more information on each Origin class, please refer to the [Governance v2 section of the governance overview page](/learn/features/governance/#general-definitions-gov2){target=_blank}.
 
 ![Submit proposal](/images/tokens/governance/proposals/v2/proposals-6.png)
 
 Here, you need to provide the following information:
 
  1. Select the account from which you want to submit the proposal (in this case, Alice)
- 2. Choose the Track to submit the proposal to. The Origin associated with the Track will need to have enough authority to execute the proposed action. For the system remark, you can select **2 / General Admin** from the **submission track** dropdown
+ 2. Choose the Track to submit the proposal to. The Origin associated with the Track will need to have enough authority to execute the proposed action. For this example, to register a mintable XC-20, you can select **2 / General Admin** from the **submission track** dropdown
  3. In the **origin** dropdown, choose **Origins**
  4. In the **Origins** dropdown, select the Origin, which in this case is **GeneralAdmin**
- 5. Enter the preimage hash related to the proposal. In this example, it is the hash of the `remark` preimage from the previous section
- 6. Choose the moment of enactment, either after a specific number of blocks, or at a specific block. It must meet the minimum Enactment Period
+ 5. Enter the preimage hash related to the proposal. In this example, it is the hash of the `assetManager.registerLocalAsset` preimage from the previous section
+ 6. Choose the moment of enactment, either after a specific number of blocks, or at a specific block. It must meet the minimum Enactment Period, which you can find in OpenGov's [Governance Parameters](/learn/features/governance/#governance-parameters-v2)
  7. Enter the number of blocks or the specific block to enact the proposal at
  8. Click **Submit proposal** and sign the transaction
 

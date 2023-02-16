@@ -2,7 +2,7 @@
 
 Moonbase Alpha has two types of endpoints available for users to connect to: one for HTTPS and one for WSS.
 
-If you're looking for your own endpoints suitable for production use, you can check out the [Endpoint Providers](/builders/get-started/endpoints/#endpoint-providers) section of our documentation. Otherwise, to get started quickly you can use one of the following public HTTPS or WSS endpoints.
+If you're looking for your own endpoints suitable for production use, you can check out the [Endpoint Providers](/builders/get-started/endpoints/#endpoint-providers){target=_blank} section of our documentation. Otherwise, to get started quickly you can use one of the following public HTTPS or WSS endpoints.
 
 --8<-- 'text/endpoints/moonbase.md'
 
@@ -18,14 +18,14 @@ const Web3 = require('web3'); // Load Web3 library
 // Create local Web3 instance - set Moonbase Alpha as provider
 const web3 = new Web3('https://rpc.api.moonbase.moonbeam.network'); 
 ```
-For the Ethers.js library, define the provider by using `ethers.providers.StaticJsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonbase Alpha:
+For the Ethers.js library, define the provider by using `ethers.JsonRpcProvider(providerURL, {object})` and setting the provider URL to Moonbase Alpha:
 
 ```js
 const ethers = require('ethers'); // Load Ethers library
 
 const providerURL = 'https://rpc.api.moonbase.moonbeam.network';
 // Define provider
-const provider = new ethers.providers.StaticJsonRpcProvider(providerURL, {
+const provider = new ethers.JsonRpcProvider(providerURL, {
     chainId: 1287,
     name: 'moonbase-alphanet'
 });

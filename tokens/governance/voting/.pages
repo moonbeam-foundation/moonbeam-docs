@@ -2,4 +2,4 @@ title: Vote on a Proposal
 nav:
   - index.md
   - 'Governance v1': 'voting.md'
-  - 'Governance v2': 'opengov-voting.md'
+  - 'OpenGov (Governance v2)': 'opengov-voting.md'

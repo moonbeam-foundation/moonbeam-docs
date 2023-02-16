@@ -36,7 +36,8 @@ Some of the main components of this governance model include:
 
  - **Referenda** — a stake-based voting scheme where each referendum is tied to a specific proposal for a change to the Moonbeam system including values for key parameters, code upgrades, or changes to the governance system itself
  - **Voting** — referendum will be voted on by token holders on a stake-weighted basis. Referenda which pass are subject to delayed enactment such that people that disagree with the direction of the decision have time to exit the network
- - **Council & Technical Committee** — a group of community members who have special voting rights within the system. **In Governance v2, the Council has been dissolved and its responsibilities have been returned to the community**
+ - **Council & Technical Committee Governance V1** — a group of community members who have special voting rights within the system
+ - **OpenGov Technical Committee** — a group of community members who can add certain proposals to the Whitelisted Track
 
 For more details on how these Substrate frame pallets implement on-chain governance, you can checkout the [Walkthrough of Polkadot’s Governance](https://polkadot.network/a-walkthrough-of-polkadots-governance/){target=_blank} blog post and the [Polkadot Governance Wiki](https://wiki.polkadot.network/docs/learn-governance){target=_blank}.
 
@@ -47,16 +48,19 @@ This section will cover everything you need to know about OpenGov on Moonriver a
 ### General Definitions {: #general-definitions-gov2 }
 
 --8<-- 'text/governance/proposal-definitions.md'
- - **Origin** - an authorization-based source for an operation, which is used to determine the Track that a referendum is posted under
- - **Track** - an Origin-specific pipeline that outlines the lifecycle of proposals. There are five Tracks:
 
-    |    Origin Track     |                                   Description                                    |                    Referendum Examples                    |
-    |:-------------------:|:--------------------------------------------------------------------------------:|:---------------------------------------------------------:|
-    |        Root         |                                Highest privilege                                 |     Runtime upgrades, Technical Committee management      |
-    |     Whitelisted     | Proposals to be whitelisted by the Technical Committee before getting dispatched |                  Fast-tracked operations                  |
-    |    General Admin    |                          For general on-chain decisions                          | Changes to XCM fees, Orbiter program, Staking, Registrars |
-    | Emergency Canceller |          For cancellation of a referendum. Decision Deposit is refunded          |                     Wrong referendum                      |
-    |  Emergency Killer   |       For killing of bad/malicious referendum. Decision Deposit is slashed       |                   Malicious referendum                    |
+--8<-- 'text/governance/preimage-definitions.md'
+
+ - **Origin** - an authorization-based dispatch source for an operation, which is used to determine the Track that a referendum is posted under
+ - **Track** - an Origin-specific pipeline that outlines the lifecycle of proposals. Currently, there are five Tracks:
+
+    |    Origin Track     |                                   Description                                    |                         Referendum Examples                          |
+    |:-------------------:|:--------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
+    |        Root         |                                Highest privilege                                 |           Runtime upgrades, Technical Committee management           |
+    |     Whitelisted     | Proposals to be whitelisted by the Technical Committee before getting dispatched |                       Fast-tracked operations                        |
+    |    General Admin    |                          For general on-chain decisions                          | Changes to XCM fees, Orbiter program, Staking parameters, Registrars |
+    | Emergency Canceller |          For cancellation of a referendum. Decision Deposit is refunded          |                    Wrongly constructed referendum                    |
+    |  Emergency Killer   |       For killing of bad/malicious referendum. Decision Deposit is slashed       |                         Malicious referendum                         |
 
 --8<-- 'text/governance/vote-conviction-definitions.md'
 
@@ -65,13 +69,27 @@ This section will cover everything you need to know about OpenGov on Moonriver a
 --8<-- 'text/governance/lead-in-definitions.md'
     Please refer to the [Governance Parameters](#governance-parameters-v2) section for more information
 
- - **Decide Period** - token holders continue to vote on the referendum. If a referendum does not pass by the end of the period, it will be rejected and the Decision Deposit will be refunded
+ - **Decide Period** - token holders continue to vote on the referendum. If a referendum does not pass by the end of the period, it will be rejected, and the Decision Deposit will be refunded
  - **Confirm Period** - a period of time within the Decide Period where the referendum needs to have maintained enough Approval and Support to be approved and move to the Enactment Period
  - **Enactment Period** - a specified time, which is defined at the time the proposal was created, that an approved referendum waits before it can be dispatched. There is a minimum amount of time for each Track
 
 --8<-- 'text/governance/delegation-definitions.md'
 
 ### Governance Parameters {: #governance-parameters-v2 }
+
+=== "Moonriver"
+    |          Variable           |                            Value                            |
+    |:---------------------------:|:-----------------------------------------------------------:|
+    |    Preimage base deposit    |     {{ networks.moonriver.preimage.base_deposit }} MOVR     |
+    |  Preimage deposit per byte  |     {{ networks.moonriver.preimage.byte_deposit }} MOVR     |
+    | Proposal Submission Deposit | {{ networks.moonriver.governance.submission_deposit }} MOVR |
+
+=== "Moonbase Alpha"
+    |          Variable           |                           Value                           |
+    |:---------------------------:|:---------------------------------------------------------:|
+    |    Preimage base deposit    |     {{ networks.moonbase.preimage.base_deposit }} DEV     |
+    |  Preimage deposit per byte  |     {{ networks.moonbase.preimage.byte_deposit }} DEV     |
+    | Proposal Submission Deposit | {{ networks.moonbase.governance.submission_deposit }} DEV |
 
 #### General Parameters by Track {: #general-parameters-by-track }
 
@@ -133,21 +151,13 @@ This section will cover everything you need to know about OpenGov on Moonriver a
     | Emergency<br>Canceller |   Reciprocal   |             {{ networks.moonbase.governance.tracks.canceller.min_approval.time0 }}: {{ networks.moonbase.governance.tracks.canceller.min_approval.percent0 }}%<br>{{ networks.moonbase.governance.tracks.canceller.min_approval.time1 }}: {{ networks.moonbase.governance.tracks.canceller.min_approval.percent1 }}%<br>{{ networks.moonbase.governance.tracks.canceller.min_approval.time2 }}: {{ networks.moonbase.governance.tracks.canceller.min_approval.percent2 }}%             |  Reciprocal   |             {{ networks.moonbase.governance.tracks.canceller.min_support.time0 }}: {{ networks.moonbase.governance.tracks.canceller.min_support.percent0 }}%<br>{{ networks.moonbase.governance.tracks.canceller.min_support.time1 }}: {{ networks.moonbase.governance.tracks.canceller.min_support.percent1 }}%<br>{{ networks.moonbase.governance.tracks.canceller.min_support.time2 }}: {{ networks.moonbase.governance.tracks.canceller.min_support.percent2 }}%             |
     |  Emergency<br>Killer   |   Reciprocal   |                      {{ networks.moonbase.governance.tracks.killer.min_approval.time0 }}: {{ networks.moonbase.governance.tracks.killer.min_approval.percent0 }}%<br>{{ networks.moonbase.governance.tracks.killer.min_approval.time1 }}: {{ networks.moonbase.governance.tracks.killer.min_approval.percent1 }}%<br>{{ networks.moonbase.governance.tracks.killer.min_approval.time2 }}: {{ networks.moonbase.governance.tracks.killer.min_approval.percent2 }}%                      |  Reciprocal   |                      {{ networks.moonbase.governance.tracks.killer.min_support.time0 }}: {{ networks.moonbase.governance.tracks.killer.min_support.percent0 }}%<br>{{ networks.moonbase.governance.tracks.killer.min_support.time1 }}: {{ networks.moonbase.governance.tracks.killer.min_support.percent1 }}%<br>{{ networks.moonbase.governance.tracks.killer.min_support.time2 }}: {{ networks.moonbase.governance.tracks.killer.min_support.percent2 }}%                      |
 
-For the General Admin Track on Moonriver, the Approval curve starts at {{ networks.moonriver.governance.tracks.general_admin.min_approval.percent0 }}% on {{ networks.moonriver.governance.tracks.general_admin.min_approval.time0 }}, goes to {{ networks.moonriver.governance.tracks.general_admin.min_approval.percent1 }}% on {{ networks.moonriver.governance.tracks.general_admin.min_approval.time1 }}, and finishes the Decide Period on {{ networks.moonriver.governance.tracks.general_admin.min_approval.time2 }} with {{ networks.moonriver.governance.tracks.general_admin.min_approval.percent2 }}% Approval. So, if a referendum was to start off the Decide Period at 0% Approval because it had no prior votes from the Lead-in Period, then token holders began to vote and it increased to above {{ networks.moonriver.governance.tracks.general_admin.min_approval.percent1 }}% by {{ networks.moonriver.governance.tracks.general_admin.min_approval.time1 }}, it would need to remain above the Approval curve for the duration of the Confirm Period. Similarly, the referendum will need to have enough Support during the Confirm Period to pass. If both the Approval and Support requirements have continuously been met for the duration of the Confirm Period, the referendum will be approved and executed after the Enactment Period has passed.
-
-The Approval and Support percentages can be calculated using the following:
-
-=== "Approval"
-    ```
-    Approval = ( Total amount of Conviction-weighted "aye" votes / Total amount of Conviction-weighted votes ) * 100
-    ```
-
-=== "Support"
-    ```
-    Support = ( Total amount of non-Conviction-weighted votes / Total amount of tokens in the network ) * 100
-    ```
-
 #### Conviction Multiplier {: #conviction-multiplier-v2 }
+
+The Conviction multiplier is related to the number of Enactment Periods the tokens will be locked for after the referenda is enacted (if approved). Consequently, the longer you are willing to lock your tokens, the stronger your vote will be weighted. You also have the option of not locking tokens at all, but vote weight is drastically reduced (tokens are still locked during the duration of the referendum).
+
+If you were to vote 1000 tokens with a 6x Conviction, your weighted vote would be 6000 units. That is, 1000 locked tokens multiplied by the Conviction, which in this scenario would be 6. On the other hand, if you decided you didn't want to have your tokens locked after enactment, you could vote your 1000 tokens with a 0.1x Conviction. In this case, your weighted vote would only be 100 units.
+
+The Conviction multiplier values for each network are:
 
 === "Moonriver"
     | Lock Periods After Enactment | Conviction Multiplier |                        Approx. Lock Time                        |
@@ -174,15 +184,11 @@ The Approval and Support percentages can be calculated using the following:
 !!! note
     The lock time approximations are based upon regular {{ networks.moonriver.block }}-second block times. Block production may vary and thus the displayed lock times should not be deemed exact.
 
-The Conviction multiplier is related to the number of Enactment Periods the tokens will be locked for after the referenda is enacted (if approved). Consequently, the longer you are willing to lock your tokens, the stronger your vote will be weighted. You also have the option of not locking tokens at all, but vote weight is drastically reduced (tokens are still locked during the duration of the referendum).
-
-If you were to vote 1000 tokens with a 6x Conviction, your weighted vote would be 6000 units. That is, 1000 locked tokens multiplied by the Conviction, which in this scenario would be 6. On the other hand, if you decided you didn't want to have your tokens locked after enactment, you could vote your 1000 tokens with a 0.1x Conviction. In this case, your weighted vote would only be 100 units.
-
 ### Roadmap of a Proposal {: #roadmap-of-a-proposal-v2 } 
 
 Before a proposal is submitted, the author of the proposal can submit their idea for their proposal to the designated Democracy Proposals section of the [Moonbeam Governance discussion forum](https://forum.moonbeam.foundation/c/governance/2){target=_blank} for feedback from the community for at least five days. From there, the author can make adjustments to the proposal based on the feedback they've collected.
 
-Once the author is ready, they can submit their proposal on-chain and pay the Submission Deposit, which is enough to cover the on-chain storage cost of the proposal. Then the Lead-in Period begins and the community can begin voting "aye" or "nay" on the proposal by locking tokens. In order for the referendum to advance and move out of the Lead-in Period to the Decide period, the following criteria must be met:
+Once the author is ready, they can submit their proposal on-chain. To do so, first, they need to submit the preimage of the proposal. The submitter needs to bond a fee to store the preimage on-chain. The bond is returned once the submitter unnotes the preimage. Next, they can submit the actual proposal and pay the Submission Deposit, which is enough to cover the on-chain storage cost of the proposal. Then the Lead-in Period begins and the community can begin voting "Aye" or "Nay" on the proposal by locking tokens. In order for the referendum to advance and move out of the Lead-in Period to the Decide period, the following criteria must be met:
 
 - The referendum must wait the duration of the Prepare Period, which allows for adequate time to discuss the proposal before it progresses to the next phase
 - There is enough Capacity in the chosen Track
@@ -190,13 +196,36 @@ Once the author is ready, they can submit their proposal on-chain and pay the Su
 
 If a referendum meets the above criteria, it moves to the Decide Period and takes up one of the spots in its designated Track. In the Decide Period, voting continues and the referendum has a set amount of days to reach the Approval and Support requirements needed for it to progress to the Confirm Period.
 
-Once in the Confirm Period, a referendum must continuously meet the Approval and Support requirements for the duration of the period. If a referendum fails to meet the requirements at any point, it is returned to the Decide Period. If enough time is left in the Decide Period and the referendum meets the Approval and Support requirements again, it can progress to the Confirm Period again. If the Decide Period ends and not enough Approval and Support was received, the referendum will be rejected and the Decision Deposit will be returned. The proposal can be proposed again at any time, assuming it is not malicious.
+Once in the Confirm Period, a referendum must continuously meet the Approval and Support requirements for the duration of the period. If a referendum fails to meet the requirements at any point, it is returned to the Decide Period. If enough time is left in the Decide Period and the referendum meets the Approval and Support requirements again, it can progress to the Confirm Period again. If the Decide Period ends and not enough Approval and Support was received, the referendum will be rejected and the Decision Deposit will be returned. The proposal can be proposed again at any time.
 
 If a referendum continously receives enough Approval and Support during the Confirm Period, it will be approved and move to the Enactment Period. It will wait the duration of the Enactment Period before it gets dispatched.
 
 The happy path for a proposal is shown in the following diagram:
 
 ![A happy path diagram of the proposal roadmap in Governance v2.](/images/learn/features/governance/v2/proposal-roadmap.png)
+
+### Proposal Example Walkthrough
+
+A proposal (with its preimage) is submitted for the General Admin Track on Moonriver would have the following characteristics:
+
+ - The Approval curve starts at {{ networks.moonriver.governance.tracks.general_admin.min_approval.percent0 }}% on {{ networks.moonriver.governance.tracks.general_admin.min_approval.time0 }}, goes to {{ networks.moonriver.governance.tracks.general_admin.min_approval.percent1 }}% on {{ networks.moonriver.governance.tracks.general_admin.min_approval.time1 }}
+ - The Support curve starts at {{ networks.moonriver.governance.tracks.general_admin.min_support.percent0 }}% on {{ networks.moonriver.governance.tracks.general_admin.min_support.time0 }}, goes to {{ networks.moonriver.governance.tracks.general_admin.min_support.percent1 }}% on {{ networks.moonriver.governance.tracks.general_admin.min_support.time1 }}
+ - A referendum starts the Decide Period with 0% "Aye" votes (nobody voted in the Lead-in Period)
+ - Token holders begin to vote and the Approval increases to a value above {{ networks.moonriver.governance.tracks.general_admin.min_approval.percent1 }}% by {{ networks.moonriver.governance.tracks.general_admin.min_approval.time1 }}
+ - If the Approval and Support thresholds are met for the duration of the Confirm Period ({{ networks.moonriver.governance.tracks.general_admin.min_enactment_period.blocks }} blocks, approximately {{ networks.moonriver.governance.tracks.general_admin.min_enactment_period.time }}), the referendum is approved
+ - If the Approval and Support thresholds are not met during the Decision Period, the proposal is rejected. Note that the thresholds need to be met for the duration of the Confirm Period. Consequently, if they are met but the Decision Period expires before the completion of the Confirm Period, the proposal is rejected
+
+The Approval and Support percentages can be calculated using the following:
+
+=== "Approval"
+    ```
+    Approval = 100 * ( Total Conviction-weighted "Aye" votes / Total Conviction-weighted votes ) 
+    ```
+
+=== "Support"
+    ```
+    Support = 100 * ( Total non-Conviction-weighted votes / Total supply )
+    ```
 
 ### Proposal Cancellations {: #proposal-cancellations }
 
@@ -206,15 +235,15 @@ Cancellation must be voted on by the network to be executed. Cancellation propos
 
 The Emergency Canceller track results in a rejected proposal and Decision Deposit refund, and the Emergency Killer track results in cancellation and a deposit slash, meaning the deposit amount is burned. 
 
-### Rights of the Technical Committee {: #rights-of-the-technical-committee }
+### Rights of the OpenGov Technical Committee {: #rights-of-the-opengov-technical-committee }
 
 On Polkadot, the Technical Committee from Governance v1 was replaced with the Fellowship, which is a "mostly self-governing expert body with a primary goal of representing humans who embody and contain the technical knowledge base of the Kusama and/or Polkadot networks and protocol," according to [Polkadot's wiki](https://wiki.polkadot.network/docs/learn-opengov#fellowship){target=_blank}.
 
-For Moonbeam's implementation of OpenGov, instead of the Fellowship, there is a community Technical Committee that has very similar power to that of the Fellowship. Their power in governance resides in their ability to whitelist a proposal. Technical Committee members may only vote to whitelist a proposal if whitelisting that proposal would protect against a security vulnerability to the network. The passing threshold of the Technical Committee members on whether to whitelist a proposal is determined by governance. As such, the OpenGov Technical Committee has very limited power over the network. Its purpose is to provide technical review of urgent security issues that are proposed by token holders.
+For Moonbeam's implementation of OpenGov, instead of the Fellowship, there is a community OpenGov Technical Committee that has very similar power to that of the Fellowship. Their power in governance resides in their ability to whitelist a proposal. OpenGov Technical Committee members may only vote to whitelist a proposal if whitelisting that proposal would protect against a security vulnerability to the network. The passing threshold of the OpenGov Technical Committee members on whether to whitelist a proposal is determined by governance. As such, the OpenGov Technical Committee has very limited power over the network. Its purpose is to provide technical review of urgent security issues that are proposed by token holders.
 
-While still subject to governance, the idea behind the Whitelist track is that it will have different parameters to make it faster for proposals to pass. The Whitelist Track parameters, including approval, support, and voting, are determined by the Moonriver or Moonbeam Stakeholders and cannot be changed by the Technical Committee.
+While still subject to governance, the idea behind the Whitelist track is that it will have different parameters to make it faster for proposals to pass. The Whitelist Track parameters, including approval, support, and voting, are determined by the Moonriver or Moonbeam token holders through governance and cannot be changed by the OpenGov Technical Committee.
 
-The Technical Committee is made up of members of the community who have technical knowledge and expertise in Moonbeam-based networks. 
+The OpenGov Technical Committee is made up of members of the community who have technical knowledge and expertise in Moonbeam-based networks. 
 
 ### Related Guides on Goverance v2 {: #try-it-out } 
 
@@ -263,7 +292,9 @@ The governance parameters on Moonbeam are as follows:
 |         Voting Period          |  {{ networks.moonbeam.democracy.vote_period.blocks}} blocks ({{ networks.moonbeam.democracy.vote_period.days}} days)   |
 |        Enactment Period        | {{ networks.moonbeam.democracy.enact_period.blocks}} blocks ({{ networks.moonbeam.democracy.enact_period.days}} days)  |
 |        Cool-off Period         |  {{ networks.moonbeam.democracy.cool_period.blocks}} blocks ({{ networks.moonbeam.democracy.cool_period.days}} days)   |
-|        Minimum deposit         |                                   {{ networks.moonbeam.democracy.min_deposit }} GLMR                                   |
+|     Preimage base deposit      |                                   {{ networks.moonbeam.preimage.base_deposit }} GLMR                                   |
+|   Preimage deposit per byte    |                                   {{ networks.moonbeam.preimage.byte_deposit }} GLMR                                   |
+|        Proposal deposit        |                                   {{ networks.moonbeam.democracy.min_deposit }} GLMR                                   |
 |       Maximum proposals        |                                    {{ networks.moonbeam.democracy.max_proposals }}                                     |
 | Maximum referenda (at a time)* |                                    {{ networks.moonbeam.democracy.max_referenda }}                                     |
    
@@ -275,6 +306,10 @@ The governance parameters on Moonbeam are as follows:
 #### Conviction Multiplier {: #conviction-multiplier }
 
 The Conviction multiplier is related to the number of Enactment Periods the tokens will be locked for after the referenda is enacted (if approved). Consequently, the longer you are willing to lock your tokens, the stronger your vote will be weighted. You also have the option of not locking tokens at all, but vote weight is drastically reduced (tokens are still locked during the duration of the referendum).
+
+If you were to vote 1000 tokens with a 6x Conviction, your weighted vote would be 6000 units. That is, 1000 locked tokens multiplied by the Conviction, which in this scenario would be 6. On the other hand, if you decided you didn't want to have your tokens locked after enactment, you could vote your 1000 tokens with a 0.1x Conviction. In this case, your weighted vote would only be 100 units.
+
+The Conviction multiplier values for Moonbeam are:
 
 === "Moonbeam"
     | Lock Periods After Enactment | Conviction Multiplier |                       Approx. Lock Time                       |
@@ -289,8 +324,6 @@ The Conviction multiplier is related to the number of Enactment Periods the toke
 
 !!! note
     The lock time approximations are based upon regular {{ networks.moonbeam.block }}-second block times. Block production may vary and thus the displayed lock times should not be deemed exact.
-
-If you were to vote 1000 tokens with a 6x Conviction, your weighted vote would be 6000 units. That is, 1000 locked tokens multiplied by the Conviction, which in this scenario would be 6. On the other hand, if you decided you didn't want to have your tokens locked after enactment, you could vote your 1000 tokens with a 0.1x Conviction. In this case, your weighted vote would only be 100 units.
 
 ### Roadmap of a Proposal {: #roadmap-of-a-proposal } 
 
@@ -329,8 +362,8 @@ Public referenda use a positive turnout bias metric, that is, a Super-Majority a
 
 Where:
 
- - **Approve** — number of "aye" votes (includes the Conviction multiplier)
- - **Against** — number of "nay" votes (includes the Conviction multiplier)
+ - **Approve** — number of "Aye" votes (includes the Conviction multiplier)
+ - **Against** — number of "Nay" votes (includes the Conviction multiplier)
  - **Turnout** — the total number of voting tokens (without including the Conviction multiplier)
  - **Electorate** — the total number of tokens issued in the network
 
@@ -344,7 +377,7 @@ In the previous example, these numbers were:
 | Electorate |         1.22M         |
 | **Result** | 1.5 < 9.8 (Aye wins!) |
 
-In short, a heavy Super-Majority of "aye" votes is required to approve a proposal at low turnouts, but as turnout increases, it becomes a simple majority.
+In short, a heavy Super-Majority of "Aye" votes is required to approve a proposal at low turnouts, but as turnout increases, it becomes a simple majority.
 
 ### Related Guides on Goverance v1 {: #try-it-out } 
 
