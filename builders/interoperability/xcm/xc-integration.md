@@ -59,8 +59,8 @@ From a technical perspective, the process to create a HRMP channel with Moonrive
       - **Moonriver** - approximately a {{ networks.moonriver.democracy.vote_period.days }}-day voting period plus {{ networks.moonriver.democracy.enact_period.days }}-day enactment time
       - **Moonbeam** - approximately a {{ networks.moonbeam.democracy.vote_period.days }}-day voting period plus {{ networks.moonbeam.democracy.enact_period.days }}-day enactment time
 
-4. Add details about the [connecting chain on Polkassembly](http://localhost:8000/tokens/governance/proposals/#submitting-a-proposal){target=_blank} so that community members can be informed when voting on the proposal
-5. Accept the HRMP channel from Moonriver/Moonbeam on the connecting chain
+4. Add details about the [connecting parachain on Polkassembly](http://localhost:8000/tokens/governance/proposals/#submitting-a-proposal){target=_blank} so that community members can be informed when voting on the proposal
+5. Accept the HRMP channel from Moonriver/Moonbeam on the connecting parachain
 6. Exchange $50 worth of tokens for testing the XCM integration. Please send the tokens to:
 
     ```
@@ -272,9 +272,9 @@ To get started, head to [Polkadot.js Apps](https://polkadot.js.org/apps/#/explor
 
 Once the message has been sent, the relay chain should execute the content and the request to open the channel. Please contact us on [Telegram](https://t.me/Moonbeam_Official){target=_blank} or [Discord](https://discord.gg/PfpUATX){target=_blank} once you've requested opening the channel because the request needs to be accepted by Moonbeam.
 
-## Propose a New HRMP Channel and Register an Asset {: #propose-a-new-hrmp-channel-and-register-an-asset }
+## Register your Asset and Propose a New HRMP Channel {: #register-your-asset-and-propose-a-new-hrmp-channel }
 
-An XCMP/HRMP channel must be registered from Moonbeam to the connecting chain to send assets from Moonbeam to the connecting chain. Additionally, the connecting chain's asset(s) must be registered on Moonbeam for XCM transfers. On Moonbase Alpha, a channel and asset can be quickly registered with the help of the team, who use a sudo account. On Moonbeam and Moonriver, this must be done through governance. There are multiple ways that you can add these assets, but the [xcm-tools GitHub repo](https://github.com/PureStake/xcm-tools){target=_blank} is recommended.  
+An XCMP/HRMP channel from Moonbeam to your parachain must be registered to send assets from Moonbeam to the connecting chain. Additionally, the connecting parachain's asset(s) must be registered on Moonbeam for XCM transfers. On Moonbase Alpha, a channel and asset can be quickly registered with the help of the team, who use a sudo account. On Moonbeam and Moonriver, this must be done through governance. There are multiple ways that you can add these assets, but the [xcm-tools GitHub repo](https://github.com/PureStake/xcm-tools){target=_blank} is recommended.  
 
 ### Send a Batched Proposal via XCM-Tools {: #send-a-batched-proposal-via-xcm-tools }
 
@@ -285,11 +285,137 @@ git clone https://github.com/PureStake/xcm-tools.git
 cd xcm-tools
 ```
 
-You will need a WebSocket endpoint for the Moonbeam network that you intend to register your chain on.
+Run the following command, which will output the encoded calldata to accept the incoming HRMP channel request [made in a previous step](#create-an-hrmp-channel). `YOUR_PARACHAIN_ID` is your parachain's ID.  
+
+Be sure to copy the hexidecimal `PolkdotXcmSend` output of this command.  
+
+=== "Moonbeam"
+    ```
+    yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
+    --parachain-ws-provider wss://wss.api.moonbeam.network \
+    --relay-ws-provider wss://rpc.polkadot.io \
+    --hrmp-action accept
+    ```
+
+=== "Moonriver"
+    ```
+    yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
+    --parachain-ws-provider wss://wss.api.moonriver.network \
+    --relay-ws-provider wss://kusama-rpc.polkadot.io \
+    --hrmp-action accept
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
+    --parachain-ws-provider {{ networks.moonbase.wss_url }} \
+    --relay-ws-provider wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network \
+    --hrmp-action accept
+    ```
+
+Run this next command, which will output the encoded calldata to open an HRMP channel request to your parachain. `YOUR_PARACHAIN_ID` is your parachain's ID.  
+
+Be sure to copy the hexidecimal `PolkdotXcmSend` output of this command.  
+
+=== "Moonbeam"
+    ```
+    yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
+    --parachain-ws-provider wss://wss.api.moonbeam.network  \
+    --relay-ws-provider wss://rpc.polkadot.io \
+    --max-capacity 1000 --max-message-size 102400 \
+    --hrmp-action open
+    ```
+
+=== "Moonriver"
+    ```
+    yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
+    --parachain-ws-provider wss://wss.api.moonriver.network  \
+    --relay-ws-provider wss://kusama-rpc.polkadot.io \
+    --max-capacity 1000 --max-message-size 102400 \ 
+    --hrmp-action open 
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
+    --parachain-ws-provider wss://wss.api.moonriver.network  \
+    --relay-ws-provider wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network \
+    --max-capacity 1000 --max-message-size 102400 \
+    --hrmp-action open
+    ```
+
+Run this third command, which will output the encoded calldata to register your asset on a Moonbeam network. `YOUR_PARACHAIN_ID` is your parachain's ID. `YOUR_ASSET_MULTILOCATION` is the [JSON-formatted multilocation](https://github.com/PureStake/xcm-tools#example){target=_blank} of the asset from the Moonbeam network's perspective. `YOUR_TOKEN_SYMBOL` is the symbol of the token you wish to register. It is recommended to add "xc" to the front of the symbol to indicate that the asset was bridged through XCM. `YOUR_TOKEN_NAME` is the name of the token to register. `YOUR_UNITS_PER_SECOND` is the units of tokens to charge per second of execution time during XCM transfers. There is a [guide to calculate units per second](#calculating-units-per-second) below.   
+
+Be sure to copy the hexidecimal `PolkdotXcmSend` output of this command. You can repeat this process multiple times if you plan to register multiple tokens.  
+
+=== "Moonbeam"
+    ```
+    yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
+    --parachain-ws-provider wss://wss.api.moonbeam.network  \
+    --relay-ws-provider wss://rpc.polkadot.io \
+    --max-capacity 1000 --max-message-size 102400 \
+    --hrmp-action open
+    ```
+
+=== "Moonriver"
+    ```
+    yarn register-asset -w wss://moonriver.public.blastapi.io  \
+    --asset 'YOUR_ASSET_MULTILOCATION' \
+    --sym "YOUR_TOKEN_SYMBOL" -d 18 \
+    --name "YOUR_TOKEN_NAME" \
+    -u YOUR_UNITS_PER_SECOND \
+    --ed 1 --sufficient true --revert-code true 
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
+    --parachain-ws-provider wss://wss.api.moonriver.network  \
+    --relay-ws-provider wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network \
+    --max-capacity 1000 --max-message-size 102400 \
+    --hrmp-action open
+    ```
+
+Finally, take the outputs of each command and insert them into the following command to send the batch proposal to democracy. `ACCEPT_INCOMING_CALL` is the hexidecimal encoded calldata found from the first command. `OPEN_CHANNEL_CALL` is the hexidecmal encoded calldata found from the second command. `REGISTER_ASSET_CALL` is the hexidecmal encoded calldata found from the third command. If you have more than one asset to be registered on Moonbeam, you can add its registration's hexidecmal encoded calldata with another `--call` flag. `YOUR_PRIVATE_KEY` is the private key of the funded Moonbeam account that is proposing.  
+
+If you are registering on Moonbase Alpha, you will not to provide a private key or go through governance. Run the following command and provide the output to the Moonbeam team so that the asset and channel can be added quickly through sudo.  
+
+=== "Moonbeam"
+    ```
+    yarn generic-call-propose -w wss://moonbeam.public.blastapi.io \
+    --call "{ACCEPT_INCOMING_CALL}" \
+    --call "{OPEN_CHANNEL_CALL}" \
+    --call "{REGISTER_ASSET_CALL}" \
+    --account-priv-key YOUR_PRIVATE_KEY \
+    --send-preimage-hash true --send-proposal-as democracy
+    ```
+
+=== "Moonriver"
+    ```
+    yarn generic-call-propose -w wss://moonriver.public.blastapi.io \
+    --call "{ACCEPT_INCOMING_CALL}" \
+    --call "{OPEN_CHANNEL_CALL}" \
+    --call "{REGISTER_ASSET_CALL}" \
+    --account-priv-key YOUR_PRIVATE_KEY \
+    --send-preimage-hash true --send-proposal-as democracy
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    yarn generic-call-propose -w wss://wss.api.moonbase.moonbeam.network  \
+    --call "ACCEPT_INCOMING_CALL" \
+    --call "OPEN_CHANNEL_CALL" \
+    --call "REGISTER_ASSET_CALL"
+    --sudo true
+    ```
+
+### Calculating Units Per Second {: #calculating-units-per-second }
+
+woo math
 
 ## Accept the HRMP Channel {: #accept-the-hrmp-channel }
 
-As previously mentioned, all XCMP/HRMP channel integrations with Moonbeam are unidirectional. As such, once your parachain is onboarded there needs to be a channel that Moonbeam will request to send tokens back to your parachain, and you'll need to accept it.
+As previously mentioned, all XCMP/HRMP channel integrations with Moonbeam are unidirectional. As such, once your parachain is onboarded on a Moonbeam network, there needs to be a channel that Moonbeam will request to send tokens back to your parachain, and you'll need to accept it.
 
 The process of accepting the channel is similar to the one of opening, meaning that you have to construct an encoded call data in the relay chain, and then get it executed via an XCM message from your parachain. 
 
@@ -332,7 +458,7 @@ Please refer back to the Create an HRMP Channel section and follow the steps to 
 
 To register any of the Moonbeam-based network tokens on your parachain, you can use the following details.
 
-The WSS network endpoints for each Moonbeam-based network is as follows:
+The WSS network endpoints for each Moonbeam-based network are as follows:
 
 === "Moonbeam"
     ```
@@ -423,6 +549,8 @@ The multilocation of each Moonbeam-based network asset is as follows:
     ```
 
 ## Register your Asset on Moonbeam {: #register-your-asset-on-moonbeam }
+
+**SECTION EARMARKED FOR DELETION**
 
 Once the channel has been opened and accepted, your parachain's asset will need to be registered on Moonbeam. For that, the following information is needed:
 
