@@ -73,6 +73,33 @@ From a technical perspective, the process to create a HRMP channel with Moonrive
 
 Once these steps are complete, marketing efforts can be coordinated and the new XC-20 on Moonriver/Moonbeam can be added to the Cross Chain Assets section of the [Moonbeam DApp](https://apps.moonbeam.network/){target=_blank}.
 
+## Forum and Polkassembly Template
+
+When starting an XCM integration on a Moonbeam MainNet, you must add a preliminary draft of the proposal on the [Moonbeam forums](https://forum.moonbeam.foundation/){target=_blank} in the XCM category so that the voting community has the chance to provide preliminary feedback. It is recommended that this is done 5 days before the actual proposal.  
+
+Once a proposal is available for voting, you must also add a description to it in [Polkassembly](){target=_blank}.
+
+In both the Moonbeam preliminary forum post and in Polkassembly, add the following sections and information:  
+
+- **Title** - YOUR_NETWORK_NAME Proposal to Open Channel & Register ASSET_NAME
+- **Introduction** - one sentence summarizing the proposal
+- **Network Information** - one sentence summarizing your Network, and relevant links to your website, Twitter, and other social channels
+- **Summary** - brief description of the content of the proposal
+- **On-Chain Proposal Reference (Forums Only)** - include if it is a Moonbeam or Moonriver proposal, the proposal number, and proposal hash
+- **Technnical Details** - provide technical information required for the community to understand the use cases and purpose of the Proposal
+- **Additional Information** - any additional information you would like the community/readers to know
+
+Additionally, there is key information to provide that is highlighted due to its importance in a voter's decision:  
+
+- Is the blockchain network's code open source? If so, please provide the GitHub link. If not, provide an explanation on why not.  
+- Is Sudo disabled on the network? If Sudo is disabled, is the Network controlled by a select group of addresses?  
+- Has the integration of the network been tested completely on the Moonbase Alpha TestNet?  
+- (For Moonbeam HRMP Proposals Only) Does your network have a Kusama deployment? If so, provide its network name and whether the Kusama deployment is integrated with Moonriver.
+- Is the blockchain network's code audited? If so, please provide:
+    - Auditor name(s)
+    - Dates of audit reports
+    - Links to audit reports
+
 ## Re-anchoring Support {: #re-anchoring-support}
 
 After the release of Polkadot version 0.9.16, the re-anchoring logic will suffer a [major breaking change](https://github.com/paritytech/polkadot/pull/4470){target=_blank}. This logic is used to compute how a parachain sees its own reserve tokens (from a multilocation point of view). 
@@ -287,7 +314,7 @@ cd xcm-tools
 
 Run the following command, which will output the encoded calldata to accept the incoming HRMP channel request [made in a previous step](#create-an-hrmp-channel). `YOUR_PARACHAIN_ID` is your parachain's ID.  
 
-Be sure to copy the hexidecimal `PolkdotXcmSend` output of this command.  
+Be sure to copy the hexadecimal `PolkdotXcmSend` output of this command.  
 
 === "Moonbeam"
     ```
@@ -315,7 +342,7 @@ Be sure to copy the hexidecimal `PolkdotXcmSend` output of this command.
 
 Run this next command, which will output the encoded calldata to open an HRMP channel request to your parachain. `YOUR_PARACHAIN_ID` is your parachain's ID.  
 
-Be sure to copy the hexidecimal `PolkdotXcmSend` output of this command.  
+Be sure to copy the hexadecimal `PolkdotXcmSend` output of this command.  
 
 === "Moonbeam"
     ```
@@ -344,24 +371,29 @@ Be sure to copy the hexidecimal `PolkdotXcmSend` output of this command.
     --hrmp-action open
     ```
 
-Run this third command, which will output the encoded calldata to register your asset on a Moonbeam network. `YOUR_PARACHAIN_ID` is your parachain's ID. `YOUR_ASSET_MULTILOCATION` is the [JSON-formatted multilocation](https://github.com/PureStake/xcm-tools#example){target=_blank} of the asset from the Moonbeam network's perspective. `YOUR_TOKEN_SYMBOL` is the symbol of the token you wish to register. It is recommended to add "xc" to the front of the symbol to indicate that the asset was bridged through XCM. `YOUR_TOKEN_NAME` is the name of the token to register. `YOUR_UNITS_PER_SECOND` is the units of tokens to charge per second of execution time during XCM transfers. There is a [guide to calculate units per second](#calculating-units-per-second) below.   
+Run this third command, which will output the encoded calldata to register your asset on a Moonbeam network.  
 
-Be sure to copy the hexidecimal `PolkdotXcmSend` output of this command. You can repeat this process multiple times if you plan to register multiple tokens.  
+`YOUR_PARACHAIN_ID` is your parachain's ID. `YOUR_ASSET_MULTILOCATION` is the [JSON-formatted multilocation](https://github.com/PureStake/xcm-tools#example){target=_blank} of the asset from the Moonbeam network's perspective. `YOUR_TOKEN_SYMBOL` is the symbol of the token you wish to register. It is recommended to add "xc" to the front of the symbol to indicate that the asset was bridged through XCM. `YOUR_TOKEN_DECIMALS` is the number of decimals your asset has, such as `18`. `YOUR_TOKEN_NAME` is the name of the token to register. `YOUR_UNITS_PER_SECOND` is the units of tokens to charge per second of execution time during XCM transfers. There is a [guide to calculate units per second](#calculating-units-per-second) below.   
+
+Be sure to copy the hexadecimal `PolkdotXcmSend` output of this command. You can repeat this process multiple times if you plan to register multiple tokens.  
 
 === "Moonbeam"
     ```
-    yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
-    --parachain-ws-provider wss://wss.api.moonbeam.network  \
-    --relay-ws-provider wss://rpc.polkadot.io \
-    --max-capacity 1000 --max-message-size 102400 \
-    --hrmp-action open
+    yarn register-asset -w wss://moonbeam.public.blastapi.io  \
+    --asset 'YOUR_ASSET_MULTILOCATION' \
+    --sym "YOUR_TOKEN_SYMBOL" \
+    -d YOUR_TOKEN_DECIMALS \
+    --name "YOUR_TOKEN_NAME" \
+    -u YOUR_UNITS_PER_SECOND \
+    --ed 1 --sufficient true --revert-code true 
     ```
 
 === "Moonriver"
     ```
     yarn register-asset -w wss://moonriver.public.blastapi.io  \
     --asset 'YOUR_ASSET_MULTILOCATION' \
-    --sym "YOUR_TOKEN_SYMBOL" -d 18 \
+    --sym "YOUR_TOKEN_SYMBOL" \
+    -d YOUR_TOKEN_DECIMALS \
     --name "YOUR_TOKEN_NAME" \
     -u YOUR_UNITS_PER_SECOND \
     --ed 1 --sufficient true --revert-code true 
@@ -369,14 +401,16 @@ Be sure to copy the hexidecimal `PolkdotXcmSend` output of this command. You can
 
 === "Moonbase Alpha"
     ```
-    yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
-    --parachain-ws-provider wss://wss.api.moonriver.network  \
-    --relay-ws-provider wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network \
-    --max-capacity 1000 --max-message-size 102400 \
-    --hrmp-action open
+    yarn register-asset -w wss://wss.api.moonbase.moonbeam.network   \
+    --asset 'YOUR_ASSET_MULTILOCATION' \
+    --sym "YOUR_TOKEN_SYMBOL" \
+    -d YOUR_TOKEN_DECIMALS \
+    --name "YOUR_TOKEN_NAME" \
+    -u YOUR_UNITS_PER_SECOND \
+    --ed 1 --sufficient true --revert-code true 
     ```
 
-Finally, take the outputs of each command and insert them into the following command to send the batch proposal to democracy. `ACCEPT_INCOMING_CALL` is the hexidecimal encoded calldata found from the first command. `OPEN_CHANNEL_CALL` is the hexidecmal encoded calldata found from the second command. `REGISTER_ASSET_CALL` is the hexidecmal encoded calldata found from the third command. If you have more than one asset to be registered on Moonbeam, you can add its registration's hexidecmal encoded calldata with another `--call` flag. `YOUR_PRIVATE_KEY` is the private key of the funded Moonbeam account that is proposing.  
+Finally, take the outputs of each command and insert them into the following command to send the batch proposal to democracy. `ACCEPT_INCOMING_CALL` is the hexadecimal encoded calldata found from the first command. `OPEN_CHANNEL_CALL` is the hexadecimal encoded calldata found from the second command. `REGISTER_ASSET_CALL` is the hexadecimal encoded calldata found from the third command. If you have more than one asset to be registered on Moonbeam, you can add its registration's hexadecimal encoded calldata with another `--call` flag. `YOUR_PRIVATE_KEY` is the private key of the funded Moonbeam account that is proposing.  
 
 If you are registering on Moonbase Alpha, you will not to provide a private key or go through governance. Run the following command and provide the output to the Moonbeam team so that the asset and channel can be added quickly through sudo.  
 
@@ -409,9 +443,43 @@ If you are registering on Moonbase Alpha, you will not to provide a private key 
     --sudo true
     ```
 
+Once the batch proposal is sent through democracy, it will need to be seconded by either the Moonbeam team or another network member to continue with [the governance process](/learn/features/governance/#roadmap-of-a-proposal){target=_blank}.  
+
 ### Calculating Units Per Second {: #calculating-units-per-second }
 
-woo math
+`UnitsPerSecond` is the number of tokens charged per second of execution of an XCM message. The target cost for an XCM transfer is `$0.02` at the time of registration. The `UnitsPerSecond` might get updated through governance as token price fluctuates.  
+
+The easiest way to calculate an asset's `UnitsPerSecond` is through the [`calculateUnitsPerSeconds.ts` script](https://github.com/albertov19/xcmTools/blob/main/calculateUnitsPerSeconds.ts){target=_blank}. To run the script, you must provide the decimals of the asset, the current price of the asset in USD, and the estimated cost in weight per XCM operation on the Moonbeam chain that the asset will be sent to.  
+
+The estimated weight per XCM operation on each Moonbeam chain is:  
+
+=== "Moonbeam"
+    ```
+    1000000000
+    ```
+
+=== "Moonriver"
+    ```
+    200000000
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    1000000000
+    ```
+
+For example, a token of 18 decimals currently priced at `$1.58` to be registered on the Moonbeam network:  
+
+```
+ts-node calculateUnitsPerSeconds.ts --d 18 --p 1.58 --xoc 1000000000 
+```
+
+Which should result in the following output:  
+
+```
+Token Price is $1.58
+The UnitsPerSecond need to be set 3164556962025316455
+```
 
 ## Accept the HRMP Channel {: #accept-the-hrmp-channel }
 
@@ -548,18 +616,11 @@ The multilocation of each Moonbeam-based network asset is as follows:
     }
     ```
 
-## Register your Asset on Moonbeam {: #register-your-asset-on-moonbeam }
-
-**SECTION EARMARKED FOR DELETION**
+## Testing Asset Registration on Moonbeam {: #testing-asset-registration-on-moonbeam }
 
 Once the channel has been opened and accepted, your parachain's asset will need to be registered on Moonbeam. For that, the following information is needed:
 
-- Multilocation of your asset (as seen by Moonbase Alpha/Moonriver/Moonbeam). Please indicate the parachain ID and the interior (if you use pallet index, general index, etc.)
-- Asset Name
-- Asset symbol (_xc_ will be prepended to the symbol)
-- Number of decimals
-
-The team will confirm once the asset is registered. In addition, the team will provide the asset ID, the [XC-20 precompile](/builders/interoperability/xcm/xc20/overview/#the-erc20-interface){target=_blank} address, and set an arbitrary `UnitsPerSecond`, which is the number of tokens charged per second of execution of the XCM message. The target cost for an XCM transfer is `$0.02` at the time of registration. The `UnitsPerSecond` might get updated as token price fluctuates.  
+After both channels are established and your asset is registered, the team will provide the asset ID and the [XC-20 precompile](/builders/interoperability/xcm/xc20/overview/#the-erc20-interface){target=_blank} address.
 
 Your XC-20 precompile address is calculated by converting the asset ID decimal number to hex, and prepending it with F’s until you get a 40 hex character (plus the “0x”) address. For more information on how it is calculated, please refer to the [Calculate External XC-20 Precompile Addresses](/builders/interoperability/xcm/xc20/xc20/#calculate-xc20-address){target=_blank} section of the External XC-20 guide.
 
@@ -568,7 +629,7 @@ After the asset is successfully registered, you can try transferring tokens from
 !!! note 
     Remember that Moonbeam-based networks use AccountKey20 (Ethereum-style addresses).
 
-For testing, please also provide your parachain WSS endpoint the Moonbeam dApp can connect to it. Lastly, please fund the corresponding account:
+For testing, please also provide your parachain WSS endpoint so that the Moonbeam dApp can connect to it. Lastly, please fund the corresponding account:
 
 === "Moonbeam"
     ```
@@ -590,8 +651,6 @@ For testing, please also provide your parachain WSS endpoint the Moonbeam dApp c
 
 !!! note
     For Moonbeam and Moonriver testing, please send $50 worth of tokens to the aforementioned account. In addition, provide an Ethereum-style account to send $50 worth of GLMR/MOVR for testing purposes.
-
-## Use your Asset on Moonbeam {: #use-your-asset-on-moonbeam }
 
 [XC-20s](/builders/interoperability/xcm/xc20/){target=_blank} are Substrate based assets with an [ERC-20 interface](/builders/interoperability/xcm/xc20/overview/#the-erc20-interface){target=_blank}. This means they can be added to MetaMask, and can be composed with any EVM DApp that exists in the ecosystem. The team can connect you with any DApp you find relevant for an XC-20 integration.
 
