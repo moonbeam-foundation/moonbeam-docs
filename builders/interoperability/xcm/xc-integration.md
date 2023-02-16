@@ -86,7 +86,7 @@ In both the Moonbeam preliminary forum post and in Polkassembly, add the followi
 - **Network Information** - one sentence summarizing your Network, and relevant links to your website, Twitter, and other social channels
 - **Summary** - brief description of the content of the proposal
 - **On-Chain Proposal Reference (Forums Only)** - include if it is a Moonbeam or Moonriver proposal, the proposal number, and proposal hash
-- **Technnical Details** - provide technical information required for the community to understand the use cases and purpose of the Proposal
+- **Technical Details** - provide technical information required for the community to understand the use cases and purpose of the Proposal
 - **Additional Information** - any additional information you would like the community/readers to know
 
 Additionally, there is key information to provide that is highlighted due to its importance in a voter's decision:  
