@@ -18,7 +18,7 @@ Then take the following steps:
 On the next screen, take the following steps:
 
  1. Press the triangle icon to reveal the encoded proposal in bytes
- 2. Copy the `bytes` representing the encoded proposal - you'll need this when calling the `notePreimage` function in a later step
+ 2. Copy the **bytes** representing the encoded proposal - you'll need this when calling the `notePreimage` function in a later step
 
 ![Get the encoded proposal](/images/builders/pallets-precompiles/precompiles/democracy/democracy-6.png)
 

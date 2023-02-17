@@ -1,6 +1,6 @@
 ---
 title:  Collective Precompile Contract
-description: Learn how to use the Moonbeam collective precompile to perform democracy functions through the council, technical committee or treasury council collective.
+description: Learn how to use the Moonbeam Collective Precompile to perform democracy functions through the council, Technical Committee or Treasury Council collective.
 keywords: solidity, ethereum, collective, proposal, council technical, committee, moonbeam, precompiled, contracts
 ---
 
@@ -10,36 +10,36 @@ keywords: solidity, ethereum, collective, proposal, council technical, committee
 
 ## Introduction {: #introduction } 
 
-The collective precompile enables a user to directly interact with [Substrate's collective pallet](https://paritytech.github.io/substrate/master/pallet_collective/index.html){target=_blank} directly from a Solidity interface.
+The Collective Precompile enables a user to directly interact with [Substrate's collective pallet](https://paritytech.github.io/substrate/master/pallet_collective/index.html){target=_blank} directly from a Solidity interface.
 
-A collective is a group of members that are responsible for specific democracy-related actions such as proposing, voting on, executing, and closing motions. Each can execute different actions with different origins. Consequently, collectives can be created with very specific scopes. For example, Moonriver has four collectives: the council collective, the technical committee collective, the treasury council collective, and the OpenGov technical committee collective (for whitelisting OpenGov proposals). As such, there is a precompile for each collective. For more information on the council, technical committee, and open tech committee please refer to the [Governance on Moonbeam](/learn/features/governance/){target=_blank} page, and for more information on the treasury council, please refer to the [Treasury on Moonbeam](/learn/features/treasury/){target=_blank} page.
+A collective is a group of members that are responsible for specific democracy-related actions such as proposing, voting on, executing, and closing motions. Each can execute different actions with different origins. Consequently, collectives can be created with very specific scopes. For example, Moonriver has four collectives: the Council collective, the Technical Committee collective, the Treasury Council collective, and the OpenGov Technical Committee collective (for whitelisting OpenGov proposals). As such, there is a precompile for each collective. For more information on the Council, Technical Committee, and OpenGov Technical Committee please refer to the [Governance on Moonbeam](/learn/features/governance/){target=_blank} page, and for more information on the Treasury Council, please refer to the [Treasury on Moonbeam](/learn/features/treasury/){target=_blank} page.
 
-This guide will show you how to propose, vote on, and close a proposal using the collective precompile.
+This guide will show you how to propose, vote on, and close a proposal using the Collective Precompile.
 
-The collective precompiles are located at the following addresses:
+The Collective Precompiles are located at the following addresses:
 
 === "Moonbeam"
      |     Collective      |                           Address                            |
      |:-------------------:|:------------------------------------------------------------:|
      |       Council       |    {{networks.moonbeam.precompiles.collective_council }}     |
-     | Technical committee | {{networks.moonbeam.precompiles.collective_tech_committee }} |
-     |  Treasury council   |    {{networks.moonbeam.precompiles.collective_treasury }}    |
+     | Technical Committee | {{networks.moonbeam.precompiles.collective_tech_committee }} |
+     |  Treasury Council   |    {{networks.moonbeam.precompiles.collective_treasury }}    |
 
 === "Moonriver"
      |         Collective          |                                Address                                |
      |:---------------------------:|:---------------------------------------------------------------------:|
      |           Council           |        {{networks.moonriver.precompiles.collective_council }}         |
-     |     Technical committee     |     {{networks.moonriver.precompiles.collective_tech_committee }}     |
-     |      Treasury council       |        {{networks.moonriver.precompiles.collective_treasury }}        |
-     | OpenGov technical committee | {{networks.moonriver.precompiles.collective_opengov_tech_committee }} |
+     |     Technical Committee     |     {{networks.moonriver.precompiles.collective_tech_committee }}     |
+     |      Treasury Council       |        {{networks.moonriver.precompiles.collective_treasury }}        |
+     | OpenGov Technical Committee | {{networks.moonriver.precompiles.collective_opengov_tech_committee }} |
 
 === "Moonbase Alpha"
      |         Collective          |                               Address                                |
      |:---------------------------:|:--------------------------------------------------------------------:|
      |           Council           |        {{networks.moonbase.precompiles.collective_council }}         |
-     |     Technical committee     |     {{networks.moonbase.precompiles.collective_tech_committee }}     |
-     |      Treasury council       |        {{networks.moonbase.precompiles.collective_treasury }}        |
-     | OpenGov technical committee | {{networks.moonbase.precompiles.collective_opengov_tech_committee }} |
+     |     Technical Committee     |     {{networks.moonbase.precompiles.collective_tech_committee }}     |
+     |      Treasury Council       |        {{networks.moonbase.precompiles.collective_treasury }}        |
+     | OpenGov Technical Committee | {{networks.moonbase.precompiles.collective_opengov_tech_committee }} |
 
 --8<-- 'text/precompiles/security.md'
 
@@ -74,9 +74,9 @@ The interface includes the following events:
 
 ## Interacting with the Solidity Interface {: #interacting-with-the-solidity-interface }
 
-The example in this section will show you how to submit a treasury proposal using the treasury council collective precompile. As such, the proposal will be subject to meeting the voting requirements of the treasury council. The threshold for accepting a treasury proposal is at least three-fifths of the treasury council. On the other hand, the threshold for rejecting a proposal is at least one-half of the treasury council. Please keep in mind that in order to propose and vote on the proposal, you must be a member of the treasury council.
+The example in this section will show you how to submit a Treasury proposal using the Treasury Council Collective Precompile. As such, the proposal will be subject to meeting the voting requirements of the Treasury Council. The threshold for accepting a Treasury proposal is at least three-fifths of the Treasury Council. On the other hand, the threshold for rejecting a proposal is at least one-half of the Treasury Council. Please keep in mind that in order to propose and vote on the proposal, you must be a member of the Treasury Council.
 
-If you are not a member of the treasury council on Moonbeam, Moonriver, or Moonbase Alpha, you can test out the features of the collective precompile using a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=_blank}. The Moonbeam development node comes with [ten pre-funded accounts](/builders/get-started/networks/moonbeam-dev/#pre-funded-development-accounts){target=_blank}, of which Baltathar, Charleth, and Dorothy are automatically set as members of the treasury council collective. You can use any of these three accounts to follow along with the rest of the guide.
+If you are not a member of the Treasury Council on Moonbeam, Moonriver, or Moonbase Alpha, you can test out the features of the Collective Precompile using a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=_blank}. The Moonbeam development node comes with [ten pre-funded accounts](/builders/get-started/networks/moonbeam-dev/#pre-funded-development-accounts){target=_blank}, of which Baltathar, Charleth, and Dorothy are automatically set as members of the Treasury Council collective. You can use any of these three accounts to follow along with the rest of the guide.
 
 ### Checking Prerequisites {: #checking-prerequisites }
 
@@ -113,16 +113,16 @@ If you're using a Moonbeam development node and the development accounts, you'll
 1. Click on the **Deploy and Run** tab, directly below the **Compile** tab in Remix. Note: You are not deploying a contract here; instead you are accessing a precompiled contract that is already deployed
 2. Make sure **Injected Provider - Metamask** is selected in the **ENVIRONMENT** drop down
 3. Ensure **Collective - Collective.sol** is selected in the **CONTRACT** dropdown. Since this is a precompiled contract there is no need to deploy, instead you are going to provide the address of the precompile in the **At Address** Field
-4. Provide the address of the collective precompile,`{{networks.moonbase.precompiles.collective_treasury}}`, and click **At Address**
-5. The collective precompile will appear in the list of **Deployed Contracts**
+4. Provide the address of the Collective Precompile,`{{networks.moonbase.precompiles.collective_treasury}}`, and click **At Address**
+5. The Collective Precompile will appear in the list of **Deployed Contracts**
 
 ![Access the precompile contract](/images/builders/pallets-precompiles/precompiles/collective/collective-3.png)
 
 ### Create a Proposal {: #create-a-proposal }
 
-In order to submit a proposal to be voted on by the treasury council collective, you must first create a treasury proposal. If a treasury proposal that you want to vote on already exists and you have the proposal index, you can skip ahead to the next section.
+In order to submit a proposal to be voted on by the Treasury Council collective, you must first create a Treasury proposal. If a Treasury proposal that you want to vote on already exists and you have the proposal index, you can skip ahead to the next section.
 
-To submit a treasury proposal, you can do so via the [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/treasury){target=_blank} treasury page. For this example, you can create a simple proposal to send Alith 10 DEV tokens that can be used to host a community event. To get started, click on **Submit proposal**, and fill out the following information:
+To submit a Treasury proposal, you can do so via the [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/treasury){target=_blank} Treasury page. For this example, you can create a simple proposal to send Alith 10 DEV tokens that can be used to host a community event. To get started, click on **Submit proposal**, and fill out the following information:
 
 1. From the **submit with account** dropdown, select the account you want to submit the proposal with. The bond for the proposal will be taken from this account
 2. Select the **beneficiary**, which can be **Alith** for this example
@@ -141,11 +141,11 @@ You should see the proposal appear in the **proposals** section. If this is the 
 
 ![View all treasury proposals](/images/builders/pallets-precompiles/precompiles/collective/collective-5.png)
 
-Now that you have the proposal and the proposal index, you'll be able to approve the proposal in the following section using the collective precompile.
+Now that you have the proposal and the proposal index, you'll be able to approve the proposal in the following section using the Collective Precompile.
 
 ### Propose the Proposal {: #propose-the-proposal }
 
-In order to propose a proposal using the collective precompile, so that the corresponding collective can vote on it, you will need to obtain the encoded call data of the call, to be executed by proposal. You can get the encoded call data from Polkadot.js Apps. For this example, you need to propose the **approveProposal** extrinsic of the treasury pallet. To do so, navigate to the **Developer** tab, select **Extrinsics**, and take the following steps:
+In order to propose a proposal using the Collective Precompile, so that the corresponding collective can vote on it, you will need to obtain the encoded call data of the call, to be executed by proposal. You can get the encoded call data from Polkadot.js Apps. For this example, you need to propose the **approveProposal** extrinsic of the treasury pallet. To do so, navigate to the **Developer** tab, select **Extrinsics**, and take the following steps:
 
 1. Select an account (any account is fine because you're not submitting any transaction here)
 2. Select the **treasury** pallet
@@ -157,10 +157,10 @@ In order to propose a proposal using the collective precompile, so that the corr
 
 For this example, the extrinsic encoded call data for the proposal in this example is `0x110200`.
 
-With the encoded proposal, you can head back to Remix and expand the **COLLECTIVE** precompile contract under the **Deployed Contracts** section. Make sure you're connected to your account that is a member of the treasury council, and take the following steps to propose the approval:
+With the encoded proposal, you can head back to Remix and expand the **COLLECTIVE** precompile contract under the **Deployed Contracts** section. Make sure you're connected to your account that is a member of the Treasury Council, and take the following steps to propose the approval:
 
 1. Expand the **propose** function
-2. Enter the **threshold**. Keep in mind that for treasury proposals to be approved, at least three-fifths of the treasury council is needed to vote in approval. As such, you can set the threshold to `2` for this example
+2. Enter the **threshold**. Keep in mind that for Treasury proposals to be approved, at least three-fifths of the Treasury Council is needed to vote in approval. As such, you can set the threshold to `2` for this example
 3. For the **proposal** field, you can paste the encoded proposal you retrieved from Polkadot.js Apps
 4. Click **transact**
 5. MetaMask will pop up and you can confirm the transaction
@@ -173,7 +173,7 @@ To vote on a proposal, you'll need to get the proposal hash by passing in the en
 
 ![Get the proposal hash](/images/builders/pallets-precompiles/precompiles/collective/collective-8.png)
 
-Once you have the proposal hash, make sure you're connected to your account that is a member of the treasury council, and take the following steps to vote on a proposal:
+Once you have the proposal hash, make sure you're connected to your account that is a member of the Treasury Council, and take the following steps to vote on a proposal:
 
 1. Expand the **vote** function in Remix
 2. Enter the **proposalHash**
@@ -184,11 +184,11 @@ Once you have the proposal hash, make sure you're connected to your account that
 
 ![Vote on the proposal](/images/builders/pallets-precompiles/precompiles/collective/collective-9.png)
 
-With the threshold set to `2`, you'll need to switch accounts in MetaMask to another member of the treasury council collective and repeat the steps above to vote and meet the threshold. Once the threshold has been met, you can then close the proposal, which will automatically execute it, and if approved, the proposal enters a queue to be placed into a spend period where the proposed amount will be distributed to the beneficiary. In this case, once the proposal is placed into a spend period, 10 DEV tokens will be distributed to Alith.
+With the threshold set to `2`, you'll need to switch accounts in MetaMask to another member of the Treasury Council collective and repeat the steps above to vote and meet the threshold. Once the threshold has been met, you can then close the proposal, which will automatically execute it, and if approved, the proposal enters a queue to be placed into a spend period where the proposed amount will be distributed to the beneficiary. In this case, once the proposal is placed into a spend period, 10 DEV tokens will be distributed to Alith.
 
 ## Close a Proposal {: #close-a-proposal }
 
-If a proposal has enough votes, anyone can close a proposal. You do not need to be a member of the treasury council in order to close a proposal. To close a proposal, you can take the following steps:
+If a proposal has enough votes, anyone can close a proposal. You do not need to be a member of the Treasury Council in order to close a proposal. To close a proposal, you can take the following steps:
 
 1. Expand the **close** function
 2. Enter the **proposalHash**
@@ -209,4 +209,4 @@ You can verify the proposal has been approved using Polkadot.js Apps. From the *
 
 ![Review the treasury approvals](/images/builders/pallets-precompiles/precompiles/collective/collective-11.png)
 
-Once the proposal is in a spend period, the funds will get distributed to the beneficiary, and the original bond will be returned to the proposer. If the treasury runs out of funds, the approved proposals will remain in storage until the following spend period when the treasury has enough funds again.
+Once the proposal is in a spend period, the funds will get distributed to the beneficiary, and the original bond will be returned to the proposer. If the Treasury runs out of funds, the approved proposals will remain in storage until the following spend period when the Treasury has enough funds again.

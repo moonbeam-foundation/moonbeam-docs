@@ -28,11 +28,9 @@ The Conviction Voting Pallet provides the following extrinsics (functions):
 - **removeVote**(class, index) - Removes a vote for a poll. This can occur if one of the following is true:
     - If the poll was cancelled, tokens are immediatly available for unlocking if there is no other pending lock
     - If the poll is ongoing, the token holder's votes do not longer count for the tallying, tokens are immediatly available for unlocking if there is no other pending lock
-    - If the poll has ended, there are two different scenarios
-    
-    If the token holder voted against the tallied result or voted with no conviction, the tokens are immediatly available for unlocking if there is no other pending lock.
-        
-    If, however, the poll has ended and the results coincides with the vote of the token holder (with a given conviction), and the lock period of the Conviction is not over, then the lock will be aggregated into the overall account's lock. This may involve _overlocking_ (where the two locks are combined into a single lock that is the maximum of both the amount locked and the time is it locked for).
+    - If the poll has ended, there are two different scenarios:
+        - If the token holder voted against the tallied result or voted with no conviction, the tokens are immediatly available for unlocking if there is no other pending lock
+        - If, however, the poll has ended and the results coincides with the vote of the token holder (with a given conviction), and the lock period of the Conviction is not over, then the lock will be aggregated into the overall account's lock. This may involve _overlocking_ (where the two locks are combined into a single lock that is the maximum of both the amount locked and the time is it locked for)
 
 - **undelegate**(class) - undelegates the voting power for a particular class (Origin) of polls (referenda). Tokens may be unlocked following once an amount of time consistent with the lock period of the conviction with which the delegation was issued. Emits an `Undelegated` event
 - **unlock**(class, target) - removes a lock for a prior vote/delegation vote within a particluar class (Origin), which has expired
