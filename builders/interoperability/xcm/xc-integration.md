@@ -17,22 +17,21 @@ Once the XCMP (or HRMP) channels have been opened, the corresponding assets from
 
 This guide will cover how to open and accept an HRMP channel between a parachain and a Moonbeam-based network. In addition, the guide provides the necessary data to register Moonbeam-based networks assets in your parachain, and the data required to register your asset in any of the Moonbeam-based networks.
 
-## Overview of the Integration Process {: #overview-of-integration }
+
+## Moonbase Alpha XCM Integration Overview {: #moonbase-alpha-xcm }
 
 The first step for a Moonriver/Moonbeam XCM integration, is to integrate with the Moonbase Alpha TestNet, through the Alphanet relay chain. Then a Moonriver integration must be completed before proceeding with Moonbeam (if applicable).  
-
-### Moonbase Alpha {: #moonbase-alpha }
 
 The entire process to get started with Moonbase Alpha can be summarized as follows:
 
 1. Sync a node with the Alphanet relay chain
 2. Provide the WASM/Geneiss head hash and your parachain ID for onboarding
-3. Calculate your parachain sovereign account on the Alphanet relay chain (to be funded by the Moonbeam team)
-4. Provide asset details of your parachain's asset so it can be registered on Moonbase Alpha
-5. Open an HRMP channel to Moonbase Alpha from your parachain (through SUDO or via governance)
-6. Accept the HRMP channel from Moonbase Alpha (through SUDO or via governance)
-7. Register Moonbase Alpha's DEV token on your parachain (optional)
-8. For testing the XCM integration, please send some tokens to:
+3. [Calculate your parachain sovereign account](#calculate-and-fund-the-parachain-sovereign-account){target=_blank} on the Alphanet relay chain (to be funded by the Moonbeam team)
+4. Open an HRMP channel to Moonbase Alpha from your parachain (through SUDO or via governance)
+5. Provide the encoded call data to accept the incoming HRMP channel, register the assets (if applicable), and open and HRMP channel to your parachain. This will be executed through SUDO
+5. Accept the HRMP channel from Moonbase Alpha (through SUDO or via governance)
+6. Register Moonbase Alpha's DEV token on your parachain (optional)
+7. For testing the XCM integration, please send some tokens to:
 
     ```
     AccoundId: 5GWpSdqkkKGZmdKQ9nkSF7TmHp6JWt28BMGQNuG4MXtSvq3e
@@ -43,16 +42,51 @@ The entire process to get started with Moonbase Alpha can be summarized as follo
 
 Once all of these steps are completed and both teams have successfully tested asset transfers, your parachain token can be added to the Cross Chain Assets section of the [Moonbeam DApp](https://apps.moonbeam.network/moonbase-alpha){target=_blank}. If deposit and withdrawals work as expected, an integration with Moonriver can begin.
 
-### Moonriver & Moonbeam {: #moonriver-moonbeam }
+### Sync a Node {: #sync-a-node }
+
+To sync a node, you can use the [Alphanet relay chain specs](https://drive.google.com/drive/folders/1JVyj518T8a77xKXOBgcBe77EEsjnSFFO){target=_blank} (note: the relay chain is Westend based, and will probably take 1 day to sync). 
+
+For reference, you can use [Moonbase Alpha’s spec file](https://raw.githubusercontent.com/PureStake/moonbeam/runtime-1103/specs/alphanet/parachain-embedded-specs-v8.json){target=_blank}. You'll need to adapt it to your chain.
+
+To onboard your parachain, please provide the following:
+- Genesis head/wasm hash
+- Parachain ID. You can find the parachain IDs that have been already used in the [relay chain Polkadot.js Apps page](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/parachains){target=_blank}
+
+There are also some [snapshots for the Alphanet ecosystem relay chain](http://snapshots.moonbeam.network.s3-website.us-east-2.amazonaws.com/){target=_blank} you can use to quickly get started.
+
+
+When getting started with the Moonbase Alpha relay chain, once you have your sovereign account’s address, please contact the team on [Telegram](https://t.me/Moonbeam_Official){target=_blank} or [Discord](https://discord.gg/PfpUATX){target=_blank}, so the team can fund it at a relay chain level. If not, you won’t be able to create the HRMP channel.]
+
+### Calculate and Fund the Parachain Sovereign Account {: #calculate-and-fund-the-parachain-sovereign-account }
+
+You can calculate the sovereign account information using [a script from the `xcm-tools` repository](https://github.com/PureStake/xcm-tools){target=_blank}. To run the script, you must provide the parachain ID and the name of the associated relay chain. The accepted values for the relay chain are `polkadot` (default), `kusama`, and `moonbase`.
+
+For example, Moonbase Alpha's sovereign account for both the relay chain and other parachains can be obtained with:
+
+```
+yarn calculate-sovereign-account --p 1000 --r moonbase
+```
+
+Which should result in the following response:
+
+```
+Sovereign Account Address on Relay: 0x70617261e8030000000000000000000000000000000000000000000000000000
+Sovereign Account Address on other Parachains (Generic): 0x7369626ce8030000000000000000000000000000000000000000000000000000
+Sovereign Account Address on Moonbase Alpha: 0x7369626ce8030000000000000000000000000000
+```
+
+When getting started with the Moonbase Alpha relay chain, once you have your sovereign account’s address, please contact the team on [Telegram](https://t.me/Moonbeam_Official){target=_blank} or [Discord](https://discord.gg/PfpUATX){target=_blank}, so the team can fund it at a relay chain level. If not, you won’t be able to create the HRMP channel.
+
+## Moonriver & Moonbeam XCM Integration Overview {: #moonriver-moonbeam }
 
 From a technical perspective, the process to create a HRMP channel with Moonriver and Moonbeam is nearly the same. However, engagement with the Moonbeam community is crucial and required before a proposal will pass. The process is as follows:
 
-1. Add details of the asset and project to [the forum](/tokens/governance/proposals/#submitting-your-idea-to-the-forum){target=_blank} in the the XCM category.
-2. On the chain to connect, open an HRMP channel to Moonriver/Moonbeam. Optionally, you can create a batched proposal to register MOVR/GLMR or register at a later date
+1. Add details of the asset and project to [the forum](/tokens/governance/proposals/#submitting-your-idea-to-the-forum){target=_blank} in the the XCM category. Please check the HRMP channel guidelines that the community voted on for [Moonriver](https://moonriver.polkassembly.network/referenda/0){target=_blank} and [Moonbeam](https://moonbeam.polkassembly.network/proposal/21){target=_blank}
+2. Open an HRMP channel from your chain to Moonriver/Moonbeam. Optionally, you can create a batched proposal to register MOVR/GLMR or register at a later date
 3. Once the proposal in step 2 gets enacted, you will create a batched proposal on Moonbeam to:
     1. Accept the incoming HRMP channel
     2. Propose an outgoing HRMP channel from Moonriver/Moonbeam
-    3. Register the asset as an [XC-20 token](/builders/interoperability/xcm/xc20/overview){target=_blank}
+    3. Register the asset as an [XC-20 token](/builders/interoperability/xcm/xc20/overview){target=_blank} (if applicable)
 
       The normal enactment times are as follows:  
 
@@ -100,50 +134,9 @@ Additionally, there is key information to provide that is highlighted due to its
     - Dates of audit reports
     - Links to audit reports
 
-## Re-anchoring Support {: #re-anchoring-support}
-
-After the release of Polkadot version 0.9.16, the re-anchoring logic will suffer a [major breaking change](https://github.com/paritytech/polkadot/pull/4470){target=_blank}. This logic is used to compute how a parachain sees its own reserve tokens (from a multilocation point of view). 
-
-Releases prior to version 0.9.16 do not compute this re-anchoring correctly, and therefore parachains will need to support both the wrong (pre-0.9.16) and correct (post 0.9.16) in their runtimes. An example on the wrong and correct re-anchoring logics for a parachain whose parachain ID is 1000 and wants to represent its own token can be seen below:
-
-- Wrong re-anchoring (pre-0.9.16) - `MultiLocation { parents: 1, interior: Parachain(1000)}`
-- Correct re-anchoring (post-09.16) - `MultiLocation { parents: 0, interior: Here }`
-
-## Sync a Node {: #sync-a-node }
-
-To sync a node, you can use the [Alphanet relay chain specs](https://drive.google.com/drive/folders/1JVyj518T8a77xKXOBgcBe77EEsjnSFFO){target=_blank} (note: the relay chain is Westend based, and will probably take 1 day to sync). 
-
-For reference, you can use [Moonbase Alpha’s spec file](https://raw.githubusercontent.com/PureStake/moonbeam/runtime-1103/specs/alphanet/parachain-embedded-specs-v8.json){target=_blank}. You'll need to adapt it to your chain.
-
-To onboard your parachain, please provide the following:
-- Genesis head/wasm hash
-- Parachain ID. You can find the parachain IDs that have been already used in the [relay chain Polkadot.js Apps page](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/parachains){target=_blank}
-
-There are also some [snapshots for the Alphanet ecosystem relay chain](http://snapshots.moonbeam.network.s3-website.us-east-2.amazonaws.com/){target=_blank} you can use to quickly get started.
-
-## Calculate and Fund the Parachain Sovereign Account {: #calculate-and-fund-the-parachain-sovereign-account }
-
-To calculate your parachain’s sovereign account, you can use the [`calculateSovereignAddress.ts` script](https://github.com/albertov19/xcmTools/blob/main/calculateSovereignAddress.ts){target=_blank}. To run the script, you must provide the parachain ID and the name of the associated relay chain. The accepted values for the relay chain are `polkadot`, `kusama`, and `moonbase`.
-
-For example, Moonbase Alpha’s sovereign account for both the relay chain and other parachains can be obtained with:
-
-```
-ts-node calculateSovereignAddress.ts --paraid 1000 --r moonbase
-```
-
-Which should result in the following response:
-
-```
-Sovereign Account Address on Relay: 0x70617261e8030000000000000000000000000000000000000000000000000000
-Sovereign Account Address on other Parachains (Generic): 0x7369626ce8030000000000000000000000000000000000000000000000000000
-Sovereign Account Address on Moonbase Alpha: 0x7369626ce8030000000000000000000000000000
-```
-
-When getting started with the Moonbase Alpha relay chain, once you have your sovereign account’s address, please contact the team on [Telegram](https://t.me/Moonbeam_Official){target=_blank} or [Discord](https://discord.gg/PfpUATX){target=_blank}, so the team can fund it at a relay chain level. If not, you won’t be able to create the HRMP channel.
-
 ## Create an HRMP Channel To Moonbeam {: #create-an-hrmp-channel }
 
-To create an HRMP channel, you'll need to send an XCM message to the relay chain that will request a channel to be opened through the relay chain. The message will need to contain the following XCM instructions:
+To create an HRMP channel, you'll need to send an XCM message to the relay chain that will request a channel to be opened through the relay chain. The message will need to contain at least the following XCM instructions:
 
  1. [WithdrawAsset](https://github.com/paritytech/xcm-format#withdrawasset){target=_blank} - takes funds out of the sovereign account (in the relay chain) of the origin parachain to a holding state
  2. [BuyExecution](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} - buys execution time from the relay chain to execute the XCM message
