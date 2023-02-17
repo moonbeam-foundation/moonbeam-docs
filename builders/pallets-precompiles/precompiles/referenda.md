@@ -13,7 +13,7 @@ As a Polkadot parachain and decentralized network, Moonbeam features native on-c
 
 The Referenda Precompile interacts directly with Substrate's Referenda Pallet. This pallet is coded in Rust and is normally not accessible from the Ethereum side of Moonbeam. However, the Referenda Precompile allows you to access functions needed to view referenda, submit referenda, and manage the required Decision Deposit, all of which are part of the Substrate Referenda Pallet, directly from a Solidity interface.
 
-The Referenda Precompile is currently available in Governance v2, which is available on Moonriver and Moonbase Alpha only. If you're looking for similar functionality for Moonbeam, which is still on Governance v1, you can refer to the [Democracy Precompile](/builders/pallets-precompiles/precompiles/democracy){target=_blank} documentation.
+The Referenda Precompile is currently available in OpenGov, which is available on Moonriver and Moonbase Alpha only. If you're looking for similar functionality for Moonbeam, which is still on Governance v1, you can refer to the [Democracy Precompile](/builders/pallets-precompiles/precompiles/democracy){target=_blank} documentation.
 
 The Referenda Precompile is located at the following address:
 
@@ -105,7 +105,7 @@ After your transaction has been confirmed you'll be able to see the proposal lis
 
 ### Submit Decision Deposit {: #submit-decision-deposit }
 
-Now that you've submitted your proposal, the next step is to submit the Decision Deposit. The Decision Deposit is the minimum deposit amount required for a referendum to progress to the decision phase at the end of the Lead-in Period. For more information on the Decision Deposit, please refer to the [Governance v2 section of the governance overview page](/learn/features/governance/#opengov){target=_blank}.
+Now that you've submitted your proposal, the next step is to submit the Decision Deposit. The Decision Deposit is the minimum deposit amount required for a referendum to progress to the decision phase at the end of the Lead-in Period. For more information on the Decision Deposit, please refer to the [OpenGov section of the governance overview page](/learn/features/governance/#opengov){target=_blank}.
 
 You can submit the Decision Deposit using the `placeDecisionDeposit` function of the Referenda Precompile. You'll just need to have the index of the referendum and enough funds to do so. The Decision Deposit varies by Track, to find the minimum amount required you can take a look at the [General Parameters by Track table on the governance overview page](/learn/features/governance/#general-parameters-by-track){target=_blank}.
 

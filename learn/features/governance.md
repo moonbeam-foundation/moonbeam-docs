@@ -202,7 +202,7 @@ If a referendum continously receives enough Approval and Support during the Conf
 
 The happy path for a proposal is shown in the following diagram:
 
-![A happy path diagram of the proposal roadmap in Governance v2.](/images/learn/features/governance/v2/proposal-roadmap.png)
+![A happy path diagram of the proposal roadmap in OpenGov.](/images/learn/features/governance/v2/proposal-roadmap.png)
 
 ### Proposal Example Walkthrough
 

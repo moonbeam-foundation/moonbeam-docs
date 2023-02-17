@@ -13,7 +13,7 @@ A proposal is a submission to the chain in which a token holder suggests for an 
 
 In Moonbeam, users will be able to create, second, and vote on proposals using their H160 address and private key, that is, their regular Ethereum account!
 
-Moonbeam's governance system is in the process of getting revamped! This next phase of governance is known as Governance v2 or OpenGov. During the roll-out process, OpenGov will be rigorously tested on Moonriver before a proposal will be made to deploy it on Moonbeam. Until it launches on Moonbeam, Moonbeam will continue to use Governance v1. As such, **this guide is for proposals on Moonbeam only**. If you're looking to submit a proposal on Moonriver, you can refer to the [How to Propose an Action in OpenGov](/tokens/governance/proposals/opengov-proposals){target=_blank} guide.
+Moonbeam's governance system is in the process of getting revamped! This next phase of governance is known as OpenGov or Governance v2. During the roll-out process, OpenGov will be rigorously tested on Moonriver before a proposal will be made to deploy it on Moonbeam. Until it launches on Moonbeam, Moonbeam will continue to use Governance v1. As such, **this guide is for proposals on Moonbeam only**. If you're looking to submit a proposal on Moonriver, you can refer to the [How to Propose an Action in OpenGov](/tokens/governance/proposals/opengov-proposals){target=_blank} guide.
 
 This guide outlines the process of how to create a proposal in Governance v1 on Moonbeam. The steps will go from its creation until it reaches public referenda. There is a separate guide on [How to Vote on a Proposal](/tokens/governance/voting/voting){target=_blank} in Governance v1. 
 
