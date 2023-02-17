@@ -9,11 +9,11 @@ description: Learn how to vote on referenda, set up voting delegations, and more
 
 ## Introduction {: #introduction } 
 
-As a Polkadot parachain and decentralized network, Moonbeam features native on-chain governance that enables stakeholders to participate in the direction of the network. With the introduction of Governance v2, also referred to as OpenGov, the Conviction Voting Pallet allows token holders to make, delegate, and manage Conviction-weighted votes on referenda. To learn more about Moonbeam's governance system, such as an overview of related terminology, principles, mechanics, and more, please refer to the [Governance on Moonbeam](/learn/features/governance){target=_blank} page. 
+As a Polkadot parachain and decentralized network, Moonbeam features native on-chain governance that enables stakeholders to participate in the direction of the network. With the introduction of OpenGov, also referred to as Governance v2, the Conviction Voting Pallet allows token holders to make, delegate, and manage Conviction-weighted votes on referenda. To learn more about Moonbeam's governance system, such as an overview of related terminology, principles, mechanics, and more, please refer to the [Governance on Moonbeam](/learn/features/governance){target=_blank} page. 
 
-The Conviction Voting Precompile interacts directly with Substrate's Conviction Voting Pallet. This pallet is coded in Rust and is normally not accessible from the Ethereum side of Moonbeam. However, the Conviction Voting Precompile allows you to access governance-related functions of the Substrate Conviction Voting Pallet directly from a Solidity interface. Additionally, this enables a vastly improved end-user experience. For example, token holders can vote on referenda or delegate a vote directly from MetaMask, rather than importing an account in Polkadot.js Apps and navigating a complex UI.
+The Conviction Voting Precompile interacts directly with Substrate's Conviction Voting Pallet. This pallet is coded in Rust and is normally not accessible from the Ethereum API side of Moonbeam. However, the Conviction Voting Precompile allows you to access governance-related functions of the Substrate Conviction Voting Pallet directly from a Solidity interface. Additionally, this enables a vastly improved end-user experience. For example, token holders can vote on referenda or delegate a vote directly from MetaMask, rather than importing an account in Polkadot.js Apps and navigating a complex UI.
 
-The Conviction Voting Precompile is currently available in Governance v2, which is available on Moonriver and Moonbase Alpha only. If you're looking for similar functionality for Moonbeam, which is still on Governance v1, you can refer to the [Democracy Precompile](/builders/pallets-precompiles/precompiles/democracy){target=_blank} documentation.
+The Conviction Voting Precompile is mainly related to OpenGov, which is available on Moonriver and Moonbase Alpha only. If you're looking for similar functionality for Moonbeam, which is still on Governance v1, you can refer to the [Democracy Precompile](/builders/pallets-precompiles/precompiles/democracy){target=_blank} documentation.
 
 The Conviction Voting Precompile is located at the following address:
 
@@ -37,18 +37,18 @@ The interfaces includes a `Conviction` enum that defines the Conviction multipli
 
  - **None** -  0.1x votes, unlocked
  - **Locked1x** - 1x votes, locked for an Enactment Period following a successful vote
- - **Locked2x** - 2x votes, locked for 2x an Enactment Period following a successful vote
- - **Locked3x** - 4x votes, locked for 4x an Enactment Period following a successful vote
- - **Locked4x** - 8x votes, locked for 8x an Enactment Period following a successful vote
- - **Locked5x** - 16x votes, locked for 16x an Enactment Period following a successful vote
- - **Locked6x** - 32x votes, locked for 32x an Enactment Period following a successful vote
+ - **Locked2x** - 2x votes, locked for 2x Enactment Period following a successful vote
+ - **Locked3x** - 4x votes, locked for 4x Enactments Period following a successful vote
+ - **Locked4x** - 8x votes, locked for 8x Enactments Period following a successful vote
+ - **Locked5x** - 16x votes, locked for 16x Enactments Period following a successful vote
+ - **Locked6x** - 32x votes, locked for 32x Enactments Period following a successful vote
 
 The interface includes the following functions:
 
-- **voteYes**(*uint32* pollIndex, *uint256* voteAmount, *Conviction* conviction) - votes a Conviction-weighted "aye" on a poll (referendum)
-- **voteNo**(*uint32* pollIndex, *uint256* voteAmount, *Conviction* conviction) - votes a Conviction-weighted "nay" on a poll (referendum)
-- **removeVote**(*uint32* pollIndex) - removes a vote in a poll (referendum)
-- **removeOtherVote**(*address* target, *uint16* trackId, *uint32* pollIndex) - removes a vote in a poll (referendum) for another voter
+- **voteYes**(*uint32* pollIndex, *uint256* voteAmount, *Conviction* conviction) - votes a Conviction-weighted "Aye" on a poll (referendum)
+- **voteNo**(*uint32* pollIndex, *uint256* voteAmount, *Conviction* conviction) - votes a Conviction-weighted "Nay" on a poll (referendum)
+- **removeVote**(*uint32* pollIndex) - [removes a vote](/builders/pallets-precompiles/pallets/conviction-voting/#extrinsics){target=_blank} in a poll (referendum)
+- **removeOtherVote**(*address* target, *uint16* trackId, *uint32* pollIndex) - [removes a vote](/builders/pallets-precompiles/pallets/conviction-voting/#extrinsics){target=_blank} in a poll (referendum) for another voter
 - **delegate**(*uint16* trackId, *address* representative, *Conviction* conviction, *uint256* amount) - delegates another account as a representative to place a Conviction-weighted vote on the behalf of the sending account for a specific Track
 - **undelegate**(*uint16* trackId) - removes the caller's vote delegations for a specific Track
 - **unlock**(*uint16* trackId, *address* target) - unlocks the locked tokens of a specific account for a specific Track
@@ -104,9 +104,11 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 
 ![Access the ConvictionVoting.sol interface by provide the precompile's address.](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-3.png)
 
+
+
 ### Vote on a Referendum {: #vote-on-a-referendum } 
 
-You can lock tokens and vote on a referendum at anytime during the Lead-in Period or the Decide Period. In order for a referendum to pass, it needs to garner minimum Approval and Support, which vary by track. For more information on each of the relative periods and the Approval and Support requirments by Track, please refer to the [Governance v2 section of the governance overview page](/learn/features/governance/#governance-v2){target=_blank}.
+You can lock tokens and vote on a referendum at anytime during the Lead-in Period or the Decide Period. In order for a referendum to pass, it needs to garner minimum Approval and Support, which vary by track. For more information on each of the relative periods and the Approval and Support requirments by Track, please refer to the [OpenGov section of the governance overview page](/learn/features/governance/#opengov){target=_blank}.
 
 First, you'll need to get the index of the referendum you wish to vote on. To get the index of a referendum, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/referenda){target=_blank} and take the following steps:
 
@@ -138,13 +140,13 @@ In addition to voting on a referendum yourself, you can delegate a Conviction-we
 To get started, you can take the following steps:
 
 1. Find the **delegate** function and press the button to expand the section
-2. Enter the Track ID of the Track that you want the delegation to be used on
+2. Enter the Track ID of the Track that you want the delegation to be used on. Track IDs can be found in the [Referenda page of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/referenda){target=_blank}
 3. Enter the delegate account that will have the power to vote on your behalf
 4. Enter the number of tokens they can vote with in Wei. Avoid entering your full balance here because you need to pay for transaction fees
 5. Enter the Conviction they can vote with
 6. Press **transact** and confirm the transaction in MetaMask
 
-![Delegate a vote using the delegate function of the Conviction Voting Precompile.](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-5.png)
+![Delegate a vote using the delegate function of the Conviction Voting Precompile.](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-6.png)
 
 Now the delegate account can vote on your behalf! If you no longer want a delegate vote to exist, you can remove it using the `undelegate` function of the Conviction Voting Precompile.
 

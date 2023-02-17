@@ -15,7 +15,7 @@ The Conviction Voting Pallet allows token holders to make, delegate, and manage 
 --8<-- 'text/pallets/gov1-gov2.md'
 Some of the functionality of the Conviction Voting Pallet is available through the [Conviction Voting Precompile](/builders/pallets-precompiles/precompiles/conviction-voting){target=_blank}. 
 
-This guide will provide an overview of the extrinsics, storage methods, and getters for the pallet constants available in the Conviction Voting Pallet on Moonbeam. This guide assumes you are familiar with governance-related terminology, if not, please check out the [governance overview page](/learn/features/governance/#governance-v2){target=_blank} for more information.
+This guide will provide an overview of the extrinsics, storage methods, and getters for the pallet constants available in the Conviction Voting Pallet on Moonbeam. This guide assumes you are familiar with governance-related terminology, if not, please check out the [governance overview page](/learn/features/governance/#opengov){target=_blank} for more information.
 
 ## Conviction Voting Pallet Interface {: #preimage-pallet-interface }
 
@@ -23,18 +23,18 @@ This guide will provide an overview of the extrinsics, storage methods, and gett
 
 The Conviction Voting Pallet provides the following extrinsics (functions):
 
-- **delegate**(class, to, conviction, balance) - delegate the voting power (with some given Conviction) of the sending account for a particular class (Origin) of polls (referenda). The balance delegated is locked for as long as it's delegated, and thereafter for the time appropriate for the conviction's lock period. Emits a `Delegated` event
+- **delegate**(class, to, conviction, balance) - delegate the voting power (with some given Conviction) to another account for a particular class (Origin) of polls (referenda). The balance delegated is locked for as long as it's delegated, and thereafter for the time appropriate for the Conviction's lock period. Emits a `Delegated` event
 - **removeOtherVote**(target, class, index) - removes a vote for a poll (referendum). If the `target` is equal to the signer, then this function is exactly equivalent to `removeVote`. If not equal to the signer, then the vote must have expired, either because the poll was cancelled, the voter lost the poll or because the conviction period is over
 - **removeVote**(class, index) - Removes a vote for a poll. This can occur if one of the following is true:
-    - The poll was cancelled
-    - The poll is ongoing
-    - The poll has ended such that the vote of the account was in opposition to the result, there was no conviction to the account's vote, or the account made a split vote.
+    - If the poll was cancelled, tokens are immediatly available for unlocking if there is no other pending lock
+    - If the poll is ongoing, the token holder's votes do not longer count for the tallying, tokens are immediatly available for unlocking if there is no other pending lock
+    - If the poll has ended, there are two different scenarios
     
-    In the above cases, the vote is removed cleanly and a following call to `unlock` may result in more funds being available.
-    
-    If, however, the poll has ended and it finished corresponding to the vote of the account, the account made a standard vote with conviction, and the lock period of the conviction is not over then the lock will be aggregated into the overall account's lock. This may involve _overlocking_ (where the two locks are combined into a single lock that is the maximum of both the amount locked and the time is it locked for)
+    If the token holder voted against the tallied result or voted with no conviction, the tokens are immediatly available for unlocking if there is no other pending lock.
+        
+    If, however, the poll has ended and the results coincides with the vote of the token holder (with a given conviction), and the lock period of the Conviction is not over, then the lock will be aggregated into the overall account's lock. This may involve _overlocking_ (where the two locks are combined into a single lock that is the maximum of both the amount locked and the time is it locked for).
 
-- **undelegate**(class) - undelegates the voting power of the sending account for a particular class (Origin) of polls (referenda). Tokens may be unlocked following once an amount of time consistent with the lock period of the conviction with which the delegation was issued. Emits an `Undelegated` event
+- **undelegate**(class) - undelegates the voting power for a particular class (Origin) of polls (referenda). Tokens may be unlocked following once an amount of time consistent with the lock period of the conviction with which the delegation was issued. Emits an `Undelegated` event
 - **unlock**(class, target) - removes a lock for a prior vote/delegation vote within a particluar class (Origin), which has expired
 - **vote**(pollIndex, vote) - submits a vote in a poll (referendum). If the vote is "aye", the vote is to enact the proposal; otherwise it is a "nay" vote to keep the status quo
 

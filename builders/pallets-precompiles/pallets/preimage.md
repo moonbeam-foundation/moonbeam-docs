@@ -15,7 +15,7 @@ The Preimage Pallet allows for the users and the runtime to store the preimage o
 --8<-- 'text/pallets/gov1-gov2.md'
 Some of the functionality of the Preimage Pallet is available through the [Preimage Precompile](/builders/pallets-precompiles/precompiles/preimage/){target=_blank}. 
 
-This guide will provide an overview of the extrinsics, storage methods, and getters for the pallet constants available in the Preimage Pallet on Moonbeam. This guide assumes you are familiar with governance-related terminology, if not, please check out the [governance overview page](/learn/features/governance/#governance-v2){target=_blank} for more information.
+This guide will provide an overview of the extrinsics, storage methods, and getters for the pallet constants available in the Preimage Pallet on Moonbeam. This guide assumes you are familiar with governance-related terminology, if not, please check out the [governance overview page](/learn/features/governance/#opengov){target=_blank} for more information.
 
 ## Preimage Pallet Interface {: #preimage-pallet-interface }
 

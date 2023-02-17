@@ -88,7 +88,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 
 In order to submit a proposal, you should have already submitted the preimage hash for the proposal. If you have not done so, please follow the steps outlined in the [Preimage Precompile](/builders/pallets-precompiles/precompiles/preimage){target=_blank} documentation. There are two methods that can be used to submit a proposal: `submitAt` and `submitAfter`. The `submitAt` function submits a proposal to be executed *at* a given block and the `submitAfter` function submits a proposal to be executed *after* a specific block. For this example, `submitAt` will be used but the same steps can be applied if you want to use `submitAfter` instead.
 
-To submit the proposal, you'll need to determine which Track your proposal belongs to and the Track ID of that Track. For help with these requirements, you can refer to the [Governance v2 section of the governance overview page](/learn/features/governance/#governance-v2){target=_blank}.
+To submit the proposal, you'll need to determine which Track your proposal belongs to and the Track ID of that Track. For help with these requirements, you can refer to the [Governance v2 section of the governance overview page](/learn/features/governance/#opengov){target=_blank}.
 
 Once you have the Track ID and the encoded proposal, you can go ahead and submit the proposal using the Referenda Precompile. From Remix, you can take the following steps:
 
@@ -105,7 +105,7 @@ After your transaction has been confirmed you'll be able to see the proposal lis
 
 ### Submit Decision Deposit {: #submit-decision-deposit }
 
-Now that you've submitted your proposal, the next step is to submit the Decision Deposit. The Decision Deposit is the minimum deposit amount required for a referendum to progress to the decision phase at the end of the Lead-in Period. For more information on the Decision Deposit, please refer to the [Governance v2 section of the governance overview page](/learn/features/governance/#governance-v2){target=_blank}.
+Now that you've submitted your proposal, the next step is to submit the Decision Deposit. The Decision Deposit is the minimum deposit amount required for a referendum to progress to the decision phase at the end of the Lead-in Period. For more information on the Decision Deposit, please refer to the [Governance v2 section of the governance overview page](/learn/features/governance/#opengov){target=_blank}.
 
 You can submit the Decision Deposit using the `placeDecisionDeposit` function of the Referenda Precompile. You'll just need to have the index of the referendum and enough funds to do so. The Decision Deposit varies by Track, to find the minimum amount required you can take a look at the [General Parameters by Track table on the governance overview page](/learn/features/governance/#general-parameters-by-track){target=_blank}.
 

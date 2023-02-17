@@ -11,15 +11,14 @@ Then take the following steps:
  1. Select an account (any account is fine because you're not submitting any transaction here)
  2. Choose the pallet you want to interact with and the dispatchable function (or action) to propose. The action you choose will determine the fields that need to fill in the following steps. In this example, it is the **system** pallet and the **remark** function
  3. Enter the text of the remark, ensuring it is unique. Duplicate proposals such as "Hello World!" will not be accepted
- 4. Copy the preimage hash, which represents the proposal, and save it as it will be used in the following steps to submit the proposal via the democracy precompile
- 5. Click the **Submit preimage** button but don't sign or confirm the transaction on the next page 
+ 4. Click the **Submit preimage** button but don't sign or confirm the transaction on the next page 
 
 ![Get the proposal hash](/images/builders/pallets-precompiles/precompiles/democracy/democracy-5.png)
 
 On the next screen, take the following steps:
 
  1. Press the triangle icon to reveal the encoded proposal in bytes
- 2. Copy the encoded proposal - you'll need this when calling the `notePreimage` function in a later step
+ 2. Copy the `bytes` representing the encoded proposal - you'll need this when calling the `notePreimage` function in a later step
 
 ![Get the encoded proposal](/images/builders/pallets-precompiles/precompiles/democracy/democracy-6.png)
 

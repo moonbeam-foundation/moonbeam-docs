@@ -6,7 +6,7 @@ keywords: democracy, substrate, pallet, moonbeam, polkadot, voting, vote, refere
 
 # The Referenda Pallet
 
-![Referenda Moonbeam Banner](/images/builders/pallets-precompiles/pallets/refernda-banner.png)
+![Referenda Moonbeam Banner](/images/builders/pallets-precompiles/pallets/referenda-banner.png)
 
 ## Introduction {: #introduction }
 
@@ -15,7 +15,7 @@ The Referenda Pallet allows token holders to make, delegate, and manage Convicti
 --8<-- 'text/pallets/gov1-gov2.md'
 Some of the functionality of the Referenda Pallet is available through the [Referenda Precompile](/builders/pallets-precompiles/precompiles/referenda){target=_blank}. 
 
-This guide will provide an overview of the extrinsics, storage methods, and getters for the pallet constants available in the Referenda Pallet on Moonbeam. This guide assumes you are familiar with governance-related terminology, if not, please check out the [governance overview page](/learn/features/governance/#governance-v2){target=_blank} for more information.
+This guide will provide an overview of the extrinsics, storage methods, and getters for the pallet constants available in the Referenda Pallet on Moonbeam. This guide assumes you are familiar with governance-related terminology, if not, please check out the [governance overview page](/learn/features/governance/#opengov){target=_blank} for more information.
 
 ## Referenda Pallet Interface {: #preimage-pallet-interface }
 
