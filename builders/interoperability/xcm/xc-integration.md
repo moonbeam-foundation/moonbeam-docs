@@ -134,163 +134,97 @@ Additionally, there is key information to provide that is highlighted due to its
     - Dates of audit reports
     - Links to audit reports
 
-## Create an HRMP Channel To Moonbeam {: #create-an-hrmp-channel }
+## Open an HRMP Channel {: #create-an-hrmp-channel }
 
-To create an HRMP channel, you'll need to send an XCM message to the relay chain that will request a channel to be opened through the relay chain. The message will need to contain at least the following XCM instructions:
+Before any messages can be sent from your parachain to Moonbeam, your parachain must send an open HRMP channel. To create an HRMP channel, you'll need to send an XCM message to the relay chain that will request a channel to be opened through the relay chain. The message will need  to contain at least the following XCM instructions:
 
  1. [WithdrawAsset](https://github.com/paritytech/xcm-format#withdrawasset){target=_blank} - takes funds out of the sovereign account (in the relay chain) of the origin parachain to a holding state
  2. [BuyExecution](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} - buys execution time from the relay chain to execute the XCM message
  3. [Transact](https://github.com/paritytech/xcm-format#transact){target=_blank} - provides the relay chain call data to be executed
  4. [DepositAsset](https://github.com/paritytech/xcm-format#depositasset){target=_blank} - (optional) refunds the leftover funds after the execution. If this is not provided, no refunds will be carried out
 
-### Get the Relay Chain Encoded Call Data {: #get-the-relay-chain-encoded-call-data }
+You could potentially do this in Polkadot.js Apps, but we have provided a series of scripts to simplify the process in the [xcm-tools GitHub repository](https://github.com/PureStake/xcm-tools){target=_blank}, which you should download and use for the rest of the process. 
 
-To get the call data to be executed in step 3, you can head to Polkdot.js Apps and connect to the WSS endpoint for either the [Moonbase Alpha relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/extrinsics){target=_blank}, [Kusama](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkusama.api.onfinality.io%2Fpublic-ws#/extrinsics){target=_blank}, or [Polkadot](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fpolkadot.api.onfinality.io%2Fpublic-ws#/extrinsics){target=_blank}. Navigate to the **Developer** tab, select **Extrinsics**, and take the following steps:
+```
+git clone https://github.com/PureStake/xcm-tools.git && \
+cd xcm-tools && \
+yarn
+```
 
-1. Select **hrmp** from the **submit the following extrinsic** dropdown
-2. Select the **hrmpInitOpenChannel** extrinsic
-3. Enter the Moonbeam parachain ID as the **recipient**
+The xcm-tools repository has a specific script for HRMP interactions, called [`hrmp-channel-manipulator.ts`](https://github.com/PureStake/xcm-tools/blob/main/scripts/hrmp-channel-manipulator.ts){target=_blank}. In the case where you want to open a channel from your chain to Moonbeam, you can use yarn to interact with it in the following format to get the calldata to do so:  
 
-    === "Moonbeam"
-        ```
-        2004
-        ```
+=== "Moonbeam"
+    ```
+    yarn hrmp-manipulator --target-para-id 2004 \
+    --parachain-ws-provider YOUR_PARACHAIN_WSS \
+    --relay-ws-provider wss://rpc.polkadot.io \
+    --hrmp-action open
+    ```
 
-    === "Moonriver"
-        ```
-        2023
-        ```
+=== "Moonriver"
+    ```
+    yarn hrmp-manipulator --target-para-id 2023 \
+    --parachain-ws-provider YOUR_PARACHAIN_WSS \
+    --relay-ws-provider wss://kusama-rpc.polkadot.io \
+    --hrmp-action open
+    ```
 
-    === "Moonbase Alpha"
-        ```
-        1000
-        ```
+=== "Moonbase Alpha"
+    ```
+    yarn hrmp-manipulator --target-para-id 1000 \
+    --parachain-ws-provider {{ networks.moonbase.wss_url }} \
+    --relay-ws-provider YOUR_PARACHAIN_WSS \
+    --hrmp-action open
+    ```
 
- 4. Enter the **proposedMaxCapacity**. This value is set to the respective relay chain's configuration (`configuration.activeConfig.hrmpChannelMaxCapacity`)
+When using this function, 
 
-    === "Moonbeam"
-        ```
-        1000
-        ```
 
-    === "Moonriver"
-        ```
-        1000
-        ```
+## Accept an HRMP Channel {: #accept-an-hrmp-channel }
 
-    === "Moonbase Alpha"
-        ```
-        1000
-        ```
 
- 5. Enter the **proposedMaxMessageSize**. This value is set to the respective relay chain's configuration (`configuration.activeConfig.hrmpChannelMaxMessageSize`)
 
-    === "Moonbeam"
-        ```
-        102400
-        ```
+## Register a Foreign Asset {: #register-a-foreign-asset }
 
-    === "Moonriver"
-        ```
-        102400
-        ```
 
-    === "Moonbase Alpha"
-        ```
-        102400
-        ```
+## Register a Foreign Asset {: #register-a-foreign-asset }
 
-  6. Copy the encoded call data, which will be required for the `Transact` XCM instruction as previously mentioned. For example, on Moonbase Alpha the encoded call data is `0x3300e8030000e803000000900100`
 
-![Get open HRMP channel relay chain call data on Polkadot.js Apps](/images/builders/interoperability/xcm/xc-integration/xc-integration-1.png)
+### Calculating Units Per Second {: #calculating-units-per-second }
 
-### Send an XCM Message to the Relay Chain {: #send-an-xcm-message-to-the-relay-chain-open }
+`UnitsPerSecond` is the number of tokens charged per second of execution of an XCM message. The target cost for an XCM transfer is `$0.02` at the time of registration. The `UnitsPerSecond` might get updated through governance as token price fluctuates.  
 
-Now that you have the relay chain encoded call data, you can assemble and send your XCM message to request a channel to be opened. This XCM message needs to be sent from the root account (either SUDO or via governance).
+The easiest way to calculate an asset's `UnitsPerSecond` is through the [`calculateUnitsPerSeconds.ts` script](https://github.com/albertov19/xcmTools/blob/main/calculateUnitsPerSeconds.ts){target=_blank}. To run the script, you must provide the decimals of the asset, the current price of the asset in USD, and the estimated cost in weight per XCM operation on the Moonbeam chain that the asset will be sent to.  
 
-Before getting started, **please note that the values used are for reference only for the Moonbase Alpha relay chain; do not use these values in production**.
+The estimated weight per XCM operation on each Moonbeam chain is:  
 
-To get started, head to [Polkadot.js Apps](https://polkadot.js.org/apps/#/explorer){target=_blank} and connect to your parachain's WSS endpoint. From there, navigate to the **Developer** tab, select **Extrinsics**, and take the following steps:
+=== "Moonbeam"
+    ```
+    1000000000
+    ```
 
-1. Select **polakdotXcm** from the **submit the following extrinsic** dropdown
-2. Select the **send** extrinsic
-3. Set the following fields for **dest**
+=== "Moonriver"
+    ```
+    200000000
+    ```
 
-    | Parameter | Value |
-    |:---------:|:-----:|
-    |  Version  |  V1   |
-    |  Parents  |   1   |
-    | Interior  | Here  |
+=== "Moonbase Alpha"
+    ```
+    1000000000
+    ```
 
-4. For the **message**, you can set the **version** to `V2` and add the following items
-    1. Select the **WithdrawAsset** instruction and set the following values
+For example, a token of 18 decimals currently priced at `$1.58` to be registered on the Moonbeam network:  
 
-        | Parameter |     Value     |
-        |:---------:|:-------------:|
-        |    Id     |   Concrete    |
-        |  Parents  |       0       |
-        | Interior  |     Here      |
-        |    Fun    |   Fungible    |
-        | Fungible  | 1000000000000 |
+```
+ts-node calculateUnitsPerSeconds.ts --d 18 --p 1.58 --xoc 1000000000 
+```
 
-    2. Select the **BuyExecution** instruction and set the following values
-    
-        |  Parameter  |     Value     |
-        |:-----------:|:-------------:|
-        |     Id      |   Concrete    |
-        |   Parents   |       0       |
-        |  Interior   |     Here      |
-        |     Fun     |   Fungible    |
-        |  Fungible   | 1000000000000 |
-        | WeightLimit |   Unlimited   |
+Which should result in the following output:  
 
-    3. Select the **Transact** instruction and set the following values
-    
-        |      Parameter      |                                              Value                                               |
-        |:-------------------:|:------------------------------------------------------------------------------------------------:|
-        |     OriginType      |                                              Native                                              |
-        | RequireWeightAtMost |                                            1000000000                                            |
-        |       Encoded       | { paste the call data from the [previous section](#get-the-relay-chain-encoded-call-data) here } |
-
-    4. Select the **RefundSurplus** instruction
-    5. Select the **DepositAsset** instruction and set the following values
-
-        | Parameter |                      Value                       |
-        |:---------:|:------------------------------------------------:|
-        |  Assets   |                       Wild                       |
-        |   Wild    |                       All                        |
-        | MaxAssets |                        1                         |
-        |  Parents  |                        0                         |
-        | Interior  |                        X1                        |
-        |    X1     |                   AccountId32                    |
-        |  Network  |                       Any                        |
-        |    Id     | { enter the relay chain sovereign account here } |
-
-        The sovereign account addresses are as follows:
-                
-        === "Polkadot"
-            ```
-            0x70617261d4070000000000000000000000000000000000000000000000000000
-            ```
-
-        === "Kusama"
-            ```
-            0x70617261e7070000000000000000000000000000000000000000000000000000
-            ```
-            
-        === "Moonbase Alpha"
-            ```
-            0x70617261e8030000000000000000000000000000000000000000000000000000
-            ```
-
- 5. Click **Submit Transaction**
-
-!!! note
-    Using the above example values and the Moonbase Alpha relay chain sovereign account address, the encoded call data for the extrinsic is `0x1c000101000214000400000000070010a5d4e81300000000070010a5d4e800060002286bee383300e8030000e803000000900100140d0100040001010070617261e8030000000000000000000000000000000000000000000000000000`.
-
-![Open HRMP channel XCM message on Polkadot.js Apps](/images/builders/interoperability/xcm/xc-integration/xc-integration-2.png)
-
-Once the message has been sent, the relay chain should execute the content and the request to open the channel. Please contact us on [Telegram](https://t.me/Moonbeam_Official){target=_blank} or [Discord](https://discord.gg/PfpUATX){target=_blank} once you've requested opening the channel because the request needs to be accepted by Moonbeam.
+```
+Token Price is $1.58
+The UnitsPerSecond need to be set 3164556962025316455
+```
 
 ## Register your Asset and Propose a New HRMP Channel {: #register-your-asset-and-propose-a-new-hrmp-channel }
 
@@ -300,18 +234,13 @@ An XCMP/HRMP channel from Moonbeam to your parachain must be registered to send 
 
 When proposing an XCMP/HRMP channel registration on a Moonbeam network, you will wrap the channel and asset registrations into a single batched transaction so that during governance participants will have to vote on only one proposal. The xcm-tools GitHub repository should be cloned to aid with this process:  
 
-```
-git clone https://github.com/PureStake/xcm-tools.git
-cd xcm-tools
-```
-
 Run the following command, which will output the encoded calldata to accept the incoming HRMP channel request [made in a previous step](#create-an-hrmp-channel). `YOUR_PARACHAIN_ID` is your parachain's ID.  
 
 Be sure to copy the hexadecimal `PolkdotXcmSend` output of this command.  
 
 === "Moonbeam"
     ```
-    yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
+    yarn hrmp-manipulator --target-para-id 100 \
     --parachain-ws-provider wss://wss.api.moonbeam.network \
     --relay-ws-provider wss://rpc.polkadot.io \
     --hrmp-action accept
@@ -438,41 +367,7 @@ If you are registering on Moonbase Alpha, you will not to provide a private key 
 
 Once the batch proposal is sent through democracy, it will need to be seconded by either the Moonbeam team or another network member to continue with [the governance process](/learn/features/governance/#roadmap-of-a-proposal){target=_blank}.  
 
-### Calculating Units Per Second {: #calculating-units-per-second }
 
-`UnitsPerSecond` is the number of tokens charged per second of execution of an XCM message. The target cost for an XCM transfer is `$0.02` at the time of registration. The `UnitsPerSecond` might get updated through governance as token price fluctuates.  
-
-The easiest way to calculate an asset's `UnitsPerSecond` is through the [`calculateUnitsPerSeconds.ts` script](https://github.com/albertov19/xcmTools/blob/main/calculateUnitsPerSeconds.ts){target=_blank}. To run the script, you must provide the decimals of the asset, the current price of the asset in USD, and the estimated cost in weight per XCM operation on the Moonbeam chain that the asset will be sent to.  
-
-The estimated weight per XCM operation on each Moonbeam chain is:  
-
-=== "Moonbeam"
-    ```
-    1000000000
-    ```
-
-=== "Moonriver"
-    ```
-    200000000
-    ```
-
-=== "Moonbase Alpha"
-    ```
-    1000000000
-    ```
-
-For example, a token of 18 decimals currently priced at `$1.58` to be registered on the Moonbeam network:  
-
-```
-ts-node calculateUnitsPerSeconds.ts --d 18 --p 1.58 --xoc 1000000000 
-```
-
-Which should result in the following output:  
-
-```
-Token Price is $1.58
-The UnitsPerSecond need to be set 3164556962025316455
-```
 
 ## Accept the HRMP Channel {: #accept-the-hrmp-channel }
 
