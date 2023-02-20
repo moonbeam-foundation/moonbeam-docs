@@ -136,14 +136,14 @@ Additionally, there is key information to provide that is highlighted due to its
 
 ## Open an HRMP Channel {: #create-an-hrmp-channel }
 
-Before any messages can be sent from your parachain to Moonbeam, your parachain must send an open HRMP channel. To create an HRMP channel, you'll need to send an XCM message to the relay chain that will request a channel to be opened through the relay chain. The message will need  to contain at least the following XCM instructions:
+Before any messages can be sent from your parachain to Moonbeam, your parachain must send an open HRMP channel request. To create an HRMP channel, you'll need to send an XCM message to the relay chain that will request a channel to be opened through the relay chain. The message will need to contain at least the following XCM instructions:
 
  1. [WithdrawAsset](https://github.com/paritytech/xcm-format#withdrawasset){target=_blank} - takes funds out of the sovereign account (in the relay chain) of the origin parachain to a holding state
  2. [BuyExecution](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} - buys execution time from the relay chain to execute the XCM message
  3. [Transact](https://github.com/paritytech/xcm-format#transact){target=_blank} - provides the relay chain call data to be executed
  4. [DepositAsset](https://github.com/paritytech/xcm-format#depositasset){target=_blank} - (optional) refunds the leftover funds after the execution. If this is not provided, no refunds will be carried out
 
-You could potentially do this in Polkadot.js Apps, but we have provided a series of scripts to simplify the process in the [xcm-tools GitHub repository](https://github.com/PureStake/xcm-tools){target=_blank}, which you should download and use for the rest of the process. 
+You could potentially do this in Polkadot.js Apps, but the Moonbeam team has provided a series of scripts to simplify the process in the [xcm-tools GitHub repository](https://github.com/PureStake/xcm-tools){target=_blank}, which you should download and use for the rest of the process. 
 
 ```
 git clone https://github.com/PureStake/xcm-tools.git && \
@@ -151,7 +151,17 @@ cd xcm-tools && \
 yarn
 ```
 
-The xcm-tools repository has a specific script for HRMP interactions, called [`hrmp-channel-manipulator.ts`](https://github.com/PureStake/xcm-tools/blob/main/scripts/hrmp-channel-manipulator.ts){target=_blank}. In the case where you want to open a channel from your chain to Moonbeam, you can use yarn to interact with it in the following format to get the calldata to do so:  
+In your case, you will have to:  
+
+1. Send an HRMP channel open request to Moonbeam
+2. Batch an HRMP channel open request to your parachain into a governance proposal on Moonbeam
+
+!!! note
+    It is up to you how you execute the integration on your parachain, but when acting on a Moonbeam network, you should definitely [batch actions into a single proposal](#batch-actions-into-one-proposal).
+
+The xcm-tools repository has a specific script for HRMP interactions, called [`hrmp-channel-manipulator.ts`](https://github.com/PureStake/xcm-tools/blob/main/scripts/hrmp-channel-manipulator.ts){target=_blank}.   
+
+Running the following command will provide the encoded calldata that must be executed on the relay chain to send an open HRMP channel request from your parachain to a Moonbeam network. `YOUR_PARACHAIN_WSS` is the WebSocket endpoint for your parachain:
 
 === "Moonbeam"
     ```
@@ -177,18 +187,73 @@ The xcm-tools repository has a specific script for HRMP interactions, called [`h
     --hrmp-action open
     ```
 
-When using this function, 
+When using this function, there are additional flags that you could include to make the process easier.
 
+**TODO: add a table with all of the additional flags**
 
 ## Accept an HRMP Channel {: #accept-an-hrmp-channel }
 
+When a parachain receives an HRMP channel open request from another parachain, it must signal to the relay chain that it accepts this channel before the channel can be used. This too requires an XCM message to the relay chain.  
 
+In your case, you will have to:  
+
+1. Batch an HRMP channel acceptance of your parachain into a governance proposal on Moonbeam
+2. Accept Moonbeam's incoming open HRMP channel request
+
+!!! note
+    It is up to you how you execute the integration on your parachain, but when acting on a Moonbeam network, you should definitely [batch actions into a single proposal](#batch-actions-into-one-proposal).
+
+Fortunately, the xcm-tools GitHub repository's `hrmp-channel-manipulator.ts` script also includes the ability to accept an incoming HRMP channel request.  
+
+Running the following command will provide the encoded calldata that must be executed on the relay chain to accept an incoming HRMP channel request. `YOUR_PARACHAIN_WSS` is the WebSocket endpoint for your parachain:
+
+**TODO: explain the HRMP open commands**  
 
 ## Register a Foreign Asset {: #register-a-foreign-asset }
 
+One of the main points of creating an XCM integration is to send cross-chain assets to and from Moonbeam. 
 
-## Register a Foreign Asset {: #register-a-foreign-asset }
+`YOUR_PARACHAIN_ID` is your parachain's ID. `YOUR_ASSET_MULTILOCATION` is the [JSON-formatted multilocation](https://github.com/PureStake/xcm-tools#example){target=_blank} of the asset from the Moonbeam network's perspective. `YOUR_TOKEN_SYMBOL` is the symbol of the token you wish to register. It is recommended to add "xc" to the front of the symbol to indicate that the asset was bridged through XCM. `YOUR_TOKEN_DECIMALS` is the number of decimals your asset has, such as `18`. `YOUR_TOKEN_NAME` is the name of the token to register. `YOUR_UNITS_PER_SECOND` is the units of tokens to charge per second of execution time during XCM transfers. There is a [guide to calculate units per second](#calculating-units-per-second) below.   
 
+Be sure to copy the hexadecimal `PolkdotXcmSend` output of this command. You can repeat this process multiple times if you plan to register multiple tokens.  
+
+=== "Moonbeam"
+    ```
+    yarn register-asset -w wss://moonbeam.public.blastapi.io  \
+    --asset 'YOUR_ASSET_MULTILOCATION' \
+    --sym "YOUR_TOKEN_SYMBOL" \
+    -d YOUR_TOKEN_DECIMALS \
+    --name "YOUR_TOKEN_NAME" \
+    -u YOUR_UNITS_PER_SECOND \
+    --ed 1 --sufficient true --revert-code true 
+    ```
+
+=== "Moonriver"
+    ```
+    yarn register-asset -w wss://moonriver.public.blastapi.io  \
+    --asset 'YOUR_ASSET_MULTILOCATION' \
+    --sym "YOUR_TOKEN_SYMBOL" \
+    -d YOUR_TOKEN_DECIMALS \
+    --name "YOUR_TOKEN_NAME" \
+    -u YOUR_UNITS_PER_SECOND \
+    --ed 1 --sufficient true --revert-code true 
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    yarn register-asset -w wss://wss.api.moonbase.moonbeam.network   \
+    --asset 'YOUR_ASSET_MULTILOCATION' \
+    --sym "YOUR_TOKEN_SYMBOL" \
+    -d YOUR_TOKEN_DECIMALS \
+    --name "YOUR_TOKEN_NAME" \
+    -u YOUR_UNITS_PER_SECOND \
+    --ed 1 --sufficient true --revert-code true 
+    ```
+
+Finally, take the outputs of each command and insert them into the following command to send the batch proposal to democracy. `ACCEPT_INCOMING_CALL` is the hexadecimal encoded calldata found from the first command. `OPEN_CHANNEL_CALL` is the hexadecimal encoded calldata found from the second command. `REGISTER_ASSET_CALL` is the hexadecimal encoded calldata found from the third command. If you have more than one asset to be registered on Moonbeam, you can add its registration's hexadecimal encoded calldata with another `--call` flag. `YOUR_PRIVATE_KEY` is the private key of the funded Moonbeam account that is proposing.  
+
+!!! note
+    An asset might be registered on both the Moonbeam network and your parachain, but when doing actions on the Moonbase network, you should [batch actions into a single proposal](#batch-actions-into-one-proposal).
 
 ### Calculating Units Per Second {: #calculating-units-per-second }
 
@@ -225,6 +290,16 @@ Which should result in the following output:
 Token Price is $1.58
 The UnitsPerSecond need to be set 3164556962025316455
 ```
+
+
+## Batch Actions Into One Proposal {: #batch-actions-into-one-proposal }
+
+The most efficient way to complete the XCM process on parachains that have governance enabled are through batch proposals. The xcm-tools repository provides a way to batch extrinsic calls into a single call and thus requiring only a single proposal. This can be helpful if your parachain would like to open an HRMP channel and register an asset at the same time. This **should be used** when proposing a channel registration on a Moonbeam network.
+
+
+
+
+
 
 ## Register your Asset and Propose a New HRMP Channel {: #register-your-asset-and-propose-a-new-hrmp-channel }
 
@@ -293,46 +368,8 @@ Be sure to copy the hexadecimal `PolkdotXcmSend` output of this command.
     --hrmp-action open
     ```
 
-Run this third command, which will output the encoded calldata to register your asset on a Moonbeam network.  
 
-`YOUR_PARACHAIN_ID` is your parachain's ID. `YOUR_ASSET_MULTILOCATION` is the [JSON-formatted multilocation](https://github.com/PureStake/xcm-tools#example){target=_blank} of the asset from the Moonbeam network's perspective. `YOUR_TOKEN_SYMBOL` is the symbol of the token you wish to register. It is recommended to add "xc" to the front of the symbol to indicate that the asset was bridged through XCM. `YOUR_TOKEN_DECIMALS` is the number of decimals your asset has, such as `18`. `YOUR_TOKEN_NAME` is the name of the token to register. `YOUR_UNITS_PER_SECOND` is the units of tokens to charge per second of execution time during XCM transfers. There is a [guide to calculate units per second](#calculating-units-per-second) below.   
-
-Be sure to copy the hexadecimal `PolkdotXcmSend` output of this command. You can repeat this process multiple times if you plan to register multiple tokens.  
-
-=== "Moonbeam"
-    ```
-    yarn register-asset -w wss://moonbeam.public.blastapi.io  \
-    --asset 'YOUR_ASSET_MULTILOCATION' \
-    --sym "YOUR_TOKEN_SYMBOL" \
-    -d YOUR_TOKEN_DECIMALS \
-    --name "YOUR_TOKEN_NAME" \
-    -u YOUR_UNITS_PER_SECOND \
-    --ed 1 --sufficient true --revert-code true 
-    ```
-
-=== "Moonriver"
-    ```
-    yarn register-asset -w wss://moonriver.public.blastapi.io  \
-    --asset 'YOUR_ASSET_MULTILOCATION' \
-    --sym "YOUR_TOKEN_SYMBOL" \
-    -d YOUR_TOKEN_DECIMALS \
-    --name "YOUR_TOKEN_NAME" \
-    -u YOUR_UNITS_PER_SECOND \
-    --ed 1 --sufficient true --revert-code true 
-    ```
-
-=== "Moonbase Alpha"
-    ```
-    yarn register-asset -w wss://wss.api.moonbase.moonbeam.network   \
-    --asset 'YOUR_ASSET_MULTILOCATION' \
-    --sym "YOUR_TOKEN_SYMBOL" \
-    -d YOUR_TOKEN_DECIMALS \
-    --name "YOUR_TOKEN_NAME" \
-    -u YOUR_UNITS_PER_SECOND \
-    --ed 1 --sufficient true --revert-code true 
-    ```
-
-Finally, take the outputs of each command and insert them into the following command to send the batch proposal to democracy. `ACCEPT_INCOMING_CALL` is the hexadecimal encoded calldata found from the first command. `OPEN_CHANNEL_CALL` is the hexadecimal encoded calldata found from the second command. `REGISTER_ASSET_CALL` is the hexadecimal encoded calldata found from the third command. If you have more than one asset to be registered on Moonbeam, you can add its registration's hexadecimal encoded calldata with another `--call` flag. `YOUR_PRIVATE_KEY` is the private key of the funded Moonbeam account that is proposing.  
+**REGISTER ASSET SECTION CUT AND PASTED ELSEWHERE**
 
 If you are registering on Moonbase Alpha, you will not to provide a private key or go through governance. Run the following command and provide the output to the Moonbeam team so that the asset and channel can be added quickly through sudo.  
 
@@ -366,49 +403,6 @@ If you are registering on Moonbase Alpha, you will not to provide a private key 
     ```
 
 Once the batch proposal is sent through democracy, it will need to be seconded by either the Moonbeam team or another network member to continue with [the governance process](/learn/features/governance/#roadmap-of-a-proposal){target=_blank}.  
-
-
-
-## Accept the HRMP Channel {: #accept-the-hrmp-channel }
-
-As previously mentioned, all XCMP/HRMP channel integrations with Moonbeam are unidirectional. As such, once your parachain is onboarded on a Moonbeam network, there needs to be a channel that Moonbeam will request to send tokens back to your parachain, and you'll need to accept it.
-
-The process of accepting the channel is similar to the one of opening, meaning that you have to construct an encoded call data in the relay chain, and then get it executed via an XCM message from your parachain. 
-
-### Get the Relay Chain Encoded Call Data {: #get-the-relay-chain-encoded-call-data }
-
-To get the call data to be executed in step 3, you can head to Polkdot.js Apps and connect to the WSS endpoint for either the [Moonbase Alpha relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/extrinsics){target=_blank}, [Kusama](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkusama.api.onfinality.io%2Fpublic-ws#/extrinsics){target=_blank}, or [Polkadot](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fpolkadot.api.onfinality.io%2Fpublic-ws#/extrinsics){target=_blank}. Navigate to the **Developer** tab, select **Extrinsics**, and take the following steps:
-
-1. Select **hrmp** from the **submit the following extrinsic** dropdown
-2. Select the **hrmpAcceptOpenChannel** extrinsic
-3. Enter the Moonbeam parachain ID as the **sender**
-
-    === "Moonbeam"
-        ```
-        2004
-        ```
-
-    === "Moonriver"
-        ```
-        2023
-        ```
-
-    === "Moonbase Alpha"
-        ```
-        1000
-        ```
-
-4. Copy the encoded call data. It will be required for the `Transact` XCM instruction. For example, on Moonbase Alpha the call data is `0x3301e8030000`
-
-![Get accept HRMP channel relay chain call data on Polkadot.js Apps](/images/builders/interoperability/xcm/xc-integration/xc-integration-3.png)
-
-### Send an XCM Message to the Relay Chain {: #send-an-xcm-message-to-the-relay-chain-accept }
-
-The steps to build and send an XCM message are the same as for opening a channel. The main difference is in the `Transact` instruction, where you need to provide the encoded call data calculated in the previous section for the `hrmpAcceptOpenChannel` extrinsic. This message needs to be sent from the root account (either SUDO or via governance).
-
-Please refer back to the Create an HRMP Channel section and follow the steps to [Send an XCM Message to the Relay Chain](#send-an-xcm-message-to-the-relay-chain-open) and modify step 4c with the correct encoded call data.
-
-![Accept HRMP channel XCM message on Polkadot.js Apps](/images/builders/interoperability/xcm/xc-integration/xc-integration-4.png)
 
 ## Register Moonbeam's Asset on your Parachain {: #register-moonbeams-asset-on-your-parachain }
 
@@ -541,3 +535,50 @@ For testing, please also provide your parachain WSS endpoint so that the Moonbea
 [XC-20s](/builders/interoperability/xcm/xc20/){target=_blank} are Substrate based assets with an [ERC-20 interface](/builders/interoperability/xcm/xc20/overview/#the-erc20-interface){target=_blank}. This means they can be added to MetaMask, and can be composed with any EVM DApp that exists in the ecosystem. The team can connect you with any DApp you find relevant for an XC-20 integration.
 
 If you need DEV tokens (the native token for Moonbase Alpha) to use your XC-20 asset, you can get some from the [Moonbase Alpha Faucet](/builders/get-started/networks/moonbase/#moonbase-alpha-faucet){target=_blank}, which dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours. If you need more, feel free to reach out to the team on [Telegram](https://t.me/Moonbeam_Official){target=_blank} or [Discord](https://discord.gg/PfpUATX){target=_blank}.
+
+
+
+
+
+# ALL OF THE STUFF UNDER HERE SHOULD BE DELETED
+
+## Accept the HRMP Channel {: #accept-the-hrmp-channel }
+
+As previously mentioned, all XCMP/HRMP channel integrations with Moonbeam are unidirectional. As such, once your parachain is onboarded on a Moonbeam network, there needs to be a channel that Moonbeam will request to send tokens back to your parachain, and you'll need to accept it.
+
+The process of accepting the channel is similar to the one of opening, meaning that you have to construct an encoded call data in the relay chain, and then get it executed via an XCM message from your parachain. 
+
+### Get the Relay Chain Encoded Call Data {: #get-the-relay-chain-encoded-call-data }
+
+To get the call data to be executed in step 3, you can head to Polkdot.js Apps and connect to the WSS endpoint for either the [Moonbase Alpha relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/extrinsics){target=_blank}, [Kusama](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkusama.api.onfinality.io%2Fpublic-ws#/extrinsics){target=_blank}, or [Polkadot](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fpolkadot.api.onfinality.io%2Fpublic-ws#/extrinsics){target=_blank}. Navigate to the **Developer** tab, select **Extrinsics**, and take the following steps:
+
+1. Select **hrmp** from the **submit the following extrinsic** dropdown
+2. Select the **hrmpAcceptOpenChannel** extrinsic
+3. Enter the Moonbeam parachain ID as the **sender**
+
+    === "Moonbeam"
+        ```
+        2004
+        ```
+
+    === "Moonriver"
+        ```
+        2023
+        ```
+
+    === "Moonbase Alpha"
+        ```
+        1000
+        ```
+
+4. Copy the encoded call data. It will be required for the `Transact` XCM instruction. For example, on Moonbase Alpha the call data is `0x3301e8030000`
+
+![Get accept HRMP channel relay chain call data on Polkadot.js Apps](/images/builders/interoperability/xcm/xc-integration/xc-integration-3.png)
+
+### Send an XCM Message to the Relay Chain {: #send-an-xcm-message-to-the-relay-chain-accept }
+
+The steps to build and send an XCM message are the same as for opening a channel. The main difference is in the `Transact` instruction, where you need to provide the encoded call data calculated in the previous section for the `hrmpAcceptOpenChannel` extrinsic. This message needs to be sent from the root account (either SUDO or via governance).
+
+Please refer back to the Create an HRMP Channel section and follow the steps to [Send an XCM Message to the Relay Chain](#send-an-xcm-message-to-the-relay-chain-open) and modify step 4c with the correct encoded call data.
+
+![Accept HRMP channel XCM message on Polkadot.js Apps](/images/builders/interoperability/xcm/xc-integration/xc-integration-4.png)
