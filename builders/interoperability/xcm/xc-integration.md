@@ -245,9 +245,23 @@ This section is irrelevant to the steps of registering a new XC integration, and
 
 The `hrmp-channel-manipulator.ts` script is meant to be generic. It will first attempt to use the `hrmpManage` extrinsic of the XcmTransactor pallet, but if that pallet does not exist on the parachain that it is being used on, it will switch to using the PolkadotXcm pallet (which should be used more readily by parachains) to directly construct the XCM message that interacts with the HRMP pallet on the relay chain.  
 
-The additional options that can be used with the script are as follows:  
+The complete options that can be used with the script are as follows:  
 
-**TODO: add a table with all of the additional flags**
+|          Flag         |             Type            |                                                Description                                                 |
+|:---------------------:|:---------------------------:|:----------------------------------------------------------------------------------------------------------:|
+| parachain-ws-provider |            string           | The WSS endpoint of the parachain that the actions executing from                                          |
+|   relay-ws-provider   |            string           | The WSS endpoint of the parachain's relay chain                                                            |
+|      hrmp-action      |   accept/cancel/close/open  | The HRMP action to take                                                                                    |
+|    target-para-id     |            number           | The parachain ID that the HRMP action is directed towards                                                  |
+|      max-capacity     |            number           | (Required for opening) The maximum capacity of messages in this HRMP channel                               |
+|   max-message-size    |            number           | (Required for opening) The maximum size of each message through the HRMP channel                           |
+|   send-proposal-as    |  democracy/council-external | (Optional) Whether to send the encoded calldata to democracy or a council (OpenGov v1)                     |
+|   account-priv-key    |            string           | (Required for send-proposal-as, send-preimage-hash) The private key of the account to send a proposal with |
+|         sudo          |            boolean          | (Optional) Whether to wrap the extrinsic call data inside of a `sudo.sudo` extrinsic                       |
+|  send-preimage-hash   |            boolean          | (Optional) Whether to submit the encoded calldata as a preimage hash                                       |
+|  collective-threshold |            number           | (Required for council-external) The threshold for the council deciding on the HRMP action                  |
+|        at-block       |            number           | (Optional) The block in the future that the action should be scheduled to take place                       |
+|      fee-currency     |            string           | (Required for non-Moonbeam chains that use XcmTransactor) The multilocation of the relay chain's asset     |
 
 ## Accept an HRMP Channel on Moonbeam {: #accept-an-hrmp-channel-on-moonbeam }
 
