@@ -400,5 +400,4 @@ main();
 This will result in the approval and swap being batched into a single transaction and the transaction hash will be printed to the console. You can now adapt and apply this logic to your Uniswap V2-style application!
 
 --8<-- 'text/disclaimers/educational-tutorial.md'
-
 --8<-- 'text/disclaimers/third-party-content.md'
