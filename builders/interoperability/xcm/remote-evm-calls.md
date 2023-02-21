@@ -151,7 +151,7 @@ Where the `named` value corresponds to "Westend" in hex (in this example), and t
 }
 ```
 
-This is the multilocation used to calculate the **multilocation-derivative account**. You can use a [calculate **multilocation-derivative account** script)[https://github.com/PureStake/xcm-tools]{target=_blank} to help you obtain its value. To do so, you can use the following command:
+This is the multilocation used to calculate the **multilocation-derivative account**. You can use the [calculate **multilocation-derivative account** script](https://github.com/PureStake/xcm-tools){target=_blank} to help you obtain its value. To do so, you can use the following command:
 
 ```sh
 yarn calculate-multilocation-derivative-account \
@@ -163,7 +163,7 @@ yarn calculate-multilocation-derivative-account \
 
 The parameters that you need to pass along with this command are:
 
-- The `-w` flag corresponds to the endpoint we’re using to fetch this information
+- The `-w` flag corresponds to the endpoint you’re using to fetch this information
 - The `-a` flag corresponds to your Moonbase relay chain address
 - The `-p` flag corresponds to the parachain ID of the origin chain (if applies), if you are sending the XCM from the relay chain you don't need to provide this parameter
 - The `-n` flag corresponds to the encoded form of “westend”, the name of the relay chain that Moonbase relay is based on
@@ -177,7 +177,7 @@ yarn calculate-multilocation-derivative-account \
 --n 0x57657374656e64
 ```
 
-The relevant values for this calculation are summarized in the following table:"
+The relevant values for this calculation are summarized in the following table:
 
 |                    Name                     |                                                                                Value                                                                                 |
 |:-------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -188,7 +188,7 @@ The relevant values for this calculation are summarized in the following table:"
 | Multilocation-Derivative Account (32 bytes) |                                                 `0x4e21340c3465ec0aa91542de3d4c5f4fc1def526222c7363e0f6f860ea4e503c`                                                 |
 | Multilocation-Derivative Account (20 bytes) |                                                             `0x4e21340c3465ec0aa91542de3d4c5f4fc1def526`                                                             |
 
-Consequently, for this example, the **multilocation-derivative account** for Moonbase Alpha is `0x4e21340c3465ec0aa91542de3d4c5f4fc1def526`. Note that only Alice is the only person who can access this account through a remote transact from the relay chain, as she is the owner of its private keys and the **multilocation-derivative account** is keyless.
+Consequently, for this example, the **multilocation-derivative account** for Moonbase Alpha is `0x4e21340c3465ec0aa91542de3d4c5f4fc1def526`. Note that Alice is the only person who can access this account through a remote transact from the relay chain, as she is the owner of its private keys and the **multilocation-derivative account** is keyless.
 
 ### Ethereum-XCM Transact Call Data {: #ethereumxcm-transact-data}
 
@@ -294,7 +294,7 @@ If you've [checked the prerequisites](#ethereumxcm-check-prerequisites) and you'
 ```
 The three XCM instructions used are:
     - [`WithdrawAsset`](https://github.com/paritytech/xcm-format#withdrawasset){target=_blank} — takes funds from the account dispatching the XCM in the destination chain and puts them in holding, a special take where funds can be used for later actions
-    - [`BuyExecution`](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} — buy a certain amount of block execution time, in this particular case, all the amount of weight (set to `Unlimited`) that `100000000000000000` tokens can buy
+    - [`BuyExecution`](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} — buy a certain amount of block execution time, in this particular case, the amount of weight (set to `Unlimited`) that `100000000000000000` tokens can buy
     - [`Transact`](https://github.com/paritytech/xcm-format#transact){target=_blank} — use part of the block execution time bought with the previous instruction to execute some arbitrary bytes. It is recommended that the weight given to this instruction needs to be around 10% more of `25000` times the gas limit for the EVM call you want to execute via XCM
 8. Click the **Submit Transaction** button and sign the transaction
 
@@ -311,7 +311,7 @@ In the relay chain, the extrinsic is `xcmPallet.send`, and the associated event 
  - **parachainSystem.DownwardMessagesReceived** — event that signals that a message from the relay chain was received. With the current XCM implementation, messages from other parachains will show the same event
  - **balances.Withdraw** — event related to the withdrawing of tokens to pay for the execution of the call. Note that the `who` address is the **multilocation-derivative account** calculated before
  - **ethereum.Executed** — event associated with the execution of the remote EVM call. It provides the `from`, `to`, `transactionHash` (calculated with the non-standard signature and global pallet nonce), and the `exitReason`. Currently, some common EVM errors, like out of gas, will show `Reverted` in the exit reason
- - **polkadotXcm.AssetsTrapped** — event that is emitted when part of the tokens withdrawn from the account (for fees) are not used. Generally, when there are leftover tokens in the registry that are not allocated to an account. These tokens are temporarily burned and can be retrieved through a democracy proposal. A combination of both `RefundSurplus` and `DepositAsset` XCM instructions can prevent from assets getting trapped
+ - **polkadotXcm.AssetsTrapped** — event that is emitted when part of the tokens withdrawn from the account (for fees) are not used. Generally, when there are leftover tokens in the registry that are not allocated to an account. These tokens are temporarily burned and can be retrieved through a democracy proposal. A combination of both `RefundSurplus` and `DepositAsset` XCM instructions can prevent assets from getting trapped
 
 To verify that the remote EVM call through XCM was successful, you can head to the [contract's page in Moonscan](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8#readContract){target=_blank} and verify the new value for the number and its timestamp.
 

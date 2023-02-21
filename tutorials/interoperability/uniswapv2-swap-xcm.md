@@ -20,7 +20,7 @@ For this example, you'll be working on top of the Moonbase Alpha TestNet, in whi
 Throughout this tutorial, we will refer to the account performing the Uniswap V2 swap via XCM as Alice. The tutorial has a lot of moving parts, so let's summarize them in a list and a flow diagram:
 
 1. Alice has an account on the relay chain, and she wants to swap `DEV` tokens for `MARS` tokens (ERC-20 on Moonbase Alpha) on [Moonbeam-Swap](https://moonbeam-swap.netlify.app){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha. Alice needs to send an XCM message to Moonbase Alpha from her relay chain account
-2. The XCM message will be received by Moonbase Alpha and its instructions executed. The instructions state Alice's intention to buy some block execution time in Moonbase Alpha and execute a call to Moonbase's EVM, specifically, the Uniswap V2 (Moonbeam-Swap) router contract. The EVM call is dispatched through a special account Alice controls on Moonbase Alpha via XCM messages. This account is known as [multilocation-derivative account](/builders/xcm/xcm-transactor/#general-xcm-definitions){target=_blank}. Even though this is a keyless account (private key is unknown), the public address can be [calculated in a deterministic way](/builders/xcm/remote-evm-calls/#calculate-multilocation-derivative){target=_blank}
+2. The XCM message will be received by Moonbase Alpha and its instructions executed. The instructions state Alice's intention to buy some block execution time in Moonbase Alpha and execute a call to Moonbase's EVM, specifically, the Uniswap V2 (Moonbeam-Swap) router contract. The EVM call is dispatched through a special account Alice controls on Moonbase Alpha via XCM messages. This account is known as the [multilocation-derivative account](/builders/xcm/xcm-transactor/#general-xcm-definitions){target=_blank}. Even though this is a keyless account (private key is unknown), the public address can be [calculated in a deterministic way](/builders/xcm/remote-evm-calls/#calculate-multilocation-derivative){target=_blank}
 3. The XCM execution will result in the swap being executed by the EVM, and Alice will receive her `MARS` tokens in her special account
 4. The execution of the remote EVM call through XCM will result in some EVM logs that are picked up by explorers. There is an EVM transaction and receipt that anyone can query to verify
 
@@ -30,7 +30,7 @@ With the steps outlined, some prerequisites need to be taken into account, let's
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
-Considering all the steps summarized in the [#introduction](#introduction), the following prerequisites need to be accounted for:
+Considering all the steps summarized in the [introduction](#introduction), the following prerequisites need to be accounted for:
 
 1. Alice needs to have UNITs on the relay chain to pay for transaction fees when sending the XCM
 2. Alice's [multilocation-derivative account](/builders/xcm/xcm-transactor/#general-xcm-definitions){target=_blank} must hold `DEV` tokens to fund the Uniswap V2 swap, and also pay for the XCM execution (although this could be paid in UNIT tokens as `xcUNIT`). We will calculate the multilocation-derivative account address in the next section
@@ -41,7 +41,7 @@ Considering all the steps summarized in the [#introduction](#introduction), the 
 
 Copy the account of your existing or newly created account on the [Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank}. You're going to need it to calculate the corresponding multilocation-derivative account, which is a special type of account that’s keyless (the private key is unknown). Transactions from a multilocation-derivative account can be initiated only via valid XCM instructions from the corresponding account on the relay chain. In other words, you are the only one who can initiate transactions on your multilocation-derivative account - and if you lose access to your Moonbase relay account, you’ll also lose access to your multilocation-derivative account.
 
-To generate the multilocation-derivative account, first clone the [xcm-tools](https://github.com/PureStake/xcm-tools){target=_blank}. Run `yarn` to install the necessary packages, and then run:
+To generate the multilocation-derivative account, first clone the [xcm-tools](https://github.com/PureStake/xcm-tools){target=_blank} repo. Run `yarn` to install the necessary packages, and then run:
 
 
 ```sh
@@ -63,7 +63,7 @@ For our case, we will send the remote EVM call via XCM from Alice's account, whi
 
 ![Calculating the multilocation-derivative account](/images/tutorials/interoperability/uniswapv2-swap-xcm/uniswapv2-swap-xcm-2.png)
 
-The values are all summarized in the following table:"
+The values are all summarized in the following table:
 
 |                    Name                     |                                                                                Value                                                                                 |
 |:-------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -80,7 +80,7 @@ The script will return 32-byte and 20-byte addresses. We’re interested in the 
 
 ## Getting the Uniswap V2 Swap Calldata {: #getting-uniswapv2-swap-calldata }
 
-The following section will walk through the steps of getting the calldata for the Uniswap V2 swap, as we need to feed this calldata to the [remote EVM call](/builders/interoperability/xcm/remote-evm-calls/) that we will build via XCM.
+The following section will walk through the steps of getting the calldata for the Uniswap V2 swap, as we need to feed this calldata to the [remote EVM call](/builders/interoperability/xcm/remote-evm-calls/){target=_blank} that we will build via XCM.
 
 The function being targeted here is one from the Uniswap V2 router, more specifically [swapExactETHForTokens](https://github.com/Uniswap/v2-periphery/blob/master/contracts/UniswapV2Router02.sol#L252){target=_blank}. This function will swap an exact amount of protocol native tokens (in this case `DEV`) for another ERC-20 token. It has the following inputs:
 
@@ -89,7 +89,7 @@ The function being targeted here is one from the Uniswap V2 router, more specifi
  - Address of the recipient of the tokens swapped
  - The deadline (in Unix time) from which the trade is no longer valid
 
-The easiest way to get the calldata is through the [Moonbeam Uniswap V2 Demo](https://moonbeam-swap.netlify.app/) page. Once you go in the website, take the following steps:
+The easiest way to get the calldata is through the [Moonbeam Uniswap V2 Demo](https://moonbeam-swap.netlify.app/){target=_blank) page. Once you go in the website, take the following steps:
 
  1. Set the swap **from** value and token and also set the swap **to** token. For this example, we want to swap 1 `DEV` token for `MARS`
  2. Click on the **Swap** button. Metamask should pop up, **do not sign the transaction**
@@ -124,9 +124,10 @@ Once you have the encoded calldata, feel free to reject the transaction in your 
 ```
 
 In the calldata, we need to change three fields to ensure our swap will go through:
- - The minimum amount out, to account for slippage as the pool my have a difference `DEV/MARS` balance when you try this out
+
+ - The minimum amount out, to account for slippage as the pool may have a different `DEV/MARS` balance when you try this out
  - The receiving address to our multilocation-derivative account
- - The deadline to provide a bit more flexibility for our swap, so you don't have to submit this immediatly. 
+ - The deadline to provide a bit more flexibility for our swap, so you don't have to submit this immediately
 
 **This is OK because we are just testing things :), do not use this code in production!** Our encoded calldata should look like this (the line breaks were left for visibility):
 
@@ -141,7 +142,7 @@ In the calldata, we need to change three fields to ensure our swap will go throu
 0000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f
 ```
 
-Which, as a one line, is:
+Which, as one line, is:
 
 ```
 0x7ff36ab50000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def52600000000000000000000000000000000000000000000000000000000647464250000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f
@@ -204,13 +205,13 @@ generateCallData();
 !!! note
     You can also get the SCALE encoded call data by manually building the extrinsic in [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/extrinsics){target=_blank}.
 
-Let's go through each of the main components of the snipped shown above:
+Let's go through each of the main components of the snippet shown above:
 
  1. Provide the input data for the call. This includes: 
      - Moonbase Alpha endpoint URL to create the providers
      - [Uniswap V2 router address](https://moonbase.moonscan.io/address/0x8a1932d6e26433f3037bd6c3a40c816222a6ccd4#code){target=_blank} which is the one the call interacts with
      - Encoded calldata for the Uniswap V2 swap that we calculated before
- 2. Create the necessary providers. One is a [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank}, through which we can call [Moonbeam pallets](https://docs.moonbeam.network/builders/pallets-precompiles/pallets/){target=_blank} directly. The other one is an Ethereum API provider through Ethers.js
+ 2. Create the necessary providers. One is a [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} provider, through which we can call [Moonbeam pallets](https://docs.moonbeam.network/builders/pallets-precompiles/pallets/){target=_blank} directly. The other one is an Ethereum API provider through Ethers.js
  3. This step is mainly a best practice. Here, we are estimating the gas of the EVM call that will be executed via XCM, as this is needed later on. You can also hardcode the gas limit value, but it is not recommended
  4. [Build the remote EVM call](/builders/interoperability/xcm/remote-evm-calls/#build-remove-evm-call-xcm){target=_blank}. We bumped the gas by `10000` units to provide a bit of room in case conditions change. The inputs are identical to those used for the gas estimation
  5. Create the Ethereum XCM pallet call to the `transact` method, providing the call parameters we previously built
@@ -316,7 +317,7 @@ generateCallData();
 !!! note
     You can also get the SCALE encoded call data by manually building the extrinsic in [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/extrinsics){target=_blank}.
 
-Let's go through each of the main components of the snipped shown above:
+Let's go through each of the main components of the snippet shown above:
 
  1. Provide the input data for the call. This includes:
      - Moonbase Alpha relay chain endpoint URL to create the provider
@@ -348,7 +349,7 @@ Now that we have the SCALE encoded calldata, the last step is to submit the tran
 
 This section is where everything comes together and where the magic happens! Let's recap what we've done so far:
 
- - We've a relay chain account that is funded with `UNIT` tokens (relay chain native tokens)
+ - We've created a relay chain account that is funded with `UNIT` tokens (relay chain native tokens)
  - We determined its multilocation-derivative account on Moonbase Alpha and funded this new address with `DEV` tokens (Moonbase Alpha native token)
  - We obtained the Uniswap V2 swap calldata, in which we'll be swapping `0.01 DEV` token for `MARS`, an ERC-20 that exists in Moonbase Alpha. We had to modify a couple of fields to adapt it to this particular example
  - We built the SCALE encoded calldata in Moonbase Alpha to access its EVM via XCM
@@ -362,7 +363,7 @@ import Keyring from '@polkadot/keyring'; // Version 10.3.1
 
 // 1. Input Data
 const providerWsURL = 'wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network';
-const mnemonic = 'INSERT_MNEMONIC_HERE'; //Not safe, only for testing
+const mnemonic = 'INSERT_MNEMONIC_HERE'; // Not safe, only for testing
 const txCall =
   '0x410604630001000100a10f021000040000010403000f0080c6a47e8d03130000010403000f0080c6a47e8d030006010780bb470301fd04260001f31a020000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd40000c16ff286230000000000000000000000000000000000000000000000000091037ff36ab50000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def52600000000000000000000000000000000000000000000000000000000647464250000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f000d010004000103004e21340c3465ec0aa91542de3d4c5f4fc1def526';
 
@@ -401,7 +402,7 @@ This action will emit different events. The first one is the only relevant [in t
  - `evm.Log` — internal events emitted by the different contract calls. The structure is the same: contract address, the topics, and relevant data
  - `ethereum.Executed` — contains information on the `from` address, the `to` address, and the transaction hash of an EVM call done
  - `polkadotXcm.AssetsTrapped` — flags that some assets were in holding and were not deposited to a given address. If the `Transact` XCM instruction does not exhaust the tokens allocated to it, it will execute a [`RefundSurplus`](https://github.com/paritytech/xcm-format#refundsurplus){target=_blank} after the XCM is processed. This instruction will take any leftover tokens from the execution bought and put them in holding. We could prevent this by adjusting the fee provided to the `Transact` instruction, or by adding the instruction right after the `Transact`
- - `dmpQueue.ExecutedDownward`  — states the result of executing a message received from the relay chain (a DMP message). In this case, the `outcome` is marked as `Complete`
+ - `dmpQueue.ExecutedDownward` — states the result of executing a message received from the relay chain (a DMP message). In this case, the `outcome` is marked as `Complete`
 
 Our XCM was successfully executed! If you visit [Moonbase Alpha Moonscan](https://moonbase.moonscan.io/){target=_blank} and search for [the transaction hash](https://moonbase.moonscan.io/tx/0xdb0705ae31aa046ba2797f0d85fab29c0f94299263ae4e184dce69a93d341d26){target=_blank}, you'll find the Uniswap V2 swap that was executed via the XCM message.
 
