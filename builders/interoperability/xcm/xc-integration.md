@@ -20,7 +20,7 @@ This guide will cover how to open and accept an HRMP channel between a parachain
 
 ## Moonbase Alpha XCM Integration Overview {: #moonbase-alpha-xcm }
 
-The first step for a Moonriver/Moonbeam XCM integration, is to integrate with the Moonbase Alpha TestNet, through the Alphanet relay chain. Then a Moonriver integration must be completed before proceeding with Moonbeam (if applicable).  
+The first step for a Moonriver/Moonbeam XCM integration is to integrate with the Moonbase Alpha TestNet, through the Alphanet relay chain. Then a Moonriver integration must be completed before proceeding with Moonbeam (if applicable).  
 
 The entire process to get started with Moonbase Alpha can be summarized as follows:
 
@@ -79,7 +79,7 @@ When getting started with the Moonbase Alpha relay chain, once you have your sov
 
 ## Moonriver & Moonbeam XCM Integration Overview {: #moonriver-moonbeam }
 
-From a technical perspective, the process to create a HRMP channel with Moonriver and Moonbeam is nearly the same. However, engagement with the Moonbeam community is crucial and required before a proposal will pass. The process is as follows:
+From a technical perspective, the process to create an HRMP channel with Moonriver and Moonbeam is nearly the same. However, engagement with the Moonbeam community is crucial and required before a proposal will pass. The process is as follows:
 
 1. Add details of the asset and project to [the forum](/tokens/governance/proposals/#submitting-your-idea-to-the-forum){target=_blank} in the the XCM category. Please check the HRMP channel guidelines that the community voted on for [Moonriver](https://moonriver.polkassembly.network/referenda/0){target=_blank} and [Moonbeam](https://moonbeam.polkassembly.network/proposal/21){target=_blank}
 2. Open an HRMP channel from your chain to Moonriver/Moonbeam. Optionally, you can create a batched proposal to register MOVR/GLMR or register at a later date
@@ -102,7 +102,7 @@ From a technical perspective, the process to create a HRMP channel with Moonrive
     Hex:       0x4c0524ef80ae843b694b225880e50a7a62a6b86f7fb2af3cecd893deea80b926)
     ```
 
-7. Provide an Ethereum-styled address for MOVR/GMLR
+7. Provide an Ethereum-styled address for MOVR/GLMR
 8. Test the XCM integration with the provided tokens
 
 Once these steps are complete, marketing efforts can be coordinated and the new XC-20 on Moonriver/Moonbeam can be added to the Cross Chain Assets section of the [Moonbeam DApp](https://apps.moonbeam.network/){target=_blank}.
@@ -157,9 +157,6 @@ In your case, you will have to:
 
 1. Send an HRMP channel open request to Moonbeam
 2. Batch an HRMP channel open request to your parachain into a governance proposal on Moonbeam
-
-!!! note
-    It is up to you how you execute the integration on your parachain, but when acting on a Moonbeam network, you should definitely [batch actions into a single proposal](#batch-actions-into-one-proposal). Read this section to understand how to get the XCM calldata, but skip to the batching section for executing the proposal on Moonbeam.
 
 ### Send an Open Channel Request to Moonbeam {: #send-an-open-channel-request-to-moonbeam }
 
@@ -240,7 +237,7 @@ These three actions can be batched together, but each action's calldata is neede
     --hrmp-action open
     ```
 
-Copy the resultant call data for use when [batching transactions in a proposal](#batch-actions-into-one-proposal) on Moonbeam.  
+Copy the resultant call data for use when [batching transactions in a proposal](#batch-actions-into-one-proposal){target=_blank} on Moonbeam.  
 
 ### Additional Flags for the HRMP Manipulator {: #additional-flags-for-the-hrmp-manipulator }
 
@@ -260,9 +257,6 @@ In your case, you will have to:
 
 1. Batch an HRMP channel acceptance of your parachain into a governance proposal on Moonbeam
 2. Accept Moonbeam's incoming open HRMP channel request after the proposal has finished
-
-!!! note
-    It is up to you how you execute the integration on your parachain, but when acting on a Moonbeam network, you should definitely [batch actions into a single proposal](#batch-actions-into-one-proposal). Read this section to understand how to get the XCM calldata, but skip to the batching section for executing the proposal on Moonbeam.
 
 Fortunately, the xcm-tools GitHub repository's `hrmp-channel-manipulator.ts` script also includes the ability to accept an incoming HRMP channel request.  
 
@@ -292,14 +286,11 @@ Running the following command will provide the encoded calldata to accept an ope
     --hrmp-action accept
     ```
 
-Copy the resultant call data for use when [batching transactions in a proposal](#batch-actions-into-one-proposal) on Moonbeam.  
+Copy the resultant call data for use when [batching transactions in a proposal](#batch-actions-into-one-proposal){target=_blank} on Moonbeam.  
 
 ## Register a Foreign Asset {: #register-a-foreign-asset }
 
 One of the main points of creating an XCM integration is to send cross-chain assets to and from Moonbeam. Registering an asset through Moonbeam is done via the [asset manager pallet](https://github.com/PureStake/moonbeam/blob/master/pallets/asset-manager/src/lib.rs){target=_blank}. This guide will have you use the `xcm-asset-registrator.ts` script. Keep in mind that this script cannot be used on your parachain if you do not have this pallet.  
-
-!!! note
-    In the integration process, a new cross-chain asset might be registered on both the Moonbeam network and your parachain. It is up to you how you execute the integration on your parachain, but when acting on the Moonbase network, you should [batch actions into a single proposal](#batch-actions-into-one-proposal). Read this section to understand how to get the extrinsic calldata, but skip to the batching section for executing the proposal on Moonbeam.
 
 Running the command below will provide the encoded calldata to register your cross-chain asset on a Moonbeam network. Replace the following values before running the command:  
 
@@ -308,7 +299,7 @@ Running the command below will provide the encoded calldata to register your cro
 - `YOUR_TOKEN_SYMBOL` with the symbol of the token you wish to register. Please add "xc" to the front of the symbol to indicate that the asset was bridged through XCM 
 - `YOUR_TOKEN_DECIMALS` with the number of decimals your asset has, such as `18`
 - `YOUR_TOKEN_NAME` with the name of the token to register 
-- `YOUR_UNITS_PER_SECOND` with the units of tokens to charge per second of execution time during XCM transfers. There is a [guide to calculate units per second](#calculating-units-per-second) below  
+- `YOUR_UNITS_PER_SECOND` with the units of tokens to charge per second of execution time during XCM transfers. There is a [guide to calculate units per second](#calculating-units-per-second){target=_blank} below  
 
 === "Moonbeam"
     ```
@@ -343,24 +334,28 @@ Running the command below will provide the encoded calldata to register your cro
     --ed 1 --sufficient true --revert-code true 
     ```
 
-An example command and output would look like the following:  
+For example, the following command would be for registering an asset from parachain 888, with an asset that has a general key of `1`:  
 
 ```
 yarn register-asset -w wss://wss.api.moonbase.moonbeam.network \
---asset '{ "parents": 1, "interior": { "X2": [{ "Parachain": 888 }, {"GeneralKey": "0x000000000000000000"}]}}' \
+--asset '{ "parents": 1, "interior": { "X2": [{ "Parachain": 888 }, {"GeneralKey": "0x000000000000000001"}]}}' \
 --symbol "xcEXTN" --decimals 18 \
 --name "Example Token" \
 --units-per-second 20070165297881393351 \ 
 --ed 1 --sufficient true --revert-code true 
-
-Encoded proposal for registerAsset is 0x1f0000010200e10d0624000000000000000000344578616d706c6520546f6b656e1878634558544e12000000000000000000000000000000000000
-Encoded proposal for setAssetUnitsPerSecond is 0x1f0100010200e10d0624000000000000000000c7a8978b008d8716010000000000000026000000
-Encoded Call Data for Tx is 0x0102081f0000010200e10d0624000000000000000000344578616d706c6520546f6b656e1878634558544e120000000000000000000000000000000000001f0100010200e10d0624000000000000000000c7a8978b008d8716010000000000000026000000
 ```
 
-Be sure to copy the encoded calldata: the final hexadecimal encoded data printed from the output.  
+Its output would look like the following:  
 
-You can do this process with multiple assets if you intend on registering multiple cross-chain assets to Moonbeam.  
+```
+Encoded proposal for registerAsset is 0x1f0000010200e10d0624000000000000000001344578616d706c6520546f6b656e1878634558544e12000000000000000000000000000000000000
+Encoded proposal for setAssetUnitsPerSecond is 0x1f0100010200e10d0624000000000000000001c7a8978b008d8716010000000000000026000000
+Encoded Call Data for Tx is 0x0102081f0000010200e10d0624000000000000000001344578616d706c6520546f6b656e1878634558544e120000000000000000000000000000000000001f0100010200e10d0624000000000000000001c7a8978b008d8716010000000000000026000000
+```
+
+When executing the command, be sure to copy the encoded calldata (the final hexadecimal encoded data printed from the output) for use when [batching transactions in a proposal](#batch-actions-into-one-proposal){target=_blank} on Moonbeam.  
+
+You can repeat this process with multiple assets if you intend on registering multiple cross-chain assets to Moonbeam.  
 
 ### Calculating Units Per Second {: #calculating-units-per-second }
 
@@ -404,9 +399,9 @@ The most efficient way to complete the XCM process on parachains that have gover
 
 You will now use the encoded call data outputs of the three previous command calls and insert them into the following command to send the batch proposal to democracy. Replace the following values before running the command:  
 
-- `OPEN_CHANNEL_CALL` is the hexadecimal encoded calldata for [opening an HRMP channel](#open-an-hrmp-channel-from-moonbeam) from Moonbeam to your parachain  
-- `ACCEPT_INCOMING_CALL` is the hexadecimal encoded calldata for [accepting the channel request](#accept-an-hrmp-channel-on-moonbeam) from your parachain  
-- `REGISTER_ASSET_CALL` is the hexadecimal encoded calldata for [registering a cross-chain asset](#register-a-foreign-asset). If you have more than one asset to be registered on Moonbeam, you can include additional registration hexadecimal encoded calldatas with additional `--call` flags  
+- `OPEN_CHANNEL_CALL` is the hexadecimal encoded calldata for [opening an HRMP channel](#open-an-hrmp-channel-from-moonbeam){target=_blank} from Moonbeam to your parachain  
+- `ACCEPT_INCOMING_CALL` is the hexadecimal encoded calldata for [accepting the channel request](#accept-an-hrmp-channel-on-moonbeam){target=_blank} from your parachain  
+- `REGISTER_ASSET_CALL` is the hexadecimal encoded calldata for [registering a cross-chain asset](#register-a-foreign-asset){target=_blank}. If you have more than one asset to be registered on Moonbeam, you can include additional registration hexadecimal encoded calldatas with additional `--call` flags  
 - `YOUR_PRIVATE_KEY` is the private key of the funded Moonbeam account that is proposing (only necessary for MainNet)  
 
 If you are registering on Moonbase Alpha, you will not to provide a private key or go through governance. Run the following command and provide the output to the Moonbeam team so that the asset and channel can be added quickly through sudo.  
@@ -414,9 +409,9 @@ If you are registering on Moonbase Alpha, you will not to provide a private key 
 === "Moonbeam"
     ```
     yarn generic-call-propose -w wss://moonbeam.public.blastapi.io \
-    --call "{ACCEPT_INCOMING_CALL}" \
-    --call "{OPEN_CHANNEL_CALL}" \
-    --call "{REGISTER_ASSET_CALL}" \
+    --call "OPEN_CHANNEL_CALL" \
+    --call "ACCEPT_INCOMING_CALL" \
+    --call "REGISTER_ASSET_CALL" \
     --account-priv-key YOUR_PRIVATE_KEY \
     --send-preimage-hash true --send-proposal-as democracy
     ```
@@ -424,9 +419,9 @@ If you are registering on Moonbase Alpha, you will not to provide a private key 
 === "Moonriver"
     ```
     yarn generic-call-propose -w wss://moonriver.public.blastapi.io \
-    --call "{ACCEPT_INCOMING_CALL}" \
-    --call "{OPEN_CHANNEL_CALL}" \
-    --call "{REGISTER_ASSET_CALL}" \
+    --call "OPEN_CHANNEL_CALL" \
+    --call "ACCEPT_INCOMING_CALL" \
+    --call "REGISTER_ASSET_CALL" \
     --account-priv-key YOUR_PRIVATE_KEY \
     --send-preimage-hash true --send-proposal-as democracy
     ```
@@ -434,8 +429,8 @@ If you are registering on Moonbase Alpha, you will not to provide a private key 
 === "Moonbase Alpha"
     ```
     yarn generic-call-propose -w wss://wss.api.moonbase.moonbeam.network  \
-    --call "ACCEPT_INCOMING_CALL" \
     --call "OPEN_CHANNEL_CALL" \
+    --call "ACCEPT_INCOMING_CALL" \
     --call "REGISTER_ASSET_CALL"
     --sudo true
     ```
