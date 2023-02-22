@@ -1,0 +1,7 @@
+title: Ethereum API
+hide: false
+nav:
+  - index.md
+  - batch-approve-swap.md
+  - truffle-start-to-end.md
+  - foundry-start-to-end.md

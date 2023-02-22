@@ -5,7 +5,7 @@ description: Learn how to develop, test, and deploy smart contracts with Truffle
 
 # Smart Contract Development with Truffle: From a Local Development Node to Moonbeam MainNet
 
-![Banner Image](/images/tutorials/truffle-dev-life-cycle/truffle-banner.png)
+![Banner Image](/images/tutorials/eth-api/truffle-start-to-end/truffle-banner.png)
 
 _January 10, 2022 | by Erin Shaben_
 
@@ -263,7 +263,7 @@ To compile our contracts, we can run the following command:
 npx truffle compile
 ```
 
-![Run Truffle compile](/images/tutorials/truffle-dev-life-cycle/truffle-1.png)
+![Run Truffle compile](/images/tutorials/eth-api/truffle-start-to-end/truffle-1.png)
 
 The artifacts will be written to the `build/contracts` directory.
 
@@ -304,7 +304,7 @@ npx truffle run moonbeam start
 
 Once your node has been successfully started, you should see the following output in your terminal:
 
-![Install and spin up a Moonbeam development node](/images/tutorials/truffle-dev-life-cycle/truffle-2.png)
+![Install and spin up a Moonbeam development node](/images/tutorials/eth-api/truffle-start-to-end/truffle-2.png)
 
 You can check out all of the available commands in the [Using the Moonbeam Truffle Plugin to Run a Node](/builders/build/eth-api/dev-env/truffle/#using-the-moonbeam-truffle-plugin-to-run-a-node){target=_blank} section of our Truffle docs. 
 
@@ -337,7 +337,7 @@ Now that we can set up our test file, let's take a minute to review what we'll n
 
 You can enter the `tokenUri` into your web browser to view the metadata for Daizy and the [image for Daizy](https://gateway.pinata.cloud/ipfs/QmTzmrRb6TmEsP96dCoBv2kjdiCiojagBU7YJ95RaAuuF4?_gl=1*m58ja2*_ga*ODc3ODA3MjcwLjE2NzQ2NjQ2ODY.*_ga_5RMPXG14TE*MTY3NDY2NDY4Ni4xLjEuMTY3NDY2NDcwMi40NC4wLjA.){target=_blank} has also been pinned so you can easily see what Daizy looks like!
 
-![Daizy NFT metadata and image](/images/tutorials/truffle-dev-life-cycle/truffle-3.png)
+![Daizy NFT metadata and image](/images/tutorials/eth-api/truffle-start-to-end/truffle-3.png)
 
 So, now that we have a game plan, let's implement it! In the `test_NftMarketplace.js` file, we can add the following code:
 
@@ -420,7 +420,7 @@ Assuming your [Moonbeam development node is up and running](#start-development-n
 npx truffle test --network dev
 ```
 
-![Run first test](/images/tutorials/truffle-dev-life-cycle/truffle-4.png)
+![Run first test](/images/tutorials/eth-api/truffle-start-to-end/truffle-4.png)
 
 ### Test Listing NFTs {: #test-listing-nfts }
 
@@ -489,7 +489,7 @@ With this in mind, we can tackle our next test. So, after the first test, we can
 
 Again, you can run the tests to make sure that the tests pass as expected.
 
-![Run first two tests](/images/tutorials/truffle-dev-life-cycle/truffle-5.png)
+![Run first two tests](/images/tutorials/eth-api/truffle-start-to-end/truffle-5.png)
 
 ### Test Purchasing NFTs {: #test-purchasing-nfts }
 
@@ -565,7 +565,7 @@ That's it for the tests! To run them all, go ahead and run:
 npx truffle test --network dev
 ```
 
-![Run all tests](/images/tutorials/truffle-dev-life-cycle/truffle-6.png)
+![Run all tests](/images/tutorials/eth-api/truffle-start-to-end/truffle-6.png)
 
 With Mocha, you have the flexbility to test for a variety of edge cases and don't have to use `assert.equal` as we did in our examples. Since support for the Chai assertion library is included, you can also use [Chai's `assert` API](https://www.chaijs.com/guide/styles/#assert){target=_blank} or their [`expect`](https://www.chaijs.com/guide/styles/#expect){target=_blank} and [`should`](https://www.chaijs.com/guide/styles/#should){target=_blank} APIs. For example, you can also assert for failures using [Chai's `assert.fail` method](https://www.chaijs.com/api/assert/#method_fail){target=_blank}.
 
@@ -579,7 +579,7 @@ npx truffle run moonbeam stop && \
 npx truffle run moonbeam remove
 ```
 
-![Stop the development node](/images/tutorials/truffle-dev-life-cycle/truffle-7.png)
+![Stop the development node](/images/tutorials/eth-api/truffle-start-to-end/truffle-7.png)
 
 ## Deploying to Moonbase Alpha TestNet {: #deploying-to-moonbase-alpha }
 
@@ -593,7 +593,7 @@ Once you've set your account up, you can run your tests on Moonbase Alpha to mak
 npx truffle test --network moonbase
 ```
 
-![Run all tests on Moonbase Alpha](/images/tutorials/truffle-dev-life-cycle/truffle-8.png)
+![Run all tests on Moonbase Alpha](/images/tutorials/eth-api/truffle-start-to-end/truffle-8.png)
 
 !!! note
     To avoid hitting rate limits with the public endpoint, you can get your own endpoint from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=_blank}.
@@ -606,7 +606,7 @@ npx truffle migrate --network moonbase
 
 You should see the transaction hashes for the deployment of each contract in your terminal and that a total of three deployments have been made.
 
-![Deploy contracts on Moonbase Alpha](/images/tutorials/truffle-dev-life-cycle/truffle-9.png)
+![Deploy contracts on Moonbase Alpha](/images/tutorials/eth-api/truffle-start-to-end/truffle-9.png)
 
 With our contracts deployed, we could begin to build a dApp with a frontend that interacts with these contracts, but it's out of scope for this tutorial.
 
@@ -616,7 +616,7 @@ Once you've deployed your contracts, don't forget to verify them! You will run t
 npx truffle run verify NftMarketplace DizzyDragons --network moonbase
 ```
 
-![Verify contracts on Moonbase Alpha](/images/tutorials/truffle-dev-life-cycle/truffle-10.png)
+![Verify contracts on Moonbase Alpha](/images/tutorials/eth-api/truffle-start-to-end/truffle-10.png)
 
 For reference, you can check out how the verified contracts will look on Moonscan for the [NftMarketplace](https://moonbase.moonscan.io/address/0x14138a5c7c6F0f33cB02aa63D45BDE2Cd0E17A90#code){target=_blank} and [DizzyDragons](https://moonbase.moonscan.io/address/0x747CB7cCD05BCb4A94e284af9Cc35189C3f9c540#code){target=_blank} contracts.
 
@@ -659,7 +659,7 @@ npx truffle migrate --network moonbeam
 
 You should see the transaction hashes for the deployment of each contract in your terminal and that a total of three deployments have been made.
 
-![Deploy contracts on Moonbeam](/images/tutorials/truffle-dev-life-cycle/truffle-11.png)
+![Deploy contracts on Moonbeam](/images/tutorials/eth-api/truffle-start-to-end/truffle-11.png)
 
 Again, don't forget to verify the contracts! You will run the `run verify` command and pass in the deployed contracts' names and `moonbeam` as the network:
 
@@ -667,7 +667,7 @@ Again, don't forget to verify the contracts! You will run the `run verify` comma
 npx truffle run verify NftMarketplace DizzyDragons --network moonbeam
 ```
 
-![Deploy contracts on Moonbeam](/images/tutorials/truffle-dev-life-cycle/truffle-12.png)
+![Deploy contracts on Moonbeam](/images/tutorials/eth-api/truffle-start-to-end/truffle-12.png)
 
 !!! note
     If you're using a Truffle Dashboard, you'll replace `--network moonbeam` with `--network dashboard` for any of the Truffle commands.
@@ -675,5 +675,7 @@ npx truffle run verify NftMarketplace DizzyDragons --network moonbeam
 For reference, you can check out how the verified contracts will look on Moonscan for the [NftMarketplace](https://moonbeam.moonscan.io/address/0x37d844beF1E617a3677b086Dd2C8186C1Fd48C34#code){target=_blank} and [DizzyDragons](https://moonbeam.moonscan.io/address/0x815bAe9E539fF8326D82dfEA9FE588633A93FEB5#code){target=_blank} contracts.
 
 And that's it! You've successfully deployed your contracts to Moonbeam MainNet after thoroughly testing them out on a local Moonbeam development node and the Moonbase Alpha TestNet! Congrats! You've gone through the entire development lifecycle using Truffle!
+
+--8<-- 'text/disclaimers/educational-tutorial.md'
 
 --8<-- 'text/disclaimers/third-party-content.md'

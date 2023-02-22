@@ -5,7 +5,7 @@ description: Learn how to use the batch precompile on Moonbeam to batch an appro
 
 # Use the Batch Precompile to Approve and Swap Tokens
 
-![Banner Image](/images/tutorials/batch-approve-swap/batch-banner.png)
+![Banner Image](/images/tutorials/eth-api/batch-approve-swap/batch-banner.png)
 
 _December 21, 2022 | by Erin Shaben_
 
@@ -136,7 +136,7 @@ To compile the contracts, we'll go ahead and run the following Hardhat command:
 npx hardhat compile
 ```
 
-![Compile contracts](/images/tutorials/batch-approve-swap/batch-1.png)
+![Compile contracts](/images/tutorials/eth-api/batch-approve-swap/batch-1.png)
 
 After compilation, an `artifacts` directory is created: it holds the bytecode and metadata of the contract, which are `.json` files. It’s a good idea to add this directory to the `.gitignore` file.
 
@@ -181,7 +181,7 @@ npx hardhat run --network moonbase scripts/deploy.js
 !!! note
     If you want to run the script in a standalone fashion using `node <script>`, you'll need to require the Hardhat Runtime Environment explicitly using `const hre = require("hardhat");` in the `deploy.js` file.
 
-![Deploy contracts](/images/tutorials/batch-approve-swap/batch-2.png)
+![Deploy contracts](/images/tutorials/eth-api/batch-approve-swap/batch-2.png)
 
 After a few seconds, the contract will be deployed, and you should see the address in the terminal. We'll need to use the address in the following sections to interact with the contract, so make sure you save it.
 
@@ -308,7 +308,7 @@ async function main() {
 
 So, if you set the amount to swap to be .2 DTOK, the DEX balance will increase by .2 DTOK, and the signing account's balance will decrease by .2 DTOK. The transaction hash for the swap will also be printed to the terminal, so you can use [Moonscan](https://moonbase.moonscan.io){target=_blank} to view more information on the transaction.
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/batch-approve-swap/swap.js){target=_blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/eth-api/batch-approve-swap/swap.js){target=_blank}.
 
 To run the script, you can use the following command:
 
@@ -322,7 +322,7 @@ In the terminal, you should see the following items:
 - The DEX's DTOK balance after the batch approval and swap
 - Your account's DTOK balance after the batch approval and swap
 
-![Swap tokens](/images/tutorials/batch-approve-swap/batch-3.png)
+![Swap tokens](/images/tutorials/eth-api/batch-approve-swap/batch-3.png)
 
 And that's it! You've successfully used the batch precompile contract to batch an approval and swap into a single transaction, allowing for the approval amount to be the exact swap amount.
 
@@ -400,5 +400,4 @@ main();
 This will result in the approval and swap being batched into a single transaction and the transaction hash will be printed to the console. You can now adapt and apply this logic to your Uniswap V2-style application!
 
 --8<-- 'text/disclaimers/educational-tutorial.md'
-
 --8<-- 'text/disclaimers/third-party-content.md'
