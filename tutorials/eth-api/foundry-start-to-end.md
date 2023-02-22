@@ -1,6 +1,6 @@
 ---
 title: Using Foundry Start to End
-description: Learn what to consider when using the Foundry library to build a project on Moonbeam from start to end in this step-by-step tutorial.
+description: Follow a step-by-step tutorial on how to use Foundry to build a project on Moonbeam from writing smart contracts and tests to deploying on TestNet and MainNet.
 ---
 
 # Using Foundry Start to End with Moonbeam

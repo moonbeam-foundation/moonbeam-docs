@@ -1,5 +1,5 @@
 ---
-title: Contract Development Life Cycle with Truffle
+title: Using Truffle Start to End
 description: Learn how to develop, test, and deploy smart contracts with Truffle and how to take your contracts from a local development node to Moonbeam MainNet.
 ---
 
@@ -581,7 +581,7 @@ npx truffle run moonbeam remove
 
 ![Stop the development node](/images/tutorials/eth-api/truffle-start-to-end/truffle-7.png)
 
-## Deploying to Moonbase Alpha TestNet {: #deploying-to-moonbase-alpha }
+## Deploy to Moonbase Alpha TestNet {: #deploying-to-moonbase-alpha }
 
 Now that we've been able to rapidly develop our contracts with our Moonbeam development node and feel confident with our code, we can move on to testing it on the Moonbase Alpha TestNet. 
 
@@ -622,7 +622,7 @@ For reference, you can check out how the verified contracts will look on Moonsca
 
 Feel free to play around and interact with your contracts on the TestNet! Since DEV tokens have no real monetary value, now is a good time to work out any kinks before we deploy our contracts to Moonbeam MainNet where the tokens do have value!
 
-## Deploying to Production on Moonbeam MainNet {: #deploying-to-production }
+## Deploy to Production on Moonbeam MainNet {: #deploying-to-production }
 
 We thought we felt confident before, but now that we've tested our contracts on Moonbase Alpha we feel even more confident. So let's deploy our contracts on Moonbeam!
 
