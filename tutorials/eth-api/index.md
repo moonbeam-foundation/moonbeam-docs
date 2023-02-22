@@ -1,6 +1,6 @@
 ---
-title: Interoperability
-description: A list of tutorials related to Moonbeam an its connected contracts approach for multichain deployments
+title: Ethereum Development Environment Tutorials
+description: Check out these tutorials to learn how to use the Ethereum API and Ethereum development tools, like Hardhat and Foundry, to develop smart contracts on Moonbeam.
 template: main.html
 ---
 

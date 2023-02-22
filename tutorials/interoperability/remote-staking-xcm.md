@@ -344,4 +344,3 @@ And that’s it! To verify that your delegation was successful, you can visit [S
 
 --8<-- 'text/disclaimers/educational-tutorial.md'
  
---8<-- 'text/disclaimers/third-party-content.md'
