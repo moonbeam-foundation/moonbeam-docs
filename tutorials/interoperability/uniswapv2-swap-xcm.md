@@ -89,7 +89,7 @@ The function being targeted here is one from the Uniswap V2 router, more specifi
  - Address of the recipient of the tokens swapped
  - The deadline (in Unix time) from which the trade is no longer valid
 
-The easiest way to get the calldata is through the [Moonbeam Uniswap V2 Demo](https://moonbeam-swap.netlify.app/){target=_blank) page. Once you go in the website, take the following steps:
+The easiest way to get the calldata is through the [Moonbeam Uniswap V2 Demo](https://moonbeam-swap.netlify.app/){target=_blank} page. Once you go in the website, take the following steps:
 
  1. Set the swap **from** value and token and also set the swap **to** token. For this example, we want to swap 1 `DEV` token for `MARS`
  2. Click on the **Swap** button. Metamask should pop up, **do not sign the transaction**
@@ -221,6 +221,12 @@ Once you have the code set up, you can execute it with `node`, and you'll get th
 
 ![Getting the Moonbase Alpha remote EVM XCM calldata for Uniswap V2 swap](/images/tutorials/interoperability/uniswapv2-swap-xcm/uniswapv2-swap-xcm-4.png)
 
+The encoded calldata for this example is:
+
+```
+0x260001f31a020000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd40000c16ff286230000000000000000000000000000000000000000000000000091037ff36ab50000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def52600000000000000000000000000000000000000000000000000000000647464250000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f00
+```
+
 And that is it! You have everything you need to start crafting the XCM message itself! It has been a long journey, but we are almost there.
 
 ## Building the XCM Message from the Relay Chain
@@ -249,7 +255,7 @@ const transactBytes =
   '0x260001f31a020000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd40000c16ff286230000000000000000000000000000000000000000000000000091037ff36ab50000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def52600000000000000000000000000000000000000000000000000000000647464250000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f00';
 
 // 2. XCM Destination (Moonbase Alpha Parachain ID 1000)
-const xcmDest = { V1: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
+const xcmDest = { V2: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
 
 // 3. XCM Instruction 1
 const instr1 = {
@@ -342,6 +348,12 @@ Let's go through each of the main components of the snippet shown above:
 Once you have the code set up, you can execute it with `node`, and you'll get the relay chain XCM calldata:
 
 ![Getting the Relay Chain XCM calldata for Uniswap V2 swap](/images/tutorials/interoperability/uniswapv2-swap-xcm/uniswapv2-swap-xcm-5.png)
+
+The encoded calldata for this example is:
+
+```
+0x410604630000000100a10f021000040000010403000f0080c6a47e8d03130000010403000f0080c6a47e8d030006010780bb470301fd04260001f31a020000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd40000c16ff286230000000000000000000000000000000000000000000000000091037ff36ab50000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def52600000000000000000000000000000000000000000000000000000000647464250000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f000d010004000103004e21340c3465ec0aa91542de3d4c5f4fc1def526
+```
 
 Now that we have the SCALE encoded calldata, the last step is to submit the transaction, which will send our XCM message to Moonbase Alpha, and do the remote EVM call!
 
