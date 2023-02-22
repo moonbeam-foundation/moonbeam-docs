@@ -42,6 +42,8 @@ To request DEV tokens from the faucet, you can enter your address on the [Moonba
 !!! note
     Moonbase Alpha DEV tokens have no value. Please don't spam the faucet with unnecessary requests.
 
+You can also use the [Chaindrop Faucet](https://chaindrop.org/?chainid=1287&token=0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee){target=_blank} to request DEV tokens, which dispenses {{ networks.moonbase.website_faucet_amount }} per request.
+
 ## Demo DApps {: #Demo-DApps }
 
 There are a variety of DApps deployed to Moonbase Alpha enabling you to experiment with various apps and integrations. You can also acquire a variety of test tokens through the [Moonbase ERC20 Minter](https://moonbase-minterc20.netlify.app/){target=_blank} or [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank} DApps. For example, [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank} can help you acquire cross chain assets such as xcUNIT or xcKarura for testing XCM related functions. In the below table, you'll find each sample DApp, its associated URL, and GitHub repository.
