@@ -769,9 +769,9 @@ networks:
     chain_id: 1284
     hex_chain_id: '0x504'
     node_directory: /var/lib/moonbeam-data
-    parachain_release_tag: v0.28.1
-    parachain_sha256sum: 8b77ef15a150b0e1e83408d0ad0bab0b6b3514cfaaf0ad6efb696167a4473ad7
-    tracing_tag: purestake/moonbeam-tracing:v0.28.1-2000-latest
+    parachain_release_tag: v0.29.0
+    parachain_sha256sum: afc7f4cf869fea6af3e4d104b5e99b764df6baca8b6157cc4e1fd8a345e75623
+    tracing_tag: purestake/moonbeam-tracing:v0.29.0-2100-latest
     chain_spec: moonbeam
     block_explorer: https://moonscan.io
     binary_name: moonbeam
