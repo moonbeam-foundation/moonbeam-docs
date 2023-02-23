@@ -35,7 +35,7 @@ To install the XCM SDK and XCM config packages, you can run the following comman
 npm install @moonbeam-network/xcm-sdk @moonbeam-network/xcm-config
 ```
 
-You need to have peer dependencies, like [Ethers.js](https://docs.ethers.io/v5/){target=\_blank} and the [Polkadot.js API](https://polkadot.js.org/docs/api/){target=\_blank} installed.
+You need to have peer dependencies, like [Ethers.js](https://docs.ethers.io/){target=_blank} and the [Polkadot.js API](https://polkadot.js.org/docs/api/){target=_blank} installed.
 
 You can install them by running the following command:
 
@@ -50,7 +50,7 @@ npm i @polkadot/api-augment @polkadot/types @polkadot/util @polkadot/util-crypto
 
 When interacting with the `deposit` and `withdraw` functions of the XCM SDK, you'll need to provide an [Ethers.js](https://docs.ethers.io/){target=_blank} and [Polkadot.js](https://polkadot.js.org/docs/api/){target=_blank} signer, which will be used to sign and send the transactions. The Ethers signer is used to sign transactions on Moonbeam, and the Polkadot signer will be used to sign transactions on the origin chain you're depositing assets from.
 
-You can pass, for example, a [MetaMask signer into Ethers](https://docs.ethers.io/v5/getting-started/#getting-started--connecting){target=_blank} or another compatible wallet. Similarly with Polkadot, you can [pass a compatible wallet to the signer using the `@polkadot/extension-dapp` library](https://polkadot.js.org/docs/extension/){target=_blank}.
+You can pass, for example, a [MetaMask signer into Ethers](https://docs.ethers.org/v6/getting-started/#starting-connecting){target=_blank} or another compatible wallet. Similarly with Polkadot, you can [pass a compatible wallet to the signer using the `@polkadot/extension-dapp` library](https://polkadot.js.org/docs/extension/){target=_blank}.
 
 To create a signer for Ethers.js and Polkadot.js, you can refer to the following code snippets. In this example, you can use a Polkadot.js Keyring to sign transactions on the origin chain for deposits. Please note that this approach is not recommended for production applications. **Never store your private key or mnemonic in a JavaScript or TypeScript file.**
 
@@ -68,7 +68,7 @@ To create a signer for Ethers.js and Polkadot.js, you can refer to the following
         chainId: {{ networks.moonbeam.chain_id }}, // {{ networks.moonbeam.hex_chain_id }} in hex,
       },
     };
-    const provider = new ethers.providers.StaticJsonRpcProvider(
+    const provider = new ethers.JsonRpcProvider(
       providerRPC.moonbeam.rpc,
       {
         chainId: providerRPC.moonbeam.chainId,
@@ -96,7 +96,7 @@ To create a signer for Ethers.js and Polkadot.js, you can refer to the following
         chainId: {{ networks.moonriver.chain_id }}, // {{ networks.moonriver.hex_chain_id }} in hex,
       },
     };
-    const provider = new ethers.providers.StaticJsonRpcProvider(
+    const provider = new ethers.JsonRpcProvider(
       providerRPC.moonriver.rpc,
       {
         chainId: providerRPC.moonriver.chainId,
@@ -124,7 +124,7 @@ To create a signer for Ethers.js and Polkadot.js, you can refer to the following
         chainId: {{ networks.moonbase.chain_id }}, // {{ networks.moonbase.hex_chain_id }} in hex,
       },
     };
-    const provider = new ethers.providers.StaticJsonRpcProvider(
+    const provider = new ethers.JsonRpcProvider(
       providerRPC.moonbase.rpc,
       {
         chainId: providerRPC.moonbase.chainId,

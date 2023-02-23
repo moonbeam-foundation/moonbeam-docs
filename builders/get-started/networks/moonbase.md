@@ -37,10 +37,14 @@ To start building on Moonbase Alpha, you can get DEV tokens from the Moonbase Al
 
 To request DEV tokens from the faucet, you can enter your address on the [Moonbase Alpha Faucet](https://apps.moonbeam.network/moonbase-alpha/faucet/){target=_blank} website. The faucet dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours.
 
-![Moonbase Alpha Faucet Web](/images/builders/get-started/networks/moonbase/moonbase-1.png)
+![Moonbase Alpha Faucet Website.](/images/builders/get-started/networks/moonbase/moonbase-1.png)
 
 !!! note
     Moonbase Alpha DEV tokens have no value. Please don't spam the faucet with unnecessary requests.
+
+You can also use the [ChainDrop Faucet](https://chaindrop.org/?chainid=1287&token=0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee){target=_blank} to request DEV tokens, which dispenses {{ networks.moonbase.chaindrop_faucet_amount }} per request.
+
+![ChainDrop Faucet Website.](/images/builders/get-started/networks/moonbase/moonbase-2-new.png)
 
 ## Demo DApps {: #Demo-DApps }
 

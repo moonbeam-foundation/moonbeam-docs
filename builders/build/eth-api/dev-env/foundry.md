@@ -11,11 +11,12 @@ description: Learn how to use Foundry, an Ethereum development environment, to c
 
 [Foundry](https://github.com/foundry-rs/foundry){target=_blank} is an Ethereum development environment written in Rust that helps developers manage dependencies, compile projects, run tests, deploy contracts, and interact with blockchains from the command line. Foundry can directly interact with Moonbeam's Ethereum API so it can be used to deploy smart contracts into Moonbeam.
 
-There are three tools that make up Foundry:  
+There are four tools that make up Foundry:  
 
 - **[Forge](https://book.getfoundry.sh/forge/){target=_blank}** - compiles, tests, and deploys contracts
 - **[Cast](https://book.getfoundry.sh/cast/){target=_blank}** - a command line interface for interacting with contracts
 - **[Anvil](https://book.getfoundry.sh/anvil/){target=_blank}** - a local TestNet node for development purposes that can fork preexisting networks
+- **[Chisel](https://book.getfoundry.sh/chisel/){target=_blank}** - a Solidity REPL for quickly testing Solidity snippets
 
 This guide will cover how to use Foundry to compile, deploy, and debug Ethereum smart contracts on the Moonbase Alpha TestNet. This guide can also be adapted for Moonbeam, Moonriver, or a Moonbeam development node.
 
@@ -273,5 +274,126 @@ From here you can deploy new contracts to your forked instance of Moonbeam or in
 ```
 cast call INSERT-CONTRACT-ADDRESS  "balanceOf(address)(uint256)" INSERT-YOUR-ADDRESS --rpc-url http://localhost:8545
 ```
+
+## Using Chisel {: #using-chisel }
+
+Chisel is a Solidity REPL, or shell. It allows a developer to write Solidity directly in the console for testing small snippets of code, letting developers skip the project setup and contract deployment steps for what should be a quick process.  
+
+Since Chisel is mainly useful for quick testing, it can be used outside of a Foundry project. But, if executed within a Foundry project, it will keep the configurations within `foundry.toml` when running.  
+
+For this example, you will be testing out some of the features of `abi` within Solidity because it is complex enough to demonstrate how Chisel could be useful. To get started using Chisel, run the following in the command line to start the shell:
+
+```
+chisel
+```
+
+In the shell, you can write Solidity code as if it was running within a function:
+
+```solidity
+bytes memory myData = abi.encode(100, true, "Develop on Moonbeam");
+```
+
+Let's say you were interested in how `abi` encoded data, because you're looking into how to most efficiently store data on the blockchain and thus save gas. To view how the `myData` is stored in memory, you can use the following command while in the Chisel shell:  
+
+```
+!memdump
+```
+
+`memdump` will dump all of the data in your current session. You'll likely see something like this below. If you aren't good at reading hexadecimal or if you don't know how ABI encoding works, then you might not be able to find where the `myData` variable has been stored.
+
+![memdump in Chisel](/images/builders/build/eth-api/dev-env/foundry/foundry-6.png)
+
+Fortunately, Chisel lets you easily figure out where this information is stored. Using the `!rawstack` command, you can find the location in the stack where the value of a variable:  
+
+```
+!rawstack myData
+```
+
+In this situation, since bytes is over 32 bytes in length, the memory pointer is displayed instead. But that's exactly what's needed, since you already know the entirety of the stack from the `!memdump` command.  
+
+![rawstack in Chisel](/images/builders/build/eth-api/dev-env/foundry/foundry-7.png)
+
+The `!rawstack` command shows that the `myData` variable is stored at `0x80`, so when comparing this with the memory dump retrieved form the `!memdump` command, it looks like `myData` is stored like this:  
+
+```
+[0x80:0xa0]: 0x00000000000000000000000000000000000000000000000000000000000000a0
+[0xa0:0xc0]: 0x0000000000000000000000000000000000000000000000000000000000000064
+[0xc0:0xe0]: 0x0000000000000000000000000000000000000000000000000000000000000001
+[0xe0:0x100]: 0x0000000000000000000000000000000000000000000000000000000000000060
+[0x100:0x120]: 0x0000000000000000000000000000000000000000000000000000000000000013
+[0x120:0x140]: 0x446576656c6f70206f6e204d6f6f6e6265616d00000000000000000000000000
+```
+
+At first glance this makes sense, since `0xa0` has a value of `0x64` which is equal to 100, and `0xc0` has a value of `0x01` which is equal to true. If you want to learn more about how ABI-encoding works, the [Solidity documentation for ABI is helpful](https://docs.soliditylang.org/en/v0.8.18/abi-spec.html){target=_blank}. In this case, there are a lot of zeros in this method of data packing, so as a smart contract developer you might instead try to use structs or pack the data together more efficiently with bitwise code.  
+
+Since you're done with this code, you can clear the state of Chisel so that it doesn't mess with any future logic that you want to try out (while running the same instance of Chisel):  
+
+```
+!clear
+```
+
+There's an even easier way to test with Chisel. When writing code that ends with a semicolon, `;`, Chisel will run them as a statement, storing its value in Chisel's runtime state. But if you really only needed to see how the ABI-encoded data was represented, then you could get away with running the code as an expression. To try this out with the same `abi` example, write the following in the Chisel shell:  
+
+```
+abi.encode(100, true, "Develop on Moonbeam")
+```
+
+You should see something like the following:  
+
+![Expressions in Chisel](/images/builders/build/eth-api/dev-env/foundry/foundry-8.png)
+
+While it doesn't display the data in the same way, you still get the contents of the data, and it also further breaks down how the information is coded, such as letting you know that the `0xa0` value defines the length of the data.  
+
+By default, when you leave the Chisel shell, none of the data is persisted. But you can instruct chisel to do so. For example, you can take the following steps to store a variable:
+
+1. Store a `uint256` in Chisel
+    ```
+    uint256 myNumber = 101;
+    ```
+
+2. Store the session with `!save`. For this example, you can use the number `1` as a save ID
+    ```
+    !save 1
+    ```
+
+3. Quit the sesseion  
+    ```
+    !quit
+    ```
+
+Then to view and interact with your stored Chisel states, you can take the following steps:
+
+1. View a list of saved Chisel states
+     ```
+     chisel list
+     ```
+
+2. Load your stored states
+    ```
+    chisel load
+    ```
+
+3. View the `uint256` saved in Chisel from the previous set of steps
+    ```
+    !rawstack myNumber
+    ```  
+
+![Saving state in Chisel](/images/builders/build/eth-api/dev-env/foundry/foundry-9.png)
+
+You can even fork networks while using Chisel:
+
+```
+!fork {{ networks.moonbase.rpc_url }}
+```
+
+Then, for example, you can query the balance of one of Moonbase Alpha's collators:  
+
+```
+0x4c5A56ed5A4FF7B09aA86560AfD7d383F4831Cce.balance
+```
+
+![Forking in Chisel](/images/builders/build/eth-api/dev-env/foundry/foundry-10.png)
+
+If you want to learn more about Chisel, download Foundry and refer to its [official reference page](https://book.getfoundry.sh/reference/chisel/){target=_blank}.
 
 --8<-- 'text/disclaimers/third-party-content.md'

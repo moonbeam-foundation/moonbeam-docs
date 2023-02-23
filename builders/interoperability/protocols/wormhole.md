@@ -320,7 +320,7 @@ With the data that was decoded by Ethers, it’s possible to figure out to which
 
    // Here we are parsing the payload so that we can send it to the right recipient
    const hexPayload = parsed.payload.toString("hex");
-   let [recipient, destID, sender, message] = ethers.utils.defaultAbiCoder.decode(
+   let [recipient, destID, sender, message] = ethers.AbiCoder.defaultAbiCoder().decode(
 ["bytes32", "uint16", "bytes32", "string"], "0x" + hexPayload
    );
    recipient = this.formatAddress(recipient);
@@ -347,7 +347,7 @@ With the data that was decoded by Ethers, it’s possible to figure out to which
  }
 ```
 
-In the callback function, it creates a [contract object](https://docs.ethers.io/v5/api/contract/contract/#Contract){target=_blank} with the Ethers package. The ABI that it imports is exported from the `SimpleGeneralMessage` contract’s compilation, so this code is assuming that the recipient of the message specified in the VAA is or inherits from a `SimpleGeneralMessage` contract. 
+In the callback function, it creates a [contract object](https://docs.ethers.org/v6/api/contract/#Contract){target=_blank} with the Ethers package. The ABI that it imports is exported from the `SimpleGeneralMessage` contract’s compilation, so this code is assuming that the recipient of the message specified in the VAA is or inherits from a `SimpleGeneralMessage` contract. 
 
 Then, the code attempts to execute the `processMyMessage(bytes32 VAA)` function with the VAA, which was previously defined as the function that messages are relayed to. Recall that this function name was arbitrarily chosen for the smart contract because the relayer could specify any function to call. That freedom is expressed in the ability for a developer to change this relayer’s code!
 
