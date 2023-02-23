@@ -282,7 +282,7 @@ const otherPair = await keyring.addFromUri("YOUR-DEV-SEED-PHRASE-HERE");
 console.log(`Derived Address from Private Key: ${otherPair.address}`);
 
 // Create the destination multilocation (define where the message will be sent)
-const dest = { V1: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
+const dest = { V2: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
 
 // Create the full XCM message which defines the action to take on the destination chain
 const message = {
