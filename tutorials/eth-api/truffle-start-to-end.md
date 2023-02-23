@@ -1,5 +1,5 @@
 ---
-title: Using Truffle Start to End
+title: <span>[Truffle]</span> Development Lifecycle from Start to End
 description: Learn how to develop, test, and deploy smart contracts with Truffle and how to take your contracts from a local development node to Moonbeam MainNet.
 ---
 

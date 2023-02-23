@@ -2,6 +2,6 @@ title: Ethereum API
 hide: false
 nav:
   - index.md
+  - foundry-start-to-end.md
   - batch-approve-swap.md
   - truffle-start-to-end.md
-  - foundry-start-to-end.md
