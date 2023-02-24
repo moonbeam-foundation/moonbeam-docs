@@ -52,7 +52,7 @@ This section will cover everything you need to know about OpenGov on Moonriver a
 --8<-- 'text/governance/preimage-definitions.md'
 
  - **Origin** - an authorization-based dispatch source for an operation, which is used to determine the Track that a referendum is posted under
- - **Track** - an Origin-specific pipeline that outlines the lifecycle of proposals. Currently, there are five Tracks:
+ - **Track** - an Origin-specific pipeline that outlines the life cycle of proposals. Currently, there are five Tracks:
 
     |    Origin Track     |                                   Description                                    |                         Referendum Examples                          |
     |:-------------------:|:--------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
