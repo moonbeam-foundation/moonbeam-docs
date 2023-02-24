@@ -50,7 +50,7 @@ const appendCards = (section) => {
 
 // if user is on one of the main pages, add a `.main-page` class for styling purposes
 const addClassToContent = () => {
-  const mainPages = ['builders', 'node-operators', 'tokens', 'learn'];
+  const mainPages = ['builders', 'node-operators', 'tokens', 'learn', 'tutorials'];
   const isMainPage = (mainPage) => {
     return `.${mainPage}-` === classname;
   };
