@@ -421,7 +421,7 @@ You can repeat this process with multiple assets if you intend on registering mu
 
 `UnitsPerSecond` is the number of tokens charged per second of execution of an XCM message. The target cost for an XCM transfer is `$0.02` at the time of registration. The `UnitsPerSecond` might get updated through governance as the token price fluctuates.
 
-The easiest way to calculate an asset's `UnitsPerSecond` is through the [`calculateUnitsPerSeconds.ts` script](https://github.com/PureStake/xcm-tools/blob/main/scripts/calculateUnitsPerSeconds.ts){target=_blank} of [xcm-tools](https://github.com/PureStake/xcm-tools){target=_blank}. To run the script, you must provide the following:
+The easiest way to calculate an asset's `UnitsPerSecond` is through the [`calculate-units-per-second.ts` script](https://github.com/PureStake/xcm-tools/blob/main/scripts/calculate-units-per-second.ts){target=_blank} of [xcm-tools](https://github.com/PureStake/xcm-tools){target=_blank}. To run the script, you must provide the following:
 
 - `--d` decimals of the tokens you are calculating the units per second for
 - `--xwc` total weight cost of the execution of the entire XCM message
