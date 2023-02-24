@@ -97,7 +97,7 @@ From a technical perspective, the process of creating an HRMP channel with Moonr
 
       The normal enactment times are as follows:  
 
-      - **Moonriver** - approximately a {{ networks.moonriver.democracy.vote_period.days }}-day voting period plus {{ networks.moonriver.democracy.enact_period.days }}-day enactment time
+      - **Moonriver** - proposals should be done in the the General Admin track from [OpenGov](/learn/features/governance/#opengov){target=_blank}, in which the decision period is approximately {{ networks.moonriver.governance.tracks.general_admin.decision_period.time }}, and the encament time is at least {{ networks.moonriver.governance.tracks.general_admin.min_enactment_period.time }}
       - **Moonbeam** - approximately a {{ networks.moonbeam.democracy.vote_period.days }}-day voting period plus {{ networks.moonbeam.democracy.enact_period.days }}-day enactment time
 
 4. Add details about the [connecting parachain on Polkassembly](http://localhost:8000/tokens/governance/proposals/#submitting-a-proposal){target=_blank} so that community members can be informed when voting on the proposal
