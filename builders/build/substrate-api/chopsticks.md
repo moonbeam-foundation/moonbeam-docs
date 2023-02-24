@@ -5,7 +5,7 @@ description: Follow this tutorial to learn the basic of how to use Chopstick to 
 
 # How to Use Chopsticks to Fork Moonbeam
 
-![Chopsticks diagram](/images/builders/build/substrate-api/polkadot-js-api/polkadot-js-api-banner.png)
+![Chopsticks diagram](/images/builders/build/substrate-api/chopsticks/chopsticks-banner.png)
 
 ## Introduction {: #introduction }
 
