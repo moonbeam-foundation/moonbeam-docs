@@ -1,5 +1,5 @@
 ---
-title: <span>[XCM]</span> Remote Staking on Moonbeam from Polkadot
+title: Remote Staking on Moonbeam from Polkadot via XCM
 description: In this guide, we'll be leveraging remote execution to remotely stake GLMR on Moonbeam using a series of XCM instructions.
 template: main.html
 ---

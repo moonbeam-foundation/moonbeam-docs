@@ -2,5 +2,5 @@ title: Interoperability
 hide: false
 nav:
   - index.md
-  - remote-staking-xcm.md
-  - uniswapv2-swap-xcm.md
+  - '[XCM] Remote Staking on Moonbeam From Polkadot': 'remote-staking-xcm.md'
+  - '[XCM] Uniswap V2 Swap on Moonbeam from Polkadot': 'uniswapv2-swap-xcm.md'
