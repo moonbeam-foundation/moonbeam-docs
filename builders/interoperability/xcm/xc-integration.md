@@ -112,7 +112,7 @@ From a technical perspective, the process of creating an HRMP channel with Moonr
 7. Provide an Ethereum-styled address for MOVR/GLMR
 8. Test the XCM integration with the provided tokens
 
-Once these steps are complete succesfully, marketing efforts can be coordinated, and the new XC-20 on Moonriver/Moonbeam can be added to the Cross Chain Assets section of the [Moonbeam DApp](https://apps.moonbeam.network/){target=_blank}.
+Once these steps are completed succesfully, marketing efforts can be coordinated, and the new XC-20 on Moonriver/Moonbeam can be added to the Cross Chain Assets section of the [Moonbeam DApp](https://apps.moonbeam.network/){target=_blank}.
 
 ### Forum and Polkassembly Template {: #forum-and-polkassembly-template }
 
@@ -122,13 +122,13 @@ Once a proposal is available for voting, you must also add a description to it i
 
 In both the Moonbeam preliminary forum post and in Polkassembly, add the following sections and information:  
 
-- **Title** - *YOUR_NETWORK_NAME* Proposal to Open Channel & Register *ASSET_NAME*
-- **Introduction** - one sentence summarizing the proposal
-- **Network Information** - one sentence summarizing your Network, and relevant links to your website, Twitter, and other social channels
-- **Summary** - brief description of the content of the proposal
-- **On-Chain Proposal Reference (Forums Only)** - include if it is a Moonbeam or Moonriver proposal, the proposal number, and proposal hash
-- **Technical Details** - provide technical information required for the community to understand the use cases and purpose of the Proposal
-- **Additional Information** - any additional information you would like the community/readers to know
+- **Title** — *YOUR_NETWORK_NAME* Proposal to Open Channel & Register *ASSET_NAME*
+- **Introduction** — one sentence summarizing the proposal
+- **Network Information** — one sentence summarizing your Network, and relevant links to your website, Twitter, and other social channels
+- **Summary** — brief description of the content of the proposal
+- **On-Chain Proposal Reference (Forums Only)** — include if it is a Moonbeam or Moonriver proposal, the proposal number, and proposal hash
+- **Technical Details** — provide technical information required for the community to understand the use cases and purpose of the Proposal
+- **Additional Information** — any additional information you would like the community/readers to know
 
 Additionally, there is key information to provide that is highlighted due to its importance in a voter's decision:  
 
@@ -421,12 +421,12 @@ You can repeat this process with multiple assets if you intend on registering mu
 
 `UnitsPerSecond` is the number of tokens charged per second of execution of an XCM message. The target cost for an XCM transfer is `$0.02` at the time of registration. The `UnitsPerSecond` might get updated through governance as the token price fluctuates.
 
-The easiest way to calculate an asset's `UnitsPerSecond` is through the [`calculateUnitsPerSeconds.ts` script](https://github.com/PureStake/xcm-tools/blob/main/scrits/calculateUnitsPerSeconds.ts){target=_blank} of [xcm-tools](https://github.com/PureStake/xcm-tools){target=_blank}. To run the script, you must provide the following:
+The easiest way to calculate an asset's `UnitsPerSecond` is through the [`calculateUnitsPerSeconds.ts` script](https://github.com/PureStake/xcm-tools/blob/main/scripts/calculateUnitsPerSeconds.ts){target=_blank} of [xcm-tools](https://github.com/PureStake/xcm-tools){target=_blank}. To run the script, you must provide the following:
 
 - `--d` decimals of the tokens you are calculating the units per second for
 - `--xwc` total weight cost of the execution of the entire XCM message
 - `--t` (optional) target price for XCM execution, defaults to `$0.02`
-- `--a` (optional) token name for the [Coingecko API](https://www.coingecko.com/){target=_blank}
+- `--a` (optional) the token [Coingecko API id](https://www.coingecko.com/){target=_blank}
 - `--p` (optional) if the Coingecko API does not support the token, you can specify the price manually
 
 The estimated weight per XCM operation on each Moonbeam chain is:  
@@ -461,9 +461,9 @@ The UnitsPerSecond needs to be set 34106412005
 
 ## Batch Actions Into One {: #batch-actions-into-one }
 
-The most efficient way to complete the XCM process on parachains is to batch all transactions together. The [xcm-tools repository](https://github.com/PureStake/xcm-tools){target=_blank} provides a way to batch extrinsic calls into a single call and thus requiring only a single transaction, for example, a single proposal. All is needed is to add a `--call "YOUR_CALL"` for each call you want to batch. This can be helpful if your parachain would like to open an HRMP channel and register an asset simultaneously. This **should be used** when proposing a channel registration on a Moonbeam network.
+The most efficient way to complete the XCM process on parachains is to batch all transactions together. The [xcm-tools repository](https://github.com/PureStake/xcm-tools){target=_blank} provides a script to batch extrinsic calls into a single call, thus requiring only a single transaction. This can be helpful if your parachain would like to open an HRMP channel and register an asset simultaneously. This **should be used** when proposing a channel registration on a Moonbeam network.    
 
-You will now use the encoded call data outputs of the three previous command calls and insert them into the following command to send the batch proposal to democracy. Replace the following values before running the command:  
+You will now use the encoded call data outputs of the three previous command calls and insert them into the following command to send the batch proposal to democracy. Add a `--call "YOUR_CALL"` for each call you want to batch. Replace the following values before running the command:  
 
 - `OPEN_CHANNEL_CALL` is the SCALE encoded calldata for [opening an HRMP channel](#open-an-hrmp-channel-from-moonbeam) from Moonbeam to your parachain  
 - `ACCEPT_INCOMING_CALL` is the SCALE encoded calldata for [accepting the channel request](#accept-an-hrmp-channel-on-moonbeam) from your parachain  
