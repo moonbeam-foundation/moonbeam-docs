@@ -31,7 +31,7 @@ async function main() {
 
   // Parse the value to swap to Wei
   const amountDtok = ethers.utils.parseEther(
-    "INSERT-AMOUNT-DtokOF-DEV-TO-SWAP"
+    "INSERT-AMOUNT-OF-DEV-TO-SWAP"
   );
 
   // Get the encoded call data for the approval and swap
