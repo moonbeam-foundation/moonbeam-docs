@@ -26,12 +26,13 @@ To use Chopsticks, you will need the following:
 First, install chopsticks from its GitHub repository, add dependencies, and build it:  
 
 ```
-git clone --recurse-submodules https://github.com/AcalaNetwork/chopsticks.git && cd chopsticks
-yarn
+git clone --recurse-submodules https://github.com/AcalaNetwork/chopsticks.git && \
+cd chopsticks && \
+yarn && \
 yarn build-wasm
 ```
 
-Chopsticks includes a set of [YAML configuration files that can be used to create a local copy of a variety of Substrate chains. You can view each of the default configuration files within the `configs` folder. Moonbeam, Moonriver, and Moonbase Alpha all have default files available. The example configuration below is the current  configuration for Moonbeam:  
+Chopsticks includes a set of [YAML](https://yaml.org/){target=_blank} configuration files that can be used to create a local copy of a variety of Substrate chains. You can view each of the default configuration files within the `configs` folder. Moonbeam, Moonriver, and Moonbase Alpha all have default files available. The example configuration below is the current  configuration for Moonbeam:  
 
 ```yaml
 endpoint: wss://wss.api.moonbeam.network
@@ -57,12 +58,12 @@ import-storage:
     EligibleCount: 100
 ```
 
-The settings that can be included in the config file are the same as the flags in the [`yarn start dev` command](#forking-moonbeam), as well as these additional options:  
+The settings that can be included in the config file are the same as the flags in the [`yarn start dev` command](#forking-moonbeam){target=_blank}, as well as these additional options:  
 
 |          Option          |                                           Description                                               |
 |:------------------------:|:---------------------------------------------------------------------------------------------------:|
-|         genesis          | The link to a parachain's raw genesis file to build the fork from.                                  |
-|        timestamp         | TIME AAAAH IM RUNNING OUT AAAAH                                 |
+|         genesis          | The link to a parachain's raw genesis file to build the fork from, instead of an endpoint.          |
+|        timestamp         | Timestamp of the block to fork from.                                                                |
 
 ## Forking Moonbeam {: #forking-moonbeam }
 
@@ -91,7 +92,7 @@ The `yarn start dev` command forks a chain, and includes following flags:
 |:------------------------:|:---------------------------------------------------------------------------------------------------:|
 |         endpoint         | The endpoint of the parachain to fork.                                                              |
 |          block           | Use to specify at which block hash or number to replay the fork.                                    |
-|      wasm-override       | Path of the WASM to use as the parachain, instead of forking an endpoint.                           |
+|      wasm-override       | Path of the WASM to use as the parachain, instead of an endpoint.                                   |
 |            db            | Path to the name of the file that stores or will store the parachain's database.                    |
 |          config          | Path to the config file.                                                                            |
 |           port           | The port to expose an endpoint on.                                                                  |
@@ -105,9 +106,25 @@ The `yarn start dev` command forks a chain, and includes following flags:
 
 When running a fork, by default it will be accessible at `ws://localhost:8000`. You will be able to interact with the parachain via libraries such as [polkadot.js](https://github.com/polkadot-js/common){target=_blank} and its [locally built user interface](https://github.com/polkadot-js/apps){target=_blank}.  
 
-**Go into building polkadotjs apps and connecting**
+The Polkadot JS Apps user interface can be built with Docker by running the following command:  
 
-## Replaying and Dissecting Blocks {: #replaying-and-dissecting-blocks }
+```
+docker run --rm -it --name polkadot-ui -e WS_URL=ws://someip:9944 -p 80:80 jacogr/polkadot-js-apps:latest
+```
+
+Afterwards, you should be able to go to `localhost` in the browser to see the UI. To interact with the local fork via the UI:
+
+1. Click the icon in the top left
+2. Go to the bottom and open **Development**
+3. Select the **Custom** endpoint and enter `ws://localhost:8000`
+4. Click the **Switch** button
+
+![Open WSS](/images/builders/build/substrate-api/chopsticks/chopsticks-1.png)
+![Switch WSS](/images/builders/build/substrate-api/chopsticks/chopsticks-2.png)
+
+You should now be able to interact with the fork as you would in the hosted version of Polkadot JS apps.
+
+## Replaying Blocks {: #replaying-blocks }
 
 In the case where you would like to replay a block and retrieve its information to dissect the effects of an extrinsic, you can use the `yarn start run-block` command. Its following flags are:  
 
@@ -118,11 +135,19 @@ In the case where you would like to replay a block and retrieve its information 
 |      wasm-override       | Path of the WASM to use as the parachain, instead of forking an endpoint.                           |
 |            db            | Path to the name of the file that stores or will store the parachain's database.                    |
 |          config          | Path to the config file.                                                                            |
-| output-path=/[file_path] | Use to print out results to a JSON file.                                                            |
+| output-path=/[file_path] | Use to print out results to a JSON file instead of printing it out in the console.                  |
 |           html           | Include to generate an HTML representation of the storage diff preview between blocks.              |
 |           open           | Whether to open the HTML representation.                                                            |
 
-Similarly, you can use the `yarn start dry-run` command to run an extrinsic within a specific block to see its outcome. It has many of the same flags as the `run-block` command:  
+For example, running the following command will re-run Moonbeam's block 1000, and write the storage diff and other data in a `moonbeam-output.json` file:  
+
+```
+yarn start run-block --endpoint wss://wss.api.moonbeam.network --block 1000 --output-path=./moonbeam-output.json
+```
+
+## Dry Run Extrinsics {: #dry-run-extrinsics }
+
+You can use the `yarn start dry-run` command to run an extrinsic within a specific block to see its outcome. It has many of the same flags as the [`run-block` command](#dry-run-extrinsics){target=_blank}:  
 
 |           Flag           |                                           Description                                               |
 |:------------------------:|:---------------------------------------------------------------------------------------------------:|
@@ -133,8 +158,12 @@ Similarly, you can use the `yarn start dry-run` command to run an extrinsic with
 |      wasm-override       | Path of the WASM to use as the parachain, instead of forking an endpoint.                           |
 |            db            | Path to the name of the file that stores or will store the parachain's database.                    |
 |          config          | Path to the config file.                                                                            |
-|  output-path=[file_path] | Use to print out results to a JSON file.                                                            |
+| output-path=/[file_path] | Use to print out results to a JSON file instead of printing it out in the console.                  |
 |           html           | Include to generate an HTML representation of the storage diff preview between blocks.              |
 |           open           | Whether to open the HTML representation.                                                            |
 |         extrinsic        | The calldata of the extrinsic to call with the dry run.                                             |
 |          address         | Required with extrinsic: the address that calls the extrinsic in the dry run.                       |
+
+For example, running the following command will re-run Moonbeam's block 1000 with a balance transfer, and open the storage
+
+**TODO: finish this part**
