@@ -167,3 +167,22 @@ You can use the `yarn start dry-run` command to run an extrinsic within a specif
 For example, running the following command will re-run Moonbeam's block 1000 with a balance transfer, and open the storage
 
 **TODO: finish this part**
+
+## XCM Testing {: #xcm-testing }
+
+To test out XCM messages between networks, you can fork multiple parachains and a relay chain locally. For example, the following will fork Moonriver, Karura, and Kusama:  
+
+```
+yarn start xcm --relaychain=configs/kusama.yml --parachain=configs/moonriver.yml --parachain=configs/karura.yml
+```
+
+You should see something like the following output:  
+
+```
+[12:48:58.766] INFO (rpc/21840): Moonriver RPC listening on port 8000
+[12:49:03.266] INFO (rpc/21840): Karura RPC listening on port 8001
+[12:49:03.565] INFO (xcm/21840): Connected parachains [2000,2023]
+[12:49:07.058] INFO (rpc/21840): Kusama RPC listening on port 8002
+[12:49:07.557] INFO (xcm/21840): Connected relaychain 'Kusama' with parachain 'Moonriver'
+[12:49:08.227] INFO (xcm/21840): Connected relaychain 'Kusama' with parachain 'Karura'
+```
