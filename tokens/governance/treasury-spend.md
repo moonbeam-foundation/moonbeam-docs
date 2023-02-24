@@ -32,28 +32,28 @@ Some of the key parameters for this guide are the following:
  - **Spend period** — the waiting period after a Treasury proposal has been approved, but before the funds have been disbursed to the beneficiary
 
 === "Moonbeam"
-    |         Variable         |                                                          Value                                                          |
-    |:------------------------:|:-----------------------------------------------------------------------------------------------------------------------:|
-    |      Proposal Bond       | {{ networks.moonbeam.treasury.proposal_bond}}% of proposed spend  |
-    |     Minimum Bond     |   {{ networks.moonbeam.treasury.proposal_bond_min}} GLMR |
-    |     Spend Period     |   {{ networks.moonbeam.treasury.spend_period_days}} days |
-    |     Treasury Address     |   [0x6d6f646C70792f74727372790000000000000000](https://moonbeam.subscan.io/account/0x6d6f646C70792f74727372790000000000000000){target=_blank} |
+    |     Variable     |                                                                    Value                                                                    |
+    |:----------------:|:-------------------------------------------------------------------------------------------------------------------------------------------:|
+    |  Proposal Bond   |                                      {{ networks.moonbeam.treasury.proposal_bond}}% of proposed spend                                       |
+    |   Minimum Bond   |                                           {{ networks.moonbeam.treasury.proposal_bond_min}} GLMR                                            |
+    |   Spend Period   |                                           {{ networks.moonbeam.treasury.spend_period_days}} days                                            |
+    | Treasury Address | [0x6d6f646C70792f74727372790000000000000000](https://moonbeam.subscan.io/account/0x6d6f646C70792f74727372790000000000000000){target=_blank} |
 
 === "Moonriver"
-    |         Variable         |                                                           Value                                                           |
-    |:------------------------:|:-------------------------------------------------------------------------------------------------------------------------:|
-    |      Proposal Bond       | {{ networks.moonriver.treasury.proposal_bond}}% of proposed spend  |
-    |     Minimum Bond     |   {{ networks.moonriver.treasury.proposal_bond_min}} MOVR |
-    |     Spend Period     |   {{ networks.moonriver.treasury.spend_period_days}} days |
-    |     Treasury Address     |   [0x6d6f646C70792f74727372790000000000000000](https://moonriver.subscan.io/account/0x6d6f646C70792f74727372790000000000000000){target=_blank} |
+    |     Variable     |                                                                    Value                                                                     |
+    |:----------------:|:--------------------------------------------------------------------------------------------------------------------------------------------:|
+    |  Proposal Bond   |                                      {{ networks.moonriver.treasury.proposal_bond}}% of proposed spend                                       |
+    |   Minimum Bond   |                                           {{ networks.moonriver.treasury.proposal_bond_min}} MOVR                                            |
+    |   Spend Period   |                                           {{ networks.moonriver.treasury.spend_period_days}} days                                            |
+    | Treasury Address | [0x6d6f646C70792f74727372790000000000000000](https://moonriver.subscan.io/account/0x6d6f646C70792f74727372790000000000000000){target=_blank} |
     
 === "Moonbase Alpha"
-    |         Variable         |                                                          Value                                                          |
-    |:------------------------:|:-----------------------------------------------------------------------------------------------------------------------:|
-    |      Proposal Bond       | {{ networks.moonbase.treasury.proposal_bond}}% of proposed spend  |
-    |     Minimum Bond     |   {{ networks.moonbase.treasury.proposal_bond_min}} DEV |
-    |     Spend Period     |   {{ networks.moonbase.treasury.spend_period_days}} days |
-    |     Treasury Address     |   [0x6d6f646C70792f74727372790000000000000000](https://moonbase.subscan.io/account/0x6d6F646c70632f74727372790000000000000000){target=_blank} |
+    |     Variable     |                                                                    Value                                                                    |
+    |:----------------:|:-------------------------------------------------------------------------------------------------------------------------------------------:|
+    |  Proposal Bond   |                                      {{ networks.moonbase.treasury.proposal_bond}}% of proposed spend                                       |
+    |   Minimum Bond   |                                            {{ networks.moonbase.treasury.proposal_bond_min}} DEV                                            |
+    |   Spend Period   |                                           {{ networks.moonbase.treasury.spend_period_days}} days                                            |
+    | Treasury Address | [0x6d6f646C70792f74727372790000000000000000](https://moonbase.subscan.io/account/0x6d6F646c70632f74727372790000000000000000){target=_blank} |
 
 
 This guide will show you how to submit a proposal on Moonbase Alpha. It can be adapted for Moonbeam or Moonriver. In any case, it's recommended that you familiarize yourself with the steps of submitting a Treasury proposal on Moonbase Alpha or a local dev node before taking the steps on Moonbeam or Moonriver. 
@@ -74,7 +74,7 @@ It's highly recommended that you preface any proposal with a post on [Moonbeam's
 
 This guide focuses on the mechanics of submitting an on-chain Treasury proposal after you have worked with the Treasury Council to refine your idea. If you haven't yet completed the prior steps of the Treasury proposal process, please take a moment to review the [guidelines of the community Treasury program](https://github.com/moonbeam-foundation/treasury/blob/main/interim/interim_treasury_proposal.md){target=_blank} and evaluate your standing. Engaging the community and revising your proposal based on feedback received is the most critical piece of your proposal. Submitting the on-chain Treasury proposal is the easy part, demonstrated in the following guide. 
 
-To get started, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbeam-alpha.api.onfinality.io%2Fpublic-ws#/treasury){target=_blank} and take the following steps: 
+To get started, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network%2Fpublic-ws#/treasury){target=_blank} and take the following steps: 
 
 1. Select the **Governance** heading
 2. Click on **Treasury** 
