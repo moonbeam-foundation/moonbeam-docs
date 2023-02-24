@@ -92,14 +92,14 @@ The XCM-transactor pallet includes the following read-only functions to obtain p
 - **baseXcmWeight**() - returns the base XCM weight required for execution, per XCM instruction
 - **selfLocation**() - returns the multilocation of the chain
 
-## XCM-Transactor Transact Through Derivative {: #xcmtransactor-transact-through-derivative}
+## XCM-Transactor Transact Through Derivative {: #xcmtransactor-transact-through-derivative }
 
 This section covers building an XCM message for remote executions using the XCM-transactor pallet using the `transactThroughDerivative` function.
 
 !!! note
     You need to ensure that the call you are going to execute remotely is allowed in the destination chain!
 
-### Checking Prerequisites {: #xcmtransactor-derivative-check-prerequisites}
+### Checking Prerequisites {: #xcmtransactor-derivative-check-prerequisites }
 
 To be able to send the extrinsics in Polkadot.js Apps, you need to have:
 
@@ -120,8 +120,7 @@ If you're interested in how the precompile address is calculated, you can check 
 - [Calculate External XC-20 Precompile Addresses](/builders/interoperability/xcm/xc20/xc20/#calculate-xc20-address){target=_blank}
 - [Calculate Mintable XC-20 Precompile Addresses](/builders/interoperability/xcm/xc20/mintable-xc20/#calculate-xc20-address){target=_blank}
 
-
-### Building the XCM {: #xcm-transact-through-derivative}
+### Building the XCM {: #xcm-transact-through-derivative }
 
 If you've [checked the prerequisites](#xcmtransactor-derivative-check-prerequisites), head to the extrinsic page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} and set the following options:
 
@@ -150,7 +149,7 @@ Once the transaction is processed, you can check the relevant extrinsics and eve
 !!! note
     The `AssetsTrapped` event on the relay chain is because the XCM-transactor pallet does not handle refunds yet. Therefore, overestimating weight will result in assets being trapped when the XCM is executed in the destination chain.
 
-### Retrieve Registered Derivative Indexes
+### Retrieve Registered Derivative Indexes {: #retrieve-registered-derivative-indexes }
 
 To fetch a list of all registered addresses allowed to operate through the Moonbeam-based network sovereign account and their corresponding indexes, head to the **Chain State** section of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/chainstate){target=_blank} (under the **Developer** tab). In there, take the following steps:
 
@@ -163,14 +162,14 @@ To fetch a list of all registered addresses allowed to operate through the Moonb
 ![Check Registered Derivative Indexes](/images/builders/interoperability/xcm/xcm-transactor/xcmtransactor-2.png)
 
 
-## XCM-Transactor Transact Through Signed {: #xcmtransactor-transact-through-signed}
+## XCM-Transactor Transact Through Signed {: #xcmtransactor-transact-through-signed }
 
 This section covers building an XCM message for remote executions using the XCM-transactor pallet, specifically with the `transactThroughSigned` function. However, you'll not be able to follow along as the destination parachain is not publicly available.
 
 !!! note
     You need to ensure that the call you are going to execute remotely is allowed in the destination chain!
 
-### Checking Prerequisites {: #xcmtransactor-signed-check-prerequisites}
+### Checking Prerequisites {: #xcmtransactor-signed-check-prerequisites }
 
 To be able to send the extrinsics in Polkadot.js Apps, you need to have:
 
@@ -182,7 +181,7 @@ For this example, the following accounts will be used:
  - Alice in the origin parachain with address `0x44236223aB4291b93EEd10E4B511B37a398DEE55`
  - Its multilocation-derivative address in the target parachain is `0x5c27c4bb7047083420eddff9cddac4a0a120b45c`
 
-### Building the XCM {: #xcm-transact-through-derivative}
+### Building the XCM {: #xcm-transact-through-derivative }
 
 If you've [checked the prerequisites](#xcmtransactor-signed-check-prerequisites), head to the extrinsic page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} and set the following options:
 
@@ -215,7 +214,7 @@ If you've [checked the prerequisites](#xcmtransactor-signed-check-prerequisites)
 
 Once the transaction is processed, Alice should've received one token in her address but on the destination chain.
 
-## XCM-Transactor Precompile {: #xcmtransactor-precompile}
+## XCM-Transactor Precompile {: #xcmtransactor-precompile }
 
 The XCM-transactor precompile contract allows developers to access the XCM-transactor pallet features through the Ethereum API of Moonbeam-based networks. Similar to other [precompile contracts](/builders/pallets-precompiles/precompiles/){target=_blank}, the XCM-transactor precompile is located at the following addresses:
 
