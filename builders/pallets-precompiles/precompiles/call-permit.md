@@ -10,7 +10,7 @@ keywords: solidity, ethereum, call permit, permit, gasless transaction, moonbeam
 
 ## Introduction {: #introduction } 
 
-The call permit precompile on Moonbeam allows a user to sign a permit, an [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=_blank} signed message, for any EVM call and it can be dispatched by anyone or any smart contract. It is similar to the [ERC-20 Permit Solidity Interface](/builders/xcm/xc20/overview/#the-erc20-permit-interface){target=_blank}, except it applies to any EVM call instead of approvals only. 
+The call permit precompile on Moonbeam allows a user to sign a permit, an [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=_blank} signed message, for any EVM call and it can be dispatched by anyone or any smart contract. It is similar to the [ERC-20 Permit Solidity Interface](/builders/interoperability/xcm/xc20/overview/#the-erc20-permit-interface){target=_blank}, except it applies to any EVM call instead of approvals only. 
 
 When the call permit is dispatched, it is done so on behalf of the user who signed the permit and the user or contract that dispatches the permit is responsible for paying transaction fees. As such, the precompile can be used to perform gas-less transactions.
 
@@ -69,7 +69,7 @@ The parameters of the hash can be broken down as follows:
  - **chainId** - is the chain ID of the network
  - **verifyingContract** - is the address of the contract that will verify the signature. In this case, the call permit precompile address
 
-When `dispatch` is called, the permit needs to be verified before the call is dispatched. The first step is to [compute the domain separator](https://github.com/PureStake/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L138){target=_blank}. The calculation can be seen in [Moonbeam's implementation](https://github.com/PureStake/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L112-L126){target=_blank} or you can check out a a practical example in [OpenZeppelin's EIP712 contract](ttps://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/cryptography/draft-EIP712.sol#L70-L84){target=_blank}.
+When `dispatch` is called, the permit needs to be verified before the call is dispatched. The first step is to [compute the domain separator](https://github.com/PureStake/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L138){target=_blank}. The calculation can be seen in [Moonbeam's implementation](https://github.com/PureStake/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L112-L126){target=_blank} or you can check out a practical example in [OpenZeppelin's EIP712 contract](ttps://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/cryptography/draft-EIP712.sol#L70-L84){target=_blank}.
 
 From there, a [hash of the signature and the given arguments](https://github.com/PureStake/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L140-L151){target=_blank} is generated which guarantees that the signature can only be used for the call permit. It uses a given nonce to ensure the signature is not subject to a replay attack. It is similar to [OpenZeppelin's `ERC20Permit` contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/token/ERC20/extensions/draft-ERC20Permit.sol#L52){target=_blank}, except the `PERMIT_TYPEHASH` is for a call permit, and the arguments match that of the [dispatch function](#:~:text=The interface includes the following functions) plus the nonce.
 
@@ -119,7 +119,7 @@ You can use [Remix](https://remix.ethereum.org/){target=_blank} to compile the e
 
 1. Click on the **File explorer** tab
 2. Paste the `SetMessage.sol` contract into a Remix file named `SetMessage.sol`
-3. Paste the `CallPermit.sol` contraact into a Remix file named `CallPermit.sol`
+3. Paste the `CallPermit.sol` contract into a Remix file named `CallPermit.sol`
 
 ![Copying and pasting the example contract into Remix](/images/builders/pallets-precompiles/precompiles/call-permit/call-1-new.png)
 
@@ -173,7 +173,7 @@ Regardless of which method you choose to generate the signature, the following s
 2. A JSON structure of the data the user needs to sign will be assembled for the call permit and include all of the types for the `dispatch` arguments and the nonce. This will result in the `CallPermit` type and will be saved as the `primaryType`
 3. The domain separator will be created using `"Call Permit Precompile"` exactly for the name, the version of your DApp or platform, the chain ID of the network the signature is to be used on, and the address of the contract that will verify the signature
 4. All of the assembled data, the `types`, `domain`, `primaryType` and `message`, will be signed using MetaMask (either in the browser or through the MetaMask's JavaScript signing library)
-5. The signature will be returned and you can use [Ethers.js](https://docs.ethers.io/v5/){target=_blank} [`splitSignature` method](https://docs.ethers.io/v5/api/utils/bytes/#utils-splitSignature){target=_blank} to return the `v`, `r`, and `s` values of the signature
+5. The signature will be returned and you can use [Ethers.js](https://docs.ethers.io/){target=_blank} [`Signature.from` method](https://docs.ethers.org/v6/api/crypto/#Signature_from){target=_blank} to return the `v`, `r`, and `s` values of the signature
 
 ### The Call Permit Arguments {: #call-permit-arguments }
 
@@ -201,7 +201,7 @@ The nonce of the signer will also be needed. If this is your first time signing 
 
 ### Use the Browser {: #use-the-browser }
 
-To get started, you can open [JSFiddle](https://jsfiddle.net/){target=_blank} or another JavaScript playground in the browser. First, you'll need to add [Ethers.js](https://docs.ethers.io/v5/){target=_blank} as it will be used to get the `v`, `r`, and `s` values of the signature:
+To get started, you can open [JSFiddle](https://jsfiddle.net/){target=_blank} or another JavaScript playground in the browser. First, you'll need to add [Ethers.js](https://docs.ethers.io/){target=_blank} as it will be used to get the `v`, `r`, and `s` values of the signature:
 
 1. Click on **Resources**
 2. Start to type in `ethers` and the dropdown should populate matching libraries. Choose **ethers** 
@@ -214,120 +214,7 @@ The CDN for Ethers.js will appear in the list of libraries under **Resources**.
 In the **Javascript** code box, copy and paste the following JavaScript snippet, making sure to replace the `to` variables (and any other variables as you see fit):
 
 ```js
-const main = async () => {
-  await window.ethereum.enable();
-  const accounts = await window.ethereum.request({
-    method: "eth_requestAccounts",
-  });
-
-
-  const from = accounts[0];
-  const to = "INSERT-TO-ADDRESS-HERE";
-  const value = 0;
-  const data = "0x4ed3885e0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000b68656c6c6f20776f726c64000000000000000000000000000000000000000000";
-  const gaslimit = 100000;
-  const nonce = "INSERT-SIGNERS-NONCE-HERE";
-  const deadline = "INSERT-DEADLINE-HERE";
-
-  const createPermitMessageData = function() {
-    const message = {
-      from: from,
-      to: to,
-      value: value,
-      data: data,
-      gaslimit: gaslimit,
-      nonce: nonce,
-      deadline: deadline,
-    };
-
-    const typedData = JSON.stringify({
-      types: {
-        EIP712Domain: [{
-            name: "name",
-            type: "string"
-          },
-          {
-            name: "version",
-            type: "string"
-          },
-          {
-            name: "chainId",
-            type: "uint256"
-          },
-          {
-            name: "verifyingContract",
-            type: "address"
-          },
-        ],
-        CallPermit: [{
-            name: "from",
-            type: "address"
-          },
-          {
-            name: "to",
-            type: "address"
-          },
-          {
-            name: "value",
-            type: "uint256"
-          },
-          {
-            name: "data",
-            type: "bytes"
-          },
-          {
-            name: "gaslimit",
-            type: "uint64"
-          },
-          {
-            name: "nonce",
-            type: "uint256"
-          },
-          {
-            name: "deadline",
-            type: "uint256"
-          },
-        ],
-      },
-      primaryType: "CallPermit",
-      domain: {
-        name: "Call Permit Precompile",
-        version: "1",
-        chainId: {{ networks.moonbase.chain_id }},
-        verifyingContract: "{{ networks.moonbase.precompiles.call_permit }}",
-      },
-      message: message,
-    });
-
-    return {
-      typedData,
-      message,
-    };
-  };
-
-  const method = "eth_signTypedData_v4";
-  const messageData = createPermitMessageData();
-  const params = [from, messageData.typedData];
-
-  web3.currentProvider.sendAsync({
-      method,
-      params,
-      from,
-    },
-    function(err, result) {
-      if (err) return console.dir(err);
-      if (result.error) {
-        alert(result.error.message);
-        return console.error("ERROR", result);
-      }
-      console.log("Signature:" + JSON.stringify(result.result));
-      console.log(ethers.utils.splitSignature(result.result))
-
-    }
-  );
-}
-
-main()
+--8<-- 'code/precompiles/call-permit/browser-getSignature.js'
 ```
 
 To run the code, click **Run** at the top of the page (or you can also use `control` and `s`). MetaMask should pop up and prompt you to connect an account. Make sure to choose the account you want to sign the message with. Then go ahead and sign the message.
@@ -353,7 +240,7 @@ You should now have a file where you can create the script to get the signature 
 "type": "module"
 ```
 
-Next, you can install the MetaMask signing library and [Ethers.js](https://docs.ethers.io/v5/){target=_blank}:
+Next, you can install the MetaMask signing library and [Ethers.js](https://docs.ethers.io/){target=_blank}:
 
 ```
 npm i @metamask/eth-sig-util ethers
@@ -365,75 +252,7 @@ npm i @metamask/eth-sig-util ethers
 In the `getSignature.js` file, you can copy the following code snippet:
 
 ```js
-import ethers from "ethers";
-import {
-  signTypedData, SignTypedDataVersion,
-} from "@metamask/eth-sig-util";
-
-const from = "INSERT-FROM-ADDRESS-HERE"
-const to = "INSERT-TO-ADDRESS-HERE";
-const value = 0;
-const data = "0x4ed3885e0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000b68656c6c6f20776f726c64000000000000000000000000000000000000000000";
-const gaslimit = 100000;
-const nonce = "INSERT-SIGNERS-NONCE-HERE";
-const deadline = "INSERT-DEADLINE-HERE";
-
-const createPermitMessageData = () => {
-  const message = {
-    from: from,
-    to: to,
-    value: value,
-    data: data,
-    gaslimit: gaslimit,
-    nonce: nonce,
-    deadline: deadline,
-  };
-
-  const typedData = {
-    types: {
-      EIP712Domain: [
-        { name: "name", type: "string" },
-        { name: "version", type: "string" },
-        { name: "chainId", type: "uint256" },
-        { name: "verifyingContract", type: "address" },
-      ],
-      CallPermit: [
-        { name: "from", type: "address" },
-        { name: "to", type: "address" },
-        { name: "value", type: "uint256" },
-        { name: "data", type: "bytes" },
-        { name: "gaslimit", type: "uint64" },
-        { name: "nonce", type: "uint256" },
-        { name: "deadline", type: "uint256" },
-      ],
-    },
-    primaryType: "CallPermit",
-    domain: {
-      name: "Call Permit Precompile",
-      version: "1",
-      chainId: {{ networks.moonbase.chain_id }},
-      verifyingContract: "{{ networks.moonbase.precompiles.call_permit }}",
-    },
-    message: message,
-  };
-
-  return {
-    typedData,
-    message,
-  };
-}
-
-const messageData = createPermitMessageData();
-
-// For demo purposes only. Never store your private key in a JavaScript/TypeScript file
-const signature = signTypedData({
-  privateKey: Buffer.from("INSERT-FROM-ACCOUNT-PRIVATE-KEY", "hex"),
-  data: messageData.typedData,
-  version: SignTypedDataVersion.V4
-})
-
-console.log(`Transaction successful with hash: ${signature}`);
-console.log(ethers.utils.splitSignature(signature))
+--8<-- 'code/precompiles/call-permit/getSignature.js'
 ```
 
 To run the script, use the following command:
@@ -466,7 +285,7 @@ When you send the `dispatch` function, you'll need the same arguments as you use
 7. Copy the `v` value you should have retrieved while generating the call permit signature and paste it into the **v** field
 8. Copy the `r` value you should have retrieved while generating the call permit signature and paste it into the **r** field
 9. Copy the `s` value you should have retrieved while generating the call permit signature and paste it into the **s** field
-10. Click **transact** to send the the transaction
+10. Click **transact** to send the transaction
 11. MetaMask should pop-up and you can confirm the transaction
 
 ![Dispatch the call permit](/images/builders/pallets-precompiles/precompiles/call-permit/call-11.png)

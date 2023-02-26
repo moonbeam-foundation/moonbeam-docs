@@ -171,7 +171,7 @@ You'll also need to update the private key to one that has funds on that network
           '{{ networks.moonbeam.rpc_url }}' // Insert your RPC URL here
         )
       },
-      network_id: {{ networks.moonbeam.chain_id }} (hex: {{ networks.moonbeam.hex_chain_id }}),
+      network_id: {{ networks.moonbeam.chain_id }} // (hex: {{ networks.moonbeam.hex_chain_id }}),
     },
     ```
 
@@ -185,7 +185,7 @@ You'll also need to update the private key to one that has funds on that network
           '{{ networks.moonriver.rpc_url }}' // Insert your RPC URL here
         )
       },
-      network_id: {{ networks.moonriver.chain_id }} (hex: {{ networks.moonriver.hex_chain_id }}),
+      network_id: {{ networks.moonriver.chain_id }} // (hex: {{ networks.moonriver.hex_chain_id }}),
     },
     ```
 
@@ -199,7 +199,7 @@ You'll also need to update the private key to one that has funds on that network
           '{{ networks.moonbase.rpc_url }}' // Insert your RPC URL here
         )
       },
-      network_id: {{ networks.moonbase.chain_id }} (hex: {{ networks.moonbase.hex_chain_id }}),
+      network_id: {{ networks.moonbase.chain_id }} // (hex: {{ networks.moonbase.hex_chain_id }}),
     },
     ```
 
@@ -359,7 +359,7 @@ Then you can create a new script to access a live contract on the network:
     const ethers = require("ethers");
 
     async function main() {
-      const provider = new ethers.providers.StaticJsonRpcProvider("http://127.0.0.1:8545/");
+      const provider = new ethers.JsonRpcProvider("http://127.0.0.1:8545/");
       
       const contract = new ethers.Contract(
           'INSERT-CONTRACT-ADDRESS', 'INSERT-CONTRACT-ABI', provider

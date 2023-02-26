@@ -37,10 +37,14 @@ To start building on Moonbase Alpha, you can get DEV tokens from the Moonbase Al
 
 To request DEV tokens from the faucet, you can enter your address on the [Moonbase Alpha Faucet](https://apps.moonbeam.network/moonbase-alpha/faucet/){target=_blank} website. The faucet dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours.
 
-![Moonbase Alpha Faucet Web](/images/builders/get-started/networks/moonbase/moonbase-1.png)
+![Moonbase Alpha Faucet Website.](/images/builders/get-started/networks/moonbase/moonbase-1.png)
 
 !!! note
     Moonbase Alpha DEV tokens have no value. Please don't spam the faucet with unnecessary requests.
+
+You can also use the [ChainDrop Faucet](https://chaindrop.org/?chainid=1287&token=0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee){target=_blank} to request DEV tokens, which dispenses {{ networks.moonbase.chaindrop_faucet_amount }} per request.
+
+![ChainDrop Faucet Website.](/images/builders/get-started/networks/moonbase/moonbase-2-new.png)
 
 ## Demo DApps {: #Demo-DApps }
 
@@ -69,7 +73,7 @@ The [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app/){target=_bl
 
 ### Moonbeam Uniswap {: #moonbeam-uniswap } 
 
-[Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank} is a fork of [Uniswap-V2](https://uniswap.org/blog/uniswap-v2){target=_blank} deployed to Moonbase Alpha. Notably, Moonbeam Uniswap allows developers to easily make a swap to acquire [cross chain assets](/builders/xcm/xc20/){target=_blank} such as xcKarura or xcUNIT for XCM testing purposes. To perform your first swap, take the following steps:
+[Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=_blank} is a fork of [Uniswap-V2](https://uniswap.org/blog/uniswap-v2){target=_blank} deployed to Moonbase Alpha. Notably, Moonbeam Uniswap allows developers to easily make a swap to acquire [cross chain assets](/builders/interoperability/xcm/xc20/){target=_blank} such as xcKarura or xcUNIT for XCM testing purposes. To perform your first swap, take the following steps:
 
 1. Press **Select a token** 
 2. Connect your MetaMask wallet and ensure you're on the Moonbase Alpha network

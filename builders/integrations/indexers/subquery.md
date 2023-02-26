@@ -31,7 +31,7 @@ Later on in this guide, you have the option of deploying your project to a local
 
 ## Creating a Project {: #creating-a-project }
 
-To get started, you'll need to [create a SubQuery project](https://doc.subquery.network/create/introduction/){target=_blank}. You can create a project for Moonbeam, Moonriver, or Moonbase Alpha. For the purposes of this guide, Moonbeam will be used. 
+To get started, you'll need to [create a SubQuery project](https://academy.subquery.network/quickstart/quickstart.html){target=_blank}. You can create a project for Moonbeam, Moonriver, or Moonbase Alpha. For the purposes of this guide, Moonbeam will be used. 
 
 In general, you will need to:
 
@@ -76,9 +76,9 @@ In general, you will need to:
 
 After the initialization is complete, you'll have a base SubQuery project that contains the following files (among others):
 
-- **[`project.yaml`](https://github.com/subquery/tutorials-frontier-evm-starter/blob/moonriver/project.yaml){target=_blank}** - the [Manifest File](https://doc.subquery.network/build/manifest.html){target=_blank} which acts as the entry point of your project
-- **[`schema.graphql`](https://github.com/subquery/tutorials-frontier-evm-starter/blob/moonriver/schema.graphql){target=_blank}** - the [GraphQL Schema](https://doc.subquery.network/build/graphql.html){target=_blank} which defines the shape of your data. The template includes `Transaction` and `Approval` entities
-- **[`src/mappings/mappingHandlers.ts`](https://github.com/subquery/tutorials-frontier-evm-starter/blob/moonriver/src/mappings/mappingHandlers.ts){target=_blank}** - exports the [Mapping](https://doc.subquery.network/build/mapping.html){target=_blank} functions which are used to define how chain data is transformed into the GraphQL entities that are defined in the schema
+- **[`project.yaml`](https://github.com/subquery/tutorials-frontier-evm-starter/blob/moonriver/project.yaml){target=_blank}** - the [Manifest File](https://academy.subquery.network/build/manifest/polkadot.html){target=_blank} which acts as the entry point of your project
+- **[`schema.graphql`](https://github.com/subquery/tutorials-frontier-evm-starter/blob/moonriver/schema.graphql){target=_blank}** - the [GraphQL Schema](https://academy.subquery.network/build/graphql.html){target=_blank} which defines the shape of your data. The template includes `Transaction` and `Approval` entities
+- **[`src/mappings/mappingHandlers.ts`](https://github.com/subquery/tutorials-frontier-evm-starter/blob/moonriver/src/mappings/mappingHandlers.ts){target=_blank}** - exports the [Mapping](https://academy.subquery.network/build/mapping/polkadot.html){target=_blank} functions which are used to define how chain data is transformed into the GraphQL entities that are defined in the schema
 - **[`src/chaintypes.ts`](https://github.com/subquery/tutorials-frontier-evm-starter/blob/moonriver/src/chaintypes.ts){target=_blank}** - exports the chain types specifically for Moonbeam so you can index Moonbeam data
 - **[`erc20.abi.json`](https://github.com/subquery/tutorials-frontier-evm-starter/blob/moonriver/erc20.abi.json){target=_blank}** - JSON file containing the ABI for the standard ERC-20 interface which will be used to filter ERC-20 transfer and approval data
 
@@ -143,7 +143,7 @@ The fields in the `dataSources` configuration can be broken down as follows:
 - **kind** - *required* field that specifies the custom Moonbeam data processor
 - **startBlock** - field that specifies the block to start indexing data from
 - **processor.file** - *required* field that references the file where the data processor code lives
-- **processor.options** - includes [processor options](https://doc.subquery.network/build/substrate-evm.html#processor-options){target=_blank} specific to the Frontier EVM processor including the `abi` that is used by the processor to parse arguments. As well as the `address` where the contract event is from or the call is made to
+- **processor.options** - includes [processor options](https://academy.subquery.network/build/substrate-evm.html#processor-options){target=_blank} specific to the Frontier EVM processor including the `abi` that is used by the processor to parse arguments. As well as the `address` where the contract event is from or the call is made to
 - **assets** - an object of external asset ABI files
 - **mapping** - the mapping specification. This includes the path to the mapping entry, the mapping functions, and their corresponding handler types, with any additional mapping filters
 
@@ -181,18 +181,18 @@ These models will be used in the mapping handlers covered in the next section.
 
 ## Mapping Handlers {: #mapping-handlers }
 
-The mapping specification includes the [mapping functions](https://doc.subquery.network/create/mapping/#){target=_blank} that define how chain data is transformed.
+The mapping specification includes the [mapping functions](https://academy.subquery.network/build/mapping/polkadot.html){target=_blank} that define how chain data is transformed.
 
 The template contains two mapping functions which are found under `src/mappings/mappingHandlers.ts`. These mapping functions transform off chain data to the GraphQL entities that you define. The two handlers are as follows:
 
-- **Event handler** - used to capture information where certain events are emitted within a new block. As this function will be called anytime an event is emitted, you can use mapping filters to only handle events you need. This will improve performance and reduce indexing times
-- **Call handler** - used to capture information for certain extrinsics
+- **[Event handler](https://academy.subquery.network/build/substrate-evm.html#event-handlers){target=_blank}** - used to capture information where certain events are emitted within a new block. As this function will be called anytime an event is emitted, you can use mapping filters to only handle events you need. This will improve performance and reduce indexing times
+- **[Call handler](https://academy.subquery.network/build/substrate-evm.html#call-handlers){target=_blank}** - used to capture information for certain extrinsics
 
-In a traditional Substrate project, the event passed in to the `handleEvent` mapping function is a `SubstrateEvent`. Similarly, the extrinsic passed into the `handleCall` mapping function is a `SubstrateExtrinsic`. For Moonbeam, your mapping functions will receive a [`FrontierEvmEvent`](https://doc.subquery.network/create/substrate-evm/#frontierevmevent){target=_blank}  and a [`FrontierEvmCall`](https://doc.subquery.network/create/moonbeam/#frontierevmcall){target=_blank} instead. These are based on Ether's [TransactionResponse](https://docs.ethers.io/v5/api/providers/types/#providers-TransactionResponse){target=_blank} or [Log](https://docs.ethers.io/v5/api/providers/types/#providers-Log){target=_blank} type.
+In a traditional Substrate project, the event passed in to the `handleEvent` mapping function is a `SubstrateEvent`. Similarly, the extrinsic passed into the `handleCall` mapping function is a `SubstrateExtrinsic`. For Moonbeam, your mapping functions will receive a `FrontierEvmEvent` and a `FrontierEvmCall` instead. These are based on Ether's [TransactionResponse](https://docs.ethers.org/v6/api/providers/#TransactionResponse){target=_blank} or [Log](https://docs.ethers.org/v6/api/providers/#Log){target=_blank} type.
 
 For this example, the `FrontierEvmEvent` will be used to handle and filter `Transfer` events and the `FrontierEvmCall` will be used to handle and filter `approve` function calls. You can add additional handlers as needed.
 
-The mapping handlers are then configured in the `project.yaml` manifest file under the `dataSources` configuration. You'll create a `mapping.handlers.handler` configuration for each handler you have. The `handleMoonbeamEvent` and `handlerMoonbeamCall` handlers are already configured in the template
+The mapping handlers are then configured in the `project.yaml` manifest file under the `dataSources` configuration. You'll create a `mapping.handlers.handler` configuration for each handler you have. The `handleMoonbeamEvent` and `handleMoonbeamCall` handlers are already configured in the template
 
 To adapt the template for the WGLMR token on Moonbeam, you'll need to update the `from` field under `mapping.handlers.handler.filter` to be the WGLMR contract address:
 
@@ -228,7 +228,7 @@ yarn build
 
 ![yarn build results](/images/builders/integrations/indexers/subquery/subquery-6.png)   
 
-Next you can choose to either [publish your project](https://doc.subquery.network/publish/publish/){target=_blank} to [SubQuery Projects](https://project.subquery.network/){target=_blank} or [run a SubQuery node locally](https://doc.subquery.network/run/run/){target=_blank} using Docker. To do so you can run:
+Next you can choose to either [publish your project](https://academy.subquery.network/run_publish/publish.html){target=_blank} to [SubQuery Projects](https://project.subquery.network/){target=_blank} or [run a SubQuery node locally](https://academy.subquery.network/run_publish/run.html){target=_blank} using Docker. To do so you can run:
 
 ```
 docker-compose pull && docker-compose up
@@ -253,7 +253,7 @@ Congratulations! You now have a Moonbeam SubQuery project that accepts GraphQL A
 
 To view the complete example project for Moonriver, you can checkout the [live Moonriver EVM Starter Project on the SubQuery Explorer](https://explorer.subquery.network/subquery/subquery/moonriver-evm-starter-project){target=_blank}. Or you can also view additional projects from the [SubQuery Explorer](https://explorer.subquery.network/){target=_blank}.
 
-If you have any questions about this make sure you check out the [SubQuery documentation for Substrate EVM Support](https://doc.subquery.network/create/substrate-evm/){target=_blank} or reach out to the SubQuery team on the #technical-support channel in the [SubQuery Discord](https://discord.com/invite/subquery){target=_blank}.
+If you have any questions about this make sure you check out the [SubQuery documentation for Substrate EVM Support](https://academy.subquery.network/build/substrate-evm.html){target=_blank} or reach out to the SubQuery team on the #technical-support channel in the [SubQuery Discord](https://discord.com/invite/subquery){target=_blank}.
 
 ### Moonbuilders Tutorial {: #moonbuilders-tutorial }
 

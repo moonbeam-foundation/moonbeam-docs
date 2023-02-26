@@ -38,7 +38,7 @@ The following list covers the extrinsics that you'll use in this guide and are a
  - **delegatorBondMore**(*address* candidate, *uint256* more) - extrinsic to request to increase the amount of staked tokens for an already delegated collator
  - **scheduleDelegatorBondLess**(*address* candidate, *uint256* less) - extrinsic to request to reduce the amount of staked tokens for an already delegated collator. The amount must not decrease your overall total staked below the minimum delegation stake. There will be a [bond less delay](/learn/features/staking/#quick-reference/#:~:text=Decrease delegation delay){target=_blank} before you can execute the request via the `executeDelegationRequest` extrinsic
  - **executeDelegationRequest**(*address* delegator, *address* candidate) - extrinsic to execute and pending delegation requests. This extrinsic should only be used after a request has been scheduled and the exit delay has passed 
- - **scheduleCandidateBondLess**(*uint256* less) - extrinsic that allows a collator candidate to request to decrease their self bond by a given amount. There will be a [bond less delay](/node-operators/networks/collators/activities/#collator-timings/#:~:text=Reduce self-delegation){target=_blank} before you can execute the request via the `executeCandidateBondLess` extrinsic
+ - **scheduleCandidateBondLess**(*uint256* less) - extrinsic that allows a collator candidate to request to decrease their self bond by a given amount. There will be a [bond less delay](/node-operators/networks/collators/activities/#collator-timings/#:~:text=Reduce self){target=_blank} before you can execute the request via the `executeCandidateBondLess` extrinsic
  - **executeCandidateBondLess**(*address* candidate) - extrinsic to execute a decrease a candidate's self bond amount. This extrinsic should only be used after a bond request has been scheduled and the exit delay has passed
  - **cancelCandidateBondLess**() - extrinsic to cancel a scheduled request to increase or decrease the bond for a specific candidate
 
@@ -63,7 +63,7 @@ Then to retrieve the various staking parameters, select the **Constants** tab on
 2. Choose any function you would like to get data for. For this example, you can use **maxDelegationsPerDelegator**. This will return the maximum number of candidates you can delegate
 3. Click **+** to return the current value
 
-![Retrieving staking parameters](/images/tokens/staking/stake/new/stake-1.png)
+![Retrieving staking parameters](/images/tokens/staking/stake/stake-1.png)
 
 You should then see the maximum delegations per delegator, which can also be found in the [Staking on Moonbeam](/learn/features/staking/#quick-reference){target=_blank} overview.
 
@@ -86,7 +86,7 @@ Each extrinsic provides a different response:
  - **selectedCandidates** — returns the current active set of collators, that is, the top collator candidates by total tokens staked (including delegations). For example, on Moonbase Alpha it is the top {{ networks.moonbase.staking.max_candidates }} candidates
  - **candidatePool** — returns the current list of all the candidates, including those that are not in the active set
 
-![Staking Account](/images/tokens/staking/stake/new/stake-2.png)
+![Staking Account](/images/tokens/staking/stake/stake-2.png)
 
 ### Get the Candidate Delegation Count {: #get-the-candidate-delegation-count } 
 
@@ -99,7 +99,7 @@ First, you need to get the `candidateInfo`, which will contain the delegator cou
  5. Send the state query by clicking on the **+** button
  6. Copy the result as you'll need it when initiating a delegation
 
-![Get candidate delegation count](/images/tokens/staking/stake/new/stake-3.png)
+![Get candidate delegation count](/images/tokens/staking/stake/stake-3.png)
 
 ### Get the Candidate Auto-Compounding Delegation Count {: #get-candidate-auto-compounding-count }
 
@@ -120,7 +120,7 @@ To run the snippet, make sure you're on the **JavaScript** page of Polkadot.js A
  3. To execute the code, click on the run button
  4. Copy the result as you'll need it when initiating a delegation
 
-![Get candidate auto-compounding delegation count](/images/tokens/staking/stake/new/stake-4.png)
+![Get candidate auto-compounding delegation count](/images/tokens/staking/stake/stake-4.png)
 
 ### Get your Number of Existing Delegations {: #get-your-number-of-existing-delegations } 
 
@@ -147,7 +147,7 @@ Head to the **Developer** tab and click on **JavaScript**. Then take the followi
  3. To execute the code, click on the run button
  4. Copy the result as you'll need it when initiating a delegation
 
-![Get existing delegation count](/images/tokens/staking/stake/new/stake-5.png)
+![Get existing delegation count](/images/tokens/staking/stake/stake-5.png)
 
 ### Stake your Tokens {: #staking-your-tokens }
 
@@ -164,11 +164,11 @@ To delegate a candidate and set up auto-compounding for your staking rewards, ta
  5. Set the number of tokens you want to stake
  6. Set the percentage of rewards to auto-compound by entering a number 0-100
  7. Input the `candidateDelegationCount` you [retrieved previously from querying `candidateInfo`](#get-the-candidate-delegation-count)
- 8. Input the `candidateAutoCompoundingDelegationCount` you [retrieved previously from querying `autoCompoundingDelegations`](#gget-candidate-auto-compounding-count)
+ 8. Input the `candidateAutoCompoundingDelegationCount` you [retrieved previously from querying `autoCompoundingDelegations`](#get-candidate-auto-compounding-count)
  9. Input the `delegationCount` [you retrieved from the JavaScript console](#get-your-number-of-existing-delegations). This is `0` if you haven't yet delegated a candidate
  10. Click the **Submit Transaction** button and sign the transaction
 
-![Staking Join Delegators Extrinsics](/images/tokens/staking/stake/new/stake-6.png)
+![Staking Join Delegators Extrinsics](/images/tokens/staking/stake/stake-6.png)
 
 !!! note
     The parameters used in steps 7-9 are for gas estimation purposes and do not need to be exact. However, they should not be lower than the actual values. 
@@ -185,7 +185,7 @@ Once the transaction is confirmed, you can verify your delegation by navigating 
  4. Make sure to enable the **include option** slider
  5. Send the state query by clicking on the **+** button
 
-![Verify delegations](/images/tokens/staking/stake/new/stake-7.png)
+![Verify delegations](/images/tokens/staking/stake/stake-7.png)
 
 In the response, you should see your account (in this case, Alice's account) with a list of the delegations. Each delegation contains the target address of the candidate and the amount.
 
@@ -214,7 +214,7 @@ In Polkadot.js Apps, you can head to the **Developer** tab and select **JavaScri
  3. To execute the code, click on the run button
  4. The result is returned in the terminal on the right side
 
-![Verify auto-compounding percentage](/images/tokens/staking/stake/new/stake-8.png)
+![Verify auto-compounding percentage](/images/tokens/staking/stake/stake-8.png)
 
 ## Set or Change the Auto-Compounding Percentage {: #set-or-change-auto-compounding }
 
@@ -227,11 +227,11 @@ You'll need to [get the number of delegations with auto-compounding set up](#get
  3. Choose the **setAutoCompound** extrinsic
  4. Set the candidate's address that you delegated. For this example, it is set to `{{ networks.moonbase.staking.candidates.address1 }}`
  5. Set the percentage of rewards to auto-compound by entering a number 0-100
- 7. For the **candidateAutoCompoundingDelegationHint** field, enter the candidate's number of delegations with auto-compounding configured
- 8. For the **delegationCountHint** field, enter your number of delegations
- 9. Click the **Submit Transaction** button and sign the transaction
+ 6. For the **candidateAutoCompoundingDelegationHint** field, enter the candidate's number of delegations with auto-compounding configured
+ 7. For the **delegationCountHint** field, enter your number of delegations
+ 8. Click the **Submit Transaction** button and sign the transaction
 
-![Staking Chain State Query](/images/tokens/staking/stake/new/stake-9.png)
+![Staking Chain State Query](/images/tokens/staking/stake/stake-9.png)
 
 ## How to Stop Delegations {: #how-to-stop-delegations } 
 
@@ -249,7 +249,7 @@ To schedule a request to revoke your delegation from a specific candidate, navig
  4. Set the candidate's address you want to remove your delegation from. In this case, it is set to `{{ networks.moonbase.staking.candidates.address1 }}`
  5. Click the **Submit Transaction** button and sign the transaction
 
-![Staking Schedule Request to Revoke Delegation Extrinsic](/images/tokens/staking/stake/new/stake-10.png)
+![Staking Schedule Request to Revoke Delegation Extrinsic](/images/tokens/staking/stake/stake-10.png)
 
 !!! note
     There can only be one pending scheduled request per candidate.
@@ -267,7 +267,7 @@ After the exit delay has passed after initiating the scheduled request, you can 
  5. Set the candidate's address you want to remove your delegation from. In this case, it is set to `{{ networks.moonbase.staking.candidates.address1 }}`
  6. Click the **Submit Transaction** button and sign the transaction
 
-![Staking Execute Revoke Delegation Extrinsic](/images/tokens/staking/stake/new/stake-11.png)
+![Staking Execute Revoke Delegation Extrinsic](/images/tokens/staking/stake/stake-11.png)
 
 Once the transaction is confirmed, you can verify that your delegation was removed by going to the **Chain state** option under the **Developer** tab. Here, provide the following information:
 
@@ -277,7 +277,7 @@ Once the transaction is confirmed, you can verify that your delegation was remov
  4. Make sure to enable the **include options** slider
  5. Send the state query by clicking on the **+** button
 
-![Staking Verify Delegation is Revoked](/images/tokens/staking/stake/new/stake-12.png)
+![Staking Verify Delegation is Revoked](/images/tokens/staking/stake/stake-12.png)
 
 In the response, you should see your account (in this case, Alice's account) with a list of the remaining delegations. Each delegation contains the target address of the candidate, and the amount. There should no longer be an entry for `{{ networks.moonbase.staking.candidates.address1 }}`. If you no longer have any delegations, `<none>` will be returned.
 
@@ -293,7 +293,7 @@ If you scheduled a request to stop delegations but changed your mind, as long as
 4. Enter the candidates address that corresponds to the due request you would like to cancel
 5. Click the **Submit Transaction** button and sign the transaction
 
-![Staking Cancel Scheduled Request to Revoke Delegation](/images/tokens/staking/stake/new/stake-13.png)
+![Staking Cancel Scheduled Request to Revoke Delegation](/images/tokens/staking/stake/stake-13.png)
 
 ## Staking Rewards {: #staking-rewards } 
 

@@ -93,6 +93,13 @@ The following commands will build the latest release of the Moonbeam parachain.
 
 5. Build the parachain binary:
 
+    !!! note
+        If you are using Ubuntu 22.04, then you will need to install these additional dependencies before building the binary:
+
+        ```
+        apt install clang protobuf-compiler libprotobuf-dev -y 
+        ```
+    
     ```
     cargo build --release
     ```
@@ -329,7 +336,7 @@ The next step is to create the systemd configuration file. If you are setting up
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
-         --validator \
+         --collator \
          --port {{ networks.parachain.p2p }} \
          --rpc-port {{ networks.parachain.rpc }} \
          --ws-port {{ networks.parachain.ws }} \
@@ -367,7 +374,7 @@ The next step is to create the systemd configuration file. If you are setting up
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
-         --validator \
+         --collator \
          --port {{ networks.parachain.p2p }} \
          --rpc-port {{ networks.parachain.rpc }} \
          --ws-port {{ networks.parachain.ws }} \
@@ -405,7 +412,7 @@ The next step is to create the systemd configuration file. If you are setting up
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
-         --validator \
+         --collator \
          --port {{ networks.parachain.p2p }} \
          --rpc-port {{ networks.parachain.rpc }} \
          --ws-port {{ networks.parachain.ws }} \

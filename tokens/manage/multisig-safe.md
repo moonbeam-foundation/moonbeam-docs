@@ -67,7 +67,7 @@ You will need the contract address and the ABI, so make sure you have copied tho
 
 ## Create a Safe {: #create-a-safe }
 
-To get started creating a Safe, navigate to the [Moonbeam Safe](https://multisig.moonbeam.network/moonbase){target=_blank}. For the purpose of this guide, you'll create a Safe on Moonbase Alpha, but you can also adapt the instructions to create a Safe on [Moonbeam](https://multisig.moonbeam.network/moonbeam){target=_blank} or [Moonriver](https://multisig.moonbeam.network/moonriver){target=_blank}. To switch networks, simply click the network dropdown in the top right hand corner of the page. 
+To get started creating a Safe, navigate to the [Moonbeam Safe](https://multisig.moonbeam.network/?chain=mbase){target=_blank}. For the purpose of this guide, you'll create a Safe on Moonbase Alpha, but you can also adapt the instructions to create a Safe on [Moonbeam](https://multisig.moonbeam.network/?chain=mbeam){target=_blank} or [Moonriver](https://multisig.moonbeam.network/?chain=mriver){target=_blank}. To switch networks, simply click the network dropdown in the top right hand corner of the page. 
 
 ### Connect MetaMask {: #connect-metamask }
 
