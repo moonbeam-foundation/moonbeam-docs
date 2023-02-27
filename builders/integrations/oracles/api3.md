@@ -160,9 +160,9 @@ Once the transaction is broadcasted & confirmed on the blockchain a transaction 
 
 Smart contracts can interact and read values from contracts that are already deployed on the blockchain. By deploying a proxy contract via the API3 market, a dAPP can interact and read values from a dAPI like ETH/USD.
 
-:::info
- If a proxy is already deployed for a self-funded dAPI, the dAPP can read the dAPI without having to deploy a proxy contract by using the address of the already deployed proxy contract which will be visible on the API3 market.
-:::
+!!! note
+    If a proxy is already deployed for a self-funded dAPI, the dAPP can read the dAPI without having to deploy a proxy contract by using the address of the already deployed proxy contract which will be visible on the API3 market.
+
 
 If you are deploying a proxy contract during the funding process, clicking on the **Deploy proxy** button will initiate a transaction to your Metamask that will deploy a proxy contract.
 
