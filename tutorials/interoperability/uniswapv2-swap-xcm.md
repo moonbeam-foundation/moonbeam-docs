@@ -43,7 +43,6 @@ Copy the account of your existing or newly created account on the [Moonbase rela
 
 To generate the multilocation-derivative account, first clone the [xcm-tools](https://github.com/PureStake/xcm-tools){target=_blank} repo. Run `yarn` to install the necessary packages, and then run:
 
-
 ```sh
 yarn calculate-multilocation-derivative-account \
 --w wss://wss.api.moonbase.moonbeam.network \
@@ -184,7 +183,7 @@ const generateCallData = async () => {
   // 4. Call Parameters
   const callParams = {
     V2: {
-      gasLimit: gasLimit + 10000n, //Estimated plus some extra gas
+      gasLimit: gasLimit + 10000n, // Estimated plus some extra gas
       action: { Call: uniswapV2Router }, // Uniswap V2 router address
       value: ethers.parseEther('0.01'), // 0.01 DEV
       input: contractCall, // Swap encoded calldata
@@ -229,7 +228,7 @@ The encoded calldata for this example is:
 
 And that is it! You have everything you need to start crafting the XCM message itself! It has been a long journey, but we are almost there.
 
-## Building the XCM Message from the Relay Chain
+## Building the XCM Message from the Relay Chain {: #building-the-xcm-message-relay-chain }
 
 We are almost in the last part of this tutorial! In this section, we'll craft the XCM message using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank}. We'll also dissect the message instruction per instruction to understand what is happening every step of the way.
 
@@ -312,7 +311,7 @@ const generateCallData = async () => {
   // 9. Create the Extrinsic
   let tx = api.tx.xcmPallet.send(xcmDest, xcmMessage);
 
-  // 6. Get SCALE Encoded Calldata
+  // 10. Get SCALE Encoded Calldata
   let encodedCall = tx.toHex();
   console.log(`Encoded Calldata: ${encodedCall}`);
 };
@@ -357,7 +356,7 @@ The encoded calldata for this example is:
 
 Now that we have the SCALE encoded calldata, the last step is to submit the transaction, which will send our XCM message to Moonbase Alpha, and do the remote EVM call!
 
-## Sending the XCM Message from the Relay Chain
+## Sending the XCM Message from the Relay Chain {: #send-xcm-message-relay-chain }
 
 This section is where everything comes together and where the magic happens! Let's recap what we've done so far:
 
@@ -406,7 +405,7 @@ Once you have the code set up, you can execute it with `node`, and the XCM messa
 
 ![Sending the XCM message from the Relay Chain to Moonbase Alpha for the Uniswap V2 swap](/images/tutorials/interoperability/uniswapv2-swap-xcm/uniswapv2-swap-xcm-6.png)
 
-And that is it! You've sent an XCM message which performed a remote EVM call via  XCM and resulted in an Uniswap V2-styled swap in Moonbase Alpha. But let's go into more detail about what happened.
+And that is it! You've sent an XCM message which performed a remote EVM call via XCM and resulted in an Uniswap V2-styled swap in Moonbase Alpha. But let's go into more detail about what happened.
 
 This action will emit different events. The first one is the only relevant [in the relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/explorer/query/0x85cad5f3cef5d578f6acc60c721ece14842be332fa333c9b9eafdfe078bc0290){target=_blank}, and it is named `xcmPallet.Sent`, which is from the `xcmPallet.send` extrinsic. In [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer/query/0x1f60aeb1f2acbc2cf6e19b7ad969661f21f4847f7b40457c459e7d39f6bc0779){target=_blank}, the following events emitted by the `parachainSystem.setValidationData` extrinsic (where all the inbound XCM messages are processed) are of interest:
 
