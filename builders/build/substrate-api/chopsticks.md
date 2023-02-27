@@ -163,3 +163,5 @@ You should see something like the following output:
 [12:49:07.557] INFO (xcm/21840): Connected relaychain 'Kusama' with parachain 'Moonriver'
 [12:49:08.227] INFO (xcm/21840): Connected relaychain 'Kusama' with parachain 'Karura'
 ```
+
+--8<-- 'text/disclaimers/third-party-content.md'
