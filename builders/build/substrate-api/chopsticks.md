@@ -145,29 +145,6 @@ For example, running the following command will re-run Moonbeam's block 1000, an
 yarn start run-block --endpoint wss://wss.api.moonbeam.network --block 1000 --output-path=./moonbeam-output.json
 ```
 
-## Dry Run Extrinsics {: #dry-run-extrinsics }
-
-You can use the `yarn start dry-run` command to run an extrinsic within a specific block to see its outcome. It has many of the same flags as the [`run-block` command](#dry-run-extrinsics){target=_blank}:  
-
-|           Flag           |                                           Description                                               |
-|:------------------------:|:---------------------------------------------------------------------------------------------------:|
-|         endpoint         | The endpoint of the parachain to fork.                                                              |
-|          block           | Use to specify at which block hash or number to replay the fork.                                    |
-|            at            | Use to specify at which block hash to replay the fork.                                              |
-|         preimage         | Use to specify the preimage on which to replay the fork.                                            |
-|      wasm-override       | Path of the WASM to use as the parachain, instead of forking an endpoint.                           |
-|            db            | Path to the name of the file that stores or will store the parachain's database.                    |
-|          config          | Path to the config file.                                                                            |
-| output-path=/[file_path] | Use to print out results to a JSON file instead of printing it out in the console.                  |
-|           html           | Include to generate an HTML representation of the storage diff preview between blocks.              |
-|           open           | Whether to open the HTML representation.                                                            |
-|         extrinsic        | The calldata of the extrinsic to call with the dry run.                                             |
-|          address         | Required with extrinsic: the address that calls the extrinsic in the dry run.                       |
-
-For example, running the following command will re-run Moonbeam's block 1000 with a balance transfer, and open the storage
-
-**TODO: finish this part**
-
 ## XCM Testing {: #xcm-testing }
 
 To test out XCM messages between networks, you can fork multiple parachains and a relay chain locally. For example, the following will fork Moonriver, Karura, and Kusama:  
