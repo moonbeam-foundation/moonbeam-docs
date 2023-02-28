@@ -390,7 +390,7 @@ async function deposit() {
     `Your ${asset.originSymbol} balance in ${source.name}: ${toDecimal(
       sourceBalance,
       asset.decimals,
-    )}. Minimum transferable amount is: ${toDecimal(min, asset.decimals)}`,
+    ).toFixed()}. Minimum transferable amount is: ${toDecimal(min, asset.decimals).toFixed()}`,
   );
 
   await send('INSERT-AMOUNT', (event) => console.log(event));
@@ -579,7 +579,7 @@ async function getDepositFee() {
   );
 
   const fee = await getFee('INSERT-AMOUNT'));
-  console.log(`Fee to deposit is estimated to be: ${toDecimal(fee, asset.decimals)} ${dot}`);
+  console.log(`Fee to deposit is estimated to be: ${toDecimal(fee, asset.decimals).toFixed()} ${dot}`);
 }
 
 getDepositFee();
@@ -622,7 +622,7 @@ async function withdraw() {
     `Your ${asset.originSymbol} balance in ${destination.name}: ${toDecimal(
       destinationBalance,
       asset.decimals,
-    )}. Minimum transferable amount is: ${toDecimal(min, asset.decimals)}`,
+    ).toFixed()}. Minimum transferable amount is: ${toDecimal(min, asset.decimals).toFixed()}`,
   );
 
   await send('INSERT-AMOUNT', (event) => console.log(event));
@@ -774,7 +774,7 @@ async function getWithdrawFee() {
   );
 
   const fee = await getFee('INSERT-AMOUNT'));
-  console.log(`Fee to deposit is estimated to be: ${toDecimal(fee, moonbeam.moonChain.decimals)} ${moonbeam.moonAsset.originSymbol}`););
+  console.log(`Fee to deposit is estimated to be: ${toDecimal(fee, moonbeam.moonChain.decimals).toFixed()} ${moonbeam.moonAsset.originSymbol}`););
 }
 
 getWithdrawFee();
@@ -810,7 +810,7 @@ const unsubscribe = await moonbeam.subscribeToAssetsBalanceInfo(
   (balances) => {
     balances.forEach(({ asset, balance, origin }) => {
       console.log(
-        `${balance.symbol}: ${toDecimal(balance.balance, balance.decimals)} (${
+        `${balance.symbol}: ${toDecimal(balance.balance, balance.decimals).toFixed()} (${
           origin.name
         } ${asset.originSymbol})`,
       );
@@ -823,7 +823,7 @@ unsubscribe();
 
 ### Utility Functions {: #sdk-utils }
 
-The XCM SDK provides three utility functions: `isXcmSdkDeposit`, `isXcmSdkWithdraw`, and XCM UTILS `toDecimal`, and `toBigInt`.
+The XCM SDK provides three utility functions: `isXcmSdkDeposit`, `isXcmSdkWithdraw`, and XCM UTILS `toDecimal`, `toBigInt` and `hasDecimalOverflow`.
 
 #### Check if Transfer Data is for a Deposit  {: #deposit-check }
 
@@ -875,18 +875,21 @@ console.log(isXcmSdkDeposit(deposit)) // Returns false
 
 #### Convert Balance to Decimal or BigInt {: #decimals }
 
-To convert a balance to decimal format, you can use the `toDecimal` function which returns a given number in decimal format based on the number of decimals provided. You can optionally pass in a value a third argument to dictate the maximum number of decimal places used, otherwise the default is `6`.
+To convert a balance to decimal format, you can use the `toDecimal` function which returns a given number in decimal format based on the number of decimals provided. You can optionally pass in a value a third argument to dictate the maximum number of decimal places used, otherwise the default is `6`; and a fourth argument which dictates the [rounding method](https://mikemcl.github.io/big.js/#rm) of the number.
+The `toDecimal` function returns a `Big` number type that you can convert to number or string using its methods `toNumber`, `toFixed`, `toPrecision` and `toExponential`. We recomend using them as `string` since big numbers or numbers with a lot of decimals can lose precision using `number` types
 
 To convert from decimal number back to BigInt, you can use the `toBigInt` function which returns a given number in BigInt format based on the number of decimals provided.
+
+You can also use `hasDecimalOverflow` to make sure that a given number does not have more decimal places than allowed. This is helpful for form inputs.
 
 For example, to convert a balance on Moonbeam from Wei to Glimmer you can use the following code:
 
 ```js
 import { toDecimal, toBigInt } from '@moonbeam-network/xcm-utils';
 
-const balance = toDecimal(3999947500000000000n, 18);
-console.log(balance); // Returns 3.999947
+const balance = toDecimal(3999947500000000000n, 18).toFixed();
+console.log(balance); // Returns '3.999947'
 
-const big = toBigInt(3.999947, 18);
+const big = toBigInt('3.999947', 18);
 console.log(big); // Returns 3999947000000000000n
 ```
