@@ -115,9 +115,13 @@ Once the transaction is processed, the 0.1 DEV tokens should be withdrawn from A
 
 ### Execute an XCM Message with the XCM Utilities Precompile {: #xcm-utils-precompile }
 
-In this section, you'll use the `xcmExecute` function of the [XCM Utilities Precompile](/builders/pallets-precompiles/precompiles/xcm-utils){target=_blank} to execute a custom XCM message locally on Moonbase Alpha.
+In this section, you'll use the `xcmExecute` function of the [XCM Utilities Precompile](/builders/pallets-precompiles/precompiles/xcm-utils){target=_blank}, which is only available on Moonbase Alpha, to execute a custom XCM message locally. The XCM Utilities Precompile is located at the following address:
 
-Under the hood, the `xcmExecute` function calls the `execute` function of the Polkadot XCM Pallet, which is a Substrate pallet that is coded in rust. The benefit of using the XCM Utilities Precompile to call `xcmExecute` is that you can do so via the Ethereum API and use Ethereum libraries like [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank}.
+```
+{{ networks.moonbase.precompiles.xcm_utils }}
+```
+
+Under the hood, the `xcmExecute` function of the XCM Utilities Precompile calls the `execute` function of the Polkadot XCM Pallet, which is a Substrate pallet that is coded in rust. The benefit of using the XCM Utilities Precompile to call `xcmExecute` is that you can do so via the Ethereum API and use Ethereum libraries like [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank}.
 
 The `xcmExecute` function accepts two parameters: the SCALE encoded versioned XCM message to be executed and the maximum weight to be consumed. So, you'll need to start off by getting the SCALE encoded XCM message. You can grab the encoded calldata from the [previous section](#execute-an-xcm-message-with-polkadotjs-apps), or you can calculate the same calldata programmatically using the following snippet:
 
