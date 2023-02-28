@@ -4,9 +4,10 @@ nav:
   - 'Overview': 'overview.md'
   - xc20
   - xcm-sdk
-  - 'XC Channel Registration': 'xc-integration.md'
+  - 'Custom XCM Messages': 'custom-xcm-messages.md'
   - 'Remote Execution': 'xcm-transactor.md'
   - 'Remote EVM Calls': 'remote-evm-calls.md'
+  - 'XC Channel Registration': 'xc-integration.md'
   - 'XCM Fees': 'fees.md'
-  - 'XCM Utils': '/builders/pallets-precompiles/precompiles/xcm-utils'
+  - 'XCM Utilities': '/builders/pallets-precompiles/precompiles/xcm-utils'
 

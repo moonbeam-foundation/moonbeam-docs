@@ -823,7 +823,15 @@ unsubscribe();
 
 ### Utility Functions {: #sdk-utils }
 
-The XCM SDK provides three utility functions: `isXcmSdkDeposit`, `isXcmSdkWithdraw`, and XCM UTILS `toDecimal`, and `toBigInt`.
+There are utility functions in both the XCM SDK and the XCM Utilities packages. The XCM SDK provides the following SDK-related utility functions:
+
+- `isXcmSdkDeposit`
+- `isXcmSdkWithdraw`
+
+And the XCM Utilities package provides the following generic utility functions:
+
+- `toDecimal`
+- `toBigInt`
 
 #### Check if Transfer Data is for a Deposit  {: #deposit-check }
 
