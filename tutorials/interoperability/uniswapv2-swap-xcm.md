@@ -246,7 +246,7 @@ import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
 
 // 1. Input Data
 const providerWsURL = 'wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network';
-const amountToWithdraw = BigInt(1 * 10 ** 15); // 0.01 DEV
+const amountToWithdraw = BigInt(1 * 10 ** 16); // 0.01 DEV
 const devMultiLocation = { parents: 0, interior: { X1: { PalletInstance: 3 } } };
 const weightTransact = BigInt(4350000000); // 25000 * Gas limit of EVM call
 const multiLocAccount = '0x4e21340c3465ec0aa91542de3d4c5f4fc1def526';
