@@ -36,16 +36,16 @@ The entire process of getting started with Moonbase Alpha can be summarized as f
 3. [Calculate your parachain sovereign account](#calculate-and-fund-the-parachain-sovereign-account) on the Alphanet relay chain (to be funded by the Moonbeam team)
 4. Open an HRMP channel to Moonbase Alpha from your parachain (through sudo or via governance)
 5. Provide the encoded call data to open an HRMP channel to your parachain, accept the incoming HRMP channel, and register the assets (if applicable). This will be executed through sudo
-5. Accept the HRMP channel from Moonbase Alpha (through sudo or via governance)
-6. Register Moonbase Alpha's DEV token on your parachain (optional)
-7. For testing the XCM integration, please send some tokens to:
+6. Accept the HRMP channel from Moonbase Alpha (through sudo or via governance)
+7. Register Moonbase Alpha's DEV token on your parachain (optional)
+8. For testing the XCM integration, please send some tokens to:
 
     ```
     AccoundId: 5GWpSdqkkKGZmdKQ9nkSF7TmHp6JWt28BMGQNuG4MXtSvq3e
     Hex:       0xc4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a063
     ```
 
-8. Test the XCM integration
+9. Test the XCM integration
 
 Once all of these steps are completed, and both teams have successfully tested asset transfers, your parachain token can be added to the Cross Chain Assets section of the [Moonbeam DApp](https://apps.moonbeam.network/moonbase-alpha){target=_blank}. If deposit and withdrawals work as expected, an integration with Moonriver can begin.
 
@@ -66,7 +66,7 @@ When getting started with the Moonbase Alpha relay chain, once you have your nod
 
 ### Calculate and Fund the Parachain Sovereign Account {: #calculate-and-fund-the-parachain-sovereign-account }
 
-You can calculate the sovereign account information using [a script from the `xcm-tools` repository](https://github.com/PureStake/xcm-tools){target=_blank}. To run the script, you must provide the parachain ID and the name of the associated relay chain. The accepted values for the relay chain are `polkadot` (default), `kusama`, and `moonbase`.
+You can calculate the sovereign account information using [a script from the xcm-tools repository](https://github.com/PureStake/xcm-tools){target=_blank}. To run the script, you must provide the parachain ID and the name of the associated relay chain. The accepted values for the relay chain are `polkadot` (default), `kusama`, and `moonbase`.
 
 For example, Moonbase Alpha's sovereign account for both the relay chain and other parachains can be obtained with the following:
 
@@ -97,8 +97,8 @@ From a technical perspective, the process of creating an HRMP channel with Moonr
 
       The normal enactment times are as follows:  
 
-      - **Moonriver** - proposals should be done in the the General Admin track from [OpenGov](/learn/features/governance/#opengov){target=_blank}, in which the decision period is approximately {{ networks.moonriver.governance.tracks.general_admin.decision_period.time }}, and the encament time is at least {{ networks.moonriver.governance.tracks.general_admin.min_enactment_period.time }}
-      - **Moonbeam** - approximately a {{ networks.moonbeam.democracy.vote_period.days }}-day voting period plus {{ networks.moonbeam.democracy.enact_period.days }}-day enactment time
+      - **Moonriver** - proposals should be done in the the General Admin Track from [OpenGov](/learn/features/governance/#opengov){target=_blank}, in which the Decision Period is approximately {{ networks.moonriver.governance.tracks.general_admin.decision_period.time }}, and the enactment time is at least {{ networks.moonriver.governance.tracks.general_admin.min_enactment_period.time }}
+      - **Moonbeam** - approximately a {{ networks.moonbeam.democracy.vote_period.days }}-day Voting Period plus {{ networks.moonbeam.democracy.enact_period.days }}-day enactment time
 
 4. Add details about the [connecting parachain on Polkassembly](http://localhost:8000/tokens/governance/proposals/#submitting-a-proposal){target=_blank} so that community members can be informed when voting on the proposal
 5. Accept the HRMP channel from Moonriver/Moonbeam on the connecting parachain
@@ -116,7 +116,7 @@ Once these steps are completed succesfully, marketing efforts can be coordinated
 
 ### Forum and Polkassembly Template {: #forum-and-polkassembly-template }
 
-When starting an XCM integration on a Moonbeam MainNet, you must add a preliminary draft of the proposal on the [Moonbeam forums](https://forum.moonbeam.foundation/){target=_blank} in the XCM category so that the voting community has the chance to provide preliminary feedback. It is recommended that this is done 5 days before the actual proposal.  
+When starting an XCM integration on Moonriver or Moonbeam MainNet, you must add a preliminary draft of the proposal on the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=_blank} in the XCM category so that the voting community has the chance to provide preliminary feedback. It is recommended that this is done five days before the actual proposal is submitted on-chain.  
 
 Once a proposal is available for voting, you must also add a description to it in either the [Moonbeam Polkassembly](https://moonbeam.polkassembly.network/){target=_blank} or [Moonriver Polkassembly](https://moonriver.polkassembly.network/){target=_blank}.
 
@@ -124,18 +124,18 @@ In both the Moonbeam preliminary forum post and in Polkassembly, add the followi
 
 - **Title** — *YOUR_NETWORK_NAME* Proposal to Open Channel & Register *ASSET_NAME*
 - **Introduction** — one sentence summarizing the proposal
-- **Network Information** — one sentence summarizing your Network, and relevant links to your website, Twitter, and other social channels
+- **Network Information** — one sentence summarizing your network, and relevant links to your website, Twitter, and other social channels
 - **Summary** — brief description of the content of the proposal
 - **On-Chain Proposal Reference (Forums Only)** — include if it is a Moonbeam or Moonriver proposal, the proposal number, and proposal hash
-- **Technical Details** — provide technical information required for the community to understand the use cases and purpose of the Proposal
+- **Technical Details** — provide technical information required for the community to understand the use cases and purpose of the proposal
 - **Additional Information** — any additional information you would like the community/readers to know
 
 Additionally, there is key information to provide that is highlighted due to its importance in a voter's decision:  
 
-- Is the blockchain network's code open source? If so, please provide the GitHub link. If not, provide an explanation on why not.  
-- Is sudo disabled on the network? If sudo is disabled, is the Network controlled by a select group of addresses?  
+- Is the blockchain network's code open source? If so, please provide the GitHub link. If not, provide an explanation on why not
+- Is sudo disabled on the network? If sudo is disabled, is the network controlled by a select group of addresses?  
 - Has the integration of the network been tested completely on the Moonbase Alpha TestNet?  
-- (For Moonbeam HRMP Proposals Only) Does your network have a Kusama deployment? If so, provide its network name and whether the Kusama deployment is integrated with Moonriver.
+- (For Moonbeam HRMP proposals only) Does your network have a Kusama deployment? If so, provide its network name and whether the Kusama deployment is integrated with Moonriver
 - Is the blockchain network's code audited? If so, please provide:
     - Auditor name(s)
     - Dates of audit reports
@@ -246,9 +246,9 @@ Before any messages can be sent from your parachain to Moonbeam, an HRMP channel
 !!! note
     You can add [DepositAsset](https://github.com/paritytech/xcm-format#depositasset){target=_blank} to refund the leftover funds after the execution. If this is not provided, no refunds will be carried out. In addition, you could also add a [RefundSurplus](https://github.com/paritytech/xcm-format#refundsurplus){target=_blank} after [Transact](https://github.com/paritytech/xcm-format#transact){target=_blank}, to get any leftover funds not used for the Transact. But you'll have to calculate if it is worth paying the execution cost of the extra XCM instructions.
 
-To send these XCM messages to the relay chain, the [`PolkadotXcm` pallet](https://github.com/paritytech/polkadot/tree/master/xcm/pallet-xcm){target=_blank} is typically invoked. Moonbeam also has an [`XcmTransactor` pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/xcm-transactor){target=_blank} that simplifies the process into a call that abstracts the XCM messaging constructor.  
+To send these XCM messages to the relay chain, the [Polkadot XCM Pallet](https://github.com/paritytech/polkadot/tree/master/xcm/pallet-xcm){target=_blank} is typically invoked. Moonbeam also has an [XCM-Transactor Pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/xcm-transactor){target=_blank} that simplifies the process into a call that abstracts the XCM messaging constructor.  
 
-You could potentially generate the calldata for an HRMP action by using Polkadot.js Apps, but the [xcm-tools GitHub repository](https://github.com/PureStake/xcm-tools){target=_blank} can build it for you, and it is the recommended tool for this process. They should work for any chain that includes the [`PolkadotXcm`](https://github.com/paritytech/polkadot/tree/master/xcm/pallet-xcm){target=_blank} pallet, although it will try to do it via the [`XcmTransactor` pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/xcm-transactor){target=_blank} first.  
+You could potentially generate the calldata for an HRMP action by using Polkadot.js Apps, but the [xcm-tools GitHub repository](https://github.com/PureStake/xcm-tools){target=_blank} can build it for you, and it is the recommended tool for this process. They should work for any chain that includes the [Polkadot XCM Pallet](https://github.com/paritytech/polkadot/tree/master/xcm/pallet-xcm){target=_blank}, although it will try to do it via the [XCM-Transactor Pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/xcm-transactor){target=_blank} first.  
 
 ```
 git clone https://github.com/PureStake/xcm-tools && \
@@ -256,9 +256,9 @@ cd xcm-tools && \
 yarn
 ```
 
-The [xcm-tools repository](https://github.com/PureStake/xcm-tools){target=_blank} has a specific script for HRMP interactions called [`hrmp-channel-manipulator.ts`](https://github.com/PureStake/xcm-tools/blob/main/scripts/hrmp-channel-manipulator.ts){target=_blank}. This command generates encoded calldata for a specific HRMP action, as long as it is given the correct details. The script builds the XCM message with the DepositAsset XCM instruction but not with RefundSurplus.
+The [xcm-tools repository](https://github.com/PureStake/xcm-tools){target=_blank} has a specific script for HRMP interactions called [`hrmp-channel-manipulator.ts`](https://github.com/PureStake/xcm-tools/blob/main/scripts/hrmp-channel-manipulator.ts){target=_blank}. This command generates encoded calldata for a specific HRMP action, as long as it is given the correct details. The script builds the XCM message with the DepositAsset XCM instruction, but not with RefundSurplus.
 
-The `hrmp-channel-manipulator.ts` script is meant to be generic. It will first attempt to use the `hrmpManage` extrinsic of the [`XcmTransactor` pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/xcm-transactor){target=_blank}, but if that pallet does not exist on the parachain that it is being used on, it will switch to using the [`PolkadotXcm` pallet](https://github.com/paritytech/polkadot/tree/master/xcm/pallet-xcm){target=_blank} (which should be used more readily by parachains) to directly construct the XCM message that interacts with the HRMP pallet on the relay chain. **Note that it expects the pallet name to be `polkadotXcm`, as the extrinsic will be built as `api.tx.polkadotXcm.send()`.**
+The `hrmp-channel-manipulator.ts` script is meant to be generic. It will first attempt to use the `hrmpManage` extrinsic of the [XCM-Transactor Pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/xcm-transactor){target=_blank}, but if that pallet does not exist on the parachain that it is being used on, it will switch to using the [Polkadot XCM Pallet](https://github.com/paritytech/polkadot/tree/master/xcm/pallet-xcm){target=_blank} (which should be used more readily by parachains) to directly construct the XCM message that interacts with the HRMP pallet on the relay chain. **Note that it expects the pallet name to be `polkadotXcm`, as the extrinsic will be built as `api.tx.polkadotXcm.send()`.**
 
 The following sections go through the steps of creating/accepting open channel requests in a Moonbeam-based network, but it can also be adapted to your parachain.
 
@@ -345,9 +345,9 @@ If you plan to batch the transaction with other calls, copy the resultant callda
 
 ## Register a Foreign Asset {: #register-a-foreign-asset }
 
-One of the main points of creating an XCM integration is to send cross-chain assets to and from Moonbeam. Registering an asset through Moonbeam is done via the [asset manager pallet](https://github.com/PureStake/moonbeam/blob/master/pallets/asset-manager/src/lib.rs){target=_blank}. Assets created on Moonbeam are called [XC-20s](/builders/interoperability/xcm/xc20/){target=_blank}, as they have an ERC-20 interface that smart contracts can interact with. 
+One of the main points of creating an XCM integration is to send cross-chain assets to and from Moonbeam. Registering an asset through Moonbeam is done via the [Asset Manager Pallet](https://github.com/PureStake/moonbeam/blob/master/pallets/asset-manager/src/lib.rs){target=_blank}. Assets created on Moonbeam are called [XC-20s](/builders/interoperability/xcm/xc20/){target=_blank}, as they have an ERC-20 interface that smart contracts can interact with. 
 
-This guide will have you use the `xcm-asset-registrator.ts` script. Keep in mind that this script cannot be used on your parachain if you do not have the [asset manager pallet](https://github.com/PureStake/moonbeam/blob/master/pallets/asset-manager/src/lib.rs){target=_blank}.  
+This guide will have you use the `xcm-asset-registrator.ts` script. Keep in mind that this script cannot be used on your parachain if you do not have the [Asset Manager Pallet](https://github.com/PureStake/moonbeam/blob/master/pallets/asset-manager/src/lib.rs){target=_blank}.  
 
 Running the command below will provide the encoded calldata to register your cross-chain asset on a Moonbeam network. Replace the following values before running the command:  
 
@@ -410,7 +410,7 @@ Its output would look like the following:
 ```
 Encoded proposal for registerAsset is 0x1f0000010200e10d0624000000000000000001344578616d706c6520546f6b656e1878634558544e12000000000000000000000000000000000000
 Encoded proposal for setAssetUnitsPerSecond is 0x1f0100010200e10d0624000000000000000001c7a8978b008d8716010000000000000026000000
-Encoded Call Data for Tx is 0x0102081f0000010200e10d0624000000000000000001344578616d706c6520546f6b656e1878634558544e120000000000000000000000000000000000001f0100010200e10d0624000000000000000001c7a8978b008d8716010000000000000026000000
+Encoded calldata for tx is 0x0102081f0000010200e10d0624000000000000000001344578616d706c6520546f6b656e1878634558544e120000000000000000000000000000000000001f0100010200e10d0624000000000000000001c7a8978b008d8716010000000000000026000000
 ```
 
 If you plan to batch the transaction with other calls, copy the resultant calldata for later when using the [batching transactions](#batch-actions-into-one) script.
@@ -463,7 +463,7 @@ The UnitsPerSecond needs to be set 34106412005
 
 The most efficient way to complete the XCM process on parachains is to batch all transactions together. The [xcm-tools repository](https://github.com/PureStake/xcm-tools){target=_blank} provides a script to batch extrinsic calls into a single call, thus requiring only a single transaction. This can be helpful if your parachain would like to open an HRMP channel and register an asset simultaneously. This **should be used** when proposing a channel registration on a Moonbeam network.    
 
-You will now use the encoded call data outputs of the three previous command calls and insert them into the following command to send the batch proposal to democracy. Add a `--call "YOUR_CALL"` for each call you want to batch. Replace the following values before running the command:  
+You will now use the encoded calldata outputs of the three previous command calls and insert them into the following command to send the batch proposal to democracy. Add a `--call "YOUR_CALL"` for each call you want to batch. Replace the following values before running the command:  
 
 - `OPEN_CHANNEL_CALL` is the SCALE encoded calldata for [opening an HRMP channel](#open-an-hrmp-channel-from-moonbeam) from Moonbeam to your parachain  
 - `ACCEPT_INCOMING_CALL` is the SCALE encoded calldata for [accepting the channel request](#accept-an-hrmp-channel-on-moonbeam) from your parachain  
@@ -498,7 +498,7 @@ If you are registering on Moonbase Alpha, you will not to provide a private key 
 !!! note
     You can readapt the script for your parachain by changing the `parachain-ws-provider`.
 
-For Moonbeam and Moonriver, you should include `--account-priv-key YOUR_PRIVATE_KEY` and `-send-preimage-hash true --send-proposal-as democracy` if you want to send the governance proposal directly from the CLI tool. It is recommended to get familiar with the [governance process on Moonbeam-based networks](/learn/features/governance/#roadmap-of-a-proposal){target=_blank}.
+For Moonbeam and Moonriver, you should include `--account-priv-key YOUR_PRIVATE_KEY` and `-send-preimage-hash true --send-proposal-as democracy` if you want to send the governance proposal directly from the CLI tool. It is recommended to get familiar with the [governance process on Moonbeam-based networks](/learn/features/governance/){target=_blank}.
 
 For Moonbase Alpha, you could add the `--sudo` flag and provide the SCALE encoded calldata to the team so that it is submitted via sudo.
 
@@ -515,10 +515,10 @@ The complete options that can be used with the script are as follows:
 |   account-priv-key   |           string           |                        (Required for send-proposal-as, send-preimage-hash) The private key of the account to send a transaction with                         |
 |         sudo         |          boolean           |     Whether to wrap the extrinsic calldata inside of a `sudo.sudo` extrinsic. If `account-priv-key` is present, it will attempt to send the transaciton      |
 |  send-preimage-hash  |          boolean           |                                          Whether to submit the encoded calldata as a preimage and retrieve its hash                                          |
-|   send-proposal-as   | democracy/council-external |                                      Whether to send the encoded calldata through democracy or council (Governance v1)                                       |
-| collective-threshold |           number           |                                     (Required for council-external) The threshold for the council deciding the proposal                                      |
+|   send-proposal-as   | democracy/council-external |                                      Whether to send the encoded calldata through democracy or Council (Governance v1)                                       |
+| collective-threshold |           number           |                                     (Required for council-external) The threshold for the Council deciding the proposal                                      |
 |       at-block       |           number           | Whether to wrap the extrinsic calldata inside of a `scheduler.schedule` extrinsic. The block in the future that the action should be scheduled to take place |
-|     fee-currency     |   string (multilocation)   |                            (Required for non-Moonbeam chains that use XcmTransactor) The multilocation of the relay chain's asset                            |
+|     fee-currency     |   string (multilocation)   |                            (Required for non-Moonbeam chains that use XCM-Transactor) The multilocation of the relay chain's asset                            |
 
 ## Testing Asset Registration on Moonbeam {: #testing-asset-registration-on-moonbeam }
 
