@@ -9,7 +9,7 @@ description: Learn how to use Tenderly, an Ethereum development platform, to bui
 
 ## Introduction {: #introduction } 
 
-[Tenderly](https://tenderly.co/){target=_blank} is a Web3 development platform that contains a suite of tools designed to help developers throughout the DApp development lifecycle. With Tenderly, you can build, debug, test, optimize, monitor, set up alerts, and view analytics for your smart contracts on Moonbeam and Moonriver.
+[Tenderly](https://tenderly.co/){target=_blank} is a Web3 development platform that contains a suite of tools designed to help developers throughout the DApp development life cycle. With Tenderly, you can build, debug, test, optimize, monitor, set up alerts, and view analytics for your smart contracts on Moonbeam and Moonriver.
 
 The Tenderly platform provides the following features:
 

@@ -90,6 +90,6 @@ Now you can take the **bytes** of the encoded proposal that you got from [Polkad
 
 ![Submit the preimage using the notePreimage function of the Preimage Precompile.](/images/builders/pallets-precompiles/precompiles/preimage/preimage-4.png)
 
-Now that you've submitted the preimage for your proposal your proposal can be submitted! Head over to the [Referenda Precompile documentation](/builders/pallets-precompiles//precompiles/referenda){target=_blank} to learn how to submit your proposal.
+Now that you've submitted the preimage for your proposal your proposal can be submitted! Head over to the [Referenda Precompile documentation](/builders/pallets-precompiles/precompiles/referenda){target=_blank} to learn how to submit your proposal.
 
 If you wish to remove a preimage, you can follow the same steps noted above except use the `unnotePreimage` function and pass in the preimage hash instead of the encoded proposal.

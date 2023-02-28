@@ -52,7 +52,7 @@ This section will cover everything you need to know about OpenGov on Moonriver a
 --8<-- 'text/governance/preimage-definitions.md'
 
  - **Origin** - an authorization-based dispatch source for an operation, which is used to determine the Track that a referendum is posted under
- - **Track** - an Origin-specific pipeline that outlines the lifecycle of proposals. Currently, there are five Tracks:
+ - **Track** - an Origin-specific pipeline that outlines the life cycle of proposals. Currently, there are five Tracks:
 
     |    Origin Track     |                                   Description                                    |                         Referendum Examples                          |
     |:-------------------:|:--------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
@@ -251,7 +251,7 @@ For related guides on submitting and voting on referenda on Moonbeam with Govern
 
  - [How to Submit a Proposal](/tokens/governance/proposals/opengov-proposals){target=_blank}
  - [How to Vote on a Proposal](/tokens/governance/voting/opengov-voting){target=_blank}
- - [Interact with the Preimages Precompiled Contract (Solidity Interface)](/builders/pallets-precompiles/precompiles/preimages/){target=_blank}
+ - [Interact with the Preimages Precompiled Contract (Solidity Interface)](/builders/pallets-precompiles/precompiles/preimage/){target=_blank}
  - [Interact with the Referenda Precompiled Contract (Solidity Interface)](/builders/pallets-precompiles/precompiles/referenda/){target=_blank}
  - [Interact with the Conviction Voting Precompiled Contract (Solidity Interface)](/builders/pallets-precompiles/precompiles/conviction-voting/){target=_blank}
 
