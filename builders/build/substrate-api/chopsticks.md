@@ -9,11 +9,11 @@ description: Follow this tutorial to learn the basic of how to use Chopstick to 
 
 ## Introduction {: #introduction }
 
-Chopsticks is a library for building Substrate-based blockchain applications. Most importantly, Chopsticks provides a developer-friendly method of locally forking existing Substrate based chains. This allows developers to test and experiment with their own custom blockchain configurations in a local development environment, without the need to deploy a live network.  
+[Chopsticks](https://github.com/AcalaNetwork/chopsticks){target=_blank} is a library for building Substrate-based blockchain applications. Most importantly, Chopsticks provides a developer-friendly method of locally forking existing Substrate-based chains. This allows developers to test and experiment with their own custom blockchain configurations in a local development environment, without the need to deploy a live network.  
 
 Overall, Chopsticks aims to simplify the process of building blockchain applications on Substrate and make it accessible to a wider range of developers.
 
-## Checking Prerequeisites {: #checking-prerequisites }
+## Checking Prerequisites {: #checking-prerequisites }
 
 To use Chopsticks, you will need the following:  
 
@@ -23,7 +23,7 @@ To use Chopsticks, you will need the following:
 
 ## Configuring Chopsticks {: configuring-chopsticks }
 
-First, install chopsticks from its GitHub repository, add dependencies, and build it:  
+First, install Chopsticks from its GitHub repository, add dependencies, and build it:  
 
 ```
 git clone --recurse-submodules https://github.com/AcalaNetwork/chopsticks.git && \
@@ -32,7 +32,7 @@ yarn && \
 yarn build-wasm
 ```
 
-Chopsticks includes a set of [YAML](https://yaml.org/){target=_blank} configuration files that can be used to create a local copy of a variety of Substrate chains. You can view each of the default configuration files within the `configs` folder. Moonbeam, Moonriver, and Moonbase Alpha all have default files available. The example configuration below is the current  configuration for Moonbeam:  
+Chopsticks includes a set of [YAML](https://yaml.org/){target=_blank} configuration files that can be used to create a local copy of a variety of Substrate chains. You can view each of the default configuration files within the `configs` folder. Moonbeam, Moonriver, and Moonbase Alpha all have default files available. The example configuration below is the current configuration for Moonbeam:  
 
 ```yaml
 endpoint: wss://wss.api.moonbeam.network
@@ -104,9 +104,9 @@ The `yarn start dev` command forks a chain, and includes following flags:
 
 ### Interacting with a Fork {: #interacting-with-a-fork }
 
-When running a fork, by default it will be accessible at `ws://localhost:8000`. You will be able to interact with the parachain via libraries such as [polkadot.js](https://github.com/polkadot-js/common){target=_blank} and its [locally built user interface](https://github.com/polkadot-js/apps){target=_blank}.  
+When running a fork, by default it will be accessible at `ws://localhost:8000`. You will be able to interact with the parachain via libraries such as [Polkadot.js](https://github.com/polkadot-js/common){target=_blank} and its [locally built user interface, Polkadot.js Apps](https://github.com/polkadot-js/apps){target=_blank}.  
 
-The Polkadot JS Apps user interface can be built with Docker by running the following command:  
+The Polkadot.js Apps user interface can be built with Docker by running the following command:  
 
 ```
 docker run --rm -it --name polkadot-ui -e WS_URL=ws://someip:9944 -p 80:80 jacogr/polkadot-js-apps:latest
@@ -122,7 +122,7 @@ Afterwards, you should be able to go to `localhost` in the browser to see the UI
 ![Open WSS](/images/builders/build/substrate-api/chopsticks/chopsticks-1.png)
 ![Switch WSS](/images/builders/build/substrate-api/chopsticks/chopsticks-2.png)
 
-You should now be able to interact with the fork as you would in the hosted version of Polkadot JS apps.
+You should now be able to interact with the fork as you would in the hosted version of Polkadot.js Apps.
 
 ## Replaying Blocks {: #replaying-blocks }
 
