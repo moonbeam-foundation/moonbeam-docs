@@ -254,6 +254,7 @@ The next step is to create the systemd configuration file, you'll need to:
 
 !!! note
     For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`.
+    For client versions prior to v0.30.0, `--rpc-port` was used to specify the port for HTTP connections and `--ws-port` was used to specify the port for WS connections. As of client v0.30.0, the `--ws-port` flag is for both HTTP and WS connections.
 
 === "Moonbeam"
     ```
@@ -272,7 +273,6 @@ The next step is to create the systemd configuration file, you'll need to:
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
          --port {{ networks.parachain.p2p }} \
-         --rpc-port {{ networks.parachain.rpc }} \
          --ws-port {{ networks.parachain.ws }} \
          --execution wasm \
          --state-pruning=archive \
@@ -286,7 +286,6 @@ The next step is to create the systemd configuration file, you'll need to:
          --name "YOUR-NODE-NAME" \
          -- \
          --port {{ networks.relay_chain.p2p }} \
-         --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
          --name="YOUR-NODE-NAME (Embedded Relay)"
@@ -312,7 +311,6 @@ The next step is to create the systemd configuration file, you'll need to:
     KillSignal=SIGHUP
     ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
          --port {{ networks.parachain.p2p }} \
-         --rpc-port {{ networks.parachain.rpc }} \
          --ws-port {{ networks.parachain.ws }} \
          --execution wasm \
          --state-pruning=archive \
@@ -326,7 +324,6 @@ The next step is to create the systemd configuration file, you'll need to:
          --name "YOUR-NODE-NAME" \
          -- \
          --port {{ networks.relay_chain.p2p }} \
-         --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
          --name="YOUR-NODE-NAME (Embedded Relay)"
@@ -352,7 +349,6 @@ The next step is to create the systemd configuration file, you'll need to:
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
          --port {{ networks.parachain.p2p }} \
-         --rpc-port {{ networks.parachain.rpc }} \
          --ws-port {{ networks.parachain.ws }} \
          --execution wasm \
          --state-pruning=archive \
@@ -366,7 +362,6 @@ The next step is to create the systemd configuration file, you'll need to:
          --name "YOUR-NODE-NAME" \
          -- \
          --port {{ networks.relay_chain.p2p }} \
-         --rpc-port {{ networks.relay_chain.rpc }} \
          --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
          --name="YOUR-NODE-NAME (Embedded Relay)"

@@ -210,8 +210,8 @@ Options accept an argument to the right side of the option. For example:
 
 - **`-l <log pattern>` or `--log <log pattern>`** - sets a custom logging filter. The syntax for the log pattern is `<target>=<level>`. For example, to print all of the JSON RPC logs, the command would look like this: `-l json=trace`
 - **`--sealing <interval>`** - when blocks should be sealed in the dev service. Accepted arguments for interval: `instant`, `manual`, or a number representing the timer interval in milliseconds (for example, `6000` will have the node produce blocks every 6 seconds). The default is `instant`
-- **`--rpc-port <port>`** - sets the HTTP RPC server TCP port. Accepts a port as the argument
-- **`--ws-port <port>`**: sets the WebSockets RPC server TCP port. Accepts a port as the argument
+- **`--rpc-port <port>`** - *deprecated as of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, use `--ws-port` for HTTP and WS connections instead* - sets the HTTP RPC server TCP port. Accepts a port as the argument
+- **`--ws-port <port>`**: sets the WebSockets RPC server TCP port. As of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, the WS port is a unified port for both HTTP and WS connections. Accepts a port as the argument
 
 For a complete list of flags and options, spin up your Moonbeam development node with `--help` added to the end of the command.
 

@@ -17,8 +17,9 @@ This guide will cover some of the most common flags and show you how to access a
 
 - **`--collator`** - enables collator mode for collator candidates and, if eligible, allows the node to actively participate in block production
 - **`--port`** - specifies the peer-to-peer protocol TCP port. The default port for parachains is `{{ networks.parachain.p2p }}` and `{{ networks.relay_chain.p2p }}` for the embedded relay chain
-- **`--rpc-port`**  - specifies the HTTP RPC server TCP port. The default port for parachains is `{{ networks.parachain.rpc }}`  and `{{ networks.relay_chain.rpc }}` for the embedded relay chain
-- **`--ws-port`** - specifies the WebSockets RPC server TCP port. The default port for parachains is `{{ networks.parachain.ws }}`  and `{{ networks.relay_chain.ws }}` for the embedded relay chain
+- **`--rpc-port`** - *deprecated as of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, use `--ws-port` for HTTP and WS connections instead* - specifies the HTTP RPC server TCP port. The default port for parachains is `{{ networks.parachain.rpc }}`  and `{{ networks.relay_chain.rpc }}` for the embedded relay chain
+- **`--ws-port`** - specifies the WebSockets RPC server TCP port. As of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, the WS port is a unified port for both HTTP and WS connections. The default port for parachains is `{{ networks.parachain.ws }}`  and `{{ networks.relay_chain.ws }}` for the embedded relay chain
+- **`--ws-max-connections`** - specifies the maximum number of WS RPC server connections. As of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, this flag adjusts the combined HTTP and WS connection limit
 - **`--execution`** - specifies the execution strategy that should be used by all execution contexts. The Substrate runtime is compiled into a native executable which is included locally as part of the node and a WebAssembly (Wasm) binary that is stored on-chain. The available options are:
     - **`native`** - only execute with the native build
     - **`wasm`** - only execute with the Wasm build
