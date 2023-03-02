@@ -71,6 +71,8 @@ If you're using MacOS, there are adapted [code snippets](https://www.github.com/
 !!! note
     For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`.
 
+    For client versions prior to v0.30.0, `--rpc-port` was used to specify the port for HTTP connections and `--ws-port` was used to specify the port for WS connections. As of client v0.30.0, the `--ws-port` flag is for both HTTP and WS connections.
+
 ### Full Node {: #full-node } 
 
 === "Moonbeam"
@@ -197,7 +199,7 @@ Once Docker pulls the necessary images, your full Moonbeam (or Moonriver) node w
     You can specify a custom Prometheus port with the `--prometheus-port XXXX` flag (replacing `XXXX` with the actual port number). This is possible for both the parachain and embedded relay chain.
 
 ```
-docker run -p {{ networks.relay_chain.p2p }}:{{ networks.relay_chain.p2p }} -p {{ networks.parachain.p2p }}:{{ networks.parachain.p2p }} -p {{ networks.parachain.rpc }}:{{ networks.parachain.rpc }} -p {{ networks.parachain.ws }}:{{ networks.parachain.ws }} #rest of code goes here
+docker run -p {{ networks.relay_chain.p2p }}:{{ networks.relay_chain.p2p }} -p {{ networks.parachain.p2p }}:{{ networks.parachain.p2p }} -p {{ networks.parachain.ws }}:{{ networks.parachain.ws }} # rest of code goes here
 ```
 
 During the syncing process, you will see messages from both the embedded relay chain and the parachain (without a tag). These messages display a target block (live network state) and a best block (local node synced state).

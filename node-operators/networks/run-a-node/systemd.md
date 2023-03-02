@@ -198,6 +198,8 @@ The next step is to create the systemd configuration file. If you are setting up
 
 !!! note
     For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`.
+    
+    For client versions prior to v0.30.0, `--rpc-port` was used to specify the port for HTTP connections and `--ws-port` was used to specify the port for WS connections. As of client v0.30.0, the `--ws-port` flag is for both HTTP and WS connections.
 
 ### Full Node {: #full-node } 
 
@@ -217,9 +219,6 @@ The next step is to create the systemd configuration file. If you are setting up
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
-         --port {{ networks.parachain.p2p }} \
-         --rpc-port {{ networks.parachain.rpc }} \
-         --ws-port {{ networks.parachain.ws }} \
          --execution wasm \
          --wasm-execution compiled \
          --state-pruning=archive \
@@ -229,9 +228,6 @@ The next step is to create the systemd configuration file. If you are setting up
          --chain {{ networks.moonbeam.chain_spec }} \
          --name "YOUR-NODE-NAME" \
          -- \
-         --port {{ networks.relay_chain.p2p }} \
-         --rpc-port {{ networks.relay_chain.rpc }} \
-         --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
@@ -255,9 +251,6 @@ The next step is to create the systemd configuration file. If you are setting up
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
-         --port {{ networks.parachain.p2p }} \
-         --rpc-port {{ networks.parachain.rpc }} \
-         --ws-port {{ networks.parachain.ws }} \
          --execution wasm \
          --wasm-execution compiled \
          --state-pruning=archive \
@@ -267,9 +260,6 @@ The next step is to create the systemd configuration file. If you are setting up
          --chain {{ networks.moonriver.chain_spec }} \
          --name "YOUR-NODE-NAME" \
          -- \
-         --port {{ networks.relay_chain.p2p }} \
-         --rpc-port {{ networks.relay_chain.rpc }} \
-         --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
@@ -293,9 +283,6 @@ The next step is to create the systemd configuration file. If you are setting up
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
-         --port {{ networks.parachain.p2p }} \
-         --rpc-port {{ networks.parachain.rpc }} \
-         --ws-port {{ networks.parachain.ws }} \
          --execution wasm \
          --wasm-execution compiled \
          --state-pruning=archive \
@@ -305,9 +292,6 @@ The next step is to create the systemd configuration file. If you are setting up
          --chain {{ networks.moonbase.chain_spec }} \
          --name "YOUR-NODE-NAME" \
          -- \
-         --port {{ networks.relay_chain.p2p }} \
-         --rpc-port {{ networks.relay_chain.rpc }} \
-         --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
          --name="YOUR-NODE-NAME (Embedded Relay)"
 
@@ -337,9 +321,6 @@ The next step is to create the systemd configuration file. If you are setting up
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
          --collator \
-         --port {{ networks.parachain.p2p }} \
-         --rpc-port {{ networks.parachain.rpc }} \
-         --ws-port {{ networks.parachain.ws }} \
          --execution wasm \
          --wasm-execution compiled \
          --trie-cache-size 0 \
@@ -348,9 +329,6 @@ The next step is to create the systemd configuration file. If you are setting up
          --chain {{ networks.moonbeam.chain_spec }} \
          --name "YOUR-NODE-NAME" \
          -- \
-         --port {{ networks.relay_chain.p2p }} \
-         --rpc-port {{ networks.relay_chain.rpc }} \
-         --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
@@ -375,9 +353,6 @@ The next step is to create the systemd configuration file. If you are setting up
     KillSignal=SIGHUP
     ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
          --collator \
-         --port {{ networks.parachain.p2p }} \
-         --rpc-port {{ networks.parachain.rpc }} \
-         --ws-port {{ networks.parachain.ws }} \
          --execution wasm \
          --wasm-execution compiled \
          --trie-cache-size 0 \
@@ -386,9 +361,6 @@ The next step is to create the systemd configuration file. If you are setting up
          --chain {{ networks.moonriver.chain_spec }} \
          --name "YOUR-NODE-NAME" \
          -- \
-         --port {{ networks.relay_chain.p2p }} \
-         --rpc-port {{ networks.relay_chain.rpc }} \
-         --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
@@ -413,9 +385,6 @@ The next step is to create the systemd configuration file. If you are setting up
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
          --collator \
-         --port {{ networks.parachain.p2p }} \
-         --rpc-port {{ networks.parachain.rpc }} \
-         --ws-port {{ networks.parachain.ws }} \
          --execution wasm \
          --wasm-execution compiled \
          --trie-cache-size 0 \
@@ -424,9 +393,6 @@ The next step is to create the systemd configuration file. If you are setting up
          --chain {{ networks.moonbase.chain_spec }} \
          --name "YOUR-NODE-NAME" \
          -- \
-         --port {{ networks.relay_chain.p2p }} \
-         --rpc-port {{ networks.relay_chain.rpc }} \
-         --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
          --name="YOUR-NODE-NAME (Embedded Relay)"
 

@@ -4,7 +4,7 @@ const { abi } = require('./compile');
 const providerRPC = {
   development: {
     name: 'moonbeam-development',
-    rpc: 'http://localhost:9933',
+    rpc: 'http://localhost:9944',
     chainId: 1281,
   },
   moonbase: {

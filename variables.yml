@@ -1,8 +1,8 @@
 networks:
   development:
-    build_tag: v0.29.0
-    tracing_tag: purestake/moonbeam-tracing:v0.29.0-2100-latest
-    rpc_url: http://127.0.0.1:9933
+    build_tag: v0.30.0
+    tracing_tag: purestake/moonbeam-tracing:v0.30.0-2201-latest
+    rpc_url: http://127.0.0.1:9944
     wss_url: ws://127.0.0.1:9944
     chain_id: 1281
     hex_chain_id: '0x501'
@@ -15,9 +15,9 @@ networks:
     hex_chain_id: '0x507'
     chain_spec: alphanet
     block_explorer: https://moonbase.moonscan.io/
-    parachain_release_tag: v0.29.0 # must be in this exact format for links to work
-    parachain_sha256sum: afc7f4cf869fea6af3e4d104b5e99b764df6baca8b6157cc4e1fd8a345e75623
-    tracing_tag: purestake/moonbeam-tracing:v0.29.0-2100-latest
+    parachain_release_tag: v0.30.0 # must be in this exact format for links to work
+    parachain_sha256sum: b0ee08ab990c38c1aba1b0c9f141bfc9488f1af9a3ef2996af3ca79cbf32dbd9
+    tracing_tag: purestake/moonbeam-tracing:v0.30.0-2201-latest
     gas_block: 15M
     gas_tx: 12.995M
     node_directory: /var/lib/alphanet-data
