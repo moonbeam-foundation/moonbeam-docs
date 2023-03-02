@@ -823,7 +823,16 @@ unsubscribe();
 
 ### Utility Functions {: #sdk-utils }
 
-The XCM SDK provides three utility functions: `isXcmSdkDeposit`, `isXcmSdkWithdraw`, and XCM UTILS `toDecimal`, `toBigInt` and `hasDecimalOverflow`.
+There are utility functions in both the XCM SDK and the XCM Utilities packages. The XCM SDK provides the following SDK-related utility functions:
+
+- `isXcmSdkDeposit`
+- `isXcmSdkWithdraw`
+
+And the XCM Utilities package provides the following generic utility functions:
+
+- `toDecimal`
+- `toBigInt`
+- `hasDecimalOverflow`
 
 #### Check if Transfer Data is for a Deposit  {: #deposit-check }
 
@@ -875,8 +884,8 @@ console.log(isXcmSdkDeposit(deposit)) // Returns false
 
 #### Convert Balance to Decimal or BigInt {: #decimals }
 
-To convert a balance to decimal format, you can use the `toDecimal` function which returns a given number in decimal format based on the number of decimals provided. You can optionally pass in a value a third argument to dictate the maximum number of decimal places used, otherwise the default is `6`; and a fourth argument which dictates the [rounding method](https://mikemcl.github.io/big.js/#rm) of the number.
-The `toDecimal` function returns a `Big` number type that you can convert to number or string using its methods `toNumber`, `toFixed`, `toPrecision` and `toExponential`. We recomend using them as `string` since big numbers or numbers with a lot of decimals can lose precision using `number` types
+To convert a balance to decimal format, you can use the `toDecimal` function, which returns a given number in decimal format based on the number of decimals provided. You can optionally pass in a value for a third argument to dictate the maximum number of decimal places used; otherwise, the default is `6`; and a fourth argument that dictates the [rounding method](https://mikemcl.github.io/big.js/#rm){target=_blank} of the number.
+The `toDecimal` function returns a Big number type that you can convert to a number or string using its methods `toNumber`, `toFixed`, `toPrecision`, and `toExponential`. We recommend using them as a string, since big numbers or numbers with a lot of decimals can lose precision when using number types.
 
 To convert from decimal number back to BigInt, you can use the `toBigInt` function which returns a given number in BigInt format based on the number of decimals provided.
 
