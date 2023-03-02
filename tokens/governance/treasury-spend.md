@@ -1,6 +1,6 @@
 ---
 title: How to Propose a Treasury Spend
-description: Learn about the full life cycle of a Treasury proposal from initial proposal on Moonbeam's Community forum to initiating the on-chain Treasury spend with a bond.
+description: Learn about the full life cycle of a Treasury proposal from the initial proposal on Moonbeam's Community Forum to submitting the Treasury spend on-chain.
 ---
 
 # How to Propose a Treasury Spend
