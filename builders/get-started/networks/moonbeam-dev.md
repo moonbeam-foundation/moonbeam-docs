@@ -133,10 +133,10 @@ For more information on some of the flags and options used in the example, check
 ```
 ## Connecting Polkadot.js Apps to a Local Moonbeam Node {: #connecting-polkadot-js-apps-to-a-local-moonbeam-node } 
 
-The development node is a Substrate-based node, so you can interact with it using standard Substrate tools. The two provided RPC endpoints are:
+The development node is a Substrate-based node, so you can interact with it using standard Substrate tools. The RPC endpoint for HTTP and WS is:
 
- - **HTTP** - `http://127.0.0.1:9933`
- - **WS** - `ws://127.0.0.1:9944` 
+ - **HTTP** - `{{ networks.development.rpc_url }}`
+ - **WS** - `{{ networks.development.wss_url }}` 
 
 Start by connecting to it with Polkadot.js Apps. Open a browser to: [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/#/explorer){target=_blank}. This will open Polkadot.js Apps, which automatically connects to Polkadot MainNet.
 
@@ -242,4 +242,4 @@ Also, included with the development node is a prefunded account used for testing
 For a Moonbeam development node, you can use any of the following block explorers:
 
  - **Substrate API** — [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/explorer){target=_blank} on WS port `9944`
- - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=MoonbeamDevNode){target=_blank} on HTTP port `9933`
+ - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=MoonbeamDevNode){target=_blank} on HTTP port `9944`

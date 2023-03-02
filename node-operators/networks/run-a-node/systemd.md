@@ -198,6 +198,7 @@ The next step is to create the systemd configuration file. If you are setting up
 
 !!! note
     For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`.
+    
     For client versions prior to v0.30.0, `--rpc-port` was used to specify the port for HTTP connections and `--ws-port` was used to specify the port for WS connections. As of client v0.30.0, the `--ws-port` flag is for both HTTP and WS connections.
 
 ### Full Node {: #full-node } 

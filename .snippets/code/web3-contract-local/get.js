@@ -2,7 +2,7 @@ const Web3 = require('web3');
 const { abi } = require('./compile');
 
 const providerRPC = {
-  development: 'http://localhost:9933',
+  development: 'http://localhost:9944',
   moonbase: 'https://rpc.api.moonbase.moonbeam.network',
 };
 const web3 = new Web3(providerRPC.development); // Change to correct network
