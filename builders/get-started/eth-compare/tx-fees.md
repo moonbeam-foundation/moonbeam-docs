@@ -200,7 +200,7 @@ The following curl example will return the gas information of the last 10 blocks
 
 === "Moonbeam"
     ```sh
-    curl --location 
+    curl --location \
          --request POST '{{ networks.moonbeam.rpc_url }}' \
          --header 'Content-Type: application/json' \
          --data-raw '{
@@ -212,7 +212,7 @@ The following curl example will return the gas information of the last 10 blocks
     ```
 === "Moonriver"
     ```sh
-    curl --location 
+    curl --location \
          --request POST '{{ networks.moonriver.rpc_url }}' \
          --header 'Content-Type: application/json' \
          --data-raw '{
@@ -224,7 +224,7 @@ The following curl example will return the gas information of the last 10 blocks
     ```
 === "Moonbase Alpha"
     ```sh
-    curl --location 
+    curl --location \
          --request POST '{{ networks.moonbase.rpc_url }}' \
          --header 'Content-Type: application/json' \
          --data-raw '{
@@ -236,7 +236,7 @@ The following curl example will return the gas information of the last 10 blocks
     ```
 === "Moonbeam Dev Node"
     ```sh
-    curl --location 
+    curl --location \
          --request POST '{{ networks.development.rpc_url }}' \
          --header 'Content-Type: application/json' \
          --data-raw '{
