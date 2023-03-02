@@ -825,18 +825,18 @@ unsubscribe();
 
 There are utility functions in both the XCM SDK and the XCM Utilities packages. The XCM SDK provides the following SDK-related utility functions:
 
-- `isXcmSdkDeposit`
-- `isXcmSdkWithdraw`
+- [`isXcmSdkDeposit`](#deposit-check)
+- [`isXcmSdkWithdraw`](#withdraw-check)
 
 And the XCM Utilities package provides the following generic utility functions:
 
-- `toDecimal`
-- `toBigInt`
-- `hasDecimalOverflow`
+- [`toDecimal`](#decimals)
+- [`toBigInt`](#decimals)
+- [`hasDecimalOverflow`](#decimals)
 
 #### Check if Transfer Data is for a Deposit  {: #deposit-check }
 
-To determine whether transfer data is for a deposit, you can pass in transfer data to the `isXcmSdkWithdraw` function and a boolean will be returned. If `true` is returned the transfer data is for a deposit, and `false` is returned if it is not.
+To determine whether transfer data is for a deposit, you can pass in transfer data to the `isXcmSdkDeposit` function and a boolean will be returned. If `true` is returned the transfer data is for a deposit, and `false` is returned if it is not.
 
 The following are some examples:
 
@@ -860,7 +860,7 @@ console.log(isXcmSdkDeposit(withdraw)) // Returns false
 
 #### Check if Transfer Data is for a Withdrawal {: #withdraw-check }
 
-To determine whether transfer data is for a withdrawal, you can pass in transfer data to the `isXcmSdkWithdraw()` function and a boolean will be returned. If `true` is returned the transfer data is for a withdrawal, and `false` is returned if it is not.
+To determine whether transfer data is for a withdrawal, you can pass in transfer data to the `isXcmSdkWithdraw` function and a boolean will be returned. If `true` is returned the transfer data is for a withdrawal, and `false` is returned if it is not.
 
 The following are some examples:
 
@@ -889,8 +889,6 @@ The `toDecimal` function returns a Big number type that you can convert to a num
 
 To convert from decimal number back to BigInt, you can use the `toBigInt` function which returns a given number in BigInt format based on the number of decimals provided.
 
-You can also use `hasDecimalOverflow` to make sure that a given number does not have more decimal places than allowed. This is helpful for form inputs.
-
 For example, to convert a balance on Moonbeam from Wei to Glimmer you can use the following code:
 
 ```js
@@ -902,3 +900,5 @@ console.log(balance); // Returns '3.999947'
 const big = toBigInt('3.999947', 18);
 console.log(big); // Returns 3999947000000000000n
 ```
+
+You can also use `hasDecimalOverflow` to make sure that a given number does not have more decimal places than allowed. This is helpful for form inputs.
