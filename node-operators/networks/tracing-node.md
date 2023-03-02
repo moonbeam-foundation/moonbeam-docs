@@ -275,8 +275,6 @@ The next step is to create the systemd configuration file, you'll need to:
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
-         --port {{ networks.parachain.p2p }} \
-         --ws-port {{ networks.parachain.ws }} \
          --execution wasm \
          --state-pruning=archive \
          --trie-cache-size 0 \
@@ -288,8 +286,6 @@ The next step is to create the systemd configuration file, you'll need to:
          --chain {{ networks.moonbeam.chain_spec }} \
          --name "YOUR-NODE-NAME" \
          -- \
-         --port {{ networks.relay_chain.p2p }} \
-         --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
@@ -313,8 +309,6 @@ The next step is to create the systemd configuration file, you'll need to:
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
-         --port {{ networks.parachain.p2p }} \
-         --ws-port {{ networks.parachain.ws }} \
          --execution wasm \
          --state-pruning=archive \
          --trie-cache-size 0 \
@@ -326,8 +320,6 @@ The next step is to create the systemd configuration file, you'll need to:
          --chain {{ networks.moonriver.chain_spec }} \
          --name "YOUR-NODE-NAME" \
          -- \
-         --port {{ networks.relay_chain.p2p }} \
-         --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
@@ -351,8 +343,6 @@ The next step is to create the systemd configuration file, you'll need to:
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
-         --port {{ networks.parachain.p2p }} \
-         --ws-port {{ networks.parachain.ws }} \
          --execution wasm \
          --state-pruning=archive \
          --trie-cache-size 0 \
@@ -364,8 +354,6 @@ The next step is to create the systemd configuration file, you'll need to:
          --chain {{ networks.moonbase.chain_spec }} \
          --name "YOUR-NODE-NAME" \
          -- \
-         --port {{ networks.relay_chain.p2p }} \
-         --ws-port {{ networks.relay_chain.ws }} \
          --execution wasm \
          --name="YOUR-NODE-NAME (Embedded Relay)"
 
