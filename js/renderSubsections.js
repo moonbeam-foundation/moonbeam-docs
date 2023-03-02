@@ -62,9 +62,6 @@ const addClassToContent = () => {
 
 if (classname !== '.') {
   const section = document.querySelector(classname);
-  // Add the subsection title to the index page
-  const subsectionTitle = document.querySelector('.subsection-title');
-  subsectionTitle.innerText = section.parentNode.children[0].innerText.trim();
   // Go through the nav items to find out what the titles are for each section of the nav
   // so we can display them on the index page
   if (section && section.children) {

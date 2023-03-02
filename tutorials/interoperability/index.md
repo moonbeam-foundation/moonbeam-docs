@@ -7,5 +7,5 @@ hide:
 ---
 
 
-<h1 class='subsection-title'></h1>
+<h1 class='subsection-title'>Interoperability</h1>
 <div class='subsection-wrapper'></div>

@@ -6,5 +6,5 @@ hide:
  - toc
 ---
 
-<h1 class='subsection-title'></h1>
+<h1 class='subsection-title'>Verify Smart Contracts</h1>
 <div class='subsection-wrapper'></div>
