@@ -44,7 +44,7 @@ To request DEV tokens from the faucet, you can enter your address on the [Moonba
 
 You can also use the [ChainDrop Faucet](https://chaindrop.org/?chainid=1287&token=0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee){target=_blank} to request DEV tokens, which dispenses {{ networks.moonbase.chaindrop_faucet_amount }} per request.
 
-![ChainDrop Faucet Website.](/images/builders/get-started/networks/moonbase/moonbase-2-new.png)
+![ChainDrop Faucet Website.](/images/builders/get-started/networks/moonbase/moonbase-2.png)
 
 ## Demo DApps {: #Demo-DApps }
 
@@ -69,7 +69,7 @@ There are a variety of DApps deployed to Moonbase Alpha enabling you to experime
 
 The [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app/){target=_blank} enables you to mint a variety of ERC-20 test tokens corresponding to the 8 planets of the solar system, and Pluto. To mint tokens, first press **Connect MetaMask** in the upper right hand corner. Then scroll to the **Mint Tokens** section and the choose desired ERC-20 contract. Press **Submit Tx** and confirm the transaction in MetaMask. Each mint will grant you 100 tokens, and you can mint tokens for each contract once per hour.
 
-![ERC20 Minter](/images/builders/get-started/networks/moonbase/moonbase-2.png)
+![ERC20 Minter](/images/builders/get-started/networks/moonbase/moonbase-3.png)
 
 ### Moonbeam Uniswap {: #moonbeam-uniswap } 
 
@@ -81,7 +81,7 @@ The [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app/){target=_bl
 4. Select **Moon Menu** 
 5. Search for or select your desired asset from the list then continue with the swap
 
-![Moonbeam Swap](/images/builders/get-started/networks/moonbase/moonbase-3.png)
+![Moonbeam Swap](/images/builders/get-started/networks/moonbase/moonbase-4.png)
 
 !!! note
     If you see only a partial list of assets under **Moon Menu**, your browser may have cached an older version of **Moon Menu**. Clearing the cache and re-adding **Moon Menu** will resolve this. 
@@ -90,7 +90,7 @@ The [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app/){target=_bl
 
 The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank} showcases Chainlink price feeds in action. For more information, including a full listing of all Chainlink price feeds across all Moonbeam networks and a step-by-step guide of how to fetch price feed data, [head to the Oracles section of the Moonbeam Docs Site](/builders/integrations/oracles/chainlink/){target=_blank}. You can also check out the [repository for the MoonLink Dashboard](https://github.com/PureStake/moonlink-dashboard){target=_blank}. 
 
-![MoonLink Dashboard](/images/builders/get-started/networks/moonbase/moonbase-4.png)
+![MoonLink Dashboard](/images/builders/get-started/networks/moonbase/moonbase-5.png)
 
 ### MoonLotto Lottery {: #moonlotto-lottery } 
 
@@ -100,7 +100,7 @@ The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank}
 2. Enter the address of the recipient of lotto ticket or check **I want to buy a ticket for my address**
 3. Press **Submit on MetaMask** and confirm the transaction in MetaMask
 
-![MoonLotto Lottery](/images/builders/get-started/networks/moonbase/moonbase-5.png)
+![MoonLotto Lottery](/images/builders/get-started/networks/moonbase/moonbase-6.png)
 
 ### Moonbeam WalletConnect {: #moonbeam-walletconnect } 
 
@@ -109,7 +109,7 @@ The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank}
 1. Press **Connect Wallet**
 2. Scan the QR code using a [wallet compatible with WalletConnect](https://explorer.walletconnect.com/registry?type=wallet){target=_blank}
 
-![Moonbeam WalletConnect](/images/builders/get-started/networks/moonbase/moonbase-6.png)
+![Moonbeam WalletConnect](/images/builders/get-started/networks/moonbase/moonbase-7.png)
 
 ### MoonGas {: #moongas } 
 
@@ -117,4 +117,4 @@ The [MoonLink Dashboard](https://moonlink-dashboard.netlify.app/){target=_blank}
 
 You'll notice that the minimum gas price for Moonbeam is 100 Gwei, while the minimum for Moonriver and Moonbase Alpha is only 1 Gwei. This difference stems from the [100 to 1 re-denomination of GLMR](https://moonbeam.foundation/news/moonbeam-community-announcement/){target=_blank} and thus the 100 Gwei minimum on Moonbeam corresponds to a 1 Gwei minimum on Moonriver and Moonbeam. 
 
-![MoonGas](/images/builders/get-started/networks/moonbase/moonbase-7.png)
+![MoonGas](/images/builders/get-started/networks/moonbase/moonbase-8.png)
