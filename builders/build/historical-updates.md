@@ -30,6 +30,21 @@ For more information, you can review the [relative Frontier PR on GitHub](https:
 
 ***
 
+#### Ethereum Fees Weren't Sent to Treasury {: #ethereum-fees-to-treasury }
+
+The fee model on Moonbeam for transactions have 20% of the fees go to the on-chain treasury and 80% burned as a deflationary force. Prior to runtime 800, Ethereum transactions did not result in 20% of the transaction fees going to the on-chain Treasury.
+
+This bug only impacted Moonriver and Moonbase Alpha and existed during the following runtimes and block ranges:
+
+|    Network     | Introduced | Fixed | Impacted Block Range |
+|:--------------:|:----------:|:-----:|:--------------------:|
+|   Moonriver    |    RT49    | RT800 |      0 - 684728      |
+| Moonbase Alpha |    RT40    | RT800 |      0 - 915684      |
+
+For more information, you can review the [relative PR on GitHub](https://github.com/PureStake/moonbeam/pull/732){target=_blank}.
+
+***
+
 #### Missing Refunds {: #missing-refunds }
 
 Moonbeam is configured so that the existential deposit is set to 0, which means that accounts do not need to have a minimum balance to be considered active. For Substrate-based chains that have this configuration, there were some missing refunds to a zeroed account because the account was interpreted to not exist.
@@ -130,6 +145,22 @@ This bug only impacted Moonbase Alpha and existed during the following runtime a
 | Moonbase Alpha |   RT1200   | RT1201 |  1648994 - 1679618   |
 
 For more information, you can review the [relative Frontier PR on GitHub](https://github.com/paritytech/frontier/pull/570){target=_blank}
+
+***
+
+#### Incorrect Handling of EIP-1559 Gas Fees {: #incorrect-gas-fees-eip1559 }
+
+With the introduction of EIP-1559 support, the logic for handling `maxFeePerGas` and `maxPriorityFeePerGas` was implemented incorrectly, and as a result, the `maxPriorityFee` was added to the `baseFee` even if the total amount was over the `maxFeePerGas`. 
+
+This bug existed during the following runtimes and block ranges:
+
+|    Network     | Introduced | Fixed  | Impacted Block Range |
+|:--------------:|:----------:|:------:|:--------------------:|
+|    Moonbeam    |   RT1201   | RT1401 |   415946 - 915320    |
+|   Moonriver    |   RT1201   | RT1401 |  1471037 - 1705939   |
+| Moonbase Alpha |   RT1200   | RT1400 |  1648994 - 1962557   |
+
+For more information, you can review the [relative Frontier PR](https://github.com/PureStake/frontier/pull/45){target=_blank}.
 
 ***
 
