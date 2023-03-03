@@ -30,7 +30,7 @@ For more information, you can review the [relative Frontier PR on GitHub](https:
 
 ***
 
-#### Ethereum Fees Weren't Sent to Treasury {: #ethereum-fees-to-inflation }
+#### Ethereum Fees Weren't Sent to Treasury {: #ethereum-fees-to-treasury }
 
 The fee model on Moonbeam for transactions and smart contract execution are handled so that 20% of the fees go to the on-chain treasury and 80% are burned as a deflationary force. Prior to runtime 800, Ethereum transactions did not result in 20% of the transaction fees going to the on-chain Treasury.
 
