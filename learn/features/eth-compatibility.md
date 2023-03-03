@@ -51,11 +51,7 @@ The EVM pallet can also be configured so that no dispatchable calls can cause EV
 
 If a blockchain doesn't need Ethereum emulation and only needs EVM execution, Substrate uses its account model fully and signs transactions on behalf of EVM accounts. However, in this model Ethereum RPCs are not available, and DApps must write their frontend using the Substrate API.
 
-<<<<<<< HEAD
-The EVM pallet should produce nearly identical execution results compared to Ethereum, such as gas cost and balance changes. However, there are some differences. Please refer to the [EVM module vs Ethereum network](https://paritytech.github.io/frontier/frame/evm.html#execution-lifecycle){target=_blank} section of the Frontier EVM Pallet documentation for more information.
-=======
 The EVM pallet should produce nearly identical execution results compared to Ethereum, such as gas cost and balance changes. However, there are some differences. Please refer to the [EVM module vs Ethereum network](https://paritytech.github.io/frontier/frame/evm.html#evm-module-vs-ethereum-network){target=_blank} section of the Frontier EVM Pallet documentation for more information.
->>>>>>> 1d66cbc8 (fix small typos on endpoints and eth-compatibility)
 
 There are also some [precompiles](https://github.com/paritytech/frontier/tree/4c05c2b09e71336d6b11207e6d12e486b4d2705c#evm-pallet-precompiles){target=_blank} that can be used alongside the EVM pallet that extend the functionality of the EVM. Moonbeam uses the following EVM precompiles:
 
