@@ -8,9 +8,11 @@ description:
 ![API3 Moonbeam Diagram](/images/builders/integrations/oracles/api3/api3-banner.png)
 
 ## Introduction {: #introduction } 
-Developers can use [Airnode](https://docs.api3.org/airnode/) to request off-chain data inside their Smart Contracts on the Moonbeam Network. An Airnode is a first-party oracle that pushes off-chain API data to your on-chain contract. Airnode lets API providers easily run their own first-party oracle nodes. That way, they can provide data to any on-chain dApp that's interested in their services, all without an intermediary.
+Developers can use [Airnode](https://docs.api3.org/airnode/) to request off-chain data inside their Smart Contracts on the Moonbeam Networks. An Airnode is a first-party oracle that pushes off-chain API data to your on-chain contract. Airnode lets API providers easily run their own first-party oracle nodes. That way, they can provide data to any on-chain dApp that's interested in their services, all without an intermediary.
 
 An on-chain smart contract makes a request in the [RRP (Request Response Protocol)](https://docs.api3.org/airnode/v0.10/concepts/) contract (`AirnodeRrpV0.sol`) that adds the request to the event logs. The Airnode then accesses the event logs, fetches the API data and performs a callback to the requester with the requested data.
+
+![API3 Airnode](/images/builders/integrations/oracles/api3/airnode1.png)
 
 --8<-- 'text/disclaimers/third-party-content-intro.md'
 
@@ -21,6 +23,8 @@ The requester calling an Airnode primarily focuses on two tasks:
 
 - Make the request
 - Accept and decode the response
+
+![API3 Airnode](/images/builders/integrations/oracles/api3/airnode2.png)
 
 Here is an example of a basic requester contract to request data from an Airnode:
 
@@ -100,23 +104,26 @@ The callback to the Requester contains two parameters:
 !!! note
     Sponsors should not fund a `sponsorWallet` with more then they can trust the Airnode with, as the Airnode controls the private key to the `sponsorWallet`. The deployer of such Airnode undertakes no custody obligations, and the risk of loss or misuse of any excess funds sent to the `sponsorWallet` remains with the sponsor.
 
+### [Try deploying it on Remix!](https://remix.ethereum.org/#url=https://github.com/vanshwassan/RemixContracts/blob/master/contracts/Requester.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js)
+
+
 ### Contract Addresses
 
 === "Moonbeam"
     | Contract  |          Addresses         |
     |:-----------:|:-----------------------------------------------------:|
-    | AirnodeRrpV0 | {{ networks.moonbeam.api3.rrp }} |
+    | AirnodeRrpV0 | `{{ networks.moonbeam.api3.rrp }}` |
 
 === "Moonriver"
     |  Contract  |           Addresses          |
     |:------------:|:----------------------------------------------------:|
-    | AirnodeRrpV0 | {{ networks.moonriver.api3.rrp }}  |
+    | AirnodeRrpV0 | `{{ networks.moonriver.api3.rrp }}`  |
 
 
 === "Moonbase Alpha"
     |  Contract  |          Addresses           |
     |:------------:|:-----------------------------------------------------:|
-    | AirnodeRrpV0  | {{ networks.moonbase.api3.rrp }}  |
+    | AirnodeRrpV0  | `{{ networks.moonbase.api3.rrp }}`  |
 
 
 ## Using dAPIs {: #dapis}
@@ -181,17 +188,17 @@ Here's an example of a basic contract that reads from a self-funded dAPI.
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
-contract MyContract  {
-    import "@api3/airnode-protocol-v1/contracts/dapis/proxies/interfaces/IDapiProxy.sol";
-    import "@openzeppelin/contracts/ownership/Ownable.sol";
+import "@api3/airnode-protocol-v1/contracts/dapis/proxies/interfaces/IDapiProxy.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
+contract Reader is Ownable {
     address dapiProxy;
 
     function setDapiProxyAddress(address _proxyAddress) public onlyOwner {
         dapiProxy = _proxyAddress;
     }
 
-    function readDapi public view returns (int224 value, uint32 timestamp) {
+    function readDapi() public view returns (int224 value, uint32 timestamp){
         return IDapiProxy(dapiProxy).read();
     }
 }
@@ -287,29 +294,34 @@ contract RemixQrngExample is RrpRequesterV0 {
 
 - The targeted off-chain Airnode gathers the request and performs a callback to the requester with the random number.
 
+### [Try deploying it on Remix!](https://remix.ethereum.org/#url=https://github.com/vanshwassan/RemixContracts/blob/master/contracts/QrngRequester.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js)
+
 You can try QRNG on the networks listed below:
 
 === "Moonbeam"
-    | Contract  |          Addresses         |
-    |:-----------:|:-----------------------------------------------------:|
-    | ANU QRNG Airnode Address | {{ networks.moonbeam.api3.anuqrngairnode }} |
-    | ANU QRNG Airnode xpub | {{ networks.moonbeam.api3.anuqrngxpub }} |
-    |  endpointIdUint256 | {{ networks.moonbeam.api3.anuqrnguint256 }} |
-    |  endpointIdUint256Array | {{ networks.moonbeam.api3.anuqrnguint256array }} |
+    |         Contract         |                     Addresses                    |
+    |:------------------------:|:------------------------------------------------:|
+    | ANU QRNG Airnode Address |   `{{ networks.moonbeam.api3.anuqrngairnode }}`    |
+    | ANU QRNG Airnode xpub    |     `{{ networks.moonbeam.api3.anuqrngxpub }}`     |
+    |    `endpointIdUint256`     |    `{{ networks.moonbeam.api3.anuqrnguint256 }}`   |
+    |  `endpointIdUint256Array`  | `{{ networks.moonbeam.api3.anuqrnguint256array }}` |
+    |  AirnodeRrpV0 | `{{ networks.moonriver.api3.rrp }}` |
 
 
 === "Moonriver"
-    |  Contract  |           Addresses          |
-    |:------------:|:----------------------------------------------------:|
-    | ANU QRNG Airnode Address | {{ networks.moonriver.api3.anuqrngairnode }} |
-    | ANU QRNG Airnode xpub | {{ networks.moonriver.api3.anuqrngxpub }} |
-    |  endpointIdUint256 | {{ networks.moonriver.api3.anuqrnguint256 }} |
-    |  endpointIdUint256Array | {{ networks.moonriver.api3.anuqrnguint256array }} |
+    |         Contract         |                     Addresses                    |
+    |:------------------------:|:------------------------------------------------:|
+    | ANU QRNG Airnode Address | `{{ networks.moonriver.api3.anuqrngairnode }}` |
+    | ANU QRNG Airnode xpub | `{{ networks.moonriver.api3.anuqrngxpub }}` |
+    |  `endpointIdUint256` | `{{ networks.moonriver.api3.anuqrnguint256 }}` |
+    |  `endpointIdUint256Array` | `{{ networks.moonriver.api3.anuqrnguint256array }}` |
+    |  AirnodeRrpV0 | `{{ networks.moonriver.api3.rrp }}` |
 
 === "Moonbase Alpha testnet"
-    |  Contract  |           Addresses          |
-    |:------------:|:----------------------------------------------------:|
-    | byog QRNG Airnode Address | {{ networks.moonbase.api3.byogqrngairnode }} |
-    | byog QRNG Airnode xpub | {{ networks.moonbase.api3.byogqrngxpub }} |
-    |  endpointIdUint256 | {{ networks.moonbase.api3.byogqrnguint256 }} |
-    |  endpointIdUint256Array | {{ networks.moonbase.api3.byogqrnguint256array }} |
+    |         Contract         |                     Addresses                    |
+    |:------------------------:|:------------------------------------------------:|
+    | byog QRNG Airnode Address | `{{ networks.moonbase.api3.byogqrngairnode }}` |
+    | byog QRNG Airnode xpub | `{{ networks.moonbase.api3.byogqrngxpub }}` |
+    |  `endpointIdUint256` | `{{ networks.moonbase.api3.byogqrnguint256 }}` |
+    |  `endpointIdUint256Array` | `{{ networks.moonbase.api3.byogqrnguint256array }}` |
+    |  AirnodeRrpV0 | `{{ networks.moonriver.api3.rrp }}` |
