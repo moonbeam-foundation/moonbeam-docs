@@ -210,7 +210,7 @@ contract Reader is Ownable {
 
 You can read more about dAPIs [here](https://docs.api3.org/dapis/). 
 
-### [Try deploying it on Remix!](https://remix.ethereum.org/#url=https://gist.githubusercontent.com/vanshwassan/1ec4230956a78c73a00768180cba3649/raw/6e9fffbdb3839d3a4faa77f3bf7c7a68c7aa325f/DapiReader.sol)
+### [Try deploying it on Remix!](https://remix.ethereum.org/#url=https://gist.githubusercontent.com/vanshwassan/1ec4230956a78c73a00768180cba3649/raw/caff497e5b4b61d89d920b49da70779a0a24ac58/DapiReader.sol)
 
 ## API3 QRNG
 
