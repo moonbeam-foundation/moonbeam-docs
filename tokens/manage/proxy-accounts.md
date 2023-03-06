@@ -86,9 +86,9 @@ For the purposes of this guide, you will be setting up a proxy account using the
 
 ## Creating a Proxy Account {: #creating-a-proxy-account }
 
-There are a couple of ways you can create proxy accounts in Polkadot.js Apps, either from the **Extrinsics** page or the **Accounts** page. However, to create a time-delayed proxy, you will need to use the **Extrinsics** page. A time delay provides an additional layer of security to proxies by specifying a delay period based on a number of blocks. This will prevent the proxy account from executing a transaction until the delay period ends. The delay allows time for the primary account that controls the proxy to review pending transactions, potentially for malicious actions, and cancel if necessary before execution. 
+There are a couple of ways you can create proxy accounts in [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network){target=_blank}, either from the **Extrinsics** page or the **Accounts** page. However, to create a time-delayed proxy, you will need to use the **Extrinsics** page. A time delay provides an additional layer of security to proxies by specifying a delay period based on a number of blocks. This will prevent the proxy account from executing a transaction until the delay period ends. The delay allows time for the primary account that controls the proxy to review pending transactions, potentially for malicious actions, and cancel if necessary before execution. 
 
-To get started creating your proxy account, head to the **Developer** tab and select **Extrinsics** from the dropdown. Next, you will need to take the following steps:
+To get started creating your proxy account, head to the **Developer** tab and select [**Extrinsics**](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} from the dropdown. Next, you will need to take the following steps:
 
 1. Select the primary account
 2. From the **submit the following extrinsic** dropdown, select **proxy**
@@ -98,24 +98,33 @@ To get started creating your proxy account, head to the **Developer** tab and se
 6. Optionally you can add a time delay using a specified number of blocks to add an additional layer of security for the primary account to review the pending transaction
 7. Click **Submit Transaction** 
 
-![Creating a Proxy Account](/images/tokens/manage/proxy-accounts/proxies-1.png)
+![Add a proxy account from the Extrinsics page of Polkadot.js Apps.](/images/tokens/manage/proxy-accounts/proxies-1.png)
 
 You will then be prompted to authorize and sign the transaction. Go ahead and click **Sign and Submit** to create the proxy relationship. 
 
-![Submit Transaction to Create a Proxy Account](/images/tokens/manage/proxy-accounts/proxies-2.png)
-
 Once the transaction has been successfully submitted, you will receive some notifications confirming the transaction.
 
-As previously mentioned, you can also create a proxy from the **Accounts** page. To do so, navigate to the **Accounts** page, select the 3 vertical dots next to the primary account and select **Add proxy**.
+As previously mentioned, you can also create a proxy from the **Accounts** page. To do so, navigate to the **Accounts** page, and take the following steps:
 
-![Add Proxy](/images/tokens/manage/proxy-accounts/proxies-3.png)
+1. Select the 3 vertical dots next to the primary account
+2. Select **Add proxy**
+
+![Select the Add proxy menu item from the Accounts page of Polkadot.js Apps.](/images/tokens/manage/proxy-accounts/proxies-2.png)
 
 !!! note
     If the account already has a proxy, **Manage proxies** will be displayed as an option instead of **Add proxy**.
 
-A pop-up will appear and you will be able to enter in the required information, such as the proxied/primary account, the proxy account, and type of proxy in order to create a proxy account.
+A pop-up will appear and you will be able to enter in the required information, such as the proxied/primary account, the proxy account, and type of proxy in order to create a proxy account. First click **Add Proxy**.
 
-![Add Proxy from Accounts Page](/images/tokens/manage/proxy-accounts/proxies-4.png)
+![Add a proxy account from the Accounts page of Polkadot.js Apps](/images/tokens/manage/proxy-accounts/proxies-3.png)
+
+Then take the following steps:
+
+1. Select the account you would like to set as a proxy
+2. Select the proxy type
+3. Click **Submit** and sign the transaction
+
+![Add the details of the proxy account, including the proxy account and type.](/images/tokens/manage/proxy-accounts/proxies-4.png)
 
 In the next section, you will learn how to verify that your proxy account was set up successfully. 
 
@@ -123,32 +132,30 @@ In the next section, you will learn how to verify that your proxy account was se
 
 There are a couple of ways that you can verify your proxy account has been successfully set up. Either through the **Accounts** page or via the **Chain state** page.
 
-To check your proxy accounts from the **Chain state** page, you can take the following steps:
+To check your proxy accounts from the [**Chain state** page](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/chainstate){target=_blank}, you can take the following steps:
 
-1. Click on the **Developer** tab
-2. From the dropdown, select **Chain state**
-3. From the **selected state query** dropdown, select **proxy**
-4. Choose the **proxies** extrinsic
-5. Select your primary/proxied account
-6. Click on the **+** button to send the query
+1. From the **selected state query** dropdown, select **proxy**
+2. Choose the **proxies** extrinsic
+3. Select your primary/proxied account
+4. Click on the **+** button to send the query
 
-![Verify your Proxy Accounts](/images/tokens/manage/proxy-accounts/proxies-5.png)
+![Verify your proxy accounts via the Extrinsics page of Polkadot.js Apps.](/images/tokens/manage/proxy-accounts/proxies-5.png)
 
 The result will appear on the page showing you information about all of your proxies, including the delegate/proxy account address, the proxy type, the delay period if one was specified, and the total bond amount for all of your proxies in Wei.
 
-As previously mentioned, you can also check your proxy accounts from the **Accounts** page. To do so, you can navigate to the **Accounts** page and there should be a Proxy symbol next to the primary account. Hover over the icon and click on **Proxy overview** to review your proxies.
+As previously mentioned, you can also check your proxy accounts from the **Accounts** page. To do so, you can navigate to the **Accounts** page and there should be a Proxy symbol next to the primary account. Hover over the icon and click on **Manage proxies** to review your proxies.
 
-![Proxy Overview Button](/images/tokens/manage/proxy-accounts/proxies-6.png)
+![Hover over the proxy icon to manage your proxies via the Accounts page of Polkadot.js Apps.](/images/tokens/manage/proxy-accounts/proxies-6.png)
 
 A pop-up will appear where you can view an overview of all of your proxy accounts.
 
-![Proxy Overview Pop-up](/images/tokens/manage/proxy-accounts/proxies-7.png)
+![Review your proxy accounts.](/images/tokens/manage/proxy-accounts/proxies-7.png)
 
 ## Executing a Proxy Transaction {: #executing-a-proxy-transaction }
 
 Now that you have created a proxy account and verified that it was successfuly set up, you can execute a transaction using the proxy account on behalf of the primary account.
 
-To execute a transaction, you can navigate back to the **Extrinsics** page and take the following steps: 
+To execute a transaction, you can navigate back to the [**Extrinsics** page](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} and take the following steps: 
 
 1. Select the proxy account to submit the transaction from the **using the select account** dropdown
 2. From the **submit the following extrinsic** menu, select **proxy**
@@ -160,7 +167,7 @@ To execute a transaction, you can navigate back to the **Extrinsics** page and t
 8. In the **value** field, enter the amount of funds to send in Wei. For this example, you can send 2 DEV tokens, which will be `2000000000000000000` in Wei
 9. Click **Submit Transaction**
 
-![Execute a Proxy Transaction](/images/tokens/manage/proxy-accounts/proxies-8.png)
+![Execute a proxy transaction from the Extrinsics page of Polkadot.js Apps.](/images/tokens/manage/proxy-accounts/proxies-8.png)
 
 A pop-up will appear for you to authorize and sign the transaction. Enter your password for the proxy account and click **Sign and Submit**.
 
@@ -172,7 +179,7 @@ That's it! You've successfully executed a transaction using a proxy account on b
 
 Similarly to adding a proxy account, there are a couple of ways that you can remove a proxy account, either from the **Extrinsics** page or the **Accounts** page. Regardless of which page you use, you can elect to remove a single proxy account or all proxies associated with your primary account.
 
-To remove a proxy from the **Extrinsics** page, you can take the following steps:
+To remove a proxy from the [**Extrinsics** page](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics){target=_blank}, you can take the following steps:
 
 1. From the **using the selected account** dropdown, select your primary account
 2. Then select **proxy**
@@ -182,7 +189,7 @@ To remove a proxy from the **Extrinsics** page, you can take the following steps
 6. Optionally, select a delay period in block numbers
 7. Click **Submit Transaction**
 
-![Remove a Proxy Account](/images/tokens/manage/proxy-accounts/proxies-9.png)
+![Remove a proxy account from the Extrinsics page of Polkadot.js Apps](/images/tokens/manage/proxy-accounts/proxies-9.png)
 
 A pop-up will appear for you to authorize and sign the transaction. There is the option of signing and sending the transaction from the primary account or the proxy account, but in order to remove the proxy, the transaction must be sent from the primary account. Enter your password and click **Sign and Submit**.
 
@@ -190,11 +197,11 @@ You can follow the steps in the [Verifying your Proxy Account](#verifying-your-p
 
 As previously mentioned, you can also remove a proxy from the **Accounts** page. To do so, on the **Accounts** page, select the 3 vertical dots next to the primary account and select **Manage Proxies**. 
 
-![Manage Proxies](/images/tokens/manage/proxy-accounts/proxies-10.png)
+![Click on the Manage Proxies button to review and manage your proxy accounts.](/images/tokens/manage/proxy-accounts/proxies-10.png)
 
 A pop-up will appear showing an overview of your proxy accounts. To remove a single proxy you can select the **X** button next to the proxy to remove. The proxy will disappear from the list, then you will need to click **Submit**. Next you will be able to enter your password and submit the transaction. Or to remove all proxies you can click on **Clear all**, then you will automatically be prompted to enter your password and submit the transaction.
 
-![Remove a Proxy Account from the Accounts Page](/images/tokens/manage/proxy-accounts/proxies-11.png)
+![Remove a proxy account from the Accounts page of Polkadot.js Apps.](/images/tokens/manage/proxy-accounts/proxies-11.png)
  
 Once the transaction has successfully been submitted, you can review your current proxies or if you removed all proxies you will notice the proxy icon is no longer being displayed next to the primary account. 
 
