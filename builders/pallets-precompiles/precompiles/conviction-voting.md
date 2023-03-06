@@ -63,7 +63,7 @@ Each of these functions have the following parameters:
 
 The interface also includes the following events:
 
-- **Voted**(*uint32 indexed* pollIndex, *address* voter, *bool* aye, *uint256* amount) - emitted when an account makes a vote
+- **Voted**(*uint32 indexed* pollIndex, *address* voter, *bool* aye, *uint256* voteAmount, *uint8* conviction) - emitted when an account makes a vote
 - **VoteRemoved**(*uint32 indexed* pollIndex, *address* voter) - emitted when an account's (`voter`) vote has been removed
 - **VoteRemovedOther**(*uint32 indexed* pollIndex, *address* caller, *address* target, *uint16* trackId) - emitted when an account (`caller`) removed a vote for another account (`target`)
 - **Delegated**(*uint16 indexed* trackId, *address* from, *address* to, *uint256* delegatedAmount, *uint8* conviction) - emitted when an account (`from`) delegates a Conviction-weighted vote of a given amount to another account (`to`)

@@ -118,12 +118,12 @@ networks:
           transact_numbers_only: 50000000000000000
     conviction:
       lock_period:
-        conviction_1: 7
-        conviction_2: 14
-        conviction_3: 28
-        conviction_4: 56
-        conviction_5: 112
-        conviction_6: 224
+        conviction_1: 1
+        conviction_2: 2
+        conviction_3: 4
+        conviction_4: 8
+        conviction_5: 16
+        conviction_6: 32
     governance:
       tracks:
         root:
@@ -269,7 +269,7 @@ networks:
             percent1: 1
             time2: 'Day 14'
             percent2: 0
-      submission_deposit: 100
+      submission_deposit: 10
       max_votes: 512
     preimage:
       base_deposit: 5
@@ -435,12 +435,12 @@ networks:
           display: 50,000
     conviction:
       lock_period:
-        conviction_1: 7
-        conviction_2: 14
-        conviction_3: 28
-        conviction_4: 56
-        conviction_5: 112
-        conviction_6: 224
+        conviction_1: 1
+        conviction_2: 2
+        conviction_3: 4
+        conviction_4: 8
+        conviction_5: 16
+        conviction_6: 32
     governance:
       tracks:
         root:
@@ -586,7 +586,7 @@ networks:
             percent1: 1
             time2: 'Day 14'
             percent2: 0
-      submission_deposit: 100
+      submission_deposit: 10
       max_votes: 512
     preimage:
       base_deposit: 5

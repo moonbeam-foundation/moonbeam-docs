@@ -132,7 +132,7 @@ In the following image, you'll notice enough Approval and Support have been rece
 
 ![View the Approval and Support curves for a referendum on Polkadot.js Apps.](/images/tokens/governance/voting/v2/vote-6.png)
 
-If the referendum doesn't continuously receive enough Approval and Support during the Confirm Period, and there is time left in the Decide Period, it still has a chance to pass as long as the Approval and Support requirements are met again and continously for the duration of the Confirm Period. If the Decide Period ends and the referendum still hasn't received enough Approval and Support, the referenda will be rejected and the Decision Deposit is able to be refunded.
+If the referendum doesn't continuously receive enough Approval and Support during the Confirm Period, it still has a chance to pass as long as the Approval and Support requirements are met again and continously for the duration of the Confirm Period. If a referendum enters the Confirm Period but the Decide Period is set to end before the Confirm Period is over, the Decide Period will actually be extended until the end of the Confirm Period. If the Decide Period ends and the referendum still hasn't received enough Approval and Support, the referendum will be rejected and the Decision Deposit is able to be refunded.
 
 The Enactment Period is defined by the author of the proposal at the time it was initially submitted, but it needs to be at least the minimum Enacment Period. 
 
