@@ -88,7 +88,7 @@ When getting started with the Moonbase Alpha relay chain, once you have your sov
 
 From a technical perspective, the process of creating an HRMP channel with Moonriver and Moonbeam is nearly identical. However, engagement with the Moonbeam community is crucial and required before a proposal will pass. The process is as follows:
 
-1. Add details of the asset and project to [the forum](/tokens/governance/proposals/#submitting-your-idea-to-the-forum){target=_blank} in the XCM category. Please check the HRMP channel guidelines that the community voted on for [Moonriver](https://moonriver.polkassembly.network/referenda/0){target=_blank} and [Moonbeam](https://moonbeam.polkassembly.network/proposal/21){target=_blank}
+1. Add details of the asset and project to [the Moonbeam Community Forum](https://forum.moonbeam.foundation/c/xcm-hrmp/13){target=_blank}. Please check the HRMP channel guidelines that the community voted on for [Moonriver](https://moonriver.polkassembly.network/referenda/0){target=_blank} and [Moonbeam](https://moonbeam.polkassembly.network/proposal/21){target=_blank}
 2. Open an HRMP channel from your chain to Moonriver/Moonbeam. Optionally, you can create a batched proposal to register MOVR/GLMR or register at a later date
 3. Once the proposal in step 2 gets enacted, you will create a batched proposal on Moonbeam to:
     1. Propose the opening of an outgoing HRMP channel from Moonriver/Moonbeam
@@ -116,21 +116,9 @@ Once these steps are completed succesfully, marketing efforts can be coordinated
 
 ### Forum and Polkassembly Template {: #forum-and-polkassembly-template }
 
-When starting an XCM integration on Moonriver or Moonbeam MainNet, you must add a preliminary draft of the proposal on the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=_blank} in the XCM category so that the voting community has the chance to provide preliminary feedback. It is recommended that this is done five days before the actual proposal is submitted on-chain.  
+When starting an XCM integration on Moonriver or Moonbeam MainNet, there are two preliminary posts that must be made on the Moonbeam Community Forum so that the voting community has the chance to provide feedback. It is recommended that this is done five days before the actual proposal is submitted on chain.  
 
-Once a proposal is available for voting, you must also add a description to it in either the [Moonbeam Polkassembly](https://moonbeam.polkassembly.network/){target=_blank} or [Moonriver Polkassembly](https://moonriver.polkassembly.network/){target=_blank}.
-
-In both the Moonbeam preliminary forum post and in Polkassembly, add the following sections and information:  
-
-- **Title** — *YOUR_NETWORK_NAME* Proposal to Open Channel & Register *ASSET_NAME*
-- **Introduction** — one sentence summarizing the proposal
-- **Network Information** — one sentence summarizing your network, and relevant links to your website, Twitter, and other social channels
-- **Summary** — brief description of the content of the proposal
-- **On-Chain Proposal Reference (Forums Only)** — include if it is a Moonbeam or Moonriver proposal, the proposal number, and proposal hash
-- **Technical Details** — provide technical information required for the community to understand the use cases and purpose of the proposal
-- **Additional Information** — any additional information you would like the community/readers to know
-
-Additionally, there is key information to provide that is highlighted due to its importance in a voter's decision:  
+The first post that should be made are the key disclosures within the [key disclosures category](https://forum.moonbeam.foundation/c/xcm-hrmp/xcm-disclosures/15){target=_blank}, which highlights key information that are of importance in a voter's decision:  
 
 - Is the blockchain network's code open source? If so, please provide the GitHub link. If not, provide an explanation on why not
 - Is sudo disabled on the network? If sudo is disabled, is the network controlled by a select group of addresses?  
@@ -140,6 +128,18 @@ Additionally, there is key information to provide that is highlighted due to its
     - Auditor name(s)
     - Dates of audit reports
     - Links to audit reports
+
+You must also add a preliminary draft of the proposal in the [XCM Proposals category](https://forum.moonbeam.foundation/c/xcm-hrmp/xcm-proposals/14){target=_blank}. Once a proposal is submitted on-chain and available for voting, you must also add a description to it in either the [Moonbeam Polkassembly](https://moonbeam.polkassembly.network/){target=_blank} or [Moonriver Polkassembly](https://moonriver.polkassembly.network/){target=_blank}.  
+
+In both the Moonbeam XCM Proposals forum post and in Polkassembly, add the following sections and information:  
+
+- **Title** — *YOUR_NETWORK_NAME* Proposal to Open Channel & Register *ASSET_NAME*
+- **Introduction** — one sentence summarizing the proposal
+- **Network Information** — one sentence summarizing your network, and relevant links to your website, Twitter, and other social channels
+- **Summary** — brief description of the content of the proposal
+- **On-Chain Proposal Reference (Forums Only)** — include if it is a Moonbeam or Moonriver proposal, the proposal number, and proposal hash
+- **Technical Details** — provide technical information required for the community to understand the use cases and purpose of the proposal
+- **Additional Information** — any additional information you would like the community/readers to know
 
 ## Register Moonbeam's Asset on your Parachain {: #register-moonbeams-asset-on-your-parachain }
 
