@@ -100,7 +100,7 @@ From a technical perspective, the process of creating an HRMP channel with Moonr
       - **Moonriver** - proposals should be done in the the General Admin Track from [OpenGov](/learn/features/governance/#opengov){target=_blank}, in which the Decision Period is approximately {{ networks.moonriver.governance.tracks.general_admin.decision_period.time }}, and the enactment time is at least {{ networks.moonriver.governance.tracks.general_admin.min_enactment_period.time }}
       - **Moonbeam** - approximately a {{ networks.moonbeam.democracy.vote_period.days }}-day Voting Period plus {{ networks.moonbeam.democracy.enact_period.days }}-day enactment time
 
-4. Add details about the [connecting parachain on Polkassembly](http://localhost:8000/tokens/governance/proposals/#submitting-a-proposal){target=_blank} so that community members can be informed when voting on the proposal
+4. Add details about the [connecting parachain on Polkassembly](https://moonbeam.polkassembly.network/){target=_blank} so that community members can be informed when voting on the proposal
 5. Accept the HRMP channel from Moonriver/Moonbeam on the connecting parachain
 6. Exchange $50 worth of tokens for testing the XCM integration. Please send the tokens to:
 
