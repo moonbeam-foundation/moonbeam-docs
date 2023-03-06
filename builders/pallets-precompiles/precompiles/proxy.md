@@ -35,6 +35,21 @@ The interface includes the following functions:
  - **removeProxy**(*address* delegate, *ProxyType* proxyType, *uint32* delay) — removes a registered proxy for the sender
  - **removeProxies**() — removes all of the proxy accounts delegated to the sender
  - **isProxy**(*address* real, *address* delegate, *ProxyType* proxyType, *uint32* delay) — returns a boolean, `true` if the delegate address is a proxy of type `proxyType`, for address `real`, with the specified `delay`
+
+The `proxyType` parameter is defined by the following `ProxyType` enum, where the values start at `0` with the most permissive proxy type and are represented as `uint8` values:
+
+```sol
+enum ProxyType {
+    Any,
+    NonTransfer,
+    Governance,
+    Staking,
+    CancelProxy,
+    Balances,
+    AuthorMapping,
+    IdentityJudgement
+}
+```
  
 ## Proxy Types {: #proxy-types }
 
