@@ -92,7 +92,7 @@ The `yarn start dev` command forks a chain, and includes following flags:
 |:------------------------:|:---------------------------------------------------------------------------------------------------:|
 |         endpoint         | The endpoint of the parachain to fork.                                                              |
 |          block           | Use to specify at which block hash or number to replay the fork.                                    |
-|      wasm-override       | Path of the WASM to use as the parachain, instead of an endpoint.                                   |
+|      wasm-override       | Path of the WASM to use as the parachain runtime, instead of an endpoint's runtime.                 |
 |            db            | Path to the name of the file that stores or will store the parachain's database.                    |
 |          config          | Path to the config file.                                                                            |
 |           port           | The port to expose an endpoint on.                                                                  |
@@ -132,7 +132,7 @@ In the case where you would like to replay a block and retrieve its information 
 |:------------------------:|:---------------------------------------------------------------------------------------------------:|
 |         endpoint         | The endpoint of the parachain to fork.                                                              |
 |          block           | Use to specify at which block hash or number to replay the fork.                                    |
-|      wasm-override       | Path of the WASM to use as the parachain, instead of forking an endpoint.                           |
+|      wasm-override       | Path of the WASM to use as the parachain runtime, instead of an endpoint's runtime.                 |
 |            db            | Path to the name of the file that stores or will store the parachain's database.                    |
 |          config          | Path to the config file.                                                                            |
 | output-path=/[file_path] | Use to print out results to a JSON file instead of printing it out in the console.                  |
@@ -163,5 +163,37 @@ You should see something like the following output:
 [12:49:07.557] INFO (xcm/21840): Connected relaychain 'Kusama' with parachain 'Moonriver'
 [12:49:08.227] INFO (xcm/21840): Connected relaychain 'Kusama' with parachain 'Karura'
 ```
+
+Including the `relaychain` command is optional, as Chopsticks will automatically mock a relay chain between networks.  
+
+## WebSocket Commands
+
+Chopsticks' internal websocket server has special endpoints that allows the manipulation of the local Substrate chain. These are the methods that can be invoked:  
+
+|     Method     |     Parameters    |                                  Description                                     |
+|:--------------:|:-----------------:|:--------------------------------------------------------------------------------:|
+|  dev_newBlock  |      options      | Generates one or more new blocks.                                                |
+| dev_setStorage | values, blockHash | Create or overwrite the value of any storage.                                    |
+| dev_timeTravel |       date        | Sets the timestamp of the block to the `date` value.                             |
+|  dev_setHead   |    hashOrNumber   | Sets the head of the blockchain to a specific hash or number.                    |
+
+Each method can be invoked by connecting to the websocket (`ws://localhost:8000` by default) and sending the data and parameters in the following format. Replace `METHOD_NAME` with the name of the method, and replace or delete `PARAMETER_1` and `PARAMETER_2` with the parameter data relevant to the method:  
+
+```
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "METHOD_NAME",
+    "params": [PARAMETER_1, PARAMETER_2...]
+}
+```
+
+Parameters can be described in the following ways:  
+
+- **`options` { "to": number, "count": number }** - optional, leave `null` to create one block. Use `"to"` to create blocks up to a certain value, use `"count"` to increase by a certain number of blocks  
+- **`values` Object** - a JSON object resembling the path to a storage value, similar to what you would retrieve via Polkadot.js  
+- **`blockHash` string** - optional, the blockhash at which the storage value is changed
+- **`date` string** - a Date string (compatible with the JavaScript Date library) that will change the time stamp from which the next blocks being created will be at. All future blocks will be sequentially after that point in time
+- **`hashOrNumber` number | string** - if found, the chain head will be set to the block with the block number or block hash of this value
 
 --8<-- 'text/disclaimers/third-party-content.md'
