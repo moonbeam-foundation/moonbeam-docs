@@ -11,11 +11,11 @@ _February 12th, 2022 | by Jeremy Boetticher_
 
 ## Introduction {: #introduction } 
 
-Moonbeam works hard to support interoperability and cross-chain logic. Its connected contracts initiative requires an updating of previously understood smart contract concepts so that they fit a cross-chain world. While some cross-chain primitives have been in the works for years, such as cross-chain tokens, others are only starting to be worked on: such as cross-chain swaps, AMMs, and in of particular interest for this tutorial: DAOs.  
+Moonbeam works hard to support interoperability and cross-chain logic. Its connected contracts initiative requires an updating of previously understood smart contract concepts so that they fit a cross-chain world. While some cross-chain primitives have been available for years, such as cross-chain tokens, others are only starting to be worked on: such as cross-chain swaps, AMMs, and in of particular interest for this tutorial: DAOs.  
 
-In this tutorial, we will work through a thought process of writing smart contracts for a cross-chain DAO. The smart contracts in this example will be based off of OpenZeppelin's Governance smart contracts to demonstrate an evolution from single-chain to cross-chain and to highlight some incompatibilities that one might face when converting a dApp concept from single-chain to cross-chain. The cross-chain protocol used in this example will be [LayerZero*](/builders/interoperability/protocols/layerzero){target=_blank}, but you are encouraged to adapt its concepts to any other protocol that you see fit, since cross-chain concepts often overlap between the protocols that Moonbeam hosts.  
+In this tutorial, we will work through a thought process of writing smart contracts for a cross-chain DAO. The smart contracts in this example will be based off of OpenZeppelin's Governance smart contracts to demonstrate an evolution from single-chain to cross-chain and to highlight some incompatibilities that one might face when converting a DApp concept from single-chain to cross-chain. The cross-chain protocol used in this example will be [LayerZero*](/builders/interoperability/protocols/layerzero){target=_blank}, but you are encouraged to adapt its concepts to any other protocol that you see fit, since cross-chain concepts often overlap between the protocols that Moonbeam hosts.  
 
-The purpose of this tutorial is not to be the end-all-be-all definition of what a cross-chain DAO would be like, but instead to help you think about the intricacies of writing a cross-chain dApp like a DAO. That being said, feel free to take inspiration from some of the design choices if you decide to write your own. We will focus on the smart contracts and architecture instead of deploying and testing. **If you would like to see a demonstration of the DAO and its use**, a [GitHub repository is available](https://github.com/jboetticher/cross-chain-dao){target=_blank} with relevant instructions.
+The purpose of this tutorial is not to be the end-all-be-all definition of what a cross-chain DAO would be like, but instead to provide an example of thinking about the intricacies of writing a significantly complex cross-chain DApp. The focus of this tutorial will be on architecture and specifically cross-chain smart contract logic instead of deploying and testing. The following smart contracts **are not tested or recommended** for production use. That being said, feel free to take inspiration from some of the design choices if you decide to write your cross-chain DAO. The full code base and demonstration of the DAO is available in a [GitHub repository](https://github.com/jboetticher/cross-chain-dao){target=_blank}, with relevant instructions.  
 
 <div class='disclaimer'>
 --8<-- 'text/disclaimers/third-party-content-intro.md'
@@ -26,12 +26,12 @@ The purpose of this tutorial is not to be the end-all-be-all definition of what 
 DAO stands for "Decentralized Autonomous Organization". In order for a smart contract to be a DAO, it must be:  
 
 - **Decentralized** — control is separated and distributed among many actors
-- **Autonomous** — much of the execution must occur without the reliance on a single person or team
-- **Organized** — there must be a way for actions to be taken
+- **Autonomous** — execution must occur without the reliance on a single person, government, or team
+- **Organized** — there must be a way for actions to be proposed and then taken: code is law
 
-One of the best single-chain DAOs is [Compound Finance's DAO](https://compound.finance/governance){target=_blank}. This DAO is a smart contract that allows proposals for on-chain transactions to be sent by the DAO, hence it is an organization that can take actions. It is decentralized because proposals are voted on by holders of the Compound Finance token. It is autonomous, because execution of the proposals are permissionless, and thus do not rely any specific person or team.  
+One of the best single-chain DAOs is [Compound Finance's DAO](https://compound.finance/governance){target=_blank}. It is organized because the smart contract allows users to propose actions to be taken on chain in the form of transaction parameters, which are later executed with the smart contract being the origin. It is autonomous, because execution of the proposals are permissionless, and thus do not rely any specific person or team. It is decentralized because proposals are voted on by holders of the Compound Finance token.  
 
-Let's take a look at the phases that a proposal in a DAO takes:  
+Let's take a look at the phases that a proposal in a DAO like Compound Finance's takes:  
 
 ![Typical DAO](/images/tutorials/cross-chain-dao/cross-chain-dao-1.png)
 
@@ -42,11 +42,9 @@ Let's take a look at the phases that a proposal in a DAO takes:
 
 But what about a cross-chain DAO? In a cross chain DAO, the actions that you would typically should also be available cross-chain: proposals, votes, executions, cancellations, etc. This requires a more complex architecture, since a lot of information has to be replicated across-chains.  
 
+There are many ways to architecture a cross-chain DApp. You could make a more distributed system, where data and logic are distributed to multiple chains to maximize their use. On the other end of the spectrum, you could use a hub-and-spoke model: where the main logic and data are stored on a single chain, and cross-chain messages will interact with it.  
+
 ![Cross Chain DAO](/images/tutorials/cross-chain-dao/cross-chain-dao-2.png)
-
-Before we look through this, let's first talk a little about cross-chain models. There are many ways to architecture a cross-chain dApp. You could make a more distributed system, where data and logic are distributed to multiple chains to maximize their use. On the other hand, you could use a hub-and-spoke model, where the main logic and data are stored on a single chain, and cross-chain messages will interact with it.  
-
-The process shown above makes it so that anyone can vote from across chains, so long as they hold the DAO token. We are using a hybrid between a hub-and-spoke and a distributed graph. For holding information that is read-only, we will be storing it on a single chain. Rare one-off actions such as proposals, cancellations, and so on are best done as a hub-and-spoke model. For information regarding voting logic, since users will be voting on multiple chains, voting weight and vote sums will be stored on each spoke chain and only sent to the hub chain after voting is over.  
 
 Let's break down some of the steps in more detail:  
 
@@ -57,21 +55,25 @@ Let's break down some of the steps in more detail:
 5. **Execution** — if the vote is successful, any user can execute it trustlessly on the **hub** chain   
 
 !!! note
-    Take note of the new collection phase. This is where the cross-chain aspect changes the logic the most. Essentially, the votes on each spoke chain must be collected and submitted to the hub chain after the voting period is over.  
+    Take note of the new collection phase. This is where the cross-chain aspect changes the logic the most. Essentially, the votes on each spoke chain must be collected and submitted to the hub chain after the voting period is over.
 
-This is, of course, only one way to implement a cross-chain DAO, and you are encouraged to think of alternative and better ways. In the next section, we will look at an implementation.
+The process shown here makes it so that anyone can vote from across chains, so long as they hold the DAO token. For holding information that is read-only, we will be storing it on a single chain. Rare one-off actions such as proposals, cancellations, and so on are best done as a hub-and-spoke model. For information regarding voting logic, since users will be voting on multiple chains, voting weight and vote sums will be stored on each spoke chain and only sent to the hub chain after voting is over, since doing cross-chain actions are generally expensive.  
+
+**TODO: add a graph here to represent the smart contracts**  
+
+This is, of course, only one way to implement a cross-chain DAO, and you are encouraged to think of alternative and better ways. In the next section, we will look at an implementation.  
 
 ## Writing the Cross-Chain DAO {: #writing-the-cross-chain-dao }
 
-Before we start writing the entire project, it's important to note that it can be found in its own [cross-chain DAO GitHub repository](https://github.com/jboetticher/cross-chain-dao){target=_blank}, so if at any point some code doesn't make sense, you can find its full version there. Furthermore, the example project for this Tutorial will use HardHat, prerequisite knowledge of which will be helpful for this tutorial, which is slightly advanced.   
+Before we start writing the entire project, it's important to note that its finished form can be found in its own [cross-chain DAO GitHub repository](https://github.com/jboetticher/cross-chain-dao){target=_blank}. It uses HardHat, so [prerequisite knowledge](/builders/build/eth-api/dev-env/hardhat){target=_blank} will be helpful for understanding how the repository works. This tutorial will not include information how to use HardHat, and will instead focus solely on the smart contracts.   
 
 A logical starting point for thinking about writing a cross-chain DAO is its predecessor: a single-chain DAO. There are many different implementations that exist, but since [OpenZeppelin](https://www.openzeppelin.com/contracts){target=_blank} hosts an already popular smart contract repository, we will use their Governance smart contracts. A second reason why we're using OpenZeppelin's smart contracts is because they're based off of Compound Finance's DAO, which we've already investigated in the [previous section](#intuition-and-planning).  
 
-A good way to play with the configurations of the Governance smart contract is to use the OpenZeppelin smart contract wizard. By going to the [OpenZeppelin website's contract page](https://www.openzeppelin.com/contracts){target=_blank}, scrolling down, and clicking on the Governance tab, you can view the different ways that you can configure the Governance smart contract. Open it up and play around with it to figure out a simple base for our cross-chain DAO.  
+A good way to play with the configurations of the Governance smart contract is to use the OpenZeppelin smart contract wizard. By going to the [OpenZeppelin contract page](https://www.openzeppelin.com/contracts){target=_blank}, scrolling down, and clicking on the Governance tab, you can view the different ways that you can configure the Governance smart contract. Open it up and play around with it to figure out a simple base for our cross-chain DAO.  
 
 ![OpenZeppelin Contract Wizard](/images/tutorials/cross-chain-dao/cross-chain-dao-3.png)
 
-We're going to try to keep this base smart contract as simple as possible for demonstration purposes. First, let's name the governor contract to be "CrossChainDAO", since that is what we'll turn it into. Set the voting delay as 0 for simplicity and to make it so that the voting weight snapshot is taken immediately. Additionally, be sure to set the voting period to something short, like 6 minutes. For calculating quorum (the minimum amount of vote weight required for a vote to pass), set it to the number (#) 1. Percentage increases complexity that won't add to this tutorial. Also disable Timelock, since the timelock period is optional anyways.  
+We're going to try to keep this base smart contract as simple as possible for demonstration purposes. First, let's name the governor contract to be "CrossChainDAO", since that is what we'll turn it into. Set the voting delay as 0 for simplicity and to make it so that the voting weight snapshot is taken immediately. It is easiest to set the voting period to something short, like 6 minutes. For calculating quorum (the minimum amount of vote weight required for a vote to pass), set it to the number (#) 1. Also disable Timelock, since the timelock period is optional anyways.  
 
 You should see a contract similar to this:
 
@@ -97,58 +99,34 @@ contract CrossChainDAO is Governor, GovernorSettings, GovernorCountingSimple, Go
 
     // The following functions are overrides required by Solidity.
 
-    function votingDelay()
-        public
-        view
-        override(IGovernor, GovernorSettings)
-        returns (uint256)
-    {
+    function votingDelay() public view override(IGovernor, GovernorSettings) returns (uint256) {
         return super.votingDelay();
     }
 
-    function votingPeriod()
-        public
-        view
-        override(IGovernor, GovernorSettings)
-        returns (uint256)
-    {
+    function votingPeriod() public view override(IGovernor, GovernorSettings) returns (uint256) {
         return super.votingPeriod();
     }
 
-    function proposalThreshold()
-        public
-        view
-        override(Governor, GovernorSettings)
-        returns (uint256)
-    {
+    function proposalThreshold() public view override(Governor, GovernorSettings) returns (uint256) {
         return super.proposalThreshold();
     }
 }
 ```
 
-This is the base that we will work off of to create our DAO. Let's now set up HardHat to set up our project.  
-
-In a new folder, install hardhat:
-
-```
-npm install hardhat
-```
-
-Then, create a new project.  
-
-```
-npx hardhat
-```  
-
-You can learn more about [HardHat in our documentation](/builders/build/eth-api/dev-env/hardhat/){target=_blank} in case you haven't used it before. In the meantime, take the `CrossChainDAO` smart contract and add it to a new file `CrossChainDAO.sol` within the `contracts` folder.  
+Let's take the `CrossChainDAO` smart contract and add it to our working directory as `CrossChainDAO.sol`.  
 
 Next, let's start at the basics and sort out how users will have their voting power calculated.
 
 ### Cross-Chain DAO Token Contract {: #cross-chain-dao-token-contract }
 
-In Compound Finance's DAO, a user needed the COMP token to vote. OpenZeppelin's `Governor` smart contract also has this feature, abstracting the tokens to votes feature into an [`IVotes` interface](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/governance/utils/IVotes.sol){target=_blank}.  
+In Compound Finance's DAO, a user needed the COMP token to vote, which enables the decentralization aspect of a DAO. OpenZeppelin's `Governor` smart contract also has this feature, abstracting the tokens to votes feature into an [`IVotes` interface](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/governance/utils/IVotes.sol){target=_blank}.  
 
-The IVotes interface requires a lot of different functions to represent the different weights in a voting scheme. Fortunately, OpenZeppelin has provided an ERC-20 implementation of IVotes already, called [ERC20Votes](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/extensions/ERC20Votes.sol){target=_blank}. The only thing we have to do is make it cross-chain so that it can control the voting weight of each account on each chain.  
+The IVotes interface requires a lot of different functions to represent the different weights in a voting scheme. Fortunately, OpenZeppelin has provided an ERC-20 implementation of IVotes already, called [ERC20Votes](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/extensions/ERC20Votes.sol){target=_blank}.  
+
+Recall [from earlier](#intuition-and-planning){target=_blank} that we intend to have users vote on each chain, and only send data during the collection phase. This means that the voting weights must be stored on each chain. This is very easy, since all we have to do is ensure that the `ERC20Votes` contract is deployed on each chain, or in other words, make the DAO token a cross-chain token.  
+
+
+
 
 Previously, it was mentioned that LayerZero is being used for this tutorial. LayerZero was chosen because of their [OFT contract](https://github.com/LayerZero-Labs/solidity-examples/blob/main/contracts/token/oft/OFT.sol){target=_blank}, which makes it extremely easy to make an ERC-20 token cross chain. This doesn't mean that you have to use LayerZero though: every other cross-chain protocol has their own methods and ability to create cross-chain assets.  
 
