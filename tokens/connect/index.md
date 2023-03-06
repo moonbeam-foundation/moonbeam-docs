@@ -4,6 +4,7 @@ description: Learn about some of the supported wallets available for Moonbeam, a
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 <h1 class='subsection-title'>Connect to Moonbeam</h1>

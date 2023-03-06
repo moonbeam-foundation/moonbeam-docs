@@ -4,6 +4,7 @@ description: Learn how to interact with the Substrate API when developing on Moo
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 <h1 class='subsection-title'>Substrate API</h1>

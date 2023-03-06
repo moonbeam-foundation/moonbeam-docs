@@ -4,6 +4,7 @@ description: Learn how to use JavaScript or Python Ethereum libraries such as Et
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 <h1 class='subsection-title'>Ethereum Libraries</h1>

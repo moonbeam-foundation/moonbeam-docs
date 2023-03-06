@@ -4,6 +4,7 @@ description: Learn about interoperability on Moonbeam by diving into how cross-c
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 <h1 class='subsection-title'>Interoperability</h1>

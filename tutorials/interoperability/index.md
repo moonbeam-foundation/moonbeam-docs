@@ -4,6 +4,7 @@ description: A list of tutorials related to Moonbeam an its connected contracts 
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 

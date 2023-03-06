@@ -4,6 +4,7 @@ description: Guides on the available methods and interfaces in the Moonbeam XCM 
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 <h1 class='subsection-title'>XCM SDK</h1>

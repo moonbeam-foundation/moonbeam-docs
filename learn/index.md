@@ -4,6 +4,7 @@ description: Learn all about Moonbeam, including basics about the Ethereum compa
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 <h1 class='subsection-title'>Learn</h1>

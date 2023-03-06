@@ -4,6 +4,7 @@ description: Learn how to verify your Solidity smart contracts deployed to Moonb
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 <h1 class='subsection-title'>Verify Smart Contracts</h1>

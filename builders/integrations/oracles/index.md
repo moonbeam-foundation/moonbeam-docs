@@ -4,6 +4,7 @@ description: Learn how to add an oracle such as ChainLink, Band, or Razor Networ
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 <h1 class='subsection-title'>Oracles</h1>

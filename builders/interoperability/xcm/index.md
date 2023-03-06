@@ -4,6 +4,7 @@ description: An overview of how cross-consensus messaging (XCM) works, and how d
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 <h1 class='subsection-title'>XCM Interoperability</h1>

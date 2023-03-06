@@ -4,6 +4,7 @@ description: Learn how to use transaction relayers for gasless transactions and 
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 <h1 class='subsection-title'>Relayers</h1>

@@ -4,6 +4,7 @@ description: Learn how to delegate collator candidates and stake your GLMR and M
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 <h1 class='subsection-title'>Staking</h1>

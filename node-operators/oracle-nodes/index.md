@@ -4,6 +4,7 @@ description: Run an oracle node, such as a ChainLink node, on Moonbeam and provi
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 <h1 class='subsection-title'>Oracle Nodes</h1>

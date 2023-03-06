@@ -4,6 +4,7 @@ description: Learn how to add wallet integrations, such as MetaMask and WalletCo
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 <h1 class='subsection-title'>Wallets</h1>

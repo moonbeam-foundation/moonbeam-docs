@@ -4,6 +4,7 @@ description: Dive into the Moonbeam smart contract platform through this compile
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 <h1 class='subsection-title'>Tutorials</h1>
