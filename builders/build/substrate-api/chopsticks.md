@@ -190,7 +190,7 @@ Each method can be invoked by connecting to the websocket (`ws://localhost:8000`
 
 Parameters can be described in the following ways:  
 
-- **`options` { "to": number, "count": number }** - optional, leave null to create one block. Use "to" to create blocks up to a certain value, use "count" to increase by a certain number of blocks  
+- **`options` { "to": number, "count": number }** - optional, leave `null` to create one block. Use `"to"` to create blocks up to a certain value, use `"count"` to increase by a certain number of blocks  
 - **`values` Object** - a JSON object resembling the path to a storage value, similar to what you would retrieve via Polkadot.js  
 - **`blockHash` string** - optional, the blockhash at which the storage value is changed
 - **`date` string** - a Date string (compatible with the JavaScript Date library) that will change the time stamp from which the next blocks being created will be at. All future blocks will be sequentially after that point in time
