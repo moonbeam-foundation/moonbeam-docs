@@ -104,7 +104,7 @@ The interface also includes the following events:
 - **SubmittedAfter**(*uint16 indexed* trackId, *uint32* referendumIndex, *bytes32* hash) - emitted when a referenda has been submitted *after* a given block
 - **DecisionDepositPlaced**(*uint32* index, *address* caller, *uint256* depositedAmount) - emitted when a Decision Deposit for a referendum has been placed
 - **DecisionDepositRefunded**(*uint32* index, *address* caller, *uint256* refundedAmount) - emitted when a Decision Deposit for a closed referendum has been refunded
-- **SubmissionDepositRefunded**(*uint32* index, *address* caller, *uint256* refundedAmount) - emitted whena Submission Deposit for a valid referendum has been refunded
+- **SubmissionDepositRefunded**(*uint32* index, *address* caller, *uint256* refundedAmount) - emitted when a Submission Deposit for a valid referendum has been refunded
 
 ## Interact with the Solidity Interface {: #interact-with-the-solidity-interface }
 
