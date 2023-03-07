@@ -311,17 +311,17 @@ We'll finish this function later, because we need to override one of the OpenZep
 
 ### Cross Chain Governor Counting Contract {: #cross-chain-governor-counting-contract }
 
-In order to properly store the cross-chain data from `_nonblockingLzReceive`, we need a place to store it! And we will, but the location will be in a parent contract instead.  
+Receiving cross-chain voting data from `_nonblockingLzReceive` is pointless if is not stored or counted. Instead of housing this in the `CrossChainDAO`, that logic and storage will be in a parent contract.  
 
-OpenZeppelin has divided many of the aspects of a DAO into multiple smart contracts, making it easier to replace sections of logic without having to change others. This helps with code base scalability and modularity, which we will take advantage of. We don't have to go over all of the different smart contracts that came with what came out of the OpenZeppelin smart contract wizard, but we do have to know about what the [`GovernorCountingSimple` contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/governance/extensions/GovernorCountingSimple.sol){target=_blank} does.  
+OpenZeppelin has divided many of the aspects of a DAO into multiple smart contracts, making it easier to replace sections of logic without having to change others. This helps with code base scalability and modularity, which we will take advantage of. We don't have to go over all of the different smart contracts that came with what came out of the OpenZeppelin smart contract wizard, but we do have to know what the [`GovernorCountingSimple` contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/governance/extensions/GovernorCountingSimple.sol){target=_blank} does.  
 
 The `GovernorCountingSimple` contract defines how votes are counted, and what votes are. It stores how many votes have been cast per proposal, what a vote can be (for, against, abstain), and it controls whether or not quorum has been reached.  
 
-Fortunately, a lot of the counting logic does not change. The only difference between our cross-chain variant and the single-chain variant is that the cross-chain variant must account for the collection phase and the votes that come with it. Let's add in some of that logic.  
+Fortunately, when converting to a cross-chain version, a lot of the counting logic does not change. The only difference between our cross-chain variant and the single-chain variant is that the cross-chain variant must account for the collection phase and the votes that come with it. Let's add in some of that logic.  
 
 Before we write any custom code ourselves, copy and paste the [`GovernorCountingSimple` contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/governance/extensions/GovernorCountingSimple.sol){target=_blank} into a new file named `CrossChainGovernorCountingSimple.sol`. You can get the contract from its repository or within the `node_modules` folder.  
 
-Let's start making changes. Rename the contract to `CrossChainGovernorCountingSimple`:  
+Let's start making changes. Let's rename the contract to `CrossChainGovernorCountingSimple`:  
 
 ```solidity
 abstract contract CrossChainGovernorCountingSimple is Governor {
@@ -329,7 +329,7 @@ abstract contract CrossChainGovernorCountingSimple is Governor {
 }
 ```
 
-Now let's add a constructor. This constructor will take in a `uint16[]` to define the spoke chains that the `CrossChainDAO` smart contract will connect with. In a production-ready cross-chain DAO, you would make this modifiable by governance instead of keeping it static at runtime.  
+Now let's add a constructor. This constructor will take in a `uint16[]` to define the spoke chains that the `CrossChainDAO` smart contract will connect with.  
 
 ```solidity
 // The lz-chain IDs that the DAO expects to receive data from during the collection phase
@@ -340,7 +340,12 @@ constructor(uint16[] memory _spokeChains) {
 }
 ```
 
-Let's also add an extra struct and a corresponding map of them that will store the vote data received from other chains.  
+!!! challenge
+    In a production-ready cross-chain DAO, you would make the spoke chains modifiable by governance instead of keeping it static. Can you add an additional function that would make this possible? Which address should have access to this function?  
+    
+    *Hint: replace the array with a mapping.*
+
+As alluded to, add a struct and a corresponding map of them that will store the vote data received from other chains.  
 
 ```solidity
 struct SpokeProposalVote {
@@ -354,7 +359,7 @@ struct SpokeProposalVote {
 mapping(uint256 => mapping(uint16 => SpokeProposalVote)) public spokeVotes;
 ```
 
-You might notice that it's based off of the [`ProposalVote` struct](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/dfcc1d16c5efd0fd2a7abac56680810c861a9cd3/contracts/governance/extensions/GovernorCountingSimple.sol#L23){target=_blank} that was taken from `GovernorCountingSimple`. The first difference is that the new struct includes a bool called `initialized` so that it's possible to check whether or not data was received from the spoke chain by retrieving the struct from the `spokeVotes` map. The second difference is that `SpokeProposalVote` does not include a map of users to votes because that information stays on the spoke chains and is not necessary for the calculations of whether or not a vote succeeded.  
+You might notice that the `SpokeProposalVote` is based off of the [`ProposalVote` struct](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/dfcc1d16c5efd0fd2a7abac56680810c861a9cd3/contracts/governance/extensions/GovernorCountingSimple.sol#L23){target=_blank} in `GovernorCountingSimple`. The first difference is that the new struct includes a bool called `initialized` so that it's possible to check whether or not data was received from the spoke chain by retrieving the struct from the `spokeVotes` map. The second difference is that `SpokeProposalVote` does not include a map of users to votes because that information stays on the spoke chains and is not necessary for the calculations of whether or not a vote succeeded.  
 
 !!! challenge
     The new `SpokeProposalVote` struct is very similar to the `ProposalVote` struct. Can you think of a more optimal data structure for the smart contract that requires only one struct?
@@ -390,9 +395,11 @@ function _voteSucceeded(uint256 proposalId) internal view virtual override retur
 }
 ```
 
-Here, the primary change is that it's not only the hub chain's votes being counted. By iterating through the stored cross-chain data by each of the spoke chain ids established in the constructor of this smart contract, the votes for each spoke chain are being added to the calculations as well.  
+Here, the primary change is that it's not only the hub chain's votes being counted. By iterating through the stored cross-chain data from each of the spoke chains, the votes for each spoke chain are being added to the quorum and vote success calculations.  
 
-That should be it for changes. In regards to the cross-chain data, the only thing left is to finally *store* it. While the variable that it must be stored in, `spokeVotes`, is in `CrossChainGovernorCountingSimple`, it must be set within `CrossChainDAO`. Move on to the next section, where we'll finish the implementation of `_nonblockingLzReceive`.
+That should be it for changes to how cross-chain votes are counted and stored. You can view the smart contract in its completed state in the [GitHub repository](https://github.com/jboetticher/cross-chain-dao/blob/main/contracts/CrossChainGovernorCountingSimple.sol){target=_blank}.  
+
+In regards to the cross-chain data, the only thing left is to finally *store* it. While the variable that it must be stored in, `spokeVotes`, is in `CrossChainGovernorCountingSimple`, it must be set within `CrossChainDAO`. Move on to the next section, where we'll finish the implementation of `_nonblockingLzReceive`.  
 
 ### Cross Chain DAO Contract Part 2 {: #cross-chain-dao-contract-part-2 }
 
