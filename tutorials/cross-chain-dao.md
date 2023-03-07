@@ -405,16 +405,17 @@ In regards to the cross-chain data, the only thing left is to finally *store* it
 
 Now it's time to come back to an implementation of the receiving function `onReceiveSpokeVotingData`, which will store the data received from spoke chains' cross-chain messages.  
 
-We have already defined what type of information we want. Here we get to define what kind of information we want from the other chains. Of course, when looking at the `SpokeProposalVote` struct defined previously, we want three vote values: `forVotes`, `againstVotes`, and `abstainVotes`. Plus, we want to know for which proposal the data recieved is for, so we also want a proposal ID. Let's destructure the payload within `onReceiveSpokeVotingData` with that in mind:  
+We have already defined what type of information we want in `CrossChainGovernorCountingSimple`. Here we get to define what kind of information we want from the other chains. Of course, when looking at the `SpokeProposalVote` struct defined previously, we want three vote values: `forVotes`, `againstVotes`, and `abstainVotes`. Plus, we want to know for which proposal the data received is for, so we also want a proposal ID. Let's deconstruct the payload within `onReceiveSpokeVotingData` with that in mind:  
 
 ```solidity
 function onReceiveSpokeVotingData(uint16 _srcChainId, bytes memory payload) internal virtual {
     (
+        , // uint16 option
         uint256 _proposalId,
         uint256 _for,
         uint256 _against,
         uint256 _abstain
-    ) = abi.decode(payload, (uint256, uint256, uint256, uint256));
+    ) = abi.decode(payload, (uint16, uint256, uint256, uint256, uint256));
 }
 ```
 
@@ -435,9 +436,9 @@ We can now store the data within the `spokeVotes` map defined in `CrossChainGove
     }
 ```
 
-That's it for the `onReceiveSpokeVotingData` function. It required a lot of setup, but now the smart contract is ready to receive collection info. But what about proposing and requesting data?  
+That's it for the `onReceiveSpokeVotingData` function. It required a lot of setup, but now the smart contract is ready to receive collection info. What about sending notices of proposals to other chains and requesting voting data?  
 
-OpenZeppelin's `Governor` smart contract came with a `propose` function, but unfortunately it doesn't work for our purposes. When a user sends a proposal, the smart contract needs to send cross-chain message to let the spoke chains know that there is a new proposal to vote on. But to transact those messages on the destination chains, we also need to pay for the gas. Most cross-chain protocols currently require extra gas paid in the origin chain's native currency for the destination chain's transaction, and that can only be sent via a payable function. The `propose` function is not payable, hence why we must write our own cross-chain version.  
+OpenZeppelin's `Governor` smart contract came with a `propose` function, but unfortunately it doesn't work for our purposes. When a user sends a proposal, the smart contract needs to send cross-chain messages to let the spoke chains know that there is a new proposal to vote on. But to transact those messages on the destination chains, we also need to pay for the gas. Most cross-chain protocols currently require extra gas paid in the origin chain's native currency for the destination chain's transaction, and that can only be sent via a payable function. The `propose` function is not payable, hence why we must write our own cross-chain version.  
 
 !!! note
     Technically, the cross-chain messages should be sent when the voting delay is over to sync with when the voting weight snapshot is taken. In this instance, since the proposal and snapshot are made at the same time.
@@ -453,9 +454,8 @@ function crossChainPropose(address[] memory targets, uint256[] memory values, by
 
         // Iterate over every spoke chain
         for (uint16 i = 0; i < spokeChains.length; i++) {
-            // Encoding a "0" as a function selector for the destination contract. 
             bytes memory payload = abi.encode(
-                0,
+                0, // Function selector "0" for destination contract
                 // Encoding the proposal start
                 abi.encode(proposalId, block.timestamp)
             );
@@ -476,12 +476,12 @@ function crossChainPropose(address[] memory targets, uint256[] memory values, by
 }
 ```
 
-This cross-chain version uses the original `propose` function included in the `Governor` smart contract, since all of its data structures and logic are still helpful. The only addition is a cross-chain message being sent to every spoke chain: which are stored in the `CrossChainGovernorCountingSimple` contract.  
+This cross-chain version uses the original `propose` function included in the `Governor` smart contract, since all of its data structures and logic are still helpful. The only addition is a cross-chain message with information on the proposal being sent to every spoke chain: the IDs of which are stored in the `CrossChainGovernorCountingSimple` contract.  
 
 !!! note
-    By using LayerZero, multiple messages must be sent in a single transaction so that every spoke chain can receive data. LayerZero, along with other cross-chain protocols, [is **unicast** instead of **multicast**](https://layerzero.gitbook.io/docs/faq/messaging-properties#multicast){target=_blank}. As in, a cross-chain message can only arrive to a single destination. When designing a hub-and-spoke architecture, research if your [protocol supports multicast messaging](https://book.wormhole.com/wormhole/3_coreLayerContracts.html?highlight=multicast#multicasting){target=_blank}, as it may end up being more succinct. 
+    By using LayerZero, multiple messages must be sent in a single transaction so that every spoke chain can receive data. LayerZero, along with other cross-chain protocols, [is **unicast** instead of **multicast**](https://layerzero.gitbook.io/docs/faq/messaging-properties#multicast){target=_blank}. As in, a cross-chain message can only arrive to a single destination. When designing a hub-and-spoke architecture, research if your [protocol supports multicast messaging](https://book.wormhole.com/wormhole/3_coreLayerContracts.html?highlight=multicast#multicasting){target=_blank}, as it may be more succinct. 
 
-Also note that in the cross-chain message, we are wrapping an `abi.encode` inside of another `abi.encode`. Remember when we designed the CrossChainDAO smart contract's receiving function to expect a function selector? This is the same idea, except now we're expecting the satellite smart contract to also implement these features. So in this case, `0` refers to receiving a new proposal.  
+Remember when we designed the `CrossChainDAO` smart contract's `_nonblockingLzReceive` function to expect a function selector? This is the same idea, except now we're expecting the satellite smart contract to also implement these features. So in this case, we've defined `0` as receiving a new proposal.  
 
 Now, let's add functions to begin and end the collections phase. This can be done with a new public facing function similar to the `execute` and `propose` functions. 
 
@@ -503,6 +503,7 @@ function requestCollections(uint256 proposalId) public payable {
     // it is their cue to send data back
     uint256 crossChainFee = msg.value / spokeChains.length;
     for (uint16 i = 0; i < spokeChains.length; i++) {
+        // Using "1" as the function selector
         bytes memory payload = abi.encode(1, abi.encode(proposalId));
         _lzSend({
             _dstChainId: spokeChains[i],
@@ -516,7 +517,7 @@ function requestCollections(uint256 proposalId) public payable {
 }
 ```
 
-Starting the collection phase requires that a proposal must exist and that the collection phase for the proposal has not started. Similar to the proposal function, this function sends a cross-chain message to every spoke chain.  
+Starting the collection phase requires that a proposal must exist and that the collection phase for the proposal has not started. Similar to the proposal function, this function sends a cross-chain message to every spoke chain. The only information that the message includes is a function selector and a proposal ID.    
 
 Finally, let's also make it so that the execution of a proposal cannot occur without the collection phase being finished:  
 
@@ -553,7 +554,7 @@ function finishCollectionPhase(uint256 proposalId) public {
 
 Here, before a proposal is executed, the collection phase must be finished. This ensures that a proposal will not be executed until all of the votes from all of the chains are counted.  
 
-If you wanted, you could turn the `requestCollections` function into a cross-chain action as well, but this will not be included in this tutorial.  
+If you wanted, you could turn the `requestCollections` function into a cross-chain action as well, but this will not be included in this tutorial. If you want to view the completed smart contract, it is available in its [GitHub repository](https://github.com/jboetticher/cross-chain-dao/blob/main/contracts/CrossChainDAO.sol){target=_blank}. 
 
 ### DAO Satellite Contract {: #dao-satellite-contract }
 
