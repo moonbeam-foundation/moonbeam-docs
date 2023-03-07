@@ -123,22 +123,17 @@ In Compound Finance's DAO, a user needed the COMP token to vote, which enables t
 
 The IVotes interface requires a lot of different functions to represent the different weights in a voting scheme. Fortunately, OpenZeppelin has provided an ERC-20 implementation of IVotes already, called [ERC20Votes](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/extensions/ERC20Votes.sol){target=_blank}.  
 
-Recall [from earlier](#intuition-and-planning){target=_blank} that we intend to have users vote on each chain, and only send data during the collection phase. This means that the voting weights must be stored on each chain. This is very easy, since all we have to do is ensure that the `ERC20Votes` contract is deployed on each chain, or in other words, make the DAO token a cross-chain token.  
+Recall [from earlier](#intuition-and-planning){target=_blank} that we intend to have users vote on each chain, and to only send voting data to the hub chain during the collection phase. This means that the voting weights must be stored on each chain. This is very easy, since all we have to do is ensure that the `ERC20Votes` contract is deployed on each chain, or in other words, make the DAO token a cross-chain token.  
 
+Previously, it was mentioned that LayerZero is being used as the cross-chain protocol for this tutorial. LayerZero was chosen because of their [OFT contract](https://github.com/LayerZero-Labs/solidity-examples/blob/main/contracts/token/oft/OFT.sol){target=_blank}, which makes it extremely easy to make an ERC-20 token cross chain. This doesn't mean that you have to use LayerZero though: every other cross-chain protocol has their own methods and ability to create cross-chain assets.  
 
-
-
-Previously, it was mentioned that LayerZero is being used for this tutorial. LayerZero was chosen because of their [OFT contract](https://github.com/LayerZero-Labs/solidity-examples/blob/main/contracts/token/oft/OFT.sol){target=_blank}, which makes it extremely easy to make an ERC-20 token cross chain. This doesn't mean that you have to use LayerZero though: every other cross-chain protocol has their own methods and ability to create cross-chain assets.  
-
-To use LayerZero's OFT smart contracts, install them as a package:  
+To use LayerZero's OFT smart contracts in a smart contract project, you can install them as a package:  
 
 ```
 npm i @layerzerolabs/solidity-examples
 ```
 
-Then, create a new file in the `contracts` folder named `OFTVotes`.  
-
-Add the following:  
+We will create a new file named `OFTVotes`:  
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -155,7 +150,7 @@ abstract contract OFTVotes is OFTCore, ERC20Votes, IOFT {
 }
 ``` 
 
-As you can see, `OFTVotes` is an abstract smart contract that inherits from the `OFTCore`, `ERC20Votes`, and `IOFT` smart contracts. This will give it both cross-chain ERC-20 properties as well as voting properties if properly implemented. So let's do that by adding the following functions to the `OFTVotes` smart contract:  
+As you can see, `OFTVotes` is an abstract smart contract that inherits from the `OFTCore`, `ERC20Votes`, and `IOFT` smart contracts. This will give it both cross-chain ERC-20 properties as well as voting properties if properly implemented. Let's add the following function overrides to the `OFTVotes` smart contract:  
 
 ```solidity
 function supportsInterface(bytes4 interfaceId) public view virtual override(OFTCore, IERC165) returns (bool) {
@@ -183,9 +178,7 @@ function _creditTo(uint16, address _toAddress, uint _amount) internal virtual ov
 }
 ```
 
-Most of these functions are just ensuring compatibility with the smart contract that they inherit from. The `supportsInterface` function supports the `IERC165` standard. The `token` function indicates that, yes, the token smart contract _is indeed_ the token smart contract (some OFT implementations may want to separate the cross-chain and token aspects into different contracts). The `circulatingSupply` smart contract just rewraps circulating supply as the current `totalSupply`.  
-
-The `_debitFrom` function is a little spicier: it includes logic to to burn tokens so that the token bridge works. Similarly, the `_creditTo` function includes logic to mint tokens. These two functions are required by the `OFTCore` smart contract. If you wondering why minting and burning is involved when most bridges wrap, it's because OFT [teleports assets](builders/xcm/overview/#xcm-transport-protocols){target=_blank} instead of wrapping them (similar to one of the XCM asset protocols).  
+Most of these functions are just ensuring compatibility with the smart contracts that they inherit from. The `_debitFrom` function is a little spicier: it includes logic to burn tokens so that the token bridge works. Similarly, the `_creditTo` function includes logic to mint tokens. These two functions are required by the `OFTCore` smart contract. If you are wondering why minting and burning is involved when most bridges wrap, it's because OFT [teleports assets](builders/xcm/overview/#xcm-transport-protocols){target=_blank} instead of wrapping them (similar to one of the XCM asset protocols).  
 
 The `OFTVotes` contract is abstract, so lets create a final smart contract that we'll deploy. In the `contracts` folder, create a new smart contract called `CrossChainDAOToken.sol` and add the following:  
 
@@ -219,15 +212,15 @@ contract CrossChainDAOToken is OFTVotes {
 }
 ```
 
-This smart contract isn't very special, since all it really does is add metadata and mint preliminary tokens to the user. All of the overriden functions are only there because of solidity rules, and simply default to the super implementation. The only reason we didn't add the metadata to `CrossChainDAOToken` is because in theory that smart contract could be reused elsewhere.  
+This smart contract isn't very special, since all it really does is add metadata in the constructor and mint preliminary tokens to the user. All of the overriden functions are only there because of solidity rules, and they simply default to a parent contract's implementation. The only reason we didn't add the metadata to `OFTVotes` is because in theory that smart contract could be reused elsewhere.  
 
-The `CrossChainDAOToken` smart contract is now ready for deployment. You can check it against the [example repository](https://github.com/jboetticher/cross-chain-dao/blob/main/contracts/CrossChainDAOToken.sol){target=_blank} to see if you wrote it along the same lines.  
+The `CrossChainDAOToken` smart contract is now ready for deployment on both spoke and hub chains. You can check its complete version in the [example repository](https://github.com/jboetticher/cross-chain-dao/blob/main/contracts/CrossChainDAOToken.sol){target=_blank}.  
 
 ### Cross Chain DAO Contract Part 1 {: #cross-chain-dao-contract-part-1 }
 
-Now to the meat and potatoes of this tutorial: the cross chain DAO. First off, not *all* of the cross-chain logic will be stored in the cross-chain DAO smart contract. Instead, we will separate the hub logic into one contract and the [spoke chain logic into another](#dao-satellite-contract). This makes sense because of the hub-and-spoke model: some of the logic is stored on a single hub chain while the spoke chains interface with it through a simpler satellite contract. We don't need logic meant to be on spoke chains to be on the hub chain.  
+Now to the meat of this tutorial: the cross chain DAO. To be clear, not *all* of the cross-chain logic will be stored in the cross-chain DAO smart contract. Instead, we will separate the hub logic into one contract and the [spoke chain logic into another](#dao-satellite-contract). This makes sense because of the hub-and-spoke model: some of the logic is stored on a single hub chain while the spoke chains interface with it through a simpler satellite contract. We don't need logic meant to be on spoke chains to be on the hub chain.  
 
-We've already got a base for the cross-chain DAO when we used the OpenZeppelin Wizard in a [previous step](#writing-the-cross-chain-dao). It's time to edit it so that it is cross-chain. Let's list out the different things that need to be added:  
+We've already got a base for the cross-chain DAO when we used the OpenZeppelin Wizard in a [previous step](#writing-the-cross-chain-dao). It's time to edit it so that it is cross-chain. Let's list out the different functionalities that need to be added:  
 
 1. Support for cross-chain messaging (through LayerZero in this specific example)
 2. A new collection phase between voting and execution
@@ -235,7 +228,9 @@ We've already got a base for the cross-chain DAO when we used the OpenZeppelin W
 4. Receiving the collection of votes from spoke chains
 5. (Optional) Receiving cross-chain messages to do non-voting actions, like proposing or executing
 
-Let's start with the first thing: supporting cross-chain messaging. For this implementation, we will use the `NonblockingLzApp` smart contract provided by LayerZero to make it easy to receive and send cross-chain messages, but as long as the cross-chain protocol of your choice has the ability to receive a generic bytes payload, you can follow along with a different parent smart contract. Let's import the smart contract and add it to the parent smart contracts of `CrossChainDAO`:  
+Let's start with the first task: supporting cross-chain messaging. For this implementation, we will use the `NonblockingLzApp` smart contract provided by LayerZero to make it easy to receive and send cross-chain messages. Most cross-chain protocols will have some smart contract to inherit from to receive a generic bytes payload, so you can use similar logic with a different parent smart contract.  
+
+Let's import `NonblockingLzApp` and add it to the parent smart contracts of `CrossChainDAO`:  
 
 ```solidity
 // ...other imports go here
@@ -257,7 +252,7 @@ The `NonblockingLzApp` smart contract also requires an addition to the construct
     { }
 ```
 
-If you run the compiler with `npx hardhat compile`, it will give you an error because the abstract contract `NonblockingLzApp` isn't satisfied. The smart contract needs instructions on what to do when it receives cross-chain data data. To do this, you should override the following function like so:  
+The abstract contract `NonblockingLzApp` requires instructions on what to do when it receives cross-chain data data. To do this, override the following function like so:  
 
 ```solidity
 function _nonblockingLzReceive( uint16 _srcChainId, bytes memory, uint64, bytes memory _payload) internal override {
@@ -265,15 +260,21 @@ function _nonblockingLzReceive( uint16 _srcChainId, bytes memory, uint64, bytes 
 }
 ```
 
-Now, what to put in the function? Let's think back to the requirements. For incoming messages, we must be able to receive the voting data from other chains during the collection phase. But we might also want to receive messages that do other actions, like execute or propose (for sake of simplicity, we won't in this tutorial, but it's good to think about it). What to do?  
+Now, what to put in the function? Let's think back to the requirements. For incoming messages, we must be able to receive the voting data from other chains during the collection phase. But we might also want to receive messages that do other actions, like execution or propose. How do we resolve this issue?  
 
-Let's think about the EVM. How does a smart contract know that a transaction wants to call a specific function? Each function has a function selector, a hashed value that is mapped to a specific action. We can do the same thing, but with cross-chain messages and with integers instead of hashed hexadecimals.  
+!!! note
+    For sake of simplicity, we won't implement cross-chain execution or proposals in this tutorial. The function selector concept is being introduced because it is an important topic in cross-chain DApps.  
+
+Let's think about the EVM. How does a smart contract know that a transaction wants to call a specific function? Each function has a function selector, a hashed value that is mapped to a specific action. We can do the same thing, but with cross-chain messages and with integers instead of hashes.  
 
 Add the following code to the `_nonblockingLzReceive` function:  
 
 ```solidity
-// Gets a function selector option, and more generic bytes
-(uint256 option, bytes memory payload) = abi.decode(_payload,(uint16, bytes));
+// Gets a function selector option
+uint16 option;
+assembly {
+    option := mload(add(_payload, 32))
+}
 
 // Some options for cross-chain actions are: propose, vote, vote with reason, vote with reason and params, cancel, etc...
 if (option == 0) {
@@ -287,14 +288,16 @@ if (option == 0) {
 
 When cross-chain messages are received (from any cross-chain protocol), they come with an arbitrary bytes payload. Typically this bytes payload is created from an invocation of `abi.encode`, where multiple types of data are inserted. For the smart contract that receives this data, data must be decoded with `abi.decode`, where information is decoded in a manner that is expected. For example, if the receiving smart contract's logic requires a `uint16` and an `address` to function properly, it will decode by including `abi.decode(payload, (uint16, address))`.  
 
-When we have multiple functionalities packed into a message with a single payload, that payload might come in multiple formats. Hence, we double-pack the payload. We will revisit this concept when writing the [`DAOSatellite` contract](#dao-satellite-contract).  
+When we have multiple functionalities packed into a message with a single payload, that payload might come in multiple formats, since different functions will require different bytes. Hence, we must examine the function selector before decoding the entire message.  
 
-So, the first line of code decodes the arbitrary payload injected into the function into:
+By convention, we will define the function selector as a `uint16` variable stored at the start of the bytes payload. From here on out, we will ensure in our design that **every cross-chain message sent will have this `uint16` function selector at the start of its payload**.  
 
-1. A function selector 
-2. Another arbitrary payload
+The assembly block loads data at `payload's address + 32 bytes` into the `option` variable. Understanding why this is necessary requires a bit of understanding of how `abi.encode` works. The first 32 bytes in an ABI encoded payload are dedicated to information on the entire payload's size. After these first 32 bytes, the rest of the information stored, which in this case is the function selector.  
 
-In the if statement below the initial decoding, the number 0 maps to the option to receive the voting data from the other chains. You could add additional functionality to the next number, 1, such as proposing or executing. Feel free to do so in your own time.  
+!!! note
+    The `abi.encode` function is used the most because it has the most support for dynamic types, but you could feasibly use `abi.encodePacked` if your use case permits. Assembly-level logic would have to change if you chose to make this change.
+
+In the if statement below the assembly block, the number 0 maps to the option to receive the voting data from the other chains. You could add additional functionality to the next number, 1, such as proposing or executing. Feel free to do so in your own time. We will revisit this concept when writing the [`DAOSatellite` contract](#dao-satellite-contract).  
 
 In the first block of the if statement, a function is being called, with the `_srcChainId` and the newly unwrapped `payload` being injected into it. We haven't written the `onReceiveSpokeVotingData` function yet, so let's add it to the smart contract:  
 
