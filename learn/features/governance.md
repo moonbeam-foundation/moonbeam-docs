@@ -13,7 +13,7 @@ The goal of Moonbeam’s governance mechanism is to advance the protocol accordi
 
 Governance forums like the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=_blank} and [Polkassembly](https://moonbeam.polkassembly.network/){target=_blank} enable open discussion and allow proposals to be refined based on community input. Autonomous enactments and [forkless upgrades](https://wiki.polkadot.network/docs/learn-runtime-upgrades#forkless-upgrades/){target=_blank} unite the community towards a shared mission to advance the protocol.
 
-With the rollout of OpenGov (originally referred to as Gov2), the second phase of governance in Polkadot, several modifications have been introduced to the governance process. You can read the [OpenGov: What is Polkadot Gov2](https://moonbeam.network/blog/opengov/){target=_blank} blog post, which provides an overview of all of the changes made in OpenGov. **OpenGov has launched on Moonriver, and once it has been rigorously tested, a proposal will be made for it to be launched on Moonbeam**. Until then, Moonbeam still uses Goverance v1.
+With the rollout of OpenGov (originally referred to as Gov2), the second phase of governance in Polkadot, several modifications have been introduced to the governance process. You can read the [OpenGov: What is Polkadot Gov2](https://moonbeam.network/blog/opengov/){target=_blank} blog post, which provides an overview of all of the changes made in OpenGov. **OpenGov has launched on Moonriver, and once it has been rigorously tested, a proposal will be made for it to be launched on Moonbeam**. Until then, Moonbeam still uses Governance v1.
 
 ## Principles {: #principles } 
 
@@ -43,7 +43,7 @@ For more details on how these Substrate frame pallets implement on-chain governa
 
 ## Governance v2: OpenGov {: #opengov}
 
-This section will cover everything you need to know about OpenGov on Moonriver and Moonbase Alpha. If you're looking for governance-related information on Moonbeam, please refer to the [Goveranance v1](#governance-v1) section.
+This section will cover everything you need to know about OpenGov on Moonriver and Moonbase Alpha. If you're looking for governance-related information on Moonbeam, please refer to the [Governance v1](#governance-v1) section.
 
 ### General Definitions {: #general-definitions-gov2 }
 
@@ -245,7 +245,7 @@ While still subject to governance, the idea behind the Whitelist track is that i
 
 The OpenGov Technical Committee is made up of members of the community who have technical knowledge and expertise in Moonbeam-based networks. 
 
-### Related Guides on Goverance v2 {: #try-it-out } 
+### Related Guides on Governance v2 {: #try-it-out } 
 
 For related guides on submitting and voting on referenda on Moonbeam with Governance v1, please check the following guides:
 
@@ -257,7 +257,7 @@ For related guides on submitting and voting on referenda on Moonbeam with Govern
 
 ## Governance v1 {: #governance-v1 }
 
-While OpenGov is being tested on Moonriver, Moonbeam will continue to use goverance v1. This section will cover everything you need to know about governance v1 on Moonbeam.
+While OpenGov is being tested on Moonriver, Moonbeam will continue to use governance v1. This section will cover everything you need to know about governance v1 on Moonbeam.
 
 ### General Definitions {: #general-definitions } 
 
@@ -379,7 +379,7 @@ In the previous example, these numbers were:
 
 In short, a heavy Super-Majority of "Aye" votes is required to approve a proposal at low turnouts, but as turnout increases, it becomes a simple majority.
 
-### Related Guides on Goverance v1 {: #try-it-out } 
+### Related Guides on Governance v1 {: #try-it-out } 
 
 For related guides on submitting and voting on referenda on Moonbeam with Governance v1, please check the following guides:
 
