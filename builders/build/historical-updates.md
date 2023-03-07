@@ -150,7 +150,7 @@ For more information, you can review the [relative Frontier PR on GitHub](https:
 
 #### Incorrect Handling of EIP-1559 Gas Fees {: #incorrect-gas-fees-eip1559 }
 
-With the introduction of EIP-1559 support, the logic for handling `maxFeePerGas` and `maxPriorityFeePerGas` was implemented incorrectly, and as a result, the `maxPriorityFee` was added to the `baseFee` even if the total amount was over the `maxFeePerGas`. 
+With the introduction of EIP-1559 support, the logic for handling `maxFeePerGas` and `maxPriorityFeePerGas` was implemented incorrectly, and as a result, the `maxPriorityFeePerGas` was added to the `baseFee` even if the total amount was over the `maxFeePerGas`. 
 
 This bug existed during the following runtimes and block ranges:
 
