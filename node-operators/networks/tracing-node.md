@@ -93,7 +93,7 @@ Now, execute the docker run command. Note that you have to:
 !!! note
     For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`.
     
-    For client versions prior to v0.30.0, `--rpc-port` was used to specify the port for HTTP connections and `--ws-port` was used to specify the port for WS connections. As of client v0.30.0, the `--ws-port` flag is for both HTTP and WS connections.
+    For client versions prior to v0.30.0, `--rpc-port` was used to specify the port for HTTP connections and `--ws-port` was used to specify the port for WS connections. As of client v0.30.0, the `--rpc-port` has been deprecated and the `--ws-port` flag is for both HTTP and WS connections. Similarly, the `--rpc-max-connections` flag has been deprecated and is now hardcoded to 100. You can use `--ws-max-connections` to adjust the combined HTTP and WS connection limit.
 
 The complete command for running a tracing node is as follows:
 
@@ -257,7 +257,7 @@ The next step is to create the systemd configuration file, you'll need to:
 !!! note
     For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`.
     
-    For client versions prior to v0.30.0, `--rpc-port` was used to specify the port for HTTP connections and `--ws-port` was used to specify the port for WS connections. As of client v0.30.0, the `--ws-port` flag is for both HTTP and WS connections.
+    For client versions prior to v0.30.0, `--rpc-port` was used to specify the port for HTTP connections and `--ws-port` was used to specify the port for WS connections. As of client v0.30.0, the `--rpc-port` has been deprecated and the `--ws-port` flag is for both HTTP and WS connections. Similarly, the `--rpc-max-connections` flag has been deprecated and is now hardcoded to 100. You can use `--ws-max-connections` to adjust the combined HTTP and WS connection limit.
 
 === "Moonbeam"
     ```
