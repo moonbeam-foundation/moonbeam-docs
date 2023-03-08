@@ -115,7 +115,7 @@ The minimum gas price for each network is as follows:
 === "Moonbase Alpha (Dynamic)"
     |     Variable      |   Value   |
     |:-----------------:|:---------:|
-    | Minimum Gas Price | 1.25 Gwei |
+    | Minimum Gas Price | 0.125 Gwei |
 
 To calculate the dynamic base fee, the following calculation is used:
 
