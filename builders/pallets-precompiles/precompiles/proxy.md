@@ -18,6 +18,14 @@ To learn more about proxy accounts and how to set them up for your own purposes 
 
 The proxy precompile is only available on Moonbase Alpha and is located at the following address:
 
+=== "Moonbeam"
+     ```
+     {{networks.moonbeam.precompiles.proxy}}
+     ```
+=== "Moonriver"
+     ```
+     {{networks.moonriver.precompiles.proxy}}
+     ```
 === "Moonbase Alpha"
      ```
      {{networks.moonbase.precompiles.proxy}}
