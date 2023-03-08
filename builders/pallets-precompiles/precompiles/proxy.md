@@ -16,7 +16,7 @@ If a user wanted to provide a second user access to a limited number of actions 
 
 To learn more about proxy accounts and how to set them up for your own purposes without use of the proxy precompile, view the [Setting up a Proxy Account](/tokens/manage/proxy-accounts){target=_blank} page.
 
-The proxy precompile is only available on Moonbase Alpha and is located at the following address:
+The proxy precompile is located at the following address:
 
 === "Moonbeam"
      ```
