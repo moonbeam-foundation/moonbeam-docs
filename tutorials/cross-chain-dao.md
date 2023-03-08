@@ -610,6 +610,10 @@ IVotes public immutable token;
 uint256 public immutable targetSecondsPerBlock;
 mapping(uint256 => RemoteProposal) public proposals;
 mapping(uint256 => ProposalVote) public proposalVotes;
+
+function isProposal(uint256 proposalId) view public returns(bool) {
+    return proposals[proposalId].localVoteStart != 0;
+}
 ```
 
 The constructor defines what the hub chain is (every chain has its own ID in LayerZero, and every other cross-chain protocol), the LayerZero endpoint, the cross-chain token that defines voting weight, and the average seconds per block on this weight (more on that later).  
@@ -622,10 +626,6 @@ Since this smart contract inherits from `NonblockingLzApp`, it requires `_nonblo
 Keeping that in mind, let's start with writing the receiving function `_nonblockingLzReceive` with a function selector just like the `CrossChainDAO`:  
 
 ```solidity
-function isProposal(uint256 proposalId) view public returns(bool) {
-    return proposals[proposalId].localVoteStart != 0;
-}
-
 function _nonblockingLzReceive(uint16 _srcChainId, bytes memory, uint64, bytes memory _payload) internal override {
     require(_srcChainId == hubChain, "Only messages from the hub chain can be received!");
 
@@ -637,7 +637,7 @@ function _nonblockingLzReceive(uint16 _srcChainId, bytes memory, uint64, bytes m
     // Do 1 of 2 things:
     // 0. Begin a proposal on the local chain, with local block times
     if (option == 0) { }
-    // 1. Send vote results back to the local chain
+    // 1. Send vote results back to the hub chain
     else if (option == 1) { }
 }
 ```
@@ -669,7 +669,7 @@ This is some funky code because of a funky issue. Let's start at the first two l
 
 Afterwards, some funky calculations are made to generate a `cutOffBlockEstimation`. This is a series of calculations to convert a timestamp to a block on the local spoke chain as accurately as possible. While it may not matter as much when people can start voting, it does matter when the vote weight snapshot is made. If the vote weight snapshot is made too far apart between the spoke and hub chains, a user could send a token from one chain to another and effectively double their voting weight. Note that the calculations made in the example code above are not enough to ensure a correct setup. Some [example mitigation strategies](#double-weight-attack-from-snapshot-mismatch) are listed below, but are too complex to investigate in detail for this tutorial. In the meantime, the only strategy is to subtract blocks from the current block based off of the timestamp a predetermined seconds-per-block estimate.  
 
-After the calculation, a `RemoteProposal` struct is added to the proposals map, effectively registering it on the spoke chain.  
+After the calculation, a `RemoteProposal` struct is added to the proposals map, effectively registering the proposal and its voting related data on the spoke chain.  
 
 Now let's look at how to send vote results back to the hub chain:  
 
@@ -696,7 +696,7 @@ proposals[proposalId].voteFinished = true;
 
 This logic is relatively simple: first retrieving the proposal ID from the cross-chain message. Then, getting the data for said proposal from the relevant map. Next, encoding that data into a payload as defined by the `CrossChainDAO`. Finally, sending that data through LayerZero. The only issue here is that the gas payment for the cross-chain message's transaction on the hub chain must be included, and there is no simple way to receive it. There are [options that potentially avert this issue as explained below](#chained-cross-chain-message-fees), but for simplicity's sake, the satellite contract will have to be sent native currency every once in a while.  
 
-Finally, the last thing to add is a vote mechanism that allows users to vote. This mechanism is nearly exactly the same as the mechanism in the `GovernorVotingSimple` smart contract, so much of the code can be copied over:  
+Finally, the last thing to add is a vote mechanism that allows users to vote. This mechanism is nearly exactly the same as the mechanism in the [`GovernorCountingSimple` smart contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/governance/extensions/GovernorCountingSimple.sol){target=_blank}, so much of the code can be copied over:  
 
 ```
 function castVote(uint256 proposalId, uint8 support) public virtual returns (uint256 balance)
@@ -736,12 +736,16 @@ function _countVote(uint256 proposalId, address account, uint8 support, uint256 
 }
 ```
 
-The `castVote` function requires that:  
+Note that the `castVote` function requires that:  
 
 1. The proposal isn't finished
 2. The proposal exists, as in, there is data that's stored within the `proposals` map.
 
-In fact, the `_countVote` function is directly copied from the hub chain! Much of the logic of single-chain dApps can be reused in cross-chain dApps with minor tweaks.  
+In fact, the `_countVote` function is [directly copied](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4fb6833e325658946c2185862b8e57e32f3683bc/contracts/governance/extensions/GovernorCountingSimple.sol#L78){target=_blank} from the hub chain! Much of the logic of single-chain dApps can be reused in cross-chain dApps with minor tweaks.  
+
+That's it for breaking down the satellite contract. It was more or less simple because most of the logic is just a reflection of what happens on the hub chain. You can view the completed smart contract in its [GitHub repository](https://github.com/jboetticher/cross-chain-dao/blob/main/contracts/DAOSatellite.sol){target=_blank}.  
+
+**TODO: insert the smart contract communicating image from way above here**
 
 ## Caveats and Other Designs {: #caveats-and-other-designs }
 
