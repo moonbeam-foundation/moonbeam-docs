@@ -94,33 +94,36 @@ To calculate the fee incurred on a Moonbeam transaction sent via the Ethereum AP
     Transaction Fee = (GasPrice * TransactionWeight) / {{ networks.moonbase.tx_weight_to_gas_ratio }}
     ```
 
-!!! note
-    If calculating the transaction fee for RT2100 or later on **Moonbase Alpha only**, you'll need to calculate the `BaseFee` using: `BaseFee = NextFeeMultiplier * 1250000000 / 10^18`. For Moonbeam or Moonriver, or Moonbase Alpha prior to RT2100, you can use the constant `BaseFee` values outlined below.
-
-The following sections describe in more detail each of the components to calculate the transaction fee.
+The following sections describe in more detail each of the components needed to calculate the transaction fee.
 
 ### Base Fee {: #base-fee}
 
-The `BaseFee` was introduced in [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank}, and is a value set by the network itself. 
+The `BaseFee` was introduced in [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank}, and is a value set by the network itself. Moonbeam has its own [dynamic fee mechanism](https://forum.moonbeam.foundation/t/proposal-status-idea-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=_blank} for calculating the base fee, which is adjusted based on block congestion. The dynamic fee mechanism was rolled out to Moonbase Alpha in runtime 2100 and Moonriver in runtime 2200. While the dynamic fee system is being tested out on Moonriver and Moonbase Alpha, Moonbeam continues to use a static, hard-coded base fee.
 
-The `BaseFee` is static on Moonbeam and Moonriver, and as of RT2100, is dynamic on Moonbase Alpha. The static base fee for each network has the following assigned value:
+The minimum gas price for each network is as follows:
 
-=== "Moonbeam"
-    | Variable |  Value   |
-    |:--------:|:--------:|
-    | BaseFee  | 100 Gwei |
+=== "Moonbeam (Static)"
+    |     Variable      |  Value   |
+    |:-----------------:|:--------:|
+    | Minimum Gas Price | 100 Gwei |
 
-=== "Moonriver"
-    | Variable | Value  |
-    |:--------:|:------:|
-    | BaseFee  | 1 Gwei |
+=== "Moonriver (Dynamic)"
+    |     Variable      |   Value   |
+    |:-----------------:|:---------:|
+    | Minimum Gas Price | 1.25 Gwei |
 
-=== "Moonbase Alpha (prior to RT2100)"
-    | Variable | Value  |
-    |:--------:|:------:|
-    | BaseFee  | 1 Gwei |
+=== "Moonbase Alpha (Dynamic)"
+    |     Variable      |   Value   |
+    |:-----------------:|:---------:|
+    | Minimum Gas Price | 0.125 Gwei |
 
-**RT2100** introduced a new dynamic fee mechanism to **Moonbase Alpha only** that closely resembles [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank}, where the `BaseFee` is adjusted based on block congestion. Consequently, you need to estimate the `BaseFee` for each block using `NextFeeMultiplier`. The value of `NextFeeMultiplier` can be retrieved from the Substrate Sidecar API, via the following endpoint:
+To calculate the dynamic base fee, the following calculation is used:
+
+```
+BaseFee = NextFeeMultiplier * 1250000000 / 10^18
+```
+
+The value of `NextFeeMultiplier` can be retrieved from the Substrate Sidecar API, via the following endpoint:
 
 ```
 GET /pallets/transaction-payment/storage/nextFeeMultiplier?at={blockId}
@@ -140,7 +143,7 @@ RESPONSE JSON Storage Object:
     |--value
 ```
 
-The relevant data will be stored in the `value` key of the JSON object. This value is a fixed point data type, hence the real value is found by divided the `value` by `10^18`. This is why [the calculation of `BaseFee`](#ethereum-api-transaction-fees) includes such an operation. Please review the [RT2100 sample code](/builders/get-started/eth-compare/tx-fees/#sample-code) provided at the end of this page.
+The relevant data will be stored in the `value` key of the JSON object. This value is a fixed point data type, hence the real value is found by dividing the `value` by `10^18`. This is why [the calculation of `BaseFee`](#ethereum-api-transaction-fees) includes such an operation. Please review the [RT2100 sample code](#sample-code) provided at the end of this page.
 
 ### GasPrice, MaxFeePerGas and MaxPriorityFeePerGas {: #gasprice-maxfeepergas-maxpriorityfeepergas }
 
@@ -186,7 +189,7 @@ extrinsics[extrinsic_number].events[event_number].data[0].weight
 
 As seen in the sections above, there are some key differences between the transaction fee model on Moonbeam and the one on Ethereum that developers should be mindful of when developing on Moonbeam:
 
-  - With the introduction of **RT2100**, the [dynamic fee mechanism](https://forum.moonbeam.foundation/t/proposal-status-idea-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=_blank} used in Moonbase Alpha resembles that of [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank} but the implementation is different
+  - The [dynamic fee mechanism](https://forum.moonbeam.foundation/t/proposal-status-idea-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=_blank} used in Moonriver and Moonbase Alpha resembles that of [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank} but the implementation is different
 
   - The amount of gas used in Moonbeam's transaction fee model is mapped from the transaction's Substrate extrinsic weight value via a fixed factor of {{ networks.moonbase.tx_weight_to_gas_ratio }}. This value is then multiplied with the unit gas price to calculate the transaction fee. This fee model means it can potentially be significantly cheaper to send transactions such as basic balance transfers via the Ethereum API than the Substrate API
 
@@ -251,14 +254,14 @@ The following curl example will return the gas information of the last 10 blocks
 
 The following code snippet uses the [Axios HTTP client](https://axios-http.com/){target=_blank} to query the [Sidecar endpoint `/blocks/head`](https://paritytech.github.io/substrate-api-sidecar/dist/#operations-tag-blocks){target=_blank} for the latest finalized block. It then calculates the transaction fees of all transactions in the block according to the transaction type (for Ethereum API: legacy, EIP-1559 or EIP-2930 standards, and for Substrate API), as well as calculating the total transaction fees in the block. 
 
-The dynamic fee calculation snippet below is only applicable to Moonbase Alpha as of RT2100. So, if you're calculating fees for Moonbase Alpha prior to RT2100, or for Moonbeam or Moonriver, please use the static fee calculation snippet.
+To calculate transaction fees on Moonbeam, you'll need to use the following static fee calculation snippet. For Moonriver and Moonbase Alpha, you'll use the dynamic fee calculation snippet.
 
 The following code sample is for demo purposes only and should not be used without modification and further testing in a production environment. 
 
 === "Static Fee Calculation"
-    --8<-- 'code/vs-ethereum/tx-fees-block-2000.md'
+    --8<-- 'code/vs-ethereum/tx-fees-block-static.md'
 
-=== "Dynamic Fee Calculation (Moonbase Alpha only)"
-    --8<-- 'code/vs-ethereum/tx-fees-block-2100.md'
+=== "Dynamic Fee Calculation"
+    --8<-- 'code/vs-ethereum/tx-fees-block-dynamic.md'
 
 --8<-- 'text/disclaimers/third-party-content.md'
