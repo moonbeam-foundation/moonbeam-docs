@@ -476,7 +476,7 @@ function crossChainPropose(address[] memory targets, uint256[] memory values, by
 }
 ```
 
-This cross-chain version uses the original `propose` function included in the `Governor` smart contract, since all of its data structures and logic are still helpful. The only addition is a cross-chain message with information on the proposal being sent to every spoke chain: the IDs of which are stored in the `CrossChainGovernorCountingSimple` contract.  
+This cross-chain version uses the original `propose` function included in the `Governor` smart contract, since all of its data structures and logic are still helpful. The only addition is a cross-chain message with information on the proposal (ID & snapshot timestamp) being sent to every spoke chain: the IDs of which are stored in the `CrossChainGovernorCountingSimple` contract.  
 
 !!! note
     By using LayerZero, multiple messages must be sent in a single transaction so that every spoke chain can receive data. LayerZero, along with other cross-chain protocols, [is **unicast** instead of **multicast**](https://layerzero.gitbook.io/docs/faq/messaging-properties#multicast){target=_blank}. As in, a cross-chain message can only arrive to a single destination. When designing a hub-and-spoke architecture, research if your [protocol supports multicast messaging](https://book.wormhole.com/wormhole/3_coreLayerContracts.html?highlight=multicast#multicasting){target=_blank}, as it may be more succinct. 
@@ -560,7 +560,7 @@ If you wanted, you could turn the `requestCollections` function into a cross-cha
 
 So far, we've only talked about the cross-chain DAO and its accompanying token. The cross-chain DAO is never deployed on the spoke chains, because it wouldn't be efficient to replicate *all* of the data across each spoke chain. But, we still need an interface to work with the `CrossChainDAO` smart contract on the spoke chains. Hence, we will create a satellite contract named `DAOSatellite`.  
 
-Create a new file in the `contracts` folder called `DAOSatellite.sol`. Add the following dependencies and contract in the file:  
+Let's add the following dependencies and contract to a new contract `DAOSatellite`:  
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -576,7 +576,7 @@ contract DAOSatellite is NonblockingLzApp {
 }
 ```
 
-Let's also add a constructor, some structs, and storage variables to use later:  
+Let's also add a constructor, some structs, and storage variables to use later. They're mainly stripped down versions of what are found in the `CrossChainDAO` and its parent contracts:  
 
 ```solidity
 struct ProposalVote {
@@ -612,12 +612,12 @@ mapping(uint256 => RemoteProposal) public proposals;
 mapping(uint256 => ProposalVote) public proposalVotes;
 ```
 
-The constructor defines what the hub chain is (every chain has its own ID in LayerZero, and every other cross-chain protocol), the LayerZero endpoing, the cross-chain token that defines voting weight, and the average seconds per block on this weight (more on that later).  
+The constructor defines what the hub chain is (every chain has its own ID in LayerZero, and every other cross-chain protocol), the LayerZero endpoint, the cross-chain token that defines voting weight, and the average seconds per block on this weight (more on that later).  
 
-Since this smart contract inherits from `NonblockingLzApp`, it requires a function to receive cross-chain messages. This smart contract communicates with the `CrossChainDAO` smart contract, and we know that there are currently two instances that the `CrossChainDAO` sends a message:  
+Since this smart contract inherits from `NonblockingLzApp`, it requires `_nonblockingLzReceive` to receive cross-chain messages. This smart contract communicates with the `CrossChainDAO` smart contract, and recall that there are currently two instances that the `CrossChainDAO` sends a message:  
 
-1. When the `CrossChainDAO` wants to notify the spoke chains of a new proposal
-2. When the `CrossChainDAO` wants the spoke chains to send their voting data to the hub chain  
+1. When the `CrossChainDAO` wants to notify the spoke chains of a new proposal (function selector is 0)  
+2. When the `CrossChainDAO` wants the spoke chains to send their voting data to the hub chain (function selector is 1)  
 
 Keeping that in mind, let's start with writing the receiving function `_nonblockingLzReceive` with a function selector just like the `CrossChainDAO`:  
 
@@ -629,10 +629,10 @@ function isProposal(uint256 proposalId) view public returns(bool) {
 function _nonblockingLzReceive(uint16 _srcChainId, bytes memory, uint64, bytes memory _payload) internal override {
     require(_srcChainId == hubChain, "Only messages from the hub chain can be received!");
 
-    (uint256 option, bytes memory payload) = abi.decode(
-        _payload,
-        (uint256, bytes)
-    );
+    uint16 option;
+    assembly {
+        option := mload(add(_payload, 32))
+    }
 
     // Do 1 of 2 things:
     // 0. Begin a proposal on the local chain, with local block times
@@ -645,7 +645,7 @@ function _nonblockingLzReceive(uint16 _srcChainId, bytes memory, uint64, bytes m
 Let's tackle the first action, beginning a proposal on the local chain:  
 
 ```solidity
-(uint256 proposalId, uint256 proposalStart) = abi.decode(payload, (uint256, uint256));
+(, uint256 proposalId, uint256 proposalStart) = abi.decode(payload, (uint16, uint256, uint256));
 require(!isProposal(proposalId), "Proposal ID must be unique.");
 
 uint256 cutOffBlockEstimation = 0;
@@ -667,7 +667,7 @@ proposals[proposalId] = RemoteProposal(cutOffBlockEstimation, false);
 
 This is some funky code because of a funky issue. Let's start at the first two lines. If you remember from the [CrossChainDAO section](#cross-chain-dao-contract-part-2), the information provided in the internal ABI encoded payload includes a proposal ID and the timestamp of when the proposal was made.  
 
-Afterwards, some funky calculations are made to generate a `cutOffBlockEstimation`. This is a series of calculations to convert a timestamp to a block on the local spoke chain as well as possible. While it may not matter when people can start voting, it does matter when the vote weight snapshot is made. If the vote weight snapshot is made too far apart between the spoke and hub chains, a user could send a token from one chain to another and effectively double their voting weight. Note that the calculations made in the example code above are not enough to ensure a correct setup. Some [example mitigation strategies](#double-weight-attack-from-snapshot-mismatch) are listed below. In this case, the only strategy is to subtract blocks from the current block based off of the timestamp a predetermined seconds-per-block estimate.  
+Afterwards, some funky calculations are made to generate a `cutOffBlockEstimation`. This is a series of calculations to convert a timestamp to a block on the local spoke chain as accurately as possible. While it may not matter as much when people can start voting, it does matter when the vote weight snapshot is made. If the vote weight snapshot is made too far apart between the spoke and hub chains, a user could send a token from one chain to another and effectively double their voting weight. Note that the calculations made in the example code above are not enough to ensure a correct setup. Some [example mitigation strategies](#double-weight-attack-from-snapshot-mismatch) are listed below, but are too complex to investigate in detail for this tutorial. In the meantime, the only strategy is to subtract blocks from the current block based off of the timestamp a predetermined seconds-per-block estimate.  
 
 After the calculation, a `RemoteProposal` struct is added to the proposals map, effectively registering it on the spoke chain.  
 
