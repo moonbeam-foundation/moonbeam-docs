@@ -102,6 +102,13 @@ Next, update your PATH environment variable by running:
 
 Now, build the development node by running:
 
+!!! note
+    If you are using Ubuntu 20.04 or 22.04, then you will need to install these additional dependencies before building the binary:
+
+    ```
+    apt install clang protobuf-compiler libprotobuf-dev -y 
+    ```
+
 ```
 --8<-- 'code/setting-up-node/build.md'
 ```

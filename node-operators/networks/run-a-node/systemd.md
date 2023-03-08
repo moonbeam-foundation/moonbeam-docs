@@ -94,7 +94,7 @@ The following commands will build the latest release of the Moonbeam parachain.
 5. Build the parachain binary:
 
     !!! note
-        If you are using Ubuntu 22.04, then you will need to install these additional dependencies before building the binary:
+        If you are using Ubuntu 20.04 or 22.04, then you will need to install these additional dependencies before building the binary:
 
         ```
         apt install clang protobuf-compiler libprotobuf-dev -y 
