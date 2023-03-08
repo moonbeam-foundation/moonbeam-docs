@@ -59,7 +59,7 @@ Let's break down some of the steps in more detail:
 
 The process shown here makes it so that anyone can vote from across chains, so long as they hold the DAO token. For holding information that is read-only, we will be storing it on a single chain. Rare one-off actions such as proposals, cancellations, and so on are best done as a hub-and-spoke model. For information regarding voting logic, since users will be voting on multiple chains, voting weight and vote sums will be stored on each spoke chain and only sent to the hub chain after voting is over, since doing cross-chain actions are generally expensive.  
 
-**TODO: add a graph here to represent the smart contracts**  
+![Smart contracts overview](/images/tutorials/cross-chain-dao/cross-chain-dao-3.png)  
 
 This is, of course, only one way to implement a cross-chain DAO, and you are encouraged to think of alternative and better ways. In the next section, we will look at an implementation.  
 
@@ -71,7 +71,7 @@ A logical starting point for thinking about writing a cross-chain DAO is its pre
 
 A good way to play with the configurations of the Governance smart contract is to use the OpenZeppelin smart contract wizard. By going to the [OpenZeppelin contract page](https://www.openzeppelin.com/contracts){target=_blank}, scrolling down, and clicking on the Governance tab, you can view the different ways that you can configure the Governance smart contract. Open it up and play around with it to figure out a simple base for our cross-chain DAO.  
 
-![OpenZeppelin Contract Wizard](/images/tutorials/cross-chain-dao/cross-chain-dao-3.png)
+![OpenZeppelin Contract Wizard](/images/tutorials/cross-chain-dao/cross-chain-dao-4.png)
 
 We're going to try to keep this base smart contract as simple as possible for demonstration purposes. First, let's name the governor contract to be "CrossChainDAO", since that is what we'll turn it into. Set the voting delay as 0 for simplicity and to make it so that the voting weight snapshot is taken immediately. It is easiest to set the voting period to something short, like 6 minutes. For calculating quorum (the minimum amount of vote weight required for a vote to pass), set it to the number (#) 1. Also disable Timelock, since the timelock period is optional anyways.  
 
@@ -747,7 +747,7 @@ That's it for breaking down the satellite contract. It was more or less simple b
 
 At this point, every single smart contract has been finished, and a deployment scheme like the one below can be made. Congratulations on getting this far! If you are interested in seeing this in action, the [GitHub repository](https://github.com/jboetticher/cross-chain-dao){target=_blank} that hosts the cross-chain DAO allows you to deploy on TestNets.  
 
-**TODO: insert the smart contract communicating image from way above here**  
+![Smart contracts overview](/images/tutorials/cross-chain-dao/cross-chain-dao-3.png)  
 
 ## Caveats and Other Designs {: #caveats-and-other-designs }
 
