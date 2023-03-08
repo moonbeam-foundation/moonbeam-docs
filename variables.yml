@@ -970,18 +970,18 @@ networks:
       weight:
         display: 1,000,000,000
         numbers_only: 1000000000
-      planck_dot_weight: 0.10535853509
-      planck_dot_cost: 105358535.09
+      planck_dot_weight: 0.105358535
+      planck_dot_cost: 105358535
       dot_cost: 0.0105358535
     xcm_message:
       transfer:
         weight: 4,000,000,000
-        cost: 0.042143414
+        cost: 0.0421434140
       transact:
         weight: 3,000,000,000
         numbers_only: 3000000000
-        planck_dot_cost: 362078329.611
-        dot_cost: 0.0362078329611
+        planck_dot_cost: 31607560500
+        dot_cost: 0.0316075605
     extrinsic_base_weight:
       display: 94,914,000
       numbers_only: 94914000
