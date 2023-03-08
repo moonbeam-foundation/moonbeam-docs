@@ -79,12 +79,12 @@ Although Polkadot doesn't currently use database weight units to calculate costs
 
 |                                                                     Database                                                                     |                     Read                      |                     Write                      |
 |:------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------:|:----------------------------------------------:|
-| [RocksDB (default)](https://github.com/paritytech/polkadot/blob/v0.9.36/runtime/polkadot/constants/src/weights/rocksdb_weights.rs){target=_blank} | {{ networks.polkadot.rocks_db.read_weight }}  | {{ networks.polkadot.rocks_db.write_weight }}  |
-|     [ParityDB](https://github.com/paritytech/polkadot/blob/v0.9.36/runtime/polkadot/constants/src/weights/paritydb_weights.rs){target=_blank}     | {{ networks.polkadot.parity_db.read_weight }} | {{ networks.polkadot.parity_db.write_weight }} |
+| [RocksDB (default)](https://github.com/paritytech/polkadot/blob/v0.9.37/runtime/polkadot/constants/src/weights/rocksdb_weights.rs){target=_blank} | {{ networks.polkadot.rocks_db.read_weight }}  | {{ networks.polkadot.rocks_db.write_weight }}  |
+|     [ParityDB](https://github.com/paritytech/polkadot/blob/v0.9.37/runtime/polkadot/constants/src/weights/paritydb_weights.rs){target=_blank}     | {{ networks.polkadot.parity_db.read_weight }} | {{ networks.polkadot.parity_db.write_weight }} |
 
 With the instruction weight cost established, you can calculate the cost of each instruction in DOT. 
 
-In Polkadot, the [`ExtrinsicBaseWeight`](https://github.com/paritytech/polkadot/blob/v0.9.36/runtime/polkadot/constants/src/weights/extrinsic_weights.rs#L55){target=_blank} is set to `{{ networks.polkadot.extrinsic_base_weight.display }}` which is [mapped to 1/10th](https://github.com/paritytech/polkadot/blob/v0.9.36/runtime/polkadot/constants/src/lib.rs#L88){targer=blank} of a cent. Where 1 cent is `10^10 / 100`. 
+In Polkadot, the [`ExtrinsicBaseWeight`](https://github.com/paritytech/polkadot/blob/v0.9.37/runtime/polkadot/constants/src/weights/extrinsic_weights.rs#L55){target=_blank} is set to `{{ networks.polkadot.extrinsic_base_weight.display }}` which is [mapped to 1/10th](https://github.com/paritytech/polkadot/blob/v0.9.37/runtime/polkadot/constants/src/lib.rs#L88){targer=blank} of a cent. Where 1 cent is `10^10 / 100`. 
 
 Therefore, to calculate the cost of executing an XCM instruction, you can use the following formula:
 
