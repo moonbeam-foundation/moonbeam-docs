@@ -745,7 +745,9 @@ In fact, the `_countVote` function is [directly copied](https://github.com/OpenZ
 
 That's it for breaking down the satellite contract. It was more or less simple because most of the logic is just a reflection of what happens on the hub chain. You can view the completed smart contract in its [GitHub repository](https://github.com/jboetticher/cross-chain-dao/blob/main/contracts/DAOSatellite.sol){target=_blank}.  
 
-**TODO: insert the smart contract communicating image from way above here**
+At this point, every single smart contract has been finished, and a deployment scheme like the one below can be made. Congratulations on getting this far! If you are interested in seeing this in action, the [GitHub repository](https://github.com/jboetticher/cross-chain-dao){target=_blank} that hosts the cross-chain DAO allows you to deploy on TestNets.  
+
+**TODO: insert the smart contract communicating image from way above here**  
 
 ## Caveats and Other Designs {: #caveats-and-other-designs }
 
