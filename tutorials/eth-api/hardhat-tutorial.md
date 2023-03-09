@@ -382,7 +382,7 @@ And that's it! You're now ready to run your tests!
 
 If you've followed all of the prior sections, your [`Dao.js`](https://raw.githubusercontent.com/PureStake/moonbeam-intro-course-resources/main/delegation-dao-lesson-one/Dao.js){target=_blank} test file should be all set to go. Otherwise, you can copy the [complete snippet from GitHub](https://github.com/PureStake/moonbeam-docs/blob/master/.snippets/code/hardhat/dao-js-test-file.js){target=_blank} into your `Dao.js` test file.
 
-Since our test cases encompass mostly configuration and setup of the staking DAO and don't involve actual delegation actions, we'll be running our tests on a Moonbeam development node (local node). If you wrote different test cases that involved delegation to collators (e.g. when the DAO is funded sufficiently) you'll want to utilize Moonbase Alpha instead. You can use the flag `--network moonbase` to run the tests using Moonbase Alpha. In that case, be sure that your deployer address is sufficiently funded with DEV tokens. 
+Since our test cases encompass mostly configuration and setup of the staking DAO and don't involve actual delegation actions, we'll be running our tests on a Moonbeam development node (local node). Remember that Alice (`0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac`) is the only collator on a local development node. You can use the flag `--network moonbase` to run the tests using Moonbase Alpha. In that case, be sure that your deployer address is sufficiently funded with DEV tokens. 
 
 !!! challenge
     Try to create an additional test case that verifies the staking DAO successfully delegates to a collator once `minDelegationStk` is met. You'll need to test this on Moonbase Alpha rather than a local development node.
@@ -401,7 +401,7 @@ If everything was set up correctly, you should see output like the following:
 
 ## Deploying to Moonbase Alpha {: #deploying-to-moonbase-alpha } 
 
-In the following steps, we'll be deploying the `DelegationDAO` to the Moonbase Alpha TestNet. `DelegationDAO` relies on [`StakingInterface.sol`](/builders/pallets-precompiles/precompiles/staking/){target=_blank}, which is a Substrate-based offering unique to Moonbeam Networks. The Hardhat network and forked networks are simulated EVM environments which do not include the Substrate-based precompiles like `StakingInterface.sol`. Therefore, `DelegationDAO` will not work properly if deployed to the local default Hardhat Network or a [forked network](/builders/build/eth-api/dev-env/hardhat/#forking-moonbeam){target=_blank}.
+In the following steps, we'll be deploying the `DelegationDAO` to the Moonbase Alpha TestNet. `DelegationDAO` relies on [`StakingInterface.sol`](/builders/pallets-precompiles/precompiles/staking/){target=_blank}, which is a Substrate-based offering unique to Moonbeam Networks. The Hardhat network and forked networks are simulated EVM environments which do not include the Substrate-based precompiles like `StakingInterface.sol`. Therefore, `DelegationDAO` will not work properly if deployed to the local default Hardhat Network or a [forked network](/builders/build/eth-api/dev-env/hardhat/#forking-moonbeam){target=_blank}. Before deploying to Moonbase Alpha or Moonbeam, double check you're not using the Alice and Bob accounts which should only be used on a local development node.
 
 To deploy `DelegationDAO.sol`, you can write a simple script. You can create a new directory for the script and name it `scripts`:
 
