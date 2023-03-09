@@ -149,7 +149,7 @@ module.exports = {
     },
     dev: {
       url: 'http://127.0.0.1:9933',
-      chainId: 1281, // (hex: 0x501)
+      chainId: 1281, // {{ networks.development.hex_chain_id }} in hex
       accounts: [privateKey, privateKey2]
     },
   },
