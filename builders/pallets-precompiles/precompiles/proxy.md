@@ -65,12 +65,12 @@ enum ProxyType {
 
 There are multiple types of proxy roles that can be delegated to accounts, where are represented in `Proxy.sol` through the `ProxyType` enum. The following list includes all of the possible proxies and the type of transactions they can make on behalf of the primary account:
 
- - **Any** — the any proxy will allow the proxy account to make any type of transaction that the `NonTransfer`, `Governance`, `Staking`, `Balances`, and `AuthorMapping` types can perform
- - **NonTransfer** — the non-transfer proxy will allow the proxy account to make any type of transaction, except for balance transfers
+ - **Any** — the any proxy will allow the proxy account to make any type of transaction that the `Governance`, `Staking`, `Balances`, and `AuthorMapping` proxy types can perform. Note that balance transfers are only allowed to EOAs, not contracts or Precompiles
+ - **NonTransfer** — the non-transfer proxy will allow the proxy account to make any type of transaction through the `Governance`, `Staking` and `AuthorMapping` Precompiles, where the `msg.value` is checked to be zero
  - **Governance** - the governance proxy will allow the proxy account to make any type of governance related transaction (includes both democracy or council pallets)
- - **Staking** - the staking proxy will allow the proxy account to make staking related transactions
- - **CancelProxy** - the cancel proxy will allow the proxy account to reject and remove delayed proxy announcements (of the primary account)
- - **Balances** - the balances proxy will allow the proxy account to only make balance transfers
+ - **Staking** - the staking proxy will allow the proxy account to make staking related transactions through the `Staking` Precompile, including calls to the `AuthorMapping` Precompile
+ - **CancelProxy** - the cancel proxy will allow the proxy account to reject and remove delayed proxy announcements (of the primary account). Currently, this is not an action supported by the Proxy Precompile
+ - **Balances** - the balances proxy will allow the proxy account to only make balance transfers to EOAs
  - **AuthorMapping** - this type of proxy account is used by collators to migrate services from one server to another
  - **IdentityJudgement** - the identity judgement proxy will allow the proxy account to judge and certify the personal information associated with accounts on Polkadot
 
@@ -107,7 +107,7 @@ To get started, get a copy of [`Proxy.sol`](https://github.com/PureStake/moonbea
 
 1. Click on the **Deploy and Run** tab, directly below the **Compile** tab in Remix. Note: you are not deploying a contract here, instead you are accessing a precompiled contract that is already deployed
 2. Make sure **Injected Provider - Metamask** is selected in the **ENVIRONMENT** drop down
-3. Ensure **Proxy.sol** is selected in the **CONTRACT** dropdown. Since this is a precompiled contract there is no need to deploy, instead you are going to provide the address of the precompile in the **At Address** field
+3. Ensure **Proxy.sol** is selected in the **CONTRACT** dropdown. Since this is a precompiled contract there is no need to deploy, instead you are going to provide the address of the Precompile in the **At Address** field
 4. Provide the address of the Proxy Precompile for Moonbase Alpha: `{{networks.moonbase.precompiles.proxy}}` and click **At Address**
 5. The Proxy Precompile will appear in the list of **Deployed Contracts**
 
