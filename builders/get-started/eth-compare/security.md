@@ -141,4 +141,4 @@ The standard Ethereum ERC-20 [`burn` function](https://github.com/OpenZeppelin/o
 require(mintableERC20.balanceOf(from) >= value, "burn amount exceeds balance")
 ```
 
-Additionally, it is also important to note that for Mintable XC-20s the maximum `value` that can be minted is actually limited to *uint128*. A Mintable XC-20 will behave differently if the total supply is over 2^128 (without decimals), the mint will be successful but the total supply will be 2^128 - 1. This is unlikely to happen for traditional tokens as they are not meant to reach such high numbers, but nonetheless is important to mention as this is different than the standard Ethereum ERC-20.
+Additionally, it is also important to note that for Mintable XC-20s the maximum `value` that can be minted is actually limited to *uint128*. A Mintable XC-20 will behave differently if the total supply is over 2^128 (without decimals), the mint will fail due to overflow checks. This is unlikely to happen for traditional tokens as they are not meant to reach such high numbers, but nonetheless is important to mention as this is different than the standard Ethereum ERC-20.

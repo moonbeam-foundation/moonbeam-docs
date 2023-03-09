@@ -49,7 +49,7 @@ Mintable XC-20s include additional functions that only the owner or the designat
 
 - **mint(*address* to, *uint256* value)** - mints a given amount of tokens to a specified address. Only the owner and the issuer are capable of calling this function
     !!! note
-    The maximum `value` that can be minted is actually limited to *uint128*. A Mintable XC-20 will behave differently if the total supply is over 2^128 (without decimals), the mint will be successful but the total supply will be 2^128 - 1. This is unlikely to happen for traditional tokens as they are not meant to reach such high numbers.
+    The maximum `value` that can be minted is actually limited to *uint128*. A Mintable XC-20 will behave differently if the total supply is over 2^128 (without decimals), the mint will fail due to overflow checks. This is unlikely to happen for traditional tokens as they are not meant to reach such high numbers.
 
 - **burn(*address* from, *uint256* value)** - burns a given amount of tokens from a specified address. Only the owner and the admin are capable of calling this function
     !!! note
