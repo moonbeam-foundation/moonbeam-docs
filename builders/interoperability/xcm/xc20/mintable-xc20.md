@@ -48,7 +48,15 @@ The Solidity interface for Mintable XC-20 tokens is a combination of the followi
 Mintable XC-20s include additional functions that only the owner or the designated account is allowed to call. They are declared in the [LocalAsset.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/LocalAsset.sol){target=_blank} interface, and are as follows:
 
 - **mint(*address* to, *uint256* value)** - mints a given amount of tokens to a specified address. Only the owner and the issuer are capable of calling this function
+
+    !!! note
+        The maximum `value` that can be minted is actually limited to *uint128*. A Mintable XC-20 will behave differently if the total supply is over 2^128 (without decimals), the mint will fail due to overflow checks. This is unlikely to happen for traditional tokens as they are not meant to reach such high numbers. For more information, please refer to the [Mintable XC-20s vs ERC-20s](/builders/get-started/eth-compare/security/#mintable-xc-20s-vs-erc-20s){target=_blank} section of the Security Considerations page.
+
 - **burn(*address* from, *uint256* value)** - burns a given amount of tokens from a specified address. Only the owner and the admin are capable of calling this function
+
+    !!! note
+        The `burn` function in Substrate behaves differently than the [standard ERC-20 `burn` function](https://docs.openzeppelin.com/contracts/2.x/api/token/erc20#ERC20-_burn-address-uint256-){target=_blank} as it does not require the `from` account to have the amount of tokens specified by the `value`. For more information, please refer to the [Mintable XC-20s vs ERC-20s](/builders/get-started/eth-compare/security/#mintable-xc-20s-vs-erc-20s){target=_blank} section of the Security Considerations page.
+    
 - **freeze(*address* account)** - freezes a specified account so that the tokens for that account are locked and any further transactions are not allowed. Only the owner and the freezer are capable of calling this function
 - **thaw(*address* account)** - unfreezes an account so now the specified account can interact with the tokens again. Only the owner and the admin are capable of calling this function
 - **freezeAsset()** - freezes the entire asset operations and locks up the tokens. Only the owner and the freezer are capable of calling this function
