@@ -287,9 +287,7 @@ describe("Dao contract", function () {
 
 ### Writing your First Test Cases {: #writing-your-first-test-cases }
 
-This tutorial deviates from the [test driven development philosophy](https://en.wikipedia.org/wiki/Test-driven_development){target=_blank} of writing your tests prior to your code. A few test cases will be cherry picked for demonstration purposes. 
-
-First, you'll create a subsection called `Deployment` to keep the test file organized. This will be nested within the `Dao contract` function. This isn't required but may be helpful for organizational purposes. Next you'll define your first test case by using the `it` Mocha function. A description that clearly indicates what the test is doing is provided as well as indication that the function is async. This first test is simply checking to see that the staking DAO is correctly storing the address of the target collator.
+First, you'll create a subsection called `Deployment` to keep the test file organized. This will be nested within the `Dao contract` function. Next you'll define your first test case by using the `it` Mocha function. This first test is simply checking to see that the staking DAO is correctly storing the address of the target collator.
 
 Go ahead and add the below snippet to the end of your `Dao contract` function. 
 
@@ -327,9 +325,9 @@ it("should initially have 0 funds in the DAO", async function () {
 
 ### Function Reverts {: #function-reverts }
 
-To this point, the two cases implemented have been simple but important. Now, you'll implement a more complex test case that differs in its architecture. In prior examples, you've verified that a function returns an expected value. In this one, you'll be verifying that a function reverts. You'll also change the address of the caller to test an admin-only function. 
+Now, you'll implement a more complex test case with a slightly different architecture. In prior examples, you've verified that a function returns an expected value. In this one, you'll be verifying that a function reverts. You'll also change the address of the caller to test an admin-only function. 
 
-In the [staking DAO contract](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank}, only admins are authorized to add new members to the DAO. One could write a test that checks to see if the admin is authorized to add new members but perhaps a more important test is to ensure that *non-admins* can't add new members. To run this test case under a different account, you're going to ask for another address when you call `ethers.getSigners()` and specify the caller in the assertion with `connect(member1)`. Finally, after the function call to be tested you'll append `.to.be.reverted;` to indicate that the test case is successful if the function reverts. And if it doesn't revert it's a failed test! 
+In the [staking DAO contract](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank}, only admins are authorized to add new members to the DAO. One could write a test that checks to see if the admin is authorized to add new members but perhaps a more important test is to ensure that *non-admins* can't add new members. To run this test case under a different account, you're going to ask for another address when you call `ethers.getSigners()` and specify the caller in the assertion with `connect(member1)`. Finally, after the function call you'll append `.to.be.reverted` to indicate that the test case is successful if the function reverts. And if it doesn't revert it's a failed test! 
 
 ```javascript
 it("should not allow non-admins to grant membership", async function () {
@@ -367,7 +365,7 @@ And that's it! You're now ready to run your tests!
 
 If you've followed all of the prior sections, your [`Dao.js`](https://raw.githubusercontent.com/PureStake/moonbeam-intro-course-resources/main/delegation-dao-lesson-one/Dao.js){target=_blank} test file should be all set to go. Otherwise, you can copy the [complete snippet from GitHub](https://github.com/PureStake/moonbeam-docs/blob/master/.snippets/code/hardhat/dao-js-test-file.js){target=_blank} into your `Dao.js` test file.
 
-Since our test cases encompass mostly configuration and setup of the staking DAO and don't involve actual delegation actions, we'll be running our tests on a Moonbeam dev node (local node). If you wrote different test cases that involved delegation to collators (e.g. when the DAO is funded sufficiently) you'll want to utilize Moonbase Alpha instead. You can use the flag `--network moonbase` to run the tests using Moonbase Alpha. In that case, be sure that your deployer address is sufficiently funded with DEV tokens. You can also omit the `--network` flag in which case the tests will run against a local hardhat network. 
+Since our test cases encompass mostly configuration and setup of the staking DAO and don't involve actual delegation actions, we'll be running our tests on a Moonbeam dev node (local node). If you wrote different test cases that involved delegation to collators (e.g. when the DAO is funded sufficiently) you'll want to utilize Moonbase Alpha instead. You can use the flag `--network moonbase` to run the tests using Moonbase Alpha. In that case, be sure that your deployer address is sufficiently funded with DEV tokens. 
 
 !!! challenge
     Try to create an additional test case that verifies the staking DAO successfully delegates to a collator once `minDelegationStk` is met. You'll need to test this on Moonbase Alpha rather than a local development node.
