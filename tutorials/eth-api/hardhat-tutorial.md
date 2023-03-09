@@ -95,12 +95,18 @@ You can create a `secrets.json` file to store your private keys by running:
 touch secrets.json
 ```
 
-Then add your private keys and Moonscan API key to it. Here, we're adding two private keys because we'll need at least two separate accounts to properly test the staking DAO. 
+Then add your private keys and Moonscan API key to it. Here, we're adding two private keys because we'll need at least two separate accounts to properly test the staking DAO. We're also adding the Alice and Bob private keys to accounts that come pre-funded with tokens on a local development node since we'll also be running tests locally. 
+
+!!! note
+    Any real funds sent to the Alice and Bob development accounts will be lost immediately. Take precautions to never send mainnet funds to exposed development accounts.
+
 
 ```json
 {
     "privateKey": "YOUR-PRIVATE-KEY-HERE",
     "privateKey2": "YOUR-SECOND-PRIVATE-KEY-HERE",
+    "alicePrivateKey": "0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133",
+    "bobPrivateKey": "0x8075991ce870b93a8870eca0c0f91913d12f47948ca0fd25b49c6fa7cdbeee8b",
     "moonbeamMoonscanAPIKey": "YOUR-MOONSCAN-API-KEY-HERE"
 }
 ```
@@ -150,6 +156,11 @@ module.exports = {
     dev: {
       url: 'http://127.0.0.1:9933',
       chainId: 1281, // {{ networks.development.hex_chain_id }} in hex
+      accounts: [privateKey, privateKey2]
+    },
+    moonbeam: {
+      url: '{{ networks.moonbeam.public_rpc_url }}', // Or insert your own RPC URL here
+      chainId: 1284, 
       accounts: [privateKey, privateKey2]
     },
   },
@@ -370,7 +381,7 @@ Since our test cases encompass mostly configuration and setup of the staking DAO
 !!! challenge
     Try to create an additional test case that verifies the staking DAO successfully delegates to a collator once `minDelegationStk` is met. You'll need to test this on Moonbase Alpha rather than a local development node.
 
-First, make sure that your local Moonbeam node is running by following the [instructions for launching a local development node](/builders/get-started/networks/moonbeam-dev/){target=_blank}. Then, you'll need to send yourself some Moonbase DEV tokens from some of the pre-funded development accounts to fund the accounts stored in your `secrets.json` file. It is inadvisable to import the pre-funded development account private keys into your `secrets.json` file because you could inadvertently send real funds to those accounts, which would result in a loss of those funds.  
+First, make sure that your local Moonbeam node is running by following the [instructions for launching a local development node](/builders/get-started/networks/moonbeam-dev/){target=_blank}. Take precautions if you import the Alice and Bob private keys into your `secrets.json` file because you could inadvertently send real funds to those accounts, which would result in a loss of those funds.  
 
 You can run your tests with the following command: 
 
@@ -482,7 +493,7 @@ In your terminal you should see the source code for your contract was successful
 !!! note
     `DelegationDAO.sol` is unreviewed and unaudited. It is designed only for demonstration purposes and not intended for production use. It may contain bugs or logic errors that could result in loss of funds. 
 
-In the following steps, we'll be deploying the `DelegationDAO` contract to the Moonbeam MainNet network. Before deploying `DelegationDAO` to Moonbeam, we need to change the address of the target collator, since our target collator on Moonbase Alpha does not exist on Moonbeam. Head to your deploy script and change the target collator to `0x1C86E56007FCBF759348dcF0479596a9857Ba105` or [another Moonbeam collator](https://apps.moonbeam.network/moonbeam/staking){target=_blank} of your choice. Your `deploy.js` script should thus look like the following: 
+In the following steps, we'll be deploying the `DelegationDAO` contract to the Moonbeam MainNet network. Remember to add the Moonbeam Network to your [`hardhat.config.js`](#hardhat-configuration-file) if you haven't done so already. Before deploying `DelegationDAO` to Moonbeam, we need to change the address of the target collator, since our target collator on Moonbase Alpha does not exist on Moonbeam. Head to your deploy script and change the target collator to `0x1C86E56007FCBF759348dcF0479596a9857Ba105` or [another Moonbeam collator](https://apps.moonbeam.network/moonbeam/staking){target=_blank} of your choice. Your `deploy.js` script should thus look like the following: 
 
 ```javascript
 // 1. The PureStake-03 collator on Moonbeam is chosen as the DAO's target
