@@ -4,6 +4,7 @@ description: Learn how to use the Ethereum API when developing on Moonbeam. This
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 <h1 class='subsection-title'>Boba Layer 2</h1>

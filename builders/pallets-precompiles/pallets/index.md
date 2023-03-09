@@ -4,6 +4,7 @@ description: Learn about the pallets available on Moonbeam and how to interact w
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 <h1 class='subsection-title'>Substrate Pallets</h1>

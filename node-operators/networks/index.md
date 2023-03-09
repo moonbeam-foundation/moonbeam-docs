@@ -4,6 +4,7 @@ description: Learn how to spin up a full, tracing, or collator node on Moonbeam,
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 <h1 class='subsection-title'>Networks</h1>

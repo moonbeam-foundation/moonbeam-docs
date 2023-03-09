@@ -4,6 +4,7 @@ description: Guides for learning how to interact with the Ethereum & Substrate A
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 <h1 class='subsection-title'>Build</h1>

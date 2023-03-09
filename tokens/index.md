@@ -4,6 +4,7 @@ description: A series of guides for using and managing your GLMR & MOVR tokens, 
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 <h1 class='subsection-title'>Tokens</h1>

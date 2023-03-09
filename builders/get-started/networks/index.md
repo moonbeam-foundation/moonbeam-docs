@@ -4,6 +4,7 @@ description: Learn how to get started developing on a Moonbeam development node,
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 <h1 class='subsection-title'>Networks</h1>

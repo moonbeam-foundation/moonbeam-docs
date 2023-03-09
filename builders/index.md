@@ -4,6 +4,7 @@ description: Guides for getting started and developing on Moonbeam. Learn how to
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 <h1 class='subsection-title'>Builders</h1>

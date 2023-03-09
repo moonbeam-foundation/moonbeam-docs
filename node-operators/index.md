@@ -4,6 +4,7 @@ description: Learn how to become a node operator on Moonbeam, including running 
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 <h1 class='subsection-title'>Node Operators</h1>

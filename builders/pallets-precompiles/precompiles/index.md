@@ -4,6 +4,7 @@ description: A list of guides for interacting with precompiled contracts on Moon
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 <h1 class='subsection-title'>Solidity Precompiles</h1>

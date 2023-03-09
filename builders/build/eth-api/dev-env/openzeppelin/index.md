@@ -4,6 +4,7 @@ description: Use OpenZeppelin contracts and libraries, the Contract Wizard, or D
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 <h1 class='subsection-title'>OpenZeppelin</h1>

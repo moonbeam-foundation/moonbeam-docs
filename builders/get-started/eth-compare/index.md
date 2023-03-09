@@ -4,6 +4,7 @@ description: Dive into some of the key differences between Moonbeam, an Ethereum
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 <h1 class='subsection-title'>Moonbeam vs Ethereum</h1>
