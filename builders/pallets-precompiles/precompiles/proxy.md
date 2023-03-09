@@ -72,7 +72,7 @@ There are multiple types of proxy roles that can be delegated to accounts, where
  - **CancelProxy** - the cancel proxy will allow the proxy account to reject and remove delayed proxy announcements (of the primary account). Currently, this is not an action supported by the Proxy Precompile
  - **Balances** - the balances proxy will allow the proxy account to only make balance transfers to EOAs
  - **AuthorMapping** - this type of proxy account is used by collators to migrate services from one server to another
- - **IdentityJudgement** - the identity judgement proxy will allow the proxy account to judge and certify the personal information associated with accounts on Polkadot
+ - **IdentityJudgement** - the identity judgement proxy will allow the proxy account to judge and certify the personal information associated with accounts on Polkadot. Currently, this is not an action supported by the Proxy Precompile
 
 ## Interact with the Solidity Interface {: #interact-with-the-solidity-interface }
 
