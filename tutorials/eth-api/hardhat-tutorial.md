@@ -140,7 +140,7 @@ require('@nomiclabs/hardhat-ethers');
 
 // 2. Import your private key from your pre-funded Moonbase Alpha testing 
 // account and your Moonscan API key
-const { privateKey, privateKey2, moonbeamMoonscanAPIKey } = require('./secrets.json');
+const { privateKey, privateKey2, moonbeamMoonscanAPIKey, alicePrivateKey, bobPrivateKey } = require('./secrets.json');
 
 module.exports = {
   // 3. Specify the Solidity version
@@ -156,7 +156,7 @@ module.exports = {
     dev: {
       url: 'http://127.0.0.1:9933',
       chainId: 1281, // {{ networks.development.hex_chain_id }} in hex
-      accounts: [privateKey, privateKey2]
+      accounts: [alicePrivateKey, bobPrivateKey]
     },
     moonbeam: {
       url: '{{ networks.moonbeam.public_rpc_url }}', // Or insert your own RPC URL here
@@ -165,9 +165,11 @@ module.exports = {
     },
   },
   // 5. Set up your Moonscan API key for contract verification
+  // Moonbeam and Moonbase Alpha Moonscan use the same API key
   etherscan: {
     apiKey: {
-      moonbaseAlpha: moonbeamMoonscanAPIKey, // Moonbeam Moonscan API Key    
+      moonbaseAlpha: moonbeamMoonscanAPIKey, // Moonbase Moonscan API Key
+      moonbeam: moonbeamMoonscanAPIKey, // Moonbeam Moonscan API Key    
     }
   }
 };
@@ -455,7 +457,7 @@ main()
   });
 ```
 
-You can now deploy `DelegationDAO.sol` using the `run` command and specifying `moonbase` as the network:
+Make sure you've funded your accounts with Moonbase Alpha DEV tokens. You can now deploy `DelegationDAO.sol` using the `run` command and specifying `moonbase` as the network:
 
 ```
 npx hardhat run --network moonbase scripts/deploy.js
