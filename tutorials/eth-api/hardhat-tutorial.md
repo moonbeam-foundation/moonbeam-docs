@@ -12,7 +12,7 @@ _January 16, 2023 | by Kevin Neilson & Erin Shaben_
 
 In this tutorial, we'll walk through the [Hardhat development environment](https://hardhat.org/){target=_blank} in the context of launching a [pooled staking DAO contract](https://github.com/PureStake/moonbeam-intro-course-resources/blob/main/delegation-dao-lesson-one/DelegationDAO.sol){target=_blank}. We'll walk through the typical developer workflow in detail from start to finish. 
 
-We'll assemble the components of the staking DAO and compile the necessary contracts. Then, we'll build a test suite with a variety of test cases relevant to our staking DAO. Finally, we'll deploy the staking DAO to both Moonbase Alpha and Moonbeam and verify the contracts via the Hardhat Etherscan plugin. If this is your first time exploring Hardhat, you may wish to start with [the introduction to Hardhat guide](/builders/build/eth-api/dev-env/hardhat/){target=_blank}. 
+We'll assemble the components of the staking DAO and compile the necessary contracts. Then, we'll build a test suite with a variety of test cases relevant to our staking DAO, and run it against a local development node. Finally, we'll deploy the staking DAO to both Moonbase Alpha and Moonbeam and verify the contracts via the Hardhat Etherscan plugin. If this is your first time exploring Hardhat, you may wish to start with [the introduction to Hardhat guide](/builders/build/eth-api/dev-env/hardhat/){target=_blank}. 
 
 _The information presented herein is for informational purposes only and has been provided by third parties. Moonbeam does not endorse any project listed and described on the Moonbeam docs website (https://docs.moonbeam.network/)._
 
@@ -231,7 +231,13 @@ A robust smart contract development workflow is incomplete without a testing sui
 
 Hardhat tests are typically written with Mocha and Chai. [Mocha](https://mochajs.org/){target=_blank} is a JavaScript testing framework and [Chai](https://www.chaijs.com/){target=_blank} is a BDD/TDD JavaScript assertion library. BDD/TDD stands for behavior and test driven development respectively. Effective BDD/TDD necessitates writing your tests *before* writing your smart contract code. The structure of this tutorial doesn't strictly follow these guidelines, but you may wish to adopt these principles in your development workflow. Hardhat recommends using [Hardhat Toolbox](https://hardhat.org/hardhat-runner/docs/guides/migrating-from-hardhat-waffle){target=_blank}, a plugin that bundles everything you need to get started with Hardhat, including Mocha and Chai. 
 
-For the purposes of this guide, we'll use the following collator address on Moonbase Alpha, but you can [select any collator](https://apps.moonbeam.network/moonbase-alpha/staking){target=_blank} you would like the DAO to delegate to:
+Because we will initially be running our tests on a local Moonbeam node, we need to specify Alice's address as the address of our target collator (Alice's account is the only collator for a local development node): 
+
+```
+0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac
+```
+
+If instead you prefer to run your tests against Moonbase Alpha, you can choose the below collator, or [any other collator on Moonbase Alpha](https://apps.moonbeam.network/moonbase-alpha/staking){target=_blank} you would like the DAO to delegate to:
 
 ```
 {{ networks.moonbase.staking.candidates.address1 }}
@@ -258,8 +264,8 @@ To set up your test file, take the following steps:
     // Import Chai to use its assertion functions here
     const { expect } = require("chai");
 
-    // Indicate the collator the DAO wants to delegate to
-    const targetCollator = "{{ networks.moonbase.staking.candidates.address1 }}";
+    // Indicate Alice's address as the target collator on local development node
+    const targetCollator = "0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac";
     ```
 
 ### Deploying a Staking DAO for Testing {: #deploying-a-staking-dao-for-testing }
@@ -413,7 +419,7 @@ Next, you need to write your deployment script which can be done using `ethers`.
 
 To get started, take the following steps:
 
-1. Specify the address of the active collator the DAO intends to delegate to. In this case, we've specified the address of the PS-1 Collator
+1. Specify the address of the active collator the DAO intends to delegate to. In this case, we've specified the address of the PS-1 Collator (note: this is different from the address of the Alice collator on a local development node)
 2. Specify the deployer address as the admin of the DAO. It's important that the deployer be the admin of the DAO to ensure later tests work as expected
 3. Create a local instance of the contract with the `getContractFactory` method
 4. Use the `deploy` method that exists within this instance to instantiate the smart contract
