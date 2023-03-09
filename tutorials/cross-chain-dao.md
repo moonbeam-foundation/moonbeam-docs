@@ -766,6 +766,8 @@ The cross-chain function selection method that was used in the `CrossChainDAO` a
 
 For example, the hub chain's `CrossChainDAO` could be composed of the main contract that receives cross-chain data as well as two other smart contracts: `CrossChainExecutor` and `CrossChainProposer`. So, when interacting with the `DAOSatellite` contract to send a message to `CrossChainDAO`, the spoke chain's smart contract could target `CrossChainExecutor` to execute or `CrossChainProposer` to propose. This would remove the need to double-wrap payloads and the need to include function selecting logic in the cross-chain message receiving function. It could even help convert a single-chain DAO into one with cross-chain abilities.  
 
+![Single Responsibility Principle](/images/tutorials/cross-chain-dao/cross-chain-dao-5.png)  
+
 ### Distributed Proposal and Execution {: #distributed-proposal-and-execution }
 
 What if you wanted users to be able to execute a proposal on multiple chains instead of just the hub chain? There are a few ways to go about it:  
@@ -810,6 +812,8 @@ One of the flaws overlooked with the spoke chain's `DAOSatellite` smart contract
 2. Sending the gas from the hub chain with the cross-chain message that requests the data
 
 The first is the simplest solution, though it may increase the turn around time for proposal to execution if you don't plan on running additional infrastructure. Similar to how the `execute` function can be ran by anyone once a proposal has been finished, a new function would be written to allow anyone to send the vote data to the hub chain. Preferably, this would also require a [timeout to the collection phase](#collection-phase-time-out).  
+
+![Chained Execution](/images/tutorials/cross-chain-dao/cross-chain-dao-5.png)  
 
 The second is significantly more complex. It would require a setup that sends tokens with a payload instead of just a payload like the current contract does, and for a swap to occur on the destination chain to retrieve native currency for a cross-chain transaction.  
 
