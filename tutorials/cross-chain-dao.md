@@ -775,9 +775,9 @@ What if you wanted users to be able to execute a proposal on multiple chains ins
 
 The hub-and-spoke model is already laid out in detail in this tutorial. In such a case where an execution could occur on multiple chains, you would have to have a smart contract on each chain that executes on behalf of the hub-chain (could be added to `DAOSatellite`). This smart contract would receive a message from the `execute` function provided by the `Governor` smart contract. This is simple enough, but it might be too many cross-chain messages to be efficient.  
 
-If you decide to completely decentralize the DAO, it would be most likely to remove the `DAOSatellite` smart contract and deploy a modified `CrossChainDAO` smart contract on every chain. This could work, and it could help minimize the number of smart cross-chain messages because messages would have to be . It would require a redesign of how proposals are made, and sent however.  
+If you decide to completely decentralize the DAO, it would be most likely to remove the `DAOSatellite` smart contract and deploy a modified `CrossChainDAO` smart contract on every chain. Each `CrossChainDAO` could control the proposals meant to be executed on their chain. It would require a redesign of how proposals are made and sent, however.  
 
-You may also find an issue when generating the ID. Take a look at how the IDs are being generated now:  
+You may also find an issue when generating the proposal ID. Take a look at how the IDs are being generated now:  
 
 ```solidity
 function hashProposal(
@@ -790,7 +790,7 @@ function hashProposal(
 }
 ```
 
-Conceivably, the same description and transaction details could be sent on both chain A and on chain B. This could cause errors, because then there would be conflicting transactions. It may serve best to include another parameter to hash a proposal ID: the chain ID.
+Conceivably, the same description and transaction details could be sent on both chain A and on chain B. This could cause errors, because then there would be conflicting transactions. It may serve best to include another parameter to hash a proposal ID: the chain ID of the chain on which the proposal is meant to execute.
 
 ### Double-Weight Attack from Snapshot Mismatch {: #double-weight-attack-from-snapshot-mismatch }
 
@@ -798,11 +798,13 @@ One primary issue with the distribution of voting weight across chains via the `
 
 One option is using an oracle that aligns blocks with timestamps to ensure that snapshots on spoke chains are as close to the hub chain's timestamp as possible.
 
+A more simple solution would be to alter the `ERC20Votes` smart contract to depend on timestamps instead of blocks, but this could still be open to attacks in case the block producers on two chains collude.  
+
 Alternatively, you could alter the `OFTVotes` smart contract to postpone the addition of voting weight until a few blocks after the weight was received.
 
 ### Chained Cross-Chain Message Fees {: chained-cross-chain-message-fees }
 
-One of the flaws overlooked with the spoke chain's `DAOSatellite` smart contract is that whenever voting data is requested from the hub chain, the destination chain fees must be stored in the chain beforehand. Here are two plausable solutions to this:  
+One of the flaws overlooked with the spoke chain's `DAOSatellite` smart contract is that whenever voting data is requested from the hub chain, the destination chain fees must be stored in the smart contract beforehand. Here are two plausible solutions to this:  
 
 1. Storing the request for data, and allowing anyone to trustlessly send the data back
 2. Sending the gas from the hub chain with the cross-chain message that requests the data
@@ -815,7 +817,7 @@ The second is significantly more complex. It would require a setup that sends to
 
 In case you want to be safe, and you believe that a spoke chain might stall or even stop being supported, you would want to include a way to cap the amount of time that the collection phase takes and also add a way for your DAO's governance to add and remove spoke chains.  
 
-For example, the hub chain would wait 30 blocks until it disregards voting data from spoke chains. And if your community believes that chain A should be removed from the votes, they could start a proposal to do so, similar to OpenZeppelin's `GovernorSettings` contract.  
+For example, the hub chain would wait 30 blocks until it disregards voting data from spoke chains. And if the DAO's participants believes that chain A should be removed from the future voting, they could start a proposal to do so, similar to OpenZeppelin's `GovernorSettings` contract.  
 
 
 <div class='disclaimer'>
