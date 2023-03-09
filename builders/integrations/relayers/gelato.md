@@ -72,7 +72,7 @@ You can follow a similar set of steps to withdraw your gas funds from Gelato.
 
 Gasless transactions, also referred to as meta transactions, allow end-users to interact with smart contracts without paying for gas. Instead of confirming a transaction in a wallet, a user signs a message that enables a transaction to take place once a relayer submits the transaction and pays the associated gas fee. [EIP-2771](https://eips.ethereum.org/EIPS/eip-2771){target=_blank} is a common standard that enables meta transactions, and is implemented by the [`HelloWorld.sol` contract](https://moonscan.io/address/0x3456E168d2D7271847808463D6D383D079Bd5Eaa#code){target=_blank} referenced later in the tutorial.   
 
-In this demo, you'll ask Gelato Relay SDK to call a `HelloWorld.sol` contract on your behalf. The script being built is sourced from the [quick start guide](https://docs.gelato.network/developer-products/gelato-relay-sdk/quick-start){target=_blank} on Gelato Docs. Note, there is no dependency on RPC providers - once the transaction and signature are built, you simply pass them along to the Gelato Relay API. 
+In this demo, you'll ask Gelato Relay SDK to call a `HelloWorld.sol` contract on your behalf. The script being built is sourced from the [quick start guide](https://docs.gelato.network/developer-services/relay/quick-start){target=_blank} on Gelato's Docs. Note, there is no dependency on RPC providers - once the transaction and signature are built, you simply pass them along to the Gelato Relay API. 
 
 ### Get Started {: #getting-started }
 
@@ -175,7 +175,7 @@ The resulting ABI-encodeded call data should look like `0x4b32706700000000000000
 
 ![Gelato Relay SDK](/images/builders/integrations/relayers/gelato/gelato-5.png)
 
-The ABI-encoded call data specifies the contract function to call as well as any relevant parameters, and can be fetched via MetaMask or Remix. More commonly, you might fetch the ABI-encoded call data programmatically via Ethers.js or Web3.js. There are some additional parameters defined in the following example, such as `paymentType`, `maxFee`, and `gas`. There are a variety of possible [payment types](https://docs.gelato.network/developer-products/gelato-relay-sdk/payment-types){target=_blank} you can choose from. For simplicity, replay protection has not been considered in this example. 
+The ABI-encoded call data specifies the contract function to call as well as any relevant parameters, and can be fetched via MetaMask or Remix. More commonly, you might fetch the ABI-encoded call data programmatically via Ethers.js or Web3.js. There are some additional parameters defined in the following example, such as `paymentType`, `maxFee`, and `gas`. There are a variety of possible payment types you can choose from. For simplicity, replay protection has not been considered in this example. 
 
 ```
   // ABI encode for HelloWorld.sayHiVanilla(address _feeToken)

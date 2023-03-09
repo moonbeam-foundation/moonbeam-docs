@@ -1,6 +1,0 @@
-title: Bridges
-hide: false
-nav:
-  - index.md
-  - 'Axelar': 'axelar.md'
-  - 'Wormhole': 'wormhole.md'

@@ -9,7 +9,7 @@ description: Bobabase is the official TestNet for the Boba Layer Two Deployment 
 
 ## Introduction {: #introduction }
 
-[Boba](https://boba.network/){target=_blank} is a compute-focused Layer 2 (L2) built on the Optimistic Rollup developed by [Optimism](https://www.optimism.io/){target=_blank}. Boba augments the compute capabilities of EVM-compatible blockchains with a variety of features including [Turing hybrid compute](https://docs.boba.network/turing/turing){target=_blank}. After launching on Ethereum, Boba has brought its Layer 2 scaling solution to Moonbeam. Bobabase is the name of Boba's TestNet deployment on Moonbase Alpha. [Bobabeam](/builders/get-started/networks/layer2/bobabeam){target=_blank} refers to Boba's MainNet deployment on Moonbeam.
+[Boba](https://boba.network/){target=_blank} is a compute-focused Layer 2 (L2) built on the Optimistic Rollup developed by [Optimism](https://www.optimism.io/){target=_blank}. Boba augments the compute capabilities of EVM-compatible blockchains with a variety of features including [Turing hybrid compute](https://docs.boba.network/hybrid_compute){target=_blank}. After launching on Ethereum, Boba has brought its Layer 2 scaling solution to Moonbeam. Bobabase is the name of Boba's TestNet deployment on Moonbase Alpha. [Bobabeam](/builders/get-started/networks/layer2/bobabeam){target=_blank} refers to Boba's MainNet deployment on Moonbeam.
 
 --8<-- 'text/disclaimers/third-party-content-intro.md'
 
@@ -28,7 +28,7 @@ const Web3 = require('web3'); // Load Web3 library
 const web3 = new Web3('{{ networks.bobabase.rpc_url }}');
 ```
 
-For the Ethers.js library, define the provider by using `ethers.providers.StaticJsonRpcProvider(providerURL, {object})` and setting the provider URL to Bobabase:
+For the Ethers.js library, define the provider by using `ethers.JsonRpcProvider(providerURL, {object})` and setting the provider URL to Bobabase:
 
 ```js
 const ethers = require('ethers'); // Load Ethers library
@@ -36,7 +36,7 @@ const ethers = require('ethers'); // Load Ethers library
 const providerURL = '{{ networks.bobabase.rpc_url }}';
 
 // Define provider
-const provider = new ethers.providers.StaticJsonRpcProvider(providerURL, {
+const provider = new ethers.JsonRpcProvider(providerURL, {
     chainId: {{ networks.bobabase.chain_id }},
     name: 'bobabase'
 });

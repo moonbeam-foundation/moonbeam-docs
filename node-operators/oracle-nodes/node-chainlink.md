@@ -190,7 +190,7 @@ Lastly, you have to bond the oracle node and the oracle smart contract. A node c
 
 ## Creating a Job {: #creating-a-job } 
 
-The last step to have a fully configured Chainlink oracle is to create a job. Referring to [Chainlink’s official documentation](https://docs.chain.link/docs/job-specifications){target=_blank}:
+The last step to have a fully configured Chainlink oracle is to create a job. Referring to [Chainlink’s official documentation](https://docs.chain.link/chainlink-nodes/oracle-jobs/v1/job-specifications){target=_blank}:
 
 > A Job specifications, or specs, contain the sequential tasks that the node must perform to produce a final result. A spec contains at least one initiator and one task, which are discussed in detail below. Specs are defined using standard JSON so that they are human-readable and can be easily parsed by the Chainlink node.
 

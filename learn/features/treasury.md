@@ -21,7 +21,7 @@ Some important terminology to understand in regards to treasuries:
 - **Proposal** — a plan or suggestion to further the network that is put forth by stakeholders to be approved by the Treasury Council
 - **Proposal bond** — a deposit equal to a percentage of the total proposal spend amount, as long as it meets the proposal bond minimum, otherwise the deposit is equal to the minimum
 - **Proposal bond minimum** — minimum amount for a proposal bond. This is the lower limit of the bond for a Treasury proposal
-- **Proposal bond maximum** — maximum amount (cap) for a proposal bond. **Proposal bonds are currently uncapped in all Moonbeam-based networks** <Is this still true?>
+- **Proposal bond maximum** — maximum amount (cap) for a proposal bond. **Proposal bonds are currently uncapped in all Moonbeam-based networks**
 - **Motion duration** - the maximum amount of time, in blocks, for Treasury Council members to vote on motions. Motions may end in fewer blocks if enough votes are cast to determine the result
 - **Spend period** — the amount of days, in blocks, during which the Treasury funds as many proposals as possible without exceeding the maximum
 - **Maximum approved proposals** — the maximum amount of proposals that can wait in the spending queue
@@ -70,7 +70,7 @@ To deter spam, proposals must be submitted with a deposit, also known as a propo
 
 Once a proposal has been submitted, a Treasury Council member may motion for a vote on the proposal. The Treasury Council then votes on it during the motion duration. The threshold for accepting a treasury proposal is at least three-fifths of the treasury council. On the other hand, the threshold for rejecting a proposal is at least one-half of the treasury council. If any member(s) of the Treasury Council fails to vote during the motion duration, the vote of the Treasury Council member that holds the "Default Vote" position acts as the default. The "Default Vote" position mirrors that of [Polkadot's "Prime Member"](https://wiki.polkadot.network/docs/learn-governance#prime-members){target=_blank}. Please note that there is no way for a user to revoke a treasury proposal after it has been submitted.
  
-If approved by the treasury council, the proposal enters a queue to be placed into a spend period. If the spending queue happens to contain the number of maximum approved proposals, the proposal submission will fail similarly to how it would if the proposer's balance is too low. If the proposal gets rejected, the deposit will be lost and transferred to the parachain treasury account.
+If approved by the treasury council, the proposal enters a queue to be placed into a spend period. If the spending queue happens to contain the number of maximum approved proposals, the proposal submission will fail similarly to how it would if the proposer's balance is too low. If the proposal gets rejected, the deposit is non-refundable. 
 
 Once the proposal is in a spend period, the funds will get distributed to the beneficiary, and the original deposit will be returned to the proposer. If the treasury runs out of funds, the remaining approved proposals will remain in storage until the following spend period when the treasury has enough funds again.
 

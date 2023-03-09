@@ -1,0 +1,8 @@
+title: Ethereum API
+hide: false
+nav:
+  - index.md
+  - '[Foundry] Development Life Cycle from Start to End': 'foundry-start-to-end.md'
+  - '[Precompiles] Approve & Swap with the Batch Precompile': 'batch-approve-swap.md'
+  - '[Truffle] Development Life Cycle from Start to End': 'truffle-start-to-end.md'
+  - '[HardHat] Developer Workflow': 'hardhat-tutorial.md'

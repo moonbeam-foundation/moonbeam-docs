@@ -74,10 +74,14 @@ The Solidity interface includes the following functions:
  - **isCandidate**(*address* candidate) — read-only function that checks whether the specified address is currently a collator candidate. Uses the [`candidateState`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateState(AccountId20)){target=_blank} method of the staking pallet
  - **isSelectedCandidate**(*address* candidate) - read-only function that checks whether the specified address is currently part of the active collator set. Uses the [`selectedCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=selectedCandidates()){target=_blank} method of the staking pallet
  - **points**(*uint256* round) - read-only function that gets the total points awarded to all collators in a given round. Uses the [`points`](/builders/pallets-precompiles/pallets/staking/#:~:text=points(u32)){target=_blank} method of the staking pallet
+ - **awardedPoints**(*uint32* round, *address* candidate) - read-only function that returns the total points awarded in a given round to a given collator. If `0` is returned, it could be because no blocks were produced or the storage for that round has been removed. Uses the [`points`](/builders/pallets-precompiles/pallets/staking/#:~:text=awardedPts(u32, AccountId20)){target=_blank} method of the staking pallet
+ - **delegationAmount**(*address* delegator, *address* candidate) - read-only function that returns the amount delegated by a given delegator in support of a given candidate. Uses the [`delegatorState`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegatorState(AccountId20)){target=_blank} method of the staking pallet
+ - **isInTopDelegations**(*address* delegator, *address* candidate) - read-only function that returns a boolean indicating whether the a given delegator is in the top delegations for the given candidate. Uses the [`topDelegations`](/builders/pallets-precompiles/pallets/staking/#:~:text=topDelegations(AccountId20)){target=_blank} method of the staking pallet
  - **minDelegation**() — read-only function that gets the minimum delegation amount. Uses the [`minDelegation`](/builders/pallets-precompiles/pallets/staking/#:~:text=minDelegation()){target=_blank} method of the staking pallet
  - **candidateCount**() - read-only function that gets the current amount of collator candidates. Uses the [`candidatePool`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidatePool()){target=_blank} method of the staking pallet
  - **round**() - read-only function that returns the current round number. Uses the [`round`](/builders/pallets-precompiles/pallets/staking/#:~:text=round()){target=_blank} method of the staking pallet
  - **candidateDelegationCount**(*address* candidate) - read-only function that returns the number of delegations for the specified collator candidate address. Uses the [`candidateInfo`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateInfo(AccountId20)){target=_blank} method of the staking pallet
+ - **candidateAutoCompoundingDelegationCount**(*address* candidate) - a read-only function that returns the number of auto-compounding delegations for the specified candidate. Uses the [`autoCompoundingDelegations`](/builders/pallets-precompiles/pallets/staking/#:~:text=autoCompoundingDelegations(AccountId20)){target=_blank} method of the staking pallet
  - **delegatorDelegationCount**(*address* delegator) - read-only function that returns the number of delegations for the specified delegator address. Uses the [`delegatorState`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegatorState(AccountId20)){target=_blank} method of the staking pallet
  - **selectedCandidates**() - read-only function that gets the selected candidates for the current round. Uses the [`selectedCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=selectedCandidates()){target=_blank} method of the staking pallet
  - **delegationRequestIsPending**(*address* delegator, *address* candidate) - returns a boolean to indicate whether there is a pending delegation request made by a given delegator for a given candidate
@@ -102,6 +106,8 @@ The Solidity interface includes the following functions:
  - **executeDelegationRequest**(*address* delegator, *address* candidate) - executes any due delegation requests provided the address of a delegator and a candidate. Uses the [`executeDelegationRequest`](/builders/pallets-precompiles/pallets/staking/#:~:text=executeDelegationRequest(delegator, candidate)){target=_blank} method of the staking pallet
  - **cancelDelegationRequest**(*address* candidate) - cancels any pending delegation requests provided the address of a candidate. Uses the [`cancelDelegationRequest`](/builders/pallets-precompiles/pallets/staking/#:~:text=cancelDelegationRequest(candidate)){target=_blank} method of the staking pallet
  - **setAutoCompound**(*address* candidate, *uint8* value, *uint256* candidateAutoCompoundingDelegationCount, *uint256* delegatorDelegationCount) - sets an auto-compound value for an existing delegation given an integer (no decimals) for the `value` between 0-100. Uses the [`setAutoCompound`](/builders/pallets-precompiles/pallets/staking/#:~:text=setAutoCompound){target=_blank} method of the staking pallet
+ - **getDelegatorTotalStaked**(*address* delegator) - read-only function that returns the total staked amount of a given delegator, regardless of the candidate. Uses the [`delegatorState`](/builders/pallets-precompiles/pallets/staking/#:~:text=delegatorState(AccountId20)){target=_blank} method of the staking pallet
+ - **getCandidateTotalCounted**(*address* candidate) - read-only function that returns the total amount staked for a given candidate. Uses the [`candidateInfo`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateInfo(AccountId20)){target=_blank} method of the staking pallet
 
 As of runtime 1800, the following methods are **deprecated**:
 
@@ -141,14 +147,14 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 1. Click on the **File explorer** tab
 2. Get a copy of [`StakingInterface.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank} and paste the file contents into a Remix file named `StakingInterface.sol`
 
-![Copying and Pasting the Staking Interface into Remix](/images/builders/pallets-precompiles/precompiles/staking/new/staking-1.png)
+![Copying and Pasting the Staking Interface into Remix](/images/builders/pallets-precompiles/precompiles/staking/staking-1.png)
 
 ### Compile the Contract {: #compile-the-contract } 
 
 1. Click on the **Compile** tab, second from top
 2. Then to compile the interface, click on **Compile StakingInterface.sol**
 
-![Compiling StakingInteface.sol](/images/builders/pallets-precompiles/precompiles/staking/new/staking-2.png)
+![Compiling StakingInteface.sol](/images/builders/pallets-precompiles/precompiles/staking/staking-2.png)
 
 ### Access the Contract {: #access-the-contract } 
 
@@ -158,7 +164,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 4. Provide the address of the staking precompile for Moonbase Alpha: `{{networks.moonbase.precompiles.staking}}` and click **At Address**
 5. The Parachain Staking precompile will appear in the list of **Deployed Contracts**
 
-![Provide the address](/images/builders/pallets-precompiles/precompiles/staking/new/staking-3.png)
+![Provide the address](/images/builders/pallets-precompiles/precompiles/staking/staking-3.png)
 
 ### Delegate a Collator with Auto-Compounding {: #delegate-a-collator } 
 
@@ -175,26 +181,16 @@ The candidate delegation count is the number of delegations backing a specific c
 3. Click **call**
 4. After the call is complete, the results will be displayed
 
-![Call collator delegation count](/images/builders/pallets-precompiles/precompiles/staking/new/staking-4.png)
+![Call collator delegation count](/images/builders/pallets-precompiles/precompiles/staking/staking-4.png)
 
-The auto-compounding delegation count is the amount of delegations that have auto-compounding configured. To determine the number of delegations that have auto-compounding set up, you can query the auto-compounding delegations for the candidate on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/js){target=_blank} using the following snippet:
+The auto-compounding delegation count is the amount of delegations that have auto-compounding configured. To determine the number of delegations that have auto-compounding set up, you can
 
-```js
-// Simple script to get the number of auto-compounding delegations for a given candidate.
-// Remember to replace CANDIDATE_ADDRESS_HERE with the candidate's address you want to delegate.
-const candidateAccount = 'CANDIDATE_ADDRESS_HERE'; 
-const autoCompoundingDelegations = await api.query.parachainStaking.autoCompoundingDelegations(candidateAccount);
-console.log(autoCompoundingDelegations.toHuman().length);
-``` 
+1. Find and expand the **candidateAutoCompoundingDelegationCount** function
+2. Enter the candidate address (`{{ networks.moonbase.staking.candidates.address1 }}`)
+3. Click **call**
+4. After the call is complete, the results will be displayed
 
-To run the snippet, make sure you're on the **JavaScript** page of Polkadot.js Apps (which can be selected from the **Developer** dropdown), and take the following steps:
-
-1. Copy the code from the previous snippet and paste it inside the code editor box 
-2. (Optional) Click the save icon and set a name for the code snippet, for example, **Get auto-compounding delegations**. This will save the code snippet locally
-3. To execute the code, click on the run button
-4. Copy the result as you'll need it when initiating a delegation
-
-![Get candidate auto-compounding delegation count](/images/builders/pallets-precompiles/precompiles/staking/new/staking-5.png)
+![Get candidate auto-compounding delegation count](/images/builders/pallets-precompiles/precompiles/staking/staking-5.png)
 
 The last item you'll need to retrieve is your delegation count. If you don't know your existing number of delegations, you can easily get them by following these steps:
 
@@ -203,7 +199,7 @@ The last item you'll need to retrieve is your delegation count. If you don't kno
 3. Click **call**
 4. After the call is complete, the results will be displayed
 
-![Call delegator delegation count](/images/builders/pallets-precompiles/precompiles/staking/new/staking-6.png)
+![Call delegator delegation count](/images/builders/pallets-precompiles/precompiles/staking/staking-6.png)
 
 Now that you have obtained the [candidate delegator count](#:~:text=To obtain the candidate delegator count), the [auto-compounding delegation count](#:~:text=To determine the number of delegations that have auto-compounding set up), and your [number of existing delegations](#:~:text=If you don't know your existing number of delegations), you have all of the information you need to delegate a candidate and set up auto-compounding. To get started:
 
@@ -217,7 +213,7 @@ Now that you have obtained the [candidate delegator count](#:~:text=To obtain th
 8. Press **transact**
 9. MetaMask will pop-up, you can review the details and confirm the transaction
 
-![Delegate a Collator](/images/builders/pallets-precompiles/precompiles/staking/new/staking-7.png)
+![Delegate a Collator](/images/builders/pallets-precompiles/precompiles/staking/staking-7.png)
 
 If you want to delegate without setting up auto-compounding, you can follow the previous steps, but instead of using **delegateWithAutoCompound**, you can use the **delegate** extrinsic.
 
@@ -231,7 +227,7 @@ Navigate to **Accounts** and then **Address Book**, click on **Add contact**, an
 2. Provide a nickname for the account
 3. Click **Save**
 
-![Add to Address Book](/images/builders/pallets-precompiles/precompiles/staking/new/staking-8.png)
+![Add to Address Book](/images/builders/pallets-precompiles/precompiles/staking/staking-8.png)
 
 To verify your delegation was successful, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/chainstate){target=_blank} and navigate to **Developer** and then **Chain State**
 
@@ -244,7 +240,7 @@ To verify your delegation was successful, head to [Polkadot.js Apps](https://pol
 !!! note
     You do not have to enter anything in the **blockhash to query at** field if you are looking for an overview of your delegations.
 
-![Verify delegation](/images/builders/pallets-precompiles/precompiles/staking/new/staking-9.png)
+![Verify delegation](/images/builders/pallets-precompiles/precompiles/staking/staking-9.png)
 
 ### Confirm Auto-Compounding Percentage {: #confirm-auto-compounding }
 
@@ -256,7 +252,7 @@ You can confirm the percentage of rewards you've set to auto-compound in Remix u
 4. Click **call**
 5. The response will appear below the **call** button
 
-![Verify auto-compound percentage](/images/builders/pallets-precompiles/precompiles/staking/new/staking-10.png)
+![Verify auto-compound percentage](/images/builders/pallets-precompiles/precompiles/staking/staking-10.png)
 
 ### Set or Change the Auto-Compounding Percentage {: #set-or-change-auto-compounding }
 
@@ -274,7 +270,7 @@ Once you have the necessary information, you can take the following steps in Rem
 6. Press **transact**
 7. MetaMask will pop-up, you can review the details and confirm the transaction
 
-![Set or update auto-compound percentage](/images/builders/pallets-precompiles/precompiles/staking/new/staking-11.png)
+![Set or update auto-compound percentage](/images/builders/pallets-precompiles/precompiles/staking/staking-11.png)
 
 ### Revoke a Delegation {: #revoke-a-delegation } 
 
@@ -291,7 +287,7 @@ To revoke a delegation and receive your tokens back, head back over to Remix, th
 3. Click **transact**
 4. MetaMask will pop, you can review the transaction details, and click **Confirm**
 
-![Revoke delegation](/images/builders/pallets-precompiles/precompiles/staking/new/staking-12.png)
+![Revoke delegation](/images/builders/pallets-precompiles/precompiles/staking/staking-12.png)
 
 Once the transaction is confirmed, you must wait the duration of the exit delay before you can execute and revoke the delegation request. If you try to revoke it before the exit delay is up, your extrinsic will fail.
 

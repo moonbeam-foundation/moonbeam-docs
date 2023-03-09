@@ -1,7 +1,7 @@
 from web3 import Web3
 
 provider_rpc = {
-    "development": "http://localhost:9933",
+    "development": "http://localhost:9944",
     "alphanet": "https://rpc.api.moonbase.moonbeam.network",
 }
 web3 = Web3(Web3.HTTPProvider(provider_rpc["development"]))  # Change to correct network
