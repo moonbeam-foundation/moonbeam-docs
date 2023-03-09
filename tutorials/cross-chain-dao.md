@@ -813,7 +813,7 @@ One of the flaws overlooked with the spoke chain's `DAOSatellite` smart contract
 
 The first is the simplest solution, though it may increase the turn around time for proposal to execution if you don't plan on running additional infrastructure. Similar to how the `execute` function can be ran by anyone once a proposal has been finished, a new function would be written to allow anyone to send the vote data to the hub chain. Preferably, this would also require a [timeout to the collection phase](#collection-phase-time-out).  
 
-![Chained Execution](/images/tutorials/cross-chain-dao/cross-chain-dao-5.png)  
+![Chained Execution](/images/tutorials/cross-chain-dao/cross-chain-dao-6.png)  
 
 The second is significantly more complex. It would require a setup that sends tokens with a payload instead of just a payload like the current contract does, and for a swap to occur on the destination chain to retrieve native currency for a cross-chain transaction.  
 
