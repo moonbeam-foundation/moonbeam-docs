@@ -745,26 +745,26 @@ In fact, the `_countVote` function is [directly copied](https://github.com/OpenZ
 
 That's it for breaking down the satellite contract. It was more or less simple because most of the logic is just a reflection of what happens on the hub chain. You can view the completed smart contract in its [GitHub repository](https://github.com/jboetticher/cross-chain-dao/blob/main/contracts/DAOSatellite.sol){target=_blank}.  
 
-At this point, every single smart contract has been finished, and a deployment scheme like the one below can be made. Congratulations on getting this far! If you are interested in seeing this in action, the [GitHub repository](https://github.com/jboetticher/cross-chain-dao){target=_blank} that hosts the cross-chain DAO allows you to deploy on TestNets.  
+At this point, every single smart contract has been finished, and a deployment scheme like the one below can be made. If you are interested in seeing this in action, the [GitHub repository](https://github.com/jboetticher/cross-chain-dao){target=_blank} that hosts the cross-chain DAO allows you to deploy on TestNets.  
 
 ![Smart contracts overview](/images/tutorials/cross-chain-dao/cross-chain-dao-3.png)  
 
 ## Caveats and Other Designs {: #caveats-and-other-designs }
 
-At this point, that's it for the smart contracts. Every single part of the smart contract system has been written, and if you got through it all, good job! It's a lot to soak in, and there are still parts that need to be developed for it to be production ready.    
+Every single part of the smart contract system has been written, and if you got through it all, good job! It's a lot to soak in, and there are still parts that need to be developed for it to be production ready.    
 
-The design of this cross-chain DAO was created off of OpenZeppelin's Governor base, but that doesn't mean that it's flawless. It's good to work off of preexisting smart contracts for a version 1 cross-chain dApp, but as you get closer to production-ready code, it's best to start from scratch and leave only the parts that are still relevant to the design. Working off of logic that's meant for single-chain can get in the way several times, which you will find a common occurrence when working with cross-chain smart contracts.  
+The design of this cross-chain DAO was created off of OpenZeppelin's Governor base, but that doesn't mean that it's flawless. It's good to work off of preexisting smart contracts for a version 1 cross-chain DApp, but as you get closer to production-ready code, it's best to start from scratch and leave only the parts that are still relevant to the design. Working off of logic that's meant for single-chain can get in the way several times, which you will find a common occurrence when working with cross-chain smart contracts.  
 
-For example, the `propose` function from the `Governor` smart contract couldn't be used, and had to be replaced with a new cross-chain function. It would be best to completely remove the `propose` function, but that can't be done because of the way the `Governor` smart contract was designed. This is an obvious issue, and it goes to show that while it's good to prototype cross-chain apps using preexisting smart contracts, it can be better to completely rewrite them while still reusing some logic.  
+For example, the `propose` function from the `Governor` smart contract couldn't be used, and had to be replaced with a new cross-chain function. It would be best to completely remove the `propose` function, but that can't be done because of the way the `Governor` smart contract was designed. This is an obvious issue, and it goes to show that while it's good to prototype cross-chain DApps using preexisting smart contracts, it can be better to completely rewrite them while still reusing some logic.  
 
 !!! challenge
     Can you rewrite the `CrossChainDAO` smart contract to only include the logic and functions necessary for cross-chain interactions? While you're at it, can you implement any of the alternate designs suggested below?
 
 ### Division of the Cross-Chain Selector Into Multiple Contracts {: #division-of-the-cross-chain-selector-into-multiple-contracts }
 
-The cross-chain selection method that was used in the `CrossChainDAO` and `DAOSatellite` smart contracts works fine enough. But instead of having a selector within a single smart contract, you could have cross-chain messages be directed at multiple smart contracts that have special permissions within the `CrossChainDAO`.  
+The cross-chain function selection method that was used in the `CrossChainDAO` and `DAOSatellite` smart contracts works fine enough. But instead of having a selector within a single smart contract, you could have cross-chain messages be directed at multiple smart contracts that have special permissions within the `CrossChainDAO`. You may find this helpful in case you believe in single responsibility (SRP) for smart contracts.  
 
-For example, the hub chain's `CrossChainDAO` could be composed of the main contract that receives cross-chain data as well as two other smart contracts: `CrossChainExecutor` and `CrossChainProposer`. So, when interacting with the `DAOSatellite` contract to send a message to `CrossChainDAO`, the spoke chain's smart contract could target `CrossChainExecutor` to execute or `CrossChainProposer` to propose. This would remove the need to double-wrap payloads and the need to include function selecting logic in the cross-chain message receiving function.  
+For example, the hub chain's `CrossChainDAO` could be composed of the main contract that receives cross-chain data as well as two other smart contracts: `CrossChainExecutor` and `CrossChainProposer`. So, when interacting with the `DAOSatellite` contract to send a message to `CrossChainDAO`, the spoke chain's smart contract could target `CrossChainExecutor` to execute or `CrossChainProposer` to propose. This would remove the need to double-wrap payloads and the need to include function selecting logic in the cross-chain message receiving function. It could even help convert a single-chain DAO into one with cross-chain abilities.  
 
 ### Distributed Proposal and Execution {: #distributed-proposal-and-execution }
 
