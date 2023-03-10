@@ -25,6 +25,14 @@ For this guide specifically, you'll need to have an understanding of the followi
 
 --8<-- 'text/xcm/general-xcm-definitions2.md'
 
+## Checking Prerequisites {: #checking-prerequisites }
+
+For this guide, you will need the following:
+
+- An [account loaded in Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/accounts){target=_blank} funded with [DEV tokens](/builders/get-started/networks/moonbase/#get-tokens){target=_blank}. Your account should also hold the ERC-20 tokens you want to send
+- The contract address of the ERC-20 token
+- A recipient address on the target chain where you'll be sending the ERC-20 to
+
 ## Use the X-Tokens Pallet to Send an ERC-20 {: #x-tokens-pallet }
 
 To build an XCM message, you'll use the [`transfer` function of the X-Tokens Pallet](/builders/interoperability/xcm/xc20/xtokens/#extrinsics){target=_blank}, which enables you to transfer fungible assets from Moonbeam to another chain. This example can be extrapolated to the other functions in the pallet, especially once familiar with multilocations.
@@ -50,14 +58,6 @@ The `transfer` function accepts the following parameters:
     If not enough weight is provided, the execution of the XCM will fail, and funds might get locked in either the Sovereign account or a special pallet. **It is important to correctly set the destination weight to avoid failed XCM executions**
 
 Now that you have a basic understanding of the transfer function and the parameters it accepts, you can build and send the XCM message.
-
-### Checking Prerequisites {: #checking-prerequisites }
-
-To be able to send the extrinsics in Polkadot.js Apps, you need to have the following:
-
-- An [account loaded in Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/accounts){target=_blank} funded with [DEV tokens](/builders/get-started/networks/moonbase/#get-tokens){target=_blank}. Your account should also hold the ERC-20 tokens you want to send
-- The contract address of the ERC-20 token
-- A recipient address on the target chain where you'll be sending the ERC-20 to
 
 ### Use Polkadot.js Apps to Send an ERC-20 Cross-Chain {: #use-polkadotjs-apps }
 
