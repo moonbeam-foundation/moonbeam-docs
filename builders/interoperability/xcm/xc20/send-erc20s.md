@@ -61,7 +61,7 @@ To be able to send the extrinsics in Polkadot.js Apps, you need to have the foll
 
 ### Use Polkadot.js Apps to Send an ERC-20 Cross-Chain {: #use-polkadotjs-apps }
 
-This section of the guide will show you how to build an XCM message using Polkadot.js Apps.
+This section of the guide will show you how to build and send an XCM message to transfer an ERC-20 cross-chain using Polkadot.js Apps. This is purely for example purposes only. Before sending assets cross-chain, make sure that the asset you're sending is registered in the target chain; otherwise the call will result in a loss of the assets.
 
 To get started, you can head to the extrinsics page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} and set the following options:
 
@@ -116,6 +116,8 @@ In the X-Tokens Precompile interface, the `Multilocation` structure is defined a
 Now that you have an understanding of how to build the multilocation, you can use an Ethereum library to call the `transfer` function of the X-Tokens Precompile and pass in the necessary parameters to send an ERC-20 cross-chain. 
 
 For this example, you'll need to import the ABI of the X-Tokens Precompile. You can find the [X-Tokens ABI on Github](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/xtokens/abi.js){target=_blank}.
+
+The following snippets are purely for example purposes only. Before sending assets cross-chain, make sure that the asset you're sending is registered in the target chain; otherwise the call will result in a loss of the assets.
 
 !!! remember
     The following snippets are for demonstration purposes only. Never store your private key or mnemonic in a JavaScript or TypeScript file. 
