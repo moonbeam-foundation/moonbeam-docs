@@ -5,4 +5,4 @@ nav:
   - 'External XC-20s': 'xc20.md'
   - 'Mintable XC-20s': 'mintable-xc20.md'
   - 'Send XC-20s': 'xtokens.md'
-
+  - 'Send ERC-20s': 'send-erc20s.md'

@@ -1,6 +1,6 @@
 ---
 title: Send XC-20s to Other Chains
-description: Learn how to send XC-20s to other chains using the X-Tokens pallet. The X-Tokens precompile allows you to access core functions via the Ethereum API.
+description: Learn how to send XC-20s to other chains using the X-Tokens Pallet. The X-Tokens Precompile allows you to access core functions via the Ethereum API.
 ---
 
 # Using the X-Tokens Pallet To Send XC-20s
@@ -11,9 +11,9 @@ description: Learn how to send XC-20s to other chains using the X-Tokens pallet.
 
 Building an XCM message for fungible asset transfers is not an easy task. Consequently, there are wrapper functions/pallets that developers can leverage to use XCM features on Polkadot/Kusama.
 
-One example of such wrappers is the [x-tokens](https://github.com/open-web3-stack/open-runtime-module-library/tree/master/xtokens){target=_blank} pallet, which provides different methods to transfer fungible assets via XCM.
+One example of such wrappers is the [X-Tokens](https://github.com/open-web3-stack/open-runtime-module-library/tree/master/xtokens){target=_blank} Pallet, which provides different methods to transfer fungible assets via XCM.
 
-This guide will show you how to leverage the x-tokens pallet to send XC-20s from a Moonbeam-based network to other chains in the ecosystem (relay chain/parachains). Moreover, you'll also learn how to use the x-tokens precompile to perform the same actions via the Ethereum API.
+This guide will show you how to leverage the X-Tokens Pallet to send XC-20s from a Moonbeam-based network to other chains in the ecosystem (relay chain/parachains). Moreover, you'll also learn how to use the X-Tokens Precompile to perform the same actions via the Ethereum API.
 
 **Developers must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
 
@@ -26,18 +26,24 @@ This guide will show you how to leverage the x-tokens pallet to send XC-20s from
 
 ### Extrinsics {: #extrinsics }
 
-The x-tokens pallet provides the following extrinsics (functions):
+The X-Tokens Pallet provides the following extrinsics (functions):
 
- - **transfer**(currencyId, amount, dest, destWeight) — transfer a currency, defined as either the native token (self reserved), or with the asset ID
+ - **transfer**(currencyId, amount, dest, destWeight) — transfer a currency, defined as the native token (self reserved), with the asset ID, or with the ERC-20 contract address
  - **transferMultiasset**(asset, dest, destWeight) — transfer a fungible asset, defined by its multilocation
  - **transferMultiassetWithFee**(asset, fee, dest, destWeight) — transfer a fungible asset, but it allows the sender to pay the fee with a different asset. Both are defined by their multilocation
  - **transferMultiassets**(assets, feeItem, dest, destWeight) — transfer several fungible assets, specifying which is used as the fee. Each asset is defined by its multilocation
- - **transferMulticurrencies**(currencies, feeItem, dest, destWeight) — transfer different currencies, specifying which is used as the fee. Each currency is defined as either the native token (self reserved) or with the asset ID
+ - **transferMulticurrencies**(currencies, feeItem, dest, destWeight) — transfer different currencies, specifying which is used as the fee. Each currency is defined as either the native token (self reserved), with the asset ID, or with the ERC-20 contract address
  - **transferWithFee**(currencyId, amount, fee, dest, destWeight) — transfer a currency, but it allows the sender to pay the fee with a different asset. Both are defined by their multilocation
 
 Where the inputs that need to be provided can be defined as:
 
- - **currencyId/currencies** — the ID/IDs of the currency/currencies being sent via XCM. Different runtimes have different ways to define the IDs. In the case of Moonbeam-based networks, `SelfReserve` refers to the native token, and `ForeignAsset` refers to the asset ID of the XC-20 (not to be confused with the XC-20 address)
+ - **currencyId/currencies** — the ID/IDs of the currency/currencies being sent via XCM. Different runtimes have different ways to define the IDs. In the case of Moonbeam-based networks, the following currency options exist:
+
+    - `SelfReserve` - refers to the native token
+    - `ForeignAsset` - refers to the asset ID of an [External XC-20](/builders/interoperability/xcm/xc20/xc20){target=_blank} (not to be confused with the XC-20 address)
+    - `LocalAssetReserve` - refers to the asset ID of a [Mintable XC-20](/builders/interoperability/xcm/xc20/mintable-xc20){target=_blank} (not to be confused with the XC-20 address)
+    - `Erc20` - refers to the contract address of an [ERC-20](/builders/interoperability/xcm/xc20/send-erc20s-xcm){target=_blank}
+
  - **amount** — the number of tokens that are going to be sent via XCM
  - **dest** — a multilocation to define the destination address for the tokens being sent via XCM. It supports different address formats such as 20 or 32 bytes addresses (Ethereum or Substrate)
  - **destWeight** — an enum that represents the maximum amount of execution time you want to provide in the destination chain to execute the XCM message being sent. The `Unlimited` option allows for all of the asset used for gas included to be used to pay for weight. The `Limited` option limits the amount used for gas to a particular value. If not enough weight is provided, the execution of the XCM will fail, and funds might get locked in either the sovereign account or a special pallet. **It is important to correctly set the destination weight to avoid failed XCM executions**
@@ -47,20 +53,20 @@ Where the inputs that need to be provided can be defined as:
 
 ### Storage Methods {: #storage-methods }
 
-The x-tokens pallet includes the following read-only storage method:
+The X-Tokens Pallet includes the following read-only storage method:
 
-- **palletVersion**() - provides the version of the x-tokens pallet being used
+- **palletVersion**() - provides the version of the X-Tokens Pallet being used
 
 ### Pallet Constants {: #constants }
 
-The x-tokens pallet includes the following read-only functions to obtain pallet constants:
+The X-Tokens Pallet includes the following read-only functions to obtain pallet constants:
 
 - **baseXcmWeight**() - returns the base XCM weight required for execution
 - **selfLocation**() - returns the multilocation of the chain
 
 ## Building an XCM Message with the X-Tokens Pallet {: #build-xcm-xtokens-pallet}
 
-This guide covers the process of building an XCM message using the x-tokens pallet, more specifically, with the `transfer` and `transferMultiasset` functions. Nevertheless, these two cases can be extrapolated to the other functions, especially once familiar with multilocations.
+This guide covers the process of building an XCM message using the X-Tokens Pallet, more specifically, with the `transfer` and `transferMultiasset` functions. Nevertheless, these two cases can be extrapolated to the other functions, especially once familiar with multilocations.
 
 !!! note
     Each parachain can allow/forbid specific methods from a pallet. Consequently, developers must ensure to use methods that are allowed. On the contrary, the transaction will fail with an error similar to `system.CallFiltered`.
@@ -95,7 +101,7 @@ If you're interested in how the precompile address is calculated, you can check 
 
 ### X-Tokens Transfer Function {: #xtokens-transfer-function}
 
-In this example, you'll build an XCM message to transfer `xcUNIT` from Moonbase Alpha back to its [relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} through the `transfer` function of the x-tokens pallet.
+In this example, you'll build an XCM message to transfer `xcUNIT` from Moonbase Alpha back to its [relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} through the `transfer` function of the X-Tokens Pallet.
 
 Head to the extrinsic page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} and set the following options (you can adapt for [mintable XC-20s](/builders/interoperability/xcm/xc20/mintable-xc20/){target=_blank}):
 
@@ -124,12 +130,11 @@ Head to the extrinsic page of [Polkadot.js Apps](https://polkadot.js.org/apps/?r
 
 ![XCM X-Tokens Transfer Extrinsic](/images/builders/interoperability/xcm/xc20/xtokens/xtokens-2.png)
 
-
 Once the transaction is processed, the **TargetAccount** should have received the transferred amount minus a small fee that is deducted to execute the XCM on the destination chain. On Polkadot.js Apps, can check the relevant extrinsics and events in [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer/query/0xf163f304b939bc10b6d6abcd9fd12ea00b6f6cd3f12bb2a32b759b56d2f1a40d){target=_blank} and the [relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/explorer/query/0x5b997e806303302007c6829ab8e5b166a8aafc6a68f10950cc5aa8c6981ea605){target=_blank}. 
 
 ### X-Tokens Transfer MultiAsset Function {: #xtokens-transfer-multiasset-function}
 
-In this example, you'll build an XCM message to transfer `xcUNIT` from Moonbase Alpha back to its [relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} using the `transferMultiasset` function of the x-tokens pallet.
+In this example, you'll build an XCM message to transfer `xcUNIT` from Moonbase Alpha back to its [relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} using the `transferMultiasset` function of the X-Tokens Pallet.
 
 Head to the extrinsic page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} and set the following options:
 
@@ -177,9 +182,9 @@ Head to the extrinsic page of [Polkadot.js Apps](https://polkadot.js.org/apps/?r
 
 Once the transaction is processed, the **TargetAccount** should have received the transferred amount minus a small fee that is deducted to execute the XCM on the destination chain. On Polkadot.js Apps, you can check the relevant extrinsics and events in [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer/query/0x7711a9bb672782acf6702ebb235cdcbd982d536835e6d00fb07ba716eb1ec982){target=_blank} and the [relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/explorer/query/0x03d402f171aa4ab52d6c72d693fb6e76399b88fd44587f748aa685e9b53727ea){target=_blank}.
 
-## X-Tokens Precompile {: #xtokens-precompile}
+## X-Tokens Precompile {: #xtokens-precompile }
 
-The x-tokens precompile contract allows developers to access XCM token transfer features through the Ethereum API of Moonbeam-based networks. As with other [precompile contracts](/builders/pallets-precompiles/precompiles/){target=_blank}, the x-tokens precompile is located at the following addresses:
+The X-Tokens Precompile contract allows developers to access XCM token transfer features through the Ethereum API of Moonbeam-based networks. As with other [precompile contracts](/builders/pallets-precompiles/precompiles/){target=_blank}, the X-Tokens Precompile is located at the following addresses:
 
 === "Moonbeam"
      ```
@@ -200,7 +205,7 @@ The x-tokens precompile contract allows developers to access XCM token transfer 
 
 ### The X-Tokens Solidity Interface {: #xtokens-solidity-interface } 
 
-[Xtokens.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=_blank} is an interface through which developers can interact with the x-tokens pallet using the Ethereum API.
+[Xtokens.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=_blank} is an interface through which developers can interact with the X-Tokens Pallet using the Ethereum API.
 
 The interface includes the following functions:
 
@@ -208,6 +213,7 @@ The interface includes the following functions:
     - For [external XC-20s](/builders/interoperability/xcm/xc20/xc20){target=_blank}, provide the [XC-20 precompile address](/builders/interoperability/xcm/xc20/xc20/#current-xc20-assets){target=_blank}
     - For [mintable XC-20s](/builders/interoperability/xcm/xc20/mintable-xc20){target=_blank}, you can follow the instructions for [calculating the precompile address](/builders/interoperability/xcm/xc20/mintable-xc20/#calculate-xc20-address){target=_blank}
     - For native tokens (i.e., GLMR, MOVR, and DEV), provide the [ERC-20 precompile](/builders/pallets-precompiles/precompiles/erc20/#the-erc20-interface){target=_blank} address, which is `{{networks.moonbeam.precompiles.erc20 }}`
+    - For ERC-20s, provide the contract address of the ERC-20
 
     The `destination` multilocation is built in a particular way that is described in the following section   
     
@@ -215,43 +221,15 @@ The interface includes the following functions:
 
 ### Building the Precompile Multilocation {: #building-the-precompile-multilocation }
 
-In the x-tokens precompile interface, the `Multilocation` structure is defined as follows:
+In the X-Tokens Precompile interface, the `Multilocation` structure is defined as follows:
 
 --8<-- 'text/xcm/xcm-precompile-multilocation.md'
 
-The following code snippet goes through some examples of `Multilocation` structures, as they would need to be fed into the x-tokens precompile functions:
+--8<-- 'text/xc-20/xtokens/multilocation-structures.md'
 
-
-```js
-// Multilocation targeting the relay chain or its asset from a parachain
-{
-    1, // parents = 1
-    [] // interior = here
-}
-
-// Multilocation targeting Moonbase Alpha DEV token from another parachain
-{
-    1, // parents = 1
-    // Size of array is 2, meaning is an X2 interior
-    [
-        "0x00000003E8", // Selector Parachain, ID = 1000 (Moonbase Alpha)
-        "0x0403" // Pallet Instance = 3
-    ]
-}
-
-// Multilocation targeting Alice's account on the Relay Chain from Moonbase Alpha
-{
-    1, // parents = 0
-    // Size of array is 1, meaning is an X1 interior
-    [
-        "0x01c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300" 
-        // AccountKey32 Selector + Address in hex + Network = Any
-    ]
-}
-```
 ### Using Libraries to Interact with X-Tokens {: #using-libraries-to-interact-with-xtokens}
 
-The Multilocation structs can be formatted like any other struct when using libraries to interact with the Ethereum API. The following code snippet include the previous [x-tokens transfer function](#xtokens-transfer-function), the [x-tokens multiasset transfer function](#xtokens-transfer-multiasset-function), and sample Multilocation struct examples. You can find the [x-tokens ABI on Github](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/xtokens/abi.js){target=_blank}.
+The Multilocation structs can be formatted like any other struct when using libraries to interact with the Ethereum API. The following code snippet include the previous [X-Tokens transfer function](#xtokens-transfer-function), the [X-Tokens multiasset transfer function](#xtokens-transfer-multiasset-function), and sample Multilocation struct examples. You can find the [X-Tokens ABI on Github](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/xtokens/abi.js){target=_blank}.
 
 === "Ethers.js"
     --8<-- 'code/xtokens/ethersjs.md'

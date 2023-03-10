@@ -36,7 +36,7 @@ def transferToAlice():
     # Sign transaction
     signedTx = web3.eth.account.sign_transaction(transferTx, privateKey)
 
-    # 7. Send tx and wait for receipt
+    # Send tx and wait for receipt
     hash = web3.eth.send_raw_transaction(signedTx.rawTransaction)
     receipt = web3.eth.wait_for_transaction_receipt(hash)
     print(f'Tx successful with hash: { receipt.transactionHash.hex() }')
