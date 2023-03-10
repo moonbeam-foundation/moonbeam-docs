@@ -111,7 +111,7 @@ In the X-Tokens Precompile interface, the `Multilocation` structure is defined a
 
 --8<-- 'text/xc-20/xtokens/multilocation-structures.md'
 
-### Use Ethereum Libraries to Send an ERC-20 {: #using-libraries-to-interact-with-xtokens}
+### Use Ethereum Libraries to Send an ERC-20 Cross-Chain {: #using-libraries-to-interact-with-xtokens}
 
 Now that you have an understanding of how to build the multilocation, you can use an Ethereum library to call the `transfer` function of the X-Tokens Precompile and pass in the necessary parameters to send an ERC-20 cross-chain. 
 
