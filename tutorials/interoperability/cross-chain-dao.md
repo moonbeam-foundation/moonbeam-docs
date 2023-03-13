@@ -7,7 +7,7 @@ description: Go over the elements of how a cross-chain DAO could be implemented 
 
 ![Banner Image](/images/tutorials/interoperability/cross-chain-dao/cross-chain-dao-banner.png)
 
-_February 12th, 2022 | by Jeremy Boetticher_
+_February 12, 2022 | by Jeremy Boetticher_
 
 ## Introduction {: #introduction } 
 
