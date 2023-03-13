@@ -1,6 +1,6 @@
 ---
 title: Send ERC-20s Cross-Chain via XCM
-description: Learn how to send any ERC-20 to another chain via XCM.
+description: Transfer any ERC-20 token cross-chain with ease via XCM. Our step-by-step tutorial will guide you through the process. Start sending tokens across chains today!
 ---
 
 # Send ERC-20s Cross Chain via XCM
