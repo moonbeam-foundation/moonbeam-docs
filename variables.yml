@@ -865,8 +865,8 @@ networks:
       tx_fees_allocated: 20
       tx_fees_burned: 80
     proxy:
-      deposit_base: 1.0008
-      deposit_factor: 0.0021
+      deposit_base: 10.08
+      deposit_factor: 0.21
       max_proxies: 32
     identity:
       basic_dep: 1.0258
