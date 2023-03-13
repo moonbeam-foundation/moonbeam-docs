@@ -104,15 +104,15 @@ The `yarn start dev` command forks a chain, and includes following flags:
 
 ### Interacting with a Fork {: #interacting-with-a-fork }
 
-When running a fork, by default it will be accessible at `ws://localhost:8000`. You will be able to interact with the parachain via libraries such as [Polkadot.js](https://github.com/polkadot-js/common){target=_blank} and its [locally built user interface, Polkadot.js Apps](https://github.com/polkadot-js/apps){target=_blank}.  
+When running a fork, by default it will be accessible at `ws://localhost:8000`. You will be able to interact with the parachain via libraries such as [Polkadot.js](https://github.com/polkadot-js/common){target=_blank} and its [user interface, Polkadot.js Apps](https://github.com/polkadot-js/apps){target=_blank}.  
 
-The Polkadot.js Apps user interface can be built with Docker by running the following command:  
+You can interact with chopsticks via its [hosted user interface](https://polkadot.js.org/apps/#/explorer){target=_blank}, or by going to `localhost` after building it with Docker by running the following command:  
 
 ```
 docker run --rm -it --name polkadot-ui -e WS_URL=ws://someip:9944 -p 80:80 jacogr/polkadot-js-apps:latest
 ```
 
-Afterwards, you should be able to go to `localhost` in the browser to see the UI. To interact with the local fork via the UI:
+To interact with the local fork via the UI:
 
 1. Click the icon in the top left
 2. Go to the bottom and open **Development**
@@ -122,7 +122,7 @@ Afterwards, you should be able to go to `localhost` in the browser to see the UI
 ![Open WSS](/images/builders/build/substrate-api/chopsticks/chopsticks-1.png)
 ![Switch WSS](/images/builders/build/substrate-api/chopsticks/chopsticks-2.png)
 
-You should now be able to interact with the fork as you would in the hosted version of Polkadot.js Apps.
+You should now be able to interact with the fork as you would an active parachain or relay chain.  
 
 ## Replaying Blocks {: #replaying-blocks }
 
