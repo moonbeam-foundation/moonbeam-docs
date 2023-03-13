@@ -17,13 +17,19 @@ Overall, Chopsticks aims to simplify the process of building blockchain applicat
 
 To use Chopsticks, you will need the following:  
 
-- Have a recent version of [Rust installed](https://www.rust-lang.org/tools/install){target=_blank} 
-- Have [Yarn](https://classic.yarnpkg.com/en/){target=_blank} installed  
+- Have [Node](https://nodejs.org/en/download/){target=_blank} installed  
 - Have [Docker](https://docs.docker.com/get-docker/){target=_blank} installed
+- (Optional) Have a recent version of [Rust installed](https://www.rust-lang.org/tools/install){target=_blank} 
 
 ## Configuring Chopsticks {: configuring-chopsticks }
 
-First, install Chopsticks from its GitHub repository, add dependencies, and build it:  
+There are two ways to use Chopsticks. The first and recommended way is by installing it as a package:  
+
+```
+yarn add @acala-network/chopsticks
+```
+
+The alternate option is to clone Chopsticks from its GitHub repository, add dependencies, and build it. Note that the commands in this guide will assume that you are using the package installation, which uses `npx @acala-network/chopsticks` or `yarn dlx` instead of `npm run` or `yarn start` for local builds:  
 
 ```
 git clone --recurse-submodules https://github.com/AcalaNetwork/chopsticks.git && \
@@ -32,7 +38,7 @@ yarn && \
 yarn build-wasm
 ```
 
-Chopsticks includes a set of [YAML](https://yaml.org/){target=_blank} configuration files that can be used to create a local copy of a variety of Substrate chains. You can view each of the default configuration files within the `configs` folder. Moonbeam, Moonriver, and Moonbase Alpha all have default files available. The example configuration below is the current configuration for Moonbeam:  
+Chopsticks includes a set of [YAML](https://yaml.org/){target=_blank} configuration files that can be used to create a local copy of a variety of Substrate chains. You can view each of the default configuration files within the `configs` folder of the [source repository](https://github.com/AcalaNetwork/chopsticks.git){target=_blank}. Moonbeam, Moonriver, and Moonbase Alpha all have default files available. The example configuration below is the current configuration for Moonbeam:  
 
 ```yaml
 endpoint: wss://wss.api.moonbeam.network
@@ -58,7 +64,7 @@ import-storage:
     EligibleCount: 100
 ```
 
-The settings that can be included in the config file are the same as the flags in the [`yarn start dev` command](#forking-moonbeam){target=_blank}, as well as these additional options:  
+The settings that can be included in the config file are the same as the flags in the [`dev` command](#forking-moonbeam){target=_blank}, as well as these additional options:  
 
 |          Option          |                                           Description                                               |
 |:------------------------:|:---------------------------------------------------------------------------------------------------:|
@@ -71,22 +77,22 @@ The simplest way to fork Moonbeam is through the previously introduced configura
 
 === "Moonbeam"
     ```
-    yarn start dev --config=configs/moonbeam.yml
+    npx @acala-network/chopsticks dev --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbeam.yml
     ```
 
 === "Moonriver"
     ```
-    yarn start dev --config=configs/moonriver.yml
+    npx @acala-network/chopsticks dev --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonriver.yml
     ```
 
 === "Moonbase Alpha"
     ```
-    yarn start dev --config=configs/moonbase-alpha.yml
+    npx @acala-network/chopsticks dev --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbase-alpha.yml
     ```
 
 A configuration file is not necessary, however. There are additional commands and flags to configure the environment completely in the command line.  
 
-The `yarn start dev` command forks a chain, and includes following flags:  
+The `npx @acala-network/chopsticks dev` command forks a chain, and includes following flags:  
 
 |           Flag           |                                           Description                                               |
 |:------------------------:|:---------------------------------------------------------------------------------------------------:|
@@ -94,7 +100,7 @@ The `yarn start dev` command forks a chain, and includes following flags:
 |          block           | Use to specify at which block hash or number to replay the fork.                                    |
 |      wasm-override       | Path of the WASM to use as the parachain runtime, instead of an endpoint's runtime.                 |
 |            db            | Path to the name of the file that stores or will store the parachain's database.                    |
-|          config          | Path to the config file.                                                                            |
+|          config          | Path or URL of the config file.                                                                     |
 |           port           | The port to expose an endpoint on.                                                                  |
 |      build-block-mode    | How blocks should be built in the fork: batch, manual, instant.                                     |
 |      import-storage      | A pre-defined JSON/YAML storage file path to override in the parachain's storage.                   |
@@ -126,7 +132,7 @@ You should now be able to interact with the fork as you would an active parachai
 
 ## Replaying Blocks {: #replaying-blocks }
 
-In the case where you would like to replay a block and retrieve its information to dissect the effects of an extrinsic, you can use the `yarn start run-block` command. Its following flags are:  
+In the case where you would like to replay a block and retrieve its information to dissect the effects of an extrinsic, you can use the `npx @acala-network/chopsticks run-block` command. Its following flags are:  
 
 |           Flag           |                                           Description                                               |
 |:------------------------:|:---------------------------------------------------------------------------------------------------:|
@@ -134,7 +140,7 @@ In the case where you would like to replay a block and retrieve its information 
 |          block           | Use to specify at which block hash or number to replay the fork.                                    |
 |      wasm-override       | Path of the WASM to use as the parachain runtime, instead of an endpoint's runtime.                 |
 |            db            | Path to the name of the file that stores or will store the parachain's database.                    |
-|          config          | Path to the config file.                                                                            |
+|          config          | Path or URL of the config file.                                                                     |
 | output-path=/[file_path] | Use to print out results to a JSON file instead of printing it out in the console.                  |
 |           html           | Include to generate an HTML representation of the storage diff preview between blocks.              |
 |           open           | Whether to open the HTML representation.                                                            |
@@ -142,15 +148,15 @@ In the case where you would like to replay a block and retrieve its information 
 For example, running the following command will re-run Moonbeam's block 1000, and write the storage diff and other data in a `moonbeam-output.json` file:  
 
 ```
-yarn start run-block --endpoint wss://wss.api.moonbeam.network --block 1000 --output-path=./moonbeam-output.json
+npx @acala-network/chopsticks run-block --endpoint wss://wss.api.moonbeam.network --block 1000 --output-path=./moonbeam-output.json
 ```
 
 ## XCM Testing {: #xcm-testing }
 
-To test out XCM messages between networks, you can fork multiple parachains and a relay chain locally. For example, the following will fork Moonriver, Karura, and Kusama:  
+To test out XCM messages between networks, you can fork multiple parachains and a relay chain locally. For example, the following will fork Moonriver, Karura, and Kusama given that you've downloaded the [config folder from the GitHub repository](https://github.com/AcalaNetwork/chopsticks/tree/master/configs){target=_blank}:  
 
 ```
-yarn start xcm --relaychain=configs/kusama.yml --parachain=configs/moonriver.yml --parachain=configs/karura.yml
+npx @acala-network/chopsticks xcm --relaychain=configs/kusama.yml --parachain=configs/moonriver.yml --parachain=configs/karura.yml
 ```
 
 You should see something like the following output:  
