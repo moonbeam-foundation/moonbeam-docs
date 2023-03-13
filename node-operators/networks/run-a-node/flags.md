@@ -15,10 +15,12 @@ This guide will cover some of the most common flags and show you how to access a
 
 ## Common Flags {: #common-flags }
 
-- **`--validator`** - enables validator mode for collator candidates and, if eligible, allows the node to actively participate in block production
+- **`--collator`** - enables collator mode for collator candidates and, if eligible, allows the node to actively participate in block production
 - **`--port`** - specifies the peer-to-peer protocol TCP port. The default port for parachains is `{{ networks.parachain.p2p }}` and `{{ networks.relay_chain.p2p }}` for the embedded relay chain
-- **`--rpc-port`**  - specifies the HTTP RPC server TCP port. The default port for parachains is `{{ networks.parachain.rpc }}`  and `{{ networks.relay_chain.rpc }}` for the embedded relay chain
-- **`--ws-port`** - specifies the WebSockets RPC server TCP port. The default port for parachains is `{{ networks.parachain.ws }}`  and `{{ networks.relay_chain.ws }}` for the embedded relay chain
+- **`--rpc-port`** - *deprecated as of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, use `--ws-port` for HTTP and WS connections instead* - specifies the HTTP RPC server TCP port. The default port for parachains is `{{ networks.parachain.rpc }}`  and `{{ networks.relay_chain.rpc }}` for the embedded relay chain
+- **`--ws-port`** - specifies the WebSockets RPC server TCP port. As of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, the WS port is a unified port for both HTTP and WS connections. The default port for parachains is `{{ networks.parachain.ws }}`  and `{{ networks.relay_chain.ws }}` for the embedded relay chain
+- **`--rpc-max-connections`** - *deprecated as of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, this value has been hardcoded to 100. Use `--ws-max-connections` to adjust the combined HTTP and WS connection limit instead* - specifies the maximum number of HTTP RPC server connections 
+- **`--ws-max-connections`** - specifies the maximum number of WS RPC server connections. As of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, this flag adjusts the combined HTTP and WS connection limit. The default value is 100
 - **`--execution`** - specifies the execution strategy that should be used by all execution contexts. The Substrate runtime is compiled into a native executable which is included locally as part of the node and a WebAssembly (Wasm) binary that is stored on-chain. The available options are:
     - **`native`** - only execute with the native build
     - **`wasm`** - only execute with the Wasm build
@@ -27,7 +29,7 @@ This guide will cover some of the most common flags and show you how to access a
 - **`--wasm-execution`** - specifies the method for executing Wasm runtime code. The available options are:
     - **`compiled`** - this is the default and uses the [Wasmtime](https://github.com/paritytech/wasmtime){target=_blank} compiled runtime
     - **`interpreted-i-know-what-i-do`** - uses the [wasmi interpreter](https://github.com/paritytech/wasmi){target=_blank}
-- **`--state-pruning`** - specifies the state pruning mode. For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`. If running a node with the `--validator` flag, the default is to keep the full state of all blocks. Otherwise, the state is only kept for the last 256 blocks. The available options are:
+- **`--state-pruning`** - specifies the state pruning mode. For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`. If running a node with the `--collator` flag, the default is to keep the full state of all blocks. Otherwise, the state is only kept for the last 256 blocks. The available options are:
     - **`archive`** - keeps the full state of all blocks
     - **`<number-of-blocks>`** - specifies a custom number of blocks to keep the state for
 - **`--trie-cache-size`** - specifies the size of the internal state cache. The default is `67108864`. You can set this value to `0` to disable the cache and improve collator performance. For client versions prior to v0.27.0, the `--trie-cache-size` flag was named `--state-cache-size`

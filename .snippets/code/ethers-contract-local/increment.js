@@ -4,7 +4,7 @@ const { abi } = require('./compile');
 const providerRPC = {
   development: {
     name: 'moonbeam-development',
-    rpc: 'http://localhost:9933',
+    rpc: 'http://localhost:9944',
     chainId: 1281,
   },
   moonbase: {
@@ -13,10 +13,10 @@ const providerRPC = {
     chainId: 1287,
   },
 };
-const provider = new ethers.providers.StaticJsonRpcProvider(providerRPC.development.rpc, {
+const provider = new ethers.JsonRpcProvider(providerRPC.development.rpc, {
   chainId: providerRPC.development.chainId,
   name: providerRPC.development.name,
-}); //Change to correct network
+}); // Change to correct network
 
 const account_from = {
   privateKey: 'YOUR-PRIVATE-KEY-HERE',

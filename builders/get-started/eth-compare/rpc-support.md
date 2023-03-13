@@ -66,18 +66,18 @@ At the time of writing, the filter-related JSON RPC methods from the Ethereum AP
 
 ## Event Subscription Ethereum JSON RPC Methods {: #event-subscription-rpc-methods }
 
-At the time of writing, the [event subscription JSON RPC methods](https://geth.ethereum.org/docs/rpc/pubsub){target=_blank} from the Ethereum API supported by Moonbeam are:
+At the time of writing, the [event subscription JSON RPC methods](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#create-subscriptions){target=_blank} from the Ethereum API supported by Moonbeam are:
 
- - **[eth_subscribe](https://geth.ethereum.org/docs/rpc/pubsub#create-subscription){target=_blank}** — creates a subscription for a given subscription name. If successful, returns the subscription ID
- - **[eth_unsubscribe](https://geth.ethereum.org/docs/rpc/pubsub#cancel-subscription){target=_blank}** — cancels the subscription given by its ID
+ - **[eth_subscribe](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#create-subscriptions#create-subscription){target=_blank}** — creates a subscription for a given subscription name. If successful, returns the subscription ID
+ - **[eth_unsubscribe](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#create-subscriptions#cancel-subscription){target=_blank}** — cancels the subscription given by its ID
 
 ### Supported Subscription Parameters {: #supported-subscription }
 
-At the time of writing, the [supported subscriptions](https://geth.ethereum.org/docs/rpc/pubsub#supported-subscriptions){target=_blank} are:
+At the time of writing, the [supported subscriptions](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#create-subscriptions#supported-subscriptions){target=_blank} are:
 
- - **[newHeads](https://geth.ethereum.org/docs/rpc/pubsub#newheads){target=_blank}** — triggers a notification each time a new header is appended to the chain
- - **[logs](https://geth.ethereum.org/docs/rpc/pubsub#logs){target=_blank}** — returns logs that are included in new imported blocks, and match a given filter criteria
- - **[newPendingTransactions](https://geth.ethereum.org/docs/rpc/pubsub#newpendingtransactions){target=_blank}** — returns the hash for all transactions that are added to the pending state
- - **[syncing](https://geth.ethereum.org/docs/rpc/pubsub#syncing){target=_blank}** — indicates when the node starts or stop synchronizing with the network
+ - **[newHeads](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#create-subscriptions#newheads){target=_blank}** — triggers a notification each time a new header is appended to the chain
+ - **[logs](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#create-subscriptions#logs){target=_blank}** — returns logs that are included in new imported blocks, and match a given filter criteria
+ - **[newPendingTransactions](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#create-subscriptions#newpendingtransactions){target=_blank}** — returns the hash for all transactions that are added to the pending state
+ - **[syncing](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#create-subscriptions#syncing){target=_blank}** — indicates when the node starts or stop synchronizing with the network
 
 For a dedicated tutorial for these subscriptions checkout the [Events Subscription](/builders/build/eth-api/pubsub/) guide.

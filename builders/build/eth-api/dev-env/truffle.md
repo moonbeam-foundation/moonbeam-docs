@@ -359,7 +359,7 @@ Then you can create a new script to access a live contract on the network:
     const ethers = require("ethers");
 
     async function main() {
-      const provider = new ethers.providers.StaticJsonRpcProvider("http://127.0.0.1:8545/");
+      const provider = new ethers.JsonRpcProvider("http://127.0.0.1:8545/");
       
       const contract = new ethers.Contract(
           'INSERT-CONTRACT-ADDRESS', 'INSERT-CONTRACT-ABI', provider

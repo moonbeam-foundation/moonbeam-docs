@@ -47,14 +47,14 @@ You can run the Docker image using the following:
 
 === "MacOS"
     ```
-    docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 -p 9933:9933 \
+    docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 \
     purestake/moonbeam:{{ networks.development.build_tag }} \
     --dev --ws-external --rpc-external
     ```
 
 === "Windows"
     ```
-    docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 -p 9933:9933 ^
+    docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 ^
     purestake/moonbeam:{{ networks.development.build_tag }} ^
     --dev --ws-external --rpc-external
     ```
@@ -102,6 +102,13 @@ Next, update your PATH environment variable by running:
 
 Now, build the development node by running:
 
+!!! note
+    If you are using Ubuntu 20.04 or 22.04, then you will need to install these additional dependencies before building the binary:
+
+    ```
+    apt install clang protobuf-compiler libprotobuf-dev -y 
+    ```
+
 ```
 --8<-- 'code/setting-up-node/build.md'
 ```
@@ -133,10 +140,10 @@ For more information on some of the flags and options used in the example, check
 ```
 ## Connecting Polkadot.js Apps to a Local Moonbeam Node {: #connecting-polkadot-js-apps-to-a-local-moonbeam-node } 
 
-The development node is a Substrate-based node, so you can interact with it using standard Substrate tools. The two provided RPC endpoints are:
+The development node is a Substrate-based node, so you can interact with it using standard Substrate tools. The RPC endpoint for HTTP and WS is:
 
- - **HTTP** - `http://127.0.0.1:9933`
- - **WS** - `ws://127.0.0.1:9944` 
+ - **HTTP** - `{{ networks.development.rpc_url }}`
+ - **WS** - `{{ networks.development.wss_url }}` 
 
 Start by connecting to it with Polkadot.js Apps. Open a browser to: [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/#/explorer){target=_blank}. This will open Polkadot.js Apps, which automatically connects to Polkadot MainNet.
 
@@ -210,8 +217,10 @@ Options accept an argument to the right side of the option. For example:
 
 - **`-l <log pattern>` or `--log <log pattern>`** - sets a custom logging filter. The syntax for the log pattern is `<target>=<level>`. For example, to print all of the JSON RPC logs, the command would look like this: `-l json=trace`
 - **`--sealing <interval>`** - when blocks should be sealed in the dev service. Accepted arguments for interval: `instant`, `manual`, or a number representing the timer interval in milliseconds (for example, `6000` will have the node produce blocks every 6 seconds). The default is `instant`
-- **`--rpc-port <port>`** - sets the HTTP RPC server TCP port. Accepts a port as the argument
-- **`--ws-port <port>`**: sets the WebSockets RPC server TCP port. Accepts a port as the argument
+- **`--rpc-port <port>`** - *deprecated as of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, use `--ws-port` for HTTP and WS connections instead* - sets the HTTP RPC server TCP port. Accepts a port as the argument
+- **`--ws-port <port>`**: sets the WebSockets RPC server TCP port. As of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, the WS port is a unified port for both HTTP and WS connections. Accepts a port as the argument
+- **`--rpc-max-connections`** - *deprecated as of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, this value has been hardcoded to 100. Use `--ws-max-connections` to adjust the combined HTTP and WS connection limit instead* - specifies the maximum number of HTTP RPC server connections 
+- **`--ws-max-connections`** - specifies the maximum number of WS RPC server connections. As of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, this flag adjusts the combined HTTP and WS connection limit
 
 For a complete list of flags and options, spin up your Moonbeam development node with `--help` added to the end of the command.
 
@@ -242,4 +251,4 @@ Also, included with the development node is a prefunded account used for testing
 For a Moonbeam development node, you can use any of the following block explorers:
 
  - **Substrate API** — [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/explorer){target=_blank} on WS port `9944`
- - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=MoonbeamDevNode){target=_blank} on HTTP port `9933`
+ - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=MoonbeamDevNode){target=_blank} on HTTP port `9944`

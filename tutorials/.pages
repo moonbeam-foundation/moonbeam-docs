@@ -2,9 +2,5 @@ title: Tutorials
 hide: false
 nav:
   - index.md
-  - remote-staking-xcm.md
-  - batch-approve-swap.md
-  - foundry-start-to-end.md
-  - truffle-dev-life-cycle.md
-  - cross-chain-dao.md
-
+  - interoperability
+  - eth-api

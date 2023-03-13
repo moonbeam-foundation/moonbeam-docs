@@ -21,6 +21,8 @@ In this tutorial, you will learn how to get started with your Ledger hardware wa
 
 --8<-- 'text/ledger/checking-prereqs.md'
 
+--8<-- 'text/ledger/checking-prereqs-ll.md'
+
 ## Install the Ledger Live App {: install-the-ledger-live-app }
 
 If you want to connect to Moonbeam, Moonriver, or the Moonbase Alpha TestNet you can do so by installing the Ethereum app, and later on you'll need to specify a chain ID.
@@ -94,5 +96,7 @@ And that is it! You've signed a transaction and sent some tokens on Moonbeam usi
 --8<-- 'text/ledger/blind-signing.md'
 
 ![MetaMask Ledger Allow Contracts Tx](/images/tokens/connect/ledger/ethereum/ledger-11.png)
+
+--8<-- 'text/ledger/ledger-live.md'
 
 --8<-- 'text/disclaimers/third-party-content.md'
