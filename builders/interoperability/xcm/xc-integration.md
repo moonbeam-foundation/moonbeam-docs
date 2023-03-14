@@ -61,7 +61,6 @@ To onboard your parachain, please provide the following:
 
 There are also some [snapshots for the Alphanet ecosystem relay chain](http://snapshots.moonbeam.network.s3-website.us-east-2.amazonaws.com/){target=_blank} you can use to quickly get started.
 
-
 When getting started with the Moonbase Alpha relay chain, once you have your node synced, please get in touch with the team on [Telegram](https://t.me/Moonbeam_Official){target=_blank} or [Discord](https://discord.gg/PfpUATX){target=_blank}, so the team can onboard your parachain to the relay chain.
 
 ### Calculate and Fund the Parachain Sovereign Account {: #calculate-and-fund-the-parachain-sovereign-account }
