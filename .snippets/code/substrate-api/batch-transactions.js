@@ -12,9 +12,9 @@ const charlie = 'CHARLIE-ACCOUNT-PUBLIC-KEY-HERE';
 const collator = 'COLLATOR-ACCOUNT-PUBLIC-KEY-HERE';
 
 const txs = [
-  api.tx.balances.transfer(bob, 12345),
-  api.tx.balances.transfer(charlie, 12345),
-  api.tx.parachainStaking.scheduleDelegatorBondLess(collator, 12345)
+  api.tx.balances.transfer(bob, 12345n),
+  api.tx.balances.transfer(charlie, 12345n),
+  api.tx.parachainStaking.scheduleDelegatorBondLess(collator, 12345n)
 ];
 
 const info = await api.tx.utility
@@ -30,3 +30,6 @@ api.tx.utility
       console.log(`included in ${status.asInBlock}`);
     }
   });
+
+// Disconnect the API
+api.disconnect();
