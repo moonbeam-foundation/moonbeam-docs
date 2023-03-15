@@ -71,11 +71,17 @@ A logical starting point for thinking about writing a cross-chain DAO is its pre
 
 A good way to play with the configurations of the Governance smart contract is to use the OpenZeppelin smart contract wizard. By going to the [OpenZeppelin contract page](https://www.openzeppelin.com/contracts){target=_blank}, scrolling down, and clicking on the Governance tab, you can view the different ways that you can configure the Governance smart contract. Open it up and play around with it to figure out a simple base for our cross-chain DAO.  
 
+We're going to generate as simple of a base smart contract as possible for demonstration purposes:  
+
+1. Name the Governor contract "CrossChainDAO" 
+2. Set the voting delay as 0 for simplicity, which also makes it so that the voting weight snapshot is taken as soon as the proposal is made
+3. Set the voting period to something short, like 6 minutes
+4. For calculating quorum (the minimum amount of vote weight required for a vote to pass), set it to the number (#) 1. 
+5. Disable Timelock, since the timelock period is optional anyways  
+
 ![OpenZeppelin Contract Wizard](/images/tutorials/interoperability/cross-chain-dao/cross-chain-dao-4.png)
 
-We're going to try to keep this base smart contract as simple as possible for demonstration purposes. First, let's name the governor contract to be "CrossChainDAO", since that is what we'll turn it into. Set the voting delay as 0 for simplicity and to make it so that the voting weight snapshot is taken immediately. It is easiest to set the voting period to something short, like 6 minutes. For calculating quorum (the minimum amount of vote weight required for a vote to pass), set it to the number (#) 1. Also disable Timelock, since the timelock period is optional anyways.  
-
-You should see a contract similar to this:
+You should see a contract similar to this in the OpenZeppelin smart contract wizard:
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -89,7 +95,7 @@ import "@openzeppelin/contracts/governance/extensions/GovernorVotes.sol";
 contract CrossChainDAO is Governor, GovernorSettings, GovernorCountingSimple, GovernorVotes {
     constructor(IVotes _token)
         Governor("CrossChainDAO")
-        GovernorSettings(1 /* 1 block */, 30 /* 6 minutes */, 0)
+        GovernorSettings(0 /* 0 block */, 30 /* 6 minutes */, 0)
         GovernorVotes(_token)
     {}
 
@@ -113,7 +119,7 @@ contract CrossChainDAO is Governor, GovernorSettings, GovernorCountingSimple, Go
 }
 ```
 
-Let's take the `CrossChainDAO` smart contract and add it to our working directory as `CrossChainDAO.sol`.  
+Let's take this `CrossChainDAO` smart contract and add it to our working directory as `CrossChainDAO.sol`.  
 
 Next, let's start at the basics and sort out how users will have their voting power calculated.
 
