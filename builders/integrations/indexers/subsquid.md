@@ -32,17 +32,13 @@ To get started with Subsquid, you'll need to have the following:
 
 To get started indexing EVM data on Moonbeam, you'll need to create a Subsquid project and configure it for Moonbeam by taking the following steps:
 
-1. You can create a Subsquid project for EVM data by using the generic [EVM template](https://github.com/subsquid-labs/squid-evm-template){target=_blank} or you can use the [ABI template](https://github.com/subsquid-labs/squid-abi-template){target=_blank} for indexing data related to a specific contract:
+1. Create a Subsquid project based on the Substrate template by running:
 
-    === "EVM"
-        ```
-        sqd init <insert-squid-name> --template evm
-        ```
+    ```
+    sqd init <insert-squid-name> --template substrate
+    ```
 
-    === "ABI"
-        ```
-        sqd init <insert-squid-name> --template abi
-        ```
+    For more information on getting started with this template, please check out the [Quickstart: Substrate chains](https://docs.subsquid.io/quickstart/quickstart-substrate/){target=_blank} guide on Subsquid's documentation site.
 
 2. To configure your Subsquid project to run on Moonbeam, you'll need to update the `typegen.json` file. The `typegen.json` file is responsible for generating TypeScript interface classes for your data. Depending on the network you're indexing data on, the `specVersions` value in the `typegen.json` file should be configured as follows:
 
@@ -100,11 +96,23 @@ And that's all you have to do to configure your Subsquid project to index Substr
 
 To get started indexing Substrate data on Moonbeam, you'll need to create a Subsquid project and configure it for Moonbeam by taking the following steps:
 
-1. Create a Subsquid project based on the Substrate template by running:
 
-    ```
-    sqd init <insert-squid-name> --template substrate
-    ```
+1. You can create a Subsquid project for EVM data by using the generic [EVM template](https://github.com/subsquid-labs/squid-evm-template){target=_blank} or you can use the [ABI template](https://github.com/subsquid-labs/squid-abi-template){target=_blank} for indexing data related to a specific contract:
+
+    === "EVM"
+        ```
+        sqd init <insert-squid-name> --template evm
+        ```
+
+    === "ABI"
+        ```
+        sqd init <insert-squid-name> --template abi
+        ```
+
+    For more information on getting started with both of these templates, please check out the following Subsquid docs:
+      
+      - [Quickstart: EVM chains](https://docs.subsquid.io/quickstart/quickstart-ethereum/){target=_blank}
+      - [Quickstart: generate from ABI](https://docs.subsquid.io/quickstart/quickstart-abi/){target=_blank}
 
 2. To configure your Subsquid project to run on Moonbeam, you'll need to update the `typegen.json` file. The `typegen.json` file is responsible for generating TypeScript interface classes for your data. Depending on the network you're indexing data on, the `specVersions` value in the `typegen.json` file should be configured as follows:
 
