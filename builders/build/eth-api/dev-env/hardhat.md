@@ -118,15 +118,10 @@ Then add your private key to it:
 
 Make sure to add the file to your project's `.gitignore`, and to never reveal your private key.
 
-!!! note
+!!! remember
     Please always manage your private keys with a designated secret manager or similar service. Never save or commit your private keys inside your repositories.
 
-Next you can take the following steps to modify the `hardhat.config.js` file and add Moonbase Alpha as a network:
-
-1. Import the Ethers plugin
-2. Import the `secrets.json` file
-3. Inside the `module.exports`, you need to provide the Solidity version (`0.8.1` according to our contract file)
-4. Add the Moonbase Alpha network configuration
+--8<-- 'text/hardhat/hardhat-configuration-file.md'
 
 ```js
 // 1. Import the Ethers plugin required to interact with the contract
@@ -213,7 +208,7 @@ touch deploy.js
 
 Next, you need to write your deployment script which can be done using `ethers`. Because you'll be running it with Hardhat, you don't need to import any libraries.
 
-To get started start, take the following steps:
+To get started, take the following steps:
 
 1. Create a local instance of the contract with the `getContractFactory` method
 2. Use the `deploy` method that exists within this instance to instantiate the smart contract
