@@ -1,6 +1,6 @@
 ---
 title: Building a Cross-Chain DAO with OpenZeppelin's Governor
-description: Go over the elements of how a cross-chain DAO could be implemented on Moonbeam in this tutorial.
+description: In this step-by-step tutorial, you'll learn about connected contracts and how to create a cross-chain DAO using OpenZeppelin's Governor contract on Moonbeam.
 ---
 
 # Building a Cross-Chain DAO with OpenZeppelin's Governor Contract
@@ -645,7 +645,7 @@ function _nonblockingLzReceive(uint16 _srcChainId, bytes memory, uint64, bytes m
 Let's tackle the first action, beginning a proposal on the local chain:  
 
 ```solidity
-(, uint256 proposalId, uint256 proposalStart) = abi.decode(payload, (uint16, uint256, uint256));
+(, uint256 proposalId, uint256 proposalStart) = abi.decode(_payload, (uint16, uint256, uint256));
 require(!isProposal(proposalId), "Proposal ID must be unique.");
 
 uint256 cutOffBlockEstimation = 0;
@@ -674,7 +674,7 @@ After the calculation, a `RemoteProposal` struct is added to the proposals map, 
 Now let's look at how to send vote results back to the hub chain:  
 
 ```solidity
-uint256 proposalId = abi.decode(payload, (uint256));
+uint256 proposalId = abi.decode(_payload, (uint256));
 ProposalVote storage votes = proposalVotes[proposalId];
 bytes memory votingPayload = abi.encode(
     0, 
