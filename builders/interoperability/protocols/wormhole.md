@@ -255,7 +255,7 @@ Finally, you must handle the executor component. Recall that the executor compon
 
 The `relayer-engine` package helps handle the wallets for the plugin. Currently, the package only supports Solana and EVM wallets, but with further development more chains will be supported. But it’s not impossible to integrate NEAR or Algorand into the relayer, since you would just have to write your own wallet handling system in addition to the one already provided by the package.
 
-To work with the built-in wallet handling system provided by the package, open the file at `example-project/relayer-engine-config/executor.json.example`. This example script is provided to show you how to format your private keys (the current key is provided by Wormhole). 
+To work with the built-in wallet handling system provided by the package, open the file at `relayer-engine-config/executor.json.example`. This example script is provided to show you how to format your private keys (the current key is provided by Wormhole). 
 
 Rename the example file to `executor.json`. In the `privateKeys` object of `executor.json`, replace the content of each array with your private key. The account of the private key entries will be the one that pays for execution fees in the relayer’s executor component.
 
@@ -294,7 +294,7 @@ If you are using a chain that wasn’t listed in the EVM TestNet table above, yo
 ]
 ```
 
-Now that the wallets are sorted out for the executor, look at the code of the executor itself, which is in the `example-project/plugins/simplegeneralmessage_plugin/src/plugin.ts` file. If you haven’t been following along, the entire file can be accessed in [its GitHub repository](https://github.com/jboetticher/relayer-engine-docs-example/blob/main/plugins/simplegeneralmessage_plugin/src/plugin.ts){target=_blank}.
+Now that the wallets are sorted out for the executor, look at the code of the executor itself, which is in the `plugins/simplegeneralmessage_plugin/src/plugin.ts` file. If you haven’t been following along, the entire file can be accessed in [its GitHub repository](https://github.com/jboetticher/relayer-engine-docs-example/blob/main/plugins/simplegeneralmessage_plugin/src/plugin.ts){target=_blank}.
 
 The `handleWorkflow(workflow, providers, execute)` function is where all of the logic is, though there are some helper functions underneath it. This is the function that the `relayer-engine` package invokes when there is a workflow in the Redis database that’s to be used. Notice the three parameters that are injected into the function: `workflow`, `providers`, and `execute`. 
 
@@ -385,7 +385,7 @@ There are also additional configurations for the relayer. For example, the `mode
 ```
 
 
-That’s it for the configuration! Now to run it. In your terminal instance (one that isn’t running the spy node), navigate to the `example-project` folder. Run the following command:
+That’s it for the configuration! Now to run it. In your terminal instance (one that isn’t running the spy node), navigate to the parent folder. Run the following command:
 
 ```
 npm run start
