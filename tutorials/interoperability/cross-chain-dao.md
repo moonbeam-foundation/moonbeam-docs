@@ -63,7 +63,7 @@ The process shown here makes it so that anyone can vote from across chains, so l
 
 This is, of course, only one way to implement a cross-chain DAO, and you are encouraged to think of alternative and better ways. In the next section, we will look at an implementation.  
 
-## Writing the Cross-Chain DAO {: #writing-the-cross-chain-dao }
+## Starting with the OpenZeppelin Contract Wizard {: #starting-with-the-openzeppelin-contract-wizard }
 
 Before we start writing the entire project, it's important to note that its finished form can be found in its own [cross-chain DAO GitHub repository](https://github.com/jboetticher/cross-chain-dao){target=_blank}. It uses HardHat, so [prerequisite knowledge](/builders/build/eth-api/dev-env/hardhat){target=_blank} will be helpful for understanding how the repository works. This tutorial will not include information how to use HardHat, and will instead focus solely on the smart contracts.   
 
@@ -123,7 +123,7 @@ Let's take this `CrossChainDAO` smart contract and add it to our working directo
 
 Next, let's start at the basics and sort out how users will have their voting power calculated.
 
-### Cross-Chain DAO Token Contract {: #cross-chain-dao-token-contract }
+## Cross-Chain DAO Token Contract {: #cross-chain-dao-token-contract }
 
 In Compound Finance's DAO, a user needed the COMP token to vote, which enables the decentralization aspect of a DAO. OpenZeppelin's `Governor` smart contract also has this feature, abstracting the tokens to votes feature into an [`IVotes` interface](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/governance/utils/IVotes.sol){target=_blank}.  
 
@@ -222,7 +222,7 @@ This smart contract isn't very special, since all it really does is add metadata
 
 The `CrossChainDAOToken` smart contract is now ready for deployment on both spoke and hub chains. You can check its complete version in the [example repository](https://github.com/jboetticher/cross-chain-dao/blob/main/contracts/CrossChainDAOToken.sol){target=_blank}.  
 
-### Cross Chain DAO Contract {: #cross-chain-dao-contract }
+## Cross Chain DAO Contract {: #cross-chain-dao-contract }
 
 Now to the meat of this tutorial: the cross chain DAO. To be clear, not *all* of the cross-chain logic will be stored in the cross-chain DAO smart contract. Instead, we will separate the hub logic into one contract and the [spoke chain logic into another](#dao-satellite-contract). This makes sense because of the hub-and-spoke model: some of the logic is stored on a single hub chain while the spoke chains interface with it through a simpler satellite contract. We don't need logic meant to be on spoke chains to be on the hub chain.  
 
@@ -236,7 +236,7 @@ We've already got a base for the cross-chain DAO when we used the OpenZeppelin W
 4. Letting spoke chains know when there is a new proposal to vote on
 5. (Optional) Receiving cross-chain messages to do non-voting action/s, like proposing or executing
 
-#### Adding Cross-Chain Support { #adding-cross-chain-support }
+### Adding Cross-Chain Support { #adding-cross-chain-support }
 
 Let's start with the first task: supporting cross-chain messaging. For this implementation, we will use the `NonblockingLzApp` smart contract provided by LayerZero to make it easy to receive and send cross-chain messages. Most cross-chain protocols will have some smart contract to inherit from to receive a generic bytes payload, so you can use similar logic with a different parent smart contract.  
 
@@ -272,7 +272,7 @@ function _nonblockingLzReceive( uint16 _srcChainId, bytes memory, uint64, bytes 
 
 We will come back to fully implement this function later. Just understand that it is the interface by which LayerZero's cross-chain protocol interacts with when there are incoming messages.  
 
-#### Counting Votes with Cross Chain Governor Counting Contract { #counting-votes-with-cross-chain-governor-counting-contract }
+### Counting Votes with Cross Chain Governor Counting Contract {: #counting-votes-with-cross-chain-governor-counting-contract }
 
 We intend to receive cross-chain voting data via `_nonblockingLzReceive`, but that is pointless if not stored or counted. This logic and data will be housed in the in a parent contract of the `CrossChainDAO`. So let's implement this parent contract before beginning to write the `_nonblockinglzReceive` function.  
 
@@ -384,9 +384,15 @@ contract CrossChainDAO is Governor, GovernorSettings, CrossChainGovernorCounting
 }
 ```
 
-#### Implementing a Collection Phase
+### Implementing a Collection Phase {: #implementing-a-collection-phase }
 
-If you recall from the initial conception, a new collection phase should be added in between the voting period and the proposal's execution. During this phase, the execution must be disabled, the hub chain must request voting data from the spoke chains, and the spoke chain must subsequently send the voting data.  
+If you recall from the initial conception, a new collection phase should be added in between the voting period and the proposal's execution. During this phase:  
+
+1. Execution must be postponed 
+2. The hub chain must request voting data from the spoke chains 
+3. The spoke chain must subsequently send the voting data   
+
+#### Defining the Collection Phase and Preventing Execution {: #defining-the-collection-phase-and-preventing-execution }
 
 Let's tackle the first issue: ensuring that execution must be disabled during the collection phase. This will effectively define the collection phase:  
 
@@ -428,6 +434,8 @@ First, note that two new mappings `collectionStarted` and `collectionFinished` h
 
 In the functions above, before a proposal is executed, each of the spoke chains must have data sent (which is found by checking `initialized`). This ensures that a proposal will not be executed until all of the votes from all of the chains are counted. If you wanted, you could also add the collection phase within the [IGovernor state machine](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4f4b6ab40315e2fbfc06e65d78f06c5b26d4646c/contracts/governance/IGovernor.sol#L15){target=_blank}. This would require more effort than it would be worth and is more feasible for a cross-chain DAO written from scratch, so we will not be doing it in this tutorial.  
 
+#### Requesting Collections from Spoke Chains {: #requesting-collections-from-spoke-chains }
+
 Moving on, let's figure out how to request voting data from spoke chains. We can start by making a new public trustless function to begin the collection phase, similar to the `execute` function:  
 
 ```solidity
@@ -467,14 +475,18 @@ This function allows any user to start the collection process for a specific `pr
 1. The voting phase for the proposal has finished
 2. The collection phase has not been started yet
 
-This function sends a cross-chain message to every spoke chain. The only information that the message includes is a function selector and a proposal ID.   
+This function sends a cross-chain message to every registered spoke chain. Recall that each spoke chain will have a `DAOSatellite` smart contract associated with it that can also receive and send cross-chain messages.  
+
+The only information that the cross-chain messages sent by `CrossChainDAO` during the collection phase include is a function selector `1` and a proposal ID. The function selector is used to let the destination contract `DAOSatellite` that it specifically wants to request voting data instead of some other action (we will revisit this concept very soon)   
 
 !!! note
     By using LayerZero, multiple messages must be sent in a single transaction so that every spoke chain can receive data. LayerZero, along with other cross-chain protocols, [is **unicast** instead of **multicast**](https://layerzero.gitbook.io/docs/faq/messaging-properties#multicast){target=_blank}. As in, a cross-chain message can only arrive to a single destination. When designing a hub-and-spoke architecture, research if your [protocol supports multicast messaging](https://book.wormhole.com/wormhole/3_coreLayerContracts.html?highlight=multicast#multicasting){target=_blank}, as it may be more succinct. 
 
+#### Receiving Collections from Spoke Chains {: #receiving-collections-from-spoke-chains }
 
+AAAAAHHHHHH
 
-#### Making Proposals Cross-Chain
+### Making Proposals Cross-Chain
 
 OpenZeppelin's `Governor` smart contract came with a `propose` function, but unfortunately it doesn't work for our purposes. When a user sends a proposal, the smart contract needs to send cross-chain messages to let the spoke chains know that there is a new proposal to vote on. But the destination chains also need gas to complete the messages' journey. Most cross-chain protocols currently require extra gas paid in the origin chain's native currency for the destination chain's transaction, and that can only be sent via a payable function. The `propose` function is not payable, hence why we must write our own cross-chain version.  
 
@@ -522,7 +534,7 @@ Remember when we designed the `CrossChainDAO` smart contract's `_nonblockingLzRe
 
 
 
-#### old _nonblockingLzReceive section
+### old _nonblockingLzReceive section
 
 Now, what to put in the function? Let's think back to the requirements. For incoming messages, we must be able to receive the voting data from other chains during the collection phase. But we might also want to receive messages that do other actions, like execution or propose. How do we resolve this issue?  
 
@@ -573,7 +585,7 @@ function onReceiveSpokeVotingData(uint16 _srcChainId, bytes memory payload) inte
 
 We'll finish this function later, because we need to override one of the OpenZeppelin parent smart contracts first before we implement it properly.  
 
-#### old onReceiveSpokeVotingData section
+### old onReceiveSpokeVotingData section
 
 Now it's time to come back to an implementation of the receiving function `onReceiveSpokeVotingData`, which will store the data received from spoke chains' cross-chain messages.  
 
@@ -629,7 +641,7 @@ If you want to view the completed smart contract, it is available in its [GitHub
 
 
 
-### DAO Satellite Contract {: #dao-satellite-contract }
+## DAO Satellite Contract {: #dao-satellite-contract }
 
 So far, we've only talked about the cross-chain DAO and its accompanying token. The cross-chain DAO is never deployed on the spoke chains, because it wouldn't be efficient to replicate *all* of the data across each spoke chain. But, we still need an interface to work with the `CrossChainDAO` smart contract on the spoke chains. Hence, we will create a satellite contract named `DAOSatellite`.  
 
