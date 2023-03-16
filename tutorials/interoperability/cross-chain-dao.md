@@ -233,7 +233,8 @@ We've already got a base for the cross-chain DAO when we used the OpenZeppelin W
 3. A new collection phase between voting and execution  
     * Requesting the collection of votes from spoke chains
     * Receiving the collection of votes from spoke chains
-4. (Optional) Receiving cross-chain messages to do non-voting action/s, like proposing or executing
+4. Letting spoke chains know that there is a new proposal to vote on
+5. (Optional) Receiving cross-chain messages to do non-voting action/s, like proposing or executing
 
 #### Adding Cross-Chain Support { #adding-cross-chain-support }
 
@@ -385,6 +386,90 @@ contract CrossChainDAO is Governor, GovernorSettings, CrossChainGovernorCounting
 
 #### Implementing a Collection Phase
 
+If you recall from the initial conception, a new collection phase should be added in between the voting period and the proposal's execution. During this phase, the execution must be disabled, the hub chain must request voting data from the spoke chains, and the spoke chain must subsequently send the voting data.  
+
+Let's tackle the first issue: ensuring that execution must be disabled during the collection phase. This will effectively define the collection phase:  
+
+```solidity
+function _beforeExecute(
+    uint256 proposalId,
+    address[] memory targets,
+    uint256[] memory values,
+    bytes[] memory calldatas,
+    bytes32 descriptionHash
+) internal override {
+    finishCollectionPhase(proposalId);
+
+    require(
+        collectionFinished[proposalId],
+        "Collection phase for this proposal is unfinished!"
+    );
+
+    super._beforeExecute(proposalId, targets, values, calldatas, descriptionHash);
+}
+
+// Marks a collection phase as true if all of the satellite chains have sent a cross-chain message back
+function finishCollectionPhase(uint256 proposalId) public {
+    bool phaseFinished = true;
+    for (uint16 i = 0; i < spokeChains.length && phaseFinished; i++) {
+        phaseFinished =
+            phaseFinished &&
+            spokeVotes[proposalId][spokeChains[i]].initialized;
+    }
+
+    collectionFinished[proposalId] = phaseFinished;
+}
+```
+
+In the functions above, before a proposal is executed, each of the spoke chains must have data sent (which is found by checking `initialized`). This ensures that a proposal will not be executed until all of the votes from all of the chains are counted. If you wanted, you could also add the collection phase within the [IGovernor state machine](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4f4b6ab40315e2fbfc06e65d78f06c5b26d4646c/contracts/governance/IGovernor.sol#L15){target=_blank}. This would require more effort than it would be worth and is more relevant for a cross-chain DAO written from scratch, so we will not be doing it in this tutorial.  
+
+Moving on, let's figure out how to request voting data from spoke chains.   
+
+
+
+
+
+Now, let's add functions to begin and end the collections phase. This can be done with a new public facing function similar to the `execute` and `propose` functions. 
+
+```solidity
+// Requests the voting data from all of the spoke chains
+function requestCollections(uint256 proposalId) public payable {
+    require(
+        block.number > proposalDeadline(proposalId),
+        "Cannot request for vote collection until after the vote period is over!"
+    );
+    require(
+        !collectionStarted[proposalId],
+        "Collection phase for this proposal has already started!"
+    );
+
+    collectionStarted[proposalId] = true;
+
+    // Sends an empty message to each of the aggregators. If they receive a message at all,
+    // it is their cue to send data back
+    uint256 crossChainFee = msg.value / spokeChains.length;
+    for (uint16 i = 0; i < spokeChains.length; i++) {
+        // Using "1" as the function selector
+        bytes memory payload = abi.encode(1, abi.encode(proposalId));
+        _lzSend({
+            _dstChainId: spokeChains[i],
+            _payload: payload,
+            _refundAddress: payable(address(this)),
+            _zroPaymentAddress: address(0x0),
+            _adapterParams: bytes(""),
+            _nativeFee: crossChainFee
+        });
+    }
+}
+```
+
+Starting the collection phase requires that a proposal must exist and that the collection phase for the proposal has not started. Similar to the proposal function, this function sends a cross-chain message to every spoke chain. The only information that the message includes is a function selector and a proposal ID.    
+
+
+
+
+
+
 Now, what to put in the function? Let's think back to the requirements. For incoming messages, we must be able to receive the voting data from other chains during the collection phase. But we might also want to receive messages that do other actions, like execution or propose. How do we resolve this issue?  
 
 !!! note
@@ -434,7 +519,9 @@ function onReceiveSpokeVotingData(uint16 _srcChainId, bytes memory payload) inte
 
 We'll finish this function later, because we need to override one of the OpenZeppelin parent smart contracts first before we implement it properly.  
 
-#### Cross Chain DAO Contract Part 2 {: #cross-chain-dao-contract-part-2 }
+
+
+
 
 Now it's time to come back to an implementation of the receiving function `onReceiveSpokeVotingData`, which will store the data received from spoke chains' cross-chain messages.  
 
@@ -469,7 +556,9 @@ We can now store the data within the `spokeVotes` map defined in `CrossChainGove
     }
 ```
 
-That's it for the `onReceiveSpokeVotingData` function. It required a lot of setup, but now the smart contract is ready to receive collection info. What about sending notices of proposals to other chains and requesting voting data?  
+That's it for the `onReceiveSpokeVotingData` function. It required a lot of setup, but now the smart contract is ready to receive collection info. 
+
+
 
 OpenZeppelin's `Governor` smart contract came with a `propose` function, but unfortunately it doesn't work for our purposes. When a user sends a proposal, the smart contract needs to send cross-chain messages to let the spoke chains know that there is a new proposal to vote on. But to transact those messages on the destination chains, we also need to pay for the gas. Most cross-chain protocols currently require extra gas paid in the origin chain's native currency for the destination chain's transaction, and that can only be sent via a payable function. The `propose` function is not payable, hence why we must write our own cross-chain version.  
 
@@ -516,78 +605,10 @@ This cross-chain version uses the original `propose` function included in the `G
 
 Remember when we designed the `CrossChainDAO` smart contract's `_nonblockingLzReceive` function to expect a function selector? This is the same idea, except now we're expecting the satellite smart contract to also implement these features. So in this case, we've defined `0` as receiving a new proposal.  
 
-Now, let's add functions to begin and end the collections phase. This can be done with a new public facing function similar to the `execute` and `propose` functions. 
 
-```solidity
-// Requests the voting data from all of the spoke chains
-function requestCollections(uint256 proposalId) public payable {
-    require(
-        block.number > proposalDeadline(proposalId),
-        "Cannot request for vote collection until after the vote period is over!"
-    );
-    require(
-        !collectionStarted[proposalId],
-        "Collection phase for this proposal has already started!"
-    );
 
-    collectionStarted[proposalId] = true;
 
-    // Sends an empty message to each of the aggregators. If they receive a message at all,
-    // it is their cue to send data back
-    uint256 crossChainFee = msg.value / spokeChains.length;
-    for (uint16 i = 0; i < spokeChains.length; i++) {
-        // Using "1" as the function selector
-        bytes memory payload = abi.encode(1, abi.encode(proposalId));
-        _lzSend({
-            _dstChainId: spokeChains[i],
-            _payload: payload,
-            _refundAddress: payable(address(this)),
-            _zroPaymentAddress: address(0x0),
-            _adapterParams: bytes(""),
-            _nativeFee: crossChainFee
-        });
-    }
-}
-```
-
-Starting the collection phase requires that a proposal must exist and that the collection phase for the proposal has not started. Similar to the proposal function, this function sends a cross-chain message to every spoke chain. The only information that the message includes is a function selector and a proposal ID.    
-
-Finally, let's also make it so that the execution of a proposal cannot occur without the collection phase being finished:  
-
-```solidity
-function _beforeExecute(
-    uint256 proposalId,
-    address[] memory targets,
-    uint256[] memory values,
-    bytes[] memory calldatas,
-    bytes32 descriptionHash
-) internal override {
-    finishCollectionPhase(proposalId);
-
-    require(
-        collectionFinished[proposalId],
-        "Collection phase for this proposal is unfinished!"
-    );
-
-    super._beforeExecute(proposalId, targets, values, calldatas, descriptionHash);
-}
-
-// Marks a collection phase as true if all of the satellite chains have sent a cross-chain message back
-function finishCollectionPhase(uint256 proposalId) public {
-    bool phaseFinished = true;
-    for (uint16 i = 0; i < spokeChains.length && phaseFinished; i++) {
-        phaseFinished =
-            phaseFinished &&
-            spokeVotes[proposalId][spokeChains[i]].initialized;
-    }
-
-    collectionFinished[proposalId] = phaseFinished;
-}
-```
-
-Here, before a proposal is executed, the collection phase must be finished. This ensures that a proposal will not be executed until all of the votes from all of the chains are counted.  
-
-If you wanted, you could turn the `requestCollections` function into a cross-chain action as well, but this will not be included in this tutorial. If you want to view the completed smart contract, it is available in its [GitHub repository](https://github.com/jboetticher/cross-chain-dao/blob/main/contracts/CrossChainDAO.sol){target=_blank}. 
+If you want to view the completed smart contract, it is available in its [GitHub repository](https://github.com/jboetticher/cross-chain-dao/blob/main/contracts/CrossChainDAO.sol){target=_blank}. 
 
 
 
