@@ -233,7 +233,7 @@ We've already got a base for the cross-chain DAO when we used the OpenZeppelin W
 3. A new collection phase between voting and execution  
     * Requesting the collection of votes from spoke chains
     * Receiving the collection of votes from spoke chains
-4. Letting spoke chains know that there is a new proposal to vote on
+4. Letting spoke chains know when there is a new proposal to vote on
 5. (Optional) Receiving cross-chain messages to do non-voting action/s, like proposing or executing
 
 #### Adding Cross-Chain Support { #adding-cross-chain-support }
@@ -272,7 +272,7 @@ function _nonblockingLzReceive( uint16 _srcChainId, bytes memory, uint64, bytes 
 
 We will come back to fully implement this function later. Just understand that it is the interface by which LayerZero's cross-chain protocol interacts with when there are incoming messages.  
 
-#### Counting Votes with Cross Chain Governor Counting Contract
+#### Counting Votes with Cross Chain Governor Counting Contract { #counting-votes-with-cross-chain-governor-counting-contract }
 
 We intend to receive cross-chain voting data via `_nonblockingLzReceive`, but that is pointless if not stored or counted. This logic and data will be housed in the in a parent contract of the `CrossChainDAO`. So let's implement this parent contract before beginning to write the `_nonblockinglzReceive` function.  
 
@@ -469,6 +469,58 @@ Starting the collection phase requires that a proposal must exist and that the c
 
 
 
+#### Making Proposals Cross-Chain
+
+OpenZeppelin's `Governor` smart contract came with a `propose` function, but unfortunately it doesn't work for our purposes. When a user sends a proposal, the smart contract needs to send cross-chain messages to let the spoke chains know that there is a new proposal to vote on. But the destination chains also need gas to complete the messages' journey. Most cross-chain protocols currently require extra gas paid in the origin chain's native currency for the destination chain's transaction, and that can only be sent via a payable function. The `propose` function is not payable, hence why we must write our own cross-chain version.  
+
+!!! note
+    Technically, the cross-chain messages should be sent when the voting delay is over to sync with when the voting weight snapshot is taken. In this instance, the proposal and snapshot are made at the same time.
+
+```solidity
+function crossChainPropose(address[] memory targets, uint256[] memory values, bytes[] memory calldatas, string memory description) 
+    public payable virtual returns (uint256) {
+    uint256 proposalId = super.propose(targets, values, calldatas, description);
+
+    // Sends the proposal to all of the other chains
+    if (spokeChains.length > 0) {
+        uint256 crossChainFee = msg.value / spokeChains.length;
+
+        // Iterate over every spoke chain
+        for (uint16 i = 0; i < spokeChains.length; i++) {
+            bytes memory payload = abi.encode(
+                0, // Function selector "0" for destination contract
+                // Encoding the proposal start
+                abi.encode(proposalId, block.timestamp)
+            );
+
+            // Send a cross-chain message with LayerZero to the chain in the iterator
+            _lzSend({
+                _dstChainId: spokeChains[i],
+                _payload: payload,
+                _refundAddress: payable(address(this)),
+                _zroPaymentAddress: address(0x0),
+                _adapterParams: bytes(""),
+                _nativeFee: crossChainFee
+            });
+        }
+    }
+
+    return proposalId;
+}
+```
+
+Breaking down the code, this cross-chain version uses the original `propose` function included in the `Governor` smart contract, since all of its data structures and logic are still helpful. The major addition is a loop that sends a cross-chain message with information on the proposal (ID & snapshot timestamp) to every spoke chain: the IDs of which you may remember being stored in the [`CrossChainGovernorCountingSimple` contract](#counting-votes-with-cross-chain-governor-counting-contract){target=_blank}.  
+
+!!! note
+    By using LayerZero, multiple messages must be sent in a single transaction so that every spoke chain can receive data. LayerZero, along with other cross-chain protocols, [is **unicast** instead of **multicast**](https://layerzero.gitbook.io/docs/faq/messaging-properties#multicast){target=_blank}. As in, a cross-chain message can only arrive to a single destination. When designing a hub-and-spoke architecture, research if your [protocol supports multicast messaging](https://book.wormhole.com/wormhole/3_coreLayerContracts.html?highlight=multicast#multicasting){target=_blank}, as it may be more succinct. 
+
+Remember when we designed the `CrossChainDAO` smart contract's `_nonblockingLzReceive` function to expect a function selector? This is the same idea, except now we're expecting the satellite smart contract to also implement these features. So in this case, we've defined `0` as receiving a new proposal.  
+
+
+
+
+
+
 
 Now, what to put in the function? Let's think back to the requirements. For incoming messages, we must be able to receive the voting data from other chains during the collection phase. But we might also want to receive messages that do other actions, like execution or propose. How do we resolve this issue?  
 
@@ -560,50 +612,7 @@ That's it for the `onReceiveSpokeVotingData` function. It required a lot of setu
 
 
 
-OpenZeppelin's `Governor` smart contract came with a `propose` function, but unfortunately it doesn't work for our purposes. When a user sends a proposal, the smart contract needs to send cross-chain messages to let the spoke chains know that there is a new proposal to vote on. But to transact those messages on the destination chains, we also need to pay for the gas. Most cross-chain protocols currently require extra gas paid in the origin chain's native currency for the destination chain's transaction, and that can only be sent via a payable function. The `propose` function is not payable, hence why we must write our own cross-chain version.  
 
-!!! note
-    Technically, the cross-chain messages should be sent when the voting delay is over to sync with when the voting weight snapshot is taken. In this instance, since the proposal and snapshot are made at the same time.
-
-```solidity
-function crossChainPropose(address[] memory targets, uint256[] memory values, bytes[] memory calldatas, string memory description) 
-    public payable virtual returns (uint256) {
-    uint256 proposalId = super.propose(targets, values, calldatas, description);
-
-    // Now send the proposal to all of the other chains
-    if (spokeChains.length > 0) {
-        uint256 crossChainFee = msg.value / spokeChains.length;
-
-        // Iterate over every spoke chain
-        for (uint16 i = 0; i < spokeChains.length; i++) {
-            bytes memory payload = abi.encode(
-                0, // Function selector "0" for destination contract
-                // Encoding the proposal start
-                abi.encode(proposalId, block.timestamp)
-            );
-
-            // Send a cross-chain message with LayerZero to the chain in the iterator
-            _lzSend({
-                _dstChainId: spokeChains[i],
-                _payload: payload,
-                _refundAddress: payable(address(this)),
-                _zroPaymentAddress: address(0x0),
-                _adapterParams: bytes(""),
-                _nativeFee: crossChainFee
-            });
-        }
-    }
-
-    return proposalId;
-}
-```
-
-This cross-chain version uses the original `propose` function included in the `Governor` smart contract, since all of its data structures and logic are still helpful. The only addition is a cross-chain message with information on the proposal (ID & snapshot timestamp) being sent to every spoke chain: the IDs of which are stored in the `CrossChainGovernorCountingSimple` contract.  
-
-!!! note
-    By using LayerZero, multiple messages must be sent in a single transaction so that every spoke chain can receive data. LayerZero, along with other cross-chain protocols, [is **unicast** instead of **multicast**](https://layerzero.gitbook.io/docs/faq/messaging-properties#multicast){target=_blank}. As in, a cross-chain message can only arrive to a single destination. When designing a hub-and-spoke architecture, research if your [protocol supports multicast messaging](https://book.wormhole.com/wormhole/3_coreLayerContracts.html?highlight=multicast#multicasting){target=_blank}, as it may be more succinct. 
-
-Remember when we designed the `CrossChainDAO` smart contract's `_nonblockingLzReceive` function to expect a function selector? This is the same idea, except now we're expecting the satellite smart contract to also implement these features. So in this case, we've defined `0` as receiving a new proposal.  
 
 
 
