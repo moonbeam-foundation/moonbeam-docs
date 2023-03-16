@@ -391,6 +391,9 @@ If you recall from the initial conception, a new collection phase should be adde
 Let's tackle the first issue: ensuring that execution must be disabled during the collection phase. This will effectively define the collection phase:  
 
 ```solidity
+mapping(uint256 => bool) public collectionStarted;
+mapping(uint256 => bool) public collectionFinished;
+
 function _beforeExecute(
     uint256 proposalId,
     address[] memory targets,
@@ -421,15 +424,11 @@ function finishCollectionPhase(uint256 proposalId) public {
 }
 ```
 
-In the functions above, before a proposal is executed, each of the spoke chains must have data sent (which is found by checking `initialized`). This ensures that a proposal will not be executed until all of the votes from all of the chains are counted. If you wanted, you could also add the collection phase within the [IGovernor state machine](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4f4b6ab40315e2fbfc06e65d78f06c5b26d4646c/contracts/governance/IGovernor.sol#L15){target=_blank}. This would require more effort than it would be worth and is more relevant for a cross-chain DAO written from scratch, so we will not be doing it in this tutorial.  
+First, note that two new mappings `collectionStarted` and `collectionFinished` have been defined to track the collection status, which we'll use in multiple functions throughout this section.  
 
-Moving on, let's figure out how to request voting data from spoke chains.   
+In the functions above, before a proposal is executed, each of the spoke chains must have data sent (which is found by checking `initialized`). This ensures that a proposal will not be executed until all of the votes from all of the chains are counted. If you wanted, you could also add the collection phase within the [IGovernor state machine](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4f4b6ab40315e2fbfc06e65d78f06c5b26d4646c/contracts/governance/IGovernor.sol#L15){target=_blank}. This would require more effort than it would be worth and is more feasible for a cross-chain DAO written from scratch, so we will not be doing it in this tutorial.  
 
-
-
-
-
-Now, let's add functions to begin and end the collections phase. This can be done with a new public facing function similar to the `execute` and `propose` functions. 
+Moving on, let's figure out how to request voting data from spoke chains. We can start by making a new public trustless function to begin the collection phase, similar to the `execute` function:  
 
 ```solidity
 // Requests the voting data from all of the spoke chains
@@ -463,9 +462,15 @@ function requestCollections(uint256 proposalId) public payable {
 }
 ```
 
-Starting the collection phase requires that a proposal must exist and that the collection phase for the proposal has not started. Similar to the proposal function, this function sends a cross-chain message to every spoke chain. The only information that the message includes is a function selector and a proposal ID.    
+This function allows any user to start the collection process for a specific `proposalId` as long as:  
 
+1. The voting phase for the proposal has finished
+2. The collection phase has not been started yet
 
+This function sends a cross-chain message to every spoke chain. The only information that the message includes is a function selector and a proposal ID.   
+
+!!! note
+    By using LayerZero, multiple messages must be sent in a single transaction so that every spoke chain can receive data. LayerZero, along with other cross-chain protocols, [is **unicast** instead of **multicast**](https://layerzero.gitbook.io/docs/faq/messaging-properties#multicast){target=_blank}. As in, a cross-chain message can only arrive to a single destination. When designing a hub-and-spoke architecture, research if your [protocol supports multicast messaging](https://book.wormhole.com/wormhole/3_coreLayerContracts.html?highlight=multicast#multicasting){target=_blank}, as it may be more succinct. 
 
 
 
@@ -511,16 +516,13 @@ function crossChainPropose(address[] memory targets, uint256[] memory values, by
 
 Breaking down the code, this cross-chain version uses the original `propose` function included in the `Governor` smart contract, since all of its data structures and logic are still helpful. The major addition is a loop that sends a cross-chain message with information on the proposal (ID & snapshot timestamp) to every spoke chain: the IDs of which you may remember being stored in the [`CrossChainGovernorCountingSimple` contract](#counting-votes-with-cross-chain-governor-counting-contract){target=_blank}.  
 
-!!! note
-    By using LayerZero, multiple messages must be sent in a single transaction so that every spoke chain can receive data. LayerZero, along with other cross-chain protocols, [is **unicast** instead of **multicast**](https://layerzero.gitbook.io/docs/faq/messaging-properties#multicast){target=_blank}. As in, a cross-chain message can only arrive to a single destination. When designing a hub-and-spoke architecture, research if your [protocol supports multicast messaging](https://book.wormhole.com/wormhole/3_coreLayerContracts.html?highlight=multicast#multicasting){target=_blank}, as it may be more succinct. 
-
 Remember when we designed the `CrossChainDAO` smart contract's `_nonblockingLzReceive` function to expect a function selector? This is the same idea, except now we're expecting the satellite smart contract to also implement these features. So in this case, we've defined `0` as receiving a new proposal.  
 
 
 
 
 
-
+#### old _nonblockingLzReceive section
 
 Now, what to put in the function? Let's think back to the requirements. For incoming messages, we must be able to receive the voting data from other chains during the collection phase. But we might also want to receive messages that do other actions, like execution or propose. How do we resolve this issue?  
 
@@ -571,9 +573,7 @@ function onReceiveSpokeVotingData(uint16 _srcChainId, bytes memory payload) inte
 
 We'll finish this function later, because we need to override one of the OpenZeppelin parent smart contracts first before we implement it properly.  
 
-
-
-
+#### old onReceiveSpokeVotingData section
 
 Now it's time to come back to an implementation of the receiving function `onReceiveSpokeVotingData`, which will store the data received from spoke chains' cross-chain messages.  
 
@@ -609,11 +609,6 @@ We can now store the data within the `spokeVotes` map defined in `CrossChainGove
 ```
 
 That's it for the `onReceiveSpokeVotingData` function. It required a lot of setup, but now the smart contract is ready to receive collection info. 
-
-
-
-
-
 
 
 
