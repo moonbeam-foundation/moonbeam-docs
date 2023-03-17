@@ -480,7 +480,7 @@ Recall that each spoke chain will have a `DAOSatellite` smart contract associate
 !!! note
     By using LayerZero, multiple messages must be sent in a single transaction so that every spoke chain can receive data. LayerZero, along with other cross-chain protocols, [is **unicast** instead of **multicast**](https://layerzero.gitbook.io/docs/faq/messaging-properties#multicast){target=_blank}. As in, a cross-chain message can only arrive to a single destination. When designing a hub-and-spoke architecture, research if your [protocol supports multicast messaging](https://book.wormhole.com/wormhole/3_coreLayerContracts.html?highlight=multicast#multicasting){target=_blank}, as it may be more succinct. 
 
-The only information that the cross-chain messages sent by `CrossChainDAO` during the collection phase is a function selector `1` and a proposal ID. The function selector is used to let the destination contract `DAOSatellite` know that it specifically wants to request voting data instead of some other action (we will revisit [this concept very soon](#receiving-votes-from-spoke-chains){target=_blank}. The proposal ID will of course let the `DAOSatellite` know which proposal's voting information to send.   
+The only information that the cross-chain messages sent by `CrossChainDAO` during the collection phase is a function selector `1` and a proposal ID. The function selector is used to let the destination contract `DAOSatellite` know that it specifically wants to request voting data instead of some other action (we will revisit [this concept very soon](#receiving-votes-from-spoke-chains){target=_blank}). The proposal ID will of course let the `DAOSatellite` know which proposal's voting information to send.   
 
 This should be it for requesting data, since most of the logic afterwards will be hosted within the [DAO Satellite](#dao-satellite-contract). Just understand that when sending the proposal to the   
 
@@ -533,13 +533,7 @@ function onReceiveSpokeVotingData(uint16 _srcChainId, bytes memory payload) inte
 }
 ```  
 
-We'll finish this function later, because we need to override one of the OpenZeppelin parent smart contracts first before we implement it properly.  
-
-### old onReceiveSpokeVotingData section
-
-Now it's time to come back to an implementation of the receiving function `onReceiveSpokeVotingData`, which will store the data received from spoke chains' cross-chain messages.  
-
-We have already defined what type of information we want in `CrossChainGovernorCountingSimple`. Here we get to define what kind of information we want from the other chains. Of course, when looking at the `SpokeProposalVote` struct defined previously, we want three vote values: `forVotes`, `againstVotes`, and `abstainVotes`. Plus, we want to know for which proposal the data received is for, so we also want a proposal ID. Let's deconstruct the payload within `onReceiveSpokeVotingData` with that in mind:  
+The `onReceiveSpokeVotingData` function will store the data received from spoke chains' cross-chain messages. We have already defined what type of information we want from spoke chains in [`CrossChainGovernorCountingSimple`](#counting-votes-with-cross-chain-governor-counting-contract){target=_blank} via the `SpokeProposalVote` struct. We want three vote values: `forVotes`, `againstVotes`, and `abstainVotes`. Plus, we want to know for which proposal the data received is for, so we also want a proposal ID. Let's deconstruct the payload within `onReceiveSpokeVotingData` with that in mind:  
 
 ```solidity
 function onReceiveSpokeVotingData(uint16 _srcChainId, bytes memory payload) internal virtual {
@@ -570,19 +564,9 @@ We can now store the data within the `spokeVotes` map defined in `CrossChainGove
     }
 ```
 
-That's it for the `onReceiveSpokeVotingData` function. It required a lot of setup, but now the smart contract is ready to receive collection info. 
+At this point, the collection phase has been finished! The collection phase stops the execution before all votes are counted, a message requesting voting data from spoke chains
 
-
-
-If you want to view the completed smart contract, it is available in its [GitHub repository](https://github.com/jboetticher/cross-chain-dao/blob/main/contracts/CrossChainDAO.sol){target=_blank}. 
-
-
-
-
-
-
-
-### Making Proposals Cross-Chain
+### Making Proposals Cross-Chain { #making-proposals-cross-chain }
 
 OpenZeppelin's `Governor` smart contract came with a `propose` function, but unfortunately it doesn't work for our purposes. When a user sends a proposal, the smart contract needs to send cross-chain messages to let the spoke chains know that there is a new proposal to vote on. But the destination chains also need gas to complete the messages' journey. Most cross-chain protocols currently require extra gas paid in the origin chain's native currency for the destination chain's transaction, and that can only be sent via a payable function. The `propose` function is not payable, hence why we must write our own cross-chain version.  
 
@@ -624,14 +608,9 @@ function crossChainPropose(address[] memory targets, uint256[] memory values, by
 
 Breaking down the code, this cross-chain version uses the original `propose` function included in the `Governor` smart contract, since all of its data structures and logic are still helpful. The major addition is a loop that sends a cross-chain message with information on the proposal (ID & snapshot timestamp) to every spoke chain: the IDs of which you may remember being stored in the [`CrossChainGovernorCountingSimple` contract](#counting-votes-with-cross-chain-governor-counting-contract){target=_blank}.  
 
-Remember when we designed the `CrossChainDAO` smart contract's `_nonblockingLzReceive` function to expect a function selector? This is the same idea, except now we're expecting the satellite smart contract to also implement these features. So in this case, we've defined `0` as receiving a new proposal.  
+Remember when we designed the `CrossChainDAO` smart contract's `_nonblockingLzReceive` function to expect a function selector? This is the same idea, except now we're expecting the satellite smart contract to also implement these features. So in this case, we've defined `0` as receiving a new proposal. We did the same thing when [requesting voting information](#requesting-votes-from-spoke-chains){target=_blank} from spoke chains.  
 
-
-
-
-
-
-
+At this point, the `CrossChainDAO.sol` smart contract is finished! If you want to view the completed smart contract, it is available in its [GitHub repository](https://github.com/jboetticher/cross-chain-dao/blob/main/contracts/CrossChainDAO.sol){target=_blank}. 
 
 
 ## Writing the DAO Satellite Contract {: #dao-satellite-contract }
@@ -743,7 +722,7 @@ else {
 proposals[proposalId] = RemoteProposal(cutOffBlockEstimation, false);
 ```
 
-This is some funky code because of a funky issue. Let's start at the first two lines. If you remember from the [CrossChainDAO section](#cross-chain-dao-contract-part-2), the information provided in the internal ABI encoded payload includes a proposal ID and the timestamp of when the proposal was made.  
+This is some funky code because of a funky issue. Let's start at the first two lines. If you remember from the [CrossChainDAO section](#making-proposals-cross-chain), the information provided in the ABI encoded payload includes a proposal ID and the timestamp of when the proposal was made.  
 
 Afterwards, some funky calculations are made to generate a `cutOffBlockEstimation`. This is a series of calculations to convert a timestamp to a block on the local spoke chain as accurately as possible. While it may not matter as much when people can start voting, it does matter when the vote weight snapshot is made. If the vote weight snapshot is made too far apart between the spoke and hub chains, a user could send a token from one chain to another and effectively double their voting weight. Note that the calculations made in the example code above are not enough to ensure a correct setup. Some [example mitigation strategies](#double-weight-attack-from-snapshot-mismatch) are listed below, but are too complex to investigate in detail for this tutorial. In the meantime, the only strategy is to subtract blocks from the current block based off of the timestamp a predetermined seconds-per-block estimate.  
 
