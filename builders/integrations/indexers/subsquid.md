@@ -11,7 +11,7 @@ description: Learn how to use Subsquid, a query node framework for Substrate-bas
 
 [Subsquid](https://subsquid.io){target=_blank} is a query node framework for Substrate-based blockchains. In very simple terms, Subsquid can be thought of as an ETL (extract, transform, and load) tool with a GraphQL server included. It enables comprehensive filtering, pagination, and even full-text search capabilities.
 
-Subsquid has native and full support for both Ethereum Virtual Machine (EVM) and Substrate data. Moonbeam is a Substrate-based smart contact platform on Polkadot that is compatible with the EVM, which means that Subsquid can be used to index both EVM-compatible data and Substrate-based data on Moonbeam. This allows developers to extract on-chain data from any of the Moonbeam networks and process EVM logs as well as Substrate entities (events, extrinsics, and storage items) in one single project and serve the resulting data with one single GraphQL endpoint. With Subsquid, filtering by EVM topic, contract address, and block range are all possible.
+Subsquid has native and full support for both Ethereum Virtual Machine (EVM) and Substrate data. Since Moonbeam is a Substrate-based smart contact platform that is EVM-compatible, Subsquid can be used to index both EVM and Substrate-based data. Subsquid offers a Substrate Archive and Processor and an EVM Archive and Processor. The Substrate Archive and Processor can be used to index both Substrate and EVM data. This allows developers to extract on-chain data from any of the Moonbeam networks and process EVM logs as well as Substrate entities (events, extrinsics, and storage items) in one single project and serve the resulting data with one single GraphQL endpoint. If you exclusively want to index EVM data, it is recommended to use the EVM Archive and Processor.
 
 This guide will show you how to create Substrate and EVM projects with Subsquid and configure it to index data on Moonbeam. 
 
@@ -30,7 +30,7 @@ To get started with Subsquid, you'll need to have the following:
 
 ## Index Substrate Data on Moonbeam {: #index-substrate-calls-events }
 
-To get started indexing EVM data on Moonbeam, you'll need to create a Subsquid project and configure it for Moonbeam by taking the following steps:
+To get started indexing Substrate data on Moonbeam, you'll need to create a Subsquid project and configure it for Moonbeam by taking the following steps:
 
 1. Create a Subsquid project based on the Substrate template by running:
 
@@ -93,9 +93,7 @@ And that's all you have to do to configure your Subsquid project to index Substr
 
 ## Index Ethereum Data on Moonbeam {: #index-ethereum-contracts }
 
-
-To get started indexing Substrate data on Moonbeam, you'll need to create a Subsquid project and configure it for Moonbeam by taking the following steps:
-
+To get started indexing EVM data on Moonbeam, you'll need to create a Subsquid project and configure it for Moonbeam by taking the following steps:
 
 1. You can create a Subsquid project for EVM data by using the generic [EVM template](https://github.com/subsquid-labs/squid-evm-template){target=_blank} or you can use the [ABI template](https://github.com/subsquid-labs/squid-abi-template){target=_blank} for indexing data related to a specific contract:
 
