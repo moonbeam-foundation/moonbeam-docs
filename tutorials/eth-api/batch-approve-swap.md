@@ -38,7 +38,7 @@ You can also install the [OpenZeppelin contracts library](https://docs.openzeppe
 To install the necessary dependencies, run the following command:
 
 ```
-npm install @nomiclabs/hardhat-ethers ethers @openzeppelin/contracts
+npm install @nomiclabs/hardhat-ethers @openzeppelin/contracts
 ```
 
 ## Contract Setup {: #contracts }
@@ -60,7 +60,7 @@ If you don't already have a `contracts` directory in your Hardhat project, you c
 mkdir contracts && cd contracts
 ```
 
-Then, you can create a single file that we'll use to store the code for the `DemoToken` and `SimpleDex` contract:
+Then, you can create a single file that we'll use to store the code for the `DemoToken` and `SimpleDex` contracts and another file for the batch precompile:
 
 ```
 touch SimpleDex.sol Batch.sol
