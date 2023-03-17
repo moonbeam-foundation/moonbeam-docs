@@ -63,9 +63,15 @@ The process shown here makes it so that anyone can vote from across chains, so l
 
 This is, of course, only one way to implement a cross-chain DAO, and you are encouraged to think of alternative and better ways. In the next section, we will look at an implementation.  
 
-## Starting with the OpenZeppelin Contract Wizard {: #starting-with-the-openzeppelin-contract-wizard }
+## Checking Prerequisites {: #checking-prerequisites }
 
-Before we start writing the entire project, it's important to note that its finished form can be found in its own [cross-chain DAO GitHub repository](https://github.com/jboetticher/cross-chain-dao){target=_blank}. It uses HardHat, so [prerequisite knowledge](/builders/build/eth-api/dev-env/hardhat){target=_blank} will be helpful for understanding how the repository works. This tutorial will not include information how to use HardHat, and will instead focus solely on the smart contracts.   
+Before we start writing the entire project, it's important to note that its finished form can be found in its own [cross-chain DAO GitHub repository](https://github.com/jboetticher/cross-chain-dao){target=_blank}. It uses HardHat, so prerequisite knowledge will be helpful for understanding how the repository works. This tutorial will not include information how to use HardHat, and will instead focus solely on the smart contracts. If you would like to follow along, the prerequisites are as follows:  
+
+- A fresh HardHat project, and [knowledge of how to use HardHat](/builders/build/eth-api/dev-env/hardhat/){target=_blank}
+- [OpenZeppelin smart contracts installed](https://github.com/OpenZeppelin/openzeppelin-contracts){target=_blank} as a dependency
+- [LayerZero smart contracts installed](https://github.com/LayerZero-Labs/solidity-examples){target=_blank} as a dependency
+
+## Starting with the OpenZeppelin Contract Wizard {: #starting-with-the-openzeppelin-contract-wizard }
 
 A logical starting point for thinking about writing a cross-chain DAO is its predecessor: a single-chain DAO. There are many different implementations that exist, but since [OpenZeppelin](https://www.openzeppelin.com/contracts){target=_blank} hosts an already popular smart contract repository, we will use their Governance smart contracts. A second reason why we're using OpenZeppelin's smart contracts is because they're based off of Compound Finance's DAO, which we've already investigated in the [previous section](#intuition-and-planning).  
 
@@ -224,9 +230,9 @@ The `CrossChainDAOToken` smart contract is now ready for deployment on both spok
 
 ## Writing the Cross Chain DAO Contract {: #cross-chain-dao-contract }
 
-Now to the meat of this tutorial: the cross chain DAO. To be clear, not *all* of the cross-chain logic will be stored in the cross-chain DAO smart contract. Instead, we will separate the hub logic into one contract and the [spoke chain logic into another](#dao-satellite-contract). This makes sense because of the hub-and-spoke model: some of the logic is stored on a single hub chain while the spoke chains interface with it through a simpler satellite contract. We don't need logic meant to be on spoke chains to be on the hub chain.  
+Now to the meat of this tutorial: the cross chain DAO. To be clear, not *all* of the cross-chain logic will be stored in the cross-chain DAO smart contract. Instead, we will separate the hub logic into one contract and the [spoke chain logic into another](#dao-satellite-contract){target=_blank}. This makes sense because of the hub-and-spoke model: some of the logic is stored on a single hub chain while the spoke chains interface with it through a simpler satellite contract. We don't need logic meant to be on spoke chains to be on the hub chain.  
 
-We've already got a base for the cross-chain DAO when we used the OpenZeppelin Wizard in a [previous step](#writing-the-cross-chain-dao). It's time to edit it so that it is cross-chain. Let's list out the different functionalities that need to be added:  
+We've already got a base for the cross-chain DAO when we used the OpenZeppelin Wizard in a [previous step](#starting-with-the-openzeppelin-contract-wizard){target=_blank}. It's time to edit it so that it becomes cross-chain. Let's list out the different functionalities that need to be added:  
 
 1. Support for cross-chain messaging (through LayerZero in this specific example)
 2. Counting votes from spoke chains
