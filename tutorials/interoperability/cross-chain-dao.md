@@ -123,7 +123,7 @@ Let's take this `CrossChainDAO` smart contract and add it to our working directo
 
 Next, let's start at the basics and sort out how users will have their voting power calculated.
 
-## Cross-Chain DAO Token Contract {: #cross-chain-dao-token-contract }
+## Writing the Cross-Chain DAO Token Contract {: #cross-chain-dao-token-contract }
 
 In Compound Finance's DAO, a user needed the COMP token to vote, which enables the decentralization aspect of a DAO. OpenZeppelin's `Governor` smart contract also has this feature, abstracting the tokens to votes feature into an [`IVotes` interface](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/governance/utils/IVotes.sol){target=_blank}.  
 
@@ -222,7 +222,7 @@ This smart contract isn't very special, since all it really does is add metadata
 
 The `CrossChainDAOToken` smart contract is now ready for deployment on both spoke and hub chains. You can check its complete version in the [example repository](https://github.com/jboetticher/cross-chain-dao/blob/main/contracts/CrossChainDAOToken.sol){target=_blank}.  
 
-## Cross Chain DAO Contract {: #cross-chain-dao-contract }
+## Writing the Cross Chain DAO Contract {: #cross-chain-dao-contract }
 
 Now to the meat of this tutorial: the cross chain DAO. To be clear, not *all* of the cross-chain logic will be stored in the cross-chain DAO smart contract. Instead, we will separate the hub logic into one contract and the [spoke chain logic into another](#dao-satellite-contract). This makes sense because of the hub-and-spoke model: some of the logic is stored on a single hub chain while the spoke chains interface with it through a simpler satellite contract. We don't need logic meant to be on spoke chains to be on the hub chain.  
 
@@ -488,20 +488,12 @@ This should be it for requesting data, since most of the logic afterwards will b
 
 Recall that connected contracts that use LayerZero implement the `_nonblockingLzReceive` function to receive cross-chain messages. For incoming messages, we must be able to receive the voting data from other chains during the collection phase. Like good software developers, we want to maintain extensibility: we might also want to receive messages from other chains that do other actions, like execution or propose. But we only get one payload in one receiving function! How do we resolve this issue?  
 
-
-
-
-
-### old _nonblockingLzReceive section
-
-Now, what to put in the function? Let's think back to the requirements.   
-
 !!! note
     For sake of simplicity, we won't implement cross-chain execution or proposals in this tutorial. The function selector concept is being introduced because it is an important topic in cross-chain DApps.  
 
 Let's think about the EVM. How does a smart contract know that a transaction wants to call a specific function? Each function has a function selector, a hashed value that is mapped to a specific action. We can do the same thing, but with cross-chain messages and with integers instead of hashes.  
 
-Add the following code to the :  
+Add the following code to the `_nonblockingLzReceive` function:  
 
 ```solidity
 // Gets a function selector option
@@ -642,7 +634,7 @@ Remember when we designed the `CrossChainDAO` smart contract's `_nonblockingLzRe
 
 
 
-## DAO Satellite Contract {: #dao-satellite-contract }
+## Writing the DAO Satellite Contract {: #dao-satellite-contract }
 
 So far, we've only talked about the cross-chain DAO and its accompanying token. The cross-chain DAO is never deployed on the spoke chains, because it wouldn't be efficient to replicate *all* of the data across each spoke chain. But, we still need an interface to work with the `CrossChainDAO` smart contract on the spoke chains. Hence, we will create a satellite contract named `DAOSatellite`.  
 
