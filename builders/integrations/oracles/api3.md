@@ -26,7 +26,7 @@ The requester calling an Airnode primarily focuses on two tasks:
 
 ![API3 Airnode](/images/builders/integrations/oracles/api3/airnode2.png)
 
-Here is an example of a basic requester contract to request data from an Airnode:
+**Here is an example of a basic requester contract to request data from an Airnode:**
 
 ```solidity
 pragma solidity 0.8.9;
@@ -128,11 +128,29 @@ The callback to the Requester contains two parameters:
 
 ## Using dAPIs {: #dapis}
 
-[dAPIs](https://docs.api3.org/dapis/) are continuously updated streams of off-chain data, such as the latest cryptocurrency, stock and commodity prices. They can power various decentralized applications such as DeFi lending, synthetic assets, stablecoins, derivatives, NFTs and more.
+[dAPIs](https://dapi-docs.api3.org/explore/dapis/what-are-dapis.html) are continuously updated streams of off-chain data, such as the latest cryptocurrency, stock and commodity prices. They can power various decentralized applications such as DeFi lending, synthetic assets, stablecoins, derivatives, NFTs and more.
+
+The data feeds are continuously updated by [first-party oracles](https://dapi-docs.api3.org/explore/introduction/first-party.html) using signed data. dApp owners can read the on-chain value of any dAPI in realtime.
 
 Due to being composed of first-party data feeds, dAPIs offer security, transparency, cost-efficiency and scalability in a turn-key package.
 
+The [API3 Market](https://market.api3.org/dapis) enables users to connect to a dAPI and access the associated data feed services.
+
 ![API3 Remix deploy](/images/builders/integrations/oracles/api3/SS4.png)
+
+[*To know more about how dAPIs work, click here*](https://dapi-docs.api3.org/explore/dapis/what-are-dapis.html)
+
+### Types of dAPIs
+
+#### Self-Funded dAPIs
+Self-funded dAPIs offer developers the opportunity to experience data feeds with
+minimal up-front commitment, providing a low-risk option prior to using a
+managed dAPIs.
+
+#### Managed dAPIs
+Managed dAPIs are sourced from multiple first-party oracles and aggregated using
+a median function. Compared to self-funded dAPIs, **managed dAPIs are monetized**,
+as API3 requires payment in USDC on Ethereum Mainnet to operate them.
 
 ### Subscribing to self-funded dAPIs {: #self-funded-dapis}
 
@@ -186,31 +204,40 @@ Here's an example of a basic contract that reads from a self-funded dAPI.
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
+pragma solidity 0.8.17;
 
-import "@api3/airnode-protocol-v1/contracts/dapis/proxies/interfaces/IDapiProxy.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@api3/contracts/v0.8/interfaces/IProxy.sol";
 
-contract Reader is Ownable {
-    address dapiProxy;
+contract DataFeedReaderExample is Ownable {
+    // This contract reads from a single proxy. Your contract can read from multiple proxies.
+    address public proxy;
 
-    function setDapiProxyAddress(address _proxyAddress) public onlyOwner {
-        dapiProxy = _proxyAddress;
+    // Updating the proxy address is a security-critical action. In this example, only
+    // the owner is allowed to do so.
+    function setProxy(address _proxy) public onlyOwner {
+        proxy = _proxy;
     }
 
-    function readDapi() public view returns (int224 value, uint32 timestamp){
-        return IDapiProxy(dapiProxy).read();
+    function readDataFeed()
+        external
+        view
+        returns (int224 value, uint256 timestamp)
+    {
+        (value, timestamp) = IProxy(proxy).read();
+        // If you have any assumptions about `value` and `timestamp`, make sure
+        // to validate them right after reading from the proxy.
     }
 }
 ```
 
-- `setDapiProxyAddress()` is used to set the address of the dAPI Proxy Contract.
+- `setProxy()` is used to set the address of the dAPI Proxy Contract.
 
-- `readDapi()` is a view function that returns the latest price of the set dAPI.
+- `readDataFeed()` is a view function that returns the latest price of the set dAPI.
 
-You can read more about dAPIs [here](https://docs.api3.org/dapis/). 
+You can read more about dAPIs [here](https://dapi-docs.api3.org/).
 
-### [Try deploying it on Remix!](https://remix.ethereum.org/#url=https://gist.githubusercontent.com/vanshwassan/1ec4230956a78c73a00768180cba3649/raw/caff497e5b4b61d89d920b49da70779a0a24ac58/DapiReader.sol)
+### [Try deploying it on Remix!](https://remix.ethereum.org/#url=https://gist.githubusercontent.com/vanshwassan/1ec4230956a78c73a00768180cba3649/raw/176b4a3781d55d6fb2d2ad380be0c26f412a7e3c/DapiReader.sol)
 
 ## API3 QRNG
 
