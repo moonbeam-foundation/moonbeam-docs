@@ -95,7 +95,7 @@ The process can be summarized in the following steps:
 1. Open (or ensure there is) an HRMP channel from your chain to Moonriver/Moonbeam. Optionally, register MOVR/GLMR
 2. Create [two Moonbeam Community forum posts](#forum-templates) with some key information for the XCM integration: 
     - An [XCM Disclosure post](#xcm-disclosures), where you'll provide some disclosures about the project, the code base, and social network channels
-    - An [XCM Proposal post](#xcm-proposals), where you'll provide some techincal information about the proposal itself. 
+    - An [XCM Proposal post](#xcm-proposals), where you'll provide some technical information about the proposal itself. 
 3. Create a batched proposal on Moonbeam/Moonriver to:
     1. Accept the incoming HRMP channel 
     2. Propose the opening of an outgoing HRMP channel from Moonriver/Moonbeam
@@ -121,9 +121,9 @@ Once these steps are completed succesfully, marketing efforts can be coordinated
 
 ## Forum Templates {: #forum-templates }
 
-When starting an XCM integration on Moonriver or Moonbeam MainNet, there are two preliminary posts that must be made on the Moonbeam Community Forum so that the voting community has the chance to provide feedback.
+When starting an XCM integration on Moonriver or Moonbeam MainNet, there are two preliminary posts that must be made on the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=_blank} so that the voting community has the chance to provide feedback.
 
-It is recommended that this is done five days before the actual proposal is submitted on chain,  to provide time for community feedback. 
+It is recommended that this is done five days before the actual proposal is submitted on chain, to provide time for community feedback. 
 
 ### XCM Disclosures {: #xcm-disclosure }
 
