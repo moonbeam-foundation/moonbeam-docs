@@ -4,7 +4,7 @@ nav:
   - 'Overview': 'overview.md'
   - xc20
   - xcm-sdk
-  - 'Custom XCM Messages': 'custom-xcm-messages.md'
+  - 'Send & Execute XCM Messages': 'execute-xcm-messages.md'
   - 'Remote Execution': 'xcm-transactor.md'
   - 'Remote EVM Calls': 'remote-evm-calls.md'
   - 'XC Channel Registration': 'xc-integration.md'

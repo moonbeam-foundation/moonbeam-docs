@@ -1,9 +1,9 @@
 ---
-title: Execute Custom Local XCM Messages 
+title: Send & Execute XCM Messages 
 description: Learn how to build a custom XCM message, by combining and experimenting with different XCM instructions, and execute it locally on Moonbeam to see the results.
 ---
 
-# Create and Execute Custom XCM Messages
+# Send and Execute XCM Messages
 
 ![Custom XCM Messages Banner](/images/builders/interoperability/xcm/custom-xcm-messages/custom-xcm-banner.png)
 
@@ -23,8 +23,8 @@ This guide assumes that you are familiar with general XCM concepts such as [gene
 
 The Polkadot XCM Pallet includes the following relevant extrinsics (functions):
 
- - **execute**(message, maxWeight) — **available on Moonbase Alpha only** - executes a custom XCM message given the SCALE encoded XCM versioned XCM message to be executed and the maximum weight to be consumed
- - **send**(dest, message) - **available on Moonbase Alpha only** - sends a custom XCM message given the multilocation of the destination chain to send the message to and the SCALE encoded XCM versioned XCM message to be sent. For the XCM message to be successfully executed, the target chain needs to be able to understand the instructions in the message
+ - **execute**(message, maxWeight) — **supported on Moonbase Alpha only** - executes a custom XCM message given the SCALE encoded XCM versioned XCM message to be executed and the maximum weight to be consumed
+ - **send**(dest, message) - **supported on Moonbase Alpha only** - sends a custom XCM message given the multilocation of the destination chain to send the message to and the SCALE encoded XCM versioned XCM message to be sent. For the XCM message to be successfully executed, the target chain needs to be able to understand the instructions in the message
 
 ### Storage Methods {: #storage-methods }
 
@@ -37,21 +37,20 @@ The Polkadot XCM Pallet includes the following relevant read-only storage method
 
 This section of the guide covers the process of building a custom XCM message to be executed locally (i.e., in Moonbeam) via two different methods: the `execute` function of the Polkadot XCM Pallet and the `xcmExecute` function of the [XCM Utilities Precompile](/builders/pallets-precompiles/precompiles/xcm-utils){target=_blank}. This functionality provides a playground for you to experiment with different XCM instructions and see firsthand the results of these experiments. This also comes in handy to determine the [fees](/builders/interoperability/xcm/fees){target=_blank} associated with a given XCM message on Moonbeam.
 
-In the following example, you'll transfer DEV tokens from one account to another on Moonbase Alpha. To do so, you'll be building an XCM message that contains the following XCM instructions:
+In the following example, you'll transfer DEV tokens from one account to another on Moonbase Alpha. To do so, you'll be building an XCM message that contains the following XCM instructions, which are executed locally (in this case, on Moonbase Alpha):
 
- - [`WithdrawAsset`](https://github.com/paritytech/xcm-format#withdrawasset){target=_blank} - gets executed in the target chain. Removes assets and places them into the holding register
- - [`BuyExecution`](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} - gets executed in the target chain. Takes the assets from holding to pay for execution fees. The fees to pay are determined by the target chain
- - [`DepositAsset`](https://github.com/paritytech/xcm-format#depositasset){target=_blank} - gets executed in the target chain. Removes the assets from the holding register and deposits the equivalent assets to a beneficiary account
+ - [`WithdrawAsset`](https://github.com/paritytech/xcm-format#withdrawasset){target=_blank} - removes assets and places them into the holding register
+ - [`DepositAsset`](https://github.com/paritytech/xcm-format#depositasset){target=_blank} - removes the assets from the holding register and deposits the equivalent assets to a beneficiary account
 
-Note that in this case, the target chain is the same as the origin chain, which is Moonbase Alpha.
+Typically when you send an XCM message cross-chain to a target chain, the [`BuyExecution` instruction](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} is needed to pay for remote execution. However, for local execution this instruction is not necessary as you are already getting charged when you execute the extrinsic. 
 
 ### Checking Prerequisites {: #checking-prerequisites }
 
-To be able to send the extrinsics in Polkadot.js Apps, you need to have the following:
+To follow along with this guide, you will need the following:
 
-- An [account loaded in Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/accounts){target=_blank}
 - Your account must be funded with DEV tokens.
   --8<-- 'text/faucet/faucet-list-item.md'
+- If following the instructions on how to execute an XCM message with Polkadot.js Apps, you'll need an [account loaded into the Polkadot.js Apps interface](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/accounts){target=_blank}
 
 ### Execute an XCM Message with Polkadot.js Apps {: #execute-an-xcm-message-with-polkadotjs-apps }
 
@@ -113,17 +112,22 @@ Once the transaction is processed, the 0.1 DEV tokens should be withdrawn from A
 
 ![Review the transaction details using Polkadot.js Apps.](/images/builders/interoperability/xcm/custom-xcm-messages/custom-xcm-2.png)
 
-### Execute an XCM Message with the XCM Utilities Precompile {: #xcm-utils-precompile }
+### Execute an XCM Message with the XCM Utilities Precompile {: #execute-xcm-utils-precompile }
 
-In this section, you'll use the `xcmExecute` function of the [XCM Utilities Precompile](/builders/pallets-precompiles/precompiles/xcm-utils){target=_blank}, which is only available on Moonbase Alpha, to execute a custom XCM message locally. The XCM Utilities Precompile is located at the following address:
+In this section, you'll use the `xcmExecute` function of the [XCM Utilities Precompile](/builders/pallets-precompiles/precompiles/xcm-utils){target=_blank}, which is only supported on Moonbase Alpha, to execute a XCM message locally. The XCM Utilities Precompile is located at the following address:
 
 ```
 {{ networks.moonbase.precompiles.xcm_utils }}
 ```
 
-Under the hood, the `xcmExecute` function of the XCM Utilities Precompile calls the `execute` function of the Polkadot XCM Pallet, which is a Substrate pallet that is coded in rust. The benefit of using the XCM Utilities Precompile to call `xcmExecute` is that you can do so via the Ethereum API and use Ethereum libraries like [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank}.
+Under the hood, the `xcmExecute` function of the XCM Utilities Precompile calls the `execute` function of the Polkadot XCM Pallet, which is a Substrate pallet that is coded in Rust. The benefit of using the XCM Utilities Precompile to call `xcmExecute` is that you can do so via the Ethereum API and use Ethereum libraries like [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank}.
 
-The `xcmExecute` function accepts two parameters: the SCALE encoded versioned XCM message to be executed and the maximum weight to be consumed. So, you'll need to start off by getting the SCALE encoded XCM message. You can grab the encoded calldata from the [previous section](#execute-an-xcm-message-with-polkadotjs-apps), or you can calculate the same calldata programmatically using the following snippet:
+The `xcmExecute` function accepts two parameters: the SCALE encoded versioned XCM message to be executed and the maximum weight to be consumed. 
+
+To execute the XCM message locally, you'll take the following steps:
+
+1. Build the SCALE encoded calldata. You can grab the encoded calldata from the [previous section](#execute-an-xcm-message-with-polkadotjs-apps), or you can calculate the same calldata programmatically with the [Polkadot.js API](/build/substrate-api/polkadot-js-api/){target=_blank} 
+2. Send the XCM message, with the encoded calldata, using the Ethereum library and the XCM Utilities Precompile
 
 ```js
 --8<-- 'code/polkadotXcm/xcmExecute/encodedCalldata.js'
