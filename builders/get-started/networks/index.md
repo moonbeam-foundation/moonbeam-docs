@@ -1,6 +1,6 @@
 ---
 title: Get Started with Moonbeam-based Networks
-description: Learn how to get started developing on a Moonbeam development node, the Moonbase Alpha TestNet, Moonriver, Moonbeam, or Boba Layer 2.
+description: Ready to start building on Moonbeam networks? Learn how to get started on a Moonbeam development node, the Moonbase Alpha TestNet, Moonriver, and Moonbeam.
 template: main.html
 hide: 
  - toc
