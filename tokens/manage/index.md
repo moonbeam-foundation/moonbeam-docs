@@ -4,7 +4,8 @@ description: Learn how to manage and secure your account on Moonbeam by creating
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
-<h1 class='subsection-title'></h1>
+<h1 class='subsection-title'>Account Management</h1>
 <div class='subsection-wrapper'></div>

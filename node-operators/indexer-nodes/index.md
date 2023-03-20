@@ -4,7 +4,8 @@ description: Learn how to run an indexer node, such as a Graph node, on Moonbeam
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
-<h1 class='subsection-title'></h1>
+<h1 class='subsection-title'>Indexer Nodes</h1>
 <div class='subsection-wrapper'></div>

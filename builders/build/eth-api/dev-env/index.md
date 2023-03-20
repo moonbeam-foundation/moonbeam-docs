@@ -4,7 +4,8 @@ description: Learn how to use Ethereum tools such as Remix, OpenZeppelin, Hardha
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
-<h1 class='subsection-title'></h1>
+<h1 class='subsection-title'>Ethereum Development Environments</h1>
 <div class='subsection-wrapper'></div>

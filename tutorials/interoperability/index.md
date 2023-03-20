@@ -4,8 +4,9 @@ description: A list of tutorials related to Moonbeam an its connected contracts 
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
 
-<h1 class='subsection-title'></h1>
+<h1 class='subsection-title'>Interoperability</h1>
 <div class='subsection-wrapper'></div>

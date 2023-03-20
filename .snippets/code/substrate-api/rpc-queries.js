@@ -7,3 +7,6 @@ const chain = await api.rpc.system.chain();
 const lastHeader = await api.rpc.chain.getHeader();
 
 console.log(`${chain}: last block #${lastHeader.number} has hash ${lastHeader.hash}`);
+
+// Disconnect the API
+api.disconnect();

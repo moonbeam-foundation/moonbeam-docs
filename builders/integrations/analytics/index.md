@@ -4,7 +4,8 @@ description: Analyze on-chain smart contract data by building charts and dashboa
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
-<h1 class='subsection-title'></h1>
+<h1 class='subsection-title'>Analytics</h1>
 <div class='subsection-wrapper'></div>

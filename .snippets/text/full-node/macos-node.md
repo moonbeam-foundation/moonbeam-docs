@@ -6,10 +6,12 @@ title: Full Node Docker Commands for MacOS
 
 For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`.
 
+For client versions prior to v0.30.0, `--rpc-port` was used to specify the port for HTTP connections and `--ws-port` was used to specify the port for WS connections. As of client v0.30.0, the `--rpc-port` flag, which defaults to port `9933`, has been deprecated and the max connections to that port have been hardcoded to 100. The `--ws-port` flag, which defaults to port `9944`, is for both HTTP and WS connections. You can use the `--ws-max-connections` to adjust the combined HTTP and WS connection limit.
+
 ## Moonbeam Full Node {: #moonbeam-full-node } 
 
 ```
-docker run -p 9933:9933 -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
+docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
 -u $(id -u ${USER}):$(id -g ${USER}) \
 purestake/moonbeam:v0.29.0 \
 --base-path=/data \
@@ -27,7 +29,7 @@ purestake/moonbeam:v0.29.0 \
 ## Moonbeam Collator {: #moonbeam-collator } 
 
 ```
-docker run -p 9933:9933 -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
+docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
 -u $(id -u ${USER}):$(id -g ${USER}) \
 purestake/moonbeam:v0.29.0 \
 --base-path=/data \
@@ -44,9 +46,9 @@ purestake/moonbeam:v0.29.0 \
 ## Moonriver Full Node {: #moonriver-full-node } 
 
 ```
-docker run -p 9933:9933 -p 9944:9944 -v "/var/lib/moonriver-data:/data" \
+docker run -p 9944:9944 -v "/var/lib/moonriver-data:/data" \
 -u $(id -u ${USER}):$(id -g ${USER}) \
-purestake/moonbeam:v0.29.0 \
+purestake/moonbeam:v0.30.0 \
 --base-path=/data \
 --chain moonriver \
 --name="YOUR-NODE-NAME" \
@@ -62,9 +64,9 @@ purestake/moonbeam:v0.29.0 \
 ## Moonriver Collator {: #moonriver-collator } 
 
 ```
-docker run -p 9933:9933 -p 9944:9944 -v "/var/lib/moonriver-data:/data" \
+docker run -p 9944:9944 -v "/var/lib/moonriver-data:/data" \
 -u $(id -u ${USER}):$(id -g ${USER}) \
-purestake/moonbeam:v0.29.0 \
+purestake/moonbeam:v0.30.0 \
 --base-path=/data \
 --chain moonriver \
 --name="YOUR-NODE-NAME" \
@@ -80,9 +82,9 @@ purestake/moonbeam:v0.29.0 \
 ## Moonbase Alpha Full Node {: #moonbase-alpha-full-node } 
 
 ```
-docker run -p 9933:9933 -p 9944:9944 -v "/var/lib/alphanet-data:/data" \
+docker run -p 9944:9944 -v "/var/lib/alphanet-data:/data" \
 -u $(id -u ${USER}):$(id -g ${USER}) \
-purestake/moonbeam:v0.29.0 \
+purestake/moonbeam:v0.30.0 \
 --base-path=/data \
 --chain alphanet \
 --name="YOUR-NODE-NAME" \
@@ -98,9 +100,9 @@ purestake/moonbeam:v0.29.0 \
 ## Moonbase Alpha Collator {: #moonbase-alpha-collator } 
 
 ```
-docker run -p 9933:9933 -p 9944:9944 -v "/var/lib/alphanet-data:/data" \
+docker run -p 9944:9944 -v "/var/lib/alphanet-data:/data" \
 -u $(id -u ${USER}):$(id -g ${USER}) \
-purestake/moonbeam:v0.29.0 \
+purestake/moonbeam:v0.30.0 \
 --base-path=/data \
 --chain alphanet \
 --name="YOUR-NODE-NAME" \

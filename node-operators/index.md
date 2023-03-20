@@ -4,9 +4,10 @@ description: Learn how to become a node operator on Moonbeam, including running 
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
-<h1 class='subsection-title'></h1>
+<h1 class='subsection-title'>Node Operators</h1>
 <div class='subsection-wrapper'></div>
 <div class='disclaimer'>
 --8<-- 'text/disclaimers/general.md'

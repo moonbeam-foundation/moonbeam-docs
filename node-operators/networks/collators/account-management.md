@@ -89,7 +89,7 @@ You can check the current on-chain mappings for a specific collator or you can a
 To use the `mappingWithDeposit` method to check the mapping for a specific collator, you'll need to get the Nimbus ID. To do so, you can take the first 64 hexadecimal characters of the concatenated public keys to get the Nimbus ID. To verify that the Nimbus ID is correct, you can run the following command with the first 64 characters passed into the `params` array:
 
 ```
-curl http://127.0.0.1:9933 -H "Content-Type:application/json;charset=utf-8" -d   '{
+curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d   '{
   "jsonrpc":"2.0",
   "id":1,
   "method":"author_hasKey",

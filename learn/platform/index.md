@@ -4,7 +4,8 @@ description: Learn about the Moonbeam smart contract platform, including the Moo
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
-<h1 class='subsection-title'></h1>
+<h1 class='subsection-title'>Platform</h1>
 <div class='subsection-wrapper'></div>
