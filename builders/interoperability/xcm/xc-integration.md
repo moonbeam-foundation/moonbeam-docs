@@ -57,7 +57,7 @@ For reference, you can use [Moonbase Alpha's spec file](https://raw.githubuserco
 
 To onboard your parachain, please provide the following:
 - Genesis head/wasm hash
-- Parachain ID. You can find the parachain IDs that have already been used in the [relay chain Polkadot.js Apps page](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/parachains){target=_blank}
+- Parachain ID. You can find the parachain IDs that have already been used in the [relay chain Polkadot.js Apps page](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/parachains){target=_blank}
 
 There are also some [snapshots for the Alphanet ecosystem relay chain](https://www.certhum.com/moonbase-databases){target=_blank} you can use to quickly get started, these are provided by the community.
 
