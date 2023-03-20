@@ -31,7 +31,7 @@ The first step for a Moonriver/Moonbeam XCM integration is to integrate with the
 
 The entire process of getting started with Moonbase Alpha can be summarized as follows:
 
-1. Sync a node with the Alphanet relay chain
+1. [Sync a node](#sync-a-node) with the Alphanet relay chain
 2. Provide the WASM/Geneiss head hash and your parachain ID for onboarding
 3. [Calculate your parachain sovereign account](#calculate-and-fund-the-parachain-sovereign-account) on the Alphanet relay chain (to be funded by the Moonbeam team)
 4. Open an HRMP channel to Moonbase Alpha from your parachain (through sudo or via governance)
@@ -59,7 +59,7 @@ To onboard your parachain, please provide the following:
 - Genesis head/wasm hash
 - Parachain ID. You can find the parachain IDs that have already been used in the [relay chain Polkadot.js Apps page](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/parachains){target=_blank}
 
-There are also some [snapshots for the Alphanet ecosystem relay chain](http://snapshots.moonbeam.network.s3-website.us-east-2.amazonaws.com/){target=_blank} you can use to quickly get started.
+There are also some [snapshots for the Alphanet ecosystem relay chain](https://www.certhum.com/moonbase-databases){target=_blank} you can use to quickly get started, these are provided by the community.
 
 When getting started with the Moonbase Alpha relay chain, once you have your node synced, please get in touch with the team on [Telegram](https://t.me/Moonbeam_Official){target=_blank} or [Discord](https://discord.gg/PfpUATX){target=_blank}, so the team can onboard your parachain to the relay chain.
 
@@ -85,13 +85,20 @@ When getting started with the Moonbase Alpha relay chain, once you have your sov
 
 ## Moonriver & Moonbeam XCM Integration Overview {: #moonriver-moonbeam }
 
-From a technical perspective, the process of creating an HRMP channel with Moonriver and Moonbeam is nearly identical. However, engagement with the Moonbeam community is crucial and required before a proposal will pass. The process is as follows:
+From a technical perspective, the process of creating an HRMP channel with Moonriver and Moonbeam is nearly identical. However, engagement with the Moonbeam community is crucial and required before a proposal will pass.
 
-1. Add details of the asset and project to [the Moonbeam Community Forum](https://forum.moonbeam.foundation/c/xcm-hrmp/13){target=_blank}. Please check the HRMP channel guidelines that the community voted on for [Moonriver](https://moonriver.polkassembly.network/referenda/0){target=_blank} and [Moonbeam](https://moonbeam.polkassembly.network/proposal/21){target=_blank}
-2. Open an HRMP channel from your chain to Moonriver/Moonbeam. Optionally, you can create a batched proposal to register MOVR/GLMR or register at a later date
-3. Once the proposal in step 2 gets enacted, you will create a batched proposal on Moonbeam to:
-    1. Propose the opening of an outgoing HRMP channel from Moonriver/Moonbeam
-    2. Accept the incoming HRMP channel
+Please check the HRMP channel guidelines that the community voted on for [Moonriver](https://moonriver.polkassembly.network/referenda/0){target=_blank} and [Moonbeam](https://moonbeam.polkassembly.network/proposal/21){target=_blank} before starting.
+
+
+The process can be summarized in the following steps:
+
+1. Open (or ensure there is) an HRMP channel from your chain to Moonriver/Moonbeam. Optionally, register MOVR/GLMR
+2. Create [two Moonbeam Community forum posts](#forum-templates) with some key information for the XCM integration: 
+    - An [XCM Disclosure post](#xcm-disclosures), where you'll provide some disclosures about the project, the code base, and social network channels
+    - An [XCM Proposal post](#xcm-proposals), where you'll provide some technical information about the proposal itself. 
+3. Create a batched proposal on Moonbeam/Moonriver to:
+    1. Accept the incoming HRMP channel 
+    2. Propose the opening of an outgoing HRMP channel from Moonriver/Moonbeam
     3. Register the asset as an [XC-20 token](/builders/interoperability/xcm/xc20/overview){target=_blank} (if applicable)
 
       The normal enactment times are as follows:  
@@ -99,28 +106,35 @@ From a technical perspective, the process of creating an HRMP channel with Moonr
       - **Moonriver** - proposals should be done in the the General Admin Track from [OpenGov](/learn/features/governance/#opengov){target=_blank}, in which the Decision Period is approximately {{ networks.moonriver.governance.tracks.general_admin.decision_period.time }}, and the enactment time is at least {{ networks.moonriver.governance.tracks.general_admin.min_enactment_period.time }}
       - **Moonbeam** - approximately a {{ networks.moonbeam.democracy.vote_period.days }}-day Voting Period plus {{ networks.moonbeam.democracy.enact_period.days }}-day enactment time
 
-4. Add details about the [connecting parachain on Polkassembly](https://moonbeam.polkassembly.network/){target=_blank} so that community members can be informed when voting on the proposal
-5. Accept the HRMP channel from Moonriver/Moonbeam on the connecting parachain
-6. Exchange $50 worth of tokens for testing the XCM integration. Please send the tokens to:
+4. Accept the HRMP channel from Moonriver/Moonbeam on the connecting parachain
+5. Exchange $50 worth of tokens for testing the XCM integration. Please send the tokens to:
 
     ```
     AccoundId: 5DnP2NuCTxfW4E9rJvzbt895sEsYRD7HC9QEgcqmNt7VWkD4
     Hex:       0x4c0524ef80ae843b694b225880e50a7a62a6b86f7fb2af3cecd893deea80b926)
     ```
 
-7. Provide an Ethereum-styled address for MOVR/GLMR
-8. Test the XCM integration with the provided tokens
+6. Provide an Ethereum-styled address for MOVR/GLMR
+7. Test the XCM integration with the provided tokens
 
 Once these steps are completed succesfully, marketing efforts can be coordinated, and the new XC-20 on Moonriver/Moonbeam can be added to the Cross Chain Assets section of the [Moonbeam DApp](https://apps.moonbeam.network/){target=_blank}.
 
-### Forum and Polkassembly Template {: #forum-and-polkassembly-template }
+## Forum Templates {: #forum-templates }
 
-When starting an XCM integration on Moonriver or Moonbeam MainNet, there are two preliminary posts that must be made on the Moonbeam Community Forum so that the voting community has the chance to provide feedback. It is recommended that this is done five days before the actual proposal is submitted on chain.  
+When starting an XCM integration on Moonriver or Moonbeam MainNet, there are two preliminary posts that must be made on the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=_blank} so that the voting community has the chance to provide feedback.
 
-The first post that should be made are the key disclosures within the [key disclosures category](https://forum.moonbeam.foundation/c/xcm-hrmp/xcm-disclosures/15){target=_blank}, which highlights key information that are of importance in a voter's decision:  
+It is recommended that this is done five days before the actual proposal is submitted on chain, to provide time for community feedback. 
+
+### XCM Disclosures {: #xcm-disclosure }
+
+The first post that should be made are the key disclosures within the [XCM Disclosures category](https://forum.moonbeam.foundation/c/xcm-hrmp/xcm-disclosures/15){target=_blank}, which highlights key information that are of importance in a voter's decision.
+
+Once you hit the **New Topic** button, a template is provided with the relevant information to be filled in. Please use either the Moonbeam/Moonriver tag, depending on the network you are integrating with.
+
+The required information is the following:
 
 - Is the blockchain network's code open source? If so, please provide the GitHub link. If not, provide an explanation on why not
-- Is sudo disabled on the network? If sudo is disabled, is the network controlled by a select group of addresses?  
+- Is SUDO disabled on the network? If SUDO is disabled, is the network controlled by a select group of addresses?  
 - Has the integration of the network been tested completely on the Moonbase Alpha TestNet?  
 - (For Moonbeam HRMP proposals only) Does your network have a Kusama deployment? If so, provide its network name and whether the Kusama deployment is integrated with Moonriver
 - Is the blockchain network's code audited? If so, please provide:
@@ -128,7 +142,13 @@ The first post that should be made are the key disclosures within the [key discl
     - Dates of audit reports
     - Links to audit reports
 
-You must also add a preliminary draft of the proposal in the [XCM Proposals category](https://forum.moonbeam.foundation/c/xcm-hrmp/xcm-proposals/14){target=_blank}. Once a proposal is submitted on-chain and available for voting, you must also add a description to it in either the [Moonbeam Polkassembly](https://moonbeam.polkassembly.network/){target=_blank} or [Moonriver Polkassembly](https://moonriver.polkassembly.network/){target=_blank}.  
+### XCM Proposals {: #xcm-proposals }
+
+The second post is a preliminary draft of the proposal in the [XCM Proposals category](https://forum.moonbeam.foundation/c/xcm-hrmp/xcm-proposals/14){target=_blank}. Once a proposal is submitted on-chain and available for voting, you must also add a description to it in either the [Moonbeam Polkassembly](https://moonbeam.polkassembly.network/){target=_blank} or [Moonriver Polkassembly](https://moonriver.polkassembly.network/){target=_blank}.
+
+Once you hit the **New Topic** button, a template is provided with the relevant information to be filled in. Please use either the Moonbeam/Moonriver tag, depending on the network you are integrating with.
+
+Note that all the necessary information can be obtained by using the tools presented in the following sections. In addition, you can always contact the team for support.
 
 In both the Moonbeam XCM Proposals forum post and in Polkassembly, add the following sections and information:  
 
@@ -517,7 +537,7 @@ The complete options that can be used with the script are as follows:
 |   send-proposal-as   | democracy/council-external |                                      Whether to send the encoded calldata through democracy or Council (Governance v1)                                       |
 | collective-threshold |           number           |                                     (Required for council-external) The threshold for the Council deciding the proposal                                      |
 |       at-block       |           number           | Whether to wrap the extrinsic calldata inside of a `scheduler.schedule` extrinsic. The block in the future that the action should be scheduled to take place |
-|     fee-currency     |   string (multilocation)   |                            (Required for non-Moonbeam chains that use XCM-Transactor) The multilocation of the relay chain's asset                            |
+|     fee-currency     |   string (multilocation)   |                           (Required for non-Moonbeam chains that use XCM-Transactor) The multilocation of the relay chain's asset                            |
 
 ## Testing Asset Registration on Moonbeam {: #testing-asset-registration-on-moonbeam }
 
