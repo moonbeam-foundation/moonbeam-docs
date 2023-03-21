@@ -182,7 +182,7 @@ The Conviction multiplier values for each network are:
     |              32              |           6           | {{networks.moonbase.conviction.lock_period.conviction_6}} days |
 
 !!! note
-    The lock time approximations are based upon regular {{ networks.moonriver.block }}-second block times. Block production may vary and thus the displayed lock times should not be deemed exact.
+    The lock time approximations are based upon regular {{ networks.moonriver.block_time }}-second block times. Block production may vary and thus the displayed lock times should not be deemed exact.
 
 ### Roadmap of a Proposal {: #roadmap-of-a-proposal-v2 } 
 
@@ -212,7 +212,7 @@ A proposal (with its preimage) is submitted for the General Admin Track on Moonr
  - The Support curve starts at {{ networks.moonriver.governance.tracks.general_admin.min_support.percent0 }}% on {{ networks.moonriver.governance.tracks.general_admin.min_support.time0 }}, goes to {{ networks.moonriver.governance.tracks.general_admin.min_support.percent1 }}% on {{ networks.moonriver.governance.tracks.general_admin.min_support.time1 }}
  - A referendum starts the Decide Period with 0% "Aye" votes (nobody voted in the Lead-in Period)
  - Token holders begin to vote and the Approval increases to a value above {{ networks.moonriver.governance.tracks.general_admin.min_approval.percent1 }}% by {{ networks.moonriver.governance.tracks.general_admin.min_approval.time1 }}
- - If the Approval and Support thresholds are met for the duration of the Confirm Period ({{ networks.moonriver.governance.tracks.general_admin.min_enactment_period.blocks }} blocks, approximately {{ networks.moonriver.governance.tracks.general_admin.min_enactment_period.time }}), the referendum is approved
+ - If the Approval and Support thresholds are met for the duration of the Confirm Period ({{ networks.moonriver.governance.tracks.general_admin.confirm_period.blocks }} blocks, approximately {{ networks.moonriver.governance.tracks.general_admin.confirm_period.time }}), the referendum is approved
  - If the Approval and Support thresholds are not met during the Decision Period, the proposal is rejected. Note that the thresholds need to be met for the duration of the Confirm Period. Consequently, if they are met but the Decision Period expires before the completion of the Confirm Period, the proposal is rejected
 
 The Approval and Support percentages can be calculated using the following:
