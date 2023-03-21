@@ -12,7 +12,7 @@ xcmUtils = web3.eth.contract(
 )
 
 def sendXcm():
-    # Define parameters required for the xcmExecute function
+    # Define parameters required for the xcmSend function
     encodedCalldata = '0x020c0004000100000f0000c16ff2862313000100000f0000c16ff28623000d010004010101000c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d67'
     dest = [
         1, # Parents: 1 
