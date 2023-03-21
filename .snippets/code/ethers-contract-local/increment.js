@@ -32,7 +32,7 @@ const increment = async () => {
     `Calling the increment by ${_value} function in contract at address: ${contractAddress}`
   );
 
-  const createReceipt = await incrementer.increment([_value]);
+  const createReceipt = await incrementer.increment(_value);
   await createReceipt.wait();
 
   console.log(`Tx successful with hash: ${createReceipt.hash}`);
