@@ -126,7 +126,7 @@ The callback to the Requester contains two parameters:
     | AirnodeRrpV0  | `{{ networks.moonbase.api3.rrp }}`  |
 
 
-## Using dAPIs {: #dapis}
+## Using dAPIs - API3 Datafeeds {: #dapis}
 
 [dAPIs](https://dapi-docs.api3.org/explore/dapis/what-are-dapis.html) are continuously updated streams of off-chain data, such as the latest cryptocurrency, stock and commodity prices. They can power various decentralized applications such as DeFi lending, synthetic assets, stablecoins, derivatives, NFTs and more.
 
@@ -140,21 +140,21 @@ The [API3 Market](https://market.api3.org/dapis) enables users to connect to a d
 
 [*To know more about how dAPIs work, click here*](https://dapi-docs.api3.org/explore/dapis/what-are-dapis.html)
 
-### Types of dAPIs
+<!-- ### Types of dAPIs
 
-#### Self-Funded dAPIs
+#### Self-funded dAPIs
 Self-funded dAPIs offer developers the opportunity to experience data feeds with
 minimal up-front commitment, providing a low-risk option prior to using a
 managed dAPIs.
 
 #### Managed dAPIs
 Managed dAPIs are sourced from multiple first-party oracles and aggregated using
-a median function. Compared to self-funded dAPIs, **managed dAPIs are monetized**,
-as API3 requires payment in USDC on Ethereum Mainnet to operate them.
+a median function. Compared to Self-funded dAPIs, **managed dAPIs are monetized**,
+as API3 requires payment in USDC on Ethereum Mainnet to operate them. -->
 
-### Subscribing to self-funded dAPIs {: #self-funded-dapis}
+### Subscribing to Self-funded dAPIs {: #self-funded-dapis}
 
-With Self-Funded dAPIs, you can fund the dAPI with your own funds. The amount of gas you supply will determine how long your dAPI will be available for use. If you run out of gas, you can fund the dAPI again to keep it available for use.
+With Self-funded dAPIs, you can fund the dAPI with your own funds. The amount of gas you supply will determine how long your dAPI will be available for use. If you run out of gas, you can fund the dAPI again to keep it available for use.
 
 #### Exploring and selecting your dAPI {: #select-dapi}
 
@@ -162,14 +162,14 @@ The [API3 Market](https://market.api3.org/dapis) provides a list of all the dAPI
 
 #### Funding a sponsor wallet {: #fund-wallet}
 
-Once you have selected your dAPI, you can fund it by using the Market to send funds to the `sponsorWallet`, make sure your:
+Once you have selected your dAPI, you can activate it by using the [API3 Market](https://market.api3.org/) to send DEV to the `sponsorWallet`. Make sure your:
 
 - Wallet is connected to the Market and is the same network as the dAPI you are funding.
 - Balance of the wallet should be greater than the amount you are sending to the `sponsorWallet`.
 
 > ![API3 Remix deploy](/images/builders/integrations/oracles/api3/SS1.png)
 
-To fund the dAPI, you need to click on the **Fund sponsor wallet/Fund Gas** button. Depending upon if a proxy contract is already deployed, you will see a different UI.
+To fund the dAPI, you need to click on the **Fund sponsor wallet** button. Depending upon if a proxy contract is already deployed, you will see a different UI.
 
 > ![API3 Remix deploy](/images/builders/integrations/oracles/api3/SS2.png)
 
@@ -183,10 +183,10 @@ Once the transaction is broadcasted & confirmed on the blockchain a transaction 
 
 #### Deploying a proxy contract to access the dAPI {: #deploy-proxy}
 
-Smart contracts can interact and read values from contracts that are already deployed on the blockchain. By deploying a proxy contract via the API3 market, a dAPP can interact and read values from a dAPI like ETH/USD.
+Smart contracts can interact and read values from contracts that are already deployed on the blockchain. By deploying a proxy contract via the API3 Market, a dApp can interact and read values from a dAPI like ETH/USD.
 
 !!! note
-    If a proxy is already deployed for a self-funded dAPI, the dAPP can read the dAPI without having to deploy a proxy contract by using the address of the already deployed proxy contract which will be visible on the API3 market.
+    If a proxy is already deployed for a Self-funded dAPI, the dApp can read the dAPI without having to deploy a proxy contract. They do this by using the address of the already deployed proxy contract which will be visible on the API3 Market.
 
 
 If you are deploying a proxy contract during the funding process, clicking on the **Deploy proxy** button will initiate a transaction to your Metamask that will deploy a proxy contract.
@@ -198,9 +198,9 @@ Once the transaction is broadcasted & confirmed on the blockchain, the proxy con
 > ![API3 Remix deploy](/images/builders/integrations/oracles/api3/SS7.png)
 
 
-### Reading from a self-funded dAPI {: #read-dapis}
+### Reading from a Self-funded dAPI {: #read-dapis}
 
-Here's an example of a basic contract that reads from a self-funded dAPI.
+Here's an example of a basic contract that reads from a Self-funded dAPI.
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -352,3 +352,14 @@ You can try QRNG on the networks listed below:
     |  `endpointIdUint256` | `{{ networks.moonbase.api3.byogqrnguint256 }}` |
     |  `endpointIdUint256Array` | `{{ networks.moonbase.api3.byogqrnguint256array }}` |
     |  AirnodeRrpV0 | `{{ networks.moonriver.api3.rrp }}` |
+
+
+## Additional Resources
+
+Here are some additional developer resources
+
+- [API3 Docs](https://docs.api3.org/)
+- [dAPI Docs](https://dapi-docs.api3.org/)
+- [QRNG Docs](https://docs.api3.org/qrng/)
+- [Github](github.com/api3dao/)
+- [Medium](https://medium.com/api3)
