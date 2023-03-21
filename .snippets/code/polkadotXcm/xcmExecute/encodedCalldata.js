@@ -17,19 +17,8 @@ const instr1 = {
   ],
 };
 
-// 3. XCM instruction 2: BuyExecution
+// 3. XCM instruction 2: DepositAsset
 const instr2 = {
-  BuyExecution: {
-    fees: {
-      id: { Concrete: devMultiLocation },
-      fun: { Fungible: amountToWithdraw },
-    },
-    weightLimit: 'Unlimited',
-  },
-};
-
-// 4. XCM instruction 3: DepositAsset
-const instr3 = {
   DepositAsset: {
     assets: { Wild: 'All' },
     max_assets: 1,
@@ -40,18 +29,18 @@ const instr3 = {
   },
 };
 
-// 5. Build versioned XCM message
-const xcmMessage = { V2: [instr1, instr2, instr3] };
+// 4. Build versioned XCM message
+const xcmMessage = { V2: [instr1, instr2] };
 
 const generateCallData = async () => {
-  // 6. Create Substrate API Provider
+  // 5. Create Substrate API Provider
   const substrateProvider = new WsProvider(providerWsURL);
   const api = await ApiPromise.create({ provider: substrateProvider });
 
-  // 7. Create the extrinsic
+  // 6. Create the extrinsic
   let tx = api.tx.polkadotXcm.execute(xcmMessage, maxWeight);
 
-  // 8. Get SCALE Encoded Calldata
+  // 7. Get SCALE Encoded Calldata
   let encodedCall = tx.method.toHex();
   console.log(`Encoded Calldata: ${encodedCall}`);
 };

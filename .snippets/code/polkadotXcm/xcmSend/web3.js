@@ -11,14 +11,18 @@ const xcmUtils = new web3.eth.Contract(
   { from: web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY).address } // 'from' is necessary for gas estimation
 );
 
-const executeXcmMessageLocally = async () => {
-  // Define parameters required for the xcmExecute function
+const sendXcm = async () => {
+  // Define parameters required for the xcmSend function
   const encodedCalldata =
-    '0x020800040000010403001300008a5d784563010d010004000103003cd0a705a2dc65e5b1e1205896baa2be8a07c6e0';
-  const maxWeight = '1000000000';
+    '0x020c0004000100000f0000c16ff2862313000100000f0000c16ff28623000d010004010101000c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d67';
+  const dest = [
+    1, // Parents: 1 
+    [] // Interior: Here
+  ];
+
 
   // Create transaction
-  const tx = await xcmUtils.methods.xcmExecute(encodedCalldata, maxWeight);
+  const tx = await xcmUtils.methods.xcmSend(dest, encodedCalldata);
 
   // Sign transaction
   const signedTx = await web3.eth.accounts.signTransaction(
@@ -35,4 +39,4 @@ const executeXcmMessageLocally = async () => {
   console.log(`Transaction receipt: ${sendTx.transactionHash}`);
 };
 
-executeXcmMessageLocally();
+sendXcm();

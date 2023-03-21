@@ -11,15 +11,18 @@ xcmUtils = web3.eth.contract(
     abi=abi
 )
 
-def executeXcmMessageLocally():
+def sendXcm():
     # Define parameters required for the xcmExecute function
-    encodedCalldata = '0x020800040000010403001300008a5d784563010d010004000103003cd0a705a2dc65e5b1e1205896baa2be8a07c6e0'
-    maxWeight = '1000000000'
+    encodedCalldata = '0x020c0004000100000f0000c16ff2862313000100000f0000c16ff28623000d010004010101000c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d67'
+    dest = [
+        1, # Parents: 1 
+        [] # Interior: Here
+    ]
 
     # Create transaction
-    tx = xcmUtils.functions.xcmExecute(
-        encodedCalldata,
-        maxWeight
+    tx = xcmUtils.functions.xcmSend(
+        dest,
+        encodedCalldata
     ).buildTransaction(
         {
             'from': address,
@@ -35,4 +38,4 @@ def executeXcmMessageLocally():
     receipt = web3.eth.wait_for_transaction_receipt(hash)
     print(f'Transaction receipt: { receipt.transactionHash.hex() }')
 
-executeXcmMessageLocally()
+sendXcm()
