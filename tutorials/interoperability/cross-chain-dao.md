@@ -186,7 +186,7 @@ We can start off by creating the base for the cross-chain DAO and then edit it s
 5. Add functionality to let spoke chains know when there is a new proposal to vote on
 6. (Optional) Add ability to receive cross-chain messages to do non-voting action(s), like proposing or executing
 
-## Starting with the OpenZeppelin Contract Wizard {: #starting-with-the-openzeppelin-contract-wizard }
+### Starting with the OpenZeppelin Contract Wizard {: #starting-with-the-openzeppelin-contract-wizard }
 
 A logical starting point for thinking about writing a cross-chain DAO is its predecessor: a single-chain DAO. There are many different implementations that exist, but since [OpenZeppelin](https://www.openzeppelin.com/contracts){target=_blank} hosts an already popular smart contract repository, we will use their Governance smart contracts. A second reason why we're using OpenZeppelin's smart contracts is because they're based off of Compound Finance's DAO, which we've already investigated in the [previous section](#intuition-and-planning).  
 
