@@ -169,7 +169,7 @@ Once you have selected your dAPI, you can activate it by using the [API3 Market]
 
 > ![API3 Remix deploy](/images/builders/integrations/oracles/api3/SS1.png)
 
-To fund the dAPI, you need to click on the **Fund sponsor wallet** button. Depending upon if a proxy contract is already deployed, you will see a different UI.
+To fund the dAPI, you need to click on the **Fund Gas** button. Depending upon if a proxy contract is already deployed, you will see a different UI.
 
 > ![API3 Remix deploy](/images/builders/integrations/oracles/api3/SS2.png)
 
@@ -189,7 +189,7 @@ Smart contracts can interact and read values from contracts that are already dep
     If a proxy is already deployed for a Self-funded dAPI, the dApp can read the dAPI without having to deploy a proxy contract. They do this by using the address of the already deployed proxy contract which will be visible on the API3 Market.
 
 
-If you are deploying a proxy contract during the funding process, clicking on the **Deploy proxy** button will initiate a transaction to your Metamask that will deploy a proxy contract.
+If you are deploying a proxy contract during the funding process, clicking on the **Get proxy** button will initiate a transaction to your Metamask that will deploy a proxy contract.
 
 > ![API3 Remix deploy](/images/builders/integrations/oracles/api3/SS6.png)
 
