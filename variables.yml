@@ -1,8 +1,8 @@
 networks:
   development:
-    build_tag: v0.29.0
-    tracing_tag: purestake/moonbeam-tracing:v0.29.0-2100-latest
-    rpc_url: http://127.0.0.1:9933
+    build_tag: v0.30.0
+    tracing_tag: purestake/moonbeam-tracing:v0.30.0-2201-latest
+    rpc_url: http://127.0.0.1:9944
     wss_url: ws://127.0.0.1:9944
     chain_id: 1281
     hex_chain_id: '0x501'
@@ -15,9 +15,9 @@ networks:
     hex_chain_id: '0x507'
     chain_spec: alphanet
     block_explorer: https://moonbase.moonscan.io/
-    parachain_release_tag: v0.29.0 # must be in this exact format for links to work
-    parachain_sha256sum: afc7f4cf869fea6af3e4d104b5e99b764df6baca8b6157cc4e1fd8a345e75623
-    tracing_tag: purestake/moonbeam-tracing:v0.29.0-2100-latest
+    parachain_release_tag: v0.30.0 # must be in this exact format for links to work
+    parachain_sha256sum: b0ee08ab990c38c1aba1b0c9f141bfc9488f1af9a3ef2996af3ca79cbf32dbd9
+    tracing_tag: purestake/moonbeam-tracing:v0.30.0-2201-latest
     gas_block: 15M
     gas_tx: 12.995M
     node_directory: /var/lib/alphanet-data
@@ -118,12 +118,12 @@ networks:
           transact_numbers_only: 50000000000000000
     conviction:
       lock_period:
-        conviction_1: 7
-        conviction_2: 14
-        conviction_3: 28
-        conviction_4: 56
-        conviction_5: 112
-        conviction_6: 224
+        conviction_1: 1
+        conviction_2: 2
+        conviction_3: 4
+        conviction_4: 8
+        conviction_5: 16
+        conviction_6: 32
     governance:
       tracks:
         root:
@@ -269,7 +269,7 @@ networks:
             percent1: 1
             time2: 'Day 14'
             percent2: 0
-      submission_deposit: 100
+      submission_deposit: 10
       max_votes: 512
     preimage:
       base_deposit: 5
@@ -416,9 +416,9 @@ networks:
     chain_id: 1285
     hex_chain_id: '0x505'
     node_directory: /var/lib/moonriver-data
-    parachain_release_tag: v0.29.0
-    parachain_sha256sum: afc7f4cf869fea6af3e4d104b5e99b764df6baca8b6157cc4e1fd8a345e75623
-    tracing_tag: purestake/moonbeam-tracing:v0.29.0-2100-latest
+    parachain_release_tag: v0.30.0
+    parachain_sha256sum: b0ee08ab990c38c1aba1b0c9f141bfc9488f1af9a3ef2996af3ca79cbf32dbd9
+    tracing_tag: purestake/moonbeam-tracing:v0.30.0-2201-latest
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
     binary_name: moonbeam
@@ -441,12 +441,12 @@ networks:
           display: 50,000
     conviction:
       lock_period:
-        conviction_1: 7
-        conviction_2: 14
-        conviction_3: 28
-        conviction_4: 56
-        conviction_5: 112
-        conviction_6: 224
+        conviction_1: 1
+        conviction_2: 2
+        conviction_3: 4
+        conviction_4: 8
+        conviction_5: 16
+        conviction_6: 32
     governance:
       tracks:
         root:
@@ -592,7 +592,7 @@ networks:
             percent1: 1
             time2: 'Day 14'
             percent2: 0
-      submission_deposit: 100
+      submission_deposit: 10
       max_votes: 512
     preimage:
       base_deposit: 5
@@ -877,8 +877,8 @@ networks:
       tx_fees_allocated: 20
       tx_fees_burned: 80
     proxy:
-      deposit_base: 1.0008
-      deposit_factor: 0.0021
+      deposit_base: 10.08
+      deposit_factor: 0.21
       max_proxies: 32
     identity:
       basic_dep: 1.0258
@@ -983,26 +983,26 @@ networks:
       write_weight: 83,471,000
     parity_db:
       read_weight: 11,826,000
-      write_weight: 30,052,000
+      write_weight: 38,052,000
     xcm_instructions:
       weight:
         display: 1,000,000,000
         numbers_only: 1000000000
-      planck_dot_weight: 0.11735436323
-      planck_dot_cost: 117354363.23
-      dot_cost: 0.01173543632
+      planck_dot_weight: 0.105358535
+      planck_dot_cost: 105358535
+      dot_cost: 0.0105358535
     xcm_message:
       transfer:
         weight: 4,000,000,000
-        cost: 0.04694174528
+        cost: 0.0421434140
       transact:
         weight: 3,000,000,000
         numbers_only: 3000000000
-        planck_dot_cost: 362078329.611
-        dot_cost: 0.0362078329611
+        planck_dot_cost: 31607560500
+        dot_cost: 0.0316075605
     extrinsic_base_weight:
-      display: 85,212,000
-      numbers_only: 85212000
+      display: 94,914,000
+      numbers_only: 94914000
   kusama:
     rocks_db:
       read_weight: 25,000,000

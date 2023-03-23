@@ -219,7 +219,7 @@ If you want to delegate without setting up auto-compounding, you can follow the 
 
 ### Verify Delegation {: #verify-delegation } 
 
-To verify your delegation was successful, you can check the chain state in Polkadot.js Apps. First, add your MetaMask address to the [address book in Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/addresses){target=_blank}. 
+To verify your delegation was successful, you can check the chain state in Polkadot.js Apps. First, add your MetaMask address to the [address book in Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/addresses){target=_blank}. 
 
 Navigate to **Accounts** and then **Address Book**, click on **Add contact**, and enter the following information:
 
@@ -229,7 +229,7 @@ Navigate to **Accounts** and then **Address Book**, click on **Add contact**, an
 
 ![Add to Address Book](/images/builders/pallets-precompiles/precompiles/staking/staking-8.png)
 
-To verify your delegation was successful, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/chainstate){target=_blank} and navigate to **Developer** and then **Chain State**
+To verify your delegation was successful, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/chainstate){target=_blank} and navigate to **Developer** and then **Chain State**
 
 1. Select the **parachainStaking** pallet
 2. Select the **delegatorState** query

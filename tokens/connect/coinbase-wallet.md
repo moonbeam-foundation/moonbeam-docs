@@ -1,6 +1,6 @@
 ---
 title: Connect Coinbase Wallet Mobile App to Moonbeam
-description: This guide walks you through how to use the Coinbase Wallet extension and the Mobile App.
+description: This guide walks you through how to configure the Coinbase Wallet extension and mobile app for Moonbeam and how to create a wallet and send funds on Moonbeam. 
 ---
 
 # Interacting with Moonbeam Using the Coinbase Wallet Mobile App  

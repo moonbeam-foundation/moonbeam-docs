@@ -108,6 +108,9 @@ const { nonce, data: balance } = await api.query.system.account(addr);
 const nextNonce = await api.rpc.system.accountNextIndex(addr);
 
 console.log(`${now}: balance of ${balance.free} and a current nonce of ${nonce} and next nonce of ${nextNonce}`);
+
+// Disconnect the API
+api.disconnect();
 ```
 
 You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/substrate-api/state-queries.js){target=_blank}.
@@ -130,6 +133,9 @@ const lastHeader = await api.rpc.chain.getHeader();
 
 // Log the information
 console.log(`${chain}: last block #${lastHeader.number} has hash ${lastHeader.hash}`);
+
+// Disconnect the API
+api.disconnect();
 ```
 
 You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/substrate-api/rpc-queries.js){target=_blank}.
@@ -149,6 +155,9 @@ const chain = await api.rpc.system.chain();
 await api.rpc.chain.subscribeNewHeads((lastHeader) => {
   console.log(`${chain}: last block #${lastHeader.number} has hash ${lastHeader.hash}`);
 });
+
+// Disconnect the API
+api.disconnect();
 ```
 
 The general pattern for `api.rpc.subscribe*` functions is to pass a callback into the subscription function, and this will be triggered on each new entry as they are imported. 
@@ -166,6 +175,9 @@ const addr = 'MOONBEAM-WALLET-ADDRESS-HERE';
 await api.query.system.account(addr, ({ nonce, data: balance }) => {
   console.log(`free balance is ${balance.free} with ${balance.reserved} reserved and a nonce of ${nonce}`);
 });
+
+// Disconnect the API
+api.disconnect();
 ```
 
 You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/substrate-api/query-subscriptions.js){target=_blank}.
@@ -215,7 +227,7 @@ const bob = 'BOB-ACCOUNT-PUBLIC-KEY';
 
 // Form the transaction
 const tx = await api.tx.balances
-  .transfer(bob, 12345)
+  .transfer(bob, 12345n)
 
 // Retrieve the encoded calldata of the transaction
 const encodedCalldata = tx.method.toHex()
@@ -227,6 +239,9 @@ const txHash = await tx
 
 // Show the transaction hash
 console.log(`Submitted with hash ${txHash}`);
+
+// Disconnect the API
+api.disconnect();
 ```
 
 You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/substrate-api/basic-transactions.js){target=_blank}.
@@ -258,9 +273,9 @@ Polkadot.js API allows transactions to be batch processed via the `api.tx.utilit
 // Construct a list of transactions to batch
 const collator = 'COLLATOR-ACCOUNT-PUBLIC-KEY';
 const txs = [
-  api.tx.balances.transfer(bob, 12345),
-  api.tx.balances.transfer(charlie, 12345),
-  api.tx.parachainStaking.scheduleDelegatorBondLess(collator, 12345)
+  api.tx.balances.transfer(bob, 12345n),
+  api.tx.balances.transfer(charlie, 12345n),
+  api.tx.parachainStaking.scheduleDelegatorBondLess(collator, 12345n)
 ];
 
 // Estimate the fees as RuntimeDispatchInfo, using the signer (either
@@ -279,6 +294,9 @@ api.tx.utility
       console.log(`included in ${status.asInBlock}`);
     }
   });
+
+// Disconnect the API
+api.disconnect();
 ```
 
 You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/substrate-api/batch-transactions.js){target=_blank}.

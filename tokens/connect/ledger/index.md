@@ -4,7 +4,8 @@ description: Learn how to use your Ledger hardware wallet to sign transactions o
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
-<h1 class='subsection-title'></h1>
+<h1 class='subsection-title'>Ledger</h1>
 <div class='subsection-wrapper'></div>

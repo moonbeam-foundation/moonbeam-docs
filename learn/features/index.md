@@ -4,7 +4,8 @@ description: Learn about some of the main features on Moonbeam, including Ethere
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
-<h1 class='subsection-title'></h1>
+<h1 class='subsection-title'>Features</h1>
 <div class='subsection-wrapper'></div>

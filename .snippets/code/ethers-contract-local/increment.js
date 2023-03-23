@@ -4,7 +4,7 @@ const { abi } = require('./compile');
 const providerRPC = {
   development: {
     name: 'moonbeam-development',
-    rpc: 'http://localhost:9933',
+    rpc: 'http://localhost:9944',
     chainId: 1281,
   },
   moonbase: {
@@ -32,7 +32,7 @@ const increment = async () => {
     `Calling the increment by ${_value} function in contract at address: ${contractAddress}`
   );
 
-  const createReceipt = await incrementer.increment([_value]);
+  const createReceipt = await incrementer.increment(_value);
   await createReceipt.wait();
 
   console.log(`Tx successful with hash: ${createReceipt.hash}`);

@@ -35,8 +35,8 @@ There is also a block explorer available to track your cross-chain transfers and
 
 See the list of Axelar contracts deployed to Moonbeam, and the networks connected to Moonbeam through Axelar.
 
-- **MainNet Contracts** - [Moonbeam](https://docs.axelar.dev/dev/build/contract-addresses/mainnet){target=_blank}
+- **MainNet Contracts** - [Moonbeam](https://docs.axelar.dev/dev/reference/mainnet-contract-addresses){target=_blank}
 
-- **TestNet Contracts** - [Moonbase Alpha](https://docs.axelar.dev/dev/build/contract-addresses/testnet){target=_blank}
+- **TestNet Contracts** - [Moonbase Alpha](https://docs.axelar.dev/dev/reference/testnet-contract-addresses){target=_blank}
 
 --8<-- 'text/disclaimers/third-party-content.md'

@@ -4,7 +4,8 @@ description: Everything you need to know to get started developing, deploying, a
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
-<h1 class='subsection-title'></h1>
+<h1 class='subsection-title'>Get Started</h1>
 <div class='subsection-wrapper'></div>

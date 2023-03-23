@@ -4,7 +4,8 @@ description: Learn how to participate in Moonbeam's on-chain governance, includi
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
-<h1 class='subsection-title'></h1>
+<h1 class='subsection-title'>Governance</h1>
 <div class='subsection-wrapper'></div>

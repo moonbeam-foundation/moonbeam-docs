@@ -4,7 +4,8 @@ description: Learn the basics about each of the Moonbeam networks, including Moo
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
-<h1 class='subsection-title'></h1>
+<h1 class='subsection-title'>Networks</h1>
 <div class='subsection-wrapper'></div>

@@ -4,7 +4,8 @@ description: Learn how to build your own API or consume API endpoints from one o
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
-<h1 class='subsection-title'></h1>
+<h1 class='subsection-title'>Indexers and APIs</h1>
 <div class='subsection-wrapper'></div>

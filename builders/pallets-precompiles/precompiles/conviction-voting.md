@@ -63,7 +63,7 @@ Each of these functions have the following parameters:
 
 The interface also includes the following events:
 
-- **Voted**(*uint32 indexed* pollIndex, *address* voter, *bool* aye, *uint256* amount) - emitted when an account makes a vote
+- **Voted**(*uint32 indexed* pollIndex, *address* voter, *bool* aye, *uint256* voteAmount, *uint8* conviction) - emitted when an account makes a vote
 - **VoteRemoved**(*uint32 indexed* pollIndex, *address* voter) - emitted when an account's (`voter`) vote has been removed
 - **VoteRemovedOther**(*uint32 indexed* pollIndex, *address* caller, *address* target, *uint16* trackId) - emitted when an account (`caller`) removed a vote for another account (`target`)
 - **Delegated**(*uint16 indexed* trackId, *address* from, *address* to, *uint256* delegatedAmount, *uint8* conviction) - emitted when an account (`from`) delegates a Conviction-weighted vote of a given amount to another account (`to`)
@@ -108,7 +108,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 
 You can lock tokens and vote on a referendum at anytime during the Lead-in Period or the Decide Period. In order for a referendum to pass, it needs to garner minimum Approval and Support, which vary by track. For more information on each of the relative periods and the Approval and Support requirments by Track, please refer to the [OpenGov section of the governance overview page](/learn/features/governance/#opengov){target=_blank}.
 
-First, you'll need to get the index of the referendum you wish to vote on. To get the index of a referendum, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network%2Fpublic-ws#/referenda){target=_blank} and take the following steps:
+First, you'll need to get the index of the referendum you wish to vote on. To get the index of a referendum, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/referenda){target=_blank} and take the following steps:
 
 1. From the **Governance** tab dropdown, select **Referenda**
 2. Look for the referenda you want to vote on. You can view more details about a specific referendum by clicking on the triangle icon. If there is no triangle icon, this means that only a proposal hash, and no preimage has been submitted for the proposal
@@ -138,7 +138,7 @@ In addition to voting on a referendum yourself, you can delegate a Conviction-we
 To get started, you can take the following steps:
 
 1. Find the **delegate** function and press the button to expand the section
-2. Enter the Track ID of the Track that you want the delegation to be used on. Track IDs can be found in the [Referenda page of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network%2Fpublic-ws#/referenda){target=_blank}
+2. Enter the Track ID of the Track that you want the delegation to be used on. Track IDs can be found in the [Referenda page of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/referenda){target=_blank}
 3. Enter the delegate account that will have the power to vote on your behalf
 4. Enter the number of tokens they can vote with in Wei. Avoid entering your full balance here because you need to pay for transaction fees
 5. Enter the Conviction they can vote with

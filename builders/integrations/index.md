@@ -4,7 +4,8 @@ description: Learn about the available integrations on Moonbeam to ease your DAp
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
-<h1 class='subsection-title'></h1>
+<h1 class='subsection-title'>Integrations</h1>
 <div class='subsection-wrapper'></div>

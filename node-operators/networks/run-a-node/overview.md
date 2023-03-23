@@ -61,13 +61,15 @@ As stated before, the relay/parachain nodes will listen on multiple ports. The d
 
 The only ports that need to be open for incoming traffic are those designated for P2P. **Collators must not have RPC or WS ports opened**.
 
+!!! note
+    As of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, the HTTP RPC endpoint at port {{ networks.parachain.rpc }} has been deprecated. The WS RPC endpoint at port {{ networks.parachain.ws }} should be used for both HTTP and WS connections.
+
 ### Default Ports for a Parachain Full-Node {: #default-ports-for-a-parachain-full-node } 
 
 |  Description   |                Port                 |
 |:--------------:|:-----------------------------------:|
 |    **P2P**     | {{ networks.parachain.p2p }} (TCP)  |
-|    **RPC**     |    {{ networks.parachain.rpc }}     |
-|     **WS**     |     {{ networks.parachain.ws }}     |
+|  **RPC & WS**  |     {{ networks.parachain.ws }}     |
 | **Prometheus** | {{ networks.parachain.prometheus }} |
 
 ### Default Ports of Embedded Relay Chain {: #default-ports-of-embedded-relay-chain } 
@@ -75,8 +77,7 @@ The only ports that need to be open for incoming traffic are those designated fo
 |  Description   |                 Port                  |
 |:--------------:|:-------------------------------------:|
 |    **P2P**     | {{ networks.relay_chain.p2p }} (TCP)  |
-|    **RPC**     |    {{ networks.relay_chain.rpc }}     |
-|     **WS**     |     {{ networks.relay_chain.ws }}     |
+|  **RPC & WS**  |     {{ networks.relay_chain.ws }}     |
 | **Prometheus** | {{ networks.relay_chain.prometheus }} |
 
 ## Installation {: #installation }

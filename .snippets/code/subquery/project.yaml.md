@@ -7,7 +7,7 @@ repository: 'https://github.com/subquery/moonbeam-subql-starters'
 schema:
   file: ./schema.graphql
 network:
-  endpoint: 'wss://moonbeam.api.onfinality.io/public-ws'
+  endpoint: 'wss://wss.api.moonbase.moonbeam.network'
   genesisHash: '0xfe58ea77779b7abda7da4ec526d14db9b1e9cd40a217c34892af80a9b332b76d'
   dictionary: 'https://api.subquery.network/sq/subquery/moonbeam-dictionary'
   chaintypes:

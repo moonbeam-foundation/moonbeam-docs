@@ -4,7 +4,8 @@ description: Participate in Moonbeam's governance system by following step-by-st
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
-<h1 class='subsection-title'></h1>
+<h1 class='subsection-title'>Vote on a Proposal</h1>
 <div class='subsection-wrapper'></div>

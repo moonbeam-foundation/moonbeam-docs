@@ -390,7 +390,7 @@ async function deposit() {
     `Your ${asset.originSymbol} balance in ${source.name}: ${toDecimal(
       sourceBalance,
       asset.decimals,
-    )}. Minimum transferable amount is: ${toDecimal(min, asset.decimals)}`,
+    ).toFixed()}. Minimum transferable amount is: ${toDecimal(min, asset.decimals).toFixed()}`,
   );
 
   await send('INSERT-AMOUNT', (event) => console.log(event));
@@ -579,7 +579,7 @@ async function getDepositFee() {
   );
 
   const fee = await getFee('INSERT-AMOUNT'));
-  console.log(`Fee to deposit is estimated to be: ${toDecimal(fee, asset.decimals)} ${dot}`);
+  console.log(`Fee to deposit is estimated to be: ${toDecimal(fee, asset.decimals).toFixed()} ${dot}`);
 }
 
 getDepositFee();
@@ -622,7 +622,7 @@ async function withdraw() {
     `Your ${asset.originSymbol} balance in ${destination.name}: ${toDecimal(
       destinationBalance,
       asset.decimals,
-    )}. Minimum transferable amount is: ${toDecimal(min, asset.decimals)}`,
+    ).toFixed()}. Minimum transferable amount is: ${toDecimal(min, asset.decimals).toFixed()}`,
   );
 
   await send('INSERT-AMOUNT', (event) => console.log(event));
@@ -773,8 +773,8 @@ async function getWithdrawFee() {
     { ethersSigner }, // Only required if you didn't pass the signer in on initialization
   );
 
-  const fee = await getFee('INSERT-AMOUNT'));
-  console.log(`Fee to deposit is estimated to be: ${toDecimal(fee, moonbeam.moonChain.decimals)} ${moonbeam.moonAsset.originSymbol}`););
+  const fee = await getFee('INSERT-AMOUNT');
+  console.log(`Fee to deposit is estimated to be: ${toDecimal(fee, moonbeam.moonChain.decimals).toFixed()} ${moonbeam.moonAsset.originSymbol}`);
 }
 
 getWithdrawFee();
@@ -810,7 +810,7 @@ const unsubscribe = await moonbeam.subscribeToAssetsBalanceInfo(
   (balances) => {
     balances.forEach(({ asset, balance, origin }) => {
       console.log(
-        `${balance.symbol}: ${toDecimal(balance.balance, balance.decimals)} (${
+        `${balance.symbol}: ${toDecimal(balance.balance, balance.decimals).toFixed()} (${
           origin.name
         } ${asset.originSymbol})`,
       );
@@ -823,11 +823,20 @@ unsubscribe();
 
 ### Utility Functions {: #sdk-utils }
 
-The XCM SDK provides three utility functions: `isXcmSdkDeposit`, `isXcmSdkWithdraw`, and XCM UTILS `toDecimal`, and `toBigInt`.
+There are utility functions in both the XCM SDK and the XCM Utilities packages. The XCM SDK provides the following SDK-related utility functions:
+
+- [`isXcmSdkDeposit`](#deposit-check)
+- [`isXcmSdkWithdraw`](#withdraw-check)
+
+And the XCM Utilities package provides the following generic utility functions:
+
+- [`toDecimal`](#decimals)
+- [`toBigInt`](#decimals)
+- [`hasDecimalOverflow`](#decimals)
 
 #### Check if Transfer Data is for a Deposit  {: #deposit-check }
 
-To determine whether transfer data is for a deposit, you can pass in transfer data to the `isXcmSdkWithdraw` function and a boolean will be returned. If `true` is returned the transfer data is for a deposit, and `false` is returned if it is not.
+To determine whether transfer data is for a deposit, you can pass in transfer data to the `isXcmSdkDeposit` function and a boolean will be returned. If `true` is returned the transfer data is for a deposit, and `false` is returned if it is not.
 
 The following are some examples:
 
@@ -851,7 +860,7 @@ console.log(isXcmSdkDeposit(withdraw)) // Returns false
 
 #### Check if Transfer Data is for a Withdrawal {: #withdraw-check }
 
-To determine whether transfer data is for a withdrawal, you can pass in transfer data to the `isXcmSdkWithdraw()` function and a boolean will be returned. If `true` is returned the transfer data is for a withdrawal, and `false` is returned if it is not.
+To determine whether transfer data is for a withdrawal, you can pass in transfer data to the `isXcmSdkWithdraw` function and a boolean will be returned. If `true` is returned the transfer data is for a withdrawal, and `false` is returned if it is not.
 
 The following are some examples:
 
@@ -875,7 +884,8 @@ console.log(isXcmSdkDeposit(deposit)) // Returns false
 
 #### Convert Balance to Decimal or BigInt {: #decimals }
 
-To convert a balance to decimal format, you can use the `toDecimal` function which returns a given number in decimal format based on the number of decimals provided. You can optionally pass in a value a third argument to dictate the maximum number of decimal places used, otherwise the default is `6`.
+To convert a balance to decimal format, you can use the `toDecimal` function, which returns a given number in decimal format based on the number of decimals provided. You can optionally pass in a value for a third argument to dictate the maximum number of decimal places used; otherwise, the default is `6`; and a fourth argument that dictates the [rounding method](https://mikemcl.github.io/big.js/#rm){target=_blank} of the number.
+The `toDecimal` function returns a Big number type that you can convert to a number or string using its methods `toNumber`, `toFixed`, `toPrecision`, and `toExponential`. We recommend using them as a string, since big numbers or numbers with a lot of decimals can lose precision when using number types.
 
 To convert from decimal number back to BigInt, you can use the `toBigInt` function which returns a given number in BigInt format based on the number of decimals provided.
 
@@ -884,9 +894,11 @@ For example, to convert a balance on Moonbeam from Wei to Glimmer you can use th
 ```js
 import { toDecimal, toBigInt } from '@moonbeam-network/xcm-utils';
 
-const balance = toDecimal(3999947500000000000n, 18);
-console.log(balance); // Returns 3.999947
+const balance = toDecimal(3999947500000000000n, 18).toFixed();
+console.log(balance); // Returns '3.999947'
 
-const big = toBigInt(3.999947, 18);
+const big = toBigInt('3.999947', 18);
 console.log(big); // Returns 3999947000000000000n
 ```
+
+You can also use `hasDecimalOverflow` to make sure that a given number does not have more decimal places than allowed. This is helpful for form inputs.

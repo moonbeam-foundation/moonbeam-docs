@@ -69,7 +69,7 @@ To change the default values you can add [Additional Flags](/node-operators/netw
 
 For this guide, you will need to have a locally running instance of a Moonbase Alpha tracing node with the `debug`, `txpool`, and `tracing` flags enabled for this guide. You can also adapt the instructions for Moonbeam and Moonriver. 
 
-If you haven't already done so, you can follow the guide on [Running a Tracing Node](/node-operators/networks/tracing-node/){target=_blank}. The RPC HTTP endpoint should be at `http://127.0.0.1:9933`.
+If you haven't already done so, you can follow the guide on [Running a Tracing Node](/node-operators/networks/tracing-node/){target=_blank}. The RPC HTTP endpoint should be at `{{ networks.development.rpc_url }}`.
 
 If you have a running node, you should see a similar terminal log:
 

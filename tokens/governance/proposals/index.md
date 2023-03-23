@@ -4,7 +4,8 @@ description: Learn how to participate in Moonbeam's governance system by followi
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
-<h1 class='subsection-title'></h1>
+<h1 class='subsection-title'>Submit a Democracy Proposal</h1>
 <div class='subsection-wrapper'></div>

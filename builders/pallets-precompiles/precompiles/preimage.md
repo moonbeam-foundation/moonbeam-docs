@@ -33,7 +33,7 @@ The Preimage Precompile is located at the following address:
 
 [`Preimage.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's two methods:
 
-- **notePreimage**(*bytes memory* encodedPropsal) — registers a preimage on-chain for an upcoming proposal given the encoded proposal. This doesn't require the proposal to be in the dispatch queue but does require a deposit which is returned once enacted. Uses the [`notePreimage`](/builders/pallets-precompiles/pallets/preimage/#:~:text=notePreimage(encodedProposal)){target=_blank} method of the preimage pallet
+- **notePreimage**(*bytes memory* encodedPropsal) — registers a preimage on-chain for an upcoming proposal given the encoded proposal and returns the preimage hash. This doesn't require the proposal to be in the dispatch queue but does require a deposit which is returned once enacted. Uses the [`notePreimage`](/builders/pallets-precompiles/pallets/preimage/#:~:text=notePreimage(encodedProposal)){target=_blank} method of the preimage pallet
 - **unnotePreimage**(*bytes32* hash) - clears an unrequested preimage from storage given the hash of the preimage to be removed. Uses the [`unnotePreimage`](/builders/pallets-precompiles/pallets/preimage/#:~:text=notePreimage(hash)){target=_blank} method of the preimage pallet
 
 The interface also includes the following events:
@@ -81,7 +81,7 @@ In order to submit a proposal, you'll first need to submit a preimage of that pr
 
 --8<-- 'text/precompiles/governance/submit-preimage.md'
 
-Now you can take the **bytes** of the encoded proposal that you got from [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network%2Fpublic-ws#/democracy){target=_blank} and submit it via the `notePreimage` function of the Preimage Precompile. To submit the preimage via the `notePreimage` function, take the following steps:
+Now you can take the **bytes** of the encoded proposal that you got from [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/democracy){target=_blank} and submit it via the `notePreimage` function of the Preimage Precompile. To submit the preimage via the `notePreimage` function, take the following steps:
 
 1. Expand the Preimage Precompile contract to see the available functions 
 2. Find the **notePreimage** function and press the button to expand the section

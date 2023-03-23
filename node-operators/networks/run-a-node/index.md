@@ -4,7 +4,8 @@ description: Learn how to run a full Parachain node on any of the Moonbeam netwo
 template: main.html
 hide: 
  - toc
+ - feedback
 ---
 
-<h1 class='subsection-title'></h1>
+<h1 class='subsection-title'>Run a Node</h1>
 <div class='subsection-wrapper'></div>
