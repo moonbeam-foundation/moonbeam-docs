@@ -72,7 +72,7 @@ for (let i = 0; i < links.length; i++) {
   const href = links[i].href;
   const isMoonbeamLink = moonbeamLinks.some((link) => href.startsWith(link));
 
-  if (origin.includes('/cn/')) {
+  if (window.location.pathname.includes('/cn/')) {
     // Set text to CN
     externalLinkModalHeader.innerHTML = `您将离开Moonbeam文档网站`;
     externalLinkModalMessage.innerHTML = `将打开一个新的标签页，您将被转到一个独立的不隶属于 Moonbeam 或 Moonbeam Foundation的第三方网站。`;
