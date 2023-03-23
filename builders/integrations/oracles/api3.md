@@ -149,12 +149,12 @@ managed dAPIs.
 
 #### Managed dAPIs
 Managed dAPIs are sourced from multiple first-party oracles and aggregated using
-a median function. Compared to Self-funded dAPIs, **managed dAPIs are monetized**,
+a median function. Compared to self-funded dAPIs, **managed dAPIs are monetized**,
 as API3 requires payment in USDC on Ethereum Mainnet to operate them. -->
 
-### Subscribing to Self-funded dAPIs {: #self-funded-dapis}
+### Subscribing to self-funded dAPIs {: #self-funded-dapis}
 
-With Self-funded dAPIs, you can fund the dAPI with your own funds. The amount of gas you supply will determine how long your dAPI will be available for use. If you run out of gas, you can fund the dAPI again to keep it available for use.
+With self-funded dAPIs, you can fund the dAPI with your own funds. The amount of gas you supply will determine how long your dAPI will be available for use. If you run out of gas, you can fund the dAPI again to keep it available for use.
 
 #### Exploring and selecting your dAPI {: #select-dapi}
 
@@ -186,10 +186,10 @@ Once the transaction is broadcasted & confirmed on the blockchain a transaction 
 Smart contracts can interact and read values from contracts that are already deployed on the blockchain. By deploying a proxy contract via the API3 Market, a dApp can interact and read values from a dAPI like ETH/USD.
 
 !!! note
-    If a proxy is already deployed for a Self-funded dAPI, the dApp can read the dAPI without having to deploy a proxy contract. They do this by using the address of the already deployed proxy contract which will be visible on the API3 Market.
+    If a proxy is already deployed for a self-funded dAPI, the dApp can read the dAPI without having to deploy a proxy contract. They do this by using the address of the already deployed proxy contract which will be visible on the API3 Market.
 
 
-If you are deploying a proxy contract during the funding process, clicking on the **Get proxy** button will initiate a transaction to your Metamask that will deploy a proxy contract.
+If you are deploying a proxy contract during the funding process, clicking on the **Get proxy** button will initiate a transaction to your MetaMask that will deploy a proxy contract.
 
 > ![API3 Remix deploy](/images/builders/integrations/oracles/api3/SS6.png)
 
@@ -198,9 +198,9 @@ Once the transaction is broadcasted & confirmed on the blockchain, the proxy con
 > ![API3 Remix deploy](/images/builders/integrations/oracles/api3/SS7.png)
 
 
-### Reading from a Self-funded dAPI {: #read-dapis}
+### Reading from a self-funded dAPI {: #read-dapis}
 
-Here's an example of a basic contract that reads from a Self-funded dAPI.
+Here's an example of a basic contract that reads from a self-funded dAPI.
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -353,7 +353,7 @@ You can try QRNG on the networks listed below:
     |  `endpointIdUint256Array` | `{{ networks.moonbase.api3.byogqrnguint256array }}` |
     |  AirnodeRrpV0 | `{{ networks.moonriver.api3.rrp }}` |
 
-
+[*Click here to check out the complete list of all the QRNG Providers*](https://docs.api3.org/qrng/reference/providers.html)
 ## Additional Resources
 
 Here are some additional developer resources
@@ -361,5 +361,5 @@ Here are some additional developer resources
 - [API3 Docs](https://docs.api3.org/)
 - [dAPI Docs](https://dapi-docs.api3.org/)
 - [QRNG Docs](https://docs.api3.org/qrng/)
-- [Github](github.com/api3dao/)
+- [Github](https://github.com/api3dao/)
 - [Medium](https://medium.com/api3)
