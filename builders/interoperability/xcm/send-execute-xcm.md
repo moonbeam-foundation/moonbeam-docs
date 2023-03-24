@@ -11,9 +11,9 @@ description: Learn how to build a custom XCM message, by combining and experimen
 
 XCM messages are comprised of a [series of instructions](/builders/interoperability/xcm/overview/#xcm-instructions){target=_blank} that are executed by the Cross-Consensus Virtual Machine (XCVM). Combinations of these instructions result in predetermined actions such as cross-chain token transfers. You can create your own custom XCM messages by combining various XCM instructions.
 
-To get a better understanding of the results from combining different XCM instructions, you can build and execute custom XCM messages locally on Moonbeam. You can also send custom XCM messages to another chain; however, for the XCM message to be successfully executed, the target chain needs to be able to understand the instructions.
+Pallets such as [**X-Tokens**](){target=_blank} and [**XCM-Transator**](/builders/interoperability/xcm/xcm-transactor/){target=_blank} provide functions with a predefined set of XCM instructions to either send [XC-20s](/builders/interoperability/xcm/xc20/overview/){target=_blank} or remotely execute on other chains via XCM. However, to get a better understanding of the results from combining different XCM instructions, you can build and execute custom XCM messages locally on Moonbeam. You can also send custom XCM messages to another chain (which will start with the [`DecendOrigin`](https://github.com/paritytech/xcm-format#descendorigin){target=_blank} instruction). Nevertheless, for the XCM message to be successfully executed, the target chain needs to be able to understand the instructions.
 
-To execute or send a custom XCM message, you can either use the [Polkadot XCM Pallet](#polkadot-xcm-pallet-interface) directly, or you can try it out through the Ethereum API with the [XCM Utilities Precompile](/builders/pallets-precompiles/precompiles/xcm-utils){target=_blank}. In this guide, you'll learn how to use both methods to execute a custom XCM message locally on Moonbase Alpha.
+To execute or send a custom XCM message, you can either use the [Polkadot XCM Pallet](#polkadot-xcm-pallet-interface) directly, or you can try it out through the Ethereum API with the [XCM Utilities Precompile](/builders/pallets-precompiles/precompiles/xcm-utils){target=_blank}. In this guide, you'll learn how to use both methods to execute and send customly built XCM messages locally on Moonbase Alpha.
 
 This guide assumes that you are familiar with general XCM concepts, such as [general XCM terminology](/builders/interoperability/xcm/overview/#general-xcm-definitions){target=_blank} and [XCM instructions](/builders/interoperability/xcm/overview/#xcm-instructions){target=_blank}. For more information, you can check out the [XCM Overview](/builders/interoperability/xcm/overview){target=_blank} documentation.
 
@@ -50,7 +50,8 @@ In the following example, you'll transfer DEV tokens from one account to another
  - [`WithdrawAsset`](https://github.com/paritytech/xcm-format#withdrawasset){target=_blank} - removes assets and places them into the holding register
  - [`DepositAsset`](https://github.com/paritytech/xcm-format#depositasset){target=_blank} - removes the assets from the holding register and deposits the equivalent assets to a beneficiary account
 
-Typically, when you send an XCM message cross-chain to a target chain, the [`BuyExecution` instruction](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} is needed to pay for remote execution. However, for local execution, this instruction is not necessary as you are already getting charged when you execute the extrinsic. 
+!!! note
+    Typically, when you send an XCM message cross-chain to a target chain, the [`BuyExecution` instruction](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} is needed to pay for remote execution. However, for local execution, this instruction is not necessary as you are already getting charged via the extrinsic call . 
 
 ### Execute an XCM Message with Polkadot.js Apps {: #execute-an-xcm-message-with-polkadotjs-apps }
 
@@ -62,7 +63,7 @@ To get started, you can head to the [**Extrinsics** page of Polkadot.js Apps](ht
 2. Choose the **polkadotXcm** pallet and select the **execute** extrinsic
 3. Set the version of the message to **V2**
 4. Click the **Add item** button two times for each of the instructions to be added: **WithdrawAsset** and **DepositAsset**
-5. Set the first instruction as **WithdrawAsset**. Click the **Add item** button below the instruction name and enter the multilocation, asset type, and amount to withdraw. Since this example covers how to send DEV tokens from one account to another on Moonbase Alpha, the **WithdrawAsset** instruction will define the amount of DEV tokens on Moonbase Alpha to withdraw. You can use the following values, which will withdraw 0.1 DEV tokens:
+5. Set the first instruction as **WithdrawAsset**. Click the **Add item** button below the instruction name and enter the multilocation of the asset, asset type, and amount to withdraw. Since this example covers how to send DEV tokens from one account to another on Moonbase Alpha, the **WithdrawAsset** instruction will define the amount of DEV tokens on Moonbase Alpha to withdraw. You can use the following values, which will withdraw 0.1 DEV tokens:
 
     |   Parameter    |       Value        |
     |:--------------:|:------------------:|
@@ -86,6 +87,8 @@ To get started, you can head to the [**Extrinsics** page of Polkadot.js Apps](ht
     |    X1     |    AccountKey20    |
     |  Network  |        Any         |
     |    Key    | Bob's H160 Address |
+
+    The configuration fo **Assets = Wild**, **Wild = All** and **MaxAssets = 1** will take only one asset from the holding registry and deposit it to the defined account.
 
 7. Set the **maxWeight**, which defines the maximum weight units allowed for the XCM execution. For this example, you can enter `1000000000`. Any excess fees will be returned to you
 8. Click **Submit Transaction** and sign the transaction
@@ -131,7 +134,7 @@ To summarize, the steps you're taking are as follows:
     - The maximum weight parameter for the `xcmExecute` function
     - The address where the DEV tokens will be transferred to, which in this case is Bob's address
 2. Build the first XCM instruction, `WithdrawAsset`. You need to provide the asset multilocation and the amount you want to withdraw. Both variables were already described before
-3. Build the second XCM instruction, `DepositAsset`. Whatever is left in holding after the actions executed before (in this case, it should be only DEV tokens) is deposited to Bob's address, which is set as the beneficiary
+3. Build the second XCM instruction, `DepositAsset`. Whatever is left in holding after the actions executed before (in this case, it should be only DEV tokens) is deposited to Bob's address, which is set as the beneficiary. The asset to be deposited is set with the values of **Assets = Wild**, **Wild = All** and **MaxAssets = 1**
 5. Put the XCM message together by concatenating the instructions inside a V2 array
 6. Create the Polkadot.js API provider
 7. Craft the `polkadotXcm.execute` extrinsic with the XCM message and the maximum weight
@@ -181,7 +184,9 @@ And that's it! You've successfully used the Polkadot XCM Pallet and the XCM Util
 
 ## Send an XCM Message Cross-Chain {: #send-xcm-message }
 
-This section of the guide covers the process of sending a custom XCM message cross-chain (i.e., from Moonbeam to a target chain, such as the relay chain) via two different methods: the `send` function of the Polkadot XCM Pallet and the `xcmSend` function of the [XCM Utilities Precompile](/builders/pallets-precompiles/precompiles/xcm-utils){target=_blank}. For the XCM message to be successfully executed, the target chain needs to be able to understand the instructions in the message.
+This section of the guide covers the process of sending a custom XCM message cross-chain (i.e., from Moonbeam to a target chain, such as the relay chain) via two different methods: the `send` function of the Polkadot XCM Pallet and the `xcmSend` function of the [XCM Utilities Precompile](/builders/pallets-precompiles/precompiles/xcm-utils){target=_blank}. 
+
+For the XCM message to be successfully executed, the target chain needs to be able to understand the instructions in the message. On the contrary, you'll see a `Barrier` filter on the destination chain. For security reasons, the XCM message is prepended with the [`DecendOrigin`](https://github.com/paritytech/xcm-format#descendorigin){target=_blank} instruction to prevent XCM execution on behalf of the origin chain sovereign account. 
 
 In the following example, you'll be building an XCM message that contains the following XCM instructions, which will be executed in the Alphanet relay chain:
 
@@ -241,7 +246,9 @@ To get started, you can head to the [**Extrinsics** page of Polkadot.js Apps](ht
     | Interior  |          X1           |
     |    X1     |     AccountKey32      |
     |  Network  |          Any          |
-    |    ID    | Bob's 32-byte Address |
+    |    ID     | Bob's 32-byte Address |
+
+    The configuration fo **Assets = Wild**, **Wild = All** and **MaxAssets = 1** will take only one asset from the holding registry and deposit it to the defined account.
 
 10. Click **Submit Transaction** and sign the transaction
 
@@ -302,7 +309,7 @@ To summarize, the steps you're taking are as follows:
     - The address where the UNIT tokens will be transferred to, which in this case is Bob's address on the relay chain
 2. Build the first XCM instruction, `WithdrawAsset`. You need to provide the asset multilocation and the amount you want to withdraw. Both variables were already described before
 3. Build the second XCM instruction, `BuyExecution`. You need to provide the asset multilocation, the amount we took out with the previous instruction, and the weight limit
-4. Build the third XCM instruction, `DepositAsset`. Whatever is left in holding after the actions executed before is deposited to the beneficiary, which is Bob's address on the relay chain
+4. Build the third XCM instruction, `DepositAsset`. Whatever is left in holding after the actions executed before is deposited to the beneficiary, which is Bob's address on the relay chain. The asset to be deposited is set with the values of **Assets = Wild**, **Wild = All** and **MaxAssets = 1**
 5. Put the XCM message together by concatenating the instructions inside a V2 array
 6. Create the Polkadot.js API provider
 7. Craft the `polkadotXcm.execute` extrinsic with the XCM message and the max weight; since the max weight is not needed, you can set it to `'0'`
