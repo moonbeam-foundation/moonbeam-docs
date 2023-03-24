@@ -182,7 +182,7 @@ The Conviction multiplier values for each network are:
     |              32              |           6           | {{networks.moonbase.conviction.lock_period.conviction_6}} days |
 
 !!! note
-    The lock time approximations are based upon regular {{ networks.moonriver.block }}-second block times. Block production may vary and thus the displayed lock times should not be deemed exact.
+    The lock time approximations are based upon regular {{ networks.moonriver.block_time }}-second block times. Block production may vary and thus the displayed lock times should not be deemed exact.
 
 ### Roadmap of a Proposal {: #roadmap-of-a-proposal-v2 } 
 
