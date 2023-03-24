@@ -55,7 +55,7 @@ The following list covers the extrinsics that you'll use in this guide and are a
 
 You can check out any of the constant staking values using Polkadot.js Apps, such as the maximum number of delegations, minimum stake requirements, exit delays for delegation requests, and more.
 
-To do so, you can navigate to Polkadot.js Apps **Chain state** UI, and for the purposes of this guide, connect to [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/chainstate){target=_blank}. Alternatively, you can connect to [Moonbeam](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network/#chainstate){target=_blank} or [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonriver.moonbeam.network/#chainstate){target=_blank}.
+To do so, you can navigate to Polkadot.js Apps **Chain state** UI, and for the purposes of this guide, connect to [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/chainstate){target=_blank}. Alternatively, you can connect to [Moonbeam](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network/#chainstate){target=_blank} or [Moonriver](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network/#chainstate){target=_blank}.
 
 Then to retrieve the various staking parameters, select the **Constants** tab on the **Chain state** UI, and take the following steps:
 
@@ -103,7 +103,7 @@ First, you need to get the `candidateInfo`, which will contain the delegator cou
 
 ### Get the Candidate Auto-Compounding Delegation Count {: #get-candidate-auto-compounding-count }
 
-The auto-compounding delegation count is the amount of delegations that have auto-compounding configured. To determine the number of delegations that have auto-compounding set up, you can query the auto-compounding delegations for the candidate on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/js){target=_blank} using the following snippet:
+The auto-compounding delegation count is the amount of delegations that have auto-compounding configured. To determine the number of delegations that have auto-compounding set up, you can query the auto-compounding delegations for the candidate on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/js){target=_blank} using the following snippet:
 
 ```js
 // Simple script to get the number of auto-compounding delegations for a given candidate.
@@ -124,7 +124,7 @@ To run the snippet, make sure you're on the **JavaScript** page of Polkadot.js A
 
 ### Get your Number of Existing Delegations {: #get-your-number-of-existing-delegations } 
 
-If you've never made a delegation from your address you can skip this section. However, if you're unsure how many existing delegations you have, you'll want to run the following JavaScript code snippet to get `delegationCount` from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/js){target=_blank}:
+If you've never made a delegation from your address you can skip this section. However, if you're unsure how many existing delegations you have, you'll want to run the following JavaScript code snippet to get `delegationCount` from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/js){target=_blank}:
 
 ```js
 // Simple script to get your number of existing delegations.

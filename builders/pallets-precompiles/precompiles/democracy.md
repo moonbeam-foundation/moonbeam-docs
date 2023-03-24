@@ -103,7 +103,7 @@ You can submit a proposal via the `propose` function of the [Democracy Precompil
 
 --8<-- 'text/precompiles/governance/submit-preimage.md'
 
-Now you can take the encoded proposal that you got from [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network%2Fpublic-ws#/democracy){target=_blank} and submit it via the `notePreimage` function of the Democracy Precompile. Despite its name, the preimage is not required to be submitted before the proposal. However, submitting the preimage is required before a proposal can be enacted. To submit the preimage via the `notePreimage` function, take the following steps:
+Now you can take the encoded proposal that you got from [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/democracy){target=_blank} and submit it via the `notePreimage` function of the Democracy Precompile. Despite its name, the preimage is not required to be submitted before the proposal. However, submitting the preimage is required before a proposal can be enacted. To submit the preimage via the `notePreimage` function, take the following steps:
 
 1. Expand the Democracy Precompile contract to see the available functions 
 2. Find the **notePreimage** function and press the button to expand the section
@@ -122,13 +122,13 @@ Next you can call the `propose` function of the Solidity interface by taking the
 
 ![Call the propose function](/images/builders/pallets-precompiles/precompiles/democracy/democracy-8.png)
 
-After your transaction has been confirmed you can return to the **Democracy** section of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network%2Fpublic-ws#/democracy){target=_blank} to see your proposal listed in the proposal queue.
+After your transaction has been confirmed you can return to the **Democracy** section of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/democracy){target=_blank} to see your proposal listed in the proposal queue.
 
 ### Second a Proposal {: #second-a-proposal } 
 
 Seconding a proposal allows it to move to referendum status and requires a bond equivalent to the bond furnished by the proposer. Seconded proposals transition to referendum status once per launch period, which is approximately {{ networks.moonbeam.democracy.launch_period.days}} days on Moonbeam, {{ networks.moonriver.democracy.launch_period.days}} day on Moonriver, and {{ networks.moonbase.democracy.launch_period.days}} day on Moonbase Alpha.
 
-First, you'll need to gather some information about the proposal you wish to second. Since you submitted a proposal in the prior step, there should be at least one proposal in the queue. To get the index of that proposal, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network%2Fpublic-ws#/democracy){target=_blank} and take the following steps:
+First, you'll need to gather some information about the proposal you wish to second. Since you submitted a proposal in the prior step, there should be at least one proposal in the queue. To get the index of that proposal, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/democracy){target=_blank} and take the following steps:
 
 1. Navigate to the **Governance** tab
 2. Click on **Democracy**
@@ -146,7 +146,7 @@ Now, you're ready to return to Remix to second the proposal via the Democracy Pr
 4. Although you noted the exact number of seconds the proposal already has above, the parameter needed is an upper bound. To avoid gas estimation errors, you should enter a number that is significantly larger than the actual number of seconds. `10` was entered in this example
 5. Press **transact** and confirm the transaction in MetaMask
 
-And that's it! To review your seconded proposal, you can revisit [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network%2Fpublic-ws#/democracy){target=_blank} and look for your account in the list of seconds.  
+And that's it! To review your seconded proposal, you can revisit [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/democracy){target=_blank} and look for your account in the list of seconds.  
 
 ![Second via the precompile](/images/builders/pallets-precompiles/precompiles/democracy/democracy-10.png)
 
@@ -157,7 +157,7 @@ And that's it! To review your seconded proposal, you can revisit [Polkadot.js Ap
 
 Seconded proposals transition to referendum status once per launch period, which is approximately {{ networks.moonbeam.democracy.launch_period.days}} days on Moonbeam, {{ networks.moonriver.democracy.launch_period.days}} day on Moonriver, and {{ networks.moonbase.democracy.launch_period.days}} day on Moonbase Alpha. If there are no active referenda currently up for vote on Moonbase Alpha, you may need to wait for the launch period to pass for the proposal you seconded in the prior step to make it to referendum status.
 
-First, you'll need to get the index of the referendum you wish to vote on. Remember, the proposal index is not the same as the referendum index. To get the index of a referendum, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network%2Fpublic-ws#/democracy){target=_blank} and take the following steps:
+First, you'll need to get the index of the referendum you wish to vote on. Remember, the proposal index is not the same as the referendum index. To get the index of a referendum, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/democracy){target=_blank} and take the following steps:
 
 1. Navigate to the **Governance** Tab
 2. Click on **Democracy**
