@@ -247,7 +247,7 @@ The OpenGov Technical Committee is made up of members of the community who have 
 
 ### Related Guides on Governance v2 {: #try-it-out } 
 
-For related guides on submitting and voting on referenda on Moonbeam with Governance v1, please check the following guides:
+For related guides on submitting and voting on referenda on Moonbeam with Governance v2, please check the following guides:
 
  - [How to Submit a Proposal](/tokens/governance/proposals/opengov-proposals){target=_blank}
  - [How to Vote on a Proposal](/tokens/governance/voting/opengov-voting){target=_blank}
