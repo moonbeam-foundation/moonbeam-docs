@@ -805,6 +805,8 @@ At this point, every single smart contract has been finished, and a deployment s
 
 ![Smart contracts overview](/images/tutorials/interoperability/cross-chain-dao/cross-chain-dao-3.png)  
 
+As a reminder, **this tutorial's smart contracts are not tested or recommended for production use**.
+
 ## Caveats and Other Designs {: #caveats-and-other-designs }
 
 Every single part of the smart contract system has been written, and if you got through it all, good job! It's a lot to soak in, and there are still parts that need to be developed for it to be production-ready.    
