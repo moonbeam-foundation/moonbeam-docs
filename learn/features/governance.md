@@ -358,7 +358,7 @@ As seen in the above table, the Technical Committee can veto an External Proposa
 
 Public referenda use a positive turnout bias metric, that is, a Super-Majority approval formula. The equation is the following:
 
-![Positive Turnout Bias](/images/tokens/governance/voting/vote-bias.png)
+![Positive Turnout Bias](/images/learn/features/governance/vote-bias.png)
 
 Where:
 

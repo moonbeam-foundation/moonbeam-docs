@@ -295,13 +295,6 @@ networks:
       max_votes: 100
       max_proposals: 100
       max_referenda: 5
-      lock_period: # delete these once translations are done
-        conviction_1: 1
-        conviction_2: 2
-        conviction_3: 4
-        conviction_4: 8
-        conviction_5: 16
-        conviction_6: 32
     inflation:
       total_annual_inflation: 5
       delegator_reward_inflation: 50
@@ -612,13 +605,6 @@ networks:
       min_preim_deposit: 0.004
       max_proposals: 100
       max_referenda: 5
-      lock_period: # delete these when translations are done
-        conviction_1: 1
-        conviction_2: 2
-        conviction_3: 4
-        conviction_4: 8
-        conviction_5: 16
-        conviction_6: 32
     inflation:
       total_annual_inflation: 5
       delegator_reward_inflation: 50
