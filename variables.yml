@@ -81,6 +81,7 @@ networks:
           eth_usd: '0x0BAA6E884cfD628b33867F9E081B44a76276fA2D'
           frax_usd: '0xB616464cB6135AF542de908FAa3FbE3a0b3048e4'
           ftm_usd: '0xD23f056ceD090Bc9Cf6c75d2FB43c0ccC35AD542'
+          glmr_usd: '0x537879A0beA294c1ce04161Ae827919e92C23e92'
           ksm_usd: '0x4E9A1ebc0bEebe3516a8A9a911D781c37414bb39'
           link_usd: '0x5310f2d4B531BCEA8126e2aEE40BAd71B707f530'
           mkr_usd: '0x2257c46D4ddF160bACBD00cd67cD6Fd87C48c581'

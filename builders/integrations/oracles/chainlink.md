@@ -9,15 +9,186 @@ description: Review price feed contracts for Moonbeam and learn how to request M
 
 ## Introduction {: #introduction } 
 
-Developers can now use [Chainlink's decentralized Oracle network](https://chain.link/){target=_blank} to fetch data from a Moonbeam-based network. [Price Feeds](https://docs.chain.link/docs/architecture-decentralized-model){target=_blank} contain real-time price data that is continuously updated by Oracle operators in a smart contract so that other smart contracts can fetch and consume it. This guide will cover the available price feeds and how to fetch the latest price data. 
+Developers can now use [Chainlink's decentralized Oracle network](https://chain.link/){target=_blank} to fetch data from a Moonbeam-based network. There are two main architectures: [Price Feeds](https://docs.chain.link/docs/architecture-decentralized-model){target=_blank} and [Basic Request Model](https://docs.chain.link/architecture-overview/architecture-request-model?parent=gettingStarted){target=_blank}. Price Feeds contain real-time price data that is continuously updated by Oracle operators in a smart contract so that other smart contracts can fetch and consume it. The Basic Request Model describes an on-chain architecture for requesting data from a single oracle source. This guide will how to fetch the latest price data using both architectures. 
 
 --8<-- 'text/disclaimers/third-party-content-intro.md'
+
+## Price Feeds {: #price-feeds } 
+
+Before going into fetching the data itself, it is important to understand the basics of price feeds.
+
+In a standard configuration, each price feed is updated by a decentralized oracle network. Each oracle node is rewarded for publishing the price data to the [aggregator contract](https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol){target=_blank}. The aggregator contract receives periodic data updates from the network of oracles and aggregates and stores the data on-chain so that consumers can easily fetch it. However, the information is only updated if a minimum number of responses from oracle nodes are received (during an aggregation round).
+
+The end-user can retrieve price feeds with read-only operations via an aggregator interface, or via a Consumer interface through the Proxy.
+
+![Price Feed Diagram](/images/builders/integrations/oracles/chainlink/chainlink-price-feed.png)
+
+### Fetch Price Data {: #fetch-price-data } 
+
+There are data feed contracts available for Moonbeam-based networks to help simplify the process of requesting price feeds. In the current configuration for Moonbase Alpha, the Moonbeam team is running only one oracle node that fetches the price from a single API source. Price data is checked and updated in the smart contracts every 12 hours. As such, the price feeds on Moonbase Alpha are not authoritative and are for testing purposes only. The Moonbeam and Moonriver data feed contracts are updated by multiple Chainlink nodes on a regular basis.
+
+The data lives in a series of smart contracts (one per price feed) and can be fetched with the aggregator interface:
+
+```
+pragma solidity ^0.8.0;
+
+interface AggregatorV3Interface {
+    /**
+     * Returns the decimals to offset on the getLatestPrice call
+     */
+    function decimals() external view returns (uint8);
+
+    /**
+     * Returns the description of the underlying price feed aggregator
+     */
+    function description() external view returns (string memory);
+
+    /**
+     * Returns the version number representing the type of aggregator the proxy points to
+     */
+    function version() external view returns (uint256);
+
+    /**
+     * Returns price data about a specific round
+     */
+    function getRoundData(uint80 _roundId) external view returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound);
+
+    /**
+     * Returns price data from the latest round
+     */
+    function latestRoundData() external view returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound);
+}
+```  
+
+As seen above in the interface, there are five functions for fetching data: `decimal`, `description`, `version`, `getRoundData`, and `latestRoundData`.
+
+Currently, there are data feed contracts for [Moonbeam](https://docs.chain.link/docs/data-feeds-moonbeam/){target=_blank}, [Moonriver](https://docs.chain.link/docs/data-feeds-moonriver/){target=_blank}, and Moonbase Alpha for the the following price pairs (proxy addresses):
+
+=== "Moonbeam"
+    | Base/Quote  |          Data Feed Contract  (Proxy Address)          |
+    |:-----------:|:-----------------------------------------------------:|
+    | ATOM to USD | {{ networks.moonbeam.chainlink.feed.proxy.atom_usd }} |
+    | BNB to USD  | {{ networks.moonbeam.chainlink.feed.proxy.bnb_usd }}  |
+    | BTC to USD  | {{ networks.moonbeam.chainlink.feed.proxy.btc_usd }}  |
+    | DOT to USD  | {{ networks.moonbeam.chainlink.feed.proxy.dot_usd }}  |
+    | ETH to USD  | {{ networks.moonbeam.chainlink.feed.proxy.eth_usd }}  |
+    | FRAX to USD | {{ networks.moonbeam.chainlink.feed.proxy.frax_usd }} |
+    | GLMR to USD | {{ networks.moonbeam.chainlink.feed.proxy.glmr_usd }} |
+    | LINK to USD | {{ networks.moonbeam.chainlink.feed.proxy.link_usd }} |
+    | USDC to USD | {{ networks.moonbeam.chainlink.feed.proxy.usdc_usd }} |
+
+=== "Moonriver"
+    |  Base/Quote  |           Data Feed Contract  (Proxy Address)           |
+    |:------------:|:-------------------------------------------------------:|
+    | 1INCH to USD | {{ networks.moonriver.chainlink.feed.proxy.inch_usd }}  |
+    | AAVE to USD  | {{ networks.moonriver.chainlink.feed.proxy.aave_usd }}  |
+    | ANKR to USD  | {{ networks.moonriver.chainlink.feed.proxy.ankr_usd }}  |
+    | AVAX to USD  | {{ networks.moonriver.chainlink.feed.proxy.avax_usd }}  |
+    |  AXS to USD  |  {{ networks.moonriver.chainlink.feed.proxy.axs_usd }}  |
+    |  BNB to USD  |  {{ networks.moonriver.chainlink.feed.proxy.bnb_usd }}  |
+    |  BTC to USD  |  {{ networks.moonriver.chainlink.feed.proxy.btc_usd }}  |
+    | BUSD to USD  | {{ networks.moonriver.chainlink.feed.proxy.busd_usd }}  |
+    | CAKE to USD  | {{ networks.moonriver.chainlink.feed.proxy.cake_usd }}  |
+    | COMP to USD  | {{ networks.moonriver.chainlink.feed.proxy.comp_usd }}  |
+    |  CRV to USD  |  {{ networks.moonriver.chainlink.feed.proxy.crv_usd }}  |
+    |  DAI to USD  |  {{ networks.moonriver.chainlink.feed.proxy.dai_usd }}  |
+    |  DOT to USD  |  {{ networks.moonriver.chainlink.feed.proxy.dot_usd }}  |
+    |  ETH to USD  |  {{ networks.moonriver.chainlink.feed.proxy.eth_usd }}  |
+    |  EUR to USD  |  {{ networks.moonriver.chainlink.feed.proxy.eur_usd }}  |
+    | FRAX to USD  | {{ networks.moonriver.chainlink.feed.proxy.frax_usd }}  |
+    |  FTM to USD  |  {{ networks.moonriver.chainlink.feed.proxy.ftm_usd }}  |
+    |  FXS to USD  |  {{ networks.moonriver.chainlink.feed.proxy.fxs_usd }}  |
+    |  KSM to USD  |  {{ networks.moonriver.chainlink.feed.proxy.ksm_usd }}  |
+    | LINK to USD  | {{ networks.moonriver.chainlink.feed.proxy.link_usd }}  |
+    | LUNA to USD  | {{ networks.moonriver.chainlink.feed.proxy.luna_usd }}  |
+    | MANA to USD  | {{ networks.moonriver.chainlink.feed.proxy.mana_usd }}  |
+    |  MIM to USD  |  {{ networks.moonriver.chainlink.feed.proxy.mim_usd }}  |
+    |  MKR to USD  |  {{ networks.moonriver.chainlink.feed.proxy.mkr_usd }}  |
+    | MOVR to USD  | {{ networks.moonriver.chainlink.feed.proxy.movr_usd }}  |
+    | SAND to USD  | {{ networks.moonriver.chainlink.feed.proxy.sand_usd }}  |
+    |  SNX to USD  |  {{ networks.moonriver.chainlink.feed.proxy.snx_usd }}  |
+    | SUSHI to USD | {{ networks.moonriver.chainlink.feed.proxy.sushi_usd }} |
+    | THETA to USD | {{ networks.moonriver.chainlink.feed.proxy.theta_usd }} |
+    |  UNI to USD  |  {{ networks.moonriver.chainlink.feed.proxy.uni_usd }}  |
+    | USDC to USD  | {{ networks.moonriver.chainlink.feed.proxy.usdc_usd }}  |
+    | USDT to USD  | {{ networks.moonriver.chainlink.feed.proxy.usdt_usd }}  |
+    |  XRP to USD  |  {{ networks.moonriver.chainlink.feed.proxy.xrp_usd }}  |
+    |  YFI to USD  |  {{ networks.moonriver.chainlink.feed.proxy.yfi_usd }}  |
+
+=== "Moonbase Alpha"
+    |  Base/Quote  |          Data Feed Contract  (Proxy Address)           |
+    |:------------:|:------------------------------------------------------:|
+    | AAVE to USD  | {{ networks.moonbase.chainlink.feed.proxy.aave_usd }}  |
+    | ALGO to USD  | {{ networks.moonbase.chainlink.feed.proxy.algo_usd }}  |
+    | AVAX to USD  | {{ networks.moonbase.chainlink.feed.proxy.avax_usd }}  |
+    | BAND to USD  | {{ networks.moonbase.chainlink.feed.proxy.band_usd }}  |
+    |  BNB to USD  |  {{ networks.moonbase.chainlink.feed.proxy.bnb_usd }}  |
+    |  BTC to USD  |  {{ networks.moonbase.chainlink.feed.proxy.btc_usd }}  |
+    | COMP to USD  | {{ networks.moonbase.chainlink.feed.proxy.comp_usd }}  |
+    |  CRV to USD  |  {{ networks.moonbase.chainlink.feed.proxy.crv_usd }}  |
+    |  CVX to USD  |  {{ networks.moonbase.chainlink.feed.proxy.cvx_usd }}  |
+    |  DAI to USD  |  {{ networks.moonbase.chainlink.feed.proxy.dai_usd }}  |
+    |  DOT to USD  |  {{ networks.moonbase.chainlink.feed.proxy.dot_usd }}  |
+    |  ETH to USD  |  {{ networks.moonbase.chainlink.feed.proxy.eth_usd }}  |
+    | FRAX to USD  | {{ networks.moonbase.chainlink.feed.proxy.frax_usd }}  |
+    |  FTM to USD  |  {{ networks.moonbase.chainlink.feed.proxy.ftm_usd }}  |
+    | GLMR to USD  | {{ networks.moonbase.chainlink.feed.proxy.glmr_usd }}  |
+    |  KSM to USD  |  {{ networks.moonbase.chainlink.feed.proxy.ksm_usd }}  |
+    | LINK to USD  | {{ networks.moonbase.chainlink.feed.proxy.link_usd }}  |
+    |  MKR to USD  |  {{ networks.moonbase.chainlink.feed.proxy.mkr_usd }}  |
+    |  OP to USD   |  {{ networks.moonbase.chainlink.feed.proxy.op_usd }}   |
+    | stETH to USD | {{ networks.moonbase.chainlink.feed.proxy.steth_usd }} |
+    | SUSHI to USD | {{ networks.moonbase.chainlink.feed.proxy.sushi_usd }} |
+    |  UNI to USD  |  {{ networks.moonbase.chainlink.feed.proxy.uni_usd }}  |
+    | USDC to USD  | {{ networks.moonbase.chainlink.feed.proxy.usdc_usd }}  |
+    | USDT to USD  | {{ networks.moonbase.chainlink.feed.proxy.usdt_usd }}  |
+    |  YFI to USD  |  {{ networks.moonbase.chainlink.feed.proxy.yfi_usd }}  |
+
+For example, you can use the aggregator interface to fetch the price feed of `BTC to USD` using [Remix](https://remix.ethereum.org/){target=_blank}. If you need help loading a contract into Remix, check out the [Using Remix](/builders/build/eth-api/dev-env/remix/){target=_blank} page of the documentation site.
+
+You will need to connect your MetaMask account to Remix, so make sure you have MetaMask installed and are connected to the correct network. To get help setting up MetaMask, check out the [Interacting with Moonbeam Using MetaMask](/tokens/connect/metamask/#install-the-metamask-extension){target=_blank} guide.
+
+After creating the file and compiling the contract, you will need to follow these steps:
+
+1. Head to the **Deploy and Run Transactions** tab
+2. Set the **ENVIRONMENT** to **Injected Web3**
+3. If your MetaMask is already connected it will appear in the **ACCOUNT** selector. Otherwise, you will be prompted by MetaMask to select and connect your account(s)
+4. Select the `AggregatorV3Interface` contract from the **CONTRACT** dropdown
+5. Enter the Data Feed contract address corresponding to `BTC to USD` in the **At Address** field and click the **At Address** button:
+
+    === "Moonbeam"
+        ```
+        {{ networks.moonbeam.chainlink.feed.proxy.btc_usd }}
+        ```
+
+    === "Moonriver"
+        ```
+        {{ networks.moonriver.chainlink.feed.proxy.btc_usd }}
+        ```
+
+    === "Moonbase Alpha"
+        ```
+        {{ networks.moonbase.chainlink.feed.proxy.btc_usd }}
+        ```
+
+![Load the Chainlink Price Feed Aggregator Interface on Moonriver](/images/builders/integrations/oracles/chainlink/chainlink-2.png)
+
+This will create an instance of the aggregator interface that you can interact with and it will appear under the **Deployed Contracts** section in Remix. To get the latest price data you can follow these steps:
+
+1. Expand the `AggregatorV3Interface` contract to reveal the available functions
+2. Click `latestRoundData()` to query the data of the corresponding price feed, in this case BTC to USD
+
+![Interact with the Chainlink Price Feed Aggregator Interface on Moonriver](/images/builders/integrations/oracles/chainlink/chainlink-3.png)
+
+Note that to obtain the real price, you must account for the decimals of the price feed, available with the `decimals()` method.
+
+If there is any specific pair you want to be included, feel free to reach out through [Discord](https://discord.com/invite/PfpUATX){target=_blank}.
 
 ## Basic Request Model {: #basic-request-model } 
 
 --8<-- 'text/chainlink/brm.md'
 
-## Fetching Data {: #fetching-data }
+### Fetching Data {: #fetching-data }
 
 There are a few ways you can get started fetching data from an oracle on Moonbeam:
 
@@ -302,175 +473,5 @@ contract Client is ChainlinkClient {
     The above example uses the pre-deployed LINK token contract address. You also have the option of deploying your own LINK token contract and using that instead.
 
 Once you've deployed the contract on Remix, you can begin to request the volume data. After you make a request, you can check the status of the job by going to the [**Jobs** section of your node](http://localhost:6688/jobs){target=_blank}.
-
-## Price Feeds {: #price-feeds } 
-
-Before going into fetching the data itself, it is important to understand the basics of price feeds.
-
-In a standard configuration, each price feed is updated by a decentralized oracle network. Each oracle node is rewarded for publishing the price data to the [aggregator contract](https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol){target=_blank}. The aggregator contract receives periodic data updates from the network of oracles and aggregates and stores the data on-chain so that consumers can easily fetch it. However, the information is only updated if a minimum number of responses from oracle nodes are received (during an aggregation round).
-
-The end-user can retrieve price feeds with read-only operations via an aggregator interface, or via a Consumer interface through the Proxy.
-
-![Price Feed Diagram](/images/builders/integrations/oracles/chainlink/chainlink-price-feed.png)
-
-### Fetch Price Data {: #fetch-price-data } 
-
-There are data feed contracts available for Moonbeam-based networks to help simplify the process of requesting price feeds. In the current configuration for Moonbase Alpha, the Moonbeam team is running only one oracle node that fetches the price from a single API source. Price data is checked and updated in the smart contracts every 12 hours. As such, the price feeds on Moonbase Alpha are not authoritative and are for testing purposes only. The Moonbeam and Moonriver data feed contracts are updated by multiple Chainlink nodes on a regular basis.
-
-The data lives in a series of smart contracts (one per price feed) and can be fetched with the aggregator interface:
-
-```
-pragma solidity ^0.8.0;
-
-interface AggregatorV3Interface {
-    /**
-     * Returns the decimals to offset on the getLatestPrice call
-     */
-    function decimals() external view returns (uint8);
-
-    /**
-     * Returns the description of the underlying price feed aggregator
-     */
-    function description() external view returns (string memory);
-
-    /**
-     * Returns the version number representing the type of aggregator the proxy points to
-     */
-    function version() external view returns (uint256);
-
-    /**
-     * Returns price data about a specific round
-     */
-    function getRoundData(uint80 _roundId) external view returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound);
-
-    /**
-     * Returns price data from the latest round
-     */
-    function latestRoundData() external view returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound);
-}
-```  
-
-As seen above in the interface, there are five functions for fetching data: `decimal`, `description`, `version`, `getRoundData`, and `latestRoundData`.
-
-Currently, there are data feed contracts for [Moonbeam](https://docs.chain.link/docs/data-feeds-moonbeam/){target=_blank}, [Moonriver](https://docs.chain.link/docs/data-feeds-moonriver/){target=_blank}, and Moonbase Alpha for the the following price pairs (proxy addresses):
-
-=== "Moonbeam"
-    | Base/Quote  |          Data Feed Contract  (Proxy Address)          |
-    |:-----------:|:-----------------------------------------------------:|
-    | ATOM to USD | {{ networks.moonbeam.chainlink.feed.proxy.atom_usd }} |
-    | BNB to USD  | {{ networks.moonbeam.chainlink.feed.proxy.bnb_usd }}  |
-    | BTC to USD  | {{ networks.moonbeam.chainlink.feed.proxy.btc_usd }}  |
-    | DOT to USD  | {{ networks.moonbeam.chainlink.feed.proxy.dot_usd }}  |
-    | ETH to USD  | {{ networks.moonbeam.chainlink.feed.proxy.eth_usd }}  |
-    | FRAX to USD | {{ networks.moonbeam.chainlink.feed.proxy.frax_usd }} |
-    | GLMR to USD | {{ networks.moonbeam.chainlink.feed.proxy.glmr_usd }} |
-    | LINK to USD | {{ networks.moonbeam.chainlink.feed.proxy.link_usd }} |
-    | USDC to USD | {{ networks.moonbeam.chainlink.feed.proxy.usdc_usd }} |
-
-=== "Moonriver"
-    |  Base/Quote  |           Data Feed Contract  (Proxy Address)           |
-    |:------------:|:-------------------------------------------------------:|
-    | 1INCH to USD | {{ networks.moonriver.chainlink.feed.proxy.inch_usd }}  |
-    | AAVE to USD  | {{ networks.moonriver.chainlink.feed.proxy.aave_usd }}  |
-    | ANKR to USD  | {{ networks.moonriver.chainlink.feed.proxy.ankr_usd }}  |
-    | AVAX to USD  | {{ networks.moonriver.chainlink.feed.proxy.avax_usd }}  |
-    |  AXS to USD  |  {{ networks.moonriver.chainlink.feed.proxy.axs_usd }}  |
-    |  BNB to USD  |  {{ networks.moonriver.chainlink.feed.proxy.bnb_usd }}  |
-    |  BTC to USD  |  {{ networks.moonriver.chainlink.feed.proxy.btc_usd }}  |
-    | BUSD to USD  | {{ networks.moonriver.chainlink.feed.proxy.busd_usd }}  |
-    | CAKE to USD  | {{ networks.moonriver.chainlink.feed.proxy.cake_usd }}  |
-    | COMP to USD  | {{ networks.moonriver.chainlink.feed.proxy.comp_usd }}  |
-    |  CRV to USD  |  {{ networks.moonriver.chainlink.feed.proxy.crv_usd }}  |
-    |  DAI to USD  |  {{ networks.moonriver.chainlink.feed.proxy.dai_usd }}  |
-    |  DOT to USD  |  {{ networks.moonriver.chainlink.feed.proxy.dot_usd }}  |
-    |  ETH to USD  |  {{ networks.moonriver.chainlink.feed.proxy.eth_usd }}  |
-    |  EUR to USD  |  {{ networks.moonriver.chainlink.feed.proxy.eur_usd }}  |
-    | FRAX to USD  | {{ networks.moonriver.chainlink.feed.proxy.frax_usd }}  |
-    |  FTM to USD  |  {{ networks.moonriver.chainlink.feed.proxy.ftm_usd }}  |
-    |  FXS to USD  |  {{ networks.moonriver.chainlink.feed.proxy.fxs_usd }}  |
-    |  KSM to USD  |  {{ networks.moonriver.chainlink.feed.proxy.ksm_usd }}  |
-    | LINK to USD  | {{ networks.moonriver.chainlink.feed.proxy.link_usd }}  |
-    | LUNA to USD  | {{ networks.moonriver.chainlink.feed.proxy.luna_usd }}  |
-    | MANA to USD  | {{ networks.moonriver.chainlink.feed.proxy.mana_usd }}  |
-    |  MIM to USD  |  {{ networks.moonriver.chainlink.feed.proxy.mim_usd }}  |
-    |  MKR to USD  |  {{ networks.moonriver.chainlink.feed.proxy.mkr_usd }}  |
-    | MOVR to USD  | {{ networks.moonriver.chainlink.feed.proxy.movr_usd }}  |
-    | SAND to USD  | {{ networks.moonriver.chainlink.feed.proxy.sand_usd }}  |
-    |  SNX to USD  |  {{ networks.moonriver.chainlink.feed.proxy.snx_usd }}  |
-    | SUSHI to USD | {{ networks.moonriver.chainlink.feed.proxy.sushi_usd }} |
-    | THETA to USD | {{ networks.moonriver.chainlink.feed.proxy.theta_usd }} |
-    |  UNI to USD  |  {{ networks.moonriver.chainlink.feed.proxy.uni_usd }}  |
-    | USDC to USD  | {{ networks.moonriver.chainlink.feed.proxy.usdc_usd }}  |
-    | USDT to USD  | {{ networks.moonriver.chainlink.feed.proxy.usdt_usd }}  |
-    |  XRP to USD  |  {{ networks.moonriver.chainlink.feed.proxy.xrp_usd }}  |
-    |  YFI to USD  |  {{ networks.moonriver.chainlink.feed.proxy.yfi_usd }}  |
-
-=== "Moonbase Alpha"
-    |  Base/Quote  |          Data Feed Contract  (Proxy Address)           |
-    |:------------:|:------------------------------------------------------:|
-    | AAVE to USD  | {{ networks.moonbase.chainlink.feed.proxy.aave_usd }}  |
-    | ALGO to USD  | {{ networks.moonbase.chainlink.feed.proxy.algo_usd }}  |
-    | AVAX to USD  | {{ networks.moonbase.chainlink.feed.proxy.avax_usd }}  |
-    | BAND to USD  | {{ networks.moonbase.chainlink.feed.proxy.band_usd }}  |
-    |  BNB to USD  |  {{ networks.moonbase.chainlink.feed.proxy.bnb_usd }}  |
-    |  BTC to USD  |  {{ networks.moonbase.chainlink.feed.proxy.btc_usd }}  |
-    | COMP to USD  | {{ networks.moonbase.chainlink.feed.proxy.comp_usd }}  |
-    |  CRV to USD  |  {{ networks.moonbase.chainlink.feed.proxy.crv_usd }}  |
-    |  CVX to USD  |  {{ networks.moonbase.chainlink.feed.proxy.cvx_usd }}  |
-    |  DAI to USD  |  {{ networks.moonbase.chainlink.feed.proxy.dai_usd }}  |
-    |  DOT to USD  |  {{ networks.moonbase.chainlink.feed.proxy.dot_usd }}  |
-    |  ETH to USD  |  {{ networks.moonbase.chainlink.feed.proxy.eth_usd }}  |
-    | FRAX to USD  | {{ networks.moonbase.chainlink.feed.proxy.frax_usd }}  |
-    |  FTM to USD  |  {{ networks.moonbase.chainlink.feed.proxy.ftm_usd }}  |
-    |  KSM to USD  |  {{ networks.moonbase.chainlink.feed.proxy.ksm_usd }}  |
-    | LINK to USD  | {{ networks.moonbase.chainlink.feed.proxy.link_usd }}  |
-    |  MKR to USD  |  {{ networks.moonbase.chainlink.feed.proxy.mkr_usd }}  |
-    |  OP to USD   |  {{ networks.moonbase.chainlink.feed.proxy.op_usd }}   |
-    | stETH to USD | {{ networks.moonbase.chainlink.feed.proxy.steth_usd }} |
-    | SUSHI to USD | {{ networks.moonbase.chainlink.feed.proxy.sushi_usd }} |
-    |  UNI to USD  |  {{ networks.moonbase.chainlink.feed.proxy.uni_usd }}  |
-    | USDC to USD  | {{ networks.moonbase.chainlink.feed.proxy.usdc_usd }}  |
-    | USDT to USD  | {{ networks.moonbase.chainlink.feed.proxy.usdt_usd }}  |
-    |  YFI to USD  |  {{ networks.moonbase.chainlink.feed.proxy.yfi_usd }}  |
-
-For example, you can use the aggregator interface to fetch the price feed of `BTC to USD` using [Remix](https://remix.ethereum.org/){target=_blank}. If you need help loading a contract into Remix, check out the [Using Remix](/builders/build/eth-api/dev-env/remix/){target=_blank} page of the documentation site.
-
-You will need to connect your MetaMask account to Remix, so make sure you have MetaMask installed and are connected to the correct network. To get help setting up MetaMask, check out the [Interacting with Moonbeam Using MetaMask](/tokens/connect/metamask/#install-the-metamask-extension){target=_blank} guide.
-
-After creating the file and compiling the contract, you will need to follow these steps:
-
-1. Head to the **Deploy and Run Transactions** tab
-2. Set the **ENVIRONMENT** to **Injected Web3**
-3. If your MetaMask is already connected it will appear in the **ACCOUNT** selector. Otherwise, you will be prompted by MetaMask to select and connect your account(s)
-4. Select the `AggregatorV3Interface` contract from the **CONTRACT** dropdown
-5. Enter the Data Feed contract address corresponding to `BTC to USD` in the **At Address** field and click the **At Address** button:
-
-    === "Moonbeam"
-        ```
-        {{ networks.moonbeam.chainlink.feed.proxy.btc_usd }}
-        ```
-
-    === "Moonriver"
-        ```
-        {{ networks.moonriver.chainlink.feed.proxy.btc_usd }}
-        ```
-
-    === "Moonbase Alpha"
-        ```
-        {{ networks.moonbase.chainlink.feed.proxy.btc_usd }}
-        ```
-
-![Load the Chainlink Price Feed Aggregator Interface on Moonriver](/images/builders/integrations/oracles/chainlink/chainlink-2.png)
-
-This will create an instance of the aggregator interface that you can interact with and it will appear under the **Deployed Contracts** section in Remix. To get the latest price data you can follow these steps:
-
-1. Expand the `AggregatorV3Interface` contract to reveal the available functions
-2. Click `latestRoundData()` to query the data of the corresponding price feed, in this case BTC to USD
-
-![Interact with the Chainlink Price Feed Aggregator Interface on Moonriver](/images/builders/integrations/oracles/chainlink/chainlink-3.png)
-
-Note that to obtain the real price, you must account for the decimals of the price feed, available with the `decimals()` method.
-
-If there is any specific pair you want to be included, feel free to reach out through [Discord](https://discord.com/invite/PfpUATX){target=_blank}.
 
 --8<-- 'text/disclaimers/third-party-content.md'
