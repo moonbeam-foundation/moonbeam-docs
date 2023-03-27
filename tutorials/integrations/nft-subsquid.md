@@ -98,6 +98,7 @@ TypeScript entity classes have to be regenerated whenever the schema is changed,
 ```bash
 sqd codegen
 ```
+
 The (re)generated entity classes can then be browsed at `src/model/generated`.
 
 ## ABI Definition and Wrapper {: #abi-definition }
@@ -109,9 +110,11 @@ Similar functionality is available for EVM indexing through the [`squid-evm-type
 For our squid we will need such a module for the [ERC-721](https://eips.ethereum.org/EIPS/eip-721){target=_blank}-compliant part of the contracts' interfaces. Once again, the template repository already includes it, but it is still important to explain what needs to be done in case one wants to index a different type of contract.
 
 The procedure uses an `sqd` script from the template that uses `squid-evm-typegen` to generate Typescript facades for JSON ABIs stored in the `abi` folder. Place any ABIs you requre for interfacing your contracts there and run
+
 ```bash
 sqd typegen
 ```
+
 The results will be stored at `src/abi`. One module will be generated for each ABI file, and it will include constants useful for filtering and functions for decoding EVM events and functions defined in the ABI.
 
 ## Define and Bind Event Handler(s) {: #define-event-handlers }
