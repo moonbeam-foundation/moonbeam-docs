@@ -7,11 +7,11 @@ description: In this step-by-step tutorial, you'll learn about connected contrac
 
 ![Banner Image](/images/tutorials/interoperability/cross-chain-dao/cross-chain-dao-banner.png)
 
-_February 12, 2022 | by Jeremy Boetticher_
+_March 24, 2023 | by Jeremy Boetticher_
 
 ## Introduction {: #introduction } 
 
-Moonbeam works hard to support interoperability and cross-chain logic. Its connected contracts initiative requires an updating of previously understood smart contract concepts so that they fit a cross-chain world. While some cross-chain primitives have been available for years, such as cross-chain tokens, others are only now starting to be worked on, such as cross-chain swaps, AMMs, and, of particular interest for this tutorial, DAOs.
+Moonbeam works hard to support interoperability and cross-chain logic. Its [Connected Contracts](https://moonbeam.network/builders/connected-contracts/){target=_blank} initiative requires an updating of previously understood smart contract concepts so that they fit a cross-chain world. While some cross-chain primitives have been available for years, such as cross-chain tokens, others are only now starting to be worked on, such as cross-chain swaps, AMMs, and, of particular interest for this tutorial, DAOs.
 
 In this tutorial, we will work through a thought process of writing smart contracts for a cross-chain DAO. The smart contracts in this example will be based off of OpenZeppelin's Governance smart contracts to demonstrate an evolution from single-chain to cross-chain and to highlight some incompatibilities that one might face when converting a DApp concept from single-chain to cross-chain. The cross-chain protocol used in this example will be [LayerZero](/builders/interoperability/protocols/layerzero){target=_blank}, but you are encouraged to adapt its concepts to any other protocol that you see fit, since cross-chain concepts often overlap between the protocols that Moonbeam hosts.  
 
@@ -132,7 +132,9 @@ function _creditTo(uint16, address _toAddress, uint _amount) internal virtual ov
 }
 ```
 
-Most of these functions are just ensuring compatibility with the smart contracts that they inherit from. The `_debitFrom` function is a little spicier: it includes logic to burn tokens so that the token bridge works. Similarly, the `_creditTo` function includes logic to mint tokens. These two functions are required by the `OFTCore` smart contract. If you are wondering why minting and burning are involved when most bridges wrap, it's because OFT [teleports assets](/builders/interoperability/xcm/overview/#xcm-transport-protocols){target=_blank} instead of wrapping them (similar to one of the XCM asset protocols).  
+The first few functions are just ensuring compatibility with the smart contracts that they inherit from. 
+
+The `_debitFrom` function is a little spicier: it includes logic to burn tokens so that the token bridge works. Similarly, the `_creditTo` function includes logic to mint tokens. These two functions are required by the `OFTCore` smart contract. If you are wondering why minting and burning are involved when most bridges wrap, it's because OFT [teleports assets](/builders/interoperability/xcm/overview/#xcm-transport-protocols){target=_blank} instead of wrapping them (similar to one of the XCM asset protocols).  
 
 The `OFTVotes` contract is abstract, so let's create a final smart contract that we'll deploy. In the `contracts` folder, create a new smart contract called `CrossChainDAOToken.sol` and add the following:  
 
@@ -248,7 +250,7 @@ Let's tackle our next task: supporting cross-chain messaging. For this implement
 
 To get started, we'll take the following steps:
 
-1. Import `NonblockingLzApp` and add it to the parent smart contracts of `CrossChainDAO`:  
+1. Import `NonblockingLzApp` and add it to the parent smart contracts of `CrossChainDAO`
 2. Update the constructor as required by the `NonblockingLzApp` contract by passing in LayerZero's on-chain smart contract as an input
 3. Create a function that overrides the `_nonblockingLzReceive` function of the `NonblockingLzApp` contract that will be responsible for receiving cross-chain data
 
@@ -695,7 +697,7 @@ Let's tackle the first action, `if (option == 0)`, beginning a proposal on the l
 
 1. Decode the payload, which includes a proposal ID and the timestamp of when the proposal was made as mentioned in the [CrossChainDAO section](#making-proposals-cross-chain)
 2. Perform some funky calculations to generate a `cutOffBlockEstimation` by subtracting blocks from the current block based on the timestamp and a predetermined seconds-per-block estimate
-3. Add a `RemoteProposal` struct to the proposals map, effectively registering the proposal and its voting-related data on the spoke chain.
+3. Add a `RemoteProposal` struct to the proposals map, effectively registering the proposal and its voting-related data on the spoke chain
 
 ```solidity
 (, uint256 proposalId, uint256 proposalStart) = abi.decode(_payload, (uint16, uint256, uint256));
