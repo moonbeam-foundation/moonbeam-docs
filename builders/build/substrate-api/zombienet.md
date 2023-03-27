@@ -9,9 +9,11 @@ description: Learn the basics of how to use Zombienet to easily spin up a local 
 
 ## Introduction {: #introduction }
 
-Zombienet is a testing framework for Substrate based blockchains, allowing developers to spawn and test ephemeral Substrate environments more  thoroughly than other tools may provide. They can be used for testing blockchains' on-chain storage, metrics, and logs.  
+Parity's ZombieNet is a versatile and powerful testing framework designed for Substrate-based blockchains. It provides developers with the ability to create and simulate complex ephemeral blockchain environments, including relay chains, parachains, and standalone chains, for development and testing purposes. ZombieNet streamlines the process of setting up, configuring, and managing local testnets, making it an essential tool for blockchain developers.  
 
 Zombienet is considered a useful tool because it allows developers to configure and spin up network setups based on information in a TOML or JSON file instead of having to do it manually. Internally Zombienet is a JavaScript library, designed to run on Node.js. It has different solutions to run the nodes required by each chain, such as Kubernetes, Podman, as well as a native solution.   
+
+When developing on the Moonbeam Network, ZombieNet becomes especially useful when working with XCM, consensus mechanisms, or other Substrate level functionality. With ZombieNet, developers can create a local Moonbeam test environment, connect it to a relay chain, and thoroughly test blockchain connections under realistic network conditions.  
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
