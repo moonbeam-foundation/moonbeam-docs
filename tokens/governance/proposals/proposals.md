@@ -140,4 +140,4 @@ After the transaction is submitted, you will see some confirmations on the top r
 
 ![Proposal Endorsed](/images/tokens/governance/proposals/v1/proposals-10.png)
 
-At each Launch Period, the most seconded proposal becomes a referendum. To learn how to vote on a proposal, please refer to the [How to Vote on a Proposal in OpenGov](/tokens/governance/voting/voting){target=_blank} guide.
+At each Launch Period, the most seconded proposal becomes a referendum. To learn how to vote on a proposal, please refer to the [How to Vote on a Proposal](/tokens/governance/voting/voting){target=_blank} guide.
