@@ -115,7 +115,7 @@ Zombienet's CLI tool allows you to specify a configuration file as instructions 
     }
     ```
 
-Let's break down the configuration file:
+This configuration file sets up a local test environment with a relay chain and a parachain. The relay chain has two validator nodes, Alice and Bob, whereas the parachain has a collator named Alith. Let's break down the configuration file:  
 
 - **settings**: this section defines general settings for the test environment
     - **timeout**: sets the timeout for the test environment to, in this case, 1000 milliseconds
@@ -126,24 +126,18 @@ Let's break down the configuration file:
         - **name**: a unique identifying name of a node 
         - **validator**: gives the node a validator role 
         - **extra_args**: an array of extra arguments, in this case `-lparachain=debug` is used for setting the logging filter as "debug"  
-- **parachains**: This section configures a parachain that will connect to the relay chain.
-
-id = 1000: Assigns an ID of 1000 to the parachain.
-chain = "moonbase-local": Sets the parachain to use the "moonbase-local" configuration.
-cumulus_based = true: Indicates that the parachain is built on the Cumulus framework.
-add_to_genesis = true: Specifies that the parachain should be registered in the genesis block.
-[parachains.collator]: This section configures the collator for the parachain.
-
-name = "alith": Sets the name of the collator to "alith".
-command: Specifies the location of the Moonbeam binary that will be used to run the parachain.
-rpc_port = 34101: Sets the RPC port to 34101.
-args = ["-lparachain=debug"]: Adds the argument for enabling debug logging.
-[types.Header]: This section defines the Header type for the parachain.
-
-number = "u64": Sets the block number type to an unsigned 64-bit integer.
-parent_hash = "Hash": Specifies that the parent block hash is of type "Hash".
-post_state = "Hash": Specifies that the post-state root is of type "Hash".
-In summary, this configuration file sets up a local test environment with a relay chain (Westend) and a parachain (Moonbeam). The relay chain has two validator nodes, Alice and Bob, and the parachain has a collator named Alith.
+- **parachains**: This section configures a parachain that will connect to the relay chain
+    - **id**: assigns an ID of to the parachain, in this case `1000`
+    - **chain**: sets the parachain's name
+    - **cumulus_based**: indicates that the parachain should use Cumulus command generation
+    - **add_to_genesis**: specifies that the parachain should be registered in the genesis block
+    - **parachains.collator**: this section configures collators for the parachain
+        - **name**: a unique identifying name of a node 
+        - **command**: specifies the location of the Moonbeam binary that will be used to run the parachain
+        - **rpc_port**: sets the RPC port of this node, in this example to `localhost:34101`
+        - **args**: similar to the **extra_args** config, this is an array of extra arguments. In this case, `-lparachain=debug` is used for setting the logging filter as "debug"
+- **types**: this section defines the types within the system's JavaScript API
+    - **Header**: This section defines the Header type
 
 The full configuration options can be found in the [Zombienet documentation](https://paritytech.github.io/zombienet/network-definition-spec.html){target=_blank}.  
 
