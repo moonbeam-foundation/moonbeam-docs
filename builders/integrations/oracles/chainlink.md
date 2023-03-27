@@ -9,7 +9,7 @@ description: Review price feed contracts for Moonbeam and learn how to request M
 
 ## Introduction {: #introduction } 
 
-Developers can now use [Chainlink's decentralized Oracle network](https://chain.link/){target=_blank} to fetch data from a Moonbeam-based network. There are two main architectures: [Price Feeds](https://docs.chain.link/docs/architecture-decentralized-model){target=_blank} and [Basic Request Model](https://docs.chain.link/architecture-overview/architecture-request-model?parent=gettingStarted){target=_blank}. Price Feeds contain real-time price data that is continuously updated by Oracle operators in a smart contract so that other smart contracts can fetch and consume it. The Basic Request Model describes an on-chain architecture for requesting data from a single oracle source. This guide will how to fetch the latest price data using both architectures. 
+Developers can now use [Chainlink's decentralized Oracle network](https://chain.link/){target=_blank} to fetch data from a Moonbeam-based network. There are two main architectures: [Price Feeds](https://docs.chain.link/docs/architecture-decentralized-model){target=_blank} and [Basic Request Model](https://docs.chain.link/architecture-overview/architecture-request-model?parent=gettingStarted){target=_blank}. Price Feeds contain real-time price data that is continuously updated by Oracle operators in a smart contract so that other smart contracts can fetch and consume it. The Basic Request Model describes an on-chain architecture for requesting data from a single oracle source. This guide will show you how to fetch the latest price data using both architectures. 
 
 --8<-- 'text/disclaimers/third-party-content-intro.md'
 
