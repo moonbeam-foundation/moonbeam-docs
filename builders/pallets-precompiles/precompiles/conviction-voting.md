@@ -99,7 +99,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 1. Click on the **Deploy and Run** tab, directly below the **Compile** tab in Remix. Note: you are not deploying a contract here, instead you are accessing a precompiled contract that is already deployed
 2. Make sure **Injected Provider - Metamask** is selected in the **ENVIRONMENT** drop down
 3. Ensure **ConvictionVoting.sol** is selected in the **CONTRACT** dropdown. Since this is a precompiled contract there is no need to deploy, instead you are going to provide the address of the precompile in the **At Address** field
-4. Provide the address of the Conviction Voting Precompile for Moonbase Alpha: `{{ networks.moonbase.precompiles.referenda }}` and click **At Address**
+4. Provide the address of the Conviction Voting Precompile for Moonbase Alpha: `{{ networks.moonbase.precompiles.conviction_voting }}` and click **At Address**
 5. The Conviction Voting Precompile will appear in the list of **Deployed Contracts**
 
 ![Access the ConvictionVoting.sol interface by provide the precompile's address.](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-3.png)
