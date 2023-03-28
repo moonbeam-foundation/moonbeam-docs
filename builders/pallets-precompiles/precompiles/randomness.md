@@ -194,6 +194,9 @@ contract RandomNumber is RandomnessConsumer {
     // Variables required for randomness requests
     uint256 public requiredDeposit = randomness.requiredDeposit();
     uint64 public FULFILLMENT_GAS_LIMIT = 100000;
+    // The fee can be set to any value as long as it is enough to cover
+    // the fulfillment costs. Any leftover fees will be refunded to the
+    // refund address specified in the requestRandomness function below
     uint256 public MIN_FEE = FULFILLMENT_GAS_LIMIT * 5 gwei;
     uint32 public VRF_BLOCKS_DELAY = MIN_VRF_BLOCKS_DELAY;
     bytes32 public SALT_PREFIX = "change-me-to-anything";
