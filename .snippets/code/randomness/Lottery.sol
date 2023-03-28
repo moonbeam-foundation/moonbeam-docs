@@ -187,4 +187,9 @@ contract Lottery is RandomnessConsumer {
             winner.transfer(amountAwarded);
         }
     }
+
+    modifier onlyOwner() {
+        require(msg.sender == owner);
+        _;
+    }
 }
