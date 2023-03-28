@@ -168,6 +168,8 @@ For this guide, you will need to have the following:
 
 The contract that will be created in this section includes the functions that you'll need at a bare minimum to request randomness and consume the results from fulfilling randomness requests.
 
+**This contract is for educational purposes only and is not meant for production use.**
+
 The contract will include the following functions:
 
 - A constructor that accepts the deposit required to request randomness
