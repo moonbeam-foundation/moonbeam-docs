@@ -1,22 +1,29 @@
 // src/contract.ts
-import { Contract as ContractAPI } from "./abi/erc721";
-import { BigNumber } from "ethers";
-import { Context } from "./processor";
-import { Contract } from "./model";
+import { Contract as ContractAPI } from './abi/erc721';
+import { BigNumber } from 'ethers';
+import { Context } from './processor';
+import { Contract } from './model';
 
-export const contractAddress = "0x0000000000000000000000000000000001000000";
+export const contractAddress = 'wss://moonbeam.api.onfinality.io/public-ws';
 
 export async function createContractEntity(ctx: Context): Promise<Contract> {
-  const lastBlock = ctx.blocks[ctx.blocks.length -1].header
-  const contractAPI = new ContractAPI({...ctx, block: lastBlock}, contractAddress);
-  let name = "", symbol = "", totalSupply = BigNumber.from(0);
-  ctx.log.info("Creating new Contract model instance")
+  const lastBlock = ctx.blocks[ctx.blocks.length - 1].header;
+  const contractAPI = new ContractAPI(
+    { ...ctx, block: lastBlock },
+    contractAddress
+  );
+  let name = '',
+    symbol = '',
+    totalSupply = BigNumber.from(0);
+  ctx.log.info('Creating new Contract model instance');
   try {
     name = await contractAPI.name();
     symbol = await contractAPI.symbol();
     totalSupply = await contractAPI.totalSupply();
   } catch (error) {
-    ctx.log.warn(`[API] Error while fetching Contract metadata for address ${contractAddress}`);
+    ctx.log.warn(
+      `[API] Error while fetching Contract metadata for address ${contractAddress}`
+    );
     if (error instanceof Error) {
       ctx.log.warn(`${error.message}`);
     }

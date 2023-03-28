@@ -1,19 +1,19 @@
 // src/processor.ts
-import { lookupArchive } from "@subsquid/archive-registry";
-import { Store, TypeormDatabase } from "@subsquid/typeorm-store";
+import { lookupArchive } from '@subsquid/archive-registry';
+import { Store, TypeormDatabase } from '@subsquid/typeorm-store';
 import {
   BatchContext,
   BatchProcessorItem,
   EvmLogEvent,
   SubstrateBatchProcessor,
   SubstrateBlock,
-} from "@subsquid/substrate-processor";
-import { In } from "typeorm";
-import { ethers } from "ethers";
-import { contractAddress, getContractEntity } from "./contract";
-import { Owner, Token, Transfer } from "./model";
-import * as erc721 from "./abi/erc721";
-import { EvmLog, getEvmLog } from "@subsquid/frontier";
+} from '@subsquid/substrate-processor';
+import { In } from 'typeorm';
+import { ethers } from 'ethers';
+import { contractAddress, getContractEntity } from './contract';
+import { Owner, Token, Transfer } from './model';
+import * as erc721 from './abi/erc721';
+import { EvmLog, getEvmLog } from '@subsquid/frontier';
 
 const database = new TypeormDatabase();
 
@@ -21,26 +21,24 @@ const processor = new SubstrateBatchProcessor()
   .setDataSource({
     // FIXME: set RPC_ENDPOINT secret when deploying to Aquarium
     //        See https://docs.subsquid.io/deploy-squid/env-variables/
-    chain: process.env.RPC_ENDPOINT || "wss://wss.api.moonbeam.network",
-    archive: lookupArchive("moonbeam", {type: "Substrate"}),
+    chain: process.env.RPC_ENDPOINT || 'wss://wss.api.moonbeam.network',
+    archive: lookupArchive('moonbeam', { type: 'Substrate' }),
   })
   .addEvmLog(contractAddress, {
-    filter: [[
-      erc721.events.Transfer.topic
-    ]], 
+    filter: [[erc721.events.Transfer.topic]],
   });
 
 type Item = BatchProcessorItem<typeof processor>;
-type Context = BatchContext<Store, Item>;
+export type Context = BatchContext<Store, Item>;
 
 processor.run(database, async (ctx) => {
   const transfersData: TransferData[] = [];
 
   for (const block of ctx.blocks) {
     for (const item of block.items) {
-      if (item.name === "EVM.Log") {
+      if (item.name === 'EVM.Log') {
         // EVM log extracted from the substrate event
-        const evmLog = getEvmLog(ctx, item.event)
+        const evmLog = getEvmLog(ctx, item.event);
         const transfer = handleTransfer(block.header, item.event, evmLog);
         transfersData.push(transfer);
       }
@@ -105,9 +103,9 @@ async function saveTransfers(ctx: Context, transfersData: TransferData[]) {
       owner,
     ])
   );
-  
+
   if (process.env.RPC_ENDPOINT == undefined) {
-    ctx.log.warn(`RPC_ENDPOINT env variable is not set`)
+    ctx.log.warn(`RPC_ENDPOINT env variable is not set`);
   }
 
   for (const transferData of transfersData) {
@@ -138,10 +136,10 @@ async function saveTransfers(ctx: Context, transfersData: TransferData[]) {
         // FIXME: use multicall here to batch
         //        contract calls and speed up indexing
         uri: await contract.tokenURI(transferData.token),
-        contract: await getContractEntity(ctx.store),
+        contract: await getContractEntity(ctx),
       });
       tokens.set(token.id, token);
-      ctx.log.info(`Upserted NFT: ${token.id}`)
+      ctx.log.info(`Upserted NFT: ${token.id}`);
     }
     token.owner = to;
 
