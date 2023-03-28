@@ -109,7 +109,7 @@ Similar functionality is available for EVM indexing through the [`squid-evm-type
 
 For our squid we will need such a module for the [ERC-721](https://eips.ethereum.org/EIPS/eip-721){target=_blank}-compliant part of the contracts' interfaces. Once again, the template repository already includes it, but it is still important to explain what needs to be done in case one wants to index a different type of contract.
 
-The procedure uses an `sqd` script from the template that uses `squid-evm-typegen` to generate Typescript facades for JSON ABIs stored in the `abi` folder. Place any ABIs you requre for interfacing your contracts there and run
+The procedure uses a `sqd` script from the template that uses `squid-evm-typegen` to generate Typescript facades for JSON ABIs stored in the `abi` folder. Place any ABIs you requre for interfacing your contracts there and run:
 
 ```bash
 sqd typegen
@@ -121,7 +121,7 @@ The results will be stored at `src/abi`. One module will be generated for each A
 
 Subsquid SDK provides users with the [`SubstrateBatchProcessor` class](https://docs.subsquid.io/substrate-indexing/){target=_blank}. Its instances connect to chain-specific [Subsquid archives](https://docs.subsquid.io/archives/overview/){target=_blank} to get chain data and apply custom transformations. The indexing begins at the starting block and keeps up with new blocks after reaching the tip.
 
-`SubstrateBatchProcessor`s [exposes methods](https://docs.subsquid.io/substrate-indexing/configuration/){target=_blank} to "subscribe" them to specific data such as Substrate events, extrinsics, storage items or, for EVM, logs and transactions. The actual data processing is then started by calling the `.run()` function. This will start generating requests to the Archive for [*batches*](https://docs.subsquid.io/basics/batch-processing/){target=_blank} of data specified in the configuration, and will trigger the callback function, or *batch handler* (passed to `.run()` as second argument) every time a batch is returned by the Archive.
+The `SubstrateBatchProcessor` [exposes methods](https://docs.subsquid.io/substrate-indexing/configuration/){target=_blank} to "subscribe" to specific data such as Substrate events, extrinsics, storage items or, for EVM, logs and transactions. The actual data processing is then started by calling the `.run()` function. This will start generating requests to the Archive for [*batches*](https://docs.subsquid.io/basics/batch-processing/){target=_blank} of data specified in the configuration, and will trigger the callback function, or *batch handler* (passed to `.run()` as second argument) every time a batch is returned by the Archive.
 
 It is in this callback function that all the mapping logic is expressed. This is where chain data decoding should be implemented, and where the code to save processed data on the database should be defined.
 
@@ -139,6 +139,8 @@ Here are the full file contents:
 --8<-- 'code/tutorials/integrations/nft-subsquid/contract.ts'
 ```
 
+You might notice a warning that the `Context` variable hasn't been exported, but don't worry, as we'll export it from the `src/processor.ts` file in the next section.
+
 !!! note
     The `createContractEntity` function is accessing the **state** of the contract via a chain RPC endpoint. This is slowing down the indexing a little, but this data is only available this way. You'll find more information on accessing state in the [dedicated section of our docs](https://docs.subsquid.io/substrate-indexing/evm-support#access-the-contract-state){target=_blank}.
 
@@ -148,12 +150,14 @@ The `src/processor.ts` file is where squids instantiate the processor (a `Substr
 
 Not much needs to be changed here, except adapting the template code to handle the Gromlins contract and setting the processor to use the `moonbeam` archive URL retrieved from the [archive registry](https://github.com/subsquid/archive-registry){target=_blank}.
 
+--8<-- 'text/common/endpoint-examples.md'
+
 If you are adapting this guide for Moonriver or Moonbase Alpha, be sure to update the data source to the correct network:
 
 === "Moonbeam"
     ```
     processor.setDataSource({
-      chain: CHAIN_NODE,
+      chain: process.env.RPC_ENDPOINT, // TODO: Add the endpoint to your .env file
       archive: lookupArchive("moonbeam", {type: "Substrate"}),
     });
     ```
@@ -161,7 +165,7 @@ If you are adapting this guide for Moonriver or Moonbase Alpha, be sure to updat
 === "Moonriver"
     ```
     processor.setDataSource({
-      chain: process.env.RPC_ENDPOINT,
+      chain: process.env.RPC_ENDPOINT, // TODO: Add the endpoint to your .env file
       archive: lookupArchive("moonriver", {type: "Substrate"}),
     });
     ```
@@ -169,13 +173,19 @@ If you are adapting this guide for Moonriver or Moonbase Alpha, be sure to updat
 === "Moonbase Alpha"
     ```
     processor.setDataSource({
-      chain: process.env.RPC_ENDPOINT,
+      chain: process.env.RPC_ENDPOINT, // TODO: Add the endpoint to your .env file
       archive: lookupArchive("moonbase", {type: "Substrate"}),
     });
     ```
 
 !!! note
     The `lookupArchive` function is used to consult the [archive registry](https://github.com/subsquid/archive-registry){target=_blank} and yield the archive address, given a network name. Network names should be in lowercase.
+
+You'll also need to modify the `Context` type so that it is exported and can be used in the `src/contract.ts` file.
+
+```ts
+export type Context = BatchContext<Store, Item>;
+```
 
 Here is the end result:
 
@@ -184,8 +194,7 @@ Here is the end result:
 ```
 
 !!! note
-    It is also worth pointing out that the `contract.tokenURI` call is accessing the **state** of the contract via a chain RPC endpoint. This is slowing down the indexing a little bit, but this data is only available this way. You'll find more information on accessing state in the [dedicated section of our docs](https://docs.subsquid.io/substrate-indexing/evm-support#access-the-contract-state){target=_blank}.
-
+    It is also worth pointing out that the `contract.tokenURI` call is accessing the **state** of the contract via a chain RPC endpoint. This is slowing down the indexing a little bit, but this data is only available this way. You'll find more information on accessing state in the [dedicated section of the Subsquid docs](https://docs.subsquid.io/substrate-indexing/evm-support#access-the-contract-state){target=_blank}.
 
 !!! note
     This code expects to find a URL of a working Moonbeam RPC endpoint in the `RPC_ENDPOINT` environment variable. Set it in the `.env` file and in [Aquarium secrets](https://docs.subsquid.io/deploy-squid/env-variables){target=_blank} if and when you deploy your squid there. We tested the code using a public endpoint available at `wss://wss.api.moonbeam.network`; for production, we recommend using [private endpoints](/builders/get-started/endpoints#endpoint-providers){target=_blank}.
