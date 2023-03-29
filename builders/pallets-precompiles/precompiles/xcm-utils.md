@@ -83,4 +83,4 @@ contract MultilocationWhitelistExample {
 }
 ```
 
-To check out an example of how to use the `xcmExecute` function to execute a custom XCM message locally, please refer to the [Create and Execute Custom XCM Messages](/builders/interoperability/xcm/custom-xcm-messages/#xcm-utils-precompile){target=_blank} guide.
+To check out an example of how to use the `xcmExecute` function to execute a custom XCM message locally, please refer to the [Create and Execute Custom XCM Messages](/builders/interoperability/xcm/send-execute-xcm/#execute-xcm-utils-precompile){target=_blank} guide.

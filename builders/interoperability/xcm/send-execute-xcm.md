@@ -116,7 +116,7 @@ The `xcmExecute` function accepts two parameters: the SCALE encoded versioned XC
 
 To execute the XCM message locally, you'll take the following steps:
 
-1. Build the SCALE encoded calldata. You can grab the encoded calldata from the [previous section](#execute-an-xcm-message-with-polkadotjs-apps), or you can calculate the same calldata programmatically with the [Polkadot.js API](/build/substrate-api/polkadot-js-api/){target=_blank} 
+1. Build the SCALE encoded calldata. You can grab the encoded calldata from the [previous section](#execute-an-xcm-message-with-polkadotjs-apps), or you can calculate the same calldata programmatically with the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} 
 2. Send the XCM message with the encoded calldata using the Ethereum library and the XCM Utilities Precompile
 
 To get the SCALE encoded calldata programmatically, you can use the following script:
@@ -276,7 +276,7 @@ The `xcmSend` function accepts two parameters: the multilocation of the destinat
 To send the XCM message locally, you'll take the following steps:
 
 1. Build the multilocation of the destination 
-2. Build the SCALE encoded calldata. You can grab the encoded calldata from the [previous section](#send-xcm-message-with-polkadotjs-apps), or you can calculate the same calldata programmatically with the [Polkadot.js API](/build/substrate-api/polkadot-js-api/){target=_blank} 
+2. Build the SCALE encoded calldata. You can grab the encoded calldata from the [previous section](#send-xcm-message-with-polkadotjs-apps), or you can calculate the same calldata programmatically with the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} 
 3. Send the XCM message, with the destination multilocation and encoded calldata, using the Ethereum library and the XCM Utilities Precompile
 
 The multilocation of the destination, which is the relay chain in this example, is as follows:
@@ -292,7 +292,7 @@ This will be used after the encoded calldata is calculated.
 
 Next, you can grab the encoded calldata from the [previous section](#send-xcm-message-with-polkadotjs-apps). However, if you do this, you'll need to look at the encoding details and manually remove the hexadecimal characters that correspond to the destination multilocation, which will vary depending on the destination.
 
-For a more foolproof way to get the encoded calldata, you can programmatically obtain it via the [Polkadot.js API](/build/substrate-api/polkadot-js-api/){target=_blank} and the `polkadotXcm.execute` function. You'll still need to manipulate the calldata, but this will be easier as you can do the same manipulation every time regardless of the destination.
+For a more foolproof way to get the encoded calldata, you can programmatically obtain it via the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} and the `polkadotXcm.execute` function. You'll still need to manipulate the calldata, but this will be easier as you can do the same manipulation every time regardless of the destination.
 
 To build the SCALE encoded calldata programmatically, you can use the following snippet:
 
