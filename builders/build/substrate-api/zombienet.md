@@ -56,15 +56,28 @@ This documentation will assume that you have downloaded through the GitHub relea
 
 ## Getting Binaries for ZombieNet {: #getting-binaries-for-zombienet }
 
-This is the part about native binaries  
+In order for ZombieNet to spin up a relay chains and parachains, it needs runtimes. The simplest setup is a native solution, where the compiled binaries of the relay chain and each parachain are stored locally. There are two ways to get compiled binaries: downloading their releases, and directly compiling them.  
 
-### Using Kubernetes {: #using-kubernetes }
+The easiest way, which **only works on Linux systems**, is to download projects' release binaries:  
 
-This is the part about kubernetes  
+- [Polkadot's most recent release](https://github.com/paritytech/polkadot/releases){target=_blank}
+- [Moonbeam's most recent release](https://github.com/PureStake/moonbeam/releases){target=_blank}
 
-### Using Podman {: #using-podman }
+**put image here**
 
-This is the part about podman  
+Certain binaries can also be automatically downloaded using the ZombieNet CLI (also only for Linux systems):  
+
+```bash
+zombienet setup polkadot polkadot-parachain
+```
+
+If you would like to use additional parachains in place of or in addition to Moonbeam, you will have to go to each parachain's project GitHub to see if they provide release binaries to use.  
+
+The second way to get binaries for relay chains and parachains are by directly compiling them, which is necessary if you decide to build them. Every parachain will have their own pipeline for compiling these, but you will definitely need Rust installed for compiling the relay chain.  
+
+To build a binary for Polkadot, you can clone its [GitHub repository](https://github.com/paritytech/polkadot){target=_blank} and build with Cargo. Its `README` has additional information on installation. Note that it also relies on tools such as protobuf, clang, and libssl.  
+
+The steps to build a Moonbeam binary are exactly the same as the steps defined in the [development node documentation](/builders/get-started/networks/moonbeam-dev.md#getting-started-with-the-binary-file){target=_blank}.  
 
 ## Writing ZombieNet Configuration Files {: #writing-ZombieNet-configuration-files }
 
@@ -211,3 +224,20 @@ Some important things to note:
 
 i can't get any information on this
 
+## Running a ZombieNet Network {: #running-a-zombienet-network }
+
+With a ZombieNet configuration file, you can easily spin up a network with the spawn command:  
+
+```bash
+./zombienet spawn RELATIVE_PATH_TO_CONFIGURATION_FILE
+```
+
+Using the configuration example above, 
+
+### Using Kubernetes {: #using-kubernetes }
+
+This is the part about kubernetes  
+
+### Using Podman {: #using-podman }
+
+This is the part about podman  
