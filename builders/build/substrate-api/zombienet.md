@@ -17,19 +17,54 @@ When developing on the Moonbeam Network, ZombieNet becomes especially useful whe
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
-ZombieNet works best on Linux systems. There are different requirements for each operating system to run nodes, so not every prerequisite here will be for your operating system. To use ZombieNet, you will need some of the following:  
+ZombieNet works best on Linux systems, and is only built for MacOS and Linux. For Windows, you can try running a [Windows Linux Subsystem](https://learn.microsoft.com/en-us/windows/wsl/install){target=_blank} to run ZombieNet. There are different requirements for each operating system, so not every prerequisite here will be for your operating system. To use ZombieNet, you will need some of the following:  
 
 - Put
 - Stuff
 - Here
 
-## Installing ZombieNet
+## Installing ZombieNet {: #installing-zombienet }
 
-To run a ZombieNet, you need the CLI installed. 
+To run a ZombieNet, you need the CLI installed. There are multiple ways of getting the CLI, such as using [Nix, a package manager](https://paritytech.github.io/zombienet/install.html#using-nix){target=_blank}. However, the installation path most guaranteed to work is by downloading an installation through [ZombieNet's GitHub releases section](https://github.com/paritytech/zombienet/releases){target=_blank}, where you can download the executable most relevant to your operating system.  
 
-## Getting Moonbeam Binaries for ZombieNet  
+![ZombieNet GitHub installation](/images/builders/build/substrate-api/zombienet/zombienet-1.png)
 
+After downloading the ZombieNet executable from GitHub, you may have to allow yourself to execute it with `chmod`. It's also good to rename it:  
 
+=== "MacOS"
+    ```bash
+    mv zombienet-macos zombienet
+    chmod +x zombienet
+    ```
+
+=== "Linux ARM64"
+    ```bash
+    mv zombienet-linux-arm64 zombienet
+    chmod +x zombienet
+    ```
+
+=== "Linux x64"
+    ```bash
+    mv zombienet-linux-x64 zombienet
+    chmod +x zombienet
+    ```
+
+!!!note
+    MacOS users may have to go through [additional steps](https://support.apple.com/guide/mac-help/apple-cant-check-app-for-malicious-software-mchleab3a043/mac){target=_blank} to bypass security measures that block ZombieNet from running.
+
+This documentation will assume that you have downloaded through the GitHub releases and will be working in the directory that ZombieNet was downloaded to.  
+
+## Getting Binaries for ZombieNet {: #getting-binaries-for-zombienet }
+
+This is the part about native binaries  
+
+### Using Kubernetes {: #using-kubernetes }
+
+This is the part about kubernetes  
+
+### Using Podman {: #using-podman }
+
+This is the part about podman  
 
 ## Writing ZombieNet Configuration Files {: #writing-ZombieNet-configuration-files }
 
@@ -138,6 +173,9 @@ The following example shows how a minimal Moonbeam parachain and Polkadot relay 
         }
     }
     ```
+
+=== "YAML"
+    I guess this is an option too
 
 This configuration file sets up a local test environment with a relay chain and a parachain. The relay chain has two validator nodes, Alice and Bob, whereas the parachain has a collator named Alith. Let's break down the configuration file:  
 
