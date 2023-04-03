@@ -2,6 +2,7 @@ title: Ethereum API
 hide: false
 nav:
   - index.md
+  - '[EthersJS] Complete DApp Architecture': 'complete-dapp-architecture.md'
   - '[Foundry] Development Life Cycle from Start to End': 'foundry-start-to-end.md'
   - '[HardHat] Development Life Cycle from Start to End': 'hardhat-start-to-end.md'
   - '[Precompiles] Approve & Swap with the Batch Precompile': 'batch-approve-swap.md'
