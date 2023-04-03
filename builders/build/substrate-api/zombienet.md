@@ -1,9 +1,9 @@
 ---
-title: How to use Zombienet with Moonbeam
-description: Learn the basics of how to use Zombienet to easily spin up a local end-to-end configuration of a relay chain and a Moonbase network.
+title: How to use ZombieNet with Moonbeam
+description: Learn the basics of how to use ZombieNet to easily spin up a local end-to-end configuration of a relay chain and a Moonbase network.
 --- 
 
-# How to Use Zombienet with Moonbeam
+# How to Use ZombieNet with Moonbeam
 
 ![Chopsticks diagram](/images/builders/build/substrate-api/chopsticks/chopsticks-banner.png)
 
@@ -11,21 +11,43 @@ description: Learn the basics of how to use Zombienet to easily spin up a local 
 
 Parity's ZombieNet is a versatile and powerful testing framework designed for Substrate-based blockchains. It provides developers with the ability to create and simulate complex ephemeral blockchain environments, including relay chains, parachains, and standalone chains, for development and testing purposes. ZombieNet streamlines the process of setting up, configuring, and managing local testnets, making it an essential tool for blockchain developers.  
 
-Zombienet is considered a useful tool because it allows developers to configure and spin up network setups based on information in a TOML or JSON file instead of having to do it manually. Internally Zombienet is a JavaScript library, designed to run on Node.js. It has different solutions to run the nodes required by each chain, such as Kubernetes, Podman, as well as a native solution.   
+ZombieNet is considered a useful tool because it allows developers to configure and spin up network setups based on information in a TOML or JSON file instead of having to do it manually. Internally ZombieNet is a JavaScript library, designed to run on Node.js. It has different solutions to run the nodes required by each chain, such as Kubernetes, Podman, as well as a native solution.   
 
 When developing on the Moonbeam Network, ZombieNet becomes especially useful when working with XCM, consensus mechanisms, or other Substrate level functionality. With ZombieNet, developers can create a local Moonbeam test environment, connect it to a relay chain, and thoroughly test blockchain connections under realistic network conditions.  
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
-Zombienet works best on Linux systems. There are different requirements for each operating system to run nodes, so not every prerequisite here will be for your operating system. To use Zombienet, you will need some of the following:  
+ZombieNet works best on Linux systems. There are different requirements for each operating system to run nodes, so not every prerequisite here will be for your operating system. To use ZombieNet, you will need some of the following:  
 
 - Put
 - Stuff
 - Here
 
-## Writing Zombienet Configuration Files {: #writing-zombienet-configuration-files }
+## Installing ZombieNet
 
-Zombienet's CLI tool allows you to specify a configuration file as instructions on what how to spin up networks. This file allows you to define details about the relay chain, parachains, nodes, and more. The file can be written in either TOML or JSON. The following example shows how a minimal Moonbeam parachain and Polkadot relay chain can be spun up together.  
+To run a ZombieNet, you need the CLI installed. 
+
+## Getting Moonbeam Binaries for ZombieNet  
+
+
+
+## Writing ZombieNet Configuration Files {: #writing-ZombieNet-configuration-files }
+
+ZombieNet's CLI tool allows you to specify a configuration file as instructions on what how to spin up networks. This file allows you to define details about the relay chain, parachains, nodes, and more.  
+
+To write these configurations, Parity has created its own ZombieNet domain-specific language for spinup configurations, which are stored in `.zndsl` files. However, most developers will be more familiar with a configuration file that's written in either TOML, JSON, or YAML: the format of which are significantly different from `.zndsl` files. These 3 general-purpose language configurations have have four main sections:  
+
+- `settings` — general settings for the test environment, such as timeout values  
+- `relaychain` — configuration for the ZombieNet's relay chain properties  
+- `parachains` — an array of configurations for each parachain that's spun up with the ZombieNet  
+- `hrmp` — an array of data defining hrmp channels between the parachains specified in the `parachains` section  
+- `types` — definitions for custom types used in the parachains, such as block headers  
+
+The full configuration options can be found in the [ZombieNet documentation](https://paritytech.github.io/ZombieNet/network-definition-spec.html){target=_blank}.  
+
+### Basic Moonbeam Setup Example
+
+The following example shows how a minimal Moonbeam parachain and Polkadot relay chain can be spun up together.  
 
 === "TOML"
     ```toml
@@ -141,9 +163,13 @@ This configuration file sets up a local test environment with a relay chain and 
 - **types**: this section defines the types within the system's JavaScript API
     - **Header**: This section defines the Header type
 
-The full configuration options can be found in the [Zombienet documentation](https://paritytech.github.io/zombienet/network-definition-spec.html){target=_blank}.  
 
 Some important things to note:  
 
 - All nodes, regardless of whether or not they are in the same chain, must have different names
 - The relay chain ought to have at least 2 validating nodes
+
+### ZombieNet Domain Specific Language 
+
+i can't get any information on this
+
