@@ -501,9 +501,8 @@ An example of the response for calling `get` to send DOT from Polkadot to Moonbe
   existentialDeposit: 10000000000n,
   min: 33068783n,
   moonChainFee: {
-    balance: 0n,
+    amount: 33068783n,
     decimals: 10,
-    fee: 33068783n,
     symbol: 'DOT'
   },
   native: {
@@ -541,7 +540,7 @@ Where the returned values are as follows:
 |       `asset`        |                                                                                                                                                         the [asset](#assets) to be transferred                                                                                                                                                          |
 | `existentialDeposit` | the [existential deposit](https://support.polkadot.network/support/solutions/articles/65000168651-what-is-the-existential-deposit-#:~:text=On%20the%20Polkadot%20network%2C%20an,the%20Existential%20Deposit%20(ED).){target=_blank}, or the minimum amount an address must <br> hold to be considered active if one exists, otherwise `0n` is returned |
 |        `min`         |                                                                                                                                                            the minimum transferrable amount                                                                                                                                                             |
-|    `moonChainFee`    |                   the [asset](#assets) and amount that is needed to pay for Moonbeam's XCM fees. <br> If different from the `asset` to be transferred, the fee will be sent in this <br> asset in addition to the `asset` to be transferred (as of [v0.1.0](https://github.com/PureStake/xcm-sdk/releases/tag/v0.1.0){target=_blank})                   |
+|    `moonChainFee`    |                   the [asset](#assets) and amount that is needed to pay for Moonbeam's XCM fees. <br> If different from the `asset` to be transferred, the fee will be sent in this <br> asset in addition to the `asset` to be transferred (as of [v0.4.0](https://github.com/PureStake/xcm-sdk/releases/tag/v0.4.0){target=_blank})                   |
 |       `native`       |                                                                                                                                                     the native [asset](#assets) of the source chain                                                                                                                                                     |
 |       `origin`       |                                                                                                                                  the chain information for where the asset being transferred natively originates from                                                                                                                                   |
 |       `source`       |                                                                                                                                        the chain information for where the asset being transferred is sent from                                                                                                                                         |
