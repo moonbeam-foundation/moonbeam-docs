@@ -10,13 +10,37 @@ _April 15, 2023 | by Jeremy Boetticher_
 
 Decentralized applications, or DApps, have redefined how applications are built, managed, and interacted with in Web3. By leveraging blockchain technology, DApps provide a secure, transparent, and trustless system that enables peer-to-peer interactions without any central authority. At the core of a DApp's architecture are several main components that work in tandem to create a robust, decentralized ecosystem. These components include smart contracts, nodes, frontend user interfaces, and decentralized storage solutions.  
 
-In this tutorial, you'll come face-to-face with each component by writing a full **TBD** DApp. We'll also explore additional optional components of DApps that can enhance users' experience.  
-
 **put an image here that shows the relationships between all of the different components**
+
+In this tutorial, you'll come face-to-face with each major component by writing a full DApp that mints tokens. We'll also explore additional optional components of DApps that can enhance user experience for your future projects.  
+
+**put an image here that shows off the DApp**
+
+## Checking Prerequisites {: #checking-prerequisites } 
+
+To get started, you will need the following:
+
+ - A Moonbase Alpha account funded with DEV. 
+  --8<-- 'text/faucet/faucet-list-item.md'
+ - [Node.js](https://nodejs.org/en/download/){target=_blank} version 16 or newer installed
+ - 
+--8<-- 'text/common/endpoint-examples.md'
 
 ## Smart Contracts {: #smart-contracts }
 
-Smart contracts are self-executing contracts with the terms of the agreement directly written into code. They serve as the backbone of any DApp, automating and enforcing the business logic within the decentralized system. By leveraging the immutability and security of the blockchain, smart contracts ensure that the agreed-upon rules are executed in a transparent and tamper-proof manner. This eliminates the need for intermediaries, reducing costs and potential points of failure, while promoting trust and efficiency in the application.
+Smart contracts are self-executing contracts with the terms of the agreement directly written into code. They serve as the backbone of any DApp, automating and enforcing the business logic within the decentralized system. By leveraging the immutability and security of the blockchain, smart contracts ensure that the agreed-upon rules are executed in a transparent and tamper-proof manner.  
+
+When you deploy a smart contract onto Moonbeam, you upload a series of instructions that can be understood by the EVM, or the Ethereum Virtual Machine. Whenever someone interacts with a smart contract, these series of instructions are executed by the EVM to change the blockchain's state. Writing the instructions in a smart contract properly is very important since the blockchain's state defines the most crucial information about your DApp, such as who has what amount of money.  
+
+Since the instructions are difficult to write and make sense of at a low (assembly) level, we have smart contract languages such as Solidity to make it easier to write them. To help write, debug, test, and compile these smart contract languages, developers in the Ethereum community have created developer environments such as [HardHat](/tutorials/eth-api/hardhat-start-to-end.md){target=_blank} and [Foundry](/tutorials/eth-api/foundry-start-to-end.md){target=_blank}.  
+
+This tutorial will use HardHat, which requires Node.
+
+### Writing Smart Contracts {: #writing-smart-contracts }
+
+### Testing Smart Contracts {: #testing-smart-contracts }
+
+### Deploying Smart Contracts {: #deploying-smart-contracts }
 
 ## Nodes and JSON-RPC Endpoints {: #nodes-and-json-rpc-endpoints }
 
@@ -38,11 +62,11 @@ By integrating the signer functionality, wallets facilitate transaction signing 
 
 Wallets can be browser extensions, such as MetaMask, or mobile applications like Trust Wallet. By providing a user-friendly interface, secure storage, and transaction signing capabilities, wallets enable users to access the DApp and interact with the underlying smart contracts with ease and confidence.  
 
-## Decentralized Storage Systems {: #decentralized-storage-systems }
+## Additional Options {: #additional-options }
+
+### Decentralized Storage Systems {: #decentralized-storage-systems }
 
 Decentralized storage solutions provide a distributed and fault-tolerant way to store and access data within a DApp. Unlike traditional centralized storage systems, decentralized storage distributes data across multiple nodes, ensuring that the information is secure, accessible, and resilient to failures. Popular decentralized storage solutions such as the InterPlanetary File System (IPFS) and Filecoin leverage blockchain technology to create a global, peer-to-peer storage network, eliminating single points of failure and improving data privacy.
-
-## Additional Options {: #additional-options }
 
 ### Oracles {: #oracles }
 
