@@ -64,13 +64,10 @@ To get started, make sure you have a project with Ethers installed, as specified
       },
     };
     // 3. Create ethers provider
-    const provider = new ethers.JsonRpcProvider(
-      providerRPC.moonbeam.rpc, 
-      {
-        chainId: providerRPC.moonbeam.chainId,
-        name: providerRPC.moonbeam.name,
-      }
-    );
+    const provider = new ethers.JsonRpcProvider(providerRPC.moonbeam.rpc, {
+      chainId: providerRPC.moonbeam.chainId,
+      name: providerRPC.moonbeam.name,
+    });
     ```
 
 === "Moonriver"
@@ -88,13 +85,10 @@ To get started, make sure you have a project with Ethers installed, as specified
       },
     };
     // 3. Create ethers provider
-    const provider = new ethers.JsonRpcProvider(
-      providerRPC.moonriver.rpc, 
-      {
-        chainId: providerRPC.moonriver.chainId,
-        name: providerRPC.moonriver.name,
-      }
-    );
+    const provider = new ethers.JsonRpcProvider(providerRPC.moonriver.rpc, {
+      chainId: providerRPC.moonriver.chainId,
+      name: providerRPC.moonriver.name,
+    });
     ```
 
 === "Moonbase Alpha"
@@ -112,13 +106,10 @@ To get started, make sure you have a project with Ethers installed, as specified
       },
     };
     // 3. Create ethers provider
-    const provider = new ethers.JsonRpcProvider(
-      providerRPC.moonbase.rpc, 
-      {
-        chainId: providerRPC.moonbase.chainId,
-        name: providerRPC.moonbase.name,
-      }
-    );
+    const provider = new ethers.JsonRpcProvider(providerRPC.moonbase.rpc, {
+      chainId: providerRPC.moonbase.chainId,
+      name: providerRPC.moonbase.name,
+    });
     ```
 
 === "Moonbeam Dev Node"
@@ -136,13 +127,10 @@ To get started, make sure you have a project with Ethers installed, as specified
       },
     };
     // 3. Create ethers provider
-    const provider = new ethers.JsonRpcProvider(
-      providerRPC.dev.rpc, 
-      {
-        chainId: providerRPC.dev.chainId,
-        name: providerRPC.dev.name,
-      }
-    );
+    const provider = new ethers.JsonRpcProvider(providerRPC.dev.rpc, {
+      chainId: providerRPC.dev.chainId,
+      name: providerRPC.dev.name,
+    });
     ```
 
 As previously mentioned, there are several ways to set up gasless transactions. For the purposes of this tutorial, we'll assume that there is a third-party account that pays the fees. As such, you'll need to have a signer for the user of the dApp, which is connected to your user's wallet, and a signer for the third-party account paying for the transaction fees. This tutorial assumes that you already have these signers in place, but if needed, you can set up the following generic signers for testing purposes:
@@ -181,7 +169,7 @@ The domain separator for each Moonbeam network is as follows:
       version: '1',
       chainId: {{ networks.moonbeam.chain_id }},
       verifyingContract: '{{ networks.moonbeam.precompiles.call_permit}}',
-    }
+    };
     ```
 
 === "Moonriver"
@@ -192,7 +180,7 @@ The domain separator for each Moonbeam network is as follows:
       version: '1',
       chainId: {{ networks.moonriver.chain_id }},
       verifyingContract: '{{ networks.moonriver.precompiles.call_permit}}',
-    }
+    };
     ```
 
 === "Moonbase Alpha"
@@ -203,7 +191,7 @@ The domain separator for each Moonbeam network is as follows:
       version: '1',
       chainId: {{ networks.moonbase.chain_id }},
       verifyingContract: '{{ networks.moonbase.precompiles.call_permit}}',
-    }
+    };
     ```
 
 === "Moonbeam Dev Node"
@@ -214,7 +202,7 @@ The domain separator for each Moonbeam network is as follows:
       version: '1',
       chainId: {{ networks.development.chain_id }},
       verifyingContract: '{{ networks.moonbase.precompiles.call_permit}}',
-    }
+    };
     ```
 
 ### Define the Typed Data Structure {: #define-typed-data-structure }
@@ -250,7 +238,7 @@ const types = {
     { name: 'nonce', type: 'uint256' },
     { name: 'deadline', type: 'uint256' },
   ],
-}
+};
 ```
 
 ### Define the Message Data {: #define-message-data }
@@ -344,13 +332,10 @@ const nonce = await callPermit.nonces(userSigner.address);
         chainId: {{ networks.moonbeam.chain_id }}, // {{ networks.moonbeam.hex_chain_id }} in hex,
       },
     };
-    const provider = new ethers.JsonRpcProvider(
-      providerRPC.moonbeam.rpc, 
-      {
-        chainId: providerRPC.moonbeam.chainId,
-        name: providerRPC.moonbeam.name,
-      }
-    );
+    const provider = new ethers.JsonRpcProvider(providerRPC.moonbeam.rpc, {
+      chainId: providerRPC.moonbeam.chainId,
+      name: providerRPC.moonbeam.name,
+    });
 
     // Insert your own signer logic or use the following for testing purposes
     const userSigner = new ethers.Wallet('INSERT-PRIVATE-KEY', provider);
@@ -361,7 +346,7 @@ const nonce = await callPermit.nonces(userSigner.address);
       version: '1',
       chainId: {{ networks.moonbeam.chain_id }},
       verifyingContract: '{{ networks.moonbeam.precompiles.call_permit}}',
-    }
+    };
 
     const types = {
       CallPermit: [
@@ -373,7 +358,7 @@ const nonce = await callPermit.nonces(userSigner.address);
         { name: 'nonce', type: 'uint256' },
         { name: 'deadline', type: 'uint256' },
       ],
-    }
+    };
 
     const callPermit = new ethers.Contract(
       '{{ networks.moonbeam.precompiles.call_permit }}', 
@@ -410,7 +395,7 @@ const signature = await signer.signTypedData(
   domain, // The domain separator
   types, // The typed data structure
   message // The message data
-)
+);
 console.log(`Signature hash: ${signature}`);
 ```
 
@@ -437,7 +422,7 @@ const dispatch = await callPermit.dispatch(
   ethersSignature.v,
   ethersSignature.r,
   ethersSignature.s,
-)
+);
 
 await dispatch.wait();
 console.log(`Transaction hash: ${dispatch.hash}`);

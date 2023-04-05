@@ -1,5 +1,5 @@
 import { ethers } from 'ethers';
-import abi from './callPermitABI.js'
+import abi from './callPermitABI.js';
 
 const providerRPC = {
   moonbeam: {
@@ -8,13 +8,10 @@ const providerRPC = {
     chainId: 1284, // 0x504 in hex,
   },
 };
-const provider = new ethers.JsonRpcProvider(
-  providerRPC.moonbeam.rpc, 
-  {
-    chainId: providerRPC.moonbeam.chainId,
-    name: providerRPC.moonbeam.name,
-  }
-);
+const provider = new ethers.JsonRpcProvider(providerRPC.moonbeam.rpc, {
+  chainId: providerRPC.moonbeam.chainId,
+  name: providerRPC.moonbeam.name,
+});
 
 // Insert your own signer logic or use the following for testing purposes.
 // For demo purposes only. Never store your private keys in a JavaScript file
@@ -26,7 +23,7 @@ const domain = {
   version: '1',
   chainId: 1284,
   verifyingContract: '0x000000000000000000000000000000000000080a',
-}
+};
 
 const types = {
   CallPermit: [
@@ -38,11 +35,11 @@ const types = {
     { name: 'nonce', type: 'uint256' },
     { name: 'deadline', type: 'uint256' },
   ],
-}
+};
 
 const callPermit = new ethers.Contract(
-  '0x000000000000000000000000000000000000080a', 
-  abi, 
+  '0x000000000000000000000000000000000000080a',
+  abi,
   thirdPartyGasSigner
 );
 
@@ -58,27 +55,23 @@ const message = {
   deadline: '1680587122996', // Randomly created deadline in the future
 };
 
-const signature = await userSigner.signTypedData(
-    domain,
-    types,
-    message
-)
+const signature = await userSigner.signTypedData(domain, types, message);
 console.log(`Signature hash: ${signature}`);
 
 const ethersSignature = ethers.Signature.from(signature);
 
 // This gets dispatched using the dApps signer
 const dispatch = await callPermit.dispatch(
-    message.from,
-    message.to,
-    message.value,
-    message.data,
-    message.gaslimit,
-    message.deadline,
-    ethersSignature.v,
-    ethersSignature.r,
-    ethersSignature.s,
-  )
-  
-  await dispatch.wait();
-  console.log(`Transaction hash: ${dispatch.hash}`);
+  message.from,
+  message.to,
+  message.value,
+  message.data,
+  message.gaslimit,
+  message.deadline,
+  ethersSignature.v,
+  ethersSignature.r,
+  ethersSignature.s
+);
+
+await dispatch.wait();
+console.log(`Transaction hash: ${dispatch.hash}`);
