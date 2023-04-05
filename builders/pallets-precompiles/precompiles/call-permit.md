@@ -55,19 +55,7 @@ The interface includes the following functions:
 - **nonces**(*address* owner) - returns the current nonce for given owner
 - **DOMAIN_SEPARATOR**() - returns the EIP-712 domain separator which is used to avoid replay attacks. It follows the [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612#specification){target=_blank} implementation
 
-The **DOMAIN_SEPARATOR()** is defined in the [EIP-712 standard](https://eips.ethereum.org/EIPS/eip-712){target=_blank}, and is calculated as:
-
-```
-keccak256(PERMIT_DOMAIN, name, version, chain_id, address)
-```
-
-The parameters of the hash can be broken down as follows:
-
- - **PERMIT_DOMAIN** - is the `keccak256` of `EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)`
- - **name** - is the name of the signing domain and must be `"Call Permit Precompile"` exactly
- - **version** - is the version of the signing domain. For this case **version** is set to `1`
- - **chainId** - is the chain ID of the network
- - **verifyingContract** - is the address of the contract that will verify the signature. In this case, the call permit precompile address
+--8<-- 'text/precompiles/call-permit/domain-separator.md'
 
 When `dispatch` is called, the permit needs to be verified before the call is dispatched. The first step is to [compute the domain separator](https://github.com/PureStake/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L138){target=_blank}. The calculation can be seen in [Moonbeam's implementation](https://github.com/PureStake/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L112-L126){target=_blank} or you can check out a practical example in [OpenZeppelin's EIP712 contract](ttps://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/cryptography/draft-EIP712.sol#L70-L84){target=_blank}.
 

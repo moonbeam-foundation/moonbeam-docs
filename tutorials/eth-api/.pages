@@ -6,4 +6,5 @@ nav:
   - '[HardHat] Development Life Cycle from Start to End': 'hardhat-start-to-end.md'
   - '[Precompiles] Approve & Swap with the Batch Precompile': 'batch-approve-swap.md'
   - '[Precompiles] Create a Lottery with the Randomness Precompile': 'randomness-lottery.md'
+  - '[Precompiles] Gasless Transactions via the Call Permit Precompile': 'call-permit-gasless-txs.md'
   - '[Truffle] Development Life Cycle from Start to End': 'truffle-start-to-end.md'
