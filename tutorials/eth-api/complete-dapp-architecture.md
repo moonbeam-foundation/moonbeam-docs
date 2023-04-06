@@ -12,9 +12,9 @@ Decentralized applications, or DApps, have redefined how applications are built,
 
 **put an image here that shows the relationships between all of the different components**
 
-In this tutorial, you'll come face-to-face with each major component by writing a full DApp that mints tokens. We'll also explore additional optional components of DApps that can enhance user experience for your future projects.  
+In this tutorial, you'll come face-to-face with each major component by writing a full DApp that mints tokens. We'll also explore additional optional components of DApps that can enhance user experience for your future projects. You can view the complete project in its [monorepo on GitHub](https://github.com/jboetticher/complete-example-dapp){target=_blank}.  
 
-**put an image here that shows off the DApp**
+![DApp End Result](/images/tutorials/eth-api/complete-dapp/complete-dapp-2.png)
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
@@ -23,8 +23,17 @@ To get started, you will need the following:
  - A Moonbase Alpha account funded with DEV. 
   --8<-- 'text/faucet/faucet-list-item.md'
  - [Node.js](https://nodejs.org/en/download/){target=_blank} version 16 or newer installed
- - 
---8<-- 'text/common/endpoint-examples.md'
+ - [VS Code](https://code.visualstudio.com/){target=_blank} with Juan Blanco's [Solidity extension](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity){target=_blank} is a recommended IDE
+ - Understanding of JavaScript and React
+ - Novice familiarity with Solidity. If you are not familiar with writing Solidity, there are many resources out there, including [Solidity by Example](https://solidity-by-example.org/){target=_blank}. A 15 minute skim should suffice for this tutorial
+
+## Nodes and JSON-RPC Endpoints {: #nodes-and-json-rpc-endpoints }
+
+A JSON-RPC is a remote procedure call (RPC) protocol that utilizes JSON to encode data, allowing for seamless communication between the frontend and the blockchain. DApp developers use JSON-RPC to send requests and receive responses from the blockchain node, making it a crucial element in the interaction with smart contracts. JSON-RPC requests include specific methods for reading and writing data, such as `eth_call` for executing a smart contract function in a read-only manner or `eth_sendRawTransaction` for submitting signed transactions to the network (calls that change the blockchain state).  
+
+JSON-RPCs allow frontend user interfaces to seamlessly interact with the smart contracts and provide users with real-time feedback on their actions. They also allow developers to deploy their smart contracts in the first place!  
+
+The first thing that you need to use a 
 
 ## Smart Contracts {: #smart-contracts }
 
@@ -32,19 +41,96 @@ Smart contracts are self-executing contracts with the terms of the agreement dir
 
 When you deploy a smart contract onto Moonbeam, you upload a series of instructions that can be understood by the EVM, or the Ethereum Virtual Machine. Whenever someone interacts with a smart contract, these series of instructions are executed by the EVM to change the blockchain's state. Writing the instructions in a smart contract properly is very important since the blockchain's state defines the most crucial information about your DApp, such as who has what amount of money.  
 
-Since the instructions are difficult to write and make sense of at a low (assembly) level, we have smart contract languages such as Solidity to make it easier to write them. To help write, debug, test, and compile these smart contract languages, developers in the Ethereum community have created developer environments such as [HardHat](/tutorials/eth-api/hardhat-start-to-end.md){target=_blank} and [Foundry](/tutorials/eth-api/foundry-start-to-end.md){target=_blank}.  
+Since the instructions are difficult to write and make sense of at a low (assembly) level, we have smart contract languages such as Solidity to make it easier to write them. To help write, debug, test, and compile these smart contract languages, developers in the Ethereum community have created developer environments such as [HardHat](/tutorials/eth-api/hardhat-start-to-end){target=_blank} and [Foundry](/tutorials/eth-api/foundry-start-to-end){target=_blank}. Moonbeam's developer site provides information on a [plethora of developer environments](/builders/build/eth-api/dev-env){target=_blank}.    
 
-This tutorial will use HardHat, which requires Node.
+This tutorial will use HardHat for managing smart contracts. You can initialize a project with HardHat using the following command:  
+
+```bash
+npx hardhat init
+```
 
 ### Writing Smart Contracts {: #writing-smart-contracts }
 
-### Testing Smart Contracts {: #testing-smart-contracts }
+Recall that we're making a DApp that allows you to mint a token for a price. Let's write a smart contract that reflects this functionality!  
+
+Once you've initialized a HardHat project, you'll be able to write smart contracts in its `contracts` folder. This folder will have an initial smart contract, likely called `Lock.sol`, but you should delete it and add a new smart file called `MintableERC20.sol`.  
+
+The standard for tokens is called `ERC-20`, where ERC stands for "*Ethereum Request for Comment*". A long time ago this standard was defined, and now most smart contracts that work with tokens expect tokens to have all of the functionality defined by `ERC-20`. Fortunately, you don't have to know it from memory since the OpenZeppelin smart contract team provides us with smart contract bases to use.  
+
+Install OpenZeppelin smart contracts:  
+
+```bash
+npm install @openzeppelin/contracts
+```
+
+Now, in your `MintableERC20.sol`, add the following code:  
+
+```solidity
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.17;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract MintableERC20 is ERC20, Ownable {
+    constructor() ERC20("Mintable ERC 20", "MERC") {}
+}
+```
+
+When writing smart contracts, you're going to have to compile eventually. Every developer environment for smart contracts will have this functionality. In HardHat, you can compile with:  
+
+```bash
+npx hardhat compile
+```
+
+Everything should compile well, so let's continue by adding functionality. Add the following constants, errors, event, and function to your solidity file:  
+
+```solidity
+    uint256 public constant MAX_TO_MINT = 1000 ether;
+    uint256 public constant NATIVE_TO_TOKEN = 1 ether;
+
+    event PurchaseOccurred(address minter, uint256 amount);
+    error MustMintOverZero();
+    error MintRequestOverMax();
+    error FailedToSendEtherToOwner();
+
+    /**Purchases some of the token with native gas currency. */
+    function purchaseMint() payable external {
+        // Calculate amount to mint
+        uint256 amountToMint = msg.value / NATIVE_TO_TOKEN;
+
+        // Check for no errors
+        if(amountToMint == 0) revert MustMintOverZero();
+        if(amountToMint + totalSupply() > MAX_TO_MINT) revert MintRequestOverMax();
+
+        // Send to owner
+        (bool success, ) = owner().call{value: msg.value}("");
+        if(!success) revert FailedToSendEtherToOwner();
+
+        // Mint to user
+        _mint(msg.sender, amountToMint);
+        emit PurchaseOccurred(msg.sender, amountToMint);
+    }
+```
+
+This function will allow a user to send gas currency (like GLMR, MOVR, or DEV) because it is a payable function. Let's break down the function section by section.  
+
+1. It will then figure out how much of the token to mint based on how much gas currency was sent
+2. Then it will check to see if the amount minted is 0 or if the total amount minted is over the `MAX_TO_MINT`, giving a descriptive error in both cases
+3. The contract will then forward the gas currency included with the function call to the owner of the contract (by default, the address that deployed the contract, which will be you)
+4. Finally, tokens will be minted to the user and an event will be emitted to pick up on later  
+
+To make sure that this works, let's use HardHat again:  
+
+```
+npx hardhat compile
+```
+
+You've now written the smart contract for your DApp! If this were a production app, we would write tests for it, but that is out of the scope of this tutorial. Let's deploy it next.  
 
 ### Deploying Smart Contracts {: #deploying-smart-contracts }
 
-## Nodes and JSON-RPC Endpoints {: #nodes-and-json-rpc-endpoints }
-
-JSON-RPC is a remote procedure call (RPC) protocol that utilizes JSON to encode data, allowing for seamless communication between the frontend and the blockchain. DApp developers use JSON-RPC to send requests and receive responses from the blockchain node, making it a crucial element in the interaction with smart contracts. JSON-RPC requests include specific methods for reading and writing data, such as 'eth_call' for executing a smart contract function in a read-only manner or 'eth_sendRawTransaction' for submitting signed transactions to the network. By using JSON-RPC, the frontend user interface can seamlessly interact with the smart contracts and provide users with real-time feedback on their actions.
+you press a button
 
 ## DApp Frontends {: #dapp-frontends }
 
