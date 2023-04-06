@@ -29,17 +29,39 @@ To get started, you will need the following:
 
 ## Nodes and JSON-RPC Endpoints {: #nodes-and-json-rpc-endpoints }
 
-A JSON-RPC is a remote procedure call (RPC) protocol that utilizes JSON to encode data, allowing for seamless communication between the frontend and the blockchain. DApp developers use JSON-RPC to send requests and receive responses from the blockchain node, making it a crucial element in the interaction with smart contracts. JSON-RPC requests include specific methods for reading and writing data, such as `eth_call` for executing a smart contract function in a read-only manner or `eth_sendRawTransaction` for submitting signed transactions to the network (calls that change the blockchain state).  
+Generally speaking, a JSON-RPC is a remote procedure call (RPC) protocol that utilizes JSON to encode data. For Web3, they refer to the specific JSON-RPCs that DApp developers use to send requests and receive responses from blockchain nodes, making it a crucial element in interactions with smart contracts. They allow frontend user interfaces to seamlessly interact with the smart contracts and provide users with real-time feedback on their actions. They also allow developers to deploy their smart contracts in the first place!  
 
-JSON-RPCs allow frontend user interfaces to seamlessly interact with the smart contracts and provide users with real-time feedback on their actions. They also allow developers to deploy their smart contracts in the first place!  
+To get a JSON-RPC to communicate with a Moonbeam blockchain, you need to run a node. But that can be expensive, complicated, and a hassle. Fortunately, as long as you have *access* to a node, you can interact with the blockchain. Moonbase Alpha has a [handful of free and paid node options](/learn/platform/networks/moonbase/#network-endpoints){target=_blank}. For this tutorial, we will be using the Moonbeam Foundation's public node for Moonbase Alpha: `https://rpc.api.moonbase.moonbeam.network`, but you are encouraged to get your own private endpoint.  
 
-The first thing that you need to use a 
+So now you have a URL. How do you use it? Over `HTTPS`, JSON-RPC requests are `POST` requests that include specific methods for reading and writing data, such as `eth_call` for executing a smart contract function in a read-only manner or `eth_sendRawTransaction` for submitting signed transactions to the network (calls that change the blockchain state). The entire JSON request structure will always have a structure similar to the following:  
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "eth_getBalance",
+  "params": ["0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac", "latest"]
+}
+```
+
+This example is getting the balance (in DEV on Moonbase Alpha) of the `0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac` account. Let's break down the elements:  
+
+- `jsonrpc` — the API version of the JSON-RPC, usually "2.0"
+- `id` — an integer value that helps with identifying a response to a request. Can usually just keep it as `
+- `method` — the specific method to read/write data from/to the blockchain. You can see many of the [methods on our docs site](/builders/get-started/eth-compare/rpc-support){target=_blank}
+- `params` — an array of the input parameters expected by the specific `method`  
+
+There are also additional elements that can be added to JSON-RPC requests, but those four will be seen the most often.  
+
+Now, these JSON-RPC requests are pretty useful, but when writing code it can be a hassle to create a JSON object over and over again. That's why there exist libraries that help abstract and facilitate the usage of these requests. Moonbeam provides [documentation on many libraries](/builders/build/eth-api/libraries){target=_blank}, and the one that we will be using in this tutorial is [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank}. Just understand that whenever we interact with the blockchain through the Ethers.js package, we're really using the JSON-RPC!  
 
 ## Smart Contracts {: #smart-contracts }
 
-Smart contracts are self-executing contracts with the terms of the agreement directly written into code. They serve as the backbone of any DApp, automating and enforcing the business logic within the decentralized system. By leveraging the immutability and security of the blockchain, smart contracts ensure that the agreed-upon rules are executed in a transparent and tamper-proof manner.  
+Smart contracts are self-executing contracts with the terms of the agreement directly written into code. They serve as the decentralized backend of any DApp, automating and enforcing the business logic within the system.  
 
-When you deploy a smart contract onto Moonbeam, you upload a series of instructions that can be understood by the EVM, or the Ethereum Virtual Machine. Whenever someone interacts with a smart contract, these series of instructions are executed by the EVM to change the blockchain's state. Writing the instructions in a smart contract properly is very important since the blockchain's state defines the most crucial information about your DApp, such as who has what amount of money.  
+If coming from traditional web development, smart contracts are meant to replace the backend with important cavieats: the user must have the gas currency (GLMR, MOVR, DEV, etc) to make state-changing requests, storing information can be expensive, and **no information stored is private**.  
+
+When you deploy a smart contract onto Moonbeam, you upload a series of instructions that can be understood by the EVM, or the Ethereum Virtual Machine. Whenever someone interacts with a smart contract, these transparent, tamper-proof, and immutable instructions are executed by the EVM to change the blockchain's state. Writing the instructions in a smart contract properly is very important since the blockchain's state defines the most crucial information about your DApp, such as who has what amount of money.  
 
 Since the instructions are difficult to write and make sense of at a low (assembly) level, we have smart contract languages such as Solidity to make it easier to write them. To help write, debug, test, and compile these smart contract languages, developers in the Ethereum community have created developer environments such as [HardHat](/tutorials/eth-api/hardhat-start-to-end){target=_blank} and [Foundry](/tutorials/eth-api/foundry-start-to-end){target=_blank}. Moonbeam's developer site provides information on a [plethora of developer environments](/builders/build/eth-api/dev-env){target=_blank}.    
 
