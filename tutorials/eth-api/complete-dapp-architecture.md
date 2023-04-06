@@ -71,6 +71,22 @@ This tutorial will use HardHat for managing smart contracts. You can initialize 
 npx hardhat init
 ```
 
+Before we start writing the smart contract, let's add a JSON-RPC URL to the config. Set the `hardhat.config.js` file with the following code, and replace `YOUR_PRIVATE_KEY` with your funded account's private key. This is for testing purposes, **never store your private key in plain text with real funds**.  
+
+```javascript
+require("@nomicfoundation/hardhat-toolbox");
+module.exports = {
+  solidity: "0.8.17",
+  networks: {
+    moonbase: {
+      url: 'https://rpc.api.moonbase.moonbeam.network',
+      chainId: 1287, // 0x507 in hex,
+      accounts: ["YOUR_PRIVATE_KEY"]
+    }
+  }
+};
+```
+
 ### Writing Smart Contracts {: #writing-smart-contracts }
 
 Recall that we're making a DApp that allows you to mint a token for a price. Let's write a smart contract that reflects this functionality!  
@@ -152,23 +168,69 @@ You've now written the smart contract for your DApp! If this were a production a
 
 ### Deploying Smart Contracts {: #deploying-smart-contracts }
 
-you press a button
+Under the hood, HardHat is a Node project that uses the Ethers.js library to interact with the blockchain. You can also use Ethers.js in conjunction with HardHat's tool to create scripts to do things like deploying contracts.  
+
+Your HardHat project should already come with a script in the `scripts` folder, called `deploy.js`. Let's replace it with a similar, albeit simpler script.
+
+```javascript
+const hre = require("hardhat");
+
+async function main() {
+  const MintableERC20 = await hre.ethers.getContractFactory("MintableERC20");
+  const token = await MintableERC20.deploy();
+  await token.deployed();
+
+  console.log(`Deployed to ${token.address}`);
+}
+
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
+```
+
+This script uses HardHat's instance of the the ethers library to get a contract factory of the MintableERC20.sol smart contract that we wrote earlier. It then deploys it and prints the resultant smart contract's address. Very simple to do with HardHat and the Ethers.js library, but significantly more difficult using just JSON-RPC!  
+
+Let's run the contract on Moonbase Alpha (whose JSON-RPC endpoint we defined in the `hardhat.config.js` script earlier):  
+
+```bash
+npx hardhat run scripts/deploy.js --network moonbase
+```
+
+You should see an output that displays the token address. Make sure to **save it for use later**! 
+
+!!! challenge
+    HardHat has a poor built-in solution for deploying smart contracts. It doesn't automatically save the transactions and addresses related to the deployment! This is why the [hardhat-deploy](https://www.npmjs.com/package/hardhat-deploy#1-hardhat-deploy){target=_blank} package was created. Can you implement it yourself? Or can you switch to a different developer environment like [Foundry](https://github.com/foundry-rs/foundry){target=_blank}?
 
 ## DApp Frontends {: #dapp-frontends }
 
 To facilitate seamless communication between the frontend user interface and the smart contracts, various components work in harmony, including signers, providers, wallets, and JSON-RPC. This section delves into the mechanics of these elements and how they interact to establish a robust connection between the user interface and the underlying smart contracts.
 
-### Providers {: #providers }
+**talk about ethers again and then also talk about useDApp**
+
+**set up the frontend project with create-react-apps**
+
+### Providers, Signers, and Wallets {: #providers-signers-and-wallets }
 
 Providers are the bridge between the frontend user interface and the blockchain network, facilitating communication and data exchange. They are responsible for connecting the DApp to a specific blockchain node, allowing it to read data from the blockchain and submit signed transactions. Providers abstract the complexities of interacting with the blockchain, offering a simple API for the frontend to interact with the smart contracts. Popular providers like Web3.js and Ethers.js come with built-in support for multiple blockchain networks and offer a robust set of features to simplify the development process.
-
-### Signers and Wallets {: #signers-and-wallets }
 
 Wallets play a critical role in the DApp ecosystem, as they securely store and manage users' private keys and digital assets. In addition to providing secure storage, wallets also function as signers, which are responsible for signing and authorizing transactions before they are sent to the blockchain.  
 
 By integrating the signer functionality, wallets facilitate transaction signing and authorization using the user's private key. This process generates a unique digital signature for each transaction, adding an essential layer of security. Wallets, therefore, act as a user's representation within the DApp, ensuring that only authorized transactions are executed.  
 
 Wallets can be browser extensions, such as MetaMask, or mobile applications like Trust Wallet. By providing a user-friendly interface, secure storage, and transaction signing capabilities, wallets enable users to access the DApp and interact with the underlying smart contracts with ease and confidence.  
+
+### Reading from Contracts {: #providers-signers-and-wallets }
+
+**useDapp amiright**
+
+### Sending Transactions {: #sending-transactions }
+
+**this is why your dApp exists**
+
+### Reading Events from Contracts {: #reading-events-from-contracts }
+
+**wow reading events is important**
 
 ## Additional Options {: #additional-options }
 
@@ -190,4 +252,6 @@ While decentralized applications primarily rely on blockchain technology and its
 
 ## Conclusion
 
-more transactions on moonbeam please
+**more transactions on moonbeam please**
+
+**where to learn more**
