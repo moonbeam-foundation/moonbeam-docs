@@ -101,4 +101,4 @@ Check out MetaFab's [complete developer documentation](https://docs.trymetafab.c
 - [API Reference](https://docs.trymetafab.com/reference){target=_blank}
 - [GitHub Repos](https://github.com/orgs/MetaFabInc/repositories){target=_blank}
 
-
+--8<-- 'text/disclaimers/third-party-content.md'
