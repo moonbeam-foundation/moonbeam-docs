@@ -318,7 +318,7 @@ To summarize, the steps you're taking are as follows:
 You can use `node` to run the script and the result will be logged to the console. The result should be slightly different than the encoded calldata from the previous step: 
 
 ```
-0x1c03020c0004000100000f0000c16ff2862313000100000f0000c16ff28623000d010004010101000c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d670000000000000000
+0x1c03020c000400010000070010a5d4e81300010000070010a5d4e8000d010004010101000c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d670000000000000000
 ```
 
 Before you can use the encoded calldata, you'll need to remove some of the hexadecimal characters that do not correspond to the XCM message, such as the call index for the `polkadotXcm.execute` function, which will be the first 4 characters, and the maximum weight, which will be the last 16 characters:
@@ -332,7 +332,7 @@ max weight:  0000000000000000
 So, for this example, the encoded calldata for the XCM message alone is: 
 
 ```
-0x020c0004000100000f0000c16ff2862313000100000f0000c16ff28623000d010004010101000c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d67
+0x020c000400010000070010a5d4e81300010000070010a5d4e8000d010004010101000c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d67
 ```
 
 Now that you have the multilocation of the destination and the SCALE encoded XCM message, you can use the following code snippets to programmatically call the `xcmSend` function of the XCM Utilities Precompile using your Ethereum library of choice:
