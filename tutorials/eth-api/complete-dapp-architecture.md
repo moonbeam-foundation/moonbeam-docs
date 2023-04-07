@@ -204,11 +204,43 @@ You should see an output that displays the token address. Make sure to **save it
 
 ## DApp Frontends {: #dapp-frontends }
 
-To facilitate seamless communication between the frontend user interface and the smart contracts, various components work in harmony, including signers, providers, wallets, and JSON-RPC. This section delves into the mechanics of these elements and how they interact to establish a robust connection between the user interface and the underlying smart contracts.
+Frontends provide an interface for users to interact with blockchain-based applications. React, a popular JavaScript library for building user interfaces, is often used for developing DApp frontends due to its component-based architecture, which promotes reusable code and efficient rendering. useDApp, an Ethers.js based React framework, further simplifies the process of building DApp frontends by providing a comprehensive set of hooks and components that streamline the integration of Ethereum blockchain functionality.  
 
-**talk about ethers again and then also talk about useDApp**
+!!! note
+    Typically a larger project will create separate GitHub repositories for their frontend and smart contracts, but this is a small enough of a project to create a monorepo.
 
-**set up the frontend project with create-react-apps**
+Let's set up a new React project and install dependencies, which we can create within our HardHat project's folder without much issue:
+
+```bash
+npx create-react-app frontend
+cd frontend
+npm install ethers@5.6.9 @usedapp/core @mui/material @mui/system
+```
+
+If you remember, Ethers.js is a library that assists with JSON-RPC communication. useDApp is a similar library that uses Ethers.js and formats them into React hooks so that they work better in frontend projects. We've also added two MUI packages for styling and components.  
+
+Let's also move a file from the artifacts folder into the frontend folder, `MintableERC20.json`. This file is generated during compilation of the smart contracts. It contains the ABI, which defines the structure of the smart contract, allowing libraries to understand what functions the smart contract has. Every time you change and recompile the smart contract, you'll have to update the ABI in the frontend as well. Some projects will have developer setups that automatically pull ABIs from the same source, but in this case we will just copy it over:  
+
+```JSON
+|--artifacts
+    |--@openzeppelin
+    |--build-info
+    |--contracts
+        |--MintableERC20.sol
+            |--MintableERC20.json // This is the file you're looking for!
+            ...
+|--cache
+|--contracts
+|--frontend
+    |--public
+    |--src
+        |--MintableERC20.json // Copy the file to here!
+        ...
+    ...
+...
+```
+
+At this point, our frontend project is set up well enough to start working on the functional code!  
 
 ### Providers, Signers, and Wallets {: #providers-signers-and-wallets }
 
