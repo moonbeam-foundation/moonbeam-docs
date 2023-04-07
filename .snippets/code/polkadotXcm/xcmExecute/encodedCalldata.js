@@ -38,10 +38,10 @@ const generateCallData = async () => {
   const api = await ApiPromise.create({ provider: substrateProvider });
 
   // 6. Create the extrinsic
-  let tx = api.tx.polkadotXcm.execute(xcmMessage, maxWeight);
+  const tx = api.tx.polkadotXcm.execute(xcmMessage, maxWeight);
 
   // 7. Get SCALE Encoded Calldata
-  let encodedCall = tx.method.toHex();
+  const encodedCall = tx.method.toHex();
   console.log(`Encoded Calldata: ${encodedCall}`);
 };
 
