@@ -26,6 +26,7 @@ To get started, you will need the following:
  - [VS Code](https://code.visualstudio.com/){target=_blank} with Juan Blanco's [Solidity extension](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity){target=_blank} is a recommended IDE
  - Understanding of JavaScript and React
  - Novice familiarity with Solidity. If you are not familiar with writing Solidity, there are many resources out there, including [Solidity by Example](https://solidity-by-example.org/){target=_blank}. A 15 minute skim should suffice for this tutorial
+ - Have a wallet like [MetaMask installed](/tokens/connect/metamask){target=_blank}
 
 ## Nodes and JSON-RPC Endpoints {: #nodes-and-json-rpc-endpoints }
 
@@ -219,7 +220,7 @@ npm install ethers@5.6.9 @usedapp/core @mui/material @mui/system
 
 If you remember, Ethers.js is a library that assists with JSON-RPC communication. useDApp is a similar library that uses Ethers.js and formats them into React hooks so that they work better in frontend projects. We've also added two MUI packages for styling and components.  
 
-Let's also move a file from the artifacts folder into the frontend folder, `MintableERC20.json`. This file is generated during compilation of the smart contracts. It contains the ABI, which defines the structure of the smart contract, allowing libraries to understand what functions the smart contract has. Every time you change and recompile the smart contract, you'll have to update the ABI in the frontend as well. Some projects will have developer setups that automatically pull ABIs from the same source, but in this case we will just copy it over:  
+Let's also move a file from the artifacts folder into the frontend folder, `MintableERC20.json`. This file is generated during compilation of the smart contracts. It contains the ABI, which defines the structure of the smart contract, allowing libraries to understand what functions the smart contract has. Every time you change and recompile the smart contract, you'll have to update the ABI in the frontend as well. Some projects will have setups that automatically pull ABIs from the same source, but in this case we will just copy it over:  
 
 ```JSON
 |--artifacts
@@ -240,25 +241,214 @@ Let's also move a file from the artifacts folder into the frontend folder, `Mint
 ...
 ```
 
+Let's set up the `App.js` file to add some visual structure:  
+
+```javascript
+import { useState } from 'react';
+import { useEthers, useContractFunction } from '@usedapp/core';
+import { Button, Grid, TextField, CircularProgress, Card } from '@mui/material';
+import { Box } from '@mui/system';
+import MintableERC20 from './MintableERC20.json';
+
+const styles = {
+  box: { minHeight: '100vh', backgroundColor: '#1b3864' },
+  vh100: { minHeight: '100vh' }
+}
+
+function App() {
+  return(
+    <Box sx={styles.box}>
+      <Grid container direction="column" alignItems="center" justifyContent="center" style={stylesvh100}>
+        {/* This is where we'll be putting our functional components! */}
+      </Grid>
+    </Box>
+  );
+}
+```
+
 At this point, our frontend project is set up well enough to start working on the functional code!  
 
 ### Providers, Signers, and Wallets {: #providers-signers-and-wallets }
 
-Providers are the bridge between the frontend user interface and the blockchain network, facilitating communication and data exchange. They are responsible for connecting the DApp to a specific blockchain node, allowing it to read data from the blockchain and submit signed transactions. Providers abstract the complexities of interacting with the blockchain, offering a simple API for the frontend to interact with the smart contracts. Popular providers like Web3.js and Ethers.js come with built-in support for multiple blockchain networks and offer a robust set of features to simplify the development process.
+The frontend communicates with the blockchain using JSON-RPC, but we will be using Ethers.js. When using the JSON-RPC, Ethers.js likes to abstract degrees of interaction with the blockchain into objects, such as: providers, signers, and wallets.  
 
-Wallets play a critical role in the DApp ecosystem, as they securely store and manage users' private keys and digital assets. In addition to providing secure storage, wallets also function as signers, which are responsible for signing and authorizing transactions before they are sent to the blockchain.  
+Providers are the bridge between the frontend user interface and the blockchain network, facilitating communication and data exchange. They abstract the complexities of interacting with the blockchain, offering a simple API for the frontend to use. They are responsible for connecting the DApp to a specific blockchain node, allowing it to read data from the blockchain, and essentially contain the JSON-RPC URL.  
 
-By integrating the signer functionality, wallets facilitate transaction signing and authorization using the user's private key. This process generates a unique digital signature for each transaction, adding an essential layer of security. Wallets, therefore, act as a user's representation within the DApp, ensuring that only authorized transactions are executed.  
+Signers are a type of provider that contain a secret that can be used to sign transactions with. This allows the frontend to create transactions, sign them, and then send them with `eth_sendRawTransaction`. There are multiple types of signers, but we're most interested in wallet objects, which securely store and manage users' private keys and digital assets. Wallets such as MetaMask facilitate transaction signing with a universal and user-friendly process. They act as a user's representation within the DApp, ensuring that only authorized transactions are executed. The Ethers.js wallet object represents this interface within our frontend code.  
 
-Wallets can be browser extensions, such as MetaMask, or mobile applications like Trust Wallet. By providing a user-friendly interface, secure storage, and transaction signing capabilities, wallets enable users to access the DApp and interact with the underlying smart contracts with ease and confidence.  
+Typically, a frontend using Ethers.js will require you to create a provider, connect to the user's wallet if applicable, and create a wallet object. This process can become unwieldy in larger projects, especially with the number of wallets that exist other than MetaMask:  
+
+```javascript
+// Detect if the browser has MetaMask installed
+let provider, signer;
+if (typeof window.ethereum !== 'undefined') {
+  // Create a provider using MetaMask
+  provider = new ethers.providers.Web3Provider(window.ethereum);
+
+  // Connect to MetaMask
+  async function connectToMetaMask() {
+    try {
+      // Request access to the user's MetaMask account
+      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+      // Create a signer (wallet) using the provider
+      signer = provider.getSigner(accounts[0]);
+    } catch (error) {
+      console.error('Error connecting to MetaMask:', error);
+    }
+  }
+
+  // Call the function to connect to MetaMask
+  connectToMetaMask();
+} else {
+  console.log('MetaMask is not installed');
+}
+
+// ... also the code for disconnecting from the site
+// ... also the code that handles other wallets
+```
+
+Fortunately, we have installed the useDApp package, which simplifies many of the processes for us. This simultaneously abstracts what Ethers is doing as well, which is why we took a bit of time to explain them here.  
+
+Let's do a bit of setup with the useDApp package. First, in your React frontend's `index.js` file, add a `DAppProvider` object and its config. This essentially acts as the Ethers.js provider object, but can be used throughout your entire project by useDApp hooks:  
+
+```javascript
+// ... other imports go here
+import { DAppProvider, MoonbaseAlpha } from '@usedapp/core';
+import { getDefaultProvider } from 'ethers';
+
+const config = {
+  readOnlyChainId: MoonbaseAlpha.chainId,
+  readOnlyUrls: {
+    [MoonbaseAlpha.chainId]: getDefaultProvider("https://rpc.api.moonbase.moonbeam.network"),
+  }
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <DAppProvider config={config}>
+      <App />
+    </DAppProvider>
+  </React.StrictMode>
+);
+```
+
+Now in your `App.js` file, let's add a button that allows us to connect to MetaMask. We don't have to write any code that's wallet specific, fortunately, since useDApp does it for us:  
+
+```javascript
+function App() {
+  const { activateBrowserWallet, deactivate, account } = useEthers();
+  
+  // Handle the wallet toggle
+  const handleWalletConnection = () => {
+    if (account) deactivate();
+    else activateBrowserWallet();
+  };
+
+  // ... 
+
+  return(
+    {/* Wrapper Components */}
+      <Box position="absolute" top={8} right={16}>
+          <Button variant="contained" onClick={handleWalletConnection}>
+            {account ? `Disconnect ${account.substring(0, 5) + '...'}` : 'Connect Wallet'}
+          </Button>
+      </Box>
+    {/* Wrapper Components */}
+  )
+}
+```
+
+Now there should be a button in the top right of your screen that connects your wallet to your frontend! Next, let's find out how we can read data from our smart contract.  
 
 ### Reading from Contracts {: #providers-signers-and-wallets }
 
-**useDapp amiright**
+Reading from contracts is quite easy, as long as we know what we want to read. For our application, we will be reading the maximum amount of tokens that can be minted, and the number of tokens that have been minted. This way, we can display to our users how many tokens can still be minted, and hopefully invoke some FOMO...  
+
+If you were just using the JSON-RPC, you would use `eth_call` to get this data, but it's quite difficult to do this since you have to [encode your requests](https://docs.soliditylang.org/en/latest/abi-spec.html){target=_blank} in a non-straightforward method called ABI encoding. Fortunately, Ethers.js allows us to easily create objects that represent contracts in a human-readable way so long as we have the ABI of the contract. And we have the ABI of the `MintableERC20.sol` contract within `MintableERC20.json`!  
+
+Let's import the JSON file, the `Contract` objec within `App.js`. We can create a contract object instance with an address and ABI, so replace `YOUR_CONTRACT_ADDRESS_HERE` with the address of the contract that you copied [back when you deployed it](#deploying-smart-contracts):  
+
+```javascript
+import { Contract } from 'ethers';
+import MintableERC20 from './MintableERC20.json'; 
+// ... other imports
+
+const contractAddress = 'YOUR_CONTRACT_ADDRESS_HERE';
+
+function App() {
+  // ...
+  const contract = new Contract(contractAddress, MintableERC20.abi);
+  // ...
+}
+```
+
+Now we can spice up our frontend and call the read-only functions in the contract. Add the following structure and styling to your frontend so that we have a place to display our text:    
+
+```javascript
+import { SupplyComponent } from './SupplyComponent.js';
+// ... other imports
+
+function App() {
+  // ...
+
+  const styles = {
+    // ...
+    card: { borderRadius: 4, padding: 4, maxWidth: '550px', width: '100%' },
+    alignCenter: { textAlign: 'center' }
+  }
+
+  return (
+    {/* Wrapper Components */}
+      {/* Button Component */}
+      <Card sx={styles.card}>
+        <h1 style={styles.alignCenter}>Mint Your Token!</h1>
+        <SupplyComponent contract={contract} />
+      </Card>
+    {/* Wrapper Components */}
+  )
+}
+```
+
+And let's create a new `SupplyComponent` within a new `SupplyComponent.js` file:  
+
+```javascript
+import { useCall } from "@usedapp/core";
+import { utils } from "ethers";
+import { Grid } from "@mui/material";
+
+export default function SupplyComponent({ contract }) {
+  const totalSupply = useCall({ contract, method: 'totalSupply', args: [] });
+  const maxSupply = useCall({ contract, method: 'MAX_TO_MINT', args: [] });
+  const totalSupplyFormatted = totalSupply ? utils.formatEther(totalSupply.value.toString()) : '...';
+  const maxSupplyFormatted = maxSupply ? utils.formatEther(maxSupply.value.toString()) : '...';
+
+  const centeredText = { textAlign: 'center' };
+
+  return (
+    <Grid item xs={12}>
+      <h3 style={centeredText}>
+        Total Supply: {totalSupplyFormatted} / {maxSupplyFormatted}
+      </h3>
+    </Grid>
+  );
+}
+```
+
+Notice that this component uses the `useCall` hook provided by the useDApp package. This call takes in the contract object we created earlier, a string method, and any relevant arguments for the read-only call and returns the output. While it required some setup, this one-liner is a lot simpler than the the entire `use_call` RPC call that we would have had to done if we weren't using Ethers.js and useDApp.  
+
+Also note that we're using a utility format called `formatEther` to format the output values instead of displaying them directly. This is because our token, like gas currencies, are stored as an unsigned integer with a fixed decimal point of 18 figures. The utility function helps format this value into a way that we as humans expect.  
+
+Our frontend should now display the correct data!  
+
+![Displaying data](/images/tutorials/eth-api/complete-dapp/complete-dapp-3.png)
 
 ### Sending Transactions {: #sending-transactions }
 
-**this is why your dApp exists**
+Now for the most important part of all DApps: the state-changing transactions. This is where money moves, where tokens are minted, and value passes.  
+
+If you recall from our smart 
 
 ### Reading Events from Contracts {: #reading-events-from-contracts }
 
