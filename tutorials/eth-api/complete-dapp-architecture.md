@@ -5,12 +5,10 @@ description: Learn about the frontend, smart contracts, and storage system of De
 
 # Complete DApp Architecture
 
-![Learn about the entire architecture of DApps.](/images/tutorials/eth-api/hardhat-start-to-end/hardhat-banner.png)
+![Learn about the entire architecture of DApps.](/images/tutorials/eth-api/complete-dapp/complete-dapp-banner.png)
 _April 15, 2023 | by Jeremy Boetticher_
 
 Decentralized applications, or DApps, have redefined how applications are built, managed, and interacted with in Web3. By leveraging blockchain technology, DApps provide a secure, transparent, and trustless system that enables peer-to-peer interactions without any central authority. At the core of a DApp's architecture are several main components that work in tandem to create a robust, decentralized ecosystem. These components include smart contracts, nodes, frontend user interfaces, and decentralized storage solutions.  
-
-**put an image here that shows the relationships between all of the different components**
 
 In this tutorial, you'll come face-to-face with each major component by writing a full DApp that mints tokens. We'll also explore additional optional components of DApps that can enhance user experience for your future projects. You can view the complete project in its [monorepo on GitHub](https://github.com/jboetticher/complete-example-dapp){target=_blank}.  
 
