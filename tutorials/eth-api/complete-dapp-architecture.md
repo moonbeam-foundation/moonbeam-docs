@@ -700,22 +700,38 @@ Now you've implemented 3 main components of DApp frontends: reading from storage
 
 Decentralized storage solutions provide a distributed and fault-tolerant way to store and access data within a DApp. Unlike traditional centralized storage systems, decentralized storage distributes data across multiple nodes, ensuring that the information is secure, accessible, and resilient to failures. Popular decentralized storage solutions such as the [Arweave](https://www.arweave.org/){target=_blank} and [Filecoin/IPFS](https://filecoin.io/){target=_blank} leverage blockchain technology to create a global, peer-to-peer storage network, eliminating single points of failure and improving data privacy.  
 
-These systems can be very important for NFT projects, who need a place to store their media and documents. Additionally, if you want to completely decentralize, you can publish your site on one of these decentralized storage systems instead of only hosting your frontend on a server.  
+Generally speaking, decentralized storage systems are separated from smart contract platforms such as Moonbeam. Moonbeam does not provide a decentralized storage system itself, but the Polkadot ecosystem has solutions such as [Crust](https://crust.network/){target=_blank}.  
+
+These systems can be very important for NFT projects, who need a place to store their media and documents. In our project, the most applicable use of a decentralized storage system would be decentralized frontend hosting. This would be the final step to completely decentralize a DApp, since you can publish your site on one of these decentralized storage systems instead of only hosting your frontend on a centralized server.  
 
 ### Oracles {: #oracles }
 
-Oracles are third-party services that provide external data to smart contracts within a blockchain. Since smart contracts are unable to access information outside of the blockchain, oracles play a crucial role in supplying real-world data to DApps. This data can include asset prices, weather information, or any other data relevant to the DApp's use case. Oracles can be centralized or decentralized, with decentralized oracles offering a higher degree of trust and security. Examples of popular oracle solutions include Chainlink, Band Protocol, and API3, which enable the integration of off-chain data into smart contracts in a secure and reliable manner.  
+Oracles are third-party services that provide external data to smart contracts within a blockchain. Since smart contracts are unable to access information outside of the blockchain, oracles play a crucial role in supplying real-world data to DApps. This data can include asset prices, global sentiment, or any other data relevant to the DApp's use case. Oracles can be centralized or decentralized, with decentralized oracles offering a higher degree of trust and security.  
+
+Examples of popular oracle solutions include [Chainlink](/builders/integrations/oracles/chainlink){target=_blank}, [Band Protocol](/builders/integrations/oracles/band-protocol), and [Razor Network](/builders/integrations/oracles/razor-network), which enable the integration of off-chain data into smart contracts in a secure and reliable manner. Plus, good news: Moonbeam networks support these oracle solutions!  
+
+In our project, an oracle could update the token smart contract's minting price dynamically to reflect real-time prices instead of relying on a constant value.  
 
 ### Indexing Protocols {: #indexing-protocols }
 
-Indexing protocols, such as The Graph or Subsquid, serve to enhance the performance and accessibility of data within the decentralized ecosystem. The Graph is a decentralized protocol designed for indexing and querying blockchain data, enabling developers to access on-chain data more efficiently. By leveraging a global network of nodes referred to as "subgraphs," The Graph organizes and indexes data from smart contracts, making it easily available for DApps via GraphQL APIs. The indexing and querying process facilitated by The Graph allows DApps to retrieve complex data sets more efficiently, ultimately improving the overall user experience and reducing the burden on the blockchain network.
+Indexing protocols can play a crucial role in the efficient functioning of DApp frontends by providing a scalable and reliable solution for querying on-chain data. Indexing protocols work as middleware that continuously processes and organizes blockchain data, which helps overcome the limitations of querying data directly from blockchain nodes, which can be slow and computationally expensive. By utilizing indexing protocols, DApps can quickly retrieve and display relevant information to users, enhancing their overall experience and performance.  
+
+Some popular indexing protocols on Moonbeam include [The Graph](/builders/integrations/indexers/thegraph){target=_blank} and [Subsquid](/builders/integrations/indexers/subsquid){target=_blank}.  
+
+In our project, an indexing protocol could take the place of querying logs from the node. Instead, we could query an indexing protocol that already has this data stored and available for our frontend to use; plus we could query data from the entire blockchain instead of from just 10000 blocks in the past.  
 
 ### Centralized Backends {: #centralized-backends }
 
-While decentralized applications primarily rely on blockchain technology and its associated components, there are occasions when centralized backends are utilized to support specific functions or requirements. Centralized backends may be employed to handle tasks that are resource-intensive, time-sensitive, or challenging to implement within the constraints of the blockchain. For example, DApps may use centralized servers to manage user authentication or store non-sensitive data to reduce costs or comply with regulations. However, it is essential to strike a balance between decentralization and the use of centralized backends, ensuring that the core principles of trustlessness, security, and transparency are upheld.  
+While decentralized applications primarily rely on blockchain technology and its associated components, there are occasions when centralized backends are utilized to support specific functions or requirements. Centralized backends may be employed to handle tasks that are resource-intensive, time-sensitive, or challenging to implement within the constraints of the blockchain. For example, DApps may use centralized servers to host game servers, manage user authentication, store non-sensitive data to reduce costs, or comply with regulations. However, it is essential to strike a balance between decentralization and the use of centralized backends, ensuring that the core principles of trustlessness, security, and transparency are upheld.  
+
+In our project, a use of a centralized backend could be server-side rendering to increase the speed of the page. But since this is a really small DApp, it's not too important.  
 
 ## Conclusion
 
-**more transactions on moonbeam please**
+In this tutorial, we covered a wide range of topics and tools essential for successful DApp development. We started with HardHat, a powerful development environment that simplifies the process of writing, testing, and deploying smart contracts. Ethers.js, a popular library for interacting with Ethereum nodes, was introduced for managing wallets and transactions.  
 
-**where to learn more**
+We delved into the process of writing smart contracts, highlighting best practices and key considerations when developing on-chain logic. The guide then explored useDApp, a React-based framework, for creating a user-friendly frontend. We discussed techniques for reading data from contracts, executing transactions, and working with logs to ensure a seamless user experience.
+
+Finally, we touched upon additional components vital to DApps, such as indexing protocols for efficient data retrieval and oracles for accessing off-chain data.  
+
+Hopefully by reading this guide, you'll be well on your way to create novel DApps on Moonbeam!
