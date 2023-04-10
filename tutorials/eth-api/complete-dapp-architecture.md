@@ -361,7 +361,7 @@ function App() {
 
 Now there should be a button in the top right of your screen that connects your wallet to your frontend! Next, let's find out how we can read data from our smart contract.  
 
-### Reading from Contracts {: #providers-signers-and-wallets }
+### Reading from Contracts {: #reading-from-contracts }
 
 Reading from contracts is quite easy, as long as we know what we want to read. For our application, we will be reading the maximum amount of tokens that can be minted, and the number of tokens that have been minted. This way, we can display to our users how many tokens can still be minted, and hopefully invoke some FOMO...  
 
@@ -386,9 +386,6 @@ function App() {
 Now we can spice up our frontend and call the read-only functions in the contract. Add the following structure and styling to your frontend so that we have a place to display our text:    
 
 ```javascript
-import { SupplyComponent } from './SupplyComponent.js';
-// ... other imports
-
 function App() {
   // ...
 
@@ -403,7 +400,6 @@ function App() {
       {/* Button Component */}
       <Card sx={styles.card}>
         <h1 style={styles.alignCenter}>Mint Your Token!</h1>
-        <SupplyComponent contract={contract} />
       </Card>
     {/* Wrapper Components */}
   )
@@ -439,9 +435,31 @@ Notice that this component uses the `useCall` hook provided by the useDApp packa
 
 Also note that we're using a utility format called `formatEther` to format the output values instead of displaying them directly. This is because our token, like gas currencies, are stored as an unsigned integer with a fixed decimal point of 18 figures. The utility function helps format this value into a way that we as humans expect.  
 
+Now import it into our `App.js` file:  
+
+```javascript
+// ... other imports
+function App() {
+  // ...
+
+  return (
+    {/* Wrapper Components */}
+      {/* Button Component */}
+      <Card sx={styles.card}>
+        <h1 style={styles.alignCenter}>Mint Your Token!</h1>
+        <SupplyComponent contract={contract} />
+      </Card>
+    {/* Wrapper Components */}
+  )
+}
+```
+
 Our frontend should now display the correct data!  
 
 ![Displaying data](/images/tutorials/eth-api/complete-dapp/complete-dapp-3.png)
+
+!!! challenge
+    There's additonal information that could be helpful to display, such as the amount of tokens that the connected account currently has: `balanceOf(address)`. Can you add that to the frontend yourself?
 
 ### Sending Transactions {: #sending-transactions }
 
@@ -567,13 +585,122 @@ If you try entering a value like `0.1` and press the button, a MetaMask prompt s
 
 ### Reading Events from Contracts {: #reading-events-from-contracts }
 
-**wow reading events is important**
+A common way of listening to what happened in a transaction is through events, also known as logs. These logs are emitted by the smart contract through the `emit` and `event` keywords, and can be very important in a responsive frontend. Often DApps will use toast elements to represent events in real-time, but for this DApp we will use a simple table.  
+
+We created an event in our smart contract: `event PurchaseOccurred(address minter, uint256 amount)`, so let's figure out how to display its information in the frontend.  
+
+Let's create a new component `PurchaseOccurredEvents` within a new file `PurchaseOccurredEvents.js` that reads the last 5 logs and displays them in a table:  
+
+```javascript
+import { useLogs, useBlockNumber } from '@usedapp/core';
+import { utils } from 'ethers';
+import { Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+
+export default function PurchaseOccurredEvents({ contract }) {
+  return (
+    <Grid item xs={12} marginTop={5}>
+      <TableContainer >
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Minter</TableCell>
+              <TableCell align="right">Amount</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {/* This is where we have to inject data from our logs! */}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Grid>
+  );
+}
+```
+
+This component so far creates an empty table, so let's use 2 new hooks to read those logs:  
+
+```javascript
+export default function PurchaseOccurredEvents({ contract }) {
+  // Get block number to ensure that the useLogs doesn't search from 0, otherwise it will time out
+  const blockNumber = useBlockNumber();
+
+  // Create a filter & get the logs
+  const filter = { args: [null, null], contract, event: "PurchaseOccurred" };
+  const logs = useLogs(filter, { fromBlock: blockNumber - 10000 });
+  const parsedLogs = logs?.value.slice(-5).map(log => log.data);
+
+  // ... 
+}
+```
+
+Here's what happens in this code:  
+
+1. The block number is received from the `useBlockNumber` hook, similar to using `eth_blockNumber` in the JSON-RPC
+2. A filter is created to filter for all events with any arguments on the contract injected into the component with the event name `PurchaseOccurred`
+3. Logs are queried for via the `useLogs` hook, similar to using `eth_getLogs` in the JSON-RPC. Note that we're only querying the last 10000 blocks, because otherwise the entire history of the blockchain would be queried and the RPC would time-out
+4. The resultant logs are parsed and the most recent 5 are selected
+
+If we want to display them, we can do it like so:  
+
+```javascript
+export default function PurchaseOccurredEvents({ contract }) {
+  // ...
+  return (
+    <Grid item xs={12} marginTop={5}>
+      <TableContainer >
+        <Table>
+          {/* TableHead Component */}
+          <TableBody>
+            {parsedLogs?.reverse().map((log, index) => (
+              <TableRow key={index}>
+                <TableCell>{log.minter}</TableCell>
+                <TableCell align="right">{utils.formatEther(log.amount)} tokens</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Grid>
+  );
+}
+```
+
+Which can be added to `App.js`:  
+
+```javascript
+import { MintingComponent } from './MintingComponent.js';
+// ... other imports
+
+function App() {
+  // ...
+
+  return (
+    {/* Wrapper Components */}
+      {/* Button Component */}
+      <Card sx={styles.card}>
+        <h1 style={styles.alignCenter}>Mint Your Token!</h1>
+        <SupplyComponent contract={contract} />
+        <MintingComponent contract={contract} />
+        <PurchaseOccurredEvents contract={contract} />
+      </Card>
+    {/* Wrapper Components */}
+  )
+}
+```
+
+And, if you've done any transactions, you'll see that they'll pop up!  
+
+![Finished DApp](/images/tutorials/eth-api/complete-dapp/complete-dapp-5.png)
+
+Now you've implemented 3 main components of DApp frontends: reading from storage, sending transactions, and reading logs. With these building blocks as well as the knowledge you learned with smart contracts and nodes you should be able to cover 80% of DApps. Of course, there are more advanced (but optional) components of DApps that have popped up over time, some of which are listed in the next section.  
 
 ## Additional Options {: #additional-options }
 
 ### Decentralized Storage Systems {: #decentralized-storage-systems }
 
-Decentralized storage solutions provide a distributed and fault-tolerant way to store and access data within a DApp. Unlike traditional centralized storage systems, decentralized storage distributes data across multiple nodes, ensuring that the information is secure, accessible, and resilient to failures. Popular decentralized storage solutions such as the InterPlanetary File System (IPFS) and Filecoin leverage blockchain technology to create a global, peer-to-peer storage network, eliminating single points of failure and improving data privacy.
+Decentralized storage solutions provide a distributed and fault-tolerant way to store and access data within a DApp. Unlike traditional centralized storage systems, decentralized storage distributes data across multiple nodes, ensuring that the information is secure, accessible, and resilient to failures. Popular decentralized storage solutions such as the [Arweave](https://www.arweave.org/){target=_blank} and [Filecoin/IPFS](https://filecoin.io/){target=_blank} leverage blockchain technology to create a global, peer-to-peer storage network, eliminating single points of failure and improving data privacy.  
+
+These systems can be very important for NFT projects, who need a place to store their media and documents. Additionally, if you want to completely decentralize, you can publish your site on one of these decentralized storage systems instead of only hosting your frontend on a server.  
 
 ### Oracles {: #oracles }
 
