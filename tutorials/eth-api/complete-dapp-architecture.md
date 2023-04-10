@@ -244,9 +244,8 @@ Let's also move a file from the artifacts folder into the frontend folder, `Mint
 Let's set up the `App.js` file to add some visual structure:  
 
 ```javascript
-import { useState } from 'react';
-import { useEthers, useContractFunction } from '@usedapp/core';
-import { Button, Grid, TextField, CircularProgress, Card } from '@mui/material';
+import { useEthers } from '@usedapp/core';
+import { Button, Grid, Card } from '@mui/material';
 import { Box } from '@mui/system';
 import MintableERC20 from './MintableERC20.json';
 
@@ -448,7 +447,123 @@ Our frontend should now display the correct data!
 
 Now for the most important part of all DApps: the state-changing transactions. This is where money moves, where tokens are minted, and value passes.  
 
-If you recall from our smart 
+If you recall from our smart contract, we want to mint some tokens by calling the `purchaseMint` function with some native gas currency. So we're going to need:  
+
+1. A text input that lets the user specify how much value to enter  
+2. A button that lets the user initiate the transaction signature  
+
+Let's create a new component called `MintingComponent` in a new file `MintingComponent.js` that takes in our contract as a prop, similar to the `SupplyComponent.js` file. Let's also add two Grid components to it to represent both the text input and the button that we thought of:  
+
+```javascript
+import { useState } from "react";
+import { useContractFunction, useEthers } from "@usedapp/core";
+import { Button, CircularProgress, TextField, Grid } from "@mui/material";
+import { utils } from "ethers";
+
+export default function MintingComponent({ contract }) {
+  return (
+    <>
+      <Grid item xs={12}>
+        <TextField />
+      </Grid>
+      <Grid item xs={12}>
+        <Button>
+        </Button>
+      </Grid>
+    </>
+  );
+}
+  
+```
+
+The text field is easy to build if you're familiar with React, since all it does is store a numeric value, which we can do with the `useState` hook:  
+
+```javascript
+export default function MintingComponent({ contract }) {
+  const [value, setValue] = useState(0);
+  const textFieldStyle = { marginBottom: '16px' };
+
+  return (
+    <>
+      <Grid item xs={12}>
+        <TextField 
+          type="number"
+          onChange={(e) => setValue(e.target.value)}
+          label="Enter value in DEV"
+          variant="outlined"
+          fullWidth
+          style={textFieldStyle} 
+        />
+      </Grid>
+      {/* ... */}
+    </>
+  );
+}
+```
+
+Interacting with the contract will be a bit more difficult since you're likely not as familiar with it. We've already done a lot of setup in the previous sections, so it doesn't actually take too much code:  
+
+```javascript
+export default function MintingComponent({ contract }) {
+  // ...
+
+  // Mint transaction
+  const { account } = useEthers();
+  const { state, send } = useContractFunction(contract, 'purchaseMint');
+  const handlePurchaseMint = () => send({ value: utils.parseEther(value.toString()) });
+  const isMining = state?.status === 'Mining';
+
+  return (
+    <>
+      {/* ... */}
+      <Grid item xs={12}>
+        <Button
+          variant="contained" color="primary" fullWidth
+          onClick={handlePurchaseMint}
+          disabled={state.status === 'Mining' || account == null}
+        >
+          {isMining? <CircularProgress size={24} /> : 'Purchase Mint'}
+        </Button>
+      </Grid>
+    </>
+  );
+}
+```
+
+Let's break down the non-JSX code a bit:  
+
+1. The user's account information is being retrieved via `useEthers`, which can be done because useDApp provides this information throughout the entire project 
+2. useDApp's `useContractFunction` hook is used to create a function, `send`, that will sign and send a transaction that calls the `purchaseMint` function on the contract defined by the `contract` object
+3. Another function `handlePurchaseMint` is defined to help inject the native gas value defined by the `TextField` component into the `send` function
+4. A helper constant will determine whether or not the transaction is still in the `Mining` phase, that is, it hasn't finished
+
+Now let's look at the visual component. The button will call the `handlePurchaseMint` on press, which makes sense. The button will also be disabled while the transaction happens, and if the user hasn't connected to the DApp with their wallet (when the account value isn't defined).  
+
+This code essentially boiled down to using the `useContractFunction` hook in conjunction with the `contract` object, which is a lot simpler to what it does under the hood! Let's add this component to the main `App.js` file:  
+
+```javascript
+import { MintingComponent } from './MintingComponent.js';
+// ... other imports
+
+function App() {
+  // ...
+
+  return (
+    {/* Wrapper Components */}
+      {/* Button Component */}
+      <Card sx={styles.card}>
+        <h1 style={styles.alignCenter}>Mint Your Token!</h1>
+        <SupplyComponent contract={contract} />
+        <MintingComponent contract={contract} />
+      </Card>
+    {/* Wrapper Components */}
+  )
+}
+```
+
+![DApp with the Minting section](/images/tutorials/eth-api/complete-dapp/complete-dapp-4.png)  
+
+If you try entering a value like `0.1` and press the button, a MetaMask prompt should occur. Try it out!  
 
 ### Reading Events from Contracts {: #reading-events-from-contracts }
 
