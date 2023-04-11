@@ -121,7 +121,7 @@ Once these steps are completed succesfully, marketing efforts can be coordinated
 
 ## Forum Templates {: #forum-templates }
 
-When starting an XCM integration on Moonriver or Moonbeam MainNet, there are two preliminary posts that must be made on the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=_blank} so that the voting community has the chance to provide feedback.
+When starting an XCM integration on Moonriver or Moonbeam MainNet, there are two preliminary posts that must be made on the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=_blank} so that the voting community has the chance to provide feedback. This step is **not necessary** when connecting to Moonbase Alpha.  
 
 It is recommended that this is done five days before the actual proposal is submitted on chain, to provide time for community feedback. 
 
@@ -411,7 +411,7 @@ Running the command below will provide the encoded calldata to register your cro
     ```
 
 
-Existential deposit and sufficiency for Moonbeam-based assets is always set to 1 and `true` respectively, similar to an ERC-20 on Ethereum. The `--revert-code` flag refers to a simple EVM bytecode that is set in the [XC-20](/builders/interoperability/xcm/xc20/){target=_blank} storage element so that other smart contracts can easily interact with the XC-20.
+Existential deposit, `--ed`, is always set to 1. Sufficiency, `--sufficient`, is always set to `true`. This is so that the XC-20 assets on Moonbeam can act similar to an ERC-20 on Ethereum. The `--revert-code` flag refers to a simple EVM bytecode that is set in the [XC-20](/builders/interoperability/xcm/xc20/){target=_blank} storage element so that other smart contracts can easily interact with the XC-20. You can ensure that these values are properly included by checking for them in Polkadot.js apps with the resultant encoded calldata.  
 
 For example, the following command would be for registering an asset from parachain 888, with an asset that has a general key of `1`:  
 
