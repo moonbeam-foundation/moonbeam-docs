@@ -201,7 +201,7 @@ The nonce of the signer will also be needed. If this is your first time signing 
 
 ### Use the Browser {: #use-the-browser }
 
-To get started, you can open [JSFiddle](https://jsfiddle.net/){target=_blank} or another JavaScript playground in the browser. First, you'll need to add [Ethers.js](https://docs.ethers.io/){target=_blank} as it will be used to get the `v`, `r`, and `s` values of the signature:
+To get started, you can open [JSFiddle](https://jsfiddle.net/){target=_blank} or another JavaScript playground in the browser. First, you'll need to add [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank} as it will be used to get the `v`, `r`, and `s` values of the signature:
 
 1. Click on **Resources**
 2. Start to type in `ethers` and the dropdown should populate matching libraries. Choose **ethers** 

@@ -17,7 +17,7 @@ There are two available sources of randomness that provide random inputs based o
 
 For more information on the two sources of randomness, how the request and fulfillment process works, and security considerations, please refer to the [Randomness on Moonbeam](/learn/features/randomness){target=_blank} page.
 
-Moonbeam provides a Randomness Precompile, which is a Solidity interface that enables smart contract developers to generate randomness via local VRF or BABE epoch randomness using the Ethereum API. Moonbeam also provides a Randomness Consumer Solidity contract that your contract must inherit from in order to consume fulfilled randomness requests.
+Moonbeam provides a [Randomness Precompile](/builders/pallets-precompiles/precompiles/randomness){target=_blank}, which is a Solidity interface that enables smart contract developers to generate randomness via local VRF or BABE epoch randomness using the Ethereum API. Moonbeam also provides a [Randomness Consumer Solidity contract](/builders/pallets-precompiles/precompiles/randomness/#randomness-consumer-solidity-interface){target=_blank} that your contract must inherit from in order to consume fulfilled randomness requests.
 
 This guide will show you how to use the Randomness Precompile and Randomness Consumer contract to create a lottery where the winners will randomly be selected.
 
@@ -416,7 +416,7 @@ mkdir scripts &&
 touch scripts/deploy.js
 ```
 
-Now to write the deployment script we can use `ethers`. Because we'll be running it with Hardhat, we don't need to import any libraries. We can simply take the following steps:
+Now to write the deployment script we can use [`ethers`](/builders/build/eth-api/libraries/ethersjs){target=_blank}. Because we'll be running it with Hardhat, we don't need to import any libraries. We can simply take the following steps:
 
 1. Create a local instance of the lottery contract with the `getContractFactory` method
 2. Get the deposit required for a randomness request using the `requiredDeposit` function of the Randomness Precompile
@@ -502,7 +502,7 @@ To run this script, you can use the following command:
 npx hardhat run --network moonbase scripts/participate.js
 ```
 
-The transaction hash will be printed to the console. You can use the hash to look up the transction on [Moonscan](https://moonbase.moonscan.io){target=_blank}.
+The transaction hash will be printed to the console. You can use the hash to look up the transaction on [Moonscan](https://moonbase.moonscan.io){target=_blank}.
 
 ![Run the partipation script using Hardhat's run command.](/images/tutorials/eth-api/randomness-lottery/lottery-4.png)
 
