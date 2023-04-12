@@ -9,7 +9,7 @@ description: Develop your own blockchain game on Moonbeam using MetaFab! MetaFab
 
 ## Introduction {: #introduction } 
 
-Frictionless blockchain games built with MetaFab’s API, the free, end-to-end, self-serve solution for games and gamified apps to integrate robust blockchain infrastructure in minutes, not months.
+Build frictionless blockchain games with MetaFab’s API, the free, end-to-end, self-serve solution for games and gamified apps to integrate robust blockchain infrastructure in minutes, not months.
 
 ## MetaFab on Moonbeam {: #metafab-on-moonbeam }
 
@@ -46,7 +46,7 @@ The SDKs available are as follows:
 
 ![MetaFab's developer dashboard.](/images/builders/integrations/gaming/metafab/metafab-1.png)
 
-The MetaFab Dashboard is a home base for a quick game overview, players, currencies, items, shops, loot boxes, contracts, and more. Intuitive management functionality, such as configuration and creation (plus more), is available; however, most opt to use their dashboard as a hub and work directly with the endpoints and code. [Create a dashboard and retrieve your developer keys](https://dashboard.trymetafab.com/auth/register){target=_blank}.
+The MetaFab Dashboard is a home base for a quick game overview, players, currencies, items, shops, loot boxes, contracts, and more. Intuitive management functionality, such as configuration and creation (plus more), is available. However, most opt to use their dashboard as a hub and work directly with the endpoints and code. [Create a dashboard and retrieve your developer keys](https://dashboard.trymetafab.com/auth/register){target=_blank}.
 
 ## Players & Wallets {: #players-wallets }
 
