@@ -50,11 +50,11 @@ The MetaFab Dashboard is a home base for a quick game overview, players, currenc
 
 ## Players & Wallets {: #players-wallets }
 
-Think of a player as an account controlled (self-custody) by the player and managed by the game. Each player account created through MetaFab gaslessly interacts with a game's currencies and smart contracts, of which can be [custom smart contracts](https://docs.trymetafab.com/docs/implementing-gasless-transactions){target=_blank}, on Moonbeam and any other supported chain by that game.
+Think of a player as an account controlled (self-custody) by the player and managed by the game. Each player account created through MetaFab interacts with a game's currencies and smart contracts, of which can be [custom smart contracts](https://docs.trymetafab.com/docs/implementing-gasless-transactions){target=_blank}, on Moonbeam and any other supported chain by that game without worrying about gas.
 
 **External wallets**: MetaFab supports an industry-first system called approval delegation. Through a one-time external wallet connection, players can frictionlessly transact through that external wallet without ever needing to sign transactions, deal with wallet pop-ups and prompts, or share private keys.
 
-Handle external and managed wallets through a single logic set. MetaFab and games built on MetaFab never store private keys. Read more about [MetaFab’s security considerations](https://docs.trymetafab.com/docs/security){target=_blank}.
+MetaFab and games built on MetaFab never store private keys. With MetaFab, you can handle external and managed wallets through a single logic set. Read more about [MetaFab’s security considerations](https://docs.trymetafab.com/docs/security){target=_blank}.
 
 ## Authentication & Registration {: #authentication-registration }
 
