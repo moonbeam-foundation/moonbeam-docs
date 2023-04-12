@@ -58,19 +58,22 @@ Now, these JSON-RPC requests are pretty useful, but when writing code it can be 
 
 Smart contracts are self-executing contracts with the terms of the agreement directly written into code. They serve as the decentralized backend of any DApp, automating and enforcing the business logic within the system.  
 
-If coming from traditional web development, smart contracts are meant to replace the backend with important cavieats: the user must have the gas currency (GLMR, MOVR, DEV, etc) to make state-changing requests, storing information can be expensive, and **no information stored is private**.  
+If coming from traditional web development, smart contracts are meant to replace the backend with important caveats: the user must have the gas currency (GLMR, MOVR, DEV, etc.) to make state-changing requests, storing information can be expensive, and **no information stored is private**.  
 
 When you deploy a smart contract onto Moonbeam, you upload a series of instructions that can be understood by the EVM, or the Ethereum Virtual Machine. Whenever someone interacts with a smart contract, these transparent, tamper-proof, and immutable instructions are executed by the EVM to change the blockchain's state. Writing the instructions in a smart contract properly is very important since the blockchain's state defines the most crucial information about your DApp, such as who has what amount of money.  
 
 Since the instructions are difficult to write and make sense of at a low (assembly) level, we have smart contract languages such as Solidity to make it easier to write them. To help write, debug, test, and compile these smart contract languages, developers in the Ethereum community have created developer environments such as [HardHat](/tutorials/eth-api/hardhat-start-to-end){target=_blank} and [Foundry](/tutorials/eth-api/foundry-start-to-end){target=_blank}. Moonbeam's developer site provides information on a [plethora of developer environments](/builders/build/eth-api/dev-env){target=_blank}.    
 
-This tutorial will use HardHat for managing smart contracts. You can initialize a project with HardHat using the following command:  
+This tutorial will use Hardhat for managing smart contracts. You can initialize a project with Hardhat using the following command:  
 
 ```bash
 npx hardhat init
 ```
 
-Before we start writing the smart contract, let's add a JSON-RPC URL to the config. Set the `hardhat.config.js` file with the following code, and replace `YOUR_PRIVATE_KEY` with your funded account's private key. This is for testing purposes, **never store your private key in plain text with real funds**.  
+Before we start writing the smart contract, let's add a JSON-RPC URL to the config. Set the `hardhat.config.js` file with the following code, and replace `YOUR_PRIVATE_KEY` with your funded account's private key. 
+
+!!! remember
+    This is for testing purposes, **never store your private key in plain text with real funds**.  
 
 ```javascript
 require("@nomicfoundation/hardhat-toolbox");
@@ -120,7 +123,7 @@ When writing smart contracts, you're going to have to compile eventually. Every 
 npx hardhat compile
 ```
 
-Everything should compile well, so let's continue by adding functionality. Add the following constants, errors, event, and function to your solidity file:  
+Everything should compile well, so let's continue by adding functionality. Add the following constants, errors, event, and function to your Solidity file:  
 
 ```solidity
     uint256 public constant MAX_TO_MINT = 1000 ether;
@@ -152,7 +155,7 @@ Everything should compile well, so let's continue by adding functionality. Add t
 
 This function will allow a user to send gas currency (like GLMR, MOVR, or DEV) because it is a payable function. Let's break down the function section by section.  
 
-1. It will then figure out how much of the token to mint based on how much gas currency was sent
+1. It will figure out how much of the token to mint based on how much gas currency was sent
 2. Then it will check to see if the amount minted is 0 or if the total amount minted is over the `MAX_TO_MINT`, giving a descriptive error in both cases
 3. The contract will then forward the gas currency included with the function call to the owner of the contract (by default, the address that deployed the contract, which will be you)
 4. Finally, tokens will be minted to the user and an event will be emitted to pick up on later  
@@ -167,7 +170,7 @@ You've now written the smart contract for your DApp! If this were a production a
 
 ### Deploying Smart Contracts {: #deploying-smart-contracts }
 
-Under the hood, HardHat is a Node project that uses the Ethers.js library to interact with the blockchain. You can also use Ethers.js in conjunction with HardHat's tool to create scripts to do things like deploying contracts.  
+Under the hood, HardHat is a Node project that uses the [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank} library to interact with the blockchain. You can also use Ethers.js in conjunction with HardHat's tool to create scripts to do things like deploying contracts.  
 
 Your HardHat project should already come with a script in the `scripts` folder, called `deploy.js`. Let's replace it with a similar, albeit simpler script.
 
@@ -188,7 +191,7 @@ main().catch((error) => {
 });
 ```
 
-This script uses HardHat's instance of the the ethers library to get a contract factory of the MintableERC20.sol smart contract that we wrote earlier. It then deploys it and prints the resultant smart contract's address. Very simple to do with HardHat and the Ethers.js library, but significantly more difficult using just JSON-RPC!  
+This script uses HardHat's instance of the Ethers library to get a contract factory of the `MintableERC20.sol` smart contract that we wrote earlier. It then deploys it and prints the resultant smart contract's address. Very simple to do with HardHat and the Ethers.js library, but significantly more difficult using just JSON-RPC!  
 
 Let's run the contract on Moonbase Alpha (whose JSON-RPC endpoint we defined in the `hardhat.config.js` script earlier):  
 
@@ -216,7 +219,7 @@ cd frontend
 npm install ethers@5.6.9 @usedapp/core @mui/material @mui/system
 ```
 
-If you remember, Ethers.js is a library that assists with JSON-RPC communication. useDApp is a similar library that uses Ethers.js and formats them into React hooks so that they work better in frontend projects. We've also added two MUI packages for styling and components.  
+If you remember, [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=_blank} is a library that assists with JSON-RPC communication. useDApp is a similar library that uses Ethers.js and formats them into React hooks so that they work better in frontend projects. We've also added two [MUI](https://mui.com/){target=_blank} packages for styling and components.  
 
 Let's also move a file from the artifacts folder into the frontend folder, `MintableERC20.json`. This file is generated during compilation of the smart contracts. It contains the ABI, which defines the structure of the smart contract, allowing libraries to understand what functions the smart contract has. Every time you change and recompile the smart contract, you'll have to update the ABI in the frontend as well. Some projects will have setups that automatically pull ABIs from the same source, but in this case we will just copy it over:  
 
@@ -255,7 +258,7 @@ const styles = {
 function App() {
   return(
     <Box sx={styles.box}>
-      <Grid container direction="column" alignItems="center" justifyContent="center" style={stylesvh100}>
+      <Grid container direction="column" alignItems="center" justifyContent="center" style={styles.vh100}>
         {/* This is where we'll be putting our functional components! */}
       </Grid>
     </Box>
@@ -359,13 +362,13 @@ function App() {
 
 Now there should be a button in the top right of your screen that connects your wallet to your frontend! Next, let's find out how we can read data from our smart contract.  
 
-### Reading from Contracts {: #reading-from-contracts }
+### Reading Data from Contracts {: #reading-from-contracts }
 
 Reading from contracts is quite easy, as long as we know what we want to read. For our application, we will be reading the maximum amount of tokens that can be minted, and the number of tokens that have been minted. This way, we can display to our users how many tokens can still be minted, and hopefully invoke some FOMO...  
 
 If you were just using the JSON-RPC, you would use `eth_call` to get this data, but it's quite difficult to do this since you have to [encode your requests](https://docs.soliditylang.org/en/latest/abi-spec.html){target=_blank} in a non-straightforward method called ABI encoding. Fortunately, Ethers.js allows us to easily create objects that represent contracts in a human-readable way so long as we have the ABI of the contract. And we have the ABI of the `MintableERC20.sol` contract within `MintableERC20.json`!  
 
-Let's import the JSON file, the `Contract` objec within `App.js`. We can create a contract object instance with an address and ABI, so replace `YOUR_CONTRACT_ADDRESS_HERE` with the address of the contract that you copied [back when you deployed it](#deploying-smart-contracts):  
+Let's import the JSON file and the Ethers `Contract` object within `App.js`. We can create a contract object instance with an address and ABI, so replace `YOUR_CONTRACT_ADDRESS_HERE` with the address of the contract that you copied [back when you deployed it](#deploying-smart-contracts):  
 
 ```javascript
 import { Contract } from 'ethers';
@@ -429,7 +432,7 @@ export default function SupplyComponent({ contract }) {
 }
 ```
 
-Notice that this component uses the `useCall` hook provided by the useDApp package. This call takes in the contract object we created earlier, a string method, and any relevant arguments for the read-only call and returns the output. While it required some setup, this one-liner is a lot simpler than the the entire `use_call` RPC call that we would have had to done if we weren't using Ethers.js and useDApp.  
+Notice that this component uses the `useCall` hook provided by the useDApp package. This call takes in the contract object we created earlier, a string method, and any relevant arguments for the read-only call and returns the output. While it required some setup, this one-liner is a lot simpler than the entire `use_call` RPC call that we would have had to do if we weren't using Ethers.js and useDApp.  
 
 Also note that we're using a utility format called `formatEther` to format the output values instead of displaying them directly. This is because our token, like gas currencies, are stored as an unsigned integer with a fixed decimal point of 18 figures. The utility function helps format this value into a way that we as humans expect.  
 
@@ -468,7 +471,7 @@ If you recall from our smart contract, we want to mint some tokens by calling th
 1. A text input that lets the user specify how much value to enter  
 2. A button that lets the user initiate the transaction signature  
 
-Let's create a new component called `MintingComponent` in a new file `MintingComponent.js` that takes in our contract as a prop, similar to the `SupplyComponent.js` file. Let's also add two Grid components to it to represent both the text input and the button that we thought of:  
+Let's create a new component called `MintingComponent` in a new file `MintingComponent.js` that takes in our contract as a prop, similar to the `SupplyComponent.js` file. Let's also add two `Grid` components to it to represent both the text input and the button that we thought of:  
 
 ```javascript
 import { useState } from "react";
@@ -690,7 +693,7 @@ And, if you've done any transactions, you'll see that they'll pop up!
 
 ![Finished DApp](/images/tutorials/eth-api/complete-dapp/complete-dapp-5.png)
 
-Now you've implemented 3 main components of DApp frontends: reading from storage, sending transactions, and reading logs. With these building blocks as well as the knowledge you learned with smart contracts and nodes you should be able to cover 80% of DApps. Of course, there are more advanced (but optional) components of DApps that have popped up over time, some of which are listed in the next section.  
+Now you've implemented three main components of DApp frontends: reading from storage, sending transactions, and reading logs. With these building blocks as well as the knowledge you learned with smart contracts and nodes you should be able to cover 80% of DApps. Of course, there are more advanced (but optional) components of DApps that have popped up over time, some of which are listed in the next section.  
 
 ## Additional Options {: #additional-options }
 
