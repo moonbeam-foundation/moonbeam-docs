@@ -91,7 +91,7 @@ As mentioned before, only the top candidates by delegated stake will be in the a
 
 As of [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/){target=_blank}, there have been significant changes to the way users can interact with various staking features, including the way staking exits are handled. 
 
-To stop collating and leave the candidate pool, you must first schedule a request to leave the pool. Scheduling a request does not automatically remove you from the candidate pool, you must wait an [exit delay](#collator-timings). After the delay you will be able to execute the request and stop collating. While you are waiting the specified number of rounds, you will still be eligible to produce blocks and earn rewards if you're in the active set.
+To stop collating and leave the candidate pool, you must first schedule a request to leave the pool. Scheduling a request automatically removes you from the active set, so you will no longer be eligible to produce blocks or earn rewards. You must wait an [exit delay](#collator-timings) before you can execute the request to leave. After the delay and the request has been executed you will be removed from the candidate pool.
 
 Similar to [Polkadot's `chill()`](https://wiki.polkadot.network/docs/maintain-guides-how-to-chill){target=_blank} functionality, you can [temporarily leave the candidate pool](#temporarily-leave-the-candidate-pool) without unbonding your tokens.
 
