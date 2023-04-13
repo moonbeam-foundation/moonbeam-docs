@@ -15,6 +15,14 @@ To interact with dApps on Moonbeam, users typically need to hold GLMR, Moonbeam'
 
 One solution to this problem is gasless transactions, also known as meta transactions. Gasless transactions are a type of transaction that does not require the user to pay for the gas required to execute the transaction. The gas for these transactions can be covered by a third-party service or it can be deducted from the user's balance of a different token, depending on the implementation. For example, a user could simply sign a message that represents the transaction to be submitted to the network, and then a third party could submit the transaction and pay the transaction fees for the user.
 
+A regular transaction may have the following flow:
+
+![Flow of a transaction](/images/tutorials/eth-api/call-permit-gasless-txs/gasless-1.png)
+
+Whereas a gasless transaction may look something like this:
+
+![Flow of a gasless transaction](/images/tutorials/eth-api/call-permit-gasless-txs/gasless-2.png)
+
 Gasless transactions can be especially beneficial for users that make small transactions frequently, as is the case with gaming dApps like [Damned Pirates Society](https://damnedpiratessociety.io/){target=_blank} (DPS). In this tutorial, we'll be looking at how DPS could implement gasless transactions as an example. 
 
 Gasless transactions can be implemented using Moonbeam's [Call Permit Precompile](/builders/pallets-precompiles/precompiles/call-permit){target=_blank}, which is a Solidity interface that allows a user to sign a permit, an [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=_blank} signed message, that can then be dispatched by your dApp. The Call Permit Precompile can be used to execute any EVM call. **The best part is that you don't need to modify your existing contracts!**
