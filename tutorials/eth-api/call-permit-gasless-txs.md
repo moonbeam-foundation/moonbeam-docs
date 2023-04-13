@@ -13,11 +13,11 @@ _March 30, 2023 | by Erin Shaben_
 
 To interact with dApps on Moonbeam, users typically need to hold GLMR, Moonbeam's native token, in order to pay for transaction fees. This requirement creates an obstacle for dApps in terms of user experience, as a user needs to ensure they keep a balance of the native token to interact with the dApp.
 
-One solution to this problem is gasless transactions. Gasless transactions are a type of transaction that does not require the user to pay for the gas required to execute the transaction. The gas for these transactions can be covered by a third-party service or it can be deducted from the user's balance of a different token, depending on the implementation.
+One solution to this problem is gasless transactions, also known as meta transactions. Gasless transactions are a type of transaction that does not require the user to pay for the gas required to execute the transaction. The gas for these transactions can be covered by a third-party service or it can be deducted from the user's balance of a different token, depending on the implementation. For example, a user could simply sign a message that represents the transaction to be submitted to the network, and then a third party could submit the transaction and pay the transaction fees for the user.
 
-Gasless transactions can be especially beneficial for users that make small transactions frequently, as is the case with gaming dApps like [Damned Pirates Society](https://damnedpiratessociety.io/){target=_blank} (DPS). In DPS, users go on voyages in search of treasure and with the goal of growing their fleet. Users can earn Doubloons (DBL), the primary in-game currency, while on voyages and spend their DBL on repairing and upgrading their Flagship, buying support ships, and more. Currently, if a user wants to repair their Flagship, they'll need to have DBL to pay for the repair and GLMR to pay for transaction fees. Wouldn't it be ideal to lower the barrier to entry by implementing gasless transactions so users wouldn't need to worry about keeping a GLMR balance on top of their DBL balance? From a dApp's perspective, it would keep users on their platform, as their users wouldn't need to leave the dApp to fund their GLMR balance; they could keep on gaming.
+Gasless transactions can be especially beneficial for users that make small transactions frequently, as is the case with gaming dApps like [Damned Pirates Society](https://damnedpiratessociety.io/){target=_blank} (DPS). In this tutorial, we'll be looking at how DPS could implement gasless transactions as an example. 
 
-Gasless transactions can be implemented using Moonbeam's [Call Permit Precompile](/builders/pallets-precompiles/precompiles/call-permit){target=_blank}, which is a Solidity interface that allows a user to sign a permit, an [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=_blank} signed message, that can then be dispatched by your dApp. The Call Permit Precompile can be used to execute any EVM call. The best part is that you don't need to modify your existing contracts.
+Gasless transactions can be implemented using Moonbeam's [Call Permit Precompile](/builders/pallets-precompiles/precompiles/call-permit){target=_blank}, which is a Solidity interface that allows a user to sign a permit, an [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=_blank} signed message, that can then be dispatched by your dApp. The Call Permit Precompile can be used to execute any EVM call. **The best part is that you don't need to modify your existing contracts!**
 
 In this tutorial, we'll walk through the process of implementing gasless transactions in a dApp, using DPS Flagship repairs as an example. We'll go over building an EIP-712 signed message, signing it, and dispatching it with the Call Permit Precompile. 
 
@@ -207,7 +207,9 @@ The domain separator for each Moonbeam network is as follows:
 
 ### Define the Typed Data Structure {: #define-typed-data-structure }
 
-Next, we'll need to define the typed data structure. The typed data structure defines the acceptable types of data that our users will be signing. If you take a look at the [`dispatch` function of the Call Permit Precompile](/builders/pallets-precompiles/precompiles/call-permit/#the-call-permit-interface){target=_blank}, you'll see the data that we need to send, along with the associated types, is as follows:
+Next, we'll need to define the typed data structure. The typed data structure defines the acceptable types of data that our users will be signing. We'll go into detail on the actual data in the following section.
+
+If you take a look at the [`dispatch` function of the Call Permit Precompile](/builders/pallets-precompiles/precompiles/call-permit/#the-call-permit-interface){target=_blank}, you'll see the data that we need to send, along with the associated types, is as follows:
 
 ```sol
 function dispatch(
@@ -225,7 +227,7 @@ function dispatch(
 
 We'll need to add each of the above parameters to our typed data structure, with a couple of modifications. We don't need to include the signature-related parameters, but we do need to include a parameter for the `nonce` of the `from` account, which will be a *uint256*. The signature-related parameters aren't needed at this point because we're building the message data for the users to sign. We'll circle back to the signature-related parameters after we've finished building the message and requested the signature.
 
-So, if we grab the rest of the parameters, we can start to build our data structure. The primary type will be `CallPermit` and it will be an array of objects that correspond to each of the parameters and define the `name` and `type` of each parameters:
+So, if we grab the rest of the parameters, we can start to build our data structure. Some implementations of EIP-712 require a type for `EIP712Domain` to be specified, but this is not the case when using Ethers as it computes it for you! For our implementation, the only type we'll need is the `CallPermit` type. The `CallPermit` type will be an array of objects that correspond to each of the parameters and define the `name` and `type` for each one:
 
 ```js
 const types = {
@@ -243,9 +245,7 @@ const types = {
 
 ### Define the Message Data {: #define-message-data }
 
-In the previous step, we defined the typed data structure of the data that our users will be signing. So the next step will be to build the message data that follows the structure we defined. **Please note that the message data we're using in this section is for demo purposes only**.
-
-Since we are going to implement gasless transactions for repairing a Flagship, we're going to be interacting with the [Shipyard V1 contract](https://moonscan.io/address/0x34031A5533BF30e0CEc0b7891d2e07aa194d8511#code){target=_blank}, which is located at this address: `0x34031A5533BF30e0CEc0b7891d2e07aa194d8511`.
+Since we are going to implement gasless transactions for repairing a Flagship, we're going to be interacting with the [Shipyard V1 contract](https://moonscan.io/address/0x34031A5533BF30e0CEc0b7891d2e07aa194d8511#code){target=_blank}, which is located at this address: `0x34031A5533BF30e0CEc0b7891d2e07aa194d8511` on Moonbeam.
 
 So, let's start by going over the arguments required to build the message data:
 
@@ -271,37 +271,54 @@ const message = {
 };
 ```
 
-Now, let's dig a little bit deeper and tackle the `TODO` items. We'll start off by calculating the `data` value.
+Now, let's dig a little bit deeper and tackle the `TODO` items. We'll start off by calculating the `data` value. We can programmatically calculate the `data` value by creating an interface of the Shipyard V1 contract and using the `interface.encodeFunctionData` function with Ethers.
 
-If you take a look at the [`DPSShipyard.sol` contract's code](https://moonscan.io/address/0x34031A5533BF30e0CEc0b7891d2e07aa194d8511#code){target=_blank}, you'll see the [`repairFlagship` function](https://moonscan.io/address/0x34031A5533BF30e0CEc0b7891d2e07aa194d8511#code#F1#L78){target=_blank}. The `repairFlagship` function accepts two parameters: *DPSFlagshipI* `_flagship` and *uint256* `_flagshipId`. The *DPSFlagshipI* type represents the address of the `DPSFlagship.sol` contract.
+If you take a look at the [`DPSShipyard.sol` contract's code](https://moonscan.io/address/0x34031A5533BF30e0CEc0b7891d2e07aa194d8511#code){target=_blank}, you'll see the [`repairFlagship` function](https://moonscan.io/address/0x34031A5533BF30e0CEc0b7891d2e07aa194d8511#code#F1#L78){target=_blank}. The `repairFlagship` function accepts two parameters: *DPSFlagshipI* `_flagship` and *uint256* `_flagshipId`. The *DPSFlagshipI* type represents the address of the `DPSFlagship.sol` contract, which is: `0x4634ba8bB97A82A809161ea595F95A1Fa1255Bff` on Moonbeam.
 
-With this in mind, we'll need the function selector of the `repairFlagship` function, which is `0x1ad12483`, and the arguments for the `_flagship` and `_flagshipId` to build the `data` value. The `_flagship` argument will be the address of the `DPSFlagship.sol` contract, which is `0x4634ba8bB97A82A809161ea595F95A1Fa1255Bff`. For the purposes of this example, we'll assume that the user who owns Flagship #1078 has suffered some damage to their ship during their last voyage and wants to repair it. So we'll need to convert 1078 to hexadecimal format, which is `436`. 
+For the purposes of this example, we'll assume that the user who owns Flagship #1078 has suffered some damage to their ship during their last voyage and wants to repair it.
 
-Before we combine the function selector and two arguments, which will result in the value we'll pass into the `data` parameter, we'll need to pad the `_flagship` and `_flagshipId` arguments with zeroes so they are 32 bytes (64 hexadecimal characters):
-
-The `_flagship` value will be:
-
-```
-0000000000000000000000004634ba8bb97a82a809161ea595f95a1fa1255bff
-```
-
-And the `_flagshipId` value will be:
-
-```
-0000000000000000000000000000000000000000000000000000000000000436
-```
-
-Altogether, the `data` will be:
+To create an interface using Ethers, we'll need to get the ABI of the Shipyard V1 contract. You can retrieve it in full from [Moonscan](https://moonscan.io/address/0x34031A5533BF30e0CEc0b7891d2e07aa194d8511#code){target=_blank} or for simplicity you can use the following snippet, which is the part of the ABI we need for this example:
 
 ```js
-data: '0x1ad124830000000000000000000000004634ba8bb97a82a809161ea595f95a1fa1255bff0000000000000000000000000000000000000000000000000000000000000436'
+const shipyardAbi = [
+  {
+    inputs: [
+      {
+        internalType: 'contract DPSFlagshipI',
+        name: '_flagship',
+        type: 'address',
+      },
+      { internalType: 'uint256', name: '_flagshipId', type: 'uint256' },
+    ],
+    name: 'repairFlagship',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+];
+```
+
+Then we can create the interface using the ABI and get the encoded data using the address of the DPS Flagship contract and the ID of the Flagship:
+
+```js
+const shipyardInterface = new ethers.Interface(shipyardAbi);
+const data = shipyardInterface.encodeFunctionData('repairFlagship', [
+  '0x4634ba8bB97A82A809161ea595F95A1Fa1255Bff', // DPS Flagship contract address
+  1078, // ID of the Flagship
+])
+```
+
+This will provide us with the following value for `data`:
+
+```js
+'0x1ad124830000000000000000000000004634ba8bb97a82a809161ea595f95a1fa1255bff0000000000000000000000000000000000000000000000000000000000000436'
 ```
 
 Lastly, we'll need to get the `nonce` of the `from` account. As previously mentioned, we can use the `nonces` function of the Call Permit Precompile to get this value. To do so, you'll need to create a contract instance for the Call Permit Precompile:
 
 1. Create a new file in your project that contains the ABI of the Call Permit Precompile. You can find the [ABI on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/precompiles/call-permit/abi.js){target=_blank}
 2. Import the ABI into your Ethers file
-3. Create an instance of the Call Permit Precompile using the precompile's address, the ABI of the precompile, and the third-party account for transaction fees as the signer, as we'll use this signer to dispatch the signed permit later on
+3. Create an instance of the Call Permit Precompile using the precompile's address, the ABI of the precompile, and you can use either a provider or a signer. Since we are dispatching the permit later on in this tutorial, we'll use the signer associated with the third-party account for transaction fees, but if you only needed to access the `nonces` function, you could use a provider instead
 4. Call the `nonces` function and pass in the `signer.account` of the user, which is the same as the `from` account
 
 ```js
@@ -324,6 +341,7 @@ const nonce = await callPermit.nonces(userSigner.address);
     ```js
     import { ethers } from 'ethers';
     import abi from './callPermitABI.js'
+    import shipyardAbi from './shipyardABI.js'
 
     const providerRPC = {
       moonbeam: {
@@ -360,6 +378,12 @@ const nonce = await callPermit.nonces(userSigner.address);
       ],
     };
 
+    const shipyardInterface = new ethers.Interface(shipyardAbi);
+    const data = shipyardInterface.encodeFunctionData('repairFlagship', [
+      '0x4634ba8bB97A82A809161ea595F95A1Fa1255Bff',
+      1078
+    ]);
+
     const callPermit = new ethers.Contract(
       '{{ networks.moonbeam.precompiles.call_permit }}', 
       abi, 
@@ -370,9 +394,9 @@ const nonce = await callPermit.nonces(userSigner.address);
 
     const message = {
       from: userSigner.address,
-      to: '0xccB3707967dDcFA47b19f5AEEfe7764a5e0E43cC', // Crew for Coin V1 contract address
+      to: '0x34031A5533BF30e0CEc0b7891d2e07aa194d8511', // Shipyard V1 contract address
       value: 0,
-      data: '0x1ad124830000000000000000000000004634ba8bb97a82a809161ea595f95a1fa1255bff0000000000000000000000000000000000000000000000000000000000000436',
+      data,
       gaslimit: 100000,
       nonce,
       deadline: '1680587122996', // Randomly created deadline in the future
@@ -386,9 +410,22 @@ So far, we've created the domain separator, defined the data structure of our EI
 
 ## Get Signature for EIP-712 Typed Messages {: #use-ethers-to-sign-eip712-messages }
 
-For this next step, we're going to use our Ethers signer and the `signer.signTypedData` function to prompt our users to sign the EIP-712 typed message we've assembled.
+For this next step, we're going to use our Ethers signer and the `signer.signTypedData` function to prompt our users to sign the EIP-712 typed message we've assembled. This signature will allow the third-party account for transaction fees to call the `dispatch` function of the Call Permit Precompile. The third-party account will pay the transaction fees for us and our ship will be repaired!
 
-The `signTypedData` function is pretty straight-forward at this point:
+The `signTypedData` function will calculate a signature for our data using the following calculation:
+
+```
+sign(keccak256("\x19\x01" ‖ domainSeparator ‖ hashStruct(message)))
+```
+
+The components of the hash can be broken down as follows:
+
+- **\x19** - makes the encoding deterministic
+- **\x01** - the version byte, which makes the hash compliant with [EIP-191](https://eips.ethereum.org/EIPS/eip-191){target=_blank}
+- **domainSeparator** - the 32-byte domain seperator, which was [previously covered](#define-the-domain-separator) and can be easily retrieved using the `DOMAIN_SEPARATOR` function of the Call Permit Precompile
+- **hashStruct(message)** - the 32-byte data to sign, which is based on the typed data structure and the actual data. For more information, please refer to the [EIP-712 specification](https://eips.ethereum.org/EIPS/eip-712#definition-of-hashstruct){target=_blank}
+
+Now that we have an understanding of what the `signTypedData` function does, we can go ahead and pass in the data we've assembled in the previous sections:
 
 ```js
 const signature = await signer.signTypedData(
@@ -399,17 +436,17 @@ const signature = await signer.signTypedData(
 console.log(`Signature hash: ${signature}`);
 ```
 
-Next, we'll use the signature to dispatch the permit using the Call Permit Precompile's `dispatch` function.
+A hash of the signature will print to the terminal. We'll use the signature to dispatch the permit using the Call Permit Precompile's `dispatch` function in the next section.
 
 ## Dispatch a Signed EIP-712 Message {: #dispatch-eip712-message }
 
-Before an EIP-712 signed message can be dispatched, we'll need to get the signature-related parameters from the signed message. To do so, you can use Ethers' `Signature.from` function:
+Before an EIP-712 signed message can be dispatched, we'll need to get the signature-related parameters, `v`, `r`, and `s`, from the signed message. The `signTypedData` function returned a hex string that contains each of these values, but to easily get these values individually we're going to use Ethers' `Signature.from` function. This will create a new instance of Ether's [Signature class](https://docs.ethers.org/v6/api/crypto/#Signature){target=_blank}, which will allow us to easily grab the `v`, `r`, and `s` values that we need in order to use the `dispatch` function. 
 
 ```js
 const ethersSignature = ethers.Signature.from(signature);
 ```
 
-Now that we have all of the values needed to dispatch the permit, we can call the `dispatch` function of the Call Permit Precompile. The arguments passed to the `dispatch` function must be the exact same arguments that were passed in for the `value` parameter of the `signTypedData` function. You'll send the following function using an account associated with your dApp as the signer (not the signer associated with the user), and it will dispatch the permit that the user signed:
+Now that we can individually access the `v`, `r`, and `s` arguments needed to dispatch the permit, we can call the `dispatch` function of the Call Permit Precompile. The arguments passed to the `dispatch` function must be the exact same arguments that were passed in for the `value` parameter of the `signTypedData` function. You'll send the following function using an account associated with your dApp as the signer (not the signer associated with the user), and it will dispatch the permit that the user signed:
 
 ```js
 const dispatch = await callPermit.dispatch(

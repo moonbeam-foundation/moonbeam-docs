@@ -1,5 +1,6 @@
 import { ethers } from 'ethers';
 import abi from './callPermitABI.js';
+import shipyardAbi from './shipyardABI.js';
 
 const providerRPC = {
   moonbeam: {
@@ -37,6 +38,12 @@ const types = {
   ],
 };
 
+const shipyardInterface = new ethers.Interface(shipyardAbi);
+const data = shipyardInterface.encodeFunctionData('repairFlagship', [
+  '0x4634ba8bB97A82A809161ea595F95A1Fa1255Bff',
+  1078
+]);
+
 const callPermit = new ethers.Contract(
   '0x000000000000000000000000000000000000080a',
   abi,
@@ -49,7 +56,7 @@ const message = {
   from: userSigner.address,
   to: '0xccB3707967dDcFA47b19f5AEEfe7764a5e0E43cC', // Crew for Coin V1 contract address
   value: 0,
-  data: '0x1ad124830000000000000000000000004634ba8bb97a82a809161ea595f95a1fa1255bff0000000000000000000000000000000000000000000000000000000000000436',
+  data,
   gaslimit: 100000,
   nonce,
   deadline: '1680587122996', // Randomly created deadline in the future
