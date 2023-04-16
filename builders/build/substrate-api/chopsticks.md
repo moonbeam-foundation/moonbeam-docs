@@ -105,7 +105,7 @@ The `npx @acala-network/chopsticks dev` command forks a chain, and includes foll
 |     build-block-mode     |                   How blocks should be built in the fork: batch, manual, instant.                   |
 |      import-storage      |          A pre-defined JSON/YAML storage file path to override in the parachain's storage.          |
 | allow-unresolved-imports |         Whether to allow WASM unresolved imports when using a WASM to build the parachain.          |
-|      import-storage      |                      Include to generate storage diff preview between blocks.                       |
+|           html           |                      Include to generate storage diff preview between blocks.                       |
 |   mock-signature-host    | Mock signature host so any signature starts with 0xdeadbeef and filled by 0xcd is considered valid. |
 
 ### Interacting with a Fork {: #interacting-with-a-fork }
