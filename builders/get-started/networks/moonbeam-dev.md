@@ -149,7 +149,7 @@ By default, your Moonbeam development node is spun up in instant seal mode, whic
 The `--sealing` flag accepts any of the following arguments:
 
 - `instant` - as we already covered, this is the default option in which blocks are authored as soon as a transaction is received
-- `manual` - allows you to produce blocks manually. If a tranasction is received, a block will not be produced until you manually create one
+- `manual` - allows you to produce blocks manually. If a transaction is received, a block will not be produced until you manually create one
 - an interval in milliseconds - authors a block on a specific time interval. For example, if you set it to `6000`, you will have the node produce blocks every 6 seconds
 
 The flag should be appended to the start-up command in the following format:
