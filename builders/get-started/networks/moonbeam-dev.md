@@ -235,9 +235,9 @@ bottom drive obey lake curtain smoke basket hold race lonely fit walk
 ??? note "Development account addresses and private keys"
     --8<-- 'code/setting-up-node/dev-accounts.md'
 
-    Also included with the development node is an additional prefunded account used for testing purposes:
+Also included with the development node is an additional prefunded account used for testing purposes:
 
-    --8<-- 'code/setting-up-node/dev-testing-account.md'
+--8<-- 'code/setting-up-node/dev-testing-account.md'
 
 ## Development Node Endpoints {: #access-your-development-node }
 
