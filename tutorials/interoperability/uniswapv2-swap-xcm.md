@@ -35,7 +35,7 @@ Considering all the steps summarized in the [introduction](#introduction), the f
 - You needs to have UNITs on the relay chain to pay for transaction fees when sending the XCM. If you have a Moonbase Alpha account funded with DEV tokens, you can swap some DEV for xcUNIT here on [Moonbeam Swap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}. Then withdraw the xcUNIT from Moonbase Alpha to [your account on the Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} using [apps.moonbeam.network](https://apps.moonbeam.network/moonbase-alpha/){target=_blank}
 - Your [multilocation-derivative account](/builders/interoperability/xcm/xcm-transactor/#general-xcm-definitions){target=_blank} must hold `DEV` tokens to fund the Uniswap V2 swap, and also pay for the XCM execution (although this could be paid in UNIT tokens as `xcUNIT`). We will calculate the multilocation-derivative account address in the next section
 
---8<-- 'text/faucet/faucet-list-item.md'
+--8<-- 'text/faucet/faucet-sentence.md'
 
 ## Calculating your Multilocation-Derivative Account {: #calculating-your-multilocation-derivative-account }
 
@@ -91,8 +91,8 @@ The function being targeted here is one from the Uniswap V2 router, more specifi
 The easiest way to get the calldata is through the [Moonbeam Uniswap V2 Demo](https://moonbeam-swap.netlify.app/){target=_blank} page. Once you go in the website, take the following steps:
 
  1. Set the swap **from** value and token and also set the swap **to** token. For this example, we want to swap 1 `DEV` token for `MARS`
- 2. Click on the **Swap** button. Metamask should pop up, **do not sign the transaction**
- 3. In Metamask, click on the **hex** tab, and the encoded calldata should show up
+ 2. Click on the **Swap** button. MetaMask should pop up, **do not sign the transaction**
+ 3. In MetaMask, click on the **hex** tab, and the encoded calldata should show up
  4. Click on the **Copy raw transaction data** button. This will copy the encoded calldata to the clipboard
 
 ![Calldata for Uniswap V2 swap](/images/tutorials/interoperability/uniswapv2-swap-xcm/uniswapv2-swap-xcm-3.png)
