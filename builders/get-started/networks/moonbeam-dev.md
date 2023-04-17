@@ -142,6 +142,36 @@ For more information on some of the flags and options used in the example, check
 
 Now that you know how to get a standard Moonbeam development node up and running, you may be wondering how you can configure it. The following sections will cover some common configurations you can use when you spin up your node.
 
+### Common Flags to Configure your Node {: #node-flags } 
+
+Flags do not take an argument. To use a flag, add it to the end of a command. For example:
+
+```
+--8<-- 'code/setting-up-node/runnode.md'
+```
+
+- **`--dev`** - specifies the development chain
+- **`--tmp`** - runs a temporary node in which all of the configuration will be deleted at the end of the process
+- **`--rpc-external`** - listen to all RPC interfaces
+- **`--ws-external`** - listen to all Websocket interfaces
+
+### Common Options to Configure your Node {: #node-options } 
+
+Options accept an argument to the right of the option. For example:
+
+```
+--8<-- 'code/setting-up-node/runnodewithsealinginterval.md'
+```
+
+- **`-l <log pattern>` or `--log <log pattern>`** - sets a custom logging filter. The syntax for the log pattern is `<target>=<level>`. For example, to print all of the JSON RPC logs, the command would look like this: `-l json=trace`
+- **`--sealing <interval>`** - when blocks should be sealed in the dev service. Accepted arguments for interval: `instant`, `manual`, or a number representing the timer interval in milliseconds (for example, `6000` will have the node produce blocks every 6 seconds). Default is `instant`. Please refer to the [Configure Block Production](#configure-block-production) section below for more information
+- **`--rpc-port <port>`** - *deprecated as of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, use `--ws-port` for HTTP and WS connections instead* - sets the HTTP RPC server TCP port. Accepts a port as the argument
+- **`--ws-port <port>`**: sets the WebSockets RPC server TCP port. As of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, the WS port is a unified port for both HTTP and WS connections. Accepts a port as the argument. Default is {{ networks.parachain.ws }}
+- **`--rpc-max-connections <connections>`** - *deprecated as of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, this value has been hardcoded to 100. Use `--ws-max-connections` to adjust the combined HTTP and WS connection limit instead* - specifies the maximum number of HTTP RPC server connections 
+- **`--ws-max-connections <connections>`** - specifies the maximum number of WS RPC server connections. As of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, this flag adjusts the combined HTTP and WS connection limit. Default is 100 connections
+
+For a complete list of flags and options, spin up your Moonbeam development node with `--help` added to the end of the command.
+
 ### Configure Block Production {: #configure-block-production }
 
 By default, your Moonbeam development node is spun up in instant seal mode, which instantly authors blocks as transactions are received. However, you can specify when blocks should be authored, or sealed, by using the `--sealing` option. 
@@ -191,36 +221,6 @@ produceBlock();
 
 !!! note
     If you're unfamiliar with Ethers, please refer to the [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank} documentation page to learn more.
-
-### Common Flags to Configure your Node {: #node-flags } 
-
-Flags do not take an argument. To use a flag, add it to the end of a command. For example:
-
-```
---8<-- 'code/setting-up-node/runnode.md'
-```
-
-- **`--dev`** - specifies the development chain
-- **`--tmp`** - runs a temporary node in which all of the configuration will be deleted at the end of the process
-- **`--rpc-external`** - listen to all RPC interfaces
-- **`--ws-external`** - listen to all Websocket interfaces
-
-### Common Options to Configure your Node {: #node-options } 
-
-Options accept an argument to the right of the option. For example:
-
-```
---8<-- 'code/setting-up-node/runnodewithsealinginterval.md'
-```
-
-- **`-l <log pattern>` or `--log <log pattern>`** - sets a custom logging filter. The syntax for the log pattern is `<target>=<level>`. For example, to print all of the JSON RPC logs, the command would look like this: `-l json=trace`
-- **`--sealing <interval>`** - when blocks should be sealed in the dev service. Accepted arguments for interval: `instant`, `manual`, or a number representing the timer interval in milliseconds (for example, `6000` will have the node produce blocks every 6 seconds). Default is `instant`
-- **`--rpc-port <port>`** - *deprecated as of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, use `--ws-port` for HTTP and WS connections instead* - sets the HTTP RPC server TCP port. Accepts a port as the argument
-- **`--ws-port <port>`**: sets the WebSockets RPC server TCP port. As of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, the WS port is a unified port for both HTTP and WS connections. Accepts a port as the argument. Default is {{ networks.parachain.ws }}
-- **`--rpc-max-connections <connections>`** - *deprecated as of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, this value has been hardcoded to 100. Use `--ws-max-connections` to adjust the combined HTTP and WS connection limit instead* - specifies the maximum number of HTTP RPC server connections 
-- **`--ws-max-connections <connections>`** - specifies the maximum number of WS RPC server connections. As of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, this flag adjusts the combined HTTP and WS connection limit. Default is 100 connections
-
-For a complete list of flags and options, spin up your Moonbeam development node with `--help` added to the end of the command.
 
 ## Prefunded Development Accounts {: #pre-funded-development-accounts } 
 
