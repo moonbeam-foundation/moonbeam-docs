@@ -151,75 +151,82 @@ In this section we'll be constructing and sending the XCM instructions via the P
 
 ```javascript
 // Import
-import { ApiPromise, WsProvider } from "@polkadot/api";
+import { ApiPromise, WsProvider } from '@polkadot/api';
 
 // Construct API provider
-const wsProvider = new WsProvider(
-  "wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network"
-);
-const api = await ApiPromise.create({ provider: wsProvider });
+const wsProvider = new WsProvider('wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network');
 
 // Import the keyring as required
-import { Keyring } from "@polkadot/api";
+import { Keyring } from '@polkadot/api';
 
 // Initialize wallet key pairs
-const keyring = new Keyring({ type: "sr25519" });
-// For demo purposes only. Never store your private key or mnemonic in a JavaScript file
-const otherPair = await keyring.addFromUri("YOUR-DEV-SEED-PHRASE-HERE");
-console.log(`Derived Address from Private Key: ${otherPair.address}`);
+const keyring = new Keyring({ type: 'sr25519' });
 
-// Create the destination multilocation (define where the message will be sent)
-const dest = { V3: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
+const main = async () => {
+  // Create API
+  const api = await ApiPromise.create({ provider: wsProvider });
 
-// Create the full XCM message which defines the action to take on the destination chain
-const message = {
-  V3: [
-    {
-      WithdrawAsset: [
-        {
-          id: {
-            concrete: { parents: 0, interior: { X1: { PalletInstance: 3 } } },
+  // For demo purposes only. Never store your private key or mnemonic in a JavaScript file
+  const otherPair = await keyring.addFromUri('YOUR-DEV-SEED-PHRASE-HERE');
+  console.log(`Derived Address from Private Key: ${otherPair.address}`);
+
+  // Create the destination multilocation (define where the message will be sent)
+  const dest = { V3: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
+
+  // Create the full XCM message which defines the action to take on the destination chain
+  const message = {
+    V3: [
+      {
+        WithdrawAsset: [
+          {
+            id: {
+              concrete: { parents: 0, interior: { X1: { PalletInstance: 3 } } },
+            },
+            fun: { Fungible: 100000000000000000n },
           },
-          fun: { Fungible: 100000000000000000n },
-        },
-      ],
-    },
-    {
-      BuyExecution: [
-        {
-          id: {
-            Concrete: { parents: 0, interior: { X1: { PalletInstance: 3 } } },
+        ],
+      },
+      {
+        BuyExecution: [
+          {
+            id: {
+              Concrete: { parents: 0, interior: { X1: { PalletInstance: 3 } } },
+            },
+            fun: { Fungible: 100000000000000000n },
           },
-          fun: { Fungible: 100000000000000000n },
-        },
-        { unlimited: null },
-      ],
-    },
-    {
-      Transact: {
-        originType: "SovereignAccount",
-        requireWeightAtMost: 40000000000n,
-        call: {
-          encoded:
-            "0x0c123a7d3048f3cb0391bb44b518e5729f07bcc7a45d000064a7b3b6e00d0000000000000000643f0000000400000001000000",
+          { unlimited: null },
+        ],
+      },
+      {
+        Transact: {
+          originType: 'SovereignAccount',
+          requireWeightAtMost: 40000000000n,
+          call: {
+            encoded:
+              '0x0c123a7d3048f3cb0391bb44b518e5729f07bcc7a45d000064a7b3b6e00d0000000000000000643f0000000400000001000000',
+          },
         },
       },
-    },
-  ],
+    ],
+  };
+
+  // Define the transaction using the send method of the xcm pallet
+  let tx = await api.tx.xcmPallet.send(dest, message);
+
+  // Retrieve the encoded calldata of the transaction
+  const encodedCallData = tx.toHex();
+  console.log('Encoded call data is' + encodedCallData);
+
+  // Sign and send the transaction
+  const txHash = await tx.signAndSend(otherPair);
+
+  // Show the transaction hash
+  console.log(`Submitted with hash ${txHash}`);
+
+  api.disconnect();
 };
 
-// Define the transaction using the send method of the xcm pallet
-let tx = api.tx.xcmPallet.send(dest, message);
-
-// Retrieve the encoded calldata of the transaction
-const encodedCallData = tx.toHex();
-console.log("Encoded call data is" + encodedCallData);
-
-// Sign and send the transaction
-const txHash = await tx.signAndSend(otherPair);
-
-// Show the transaction hash
-console.log(`Submitted with hash ${txHash}`);
+main();
 ```
 
 !!! note
