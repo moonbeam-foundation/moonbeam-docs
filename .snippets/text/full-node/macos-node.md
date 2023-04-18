@@ -13,7 +13,7 @@ For client versions prior to v0.30.0, `--rpc-port` was used to specify the port 
 ```
 docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
 -u $(id -u ${USER}):$(id -g ${USER}) \
-purestake/moonbeam:v0.29.0 \
+purestake/moonbeam:v0.30.3 \
 --base-path=/data \
 --chain moonbeam \
 --name="YOUR-NODE-NAME" \
@@ -31,7 +31,7 @@ purestake/moonbeam:v0.29.0 \
 ```
 docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
 -u $(id -u ${USER}):$(id -g ${USER}) \
-purestake/moonbeam:v0.29.0 \
+purestake/moonbeam:v0.30.3 \
 --base-path=/data \
 --chain moonbeam \
 --name="YOUR-NODE-NAME" \

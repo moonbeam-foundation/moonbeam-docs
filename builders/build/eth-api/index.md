@@ -1,11 +1,8 @@
 ---
 title: Ethereum API
 description: Learn how to use the Ethereum API when developing on Moonbeam. This section includes guides on Ethereum libraries, development environments, and more.
-template: main.html
+template: subsection-index-page.html
 hide: 
  - toc
  - feedback
 ---
-
-<h1 class='subsection-title'>Ethereum API</h1>
-<div class='subsection-wrapper'></div>

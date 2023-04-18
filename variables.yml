@@ -81,6 +81,7 @@ networks:
           eth_usd: '0x0BAA6E884cfD628b33867F9E081B44a76276fA2D'
           frax_usd: '0xB616464cB6135AF542de908FAa3FbE3a0b3048e4'
           ftm_usd: '0xD23f056ceD090Bc9Cf6c75d2FB43c0ccC35AD542'
+          glmr_usd: '0x537879A0beA294c1ce04161Ae827919e92C23e92'
           ksm_usd: '0x4E9A1ebc0bEebe3516a8A9a911D781c37414bb39'
           link_usd: '0x5310f2d4B531BCEA8126e2aEE40BAd71B707f530'
           mkr_usd: '0x2257c46D4ddF160bACBD00cd67cD6Fd87C48c581'
@@ -295,13 +296,6 @@ networks:
       max_votes: 100
       max_proposals: 100
       max_referenda: 5
-      lock_period: # delete these once translations are done
-        conviction_1: 1
-        conviction_2: 2
-        conviction_3: 4
-        conviction_4: 8
-        conviction_5: 16
-        conviction_6: 32
     inflation:
       total_annual_inflation: 5
       delegator_reward_inflation: 50
@@ -618,13 +612,6 @@ networks:
       min_preim_deposit: 0.004
       max_proposals: 100
       max_referenda: 5
-      lock_period: # delete these when translations are done
-        conviction_1: 1
-        conviction_2: 2
-        conviction_3: 4
-        conviction_4: 8
-        conviction_5: 16
-        conviction_6: 32
     inflation:
       total_annual_inflation: 5
       delegator_reward_inflation: 50
@@ -781,9 +768,9 @@ networks:
     chain_id: 1284
     hex_chain_id: '0x504'
     node_directory: /var/lib/moonbeam-data
-    parachain_release_tag: v0.29.0
-    parachain_sha256sum: afc7f4cf869fea6af3e4d104b5e99b764df6baca8b6157cc4e1fd8a345e75623
-    tracing_tag: purestake/moonbeam-tracing:v0.29.0-2100-latest
+    parachain_release_tag: v0.30.3
+    parachain_sha256sum: 5957fa67e87ae536c724b27c95cc5ee5844d2bb97ac1a79d66e642e7031c2fd1
+    tracing_tag: purestake/moonbeam-tracing:v0.30.3-2201-latest
     chain_spec: moonbeam
     block_explorer: https://moonscan.io
     binary_name: moonbeam

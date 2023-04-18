@@ -182,7 +182,7 @@ You will then be prompted to sign the transaction. If everything looks good, you
 
 You should see status notifications pop-up in the top right hand corner confirming the transaction. 
 
-To verify the removal of your identity information, you can follow the steps in the [Confirm an Identity](#confirm-an-identity) section again. Instead of seeing your identity information, this time you'll get a response of **none**. Meaning, you no longer have any identity information associated with your account. If you check your balances, you should see that the initial deposit for setting your identity has been returned to your transferable balance. That’s it! Your identity has been cleared. 
+To verify the removal of your identity information, you can follow the steps in the [Confirm an Identity](#confirm-identity-extrinsics) section again. Instead of seeing your identity information, this time you'll get a response of **none**. Meaning, you no longer have any identity information associated with your account. If you check your balances, you should see that the initial deposit for setting your identity has been returned to your transferable balance. That’s it! Your identity has been cleared. 
 
 ## Identity Judgement {: #identity-judgement }
 

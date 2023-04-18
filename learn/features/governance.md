@@ -247,7 +247,7 @@ The OpenGov Technical Committee is made up of members of the community who have 
 
 ### Related Guides on Governance v2 {: #try-it-out } 
 
-For related guides on submitting and voting on referenda on Moonbeam with Governance v1, please check the following guides:
+For related guides on submitting and voting on referenda on Moonbeam with Governance v2, please check the following guides:
 
  - [How to Submit a Proposal](/tokens/governance/proposals/opengov-proposals){target=_blank}
  - [How to Vote on a Proposal](/tokens/governance/voting/opengov-voting){target=_blank}
@@ -358,7 +358,7 @@ As seen in the above table, the Technical Committee can veto an External Proposa
 
 Public referenda use a positive turnout bias metric, that is, a Super-Majority approval formula. The equation is the following:
 
-![Positive Turnout Bias](/images/tokens/governance/voting/vote-bias.png)
+![Positive Turnout Bias](/images/learn/features/governance/vote-bias.png)
 
 Where:
 

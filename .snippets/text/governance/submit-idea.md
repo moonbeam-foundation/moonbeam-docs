@@ -10,10 +10,10 @@ Once you’re logged in, you can explore the latest discussions, join conversati
 
 When you're ready to create a post with the details of your proposal, you can head to the **Governance** page and click on **Democracy Proposals**.
 
-![Governance page on Moonbeam Forum](/images/tokens/governance/proposals/proposals-1.png)
+![Governance page on Moonbeam Forum](/images/tokens/governance/proposals/v1/proposals-1.png)
 
 From there, you can click on **Open Draft** and begin to draft your proposal using the template provided. Make sure to update the title of the post and add any of the optional tags, such as **Moonbeam** if the proposal is for the Moonbeam network. The title should follow the format as the pre-populated title: [Proposal: XX][Status: Idea] proposal title. For example, [Proposal: XX][Status: Idea] Register XC-20 xcMYTOK. The XX will need to be updated with the proposal ID once the proposal has been formally submitted on-chain.
 
-![Add a proposal to the Moonbeam Forum](/images/tokens/governance/proposals/proposals-2.png)
+![Add a proposal to the Moonbeam Forum](/images/tokens/governance/proposals/v1/proposals-2.png)
 
 After you've filled out your proposal details, you can click **Create Topic** to save it to the forum and open the discussion on your idea. Based on the feedback you receive, you can update the proposal before proceeding to submit it.

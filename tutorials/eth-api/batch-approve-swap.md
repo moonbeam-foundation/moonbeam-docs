@@ -17,7 +17,7 @@ One of the reasons why many DApps use an unlimited amount is so that users don't
 
 As a DApp developer on Moonbeam, this process can be easily avoided, providing your users with more control over their assets. This can be done using the [batch precompile](/builders/pallets-precompiles/precompiles/batch){target=_blank} to batch an approval and swap into a single transaction, instead of the typical two transaction process. This allows for the approval amount to be the exact swap amount instead of having unlimited access to your users' tokens. 
 
-In this tutorial, we'll dive into the process of batching an approval and swap into one transaction using the `batchAll` function of the batch precompile contract. We'll create and deploy an ERC-20 contract and a simple DEX contract for the swap on the Moonbase Alpha TestNet using [Hardhat](/builders/build/eth-api/dev-env/hardhat){target=_blank} and [Ethers](/builders/build/eth-api/libraries/ethersjs){target=_blank}. 
+In this tutorial, we'll dive into the process of batching an approval and swap into one transaction using the `batchAll` function of the batch precompile contract. We'll create and deploy an ERC-20 contract and a simple DEX contract for the swap on the [Moonbase Alpha TestNet](/builders/get-started/networks/moonbase){target=_blank} using [Hardhat](/builders/build/eth-api/dev-env/hardhat){target=_blank} and [Ethers](/builders/build/eth-api/libraries/ethersjs){target=_blank}. 
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
@@ -31,14 +31,14 @@ For this tutorial, you'll need the following:
 
 ### Install Dependencies {: #install-dependencies }
 
-Once you have your Hardhat project, you can install the [Ethers plugin](https://hardhat.org/plugins/nomiclabs-hardhat-ethers.html){target=_blank}. This provides a convenient way to use the [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=_blank} library to interact with the network.
+Once you have your [Hardhat project](/builders/build/eth-api/dev-env/hardhat){target=_blank}, you can install the [Ethers plugin](https://hardhat.org/plugins/nomiclabs-hardhat-ethers.html){target=_blank}. This provides a convenient way to use the [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=_blank} library to interact with the network.
 
 You can also install the [OpenZeppelin contracts library](https://docs.openzeppelin.com/contracts/){target=_blank}, as we'll be importing the `ERC20.sol` contract and `IERC20.sol` interface in our contracts.
 
 To install the necessary dependencies, run the following command:
 
 ```
-npm install @nomiclabs/hardhat-ethers ethers @openzeppelin/contracts
+npm install @nomiclabs/hardhat-ethers @openzeppelin/contracts
 ```
 
 ## Contract Setup {: #contracts }
@@ -60,7 +60,7 @@ If you don't already have a `contracts` directory in your Hardhat project, you c
 mkdir contracts && cd contracts
 ```
 
-Then, you can create a single file that we'll use to store the code for the `DemoToken` and `SimpleDex` contract:
+Then, you can create a single file that we'll use to store the code for the `DemoToken` and `SimpleDex` contracts and another file for the batch precompile:
 
 ```
 touch SimpleDex.sol Batch.sol
@@ -308,7 +308,10 @@ async function main() {
 
 So, if you set the amount to swap to be .2 DTOK, the DEX balance will increase by .2 DTOK, and the signing account's balance will decrease by .2 DTOK. The transaction hash for the swap will also be printed to the terminal, so you can use [Moonscan](https://moonbase.moonscan.io){target=_blank} to view more information on the transaction.
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/eth-api/batch-approve-swap/swap.js){target=_blank}.
+??? code "View the complete script"
+    ```js
+    --8<-- 'code/tutorials/eth-api/batch-approve-swap/swap.js'
+    ```
 
 To run the script, you can use the following command:
 

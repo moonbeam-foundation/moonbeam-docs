@@ -15,7 +15,7 @@ Token holders can vote on referenda using their own tokens. Two factors defined 
 
 In Moonbeam, users will be able to create and vote on proposals using their H160 address and private key, that is, their regular Ethereum account! 
 
-Moonbeam's governance system is in the process of getting revamped! This next phase of governance is known as OpenGov (Governance v2). During the roll-out process, OpenGov will be rigorously tested on Moonriver before a proposal will be made to deploy it on Moonbeam. Until it launches on Moonbeam, Moonbeam will continue to use Governance v1. As such, **this guide is for proposals on Moonriver or Moonbase Alpha only**. If you're looking to submit a proposal on Moonbeam, you can refer to the [How to Vote on a Proposal in Governance v1](/tokens/governance/voting/voting){target=_blank} guide.
+Moonbeam's governance system is in the process of getting revamped! This next phase of governance is known as OpenGov (Governance v2). During the roll-out process, OpenGov will be rigorously tested on Moonriver before a proposal will be made to deploy it on Moonbeam. Until it launches on Moonbeam, Moonbeam will continue to use Governance v1. As such, **this guide is for proposals on Moonriver or Moonbase Alpha only**. If you're looking to vote on a proposal on Moonbeam, you can refer to the [How to Vote on a Proposal in Governance v1](/tokens/governance/voting/voting){target=_blank} guide.
 
 This guide will outline the process, with step-by-step instructions, of how to vote on referenda in Governance v2: OpenGov. This guide will show you how to vote on Moonbase Alpha, but it can be easily adapted for Moonriver. For more information on Moonbeam's governance system, including Governance v1 and OpenGov (Governance v2), please refer to the [governance overview page](/learn/features/governance/){target=_blank}.
 
@@ -68,7 +68,7 @@ This section goes over the process of voting on public referendum in OpenGov (Go
 
 To vote on a proposal in the network, you need to use the Polkadot.js Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do by following the [Creating or Importing an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=_blank} guide. For this example, three accounts were imported and named with super original names: Alice, Bob, and Charlie.
 
-![Accounts in Polkadot.js](/images/tokens/governance/proposals/proposals-3.png)
+![Accounts in Polkadot.js](/images/tokens/governance/proposals/v1/proposals-3.png)
 
 To get started, you'll need to navigate to [Moonbase Alpha's Polkadot.js Apps interface](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network){target=_blank}. Everything related to governance lives under the **Governance** tab. To view all of the referenda, you can choose **Referenda** from the **Governance** dropdown. On the **Referenda** page, you'll see a list of referenda organized by Track. To view the details of a specific referendum, you can click on the arrow next to the description. The number next to the action and description is called the referendum index.
 
