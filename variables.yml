@@ -405,10 +405,10 @@ networks:
       rocksdb_write: 100,000,000
     api3:
       rrp: '0xa0AD79D995DdeeB18a14eAef56A549A04e3Aa1Bd'
-      byogqrngairnode: '0x6238772544f029ecaBfDED4300f13A3c4FE84E1D'
-      byogqrngxpub: 'xpub6CuDdF9zdWTRuGybJPuZUGnU4suZowMmgu15bjFZT2o6PUtk4Lo78KGJUGBobz3pPKRaN9sLxzj21CMe6StP3zUsd8tWEJPgZBesYBMY7Wo'
-      byogqrnguint256: '0xfb6d017bb87991b7495f563db3c8cf59ff87b09781947bb1e417006ad7f55a78'
-      byogqrnguint256array: '0x27cc2713e7f968e4e86ed274a051a5c8aaee9cca66946f23af6f29ecea9704c3'
+      nodaryqrngairnode: '0x6238772544f029ecaBfDED4300f13A3c4FE84E1D'
+      nodaryqrngxpub: 'xpub6CuDdF9zdWTRuGybJPuZUGnU4suZowMmgu15bjFZT2o6PUtk4Lo78KGJUGBobz3pPKRaN9sLxzj21CMe6StP3zUsd8tWEJPgZBesYBMY7Wo'
+      nodaryqrnguint256: '0xfb6d017bb87991b7495f563db3c8cf59ff87b09781947bb1e417006ad7f55a78'
+      nodaryqrnguint256array: '0x27cc2713e7f968e4e86ed274a051a5c8aaee9cca66946f23af6f29ecea9704c3'
   moonriver:
     public_rpc_url: https://rpc.api.moonriver.moonbeam.network # for wallets
     rpc_url: RPC-API-ENDPOINT-HERE
