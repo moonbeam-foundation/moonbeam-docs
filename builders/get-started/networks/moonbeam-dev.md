@@ -12,7 +12,7 @@ description: Follow this tutorial to learn how to set up your first Moonbeam nod
 
 A Moonbeam development node is your own personal development environment for building and testing applications on Moonbeam. For Ethereum developers, it is comparable to Hardhat Network or Ganache. It enables you to get started quickly and easily without the overhead of a relay chain. You can spin up your node with the `--sealing` option to author blocks instantly, manually, or at a custom interval after transactions are received. By default, a block will be created when a transaction is received, which is similar to the default behavior of Hardhat Network and Ganache's instamine feature. 
 
-If you follow this guide to the end, you will have a Moonbeam development node running in your local environment with 10 [prefunded accounts](#pre-funded-development-accounts) and be able to connect it to the default Polkadot.js GUI.
+If you follow this guide to the end, you will have a Moonbeam development node running in your local environment with 10 [prefunded accounts](#pre-funded-development-accounts).
 
 !!! note
     This tutorial was created using the {{ networks.development.build_tag }} tag of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/{{ networks.development.build_tag }}){target=_blank}. The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier){target=_blank} components it relies on for Substrate-based Ethereum compatibility are still under very active development.
@@ -239,6 +239,8 @@ Also included with the development node is an additional prefunded account used 
 
 --8<-- 'code/setting-up-node/dev-testing-account.md'
 
+You can connect any of these accounts to [MetaMask](/tokens/connect/metamask/){target=_blank}, [Talisman](/tokens/connect/talisman/){target=_blank}, [Polkadot.js Apps](/tokens/connect/polkadotjs/){target=_blank}, etc., using their private keys.
+
 ## Development Node Endpoints {: #access-your-development-node }
 
 You can access your Moonbeam development node using the following RPC and WSS endpoints:
@@ -252,28 +254,6 @@ You can access your Moonbeam development node using the following RPC and WSS en
     ```
     {{ networks.development.wss_url }}
     ```
-
-## Connect Polkadot.js Apps to a Moonbeam Development Node {: #connecting-polkadot-js-apps-to-a-local-moonbeam-node } 
-
-Polkadot.js Apps is a UI for interacting with a Substrate node, such as your Moonbeam development node. It provides access to all of Moonbeam's features, including account management, sending transactions (extrinsics), and more.
-
-To connect your Moonbeam development node to Polkadot.js Apps, you'll need to first open a browser to: [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/#/explorer){target=_blank}. This will open Polkadot.js Apps, which automatically connects to Polkadot MainNet.
-
-![Polkadot.js Apps](/images/builders/get-started/networks/moonbeam-dev/moonbeam-dev-5.png)
-
-Click on the top left corner to open the menu to configure the networks, then take the following steps:
-
-1. Navigate down to open the **Development** sub-menu
-2. Click on **Local Node**, which points Polkadot.js Apps to `{{ networks.development.wss_url }}`. If not, you can enter it under **custom endpoint**
-3. Select the **Switch** button, and the site should connect to your Moonbeam development node
-
-![Select local node](/images/builders/get-started/networks/moonbeam-dev/moonbeam-dev-6.png)
-
-With Polkadot.js Apps connected, you will see the Moonbeam development node waiting for transactions to arrive to begin producing blocks.
-
-![Connected to a local node](/images/builders/get-started/networks/moonbeam-dev/moonbeam-dev-7.png)
-
-To check the balance of an address using Polkadot.js Apps, you can simply import your account in the **Accounts** tab. You can find more information in the [Interacting with Moonbeam Using Polkadot.js Apps](/tokens/connect/polkadotjs){target=_blank} guide.
 
 ## Block Explorers {: #block-explorers }
 
