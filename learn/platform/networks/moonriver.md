@@ -5,8 +5,6 @@ description: An overview of the current configuration of the Moonbeam deployment
 
 # Moonriver
 
-_Updated May 26th, 2022_
-
 ## Goal {: #goal } 
 
 In June 2021, Moonriver first launched as a parachain on the Kusama network. Moonriver is a sister network of Moonbeam, and provides an environment to test new code under real economic conditions. Developers now have access to start experimenting and building on an incentivized canary network connected to Kusama. 

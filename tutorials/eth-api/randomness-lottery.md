@@ -7,7 +7,7 @@ description: Looking to create a lottery smart contract? Follow this step-by-ste
 
 ![Randomness Moonbeam Banner](/images/builders/pallets-precompiles/precompiles/randomness/randomness-banner.png)
 
-_March 15, 2022 | by Erin Shaben_
+_March 15, 2023 | by Erin Shaben_
 
 ## Introduction {: #introduction } 
 

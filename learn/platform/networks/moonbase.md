@@ -5,8 +5,6 @@ description: An overview of the current configuration of the Moonbeam TestNet, M
 
 # The Moonbase Alpha TestNet
 
-_Updated May 26th, 2022_
-
 !!! note
     With the release of [Moonbase Alpha v8](https://github.com/PureStake/moonbeam/releases/tag/v0.8.0){target=_blank}, the minimum gas price has been set to 1 GDEV (similar to GWei on Ethereum). This might be a breaking change if you've previously specified a gas price of `0` for your deployment.
 

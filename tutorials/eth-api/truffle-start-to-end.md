@@ -7,7 +7,7 @@ description: Learn how to develop, test, and deploy smart contracts with Truffle
 
 ![Banner Image](/images/tutorials/eth-api/truffle-start-to-end/truffle-banner.png)
 
-_January 10, 2022 | by Erin Shaben_
+_January 10, 2023 | by Erin Shaben_
 
 ## Introduction {: #introduction } 
 
