@@ -17,6 +17,8 @@ But what about dApps that rely on indexers to index blockchain data? How can dev
 
 This tutorial will walk you through the process of indexing data on a local Moonbeam development node using Subsquid. We'll create an ERC-20 contract and use Subsquid to index transfers of our ERC-20. 
 
+This tutorial is based off of Massimo Luraschi's tutorial on how to [Boost your dApp development productivity with local indexing](https://medium.com/subsquid/boost-your-dapp-development-productivity-with-local-indexing-3936ba7a8cec){target=_blank}, but was modified for a Moonbeam development node.
+
 ## Checking Prerequisites {: #checking-prerequisites }
 
 To follow along with this tutorial, you'll need to have:
