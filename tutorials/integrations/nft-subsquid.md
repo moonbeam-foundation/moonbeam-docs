@@ -5,7 +5,7 @@ description: Learn how to use Subsquid, a query node framework for Substrate-bas
 
 # Indexing NFT Transfers on Moonbeam with Subsquid
 
-![Subsquid Banner](/images/builders/integrations/indexers/subsquid/subsquid-banner.png)
+![Subsquid Banner](/images/tutorials/integrations/nft-subsquid/nft-subsquid-banner.png)
 
 _March 7, 2023 | by Massimo Luraschi_
 
