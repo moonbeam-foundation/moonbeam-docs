@@ -73,7 +73,7 @@ There are two databases available in Polkadot and Kusama, RocksDB (which is the 
 
 ### Polkadot {: #polkadot }
 
-As previously mentioned, Polkadot currently uses a [fixed amount of weight](https://github.com/paritytech/polkadot/blob/e76cd144f9dad8c1304fd1476f92495bbb9ad22e/runtime/polkadot/src/xcm_config.rs#L95){target=_blank} for all XCM instructions, which is `{{ networks.polkadot.xcm_instructions.weight.display }}` weight units per instruction.
+As previously mentioned, Polkadot currently uses a [fixed amount of weight](https://github.com/paritytech/polkadot/blob/v0.9.37/runtime/polkadot/src/xcm_config.rs#L94){target=_blank} for all XCM instructions, which is `{{ networks.polkadot.xcm_instructions.weight.display }}` weight units per instruction.
 
 Although Polkadot doesn't currently use database weight units to calculate costs, the weight units for database operations, which have been benchmarked, are shared here for reference.
 
@@ -136,24 +136,24 @@ The total weight costs on Kusama take into consideration database reads and writ
 
 |                                                                    Database                                                                    |                    Read                     |                    Write                     |
 |:----------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------:|:--------------------------------------------:|
-| [RocksDB (default)](https://github.com/paritytech/polkadot/blob/v0.9.37/runtime/kusama/constants/src/weights/rocksdb_weights.rs){target=_blank} | {{ networks.kusama.rocks_db.read_weight }}  | {{ networks.kusama.rocks_db.write_weight }}  |
-|     [ParityDB](https://github.com/paritytech/polkadot/blob/v0.9.37/runtime/kusama/constants/src/weights/paritydb_weights.rs){target=_blank}     | {{ networks.kusama.parity_db.read_weight }} | {{ networks.kusama.parity_db.write_weight }} |
+| [RocksDB (default)](https://github.com/paritytech/polkadot/blob/v0.9.38/runtime/kusama/constants/src/weights/rocksdb_weights.rs){target=_blank} | {{ networks.kusama.rocks_db.read_weight }}  | {{ networks.kusama.rocks_db.write_weight }}  |
+|     [ParityDB](https://github.com/paritytech/polkadot/blob/v0.9.38/runtime/kusama/constants/src/weights/paritydb_weights.rs){target=_blank}     | {{ networks.kusama.parity_db.read_weight }} | {{ networks.kusama.parity_db.write_weight }} |
 
 Now that you are aware of the weight costs for database reads and writes on Kusama, you can calculate the weight cost for a given instruction using the base weight for an instruction. 
 
-For example, the [`WithdrawAsset` instruction](https://github.com/paritytech/polkadot/blob/v0.9.37/runtime/kusama/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L49-L53){target=_blank} has a base weight of `{{ networks.kusama.xcm_instructions.withdraw.base_weight }}`, and performs one database read, and one database write. Therefore, the total weight cost of the `WithdrawAsset` instruction is calculated as:
+For example, the [`WithdrawAsset` instruction](https://github.com/paritytech/polkadot/blob/v0.9.38/runtime/kusama/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L49-L53){target=_blank} has a base weight of `{{ networks.kusama.xcm_instructions.withdraw.base_weight }}`, and performs one database read, and one database write. Therefore, the total weight cost of the `WithdrawAsset` instruction is calculated as:
 
 ```
 {{ networks.kusama.xcm_instructions.withdraw.base_weight }} + {{ networks.kusama.rocks_db.read_weight}} + {{ networks.kusama.rocks_db.write_weight}} = {{ networks.kusama.xcm_instructions.withdraw.total_weight.display }}
 ```
 
-The [`BuyExecution` instruction](https://github.com/paritytech/polkadot/blob/v0.9.37/runtime/kusama/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L59-L61){target=_blank} has a base weight of `{{ networks.kusama.xcm_instructions.buy_exec.base_weight }}` and doesn't include any database reads or writes. Therefore, the total weight cost of the `BuyExecution` instruction is `{{ networks.kusama.xcm_instructions.buy_exec.total_weight }}`.
+The [`BuyExecution` instruction](https://github.com/paritytech/polkadot/blob/v0.9.38/runtime/kusama/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L59-L61){target=_blank} has a base weight of `{{ networks.kusama.xcm_instructions.buy_exec.base_weight }}` and doesn't include any database reads or writes. Therefore, the total weight cost of the `BuyExecution` instruction is `{{ networks.kusama.xcm_instructions.buy_exec.total_weight }}`.
 
-On Kusama, the benchmarked base weights are broken up into two categories: fungible and generic. Fungible weights are for XCM instructions that involve moving assets, and generic weights are for everything else. You can view the current weights for [fungible assets](https://github.com/paritytech/polkadot/blob/v0.9.37/runtime/kusama/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L45){target=_blank} and [generic assets](https://github.com/paritytech/polkadot/blob/v0.9.37/runtime/kusama/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L45){target=_blank} directly in the Kusama Runtime code.
+On Kusama, the benchmarked base weights are broken up into two categories: fungible and generic. Fungible weights are for XCM instructions that involve moving assets, and generic weights are for everything else. You can view the current weights for [fungible assets](https://github.com/paritytech/polkadot/blob/v0.9.38/runtime/kusama/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs#L45){target=_blank} and [generic assets](https://github.com/paritytech/polkadot/blob/v0.9.38/runtime/kusama/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L46){target=_blank} directly in the Kusama Runtime code.
 
 With the instruction weight cost established, you can calculate the cost of the instruction in KSM. 
 
-In Kusama, the [`ExtrinsicBaseWeight`](https://github.com/paritytech/polkadot/blob/v0.9.37/runtime/kusama/constants/src/weights/extrinsic_weights.rs#L55){target=_blank} is set to `{{ networks.kusama.extrinsic_base_weight.display }}` which is [mapped to 1/10th](https://github.com/paritytech/polkadot/blob/v0.9.37/runtime/kusama/constants/src/lib.rs#L87){target=_blank} of a cent. Where 1 cent is `10^12 / 30,000`.
+In Kusama, the [`ExtrinsicBaseWeight`](https://github.com/paritytech/polkadot/blob/v0.9.38/runtime/kusama/constants/src/weights/extrinsic_weights.rs#L55){target=_blank} is set to `{{ networks.kusama.extrinsic_base_weight.display }}` which is [mapped to 1/10th](https://github.com/paritytech/polkadot/blob/v0.9.38/runtime/kusama/constants/src/lib.rs#L87){target=_blank} of a cent. Where 1 cent is `10^12 / 30,000`.
 
 Therefore, to calculate the cost of executing an XCM instruction, you can use the following formula:
 
@@ -214,7 +214,7 @@ Now that you know the weight costs for database reads and writes for Moonbase Al
 
 For example, the `WithdrawAsset` instruction is part of the fungible XCM instructions set. Therefore, it is not benchmarked, and the total weight cost of the `WithdrawAsset` instruction is `{{ networks.moonbase.xcm.instructions.weight_units.display }}`.
 
-The [`BuyExecution` instruction](https://github.com/PureStake/moonbeam/blob/master/pallets/moonbeam-xcm-benchmarks/src/weights/moonbeam_xcm_benchmarks_generic.rs#L220){target=_blank} has a base weight of `{{ networks.moonbase.xcm.instructions.buy_exec.base_weight }}`, and performs four database reads (`assetManager` pallet to get the `unitsPerSecond`). Therefore, the total weight cost of the `BuyExecution` instruction is calculated as follows:
+The [`BuyExecution` instruction](https://github.com/PureStake/moonbeam/blob/v0.31.1/pallets/moonbeam-xcm-benchmarks/src/weights/moonbeam_xcm_benchmarks_generic.rs#L136){target=_blank} has a base weight of `{{ networks.moonbase.xcm.instructions.buy_exec.base_weight }}`, and performs four database reads (`assetManager` pallet to get the `unitsPerSecond`). Therefore, the total weight cost of the `BuyExecution` instruction is calculated as follows:
 
 ```
 {{ networks.moonbase.xcm.instructions.buy_exec.base_weight }} + 4 * {{ networks.moonbase.db_weights.rocksdb_read }} = {{ networks.moonbase.xcm.instructions.buy_exec.total_weight }}
@@ -225,17 +225,17 @@ You can find all the weight values for all the XCM instructions in the following
 === "Moonbeam"
     |                                                                                            XCM Instruction Cost                                                                                             |
     |:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-    | [{{ networks.moonbeam.xcm.instructions.weight_units.display }}](https://github.com/PureStake/moonbeam/blob/f19ba9de013a1c789425d3b71e8a92d54f2191af/runtime/moonbeam/src/xcm_config.rs#L201){target=_blank} |
+    | [{{ networks.moonbeam.xcm.instructions.weight_units.display }}](https://github.com/PureStake/moonbeam/blob/v0.31.1/runtime/moonbeam/src/xcm_config.rs#L201){target=_blank} |
     
 === "Moonriver"
     |                                                                                             XCM Instruction Cost                                                                                              |
     |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-    | [{{ networks.moonriver.xcm.instructions.weight_units.display }}](https://github.com/PureStake/moonbeam/blob/f19ba9de013a1c789425d3b71e8a92d54f2191af/runtime/moonriver/src/xcm_config.rs#L208){target=_blank} |
+    | [{{ networks.moonriver.xcm.instructions.weight_units.display }}](https://github.com/PureStake/moonbeam/blob/v0.31.1/runtime/moonriver/src/xcm_config.rs#L211){target=_blank} |
     
 === "Moonbase Alpha"
     |                                                                             Benchmarked Instructions                                                                             |                                                                           Non-Benchmarked Instructions                                                                            |
     |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-    | [Generic XCM Instructions](https://github.com/PureStake/moonbeam/blob/master/pallets/moonbeam-xcm-benchmarks/src/weights/moonbeam_xcm_benchmarks_generic.rs#L203){target=_blank} | [Fungible XCM Instructions](https://github.com/PureStake/moonbeam/blob/master/pallets/moonbeam-xcm-benchmarks/src/weights/moonbeam_xcm_benchmarks_fungible.rs#L26){target=_blank} |
+    | [Generic XCM Instructions](https://github.com/PureStake/moonbeam/blob/v0.31.1/pallets/moonbeam-xcm-benchmarks/src/weights/moonbeam_xcm_benchmarks_generic.rs#L128){target=_blank} | [Fungible XCM Instructions](https://github.com/PureStake/moonbeam/blob/v0.31.1/pallets/moonbeam-xcm-benchmarks/src/weights/moonbeam_xcm_benchmarks_fungible.rs#L25){target=_blank} |
 
 The following sections will break down how to calculate XCM fees for Moonbeam-based networks. There are two main scenarios:
 
@@ -248,13 +248,13 @@ For each XCM instruction, the weight units are converted to balance units as par
 
 |                                                                               Moonbeam                                                                               |                                                                               Moonriver                                                                               |                                                                                             Moonbase Alpha                                                                                             |
 |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| [{{ networks.moonbeam.xcm.instructions.wei_per_weight.display }}](https://github.com/PureStake/moonbeam/blob/master/runtime/moonbeam/src/lib.rs#L129){target=_blank} | [{{ networks.moonriver.xcm.instructions.wei_per_weight.display }}](https://github.com/PureStake/moonbeam/blob/master/runtime/moonbeam/src/lib.rs#L129){target=_blank} | [{{ networks.moonbase.xcm.instructions.wei_per_weight.display }}](https://github.com/PureStake/moonbeam/blob/f19ba9de013a1c789425d3b71e8a92d54f2191af/runtime/moonbase/src/lib.rs#L135){target=_blank} |
+| [{{ networks.moonbeam.xcm.instructions.wei_per_weight.display }}](https://github.com/PureStake/moonbeam/blob/v0.31.1/runtime/moonbeam/src/lib.rs#L129){target=_blank} | [{{ networks.moonriver.xcm.instructions.wei_per_weight.display }}](https://github.com/PureStake/moonbeam/blob/v0.31.1/runtime/moonbeam/src/lib.rs#L129){target=_blank} | [{{ networks.moonbase.xcm.instructions.wei_per_weight.display }}](https://github.com/PureStake/moonbeam/blob/v0.31.1/runtime/moonbase/src/lib.rs#L138){target=_blank} |
 
 This means that on Moonbeam, for example, the formula to calculate the cost of one XCM instruction in the reserve asset is as follows:
 
 ```
-Wei = XCMInstrWeight * Wei_Per_Weight
-GLMR = Wei / (10^18)
+XCM-Wei-Cost = XCMInstrWeight * Wei_Per_Weight
+XCM-GLMR-Cost = Wei / (10^18)
 ```
 
 Therefore, the actual calculation is:
