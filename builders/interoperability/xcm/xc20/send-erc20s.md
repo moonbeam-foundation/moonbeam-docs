@@ -59,35 +59,97 @@ The `transfer` function accepts the following parameters:
 
 Now that you have a basic understanding of the transfer function and the parameters it accepts, you can build and send the XCM message.
 
-### Use Polkadot.js Apps to Send an ERC-20 Cross-Chain {: #use-polkadotjs-apps }
+### Use the Polkadot.js API to Send an ERC-20 Cross-Chain {: #use-polkadotjs-apps }
 
-This section of the guide will show you how to build and send an XCM message to transfer an ERC-20 cross-chain using Polkadot.js Apps. This is purely for example purposes only. Before sending assets cross-chain, make sure that the asset you're sending is registered in the target chain; otherwise the call will result in a loss of the assets.
+This section of the guide will show you how to build and send an XCM message to transfer an ERC-20 cross-chain using the Polkadot.js API. This is purely for example purposes only. Before sending assets cross-chain, make sure that the asset you're sending is [registered in the target chain](#register-an-erc-20-on-another-chain); otherwise the call will result in a loss of the assets.
 
-To get started, you can head to the extrinsics page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} and set the following options:
+Since you'll be interacting with the `transfer` function of the X-Tokens Pallet, you'll need to gather the arguments for the `currencyId`, `amount`, `dest`, and `destWeight`. For this example, you can send 1 ERC-20 token to an account on the relay chain:
 
-1. Select the account from which you want to send the XCM
-2. Choose the **xTokens** pallet and the **transfer** extrinsic
-3. Set the currency ID to **Erc20**
-4. Enter the H160 contract address of the ERC-20 
-5. Set the number of tokens to send in Wei. This examples uses 1 token, so you can enter the value in Wei, which is `1000000000000000000`
-6. Define the XCM destination multilocation. You'll need to target an account in another parachain or the relay chain. The asset must be registered on the target chain otherwise this call will result in a loss of the ERC-20 tokens. This example targets the relay chain with Moonbase Alpha as the origin chain. Therefore, set the following parameters:
+- The `currencyId` has the following parameters:
+
+    |    Parameter    |         Value         |
+    |:---------------:|:---------------------:|
+    |   CurrencyId    |         Erc20         |
+    | ContractAddress | Target ERC-20 Address |
+
+- The `amount` is straightforward, you can provide the value of ERC-20 tokens you want to transfer in Wei. For this example, you can transfer 1 token, which would be `1000000000000000000n`
+- The `dest` should be an XCM v3 Multilocation, which has the following parameters:
 
     | Parameter |     Value      |
     |:---------:|:--------------:|
-    |  Version  |       V1       |
+    |  Version  |       V3       |
     |  Parents  |       1        |
     | Interior  |       X1       |
     |    X1     |  AccountId32   |
-    |  Network  |      Any       |
     |    Id     | Target Account |
 
-7. Set the destination weight as `Limited`, and its value to `1000000000`. Note that on Moonbase Alpha, each XCM instruction costs around `100000000` weight units. A `transfer` consists of 4 XCM instructions, so a destination weight of `400000000` should be enough
-8. Click the **Submit Transaction** button and sign the transaction
+- The `destWeightLimit` should be an XCM v3 Weight Limit, which has the following parameters:
 
-![XCM X-Tokens Transfer Extrinsic](/images/builders/interoperability/xcm/xc20/send-erc20s/send-erc20s-1.png)
+    |    Parameter    |   Value   |
+    |:---------------:|:---------:|
+    | DestWeightLimit |  Limited  |
+    |     RefTime     | 400000000 |
+    |    ProofSize    |     0     |
+
+Note that on Moonbase Alpha, each XCM instruction costs around `100000000` weight units. A `transfer` consists of 4 XCM instructions, so a destination weight of `400000000` should be enough.
+
+Altogether, you should have the following variables for each parameter of the `transfer` function:
+
+```js
+const currencyId = { Erc20 : { contractAddress: ERC_20_ADDRESS } };
+const amount = 1000000000000000000n;
+const dest = { V3: { parents: 1, interior: { X1: { AccountId32: { id: RELAY_ACC_ADDRESS } } } } };
+const destWeightLimit = { Limited: { refTime: 400000000, proofSize: 0 } };
+```
+
+Now that we have the values for each of the parameters, we can begin to write a script for the transfer. You'll take the following steps:
+
+ 1. Provide the input data for the call. This includes:
+     - Moonbase Alpha endpoint URL to create the provider
+     - The values for each of the parameters of the `transfer` function
+ 2. Create a Keyring instance that will be used to send the transaction. **This is for demo purposes only. Never store your private key in a JavaScript file**
+ 3. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} provider
+ 4. Craft the `xTokens.transfer` extrinsic with the `currencyId`, `amount`, `dest`, and `destWeightLimit`
+ 5. Send the transaction using the `signAndSend` extrinsic and the Keyring instance you created in the second step
+
+```js
+import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
+import { Keyring } from '@polkadot/api';
+
+// 1. Provide input data
+const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
+const currencyId = { Erc20: { contractAddress: ERC_20_ADDRESS } };
+const amount = 1000000000000000000n;
+const dest = {
+  V3: {
+    parents: 1,
+    interior: { X1: { AccountId32: { id: RELAY_ACC_ADDRESS } } },
+  },
+};
+const destWeightLimit = { Limited: { refTime: 400000000, proofSize: 0 } };
+
+// 2. Create Keyring instance
+const keyring = new Keyring({ type: 'ethereum' });
+const alice = keyring.addFromUri(PRIVATE_KEY);
+
+const sendErc20 = async () => {
+  // 3. Create Substrate API provider
+  const substrateProvider = new WsProvider(providerWsURL);
+  const api = await ApiPromise.create({ provider: substrateProvider });
+
+  // 4. Craft the extrinsic
+  const tx = api.tx.xTokens.transfer(currencyId, amount, dest, destWeightLimit);
+
+  // 5. Send the transaction
+  const txHash = await tx.signAndSend(alice);
+  console.log(`Submitted with hash ${txHash}`);
+};
+
+sendErc20();
+```
 
 !!! note
-    The encoded call data for the extrinsic configured above is `0x1e000325ed7e99cf496a8c6d29f5cce425b825af67a1f0000064a7b3b6e00d000000000000000001010101000c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d670102105e5f`. It also includes a specific ERC-20 contract address and recipient that you'll need to change.
+    You can view an example of the above script with a preconfigured ERC-20 contract address and recipient on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1e000325ed7e99cf496a8c6d29f5cce425b825af67a1f0000064a7b3b6e00d00000000000000000301010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a0630102105e5f00){target=_blank} using the following encoded call data: `0x1e000325ed7e99cf496a8c6d29f5cce425b825af67a1f0000064a7b3b6e00d00000000000000000301010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a0630102105e5f00`.
 
 ## Use the X-Tokens Precompile to Send an ERC-20 {: #x-tokens-precompile }
 
@@ -145,8 +207,8 @@ In order to register an ERC-20 on another chain, you'll need the multilocation o
 
 === "Moonbase Alpha"
 
-    |    Variable    |                      Value                     |
+    |    Variable    |                     Value                      |
     |:--------------:|:----------------------------------------------:|
-    |    Parachain   |                      1000                      |
+    |   Parachain    |                      1000                      |
     | PalletInstance |                       48                       |
     |  AccountKey20  | { network: Any, key: ERC20_ADDRESS_GOES_HERE } |
