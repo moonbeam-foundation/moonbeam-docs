@@ -207,7 +207,7 @@ You can clone the repository to any location on your local machine. For simplici
         mv moonbeam-runtime-overrides/wasm {{ networks.moonbase.node_directory }}
         ```
 
-3. You can delete the override files for the networks that you aren't running
+3. Delete the override files for the networks that you aren't running
 
     === "Moonbeam"
         ```
