@@ -152,7 +152,7 @@ The happy path for a randomness request is shown in the following diagram:
 
 ![Randomness request happy path diagram](/images/learn/features/randomness/randomness-1.png)
 
-## Generate a Random Numnber using the Randomness Precompile {: #interact-with-the-solidity-interfaces }
+## Generate a Random Number using the Randomness Precompile {: #interact-with-the-solidity-interfaces }
 
 In the following sections of this tutorial, you'll learn how to create a smart contract that generates a random number using the Randomness Precompile and the Randomness Consumer. If you want to just explore some of the functions of the Randomness Precompile, you can skip ahead to the [Use Remix to Interact Directly with the Randomness Precompile](#interact-directly) section.
 
