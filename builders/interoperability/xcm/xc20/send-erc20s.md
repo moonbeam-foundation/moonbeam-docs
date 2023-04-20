@@ -11,7 +11,7 @@ description: Transfer any ERC-20 token cross-chain with ease via XCM. Our step-b
 
 You can send any ERC-20 directly through XCM from Moonbeam to any other chains in the ecosystem (relay chain or parachains) as long as the ERC-20 is registered as an XCM asset on that chain.
 
-This is made possible via the [X-Tokens Pallet](/builders/interoperability/xcm/xc20/xtokens/#X-Tokens-pallet-interface){target=_blank} on Moonbeam, which provides different methods to transfer fungible assets and is the same pallet used to [send external XC-20s](/builders/interoperability/xcm/xc20/xtokens){target=_blank} and native assets cross-chain.
+This is made possible via the [X-Tokens Pallet](/builders/interoperability/xcm/xc20/xtokens/#X-Tokens-pallet-interface){target=_blank} and the [ERC-20 XCM Bridge Pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/erc20-xcm-bridge){target=_blank} on Moonbeam. The X-Tokens Pallet provides different methods to transfer fungible assets and is the same pallet used to [send external XC-20s](/builders/interoperability/xcm/xc20/xtokens){target=_blank} and native assets cross-chain. On the other hand, the ERC-20 XCM Bridge Pallet handles the underlying functionality to support XCM-enabled ERC-20s.
 
 This guide will show you how to leverage the X-Tokens Pallet to build an XCM message to transfer an ERC-20 to another chain. Moreover, you'll also learn how to use the X-Tokens Precompile to perform the same actions via the Ethereum API. For more information, you can refer to the documentation on the [X-Tokens Pallet](/builders/interoperability/xcm/xc20/xtokens/#x-tokens-pallet-interface){target=_blank} and [X-Tokens Precompile](/builders/interoperability/xcm/xc20/xtokens/#xtokens-precompile){target=_blank}.
 
@@ -137,3 +137,16 @@ The following snippets are purely for example purposes only. Before sending asse
     --8<-- 'code/xtokens/send-erc20s/web3.py'
     ```
 
+## Register an ERC-20 on Another Chain {: #register-an-erc-20-on-another-chain }
+
+As previously mentioned, you can send any ERC-20 through XCM to any other chains in the ecosystem (relay chain or parachains) as long as the ERC-20 is registered as an XCM asset on that chain.
+
+In order to register an ERC-20 on another chain, you'll need the multilocation of the asset on Moonbeam. The multilocation will include the parachain ID of Moonbeam, the pallet instance, and the address of the ERC-20. The pallet instance will be `48`, which corresponds to the index of the ERC-20 XCM Bridge Pallet, as this is the pallet that enables any ERC-20 to be transferred via XCM. 
+
+=== "Moonbase Alpha"
+
+    |    Variable    |                      Value                     |
+    |:--------------:|:----------------------------------------------:|
+    |    Parachain   |                      1000                      |
+    | PalletInstance |                       48                       |
+    |  AccountKey20  | { network: Any, key: ERC20_ADDRESS_GOES_HERE } |
