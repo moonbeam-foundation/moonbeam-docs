@@ -49,7 +49,7 @@ This section goes over the process of creating a proposal with OpenGov (Governan
 
 To make a proposal in the network, you can use the Polkadot.js Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do following the [Creating or Importing an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=_blank} guide. For this example, three accounts were imported and named with super original names: Alice, Bob, and Charlie.
 
-![Accounts in Polkadot.js](/images/tokens/governance/proposals/proposals-3.png)
+![Accounts in Polkadot.js](/images/tokens/governance/proposals/v1/proposals-3.png)
 
 For the proposal, you can choose anything you would like to propose, just make sure that you assign it to the right Origin and Track, so that it has the right privileges to execute the action. 
 
@@ -61,7 +61,7 @@ The first step is to submit a preimage of the proposal. This is because the stor
 
 First, navigate to [Moonbase Alpha's Polkadot.js Apps interface](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network){target=_blank}. Everything related to governance lives under the **Governance** tab, including preimages. So, from the **Governance** dropdown, you can select **Preimages**. Once there, click on the **Add preimage** button.
 
-![Add preimage in Polkadot.js](/images/tokens/governance/proposals/proposals-4.png)
+![Add preimage in Polkadot.js](/images/tokens/governance/proposals/v1/proposals-4.png)
 
 Here, you need to provide the following information:
 

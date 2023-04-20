@@ -13,7 +13,7 @@ The goal of Moonbeam’s governance mechanism is to advance the protocol accordi
 
 Governance forums like the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=_blank} and [Polkassembly](https://moonbeam.polkassembly.network/){target=_blank} enable open discussion and allow proposals to be refined based on community input. Autonomous enactments and [forkless upgrades](https://wiki.polkadot.network/docs/learn-runtime-upgrades#forkless-upgrades/){target=_blank} unite the community towards a shared mission to advance the protocol.
 
-With the rollout of OpenGov (originally referred to as Gov2), the second phase of governance in Polkadot, several modifications have been introduced to the governance process. You can read the [OpenGov: What is Polkadot Gov2](https://moonbeam.network/blog/opengov/){target=_blank} blog post, which provides an overview of all of the changes made in OpenGov. **OpenGov has launched on Moonriver, and once it has been rigorously tested, a proposal will be made for it to be launched on Moonbeam**. Until then, Moonbeam still uses Goverance v1.
+With the rollout of OpenGov (originally referred to as Gov2), the second phase of governance in Polkadot, several modifications have been introduced to the governance process. You can read the [OpenGov: What is Polkadot Gov2](https://moonbeam.network/blog/opengov/){target=_blank} blog post, which provides an overview of all of the changes made in OpenGov. **OpenGov has launched on Moonriver, and once it has been rigorously tested, a proposal will be made for it to be launched on Moonbeam**. Until then, Moonbeam still uses Governance v1.
 
 ## Principles {: #principles } 
 
@@ -43,7 +43,7 @@ For more details on how these Substrate frame pallets implement on-chain governa
 
 ## Governance v2: OpenGov {: #opengov}
 
-This section will cover everything you need to know about OpenGov on Moonriver and Moonbase Alpha. If you're looking for governance-related information on Moonbeam, please refer to the [Goveranance v1](#governance-v1) section.
+This section will cover everything you need to know about OpenGov on Moonriver and Moonbase Alpha. If you're looking for governance-related information on Moonbeam, please refer to the [Governance v1](#governance-v1) section.
 
 ### General Definitions {: #general-definitions-gov2 }
 
@@ -182,7 +182,7 @@ The Conviction multiplier values for each network are:
     |              32              |           6           | {{networks.moonbase.conviction.lock_period.conviction_6}} days |
 
 !!! note
-    The lock time approximations are based upon regular {{ networks.moonriver.block }}-second block times. Block production may vary and thus the displayed lock times should not be deemed exact.
+    The lock time approximations are based upon regular {{ networks.moonriver.block_time }}-second block times. Block production may vary and thus the displayed lock times should not be deemed exact.
 
 ### Roadmap of a Proposal {: #roadmap-of-a-proposal-v2 } 
 
@@ -196,7 +196,7 @@ Once the author is ready, they can submit their proposal on-chain. To do so, fir
 
 If a referendum meets the above criteria, it moves to the Decide Period and takes up one of the spots in its designated Track. In the Decide Period, voting continues and the referendum has a set amount of days to reach the Approval and Support requirements needed for it to progress to the Confirm Period.
 
-Once in the Confirm Period, a referendum must continuously meet the Approval and Support requirements for the duration of the period. If a referendum fails to meet the requirements at any point, it is returned to the Decide Period. If enough time is left in the Decide Period and the referendum meets the Approval and Support requirements again, it can progress to the Confirm Period again. If the Decide Period ends and not enough Approval and Support was received, the referendum will be rejected and the Decision Deposit will be returned. The proposal can be proposed again at any time.
+Once in the Confirm Period, a referendum must continuously meet the Approval and Support requirements for the duration of the period. If a referendum fails to meet the requirements at any point, it is returned to the Decide Period. If the referendum meets the Approval and Support requirements again, it can progress to the Confirm Period again and the Decide Period will be delayed until the end of the Confirm Period. If the Decide Period ends and not enough Approval and Support was received, the referendum will be rejected and the Decision Deposit will be returned. The proposal can be proposed again at any time.
 
 If a referendum continously receives enough Approval and Support during the Confirm Period, it will be approved and move to the Enactment Period. It will wait the duration of the Enactment Period before it gets dispatched.
 
@@ -212,7 +212,7 @@ A proposal (with its preimage) is submitted for the General Admin Track on Moonr
  - The Support curve starts at {{ networks.moonriver.governance.tracks.general_admin.min_support.percent0 }}% on {{ networks.moonriver.governance.tracks.general_admin.min_support.time0 }}, goes to {{ networks.moonriver.governance.tracks.general_admin.min_support.percent1 }}% on {{ networks.moonriver.governance.tracks.general_admin.min_support.time1 }}
  - A referendum starts the Decide Period with 0% "Aye" votes (nobody voted in the Lead-in Period)
  - Token holders begin to vote and the Approval increases to a value above {{ networks.moonriver.governance.tracks.general_admin.min_approval.percent1 }}% by {{ networks.moonriver.governance.tracks.general_admin.min_approval.time1 }}
- - If the Approval and Support thresholds are met for the duration of the Confirm Period ({{ networks.moonriver.governance.tracks.general_admin.min_enactment_period.blocks }} blocks, approximately {{ networks.moonriver.governance.tracks.general_admin.min_enactment_period.time }}), the referendum is approved
+ - If the Approval and Support thresholds are met for the duration of the Confirm Period ({{ networks.moonriver.governance.tracks.general_admin.confirm_period.blocks }} blocks, approximately {{ networks.moonriver.governance.tracks.general_admin.confirm_period.time }}), the referendum is approved
  - If the Approval and Support thresholds are not met during the Decision Period, the proposal is rejected. Note that the thresholds need to be met for the duration of the Confirm Period. Consequently, if they are met but the Decision Period expires before the completion of the Confirm Period, the proposal is rejected
 
 The Approval and Support percentages can be calculated using the following:
@@ -245,9 +245,9 @@ While still subject to governance, the idea behind the Whitelist track is that i
 
 The OpenGov Technical Committee is made up of members of the community who have technical knowledge and expertise in Moonbeam-based networks. 
 
-### Related Guides on Goverance v2 {: #try-it-out } 
+### Related Guides on Governance v2 {: #try-it-out } 
 
-For related guides on submitting and voting on referenda on Moonbeam with Governance v1, please check the following guides:
+For related guides on submitting and voting on referenda on Moonbeam with Governance v2, please check the following guides:
 
  - [How to Submit a Proposal](/tokens/governance/proposals/opengov-proposals){target=_blank}
  - [How to Vote on a Proposal](/tokens/governance/voting/opengov-voting){target=_blank}
@@ -257,7 +257,7 @@ For related guides on submitting and voting on referenda on Moonbeam with Govern
 
 ## Governance v1 {: #governance-v1 }
 
-While OpenGov is being tested on Moonriver, Moonbeam will continue to use goverance v1. This section will cover everything you need to know about governance v1 on Moonbeam.
+While OpenGov is being tested on Moonriver, Moonbeam will continue to use governance v1. This section will cover everything you need to know about governance v1 on Moonbeam.
 
 ### General Definitions {: #general-definitions } 
 
@@ -358,7 +358,7 @@ As seen in the above table, the Technical Committee can veto an External Proposa
 
 Public referenda use a positive turnout bias metric, that is, a Super-Majority approval formula. The equation is the following:
 
-![Positive Turnout Bias](/images/tokens/governance/voting/vote-bias.png)
+![Positive Turnout Bias](/images/learn/features/governance/vote-bias.png)
 
 Where:
 
@@ -379,7 +379,7 @@ In the previous example, these numbers were:
 
 In short, a heavy Super-Majority of "Aye" votes is required to approve a proposal at low turnouts, but as turnout increases, it becomes a simple majority.
 
-### Related Guides on Goverance v1 {: #try-it-out } 
+### Related Guides on Governance v1 {: #try-it-out } 
 
 For related guides on submitting and voting on referenda on Moonbeam with Governance v1, please check the following guides:
 

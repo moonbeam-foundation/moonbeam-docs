@@ -5,8 +5,6 @@ description: An overview of the current configuration of the Moonbeam deployment
 
 # Moonbeam
 
-_Updated May 26th, 2022_
-
 ## Goal {: #goal } 
 
 Moonbeam onboarded as a parachain to Polkadot on December 17th 2021. Moonbeam is the most Ethereum compatible smart-contract parachain in the Polkadot ecosystem. It allows developers to port their projects with minimal to no code changes, enabling them to tap into the Polkadot ecosystem and all its assets.

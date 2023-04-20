@@ -48,7 +48,15 @@ The Solidity interface for Mintable XC-20 tokens is a combination of the followi
 Mintable XC-20s include additional functions that only the owner or the designated account is allowed to call. They are declared in the [LocalAsset.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/LocalAsset.sol){target=_blank} interface, and are as follows:
 
 - **mint(*address* to, *uint256* value)** - mints a given amount of tokens to a specified address. Only the owner and the issuer are capable of calling this function
+
+    !!! note
+        The maximum `value` that can be minted is actually limited to *uint128*. A Mintable XC-20 will behave differently if the total supply is over 2^128 (without decimals), the mint will fail due to overflow checks. This is unlikely to happen for traditional tokens as they are not meant to reach such high numbers. For more information, please refer to the [Mintable XC-20s vs ERC-20s](/builders/get-started/eth-compare/security/#mintable-xc-20s-vs-erc-20s){target=_blank} section of the Security Considerations page.
+
 - **burn(*address* from, *uint256* value)** - burns a given amount of tokens from a specified address. Only the owner and the admin are capable of calling this function
+
+    !!! note
+        The `burn` function in Substrate behaves differently than the [standard ERC-20 `burn` function](https://docs.openzeppelin.com/contracts/2.x/api/token/erc20#ERC20-_burn-address-uint256-){target=_blank} as it does not require the `from` account to have the amount of tokens specified by the `value`. For more information, please refer to the [Mintable XC-20s vs ERC-20s](/builders/get-started/eth-compare/security/#mintable-xc-20s-vs-erc-20s){target=_blank} section of the Security Considerations page.
+    
 - **freeze(*address* account)** - freezes a specified account so that the tokens for that account are locked and any further transactions are not allowed. Only the owner and the freezer are capable of calling this function
 - **thaw(*address* account)** - unfreezes an account so now the specified account can interact with the tokens again. Only the owner and the admin are capable of calling this function
 - **freezeAsset()** - freezes the entire asset operations and locks up the tokens. Only the owner and the freezer are capable of calling this function
@@ -60,7 +68,7 @@ Mintable XC-20s include additional functions that only the owner or the designat
 
 ## Retrieve List of Mintable XC-20s {: #retrieve-list-of-mintable-xc-20s }
 
-To fetch a list of the mintable XC-20s currently available on the Moonbase Alpha TestNet, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=_blank} and make sure you're connected to Moonbase Alpha. Unlike external XC-20s, mintable XC-20s will not show up under the **Assets** page on Polkadot.js Apps. To query the available mintable XC-20s, you have to navigate to the **Developer** tab and select **Chain State** from the dropdown, and take the following steps:
+To fetch a list of the mintable XC-20s currently available on the Moonbase Alpha TestNet, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer){target=_blank} and make sure you're connected to Moonbase Alpha. Unlike external XC-20s, mintable XC-20s will not show up under the **Assets** page on Polkadot.js Apps. To query the available mintable XC-20s, you have to navigate to the **Developer** tab and select **Chain State** from the dropdown, and take the following steps:
 
 1. From the **selected state query** dropdown, choose **localAssets**
 --8<-- 'text/xc-20/list-of-assets.md'
@@ -100,7 +108,7 @@ Now that you've calculated the mintable XC-20 precompile address, you can use th
 
 ## Register a Mintable XC-20 {: #register-a-mxc-20 }
 
-This section of the guide will show you how to register an asset on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=_blank} and interact with the mintable XC-20 specific functions using [Remix](https://remix.ethereum.org/){target=_blank}. If you simply want to interact with a mintable XC-20 through the standard ERC-20 interface, please refer to the [Interact with the Precompile Using Remix](/builders/interoperability/xcm/xc20/overview/#interact-with-the-precompile-using-remix){target=_blank} section of the XC-20 precompile page.
+This section of the guide will show you how to register an asset on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer){target=_blank} and interact with the mintable XC-20 specific functions using [Remix](https://remix.ethereum.org/){target=_blank}. If you simply want to interact with a mintable XC-20 through the standard ERC-20 interface, please refer to the [Interact with the Precompile Using Remix](/builders/interoperability/xcm/xc20/overview/#interact-with-the-precompile-using-remix){target=_blank} section of the XC-20 precompile page.
 
 ### Checking Prerequisites {: #checking-prerequisites } 
 
@@ -129,7 +137,7 @@ The first step to get your mintable XC-20 registered on Moonbeam is to create a 
     {{ networks.moonbase.mintable_xc20.asset_deposit }} DEV
     ```
 
-To get started, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/explorer){target=_blank} and make sure you're connected to Moonbase Alpha. Then click on **Governance** at the top of the page and then select **Democracy** from the dropdown. Then you can select **+ Submit preimage** and take the following steps:
+To get started, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer){target=_blank} and make sure you're connected to Moonbase Alpha. Then click on **Governance** at the top of the page and then select **Democracy** from the dropdown. Then you can select **+ Submit preimage** and take the following steps:
 
 1. Select the account you want to create the proposal with
 2. From the **propose** dropdown, choose **assetManager**

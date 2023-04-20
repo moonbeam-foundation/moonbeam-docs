@@ -34,21 +34,77 @@ The Referenda Precompile is located at the following address:
 [`Referenda.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's methods. The methods are as follows:
 
 - **referendumCount**() - a read-only function that returns the total referendum count
-- **submissionDeposit**() - a read-only function that returns the Submission Deposit for all referenda
-- **decidingCount**(*uint16* trackId) - a read-only function that returns the total count of deciding referenda of a given track
-- **trackIds**() - a read-only function that returns a list of the Track IDs for all tracks (and origins)
-- **trackInfo**(*uint16* trackId) - a read-only function that returns the governance parameters configured for a given Track ID
-- **submitAt**(*uint16* trackId, *bytes memory* proposal, *uint32* block) - submits a referenda given a Track ID corresponding to the origin from which the proposal is to be dispatched, the proposed runtime call, and the block number *at* which this will be executed
-- **submitAfter**(*uint16* trackId, *bytes memory* proposal, *uint32* block) - submits a referenda given a Track ID corresponding to the origin from which the proposal is to be dispatched, the proposed runtime call, and the block number *after* which this will be executed
+- **submissionDeposit**() - a read-only function that returns the Submission Deposit required for each referendum
+- **decidingCount**(*uint16* trackId) - a read-only function that returns the total count of deciding referenda for a given Track
+- **trackIds**() - a read-only function that returns a list of the Track IDs for all Tracks (and Origins)
+- **trackInfo**(*uint16* trackId) - a read-only function that returns the following governance parameters configured for a given Track ID:
+
+     - *string* name - the name of the Track
+     - *uint256* maxDeciding - the maximum number of referenda that can be decided on at once
+     - *uint256* decisionDeposit - the amount of the Decision Deposit 
+     - *uint256* preparePeriod - the duration of the Prepare Period
+     - *uint256* decisionPeriod - the duration of the Decide Period
+     - *uint256* confirmPeriod - the duration of the Confirm Period
+     - *uint256* minEnactmentPeriod - the minimum amount of time the Enactment Period must be
+     - *bytes* minApproval - the minimum "Aye" votes as a percentage of overall Conviction-weighted votes needed for an approval
+     - *bytes* minSupport - minimum number of "Aye" votes, not taking into consideration Conviction-weighted votes, needed as a percent of the total supply needed for an approval
+
+- **referendumStatus**(*uint32* referendumIndex) - a read-only function that returns the status for a given referendum. The `ReferendumStatus` enum defines the possible statuses:
+
+     ```
+     enum ReferendumStatus {
+          Ongoing,
+          Approved,
+          Rejected,
+          Cancelled,
+          TimedOut,
+          Killed
+     }
+     ```
+
+- **ongoingReferendumInfo**(*uint32* referendumIndex) - a read-only function that returns the following information pertaining to an ongoing referendum:
+
+     - *uint16* trackId - the Track of this referendum
+     - *bytes* origin - the Origin for this referendum
+     - *bytes* proposal - the hash of the proposal up for referendum
+     - *bool* enactmentType - `true` if the proposal is scheduled to be dispatched *at* enactment time and `false` if *after* enactment time
+     - *uint256* enactmentTime - the time the proposal should be scheduled for enactment
+     - *uint256* submissionTime -  the time of submission
+     - *address* submissionDepositor - the address of the depositor for the Submission Deposit
+     - *uint256* submissionDeposit - the amount of the Submission Deposit
+     - *address* decisionDepositor - the address of the depositor for the Decision Deposit
+     - *uint256* decisionDeposit - the amount of the Decision Deposit
+     - *uint256* decidingSince - when this referendum entered the Decide Period. If confirming, then the end will actually be delayed until the end of the Confirm Period
+     - *uint256* decidingConfirmingEnd - when this referendum is scheduled to leave the Confirm Period as long as it doesn't lose its approval in the meantime
+     - *uint256* ayes - the number of "Aye" votes, expressed in terms of post-conviction lock-vote
+     - *uint32* support - percent of "Aye" votes, expressed pre-conviction, over total votes in the class
+     - *uint32* approval - percent of "Aye" votes over "Aye" and "Nay" votes
+     - *bool* inQueue - `true` if this referendum has been placed in the queue for being decided or `false` if not
+     - *uint256* alarmTime - the next scheduled wake-up
+     - *bytes* taskAddress - scheduler task address if scheduled
+
+- **closedReferendumInfo**(*uint32* referendumIndex) - a read-only function that returns the following information pertaining to a closed referendum:
+
+     - *uint256* end - when the referendum ended
+     - *address* submissionDepositor - the address of the depositor for the Submission Deposit
+     - *uint256* submissionDeposit - the amount of the Submission Deposit
+     - *address* decisionDepositor - the address of the depositor for the Decision Deposit
+     - *uint256* decisionDeposit - the amount of the Decision Deposit
+
+- **killedReferendumBlock**(*uint32* referendumIndex) - a read-only function that returns the block a given referendum was killed
+- **submitAt**(*uint16* trackId, *bytes32* proposalHash, *uint32* proposalLen, *uint32* block) - submits a referendum given a Track ID corresponding to the origin from which the proposal is to be dispatched, the preimage hash of the proposed runtime call, the length of the proposal, and the block number *at* which this will be executed. Returns the referendum index of the submitted referendum
+- **submitAfter**(*uint16* trackId, *bytes32* proposalHash, *uint32* proposalLen, *uint32* block) - submits a referendum given a Track ID corresponding to the origin from which the proposal is to be dispatched, the preimage hash of the proposed runtime call, the length of the proposal, and the block number *after* which this will be executed. Returns the referendum index of the submitted referendum
 - **placeDecisionDeposit**(*uint32* index) - posts the Decision Deposit for a referendum given the index of the going referendum
 - **refundDecisionDeposit**(*uint32* index) - refunds the Decision Deposit for a closed referendum back to the depositor given the index of the closed referendum in which the Decision Deposit is still locked
+- **refundSubmissionDeposit**(*uint32* index) - refunds the Submission Deposit for a closed referendum back to the depositor given the index of a closed referendum
 
 The interface also includes the following events:
 
-- **SubmittedAt**(*uint16 indexed* trackId, *uint32* blockNumber, *bytes32* hash) - emitted when a referenda has been submitted *at* a given block
-- **SubmittedAfter**(*uint16 indexed* trackId, *uint32* blockNumber, *bytes32* hash) - emitted when a referenda has been submitted *after* a given block
-- **DecisionDepositPlaced**(*uint32* index) - emitted when a Decision Deposit for a referendum has been placed
-- **DecisionDepositRefunded**(*uint32* index) - emitted when a Decision Deposit for a closed referendum has been refunded
+- **SubmittedAt**(*uint16 indexed* trackId, *uint32* referendumIndex, *bytes32* hash) - emitted when a referenda has been submitted *at* a given block
+- **SubmittedAfter**(*uint16 indexed* trackId, *uint32* referendumIndex, *bytes32* hash) - emitted when a referenda has been submitted *after* a given block
+- **DecisionDepositPlaced**(*uint32* index, *address* caller, *uint256* depositedAmount) - emitted when a Decision Deposit for a referendum has been placed
+- **DecisionDepositRefunded**(*uint32* index, *address* caller, *uint256* refundedAmount) - emitted when a Decision Deposit for a closed referendum has been refunded
+- **SubmissionDepositRefunded**(*uint32* index, *address* caller, *uint256* refundedAmount) - emitted when a Submission Deposit for a valid referendum has been refunded
 
 ## Interact with the Solidity Interface {: #interact-with-the-solidity-interface }
 
@@ -88,20 +144,23 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 
 In order to submit a proposal, you should have already submitted the preimage hash for the proposal. If you have not done so, please follow the steps outlined in the [Preimage Precompile](/builders/pallets-precompiles/precompiles/preimage){target=_blank} documentation. There are two methods that can be used to submit a proposal: `submitAt` and `submitAfter`. The `submitAt` function submits a proposal to be executed *at* a given block and the `submitAfter` function submits a proposal to be executed *after* a specific block. For this example, `submitAt` will be used, but the same steps can be applied if you want to use `submitAfter` instead.
 
-To submit the proposal, you'll need to determine which Track your proposal belongs to and the Track ID of that Track. For help with these requirements, you can refer to the [Governance v2 section of the governance overview page](/learn/features/governance/#opengov){target=_blank}.
+To submit the proposal, you'll need to determine which Track your proposal belongs to and the Track ID of that Track. For help with these requirements, you can refer to the [OpenGov section of the governance overview page](/learn/features/governance/#opengov){target=_blank}.
 
-Once you have the Track ID and the encoded proposal, you can go ahead and submit the proposal using the Referenda Precompile. From Remix, you can take the following steps:
+You'll also need to make sure you have the preimage hash and the length of the preimage handy, both of which you should have received from following the steps in the [Preimage Precompile](/builders/pallets-precompiles/precompiles/preimage){target=_blank} documentation. If you're unsure, you can find your preimage from the [Preimage page of Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/preimages){target=_blank} and copy the preimage hash. To get the length of the preimage, you can then query the `preimage` pallet using the `preimageFor` method from the [Polkadot.js Apps Chain State page](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/chainstate){target=_blank}.
+
+Once you have the Track ID, preimage hash, and preimage length, you can go ahead and submit the proposal using the Referenda Precompile. From Remix, you can take the following steps:
 
 1. Expand the Referenda Precompile contract to see the available functions
 2. Find the **submitAt** function and press the button to expand the section
 3. Enter the track ID that your proposal will be processed through
-4. Enter the encoded proposal. You should have received this from following the steps in the [Preimage Precompile](/builders/pallets-precompiles/precompiles/preimage){target=_blank} documentation
-5. Enter the block you want the proposal to be executed at
-6. Press **transact** and confirm the transaction in MetaMask
+4. Enter the preimage hash. You should have received this from following the steps in the [Preimage Precompile](/builders/pallets-precompiles/precompiles/preimage){target=_blank} documentation
+5. Enter the length of the preimage
+6. Enter the block you want the proposal to be executed at
+7. Press **transact** and confirm the transaction in MetaMask
 
 ![Submit the proposal using the submitAt function of the Referenda Precompile.](/images/builders/pallets-precompiles/precompiles/referenda/referenda-4.png)
 
-After your transaction has been confirmed you'll be able to see the proposal listed on the **Referenda** page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network%2Fpublic-ws#/referenda){target=_blank}. You can also check out your proposal on [Polkassembly](https://moonbase.polkassembly.network/){target=_blank}, which sorts proposals by the Track they belong to.
+After your transaction has been confirmed you'll be able to see the proposal listed on the **Referenda** page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/referenda){target=_blank}. You can also check out your proposal on [Polkassembly](https://moonbase.polkassembly.network/){target=_blank}, which sorts proposals by the Track they belong to.
 
 ### Submit Decision Deposit {: #submit-decision-deposit }
 

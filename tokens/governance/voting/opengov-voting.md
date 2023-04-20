@@ -15,7 +15,7 @@ Token holders can vote on referenda using their own tokens. Two factors defined 
 
 In Moonbeam, users will be able to create and vote on proposals using their H160 address and private key, that is, their regular Ethereum account! 
 
-Moonbeam's governance system is in the process of getting revamped! This next phase of governance is known as OpenGov (Governance v2). During the roll-out process, OpenGov will be rigorously tested on Moonriver before a proposal will be made to deploy it on Moonbeam. Until it launches on Moonbeam, Moonbeam will continue to use Governance v1. As such, **this guide is for proposals on Moonriver or Moonbase Alpha only**. If you're looking to submit a proposal on Moonbeam, you can refer to the [How to Vote on a Proposal in Governance v1](/tokens/governance/voting/voting){target=_blank} guide.
+Moonbeam's governance system is in the process of getting revamped! This next phase of governance is known as OpenGov (Governance v2). During the roll-out process, OpenGov will be rigorously tested on Moonriver before a proposal will be made to deploy it on Moonbeam. Until it launches on Moonbeam, Moonbeam will continue to use Governance v1. As such, **this guide is for proposals on Moonriver or Moonbase Alpha only**. If you're looking to vote on a proposal on Moonbeam, you can refer to the [How to Vote on a Proposal in Governance v1](/tokens/governance/voting/voting){target=_blank} guide.
 
 This guide will outline the process, with step-by-step instructions, of how to vote on referenda in Governance v2: OpenGov. This guide will show you how to vote on Moonbase Alpha, but it can be easily adapted for Moonriver. For more information on Moonbeam's governance system, including Governance v1 and OpenGov (Governance v2), please refer to the [governance overview page](/learn/features/governance/){target=_blank}.
 
@@ -68,7 +68,7 @@ This section goes over the process of voting on public referendum in OpenGov (Go
 
 To vote on a proposal in the network, you need to use the Polkadot.js Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do by following the [Creating or Importing an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=_blank} guide. For this example, three accounts were imported and named with super original names: Alice, Bob, and Charlie.
 
-![Accounts in Polkadot.js](/images/tokens/governance/proposals/proposals-3.png)
+![Accounts in Polkadot.js](/images/tokens/governance/proposals/v1/proposals-3.png)
 
 To get started, you'll need to navigate to [Moonbase Alpha's Polkadot.js Apps interface](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network){target=_blank}. Everything related to governance lives under the **Governance** tab. To view all of the referenda, you can choose **Referenda** from the **Governance** dropdown. On the **Referenda** page, you'll see a list of referenda organized by Track. To view the details of a specific referendum, you can click on the arrow next to the description. The number next to the action and description is called the referendum index.
 
@@ -125,14 +125,14 @@ A proposal in the General Admin Track on Moonbase Alpha would have the following
  - The Support curve starts at {{ networks.moonbase.governance.tracks.general_admin.min_support.percent0 }}% on {{ networks.moonbase.governance.tracks.general_admin.min_support.time0 }}, goes to {{ networks.moonbase.governance.tracks.general_admin.min_support.percent1 }}% on {{ networks.moonbase.governance.tracks.general_admin.min_support.time1 }}
  - A referendum starts the Decide Period with 0% "Aye" votes (nobody voted in the Lead-in Period)
  - Token holders begin to vote and the Approval increases to a value above {{ networks.moonbase.governance.tracks.general_admin.min_approval.percent1 }}% by {{ networks.moonbase.governance.tracks.general_admin.min_approval.time1 }}
- - If the Approval and Support thresholds are met for the duration of the Confirm Period ({{ networks.moonbase.governance.tracks.general_admin.min_enactment_period.blocks }} blocks, approximately {{ networks.moonbase.governance.tracks.general_admin.min_enactment_period.time }}), the referendum is approved
+ - If the Approval and Support thresholds are met for the duration of the Confirm Period ({{ networks.moonbase.governance.tracks.general_admin.confirm_period.blocks }} blocks, approximately {{ networks.moonbase.governance.tracks.general_admin.confirm_period.time }}), the referendum is approved
  - If the Approval and Support thresholds are not met during the Decision Period, the proposal is rejected. Note that the thresholds need to be met for the duration of the Confirm Period. Consequently, if they are met but the Decision Period expires before the completion of the Confirm Period, the proposal is rejected
 
 In the following image, you'll notice enough Approval and Support have been received and so the Confirm Period is underway. if the referendum maintains the Approval and Support levels, at block 124,962 the Confirm Period will end and then the Enactment Period will begin. You can hover over the charts to find out more information on each of these periods. Assuming this referendum maintains the levels of Approval and Support it has received, the Enactment Period will end at block 132,262 and the proposal action will be dispatched.
 
 ![View the Approval and Support curves for a referendum on Polkadot.js Apps.](/images/tokens/governance/voting/v2/vote-6.png)
 
-If the referendum doesn't continuously receive enough Approval and Support during the Confirm Period, and there is time left in the Decide Period, it still has a chance to pass as long as the Approval and Support requirements are met again and continously for the duration of the Confirm Period. If the Decide Period ends and the referendum still hasn't received enough Approval and Support, the referenda will be rejected and the Decision Deposit is able to be refunded.
+If the referendum doesn't continuously receive enough Approval and Support during the Confirm Period, it still has a chance to pass as long as the Approval and Support requirements are met again and continously for the duration of the Confirm Period. If a referendum enters the Confirm Period but the Decide Period is set to end before the Confirm Period is over, the Decide Period will actually be extended until the end of the Confirm Period. If the Decide Period ends and the referendum still hasn't received enough Approval and Support, the referendum will be rejected and the Decision Deposit is able to be refunded.
 
 The Enactment Period is defined by the author of the proposal at the time it was initially submitted, but it needs to be at least the minimum Enacment Period. 
 

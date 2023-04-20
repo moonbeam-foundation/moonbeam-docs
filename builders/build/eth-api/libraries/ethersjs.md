@@ -447,7 +447,7 @@ const increment = async () => {
   );
 
   // 7. Sign and send tx and wait for receipt
-  const createReceipt = await incrementer.increment([_value]);
+  const createReceipt = await incrementer.increment(_value);
   await createReceipt.wait();
 
   console.log(`Tx successful with hash: ${createReceipt.hash}`);

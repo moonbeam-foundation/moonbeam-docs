@@ -47,6 +47,7 @@ You will then be prompted to enter in an **AppName** for your API key and once y
 
 The example in this section of the guide will be based off of the `Box.sol` contract that was created in the [Using Hardhat to Deploy To Moonbeam](/builders/build/eth-api/dev-env/hardhat/){target=_blank} guide. 
 
+
 To get started with the Hardhat Etherscan plugin, you will need to first install the plugin library:
 
 ```
@@ -69,7 +70,7 @@ module.exports = {
   networks: {
     moonbeam: { ... },
     moonriver: { ... },
-    moonbase: { ... }
+    moonbaseAlpha: { ... }
   },
   etherscan: {
     apiKey: {

@@ -50,7 +50,6 @@ Moonbeam has added support for two custom RPC endpoints, `moon_isBlockFinalized`
 
 For more information you can go to the [Finality RPC Endpoints](/builders/build/moonbeam-custom-api#finality-rpc-endpoints){target=_blank} section of the Moonbeam Custom API page.
 
-
 ## Checking Tx Finality with Ethereum Libraries {: #checking-tx-finality-with-ethereum-libraries }
 
 You can make calls to the Substrate JSON-RPC using the `send` method of both [Web3.js](https://web3js.readthedocs.io/){target=_blank} and [Ethers.js](https://docs.ethers.io/){target=_blank}. Custom RPC requests are also possible using [Web3.py](https://web3py.readthedocs.io/){target=_blank} with the `make_request` method. You can use the Web3.js example as a baseline.
@@ -73,7 +72,7 @@ The code snippets rely on two custom RPC requests from the Substrate JSON-RPC: `
 
 ## Checking Tx Finality with Substrate Libraries {: #checking-tx-finality-with-substrate-libraries }
 
-The [Polkadot.js API package](https://polkadot.js.org/docs/api/start){target=_blank} and [Python Substrate Interface package](https://github.com/polkascan/py-substrate-interface){target=_blank} provides developers a way to interact with Substrate chains using JavaScript and Python.
+The [Polkadot.js API package](/builders/build/substrate-api/polkadot-js-api){target=_blank} and [Python Substrate Interface package](/builders/build/substrate-api/py-substrate-interface){target=_blank} provides developers a way to interact with Substrate chains using JavaScript and Python.
 
 Given a transaction hash (`tx_hash`), the following code snippets fetch the current finalized block and compare it with the block number of the transaction you've provided. The code relies on three RPC requests from the Substrate JSON-RPC: 
 

@@ -48,7 +48,7 @@ To store your information on-chain, you must bond some funds, which eventually w
 
 For this guide, you will need the following:
 
-- To connect to the [Moonbase Alpha TestNet](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network){target=_blank} on the Polkadot.js Apps explorer. You can also follow along and adapt the instructions for [Moonbeam](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbeam.network){target=_blank} or [Moonriver](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonriver.moonbeam.network){target=_blank}.
+- To connect to the [Moonbase Alpha TestNet](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network){target=_blank} on the Polkadot.js Apps explorer. You can also follow along and adapt the instructions for [Moonbeam](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network){target=_blank} or [Moonriver](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network){target=_blank}.
 - To [create or import an account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account) into Polkadot.js Apps
 - Make sure you have funded your account. 
  --8<-- 'text/faucet/faucet-list-item.md'
@@ -66,7 +66,7 @@ If you are looking for a more customizable experience and want to add custom fie
 
 ### Set an Identity {: #set-identity-accounts }
 
-To get started with setting an identity using the Accounts UI, head to the [Accounts tab](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/accounts){target=_blank} on the Polkadot.js Apps explorer.
+To get started with setting an identity using the Accounts UI, head to the [Accounts tab](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=_blank} on the Polkadot.js Apps explorer.
 
 You should already have an account connected, so you can go ahead and click on your account name to verify and take note of your balances. After you send the transaction to set an identity, the deposit(s) you submitted will be moved from your transferable balance to your reserved balance. 
 
@@ -100,7 +100,7 @@ Once you clear your identity, the deposit in your reserved balance will get tran
 
 ### Clear an Identity {: #clear-identity-accounts }
 
-To clear your identity from the [Accounts tab](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/accounts){target=_blank} of the Polkadot.js Apps UI, you'll need to:
+To clear your identity from the [Accounts tab](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=_blank} of the Polkadot.js Apps UI, you'll need to:
 
 1. Click on the 3 vertical dots next to the account you would like to add identity information for
 2. A menu will pop up. Click **Set on-chain identity**
@@ -121,7 +121,7 @@ That’s it! You’ve successfully cleared your identity. If you want to add a n
 
 ### Set an Identity {: #set-identity-extrinsics }
 
-To register an identity using the extrinsics UI, navigate to the [Extrinsics page](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} on Polkadot.js Apps. Then, you'll need to:
+To register an identity using the extrinsics UI, navigate to the [Extrinsics page](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} on Polkadot.js Apps. Then, you'll need to:
 
 1. Select your account
 2. Select identity from the **submit the following extrinsic** dropdown
@@ -154,7 +154,7 @@ You should see status notifications pop-up in the top right hand corner confirmi
 
 ### Confirm an Identity {: #confirm-identity-extrinsics }
 
-To verify the addition of your identity information, you can click on the **Developer** tab and then navigate to [Chain state](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/chainstate){target=_blank}.
+To verify the addition of your identity information, you can click on the **Developer** tab and then navigate to [Chain state](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/chainstate){target=_blank}.
 
 On the **Chain State** UI, make sure **Storage** is selected. Then you can start to request your identity information:
 
@@ -169,7 +169,7 @@ You can see now that you’ve successfully set an identity! Once you clear your 
 
 ### Clear an Identity {: #clear-identity-extrinsics }
 
-To clear your identity from the [Extrinsics tab](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} of the Polkadot.js Apps UI, you'll need to:
+To clear your identity from the [Extrinsics tab](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} of the Polkadot.js Apps UI, you'll need to:
 
 1. Select your account from the **using the selected account** dropdown
 2. Select **identity** from the **submit the following extrinsic** dropdown
@@ -182,7 +182,7 @@ You will then be prompted to sign the transaction. If everything looks good, you
 
 You should see status notifications pop-up in the top right hand corner confirming the transaction. 
 
-To verify the removal of your identity information, you can follow the steps in the [Confirm an Identity](#confirm-an-identity) section again. Instead of seeing your identity information, this time you'll get a response of **none**. Meaning, you no longer have any identity information associated with your account. If you check your balances, you should see that the initial deposit for setting your identity has been returned to your transferable balance. That’s it! Your identity has been cleared. 
+To verify the removal of your identity information, you can follow the steps in the [Confirm an Identity](#confirm-identity-extrinsics) section again. Instead of seeing your identity information, this time you'll get a response of **none**. Meaning, you no longer have any identity information associated with your account. If you check your balances, you should see that the initial deposit for setting your identity has been returned to your transferable balance. That’s it! Your identity has been cleared. 
 
 ## Identity Judgement {: #identity-judgement }
 
@@ -224,7 +224,7 @@ The current registrars are as follows:
     | [Registrar #1](https://www.chevdor.com/post/2020/07/14/reg-updates/){target=_blank} | [Chevdor](https://www.chevdor.com/){target=_blank} | 0x4aD549e07E96BaD335A8b99C8fd32e95EE538904 |   1   |
 
 
-You can get a complete list of the current registrars, including the fees that each registrar charges, by heading to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.api.moonbase.moonbeam.network){target=_blank}, selecting the **Developer** tab, choosing **Chain State** from the dropdown, and taking the following steps:
+You can get a complete list of the current registrars, including the fees that each registrar charges, by heading to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network){target=_blank}, selecting the **Developer** tab, choosing **Chain State** from the dropdown, and taking the following steps:
 
 1. Select the **identity** pallet
 2. Choose the **registrars** extrinsic

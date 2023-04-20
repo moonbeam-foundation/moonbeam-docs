@@ -94,7 +94,7 @@ The following commands will build the latest release of the Moonbeam parachain.
 5. Build the parachain binary:
 
     !!! note
-        If you are using Ubuntu 22.04, then you will need to install these additional dependencies before building the binary:
+        If you are using Ubuntu 20.04 or 22.04, then you will need to install these additional dependencies before building the binary:
 
         ```
         apt install clang protobuf-compiler libprotobuf-dev -y 
@@ -199,8 +199,8 @@ The next step is to create the systemd configuration file. If you are setting up
 !!! note
     For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`.
     
-    For client versions prior to v0.30.0, `--rpc-port` was used to specify the port for HTTP connections and `--ws-port` was used to specify the port for WS connections. As of client v0.30.0, the `--ws-port` flag is for both HTTP and WS connections.
-
+    For client versions prior to v0.30.0, `--rpc-port` was used to specify the port for HTTP connections and `--ws-port` was used to specify the port for WS connections. As of client v0.30.0, the `--rpc-port` has been deprecated and the `--ws-port` flag is for both HTTP and WS connections. Similarly, the `--rpc-max-connections` flag has been deprecated and is now hardcoded to 100. You can use `--ws-max-connections` to adjust the combined HTTP and WS connection limit.
+    
 ### Full Node {: #full-node } 
 
 === "Moonbeam"

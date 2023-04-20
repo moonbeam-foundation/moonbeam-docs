@@ -163,7 +163,7 @@ To be able to deposit, withdraw, and subscribe to balance information for all of
     const { moonbase } = init()
     ```
 
-If you intend to support a specific wallet, you can pass a signer into the `init` function right away. Otherwise, you'll be able to pass a signer directly when building the transfer data for a deposit or withdraw. To pass in a signer for Ethers and Polkadot, you can use the following snippet:
+If you intend to support a specific wallet, you can pass a signer into the `init` function right away. Otherwise, you'll be able to pass a signer directly when building the transfer data for a deposit or withdraw. To pass in a signer for [Ethers](/builders/build/eth-api/libraries/ethersjs){target=_blank} and [Polkadot](/builders/build/substrate-api/polkadot-js-api){target=_blank}, you can use the following snippet:
 
 === "Moonbeam"
 
@@ -275,7 +275,7 @@ Where the `id` refers to the asset ID, the `erc20id` refers to the asset's preco
 
 ### Moonbeam Native Asset Data {: #native-assets }
 
-To get information about each of the Moonbeam network's native protocol asset, such as the precompile contract address and the origin symbol, you can access the `moonAsset` property:
+To get information about each of the Moonbeam network's native protocol asset, such as the [precompile contract address](/builders/pallets-precompiles/precompiles/erc20){target=_blank} and the origin symbol, you can access the `moonAsset` property:
 
 === "Moonbeam"
 
@@ -433,7 +433,7 @@ from(polkadot);
 
 #### Get {: #get-deposit }
 
-The `get` function requires that you pass in the receiving account on Moonbeam and a Polkadot signer or the sending account on Polkadot depending on how you set up your Polkadot signer, and it gets the data required for the deposit.
+The `get` function requires that you pass in the receiving account on Moonbeam and a [Polkadot signer](/builders/build/substrate-api/polkadot-js-api){target=_blank} or the sending account on Polkadot depending on how you set up your Polkadot signer, and it gets the data required for the deposit.
 
 If you have a Polkadot compatible signer, you can pass the signer into the `init` function, then in the `get` function you can pass the Polkadot address for the second argument:
 
@@ -501,9 +501,8 @@ An example of the response for calling `get` to send DOT from Polkadot to Moonbe
   existentialDeposit: 10000000000n,
   min: 33068783n,
   moonChainFee: {
-    balance: 0n,
+    amount: 33068783n,
     decimals: 10,
-    fee: 33068783n,
     symbol: 'DOT'
   },
   native: {
@@ -541,7 +540,7 @@ Where the returned values are as follows:
 |       `asset`        |                                                                                                                                                         the [asset](#assets) to be transferred                                                                                                                                                          |
 | `existentialDeposit` | the [existential deposit](https://support.polkadot.network/support/solutions/articles/65000168651-what-is-the-existential-deposit-#:~:text=On%20the%20Polkadot%20network%2C%20an,the%20Existential%20Deposit%20(ED).){target=_blank}, or the minimum amount an address must <br> hold to be considered active if one exists, otherwise `0n` is returned |
 |        `min`         |                                                                                                                                                            the minimum transferrable amount                                                                                                                                                             |
-|    `moonChainFee`    |                   the [asset](#assets) and amount that is needed to pay for Moonbeam's XCM fees. <br> If different from the `asset` to be transferred, the fee will be sent in this <br> asset in addition to the `asset` to be transferred (as of [v0.1.0](https://github.com/PureStake/xcm-sdk/releases/tag/v0.1.0){target=_blank})                   |
+|    `moonChainFee`    |                   the [asset](#assets) and amount that is needed to pay for Moonbeam's XCM fees. <br> If different from the `asset` to be transferred, the fee will be sent in this <br> asset in addition to the `asset` to be transferred (as of [v0.4.0](https://github.com/PureStake/xcm-sdk/releases/tag/v0.4.0){target=_blank})                   |
 |       `native`       |                                                                                                                                                     the native [asset](#assets) of the source chain                                                                                                                                                     |
 |       `origin`       |                                                                                                                                  the chain information for where the asset being transferred natively originates from                                                                                                                                   |
 |       `source`       |                                                                                                                                        the chain information for where the asset being transferred is sent from                                                                                                                                         |
@@ -666,7 +665,7 @@ to(polkadot);
 
 #### Get {: #get-withdraw }
 
-The `get` function requires that you pass in the receiving account on the destination chain and the Ethers signer for the sending account on Moonbeam, and it gets the data required for the withdraw.
+The `get` function requires that you pass in the receiving account on the destination chain and the [Ethers signer](#creating-signers) for the sending account on Moonbeam, and it gets the data required for the withdraw.
 
 ```js
 import { AssetSymbol, ChainKey } from '@moonbeam-network/xcm-config';
@@ -773,8 +772,8 @@ async function getWithdrawFee() {
     { ethersSigner }, // Only required if you didn't pass the signer in on initialization
   );
 
-  const fee = await getFee('INSERT-AMOUNT'));
-  console.log(`Fee to deposit is estimated to be: ${toDecimal(fee, moonbeam.moonChain.decimals).toFixed()} ${moonbeam.moonAsset.originSymbol}`););
+  const fee = await getFee('INSERT-AMOUNT');
+  console.log(`Fee to deposit is estimated to be: ${toDecimal(fee, moonbeam.moonChain.decimals).toFixed()} ${moonbeam.moonAsset.originSymbol}`);
 }
 
 getWithdrawFee();

@@ -6,14 +6,14 @@ title: Full Node Docker Commands for MacOS
 
 For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`.
 
-For client versions prior to v0.30.0, `--rpc-port` was used to specify the port for HTTP connections and `--ws-port` was used to specify the port for WS connections. As of client v0.30.0, the `--ws-port` flag is for both HTTP and WS connections.
+For client versions prior to v0.30.0, `--rpc-port` was used to specify the port for HTTP connections and `--ws-port` was used to specify the port for WS connections. As of client v0.30.0, the `--rpc-port` flag, which defaults to port `9933`, has been deprecated and the max connections to that port have been hardcoded to 100. The `--ws-port` flag, which defaults to port `9944`, is for both HTTP and WS connections. You can use the `--ws-max-connections` to adjust the combined HTTP and WS connection limit.
 
 ## Moonbeam Full Node {: #moonbeam-full-node } 
 
 ```
 docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
 -u $(id -u ${USER}):$(id -g ${USER}) \
-purestake/moonbeam:v0.29.0 \
+purestake/moonbeam:v0.30.3 \
 --base-path=/data \
 --chain moonbeam \
 --name="YOUR-NODE-NAME" \
@@ -31,7 +31,7 @@ purestake/moonbeam:v0.29.0 \
 ```
 docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
 -u $(id -u ${USER}):$(id -g ${USER}) \
-purestake/moonbeam:v0.29.0 \
+purestake/moonbeam:v0.30.3 \
 --base-path=/data \
 --chain moonbeam \
 --name="YOUR-NODE-NAME" \
@@ -48,7 +48,7 @@ purestake/moonbeam:v0.29.0 \
 ```
 docker run -p 9944:9944 -v "/var/lib/moonriver-data:/data" \
 -u $(id -u ${USER}):$(id -g ${USER}) \
-purestake/moonbeam:v0.29.0 \
+purestake/moonbeam:v0.30.0 \
 --base-path=/data \
 --chain moonriver \
 --name="YOUR-NODE-NAME" \
@@ -66,7 +66,7 @@ purestake/moonbeam:v0.29.0 \
 ```
 docker run -p 9944:9944 -v "/var/lib/moonriver-data:/data" \
 -u $(id -u ${USER}):$(id -g ${USER}) \
-purestake/moonbeam:v0.29.0 \
+purestake/moonbeam:v0.30.0 \
 --base-path=/data \
 --chain moonriver \
 --name="YOUR-NODE-NAME" \
