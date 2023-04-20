@@ -1,7 +1,7 @@
 networks:
   development:
     build_tag: v0.31.1
-    tracing_tag: purestake/moonbeam-tracing:v0.31.1-2301-latest
+    tracing_tag: purestake/moonbeam-tracing:v0.31.1-2302-latest
     rpc_url: http://127.0.0.1:9944
     wss_url: ws://127.0.0.1:9944
     chain_id: 1281
@@ -17,7 +17,7 @@ networks:
     block_explorer: https://moonbase.moonscan.io/
     parachain_release_tag: v0.31.1 # must be in this exact format for links to work
     parachain_sha256sum: 7be10574dee3f5b4fc61fef120e6742cdbee5739a36ebc052144cc3a9bff94f5
-    tracing_tag: purestake/moonbeam-tracing:v0.31.1-2301-latest
+    tracing_tag: purestake/moonbeam-tracing:v0.31.1-2302-latest
     gas_block: 15M
     gas_tx: 12.995M
     node_directory: /var/lib/alphanet-data
@@ -404,9 +404,9 @@ networks:
     chain_id: 1285
     hex_chain_id: '0x505'
     node_directory: /var/lib/moonriver-data
-    parachain_release_tag: v0.30.0
-    parachain_sha256sum: b0ee08ab990c38c1aba1b0c9f141bfc9488f1af9a3ef2996af3ca79cbf32dbd9
-    tracing_tag: purestake/moonbeam-tracing:v0.30.0-2201-latest
+    parachain_release_tag: v0.31.1
+    parachain_sha256sum: 7be10574dee3f5b4fc61fef120e6742cdbee5739a36ebc052144cc3a9bff94f5
+    tracing_tag: purestake/moonbeam-tracing:v0.31.1-2302-latest
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
     binary_name: moonbeam
@@ -756,9 +756,9 @@ networks:
     chain_id: 1284
     hex_chain_id: '0x504'
     node_directory: /var/lib/moonbeam-data
-    parachain_release_tag: v0.30.3
-    parachain_sha256sum: 5957fa67e87ae536c724b27c95cc5ee5844d2bb97ac1a79d66e642e7031c2fd1
-    tracing_tag: purestake/moonbeam-tracing:v0.30.3-2201-latest
+    parachain_release_tag: v0.31.1
+    parachain_sha256sum: 7be10574dee3f5b4fc61fef120e6742cdbee5739a36ebc052144cc3a9bff94f5
+    tracing_tag: purestake/moonbeam-tracing:v0.31.1-2302-latest
     chain_spec: moonbeam
     block_explorer: https://moonscan.io
     binary_name: moonbeam
