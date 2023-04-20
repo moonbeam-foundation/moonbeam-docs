@@ -84,7 +84,7 @@ purestake/moonbeam:v0.30.0 \
 ```
 docker run -p 9944:9944 -v "/var/lib/alphanet-data:/data" \
 -u $(id -u ${USER}):$(id -g ${USER}) \
-purestake/moonbeam:v0.30.0 \
+purestake/moonbeam:v0.31.1 \
 --base-path=/data \
 --chain alphanet \
 --name="YOUR-NODE-NAME" \
@@ -102,7 +102,7 @@ purestake/moonbeam:v0.30.0 \
 ```
 docker run -p 9944:9944 -v "/var/lib/alphanet-data:/data" \
 -u $(id -u ${USER}):$(id -g ${USER}) \
-purestake/moonbeam:v0.30.0 \
+purestake/moonbeam:v0.31.1 \
 --base-path=/data \
 --chain alphanet \
 --name="YOUR-NODE-NAME" \
