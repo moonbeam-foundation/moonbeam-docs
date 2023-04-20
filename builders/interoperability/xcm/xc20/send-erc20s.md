@@ -81,7 +81,11 @@ Since you'll be interacting with the `transfer` function of the X-Tokens Pallet,
     |  Parents  |       1        |
     | Interior  |       X1       |
     |    X1     |  AccountId32   |
+    |  Network  |      None      |
     |    Id     | Target Account |
+
+    !!! note
+        The `Network` parameter is optional, and as such, if you don't specify one, it will default to `None`.
 
 - The `destWeightLimit` should be an XCM v3 Weight Limit, which has the following parameters:
 
@@ -155,23 +159,114 @@ sendErc20();
 
 To build an XCM message with the X-Tokens Precompile, you'll use the [`transfer` function](/builders/interoperability/xcm/xc20/xtokens/#xtokens-solidity-interface){target=_blank}, which enables you to call the `transfer` function of the X-Tokens Pallet through a Solidity interface, [`Xtokens.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=_blank}.
 
-The X-Tokens precompile address on Moonbase Alpha is located at `{{ networks.moonbase.precompiles.xtokens }}`.
+The X-Tokens precompile address is located at:
+
+=== "Moonbeam"
+     ```
+     {{networks.moonbeam.precompiles.xtokens}}
+     ```
+
+=== "Moonriver"
+     ```
+     {{networks.moonriver.precompiles.xtokens}}
+     ```
+
+=== "Moonbase Alpha"
+     ```
+     {{networks.moonbase.precompiles.xtokens}}
+     ```
 
 The `transfer` function of the precompile is similar to that of the pallet, where it accepts the following parameters:
 
 - `currencyAddress` - the ERC-20 address of the currency to transfer. Accepts an *address*
 - `amount` - the amount of tokens to transfer in Wei. Accepts a *uint256*
 - `destination` - a multilocation to define the destination address for the tokens being sent via XCM. It supports different address formats such as 20 or 32 bytes addresses (Ethereum or Substrate). Accepts a [*Multilocation*](#building-the-precompile-multilocation)
-
 - `weight` - the weight to buy in the destination chain. Accepts a *uint64*
 
 ### Building the Precompile Multilocation {: #building-the-precompile-multilocation }
 
 In the X-Tokens Precompile interface, the `Multilocation` structure is defined as follows:
 
---8<-- 'text/xcm/xcm-precompile-multilocation.md'
+```js
+ struct Multilocation {
+    uint8 parents;
+    bytes[] interior;
+}
+```
 
---8<-- 'text/xc-20/xtokens/multilocation-structures.md'
+Note that each multilocation has a `parents` element, defined in this case by a `uint8`, and an array of bytes. Parents refer to how many "hops" in the upwards direction you have to do if you are going through the relay chain. Being a `uint8`, the normal values you would see are:
+
+|   Origin    | Destination | Parents Value |
+|:-----------:|:-----------:|:-------------:|
+| Parachain A | Parachain A |       0       |
+| Parachain A | Relay Chain |       1       |
+| Parachain A | Parachain B |       1       |
+
+The bytes array (`bytes[]`) defines the interior and its content within the multilocation. The size of the array defines the `interior` value as follows:
+
+|    Array     | Size | Interior Value |
+|:------------:|:----:|:--------------:|
+|      []      |  0   |      Here      |
+|    [XYZ]     |  1   |       X1       |
+|  [XYZ, ABC]  |  2   |       X2       |
+| [XYZ, ... N] |  N   |       XN       |
+
+!!! note
+    Interior value `Here` is often used for the relay chain (either as a destination or to target the relay chain asset).
+
+Suppose the bytes array contains data. Each element's first byte (2 hexadecimal numbers) corresponds to the selector of that `XN` field. For example:
+
+| Byte Value |    Selector    | Data Type |
+|:----------:|:--------------:|-----------|
+|    0x00    |   Parachain    | bytes4    |
+|    0x01    |  AccountId32   | bytes32   |
+|    0x02    | AccountIndex64 | u64       |
+|    0x03    |  AccountKey20  | bytes20   |
+|    0x04    | PalletInstance | byte      |
+|    0x05    |  GeneralIndex  | u128      |
+|    0x06    |   GeneralKey   | bytes[]   |
+
+Next, depending on the selector and its data type, the following bytes correspond to the actual data being provided. Note that for `AccountId32`, `AccountIndex64`, and `AccountKey20`, the `network` field seen in the Polkadot.js API example is optional, and if an option is not provided, it defaults to `None`. For the precompile, you'll need to specify `None` and it will need to be appended at the end. For example:
+
+|    Selector    |       Data Value       |         Represents         |
+|:--------------:|:----------------------:|:--------------------------:|
+|   Parachain    |    "0x00+000007E7"     |     Parachain ID 2023      |
+|  AccountId32   | "0x01+AccountId32+00"  | AccountId32, Network None  |
+|  AccountKey20  | "0x03+AccountKey20+00" | AccountKey20, Network None |
+| PalletInstance |       "0x04+03"        |     Pallet Instance 3      |
+
+!!! note
+    The `interior` data usually needs to be wrapped around quotes. On the contrary, you might get an `invalid tuple value` error.
+
+The following code snippet goes through some examples of `Multilocation` structures, as they would need to be fed into the X-Tokens Precompile functions:
+
+```js
+// Multilocation targeting the relay chain or its asset from a parachain
+{
+    1, // parents = 1
+    [] // interior = here
+}
+
+// Multilocation targeting Moonbase Alpha DEV token from another parachain
+{
+    1, // parents = 1
+    // Size of array is 2, meaning is an X2 interior
+    [
+        "0x00000003E8", // Selector Parachain, ID = 1000 (Moonbase Alpha)
+        "0x0403" // Pallet Instance = 3
+    ]
+}
+
+// Multilocation targeting Alice's account on the Relay Chain from Moonbase Alpha
+{
+    1, // parents = 0
+    // Size of array is 1, meaning is an X1 interior
+    [
+        "0x01c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300" 
+        // AccountKey32 Selector + Address in hex + Network = None
+    ]
+}
+```
 
 ### Use Ethereum Libraries to Send an ERC-20 Cross-Chain {: #using-libraries-to-interact-with-xtokens}
 
