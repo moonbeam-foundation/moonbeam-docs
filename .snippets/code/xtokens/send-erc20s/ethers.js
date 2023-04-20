@@ -1,5 +1,6 @@
 import abi from './xTokensABI.js'; // Import the x-tokens ABI
 import { ethers } from 'ethers'; // Import Ethers library
+
 const PRIVATE_KEY = 'INSERT-PRIVATE-KEY';
 
 // Create Ethers wallet & contract instance
@@ -28,7 +29,7 @@ async function transferToRelayChainAccount() {
   // Creates, signs, and sends the transfer transaction
   const transaction = await xTokens.transfer(
     ERC20_ADDRESS, // Asset
-    '1000000000000', // Amount
+    '1000000000000000000', // Amount
     RELAY_ACC, // Destination
     '4000000000' // Weight
   );

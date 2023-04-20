@@ -1,5 +1,6 @@
 import abi from './xtokensABI.js'; // Import the x-tokens ABI
 import Web3 from 'web3'; // Import Web3 library
+
 const PRIVATE_KEY = 'YOUR_PRIVATE_KEY_HERE';
 
 // Create Web3 wallet & contract instance
@@ -22,7 +23,7 @@ async function transferToRelayChainAccount() {
   // Create transaction
   const transferTx = xTokens.methods.transfer(
     ERC20_ADDRESS, // Asset
-    '1000000000000', // Amount
+    '1000000000000000000', // Amount
     RELAY_ACC, // Destination
     '4000000000' // Weight
   );

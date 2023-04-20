@@ -12,7 +12,7 @@ x_tokens = web3.eth.contract(
 )
 
 # ERC-20 contract address in Moonbase Alpha
-ERC20_ADDRESS = '0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080'
+ERC20_ADDRESS = 'INSERT_ERC20_ADDRESS'
 
 # Multilocation targeting an account on the relay chain from Moonbase Alpha
 # Example interior: 0x01c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300
@@ -22,10 +22,10 @@ RELAY_ACC = [1, ['0x0' + 'INSERT_ADDRESS_32_BYTES' + '00']]
 def transfer_to_relay_chain_account():
     # Create transaction
     transfer_tx = x_tokens.functions.transfer(
-        ERC20_ADDRESS,    # Asset
-        1000000000000,    # Amount
-        RELAY_ACC,        # Destination
-        4000000000        # Weight
+        ERC20_ADDRESS,       # Asset
+        1000000000000000000, # Amount
+        RELAY_ACC,           # Destination
+        4000000000           # Weight
     ).buildTransaction(
         {
             'from': address,
