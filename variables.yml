@@ -947,6 +947,7 @@ networks:
     ws: 9944
     prometheus: 9615
   polkadot:
+    client_version: v0.9.37
     rocks_db:
       read_weight: 20,499,000
       write_weight: 83,471,000
@@ -973,6 +974,7 @@ networks:
       display: 94,914,000
       numbers_only: 94914000
   kusama:
+    client_version: v0.9.38
     rocks_db:
       read_weight: 25,000,000
       write_weight: 100,000,000
