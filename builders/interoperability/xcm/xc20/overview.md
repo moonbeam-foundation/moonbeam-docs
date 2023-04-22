@@ -11,25 +11,25 @@ description:  Learn how to access and interact with an ERC-20 interface for cros
 
 The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-crosschain){target=_blank} format defines how messages can be sent between interoperable blockchains. This format opens the door to transfer messages and assets (Substrate assets) between Moonbeam/Moonriver and the relay chain or other parachains in the Polkadot/Kusama ecosystems. 
 
-Substrate assets are natively interoperable. However, developers need to tap into the Substrate API to interact with them, making the developer experience unideal, especially for those from the Ethereum world. Consequently, to help developers tap into the native interoperability that Polkadot/Kusama offers, Moonbeam introduced the concept of XC-20s.
+Substrate assets are natively interoperable. However, developers need to tap into the Substrate API to interact with them, with no real visibility into the EVM. Consquently, interoperable Substrate assets are not that attractive for developers building on the EVM. To fix that, and to help developers tap into the native interoperability that Polkadot/Kusama offers, Moonbeam introduced the concept of XC-20s.
 
-XC-20s are a unique asset class on Moonbeam. It combines the power of Substrate assets (native interoperability) but allows users and developers to interact with them through a familiar [ERC-20 interface](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=_blank} via a precompile contract (Ethereum API). Moreover, developers can integrate XC-20s with regular Ethereum development frameworks or dApps. 
+XC-20s are a unique asset class on Moonbeam. It combines the power of Substrate assets (native interoperability) but allows users and developers to interact with them through a familiar [ERC-20 interface](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=_blank}. Moreover, developers can integrate XC-20s with regular Ethereum development frameworks or dApps, and create connected contracts strategies with such assets. Moreover, with the introduction of [RT2301](https://github.com/PureStake/moonbeam/tree/runtime-2301), all ERC-20s are XCM-ready, meaninig they can also be referred to as XC-20s.
 
 ![Moonbeam XC-20 XCM Integration With Polkadot](/images/builders/interoperability/xcm/overview/overview-4.png)
 
 ## Types of XC-20s {: #types-of-xc-20s }
 
-There are two types of XC-20s: [external](/builders/interoperability/xcm/xc20/xc20){target=_blank} and [mintable](/builders/interoperability/xcm/xc20/mintable-xc20){target=_blank}. 
+There are two types of XC-20s: [local](/builders/interoperability/xcm/xc20/xcm-erc20s){target=_blank} and [external](/builders/interoperability/xcm/xc20/xc20){target=_blank}
+
+Local XC-20s are all ERC-20s that exist on the EVM that are XCM-enabled out of the box. The only requirement local XC-20s need to be fully XCM-ready is for other parachains to register it as an asset... XYZ CONTINUE HERE
 
 External XC-20s are native cross-chain assets that are transferred from another parachain or the relay chain to Moonbeam. Consequently, the actual tokens reside in Moonbeam's sovereign account in each of these chains. External XC-20s will all have _xc_ prepended to their name to distinguish them as native cross-chain assets. 
 
-Mintable XC-20s are also cross-chain assets, however, they are minted and burned directly on Moonbeam and can be transferred to other parachains. Since mintable XC-20s are created on Moonbeam and are not native to another parachain or relay chain, the name, symbol, and decimals for the asset are all completely configurable. As such, they will not neccessarily have _xc_ prepended to the asset name or symbol.
-
-Both type of XC-20s are Substrate assets at their core and at a low-level are interacted with via the Substrate API. However, Moonbeam provides an ERC-20 interface to interact with these assets so that no knowledge of Substrate is required. From a user's perspective, both types of XC-20s are interacted with in the same way. The only difference here is that mintable XC-20s include an extension of the ERC-20 interface with some additional functionality for managing the assets, such as minting and burning.
+Both type of XC-20s can be easily sent to other parachains in the ecosystem as if they were Substrate assets, through both the Ethereum and Substrate API. In addition, on the EVM side, both provide an ERC-20 interface so smart contrats and users can easily interact with them, and no knowledge of Substrate is required. The main difference is that local XC-20s are EVM ERC-20s, while external XC-20s are Substrate assets with an ERC-20 interface on top.
 
 Cross-chain transfer of XC-20s are done using the [X-Tokens pallet](/builders/interoperability/xcm/xc20/xtokens/){target=_blank}. The instructions for transferring mintable and external XC-20s are slightly different depending on the multilocation of the given asset.
 
-## XC-20s vs ERC-20 {: #xc-20-vs-erc-20 }
+## XC-20s vs ERC-20 XYZ REVISIT THIS {: #xc-20-vs-erc-20 } 
 
 Although XC-20s and ERC-20s are very similar, some distinct differences are to be aware of. 
 
