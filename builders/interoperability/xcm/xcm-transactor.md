@@ -116,10 +116,7 @@ To check your `xcUNIT` balance, you can add the XC-20 to MetaMask with the follo
 0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080
 ```
 
-If you're interested in how the precompile address is calculated, you can check out the following guides:
-
-- [Calculate External XC-20 Precompile Addresses](/builders/interoperability/xcm/xc20/xc20/#calculate-xc20-address){target=_blank}
-- [Calculate Mintable XC-20 Precompile Addresses](/builders/interoperability/xcm/xc20/mintable-xc20/#calculate-xc20-address){target=_blank}
+If you're interested in how the precompile address is calculated, you can check out the [Calculate External XC-20 Precompile Addresses](/builders/interoperability/xcm/xc20/xc20/#calculate-xc20-address){target=_blank} guide.
 
 ### Building the XCM {: #xcm-transact-through-derivative }
 

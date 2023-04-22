@@ -71,19 +71,15 @@ This guide covers the process of building an XCM message using the X-Tokens Pall
 !!! note
     Each parachain can allow/forbid specific methods from a pallet. Consequently, developers must ensure to use methods that are allowed. On the contrary, the transaction will fail with an error similar to `system.CallFiltered`.
 
-You'll be transfering `xcUNIT` tokens, which is the [XC-20](/builders/interoperability/xcm/xc20/overview){target=_blank} representation of the Alphanet relay chain token `UNIT`. An `xcUNIT` is an [external XC-20](/builders/interoperability/xcm/xc20/xc20){target=_blank}. You can adapt this guide for another external XC-20 or a [mintable XC-20](/builders/interoperability/xcm/xc20/mintable-xc20){target=_blank}.
+You'll be transfering `xcUNIT` tokens, which is the [XC-20](/builders/interoperability/xcm/xc20/overview){target=_blank} representation of the Alphanet relay chain token `UNIT`. An `xcUNIT` is an [external XC-20](/builders/interoperability/xcm/xc20/xc20){target=_blank}. To learn how to send local XC-20s (ERC-20s), please refer to the [Send ERC-20s Cross Chain via XCM](/builders/interoperability/xcm/xc20/xcm-erc20s){target=_blank} guide.
 
 ### Checking Prerequisites {: #xtokens-check-prerequisites}
 
 To be able to send the extrinsics in Polkadot.js Apps, you need to have the following:
 
 - An [account loaded in Polkadot.js](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/accounts){target=_blank} funded with [DEV tokens](/builders/get-started/networks/moonbase/#get-tokens){target=_blank}
-- The asset ID of the asset you're transferring
-    - For external XC-20s, you can get the [list of asset IDs from Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/assets){target=_blank}
-    - For mintable XC-20s, please refer to the [Retrieve List of Mintable XC-20s](/builders/interoperability/xcm/xc20/mintable-xc20/#retrieve-list-of-mintable-xc-20s){target=_blank} section of the Mintable XC-20s page
-- The number of decimals the asset you're transferring has
-    - For external XC-20s, please refer to the [Retrieve Metadata for External XC-20s](/builders/interoperability/xcm/xc20/xc20/#x-chain-assets-metadata){target=_blank} section of the External XC-20 page
-    - For mintable XC-20s, please refer to the [Retrieve Metadata for Mintable XC-20s](/builders/interoperability/xcm/xc20/mintable-xc20/#retrieve-metadata-for-mintable-xc-20s){target=_blank} section of the Mintable XC-20s page
+- The asset ID of the asset you're transferring. You can get the [list of asset IDs from Polkadot.js Apps](/builders/interoperability/xcm/xc20/xc20/#list-xchain-assets){target=_blank}
+- The number of decimals the asset you're transferring has. For this information, please refer to the [Retrieve Metadata for External XC-20s](/builders/interoperability/xcm/xc20/xc20/#x-chain-assets-metadata){target=_blank} section of the External XC-20s page
 - Some `xcUNIT` tokens. You can swap `DEV` tokens (Moonbase Alpha's native token) for `xcUNIT`s on [Moonbeam-Swap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha
 
 ![Moonbeam Swap xcUNIT](/images/builders/interoperability/xcm/xc20/xtokens/xtokens-1.png)
@@ -94,21 +90,18 @@ To check your `xcUNIT` balance, you can add the XC-20 to MetaMask with the follo
 0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080
 ```
 
-If you're interested in how the precompile address is calculated, you can check out the following guides:
-
-- [Calculate External XC-20 Precompile Addresses](/builders/interoperability/xcm/xc20/xc20/#calculate-xc20-address){target=_blank}
-- [Calculate Mintable XC-20 Precompile Addresses](/builders/interoperability/xcm/xc20/mintable-xc20/#calculate-xc20-address){target=_blank}
+If you're interested in how the precompile address is calculated, you can check out the [Calculate External XC-20 Precompile Addresses](/builders/interoperability/xcm/xc20/xc20/#calculate-xc20-address){target=_blank} docs.
 
 ### X-Tokens Transfer Function {: #xtokens-transfer-function}
 
 In this example, you'll build an XCM message to transfer `xcUNIT` from Moonbase Alpha back to its [relay chain](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} through the `transfer` function of the X-Tokens Pallet.
 
-Head to the extrinsic page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} and set the following options (you can adapt for [mintable XC-20s](/builders/interoperability/xcm/xc20/mintable-xc20/){target=_blank}):
+Head to the extrinsic page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics){target=_blank} and set the following options:
 
 1. Select the account from which you want to send the XCM
 2. Choose the **xTokens** pallet
 3. Choose the **transfer** extrinsic
-4. Set the currency ID to **ForeignAsset** for external XC-20s or **LocalAssetReserve** for mintable XC-20s. Since `xcUNIT` is an external XC-20, you can choose **ForeignAsset**
+4. Set the currency ID to **ForeignAsset**
 5. Enter the asset ID. For this example, `xcUNIT` has an asset id of `42259045809535163221576417993425387648`
 6. Set the number of tokens to send. For this example, you are sending 1 `xcUNIT`, but you have to account for the 12 decimals of `xcUNIT`
 7. To define the XCM destination multilocation, you have to target an account in the relay chain from Moonbase Alpha as the origin. Therefore, set the following parameters:
@@ -211,7 +204,6 @@ The interface includes the following functions:
 
  - **transfer**(*address* currencyAddress, *uint256* amount, *Multilocation* *memory* destination, *uint64* weight) — function that represents the `transfer` method described in the [previous example](#xtokens-transfer-function). Instead of using the currency ID, you'll need to provide the assets precompile address for the `currencyAddress`:
     - For [external XC-20s](/builders/interoperability/xcm/xc20/xc20){target=_blank}, provide the [XC-20 precompile address](/builders/interoperability/xcm/xc20/xc20/#current-xc20-assets){target=_blank}
-    - For [mintable XC-20s](/builders/interoperability/xcm/xc20/mintable-xc20){target=_blank}, you can follow the instructions for [calculating the precompile address](/builders/interoperability/xcm/xc20/mintable-xc20/#calculate-xc20-address){target=_blank}
     - For native tokens (i.e., GLMR, MOVR, and DEV), provide the [ERC-20 precompile](/builders/pallets-precompiles/precompiles/erc20/#the-erc20-interface){target=_blank} address, which is `{{networks.moonbeam.precompiles.erc20 }}`
     - For ERC-20s, provide the contract address of the ERC-20
 
