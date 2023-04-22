@@ -28,11 +28,11 @@ This guide will show you how to leverage the X-Tokens Pallet to send XC-20s from
 
 The X-Tokens Pallet provides the following extrinsics (functions):
 
- - **transfer**(currencyId, amount, dest, destWeight) — transfer a currency, defined as the native token (self reserved), with the asset ID, or with the ERC-20 contract address
+ - **transfer**(currencyId, amount, dest, destWeight) — transfer a currency, defined as the native token (self reserved), the asset ID ([external XC-20s](/builders/interoperability/xcm/xc20/xc20){target=_blank}), or with the ERC-20 contract address ([local XC-20s](/builders/interoperability/xcm/xc20/xcm-erc20s){target=_blank})
  - **transferMultiasset**(asset, dest, destWeight) — transfer a fungible asset, defined by its multilocation
  - **transferMultiassetWithFee**(asset, fee, dest, destWeight) — transfer a fungible asset, but it allows the sender to pay the fee with a different asset. Both are defined by their multilocation
  - **transferMultiassets**(assets, feeItem, dest, destWeight) — transfer several fungible assets, specifying which is used as the fee. Each asset is defined by its multilocation
- - **transferMulticurrencies**(currencies, feeItem, dest, destWeight) — transfer different currencies, specifying which is used as the fee. Each currency is defined as either the native token (self reserved), with the asset ID, or with the ERC-20 contract address
+ - **transferMulticurrencies**(currencies, feeItem, dest, destWeight) — transfer different currencies, specifying which is used as the fee. Each currency is defined as the native token (self reserved), the asset ID ([external XC-20s](/builders/interoperability/xcm/xc20/xc20){target=_blank}), or with the ERC-20 contract address ([local XC-20s](/builders/interoperability/xcm/xc20/xcm-erc20s){target=_blank})
  - **transferWithFee**(currencyId, amount, fee, dest, destWeight) — transfer a currency, but it allows the sender to pay the fee with a different asset. Both are defined by their multilocation
 
 Where the inputs that need to be provided can be defined as:
