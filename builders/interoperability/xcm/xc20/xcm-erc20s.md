@@ -5,7 +5,7 @@ description: Transfer any ERC-20 token cross-chain with ease via XCM. Our step-b
 
 # Send ERC-20s Cross Chain via XCM
 
-![X-Tokens Precompile Contracts Banner](/images/builders/interoperability/xcm/xc20/send-erc20s/send-erc20s-banner.png)
+![X-Tokens Precompile Contracts Banner](/images/builders/interoperability/xcm/xc20/xcm-erc20s/xcm-erc20s-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -139,7 +139,7 @@ Now that we have the values for each of the parameters, we can begin to write a 
  5. Send the transaction using the `signAndSend` extrinsic, passing in the Keyring instance you created in the second step
 
 !!! remember
-    The following snippets are for demonstration purposes only. Never store your private key or mnemonic in a JavaScript or TypeScript file. 
+    The following snippet is for demonstration purposes only. Never store your private key or mnemonic in a JavaScript or TypeScript file. 
 
 ```js
 import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
