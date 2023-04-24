@@ -538,7 +538,7 @@ In your terminal, you should see your indexer starting to process blocks!
 
 ![Spin up a Subsquid indexer](/images/tutorials/integrations/local-subsquid/local-squid-7.png)
 
-If your Squid isn't indexing the blocks properly, make sure that your development node is running with the `--sealing` flag. For this example, you should have set the flag as `--sealing 4000`, so that a block is produced every four seconds. You can feel free to edit the sealing interval as needed. Before you try to spin up your Squid again, run the following commands to shut down your local Archive and Squid:
+If your Squid isn't indexing blocks properly, make sure that your development node is running with the `--sealing` flag. For this example, you should have set the flag as `--sealing 4000`, so that a block is produced every four seconds. You can feel free to edit the sealing interval as needed. Before you try to spin up your Squid again, run the following commands to shut down your local Archive and Squid:
 
 ```
 sqd archive-down && sqd down
