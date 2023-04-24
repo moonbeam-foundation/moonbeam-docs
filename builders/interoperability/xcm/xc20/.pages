@@ -4,4 +4,4 @@ nav:
   - 'Overview': 'overview.md'
   - 'External XC-20s': 'xc20.md'
   - 'Send External XC-20s': 'xtokens.md'
-  - 'Send Local ERC-20s via XCM': 'xcm-erc20s.md'
+  - 'Send Local ERC-20s': 'xcm-erc20s.md'

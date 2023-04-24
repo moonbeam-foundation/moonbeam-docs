@@ -65,14 +65,7 @@ This section of the guide will show you how to build and send an XCM message to 
 
 Since you'll be interacting with the `transfer` function of the X-Tokens Pallet, you'll need to gather the arguments for the `currencyId`, `amount`, `dest`, and `destWeight`. For this example, you can send 1 ERC-20 token to an account on the relay chain:
 
-- The `currencyId` for an ERC-20 token has the following parameters:
-
-    |    Parameter    |         Value         |
-    |:---------------:|:---------------------:|
-    |   CurrencyId    |         Erc20         |
-    | ContractAddress | Target ERC-20 Address |
-
-    In JavaScript, this translates to:
+- The `currencyId` for an ERC-20 token is the contract's address. In JavaScript, this translates to:
 
     ```js
     const currencyId = { Erc20: { contractAddress: ERC_20_ADDRESS } };
@@ -86,25 +79,19 @@ Since you'll be interacting with the `transfer` function of the X-Tokens Pallet,
 
 - The `dest` should target an account in the relay chain; therefore, you'll need the following parameters:
 
-    | Parameter |     Value      |
-    |:---------:|:--------------:|
-    |  Version  |       V3       |
-    |  Parents  |       1        |
-    | Interior  |       X1       |
-    |    X1     |  AccountId32   |
-    |  Network  |      None      |
-    |    Id     | Target Account |
-    
-    In JavaScript, this translates to:
-
     ```js
-    const dest = { V3: { parents: 1, interior: { X1: { AccountId32: { id: RELAY_ACC_ADDRESS } } } } };
+    const dest = {
+      V3: {
+        parents: 1, // Target relay chain
+        interior: { X1: { AccountId32: { id: RELAY_ACC_ADDRESS } } }, // Target a specific relay chain account
+      },
+    };
     ```
 
     !!! note
-        The `Network` parameter is optional, and as such, if you don't specify one, it will default to `None`.
+        When specifying an `AccountId32`, `AccountIndex64`, or `AccountKey20`, there is an optional `network` parameter you can specify. If you don't use this parameter, it will default to `None`.
 
-- The `destWeightLimit` for this example can be set to `Unlimited`. In JavaScript, you'll need to set `Unlimited` to `null`:
+- The `destWeightLimit` for this example can be set to `Unlimited`. In JavaScript, you'll need to set `Unlimited` to `null` (as outlined in the [TypeScript interface for `XcmV3WeightLimit`](https://github.com/PureStake/moonbeam/blob/v0.31.1/typescript-api/src/moonbase/interfaces/augment-api-tx.ts#L5796){target=_blank}):
 
     ```js
     const destWeightLimit = { Unlimited: null };
@@ -124,7 +111,12 @@ Altogether, you should have the following variables for each parameter of the `t
 ```js
 const currencyId = { Erc20 : { contractAddress: ERC_20_ADDRESS } };
 const amount = 1000000000000000000n;
-const dest = { V3: { parents: 1, interior: { X1: { AccountId32: { id: RELAY_ACC_ADDRESS } } } } };
+const dest = {
+  V3: {
+    parents: 1,
+    interior: { X1: { AccountId32: { id: RELAY_ACC_ADDRESS } } },
+  },
+};
 const destWeightLimit = { Unlimited: null };
 ```
 
