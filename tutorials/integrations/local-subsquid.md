@@ -409,7 +409,7 @@ In order to index ERC-20 transfers, we'll need to take a series of actions:
 2. Use the `MyTok` contract's ABI to generate TypeScript interface classes that will be used by our Squid to index `Transfer` events
 3. Configure the processor to process `Transfer` events for the `MyTok` contract from our local development node and Archive. Then we'll add logic to process the `Transfer` events and save the processed transfer data
 
-As mentioned, we'll first need to define the database schema for the transfer data. To do so, we'll edit the `schema.graphql` file, which is located in the root `local-subsquid` directory, and create a `Transfer` entity:
+As mentioned, we'll first need to define the database schema for the transfer data. To do so, we'll edit the `schema.graphql` file, which is located in the root `local-squid` directory, and create a `Transfer` entity:
 
 ```
 type Transfer @entity {
