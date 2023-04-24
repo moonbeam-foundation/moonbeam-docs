@@ -73,17 +73,25 @@ Our development node comes with 10 prefunded accounts.
 
 For more information on running a Moonbeam development node, please refer to the [Getting Started with a Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev){target=_blank} guide.
 
-## Create a Hardhat Project {: #create-a-hardhat-project }
+## Set Up a Hardhat Project {: #create-a-hardhat-project }
 
 You should have already created an empty Hardhat project, but if you haven't done so, you can find instructions in the [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project){target=_blank} section of our Hardhat documentation page.
 
 In this section, we'll configure our Hardhat project for a local Moonbeam development node, create an ERC-20 contract, and write scripts to deploy and interact with our contract.
 
-Before we dive into creating our project, let's install a couple of dependencies that we'll need: the [Hardhat Toolbox plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-toolbox){target=_blank} and [OpenZeppelin contracts](https://docs.openzeppelin.com/contracts/4.x/){target=_blank}. The Hardhat Toolbox plugin will allow us to interact with [Ethers](/builders/build/eth-api/libraries/ethersjs){target=_blank}. We'll use OpenZeppelin's base ERC-20 implementation to create an ERC-20. To install both of these dependencies, you can run:
+Before we dive into creating our project, let's install a couple of dependencies that we'll need: the [Hardhat Ethers plugin](https://hardhat.org/plugins/nomiclabs-hardhat-ethers.html){target=_blank} and [OpenZeppelin contracts](https://docs.openzeppelin.com/contracts/4.x/){target=_blank}. The Hardhat Ethers plugin provides a convenient way to use the [Ethers](/builders/build/eth-api/libraries/ethersjs){target=_blank} library to interact with the network. We'll use OpenZeppelin's base ERC-20 implementation to create an ERC-20. To install both of these dependencies, you can run:
 
-```
-npm install @nomicfoundation/hardhat-toolbox @openzeppelin/contracts
-```
+=== "npm"
+
+    ```
+    npm install @nomiclabs/hardhat-ethers ethers @openzeppelin/contracts
+    ```
+
+=== "yarn"
+
+    ```
+    yarn add @nomiclabs/hardhat-ethers ethers @openzeppelin/contracts
+    ```
 
 ### Configure Hardhat For a Local Development Node {: #create-a-hardhat-project }
 
@@ -93,10 +101,15 @@ Before we update the configuration file, we'll need to get the private key of on
 0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133
 ```
 
+!!! remember
+    **You should never store your private keys in a JavaScript or Python file.**
+
+    The private keys for the development accounts are public knowledge because the accounts exist within your own development environment. However, when you move on to indexing a live network such as Moonbase Alpha or Moonbeam (which is out of scope for this tutorial), you should manage your private keys with a designated secret manager or similar service.
+
 Now we can edit `hardhat.config.js` to include the following network and account configurations for our Moonbeam development node:
 
 ```js
-require("@nomicfoundation/hardhat-toolbox");
+require('@nomiclabs/hardhat-ethers');
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
@@ -354,13 +367,12 @@ volumes:
 !!! note
     If you're on Linux, don't forget to uncomment the `extra_hosts` section.
 
-To easily run our Archive, let's update the preexisting `commands.json` file to include an `archive-up` and `archive-down` command, which will spin up and spin down our Archive as needed:
+To easily run our Archive, let's update the preexisting `commands.json` file, which is located in the root `local-squid` directory, to include an `archive-up` and `archive-down` command, which will spin up and spin down our Archive as needed:
 
 ```json
 {
     "$schema": "https://cdn.subsquid.io/schemas/commands.json",
     "commands": {
-      // ...
       "archive-up": {
         "description": "Start local Moonbeam Archive",
         "cmd": ["docker-compose", "-f", "archive/docker-compose.archive.yml", "up", "-d"]
@@ -373,6 +385,9 @@ To easily run our Archive, let's update the preexisting `commands.json` file to 
     }
   }
 ```
+
+!!! note
+    It doesn't matter where you add the two new commands in the `commands` object. Feel free to add them to the top of the list or wherever you see fit.
 
 Now we can start our Archive by running:
 
@@ -392,10 +407,9 @@ In order to index ERC-20 transfers, we'll need to take a series of actions:
 
 1. Update the database schema and generate models for the data
 2. Use the `MyTok` contract's ABI to generate TypeScript interface classes that will be used by our Squid to index `Transfer` events
-3. Configure the processor to process `Transfer` events for the `MyTok` contract from our local development node and Archive
-4. Add logic to process the `Transfer` events and save the processed transfer data
+3. Configure the processor to process `Transfer` events for the `MyTok` contract from our local development node and Archive. Then we'll add logic to process the `Transfer` events and save the processed transfer data
 
-As mentioned, we'll first need to define the database schema for the transfer data. To do so, we'll edit the `schema.graphql` file and create a `Transfer` entity:
+As mentioned, we'll first need to define the database schema for the transfer data. To do so, we'll edit the `schema.graphql` file, which is located in the root `local-subsquid` directory, and create a `Transfer` entity:
 
 ```
 type Transfer @entity {
@@ -432,11 +446,15 @@ We'll be taking the following steps:
 1. Importing the files we generated in the previous two steps: the data model and the events interface
 2. Set the data source `chain` to be our local development node and the `archive` to be our local Archive
 3. Tell our processor to process EVM logs for our `MyTok` contract and filter the logs for `Transfer` events
+4. Add logic to process the transfer data.  We'll iterate over each of the blocks and `Transfer` events associated with our `MyTok` contract, decode them, and save the transfer data to our database
+
+You can replace all of the preexisting content in the `src/processor.ts` file with the following:
 
 ```js
-// ...
-import { Transfer } from './model';
-import { events } from './abi/MyTok';
+import { TypeormDatabase } from "@subsquid/typeorm-store";
+import { EvmBatchProcessor } from "@subsquid/evm-processor";
+import { Transfer } from "./model";
+import { events } from "./abi/MyTok";
 
 const contractAddress = "0xc01Ee7f10EA4aF4673cFff62710E1D7792aBa8f3".toLowerCase();
 const processor = new EvmBatchProcessor()
@@ -456,13 +474,7 @@ const processor = new EvmBatchProcessor()
       }
     }
   });
-// ...
-```
 
-Now for the final step, we'll add logic to process the transfer data. We'll iterate over each of the blocks and `Transfer` events associated with our `MyTok` contract, decode them, and save the transfer data to our database:
-
-```js
-//...
 processor.run(new TypeormDatabase(), async (ctx) => {
   const transfers: Transfer[] = []
   for (let c of ctx.blocks) {
@@ -487,63 +499,6 @@ processor.run(new TypeormDatabase(), async (ctx) => {
    await ctx.store.save(transfers)
 });
 ```
-
-??? code "View the complete `processor.ts` file"
-
-    ```js
-    import { TypeormDatabase } from "@subsquid/typeorm-store";
-    import { EvmBatchProcessor } from "@subsquid/evm-processor";
-    import { Transfer } from "./model";
-    import { events } from "./abi/MyTok";
-
-    const contractAddress =
-      "0xc01Ee7f10EA4aF4673cFff62710E1D7792aBa8f3".toLowerCase();
-    const processor = new EvmBatchProcessor()
-      .setDataSource({
-        chain: "http://localhost:9944",
-        archive: "http://localhost:8080",
-      })
-      .addLog(contractAddress, {
-        filter: [[events.Transfer.topic]],
-        data: {
-          evmLog: {
-            topics: true,
-            data: true,
-          },
-          transaction: {
-            hash: true,
-          },
-        },
-      });
-
-    processor.run(new TypeormDatabase(), async (ctx) => {
-      const transfers: Transfer[] = [];
-      for (let c of ctx.blocks) {
-        for (let i of c.items) {
-          if (i.address === contractAddress && i.kind === "evmLog") {
-            if (i.transaction) {
-              const { from, to, value } = events.Transfer.decode(i.evmLog);
-              transfers.push(
-                new Transfer({
-                  id: `${String(c.header.height).padStart(
-                    10,
-                    "0"
-                  )}-${i.transaction.hash.slice(3, 8)}`,
-                  block: c.header.height,
-                  from: from,
-                  to: to,
-                  value: value.toBigInt(),
-                  timestamp: BigInt(c.header.timestamp),
-                  txHash: i.transaction.hash,
-                })
-              );
-            }
-          }
-        }
-      }
-      await ctx.store.save(transfers);
-    });
-    ```
 
 Now we've taken all of the steps necessary and are ready to run our indexer!
 
@@ -582,6 +537,26 @@ To run our indexer, we're going to run a series of `sqd` commands:
 In your terminal, you should see your indexer starting to process blocks!
 
 ![Spin up a Subsquid indexer](/images/tutorials/integrations/local-subsquid/local-squid-7.png)
+
+If your Squid isn't indexing the blocks properly, make sure that your development node is running with the `--sealing` flag. For this example, you should have set the flag as `--sealing 4000`, so that a block is produced every four seconds. You can feel free to edit the sealing interval as needed. Before you try to spin up your Squid again, run the following commands to shut down your local Archive and Squid:
+
+```
+sqd archive-down && sqd down
+```
+
+Then you can start your local Archive and Squid back up:
+
+```
+sqd archive-up && sqd up
+```
+
+Finally, you should be able to start indexing again:
+
+```
+sqd process
+```
+
+Now your indexer should be indexing your development node without any problems!
 
 ### Query the Indexer {: #query-indexer }
 
