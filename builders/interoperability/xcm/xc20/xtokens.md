@@ -88,7 +88,7 @@ To follow along with the examples in this guide, you need to have the following:
 
 - An account with funds.
  --8<-- 'text/faucet/faucet-list-item.md'
-- Some `xcUNIT` tokens. You can swap `DEV` tokens (Moonbase Alpha's native token) for `xcUNIT`s on [Moonbeam-Swap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha
+- Some xcUNIT tokens. You can swap DEV tokens (Moonbase Alpha's native token) for xcUNITs on [Moonbeam-Swap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}, a demo Uniswap-V2 clone on Moonbase Alpha
 
     ![Moonbeam Swap xcUNIT](/images/builders/interoperability/xcm/xc20/xtokens/xtokens-1.png)
 
@@ -105,11 +105,11 @@ You can adapt this guide for another [external XC-20 or a local XC-20](/builders
 
 ### X-Tokens Transfer Function {: #xtokens-transfer-function}
 
-In this example, you'll build an XCM message to transfer `xcUNIT` from Moonbase Alpha back to its relay chain through the `transfer` function of the X-Tokens Pallet. To do this, you can use the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=_blank}.
+In this example, you'll build an XCM message to transfer xcUNIT from Moonbase Alpha back to its relay chain through the `transfer` function of the X-Tokens Pallet. To do this, you can use the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=_blank}.
 
-Since you'll be interacting with the `transfer` function of the X-Tokens Pallet, you'll need to gather the arguments for the `currencyId`, `amount`, `dest`, and `destWeightLimit`:
+Since you'll be interacting with the `transfer` function of the X-Tokens Pallet, you can take the following steps to gather the arguments for the `currencyId`, `amount`, `dest`, and `destWeightLimit`:
 
-- `currencyId` - for external XC-20s, you'll use the `ForeignAsset` currency type and the asset ID of the asset, which in this case is `42259045809535163221576417993425387648`. For a local XC-20, you'll need the address of the token. In JavaScript, this translates to:
+1. Define the `currencyId`. For external XC-20s, you'll use the `ForeignAsset` currency type and the asset ID of the asset, which in this case is `42259045809535163221576417993425387648`. For a local XC-20, you'll need the address of the token. In JavaScript, this translates to:
 
     === "External XC-20"
 
@@ -127,13 +127,13 @@ Since you'll be interacting with the `transfer` function of the X-Tokens Pallet,
         const currencyId = { Erc20: { contractAddress: ERC_20_ADDRESS } };
         ```
 
-- `amount` - for this example, you are sending 1 xcUNIT, which has 12 decimals:
+2. Specify the `amount` to transfer. For this example, you are sending 1 xcUNIT, which has 12 decimals:
 
     ```js
     const amount = 1000000000000n;
     ```
 
-- `dest` -  the destination multilocation will target an account on the relay chain from Moonbase Alpha. In JavaScript, this translates to:
+3. Define the multilocation of the destination, which will target an account on the relay chain from Moonbase Alpha:
 
     ```js
     const dest = { 
@@ -147,7 +147,7 @@ Since you'll be interacting with the `transfer` function of the X-Tokens Pallet,
     !!! note
         For an `AccountId32`, `AccountIndex64`, or `AccountKey20`, you have the option of specify a `network` parameter. If you don't specify one, it will default to `None`.
 
-- `destWeightLimit` - set the destination weight limit to `Unlimited`. In JavaScript, you'll need to set `Unlimited` to `null` (as outlined in the [TypeScript interface for `XcmV3WeightLimit`](https://github.com/PureStake/moonbeam/blob/v0.31.1/typescript-api/src/moonbase/interfaces/augment-api-tx.ts#L5796){target=_blank}):
+4. Set the `destWeightLimit` to `Unlimited`. In JavaScript, you'll need to set `Unlimited` to `null` (as outlined in the [TypeScript interface for `XcmV3WeightLimit`](https://github.com/PureStake/moonbeam/blob/v0.31.1/typescript-api/src/moonbase/interfaces/augment-api-tx.ts#L5796){target=_blank}):
 
     ```js
     const destWeightLimit = { Unlimited: null };
@@ -224,11 +224,11 @@ Once the transaction is processed, the target account on the relay chain should 
 
 ### X-Tokens Transfer MultiAsset Function {: #xtokens-transfer-multiasset-function}
 
-In this example, you'll build an XCM message to transfer `xcUNIT` from Moonbase Alpha back to its relay chain using the `transferMultiasset` function of the X-Tokens Pallet.
+In this example, you'll build an XCM message to transfer xcUNIT from Moonbase Alpha back to its relay chain using the `transferMultiasset` function of the X-Tokens Pallet.
 
-Since you'll be interacting with the `transferMultiasset` function of the X-Tokens Pallet, you'll need to gather the arguments for the `asset`, `dest`, and `destWeightLimit`:
+Since you'll be interacting with the `transferMultiasset` function of the X-Tokens Pallet, you can take the following steps to gather the arguments for the `asset`, `dest`, and `destWeightLimit`:
 
-- `asset` - to define the XCM asset multilocation, you have to target `UNIT` in the relay chain from Moonbase Alpha as the origin. Each chain sees its own asset differently. Therefore, you will have to set a different asset multilocation for each destination
+1. Define the XCM asset multilocation of the `asset`, which will target UNIT tokens in the relay chain from Moonbase Alpha as the origin. Each chain sees its own asset differently. Therefore, you will have to set a different asset multilocation for each destination
 
     === "External XC-20"
 
@@ -270,7 +270,7 @@ Since you'll be interacting with the `transferMultiasset` function of the X-Toke
         };
         ```
 
-- `dest` - to define the XCM destination multilocation, you have to target an account in the relay chain from Moonbase Alpha as the origin:
+2. Define the XCM destination multilocation of the `dest`, which will target an account in the relay chain from Moonbase Alpha as the origin:
     
     ```js
     const dest = {
@@ -284,7 +284,7 @@ Since you'll be interacting with the `transferMultiasset` function of the X-Toke
     !!! note
         For an `AccountId32`, `AccountIndex64`, or `AccountKey20`, you have the option of specify a `network` parameter. If you don't specify one, it will default to `None`.
 
-- `destWeightLimit` - set the destination weight limit to `Unlimited`. In JavaScript, you'll need to set `Unlimited` to `null` (as outlined in the [TypeScript interface for `XcmV3WeightLimit`](https://github.com/PureStake/moonbeam/blob/v0.31.1/typescript-api/src/moonbase/interfaces/augment-api-tx.ts#L5796){target=_blank}):
+3. Set the destination weight limit to `Unlimited`. In JavaScript, you'll need to set `Unlimited` to `null` (as outlined in the [TypeScript interface for `XcmV3WeightLimit`](https://github.com/PureStake/moonbeam/blob/v0.31.1/typescript-api/src/moonbase/interfaces/augment-api-tx.ts#L5796){target=_blank}):
 
     ```js
     const destWeightLimit = { Unlimited: null };
