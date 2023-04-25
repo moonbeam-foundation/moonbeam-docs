@@ -162,44 +162,10 @@ Since you'll be interacting with the `transfer` function of the X-Tokens Pallet,
         { Limited: { refTime: ALLOWED_AMOUNT, proofSize: ALLOWED_AMOUNT } };
         ```
 
-Altogether, you should have the following variables for each parameter of the `transfer` function:
-
-=== "External XC-20"
-
-    ```js
-    const currencyId = { 
-      ForeignAsset: { 
-        ForeignAsset: 42259045809535163221576417993425387648n 
-      }
-    };
-    const amount = 1000000000000n; // 1 token
-    const dest = { 
-      V3: { 
-        parents: 1, 
-        interior: { X1: { AccountId32: { id: RELAY_ACC_ADDRESS } } } 
-      } 
-    };
-    const destWeightLimit = { Unlimited: null };
-    ```
-
-=== "Local XC-20"
-
-    ```js
-    const currencyId = { Erc20: { contractAddress: ERC_20_ADDRESS } }
-    const amount = 1000000000000000000n; // 1 token
-    const dest = { 
-      V3: { 
-        parents: 1, 
-        interior: { X1: { AccountId32: { id: RELAY_ACC_ADDRESS } } } 
-      } 
-    };
-    const destWeightLimit = { Unlimited: null };
-    ```
-
 Now that you have the values for each of the parameters, you can write the script for the transfer. You'll take the following steps:
 
  1. Provide the input data for the call. This includes:
-     - Moonbase Alpha endpoint URL to create the provider
+     - The Moonbase Alpha endpoint URL to create the provider
      - The values for each of the parameters of the `transfer` function
  2. Create a Keyring instance that will be used to send the transaction
  3. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} provider
@@ -252,9 +218,9 @@ sendXc20();
 ```
 
 !!! note
-    You can view an example of the above script, which sends 1 xcUNIT to Alice's account on the relay chain, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1e00018080778c30c20fa2ebc0ed18d2cbca1f0010a5d4e800000000000000000000000301010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300){target=_blank} using the following encoded call data: `0x1e00018080778c30c20fa2ebc0ed18d2cbca1f0010a5d4e800000000000000000000000301010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300`.
+    You can view an example of the above script, which sends 1 xcUNIT to Alice's account on the relay chain, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1e00018080778c30c20fa2ebc0ed18d2cbca1f0010a5d4e800000000000000000000000301010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300){target=_blank} using the following encoded calldata: `0x1e00018080778c30c20fa2ebc0ed18d2cbca1f0010a5d4e800000000000000000000000301010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300`.
 
-Once the transaction is processed, the **Target Account** should have received the transferred amount minus a small fee that is deducted to execute the XCM on the destination chain.
+Once the transaction is processed, the target account on the relay chain should have received the transferred amount minus a small fee that is deducted to execute the XCM on the destination chain.
 
 ### X-Tokens Transfer MultiAsset Function {: #xtokens-transfer-multiasset-function}
 
@@ -333,64 +299,10 @@ Since you'll be interacting with the `transferMultiasset` function of the X-Toke
         { Limited: { refTime: ALLOWED_AMOUNT, proofSize: ALLOWED_AMOUNT } };
         ```
 
-Altogether, you should have the following variables for each parameter of the `transferMultiasset` function:
-
-=== "External XC-20"
-
-    ```js
-    const asset = {
-      V3: {
-        id: {
-          Concrete: {
-              parents: 1,
-              interior: 0,
-          },
-        },
-        fun: {
-          Fungible: { Fungible: 1000000000000n }, // 1 token
-        },
-      },
-    };
-    const dest = {
-      V3: {
-        parents: 1,
-        interior: { X1: { AccountId32: { id: RELAY_ACC_ADDRESS } } },
-      },
-    };
-    const destWeightLimit = { Limited: { refTime: 400000000n, proofSize: 0 } };
-    ```
-
-=== "Local XC-20"
-
-    ```js
-    const asset = {
-      V3: {
-        id: {
-          Concrete: {
-            parents: 0,
-            interior: {
-              X2: [{ PalletInstance: 48 }, { AccountKey20: { key: ERC_20_ADDRESS } }],
-            },
-          },
-        },
-        fun: {
-          Fungible: { Fungible: 1000000000000000000n }, // 1 token
-        },
-      },
-    };
-    const dest = {
-      V3: {
-        parents: 1,
-        interior: { X1: { AccountId32: { id: RELAY_ACC_ADDRESS } } },
-      },
-    };
-    const destWeightLimit = { Limited: { refTime: 400000000n, proofSize: 0 } };
-    ```
-
 Now that you have the values for each of the parameters, you can write the script for the transfer. You'll take the following steps:
 
  1. Provide the input data for the call. This includes:
-     - Moonbase Alpha endpoint URL to create the provider
+     - The Moonbase Alpha endpoint URL to create the provider
      - The values for each of the parameters of the `transferMultiasset` function
  2. Create a Keyring instance that will be used to send the transaction
  3. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} provider
@@ -449,9 +361,8 @@ const sendXc20 = async () => {
 sendXc20();
 ```
 
-
 !!! note
-    You can view an example of the above script, which sends 1 xcUNIT to Alice's account on the relay chain, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1e010300010000070010a5d4e80301010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300){target=_blank} using the following encoded call data: `0x1e010300010000070010a5d4e80301010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300`
+    You can view an example of the above script, which sends 1 xcUNIT to Alice's account on the relay chain, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1e010300010000070010a5d4e80301010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300){target=_blank} using the following encoded calldata: `0x1e010300010000070010a5d4e80301010100c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300`
 
 Once the transaction is processed, the account on the relay chain should have received the transferred amount minus a small fee that is deducted to execute the XCM on the destination chain.
 
