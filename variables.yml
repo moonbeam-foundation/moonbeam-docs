@@ -1012,23 +1012,3 @@ networks:
         numbers_only: 400000000
         wei_betadev_cost: 20000000000000
         betadev_cost: '0.00002'
-  bobabase:
-    rpc_url: https://bobabase.boba.network
-    replica_rpc_url: https://replica.bobabase.boba.network
-    wss_url: wss://wss.bobabase.boba.network
-    replica_wss_url: wss://replica-wss.bobabase.boba.network
-    gateway: https://gateway.bobabase.boba.network
-    chain_id: 1297
-    hex_chain_id: '0x511'
-    block_explorer: https://blockexplorer.bobabase.boba.network
-    exit_delay_period_days: 7
-  bobabeam:
-    rpc_url: https://bobabeam.boba.network
-    replica_rpc_url: https://replica.bobabeam.boba.network
-    wss_url: wss://wss.bobabeam.boba.network
-    replica_wss_url: wss://replica-wss.bobabeam.boba.network
-    gateway: https://gateway.bobabeam.boba.network
-    chain_id: 1294
-    hex_chain_id: '0x50E'
-    block_explorer: https://blockexplorer.bobabeam.boba.network
-    exit_delay_period_days: 7
