@@ -2,5 +2,6 @@ title: Interoperability
 hide: false
 nav:
   - index.md
+  - '[Connected Contracts] Creating a Cross-Chain DAO': 'cross-chain-dao.md'
   - '[XCM] Remote Staking on Moonbeam From Polkadot': 'remote-staking-xcm.md'
   - '[XCM] Uniswap V2 Swap on Moonbeam from Polkadot': 'uniswapv2-swap-xcm.md'

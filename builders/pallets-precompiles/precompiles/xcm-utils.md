@@ -1,18 +1,18 @@
 ---
-title:  XCM-Utils Precompile Contract
-description:  Learn the various XCM related utility functions available to smart contact developers with Moonbeam's precompiled XCM-Utils contract.
+title:  XCM Utilities Precompile Contract
+description:  Learn the various XCM related utility functions available to smart contact developers with Moonbeam's precompiled XCM Utilities contract.
 keywords: solidity, ethereum, xcm, utils, moonbeam, precompiled, contracts
 ---
 
-# Interacting with the XCM-Utils Precompile
+# Interacting with the XCM Utilities Precompile
 
-![Precomiled XCM-Utils Banner](/images/builders/pallets-precompiles/precompiles/xcm-utils/xcm-utils-banner.png)
+![Precomiled XCM Utilities Banner](/images/builders/pallets-precompiles/precompiles/xcm-utils/xcm-utils-banner.png)
 
 ## Introduction {: #xcmutils-precompile}
 
-The XCM-Utils Precompile contract gives developers XCM-related utility functions directly within the EVM. This allows for easier transactions and interactions with other XCM-related precompiles. 
+The XCM Utilities Precompile contract gives developers XCM-related utility functions directly within the EVM. This allows for easier transactions and interactions with other XCM-related precompiles. 
 
-Similar to other [precompile contracts](/builders/pallets-precompiles/precompiles/){target=_blank}, the XCM-Utils Precompile is located at the following addresses:
+Similar to other [precompile contracts](/builders/pallets-precompiles/precompiles/){target=_blank}, the XCM Utilities Precompile is located at the following addresses:
 
 === "Moonbeam"
      ```
@@ -31,7 +31,7 @@ Similar to other [precompile contracts](/builders/pallets-precompiles/precompile
 
 --8<-- 'text/precompiles/security.md'
 
-## The XCM-Utils Solidity Interface {: #xcmutils-solidity-interface } 
+## The XCM Utilities Solidity Interface {: #xcmutils-solidity-interface } 
 
 [XcmUtils.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm-utils/XcmUtils.sol){target=_blank} is an interface to interact with the precompile.
 
@@ -46,11 +46,11 @@ The interface includes the following functions:
  - **xcmExecute**(*bytes memory* message, *uint64* maxWeight) - **available on Moonbase Alpha only** -  executes a custom XCM message given the SCALE encoded versioned message to be executed and the maximum weight to be consumed. This function *cannot* be called from a smart contract due to the nature of the `Transact` instruction
  - **xcmSend**(*Multilocation memory* dest, *bytes memory* message) - **available on Moonbase Alpha only** - sends a custom XCM message given the multilocation of the destination chain to send the message to and the SCALE encoded versioned message to be sent
 
-The `Multilocation` struct in the XCM-Utils Precompile is built the [same as the XCM-transactor](/builders/interoperability/xcm/xcm-transactor#building-the-precompile-multilocation){target=_blank} precompile's `Multilocation`.
+The `Multilocation` struct in the XCM Utilities Precompile is built the [same as the XCM-transactor](/builders/interoperability/xcm/xcm-transactor#building-the-precompile-multilocation){target=_blank} precompile's `Multilocation`.
 
-## Using the XCM-Utils Precompile {: #using-the-xcmutils-precompile } 
+## Using the XCM Utilities Precompile {: #using-the-xcmutils-precompile } 
 
-The XCM-Utils precompile allows users to read data off of the Ethereum JSON-RPC instead of having to go through a Polkadot library. The functions are more for convenience, and less for smart contract use cases. 
+The XCM Utilities precompile allows users to read data off of the Ethereum JSON-RPC instead of having to go through a Polkadot library. The functions are more for convenience, and less for smart contract use cases. 
 
 For `multilocationToAddress`, one example use case is being able to allow transactions that originate from other parachains by whitelisting their multilocation-derived addresses. A user can whitelist a multilocation by calculating and storing an address. EVM transactions can originate from other parachains via [remote EVM calls](/builders/interoperability/xcm/remote-evm-calls).  
 
@@ -82,3 +82,5 @@ contract MultilocationWhitelistExample {
     ...
 }
 ```
+
+To check out an example of how to use the `xcmExecute` function to execute a custom XCM message locally, please refer to the [Create and Execute Custom XCM Messages](/builders/interoperability/xcm/send-execute-xcm/#execute-xcm-utils-precompile){target=_blank} guide.
