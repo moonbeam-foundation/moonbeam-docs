@@ -2,6 +2,4 @@ title: XC-20s
 nav:
   - index.md
   - 'Overview': 'overview.md'
-  - 'External XC-20s': 'xc20.md'
-  - 'Send External XC-20s': 'xtokens.md'
-  - 'Send Local ERC-20s via XCM': 'xcm-erc20s.md'
+  - 'Send XC-20s': 'xtokens.md'
