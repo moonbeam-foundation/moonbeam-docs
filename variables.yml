@@ -108,8 +108,8 @@ networks:
         account_id_hex: '0xc4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a063'
       instructions:
         buy_exec:
-          base_weight: 130,464,000
-          total_weight: 230,464,000
+          base_weight: 158,702,000
+          total_weight: 258,702,000
         weight_units:
           display: 200,000,000
         wei_per_weight:
@@ -947,6 +947,7 @@ networks:
     ws: 9944
     prometheus: 9615
   polkadot:
+    client_version: v0.9.37
     rocks_db:
       read_weight: 20,499,000
       write_weight: 83,471,000
@@ -973,6 +974,7 @@ networks:
       display: 94,914,000
       numbers_only: 94914000
   kusama:
+    client_version: v0.9.38
     rocks_db:
       read_weight: 25,000,000
       write_weight: 100,000,000
@@ -981,13 +983,13 @@ networks:
       write_weight: 50,000,000
     xcm_message:
       transfer:
-        weight: 298,368,000
-        cost: '0.00010457164'
+        weight: 299,506,000
+        cost: '0.00009699940'
     xcm_instructions:
       buy_exec:
-        base_weight: 3,109,000
-        total_weight: 3,109,000
-        ksm_cost: '0.00000108963'
+        base_weight: 3,697,000
+        total_weight: 3,697,000
+        ksm_cost: '0.00000111447'
       withdraw:
         base_weight: 20,385,000
         total_weight:
@@ -996,15 +998,15 @@ networks:
         planck_ksm_cost: 50954353.6459
         ksm_cost: '0.00005095435'
       clear_origin:
-        total_weight: 3,111,000
-        ksm_cost: '0.00000109033'
+        total_weight: 3,661,000
+        ksm_cost: '0.00000110362'
       deposit_asset:
         total_weight: 146,763,000
-        ksm_cost: '0.00005143731'
-      planck_ksm_weight: 0.35047875397
+        ksm_cost: '0.00004382696'
+      planck_ksm_weight: 0.30145451805
     extrinsic_base_weight:
-      display: 95,108,000
-      numbers_only: 95108000
+      display: 110,575,000
+      numbers_only: 110575000
   moonbase_beta:
     xcm_message:
       transact:
