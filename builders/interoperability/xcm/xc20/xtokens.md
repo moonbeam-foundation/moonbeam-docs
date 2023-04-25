@@ -92,7 +92,7 @@ To follow along with the examples in this guide, you need to have the following:
 
     ![Moonbeam Swap xcUNIT](/images/builders/interoperability/xcm/xc20/xtokens/xtokens-1.png)
 
-To check your `xcUNIT` balance, you can add the XC-20 to MetaMask with the following address:
+To check your xcUNIT balance, you can add the XC-20 to MetaMask with the following address:
 
 ```
 0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080
