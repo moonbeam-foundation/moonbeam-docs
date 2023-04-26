@@ -123,56 +123,7 @@ Now that you have the values for each of the parameters, you can write the scrip
     This is for demo purposes only. Never store your private key in a JavaScript file.
 
 ```js
-import { ApiPromise, WsProvider, Keyring } from '@polkadot/api'; // Version 9.13.6
-
-// 1. Provide input data
-const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
-const instr1 = {
-  WithdrawAsset: [
-    {
-      id: { Concrete: { parents: 0, interior: { X1: { PalletInstance: 3 } } } },
-      fun: { Fungible: 100000000000000000n },
-    },
-  ],
-};
-const instr2 = {
-  DepositAsset: {
-    assets: { Wild: 'All' },
-    beneficiary: {
-      parents: 0,
-      interior: {
-        X1: {
-          AccountKey20: {
-            key: MOONBEAM_ACCOUNT,
-          },
-        },
-      },
-    },
-  },
-};
-const message = { V3: [instr1, instr2] };
-const maxWeight =  { refTime: 100000000000n, proofSize: 0 };
-
-// 2. Create Keyring instance
-const keyring = new Keyring({ type: 'ethereum' });
-const alice = keyring.addFromUri(PRIVATE_KEY);
-
-const executeXcmMessage = async () => {
-  // 3. Create Substrate API provider
-  const substrateProvider = new WsProvider(providerWsURL);
-  const api = await ApiPromise.create({ provider: substrateProvider });
-
-  // 4. Craft the extrinsic
-  const tx = api.tx.polkadotXcm.execute(message, maxWeight);
-
-  // 5. Send the transaction
-  const txHash = await tx.signAndSend(alice);
-  console.log(`Submitted with hash ${txHash}`);
-
-  api.disconnect();
-};
-
-executeXcmMessage();
+--8<-- 'code/polkadotXcm/xcmExecute/executeWithPolkadot.js'
 ```
 
 !!! note
@@ -208,54 +159,7 @@ To get the encoded calldata of the XCM message, you can create a script similar 
 The entire script is as follows:
 
 ```js
-import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
-
-// 1. Provide input data
-const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
-const instr1 = {
-  WithdrawAsset: [
-    {
-      id: { Concrete: { parents: 0, interior: { X1: { PalletInstance: 3 } } } },
-      fun: { Fungible: 100000000000000000n },
-    },
-  ],
-};
-const instr2 = {
-  DepositAsset: {
-    assets: { Wild: 'All' },
-    beneficiary: {
-      parents: 0,
-      interior: {
-        X1: {
-          AccountKey20: {
-            key: MOONBEAM_ACCOUNT,
-          },
-        },
-      },
-    },
-  },
-};
-const message = { V3: [instr1, instr2] };
-const maxWeight =  { refTime: 100000000000n, proofSize: 0 };
-
-const getEncodedXcmMessage = async () => {
-  // 2. Create Substrate API provider
-  const substrateProvider = new WsProvider(providerWsURL);
-  const api = await ApiPromise.create({ provider: substrateProvider });
-
-  // 3. Craft the extrinsic
-  const tx = api.tx.polkadotXcm.execute(message, maxWeight);
-
-  // 4. Get the encoded XCM message
-  // By using index 0, you'll get just the encoded XCM message.
-  // If you wanted to get the maxWeight, you could use index 1
-  const encodedXcmMessage = tx.args[0].toHex()
-  console.log(`Encoded Calldata for XCM Message: ${encodedXcmMessage}`);
-
-  api.disconnect();
-}
-
-getEncodedXcmMessage();
+--8<-- 'code/polkadotXcm/xcmExecute/generateEncodedCalldata.js'
 ```
 
 #### Execute the XCM Message {: #execute-xcm-message }
@@ -387,65 +291,7 @@ Now that you have the values for each of the parameters, you can write the scrip
     This is for demo purposes only. Never store your private key in a JavaScript file.
 
 ```js
-import { ApiPromise, WsProvider, Keyring } from '@polkadot/api'; // Version 9.13.6
-
-// 1. Input data
-const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
-const dest = { V3: { parents: 1, interior: null } };
-const instr1 = {
-  WithdrawAsset: [
-    {
-      id: { Concrete: { parents: 1, interior: null } },
-      fun: { Fungible: 1000000000000n }, // 1 UNIT
-    },
-  ],
-};
-const instr2 = {
-  BuyExecution: [
-    {
-      id: { Concrete: { parents: 1, interior: null } },
-      fun: { Fungible: 1000000000000n }, // 1 UNIT
-    },
-    { Unlimited: null }
-  ],
-};
-const instr3 = {
-  DepositAsset: {
-    assets: { Wild: 'All' },
-    beneficiary: {
-      parents: 1,
-      interior: {
-        X1: {
-          AccountId32: {
-            id: RELAY_ACC_ADDRESS,
-          },
-        },
-      },
-    },
-  },
-};
-const message = { V3: [instr1, instr2, instr3] };
-
-// 2. Create Keyring instance
-const keyring = new Keyring({ type: 'ethereum' });
-const alice = keyring.addFromUri(PRIVATE_KEY);
-
-const sendXcmMessage = async () => {
-  // 3. Create Substrate API Provider
-  const substrateProvider = new WsProvider(providerWsURL);
-  const api = await ApiPromise.create({ provider: substrateProvider });
-
-  // 4. Create the extrinsic
-  const tx = api.tx.polkadotXcm.send(dest, message);
-
-  // 5. Send the transaction
-  const txHash = await tx.signAndSend(alice);
-  console.log(`Submitted with hash ${txHash}`);
-
-  api.disconnect();
-};
-
-sendXcmMessage();
+--8<-- 'code/polkadotXcm/xcmSend/sendWithPolkadot.js'
 ```
 
 !!! note
@@ -481,63 +327,7 @@ To get the encoded calldata of the XCM message, you can create a script similar 
 The entire script is as follows:
 
 ```js
-import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
-
-// 1. Input data
-const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
-const dest = { V3: { parents: 1, interior: null } };
-const instr1 = {
-  WithdrawAsset: [
-    {
-      id: { Concrete: { parents: 1, interior: null } },
-      fun: { Fungible: 1000000000000n }, // 1 UNIT
-    },
-  ],
-};
-const instr2 = {
-  BuyExecution: [
-    {
-      id: { Concrete: { parents: 1, interior: null } },
-      fun: { Fungible: 1000000000000n }, // 1 UNIT
-    },
-    { Unlimited: null }
-  ],
-};
-const instr3 = {
-  DepositAsset: {
-    assets: { Wild: 'All' },
-    beneficiary: {
-      parents: 1,
-      interior: {
-        X1: {
-          AccountId32: {
-            id: RELAY_ACC_ADDRESS,
-          },
-        },
-      },
-    },
-  },
-};
-const message = { V3: [instr1, instr2, instr3] };
-
-const generateEncodedXcmMessage = async () => {
-  // 2. Create Substrate API Provider
-  const substrateProvider = new WsProvider(providerWsURL);
-  const api = await ApiPromise.create({ provider: substrateProvider });
-
-  // 3. Create the extrinsic
-  const tx = api.tx.polkadotXcm.send(dest, message);
-
-  // 4. Get the encoded XCM message
-  // By using index 1, you'll get just the encoded XCM message.
-  // If you wanted to get the dest, you could use index 0
-  const encodedXcmMessage = tx.args[1].toHex()
-  console.log(`Encoded Calldata for XCM Message: ${encodedXcmMessage}`);
-
-  api.disconnect();
-};
-
-generateEncodedXcmMessage();
+--8<-- 'code/polkadotXcm/xcmSend/generateEncodedCalldata.js'
 ```
 
 #### Send the XCM Message {: #send-xcm-message }
