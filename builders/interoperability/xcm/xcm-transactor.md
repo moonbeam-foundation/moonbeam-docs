@@ -194,50 +194,7 @@ Now that you have the values for each of the parameters, you can write the scrip
     This is for demo purposes only. Never store your private key in a JavaScript file.
 
 ```js
-import { ApiPromise, WsProvider, Keyring } from '@polkadot/api'; // Version 9.13.6
-
-// 1. Provide input data
-const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
-
-const dest = 'Relay';
-const index = 42;
-const fee = {
-  currency: {
-    AsCurrencyId: { ForeignAsset: 42259045809535163221576417993425387648n },
-  },
-  feeAmount: 13764626000000n,
-};
-const innerCall =
-  '0x04000030fcfb53304c429689c8f94ead291272333e16d77a2560717f3a7a410be9b208070010a5d4e8';
-const weightInfo = {
-  transactRequiredWeightAtMost: { refTime: 1000000000n, proofSize: 0 },
-  overallWeight: { refTime: 2000000000n, proofSize: 0 },
-};
-
-// 2. Create Keyring instance
-const keyring = new Keyring({ type: 'ethereum' });
-const alice = keyring.addFromUri(PRIVATE_KEY);
-
-const transactThroughDerivative = async () => {
-  // 3. Create Substrate API provider
-  const substrateProvider = new WsProvider(providerWsURL);
-  const api = await ApiPromise.create({ provider: substrateProvider });
-
-  // 4. Craft the extrinsic
-  const tx = api.tx.xcmTransactor.transactThroughDerivative(
-    dest,
-    index,
-    fee,
-    innerCall,
-    weightInfo
-  );
-
-  // 5. Send the transaction
-  const txHash = await tx.signAndSend(alice);
-  console.log(`Submitted with hash ${txHash}`);
-};
-
-transactThroughDerivative();
+--8<-- 'code/xcm-transactor/transact-derivative.js'
 ```
 
 !!! note
@@ -273,33 +230,7 @@ To fetch a list of all registered addresses allowed to operate through the Moonb
 3. Iterate over the list of registered indexes to get all of the associated addresses
 
 ```js
-import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
-
-const getRegisteredDerivatives = async () => {
-  // 1. Create API provider
-  const substrateProvider = new WsProvider(
-    'wss://wss.api.moonbase.moonbeam.network'
-  );
-  const api = await ApiPromise.create({ provider: substrateProvider });
-  // 2. Query the xcmTransactor pallet to get all addresses and their indexes
-  const registeredAddresses = await api.query.xcmTransactor.indexToAccount.entries();
-  
-  // 3. Iterate over each registered index and grab the associated address
-  registeredAddresses.forEach(
-    async ([
-      {
-        args: [id],
-      },
-    ]) => {
-      const address = await api.query.xcmTransactor.indexToAccount(id);
-      console.log(`Index: ${id}`);
-      console.log(`Address: ${address}`);
-      console.log('-----');
-    }
-  );
-};
-
-getRegisteredDerivatives();
+--8<-- 'code/xcm-transactor/registered-derivative.js'
 ```
 
 The result will display the index along with the associated address the index is registered to.
@@ -323,9 +254,9 @@ For this example, the following accounts will be used:
  - Alice's account in the origin parachain with address `0x44236223aB4291b93EEd10E4B511B37a398DEE55`
  - Its multilocation-derivative address in the target parachain is `0x5c27c4bb7047083420eddff9cddac4a0a120b45c`
 
-### Building the XCM {: #xcm-transact-through-derivative }
+### Building the XCM {: #xcm-transact-through-signed }
 
-Since you'll be interacting with the `transactThroughDerivative` function of the XCM Transactor Pallet, you'll need to assemble the `dest`, `fee`, `call`, and `weightInfo` parameters. To do so, you can take the following steps:
+Since you'll be interacting with the `transactThroughSigned` function of the XCM Transactor Pallet, you'll need to assemble the `dest`, `fee`, `call`, and `weightInfo` parameters. To do so, you can take the following steps:
 
 1. Define the destination multilocation, which will target parachain 888:
 
@@ -396,51 +327,7 @@ Now that you have the values for each of the parameters, you can write the scrip
     This is for demo purposes only. Never store your private key in a JavaScript file.
 
 ```js
-import { ApiPromise, WsProvider, Keyring } from '@polkadot/api'; // Version 9.13.6
-
-// 1. Provide input data
-const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
-const dest = {
-  V3: {
-    parents: 1,
-    interior: { X1: { Parachain: 888 } },
-  },
-};
-const fee = {
-  currency: {
-    AsCurrencyId: { ForeignAsset: 35487752324713722007834302681851459189n },
-  },
-  feeAmount: 50000000000000000n,
-};
-const call = '0x030044236223ab4291b93eed10e4b511b37a398dee5513000064a7b3b6e00d';
-const weightInfo = {
-  transactRequiredWeightAtMost: { refTime: 1000000000n, proofSize: 0 },
-  overallWeight: { refTime: 2000000000n, proofSize: 0 },
-};
-
-// 2. Create Keyring instance
-const keyring = new Keyring({ type: 'ethereum' });
-const alice = keyring.addFromUri(PRIVATE_KEY);
-
-const transactThroughSigned = async () => {
-  // 3. Create Substrate API provider
-  const substrateProvider = new WsProvider(providerWsURL);
-  const api = await ApiPromise.create({ provider: substrateProvider });
-
-  // 4. Craft the extrinsic
-  const tx = api.tx.xcmTransactor.transactThroughSigned(
-    dest,
-    fee,
-    call,
-    weightInfo
-  );
-
-  // 5. Send the transaction
-  const txHash = await tx.signAndSend(alice);
-  console.log(`Submitted with hash ${txHash}`);
-};
-
-transactThroughSigned();
+--8<-- 'code/xcm-transactor/transact-signed.js'
 ```
 
 !!! note
