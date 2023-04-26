@@ -499,7 +499,7 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 #### Update Transact Info Storage Item {: #update-transaction-info }
 
-There was a migration applied to the `TransactInfo` storage item of the XCM-transactor pallet that changed the following items:
+There was a migration applied to the `TransactInfo` storage item of the XCM Transactor Pallet that changed the following items:
 
 - `max_weight` is added to prevent transactors from stalling the queue in the destination chain
 - Removes `fee_per_byte`, `metadata_size`, and `base_weight` as these items are not necessary for XCM transactions
