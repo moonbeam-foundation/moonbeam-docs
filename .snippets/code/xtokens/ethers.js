@@ -1,14 +1,16 @@
-```javascript
 import abi from './xtokensABI.js'; // Import the x-tokens ABI
-import Web3 from 'web3'; // Import Web3 library
+import { ethers } from 'ethers'; // Import Ethers library
 const PRIVATE_KEY = 'YOUR_PRIVATE_KEY_HERE';
 
-// Create Web3 wallet & contract instance
-const web3 = new Web3('https://rpc.api.moonbase.moonbeam.network'); // Change to network of choice
-const xTokens = new web3.eth.Contract(
-  abi,
+// Create Ethers wallet & contract instance
+const provider = new ethers.providers.JsonRpcProvider(
+  'https://rpc.api.moonbase.moonbeam.network'
+);
+const signer = new ethers.Wallet(PRIVATE_KEY, provider);
+const xTokens = new ethers.Contract(
   '0x0000000000000000000000000000000000000804',
-  { from: web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY).address } // 'from' is necessary for gas estimation
+  abi,
+  signer
 );
 
 // xcUNIT address in Moonbase Alpha
@@ -22,27 +24,17 @@ const ALICE_RELAY_ACC = [
 
 // Sends 1 xcUNIT to the relay chain using the transfer function
 async function transferToAlice() {
-  // Create transaction
-  const transferTx = xTokens.methods.transfer(
+  // Creates, signs, and sends the transfer transaction
+  const transaction = await xTokens.transfer(
     xcUNIT_ADDRESS, // Asset
     '1000000000000', // Amount
     ALICE_RELAY_ACC, // Destination
     '1000000000' // Weight
   );
 
-  // Sign transaction
-  const signedTx = await web3.eth.accounts.signTransaction(
-    {
-      to: '0x0000000000000000000000000000000000000804',
-      data: transferTx.encodeABI(),
-      gas: await transferTx.estimateGas(),
-    },
-    PRIVATE_KEY
-  );
-
-  // Send signed transaction
-  const sendTx = await web3.eth.sendSignedTransaction(signedTx.rawTransaction);
-  console.log(sendTx);
+  // Waits for the transaction to be included in a block
+  await transaction.wait();
+  console.log(transaction);
 }
 
 // Multilocation targeting the relay chain or its asset from a parachain
@@ -50,22 +42,14 @@ const RELAY_CHAIN_ASSET = [1, []];
 
 // Sends 1 xcUNIT to the relay chain using the transferMultiasset function
 async function transferMultiassetToAlice() {
-  const transferTx = xTokens.methods.transferMultiasset(
+  const transaction = await xTokens.transferMultiasset(
     RELAY_CHAIN_ASSET, // Asset
     '1000000000000', // Amount
     ALICE_RELAY_ACC, // Destination
     '1000000000' // Weight
   );
-  const signedTx = await web3.eth.accounts.signTransaction(
-    {
-      to: '0x0000000000000000000000000000000000000804',
-      data: transferTx.encodeABI(),
-      gas: await transferTx.estimateGas(),
-    },
-    PRIVATE_KEY
-  );
-  const sendTx = await web3.eth.sendSignedTransaction(signedTx.rawTransaction);
-  console.log(sendTx);
+  await transaction.wait();
+  console.log(transaction);
 }
 
 transferToAlice();
@@ -87,4 +71,3 @@ const ADDRESS20_FROM_PARACHAIN_TO_MOONBASE = [
   1,
   ['0x00000003E8', '0x03f24FF3a9CF04c71Dbc94D0b566f7A27B94566cac00'],
 ];
-```

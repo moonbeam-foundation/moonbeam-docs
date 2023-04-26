@@ -176,45 +176,7 @@ Now that you have the values for each of the parameters, you can write the scrip
     This is for demo purposes only. Never store your private key in a JavaScript file.
 
 ```js
-import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
-import { Keyring } from '@polkadot/api';
-
-// 1. Provide input data
-const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
-const RELAY_ACC_ADDRESS =
-  '0xc4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a063'; // Alice's relay account address
-const currencyId = { 
-  ForeignAsset: { 
-    ForeignAsset: 42259045809535163221576417993425387648n 
-  }
-};
-const amount = 1000000000000n;
-const dest = {
-  V3: {
-    parents: 1,
-    interior: { X1: { AccountId32: { id: RELAY_ACC_ADDRESS } } },
-  },
-};
-const destWeightLimit = { Unlimited: null };
-
-// 2. Create Keyring instance
-const keyring = new Keyring({ type: 'ethereum' });
-const alice = keyring.addFromUri(PRIVATE_KEY);
-
-const sendXc20 = async () => {
-  // 3. Create Substrate API provider
-  const substrateProvider = new WsProvider(providerWsURL);
-  const api = await ApiPromise.create({ provider: substrateProvider });
-
-  // 4. Craft the extrinsic
-  const tx = api.tx.xTokens.transfer(currencyId, amount, dest, destWeightLimit);
-
-  // 5. Send the transaction
-  const txHash = await tx.signAndSend(alice);
-  console.log(`Submitted with hash ${txHash}`);
-};
-
-sendXc20();
+--8<-- 'code/xtokens/transfer.js'
 ```
 
 !!! note
@@ -313,52 +275,7 @@ Now that you have the values for each of the parameters, you can write the scrip
     This is for demo purposes only. Never store your private key in a JavaScript file.
 
 ```js
-import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
-import { Keyring } from '@polkadot/api';
-
-// 1. Provide input data
-const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
-const RELAY_ACC_ADDRESS =
-  '0xc4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a063'; // Alice's relay account address
-const asset = {
-  V3: {
-    id: {
-      Concrete: {
-        parents: 1,
-        interior: null,
-      },
-    },
-    fun: {
-      Fungible: { Fungible: 1000000000000n },
-    },
-  },
-};
-const dest = {
-  V3: {
-    parents: 1,
-    interior: { X1: { AccountId32: { id: RELAY_ACC_ADDRESS } } },
-  },
-};
-const destWeightLimit = { Unlimited: null };
-
-// 2. Create Keyring instance
-const keyring = new Keyring({ type: 'ethereum' });
-const alice = keyring.addFromUri(PRIVATE_KEY);
-
-const sendXc20 = async () => {
-  // 3. Create Substrate API provider
-  const substrateProvider = new WsProvider(providerWsURL);
-  const api = await ApiPromise.create({ provider: substrateProvider });
-
-  // 4. Craft the extrinsic
-  const tx = api.tx.xTokens.transferMultiasset(asset, dest, destWeightLimit);
-
-  // 5. Send the transaction
-  const txHash = await tx.signAndSend(alice);
-  console.log(`Submitted with hash ${txHash}`);
-};
-
-sendXc20();
+--8<-- 'code/xtokens/transferMultiAsset.js'
 ```
 
 !!! note
@@ -410,7 +327,6 @@ In the X-Tokens Precompile interface, the `Multilocation` structure is defined a
 
 The following code snippet goes through some examples of `Multilocation` structures, as they would need to be fed into the X-Tokens Precompile functions:
 
-
 ```js
 // Multilocation targeting the relay chain or its asset from a parachain
 {
@@ -443,13 +359,22 @@ The following code snippet goes through some examples of `Multilocation` structu
 The Multilocation structs can be formatted like any other struct when using libraries to interact with the Ethereum API. The following code snippet include the previous [X-Tokens transfer function](#xtokens-transfer-function), the [X-Tokens multiasset transfer function](#xtokens-transfer-multiasset-function), and sample Multilocation struct examples. You can find the [X-Tokens ABI on Github](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/xtokens/abi.js){target=_blank}.
 
 === "Ethers.js"
-    --8<-- 'code/xtokens/ethersjs.md'
+
+    ```js
+    --8<-- 'code/xtokens/ethers.js'
+    ```
 
 === "Web3.js"
-    --8<-- 'code/xtokens/web3js.md'
+
+    ```js
+    --8<-- 'code/xtokens/web3.js'
+    ```
 
 === "Web3.py"
-    --8<-- 'code/xtokens/web3py.md'
+
+    ```py
+    --8<-- 'code/xtokens/web3.py'
+    ```
 
 !!! note
     To test out the above examples on Moonbeam or Moonriver, you can replace the RPC URL with your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=_blank}.
