@@ -226,7 +226,7 @@ Before you can interact with an external XC-20 via the ERC-20 interface, you nee
 The external XC-20 precompile address is calculated using the following:
 
 ```
-address = "0xFFFFFFFF..." + DecimalToHex(AssetId)
+address = '0xFFFFFFFF...' + DecimalToHex(AssetId)
 ```
 
 Given the above calculation, the first step is to take the *u128* representation of the asset ID and convert it to a hex value. You can use your search engine of choice to look up a simple tool for converting decimals to hex values. For asset ID `42259045809535163221576417993425387648`, the hex value is `1FCACBD218EDC0EBA20FC2308C778080`.
@@ -321,16 +321,18 @@ The multilocation of Moonbeam native assets include the parachain ID of the netw
 
     ```js
     {
-      "parents": 1,
-      "interior": {
-        "X2": [
-          { 
-            "Parachain": 2004
-          },
-          {
-            "PalletInstance": 10
-          }
-        ]
+      V3: {
+        parents: 1,
+        interior: {
+          X2: [
+            { 
+              Parachain: 2004
+            },
+            {
+              PalletInstance: 10
+            }
+          ]
+        }
       }
     }
     ```
@@ -339,16 +341,18 @@ The multilocation of Moonbeam native assets include the parachain ID of the netw
 
     ```js
     {
-      "parents": 1,
-      "interior": {
-        "X2": [
-          { 
-            "Parachain": 2023
-          },
-          {
-            "PalletInstance": 10
-          }
-        ]
+      V3: {
+        'parents': 1,
+        'interior': {
+          'X2': [
+            { 
+              'Parachain': 2023
+            },
+            {
+              'PalletInstance': 10
+            }
+          ]
+        }
       }
     }
     ```
@@ -357,16 +361,18 @@ The multilocation of Moonbeam native assets include the parachain ID of the netw
 
     ```js
     {
-      "parents": 1,
-      "interior": {
-        "X2": [
-          { 
-            "Parachain": 1000
-          },
-          {
-            "PalletInstance": 3
-          }
-        ]
+      V3: {
+        'parents': 1,
+        'interior': {
+          'X2': [
+            { 
+              'Parachain': 1000
+            },
+            {
+              'PalletInstance': 3
+            }
+          ]
+        }
       }
     }
     ```
@@ -381,21 +387,23 @@ Currently, the support for local XC-20s is only on Moonbase Alpha. You can use t
 
     ```js
     {
-      'parents': 1,
-      'interior': {
-        'X3': [
-          { 
-            'Parachain': 1000
-          },
-          {
-            'PalletInstance': 48
-          },
-          {
-            'AccountKey20': {
-              'key': 'ERC20_ADDRESS_GOES_HERE'
+      V3: {
+        parents: 1,
+        interior: {
+          X3: [
+            { 
+              Parachain: 1000
+            },
+            {
+              PalletInstance: 48
+            },
+            {
+              AccountKey20: {
+                key: 'ERC20_ADDRESS_GOES_HERE'
+              }
             }
-          }
-        ]
+          ]
+        }
       }
     }
     ```

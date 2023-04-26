@@ -45,7 +45,7 @@ Where the inputs that need to be provided can be defined as:
     - `SelfReserve` - refers to the native token
     - `ForeignAsset` - refers to the asset ID of an [External XC-20](/builders/interoperability/xcm/xc20/overview/#external-xc20s){target=_blank} (not to be confused with the XC-20 address)
     - `LocalAssetReserve` - refers to the asset ID of a [Mintable XC-20](/builders/interoperability/xcm/xc20/mintable-xc20){target=_blank} (not to be confused with the XC-20 address). It is recommended to use [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank} instead via the `Erc20` currency type
-    - `Erc20` - refers to the contract address of an [Local XC-20 (ERC-20)](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank}
+    - `Erc20` - refers to the contract address of a [Local XC-20 (ERC-20)](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank}
 
  - **amount** — the number of tokens that are going to be sent via XCM
  - **dest** — a multilocation to define the destination address for the tokens being sent via XCM. It supports different address formats, such as 20 or 32-byte addresses (Ethereum or Substrate)
@@ -56,7 +56,7 @@ Where the inputs that need to be provided can be defined as:
     
     If not enough weight is provided, the execution of the XCM will fail, and funds might get locked in either the Sovereign account or a special pallet. **It is important to correctly set the destination weight to avoid failed XCM executions**
 
- - **asset/assets** — a multilocation to define the asset/assets being sent via XCM. Each parachain has a different way to reference assets. For example, Moonbeam-based networks reference their native tokens with the pallet balances index
+ - **asset/assets** — a multilocation to define the asset/assets being sent via XCM. Each parachain has a different way to reference assets. For example, Moonbeam-based networks reference their native tokens with the Balances Pallet index
  - **fee** — a multilocation to define the asset used to pay for the XCM execution in the target chain
  - **feeItem** — an index to define the asset position of an array of assets being sent, used to pay for the XCM execution in the target chain. For example, if only one asset is being sent, the `feeItem` would be `0`
 
@@ -75,12 +75,12 @@ The X-Tokens Pallet includes the following read-only functions to obtain pallet 
 
 ## Building an XCM Message with the X-Tokens Pallet {: #build-xcm-xtokens-pallet}
 
-This guide covers the process of building an XCM message using the X-Tokens Pallet, more specifically, with the `transfer` and `transferMultiasset` functions. Nevertheless, these two cases can be extrapolated to the other functions, especially once familiar with multilocations.
+This guide covers the process of building an XCM message using the X-Tokens Pallet, more specifically, with the `transfer` and `transferMultiasset` functions. Nevertheless, these two cases can be extrapolated to the other functions, especially once you become familiar with multilocations.
 
 !!! note
-    Each parachain can allow/forbid specific methods from a pallet. Consequently, developers must ensure to use methods that are allowed. On the contrary, the transaction will fail with an error similar to `system.CallFiltered`.
+    Each parachain can allow/forbid specific methods from a pallet. Consequently, developers must ensure that they use methods that are allowed. On the contrary, the transaction will fail with an error similar to `system.CallFiltered`.
 
-You'll be transfering xcUNIT tokens, which are the [XC-20](/builders/interoperability/xcm/xc20/overview){target=_blank} representation of the Alphanet relay chain token, UNIT. You can adapt this guide for any other XC-20.
+You'll be transferring xcUNIT tokens, which are the [XC-20](/builders/interoperability/xcm/xc20/overview){target=_blank} representation of the Alphanet relay chain token, UNIT. You can adapt this guide for any other XC-20.
 
 ### Checking Prerequisites {: #xtokens-check-prerequisites}
 
@@ -393,7 +393,7 @@ The X-Tokens Precompile contract allows developers to access XCM token transfer 
 
 The interface includes the following functions:
 
- - **transfer**(*address* currencyAddress, *uint256* amount, *Multilocation* *memory* destination, *uint64* weight) — function that represents the `transfer` method described in the [previous example](#xtokens-transfer-function). Instead of using the currency ID, you'll need to provide the assets address for the `currencyAddress`:
+ - **transfer**(*address* currencyAddress, *uint256* amount, *Multilocation* *memory* destination, *uint64* weight) — function that represents the `transfer` method described in the [previous example](#xtokens-transfer-function). Instead of using the currency ID, you'll need to provide the asset's address for the `currencyAddress`:
     - For [External XC-20s](/builders/interoperability/xcm/xc20/overview/#external-xc20s){target=_blank}, provide the [XC-20 precompile address](/builders/interoperability/xcm/xc20/overview/#current-xc20-assets){target=_blank}
     - For native tokens (i.e., GLMR, MOVR, and DEV), provide the [ERC-20 precompile](/builders/pallets-precompiles/precompiles/erc20/#the-erc20-interface){target=_blank} address, which is `{{networks.moonbeam.precompiles.erc20 }}`
     - For [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank}, provide the token's address
@@ -423,8 +423,8 @@ The following code snippet goes through some examples of `Multilocation` structu
     1, // parents = 1
     // Size of array is 2, meaning is an X2 interior
     [
-        "0x00000003E8", // Selector Parachain, ID = 1000 (Moonbase Alpha)
-        "0x0403" // Pallet Instance = 3
+        '0x00000003E8', // Selector Parachain, ID = 1000 (Moonbase Alpha)
+        '0x0403' // Pallet Instance = 3
     ]
 }
 
@@ -433,7 +433,7 @@ The following code snippet goes through some examples of `Multilocation` structu
     1, // parents = 1
     // Size of array is 1, meaning is an X1 interior
     [
-        "0x01c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300" 
+        '0x01c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300' 
         // AccountKey32 Selector + Address in hex + Network = None
     ]
 }
@@ -452,4 +452,4 @@ The Multilocation structs can be formatted like any other struct when using libr
     --8<-- 'code/xtokens/web3py.md'
 
 !!! note
-    To test out the above examples on Moonbeam or Moonriver, you can replace the RPC URL with your own endpoint and API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=_blank}.
+    To test out the above examples on Moonbeam or Moonriver, you can replace the RPC URL with your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=_blank}.

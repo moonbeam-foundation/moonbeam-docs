@@ -42,8 +42,8 @@ Next, depending on the selector and its data type, the following bytes correspon
 |    Selector    |       Data Value       |        Represents         |
 |:--------------:|:----------------------:|:-------------------------:|
 |   Parachain    |    "0x00+000007E7"     |     Parachain ID 2023     |
-|  AccountId32   | "0x01+AccountId32+00"  | AccountId32, Network Any  |
-|  AccountKey20  | "0x03+AccountKey20+00" | AccountKey20, Network Any |
+|  AccountId32   | "0x01+AccountId32+00"  | AccountId32, Network None  |
+|  AccountKey20  | "0x03+AccountKey20+00" | AccountKey20, Network None |
 | PalletInstance |       "0x04+03"        |     Pallet Instance 3     |
 
 !!! note
