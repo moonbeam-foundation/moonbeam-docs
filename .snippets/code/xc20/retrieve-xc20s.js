@@ -23,6 +23,8 @@ const getXc20s = async () => {
       console.log('-----');
     }
   );
+
+  api.disconnect();
 };
 
 getXc20s();

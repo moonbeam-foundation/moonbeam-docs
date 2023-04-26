@@ -33,6 +33,8 @@ const sendXc20 = async () => {
   // 5. Send the transaction
   const txHash = await tx.signAndSend(alice);
   console.log(`Submitted with hash ${txHash}`);
+
+  api.disconnect();
 };
 
 sendXc20();
