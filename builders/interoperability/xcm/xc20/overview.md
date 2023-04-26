@@ -123,34 +123,7 @@ To fetch a list of the currently available external XC-20s along with their asso
 3. Iterate over the list of assets to get all of the asset IDs along with their associated metadata
 
 ```js
-import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
-
-const getXc20s = async () => {
-  // 1. Create API provider
-  const substrateProvider = new WsProvider(
-    'wss://wss.api.moonbase.moonbeam.network'
-  );
-  const api = await ApiPromise.create({ provider: substrateProvider });
-
-  // 2. Query the assets pallet for all assets
-  const assets = await api.query.assets.asset.entries();
-  
-  // 3. Get metadata for each asset using the ID
-  assets.forEach(
-    async ([
-      {
-        args: [id],
-      },
-    ]) => {
-      const metadata = await api.query.assets.metadata(id);
-      console.log(`Asset ID: ${id}`);
-      console.log(`Metadata: ${metadata}`);
-      console.log('-----');
-    }
-  );
-};
-
-getXc20s();
+--8<-- 'code/xc20/retrieve-xc20s.js'
 ```
 
 The result will display the asset ID along with some additional information for all of the registered external XC-20s. 
