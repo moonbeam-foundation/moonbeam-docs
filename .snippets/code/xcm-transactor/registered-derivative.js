@@ -22,6 +22,8 @@ const getRegisteredDerivatives = async () => {
       console.log('-----');
     }
   );
+
+  api.disconnect();
 };
 
 getRegisteredDerivatives();
