@@ -9,11 +9,11 @@ description: Learn how to build a custom XCM message, by combining and experimen
 
 ## Introduction {: #introduction } 
 
-XCM messages are comprised of a [series of instructions](/builders/interoperability/xcm/overview/#xcm-instructions){target=_blank} that are executed by the Cross-Consensus Virtual Machine (XCVM). Combinations of these instructions result in predetermined actions such as cross-chain token transfers. You can create your own custom XCM messages by combining various XCM instructions.
+XCM messages are comprised of a [series of instructions](/builders/interoperability/xcm/overview/#xcm-instructions){target=_blank} that are executed by the Cross-Consensus Virtual Machine (XCVM). Combinations of these instructions result in predetermined actions, such as cross-chain token transfers. You can create your own custom XCM messages by combining various XCM instructions.
 
-Pallets such as [X-Tokens](/builders/interoperability/xcm/xc20/xtokens){target=_blank} and [XCM-Transactor](/builders/interoperability/xcm/xcm-transactor/){target=_blank} provide functions with a predefined set of XCM instructions to either send [XC-20s](/builders/interoperability/xcm/xc20/overview/){target=_blank} or remotely execute on other chains via XCM. However, to get a better understanding of the results from combining different XCM instructions, you can build and execute custom XCM messages locally on Moonbeam. You can also send custom XCM messages to another chain (which will start with the [`DecendOrigin`](https://github.com/paritytech/xcm-format#descendorigin){target=_blank} instruction). Nevertheless, for the XCM message to be successfully executed, the target chain needs to be able to understand the instructions.
+Pallets such as [X-Tokens](/builders/interoperability/xcm/xc20/xtokens){target=_blank} and [XCM Transactor](/builders/interoperability/xcm/xcm-transactor/){target=_blank} provide functions with a predefined set of XCM instructions to either send [XC-20s](/builders/interoperability/xcm/xc20/overview/){target=_blank} or remotely execute on other chains via XCM. However, to get a better understanding of the results from combining different XCM instructions, you can build and execute custom XCM messages locally on Moonbeam. You can also send custom XCM messages to another chain (which will start with the [`DecendOrigin`](https://github.com/paritytech/xcm-format#descendorigin){target=_blank} instruction). Nevertheless, for the XCM message to be successfully executed, the target chain needs to be able to understand the instructions.
 
-To execute or send a custom XCM message, you can either use the [Polkadot XCM Pallet](#polkadot-xcm-pallet-interface) directly, or you can try it out through the Ethereum API with the [XCM Utilities Precompile](/builders/pallets-precompiles/precompiles/xcm-utils){target=_blank}. In this guide, you'll learn how to use both methods to execute and send customly built XCM messages locally on Moonbase Alpha.
+To execute or send a custom XCM message, you can either use the [Polkadot XCM Pallet](#polkadot-xcm-pallet-interface) directly or through the Ethereum API with the [XCM Utilities Precompile](/builders/pallets-precompiles/precompiles/xcm-utils){target=_blank}. In this guide, you'll learn how to use both methods to execute and send custom-built XCM messages locally on Moonbase Alpha.
 
 This guide assumes that you are familiar with general XCM concepts, such as [general XCM terminology](/builders/interoperability/xcm/overview/#general-xcm-definitions){target=_blank} and [XCM instructions](/builders/interoperability/xcm/overview/#xcm-instructions){target=_blank}. For more information, you can check out the [XCM Overview](/builders/interoperability/xcm/overview){target=_blank} documentation.
 
@@ -50,13 +50,13 @@ In the following example, you'll transfer DEV tokens from one account to another
  - [`DepositAsset`](https://github.com/paritytech/xcm-format#depositasset){target=_blank} - removes the assets from the holding register and deposits the equivalent assets to a beneficiary account
 
 !!! note
-    Typically, when you send an XCM message cross-chain to a target chain, the [`BuyExecution` instruction](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} is needed to pay for remote execution. However, for local execution, this instruction is not necessary as you are already getting charged via the extrinsic call . 
+    Typically, when you send an XCM message cross-chain to a target chain, the [`BuyExecution` instruction](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} is needed to pay for remote execution. However, for local execution, this instruction is not necessary as you are already getting charged via the extrinsic call. 
 
 ### Execute an XCM Message with the Polkadot.js API {: #execute-an-xcm-message-with-polkadotjs-api }
 
 In this example, you'll execute a custom XCM message locally on Moonbase Alpha using the Polkadot.js API to interact directly with the Polkadot XCM Pallet. 
 
-The `execute` function of the Polkadot XCM Pallet accepts two parameters: `message` and `maxWeight`. You can start off assembling these parameters by taking the following steps:
+The `execute` function of the Polkadot XCM Pallet accepts two parameters: `message` and `maxWeight`. You can start assembling these parameters by taking the following steps:
 
 1. Build the `WithdrawAsset` instruction, which will require you to define:
     - The multilocation of the DEV token on Moonbase Alpha
@@ -74,14 +74,13 @@ The `execute` function of the Polkadot XCM Pallet accepts two parameters: `messa
     ```
 
 2. Build the `DepositAsset` instruction, which will require you to define:
-    - The multiasset identifier for DEV tokens. You can use the [`WildMultiAsset` format](https://github.com/paritytech/xcm-format/blob/master/README.md#6-universal-asset-identifiers){target=_blank}, which allows for wildcard matching to identify the asset
+    - The multiasset identifier for DEV tokens. You can use the [`WildMultiAsset` format](https://github.com/paritytech/xcm-format/blob/master/README.md#6-universal-asset-identifiers){target=_blank}, which allows for wildcard matching, to identify the asset
     - The multilocation of the beneficiary account on Moonbase Alpha
 
     ```js
     const instr2 = {
       DepositAsset: {
         assets: { Wild: 'All' },
-        max_assets: 1,
         beneficiary: {
           parents: 0,
           interior: {
@@ -139,7 +138,6 @@ const instr1 = {
 const instr2 = {
   DepositAsset: {
     assets: { Wild: 'All' },
-    max_assets: 1,
     beneficiary: {
       parents: 0,
       interior: {
@@ -170,13 +168,15 @@ const executeXcmMessage = async () => {
   // 5. Send the transaction
   const txHash = await tx.signAndSend(alice);
   console.log(`Submitted with hash ${txHash}`);
+
+  api.disconnect();
 };
 
 executeXcmMessage();
 ```
 
 !!! note
-    You can view an example of the above script, which sends 1 DEV to Bobs's account on Moonbeam, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1c03030800040000010403001300008a5d784563010d010000010300dbe47e1d60d8f1d68cdc786d2ff18139ed4e06360700e876481700){target=_blank} using the following encoded calldata: `0x1c03030800040000010403001300008a5d784563010d010000010300dbe47e1d60d8f1d68cdc786d2ff18139ed4e06360700e876481700`.
+    You can view an example of the above script, which sends 1 DEV to Bobs's account on Moonbeam, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1c03030800040000010403001300008a5d784563010d0100000103003cd0a705a2dc65e5b1e1205896baa2be8a07c6e00700e876481700){target=_blank} using the following encoded calldata: `0x1c03030800040000010403001300008a5d784563010d0100000103003cd0a705a2dc65e5b1e1205896baa2be8a07c6e00700e876481700`.
 
 Once the transaction is processed, the 0.1 DEV tokens should be withdrawn from Alice's account along with the associated XCM fees, and the destination account should have received 0.1 DEV tokens in their account. A `polkadotXcm.Attempted` event will be emitted with the outcome.
 
@@ -188,11 +188,11 @@ In this section, you'll use the `xcmExecute` function of the [XCM Utilities Prec
 {{ networks.moonbase.precompiles.xcm_utils }}
 ```
 
-Under the hood, the `xcmExecute` function of the XCM Utilities Precompile calls the `execute` function of the Polkadot XCM Pallet, which is a Substrate pallet that is coded in Rust. The benefit of using the XCM Utilities Precompile to call `xcmExecute` is that you can do so via the Ethereum API and use Ethereum libraries like [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank}.
+Under the hood, the `xcmExecute` function of the XCM Utilities Precompile calls the `execute` function of the Polkadot XCM Pallet, which is a Substrate pallet that is coded in Rust. The benefit of using the XCM Utilities Precompile to call `xcmExecute` is that you can do so via the Ethereum API and use [Ethereum libraries](/builders/build/eth-api/libraries/){target=_blank} like [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank}.
 
 The `xcmExecute` function accepts two parameters: the SCALE encoded versioned XCM message to be executed and the maximum weight to be consumed. 
 
-First, you'll learn how to generate the encoded calldata, then you'll learn how to use the encoded calldata to interact with the XCM Utilities Precompile.
+First, you'll learn how to generate the encoded calldata, and then you'll learn how to use the encoded calldata to interact with the XCM Utilities Precompile.
 
 #### Generate the Encoded Calldata of an XCM Message {: #generate-encoded-calldata }
 
@@ -223,7 +223,6 @@ const instr1 = {
 const instr2 = {
   DepositAsset: {
     assets: { Wild: 'All' },
-    max_assets: 1,
     beneficiary: {
       parents: 0,
       interior: {
@@ -252,6 +251,8 @@ const getEncodedXcmMessage = async () => {
   // If you wanted to get the maxWeight, you could use index 1
   const encodedXcmMessage = tx.args[0].toHex()
   console.log(`Encoded Calldata for XCM Message: ${encodedXcmMessage}`);
+
+  api.disconnect();
 }
 
 getEncodedXcmMessage();
@@ -302,9 +303,9 @@ Together, the intention of these instructions is to transfer the native asset of
 
 ### Send an XCM Message with the Polkadot.js API {: #send-xcm-message-with-polkadotjs-api }
 
-In this example, you'll send a custom XCM message from your account on Moonbase Alpha to the relay chain using the Polkadot.js API to interact directly with the Polkadot XCM Pallet. 
+In this example, you'll send a custom XCM message from your account on Moonbase Alpha to the relay chain using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=_blank} to interact directly with the Polkadot XCM Pallet. 
 
-The `send` function of the Polkadot XCM Pallet accepts two parameters: `dest` and `message`.. You can start off assembling these parameters by taking the following steps:
+The `send` function of the Polkadot XCM Pallet accepts two parameters: `dest` and `message`. You can start assembling these parameters by taking the following steps:
 
 1. Build the multilocation of the relay chain token, UNIT, for the `dest`:
 
@@ -345,14 +346,13 @@ The `send` function of the Polkadot XCM Pallet accepts two parameters: `dest` an
     ```    
 
 4. Build the `DepositAsset` instruction, which will require you to define:
-    - The multiasset identifier for UNIT tokens. You can use the [`WildMultiAsset` format](https://github.com/paritytech/xcm-format/blob/master/README.md#6-universal-asset-identifiers){target=_blank}, which allows for wildcard matching to identify the asset
+    - The multiasset identifier for UNIT tokens. You can use the [`WildMultiAsset` format](https://github.com/paritytech/xcm-format/blob/master/README.md#6-universal-asset-identifiers){target=_blank}, which allows for wildcard matching, to identify the asset
     - The multilocation of the beneficiary account on the relay chain
 
     ```js
     const instr3 = {
       DepositAsset: {
         assets: { Wild: 'All' },
-        max_assets: 1,
         beneficiary: {
           parents: 1,
           interior: {
@@ -412,7 +412,6 @@ const instr2 = {
 const instr3 = {
   DepositAsset: {
     assets: { Wild: 'All' },
-    max_assets: 1,
     beneficiary: {
       parents: 1,
       interior: {
@@ -442,6 +441,8 @@ const sendXcmMessage = async () => {
   // 5. Send the transaction
   const txHash = await tx.signAndSend(alice);
   console.log(`Submitted with hash ${txHash}`);
+
+  api.disconnect();
 };
 
 sendXcmMessage();
@@ -464,7 +465,7 @@ Under the hood, the `xcmSend` function of the XCM Utilities Precompile calls the
 
 The `xcmSend` function accepts two parameters: the multilocation of the destination and the SCALE encoded versioned XCM message to be sent.
 
-First, you'll learn how to generate the encoded calldata for the XCM message, then you'll learn how to use the encoded calldata to interact with the XCM Utilities Precompile.
+First, you'll learn how to generate the encoded calldata for the XCM message, and then you'll learn how to use the encoded calldata to interact with the XCM Utilities Precompile.
 
 #### Generate the Encoded Calldata of an XCM Message {: #generate-encoded-calldata }
 
@@ -505,7 +506,6 @@ const instr2 = {
 const instr3 = {
   DepositAsset: {
     assets: { Wild: 'All' },
-    max_assets: 1,
     beneficiary: {
       parents: 1,
       interior: {
