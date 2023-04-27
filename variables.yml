@@ -397,6 +397,12 @@ networks:
     db_weights:
       rocksdb_read: 25,000,000
       rocksdb_write: 100,000,000
+    api3:
+      rrp: '0xa0AD79D995DdeeB18a14eAef56A549A04e3Aa1Bd'
+      nodaryqrngairnode: '0x6238772544f029ecaBfDED4300f13A3c4FE84E1D'
+      nodaryqrngxpub: 'xpub6CuDdF9zdWTRuGybJPuZUGnU4suZowMmgu15bjFZT2o6PUtk4Lo78KGJUGBobz3pPKRaN9sLxzj21CMe6StP3zUsd8tWEJPgZBesYBMY7Wo'
+      nodaryqrnguint256: '0xfb6d017bb87991b7495f563db3c8cf59ff87b09781947bb1e417006ad7f55a78'
+      nodaryqrnguint256array: '0x27cc2713e7f968e4e86ed274a051a5c8aaee9cca66946f23af6f29ecea9704c3'
   moonriver:
     public_rpc_url: https://rpc.api.moonriver.moonbeam.network # for wallets
     rpc_url: RPC-API-ENDPOINT-HERE
@@ -686,6 +692,12 @@ networks:
       conviction_voting: '0x0000000000000000000000000000000000000812'
       preimage: '0x0000000000000000000000000000000000000813'
       collective_opengov_tech_committee: '0x0000000000000000000000000000000000000814'
+    api3:
+      rrp: '0xa0AD79D995DdeeB18a14eAef56A549A04e3Aa1Bd'
+      anuqrngairnode: '0x9d3C147cA16DB954873A498e0af5852AB39139f2'
+      anuqrngxpub: 'xpub6DXSDTZBd4aPVXnv6Q3SmnGUweFv6j24SK77W4qrSFuhGgi666awUiXakjXruUSCDQhhctVG7AQt67gMdaRAsDnDXv23bBRKsMWvRzo6kbf'
+      anuqrnguint256: '0xfb6d017bb87991b7495f563db3c8cf59ff87b09781947bb1e417006ad7f55a78'
+      anuqrnguint256array: '0x27cc2713e7f968e4e86ed274a051a5c8aaee9cca66946f23af6f29ecea9704c3'
     chainlink:
       feed:
         proxy:
@@ -898,6 +910,12 @@ networks:
       collective_council: '0x000000000000000000000000000000000000080e'
       collective_tech_committee: '0x000000000000000000000000000000000000080f'
       collective_treasury: '0x0000000000000000000000000000000000000810'
+    api3:
+      rrp: '0xa0AD79D995DdeeB18a14eAef56A549A04e3Aa1Bd'
+      anuqrngairnode: '0x9d3C147cA16DB954873A498e0af5852AB39139f2'
+      anuqrngxpub: 'xpub6DXSDTZBd4aPVXnv6Q3SmnGUweFv6j24SK77W4qrSFuhGgi666awUiXakjXruUSCDQhhctVG7AQt67gMdaRAsDnDXv23bBRKsMWvRzo6kbf'
+      anuqrnguint256: '0xfb6d017bb87991b7495f563db3c8cf59ff87b09781947bb1e417006ad7f55a78'
+      anuqrnguint256array: '0x27cc2713e7f968e4e86ed274a051a5c8aaee9cca66946f23af6f29ecea9704c3'
     chainlink:
       feed:
         proxy:
