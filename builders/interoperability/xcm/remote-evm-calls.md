@@ -60,7 +60,7 @@ The last difference is in terms of gas limit. Ethereum uses a gas-metered system
 
 The configuration of the XCM queue suggests that XCM messages should be executable within `20,000,000,000` weight units (that is, `0.02` seconds of block execution time). Suppose the XCM message can't be executed due to the lack of execution time in a given block, and the weight requirement is over `20,000,000,000`. In that case, the XCM message will be marked as `overweight` and would only be executable through democracy.
 
-The `20,000,000,000` weight limit per XCM message constrains the gas limit available for remote EVM calls through XCM. For all Moonbeam-based networks, there is a ratio of [`25,000` units of gas per unit of weight](https://github.com/PureStake/moonbeam/blob/master/runtime/moonbase/src/lib.rs#L371-L375){target=_blank} ([WEIGHT_REF_TIME_PER_SECOND](https://paritytech.github.io/substrate/master/frame_support/weights/constants/constant.WEIGHT_REF_TIME_PER_SECOND.html){target=_blank} / [GAS_PER_SECOND](https://github.com/PureStake/moonbeam/blob/master/runtime/moonbase/src/lib.rs#L375){target=_blank}). Considering that you need some of the XCM message weight to execute the XCM instructions themselves. Therefore, a remote EVM call might have around `18,000,000,000` weight left, which is `720,000` gas units. Consequently, the maximum gas limit you can provide for a remote EVM call is around `720,000` gas units. Note that this might change in the future.
+The `20,000,000,000` weight limit per XCM message constrains the gas limit available for remote EVM calls through XCM. For all Moonbeam-based networks, there is a ratio of [`25,000` units of gas per unit of weight](https://github.com/PureStake/moonbeam/blob/master/runtime/moonbase/src/lib.rs#L379){target=_blank} ([`WEIGHT_REF_TIME_PER_SECOND`](https://paritytech.github.io/substrate/master/frame_support/weights/constants/constant.WEIGHT_REF_TIME_PER_SECOND.html){target=_blank} / [`GAS_PER_SECOND`](https://github.com/PureStake/moonbeam/blob/master/runtime/moonbase/src/lib.rs#L375){target=_blank}). Considering that you need some of the XCM message weight to execute the XCM instructions themselves. Therefore, a remote EVM call might have around `18,000,000,000` weight left, which is `720,000` gas units. Consequently, the maximum gas limit you can provide for a remote EVM call is around `720,000` gas units. Note that this might change in the future.
 
 In summary, these are the main differences between regular and remote EVM calls:
 
@@ -171,7 +171,7 @@ The relevant values for this calculation are summarized in the following table:
 |        Origin Chain Encoded Address         |                                          `5EnnmEp2R92wZ7T8J2fKMxpc1nPW5uP8r5K3YUQGiFrw8uG6`                                          |
 |        Origin Chain Decoded Address         |                                 `0x78914a4d7a946a0e4ed641f336b498736336e05096e342c799cc33c0f868d62f`                                 |
 | Origin Chain Account Name (Westend in hex)  |                                                          `0x57657374656e64`                                                          |
-| Multilocation Received in Destination Chain | `{parents:1,interior:{X1:{AccountId32":{network:'Westend',id:0x78914a4d7a946a0e4ed641f336b498736336e05096e342c799cc33c0f868d62f}}}}` |
+| Multilocation Received in Destination Chain | `{parents:1,interior:{X1:{AccountId32:{network:'Westend',id:'0x78914a4d7a946a0e4ed641f336b498736336e05096e342c799cc33c0f868d62f'}}}}` |
 | Multilocation-Derivative Account (32 bytes) |                                 `0x4e21340c3465ec0aa91542de3d4c5f4fc1def526222c7363e0f6f860ea4e503c`                                 |
 | Multilocation-Derivative Account (20 bytes) |                                             `0x4e21340c3465ec0aa91542de3d4c5f4fc1def526`                                             |
 
@@ -186,7 +186,7 @@ In this example, you'll be interacting with the `transact` function of the [Ethe
 The `xcmTransaction` parameter requires you to define:
 
 - A gas limit
-- The action to be executed, which provides two options: `Call` and `Create`. The current implementation of the [Ethereum XCM pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/ethereum-xcm){target=_blank} does not support the `CREATE` operation. Therefore, you can't deploy a smart contract through remote EVM calls. For `Call`, you'll need to specify the contract you're interacting with
+- The action to be executed, which provides two options: `Call` and `Create`. The current implementation of the [Ethereum XCM pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/ethereum-xcm){target=_blank} does not support the `CREATE` operation. Therefore, you can't deploy a smart contract through remote EVM calls. For `Call`, you'll need to specify the contract address you're interacting with
 - The value of native tokens to send
 - The input, which is the encoded call data of the contract interaction
 
@@ -194,7 +194,7 @@ For the action to be executed, you'll be performing a contract interaction with 
 
 The encoded call data of the interaction with the `increment` function is `0xd09de08a`, which is the first eight hexadecimal characters (or 4 bytes) of the keccak256 hash of `increment()`. If you choose to interact with a function that has input parameters, they also need to be encoded. The easiest way to get the encoded call data is to emulate a transaction either in [Remix](/builders/build/eth-api/dev-env/remix/#interacting-with-a-moonbeam-based-erc-20-from-metamask){target=_blank} or [Moonscan](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8#code){target=_blank}. Next, in Metamask, check the **HEX DATA: 4 BYTES** selector under the **HEX** tab before signing it. You don't need to sign the transaction.
 
-Now that you have the encoded contract interaction data, you can determine the gas limit for this call using the `eth_estimateGas` JSON RPC method. For this example, you can set the gas limit to `71000`.
+Now that you have the encoded contract interaction data, you can determine the gas limit for this call using the [`eth_estimateGas` JSON RPC method](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_estimategas){target=_blank}. For this example, you can set the gas limit to `71000`.
 
 For the value, you can set it to `0` since this particular interaction does not need DEV (or GLMR/MOVR for Moonbeam/Moonriver). For an interaction that requires DEV, you'll need to modify this value accordingly.
 
@@ -218,7 +218,7 @@ Next, you can write the script to get the encoded call data for the transaction.
      - The value for the `xcmTransaction` parameter of the `transact` function
  2. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} provider
  3. Craft the `ethereumXcm.transact` extrinsic with the `xcmTransaction` value
- 4. Get the encoded call data for the extrinsic
+ 4. Get the encoded call data for the extrinsic. You don't need to sign and send the transaction
 
 ```js
 --8<-- 'code/remote-execution/generate-encoded-call-data.js'

@@ -2,7 +2,7 @@ import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
 
 // 1. Input data
 const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
-const transaction = {
+const xcmTransaction = {
   V2: {
     gasLimit: 71000,
     action: { Call: '0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8' },
@@ -17,7 +17,7 @@ const getEncodedCallData = async () => {
   const api = await ApiPromise.create({ provider: substrateProvider });
 
   // 3. Create the extrinsic
-  const tx = api.tx.ethereumXcm.transact(transaction);
+  const tx = api.tx.ethereumXcm.transact(xcmTransaction);
 
   // 4. Get the encoded call data
   const encodedCall = tx.method.toHex();
