@@ -9,7 +9,7 @@ description: Learn about cross chain assets that can be minted and burned on a M
 
 ## Introduction {: #introduction } 
 
-As covered in the [XC-20 Overview](/builders/interoperability/xcm/xc20/overview){target=_blank}, there are two [types of XC-20s](/builders/interoperability/xcm/xc20/overview#types-of-xc-20s){target=_blank}: [external](/builders/interoperability/xcm/xc20/xc20){target=_blank} and mintable. The key distinction between external and mintable XC-20s, is that mintable XC-20s represent assets that are minted/burned in Moonbeam directly, but have native XCM interoperability features. Also, mintable XC-20s can be transferred to any other parachain as long as it is registered as an XCM asset on that chain, as covered in the [XCM overview](/builders/interoperability/xcm/overview/){target=_blank} page. In contrast, external XC-20s represent assets that are locked in Moonbeam's sovereign account in either the relay chain or other parachains, and are registered as such on Moonbeam. This guide will cover mintable XC-20s.
+As covered in the [XC-20 Overview](/builders/interoperability/xcm/xc20/overview){target=_blank}, there are two [types of XC-20s](/builders/interoperability/xcm/xc20/overview#types-of-xc-20s){target=_blank}: [external](/builders/interoperability/xcm/xc20/overview/#external-xc20s){target=_blank} and mintable. The key distinction between external and mintable XC-20s, is that mintable XC-20s represent assets that are minted/burned in Moonbeam directly, but have native XCM interoperability features. Also, mintable XC-20s can be transferred to any other parachain as long as it is registered as an XCM asset on that chain, as covered in the [XCM overview](/builders/interoperability/xcm/overview/){target=_blank} page. In contrast, external XC-20s represent assets that are locked in Moonbeam's sovereign account in either the relay chain or other parachains, and are registered as such on Moonbeam. This guide will cover mintable XC-20s.
 
 All XC-20s are Substrate assets at their core. Typically with Substrate assets, developers need to interact directly with the Substrate API. However, Moonbeam removes the need for Substrate knowledge and allows users and developers to interact with these assets through an ERC-20 interface via a precompile contract. Therefore, developers can use standard Ethereum developer tooling to interact with these assets. Mintable XC-20s include an extension of the ERC-20 interface with some additional functionality for managing the asset and setting the metadata, such as the name, symbol, and decimals for the asset. There are also some additional roles in place for asset registration and management.
 
@@ -71,7 +71,9 @@ Mintable XC-20s include additional functions that only the owner or the designat
 To fetch a list of the mintable XC-20s currently available on the Moonbase Alpha TestNet, head to [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer){target=_blank} and make sure you're connected to Moonbase Alpha. Unlike external XC-20s, mintable XC-20s will not show up under the **Assets** page on Polkadot.js Apps. To query the available mintable XC-20s, you have to navigate to the **Developer** tab and select **Chain State** from the dropdown, and take the following steps:
 
 1. From the **selected state query** dropdown, choose **localAssets**
---8<-- 'text/xc-20/list-of-assets.md'
+2. Select the **asset** extrinsic
+3. Disable the **include option** slider
+4. Send the query by clicking on the **+** button
 
 ![Fetch list of cross-chain assets](/images/builders/interoperability/xcm/xc20/mintable-xc20/mintable-xc20-1.png)
 
@@ -82,7 +84,10 @@ The result will display the asset ID along with some additional information for 
 To quickly get more information about a specific mintable XC-20 such as the name, symbol and multi location of the asset, you can use the **metadata** extrinsic to return metadata. For this example, you can feel free to use asset ID `144992676743556815849525085098140609495`, and take the following steps:
 
 1. From the **selected state query** dropdown, choose **localAssets**
---8<-- 'text/xc-20/retrieve-metadata.md'
+2. Select the **metadata** extrinsic
+3. Enable the **include option** slider
+4. Enter in the asset ID that was returned from calling the **asset** extrinsic. Please note that if you copy and paste the asset ID with the commas, the commas will automatically be removed and the number might be cut off. Make sure it's the exact same number as the ID
+5. Send the query by clicking on the **+** button 
 
 ![Get asset metadata](/images/builders/interoperability/xcm/xc20/mintable-xc20/mintable-xc20-2.png)
 

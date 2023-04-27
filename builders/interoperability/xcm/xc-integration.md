@@ -162,7 +162,7 @@ In both the Moonbeam XCM Proposals forum post and in Polkassembly, add the follo
 
 ## Register Moonbeam's Asset on your Parachain {: #register-moonbeams-asset-on-your-parachain }
 
-To register any Moonbeam-based network tokens on your parachain, you can use the following details.
+In order to enable cross-chain transfers of Moonbeam native assets or ERC-20s between your chain and Moonbeam, you'll need to register the asset(s). To do so, you'll need the multilocation of each asset.
 
 The WSS network endpoints for each Moonbeam-based network are as follows:
 
@@ -181,9 +181,12 @@ The WSS network endpoints for each Moonbeam-based network are as follows:
     {{ networks.moonbase.wss_url }}
     ```
 
-The asset metadata for each Moonbeam-based network is as follows:
+### Register Moonbeam Native Tokens {: #moonbeam-native-tokens }
+
+For Moonbeam native tokens, the metadata for each network is as follows:
 
 === "Moonbeam"
+
     ```
     Name: Glimmer
     Symbol: GLMR
@@ -192,6 +195,7 @@ The asset metadata for each Moonbeam-based network is as follows:
     ```
 
 === "Moonriver"
+
     ```
     Name: Moonriver Token
     Symbol: MOVR
@@ -200,6 +204,7 @@ The asset metadata for each Moonbeam-based network is as follows:
     ```
 
 === "Moonbase Alpha"
+
     ```
     Name: DEV
     Symbol: DEV
@@ -207,49 +212,95 @@ The asset metadata for each Moonbeam-based network is as follows:
     Existential Deposit: 1 (1 * 10^-18 DEV)
     ```
 
-The multilocation of each Moonbeam-based network asset is as follows:
+The multilocation of Moonbeam native assets include the parachain ID of the network and the pallet instance, which corresponds to the index of the `Balances` pallet. The multilocation for each network is as follows:
 
 === "Moonbeam"
-    ```
+
+    ```js
     {
-      "parents": 1,
-      "interior": {
-        "X2": [
-          { 
-            "Parachain": 2004,
-            "PalletInstance": 10
-          }
-        ]
+      V3: {
+        parents: 1,
+        interior: {
+          X2: [
+            { 
+              Parachain: 2004
+            },
+            {
+              PalletInstance: 10
+            }
+          ]
+        }
       }
     }
     ```
 
 === "Moonriver"
-    ```
+
+    ```js
     {
-      "parents": 1,
-      "interior": {
-        "X2": [
-          { 
-            "Parachain": 2023,
-            "PalletInstance": 10
-          }
-        ]
+      V3: {
+        'parents': 1,
+        'interior': {
+          'X2': [
+            { 
+              'Parachain': 2023
+            },
+            {
+              'PalletInstance': 10
+            }
+          ]
+        }
       }
     }
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```js
     {
-      "parents": 1,
-      "interior": {
-        "X2": [
-          { 
-            "Parachain": 1000,
-            "PalletInstance": 3
-          }
-        ]
+      V3: {
+        'parents': 1,
+        'interior': {
+          'X2': [
+            { 
+              'Parachain': 1000
+            },
+            {
+              'PalletInstance': 3
+            }
+          ]
+        }
+      }
+    }
+    ```
+
+### Register Local XC-20s (ERC-20s) {: #register-erc20s }
+
+In order to register a local XC-20 on another chain, you'll need the multilocation of the asset on Moonbeam. The multilocation will include the parachain ID of Moonbeam, the pallet instance, and the address of the ERC-20. The pallet instance will be `48`, which corresponds to the index of the ERC-20 XCM Bridge Pallet, as this is the pallet that enables any ERC-20 to be transferred via XCM. 
+
+Currently, the support for local XC-20s is only on Moonbase Alpha. You can use the following multilocation to register a local XC-20:
+
+=== "Moonbase Alpha"
+
+    ```js
+    {
+      V3: {
+        parents: 1,
+        interior: {
+          X3: [
+            { 
+              Parachain: 1000
+            },
+            {
+              PalletInstance: 48
+            },
+            {
+              AccountKey20: {
+                key: 'ERC20_ADDRESS_GOES_HERE'
+              }
+            }
+          ]
+        }
       }
     }
     ```
@@ -543,7 +594,7 @@ The complete options that can be used with the script are as follows:
 
 After both channels are established and your asset is registered, the team will provide the asset ID and the [XC-20 precompile](/builders/interoperability/xcm/xc20/overview/#the-erc20-interface){target=_blank} address.
 
-Your XC-20 precompile address is calculated by converting the asset ID decimal number to hex, and prepending it with F's until you get a 40 hex character (plus the “0x”) address. For more information on how it is calculated, please refer to the [Calculate External XC-20 Precompile Addresses](/builders/interoperability/xcm/xc20/xc20/#calculate-xc20-address){target=_blank} section of the External XC-20 guide.
+Your XC-20 precompile address is calculated by converting the asset ID decimal number to hex, and prepending it with F's until you get a 40 hex character (plus the “0x”) address. For more information on how it is calculated, please refer to the [Calculate External XC-20 Precompile Addresses](/builders/interoperability/xcm/xc20/overview/#calculate-xc20-address){target=_blank} section of the External XC-20 guide.
 
 After the asset is successfully registered, you can try transferring tokens from your parachain to the Moonbeam-based network you are integrating with.
 
