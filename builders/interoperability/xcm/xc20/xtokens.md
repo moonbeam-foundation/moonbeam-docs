@@ -13,7 +13,7 @@ Building an XCM message for fungible asset transfers is not an easy task. Conseq
 
 One example of such wrappers is the [X-Tokens](https://github.com/open-web3-stack/open-runtime-module-library/tree/master/xtokens){target=_blank} Pallet, which provides different methods to transfer fungible assets via XCM.
 
-This guide will show you how to leverage the X-Tokens Pallet to send XC-20s from a Moonbeam-based network to other chains in the ecosystem (relay chain/parachains). Moreover, you'll also learn how to use the X-Tokens Precompile to perform the same actions via the Ethereum API.
+This guide will show you how to leverage the X-Tokens Pallet to send [XC-20s](/builders/interoperability/xcm/xc20/overview/){target=_blank} from a Moonbeam-based network to other chains in the ecosystem (relay chain/parachains). Moreover, you'll also learn how to use the X-Tokens Precompile to perform the same actions via the Ethereum API.
 
 **Developers must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
 
@@ -133,7 +133,7 @@ Since you'll be interacting with the `transfer` function of the X-Tokens Pallet,
     const amount = 1000000000000n;
     ```
 
-3. Define the multilocation of the destination, which will target an account on the relay chain from Moonbase Alpha:
+3. Define the multilocation of the destination, which will target an account on the relay chain from Moonbase Alpha. Note that the only asset that the relay chain can receive is its own:
 
     ```js
     const dest = { 
@@ -434,7 +434,7 @@ The following code snippet goes through some examples of `Multilocation` structu
     // Size of array is 1, meaning is an X1 interior
     [
         "0x01c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300" 
-        // AccountKey32 Selector + Address in hex + Network = None
+        // AccountKey32 Selector + Address in hex + Network(Option) Null
     ]
 }
 ```

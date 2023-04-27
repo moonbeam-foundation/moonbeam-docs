@@ -13,9 +13,10 @@ The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-cro
 
 Substrate assets are natively interoperable. However, developers need to tap into the Substrate API to interact with them, with no real visibility into the EVM. Consquently, interoperable Substrate assets are not that attractive for developers building on the EVM. To fix that and to help developers tap into the native interoperability that Polkadot/Kusama offers, Moonbeam introduced the concept of XC-20s.
 
-XC-20s are a unique asset class on Moonbeam. It combines the power of Substrate assets (native interoperability) but allows users and developers to interact with them through a familiar [ERC-20 interface](#the-erc20-interface){target=_blank}. Moreover, developers can integrate XC-20s with regular [Ethereum development frameworks](/builders/build/eth-api/dev-env/){target=_blank} or dApps, and create connected contracts strategies with such assets. Moreover, with the introduction of [RT2301](https://github.com/PureStake/moonbeam/tree/runtime-2301){target=_blank}, all ERC-20s are XCM-ready, meaning they can also be referred to as XC-20s.
+XC-20s are a unique asset class on Moonbeam. It combines the power of Substrate assets (native interoperability) but allows users and developers to interact with them through a familiar [ERC-20 interface](#the-erc20-interface){target=_blank}. On the EVM side, XC-20s have [ERC-20 interface](#the-erc20-interface){target=_blank} so smart contracts and users can easily interact with them, and no knowledge of Substrate is required. This ultimately provides greater flexibility for developers when working with these types of assets and allows seamless integrations with EVM-based smart contracts such as DEXs and lending platforms, among others. Moreover, developers can integrate XC-20s with regular [Ethereum development frameworks](/builders/build/eth-api/dev-env/){target=_blank} or dApps, and create connected contracts strategies with such assets. Moreover, with the introduction of [RT2301](https://github.com/PureStake/moonbeam/tree/runtime-2301){target=_blank}, all ERC-20s are XCM-ready, meaning they can also be referred to as XC-20s.
 
 ![Moonbeam XC-20 XCM Integration With Polkadot](/images/builders/interoperability/xcm/overview/overview-4.png)
+
 ## Types of XC-20s {: #types-of-xc-20s }
 
 There are two types of XC-20s: local and external.
@@ -30,17 +31,51 @@ External XC-20s are native cross-chain assets that are transferred from another 
 
 ### Local XC-20s vs External XC-20s {: #xc-20-comparison }
 
-Both types of XC-20s can be easily sent to other parachains in the ecosystem as if they were Substrate assets, through both the Ethereum and Substrate API. If local XC-20s are sent through the Substrate API, the transaction won't be visible from EVM-based block explorers, such as [Moonscan](https://moonscan.io){target=_blank}. Only transactions done via the Ethereum API are visible through such explorers.
+Both types of XC-20s can be easily sent to other parachains in the ecosystem as if they were Substrate assets, through both the Ethereum and Substrate API. However, using the Substrate API for XCM transfer will emit EVM logs for local XC-20s, but not for external XC-20s. Using the Ethereum API is recommended to provide more visiblity into the XCM actions through EVM-based explorers, such as [Moonscan](https://moonscan.io){target=_blank}.
 
-On the EVM side, both types of assets provide an [ERC-20 interface](#the-erc20-interface){target=_blank} so smart contracts and users can easily interact with them, and no knowledge of Substrate is required. This ultimately provides greater flexibility for developers when working with these types of assets and allows seamless integrations with EVM-based smart contracts such as DEXs and lending platforms, among others. To learn how to interact with external XC-20s via an ERC-20 interface, please refer to the [Interact with External XC-20s using an ERC-20 Interface](#interact-with-the-precompile-using-remix){target=_blank} section of this guide.
+Within Moonbeam, local XC-20s can only be transferred through their regular ERC-20 interface. On the contrary, external XC-20s can be transferred through both interfaces (Substrate and ERC-20). If external XC-20s are transferred through the Substrate API, the transaction won't be visible from EVM-based block explorers. Only transactions done via the Ethereum API are visible through such explorers.
 
-The main difference between these two types of assets is that local XC-20s are EVM ERC-20s, while external XC-20s are Substrate assets with an ERC-20 interface on top.
+
+The main difference between these two types of assets is that local XC-20s are EVM ERC-20s that have XCM-capabilities, while external XC-20s are Substrate assets with an ERC-20 interface on top.
 
 Cross-chain transfers of XC-20s are done using the [X-Tokens Pallet](/builders/interoperability/xcm/xc20/xtokens/){target=_blank}. To learn how to use the X-Tokens Pallet to transfer XC-20s, you can refer to the [Using the X-Tokens Pallet To Send XC-20s](/builders/interoperability/xcm/xc20/xtokens){target=_blank} guide. 
 
+## Register Local XC-20s on Other Parachains {: #register-local-xc20 }
+
+In order to enable cross-chain transfers of Moonbeam local XC-20s (XCM-enabled ERC-20s) between your chain and Moonbeam, you'll need to register the asset(s). To do so, you'll need the multilocation of each asset. The multilocation will include the parachain ID of Moonbeam, the pallet instance, and the address of the ERC-20. The pallet instance will be `48`, which corresponds to the index of the ERC-20 XCM Bridge Pallet, as this is the pallet that enables any ERC-20 to be transferred via XCM.
+
+**Local XC-20s that are registered on other parachain must comply with the standard ERC-20 interface as described in the [EIP-20](https://eips.ethereum.org/EIPS/eip-20){target=_blank}.**
+
+Currently, the support for local XC-20s is only on Moonbase Alpha. You can use the following multilocation to register a local XC-20:
+
+=== "Moonbase Alpha"
+
+    ```js
+    {
+      'parents': 1,
+      'interior': {
+        'X3': [
+          { 
+            'Parachain': 1000
+          },
+          {
+            'PalletInstance': 48
+          },
+          {
+            'AccountKey20': {
+              'key': 'ERC20_ADDRESS_GOES_HERE'
+            }
+          }
+        ]
+      }
+    }
+    ```
+
+There are additional steps aside from register assets that will need to be taken to enable a cross-chain integration with Moonbeam. For more information, please refer to the [Establishing an XC Integration with Moonbeam](/builders/interoperability/xcm/xc-integration){target=_blank} guide.
+
 ## Current List of External XC-20s {: #current-xc20-assets }
 
-The current list of available external XC-20 assets per network is as follows:
+External XC-20s are registeredThe current list of available external XC-20 assets per network is as follows:
 
 === "Moonbeam"
     |  Origin   | Symbol |                                                           XC-20 Address                                                           |
@@ -155,15 +190,20 @@ getXc20s();
 
 The result will display the asset ID along with some additional information for all of the registered external XC-20s. 
 
-## The ERC-20 Solidity Interface {: #the-erc20-interface }
+
+## XC-20s Solidity Interface
+
+Both types of XC-20s have the standard ERC-20 interface. In addition, all external XC-20s also possess the ERC-20 Permit interface. The following two sections describe each of the interfaces separately.
+
+### The ERC-20 Solidity Interface {: #the-erc20-interface }
 
 As mentioned, you can interact with XC-20s via an ERC-20 interface. The [ERC20.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=_blank} interface on Moonbeam follows the [EIP-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20){target=_blank}, which is the standard API interface for tokens within smart contracts. The standard defines the required functions and events that a token contract must implement to be interoperable with different applications.
 
 --8<-- 'text/erc20-interface/erc20-interface.md'
 
-## The ERC-20 Permit Solidity Interface {: #the-erc20-permit-interface }
+### The ERC-20 Permit Solidity Interface {: #the-erc20-permit-interface }
 
-You can also interact with XC-20s using the ERC-20 Permit interface. The [Permit.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol){target=_blank} interface on Moonbeam follows the [EIP-2612 standard](https://eips.ethereum.org/EIPS/eip-2612){target=_blank}, which extends the ERC-20 interface with the `permit` function. Permits are signed messages that can be used to change an account's ERC-20 allowance.
+External XC-20s also have the ERC-20 Permit interface. The [Permit.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol){target=_blank} interface on Moonbeam follows the [EIP-2612 standard](https://eips.ethereum.org/EIPS/eip-2612){target=_blank}, which extends the ERC-20 interface with the `permit` function. Permits are signed messages that can be used to change an account's ERC-20 allowance. Note that local XC-20s can have also the Permit interface, but it is not a requirement for them to be XCM-ready.
 
 The standard ERC-20 `approve` function is limited in its design as the `allowance` can only be modified by the sender of the transaction, the `msg.sender`. This can be seen in [OpenZeppelin's implementation of the ERC-20 interface](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol#L136){target=_blank}, which sets the `owner` through the [`msgSender` function](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Context.sol#L17){target=_blank}, which ultimately sets it to `msg.sender`.
 
@@ -202,11 +242,11 @@ The domain separator and the hash struct can be used to build the [final hash](h
 
 With the final hash and the `v`, `r`, and `s` values, the signature can be [verified and recovered](https://github.com/PureStake/moonbeam/blob/perm-runtime-1502/precompiles/assets-erc20/src/eip2612.rs#L212-L224){target=_blank}. If successfully verified, the nonce will increase by one and the allowance will be updated.
 
-## Interact with XC-20s using an ERC-20 Interface {: #interact-with-the-precompile-using-remix } 
+## Interact with External XC-20s Using an ERC-20 Interface {: #interact-with-the-precompile-using-remix } 
 
-This section of the guide will show you how to interact with XC-20s via the ERC-20 interface using [Remix](/builders/build/eth-api/dev-env/remix){target=_blank}. 
+This section of the guide will show you how to interact with XC-20s via the ERC-20 interface using [Remix](/builders/build/eth-api/dev-env/remix){target=_blank}. Because local XC-20s are representation of regular ERC-20s, this section is focused on external XC-20s.
 
-To interact with local XC-20s, you can use their token address, but for external XC-20s, you'll need to first calculate the precompile address of the XC-20 asset you want to interact with. Then, you can interact with the ERC-20 interface as you would with any other ERC-20.
+To interact with external XC-20s, you'll need to first calculate the precompile address of the XC-20 asset you want to interact with. Then, you can interact with the ERC-20 interface as you would with any other ERC-20.
 
 You can adapt the instructions in this section to be used with the [Permit.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol){target=_blank} interface.
 
@@ -277,125 +317,3 @@ The **IERC20** precompile for the XC-20 will appear in the list of **Deployed Co
 ![Interact with the precompile functions](/images/builders/interoperability/xcm/xc20/overview/overview-4.png)
 
 To learn how to interact with each of the functions, you can check out the [ERC-20 Precompile](/builders/pallets-precompiles/precompiles/erc20/){target=_blank} guide and modify it for interacting with the XC-20 Precompile.
-
-## Register Moonbeam-based Assets on Another Chain {: #register-an-xc20 }
-
-In order to enable cross-chain transfers of Moonbeam native assets or ERC-20s between your chain and Moonbeam, you'll need to register the asset(s). To do so, you'll need the multilocation of each asset.
-
-There are additional steps aside from register assets that will need to be taken to enable a cross-chain integration with Moonbeam. For more information, please refer to the [Establishing an XC Integration with Moonbeam](/builders/interoperability/xcm/xc-integration){target=_blank} guide.
-
-### Register Moonbeam Native Tokens {: #moonbeam-native-tokens }
-
-For Moonbeam native tokens, the metadata for each network is as follows:
-
-=== "Moonbeam"
-
-    ```
-    Name: Glimmer
-    Symbol: GLMR
-    Decimals: 18
-    Existential Deposit: 1 (1 * 10^-18 GLMR)
-    ```
-
-=== "Moonriver"
-
-    ```
-    Name: Moonriver Token
-    Symbol: MOVR
-    Decimals: 18
-    Existential Deposit: 1 (1 * 10^-18 MOVR)
-    ```
-
-=== "Moonbase Alpha"
-
-    ```
-    Name: DEV
-    Symbol: DEV
-    Decimals: 18
-    Existential Deposit: 1 (1 * 10^-18 DEV)
-    ```
-
-The multilocation of Moonbeam native assets include the parachain ID of the network and the pallet instance, which corresponds to the index of the `Balances` pallet. The multilocation for each network is as follows:
-
-=== "Moonbeam"
-
-    ```js
-    {
-      "parents": 1,
-      "interior": {
-        "X2": [
-          { 
-            "Parachain": 2004
-          },
-          {
-            "PalletInstance": 10
-          }
-        ]
-      }
-    }
-    ```
-
-=== "Moonriver"
-
-    ```js
-    {
-      "parents": 1,
-      "interior": {
-        "X2": [
-          { 
-            "Parachain": 2023
-          },
-          {
-            "PalletInstance": 10
-          }
-        ]
-      }
-    }
-    ```
-
-=== "Moonbase Alpha"
-
-    ```js
-    {
-      "parents": 1,
-      "interior": {
-        "X2": [
-          { 
-            "Parachain": 1000
-          },
-          {
-            "PalletInstance": 3
-          }
-        ]
-      }
-    }
-    ```
-
-### Register Local XC-20s (ERC-20s) {: #register-erc20s }
-
-In order to register a local XC-20 on another chain, you'll need the multilocation of the asset on Moonbeam. The multilocation will include the parachain ID of Moonbeam, the pallet instance, and the address of the ERC-20. The pallet instance will be `48`, which corresponds to the index of the ERC-20 XCM Bridge Pallet, as this is the pallet that enables any ERC-20 to be transferred via XCM. 
-
-Currently, the support for local XC-20s is only on Moonbase Alpha. You can use the following multilocation to register a local XC-20:
-
-=== "Moonbase Alpha"
-
-    ```js
-    {
-      'parents': 1,
-      'interior': {
-        'X3': [
-          { 
-            'Parachain': 1000
-          },
-          {
-            'PalletInstance': 48
-          },
-          {
-            'AccountKey20': {
-              'key': 'ERC20_ADDRESS_GOES_HERE'
-            }
-          }
-        ]
-      }
-    }
-    ```
