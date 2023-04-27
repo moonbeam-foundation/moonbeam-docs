@@ -1,4 +1,3 @@
-```python
 from web3 import Web3
 
 abi = 'XTOKENS_ABI_HERE' # Paste or import the x-tokens ABI
@@ -72,4 +71,3 @@ DEV_FROM_OTHER_PARACHAIN = [1, ["0x00000003E8", "0x0403"]] # Use if you were tar
 # Here are some additional multilocations for the Destination multilocation:
 ADDRESS32_OF_PARACHAIN = [1, ["0x00000007EF", "0x01c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300"]]
 ADDRESS20_FROM_PARACHAIN_TO_MOONBASE = [1, ["0x00000003E8", "0x03f24FF3a9CF04c71Dbc94D0b566f7A27B94566cac00"]]
-```

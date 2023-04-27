@@ -47,5 +47,6 @@ Next, depending on the selector and its data type, the following bytes correspon
 |  AccountKey20  | "0x03+AccountKey20+00" | AccountKey20, Network(Option) Null |
 | PalletInstance |       "0x04+03"        |         Pallet Instance 3          |
 
+
 !!! note
     The `interior` data usually needs to be wrapped around quotes. On the contrary, you might get an `invalid tuple value` error.

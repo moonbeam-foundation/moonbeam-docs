@@ -45,7 +45,7 @@ Where the inputs that need to be provided can be defined as:
     - `SelfReserve` - refers to the native token
     - `ForeignAsset` - refers to the asset ID of an [External XC-20](/builders/interoperability/xcm/xc20/overview/#external-xc20s){target=_blank} (not to be confused with the XC-20 address)
     - `LocalAssetReserve` - refers to the asset ID of a [Mintable XC-20](/builders/interoperability/xcm/xc20/mintable-xc20){target=_blank} (not to be confused with the XC-20 address). It is recommended to use [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank} instead via the `Erc20` currency type
-    - `Erc20` - refers to the contract address of an [Local XC-20 (ERC-20)](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank}
+    - `Erc20` - refers to the contract address of a [Local XC-20 (ERC-20)](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank}
 
  - **amount** — the number of tokens that are going to be sent via XCM
  - **dest** — a multilocation to define the destination address for the tokens being sent via XCM. It supports different address formats, such as 20 or 32-byte addresses (Ethereum or Substrate)
@@ -56,7 +56,7 @@ Where the inputs that need to be provided can be defined as:
     
     If not enough weight is provided, the execution of the XCM will fail, and funds might get locked in either the Sovereign account or a special pallet. **It is important to correctly set the destination weight to avoid failed XCM executions**
 
- - **asset/assets** — a multilocation to define the asset/assets being sent via XCM. Each parachain has a different way to reference assets. For example, Moonbeam-based networks reference their native tokens with the pallet balances index
+ - **asset/assets** — a multilocation to define the asset/assets being sent via XCM. Each parachain has a different way to reference assets. For example, Moonbeam-based networks reference their native tokens with the Balances Pallet index
  - **fee** — a multilocation to define the asset used to pay for the XCM execution in the target chain
  - **feeItem** — an index to define the asset position of an array of assets being sent, used to pay for the XCM execution in the target chain. For example, if only one asset is being sent, the `feeItem` would be `0`
 
@@ -75,12 +75,12 @@ The X-Tokens Pallet includes the following read-only functions to obtain pallet 
 
 ## Building an XCM Message with the X-Tokens Pallet {: #build-xcm-xtokens-pallet}
 
-This guide covers the process of building an XCM message using the X-Tokens Pallet, more specifically, with the `transfer` and `transferMultiasset` functions. Nevertheless, these two cases can be extrapolated to the other functions, especially once familiar with multilocations.
+This guide covers the process of building an XCM message using the X-Tokens Pallet, more specifically, with the `transfer` and `transferMultiasset` functions. Nevertheless, these two cases can be extrapolated to the other functions, especially once you become familiar with multilocations.
 
 !!! note
-    Each parachain can allow/forbid specific methods from a pallet. Consequently, developers must ensure to use methods that are allowed. On the contrary, the transaction will fail with an error similar to `system.CallFiltered`.
+    Each parachain can allow/forbid specific methods from a pallet. Consequently, developers must ensure that they use methods that are allowed. On the contrary, the transaction will fail with an error similar to `system.CallFiltered`.
 
-You'll be transfering xcUNIT tokens, which are the [XC-20](/builders/interoperability/xcm/xc20/overview){target=_blank} representation of the Alphanet relay chain token, UNIT. You can adapt this guide for any other XC-20.
+You'll be transferring xcUNIT tokens, which are the [XC-20](/builders/interoperability/xcm/xc20/overview){target=_blank} representation of the Alphanet relay chain token, UNIT. You can adapt this guide for any other XC-20.
 
 ### Checking Prerequisites {: #xtokens-check-prerequisites}
 
@@ -176,45 +176,7 @@ Now that you have the values for each of the parameters, you can write the scrip
     This is for demo purposes only. Never store your private key in a JavaScript file.
 
 ```js
-import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
-import { Keyring } from '@polkadot/api';
-
-// 1. Provide input data
-const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
-const RELAY_ACC_ADDRESS =
-  '0xc4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a063'; // Alice's relay account address
-const currencyId = { 
-  ForeignAsset: { 
-    ForeignAsset: 42259045809535163221576417993425387648n 
-  }
-};
-const amount = 1000000000000n;
-const dest = {
-  V3: {
-    parents: 1,
-    interior: { X1: { AccountId32: { id: RELAY_ACC_ADDRESS } } },
-  },
-};
-const destWeightLimit = { Unlimited: null };
-
-// 2. Create Keyring instance
-const keyring = new Keyring({ type: 'ethereum' });
-const alice = keyring.addFromUri(PRIVATE_KEY);
-
-const sendXc20 = async () => {
-  // 3. Create Substrate API provider
-  const substrateProvider = new WsProvider(providerWsURL);
-  const api = await ApiPromise.create({ provider: substrateProvider });
-
-  // 4. Craft the extrinsic
-  const tx = api.tx.xTokens.transfer(currencyId, amount, dest, destWeightLimit);
-
-  // 5. Send the transaction
-  const txHash = await tx.signAndSend(alice);
-  console.log(`Submitted with hash ${txHash}`);
-};
-
-sendXc20();
+--8<-- 'code/xtokens/transfer.js'
 ```
 
 !!! note
@@ -313,52 +275,7 @@ Now that you have the values for each of the parameters, you can write the scrip
     This is for demo purposes only. Never store your private key in a JavaScript file.
 
 ```js
-import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
-import { Keyring } from '@polkadot/api';
-
-// 1. Provide input data
-const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
-const RELAY_ACC_ADDRESS =
-  '0xc4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a063'; // Alice's relay account address
-const asset = {
-  V3: {
-    id: {
-      Concrete: {
-        parents: 1,
-        interior: null,
-      },
-    },
-    fun: {
-      Fungible: { Fungible: 1000000000000n },
-    },
-  },
-};
-const dest = {
-  V3: {
-    parents: 1,
-    interior: { X1: { AccountId32: { id: RELAY_ACC_ADDRESS } } },
-  },
-};
-const destWeightLimit = { Unlimited: null };
-
-// 2. Create Keyring instance
-const keyring = new Keyring({ type: 'ethereum' });
-const alice = keyring.addFromUri(PRIVATE_KEY);
-
-const sendXc20 = async () => {
-  // 3. Create Substrate API provider
-  const substrateProvider = new WsProvider(providerWsURL);
-  const api = await ApiPromise.create({ provider: substrateProvider });
-
-  // 4. Craft the extrinsic
-  const tx = api.tx.xTokens.transferMultiasset(asset, dest, destWeightLimit);
-
-  // 5. Send the transaction
-  const txHash = await tx.signAndSend(alice);
-  console.log(`Submitted with hash ${txHash}`);
-};
-
-sendXc20();
+--8<-- 'code/xtokens/transferMultiAsset.js'
 ```
 
 !!! note
@@ -393,7 +310,7 @@ The X-Tokens Precompile contract allows developers to access XCM token transfer 
 
 The interface includes the following functions:
 
- - **transfer**(*address* currencyAddress, *uint256* amount, *Multilocation* *memory* destination, *uint64* weight) — function that represents the `transfer` method described in the [previous example](#xtokens-transfer-function). Instead of using the currency ID, you'll need to provide the assets address for the `currencyAddress`:
+ - **transfer**(*address* currencyAddress, *uint256* amount, *Multilocation* *memory* destination, *uint64* weight) — function that represents the `transfer` method described in the [previous example](#xtokens-transfer-function). Instead of using the currency ID, you'll need to provide the asset's address for the `currencyAddress`:
     - For [External XC-20s](/builders/interoperability/xcm/xc20/overview/#external-xc20s){target=_blank}, provide the [XC-20 precompile address](/builders/interoperability/xcm/xc20/overview/#current-xc20-assets){target=_blank}
     - For native tokens (i.e., GLMR, MOVR, and DEV), provide the [ERC-20 precompile](/builders/pallets-precompiles/precompiles/erc20/#the-erc20-interface){target=_blank} address, which is `{{networks.moonbeam.precompiles.erc20 }}`
     - For [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank}, provide the token's address
@@ -410,7 +327,6 @@ In the X-Tokens Precompile interface, the `Multilocation` structure is defined a
 
 The following code snippet goes through some examples of `Multilocation` structures, as they would need to be fed into the X-Tokens Precompile functions:
 
-
 ```js
 // Multilocation targeting the relay chain or its asset from a parachain
 {
@@ -423,8 +339,8 @@ The following code snippet goes through some examples of `Multilocation` structu
     1, // parents = 1
     // Size of array is 2, meaning is an X2 interior
     [
-        "0x00000003E8", // Selector Parachain, ID = 1000 (Moonbase Alpha)
-        "0x0403" // Pallet Instance = 3
+        '0x00000003E8', // Selector Parachain, ID = 1000 (Moonbase Alpha)
+        '0x0403' // Pallet Instance = 3
     ]
 }
 
@@ -443,13 +359,22 @@ The following code snippet goes through some examples of `Multilocation` structu
 The Multilocation structs can be formatted like any other struct when using libraries to interact with the Ethereum API. The following code snippet include the previous [X-Tokens transfer function](#xtokens-transfer-function), the [X-Tokens multiasset transfer function](#xtokens-transfer-multiasset-function), and sample Multilocation struct examples. You can find the [X-Tokens ABI on Github](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/xtokens/abi.js){target=_blank}.
 
 === "Ethers.js"
-    --8<-- 'code/xtokens/ethersjs.md'
+
+    ```js
+    --8<-- 'code/xtokens/ethers.js'
+    ```
 
 === "Web3.js"
-    --8<-- 'code/xtokens/web3js.md'
+
+    ```js
+    --8<-- 'code/xtokens/web3.js'
+    ```
 
 === "Web3.py"
-    --8<-- 'code/xtokens/web3py.md'
+
+    ```py
+    --8<-- 'code/xtokens/web3.py'
+    ```
 
 !!! note
-    To test out the above examples on Moonbeam or Moonriver, you can replace the RPC URL with your own endpoint and API key which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=_blank}.
+    To test out the above examples on Moonbeam or Moonriver, you can replace the RPC URL with your own endpoint and API key, which you can get from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=_blank}.

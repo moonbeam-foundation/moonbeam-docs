@@ -158,34 +158,7 @@ To fetch a list of the currently available external XC-20s along with their asso
 3. Iterate over the list of assets to get all of the asset IDs along with their associated metadata
 
 ```js
-import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
-
-const getXc20s = async () => {
-  // 1. Create API provider
-  const substrateProvider = new WsProvider(
-    'wss://wss.api.moonbase.moonbeam.network'
-  );
-  const api = await ApiPromise.create({ provider: substrateProvider });
-
-  // 2. Query the assets pallet for all assets
-  const assets = await api.query.assets.asset.entries();
-  
-  // 3. Get metadata for each asset using the ID
-  assets.forEach(
-    async ([
-      {
-        args: [id],
-      },
-    ]) => {
-      const metadata = await api.query.assets.metadata(id);
-      console.log(`Asset ID: ${id}`);
-      console.log(`Metadata: ${metadata}`);
-      console.log('-----');
-    }
-  );
-};
-
-getXc20s();
+--8<-- 'code/xc20/retrieve-xc20s.js'
 ```
 
 The result will display the asset ID along with some additional information for all of the registered external XC-20s. 
@@ -266,7 +239,7 @@ Before you can interact with an external XC-20 via the ERC-20 interface, you nee
 The external XC-20 precompile address is calculated using the following:
 
 ```
-address = "0xFFFFFFFF..." + DecimalToHex(AssetId)
+address = '0xFFFFFFFF...' + DecimalToHex(AssetId)
 ```
 
 Given the above calculation, the first step is to take the *u128* representation of the asset ID and convert it to a hex value. You can use your search engine of choice to look up a simple tool for converting decimals to hex values. For asset ID `42259045809535163221576417993425387648`, the hex value is `1FCACBD218EDC0EBA20FC2308C778080`.
