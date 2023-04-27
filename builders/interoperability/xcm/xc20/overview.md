@@ -45,7 +45,7 @@ In order to enable cross-chain transfers of Moonbeam local XC-20s (XCM-enabled E
 
 **Local XC-20s that are registered on other chains must comply with the standard ERC-20 interface as described in [EIP-20](https://eips.ethereum.org/EIPS/eip-20){target=_blank}.**
 
-Currently, the support for local XC-20s is only on Moonbase Alpha. You can use the following multilocation to register a local XC-20:
+Currently, support for local XC-20s is only available on Moonbase Alpha. You can use the following multilocation to register a local XC-20:
 
 === "Moonbase Alpha"
 
@@ -216,7 +216,7 @@ With the final hash and the `v`, `r`, and `s` values, the signature can be [veri
 
 ## Interact with External XC-20s Using an ERC-20 Interface {: #interact-with-the-precompile-using-remix } 
 
-This section of the guide will show you how to interact with XC-20s via the ERC-20 interface using [Remix](/builders/build/eth-api/dev-env/remix){target=_blank}. Because local XC-20s are representation of regular ERC-20s, this section is focused on external XC-20s.
+This section of the guide will show you how to interact with XC-20s via the ERC-20 interface using [Remix](/builders/build/eth-api/dev-env/remix){target=_blank}. Because local XC-20s are representations of regular ERC-20s, this section is focused on external XC-20s.
 
 To interact with external XC-20s, you'll need to first calculate the precompile address of the XC-20 asset you want to interact with. Then, you can interact with the ERC-20 interface as you would with any other ERC-20.
 
