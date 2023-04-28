@@ -41,7 +41,7 @@ Some of the main components of this governance model include:
 
 For more details on how these Substrate frame pallets implement on-chain governance, you can checkout the [Walkthrough of Polkadot’s Governance](https://polkadot.network/a-walkthrough-of-polkadots-governance/){target=_blank} blog post and the [Polkadot Governance Wiki](https://wiki.polkadot.network/docs/learn-governance){target=_blank}.
 
-## Governance v2: OpenGov {: #opengov}
+## Governance v2: OpenGov {: #opengov }
 
 This section will cover everything you need to know about OpenGov on Moonriver and Moonbase Alpha. If you're looking for governance-related information on Moonbeam, please refer to the [Governance v1](#governance-v1) section.
 
