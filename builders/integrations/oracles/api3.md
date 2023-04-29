@@ -1,30 +1,32 @@
 ---
-title: API3
-description: 
+title: Request Off-Chain Data with API3
+description: Learn how to use API3 to request and receive off-chain data from within your smart contracts using API3 Airnodes and dAPIs (data feeds) on Moonbeam networks.
 ---
 
-# API3
+# Use API3 To Request Off-Chain Data on Moonbeam
 
 ![API3 Moonbeam Diagram](/images/builders/integrations/oracles/api3/api3-banner.png)
 
 ## Introduction {: #introduction } 
-Developers can use [Airnode](https://docs.api3.org/explore/airnode/what-is-airnode.html) to request off-chain data inside their Smart Contracts on the Moonbeam Networks. An Airnode is a first-party oracle that pushes off-chain API data to your on-chain contract. Airnode lets API providers easily run their own first-party oracle nodes. That way, they can provide data to any on-chain dApp that's interested in their services, all without an intermediary.
 
-An on-chain smart contract makes a request in the [RRP (Request Response Protocol)](https://docs.api3.org/reference/airnode/latest/concepts/) contract (`AirnodeRrpV0.sol`) that adds the request to the event logs. The Airnode then accesses the event logs, fetches the API data and performs a callback to the requester with the requested data.
+Developers can use [Airnode](https://docs.api3.org/explore/airnode/what-is-airnode.html){target=_blank} to request off-chain data inside their smart contracts on Moonbeam networks. An Airnode is a first-party oracle that pushes off-chain API data to your on-chain contract. Airnode lets API providers easily run their own first-party oracle nodes. That way, they can provide data to any on-chain dApp that's interested in their services, all without an intermediary.
 
-![API3 Airnode](/images/builders/integrations/oracles/api3/airnode1.png)
+An on-chain smart contract makes a request in the [RRP (Request Response Protocol)](https://docs.api3.org/reference/airnode/latest/concepts/){target=_blank} contract ([`AirnodeRrpV0.sol`](https://github.com/api3dao/airnode/blob/v0.11/packages/airnode-protocol/contracts/rrp/AirnodeRrpV0.sol){target=_blank}) that adds the request to the event logs. The Airnode then accesses the event logs, fetches the API data and performs a callback to the requester with the requested data.
+
+![API3 Airnode](/images/builders/integrations/oracles/api3/api3-1.png)
 
 --8<-- 'text/disclaimers/third-party-content-intro.md'
 
-## Requesting off-chain data by calling an Airnode {: #calling-an-airnode }
-Requesting off-chain data essentially involves triggering an Airnode and getting its response through your smart contract. The smart contract in this case would be the requester contract which will make a request to the desired off-chain Airnode and then capture its response.
+## Request Off-Chain Data From an Airnode {: #calling-an-airnode }
+
+Requesting off-chain data essentially involves triggering an Airnode and getting its response through your smart contract. The smart contract in this case would be the requester contract, which will make a request to the desired off-chain Airnode and then capture its response.
 
 The requester calling an Airnode primarily focuses on two tasks:
 
 - Make the request
 - Accept and decode the response
 
-![API3 Airnode](/images/builders/integrations/oracles/api3/airnode2.png)
+![API3 Airnode](/images/builders/integrations/oracles/api3/api3-2.png)
 
 **Here is an example of a basic requester contract to request data from an Airnode:**
 
@@ -83,124 +85,114 @@ contract Requester is RrpRequesterV0 {
 }
 ```
 
-The `_rrpAddress` is the main `airnodeRrpAddress`. The RRP Contracts have already been deployed on-chain. You can check the address for Moonbeam and Moonbase Alpha [here](https://docs.api3.org/reference/airnode/latest/). You can also try [deploying it on Remix](https://remix.ethereum.org/#url=https://github.com/vanshwassan/RemixContracts/blob/master/contracts/Requester.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js)
+You can also try [deploying the example contract on Remix](https://remix.ethereum.org/#url=https://github.com/vanshwassan/RemixContracts/blob/master/contracts/Requester.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js){target=_blank}.
 
-### Request parameters {: #request-params}
+### Contract Addresses {: #contract-addresses }
 
-The `makeRequest()` function expects the following parameters to make a valid request.
+The `_rrpAddress` is the main `airnodeRrpAddress`. The RRP Contracts have already been deployed on-chain. The [addresses for the `_rrpcAddress`](https://docs.api3.org/reference/airnode/latest/){target=_blank} on Moonbeam networks are as follows: 
 
-- [**`airnode`**](https://docs.api3.org/reference/airnode/latest/concepts/airnode.html): Specifies the Airnode Address.
-- [**`endpointId`**](https://docs.api3.org/reference/airnode/latest/concepts/endpoint.html): Specifies which endpoint to be used.
-- [**`sponsor`**](https://docs.api3.org/reference/airnode/latest/concepts/sponsor.html) and [**`sponsorWallet`**](https://docs.api3.org/reference/airnode/latest/concepts/sponsor.html#sponsorwallet): Specifies which wallet will be used to fulfill the request.
-- [**`parameters`**](https://docs.api3.org/reference/ois/latest/reserved-parameters.html): Specifies the API and Reserved Parameters (see [Airnode ABI specifications](https://docs.api3.org/reference/ois/latest/) for how these are encoded). Parameters can be encoded off-chain using `@airnode-abi` library.
+=== "Moonbeam"
 
-### Response parameters {: #response-params}
+    |   Contract   |             Addresses              |
+    |:------------:|:----------------------------------:|
+    | AirnodeRrpV0 | `{{ networks.moonbeam.api3.rrp }}` |
 
-The callback to the Requester contains two parameters:
+=== "Moonriver"
 
-- [**`requestId`**](https://docs.api3.org/reference/airnode/latest/concepts/request.html#requestid): First acquired when making the request and passed here as a reference to identify the request for which the response is intended.
-- **`data`**: In case of a successful response, this is the requested data which has been encoded and contains a timestamp in addition to other response data. Decode it using the `decode()` function from the `abi` object.
+    |   Contract   |              Addresses              |
+    |:------------:|:-----------------------------------:|
+    | AirnodeRrpV0 | `{{ networks.moonriver.api3.rrp }}` |
+
+
+=== "Moonbase Alpha"
+
+    |   Contract   |             Addresses              |
+    |:------------:|:----------------------------------:|
+    | AirnodeRrpV0 | `{{ networks.moonbase.api3.rrp }}` |
+
+### Request Parameters {: #request-params }
+
+The `makeRequest()` function expects the following parameters to make a valid request:
+
+- [**`airnode`**](https://docs.api3.org/reference/airnode/latest/concepts/airnode.html){target=_blank} - specifies the Airnode Address
+- [**`endpointId`**](https://docs.api3.org/reference/airnode/latest/concepts/endpoint.html){target=_blank} - specifies which endpoint to be used
+- [**`sponsor`**](https://docs.api3.org/reference/airnode/latest/concepts/sponsor.html){target=_blank} and [**`sponsorWallet`**](https://docs.api3.org/reference/airnode/latest/concepts/sponsor.html#sponsorwallet){target=_blank} - specifies which wallet will be used to fulfill the request
+- [**`parameters`**](https://docs.api3.org/reference/ois/latest/reserved-parameters.html){target=_blank} - specifies the API and Reserved Parameters (see [Airnode ABI specifications](https://docs.api3.org/reference/ois/latest/){target=_blank} for how these are encoded). Parameters can be encoded off-chain using `@airnode-abi` library
+
+### Response Parameters {: #response-params }
+
+The callback to the requester contract contains two parameters:
+
+- [**`requestId`**](https://docs.api3.org/reference/airnode/latest/concepts/request.html#requestid){target=_blank} - first acquired when making the request and passed here as a reference to identify the request for which the response is intended.
+- **`data`** - in case of a successful response, this is the requested data which has been encoded and contains a timestamp in addition to other response data. Decode it using the `decode()` function from the `abi` object
 
 !!! note
     Sponsors should not fund a `sponsorWallet` with more then they can trust the Airnode with, as the Airnode controls the private key to the `sponsorWallet`. The deployer of such Airnode undertakes no custody obligations, and the risk of loss or misuse of any excess funds sent to the `sponsorWallet` remains with the sponsor.
 
-### [Try deploying it on Remix!](https://remix.ethereum.org/#url=https://github.com/vanshwassan/RemixContracts/blob/master/contracts/Requester.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js)
+## Using dAPIs - API3 Datafeeds {: #dapis }
 
+[dAPIs](https://docs.api3.org/explore/dapis/what-are-dapis.html){target=_blank} are continuously updated streams of off-chain data, such as the latest cryptocurrency, stock, and commodity prices. They can power various decentralized applications such as DeFi lending, synthetic assets, stablecoins, derivatives, NFTs, and more.
 
-### Contract Addresses
+The data feeds are continuously updated by [first-party oracles](https://docs.api3.org/explore/introduction/first-party.html){target=_blank} using signed data. DApp owners can read the on-chain value of any dAPI in realtime.
 
-=== "Moonbeam"
-    | Contract  |          Addresses         |
-    |:-----------:|:-----------------------------------------------------:|
-    | AirnodeRrpV0 | `{{ networks.moonbeam.api3.rrp }}` |
+Due to being composed of first-party data feeds, dAPIs offer security, transparency, cost-efficiency, and scalability in a turn-key package.
 
-=== "Moonriver"
-    |  Contract  |           Addresses          |
-    |:------------:|:----------------------------------------------------:|
-    | AirnodeRrpV0 | `{{ networks.moonriver.api3.rrp }}`  |
+![API3 Remix deploy](/images/builders/integrations/oracles/api3/api3-3.png)
 
+*To learn more about how dAPIs work, please refer to [API3's documentation*](https://docs.api3.org/explore/dapis/what-are-dapis.html){target=_blank}*.
 
-=== "Moonbase Alpha"
-    |  Contract  |          Addresses           |
-    |:------------:|:-----------------------------------------------------:|
-    | AirnodeRrpV0  | `{{ networks.moonbase.api3.rrp }}`  |
+### Access Self-Funded dAPIs {: #self-funded-dapis}
 
-
-## Using dAPIs - API3 Datafeeds {: #dapis}
-
-[dAPIs](https://docs.api3.org/explore/dapis/what-are-dapis.html) are continuously updated streams of off-chain data, such as the latest cryptocurrency, stock and commodity prices. They can power various decentralized applications such as DeFi lending, synthetic assets, stablecoins, derivatives, NFTs and more.
-
-The data feeds are continuously updated by [first-party oracles](https://docs.api3.org/explore/introduction/first-party.html) using signed data. dApp owners can read the on-chain value of any dAPI in realtime.
-
-Due to being composed of first-party data feeds, dAPIs offer security, transparency, cost-efficiency and scalability in a turn-key package.
-
-The [API3 Market](https://market.api3.org/dapis) enables users to connect to a dAPI and access the associated data feed services.
-
-![API3 Remix deploy](/images/builders/integrations/oracles/api3/SS4.png)
-
-[*To know more about how dAPIs work, click here*](https://docs.api3.org/explore/dapis/what-are-dapis.html)
-
-<!-- ### Types of dAPIs
-
-#### Self-funded dAPIs
-Self-funded dAPIs offer developers the opportunity to experience data feeds with
-minimal up-front commitment, providing a low-risk option prior to using a
-managed dAPIs.
-
-#### Managed dAPIs
-Managed dAPIs are sourced from multiple first-party oracles and aggregated using
-a median function. Compared to self-funded dAPIs, **managed dAPIs are monetized**,
-as API3 requires payment in USDC on Ethereum Mainnet to operate them. -->
-
-### Subscribing to self-funded dAPIs {: #self-funded-dapis}
+Self-funded dAPIs offer developers the opportunity to experience data feeds with minimal up-front commitment, providing a low-risk option prior to using managed dAPIs
 
 With self-funded dAPIs, you can fund the dAPI with your own funds. The amount of gas you supply will determine how long your dAPI will be available for use. If you run out of gas, you can fund the dAPI again to keep it available for use.
 
-#### Exploring and selecting your dAPI {: #select-dapi}
+The process for accessing self-funded data feeds is as follows:
 
-The [API3 Market](https://market.api3.org/dapis) provides a list of all the dAPIs available across multiple chains including testnets. You can filter the list by chains and data providers. You can also search for a specific dAPI by name. Once selected you will land on the details page where you can find more information about the dAPI.
+1. Explore the API3 Market and select a dAPI
+2. Fund a sponsor wallet
+3. Deploy a proxy contract to acess the data feed
+4. Read data from the dAPI
 
-#### Funding a sponsor wallet {: #fund-wallet}
+![API3 Remix deploy](/images/builders/integrations/oracles/api3/api3-4.png)
 
-Once you have selected your dAPI, you can activate it by using the [API3 Market](https://market.api3.org/) to send DEV to the `sponsorWallet`. Make sure your:
+#### Select a dAPI From the API3 Market {: #select-a-dapi }
 
-- Wallet is connected to the Market and is the same network as the dAPI you are funding.
-- Balance of the wallet should be greater than the amount you are sending to the `sponsorWallet`.
+The [API3 Market](https://market.api3.org/dapis){target=_blank} enables users to connect to a dAPI and access the associated data feed services. It provides a list of all of the dAPIs available across multiple chains including testnets. You can filter the list by chains and data providers. You can also search for a specific dAPI by name. You can click on a dAPI to land on the details page where you can find more information about the dAPI.
 
-> ![API3 Remix deploy](/images/builders/integrations/oracles/api3/SS1.png)
+#### Fund a Sponsor Wallet {: #fund-sponsor-wallet }
+
+Once you have selected your dAPI, you can activate it by using the [API3 Market](https://market.api3.org/){target=_blank} to send funds (DEV, MOVR, or GLMR) to the `sponsorWallet`. Make sure your:
+
+- Wallet is connected to the Market and is the same network as the dAPI you are funding
+- The balance of your wallet should be greater than the amount you are sending to the `sponsorWallet`
 
 To fund the dAPI, you need to click on the **Fund Gas** button. Depending upon if a proxy contract is already deployed, you will see a different UI.
 
-> ![API3 Remix deploy](/images/builders/integrations/oracles/api3/SS2.png)
+![API3 Remix deploy](/images/builders/integrations/oracles/api3/api3-5.png)
 
 Use the gas estimator to select how much gas is needed by the dAPI. Click on **Send DEV** to send the entered amount to the sponsor wallet of the respective dAPI.
 
-> ![API3 Remix deploy](/images/builders/integrations/oracles/api3/SS3.png)
+![API3 Remix deploy](/images/builders/integrations/oracles/api3/api3-6.png)
 
 Once the transaction is broadcasted & confirmed on the blockchain a transaction confirmation screen will appear.
 
-> ![API3 Remix deploy](/images/builders/integrations/oracles/api3/SS5.png)
-
-#### Deploying a proxy contract to access the dAPI {: #deploy-proxy}
+#### Deploy a Proxy Contract to Access The dAPI {: #deploy-proxy }
 
 Smart contracts can interact and read values from contracts that are already deployed on the blockchain. By deploying a proxy contract via the API3 Market, a dApp can interact and read values from a dAPI like ETH/USD.
 
 !!! note
     If a proxy is already deployed for a self-funded dAPI, the dApp can read the dAPI without having to deploy a proxy contract. They do this by using the address of the already deployed proxy contract which will be visible on the API3 Market.
 
+If you are deploying a proxy contract during the funding process, clicking on the **Get proxy** button will initiate a transaction to your wallet that will deploy a proxy contract.
 
-If you are deploying a proxy contract during the funding process, clicking on the **Get proxy** button will initiate a transaction to your MetaMask that will deploy a proxy contract.
-
-> ![API3 Remix deploy](/images/builders/integrations/oracles/api3/SS6.png)
+![API3 Remix deploy](/images/builders/integrations/oracles/api3/api3-7.png)
 
 Once the transaction is broadcasted & confirmed on the blockchain, the proxy contract address will be shown on the UI.
 
-> ![API3 Remix deploy](/images/builders/integrations/oracles/api3/SS7.png)
+#### Read From a Self-Funded dAPI {: #read-dapis }
 
-
-### Reading from a self-funded dAPI {: #read-dapis}
-
-Here's an example of a basic contract that reads from a self-funded dAPI.
+Here's an example of a basic contract that reads from a self-funded dAPI:
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -231,17 +223,18 @@ contract DataFeedReaderExample is Ownable {
 }
 ```
 
-- `setProxy()` is used to set the address of the dAPI Proxy Contract.
+The example contract contains two functions:
 
-- `readDataFeed()` is a view function that returns the latest price of the set dAPI.
+- `setProxy()` - used to set the address of the dAPI Proxy Contract
+- `readDataFeed()` - a `view` function that returns the latest price of the set dAPI
 
-You can read more about dAPIs [here](https://docs.api3.org/guides/dapis/subscribing-self-funded-dapis/).
+[Try deploying it on Remix!](https://remix.ethereum.org/#url=https://gist.githubusercontent.com/vanshwassan/1ec4230956a78c73a00768180cba3649/raw/176b4a3781d55d6fb2d2ad380be0c26f412a7e3c/DapiReader.sol){target=_blank}
 
-### [Try deploying it on Remix!](https://remix.ethereum.org/#url=https://gist.githubusercontent.com/vanshwassan/1ec4230956a78c73a00768180cba3649/raw/176b4a3781d55d6fb2d2ad380be0c26f412a7e3c/DapiReader.sol)
+You can read more about dAPIs on [API3's documentation site](https://docs.api3.org/guides/dapis/subscribing-self-funded-dapis/){target=_blank}.
 
-## API3 QRNG
+## API3 QRNG {: #api3-qrng }
 
-[API3 QRNG](https://docs.api3.org/explore/qrng/) is a public utility we provide with the courtesy of Australian National University (ANU). It is powered by an Airnode hosted by ANU Quantum Random Numbers, meaning that it is a first-party service. It is served as a public good and is free of charge (apart from the gas costs), and it provides ‘true’ quantum randomness via an easy-to-use solution when requiring RNG on-chain.
+[API3 QRNG](https://docs.api3.org/explore/qrng/){target=_blank} is a public utility we provide with the courtesy of Australian National University (ANU). It is powered by an Airnode hosted by ANU Quantum Random Numbers, meaning that it is a first-party service. It is served as a public good and is free of charge (apart from the gas costs), and it provides ‘true’ quantum randomness via an easy-to-use solution when requiring RNG on-chain.
 
 To request randomness on-chain, the requester submits a request for a random number to AirnodeRrpV0. The ANU Airnode gathers the request from the AirnodeRrpV0 protocol contract, retrieves the random number off-chain, and sends it back to AirnodeRrpV0. Once received, it performs a callback to the requester with the random number.
 
@@ -315,51 +308,58 @@ contract RemixQrngExample is RrpRequesterV0 {
 }
 ```
 
-- The `setRequestParameters()` takes in `airnode` (The ANU/Quintessence/Nodary Airnode address) , `endpointIdUint256`, `sponsorWallet` and sets these parameters. You can get Airnode address and the endpoint ID [here](https://docs.api3.org/reference/qrng/providers.html).
+The example contract contains these three functions:
 
-- The `makeRequestUint256()` function calls the `airnodeRrp.makeFullRequest()` function of the `AirnodeRrpV0.sol` protocol contract which adds the request to its storage and returns a `requestId`.
+- `setRequestParameters` - accepts and sets the following three request parameters: 
+    - `airnode` - address of an Airnode that will be called to retrieve QRNG data
+    - `endpointIdUint256` - the endpoint ID of the Airnode
+    - `sponsorWallet` - the address of the sponsor wallet
+- `makeRequestUint256` - calls the `airnodeRrp.makeFullRequest()` function of the `AirnodeRrpV0.sol` protocol contract which adds the request to its storage and returns a `requestId`
+- `fulfillUint256` - accepts and decodes the requested random number
 
-- The targeted off-chain Airnode gathers the request and performs a callback to the requester with the random number.
+!!! note
+    You can get the `airnode` address and `endpointIdUint256` from the [QRNG Providers](#qrng-providers) section below.
 
-### [Try deploying it on Remix!](https://remix.ethereum.org/#url=https://github.com/vanshwassan/RemixContracts/blob/master/contracts/QrngRequester.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js)
+[Try deploying it on Remix!](https://remix.ethereum.org/#url=https://github.com/vanshwassan/RemixContracts/blob/master/contracts/QrngRequester.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js){target=_blank}
 
-You can try QRNG on the networks listed below:
+### QRNG Airnode and Endpoint Providers {: #qrng-providers }
+
+You can try QRNG using the following Airnodes and endpoints:
 
 === "Moonbeam"
-    |         Contract         |                     Addresses                    |
-    |:------------------------:|:------------------------------------------------:|
-    | ANU QRNG Airnode Address |   `{{ networks.moonbeam.api3.anuqrngairnode }}`    |
-    | ANU QRNG Airnode xpub    |     `{{ networks.moonbeam.api3.anuqrngxpub }}`     |
-    |    `endpointIdUint256`     |    `{{ networks.moonbeam.api3.anuqrnguint256 }}`   |
-    |  `endpointIdUint256Array`  | `{{ networks.moonbeam.api3.anuqrnguint256array }}` |
-    |  AirnodeRrpV0 | `{{ networks.moonriver.api3.rrp }}` |
 
+    |          Variable           |                       Value                        |
+    |:---------------------------:|:--------------------------------------------------:|
+    |  ANU QRNG Airnode Address   |   `{{ networks.moonbeam.api3.anuqrngairnode }}`    |
+    |    ANU QRNG Airnode xpub    |     `{{ networks.moonbeam.api3.anuqrngxpub }}`     |
+    |  ANU Endpoint ID (uint256)  |   `{{ networks.moonbeam.api3.anuqrnguint256 }}`    |
+    | ANU Endpoint ID (uint256[]) | `{{ networks.moonbeam.api3.anuqrnguint256array }}` |
 
 === "Moonriver"
-    |         Contract         |                     Addresses                    |
-    |:------------------------:|:------------------------------------------------:|
-    | ANU QRNG Airnode Address | `{{ networks.moonriver.api3.anuqrngairnode }}` |
-    | ANU QRNG Airnode xpub | `{{ networks.moonriver.api3.anuqrngxpub }}` |
-    |  `endpointIdUint256` | `{{ networks.moonriver.api3.anuqrnguint256 }}` |
-    |  `endpointIdUint256Array` | `{{ networks.moonriver.api3.anuqrnguint256array }}` |
-    |  AirnodeRrpV0 | `{{ networks.moonriver.api3.rrp }}` |
 
-=== "Moonbase Alpha testnet"
-    |         Contract         |                     Addresses                    |
-    |:------------------------:|:------------------------------------------------:|
-    | Nodary QRNG Airnode Address | `{{ networks.moonbase.api3.nodaryqrngairnode }}` |
-    | Nodary QRNG Airnode xpub | `{{ networks.moonbase.api3.nodaryqrngxpub }}` |
-    |  `endpointIdUint256` | `{{ networks.moonbase.api3.nodaryqrnguint256 }}` |
-    |  `endpointIdUint256Array` | `{{ networks.moonbase.api3.nodaryqrnguint256array }}` |
-    |  AirnodeRrpV0 | `{{ networks.moonriver.api3.rrp }}` |
+    |          Variable           |                        Value                        |
+    |:---------------------------:|:---------------------------------------------------:|
+    |  ANU QRNG Airnode Address   |   `{{ networks.moonriver.api3.anuqrngairnode }}`    |
+    |    ANU QRNG Airnode xpub    |     `{{ networks.moonriver.api3.anuqrngxpub }}`     |
+    |  ANU Endpoint ID (uint256)  |   `{{ networks.moonriver.api3.anuqrnguint256 }}`    |
+    | ANU Endpoint ID (uint256[]) | `{{ networks.moonriver.api3.anuqrnguint256array }}` |
 
-[*Click here to check out the complete list of all the QRNG Providers*](https://docs.api3.org/qrng/reference/providers.html)
-## Additional Resources
+=== "Moonbase Alpha"
 
-Here are some additional developer resources
+    |            Variable            |                         Value                         |
+    |:------------------------------:|:-----------------------------------------------------:|
+    |  Nodary QRNG Airnode Address   |   `{{ networks.moonbase.api3.nodaryqrngairnode }}`    |
+    |    Nodary QRNG Airnode xpub    |     `{{ networks.moonbase.api3.nodaryqrngxpub }}`     |
+    |  Nodary Endpoint ID (uint256)  |   `{{ networks.moonbase.api3.nodaryqrnguint256 }}`    |
+    | Nodary Endpoint ID (uint256[]) | `{{ networks.moonbase.api3.nodaryqrnguint256array }}` |
 
-- [API3 Docs](https://docs.api3.org/)
-- [dAPI Docs](https://docs.api3.org/explore/dapis/what-are-dapis.html)
-- [QRNG Docs](https://docs.api3.org/explore/qrng/)
-- [Github](https://github.com/api3dao/)
-- [Medium](https://medium.com/api3)
+*For a complete list of all the QRNG Providers, please refer to [API3's documentation](https://docs.api3.org/qrng/reference/providers.html){target=_blank}.*
+## Additional Resources {: #additional-resources }
+
+Here are some additional developer resources:
+
+- [API3 Docs](https://docs.api3.org/){target=_blank}
+    - [dAPI Docs](https://docs.api3.org/explore/dapis/what-are-dapis.html){target=_blank}
+    - [QRNG Docs](https://docs.api3.org/explore/qrng/){target=_blank}
+- [API3 DAO GitHub](https://github.com/api3dao/){target=_blank}
+- [API3 Medium](https://medium.com/api3){target=_blank}
