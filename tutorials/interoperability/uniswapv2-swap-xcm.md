@@ -140,50 +140,7 @@ Now that we have the Uniswap V2 swap encoded calldata, we need to generate the b
 
 
 ```js
-import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
-import { ethers } from 'ethers'; // Version 6.0.2
-
-// 1. Input Data
-const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
-const uniswapV2Router = '0x8a1932D6E26433F3037bd6c3A40C816222a6Ccd4';
-const contractCall =
-  '0x7ff36ab50000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def52600000000000000000000000000000000000000000000000000000000647464250000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f';
-
-const generateCallData = async () => {
-  // 2. Create Substrate API Provider
-  const substrateProvider = new WsProvider(providerWsURL);
-  const ethProvider = new ethers.WebSocketProvider(providerWsURL);
-  const api = await ApiPromise.create({ provider: substrateProvider });
-
-  // 3. Estimate Gas for EVM Call
-  const gasLimit = await ethProvider.estimateGas({
-    to: uniswapV2Router,
-    data: contractCall,
-    value: ethers.parseEther('0.01'),
-  });
-  console.log(`Gas required for call is ${gasLimit.toString()}`);
-
-  // 4. Call Parameters
-  const callParams = {
-    V2: {
-      gasLimit: gasLimit + 10000n, // Estimated plus some extra gas
-      action: { Call: uniswapV2Router }, // Uniswap V2 router address
-      value: ethers.parseEther('0.01'), // 0.01 DEV
-      input: contractCall, // Swap encoded calldata
-    },
-  };
-
-  // 5. Create the Extrinsic
-  const tx = api.tx.ethereumXcm.transact(callParams);
-
-  // 6. Get SCALE Encoded Calldata
-  const encodedCall = tx.method.toHex();
-  console.log(`Encoded Calldata: ${encodedCall}`);
-
-  api.disconnect();
-};
-
-generateCallData();
+--8<-- 'code/tutorials/interoperability/uniswapv2-swap/generate-moonbeam-encoded-calldata.js'
 ```
 
 !!! note
@@ -227,82 +184,7 @@ The XCM message we are about to build is composed of the following instructions:
 To build the XCM message, which will initiate the remote EVM call through XCM, and get its SCALE encoded calldata, you can use the following snippet:
 
 ```js
-import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
-
-// 1. Input Data
-const providerWsURL = 'wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network';
-const amountToWithdraw = BigInt(1 * 10 ** 16); // 0.01 DEV
-const devMultiLocation = { parents: 0, interior: { X1: { PalletInstance: 3 } } };
-const weightTransact = BigInt(4350000000); // 25000 * Gas limit of EVM call
-const multiLocAccount = '0x4e21340c3465ec0aa91542de3d4c5f4fc1def526';
-const transactBytes =
-  '0x260001f31a020000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd40000c16ff286230000000000000000000000000000000000000000000000000091037ff36ab50000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def52600000000000000000000000000000000000000000000000000000000647464250000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f00';
-
-// 2. XCM Destination (Moonbase Alpha Parachain ID 1000)
-const xcmDest = { V3: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
-
-// 3. XCM Instruction 1
-const instr1 = {
-  WithdrawAsset: [
-    {
-      id: { Concrete: devMultiLocation },
-      fun: { Fungible: amountToWithdraw },
-    },
-  ],
-};
-
-// 4. XCM Instruction 2
-const instr2 = {
-  BuyExecution: {
-    fees: {
-      id: { Concrete: devMultiLocation },
-      fun: { Fungible: amountToWithdraw },
-    },
-    weightLimit: { 'Unlimited': null },
-  },
-};
-
-// 5. XCM Instruction 3
-const instr3 = {
-  Transact: {
-    originKind: 'SovereignAccount',
-    requireWeightAtMost: { refTime: weightTransact, proofSize: 0 },
-    call: {
-      encoded: transactBytes,
-    },
-  },
-};
-
-// 6. XCM Instruction 4
-const instr4 = {
-  DepositAsset: {
-    assets: { Wild: 'All' },
-    beneficiary: {
-      parents: 0,
-      interior: { X1: { AccountKey20: { key: multiLocAccount } } },
-    },
-  },
-};
-
-// 7. Build XCM Message
-const xcmMessage = { V3: [instr1, instr2, instr3, instr4] };
-
-const generateCallData = async () => {
-  // 8. Create Substrate API Provider
-  const substrateProvider = new WsProvider(providerWsURL);
-  const api = await ApiPromise.create({ provider: substrateProvider });
-
-  // 9. Create the Extrinsic
-  const tx = api.tx.xcmPallet.send(xcmDest, xcmMessage);
-
-  // 10. Get SCALE Encoded Calldata
-  const encodedCall = tx.toHex();
-  console.log(`Encoded Calldata: ${encodedCall}`);
-
-  api.disconnect();
-};
-
-generateCallData();
+--8<-- 'code/tutorials/interoperability/uniswapv2-swap/build-xcm-message.js'
 ```
 
 !!! note
@@ -355,43 +237,14 @@ This section is where everything comes together and where the magic happens! Let
 To send the XCM message that we built in the previous section, you can use the following code snippet:
 
 ```js
-import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
-import Keyring from '@polkadot/keyring'; // Version 10.3.1
-
-// 1. Input Data
-const providerWsURL = 'wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network';
-const mnemonic = 'INSERT_MNEMONIC_HERE'; // Not safe, only for testing
-const txCall =
-  '0x410604630001000100a10f021000040000010403000f0080c6a47e8d03130000010403000f0080c6a47e8d030006010780bb470301fd04260001f31a020000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd40000c16ff286230000000000000000000000000000000000000000000000000091037ff36ab50000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def52600000000000000000000000000000000000000000000000000000000647464250000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f000d010004000103004e21340c3465ec0aa91542de3d4c5f4fc1def526';
-
-// 2. Create Keyring Instance
-const keyring = new Keyring({ type: 'sr25519' });
-
-const sendXCM = async () => {
-  // 3. Create Substrate API Provider
-  const substrateProvider = new WsProvider(providerWsURL);
-  const api = await ApiPromise.create({ provider: substrateProvider });
-
-  // 4. Create Account from Mnemonic
-  const alice = keyring.addFromUri(mnemonic);
-
-  // 5. Create the Extrinsic
-  let tx = await api.tx(txCall).signAndSend(alice, (result) => {
-    // 6. Check Transaction Status
-    if (result.status.isInBlock) {
-      console.log(`Transaction included in blockHash ${result.status.asInBlock}`);
-    }
-  });
-};
-
-sendXCM();
+--8<-- 'code/tutorials/interoperability/uniswapv2-swap/send-xcm-message.js'
 ```
 
 Once you have the code set up, you can execute it with `node`, and the XCM message will be sent to initiate your Uniswap V2 swap in Moonbase Alpha:
 
 ![Sending the XCM message from the Relay Chain to Moonbase Alpha for the Uniswap V2 swap](/images/tutorials/interoperability/uniswapv2-swap-xcm/uniswapv2-swap-xcm-6.png)
 
-And that is it! You've sent an XCM message which performed a remote EVM call via XCM and resulted in an Uniswap V2-styled swap in Moonbase Alpha. But let's go into more detail about what happened.
+And that is it! You've sent an XCM message, which performed a remote EVM call via XCM and resulted in an Uniswap V2-styled swap in Moonbase Alpha. But let's go into more detail about what happened.
 
 This action will emit different events. The first one is the only relevant [in the relay chain](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/explorer/query/0x85cad5f3cef5d578f6acc60c721ece14842be332fa333c9b9eafdfe078bc0290){target=_blank}, and it is named `xcmPallet.Sent`, which is from the `xcmPallet.send` extrinsic. In [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer/query/0x1f60aeb1f2acbc2cf6e19b7ad969661f21f4847f7b40457c459e7d39f6bc0779){target=_blank}, the following events emitted by the `parachainSystem.setValidationData` extrinsic (where all the inbound XCM messages are processed) are of interest:
 
