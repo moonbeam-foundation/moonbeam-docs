@@ -39,6 +39,9 @@ The precompile is located at the following address:
 
 - **removeKeys**() - removes the author ID and session keys. Replaces the deprecated `clearAssociation` extrinsic
 - **setKeys**(*bytes memory* keys) — accepts the result of calling `author_rotateKeys`, which is the concatenated public keys of your Nimbus and VRF keys, and sets the author ID and the session keys at once. Useful after a key rotation or migration. Calling `setKeys` requires a [bond](#mapping-bonds). Replaces the deprecated `addAssociation` and `updateAssociation` extrinsics
+- **nimbusIdOf**(*address* who) - retrieves the Nimbus ID of the given address. If no Nimbus ID exists for the given address, it returns `0`
+- **addressOf**(*bytes32* nimbusId) - retrieves the address associated to a given Nimbus ID. If the Nimbus ID is unknown, it returns `0`
+- **keysOf**(*bytes32* nimbusId) - retrieves the keys associated to the given Nimbus ID. If the Nimbus ID is unknown, it returns empty bytes
 
 The following methods are **deprecated**, but will still exist for backwards compatibility:
 
