@@ -120,7 +120,7 @@ For example, from the relay chain, the [`DescendOrigin`](https://github.com/pari
 }
 ```
 
-Where the `named` value corresponds to "Westend" in hex (in this example), and the `decodedAddress` corresponds to the address of the account who signed the transaction on the relay chain (in a 64 bytes format). When the XCM instruction gets executed in Moonbeam (Moonbase Alpha in this example), the origin will have mutated to the following multilocation:
+Where the `DECODED_ADDRESS` corresponds to the address of the account who signed the transaction on the relay chain (in a 64 bytes format). When the XCM instruction gets executed in Moonbeam (Moonbase Alpha in this example), the origin will have mutated to the following multilocation:
 
 ```js
 {
@@ -145,7 +145,7 @@ yarn calculate-multilocation-derivative-account \
 --w wss://wss.api.moonbase.moonbeam.network \
 --a YOUR_MOONBASE_RELAY_ACCOUNT_HERE \
 --p PARACHAIN_ID_IF_APPLIES \
---n 0x57657374656e64
+--n westend
 ```
 
 The parameters that you need to pass along with this command are:
@@ -153,7 +153,7 @@ The parameters that you need to pass along with this command are:
 - The `-w` flag corresponds to the endpoint you’re using to fetch this information
 - The `-a` flag corresponds to your Moonbase relay chain address
 - The `-p` flag corresponds to the parachain ID of the origin chain (if applies), if you are sending the XCM from the relay chain you don't need to provide this parameter
-- The `-n` flag corresponds to the encoded form of “westend”, the name of the relay chain that Moonbase relay is based on
+- The `-n` flag corresponds to the name of the relay chain that Moonbase relay is based on
 
 For example, for Alice's relay chain account is `5EnnmEp2R92wZ7T8J2fKMxpc1nPW5uP8r5K3YUQGiFrw8uG6`, you can calculate her Moonbase Alpha **multilocation-derivative account** by running:
 
@@ -161,21 +161,21 @@ For example, for Alice's relay chain account is `5EnnmEp2R92wZ7T8J2fKMxpc1nPW5uP
 yarn calculate-multilocation-derivative-account \
 --w wss://wss.api.moonbase.moonbeam.network \
 --a 5EnnmEp2R92wZ7T8J2fKMxpc1nPW5uP8r5K3YUQGiFrw8uG6 \
---n 0x57657374656e64
+--n westend
 ```
 
 The relevant values for this calculation are summarized in the following table:
 
-|                    Name                     |                                                                Value                                                                 |
-|:-------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------:|
-|        Origin Chain Encoded Address         |                                          `5EnnmEp2R92wZ7T8J2fKMxpc1nPW5uP8r5K3YUQGiFrw8uG6`                                          |
-|        Origin Chain Decoded Address         |                                 `0x78914a4d7a946a0e4ed641f336b498736336e05096e342c799cc33c0f868d62f`                                 |
-| Origin Chain Account Name (Westend in hex)  |                                                          `0x57657374656e64`                                                          |
-| Multilocation Received in Destination Chain | `{parents:1,interior:{X1:{AccountId32:{network:'Westend',id:'0x78914a4d7a946a0e4ed641f336b498736336e05096e342c799cc33c0f868d62f'}}}}` |
-| Multilocation-Derivative Account (32 bytes) |                                 `0x4e21340c3465ec0aa91542de3d4c5f4fc1def526222c7363e0f6f860ea4e503c`                                 |
-| Multilocation-Derivative Account (20 bytes) |                                             `0x4e21340c3465ec0aa91542de3d4c5f4fc1def526`                                             |
+|                    Name                     |                                                                     Value                                                                      |
+|:-------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------:|
+|        Origin Chain Encoded Address         |                                               `5EnnmEp2R92wZ7T8J2fKMxpc1nPW5uP8r5K3YUQGiFrw8uG6`                                               |
+|        Origin Chain Decoded Address         |                                      `0x78914a4d7a946a0e4ed641f336b498736336e05096e342c799cc33c0f868d62f`                                      |
+|          Origin Chain Account Name          |                                                                   `Westend`                                                                    |
+| Multilocation Received in Destination Chain | `{parents:1,interior:{X1:{AccountId32:{network: {westend: null},id:'0x78914a4d7a946a0e4ed641f336b498736336e05096e342c799cc33c0f868d62f'}}}}` |
+| Multilocation-Derivative Account (32 bytes) |                                      `0xda51eac6eb3502b0a113effcb3950c52e873a24c6ef54cab13abdd56a55ddd7e`                                      |
+| Multilocation-Derivative Account (20 bytes) |                                                  `0xda51eac6eb3502b0a113effcb3950c52e873a24c`                                                  |
 
-Consequently, for this example, the **multilocation-derivative account** for Moonbase Alpha is `0x4e21340c3465ec0aa91542de3d4c5f4fc1def526`. Note that Alice is the only person who can access this account through a remote transact from the relay chain, as she is the owner of its private keys and the **multilocation-derivative account** is keyless.
+Consequently, for this example, the **multilocation-derivative account** for Moonbase Alpha is `0xda51eac6eb3502b0a113effcb3950c52e873a24c`. Note that Alice is the only person who can access this account through a remote transact from the relay chain, as she is the owner of its private keys and the **multilocation-derivative account** is keyless.
 
 ### Ethereum XCM Transact Call Data {: #ethereumxcm-transact-data }
 
