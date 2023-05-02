@@ -42,7 +42,7 @@ The interface includes the following functions:
 
  - **multilocationToAddress**(*Multilocation memory* multilocation) — read-only function that returns the multilocation-derivative account from a given multilocation
  - **weightMessage**(*bytes memory* message) — read-only function that returns the weight that an XCM message will consume on the chain. The message parameter must be a SCALE encoded XCM versioned XCM message
- - **getUnitsPerSecond**(*Multilocation memory* multilocation) — read-only function that gets the units per second for a given asset in the form of a `Multilocation`. The multilocation must describe an asset that can be supported as a fee payment, such as an [external XC-20](/builders/interoperability/xcm/xc20/xc20){target=_blank}, or else this function will revert
+ - **getUnitsPerSecond**(*Multilocation memory* multilocation) — read-only function that gets the units per second for a given asset in the form of a `Multilocation`. The multilocation must describe an asset that can be supported as a fee payment, such as an [external XC-20](/builders/interoperability/xcm/xc20/overview/#external-xc20s){target=_blank}, or else this function will revert
  - **xcmExecute**(*bytes memory* message, *uint64* maxWeight) - **available on Moonbase Alpha only** -  executes a custom XCM message given the SCALE encoded versioned message to be executed and the maximum weight to be consumed. This function *cannot* be called from a smart contract due to the nature of the `Transact` instruction
  - **xcmSend**(*Multilocation memory* dest, *bytes memory* message) - **available on Moonbase Alpha only** - sends a custom XCM message given the multilocation of the destination chain to send the message to and the SCALE encoded versioned message to be sent
 

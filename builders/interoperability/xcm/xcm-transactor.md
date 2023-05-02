@@ -349,6 +349,16 @@ The XCM Transactor Precompile contract allows developers to access the XCM Trans
      {{networks.moonriver.precompiles.xcm_transactor}}
      ```
 
+=== "Moonbeam"
+     ```
+     {{networks.moonbeam.precompiles.xcm_transactor}}
+     ```
+
+=== "Moonriver"
+     ```
+     {{networks.moonriver.precompiles.xcm_transactor}}
+     ```
+
 === "Moonbase Alpha"
      ```
      {{networks.moonbase.precompiles.xcm_transactor}}
