@@ -27,20 +27,7 @@ For development purposes this tutorial is written for Moonbase Alpha and Moonbas
 
 ## Calculating your Multilocation Derivative Account {: #calculating-your-multilocation-derivative-account }
 
-Copy the account of your existing or newly created account on the [Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank}. You're going to need it to calculate the corresponding multilocation derivative account, which is a special type of account that’s keyless (the private key is unknown). Transactions from a multilocation derivative account can be initiated only via valid XCM instructions from the corresponding account on the relay chain. In other words, you are the only one who can initiate transactions on your multilocation derivative account - and if you lose access to your Moonbase relay account, you’ll also lose access to your multilocation derivative account. 
-
-To generate the multilocation derivative account, first clone the [xcm-tools repo](https://github.com/PureStake/xcm-tools){target=_blank}. Run `yarn` to install the necessary packages and then run:
-
-    ts-node calculate-multilocation-derivative-account.ts \
-     --w wss://wss.api.moonbase.moonbeam.network \
-     --a YOUR-MOONBASE-RELAY-ACCOUNT-HERE \
-     --n westend
-
-Let's review the parameters passed along with this command:
-
-- The `-w` flag corresponds to the endpoint we’re using to fetch this information
-- The `-a` flag corresponds to your Moonbase relay chain address
-- The `-n` flag corresponds to the name of the relay chain that Moonbase relay is based on
+--8<-- 'text/xcm/calculate-multilocation-derivative-account.md'
 
 The script will return 32-byte and 20-byte addresses. We’re interested in the Ethereum-style account - the 20-byte one. Feel free to look up your multilocation derivative account on [Moonscan](https://moonbase.moonscan.io/){target=_blank}. You’ll note that this account is empty. You’ll now need to fund this account with at least 1.1 DEV. As this is the amount that the faucet dispenses, you'll need to make a minimum of two faucet requests or you can always reach out to us on [Discord](https://discord.com/invite/amTRXQ9ZpW){target=_blank} for additional DEV tokens.
 

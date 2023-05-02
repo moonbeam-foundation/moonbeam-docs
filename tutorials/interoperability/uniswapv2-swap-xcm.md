@@ -39,24 +39,7 @@ Considering all the steps summarized in the [introduction](#introduction), the f
 
 ## Calculating your Multilocation-Derivative Account {: #calculating-your-multilocation-derivative-account }
 
-Copy the account of your existing or newly created account on the [Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank}. You're going to need it to calculate the corresponding multilocation-derivative account, which is a special type of account that’s keyless (the private key is unknown). Transactions from a multilocation-derivative account can be initiated only via valid XCM instructions from the corresponding account on the relay chain. In other words, you are the only one who can initiate transactions on your multilocation-derivative account - and if you lose access to your Moonbase relay account, you’ll also lose access to your multilocation-derivative account.
-
-To generate the multilocation-derivative account, first clone the [xcm-tools](https://github.com/PureStake/xcm-tools){target=_blank} repo. Run `yarn` to install the necessary packages, and then run:
-
-```sh
-yarn calculate-multilocation-derivative-account \
---w wss://wss.api.moonbase.moonbeam.network \
---a YOUR_MOONBASE_RELAY_ACCOUNT_HERE \
---p PARACHAIN_ID_IF_APPLIES \
---n 0x57657374656e64
-```
-
-Let's review the parameters passed along with this command:
-
-- The `-w` flag corresponds to the endpoint we’re using to fetch this information
-- The `-a` flag corresponds to your Moonbase relay chain address
-- The `-p` flag corresponds to the parachain ID of the origin chain (if applies), if you are sending the XCM from the relay chain, you don't need to provide this parameter
-- The `-n` flag corresponds to the encoded form of “westend”, the name of the relay chain that Moonbase relay is based on
+--8<-- 'text/xcm/calculate-multilocation-derivative-account.md'
 
 For our case, we will send the remote EVM call via XCM from Alice's account, which is `5EnnmEp2R92wZ7T8J2fKMxpc1nPW5uP8r5K3YUQGiFrw8uG6`, so the command and response would look like the following image.
 
@@ -69,7 +52,7 @@ The values are all summarized in the following table:
 |        Origin Chain Encoded Address         |                                                          `5EnnmEp2R92wZ7T8J2fKMxpc1nPW5uP8r5K3YUQGiFrw8uG6`                                                          |
 |        Origin Chain Decoded Address         |                                                 `0x78914a4d7a946a0e4ed641f336b498736336e05096e342c799cc33c0f868d62f`                                                 |
 | Origin Chain Account Name (Westend in hex)  |                                                                          `0x57657374656e64`                                                                          |
-| Multilocation Received in Destination Chain | `{"parents":1,"interior":{"x1":{"accountId32":{"network":{"named":"0x57657374656e64"},"id":"0x78914a4d7a946a0e4ed641f336b498736336e05096e342c799cc33c0f868d62f"}}}}` |
+| Multilocation Received in Destination Chain | `{"parents":1,"interior":{"x1":{"accountId32":{"network": "westend","id":"0x78914a4d7a946a0e4ed641f336b498736336e05096e342c799cc33c0f868d62f"}}}}` |
 | Multilocation-Derivative Account (32 bytes) |                                                 `0x4e21340c3465ec0aa91542de3d4c5f4fc1def526222c7363e0f6f860ea4e503c`                                                 |
 | Multilocation-Derivative Account (20 bytes) |                                                             `0x4e21340c3465ec0aa91542de3d4c5f4fc1def526`                                                             |
 
@@ -191,11 +174,13 @@ const generateCallData = async () => {
   };
 
   // 5. Create the Extrinsic
-  let tx = api.tx.ethereumXcm.transact(callParams);
+  const tx = api.tx.ethereumXcm.transact(callParams);
 
   // 6. Get SCALE Encoded Calldata
-  let encodedCall = tx.method.toHex();
+  const encodedCall = tx.method.toHex();
   console.log(`Encoded Calldata: ${encodedCall}`);
+
+  api.disconnect();
 };
 
 generateCallData();
@@ -254,7 +239,7 @@ const transactBytes =
   '0x260001f31a020000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd40000c16ff286230000000000000000000000000000000000000000000000000091037ff36ab50000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def52600000000000000000000000000000000000000000000000000000000647464250000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f00';
 
 // 2. XCM Destination (Moonbase Alpha Parachain ID 1000)
-const xcmDest = { V2: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
+const xcmDest = { V3: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
 
 // 3. XCM Instruction 1
 const instr1 = {
@@ -273,15 +258,15 @@ const instr2 = {
       id: { Concrete: devMultiLocation },
       fun: { Fungible: amountToWithdraw },
     },
-    weightLimit: 'Unlimited',
+    weightLimit: { 'Unlimited': null },
   },
 };
 
 // 5. XCM Instruction 3
 const instr3 = {
   Transact: {
-    originType: 'SovereignAccount',
-    requireWeightAtMost: weightTransact,
+    originKind: 'SovereignAccount',
+    requireWeightAtMost: { refTime: weightTransact, proofSize: 0 },
     call: {
       encoded: transactBytes,
     },
@@ -292,16 +277,15 @@ const instr3 = {
 const instr4 = {
   DepositAsset: {
     assets: { Wild: 'All' },
-    max_assets: 1,
     beneficiary: {
       parents: 0,
-      interior: { X1: { AccountKey20: { network: 'Any', key: multiLocAccount } } },
+      interior: { X1: { AccountKey20: { key: multiLocAccount } } },
     },
   },
 };
 
 // 7. Build XCM Message
-const xcmMessage = { V2: [instr1, instr2, instr3, instr4] };
+const xcmMessage = { V3: [instr1, instr2, instr3, instr4] };
 
 const generateCallData = async () => {
   // 8. Create Substrate API Provider
@@ -309,11 +293,13 @@ const generateCallData = async () => {
   const api = await ApiPromise.create({ provider: substrateProvider });
 
   // 9. Create the Extrinsic
-  let tx = api.tx.xcmPallet.send(xcmDest, xcmMessage);
+  const tx = api.tx.xcmPallet.send(xcmDest, xcmMessage);
 
   // 10. Get SCALE Encoded Calldata
-  let encodedCall = tx.toHex();
+  const encodedCall = tx.toHex();
   console.log(`Encoded Calldata: ${encodedCall}`);
+
+  api.disconnect();
 };
 
 generateCallData();
@@ -351,7 +337,7 @@ Once you have the code set up, you can execute it with `node`, and you'll get th
 The encoded calldata for this example is:
 
 ```
-0x410604630000000100a10f021000040000010403000f0080c6a47e8d03130000010403000f0080c6a47e8d030006010780bb470301fd04260001f31a020000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd40000c16ff286230000000000000000000000000000000000000000000000000091037ff36ab50000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def52600000000000000000000000000000000000000000000000000000000647464250000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f000d010004000103004e21340c3465ec0aa91542de3d4c5f4fc1def526
+0x410604630003000100a10f031000040000010403000f0000c16ff28623130000010403000f0000c16ff286230006010780bb47030100fd04260001f31a020000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd40000c16ff286230000000000000000000000000000000000000000000000000091037ff36ab50000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def52600000000000000000000000000000000000000000000000000000000647464250000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f000d0100000103004e21340c3465ec0aa91542de3d4c5f4fc1def526
 ```
 
 Now that we have the SCALE encoded calldata, the last step is to submit the transaction, which will send our XCM message to Moonbase Alpha, and do the remote EVM call!
