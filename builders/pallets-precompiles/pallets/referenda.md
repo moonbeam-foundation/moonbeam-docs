@@ -23,8 +23,8 @@ This guide will provide an overview of the extrinsics, storage methods, and gett
 
 The Referenda Pallet provides the following extrinsics (functions):
 
-- **cancel**(index) - cancels an ongoing referendum given the index of the referendum to cancel. This type of action requires a proposal to be created and assigned to the Emergency Canceller Track
-- **kill**(index) - cancels an ongoing referendum and slashes the deposits given the index of the referendum to cancel. This type of action requires a proposal to be created and assigned to the Emergency Killer Track
+- **cancel**(index) - cancels an ongoing referendum given the index of the referendum to cancel. This type of action requires a proposal to be created and assigned to either the Root Track or the Emergency Canceller Track
+- **kill**(index) - cancels an ongoing referendum and slashes the deposits given the index of the referendum to cancel. This type of action requires a proposal to be created and assigned to either the Root Track or the Emergency Killer Track
 - **placeDecisionDeposit**(index) - posts the Decision Deposit for a referendum given the index of the referendum
 - **refundDecisionDeposit**(index) - refunds the Decision Deposit for a closed referendum back to the depositor given the index of the referendum
 - **submit**(proposalOrigin, proposal, enactmentMoment) - proposes a referendum on a privileged action given the Origin from which the proposal should be executed, the proposal, and the moment tht the proposal should be enacted
