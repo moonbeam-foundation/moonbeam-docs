@@ -52,11 +52,11 @@ The values are all summarized in the following table:
 |        Origin Chain Encoded Address         |                                                          `5EnnmEp2R92wZ7T8J2fKMxpc1nPW5uP8r5K3YUQGiFrw8uG6`                                                          |
 |        Origin Chain Decoded Address         |                                                 `0x78914a4d7a946a0e4ed641f336b498736336e05096e342c799cc33c0f868d62f`                                                 |
 | Origin Chain Account Name (Westend in hex)  |                                                                          `0x57657374656e64`                                                                          |
-| Multilocation Received in Destination Chain | `{"parents":1,"interior":{"x1":{"accountId32":{"network": "westend","id":"0x78914a4d7a946a0e4ed641f336b498736336e05096e342c799cc33c0f868d62f"}}}}` |
-| Multilocation-Derivative Account (32 bytes) |                                                 `0x4e21340c3465ec0aa91542de3d4c5f4fc1def526222c7363e0f6f860ea4e503c`                                                 |
-| Multilocation-Derivative Account (20 bytes) |                                                             `0x4e21340c3465ec0aa91542de3d4c5f4fc1def526`                                                             |
+| Multilocation Received in Destination Chain | `{"parents":1,"interior":{"x1":{"accountId32":{"network": {"westend":null},"id":"0x78914a4d7a946a0e4ed641f336b498736336e05096e342c799cc33c0f868d62f"}}}}` |
+| Multilocation-Derivative Account (32 bytes) |                                                 `0xda51eac6eb3502b0a113effcb3950c52e873a24c6ef54cab13abdd56a55ddd7e`                                                 |
+| Multilocation-Derivative Account (20 bytes) |                                                             `0xda51eac6eb3502b0a113effcb3950c52e873a24c`                                                             |
 
-The script will return 32-byte and 20-byte addresses. We’re interested in the Ethereum-style account - the 20-byte one, which is `0x4e21340c3465ec0aa91542de3d4c5f4fc1def526`. Feel free to look up your multilocation-derivative account on [Moonscan](https://moonbase.moonscan.io/){target=_blank}. Next, you can fund this account with DEV tokens. 
+The script will return 32-byte and 20-byte addresses. We’re interested in the Ethereum-style account - the 20-byte one, which is `0xda51eac6eb3502b0a113effcb3950c52e873a24c`. Feel free to look up your multilocation-derivative account on [Moonscan](https://moonbase.moonscan.io/){target=_blank}. Next, you can fund this account with DEV tokens. 
 
 --8<-- 'text/faucet/faucet-sentence.md'
 
