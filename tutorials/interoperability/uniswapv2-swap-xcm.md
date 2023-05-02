@@ -47,14 +47,14 @@ For our case, we will send the remote EVM call via XCM from Alice's account, whi
 
 The values are all summarized in the following table:
 
-|                    Name                     |                                                                                Value                                                                                 |
-|:-------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|        Origin Chain Encoded Address         |                                                          `5EnnmEp2R92wZ7T8J2fKMxpc1nPW5uP8r5K3YUQGiFrw8uG6`                                                          |
-|        Origin Chain Decoded Address         |                                                 `0x78914a4d7a946a0e4ed641f336b498736336e05096e342c799cc33c0f868d62f`                                                 |
-| Origin Chain Account Name (Westend in hex)  |                                                                          `Westend`                                                                          |
+|                    Name                     |                                                                           Value                                                                           |
+|:-------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|        Origin Chain Encoded Address         |                                                    `5EnnmEp2R92wZ7T8J2fKMxpc1nPW5uP8r5K3YUQGiFrw8uG6`                                                     |
+|        Origin Chain Decoded Address         |                                           `0x78914a4d7a946a0e4ed641f336b498736336e05096e342c799cc33c0f868d62f`                                            |
+| Origin Chain Account Name (Westend in hex)  |                                                                         `Westend`                                                                         |
 | Multilocation Received in Destination Chain | `{"parents":1,"interior":{"x1":{"accountId32":{"network": {"westend":null},"id":"0x78914a4d7a946a0e4ed641f336b498736336e05096e342c799cc33c0f868d62f"}}}}` |
-| Multilocation-Derivative Account (32 bytes) |                                                 `0xda51eac6eb3502b0a113effcb3950c52e873a24c6ef54cab13abdd56a55ddd7e`                                                 |
-| Multilocation-Derivative Account (20 bytes) |                                                             `0xda51eac6eb3502b0a113effcb3950c52e873a24c`                                                             |
+| Multilocation-Derivative Account (32 bytes) |                                           `0xda51eac6eb3502b0a113effcb3950c52e873a24c6ef54cab13abdd56a55ddd7e`                                            |
+| Multilocation-Derivative Account (20 bytes) |                                                       `0xda51eac6eb3502b0a113effcb3950c52e873a24c`                                                        |
 
 The script will return 32-byte and 20-byte addresses. We’re interested in the Ethereum-style account - the 20-byte one, which is `0xda51eac6eb3502b0a113effcb3950c52e873a24c`. Feel free to look up your multilocation-derivative account on [Moonscan](https://moonbase.moonscan.io/){target=_blank}. Next, you can fund this account with DEV tokens. 
 
