@@ -612,9 +612,9 @@ networks:
       collator_reward_inflation: 20
       parachain_bond_inflation: 30
     staking:
-      min_col_stk: 1000
-      min_can_stk: 500
-      min_can_stk_wei: 500000000000000000000
+      min_col_stk: 10000
+      min_can_stk: 10000
+      min_can_stk_wei: 10000000000000000000000
       collator_map_bond: 100
       max_candidates: 72
       paid_out_block: 73 # Update this whenever max_candidates is changed! Always max_candidates + 1!
@@ -829,9 +829,9 @@ networks:
       collator_reward_inflation: 20
       parachain_bond_inflation: 30
     staking:
-      min_col_stk: 100000
-      min_can_stk: 100000
-      min_can_stk_wei: 100000000000000000000000
+      min_col_stk: 2000000
+      min_can_stk: 2000000
+      min_can_stk_wei: 2000000000000000000000000
       collator_map_bond: 10000
       max_candidates: 72
       round_blocks: 1800
