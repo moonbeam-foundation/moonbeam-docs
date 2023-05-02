@@ -2,4 +2,5 @@ title: Integrations
 hide: false
 nav:
   - index.md
+  - '[Indexers] Index a Local Dev Node with Subsquid': 'local-subsquid.md'
   - '[Indexers] Index NFT Transfers with Subsquid': 'nft-subsquid.md'
