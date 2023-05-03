@@ -8,7 +8,7 @@ description: Learn about the frontend, smart contracts, and storage system of De
 ![Learn about the entire architecture of DApps.](/images/tutorials/eth-api/how-to-build-a-dapp/how-to-build-a-dapp-banner.png)
 _April 15, 2023 | by Jeremy Boetticher_
 
-Decentralized applications, or DApps, have redefined how applications are built, managed, and interacted with in Web3. By leveraging blockchain technology, DApps provide a secure, transparent, and trustless system that enables peer-to-peer interactions without any central authority. At the core of a DApp's architecture are several main components that work in tandem to create a robust, decentralized ecosystem. These components include smart contracts, nodes, frontend user interfaces, and decentralized storage solutions.  
+Decentralized applications, or DApps, have redefined how applications are built, managed, and interacted with in Web3. By leveraging blockchain technology, DApps provide a secure, transparent, and trustless system that enables peer-to-peer interactions without any central authority. At the core of a DApp's architecture are several main components that work in tandem to create a robust, decentralized ecosystem. These components include smart contracts, nodes, frontend user interfaces, and more.  
 
 ![DApp Architecture Diagram](/images/tutorials/eth-api/how-to-build-a-dapp/how-to-build-a-dapp-1.png)
 
@@ -284,37 +284,38 @@ Providers are the bridge between the frontend user interface and the blockchain 
 
 Signers are a type of provider that contain a secret that can be used to sign transactions with. This allows the frontend to create transactions, sign them, and then send them with `eth_sendRawTransaction`. There are multiple types of signers, but we're most interested in wallet objects, which securely store and manage users' private keys and digital assets. Wallets such as MetaMask facilitate transaction signing with a universal and user-friendly process. They act as a user's representation within the DApp, ensuring that only authorized transactions are executed. The Ethers.js wallet object represents this interface within our frontend code.  
 
-Typically, a frontend using Ethers.js will require you to create a provider, connect to the user's wallet if applicable, and create a wallet object. This process can become unwieldy in larger projects, especially with the number of wallets that exist other than MetaMask:  
+Typically, a frontend using Ethers.js will require you to create a provider, connect to the user's wallet if applicable, and create a wallet object. This process can become unwieldy in larger projects, especially with the number of wallets that exist other than MetaMask.  
 
-```javascript
-// Detect if the browser has MetaMask installed
-let provider, signer;
-if (typeof window.ethereum !== 'undefined') {
-  // Create a provider using MetaMask
-  provider = new ethers.providers.Web3Provider(window.ethereum);
+??? code "Example of Unwieldy MetaMask Handling"
+    ```javascript
+    // Detect if the browser has MetaMask installed
+    let provider, signer;
+    if (typeof window.ethereum !== 'undefined') {
+      // Create a provider using MetaMask
+      provider = new ethers.providers.Web3Provider(window.ethereum);
 
-  // Connect to MetaMask
-  async function connectToMetaMask() {
-    try {
-      // Request access to the user's MetaMask account
-      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      // Connect to MetaMask
+      async function connectToMetaMask() {
+        try {
+          // Request access to the user's MetaMask account
+          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
 
-      // Create a signer (wallet) using the provider
-      signer = provider.getSigner(accounts[0]);
-    } catch (error) {
-      console.error('Error connecting to MetaMask:', error);
+          // Create a signer (wallet) using the provider
+          signer = provider.getSigner(accounts[0]);
+        } catch (error) {
+          console.error('Error connecting to MetaMask:', error);
+        }
+      }
+
+      // Call the function to connect to MetaMask
+      connectToMetaMask();
+    } else {
+      console.log('MetaMask is not installed');
     }
-  }
 
-  // Call the function to connect to MetaMask
-  connectToMetaMask();
-} else {
-  console.log('MetaMask is not installed');
-}
-
-// ... also the code for disconnecting from the site
-// ... also the code that handles other wallets
-```
+    // ... also the code for disconnecting from the site
+    // ... also the code that handles other wallets
+    ```
 
 Fortunately, we have installed the useDApp package, which simplifies many of the processes for us. This simultaneously abstracts what Ethers is doing as well, which is why we took a bit of time to explain them here.  
 
@@ -342,7 +343,7 @@ root.render(
 );
 ```
 
-Now in your `App.js` file, let's add a button that allows us to connect to MetaMask. We don't have to write any code that's wallet specific, fortunately, since useDApp does it for us:  
+Now in your `App.js` file, let's add a button that allows us to connect to MetaMask. We don't have to write any code that's wallet specific, fortunately, since useDApp does it for us with the `useEthers` hook.  
 
 ```javascript
 function App() {
@@ -444,24 +445,25 @@ Notice that this component uses the `useCall` hook provided by the useDApp packa
 
 Also note that we're using a utility format called `formatEther` to format the output values instead of displaying them directly. This is because our token, like gas currencies, are stored as an unsigned integer with a fixed decimal point of 18 figures. The utility function helps format this value into a way that we as humans expect.  
 
-Now import it into our `App.js` file:  
+You should also import it into our `App.js` file.  
 
-```javascript
-// ... other imports
-function App() {
-  // ...
+??? code "`App.js` Updated With `SupplyComponent`"
+    ```javascript
+    // ... other imports
+    function App() {
+      // ...
 
-  return (
-    {/* Wrapper Components */}
-      {/* Button Component */}
-      <Card sx={styles.card}>
-        <h1 style={styles.alignCenter}>Mint Your Token!</h1>
-        <SupplyComponent contract={contract} />
-      </Card>
-    {/* Wrapper Components */}
-  )
-}
-```
+      return (
+        {/* Wrapper Components */}
+          {/* Button Component */}
+          <Card sx={styles.card}>
+            <h1 style={styles.alignCenter}>Mint Your Token!</h1>
+            <SupplyComponent contract={contract} />
+          </Card>
+        {/* Wrapper Components */}
+      )
+    }
+    ```
 
 Our frontend should now display the correct data!  
 
@@ -566,27 +568,28 @@ Let's break down the non-JSX code a bit:
 
 Now let's look at the visual component. The button will call the `handlePurchaseMint` on press, which makes sense. The button will also be disabled while the transaction happens, and if the user hasn't connected to the DApp with their wallet (when the account value isn't defined).  
 
-This code essentially boiled down to using the `useContractFunction` hook in conjunction with the `contract` object, which is a lot simpler to what it does under the hood! Let's add this component to the main `App.js` file:  
+This code essentially boiled down to using the `useContractFunction` hook in conjunction with the `contract` object, which is a lot simpler to what it does under the hood! Let's add this component to the main `App.js` file.  
 
-```javascript
-import { MintingComponent } from './MintingComponent.js';
-// ... other imports
+??? code "`App.js` Updated With `MintingComponent`"
+    ```javascript
+    import { MintingComponent } from './MintingComponent.js';
+    // ... other imports
 
-function App() {
-  // ...
+    function App() {
+      // ...
 
-  return (
-    {/* Wrapper Components */}
-      {/* Button Component */}
-      <Card sx={styles.card}>
-        <h1 style={styles.alignCenter}>Mint Your Token!</h1>
-        <SupplyComponent contract={contract} />
-        <MintingComponent contract={contract} />
-      </Card>
-    {/* Wrapper Components */}
-  )
-}
-```
+      return (
+        {/* Wrapper Components */}
+          {/* Button Component */}
+          <Card sx={styles.card}>
+            <h1 style={styles.alignCenter}>Mint Your Token!</h1>
+            <SupplyComponent contract={contract} />
+            <MintingComponent contract={contract} />
+          </Card>
+        {/* Wrapper Components */}
+      )
+    }
+    ```
 
 ![DApp with the Minting section](/images/tutorials/eth-api/how-to-build-a-dapp/how-to-build-a-dapp-4.png)  
 
@@ -674,28 +677,29 @@ export default function PurchaseOccurredEvents({ contract }) {
 }
 ```
 
-Which can be added to `App.js`:  
+This too should be added to `App.js`.
 
-```javascript
-import { MintingComponent } from './MintingComponent.js';
-// ... other imports
+??? code "`App.js` Updated With `MintingComponent`"
+    ```javascript
+    import { MintingComponent } from './MintingComponent.js';
+    // ... other imports
 
-function App() {
-  // ...
+    function App() {
+      // ...
 
-  return (
-    {/* Wrapper Components */}
-      {/* Button Component */}
-      <Card sx={styles.card}>
-        <h1 style={styles.alignCenter}>Mint Your Token!</h1>
-        <SupplyComponent contract={contract} />
-        <MintingComponent contract={contract} />
-        <PurchaseOccurredEvents contract={contract} />
-      </Card>
-    {/* Wrapper Components */}
-  )
-}
-```
+      return (
+        {/* Wrapper Components */}
+          {/* Button Component */}
+          <Card sx={styles.card}>
+            <h1 style={styles.alignCenter}>Mint Your Token!</h1>
+            <SupplyComponent contract={contract} />
+            <MintingComponent contract={contract} />
+            <PurchaseOccurredEvents contract={contract} />
+          </Card>
+        {/* Wrapper Components */}
+      )
+    }
+    ```
 
 And, if you've done any transactions, you'll see that they'll pop up!  
 
