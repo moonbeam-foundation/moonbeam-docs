@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
 import abi from './callPermitABI.js';
-import shipyardAbi from './shipyardABI.js';
+import cartographerAbi from './cartographerAbi.js';
 
 const providerRPC = {
   moonbeam: {
@@ -38,15 +38,22 @@ const types = {
   ],
 };
 
-const shipyardInterface = new ethers.Interface(shipyardAbi);
-const data = shipyardInterface.encodeFunctionData('repairFlagship', [
-  '0x4634ba8bB97A82A809161ea595F95A1Fa1255Bff',
-  1078
+const cartographerInterface = new ethers.Interface(cartographerAbi);
+const data = cartographerInterface.encodeFunctionData('buyVoyages', [
+  0n, // Voyage type: Easy
+  1n, // Number of voyages to buy
+  '0x72A33394f0652e2Bf15d7901f3Cd46863d968424', // Voyage V2 contract
 ]);
 
+const gasEstimate = await provider.estimateGas({
+  from: userSigner.address,
+  to: '0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138', // Cartographer V1 contraact
+  data,
+})
+
 const callPermit = new ethers.Contract(
-  '0x000000000000000000000000000000000000080a',
-  abi,
+  '0x000000000000000000000000000000000000080a', // Call Permit contract
+  abi, 
   thirdPartyGasSigner
 );
 
@@ -54,18 +61,18 @@ const nonce = await callPermit.nonces(userSigner.address);
 
 const message = {
   from: userSigner.address,
-  to: '0xccB3707967dDcFA47b19f5AEEfe7764a5e0E43cC', // Crew for Coin V1 contract address
+  to: '0xD1A9bA3e61Ac676f58B29EA0a09Cf5D7f4f35138', // Cartographer V1 contract
   value: 0,
   data,
-  gaslimit: 100000,
+  gaslimit: gasEstimate + 50000n,
   nonce,
-  deadline: '1680587122996', // Randomly created deadline in the future
+  deadline: '1714762357000', // Randomly created deadline in the future
 };
 
 const signature = await userSigner.signTypedData(domain, types, message);
 console.log(`Signature hash: ${signature}`);
 
-const ethersSignature = ethers.Signature.from(signature);
+const formattedSignature = ethers.Signature.from(signature);
 
 // This gets dispatched using the dApps signer
 const dispatch = await callPermit.dispatch(
@@ -75,9 +82,9 @@ const dispatch = await callPermit.dispatch(
   message.data,
   message.gaslimit,
   message.deadline,
-  ethersSignature.v,
-  ethersSignature.r,
-  ethersSignature.s
+  formattedSignature.v,
+  formattedSignature.r,
+  formattedSignature.s
 );
 
 await dispatch.wait();
