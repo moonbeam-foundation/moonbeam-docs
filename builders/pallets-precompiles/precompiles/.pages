@@ -10,6 +10,7 @@ nav:
   - 'Democracy': 'democracy.md'
   - 'Ethereum Native': 'eth-mainnet.md'
   - 'Native Token ERC-20': 'erc20.md'
+  - 'Precompile Registry': 'registry.md'
   - 'Preimage': 'preimage.md'
   - 'Proxy': 'proxy.md'
   - 'Randomness': 'randomness.md'
