@@ -1,18 +1,20 @@
 ---
-title: Complete DApp Architecture
+title: How to Build a DApp
 description: Learn about the frontend, smart contracts, and storage system of Decentralized Applications (DApp) by dissecting an entire example project.
 ---
 
 # Complete DApp Architecture
 
-![Learn about the entire architecture of DApps.](/images/tutorials/eth-api/complete-dapp/complete-dapp-banner.png)
+![Learn about the entire architecture of DApps.](/images/tutorials/eth-api/how-to-build-a-dapp/how-to-build-a-dapp-banner.png)
 _April 15, 2023 | by Jeremy Boetticher_
 
 Decentralized applications, or DApps, have redefined how applications are built, managed, and interacted with in Web3. By leveraging blockchain technology, DApps provide a secure, transparent, and trustless system that enables peer-to-peer interactions without any central authority. At the core of a DApp's architecture are several main components that work in tandem to create a robust, decentralized ecosystem. These components include smart contracts, nodes, frontend user interfaces, and decentralized storage solutions.  
 
+![DApp Architecture Diagram](/images/tutorials/eth-api/how-to-build-a-dapp/how-to-build-a-dapp-1.png)
+
 In this tutorial, you'll come face-to-face with each major component by writing a full DApp that mints tokens. We'll also explore additional optional components of DApps that can enhance user experience for your future projects. You can view the complete project in its [monorepo on GitHub](https://github.com/jboetticher/complete-example-dapp){target=_blank}.  
 
-![DApp End Result](/images/tutorials/eth-api/complete-dapp/complete-dapp-2.png)
+![DApp End Result](/images/tutorials/eth-api/how-to-build-a-dapp/how-to-build-a-dapp-2.png)
 
 ## Checking Prerequisites {: #checking-prerequisites } 
 
@@ -30,7 +32,11 @@ To get started, you will need the following:
 
 Generally speaking, a JSON-RPC is a remote procedure call (RPC) protocol that utilizes JSON to encode data. For Web3, they refer to the specific JSON-RPCs that DApp developers use to send requests and receive responses from blockchain nodes, making it a crucial element in interactions with smart contracts. They allow frontend user interfaces to seamlessly interact with the smart contracts and provide users with real-time feedback on their actions. They also allow developers to deploy their smart contracts in the first place!  
 
-To get a JSON-RPC to communicate with a Moonbeam blockchain, you need to run a node. But that can be expensive, complicated, and a hassle. Fortunately, as long as you have *access* to a node, you can interact with the blockchain. Moonbase Alpha has a [handful of free and paid node options](/learn/platform/networks/moonbase/#network-endpoints){target=_blank}. For this tutorial, we will be using the Moonbeam Foundation's public node for Moonbase Alpha: `https://rpc.api.moonbase.moonbeam.network`, but you are encouraged to get your own private endpoint.  
+To get a JSON-RPC to communicate with a Moonbeam blockchain, you need to run a node. But that can be expensive, complicated, and a hassle. Fortunately, as long as you have *access* to a node, you can interact with the blockchain. Moonbase Alpha has a [handful of free and paid node options](/learn/platform/networks/moonbase/#network-endpoints){target=_blank}. For this tutorial, we will be using the Moonbeam Foundation's public node for Moonbase Alpha, but you are encouraged to get your own [private endpoint](/builders/get-started/endpoints/#endpoint-providers){target=_blank}.  
+
+```
+https://rpc.api.moonbase.moonbeam.network
+```
 
 So now you have a URL. How do you use it? Over `HTTPS`, JSON-RPC requests are `POST` requests that include specific methods for reading and writing data, such as `eth_call` for executing a smart contract function in a read-only manner or `eth_sendRawTransaction` for submitting signed transactions to the network (calls that change the blockchain state). The entire JSON request structure will always have a structure similar to the following:  
 
@@ -64,7 +70,7 @@ When you deploy a smart contract onto Moonbeam, you upload a series of instructi
 
 Since the instructions are difficult to write and make sense of at a low (assembly) level, we have smart contract languages such as Solidity to make it easier to write them. To help write, debug, test, and compile these smart contract languages, developers in the Ethereum community have created developer environments such as [HardHat](/tutorials/eth-api/hardhat-start-to-end){target=_blank} and [Foundry](/tutorials/eth-api/foundry-start-to-end){target=_blank}. Moonbeam's developer site provides information on a [plethora of developer environments](/builders/build/eth-api/dev-env){target=_blank}.    
 
-This tutorial will use Hardhat for managing smart contracts. You can initialize a project with Hardhat using the following command:  
+This tutorial will use Hardhat for managing smart contracts. You can initialize a project with Hardhat using the following command. Be sure to add all additional dependencies that it suggests, including `hardhat-toolbox`:  
 
 ```bash
 npx hardhat init
@@ -81,8 +87,8 @@ module.exports = {
   solidity: "0.8.17",
   networks: {
     moonbase: {
-      url: 'https://rpc.api.moonbase.moonbeam.network',
-      chainId: 1287, // 0x507 in hex,
+      url: "{{ networks.moonbase.rpc_url }}",
+      chainId: {{ networks.moonbase.chain_id }},
       accounts: ["YOUR_PRIVATE_KEY"]
     }
   }
@@ -123,7 +129,9 @@ When writing smart contracts, you're going to have to compile eventually. Every 
 npx hardhat compile
 ```
 
-Everything should compile well, so let's continue by adding functionality. Add the following constants, errors, event, and function to your Solidity file:  
+Everything should compile well, which should cause two new folders to pop up: `artifacts` and `cache`. These two folders hold information about the compiled smart contracts.  
+
+Let's continue by adding functionality. Add the following constants, errors, event, and function to your Solidity file:  
 
 ```solidity
     uint256 public constant MAX_TO_MINT = 1000 ether;
@@ -204,22 +212,22 @@ You should see an output that displays the token address. Make sure to **save it
 !!! challenge
     HardHat has a poor built-in solution for deploying smart contracts. It doesn't automatically save the transactions and addresses related to the deployment! This is why the [hardhat-deploy](https://www.npmjs.com/package/hardhat-deploy#1-hardhat-deploy){target=_blank} package was created. Can you implement it yourself? Or can you switch to a different developer environment like [Foundry](https://github.com/foundry-rs/foundry){target=_blank}?
 
-## DApp Frontends {: #dapp-frontends }
+## Creating a DApp Frontend {: #creating-a-dapp-frontend }
 
-Frontends provide an interface for users to interact with blockchain-based applications. React, a popular JavaScript library for building user interfaces, is often used for developing DApp frontends due to its component-based architecture, which promotes reusable code and efficient rendering. useDApp, an Ethers.js based React framework, further simplifies the process of building DApp frontends by providing a comprehensive set of hooks and components that streamline the integration of Ethereum blockchain functionality.  
+Frontends provide an interface for users to interact with blockchain-based applications. React, a popular JavaScript library for building user interfaces, is often used for developing DApp frontends due to its component-based architecture, which promotes reusable code and efficient rendering. The [useDApp package](https://usedapp.io/){target=_blank}, an Ethers.js based React framework for DApps, further simplifies the process of building DApp frontends by providing a comprehensive set of hooks and components that streamline the integration of Ethereum blockchain functionality.  
 
 !!! note
     Typically a larger project will create separate GitHub repositories for their frontend and smart contracts, but this is a small enough of a project to create a monorepo.
 
-Let's set up a new React project and install dependencies, which we can create within our HardHat project's folder without much issue:
+Let's set up a new React project and install dependencies, which we can create within our HardHat project's folder without much issue. The `create-react-app` package will create a new `frontend` directory for us:  
 
 ```bash
 npx create-react-app frontend
 cd frontend
-npm install ethers@5.6.9 @usedapp/core @mui/material @mui/system
+npm install ethers@5.6.9 @usedapp/core @mui/material @mui/system 
 ```
 
-If you remember, [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=_blank} is a library that assists with JSON-RPC communication. useDApp is a similar library that uses Ethers.js and formats them into React hooks so that they work better in frontend projects. We've also added two [MUI](https://mui.com/){target=_blank} packages for styling and components.  
+If you remember, [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=_blank} is a library that assists with JSON-RPC communication. The useDApp package is a similar library that uses Ethers.js and formats them into React hooks so that they work better in frontend projects. We've also added two [MUI](https://mui.com/){target=_blank} packages for styling and components.  
 
 Let's also move a file from the artifacts folder into the frontend folder, `MintableERC20.json`. This file is generated during compilation of the smart contracts. It contains the ABI, which defines the structure of the smart contract, allowing libraries to understand what functions the smart contract has. Every time you change and recompile the smart contract, you'll have to update the ABI in the frontend as well. Some projects will have setups that automatically pull ABIs from the same source, but in this case we will just copy it over:  
 
@@ -457,7 +465,7 @@ function App() {
 
 Our frontend should now display the correct data!  
 
-![Displaying data](/images/tutorials/eth-api/complete-dapp/complete-dapp-3.png)
+![Displaying data](/images/tutorials/eth-api/how-to-build-a-dapp/how-to-build-a-dapp-3.png)
 
 !!! challenge
     There's additonal information that could be helpful to display, such as the amount of tokens that the connected account currently has: `balanceOf(address)`. Can you add that to the frontend yourself?
@@ -552,7 +560,7 @@ export default function MintingComponent({ contract }) {
 Let's break down the non-JSX code a bit:  
 
 1. The user's account information is being retrieved via `useEthers`, which can be done because useDApp provides this information throughout the entire project 
-2. useDApp's `useContractFunction` hook is used to create a function, `send`, that will sign and send a transaction that calls the `purchaseMint` function on the contract defined by the `contract` object
+2. The `useContractFunction` hook from useDApp is used to create a function, `send`, that will sign and send a transaction that calls the `purchaseMint` function on the contract defined by the `contract` object
 3. Another function `handlePurchaseMint` is defined to help inject the native gas value defined by the `TextField` component into the `send` function
 4. A helper constant will determine whether or not the transaction is still in the `Mining` phase, that is, it hasn't finished
 
@@ -580,7 +588,7 @@ function App() {
 }
 ```
 
-![DApp with the Minting section](/images/tutorials/eth-api/complete-dapp/complete-dapp-4.png)  
+![DApp with the Minting section](/images/tutorials/eth-api/how-to-build-a-dapp/how-to-build-a-dapp-4.png)  
 
 If you try entering a value like `0.1` and press the button, a MetaMask prompt should occur. Try it out!  
 
@@ -691,41 +699,9 @@ function App() {
 
 And, if you've done any transactions, you'll see that they'll pop up!  
 
-![Finished DApp](/images/tutorials/eth-api/complete-dapp/complete-dapp-5.png)
+![Finished DApp](/images/tutorials/eth-api/how-to-build-a-dapp/how-to-build-a-dapp-5.png)
 
-Now you've implemented three main components of DApp frontends: reading from storage, sending transactions, and reading logs. With these building blocks as well as the knowledge you learned with smart contracts and nodes you should be able to cover 80% of DApps. Of course, there are more advanced (but optional) components of DApps that have popped up over time, some of which are listed in the next section.  
-
-## Additional Options {: #additional-options }
-
-### Decentralized Storage Systems {: #decentralized-storage-systems }
-
-Decentralized storage solutions provide a distributed and fault-tolerant way to store and access data within a DApp. Unlike traditional centralized storage systems, decentralized storage distributes data across multiple nodes, ensuring that the information is secure, accessible, and resilient to failures. Popular decentralized storage solutions such as the [Arweave](https://www.arweave.org/){target=_blank} and [Filecoin/IPFS](https://filecoin.io/){target=_blank} leverage blockchain technology to create a global, peer-to-peer storage network, eliminating single points of failure and improving data privacy.  
-
-Generally speaking, decentralized storage systems are separated from smart contract platforms such as Moonbeam. Moonbeam does not provide a decentralized storage system itself, but the Polkadot ecosystem has solutions such as [Crust](https://crust.network/){target=_blank}.  
-
-These systems can be very important for NFT projects, who need a place to store their media and documents. In our project, the most applicable use of a decentralized storage system would be decentralized frontend hosting. This would be the final step to completely decentralize a DApp, since you can publish your site on one of these decentralized storage systems instead of only hosting your frontend on a centralized server.  
-
-### Oracles {: #oracles }
-
-Oracles are third-party services that provide external data to smart contracts within a blockchain. Since smart contracts are unable to access information outside of the blockchain, oracles play a crucial role in supplying real-world data to DApps. This data can include asset prices, global sentiment, or any other data relevant to the DApp's use case. Oracles can be centralized or decentralized, with decentralized oracles offering a higher degree of trust and security.  
-
-Examples of popular oracle solutions include [Chainlink](/builders/integrations/oracles/chainlink){target=_blank}, [Band Protocol](/builders/integrations/oracles/band-protocol), and [Razor Network](/builders/integrations/oracles/razor-network), which enable the integration of off-chain data into smart contracts in a secure and reliable manner. Plus, good news: Moonbeam networks support these oracle solutions!  
-
-In our project, an oracle could update the token smart contract's minting price dynamically to reflect real-time prices instead of relying on a constant value.  
-
-### Indexing Protocols {: #indexing-protocols }
-
-Indexing protocols can play a crucial role in the efficient functioning of DApp frontends by providing a scalable and reliable solution for querying on-chain data. Indexing protocols work as middleware that continuously processes and organizes blockchain data, which helps overcome the limitations of querying data directly from blockchain nodes, which can be slow and computationally expensive. By utilizing indexing protocols, DApps can quickly retrieve and display relevant information to users, enhancing their overall experience and performance.  
-
-Some popular indexing protocols on Moonbeam include [The Graph](/builders/integrations/indexers/thegraph){target=_blank} and [Subsquid](/builders/integrations/indexers/subsquid){target=_blank}.  
-
-In our project, an indexing protocol could take the place of querying logs from the node. Instead, we could query an indexing protocol that already has this data stored and available for our frontend to use; plus we could query data from the entire blockchain instead of from just 10000 blocks in the past.  
-
-### Centralized Backends {: #centralized-backends }
-
-While decentralized applications primarily rely on blockchain technology and its associated components, there are occasions when centralized backends are utilized to support specific functions or requirements. Centralized backends may be employed to handle tasks that are resource-intensive, time-sensitive, or challenging to implement within the constraints of the blockchain. For example, DApps may use centralized servers to host game servers, manage user authentication, store non-sensitive data to reduce costs, or comply with regulations. However, it is essential to strike a balance between decentralization and the use of centralized backends, ensuring that the core principles of trustlessness, security, and transparency are upheld.  
-
-In our project, a use of a centralized backend could be server-side rendering to increase the speed of the page. But since this is a really small DApp, it's not too important.  
+Now you've implemented three main components of DApp frontends: reading from storage, sending transactions, and reading logs. With these building blocks as well as the knowledge you learned with smart contracts and nodes you should be able to cover 80% of DApps.  
 
 ## Conclusion
 
@@ -733,6 +709,12 @@ In this tutorial, we covered a wide range of topics and tools essential for succ
 
 We delved into the process of writing smart contracts, highlighting best practices and key considerations when developing on-chain logic. The guide then explored useDApp, a React-based framework, for creating a user-friendly frontend. We discussed techniques for reading data from contracts, executing transactions, and working with logs to ensure a seamless user experience.
 
-Finally, we touched upon additional components vital to DApps, such as indexing protocols for efficient data retrieval and oracles for accessing off-chain data.  
+Of course, there are more advanced (but optional) components of DApps that have popped up over time: 
+
+- Decentralized storage protocols — systems that store websites and files in a decentralized way
+- [Oracles](/builders/integrations/oracles/index){target=_blank} — third-party services that provide external data to smart contracts within blockchains
+- [Indexing protocols](/builders/integrations/indexers/index){target=_blank} — middleware that processes and organizes blockchain data, allowing for it to be efficiently queried
+
+An excellent [Web2 to Web3 blogpost](https://moonbeam.network/blog/web2-vs-web3-development-heres-what-you-need-to-know-to-make-the-leap-to-blockchain/){target=_blank} is available if you are interested in hearing about them in depth.  
 
 Hopefully by reading this guide, you'll be well on your way to create novel DApps on Moonbeam!
