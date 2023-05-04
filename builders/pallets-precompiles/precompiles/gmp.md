@@ -6,7 +6,7 @@ keywords: solidity, ethereum, GMP, wormhole, moonbeam, bridge, connected, contra
 
 # Interacting with the GMP Precompile
 
-![GMP Precompile Moonbeam Banner](/images/builders/pallets-precompiles/precompiles/proxy/proxy-banner.png)
+![GMP Precompile Moonbeam Banner](/images/builders/pallets-precompiles/precompiles/gmp/gmp-banner.png)
 
 ## Introduction {: #introduction } 
 
@@ -41,11 +41,9 @@ The most common instance that someone will have to interact with the precompile 
 
 ## Building the Payload for Wormhole
 
-Currently the GMP precompile only supports sending liquidity through Wormhole. The process in which liquidity sent from an origin chain to a parachain through Wormhole looks like the following:  
+Currently the GMP precompile only supports sending liquidity through Wormhole.  
 
-**diagram goes here**  
-
-In the first step, a user must invoke the [`transferTokensWithPayload` method](https://book.wormhole.com/technical/evm/tokenLayer.html#contract-controlled-transfer){target=_blank} on the [WormholeTokenBridge smart contract](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/interfaces/ITokenBridge.sol){target=_blank}. It requires a bytes payload, which must be formatted as a SCALE encoded MultiLocation object wrapped within another versioned type.  
+To send liquidity, on the origin chain, users must invoke the [`transferTokensWithPayload` method](https://book.wormhole.com/technical/evm/tokenLayer.html#contract-controlled-transfer){target=_blank} on the [WormholeTokenBridge smart contract](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/interfaces/ITokenBridge.sol){target=_blank}. It requires a bytes payload, which must be formatted as a SCALE encoded MultiLocation object wrapped within another versioned type.  
 
 You may be unfamiliar with both SCALE encoding and MultiLocations if you are not familiar with the Polkadot ecosystem. [SCALE encoding](https://docs.substrate.io/reference/scale-codec/){target=_blank} is a compact form of encoding that Polkadot uses. The [MultiLocation type](https://wiki.polkadot.network/docs/learn-xcvm){target=_blank} is used to define a relative point in Polkadot, such as a specific account on a specific parachain (Polkadot blockchain).  
 
@@ -163,5 +161,3 @@ The GMP precompile is currently in its early stages. There are many restrictions
 - Errors in constructing a Multilocation will result in reverts, which will trap tokens and a loss of funds.
 - There is currently no recommended path backwards, from parachains to other chains like Ethereum. There is additional protocol level work that must be done before a one-click method can be realized.
     - Due to a restriction with the ERC-20 XC-assets, the only way to send tokens from a parachain back through Moonbeam is to have xcGLMR on the origin parachain and use it as a fee asset when sending tokens back.  
-
-## Sending Tokens Backwards
