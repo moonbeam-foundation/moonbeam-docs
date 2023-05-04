@@ -16,14 +16,6 @@ The GMP precompile acts as an interface for Moonbeam Routed Liquidity, acting as
 
 The GMP Precompile is located at the following address:  
 
-=== "Moonbeam"
-     ```
-     {{networks.moonbeam.precompiles.gmp}}
-     ```
-=== "Moonriver"
-     ```
-     {{networks.moonriver.precompiles.gmp}}
-     ```
 === "Moonbase Alpha"
      ```
      {{networks.moonbase.precompiles.gmp}}

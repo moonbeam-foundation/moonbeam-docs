@@ -414,4 +414,10 @@ After a few seconds to a minute, cross-chain messages should be properly relayed
 
 ![Message relay in the logs](/images/builders/interoperability/protocols/wormhole/wormhole-9.png)
 
+## Moonbeam Routed Liquidity Integration {: #moonbeam-routed-liquidity-integration }
+
+Wormhole will provide liquidity to parachains through the Moonbeam Routed Liquidity program. This program allows one-click transfers of liquidity from Wormhole connected chains into parachain wallets by sending liquidity through Moonbeam networks.  
+
+MRL utilizes the [GMP Precompile](/builders/pallets-precompiles/precompiles/gmp), whose documentation explains how cross-chain messages should be constructed to properly use. Currently only available on Moonbase Alpha.  
+
 --8<-- 'text/disclaimers/third-party-content.md'
