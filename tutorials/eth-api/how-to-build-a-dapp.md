@@ -68,7 +68,7 @@ If coming from traditional web development, smart contracts are meant to replace
 
 When you deploy a smart contract onto Moonbeam, you upload a series of instructions that can be understood by the EVM, or the Ethereum Virtual Machine. Whenever someone interacts with a smart contract, these transparent, tamper-proof, and immutable instructions are executed by the EVM to change the blockchain's state. Writing the instructions in a smart contract properly is very important since the blockchain's state defines the most crucial information about your DApp, such as who has what amount of money.  
 
-Since the instructions are difficult to write and make sense of at a low (assembly) level, we have smart contract languages such as Solidity to make it easier to write them. To help write, debug, test, and compile these smart contract languages, developers in the Ethereum community have created developer environments such as [HardHat](/tutorials/eth-api/hardhat-start-to-end){target=_blank} and [Foundry](/tutorials/eth-api/foundry-start-to-end){target=_blank}. Moonbeam's developer site provides information on a [plethora of developer environments](/builders/build/eth-api/dev-env){target=_blank}.    
+Since the instructions are difficult to write and make sense of at a low (assembly) level, we have smart contract languages such as Solidity to make it easier to write them. To help write, debug, test, and compile these smart contract languages, developers in the Ethereum community have created developer environments such as [Hardhat](/tutorials/eth-api/hardhat-start-to-end){target=_blank} and [Foundry](/tutorials/eth-api/foundry-start-to-end){target=_blank}. Moonbeam's developer site provides information on a [plethora of developer environments](/builders/build/eth-api/dev-env){target=_blank}.    
 
 This tutorial will use Hardhat for managing smart contracts. You can initialize a project with Hardhat using the following command. Be sure to add all additional dependencies that it suggests, including `hardhat-toolbox`:  
 
@@ -99,7 +99,7 @@ module.exports = {
 
 Recall that we're making a DApp that allows you to mint a token for a price. Let's write a smart contract that reflects this functionality!  
 
-Once you've initialized a HardHat project, you'll be able to write smart contracts in its `contracts` folder. This folder will have an initial smart contract, likely called `Lock.sol`, but you should delete it and add a new smart file called `MintableERC20.sol`.  
+Once you've initialized a Hardhat project, you'll be able to write smart contracts in its `contracts` folder. This folder will have an initial smart contract, likely called `Lock.sol`, but you should delete it and add a new smart file called `MintableERC20.sol`.  
 
 The standard for tokens is called `ERC-20`, where ERC stands for "*Ethereum Request for Comment*". A long time ago this standard was defined, and now most smart contracts that work with tokens expect tokens to have all of the functionality defined by `ERC-20`. Fortunately, you don't have to know it from memory since the OpenZeppelin smart contract team provides us with smart contract bases to use.  
 
@@ -123,7 +123,7 @@ contract MintableERC20 is ERC20, Ownable {
 }
 ```
 
-When writing smart contracts, you're going to have to compile eventually. Every developer environment for smart contracts will have this functionality. In HardHat, you can compile with:  
+When writing smart contracts, you're going to have to compile eventually. Every developer environment for smart contracts will have this functionality. In Hardhat, you can compile with:  
 
 ```bash
 npx hardhat compile
@@ -168,7 +168,7 @@ This function will allow a user to send gas currency (like GLMR, MOVR, or DEV) b
 3. The contract will then forward the gas currency included with the function call to the owner of the contract (by default, the address that deployed the contract, which will be you)
 4. Finally, tokens will be minted to the user and an event will be emitted to pick up on later  
 
-To make sure that this works, let's use HardHat again:  
+To make sure that this works, let's use Hardhat again:  
 
 ```
 npx hardhat compile
@@ -178,9 +178,9 @@ You've now written the smart contract for your DApp! If this were a production a
 
 ### Deploying Smart Contracts {: #deploying-smart-contracts }
 
-Under the hood, HardHat is a Node project that uses the [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank} library to interact with the blockchain. You can also use Ethers.js in conjunction with HardHat's tool to create scripts to do things like deploying contracts.  
+Under the hood, Hardhat is a Node project that uses the [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank} library to interact with the blockchain. You can also use Ethers.js in conjunction with Hardhat's tool to create scripts to do things like deploying contracts.  
 
-Your HardHat project should already come with a script in the `scripts` folder, called `deploy.js`. Let's replace it with a similar, albeit simpler script.
+Your Hardhat project should already come with a script in the `scripts` folder, called `deploy.js`. Let's replace it with a similar, albeit simpler script.
 
 ```javascript
 const hre = require("hardhat");
@@ -199,7 +199,7 @@ main().catch((error) => {
 });
 ```
 
-This script uses HardHat's instance of the Ethers library to get a contract factory of the `MintableERC20.sol` smart contract that we wrote earlier. It then deploys it and prints the resultant smart contract's address. Very simple to do with HardHat and the Ethers.js library, but significantly more difficult using just JSON-RPC!  
+This script uses Hardhat's instance of the Ethers library to get a contract factory of the `MintableERC20.sol` smart contract that we wrote earlier. It then deploys it and prints the resultant smart contract's address. Very simple to do with Hardhat and the Ethers.js library, but significantly more difficult using just JSON-RPC!  
 
 Let's run the contract on Moonbase Alpha (whose JSON-RPC endpoint we defined in the `hardhat.config.js` script earlier):  
 
@@ -210,7 +210,7 @@ npx hardhat run scripts/deploy.js --network moonbase
 You should see an output that displays the token address. Make sure to **save it for use later**! 
 
 !!! challenge
-    HardHat has a poor built-in solution for deploying smart contracts. It doesn't automatically save the transactions and addresses related to the deployment! This is why the [hardhat-deploy](https://www.npmjs.com/package/hardhat-deploy#1-hardhat-deploy){target=_blank} package was created. Can you implement it yourself? Or can you switch to a different developer environment like [Foundry](https://github.com/foundry-rs/foundry){target=_blank}?
+    Hardhat has a poor built-in solution for deploying smart contracts. It doesn't automatically save the transactions and addresses related to the deployment! This is why the [hardhat-deploy](https://www.npmjs.com/package/hardhat-deploy#1-hardhat-deploy){target=_blank} package was created. Can you implement it yourself? Or can you switch to a different developer environment like [Foundry](https://github.com/foundry-rs/foundry){target=_blank}?
 
 ## Creating a DApp Frontend {: #creating-a-dapp-frontend }
 
@@ -219,7 +219,7 @@ Frontends provide an interface for users to interact with blockchain-based appli
 !!! note
     Typically a larger project will create separate GitHub repositories for their frontend and smart contracts, but this is a small enough of a project to create a monorepo.
 
-Let's set up a new React project and install dependencies, which we can create within our HardHat project's folder without much issue. The `create-react-app` package will create a new `frontend` directory for us:  
+Let's set up a new React project and install dependencies, which we can create within our Hardhat project's folder without much issue. The `create-react-app` package will create a new `frontend` directory for us:  
 
 ```bash
 npx create-react-app frontend
@@ -709,7 +709,7 @@ Now you've implemented three main components of DApp frontends: reading from sto
 
 ## Conclusion
 
-In this tutorial, we covered a wide range of topics and tools essential for successful DApp development. We started with HardHat, a powerful development environment that simplifies the process of writing, testing, and deploying smart contracts. Ethers.js, a popular library for interacting with Ethereum nodes, was introduced for managing wallets and transactions.  
+In this tutorial, we covered a wide range of topics and tools essential for successful DApp development. We started with Hardhat, a powerful development environment that simplifies the process of writing, testing, and deploying smart contracts. Ethers.js, a popular library for interacting with Ethereum nodes, was introduced for managing wallets and transactions.  
 
 We delved into the process of writing smart contracts, highlighting best practices and key considerations when developing on-chain logic. The guide then explored useDApp, a React-based framework, for creating a user-friendly frontend. We discussed techniques for reading data from contracts, executing transactions, and working with logs to ensure a seamless user experience.
 
