@@ -393,7 +393,7 @@ That's it for testing! You can see the complete [`Container.t.sol` file](https:/
 
 ## Deploy in Foundry with Solidity Scripts {: #deploy-in-foundry-with-solidity-scripts }
 
-Not only are tests in Foundry written in Solidity, the scripts are too! Like other developer environments, scripts can be written to help interact with deployed smart contracts or can help along a complex deployment process that would be difficult to do manually. Even though scripts are written in Solidity, they are never deployed to a chain. Instead, much of the logic is actually run off-chain, so don't worry about any additional gas costs for using Foundry instead of a JavaScript environment like HardHat.  
+Not only are tests in Foundry written in Solidity, the scripts are too! Like other developer environments, scripts can be written to help interact with deployed smart contracts or can help along a complex deployment process that would be difficult to do manually. Even though scripts are written in Solidity, they are never deployed to a chain. Instead, much of the logic is actually run off-chain, so don't worry about any additional gas costs for using Foundry instead of a JavaScript environment like Hardhat.  
 
 ### Deploy on Moonbase Alpha {: #deploy-on-moonbase-alpha }
 
