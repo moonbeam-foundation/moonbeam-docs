@@ -10,11 +10,11 @@ keywords: solidity, ethereum, GMP, wormhole, moonbeam, bridge, connected, contra
 
 ## Introduction {: #introduction } 
 
-Moonbeam Routed Liquidity refers to Moonbeam’s use case as the port parachain for liquidity into other Polkadot parachains through a combination of chain-agnostic cross-chain protocols and XCMP. 
+Moonbeam Routed Liquidity (MRL) refers to Moonbeam’s use case as the port parachain for liquidity into other Polkadot parachains through a combination of chain-agnostic cross-chain protocols and XCMP. 
 
 The GMP precompile acts as an interface for Moonbeam Routed Liquidity, acting as a middleman between bridging protocols and parachains connected to Moonbeam via XCM. Currently the GMP precompile only supports the relaying of liquidity through Wormhole.
 
-The GMP Precompile is located at the following address:  
+The GMP Precompile is only available on Moonbase Alpha and is located at the following address:  
 
 === "Moonbase Alpha"
      ```
