@@ -356,7 +356,7 @@ By default, when you leave the Chisel shell, none of the data is persisted. But 
     !save 1
     ```
 
-3. Quit the sesseion  
+3. Quit the session  
     ```
     !quit
     ```
