@@ -95,3 +95,5 @@ You can find more information about Polkadot.js and the Substrate JSON RPC in th
 
 === "py-substrate-interface"
     --8<-- 'code/vs-ethereum/pysubstrateinterface.md'
+
+--8<-- 'text/disclaimers/third-party-content.md'
