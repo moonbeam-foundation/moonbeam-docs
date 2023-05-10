@@ -66,7 +66,7 @@ Now, these JSON-RPC requests are pretty useful, but when writing code, it can be
 
 Smart contracts are self-executing contracts with the terms of the agreement directly written into code. They serve as the decentralized backend of any DApp, automating and enforcing the business logic within the system.  
 
-If coming from traditional web development, smart contracts are meant to replace the backend with important caveats: the user must have the gas currency (GLMR, MOVR, DEV, etc.) to make state-changing requests, storing information can be expensive, and **no information stored is private**.  
+If coming from traditional web development, smart contracts are meant to replace the backend with important caveats: the user must have the native currency (GLMR, MOVR, DEV, etc.) to make state-changing requests, storing information can be expensive, and **no information stored is private**.  
 
 When you deploy a smart contract onto Moonbeam, you upload a series of instructions that can be understood by the EVM, or the Ethereum Virtual Machine. Whenever someone interacts with a smart contract, these transparent, tamper-proof, and immutable instructions are executed by the EVM to change the blockchain's state. Writing the instructions in a smart contract properly is very important since the blockchain's state defines the most crucial information about your DApp, such as who has what amount of money.  
 
@@ -94,14 +94,14 @@ Before we start writing the smart contract, let's add a JSON-RPC URL to the conf
     This is for testing purposes, **never store your private key in plain text with real funds**.  
 
 ```javascript
-require("@nomicfoundation/hardhat-toolbox");
+require('@nomiclabs/hardhat-ethers');
 module.exports = {
-  solidity: "0.8.17",
+  solidity: '0.8.17',
   networks: {
     moonbase: {
-      url: "{{ networks.moonbase.rpc_url }}",
+      url: '{{ networks.moonbase.rpc_url }}',
       chainId: {{ networks.moonbase.chain_id }},
-      accounts: ["YOUR_PRIVATE_KEY"]
+      accounts: ['YOUR_PRIVATE_KEY']
     }
   }
 };
@@ -147,17 +147,16 @@ Let's continue by adding functionality. Add the following constants, errors, eve
 
 ```solidity
     uint256 public constant MAX_TO_MINT = 1000 ether;
-    uint256 public constant NATIVE_TO_TOKEN = 1 ether;
 
     event PurchaseOccurred(address minter, uint256 amount);
     error MustMintOverZero();
     error MintRequestOverMax();
     error FailedToSendEtherToOwner();
 
-    /**Purchases some of the token with native gas currency. */
+    /**Purchases some of the token with native currency. */
     function purchaseMint() payable external {
         // Calculate amount to mint
-        uint256 amountToMint = msg.value / NATIVE_TO_TOKEN;
+        uint256 amountToMint = msg.value;
 
         // Check for no errors
         if(amountToMint == 0) revert MustMintOverZero();
@@ -173,11 +172,50 @@ Let's continue by adding functionality. Add the following constants, errors, eve
     }
 ```
 
-This function will allow a user to send gas currency (like GLMR, MOVR, or DEV) because it is a payable function. Let's break down the function section by section.  
+??? code "MintableERC20.sol file"
+    ```
+    // SPDX-License-Identifier: UNLICENSED
+    pragma solidity ^0.8.17;
 
-1. It will figure out how much of the token to mint based on how much gas currency was sent
+    import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+    import "@openzeppelin/contracts/access/Ownable.sol";
+
+    contract MintableERC20 is ERC20, Ownable {
+        constructor() ERC20("Mintable ERC 20", "MERC") {}
+
+        uint256 public constant MAX_TO_MINT = 1000 ether;
+
+        event PurchaseOccurred(address minter, uint256 amount);
+        error MustMintOverZero();
+        error MintRequestOverMax();
+        error FailedToSendEtherToOwner();
+
+        /**Purchases some of the token with native gas currency. */
+        function purchaseMint() external payable {
+            // Calculate amount to mint
+            uint256 amountToMint = msg.value;
+
+            // Check for no errors
+            if (amountToMint == 0) revert MustMintOverZero();
+            if (amountToMint + totalSupply() > MAX_TO_MINT)
+                revert MintRequestOverMax();
+
+            // Send to owner
+            (bool success, ) = owner().call{value: msg.value}("");
+            if (!success) revert FailedToSendEtherToOwner();
+
+            // Mint to user
+            _mint(msg.sender, amountToMint);
+            emit PurchaseOccurred(msg.sender, amountToMint);
+        }
+    }
+    ```
+
+This function will allow a user to send the native Moonbeam currency (like GLMR, MOVR, or DEV) as value because it is a payable function. Let's break down the function section by section.  
+
+1. It will figure out how much of the token to mint based on the value sent
 2. Then it will check to see if the amount minted is 0 or if the total amount minted is over the `MAX_TO_MINT`, giving a descriptive error in both cases
-3. The contract will then forward the gas currency included with the function call to the owner of the contract (by default, the address that deployed the contract, which will be you)
+3. The contract will then forward the value included with the function call to the owner of the contract (by default, the address that deployed the contract, which will be you)
 4. Finally, tokens will be minted to the user, and an event will be emitted to pick up on later  
 
 To make sure that this works, let's use Hardhat again:  
@@ -238,12 +276,12 @@ Let's set up a new React project and install dependencies, which we can create w
 ```bash
 npx create-react-app frontend
 cd frontend
-npm install ethers@5.6.9 @usedapp/core @mui/material @mui/system 
+npm install ethers@5.6.9 @usedapp/core @mui/material @mui/system @emotion/react @emotion/styled
 ```
 
 If you remember, [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=_blank} is a library that assists with JSON-RPC communication. The useDApp package is a similar library that uses Ethers.js and formats them into React hooks so that they work better in frontend projects. We've also added two [MUI](https://mui.com/){target=_blank} packages for styling and components.
 
-Let's set up the `App.js` file to add some visual structure:
+Let's set up the `App.js` file located in the `frontend/src` directory to add some visual structure:
 
 ```javascript
 import { useEthers } from '@usedapp/core';
@@ -253,6 +291,8 @@ import { Box } from '@mui/system';
 const styles = {
   box: { minHeight: '100vh', backgroundColor: '#1b3864' },
   vh100: { minHeight: '100vh' },
+  card: { borderRadius: 4, padding: 4, maxWidth: '550px', width: '100%' },
+  alignCenter: { textAlign: 'center' },
 };
 
 function App() {
@@ -270,7 +310,20 @@ function App() {
     </Box>
   );
 }
+
+export default App;
 ```
+
+You can start the React project by running the following command from within the `frontend` directory:
+
+```
+npm run start
+```
+
+!!! note
+    At this point, you may see a couple compilation warnings, but as we continue to build the DApp, we'll make changes that will resolve the warnings.
+
+Your frontend will be available at [localhost:3000](http://localhost:3000){target=_blank}.
 
 At this point, our frontend project is set up well enough to start working on the functional code!  
 
@@ -322,10 +375,12 @@ Fortunately, we have installed the useDApp package, which simplifies many of the
 
 #### Create a Provider {: #create-provider }
 
-Let's do a bit of setup with the useDApp package. First, in your React frontend's `index.js` file, add a `DAppProvider` object and its config. This essentially acts as the Ethers.js provider object, but can be used throughout your entire project by useDApp hooks:  
+Let's do a bit of setup with the useDApp package. First, in your React frontend's `index.js` file, which is located in the `frontend/src` directory, add a `DAppProvider` object and its config. This essentially acts as the Ethers.js provider object, but can be used throughout your entire project by useDApp hooks:  
 
 ```javascript
-// ... other imports go here
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
 import { DAppProvider, MoonbaseAlpha } from '@usedapp/core';
 import { getDefaultProvider } from 'ethers';
 
@@ -373,10 +428,9 @@ function App() {
       >
         <Box position='absolute' top={8} right={16}>
           <Button variant='contained' onClick={handleWalletConnection}>
-            {account ?
-              `Disconnect ${account.substring(0, 5)}...`
-              :
-              'Connect Wallet'}
+            {account
+              ? `Disconnect ${account.substring(0, 5)}...`
+              : 'Connect Wallet'}
           </Button>
         </Box>
       </Grid>
@@ -389,20 +443,41 @@ Now there should be a button in the top right of your screen that connects your 
 
 ### Read Data from Smart Contracts {: #reading-from-contracts }
 
-Reading from contracts is quite easy, as long as we know what we want to read. For our application, we will be reading the maximum amount of tokens that can be minted and the number of tokens that have been minted. This way, we can display to our users how many tokens can still be minted and hopefully invoke some FOMO...  
+Reading from contracts is quite easy, as long as we know what we want to read. For our application, we will be reading the maximum amount of tokens that can be minted and the number of tokens that have already been minted. This way, we can display to our users how many tokens can still be minted and hopefully invoke some FOMO...  
 
 If you were just using JSON-RPC, you would use `eth_call` to get this data, but it's quite difficult to do this since you have to [encode your requests](https://docs.soliditylang.org/en/latest/abi-spec.html){target=_blank} in a non-straightforward method called ABI encoding. Fortunately, Ethers.js allows us to easily create objects that represent contracts in a human-readable way, so long as we have the ABI of the contract. And we have the ABI of the `MintableERC20.sol` contract, `MintableERC20.json`, within the `artifacts` directory of our Hardhat project!
 
-We'll create a component to retrieve and display the amount of tokens that can still be minted, but first we'll set up the contract instance of `MintableERC20.sol` so we can pass the instance to our new component, where it can be used to retrieve the token data.
+So let's start by moving the `MintableERC20.json` file into our frontend directory. Every time you change and recompile the smart contract, you'll have to update the ABI in the frontend as well. Some projects will have developer setups that automatically pull ABIs from the same source, but in this case we will just copy it over:  
+
+```JSON
+|--artifacts
+    |--@openzeppelin
+    |--build-info
+    |--contracts
+        |--MintableERC20.sol
+            |--MintableERC20.json // This is the file you're looking for!
+            ...
+|--cache
+|--contracts
+|--frontend
+    |--public
+    |--src
+        |--MintableERC20.json // Copy the file to here!
+        ...
+    ...
+...
+```
+
+Now that we have the ABI, we can use it to create a contract instance of `MintableERC20.sol`, which we'll use to retrieve token data.
 
 #### Create a Smart Contract Instance {: #create-a-contract-instance }
 
-Let's import the JSON file and the Ethers `Contract` object within `App.js`. We can create a contract object instance with an address and ABI, so replace `YOUR_CONTRACT_ADDRESS_HERE` with the address of the contract that you copied [back when you deployed it](#deploying-smart-contracts):  
+Let's import the JSON file and the Ethers `Contract` object within `App.js`. We can create a contract object instance with an address and ABI, so replace `YOUR_CONTRACT_ADDRESS_HERE` with the address of the contract that you copied [back when you deployed it](#deploying-smart-contracts):
 
 ```javascript
-import { Contract } from 'ethers';
-import MintableERC20 from '../../artifacts/contracts/MintableERC20.sol/MintableERC20.json';
 // ... other imports
+import MintableERC20 from './MintableERC20.json'; 
+import { Contract } from 'ethers';
 
 const contractAddress = 'YOUR_CONTRACT_ADDRESS_HERE';
 
@@ -412,32 +487,61 @@ function App() {
 }
 ```
 
-Now we can spice up our frontend and call the read-only functions in the contract. Add the following structure and styling to your frontend so that we have a place to display our text:
+??? code "App.js file"
 
-```javascript
-const styles = {
-  // ...
-  card: { borderRadius: 4, padding: 4, maxWidth: '550px', width: '100%' },
-  alignCenter: { textAlign: 'center' }
-};
+    ```js
+    import { useEthers } from '@usedapp/core';
+    import { Button, Grid, Card } from '@mui/material';
+    import { Box } from '@mui/system';
+    import { Contract } from 'ethers';
+    import MintableERC20 from './MintableERC20.json'; 
 
-function App() {
-  // ...
+    const styles = {
+      box: { minHeight: '100vh', backgroundColor: '#1b3864' },
+      vh100: { minHeight: '100vh' },
+      card: { borderRadius: 4, padding: 4, maxWidth: '550px', width: '100%' },
+      alignCenter: { textAlign: 'center' },
+    };
 
-  return (
-    {/* Wrapper Components */}
-      {/* Button Component */}
-      <Card sx={styles.card}>
-        <h1 style={styles.alignCenter}>Mint Your Token!</h1>
-      </Card>
-    {/* Wrapper Components */}
-  )
-}
-```
+    const contractAddress = 'YOUR_CONTRACT_ADDRESS_HERE';
+
+    function App() {
+      const contract = new Contract(contractAddress, MintableERC20.abi);
+      const { activateBrowserWallet, deactivate, account } = useEthers();
+
+      // Handle the wallet toggle
+      const handleWalletConnection = () => {
+        if (account) deactivate();
+        else activateBrowserWallet();
+      };
+
+      return (
+        <Box sx={styles.box}>
+          <Grid
+            container
+            direction='column'
+            alignItems='center'
+            justifyContent='center'
+            style={styles.vh100}
+          >
+            <Box position='absolute' top={8} right={16}>
+              <Button variant='contained' onClick={handleWalletConnection}>
+                {account
+                  ? `Disconnect ${account.substring(0, 5)}...`
+                  : 'Connect Wallet'}
+              </Button>
+            </Box>
+          </Grid>
+        </Box>
+      );
+    }
+
+    export default App;
+    ```
 
 #### Interact with the Contract Interface to Read Supply Data {: #interact-with-contract-interface }
 
-And let's create a new `SupplyComponent` within a new `SupplyComponent.js` file:  
+And let's create a new `SupplyComponent` within a new `SupplyComponent.js` file, which will use the contract interface to retrieve the token supply data and display it:  
 
 ```javascript
 import { useCall } from '@usedapp/core';
@@ -470,7 +574,26 @@ Notice that this component uses the `useCall` hook provided by the useDApp packa
 
 Also note that we're using a utility format called `formatEther` to format the output values instead of displaying them directly. This is because our token, like gas currencies, is stored as an unsigned integer with a fixed decimal point of 18 figures. The utility function helps format this value into a way that we, as humans, expect.  
 
-You should also import it into our `App.js` file.  
+Now we can spice up our frontend and call the read-only functions in the contract. We'll update the frontend so that we have a place to display our supply data:
+
+```javascript
+// ... other imports
+import SupplyComponent from './SupplyComponent';
+
+function App() {
+  // ...
+
+  return (
+    {/* Wrapper Components */}
+      {/* Button Component */}
+      <Card sx={styles.card}>
+        <h1 style={styles.alignCenter}>Mint Your Token!</h1>
+        <SupplyComponent contract={contract} />
+      </Card>
+    {/* Wrapper Components */}
+  )
+}
+```
 
 ??? code "App.js file"
 
@@ -479,8 +602,8 @@ You should also import it into our `App.js` file.
     import { Button, Grid, Card } from '@mui/material';
     import { Box } from '@mui/system';
     import { Contract } from 'ethers';
-    import MintableERC20 from '../../artifacts/contracts/MintableERC20.sol/MintableERC20.json';
-    import { SupplyComponent } from './SupplyComponent';
+    import MintableERC20 from './MintableERC20.json'; 
+    import SupplyComponent from './SupplyComponent';
 
     const styles = {
       box: { minHeight: '100vh', backgroundColor: '#1b3864' },
@@ -539,7 +662,7 @@ Our frontend should now display the correct data!
 
 Now for the most important part of all DApps: the state-changing transactions. This is where money moves, where tokens are minted, and value passes.  
 
-If you recall from our smart contract, we want to mint some tokens by calling the `purchaseMint` function with some native gas currency. So we're going to need:  
+If you recall from our smart contract, we want to mint some tokens by calling the `purchaseMint` function with some native currency. So we're going to need:  
 
 1. A text input that lets the user specify how much value to enter  
 2. A button that lets the user initiate the transaction signature
@@ -548,10 +671,10 @@ Let's create a new component called `MintingComponent` in a new file called `Min
 
 
 ```javascript
-import { useState } from "react";
-import { useContractFunction, useEthers } from "@usedapp/core";
-import { Button, CircularProgress, TextField, Grid } from "@mui/material";
-import { utils } from "ethers";
+import { useState } from 'react';
+import { useContractFunction, useEthers } from '@usedapp/core';
+import { Button, CircularProgress, TextField, Grid } from '@mui/material';
+import { utils } from 'ethers';
 
 export default function MintingComponent({ contract }) {
   const [value, setValue] = useState(0);
@@ -561,10 +684,10 @@ export default function MintingComponent({ contract }) {
     <>
       <Grid item xs={12}>
         <TextField 
-          type="number"
+          type='number'
           onChange={(e) => setValue(e.target.value)}
-          label="Enter value in DEV"
-          variant="outlined"
+          label='Enter value in DEV'
+          variant='outlined'
           fullWidth
           style={textFieldStyle} 
         />
@@ -584,7 +707,12 @@ export default function MintingComponent({ contract }) {
   // Mint transaction
   const { account } = useEthers();
   const { state, send } = useContractFunction(contract, 'purchaseMint');
-  const handlePurchaseMint = () => send({ value: utils.parseEther(value.toString()) });
+  const handlePurchaseMint = async () => {
+    if (chainId !== MoonbaseAlpha.chainId) {
+      await switchNetwork(MoonbaseAlpha.chainId);
+    }
+    send({ value: utils.parseEther(value.toString()) });
+  };
   const isMining = state?.status === 'Mining';
 
   return (
@@ -592,7 +720,7 @@ export default function MintingComponent({ contract }) {
       {/* ... */}
       <Grid item xs={12}>
         <Button
-          variant="contained" color="primary" fullWidth
+          variant='contained' color='primary' fullWidth
           onClick={handlePurchaseMint}
           disabled={state.status === 'Mining' || account == null}
         >
@@ -607,10 +735,10 @@ export default function MintingComponent({ contract }) {
 ??? code "MintingComponent.js file"
 
     ```js
-    import { useState } from "react";
-    import { useContractFunction, useEthers } from "@usedapp/core";
-    import { Button, CircularProgress, TextField, Grid } from "@mui/material";
-    import { utils } from "ethers";
+    import { useState } from 'react';
+    import { useContractFunction, useEthers } from '@usedapp/core';
+    import { Button, CircularProgress, TextField, Grid } from '@mui/material';
+    import { utils } from 'ethers';
 
     export default function MintingComponent({ contract }) {
       const [value, setValue] = useState(0);
@@ -618,24 +746,29 @@ export default function MintingComponent({ contract }) {
 
       const { account } = useEthers();
       const { state, send } = useContractFunction(contract, 'purchaseMint');
-      const handlePurchaseMint = () => send({ value: utils.parseEther(value.toString()) });
+      const handlePurchaseMint = async () => {
+        if (chainId !== MoonbaseAlpha.chainId) {
+          await switchNetwork(MoonbaseAlpha.chainId);
+        }
+        send({ value: utils.parseEther(value.toString()) });
+      };
       const isMining = state?.status === 'Mining';
 
       return (
         <>
           <Grid item xs={12}>
             <TextField 
-              type="number"
+              type='number'
               onChange={(e) => setValue(e.target.value)}
-              label="Enter value in DEV"
-              variant="outlined"
+              label='Enter value in DEV'
+              variant='outlined'
               fullWidth
               style={textFieldStyle} 
             />
           </Grid>
           <Grid item xs={12}>
             <Button
-              variant="contained" color="primary" fullWidth
+              variant='contained' color='primary' fullWidth
               onClick={handlePurchaseMint}
               disabled={state.status === 'Mining' || account == null}
             >
@@ -649,9 +782,9 @@ export default function MintingComponent({ contract }) {
 
 Let's break down the non-JSX code a bit:  
 
-1. The user's account information is being retrieved via `useEthers`, which can be done because useDApp provides this information throughout the entire project 
+1. The user's account information is being retrieved via `useEthers`, which can be done because useDApp provides this information throughout the entire project
 2. The `useContractFunction` hook from useDApp is used to create a function, `send`, that will sign and send a transaction that calls the `purchaseMint` function on the contract defined by the `contract` object
-3. Another function, `handlePurchaseMint`, is defined to help inject the native gas value defined by the `TextField` component into the `send` function
+3. Another function, `handlePurchaseMint`, is defined to help inject the native gas value defined by the `TextField` component into the `send` function. It first checks if the user has their wallet connected to Moonbase Alpha, and if not, it prompts the user to switch networks
 4. A helper constant will determine whether or not the transaction is still in the `Mining` phase, that is, it hasn't finished
 
 Now let's look at the visual component. The button will call the `handlePurchaseMint` on press, which makes sense. The button will also be disabled while the transaction happens and if the user hasn't connected to the DApp with their wallet (when the account value isn't defined).  
@@ -660,7 +793,7 @@ This code essentially boils down to using the `useContractFunction` hook in conj
 
 ```javascript
 // ... other imports
-import { MintingComponent } from './MintingComponent.js';
+import MintingComponent from './MintingComponent';
 
 function App() {
   // ...
@@ -685,9 +818,9 @@ function App() {
     import { Button, Grid, Card } from '@mui/material';
     import { Box } from '@mui/system';
     import { Contract } from 'ethers';
-    import MintableERC20 from '../../artifacts/contracts/MintableERC20.sol/MintableERC20.json';
-    import { SupplyComponent } from './SupplyComponent';
-    import { MintingComponent } from './MintingComponent.js';
+    import MintableERC20 from './MintableERC20.json'; 
+    import SupplyComponent from './SupplyComponent';
+    import MintingComponent from './MintingComponent';
 
     const styles = {
       box: { minHeight: '100vh', backgroundColor: '#1b3864' },
@@ -759,7 +892,6 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Paper,
 } from '@mui/material';
 
 export default function PurchaseOccurredEvents({ contract }) {
@@ -770,7 +902,7 @@ export default function PurchaseOccurredEvents({ contract }) {
           <TableHead>
             <TableRow>
               <TableCell>Minter</TableCell>
-              <TableCell align="right">Amount</TableCell>
+              <TableCell align='right'>Amount</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -791,7 +923,7 @@ export default function PurchaseOccurredEvents({ contract }) {
   const blockNumber = useBlockNumber();
 
   // Create a filter & get the logs
-  const filter = { args: [null, null], contract, event: "PurchaseOccurred" };
+  const filter = { args: [null, null], contract, event: 'PurchaseOccurred' };
   const logs = useLogs(filter, { fromBlock: blockNumber - 10000 });
   const parsedLogs = logs?.value.slice(-5).map(log => log.data);
 
@@ -846,7 +978,6 @@ export default function PurchaseOccurredEvents({ contract }) {
       TableContainer,
       TableHead,
       TableRow,
-      Paper,
     } from '@mui/material';
 
     export default function PurchaseOccurredEvents({ contract }) {
@@ -888,7 +1019,7 @@ This too should be added to `App.js`.
 
 ```javascript
 // ... other imports
-import { PurchaseOccurredEvents } from './PurchaseOccurredEvents.js';
+import PurchaseOccurredEvents from './PurchaseOccurredEvents';
 
 function App() {
   // ...
@@ -914,10 +1045,10 @@ function App() {
     import { Button, Grid, Card } from '@mui/material';
     import { Box } from '@mui/system';
     import { Contract } from 'ethers';
-    import MintableERC20 from '../../artifacts/contracts/MintableERC20.sol/MintableERC20.json';
-    import { SupplyComponent } from './SupplyComponent';
-    import { MintingComponent } from './MintingComponent.js';
-    import { PurchaseOccurredEvents } from './PurchaseOccurredEvents.js';
+    import MintableERC20 from './MintableERC20.json'; 
+    import SupplyComponent from './SupplyComponent';
+    import MintingComponent from './MintingComponent';
+    import PurchaseOccurredEvents from './PurchaseOccurredEvents';
 
     const styles = {
       box: { minHeight: '100vh', backgroundColor: '#1b3864' },
@@ -971,7 +1102,9 @@ And, if you've done any transactions, you'll see that they'll pop up!
 
 ![Finished DApp](/images/tutorials/eth-api/how-to-build-a-dapp/how-to-build-a-dapp-5.png)
 
-Now you've implemented three main components of DApp frontends: reading from storage, sending transactions, and reading logs. With these building blocks as well as the knowledge you gained with smart contracts and nodes, you should be able to cover 80% of DApps.  
+Now you've implemented three main components of DApp frontends: reading from storage, sending transactions, and reading logs. With these building blocks as well as the knowledge you gained with smart contracts and nodes, you should be able to cover 80% of DApps.
+
+You can view the complete [example DApp on GitHub](https://github.com/jboetticher/complete-example-dapp){target=_blank}.
 
 ## Conclusion {: #conclusion }
 
@@ -979,7 +1112,7 @@ In this tutorial, we covered a wide range of topics and tools essential for succ
 
 We delved into the process of writing smart contracts, highlighting best practices and key considerations when developing on-chain logic. The guide then explored useDApp, a React-based framework, for creating a user-friendly frontend. We discussed techniques for reading data from contracts, executing transactions, and working with logs to ensure a seamless user experience.
 
-Of course, there are more advanced (but optional) components of DApps that have popped up over time: 
+Of course, there are more advanced (but optional) components of DApps that have popped up over time:
 
 - Decentralized storage protocols — systems that store websites and files in a decentralized way
 - [Oracles](/builders/integrations/oracles/index){target=_blank} — third-party services that provide external data to smart contracts within blockchains
