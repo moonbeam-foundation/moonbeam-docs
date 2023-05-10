@@ -7,11 +7,11 @@ template: main.html
 # Remote Staking via XCM
 
 ![Banner Image](/images/tutorials/interoperability/remote-staking-via-xcm/remote-staking-via-xcm-banner.png)
-_May 5, 2023 | by Kevin Neilson_
+_December 14, 2022 | by Kevin Neilson_
 
 ## Introduction {: #introduction } 
 
-In this tutorial, we’ll stake DEV tokens on Moonbase Alpha by sending XCM instructions remotely from an account on the Statemint Alphanet parachain chain. This tutorial assumes a basic familiarity with [XCM](/builders/interoperability/xcm/overview/){target=_blank} and [Remote Execution via XCM](/builders/interoperability/xcm/xcm-transactor/){target=_blank}. You don’t have to be an expert on these topics but you may find it helpful to have some XCM knowledge as background. 
+In this tutorial, we’ll stake DEV tokens remotely by sending XCM instructions from an account on the Moonbase relay chain (equivalent to the Polkadot relay chain). This tutorial assumes a basic familiarity with [XCM](/builders/interoperability/xcm/overview/){target=_blank} and [Remote Execution via XCM](/builders/interoperability/xcm/xcm-transactor/){target=_blank}. You don’t have to be an expert on these topics but you may find it helpful to have some XCM knowledge as background. 
 
 There are actually two possible approaches for staking on Moonbeam remotely via XCM. We could send a [remote EVM call](/builders/interoperability/xcm/remote-evm-calls/){target=_blank} that calls the [staking precompile](/builders/pallets-precompiles/precompiles/staking/){target=_blank}, or we could use XCM to call the [parachain staking pallet](/builders/pallets-precompiles/pallets/staking/){target=_blank} directly without interacting with the EVM. For this tutorial, we’ll be taking the latter approach and interacting with the parachain staking pallet directly. 
 
@@ -21,31 +21,31 @@ There are actually two possible approaches for staking on Moonbeam remotely via 
 
 For development purposes this tutorial is written for Moonbase Alpha and Moonbase relay using TestNet funds. For prerequisites:
 
-- A Statemint Alphanet parachain account funded with some UNIT, the native token of Statemint Alphanet. If you have a Moonbase Alpha account funded with DEV tokens, you can swap some DEV for xcUNIT here on [Moonbeam Swap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}. Then withdraw the xcUNIT from Moonbase Alpha to [your account on the Statemint Alphanet](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-sm-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} using [apps.moonbeam.network](https://apps.moonbeam.network/moonbase-alpha/){target=_blank} 
+- A Moonbase Alpha relay chain account funded with some UNIT, the native token of the Moonbase relay chain. If you have a Moonbase Alpha account funded with DEV tokens, you can swap some DEV for xcUNIT here on [Moonbeam Swap](https://moonbeam-swap.netlify.app/#/swap){target=_blank}. Then withdraw the xcUNIT from Moonbase Alpha to [your account on the Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} using [apps.moonbeam.network](https://apps.moonbeam.network/moonbase-alpha/){target=_blank} 
 - You'll need to [calculate the multilocation derivative account](#calculating-your-multilocation-derivative-account) of your Moonbase Alpha relay chain account and fund it with DEV tokens.
 --8<-- 'text/faucet/faucet-list-item.md'
 
 ## Calculating your Multilocation Derivative Account {: #calculating-your-multilocation-derivative-account }
 
---8<-- 'text/xcm/calculate-multilocation-derivative-account2.md'
+--8<-- 'text/xcm/calculate-multilocation-derivative-account.md'
 
-The script will return 32-byte and 20-byte addresses. We’re interested in the Ethereum-style account - the 20-byte one. Feel free to look up your multilocation derivative account on [Moonscan](https://moonbase.moonscan.io/){target=_blank}. You’ll note that this account is empty. You’ll now need to fund this account with at least 1.1 DEV, which you can retrieve from the [faucet](https://faucet.moonbeam.network/){target=_blank}. If you're looking for more DEV tokens, you can always reach out to us on [Discord](https://discord.com/invite/amTRXQ9ZpW){target=_blank}.
+The script will return 32-byte and 20-byte addresses. We’re interested in the Ethereum-style account - the 20-byte one. Feel free to look up your multilocation derivative account on [Moonscan](https://moonbase.moonscan.io/){target=_blank}. You’ll note that this account is empty. You’ll now need to fund this account with at least 1.1 DEV. As this is the amount that the faucet dispenses, you'll need to make a minimum of two faucet requests or you can always reach out to us on [Discord](https://discord.com/invite/amTRXQ9ZpW){target=_blank} for additional DEV tokens.
 
 ## Preparing to Stake on Moonbase Alpha {: #preparing-to-stake-on-moonbase-alpha }
 
-First and foremost, you’ll need the address of the collator you want to delegate to. To locate it, head to the [Moonbase Alpha Staking dApp](https://apps.moonbeam.network/moonbase-alpha/staking){target=_blank} in a second window. Ensure you’re on the correct network, then press **Select a Collator**. Next to your desired collator, press the **Copy** icon. You’ll also need to make a note of the number of delegations your collator has. The [PS-31 collator](https://moonbase.subscan.io/account/0x3A7D3048F3CB0391bb44B518e5729f07bCc7A45D){target=_blank} shown below has `64` delegations at the time of writing. 
+First and foremost, you’ll need the address of the collator you want to delegate to. To locate it, head to the [Moonbase Alpha Staking dApp](https://apps.moonbeam.network/moonbase-alpha/staking){target=_blank} in a second window. Ensure you’re on the correct network, then press **Select a Collator**. Next to your desired collator, press the **Copy** icon. You’ll also need to make a note of the number of delegations your collator has. The [PS-31 collator](https://moonbase.subscan.io/account/0x3A7D3048F3CB0391bb44B518e5729f07bCc7A45D){target=_blank} shown below has `60` delegations at the time of writing. 
 
 ![Moonbeam Network Apps Dashboard](/images/tutorials/interoperability/remote-staking-via-xcm/xcm-stake-1.png)
 
 ## Remote Staking via XCM with the Polkadot.js API {: #remote-staking-via-xcm-with-the-polkadot-api }
 
-This tutorial will cover the two-step process to perform remote staking operations. The first step we'll take is to generate the encoded call data for delegating a collator. Secondly, we'll send the encoded call data via XCM from Statemine Alphanet to Moonbase Alpha, which will result in the execution of the delegation.
+This tutorial will cover the two-step process to perform remote staking operations. The first step we'll take is to generate the encoded call data for delegating a collator. Secondly, we'll send the encoded call data via XCM from the relay chain to Moonbase Alpha, which will result in the execution of the delegation.
 
 ### Generate the Encoded Call Data {: #generate-encoded-call-data }
 
 We'll be using the `delegate` function of the [Parachain Staking Pallet](/builders/pallets-precompiles/pallets/staking){target=_blank}, which accepts four parameters: `candidate`, `amount`, `candidateDelegationCount`, and `delegationCount`.
 
-In order to generate the encoded call data, we'll need to assemble the arguments for each of the `delegate` parameters and use them to build a transaction which will call the `delegate` function. We are not submitting a transaction, but simply preparing one to get the encoded call data. We'll take the following steps to build our script:
+In order to generate the encoded call data, we'll need to assemble the arugments for each of the `delegate` parameters and use them to build a transaction which will call the `delegate` function. We are not submitting a transaction, but simplying preparing one to get the encoded call data. We'll take the following steps to build our script:
 
 1. Create a [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=_blank} provider
 2. Assemble the arguments for each of the parameters of the `delegate` function:
@@ -75,14 +75,14 @@ If you'd prefer not to set up a local environment, you can run a code snippet in
 
 ### Assemble and Send XCM Instructions via the Polkadot.js API {: #sending-the-xcm-instructions-via-the-polkadot-api }
 
-In this section, we'll be using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=_blank} to construct and send XCM instructions via the `send` extrinsic of the polkadotXCM pallet on the Statemint Alphanet parachain. The XCM message will transport our remote execution instructions to the Moonbase Alpha parachain to ultimately stake our desired amount of DEV tokens to a chosen collator. 
+In this section, we'll be using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=_blank} to construct and send XCM instructions via the `send` extrinsic of the XCM Pallet on the Alphanet relay chain. The XCM message will transport our remote execution instructions to the Moonbase Alpha parachain to ultimately stake our desired amount of DEV tokens to a chosen collator. 
 
-The `send` function of the polkadotXCM pallet accepts two parameters: `dest` and `message`. You can start assembling these parameters by taking the following steps:
+The `send` function of the XCM Pallet accepts two parameters: `dest` and `message`. You can start assembling these parameters by taking the following steps:
 
 1. Build the multilocation of the DEV token on Moonbase Alpha for the `dest`:
 
     ```js
-    const dest = { V3: { parents: 1, interior: { X1: { Parachain: 1000 } } } };
+    const dest = { V3: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
     ```
 
 2. Build the `WithdrawAsset` instruction, which will require you to define:
@@ -133,7 +133,7 @@ The `send` function of the polkadotXCM pallet accepts two parameters: `dest` and
         requireWeightAtMost: { refTime: 40000000000n, proofSize: 0n },
         call: {
           encoded:
-            '0x0c113a7d3048f3cb0391bb44b518e5729f07bcc7a45d000064a7b3b6e00d00000000000000002c01000064000000',
+            '0x0c113a7d3048f3cb0391bb44b518e5729f07bcc7a45d000064a7b3b6e00d00000000000000002c01000025000000',
         },
       },
     },    
