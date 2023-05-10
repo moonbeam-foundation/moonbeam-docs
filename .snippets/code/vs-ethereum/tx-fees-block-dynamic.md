@@ -14,6 +14,13 @@ const endpointPallet =
 // Endpoint to retrieve the node client's information
 const endpointNodeVersion = 'http://127.0.0.1:8080/node/version';
 
+// Define the minimum base fee for each network
+const baseFee = {
+  moonbeam: 125000000000n,
+  moonriver: 1250000000n,
+  moonbase: 125000000n
+}
+
 async function main() {
   try {
     // Create a variable to sum the transaction fees in the whole block
@@ -80,8 +87,9 @@ async function main() {
           transactionData['maxPriorityFeePerGas'] = BigInt(
             extrinsic.args.transaction.eip1559.maxPriorityFeePerGas
           );
+          // Update based on the network you're getting tx fees for
           transactionData['baseFee'] =
-            (BigInt(response_pallet.data.value) * 1250000000n) /
+            (BigInt(response_pallet.data.value) * baseFee.moonbeam) /
             BigInt('1000000000000000000');
 
           // Gas price dependes on the MaxFeePerGas and MaxPriorityFeePerGas set

@@ -7,7 +7,7 @@ description: Follow a step-by-step tutorial on how to use Foundry to build a pro
 
 ![Banner Image](/images/tutorials/eth-api/foundry-start-to-end/foundry-banner.png)
 
-_January 10, 2022 | by Jeremy Boetticher_
+_January 10, 2023 | by Jeremy Boetticher_
 
 ## Introduction {: #introduction } 
 
@@ -375,7 +375,7 @@ Let's add a new test function to the `ContainerTest` smart contract in `Containe
     }
 ```
 
-The first step (and thus first line) in this function is to have the test function fork a network with `vm.createFork`. Recall that `vm` is a cheatcode provided by the Forge standard library. All that's necessary to create a fork is an RPC URL, or an alias for an RPC URL that's stored in the `foundry.toml` file. In this case, we added an RPC URL for "moonbase" in [the setup step](#setup-a-foundry-project), so in the test function we will just pass the word `"moonbase"`. This cheatcode function returns an ID for the fork created, which is stored in an `uint256` and is necessary for activating the fork.  
+The first step (and thus first line) in this function is to have the test function fork a network with `vm.createFork`. Recall that `vm` is a cheatcode provided by the Forge standard library. All that's necessary to create a fork is an RPC URL, or an alias for an RPC URL that's stored in the `foundry.toml` file. In this case, we added an RPC URL for "moonbase" in [the setup step](#create-a-foundry-project), so in the test function we will just pass the word `"moonbase"`. This cheatcode function returns an ID for the fork created, which is stored in an `uint256` and is necessary for activating the fork.  
 
 On the second line, after the fork has been created, the environment will select and use the fork in the test environment with `vm.selectFork`. The third line is just to demonstrate that the current fork, retrieved with `vm.activeFork`, is the same as the Moonbase Alpha fork.  
 
@@ -384,7 +384,7 @@ The fourth line of code retrieves an already deployed instance of `MyToken`, whi
 The rest of the code tests capacity like you would expect a local test to. If you run the tests (with the `-vvvv` tag for extra logging), you'll see that it passes:  
 
 ```
-forge test --vvvv
+forge test -vvvv
 ```
 
 ![Forking Tests in Foundry](/images/tutorials/eth-api/foundry-start-to-end/foundry-4.png)

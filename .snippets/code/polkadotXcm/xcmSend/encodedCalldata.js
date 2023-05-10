@@ -34,7 +34,7 @@ const instr3 = {
     assets: { Wild: 'All' },
     max_assets: 1,
     beneficiary: {
-      parents: 0,
+      parents: 1,
       interior: { X1: { AccountId32: { network: 'Any', id: bob } } },
     },
   },
@@ -49,10 +49,10 @@ const generateCallData = async () => {
   const api = await ApiPromise.create({ provider: substrateProvider });
 
   // 7. Create the extrinsic
-  let tx = api.tx.polkadotXcm.execute(xcmMessage, '0');
+  const tx = api.tx.polkadotXcm.execute(xcmMessage, '0');
 
   // 8. Get SCALE Encoded Calldata
-  let encodedCall = tx.method.toHex();
+  const encodedCall = tx.method.toHex();
   console.log(`Encoded Calldata: ${encodedCall}`);
 };
 

@@ -14,7 +14,7 @@ const xcmUtils = new web3.eth.Contract(
 const sendXcm = async () => {
   // Define parameters required for the xcmSend function
   const encodedCalldata =
-    '0x020c0004000100000f0000c16ff2862313000100000f0000c16ff28623000d010004010101000c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d67';
+    '0x020c000400010000070010a5d4e81300010000070010a5d4e8000d010004010101000c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d67';
   const dest = [
     1, // Parents: 1 
     [] // Interior: Here

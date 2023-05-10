@@ -1,6 +1,6 @@
 ---
 title:  Call Permit Precompile Contract
-description: Learn how to use the call permit precompile contract on Moonbeam to sign a permit for any EVM call that can be dispatched by anyone or any smart contract.
+description: Learn how to use the Call Permit Precompile contract on Moonbeam to sign a permit for any EVM call that can be dispatched by anyone or any smart contract.
 keywords: solidity, ethereum, call permit, permit, gasless transaction, moonbeam, precompiled, contracts
 ---
 
@@ -10,13 +10,13 @@ keywords: solidity, ethereum, call permit, permit, gasless transaction, moonbeam
 
 ## Introduction {: #introduction } 
 
-The call permit precompile on Moonbeam allows a user to sign a permit, an [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=_blank} signed message, for any EVM call and it can be dispatched by anyone or any smart contract. It is similar to the [ERC-20 Permit Solidity Interface](/builders/interoperability/xcm/xc20/overview/#the-erc20-permit-interface){target=_blank}, except it applies to any EVM call instead of approvals only. 
+The Call Permit Precompile on Moonbeam allows a user to sign a permit, an [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=_blank} signed message, for any EVM call and it can be dispatched by anyone or any smart contract. It is similar to the [ERC-20 Permit Solidity Interface](/builders/interoperability/xcm/xc20/overview/#the-erc20-permit-interface){target=_blank}, except it applies to any EVM call instead of approvals only. 
 
 When the call permit is dispatched, it is done so on behalf of the user who signed the permit and the user or contract that dispatches the permit is responsible for paying transaction fees. As such, the precompile can be used to perform gas-less transactions.
 
 For example, Alice signs a call permit and Bob dispatches it and performs the call on behalf of Alice. Bob pays for the transaction fees and as such, Alice doesn't need to have any of the native currency to pay for the transaction, unless the call includes a transfer. 
 
-The call permit precompile is located at the following address:
+The Call Permit Precompile is located at the following address:
 
 === "Moonbeam"
      ```
@@ -55,19 +55,7 @@ The interface includes the following functions:
 - **nonces**(*address* owner) - returns the current nonce for given owner
 - **DOMAIN_SEPARATOR**() - returns the EIP-712 domain separator which is used to avoid replay attacks. It follows the [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612#specification){target=_blank} implementation
 
-The **DOMAIN_SEPARATOR()** is defined in the [EIP-712 standard](https://eips.ethereum.org/EIPS/eip-712){target=_blank}, and is calculated as:
-
-```
-keccak256(PERMIT_DOMAIN, name, version, chain_id, address)
-```
-
-The parameters of the hash can be broken down as follows:
-
- - **PERMIT_DOMAIN** - is the `keccak256` of `EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)`
- - **name** - is the name of the signing domain and must be `"Call Permit Precompile"` exactly
- - **version** - is the version of the signing domain. For this case **version** is set to `1`
- - **chainId** - is the chain ID of the network
- - **verifyingContract** - is the address of the contract that will verify the signature. In this case, the call permit precompile address
+--8<-- 'text/precompiles/call-permit/domain-separator.md'
 
 When `dispatch` is called, the permit needs to be verified before the call is dispatched. The first step is to [compute the domain separator](https://github.com/PureStake/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L138){target=_blank}. The calculation can be seen in [Moonbeam's implementation](https://github.com/PureStake/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L112-L126){target=_blank} or you can check out a practical example in [OpenZeppelin's EIP712 contract](ttps://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/cryptography/draft-EIP712.sol#L70-L84){target=_blank}.
 
@@ -81,14 +69,14 @@ With the final hash and the v, r, and s values, the signature can be [verified a
 
 For this example, you'll learn how to sign a call permit that updates a message in a simple example contract, [`SetMessage.sol`](#example-contract). Before you can generate the call permit signature, you'll need to deploy the contract and define the `dispatch` function arguments for the call permit.
 
-Once you've setup the example contract, then you can setup the call permit precompile contract.
+Once you've setup the example contract, then you can setup the Call Permit Precompile contract.
 
 ### Checking Prerequisites {: #checking-prerequisites } 
 
 To follow along with this tutorial, you will need to have:
 
 - [MetaMask installed and connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
-- Create or have two accounts on Moonbase Alpha to test out the different features in the call permit precompile
+- Create or have two accounts on Moonbase Alpha to test out the different features in the Call Permit Precompile
 - At least one of the accounts will need to be funded with `DEV` tokens.
  --8<-- 'text/faucet/faucet-list-item.md'
 
@@ -146,7 +134,7 @@ The contract will appear under the list of **Deployed Contracts** on the left si
 
 ### Compile & Access the Call Permit Precompile {: #compile-access-call-permit }
 
-First you'll need to compile the call permit precompile contract:
+First you'll need to compile the Call Permit Precompile contract:
 
 1. Click on the **Compile** tab, second from top
 2. Then to compile the interface, click on **Compile CallPermit.sol**
@@ -158,14 +146,14 @@ Then instead of deploying the contract, you'll just need to access it given the 
 1. Click on the **Deploy and Run** tab, directly below the **Compile** tab in Remix. Note: you are not deploying a contract here, instead you are accessing a precompiled contract that is already deployed
 2. Make sure **Injected Provider - Metamask** is selected in the **ENVIRONMENT** drop down
 3. Ensure **CallPermit.sol** is selected in the **CONTRACT** dropdown. Since this is a precompiled contract there is no need to deploy, instead you are going to provide the address of the precompile in the **At Address** field
-4. Provide the address of the call permit precompile for Moonbase Alpha: `{{networks.moonbase.precompiles.call_permit}}` and click **At Address**
-5. The call permit precompile will appear in the list of **Deployed Contracts**
+4. Provide the address of the Call Permit Precompile for Moonbase Alpha: `{{networks.moonbase.precompiles.call_permit}}` and click **At Address**
+5. The Call Permit Precompile will appear in the list of **Deployed Contracts**
 
 ![Provide the address](/images/builders/pallets-precompiles/precompiles/call-permit/call-5.png)
 
 ## Generate Call Permit Signature {: #generate-call-permit-signature}
 
-In order to interact with the call permit precompile, you have to have or generate a signature to dispatch the call permit with. There are several ways you can generate the signature, this guide will show you two different ways to generate it: in the browser using the [MetaMask extension](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn){target=_blank} and [JSFiddle](https://jsfiddle.net/){target=_blank} and using MetaMask's [`@metamask/eth-sig-util` npm package](https://www.npmjs.com/package/@metamask/eth-sig-util){target=_blank}.
+In order to interact with the Call Permit Precompile, you have to have or generate a signature to dispatch the call permit with. There are several ways you can generate the signature, this guide will show you two different ways to generate it: in the browser using the [MetaMask extension](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn){target=_blank} and [JSFiddle](https://jsfiddle.net/){target=_blank} and using MetaMask's [`@metamask/eth-sig-util` npm package](https://www.npmjs.com/package/@metamask/eth-sig-util){target=_blank}.
 
 Regardless of which method you choose to generate the signature, the following steps will be taken:
 
@@ -201,7 +189,7 @@ The nonce of the signer will also be needed. If this is your first time signing 
 
 ### Use the Browser {: #use-the-browser }
 
-To get started, you can open [JSFiddle](https://jsfiddle.net/){target=_blank} or another JavaScript playground in the browser. First, you'll need to add [Ethers.js](https://docs.ethers.io/){target=_blank} as it will be used to get the `v`, `r`, and `s` values of the signature:
+To get started, you can open [JSFiddle](https://jsfiddle.net/){target=_blank} or another JavaScript playground in the browser. First, you'll need to add [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank} as it will be used to get the `v`, `r`, and `s` values of the signature:
 
 1. Click on **Resources**
 2. Start to type in `ethers` and the dropdown should populate matching libraries. Choose **ethers** 
@@ -221,7 +209,7 @@ To run the code, click **Run** at the top of the page (or you can also use `cont
 
 ![Sign the message with MetaMask](/images/builders/pallets-precompiles/precompiles/call-permit/call-8.png)
 
-Once you've signed the message, go back to JSFiddle and if the console isn't already open, go ahead and open it to see the signature values include the `v`, `r`, and `s`, values. Copy these values as you'll need them when interacting with the call permit precompile in the following sections.
+Once you've signed the message, go back to JSFiddle and if the console isn't already open, go ahead and open it to see the signature values include the `v`, `r`, and `s`, values. Copy these values as you'll need them when interacting with the Call Permit Precompile in the following sections.
 
 ![Signature values in the JSFiddle console](/images/builders/pallets-precompiles/precompiles/call-permit/call-9.png)
 
@@ -261,13 +249,13 @@ To run the script, use the following command:
 node getSignature.js
 ```
 
-In the console, you should see the concatenated signature along with the values for the signature including the `v`, `r`, and `s` values. Copy these values as you'll need them when interacting with the call permit precompile in the following sections.
+In the console, you should see the concatenated signature along with the values for the signature including the `v`, `r`, and `s` values. Copy these values as you'll need them when interacting with the Call Permit Precompile in the following sections.
 
 ![Signature values in the console](/images/builders/pallets-precompiles/precompiles/call-permit/call-10.png)
 
 ## Interact with the Solidity Interface {: #interact-with-the-solidity-interface }
 
-Now that you have generated the call permit signature you will be able to test out calling the `dispatch` function of the call permit precompile.
+Now that you have generated the call permit signature you will be able to test out calling the `dispatch` function of the Call Permit Precompile.
 
 ### Dispatch a Call {: #dispatch-a-call }
 

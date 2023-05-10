@@ -1,6 +1,6 @@
 ---
 title: How to use the Polkadot.js API
-description: Follow this tutorial to learn the basic of how to use the Polkadot.js API library to query chain data, send transactions, and more on Moonbeam networks.
+description: Learn how to use the Polkadot.js API to interact with a Moonbeam node to get chain data and send transactions (extrinsics) via the Substrate side of Moonbeam.
 ---
 
 # Polkadot.js API Library
@@ -9,7 +9,13 @@ description: Follow this tutorial to learn the basic of how to use the Polkadot.
 
 ## Introduction {: #introduction }
 
-[Polkadot.js API](https://polkadot.js.org/docs/api/){target=_blank} library allows application developers to query a Moonbeam node and interact with the node's Polkadot or Substrate interfaces using JavaScript. Here you will find an overview of the available functionalities and some commonly used code examples to get you started on interacting with Moonbeam networks using Polkadot.js API library. 
+The [Polkadot.js API](https://polkadot.js.org/docs/api/){target=_blank} library allows application developers to query a Moonbeam node and interact with the node's Polkadot or Substrate interfaces using JavaScript. Here you will find an overview of the available functionalities and some commonly used code examples to get you started on interacting with Moonbeam networks using the Polkadot.js API library. 
+
+## What is Polkadot.js? {: #what-is-polkadotjs }
+
+[Polkadot.js](https://wiki.polkadot.network/docs/polkadotjs){target=_blank} is a collection of tools that allow you to interact with Polkadot and its parachains, such as Moonbeam. The Polkadot.js API is one component of the Polkadot.js collection and is a JavaScript API that allows you to interface with a Moonbeam node to read and write data to the network.
+
+You can use the Polkadot.js API to query on-chain data and send extrinsics from the Substrate side of Moonbeam. You can query Moonbeam's runtime constants, chain state, events, transaction (extrinsic) data, and more.
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
@@ -19,17 +25,17 @@ Installing and using Polkadot.js API library requires Node.js to be installed.
 
 --8<-- 'text/common/endpoint-examples.md'
 
-### Installing Polkadot.js API library {: #installing-polkadot.js-api-library } 
+### Install Polkadot.js API {: #installing-polkadot.js-api-library } 
 
-First, you need to install Polkadot.js API library for your project through a package manager such as `yarn`. Install it in your project directory with the following command:
+First, you need to install the Polkadot.js API library for your project through a package manager such as `yarn`. Install it in your project directory with the following command:
 
 ```
 yarn add @polkadot/api
 ```
 
-## Creating an API Provider Instance {: #creating-an-API-provider-instance }
+## Create an API Provider Instance {: #creating-an-API-provider-instance }
 
-Similar to ETH API libraries, you must first instantiate an API instance of Polkadot.js API. Create the `WsProvider` using the websocket endpoint of the Moonbeam network you wish to interact with. 
+Similar to [Ethereum API libraries](/builders/build/eth-api/libraries/){target=_blank}, you must first instantiate an API instance of the Polkadot.js API. Create the `WsProvider` using the websocket endpoint of the Moonbeam network you wish to interact with. 
 
 --8<-- 'text/common/endpoint-examples.md'
 
@@ -75,17 +81,17 @@ Similar to ETH API libraries, you must first instantiate an API instance of Polk
 
 ### Metadata and Dynamic API Decoration {: #metadata-and-dynamic-api-decoration }
 
-Before diving into the details of performing different tasks via Polkadot.js API library, it's useful to understand some basic workings of the library. 
+Before diving into the details of performing different tasks via the Polkadot.js API library, it's useful to understand some of the basic workings of the library. 
 
-When the Polkadot.js API connects to a node, one of the first things it does is to retrieve the metadata and decorate the API based on the metadata information. The metadata effectively provides data in the form of `api.<type>.<module>.<section>` that fits into one of the following `<type>` categories: `consts`, `query` and `tx`. 
+When the Polkadot.js API connects to a node, one of the first things it does is retrieve the metadata and decorate the API based on the metadata information. The metadata effectively provides data in the form of `api.<type>.<module>.<section>` that fits into one of the following `<type>` categories: `consts`, `query` and `tx`. 
 
-And therefore, none of the information contained in the `api.{consts, query, tx}.<module>.<method>` endpoints are hard coded in the API. This allows parachains like Moonbeam to have custom endpoints through its pallets that can be directly accessed via Polkadot.js API library.
+And therefore, none of the information contained in the `api.{consts, query, tx}.<module>.<method>` endpoints are hard-coded in the API. This allows parachains like Moonbeam to have custom endpoints through its [pallets](/builders/pallets-precompiles/pallets/){target=_blank} that can be directly accessed via the Polkadot.js API library.
 
-## Querying for Information {: #querying-for-information }
+## Query On-Chain Data on Moonbeam {: #querying-for-information }
 
-In this section, you will learn how to query for on-chain information using Polkadot.js API library. 
+In this section, you will learn how to query for on-chain information using the Polkadot.js API library. 
 
-### State Queries {: #state-queries }
+### Moonbeam Chain State Queries {: #state-queries }
 
 This category of queries retrieves information related to the current state of the chain. These endpoints are generally of the form, `api.query.<module>.<method>`, where the module and method decorations are generated through metadata. You can see a list of all available endpoints by examining the `api.query` object, via `console.log(api.query)` or otherwise. 
 
@@ -113,9 +119,12 @@ console.log(`${now}: balance of ${balance.free} and a current nonce of ${nonce} 
 api.disconnect();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/substrate-api/state-queries.js){target=_blank}.
+??? code "View the complete script"
+    ```js
+    --8<-- 'code/substrate-api/state-queries.js'
+    ```
 
-### RPC Queries {: #rpc-queries }
+### Moonbeam RPC Queries {: #rpc-queries }
 
 The RPC calls provide the backbone for the transmission of data to and from the node. This means that all API endpoints such as `api.query`, `api.tx` or `api.derive` just wrap RPC calls, providing information in the encoded format as expected by the node.
 
@@ -138,7 +147,10 @@ console.log(`${chain}: last block #${lastHeader.number} has hash ${lastHeader.ha
 api.disconnect();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/substrate-api/rpc-queries.js){target=_blank}.
+??? code "View the complete script"
+    ```js
+    --8<-- 'code/substrate-api/rpc-queries.js'
+    ```
 
 ### Query Subscriptions {: #query-subscriptions }
 
@@ -162,7 +174,7 @@ api.disconnect();
 
 The general pattern for `api.rpc.subscribe*` functions is to pass a callback into the subscription function, and this will be triggered on each new entry as they are imported. 
 
-Other calls under `api.query.*` can be modifed in a similar fashion to use subscription, including calls that have parameters. Here is an example to subscribe to balance changes in an account:
+Other calls under `api.query.*` can be modified in a similar fashion to use subscription, including calls that have parameters. Here is an example of how to subscribe to balance changes in an account:
 
 ```javascript
 // Initialize the API provider as in the previous section
@@ -180,13 +192,16 @@ await api.query.system.account(addr, ({ nonce, data: balance }) => {
 api.disconnect();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/substrate-api/query-subscriptions.js){target=_blank}.
+??? code "View the complete script"
+    ```js
+    --8<-- 'code/substrate-api/query-subscriptions.js'
+    ```
 
-## Keyrings {: #keyrings }
+## Create a Keyring for a Moonbeam Account {: #keyrings }
 
 The Keyring object is used for maintaining key pairs, and the signing of any data, whether it's a transfer, a message, or a contract interaction.  
 
-### Creating a Keyring Instance {: #creating-a-keyring-instance }
+### Create a Keyring Instance {: #creating-a-keyring-instance }
 
 You can create an instance by just creating an instance of the Keyring class, and specifying the default type of wallet address used. For Moonbeam networks, the default wallet type should be `ethereum`.
 
@@ -198,21 +213,21 @@ import Keyring from '@polkadot/keyring';
 const keyring = new Keyring({ type: 'ethereum' });
 ```
 
-### Adding Accounts {: #adding-accounts }
+### Add an Account to a Keyring {: #adding-accounts }
 
-There are a number of ways to add an account to the keyring instance, including from the mnemonic phrase, and from the shortform private key. The following sample code will provide some examples:
+There are a number of ways to add an account to the keyring instance, including from the mnemonic phrase and from the shortform private key. The following sample code will provide some examples:
 
 ```javascript
 --8<-- 'code/substrate-api/adding-accounts.js'
 ```
 
-## Transactions {: #transactions }
+## Send Transactions on Moonbeam via the Polkadot.js API {: #transactions }
 
 Transaction endpoints are exposed, as determined by the metadata, on the `api.tx` endpoint. These allow you to submit transactions for inclusion in blocks, be it transfers, deploying contracts, interacting with pallets, or anything else Moonbeam supports.
 
-### Sending Basic Transactions {: #sending-basic-transactions }
+### Send a Transaction {: #sending-basic-transactions }
 
-Here is an example of sending a basic transaction. This code sample will also retrieve the encoded calldata of the transaction, as well as the transaction hash after submitting. 
+Here is an example of sending a basic transaction. This code sample will also retrieve the encoded calldata of the transaction as well as the transaction hash after submitting. 
 
 ```javascript
 // Initialize the API provider as in the previous section
@@ -244,7 +259,10 @@ console.log(`Submitted with hash ${txHash}`);
 api.disconnect();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/substrate-api/basic-transactions.js){target=_blank}.
+??? code "View the complete script"
+    ```js
+    --8<-- 'code/substrate-api/basic-transactions.js'
+    ```
 
 Note that the `signAndSend` function can also accept optional parameters, such as the `nonce`. For example, `signAndSend(alice, { nonce: aliceNonce })`. You can use the [sample code from the State Queries](/builders/build/substrate-api/polkadot-js-api/#state-queries){target=_blank} section to retrieve the correct nonce, including transactions in the mempool.
 
@@ -256,9 +274,9 @@ Depending on the transaction sent, some other events may however be emitted, for
 
 The Transfer API page includes an [example code snippet](/builders/get-started/eth-compare/transfers-api/#monitor-all-balance-transfers-with-the-substrate-api){target=_blank} for subscribing to new finalized block headers, and retrieving all `balance.Transfer` events. 
 
-### Batching Transactions {: #batching-transactions }
+### Batch Transactions {: #batching-transactions }
 
-Polkadot.js API allows transactions to be batch processed via the `api.tx.utility.batch` method. The batched transactions are processed sequentially from a single sender. The transaction fee can be estimated using the `paymentInfo` helper method. The following example makes a couple of transfers and also uses the `api.tx.parachainStaking` module to schedule a request to decrease the bond of a specific collator candidate:
+The Polkadot.js API allows transactions to be batch processed via the `api.tx.utility.batch` method. The batched transactions are processed sequentially from a single sender. The transaction fee can be estimated using the `paymentInfo` helper method. The following example makes a couple of transfers and also uses the `api.tx.parachainStaking` module to schedule a request to decrease the bond of a specific collator candidate:
 
 ```javascript
 // Initialize the API provider as in the previous section
@@ -299,14 +317,17 @@ api.tx.utility
 api.disconnect();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/substrate-api/batch-transactions.js){target=_blank}.
+??? code "View the complete script"
+    ```js
+    --8<-- 'code/substrate-api/batch-transactions.js'
+    ```
 
 !!! note
     You can check out all of the available functions for the `parachainStaking` module by adding `console.log(api.tx.parachainStaking);` to your code.
 
 ## Substrate and Custom JSON-RPC Endpoints {: #substrate-and-custom-json-rpc-endpoints }
 
-RPCs are exposed as a method on a specific module. This means that once available, you can call any rpc via `api.rpc.<module>.<method>(...params[])`. This also works for accessing Ethereum RPCs using Polkadot.js API, in the form of `polkadotApi.rpc.eth.*`.
+RPCs are exposed as a method on a specific module. This means that once available, you can call any RPC via `api.rpc.<module>.<method>(...params[])`. This also works for accessing Ethereum RPCs using the Polkadot.js API, in the form of `polkadotApi.rpc.eth.*`.
 
 Some of the methods availabe through the Polkadot.js API interface are also available as JSON-RPC endpoints on Moonbeam nodes. This section will provide some examples; you can check for a list of exposed RPC endpoints by calling `api.rpc.rpc.methods()` or the `rpc_methods` endpoint listed below. 
 
@@ -360,9 +381,9 @@ Some of the methods availabe through the Polkadot.js API interface are also avai
 
 The [Consensus and Finality page](/builders/get-started/eth-compare/consensus-finality/#){target=_blank} has sample code for using the exposed custom and Substrate RPC calls to check the finality of a given transaction. 
 
-## Utilities {: #utilities }
+## Polkadot.js API Utility Functions {: #utilities }
 
-Polkadot.js API also includes a number of utility libraries for computing commonly used cryptographic primitives and hash functions. 
+The Polkadot.js API also includes a number of utility libraries for computing commonly used cryptographic primitives and hash functions. 
 
 The following example computes the deterministic transaction hash of a raw Ethereum legacy transaction by first computing its RLP ([Recursive Length Prefix](https://eth.wiki/fundamentals/rlp){target=_blank}) encoding, then hashing the result with keccak256. 
 
