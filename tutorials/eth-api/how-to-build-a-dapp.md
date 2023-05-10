@@ -1115,8 +1115,8 @@ We delved into the process of writing smart contracts, highlighting best practic
 Of course, there are more advanced (but optional) components of DApps that have popped up over time:
 
 - Decentralized storage protocols — systems that store websites and files in a decentralized way
-- [Oracles](/builders/integrations/oracles/index){target=_blank} — third-party services that provide external data to smart contracts within blockchains
-- [Indexing protocols](/builders/integrations/indexers/index){target=_blank} — middleware that processes and organizes blockchain data, allowing it to be efficiently queried
+- [Oracles](/builders/integrations/oracles/){target=_blank} — third-party services that provide external data to smart contracts within blockchains
+- [Indexing protocols](/builders/integrations/indexers/){target=_blank} — middleware that processes and organizes blockchain data, allowing it to be efficiently queried
 
 An excellent [Web2 to Web3 blogpost](https://moonbeam.network/blog/web2-vs-web3-development-heres-what-you-need-to-know-to-make-the-leap-to-blockchain/){target=_blank} is available if you are interested in hearing about them in depth.  
 

@@ -15,7 +15,6 @@ description:  Learn how to use OpenZeppelin Defender to manage smart contracts s
  - [**Relay**](https://docs.openzeppelin.com/defender/relay){target=_blank} — to build with a private and secure transaction infrastructure with the implementation of private relayers
  - [**Autotasks**](https://docs.openzeppelin.com/defender/autotasks){target=_blank} — to create automated scripts to interact with your smart contracts
  - [**Sentinel**](https://docs.openzeppelin.com/defender/sentinel){target=_blank} — to monitor your smart contract's events, functions, and transactions, and receive notifications via email
- - [**Advisor**](https://docs.openzeppelin.com/defender/advisor){target=_blank} — to learn and implement best practices around development, testing, monitoring, and operations
 
 OpenZeppelin Defender can now be used on Moonbeam, Moonriver, and the Moonbase Alpha TestNet. This guide will show you how to get started with Defender and demo the Admin component to pause a smart contract on Moonbase Alpha. This guide can be adapted for Moonbeam and Moonriver.
 
