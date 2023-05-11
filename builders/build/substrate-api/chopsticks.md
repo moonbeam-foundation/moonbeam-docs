@@ -38,7 +38,9 @@ yarn && \
 yarn build-wasm
 ```
 
-Chopsticks includes a set of [YAML](https://yaml.org/){target=_blank} configuration files that can be used to create a local copy of a variety of Substrate chains. You can view each of the default configuration files within the `configs` folder of the [source repository](https://github.com/AcalaNetwork/chopsticks.git){target=_blank}. Moonbeam, Moonriver, and Moonbase Alpha all have default files available. The example configuration below is the current configuration for Moonbeam:  
+Chopsticks includes a set of [YAML](https://yaml.org/){target=_blank} configuration files that can be used to create a local copy of a variety of Substrate chains. If you installed from GitHub, you can view each of the default configuration files within the `configs` folder. If you installed with a package manager, you can download the configuration files from the [source repository](https://github.com/AcalaNetwork/chopsticks.git){target=_blank}.  
+
+Moonbeam, Moonriver, and Moonbase Alpha all have default files available. The example configuration below is the current configuration for Moonbeam:  
 
 ```yaml
 endpoint: wss://wss.api.moonbeam.network
@@ -64,7 +66,7 @@ import-storage:
     EligibleCount: 100
 ```
 
-The settings that can be included in the config file are the same as the flags in the [`dev` command](#forking-moonbeam){target=_blank}, as well as these additional options:  
+The settings that can be included in the config file are the same as the flags in the [base command](#forking-moonbeam){target=_blank}, as well as these additional options:  
 
 |  Option   |                                        Description                                         |
 |:---------:|:------------------------------------------------------------------------------------------:|
@@ -77,22 +79,22 @@ The simplest way to fork Moonbeam is through the previously introduced configura
 
 === "Moonbeam"
     ```
-    npx @acala-network/chopsticks dev --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbeam.yml
+    npx @acala-network/chopsticks --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbeam.yml
     ```
 
 === "Moonriver"
     ```
-    npx @acala-network/chopsticks dev --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonriver.yml
+    npx @acala-network/chopsticks --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonriver.yml
     ```
 
 === "Moonbase Alpha"
     ```
-    npx @acala-network/chopsticks dev --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbase-alpha.yml
+    npx @acala-network/chopsticks --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbase-alpha.yml
     ```
 
 A configuration file is not necessary, however. There are additional commands and flags to configure the environment completely in the command line.  
 
-The `npx @acala-network/chopsticks dev` command forks a chain, and includes following flags:  
+The `npx @acala-network/chopsticks` command forks a chain, and includes following flags:  
 
 |           Flag           |                                             Description                                             |
 |:------------------------:|:---------------------------------------------------------------------------------------------------:|
