@@ -1,11 +1,16 @@
 import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
+import { decodeAddress } from '@polkadot/util-crypto';
 
 // 1. Input data
 const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
 // Set parents to 1 and interior to here to target the relay chain
-const relayChainMultilocation = { parents: 1, interior: null } 
+const relayChainMultilocation = { parents: 1, interior: null };
 const amount = BigInt(1 * 10 ** 12); // 1 UNIT
-const bob = '0x0c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d67';
+// You can use the decodeAddress function to ensure that your address is properly
+// decoded. If it isn't decoded, it will decode it and if it is, it will ignore it
+const bob = decodeAddress(
+  '0x0c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d67'
+);
 
 // 2. XCM instruction 1: WithdrawAsset
 const instr1 = {
@@ -23,9 +28,9 @@ const instr2 = {
     fees: {
       id: { Concrete: relayChainMultilocation },
       fun: { Fungible: amount },
-      weightLimit: 'Unlimited'
-    }
-  }
+      weightLimit: 'Unlimited',
+    },
+  },
 };
 
 // 4. XCM instruction 3: DepositAsset

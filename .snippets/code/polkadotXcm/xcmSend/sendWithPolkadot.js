@@ -1,7 +1,12 @@
 import { ApiPromise, WsProvider, Keyring } from '@polkadot/api'; // Version 9.13.6
+import { decodeAddress } from '@polkadot/util-crypto';
 
 // 1. Input data
 const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
+// You can use the decodeAddress function to ensure that your address is properly
+// decoded. If it isn't decoded, it will decode it and if it is, it will ignore it
+const relayAccount = decodeAddress('INSERT_ADDRESS');
+const PRIVATE_KEY = 'INSERT_PRIVATE_KEY';
 const dest = { V3: { parents: 1, interior: null } };
 const instr1 = {
   WithdrawAsset: [
@@ -28,7 +33,7 @@ const instr3 = {
       interior: {
         X1: {
           AccountId32: {
-            id: RELAY_ACC_ADDRESS,
+            id: relayAccount,
           },
         },
       },

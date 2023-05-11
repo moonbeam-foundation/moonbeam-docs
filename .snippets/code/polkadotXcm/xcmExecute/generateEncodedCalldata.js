@@ -1,6 +1,7 @@
 import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
 
 // 1. Provide input data
+const moonbeamAccount = 'INSERT_ADDRESS'
 const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
 const instr1 = {
   WithdrawAsset: [
@@ -18,7 +19,7 @@ const instr2 = {
       interior: {
         X1: {
           AccountKey20: {
-            key: MOONBEAM_ACCOUNT,
+            key: moonbeamAccount,
           },
         },
       },

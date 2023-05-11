@@ -207,7 +207,7 @@ Together, the intention of these instructions is to transfer the native asset of
 
 ### Send an XCM Message with the Polkadot.js API {: #send-xcm-message-with-polkadotjs-api }
 
-In this example, you'll send a custom XCM message from your account on Moonbase Alpha to the relay chain using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=_blank} to interact directly with the Polkadot XCM Pallet. 
+In this example, you'll send a custom XCM message from your account on Moonbase Alpha to the relay chain using the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=_blank} to interact directly with the Polkadot XCM Pallet.
 
 The `send` function of the Polkadot XCM Pallet accepts two parameters: `dest` and `message`. You can start assembling these parameters by taking the following steps:
 
@@ -303,9 +303,10 @@ Once the transaction is processed, a `polkadotXcm.sent` event is emitted with th
 
 In this section, you'll use the `xcmSend` function of the [XCM Utilities Precompile](/builders/pallets-precompiles/precompiles/xcm-utils){target=_blank}, which is only supported on Moonbase Alpha, to send an XCM message cross-chain. The XCM Utilities Precompile is located at the following address:
 
-```
-{{ networks.moonbase.precompiles.xcm_utils }}
-```
+=== "Moonbase Alpha"
+     ```
+     {{networks.moonbase.precompiles.xcm_utils}}
+     ```
 
 Under the hood, the `xcmSend` function of the XCM Utilities Precompile calls the `send` function of the Polkadot XCM Pallet, which is a Substrate pallet that is coded in Rust. The benefit of using the XCM Utilities Precompile to call `xcmSend` is that you can do so via the Ethereum API and use Ethereum libraries like [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank}. For the XCM message to be successfully executed, the target chain needs to be able to understand the instructions in the message.
 

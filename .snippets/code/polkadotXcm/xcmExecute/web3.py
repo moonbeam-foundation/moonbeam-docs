@@ -1,40 +1,41 @@
 from web3 import Web3
 
-abi = 'XCM-UTILS-ABI-HERE'  # Paste or import the x-tokens ABI
+abi = 'XCM_UTILS_ABI_HERE'  # Paste or import the XCM Utils ABI
 # This is for demo purposes, never store your private key in plain text
-privateKey = 'INSERT-YOUR-PRIVATE-KEY'
+private_key = 'INSERT_YOUR_PRIVATE_KEY'
 # The wallet address that corresponds to your private key
-address = 'INSERT-YOUR-ADDRESS'
+address = 'INSERT_YOUR_ADDRESS'
+xcm_utils_address = '0x000000000000000000000000000000000000080C'
 
 ## Create Web3 provider ##
 web3 = Web3(Web3.HTTPProvider('https://rpc.api.moonbase.moonbeam.network'))
 
 ## Create contract instance of the XCM Utilities Precompile ##
-xcmUtils = web3.eth.contract(
+xcm_utils = web3.eth.contract(
     # XCM Utilities Precompile address
-    address='0x000000000000000000000000000000000000080C',
+    address=xcm_utils_address,
     abi=abi
 )
 
 
 def executeXcmMessageLocally():
     ## Define parameters required for the xcmExecute function ##
-    encodedCalldata = 'INSERT-ENCODED-CALLDATA'
-    maxWeight = 100000000000
+    encoded_calldata = 'INSERT_ENCODED_CALLDATA'
+    max_weight = 100000000000
 
     ## Execute the custom XCM message ##
     # Craft the extrinsic
-    tx = xcmUtils.functions.xcmExecute(
-        encodedCalldata,
-        maxWeight
-    ).buildTransaction(
+    tx = xcm_utils.functions.xcmExecute(
+        encoded_calldata,
+        max_weight
+    ).build_transaction(
         {
             'from': address,
             'nonce': web3.eth.get_transaction_count(address),
         }
     )
     # Sign transaction
-    signedTx = web3.eth.account.sign_transaction(tx, privateKey)
+    signedTx = web3.eth.account.sign_transaction(tx, private_key)
     # Send tx
     hash = web3.eth.send_raw_transaction(signedTx.rawTransaction)
     receipt = web3.eth.wait_for_transaction_receipt(hash)
