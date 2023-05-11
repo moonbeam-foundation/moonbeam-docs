@@ -402,7 +402,7 @@ Now, to send a cross chain message, you just need to call the `sendMessage(strin
 Use the Remix interface. This example is going to send a cross-chain message to the Fantom TestNet, but you can substitute the `destChainId` for whichever EVM you desire. Check the following things:
 
 1. The environment is **Injected Provider** on network 1287 (Moonbase Alpha)
-2. You have substantial funds in your wallet from [the faucet](https://apps.moonbeam.network/moonbase-alpha/faucet/){target=_blank} to cover the transaction gas cost on both the origin and destination chains
+2. You have substantial funds in your wallet from [the faucet](https://faucet.moonbeam.network/){target=_blank} to cover the transaction gas cost on both the origin and destination chains
 3. Put a short message of your choice in the **message** input of the **sendMessage** section (in this case “this is a message”)
 4. Put the address of your instance of SimpleGeneralMessage on destination chain in the **destAddress** input
 5. Put the destination chain’s Wormhole chain ID in the **destChainId** input of the **sendMessage** section

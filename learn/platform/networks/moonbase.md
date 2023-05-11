@@ -70,7 +70,7 @@ You can see current Moonbase Alpha telemetry information by visiting [Polkadot's
 
 Tokens on Moonbase Alpha, named DEV, will be issued on demand. **DEV tokens hold no value and can be freely acquired**. 
 
-You can enter your address to automatically request DEV tokens from the [Moonbase Alpha Faucet](https://apps.moonbeam.network/moonbase-alpha/faucet/){target=_blank} website. The faucet dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours.
+You can enter your address to automatically request DEV tokens from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network/){target=_blank} website. The faucet dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours.
 
 For token requests of more than the limited amount allowed by the faucet, contact a moderator directly via the [Moonbeam Discord server](https://discord.gg/PfpUATX){target=_blank}. We are happy to provide the tokens needed to test your applications.
 
