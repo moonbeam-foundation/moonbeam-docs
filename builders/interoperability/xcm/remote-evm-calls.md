@@ -113,14 +113,14 @@ For example, from the relay chain, the [`DescendOrigin`](https://github.com/pari
     X1: {
       AccountId32: {
         network: 'Westend',
-        id: DECODED_ADDRESS,
+        id: decodedAddress,
       },
     },
   },
 }
 ```
 
-Where the `DECODED_ADDRESS` corresponds to the address of the account who signed the transaction on the relay chain (in a 64 bytes format). When the XCM instruction gets executed in Moonbeam (Moonbase Alpha in this example), the origin will have mutated to the following multilocation:
+Where the `decodedAddress` corresponds to the address of the account who signed the transaction on the relay chain (in a 64 bytes format). When the XCM instruction gets executed in Moonbeam (Moonbase Alpha in this example), the origin will have mutated to the following multilocation:
 
 ```js
 {
@@ -130,7 +130,7 @@ Where the `DECODED_ADDRESS` corresponds to the address of the account who signed
       X1: {
         AccountId32: {
           network: 'Westend',
-          id: DECODED_ADDRESS,
+          id: decodedAddress,
         },
       },
     },
