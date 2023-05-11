@@ -3,6 +3,7 @@ import { ApiPromise, WsProvider, Keyring } from '@polkadot/api'; // Version 9.13
 // 1. Input data
 const providerWsURL =
   'wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network';
+const PRIVATE_KEY = 'INSERT_PRIVATE_KEY';
 const dest = { V3: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
 const instr1 = {
   WithdrawAsset: [
