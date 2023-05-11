@@ -171,7 +171,7 @@ You should see something like the following output:
 
 Including the `relaychain` command is optional, as Chopsticks will automatically mock a relay chain between networks.  
 
-## WebSocket Commands
+## WebSocket Commands {: #websocket-commands }
 
 Chopsticks' internal websocket server has special endpoints that allows the manipulation of the local Substrate chain. These are the methods that can be invoked:  
 
@@ -195,7 +195,7 @@ Each method can be invoked by connecting to the websocket (`ws://localhost:8000`
 
 Parameters can be described in the following ways:  
 
-- **`options` { "to": number, "count": number }** - optional, leave `null` to create one block. Use `"to"` to create blocks up to a certain value, use `"count"` to increase by a certain number of blocks  
+- **`options` { "to": number, "count": number }** - optional, leave `null` to create one block. A JSON object where `"to"` will create blocks up to a certain value, and `"count"` will increase by a certain number of blocks. Use only one parameter at a time within the JSON object if not `null`    
 - **`values` Object** - a JSON object resembling the path to a storage value, similar to what you would retrieve via Polkadot.js  
 - **`blockHash` string** - optional, the blockhash at which the storage value is changed
 - **`date` string** - a Date string (compatible with the JavaScript Date library) that will change the time stamp from which the next blocks being created will be at. All future blocks will be sequentially after that point in time
