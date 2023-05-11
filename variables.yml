@@ -918,8 +918,8 @@ networks:
       min_vrf_blocks_delay: 2
       max_vrf_blocks_delay: 2000
       req_deposit_amount:
-        glmr: 1
-        wei: 1000000000000000000
+        glmr: 100
+        wei: 100000000000000000000
       block_expiration: 10000
       epoch_expiration: 10000
       epoch_fulfillment_delay: 2

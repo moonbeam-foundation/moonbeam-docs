@@ -54,7 +54,7 @@ The interface includes the following functions:
 - **getRequestStatus**(*uint256* requestId) — returns the request status of a given randomness request
 - **getRequest**(*uint256* requestId) — returns the request details of a given randomness request
 - **requestLocalVRFRandomWords**(*address* refundAddress, *uint256* fee, *uint64* gasLimit, *bytes32* salt, *uint8* numWords, *uint64* delay) — request random words generated from the parachain VRF
-- **requestRelayBabeEpochRandomWords**(*address* refundAddress, *uint256* fee, *uint64* gasLimit, *bytes32* salt, *uint8* numWords) — request random words generated from the relay chain BABE consensus 
+- **requestRelayBabeEpochRandomWords**(*address* refundAddress, *uint256* fee, *uint64* gasLimit, *bytes32* salt, *uint8* numWords) — request random words generated from the relay chain BABE consensus
 - **fulfillRequest**(*uint256* requestId) — fulfill the request which will call the consumer contract method [`fulfillRandomWords`](#:~:text=rawFulfillRandomWords(uint256 requestId, uint256[] memory randomWords)). Fees of the caller are refunded if the request is fulfillable
 - **increaseRequestFee**(*uint256* requestId, *uint256* feeIncrease) — increases the fee associated with a given randomness request. This is needed if the gas price increases significantly before the request is fulfilled
 - **purgeExpiredRequest**(*uint256* requestId) — removes a given expired request from storage and transfers the request fees to the caller and the deposit back to the original requester
@@ -74,25 +74,25 @@ Where the inputs that need to be provided can be defined as:
 
 The interface includes the following constants:
 
-- **maxRandomWords** - the maximum number of random words being requested 
+- **maxRandomWords** - the maximum number of random words being requested
 - **minBlockDelay** - the minimum number of blocks before a request can be fulfilled for local VRF requests
 - **maxBlockDelay** - the maximum number of blocks before a request can be fulfilled for local VRF requests
 - **deposit** - the deposit amount needed to request random words. There is one deposit per request
 
 === "Moonbeam"
-    |        Variable        |                             Value                              |
-    |:----------------------:|:--------------------------------------------------------------:|
-    |    MAX_RANDOM_WORDS    |   {{ networks.moonbeam.randomness.max_random_words }} words    |
-    |  MIN_VRF_BLOCKS_DELAY  | {{ networks.moonbeam.randomness.min_vrf_blocks_delay }} blocks |
-    |  MAX_VRF_BLOCKS_DELAY  | {{ networks.moonbeam.randomness.max_vrf_blocks_delay }} blocks |
+    |        Variable        |                              Value                              |
+    |:----------------------:|:---------------------------------------------------------------:|
+    |    MAX_RANDOM_WORDS    |    {{ networks.moonbeam.randomness.max_random_words }} words    |
+    |  MIN_VRF_BLOCKS_DELAY  | {{ networks.moonbeam.randomness.min_vrf_blocks_delay }} blocks  |
+    |  MAX_VRF_BLOCKS_DELAY  | {{ networks.moonbeam.randomness.max_vrf_blocks_delay }} blocks  |
     | REQUEST_DEPOSIT_AMOUNT | {{ networks.moonbeam.randomness.req_deposit_amount.glmr }} GLMR |
 
 === "Moonriver"
-    |        Variable        |                             Value                              |
-    |:----------------------:|:--------------------------------------------------------------:|
-    |    MAX_RANDOM_WORDS    |   {{ networks.moonriver.randomness.max_random_words }} words    |
-    |  MIN_VRF_BLOCKS_DELAY  | {{ networks.moonriver.randomness.min_vrf_blocks_delay }} blocks |
-    |  MAX_VRF_BLOCKS_DELAY  | {{ networks.moonriver.randomness.max_vrf_blocks_delay }} blocks |
+    |        Variable        |                              Value                               |
+    |:----------------------:|:----------------------------------------------------------------:|
+    |    MAX_RANDOM_WORDS    |    {{ networks.moonriver.randomness.max_random_words }} words    |
+    |  MIN_VRF_BLOCKS_DELAY  | {{ networks.moonriver.randomness.min_vrf_blocks_delay }} blocks  |
+    |  MAX_VRF_BLOCKS_DELAY  | {{ networks.moonriver.randomness.max_vrf_blocks_delay }} blocks  |
     | REQUEST_DEPOSIT_AMOUNT | {{ networks.moonriver.randomness.req_deposit_amount.movr }} MOVR |
 
 === "Moonbase Alpha"
@@ -119,7 +119,7 @@ The interface includes the following enums:
 
 ## The Randomness Consumer Solidity Interface {: #randomness-consumer-solidity-interface }
 
-The [`RandomnessConsumer.sol`](https://github.com/PureStake/moonbeam/blob/4e2a5785424be6faa01cd14e90155d9d2ec734ee/precompiles/randomness/RandomnessConsumer.sol){target=_blank} Solidity interface makes it easy for smart contracts to interact with the randomness precompile. Using the randomness consumer ensures the fulfillment comes from the randomness precompile. 
+The [`RandomnessConsumer.sol`](https://github.com/PureStake/moonbeam/blob/4e2a5785424be6faa01cd14e90155d9d2ec734ee/precompiles/randomness/RandomnessConsumer.sol){target=_blank} Solidity interface makes it easy for smart contracts to interact with the randomness precompile. Using the randomness consumer ensures the fulfillment comes from the randomness precompile.
 
 The consumer interface includes the following functions:
 
@@ -156,7 +156,7 @@ The happy path for a randomness request is shown in the following diagram:
 
 In the following sections of this tutorial, you'll learn how to create a smart contract that generates a random number using the Randomness Precompile and the Randomness Consumer. If you want to just explore some of the functions of the Randomness Precompile, you can skip ahead to the [Use Remix to Interact Directly with the Randomness Precompile](#interact-directly) section.
 
-### Checking Prerequisites {: #checking-prerequisites } 
+### Checking Prerequisites {: #checking-prerequisites }
 
 For this guide, you will need to have the following:
 
@@ -285,7 +285,7 @@ To request randomness, you're going to use the `requestRandomness` function of t
 
 ![Request a random number using the random number generator contract in Remix.](/images/builders/pallets-precompiles/precompiles/randomness/randomness-5.png)
 
-Once you submit the transaction, the `requestId` will be updated with the ID of the request. You can use the `requestId` call of the Random Number contract to get the request ID and the `getRequestStatus` functon of the Randomness Precompile to check the status of this request ID. 
+Once you submit the transaction, the `requestId` will be updated with the ID of the request. You can use the `requestId` call of the Random Number contract to get the request ID and the `getRequestStatus` functon of the Randomness Precompile to check the status of this request ID.
 
 ### Fulfill the Request and Save the Random Number {: #fulfill-request-save-number }
 
@@ -303,7 +303,7 @@ Once the request has been fulfilled, you can check the random number that was ge
 1. Expand the **random** function
 2. Since the contract only requested one random word, you can get the random number by accessing the `0` index of the `random` array
 3. Click **call**
-4. The random number will appear below the **call** button 
+4. The random number will appear below the **call** button
 
 ![Retrieve the random number that was generated by the random number contract in Remix.](/images/builders/pallets-precompiles/precompiles/randomness/randomness-7.png)
 
@@ -315,7 +315,7 @@ If the request happened to expire before it could be fulfilled, you can interact
 
 In addition to interacting with the randomness precompile via a smart contract, you can also interact with it directly in Remix to perform operations such as creating a randomness request, checking on the status of a request, and purging expired requests. Remember, you need to have a contract that inherits from the consumer contract in order to fulfill requests, as such if you fulfill a request using the precompile directly there will be no way to consume the results.
 
-### Remix Set Up {: #remix-set-up } 
+### Remix Set Up {: #remix-set-up }
 
 To add the interfaces to Remix and follow along with this section of the tutorial, you will need to:
 
