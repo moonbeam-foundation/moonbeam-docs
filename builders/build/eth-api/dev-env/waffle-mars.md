@@ -142,7 +142,6 @@ Now that you have written a smart contract, the next step is to use Waffle to co
           "enabled": true,
           "runs": 20000
         },
-        "evmVersion": "london",
       },
       "sourceDirectory": "./contracts",
       "outputDirectory": "./build",

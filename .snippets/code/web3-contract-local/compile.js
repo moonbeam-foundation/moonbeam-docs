@@ -14,7 +14,6 @@ const input = {
       },
    },
    settings: {
-      evmVersion: 'london',
       outputSelection: {
          '*': {
             '*': ['*'],
