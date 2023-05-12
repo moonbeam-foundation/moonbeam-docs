@@ -118,7 +118,14 @@ For example, from the relay chain, the [`DescendOrigin`](https://github.com/pari
 }
 ```
 
-Where the `decodedAddress` corresponds to the address of the account who signed the transaction on the relay chain (in a decoded 32 bytes format). When the XCM instruction gets executed in Moonbeam (Moonbase Alpha in this example), the origin will have mutated to the following multilocation:
+Where the `decodedAddress` corresponds to the address of the account who signed the transaction on the relay chain (in a decoded 32 bytes format). You can make sure that your address is properly decoded by using the following snippet, which will decode an address if needed and ignore it if not:
+
+```js
+import { decodeAddress } from '@polkadot/util-crypto';
+const decodedAddress = decodeAddress('INSERT_ADDRESS');
+```
+
+When the XCM instruction gets executed in Moonbeam (Moonbase Alpha in this example), the origin will have mutated to the following multilocation:
 
 ```js
 {
