@@ -35,7 +35,7 @@ If you do not have MetaMask installed, or would like to follow a tutorial to get
 
 To start building on Moonbase Alpha, you can get DEV tokens from the Moonbase Alpha Faucet. For specific amounts, you can always reach out directly to us via our community channels.
 
-To request DEV tokens from the faucet, you can enter your address on the [Moonbase Alpha Faucet](https://apps.moonbeam.network/moonbase-alpha/faucet/){target=_blank} website. The faucet dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours.
+To request DEV tokens from the faucet, you can enter your address on the [Moonbase Alpha Faucet](https://faucet.moonbeam.network/){target=_blank} website. The faucet dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours.
 
 ![Moonbase Alpha Faucet Website.](/images/builders/get-started/networks/moonbase/moonbase-1.png)
 
