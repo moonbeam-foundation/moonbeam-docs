@@ -204,13 +204,16 @@ If you want to specify the compiler version or compilation settings, you can do 
 
 ```yaml
 compiler:
-  evm_version: london
+  evm_version: null
   solc:
     version: 0.8.13
     optimizer:
       enabled: true
       runs: 200
 ```
+
+!!! note
+    You can view the list of [EVM versions supported by Brownie](https://github.com/eth-brownie/brownie/blob/master/docs/compile.rst#the-evm-version){target=_blank} in their documentation.
 
 Your contracts will only be compiled again if Brownie notices that a change has been made. To force a new compilation, you can run:
 
