@@ -34,13 +34,13 @@ The Conviction Voting Pallet provides the following extrinsics (functions):
 
 - **undelegate**(class) - undelegates the voting power for a particular class (Origin) of polls (referenda). Tokens may be unlocked following once an amount of time consistent with the lock period of the conviction with which the delegation was issued. Emits an `Undelegated` event
 - **unlock**(class, target) - removes a lock for a prior vote/delegation vote within a particluar class (Origin), which has expired
-- **vote**(pollIndex, vote) - submits a vote in a poll (referendum). If the vote is "aye", the vote is to enact the proposal; otherwise it is a "nay" vote to keep the status quo
+- **vote**(pollIndex, vote) - submits a vote in a poll (referendum). If the vote is "Aye", the vote is to enact the proposal; otherwise, it is a "Nay" vote to keep the status quo
 
 ### Storage Methods {: #storage-methods }
 
 The Conviction Voting Pallet includes the following read-only storage methods to obtain chain state data:
 
-- **classLocksFor**(AccountId20) - returns the voting classes (Origins) which have a non-zero lock requirement and the lock amounts which they require
+- **classLocksFor**(AccountId20) - returns the voting classes (Origins), which have a non-zero lock requirement and the lock amounts which they require
 - **palletVersion**() - returns the current pallet version
 - **votingFor**(AccountId20, u16) - returns all of the votes for a particular voter in a particular voting class (Origin)
 
