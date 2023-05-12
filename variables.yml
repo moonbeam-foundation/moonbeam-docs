@@ -378,6 +378,7 @@ networks:
       conviction_voting: '0x0000000000000000000000000000000000000812'
       preimage: '0x0000000000000000000000000000000000000813'
       collective_opengov_tech_committee: '0x0000000000000000000000000000000000000814'
+      gmp: '0x0000000000000000000000000000000000000816'
     substrate_api_sidecar:
       stable_version: 14.1.1
     tx_weight_to_gas_ratio: 25000
@@ -618,9 +619,9 @@ networks:
       collator_reward_inflation: 20
       parachain_bond_inflation: 30
     staking:
-      min_col_stk: 1000
-      min_can_stk: 500
-      min_can_stk_wei: 500000000000000000000
+      min_col_stk: 10000
+      min_can_stk: 10000
+      min_can_stk_wei: 10000000000000000000000
       collator_map_bond: 100
       max_candidates: 72
       paid_out_block: 73 # Update this whenever max_candidates is changed! Always max_candidates + 1!
@@ -692,6 +693,7 @@ networks:
       conviction_voting: '0x0000000000000000000000000000000000000812'
       preimage: '0x0000000000000000000000000000000000000813'
       collective_opengov_tech_committee: '0x0000000000000000000000000000000000000814'
+      gmp: '0x0000000000000000000000000000000000000816'
     api3:
       rrp: '0xa0AD79D995DdeeB18a14eAef56A549A04e3Aa1Bd'
       anuqrngairnode: '0x9d3C147cA16DB954873A498e0af5852AB39139f2'
@@ -841,9 +843,9 @@ networks:
       collator_reward_inflation: 20
       parachain_bond_inflation: 30
     staking:
-      min_col_stk: 100000
-      min_can_stk: 100000
-      min_can_stk_wei: 100000000000000000000000
+      min_col_stk: 2000000
+      min_can_stk: 2000000
+      min_can_stk_wei: 2000000000000000000000000
       collator_map_bond: 10000
       max_candidates: 72
       round_blocks: 1800
@@ -910,6 +912,7 @@ networks:
       collective_council: '0x000000000000000000000000000000000000080e'
       collective_tech_committee: '0x000000000000000000000000000000000000080f'
       collective_treasury: '0x0000000000000000000000000000000000000810'
+      gmp: '0x0000000000000000000000000000000000000816'
     api3:
       rrp: '0xa0AD79D995DdeeB18a14eAef56A549A04e3Aa1Bd'
       anuqrngairnode: '0x9d3C147cA16DB954873A498e0af5852AB39139f2'
@@ -933,8 +936,8 @@ networks:
       min_vrf_blocks_delay: 2
       max_vrf_blocks_delay: 2000
       req_deposit_amount:
-        glmr: 1
-        wei: 1000000000000000000
+        glmr: 100
+        wei: 100000000000000000000
       block_expiration: 10000
       epoch_expiration: 10000
       epoch_fulfillment_delay: 2

@@ -539,7 +539,7 @@ If you're using another Moonbeam network, make sure that you specify the correct
 
 After a few seconds, the contract is deployed, and you should see the address in the terminal.
 
-![Deploy a Contract to Moonbeam with HardHat.](/images/tutorials/eth-api/hardhat-start-to-end/hardhat-7.png)
+![Deploy a Contract to Moonbeam with Hardhat.](/images/tutorials/eth-api/hardhat-start-to-end/hardhat-7.png)
 
 Congratulations, your contract is live on Moonbeam! Save the address, as you will use it to interact with this contract instance in the next step.
 

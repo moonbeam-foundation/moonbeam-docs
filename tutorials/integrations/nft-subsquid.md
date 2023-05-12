@@ -5,7 +5,7 @@ description: Learn how to use Subsquid, a query node framework for Substrate-bas
 
 # Indexing NFT Transfers on Moonbeam with Subsquid
 
-![Subsquid Banner](/images/builders/integrations/indexers/subsquid/subsquid-banner.png)
+![Subsquid Banner](/images/tutorials/integrations/nft-subsquid/nft-subsquid-banner.png)
 
 _March 7, 2023 | by Massimo Luraschi_
 
@@ -131,7 +131,7 @@ Before we begin defining the mapping logic of the squid, we are going to rewrite
 
 * Addresses of [Gromlins](https://moonscan.io/token/0xf27a6c72398eb7e25543d19fda370b7083474735){target=_blank} contract
 * A function that will create and save an instance of the `Contract` entity to the database
-* A function that rill return a `Contract` instance (either the already existing one, or a newly created entity). The first time the function is called, it verifies if a `Contract` does exist already, in the negative case, it will invoke the first function, and cache the result, so on subsequent calls the cached version will be returned
+* A function that will return a `Contract` instance (either the already existing one, or a newly created entity). The first time the function is called, it verifies if a `Contract` does exist already, in the negative case, it will invoke the first function, and cache the result, so on subsequent calls the cached version will be returned
 
 Here are the full file contents:
 

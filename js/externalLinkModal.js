@@ -63,6 +63,7 @@ const moonbeamLinks = [
   'https://moonbeam.network',
   'https://moonbeam.foundation',
   'https://forum.moonbeam.foundation',
+  'https://faucet.moonbeam.network/'
 ];
 const checkIfMoonbeamLink = (href) => {
   return moonbeamLinks.some((link) => href.startsWith(link));
