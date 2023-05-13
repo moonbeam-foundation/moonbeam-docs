@@ -7,13 +7,13 @@ description: Learn how to use Hardhat, an Ethereum development environment, to c
 
 ![Hardhat Create Project](/images/builders/build/eth-api/dev-env/hardhat/hardhat-banner.png)
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 [Hardhat](https://hardhat.org/){target=_blank} is an Ethereum development environment that helps developers manage and automate the recurring tasks inherent to building smart contracts and DApps. Hardhat can directly interact with Moonbeam's Ethereum API so it can also be used to deploy smart contracts into Moonbeam.
 
 This guide will cover how to use Hardhat to compile, deploy, and debug Ethereum smart contracts on the Moonbase Alpha TestNet. This guide can also be adapted for Moonbeam, Moonriver, or Moonbeam development node.
 
-## Checking Prerequisites {: #checking-prerequisites } 
+## Checking Prerequisites {: #checking-prerequisites }
 
 To get started, you will need the following:
 
@@ -46,7 +46,7 @@ You will need to create a Hardhat project if you don't already have one. You can
 
     !!! note
         `npx` is used to run executables installed locally in your project. Although Hardhat can be installed globally, it is recommended to install it locally in each project so that you can control the version on a project by project basis.
-            
+
 5. A menu will appear which will allow you to create a new project or use a sample project. For this example, you can choose **Create an empty hardhat.config.js**
 
 ![Hardhat Create Project](/images/builders/build/eth-api/dev-env/hardhat/hardhat-1.png)
@@ -59,7 +59,7 @@ Once you have your Hardhat project, you can also install the [Ethers plugin](htt
 npm install @nomiclabs/hardhat-ethers ethers
 ```
 
-## The Contract File {: #the-contract-file } 
+## The Contract File {: #the-contract-file }
 
 With your empty project created, next you are going to create a `contracts` directory. You can do so by running the following command:
 
@@ -98,7 +98,7 @@ contract Box {
 }
 ```
 
-## Hardhat Configuration File {: #hardhat-configuration-file } 
+## Hardhat Configuration File {: #hardhat-configuration-file }
 
 Before you can deploy the contract to Moonbase Alpha, you'll need to modify the Hardhat configuration file and create a secure file to store your private key in.
 
@@ -112,7 +112,7 @@ Then add your private key to it:
 
 ```json
 {
-    "privateKey": "YOUR-PRIVATE-KEY-HERE"
+    "privateKey": "YOUR_PRIVATE_KEY_HERE"
 }
 ```
 
@@ -132,7 +132,7 @@ const { privateKey } = require('./secrets.json');
 
 module.exports = {
   // 3. Specify the Solidity version
-  solidity: "0.8.1",
+  solidity: '0.8.1',
 
   networks: {
     // 4. Add the Moonbase Alpha network specification
@@ -175,7 +175,7 @@ You can modify the `hardhat.config.js` file to use any of the Moonbeam networks:
     ```
 
 === "Moonbeam Dev Node"
-    ```      
+    ```
     dev: {
         url: '{{ networks.development.rpc_url }}',
         chainId: {{ networks.development.chain_id }}, // (hex: {{ networks.development.hex_chain_id }}),
@@ -185,7 +185,7 @@ You can modify the `hardhat.config.js` file to use any of the Moonbeam networks:
 
 Congratulations! You are now ready for deployment!
 
-## Compiling Solidity {: #compiling-solidity } 
+## Compiling Solidity {: #compiling-solidity }
 
 To compile the contract you can simply run:
 
@@ -197,7 +197,7 @@ npx hardhat compile
 
 After compilation, an `artifacts` directory is created: it holds the bytecode and metadata of the contract, which are `.json` files. It’s a good idea to add this directory to your `.gitignore`.
 
-## Deploying the Contract {: #deploying-the-contract } 
+## Deploying the Contract {: #deploying-the-contract }
 
 In order to deploy the `Box.sol` smart contract, you will need to write a simple deployment script. You can create a new directory for the script and name it `scripts` and add a new file to it called `deploy.js`:
 
@@ -254,7 +254,7 @@ After a few seconds, the contract is deployed, and you should see the address in
 
 Congratulations, your contract is live! Save the address, as you will use it to interact with this contract instance in the next step.
 
-## Interacting with the Contract {: #interacting-with-the-contract } 
+## Interacting with the Contract {: #interacting-with-the-contract }
 
 To interact with your newly deployed contract on Moonbase Alpha, you can launch the Hardhat `console` by running:
 
@@ -293,7 +293,7 @@ Congratulations, you have successfully deployed and interacted with a contract u
 
 ## Hardhat Forking {: #hardhat-forking }
 
-You can [fork](https://hardhat.org/hardhat-network/docs/guides/forking-other-networks){target=_blank} any EVM compatible chain using Hardhat, including Moonbeam. Forking simulates the live Moonbeam network locally, enabling you to interact with deployed contracts on Moonbeam in a local test environment. Since Hardhat forking is based on an EVM implementation, you can interact with the fork using standard Ethereum JSON RPC methods supported by [Moonbeam](/builders/get-started/eth-compare/rpc-support/){target=_blank} and [Hardhat](https://hardhat.org/hardhat-network/docs/reference#json-rpc-methods-support){target=_blank}. 
+You can [fork](https://hardhat.org/hardhat-network/docs/guides/forking-other-networks){target=_blank} any EVM compatible chain using Hardhat, including Moonbeam. Forking simulates the live Moonbeam network locally, enabling you to interact with deployed contracts on Moonbeam in a local test environment. Since Hardhat forking is based on an EVM implementation, you can interact with the fork using standard Ethereum JSON RPC methods supported by [Moonbeam](/builders/get-started/eth-compare/rpc-support/){target=_blank} and [Hardhat](https://hardhat.org/hardhat-network/docs/reference#json-rpc-methods-support){target=_blank}.
 
 There are some limitations to be aware of when using Hardhat forking. You cannot interact with any of the Moonbeam precompiled contracts and their functions. Precompiles are a part of the Substrate implementation and therefore cannot be replicated in the simulated EVM environment. This prohibits you from interacting with cross-chain assets on Moonbeam and Substrate-based functionality such as staking and governance.
 
@@ -309,7 +309,7 @@ Error HH604: Error running JSON-RPC server: Invalid JSON-RPC response's result.
 Errors: Invalid value null supplied to : RpcBlockWithTransactions | null/transactions: RpcTransaction Array/0: RpcTransaction/accessList: Array<{ address: DATA, storageKeys: Array<DATA> | null }> | undefined, Invalid value null supplied to : RpcBlockWithTransactions | null/transactions: RpcTransaction Array/1: RpcTransaction/accessList: Array<{ address: DATA, storageKeys: Array<DATA> | null }> | undefined, Invalid value null supplied to : RpcBlockWithTransactions | null/transactions: RpcTransaction Array/2: RpcTransaction/accessList: Array<{ address: DATA, storageKeys: Array<DATA> | null }> | undefined
 ```
 
-To patch Hardhat, you'll need to open the `node_modules/hardhat/internal/hardhat-network/jsonrpc/client.js` file of your project. Next, you'll add a `addAccessList` function and update the `_perform` and `_performBatch` functions. 
+To patch Hardhat, you'll need to open the `node_modules/hardhat/internal/hardhat-network/jsonrpc/client.js` file of your project. Next, you'll add a `addAccessList` function and update the `_perform` and `_performBatch` functions.
 
 To get started, you can remove the preexisting `_perform` and `_performBatch` functions and in their place add the following code snippet:
 
@@ -438,7 +438,7 @@ If you prefer to configure your Hardhat project, you can update your `hardhat.co
     networks: {
         hardhat: {
             forking: {
-            url: "{{ networks.moonbeam.rpc_url }}",
+            url: '{{ networks.moonbeam.rpc_url }}',
             }
         }
     }
@@ -452,7 +452,7 @@ If you prefer to configure your Hardhat project, you can update your `hardhat.co
     networks: {
         hardhat: {
             forking: {
-            url: "{{ networks.moonriver.rpc_url }}",
+            url: '{{ networks.moonriver.rpc_url }}',
             }
         }
     }
@@ -466,7 +466,7 @@ If you prefer to configure your Hardhat project, you can update your `hardhat.co
     networks: {
         hardhat: {
             forking: {
-            url: "{{ networks.moonbase.rpc_url }}",
+            url: '{{ networks.moonbase.rpc_url }}',
             }
         }
     }
@@ -490,13 +490,13 @@ From here you can deploy new contracts to your forked instance of Moonbeam or in
 To interact with an already deployed contract, you can create a new script in the `scripts` directory using `ethers`. Because you'll be running it with Hardhat, you don't need to import any libraries. Inside the script, you can access a live contract on the network using the following snippet:
 
 ```js
-const hre = require("hardhat");
+const hre = require('hardhat');
 
 async function main() {
-  const provider = new ethers.providers.StaticJsonRpcProvider("http://127.0.0.1:8545/");
+  const provider = new ethers.providers.StaticJsonRpcProvider('http://127.0.0.1:8545/');
   
   const contract = new ethers.Contract(
-      'INSERT-CONTRACT-ADDRESS', 'INSERT-CONTRACT-ABI', provider
+      'INSERT_CONTRACT_ADDRESS', 'INSERT_CONTRACT_ABI', provider
   );
 }
 
