@@ -148,7 +148,7 @@ This is the multilocation used to calculate the **multilocation-derivative accou
 ```sh
 yarn calculate-multilocation-derivative-account \
 --w wss://wss.api.moonbase.moonbeam.network \
---a YOUR_MOONBASE_RELAY_ACCOUNT_HERE \
+--a INSERT_MOONBASE_RELAY_ACCOUNT \
 --p PARACHAIN_ID_IF_APPLIES \
 --n westend
 ```
