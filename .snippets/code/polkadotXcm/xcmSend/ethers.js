@@ -1,4 +1,4 @@
-import abi from './xcmUtilsABI.js'; // Import the XCM Utiliies Precompile ABI
+import ABI from './xcmUtilsABI.js'; // Import the XCM Utilities Precompile ABI
 import { ethers } from 'ethers'; // Import Ethers library
 
 const privateKey = 'INSERT_PRIVATE_KEY';
@@ -13,7 +13,7 @@ const signer = new ethers.Wallet(privateKey, provider);
 /* Create contract instance of the XCM Utilities Precompile */
 const xcmUtils = new ethers.Contract(
   xcmUtilsAddress,
-  abi,
+  ABI,
   signer
 );
 

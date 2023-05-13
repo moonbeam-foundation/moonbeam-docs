@@ -1,4 +1,4 @@
-import abi from './xtokensABI.js'; // Import the x-tokens ABI
+import ABI from './xtokensABI.js'; // Import the X-Tokens ABI
 import { ethers } from 'ethers'; // Import Ethers library
 
 const privateKey = 'INSERT_PRIVATE_KEY';
@@ -10,7 +10,7 @@ const provider = new ethers.providers.JsonRpcProvider(
 const signer = new ethers.Wallet(privateKey, provider);
 const xTokens = new ethers.Contract(
   '0x0000000000000000000000000000000000000804',
-  abi,
+  ABI,
   signer
 );
 
