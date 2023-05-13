@@ -10,7 +10,7 @@ const main = async () => {
   // Fetch the your existing number of delegations and the collators existing delegations
   let delegatorDelegationCount;
   const delegatorInfo = await api.query.parachainStaking.delegatorState(
-    'YOUR-ACCOUNT-HERE'
+    'YOUR_ACCOUNT_HERE'
   );
 
   if (delegatorInfo.toHuman()) {
