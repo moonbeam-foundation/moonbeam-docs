@@ -162,7 +162,7 @@ In both the Moonbeam XCM Proposals forum post and in Polkassembly, add the follo
 
 ## Register Moonbeam's Asset on your Parachain {: #register-moonbeams-asset-on-your-parachain }
 
-To register any Moonbeam-based network tokens on your parachain, you can use the following details.
+In order to enable cross-chain transfers of Moonbeam native assets or ERC-20s between your chain and Moonbeam, you'll need to register the asset(s). To do so, you'll need the multilocation of each asset.
 
 The WSS network endpoints for each Moonbeam-based network are as follows:
 
@@ -181,9 +181,12 @@ The WSS network endpoints for each Moonbeam-based network are as follows:
     {{ networks.moonbase.wss_url }}
     ```
 
-The asset metadata for each Moonbeam-based network is as follows:
+### Register Moonbeam Native Tokens {: #moonbeam-native-tokens }
+
+For Moonbeam native tokens, the metadata for each network is as follows:
 
 === "Moonbeam"
+
     ```
     Name: Glimmer
     Symbol: GLMR
@@ -192,6 +195,7 @@ The asset metadata for each Moonbeam-based network is as follows:
     ```
 
 === "Moonriver"
+
     ```
     Name: Moonriver Token
     Symbol: MOVR
@@ -200,6 +204,7 @@ The asset metadata for each Moonbeam-based network is as follows:
     ```
 
 === "Moonbase Alpha"
+
     ```
     Name: DEV
     Symbol: DEV
@@ -207,49 +212,95 @@ The asset metadata for each Moonbeam-based network is as follows:
     Existential Deposit: 1 (1 * 10^-18 DEV)
     ```
 
-The multilocation of each Moonbeam-based network asset is as follows:
+The multilocation of Moonbeam native assets include the parachain ID of the network and the pallet instance, which corresponds to the index of the `Balances` pallet. The multilocation for each network is as follows:
 
 === "Moonbeam"
-    ```
+
+    ```js
     {
-      "parents": 1,
-      "interior": {
-        "X2": [
-          { 
-            "Parachain": 2004,
-            "PalletInstance": 10
-          }
-        ]
+      V3: {
+        parents: 1,
+        interior: {
+          X2: [
+            { 
+              Parachain: 2004
+            },
+            {
+              PalletInstance: 10
+            }
+          ]
+        }
       }
     }
     ```
 
 === "Moonriver"
-    ```
+
+    ```js
     {
-      "parents": 1,
-      "interior": {
-        "X2": [
-          { 
-            "Parachain": 2023,
-            "PalletInstance": 10
-          }
-        ]
+      V3: {
+        'parents': 1,
+        'interior': {
+          'X2': [
+            { 
+              'Parachain': 2023
+            },
+            {
+              'PalletInstance': 10
+            }
+          ]
+        }
       }
     }
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```js
     {
-      "parents": 1,
-      "interior": {
-        "X2": [
-          { 
-            "Parachain": 1000,
-            "PalletInstance": 3
-          }
-        ]
+      V3: {
+        'parents': 1,
+        'interior': {
+          'X2': [
+            { 
+              'Parachain': 1000
+            },
+            {
+              'PalletInstance': 3
+            }
+          ]
+        }
+      }
+    }
+    ```
+
+### Register Local XC-20s (ERC-20s) {: #register-erc20s }
+
+In order to register a local XC-20 on another chain, you'll need the multilocation of the asset on Moonbeam. The multilocation will include the parachain ID of Moonbeam, the pallet instance, and the address of the ERC-20. The pallet instance will be `48`, which corresponds to the index of the ERC-20 XCM Bridge Pallet, as this is the pallet that enables any ERC-20 to be transferred via XCM. 
+
+Currently, the support for local XC-20s is only on Moonbase Alpha. You can use the following multilocation to register a local XC-20:
+
+=== "Moonbase Alpha"
+
+    ```js
+    {
+      V3: {
+        parents: 1,
+        interior: {
+          X3: [
+            { 
+              Parachain: 1000
+            },
+            {
+              PalletInstance: 48
+            },
+            {
+              AccountKey20: {
+                key: 'ERC20_ADDRESS_GOES_HERE'
+              }
+            }
+          ]
+        }
       }
     }
     ```
@@ -265,9 +316,9 @@ Before any messages can be sent from your parachain to Moonbeam, an HRMP channel
 !!! note
     You can add [DepositAsset](https://github.com/paritytech/xcm-format#depositasset){target=_blank} to refund the leftover funds after the execution. If this is not provided, no refunds will be carried out. In addition, you could also add a [RefundSurplus](https://github.com/paritytech/xcm-format#refundsurplus){target=_blank} after [Transact](https://github.com/paritytech/xcm-format#transact){target=_blank}, to get any leftover funds not used for the Transact. But you'll have to calculate if it is worth paying the execution cost of the extra XCM instructions.
 
-To send these XCM messages to the relay chain, the [Polkadot XCM Pallet](https://github.com/paritytech/polkadot/tree/master/xcm/pallet-xcm){target=_blank} is typically invoked. Moonbeam also has an [XCM-Transactor Pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/xcm-transactor){target=_blank} that simplifies the process into a call that abstracts the XCM messaging constructor.  
+To send these XCM messages to the relay chain, the [Polkadot XCM Pallet](https://github.com/paritytech/polkadot/tree/master/xcm/pallet-xcm){target=_blank} is typically invoked. Moonbeam also has an [XCM Transactor Pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/xcm-transactor){target=_blank} that simplifies the process into a call that abstracts the XCM messaging constructor.  
 
-You could potentially generate the calldata for an HRMP action by using Polkadot.js Apps, but the [xcm-tools GitHub repository](https://github.com/PureStake/xcm-tools){target=_blank} can build it for you, and it is the recommended tool for this process. They should work for any chain that includes the [Polkadot XCM Pallet](https://github.com/paritytech/polkadot/tree/master/xcm/pallet-xcm){target=_blank}, although it will try to do it via the [XCM-Transactor Pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/xcm-transactor){target=_blank} first.  
+You could potentially generate the calldata for an HRMP action by using Polkadot.js Apps, but the [xcm-tools GitHub repository](https://github.com/PureStake/xcm-tools){target=_blank} can build it for you, and it is the recommended tool for this process. They should work for any chain that includes the [Polkadot XCM Pallet](https://github.com/paritytech/polkadot/tree/master/xcm/pallet-xcm){target=_blank}, although it will try to do it via the [XCM Transactor Pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/xcm-transactor){target=_blank} first.  
 
 ```
 git clone https://github.com/PureStake/xcm-tools && \
@@ -277,7 +328,7 @@ yarn
 
 The [xcm-tools repository](https://github.com/PureStake/xcm-tools){target=_blank} has a specific script for HRMP interactions called [`hrmp-channel-manipulator.ts`](https://github.com/PureStake/xcm-tools/blob/main/scripts/hrmp-channel-manipulator.ts){target=_blank}. This command generates encoded calldata for a specific HRMP action, as long as it is given the correct details. The script builds the XCM message with the DepositAsset XCM instruction, but not with RefundSurplus.
 
-The `hrmp-channel-manipulator.ts` script is meant to be generic. It will first attempt to use the `hrmpManage` extrinsic of the [XCM-Transactor Pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/xcm-transactor){target=_blank}, but if that pallet does not exist on the parachain that it is being used on, it will switch to using the [Polkadot XCM Pallet](https://github.com/paritytech/polkadot/tree/master/xcm/pallet-xcm){target=_blank} (which should be used more readily by parachains) to directly construct the XCM message that interacts with the HRMP pallet on the relay chain. **Note that it expects the pallet name to be `polkadotXcm`, as the extrinsic will be built as `api.tx.polkadotXcm.send()`.**
+The `hrmp-channel-manipulator.ts` script is meant to be generic. It will first attempt to use the `hrmpManage` extrinsic of the [XCM Transactor Pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/xcm-transactor){target=_blank}, but if that pallet does not exist on the parachain that it is being used on, it will switch to using the [Polkadot XCM Pallet](https://github.com/paritytech/polkadot/tree/master/xcm/pallet-xcm){target=_blank} (which should be used more readily by parachains) to directly construct the XCM message that interacts with the HRMP pallet on the relay chain. **Note that it expects the pallet name to be `polkadotXcm`, as the extrinsic will be built as `api.tx.polkadotXcm.send()`.**
 
 The following sections go through the steps of creating/accepting open channel requests in a Moonbeam-based network, but it can also be adapted to your parachain.
 
@@ -396,7 +447,7 @@ Running the command below will provide the encoded calldata to register your cro
     --decimals YOUR_TOKEN_DECIMALS \
     --name "YOUR_TOKEN_NAME" \
     --units-per-second YOUR_UNITS_PER_SECOND \
-    --ed 1 --sufficient true --revert-code true 
+    --ed 1 --sufficient true
     ```
 
 === "Moonbase Alpha"
@@ -407,11 +458,14 @@ Running the command below will provide the encoded calldata to register your cro
     --decimals YOUR_TOKEN_DECIMALS \
     --name "YOUR_TOKEN_NAME" \
     --units-per-second YOUR_UNITS_PER_SECOND \
-    --ed 1 --sufficient true --revert-code true 
+    --ed 1 --sufficient true
     ```
 
 
-Existential deposit, `--ed`, is always set to 1. Sufficiency, `--sufficient`, is always set to `true`. This is so that the XC-20 assets on Moonbeam can act similar to an ERC-20 on Ethereum. The `--revert-code` flag refers to a simple EVM bytecode that is set in the [XC-20](/builders/interoperability/xcm/xc20/){target=_blank} storage element so that other smart contracts can easily interact with the XC-20. You can ensure that these values are properly included by checking for them in Polkadot.js apps with the resultant encoded calldata.  
+Existential deposit, `--ed`, is always set to 1. Sufficiency, `--sufficient`, is always set to `true`. This is so that the XC-20 assets on Moonbeam can act similar to an ERC-20 on Ethereum. The `--revert-code` flag refers to a simple EVM bytecode that is set in the [XC-20](/builders/interoperability/xcm/xc20/){target=_blank} storage element so that other smart contracts can easily interact with the XC-20 (**only needed for [Governance V1](/learn/features/governance#governance-v1){target=_blank} proposals**). You can ensure that these values are properly included by checking for them in [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network){target=_blank} with the resultant encoded calldata.
+
+!!! remember "Warning"
+    For chains with [OpenGov](/learn/features/governance#opengov){target=_blank}, the `--revert-code true` flag was removed. This flag includes a `system.setStorage` call that the General Admin origin can't execute. The dummy EVM bytecode can be set later with a call to the Precompile Registry precompile.
 
 For example, the following command would be for registering an asset from parachain 888, with an asset that has a general key of `1`:  
 
@@ -421,7 +475,7 @@ yarn register-asset -w wss://wss.api.moonbase.moonbeam.network \
 --symbol "xcEXTN" --decimals 18 \
 --name "Example Token" \
 --units-per-second 20070165297881393351 \ 
---ed 1 --sufficient true --revert-code true 
+--ed 1 --sufficient true
 ```
 
 Its output would look like the following:  
@@ -537,13 +591,13 @@ The complete options that can be used with the script are as follows:
 |   send-proposal-as   | democracy/council-external |                                      Whether to send the encoded calldata through democracy or Council (Governance v1)                                       |
 | collective-threshold |           number           |                                     (Required for council-external) The threshold for the Council deciding the proposal                                      |
 |       at-block       |           number           | Whether to wrap the extrinsic calldata inside of a `scheduler.schedule` extrinsic. The block in the future that the action should be scheduled to take place |
-|     fee-currency     |   string (multilocation)   |                           (Required for non-Moonbeam chains that use XCM-Transactor) The multilocation of the relay chain's asset                            |
+|     fee-currency     |   string (multilocation)   |                           (Required for non-Moonbeam chains that use XCM Transactor) The multilocation of the relay chain's asset                            |
 
 ## Testing Asset Registration on Moonbeam {: #testing-asset-registration-on-moonbeam }
 
 After both channels are established and your asset is registered, the team will provide the asset ID and the [XC-20 precompile](/builders/interoperability/xcm/xc20/overview/#the-erc20-interface){target=_blank} address.
 
-Your XC-20 precompile address is calculated by converting the asset ID decimal number to hex, and prepending it with F's until you get a 40 hex character (plus the “0x”) address. For more information on how it is calculated, please refer to the [Calculate External XC-20 Precompile Addresses](/builders/interoperability/xcm/xc20/xc20/#calculate-xc20-address){target=_blank} section of the External XC-20 guide.
+Your XC-20 precompile address is calculated by converting the asset ID decimal number to hex, and prepending it with F's until you get a 40 hex character (plus the “0x”) address. For more information on how it is calculated, please refer to the [Calculate External XC-20 Precompile Addresses](/builders/interoperability/xcm/xc20/overview/#calculate-xc20-address){target=_blank} section of the External XC-20 guide.
 
 After the asset is successfully registered, you can try transferring tokens from your parachain to the Moonbeam-based network you are integrating with.
 

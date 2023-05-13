@@ -495,11 +495,29 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 ***
 
+### Referenda Pallet {: #referenda-pallet }
+
+To support refunds for Submission Deposits on closed referendum, a migration was introduced that updated the `ReferendumInfo` type. The following invariants of `ReferendumInfo` were changed so that the second parameter, `Deposit<AccountId, Balance>`, is now optional, `Option<Deposit<AccountId, Balance>>`: `Approved`, `Rejected`, `Cancelled`, and `TimedOut`.
+
+This stemmed from an upstream change to the [Substrate](https://github.com/paritytech/substrate/pull/12788){target=_blank} repository.
+
+This migration was executed at the following runtimes and blocks:
+
+|    Network     | Executed Runtime | Block Applied |
+|:--------------:|:----------------:|:-------------:|
+|    Moonbeam    |      RT2302      |    3456477    |
+|   Moonriver    |      RT2302      |    4133065    |
+| Moonbase Alpha |      RT2301      |    4172407    |
+
+For more information, you can review the [relative PR on GitHub](https://github.com/PureStake/moonbeam/pull/2134){target=_blank}.
+
+***
+
 ### XCM-Related Pallets {: #xcm-related-pallets }
 
 #### Update Transact Info Storage Item {: #update-transaction-info }
 
-There was a migration applied to the `TransactInfo` storage item of the XCM-transactor pallet that changed the following items:
+There was a migration applied to the `TransactInfo` storage item of the XCM Transactor Pallet that changed the following items:
 
 - `max_weight` is added to prevent transactors from stalling the queue in the destination chain
 - Removes `fee_per_byte`, `metadata_size`, and `base_weight` as these items are not necessary for XCM transactions

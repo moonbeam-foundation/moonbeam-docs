@@ -41,7 +41,7 @@ Some of the main components of this governance model include:
 
 For more details on how these Substrate frame pallets implement on-chain governance, you can checkout the [Walkthrough of Polkadot’s Governance](https://polkadot.network/a-walkthrough-of-polkadots-governance/){target=_blank} blog post and the [Polkadot Governance Wiki](https://wiki.polkadot.network/docs/learn-governance){target=_blank}.
 
-## Governance v2: OpenGov {: #opengov}
+## Governance v2: OpenGov {: #opengov }
 
 This section will cover everything you need to know about OpenGov on Moonriver and Moonbase Alpha. If you're looking for governance-related information on Moonbeam, please refer to the [Governance v1](#governance-v1) section.
 
@@ -231,9 +231,11 @@ The Approval and Support percentages can be calculated using the following:
 
 In the event that a proposal already in the voting stage is found to have an issue, it may be necessary to prevent its approval. These instances may involve malicious activity or technical issues that make the changes impossible to implement due to recent upgrades to the network.
 
-Cancellation must be voted on by the network to be executed. Cancellation proposals are faster than a typical proposal because they must be decided before the enactment of the proposal they seek to cancel, but they follow the same process as other referenda. There are two Cancellation Origins, one for use against referenda that contain an unforeseen problem called Emergency Canceller, and one for bad referenda intending to harm the network called Emergency Killer. Both of these Tracks have a short lead time and Approval and Support requirements, with reductions in the threshold for passing.
+Cancellations must be voted on by the network to be executed. Cancellation proposals are faster than a typical proposal because they must be decided before the enactment of the proposal they seek to cancel, but they follow the same process as other referenda.
 
-The Emergency Canceller track results in a rejected proposal and Decision Deposit refund, and the Emergency Killer track results in cancellation and a deposit slash, meaning the deposit amount is burned. 
+There is a cancellation Origin for use against referenda that contain an unforeseen problem, called the Emergency Canceller. The Emergency Canceller Origin and the Root Origin are allowed to cancel referenda. Regardless of the Origin, if a proposal is cancelled, it gets rejected and the Decision Deposit gets refunded.
+
+In addition, there is a Kill Origin, which is for bad referenda intending to harm the network, called Emergency Killer. The Emergency Killer Origin and the Root Origin have the ability to kill referenda. In this case, a proposal is cancelled and the Decision Deposit is slashed, meaning the deposit amount is burned regardless of the Origin.
 
 ### Rights of the OpenGov Technical Committee {: #rights-of-the-opengov-technical-committee }
 

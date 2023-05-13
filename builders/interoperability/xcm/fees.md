@@ -312,7 +312,7 @@ ExecutionTime = ({{ networks.moonbeam.xcm.instructions.weight_units.numbers_only
 
 Which means that four XCM instructions cost `{{ networks.moonbeam.xcm.message.transfer.exec_time }}` seconds of block execution time.
 
-To calculate the total cost in xcDOT, you'll also need the number of decimals the asset in question uses, which for xcDOT is 10 decimals. You can determine the number of decimals for any asset by [querying the asset metadata](/builders/interoperability/xcm/xc20/xc20/#x-chain-assets-metadata){target=_blank}.
+To calculate the total cost in xcDOT, you'll also need the number of decimals the asset in question uses, which for xcDOT is 10 decimals. You can determine the number of decimals for any asset by [querying the asset metadata](/builders/interoperability/xcm/xc20/overview/#list-xchain-assets){target=_blank}.
 
 The block execution formula can then be used to determine how much Alice's transfer of DOT to Alith's account on Moonbeam costs. The formula for finding the total cost is as follows:
 
@@ -328,9 +328,9 @@ XCM-Cost = ({{ networks.moonbeam.xcm.units_per_second.xcdot.transfer_numbers_onl
 
 The total cost to transfer Alice's DOT to Alith's account for xcDOT is `{{ networks.moonbeam.xcm.message.transfer.xcdot_cost }} xcDOT`.
 
-## XCM-Transactor Fees {: #xcm-transactor-fees }
+## XCM Transactor Fees {: #xcm-transactor-fees }
 
-The [XCM-transactor pallet](/builders/interoperability/xcm/xcm-transactor/){target=_blank} builds an XCM message to remotely transact in other chains of the ecosystem. 
+The [XCM Transactor Pallet](/builders/interoperability/xcm/xcm-transactor/){target=_blank} builds an XCM message to remotely transact in other chains of the ecosystem. 
 
 There are two different ways developers can remotely transact through the pallet:
 
@@ -351,7 +351,7 @@ Therefore, XCM execution in the target chain consists of three to four XCM instr
 
 The transacting through derivative method consists of three XCM instructions: [`WithdrawAsset`](https://github.com/paritytech/xcm-format#withdrawasset){target=_blank}, [`BuyExecution`](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} and [`Transact`](https://github.com/paritytech/xcm-format#transact){target=_blank}.
 
-When [transacting through the sovereign-derivative account](/builders/interoperability/xcm/xcm-transactor/#xcmtransactor-transact-through-derivative){target=_blank}, the transaction fees are paid by the sovereign account of the origin chain in the destination chain, but the derivative account dispatches the transaction. Consequently, the XCM-transactor pallet will burn a certain amount of the corresponding XC-20 token to free up some balance in the sovereign account for XCM execution fee payment.
+When [transacting through the sovereign-derivative account](/builders/interoperability/xcm/xcm-transactor/#xcmtransactor-transact-through-derivative){target=_blank}, the transaction fees are paid by the sovereign account of the origin chain in the destination chain, but the derivative account dispatches the transaction. Consequently, the XCM Transactor Pallet will burn a certain amount of the corresponding XC-20 token to free up some balance in the sovereign account for XCM execution fee payment.
 
 Consider the following scenario: Alice wants to remotely transact in Polkadot from Moonbeam using the transact through sovereign extrinsic (she already has an index registered to her account). To estimate how many XC-20 tokens will be burned from Alice's account, you need to check the transact information specific to the relay chain. To do so, head to the chain state page of [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/chainstate){target=_blank} and set the following options:
 
@@ -380,7 +380,7 @@ XCM-Planck-DOT-Cost = transactExtraWeight * UnitsPerSecond / WeightToSeconds
 XCM-DOT-Cost = XCM-Planck-DOT-Cost / DOTDecimalConversion
 ```
 
-Therefore, the actual calculation for one XCM-transactor transact through derivative call is:
+Therefore, the actual calculation for one XCM Transactor transact through derivative call is:
 
 ```
 XCM-Planck-DOT-Cost = {{ networks.polkadot.xcm_message.transact.numbers_only }} * {{ networks.moonbeam.xcm.units_per_second.xcdot.transact_numbers_only }} / 10^12
@@ -429,7 +429,7 @@ XCM-Wei-Token-Cost = transactExtraWeight * UnitsPerSecond / WeightToSeconds
 XCM-Token-Cost = XCM-Wei-Token-Cost / TokensDecimalConversion
 ```
 
-Therefore, the actual calculation for one XCM-transactor transact through derivative call is:
+Therefore, the actual calculation for one XCM Transactor transact through derivative call is:
 
 ```
 XCM-Wei-Token-Cost = {{ networks.moonbase_beta.xcm_message.transact.numbers_only }} * {{ networks.moonbase.xcm.units_per_second.xcbetadev.transact_numbers_only }}

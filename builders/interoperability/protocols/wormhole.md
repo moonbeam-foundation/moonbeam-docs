@@ -52,7 +52,7 @@ To follow along with this tutorial, you will need to have:
 
 ### Deploying the Wormhole Contract with Remix on Moonbase Alpha {:deploying-the-wormhole-contract-with-remix-on-moonbase-alpha}
 
-To send a cross-chain message, in this guide, you will need to deploy and use a smart contract. Every chain connected to Wormhole will have some sort of implementation of the [Wormhole core bridge](https://github.com/wormhole-foundation/wormhole/blob/dev.v2/ethereum/contracts/interfaces/IWormhole.sol){target=_blank}, whose purpose is to publish and verify VAAs. Each implementation of the core bridge contract (one per chain) is watched by every guardian in the guardian network, which is how they know when to start validating a message.  
+To send a cross-chain message, in this guide, you will need to deploy and use a smart contract. Every chain connected to Wormhole will have some sort of implementation of the [Wormhole core bridge](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/interfaces/IWormhole.sol){target=_blank}, whose purpose is to publish and verify VAAs. Each implementation of the core bridge contract (one per chain) is watched by every guardian in the guardian network, which is how they know when to start validating a message.  
 
 Unlike other cross-chain protocols, Wormhole doesn’t provide a parent smart contract to inherit from for users to build off of. This is because Wormhole’s first chain, Solana, doesn’t have typical inheritance in their smart contracts like Solidity provides. To keep the design experience similar on each chain, Wormhole has their Solidity developers interact directly with the Wormhole core bridge smart contract on EVM chains.  
 
@@ -402,7 +402,7 @@ Now, to send a cross chain message, you just need to call the `sendMessage(strin
 Use the Remix interface. This example is going to send a cross-chain message to the Fantom TestNet, but you can substitute the `destChainId` for whichever EVM you desire. Check the following things:
 
 1. The environment is **Injected Provider** on network 1287 (Moonbase Alpha)
-2. You have substantial funds in your wallet from [the faucet](https://apps.moonbeam.network/moonbase-alpha/faucet/){target=_blank} to cover the transaction gas cost on both the origin and destination chains
+2. You have substantial funds in your wallet from [the faucet](https://faucet.moonbeam.network/){target=_blank} to cover the transaction gas cost on both the origin and destination chains
 3. Put a short message of your choice in the **message** input of the **sendMessage** section (in this case “this is a message”)
 4. Put the address of your instance of SimpleGeneralMessage on destination chain in the **destAddress** input
 5. Put the destination chain’s Wormhole chain ID in the **destChainId** input of the **sendMessage** section
@@ -413,5 +413,11 @@ Use the Remix interface. This example is going to send a cross-chain message to 
 After a few seconds to a minute, cross-chain messages should be properly relayed through the relayer that you are hosting on your local machine.  
 
 ![Message relay in the logs](/images/builders/interoperability/protocols/wormhole/wormhole-9.png)
+
+## Moonbeam Routed Liquidity Integration {: #moonbeam-routed-liquidity-integration }
+
+Wormhole will provide liquidity to parachains through the Moonbeam Routed Liquidity (MRL) program. This program allows one-click transfers of liquidity from Wormhole connected chains into parachain wallets by sending liquidity through Moonbeam networks.  
+
+MRL utilizes the [GMP Precompile](/builders/pallets-precompiles/precompiles/gmp){target=_blank}, whose documentation explains how cross-chain messages should be constructed to properly use the precompile. Currently, it is only available on Moonbase Alpha.  
 
 --8<-- 'text/disclaimers/third-party-content.md'
