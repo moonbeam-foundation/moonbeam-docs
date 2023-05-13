@@ -194,7 +194,7 @@ You'll also need to update the private key to one that has funds on that network
       provider: () => {
         ...
         return new HDWalletProvider(
-          'PRIVATE-KEY-HERE',  // Insert your private key here
+          'PRIVATE_KEY_HERE',  // Insert your private key here
           '{{ networks.moonbeam.rpc_url }}' // Insert your RPC URL here
         )
       },
@@ -208,7 +208,7 @@ You'll also need to update the private key to one that has funds on that network
       provider: () => {
         ...
         return new HDWalletProvider(
-          'PRIVATE-KEY-HERE',  // Insert your private key here
+          'PRIVATE_KEY_HERE',  // Insert your private key here
           '{{ networks.moonriver.rpc_url }}' // Insert your RPC URL here
         )
       },
@@ -222,7 +222,7 @@ You'll also need to update the private key to one that has funds on that network
       provider: () => {
         ...
         return new HDWalletProvider(
-          'PRIVATE-KEY-HERE',  // Insert your private key here
+          'PRIVATE_KEY_HERE',  // Insert your private key here
           '{{ networks.moonbase.rpc_url }}' // Insert your RPC URL here
         )
       },
@@ -383,13 +383,13 @@ Then you can create a new script to access a live contract on the network:
 === "Ethers.js"
 
     ```js
-    const ethers = require("ethers");
+    const ethers = require('ethers');
 
     async function main() {
-      const provider = new ethers.JsonRpcProvider("http://127.0.0.1:8545/");
+      const provider = new ethers.JsonRpcProvider('http://127.0.0.1:8545/');
       
       const contract = new ethers.Contract(
-          'INSERT-CONTRACT-ADDRESS', 'INSERT-CONTRACT-ABI', provider
+          'INSERT_CONTRACT_ADDRESS', 'INSERT_CONTRACT_ABI', provider
       );
     }
 
@@ -402,12 +402,12 @@ Then you can create a new script to access a live contract on the network:
 === "Web3.js"
 
     ```js
-    const Web3 = require("web3");
+    const Web3 = require('web3');
 
     async function main() {
-      const web3 = new Web3("http://127.0.0.1:8545/");
+      const web3 = new Web3('http://127.0.0.1:8545/');
       
-      const contract = new web3.eth.Contract('INSERT-CONTRACT-ADDRESS', 'INSERT-CONTRACT-ABI');
+      const contract = new web3.eth.Contract('INSERT_CONTRACT_ADDRESS', 'INSERT_CONTRACT_ABI');
     }
 
     main().catch((error) => {
@@ -419,7 +419,7 @@ Then you can create a new script to access a live contract on the network:
 To run the script, you can use the following command:
 
 ```
-truffle exec INSERT-PATH-TO-FILE
+truffle exec INSERT_PATH_TO_FILE
 ```
 
 --8<-- 'text/disclaimers/third-party-content.md'
