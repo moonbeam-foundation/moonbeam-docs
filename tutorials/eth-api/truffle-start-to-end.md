@@ -61,7 +61,7 @@ Without further ado, let's create our project:
 
 3. Open the `truffle-config.js` file, where you'll find the network configurations for a local development node and Moonbase Alpha. You'll need to add the Moonbeam configurations and your Moonscan API key here:
 
-    ```
+    ```js
     ...
     networks: {
       ...
@@ -69,8 +69,8 @@ Without further ado, let's create our project:
         provider: () => {
           ...
           return new HDWalletProvider(
-            "PRIVATE_KEY_HERE",  // Insert your private key here
-            "{{ networks.moonbeam.rpc_url }}" // Insert your RPC URL here
+            'PRIVATE_KEY_HERE',  // Insert your private key here
+            '{{ networks.moonbeam.rpc_url }}' // Insert your RPC URL here
           )
         },
         network_id: {{ networks.moonbeam.chain_id }} // (hex: {{ networks.moonbeam.hex_chain_id }}),
@@ -78,7 +78,7 @@ Without further ado, let's create our project:
     },
     ...
     api_keys: {
-      moonscan: "MOONSCAN_API_KEY_HERE"
+      moonscan: 'MOONSCAN_API_KEY_HERE'
     },
     ...
     ```
@@ -300,8 +300,8 @@ Let's update the deployment migratio script so that later on we can jump straigh
 To update the deployment script, open up the `migrations/2_deploy_contracts.js` migration file and replace it with the following:
 
 ```js
-var NftMarketplace = artifacts.require("NftMarketplace");
-var DizzyDragons = artifacts.require("DizzyDragons");
+var NftMarketplace = artifacts.require('NftMarketplace');
+var DizzyDragons = artifacts.require('DizzyDragons');
 
 module.exports = async function (deployer) {
   // Deploy the NFT Marketplace
@@ -359,7 +359,7 @@ Now that we can set up our test file, let's take a minute to review what we'll n
 - Import the artifacts for the `NftMarketplace` and `DizzyDragons` contracts using Truffle's `artifacts.require()`, which provides an abstraction instance of a contract
 - Create a `contract` function to group our tests. The `contract` function will also provide us with our account we have setup in our `truffle-config.js` file. As we used the Moonbeam Truffle box, our development account has been set up for us. When we move on to deploy and test our contracts on Moonbase Alpha and Moonbeam, we'll need to configure our accounts
 - For each test, we're going to need to deploy our contracts and mint an NFT. To do this, we can take advantage of the [`beforeEach` hook provided by Mocha](https://mochajs.org/#hooks){target=_blank}
-- As we'll be minting an NFT for each test, we'll need to have a `tokenUri`. The `tokenUri` that we'll use for our examples will be for Daizy, our first Dizzy Dragon NFT. The `tokenUri` will be set to `"https://gateway.pinata.cloud/ipfs/QmTCib5LvSrb7sshLhLvzmV7wdSdmSt3yjB4dqQaA58Td9"`, which was created specifically for this tutorial and is for educational purposes only 
+- As we'll be minting an NFT for each test, we'll need to have a `tokenUri`. The `tokenUri` that we'll use for our examples will be for Daizy, our first Dizzy Dragon NFT. The `tokenUri` will be set to `'https://gateway.pinata.cloud/ipfs/QmTCib5LvSrb7sshLhLvzmV7wdSdmSt3yjB4dqQaA58Td9'`, which was created specifically for this tutorial and is for educational purposes only 
 
 You can enter the `tokenUri` into your web browser to view the metadata for Daizy and the [image for Daizy](https://gateway.pinata.cloud/ipfs/QmTzmrRb6TmEsP96dCoBv2kjdiCiojagBU7YJ95RaAuuF4?_gl=1*m58ja2*_ga*ODc3ODA3MjcwLjE2NzQ2NjQ2ODY.*_ga_5RMPXG14TE*MTY3NDY2NDY4Ni4xLjEuMTY3NDY2NDcwMi40NC4wLjA.){target=_blank} has also been pinned so you can easily see what Daizy looks like!
 
@@ -368,12 +368,12 @@ You can enter the `tokenUri` into your web browser to view the metadata for Daiz
 So, now that we have a game plan, let's implement it! In the `test_NftMarketplace.js` file, we can add the following code:
 
 ```js
-const NftMarketplace = artifacts.require("NftMarketplace");
-const DizzyDragons = artifacts.require("DizzyDragons");
+const NftMarketplace = artifacts.require('NftMarketplace');
+const DizzyDragons = artifacts.require('DizzyDragons');
 
-contract("NftMarketplace", (accounts) => {
+contract('NftMarketplace', (accounts) => {
   const tokenUri =
-    "https://gateway.pinata.cloud/ipfs/QmTCib5LvSrb7sshLhLvzmV7wdSdmSt3yjB4dqQaA58Td9";
+    'https://gateway.pinata.cloud/ipfs/QmTCib5LvSrb7sshLhLvzmV7wdSdmSt3yjB4dqQaA58Td9';
   let nftMarketplace;
   let dizzyDragonsNft;
   let mintedNft;
@@ -421,7 +421,7 @@ We'll need to convert the BN to a number using `toNumber()` and then we can also
 In place of the `// TODO: Add tests here` comment, you can add the following test:
 
 ```js
-  it("should mint a new Dizzy Dragon NFT", async () => {
+  it('should mint a new Dizzy Dragon NFT', async () => {
     // Access the logs of the mint transaction
     // Remember: mintedNft was created in the beforeEach function!
     // We grab the 2nd index here, because in the mint function _safeMint is
@@ -435,7 +435,7 @@ In place of the `// TODO: Add tests here` comment, you can add the following tes
 
     // Use Mocha's assert to test that the NftMinted event was emitted
     // and the token ID of the NFT is 1
-    assert.equal(event, "NftMinted");
+    assert.equal(event, 'NftMinted');
     assert.equal(tokenId, 1);
   });
 ```
@@ -480,14 +480,14 @@ So, our event logs should resemble the following:
 With this in mind, we can tackle our next test. So, after the first test, we can go ahead and the following:
 
 ```js
-  it("should list a new Dizzy Dragon NFT", async () => {
+  it('should list a new Dizzy Dragon NFT', async () => {
     // Access the logs of the mint transaction so we can grab
     // the contract address of the NFT and the token ID
     const nftMintedLog = mintedNft.logs[2];
 
     // Assemble the arguments needed to list the NFT that was minted
     // in the beforeEach function
-    const price = await web3.utils.toWei("1", "ether"); // Set the price of the NFT to 1 ether
+    const price = await web3.utils.toWei('1', 'ether'); // Set the price of the NFT to 1 ether
     const nftAddress = nftMintedLog.address; 
     const mintTokenId = nftMintedLog.args[0].toNumber();
 
@@ -507,7 +507,7 @@ With this in mind, we can tackle our next test. So, after the first test, we can
 
     // Use Mocha's assert to test that the NftListed event was emitted
     // with the correct arguments for the seller and token ID
-    assert.equal(event, "NftListed");
+    assert.equal(event, 'NftListed');
     assert.equal(seller, accounts[0]);
     assert.equal(tokenId, mintTokenId);
   });
@@ -549,11 +549,11 @@ So, our event logs should resemble the following:
 Let's jump into writing the next test by adding the following to our test file:
 
 ```js
-  it("should buy a new Dizzy Dragon NFT", async () => {
+  it('should buy a new Dizzy Dragon NFT', async () => {
     const nftMintedLog = mintedNft.logs[2];
 
     // List the NFT first
-    const price = await web3.utils.toWei("1", "ether"); 
+    const price = await web3.utils.toWei('1', 'ether'); 
     const nftAddress = nftMintedLog.address;
     const mintTokenId = nftMintedLog.args[0].toNumber();
     await nftMarketplace.listNft(
@@ -579,7 +579,7 @@ Let's jump into writing the next test by adding the following to our test file:
 
     // Use Mocha's assert to test that the NftPurchased event was emitted
     // with the correct argument for the buyer and token ID
-    assert.equal(event, "NftPurchased"); 
+    assert.equal(event, 'NftPurchased'); 
     assert.equal(buyer, accounts[0]);
     assert.equal(tokenId, mintTokenId);
   });
@@ -665,7 +665,7 @@ module.exports = {
       provider: () => {
         ...
         return new HDWalletProvider(
-          'PRIVATE-KEY-HERE',  // Insert your private key here
+          'PRIVATE_KEY_HERE',  // Insert your private key here
           '{{ networks.moonbeam.rpc_url }}' // Insert your RPC URL here
         )
       },
