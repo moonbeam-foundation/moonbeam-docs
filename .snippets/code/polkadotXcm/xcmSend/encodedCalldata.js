@@ -8,9 +8,7 @@ const relayChainMultilocation = { parents: 1, interior: null };
 const amount = BigInt(1 * 10 ** 12); // 1 UNIT
 // You can use the decodeAddress function to ensure that your address is properly
 // decoded. If it isn't decoded, it will decode it and if it is, it will ignore it
-const bob = decodeAddress(
-  '0x0c36e9ba26fa63c60ec728fe75fe57b86a450d94e7fee7f9f9eddd0d3f400d67'
-);
+const bob = decodeAddress('5CLik8E9AFqjykkRDzyvujDNCeM1zFX9Pg7Y5grvoaH6oWUY');
 
 // 2. XCM instruction 1: WithdrawAsset
 const instr1 = {
