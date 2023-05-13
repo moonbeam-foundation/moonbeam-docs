@@ -169,6 +169,7 @@ Options accept an argument to the right of the option. For example:
 - **`--ws-port <port>`**: sets the WebSockets RPC server TCP port. As of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, the WS port is a unified port for both HTTP and WS connections. Accepts a port as the argument. Default is {{ networks.parachain.ws }}
 - **`--rpc-max-connections <connections>`** - *deprecated as of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, this value has been hardcoded to 100. Use `--ws-max-connections` to adjust the combined HTTP and WS connection limit instead* - specifies the maximum number of HTTP RPC server connections 
 - **`--ws-max-connections <connections>`** - specifies the maximum number of WS RPC server connections. As of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, this flag adjusts the combined HTTP and WS connection limit. Default is 100 connections
+- **`--rpc-cors <origins>`** - specifies the browser origins allowed to access the HTTP and WS RPC servers. The origins can be a comma-separated list of the origins to allow access or you can also specify `null`. When running a development node, the default is to allow all origins
 
 For a complete list of flags and options, spin up your Moonbeam development node with `--help` added to the end of the command.
 

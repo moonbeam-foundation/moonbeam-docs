@@ -379,6 +379,7 @@ networks:
       preimage: '0x0000000000000000000000000000000000000813'
       collective_opengov_tech_committee: '0x0000000000000000000000000000000000000814'
       registry: '0x0000000000000000000000000000000000000815'
+      gmp: '0x0000000000000000000000000000000000000816'
     substrate_api_sidecar:
       stable_version: 14.1.1
     tx_weight_to_gas_ratio: 25000
@@ -688,6 +689,7 @@ networks:
       preimage: '0x0000000000000000000000000000000000000813'
       collective_opengov_tech_committee: '0x0000000000000000000000000000000000000814'
       registry: '0x0000000000000000000000000000000000000815'
+      gmp: '0x0000000000000000000000000000000000000816'
     chainlink:
       feed:
         proxy:
@@ -905,6 +907,7 @@ networks:
       preimage: '0x0000000000000000000000000000000000000813'
       collective_opengov_tech_committee: '0x0000000000000000000000000000000000000814'
       registry: '0x0000000000000000000000000000000000000815'
+      gmp: '0x0000000000000000000000000000000000000816'
     chainlink:
       feed:
         proxy:
@@ -922,8 +925,8 @@ networks:
       min_vrf_blocks_delay: 2
       max_vrf_blocks_delay: 2000
       req_deposit_amount:
-        glmr: 1
-        wei: 1000000000000000000
+        glmr: 100
+        wei: 100000000000000000000
       block_expiration: 10000
       epoch_expiration: 10000
       epoch_fulfillment_delay: 2

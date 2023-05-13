@@ -78,7 +78,7 @@ To get started developing on one of the TestNets, you'll need to fund your accou
 
 |                                         TestNet                                         |                                                                                     Where To Get Tokens From                                                                                     |
 |:---------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|        [Moonbase Alpha](/builders/get-started/networks/moonbase){target=_blank}         | The [Moonbase Alpha Faucet](https://apps.moonbeam.network/moonbase-alpha/faucet/){target=_blank} website. <br> The faucet dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours |
+|        [Moonbase Alpha](/builders/get-started/networks/moonbase){target=_blank}         | The [Moonbase Alpha Faucet](https://faucet.moonbeam.network/){target=_blank} website. <br> The faucet dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours |
 | [Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev){target=_blank} |           Any of the [ten pre-funded accounts](/builders/get-started/networks/moonbeam-dev/#pre-funded-development-accounts){target=_blank} that come with your <br> development node            |
 
 ## Development Tools {: #development-tools }

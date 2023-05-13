@@ -33,7 +33,7 @@ The Conviction Voting Precompile is located at the following address:
 
 [`ConvictionVoting.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's methods.
 
-The interfaces includes a `Conviction` enum that defines the Conviction multiplier types. The enum has the following variables:
+The interfaces includes a `Conviction` enum that defines the [Conviction multiplier](/learn/features/governance/#conviction-multiplier-v2){target=_blank} types. The enum has the following variables:
 
  - **None** -  0.1x votes, unlocked
  - **Locked1x** - 1x votes, locked for an Enactment Period following a successful vote
@@ -45,8 +45,12 @@ The interfaces includes a `Conviction` enum that defines the Conviction multipli
 
 The interface includes the following functions:
 
+- **votingFor**(*address* who, *uint16* trackId) - returns the votes for a given account and Track
+- **classLocksFor**(*address* who) - returns the class locks for a given account
 - **voteYes**(*uint32* pollIndex, *uint256* voteAmount, *Conviction* conviction) - votes a Conviction-weighted "Aye" on a poll (referendum)
 - **voteNo**(*uint32* pollIndex, *uint256* voteAmount, *Conviction* conviction) - votes a Conviction-weighted "Nay" on a poll (referendum)
+- **voteSplit**(*uint32* pollIndex, *uint256* aye, *uint256* nay) - votes a split vote, with a given amount locked for "Aye" and a given amount locked for "Nay", on a poll (referendum)
+- **voteSplitAbstain**(*uint32* pollIndex, *uint256* aye, *uint256* nay) - votes a split abstained vote, with a given amount locked for "Aye", a given amount locked for "Nay", and a given amount locked for an abstain vote (support), on a poll (referendum)
 - **removeVote**(*uint32* pollIndex) - [removes a vote](/builders/pallets-precompiles/pallets/conviction-voting/#extrinsics){target=_blank} in a poll (referendum)
 - **removeOtherVote**(*address* target, *uint16* trackId, *uint32* pollIndex) - [removes a vote](/builders/pallets-precompiles/pallets/conviction-voting/#extrinsics){target=_blank} in a poll (referendum) for another voter
 - **delegate**(*uint16* trackId, *address* representative, *Conviction* conviction, *uint256* amount) - delegates another account as a representative to place a Conviction-weighted vote on the behalf of the sending account for a specific Track
@@ -64,7 +68,10 @@ Each of these functions have the following parameters:
 The interface also includes the following events:
 
 - **Voted**(*uint32 indexed* pollIndex, *address* voter, *bool* aye, *uint256* voteAmount, *uint8* conviction) - emitted when an account makes a vote
-- **VoteRemoved**(*uint32 indexed* pollIndex, *address* voter) - emitted when an account's (`voter`) vote has been removed
+- **VoteSplit**(*uint32 indexed* pollIndex, *address* voter, *uin256* aye, *uint256* nay) - emitted when an account makes a split vote
+- **VoteSplitAbstained**(*uint32 indexed* pollIndex, *address* voter, *uin256* aye, *uint256* nay, *uint256* nay) - emitted when an account makes a split abstained vote
+- **VoteRemoved**(*uint32 indexed* pollIndex, *address* voter) - emitted when an account's (`voter`) vote has been removed from an ongoing poll (referendum)
+- **VoteRemovedForTrack**(*uint32 indexed* pollIndex, *uint16* trackId, *address* voter) - emitted when an account's (`voter`) vote has been removed from an ongoing poll (referendum) for a specific Track
 - **VoteRemovedOther**(*uint32 indexed* pollIndex, *address* caller, *address* target, *uint16* trackId) - emitted when an account (`caller`) removed a vote for another account (`target`)
 - **Delegated**(*uint16 indexed* trackId, *address* from, *address* to, *uint256* delegatedAmount, *uint8* conviction) - emitted when an account (`from`) delegates a Conviction-weighted vote of a given amount to another account (`to`)
 - **Undelegated**(*uint16 indexed* trackId, *address* caller) - emitted when an account's (`caller`) delegations are removed for a specific Track

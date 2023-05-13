@@ -7,13 +7,13 @@ description: Learn how to use the Ethereum EthersRS Library to send transactions
 
 ![Intro diagram](/images/builders/build/eth-api/libraries/ethersrs/ethers-rust-banner.png)
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 The [Ethers.rs](https://ethers.rs){target=_blank} library provides a set of tools to interact with Ethereum Nodes via the Rust programming language that works similar to [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank}. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations. Therefore, developers can leverage this compatibility and use the Ethers.rs library to interact with a Moonbeam node as if they were doing so on Ethereum. You can read more about how to use Ethers.rs on their [official crate documentation](https://docs.rs/crate/ethers/latest){target=_blank}.
 
 In this guide, you'll learn how to use the Ethers.rs library to send a transaction and deploy a contract on Moonbase Alpha. This guide can be adapted for [Moonbeam](/builders/get-started/networks/moonbeam/){target=_blank}, [Moonriver](/builders/get-started/networks/moonriver/){target=_blank}, or a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev/){target=_blank}.
 
-## Checking Prerequisites {: #checking-prerequisites } 
+## Checking Prerequisites {: #checking-prerequisites }
 
 For the examples in this guide, you will need to have the following:
 
@@ -65,7 +65,7 @@ Throughout this guide, you'll be writing multiple functions that provide differe
 
 --8<-- 'text/common/endpoint-setup.md'
 
-There are multiple ways to create a provider and signer, but the easiest way is through `try_from`:
+There are multiple ways to create a provider and signer, but the easiest way is through `try_from`. In the `src/main.rs` file, you can take the following steps:
 
 1. Import `Provider` and `Http` from the `ethers` crate
 2. Add a `Client` type for convenience, which will be used once you start to create the functions for sending a transaction and deploying a contract
@@ -85,7 +85,7 @@ There are multiple ways to create a provider and signer, but the easiest way is 
 
     // 3. Add annotation
     #[tokio::main]
-    fn main() -> Result<(), Box<dyn std::error::Error>> {
+    async fn main() -> Result<(), Box<dyn std::error::Error>> {
         // 4. Use try_from with RPC endpoint
         let provider = Provider::<Http>::try_from(
             "{{ networks.moonbeam.rpc_url }}"
@@ -94,7 +94,7 @@ There are multiple ways to create a provider and signer, but the easiest way is 
         // Do not include the private key in plain text in any production code
         // This is just for demonstration purposes
         // Do not include '0x' at the start of the private key
-        let wallet: LocalWallet = "YOUR PRIVATE KEY"
+        let wallet: LocalWallet = "YOUR_PRIVATE_KEY"
             .parse::<LocalWallet>()?
             .with_chain_id(Chain::Moonbeam);
 
@@ -115,7 +115,7 @@ There are multiple ways to create a provider and signer, but the easiest way is 
 
     // 3. Add annotation
     #[tokio::main]
-    fn main() -> Result<(), Box<dyn std::error::Error>> {
+    async fn main() -> Result<(), Box<dyn std::error::Error>> {
         // 4. Use try_from with RPC endpoint
         let provider = Provider::<Http>::try_from(
             "{{ networks.moonriver.rpc_url }}"
@@ -124,7 +124,7 @@ There are multiple ways to create a provider and signer, but the easiest way is 
         // Do not include the private key in plain text in any production code
         // This is just for demonstration purposes
         // Do not include '0x' at the start of the private key
-        let wallet: LocalWallet = "YOUR PRIVATE KEY"
+        let wallet: LocalWallet = "YOUR_PRIVATE_KEY"
             .parse::<LocalWallet>()?
             .with_chain_id(Chain::Moonriver);
 
@@ -145,7 +145,7 @@ There are multiple ways to create a provider and signer, but the easiest way is 
 
     // 3. Add annotation
     #[tokio::main]
-    fn main() -> Result<(), Box<dyn std::error::Error>> {
+    async fn main() -> Result<(), Box<dyn std::error::Error>> {
         // 4. Use try_from with RPC endpoint
         let provider = Provider::<Http>::try_from(
             "{{ networks.moonbase.rpc_url }}"
@@ -154,7 +154,7 @@ There are multiple ways to create a provider and signer, but the easiest way is 
         // Do not include the private key in plain text in any production code
         // This is just for demonstration purposes
         // Do not include '0x' at the start of the private key
-        let wallet: LocalWallet = "YOUR PRIVATE KEY"
+        let wallet: LocalWallet = "YOUR_PRIVATE_KEY"
             .parse::<LocalWallet>()?
             .with_chain_id(Chain::Moonbase);
 
@@ -175,7 +175,7 @@ There are multiple ways to create a provider and signer, but the easiest way is 
 
     // 3. Add annotation
     #[tokio::main]
-    fn main() -> Result<(), Box<dyn std::error::Error>> {
+    async fn main() -> Result<(), Box<dyn std::error::Error>> {
         // 4. Use try_from with RPC endpoint
         let provider = Provider::<Http>::try_from(
             "{{ networks.development.rpc_url }}"
@@ -184,7 +184,7 @@ There are multiple ways to create a provider and signer, but the easiest way is 
         // Do not include the private key in plain text in any production code
         // This is just for demonstration purposes
         // Do not include '0x' at the start of the private key
-        let wallet: LocalWallet = "YOUR PRIVATE KEY"
+        let wallet: LocalWallet = "YOUR_PRIVATE_KEY"
             .parse::<LocalWallet>()?
             .with_chain_id(Chain::MoonbeamDev);
 
@@ -215,8 +215,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // ...
 
     // 2. Add from and to address
-    let address_from = "YOUR FROM ADDRESS".parse::<Address>()?
-    let address_to = "YOUR TO ADDRESS".parse::<Address>()?
+    let address_from = "YOUR_FROM_ADDRESS".parse::<Address>()?
+    let address_to = "YOUR_TO_ADDRESS".parse::<Address>()?
 }
 ```
 
