@@ -1,13 +1,16 @@
 import Web3 from 'web3';
+import ABI from './precompileRegistryABI.js'; // Import Precompile Registry ABI
+
+const privateKey = 'INSERT_PRIVATE_KEY';
 
 // Create provider
 const web3 = new Web3('https://rpc.api.moonbase.moonbeam.network');
 
 // Create interface for the Precompile Registry
 const precompileRegistry = new web3.eth.Contract(
-  PRECOMPILE_REGISTRY_ABI,
+  ABI,
   '0x0000000000000000000000000000000000000815',
-  { from: web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY).address }
+  { from: web3.eth.accounts.privateKeyToAccount(privateKey).address }
 );
 
 // Interact with the Precompile Registry

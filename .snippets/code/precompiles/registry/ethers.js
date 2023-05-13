@@ -1,15 +1,18 @@
 import { ethers } from 'ethers'; // Import Ethers library
+import ABI from './precompileRegistryABI.js'; // Import Precompile Registry ABI
+
+const privateKey = 'INSERT_PRIVATE_KEY';
 
 // Create Ethers provider and signer
 const provider = new ethers.JsonRpcProvider(
   'https://rpc.api.moonbase.moonbeam.network'
 );
-const signer = new ethers.Wallet(PRIVATE_KEY, provider);
+const signer = new ethers.Wallet(privateKey, provider);
 
 // Create interface for the Precompile Registry
 const precompileRegistry = new ethers.Contract(
   '0x0000000000000000000000000000000000000815',
-  PRECOMPILE_REGISTRY_ABI,
+  ABI,
   signer
 );
 
