@@ -98,7 +98,7 @@ The `execute` function of the Polkadot XCM Pallet accepts two parameters: `messa
 3. Combine the XCM instructions into a versioned XCM message:
 
     ```js
-    const message = { V3: [instr1, instr2] };
+    const xcmMessage = { V3: [instr1, instr2] };
     ```
 
 4. Specify the `maxWeight`, which includes a value for `refTime` and `proofSize` that you will need to define:
@@ -116,7 +116,7 @@ Now that you have the values for each of the parameters, you can write the scrip
      - The values for each of the parameters of the `execute` function
  2. Create a Keyring instance that will be used to send the transaction
  3. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} provider
- 4. Craft the `polkadotXcm.execute` extrinsic with the `message` and `maxWeight`
+ 4. Craft the `polkadotXcm.execute` extrinsic with the `xcmMessage` and `maxWeight`
  5. Send the transaction using the `signAndSend` extrinsic and the Keyring instance you created in the second step
 
 !!! remember
@@ -153,7 +153,7 @@ To get the encoded calldata of the XCM message, you can create a script similar 
      - The Moonbase Alpha endpoint URL to create the provider
      - The values for each of the parameters of the `execute` function as defined in the [Execute an XCM Message with the Polkadot.js API](#execute-an-xcm-message-with-polkadotjs-api) section
  2. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} provider
- 3. Craft the `polkadotXcm.execute` extrinsic with the `message` and `maxWeight`
+ 3. Craft the `polkadotXcm.execute` extrinsic with the `xcmMessage` and `maxWeight`
  4. Use the transaction to get the encoded calldata
 
 The entire script is as follows:
@@ -214,7 +214,7 @@ The `send` function of the Polkadot XCM Pallet accepts two parameters: `dest` an
 1. Build the multilocation of the relay chain token, UNIT, for the `dest`:
 
     ```js
-    const dest = { V3: { parents: 1, interior: null } };
+    const xcmDest = { V3: { parents: 1, interior: null } };
     ```
 
 2. Build the `WithdrawAsset` instruction, which will require you to define:
@@ -274,7 +274,7 @@ The `send` function of the Polkadot XCM Pallet accepts two parameters: `dest` an
 5. Combine the XCM instructions into a versioned XCM message:
 
     ```js
-    const message = { V3: [instr1, instr2, instr3] };
+    const xcmMessage = { V3: [instr1, instr2, instr3] };
     ```
 
 Now that you have the values for each of the parameters, you can write the script to send the XCM message. You'll take the following steps:
@@ -284,7 +284,7 @@ Now that you have the values for each of the parameters, you can write the scrip
      - The values for each of the parameters of the `send` function
  2. Create a Keyring instance that will be used to send the transaction
  3. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} provider
- 4. Craft the `polkadotXcm.send` extrinsic with the `dest` and `message`
+ 4. Craft the `polkadotXcm.send` extrinsic with the `xcmDest` and `xcmMessage`
  5. Send the transaction using the `signAndSend` extrinsic and the Keyring instance you created in the second step
 
 !!! remember
@@ -322,7 +322,7 @@ To get the encoded calldata of the XCM message, you can create a script similar 
      - The Moonbase Alpha endpoint URL to create the provider
      - The values for each of the parameters of the `send` function as defined in the [Send an XCM Message with the Polkadot.js API](#send-xcm-message-with-polkadotjs-api) section
  2. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} provider
- 3. Craft the `polkadotXcm.execute` extrinsic with the `message` and `maxWeight`
+ 3. Craft the `polkadotXcm.execute` extrinsic with the `xcmMessage` and `maxWeight`
  4. Use the transaction to get the encoded calldata
 
 The entire script is as follows:
@@ -336,7 +336,7 @@ The entire script is as follows:
 Before you can send the XCM message, you'll also need to build the multilocation of the destination. For this example, you'll target the relay chain with Moonbase Alpha as the origin chain:
 
 ```js
-const dest = [
+const xcmDest = [
   1, // Parents: 1 
   [] // Interior: Here
 ];

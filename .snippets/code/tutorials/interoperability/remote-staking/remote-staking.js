@@ -3,8 +3,8 @@ import { ApiPromise, WsProvider, Keyring } from '@polkadot/api';
 const PRIVATE_KEY = 'INSERT_PRIVATE_KEY';
 
 // 1. Define the dest and message arguments
-const dest = { V3: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
-const message = {
+const xcmDest = { V3: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
+const xcmMessage = {
   V3: [
     {
       WithdrawAsset: [
@@ -54,7 +54,7 @@ const performRemoteDelegation = async () => {
   console.log(`Derived Address from Private Key: ${otherPair.address}`);
 
   // 4. Define the transaction using the send method of the xcm pallet
-  const tx = api.tx.xcmPallet.send(dest, message);
+  const tx = api.tx.xcmPallet.send(xcmDest, xcmMessage);
 
   // 5. Sign and send the transaction
   const txHash = await tx.signAndSend(otherPair);

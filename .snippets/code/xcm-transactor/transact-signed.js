@@ -1,6 +1,7 @@
 import { ApiPromise, WsProvider, Keyring } from '@polkadot/api'; // Version 9.13.6
 
 // 1. Provide input data
+const PRIVATE_KEY = 'INSERT_PRIVATE_KEY';
 const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
 const dest = {
   V3: {

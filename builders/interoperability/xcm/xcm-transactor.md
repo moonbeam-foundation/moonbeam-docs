@@ -115,7 +115,7 @@ Since you'll be interacting with the `transactThroughSigned` function of the XCM
 1. Define the destination multilocation, which will target parachain 888:
 
     ```js
-    const dest = {
+    const xcmDest = {
       V3: {
         parents: 1,
         interior: { X1: { Parachain: 888 } },
@@ -174,7 +174,7 @@ Now that you have the values for each of the parameters, you can write the scrip
      - The values for each of the parameters of the `transactThroughSigned` function
  2. Create a Keyring instance that will be used to send the transaction
  3. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} provider
- 4. Craft the `xcmTransactor.transactThroughSigned` extrinsic with the `dest`, `fee`, `call` and `weightInfo` values
+ 4. Craft the `xcmTransactor.transactThroughSigned` extrinsic with the `xcmDest`, `fee`, `call` and `weightInfo` values
  5. Send the transaction using the `signAndSend` extrinsic and the Keyring instance you created in the second step
 
 !!! remember

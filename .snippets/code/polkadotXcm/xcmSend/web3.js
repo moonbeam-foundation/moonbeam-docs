@@ -1,7 +1,7 @@
 import abi from './xcmUtilsABI.js'; // Import the XCM Utiliies Precompile ABI
 import Web3 from 'web3'; // Import Web3 library
 
-const PRIVATE_KEY = 'INSERT-YOUR-PRIVATE-KEY';
+const PRIVATE_KEY = 'INSERT_PRIVATE_KEY';
 const xcmUtilsAddress = '0x000000000000000000000000000000000000080C';
 
 /* Create Web3 provider */
@@ -16,15 +16,15 @@ const xcmUtils = new web3.eth.Contract(
 
 const sendXcm = async () => {
   /* Define parameters required for the xcmSend function */
-  const encodedCalldata = 'INSERT-ENCODED-CALLDATA';
-  const dest = [
+  const encodedCalldata = 'INSERT_ENCODED_CALLDATA';
+  const xcmDest = [
     1, // Parents: 1 
     [] // Interior: Here
   ];
 
   /* Send the custom XCM message */
   // Craft the extrinsic
-  const tx = await xcmUtils.methods.xcmSend(dest, encodedCalldata);
+  const tx = await xcmUtils.methods.xcmSend(xcmDest, encodedCalldata);
   // Sign transaction
   const signedTx = await web3.eth.accounts.signTransaction(
     {

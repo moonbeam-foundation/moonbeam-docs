@@ -25,7 +25,7 @@ const instr2 = {
     },
   },
 };
-const message = { V3: [instr1, instr2] };
+const xcmMessage = { V3: [instr1, instr2] };
 const maxWeight =  { refTime: 100000000000n, proofSize: 0 };
 
 // 2. Create Keyring instance
@@ -38,7 +38,7 @@ const executeXcmMessage = async () => {
   const api = await ApiPromise.create({ provider: substrateProvider });
 
   // 4. Craft the extrinsic
-  const tx = api.tx.polkadotXcm.execute(message, maxWeight);
+  const tx = api.tx.polkadotXcm.execute(xcmMessage, maxWeight);
 
   // 5. Send the transaction
   const txHash = await tx.signAndSend(alice);

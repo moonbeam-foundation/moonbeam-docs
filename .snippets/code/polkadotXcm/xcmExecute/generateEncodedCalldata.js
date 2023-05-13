@@ -26,7 +26,7 @@ const instr2 = {
     },
   },
 };
-const message = { V3: [instr1, instr2] };
+const xcmMessage = { V3: [instr1, instr2] };
 const maxWeight =  { refTime: 100000000000n, proofSize: 0 };
 
 const getEncodedXcmMessage = async () => {
@@ -35,7 +35,7 @@ const getEncodedXcmMessage = async () => {
   const api = await ApiPromise.create({ provider: substrateProvider });
 
   // 3. Craft the extrinsic
-  const tx = api.tx.polkadotXcm.execute(message, maxWeight);
+  const tx = api.tx.polkadotXcm.execute(xcmMessage, maxWeight);
 
   // 4. Get the encoded XCM message
   // By using index 0, you'll get just the encoded XCM message.

@@ -1,10 +1,10 @@
 from web3 import Web3
 
-abi = 'XCM_UTILS_ABI_HERE'  # Paste or import the XCM Utils ABI
+abi = 'INSERT_XCM_UTILS_ABI'  # Paste or import the XCM Utils ABI
 # This is for demo purposes, never store your private key in plain text
-private_key = 'INSERT_YOUR_PRIVATE_KEY'
+private_key = 'INSERT_PRIVATE_KEY'
 # The wallet address that corresponds to your private key
-address = 'INSERT_YOUR_ADDRESS'
+address = 'INSERT_ADDRESS'
 xcm_utils_address = '0x000000000000000000000000000000000000080C'
 
 ## Create Web3 provider ##
@@ -18,10 +18,10 @@ xcm_utils = web3.eth.contract(
 )
 
 
-def sendXcm():
+def send_xcm():
     ## Define parameters required for the xcmSend function ##
     encoded_calldata = 'INSERT_ENCODED_CALLDATA'
-    dest = [
+    xcm_dest = [
         1,  # Parents: 1
         []  # Interior: Here
     ]
@@ -29,7 +29,7 @@ def sendXcm():
     ## Send the custom XCM message ##
     # Craft the extrinsic
     tx = xcm_utils.functions.xcmSend(
-        dest,
+        xcm_dest,
         encoded_calldata
     ).build_transaction(
         {
@@ -45,4 +45,4 @@ def sendXcm():
     print(f'Transaction receipt: { receipt.transactionHash.hex() }')
 
 
-sendXcm()
+send_xcm()

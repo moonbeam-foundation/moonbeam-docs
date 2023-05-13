@@ -136,7 +136,7 @@ Since you'll be interacting with the `transfer` function of the X-Tokens Pallet,
 3. Define the multilocation of the destination, which will target an account on the relay chain from Moonbase Alpha. Note that the only asset that the relay chain can receive is its own:
 
     ```js
-    const dest = { 
+    const xcmDest = { 
       V3: { 
         parents: 1, 
         interior: { X1: { AccountId32: { id: RELAY_ACC_ADDRESS } } } 
@@ -169,7 +169,7 @@ Now that you have the values for each of the parameters, you can write the scrip
      - The values for each of the parameters of the `transfer` function
  2. Create a Keyring instance that will be used to send the transaction
  3. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} provider
- 4. Craft the `xTokens.transfer` extrinsic with the `currencyId`, `amount`, `dest`, and `destWeightLimit`
+ 4. Craft the `xTokens.transfer` extrinsic with the `currencyId`, `amount`, `xcmDest`, and `destWeightLimit`
  5. Send the transaction using the `signAndSend` extrinsic and the Keyring instance you created in the second step
 
 !!! remember
@@ -235,7 +235,7 @@ Since you'll be interacting with the `transferMultiasset` function of the X-Toke
 2. Define the XCM destination multilocation of the `dest`, which will target an account in the relay chain from Moonbase Alpha as the origin:
     
     ```js
-    const dest = {
+    const xcmDest = {
       V3: {
         parents: 1,
         interior: { X1: { AccountId32: { id: RELAY_ACC_ADDRESS } } },
@@ -268,7 +268,7 @@ Now that you have the values for each of the parameters, you can write the scrip
      - The values for each of the parameters of the `transferMultiasset` function
  2. Create a Keyring instance that will be used to send the transaction
  3. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} provider
- 4. Craft the `xTokens.transferMultiasset` extrinsic with the `asset`, `dest`, and `destWeightLimit`
+ 4. Craft the `xTokens.transferMultiasset` extrinsic with the `asset`, `xcmDest`, and `destWeightLimit`
  5. Send the transaction using the `signAndSend` extrinsic and the Keyring instance you created in the second step
 
 !!! remember
@@ -349,7 +349,7 @@ The following code snippet goes through some examples of `Multilocation` structu
     1, // parents = 1
     // Size of array is 1, meaning is an X1 interior
     [
-        "0x01c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300" 
+        '0x01c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300' 
         // AccountKey32 Selector + Address in hex + Network(Option) Null
     ]
 }

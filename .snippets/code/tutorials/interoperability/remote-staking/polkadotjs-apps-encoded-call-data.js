@@ -3,7 +3,8 @@ const amount = '1000000000000000000';
   
 // Fetch the your existing number of delegations and the collators existing delegations
 let delegatorDelegationCount;
-const delegatorInfo = await api.query.parachainStaking.delegatorState('YOUR-ACCOUNT-HERE');
+// Use the account you're delegating with
+const delegatorInfo = await api.query.parachainStaking.delegatorState('INSERT_ACCOUNT');
 
 if (delegatorInfo.toHuman()) {
   delegatorDelegationCount = delegatorInfo.toHuman()['delegations'].length;
