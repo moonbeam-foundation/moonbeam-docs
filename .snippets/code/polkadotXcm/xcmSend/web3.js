@@ -17,14 +17,14 @@ const xcmUtils = new web3.eth.Contract(
 const sendXcm = async () => {
   /* Define parameters required for the xcmSend function */
   const encodedCalldata = 'INSERT_ENCODED_CALLDATA';
-  const xcmDest = [
+  const dest = [
     1, // Parents: 1 
     [] // Interior: Here
   ];
 
   /* Send the custom XCM message */
   // Craft the extrinsic
-  const tx = await xcmUtils.methods.xcmSend(xcmDest, encodedCalldata);
+  const tx = await xcmUtils.methods.xcmSend(dest, encodedCalldata);
   // Sign transaction
   const signedTx = await web3.eth.accounts.signTransaction(
     {

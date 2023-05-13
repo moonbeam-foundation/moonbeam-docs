@@ -7,7 +7,7 @@ const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
 // decoded. If it isn't decoded, it will decode it and if it is, it will ignore it
 const privateKey = 'INSERT_PRIVATE_KEY';
 const relayAccount = decodeAddress('INSERT_ADDRESS');
-const xcmDest = { V3: { parents: 1, interior: null } };
+const dest = { V3: { parents: 1, interior: null } };
 const instr1 = {
   WithdrawAsset: [
     {
@@ -40,7 +40,7 @@ const instr3 = {
     },
   },
 };
-const xcmMessage = { V3: [instr1, instr2, instr3] };
+const message = { V3: [instr1, instr2, instr3] };
 
 // 2. Create Keyring instance
 const keyring = new Keyring({ type: 'ethereum' });
@@ -52,7 +52,7 @@ const sendXcmMessage = async () => {
   const api = await ApiPromise.create({ provider: substrateProvider });
 
   // 4. Create the extrinsic
-  const tx = api.tx.polkadotXcm.send(xcmDest, xcmMessage);
+  const tx = api.tx.polkadotXcm.send(dest, message);
 
   // 5. Send the transaction
   const txHash = await tx.signAndSend(alice);

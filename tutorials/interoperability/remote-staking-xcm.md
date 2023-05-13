@@ -82,7 +82,7 @@ The `send` function of the XCM Pallet accepts two parameters: `dest` and `messag
 1. Build the multilocation of the DEV token on Moonbase Alpha for the `dest`:
 
     ```js
-    const xcmDest = { V3: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
+    const dest = { V3: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
     ```
 
 2. Build the `WithdrawAsset` instruction, which will require you to define:
@@ -142,7 +142,7 @@ The `send` function of the XCM Pallet accepts two parameters: `dest` and `messag
 5. Combine the XCM instructions into a versioned XCM message:
 
     ```js
-    const xcmMessage = { V3: [instr1, instr2, instr3] };
+    const message = { V3: [instr1, instr2, instr3] };
     ```
 
 Now that you have the values for each of the parameters, you can write the script to send the XCM message. You'll take the following steps:
@@ -150,7 +150,7 @@ Now that you have the values for each of the parameters, you can write the scrip
  1. Provide the values for each of the parameters of the `send` function
  2. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} provider using the WSS endpoint of the Alphanet relay chain
  3. Create a Keyring instance using the mnemonic of your relay chain account, which will be used to send the transaction
- 4. Craft the `xcmPallet.send` extrinsic with the `xcmDest` and `xcmMessage`
+ 4. Craft the `xcmPallet.send` extrinsic with the `dest` and `message`
  5. Send the transaction using the `signAndSend` extrinsic and the Keyring instance you created in the third step
 
 !!! remember

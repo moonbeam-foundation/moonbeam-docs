@@ -20,13 +20,13 @@ const xcmUtils = new ethers.Contract(
 const sendXcm = async () => {
   /* Define parameters required for the xcmSend function */
   const encodedCalldata = 'INSERT_ENCODED_CALLDATA';
-  const xcmDest = [
+  const dest = [
     1, // Parents: 1 
     [] // Interior: Here
   ];
 
   /* Send the custom XCM message */
-  const tx = await xcmUtils.xcmSend(xcmDest, encodedCalldata);
+  const tx = await xcmUtils.xcmSend(dest, encodedCalldata);
   await tx.wait();
   console.log(`Transaction receipt: ${tx.hash}`);
 };

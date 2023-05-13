@@ -124,7 +124,7 @@ Since you'll be interacting with the `transfer` function of the X-Tokens Pallet,
     === "Local XC-20"
 
         ```js
-        const currencyId = { Erc20: { contractAddress: ERC_20_ADDRESS } };
+        const currencyId = { Erc20: { contractAddress: 'INSERT_ERC_20_ADDRESS' } };
         ```
 
 2. Specify the `amount` to transfer. For this example, you are sending 1 xcUNIT, which has 12 decimals:
@@ -136,10 +136,10 @@ Since you'll be interacting with the `transfer` function of the X-Tokens Pallet,
 3. Define the multilocation of the destination, which will target an account on the relay chain from Moonbase Alpha. Note that the only asset that the relay chain can receive is its own:
 
     ```js
-    const xcmDest = { 
+    const dest = { 
       V3: { 
         parents: 1, 
-        interior: { X1: { AccountId32: { id: RELAY_ACC_ADDRESS } } } 
+        interior: { X1: { AccountId32: { id: relayAccount } } } 
       } 
     };
     ```
@@ -159,7 +159,7 @@ Since you'll be interacting with the `transfer` function of the X-Tokens Pallet,
         In JavaScript, this translates to:
 
         ```js
-        { Limited: { refTime: ALLOWED_AMOUNT, proofSize: ALLOWED_AMOUNT } };
+        { Limited: { refTime: 'INSERT_ALLOWED_AMOUNT', proofSize: 'INSERT_ALLOWED_AMOUNT' } };
         ```
 
 Now that you have the values for each of the parameters, you can write the script for the transfer. You'll take the following steps:
@@ -169,7 +169,7 @@ Now that you have the values for each of the parameters, you can write the scrip
      - The values for each of the parameters of the `transfer` function
  2. Create a Keyring instance that will be used to send the transaction
  3. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} provider
- 4. Craft the `xTokens.transfer` extrinsic with the `currencyId`, `amount`, `xcmDest`, and `destWeightLimit`
+ 4. Craft the `xTokens.transfer` extrinsic with the `currencyId`, `amount`, `dest`, and `destWeightLimit`
  5. Send the transaction using the `signAndSend` extrinsic and the Keyring instance you created in the second step
 
 !!! remember
@@ -221,7 +221,7 @@ Since you'll be interacting with the `transferMultiasset` function of the X-Toke
               Concrete: {
                 parents: 0,
                 interior: {
-                  X2: [{ PalletInstance: 48 }, { AccountKey20: { key: ERC_20_ADDRESS } }],
+                  X2: [{ PalletInstance: 48 }, { AccountKey20: { key: 'INSERT_ERC_20_ADDRESS' } }],
                 },
               },
             },
@@ -235,10 +235,10 @@ Since you'll be interacting with the `transferMultiasset` function of the X-Toke
 2. Define the XCM destination multilocation of the `dest`, which will target an account in the relay chain from Moonbase Alpha as the origin:
     
     ```js
-    const xcmDest = {
+    const dest = {
       V3: {
         parents: 1,
-        interior: { X1: { AccountId32: { id: RELAY_ACC_ADDRESS } } },
+        interior: { X1: { AccountId32: { id: relayAccount } } },
       },
     };
     ```
@@ -258,7 +258,7 @@ Since you'll be interacting with the `transferMultiasset` function of the X-Toke
         In JavaScript, this translates to:
 
         ```js
-        { Limited: { refTime: ALLOWED_AMOUNT, proofSize: ALLOWED_AMOUNT } };
+        { Limited: { refTime: 'INSERT_ALLOWED_AMOUNT', proofSize: 'INSERT_ALLOWED_AMOUNT' } };
         ```
 
 Now that you have the values for each of the parameters, you can write the script for the transfer. You'll take the following steps:
@@ -268,7 +268,7 @@ Now that you have the values for each of the parameters, you can write the scrip
      - The values for each of the parameters of the `transferMultiasset` function
  2. Create a Keyring instance that will be used to send the transaction
  3. Create the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} provider
- 4. Craft the `xTokens.transferMultiasset` extrinsic with the `asset`, `xcmDest`, and `destWeightLimit`
+ 4. Craft the `xTokens.transferMultiasset` extrinsic with the `asset`, `dest`, and `destWeightLimit`
  5. Send the transaction using the `signAndSend` extrinsic and the Keyring instance you created in the second step
 
 !!! remember

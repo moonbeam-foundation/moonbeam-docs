@@ -10,7 +10,7 @@ const transactBytes =
   '0x260001f31a020000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd40000c16ff286230000000000000000000000000000000000000000000000000091037ff36ab50000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def52600000000000000000000000000000000000000000000000000000000647464250000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f00';
 
 // 2. XCM Destination (Moonbase Alpha Parachain ID 1000)
-const xcmDest = { V3: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
+const dest = { V3: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
 
 // 3. XCM Instruction 1
 const instr1 = {
@@ -56,7 +56,7 @@ const instr4 = {
 };
 
 // 7. Build XCM Message
-const xcmMessage = { V3: [instr1, instr2, instr3, instr4] };
+const message = { V3: [instr1, instr2, instr3, instr4] };
 
 const generateCallData = async () => {
   // 8. Create Substrate API Provider
@@ -64,7 +64,7 @@ const generateCallData = async () => {
   const api = await ApiPromise.create({ provider: substrateProvider });
 
   // 9. Create the Extrinsic
-  const tx = api.tx.xcmPallet.send(xcmDest, xcmMessage);
+  const tx = api.tx.xcmPallet.send(dest, message);
 
   // 10. Get SCALE Encoded Calldata
   const encodedCall = tx.toHex();

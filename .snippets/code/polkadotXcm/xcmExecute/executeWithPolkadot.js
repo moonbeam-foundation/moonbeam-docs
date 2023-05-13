@@ -2,7 +2,8 @@ import { ApiPromise, WsProvider, Keyring } from '@polkadot/api'; // Version 9.13
 
 // 1. Provide input data
 const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
-const privateKey = 'INSERT_PRIVATE_KEY'
+const privateKey = 'INSERT_PRIVATE_KEY';
+const moonbeamAccount = 'INSERT_ADDRESS';
 const instr1 = {
   WithdrawAsset: [
     {
@@ -19,14 +20,14 @@ const instr2 = {
       interior: {
         X1: {
           AccountKey20: {
-            key: MOONBEAM_ACCOUNT,
+            key: moonbeamAccount,
           },
         },
       },
     },
   },
 };
-const xcmMessage = { V3: [instr1, instr2] };
+const message = { V3: [instr1, instr2] };
 const maxWeight =  { refTime: 100000000000n, proofSize: 0 };
 
 // 2. Create Keyring instance
@@ -39,7 +40,7 @@ const executeXcmMessage = async () => {
   const api = await ApiPromise.create({ provider: substrateProvider });
 
   // 4. Craft the extrinsic
-  const tx = api.tx.polkadotXcm.execute(xcmMessage, maxWeight);
+  const tx = api.tx.polkadotXcm.execute(message, maxWeight);
 
   // 5. Send the transaction
   const txHash = await tx.signAndSend(alice);

@@ -6,7 +6,7 @@ const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
 // You can use the decodeAddress function to ensure that your address is properly
 // decoded. If it isn't decoded, it will decode it and if it is, it will ignore it
 const relayAccount = decodeAddress('INSERT_ADDRESS');
-const xcmDest = { V3: { parents: 1, interior: null } };
+const dest = { V3: { parents: 1, interior: null } };
 const instr1 = {
   WithdrawAsset: [
     {
@@ -39,7 +39,7 @@ const instr3 = {
     },
   },
 };
-const xcmMessage = { V3: [instr1, instr2, instr3] };
+const message = { V3: [instr1, instr2, instr3] };
 
 const generateEncodedXcmMessage = async () => {
   // 2. Create Substrate API Provider
@@ -47,7 +47,7 @@ const generateEncodedXcmMessage = async () => {
   const api = await ApiPromise.create({ provider: substrateProvider });
 
   // 3. Create the extrinsic
-  const tx = api.tx.polkadotXcm.send(xcmDest, xcmMessage);
+  const tx = api.tx.polkadotXcm.send(dest, message);
 
   // 4. Get the encoded XCM message
   // By using index 1, you'll get just the encoded XCM message.
