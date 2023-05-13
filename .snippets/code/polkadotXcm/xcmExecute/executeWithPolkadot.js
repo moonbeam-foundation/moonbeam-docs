@@ -2,6 +2,7 @@ import { ApiPromise, WsProvider, Keyring } from '@polkadot/api'; // Version 9.13
 
 // 1. Provide input data
 const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
+const privateKey = 'INSERT_PRIVATE_KEY'
 const instr1 = {
   WithdrawAsset: [
     {
@@ -30,7 +31,7 @@ const maxWeight =  { refTime: 100000000000n, proofSize: 0 };
 
 // 2. Create Keyring instance
 const keyring = new Keyring({ type: 'ethereum' });
-const alice = keyring.addFromUri(PRIVATE_KEY);
+const alice = keyring.addFromUri(privateKey);
 
 const executeXcmMessage = async () => {
   // 3. Create Substrate API provider

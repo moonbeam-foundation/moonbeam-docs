@@ -1,8 +1,8 @@
 import { ApiPromise, WsProvider, Keyring } from '@polkadot/api'; // Version 9.13.6
 
 // 1. Provide input data
-const PRIVATE_KEY = 'INSERT_PRIVATE_KEY';
 const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
+const privateKey = 'INSERT_PRIVATE_KEY';
 const relayAccountAddress =
   '0xc4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a063'; // Alice's relay account address
 const currencyId = { 
@@ -21,7 +21,7 @@ const destWeightLimit = { Unlimited: null };
 
 // 2. Create Keyring instance
 const keyring = new Keyring({ type: 'ethereum' });
-const alice = keyring.addFromUri(PRIVATE_KEY);
+const alice = keyring.addFromUri(privateKey);
 
 const sendXc20 = async () => {
   // 3. Create Substrate API provider

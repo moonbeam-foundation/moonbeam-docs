@@ -1,14 +1,14 @@
 import abi from './xtokensABI.js'; // Import the x-tokens ABI
 import Web3 from 'web3'; // Import Web3 library
 
-const PRIVATE_KEY = 'INSERT_PRIVATE_KEY';
+const privateKey = 'INSERT_PRIVATE_KEY';
 
 // Create Web3 wallet & contract instance
 const web3 = new Web3('https://rpc.api.moonbase.moonbeam.network'); // Change to network of choice
 const xTokens = new web3.eth.Contract(
   abi,
   '0x0000000000000000000000000000000000000804',
-  { from: web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY).address } // 'from' is necessary for gas estimation
+  { from: web3.eth.accounts.privateKeyToAccount(privateKey).address } // 'from' is necessary for gas estimation
 );
 
 // xcUNIT address in Moonbase Alpha
@@ -37,7 +37,7 @@ async function transferToAlice() {
       data: transferTx.encodeABI(),
       gas: await transferTx.estimateGas(),
     },
-    PRIVATE_KEY
+    privateKey
   );
 
   // Send signed transaction
@@ -62,7 +62,7 @@ async function transferMultiassetToAlice() {
       data: transferTx.encodeABI(),
       gas: await transferTx.estimateGas(),
     },
-    PRIVATE_KEY
+    privateKey
   );
   const sendTx = await web3.eth.sendSignedTransaction(signedTx.rawTransaction);
   console.log(sendTx);

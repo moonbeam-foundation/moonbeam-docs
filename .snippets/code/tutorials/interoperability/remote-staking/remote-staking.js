@@ -1,6 +1,6 @@
 import { ApiPromise, WsProvider, Keyring } from '@polkadot/api';
 
-const PRIVATE_KEY = 'INSERT_PRIVATE_KEY';
+const privateKey = 'INSERT_PRIVATE_KEY';
 
 // 1. Define the dest and message arguments
 const xcmDest = { V3: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
@@ -50,7 +50,7 @@ const performRemoteDelegation = async () => {
   // 3. Initialize wallet key pairs
   const keyring = new Keyring({ type: 'sr25519' });
   // For demo purposes only. Never store your private key or mnemonic in a JavaScript file
-  const otherPair = keyring.addFromUri(PRIVATE_KEY);
+  const otherPair = keyring.addFromUri(privateKey);
   console.log(`Derived Address from Private Key: ${otherPair.address}`);
 
   // 4. Define the transaction using the send method of the xcm pallet

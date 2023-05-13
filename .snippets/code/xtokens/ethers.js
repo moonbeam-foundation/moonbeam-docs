@@ -1,13 +1,13 @@
 import abi from './xtokensABI.js'; // Import the x-tokens ABI
 import { ethers } from 'ethers'; // Import Ethers library
 
-const PRIVATE_KEY = 'INSERT_PRIVATE_KEY';
+const privateKey = 'INSERT_PRIVATE_KEY';
 
 // Create Ethers wallet & contract instance
 const provider = new ethers.providers.JsonRpcProvider(
   'https://rpc.api.moonbase.moonbeam.network'
 );
-const signer = new ethers.Wallet(PRIVATE_KEY, provider);
+const signer = new ethers.Wallet(privateKey, provider);
 const xTokens = new ethers.Contract(
   '0x0000000000000000000000000000000000000804',
   abi,

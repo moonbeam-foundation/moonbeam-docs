@@ -5,8 +5,8 @@ import { decodeAddress } from '@polkadot/util-crypto';
 const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
 // You can use the decodeAddress function to ensure that your address is properly
 // decoded. If it isn't decoded, it will decode it and if it is, it will ignore it
+const privateKey = 'INSERT_PRIVATE_KEY';
 const relayAccount = decodeAddress('INSERT_ADDRESS');
-const PRIVATE_KEY = 'INSERT_PRIVATE_KEY';
 const xcmDest = { V3: { parents: 1, interior: null } };
 const instr1 = {
   WithdrawAsset: [
@@ -44,7 +44,7 @@ const xcmMessage = { V3: [instr1, instr2, instr3] };
 
 // 2. Create Keyring instance
 const keyring = new Keyring({ type: 'ethereum' });
-const alice = keyring.addFromUri(PRIVATE_KEY);
+const alice = keyring.addFromUri(privateKey);
 
 const sendXcmMessage = async () => {
   // 3. Create Substrate API Provider
