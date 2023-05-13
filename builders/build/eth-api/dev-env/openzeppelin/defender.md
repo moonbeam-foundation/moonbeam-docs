@@ -15,7 +15,6 @@ description:  Learn how to use OpenZeppelin Defender to manage smart contracts s
  - [**Relay**](https://docs.openzeppelin.com/defender/relay){target=_blank} — to build with a private and secure transaction infrastructure with the implementation of private relayers
  - [**Autotasks**](https://docs.openzeppelin.com/defender/autotasks){target=_blank} — to create automated scripts to interact with your smart contracts
  - [**Sentinel**](https://docs.openzeppelin.com/defender/sentinel){target=_blank} — to monitor your smart contract's events, functions, and transactions, and receive notifications via email
- - [**Advisor**](https://docs.openzeppelin.com/defender/advisor){target=_blank} — to learn and implement best practices around development, testing, monitoring, and operations
 
 OpenZeppelin Defender can now be used on Moonbeam, Moonriver, and the Moonbase Alpha TestNet. This guide will show you how to get started with Defender and demo the Admin component to pause a smart contract on Moonbase Alpha. This guide can be adapted for Moonbeam and Moonriver.
 
@@ -90,7 +89,7 @@ The first step to using Defender Admin is to add the contract you want to manage
  1. Set a contract name. This is only for display purposes
  2. Select the network where the contract that you want to manage is deployed. This is particularly useful when a contract is deployed with the same address to multiple networks. For this example, enter `Moonbase Alpha`
  3. Enter the contract address
- 4. Paste the contract ABI. This can be obtained either in [Remix](/builders/build/eth-api/dev-env/remix/){target=_blank} or in the `.json` file generally created after the compilation process (for example, in Truffle or HardHat)
+ 4. Paste the contract ABI. This can be obtained either in [Remix](/builders/build/eth-api/dev-env/remix/){target=_blank} or in the `.json` file generally created after the compilation process (for example, in Truffle or Hardhat)
  5. Check that the contract features were detected correctly
  6. Once you've checked all the information, click on the **Add** button
 
