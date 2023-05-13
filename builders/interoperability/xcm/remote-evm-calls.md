@@ -24,7 +24,7 @@ The happy path for both regular and remote EVM calls through XCM is portrayed in
 This guide will go through the differences between regular and remote EVM calls. In addition, it will show you how to perform remote EVM calls through the extrinsic exposed by the [Ethereum XCM pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/ethereum-xcm){target=_blank}. 
 
 !!! note
-    Remote EVM calls are done through the [XCM Transactor pallet](/builders/interoperability/xcm/xcm-transactor/){target=_blank}. Therefore, it is recommended to get familiar with XCM Transactor concepts before trying to perform remote EVM calls through XCM.
+    Remote EVM calls are done through the [XCM Transactor Pallet](/builders/interoperability/xcm/xcm-transactor/){target=_blank}. Therefore, it is recommended to get familiar with XCM Transactor concepts before trying to perform remote EVM calls through XCM.
 
 **Note that remote calls to Moonbeam's EVM through XCM are still being actively developed**. In addition, **developers must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
 
