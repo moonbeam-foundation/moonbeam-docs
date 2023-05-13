@@ -182,7 +182,7 @@ To vote on referenda, you can follow the steps outlined in the [Conviction Votin
 
 ### Refund Decision Deposit {: #refund-decision-deposit }
 
-Once a referendum has either been approved or rejected, the Decision Deposit can be refunded. This holds true as long as the referendum wasn't cancelled due to the proposal being malicious. If the proposal is deemed malicious and killed via the Emergency Killer Track, the Decision Deposit will be slashed.
+Once a referendum has either been approved or rejected, the Decision Deposit can be refunded. This holds true as long as the referendum wasn't cancelled due to the proposal being malicious. If the proposal is deemed malicious and killed via the Root Track or the Emergency Killer Track, the Decision Deposit will be slashed.
 
 To refund the Decision Deposit, you can use the `refundDecisionDeposit` function of the Referenda Precompile. To do so, you can take the following steps:
 
