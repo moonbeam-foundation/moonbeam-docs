@@ -39,7 +39,7 @@ On the other hand, with DPoS on Moonbeam, collators are selected to produce bloc
 
 In terms of finality, blocks on Ethereum can take quite a bit longer to finalize than on Moonbeam due to the checkpoint finality system it uses. In Ethereum, validators determine finality at checkpoint blocks, which are always the first block in an epoch. Since an epoch has 32 slots and each slot is 12 seconds, it'll take at least 384 seconds, or 6.4 minutes for a block to be finalized.
 
-Moonbeam does not use checkpoint blocks and instead relies on the GRANDPA finality gadget, where the finality process is completed in parallel to block production. In addition, the finality process incorporates the blockchain's structure, which allows the relay chain validators to vote on the highest block that they think is valid. In this scenario, the vote would apply to all of the blocks leading up to the one that is finalized, which speeds up the finalization process. After a block has been included in the relay chain, a block can be finalized within one block on Moonbeam.
+Moonbeam does not use checkpoint blocks and instead relies on Polkadot's GRANDPA finality gadget, where the finality process is completed in parallel to block production. In addition, the finality process incorporates the blockchain's structure, which allows the relay chain validators to vote on the highest block that they think is valid. In this scenario, the vote would apply to all of the blocks leading up to the one that is finalized, which speeds up the finalization process. After a block has been included in the relay chain, a block can be finalized within one block on Moonbeam.
 
 ## Strategy to Check Transaction Finality {: #strategy-to-check-tx-finality }
 
