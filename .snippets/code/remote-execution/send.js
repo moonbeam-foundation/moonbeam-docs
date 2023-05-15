@@ -3,7 +3,7 @@ import { ApiPromise, WsProvider, Keyring } from '@polkadot/api'; // Version 9.13
 // 1. Input data
 const providerWsURL =
   'wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network';
-const PRIVATE_KEY = 'INSERT_PRIVATE_KEY';
+const privateKey = 'INSERT_PRIVATE_KEY';
 const dest = { V3: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
 const instr1 = {
   WithdrawAsset: [
@@ -36,7 +36,7 @@ const message = { V3: [instr1, instr2, instr3] };
 
 // 2. Create Keyring instance
 const keyring = new Keyring({ type: 'sr25519' });
-const alice = keyring.addFromUri(PRIVATE_KEY);
+const alice = keyring.addFromUri(privateKey);
 
 const sendXcmMessage = async () => {
   // 3. Create Substrate API Provider

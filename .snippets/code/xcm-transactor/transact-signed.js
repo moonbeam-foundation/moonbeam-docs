@@ -2,6 +2,7 @@ import { ApiPromise, WsProvider, Keyring } from '@polkadot/api'; // Version 9.13
 
 // 1. Provide input data
 const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
+const privateKey = 'INSERT_PRIVATE_KEY';
 const dest = {
   V3: {
     parents: 1,
@@ -22,7 +23,7 @@ const weightInfo = {
 
 // 2. Create Keyring instance
 const keyring = new Keyring({ type: 'ethereum' });
-const alice = keyring.addFromUri(PRIVATE_KEY);
+const alice = keyring.addFromUri(privateKey);
 
 const transactThroughSigned = async () => {
   // 3. Create Substrate API provider

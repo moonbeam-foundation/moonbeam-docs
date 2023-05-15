@@ -86,7 +86,7 @@ The `execute` function of the Polkadot XCM Pallet accepts two parameters: `messa
           interior: {
             X1: {
               AccountKey20: {
-                key: MOONBEAM_ACCOUNT,
+                key: moonbeamAccount,
               },
             },
           },
@@ -262,7 +262,7 @@ The `send` function of the Polkadot XCM Pallet accepts two parameters: `dest` an
           interior: {
             X1: {
               AccountId32: {
-                id: RELAY_ACC_ADDRESS,
+                id: relayAccount,
               },
             },
           },
