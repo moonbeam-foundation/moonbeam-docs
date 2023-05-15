@@ -35,7 +35,7 @@ In terms of consensus, Moonbeam is based on Delegated Proof-of-Stake, while Ethe
 
 With PoS on Ethereum, validators are selected to produce and validate blocks based on their own stake in the network. As long as a validator has placed a validator deposit, they can be selected to produce and validate blocks. However, as previously mentioned, the greater the stake in the network, the higher the chances a validator has to be selected to produce and validate blocks.
 
-On the other hand, with DPoS on Moonbeam, collators are selected to produce blocks based on their own stake plus their delegated stake in the network. Any token holder can choose to delegate their stake to a collator candidate. However, not all collator candidates are eligible to produce and validate blocks, they must be in the active set. The active set consists of the top candidates by stake, including delegations. The number of candidates in the active set is subject to [governance](/learn/features/governance){target=_blank}.
+On the other hand, with DPoS on Moonbeam, collators become eligible to produce blocks based on their own stake plus their delegated stake in the network. Any token holder can choose to delegate their stake to a collator candidate. The top collator candidates by stake, including delegations, join the active set. The number of candidates in the active set is subject to [governance](/learn/features/governance){target=_blank}. Once in the active set, collators are randomly selected to produce blocks using the [Nimbus Consensus Framework](/learn/features/consensus/){target=_blank}. It is important to note that once a collator is in the active set, their total stake does not impact their chances of being selected to produce blocks.
 
 In terms of finality, blocks on Ethereum can take quite a bit longer to finalize than on Moonbeam due to the checkpoint finality system it uses. In Ethereum, validators determine finality at checkpoint blocks, which are always the first block in an epoch. Since an epoch has 32 slots and each slot is 12 seconds, it'll take at least 384 seconds, or 6.4 minutes for a block to be finalized.
 
@@ -69,14 +69,23 @@ The code snippets rely on two custom RPC requests from the Substrate JSON-RPC: `
 !!! note
     The code snippets presented in the following sections are not meant for production environments. Please make sure you adapt it for each use-case.
 
-=== "Web3.js"
-    --8<-- 'code/vs-ethereum/web3.md'
-
 === "Ethers.js"
-    --8<-- 'code/vs-ethereum/ethers.md'
+
+    ```js
+    --8<-- 'code/vs-ethereum/ethers.js'
+    ```
+
+=== "Web3.js"
+
+    ```js
+    --8<-- 'code/vs-ethereum/web3.js'
+    ```
 
 === "Web3.py"
-    --8<-- 'code/vs-ethereum/web3py.md'
+
+    ```py
+    --8<-- 'code/vs-ethereum/web3.py'
+    ```
 
 ## Checking Transaction Finality with Substrate Libraries {: #checking-tx-finality-with-substrate-libraries }
 
