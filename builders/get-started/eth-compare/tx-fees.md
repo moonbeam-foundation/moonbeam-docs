@@ -98,7 +98,7 @@ The following sections describe in more detail each of the components needed to 
 
 ### Base Fee {: #base-fee}
 
-The `BaseFee` was introduced in [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank}, and is a value set by the network itself. Moonbeam has its own [dynamic fee mechanism](https://forum.moonbeam.foundation/t/proposal-status-idea-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=_blank} for calculating the base fee, which is adjusted based on block congestion. As of runtime 2300, the dynamic fee mechanism has been rolled out to all of the Moonbeam-based networks.
+The `BaseFee` is the minimum amount charged to send a transaction and is a value set by the network itself. It was introduced in [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank}. Moonbeam has its own [dynamic fee mechanism](https://forum.moonbeam.foundation/t/proposal-status-idea-dynamic-fee-mechanism-for-moonbeam-and-moonriver/241){target=_blank} for calculating the base fee, which is adjusted based on block congestion. As of runtime 2300, the dynamic fee mechanism has been rolled out to all of the Moonbeam-based networks.
 
 The minimum gas price for each network is as follows:
 
@@ -161,7 +161,15 @@ The relevant data will be stored in the `value` key of the JSON object. This val
 
 ### GasPrice, MaxFeePerGas and MaxPriorityFeePerGas {: #gasprice-maxfeepergas-maxpriorityfeepergas }
 
-The values of `GasPrice`, `MaxFeePerGas` and `MaxPriorityFeePerGas` for the applicable transaction types can be read from the block JSON object according to the structure described in [the Sidecar API page](/builders/build/substrate-api/sidecar/#evm-fields-mapping-in-block-json-object){target=_blank}. The data for an Ethereum transaction in a particular block can be extracted from the following block endpoint: 
+The `GasPrice` is used to specify the gas price of legacy transactions prior to [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559){target=_blank}. The `MaxFeePerGas` and `MaxPriorityFeePerGas` were both introduced in EIP-1559 alongside the `BaseFee`. The `MaxFeePerGas` defines the maximum fee permitted to be paid per unit of gas and is the sum of the `BaseFee` and the `MaxPriorityFeePerGas`. The `MaxPriorityFeePerGas` is the maximum priority fee configured by the sender of a transaction that is used to incentive the prioritization of a transaction in a block.
+
+Although Moonbeam is Ethereum-compatible, it is also a Substrate-based chain at its core, and priorities work differently in Substrate than in Ethereum. In Substrate, transactions are not prioritized by gas price. To address this, Moonbeam uses a modified prioritization system that reprioritizes Substrate transactions using an Ethereum-first solution. A Substrate transaction still goes through the validity process, where it is assigned transaction tags, longevity, and a priority. The original priority is then overwritten with a new priority based on the transaction's fee per gas, which is derived from the transaction's tip and weight. If the transaction is an Ethereum transaction, the priority is set according to the priority fee.
+
+It's important to note that priority is not the sole component responsible for determining the order of transactions in a block. Other components, such as the longevity of a transaction, also play a role in the sorting process.
+
+The values of `GasPrice`, `MaxFeePerGas` and `MaxPriorityFeePerGas` for the applicable transaction types can be read from the block JSON object according to the structure described in [the Sidecar API page](/builders/build/substrate-api/sidecar/#evm-fields-mapping-in-block-json-object){target=_blank}.
+
+The data for an Ethereum transaction in a particular block can be extracted from the following block endpoint:
 
 ```
 GET /blocks/{blockId}
@@ -199,7 +207,7 @@ And then `TransactionWeight` is mapped to the following field of the block JSON 
 extrinsics[extrinsic_number].events[event_number].data[0].weight
 ```
 
-### Key Differences with Ethereum {: #ethereum-api-transaction-fees} 
+### Key Differences with Ethereum {: #ethereum-api-transaction-fees}
 
 As seen in the sections above, there are some key differences between the transaction fee model on Moonbeam and the one on Ethereum that developers should be mindful of when developing on Moonbeam:
 
