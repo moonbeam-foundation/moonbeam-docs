@@ -13,8 +13,8 @@ address_from = 'ADDRESS_FROM_HERE'
 address_to = 'ADDRESS_TO_HERE'
 
 # 3. Fetch balance data
-balance_from = web3.fromWei(web3.eth.getBalance(address_from), 'ether')
-balance_to = web3.fromWei(web3.eth.getBalance(address_to), 'ether')
+balance_from = web3.from_wei(web3.eth.getBalance(address_from), 'ether')
+balance_to = web3.from_wei(web3.eth.getBalance(address_to), 'ether')
 
 print(f'The balance of { address_from } is: { balance_from } ETH')
 print(f'The balance of { address_to } is: { balance_to } ETH')
