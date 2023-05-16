@@ -100,9 +100,15 @@ Given a transaction hash (`tx_hash`), the following code snippets fetch the curr
 You can find more information about Polkadot.js and the Substrate JSON RPC in the [official Polkadot.js documentation site](https://polkadot.js.org/docs/substrate/rpc){target=_blank}, and more about Python Substrate Interface in the [official PySubstrate documentation site](https://polkascan.github.io/py-substrate-interface/){target=_blank}.
 
 === "Polkadot.js"
-    --8<-- 'code/vs-ethereum/polkadotjs.md'
+
+    ```js
+    --8<-- 'code/vs-ethereum/polkadotjs.js'
+    ```
 
 === "py-substrate-interface"
-    --8<-- 'code/vs-ethereum/pysubstrateinterface.md'
+
+    ```py
+    --8<-- 'code/vs-ethereum/pysubstrateinterface.py'
+    ```
 
 --8<-- 'text/disclaimers/third-party-content.md'
