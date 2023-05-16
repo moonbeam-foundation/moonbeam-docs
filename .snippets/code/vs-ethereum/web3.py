@@ -3,21 +3,16 @@ from web3 import Web3
 # Define the TxHash to Check Finality
 tx_hash = 'INSERT_TX_HASH'
 
-# Set the RPC_address for Moonbeam
+# Define the Web3 provider for Moonbeam
 # This can also be adapted for Moonriver or Moonbase Alpha
-RPC_address = 'RPC_API_ENDPOINT_HERE' # Insert your RPC URL here
-
-# Define the Web3 provider
-web3_provider = Web3(Web3.HTTPProvider(RPC_address))
+web3_provider = Web3(Web3.HTTPProvider('INSERT_RPC_API_ENDPOINT'))
 
 if __name__ == "__main__":
-    # Get the latest finalized block of the Substrate chain
-    # Uses Polkadot JSON-RPC
+    # Get the latest finalized block
     finalized_block_header = web3_provider.eth.get_block('finalized')
     finalized_block_number = finalized_block_header.number
 
-    # Get finalized block header to retrieve number
-    # Uses Polkadot JSON-RPC
+    # Get the transaction receipt of the given transaction hash
     tx_receipt = web3_provider.eth.get_transaction_receipt(tx_hash)
 
     # If block number of receipt is not null, compare it against finalized head
