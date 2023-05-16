@@ -124,7 +124,7 @@ Since you'll be interacting with the `transfer` function of the X-Tokens Pallet,
     === "Local XC-20"
 
         ```js
-        const currencyId = { Erc20: { contractAddress: ERC_20_ADDRESS } };
+        const currencyId = { Erc20: { contractAddress: 'INSERT_ERC_20_ADDRESS' } };
         ```
 
 2. Specify the `amount` to transfer. For this example, you are sending 1 xcUNIT, which has 12 decimals:
@@ -139,7 +139,7 @@ Since you'll be interacting with the `transfer` function of the X-Tokens Pallet,
     const dest = { 
       V3: { 
         parents: 1, 
-        interior: { X1: { AccountId32: { id: RELAY_ACC_ADDRESS } } } 
+        interior: { X1: { AccountId32: { id: relayAccount } } } 
       } 
     };
     ```
@@ -159,7 +159,7 @@ Since you'll be interacting with the `transfer` function of the X-Tokens Pallet,
         In JavaScript, this translates to:
 
         ```js
-        { Limited: { refTime: ALLOWED_AMOUNT, proofSize: ALLOWED_AMOUNT } };
+        { Limited: { refTime: 'INSERT_ALLOWED_AMOUNT', proofSize: 'INSERT_ALLOWED_AMOUNT' } };
         ```
 
 Now that you have the values for each of the parameters, you can write the script for the transfer. You'll take the following steps:
@@ -221,7 +221,7 @@ Since you'll be interacting with the `transferMultiasset` function of the X-Toke
               Concrete: {
                 parents: 0,
                 interior: {
-                  X2: [{ PalletInstance: 48 }, { AccountKey20: { key: ERC_20_ADDRESS } }],
+                  X2: [{ PalletInstance: 48 }, { AccountKey20: { key: 'INSERT_ERC_20_ADDRESS' } }],
                 },
               },
             },
@@ -238,7 +238,7 @@ Since you'll be interacting with the `transferMultiasset` function of the X-Toke
     const dest = {
       V3: {
         parents: 1,
-        interior: { X1: { AccountId32: { id: RELAY_ACC_ADDRESS } } },
+        interior: { X1: { AccountId32: { id: relayAccount } } },
       },
     };
     ```
@@ -258,7 +258,7 @@ Since you'll be interacting with the `transferMultiasset` function of the X-Toke
         In JavaScript, this translates to:
 
         ```js
-        { Limited: { refTime: ALLOWED_AMOUNT, proofSize: ALLOWED_AMOUNT } };
+        { Limited: { refTime: 'INSERT_ALLOWED_AMOUNT', proofSize: 'INSERT_ALLOWED_AMOUNT' } };
         ```
 
 Now that you have the values for each of the parameters, you can write the script for the transfer. You'll take the following steps:
@@ -349,7 +349,7 @@ The following code snippet goes through some examples of `Multilocation` structu
     1, // parents = 1
     // Size of array is 1, meaning is an X1 interior
     [
-        "0x01c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300" 
+        '0x01c4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a06300' 
         // AccountKey32 Selector + Address in hex + Network(Option) Null
     ]
 }

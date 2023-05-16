@@ -30,7 +30,7 @@ const instr2 = {
 };
 
 // 4. Build versioned XCM message
-const xcmMessage = { V2: [instr1, instr2] };
+const message = { V2: [instr1, instr2] };
 
 const generateCallData = async () => {
   // 5. Create Substrate API Provider
@@ -38,7 +38,7 @@ const generateCallData = async () => {
   const api = await ApiPromise.create({ provider: substrateProvider });
 
   // 6. Create the extrinsic
-  const tx = api.tx.polkadotXcm.execute(xcmMessage, maxWeight);
+  const tx = api.tx.polkadotXcm.execute(message, maxWeight);
 
   // 7. Get SCALE Encoded Calldata
   const encodedCall = tx.method.toHex();

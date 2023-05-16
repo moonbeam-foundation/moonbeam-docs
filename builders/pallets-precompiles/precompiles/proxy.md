@@ -14,7 +14,7 @@ The Proxy Precompile on Moonbeam allows accounts to set proxy accounts that can 
 
 If a user wanted to provide a second user access to a limited number of actions on their behalf, traditionally the only method to do so would be by providing the first account's private key to the second. However, Moonbeam has included the [Substrate Proxy Pallet](/builders/pallets-precompiles/pallets/proxy){target=_blank}, which enables proxy accounts. Proxy accounts ought to be used due to the additional layer of security that they provide, where many accounts can perform actions for a main account. This is best if, for example, a user wants to keep their wallet safe in cold storage but still wants to access parts of the wallet's functionality like governance or staking.  
 
-**The Proxy Precompile can only be called from an Externally Owned Account (EOA).**
+**The Proxy Precompile can only be called from an Externally Owned Account (EOA) or by the [Batch Precompile](/builders/pallets-precompiles/precompiles/batch){target=_blank}.**
 
 To learn more about proxy accounts and how to set them up for your own purposes without use of the Proxy Precompile, view the [Setting up a Proxy Account](/tokens/manage/proxy-accounts){target=_blank} page.
 
@@ -76,7 +76,7 @@ There are multiple types of proxy roles that can be delegated to accounts, where
 
 ## Interact with the Solidity Interface {: #interact-with-the-solidity-interface }
 
-The following section will cover how to interact with the Proxy Precompile from Remix. Please note that **the Proxy Precompile can only be called from an EOA**.
+The following section will cover how to interact with the Proxy Precompile from Remix. Please note that **the Proxy Precompile can only be called from an EOA or by the [Batch Precompile](/builders/pallets-precompiles/precompiles/batch){target=_blank}.**.
 
 ### Checking Prerequisites {: #checking-prerequisites } 
 
