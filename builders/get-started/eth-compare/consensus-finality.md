@@ -54,15 +54,13 @@ The following sections outline how you can check for transaction finality using 
 
 ## Checking Transaction Finality with Moonbeam RPC Endpoints {: #checking-tx-finality-with-moonbeam-rpc-endpoints }
 
-Moonbeam has added support for two custom RPC endpoints, `moon_isBlockFinalized` and `moon_isTxFinalized`, that can be used to check whether an on-chain event is finalized. 
+Moonbeam has added support for two custom RPC endpoints, `moon_isBlockFinalized` and `moon_isTxFinalized`, that can be used to check whether an on-chain event is finalized.
 
 For more information, you can go to the [Finality RPC Endpoints](/builders/build/moonbeam-custom-api#finality-rpc-endpoints){target=_blank} section of the Moonbeam Custom API page.
 
 ## Checking Transaction Finality with Ethereum Libraries {: #checking-tx-finality-with-ethereum-libraries }
 
-You can make calls to the Substrate JSON-RPC using the `send` method of both [Web3.js](https://web3js.readthedocs.io/){target=_blank} and [Ethers.js](https://docs.ethers.io/){target=_blank}. Custom RPC requests are also possible using [Web3.py](https://web3py.readthedocs.io/){target=_blank} with the `make_request` method. You can use the Web3.js example as a baseline.
-
-The code snippets rely on two custom RPC requests from the Substrate JSON-RPC: `chain_getFinalizedHead` and `chain_getHeader`. The first request gets the block hash of the last finalized block. The second request gets the block header for a given block hash. The same is true for `eth_getBlockByNumber` and `eth_getTransactionReceipt` to check if the given transaction hash is included in the block.
+The snippets below follow the strategy outlined in the [previous section](#strategy-to-check-tx-finality) to check transaction finality. It uses the `finalized` option for the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block){target=_blank} to get the latest finalized block.
 
 --8<-- 'text/common/endpoint-examples.md'
 
