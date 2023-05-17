@@ -30,7 +30,7 @@ tx_create = web3.eth.account.sign_transaction(
         'gasPrice': web3.eth.generate_gas_price(),
         'gas': 21000,
         'to': address_to,
-        'value': web3.toWei('1', 'ether'),
+        'value': web3.to_wei('1', 'ether'),
     },
     account_from['private_key'],
 )
