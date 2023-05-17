@@ -407,8 +407,8 @@ networks:
       nodaryqrnguint256array: '0x27cc2713e7f968e4e86ed274a051a5c8aaee9cca66946f23af6f29ecea9704c3'
   moonriver:
     public_rpc_url: https://rpc.api.moonriver.moonbeam.network # for wallets
-    rpc_url: RPC_API_ENDPOINT_HERE
-    wss_url: WSS_API_ENDPOINT_HERE
+    rpc_url: INSERT_RPC_API_ENDPOINT
+    wss_url: INSERT_WSS_API_ENDPOINT
     chain_id: 1285
     hex_chain_id: '0x505'
     node_directory: /var/lib/moonriver-data
@@ -767,8 +767,8 @@ networks:
       api_page: https://transaction.moonriver.multisig.moonbeam.network/
   moonbeam:
     public_rpc_url: https://rpc.api.moonbeam.network # for wallets
-    rpc_url: RPC_API_ENDPOINT_HERE
-    wss_url: WSS_API_ENDPOINT_HERE
+    rpc_url: INSERT_RPC_API_ENDPOINT
+    wss_url: INSERT_WSS_API_ENDPOINT
     chain_id: 1284
     hex_chain_id: '0x504'
     node_directory: /var/lib/moonbeam-data
