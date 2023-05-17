@@ -72,26 +72,46 @@ The code snippets rely on two custom RPC requests from the Substrate JSON-RPC: `
 === "Ethers.js"
 
     ```js
-    --8<-- 'code/vs-ethereum/ethers.js'
+    --8<-- 'code/vs-ethereum/consensus-finality/ethers.js'
     ```
 
 === "Web3.js"
 
     ```js
-    --8<-- 'code/vs-ethereum/web3.js'
+    --8<-- 'code/vs-ethereum/consensus-finality/web3.js'
     ```
 
 === "Web3.py"
 
     ```py
-    --8<-- 'code/vs-ethereum/web3.py'
+    --8<-- 'code/vs-ethereum/consensus-finality/web3.py'
+    ```
+
+You can modify these scripts to use `moon_isBlockFinalized` and `moon_isTxFinalized`. To do this, you can make custom calls to the Substrate JSON-RPC using the `send` method of both [Web3.js](https://web3js.readthedocs.io/){target=_blank} and [Ethers.js](https://docs.ethers.io/){target=_blank}. Custom RPC requests are also possible using [Web3.py](https://web3py.readthedocs.io/){target=_blank} with the `make_request` method. You'll need to pass in the method name and the parameters to the custom request, which you can find on the [Moonbeam Custom API](/builders/build/moonbeam-custom-api/){target=_blank} page.
+
+=== "Ethers.js"
+
+    ```js
+    --8<-- 'code/vs-ethereum/consensus-finality/custom-rpc/ethers.js'
+    ```
+
+=== "Web3.js"
+
+    ```js
+    --8<-- 'code/vs-ethereum/consensus-finality/custom-rpc/web3.js'
+    ```
+
+=== "Web3.py"
+
+    ```py
+    --8<-- 'code/vs-ethereum/consensus-finality/custom-rpc/web3.py'
     ```
 
 ## Checking Transaction Finality with Substrate Libraries {: #checking-tx-finality-with-substrate-libraries }
 
 The [Polkadot.js API package](/builders/build/substrate-api/polkadot-js-api){target=_blank} and [Python Substrate Interface package](/builders/build/substrate-api/py-substrate-interface){target=_blank} provide developers with a way to interact with Substrate chains using JavaScript and Python.
 
-Given a transaction hash (`tx_hash`), the following code snippets fetch the current finalized block and compare it with the block number of the transaction you've provided. The code relies on three RPC requests from the Substrate JSON-RPC: 
+Given a transaction hash (`tx_hash`), the following code snippets fetch the current finalized block and compare it with the block number of the transaction you've provided. The code relies on three RPC requests from the Substrate JSON-RPC:
 
 - `chain_getFinalizedHead` - the first request gets the block hash of the last finalized block
 - `chain_getHeader` - the second request gets the block header for a given block hash
@@ -102,13 +122,13 @@ You can find more information about Polkadot.js and the Substrate JSON RPC in th
 === "Polkadot.js"
 
     ```js
-    --8<-- 'code/vs-ethereum/polkadotjs.js'
+    --8<-- 'code/vs-ethereum/consensus-finality/polkadotjs.js'
     ```
 
 === "py-substrate-interface"
 
     ```py
-    --8<-- 'code/vs-ethereum/pysubstrateinterface.py'
+    --8<-- 'code/vs-ethereum/consensus-finality/pysubstrateinterface.py'
     ```
 
 --8<-- 'text/disclaimers/third-party-content.md'

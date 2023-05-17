@@ -1,10 +1,10 @@
 from substrateinterface import SubstrateInterface
 
-# Define the Ethereum TxHash to Check Finality
+# Define the Ethereum transaction hash to check finality
 tx_hash = 'INSERT_TX_HASH'
 
-# Point API Provider to Moonbeam
-# This can also be adapted for Moonriver or Moonbase Alpha
+# Point API provider to Moonbeam
+# This can be adapted for Moonriver or Moonbase Alpha
 moonbeam_API_provider = SubstrateInterface(
     url='INSERT_WSS_API_ENDPOINT',
 )
@@ -16,7 +16,8 @@ if __name__ == '__main__':
         finalized_only=True)
     # Get the finalized block number from the block header
     finalized_block_number = finalized_block_header['header']['number']
-    # Get the transaction receipt of the given tx hash through a custom RPC request
+    # Get the transaction receipt of the given transaction hash through a
+    # custom RPC request
     tx_receipt = moonbeam_API_provider.rpc_request(
         'eth_getTransactionReceipt', [tx_hash])
 
@@ -24,7 +25,7 @@ if __name__ == '__main__':
     if tx_receipt is None:
         print('The transaction hash cannot be found in the canonical chain.')
     else:
-        # Get the block number of the tx
+        # Get the block number of the transaction
         tx_block_number = int(tx_receipt['result']['blockNumber'], 16)
         # Get the transaction block through a custom RPC request
         tx_block = moonbeam_API_provider.rpc_request(

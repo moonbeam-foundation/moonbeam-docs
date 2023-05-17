@@ -1,9 +1,9 @@
 import { ethers } from 'ethers';
 
-// Define the TxHash to Check Finality
+// Define the transaction hash to check finality
 const txHash = 'INSERT_TX_HASH';
 
-// Define the RPC of the Provider for Moonbeam
+// Define the RPC of the provider for Moonbeam
 // This can be adapted for Moonriver or Moonbase Alpha
 const providerRPC = {
   moonbeam: {

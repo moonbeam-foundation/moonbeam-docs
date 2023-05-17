@@ -1,10 +1,10 @@
 from web3 import Web3
 
-# Define the TxHash to Check Finality
+# Define the transaction hash to check finality
 tx_hash = 'INSERT_TX_HASH'
 
 # Define the Web3 provider for Moonbeam
-# This can also be adapted for Moonriver or Moonbase Alpha
+# This can be adapted for Moonriver or Moonbase Alpha
 web3_provider = Web3(Web3.HTTPProvider('INSERT_RPC_API_ENDPOINT'))
 
 if __name__ == "__main__":

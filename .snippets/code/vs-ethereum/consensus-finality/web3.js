@@ -4,7 +4,7 @@ import Web3 from 'web3';
 const txHash = 'INSERT_TX_HASH';
 
 // Define the Web3 provider for Moonbeam
-// This can also be adapted for Moonriver or Moonbase Alpha
+// This can be adapted for Moonriver or Moonbase Alpha
 const web3Provider = new Web3('INSERT_RPC_API_ENDPOINT');
 
 const main = async () => {

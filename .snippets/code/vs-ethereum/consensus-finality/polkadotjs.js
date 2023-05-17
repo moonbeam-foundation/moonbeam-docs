@@ -1,10 +1,11 @@
 import { ApiPromise, WsProvider } from '@polkadot/api';
 import { types } from 'moonbeam-types-bundle';
 
-// Define the TxHash to Check Finality
+// Define the transaction hash to check finality
 const txHash = 'INSERT_TX_HASH';
 
 // Define the provider for Moonbeam
+// This can be adapted for Moonriver or Moonbase Alpha
 const wsProvider = new WsProvider('INSERT_WSS_API_ENDPOINT');
 
 const main = async () => {
