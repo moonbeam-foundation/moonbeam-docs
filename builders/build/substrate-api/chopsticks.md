@@ -38,7 +38,7 @@ yarn && \
 yarn build-wasm
 ```
 
-Chopsticks includes a set of [YAML](https://yaml.org/){target=_blank} configuration files that can be used to create a local copy of a variety of Substrate chains. If you installed from GitHub, you can view each of the default configuration files within the `configs` folder. If you installed with a package manager, you can download the configuration files from the [source repository](https://github.com/AcalaNetwork/chopsticks.git){target=_blank}.  
+Chopsticks includes a set of [YAML](https://yaml.org/){target=_blank} configuration files that can be used to create a local copy of a variety of Substrate chains. If you installed from GitHub, you can view each of the default configuration files within the `configs` folder. If you installed with a package manager, you can download the configuration files from the [source repository](https://github.com/AcalaNetwork/chopsticks.git){target=_blank} or use their raw URL.  
 
 Moonbeam, Moonriver, and Moonbase Alpha all have default files available. The example configuration below is the current configuration for Moonbeam:  
 
@@ -155,7 +155,7 @@ npx @acala-network/chopsticks run-block --endpoint wss://wss.api.moonbeam.networ
 To test out XCM messages between networks, you can fork multiple parachains and a relay chain locally. For example, the following will fork Moonriver, Karura, and Kusama given that you've downloaded the [config folder from the GitHub repository](https://github.com/AcalaNetwork/chopsticks/tree/master/configs){target=_blank}:  
 
 ```
-npx @acala-network/chopsticks xcm --relaychain=configs/kusama.yml --parachain=configs/moonriver.yml --parachain=configs/karura.yml
+npx @acala-network/chopsticks xcm --r=configs/kusama.yml --p=configs/moonriver.yml --p=configs/karura.yml
 ```
 
 You should see something like the following output:  
@@ -169,7 +169,7 @@ You should see something like the following output:
 [12:49:08.227] INFO (xcm/21840): Connected relaychain 'Kusama' with parachain 'Karura'
 ```
 
-Including the `relaychain` command is optional, as Chopsticks will automatically mock a relay chain between networks.  
+Including the `r` flag as the relay chain is optional, as Chopsticks will automatically mock a relay chain between networks.  
 
 ## WebSocket Commands {: #websocket-commands }
 
@@ -195,7 +195,7 @@ Each method can be invoked by connecting to the websocket (`ws://localhost:8000`
 
 Parameters can be described in the following ways:  
 
-- **`options` { "to": number, "count": number }** - optional, leave `null` to create one block. A JSON object where `"to"` will create blocks up to a certain value, and `"count"` will increase by a certain number of blocks. Use only one parameter at a time within the JSON object if not `null`    
+- **`options` { "to": number, "count": number }** - a JSON object where `"to"` will create blocks up to a certain value, and `"count"` will increase by a certain number of blocks. Use only one parameter at a time within the JSON object if not `null`    
 - **`values` Object** - a JSON object resembling the path to a storage value, similar to what you would retrieve via Polkadot.js  
 - **`blockHash` string** - optional, the blockhash at which the storage value is changed
 - **`date` string** - a Date string (compatible with the JavaScript Date library) that will change the time stamp from which the next blocks being created will be at. All future blocks will be sequentially after that point in time
