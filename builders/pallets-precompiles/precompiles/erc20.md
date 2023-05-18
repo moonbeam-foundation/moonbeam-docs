@@ -8,15 +8,15 @@ keywords: solidity, ethereum, native, token, moonbeam, precompiled, contracts
 
 ![Precompiled Contracts Banner](/images/builders/pallets-precompiles/precompiles/erc20/erc20-banner.png)
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
-The native token ERC-20 precompiled contract on Moonbeam allows developers to interact with the native protocol token through an ERC-20 interface.
+The native token ERC-20 precompiled contract on Moonbeam allows developers to interact with the native protocol token through an ERC-20 interface. Although GLMR and MOVR are not ERC-20 tokens, now you can interact with them as if they were native ERC-20s!
 
 One of the main benefits of this precompile is that it removes the necessity of having a wrapped representation of the protocol token as an ERC-20 smart contract, such as WETH on Ethereum. Furthermore, it prevents having multiple wrapped representations of the same protocol token. Consequently, DApps that need to interact with the protocol token via an ERC-20 interface can do so without needing a separate smart contract.
 
 Under the hood, the [ERC-20 precompile](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/src/lib.rs){target=_blank} executes specific Substrate actions related to the Substrate balances pallet, which is coded in Rust. The balances pallet provides functionality for handling the [various types of balances on Moonbeam](/builders/get-started/eth-compare/balances/#moonbeam-account-balances){target=_blank}, setting the free balance, transferring balances, and more.
 
-This guide will show you how to interact with DEV tokens, the native protocol tokens for the Moonbase Alpha TestNet, via the ERC-20 precompile.
+This guide will show you how to interact with DEV tokens, the native protocol tokens for the Moonbase Alpha TestNet, via the ERC-20 precompile. You can also follow and adapt this guide to learn how to use GLMR or MOVR as an ERC-20 token.
 
 The precompile is located at the following address:
 
@@ -139,7 +139,7 @@ You can check the balance of any address on Moonbase Alpha by calling the `balan
 
 Your balance will be displayed under the `balanceOf` function.
 
-### Approve a Spend {: #approve-a-spend } 
+### Approve a Spend {: #approve-a-spend }
 
 To approve a spend, you'll need to provide an address for the spender and the number of tokens  that the spender is allowed to spend. The spender can be an externally owned account or a smart contract. For this example, you can approve the spender to spend 1 DEV token. To get started, please follow these steps:
 
