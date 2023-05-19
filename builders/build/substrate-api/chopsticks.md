@@ -13,32 +13,21 @@ description: Learn the basics of how to use Chopsticks to replay blocks, dissect
 
 Overall, Chopsticks aims to simplify the process of building blockchain applications on Substrate and make it accessible to a wider range of developers.
 
-## Checking Prerequisites {: #checking-prerequisites }
+## Configuring Chopsticks {: #configuring-chopsticks }
 
-To use Chopsticks, you will need the following:  
-
-- Have [Node](https://nodejs.org/en/download/){target=_blank} installed  
-- Have [Docker](https://docs.docker.com/get-docker/){target=_blank} installed
-- (Optional) Have a recent version of [Rust installed](https://www.rust-lang.org/tools/install){target=_blank} 
-
-## Configuring Chopsticks {: configuring-chopsticks }
-
-There are two ways to use Chopsticks. The first and recommended way is by installing it as a package:  
+To use Chopsticks, you can install it as a package with the [Node package manager](https://nodejs.org/en){target=_blank} or [Yarn](https://yarnpkg.com/){target=_blank}:  
 
 ```
-yarn add @acala-network/chopsticks
+npm i @acala-network/chopsticks@latest
 ```
 
-The alternate option is to clone Chopsticks from its GitHub repository, add dependencies, and build it. Note that the commands in this guide will assume that you are using the package installation, which uses `npx @acala-network/chopsticks` or `yarn dlx` instead of `npm run` or `yarn start` for local builds:  
+Once installed, you can run commands with the Node package executor:  
 
 ```
-git clone --recurse-submodules https://github.com/AcalaNetwork/chopsticks.git && \
-cd chopsticks && \
-yarn && \
-yarn build-wasm
+npx @acala-network/chopsticks
 ```
 
-Chopsticks includes a set of [YAML](https://yaml.org/){target=_blank} configuration files that can be used to create a local copy of a variety of Substrate chains. If you installed from GitHub, you can view each of the default configuration files within the `configs` folder. If you installed with a package manager, you can download the configuration files from the [source repository](https://github.com/AcalaNetwork/chopsticks.git){target=_blank} or use their raw URL.  
+Chopsticks' source repository includes a set of [YAML](https://yaml.org/){target=_blank} configuration files that can be used to create a local copy of a variety of Substrate chains. You can download the configuration files from the [source repository's `configs` folder](https://github.com/AcalaNetwork/chopsticks.git){target=_blank}.  
 
 Moonbeam, Moonriver, and Moonbase Alpha all have default files available. The example configuration below is the current configuration for Moonbeam:  
 
@@ -92,6 +81,14 @@ The simplest way to fork Moonbeam is through the previously introduced configura
     npx @acala-network/chopsticks --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbase-alpha.yml
     ```
 
+When providing the config flag, you can use their raw URL, a path to the file, or simply use the chain's name. For example, the following commands all use Moonbeam's configuration in the same way:  
+
+|  Method   |                                             Command                                             |
+|:------------:|:-----------------------------------------------------------------------------------------------:|
+|    Name   |        `npx @acala-network/chopsticks --config=moonbeam`                        |
+|    URL    | `npx @acala-network/chopsticks --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbeam.yml`                  |
+| File Path | Requires a local download of the [Moonbeam configuration file](https://github.com/AcalaNetwork/chopsticks/blob/master/configs/moonbeam.yml){target=_blank}.<br>`npx @acala-network/chopsticks --config=configs/moonbeam.yml`                   |
+
 A configuration file is not necessary, however. There are additional commands and flags to configure the environment completely in the command line.  
 
 The `npx @acala-network/chopsticks` command forks a chain, and includes following flags:  
@@ -114,7 +111,7 @@ The `npx @acala-network/chopsticks` command forks a chain, and includes followin
 
 When running a fork, by default it will be accessible at `ws://localhost:8000`. You will be able to interact with the parachain via libraries such as [Polkadot.js](https://github.com/polkadot-js/common){target=_blank} and its [user interface, Polkadot.js Apps](https://github.com/polkadot-js/apps){target=_blank}.  
 
-You can interact with Chopsticks via the [Polkadot.js Apps hosted user interface](https://polkadot.js.org/apps/#/explorer){target=_blank}. To do so, visit the page and take the following steps:
+You can interact with Chopsticks via the [Polkadot.js Apps hosted user interface](https://polkadot.js.org/apps/#/explorer){target=_blank}. To do so, visit the page and take the following steps:  
 
 1. Click the icon in the top left
 2. Go to the bottom and open **Development**
@@ -155,18 +152,21 @@ npx @acala-network/chopsticks run-block --endpoint wss://wss.api.moonbeam.networ
 To test out XCM messages between networks, you can fork multiple parachains and a relay chain locally. For example, the following will fork Moonriver, Karura, and Kusama given that you've downloaded the [config folder from the GitHub repository](https://github.com/AcalaNetwork/chopsticks/tree/master/configs){target=_blank}:  
 
 ```
-npx @acala-network/chopsticks xcm --r=configs/kusama.yml --p=configs/moonriver.yml --p=configs/karura.yml
+npx @acala-network/chopsticks xcm --r=kusama.yml --p=moonriver.yml --p=karura.yml
 ```
 
 You should see something like the following output:  
 
 ```
-[12:48:58.766] INFO (rpc/21840): Moonriver RPC listening on port 8000
-[12:49:03.266] INFO (rpc/21840): Karura RPC listening on port 8001
-[12:49:03.565] INFO (xcm/21840): Connected parachains [2000,2023]
-[12:49:07.058] INFO (rpc/21840): Kusama RPC listening on port 8002
-[12:49:07.557] INFO (xcm/21840): Connected relaychain 'Kusama' with parachain 'Moonriver'
-[12:49:08.227] INFO (xcm/21840): Connected relaychain 'Kusama' with parachain 'Karura'
+[13:50:57.807] INFO (rpc/64805): Loading config file https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonriver.yml
+[13:50:59.655] INFO (rpc/64805): Moonriver RPC listening on port 8000
+[13:50:59.656] INFO (rpc/64805): Loading config file https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/karura.yml
+[13:51:03.275] INFO (rpc/64805): Karura RPC listening on port 8001
+[13:51:03.586] INFO (xcm/64805): Connected parachains [2000,2023]
+[13:51:03.586] INFO (rpc/64805): Loading config file https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/kusama.yml
+[13:51:07.241] INFO (rpc/64805): Kusama RPC listening on port 8002
+[13:51:07.700] INFO (xcm/64805): Connected relaychain 'Kusama' with parachain 'Moonriver'
+[13:51:08.386] INFO (xcm/64805): Connected relaychain 'Kusama' with parachain 'Karura'
 ```
 
 Including the `r` flag as the relay chain is optional, as Chopsticks will automatically mock a relay chain between networks.  
@@ -193,12 +193,20 @@ Each method can be invoked by connecting to the websocket (`ws://localhost:8000`
 }
 ```
 
-Parameters can be described in the following ways:  
+The parameters above are formatted in the following ways:  
 
-- **`options` { "to": number, "count": number }** - a JSON object where `"to"` will create blocks up to a certain value, and `"count"` will increase by a certain number of blocks. Use only one parameter at a time within the JSON object if not `null`    
+|    Parameter   |                Format               |                                 Example                                |
+|:--------------:|:-----------------------------------:|:----------------------------------------------------------------------:|
+|    `options`   | `{ "to": number, "count": number }` |                             `{ "count": 5 }`                           |
+|    `values`    |               `Object`              |  `{ "Sudo": { "Key": "0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b" } }` |
+|   `blockHash`  |               `string`              | `"0x1a34506b33e918a0106b100db027425a83681e2332fe311ee99d6156d2a91697"` |
+|     `date`     |                `Date`               |                          `"2030-08-15T00:00:00"`                       |
+| `hashOrNumber` |          `number | string`          |                                  `1000`                                |
+
+- **`options` { "to": number, "count": number }** - a JSON object where `"to"` will create blocks up to a certain value, and `"count"` will increase by a certain number of blocks. Use only one entry at a time within the JSON object  
 - **`values` Object** - a JSON object resembling the path to a storage value, similar to what you would retrieve via Polkadot.js  
-- **`blockHash` string** - optional, the blockhash at which the storage value is changed
-- **`date` string** - a Date string (compatible with the JavaScript Date library) that will change the time stamp from which the next blocks being created will be at. All future blocks will be sequentially after that point in time
-- **`hashOrNumber` number | string** - if found, the chain head will be set to the block with the block number or block hash of this value
+- **`blockHash` string** - optional, the blockhash at which the storage value is changed  
+- **`date` Date** - a Date string (compatible with the JavaScript Date library) that will change the time stamp from which the next blocks being created will be at. All future blocks will be sequentially after that point in time  
+- **`hashOrNumber` number | string** - if found, the chain head will be set to the block with the block number or block hash of this value  
 
 --8<-- 'text/disclaimers/third-party-content.md'
