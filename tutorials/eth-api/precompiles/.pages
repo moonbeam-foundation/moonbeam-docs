@@ -1,0 +1,7 @@
+title: Interact with Precompiles
+hide: false
+nav:
+  - index.md
+  - '[Batch] Approve & Swap Tokens in a Single Transaction': '/tutorials/eth-api/batch-approve-swap'
+  - '[Randomness] Create a Lottery': '/tutorials/eth-api/randomness-lottery'
+  - '[Call Permit] Send Gasless Transactions': '/tutorials/eth-api/call-permit-gasless-txs'

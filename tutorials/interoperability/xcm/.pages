@@ -1,0 +1,6 @@
+title: Build Cross-Chain Applications with XCM
+hide: false
+nav:
+  - index.md
+  - "[Polkadot's XCM Pallet] Remote Staking on Moonbeam from Polkadot": '/tutorials/interoperability/remote-staking-xcm'
+  - "[Polkadot's XCM Pallet] Uniswap V2 Swap on Moonbeam from Polkadot": '/tutorials/interoperability/uniswapv2-swap-xcm'
