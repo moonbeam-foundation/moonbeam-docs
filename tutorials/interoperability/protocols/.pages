@@ -1,0 +1,5 @@
+title: Create Connected Contracts with Cross-Chain Protocols
+hide: false
+nav:
+  - index.md
+  - '[LayerZero] Creating a Cross-Chain DAO': '/tutorials/interoperability/cross-chain-dao'
