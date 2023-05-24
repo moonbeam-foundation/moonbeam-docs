@@ -6,7 +6,7 @@ description: Discover Polkadot's Substrate developer framework and how it shapes
 
 # Polkadot's Substrate on Moonbeam
 
-**INSERT BANNER IMAGE HERE**
+![Substrate banner](/images/builders/build/substrate-api/substrate/substrate-banner.png)
 
 ## Introduction {: #introduction }
  
