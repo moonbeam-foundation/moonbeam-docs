@@ -110,21 +110,21 @@ Moonbeam, Moonriver, and Moonbase Alpha all have default files available:
 
 These are the settings that can be included in the config file:  
 
-|          Option          |                                                  Description                                                 |
-|:------------------------:|:------------------------------------------------------------------------------------------------------------:|
-|         genesis          |        The link to a parachain's raw genesis file to build the fork from, instead of an endpoint.            |
-|        timestamp         |                                     Timestamp of the block to fork from.                                     |
-|         endpoint         |                                   The endpoint of the parachain to fork.                                     |
-|          block           |                      Use to specify at which block hash or number to replay the fork.                        |
-|      wasm-override       |             Path of the WASM to use as the parachain runtime, instead of an endpoint's runtime.              |
-|            db            |               Path to the name of the file that stores or will store the parachain's database.               |
-|          config          |                                       Path or URL of the config file.                                        |
-|           port           |                                      The port to expose an endpoint on.                                      |
-|     build-block-mode     |                       How blocks should be built in the fork: batch, manual, instant.                        |
-|      import-storage      |              A pre-defined JSON/YAML storage file path to override in the parachain's storage.               |
-| allow-unresolved-imports |             Whether to allow WASM unresolved imports when using a WASM to build the parachain.               |
-|           html           |                          Include to generate storage diff preview between blocks.                            |
-|   mock-signature-host    | Mock signature host so that any signature starts with `0xdeadbeef` and filled by `0xcd` is considered valid. |
+|           Option           |                                                 Description                                                  |
+|:--------------------------:|:------------------------------------------------------------------------------------------------------------:|
+|         `genesis`          |          The link to a parachain's raw genesis file to build the fork from, instead of an endpoint.          |
+|        `timestamp`         |                                     Timestamp of the block to fork from.                                     |
+|         `endpoint`         |                                    The endpoint of the parachain to fork.                                    |
+|          `block`           |                       Use to specify at which block hash or number to replay the fork.                       |
+|      `wasm-override`       |             Path of the WASM to use as the parachain runtime, instead of an endpoint's runtime.              |
+|            `db`            |               Path to the name of the file that stores or will store the parachain's database.               |
+|          `config`          |                                       Path or URL of the config file.                                        |
+|           `port`           |                                      The port to expose an endpoint on.                                      |
+|     `build-block-mode`     |                       How blocks should be built in the fork: batch, manual, instant.                        |
+|      `import-storage`      |              A pre-defined JSON/YAML storage file path to override in the parachain's storage.               |
+| `allow-unresolved-imports` |              Whether to allow WASM unresolved imports when using a WASM to build the parachain.              |
+|           `html`           |                           Include to generate storage diff preview between blocks.                           |
+|   `mock-signature-host`    | Mock signature host so that any signature starts with `0xdeadbeef` and filled by `0xcd` is considered valid. |
 
 ## Forking Moonbeam {: #forking-moonbeam }
 
@@ -150,29 +150,42 @@ The simplest way to fork Moonbeam is through the previously introduced configura
 
 When providing the `config` flag, you can use a raw GitHub URL to the default configuration files, a path to a local configuration file, or simply use the chain's name. For example, the following commands all use Moonbeam's configuration in the same way:  
 
-|  Method   |                                             Command                                             |
-|:------------:|:-----------------------------------------------------------------------------------------------:|
-|    Name   |        `npx @acala-network/chopsticks --config=moonbeam`                       |
-|    URL    | `npx @acala-network/chopsticks \<br>--config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbeam.yml`                  |
-| File Path | Requires a local download of the [Moonbeam configuration file](https://github.com/AcalaNetwork/chopsticks/blob/master/configs/moonbeam.yml){target=_blank}.<br>`npx @acala-network/chopsticks --config=configs/moonbeam.yml` |
+=== "Chain Name"
+    ```
+    npx @acala-network/chopsticks --config=moonbeam
+    ```
+
+=== "GitHub URL"
+    ```
+    npx @acala-network/chopsticks \
+    --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbeam.yml
+    ```
+
+=== "Local File Path"
+    ```
+    npx @acala-network/chopsticks --config=configs/moonbeam.yml
+    ```
+
+!!! note
+    If using a file path, make sure you've downloaded the [Moonbeam configuration file](https://github.com/AcalaNetwork/chopsticks/blob/master/configs/moonbeam.yml){target=_blank}.
 
 A configuration file is not necessary, however. There are additional commands and flags to configure the environment completely in the command line.  
 
 The `npx @acala-network/chopsticks` command forks a chain, and includes the following flags, which are similar to the settings available in the configuration file:  
 
-|           Flag           |                                                  Description                                                 |
-|:------------------------:|:------------------------------------------------------------------------------------------------------------:|
-|         endpoint         |                                   The endpoint of the parachain to fork.                                     |
-|          block           |                      Use to specify at which block hash or number to replay the fork.                        |
-|      wasm-override       |             Path of the WASM to use as the parachain runtime, instead of an endpoint's runtime.              |
-|            db            |               Path to the name of the file that stores or will store the parachain's database.               |
-|          config          |                                       Path or URL of the config file.                                        |
-|           port           |                                      The port to expose an endpoint on.                                      |
-|     build-block-mode     |                       How blocks should be built in the fork: batch, manual, instant.                        |
-|      import-storage      |              A pre-defined JSON/YAML storage file path to override in the parachain's storage.               |
-| allow-unresolved-imports |             Whether to allow WASM unresolved imports when using a WASM to build the parachain.               |
-|           html           |                          Include to generate storage diff preview between blocks.                            |
-|   mock-signature-host    | Mock signature host so that any signature starts with `0xdeadbeef` and filled by `0xcd` is considered valid. |
+|            Flag            |                                                 Description                                                  |
+|:--------------------------:|:------------------------------------------------------------------------------------------------------------:|
+|         `endpoint`         |                                    The endpoint of the parachain to fork.                                    |
+|          `block`           |                       Use to specify at which block hash or number to replay the fork.                       |
+|      `wasm-override`       |             Path of the WASM to use as the parachain runtime, instead of an endpoint's runtime.              |
+|            `db`            |               Path to the name of the file that stores or will store the parachain's database.               |
+|          `config`          |                                       Path or URL of the config file.                                        |
+|           `port`           |                                      The port to expose an endpoint on.                                      |
+|     `build-block-mode`     |                       How blocks should be built in the fork: batch, manual, instant.                        |
+|      `import-storage`      |              A pre-defined JSON/YAML storage file path to override in the parachain's storage.               |
+| `allow-unresolved-imports` |              Whether to allow WASM unresolved imports when using a WASM to build the parachain.              |
+|           `html`           |                           Include to generate storage diff preview between blocks.                           |
+|   `mock-signature-host`    | Mock signature host so that any signature starts with `0xdeadbeef` and filled by `0xcd` is considered valid. |
 
 ### Interacting with a Fork {: #interacting-with-a-fork }
 
@@ -203,16 +216,16 @@ You should now be able to interact with the fork as you would an active parachai
 
 In the case where you would like to replay a block and retrieve its information to dissect the effects of an extrinsic, you can use the `npx @acala-network/chopsticks run-block` command. Its following flags are:  
 
-|           Flag           |                                      Description                                       |
-|:------------------------:|:--------------------------------------------------------------------------------------:|
-|         endpoint         |                         The endpoint of the parachain to fork.                         |
-|          block           |            Use to specify at which block hash or number to replay the fork.            |
-|      wasm-override       |  Path of the WASM to use as the parachain runtime, instead of an endpoint's runtime.   |
-|            db            |    Path to the name of the file that stores or will store the parachain's database.    |
-|          config          |                            Path or URL of the config file.                             |
-| output-path=/[file_path] |   Use to print out results to a JSON file instead of printing it out in the console.   |
-|           html           | Include to generate an HTML representation of the storage diff preview between blocks. |
-|           open           |                        Whether to open the HTML representation.                        |
+|            Flag            |                                      Description                                       |
+|:--------------------------:|:--------------------------------------------------------------------------------------:|
+|         `endpoint`         |                         The endpoint of the parachain to fork.                         |
+|          `block`           |            Use to specify at which block hash or number to replay the fork.            |
+|      `wasm-override`       |  Path of the WASM to use as the parachain runtime, instead of an endpoint's runtime.   |
+|            `db`            |    Path to the name of the file that stores or will store the parachain's database.    |
+|          `config`          |                            Path or URL of the config file.                             |
+| `output-path=/[file_path]` |   Use to print out results to a JSON file instead of printing it out in the console.   |
+|           `html`           | Include to generate an HTML representation of the storage diff preview between blocks. |
+|           `open`           |                        Whether to open the HTML representation.                        |
 
 For example, running the following command will re-run Moonbeam's block 1000, and write the storage diff and other data in a `moonbeam-output.json` file:  
 
@@ -254,22 +267,22 @@ Including the `r` flag as the relay chain is optional, as Chopsticks will automa
 
 Chopsticks' internal websocket server has special endpoints that allows the manipulation of the local Substrate chain. These are the methods that can be invoked:  
 
-|     Method     |    Parameters     |                          Description                          |
-|:--------------:|:-----------------:|:-------------------------------------------------------------:|
-|  dev_newBlock  |      options      |               Generates one or more new blocks.               |
-| dev_setStorage | values, blockHash |         Create or overwrite the value of any storage.         |
-| dev_timeTravel |       date        |     Sets the timestamp of the block to the `date` value.      |
-|  dev_setHead   |   hashOrNumber    | Sets the head of the blockchain to a specific hash or number. |
+|      Method      |      Parameters       |                          Description                          |
+|:----------------:|:---------------------:|:-------------------------------------------------------------:|
+|  `dev_newBlock`  |       `options`       |               Generates one or more new blocks.               |
+| `dev_setStorage` | `values`, `blockHash` |         Create or overwrite the value of any storage.         |
+| `dev_timeTravel` |        `date`         |     Sets the timestamp of the block to the `date` value.      |
+|  `dev_setHead`   |    `hashOrNumber`     | Sets the head of the blockchain to a specific hash or number. |
 
 The parameters above are formatted in the following ways:  
 
-|    Parameter   |                Format               |                                 Example                                |
+|   Parameter    |               Format                |                                Example                                 |
 |:--------------:|:-----------------------------------:|:----------------------------------------------------------------------:|
-|    `options`   | `{ "to": number, "count": number }` |                             `{ "count": 5 }`                           |
-|    `values`    |               `Object`              |  `{ "Sudo": { "Key": "0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b" } }` |
-|   `blockHash`  |               `string`              | `"0x1a34506b33e918a0106b100db027425a83681e2332fe311ee99d6156d2a91697"` |
-|     `date`     |                `Date`               |                          `"2030-08-15T00:00:00"`                       |
-| `hashOrNumber` |          `number | string`          |                                  `1000`                                |
+|   `options`    | `{ "to": number, "count": number }` |                            `{ "count": 5 }`                            |
+|    `values`    |              `Object`               | `{ "Sudo": { "Key": "0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b" } }`  |
+|  `blockHash`   |              `string`               | `"0x1a34506b33e918a0106b100db027425a83681e2332fe311ee99d6156d2a91697"` |
+|     `date`     |               `Date`                |                        `"2030-08-15T00:00:00"`                         |
+| `hashOrNumber` |               `number               |                                string`                                 |
 
 - **`options` { "to": number, "count": number }** - a JSON object where `"to"` will create blocks up to a certain value, and `"count"` will increase by a certain number of blocks. Use only one entry at a time within the JSON object  
 - **`values` Object** - a JSON object resembling the path to a storage value, similar to what you would retrieve via Polkadot.js  
