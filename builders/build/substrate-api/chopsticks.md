@@ -13,7 +13,7 @@ description: Learn the basics of how to use Chopsticks to replay blocks, dissect
 
 Overall, Chopsticks aims to simplify the process of building blockchain applications on Substrate and make it accessible to a wider range of developers.
 
-## Configuring Chopsticks {: #configuring-chopsticks }
+## Forking Moonbeam with Chopsticks {: #forking-moonbeam }
 
 To use Chopsticks, you can install it as a package with the [Node package manager](https://nodejs.org/en){target=_blank} or [Yarn](https://yarnpkg.com/){target=_blank}:  
 
@@ -21,13 +21,13 @@ To use Chopsticks, you can install it as a package with the [Node package manage
 npm i @acala-network/chopsticks@latest
 ```
 
-Once installed, you can run commands with the Node package executor:  
+Once installed, you can run commands with the Node package executor. For example, this runs Chopstick's base command:  
 
 ```
 npx @acala-network/chopsticks
 ```
 
-Chopsticks' source repository includes a set of [YAML](https://yaml.org/){target=_blank} configuration files that can be used to create a local copy of a variety of Substrate chains. You can download the configuration files from the [source repository's `configs` folder](https://github.com/AcalaNetwork/chopsticks.git){target=_blank}.  
+To run Chopsticks, you will need some sort of configuration, typically through a file. Chopsticks' source repository includes a set of [YAML](https://yaml.org/){target=_blank} configuration files that can be used to create a local copy of a variety of Substrate chains. You can download the configuration files from the [source repository's `configs` folder](https://github.com/AcalaNetwork/chopsticks.git){target=_blank}.  
 
 Moonbeam, Moonriver, and Moonbase Alpha all have default files available:  
 
@@ -126,29 +126,9 @@ These are the settings that can be included in the config file:
 |           `html`           |                           Include to generate storage diff preview between blocks.                           |
 |   `mock-signature-host`    | Mock signature host so that any signature starts with `0xdeadbeef` and filled by `0xcd` is considered valid. |
 
-## Forking Moonbeam {: #forking-moonbeam }
+You can use the configuration file with the base command `npx @acala-network/chopsticks` to fork assets by providing it with the `--config` flag.  
 
-The simplest way to fork Moonbeam is through the previously introduced configuration files:  
-
-=== "Moonbeam"
-    ```
-    npx @acala-network/chopsticks \
-    --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbeam.yml
-    ```
-
-=== "Moonriver"
-    ```
-    npx @acala-network/chopsticks \
-    --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonriver.yml
-    ```
-
-=== "Moonbase Alpha"
-    ```
-    npx @acala-network/chopsticks \
-    --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbase-alpha.yml
-    ```
-
-When providing the `config` flag, you can use a raw GitHub URL to the default configuration files, a path to a local configuration file, or simply use the chain's name. For example, the following commands all use Moonbeam's configuration in the same way:  
+You can use a raw GitHub URL of the default configuration files, a path to a local configuration file, or simply use the chain's name for the `--config` flag. For example, the following commands all use Moonbeam's configuration in the same way:  
 
 === "Chain Name"
     ```
@@ -167,25 +147,35 @@ When providing the `config` flag, you can use a raw GitHub URL to the default co
     ```
 
 !!! note
-    If using a file path, make sure you've downloaded the [Moonbeam configuration file](https://github.com/AcalaNetwork/chopsticks/blob/master/configs/moonbeam.yml){target=_blank}.
+    If using a file path, make sure you've downloaded the [Moonbeam configuration file](https://github.com/AcalaNetwork/chopsticks/blob/master/configs/moonbeam.yml){target=_blank}, or have created your own.
 
-A configuration file is not necessary, however. There are additional commands and flags to configure the environment completely in the command line.  
+A configuration file is not necessary, however. All of the settings (except `genesis` and `timestamp`) can also be passed as flags to configure the environment completely in the command line. For example, the following command forks Moonbase Alpha at block 100.
 
-The `npx @acala-network/chopsticks` command forks a chain, and includes the following flags, which are similar to the settings available in the configuration file:  
+```
+npx @acala-network/chopsticks --endpoint {{ networks.moonbase.rpc_url }} --block 100
+```
 
-|            Flag            |                                                 Description                                                  |
-|:--------------------------:|:------------------------------------------------------------------------------------------------------------:|
-|         `endpoint`         |                                    The endpoint of the parachain to fork.                                    |
-|          `block`           |                       Use to specify at which block hash or number to replay the fork.                       |
-|      `wasm-override`       |             Path of the WASM to use as the parachain runtime, instead of an endpoint's runtime.              |
-|            `db`            |               Path to the name of the file that stores or will store the parachain's database.               |
-|          `config`          |                                       Path or URL of the config file.                                        |
-|           `port`           |                                      The port to expose an endpoint on.                                      |
-|     `build-block-mode`     |                       How blocks should be built in the fork: batch, manual, instant.                        |
-|      `import-storage`      |              A pre-defined JSON/YAML storage file path to override in the parachain's storage.               |
-| `allow-unresolved-imports` |              Whether to allow WASM unresolved imports when using a WASM to build the parachain.              |
-|           `html`           |                           Include to generate storage diff preview between blocks.                           |
-|   `mock-signature-host`    | Mock signature host so that any signature starts with `0xdeadbeef` and filled by `0xcd` is considered valid. |
+### Quickstart {: #quickstart }
+
+The simplest way to fork Moonbeam is through the configuration files that are stored in the chopsticks GitHub repository:  
+
+=== "Moonbeam"
+    ```
+    npx @acala-network/chopsticks \
+    --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbeam.yml
+    ```
+
+=== "Moonriver"
+    ```
+    npx @acala-network/chopsticks \
+    --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonriver.yml
+    ```
+
+=== "Moonbase Alpha"
+    ```
+    npx @acala-network/chopsticks \
+    --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbase-alpha.yml
+    ```
 
 ### Interacting with a Fork {: #interacting-with-a-fork }
 
