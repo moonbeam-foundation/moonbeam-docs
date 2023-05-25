@@ -68,20 +68,23 @@ The simplest way to fork Moonbeam is through the previously introduced configura
 
 === "Moonbeam"
     ```
-    npx @acala-network/chopsticks --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbeam.yml
+    npx @acala-network/chopsticks \
+    --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbeam.yml
     ```
 
 === "Moonriver"
     ```
-    npx @acala-network/chopsticks --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonriver.yml
+    npx @acala-network/chopsticks \
+    --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonriver.yml
     ```
 
 === "Moonbase Alpha"
     ```
-    npx @acala-network/chopsticks --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbase-alpha.yml
+    npx @acala-network/chopsticks \
+    --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbase-alpha.yml
     ```
 
-When providing the config flag, you can use their raw URL, a path to the file, or simply use the chain's name. For example, the following commands all use Moonbeam's configuration in the same way:  
+When providing the `config` flag, you can use raw GitHub URL to the default configuration files, a path to a local configuration file, or simply use the chain's name. For example, the following commands all use Moonbeam's configuration in the same way:  
 
 |  Method   |                                             Command                                             |
 |:------------:|:-----------------------------------------------------------------------------------------------:|
@@ -91,7 +94,7 @@ When providing the config flag, you can use their raw URL, a path to the file, o
 
 A configuration file is not necessary, however. There are additional commands and flags to configure the environment completely in the command line.  
 
-The `npx @acala-network/chopsticks` command forks a chain, and includes following flags:  
+The `npx @acala-network/chopsticks` command forks a chain, and includes the following flags:  
 
 |           Flag           |                                             Description                                             |
 |:------------------------:|:---------------------------------------------------------------------------------------------------:|
@@ -152,7 +155,10 @@ npx @acala-network/chopsticks run-block --endpoint wss://wss.api.moonbeam.networ
 To test out XCM messages between networks, you can fork multiple parachains and a relay chain locally. For example, the following will fork Moonriver, Karura, and Kusama given that you've downloaded the [config folder from the GitHub repository](https://github.com/AcalaNetwork/chopsticks/tree/master/configs){target=_blank}:  
 
 ```
-npx @acala-network/chopsticks xcm --r=kusama.yml --p=moonriver.yml --p=karura.yml
+npx @acala-network/chopsticks xcm \
+--r=kusama.yml \
+--p=moonriver.yml \
+--p=karura.yml
 ```
 
 You should see something like the following output:  
