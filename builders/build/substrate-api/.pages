@@ -2,7 +2,7 @@ title: Substrate API
 nav:
   - index.md
   - 'Chopsticks': 'chopsticks.md'
+  - 'Overview': 'overview.md'
   - 'Polkadot.js API': 'polkadot-js-api.md'
   - 'Py Substrate Interface': 'py-substrate-interface.md'
   - 'Sidecar': 'sidecar.md'
-  - 'Substrate': 'substrate.md'
