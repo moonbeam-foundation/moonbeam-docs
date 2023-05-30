@@ -5,22 +5,15 @@ description: Follow a step-by-step tutorial on how to get started with Tenderly 
 
 # Using Tenderly to Simulate and Debug Transactions
 
-![Banner Image](/images/tutorials/eth-api/foundry-start-to-end/foundry-banner.png)
+![Banner Image](/images/tutorials/eth-api/using-tenderly/tenderly-banner.png)
 
 _May 21, 2023 | by Kevin Neilson_
 
 ## Introduction {: #introduction } 
 
-Tenderly is an all-in-one development platform for EVM networks that enables web3 developers to build, test, monitor, and operate their smart contracts. Tenderly has a full suite of product offerings to help you as a developer throughout the lifecycle of a smart contract, from the earliest stages of development to maintenance and alerting on a live production dApp.
+Tenderly is an all-in-one development platform for EVM networks that enables Web3 developers to build, test, monitor, and operate their smart contracts. Tenderly has a [full suite of product offerings](/builders/build/eth-api/dev-env/tenderly/) to help you as a developer throughout the lifecycle of a smart contract, from the earliest stages of development to maintenance and alerting on a live production dApp.
 
-Some of Tenderly's product offerings by category include the following:
-
- - Development: debugger, gas profiler 
- - Integration: simulator, fork testing
- - Monitoring: alerting, war rooms aid kit
- - Infrastructure: web3 gateway, actions, simulation API
-
-Most services offered by Tenderly are free to use but you'll need to subscribe to a paid plan for advanced features like real-time alerting and war room functionality. Tenderly supports Moonbeam and Moonriver, but does not support Moonbase Alpha at this time. 
+Most services offered by Tenderly are free to use but you'll need to subscribe to a paid plan for advanced features like real-time alerting and war room functionality. Tenderly supports Moonbeam and Moonriver, but does not support Moonbase Alpha at this time. For more information about Tenderly's product offerings, be sure to familiarize yourself with the [Introduction to Tenderly](/builders/build/eth-api/dev-env/tenderly/).
 
 In this tutorial, we're going to explore two of Tenderly's most powerful features, the debugger and the simulator. 
 
@@ -28,7 +21,7 @@ In this tutorial, we're going to explore two of Tenderly's most powerful feature
 
 To get started, you will need the following:
 
- - Have a free [Tenderly Account](https://dashboard.tenderly.co/register?utm_source=homepage){target=_blank}. You do not need a paid plan to complete this tutorial. 
+ - Have a free [Tenderly Account](https://dashboard.tenderly.co/register?utm_source=homepage){target=_blank}. You do not need a paid plan to complete this tutorial
 
 ## Create a Tenderly Project {: #create-a-tenderly-project }
 
@@ -47,7 +40,7 @@ Adding a smart contract to your Tenderly project is akin to bookmarking it. Whil
 To add a smart contract to your Tenderly project, Click on the **Contracts** tab under the Inspect heading, then Click **Add Contracts**. Then, take the following steps:
 
 1. Enter the address of the contract. For this tutorial, we'll be using the Multichain USDC contract `0x818ec0a7fe18ff94269904fced6ae3dae6d6dc0b` 
-2. Select the network the contract is deployed to. We'll select Moonbeam in this case
+2. Select the network the contract is deployed to. We'll select **Moonbeam** in this case
 3. Give the contract a name to help you recognize it in the dashboard
 4. Press **Add Contract** 
 
@@ -57,7 +50,7 @@ To add a smart contract to your Tenderly project, Click on the **Contracts** tab
 
 Simulations allow you to see how a transaction will execute without actually sending it to execute on the blockchain. You can simulate a transaction against any point in time, or simply the latest block. 
 
-Let's craft a transaction to simulate against the Moonbeam network by taking the following steps: 
+Head over to the **Simulator** tab and let's craft a transaction to simulate against the Moonbeam network by taking the following steps: 
 
 1. Select the contract that you'd like to interact with. The name displayed here is the nickname that you gave the contract when [adding it to your Tenderly workspace](#add-smart-contracts) 
 2. Select the contract function you'd like to call. `Transfer` is selected for demonstration purposes
@@ -70,7 +63,7 @@ Let's craft a transaction to simulate against the Moonbeam network by taking the
 
 ![Simulate a transaction against Moonbeam](/images/tutorials/eth-api/using-tenderly/tenderly-3.png)
 
-Clearly, this simulated transaction is going to fail because we're trying to send 10,000 USDC that we don't have. But, with [Tenderly simulator](https://docs.tenderly.co/simulations-and-forks/how-to-simulate-a-transaction){target=_blank}, we can tinker with the blockchain state and run simulations that assume different conditions. For example, let's run the simulation assuming that Baltathar actually holds a balance of 10,000 USDC. To do so, take the following steps: 
+Clearly, this simulated transaction is going to fail because we're trying to send 10,000 USDC that we don't have. But, with [Tenderly simulator](https://docs.tenderly.co/simulations-and-forks/how-to-simulate-a-transaction){target=_blank}, we can tinker with the blockchain state and run simulations that assume different conditions. For example, let's run the simulation assuming that Baltathar actually holds a balance of 10,000 USDC. Press **Re-Simulate** in the upper right corner, then take the following steps: 
 
 1. Expand the **State Overrides** section
 2. Press **Add State Override**
@@ -99,7 +92,7 @@ Simulations are great for one-off tests, but what if you want to test a series o
 !!! note
     There are some limitations to be aware of when using Tenderly's forking feature. You cannot interact with any of the [Moonbeam precompiled contracts](/builders/pallets-precompiles/precompiles/){target=_blank} and their functions. Precompiles are a part of the Substrate implementation and therefore cannot be replicated in the simulated EVM environment. This prohibits you from interacting with cross-chain assets on Moonbeam and Substrate-based functionality such as staking and governance.
 
-It's easy to create a fork with Tenderly. To do so, take the following steps:
+It's easy to create a fork with Tenderly. To do so, head to the **Forks** tab and take the following steps:
 
 1. Select **Moonbeam** or **Moonriver** from the **Network** dropdown
 2. (Optional) Give your fork a name
@@ -121,7 +114,7 @@ In the next part, we'll be demonstrating the statefulness of forks and how they 
 
 ![Run simulation on fork to mint USDC](/images/tutorials/eth-api/using-tenderly/tenderly-6.png)
 
-Great! Now let's go ahead and try to perform the transfer from Baltathar now that Baltathar has plenty of USDC. To do so, take the following steps: 
+Great! Now let's go ahead and try to perform the transfer from Baltathar now that Baltathar has plenty of USDC. To do so, press **New Simulation** then take the following steps: 
 
 1. Select the `USDC` contract from the dropdown
 2. Select the contract function you'd like to call. We'll select `transfer` in this case
