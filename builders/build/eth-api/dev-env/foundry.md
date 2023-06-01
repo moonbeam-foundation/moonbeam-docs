@@ -410,4 +410,26 @@ Then, for example, you can query the balance of one of Moonbase Alpha's collator
 
 If you want to learn more about Chisel, download Foundry and refer to its [official reference page](https://book.getfoundry.sh/reference/chisel/){target=_blank}.
 
+## Foundry With HardHat {: #foundry-with-hardhat }  
+
+Often there will be the case where a project that you wish to integrate with has all of their project setup within [HardHat](/builders/build/eth-api/dev-env/hardhat){target=_blank}, making it an arduous task to convert the entirety of the project into Foundry. This additional work is avoidable by creating a hybrid project that uses both HardHat and Foundry features together. This is possible with HardHat's [hardhat-foundry plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-foundry){target=_blank}.  
+
+To convert your preexisting Foundry project to a hybrid project, you will essentially have to install a HardHat project into the same folder:  
+
+```
+npm init
+npm install --save-dev hardhat @nomicfoundation/hardhat-foundry
+```
+
+After initializing the new HardHat project, you should be able to see a new `hardhat.config.js` file within your repository. Open it up, and at the top, add the following:  
+
+```javascript
+require("@nomicfoundation/hardhat-foundry");
+```
+
+Afterwards, both `forge test` and `npx hardhat test` should work. If you would like to use them in conjunction, then you can create a new script within your `project.json` file:  
+
+```
+```
+
 --8<-- 'text/disclaimers/third-party-content.md'
