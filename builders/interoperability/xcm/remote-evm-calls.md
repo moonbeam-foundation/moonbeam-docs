@@ -110,7 +110,7 @@ For example, from the relay chain, the [`DescendOrigin`](https://github.com/pari
   DescendOrigin: {
     X1: {
       AccountId32: {
-        westend: null,
+        network: {westend: null },
         id: decodedAddress,
       },
     },
@@ -134,7 +134,7 @@ When the XCM instruction gets executed in Moonbeam (Moonbase Alpha in this examp
     interior: {
       X1: {
         AccountId32: {
-          westend: null,
+          network: {westend: null },,
           id: decodedAddress,
         },
       },
