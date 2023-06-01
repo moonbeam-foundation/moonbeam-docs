@@ -102,6 +102,6 @@ To deploy a contract to your fork, you can click on the **Deploy Contract** butt
 
 To create additional simulations, you can click the **New Simulation** button and enter in the configurations for the simulation. For more information on simulations, please refer to [Tenderly's How to Simulate a Transaction documentation](https://docs.tenderly.co/simulations-and-forks/how-to-simulate-a-transaction){target=_blank}.
 
-Now that you've learned how to get started with a few of Tenderly's features on Moonbeam, please feel free to dive in and check out the other tools available in their development platform. You can visit [Tenderly's documentation site](https://docs.tenderly.co/){target=_blank} for more information. You can also check out Moonbeam's tutorial on [Using Tenderly to Simulate and Debug Transactions](/tutorials/eth-api/using-tenderly/).
+Now that you've learned how to get started with a few of Tenderly's features on Moonbeam, please feel free to dive in and check out the other tools available in their development platform. You can visit [Tenderly's documentation site](https://docs.tenderly.co/){target=_blank} for more information. You can also check out Moonbeam's tutorial on [Using Tenderly to Simulate and Debug Transactions](/tutorials/eth-api/using-tenderly/){target=_blank}.
 
 --8<-- 'text/disclaimers/third-party-content.md'
