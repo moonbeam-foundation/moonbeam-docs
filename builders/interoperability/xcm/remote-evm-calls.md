@@ -134,7 +134,7 @@ When the XCM instruction gets executed in Moonbeam (Moonbase Alpha in this examp
     interior: {
       X1: {
         AccountId32: {
-          network: {westend: null },,
+          network: {westend: null },
           id: decodedAddress,
         },
       },
