@@ -7,3 +7,4 @@ nav:
   - '[Foundry] Development Life Cycle from Start to End': '/tutorials/eth-api/foundry-start-to-end'
   - '[Hardhat] Development Life Cycle from Start to End': '/tutorials/eth-api/hardhat-start-to-end'
   - '[Truffle] Development Life Cycle from Start to End': '/tutorials/eth-api/truffle-start-to-end'
+  - '[Tenderly] Using Tenderly to Debug and Simulate Transactions': '/tutorials/eth-api/using-tenderly'

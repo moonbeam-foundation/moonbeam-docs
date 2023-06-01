@@ -32,7 +32,7 @@ The Tenderly platform provides the following features:
 - **[Sandbox](https://sandbox.tenderly.co/){target=_blank}** - write, compile, execute, and debug your smart contracts directly in your browser with baked-in JavaScript and Solidity editors. Every time you run your code, Tenderly creates a temporary fork that comes with 10 pre-funded accounts, each with 100 tokens for testing purposes
 
 !!! note
-    Support for Moonbeam and Moonriver is currently being rolled out in a two-phase process. The integration is currently in Phase 1, you can check out the [limitations on Tenderly's documentation site](https://docs.tenderly.co/supported-networks-and-languages#footnotes){target=_blank}. In Phase 2, support for Moonbeam and Moonriver will be completely enabled.
+    Moonbeam and Moonriver is fully supported by Tenderly with the exception of the Web3 Gateway. Moonbase Alpha is not currently supported by Tenderly. For more information on supported features and networks, check out [Tenderly's documentation site](https://docs.tenderly.co/supported-networks-and-languages#footnotes){target=_blank}.
 
 ## Getting Started
 
@@ -102,6 +102,6 @@ To deploy a contract to your fork, you can click on the **Deploy Contract** butt
 
 To create additional simulations, you can click the **New Simulation** button and enter in the configurations for the simulation. For more information on simulations, please refer to [Tenderly's How to Simulate a Transaction documentation](https://docs.tenderly.co/simulations-and-forks/how-to-simulate-a-transaction){target=_blank}.
 
-Now that you've learned how to get started with a few of Tenderly's features on Moonbeam, please feel free to dive in and check out the other tools available in their development platform. You can visit [Tenderly's documentation site](https://docs.tenderly.co/){target=_blank} for more information.
+Now that you've learned how to get started with a few of Tenderly's features on Moonbeam, please feel free to dive in and check out the other tools available in their development platform. You can visit [Tenderly's documentation site](https://docs.tenderly.co/){target=_blank} for more information. You can also check out Moonbeam's tutorial on [Using Tenderly to Simulate and Debug Transactions](/tutorials/eth-api/using-tenderly/){target=_blank}.
 
 --8<-- 'text/disclaimers/third-party-content.md'
