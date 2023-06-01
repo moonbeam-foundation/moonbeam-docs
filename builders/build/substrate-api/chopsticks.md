@@ -157,7 +157,7 @@ npx @acala-network/chopsticks --endpoint {{ networks.moonbase.rpc_url }} --block
 
 ### Quickstart {: #quickstart }
 
-The simplest way to fork Moonbeam is through the configuration files that are stored in the chopsticks GitHub repository:  
+The simplest way to fork Moonbeam is through the configuration files that are stored in the Chopsticks GitHub repository:  
 
 === "Moonbeam"
     ```
