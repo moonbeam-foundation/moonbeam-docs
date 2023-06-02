@@ -412,24 +412,49 @@ If you want to learn more about Chisel, download Foundry and refer to its [offic
 
 ## Foundry With HardHat {: #foundry-with-hardhat }  
 
-Often there will be the case where a project that you wish to integrate with has all of their project setup within [HardHat](/builders/build/eth-api/dev-env/hardhat){target=_blank}, making it an arduous task to convert the entirety of the project into Foundry. This additional work is avoidable by creating a hybrid project that uses both HardHat and Foundry features together. This is possible with HardHat's [hardhat-foundry plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-foundry){target=_blank}.  
+Often there will be the case where a project that you wish to integrate with a project that has all of their project setup within [HardHat](/builders/build/eth-api/dev-env/hardhat){target=_blank}, making it an arduous task to convert the entirety of the project into Foundry. This additional work is avoidable by creating a hybrid project that uses both HardHat and Foundry features together. This is possible with HardHat's [hardhat-foundry plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-foundry){target=_blank}.  
 
 To convert your preexisting Foundry project to a hybrid project, you will essentially have to install a HardHat project into the same folder:  
 
 ```
 npm init
 npm install --save-dev hardhat @nomicfoundation/hardhat-foundry
+npx hardhat
 ```
 
-After initializing the new HardHat project, you should be able to see a new `hardhat.config.js` file within your repository. Open it up, and at the top, add the following:  
+After initializing the new HardHat project, a few new folders and files should appear: `contracts`, `hardhat.config.js`, `scripts`, and `test/Lock.js`. First, you should edit the `hardhat.config.js` file within your repository. Open it up, and at the top, add the following:  
 
 ```javascript
 require("@nomicfoundation/hardhat-foundry");
 ```
 
-Afterwards, both `forge test` and `npx hardhat test` should work. If you would like to use them in conjunction, then you can create a new script within your `project.json` file:  
+After adding this `hardhat-foundry` plugin, the typical `contracts` folders for HardHat will not work because now HardHat expects all smart contracts to be stored within Foundry's `src` folder. Move all smart contracts within the `contracts` folder into the `src` folder and then delete the `contracts` folder.  
+
+You should also edit the `foundry.toml` file to ensure that dependencies installed via Git submodules and npm can be compiled by the Forge tool. Edit the `profile.default` to ensure that the `libs` entry has both `lib` and `node_modules`:  
+
+```toml
+[profile.default]
+src = 'src'
+out = 'out'
+libs = ['lib', 'node_modules']
+```
+
+Now both `forge build` and `npx hardhat compile` should work regardless of the dependencies.  
+
+Both `forge test` and `npx hardhat test` should now be able to access all smart contracts and dependencies. `forge test` will only test the Solidity tests whereas `npx hardhat test` will only test the JavaScript tests. If you would like to use them in conjunction, then you can create a new script within your `project.json` file:  
+
+```json
+"scripts": {
+    "test": "npx hardhat test && forge test"
+}
+```
+
+You can run this command with:  
 
 ```
+npm run test
 ```
+
+Finally, while not necessary, it could be worthwhile to move all JavaScript scripts from the `scripts` folder into Foundry's `script` folder and delete the `scripts` folder so that you don't have two folders that serve the same purpose.  
 
 --8<-- 'text/disclaimers/third-party-content.md'
