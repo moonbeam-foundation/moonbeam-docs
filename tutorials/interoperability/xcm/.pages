@@ -4,3 +4,4 @@ nav:
   - index.md
   - "[Polkadot's XCM Pallet] Remote Staking on Moonbeam from Polkadot": '/tutorials/interoperability/remote-staking-xcm'
   - "[Polkadot's XCM Pallet] Uniswap V2 Swap on Moonbeam from Polkadot": '/tutorials/interoperability/uniswapv2-swap-xcm'
+  - "[Polkadot's XCM Pallet] Batched Remote EVM Calls on Moonbeam from Polkadot": '/tutorials/interoperability/remote-batched-evm-calls'
