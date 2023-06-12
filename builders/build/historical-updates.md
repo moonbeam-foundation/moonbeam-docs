@@ -13,7 +13,7 @@ This page provides an overview of historical updates made on Moonbeam and Moonri
 
 The objective of this page is to provide information around unexpected behaviors or data inconsistencies that are associated with updates which needed forced data migrations.
 
-## Bug Fixes {: #bug-fixes }
+## Bugs {: #bugs }
 
 #### Invalid Transactions Stored {: #invalid-transactions-stored }
 
@@ -193,6 +193,23 @@ This bug existed during the following runtimes and block ranges:
 | Moonbase Alpha |   RT1200   | RT1700 |  1648994 - 2529735   |
 
 For more information, you can review the [relative Frontier PR](https://github.com/PureStake/frontier/pull/86){target=_blank} and [Moonbeam PR on GitHub](https://github.com/PureStake/moonbeam/pull/1678/files){target=_blank}.
+
+***
+
+#### Ethereum Transations Duplicated in Storage {: #ethereum-transactions-duplicated-in-storage }
+
+An upstream bug was introduced to Frontier in the Ethereum Pallet that caused pending transactions that existed as a runtime upgrade was happening to be duplicated in storage across two different blocks. This only impacted the first two blocks after the runtime upgrade in which this bug was introduced.
+
+Only Moonriver and Moonbase Alpha were impacted. The bug was introduced in the following runtimes and affected the following blocks:
+
+|    Network     | Introduced |   Impacted Blocks   |
+|:--------------:|:----------:|:-------------------:|
+|   Moonriver    |   RT1605   | 2077599 and 2077600 |
+| Moonbase Alpha |   RT1603   | 2285347 and 2285348 |
+
+The duplicated transactions belong to the first block. So, on Moonriver the transactions belong to block 2077599 and on Moonbase Alpha the impacted transactions belong to 2285347.
+
+For more information, you can review the [relative Frontier PR on GitHub](https://github.com/paritytech/frontier/pull/638){target=_blank}.
 
 ***
 
