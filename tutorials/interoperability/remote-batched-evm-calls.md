@@ -72,7 +72,7 @@ The easiest way to get the calldata is through the [Moonbase Minter](https://moo
 
  1. Press **Connect MetaMask** and unlock your wallet
  2. Click on any of the **Mint** buttons since they all have the same calldata
- 3. Metamask should pop up but **do not sign the transaction**. In Metamask, click on the **hex** tab, and the encoded calldata should show up
+ 3. MetaMask should pop up but **do not sign the transaction**. In MetaMask, click on the **hex** tab, and the encoded calldata should show up
  4. Click on the **Copy raw transaction data** button. This will copy the encoded calldata to the clipboard, which should match: `0x2004ffd9`
 
 ![Calldata for Minting action](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-2.png)
@@ -83,7 +83,7 @@ The easiest way to get the calldata is through the [Moonbase Minter](https://moo
 ## Preparing the Batched Calldata {: #preparing-the-batched-calldata }
 Now that we have the call data for the mint actions, we can work with the Batch Precompile to combine multiple calls into a single one. 
 
-For demonstration purposes, we'll be using remix to visualize and construct our call data. Go ahead and copy [Batch.sol](https://raw.githubusercontent.com/PureStake/moonbeam/master/precompiles/batch/Batch.sol){target=_blank} and compile it. As it is a precompile, we won't be deploying anything but rather will access the Batch precompile at its respective address of `0x0000000000000000000000000000000000000808`. The Batch Precompile offers several ways to batch your transactions with varying tolerances for subcall failures. For more information about how each method of the Batch Precompile works, be sure to check out the full [Batch Precompile tutorial](builders/pallets-precompiles/precompiles/batch/){target=_blank}.
+For demonstration purposes, we'll be using Remix to visualize and construct our call data. Go ahead and copy [Batch.sol](https://raw.githubusercontent.com/PureStake/moonbeam/master/precompiles/batch/Batch.sol){target=_blank} and compile it. As it is a precompile, we won't be deploying anything but rather will access the Batch precompile at its respective address of `0x0000000000000000000000000000000000000808`. The Batch Precompile offers several ways to batch your transactions with varying tolerances for subcall failures. For more information about how each method of the Batch Precompile works, be sure to check out the full [Batch Precompile tutorial](builders/pallets-precompiles/precompiles/batch/){target=_blank}.
 
 Specify your environment in Remix as **Injected Web3** and make sure your wallet is on the Moonbase Alpha network. After inputting the address and pressing **At Address** on the **Deploy** tab of Remix, take the following steps to prepare the batched calls: 
 
