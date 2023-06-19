@@ -93,7 +93,7 @@ Specify your environment in Remix as **Injected Web3** and make sure your wallet
 4. In the `callData` field, provide the following: `["0x2004ffd9","0x2004ffd9"]`. Note that you need to provide the call data for each call, even if the call data is identical like it is with both `mint` calls.
 5. Optionally, you could specify a gas limit but there is no need here, so simply provide an empty `[]` open and close brackets.
 6. To validate that you have correctly configured the calls, you can press **Transact** but don't confirm the transaction in your wallet. If you get an error, double check that you have correctly formatted each parameter.
-7. Metamask should pop up, **do not sign the transaction** In Metamask, click on the **hex** tab, and the encoded calldata should show up. 
+7. MetaMask should pop up, **do not sign the transaction**. In MetaMask, click on the **hex** tab, and the encoded calldata should show up.
 8. Click on the **Copy raw transaction data** button. This will copy the encoded calldata of the batched call to the clipboard. 
 
 ![Generate batched calls using Batch Precompile](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-3.png)
