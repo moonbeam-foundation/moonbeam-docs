@@ -85,7 +85,7 @@ Now that we have the call data for the mint actions, we can work with the Batch 
 
 For demonstration purposes, we'll be using remix to visualize and construct our call data. Go ahead and copy [Batch.sol](https://raw.githubusercontent.com/PureStake/moonbeam/master/precompiles/batch/Batch.sol){target=_blank} and compile it. As it is a precompile, we won't be deploying anything but rather will access the Batch precompile at its respective address of `0x0000000000000000000000000000000000000808`. The Batch Precompile offers several ways to batch your transactions with varying tolerances for subcall failures. For more information about how each method of the Batch Precompile works, be sure to check out the full [Batch Precompile tutorial](builders/pallets-precompiles/precompiles/batch/){target=_blank}.
 
-Specify your environment in Remix as **Injected Web3** and make sure your wallet is on the Moonbase Alpha network. After inputting the address and pressing **At Address** on the **Deploy** tab of remix, take the following steps to prepare the Batched calls: 
+Specify your environment in Remix as **Injected Web3** and make sure your wallet is on the Moonbase Alpha network. After inputting the address and pressing **At Address** on the **Deploy** tab of Remix, take the following steps to prepare the batched calls: 
 
 1. Expand the **batchAll** or another desired method of the batch precompile.
 2. In the **To** field, place the addresses of the `Mars` and `Neptune` contracts enclosed in quotes and separated by a comma. The entire line should be wrapped in brackets as follows: `["0x1FC56B105c4F0A1a8038c2b429932B122f6B631f","0xed13B028697febd70f34cf9a9E280a8f1E98FD29"]`
