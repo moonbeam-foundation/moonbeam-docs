@@ -15,7 +15,6 @@ In this tutorial, we’ll be making a series of remote batched EVM calls from a 
 
 To get the most out of this tutorial, you may wish to first familiarize yourself with [Remote EVM Calls Through XCM](/builders/interoperability/xcm/remote-evm-calls/){target=_blank} as well as Moonbeam's [Batch Precompile](/builders/pallets-precompiles/precompiles/batch/){target=_blank}.
 
-
 **The content of this tutorial is for educational purposes only!**
 
 For this example, you'll be working on top of Moonbase Alpha (Moonbeam TestNet), which has its own relay chain called [Moonbase Relay](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} (akin to the Polkadot Relay Chain). The relay chain token is called `UNIT`, while Moonbase Alpha's is called `DEV`. Importantly, you **must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
