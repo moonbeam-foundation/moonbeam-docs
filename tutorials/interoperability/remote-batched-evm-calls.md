@@ -70,8 +70,8 @@ The function being targeted here is the `mint` function of [Moonbase Minter](htt
 
 The easiest way to get the calldata is through the [Moonbase Minter](https://moonbase-minterc20.netlify.app/){target=_blank} page. Once you land on the website, take the following steps:
 
- 1. Press **Connect MetaMask** and unlock your wallet.
- 2. Click on any of the **Mint** buttons.
+ 1. Press **Connect MetaMask** and unlock your wallet
+ 2. Click on any of the **Mint** buttons since they all have the same calldata
  3. Metamask should pop up but **do not sign the transaction**. In Metamask, click on the **hex** tab, and the encoded calldata should show up
  4. Click on the **Copy raw transaction data** button. This will copy the encoded calldata to the clipboard, which should match: `0x2004ffd9`
 
