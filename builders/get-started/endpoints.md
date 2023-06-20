@@ -77,7 +77,7 @@ To get started, you'll need to head to [BlockSpaces](https://www.blockspaces.com
 
  ![BlockSpaces](/images/builders/get-started/endpoints/endpoints-3.png)
 
- ### BlockSpaces {: #blockspaces}
+ ### Dwellir {: #dwellir }
 
  [Dwellir](https://www.dwellir.com/){target=_blank} is a blockchain operation service that ensures global scalability, low latency, and a 99.99% uptime guarantee, providing fast and reliable node operations wherever your business stands. The public endpoint service is geographically distributed bare metal servers globally. As the service is public, there are no sign-up or API keys to manage.
 
