@@ -1,4 +1,5 @@
 title: Gaming
 nav:
-  - index.md
-  - 'MetaFab': 'metafab.md'
+
+- index.md
+- 'MetaFab': 'metafab.md'
