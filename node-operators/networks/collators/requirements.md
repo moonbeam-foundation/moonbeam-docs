@@ -98,7 +98,7 @@ This information includes:
 
 It is recommended that you use the binary file in an air-gapped machine.
 
-### Other Moonkey Features {: #other-moonkey-features } 
+### Other Moonkey Features {: #other-moonkey-features }
 
 Moonkey provides some additional functionalities. The following flags can be provided:
 
@@ -111,7 +111,7 @@ The following options are available:
 - `-account-index` – provide as input the account index to use in the derivation path
 - `-mnemonic` – provide as input the mnemonic
 
-## Bonding Requirements {: #bonding-requirements } 
+## Bonding Requirements {: #bonding-requirements }
 
 There are two bonds for you to be aware of: a bond to join the collator pool and a bond for key association.
 
@@ -123,23 +123,19 @@ First, you will need a minimum amount of tokens staked (self-bonded) to be consi
     |         Variable          |                          Value                           |
     |:-------------------------:|:--------------------------------------------------------:|
     | Minimum self-bond amount  |     {{ networks.moonbeam.staking.min_can_stk }} GLMR     |
-    | Minimum total bond amount |     {{ networks.moonbeam.staking.min_col_stk }} GLMR     |
     |      Active set size      | {{ networks.moonbeam.staking.max_candidates }} collators |
 
 === "Moonriver"
     |         Variable          |                           Value                           |
     |:-------------------------:|:---------------------------------------------------------:|
     | Minimum self-bond amount  |     {{ networks.moonriver.staking.min_can_stk }} MOVR     |
-    | Minimum total bond amount |     {{ networks.moonriver.staking.min_col_stk }} MOVR     |
     |      Active set size      | {{ networks.moonriver.staking.max_candidates }} collators |
 
 === "Moonbase Alpha"
     |         Variable          |                          Value                           |
     |:-------------------------:|:--------------------------------------------------------:|
     | Minimum self-bond amount  |     {{ networks.moonbase.staking.min_can_stk }} DEV      |
-    | Minimum total bond amount |     {{ networks.moonbase.staking.min_col_stk }} DEV      |
     |      Active set size      | {{ networks.moonbase.staking.max_candidates }} collators |
-
 
 ### Key Association Bond {: #key-association-bond }
 
