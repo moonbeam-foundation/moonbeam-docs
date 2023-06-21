@@ -21,6 +21,7 @@ const sendXCM = async () => {
   // 5. Create the Extrinsic
   const tx = await api.tx(txCall).signAndSend(alice, (result) => {
     // 6. Check Transaction Status
+    console.log(`Transaction sent`);
     if (result.status.isInBlock) {
       console.log(`Transaction included in blockHash ${result.status.asInBlock}`);
     }

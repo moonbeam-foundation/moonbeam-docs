@@ -28,7 +28,9 @@ Throughout this tutorial, we will refer to the account executing the batched EVM
 3. The successful XCM execution will result in the mint commands being executed by the EVM, and Alice will receive her `Mars` and `Neptune` tokens in her special account
 4. The execution of the remote EVM call through XCM will result in some EVM logs that are picked up by explorers. There is an EVM transaction and receipt that anyone can query to verify
 
-With the steps outlined, some prerequisites need to be taken into account, let's jump right into it!
+The "happy path" of a remote batched EVM call dispatched via XCM is as follows:
+![Remote batched EVM call via XCM diagram](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-diagram.png)
+
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
