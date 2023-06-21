@@ -19,7 +19,7 @@ To get the most out of this tutorial, you may wish to first familiarize yourself
 
 For this example, you'll be working on top of Moonbase Alpha (Moonbeam TestNet), which has its own relay chain called [Moonbase Relay](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} (akin to the Polkadot Relay Chain). The relay chain token is called `UNIT`, while Moonbase Alpha's is called `DEV`. Importantly, you **must understand that sending incorrect XCM messages can result in the loss of funds.** Consequently, it is essential to test XCM features on a TestNet before moving to a production environment.
 
-The goal of this tutorial is to show you how the [Batch Precompile](/builders/pallets-precompiles/precompiles/batch/){target=_blank} can work in conjunction with [Polkadot's XCM](https://docs.moonbeam.network/builders/interoperability/xcm/overview/){target=_blank} to allow you to trigger batched remote EVM calls on Moonbeam. To avoid adding complexity to this tutorial, the actual batched EVM calls we'll be making will be quite simple. We'll be initiating multiple mints of [planet ERC-20 test tokens on Moonbase Alpha](https://moonbase-minterc20.netlify.app/){target=_blank}. Although we've chosen simple contract calls for demonstration purposes, there are lots more real-life defi examples that you may wish to emulate, such as token approvals & swaps, claiming rewards from multiple pools, or swapping & depositing into LP pools. 
+The goal of this tutorial is to show you how the [Batch Precompile](/builders/pallets-precompiles/precompiles/batch/){target=_blank} can work in conjunction with [Polkadot's XCM](/builders/interoperability/xcm/overview/){target=_blank} to allow you to trigger batched remote EVM calls on Moonbeam. To avoid adding complexity to this tutorial, the actual batched EVM calls we'll be making will be quite simple. We'll be initiating multiple mints of [planet ERC-20 test tokens on Moonbase Alpha](https://moonbase-minterc20.netlify.app/){target=_blank}. Although we've chosen simple contract calls for demonstration purposes, there are lots more real-life defi examples that you may wish to emulate, such as token approvals & swaps, claiming rewards from multiple pools, or swapping & depositing into LP pools. 
 
 Throughout this tutorial, we will refer to the account executing the batched EVM calls via XCM as Alice. Let's preview the flow of this tutorial:
 
@@ -81,14 +81,19 @@ The easiest way to get the calldata is through the [Moonbase Minter](https://moo
     Other wallets also offer the same capabilities of checking the encoded calldata before signing the transaction.
 
 ## Preparing the Batched Calldata {: #preparing-the-batched-calldata }
-Now that we have the call data for the mint actions, we can work with the Batch Precompile to combine multiple calls into a single one. 
+Now that we have the call data for the mint actions, we can work with the Batch Precompile to combine multiple calls into a single one. The Batch Precompile offers several different methods of batching your transactions according to your tolerance for subcall failures.
 
-For demonstration purposes, we'll be using Remix to visualize and construct our call data. Go ahead and copy [Batch.sol](https://raw.githubusercontent.com/PureStake/moonbeam/master/precompiles/batch/Batch.sol){target=_blank} and compile it. As it is a precompile, we won't be deploying anything but rather will access the Batch precompile at its respective address of `0x0000000000000000000000000000000000000808`. The Batch Precompile offers several ways to batch your transactions with varying tolerances for subcall failures. For more information about how each method of the Batch Precompile works, be sure to check out the full [Batch Precompile tutorial](builders/pallets-precompiles/precompiles/batch/){target=_blank}.
+For demonstration purposes, we'll be using [Remix](http://remix.ethereum.org/){target=_blank} to visualize and construct our calldata. Go ahead and copy [`Batch.sol`](https://raw.githubusercontent.com/PureStake/moonbeam/master/precompiles/batch/Batch.sol){target=_blank} and compile it. The [Batch Precompile overview page](/builders/pallets-precompiles/precompiles/batch/#remix-set-up){target=_blank} offers a step-by-step guide for getting started with the Batch Precompile in Remix. As it is a precompile, we won't be deploying anything but rather will access the Batch precompile at its respective address of `0x0000000000000000000000000000000000000808`. For more information about how each method of the Batch Precompile works, be sure to check out the full [Batch Precompile tutorial](/builders/pallets-precompiles/precompiles/batch/){target=_blank}.
 
 Specify your environment in Remix as **Injected Web3** and make sure your wallet is on the Moonbase Alpha network. After inputting the address and pressing **At Address** on the **Deploy** tab of Remix, take the following steps to prepare the batched calls: 
 
 1. Expand the **batchAll** or another desired method of the batch precompile.
-2. In the **To** field, place the addresses of the `Mars` and `Neptune` contracts enclosed in quotes and separated by a comma. The entire line should be wrapped in brackets as follows: `["0x1FC56B105c4F0A1a8038c2b429932B122f6B631f","0xed13B028697febd70f34cf9a9E280a8f1E98FD29"]`
+2. In the **To** field, place the addresses of the `Mars` and `Neptune` contracts enclosed in quotes and separated by a comma. The entire line should be wrapped in brackets as follows: 
+
+```
+["0x1FC56B105c4F0A1a8038c2b429932B122f6B631f","0xed13B028697febd70f34cf9a9E280a8f1E98FD29"]
+```
+
 3. Provide an empty `[]` open and close brackets in the value field. We don't want to send any tokens to the contracts as they are not payable contracts.
 4. In the `callData` field, provide the following: `["0x2004ffd9","0x2004ffd9"]`. Note that you need to provide the call data for each call, even if the call data is identical like it is with both `mint` calls.
 5. Optionally, you could specify a gas limit but there is no need here, so simply provide an empty `[]` open and close brackets.
@@ -102,7 +107,7 @@ Specify your environment in Remix as **Injected Web3** and make sure your wallet
 
 Now that we have the batched EVM calldata that contains the two mint commands, we need to generate the bytes that the `Transact` XCM instruction from the XCM message will execute. Note that these bytes represent the action that will be executed in the remote chain. In this example, we want the XCM message execution to enter the EVM and issue the two mint commands, from which we got the encoded calldata.
 
-To get the SCALE (encoding type) encoded calldata for the transaction parameters, we can leverage the following [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} script (note that it requires `@polkadot/api` and `ethers`).
+To get the SCALE (encoding type) encoded calldata for the transaction parameters, we can leverage the following [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} script (note that it requires `@polkadot/api`).
 
 
 ```js
@@ -118,7 +123,7 @@ Let's go through each of the main components of the snippet shown above:
      - Moonbase Alpha endpoint URL to create the providers
      - Address of the Batch Precompile
      - Encoded calldata for the batched call that contains both mint commands.
- 2. Create the necessary providers. One is a [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} provider, through which we can call [Moonbeam pallets](https://docs.moonbeam.network/builders/pallets-precompiles/pallets/){target=_blank} directly. The other one is an Ethereum API provider through Ethers.js
+ 2. Create the necessary providers. One is a [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api/){target=_blank} provider, through which we can call [Moonbeam pallets](/builders/pallets-precompiles/pallets/){target=_blank} directly.
  3. Here, we are hardcoding the gas limit for simplicity and to avoid gas estimation issues as a result of the Batch precompile.
  4. [Build the remote EVM call containing the batched call](/builders/interoperability/xcm/remote-evm-calls/#build-remove-evm-call-xcm){target=_blank}.
  5. Create the Ethereum XCM pallet call to the `transact` method, providing the call parameters specified above.
@@ -206,7 +211,7 @@ To send the XCM message that we built in the previous section, you can use the f
 --8<-- 'code/tutorials/interoperability/remote-batched-evm-calls/send-xcm-message.js'
 ```
 
-Once you have the code set up, you can execute it with `node`, and the XCM message will be sent to initiate your call to the batch precompile for the mints of `Mars` and `Neptune` ERC-20 tokens in Moonbase Alpha. Don't worry if you see an `Abnormal Closure` error. Rest assured the XCM message was sent successfully. 
+Once you have the code set up, you can execute it with `node`, and the XCM message will be sent to initiate your call to the batch precompile for the mints of `Mars` and `Neptune` ERC-20 tokens in Moonbase Alpha. Don't worry if you see an `Abnormal Closure` error. You can verify that your remote batched call was successful by looking up your multilocation-derivative account on [Moonbase Moonscan](https://moonbase.moonscan.io/)
 
 ![Sending the XCM message from the Relay Chain to Moonbase Alpha for the batched EVM call](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-6.png)
 

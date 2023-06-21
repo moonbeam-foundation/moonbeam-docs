@@ -1,5 +1,4 @@
 import { ApiPromise, WsProvider } from '@polkadot/api'; // Version 9.13.6
-import { ethers } from 'ethers'; // Version 6.0.2
 
 // 1. Input Data
 const providerWsURL = 'wss://wss.api.moonbase.moonbeam.network';
@@ -10,7 +9,6 @@ const contractCall =
 const generateCallData = async () => {
   // 2. Create Substrate API Provider
   const substrateProvider = new WsProvider(providerWsURL);
-  const ethProvider = new ethers.WebSocketProvider(providerWsURL);
   const api = await ApiPromise.create({ provider: substrateProvider });
 
   // 3. Estimate Gas for EVM Call
