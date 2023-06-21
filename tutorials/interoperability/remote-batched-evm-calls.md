@@ -64,9 +64,9 @@ The script will return 32-byte and 20-byte addresses. We’re interested in the 
 
 ## Preparing the Mint EVM Calldata {: #preparing-the-mint-evm-calldata }
 
-First, we'll generate the necessary call data for minting the `Mars` and `Neptune` tokens. We'll then reference the Batch Precompile to batch the calls into a single one. 
+First, we'll generate the necessary calldata for minting the `Mars` and `Neptune` tokens. We'll then reference the Batch Precompile to batch the calls into a single one. 
 
-The function being targeted here is the `mint` function of [Moonbase Minter](https://moonbase-minterc20.netlify.app/){target=_blank}. It takes no parameters and the function call data is the same for each planet. However, each planet has a different contract address. 
+The function being targeted here is the `mint` function of [Moonbase Minter](https://moonbase-minterc20.netlify.app/){target=_blank}. It takes no parameters and the function calldata is the same for each planet. However, each planet has a different contract address. 
 
 The easiest way to get the calldata is through the [Moonbase Minter](https://moonbase-minterc20.netlify.app/){target=_blank} page. Once you land on the website, take the following steps:
 
@@ -81,7 +81,7 @@ The easiest way to get the calldata is through the [Moonbase Minter](https://moo
     Other wallets also offer the same capabilities of checking the encoded calldata before signing the transaction.
 
 ## Preparing the Batched Calldata {: #preparing-the-batched-calldata }
-Now that we have the call data for the mint actions, we can work with the Batch Precompile to combine multiple calls into a single one. The Batch Precompile offers several different methods of batching your transactions according to your tolerance for subcall failures.
+Now that we have the calldata for the mint actions, we can work with the Batch Precompile to combine multiple calls into a single one. The Batch Precompile offers several different methods of batching your transactions according to your tolerance for subcall failures.
 
 For demonstration purposes, we'll be using [Remix](http://remix.ethereum.org/){target=_blank} to visualize and construct our calldata. Go ahead and copy [`Batch.sol`](https://raw.githubusercontent.com/PureStake/moonbeam/master/precompiles/batch/Batch.sol){target=_blank} and compile it. The [Batch Precompile overview page](/builders/pallets-precompiles/precompiles/batch/#remix-set-up){target=_blank} offers a step-by-step guide for getting started with the Batch Precompile in Remix. As it is a precompile, we won't be deploying anything but rather will access the Batch precompile at its respective address of `0x0000000000000000000000000000000000000808`. For more information about how each method of the Batch Precompile works, be sure to check out the full [Batch Precompile tutorial](/builders/pallets-precompiles/precompiles/batch/){target=_blank}.
 
@@ -89,19 +89,17 @@ Specify your environment in Remix as **Injected Web3** and make sure your wallet
 
 1. Expand the **batchAll** or another desired method of the batch precompile.
 2. In the **To** field, place the addresses of the `Mars` and `Neptune` contracts enclosed in quotes and separated by a comma. The entire line should be wrapped in brackets as follows: 
-
-```
-["0x1FC56B105c4F0A1a8038c2b429932B122f6B631f","0xed13B028697febd70f34cf9a9E280a8f1E98FD29"]
-```
-
+`["0x1FC56B105c4F0A1a8038c2b429932B122f6B631f","0xed13B028697febd70f34cf9a9E280a8f1E98FD29"]`
 3. Provide an empty `[]` open and close brackets in the value field. We don't want to send any tokens to the contracts as they are not payable contracts.
-4. In the `callData` field, provide the following: `["0x2004ffd9","0x2004ffd9"]`. Note that you need to provide the call data for each call, even if the call data is identical like it is with both `mint` calls.
+4. In the `callData` field, provide the following: `["0x2004ffd9","0x2004ffd9"]`. Note that you need to provide the calldata for each call, even if the calldata is identical like it is with both `mint` calls.
 5. Optionally, you could specify a gas limit but there is no need here, so simply provide an empty `[]` open and close brackets.
 6. To validate that you have correctly configured the calls, you can press **Transact** but don't confirm the transaction in your wallet. If you get an error, double check that you have correctly formatted each parameter.
 7. MetaMask should pop up, **do not sign the transaction**. In MetaMask, click on the **hex** tab, and the encoded calldata should show up.
 8. Click on the **Copy raw transaction data** button. This will copy the encoded calldata of the batched call to the clipboard. 
 
 ![Generate batched calls using Batch Precompile](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-3.png)
+
+We've now finished preparing our EVM calldata for the batched call. Next, we'll need to prepare the XCM instructions that will execute our remote batched call.
 
 ## Generating the Moonbeam Encoded Callcata {: #generating-the-moonbeam-encoded-call-data }
 
@@ -131,7 +129,7 @@ Let's go through each of the main components of the snippet shown above:
 
 Once you have the code set up, you can execute it with `node`, and you'll get the Moonbase Alpha remote EVM calldata:
 
-![Getting the Moonbeam call data for the remote evm call](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-4.png)
+![Getting the Moonbeam calldata for the remote evm call](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-4.png)
 
 The encoded calldata for this example is:
 
@@ -180,9 +178,6 @@ Let's go through each of the main components of the snippet shown above:
  9. Craft the `xcmPallet.send` extrinsic with the destination and XCM message. This method will append the [`DescendOrigin`](https://github.com/paritytech/xcm-format#descendorigin){target=_blank} XCM instruction to our XCM message, and it is the instruction that will provide the necessary information to calculate the multilocation-derivative account
  10. Get the SCALE encoded calldata. Note that in this particular scenario, because we need the full SCALE encoded calldata, we have to use `tx.toHex()`. This is because we will submit this transaction using the calldata
 
-!!! challenge
-    Try a more straightforward example and perform a balance transfer from the multilocation-derivative account to any other account you like. You'll have to build the SCALE encoded calldata for a `balance.Transfer` extrinsic or create the Ethereum call as a balance transfer transaction.
-
 Once you have the code set up, you can execute it with `node`, and you'll get the relay chain XCM calldata:
 
 ![Getting the Relay Chain XCM calldata for the Remote Batched call](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-5.png)
@@ -228,6 +223,6 @@ This action will emit different events. The first one is the only relevant [in t
 Our XCM was successfully executed! If you visit [Moonbase Alpha Moonscan](https://moonbase.moonscan.io/){target=_blank} and search for [the transaction hash](https://moonbase.moonscan.io/tx/0x797f9a75257cf1b6aa0cf7a3b59758402b6bb603a27de86450e2177877aaa889){target=_blank}, you'll find the call to the Batch precompile that was executed via the XCM message. Note that you can only call the `mint` commands once per hour per planet. If you wish to experiment further and make additional mint calls, simply change the destination contract address to a different planet when configuring the batched call.
 
 !!! challenge
-    Use the batch precompile to combine an approval and a Uniswap V2 swap of `MARS` for any other token you want. As a thought experiment, consider carefully which method of the batch precompile is best suited to combine an approval and a swap transaction.
+    Use the batch precompile and remote EVM calls via XCM to combine an approval and a Uniswap V2 swap of `MARS` for any other token you want. As a thought experiment, consider carefully which method of the batch precompile is best suited to combine an approval and a swap transaction. Both the [Uniswap V2 Swap from Polkadot via XCM tutorial](/tutorials/interoperability/uniswapv2-swap-xcm/){target=_blank} and the [Batch Precompile tutorial](/tutorials/eth-api/batch-approve-swap/){target=_blank} are great resources to help you get started. 
 
 --8<-- 'text/disclaimers/educational-tutorial.md'
