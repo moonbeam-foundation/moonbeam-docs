@@ -38,7 +38,7 @@ Once you've created or rotated your session keys, you'll be able to manage your 
 The `authorMapping` module has the following extrinsics:
 
  - **setKeys**(keys) — accepts the result of calling `author_rotateKeys`, which is the concatenated public keys of your Nimbus and VRF keys, and sets the session keys at once. Useful after a key rotation or migration. Calling `setKeys` requires a [bond](#mapping-bonds). Replaces the deprecated `addAssociation` and `updateAssociation` extrinsics
-- **removeKeys**() - removes the session keys. Replaces the deprecated `clearAssociation` extrinsic
+- **removeKeys**() - removes the session keys. This is only required if you intend to stop collating and leave the candidate pool. Replaces the deprecated `clearAssociation` extrinsic
 
 The module also adds the following RPC calls (chain state):
 
