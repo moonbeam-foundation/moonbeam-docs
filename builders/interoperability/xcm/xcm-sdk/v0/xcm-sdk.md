@@ -1,9 +1,9 @@
 ---
-title: XCM SDK
+title: XCM SDK v0
 description: Use the Moonbeam XCM SDK to easily deposit and withdraw cross chain assets to Moonbeam from Polkadot and other parachains in the ecosystem.
 ---
 
-# Using the Moonbeam XCM SDK
+# Using the Moonbeam XCM SDK: v0
 
 ![XCM SDK Banner](/images/builders/interoperability/xcm/sdk/xcm-sdk-banner.png)
 
@@ -13,7 +13,9 @@ The Moonbeam XCM SDK enables developers to easily deposit and withdraw assets to
 
 The XCM SDK offers simple helper functions like `deposit` and `withdraw`, that provide a very simple interface to execute XCM transfers between chains in the Polkadot/Kusama ecosystem. In addition, the XCM config package allows any parachain project to add their information in a standard way, so they can be immediately supported by the XCM SDK.
 
-For an overview of the available methods and interfaces in the Moonbeam XCM SDK, please refer to the [Reference](/builders/interoperability/xcm/xcm-sdk/reference){target=_blank} page.
+For an overview of the available methods and interfaces in the Moonbeam XCM SDK, please refer to the [Reference for v0](/builders/interoperability/xcm/xcm-sdk/v0/reference){target=_blank} page.
+
+If you're using v1.x, please refer to the [SDK guides specific to v1](/builders/interoperability/xcm/xcm-sdk/v1/){target=_blank}.
 
 The examples in this guide are shown on Moonbeam, but can be adapted to be used on Moonriver or Moonbase Alpha.
 
@@ -44,7 +46,7 @@ npm i @polkadot/api-augment @polkadot/types @polkadot/util @polkadot/util-crypto
 ```
 
 !!! note
-    There is a [known issue](https://github.com/polkadot-js/api/issues/4315){target=_blank} when using the Moonbeam XCM packages alongside Polkadot.s with Node.js (JavaScript) that will cause package conflict warnings to appear in the console. Using TypeScript is recommended.
+    There is a [known issue](https://github.com/polkadot-js/api/issues/4315){target=_blank} when using the Moonbeam XCM packages alongside Polkadot.js with Node.js (JavaScript) that will cause package conflict warnings to appear in the console. Using TypeScript is recommended.
 
 ### Creating Signers {: creating-signers }
 
@@ -197,7 +199,7 @@ If you intend to support a specific wallet, you can pass a signer into the `init
 
 ## Using the SDK Interfaces {: #using-the-api }
 
-The Moonbeam SDK provides an API which includes a series of [interfaces](/builders/interoperability/xcm/xcm-sdk/reference/#core-sdk-interfaces){target=_blank} to get asset information for each of the supported assets, chain information for the initialized network, and functions to enable deposits, withdrawals, and subscription to balance information.
+The Moonbeam SDK provides an API which includes a series of [interfaces](/builders/interoperability/xcm/xcm-sdk/v0/reference/#core-sdk-interfaces){target=_blank} to get asset information for each of the supported assets, chain information for the initialized network, and functions to enable deposits, withdrawals, and subscription to balance information.
 
 Make sure you have [intialized](#initialization) the Moonbeam network you want to interact with first.
 
@@ -348,7 +350,7 @@ Here, the units per second refer to units of token (in this case Wei) that is ch
 
 ## Using the SDK Methods {: #using-the-sdk-methods }
 
-The Moonbeam SDK provides an API that includes [functions](/builders/interoperability/xcm/xcm-sdk/reference/#core-sdk-methods){target=_blank} which enable deposits, withdrawals, and subscription to balance information, in addition to a few utility functions.
+The Moonbeam SDK provides an API that includes [functions](/builders/interoperability/xcm/xcm-sdk/v0/reference/#core-sdk-methods){target=_blank} which enable deposits, withdrawals, and subscription to balance information, in addition to a few utility functions.
 
 Make sure you have [intialized](#initialization) the Moonbeam network you want to interact with first. You'll also need to make sure you've [created signers](#creating-signers) in order to sign and send deposit and withdraw transfer data.
 
