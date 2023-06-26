@@ -32,14 +32,14 @@ The XCM SDK is based on the premise of defining an asset to transfer and then de
 
     |      Name      |   Type   |                                Description                                 |
     |:--------------:|:--------:|:--------------------------------------------------------------------------:|
-    |    `amount`    | *bigint* | Identifies a particular amount of the asset (i.e., minimum, maximum, etc.) |
+    |    `amount`    | *bigint* | Identifies a particular amount of the asset (i.e., balance, minimum, maximum, etc.) |
     |   `decimals`   | *number* |                    The number of decimals the asset has                    |
     |    `symbol`    | *string* |                          The symbol of the asset                           |
     |     `key`      | *string* |                            Identifies an asset                             |
     | `originSymbol` | *string* |            The symbol of the asset on the asset's origin chain             |
 
     !!! note
-        There are a few utility functions that are available for working with `AssetAmount` types that convert the amounts to various formats. Please refer to the [Methods for Asset Conversions](#utility-functions) section.
+        There are a few utility methods that are available for working with `AssetAmount` class that convert the amount to various formats. Please refer to the [Methods for Asset Conversions](#utility-functions) section.
 
 ### Chains {: #chains }
 
