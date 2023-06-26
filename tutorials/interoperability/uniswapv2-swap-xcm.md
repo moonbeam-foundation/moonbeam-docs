@@ -257,6 +257,6 @@ This action will emit different events. The first one is the only relevant [in t
 Our XCM was successfully executed! If you visit [Moonbase Alpha Moonscan](https://moonbase.moonscan.io/){target=_blank} and search for [the transaction hash](https://moonbase.moonscan.io/tx/0xdb0705ae31aa046ba2797f0d85fab29c0f94299263ae4e184dce69a93d341d26){target=_blank}, you'll find the Uniswap V2 swap that was executed via the XCM message.
 
 !!! challenge
-    Do a Uniswap V2 swap of `MARS` for any other token you want. Note that in this case, you'll have to remote execute an ERC-20 `approve` via XCM first to allow the Uniswap V2 Router to spend the tokens on your behalf. Once the aproval is done, you can send the XCM message for the swap itself.
+    Do a Uniswap V2 swap of `MARS` for any other token you want. Note that in this case, you'll have to remotely execute an ERC-20 `approve` via XCM first to allow the Uniswap V2 Router to spend the tokens on your behalf. Once the approval is done, you can send the XCM message for the swap itself.
 
 --8<-- 'text/disclaimers/educational-tutorial.md'
