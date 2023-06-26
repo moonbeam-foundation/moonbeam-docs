@@ -1,6 +1,6 @@
 ---
 title: XCM SDK Reference for v1
-description: A reference for the interfaces and methods in the Moonbeam XCM SDK, which can be used to send XCM transfers between Moonbeam and other chains in the ecosystem.
+description: A reference for the interfaces and methods in the Moonbeam XCM SDK that can be used to send XCM transfers between chains within the Polkadot/Kusama ecosystems.
 ---
 
 # Moonbeam XCM SDK Reference: v1
@@ -9,9 +9,9 @@ description: A reference for the interfaces and methods in the Moonbeam XCM SDK,
 
 ## Introduction {: #introduction }
 
-The Moonbeam XCM SDK enables developers to easily deposit and withdraw assets to Moonbeam/Moonriver from the relay chain and other parachains in the Polkadot/Kusama ecosystem. With the SDK, you don't need to worry about determining the multilocation of the origin or destination assets or which extrinsics are used on which networks to send XCM transfers.
+The Moonbeam XCM SDK enables developers to easily transfer assets between chains, either between parachains or between a parachain and the relay chain, within the Polkadot/Kusama ecosystem. With the SDK, you don't need to worry about determining the multilocation of the origin or destination assets or which extrinsics are used on which networks to send XCM transfers.
 
-The SDK provides an API which includes a series of interfaces to get asset information for each of the supported assets, chain information for the initialized network, utility methods, and methods to enable deposits, withdrawals, and subscription to balance information.
+The SDK provides an API that enables you to get asset information for each of the supported assets, the source chains where a given asset can be sent from, and, given a source chain, the supported destination chains where the given asset can be sent to. The SDK also includes helper methods related to transferring cross-chain assets, such as the ability to get an estimated amount of the asset the destination account will receive, less any execution fees, and asset conversion methods based on the asset and number of decimals it has. All of which enables you to easily and seamlessly transfer assets across chains.
 
 This page includes a list of the interfaces and methods available in the XCM SDK for v1. For information on how to use the XCM SDK interfaces and methods, please refer to the [Using the XCM SDK](/builders/interoperability/xcm/xcm-sdk/v1/xcm-sdk){target=_blank} guide.
 
@@ -30,13 +30,13 @@ The XCM SDK is based on the premise of defining an asset to transfer and then de
 
 - `AssetAmount` - defines properties related to an asset, including `Asset` properties, the decimals and symbol of the asset, and the amount an associated source or destination address has of the asset
 
-    |      Name      |   Type   |                                Description                                 |
-    |:--------------:|:--------:|:--------------------------------------------------------------------------:|
+    |      Name      |   Type   |                                     Description                                     |
+    |:--------------:|:--------:|:-----------------------------------------------------------------------------------:|
     |    `amount`    | *bigint* | Identifies a particular amount of the asset (i.e., balance, minimum, maximum, etc.) |
-    |   `decimals`   | *number* |                    The number of decimals the asset has                    |
-    |    `symbol`    | *string* |                          The symbol of the asset                           |
-    |     `key`      | *string* |                            Identifies an asset                             |
-    | `originSymbol` | *string* |            The symbol of the asset on the asset's origin chain             |
+    |   `decimals`   | *number* |                        The number of decimals the asset has                         |
+    |    `symbol`    | *string* |                               The symbol of the asset                               |
+    |     `key`      | *string* |                                 Identifies an asset                                 |
+    | `originSymbol` | *string* |                 The symbol of the asset on the asset's origin chain                 |
 
     !!! note
         There are a few utility methods that are available for working with `AssetAmount` class that convert the amount to various formats. Please refer to the [Methods for Asset Conversions](#utility-functions) section.
@@ -60,18 +60,18 @@ The XCM SDK is based on the premise of defining an asset to transfer and then de
     |     `id`      |            *number*            |                            **For EVM parachains only** - The chain ID                            |
     |     `rpc`     |            *string*            |                **For EVM parachains only** - The HTTP RPC endpoint for the chain                 |
 
-- `ChainAssetsData` - defines information needed to target the asset on the chain
+- `ChainAssetsData` - defines information needed to target the asset on the chain. This is mostly for internal usage to accomodate how different chains store their assets. The SDK defaults to the asset ID if certain properties are not applicable to the given chain
 
-    |       Name       |      Type      |                       Description                       |
-    |:----------------:|:--------------:|:-------------------------------------------------------:|
-    |     `asset`      |    *Asset*     |            The asset's key and origin symbol            |
-    |   `balanceId`    | *ChainAssetId* |  The balance ID of the asset. Defaults to the asset ID  |
-    |    `decimals`    |    *number*    |          The number of decimals the asset has           |
-    |       `id`       | *ChainAssetId* |                      The asset ID                       |
-    |   `metadataId`   | *ChainAssetId* |              The metadata ID of the asset               |
-    |     `minId`      | *ChainAssetId* |               The minimum ID of the asset               |
-    | `palletInstance` |    *number*    | The number of the pallet instance the asset belongs to  |
-    |      `min`       |    *number*    | The minimum amount of the asset that can be transferred |
+    |       Name       |      Type      |                                                                              Description                                                                              |
+    |:----------------:|:--------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |     `asset`      |    *Asset*     |                                                                   The asset's key and origin symbol                                                                   |
+    |   `balanceId`    | *ChainAssetId* |                                                         The balance ID of the asset. Defaults to the asset ID                                                         |
+    |    `decimals`    |    *number*    |                                                                 The number of decimals the asset has                                                                  |
+    |       `id`       | *ChainAssetId* |                                                                             The asset ID                                                                              |
+    |   `metadataId`   | *ChainAssetId* |                                                                     The metadata ID of the asset                                                                      |
+    |     `minId`      | *ChainAssetId* |                                                                      The minimum ID of the asset                                                                      |
+    | `palletInstance` |    *number*    |                                                        The number of the pallet instance the asset belongs to                                                         |
+    |      `min`       |    *number*    | The minimum amount of the asset that is required to be left in the account for it to be active. Similar to the existential deposit except it is for non-native assets |
 
     `ChainAssetId` is a generic type used to specify the location of the asset on the chain, which is different on every chain, and is defined as:
 
@@ -85,28 +85,40 @@ The XCM SDK is based on the premise of defining an asset to transfer and then de
 
 ### Transfer Data {: #transfer-data }
 
+- `TransferData` - defines the complete transfer data for transferring an asset, including asset, source chain, and destination chain information, and a few helper functions for the transfer process
+
+    |       Name       |              Type              |                                       Description                                       |
+    |:----------------:|:------------------------------:|:---------------------------------------------------------------------------------------:|
+    |  `destination`   | *DestinationChainTransferData* |                 The assembled destination chain and address information                 |
+    |  `getEstimate`   |            function            | Gets the estimated amount of the asset that will be received by the destination address |
+    | `isSwapPossible` |           *boolean*            |                       Returns whether or not the swap is possible                       |
+    |      `max`       |         *AssetAmount*          |                The maximum amount of the asset that *can* be transferred                |
+    |      `min`       |         *AssetAmount*          |                The minimum amount of the asset that *can* be transferred                |
+    |     `source`     |   *SourceChainTransferData*    |                   The assembled source chain and address information                    |
+    |      `swap`      |            function            |    Swaps the destination and the source chains and returns the swapped transfer data    |
+    |    `transfer`    |            function            |  Transfers a given amount of the asset from the source chain to the destination chain   |
+
 - `DestinationChainTransferData` - defines the destination chain data for the transfer
 
-    |         Name         |     Type      |                                   Description                                    |
-    |:--------------------:|:-------------:|:--------------------------------------------------------------------------------:|
-    |      `balance`       | *AssetAmount* |      The balance of the asset being transferred on the destination address       |
-    |       `chain`        |  *AnyChain*   |                        The destination chain information                         |
-    | `existentialDeposit` | *AssetAmount* | The existential deposit for the asset being transferred on the destination chain |
-    |        `fee`         | *AssetAmount* |   The amount of fees for the asset being transferred on the destination chain    |
-    |        `min`         | *AssetAmount* |             The minimum amount of the asset that can be transferred              |
+    |         Name         |     Type      |                                                                             Description                                                                             |
+    |:--------------------:|:-------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |      `balance`       | *AssetAmount* |                                                The balance of the asset being transferred on the destination address                                                |
+    |       `chain`        |  *AnyChain*   |                                                                  The destination chain information                                                                  |
+    | `existentialDeposit` | *AssetAmount* |                                          The existential deposit for the asset being transferred on the destination chain                                           |
+    |        `fee`         | *AssetAmount* |                                             The amount of fees for the asset being transferred on the destination chain                                             |
+    |        `min`         | *AssetAmount* | The minimum amount of the asset to transfer. This is different than `TransferData.min`, as this dictates the minimum amount to be received on the destination chain |
 
+- `SourceChainTransferData` -  defines the source chain data for the transfer
 
-- `SourceChainTransferData`
-
-    |         Name         |     Type      |                                 Description                                 |
-    |:--------------------:|:-------------:|:---------------------------------------------------------------------------:|
-    |      `balance`       | *AssetAmount* |      The balance of the asset being transferred for the source address      |
-    |       `chain`        |  *AnyChain*   |                        The source chain information                         |
-    | `existentialDeposit` | *AssetAmount* | The existential deposit for the asset being transferred on the source chain |
-    |        `fee`         | *AssetAmount* |   The amount of fees for the asset being transferred on the source chain    |
-    |     `feeBalance`     | *AssetAmount* |       The balance of the asset being transferred on the source chain        |
-    |        `min`         | *AssetAmount* |           The minimum amount of the asset that can be transferred           |
-    |        `max`         | *AssetAmount* |           The maximum amount of the asset that can be transferred           |
+    |         Name         |     Type      |                                                                         Description                                                                          |
+    |:--------------------:|:-------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |      `balance`       | *AssetAmount* |                                              The balance of the asset being transferred for the source address                                               |
+    |       `chain`        |  *AnyChain*   |                                                                 The source chain information                                                                 |
+    | `existentialDeposit` | *AssetAmount* |                                         The existential deposit for the asset being transferred on the source chain                                          |
+    |        `fee`         | *AssetAmount* |                                            The amount of fees for the asset being transferred on the source chain                                            |
+    |     `feeBalance`     | *AssetAmount* |                                                The balance of the asset being transferred on the source chain                                                |
+    |        `min`         | *AssetAmount* | The minimum amount of the asset to transfer. This is different than `TransferData.min`, as this dictates the minimum amount to be sent from the source chain |
+    |        `max`         | *AssetAmount* | The maximum amount of the asset to transfer. This is different than `TransferData.max`, as this dictates the maximum amount to be sent from the source chain |
 
 ## Core Methods {: #core-sdk-methods }
 
@@ -156,7 +168,6 @@ The SDK provides the following core methods:
         |     Name     |    Type     |                                     Description                                      |
         |:------------:|:-----------:|:------------------------------------------------------------------------------------:|
         | `ecosystem?` | *Ecosystem* | Specify the ecosystem for a set of assets: `polkadot`, `kusama`, or `alphanet-relay` |
-
 
     ??? code "Returns"
         |   Name   |   Type    |           Description            |

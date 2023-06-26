@@ -1,6 +1,6 @@
 ---
 title: XCM SDK v1
-description: Use the Moonbeam XCM SDK to easily deposit and withdraw cross chain assets to Moonbeam from Polkadot and other parachains in the ecosystem.
+description: Use the Moonbeam XCM SDK to easily transfer cross-chain assets between parachains or between a parachain and relay chain within the Polkadot/Kusama ecosystems.
 ---
 
 # Using the Moonbeam XCM SDK: v1
@@ -9,11 +9,11 @@ description: Use the Moonbeam XCM SDK to easily deposit and withdraw cross chain
 
 ## Introduction {: #introduction }
 
-The Moonbeam XCM SDK enables developers to easily deposit and withdraw assets between chains, either between parachains or between a parachain and the relay chain, within the Polkadot/Kusama ecosystem. With the SDK, you don't need to worry about determining the multilocation of the origin or destination assets or which extrinsics are used on which networks to send XCM transfers.
+The Moonbeam XCM SDK enables developers to easily transfer assets between chains, either between parachains or between a parachain and the relay chain, within the Polkadot/Kusama ecosystem. With the SDK, you don't need to worry about determining the multilocation of the origin or destination assets or which extrinsics are used on which networks to send XCM transfers.
 
-The XCM SDK offers helper functions, that provide a very simple interface to execute XCM transfers between chains in the Polkadot/Kusama ecosystem. In addition, the XCM config package allows any parachain project to add their information in a standard way, so they can be immediately supported by the XCM SDK. To add your parachain asset or chain information, please refer to the [Add a Parachain or Asset to XCM SDK](/builders/interoperability/xcm/xcm-sdk/register){target=_blank} guide.
+The XCM SDK offers helper functions, that provide a very simple interface to execute XCM transfers between chains in the Polkadot/Kusama ecosystem. In addition, the XCM config package allows any parachain project to add their information in a standard way, so they can be immediately supported by the XCM SDK.
 
-For an overview of the available methods and interfaces in the Moonbeam XCM SDK, please refer to the [Reference](/builders/interoperability/xcm/xcm-sdk/reference){target=_blank} page.
+For an overview of the available methods and interfaces in the Moonbeam XCM SDK, please refer to the [Reference](/builders/interoperability/xcm/xcm-sdk/v1/reference){target=_blank} page.
 
 The examples in this guide are shown on Moonbeam, but can be adapted to be used on Moonriver or Moonbase Alpha.
 
@@ -241,11 +241,12 @@ fromPolkadot();
 !!! note
     For more information on each of the `Sdk().getTransferData()` function, including the parameters and returned data, please refer to the [XCM SDK Reference](/builders/interoperability/xcm/xcm-sdk/v1/reference#core-sdk-methods){target=_blank}.
 
-As previously mentioned, regardless of which method you use to build the transfer data, you'll generate the same output. The output for the above example of sending DOT from Polkadot to Moonbeam will resemble the following:
+As previously mentioned, regardless of which method you use to build the transfer data, you'll generate the same output.
 
-???+ code "Example response"
+??? code "Example response"
 
     ```js
+    // Send DOT from Polkadot to Moonbeam
     // data
     {
       destination: {
@@ -371,7 +372,7 @@ As previously mentioned, regardless of which method you use to build the transfe
     }
     ```
 
-As you may have noticed, the transfer data contains information on the asset to be transferred, the source chain, and the destination chain. In addition, a few functions have been exposed:
+As you may have noticed in the example response, the transfer data contains information on the asset to be transferred, the source chain, and the destination chain. In addition, a few functions have been exposed:
 
 - `swap()` - returns the transfer data necessary to swap the asset from the destination chain back to the source chain
 - `transfer()` - transfers a given amount of the asset from the source chain to the destination chain
@@ -597,9 +598,7 @@ You can use [transfer data](#build-xcm-transfer-data) to retrieve the minimum an
     const amount = data.min.toDecimal();
     const symbol = data.min.originSymbol;
 
-    amount == 0n
-      ? console.log('There is no minimum amount')
-      : console.log(`You can send min: ${amount} ${symbol}`);
+    console.log(`You can send min: ${amount} ${symbol}`)
     ```
 
 === "Maximum"
@@ -610,12 +609,10 @@ You can use [transfer data](#build-xcm-transfer-data) to retrieve the minimum an
     const amount = data.max.toDecimal();
     const symbol = data.max.originSymbol;
 
-    amount == 0n
-      ? console.log('There is no maximum amount')
-      : console.log(`You can send max: ${amount} ${symbol}`);
+    console.log(`You can send max: ${amount} ${symbol}`)
     ```
-  
-The `min` and `max` properties return the minimum and maximum amount of the asset that can be transferred, along with information on the asset.
+
+The `min` and `max` properties return the minimum and maximum amount of the asset that can be transferred, along with information on the asset. If the source account does not hold a balance of the chosen asset, the `data.max` amount will be `0n`.
 
 ??? code "Example response"
 
@@ -654,13 +651,13 @@ const destinationChain = data.destination.chain.name;
 const destinationFee = data.destination.fee;
 
 console.log(
-  `You will pay ${data.source.fee.toDecimal()} ${
-    data.source.fee.symbol
+  `You will pay ${sourceFee.toDecimal()} ${
+    sourceFee.symbol
   } fee on ${
-    data.source.chain.name
-  } and ${data.destination.fee.toDecimal()} ${
-    data.destination.fee.symbol
-  } fee on ${data.destination.chain.name}.`
+    sourceChain
+  } and ${destinationFee.toDecimal()} ${
+    destinationFee.symbol
+  } fee on ${destinationChain}.`
 );
 ```
 
@@ -669,7 +666,7 @@ The `fee` property returns the amount of fees to be paid along with information 
 ??? code "Example response"
 
     ```js
-    // data.source.fee
+    // sourceFee
     {
       key: 'dot',
       originSymbol: 'DOT',
@@ -677,7 +674,7 @@ The `fee` property returns the amount of fees to be paid along with information 
       decimals: 10,
       symbol: 'DOT'
     }
-    // data.destination.fee
+    // destinationFee
     {
       key: 'dot',
       originSymbol: 'DOT',
