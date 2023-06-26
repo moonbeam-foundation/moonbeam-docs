@@ -46,7 +46,7 @@ To create a new smart contract using thirdweb CLI, follow these steps:
    - Inheriting the contract by declaring that our contract is an ERC721Base contract
    - Implementing any required methods, such as the constructor.
 
-5. After modifying your contract with your desired custom logic, you may deploy it to Moonbeam using [Deploy](https://portal.thirdweb.com/deploy).
+5. After modifying your contract with your desired custom logic, you can deploy it to Moonbeam using [Deploy](https://portal.thirdweb.com/deploy). We will be covering that in the section!
 
 ---
 
@@ -54,7 +54,7 @@ Alternatively, you can deploy a prebuilt contract for NFTs, tokens, or marketpla
 
 1. Go to the thirdweb Explore page: https://thirdweb.com/explore
 
-   ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/82077241-a54c-43a1-8aa4-625bc6d52b9b/Untitled.png)
+![thirdweb Explore](/images/builders/build/eth-api/dev-env/thirdweb/explore.png)
 
 2. Choose the type of contract you want to deploy from the available options: NFTs, tokens, marketplace, and more.
 3. Follow the on-screen prompts to configure and deploy your contract.
