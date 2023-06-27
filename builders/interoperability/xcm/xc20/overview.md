@@ -7,7 +7,7 @@ description:  Learn how to access and interact with an ERC-20 interface for cros
 
 ![Cross-Chain Assets Precompiled Contracts Banner](/images/builders/interoperability/xcm/xc20/overview/overview-banner.png)
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-crosschain){target=_blank} format defines how messages can be sent between interoperable blockchains. This format opens the door to transferring messages and assets (Substrate assets) between Moonbeam/Moonriver and the relay chain or other parachains in the Polkadot/Kusama ecosystems. 
 
@@ -41,34 +41,8 @@ Cross-chain transfers of XC-20s are done using the [X-Tokens Pallet](/builders/i
 
 ## Register Local XC-20s on Other Parachains {: #register-local-xc20 }
 
-In order to enable cross-chain transfers of Moonbeam local XC-20s (XCM-enabled ERC-20s) between your chain and Moonbeam, you'll need to register the asset(s). To do so, you'll need the multilocation of each asset. The multilocation will include the parachain ID of Moonbeam, the pallet instance, and the address of the ERC-20. The pallet instance will be `48`, which corresponds to the index of the ERC-20 XCM Bridge Pallet, as this is the pallet that enables any ERC-20 to be transferred via XCM.
-
-**Local XC-20s that are registered on other chains must comply with the standard ERC-20 interface as described in [EIP-20](https://eips.ethereum.org/EIPS/eip-20){target=_blank}.**
-
-Currently, support for local XC-20s is only available on Moonbase Alpha. You can use the following multilocation to register a local XC-20:
-
-=== "Moonbase Alpha"
-
-    ```js
-    {
-      'parents': 1,
-      'interior': {
-        'X3': [
-          { 
-            'Parachain': 1000
-          },
-          {
-            'PalletInstance': 48
-          },
-          {
-            'AccountKey20': {
-              'key': 'ERC20_ADDRESS_GOES_HERE'
-            }
-          }
-        ]
-      }
-    }
-    ```
+In order to enable cross-chain transfers of Moonbeam local XC-20s (XCM-enabled ERC-20s) between your chain and Moonbeam, you'll need to register the asset(s). To do so, you'll need the multilocation of each asset. 
+--8<-- 'text/xcm/register-local-xc-20s.md'
 
 There are additional steps aside from register assets that will need to be taken to enable a cross-chain integration with Moonbeam. For more information, please refer to the [Establishing an XC Integration with Moonbeam](/builders/interoperability/xcm/xc-integration){target=_blank} guide.
 
@@ -162,7 +136,6 @@ To fetch a list of the currently available external XC-20s along with their asso
 
 The result will display the asset ID along with some additional information for all of the registered external XC-20s. 
 
-
 ## XC-20s Solidity Interface {: #xc20s-solidity-interface }
 
 Both types of XC-20s have the standard ERC-20 interface. In addition, all external XC-20s also possess the ERC-20 Permit interface. The following two sections describe each of the interfaces separately.
@@ -222,7 +195,7 @@ To interact with external XC-20s, you'll need to first calculate the precompile 
 
 You can adapt the instructions in this section to be used with the [Permit.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol){target=_blank} interface.
 
-### Checking Prerequisites {: #checking-prerequisites } 
+### Checking Prerequisites {: #checking-prerequisites }
 
 To approve a spend or transfer external XC-20s via the ERC-20 interface, you will need:
 
@@ -251,7 +224,7 @@ The hex value that was already calculated is 32 characters long, so prepending e
 
 Now that you've calculated the external XC-20 precompile address, you can use the address to interact with the XC-20 like you would with any other ERC-20 in Remix.
 
-### Add & Compile the Interface {: #add-the-interface-to-remix } 
+### Add & Compile the Interface {: #add-the-interface-to-remix }
 
 You can interact with the ERC-20 interface using [Remix](https://remix.ethereum.org/){target=_blank}. First, you will need to add the interface to Remix:
 
@@ -269,7 +242,7 @@ Once you have the ERC-20 interface loaded in Remix, you will need to compile it:
 
 If the interface was compiled successfully, you will see a green checkmark next to the **Compile** tab.
 
-### Access the Precompile {: #access-the-precompile } 
+### Access the Precompile {: #access-the-precompile }
 
 Instead of deploying the ERC-20 precompile, you will access the interface given the address of the XC-20:
 
@@ -282,9 +255,9 @@ Instead of deploying the ERC-20 precompile, you will access the interface given 
 ![Access the address](/images/builders/interoperability/xcm/xc20/overview/overview-3.png)
 
 !!! note
-    Optionally, you can checksum the XC-20 precompile address by going to your search engine of choice and searching for a tool to checksum the address. Once the address has been checksummed, you can use it in the **At Address** field instead. 
+    Optionally, you can checksum the XC-20 precompile address by going to your search engine of choice and searching for a tool to checksum the address. Once the address has been checksummed, you can use it in the **At Address** field instead.
 
-The **IERC20** precompile for the XC-20 will appear in the list of **Deployed Contracts**. Now you can feel free to call any of the standard ERC-20 functions to get information about the XC-20 or transfer the XC-20. 
+The **IERC20** precompile for the XC-20 will appear in the list of **Deployed Contracts**. Now you can feel free to call any of the standard ERC-20 functions to get information about the XC-20 or transfer the XC-20.
 
 ![Interact with the precompile functions](/images/builders/interoperability/xcm/xc20/overview/overview-4.png)
 

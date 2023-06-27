@@ -15,7 +15,7 @@ All XCMP channel integrations with Moonbeam are unidirectional, meaning messages
 
 Once the XCMP (or HRMP) channels have been opened, the corresponding assets from both chains will need to be registered on the opposing chain before being able to transfer them.
 
-This guide will cover the process of opening and accepting an HRMP channel between a parachain and a Moonbeam-based network. In addition, the guide provides the necessary data to register Moonbeam-based network assets in your parachain, and the data required to register your asset in any Moonbeam-based network. 
+This guide will cover the process of opening and accepting an HRMP channel between a parachain and a Moonbeam-based network. In addition, the guide provides the necessary data to register Moonbeam-based network assets in your parachain, and the data required to register your asset in any Moonbeam-based network.
 
 All of the tutorials in this guide use a CLI tool developed to ease the entire process, which you can find in the [xcm-tools GitHub repository](https://github.com/PureStake/xcm-tools){target=_blank}.
 
@@ -51,13 +51,14 @@ Once all of these steps are completed, and both teams have successfully tested a
 
 ### Sync a Node {: #sync-a-node }
 
-To sync a node, you can use the [Alphanet relay chain specs](https://drive.google.com/drive/folders/1JVyj518T8a77xKXOBgcBe77EEsjnSFFO){target=_blank} (note: the relay chain is Westend based, and will probably take 1 day to sync). 
+To sync a node, you can use the [Alphanet relay chain specs](https://drive.google.com/drive/folders/1JVyj518T8a77xKXOBgcBe77EEsjnSFFO){target=_blank} (note: the relay chain is Westend based, and will probably take 1 day to sync).
 
 For reference, you can use [Moonbase Alpha's spec file](https://raw.githubusercontent.com/PureStake/moonbeam/runtime-1103/specs/alphanet/parachain-embedded-specs-v8.json){target=_blank}. You'll need to adapt it to your chain.
 
 To onboard your parachain, please provide the following:
-- Genesis head/wasm hash
-- Parachain ID. You can find the parachain IDs that have already been used in the [relay chain Polkadot.js Apps page](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/parachains){target=_blank}
+
+  - Genesis head/wasm hash
+  - Parachain ID. You can find the parachain IDs that have already been used in the [relay chain Polkadot.js Apps page](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/parachains){target=_blank}
 
 There are also some [snapshots for the Alphanet ecosystem relay chain](https://www.certhum.com/moonbase-databases){target=_blank} you can use to quickly get started, these are provided by the community.
 
@@ -88,7 +89,6 @@ When getting started with the Moonbase Alpha relay chain, once you have your sov
 From a technical perspective, the process of creating an HRMP channel with Moonriver and Moonbeam is nearly identical. However, engagement with the Moonbeam community is crucial and required before a proposal will pass.
 
 Please check the HRMP channel guidelines that the community voted on for [Moonriver](https://moonriver.polkassembly.network/referenda/0){target=_blank} and [Moonbeam](https://moonbeam.polkassembly.network/proposal/21){target=_blank} before starting.
-
 
 The process can be summarized in the following steps:
 
@@ -239,46 +239,20 @@ The multilocation of Moonbeam native assets include the parachain ID of the netw
     ```js
     {
       V3: {
-        'parents': 1,
-        'interior': {
-          'X2': [
-            { 
-              'Parachain': 2023
+        parents: 1,
+        interior: {
+          X2: [
+            {
+              Parachain: 2023,
             },
             {
-              'PalletInstance': 10
-            }
-          ]
-        }
-      }
-    }
-    ```
-
-=== "Moonbase Alpha"
-
-    ```js
-    {
-      V3: {
-        'parents': 1,
-        'interior': {
-          'X2': [
-            { 
-              'Parachain': 1000
+              PalletInstance: 10,
             },
-            {
-              'PalletInstance': 3
-            }
-          ]
-        }
-      }
+          ],
+        },
+      },
     }
     ```
-
-### Register Local XC-20s (ERC-20s) {: #register-erc20s }
-
-In order to register a local XC-20 on another chain, you'll need the multilocation of the asset on Moonbeam. The multilocation will include the parachain ID of Moonbeam, the pallet instance, and the address of the ERC-20. The pallet instance will be `48`, which corresponds to the index of the ERC-20 XCM Bridge Pallet, as this is the pallet that enables any ERC-20 to be transferred via XCM. 
-
-Currently, the support for local XC-20s is only on Moonbase Alpha. You can use the following multilocation to register a local XC-20:
 
 === "Moonbase Alpha"
 
@@ -287,23 +261,23 @@ Currently, the support for local XC-20s is only on Moonbase Alpha. You can use t
       V3: {
         parents: 1,
         interior: {
-          X3: [
-            { 
-              Parachain: 1000
+          X2: [
+            {
+              Parachain: 1000,
             },
             {
-              PalletInstance: 48
+              PalletInstance: 3,
             },
-            {
-              AccountKey20: {
-                key: 'ERC20_ADDRESS_GOES_HERE'
-              }
-            }
-          ]
-        }
-      }
+          ],
+        },
+      },
     }
     ```
+
+### Register Local XC-20s (ERC-20s) {: #register-erc20s }
+
+In order to register a local XC-20 on another chain, you'll need the multilocation of the asset on Moonbeam. 
+--8<-- 'text/xcm/register-local-xc-20s.md'
 
 ## Creating HRMP Channels {: #create-an-hrmp-channel }
 
@@ -353,7 +327,7 @@ Running the following command will provide the encoded calldata to accept an ope
     yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
     --parachain-ws-provider wss://wss.api.moonriver.moonbeam.network  \
     --relay-ws-provider wss://kusama-rpc.polkadot.io \
-    --hrmp-action accept 
+    --hrmp-action accept
     ```
 
 === "Moonbase Alpha"
@@ -394,7 +368,7 @@ Running the following command will provide the encoded calldata to create the HR
     --parachain-ws-provider wss://wss.api.moonriver.moonbeam.network  \
     --relay-ws-provider wss://kusama-rpc.polkadot.io \
     --max-capacity 1000 --max-message-size 102400 \
-    --hrmp-action open 
+    --hrmp-action open
     ```
 
 === "Moonbase Alpha"
@@ -415,7 +389,7 @@ If you plan to batch the transaction with other calls, copy the resultant callda
 
 ## Register a Foreign Asset {: #register-a-foreign-asset }
 
-One of the main points of creating an XCM integration is to send cross-chain assets to and from Moonbeam. Registering an asset through Moonbeam is done via the [Asset Manager Pallet](https://github.com/PureStake/moonbeam/blob/master/pallets/asset-manager/src/lib.rs){target=_blank}. Assets created on Moonbeam are called [XC-20s](/builders/interoperability/xcm/xc20/){target=_blank}, as they have an ERC-20 interface that smart contracts can interact with. 
+One of the main points of creating an XCM integration is to send cross-chain assets to and from Moonbeam. Registering an asset through Moonbeam is done via the [Asset Manager Pallet](https://github.com/PureStake/moonbeam/blob/master/pallets/asset-manager/src/lib.rs){target=_blank}. Assets created on Moonbeam are called [XC-20s](/builders/interoperability/xcm/xc20/){target=_blank}, as they have an ERC-20 interface that smart contracts can interact with.
 
 This guide will have you use the `xcm-asset-registrator.ts` script. Keep in mind that this script cannot be used on your parachain if you do not have the [Asset Manager Pallet](https://github.com/PureStake/moonbeam/blob/master/pallets/asset-manager/src/lib.rs){target=_blank}.  
 
@@ -425,7 +399,7 @@ Running the command below will provide the encoded calldata to register your cro
 - `YOUR_ASSET_MULTILOCATION` with the [JSON-formatted multilocation](https://github.com/PureStake/xcm-tools#example){target=_blank} of your asset from the Moonbeam network's perspective
 - `YOUR_TOKEN_SYMBOL` with the symbol of the token you wish to register. **Please add "xc" to the front of the symbol to indicate that the asset is an XCM enabled asset**
 - `YOUR_TOKEN_DECIMALS` with the number of decimals your asset has, such as `18`
-- `YOUR_TOKEN_NAME` with the name of the token to register 
+- `YOUR_TOKEN_NAME` with the name of the token to register
 - `YOUR_UNITS_PER_SECOND` with the units of tokens to charge per second of execution time during XCM transfers. There is a [guide to calculate units per second](#calculating-units-per-second) below  
 
 === "Moonbeam"
@@ -436,7 +410,7 @@ Running the command below will provide the encoded calldata to register your cro
     --decimals YOUR_TOKEN_DECIMALS \
     --name "YOUR_TOKEN_NAME" \
     --units-per-second YOUR_UNITS_PER_SECOND \
-    --ed 1 --sufficient true --revert-code true 
+    --ed 1 --sufficient true --revert-code true
     ```
 
 === "Moonriver"
@@ -460,7 +434,6 @@ Running the command below will provide the encoded calldata to register your cro
     --units-per-second YOUR_UNITS_PER_SECOND \
     --ed 1 --sufficient true
     ```
-
 
 Existential deposit, `--ed`, is always set to 1. Sufficiency, `--sufficient`, is always set to `true`. This is so that the XC-20 assets on Moonbeam can act similar to an ERC-20 on Ethereum. The `--revert-code` flag refers to a simple EVM bytecode that is set in the [XC-20](/builders/interoperability/xcm/xc20/){target=_blank} storage element so that other smart contracts can easily interact with the XC-20 (**only needed for [Governance V1](/learn/features/governance#governance-v1){target=_blank} proposals**). You can ensure that these values are properly included by checking for them in [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network){target=_blank} with the resultant encoded calldata.
 
