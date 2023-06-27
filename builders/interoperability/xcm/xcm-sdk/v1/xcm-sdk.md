@@ -114,19 +114,17 @@ For Moonbeam specifically, you can use the following configurations:
 
 In this example, you can use a [Polkadot.js Keyring](/builders/build/substrate-api/polkadot-js-api#keyrings){target=_blank} to sign transactions. Please note that this approach is not recommended for production applications.
 
-    ```js
-    import { Keyring } from '@polkadot/api';
-    import { cryptoWaitReady } from '@polkadot/util-crypto';
-
-    const privateKey = 'INSERT_PRIVATE_KEY';
-
-    await cryptoWaitReady();
-    const keyring = new Keyring({
-      ss58Format: 'INSERT_SS58_FORMAT',
-      type: 'sr25519',
-    });
-    const pair = keyring.createFromUri(privateKey);
-    ```
+```js
+import { Keyring } from '@polkadot/api';
+import { cryptoWaitReady } from '@polkadot/util-crypto'
+const privateKey = 'INSERT_PRIVATE_KEY'
+await cryptoWaitReady();
+const keyring = new Keyring({
+  ss58Format: 'INSERT_SS58_FORMAT',
+  type: 'sr25519',
+});
+const pair = keyring.createFromUri(privateKey);
+```
 
 ## Build XCM Transfer Data {: #build-xcm-transfer-data }
 
