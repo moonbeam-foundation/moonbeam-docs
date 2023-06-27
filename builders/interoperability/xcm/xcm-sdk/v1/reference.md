@@ -60,7 +60,7 @@ The XCM SDK is based on the premise of defining an asset to transfer and then de
     |     `id`      |            *number*            |                            **For EVM parachains only** - The chain ID                            |
     |     `rpc`     |            *string*            |                **For EVM parachains only** - The HTTP RPC endpoint for the chain                 |
 
-- `ChainAssetsData` - defines information needed to target the asset on the chain. This is mostly for internal usage to accomodate how different chains store their assets. The SDK defaults to the asset ID if certain properties are not applicable to the given chain
+- `ChainAssetsData` - defines the information needed to target the asset on the chain. This is mostly for internal usage to accommodate how different chains store their assets. The SDK defaults to the asset ID if certain properties are not applicable to the given chain
 
     |       Name       |      Type      |                                                                              Description                                                                              |
     |:----------------:|:--------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
