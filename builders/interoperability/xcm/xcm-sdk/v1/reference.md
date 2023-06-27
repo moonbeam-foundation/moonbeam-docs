@@ -100,25 +100,25 @@ The XCM SDK is based on the premise of defining an asset to transfer and then de
 
 - `DestinationChainTransferData` - defines the destination chain data for the transfer
 
-    |         Name         |     Type      |                                                                             Description                                                                             |
-    |:--------------------:|:-------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-    |      `balance`       | *AssetAmount* |                                                The balance of the asset being transferred on the destination address                                                |
-    |       `chain`        |  *AnyChain*   |                                                                  The destination chain information                                                                  |
-    | `existentialDeposit` | *AssetAmount* |                                          The existential deposit for the asset being transferred on the destination chain                                           |
-    |        `fee`         | *AssetAmount* |                                             The amount of fees for the asset being transferred on the destination chain                                             |
-    |        `min`         | *AssetAmount* | The minimum amount of the asset to transfer. This is different than `TransferData.min`, as this dictates the minimum amount to be received on the destination chain |
+    |         Name         |     Type      |                                                                                 Description                                                                                  |
+    |:--------------------:|:-------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |      `balance`       | *AssetAmount* |                                                    The balance of the asset being transferred on the destination address                                                     |
+    |       `chain`        |  *AnyChain*   |                                                                      The destination chain information                                                                       |
+    | `existentialDeposit` | *AssetAmount* |                                               The existential deposit for the asset being transferred on the destination chain                                               |
+    |        `fee`         | *AssetAmount* |                                                 The amount of fees for the asset being transferred on the destination chain                                                  |
+    |        `min`         | *AssetAmount* | The minimum amount of the asset to transfer. This is different than `TransferData.min`, as this dictates the minimum amount that should be received on the destination chain |
 
 - `SourceChainTransferData` -  defines the source chain data for the transfer
 
-    |         Name         |     Type      |                                                                         Description                                                                          |
-    |:--------------------:|:-------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-    |      `balance`       | *AssetAmount* |                                              The balance of the asset being transferred for the source address                                               |
-    |       `chain`        |  *AnyChain*   |                                                                 The source chain information                                                                 |
-    | `existentialDeposit` | *AssetAmount* |                                         The existential deposit for the asset being transferred on the source chain                                          |
-    |        `fee`         | *AssetAmount* |                                            The amount of fees for the asset being transferred on the source chain                                            |
-    |     `feeBalance`     | *AssetAmount* |                                                The balance of the asset being transferred on the source chain                                                |
-    |        `min`         | *AssetAmount* | The minimum amount of the asset to transfer. This is different than `TransferData.min`, as this dictates the minimum amount to be sent from the source chain |
-    |        `max`         | *AssetAmount* | The maximum amount of the asset to transfer. This is different than `TransferData.max`, as this dictates the maximum amount to be sent from the source chain |
+    |         Name         |     Type      |                                                                      Description                                                                       |
+    |:--------------------:|:-------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |      `balance`       | *AssetAmount* |                                           The balance of the asset being transferred for the source address                                            |
+    |       `chain`        |  *AnyChain*   |                                                              The source chain information                                                              |
+    | `existentialDeposit` | *AssetAmount* |                                      The existential deposit for the asset being transferred on the source chain                                       |
+    |        `fee`         | *AssetAmount* |                                         The amount of fees for the asset being transferred on the source chain                                         |
+    |     `feeBalance`     | *AssetAmount* |                                             The balance of the asset being transferred on the source chain                                             |
+    |        `min`         | *AssetAmount* | The minimum amount of the asset that should be kept on the source chain, taking into consideration the `existentialDeposit` and `fee` for the transfer |
+    |        `max`         | *AssetAmount* |                                               The maximum amount of the asset that *can* be transferred                                                |
 
 ## Core Methods {: #core-sdk-methods }
 
