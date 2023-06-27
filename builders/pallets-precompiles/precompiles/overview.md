@@ -56,6 +56,7 @@ The precompiled contracts are categorized by address and based on the origin net
     |    [Technical Committee Collective](https://github.com/PureStake/moonbeam/blob/master/precompiles/collective/Collective.sol){target=_blank}     | {{networks.moonbeam.precompiles.collective_tech_committee }} |
     |      [Treasury Council Collective](https://github.com/PureStake/moonbeam/blob/master/precompiles/collective/Collective.sol){target=_blank}      |    {{networks.moonbeam.precompiles.collective_treasury }}    |
     | [Precompile Registry](https://github.com/PureStake/moonbeam/blob/master/precompiles/precompile-registry/PrecompileRegistry.sol){target=_blank}  |         {{networks.moonbeam.precompiles.registry }}          |
+    |                    [GMP Registry](https://github.com/PureStake/moonbeam/blob/master/precompiles/gmp/Gmp.sol){target=_blank}                     |            {{networks.moonbeam.precompiles.gmp }}            |
 
 === "Moonriver"
     |                                                                    Contract                                                                     |                                Address                                |
@@ -82,6 +83,7 @@ The precompiled contracts are categorized by address and based on the origin net
     |                 [Preimage](https://github.com/PureStake/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=_blank}                  |             {{networks.moonriver.precompiles.preimage }}              |
     |        [OpenGov Tech Committee](https://github.com/PureStake/moonbeam/blob/master/precompiles/collective/Collective.sol){target=_blank}         | {{networks.moonriver.precompiles.collective_opengov_tech_committee }} |
     | [Precompile Registry](https://github.com/PureStake/moonbeam/blob/master/precompiles/precompile-registry/PrecompileRegistry.sol){target=_blank}  |             {{networks.moonriver.precompiles.registry }}              |
+    |                    [GMP Registry](https://github.com/PureStake/moonbeam/blob/master/precompiles/gmp/Gmp.sol){target=_blank}                     |                {{networks.moonriver.precompiles.gmp }}                |
 
 === "Moonbase Alpha"
     |                                                                    Contract                                                                     |                               Address                                |
@@ -108,3 +110,4 @@ The precompiled contracts are categorized by address and based on the origin net
     |                 [Preimage](https://github.com/PureStake/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=_blank}                  |             {{networks.moonbase.precompiles.preimage }}              |
     |        [OpenGov Tech Committee](https://github.com/PureStake/moonbeam/blob/master/precompiles/collective/Collective.sol){target=_blank}         | {{networks.moonbase.precompiles.collective_opengov_tech_committee }} |
     | [Precompile Registry](https://github.com/PureStake/moonbeam/blob/master/precompiles/precompile-registry/PrecompileRegistry.sol){target=_blank}  |             {{networks.moonbase.precompiles.registry }}              |
+    |                    [GMP Registry](https://github.com/PureStake/moonbeam/blob/master/precompiles/gmp/Gmp.sol){target=_blank}                     |                {{networks.moonbase.precompiles.gmp }}                |
