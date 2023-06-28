@@ -5,7 +5,7 @@ To generate the multilocation-derivative account, first clone the [xcm-tools](ht
 ```sh
 yarn calculate-multilocation-derivative-account \
 --ws-provider wss://wss.api.moonbase.moonbeam.network \
---account INSERT_MOONBASE_RELAY_ACCOUNT \
+--address INSERT_MOONBASE_RELAY_ACCOUNT \
 --para-id ORIGIN_PARACHAIN_ID_IF_APPLIES \
 --parents PARENTS_VALUE_IF_APPLIES
 ```
@@ -13,6 +13,6 @@ yarn calculate-multilocation-derivative-account \
 Let's review the parameters passed along with this command:
 
 - The `--ws-provider` or `-w` flag corresponds to the endpoint we’re using to fetch this information
-- The `--account` or `-a` flag corresponds to your Moonbase relay chain address
+- The `--address` or `-a` flag corresponds to your Moonbase relay chain address
 - The `--para-id` or `-p` flag corresponds to the parachain ID of the origin chain (if applicable). If you are sending the XCM from the relay chain, you don't need to provide this parameter
 - The `-parents` flag corresponds to the parents value of the origin chain in relation to the destination chain. If you're deriving a multi-location derivative account on a parachain destination from a relay chain origin, this value would be `1`. If left out, the parents value defaults to `0`
