@@ -62,7 +62,7 @@ For Moonbeam specifically, you can use the following configurations:
 === "Moonbeam"
 
     ```js
-    import { ethers } from "ethers";
+    import { ethers } from 'ethers';
 
     const privateKey = 'INSERT_PRIVATE_KEY';
     const provider = new ethers.providers.WebSocketProvider(
@@ -78,7 +78,7 @@ For Moonbeam specifically, you can use the following configurations:
 === "Moonriver"
 
     ```js
-    import { ethers } from "ethers";
+    import { ethers } from 'ethers';
 
     const privateKey = 'INSERT_PRIVATE_KEY';
     const provider = new ethers.providers.WebSocketProvider(
@@ -94,7 +94,7 @@ For Moonbeam specifically, you can use the following configurations:
 === "Moonbase Alpha"
 
     ```js
-    import { ethers } from "ethers";
+    import { ethers } from 'ethers';
 
     const privateKey = 'INSERT_PRIVATE_KEY';
     const provider = new ethers.providers.WebSocketProvider(
@@ -116,8 +116,8 @@ In this example, you can use a [Polkadot.js Keyring](/builders/build/substrate-a
 
 ```js
 import { Keyring } from '@polkadot/api';
-import { cryptoWaitReady } from '@polkadot/util-crypto'
-const privateKey = 'INSERT_PRIVATE_KEY'
+import { cryptoWaitReady } from '@polkadot/util-crypto';
+const privateKey = 'INSERT_PRIVATE_KEY';
 await cryptoWaitReady();
 const keyring = new Keyring({
   ss58Format: 'INSERT_SS58_FORMAT',
@@ -189,17 +189,17 @@ const fromPolkadot = async() => {
   const { assets, asset } = Sdk.assets();
   console.log(
     `The supported assets are: ${assets.map((asset) => asset.originSymbol)}`
-  )
+  );
 
   const { sourceChains, source } = Sdk.assets().asset('dot');
   console.log(
     `The supported source chains are: ${sourceChains.map((chain) => chain.name)}`
-  )
+  );
 
   const { destinationChains, destination } = Sdk.assets().asset('dot').source('polkadot');
   console.log(
     `The supported destination chains are: ${destinationChains.map((chain) => chain.name)}`
-  )
+  );
 
   const data = await Sdk()
     .assets()
@@ -596,7 +596,7 @@ You can use [transfer data](#build-xcm-transfer-data) to retrieve the minimum an
     const amount = data.min.toDecimal();
     const symbol = data.min.originSymbol;
 
-    console.log(`You can send min: ${amount} ${symbol}`)
+    console.log(`You can send min: ${amount} ${symbol}`);
     ```
 
 === "Maximum"
@@ -607,7 +607,7 @@ You can use [transfer data](#build-xcm-transfer-data) to retrieve the minimum an
     const amount = data.max.toDecimal();
     const symbol = data.max.originSymbol;
 
-    console.log(`You can send max: ${amount} ${symbol}`)
+    console.log(`You can send max: ${amount} ${symbol}`);
     ```
 
 The `min` and `max` properties return the minimum and maximum amount of the asset that can be transferred, along with information on the asset. If the source account does not hold a balance of the chosen asset, the `data.max` amount will be `0n`.
