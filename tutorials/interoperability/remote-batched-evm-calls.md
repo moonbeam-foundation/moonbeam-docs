@@ -7,7 +7,7 @@ template: main.html
 # Remote Batch EVM Calls via XCM
 
 ![Banner Image](/images/tutorials/interoperability/remote-batched-evm-calls/remote-batched-evm-calls-banner.png)
-_June 8, 2023 | by Kevin Neilson_
+_by Kevin Neilson_
 
 ## Introduction {: #introduction }
 
