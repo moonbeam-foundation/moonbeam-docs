@@ -186,7 +186,7 @@ Consequently, for this example, the **multilocation-derivative account** for Moo
 
 Before you send the XCM message from the relay chain to Moonbase Alpha, you need to get the encoded call data that will be dispatched through the execution of the [`Transact`](https://github.com/paritytech/xcm-format#transact){target=_blank} XCM instruction.
 
-In this example, you'll be interacting with the `transact` function of the [ Pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/ethereum-xcm), which accepts an `xcmTransaction` as a parameter.
+In this example, you'll be interacting with the `transact` function of the [Ethereum XCM Pallet](https://github.com/PureStake/moonbeam/tree/master/pallets/ethereum-xcm){target=_blank}, which accepts an `xcmTransaction` as a parameter.
 
 The `xcmTransaction` parameter requires you to define:
 
