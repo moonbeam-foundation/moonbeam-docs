@@ -6,8 +6,8 @@ To generate the multilocation-derivative account, first clone the [xcm-tools](ht
 yarn calculate-multilocation-derivative-account \
 --ws-provider wss://wss.api.moonbase.moonbeam.network \
 --address INSERT_MOONBASE_RELAY_ACCOUNT \
---para-id ORIGIN_PARACHAIN_ID_IF_APPLIES \
---parents PARENTS_VALUE_IF_APPLIES
+--para-id INSERT_ORIGIN_PARACHAIN_ID_IF_APPLIES \
+--parents INSERT_PARENTS_VALUE_IF_APPLIES
 ```
 
 Let's review the parameters passed along with this command:
