@@ -230,7 +230,7 @@ Once you have the code set up, you can execute it with `node`, and the XCM messa
 
 And that is it! You've sent an XCM message, which performed a remote EVM call to the Batch Precompile via XCM and resulted in the minting of MARS and NEPT ERC-20 tokens. But let's go into more detail about what happened.
 
-This action will emit different events. The first one is only relevant [in the relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/explorer/query/10936471){target=_blank}, and it is named `xcmPallet.Sent`, which is from the `xcmPallet.send` extrinsic. In [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmoonbase-alpha.public.blastapi.io#/explorer/query/4626493){target=_blank}, the following events emitted by the `parachainSystem.setValidationData` extrinsic (where all the inbound XCM messages are processed) are of interest:
+This action will emit different events. The first one is only relevant [in the relay chain](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/explorer/query/10936471){target=_blank}, and it is named `xcmPallet.Sent`, which is from the `xcmPallet.send` extrinsic. In [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer/query/4626493){target=_blank}, the following events emitted by the `parachainSystem.setValidationData` extrinsic (where all the inbound XCM messages are processed) are of interest:
 
  - `parachainSystem.DownwardMessagesReceived` — states that there was an XCM message received
  - `evm.Log` — internal events emitted by the different contract calls. The structure is the same: contract address, topics, and relevant data
