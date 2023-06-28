@@ -140,7 +140,9 @@ You should be able to see the nimbus ID associated with the H160 account provide
 
 ### Remove Session Keys {: #removing-session-keys }
 
-If you no longer want to be a collator and have left the candidate pool, you can remove your session keys. Once you remove your session keys, the mapping bond you deposited will be returned to your account.
+Before removing your session keys, you'll want to make sure that you've stopped collating and left the candidate pool. To stop collating, you'll need to schedule a request to leave the candidate pool, wait a delay period, and then execute the request. For step-by-step instructions, please refer to the [Stop Collating](/node-operators/networks/collators/activities/#stop-collating){target=_blank} section of the Moonbeam Collator Activities page.
+
+Once you have left the candidate pool, you can remove your session keys. After which, the mapping bond you deposited will be returned to your account.
 
 From [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/assets){target=_blank}, click on **Developer** at the top of the page, then choose **Extrinsics** from the dropdown, and take the following steps:
 
