@@ -1,6 +1,6 @@
 import { ApiPromise, WsProvider, Keyring } from '@polkadot/api';
 
-const privateKey = 'INSERT_PRIVATE_KEY OR MNEMONIC';
+const privateKey = 'INSERT_PRIVATE_KEY_OR_MNEMONIC';
 
 // 1. Define the dest and message arguments
 const dest = { V3: { parents: 0, interior: { X1: { Parachain: 1000 } } } };
