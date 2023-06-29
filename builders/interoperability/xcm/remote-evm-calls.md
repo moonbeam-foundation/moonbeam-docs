@@ -184,7 +184,7 @@ For the action to be executed, you'll be performing a contract interaction with 
 
 The encoded call data of the interaction with the `increment` function is `0xd09de08a`, which is the first eight hexadecimal characters (or 4 bytes) of the keccak256 hash of `increment()`. If you choose to interact with a function that has input parameters, they also need to be encoded. The easiest way to get the encoded call data is to emulate a transaction either in [Remix](/builders/build/eth-api/dev-env/remix/#interacting-with-a-moonbeam-based-erc-20-from-metamask){target=_blank} or [Moonscan](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8#code){target=_blank}. Next, in Metamask, check the **HEX DATA: 4 BYTES** selector under the **HEX** tab before signing it. You don't need to sign the transaction.
 
-Now that you have the encoded contract interaction data, you can determine the gas limit for this call using the [`eth_estimateGas` JSON RPC method](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_estimategas){target=_blank}. For this example, you can set the gas limit to `71000`.
+Now that you have the encoded contract interaction data, you can determine the gas limit for this call using the [`eth_estimateGas` JSON RPC method](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_estimategas){target=_blank}. For this example, you can set the gas limit to `155000`.
 
 For the value, you can set it to `0` since this particular interaction does not need DEV (or GLMR/MOVR for Moonbeam/Moonriver). For an interaction that requires DEV, you'll need to modify this value accordingly.
 
@@ -215,7 +215,7 @@ Next, you can write the script to get the encoded call data for the transaction.
 ```
 
 !!! note
-    You can view an example of the output of the above script on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x260001581501000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00){target=_blank} using the following encoded call data: `0x260001581501000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00`.
+    You can view an example of the output of the above script on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x260001785d02000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00){target=_blank} using the following encoded call data: `0x260001785d02000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00`.
 
 You'll use the encoded call data in the `Transact` instruction in the following section.
 
@@ -241,7 +241,7 @@ Now that you've generated the [Ethereum XCM pallet](https://github.com/PureStake
       WithdrawAsset: [
         {
           id: { Concrete: { parents: 0, interior: { X1: { PalletInstance: 3 } } } },
-          fun: { Fungible: 100000000000000000n }, // 1 DEV
+          fun: { Fungible: 10000000000000000n }, // 0.01 DEV
         },
       ],
     };
@@ -258,7 +258,7 @@ Now that you've generated the [Ethereum XCM pallet](https://github.com/PureStake
       BuyExecution: [
         {
           id: { Concrete: { parents: 0, interior: { X1: { PalletInstance: 3 } } } },
-          fun: { Fungible: 100000000000000000n }, // 1 DEV
+          fun: { Fungible: 10000000000000000n }, // 0.01 DEV
         },
         { Unlimited: null },
       ],
@@ -275,10 +275,10 @@ Now that you've generated the [Ethereum XCM pallet](https://github.com/PureStake
     const instr3 = {
       Transact: {
         originKind: 'SovereignAccount',
-        requireWeightAtMost: { refTime: 4000000000n, proofSize: 0 },
+        requireWeightAtMost: { refTime: 4000000000n, proofSize: 200000n },
         call: {
           encoded:
-            '0x260001581501000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00',
+            '0x260001785d02000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00',
         },
       },
     };
@@ -308,7 +308,7 @@ Now that you have the values for each of the parameters, you can write the scrip
 ```
 
 !!! note
-    You can view an example of the output of the above script on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x630003000100a10f030c00040000010403001300008a5d78456301130000010403001300008a5d784563010006010300286bee007901260001581501000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00){target=_blank} using the following encoded call data: `0x630003000100a10f030c00040000010403001300008a5d78456301130000010403001300008a5d784563010006010300286bee007901260001581501000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00`.
+    You can view an example of the output of the above script on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/extrinsics/decode/0x630003000100a10f030c00040000010403000f0000c16ff28623130000010403000f0000c16ff286230006010300286bee02350c007901260001785d02000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00){target=_blank} using the following encoded call data: `0x630003000100a10f030c00040000010403000f0000c16ff28623130000010403000f0000c16ff286230006010300286bee02350c007901260001785d02000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00`.
 
 Once the transaction is processed, you can check the relevant extrinsics and events in the [relay chain](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/explorer/query/0x2a0e40a2e5261e792190826ce338ed513fe44dec16dd416a12f547d358773f98){target=_blank} and [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer/query/0x7570d6fa34b9dccd8b8839c2986260034eafef732bbc09f8ae5f857c28765145){target=_blank}. 
 
