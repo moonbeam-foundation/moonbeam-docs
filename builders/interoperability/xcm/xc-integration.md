@@ -104,7 +104,7 @@ The process can be summarized in the following steps:
       The normal enactment times are as follows:  
 
       - **Moonriver** - proposals should be done in the the General Admin Track from [OpenGov](/learn/features/governance/#opengov){target=_blank}, in which the Decision Period is approximately {{ networks.moonriver.governance.tracks.general_admin.decision_period.time }}, and the enactment time is at least {{ networks.moonriver.governance.tracks.general_admin.min_enactment_period.time }}
-      - **Moonbeam** - approximately a {{ networks.moonbeam.democracy.vote_period.days }}-day Voting Period plus {{ networks.moonbeam.democracy.enact_period.days }}-day enactment time
+      - **Moonbeam** - proposals should be done in the the General Admin Track from [OpenGov](/learn/features/governance/#opengov){target=_blank}, in which the Decision Period is approximately {{ networks.moonbeam.governance.tracks.general_admin.decision_period.time }}, and the enactment time is at least {{ networks.moonbeam.governance.tracks.general_admin.min_enactment_period.time }}
 
 4. Accept the HRMP channel from Moonriver/Moonbeam on the connecting parachain
 5. Exchange $50 worth of tokens for testing the XCM integration. Please send the tokens to:

@@ -9,13 +9,16 @@ description: Learn how to view and submit proposals on-chain to be put forth for
 
 ## Introduction {: #introduction }
 
-As a Polkadot parachain and decentralized network, Moonbeam features native on-chain governance that enables stakeholders to participate in the direction of the network. With the introduction of OpenGov, also referred to as Governance v2, the Referenda Pallet allows token holders to get information on existing referenda, submit a proposal to be put forth for referenda, and manage actions related to the Decision Deposit, which is required for a referenda to be decided on. To learn more about Moonbeam's governance system, such as an overview of related terminology, principles, mechanics, and more, please refer to the [Governance on Moonbeam](/learn/features/governance){target=_blank} page. 
+As a Polkadot parachain and decentralized network, Moonbeam features native on-chain governance that enables stakeholders to participate in the direction of the network. With the introduction of OpenGov, also referred to as Governance v2, the Referenda Pallet allows token holders to get information on existing referenda, submit a proposal to be put forth for referenda, and manage actions related to the Decision Deposit, which is required for a referenda to be decided on. To learn more about Moonbeam's governance system, such as an overview of related terminology, principles, mechanics, and more, please refer to the [Governance on Moonbeam](/learn/features/governance){target=_blank} page.
 
 The Referenda Precompile interacts directly with Substrate's [Referenda Pallet](/builders/pallets-precompiles/pallets/referenda/){target=_blank}. This pallet is coded in Rust and is normally not accessible from the Ethereum side of Moonbeam. However, the Referenda Precompile allows you to access functions needed to view referenda, submit referenda, and manage the required Decision Deposit, all of which are part of the Substrate Referenda Pallet, directly from a Solidity interface.
 
-The Referenda Precompile is currently available in OpenGov, which is available on Moonriver and Moonbase Alpha only. If you're looking for similar functionality for Moonbeam, which is still on Governance v1, you can refer to the [Democracy Precompile](/builders/pallets-precompiles/precompiles/democracy){target=_blank} documentation.
-
 The Referenda Precompile is located at the following address:
+
+=== "Moonbeam"
+     ```
+     {{ networks.moonbeam.precompiles.referenda }}
+     ```
 
 === "Moonriver"
      ```
@@ -29,7 +32,7 @@ The Referenda Precompile is located at the following address:
 
 --8<-- 'text/precompiles/security.md'
 
-## The Referenda Solidity Interface {: #the-referenda-solidity-interface } 
+## The Referenda Solidity Interface {: #the-referenda-solidity-interface }
 
 [`Referenda.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's methods. The methods are as follows:
 
@@ -41,7 +44,7 @@ The Referenda Precompile is located at the following address:
 
      - *string* name - the name of the Track
      - *uint256* maxDeciding - the maximum number of referenda that can be decided on at once
-     - *uint256* decisionDeposit - the amount of the Decision Deposit 
+     - *uint256* decisionDeposit - the amount of the Decision Deposit
      - *uint256* preparePeriod - the duration of the Prepare Period
      - *uint256* decisionPeriod - the duration of the Decide Period
      - *uint256* confirmPeriod - the duration of the Confirm Period
@@ -108,7 +111,7 @@ The interface also includes the following events:
 
 ## Interact with the Solidity Interface {: #interact-with-the-solidity-interface }
 
-### Checking Prerequisites {: #checking-prerequisites } 
+### Checking Prerequisites {: #checking-prerequisites }
 
 The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonriver. To follow the steps in this guide, you'll need to have the following: 
 
@@ -116,21 +119,21 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
  - An account with some DEV tokens.
  --8<-- 'text/faucet/faucet-list-item.md'
 
-### Remix Set Up {: #remix-set-up } 
+### Remix Set Up {: #remix-set-up }
 
 1. Click on the **File explorer** tab
 2. Paste a copy of [`Referenda.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=_blank} into a [Remix file](https://remix.ethereum.org/){target=_blank} named `Referenda.sol`
 
 ![Copy and paste the Referenda Solidity interface into Remix.](/images/builders/pallets-precompiles/precompiles/referenda/referenda-1.png)
 
-### Compile the Contract {: #compile-the-contract } 
+### Compile the Contract {: #compile-the-contract }
 
 1. Click on the **Compile** tab, second from top
 2. Then to compile the interface, click on **Compile Referenda.sol**
 
 ![Compile the Referenda.sol interface using Remix.](/images/builders/pallets-precompiles/precompiles/referenda/referenda-2.png)
 
-### Access the Contract {: #access-the-contract } 
+### Access the Contract {: #access-the-contract }
 
 1. Click on the **Deploy and Run** tab, directly below the **Compile** tab in Remix. Note: you are not deploying a contract here, instead you are accessing a precompiled contract that is already deployed
 2. Make sure **Injected Provider - Metamask** is selected in the **ENVIRONMENT** drop down

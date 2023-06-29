@@ -7,15 +7,18 @@ description: Learn how to vote on referenda, set up voting delegations, and more
 
 ![Precomiled Contracts Banner](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-banner.png)
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
-As a Polkadot parachain and decentralized network, Moonbeam features native on-chain governance that enables stakeholders to participate in the direction of the network. With the introduction of OpenGov, also referred to as Governance v2, the Conviction Voting Pallet allows token holders to make, delegate, and manage Conviction-weighted votes on referenda. To learn more about Moonbeam's governance system, such as an overview of related terminology, principles, mechanics, and more, please refer to the [Governance on Moonbeam](/learn/features/governance){target=_blank} page. 
+As a Polkadot parachain and decentralized network, Moonbeam features native on-chain governance that enables stakeholders to participate in the direction of the network. With the introduction of OpenGov, also referred to as Governance v2, the Conviction Voting Pallet allows token holders to make, delegate, and manage Conviction-weighted votes on referenda. To learn more about Moonbeam's governance system, such as an overview of related terminology, principles, mechanics, and more, please refer to the [Governance on Moonbeam](/learn/features/governance){target=_blank} page.
 
 The Conviction Voting Precompile interacts directly with Substrate's Conviction Voting Pallet. This pallet is coded in Rust and is normally not accessible from the Ethereum API side of Moonbeam. However, the Conviction Voting Precompile allows you to access governance-related functions of the Substrate Conviction Voting Pallet directly from a Solidity interface. Additionally, this enables a vastly improved end-user experience. For example, token holders can vote on referenda or delegate a vote directly from MetaMask, rather than importing an account in Polkadot.js Apps and navigating a complex UI.
 
-The Conviction Voting Precompile is mainly related to OpenGov, which is available on Moonriver and Moonbase Alpha only. If you're looking for similar functionality for Moonbeam, which is still on Governance v1, you can refer to the [Democracy Precompile](/builders/pallets-precompiles/precompiles/democracy){target=_blank} documentation.
-
 The Conviction Voting Precompile is located at the following address:
+
+=== "Moonbeam"
+     ```
+     {{ networks.moonbeam.precompiles.conviction_voting }}
+     ```
 
 === "Moonriver"
      ```
@@ -29,7 +32,7 @@ The Conviction Voting Precompile is located at the following address:
 
 --8<-- 'text/precompiles/security.md'
 
-## The Conviction Voting Solidity Interface {: #the-conviction-voting-solidity-interface } 
+## The Conviction Voting Solidity Interface {: #the-conviction-voting-solidity-interface }
 
 [`ConvictionVoting.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's methods.
 
@@ -79,7 +82,7 @@ The interface also includes the following events:
 
 ## Interact with the Solidity Interface {: #interact-with-the-solidity-interface }
 
-### Checking Prerequisites {: #checking-prerequisites } 
+### Checking Prerequisites {: #checking-prerequisites }
 
 The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonriver. To follow the steps in this guide, you'll need to have the following: 
 
@@ -87,21 +90,21 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
  - An account with some DEV tokens.
  --8<-- 'text/faucet/faucet-list-item.md'
 
-### Remix Set Up {: #remix-set-up } 
+### Remix Set Up {: #remix-set-up }
 
 1. Click on the **File explorer** tab
 2. Paste a copy of [`ConvictionVoting.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=_blank} into a [Remix file](https://remix.ethereum.org/){target=_blank} named `ConvictionVoting.sol`
 
 ![Copy and paste the referenda Solidity interface into Remix.](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-1.png)
 
-### Compile the Contract {: #compile-the-contract } 
+### Compile the Contract {: #compile-the-contract }
 
 1. Click on the **Compile** tab, second from top
 2. Then to compile the interface, click on **Compile ConvictionVoting.sol**
 
 ![Compile the ConvictionVoting.sol interface using Remix.](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-2.png)
 
-### Access the Contract {: #access-the-contract } 
+### Access the Contract {: #access-the-contract }
 
 1. Click on the **Deploy and Run** tab, directly below the **Compile** tab in Remix. Note: you are not deploying a contract here, instead you are accessing a precompiled contract that is already deployed
 2. Make sure **Injected Provider - Metamask** is selected in the **ENVIRONMENT** drop down
@@ -111,7 +114,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 
 ![Access the ConvictionVoting.sol interface by provide the precompile's address.](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-3.png)
 
-### Vote on a Referendum {: #vote-on-a-referendum } 
+### Vote on a Referendum {: #vote-on-a-referendum }
 
 You can lock tokens and vote on a referendum at anytime during the Lead-in Period or the Decide Period. In order for a referendum to pass, it needs to garner minimum Approval and Support, which vary by track. For more information on each of the relative periods and the Approval and Support requirments by Track, please refer to the [OpenGov section of the governance overview page](/learn/features/governance/#opengov){target=_blank}.
 

@@ -31,17 +31,6 @@ Some important variables/configurations to note include (still subject to change
     |    Block gas limit    | {{ networks.moonbeam.gas_block }} (expected to increase by at least 4x) |
     | Transaction gas limit |  {{ networks.moonbeam.gas_tx }} (expected to increase by at least 4x)   |
 
-=== "Governance"
-    |         Variable         |                                                            Value                                                             |
-    |:------------------------:|:----------------------------------------------------------------------------------------------------------------------------:|
-    |      Voting period       |      {{ networks.moonbeam.democracy.vote_period.blocks}} blocks ({{networks.moonbeam.democracy.vote_period.days}} days)      |
-    | Fast-track voting period | {{ networks.moonbeam.democracy.fast_vote_period.blocks}} blocks ({{networks.moonbeam.democracy.fast_vote_period.days}} days) |
-    |     Enactment period     |     {{ networks.moonbeam.democracy.enact_period.blocks}} blocks ({{networks.moonbeam.democracy.enact_period.days}} day)      |
-    |     Cool-off period      |      {{ networks.moonbeam.democracy.cool_period.blocks}} blocks ({{networks.moonbeam.democracy.cool_period.days}} days)      |
-    |     Minimum deposit      |                                      {{ networks.moonbeam.democracy.min_deposit }} GLMR                                      |
-    |      Maximum votes       |                                         {{ networks.moonbeam.democracy.max_votes }}                                          |
-    |    Maximum proposals     |                                       {{ networks.moonbeam.democracy.max_proposals }}                                        |
-
 === "Staking"
     |             Variable              |                                                  Value                                                  |
     |:---------------------------------:|:-------------------------------------------------------------------------------------------------------:|

@@ -808,6 +808,161 @@ networks:
         transfer:
           exec_time: 0.0008
           xcdot_cost: 0.00090281848
+    conviction:
+      lock_period:
+        conviction_1: 1
+        conviction_2: 2
+        conviction_3: 4
+        conviction_4: 8
+        conviction_5: 16
+        conviction_6: 32
+    governance:
+      tracks:
+        root:
+          max_deciding: 5
+          decision_deposit: 2000000
+          prepare_period:
+            time: '1 day'
+            blocks: 7200
+          decision_period:
+            time: '14 days'
+            blocks: 100800
+          confirm_period:
+            time: '1 day'
+            blocks: 7200
+          min_enactment_period:
+            time: '1 day'
+            blocks: 7200
+          min_approval:
+            time0: 'Day 0'
+            percent0: 100
+            time1: 'Day 4'
+            percent1: 80
+            time2: 'Day 14'
+            percent2: 50
+          min_support:
+            time0: 'Day 0'
+            percent0: 25
+            time1: 'Day 14'
+            percent1: .5
+        whitelisted:
+          max_deciding: 100
+          decision_deposit: 200000
+          prepare_period:
+            time: '10 minutes'
+            blocks: 50
+          decision_period:
+            time: '14 days'
+            blocks: 100800
+          confirm_period:
+            time: '10 minutes'
+            blocks: 50
+          min_enactment_period:
+            time: '30 minutes'
+            blocks: 150
+          min_approval:
+            time0: 'Day 0'
+            percent0: 100
+            time1: 'Day 1'
+            percent1: 96
+            time2: 'Day 14'
+            percent2: 50
+          min_support:
+            time0: 'Day 0'
+            percent0: 2
+            time1: 'Hour 1'
+            percent1: 1
+            time2: 'Day 14'
+            percent2: 0
+        general_admin:
+          max_deciding: 10
+          decision_deposit: 10000
+          prepare_period:
+            time: '1 hour'
+            blocks: 300
+          decision_period:
+            time: '14 days'
+            blocks: 100800
+          confirm_period:
+            time: '1 day'
+            blocks: 7200
+          min_enactment_period:
+            time: '1 day'
+            blocks: 7200
+          min_approval:
+            time0: 'Day 0'
+            percent0: 100
+            time1: 'Day 4'
+            percent1: 80
+            time2: 'Day 14'
+            percent2: 50
+          min_support:
+            time0: 'Day 0'
+            percent0: 50
+            time1: 'Day 7'
+            percent1: 10
+            time2: 'Day 14'
+            percent2: 0
+        canceller:
+          max_deciding: 20
+          decision_deposit: 200000
+          prepare_period:
+            time: '1 hour'
+            blocks: 300
+          decision_period:
+            time: '14 days'
+            blocks: 100800
+          confirm_period:
+            time: '3 hours'
+            blocks: 900
+          min_enactment_period:
+            time: '10 minutes'
+            blocks: 50
+          min_approval:
+            time0: 'Day 0'
+            percent0: 100
+            time1: 'Day 1'
+            percent1: 96
+            time2: 'Day 14'
+            percent2: 50
+          min_support:
+            time0: 'Day 0'
+            percent0: 10
+            time1: 'Day 1'
+            percent1: 1
+            time2: 'Day 14'
+            percent2: 0
+        killer:
+          max_deciding: 100
+          decision_deposit: 400000
+          prepare_period:
+            time: '1 hour'
+            blocks: 300
+          decision_period:
+            time: '14 days'
+            blocks: 100800
+          confirm_period:
+            time: '3 hours'
+            blocks: 900
+          min_enactment_period:
+            time: '10 minutes'
+            blocks: 50
+          min_approval:
+            time0: 'Day 0'
+            percent0: 100
+            time1: 'Day 1'
+            percent1: 96
+            time2: 'Day 14'
+            percent2: 50
+          min_support:
+            time0: 'Day 0'
+            percent0: 10
+            time1: 'Day 1'
+            percent1: 1
+            time2: 'Day 14'
+            percent2: 0
+      submission_deposit: 1000
+      max_votes: 512  
     preimage:
       base_deposit: 500
       byte_deposit: .01
