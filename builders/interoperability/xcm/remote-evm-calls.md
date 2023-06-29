@@ -143,30 +143,16 @@ When the XCM instruction gets executed in Moonbeam (Moonbase Alpha in this examp
 }
 ```
 
-This is the multilocation used to calculate the **multilocation-derivative account**. You can use the [calculate **multilocation-derivative account** script](https://github.com/PureStake/xcm-tools){target=_blank} to help you obtain its value. To do so, you can use the following command:
+--8<-- 'text/xcm/calculate-multilocation-derivative-account.md'
+
+For example, for Alice's relay chain account of `5EnnmEp2R92wZ7T8J2fKMxpc1nPW5uP8r5K3YUQGiFrw8uG6`, you can calculate her Moonbase Alpha **multilocation-derivative account** by running:
+
 
 ```sh
 yarn calculate-multilocation-derivative-account \
---w wss://wss.api.moonbase.moonbeam.network \
---a INSERT_MOONBASE_RELAY_ACCOUNT \
---p PARACHAIN_ID_IF_APPLIES \
---n westend
-```
-
-The parameters that you need to pass along with this command are:
-
-- The `-w` flag corresponds to the endpoint you’re using to fetch this information
-- The `-a` flag corresponds to your Moonbase relay chain address
-- The `-p` flag corresponds to the parachain ID of the origin chain (if applies), if you are sending the XCM from the relay chain you don't need to provide this parameter
-- The `-n` flag corresponds to the name of the relay chain that Moonbase relay is based on
-
-For example, for Alice's relay chain account is `5EnnmEp2R92wZ7T8J2fKMxpc1nPW5uP8r5K3YUQGiFrw8uG6`, you can calculate her Moonbase Alpha **multilocation-derivative account** by running:
-
-```sh
-yarn calculate-multilocation-derivative-account \
---w wss://wss.api.moonbase.moonbeam.network \
---a 5EnnmEp2R92wZ7T8J2fKMxpc1nPW5uP8r5K3YUQGiFrw8uG6 \
---n westend
+--ws-provider wss://wss.api.moonbase.moonbeam.network \
+--address 5EnnmEp2R92wZ7T8J2fKMxpc1nPW5uP8r5K3YUQGiFrw8uG6 \
+--parents 1
 ```
 
 The relevant values for this calculation are summarized in the following table:
@@ -175,10 +161,9 @@ The relevant values for this calculation are summarized in the following table:
 |:-------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------:|
 |        Origin Chain Encoded Address         |                                                    `5EnnmEp2R92wZ7T8J2fKMxpc1nPW5uP8r5K3YUQGiFrw8uG6`                                                     |
 |        Origin Chain Decoded Address         |                                           `0x78914a4d7a946a0e4ed641f336b498736336e05096e342c799cc33c0f868d62f`                                            |
-|          Origin Chain Account Name          |                                                                         `Westend`                                                                         |
 | Multilocation Received in Destination Chain | `{"parents":1,"interior":{"x1":{"accountId32":{"network": {"westend":null},"id":"0x78914a4d7a946a0e4ed641f336b498736336e05096e342c799cc33c0f868d62f"}}}}` |
 | Multilocation-Derivative Account (32 bytes) |                                           `0xda51eac6eb3502b0a113effcb3950c52e873a24c6ef54cab13abdd56a55ddd7e`                                            |
-| Multilocation-Derivative Account (20 bytes) |                                                       `0xda51eac6eb3502b0a113effcb3950c52e873a24c`                                                        |
+| Multilocation-Derivative Account (20 bytes) |                                                       `0x4bd9137ccdd52b8a4d69896169cf6e69efe96cf7`                                                        |
 
 Consequently, for this example, the **multilocation-derivative account** for Moonbase Alpha is `0xda51eac6eb3502b0a113effcb3950c52e873a24c`. Note that Alice is the only person who can access this account through a remote transact from the relay chain, as she is the owner of its private keys and the **multilocation-derivative account** is keyless.
 
@@ -208,7 +193,7 @@ Now that you have all of the components required for the `xcmTransaction` parame
 ```js
 const xcmTransaction = {
   V2: {
-    gasLimit: 71000,
+    gasLimit: 155000,
     action: { Call: '0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8' }, // Call the incrementer contract
     value: 0,
     input: '0xd09de08a', // Call the increment function
