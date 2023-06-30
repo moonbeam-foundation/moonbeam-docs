@@ -302,7 +302,6 @@ networks:
       collator_reward_inflation: 20
       parachain_bond_inflation: 30
     staking:
-      min_col_stk: 1000
       min_can_stk: 500
       min_can_stk_wei: 500000000000000000000
       collator_map_bond: 100
@@ -620,7 +619,6 @@ networks:
       collator_reward_inflation: 20
       parachain_bond_inflation: 30
     staking:
-      min_col_stk: 10000
       min_can_stk: 10000
       min_can_stk_wei: 10000000000000000000000
       collator_map_bond: 100
@@ -845,7 +843,6 @@ networks:
       collator_reward_inflation: 20
       parachain_bond_inflation: 30
     staking:
-      min_col_stk: 2000000
       min_can_stk: 2000000
       min_can_stk_wei: 2000000000000000000000000
       collator_map_bond: 10000
