@@ -88,33 +88,33 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
 ### JavaScript Tools {: #javascript }
 
 === "Ethereum"
-|                                     Tool                                     |      Type       |
-|:----------------------------------------------------------------------------:|:---------------:|
-|    [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank}    |     Library     |
-|      [Web3.js](/builders/build/eth-api/libraries/web3js){target=_blank}      |     Library     |
-|      [Hardhat](/builders/build/eth-api/dev-env/hardhat){target=_blank}       | Dev Environment |
-| [OpenZeppelin](/builders/build/eth-api/dev-env/openzeppelin/){target=_blank} | Dev Environment |
-|        [Remix](/builders/build/eth-api/dev-env/remix){target=_blank}         | Dev Environment |
-| [Scaffold-Eth](/builders/build/eth-api/dev-env/scaffold-eth){target=_blank}  | Dev Environment |
-|     [thirdweb](/builders/build/eth-api/dev-env/thirdweb){target=_blank}      | Dev Environment |
-|      [Truffle](/builders/build/eth-api/dev-env/truffle){target=_blank}       | Dev Environment |
-| [Waffle & Mars](/builders/build/eth-api/dev-env/waffle-mars){target=_blank}  | Dev Environment |
+    |                                     Tool                                     |      Type       |
+    |:----------------------------------------------------------------------------:|:---------------:|
+    |    [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank}    |     Library     |
+    |      [Web3.js](/builders/build/eth-api/libraries/web3js){target=_blank}      |     Library     |
+    |      [Hardhat](/builders/build/eth-api/dev-env/hardhat){target=_blank}       | Dev Environment |
+    | [OpenZeppelin](/builders/build/eth-api/dev-env/openzeppelin/){target=_blank} | Dev Environment |
+    |        [Remix](/builders/build/eth-api/dev-env/remix){target=_blank}         | Dev Environment |
+    | [Scaffold-Eth](/builders/build/eth-api/dev-env/scaffold-eth){target=_blank}  | Dev Environment |
+    |     [thirdweb](/builders/build/eth-api/dev-env/thirdweb){target=_blank}      | Dev Environment |
+    |      [Truffle](/builders/build/eth-api/dev-env/truffle){target=_blank}       | Dev Environment |
+    | [Waffle & Mars](/builders/build/eth-api/dev-env/waffle-mars){target=_blank}  | Dev Environment |
 
 === "Substrate"
-|                                      Tool                                       |  Type   |
-|:-------------------------------------------------------------------------------:|:-------:|
-| [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=_blank} | Library |
+    |                                      Tool                                       |  Type   |
+    |:-------------------------------------------------------------------------------:|:-------:|
+    | [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=_blank} | Library |
 
 ### Python Tools {: #python }
 
 === "Ethereum"
-|                                Tool                                |      Type       |
-|:------------------------------------------------------------------:|:---------------:|
-| [Web3.py](/builders/build/eth-api/libraries/web3py){target=_blank} |     Library     |
-| [Brownie](/builders/build/eth-api/dev-env/brownie){target=_blank}  | Dev Environment |
-|   [thirdweb](https://portal.thirdweb.com/python){target=_blank}    | Dev Environment |
+    |                                Tool                                |      Type       |
+    |:------------------------------------------------------------------:|:---------------:|
+    | [Web3.py](/builders/build/eth-api/libraries/web3py){target=_blank} |     Library     |
+    | [Brownie](/builders/build/eth-api/dev-env/brownie){target=_blank}  | Dev Environment |
+    |   [thirdweb](https://portal.thirdweb.com/python){target=_blank}    | Dev Environment |
 
 === "Substrate"
-|                                             Tool                                              |  Type   |
-|:---------------------------------------------------------------------------------------------:|:-------:|
-| [Py Substrate Interface](/builders/build/substrate-api/py-substrate-interface){target=_blank} | Library |
+    |                                             Tool                                              |  Type   |
+    |:---------------------------------------------------------------------------------------------:|:-------:|
+    | [Py Substrate Interface](/builders/build/substrate-api/py-substrate-interface){target=_blank} | Library |
