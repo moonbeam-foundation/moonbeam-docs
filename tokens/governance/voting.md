@@ -28,7 +28,7 @@ Some of the key parameters for this guide are the following:
 
  - **Maximum number of votes** — the maximum number of concurrent votes per account
 
-     === "Moonbeam"
+    === "Moonbeam"
         ```
         {{ networks.moonbeam.governance.max_votes }} votes
         ```
