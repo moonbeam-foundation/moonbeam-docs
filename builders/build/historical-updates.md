@@ -89,7 +89,6 @@ The hotfix was applied in the following block ranges:
 |   Moonriver    |      [1835760 - 1835769](https://moonriver.subscan.io/extrinsic?module=evm&call=hotfix_inc_account_sufficients){target=_blank}       |
 | Moonbase Alpha |  [2097782 - 2097974](https://moonbase.subscan.io/extrinsic?address=&module=evm&call=hotfix_inc_account_sufficients){target=_blank}   |
 
-
 This bug existed during the following runtimes and block ranges:
 
 |    Network     | Introduced | Fixed  | Impacted Block Range |
@@ -115,6 +114,22 @@ This bug existed during the following runtimes and block ranges:
 | Moonbase Alpha |    RT40    | RT1603 |     0 - 2285346      |
 
 For more information, you can review the [relative PR on GitHub](https://github.com/PureStake/moonbeam/pull/1451){target=_blank}.
+
+***
+
+#### Substrate Tips Missing Treasury Distribution {: #substrate-tips }
+
+Tips for Substrate-based transactions weren't handled properly. The entire portion of the tip was burned because it was not handled in the runtime code. A fix was applied so that 20% is paid to treasury and 80% is burned, which is consistent with all other fee behavior.
+
+This bug existing during the following runtimes and block ranges:
+
+|    Network     | Introduced | Fixed  | Impacted Block Range |
+|:--------------:|:----------:|:------:|:--------------------:|
+|    Moonbeam    |   RT900    | RT240x |       0 - n/a        |
+|   Moonriver    |    RT49    | RT240x |       0 - n/a        |
+| Moonbase Alpha |    RT40    | RT2401 |     0 - 4591616      |
+
+For more information, you can review the [relative PR on GitHub](https://github.com/PureStake/moonbeam/pull/2291){target=_blank}.
 
 ***
 
