@@ -33,35 +33,35 @@ When working with developer tools, depending on the tool, you might need to conf
 
 === "Moonbeam"
 
-    |    Variable     |                                                                                                                                              Value                                                                                                                                              |
-    |:---------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-    |    Chain ID     |                                                                                                          <pre style="padding-right: 2em">```{{ networks.moonbeam.chain_id }}```</pre>                                                                                                           |
-    | Public RPC URLs | <pre style="padding-right: 2em">```https://moonbeam.public.blastapi.io```</pre> <pre style="padding-right: 2em">```https://moonbeam.api.onfinality.io/public```</pre>  <pre style="padding-right: 2em">```https://moonbeam-mainnet.gateway.pokt.network/v1/lb/629a2b5650ec8c0039bb30f0```</pre> |
-    | Public WSS URLs |                                                              <pre style="padding-right: 2em">```wss://moonbeam.public.blastapi.io```</pre> <pre style="padding-right: 2em">```wss://moonbeam.api.onfinality.io/public-ws```</pre>                                                               |
+    |    Variable     |                                                                                                     Value                                                                                                      |
+    |:---------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |    Chain ID     |                                                                               <pre>```{{ networks.moonbeam.chain_id }}```</pre>                                                                                |
+    | Public RPC URLs | <pre>```https://moonbeam.public.blastapi.io```</pre> <pre>```https://moonbeam.api.onfinality.io/public```</pre>  <pre>```https://moonbeam-mainnet.gateway.pokt.network/v1/lb/629a2b5650ec8c0039bb30f0```</pre> |
+    | Public WSS URLs |                                                 <pre>```wss://moonbeam.public.blastapi.io```</pre> <pre>```wss://moonbeam.api.onfinality.io/public-ws```</pre>                                                 |
 
 === "Moonriver"
 
-    |    Variable     |                                                                                                                                               Value                                                                                                                                                |
-    |:---------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-    |    Chain ID     |                                                                                                           <pre style="padding-right: 2em">```{{ networks.moonriver.chain_id }}```</pre>                                                                                                            |
-    | Public RPC URLs | <pre style="padding-right: 2em">```https://moonriver.public.blastapi.io```</pre> <pre style="padding-right: 2em">```https://moonriver.api.onfinality.io/public```</pre>  <pre style="padding-right: 2em">```https://moonriver-mainnet.gateway.pokt.network/v1/lb/62a74fdb123e6f003963642f```</pre> |
-    | Public WSS URLs |                                                               <pre style="padding-right: 2em">```wss://moonriver.public.blastapi.io```</pre> <pre style="padding-right: 2em">```wss://moonriver.api.onfinality.io/public-ws```</pre>                                                               |
+    |    Variable     |                                                                                                       Value                                                                                                       |
+    |:---------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |    Chain ID     |                                                                                <pre>```{{ networks.moonriver.chain_id }}```</pre>                                                                                 |
+    | Public RPC URLs | <pre>```https://moonriver.public.blastapi.io```</pre> <pre>```https://moonriver.api.onfinality.io/public```</pre>  <pre>```https://moonriver-mainnet.gateway.pokt.network/v1/lb/62a74fdb123e6f003963642f```</pre> |
+    | Public WSS URLs |                                                 <pre>```wss://moonriver.public.blastapi.io```</pre> <pre>```wss://moonriver.api.onfinality.io/public-ws```</pre>                                                  |
 
 === "Moonbase Alpha"
 
-    |    Variable     |                                                                                                                             Value                                                                                                                             |
-    |:---------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-    |    Chain ID     |                                                                                         <pre style="padding-right: 2em">```{{ networks.moonbase.chain_id }}```</pre>                                                                                          |
-    | Public RPC URLs | <pre style="padding-right: 2em">```https://moonbase-alpha.public.blastapi.io```</pre> <pre style="padding-right: 2em">```https://moonbeam-alpha.api.onfinality.io/public```</pre> <pre style="padding-right: 2em">```{{ networks.moonbase.rpc_url }}```</pre> |
-    | Public WSS URLs | <pre style="padding-right: 2em">```wss://moonbase-alpha.public.blastapi.io```</pre> <pre style="padding-right: 2em">```wss://moonbeam-alpha.api.onfinality.io/public-ws```</pre> <pre style="padding-right: 2em">```{{ networks.moonbase.wss_url }}```</pre>  |
+    |    Variable     |                                                                                    Value                                                                                     |
+    |:---------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |    Chain ID     |                                                              <pre>```{{ networks.moonbase.chain_id }}```</pre>                                                               |
+    | Public RPC URLs | <pre>```https://moonbase-alpha.public.blastapi.io```</pre> <pre>```https://moonbeam-alpha.api.onfinality.io/public```</pre> <pre>```{{ networks.moonbase.rpc_url }}```</pre> |
+    | Public WSS URLs | <pre>```wss://moonbase-alpha.public.blastapi.io```</pre> <pre>```wss://moonbeam-alpha.api.onfinality.io/public-ws```</pre> <pre>```{{ networks.moonbase.wss_url }}```</pre>  |
 
 === "Moonbeam Dev Node"
 
-    |   Variable    |                                      Value                                      |
-    |:-------------:|:-------------------------------------------------------------------------------:|
-    |   Chain ID    | <pre style="padding-right: 2em">```{{ networks.development.chain_id }}```</pre> |
-    | Local RPC URL | <pre style="padding-right: 2em">```{{ networks.development.rpc_url }}```</pre>  |
-    | Local WSS URL | <pre style="padding-right: 2em">```{{ networks.development.wss_url }}```</pre>  |
+    |   Variable    |                        Value                         |
+    |:-------------:|:----------------------------------------------------:|
+    |   Chain ID    | <pre>```{{ networks.development.chain_id }}```</pre> |
+    | Local RPC URL | <pre>```{{ networks.development.rpc_url }}```</pre>  |
+    | Local WSS URL | <pre>```{{ networks.development.wss_url }}```</pre>  |
 
 !!! note
     You can create your own endpoint suitable for development or production from one of the [supported RPC providers](/builders/get-started/endpoints/#endpoint-providers){target=_blank}.
@@ -76,10 +76,10 @@ Moonbeam provides two different kind of explorers: ones to query the Ethereum AP
 
 To get started developing on one of the TestNets, you'll need to fund your account with DEV tokens to send transactions. Please note that DEV tokens have no real value and are for testing purposes only.
 
-|                                         TestNet                                         |                                                                                     Where To Get Tokens From                                                                                     |
-|:---------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|                                         TestNet                                         |                                                                           Where To Get Tokens From                                                                           |
+|:---------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 |        [Moonbase Alpha](/builders/get-started/networks/moonbase){target=_blank}         | The [Moonbase Alpha Faucet](https://faucet.moonbeam.network/){target=_blank} website. <br> The faucet dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours |
-| [Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev){target=_blank} |           Any of the [ten pre-funded accounts](/builders/get-started/networks/moonbeam-dev/#pre-funded-development-accounts){target=_blank} that come with your <br> development node            |
+| [Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev){target=_blank} | Any of the [ten pre-funded accounts](/builders/get-started/networks/moonbeam-dev/#pre-funded-development-accounts){target=_blank} that come with your <br> development node  |
 
 ## Development Tools {: #development-tools }
 
