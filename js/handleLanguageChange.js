@@ -6,6 +6,8 @@ const selectWrapper = document.querySelector('.language-select-wrapper');
 const languageSelect = document.querySelector('.language-select');
 const languageOptions = document.querySelectorAll('.language-select-wrapper .language-select li');
 const selectLabel = document.querySelector('.language-select-label');
+const openArrow = document.querySelector('.selector-open');
+const closedArrow = document.querySelector('.selector-closed');
 
 const english = document.querySelector('.en');
 const selected = 'selected';
@@ -65,11 +67,11 @@ const displayLanguage = (label, language, abbreviatedLanguage) => {
 };
 
 if (currentLanguage === 'en') {
-  english.classList.add(selected, selected);
-  displayLanguage(selectLabel, 'English', 'EN');
+  english.classList.add(selected);
+  displayLanguage(selectLabel, 'Eng', 'EN');
 } else {
   const currentLanguageElement = document.querySelector(`.${currentLanguage}`);
-  currentLanguageElement.classList.add(selected, selected);
+  currentLanguageElement.classList.add(selected);
   displayLanguage(selectLabel, currentLanguageElement.textContent, currentLanguage.toUpperCase());
 }
 
@@ -77,6 +79,8 @@ if (currentLanguage === 'en') {
 selectWrapper.addEventListener('click', (e) => {
   e.preventDefault();
   selectWrapper.classList.toggle('active');
+  openArrow.classList.toggle('active');
+  closedArrow.classList.toggle('active');
 });
 
 languageOptions.forEach((option) => {
