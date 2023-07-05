@@ -5,7 +5,6 @@ description: Learn about the frontend, smart contracts, and storage system of De
 
 # How to Build a DApp: Complete DApp Architecture
 
-![Learn about the entire architecture of DApps.](/images/tutorials/eth-api/how-to-build-a-dapp/how-to-build-a-dapp-banner.png)
 _April 15, 2023 | by Jeremy Boetticher_
 
 ## Introduction {: #introduction }

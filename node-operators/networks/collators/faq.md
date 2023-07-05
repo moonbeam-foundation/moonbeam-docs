@@ -5,8 +5,6 @@ description: Some FAQ around becoming a collator, collator activities, and thing
 
 # Frequently Asked Questions
 
-![Collator FAQ Banner](/images/node-operators/networks/collators/faq-banner.png)
-
 ## Introduction {: #introduction }
 
 Collators are an integral part of the parachains they take part in. They receive transactions and create state transition proofs for the relay chain validators.

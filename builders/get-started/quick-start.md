@@ -5,8 +5,6 @@ description: Everything you need to know to get started developing, deploying, a
 
 # Quick Start Guide for Developing on Moonbeam
 
-![Get started banner](/images/builders/get-started/quick-start-banner.png)
-
 ## Quick Overview {: #overview }
 
 Moonbeam is a fully Ethereum-compatible smart contract platform on Polkadot. As such, you can interact with Moonbeam via the [Ethereum API](/builders/build/eth-api/){target=_blank} and [Substrate API](/builders/build/substrate-api/){target=_blank}.

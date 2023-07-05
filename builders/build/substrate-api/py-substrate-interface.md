@@ -5,8 +5,6 @@ description: Learn the basic of how to use the Python Substrate Interface librar
 
 # Python Substrate Interface
 
-![Intro diagram](/images/builders/build/substrate-api/py-substrate-interface/py-substrate-interface-banner.png)
-
 ## Introduction {: #introduction }
 
 [Python Substrate Interface](https://github.com/polkascan/py-substrate-interface){target=_blank} library allows application developers to query a Moonbeam node and interact with the node's Polkadot or Substrate features using a native Python interface. Here you will find an overview of the available functionalities and some commonly used code examples to get you started on interacting with Moonbeam networks using Python Substrate Interface. 

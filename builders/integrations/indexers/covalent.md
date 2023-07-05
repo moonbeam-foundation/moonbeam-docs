@@ -5,8 +5,6 @@ description: Querying blockchain data such as balances, transactions, transfers,
 
 # Getting Started with the Covalent API
 
-![Covalent on Moonbeam](/images/builders/integrations/indexers/covalent/covalent-banner.png)
-
 ## Introduction {: #introduction } 
 
 [Covalent](https://www.covalenthq.com/){target=_blank} provides a unified API to bring full transparency and visibility to assets across all blockchain networks. Simply put, Covalent offers a single API that allows you to pull detailed, granular blockchain transaction data from multiple blockchains with no code. The unified Covalent API allows you to create entirely new applications or augment existing ones without configuring or maintaining infrastructure. Covalent currently supports Moonbase Alpha and Moonriver and plans to support Moonbeam.

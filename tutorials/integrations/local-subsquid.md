@@ -5,8 +5,6 @@ description: Improve your dApp development experience by following this guide to
 
 # Index a Local Moonbeam Development Node with Subsquid
 
-![Subsquid Banner](/images/tutorials/integrations/local-subsquid/local-subsquid-banner.png)
-
 _April 14, 2023 | by Erin Shaben_
 
 ## Introduction {: #introduction }

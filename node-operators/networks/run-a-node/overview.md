@@ -5,8 +5,6 @@ description: Learn about all of the necessary details to run a full Parachain no
 
 # Run a Node on Moonbeam
 
-![Full Node Moonbeam Banner](/images/node-operators/networks/run-a-node/overview/full-node-banner.png)
-
 ## Introduction {: #introduction } 
 
 Running a full node on a Moonbeam-based network allows you to connect to the network, sync with a bootnode, obtain local access to RPC endpoints, author blocks on the parachain, and more.

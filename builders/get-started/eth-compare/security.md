@@ -5,8 +5,6 @@ description: A description of the main differences that Ethereum developers need
 
 # Security Considerations
 
-![Moonbeam v Ethereum - Security Banner](/images/builders/get-started/eth-compare/security/security-banner.png)
-
 ## Introduction {: #introduction }
 
 When developing smart contracts on Moonbeam, there are some security considerations to be aware of that do not apply when developing on Ethereum. Moonbeam has several [precompiled contracts](/builders/pallets-precompiles/precompiles/){target=_blank}, which are Solidity interfaces that enable developers to access Substrate-based functionality through the Ethereum API, but circumventing the EVM. Although the precompiled contracts are designed to improve the developer experience, there can be some unintended consequences that must be considered.

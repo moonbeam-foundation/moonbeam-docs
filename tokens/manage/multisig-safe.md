@@ -5,8 +5,6 @@ description: Learn how to use and manage funds with the Moonbeam Safe. Create a 
 
 # Interacting with Moonbeam Safe
 
-![Moonbeam Multisig Safe Banner](/images/tokens/manage/multisig-safe/safe-banner.png)
-
 ## Introduction {: #introduction } 
 
 A single-signature wallet, or singlesig for short, is a wallet in which only one owner holds the private key, and therefore has control over all the assets that account holds. Moreover, if the private key is lost, then access to the wallet and the funds are lost forever. 

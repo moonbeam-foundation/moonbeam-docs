@@ -5,8 +5,6 @@ description: Enable gas-less transactions in your dApp with Moonbeam's Call Perm
 
 # Use the Call Permit Precompile to Send Gasless Transactions
 
-![Banner Image](/images/tutorials/eth-api/call-permit-gasless-txs/gasless-banner.png)
-
 _March 30, 2023 | by Erin Shaben_
 
 ## Introduction {: #introduction } 

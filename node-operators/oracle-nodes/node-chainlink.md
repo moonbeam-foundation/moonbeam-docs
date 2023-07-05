@@ -5,8 +5,6 @@ description: How to set up a Chainlink Oracle node for the Moonbeam Network to f
 
 # Run a Chainlink Oracle Node on Moonbeam
 
-![Chainlink Moonbeam Banner](/images/node-operators/oracle-nodes/chainlink/chainlink-node-banner.png)
-
 ## Introduction {: #introduction } 
 
 As an open, permissionless network, anyone may choose to operate an oracle providing data to smart contracts running on Moonbeam.

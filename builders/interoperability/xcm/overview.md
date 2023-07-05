@@ -5,8 +5,6 @@ description: An overview of how cross-consensus messaging (XCM) works and how de
 
 # Cross-Consensus Messaging (XCM)
 
-![XCM Overview Banner](/images/builders/interoperability/xcm/overview/overview-banner.png)
-
 ## Introduction {: #introduction }
 
 [Polkadot's architecture](https://wiki.polkadot.network/docs/learn-architecture){target=_blank} allows parachains to natively interoperate with each other, enabling cross-blockchain transfers of any type of data or asset.

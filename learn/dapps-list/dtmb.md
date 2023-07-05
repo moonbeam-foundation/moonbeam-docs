@@ -5,8 +5,6 @@ description: How you can list your Moonbeam or Moonriver project on Downtown Moo
 
 # How to List your Project on Downtown Moonbeam
  
-![Downtown Moonbeam banner image](/images/learn/dapps-list/dtmb/dtmb-banner.png)
-
 ## Introduction to Downtown Moonbeam 
 
 [Downtown Moonbeam](https://www.dtmb.xyz/){target=_blank} provides a curated list of projects building specifically within the Moonbeam and Moonriver ecosystems. It provides basic information for each DApp such as website information, a brief description, and contact information.

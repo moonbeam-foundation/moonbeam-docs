@@ -6,8 +6,6 @@ keywords: solidity, ethereum, democracy, moonbeam, precompiled, contracts
 
 # Interacting with the Democracy Precompile
 
-![Democracy Moonbeam Banner](/images/builders/pallets-precompiles/precompiles/democracy/democracy-banner.png)
-
 ## Introduction {: #introduction } 
 
 As a Polkadot parachain and decentralized network, Moonbeam features native on-chain governance that enables stakeholders to participate in the direction of the network. To learn more about governance, such as an overview of related terminology, principles, mechanics, and more, please refer to the [Governance on Moonbeam](/learn/features/governance){target=_blank} page. 

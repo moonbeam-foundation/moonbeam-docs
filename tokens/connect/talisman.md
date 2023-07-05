@@ -5,8 +5,6 @@ description: Follow this quick tutorial to learn how to use Moonbeam’s Ethereu
 
 # Interacting with Moonbeam Using Talisman
 
-![Interact with Moonbeam using Talisman wallet extension.](/images/tokens/connect/talisman/talisman-banner.png)
-
 ## Introduction {: #introduction } 
 
 As a Polkadot parachain, Moonbeam uses a [unified account structure](/learn/features/unified-accounts/){target=_blank} that allows you to interact with Substrate (Polkadot) functionality and Moonbeam's EVM, all from a single Ethereum-style address. This unified account structure means that you don't need to maintain both a Substrate and an Ethereum account to interact with Moonbeam - instead, you can do it all with a single Ethereum private key.

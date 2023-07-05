@@ -5,8 +5,6 @@ description: This guide walks you through how to use your Ledger hardware wallet
 
 # Interacting with Moonbeam Using Ledger and the Ethereum App
 
-![Intro banner](/images/tokens/connect/ledger/ledger-banner.png)
-
 ## Introduction {: #introduction } 
 
 Hardware wallets provide a safer way to store crypto funds because the private key (used for signing transactions) is stored offline. Ledger offers two hardware wallet solutions at the time of writing: Ledger Nano S and Ledger Nano X.

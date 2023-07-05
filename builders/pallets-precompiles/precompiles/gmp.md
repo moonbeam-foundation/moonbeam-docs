@@ -6,8 +6,6 @@ keywords: solidity, ethereum, GMP, wormhole, moonbeam, bridge, connected, contra
 
 # Interacting with the GMP Precompile
 
-![GMP Precompile Moonbeam Banner](/images/builders/pallets-precompiles/precompiles/gmp/gmp-banner.png)
-
 ## Introduction {: #introduction } 
 
 Moonbeam Routed Liquidity (MRL) refers to Moonbeam’s use case as the port parachain for liquidity from origin chains into other Polkadot parachains. This is possible because of general message passing (GMP), where messages with arbitrary data and tokens can be sent across non-parachain blockchains through [chain-agnostic GMP protocols](/builders/interoperability/protocols){target=_blank}. These GMP protocols can combine with [Polkadot's XCM messaging system](/builders/interoperability/xcm/overview){target=_blank} to allow for seamless liquidity routing.  

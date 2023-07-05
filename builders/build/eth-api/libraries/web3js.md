@@ -5,8 +5,6 @@ description: Follow this tutorial to learn how to use the Ethereum Web3 JavaScri
 
 # Web3.js JavaScript Library
 
-![Intro diagram](/images/builders/build/eth-api/libraries/web3js/web3js-banner.png)
-
 ## Introduction {: #introduction } 
 
 [Web3.js](https://web3js.readthedocs.io/){target=_blank} is a set of libraries that allow developers to interact with Ethereum nodes using HTTP, IPC, or WebSocket protocols with JavaScript. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations. Therefore, developers can leverage this compatibility and use the Web3.js library to interact with a Moonbeam node as if they were doing so on Ethereum.

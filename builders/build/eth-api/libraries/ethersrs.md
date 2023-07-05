@@ -5,8 +5,6 @@ description: Learn how to use the Ethereum EthersRS Library to send transactions
 
 # Ethers.rs Rust Library
 
-![Intro diagram](/images/builders/build/eth-api/libraries/ethersrs/ethers-rust-banner.png)
-
 ## Introduction {: #introduction }
 
 The [Ethers.rs](https://ethers.rs){target=_blank} library provides a set of tools to interact with Ethereum Nodes via the Rust programming language that works similar to [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank}. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations. Therefore, developers can leverage this compatibility and use the Ethers.rs library to interact with a Moonbeam node as if they were doing so on Ethereum. You can read more about how to use Ethers.rs on their [official crate documentation](https://docs.rs/crate/ethers/latest){target=_blank}.

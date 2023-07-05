@@ -5,8 +5,6 @@ description: Learn how to send XC-20s to other chains using the X-Tokens Pallet.
 
 # Using the X-Tokens Pallet To Send XC-20s
 
-![X-Tokens Precompile Contracts Banner](/images/builders/interoperability/xcm/xc20/xtokens/xtokens-banner.png)
-
 ## Introduction {: #introduction } 
 
 Building an XCM message for fungible asset transfers is not an easy task. Consequently, there are wrapper functions and pallets that developers can leverage to use XCM features on Polkadot and Kusama.

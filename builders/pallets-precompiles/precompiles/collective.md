@@ -6,8 +6,6 @@ keywords: solidity, ethereum, collective, proposal, council technical, committee
 
 # Interacting with the Collective Precompile
 
-![Precomiled Contracts Banner](/images/builders/pallets-precompiles/precompiles/collective/collective-banner.png)
-
 ## Introduction {: #introduction } 
 
 The Collective Precompile enables a user to directly interact with [Substrate's collective pallet](https://paritytech.github.io/substrate/master/pallet_collective/index.html){target=_blank} directly from a Solidity interface.

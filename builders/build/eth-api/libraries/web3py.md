@@ -5,8 +5,6 @@ description: Follow this tutorial to learn how to use the Ethereum Web3 Python L
 
 # Web3.py Python Library
 
-![Intro diagram](/images/builders/build/eth-api/libraries/web3py/web3py-banner.png)
-
 ## Introduction {: #introduction }
 
 [Web3.py](https://web3py.readthedocs.io/) is a set of libraries that allow developers to interact with Ethereum nodes using HTTP, IPC, or WebSocket protocols with Python. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations. Therefore, developers can leverage this compatibility and use the Web3.py library to interact with a Moonbeam python3 as if they were doing so on Ethereum.

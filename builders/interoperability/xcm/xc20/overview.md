@@ -5,8 +5,6 @@ description:  Learn how to access and interact with an ERC-20 interface for cros
 
 # Overview of XC-20s
 
-![Cross-Chain Assets Precompiled Contracts Banner](/images/builders/interoperability/xcm/xc20/overview/overview-banner.png)
-
 ## Introduction {: #introduction } 
 
 The [Cross-Consensus Message (XCM)](https://wiki.polkadot.network/docs/learn-crosschain){target=_blank} format defines how messages can be sent between interoperable blockchains. This format opens the door to transferring messages and assets (Substrate assets) between Moonbeam/Moonriver and the relay chain or other parachains in the Polkadot/Kusama ecosystems. 

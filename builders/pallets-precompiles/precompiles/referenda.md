@@ -5,8 +5,6 @@ description: Learn how to view and submit proposals on-chain to be put forth for
 
 # Interacting with the Referenda Precompile
 
-![Precomiled Contracts Banner](/images/builders/pallets-precompiles/precompiles/referenda/referenda-banner.png)
-
 ## Introduction {: #introduction }
 
 As a Polkadot parachain and decentralized network, Moonbeam features native on-chain governance that enables stakeholders to participate in the direction of the network. With the introduction of OpenGov, also referred to as Governance v2, the Referenda Pallet allows token holders to get information on existing referenda, submit a proposal to be put forth for referenda, and manage actions related to the Decision Deposit, which is required for a referenda to be decided on. To learn more about Moonbeam's governance system, such as an overview of related terminology, principles, mechanics, and more, please refer to the [Governance on Moonbeam](/learn/features/governance){target=_blank} page. 

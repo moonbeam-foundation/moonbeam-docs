@@ -5,8 +5,6 @@ description: You can deploy a Solidity DApp with a React UI and subgraph on Moon
 
 # Using Scaffold-ETH to Deploy a DApp on Moonbeam
 
-![Scaffold-ETH Banner](/images/builders/build/eth-api/dev-env/scaffold-eth/scaffold-eth-banner.png)
-
 ## Introduction {: #introduction } 
 
 [Scaffold-ETH](https://github.com/scaffold-eth/scaffold-eth){target=_blank} is a collection of commonly used Ethereum development tools to quickly deploy a Solidity smart contract, and launch a DApp with a React frontend and a deployed subgraph. There are premade templates for common DApp types such as NFT’s, ERC-20 tokens, multi-sig wallets, simple DEXs, and so on.

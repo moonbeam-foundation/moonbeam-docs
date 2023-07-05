@@ -5,8 +5,6 @@ description: Learn about how to verify smart contracts on Moonbeam networks usin
 
 # Verify Smart Contracts with Etherscan Plugins
 
-![Etherscan Plugins Banner](/images/builders/build/eth-api/verify-contracts/etherscan-plugins/plugins-banner.png)
-
 ## Introduction {: #introduction } 
 
 Verifying smart contracts is a great way of improving the transparency and security of contracts deployed on Moonbeam. There are a couple of plugins that integrate with Etherscan's contract verification service, including the [`hardhat-etherscan` plugin](https://hardhat.org/plugins/nomiclabs-hardhat-etherscan.html){target=_blank} and the [`truffle-plugin-verify` plugin](https://github.com/rkalis/truffle-plugin-verify){target=_blank}. Both plugins can be used to automate the process of verifying contracts by locally detecting which contracts to verify and which Solidity libraries are required, if any.

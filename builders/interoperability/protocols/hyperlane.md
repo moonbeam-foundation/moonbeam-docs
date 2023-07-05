@@ -5,8 +5,6 @@ description: Learn how to bridge assets, plus other ways you can connect your Mo
 
 # Hyperlane Protocol
 
-![Hyperlane Moonbeam banner](/images/builders/interoperability/protocols/hyperlane/hyperlane-banner.png)
-
 ## Introduction {: #introduction }
 
 [Hyperlane](https://hyperlane.xyz){target=_blank} is a security-modular cross-chain communication protocol for Web3. Hyperlane enables dApp users to interact with any asset or application, on any connected chain, with one click. It supports general asset transfer as well as custom cross-chain messaging.  

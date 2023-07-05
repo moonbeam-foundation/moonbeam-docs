@@ -5,8 +5,6 @@ description: Learn about all the parts of Moonbeam's Nimbus consensus framework 
 
 # Nimbus Parachain Consensus Framework
 
-![Moonbeam Consensus Banner](/images/learn/features/consensus/consensus-banner.png)
-
 ## Introduction {: #introduction } 
 
 Polkadot relies on a [hybrid consensus model](https://wiki.polkadot.network/docs/learn-consensus). In such a scheme, the block finality gadget and the block production mechanism are separate. Consequently, parachains only have to worry about producing blocks and rely on the relay chain to validate the state transitions.

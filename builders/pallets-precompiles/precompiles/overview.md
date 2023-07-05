@@ -5,8 +5,6 @@ description: An overview of the available Solidity precompiles on Moonbeam. Prec
 
 # Overview of the Precompiled Contracts on Moonbeam
 
-![Precompiled Contracts Banner](/images/builders/pallets-precompiles/precompiles/overview/overview-banner.png)
-
 ## Overview {: #introduction } 
 
 On Moonbeam, a precompiled contract is native Substrate code that has an Ethereum-style address and can be called using the Ethereum API, like any other smart contract. The precompiles allow you to call the Substrate runtime directly which is not normally accessible from the Ethereum side of Moonbeam.

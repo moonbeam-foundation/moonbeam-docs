@@ -6,8 +6,6 @@ keywords: staking, substrate, pallet, moonbeam, polkadot
 
 # The Parachain Staking Pallet
 
-![Staking Moonbeam Banner](/images/builders/pallets-precompiles/pallets/staking-banner.png)
-
 ## Introduction {: #introduction }
 
 Moonbeam uses a Delegated Proof of Stake (DPoS) system that determines which collators are eligible to produce blocks based on their total stake in the network. For general information on staking, such as general terminology, staking variables, and more, please refer to the [Staking on Moonbeam](/learn/features/staking){target=_blank} page.

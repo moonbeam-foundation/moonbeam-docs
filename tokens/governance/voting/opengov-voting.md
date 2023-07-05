@@ -5,8 +5,6 @@ description: Follow this guide to learn how to vote and lock your tokens to supp
 
 # How to Vote on a Proposal in Governance v2: OpenGov
 
-![Governance Moonbeam Banner](/images/tokens/governance/voting/voting-banner.png)
-
 ## Introduction {: #introduction } 
 
 Referenda are simple, inclusive, and stake-based voting schemes. Each referendum has a proposal associated with it that suggests an action to take place. In OpenGov, each referendum will have a specified Origin class that the proposal will be executed with and each Origin has its own Track that proposals will process through. Although referenda are completed by a common process, the requirements for approval are Track-specific.

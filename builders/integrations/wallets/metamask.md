@@ -5,8 +5,6 @@ description: This tutorial shows you how to integrate MetaMask into a DApp and a
 
 # Integrate MetaMask into a DApp
 
-![Intro banner](/images/builders/integrations/wallets/metamask/metamask-banner.png)
-
 ## Introduction {: #introduction } 
 
 With the release of MetaMask's [Custom Networks API](https://consensys.net/blog/metamask/connect-users-to-layer-2-networks-with-the-metamask-custom-networks-api/){target=_blank}, users can be prompted to add Moonbeam's Testnet, Moonbase Alpha. 

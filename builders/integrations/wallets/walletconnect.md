@@ -5,8 +5,6 @@ description: Learn how to integrate WalletConnect into a dApp built on any of th
 
 # Integrate WalletConnect into a DApp
 
-![WalletConnect Banner](/images/builders/integrations/wallets/walletconnect/walletconnect-banner.png)
-
 ## Introduction {: #introduction } 
 
 [WalletConnect](https://walletconnect.com/){target=_blank} is an open protocol to communicate securely between wallets and DApps. 

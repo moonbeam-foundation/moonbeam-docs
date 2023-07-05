@@ -5,8 +5,6 @@ description: Learn how to use Waffle and Mars to write, compile, test, and deplo
 
 # Using Waffle & Mars to Deploy to Moonbeam
 
-![Waffle and Mars on Moonbeam](/images/builders/build/eth-api/dev-env/waffle-mars/waffle-mars-banner.png)
-
 ## Introduction {: #introduction }
 
 [Waffle](https://getwaffle.io/){target=_blank} is a library for compiling and testing smart contracts, and [Mars](https://github.com/EthWorks/Mars){target=_blank} is a deployment manager. Together, Waffle and Mars can be used to write, compile, test, and deploy Ethereum smart contracts. Since Moonbeam is Ethereum compatible, Waffle and Mars can be used to deploy smart contracts to a [Moonbeam development node](/builders/get-started/networks/moonbeam-dev){target=_blank} or the [Moonbase Alpha TestNet](/builders/get-started/networks/moonbase){target=_blank}. 

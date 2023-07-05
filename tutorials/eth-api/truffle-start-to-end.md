@@ -5,8 +5,6 @@ description: Learn how to develop, test, and deploy smart contracts with Truffle
 
 # Smart Contract Development with Truffle: From a Local Development Node to Moonbeam MainNet
 
-![Banner Image](/images/tutorials/eth-api/truffle-start-to-end/truffle-banner.png)
-
 _January 10, 2023 | by Erin Shaben_
 
 ## Introduction {: #introduction } 

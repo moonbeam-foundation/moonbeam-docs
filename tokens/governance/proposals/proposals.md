@@ -5,8 +5,6 @@ description: Learn about the roadmap of a proposal and how to propose an action,
 
 # How to Propose an Action in Governance v1
 
-![Governance Moonbeam Banner](/images/tokens/governance/proposals/governance-proposal-banner.png)
-
 ## Introduction {: #introduction } 
 
 A proposal is a submission to the chain in which a token holder suggests for an action to be enacted by the system. Proposals are one of the core elements of the governance system because they are the main tool for stakeholders to propose actions/changes, which other stakeholders then vote on.

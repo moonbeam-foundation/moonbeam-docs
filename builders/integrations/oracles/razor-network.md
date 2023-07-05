@@ -5,8 +5,6 @@ description: How to request data from a Razor Network Oracle in your Moonbeam Et
 
 # Razor Network Oracle
 
-![Razor Network Moonbeam Diagram](/images/builders/integrations/oracles/razor/razor-banner.png)
-
 ## Introduction {: #introduction } 
 
 Developers can now fetch prices from Razor Network’s oracle using a Bridge contract deployed on the Moonbase Alpha TestNet. This Bridge acts as middleware, and events emitted by it are fetched by the Razor Network's oracle infrastructure, sending prices to the Bridge contract.

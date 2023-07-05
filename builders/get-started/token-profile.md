@@ -5,8 +5,6 @@ description: Add token information and create a token profile on Moonscan for ER
 
 # Add Token Information on Moonscan
 
-![Explorer Banner](/images/builders/get-started/explorers/explorers-banner.png)
-
 ## Introduction {: #introduction }
 
 This tutorial will guide you through the process of adding a profile for your ERC-20, ERC-721, or ERC-1155 tokens to [Moonscan](https://moonscan.io){target=_blank}. 

@@ -6,8 +6,6 @@ keywords: solidity, ethereum, batch, transaction, moonbeam, precompiled, contrac
 
 # Interacting with the Batch Precompile
 
-![Precomiled Contracts Banner](/images/builders/pallets-precompiles/precompiles/batch/batch-banner.png)
-
 ## Introduction {: #introduction } 
 
 The batch precompiled contract on Moonbeam allows developers to combine multiple EVM calls into one. 

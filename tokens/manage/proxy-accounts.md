@@ -5,8 +5,6 @@ description: Learn how to set up a proxy account on Moonbeam-based networks so y
 
 # Setting up a Proxy Account
 
-![Setting up a Proxy Account](/images/tokens/manage/proxy-accounts/proxies-banner.png)
-
 ## Introduction {: #introduction } 
 
 Proxy accounts can be set up to perform a limited number of actions on behalf of users and are useful for keeping the underlying accounts safe. They allow users to keep their primary account secured safely in cold storage while enabling the proxy to actively perform functions and participate in the network with the weight of the tokens in the primary account.

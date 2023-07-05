@@ -6,8 +6,6 @@ keywords: solidity, ethereum, author mapping, collator, moonbeam, precompiled, c
 
 # Interacting with the Author Mapping Precompile
 
-![Precomiled Contracts Banner](/images/builders/pallets-precompiles/precompiles/author-mapping/author-mapping-banner.png)
-
 ## Introduction {: #introduction } 
 
 The author mapping precompiled contract on Moonbeam allows collator candidates to map session keys to a Moonbeam address, where block rewards are paid out, through a familiar and easy-to-use Solidity interface. This enables candidates to complete author mapping with a Ledger or any other Ethereum wallet compatible with Moonbeam. However, it is recommended to generate your keys on an air-gapped machine. You can find out more information by referring to the [account requirements section of the Collator Requirements page](/node-operators/networks/collators/requirements/#account-requirements){target=_blank}.

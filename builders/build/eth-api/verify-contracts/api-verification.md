@@ -5,8 +5,6 @@ description: Learn how to verify smart contracts on Moonbeam-based networks usin
 
 # API-based Contract Verification
 
-![API Verification Banner](/images/builders/build/eth-api/verify-contracts/api-verification/api-verification-banner.png)
-
 ## Introduction {: #introduction } 
 
 Verifying smart contracts greatly improves their transparency and security.  Smart contracts deployed on Moonbeam networks can be verified through API-based tools, including Moonscan API and Sourcify. 

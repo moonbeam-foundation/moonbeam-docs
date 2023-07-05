@@ -6,7 +6,6 @@ template: main.html
 
 # Uniswap V2 Swap from Polkadot via XCM
 
-![Banner Image](/images/tutorials/interoperability/uniswapv2-swap-xcm/uniswapv2-swap-xcm-banner.png)
 _February 2, 2023 | by Alberto Viera_
 
 ## Introduction {: #introduction } 

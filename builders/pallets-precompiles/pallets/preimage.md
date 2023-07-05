@@ -6,8 +6,6 @@ keywords: democracy, substrate, pallet, moonbeam, polkadot, preimage
 
 # The Preimage Pallet
 
-![Preimage Moonbeam Banner](/images/builders/pallets-precompiles/pallets/preimage-banner.png)
-
 ## Introduction {: #introduction }
 
 The Preimage Pallet allows for the users and the runtime to store the preimage of a hash on chain. This can be used by other pallets for storing and managing large byte-blobs. For example, token holders can submit a democracy proposal through the Democracy Pallet using a preimage hash. 

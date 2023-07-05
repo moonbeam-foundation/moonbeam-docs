@@ -5,8 +5,6 @@ description: Learn about the transaction fee model used in Moonbeam and the diff
 
 # Calculating Transaction Fees on Moonbeam
 
-![Transaction Fees Banner](/images/builders/get-started/eth-compare/tx-fees-banner.png)
-
 ## Introduction {: #introduction }
 
 Similar to [the Ethereum and Substrate APIs for sending transfers](/builders/get-started/eth-compare/transfers-api/){target=_blank} on Moonbeam, the Substrate and EVM layers on Moonbeam also have distinct transaction fee models that developers should be aware of when they need to calculate and keep track of the transaction fees of their transactions. 

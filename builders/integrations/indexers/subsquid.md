@@ -5,8 +5,6 @@ description: Learn how to use Subsquid, a query node framework for Substrate-bas
 
 # Indexing Moonbeam with Subsquid
 
-![Subsquid Banner](/images/builders/integrations/indexers/subsquid/subsquid-banner.png)
-
 ## Introduction {: #introduction }
 
 [Subsquid](https://subsquid.io){target=_blank} is a query node framework for Substrate-based blockchains. In very simple terms, Subsquid can be thought of as an ETL (extract, transform, and load) tool with a GraphQL server included. It enables comprehensive filtering, pagination, and even full-text search capabilities.

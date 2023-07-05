@@ -5,8 +5,6 @@ description: Learn how to bridge assets, plus other ways you can connect your Mo
 
 # LayerZero Protocol
 
-![LayerZero Moonbeam banner](/images/builders/interoperability/protocols/layerzero/layerzero-banner.png)
-
 ## Introduction {: #introduction }
 
 [LayerZero](https://layerzero.network/){target=_blank} delivers secure omnichain interoperability for Web3. It consists of an Oracle actor and a Relayer actor that work separately to provide secure messages from one chain to another. LayerZero's infrastructure enables dApp users to interact with any asset or application, on any connected chain, with one click.

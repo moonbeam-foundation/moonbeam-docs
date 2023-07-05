@@ -6,8 +6,6 @@ keywords: ethereum, moonbeam, ecrecover, sha256, sha3FIPS256, ripemd-160, Bn128A
 
 # Ethereum MainNet Precompiled Contracts
 
-![Precompiled Contracts Banner](/images/builders/pallets-precompiles/precompiles/eth-mainnet/eth-mainnet-banner.png)
-
 ## Introduction {: #introduction } 
 
 Precompiled contracts in Ethereum are contracts that include complex cryptographic computations, but do not require the overhead of the EVM. There are nine precompiles that can be used within the EVM that handle specific common operations such as hashing and signature schemes.

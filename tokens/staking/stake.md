@@ -5,8 +5,6 @@ description: A guide that shows how you can stake your tokens and earn rewards o
 
 # How to Stake your Tokens
 
-![Staking Moonbeam Banner](/images/tokens/staking/stake/stake-banner.png)
-
 ## Introduction {: #introduction } 
 
 Collator candidates with the highest stake in the network join the active pool of collators (block producers), from which they are selected to offer a block to the relay chain.

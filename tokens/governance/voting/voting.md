@@ -5,8 +5,6 @@ description: Learn how to vote on a proposal and lock your tokens to either supp
 
 # How to Vote on a Proposal in Governance v1
 
-![Governance Moonbeam Banner](/images/tokens/governance/voting/voting-banner.png)
-
 ## Introduction {: #introduction } 
 
 Once a proposal reaches public referenda, token holders can vote on it using their own tokens. Two factors defined the weight a vote has: the number of tokens locked and lock duration (called Conviction). This is to ensure that there is an economic buy-in to the result to prevent vote-selling. Consequently, the longer you are willing to lock your tokens, the stronger your vote will be weighted. You also have the option of not locking tokens at all, but vote weight is drastically reduced.

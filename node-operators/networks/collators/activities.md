@@ -5,8 +5,6 @@ description: Instructions on how to dive in and learn about the related activite
 
 # Collator Activities
 
-![Collator Activities Banner](/images/node-operators/networks/collators/activities/activities-banner.png)
-
 ## Introduction {: #introduction }
 
 Becoming a collator on Moonbeam-based networks require you to meet [bonding requirements](/node-operators/networks/collators/requirements/#bonding-requirements){target=_blank} and join the candidate pool. Once you're in the candidate pool, you can then adjust your self-bond amount or decide to leave the pool at any time.

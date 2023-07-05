@@ -5,8 +5,6 @@ description: Learn how to use Hardhat, an Ethereum development environment, to c
 
 # Using Hardhat to Deploy To Moonbeam
 
-![Hardhat Create Project](/images/builders/build/eth-api/dev-env/hardhat/hardhat-banner.png)
-
 ## Introduction {: #introduction }
 
 [Hardhat](https://hardhat.org/){target=_blank} is an Ethereum development environment that helps developers manage and automate the recurring tasks inherent to building smart contracts and DApps. Hardhat can directly interact with Moonbeam's Ethereum API so it can also be used to deploy smart contracts into Moonbeam.

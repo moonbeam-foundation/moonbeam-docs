@@ -5,8 +5,6 @@ description: Learn how to use SubQuery to index Substrate and EVM chain data for
 
 # Indexing Moonbeam with SubQuery
 
-![SubQuery Banner](/images/builders/integrations/indexers/subquery/subquery-banner.png)
-
 ## Introduction {: #introduction }
 
 [SubQuery](https://subquery.network/){target=_blank} is a data aggregation layer that operates between the layer-1 blockchains (such as Moonbeam and Polkadot) and DApps. This service unlocks blockchain data and transforms it to a queryable state so that it can be used in intuitive applications. It allows DApp developers to focus on their core use case and front end, without needing to waste time on building a custom back end for data processing.

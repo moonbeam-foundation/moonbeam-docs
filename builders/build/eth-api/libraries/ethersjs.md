@@ -5,8 +5,6 @@ description: Follow this tutorial to learn how to use the Ethereum EtherJS Libra
 
 # Ethers.js JavaScript Library
 
-![Intro diagram](/images/builders/build/eth-api/libraries/ethers/ethersjs-banner.png)
-
 ## Introduction {: #introduction } 
 
 The [Ethers.js](https://docs.ethers.io/){target=_blank} library provides a set of tools to interact with Ethereum Nodes with JavaScript, similar to Web3.js. Moonbeam has an Ethereum-like API available that is fully compatible with Ethereum-style JSON RPC invocations. Therefore, developers can leverage this compatibility and use the Ethers.js library to interact with a Moonbeam node as if they were doing so on Ethereum. You can read more about Ethers.js on this [blog post](https://medium.com/l4-media/announcing-ethers-js-a-web3-alternative-6f134fdd06f3){target=_blank}.

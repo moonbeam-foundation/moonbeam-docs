@@ -5,8 +5,6 @@ description: Learn how to bridge assets, set up a relayer, and other ways you ca
 
 # Wormhole Network
 
-![Wormhole Moonbeam banner](/images/builders/interoperability/protocols/wormhole/wormhole-banner.png)
-
 ## Introduction
 
 [Wormhole](https://wormhole.com/){target=_blank} is a protocol that validates and secures cross-chain communication for Web3, through messages known as verifiable action approvals (VAAs). Wormhole's infrastructure enables dApp users to interact with any asset or application, on any connected chain, with one click. Powered by a multi-signature schemed protocol and 19 signing [guardians](https://book.wormhole.com/wormhole/5_guardianNetwork.html){target=_blank}, Wormhole allows dApps to pass arbitrary messages across chains.

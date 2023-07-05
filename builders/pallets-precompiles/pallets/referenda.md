@@ -6,8 +6,6 @@ keywords: democracy, substrate, pallet, moonbeam, polkadot, voting, vote, refere
 
 # The Referenda Pallet
 
-![Referenda Moonbeam Banner](/images/builders/pallets-precompiles/pallets/referenda-banner.png)
-
 ## Introduction {: #introduction }
 
 The Referenda Pallet allows token holders to make, delegate, and manage Conviction-weighted votes on referenda. 

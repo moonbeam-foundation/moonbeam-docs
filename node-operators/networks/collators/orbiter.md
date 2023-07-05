@@ -5,8 +5,6 @@ description: Learn about the Moonbeam Orbiter Program for collators including th
 
 # Moonbeam Orbiter Program
 
-![Collator Moonbeam Banner](/images/node-operators/networks/collators/collator-banner.png)
-
 ## Introduction {: #introduction }
 
 The Moonbeam Foundation is announcing a limited trial of the orbiter program. Similar to the [Kusama 1000 validators program](https://thousand-validators.kusama.network/){target=_blank}, this program allows collators to participate in the diversity and security of the network even if they do not have enough funds or backing to otherwise be in the active set. This program was developed with the input from the community.

@@ -5,8 +5,6 @@ description: How to run a full Parachain node so you can have your own RPC endpo
 
 # Run a Node on Moonbeam Using Docker
 
-![Full Node Moonbeam Banner](/images/node-operators/networks/run-a-node/docker/docker-banner.png)
-
 ## Introduction {: #introduction } 
 
 Running a full node on a Moonbeam-based network allows you to connect to the network, sync with a bootnode, obtain local access to RPC endpoints, author blocks on the parachain, and more.

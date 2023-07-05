@@ -5,8 +5,6 @@ description: Learn how to connect and use your Trezor hardware wallet to sign tr
 
 # Interacting with Moonbeam Using Trezor Hardware Wallet
 
-![Intro diagram](/images/tokens/connect/trezor/trezor-banner.png)
-
 ## Introduction {: #introduction } 
 
 Hardware wallets provide a safer way to store crypto funds because the private key (used for signing transactions) is stored offline. Trezor offers two hardware wallet solutions at the time of writing: Trezor One and Trezor Model T.

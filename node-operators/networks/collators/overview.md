@@ -5,8 +5,6 @@ description: Instructions on how to dive in and become a collator in the Moonbea
 
 # Run a Collator on Moonbeam
 
-![Collator Moonbeam Banner](/images/node-operators/networks/collators/collator-banner.png)
-
 ## Introduction {: #introduction } 
 
 Collators are members of the network that maintain the parachains they take part in. They run a full node (for both their particular parachain and the relay chain), and they produce the state transition proof for relay chain validators.

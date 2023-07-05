@@ -5,8 +5,6 @@ description: A description of the main differences that developers need to under
 
 # Balance Transfers on Moonbeam
 
-![Moonbeam v Ethereum - Transfers API Banner](/images/builders/get-started/eth-compare/transfers-api-banner.png)
-
 ## Introduction {: #introduction }
 
 While Moonbeam strives to be compatible with Ethereum's Web3 API and EVM, there are some important Moonbeam differences that developers should know and understand in terms of balance transfers of the base network token (for example, GLMR and MOVR).

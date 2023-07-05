@@ -5,8 +5,6 @@ description: Learn how to use the batch precompile on Moonbeam to batch an appro
 
 # Use the Batch Precompile to Approve and Swap Tokens in a Single Transaction
 
-![Banner Image](/images/tutorials/eth-api/batch-approve-swap/batch-banner.png)
-
 _December 21, 2022 | by Erin Shaben_
 
 ## Introduction {: #introduction } 

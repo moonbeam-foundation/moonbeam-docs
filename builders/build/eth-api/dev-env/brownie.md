@@ -5,8 +5,6 @@ description: Use Brownie, an Ethereum development environment, to compile, deplo
 
 # Using Brownie to Deploy To Moonbeam
 
-![Brownie banner](/images/builders/build/eth-api/dev-env/brownie/brownie-banner.png)
-
 ## Introduction {: #introduction } 
 
 [Brownie](https://eth-brownie.readthedocs.io/){target=_blank} is an Ethereum development environment that helps Python developers manage and automate the recurring tasks inherent to building smart contracts and DApps. Brownie can directly interact with Moonbeam's Ethereum API so it can also be used to deploy smart contracts on Moonbeam.

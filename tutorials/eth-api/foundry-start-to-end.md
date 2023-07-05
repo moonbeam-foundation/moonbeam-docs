@@ -5,8 +5,6 @@ description: Follow a step-by-step tutorial on how to use Foundry to build a pro
 
 # Using Foundry Start to End with Moonbeam
 
-![Banner Image](/images/tutorials/eth-api/foundry-start-to-end/foundry-banner.png)
-
 _January 10, 2023 | by Jeremy Boetticher_
 
 ## Introduction {: #introduction } 

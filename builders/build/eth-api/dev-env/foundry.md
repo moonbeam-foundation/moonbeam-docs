@@ -5,8 +5,6 @@ description: Learn how to use Foundry, an Ethereum development environment, to c
 
 # Using Foundry to Deploy To Moonbeam
 
-![Foundry Create Project](/images/builders/build/eth-api/dev-env/foundry/foundry-banner.png)
-
 ## Introduction {: #introduction }
 
 [Foundry](https://github.com/foundry-rs/foundry){target=_blank} is an Ethereum development environment written in Rust that helps developers manage dependencies, compile projects, run tests, deploy contracts, and interact with blockchains from the command line. Foundry can directly interact with Moonbeam's Ethereum API so it can be used to deploy smart contracts into Moonbeam.

@@ -5,8 +5,6 @@ description: Learn about cross chain assets that can be minted and burned on a M
 
 # Mintable XC-20s
 
-![Cross-Chain Assets Precompiled Contracts Banner](/images/builders/interoperability/xcm/xc20/mintable-xc20/mintable-xc20-banner.png)
-
 ## Introduction {: #introduction } 
 
 As covered in the [XC-20 Overview](/builders/interoperability/xcm/xc20/overview){target=_blank}, there are two [types of XC-20s](/builders/interoperability/xcm/xc20/overview#types-of-xc-20s){target=_blank}: [external](/builders/interoperability/xcm/xc20/overview/#external-xc20s){target=_blank} and mintable. The key distinction between external and mintable XC-20s, is that mintable XC-20s represent assets that are minted/burned in Moonbeam directly, but have native XCM interoperability features. Also, mintable XC-20s can be transferred to any other parachain as long as it is registered as an XCM asset on that chain, as covered in the [XCM overview](/builders/interoperability/xcm/overview/){target=_blank} page. In contrast, external XC-20s represent assets that are locked in Moonbeam's sovereign account in either the relay chain or other parachains, and are registered as such on Moonbeam. This guide will cover mintable XC-20s.

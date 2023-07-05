@@ -5,8 +5,6 @@ description: Use Docker to spin up and run your own Graph node to provide indexi
 
 # Running a Graph Node on Moonbeam
 
-![The Graph Node on Moonbeam](/images/node-operators/indexer-nodes/the-graph/the-graph-node-banner.png)
-
 ## Introduction {: #introduction } 
 
 A [Graph](https://thegraph.com/){target=_blank} Node sources events from a blockchain to deterministically update a data store that can be then queried via a GraphQL endpoint.

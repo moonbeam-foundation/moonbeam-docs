@@ -5,7 +5,6 @@ description: Learn how to develop, test, and deploy smart contracts with Hardhat
 
 # Hardhat Developer Workflow
 
-![Learn about the typical Hardhat Ethereum Developer workflow from start to finish.](/images/tutorials/eth-api/hardhat-start-to-end/hardhat-banner.png)
 _January 16, 2023 | by Kevin Neilson & Erin Shaben_
 
 ## Introduction {: #introduction } 

@@ -5,8 +5,6 @@ description: Learn how to take the first necessary step to submit a proposal on-
 
 # Interacting with the Preimage Precompile
 
-![Precomiled Contracts Banner](/images/builders/pallets-precompiles/precompiles/preimage/preimage-banner.png)
-
 ## Introduction {: #introduction }
 
 As a Polkadot parachain and decentralized network, Moonbeam features native on-chain governance that enables stakeholders to participate in the direction of the network. With the introduction of OpenGov, also referred to as Governance v2, the Preimage Pallet allows token holders to take the first step towards creating a proposal by submitting the preimage, which is the action to be carried out in the proposal, on-chain. The hash of the preimage is required to submit the proposal. To learn more about Moonbeam's governance system, such as an overview of related terminology, the roadmap of a proposal, and more, please refer to the [Governance on Moonbeam](/learn/features/governance){target=_blank} page. 

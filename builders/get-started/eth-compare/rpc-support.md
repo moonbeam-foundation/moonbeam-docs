@@ -5,8 +5,6 @@ description: A description of the main differences that Ethereum developers need
 
 # Supported Ethereum RPC Methods
 
-![Moonbeam v Ethereum - RPC Support Banner](/images/builders/get-started/eth-compare/rpc-support-banner.png)
-
 ## Introduction {: #introduction }
 
 While Moonbeam strives to be compatible with Ethereum's Web3 API and EVM, there are some important Moonbeam differences that developers should know and understand in terms of the [Ethereum API JSON-RPC](https://eth.wiki/json-rpc/API#json-rpc-methods){target=_blank} support.

@@ -6,8 +6,6 @@ keywords: solidity, ethereum, call permit, permit, gasless transaction, moonbeam
 
 # Interacting with the Call Permit Precompile
 
-![Precomiled Contracts Banner](/images/builders/pallets-precompiles/precompiles/call-permit/call-permit-banner.png)
-
 ## Introduction {: #introduction } 
 
 The Call Permit Precompile on Moonbeam allows a user to sign a permit, an [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=_blank} signed message, for any EVM call and it can be dispatched by anyone or any smart contract. It is similar to the [ERC-20 Permit Solidity Interface](/builders/interoperability/xcm/xc20/overview/#the-erc20-permit-interface){target=_blank}, except it applies to any EVM call instead of approvals only. 

@@ -5,8 +5,6 @@ description: In this step-by-step tutorial, you'll learn about connected contrac
 
 # Building a Cross-Chain DAO with OpenZeppelin's Governor Contract
 
-![Banner Image](/images/tutorials/interoperability/cross-chain-dao/cross-chain-dao-banner.png)
-
 _March 24, 2023 | by Jeremy Boetticher_
 
 ## Introduction {: #introduction } 

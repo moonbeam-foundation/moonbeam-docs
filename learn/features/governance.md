@@ -5,8 +5,6 @@ description: As a Polkadot parachain, Moonbeam uses an on-chain governance syste
 
 # Governance on Moonbeam
 
-![Governance Moonbeam Banner](/images/learn/features/governance/governance-overview-banner.png)
-
 ## Introduction {: #introduction } 
 
 The goal of Moonbeam’s governance mechanism is to advance the protocol according to the desires of the community. In that shared mission, the governance process seeks to include all token holders. Any and all changes to the protocol must go through a referendum so that all token holders, weighted by stake, can have input on the decision.

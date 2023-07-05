@@ -5,8 +5,6 @@ description: Learn about the requirements for becoming and maintaining a collato
 
 # Collator Requirements
 
-![Collator Requirements Banner](/images/node-operators/networks/collators/requirements-banner.png)
-
 ## Introduction {: #introduction } 
 
 There are some requirements to keep in mind before diving into running a collator node. Primarily, you need to follow the community guidelines and meet the technical requirements. You should have top of the line hardware, securely created and stored accounts, meet bonding requirements, and fill out a collator questionnaire.

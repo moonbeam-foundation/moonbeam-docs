@@ -5,8 +5,6 @@ description: This page contains information on Moonbeam custom API endpoints and
 
 # Moonbeam Custom API 
 
-![Moonbeam Custom API](/images/builders/build/moonbeam-custom-api/moonbeam-custom-api-banner.png)
-
 ## Finality RPC Endpoints {: #finality-rpc-endpoints }
 
 Moonbeam node has added support for two custom JSON RPC endpoints, `moon_isBlockFinalized` and `moon_isTxFinalized`, that are useful for checking whether an on-chain event is finalized. The information on these two endpoints are as follows:

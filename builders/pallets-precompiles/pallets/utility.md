@@ -6,8 +6,6 @@ keywords: utility, batch, substrate, pallet, moonbeam, polkadot
 
 # The Utility Pallet
 
-![Utility Moonbeam Banner](/images/builders/pallets-precompiles/pallets/utility/utility-banner.png)
-
 ## Introduction {: #introduction }
 
 Through Substrate's utility pallet, users on Moonbeam can include multiple calls into a single transaction through the two available batch extrinsics and use derivative accounts to send calls.

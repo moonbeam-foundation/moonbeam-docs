@@ -6,8 +6,6 @@ keywords: solidity, ethereum, proxy, moonbeam, precompiled, contracts, substrate
 
 # Interacting with the Proxy Precompile
 
-![Proxy Moonbeam Banner](/images/builders/pallets-precompiles/precompiles/proxy/proxy-banner.png)
-
 ## Introduction {: #introduction } 
 
 The Proxy Precompile on Moonbeam allows accounts to set proxy accounts that can perform specific limited actions on their behalf, such as governance, staking, or balance transfers.

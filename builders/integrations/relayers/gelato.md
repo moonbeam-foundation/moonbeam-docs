@@ -5,8 +5,6 @@ description: Use Gelato to automate your smart contract interactions and outsour
 
 # Getting Started with Gelato
 
-![Gelato Banner](/images/builders/integrations/relayers/gelato/gelato-banner.png)
-
 ## Introduction {: #introduction }
 
 [Gelato Network](https://www.gelato.network/){target=_blank} is a decentralized automation network for Web3, enabling developers to automate & relay arbitrary smart contract executions on and across EVM-based compatible blockchains. The network relies on a broad set of transaction relayers called [executors](https://docs.gelato.network/introduction/executor-operators){target=_blank} that are rewarded for the infrastructure and automation services they provide. Gelato is designed to be a more robust, decentralized, and cost-efficient alternative to running your own bot infrastructure.

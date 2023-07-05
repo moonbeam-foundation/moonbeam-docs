@@ -5,8 +5,6 @@ description: Use one of the supported API providers to connect to a public endpo
 
 # Network Endpoints
 
-![API Providers banner](/images/builders/get-started/endpoints/endpoints-banner.png)
-
 ## Public Endpoints {: #public-endpoints }
 
 Moonbeam-based networks have two endpoints available for users to connect to: one for HTTPS and one for WSS. 

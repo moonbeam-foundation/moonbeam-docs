@@ -5,8 +5,6 @@ description: The main differences that Ethereum developers should understand in 
 
 # Moonbeam Consensus & Finality
 
-![Moonbeam v Ethereum - Consensus and Finality Banner](/images/builders/get-started/eth-compare/consensus-finality-banner.png)
-
 ## Introduction {: #introduction }
 
 While Moonbeam strives to be compatible with Ethereum's Web3 API and EVM, there are some important Moonbeam differences that developers should know and understand in terms of consensus and finality.

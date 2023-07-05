@@ -5,8 +5,6 @@ description: How you can list your Moonbeam or Moonriver project on State of the
 
 # How to List your Project on State of the DApps
  
-![State of the DApps banner image](/images/learn/dapps-list/state-of-the-dapps/state-of-the-dapps-banner.png)
-
 ## Introduction to State of the DApps {: #introduction-to-state-of-the-dapps }
 
 [State of the DApps](https://www.stateofthedapps.com/){target=_blank} was started in 2016 by Joris Bontje to provide a convenient listing of all of the smart contracts or decentralized applications deployed to Ethereum. It has grown tremendously since then, supporting multiple chains and showcasing a wealth of information. In their own words, *“Whether you are looking for new users, testers, concept feedback, partners, or investors, submitting a DApp to this definitive registry will help your project gain traction.”*

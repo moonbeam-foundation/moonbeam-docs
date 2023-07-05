@@ -5,8 +5,6 @@ description: Learn how to build APIs, called subgraphs, to store and fetch on-ch
 
 # Using The Graph on Moonbeam
 
-![The Graph on Moonbeam](/images/builders/integrations/indexers/the-graph/the-graph-banner.png)
-
 ## Introduction {: #introduction } 
 
 Indexing protocols organize information in a way that applications can access it more efficiently. For example, Google indexes the entire internet to provide information rapidly when you search for something.

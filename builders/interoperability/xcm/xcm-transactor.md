@@ -5,8 +5,6 @@ description: Learn how to perform remote XCM execution from Moonbeam to other ch
 
 # Using the XCM Transactor Pallet for Remote Executions
 
-![XCM Transactor Precompile Contracts Banner](/images/builders/interoperability/xcm/xcm-transactor/xcmtransactor-banner.png)
-
 ## Introduction {: #introduction }
 
 XCM messages are comprised of a [series of instructions](/builders/interoperability/xcm/overview/#xcm-instructions){target=_blank} that are executed by the Cross-Consensus Virtual Machine (XCVM). Combinations of these instructions result in predetermined actions such as cross-chain token transfers and, more interestingly, remote cross-chain execution.

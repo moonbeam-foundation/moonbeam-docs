@@ -5,8 +5,6 @@ description: Moonbeam now uses the Ethereum-based H160 account system natively a
 
 # Unified Accounts
 
-![Intro diagram](/images/learn/features/unified-accounts/unified-accounts-banner.png)
-
 ## Introduction {: #introduction } 
 
 As Moonbeam is designed to be an Ethereum-compatible parachain on Polkadot, the underlying account system replaces the default Substrate-style accounts and keys with Ethereum-style accounts and keys. As a result, you can interact with your Moonbeam account using [MetaMask](/tokens/connect/metamask){target=_blank} and Ethereum tools you may already be familiar with, such as [Remix](/builders/build/eth-api/dev-env/remix){target=_blank} and [Hardhat](/builders/build/eth-api/dev-env/hardhat){target=_blank}.

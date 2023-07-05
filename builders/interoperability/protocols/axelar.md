@@ -5,8 +5,6 @@ description: Learn how to bridge assets, plus other ways you can connect your Mo
 
 # Axelar Network
 
-![Axelar Moonbeam banner](/images/builders/interoperability/protocols/axelar/axelar-banner.png)
-
 ## Introduction {: #introduction }
 
 [Axelar](https://axelar.network/){target=_blank} delivers secure cross-chain communication for Web3. Axelar's infrastructure enables dApp users to interact with any asset or application, on any connected chain, with one click. Powered by a permissionless Proof-of-Stake validator set, Axelar network allows dApps to pass arbitrary messages across chains using Turing-complete calls.
