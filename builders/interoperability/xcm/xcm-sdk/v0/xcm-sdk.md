@@ -1,9 +1,9 @@
 ---
-title: XCM SDK
+title: XCM SDK v0
 description: Use the Moonbeam XCM SDK to easily deposit and withdraw cross chain assets to Moonbeam from Polkadot and other parachains in the ecosystem.
 ---
 
-# Using the Moonbeam XCM SDK
+# Using the Moonbeam XCM SDK: v0
 
 ## Introduction {: #introduction }
 
@@ -11,7 +11,9 @@ The Moonbeam XCM SDK enables developers to easily deposit and withdraw assets to
 
 The XCM SDK offers simple helper functions like `deposit` and `withdraw`, that provide a very simple interface to execute XCM transfers between chains in the Polkadot/Kusama ecosystem. In addition, the XCM config package allows any parachain project to add their information in a standard way, so they can be immediately supported by the XCM SDK.
 
-For an overview of the available methods and interfaces in the Moonbeam XCM SDK, please refer to the [Reference](/builders/interoperability/xcm/xcm-sdk/reference){target=_blank} page.
+For an overview of the available methods and interfaces in the Moonbeam XCM SDK, please refer to the [Reference for v0](/builders/interoperability/xcm/xcm-sdk/v0/reference){target=_blank} page.
+
+If you're using v1.x, please refer to the [SDK guides specific to v1](/builders/interoperability/xcm/xcm-sdk/v1/){target=_blank}.
 
 The examples in this guide are shown on Moonbeam, but can be adapted to be used on Moonriver or Moonbase Alpha.
 
@@ -42,7 +44,7 @@ npm i @polkadot/api-augment @polkadot/types @polkadot/util @polkadot/util-crypto
 ```
 
 !!! note
-    There is a [known issue](https://github.com/polkadot-js/api/issues/4315){target=_blank} when using the Moonbeam XCM packages alongside Polkadot.s with Node.js (JavaScript) that will cause package conflict warnings to appear in the console. Using TypeScript is recommended.
+    There is a [known issue](https://github.com/polkadot-js/api/issues/4315){target=_blank} when using the Moonbeam XCM packages alongside Polkadot.js with Node.js (JavaScript) that will cause package conflict warnings to appear in the console. Using TypeScript is recommended.
 
 ### Creating Signers {: creating-signers }
 
@@ -73,7 +75,7 @@ To create a signer for Ethers.js and Polkadot.js, you can refer to the following
         name: providerRPC.moonbeam.name,
       }
     );
-    const ethersSigner = new ethers.Wallet('INSERT-PRIVATE-KEY', provider);
+    const ethersSigner = new ethers.Wallet('INSERT_PRIVATE_KEY', provider);
 
     // Set up Polkadot keyring
     const keyring = new Keyring({ type: 'sr25519' });
@@ -101,7 +103,7 @@ To create a signer for Ethers.js and Polkadot.js, you can refer to the following
         name: providerRPC.moonriver.name,
       }
     );
-    const ethersSigner = new ethers.Wallet('INSERT-PRIVATE-KEY', provider);
+    const ethersSigner = new ethers.Wallet('INSERT_PRIVATE_KEY', provider);
 
     // Set up Polkadot keyring
     const keyring = new Keyring({ type: 'sr25519' });
@@ -129,7 +131,7 @@ To create a signer for Ethers.js and Polkadot.js, you can refer to the following
         name: providerRPC.moonbase.name,
       }
     );
-    const ethersSigner = new ethers.Wallet('INSERT-PRIVATE-KEY', provider);
+    const ethersSigner = new ethers.Wallet('INSERT_PRIVATE_KEY', provider);
 
     // Set up Polkadot keyring
     const keyring = new Keyring({ type: 'sr25519' });
@@ -168,8 +170,8 @@ If you intend to support a specific wallet, you can pass a signer into the `init
     ```js
     import { init } from '@moonbeam-network/xcm-sdk';
     const { moonbeam } = init({
-      ethersSigner: 'INSERT-ETHERS-SIGNER',
-      polkadotSigner: 'INSERT-POLKADOT-SIGNER'
+      ethersSigner: 'INSERT_ETHERS_SIGNER',
+      polkadotSigner: 'INSERT_POLKADOT_SIGNER'
     })
     ```
 
@@ -178,8 +180,8 @@ If you intend to support a specific wallet, you can pass a signer into the `init
     ```js
     import { init } from '@moonbeam-network/xcm-sdk';
     const { moonriver } = init({
-      ethersSigner: 'INSERT-ETHERS-SIGNER',
-      polkadotSigner: 'INSERT-POLKADOT-SIGNER'
+      ethersSigner: 'INSERT_ETHERS_SIGNER',
+      polkadotSigner: 'INSERT_POLKADOT_SIGNER'
     })
     ```
 
@@ -188,14 +190,14 @@ If you intend to support a specific wallet, you can pass a signer into the `init
     ```js
     import { init } from '@moonbeam-network/xcm-sdk';
     const { moonbase } = init({
-      ethersSigner: 'INSERT-ETHERS-SIGNER',
-      polkadotSigner: 'INSERT-POLKADOT-SIGNER'
+      ethersSigner: 'INSERT_ETHERS_SIGNER',
+      polkadotSigner: 'INSERT_POLKADOT_SIGNER'
     })
     ```
 
 ## Using the SDK Interfaces {: #using-the-api }
 
-The Moonbeam SDK provides an API which includes a series of [interfaces](/builders/interoperability/xcm/xcm-sdk/reference/#core-sdk-interfaces){target=_blank} to get asset information for each of the supported assets, chain information for the initialized network, and functions to enable deposits, withdrawals, and subscription to balance information.
+The Moonbeam SDK provides an API which includes a series of [interfaces](/builders/interoperability/xcm/xcm-sdk/v0/reference/#core-sdk-interfaces){target=_blank} to get asset information for each of the supported assets, chain information for the initialized network, and functions to enable deposits, withdrawals, and subscription to balance information.
 
 Make sure you have [intialized](#initialization) the Moonbeam network you want to interact with first.
 
@@ -346,7 +348,7 @@ Here, the units per second refer to units of token (in this case Wei) that is ch
 
 ## Using the SDK Methods {: #using-the-sdk-methods }
 
-The Moonbeam SDK provides an API that includes [functions](/builders/interoperability/xcm/xcm-sdk/reference/#core-sdk-methods){target=_blank} which enable deposits, withdrawals, and subscription to balance information, in addition to a few utility functions.
+The Moonbeam SDK provides an API that includes [functions](/builders/interoperability/xcm/xcm-sdk/v0/reference/#core-sdk-methods){target=_blank} which enable deposits, withdrawals, and subscription to balance information, in addition to a few utility functions.
 
 Make sure you have [intialized](#initialization) the Moonbeam network you want to interact with first. You'll also need to make sure you've [created signers](#creating-signers) in order to sign and send deposit and withdraw transfer data.
 
@@ -380,7 +382,7 @@ async function deposit() {
   );
 
   const { asset, sourceBalance, source, min, send } = await from(polkadot).get(
-    'INSERT-MOONBEAM-ADDRESS',
+    'INSERT_MOONBEAM_ADDRESS',
     polkadotKeyring, // See the Get section for other accepted arguments
   );
 
@@ -391,7 +393,7 @@ async function deposit() {
     ).toFixed()}. Minimum transferable amount is: ${toDecimal(min, asset.decimals).toFixed()}`,
   );
 
-  await send('INSERT-AMOUNT', (event) => console.log(event));
+  await send('INSERT_AMOUNT', (event) => console.log(event));
 }
 
 deposit();
@@ -445,8 +447,8 @@ const polkadot = ChainKey.Polkadot;
 
 const { from } = moonbeam.deposit(dot);
 const response = await from(polkadot).get(
-  'INSERT-MOONBEAM-ADDRESS',
-  'INSERT-POLKADOT-ADDRESS',
+  'INSERT_MOONBEAM_ADDRESS',
+  'INSERT_POLKADOT_ADDRESS',
 );
 ```
 
@@ -462,8 +464,8 @@ const polkadot = ChainKey.Polkadot;
 
 const { from } = moonbeam.deposit(dot);
 const response = await from(polkadot).get(
-  'INSERT-MOONBEAM-ADDRESS',
-  'INSERT-POLKADOT-ADDRESS',
+  'INSERT_MOONBEAM_ADDRESS',
+  'INSERT_POLKADOT_ADDRESS',
   { polkadotSigner },
 );
 ```
@@ -481,7 +483,7 @@ const polkadot = ChainKey.Polkadot;
 
 const { from } = moonbeam.deposit(dot);
 const response = await from(polkadot).get(
-  'INSERT-MOONBEAM-ADDRESS',
+  'INSERT_MOONBEAM_ADDRESS',
   polkadotKeyring,
 )
 ```
@@ -571,11 +573,11 @@ async function getDepositFee() {
 
   const { from } = moonbeam.deposit(dot);
   const { asset, getFee } = await from(polkadot).get(
-    'INSERT-MOONBEAM-ADDRESS',
+    'INSERT_MOONBEAM_ADDRESS',
     polkadotKeyring, // See the Get section for other accepted arguments
   );
 
-  const fee = await getFee('INSERT-AMOUNT'));
+  const fee = await getFee('INSERT_AMOUNT'));
   console.log(`Fee to deposit is estimated to be: ${toDecimal(fee, asset.decimals).toFixed()} ${dot}`);
 }
 
@@ -611,7 +613,7 @@ async function withdraw() {
 
   const { asset, destination, destinationBalance, min, send } = await to(
     polkadot,
-  ).get('INSERT-POLKADOT-ADDRESS', {
+  ).get('INSERT_POLKADOT_ADDRESS', {
     ethersSigner: signer, // Only required if you didn't pass the signer in on initialization
   });
 
@@ -622,7 +624,7 @@ async function withdraw() {
     ).toFixed()}. Minimum transferable amount is: ${toDecimal(min, asset.decimals).toFixed()}`,
   );
 
-  await send('INSERT-AMOUNT', (event) => console.log(event));
+  await send('INSERT_AMOUNT', (event) => console.log(event));
 }
 
 withdraw();
@@ -676,7 +678,7 @@ const polkadot = ChainKey.Polkadot;
 const { to } = moonbeam.deposit(dot);
 const response =  await to(
     polkadot,
-  ).get('INSERT-POLKADOT-ADDRESS',
+  ).get('INSERT_POLKADOT_ADDRESS',
   { ethersSigner: signer } // Only required if you didn't pass the signer in on initialization
 )
 ```
@@ -766,11 +768,11 @@ async function getWithdrawFee() {
 
   const { to } = moonbeam.withdraw(dot);
   const { asset, getFee } = await from(polkadot).get(
-    'INSERT-POLKADOT-ADDRESS',
+    'INSERT_POLKADOT_ADDRESS',
     { ethersSigner }, // Only required if you didn't pass the signer in on initialization
   );
 
-  const fee = await getFee('INSERT-AMOUNT');
+  const fee = await getFee('INSERT_AMOUNT');
   console.log(`Fee to deposit is estimated to be: ${toDecimal(fee, moonbeam.moonChain.decimals).toFixed()} ${moonbeam.moonAsset.originSymbol}`);
 }
 
@@ -784,26 +786,26 @@ To subscribe to balance information and get a given account's latest balance for
 === "Moonbeam"
 
     ```js
-    moonbeam.subscribeToAssetsBalanceInfo('INSERT-ADDRESS', cb)
+    moonbeam.subscribeToAssetsBalanceInfo('INSERT_ADDRESS', cb)
     ```
 
 === "Moonriver"
 
     ```js
-    moonriver.subscribeToAssetsBalanceInfo('INSERT-ADDRESS', cb)
+    moonriver.subscribeToAssetsBalanceInfo('INSERT_ADDRESS', cb)
     ```
 
 === "Moonbase Alpha"
 
     ```js
-    moonbase.subscribeToAssetsBalanceInfo('INSERT-ADDRESS', cb)
+    moonbase.subscribeToAssetsBalanceInfo('INSERT_ADDRESS', cb)
     ```
 
 The following example retrieves the balance information for a given account on Moonbeam and prints the balance for each of the supported assets to the console:
 
 ```js
 const unsubscribe = await moonbeam.subscribeToAssetsBalanceInfo(
-  'INSERT-MOONBEAM-ADDRESS',
+  'INSERT_MOONBEAM_ADDRESS',
   (balances) => {
     balances.forEach(({ asset, balance, origin }) => {
       console.log(

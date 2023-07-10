@@ -126,7 +126,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 - **maxTopDelegationsPerCandidate**() - returns the maximum number of top delegations per candidate 
 - **minBlocksPerRound**() - returns the minimum number of blocks per round
 - **minCandidateStk**() - returns the minimum stake required for a candidate to be a collator candidate
-- **minCollatorStk**() - returns the minimum stake required for a candidate to be in the active set 
+- **minCollatorStk**() - *deprecated as of runtime 2400* - returns the minimum stake required for a candidate to be in the active set
 - **minDelegation**() - returns the minimum delegation amount
 - **minDelegatorStk**() - returns the minimum stake for an account to be a delegator
 - **minSelectedCandidates**() - returns the minimum number of selected candidates in the active set every round

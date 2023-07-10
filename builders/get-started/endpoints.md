@@ -32,6 +32,7 @@ You can create your own endpoint suitable for development or production use usin
 - [1RPC](#1rpc)
 - [Blast](#blast)
 - [BlockSpaces](#blockspaces)
+- [Dwellir](#dwellir)
 - [GetBlock](#getblock)
 - [OnFinality](#onfinality)
 - [Pocket Network](#pokt)
@@ -74,6 +75,16 @@ To get started, you'll need to head to [BlockSpaces](https://www.blockspaces.com
 
  ![BlockSpaces](/images/builders/get-started/endpoints/endpoints-3.png)
 
+### Dwellir {: #dwellir }
+
+[Dwellir](https://www.dwellir.com/){target=_blank} is a blockchain operation service that ensures global scalability, low latency, and a 99.99% uptime guarantee, providing fast and reliable node operations wherever your business stands. The public endpoint service is geographically distributed bare metal servers globally. As the service is public, there are no sign-up or API keys to manage.
+
+To get started with a developer endpoint or dedicated node, you'll need to contact us:
+
+1. Visit [Dwellir](https://www.dwellir.com/contact){target=_blank}
+2. Submit your **email** and your node request
+
+![Dwellir](/images/builders/get-started/endpoints/endpoints-4.png)
 
 ### GetBlock {: #getblock }
 
@@ -87,7 +98,7 @@ Creating a new API key is simple, all you have to do is:
 2. Enter a name for your API key
 3. Click **Create** to generate your API key
 
-![GetBlock](/images/builders/get-started/endpoints/endpoints-4.png)
+![GetBlock](/images/builders/get-started/endpoints/endpoints-5.png)
 
 ### OnFinality {: #onfinality }
 
@@ -99,7 +110,7 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 2. Select the network from the dropdown
 3. Your custom API endpoint will be generated automatically
 
-![OnFinality](/images/builders/get-started/endpoints/endpoints-5.png)
+![OnFinality](/images/builders/get-started/endpoints/endpoints-6.png)
 
 ### Pocket Network {: #pokt }
 
@@ -112,7 +123,7 @@ To get your own endpoint, go to [Pocket Network](https://mainnet.portal.pokt.net
 3. Enter the name of your DApp and select your corresponding network
 4. Your new endpoint will be generated and displayed for you in the following app screen
 
-![Pocket Network](/images/builders/get-started/endpoints/endpoints-6.png)
+![Pocket Network](/images/builders/get-started/endpoints/endpoints-7.png)
 
 You don't have to generate a new DApp for every endpoint! You can add a new chain to your preexisting DApp:  
 

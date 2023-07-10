@@ -41,12 +41,6 @@ The precompile is located at the following address:
 - **addressOf**(*bytes32* nimbusId) - retrieves the address associated to a given Nimbus ID. If the Nimbus ID is unknown, it returns `0`
 - **keysOf**(*bytes32* nimbusId) - retrieves the keys associated to the given Nimbus ID. If the Nimbus ID is unknown, it returns empty bytes
 
-The following methods are **deprecated**, but will still exist for backwards compatibility:
-
- - **addAssociation**(*bytes32* nimbusId) — maps your author ID to the H160 account from which the transaction is being sent, ensuring it is the true owner of its private keys. It requires a [bond](#mapping-bonds). This method maintains backwards compatibility by setting the `keys` to the author ID by default
- - **updateAssociation**(*bytes32* oldNimbusId, *bytes32* newNimbusId) —  updates the mapping from an old author ID to a new one. Useful after a key rotation or migration. It executes both the `add` and `clear` association extrinsics automically, enabling key rotation without needing a second bond. This method maintains backwards compatibility by setting the `newKeys` to the author ID by default
- - **clearAssociation**(*bytes32* nimbusId) — clears the association of an author ID to the H160 account from which the transaction is being sent, which needs to be the owner of that author ID. Also refunds the bond
-
 ## Required Bonds {: #bonds }
 
 To follow along with this tutorial, you'll need to join the candidate pool and map your session keys to your H160 Ethereum-style account. Two bonds are required to perform both of these actions.
@@ -102,7 +96,7 @@ As previously mentioned, you can use a Ledger by connecting it to MetaMask, plea
 
 --8<-- 'text/collators/generate-session-keys.md'
 
-### Remix Set Up {: #remix-set-up } 
+### Remix Set Up {: #remix-set-up }
 
 To get started, get a copy of [`AuthorMappingInterface.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/author-mapping/AuthorMappingInterface.sol){target=_blank} and take the following steps:
 

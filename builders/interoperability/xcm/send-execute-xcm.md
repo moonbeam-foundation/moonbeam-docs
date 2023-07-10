@@ -48,11 +48,11 @@ In the following example, you'll transfer DEV tokens from one account to another
  - [`DepositAsset`](https://github.com/paritytech/xcm-format#depositasset){target=_blank} - removes the assets from the holding register and deposits the equivalent assets to a beneficiary account
 
 !!! note
-    Typically, when you send an XCM message cross-chain to a target chain, the [`BuyExecution` instruction](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} is needed to pay for remote execution. However, for local execution, this instruction is not necessary as you are already getting charged via the extrinsic call. 
+    Typically, when you send an XCM message cross-chain to a target chain, the [`BuyExecution` instruction](https://github.com/paritytech/xcm-format#buyexecution){target=_blank} is needed to pay for remote execution. However, for local execution, this instruction is not necessary as you are already getting charged via the extrinsic call.
 
 ### Execute an XCM Message with the Polkadot.js API {: #execute-an-xcm-message-with-polkadotjs-api }
 
-In this example, you'll execute a custom XCM message locally on Moonbase Alpha using the Polkadot.js API to interact directly with the Polkadot XCM Pallet. 
+In this example, you'll execute a custom XCM message locally on Moonbase Alpha using the Polkadot.js API to interact directly with the Polkadot XCM Pallet.
 
 The `execute` function of the Polkadot XCM Pallet accepts two parameters: `message` and `maxWeight`. You can start assembling these parameters by taking the following steps:
 
@@ -191,9 +191,9 @@ And that's it! You've successfully used the Polkadot XCM Pallet and the XCM Util
 
 ## Send an XCM Message Cross-Chain {: #send-xcm-message }
 
-This section of the guide covers the process of sending a custom XCM message cross-chain (i.e., from Moonbeam to a target chain, such as the relay chain) via two different methods: the `send` function of the Polkadot XCM Pallet and the `xcmSend` function of the [XCM Utilities Precompile](/builders/pallets-precompiles/precompiles/xcm-utils){target=_blank}. 
+This section of the guide covers the process of sending a custom XCM message cross-chain (i.e., from Moonbeam to a target chain, such as the relay chain) via two different methods: the `send` function of the Polkadot XCM Pallet and the `xcmSend` function of the [XCM Utilities Precompile](/builders/pallets-precompiles/precompiles/xcm-utils){target=_blank}.
 
-For the XCM message to be successfully executed, the target chain needs to be able to understand the instructions in the message. On the contrary, you'll see a `Barrier` filter on the destination chain. For security reasons, the XCM message is prepended with the [`DecendOrigin`](https://github.com/paritytech/xcm-format#descendorigin){target=_blank} instruction to prevent XCM execution on behalf of the origin chain sovereign account. 
+For the XCM message to be successfully executed, the target chain needs to be able to understand the instructions in the message. If it doesn't, you'll see a `Barrier` filter on the destination chain. For security reasons, the XCM message is prepended with the [`DecendOrigin`](https://github.com/paritytech/xcm-format#descendorigin){target=_blank} instruction to prevent XCM execution on behalf of the origin chain sovereign account. **The example in this section will not work for the reasons mentioned above, it is purely for demonstration purposes**.
 
 In the following example, you'll be building an XCM message that contains the following XCM instructions, which will be executed in the Alphanet relay chain:
 
