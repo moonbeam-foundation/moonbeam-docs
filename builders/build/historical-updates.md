@@ -5,8 +5,6 @@ description: An overview of the historical updates made on Moonbeam and Moonrive
 
 # Historical Updates
 
-![Historical Updates Banner](/images/builders/build/historical-updates/banner.png)
-
 ## Introduction {: #introduction }
 
 This page provides an overview of historical updates made on Moonbeam and Moonriver, such as bug fixes to the Moonbeam source code and data migrations applied.

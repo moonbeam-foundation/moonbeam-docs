@@ -5,8 +5,6 @@ description: Learn about the Multisig Pallet, which taps into Substrate function
 
 # The Multisig Pallet
 
-![Multisig Moonbeam Banner](/images/builders/pallets-precompiles/pallets/multisig-banner.png)
-
 ## Introduction {: #introduction }
 
 Multisig wallets are a special type of wallet that requires multiple signatures in order to execute transactions, as the name implies. A multisig has a set of signers and defines a threshold for the number of signatures required to approve a transaction. This type of wallet provides an additional layer of security and decentralization.

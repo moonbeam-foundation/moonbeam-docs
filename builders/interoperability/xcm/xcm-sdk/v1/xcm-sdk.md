@@ -5,8 +5,6 @@ description: Use the Moonbeam XCM SDK to easily transfer cross-chain assets betw
 
 # Using the Moonbeam XCM SDK: v1
 
-![XCM SDK Banner](/images/builders/interoperability/xcm/sdk/xcm-sdk-banner.png)
-
 ## Introduction {: #introduction }
 
 The Moonbeam XCM SDK enables developers to easily transfer assets between chains, either between parachains or between a parachain and the relay chain, within the Polkadot/Kusama ecosystem. With the SDK, you don't need to worry about determining the multilocation of the origin or destination assets or which extrinsics are used on which networks to send XCM transfers.
