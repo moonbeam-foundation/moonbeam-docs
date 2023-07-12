@@ -218,6 +218,8 @@ As seen in the sections above, there are some key differences between the transa
 
   - The amount of gas used in Moonbeam's transaction fee model is mapped from the transaction's Substrate extrinsic weight value via a fixed factor of {{ networks.moonbase.tx_weight_to_gas_ratio }}. This value is then multiplied with the unit gas price to calculate the transaction fee. This fee model means it can potentially be significantly cheaper to send transactions such as basic balance transfers via the Ethereum API than the Substrate API
 
+  - The EVM is designed to solely have capacity for gas and Moonbeam requires additional metrics outside of gas. In particular, Moonbeam needs the ability to record proof size, which is the amount of storage required on Moonbeam for a relay chain validator to verify a state transition. When the capacity limit for proof size has been reached for the current block, which is 25% of the block limit, an "Out of Gas" error will be thrown. This can happen even if there is remaining *legacy* gas in the gasometer. This additional metric also impacts refunds. Refunds are based on the more consumed resource after the execution. In other words, if more proof size has been consumed proportionally than legacy gas, the refund will be calculated using proof size
+
 ### Fee History Endpoint {: #eth-feehistory-endpoint }
 
 Moonbeam networks implement the [`eth_feeHistory`](https://docs.alchemy.com/reference/eth-feehistory){target_blank} JSON-RPC endpoint as a part of the support for EIP-1559. 
