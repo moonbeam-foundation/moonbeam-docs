@@ -398,7 +398,7 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 #### Patch Total Staked Amount {: #patch-total-staked-amount }
 
-There was a migration appled to the `total` staked amount of the `CollatorState` storage item in the parachain staking pallet due to a potential bug that may have led to an incorrect amount. 
+There was a migration applied to the `total` staked amount of the `CollatorState` storage item in the Parachain Staking Pallet due to a potential bug that may have led to an incorrect amount.
 
 This migration was only applied to Moonriver and Moonbase Alpha and was executed at the following runtimes and blocks:
 
