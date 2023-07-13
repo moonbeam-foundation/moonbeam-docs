@@ -269,7 +269,7 @@ You can review the [relative Frontier PR on GitHub](https://github.com/paritytec
 
 ***
 
-#### Remote EVM Calls Return Identical Transaction Hashes {: #remote-evm-calls-identical-tx-hashes }
+#### Remote EVM Calls Return Identical Transaction Hashes {: #remote-evm-calls-return-identical-tx-hashes }
 
 When multiple remote EVM calls were sent from different accounts with the same transaction payload and nonce, the same transaction hash was returned for each call. This was possible because remote EVM calls are executed from a keyless account, so if the senders all had the same nonce and were sending the same transaction object, there was no differentiation in the calculation of the transaction hash. This was fixed by adding a global nonce to the Ethereum XCM Pallet, which is the pallet that makes remote EVM calls possible.
 
