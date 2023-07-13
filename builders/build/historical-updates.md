@@ -89,7 +89,6 @@ The hotfix was applied in the following block ranges:
 |   Moonriver    |      [1835760 - 1835769](https://moonriver.subscan.io/extrinsic?module=evm&call=hotfix_inc_account_sufficients){target=_blank}       |
 | Moonbase Alpha |  [2097782 - 2097974](https://moonbase.subscan.io/extrinsic?address=&module=evm&call=hotfix_inc_account_sufficients){target=_blank}   |
 
-
 This bug existed during the following runtimes and block ranges:
 
 |    Network     | Introduced | Fixed  | Impacted Block Range |
@@ -136,7 +135,7 @@ You can review the [relative PR on GitHub](https://github.com/PureStake/moonbeam
 
 #### Block Parent Hash Calculated Incorrectly {: #block-parent-hash-calculated-incorrectly }
 
-After EIP-1559 support was introduced, which included the transition to new Ethereum transaction types, the block header parent hash was calculated wrongly to `H256::default`. 
+After EIP-1559 support was introduced, which included the transition to new Ethereum transaction types, the block header parent hash was calculated wrongly to `H256::default`.
 
 This bug only impacted Moonbase Alpha and existed during the following runtime and block range:
 
@@ -270,6 +269,20 @@ You can review the [relative Frontier PR on GitHub](https://github.com/paritytec
 
 ***
 
+#### Remote EVM Calls Return Identical Transaction Hashes {: #remote-evm-calls-return-identical-tx-hashes }
+
+When multiple remote EVM calls were sent from different accounts with the same transaction payload and nonce, the same transaction hash was returned for each call. This was possible because remote EVM calls are executed from a keyless account, so if the senders all had the same nonce and were sending the same transaction object, there was no differentiation in the calculation of the transaction hash. This was fixed by adding a global nonce to the Ethereum XCM Pallet, which is the pallet that makes remote EVM calls possible.
+
+This bug only existed on Moonbase Alpha during the following runtimes and block ranges:
+
+|    Network     | Introduced | Fixed  | Impacted Block Range |
+|:--------------:|:----------:|:------:|:--------------------:|
+| Moonbase Alpha |   RT1700   | RT1900 |  2529736 - 3069634   |
+
+You can review the [relative PR on GitHub](https://github.com/PureStake/moonbeam/pull/1790){target=_blank} for more information.
+
+***
+
 ## Migrations {: #migrations }
 
 Migrations are necessary when a storage item is changed or added and needs to be populated with data. The migrations listed below have been organized by the impacted pallet(s).
@@ -385,7 +398,7 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 #### Patch Total Staked Amount {: #patch-total-staked-amount }
 
-There was a migration appled to the `total` staked amount of the `CollatorState` storage item in the parachain staking pallet due to a potential bug that may have led to an incorrect amount. 
+There was a migration applied to the `total` staked amount of the `CollatorState` storage item in the Parachain Staking Pallet due to a potential bug that may have led to an incorrect amount.
 
 This migration was only applied to Moonriver and Moonbase Alpha and was executed at the following runtimes and blocks:
 
