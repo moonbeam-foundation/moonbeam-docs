@@ -553,8 +553,8 @@ networks:
             percent2: 50
           min_support:
             time0: 'Day 0'
-            percent0: 50
-            time1: 'Day 7'
+            percent0: 10
+            time1: 'Day 1'
             percent1: 1
             time2: 'Day 14'
             percent2: 0
