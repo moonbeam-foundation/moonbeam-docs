@@ -168,6 +168,9 @@ Since you'll be interacting with the `transactThroughSigned` function of the XCM
     };
     ```
 
+!!! note
+    For accurate estimates of `refTime` and `proofSize` figures, remember that you can use the `paymentInfo` method [of the Polkadot API as described here](/builders/interoperability/xcm/remote-evm-calls/#build-xcm-remote-evm).
+
 Now that you have the values for each of the parameters, you can write the script for the transaction. You'll take the following steps:
 
  1. Provide the input data for the call. This includes:
