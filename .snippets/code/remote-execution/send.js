@@ -26,7 +26,7 @@ const instr2 = {
 const instr3 = {
   Transact: {
     originKind: 'SovereignAccount',
-    requireWeightAtMost: { refTime: 4000000000n, proofSize: 200000n },
+    requireWeightAtMost: { refTime: 3900000000n, proofSize: 38750n },
     call: {
       encoded:
         '0x260001785d02000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00',

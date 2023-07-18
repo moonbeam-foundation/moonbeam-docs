@@ -268,14 +268,40 @@ Now that you've generated the [Ethereum XCM pallet](https://github.com/PureStake
 4. Build the `Transact` instruction, which will require you to define:
 
     - The origin kind
-    - The required weight for the transaction. You'll need to define a value for `refTime`, which is the amount of computational time that can be used for execution, and the `proofSize`, which is the amount of storage in bytes that can be used. It is recommended that the weight given to this instruction needs to be around 10% more of `25000` times the gas limit for the EVM call you want to execute via XCM
+    - The required weight for the transaction. You'll need to define a value for `refTime`, which is the amount of computational time that can be used for execution, and the `proofSize`, which is the amount of storage in bytes that can be used. Both figures can be calculated using the `paymentInfo` method of the Polkadot API. Providing the xcmTransaction to the paymentInfo method will return an estimate of `3900000000` for `refTime` and `38750` for `proofSize`
+
+    ```js
+    const xcmTransaction = {
+      V2: {
+        gasLimit: 155000,
+        action: { Call: '0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8' },
+        value: 0,
+        input: '0xd09de08a',
+      },
+    };
+
+    const tx = api.tx.ethereumXcm.transact(xcmTransaction);
+
+    // Estimate fees
+    const info = await tx.paymentInfo(alice);
+
+    console.log(`estimated fees: ${info.partialFee.toString()}`);
+    console.log(`
+      class=${info.class.toString()},
+      weight=${info.weight.toString()},
+      partialFee=${info.partialFee.toHuman()}
+    `);
+    ```    
+
+
+
     - The encoded call data, which you generated in the [Ethereum XCM Transact Call Data](#ethereumxcm-transact-data) section
 
     ```js
     const instr3 = {
       Transact: {
         originKind: 'SovereignAccount',
-        requireWeightAtMost: { refTime: 4000000000n, proofSize: 200000n },
+        requireWeightAtMost: { refTime: 3900000000n, proofSize: 38750n },
         call: {
           encoded:
             '0x260001785d02000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00',
