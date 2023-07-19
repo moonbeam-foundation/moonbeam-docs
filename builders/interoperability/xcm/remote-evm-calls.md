@@ -282,7 +282,7 @@ Now that you've generated the [Ethereum XCM pallet](https://github.com/PureStake
 
     const tx = api.tx.ethereumXcm.transact(xcmTransaction);
 
-    // Estimate fees
+    // Estimate fees via paymentInfo, which takes the sender (Alice) as a param.
     const info = await tx.paymentInfo(alice);
 
     console.log(`estimated fees: ${info.partialFee.toString()}`);
