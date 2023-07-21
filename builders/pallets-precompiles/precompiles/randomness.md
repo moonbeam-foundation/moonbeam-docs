@@ -197,7 +197,9 @@ contract RandomNumber is RandomnessConsumer {
     // The fee can be set to any value as long as it is enough to cover
     // the fulfillment costs. Any leftover fees will be refunded to the
     // refund address specified in the requestRandomness function below
-    uint256 public MIN_FEE = FULFILLMENT_GAS_LIMIT * 5 gwei;
+    // 150 gwei should be more than enough for all networks
+    // For Moonbase Alpha and Moonriver you can specify 5 Gwei 
+    uint256 public MIN_FEE = FULFILLMENT_GAS_LIMIT * 150 gwei; 
     uint32 public VRF_BLOCKS_DELAY = MIN_VRF_BLOCKS_DELAY;
     bytes32 public SALT_PREFIX = "change-me-to-anything";
 
@@ -287,7 +289,7 @@ The **RANDOMNUMBER** contract will appear in the list of **Deployed Contracts**.
 
 To request randomness, you're going to use the `requestRandomness` function of the contract, which will require you to submit a deposit as defined in the Randomness Precompile. You can submit the randomness request and pay the deposit by taking these steps:
 
-1. Enter an amount in the **VALUE** field for the fulfillment fee, it must be equal to or greater than the minimum fee specified in the `RandomNumber` contract, which is `500000` Gwei
+1. Enter an amount in the **VALUE** field for the fulfillment fee, it must be equal to or greater than the minimum fee specified in the `RandomNumber` contract, which is `500000` Gwei on Moonbase Alpha and Moonriver, and `15000000` Gwei on Moonbeam.
 2. Expand the **RANDOMNUMBER** contract
 3. Click on the **requestRandomness** button
 4. Confrm the transaction in MetaMask
