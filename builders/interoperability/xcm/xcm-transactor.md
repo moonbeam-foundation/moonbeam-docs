@@ -157,7 +157,7 @@ Since you'll be interacting with the `transactThroughSigned` function of the XCM
       '0x030044236223ab4291b93eed10e4b511b37a398dee5513000064a7b3b6e00d';
     ```
 
-5. Set the `weightInfo`, which includes the required `transactRequiredWeightAtMost` weight and the optional `overallWeight` parameters. Both weight parameters require you to specify `refTime` and `proofSize`, where `refTime` is the amount of computational time that can be used for execution and `proofSize` is the amount of storage in bytes that can be used. For each parameter, you can follow these guidelines:
+4. Set the `weightInfo`, which includes the required `transactRequiredWeightAtMost` weight and the optional `overallWeight` parameters. Both weight parameters require you to specify `refTime` and `proofSize`, where `refTime` is the amount of computational time that can be used for execution and `proofSize` is the amount of storage in bytes that can be used. For each parameter, you can follow these guidelines:
     - For `transactRequiredAtMost`, the value must include the `asDerivative` extrinsic as well. However, this does not include the weight of the XCM instructions. For this example, set `refTime` to `1000000000` weight units and `proofSize` to `40000`
     - For `overallWeight`, the value must be the total of **transactRequiredWeightAtMost** plus the weight needed to cover the XCM instructions execution costs in the destination chain. If you do not provide this value, the pallet will use the element in storage (if exists), and add it to **transactRequiredWeightAtMost**. For this example, set `refTime` to `2000000000` weight units and `proofSize` to `50000`
 
@@ -168,8 +168,8 @@ Since you'll be interacting with the `transactThroughSigned` function of the XCM
     };
     ```
 
-!!! note
-    For accurate estimates of `refTime` and `proofSize` figures, remember that you can use the `paymentInfo` method [of the Polkadot API as described here](/builders/interoperability/xcm/remote-evm-calls/#build-xcm-remote-evm).
+    !!! note
+        For accurate estimates of the `refTime` and `proofSize` figures, you can use the [`paymentInfo` method of the Polkadot.js API](/builders/interoperability/xcm/remote-evm-calls/#build-xcm-remote-evm){target=_blank} as described in the Remote EVM Calls guide.
 
 Now that you have the values for each of the parameters, you can write the script for the transaction. You'll take the following steps:
 

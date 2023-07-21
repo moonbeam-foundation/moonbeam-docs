@@ -180,7 +180,7 @@ The `xcmTransaction` parameter requires you to define:
 - The value of native tokens to send
 - The input, which is the encoded call data of the contract interaction
 
-For the action to be executed, you'll be performing a contract interaction with a simple [incrementer contract](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8#code){target=_blank}, which is located at `0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8`. You'll be calling the `increment` function, which has no input argument and will increase the value of the `number` by one. Also, it will store the block's timestamp in which the function is executed to the `timestamp` variable. 
+For the action to be executed, you'll be performing a contract interaction with a simple [incrementer contract](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8#code){target=_blank}, which is located at `0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8`. You'll be calling the `increment` function, which has no input argument and will increase the value of the `number` by one. Also, it will store the block's timestamp in which the function is executed to the `timestamp` variable.
 
 The encoded call data of the interaction with the `increment` function is `0xd09de08a`, which is the first eight hexadecimal characters (or 4 bytes) of the keccak256 hash of `increment()`. If you choose to interact with a function that has input parameters, they also need to be encoded. The easiest way to get the encoded call data is to emulate a transaction either in [Remix](/builders/build/eth-api/dev-env/remix/#interacting-with-a-moonbeam-based-erc-20-from-metamask){target=_blank} or [Moonscan](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8#code){target=_blank}. Next, in Metamask, check the **HEX DATA: 4 BYTES** selector under the **HEX** tab before signing it. You don't need to sign the transaction.
 
@@ -218,6 +218,16 @@ Next, you can write the script to get the encoded call data for the transaction.
     You can view an example of the output of the above script on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x260001785d02000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00){target=_blank} using the following encoded call data: `0x260001785d02000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00`.
 
 You'll use the encoded call data in the `Transact` instruction in the following section.
+
+### Estimate Weight Required At Most {: #estimate-weight-required-at-most }
+
+When using the `Transact` instruction, you'll need to define the `requireWeightAtMost` field, which is the required weight for the transaction. This field accepts two arguments: the `refTime` and `proofSize`. The `refTime` is the amount of computational time that can be used for execution, and the `proofSize` is the amount of storage in bytes that can be used.
+
+To get an estimate for the `refTime` and `proofSize`, you can use the `paymentInfo` method of the Polkadot.js API. Since these weights are required for the `Transact` call data, you can extend the script from the previous section to add in the call to `paymentInfo`.
+
+The `paymentInfo` method accepts the same parameters you would normally pass to the `.signAndSend` method, which is the sending account and, optionally, some additional values such as a nonce or signer.
+
+To modify the encoded call data script, you'll need to add in logic to create a Keyring for the sender, which in this case is Alice. Then you'll simply need to take the `tx` and call the `paymentInfo` method and pass in Alice's Keyring.
 
 ### Building the XCM for Remote XCM Execution {: #build-xcm-remote-evm}
 
@@ -268,32 +278,23 @@ Now that you've generated the [Ethereum XCM pallet](https://github.com/PureStake
 4. Build the `Transact` instruction, which will require you to define:
 
     - The origin kind
-    - The required weight for the transaction. You'll need to define a value for `refTime`, which is the amount of computational time that can be used for execution, and the `proofSize`, which is the amount of storage in bytes that can be used. Both figures can be calculated using the `paymentInfo` method of the Polkadot API. Providing the xcmTransaction to the paymentInfo method will return an estimate of `3900000000` for `refTime` and `38750` for `proofSize`
+    - The required weight for the transaction. You'll need to define a value for `refTime`, which is the amount of computational time that can be used for execution, and the `proofSize`, which is the amount of storage in bytes that can be used. Both figures can be calculated using the `paymentInfo` method of the Polkadot.js API. To calculate these values, you can modify the encoded call data script to call the `paymentInfo` method of the `ethereumXcm.transact(xcmTransaction)` transaction. To call the `paymentInfo` method, you'll need to pass in the senders account. You can pass in Alice's account on the relay chain: `5DV1dYwnQ27gKCKwhikaw1rz1bYdvZZUuFkuduB4hEK3FgDT`:
 
-    ```js
-    const xcmTransaction = {
-      V2: {
-        gasLimit: 155000,
-        action: { Call: '0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8' },
-        value: 0,
-        input: '0xd09de08a',
-      },
-    };
+        ```js
+        ...
 
-    const tx = api.tx.ethereumXcm.transact(xcmTransaction);
+        const tx = api.tx.ethereumXcm.transact(xcmTransaction);
+        const alice = '5DV1dYwnQ27gKCKwhikaw1rz1bYdvZZUuFkuduB4hEK3FgDT';
+        const info = await tx.paymentInfo(alice);
+        console.log(`Required Weight: ${info.weight.toString()}`);
+        ```
 
-    // Estimate fees via paymentInfo, which takes the sender (Alice) as a param.
-    const info = await tx.paymentInfo(alice);
+        ??? code "Complete modified script"
+            ```js
+            --8<-- 'code/remote-execution/estimate-required-weight.js'
+            ```
 
-    console.log(`estimated fees: ${info.partialFee.toString()}`);
-    console.log(`
-      class=${info.class.toString()},
-      weight=${info.weight.toString()},
-      partialFee=${info.partialFee.toHuman()}
-    `);
-    ```    
-
-
+        The script, at the time of writing, returns an estimate of `3900000000` for `refTime` and `38750` for `proofSize`.
 
     - The encoded call data, which you generated in the [Ethereum XCM Transact Call Data](#ethereumxcm-transact-data) section
 
