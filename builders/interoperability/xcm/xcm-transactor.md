@@ -37,6 +37,7 @@ When the XCM message built by the XCM Transactor Pallet is executed, fees must b
 ## Relevant XCM Definitions {: #general-xcm-definitions }
 
  --8<-- 'text/xcm/general-xcm-definitions2.md'
+
  - **Multilocation-derivative account** —  an account derivated from the new origin set by the [Descend Origin](https://github.com/paritytech/xcm-format#descendorigin){target=_blank} XCM instruction and the provided multilocation, which is typically the sovereign account from which the XCM originated. Derivative accounts are keyless (the private key is unknown). Consequently, derivative accounts related to XCM-specific use cases can only be accessed through XCM extrinsics. For Moonbeam-based networks, [the derivation method](https://github.com/PureStake/moonbeam/blob/master/primitives/xcm/src/location_conversion.rs#L31-L37){target=_blank} is calculating the `blake2` hash of the multilocation, which includes the origin parachain ID, and truncating the hash to the correct length (20 bytes for an Ethereum-styled account). The XCM call [origin conversion](https://github.com/paritytech/polkadot/blob/master/xcm/xcm-executor/src/lib.rs#L343){target=_blank} happens when the `Transact` instruction gets executed. Consequently, each parachain can convert the origin with its own desired procedure, so the user who initiated the transaction might have a different derivative account per parachain. This derivative account pays for transaction fees, and it is set as the dispatcher of the call
  - **Transact information** — relates to extra weight and fee information for the XCM remote execution part of the XCM Transactor extrinsic. This is needed because the XCM transaction fee is paid by the sovereign account. Therefore, XCM Transactor calculates what this fee is and charges the sender of the XCM Transactor extrinsic the estimated amount in the corresponding [XC-20 token](/builders/interoperability/xcm/xc20/overview/){target=_blank} to repay the sovereign account
 
@@ -156,16 +157,19 @@ Since you'll be interacting with the `transactThroughSigned` function of the XCM
       '0x030044236223ab4291b93eed10e4b511b37a398dee5513000064a7b3b6e00d';
     ```
 
-5. Set the `weightInfo`, which includes the required `transactRequiredWeightAtMost` weight and the optional `overallWeight` parameters. Both weight parameters require you to specify `refTime` and `proofSize`, where `refTime` is the amount of computational time that can be used for execution and `proofSize` is the amount of storage in bytes that can be used. For each parameter, you can follow these guidelines:
-    - For `transactRequiredAtMost`, the value must include the `asDerivative` extrinsic as well. However, this does not include the weight of the XCM instructions. For this example, set `refTime` to `1000000000` weight units and `proofSize` to `0`
-    - For `overallWeight`, the value must be the total of **transactRequiredWeightAtMost** plus the weight needed to cover the XCM instructions execution costs in the destination chain. If you do not provide this value, the pallet will use the element in storage (if exists), and add it to **transactRequiredWeightAtMost**. For this example, set `refTime` to `2000000000` weight units and `proofSize` to `0`
+4. Set the `weightInfo`, which includes the required `transactRequiredWeightAtMost` weight and the optional `overallWeight` parameters. Both weight parameters require you to specify `refTime` and `proofSize`, where `refTime` is the amount of computational time that can be used for execution and `proofSize` is the amount of storage in bytes that can be used. For each parameter, you can follow these guidelines:
+    - For `transactRequiredAtMost`, the value must include the `asDerivative` extrinsic as well. However, this does not include the weight of the XCM instructions. For this example, set `refTime` to `1000000000` weight units and `proofSize` to `40000`
+    - For `overallWeight`, the value must be the total of **transactRequiredWeightAtMost** plus the weight needed to cover the XCM instructions execution costs in the destination chain. If you do not provide this value, the pallet will use the element in storage (if exists), and add it to **transactRequiredWeightAtMost**. For this example, set `refTime` to `2000000000` weight units and `proofSize` to `50000`
 
     ```js
     const weightInfo = {
-      transactRequiredWeightAtMost: { refTime: 1000000000n, proofSize: 0 },
-      overallWeight: { refTime: 2000000000n, proofSize: 0 },
+      transactRequiredWeightAtMost: { refTime: 1000000000n, proofSize: 40000n },
+      overallWeight: { refTime: 2000000000n, proofSize: 50000n },
     };
     ```
+
+    !!! note
+        For accurate estimates of the `refTime` and `proofSize` figures, you can use the [`paymentInfo` method of the Polkadot.js API](/builders/interoperability/xcm/remote-evm-calls/#build-xcm-remote-evm){target=_blank} as described in the Remote EVM Calls guide.
 
 Now that you have the values for each of the parameters, you can write the script for the transaction. You'll take the following steps:
 
@@ -185,7 +189,7 @@ Now that you have the values for each of the parameters, you can write the scrip
 ```
 
 !!! note
-    You can view an example of the above script, which sends 1 xcUNIT to Alice's account on the relay chain, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x210603010100e10d00017576e5e612ff054915d426c546b1b21a010000c52ebca2b10000000000000000007c030044236223ab4291b93eed10e4b511b37a398dee5513000064a7b3b6e00d02286bee0001030094357700){target=_blank} using the following encoded calldata: `0x210603010100e10d00017576e5e612ff054915d426c546b1b21a010000c52ebca2b10000000000000000007c030044236223ab4291b93eed10e4b511b37a398dee5513000064a7b3b6e00d02286bee0001030094357700`.
+    You can view an example of the above script, which sends 1 xcUNIT to Alice's account on the relay chain, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x210603010100e10d00017576e5e612ff054915d426c546b1b21a010000c52ebca2b10000000000000000007c030044236223ab4291b93eed10e4b511b37a398dee5513000064a7b3b6e00d02286bee02710200010300943577420d0300){target=_blank} using the following encoded calldata: `0x210603010100e10d00017576e5e612ff054915d426c546b1b21a010000c52ebca2b10000000000000000007c030044236223ab4291b93eed10e4b511b37a398dee5513000064a7b3b6e00d02286bee02710200010300943577420d0300`.
 
 Once the transaction is processed, Alice should've received one token in her address on the destination chain.
 
