@@ -7,7 +7,7 @@ description: Looking to create a lottery smart contract? Follow this step-by-ste
 
 ![Randomness Moonbeam Banner](/images/builders/pallets-precompiles/precompiles/randomness/randomness-banner.png)
 
-_By Erin Shaben_
+_by Erin Shaben_
 
 ## Introduction {: #introduction }
 

@@ -7,9 +7,9 @@ description: Follow a step-by-step tutorial on how to use Foundry to build a pro
 
 ![Banner Image](/images/tutorials/eth-api/foundry-start-to-end/foundry-banner.png)
 
-_January 10, 2023 | by Jeremy Boetticher_
+_by Jeremy Boetticher_
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 Foundry has become an increasingly popular developer environment to develop smart contracts with, since utilizing it only requires a single language: Solidity. Moonbeam offers [introductory documentation on using Foundry](/builders/build/eth-api/dev-env/foundry){target=_blank} with Moonbeam networks, which is recommended to read to get an introduction to using Foundry. In this tutorial we will be dipping our toes deeper into the library to get a more cohesive look at how to properly develop, test, and deploy.  
 

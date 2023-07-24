@@ -7,9 +7,9 @@ description: Learn how to use the batch precompile on Moonbeam to batch an appro
 
 ![Banner Image](/images/tutorials/eth-api/batch-approve-swap/batch-banner.png)
 
-_December 21, 2022 | by Erin Shaben_
+_by Erin Shaben_
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 Token approvals are critical for interacting with smart contracts securely, preventing smart contracts without permission from accessing a user's tokens. When a smart contract is given approval to access a user's tokens, the amount of tokens it has access to is often an unlimited amount, depending on the DApp.
 

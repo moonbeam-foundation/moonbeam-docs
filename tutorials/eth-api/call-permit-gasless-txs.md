@@ -7,9 +7,9 @@ description: Enable gas-less transactions in your dApp with Moonbeam's Call Perm
 
 ![Banner Image](/images/tutorials/eth-api/call-permit-gasless-txs/gasless-banner.png)
 
-_March 30, 2023 | by Erin Shaben_
+_by Erin Shaben_
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 To interact with dApps on Moonbeam, users typically need to hold GLMR, Moonbeam's native token, in order to pay for transaction fees. This requirement creates an obstacle for dApps in terms of user experience, as a user needs to ensure they keep a balance of the native token to interact with the dApp.
 
