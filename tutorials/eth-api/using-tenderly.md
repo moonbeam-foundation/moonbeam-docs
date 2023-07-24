@@ -7,7 +7,7 @@ description: Follow a step-by-step tutorial on how to get started with Tenderly 
 
 ![Banner Image](/images/tutorials/eth-api/using-tenderly/tenderly-banner.png)
 
-_May 21, 2023 | by Kevin Neilson_
+_by Kevin Neilson_
 
 ## Introduction {: #introduction }
 

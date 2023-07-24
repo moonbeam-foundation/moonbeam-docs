@@ -7,7 +7,7 @@ description: Improve your dApp development experience by following this guide to
 
 ![Subsquid Banner](/images/tutorials/integrations/local-subsquid/local-subsquid-banner.png)
 
-_April 14, 2023 | by Erin Shaben_
+_by Erin Shaben_
 
 ## Introduction {: #introduction }
 

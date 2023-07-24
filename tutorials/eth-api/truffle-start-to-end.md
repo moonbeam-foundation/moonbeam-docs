@@ -7,9 +7,9 @@ description: Learn how to develop, test, and deploy smart contracts with Truffle
 
 ![Banner Image](/images/tutorials/eth-api/truffle-start-to-end/truffle-banner.png)
 
-_January 10, 2023 | by Erin Shaben_
+_by Erin Shaben_
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 For this tutorial, we'll be going through the smart contract development life cycle with [Truffle](/builders/build/eth-api/dev-env/truffle){target=_blank}. As we're starting to develop our contracts, we'll use a [Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev){target=_blank} so we can quickly iterate on our code as we build it and test it. Then we'll progress to using the [Moonbase Alpha TestNet](/builders/get-started/networks/moonbase){target=_blank} so we can test our contracts on a live network with tokens that do not hold any real value, so we don't have to worry about paying for any mistakes. Finally, once we feel confident in our code, we'll deploy our contracts to [Moonbeam MainNet](/builders/get-started/networks/moonbeam){target=_blank}.
 
