@@ -114,6 +114,10 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 
 ![OnFinality](/images/builders/get-started/endpoints/endpoints-6.png)
 
+OnFinality also provides a Trace API, which allows you to call non-standard RPC methods that belong to Geth's `debug` and `txpool` APIs and OpenEthereum's `trace` module. Currently, the [Trace API is only supported on Moonriver](https://documentation.onfinality.io/support/trace-api#TraceAPI-SupportedNetworks){target=_blank}, with support for Moonbeam coming soon.
+
+If you are tracing historic blocks, it is recommended to use your own dedicated trace node to backfill any data, and then once you're caught up, you can switch to using the Trace API. You can check out the [How to Deploy a Trace Node for Moonbeam on OnFinality](https://onfinality.medium.com/how-to-deploy-a-trace-node-for-moonbeam-on-onfinality-85683181d290){target=-_blank} post for more information on how to get started.
+
 ### Pocket Network {: #pokt }
 
 [Pocket Network](https://pokt.network/){target=_blank} is a decentralized node service that provides a free personal endpoint to DApps on Moonbeam & Moonriver.  
