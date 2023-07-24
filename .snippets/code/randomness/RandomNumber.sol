@@ -14,9 +14,9 @@ contract RandomNumber is RandomnessConsumer {
     uint64 public FULFILLMENT_GAS_LIMIT = 100000;
     // The fee can be set to any value as long as it is enough to cover
     // the fulfillment costs. Any leftover fees will be refunded to the
-    // refund address specified in the requestRandomness function below
-    // 150 gwei should be sufficient for all networks
-    // For Moonbase Alpha and Moonriver you can specify 5 Gwei 
+    // refund address specified in the requestRandomness function below.
+    // 150 Gwei should be sufficient for all networks.
+    // For Moonbase Alpha and Moonriver, you can specify 5 Gwei 
     uint256 public MIN_FEE = FULFILLMENT_GAS_LIMIT * 150 gwei; 
     uint32 public VRF_BLOCKS_DELAY = MIN_VRF_BLOCKS_DELAY;
     bytes32 public SALT_PREFIX = "INSERT_ANY_STRING_FOR_SALT";
@@ -27,7 +27,7 @@ contract RandomNumber is RandomnessConsumer {
 
     constructor() payable RandomnessConsumer() {
         // Because this contract can only perform 1 random request at a time,
-        // We only need to have 1 required deposit.
+        // We only need to have 1 required deposit
         require(msg.value >= requiredDeposit);
     }
 
