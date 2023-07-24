@@ -4,18 +4,18 @@ description: How you can list your Moonbeam or Moonriver project on DappRadar, a
 ---
 
 # How to List your Project on DappRadar
- 
+
 ![DappRadar banner image](/images/learn/dapps-list/dapp-radar/dapp-radar-banner.png)
 
 ## Introduction to DappRadar {: #introduction-to-dappradar }
 
 [DappRadar](https://dappradar.com/){target=_blank} was started in 2018 with the goal of delivering high quality, accurate insights on decentralized applications to the world. Since then, DappRadar has become a defacto standard for DApp discovery with nearly ten thousand applications listed across twenty protocols. In their own words, *“DappRadar filters through dapp data, removes fake and irrelevant activity and provides actionable market intelligence. Dapps are tracked in terms of their active users, token volume and transaction activity to provide insight into the trends in the dapp ecosystem.”*
 
-Moonbeam and Moonriver are [now live on DappRadar](https://dappradar.com/blog/dappradar-now-tracking-dapps-on-moonbeam-moonriver){target=_blank}. DappRadar maintains homepages for [the top Moonbeam DApps](https://dappradar.com/rankings/protocol/moonbeam){target=_blank} and [the top Moonriver DApps](https://dappradar.com/rankings/protocol/moonriver){target=_blank}. Prior to the DappRadar integration, a [crowd-sourced Moonbeam DApps listing](https://github.com/PureStake/moonbeam-project-directory){target=_blank} was maintained as part of the Moonbeam docs site. That registry is deprecated and replaced by the listing platforms under the [Dapps List](/learn/dapps-list/){target=_blank} section
+Moonbeam and Moonriver are [now live on DappRadar](https://dappradar.com/blog/dappradar-now-tracking-dapps-on-moonbeam-moonriver){target=_blank}. DappRadar maintains homepages for [the top Moonbeam DApps](https://dappradar.com/rankings/protocol/moonbeam){target=_blank} and [the top Moonriver DApps](https://dappradar.com/rankings/protocol/moonriver){target=_blank}. Prior to the DappRadar integration, a [crowd-sourced Moonbeam DApps listing](https://github.com/moonbeam-foundation/moonbeam-project-directory){target=_blank} was maintained as part of the Moonbeam docs site. That registry is deprecated and replaced by the listing platforms under the [Dapps List](/learn/dapps-list/){target=_blank} section
 
 ![DappRadar Home Page](/images/learn/dapps-list/dapp-radar/dapp-radar-1.png)
 
-You can [submit your project](https://dappradar.com/dashboard/submit-dapp){target=_blank} to DappRadar by providing background on your project including a short and a full description, website URL, and logo. Only a subset of the fields are required, but you are encouraged to complete as many as possible. 
+You can [submit your project](https://dappradar.com/dashboard/submit-dapp){target=_blank} to DappRadar by providing background on your project including a short and a full description, website URL, and logo. Only a subset of the fields are required, but you are encouraged to complete as many as possible.
 
 !!! note
     DappRadar contains user-generated content. You should verify any information with your own research. Moonbeam is a permissionless network. Any project can deploy its contracts to Moonbeam.
@@ -43,8 +43,8 @@ First, you'll need to [create a DappRadar account](https://auth.dappradar.com/em
  6. Specify the protocols your DApp is deployed to. You can select multiple protocols here, such as Moonbeam and Moonriver
  7. After selecting at least one protocol, you'll be prompted to enter your DApp's contract address(es) for each protocol
  8. Write a full description for your DApp
- 9. Optionally, provide social media links 
- 10. It is optional but recommended that you provide screenshots of your DApp. You also have the option of providing a YouTube URL to a demo of your DApp 
+ 9. Optionally, provide social media links
+ 10. It is optional but recommended that you provide screenshots of your DApp. You also have the option of providing a YouTube URL to a demo of your DApp
  11. Review the terms and conditions, and press **Submit a dapp**
 
 ![How to Submit your DApp](/images/learn/dapps-list/dapp-radar/dapp-radar-2.png)

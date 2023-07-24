@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-only
 pragma solidity >=0.8.0;
 
-import "https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/Randomness.sol";
-import {RandomnessConsumer} from "https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/RandomnessConsumer.sol";
+import "https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/Randomness.sol";
+import {RandomnessConsumer} from "https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/RandomnessConsumer.sol";
 
 contract RandomNumber is RandomnessConsumer {
     // The Randomness Precompile Interface

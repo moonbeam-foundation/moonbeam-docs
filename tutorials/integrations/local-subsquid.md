@@ -15,7 +15,7 @@ When developing a dApp, it's beneficial to develop smart contracts using a local
 
 But what about dApps that rely on indexers to index blockchain data? How can developers of these applications streamline the development process? Thanks to [Subsquid](/builders/integrations/indexers/subsquid){target=_blank}, a query node framework for Substrate-based blockchains like Moonbeam, it is now possible to index blocks on a local development environment, such as your Moonbeam development node!
 
-This tutorial will walk you through the process of indexing data on a local Moonbeam development node using Subsquid. We'll create an ERC-20 contract and use Subsquid to index transfers of our ERC-20. 
+This tutorial will walk you through the process of indexing data on a local Moonbeam development node using Subsquid. We'll create an ERC-20 contract and use Subsquid to index transfers of our ERC-20.
 
 This tutorial is based off of Massimo Luraschi's tutorial on how to [Boost your dApp development productivity with local indexing](https://medium.com/subsquid/boost-your-dapp-development-productivity-with-local-indexing-3936ba7a8cec){target=_blank}, but was modified for a Moonbeam development node.
 
@@ -31,7 +31,7 @@ We'll configure our Hardhat project and create our Subsquid project later on in 
 
 ## Spin up a Local Development Node {: #spin-up-a-local-development-node }
 
-To get started, we're going to spin up a local Moonbeam development node using Docker. For the purposes of this tutorial, we're going to configure our development node to produce (seal) blocks every four seconds. This will ease the debugging process. However, you can feel free to increase or decrease this time or configure your node to instantly seal blocks. When using instant seal, a block will be created when a transaction is received. 
+To get started, we're going to spin up a local Moonbeam development node using Docker. For the purposes of this tutorial, we're going to configure our development node to produce (seal) blocks every four seconds. This will ease the debugging process. However, you can feel free to increase or decrease this time or configure your node to instantly seal blocks. When using instant seal, a block will be created when a transaction is received.
 
 We'll use the following commands when starting up our node:
 
@@ -62,7 +62,7 @@ To spin up a development node, which will pull the latest Docker image for Moonb
     --dev --sealing 4000 --ws-external --rpc-external
     ```
 
-This will start up our development node, which can be accessed on port 9944. 
+This will start up our development node, which can be accessed on port 9944.
 
 ![Spin up a Moonbeam development node](/images/tutorials/integrations/local-subsquid/local-squid-1.png)
 
@@ -172,7 +172,7 @@ contract MyTok is ERC20, Ownable {
 
 ### Deploy an ERC-20 Contract {: #deploy-erc-20-contract }
 
-Now that we have our contract set up, we can compile and deploy our contract. 
+Now that we have our contract set up, we can compile and deploy our contract.
 
 To compile the contract, you can run:
 
@@ -184,7 +184,7 @@ npx hardhat compile
 
 This command will compile our contract and generate an `artifacts` directory containing the ABI of the contract.
 
-To deploy our contract, we'll need to create a deployment script that deploys our ERC-20 contract and mints an initial supply of MYTOKs. We'll use Alith's account to deploy the contract, and we'll specify the initial supply to be 1000 MYTOK. The initial supply will be minted and sent to the contract owner, which is Alith. 
+To deploy our contract, we'll need to create a deployment script that deploys our ERC-20 contract and mints an initial supply of MYTOKs. We'll use Alith's account to deploy the contract, and we'll specify the initial supply to be 1000 MYTOK. The initial supply will be minted and sent to the contract owner, which is Alith.
 
 Let's take the following steps to deploy our contract:
 

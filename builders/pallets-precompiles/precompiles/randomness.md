@@ -41,7 +41,7 @@ The randomness precompile is located at the following address:
 
 ## The Randomness Solidity Interface {: #the-randomness-interface }
 
-[Randomness.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/Randomness.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's methods.
+[Randomness.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/Randomness.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's methods.
 
 The interface includes functions, constants, events, and enums, as covered in the following sections.
 
@@ -119,7 +119,7 @@ The interface includes the following enums:
 
 ## The Randomness Consumer Solidity Interface {: #randomness-consumer-solidity-interface }
 
-The [`RandomnessConsumer.sol`](https://github.com/PureStake/moonbeam/blob/4e2a5785424be6faa01cd14e90155d9d2ec734ee/precompiles/randomness/RandomnessConsumer.sol){target=_blank} Solidity interface makes it easy for smart contracts to interact with the randomness precompile. Using the randomness consumer ensures the fulfillment comes from the randomness precompile.
+The [`RandomnessConsumer.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/4e2a5785424be6faa01cd14e90155d9d2ec734ee/precompiles/randomness/RandomnessConsumer.sol){target=_blank} Solidity interface makes it easy for smart contracts to interact with the randomness precompile. Using the randomness consumer ensures the fulfillment comes from the randomness precompile.
 
 The consumer interface includes the following functions:
 
@@ -140,7 +140,7 @@ When randomness is requested through the precompile's `requestLocalVRFRandomWord
 
 After the delay, fulfillment of the request can be manually executed by anyone through the `fulfillRequest` method using the fee that was initially set aside for the request.
 
-When fulfilling the randomness request via the precompile's `fulfillRequest` method, the [`rawFulfillRandomWords`](#:~:text=rawFulfillRandomWords(uint256 requestId, uint256[] memory randomWords)) function in the `RandomnessConsumer.sol` contract will be called, which will verify that the sender is the randomness precompile. From there, [`fulfillRandomWords`](#:~:text=fulfillRandomWords(uint256 requestId, uint256[] memory randomWords)) is called and the requested number of random words are computed using the current block's randomness result and a given salt and returned. If the fulfillment was successful, the [`FulfillmentSucceeded` event](#:~:text=FulfillmentSucceeded) will be emitted; otherwise the [`FulfillmentFailed` event](#:~:text=FulfillmentFailed) will be emitted. 
+When fulfilling the randomness request via the precompile's `fulfillRequest` method, the [`rawFulfillRandomWords`](#:~:text=rawFulfillRandomWords(uint256 requestId, uint256[] memory randomWords)) function in the `RandomnessConsumer.sol` contract will be called, which will verify that the sender is the randomness precompile. From there, [`fulfillRandomWords`](#:~:text=fulfillRandomWords(uint256 requestId, uint256[] memory randomWords)) is called and the requested number of random words are computed using the current block's randomness result and a given salt and returned. If the fulfillment was successful, the [`FulfillmentSucceeded` event](#:~:text=FulfillmentSucceeded) will be emitted; otherwise the [`FulfillmentFailed` event](#:~:text=FulfillmentFailed) will be emitted.
 
 For fulfilled requests, the cost of execution will be refunded from the request fee to the caller of `fulfillRequest`. Then any excess fees and the request deposit are transferred to the specified refund address.
 
@@ -231,7 +231,7 @@ The **RANDOMNUMBER** contract will appear in the list of **Deployed Contracts**.
 
 To request randomness, you're going to use the `requestRandomness` function of the contract, which will require you to submit a deposit as defined in the Randomness Precompile. You can submit the randomness request and pay the deposit by taking these steps:
 
-1. Enter an amount in the **VALUE** field for the fulfillment fee, it must be equal to or greater than the minimum fee specified in the `RandomNumber` contract, which is `15000000` Gwei. 
+1. Enter an amount in the **VALUE** field for the fulfillment fee, it must be equal to or greater than the minimum fee specified in the `RandomNumber` contract, which is `15000000` Gwei.
 2. Expand the **RANDOMNUMBER** contract
 3. Click on the **requestRandomness** button
 4. Confrm the transaction in MetaMask
@@ -272,7 +272,7 @@ In addition to interacting with the randomness precompile via a smart contract, 
 
 To add the interfaces to Remix and follow along with this section of the tutorial, you will need to:
 
-1. Get a copy of [`Randomness.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/Randomness.sol){target=_blank}
+1. Get a copy of [`Randomness.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/Randomness.sol){target=_blank}
 2. Paste the file contents into a Remix file named **Randomness.sol**
 
 ![Add precompile to Remix](/images/builders/pallets-precompiles/precompiles/randomness/randomness-8.png)
@@ -304,7 +304,7 @@ Anyone can purge expired requests. You do not need to be the one who requested t
 
 To purge a request, first you have to make sure that the request has expired. To do so, you can verify the status of a request using the `getRequestStatus` function of the precompile. The number that is returned from this call corresponds to the index of the value in the [`RequestStatus`](#enums) enum. As a result, you'll want to verify the number returned is `3` for `Expired`.
 
-Once you've verified that the request is expired, you can call the `purgeExpiredRequest` function to purge the request. 
+Once you've verified that the request is expired, you can call the `purgeExpiredRequest` function to purge the request.
 
 To verify and purge a request, you can take the following steps:
 

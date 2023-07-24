@@ -31,7 +31,7 @@ For this tutorial, you'll need the following:
 - An empty Hardhat project that is configured for the Moonbase Alpha TestNet. For step-by-step instructions, please refer to the [Creating a Hardhat Project](/builders/build/eth-api/dev-env/hardhat/#creating-a-hardhat-project){target=_blank} and the [Hardhat Configuration File](/builders/build/eth-api/dev-env/hardhat/#hardhat-configuration-file){target=_blank} sections of our Hardhat documentation page
 - Install the [Hardhat Ethers plugin](https://hardhat.org/plugins/nomiclabs-hardhat-ethers.html){target=_blank}. This provides a convenient way to use the [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=_blank} library to interact with the network from your Hardhat project:
 
-    ```
+    ```bash
     npm install @nomiclabs/hardhat-ethers
     ```
 
@@ -48,17 +48,17 @@ The following are the contracts that we'll be working with today to create our l
 
 If you don't already have a `contracts` directory in your Hardhat project, you can create a new directory:
 
-```
+```bash
 mkdir contracts && cd contracts
 ```
 
 Then you can create the following three files, one for each of the aforementioned contracts:
 
-```
+```bash
 touch Randomness.sol RandomnessConsumer.sol Lottery.sol
 ```
 
-In the `Randomness.sol` file, you can paste in the [Randomness Precompile contract](https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/Randomness.sol){target=_blank}. Similarly, in the `RandomnessConsumer.sol` file, you can paste in the [Randomness Consumer contract](https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/RandomnessConsumer.sol){target=_blank}.
+In the `Randomness.sol` file, you can paste in the [Randomness Precompile contract](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/Randomness.sol){target=_blank}. Similarly, in the `RandomnessConsumer.sol` file, you can paste in the [Randomness Consumer contract](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/RandomnessConsumer.sol){target=_blank}.
 
 We'll start adding the functionality to the `Lottery.sol` contract in the following section.
 
@@ -135,7 +135,7 @@ We will also need to define some parameters specifically related to requesting r
 
 You can go ahead and add these parameters:
 
-```
+```sol
 // The gas limit allowed to be used for the fulfillment, which depends on the
 // code that is executed and the number of words requested. Test and adjust
 // this limit based on the size of the request and the processing of the 
@@ -165,7 +165,7 @@ Aside from these parameters, we'll need to create some variables which will be u
 - The owner of the lottery contract. This is necessary because only the owner of the contract will be allowed to start the lottery
 - The source of randomness (local VRF or BABE epoch) that is being used
 
-```
+```sol
 // The current request id
 uint256 public requestId;
 
@@ -187,11 +187,11 @@ Randomness.RandomnessSource randomnessSource;
 
 Now that we have completed the initial set up of all of the variables required for the lottery, we can start to code the functions that will bring the lottery to life. First, we'll start off by creating a constructor function.
 
-The constructor will accept a *uint8* as the randomness source, which corresponds to the index of the type of randomness defined in the [`RandomnessSource` enum](https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/Randomness.sol#L44-L47){target=_blank}, located in the Randomness Precompile. So, we can either pass in `0` for local VRF or `1` for BABE epoch randomness. It will also be `payable`, as we'll submit the deposit at the time of deployment and will be used to perform the randomness request later on.
+The constructor will accept a *uint8* as the randomness source, which corresponds to the index of the type of randomness defined in the [`RandomnessSource` enum](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/Randomness.sol#L44-L47){target=_blank}, located in the Randomness Precompile. So, we can either pass in `0` for local VRF or `1` for BABE epoch randomness. It will also be `payable`, as we'll submit the deposit at the time of deployment and will be used to perform the randomness request later on.
 
-The [deposit](https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/Randomness.sol#L17){target=_blank} is defined in the Randomness Precompile and is required in addition to the fulfillment fee. The deposit will be refunded to the original requester, which in our case is the owner of the contract, after the request has been fulfilled. If a request never gets fulfilled, it will expire and need to be purged. Once it is purged, the deposit will be returned.
+The [deposit](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/Randomness.sol#L17){target=_blank} is defined in the Randomness Precompile and is required in addition to the fulfillment fee. The deposit will be refunded to the original requester, which in our case is the owner of the contract, after the request has been fulfilled. If a request never gets fulfilled, it will expire and need to be purged. Once it is purged, the deposit will be returned.
 
-```
+```sol
 constructor(
     Randomness.RandomnessSource source
 ) payable RandomnessConsumer() {
@@ -213,11 +213,11 @@ constructor(
 
 ### Add Logic to Participate in the Lottery {: #participate-logic }
 
-Next we can create the function that will allow users to participate in the lottery. The `participate` function will be `payable` as each participant will need to submit a participation fee. 
+Next we can create the function that will allow users to participate in the lottery. The `participate` function will be `payable` as each participant will need to submit a participation fee.
 
 The `participate` function will include the following logic:
 
-- Check that the lottery hasn't started yet using the [`getRequestStatus` function](https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/Randomness.sol#L96-L99){target=_blank} of the Randomness Precompile. This function returns the status as defined by the [`RequestStatus` enum](https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/Randomness.sol#L34-L39){target=_blank}. If the status is anything other than `DoesNotExist`, then the lottery has already been started
+- Check that the lottery hasn't started yet using the [`getRequestStatus` function](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/Randomness.sol#L96-L99){target=_blank} of the Randomness Precompile. This function returns the status as defined by the [`RequestStatus` enum](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/Randomness.sol#L34-L39){target=_blank}. If the status is anything other than `DoesNotExist`, then the lottery has already been started
 - Check that the participation fee meets the requirement
 - If both of the above are true, then the participant will be added to the list of participants and their participation fee will be added to the jackpot
 
@@ -252,9 +252,9 @@ The `startLottery` function will include the following logic:
 
 - Check that the lottery hasn't started yet, as we did in the `participate` function
 - Check that there is an acceptable number of participants
-- Check that the fulfillment fee meets the minimum requirements 
+- Check that the fulfillment fee meets the minimum requirements
 - Check that the balance of the contract is enough to pay for the deposit. Remember how the constructor accepts the request deposit? That deposit is stored in the contract until this function is called
-- If all of the above are true, we submit the randomness request via the Randomness Precompile along with the fulfillment fee. Depending on the source of randomness, either the [`requestLocalVRFRandomWords` or the `requestRelayBabeEpochRandomWords` function](https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/Randomness.sol#L110-L167){target=_blank} of the Randomness Precompile will be called along with the following parameters:
+- If all of the above are true, we submit the randomness request via the Randomness Precompile along with the fulfillment fee. Depending on the source of randomness, either the [`requestLocalVRFRandomWords` or the `requestRelayBabeEpochRandomWords` function](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/Randomness.sol#L110-L167){target=_blank} of the Randomness Precompile will be called along with the following parameters:
     - The address where excess fees will be refunded to
     - The fulfillment fee
     - The gas limit to use for the fulfillment
@@ -264,7 +264,7 @@ The `startLottery` function will include the following logic:
 
 Since the lottery function should only be called by the owner, we'll also add in an `onlyOwner` modifer that requires the `msg.sender` to be the `owner`.
 
-```
+```sol
 function startLottery() external payable onlyOwner {
     // Check we haven't started the randomness request yet
     if (
@@ -325,13 +325,13 @@ modifier onlyOwner() {
 
 In this section, we'll be adding in two functions required to request fulfillment and handle the result of the fulfillment: `fulfillRequest` and `fulfillRandomWords`.
 
-Our `fulfillRequest` function will call the [`fulfillRequest` method](https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/Randomness.sol#L173){target=_blank} of the Randomness Precompile. When this method is called, under the hood the [`rawFulfillRandomWords` method](https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/RandomnessConsumer.sol#L114-L125){target=_blank} of the Randomness Consumer is called, which will verify that the call originated from the Randomness Precompile. From there, the [`fulfillRandomWords` function](https://github.com/PureStake/moonbeam/blob/master/precompiles/randomness/RandomnessConsumer.sol#L107-L109){target=_blank} of the Randomness Consumer contract is called and the requested number of random words are computed using the block's randomness result and a given salt, and then it is returned. If the fulfillment was successful, the `FulfillmentSucceeded` event will be emitted; otherwise, the `FulfillmentFailed` event will be emitted.
+Our `fulfillRequest` function will call the [`fulfillRequest` method](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/Randomness.sol#L173){target=_blank} of the Randomness Precompile. When this method is called, under the hood the [`rawFulfillRandomWords` method](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/RandomnessConsumer.sol#L114-L125){target=_blank} of the Randomness Consumer is called, which will verify that the call originated from the Randomness Precompile. From there, the [`fulfillRandomWords` function](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/randomness/RandomnessConsumer.sol#L107-L109){target=_blank} of the Randomness Consumer contract is called and the requested number of random words are computed using the block's randomness result and a given salt, and then it is returned. If the fulfillment was successful, the `FulfillmentSucceeded` event will be emitted; otherwise, the `FulfillmentFailed` event will be emitted.
 
 For fulfilled requests, the cost of execution will be refunded from the request fee to the caller of `fulfillRequest`. Then any excess fees and the request deposit are transferred to the specified refund address.
 
 Our `fulfillRandomWords` function defines a callback, the `pickWinners` function, that is responsible for handling the fulfillment. So, in our case, the callback will use the random words to select a winner and payout the winnings. The signature of our `fulfillRandomWords` function must match the signature of the Randomness Consumer's `fulfillRandomWords` function.
 
-```
+```sol
 function fulfillRequest() public {
     randomness.fulfillRequest(requestId);
 }
@@ -360,7 +360,7 @@ The `pickWinners` function contains the following logic:
 - Determine the winners by using the random words
 - Distribute the winnings to each of the winners, making sure to deduct the winnings from the jackpot before transferring them
 
-```
+```sol
 // This function is called only by the fulfillment callback
 function pickWinners(uint256[] memory randomWords) internal {
     // Get the total number of winners to select
@@ -385,7 +385,7 @@ function pickWinners(uint256[] memory randomWords) internal {
 }
 ```
 
-Congratulations! You've gone through the entire process of creating the `Lottery.sol` contract! You can view the completed version of the [`Lottery.sol` contract on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/randomness/Lottery.sol){target=_blank}. Remember, **this contract is for educational purposes only and is not meant for production use.**
+Congratulations! You've gone through the entire process of creating the `Lottery.sol` contract! You can view the completed version of the [`Lottery.sol` contract on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/randomness/Lottery.sol){target=_blank}. Remember, **this contract is for educational purposes only and is not meant for production use.**
 
 !!! challenge
     To make the contract easier to work with, add some events for when a lottery has started, a winner has been chosen, and a winner has been awarded.
@@ -398,7 +398,7 @@ Now that we've gone through and created our lottery contract, let's deploy it an
 
 To compile our contracts, you can simply run:
 
-```
+```bash
 npx hardhat compile
 ```
 
@@ -406,11 +406,11 @@ npx hardhat compile
 
 After compilation, an `artifacts` directory is created: it holds the bytecode and metadata of the contracts, which are `.json` files. It’s a good idea to add this directory to your `.gitignore`.
 
-Before we can deploy the `Lottery.sol` contract, we'll need to create a deployment script. 
+Before we can deploy the `Lottery.sol` contract, we'll need to create a deployment script.
 
 You can create a new directory for the script and name it `scripts` and add a new file to it called `deploy.js`:
 
-```
+```bash
 mkdir scripts && 
 touch scripts/deploy.js
 ```
@@ -458,7 +458,7 @@ main()
 
 To deploy our lottery contract, we'll use the `run` command and specify `moonbase` as the network:
 
-```
+```bash
 npx hardhat run --network moonbase scripts/deploy.js
 ```
 
@@ -472,7 +472,7 @@ After a few seconds, the contract is deployed, and you should see the address in
 
 We can continue to work with our Hardhat project and create additional scripts to interact with our lottery contract and call some of it's functions. For example, to participate in the lottery, we can create another script in our `scripts` directory:
 
-```
+```bash
 touch participate.js
 ```
 
@@ -495,9 +495,9 @@ participate()
     });
 ```
 
-To run this script, you can use the following command: 
+To run this script, you can use the following command:
 
-```
+```bash
 npx hardhat run --network moonbase scripts/participate.js
 ```
 

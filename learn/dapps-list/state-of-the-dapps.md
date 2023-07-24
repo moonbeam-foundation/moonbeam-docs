@@ -4,18 +4,18 @@ description: How you can list your Moonbeam or Moonriver project on State of the
 ---
 
 # How to List your Project on State of the DApps
- 
+
 ![State of the DApps banner image](/images/learn/dapps-list/state-of-the-dapps/state-of-the-dapps-banner.png)
 
 ## Introduction to State of the DApps {: #introduction-to-state-of-the-dapps }
 
 [State of the DApps](https://www.stateofthedapps.com/){target=_blank} was started in 2016 by Joris Bontje to provide a convenient listing of all of the smart contracts or decentralized applications deployed to Ethereum. It has grown tremendously since then, supporting multiple chains and showcasing a wealth of information. In their own words, *“Whether you are looking for new users, testers, concept feedback, partners, or investors, submitting a DApp to this definitive registry will help your project gain traction.”*
 
-State of the DApps maintains a rank of projects based on active users, transaction volume, developer activity, and profile strength. Moonriver is currently live on State of the DApps. Previously, a [crowd-sourced Moonbeam DApps listing](https://github.com/PureStake/moonbeam-project-directory){target=_blank} was maintained as part of the Moonbeam docs site. That registry is deprecated and replaced by the listing platforms under the [Dapps List](/learn/dapps-list/){target=_blank} section.
+State of the DApps maintains a rank of projects based on active users, transaction volume, developer activity, and profile strength. Moonriver is currently live on State of the DApps. Previously, a [crowd-sourced Moonbeam DApps listing](https://github.com/moonbeam-foundation/moonbeam-project-directory){target=_blank} was maintained as part of the Moonbeam docs site. That registry is deprecated and replaced by the listing platforms under the [Dapps List](/learn/dapps-list/){target=_blank} section.
 
 ![State of the DApps Home Page](/images/learn/dapps-list/state-of-the-dapps/state-of-the-dapps-1.png)
 
-You can [submit your project](https://www.stateofthedapps.com/dapps/submit/new){target=_blank} to State of the DApps by providing background on your project including a description of the DApp, screenshots, social media links, and a project status (such as Live, Beta, Prototype, etc). DApps are welcome at any stage in the product life cycle, including ones in the ideation phase. Only a subset of the fields are required, but you are encouraged to complete as many as possible, as providing a more thorough profile for your DApp will improve its ranking. 
+You can [submit your project](https://www.stateofthedapps.com/dapps/submit/new){target=_blank} to State of the DApps by providing background on your project including a description of the DApp, screenshots, social media links, and a project status (such as Live, Beta, Prototype, etc). DApps are welcome at any stage in the product life cycle, including ones in the ideation phase. Only a subset of the fields are required, but you are encouraged to complete as many as possible, as providing a more thorough profile for your DApp will improve its ranking.
 
 !!! note
     State of the DApps contains user-generated content. You should verify any information with your own research. Moonbeam is a permissionless network. Any project can deploy its contracts to Moonbeam.
