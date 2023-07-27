@@ -7,7 +7,7 @@ description: Learn how to send XC-20s to other chains using the X-Tokens Pallet.
 
 ![X-Tokens Precompile Contracts Banner](/images/builders/interoperability/xcm/xc20/xtokens/xtokens-banner.png)
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 Building an XCM message for fungible asset transfers is not an easy task. Consequently, there are wrapper functions and pallets that developers can leverage to use XCM features on Polkadot and Kusama.
 
@@ -103,6 +103,26 @@ To check your xcUNIT balance, you can add the XC-20 to MetaMask with the followi
 
 You can adapt this guide for another [external XC-20 or a local XC-20](/builders/interoperability/xcm/xc20/overview){target=_blank}. If you're adapting this guide for another external XC-20, you'll need to have the asset ID of the asset you're transferring and the number of decimals the asset has, which you can get by following the [Retrieve List of External XC-20s](/builders/interoperability/xcm/xc20/overview/#list-xchain-assets){target=_blank} guide. If you're adapting this guide for a local XC-20, you'll need to have the contract address of the XC-20.
 
+If you are transferring a local XC-20, please be aware that transfers are limited to the following units of gas per each network:
+
+=== "Moonbeam"
+
+    ```text
+    {{ networks.moonbeam.erc20_xcm.transfer_gas_limit }}
+    ```
+
+=== "Moonriver"
+
+    ```text
+    {{ networks.moonriver.erc20_xcm.transfer_gas_limit }}
+    ```
+
+=== "Moonbase Alpha"
+
+    ```text
+    {{ networks.moonbase.erc20_xcm.transfer_gas_limit }}
+    ```
+
 ### X-Tokens Transfer Function {: #xtokens-transfer-function}
 
 In this example, you'll build an XCM message to transfer xcUNIT from Moonbase Alpha back to its relay chain through the `transfer` function of the X-Tokens Pallet. To do this, you can use the [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=_blank}.
@@ -154,7 +174,7 @@ Since you'll be interacting with the `transfer` function of the X-Tokens Pallet,
     ```
 
     !!! note
-        If you wanted to limit the destination weight, you could do so by using `Limited`, which requires you to enter values for `refTime` and `proofSize`. Where `refTime` is the amount of computational time that can be used for execution and `proofSize` is the amount of storage in bytes that can be used. 
+        If you wanted to limit the destination weight, you could do so by using `Limited`, which requires you to enter values for `refTime` and `proofSize`. Where `refTime` is the amount of computational time that can be used for execution and `proofSize` is the amount of storage in bytes that can be used.
 
         In JavaScript, this translates to:
 
@@ -253,7 +273,7 @@ Since you'll be interacting with the `transferMultiasset` function of the X-Toke
     ```
 
     !!! note
-        If you wanted to limit the destination weight, you could do so by using `Limited`, which requires you to enter values for `refTime` and `proofSize`. Where `refTime` is the amount of computational time that can be used for execution and `proofSize` is the amount of storage in bytes that can be used. 
+        If you wanted to limit the destination weight, you could do so by using `Limited`, which requires you to enter values for `refTime` and `proofSize`. Where `refTime` is the amount of computational time that can be used for execution and `proofSize` is the amount of storage in bytes that can be used.
 
         In JavaScript, this translates to:
 
@@ -304,7 +324,7 @@ The X-Tokens Precompile contract allows developers to access XCM token transfer 
 
 --8<-- 'text/precompiles/security.md'
 
-### The X-Tokens Solidity Interface {: #xtokens-solidity-interface } 
+### The X-Tokens Solidity Interface {: #xtokens-solidity-interface }
 
 [Xtokens.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=_blank} is an interface through which developers can interact with the X-Tokens Pallet using the Ethereum API.
 
@@ -356,7 +376,7 @@ The following code snippet goes through some examples of `Multilocation` structu
 ```
 ### Using Libraries to Interact with X-Tokens {: #using-libraries-to-interact-with-xtokens}
 
-The Multilocation structs can be formatted like any other struct when using libraries to interact with the Ethereum API. The following code snippet include the previous [X-Tokens transfer function](#xtokens-transfer-function), the [X-Tokens multiasset transfer function](#xtokens-transfer-multiasset-function), and sample Multilocation struct examples. You can find the [X-Tokens ABI on Github](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/xtokens/abi.js){target=_blank}.
+The Multilocation structs can be formatted like any other struct when using libraries to interact with the Ethereum API. The following code snippet includes the previous [X-Tokens transfer function](#xtokens-transfer-function), the [X-Tokens multiasset transfer function](#xtokens-transfer-multiasset-function), and sample Multilocation struct examples. You can find the [X-Tokens ABI on Github](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/xtokens/abi.js){target=_blank}.
 
 === "Ethers.js"
 

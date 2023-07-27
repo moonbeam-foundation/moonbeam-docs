@@ -1,0 +1,6 @@
+title: XC Registration
+nav:
+  - index.md
+  - 'Forum Templates': 'forum-templates.md'
+  - 'XC Asset Registration': 'assets.md'
+  - 'XC Channel Registration': 'xc-integration.md'

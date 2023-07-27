@@ -117,6 +117,8 @@ networks:
       units_per_second:
         xcbetadev:
           transact_numbers_only: 50000000000000000
+    erc20_xcm:
+      transfer_gas_limit: 80,000
     conviction:
       lock_period:
         conviction_1: 1
@@ -434,6 +436,8 @@ networks:
           display: 200,000,000
         wei_per_weight:
           display: 50,000
+    erc20_xcm:
+      transfer_gas_limit: 80,000
     conviction:
       lock_period:
         conviction_1: 1
@@ -806,6 +810,8 @@ networks:
         transfer:
           exec_time: 0.0008
           xcdot_cost: 0.00090281848
+    erc20_xcm:
+      transfer_gas_limit: 80,000
     preimage:
       base_deposit: 500
       byte_deposit: .01
