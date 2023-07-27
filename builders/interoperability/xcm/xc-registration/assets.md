@@ -67,17 +67,20 @@ The easiest way to calculate an asset's units per second is through the [`calcul
 - `--xcm-weight-cost` or `--xwc` - total weight cost of the execution of the entire XCM message. The estimated weight per XCM operation on each Moonbeam chain is:  
 
     === "Moonbeam"
-        ```
+
+        ```text
         800000000
         ```
 
     === "Moonriver"
-        ```
+
+        ```text
         800000000
         ```
 
     === "Moonbase Alpha"
-        ```
+
+        ```text
         638978000
         ```
 
