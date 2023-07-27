@@ -309,12 +309,12 @@ The [xcm-tools GitHub repository](https://github.com/Moonsong-Labs/xcm-tools){ta
 
 The complete options that can be used with the script are as follows:  
 
-|         Flag         |            Type            |                                                                         Description                                                                          |
-|:--------------------:|:--------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|   account-priv-key   |           string           |                        (Required for send-proposal-as, send-preimage-hash) The private key of the account to send a transaction with                         |
-|         sudo         |          boolean           |     Whether to wrap the extrinsic calldata inside of a `sudo.sudo` extrinsic. If `account-priv-key` is present, it will attempt to send the transaciton      |
-|  send-preimage-hash  |          boolean           |                                          Whether to submit the encoded calldata as a preimage and retrieve its hash                                          |
-|   send-proposal-as   | democracy/council-external |                                      Whether to send the encoded calldata through democracy or Council (Governance v1)                                       |
-| collective-threshold |           number           |                                     (Required for council-external) The threshold for the Council deciding the proposal                                      |
-|       at-block       |           number           | Whether to wrap the extrinsic calldata inside of a `scheduler.schedule` extrinsic. The block in the future that the action should be scheduled to take place |
-|     fee-currency     |   string (multilocation)   |                           (Required for non-Moonbeam chains that use XCM Transactor) The multilocation of the relay chain's asset                            |
+|         Flag         |             Type              |                                                                         Description                                                                          |
+|:--------------------:|:-----------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|   account-priv-key   |            string             |                        (Required for send-proposal-as, send-preimage-hash) The private key of the account to send a transaction with                         |
+|         sudo         |            boolean            |     Whether to wrap the extrinsic calldata inside of a `sudo.sudo` extrinsic. If `account-priv-key` is present, it will attempt to send the transaciton      |
+|  send-preimage-hash  |            boolean            |                                          Whether to submit the encoded calldata as a preimage and retrieve its hash                                          |
+|   send-proposal-as   | democracy/council-external/v2 |                        Whether to send the encoded calldata through democracy or Council (Governance v1), or OpenGov (Governance v2)                         |
+| collective-threshold |            number             |                                     (Required for council-external) The threshold for the Council deciding the proposal                                      |
+|       at-block       |            number             | Whether to wrap the extrinsic calldata inside of a `scheduler.schedule` extrinsic. The block in the future that the action should be scheduled to take place |
+|     fee-currency     |    string (multilocation)     |                           (Required for non-Moonbeam chains that use XCM Transactor) The multilocation of the relay chain's asset                            |
