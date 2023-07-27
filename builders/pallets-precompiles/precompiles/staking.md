@@ -8,7 +8,7 @@ keywords: solidity, ethereum, staking, moonbeam, precompiled, contracts
 
 ![Staking Moonbeam Banner](/images/builders/pallets-precompiles/precompiles/staking/staking-banner.png)
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 Moonbeam uses a Delegated Proof of Stake system through the [parachain staking](/builders/pallets-precompiles/pallets/staking){target=_blank} pallet, allowing token holders (delegators) to express exactly which collator candidates they would like to support and with what quantity of stake. The design of the parachain staking pallet is such that it enforces shared risk/reward on chain between delegators and candidates. For general information on staking, such as general terminology, staking variables, and more, please refer to the [Staking on Moonbeam](/learn/features/staking){target=_blank} page.
 
@@ -64,9 +64,9 @@ Some of the staking pallet extrinsics include exit delays that you must wait bef
     |    Leave candidates     |    {{ networks.moonbase.collator_timings.leave_candidates.rounds }} rounds ({{ networks.moonbase.collator_timings.leave_candidates.hours }} hours)    |
     |    Leave delegators     |   {{ networks.moonbase.delegator_timings.leave_delegators.rounds }} rounds ({{ networks.moonbase.delegator_timings.leave_delegators.hours }} hours)   |
 
-## Parachain Staking Solidity Interface {: #the-parachain-staking-solidity-interface } 
+## Parachain Staking Solidity Interface {: #the-parachain-staking-solidity-interface }
 
-[`StakingInterface.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank} is an interface through which Solidity contracts can interact with parachain-staking. The beauty is that Solidity developers don’t have to learn the Substrate API. Instead, they can interact with staking functions using the Ethereum interface they are familiar with.
+[`StakingInterface.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank} is an interface through which Solidity contracts can interact with parachain-staking. The beauty is that Solidity developers don’t have to learn the Substrate API. Instead, they can interact with staking functions using the Ethereum interface they are familiar with.
 
 The Solidity interface includes the following functions:
 
@@ -91,7 +91,7 @@ The Solidity interface includes the following functions:
  - **joinCandidates**(*uint256* amount, *uint256* candidateCount) — allows the account to join the set of collator candidates with the specified bond amount and the current candidate count. Uses the [`joinCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=joinCandidates(bond, candidateCount)){target=_blank} method of the staking pallet
  - **scheduleLeaveCandidates**(*uint256* candidateCount) - schedules a request for a candidate to remove themselves from the candidate pool. Scheduling the request does not automatically execute it. There is an [exit delay](#exit-delays) that must be waited before you can execute the request via the `executeLeaveCandidates` extrinsic. Uses the [`scheduleLeaveCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=scheduleLeaveCandidates(candidateCount)){target=_blank} method of the staking pallet
  - **executeLeaveCandidates**(*address* candidate, *uint256* candidateDelegationCount) - executes the due request to leave the set of collator candidates. Uses the [`executeLeaveCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=executeLeaveCandidates(candidate, candidateDelegationCount)){target=_blank} method of the staking pallet
- - **cancelLeaveCandidates**(*uint256* candidateCount) - allows a candidate to cancel a pending scheduled request to leave the candidate pool. Given the current number of candidates in the pool. Uses the [`cancelLeaveCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=cancelLeaveCandidates(candidateCount)){target=_blank} method of the staking pallet 
+ - **cancelLeaveCandidates**(*uint256* candidateCount) - allows a candidate to cancel a pending scheduled request to leave the candidate pool. Given the current number of candidates in the pool. Uses the [`cancelLeaveCandidates`](/builders/pallets-precompiles/pallets/staking/#:~:text=cancelLeaveCandidates(candidateCount)){target=_blank} method of the staking pallet
  - **goOffline**() — temporarily leave the set of collator candidates without unbonding. Uses the [`goOffline`](/builders/pallets-precompiles/pallets/staking/#:~:text=goOffline()){target=_blank} method of the staking pallet
  - **goOnline**() — rejoin the set of collator candidates after previously calling `goOffline()`. Uses the [`goOnline`](/builders/pallets-precompiles/pallets/staking/#:~:text=goOnline()){target=_blank} method of the staking pallet
  - **candidateBondMore**(*uint256* more) — collator candidate increases bond by the specified amount. Uses the [`candidateBondMore`](/builders/pallets-precompiles/pallets/staking/#:~:text=candidateBondMore(more)){target=_blank} method of the staking pallet
@@ -131,7 +131,7 @@ As of runtime 1001, the following methods are **deprecated** and, as of runtime 
 
 ## Interact with the Solidity Interface {: #interact-with-solidity-interface }
 
-### Checking Prerequisites {: #checking-prerequisites } 
+### Checking Prerequisites {: #checking-prerequisites }
 
 The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonbeam and Moonriver.
 
@@ -140,23 +140,23 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
   --8<-- 'text/faucet/faucet-list-item.md'
 
 !!! note
-    The example below requires more than `{{networks.moonbase.staking.min_del_stake}}` token due to the minimum delegation amount plus gas fees. If you need more than the faucet dispenses, please contact us on Discord and we will be happy to help you. 
+    The example below requires more than `{{networks.moonbase.staking.min_del_stake}}` token due to the minimum delegation amount plus gas fees. If you need more than the faucet dispenses, please contact us on Discord and we will be happy to help you.
 
-### Remix Set Up {: #remix-set-up } 
+### Remix Set Up {: #remix-set-up }
 
 1. Click on the **File explorer** tab
-2. Get a copy of [`StakingInterface.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank} and paste the file contents into a Remix file named `StakingInterface.sol`
+2. Get a copy of [`StakingInterface.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/parachain-staking/StakingInterface.sol){target=_blank} and paste the file contents into a Remix file named `StakingInterface.sol`
 
 ![Copying and Pasting the Staking Interface into Remix](/images/builders/pallets-precompiles/precompiles/staking/staking-1.png)
 
-### Compile the Contract {: #compile-the-contract } 
+### Compile the Contract {: #compile-the-contract }
 
 1. Click on the **Compile** tab, second from top
 2. Then to compile the interface, click on **Compile StakingInterface.sol**
 
 ![Compiling StakingInteface.sol](/images/builders/pallets-precompiles/precompiles/staking/staking-2.png)
 
-### Access the Contract {: #access-the-contract } 
+### Access the Contract {: #access-the-contract }
 
 1. Click on the **Deploy and Run** tab, directly below the **Compile** tab in Remix. Note: you are not deploying a contract here, instead you are accessing a precompiled contract that is already deployed
 2. Make sure **Injected Provider - Metamask** is selected in the **ENVIRONMENT** drop down
@@ -166,13 +166,13 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 
 ![Provide the address](/images/builders/pallets-precompiles/precompiles/staking/staking-3.png)
 
-### Delegate a Collator with Auto-Compounding {: #delegate-a-collator } 
+### Delegate a Collator with Auto-Compounding {: #delegate-a-collator }
 
 For this example, you are going to be delegating a collator and setting up the percentage of rewards to auto-compound on Moonbase Alpha. Delegators are token holders who stake tokens, vouching for specific candidates. Any user that holds a minimum amount of {{networks.moonbase.staking.min_del_stake}} token in their free balance can become a delegator. When delegating a candidate, you can simultaneously set up auto-compounding. You'll be able to specify a percentage of your rewards that will automatically be applied to your total delegation. You don't have to set up auto-compounding right away, you can always do it at a later time.
 
 You can do your own research and select the candidate you desire. For this guide, the following candidate address will be used: `{{ networks.moonbase.staking.candidates.address1 }}`.
 
-In order to delegate a candidate, you'll need to determine the candidate's current delegation count, their auto-compounding delegation count, and your own delegation count. 
+In order to delegate a candidate, you'll need to determine the candidate's current delegation count, their auto-compounding delegation count, and your own delegation count.
 
 The candidate delegation count is the number of delegations backing a specific candidate. To obtain the candidate delegator count, you can call a function that the staking precompile provides. Expand the **PARACHAINSTAKING** contract found under the **Deployed Contracts** list, then:
 
@@ -217,9 +217,9 @@ Now that you have obtained the [candidate delegator count](#:~:text=To obtain th
 
 If you want to delegate without setting up auto-compounding, you can follow the previous steps, but instead of using **delegateWithAutoCompound**, you can use the **delegate** extrinsic.
 
-### Verify Delegation {: #verify-delegation } 
+### Verify Delegation {: #verify-delegation }
 
-To verify your delegation was successful, you can check the chain state in Polkadot.js Apps. First, add your MetaMask address to the [address book in Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/addresses){target=_blank}. 
+To verify your delegation was successful, you can check the chain state in Polkadot.js Apps. First, add your MetaMask address to the [address book in Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/addresses){target=_blank}.
 
 Navigate to **Accounts** and then **Address Book**, click on **Add contact**, and enter the following information:
 
@@ -272,9 +272,9 @@ Once you have the necessary information, you can take the following steps in Rem
 
 ![Set or update auto-compound percentage](/images/builders/pallets-precompiles/precompiles/staking/staking-11.png)
 
-### Revoke a Delegation {: #revoke-a-delegation } 
+### Revoke a Delegation {: #revoke-a-delegation }
 
-As of [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/){target=_blank}, there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled. 
+As of [runtime version 1001](https://moonbeam.network/announcements/staking-changes-moonriver-runtime-upgrade/){target=_blank}, there have been significant changes to the way users can interact with various staking features. Including the way staking exits are handled.
 
 Exits now require you to schedule a request to exit or revoke a delegation, wait a delay period, and then execute the request.
 

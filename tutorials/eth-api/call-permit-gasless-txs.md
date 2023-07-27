@@ -362,7 +362,7 @@ We'll get the nonce in the next section, and then put all of the arguments toget
 
 Lastly, we'll need to get the `nonce` of the `from` account. As previously mentioned, we can use the `nonces` function of the Call Permit Precompile to get this value. To do so, you'll need to create a contract instance for the Call Permit Precompile:
 
-1. Create a new file in your project that contains the ABI of the Call Permit Precompile. You can find the [ABI on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/precompiles/call-permit/abi.js){target=_blank}
+1. Create a new file in your project that contains the ABI of the Call Permit Precompile. You can find the [ABI on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/precompiles/call-permit/abi.js){target=_blank}
 2. Import the ABI into your Ethers file
 3. Create an instance of the Call Permit Precompile using the precompile's address and the ABI of the precompile. You can use either a provider or a signer. Since we are dispatching the permit later on in this tutorial, we'll use the signer associated with the third-party account for transaction fees, but if you only needed to access the `nonces` function, you could use a provider instead
 4. Call the `nonces` function and pass in the `signer.account` of the user, which is the same as the `from` account

@@ -84,7 +84,7 @@ Now that we have the calldata for the mint actions, we can work with the Batch P
 
 For demonstration purposes, we'll be using [Remix](http://remix.ethereum.org/){target=_blank} to visualize and construct our calldata. If needed, the [Batch Precompile page](/builders/pallets-precompiles/precompiles/batch/#remix-set-up){target=_blank} offers a step-by-step guide for getting started with the Batch Precompile in Remix.
 
-To quickly get started, go ahead and copy [`Batch.sol`](https://raw.githubusercontent.com/PureStake/moonbeam/master/precompiles/batch/Batch.sol){target=_blank} and compile it. From the **Deploy** tab of Remix, specify your environment in Remix as **Injected Web3** and make sure your wallet is on the Moonbase Alpha network. As it is a precompile, we won't be deploying anything but rather will access the Batch Precompile at its respective address:
+To quickly get started, go ahead and copy [`Batch.sol`](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam/master/precompiles/batch/Batch.sol){target=_blank} and compile it. From the **Deploy** tab of Remix, specify your environment in Remix as **Injected Web3** and make sure your wallet is on the Moonbase Alpha network. As it is a precompile, we won't be deploying anything but rather will access the Batch Precompile at its respective address:
 
 === "Moonbeam"
      ```

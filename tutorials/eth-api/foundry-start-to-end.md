@@ -15,13 +15,13 @@ Foundry has become an increasingly popular developer environment to develop smar
 
 In this demonstration, we will deploy two smart contracts. One is a token and another will depend on that token. We will also write unit tests to ensure that the contracts work as expected. To deploy them, we will write a script that Foundry will use to determine the deployment logic. Finally, we will verify the smart contracts on a Moonbeam network's blockchain explorer.  
 
-## Checking Prerequisites {: #checking-prerequisites } 
+## Checking Prerequisites {: #checking-prerequisites }
 
 To get started, you will need the following:
 
- - Have an account with funds. 
+ - Have an account with funds.
   --8<-- 'text/faucet/faucet-list-item.md'
- - 
+ -
 --8<-- 'text/common/endpoint-examples.md'
  - Have [Foundry installed](https://book.getfoundry.sh/getting-started/installation){target=_blank}
  - Have a [Moonscan API Key](/builders/build/eth-api/verify-contracts/api-verification/#generating-a-moonscan-api-key){target=_blank}
@@ -30,7 +30,7 @@ To get started, you will need the following:
 
 The first step to start a Foundry project is of course to create it. If you have Foundry installed, you can run:
 
-```
+```bash
 forge init foundry && cd foundry
 ```
 
@@ -38,13 +38,13 @@ This will have the `forge` utility initialize a new folder named `foundry` with 
 
 From here, there are a few things to do first before writing any code. First, we want to add a dependency to [OpenZeppelin's smart contracts](https://github.com/OpenZeppelin/openzeppelin-contracts){target=_blank}, because they include helpful contracts to use when writing token smart contracts. To do so, add them using their GitHub repository name:  
 
-```
+```bash
 forge install OpenZeppelin/openzeppelin-contracts
 ```
 
 This will add the OpenZeppelin git submodule to your `lib` folder. To be sure that this dependency is mapped, you can override the mappings in a special file, `remappings.txt`:  
 
-```
+```bash
 forge remappings > remappings.txt
 ```
 
@@ -94,7 +94,7 @@ The first addition is a specification of the `solc_version`, underneath `profile
 
 Smart contracts in Foundry that are meant to be deployed by default belong in the `src` folder. In this tutorial, we'll write two smart contracts. Starting with the token:
 
-```
+```bash
 touch MyToken.sol
 ```
 
@@ -125,7 +125,7 @@ As you can see, the OpenZeppelin `ERC20` smart contract is imported by the mappi
 
 The second smart contract, which we'll name `Container.sol`, will depend on this token contract. It is a simple contract that holds the ERC-20 token we'll deploy. You can create the file by executing:  
 
-```
+```bash
 touch Container.sol
 ```
 
@@ -192,12 +192,12 @@ Before we deploy anything to a TestNet or MainNet, however, it's good to test yo
 
 To get started with writing tests for this tutorial, make a new file in the `test` folder:  
 
-```
+```bash
 cd test
 touch MyToken.t.sol
 ```
 
-By convention, all of your tests should end with `.t.sol` and start with the name of the smart contract that it is testing. In practice, the test can be stored anywhere, and is considered a test if it has a function that starts with the word *"test"*. 
+By convention, all of your tests should end with `.t.sol` and start with the name of the smart contract that it is testing. In practice, the test can be stored anywhere, and is considered a test if it has a function that starts with the word *"test"*.
 
 Let's start by writing a test for the token smart contract. Open up `MyToken.t.sol` and add:  
 
@@ -228,7 +228,7 @@ If you take a look at the `MyTokenTest` smart contract, you'll see two functions
 
 Great! Let's write some more tests, but for `Container`.  
 
-```
+```bash
 touch Container.t.sol
 ```
 
@@ -273,7 +273,7 @@ contract ContainerTest is Test {
 
 This test smart contract has two tests, so when running the tests, there will be two deployments of both `MyToken` and `Container`, for four smart contracts in total. You can run the following command to see the result of the test:  
 
-```
+```bash
 forge test
 ```
 
@@ -348,7 +348,7 @@ In Foundry, when you want to test for a failure, instead of just starting your t
 
 Now run the tests:  
 
-```
+```bash
 forge test
 ```
 
@@ -397,13 +397,13 @@ The fourth line of code retrieves an already deployed instance of `MyToken`, whi
 
 The rest of the code tests capacity like you would expect a local test to. If you run the tests (with the `-vvvv` tag for extra logging), you'll see that it passes:  
 
-```
+```bash
 forge test -vvvv
 ```
 
 ![Forking Tests in Foundry](/images/tutorials/eth-api/foundry-start-to-end/foundry-4.png)
 
-That's it for testing! You can see the complete [`Container.t.sol` file](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/eth-api/foundry-start-to-end/Container.t.sol){target=_blank} and [`MyToken.t.sol` file](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/eth-api/foundry-start-to-end/MyToken.t.sol){target=_blank} on GitHub.
+That's it for testing! You can see the complete [`Container.t.sol` file](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/tutorials/eth-api/foundry-start-to-end/Container.t.sol){target=_blank} and [`MyToken.t.sol` file](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/tutorials/eth-api/foundry-start-to-end/MyToken.t.sol){target=_blank} on GitHub.
 
 ## Deploy in Foundry with Solidity Scripts {: #deploy-in-foundry-with-solidity-scripts }
 
@@ -413,7 +413,7 @@ Not only are tests in Foundry written in Solidity, the scripts are too! Like oth
 
 In this tutorial, we will be using Foundry's scripts to deploy both the `MyToken` and `Container` smart contracts. To create the deployment scripts, create a new file in the `script` folder:  
 
-```
+```bash
 cd script
 touch Container.s.sol
 ```
@@ -455,7 +455,7 @@ In the first line within the `run` function, `vm.envUint` is used to get a priva
 
 Before we run this script, let's set up some of our environment variables. Create a new `.env` file:  
 
-```
+```bash
 touch .env
 ```
 
@@ -471,13 +471,13 @@ MOONSCAN_API_KEY=YOUR_MOONSCAN_API_KEY
 
 To add these environment variables, run the following command:  
 
-```
+```bash
 source .env
 ```
 
 Now your script and project should be ready for deployment! Use the following command to do so:  
 
-```
+```bash
 forge script Container.s.sol:ContainerDeployScript --broadcast --verify -vvvv --rpc-url moonbase
 ```
 
@@ -489,13 +489,13 @@ You should see something like this as output:
 
 You should be able to see that your contracts were deployed, and are verified on Moonscan! For example, this is where my [`Container.sol` contract was deployed](https://moonbase.moonscan.io/address/0xe8bf2e654d7c1c1ba8f55fed280ddd241e46ced9#code){target=_blank}.  
 
-The entire deployment script is [available on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/tutorials/eth-api/foundry-start-to-end/Container.s.sol){target=_blank}.  
+The entire deployment script is [available on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/tutorials/eth-api/foundry-start-to-end/Container.s.sol){target=_blank}.  
 
 ### Deploy on Moonbeam MainNet {: #deploy-on-moonbeam-mainnet }
 
-Let's say that you're comfortable with your smart contracts and you want to deploy on the Moonbeam MainNet! The process isn't too different from what was just done, you just have to change the command's rpc-url from `moonbase` to `moonbeam`, since you've already added Moonbeam MainNet's information in the `foundry.toml` file: 
+Let's say that you're comfortable with your smart contracts and you want to deploy on the Moonbeam MainNet! The process isn't too different from what was just done, you just have to change the command's rpc-url from `moonbase` to `moonbeam`, since you've already added Moonbeam MainNet's information in the `foundry.toml` file:
 
-```
+```bash
 forge script Container.s.sol:ContainerDeployScript --broadcast --verify -vvvv --rpc-url moonbeam
 ```
 
