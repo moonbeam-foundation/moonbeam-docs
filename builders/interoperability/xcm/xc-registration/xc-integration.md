@@ -17,7 +17,7 @@ Once the XCMP (or HRMP) channels have been opened, the corresponding assets from
 
 This guide will cover the process of opening and accepting an HRMP channel between a parachain and a Moonbeam-based network. In addition, the guide provides the necessary steps to create a batch proposal that combines opening and accepting a channel and registering an asset on Moonbeam into a single proposal.
 
-All of the examples in this guide use a CLI tool developed to ease the entire process, which you can find in the [xcm-tools GitHub repository](https://github.com/Moongsong-Labs/xcm-tools){target=_blank}.
+All of the examples in this guide use a CLI tool developed to ease the entire process, which you can find in the [xcm-tools GitHub repository](https://github.com/Moonsong-Labs/xcm-tools){target=_blank}.
 
 ```bash
 git clone https://github.com/Moonsong-Labs/xcm-tools && \
@@ -64,7 +64,7 @@ There are also some [snapshots for the Alphanet ecosystem relay chain](https://w
 
 ### Calculate and Fund the Parachain Sovereign Account {: #calculate-and-fund-the-parachain-sovereign-account }
 
-You can calculate the sovereign account information using [a script from the xcm-tools repository](https://github.com/Moongsong-Labs/xcm-tools){target=_blank}. To run the script, you must provide the parachain ID and the name of the associated relay chain.
+You can calculate the sovereign account information using [a script from the xcm-tools repository](https://github.com/Moonsong-Labs/xcm-tools){target=_blank}. To run the script, you must provide the parachain ID and the name of the associated relay chain.
 
 You can find the parachain IDs that have already been used on the [relay chain's Polkadot.js Apps page](https://polkadot.js.org/apps/?rpc=wss://frag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/parachains){target=_blank}.
 
@@ -158,7 +158,7 @@ The following sections go through the steps of creating and accepting open chann
 
 When a parachain receives an incoming HRMP channel open request from another parachain, it must signal to the relay chain that it accepts this channel before the channel can be used. This requires an XCM message to the relay chain with the Transact instruction calling the HRMP Pallet and `hrmpAcceptOpenChannel` extrinsic.
 
-Fortunately, the [xcm-tools](https://github.com/Moongsong-Labs/xcm-tools){target=_blank} GitHub repository's `hrmp-channel-manipulator.ts` script can build the XCM for you!
+Fortunately, the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=_blank} GitHub repository's `hrmp-channel-manipulator.ts` script can build the XCM for you!
 
 --8<-- 'text/xcm/xc-integration/hrmp-manipulator-args.md'
 
@@ -204,7 +204,7 @@ If you plan to batch the transaction with other calls, copy the resultant callda
 
 Parachains need bidirectional HRMP channels before sending XCM to each other. The first step to establishing an HRMP channel is to create an open channel request. This requires an XCM message to the relay chain with the Transact instruction calling the HRMP Pallet and `hrmpInitOpenChannel` extrinsic.
 
-Fortunately, the [xcm-tools](https://github.com/Moongsong-Labs/xcm-tools){target=_blank} GitHub repository's `hrmp-channel-manipulator.ts` script can build the XCM for you!
+Fortunately, the [xcm-tools](https://github.com/Moonsong-Labs/xcm-tools){target=_blank} GitHub repository's `hrmp-channel-manipulator.ts` script can build the XCM for you!
 
 --8<-- 'text/xcm/xc-integration/hrmp-manipulator-args.md'
 
@@ -251,7 +251,7 @@ If you plan to batch the transaction with other calls, copy the resultant callda
 
 ## Batch Actions Into One {: #batch-actions-into-one }
 
-The most efficient way to complete the XCM process on parachains is to batch all transactions together. The [xcm-tools repository](https://github.com/Moongsong-Labs/xcm-tools){target=_blank} provides a script to batch extrinsic calls into a single call, thus requiring only a single transaction. This can be helpful if your parachain would like to open an HRMP channel and register an asset simultaneously. This **should be used** when proposing channel registration on a Moonbeam network.
+The most efficient way to complete the XCM process on parachains is to batch all transactions together. The [xcm-tools repository](https://github.com/Moonsong-Labs/xcm-tools){target=_blank} provides a script to batch extrinsic calls into a single call, thus requiring only a single transaction. This can be helpful if your parachain would like to open an HRMP channel and register an asset simultaneously. This **should be used** when proposing channel registration on a Moonbeam network.
 
 If you are registering an asset in addition to establishing a channel, please refer to the [How to Register Cross-Chain Assets](/builders/interoperability/xcm/xc-registration/assets){target=_blank} guide to learn how to generate the encoded calldata required for asset registration.
 
@@ -305,7 +305,7 @@ Feel free to check out the [additional flags](#additional-flags-xcm-tools) avail
 
 ## Additional Flags for XCM-Tools {: #additional-flags-xcm-tools }
 
-The [xcm-tools GitHub repository](https://github.com/Moongsong-Labs/xcm-tools){target=_blank} and most of its functions can be called with some additional flags that create some wrappers around the actions being taken. For example, you might want to wrap the send of the XCM message in sudo, or via a democracy proposal.
+The [xcm-tools GitHub repository](https://github.com/Moonsong-Labs/xcm-tools){target=_blank} and most of its functions can be called with some additional flags that create some wrappers around the actions being taken. For example, you might want to wrap the send of the XCM message in sudo, or via a democracy proposal.
 
 The complete options that can be used with the script are as follows:  
 
