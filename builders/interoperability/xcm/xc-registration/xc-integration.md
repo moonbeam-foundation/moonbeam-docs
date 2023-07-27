@@ -297,7 +297,9 @@ You can add a `--call "INSERT_CALL"` for each call you want to batch. Replace th
 !!! note
     You can readapt the script for your parachain by changing the `parachain-ws-provider`.
 
-For Moonbeam and Moonriver, you should include `--account-priv-key YOUR_PRIVATE_KEY` and `-send-preimage-hash true --send-proposal-as democracy` if you want to send the governance proposal directly from the CLI tool. It is recommended to become familiar with the [governance process on Moonbeam-based networks](/learn/features/governance/){target=_blank}.
+For Moonbeam, you should include `--account-priv-key YOUR_PRIVATE_KEY` and `-send-preimage-hash true --send-proposal-as democracy` (since Moonbeam uses Governance v1) if you want to send the governance proposal directly from the CLI tool. It is recommended to become familiar with the [Governance v1 process on Moonbeam-based networks](/learn/features/governance#governance-v1){target=_blank}.
+
+For Moonriver, you should include `--account-priv-key YOUR_PRIVATE_KEY` and `-send-preimage-hash true --send-proposal-as v2 --track '{ "Origins": "INSERT_ORIGIN" }'` (since Moonriver uses OpenGov: Governance v2) if you want to send the governance proposal directly from the CLI tool. It is recommended to become familiar with the [OpenGov: Governance v2 process on Moonbeam-based networks](/learn/features/governance#opengov){target=_blank}.
 
 For Moonbase Alpha, you will not need to provide a private key or go through governance. Instead, you can use the `--sudo` flag and provide the output to the Moonbeam team so that the asset and channel can be added quickly through sudo.
 
@@ -316,5 +318,10 @@ The complete options that can be used with the script are as follows:
 |  send-preimage-hash  |            boolean            |                                          Whether to submit the encoded calldata as a preimage and retrieve its hash                                          |
 |   send-proposal-as   | democracy/council-external/v2 |                        Whether to send the encoded calldata through democracy or Council (Governance v1), or OpenGov (Governance v2)                         |
 | collective-threshold |            number             |                                     (Required for council-external) The threshold for the Council deciding the proposal                                      |
+|        delay         |            number             |                                     (Required for v2) The number of blocks to delay an OpenGovV2 proposal's execution by                                     |
+|        track         | string (JSON encoded origin)  |     (Required for v2) The JSON encoded origin for an OpenGovV2 proposal. For Moonbeam networks: "root", "whitelisted", "general", "canceller", "killer"      |
 |       at-block       |            number             | Whether to wrap the extrinsic calldata inside of a `scheduler.schedule` extrinsic. The block in the future that the action should be scheduled to take place |
 |     fee-currency     |    string (multilocation)     |                           (Required for non-Moonbeam chains that use XCM Transactor) The multilocation of the relay chain's asset                            |
+
+!!! note
+    The track option must be specified like so: `'{ "Origins": "INSERT_ORIGIN" }'`, where you can insert any of the following as the Origin:  "root", "whitelisted", "general", "canceller", "killer".
