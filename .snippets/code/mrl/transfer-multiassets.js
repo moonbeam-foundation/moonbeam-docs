@@ -1,5 +1,3 @@
-import { ApiPromise, WsProvider } from '@polkadot/api';
-
 const originChainProvider = new WsProvider(ORIGIN_CHAIN_WS_ENDPOINT);
 const originChainPolkadotJsAPI = await ApiPromise.create({ provider: originChainProvider });
 

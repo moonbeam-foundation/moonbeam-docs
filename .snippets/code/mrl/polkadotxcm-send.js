@@ -1,4 +1,9 @@
+const moonbeamProvider = new WsProvider(MOONBEAM_CHAIN_WS_ENDPOINT);
+const moonbeamAPI = await ApiPromise.create({ provider: moonbeamProvider });
+
+const ethereumTx = await batchApproveTransferTx(moonbeamAPI);
 const txWeight = (await ethereumTx.paymentInfo(MLD_ACCOUNT)).weight;
+
 const xcmExtrinsic = originChainPolkadotJsAPI.tx.polkadotXcm.send(
   { V3: { parents: new BN(1), interior: { X1: { Parachain: 1000 } } } },
   {

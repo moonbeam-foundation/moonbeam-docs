@@ -111,6 +111,21 @@ You would want to send a message such that the `Transact` XCM instruction gets s
     --8<-- 'code/mrl/polkadotxcm-send.js'
     ```
 
+To ensure that both the `xTokens.transferMultiassets` and the `polkadotXcm.send` transactions are sent together, you can batch them together using `utility.batchAll`. At time of writing, this helps ensure that the assets transfer happens before the EVM transaction, a necessary distinction. Unfortunately, this is subject to change with future XCM updates.  
+
+??? code "utility.batchAll Extrinsic Construction and Execution"
+    ```js
+    const batchExtrinsic = originChainPolkadotJsAPI.tx.utility.batchAll([
+        xTokensExtrinsic,
+        xcmExtrinsic
+    ]);
+
+    // Send batch transaction
+    return await batchExtrinsic.signAndSend(account, ({ status }) => {
+        if (status.isInBlock) console.log(`Moonbase Beta transaction finished!`);
+    });
+    ```
+
 It’s important to note that not every parachain will have xTokens and the other pallets implemented in a way that will allow this path. Substrate-based chains are very flexible, to the point where a standard doesn’t exist. If you believe your parachain does not support this path, please provide an alternative solution in the Moonbeam forum and to the Wormhole team.  
 
 ### Tokens Available through Wormhole {: #tokens-available-through-wormhole }
