@@ -126,6 +126,8 @@ To ensure that both the `xTokens.transferMultiassets` and the `polkadotXcm.send`
     });
     ```
 
+If you would like to see an example script that fully implements this, an example is available in a [GitHub repository](https://github.com/jboetticher/mrl-reverse){target=_blank}.  
+
 It’s important to note that not every parachain will have xTokens and the other pallets implemented in a way that will allow this path. Substrate-based chains are very flexible, to the point where a standard doesn’t exist. If you believe your parachain does not support this path, please provide an alternative solution in the Moonbeam forum and to the Wormhole team.  
 
 ### Tokens Available through Wormhole {: #tokens-available-through-wormhole }
