@@ -97,65 +97,14 @@ xcGLMR must be used as a fee token in `xTokens.transferMultiassets` as opposed t
     --8<-- 'code/mrl/transfer-multiassets.js'
     ```
 
-
 To generate the second end of the transaction (remote EVM call), you need both the EVM call and the. 
 
 You would want to send a message such that the `Transact` XCM instruction gets successfully executed. The most common method to do this is through `polkadotXcm.send` and sending the `WithdrawAsset`, `BuyExecution`, and `Transact` instructions. `RefundSurplus` and `DepositAsset` can also be used to ensure no assets get trapped, but they are technically optional.
 
-
-```javascript
-  const xcmExtrinsic = originChainPolkadotJsAPI.tx.polkadotXcm.send(
-    { V3: { parents: new BN(1), interior: { X1: { Parachain: 1000 } } } },
-    {
-      V3: [
-        // Withdraw DEV asset (0.06) from the target account
-        {
-          WithdrawAsset: [
-            {
-              id: { Concrete: { parents: new BN(0), interior: { X1: { PalletInstance: BALANCE_PALLET } } } },
-              fun: { Fungible: new BN("60000000000000000") }
-            }
-          ]
-        },
-        // Buy execution with the DEV asset
-        {
-          BuyExecution: {
-            fees:
-            {
-              id: { Concrete: { parents: new BN(0), interior: { X1: { PalletInstance: 3 } } } },
-              fun: { Fungible: new BN("60000000000000000") }
-            },
-            weightLimit: 'Unlimited'
-          }
-        },
-        {
-          Transact: {
-            originKind: "SovereignAccount",
-            // https://docs.moonbeam.network/builders/interoperability/xcm/remote-evm-calls/#estimate-weight-required-at-most
-            requireWeightAtMost: { refTime: txWeight.refTime, proofSize: txWeight.proofSize },
-            call: {
-              encoded: ethereumTx.method.toHex()
-            }
-          }
-        },
-        {
-          RefundSurplus: {}
-        },
-        {
-          DepositAsset: {
-            // Note that this must be AllCounted and not All, since All has too high of a gas requirement
-            assets: { Wild: { AllCounted: 1 } },
-            beneficiary: {
-              parents: new BN(0),
-              interior: { X1: { AccountKey20: { key: MLD_ACCOUNT } } },
-            },
-          },
-        }
-      ]
-    });
-```
-
-
+??? code "polkadotXcm.send Extrinsic Construction" 
+    ```js
+    --8<-- 'code/mrl/polkadotxcm-send.js'
+    ```
 
 It’s important to note that not every parachain will have xTokens and the other pallets implemented in a way that will allow this path. Substrate-based chains are very flexible, to the point where a standard doesn’t exist. If you believe your parachain does not support this path, please provide an alternative solution in the Moonbeam forum and to the Wormhole team.  
 
