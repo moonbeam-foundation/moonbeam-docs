@@ -181,7 +181,7 @@ The following providers provide tracing RPC endpoints:
 
 ### OnFinality {: #onfinality-tracing }
 
-OnFinality's Trace API can be used to quickly get started tracing and debugging transactions on Moonbeam and Moonriver. It is only available to users on their [Growth and Ultimate plans](https://onfinality.io/pricing){target=_blank}.
+[OnFinality](https://onfinality.io/){target=_blank}'s Trace API can be used to quickly get started tracing and debugging transactions on Moonbeam and Moonriver. It is only available to users on their [Growth and Ultimate plans](https://onfinality.io/pricing){target=_blank}.
 
 To use the Trace API, you simply call the trace method of your choice from your [private RPC endpoint](#onfinality). For a list of the supported networks and trace methods, please check out [OnFinality's Trace API documentation](https://documentation.onfinality.io/support/trace-api#TraceAPI-SupportedNetworks){target=_blank}.
 
