@@ -97,7 +97,12 @@ xcGLMR must be used as a fee token in `xTokens.transferMultiassets` as opposed t
     --8<-- 'code/mrl/transfer-multiassets.js'
     ```
 
-To generate the second end of the transaction (remote EVM call), you need both the EVM call and the. 
+To generate the second end of the transaction (remote EVM call), you need both the EVM transaction and the XCM instructions that executes said EVM transaction. The EVM transaction can be constructed as a transaction that interacts with the [batch precompile](/builders/pallets-precompiles/precompiles/batch){target=_blank} so that two transactions can happen in one. This is helpful because this EVM transaction has to both approve the xLabs relayer to relay the ERC-20 token as well as relay action itself.  
+
+??? code "Batched EVM Construction" 
+    ```js
+    --8<-- 'code/mrl/evm-tx.js'
+    ```
 
 You would want to send a message such that the `Transact` XCM instruction gets successfully executed. The most common method to do this is through `polkadotXcm.send` and sending the `WithdrawAsset`, `BuyExecution`, and `Transact` instructions. `RefundSurplus` and `DepositAsset` can also be used to ensure no assets get trapped, but they are technically optional.
 
