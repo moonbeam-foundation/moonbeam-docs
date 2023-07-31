@@ -23,7 +23,7 @@ In order to begin an MRL integration with your parachain, you will first need to
 
 - [Establish an XC integration with Moonbeam via HRMP Channels](/builders/interoperability/xcm/xc-integration){target=_blank}
 - [Register Moonbeam’s asset on your parachain](/builders/interoperability/xcm/xc-integration#moonbeam-native-tokens){target=_blank}  
-- [Register the XC-20 token(s) you want to routed to your parachain](/builders/interoperability/xcm/xc-integration#register-local-xc-20s-erc-20s){target=_blank}
+- [Register the XC-20 token(s) you want routed to your parachain](/builders/interoperability/xcm/xc-integration#register-local-xc-20s-erc-20s){target=_blank}
     - Allow these XC-20 token(s) to be used for XCM fees
 - Allow users to send the `Transact` XCM instruction in other chains like Moonbeam (via `polkadotXcm.Send` or with the XCM-transactor pallet)
 
@@ -45,7 +45,7 @@ While MRL intends to encompass many different GMP providers, Wormhole is the fir
     - Parachain ID  
     - The account type that your parachain uses (AccountId32 vs AccountKey20)  
     - The addresses and names of the tokens that you have registered  
-    - An endpoint that can be used by the Wormhole Connect frontend  
+    - An endpoint that can be used by a Wormhole Connect frontend  
     - Why you want your parachain to be connected through Wormhole Connect  
 4. Connect with the Wormhole team to finalize technical details and sync announcements  
 
