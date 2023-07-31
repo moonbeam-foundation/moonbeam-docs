@@ -23,6 +23,11 @@ const getEncodedCallData = async () => {
   const encodedCall = tx.method.toHex();
   console.log(`Encoded Calldata: ${encodedCall}`);
 
+  // 5. Estimate the required weight
+  const alice = '5DV1dYwnQ27gKCKwhikaw1rz1bYdvZZUuFkuduB4hEK3FgDT';
+  const info = await tx.paymentInfo(alice);
+  console.log(`Required Weight: ${info}`);
+
   api.disconnect();
 };
 

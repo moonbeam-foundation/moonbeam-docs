@@ -191,7 +191,7 @@ const balances = async () => {
 balances();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-tx-local/balances.js){target=_blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/ethers-tx-local/balances.js){target=_blank}.
 
 To run the script and fetch the account balances, you can run the following command:
 
@@ -252,7 +252,7 @@ const send = async () => {
 send();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-tx-local/transaction.js){target=_blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/ethers-tx-local/transaction.js){target=_blank}.
 
 To run the script, you can run the following command in your terminal:
 
@@ -331,7 +331,7 @@ const deploy = async () => {
 deploy();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-contract-local/deploy.js){target=_blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/ethers-contract-local/deploy.js){target=_blank}.
 
 To run the script, you can enter the following command into your terminal:
 
@@ -391,7 +391,7 @@ const get = async () => {
 get();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-contract-local/get.js){target=_blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/ethers-contract-local/get.js){target=_blank}.
 
 To run the script, you can enter the following command in your terminal:
 
@@ -457,7 +457,7 @@ const increment = async () => {
 increment();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-contract-local/increment.js){target=_blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/ethers-contract-local/increment.js){target=_blank}.
 
 To run the script, you can enter the following command in your terminal:
 
@@ -514,7 +514,7 @@ const reset = async () => {
 reset();
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-contract-local/reset.js){target=_blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/ethers-contract-local/reset.js){target=_blank}.
 
 To run the script, you can enter the following command in your terminal:
 

@@ -7,7 +7,7 @@ description:  Learn how to leverage Geth's Debug and Txpool APIs, and OpenEthere
 
 ![Debug & Trace Moonbeam Banner](/images/node-operators/networks/tracing-node/tracing-node-banner.png)
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 Geth's `debug` and `txpool` APIs and OpenEthereum's `trace` module provide non-standard RPC methods for getting a deeper insight into transaction processing. As part of Moonbeam's goal of providing a seamless Ethereum experience for developers, there is support for some of these non-standard RPC methods. Supporting these RPC methods is an important milestone because many projects, such as [The Graph](https://thegraph.com/){target=_blank} or [Blockscout](https://docs.blockscout.com/){target=_blank}, rely on them to index blockchain data.
 
@@ -24,7 +24,7 @@ Similarly to running a regular node, you can spin up a tracing node using Docker
 Spinning up a `debug`, `txpool`, or `tracing` node is similar to [running a full node](/node-operators/networks/run-a-node/overview/){target=_blank}. However, there are some additional flags that you may want to enable specific tracing features:
 
   - **`--ethapi=debug`** - optional flag that enables `debug_traceTransaction`, `debug_traceBlockByNumber`, and `debug_traceBlockByHash`
-  - **`--ethapi=trace`** - optional flag that enables `trace_filter` 
+  - **`--ethapi=trace`** - optional flag that enables `trace_filter`
   - **`--ethapi=txpool`** - optional flag that enables `txpool_content`, `txpool_inspect`, and `txpool_status`
   - **`--wasm-runtime-overrides=<path/to/overrides>`** - **required** flag for tracing that specifies the path where the local Wasm runtimes are stored. If you're using Docker, the path is as follows: `/moonbeam/<network>-substitutes-tracing`. Accepts the network as a parameter: `moonbeam`, `moonriver`, or `moonbase` (for development nodes and Moonbase Alpha)
   - **`--runtime-cache-size 64`** - **required** flag that configures the number of different runtime versions preserved in the in-memory cache to 64
@@ -86,13 +86,13 @@ Before getting started, you'll need to set the necessary permissions either for 
 Instead of the standard `purestake/moonbeam` docker image, you will need to use `purestake/moonbeam-tracing` image. The latest supported version can be found on the [Docker Hub for the `moonbeam-tracing` image](https://hub.docker.com/r/purestake/moonbeam-tracing/tags).
 
 Now, execute the docker run command. Note that you have to:
- 
+
  - Replace `YOUR-NODE-NAME` in two different places
  - Replace `<50% RAM in MB>` for 50% of the actual RAM your server has. For example, for 32 GB RAM, the value must be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
 
 !!! note
     For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`.
-    
+
     For client versions prior to v0.30.0, `--rpc-port` was used to specify the port for HTTP connections and `--ws-port` was used to specify the port for WS connections. As of client v0.30.0, the `--rpc-port` has been deprecated and the `--ws-port` flag is for both HTTP and WS connections. Similarly, the `--rpc-max-connections` flag has been deprecated and is now hardcoded to 100. You can use `--ws-max-connections` to adjust the combined HTTP and WS connection limit.
 
 The complete command for running a tracing node is as follows:
@@ -181,13 +181,13 @@ Once you've finished going through the instructions in those specific sections, 
 
 ### Setup the Wasm Overrides {: #setup-the-wasm-overrides }
 
-You'll need to create a directory for the Wasm runtime overrides and obtain them from the [Moonbeam Runtime Overrides repository](https://github.com/PureStake/moonbeam-runtime-overrides){target=_blank} on GitHub.
+You'll need to create a directory for the Wasm runtime overrides and obtain them from the [Moonbeam Runtime Overrides repository](https://github.com/moonbeam-foundation/moonbeam-runtime-overrides){target=_blank} on GitHub.
 
 You can clone the repository to any location on your local machine. For simplicity, you can use the directory where you're storing on-chain data. To set up the Wasm override files, you can take the following steps:
 
-1. Clone the [Moonbeam Runtime Overrides repository](https://github.com/PureStake/moonbeam-runtime-overrides){target=_blank}
+1. Clone the [Moonbeam Runtime Overrides repository](https://github.com/moonbeam-foundation/moonbeam-runtime-overrides){target=_blank}
     ```
-    git clone https://github.com/PureStake/moonbeam-runtime-overrides.git
+    git clone https://github.com/moonbeam-foundation/moonbeam-runtime-overrides.git
     ```
 
 2. Move the Wasm overrides into your on-chain data directory:
@@ -256,7 +256,7 @@ The next step is to create the systemd configuration file, you'll need to:
 
 !!! note
     For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`.
-    
+
     For client versions prior to v0.30.0, `--rpc-port` was used to specify the port for HTTP connections and `--ws-port` was used to specify the port for WS connections. As of client v0.30.0, the `--rpc-port` has been deprecated and the `--ws-port` flag is for both HTTP and WS connections. Similarly, the `--rpc-max-connections` flag has been deprecated and is now hardcoded to 100. You can use `--ws-max-connections` to adjust the combined HTTP and WS connection limit.
 
 === "Moonbeam"
@@ -265,7 +265,7 @@ The next step is to create the systemd configuration file, you'll need to:
     Description="Moonbeam systemd service"
     After=network.target
     StartLimitIntervalSec=0
-    
+
     [Service]
     Type=simple
     Restart=on-failure
@@ -299,7 +299,7 @@ The next step is to create the systemd configuration file, you'll need to:
     Description="Moonriver systemd service"
     After=network.target
     StartLimitIntervalSec=0
-    
+
     [Service]
     Type=simple
     Restart=on-failure

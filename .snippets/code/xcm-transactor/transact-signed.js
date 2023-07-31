@@ -17,8 +17,8 @@ const fee = {
 };
 const call = '0x030044236223ab4291b93eed10e4b511b37a398dee5513000064a7b3b6e00d';
 const weightInfo = {
-  transactRequiredWeightAtMost: { refTime: 1000000000n, proofSize: 0 },
-  overallWeight: { refTime: 2000000000n, proofSize: 0 },
+  transactRequiredWeightAtMost: { refTime: 1000000000n, proofSize: 40000n },
+  overallWeight: { refTime: 2000000000n, proofSize: 50000n },
 };
 
 // 2. Create Keyring instance

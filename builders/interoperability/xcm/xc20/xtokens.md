@@ -167,7 +167,7 @@ Since you'll be interacting with the `transfer` function of the X-Tokens Pallet,
     !!! note
         For an `AccountId32`, `AccountIndex64`, or `AccountKey20`, you have the option of specify a `network` parameter. If you don't specify one, it will default to `None`.
 
-4. Set the `destWeightLimit` to `Unlimited`. In JavaScript, you'll need to set `Unlimited` to `null` (as outlined in the [TypeScript interface for `XcmV3WeightLimit`](https://github.com/PureStake/moonbeam/blob/v0.32.1/typescript-api/src/moonbase/interfaces/augment-api-tx.ts#L5796){target=_blank}):
+4. Set the `destWeightLimit` to `Unlimited`. In JavaScript, you'll need to set `Unlimited` to `null` (as outlined in the [TypeScript interface for `XcmV3WeightLimit`](https://github.com/moonbeam-foundation/moonbeam/blob/v0.32.1/typescript-api/src/moonbase/interfaces/augment-api-tx.ts#L5796){target=_blank}):
 
     ```js
     const destWeightLimit = { Unlimited: null };
@@ -266,7 +266,7 @@ Since you'll be interacting with the `transferMultiasset` function of the X-Toke
     !!! note
         For an `AccountId32`, `AccountIndex64`, or `AccountKey20`, you have the option of specify a `network` parameter. If you don't specify one, it will default to `None`.
 
-3. Set the destination weight limit to `Unlimited`. In JavaScript, you'll need to set `Unlimited` to `null` (as outlined in the [TypeScript interface for `XcmV3WeightLimit`](https://github.com/PureStake/moonbeam/blob/v0.32.1/typescript-api/src/moonbase/interfaces/augment-api-tx.ts#L5796){target=_blank}):
+3. Set the destination weight limit to `Unlimited`. In JavaScript, you'll need to set `Unlimited` to `null` (as outlined in the [TypeScript interface for `XcmV3WeightLimit`](https://github.com/moonbeam-foundation/moonbeam/blob/v0.32.1/typescript-api/src/moonbase/interfaces/augment-api-tx.ts#L5796){target=_blank}):
 
     ```js
     const destWeightLimit = { Unlimited: null };
@@ -326,7 +326,7 @@ The X-Tokens Precompile contract allows developers to access XCM token transfer 
 
 ### The X-Tokens Solidity Interface {: #xtokens-solidity-interface }
 
-[Xtokens.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=_blank} is an interface through which developers can interact with the X-Tokens Pallet using the Ethereum API.
+[Xtokens.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xtokens/Xtokens.sol){target=_blank} is an interface through which developers can interact with the X-Tokens Pallet using the Ethereum API.
 
 The interface includes the following functions:
 
@@ -336,7 +336,7 @@ The interface includes the following functions:
     - For [Local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank}, provide the token's address
 
     The `destination` multilocation is built in a particular way that is described in the following section
-    
+
  - **transferMultiasset**(*Multilocation* *memory* asset, *uint256* amount, *Multilocation* *memory* destination, *uint64* weight) — function that represents the `transferMultiasset` method described in the [previous example](#xtokens-transfer-multiasset-function). Both multilocations are built in a particular way that is described in the following section
 
 ### Building the Precompile Multilocation {: #building-the-precompile-multilocation }
@@ -374,9 +374,10 @@ The following code snippet goes through some examples of `Multilocation` structu
     ]
 }
 ```
+
 ### Using Libraries to Interact with X-Tokens {: #using-libraries-to-interact-with-xtokens}
 
-The Multilocation structs can be formatted like any other struct when using libraries to interact with the Ethereum API. The following code snippet includes the previous [X-Tokens transfer function](#xtokens-transfer-function), the [X-Tokens multiasset transfer function](#xtokens-transfer-multiasset-function), and sample Multilocation struct examples. You can find the [X-Tokens ABI on Github](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/xtokens/abi.js){target=_blank}.
+The Multilocation structs can be formatted like any other struct when using libraries to interact with the Ethereum API. The following code snippet include the previous [X-Tokens transfer function](#xtokens-transfer-function), the [X-Tokens multiasset transfer function](#xtokens-transfer-multiasset-function), and sample Multilocation struct examples. You can find the [X-Tokens ABI on Github](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/xtokens/abi.js){target=_blank}.
 
 === "Ethers.js"
 

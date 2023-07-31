@@ -1,4 +1,5 @@
 import { ApiPromise, WsProvider, Keyring } from '@polkadot/api'; // Version 9.13.6
+import { cryptoWaitReady } from '@polkadot/util-crypto';
 
 // 1. Input data
 const providerWsURL =
@@ -9,7 +10,7 @@ const instr1 = {
   WithdrawAsset: [
     {
       id: { Concrete: { parents: 0, interior: { X1: { PalletInstance: 3 } } } },
-      fun: { Fungible: 100000000000000000n }, // 1 DEV
+      fun: { Fungible: 10000000000000000n }, // 0.01 DEV
     },
   ],
 };
@@ -17,7 +18,7 @@ const instr2 = {
   BuyExecution: [
     {
       id: { Concrete: { parents: 0, interior: { X1: { PalletInstance: 3 } } } },
-      fun: { Fungible: 100000000000000000n }, // 1 DEV
+      fun: { Fungible: 10000000000000000n }, // 0.01 DEV
     },
     { Unlimited: null },
   ],
@@ -25,16 +26,17 @@ const instr2 = {
 const instr3 = {
   Transact: {
     originKind: 'SovereignAccount',
-    requireWeightAtMost: { refTime: 4000000000n, proofSize: 0 },
+    requireWeightAtMost: { refTime: 3900000000n, proofSize: 38750n },
     call: {
       encoded:
-        '0x260001581501000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00',
+        '0x260001785d02000000000000000000000000000000000000000000000000000000000000a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8000000000000000000000000000000000000000000000000000000000000000010d09de08a00',
     },
   },
 };
 const message = { V3: [instr1, instr2, instr3] };
 
 // 2. Create Keyring instance
+await cryptoWaitReady();
 const keyring = new Keyring({ type: 'sr25519' });
 const alice = keyring.addFromUri(privateKey);
 

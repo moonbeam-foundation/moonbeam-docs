@@ -17,7 +17,7 @@ Running a Moobeam collator requires Linux systems administration skills, careful
 
 **Q: Where can I get help?**
 
-**A:** There is an active and friendly [Discord](https://discord.gg/RyVefR79FA){target=_blank} community for collators. Join the server and introduce yourself even before you need help. Send **PureStake-Gil#0433** or **PureStake-Art#6950** a DM and let them know who you are, and they can reach out to you if they see any issues with your node.
+**A:** There is an active and friendly [Discord](https://discord.gg/RyVefR79FA){target=_blank} community for collators. Join the server and introduce yourself even before you need help. Send **gilmouta** or **artkaseman** a DM and let them know who you are, and they can reach out to you if they see any issues with your node.
 
 ***
 
@@ -50,12 +50,12 @@ Run only one service at a time per bare-metal machine. Do not run multiple insta
 Hardware recommendations:
 
 - Top of the line CPU:
-    - Ryzen 9 5950x or 5900x 
+    - Ryzen 9 5950x or 5900x
     - Intel Xeon E-2386 or E-2388
 - Primary and backup bare metal servers in different data centers and countries (Hetzner is OK for one of them)
 - Dedicated server for Moonbeam that isn't shared with any other apps
 - 1 TB NVMe HDD
-- 32 GB RAM 
+- 32 GB RAM
 
 ***
 
@@ -65,43 +65,43 @@ Hardware recommendations:
 
 ***
 
-**Q: What are the different networks?** 
+**Q: What are the different networks?**
 
 **A:** There are three networks, each will require dedicated hardware. The Moonbase Alpha TestNet is free and should be used to familiarize yourself with the setup.
 
 - **Moonbeam** - production network on Polkadot
-- **Moonriver** - production network on Kusama 
+- **Moonriver** - production network on Kusama
 - **Moonbase Alpha TestNet** - development network
 
 ***
 
 **Q: What ports do I allow on my firewall?**
 
-**A:** 
+**A:**
 
-- Allow all incoming requests on TCP ports {{ networks.parachain.p2p }} and {{ networks.relay_chain.p2p }} 
+- Allow all incoming requests on TCP ports {{ networks.parachain.p2p }} and {{ networks.relay_chain.p2p }}
 - Allow requests from your management IPs on TCP port 22
-- Drop all other ports 
+- Drop all other ports
 
 ***
 
-**Q: Is there a CPU optimized binary?** 
+**Q: Is there a CPU optimized binary?**
 
-**A:** On each [release page](https://github.com/PureStake/moonbeam/releases){target=_blank} are CPU optimized binaries. Select the binary for your CPU architecture.
+**A:** On each [release page](https://github.com/moonbam-foundation/moonbeam/releases){target=_blank} are CPU optimized binaries. Select the binary for your CPU architecture.
 
 - **Moonbeam-znver3** - Ryzen 9
-- **Moonbeam-skylake** - Intel 
+- **Moonbeam-skylake** - Intel
 - **Moonbeam** - generic can be used for all others
 
 ***
 
-**Q: What are the recommendations on monitoring my node?** 
+**Q: What are the recommendations on monitoring my node?**
 
 **A:** Monitoring is very important for the health of the network and to maximize your rewards. We recommend using [Grafana Labs](https://grafana.com){target=_blank}. They have a free tier which should handle 6+ moonbeam servers.
 
 ***
 
-**Q: What are the KPIs I should be monitoring?** 
+**Q: What are the KPIs I should be monitoring?**
 
 **A:** The main key performance indicator is blocks produced. The prometheus metric for this is called `substrate_proposer_block_constructed_count`.  
 
@@ -110,7 +110,7 @@ Hardware recommendations:
 **Q: How should I setup alerting?**
 
 **A:** Alerting is critical to keeping your moonbeam node producing blocks and earning rewards. We recommend [pagerduty.com](https://www.pagerduty.com/){target=_blank}, which is supported by [Grafana Labs](https://grafana.com){target=_blank}. Use the [KPI query](#:~:text=substrate_proposer_block_constructed_count) above and set an alert when this drops below 1. The alert should page the person on-call 24/7.  
- 
+
 ***
 
 **Q: What are Nimbus keys?**
@@ -131,7 +131,7 @@ Hardware recommendations:
 
 ***
 
-**Q: What should I look for in the logs?** 
+**Q: What should I look for in the logs?**
 
 **A:** Logs are very useful to determine if you are in sync and ready to join the collators pool. Look at the tail end of the logs to determine if:
 
