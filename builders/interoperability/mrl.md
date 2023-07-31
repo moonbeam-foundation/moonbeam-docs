@@ -149,3 +149,5 @@ While Wormhole has the technical capability to bridge any token across chains, r
 |    SUI     | 0x484eCCE6775143D3335Ed2C7bCB22151C53B9F49 |
 
 Please take the time to verify that these assets are still Wormhole assets on Moonbeam by using the [Wormhole asset verifier](https://www.portalbridge.com/#/token-origin-verifier){target=_blank}.  
+
+--8<-- 'text/disclaimers/third-party-content.md'
