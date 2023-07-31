@@ -812,6 +812,15 @@ networks:
           xcdot_cost: 0.00090281848
     erc20_xcm:
       transfer_gas_limit: 80,000
+    governance:
+      tracks:
+        general_admin:
+          decision_period:
+            time: '14 days'
+            blocks: 100800
+          min_enactment_period:
+            time: '1 day'
+            blocks: 7200
     preimage:
       base_deposit: 500
       byte_deposit: .01

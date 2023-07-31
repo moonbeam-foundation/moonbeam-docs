@@ -53,7 +53,7 @@ To get started, you'll need to collect some information about the asset:
   - The units per second
 - The multilocation of the asset as seen from Moonbeam
 
-With this information in hand, you can get the encoded calldata for both calls and batch the calldata into a single transaction. From there, you can start the governance process, which includes using the calldata to submit a preimage and then using the preimage to create a proposal. If you're also opening a channel at the same time, you can add the channel-related calldata to the batch asset registration calldata and open a single proposal for everything.
+With this information in hand, you can get the encoded calldata for both calls and batch the calldata into a single transaction. From there, you can start the governance process, which includes using the calldata to submit a preimage and then using the preimage to create a proposal. If you're also opening a channel at the same time, you can add the channel-related calldata to the batch asset registration calldata and open a single proposal for everything. Asset and channel registration proposals on Moonbeam should be assigned to the General Admin Track.
 
 ![Overview of the proposal process](/images/builders/interoperability/xcm/xc-registration/assets/assets-3.png)
 
@@ -107,7 +107,7 @@ If you're not familiar with the governance system on Moonbeam, you can find out 
 
 To submit a preimage, you'll need to get the encoded calldata for each extrinsic that you want to execute. As previously mentioned, you'll use the `assetManager.registerForeignAsset`, and optionally, the `assetManager.setAssetUnitsPerSecond`, and `system.setStorage` extrinsics.
 
-You can use the [`xcm-asset-registrator.ts` script](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/xcm-asset-registrator.ts){target=_blank} to calculate the encoded calldata and even submit the preimage and proposal if you desire. If you're registering an asset and opening a channel, you'll want to wait to submit the preimage and proposal until you have the calldata for the channel-related calls.
+You can use the [`xcm-asset-registrator.ts` script](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/xcm-asset-registrator.ts){target=_blank} to calculate the encoded calldata and even submit the preimage and proposal if you desire. Proposals must be submitted via the General Admin Track. If you're registering an asset and opening a channel, you'll want to wait to submit the preimage and proposal until you have the calldata for the channel-related calls.
 
 To get the encoded calldata for the `assetManager.registerForeignAsset` extrinsic, you can use the following arguments:
 
@@ -141,10 +141,10 @@ To get the encoded calldata for the `assetManager.registerForeignAsset` extrinsi
 To create a batch transaction that also sets the units per second or revert code of the asset's precompile in addition to the asset registration, you can choose to add these arguments:
 
 - `--units-per-second` or `--u` - (optional) - the units per second, which specifies the amount to charge per second of execution in the registered asset. You should have calculated this value in the [previous section](#calculate-units-per-second). If this is provided, the script will create a batch transaction for the governance proposal that, at a minimum, will register the asset and set the units per second on-chain
-- `--revert-code` or `--revert` - (optional) - registers the revert code for the asset's precompile in the EVM. If this is provided, the script will create a batch transaction for the governance proposal that, at a minimum, will register the asset and set the revert code
+- `--revert-code` or `--revert` - (optional) - registers the revert code for the asset's precompile in the EVM. If this is provided, the script will create a batch transaction for the governance proposal that, at a minimum, will register the asset and set the revert code.
 
-    !!! remember "Warning"
-        For chains with [OpenGov](/learn/features/governance#opengov){target=_blank}, the `--revert-code true` flag was removed. This flag includes a `system.setStorage` call that the General Admin Origin can't execute. The dummy EVM bytecode can be set later with a call to the Precompile Registry precompile, which means that you don't need to worry about going through governance to set the revert code!
+    !!! note
+        **This flag is not necessary for proposals on Moonbeam** as it includes a `system.setStorage` call that the [OpenGov](/learn/features/governance#opengov) General Admin Origin can't execute. The dummy EVM bytecode can be set later with a call to the [Precompile Registry precompile](/builders/pallets-precompiles/precompiles/registry){target=_blank}, which means that you don't need to worry about going through governance to set the revert code!
 
 As a practical example, the following command would generate the encoded calldata to register an asset from parachain 888 that has a general key of `1`:
 
@@ -175,13 +175,13 @@ The script provides the option to programmatically submit a preimage and democra
 - `--send-proposal-as` or `--s` - (optional) - specifies how the proposal should be sent. The following options are accepted:
     - `democracy` - sends the proposal through regular democracy using Governance v1
     - `council-external` - sends the proposal as an external proposal that will be voted on by the council using Governance v1
-    - `v2` - sends the proposal through OpenGov (Governance v2). If you choose this option, you'll also need to use the `--track` argument to specify which [Track](/learn/features/governance#general-definitions--general-definitions-gov2){target=_blank} the proposal will go through and the `--delay` argument to specify the delay period (in blocks) after the proposal has passed and before the proposal is executed
+    - `v2` - sends the proposal through OpenGov (Governance v2). This option should be used for Moonbeam. If you choose this option, you'll also need to use the `--track` argument to specify which [Track](/learn/features/governance#general-definitions--general-definitions-gov2){target=_blank} the proposal will go through and the `--delay` argument to specify the delay period (in blocks) after the proposal has passed and before the proposal is executed
 - `--collectiveThreshold` or `--c` - (optional) - the number of council votes that are needed to approve the proposal. Defaults to `1`
 - `--at-block` - (optional) - the block number at which the call should get executed
-- `--track` - (optional) - the Track the proposal should go through for OpenGov proposals
+- `--track` - (optional) - the Track the proposal should go through for OpenGov proposals. For Moonbeam, the General Admin Origin should be used
 - `--delay` - (optional) - the delay period (in blocks) after a proposal has passed and before it can be executed. Defaults to `100` blocks
 
-Altogether, you can use the following command to submit a preimage and proposal using OpenGov, which batches the asset registration and sets the asset's units per second:
+Altogether, you can use the following command to submit a preimage and proposal using OpenGov, which batches the asset registration and sets the asset's units per second.
 
 === "Moonbeam"
 
@@ -197,7 +197,7 @@ Altogether, you can use the following command to submit a preimage and proposal 
     --account-priv-key "0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133" \
     --send-preimage-hash true \
     --send-proposal-as v2
-    --track '{ "Origins": "INSERT_ORIGIN" }'
+    --track '{ "Origins": "GeneralAdmin" }'
     ```
 
 === "Moonriver"
@@ -214,25 +214,10 @@ Altogether, you can use the following command to submit a preimage and proposal 
     --account-priv-key "0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133" \
     --send-preimage-hash true \
     --send-proposal-as v2
-    --track '{ "Origins": "INSERT_ORIGIN" }'
+    --track '{ "Origins": "GeneralAdmin" }'
     ```
 
-=== "Moonbase Alpha"
-
-    ```bash
-    yarn register-asset -w wss://wss.api.moonbase.moonbeam.network  \
-    --asset 'INSERT_ASSET_MULTILOCATION' \
-    --symbol "INSERT_TOKEN_SYMBOL" \
-    --decimals INSERT_TOKEN_DECIMALS \
-    --name "INSERT_TOKEN_NAME" \
-    --units-per-second INSERT_UNITS_PER_SECOND \
-    --existential-deposit 1 \
-    --sufficient true \
-    --account-priv-key "0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133" \
-    --send-preimage-hash true \
-    --send-proposal-as v2
-    --track '{ "Origins": "INSERT_ORIGIN" }'
-    ```
+For Moonbase Alpha, you will not need to go through governance. Instead, you can use the `--sudo` flag and provide the output to the Moonbeam team so that the asset and channel can be added quickly through sudo.
 
 You can see additional [examples in the `README.md` of the xcm-tools repository](https://github.com/Moonsong-Labs/xcm-tools#example-to-note-pre-image-and-propose-through-opengov2-with-custom-track){target=_blank}.
 
@@ -386,6 +371,29 @@ function transfer(address _to, uint256 _value) public returns (bool success)
 If the function selector of the `transfer` function deviates from the standard, the cross-chain transfer will fail.
 
 You can use the following multilocation to register a local XC-20:
+
+=== "Moonbeam"
+
+    ```js
+    {
+      parents: 1,
+      interior: {
+        X3: [
+          { 
+            Parachain: 2004
+          },
+          {
+            PalletInstance: 110
+          },
+          {
+            AccountKey20: {
+              key: 'INSERT_ERC20_ADDRESS'
+            }
+          }
+        ]
+      }
+    }
+    ```
 
 === "Moonriver"
 

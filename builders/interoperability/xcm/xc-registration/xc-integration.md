@@ -101,10 +101,10 @@ The process can be summarized in the following steps:
     2. Propose the opening of an outgoing HRMP channel from Moonriver/Moonbeam
     3. Register the asset as an [XC-20 token](/builders/interoperability/xcm/xc20/overview){target=_blank} (if applicable)
 
-      The normal enactment times are as follows:  
+      Proposals should be done in the General Admin Track from [OpenGov](/learn/features/governance/#opengov){target=_blank}. The normal enactment times are as follows:  
 
-      - **Moonriver** - proposals should be done in the General Admin Track from [OpenGov](/learn/features/governance/#opengov){target=_blank}, in which the Decision Period is approximately {{ networks.moonriver.governance.tracks.general_admin.decision_period.time }} and the enactment time is at least {{ networks.moonriver.governance.tracks.general_admin.min_enactment_period.time }}
-      - **Moonbeam** - approximately a {{ networks.moonbeam.democracy.vote_period.days }}-day Voting Period plus a {{ networks.moonbeam.democracy.enact_period.days }}-day enactment time
+      - **Moonriver** - the Decision Period is approximately {{ networks.moonriver.governance.tracks.general_admin.decision_period.time }} and the enactment time is at least {{ networks.moonriver.governance.tracks.general_admin.min_enactment_period.time }}
+      - **Moonbeam** - the Decision Period is approximately {{ networks.moonbeam.governance.tracks.general_admin.decision_period.time }} and the enactment time is at least {{ networks.moonbeam.governance.tracks.general_admin.min_enactment_period.time }}
 
 4. Accept the HRMP channel from Moonriver/Moonbeam on the connecting parachain
 5. Exchange $50 worth of tokens for testing the XCM integration. Please send the tokens to:
@@ -150,7 +150,9 @@ yarn
 
 The xcm-tools repository has a specific script for HRMP interactions called [`hrmp-channel-manipulator.ts`](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/hrmp-channel-manipulator.ts){target=_blank}. This command generates encoded calldata for a specific HRMP action, as long as it is given the correct details. The script builds the XCM message with the DepositAsset XCM instruction but not with RefundSurplus.
 
-The `hrmp-channel-manipulator.ts` script is meant to be generic. It should work for any chain that includes the Polkadot XCM Pallet, although it will try to use the `hrmpManage` extrinsic of the XCM Transactor Pallet first. If the XCM Transactor Pallet doesn't exist on a chain, the `send` extrinsic of the Polkadot XCM Pallet will be used. **Note that it expects the pallet name to be `polkadotXcm`, as the extrinsic will be built as `api.tx.polkadotXcm.send()`.**
+The encoded calldata is then used to submit a governance proposal that will execute the HRMP action. All HRMP-related proposals should be assigned to the General Admin Track.
+
+The `hrmp-channel-manipulator.ts` script is meant to be generic. It should work for any chain that includes the Polkadot XCM Pallet, although it will try to use the `hrmpManage` extrinsic of the XCM Transactor Pallet first. If the XCM Transactor Pallet doesn't exist on a chain, the `send` extrinsic of the Polkadot XCM Pallet will be used. **Note that it expects the pallet name to be `polkadotXcm`, as the extrinsic will be built as `api.tx.polkadotXcm.send()`**. For Moonbeam, the General Admin Track can't execute `polkadotXcm.send` calls, as such the `xcmTransactor.hrmpManage` extrinsic must be used.
 
 The following sections go through the steps of creating and accepting open channel requests in a Moonbeam-based network, but they can also be adapted to your parachain.
 
@@ -194,7 +196,7 @@ Running the following command will provide the encoded calldata to accept an ope
 !!! note
     You can adapt the script for your parachain by changing the `parachain-ws-provider`.
 
-Running the script as shown above will return the encoded calldata to accept an HRMP channel. You can also use the script to create and submit a preimage and proposal on chain for the given HRMP action.
+Running the script as shown above will return the encoded calldata to accept an HRMP channel. You can also use the script to create and submit a preimage and proposal on chain for the given HRMP action. For Moonbeam and Moonriver, the proposal must be submitted via the General Admin Track.
 
 Please refer to the [README](https://github.com/Moonsong-Labs/xcm-tools/tree/main#hrmp-manipulator-script){target=_blank} for a complete list of the arguments, including optional arguments, and examples on how to use the HRMP-manipulator script.
 
@@ -243,7 +245,7 @@ Running the following command will provide the encoded calldata to create the HR
 !!! note
     You can readapt the script for your parachain by changing the `parachain-ws-provider`.
 
-Running the script as shown above will return the encoded calldata to open an HRMP channel. You can also use the script to create and submit a preimage and proposal on-chain for the given HRMP action.
+Running the script as shown above will return the encoded calldata to open an HRMP channel. You can also use the script to create and submit a preimage and proposal on-chain for the given HRMP action. For Moonbeam and Moonriver, the proposal must be submitted via the General Admin Track.
 
 Please refer to the [README](https://github.com/Moonsong-Labs/xcm-tools/tree/main#hrmp-manipulator-script){target=_blank} for a complete list of the arguments, including optional arguments, and examples on how to use the HRMP-manipulator script.
 
@@ -297,9 +299,16 @@ You can add a `--call "INSERT_CALL"` for each call you want to batch. Replace th
 !!! note
     You can readapt the script for your parachain by changing the `parachain-ws-provider`.
 
-For Moonbeam, you should include `--account-priv-key YOUR_PRIVATE_KEY` and `-send-preimage-hash true --send-proposal-as democracy` (since Moonbeam uses Governance v1) if you want to send the governance proposal directly from the CLI tool. It is recommended to become familiar with the [Governance v1 process on Moonbeam-based networks](/learn/features/governance#governance-v1){target=_blank}.
+With the encoded calldata, you can then submit the governance proposal. For Moonbeam and Moonriver, you must assign the proposal to the General Admin Track. It is recommended to become familiar with the [OpenGov: Governance v2 process on Moonbeam-based networks](/learn/features/governance#opengov){target=_blank}.
 
-For Moonriver, you should include `--account-priv-key YOUR_PRIVATE_KEY` and `-send-preimage-hash true --send-proposal-as v2 --track '{ "Origins": "INSERT_ORIGIN" }'` (since Moonriver uses OpenGov: Governance v2) if you want to send the governance proposal directly from the CLI tool. It is recommended to become familiar with the [OpenGov: Governance v2 process on Moonbeam-based networks](/learn/features/governance#opengov){target=_blank}.
+If you want to send the governance proposal directly from the CLI, you'll need to use these additional flags:
+
+```bash
+--account-priv-key YOUR_PRIVATE_KEY \
+--send-preimage-hash true \
+--send-proposal-as v2 \
+--track '{ "Origins": "GeneralAdmin" }'
+```
 
 For Moonbase Alpha, you will not need to provide a private key or go through governance. Instead, you can use the `--sudo` flag and provide the output to the Moonbeam team so that the asset and channel can be added quickly through sudo.
 
@@ -311,17 +320,17 @@ The [xcm-tools GitHub repository](https://github.com/Moonsong-Labs/xcm-tools){ta
 
 The complete options that can be used with the script are as follows:  
 
-|         Flag         |             Type              |                                                                         Description                                                                          |
-|:--------------------:|:-----------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|   account-priv-key   |            string             |                        (Required for send-proposal-as, send-preimage-hash) The private key of the account to send a transaction with                         |
-|         sudo         |            boolean            |     Whether to wrap the extrinsic calldata inside of a `sudo.sudo` extrinsic. If `account-priv-key` is present, it will attempt to send the transaciton      |
-|  send-preimage-hash  |            boolean            |                                          Whether to submit the encoded calldata as a preimage and retrieve its hash                                          |
-|   send-proposal-as   | democracy/council-external/v2 |                        Whether to send the encoded calldata through democracy or Council (Governance v1), or OpenGov (Governance v2)                         |
-| collective-threshold |            number             |                                     (Required for council-external) The threshold for the Council deciding the proposal                                      |
-|        delay         |            number             |                                     (Required for v2) The number of blocks to delay an OpenGovV2 proposal's execution by                                     |
-|        track         | string (JSON encoded origin)  |     (Required for v2) The JSON encoded origin for an OpenGovV2 proposal. For Moonbeam networks: "root", "whitelisted", "general", "canceller", "killer"      |
-|       at-block       |            number             | Whether to wrap the extrinsic calldata inside of a `scheduler.schedule` extrinsic. The block in the future that the action should be scheduled to take place |
-|     fee-currency     |    string (multilocation)     |                           (Required for non-Moonbeam chains that use XCM Transactor) The multilocation of the relay chain's asset                            |
+|         Flag         |             Type              |                                                                                    Description                                                                                     |
+|:--------------------:|:-----------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|   account-priv-key   |            string             |                                   (Required for send-proposal-as, send-preimage-hash) The private key of the account to send a transaction with                                    |
+|         sudo         |            boolean            |                Whether to wrap the extrinsic calldata inside of a `sudo.sudo` extrinsic. If `account-priv-key` is present, it will attempt to send the transaciton                 |
+|  send-preimage-hash  |            boolean            |                                                     Whether to submit the encoded calldata as a preimage and retrieve its hash                                                     |
+|   send-proposal-as   | democracy/council-external/v2 |                                   Whether to send the encoded calldata through democracy or Council (Governance v1), or OpenGov (Governance v2)                                    |
+| collective-threshold |            number             |                                                (Required for council-external) The threshold for the Council deciding the proposal                                                 |
+|        delay         |            number             |                                                (Required for v2) The number of blocks to delay an OpenGovV2 proposal's execution by                                                |
+|        track         | string (JSON encoded origin)  | (Required for v2) The JSON encoded origin for an OpenGovV2 proposal. For Moonbeam networks: "Root", "WhitelistedCaller", "GeneralAdmin", "ReferendumCanceller", "ReferendumKiller" |
+|       at-block       |            number             |            Whether to wrap the extrinsic calldata inside of a `scheduler.schedule` extrinsic. The block in the future that the action should be scheduled to take place            |
+|     fee-currency     |    string (multilocation)     |                                      (Required for non-Moonbeam chains that use XCM Transactor) The multilocation of the relay chain's asset                                       |
 
 !!! note
-    The track option must be specified like so: `'{ "Origins": "INSERT_ORIGIN" }'`, where you can insert any of the following as the Origin:  "root", "whitelisted", "general", "canceller", "killer".
+    The track option must be specified like so: `'{ "Origins": "INSERT_ORIGIN" }'`, where you can insert any of the following as the Origin:  "Root", "WhitelistedCaller", "GeneralAdmin", "ReferendumCanceller", "ReferendumKiller".
