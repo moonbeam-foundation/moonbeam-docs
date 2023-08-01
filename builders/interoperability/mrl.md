@@ -41,13 +41,12 @@ While MRL intends to encompass many different GMP providers, Wormhole is the fir
 
 1. Register all of the [ERC-20 assets](#tokens-available-through-wormhole) that you desire on the parachain
 2. Notify the Moonbeam team of your desire to integrate into the MRL program so that we can help you with the technical implementation
-3. Create a forum post on the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=_blank} to supply the following information:
+3. Connect with the Wormhole team and any other MRL-dependant frontends to finalize technical details and sync announcements. They will likely need the following information:  
     - Parachain ID  
     - The account type that your parachain uses (AccountId32 vs AccountKey20)  
     - The addresses and names of the tokens that you have registered  
     - An endpoint that can be used by a Wormhole Connect frontend  
     - Why you want your parachain to be connected through Wormhole Connect  
-4. Connect with the Wormhole team to finalize technical details and sync announcements  
 
 ### Sending Tokens Through Wormhole {: #sending-tokens-through-wormhole }
 
