@@ -193,7 +193,7 @@ Let's go through each of the main components of the snippet shown above:
  1. Provide the input data for the call. This includes:
      - Moonbase Alpha relay chain endpoint URL to create the provider
      - Amount of tokens (in Wei) to withdraw from the multilocation-derivative account. For this example, `0.01` tokens are more than enough. To understand how to get this value, please refer to the [XCM fee page](/builders/interoperability/xcm/fees/#moonbeam-reserve-assets){target=_blank}
-     - The [multilocation of the `DEV` token](/builders/interoperability/xcm/xc-integration/#register-moonbeams-asset-on-your-parachain){target=_blank} as seen by Moonbase Alpha
+     - The [multilocation of the `DEV` token](/builders/interoperability/xcm/xc-registration/assets/#register-moonbeam-native-assets){target=_blank} as seen by Moonbase Alpha
      - The weight for the `transact` XCM instruction. This can be obtained by multiplying `25000` and the gas limit obtained before. It is recommended to add approximately 10% more of the estimated value. You can read more about this value in the [Remote EVM Calls through XCM](/builders/interoperability/xcm/remote-evm-calls/#build-xcm-remote-evm){target=_blank} page
      - The multilocation-derivative account as it will be needed later for an XCM instruction
      - The bytes for the `transact` XCM instruction that we calculated in the previous section
