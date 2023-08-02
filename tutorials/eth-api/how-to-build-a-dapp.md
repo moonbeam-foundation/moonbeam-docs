@@ -85,7 +85,7 @@ npx hardhat init
 When creating a JavaScript or TypeScript Hardhat project, you will be asked if you want to install the sample project's dependencies, which will install Hardhat and the [Hardhat Toolbox plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-toolbox#hardhat-toolbox){target=_blank}. You don't need all of the plugins that come wrapped up in the Toolbox, so instead you can install Hardhat, Ethers, and the Hardhat Ethers plugin, which is all you'll need for this tutorial:
 
 ```bash
-npm install --save-dev  hardhat @nomiclabs/hardhat-ethers ethers
+npm install --save-dev hardhat @nomicfoundation/hardhat-ethers ethers
 ```
 
 Before we start writing the smart contract, let's add a JSON-RPC URL to the config. Set the `hardhat.config.js` file with the following code, and replace `YOUR_PRIVATE_KEY` with your funded account's private key.
@@ -94,7 +94,7 @@ Before we start writing the smart contract, let's add a JSON-RPC URL to the conf
     This is for testing purposes, **never store your private key in plain text with real funds**.  
 
 ```javascript
-require('@nomiclabs/hardhat-ethers');
+require('@nomicfoundation/hardhat-ethers');
 module.exports = {
   solidity: '0.8.17',
   networks: {
