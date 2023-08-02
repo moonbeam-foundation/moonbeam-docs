@@ -130,11 +130,8 @@ For the examples in this guide, you'll need to add your private keys for your tw
 5. Add your [Moonscan API key](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank}, which is required for the verification steps we'll be taking later in this tutorial
 
 ```js
-// 1. Import the Ethers, Hardhat Toolbox, and Etherscan plugins 
-// required to interact with our contracts
+// 1. Import the Hardhat Toolbox plugin
 require('@nomicfoundation/hardhat-toolbox');
-require('@nomiclabs/hardhat-etherscan');
-require('@nomiclabs/hardhat-ethers');
 
 // 2. Create variables for your private keys from your pre-funded Moonbase Alpha 
 // testing accounts and your Moonscan API key
@@ -231,7 +228,7 @@ To set up your test file, take the following steps:
 3. Then copy and paste the contents below to set up the initial structure of your test file. Be sure to read the comments as they can clarify the purpose of each line
 
     ```javascript
-    // Import Hardhat and Hardhat Toolbox
+    // Import Ethers
     const { ethers } = require('hardhat');
 
     // Import Chai to use its assertion functions here

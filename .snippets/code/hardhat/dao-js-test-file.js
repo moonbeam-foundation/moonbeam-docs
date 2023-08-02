@@ -1,4 +1,4 @@
-// Import Hardhat and Hardhat Toolbox
+// Import Ethers
 const { ethers } = require('hardhat');
 // Import Chai to use its assertion functions here
 const { expect } = require('chai');
