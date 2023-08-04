@@ -34,7 +34,7 @@ The Preimage Precompile is located at the following address:
 
 ## The Preimage Solidity Interface {: #the-preimage-solidity-interface }
 
-[`Preimage.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's two methods:
+[`Preimage.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's two methods:
 
 - **notePreimage**(*bytes memory* encodedPropsal) — registers a preimage on-chain for an upcoming proposal given the encoded proposal and returns the preimage hash. This doesn't require the proposal to be in the dispatch queue but does require a deposit which is returned once enacted. Uses the [`notePreimage`](/builders/pallets-precompiles/pallets/preimage/#:~:text=notePreimage(encodedProposal)){target=_blank} method of the preimage pallet
 - **unnotePreimage**(*bytes32* hash) - clears an unrequested preimage from storage given the hash of the preimage to be removed. Uses the [`unnotePreimage`](/builders/pallets-precompiles/pallets/preimage/#:~:text=notePreimage(hash)){target=_blank} method of the preimage pallet
@@ -48,7 +48,7 @@ The interface also includes the following events:
 
 ### Checking Prerequisites {: #checking-prerequisites }
 
-The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonriver. To follow the steps in this guide, you'll need to have the following: 
+The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonriver. To follow the steps in this guide, you'll need to have the following:
 
  - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
  - An account with some DEV tokens.
@@ -57,7 +57,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 ### Remix Set Up {: #remix-set-up }
 
 1. Click on the **File explorer** tab
-2. Paste a copy of [`Preimage.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=_blank} into a [Remix file](https://remix.ethereum.org/){target=_blank} named `Preimage.sol`
+2. Paste a copy of [`Preimage.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=_blank} into a [Remix file](https://remix.ethereum.org/){target=_blank} named `Preimage.sol`
 
 ![Copy and paste the referenda Solidity interface into Remix.](/images/builders/pallets-precompiles/precompiles/preimage/preimage-1.png)
 

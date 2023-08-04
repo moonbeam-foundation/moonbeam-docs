@@ -7,7 +7,7 @@ description: Learn how you can use OpenAI's ChatGPT (GPT-4) generative AI LLM to
 
 ![Banner Image](/images/tutorials/eth-api/chatgpt/chatgpt-banner.png)
 
-_May 10, 2023 | by Kevin Neilson_
+_by Kevin Neilson_
 
 ## Introduction {: #introduction }
 

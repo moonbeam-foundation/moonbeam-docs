@@ -7,9 +7,9 @@ template: main.html
 # Uniswap V2 Swap from Polkadot via XCM
 
 ![Banner Image](/images/tutorials/interoperability/uniswapv2-swap-xcm/uniswapv2-swap-xcm-banner.png)
-_February 2, 2023 | by Alberto Viera_
+_by Alberto Viera_
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 In this tutorial, we’ll perform a Uniswap V2-styled swap from a relay chain (what Polkadot is to Moonbeam) using Polkadot's intra-operability general message passing protocol called [XCM](/builders/interoperability/xcm/overview/){target=_blank}. To do so, we'll be using a particular combination of XCM instructions that allow you to [call Moonbeam's EVM through an XCM message](/builders/interoperability/xcm/remote-evm-calls/){target=_blank}. Consequently, any blockchain that is able to send an XCM message to Moonbeam can tap into its EVM and all the dApps built on top of it.
 
@@ -41,7 +41,7 @@ Considering all the steps summarized in the [introduction](#introduction), the f
 
 --8<-- 'text/xcm/calculate-multilocation-derivative-account.md'
 
-For our case, we will send the remote EVM call via XCM from Alice's account, which is `5EnnmEp2R92wZ7T8J2fKMxpc1nPW5uP8r5K3YUQGiFrw8uG6`, so the command and response would look like the following image.
+For our case, we will send the remote EVM call via XCM from Alice's account, which is `5GKh9gMK5dn9SJp6qfMNcJiMMnY7LReYmgug2Fr5fKE64imn`, so the command and response would look like the following image.
 
 ![Calculating the multilocation-derivative account](/images/tutorials/interoperability/uniswapv2-swap-xcm/uniswapv2-swap-xcm-2.png)
 
@@ -49,14 +49,12 @@ The values are all summarized in the following table:
 
 |                    Name                     |                                                                           Value                                                                           |
 |:-------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|        Origin Chain Encoded Address         |                                                    `5EnnmEp2R92wZ7T8J2fKMxpc1nPW5uP8r5K3YUQGiFrw8uG6`                                                     |
-|        Origin Chain Decoded Address         |                                           `0x78914a4d7a946a0e4ed641f336b498736336e05096e342c799cc33c0f868d62f`                                            |
-|          Origin Chain Account Name          |                                                                         `Westend`                                                                         |
-| Multilocation Received in Destination Chain | `{"parents":1,"interior":{"x1":{"accountId32":{"network": {"westend":null},"id":"0x78914a4d7a946a0e4ed641f336b498736336e05096e342c799cc33c0f868d62f"}}}}` |
-| Multilocation-Derivative Account (32 bytes) |                                           `0xda51eac6eb3502b0a113effcb3950c52e873a24c6ef54cab13abdd56a55ddd7e`                                            |
-| Multilocation-Derivative Account (20 bytes) |                                                       `0xda51eac6eb3502b0a113effcb3950c52e873a24c`                                                        |
+|        Origin Chain Encoded Address         |                                                    `5GKh9gMK5dn9SJp6qfMNcJiMMnY7LReYmgug2Fr5fKE64imn`                                                     |
+|        Origin Chain Decoded Address         |                                           `0xbc5f3c61709f218d983fc773a600958a07fb18047418df7eeb0501d0679e397a`                                            |
+| Multilocation-Derivative Account (32 bytes) |                                           `0x61cd3e07fe7d7f6d4680e3e322986b7877f108ddb18ec02c2f17e82fe15f9016`                                            |
+| Multilocation-Derivative Account (20 bytes) |                                                       `0x61cd3e07fe7d7f6d4680e3e322986b7877f108dd`                                                        |
 
-The script will return 32-byte and 20-byte addresses. We’re interested in the Ethereum-style account - the 20-byte one, which is `0xda51eac6eb3502b0a113effcb3950c52e873a24c`. Feel free to look up your multilocation-derivative account on [Moonscan](https://moonbase.moonscan.io/){target=_blank}. Next, you can fund this account with DEV tokens. 
+The script will return 32-byte and 20-byte addresses. We’re interested in the Ethereum-style account - the 20-byte one, which is `0x61cd3e07fe7d7f6d4680e3e322986b7877f108dd`. Feel free to look up your multilocation-derivative account on [Moonscan](https://moonbase.moonscan.io/){target=_blank}. Next, you can fund this account with DEV tokens. 
 
 --8<-- 'text/faucet/faucet-sentence.md'
 
@@ -117,8 +115,8 @@ In the calldata, we need to change three fields to ensure our swap will go throu
 0x7ff36ab5
 0000000000000000000000000000000000000000000000000de0b6b3a7640000 -> New Min Amount
 0000000000000000000000000000000000000000000000000000000000000080
-0000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def526 -> New Address
-0000000000000000000000000000000000000000000000000000000064746425 -> New Deadline
+00000000000000000000000061cd3e07fe7d7f6d4680e3e322986b7877f108dd -> New Address
+00000000000000000000000000000000000000000000000000000000A036B1B9 -> New Deadline
 0000000000000000000000000000000000000000000000000000000000000002
 000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e1
 0000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f
@@ -127,7 +125,7 @@ In the calldata, we need to change three fields to ensure our swap will go throu
 Which, as one line, is:
 
 ```
-0x7ff36ab50000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def52600000000000000000000000000000000000000000000000000000000647464250000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f
+0x7ff36ab50000000000000000000000000000000000000000000000000de0b6b3a7640000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000061cd3e07fe7d7f6d4680e3e322986b7877f108dd00000000000000000000000000000000000000000000000000000000A036B1B90000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f
 ```
 
 You can also get the calldata programmatically using the [Uniswap V2 SDK](https://docs.uniswap.org/sdk/v2/overview){target=_blank}.
@@ -165,7 +163,7 @@ Once you have the code set up, you can execute it with `node`, and you'll get th
 The encoded calldata for this example is:
 
 ```
-0x260001f31a020000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd40000c16ff286230000000000000000000000000000000000000000000000000091037ff36ab50000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def52600000000000000000000000000000000000000000000000000000000647464250000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f00
+0x260001eeed020000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd40000c16ff286230000000000000000000000000000000000000000000000000091037ff36ab50000000000000000000000000000000000000000000000000de0b6b3a7640000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000061cd3e07fe7d7f6d4680e3e322986b7877f108dd00000000000000000000000000000000000000000000000000000000a036b1b90000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f00
 ```
 
 And that is it! You have everything you need to start crafting the XCM message itself! It has been a long journey, but we are almost there.
@@ -195,7 +193,7 @@ Let's go through each of the main components of the snippet shown above:
  1. Provide the input data for the call. This includes:
      - Moonbase Alpha relay chain endpoint URL to create the provider
      - Amount of tokens (in Wei) to withdraw from the multilocation-derivative account. For this example, `0.01` tokens are more than enough. To understand how to get this value, please refer to the [XCM fee page](/builders/interoperability/xcm/fees/#moonbeam-reserve-assets){target=_blank}
-     - The [multilocation of the `DEV` token](/builders/interoperability/xcm/xc-integration/#register-moonbeams-asset-on-your-parachain){target=_blank} as seen by Moonbase Alpha
+     - The [multilocation of the `DEV` token](/builders/interoperability/xcm/xc-registration/assets/#register-moonbeam-native-assets){target=_blank} as seen by Moonbase Alpha
      - The weight for the `transact` XCM instruction. This can be obtained by multiplying `25000` and the gas limit obtained before. It is recommended to add approximately 10% more of the estimated value. You can read more about this value in the [Remote EVM Calls through XCM](/builders/interoperability/xcm/remote-evm-calls/#build-xcm-remote-evm){target=_blank} page
      - The multilocation-derivative account as it will be needed later for an XCM instruction
      - The bytes for the `transact` XCM instruction that we calculated in the previous section
@@ -219,7 +217,7 @@ Once you have the code set up, you can execute it with `node`, and you'll get th
 The encoded calldata for this example is:
 
 ```
-0x410604630003000100a10f031000040000010403000f0000c16ff28623130000010403000f0000c16ff286230006010780bb47030100fd04260001f31a020000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd40000c16ff286230000000000000000000000000000000000000000000000000091037ff36ab50000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000004e21340c3465ec0aa91542de3d4c5f4fc1def52600000000000000000000000000000000000000000000000000000000647464250000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f000d0100000103004e21340c3465ec0aa91542de3d4c5f4fc1def526
+0x4d0604630003000100a10f031000040000010403000f0000c16ff28623130000010403000f0000c16ff286230006010700902f500982b92a00fd04260001eeed020000000000000000000000000000000000000000000000000000000000008a1932d6e26433f3037bd6c3a40c816222a6ccd40000c16ff286230000000000000000000000000000000000000000000000000091037ff36ab50000000000000000000000000000000000000000000000000de0b6b3a7640000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000061cd3e07fe7d7f6d4680e3e322986b7877f108dd00000000000000000000000000000000000000000000000000000000a036b1b90000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d909178cc99d318e4d46e7e66a972955859670e10000000000000000000000001fc56b105c4f0a1a8038c2b429932b122f6b631f000d01000001030061cd3e07fe7d7f6d4680e3e322986b7877f108dd
 ```
 
 Now that we have the SCALE encoded calldata, the last step is to submit the transaction, which will send our XCM message to Moonbase Alpha, and do the remote EVM call!
@@ -254,7 +252,7 @@ This action will emit different events. The first one is the only relevant [in t
  - `polkadotXcm.AssetsTrapped` — flags that some assets were in holding and were not deposited to a given address. If the `Transact` XCM instruction does not exhaust the tokens allocated to it, it will execute a [`RefundSurplus`](https://github.com/paritytech/xcm-format#refundsurplus){target=_blank} after the XCM is processed. This instruction will take any leftover tokens from the execution bought and put them in holding. We could prevent this by adjusting the fee provided to the `Transact` instruction, or by adding the instruction right after the `Transact`
  - `dmpQueue.ExecutedDownward` — states the result of executing a message received from the relay chain (a DMP message). In this case, the `outcome` is marked as `Complete`
 
-Our XCM was successfully executed! If you visit [Moonbase Alpha Moonscan](https://moonbase.moonscan.io/){target=_blank} and search for [the transaction hash](https://moonbase.moonscan.io/tx/0xdb0705ae31aa046ba2797f0d85fab29c0f94299263ae4e184dce69a93d341d26){target=_blank}, you'll find the Uniswap V2 swap that was executed via the XCM message.
+Our XCM was successfully executed! If you visit [Moonbase Alpha Moonscan](https://moonbase.moonscan.io/){target=_blank} and search for [the transaction hash](https://moonbase.moonscan.io/tx/0x3fd96c5c7a82cd0b54c654f64d41879814d94a3ad9b66820f2be2fe7fc2a18eb){target=_blank}, you'll find the Uniswap V2 swap that was executed via the XCM message.
 
 !!! challenge
     Do a Uniswap V2 swap of `MARS` for any other token you want. Note that in this case, you'll have to remotely execute an ERC-20 `approve` via XCM first to allow the Uniswap V2 Router to spend the tokens on your behalf. Once the approval is done, you can send the XCM message for the swap itself.

@@ -43,10 +43,10 @@ contract Lottery is RandomnessConsumer {
     // there will be enough fee to pay for the gas used by the fulfillment.
     // Ideally it should be over-estimated considering possible fluctuation of
     // the gas price. Additional fee will be refunded to the caller
-    uint256 public MIN_FEE = FULFILLMENT_GAS_LIMIT * 1 gwei;
+    uint256 public MIN_FEE = FULFILLMENT_GAS_LIMIT * 150 gwei;
 
     // A string used to allow having different salt than other contracts
-    bytes32 public SALT_PREFIX = "my_demo_salt_change_me";
+    bytes32 public SALT_PREFIX = "INSERT_ANY_STRING_FOR_SALT";
 
     // Stores the global number of requests submitted. This number is used as a
     // salt to make each request unique

@@ -34,7 +34,7 @@ The Referenda Precompile is located at the following address:
 
 ## The Referenda Solidity Interface {: #the-referenda-solidity-interface }
 
-[`Referenda.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's methods. The methods are as follows:
+[`Referenda.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's methods. The methods are as follows:
 
 - **referendumCount**() - a read-only function that returns the total referendum count
 - **submissionDeposit**() - a read-only function that returns the Submission Deposit required for each referendum
@@ -113,7 +113,7 @@ The interface also includes the following events:
 
 ### Checking Prerequisites {: #checking-prerequisites }
 
-The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonriver. To follow the steps in this guide, you'll need to have the following: 
+The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonriver. To follow the steps in this guide, you'll need to have the following:
 
  - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
  - An account with some DEV tokens.
@@ -122,7 +122,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 ### Remix Set Up {: #remix-set-up }
 
 1. Click on the **File explorer** tab
-2. Paste a copy of [`Referenda.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=_blank} into a [Remix file](https://remix.ethereum.org/){target=_blank} named `Referenda.sol`
+2. Paste a copy of [`Referenda.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=_blank} into a [Remix file](https://remix.ethereum.org/){target=_blank} named `Referenda.sol`
 
 ![Copy and paste the Referenda Solidity interface into Remix.](/images/builders/pallets-precompiles/precompiles/referenda/referenda-1.png)
 
@@ -179,7 +179,7 @@ To submit the deposit, you can take the following steps:
 
 ![Place the Decision Deposit for a Referenda using the placeDecisionDeposit function of the Referenda Precompile.](/images/builders/pallets-precompiles/precompiles/referenda/referenda-5.png)
 
-Now that the Decision Deposit has been placed, the referendum is one step closer to moving to the Decide Period. There will also need to be enough Capacity in the designated Track and the duration of the Prepare Period must pass for it to move to the Decide Period. 
+Now that the Decision Deposit has been placed, the referendum is one step closer to moving to the Decide Period. There will also need to be enough Capacity in the designated Track and the duration of the Prepare Period must pass for it to move to the Decide Period.
 
 To vote on referenda, you can follow the steps outlined in the [Conviction Voting Precompile](/builders/pallets-precompiles/precompiles/conviction-voting){target=_blank} documentation.
 
@@ -195,4 +195,4 @@ To refund the Decision Deposit, you can use the `refundDecisionDeposit` function
 
 ![Refund the Decision Deposit for a Referenda using the placeDecisionDeposit function of the Referenda Precompile.](/images/builders/pallets-precompiles/precompiles/referenda/referenda-6.png)
 
-And that's it! You've completed your introduction to the Referenda Precompile. There are a few more functions that are documented in [`Referenda.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=_blank} — feel free to reach out on [Discord](https://discord.gg/moonbeam){target=_blank} if you have any questions about those functions or any other aspect of the Referenda Precompile.
+And that's it! You've completed your introduction to the Referenda Precompile. There are a few more functions that are documented in [`Referenda.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/referenda/Referenda.sol){target=_blank} — feel free to reach out on [Discord](https://discord.gg/moonbeam){target=_blank} if you have any questions about those functions or any other aspect of the Referenda Precompile.

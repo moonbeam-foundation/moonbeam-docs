@@ -34,7 +34,7 @@ The Conviction Voting Precompile is located at the following address:
 
 ## The Conviction Voting Solidity Interface {: #the-conviction-voting-solidity-interface }
 
-[`ConvictionVoting.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's methods.
+[`ConvictionVoting.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's methods.
 
 The interfaces includes a `Conviction` enum that defines the [Conviction multiplier](/learn/features/governance/#conviction-multiplier-v2){target=_blank} types. The enum has the following variables:
 
@@ -84,7 +84,7 @@ The interface also includes the following events:
 
 ### Checking Prerequisites {: #checking-prerequisites }
 
-The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonriver. To follow the steps in this guide, you'll need to have the following: 
+The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonriver. To follow the steps in this guide, you'll need to have the following:
 
  - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
  - An account with some DEV tokens.
@@ -93,7 +93,7 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
 ### Remix Set Up {: #remix-set-up }
 
 1. Click on the **File explorer** tab
-2. Paste a copy of [`ConvictionVoting.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=_blank} into a [Remix file](https://remix.ethereum.org/){target=_blank} named `ConvictionVoting.sol`
+2. Paste a copy of [`ConvictionVoting.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=_blank} into a [Remix file](https://remix.ethereum.org/){target=_blank} named `ConvictionVoting.sol`
 
 ![Copy and paste the referenda Solidity interface into Remix.](/images/builders/pallets-precompiles/precompiles/conviction-voting/conviction-voting-1.png)
 
@@ -158,4 +158,4 @@ To get started, you can take the following steps:
 
 Now the delegate account can vote on your behalf! If you no longer want a delegate vote to exist, you can remove it using the `undelegate` function of the Conviction Voting Precompile.
 
-And that's it! You've completed your introduction to the Conviction Voting Precompile. There are a few more functions that are documented in [`ConvictionVoting.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=_blank} — feel free to reach out on [Discord](https://discord.gg/moonbeam){target=_blank} if you have any questions about those functions or any other aspect of the Conviction Voting Precompile.
+And that's it! You've completed your introduction to the Conviction Voting Precompile. There are a few more functions that are documented in [`ConvictionVoting.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=_blank} — feel free to reach out on [Discord](https://discord.gg/moonbeam){target=_blank} if you have any questions about those functions or any other aspect of the Conviction Voting Precompile.

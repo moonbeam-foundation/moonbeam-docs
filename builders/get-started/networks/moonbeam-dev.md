@@ -8,21 +8,21 @@ description: Follow this tutorial to learn how to set up your first Moonbeam nod
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/-bRooBW2g0o' frameborder='0' allowfullscreen></iframe></div>
 <style>.caption { font-family: Open Sans, sans-serif; font-size: 0.9em; color: rgba(170, 170, 170, 1); font-style: italic; letter-spacing: 0px; position: relative;}</style>
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
-A Moonbeam development node is your own personal development environment for building and testing applications on Moonbeam. For Ethereum developers, it is comparable to Hardhat Network or Ganache. It enables you to get started quickly and easily without the overhead of a relay chain. You can spin up your node with the `--sealing` option to author blocks instantly, manually, or at a custom interval after transactions are received. By default, a block will be created when a transaction is received, which is similar to the default behavior of Hardhat Network and Ganache's instamine feature. 
+A Moonbeam development node is your own personal development environment for building and testing applications on Moonbeam. For Ethereum developers, it is comparable to Hardhat Network or Ganache. It enables you to get started quickly and easily without the overhead of a relay chain. You can spin up your node with the `--sealing` option to author blocks instantly, manually, or at a custom interval after transactions are received. By default, a block will be created when a transaction is received, which is similar to the default behavior of Hardhat Network and Ganache's instamine feature.
 
 If you follow this guide to the end, you will have a Moonbeam development node running in your local environment with 10 [prefunded accounts](#pre-funded-development-accounts).
 
 !!! note
-    This tutorial was created using the {{ networks.development.build_tag }} tag of [Moonbase Alpha](https://github.com/PureStake/moonbeam/releases/tag/{{ networks.development.build_tag }}){target=_blank}. The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier){target=_blank} components it relies on for Substrate-based Ethereum compatibility are still under very active development.
+    This tutorial was created using the {{ networks.development.build_tag }} tag of [Moonbase Alpha](https://github.com/moonbeam-foundation/moonbeam/releases/tag/{{ networks.development.build_tag }}){target=_blank}. The Moonbeam platform and the [Frontier](https://github.com/paritytech/frontier){target=_blank} components it relies on for Substrate-based Ethereum compatibility are still under very active development.
     --8<-- 'text/common/assumes-mac-or-ubuntu-env.md'
 
 ## Spin up a Moonbeam Development Node {: #spin-up-a-node }
 
 There are two ways to get started running a Moonbeam node: you can use [Docker to run a pre-built binary](#getting-started-with-docker). or you can [compile the binary locally](#getting-started-with-the-binary-file) and set up a development node yourself. Using Docker is a quick and convenient way to get started, as you won't have to install Substrate and all the dependencies, and you can skip the building the node process as well. It does require you to [install Docker](https://docs.docker.com/get-docker/){target=_blank}. On the other hand, if you decide you want to go through the process of building your own development node, it could take roughly 30 minutes or longer to complete, depending on your hardware.
 
-### Spin up a Node with Docker {: #getting-started-with-docker } 
+### Spin up a Node with Docker {: #getting-started-with-docker }
 
 Using Docker enables you to spin up a node in a matter of seconds. Once you have Docker installed, then you can take the following steps to spin up your node:
 
@@ -73,17 +73,17 @@ purestake/moonbeam \
 
 To continue on with the tutorial, the next section is not necessary as you've already spun up a node with Docker. You can skip ahead to [Configure your Moonbeam Development Node](#configure-moonbeam-dev-node) section.
 
-### Spin up a Node with a Binary File {: #getting-started-with-the-binary-file } 
+### Spin up a Node with a Binary File {: #getting-started-with-the-binary-file }
 
 !!! note
-    If you know what you are doing, you can directly download the precompiled binaries attached to each release on the [Moonbeam release page](https://github.com/PureStake/moonbeam/releases){target=_blank}. These will not work in all systems. For example, the binaries only work with x86-64 Linux with specific versions of dependencies. The safest way to ensure compatibility is to compile the binary on the system where it will be run.
+    If you know what you are doing, you can directly download the precompiled binaries attached to each release on the [Moonbeam release page](https://github.com/moonbeam-foundation/moonbeam/releases){target=_blank}. These will not work in all systems. For example, the binaries only work with x86-64 Linux with specific versions of dependencies. The safest way to ensure compatibility is to compile the binary on the system where it will be run.
 
 To build the binary file, you can take the following steps:
 
-1. Clone a specific tag of the Moonbeam repo, which you can find on the [Moonbeam GitHub repository](https://github.com/PureStake/moonbeam/){target=_blank}:
+1. Clone a specific tag of the Moonbeam repo, which you can find on the [Moonbeam GitHub repository](https://github.com/moonbeam-foundation/moonbeam/){target=_blank}:
 
     ```
-    git clone -b {{ networks.development.build_tag }} https://github.com/PureStake/moonbeam
+    git clone -b {{ networks.development.build_tag }} https://github.com/moonbeam-foundation/moonbeam
     cd moonbeam
     ```
 
@@ -142,7 +142,7 @@ For more information on some of the flags and options used in the example, check
 
 Now that you know how to get a standard Moonbeam development node up and running, you may be wondering how you can configure it. The following sections will cover some common configurations you can use when you spin up your node.
 
-### Common Flags to Configure your Node {: #node-flags } 
+### Common Flags to Configure your Node {: #node-flags }
 
 Flags do not take an argument. To use a flag, add it to the end of a command. For example:
 
@@ -155,7 +155,7 @@ Flags do not take an argument. To use a flag, add it to the end of a command. Fo
 - **`--rpc-external`** - listen to all RPC interfaces
 - **`--ws-external`** - listen to all Websocket interfaces
 
-### Common Options to Configure your Node {: #node-options } 
+### Common Options to Configure your Node {: #node-options }
 
 Options accept an argument to the right of the option. For example:
 
@@ -165,17 +165,17 @@ Options accept an argument to the right of the option. For example:
 
 - **`-l <log pattern>` or `--log <log pattern>`** - sets a custom logging filter. The syntax for the log pattern is `<target>=<level>`. For example, to print all of the JSON RPC logs, the command would look like this: `-l json=trace`
 - **`--sealing <interval>`** - when blocks should be sealed in the dev service. Accepted arguments for interval: `instant`, `manual`, or a number representing the timer interval in milliseconds (for example, `6000` will have the node produce blocks every 6 seconds). Default is `instant`. Please refer to the [Configure Block Production](#configure-block-production) section below for more information
-- **`--rpc-port <port>`** - *deprecated as of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, use `--ws-port` for HTTP and WS connections instead* - sets the HTTP RPC server TCP port. Accepts a port as the argument
-- **`--ws-port <port>`**: sets the WebSockets RPC server TCP port. As of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, the WS port is a unified port for both HTTP and WS connections. Accepts a port as the argument. Default is {{ networks.parachain.ws }}
-- **`--rpc-max-connections <connections>`** - *deprecated as of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, this value has been hardcoded to 100. Use `--ws-max-connections` to adjust the combined HTTP and WS connection limit instead* - specifies the maximum number of HTTP RPC server connections 
-- **`--ws-max-connections <connections>`** - specifies the maximum number of WS RPC server connections. As of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, this flag adjusts the combined HTTP and WS connection limit. Default is 100 connections
+- **`--rpc-port <port>`** - *deprecated as of [client v0.30.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.30.0){target=_blank}, use `--ws-port` for HTTP and WS connections instead* - sets the HTTP RPC server TCP port. Accepts a port as the argument
+- **`--ws-port <port>`**: sets the WebSockets RPC server TCP port. As of [client v0.30.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.30.0){target=_blank}, the WS port is a unified port for both HTTP and WS connections. Accepts a port as the argument. Default is {{ networks.parachain.ws }}
+- **`--rpc-max-connections <connections>`** - *deprecated as of [client v0.30.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.30.0){target=_blank}, this value has been hardcoded to 100. Use `--ws-max-connections` to adjust the combined HTTP and WS connection limit instead* - specifies the maximum number of HTTP RPC server connections 
+- **`--ws-max-connections <connections>`** - specifies the maximum number of WS RPC server connections. As of [client v0.30.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.30.0){target=_blank}, this flag adjusts the combined HTTP and WS connection limit. Default is 100 connections
 - **`--rpc-cors <origins>`** - specifies the browser origins allowed to access the HTTP and WS RPC servers. The origins can be a comma-separated list of the origins to allow access or you can also specify `null`. When running a development node, the default is to allow all origins
 
 For a complete list of flags and options, spin up your Moonbeam development node with `--help` added to the end of the command.
 
 ### Configure Block Production {: #configure-block-production }
 
-By default, your Moonbeam development node is spun up in instant seal mode, which instantly authors blocks as transactions are received. However, you can specify when blocks should be authored, or sealed, by using the `--sealing` option. 
+By default, your Moonbeam development node is spun up in instant seal mode, which instantly authors blocks as transactions are received. However, you can specify when blocks should be authored, or sealed, by using the `--sealing` option.
 
 The `--sealing` flag accepts any of the following arguments:
 
@@ -223,11 +223,11 @@ produceBlock();
 !!! note
     If you're unfamiliar with Ethers, please refer to the [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank} documentation page to learn more.
 
-## Prefunded Development Accounts {: #pre-funded-development-accounts } 
+## Prefunded Development Accounts {: #pre-funded-development-accounts }
 
 Moonbeam has a [unified accounts](/learn/features/unified-accounts){target=_blank} system, which enables users to have an Ethereum-styled H160 account that can interact with the Substrate API and the Ethereum API. As a result, you can interact with your account through [Polkadot.js Apps](#connecting-polkadot-js-apps-to-a-local-moonbeam-node) or [MetaMask](/tokens/connect/metamask){target=_blank} (or any other [EVM wallet](/tokens/connect/){target=_blank}). In addition, you can also use other [development tools](/builders/build/eth-api/dev-env/){target=_blank}, such as [Remix](/builders/build/eth-api/dev-env/remix/){target=_blank} and [Hardhat](/builders/build/eth-api/dev-env/hardhat/){target=_blank}.
 
-Your Moonbeam development node comes with ten prefunded Ethereum-styled accounts for development. The addresses are derived from Substrate's canonical development mnemonic: 
+Your Moonbeam development node comes with ten prefunded Ethereum-styled accounts for development. The addresses are derived from Substrate's canonical development mnemonic:
 
 ```
 bottom drive obey lake curtain smoke basket hold race lonely fit walk
@@ -263,13 +263,13 @@ For a Moonbeam development node, you can use any of the following block explorer
  - **Substrate API** — [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=ws://127.0.0.1:9944#/explorer){target=_blank} on WS port `{{ networks.parachain.ws }}`
  - **Ethereum API JSON-RPC based** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=MoonbeamDevNode){target=_blank} on HTTP port `{{ networks.parachain.ws }}`
 
-## Debug, Trace and TxPool APIs {: #debug-trace-txpool-apis } 
+## Debug, Trace and TxPool APIs {: #debug-trace-txpool-apis }
 
-You can also gain access to some non-standard RPC methods by running a tracing node, which allows developers to inspect and debug transactions during runtime. Tracing nodes use a different Docker image than a standard Moonbeam development node. 
+You can also gain access to some non-standard RPC methods by running a tracing node, which allows developers to inspect and debug transactions during runtime. Tracing nodes use a different Docker image than a standard Moonbeam development node.
 
 To learn how to run a Moonbeam development tracing node, check out the [Run a Tracing Node](/node-operators/networks/tracing-node){target=_blank} guide, and be sure to switch to the **Moonbeam Development Node** tab throughout the instructions. Then, to access the non-standard RPC methods with your tracing node, check out the [Debug & Trace](/builders/build/eth-api/debug-trace){target=_blank} guide.
 
-## Purge a Development Node {: #purging-your-node } 
+## Purge a Development Node {: #purging-your-node }
 
 If you want to remove data associated with your node, you can purge it. The instructions for purging a node are different depending on how you spun up your node.
 
@@ -287,7 +287,7 @@ If you followed the instructions in this guide and did not use the `-v` flag, yo
 sudo docker stop `CONTAINER_ID` && docker rm `CONTAINER_ID`
 ```
 
-### Purge a Node Spun up with a Binary File {: #purge-binary-node } 
+### Purge a Node Spun up with a Binary File {: #purge-binary-node }
 
 When running a node via the binary file, data is stored in a local directory, typically located in `~/.local/shared/moonbeam/chains/development/db`. If you want to start a fresh instance of the node, you can either delete the content of the folder or run the following command inside the `moonbeam` folder:
 

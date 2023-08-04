@@ -76,10 +76,10 @@ Moonbeam provides two different kind of explorers: ones to query the Ethereum AP
 
 To get started developing on one of the TestNets, you'll need to fund your account with DEV tokens to send transactions. Please note that DEV tokens have no real value and are for testing purposes only.
 
-|                                         TestNet                                         |                                                                                     Where To Get Tokens From                                                                                     |
-|:---------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|                                         TestNet                                         |                                                                           Where To Get Tokens From                                                                           |
+|:---------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 |        [Moonbase Alpha](/builders/get-started/networks/moonbase){target=_blank}         | The [Moonbase Alpha Faucet](https://faucet.moonbeam.network/){target=_blank} website. <br> The faucet dispenses {{ networks.moonbase.website_faucet_amount }} every 24 hours |
-| [Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev){target=_blank} |           Any of the [ten pre-funded accounts](/builders/get-started/networks/moonbeam-dev/#pre-funded-development-accounts){target=_blank} that come with your <br> development node            |
+| [Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev){target=_blank} | Any of the [ten pre-funded accounts](/builders/get-started/networks/moonbeam-dev/#pre-funded-development-accounts){target=_blank} that come with your <br> development node  |
 
 ## Development Tools {: #development-tools }
 
@@ -92,13 +92,14 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
     |:----------------------------------------------------------------------------:|:---------------:|
     |    [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank}    |     Library     |
     |      [Web3.js](/builders/build/eth-api/libraries/web3js){target=_blank}      |     Library     |
+    |      [Hardhat](/builders/build/eth-api/dev-env/hardhat){target=_blank}       | Dev Environment |
     | [OpenZeppelin](/builders/build/eth-api/dev-env/openzeppelin/){target=_blank} | Dev Environment |
     |        [Remix](/builders/build/eth-api/dev-env/remix){target=_blank}         | Dev Environment |
-    |      [Hardhat](/builders/build/eth-api/dev-env/hardhat){target=_blank}       | Dev Environment |
+    | [Scaffold-Eth](/builders/build/eth-api/dev-env/scaffold-eth){target=_blank}  | Dev Environment |
+    |     [thirdweb](/builders/build/eth-api/dev-env/thirdweb){target=_blank}      | Dev Environment |
     |      [Truffle](/builders/build/eth-api/dev-env/truffle){target=_blank}       | Dev Environment |
     | [Waffle & Mars](/builders/build/eth-api/dev-env/waffle-mars){target=_blank}  | Dev Environment |
-    | [Scaffold-Eth](/builders/build/eth-api/dev-env/scaffold-eth){target=_blank}  | Dev Environment |
-    
+
 === "Substrate"
     |                                      Tool                                       |  Type   |
     |:-------------------------------------------------------------------------------:|:-------:|
@@ -111,9 +112,9 @@ As Moonbeam is a Substrate-based chain that is fully Ethereum-compatible, you ca
     |:------------------------------------------------------------------:|:---------------:|
     | [Web3.py](/builders/build/eth-api/libraries/web3py){target=_blank} |     Library     |
     | [Brownie](/builders/build/eth-api/dev-env/brownie){target=_blank}  | Dev Environment |
+    |   [thirdweb](https://portal.thirdweb.com/python){target=_blank}    | Dev Environment |
 
 === "Substrate"
     |                                             Tool                                              |  Type   |
     |:---------------------------------------------------------------------------------------------:|:-------:|
     | [Py Substrate Interface](/builders/build/substrate-api/py-substrate-interface){target=_blank} | Library |
-
