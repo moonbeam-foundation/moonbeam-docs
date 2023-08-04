@@ -1,5 +1,5 @@
 ```ts
-const axios = require('axios');
+import axios from 'axios';
 
 // This script calculates the transaction fees of all transactions in a block
 // according to the transaction type (for Ethereum API: legacy, EIP-1559 or
@@ -18,8 +18,8 @@ const endpointNodeVersion = 'http://127.0.0.1:8080/node/version';
 const baseFee = {
   moonbeam: 125000000000n,
   moonriver: 1250000000n,
-  moonbase: 125000000n
-}
+  moonbase: 125000000n,
+};
 
 async function main() {
   try {
@@ -27,21 +27,22 @@ async function main() {
     let totalFees = 0n;
 
     // Find which Moonbeam network the Sidecar is pointing to
-    const response_client = await axios.get(endpointNodeVersion);
-    const network = response_client.data.clientImplName;
+    const responseClient = await axios.get(endpointNodeVersion);
+    const network = responseClient.data.clientImplName;
 
     // Retrieve the block from the Sidecar endpoint
-    const response_block = await axios.get(endpointBlock);
+    const responseBlock = await axios.get(endpointBlock);
     // Retrieve the block height of the current block
-    console.log('Block Height: ' + response_block.data.number);
+    console.log('Block Height: ' + responseBlock.data.number);
 
+    // Due to a current bug, use the previous block's base fee
+    // to match the on-chain data
     // Find the block's nextFeeMultiplier
-    const response_pallet = await axios.get(
-      endpointPallet + response_block.data.number
-    );
+    const prevBlock = Number(responseBlock.data.number) - 1;
+    const responsePallet = await axios.get(endpointPallet + prevBlock);
 
     // Iterate through all extrinsics in the block
-    response_block.data.extrinsics.forEach((extrinsic) => {
+    responseBlock.data.extrinsics.forEach((extrinsic) => {
       // Create an object to store transaction information
       let transactionData = new Object();
       // Set the network field
@@ -89,7 +90,7 @@ async function main() {
           );
           // Update based on the network you're getting tx fees for
           transactionData['baseFee'] =
-            (BigInt(response_pallet.data.value) * baseFee.moonbeam) /
+            (BigInt(responsePallet.data.value) * baseFee.moonbeam) /
             BigInt('1000000000000000000');
 
           // Gas price dependes on the MaxFeePerGas and MaxPriorityFeePerGas set
@@ -118,7 +119,7 @@ async function main() {
         // Display the tx information to console
         console.log(transactionData);
       }
-      // Filter for Substrate transactions, check if the extrinsic has a 
+      // Filter for Substrate transactions, check if the extrinsic has a
       // 'TransactionFeePaid' event
       else {
         extrinsic.events.forEach((event) => {

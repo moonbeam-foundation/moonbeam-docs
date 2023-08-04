@@ -7,9 +7,9 @@ description: Learn how to develop, test, and deploy smart contracts with Truffle
 
 ![Banner Image](/images/tutorials/eth-api/truffle-start-to-end/truffle-banner.png)
 
-_January 10, 2023 | by Erin Shaben_
+_by Erin Shaben_
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 For this tutorial, we'll be going through the smart contract development life cycle with [Truffle](/builders/build/eth-api/dev-env/truffle){target=_blank}. As we're starting to develop our contracts, we'll use a [Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev){target=_blank} so we can quickly iterate on our code as we build it and test it. Then we'll progress to using the [Moonbase Alpha TestNet](/builders/get-started/networks/moonbase){target=_blank} so we can test our contracts on a live network with tokens that do not hold any real value, so we don't have to worry about paying for any mistakes. Finally, once we feel confident in our code, we'll deploy our contracts to [Moonbeam MainNet](/builders/get-started/networks/moonbeam){target=_blank}.
 
@@ -27,35 +27,35 @@ For this tutorial, you'll need the following:
 
 ## Create a Truffle Project {: #create-a-truffle-project }
 
-To quickly get started with Truffle, we're going to use the [Moonbeam Truffle Box](https://github.com/PureStake/moonbeam-truffle-box){target=_blank}, which provides a boilerplate setup for developing and deploying smart contracts on Moonbeam. 
+To quickly get started with Truffle, we're going to use the [Moonbeam Truffle Box](https://github.com/moonbeam-foundation/moonbeam-truffle-box){target=_blank}, which provides a boilerplate setup for developing and deploying smart contracts on Moonbeam.
 
 The Moonbeam Truffle Box comes pre-configured for a local Moonbeam development node and Moonbase Alpha. We'll need to add support for Moonbeam so when we're ready to deploy our contracts to MainNet, we'll be all set!
 
-It also comes with a couple of plugins: the [Moonbeam Truffle plugin](https://github.com/purestake/moonbeam-truffle-plugin){target=_blank} and the [Truffle verify plugin](https://github.com/rkalis/truffle-plugin-verify){target=_blank}. The Moonbeam Truffle plugin will help us quickly get started with a local Moonbeam development node. The Truffle verify plugin will allow us to verify our smart contracts directly from within our Truffle project. We'll just need to configure a Moonscan API key to be able to use the Truffle verify plugin!
+It also comes with a couple of plugins: the [Moonbeam Truffle plugin](https://github.com/moonbeam-foundation/moonbeam-truffle-plugin){target=_blank} and the [Truffle verify plugin](https://github.com/rkalis/truffle-plugin-verify){target=_blank}. The Moonbeam Truffle plugin will help us quickly get started with a local Moonbeam development node. The Truffle verify plugin will allow us to verify our smart contracts directly from within our Truffle project. We'll just need to configure a Moonscan API key to be able to use the Truffle verify plugin!
 
 !!! note
     If you haven't done so already, you can follow the instructions to [generate a Moonscan API key](https://docs.moonbeam.network/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank}. Your Moonbeam Moonscan API key will also work on Moonbase Alpha, but if you want to deploy to Moonriver, you will need a [Moonriver Moonscan](https://moonriver.moonscan.io/){target=_blank} API key.
 
 Without further ado, let's create our project:
 
-1. You can either install Truffle globally or clone the [Moonbeam Truffle Box](https://github.com/PureStake/moonbeam-truffle-box){target=_blank} repository:
+1. You can either install Truffle globally or clone the [Moonbeam Truffle Box](https://github.com/moonbeam-foundation/moonbeam-truffle-box){target=_blank} repository:
 
-    ```
+    ```bash
     npm install -g truffle
     mkdir moonbeam-truffle-box && cd moonbeam-truffle-box
-    truffle unbox PureStake/moonbeam-truffle-box
+    truffle unbox moonbeam-foundation/moonbeam-truffle-box
     ```
 
     To avoid globally installing Truffle, you can run the following command and then access the Truffle commands by using `npx truffle <command>`:
 
-    ```
-    git clone https://github.com/PureStake/moonbeam-truffle-box
+    ```bash
+    git clone https://github.com/moonbeam-foundation/moonbeam-truffle-box
     cd moonbeam-truffle-box
     ```
 
 2. Install the dependencies that come with the Moonbeam Truffle Box:
 
-    ```
+    ```bash
     npm install
     ```
 
@@ -113,7 +113,7 @@ Now we should have a Truffle project that is configured for each of the networks
 
 For the sake of this guide, we can remove the `MyToken.sol` contract and the associated tests that come with the project:
 
-```
+```bash
 rm contracts/MyToken.sol test/test_MyToken.js
 ```
 
@@ -121,19 +121,19 @@ rm contracts/MyToken.sol test/test_MyToken.js
 
 The contracts in the following sections import contracts from [OpenZeppelin](https://www.openzeppelin.com/contracts){target=_blank}. If you followed the steps in the [Create a Truffle Project](#create-a-truffle-project) section, the Moonbeam Truffle box comes with the `openzeppelin/contracts` dependency already installed. If you created your project a different way, you'll need to install the dependency yourself. You can do so using the following command:
 
-```
+```bash
 npm i @openzeppelin/contracts
 ```
 
 ### Add Simple NFT Marketplace Contract {: #example-nft-marketplace-contract }
 
-As the goal is to go over the development life cycle, let's start off with a simple NFT marketplace contract with minimal functionality. We'll create this marketplace specifically for our new Dizzy Dragons NFT collection. 
+As the goal is to go over the development life cycle, let's start off with a simple NFT marketplace contract with minimal functionality. We'll create this marketplace specifically for our new Dizzy Dragons NFT collection.
 
 The marketplace contract will have two functions that allow a Dizzy Dragon NFT to be listed and purchased: `listNft` and `purchaseNft`. Ideally, an NFT marketplace would have additional functionality such as the ability to fetch a listing, update or cancel listings, and more. However, **this contract and our Dizzy Dragon NFT collection is just for demonstration purposes**.
 
 We'll add our contract to the `contracts` directory:
 
-```
+```bash
 touch contracts/NftMarketplace.sol
 ```
 
@@ -238,7 +238,7 @@ contract NftMarketplace is ReentrancyGuard {
 
 In order to test our NFT Marketplace contract, we'll need to mint a Dizzy Dragon NFT. To do so, we'll create a simple NFT contract named `DizzyDragons.sol`:
 
-```
+```bash
 touch contracts/DizzyDragons.sol
 ```
 
@@ -281,11 +281,11 @@ contract DizzyDragons is ERC721URIStorage {
 
 ### Compile the Contracts {: #compile-contracts }
 
-Now that we have created our contracts, we can go ahead and compile them, which will automatically generate artifacts for each contract. We'll use the artifacts later on when we're writing our tests and deploying our contracts. 
+Now that we have created our contracts, we can go ahead and compile them, which will automatically generate artifacts for each contract. We'll use the artifacts later on when we're writing our tests and deploying our contracts.
 
 To compile our contracts, we can run the following command:
 
-```
+```bash
 npx truffle compile
 ```
 
@@ -295,7 +295,7 @@ The artifacts will be written to the `build/contracts` directory.
 
 ### Setup Deployment Script {: #setup-deployment-script }
 
-Let's update the deployment migratio script so that later on we can jump straight into deploying our contracts. We'll deploy the `NftMarketplace` contract followed by the `DizzyDragons` contract, as we'll need to pass in the address of the marketplace to the constructor of the `DizzyDragons` contract. 
+Let's update the deployment migratio script so that later on we can jump straight into deploying our contracts. We'll deploy the `NftMarketplace` contract followed by the `DizzyDragons` contract, as we'll need to pass in the address of the marketplace to the constructor of the `DizzyDragons` contract.
 
 To update the deployment script, open up the `migrations/2_deploy_contracts.js` migration file and replace it with the following:
 
@@ -318,13 +318,13 @@ Before we jump into writing our tests, let's take some time now to start up our 
 
 Since the Moonbeam Truffle box comes with the Moonbeam Truffle plugin, starting up a development node is a breeze. All you need is to have [Docker installed](https://docs.docker.com/get-docker/){target=_blank}. If you are all set with Docker, you need to fetch the latest Moonbeam Docker image by running:
 
-```
+```bash
 npx truffle run moonbeam install
 ```
 
 Then you can start the node:
 
-```
+```bash
 npx truffle run moonbeam start
 ```
 
@@ -332,7 +332,7 @@ Once your node has been successfully started, you should see the following outpu
 
 ![Install and spin up a Moonbeam development node](/images/tutorials/eth-api/truffle-start-to-end/truffle-2.png)
 
-You can check out all of the available commands in the [Using the Moonbeam Truffle Plugin to Run a Node](/builders/build/eth-api/dev-env/truffle/#using-the-moonbeam-truffle-plugin-to-run-a-node){target=_blank} section of our Truffle docs. 
+You can check out all of the available commands in the [Using the Moonbeam Truffle Plugin to Run a Node](/builders/build/eth-api/dev-env/truffle/#using-the-moonbeam-truffle-plugin-to-run-a-node){target=_blank} section of our Truffle docs.
 
 You can also set up a development node without the Moonbeam Truffle plugin, to do so, please refer to the [Getting Started with a Moonbeam Development Node](/builders/get-started/networks/moonbeam-dev/){target=_blank} guide.
 
@@ -340,7 +340,7 @@ You can also set up a development node without the Moonbeam Truffle plugin, to d
 
 Before sending our code out into the wild, we'll want to test our smart contracts to ensure they function as expected. Truffle provides the option of writing tests in JavaScript, TypeScript, or Solidity. It also comes with out-of-the-box support for [Mocha](https://mochajs.org/){target=_blank} and [Chai](https://chaijs.com/){target=_blank}.
 
-For this guide, we'll write our tests in JavaScript so we can take advantage of the built-in support for Mocha and Chai. 
+For this guide, we'll write our tests in JavaScript so we can take advantage of the built-in support for Mocha and Chai.
 
 If you're familiar with Mocha, you're probably used to using the `describe` function to group tests and the `it` function for each individual test. When writing tests with Truffle, you'll replace `describe` with `contract`. The `contract` function is exactly like `describe`, but it includes additional functionality that will re-deploy your migrations at the beginning of every test file, providing a clean-room environment. You'll still use the `it` function like you normally would for the individual tests.
 
@@ -359,7 +359,7 @@ Now that we can set up our test file, let's take a minute to review what we'll n
 - Import the artifacts for the `NftMarketplace` and `DizzyDragons` contracts using Truffle's `artifacts.require()`, which provides an abstraction instance of a contract
 - Create a `contract` function to group our tests. The `contract` function will also provide us with our account we have setup in our `truffle-config.js` file. As we used the Moonbeam Truffle box, our development account has been set up for us. When we move on to deploy and test our contracts on Moonbase Alpha and Moonbeam, we'll need to configure our accounts
 - For each test, we're going to need to deploy our contracts and mint an NFT. To do this, we can take advantage of the [`beforeEach` hook provided by Mocha](https://mochajs.org/#hooks){target=_blank}
-- As we'll be minting an NFT for each test, we'll need to have a `tokenUri`. The `tokenUri` that we'll use for our examples will be for Daizy, our first Dizzy Dragon NFT. The `tokenUri` will be set to `'https://gateway.pinata.cloud/ipfs/QmTCib5LvSrb7sshLhLvzmV7wdSdmSt3yjB4dqQaA58Td9'`, which was created specifically for this tutorial and is for educational purposes only 
+- As we'll be minting an NFT for each test, we'll need to have a `tokenUri`. The `tokenUri` that we'll use for our examples will be for Daizy, our first Dizzy Dragon NFT. The `tokenUri` will be set to `'https://gateway.pinata.cloud/ipfs/QmTCib5LvSrb7sshLhLvzmV7wdSdmSt3yjB4dqQaA58Td9'`, which was created specifically for this tutorial and is for educational purposes only
 
 You can enter the `tokenUri` into your web browser to view the metadata for Daizy and the [image for Daizy](https://gateway.pinata.cloud/ipfs/QmTzmrRb6TmEsP96dCoBv2kjdiCiojagBU7YJ95RaAuuF4?_gl=1*m58ja2*_ga*ODc3ODA3MjcwLjE2NzQ2NjQ2ODY.*_ga_5RMPXG14TE*MTY3NDY2NDY4Ni4xLjEuMTY3NDY2NDcwMi40NC4wLjA.){target=_blank} has also been pinned so you can easily see what Daizy looks like!
 
@@ -442,7 +442,7 @@ In place of the `// TODO: Add tests here` comment, you can add the following tes
 
 Assuming your [Moonbeam development node is up and running](#start-development-node), you can run the test with the following command:
 
-```
+```bash
 npx truffle test --network dev
 ```
 
@@ -587,7 +587,7 @@ Let's jump into writing the next test by adding the following to our test file:
 
 That's it for the tests! To run them all, go ahead and run:
 
-```
+```bash
 npx truffle test --network dev
 ```
 
@@ -600,7 +600,7 @@ With Mocha, you have the flexbility to test for a variety of edge cases and don'
 
 When you're done testing on the Moonbeam development node, don't forget to stop and remove the node! You can do so by running:
 
-```
+```bash
 npx truffle run moonbeam stop && \
 npx truffle run moonbeam remove
 ```
@@ -609,13 +609,13 @@ npx truffle run moonbeam remove
 
 ## Deploy to Moonbase Alpha TestNet {: #deploying-to-moonbase-alpha }
 
-Now that we've been able to rapidly develop our contracts with our Moonbeam development node and feel confident with our code, we can move on to testing it on the Moonbase Alpha TestNet. 
+Now that we've been able to rapidly develop our contracts with our Moonbeam development node and feel confident with our code, we can move on to testing it on the Moonbase Alpha TestNet.
 
 First, you'll need to update your `truffle-config.js` file and add in the private key of your account on Moonbase Alpha. The `privateKeyMoonbase` variable already exists, you just need to set it to your private key. **This is just for demonstration purposes only, never store your private keys in a JavaScript file**.
 
 Once you've set your account up, you can run your tests on Moonbase Alpha to make sure they work as expected on a live network:
 
-```
+```bash
 npx truffle test --network moonbase
 ```
 
@@ -626,7 +626,7 @@ npx truffle test --network moonbase
 
 Since we already updated our migration script, we're all set to deploy our contracts using this command:
 
-```
+```bash
 npx truffle migrate --network moonbase
 ```
 
@@ -638,7 +638,7 @@ With our contracts deployed, we could begin to build a dApp with a frontend that
 
 Once you've deployed your contracts, don't forget to verify them! You will run the `run verify` command and pass in the deployed contracts' names and the network where they've been deployed to:
 
-```
+```bash
 npx truffle run verify NftMarketplace DizzyDragons --network moonbase
 ```
 
@@ -656,7 +656,7 @@ Again, you'll need to update your `truffle-config.js` and add in the private key
 
 Since the Moonbeam Truffle box doesn't come with the Moonbeam network configurations, you'll need to add them:
 
-```
+```js
 ...
 module.exports = {
   networks: {
@@ -679,7 +679,7 @@ If you're using Truffle Dashboard, you'll need to [add the host/port configurati
 
 You can deploy your contracts using this command:
 
-```
+```bash
 npx truffle migrate --network moonbeam
 ```
 
@@ -689,7 +689,7 @@ You should see the transaction hashes for the deployment of each contract in you
 
 Again, don't forget to verify the contracts! You will run the `run verify` command and pass in the deployed contracts' names and `moonbeam` as the network:
 
-```
+```bash
 npx truffle run verify NftMarketplace DizzyDragons --network moonbeam
 ```
 

@@ -14,7 +14,7 @@ The native token ERC-20 precompiled contract on Moonbeam allows developers to in
 
 One of the main benefits of this precompile is that it removes the necessity of having a wrapped representation of the protocol token as an ERC-20 smart contract, such as WETH on Ethereum. Furthermore, it prevents having multiple wrapped representations of the same protocol token. Consequently, DApps that need to interact with the protocol token via an ERC-20 interface can do so without needing a separate smart contract.
 
-Under the hood, the [ERC-20 precompile](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/src/lib.rs){target=_blank} executes specific Substrate actions related to the Substrate balances pallet, which is coded in Rust. The balances pallet provides functionality for handling the [various types of balances on Moonbeam](/builders/get-started/eth-compare/balances/#moonbeam-account-balances){target=_blank}, setting the free balance, transferring balances, and more.
+Under the hood, the [ERC-20 precompile](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/src/lib.rs){target=_blank} executes specific Substrate actions related to the Substrate balances pallet, which is coded in Rust. The balances pallet provides functionality for handling the [various types of balances on Moonbeam](/builders/get-started/eth-compare/balances/#moonbeam-account-balances){target=_blank}, setting the free balance, transferring balances, and more.
 
 This guide will show you how to interact with DEV tokens, the native protocol tokens for the Moonbase Alpha TestNet, via the ERC-20 precompile. You can also follow and adapt this guide to learn how to use GLMR or MOVR as an ERC-20 token.
 
@@ -39,16 +39,16 @@ The precompile is located at the following address:
 
 ## The ERC-20 Solidity Interface {: #the-erc20-interface }
 
-The [`ERC20.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=_blank} interface on Moonbeam follows the [EIP-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20){target=_blank} which is the standard API interface for tokens within smart contracts. The standard defines the required functions and events that a token contract must implement to be interoperable with different applications.
+The [`ERC20.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=_blank} interface on Moonbeam follows the [EIP-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20){target=_blank} which is the standard API interface for tokens within smart contracts. The standard defines the required functions and events that a token contract must implement to be interoperable with different applications.
 
 --8<-- 'text/erc20-interface/erc20-interface.md'
 
-!!! note 
+!!! note
     The ERC-20 precompile does not include `deposit` and `withdraw` functions and subsequent events that are expected from a wrapped token contract, such as WETH.
 
 ## Interact with the Solidity Interface {: #interact-with-the-solidity-interface }
 
-### Checking Prerequisites {: #checking-prerequisites } 
+### Checking Prerequisites {: #checking-prerequisites }
 
 To follow along with this tutorial, you will need to have:
 
@@ -75,20 +75,20 @@ Now, you can create a custom token:
 
 ![Add Custom Token](/images/builders/pallets-precompiles/precompiles/erc20/erc20-2.png)
 
-MetaMask will prompt you to import the tokens. You can review the token details and click **Import Tokens** to import DEV tokens into your wallet. 
+MetaMask will prompt you to import the tokens. You can review the token details and click **Import Tokens** to import DEV tokens into your wallet.
 
 ![Confirm and Import Tokens](/images/builders/pallets-precompiles/precompiles/erc20/erc20-3.png)
 
 And that's it! You've successfully added the DEV token as a custom ERC-20 token on the Moonbase Alpha TestNet.
 
-### Remix Set Up {: #remix-set-up } 
+### Remix Set Up {: #remix-set-up }
 
 You can interact with the ERC-20 precompile using [Remix](https://remix.ethereum.org/){target=_blank}. To add the precompile to Remix, you will need to:
 
-1. Get a copy of [`ERC20.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=_blank} 
+1. Get a copy of [`ERC20.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/ERC20.sol){target=_blank}
 2. Paste the file contents into a Remix file named `IERC20.sol`
 
-### Compile the Contract {: #compile-the-contract } 
+### Compile the Contract {: #compile-the-contract }
 
 Next, you will need to compile the interface in Remix:
 
@@ -99,7 +99,7 @@ Next, you will need to compile the interface in Remix:
 
 If the interface was compiled successfully, you will see a green checkmark next to the **Compile** tab.
 
-### Access the Contract {: #access-the-contract } 
+### Access the Contract {: #access-the-contract }
 
 Instead of deploying the ERC-20 precompile, you will access the interface given the address of the precompiled contract:
 
@@ -113,7 +113,7 @@ Instead of deploying the ERC-20 precompile, you will access the interface given 
 
 The **IERC20** precompile will appear in the list of **Deployed Contracts**.
 
-### Get Basic Token Information {: #get-basic-token-information } 
+### Get Basic Token Information {: #get-basic-token-information }
 
 The ERC-20 interface allows you to quickly obtain token information, including the token's total supply, name, symbol, and decimal places. You can get this information by following these steps:
 
@@ -125,9 +125,9 @@ The ERC-20 interface allows you to quickly obtain token information, including t
 
 ![Total Supply](/images/builders/pallets-precompiles/precompiles/erc20/erc20-6.png)
 
-The response for each call will be displayed under the corresponding function. 
+The response for each call will be displayed under the corresponding function.
 
-### Get Account Balance {: #get-account-balance } 
+### Get Account Balance {: #get-account-balance }
 
 You can check the balance of any address on Moonbase Alpha by calling the `balanceOf` function and passing in an address:
 
@@ -145,7 +145,7 @@ To approve a spend, you'll need to provide an address for the spender and the nu
 
 1. Expand the **approve** function
 2. Enter the address of the spender. You should have created two accounts before starting, so you can use the second account as the spender
-3. Enter the amount of tokens the spender can spend for the **value**. For this example, you can allow the spender to spend 1 DEV token in Wei units (`1000000000000000000`) 
+3. Enter the amount of tokens the spender can spend for the **value**. For this example, you can allow the spender to spend 1 DEV token in Wei units (`1000000000000000000`)
 4. Click **transact**
 5. MetaMask will pop up, and you will be prompted to review the transaction details. Click **View full transaction details** to review the amount to be sent and the address of the spender
 6. If everything looks ok, you can click **Confirm** to send the transaction
@@ -154,7 +154,7 @@ To approve a spend, you'll need to provide an address for the spender and the nu
 
 After the transaction has successfully gone through, you'll notice that the balance of your account hasn't changed. This is because you have only approved the spend for the given amount, and the spender hasn't spent the funds. In the next section, you will use the `allowance` function to verify that the spender is able to spend 1 DEV token on your behalf.
 
-### Get Allowance of Spender {: #get-allowance-of-spender } 
+### Get Allowance of Spender {: #get-allowance-of-spender }
 
 To check that the spender received the allowance approved in the [Approve a Spend](#approve-a-spend) section, you can:
 

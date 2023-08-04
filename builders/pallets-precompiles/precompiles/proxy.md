@@ -8,7 +8,7 @@ keywords: solidity, ethereum, proxy, moonbeam, precompiled, contracts, substrate
 
 ![Proxy Moonbeam Banner](/images/builders/pallets-precompiles/precompiles/proxy/proxy-banner.png)
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 The Proxy Precompile on Moonbeam allows accounts to set proxy accounts that can perform specific limited actions on their behalf, such as governance, staking, or balance transfers.
 
@@ -35,9 +35,9 @@ The Proxy Precompile is located at the following address:
 
 --8<-- 'text/precompiles/security.md'
 
-## The Proxy Solidity Interface {: #the-proxy-solidity-interface } 
+## The Proxy Solidity Interface {: #the-proxy-solidity-interface }
 
-[`Proxy.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/proxy/Proxy.sol){target=_blank} is an interface through which Solidity contracts can interact with the Proxy Pallet. You do not have to be familiar with the Substrate API since you can interact with it using the Ethereum interface you're familiar with.
+[`Proxy.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/proxy/Proxy.sol){target=_blank} is an interface through which Solidity contracts can interact with the Proxy Pallet. You do not have to be familiar with the Substrate API since you can interact with it using the Ethereum interface you're familiar with.
 
 The interface includes the following functions:
 
@@ -60,7 +60,7 @@ enum ProxyType {
     IdentityJudgement
 }
 ```
- 
+
 ## Proxy Types {: #proxy-types }
 
 There are multiple types of proxy roles that can be delegated to accounts, where are represented in `Proxy.sol` through the `ProxyType` enum. The following list includes all of the possible proxies and the type of transactions they can make on behalf of the primary account:
@@ -78,7 +78,7 @@ There are multiple types of proxy roles that can be delegated to accounts, where
 
 The following section will cover how to interact with the Proxy Precompile from Remix. Please note that **the Proxy Precompile can only be called from an EOA or by the [Batch Precompile](/builders/pallets-precompiles/precompiles/batch){target=_blank}.**.
 
-### Checking Prerequisites {: #checking-prerequisites } 
+### Checking Prerequisites {: #checking-prerequisites }
 
 The below example is demonstrated on Moonbase Alpha, however, similar steps can be taken for Moonbeam and Moonriver. You should:  
 
@@ -87,23 +87,23 @@ The below example is demonstrated on Moonbase Alpha, however, similar steps can 
   --8<-- 'text/faucet/faucet-list-item.md'
  - Have a second account that you control to use as a proxy account (funding optional)
 
-### Remix Set Up {: #remix-set-up } 
+### Remix Set Up {: #remix-set-up }
 
-To get started, get a copy of [`Proxy.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/proxy/Proxy.sol){target=_blank} and take the following steps:
+To get started, get a copy of [`Proxy.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/proxy/Proxy.sol){target=_blank} and take the following steps:
 
 1. Click on the **File explorer** tab
 2. Copy and paste the file contents into a [Remix file](https://remix.ethereum.org/){target=_blank} named `Proxy.sol`
 
 ![Copying and Pasting the Proxy Interface into Remix](/images/builders/pallets-precompiles/precompiles/proxy/proxy-1.png)
 
-### Compile the Contract {: #compile-the-contract } 
+### Compile the Contract {: #compile-the-contract }
 
 1. Click on the **Compile** tab, second from top
 2. Then to compile the interface, click on **Compile Proxy.sol**
 
 ![Compiling Proxy.sol](/images/builders/pallets-precompiles/precompiles/proxy/proxy-2.png)
 
-### Access the Contract {: #access-the-contract } 
+### Access the Contract {: #access-the-contract }
 
 1. Click on the **Deploy and Run** tab, directly below the **Compile** tab in Remix. Note: you are not deploying a contract here, instead you are accessing a precompiled contract that is already deployed
 2. Make sure **Injected Provider - Metamask** is selected in the **ENVIRONMENT** drop down
@@ -113,7 +113,7 @@ To get started, get a copy of [`Proxy.sol`](https://github.com/PureStake/moonbea
 
 ![Provide the address](/images/builders/pallets-precompiles/precompiles/proxy/proxy-3.png)
 
-### Add a Proxy {: #add-proxy } 
+### Add a Proxy {: #add-proxy }
 
 You can add a proxy for your account via the Proxy Precompile if your account doesn't already have a proxy. In this example, you will add a [balances](#:~:text=Balances) proxy to an account by taking the following steps:
 
@@ -127,7 +127,7 @@ You can add a proxy for your account via the Proxy Precompile if your account do
 
 ![Call the addProxy function](/images/builders/pallets-precompiles/precompiles/proxy/proxy-4.png)
 
-### Check a Proxy's Existence {: #check-proxy } 
+### Check a Proxy's Existence {: #check-proxy }
 
 You can determine whether or not an account is a proxy account for a primary account. In this example, you will insert the parameters of the [previously added proxy](#add-proxy) to determine if the proxy account was successfully added:
 
@@ -139,7 +139,7 @@ If everything went correctly, the output should be `true`.
 
 ![Call the isProxy function](/images/builders/pallets-precompiles/precompiles/proxy/proxy-5.png)
 
-### Remove a Proxy {: #remove-proxy } 
+### Remove a Proxy {: #remove-proxy }
 
 You can remove a proxy from your account via the Proxy Precompile. In this example, you will remove the balances proxy [previously added](#add-proxy) to your delegate account by taking the following steps:
 
