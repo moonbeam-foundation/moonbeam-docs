@@ -85,6 +85,7 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
     |                 [Preimage](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=_blank}                  |             {{networks.moonbeam.precompiles.preimage }}              |
     |        [OpenGov Tech Committee](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=_blank}         | {{networks.moonbeam.precompiles.collective_opengov_tech_committee }} |
     | [Precompile Registry](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/precompile-registry/PrecompileRegistry.sol){target=_blank}  |             {{networks.moonbeam.precompiles.registry }}              |
+    |                         [GMP](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/gmp/Gmp.sol){target=_blank}                         |                {{networks.moonbeam.precompiles.gmp }}                |
 
 === "Moonriver"
     |                                                                         Contract                                                                          |                                Address                                |
@@ -111,6 +112,7 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
     |                 [Preimage](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=_blank}                  |             {{networks.moonriver.precompiles.preimage }}              |
     |        [OpenGov Tech Committee](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=_blank}         | {{networks.moonriver.precompiles.collective_opengov_tech_committee }} |
     | [Precompile Registry](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/precompile-registry/PrecompileRegistry.sol){target=_blank}  |             {{networks.moonriver.precompiles.registry }}              |
+    |                         [GMP](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/gmp/Gmp.sol){target=_blank}                         |                {{networks.moonriver.precompiles.gmp }}                |
 
 === "Moonbase Alpha"
     |                                                                         Contract                                                                          |                               Address                                |
@@ -137,3 +139,4 @@ There are a set of precompiled contracts included on Moonbeam, Moonriver, and Mo
     |                 [Preimage](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/preimage/Preimage.sol){target=_blank}                  |             {{networks.moonbase.precompiles.preimage }}              |
     |        [OpenGov Tech Committee](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=_blank}         | {{networks.moonbase.precompiles.collective_opengov_tech_committee }} |
     | [Precompile Registry](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/precompile-registry/PrecompileRegistry.sol){target=_blank}  |             {{networks.moonbase.precompiles.registry }}              |
+    |                         [GMP](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/gmp/Gmp.sol){target=_blank}                         |                {{networks.moonbase.precompiles.gmp }}                |
