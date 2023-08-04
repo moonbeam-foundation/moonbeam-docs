@@ -1121,3 +1121,7 @@ Of course, there are more advanced (but optional) components of DApps that have 
 An excellent [Web2 to Web3 blogpost](https://moonbeam.network/blog/web2-vs-web3-development-heres-what-you-need-to-know-to-make-the-leap-to-blockchain/){target=_blank} is available if you are interested in hearing about them in depth.  
 
 Hopefully, by reading this guide, you'll be well on your way to creating novel DApps on Moonbeam!
+
+--8<-- 'text/disclaimers/educational-tutorial.md'
+
+--8<-- 'text/disclaimers/third-party-content.md'
