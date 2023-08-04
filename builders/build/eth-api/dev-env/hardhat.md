@@ -17,10 +17,10 @@ This guide will cover how to use Hardhat to compile, deploy, and debug Ethereum 
 
 To get started, you will need the following:
 
- - Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
- - Have an account with funds.
+- Have MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
+- Have an account with funds.
   --8<-- 'text/faucet/faucet-list-item.md'
- - 
+
 --8<-- 'text/common/endpoint-examples.md'
 
 ## Creating a Hardhat Project {: #creating-a-hardhat-project }
@@ -28,19 +28,26 @@ To get started, you will need the following:
 You will need to create a Hardhat project if you don't already have one. You can create one by completing the following steps:
 
 1. Create a directory for your project
-    ```
+
+    ```sh
     mkdir hardhat && cd hardhat
     ```
+
 2. Initialize the project which will create a `package.json` file
-    ```
+
+    ```sh
     npm init -y
     ```
+
 3. Install Hardhat
-    ```
+
+    ```sh
     npm install hardhat
     ```
+
 4. Create a project
-    ```
+
+    ```sh
     npx hardhat
     ```
 
@@ -53,23 +60,23 @@ You will need to create a Hardhat project if you don't already have one. You can
 
 This will create a Hardhat config file (`hardhat.config.js`) in your project directory.
 
-Once you have your Hardhat project, you can also install the [Ethers plugin](https://hardhat.org/plugins/nomiclabs-hardhat-ethers.html){target=_blank}. This provides a convenient way to use the [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=_blank} library to interact with the network. To install it, run the following command:
+Once you have your Hardhat project, you can also install the [Ethers plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers){target=_blank}. This provides a convenient way to use the [Ethers.js](/builders/build/eth-api/libraries/ethersjs/){target=_blank} library to interact with the network. To install it, run the following command:
 
-```
-npm install @nomiclabs/hardhat-ethers ethers
+```sh
+npm install @nomicfoundation/hardhat-ethers ethers@6
 ```
 
 ## The Contract File {: #the-contract-file }
 
 With your empty project created, next you are going to create a `contracts` directory. You can do so by running the following command:
 
-```
+```sh
 mkdir contracts && cd contracts
 ```
 
 The smart contract that you'll deploy as an example will be called `Box`, it will let you store a value that can be retrieved later. In the `contracts` directory, you can create the `Box.sol` file:
 
-```
+```sh
 touch Box.sol
 ```
 
@@ -102,38 +109,18 @@ contract Box {
 
 Before you can deploy the contract to Moonbase Alpha, you'll need to modify the Hardhat configuration file and create a secure file to store your private key in.
 
-You can create a `secrets.json` file to store your private key by running:
-
-```
-touch secrets.json
-```
-
-Then add your private key to it:
-
-```json
-{
-    "privateKey": "YOUR_PRIVATE_KEY_HERE"
-}
-```
-
-Make sure to add the file to your project's `.gitignore`, and to never reveal your private key.
-
-!!! remember
-    Please always manage your private keys with a designated secret manager or similar service. Never save or commit your private keys inside your repositories.
-
 --8<-- 'text/hardhat/hardhat-configuration-file.md'
 
 ```js
 // 1. Import the Ethers plugin required to interact with the contract
-require('@nomiclabs/hardhat-ethers');
+require('@nomicfoundation/hardhat-ethers');
 
-// 2. Import your private key from your pre-funded Moonbase Alpha testing account
-const { privateKey } = require('./secrets.json');
+// 2. Add your private key from your pre-funded Moonbase Alpha testing account
+const privateKey = 'INSERT_PRIVATE_KEY';
 
 module.exports = {
   // 3. Specify the Solidity version
   solidity: '0.8.1',
-
   networks: {
     // 4. Add the Moonbase Alpha network specification
     moonbase: {
@@ -145,51 +132,13 @@ module.exports = {
 };
 ```
 
-You can modify the `hardhat.config.js` file to use any of the Moonbeam networks:
-
-=== "Moonbeam"
-    ```
-    moonbeam: {
-        url: '{{ networks.moonbeam.rpc_url }}', // Insert your RPC URL here
-        chainId: {{ networks.moonbeam.chain_id }}, // (hex: {{ networks.moonbeam.hex_chain_id }}),
-        accounts: [privateKey]
-      },
-    ```
-
-=== "Moonriver"
-    ```
-    moonriver: {
-        url: '{{ networks.moonriver.rpc_url }}', // Insert your RPC URL here
-        chainId: {{ networks.moonriver.chain_id }}, // (hex: {{ networks.moonriver.hex_chain_id }}),
-        accounts: [privateKey]
-      },
-    ```
-
-=== "Moonbase Alpha"
-    ```
-    moonbase: {
-        url: '{{ networks.moonbase.rpc_url }}',
-        chainId: {{ networks.moonbase.chain_id }}, // (hex: {{ networks.moonbase.hex_chain_id }}),
-        accounts: [privateKey]
-      },
-    ```
-
-=== "Moonbeam Dev Node"
-    ```
-    dev: {
-        url: '{{ networks.development.rpc_url }}',
-        chainId: {{ networks.development.chain_id }}, // (hex: {{ networks.development.hex_chain_id }}),
-        accounts: [privateKey]
-      },
-    ```
-
 Congratulations! You are now ready for deployment!
 
 ## Compiling Solidity {: #compiling-solidity }
 
 To compile the contract you can simply run:
 
-```
+```sh
 npx hardhat compile
 ```
 
@@ -201,7 +150,7 @@ After compilation, an `artifacts` directory is created: it holds the bytecode an
 
 In order to deploy the `Box.sol` smart contract, you will need to write a simple deployment script. You can create a new directory for the script and name it `scripts` and add a new file to it called `deploy.js`:
 
-```
+```sh
 mkdir scripts && cd scripts
 touch deploy.js
 ```
@@ -226,10 +175,10 @@ async function main() {
    const box = await Box.deploy();
 
    // 3. Waiting for the deployment to resolve
-   await box.deployed();
+   await box.waitForDeployment();
 
    // 4. Use the contract instance to get the contract address
-   console.log('Box deployed to:', box.address);
+   console.log('Box deployed to:', box.target);
 }
 
 main()
@@ -242,7 +191,7 @@ main()
 
 You can now deploy the `Box.sol` contract using the `run` command and specifying `moonbase` as the network:
 
-```
+```sh
 npx hardhat run --network moonbase scripts/deploy.js
 ```
 
@@ -258,23 +207,28 @@ Congratulations, your contract is live! Save the address, as you will use it to 
 
 To interact with your newly deployed contract on Moonbase Alpha, you can launch the Hardhat `console` by running:
 
-```
+```sh
 npx hardhat console --network moonbase
 ```
 
 Next you can take the following steps, entering in one line at a time:
 
 1. Create a local instance of the `Box.sol` contract
+
     ```js
     const Box = await ethers.getContractFactory('Box');
     ```
+
 2. Connect the local instance to the deployed contract, using the address of the contract
+
     ```js
     const box = await Box.attach('0x425668350bD782D80D457d5F9bc7782A24B8c2ef');
     ```
+
 3. Interact with the attached contract. For this example, you can call the `store` method and store a simple value
+
     ```js
-    await box.store(5)
+    await box.store(5);
     ```
 
 The transaction will be signed by your Moonbase account and be broadcasted to the network. The output should look similar to:
@@ -284,7 +238,7 @@ The transaction will be signed by your Moonbase account and be broadcasted to th
 Notice your address labeled `from`, the address of the contract, and the `data` that is being passed. Now, you can retrieve the value by running:
 
 ```js
-(await box.retrieve()).toNumber()
+await box.retrieve();
 ```
 
 You should see `5` or the value you have stored initially.
@@ -303,7 +257,7 @@ There is currently an issue related to forking Moonbeam, so in order to fix the 
 
 Before getting started, you'll need to apply a temporary patch to workaround an RPC error until Hardhat fixes the root issue. The error is as follows:
 
-```
+```sh
 Error HH604: Error running JSON-RPC server: Invalid JSON-RPC response's result.
 
 Errors: Invalid value null supplied to : RpcBlockWithTransactions | null/transactions: RpcTransaction Array/0: RpcTransaction/accessList: Array<{ address: DATA, storageKeys: Array<DATA> | null }> | undefined, Invalid value null supplied to : RpcBlockWithTransactions | null/transactions: RpcTransaction Array/1: RpcTransaction/accessList: Array<{ address: DATA, storageKeys: Array<DATA> | null }> | undefined, Invalid value null supplied to : RpcBlockWithTransactions | null/transactions: RpcTransaction Array/2: RpcTransaction/accessList: Array<{ address: DATA, storageKeys: Array<DATA> | null }> | undefined
@@ -479,7 +433,7 @@ When you spin up the Hardhat fork, you'll have 20 development accounts that are 
 
 To verify you have forked the network, you can query the latest block number:
 
-```
+```sh
 curl --data '{"method":"eth_blockNumber","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545 
 ```
 
