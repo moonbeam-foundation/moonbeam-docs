@@ -17,17 +17,20 @@ The GMP precompile acts as an interface for Moonbeam Routed Liquidity, acting as
 The GMP Precompile is located at the following address:  
 
 === "Moonbeam"
-     ```
+
+     ```text
      {{networks.moonbeam.precompiles.gmp}}
      ```
 
 === "Moonriver"
-     ```
+
+     ```text
      {{networks.moonriver.precompiles.gmp}}
      ```
 
 === "Moonbase Alpha"
-     ```
+
+     ```text
      {{networks.moonbase.precompiles.gmp}}
      ```
 
@@ -35,7 +38,7 @@ In practice, it is unlikely that a developer will have to directly interact with
 
 ## The GMP Solidity Interface {: #the-gmp-solidity-interface }
 
-[`Gmp.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/gmp/Gmp.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile:  
+[`Gmp.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/gmp/Gmp.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile:  
 
 - **wormholeTransferERC20**(*bytes memory* vaa) - receives a Wormhole bridge transfer [verified action approval (VAA)](https://book.wormhole.com/wormhole/4_vaa.html){target=_blank}, mints tokens via the Wormhole token bridge, and forwards the liquidity to the custom payload’s [multilocation](/builders/interoperability/xcm/overview/#general-xcm-definitions){target=_blank}
   - VAAs are payload-containing packages generated after origin-chain transactions and are discovered by Wormhole [guardian network spies](https://book.wormhole.com/wormhole/6_relayers.html?search=#specialized-relayers){target=_blank}. The payload is expected to be a precompile-specific SCALE encoded object, as explained in this guide's [Wormhole section](#building-the-payload-for-wormhole)  
@@ -46,7 +49,7 @@ The most common instance that a user will have to interact with the precompile i
 
 Currently the GMP precompile only supports sending liquidity with Wormhole, through Moonbeam, and into other parachains. The GMP precompile does not assist with a route from parachains back to Moonbeam and subsequently Wormhole connected chains.  
 
-To send liquidity from a Wormhole-connected origin chain like Ethereum, users must invoke the [`transferTokensWithPayload` method](https://book.wormhole.com/technical/evm/tokenLayer.html#contract-controlled-transfer){target=_blank} on the [origin-chain's deployment](https://book.wormhole.com/reference/contracts.html#token-bridge){target=_blank} of the [WormholeTokenBridge smart contract](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/interfaces/ITokenBridge.sol){target=_blank}. This function requires a bytes payload, which must be formatted as a SCALE encoded multilocation object wrapped within [another precompile-specific versioned type](https://github.com/PureStake/moonbeam/blob/1d664f3938698a6cd341fb8f36ccc4bb1104f1ff/precompiles/gmp/src/types.rs#L25-L39){target=_blank}.  
+To send liquidity from a Wormhole-connected origin chain like Ethereum, users must invoke the [`transferTokensWithPayload` method](https://book.wormhole.com/technical/evm/tokenLayer.html#contract-controlled-transfer){target=_blank} on the [origin-chain's deployment](https://book.wormhole.com/reference/contracts.html#token-bridge){target=_blank} of the [WormholeTokenBridge smart contract](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/interfaces/ITokenBridge.sol){target=_blank}. This function requires a bytes payload, which must be formatted as a SCALE encoded multilocation object wrapped within [another precompile-specific versioned type](https://github.com/moonbeam-foundation/moonbeam/blob/1d664f3938698a6cd341fb8f36ccc4bb1104f1ff/precompiles/gmp/src/types.rs#L25-L39){target=_blank}.  
 
 You may be unfamiliar with both SCALE encoding and multilocations if you are not familiar with the Polkadot ecosystem. [SCALE encoding](https://docs.substrate.io/reference/scale-codec/){target=_blank} is a compact form of encoding that Polkadot uses. The [`MultiLocation` type](https://wiki.polkadot.network/docs/learn-xcvm){target=_blank} is used to define a relative point in Polkadot, such as a specific account on a specific parachain (Polkadot blockchain).  
 
@@ -100,7 +103,7 @@ The following multilocation templates target accounts on other parachains with M
     }
     ```
 
-It can be difficult to correctly SCALE encode the entire payload without the right tools, especially due to the [custom types expected by the precompile](https://github.com/PureStake/moonbeam/blob/1d664f3938698a6cd341fb8f36ccc4bb1104f1ff/precompiles/gmp/src/types.rs#L25-L39){target=_blank}. Fortunately, there are Polkadot JavaScript packages that can assist with this, such as [`@polkadot/types`](https://www.npmjs.com/package/@polkadot/types){target=_blank}. The following script shows how to create a `Uint8Array` that can be used as a payload for the GMP precompile:  
+It can be difficult to correctly SCALE encode the entire payload without the right tools, especially due to the [custom types expected by the precompile](https://github.com/moonbeam-foundation/moonbeam/blob/1d664f3938698a6cd341fb8f36ccc4bb1104f1ff/precompiles/gmp/src/types.rs#L25-L39){target=_blank}. Fortunately, there are Polkadot JavaScript packages that can assist with this, such as [`@polkadot/types`](https://www.npmjs.com/package/@polkadot/types){target=_blank}. The following script shows how to create a `Uint8Array` that can be used as a payload for the GMP precompile:  
 
 ```javascript
 import { TypeRegistry, Enum, Struct } from '@polkadot/types';
@@ -109,7 +112,7 @@ import { TypeRegistry, Enum, Struct } from '@polkadot/types';
 const registry = new TypeRegistry();
 
 // Define the precompile's input types VersionedUserAction and XcmRoutingUserAction
-// https://github.com/PureStake/moonbeam/blob/1d664f3938698a6cd341fb8f36ccc4bb1104f1ff/precompiles/gmp/src/types.rs#L25-L39
+// https://github.com/moonbeam-foundation/moonbeam/blob/1d664f3938698a6cd341fb8f36ccc4bb1104f1ff/precompiles/gmp/src/types.rs#L25-L39
 class VersionedUserAction extends Enum {
  constructor(value) {
    super(registry, { V1: XcmRoutingUserAction }, value);

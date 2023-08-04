@@ -131,12 +131,28 @@ From [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase
 
  1. Choose **authorMapping** as the state to query
  2. Select the **nimbusLookup** method
- 3. Provide a collator's address to query. Optionally, you can disable the slider to retrieve all mappings 
+ 3. Provide a collator's address to query. Optionally, you can disable the slider to retrieve all mappings
  4. Click on the **+** button to send the RPC call
 
 ![Nimbus ID Mapping Chain State](/images/node-operators/networks/collators/account-management/account-6.png)
 
 You should be able to see the nimbus ID associated with the H160 account provided. If no account was provided, this would return all the mappings stored on-chain.
+
+### Remove Session Keys {: #removing-session-keys }
+
+Before removing your session keys, you'll want to make sure that you've stopped collating and left the candidate pool. To stop collating, you'll need to schedule a request to leave the candidate pool, wait a delay period, and then execute the request. For step-by-step instructions, please refer to the [Stop Collating](/node-operators/networks/collators/activities/#stop-collating){target=_blank} section of the Moonbeam Collator Activities page.
+
+Once you have left the candidate pool, you can remove your session keys. After which, the mapping bond you deposited will be returned to your account.
+
+From [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/assets){target=_blank}, click on **Developer** at the top of the page, then choose **Extrinsics** from the dropdown, and take the following steps:
+
+1. Select your account
+2. Choose the **authorMapping** pallet and the **removeKeys** extrinsic
+3. Click **Submit Transaction**
+
+![Remove session keys on Polkadot.js Apps](/images/node-operators/networks/collators/account-management/account-7.png)
+
+Once the transaction goes through, the mapping bond will be returned to you. To make sure that the keys were removed, you can follow the steps in the [Check Mappings](#checking-the-mappings) section.
 
 ## Setting an Identity {: #setting-an-identity }
 

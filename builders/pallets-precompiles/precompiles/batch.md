@@ -8,9 +8,9 @@ keywords: solidity, ethereum, batch, transaction, moonbeam, precompiled, contrac
 
 ![Precomiled Contracts Banner](/images/builders/pallets-precompiles/precompiles/batch/batch-banner.png)
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
-The batch precompiled contract on Moonbeam allows developers to combine multiple EVM calls into one. 
+The batch precompiled contract on Moonbeam allows developers to combine multiple EVM calls into one.
 
 Currently, having users interact with multiple contracts would require multiple transaction confirmations in the user's wallet. An example would be approving a smart contract's access to a token, then transferring it. With the batch precompile, developers can enhance user experience with batched transactions as it minimizes the number of transactions a user is required to confirm to one. Additionally, gas fees can be reduced since batching avoids multiple base gas fees (the initial 21000 units of gas spent to begin a transaction).
 
@@ -37,13 +37,13 @@ The precompile is located at the following address:
 
 ## The Batch Solidity Interface {: #the-batch-interface }
 
-[`Batch.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's three methods.
+[`Batch.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's three methods.
 
 --8<-- 'text/batch/batch-interface.md'
 
 ## Interact with the Solidity Interface {: #interact-with-the-solidity-interface }
 
-### Checking Prerequisites {: #checking-prerequisites } 
+### Checking Prerequisites {: #checking-prerequisites }
 
 To follow along with this tutorial, you will need to have:
 
@@ -58,15 +58,15 @@ The contract `SimpleContract.sol` will be used as an example of batching contrac
 
  --8<-- 'code/batch/simple-contract.md'
 
-### Remix Set Up {: #remix-set-up } 
+### Remix Set Up {: #remix-set-up }
 
-You can interact with the batch precompile using [Remix](https://remix.ethereum.org/){target=_blank}. You'll need a copy of [`Batch.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank} and [`SimpleContract.sol`](#example-contract). To add the precompile to Remix and follow along with the tutorial, you will need to:
+You can interact with the batch precompile using [Remix](https://remix.ethereum.org/){target=_blank}. You'll need a copy of [`Batch.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol){target=_blank} and [`SimpleContract.sol`](#example-contract). To add the precompile to Remix and follow along with the tutorial, you will need to:
 
 1. Click on the **File explorer** tab
 2. Paste the `Batch.sol` contract into a Remix file named **Batch.sol**
 3. Paste the `SimpleContract.sol` contract into a Remix file named **SimpleContract.sol**
 
-### Compile the Contract {: #compile-the-contract } 
+### Compile the Contract {: #compile-the-contract }
 
 Next, you will need to compile both files in Remix:
 
@@ -87,7 +87,7 @@ Next, you will need to compile both files in Remix:
 
 If the interface was compiled successfully, you will see a green checkmark next to the **Compile** tab.
 
-### Access the Precompile {: #access-the-precompile } 
+### Access the Precompile {: #access-the-precompile }
 
 Instead of deploying the batch precompile, you will access the interface given the address of the precompiled contract:
 
@@ -140,7 +140,7 @@ Once the transaction is complete, be sure to check both of the accounts' balance
 !!! note
      Typically if you wanted to send the native currency to or through a contract, you would have to set the value within the overall transaction object and interact with a payable function. However, since the batch precompile interacts directly with Substrate code, this is not a typical Ethereum transaction and is thus not necessary.
 
-### Find a Contract Interaction's Call Data {: #find-a-contract-interactions-call-data } 
+### Find a Contract Interaction's Call Data {: #find-a-contract-interactions-call-data }
 
 Visual interfaces like [Remix](/builders/build/eth-api/dev-env/remix){target=_blank} and handy libraries like [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank} hide the way that Ethereum transactions interact with Solidity smart contracts. The name and input types of a function are hashed into a [function selector](https://docs.soliditylang.org/en/latest/abi-spec.html#function-selector-and-argument-encoding){target=_blank} and the input data is encoded. These two pieces are then combined and sent as the transaction's call data. To send a subtransaction within a batch transaction, the sender needs to know its call data beforehand. 
 
@@ -167,7 +167,7 @@ The call data can be broken into five lines, where:
 
 This section's example will be using the **batchAll** function that will ensure the transactions are resolved atomically. Keep in mind that there are also two other batch functions that can either continue subtransactions despite errors or halt subsequent subtransactions but not revert previous ones.
 
-Interacting with a function is very similar to [sending a native currency](#send-native-currency-via-precompile), since they are both transactions. However, call data is required to properly provide input to functions and a sender may desire to limit the amount of gas spent in each subtransaction. 
+Interacting with a function is very similar to [sending a native currency](#send-native-currency-via-precompile), since they are both transactions. However, call data is required to properly provide input to functions and a sender may desire to limit the amount of gas spent in each subtransaction.
 
 The `callData` and `gasLimit` fields are more relevant for subtransactions that interact with contracts. For each function in the batch interface, the `callData` input is an array where each index corresponds to the call data for each recipient of the subtransaction, that is, each `to` input. If the size of the `callData` array is less than the `to` array, the remaining subtransactions will have no call data (functions with no inputs). The `gasLimit` input is an array that corresponds to the amount of gas that each can spend for each subtransaction. If its value at an index is 0 or the index is the size of the array or greater (and smaller than the `to` array's size), all of the remaining gas from the previous subtransaction is forwarded.
 
@@ -193,11 +193,11 @@ If you used the same call data as the tutorial, check to make sure that the tran
 
 ![SimpleContract Confirmation](/images/builders/pallets-precompiles/precompiles/batch/batch-7.png)
 
-The phrase **"moonbeam"** should appear underneath it. Congratulations! You have interacted with a function with the batch precompile. 
+The phrase **"moonbeam"** should appear underneath it. Congratulations! You have interacted with a function with the batch precompile.
 
 ### Combining Subtransactions {: combining-subtransactions }
 
-So far, transferring native currency and interacting with functions have been separate, but they can be intertwined. 
+So far, transferring native currency and interacting with functions have been separate, but they can be intertwined.
 
 The following four strings can be combined as inputs for a batch transaction. They will transact 1 DEV to the public Gerald (`0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b`) account, and interact with a predeployed `SimpleContract.sol` contract twice. Here is a break-down:
 

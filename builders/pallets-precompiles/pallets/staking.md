@@ -12,7 +12,7 @@ keywords: staking, substrate, pallet, moonbeam, polkadot
 
 Moonbeam uses a Delegated Proof of Stake (DPoS) system that determines which collators are eligible to produce blocks based on their total stake in the network. For general information on staking, such as general terminology, staking variables, and more, please refer to the [Staking on Moonbeam](/learn/features/staking){target=_blank} page.
 
-The DPoS system is powered by the [parachain staking](https://github.com/PureStake/moonbeam/tree/master/pallets/parachain-staking/src){target=_blank} pallet, allowing token holders (delegators) to express exactly which collator candidates they would like to support and with what quantity of stake. The design of the parachain staking pallet is such that it enforces shared risk/reward on chain between delegators and candidates.
+The DPoS system is powered by the [parachain staking](https://github.com/moonbeam-foundation/moonbeam/tree/master/pallets/parachain-staking/src){target=_blank} pallet, allowing token holders (delegators) to express exactly which collator candidates they would like to support and with what quantity of stake. The design of the parachain staking pallet is such that it enforces shared risk/reward on chain between delegators and candidates.
 
 Some of the functionality of the parachain staking pallet is also available through a staking precompile. The precompile is a Solidity interface that enables you to perform staking actions through the Ethereum API. Please refer to the [Staking Precompile](/builders/pallets-precompiles/precompiles/staking){target=_blank} guide for more information.
 
@@ -128,7 +128,7 @@ The parachain staking pallet includes the following read-only functions to obtai
 - **maxTopDelegationsPerCandidate**() - returns the maximum number of top delegations per candidate 
 - **minBlocksPerRound**() - returns the minimum number of blocks per round
 - **minCandidateStk**() - returns the minimum stake required for a candidate to be a collator candidate
-- **minCollatorStk**() - returns the minimum stake required for a candidate to be in the active set 
+- **minCollatorStk**() - *deprecated as of runtime 2400* - returns the minimum stake required for a candidate to be in the active set
 - **minDelegation**() - returns the minimum delegation amount
 - **minDelegatorStk**() - returns the minimum stake for an account to be a delegator
 - **minSelectedCandidates**() - returns the minimum number of selected candidates in the active set every round

@@ -87,13 +87,13 @@ The target event sends two pieces of indexed information: the `from` and `to` ad
 
 Consequently, you can see that the `from` and `to` addresses are contained inside the topics returned by the logs. Ethereum addresses are 40 hex characters long (1 hex character is 4 bits, hence 160 bits or H160 format). Thus, the extra 24 zeros are needed to fill the gap to H256, which is 64 hex characters long. 
 
-Unindexed data is returned in the `data` field of the logs, but this is encoded in bytes32/hex. To decode it you can use, for example, this [Web3 Type Converter tool](https://web3-type-converter.onbrn.com/){target=_blank}, and verify that the `data` is in fact 1 (plus 18 zeros). 
+Unindexed data is returned in the `data` field of the logs, but this is encoded in bytes32/hex. To decode it you can use, for example, this [Web3 Type Converter tool](https://web3-type-converter.onbrn.com/){target=_blank}, and verify that the `data` is in fact 1 (plus 18 zeros).
 
 If the event returns multiple unindexed values, they will be appended one after the other in the same order the event emits them. Therefore, each value is then obtained by deconstructing data into separate 32 bytes (or 64 hex character long) pieces.
 
-### Use Wildcards and Conditional Formatting {: #using-wildcards-and-conditional-formatting } 
+### Use Wildcards and Conditional Formatting {: #using-wildcards-and-conditional-formatting }
 
-In the v2 release that introduced the subscribing to logs feature, there were some limitations regarding using wildcards and conditional formatting for the topics. Nevertheless, with the release of [Moonbase Alpha v3](https://www.purestake.com/news/moonbeam-network-upgrades-account-structure-to-match-ethereum/){target=_blank}, this is now possible.
+In the v2 release that introduced the subscribing to logs feature, there were some limitations regarding using wildcards and conditional formatting for the topics. Nevertheless, with the release of [Moonbase Alpha v3](https://moonbeam.network/announcements/moonbeam-network-upgrades-account-structure-to-match-ethereum/){target=_blank}, this is now possible.
 
 Using the same example as in the previous section, lets subscribe to the events of the token contract with the following code:
 

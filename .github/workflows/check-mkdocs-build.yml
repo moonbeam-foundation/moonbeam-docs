@@ -19,7 +19,7 @@ jobs:
       - name: Clone Moonbeam MKDocs
         run: |
           # clone mkdocs repo locally
-          git clone https://${{ secrets.REPO_SCOPED_TOKEN }}@github.com/PureStake/moonbeam-mkdocs.git
+          git clone https://${{ secrets.REPO_SCOPED_TOKEN }}@github.com/papermoonio/moonbeam-mkdocs.git
 
       - name: Move moonbeam-docs contents to mkdocs repository
         run: |

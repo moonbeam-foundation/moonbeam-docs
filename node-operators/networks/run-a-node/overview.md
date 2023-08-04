@@ -7,7 +7,7 @@ description: Learn about all of the necessary details to run a full Parachain no
 
 ![Full Node Moonbeam Banner](/images/node-operators/networks/run-a-node/overview/full-node-banner.png)
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 Running a full node on a Moonbeam-based network allows you to connect to the network, sync with a bootnode, obtain local access to RPC endpoints, author blocks on the parachain, and more.
 
@@ -22,7 +22,7 @@ There are multiple deployments of Moonbeam, including the Moonbase Alpha TestNet
 !!! note
     Moonbase Alpha is still considered an Alphanet, and as such _will not_ have 100% uptime. The parachain might be purged as needed. During the development of your application, make sure you implement a method to redeploy your contracts and accounts to a fresh parachain quickly. If a chain purge is required, it will be announced via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
 
-## Requirements {: #requirements } 
+## Requirements {: #requirements }
 
 Running a parachain node is similar to a typical Substrate node, but there are some differences. A Substrate parachain node is a bigger build because it contains code to run the parachain itself, as well as code to sync the relay chain, and facilitate communication between the two. As such, this build is quite large and may take over 30 min and require 32GB of memory.
 
@@ -55,16 +55,16 @@ The minimum specs recommended to run a node are shown in the following table. Fo
 !!! note
     If you don't see an `Imported` message (without the `[Relaychain]` tag) when running a node, you might need to double-check your port configuration.
 
-## Running Ports {: #running-ports } 
+## Running Ports {: #running-ports }
 
 As stated before, the relay/parachain nodes will listen on multiple ports. The default Substrate ports are used in the parachain, while the relay chain will listen on the next higher port.
 
 The only ports that need to be open for incoming traffic are those designated for P2P. **Collators must not have RPC or WS ports opened**.
 
 !!! note
-    As of [client v0.30.0](https://github.com/PureStake/moonbeam/releases/tag/v0.30.0){target=_blank}, the HTTP RPC endpoint at port {{ networks.parachain.rpc }} has been deprecated. The WS RPC endpoint at port {{ networks.parachain.ws }} should be used for both HTTP and WS connections.
+    As of [client v0.30.0](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v0.30.0){target=_blank}, the HTTP RPC endpoint at port {{ networks.parachain.rpc }} has been deprecated. The WS RPC endpoint at port {{ networks.parachain.ws }} should be used for both HTTP and WS connections.
 
-### Default Ports for a Parachain Full-Node {: #default-ports-for-a-parachain-full-node } 
+### Default Ports for a Parachain Full-Node {: #default-ports-for-a-parachain-full-node }
 
 |  Description   |                Port                 |
 |:--------------:|:-----------------------------------:|
@@ -72,7 +72,7 @@ The only ports that need to be open for incoming traffic are those designated fo
 |  **RPC & WS**  |     {{ networks.parachain.ws }}     |
 | **Prometheus** | {{ networks.parachain.prometheus }} |
 
-### Default Ports of Embedded Relay Chain {: #default-ports-of-embedded-relay-chain } 
+### Default Ports of Embedded Relay Chain {: #default-ports-of-embedded-relay-chain }
 
 |  Description   |                 Port                  |
 |:--------------:|:-------------------------------------:|
@@ -85,25 +85,25 @@ The only ports that need to be open for incoming traffic are those designated fo
 There are a couple different guides to help you get started running a Moonbeam-based node:
 
 - [Using Docker](/node-operators/networks/run-a-node/docker) - this method provides a quick and easy way to get started with a Docker container
-- [Using Systemd](/node-operators/networks/run-a-node/systemd) - this method is recommended for those with experience compiling a Substrate node 
+- [Using Systemd](/node-operators/networks/run-a-node/systemd) - this method is recommended for those with experience compiling a Substrate node
 
-## Debug, Trace and TxPool APIs {: #debug-trace-txpool-apis } 
+## Debug, Trace and TxPool APIs {: #debug-trace-txpool-apis }
 
 You can also gain access to some non-standard RPC methods by running a tracing node, which allow developers to inspect and debug transactions during runtime. Tracing nodes use a different Docker image than a standard Moonbase Alpha, Moonriver, or Moonbeam node. Check out the [Run a Tracing Node](/node-operators/networks/tracing-node) guide and be sure to switch to the right network tab throughout the instructions. Then to interact with your tracing node, check out the [Debug & Trace](/builders/build/eth-api/debug-trace) guide.
 
-## Logs and Troubleshooting {: #logs-and-troubleshooting } 
+## Logs and Troubleshooting {: #logs-and-troubleshooting }
 
 You will see logs from both the relay chain and the parachain. The relay chain will be prefixed by `[Relaychain]`, while the parachain has no prefix.
 
-### P2P Ports Not Open {: #p2p-ports-not-open } 
+### P2P Ports Not Open {: #p2p-ports-not-open }
 
 If you don't see an `Imported` message (without the `[Relaychain]` tag), you need to check the P2P port configuration. P2P port must be open to incoming traffic.
 
-### In Sync {: #in-sync } 
+### In Sync {: #in-sync }
 
 Both chains must be in sync at all times, and you should see either `Imported` or `Idle` messages and have connected peers.
 
-### Genesis Mismatching {: #genesis-mismatching } 
+### Genesis Mismatching {: #genesis-mismatching }
 
 The Moonbase Alpha TestNet may need to be purged and upgraded once in a while. Consequently, you may see the following message:
 
@@ -114,7 +114,7 @@ chain (our genesis: GENESIS_ID theirs: OTHER_GENESIS_ID)
 
 This typically means that you are running an older version and will need to upgrade.
 
-We announce the upgrades (and corresponding chain purge) via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance. 
+We announce the upgrades (and corresponding chain purge) via our [Discord channel](https://discord.gg/PfpUATX) at least 24 hours in advance.
 
 Instructions for purging chain data will vary slightly depending on how you spun up your node:
 
