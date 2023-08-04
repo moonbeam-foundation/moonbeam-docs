@@ -13,7 +13,7 @@ For an asset to be transferred across chains via XCM, there needs to be an open 
 
 This guide will show you how to register [external XC-20s](/builders/interoperability/xcm/xc20/overview#external-xc20s){target=_blank} on Moonbeam and provide the information you need to register Moonbeam assets, including Moonbeam native assets (GLMR, MOVR, and DEV) and [local XC-20s](/builders/interoperability/xcm/xc20/overview#local-xc20s){target=_blank} (XCM-enabled ERC-20s), on another chain.
 
-The examples in this guide use a CLI tool developed to ease the entire process, which you can find in the [xcm-tools GitHub repository](https://github.com/PureStake/xcm-tools){target=_blank}.
+The examples in this guide use a CLI tool developed to ease the entire process, which you can find in the [xcm-tools GitHub repository](https://github.com/Moonsong-Labs/xcm-tools){target=_blank}.
 
 ```bash
 git clone https://github.com/Moonsong-Labs/xcm-tools && \
