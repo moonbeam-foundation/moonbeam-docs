@@ -448,11 +448,9 @@ While it's possible to verify smart contracts on the [Moonscan website](https://
 
 Before beginning the contract verification process, you'll need to [acquire a Moonscan API Key](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank}. Note that Moonbeam and Moonbase Alpha use the same [Moonbeam Moonscan](https://moonscan.io/){target=_blank} API key, whereas you'll need a distinct API key for [Moonriver](https://moonriver.moonscan.io/){target=_blank}.
 
-Double check that your `secrets.json` file includes your API key for [Moonbeam Moonscan](https://moonscan.io/){target=_blank}.
-
 ![Add Moonscan API Key to Secret.json.](/images/tutorials/eth-api/hardhat-start-to-end/hardhat-2.png)
 
-To verify the contract, you will run the `verify` command and pass in the network where the `DelegationDao` contract is deployed, the address of the contract, and the two constructor arguments that you specified in your `deploy.js` file, namely, the address of the target collator and the address you deployed the smart contract with (sourced from your `secrets.json` file).
+To verify the contract, you will run the `verify` command and pass in the network where the `DelegationDao` contract is deployed, the address of the contract, and the two constructor arguments that you specified in your `deploy.js` file, namely, the address of the target collator and the address you deployed the smart contract with (sourced from the `hardhat.config.js` file).
 
 ```bash
 npx hardhat verify --network moonbase INSERT_CONTRACT_ADDRESS {{ networks.moonbase.staking.candidates.address1 }} INSERT_DEPLOYER_ADDRESS
@@ -470,7 +468,7 @@ In your terminal you should see the source code for your contract was successful
 !!! note
     `DelegationDAO.sol` is unreviewed and unaudited. It is designed only for demonstration purposes and not intended for production use. It may contain bugs or logic errors that could result in loss of funds.
 
-In the following steps, we'll be deploying the `DelegationDAO` contract to the Moonbeam MainNet network. Remember to add the Moonbeam network to your [`hardhat.config.js`](#hardhat-configuration-file) and update your `secrets.json` file with the private keys of your accounts on Moonbeam if you haven't done so already. Before deploying `DelegationDAO` to Moonbeam, we need to change the address of the target collator, since our target collator on Moonbase Alpha does not exist on Moonbeam. Head to your deploy script and change the target collator to `0x1C86E56007FCBF759348dcF0479596a9857Ba105` or [another Moonbeam collator](https://apps.moonbeam.network/moonbeam/staking){target=_blank} of your choice. Your `deploy.js` script should thus look like the following:
+In the following steps, we'll be deploying the `DelegationDAO` contract to the Moonbeam MainNet network. Remember to add the Moonbeam network to your [`hardhat.config.js`](#hardhat-configuration-file) and update the private keys of your accounts on Moonbeam if you haven't done so already. Before deploying `DelegationDAO` to Moonbeam, we need to change the address of the target collator, since our target collator on Moonbase Alpha does not exist on Moonbeam. Head to your deploy script and change the target collator to `0x1C86E56007FCBF759348dcF0479596a9857Ba105` or [another Moonbeam collator](https://apps.moonbeam.network/moonbeam/staking){target=_blank} of your choice. Your `deploy.js` script should thus look like the following:
 
 ```javascript
 // 1. The moonbeam-foundation-03 collator on Moonbeam is chosen as the DAO's target
@@ -518,7 +516,7 @@ Congratulations, your contract is live on Moonbeam! Save the address, as you wil
 
 In this section, we'll be verifying the contract that was just deployed on Moonbeam. Before beginning the contract verification process, you'll need to [acquire a Moonscan API Key](/builders/build/eth-api/verify-contracts/etherscan-plugins/#generating-a-moonscan-api-key){target=_blank}. Note that Moonbeam and Moonbase Alpha use the same [Moonbeam Moonscan](https://moonscan.io/){target=_blank} API key, whereas you'll need a distinct API key for [Moonriver](https://moonriver.moonscan.io/){target=_blank}.
 
-To verify the contract, you will run the `verify` command and pass in the network where the `DelegationDao` contract is deployed, the address of the contract, and the two constructor arguments that you specified in your `deploy.js` file, namely, the address of the target collator and the address you deployed the smart contract with (sourced from your `secrets.json` file). Remember that the target collator of the staking DAO on Moonbeam is different from the target collator of the staking DAO on Moonbase Alpha.
+To verify the contract, you will run the `verify` command and pass in the network where the `DelegationDao` contract is deployed, the address of the contract, and the two constructor arguments that you specified in your `deploy.js` file, namely, the address of the target collator and the address you deployed the smart contract with (sourced from your `hardhat.config.js` file). Remember that the target collator of the staking DAO on Moonbeam is different from the target collator of the staking DAO on Moonbase Alpha.
 
 ```bash
 npx hardhat verify --network moonbeam INSERT_CONTRACT_ADDRESS 0x1C86E56007FCBF759348dcF0479596a9857Ba105 INSERT_DEPLOYER_ADDRESS
