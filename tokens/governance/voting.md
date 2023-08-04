@@ -7,28 +7,31 @@ description: Follow this guide to learn how to vote and lock your tokens to supp
 
 ![Governance Moonbeam Banner](/images/tokens/governance/voting/voting-banner.png)
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 Referenda are simple, inclusive, and stake-based voting schemes. Each referendum has a proposal associated with it that suggests an action to take place. In OpenGov, each referendum will have a specified Origin class that the proposal will be executed with and each Origin has its own Track that proposals will process through. Although referenda are completed by a common process, the requirements for approval are Track-specific.
 
 Token holders can vote on referenda using their own tokens. Two factors defined the weight a vote has: the number of tokens locked and lock duration (called Conviction). This is to ensure that there is an economic buy-in to the result to prevent vote-selling. Consequently, the longer you are willing to lock your tokens, the stronger your vote will be weighted. You also have the option of not locking tokens at all, but vote weight is drastically reduced.
 
-In Moonbeam, users will be able to create and vote on proposals using their H160 address and private key, that is, their regular Ethereum account! 
+In Moonbeam, users will be able to create and vote on proposals using their H160 address and private key, that is, their regular Ethereum account!
 
-Moonbeam's governance system is in the process of getting revamped! This next phase of governance is known as OpenGov (Governance v2). During the roll-out process, OpenGov will be rigorously tested on Moonriver before a proposal will be made to deploy it on Moonbeam. Until it launches on Moonbeam, Moonbeam will continue to use Governance v1. As such, **this guide is for proposals on Moonriver or Moonbase Alpha only**. If you're looking to vote on a proposal on Moonbeam, you can refer to the [How to Vote on a Proposal in Governance v1](/tokens/governance/voting/voting){target=_blank} guide.
-
-This guide will outline the process, with step-by-step instructions, of how to vote on referenda in Governance v2: OpenGov. This guide will show you how to vote on Moonbase Alpha, but it can be easily adapted for Moonriver. For more information on Moonbeam's governance system, including Governance v1 and OpenGov (Governance v2), please refer to the [governance overview page](/learn/features/governance/){target=_blank}.
+This guide will outline the process, with step-by-step instructions, of how to vote on referenda in Governance v2: OpenGov. This guide will show you how to vote on Moonbase Alpha, but it can be easily adapted for Moonbeam and Moonriver.
 
 !!! note
-    This page goes through the mechanics on how to vote at a more techincal level. Token holders can leverage platforms such as [Polkassembly](https://moonbeam.network/tutorial/participate-in-moonbeam-governance-with-polkassembly/){target=_blank} to vote using a more friendly user interface. 
+    This page goes through the mechanics on how to vote at a more techincal level. Token holders can leverage platforms such as [Polkassembly](https://moonbeam.network/tutorial/participate-in-moonbeam-governance-with-polkassembly/){target=_blank} to vote using a more friendly user interface.
 
-## Definitions {: #definitions } 
+## Definitions {: #definitions }
 
 Some of the key parameters for this guide are the following:
 
 --8<-- 'text/governance/vote-conviction-definitions.md'
 
  - **Maximum number of votes** — the maximum number of concurrent votes per account
+
+    === "Moonbeam"
+        ```
+        {{ networks.moonbeam.governance.max_votes }} votes
+        ```
 
     === "Moonriver"
         ```
@@ -54,7 +57,7 @@ For an overview of the Track-specific parameters such as the length of the Decid
 
 ## Roadmap of a Proposal {: #roadmap-of-a-proposal }
 
-This guide will cover how to vote on public referenda, as seen in the steps highlighted in the proposal roadmap diagram below. In addition to learning how to vote on referenda, you'll learn how the proposal progresses through the Lead-in Period, the Decide and Confirm Period, and the Enactment Period. 
+This guide will cover how to vote on public referenda, as seen in the steps highlighted in the proposal roadmap diagram below. In addition to learning how to vote on referenda, you'll learn how the proposal progresses through the Lead-in Period, the Decide and Confirm Period, and the Enactment Period.
 
 You can find a full explanation of the [happy path for a OpenGov proposal on the Governance overview page](/learn/features/governance/#roadmap-of-a-proposal-v2){target=_blank}.
 
@@ -62,9 +65,9 @@ You can find a full explanation of the [happy path for a OpenGov proposal on the
 
 --8<-- 'text/governance/forum-discussion.md'
 
-## Voting on a Referendum {: #voting-on-a-referendum } 
+## Voting on a Referendum {: #voting-on-a-referendum }
 
-This section goes over the process of voting on public referendum in OpenGov (Governance v2) on Moonbase Alpha. These steps can be adapted for Moonriver. The guide assumes that there is one already taking place. If there is an open referendum that you want to vote on, you can adapt these instructions to learn how to vote on it.
+This section goes over the process of voting on public referendum in OpenGov (Governance v2) on Moonbase Alpha. These steps can be adapted for Moonbeam and Moonriver. The guide assumes that there is one already taking place. If there is an open referendum that you want to vote on, you can adapt these instructions to learn how to vote on it.
 
 To vote on a proposal in the network, you need to use the Polkadot.js Apps interface. To do so, you need to import an Ethereum-style account first (H160 address), which you can do by following the [Creating or Importing an H160 Account](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=_blank} guide. For this example, three accounts were imported and named with super original names: Alice, Bob, and Charlie.
 
@@ -136,9 +139,9 @@ If the referendum doesn't continuously receive enough Approval and Support durin
 
 The Enactment Period is defined by the author of the proposal at the time it was initially submitted, but it needs to be at least the minimum Enacment Period. 
 
-### Delegate Voting {: #delegate-voting } 
+### Delegate Voting {: #delegate-voting }
 
-Token holders have the option to delegate their vote to another account whose opinion they trust. The account being delegated does not need to make any particular action. When they vote, the vote weight (that is, tokens times the Conviction multiplier chose by the delegator) is added to its vote. 
+Token holders have the option to delegate their vote to another account whose opinion they trust. The account being delegated does not need to make any particular action. When they vote, the vote weight (that is, tokens times the Conviction multiplier chose by the delegator) is added to its vote.
 
 With the introduction of OpenGov (Governance v2), token holders can even delegate their vote on a Track-by-Track basis and specify different delegates for each Track, which is referred to as Multirole Delegation.
 
@@ -184,7 +187,7 @@ Then to submit the refund transaction, you can:
 
 ![Refund the Decision Deposit on Polkadot.js Apps.](/images/tokens/governance/voting/v2/vote-11.png)
 
-### Unlocking Locked Tokens {: #unlocking-locked-tokens } 
+### Unlocking Locked Tokens {: #unlocking-locked-tokens }
 
 When token holders vote, the tokens used are locked and cannot be transferred. You can verify if you have any locked tokens in the **Accounts** tab by expanding the address's account details. There, you will see different types of balances. If you have any tokens locked in referenda, you'll see **referenda** listed in your balance details and can hover over it to find out details about which referendum your tokens are locked for. Different lock statuses include:
 

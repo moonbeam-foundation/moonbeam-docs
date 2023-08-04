@@ -14,10 +14,23 @@ Moonbeam Routed Liquidity (MRL) refers to Moonbeam’s use case as the port para
 
 The GMP precompile acts as an interface for Moonbeam Routed Liquidity, acting as a middleman between token-bearing messages from GMP protocols and parachains connected to Moonbeam via [XCMP](/builders/interoperability/xcm/overview/#xcm-transport-protocols){target=_blank}. Currently the GMP Precompile only supports the relaying of liquidity through the [Wormhole GMP protocol](/builders/interoperability/protocols/wormhole){target=_blank}.  
 
-The GMP Precompile is only available on Moonbase Alpha and is located at the following address:  
+The GMP Precompile is located at the following address:  
+
+=== "Moonbeam"
+
+     ```text
+     {{networks.moonbeam.precompiles.gmp}}
+     ```
+
+=== "Moonriver"
+
+     ```text
+     {{networks.moonriver.precompiles.gmp}}
+     ```
 
 === "Moonbase Alpha"
-     ```
+
+     ```text
      {{networks.moonbase.precompiles.gmp}}
      ```
 
@@ -52,35 +65,38 @@ There are multiple types of accounts that can be included in a multilocation, wh
 - **AccountKey20** — an account ID that is 20-bytes in length, including Ethereum-compatible account IDs such as those on Moonbeam
 - **AccountId32** — an account ID that is 32-bytes in length, standard in Polkadot and its parachains
 
-The following multilocation templates target accounts on other parachains with Moonbeam as the relative origin. To use them, replace `INSERT_PARACHAIN_ID` with the parachain ID of the network you wish to send funds to and replace `ADDRESS_HERE` with the address of the account you want to send funds to on that parachain.  
+The following multilocation templates target accounts on other parachains with Moonbeam as the relative origin. To use them, replace `INSERT_PARACHAIN_ID` with the parachain ID of the network you wish to send funds to and replace `INSERT_ADDRESS` with the address of the account you want to send funds to on that parachain.  
 
 === "AccountId32"
+
     ```json
     {
         "parents": 1,
         "interior": {
             "X2": [
-                { "Parachain": INSERT_PARACHAIN_ID },
-                {
-                    "AccountId32": {
-                        "id": "ADDRESS_HERE"
-                    }
+                { "Parachain": "INSERT_PARACHAIN_ID" },
+                { 
+                    "AccountId32": { 
+                        "id": "INSERT_ADDRESS" 
+                    } 
                 }
             ]
         }
     }
     ```
+
 === "AccountKey20"
+
     ```json
     {
         "parents": 1,
         "interior": {
             "X2": [
-                { "Parachain": INSERT_PARACHAIN_ID },
-                {
-                    "AccountKey20": {
-                        "key": "ADDRESS_HERE"
-                    }
+                { "Parachain": "INSERT_PARACHAIN_ID" },
+                { 
+                    "AccountKey20": { 
+                        "key": "INSERT_ADDRESS" 
+                    } 
                 }
             ]
         }
@@ -104,27 +120,29 @@ class VersionedUserAction extends Enum {
 }
 class XcmRoutingUserAction extends Struct {
  constructor(value) {
-   super(registry, { destination: 'MultiLocation' }, value);
+   super(registry, { destination: 'VersionedMultiLocation' }, value);
  }
 }
 
 // A function that creates a SCALE encoded payload to use with transferTokensWithPayload
 function createMRLPayload(parachainId, account, isEthereumStyle) {
   // Create a multilocation object based on the target parachain's account type
-  const multilocation = {
-    parents: 1,
-    interior: {
-      X2: [
-        { Parachain: parachainId },
-        isEthereumStyle ? 
-          { AccountKey20: { key: account } } : 
-          { AccountId32: { id: account }
-      }]
+  const versionedMultiLocation = { 
+    v1: {
+      parents: 1,
+      interior: {
+        X2: [
+          { Parachain: parachainId },
+          isEthereumStyle ? 
+            { AccountKey20: { key: account } } : 
+            { AccountId32: { id: account }
+        }]
+      }
     }
   };
 
   // Format multilocation object as a Polkadot.js type
-  const destination = registry.createType('MultiLocation', multilocation);
+  const destination = registry.createType('VersionedMultiLocation', versionedMultiLocation);
 
   // Wrap and format the MultiLocation object into the precompile's input type
   const userAction = new XcmRoutingUserAction({ destination });
@@ -143,4 +161,4 @@ The GMP precompile is currently in its early stages. There are many restrictions
 - The precompile does not check to ensure that the destination chain supports the token that is being sent to it. **Incorrect multilocations may result in loss of funds**
 - Errors in constructing a multilocation will result in reverts, which will trap tokens and a loss of funds
 - There is currently no recommended path backwards, from parachains to other chains like Ethereum. There is additional protocol level work that must be done before a one-click method can be realized
-    - Due to a restriction with the ERC-20 XC-assets, the only way to send tokens from a parachain back through Moonbeam is to have xcGLMR on the origin parachain and use it as a fee asset when sending tokens back  
+  - Due to a restriction with the ERC-20 XC-assets, the only way to send tokens from a parachain back through Moonbeam is to have xcGLMR on the origin parachain and use it as a fee asset when sending tokens back  

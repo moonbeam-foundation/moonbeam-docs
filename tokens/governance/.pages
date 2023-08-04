@@ -1,6 +1,6 @@
 title: Governance
 nav:
   - index.md
-  - 'proposals'
-  - 'voting'
+  - 'Submit a Democracy Proposal': 'proposals.md'
+  - 'Vote on a Proposal': 'voting.md'
   - 'Submit a Treasury Proposal': 'treasury-spend.md'

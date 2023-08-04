@@ -7,15 +7,17 @@ description: As a Polkadot parachain, Moonbeam uses an on-chain governance syste
 
 ![Governance Moonbeam Banner](/images/learn/features/governance/governance-overview-banner.png)
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 The goal of Moonbeam’s governance mechanism is to advance the protocol according to the desires of the community. In that shared mission, the governance process seeks to include all token holders. Any and all changes to the protocol must go through a referendum so that all token holders, weighted by stake, can have input on the decision.
 
 Governance forums like the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=_blank} and [Polkassembly](https://moonbeam.polkassembly.network/){target=_blank} enable open discussion and allow proposals to be refined based on community input. Autonomous enactments and [forkless upgrades](https://wiki.polkadot.network/docs/learn-runtime-upgrades#forkless-upgrades/){target=_blank} unite the community towards a shared mission to advance the protocol.
 
-With the rollout of OpenGov (originally referred to as Gov2), the second phase of governance in Polkadot, several modifications have been introduced to the governance process. You can read the [OpenGov: What is Polkadot Gov2](https://moonbeam.network/blog/opengov/){target=_blank} blog post, which provides an overview of all of the changes made in OpenGov. **OpenGov has launched on Moonriver, and once it has been rigorously tested, a proposal will be made for it to be launched on Moonbeam**. Until then, Moonbeam still uses Governance v1.
+With the rollout of OpenGov (originally referred to as Gov2), the second phase of governance in Polkadot, several modifications have been introduced to the governance process. You can read the [OpenGov: What is Polkadot Gov2](https://moonbeam.network/blog/opengov/){target=_blank} blog post, which provides an overview of all of the changes made in OpenGov.
 
-## Principles {: #principles } 
+As of runtime 2400, all Moonbeam networks use OpenGov as their governance system.
+
+## Principles {: #principles }
 
 Guiding "soft" principles for engagement with Moonbeam's governance process include:
 
@@ -28,9 +30,9 @@ Guiding "soft" principles for engagement with Moonbeam's governance process incl
 
 These points were heavily inspired by Vlad Zamfir’s writings on governance. Refer to his articles, especially the [How to Participate in Blockchain Governance in Good Faith (and with Good Manners)](https://medium.com/@Vlad_Zamfir/how-to-participate-in-blockchain-governance-in-good-faith-and-with-good-manners-bd4e16846434){target=_blank} Medium article.
 
-## On-Chain Governance Mechanics {: #on-chain-governance-mechanics } 
+## On-Chain Governance Mechanics {: #on-chain-governance-mechanics }
 
-The "hard" governance process for Moonbeam will be driven by an on-chain process that allows the majority of tokens on the network to determine the outcomes of key decisions around the network. These decision points come in the form of stake-weighted voting on proposed referenda. 
+The "hard" governance process for Moonbeam will be driven by an on-chain process that allows the majority of tokens on the network to determine the outcomes of key decisions around the network. These decision points come in the form of stake-weighted voting on proposed referenda.
 
 Some of the main components of this governance model include:
 
@@ -43,7 +45,7 @@ For more details on how these Substrate frame pallets implement on-chain governa
 
 ## Governance v2: OpenGov {: #opengov }
 
-This section will cover everything you need to know about OpenGov on Moonriver and Moonbase Alpha. If you're looking for governance-related information on Moonbeam, please refer to the [Governance v1](#governance-v1) section.
+This section will cover everything you need to know about OpenGov on Moonbeam.
 
 ### General Definitions {: #general-definitions-gov2 }
 
@@ -77,6 +79,13 @@ This section will cover everything you need to know about OpenGov on Moonriver a
 
 ### Governance Parameters {: #governance-parameters-v2 }
 
+=== "Moonbeam"  
+    |          Variable           |                           Value                            |
+    |:---------------------------:|:----------------------------------------------------------:|
+    |    Preimage base deposit    |     {{ networks.moonbeam.preimage.base_deposit }} GLMR     |
+    |  Preimage deposit per byte  |     {{ networks.moonbeam.preimage.byte_deposit }} GLMR     |
+    | Proposal Submission Deposit | {{ networks.moonbeam.governance.submission_deposit }} GLMR |
+
 === "Moonriver"
     |          Variable           |                            Value                            |
     |:---------------------------:|:-----------------------------------------------------------:|
@@ -92,6 +101,15 @@ This section will cover everything you need to know about OpenGov on Moonriver a
     | Proposal Submission Deposit | {{ networks.moonbase.governance.submission_deposit }} DEV |
 
 #### General Parameters by Track {: #general-parameters-by-track }
+
+=== "Moonbeam"
+    |         Track          | Track ID |                                    Capacity                                    |                              Decision<br>Deposit                              |
+    |:----------------------:|:--------:|:------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------:|
+    |          Root          |    0     |     {{ networks.moonbeam.governance.tracks.root.max_deciding }} proposals      |     {{ networks.moonbeam.governance.tracks.root.decision_deposit }} GLMR      |
+    |      Whitelisted       |    1     |  {{ networks.moonbeam.governance.tracks.whitelisted.max_deciding }} proposals  |  {{ networks.moonbeam.governance.tracks.whitelisted.decision_deposit }} GLMR  |
+    |     General Admin      |    2     | {{ networks.moonbeam.governance.tracks.general_admin.max_deciding }} proposals | {{ networks.moonbeam.governance.tracks.general_admin.decision_deposit }} GLMR |
+    | Emergency<br>Canceller |    3     |   {{ networks.moonbeam.governance.tracks.canceller.max_deciding }} proposals   |   {{ networks.moonbeam.governance.tracks.canceller.decision_deposit }} GLMR   |
+    |  Emergency<br>Killer   |    4     |    {{ networks.moonbeam.governance.tracks.killer.max_deciding }} proposals     |    {{ networks.moonbeam.governance.tracks.killer.decision_deposit }} GLMR     |
 
 === "Moonriver"
     |         Track          | Track ID |                                    Capacity                                     |                              Decision<br>Deposit                               |
@@ -113,6 +131,15 @@ This section will cover everything you need to know about OpenGov on Moonriver a
 
 #### Period Parameters by Track {: #period-parameters-by-track }
 
+=== "Moonbeam"
+    |         Track          |                                                                           Prepare<br>Period                                                                            |                                                                             Decide<br>Period                                                                             |                                                                           Confirm<br>Period                                                                            |                                                                            Minimum<br>Enactment Period                                                                             |
+    |:----------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |          Root          |          {{ networks.moonbeam.governance.tracks.root.prepare_period.blocks }} blocks <br>({{ networks.moonbeam.governance.tracks.root.prepare_period.time }})          |          {{ networks.moonbeam.governance.tracks.root.decision_period.blocks }} blocks<br> ({{ networks.moonbeam.governance.tracks.root.decision_period.time }})          |          {{ networks.moonbeam.governance.tracks.root.confirm_period.blocks }} blocks<br> ({{ networks.moonbeam.governance.tracks.root.confirm_period.time }})          |          {{ networks.moonbeam.governance.tracks.root.min_enactment_period.blocks }} blocks<br> ({{ networks.moonbeam.governance.tracks.root.min_enactment_period.time }})          |
+    |      Whitelisted       |   {{ networks.moonbeam.governance.tracks.whitelisted.prepare_period.blocks }} blocks<br> ({{ networks.moonbeam.governance.tracks.whitelisted.prepare_period.time }})   |   {{ networks.moonbeam.governance.tracks.whitelisted.decision_period.blocks }} blocks<br> ({{ networks.moonbeam.governance.tracks.whitelisted.decision_period.time }})   |   {{ networks.moonbeam.governance.tracks.whitelisted.confirm_period.blocks }} blocks<br> ({{ networks.moonbeam.governance.tracks.whitelisted.confirm_period.time }})   |   {{ networks.moonbeam.governance.tracks.whitelisted.min_enactment_period.blocks }} blocks<br> ({{ networks.moonbeam.governance.tracks.whitelisted.min_enactment_period.time }})   |
+    |     General Admin      | {{ networks.moonbeam.governance.tracks.general_admin.prepare_period.blocks }} blocks<br> ({{ networks.moonbeam.governance.tracks.general_admin.prepare_period.time }}) | {{ networks.moonbeam.governance.tracks.general_admin.decision_period.blocks }} blocks<br> ({{ networks.moonbeam.governance.tracks.general_admin.decision_period.time }}) | {{ networks.moonbeam.governance.tracks.general_admin.confirm_period.blocks }} blocks<br> ({{ networks.moonbeam.governance.tracks.general_admin.confirm_period.time }}) | {{ networks.moonbeam.governance.tracks.general_admin.min_enactment_period.blocks }} blocks<br> ({{ networks.moonbeam.governance.tracks.general_admin.min_enactment_period.time }}) |
+    | Emergency<br>Canceller |     {{ networks.moonbeam.governance.tracks.canceller.prepare_period.blocks }} blocks<br> ({{ networks.moonbeam.governance.tracks.canceller.prepare_period.time }})     |     {{ networks.moonbeam.governance.tracks.canceller.decision_period.blocks }} blocks<br> ({{ networks.moonbeam.governance.tracks.canceller.decision_period.time }})     |     {{ networks.moonbeam.governance.tracks.canceller.confirm_period.blocks }} blocks<br> ({{ networks.moonbeam.governance.tracks.canceller.confirm_period.time }})     |     {{ networks.moonbeam.governance.tracks.canceller.min_enactment_period.blocks }} blocks<br> ({{ networks.moonbeam.governance.tracks.canceller.min_enactment_period.time }})     |
+    |  Emergency<br>Killer   |        {{ networks.moonbeam.governance.tracks.killer.prepare_period.blocks }} blocks<br> ({{ networks.moonbeam.governance.tracks.killer.prepare_period.time }})        |        {{ networks.moonbeam.governance.tracks.killer.decision_period.blocks }} blocks<br> ({{ networks.moonbeam.governance.tracks.killer.decision_period.time }})        |        {{ networks.moonbeam.governance.tracks.killer.confirm_period.blocks }} blocks<br> ({{ networks.moonbeam.governance.tracks.killer.confirm_period.time }})        |        {{ networks.moonbeam.governance.tracks.killer.min_enactment_period.blocks }} blocks<br> ({{ networks.moonbeam.governance.tracks.killer.min_enactment_period.time }})        |
+
 === "Moonriver"
     |         Track          |                                                                            Prepare<br>Period                                                                             |                                                                              Decide<br>Period                                                                              |                                                                            Confirm<br>Period                                                                             |                                                                             Minimum<br>Enactment Period                                                                              |
     |:----------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -132,6 +159,15 @@ This section will cover everything you need to know about OpenGov on Moonriver a
     |  Emergency<br>Killer   |        {{ networks.moonbase.governance.tracks.killer.prepare_period.blocks }} blocks<br> ({{ networks.moonbase.governance.tracks.killer.prepare_period.time }})        |        {{ networks.moonbase.governance.tracks.killer.decision_period.blocks }} blocks<br> ({{ networks.moonbase.governance.tracks.killer.decision_period.time }})        |        {{ networks.moonbase.governance.tracks.killer.confirm_period.blocks }} blocks<br> ({{ networks.moonbase.governance.tracks.killer.confirm_period.time }})        |        {{ networks.moonbase.governance.tracks.killer.min_enactment_period.blocks }} blocks<br> ({{ networks.moonbase.governance.tracks.killer.min_enactment_period.time }})        |
 
 #### Support and Approval Parameters by Track {: #support-and-approval-parameters-by-track }
+
+=== "Moonbeam"
+    |         Track          | Approval Curve |                                                                                                                                                                                                                                  Approval Parameters                                                                                                                                                                                                                                   | Support Curve |                                                                                                                                                                                                                                Support Parameters                                                                                                                                                                                                                                |
+    |:----------------------:|:--------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |          Root          |   Reciprocal   |                            {{ networks.moonbeam.governance.tracks.root.min_approval.time0 }}: {{ networks.moonbeam.governance.tracks.root.min_approval.percent0 }}%<br>{{ networks.moonbeam.governance.tracks.root.min_approval.time1 }}: {{ networks.moonbeam.governance.tracks.root.min_approval.percent1 }}%<br>{{ networks.moonbeam.governance.tracks.root.min_approval.time2 }}: {{ networks.moonbeam.governance.tracks.root.min_approval.percent2 }}%                            |    Linear     |                                                                                                 {{ networks.moonbeam.governance.tracks.root.min_support.time0 }}: {{ networks.moonbeam.governance.tracks.root.min_support.percent0 }}%<br>{{ networks.moonbeam.governance.tracks.root.min_support.time1 }}: {{ networks.moonbeam.governance.tracks.root.min_support.percent1 }}%                                                                                                 |
+    |      Whitelisted       |   Reciprocal   |       {{ networks.moonbeam.governance.tracks.whitelisted.min_approval.time0 }}: {{ networks.moonbeam.governance.tracks.whitelisted.min_approval.percent0 }}%<br>{{ networks.moonbeam.governance.tracks.whitelisted.min_approval.time1 }}: {{ networks.moonbeam.governance.tracks.whitelisted.min_approval.percent1 }}%<br>{{ networks.moonbeam.governance.tracks.whitelisted.min_approval.time2 }}: {{ networks.moonbeam.governance.tracks.whitelisted.min_approval.percent2 }}%       |  Reciprocal   |       {{ networks.moonbeam.governance.tracks.whitelisted.min_support.time0 }}: {{ networks.moonbeam.governance.tracks.whitelisted.min_support.percent0 }}%<br>{{ networks.moonbeam.governance.tracks.whitelisted.min_support.time1 }}: {{ networks.moonbeam.governance.tracks.whitelisted.min_support.percent1 }}%<br>{{ networks.moonbeam.governance.tracks.whitelisted.min_support.time2 }}: {{ networks.moonbeam.governance.tracks.whitelisted.min_support.percent2 }}%       |
+    |     General Admin      |   Reciprocal   | {{ networks.moonbeam.governance.tracks.general_admin.min_approval.time0 }}: {{ networks.moonbeam.governance.tracks.general_admin.min_approval.percent0 }}%<br>{{ networks.moonbeam.governance.tracks.general_admin.min_approval.time1 }}: {{ networks.moonbeam.governance.tracks.general_admin.min_approval.percent1 }}%<br>{{ networks.moonbeam.governance.tracks.general_admin.min_approval.time2 }}: {{ networks.moonbeam.governance.tracks.general_admin.min_approval.percent2 }}% |  Reciprocal   | {{ networks.moonbeam.governance.tracks.general_admin.min_support.time0 }}: {{ networks.moonbeam.governance.tracks.general_admin.min_support.percent0 }}%<br>{{ networks.moonbeam.governance.tracks.general_admin.min_support.time1 }}: {{ networks.moonbeam.governance.tracks.general_admin.min_support.percent1 }}%<br>{{ networks.moonbeam.governance.tracks.general_admin.min_support.time2 }}: {{ networks.moonbeam.governance.tracks.general_admin.min_support.percent2 }}% |
+    | Emergency<br>Canceller |   Reciprocal   |             {{ networks.moonbeam.governance.tracks.canceller.min_approval.time0 }}: {{ networks.moonbeam.governance.tracks.canceller.min_approval.percent0 }}%<br>{{ networks.moonbeam.governance.tracks.canceller.min_approval.time1 }}: {{ networks.moonbeam.governance.tracks.canceller.min_approval.percent1 }}%<br>{{ networks.moonbeam.governance.tracks.canceller.min_approval.time2 }}: {{ networks.moonbeam.governance.tracks.canceller.min_approval.percent2 }}%             |  Reciprocal   |             {{ networks.moonbeam.governance.tracks.canceller.min_support.time0 }}: {{ networks.moonbeam.governance.tracks.canceller.min_support.percent0 }}%<br>{{ networks.moonbeam.governance.tracks.canceller.min_support.time1 }}: {{ networks.moonbeam.governance.tracks.canceller.min_support.percent1 }}%<br>{{ networks.moonbeam.governance.tracks.canceller.min_support.time2 }}: {{ networks.moonbeam.governance.tracks.canceller.min_support.percent2 }}%             |
+    |  Emergency<br>Killer   |   Reciprocal   |                      {{ networks.moonbeam.governance.tracks.killer.min_approval.time0 }}: {{ networks.moonbeam.governance.tracks.killer.min_approval.percent0 }}%<br>{{ networks.moonbeam.governance.tracks.killer.min_approval.time1 }}: {{ networks.moonbeam.governance.tracks.killer.min_approval.percent1 }}%<br>{{ networks.moonbeam.governance.tracks.killer.min_approval.time2 }}: {{ networks.moonbeam.governance.tracks.killer.min_approval.percent2 }}%                      |  Reciprocal   |                      {{ networks.moonbeam.governance.tracks.killer.min_support.time0 }}: {{ networks.moonbeam.governance.tracks.killer.min_support.percent0 }}%<br>{{ networks.moonbeam.governance.tracks.killer.min_support.time1 }}: {{ networks.moonbeam.governance.tracks.killer.min_support.percent1 }}%<br>{{ networks.moonbeam.governance.tracks.killer.min_support.time2 }}: {{ networks.moonbeam.governance.tracks.killer.min_support.percent2 }}%                      |
 
 === "Moonriver"
     |         Track          | Approval Curve |                                                                                                                                                                                                                                     Approval Parameters                                                                                                                                                                                                                                      | Support Curve |                                                                                                                                                                                                                                   Support Parameters                                                                                                                                                                                                                                   |
@@ -159,6 +195,17 @@ If you were to vote 1000 tokens with a 6x Conviction, your weighted vote would b
 
 The Conviction multiplier values for each network are:
 
+=== "Moonbeam"
+    | Lock Periods After Enactment | Conviction Multiplier |                        Approx. Lock Time                        |
+    |:----------------------------:|:---------------------:|:---------------------------------------------------------------:|
+    |              0               |          0.1          |                              None                               |
+    |              1               |           1           | {{networks.moonbeam.conviction.lock_period.conviction_1}} day  |
+    |              2               |           2           | {{networks.moonbeam.conviction.lock_period.conviction_2}} days |
+    |              4               |           3           | {{networks.moonbeam.conviction.lock_period.conviction_3}} days |
+    |              8               |           4           | {{networks.moonbeam.conviction.lock_period.conviction_4}} days |
+    |              16              |           5           | {{networks.moonbeam.conviction.lock_period.conviction_5}} days |
+    |              32              |           6           | {{networks.moonbeam.conviction.lock_period.conviction_6}} days |
+
 === "Moonriver"
     | Lock Periods After Enactment | Conviction Multiplier |                        Approx. Lock Time                        |
     |:----------------------------:|:---------------------:|:---------------------------------------------------------------:|
@@ -184,7 +231,7 @@ The Conviction multiplier values for each network are:
 !!! note
     The lock time approximations are based upon regular {{ networks.moonriver.block_time }}-second block times. Block production may vary and thus the displayed lock times should not be deemed exact.
 
-### Roadmap of a Proposal {: #roadmap-of-a-proposal-v2 } 
+### Roadmap of a Proposal {: #roadmap-of-a-proposal-v2 }
 
 Before a proposal is submitted, the author of the proposal can submit their idea for their proposal to the designated Democracy Proposals section of the [Moonbeam Governance discussion forum](https://forum.moonbeam.foundation/c/governance/2){target=_blank} for feedback from the community for at least five days. From there, the author can make adjustments to the proposal based on the feedback they've collected.
 
@@ -245,147 +292,14 @@ For Moonbeam's implementation of OpenGov, instead of the Fellowship, there is a 
 
 While still subject to governance, the idea behind the Whitelist track is that it will have different parameters to make it faster for proposals to pass. The Whitelist Track parameters, including approval, support, and voting, are determined by the Moonriver or Moonbeam token holders through governance and cannot be changed by the OpenGov Technical Committee.
 
-The OpenGov Technical Committee is made up of members of the community who have technical knowledge and expertise in Moonbeam-based networks. 
+The OpenGov Technical Committee is made up of members of the community who have technical knowledge and expertise in Moonbeam-based networks.
 
-### Related Guides on Governance v2 {: #try-it-out } 
+### Related Guides on OpenGov {: #try-it-out }
 
-For related guides on submitting and voting on referenda on Moonbeam with Governance v2, please check the following guides:
+For related guides on submitting and voting on referenda on Moonbeam with OpenGov, please check the following guides:
 
  - [How to Submit a Proposal](/tokens/governance/proposals/opengov-proposals){target=_blank}
  - [How to Vote on a Proposal](/tokens/governance/voting/opengov-voting){target=_blank}
  - [Interact with the Preimages Precompiled Contract (Solidity Interface)](/builders/pallets-precompiles/precompiles/preimage/){target=_blank}
  - [Interact with the Referenda Precompiled Contract (Solidity Interface)](/builders/pallets-precompiles/precompiles/referenda/){target=_blank}
  - [Interact with the Conviction Voting Precompiled Contract (Solidity Interface)](/builders/pallets-precompiles/precompiles/conviction-voting/){target=_blank}
-
-## Governance v1 {: #governance-v1 }
-
-While OpenGov is being tested on Moonriver, Moonbeam will continue to use governance v1. This section will cover everything you need to know about governance v1 on Moonbeam.
-
-### General Definitions {: #general-definitions } 
-
-With great power comes great responsibility. Some important parameters to understand before engaging with Moonbeam's governance include:
-
- - **Proposals** — actions or items being proposed by token holders. There are two main ways that a proposal is created:
-    - **Democracy Proposal** - a proposal that is submitted by anyone in the community and will be open for endorsements from the token holders. The Democracy Proposal that has the highest amount of bonded support will be selected to be a referendum at the end of the Launch Period
-    - **External Proposal** - a proposal that is created by the Council and then, if accepted by the Council, is submitted for token holder voting. When the Council submits an External Proposal, the Council sets the Vote Tallying Metric
-        - **Fast-tracked Proposal** - the Technical Committee may choose to fast-track an External Proposal which means changing the default parameters such as the Voting Period and Enactment Period. A fast-tracked referendum can be created alongside existing active referenda. That is to say, an emergency referendum does not replace the currently active referendum
-- **Referendum** — a proposal that is up for token-holder voting. Each referendum is tied to a specific proposal for a change to the Moonbeam system including values for key parameters, code upgrades, or changes to the governance system itself
-- **Launch Period** — the time period before a Voting Period that publicly submitted proposals will gather endorsements
-- **Voting Period** — time token holders have to vote for a referendum (duration of a referendum)
-
---8<-- 'text/governance/vote-conviction-definitions.md'
-
-- **Vote tallying metric** — there are three types of vote tallying metrics: (i) Positive Turnout Bias (Super-Majority Approve), (ii) Negative Turnout Bias (Super-Majority Against), or (iii) Simple Majority. See [Polkadot’s Wiki on Tallying](https://wiki.polkadot.network/docs/learn-governance#tallying){target=_blank} for more information about how these different vote tallying metrics work
-    - The vote tallying metric applied depends on the type of referendum: 
-        - Democracy Proposals - [Positive Turnout Bias (Super-Majority Approve)](#positive-turnout-bias) tallying metric is applied
-        - External Proposals - the vote tallying metric is set by the Council
-- **Enactment Period** — time between a proposal being approved and enacted (make law). It is also the minimum period necessary to lock funds to propose an action
-- **Lock Period** — time (after the proposal enactment) that the tokens of the winning voters are locked. Users can still use these tokens for staking or voting. 
-- **Cool-off Period** — duration a veto from the technical committee lasts before the proposal may be submitted again
-- **Delegation** — act of transferring your voting power to another account for up to a certain conviction
-
-### Governance Parameters {: #governance-parameters }
-
-The governance parameters on Moonbeam are as follows:
-
-|            Variable            |                                                         Value                                                          |
-|:------------------------------:|:----------------------------------------------------------------------------------------------------------------------:|
-|         Launch Period          | {{ networks.moonbeam.democracy.launch_period.blocks}} blocks ({{ networks.moonbeam.democracy.launch_period.days}} day) |
-|         Voting Period          |  {{ networks.moonbeam.democracy.vote_period.blocks}} blocks ({{ networks.moonbeam.democracy.vote_period.days}} days)   |
-|        Enactment Period        | {{ networks.moonbeam.democracy.enact_period.blocks}} blocks ({{ networks.moonbeam.democracy.enact_period.days}} days)  |
-|        Cool-off Period         |  {{ networks.moonbeam.democracy.cool_period.blocks}} blocks ({{ networks.moonbeam.democracy.cool_period.days}} days)   |
-|     Preimage base deposit      |                                   {{ networks.moonbeam.preimage.base_deposit }} GLMR                                   |
-|   Preimage deposit per byte    |                                   {{ networks.moonbeam.preimage.byte_deposit }} GLMR                                   |
-|        Proposal deposit        |                                   {{ networks.moonbeam.democracy.min_deposit }} GLMR                                   |
-|       Maximum proposals        |                                    {{ networks.moonbeam.democracy.max_proposals }}                                     |
-| Maximum referenda (at a time)* |                                    {{ networks.moonbeam.democracy.max_referenda }}                                     |
-   
-**The maximum number of referenda at a time does not take fast-tracked referenda into consideration.* 
-
-!!! note
-    The Voting Period and Enactment Period are subject to change for External Proposals.
-
-#### Conviction Multiplier {: #conviction-multiplier }
-
-The Conviction multiplier is related to the number of Enactment Periods the tokens will be locked for after the referenda is enacted (if approved). Consequently, the longer you are willing to lock your tokens, the stronger your vote will be weighted. You also have the option of not locking tokens at all, but vote weight is drastically reduced (tokens are still locked during the duration of the referendum).
-
-If you were to vote 1000 tokens with a 6x Conviction, your weighted vote would be 6000 units. That is, 1000 locked tokens multiplied by the Conviction, which in this scenario would be 6. On the other hand, if you decided you didn't want to have your tokens locked after enactment, you could vote your 1000 tokens with a 0.1x Conviction. In this case, your weighted vote would only be 100 units.
-
-The Conviction multiplier values for Moonbeam are:
-
-=== "Moonbeam"
-    | Lock Periods After Enactment | Conviction Multiplier |                       Approx. Lock Time                       |
-    |:----------------------------:|:---------------------:|:-------------------------------------------------------------:|
-    |              0               |          0.1          |                             None                              |
-    |              1               |           1           | {{networks.moonbeam.democracy.lock_period.conviction_1}} days |
-    |              2               |           2           | {{networks.moonbeam.democracy.lock_period.conviction_2}} days |
-    |              4               |           3           | {{networks.moonbeam.democracy.lock_period.conviction_3}} days |
-    |              8               |           4           | {{networks.moonbeam.democracy.lock_period.conviction_4}} days |
-    |              16              |           5           | {{networks.moonbeam.democracy.lock_period.conviction_5}} days |
-    |              32              |           6           | {{networks.moonbeam.democracy.lock_period.conviction_6}} days |
-
-!!! note
-    The lock time approximations are based upon regular {{ networks.moonbeam.block }}-second block times. Block production may vary and thus the displayed lock times should not be deemed exact.
-
-### Roadmap of a Proposal {: #roadmap-of-a-proposal } 
-
-Before a proposal is submitted, the author of the proposal can submit their idea for their proposal to the designated Democracy Proposals section of the [Moonbeam Governance discussion forum](https://forum.moonbeam.foundation/c/governance/2){target=_blank} for feedback from the community for at least five days. From there, the author can make adjustments to the proposal based on the feedback they've collected.
-
-When the proposal is ready to be submitted on-chain, a preimage for the proposal needs to be submitted on-chain. The preimage defines the action to be carried out. The submitter pays a fee-per-byte stored: the larger the preimage, the higher the fee. Once submitted, it returns a preimage hash.
-
-The proposer can submit the proposal using the preimage hash, locking tokens in the process. Once the submission transaction is accepted, the proposal is listed publicly. So, you'll be able to view the proposal on [Polkassembly](https://moonbeam.polkassembly.network/){target=_blank}.
-
-Once the proposal is listed, token holders can second the proposal (vouch for it) by locking the same amount of tokens the proposer locked. The most seconded proposal moves to public referendum. When this happens, the referendum will be listed on the [On-chain proposals page in Polkassembly](https://moonbeam.polkassembly.network/proposals){target=_blank}.
-
-Once in referendum, token holders vote **Aye** or **Nay** on the proposal by locking tokens. Two factors account the vote weight: amount locked and locking period. If the proposal passes, it is enacted after a certain amount of time.
-
-The happy path for a Democracy Proposal is shown in the following diagram:
-
-![Proposal Roadmap](/images/learn/features/governance/proposal-roadmap.png)
-
-### Rights of the Council and the Technical Committee {: #voting-rights-of-the-council-and-the-technical-committee }
-
-The Council and Technical Committee are two collectives that have the following special voting rights:
-
-|     Collective      | Can submit <br>External Proposals | Can submit<br>Fast-tracked Proposals | Can cancel malicious<br>Democracy Proposals | Can veto<br>External Proposals |
-|:-------------------:|:---------------------------------:|:------------------------------------:|:-------------------------------------------:|:------------------------------:|
-|       Council       |                 ✓                 |                  X                   |                      ✓                      |               X                |
-| Technical Committee |                 X                 |                  ✓                   |                      ✓                      |               ✓                |
-
-Fast-tracked Proposals with a Voting Period of one day or more require one-half of the Technical Committee's approval. Fast-tracked Proposals with a Voting Period of less than a day are called "Instant Fast-tracked Proposals" and require three-fifths of the Technical Committee's approval.
-
-As seen in the above table, the Technical Committee can veto an External Proposal. Any single member of the Technical Committee can veto the proposal only once, and only for the duration of the Cool-off Period.
-
-### Positive Turnout Bias {: #positive-turnout-bias } 
-
-Public referenda use a positive turnout bias metric, that is, a Super-Majority approval formula. The equation is the following:
-
-![Positive Turnout Bias](/images/learn/features/governance/vote-bias.png)
-
-Where:
-
- - **Approve** — number of "Aye" votes (includes the Conviction multiplier)
- - **Against** — number of "Nay" votes (includes the Conviction multiplier)
- - **Turnout** — the total number of voting tokens (without including the Conviction multiplier)
- - **Electorate** — the total number of tokens issued in the network
-
-In the previous example, these numbers were:
-
-|  Variable  |         Value         |
-|:----------:|:---------------------:|
-|  Approve   |   10800 (1800 x 6)    |
-|  Against   |    80 (800 x 0.1)     |
-|  Turnout   |   2600 (1800 + 800)   |
-| Electorate |         1.22M         |
-| **Result** | 1.5 < 9.8 (Aye wins!) |
-
-In short, a heavy Super-Majority of "Aye" votes is required to approve a proposal at low turnouts, but as turnout increases, it becomes a simple majority.
-
-### Related Guides on Governance v1 {: #try-it-out } 
-
-For related guides on submitting and voting on referenda on Moonbeam with Governance v1, please check the following guides:
-
- - [How to Submit a Proposal](/tokens/governance/proposals/proposals){target=_blank}
- - [How to Vote on a Proposal](/tokens/governance/voting/voting){target=_blank}
- - [Interact with the Democracy Precompiled Contract (Solidity Interface)](/builders/pallets-precompiles/precompiles/democracy/){target=_blank}
-
