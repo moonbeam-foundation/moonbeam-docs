@@ -4,7 +4,7 @@ title: Create a SubQuery indexing project
 description: Create a SubQuery project in minutes indexing Moonbeam blockchain data with Docker
 ---
 
-# Create a Moonbeam SubQuery Indexing Project
+# Create a SubQuery Indexing Project on Moonbeam
 
 ![SubQuery Indexer with Moonbeam](/images/node-operators/indexer-nodes/the-graph/subquery-indexer.png)
 
