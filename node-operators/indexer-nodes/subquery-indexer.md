@@ -73,7 +73,7 @@ For [EVM](https://academy.subquery.network/build/substrate-evm.html) and [WASM](
 
 **Since we are planning to index all Polkadot transfers, we need to update the `datasources` section as follows:**
 
-```
+```yaml
 dataSources:
   - kind: substrate/Runtime
     # This is the datasource for Moonbeam's Native Substrate processor
