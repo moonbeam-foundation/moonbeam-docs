@@ -105,7 +105,7 @@ We are indexing all transfers and approve contract call events from the $FRAX co
 
 This section in the Project Manifest now imports all the correct definitions and lists the triggers that we look for on the blockchain when indexing. We add another section the datasource beneath the above [substrate manifest section](https://academy.subquery.network/quickstart/quickstart_chains/polkadot-moonbeam.html#substrate-manifest-section).
 
-```
+```yaml
 dataSources:
   - kind: substrate/Runtime
     # This is the datasource for Moonbeam's Native Substrate processor
@@ -143,7 +143,7 @@ Mapping functions define how chain data is transformed into the optimised GraphQ
 
 Navigate to the default mapping function in the `src/mappings` directory. There are the exported functions `handleCollatorJoined`, `handleCollatorLeft` and `handleErc20Transfer`.
 
-```
+```ts
 export async function handleCollatorJoined(
   call: SubstrateExtrinsic
 ): Promise<void> {
@@ -173,7 +173,7 @@ export async function handleCollatorLeft(
 
 The `handleCollatorJoined` and `handleCollatorLeft` functions receives Substrate event/call data from the native Substrate environment whenever an event/call matches the filters that were specified previously in the `project.yaml`. It extracts the various data from the event/call payload, then checks if an existing Collator record exists. If none exists (e.g. it's a new collator), then it instantiates a new one and then updates the total stake to reflect the new collators. Then the `.save()` function is used to save the new/updated entity (_SubQuery will automatically save this to the database_).
 
-```
+```ts
 export async function erc20Transfer(
   event: MoonbeamEvent<
     [string, string, BigNumber] & { from: string; to: string; value: BigNumber }
@@ -244,7 +244,7 @@ Once the container is running, navigate to http://localhost:3000 in your browser
 
 Once the container is running, navigate to http://localhost:3000 in your browser and run the sample GraphQL command provided in the README file. Below is an example query from the Astar-wasm-starter project.
 
-```
+```graphql
 query {
   erc20Transfers(first: 3, orderBy: BLOCK_HEIGHT_ASC) {
     nodes {
@@ -262,7 +262,7 @@ There is a _Docs_ tab on the right side of the playground which should open a do
 
 You should see results similar to below:
 
-```
+```json
 {
   "data": {
     "erc20Transfers": {
