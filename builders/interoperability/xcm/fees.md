@@ -383,7 +383,7 @@ XCM-Token-Cost = XCM-Wei-Token-Cost / DecimalConversion
 Therefore, the actual calculation for one XCM Transactor transact through derivative call is:
 
 ```text
-XCM-Wei-Token-Cost = {{ networks.moonbase_beta.xcm_message.transact.numbers_only }} * {{ networks.moonbase.xcm.units_per_second.xcbetadev.transact_numbers_only }}
+XCM-Wei-Token-Cost = {{ networks.moonbase_beta.xcm_message.transact.weight.numbers_only }} * {{ networks.moonbase.xcm.units_per_second.xcbetadev.transact_numbers_only }}
 XCM-Token-Cost = {{ networks.moonbase_beta.xcm_message.transact.wei_betadev_cost }} / 10^18
 ```
 

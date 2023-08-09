@@ -1192,8 +1192,9 @@ networks:
   moonbase_beta:
     xcm_message:
       transact:
-        weight: 
+        weight:
           display: 400,000,000
+          numbers_only: 400000000
         wei_betadev_cost: 20000000000000
         betadev_cost: '0.00002'
 xcm:
