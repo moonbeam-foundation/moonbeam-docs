@@ -65,6 +65,8 @@ To check how the instructions for an XCM message are built to transfer reserve a
 
 ## Relay Chain XCM Fee Calculation  {: #rel-chain-xcm-fee-calc }
 
+Substrate has introduced a weight system that determines how heavy or, in other words, how expensive from a computational cost perspective an extrinsic is. One unit of weight is defined as one picosecond of execution time. When it comes to paying fees, users will pay a transaction fee based on the weight of the call that is being made, in addition to factors such as network congestion.
+
 The following sections will break down how to calculate XCM fees for Polkadot and Kusama. It's important to note that Kusama, in particular, uses benchmarked data to determine the total weight costs for XCM instructions and that some XCM instructions might include database reads/writes, which add weight to the call.
 
 There are two databases available in Polkadot and Kusama, RocksDB (which is the default) and ParityDB, both of which have their own associated weight costs for each network.
