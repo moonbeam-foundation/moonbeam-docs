@@ -121,7 +121,7 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 Tips for Substrate-based transactions weren't handled properly. The entire portion of the tip was burned because it was not handled in the runtime code. A fix was applied so that 20% is paid to treasury and 80% is burned, which is consistent with all other fee behavior.
 
-This bug existing during the following runtimes and block ranges:
+This bug existed during the following runtimes and block ranges:
 
 |    Network     | Introduced | Fixed  | Impacted Block Range |
 |:--------------:|:----------:|:------:|:--------------------:|
