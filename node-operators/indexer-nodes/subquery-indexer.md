@@ -10,7 +10,7 @@ description: Create a SubQuery project in minutes indexing Moonbeam blockchain d
 
 ## Introduction {: #introduction } 
 
-SubQuery is a leading data indexer that provides fast, reliable, decentralised, and customised APIs for web3 projects. We empower developers from over 80+ ecosystems (including Moonbeam) with rich indexed data to allow them to build intuitive and immersive experiences for their users. The SubQuery Network powers unstoppable apps with a resilient and decentralised infrastructure network. Use our blockchain developer toolkit to build the web3 applications of the future, without wasting time building a custom backend for data processing activities.
+[SubQuery](https://subquery.network/) is a leading data indexer that provides fast, reliable, decentralised, and customised APIs for web3 projects. SubQuery empowers developers from over 80+ ecosystems (including Moonbeam) with rich indexed data to allow them to build intuitive and immersive experiences for their users. The SubQuery Network powers unstoppable apps with a resilient and decentralised infrastructure network. Use SubQuery's blockchain developer toolkit to build the web3 applications of the future, without wasting time building a custom backend for data processing activities.
 
 ## Quick Start Guide {: #quick-start-guide } 
 
