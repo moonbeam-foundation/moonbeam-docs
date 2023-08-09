@@ -26,7 +26,7 @@ async function main() {
   const demoToken = await ethers.getContractAt('DemoToken', demoTokenAddress);
 
   // Create instance of Batch.sol
-  const batchAddress = '{{ networks.moonbase.precompiles.batch }}';
+  const batchAddress = '0x0000000000000000000000000000000000000808';
   const batch = await ethers.getContractAt('Batch', batchAddress);
 
   // Parse the value to swap to Wei
