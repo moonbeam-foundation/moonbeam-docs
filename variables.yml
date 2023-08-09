@@ -15,6 +15,7 @@ networks:
     hex_chain_id: '0x507'
     chain_spec: alphanet
     block_explorer: https://moonbase.moonscan.io/
+    spec_version: runtime-2403
     parachain_release_tag: v0.32.1 # must be in this exact format for links to work
     parachain_sha256sum: c065c2b892d09a19e053b20b168536e213d668ec17daab06ad2e9bfc29bbe97a
     tracing_tag: purestake/moonbeam-tracing:v0.32.1-2401-latest
@@ -107,11 +108,6 @@ networks:
         account_id: '5GWpSdqkkKGZmdKQ9nkSF7TmHp6JWt28BMGQNuG4MXtSvq3e'
         account_id_hex: '0xc4db7bcb733e117c0b34ac96354b10d47e84a006b9e7e66a229d174e8ff2a063'
       instructions:
-        buy_exec:
-          base_weight: 158,702,000
-          total_weight: 258,702,000
-        weight_units:
-          display: 200,000,000
         wei_per_weight:
           display: 50,000
       units_per_second:
@@ -418,6 +414,7 @@ networks:
     tracing_tag: purestake/moonbeam-tracing:v0.32.1-2401-latest
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
+    spec_version: runtime-2403
     binary_name: moonbeam
     min_gas_price: 1
     block_time: 12
@@ -432,8 +429,6 @@ networks:
         account_id: '5E6kHM4zFdH5KEJE3YEzX5QuqoETVKUQadeY8LVmeh2HyHGt'
         account_id_hex: '0x5a071f642798f89d68b050384132eea7b65db483b00dbb05548d3ce472cfef48'
       instructions:
-        weight_units:
-          display: 200,000,000
         wei_per_weight:
           display: 50,000
     erc20_xcm:
@@ -779,6 +774,7 @@ networks:
     tracing_tag: purestake/moonbeam-tracing:v0.32.1-2401-latest
     chain_spec: moonbeam
     block_explorer: https://moonscan.io
+    spec_version: runtime-2403
     binary_name: moonbeam
     min_gas_price: 100
     block_time: 12
@@ -793,23 +789,22 @@ networks:
         account_id: '5E6kHM4zFdH5KEJE3YEzX5QuqoETVKUQadeY8LVmeh2HyHGt'
         account_id_hex: '0x5a071f642798f89d68b050384132eea7b65db483b00dbb05548d3ce472cfef48'
       instructions:
-        weight_units:
-          display: 200,000,000
-          numbers_only: 200000000
         wei_per_weight:
           display: 5,000,000
           numbers_only: 5000000
+      transfer_dot:
+        total_weight:
+          display: 686,274,000
+          numbers_only: 686274000
+        exec_time: 0.000686274
+        xcdot_cost: 0.0022694246
+      transfer_glmr:
         wei_cost: 1000000000000000
         glmr_cost: 0.001
       units_per_second:
         xcdot:
-          transfer: 11,285,231,116
-          transfer_numbers_only: 11285231116
-          transact_numbers_only: 120692776537
-      message:
-        transfer:
-          exec_time: 0.0008
-          xcdot_cost: 0.00090281848
+          display: 33,068,783,068
+          numbers_only: 33068783068
     erc20_xcm:
       transfer_gas_limit: 200,000
     conviction:
@@ -1133,7 +1128,7 @@ networks:
     ws: 9944
     prometheus: 9615
   polkadot:
-    client_version: v0.9.37
+    spec_version: v0.9.43
     rocks_db:
       read_weight: 20,499,000
       write_weight: 83,471,000
@@ -1144,59 +1139,80 @@ networks:
       weight:
         display: 1,000,000,000
         numbers_only: 1000000000
-      planck_dot_weight: 0.105358535
-      planck_dot_cost: 105358535
-      dot_cost: 0.0105358535
+      planck_dot_weight: 0.092895362
+      planck_dot_cost: 92895362
+      dot_cost: 0.0092895362
     xcm_message:
       transfer:
         weight: 4,000,000,000
-        cost: 0.0421434140
-      transact:
-        weight: 3,000,000,000
-        numbers_only: 3000000000
-        planck_dot_cost: 31607560500
-        dot_cost: 0.0316075605
+        cost: 0.0371581448
     extrinsic_base_weight:
-      display: 94,914,000
-      numbers_only: 94914000
+      display: 107,648,000
+      numbers_only: 107648000
   kusama:
-    client_version: v0.9.38
+    spec_version: v0.9.43
     rocks_db:
-      read_weight: 25,000,000
-      write_weight: 100,000,000
+      read_weight: 
+        display: 25,000,000
+        numbers_only: 25000000
+      write_weight: 
+        display: 100,000,000
+        numbers_only: 100000000
     parity_db:
       read_weight: 8,000,000
       write_weight: 50,000,000
     xcm_message:
       transfer:
         weight: 299,506,000
-        cost: '0.00009699940'
+        cost: '0.000092003956'
     xcm_instructions:
       buy_exec:
         base_weight: 3,697,000
         total_weight: 3,697,000
-        ksm_cost: '0.00000111447'
+        ksm_cost: '0.000001135665'
       withdraw:
-        base_weight: 20,385,000
+        base_weight: 
+          display: 20,385,000
+          numbers_only: 20385000
         total_weight:
           display: 145,385,000
           numbers_only: 145385000
-        planck_ksm_cost: 50954353.6459
-        ksm_cost: '0.00005095435'
+        planck_ksm_cost: 44660191.1923
+        ksm_cost: '0.000044660191'
       clear_origin:
         total_weight: 3,661,000
-        ksm_cost: '0.00000110362'
+        ksm_cost: '0.000001124607'
       deposit_asset:
         total_weight: 146,763,000
-        ksm_cost: '0.00004382696'
-      planck_ksm_weight: 0.30145451805
+        ksm_cost: '0.000045083493'
+      planck_ksm_weight: '0.307185687604'
     extrinsic_base_weight:
-      display: 110,575,000
-      numbers_only: 110575000
+      display: 108,512,000
+      numbers_only: 108512000
   moonbase_beta:
     xcm_message:
       transact:
-        weight: 400,000,000
-        numbers_only: 400000000
+        weight: 
+          display: 400,000,000
         wei_betadev_cost: 20000000000000
         betadev_cost: '0.00002'
+xcm:
+  db_weights:
+    rocksdb_read: 
+      display: 25,000,000
+      numbers_only: 25000000
+    rocksdb_write: 
+      display: 100,000,000
+  fungible_weights:
+    display: 200,000,000
+    numbers_only: 200000000
+  generic_weights:
+    clear_origin:
+      display: 5,194,000
+    buy_exec:
+      base_weight: 
+        display: 181,080,000
+        numbers_only: 181080000
+      total_weight:
+        display: 281,080,000
+        numbers_only: 281080000
