@@ -125,8 +125,8 @@ This bug existing during the following runtimes and block ranges:
 
 |    Network     | Introduced | Fixed  | Impacted Block Range |
 |:--------------:|:----------:|:------:|:--------------------:|
-|    Moonbeam    |   RT900    | RT240x |       0 - n/a        |
-|   Moonriver    |    RT49    | RT240x |       0 - n/a        |
+|    Moonbeam    |   RT900    | RT2403 |     0 - 4163078      |
+|   Moonriver    |    RT49    | RT2401 |     0 - 4668844      |
 | Moonbase Alpha |    RT40    | RT2401 |     0 - 4591616      |
 
 For more information, you can review the [relative PR on GitHub](https://github.com/PureStake/moonbeam/pull/2291){target=_blank}.
