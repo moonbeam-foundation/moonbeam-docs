@@ -10,6 +10,10 @@ description: Create a SubQuery project in minutes indexing Moonbeam blockchain d
 
 ## Introduction {: #introduction } 
 
+SubQuery is a leading data indexer that provides fast, reliable, decentralised, and customised APIs for web3 projects. We empower developers from over 80+ ecosystems (including Moonbeam) with rich indexed data to allow them to build intuitive and immersive experiences for their users. The SubQuery Network powers unstoppable apps with a resilient and decentralised infrastructure network. Use our blockchain developer toolkit to build the web3 applications of the future, without wasting time building a custom backend for data processing activities.
+
+## Quick Start Guide {: #quick-start-guide } 
+
 This quick start guide introduces SubQuery's Substrate EVM support by using an example project in Moonbeam Network. The example project indexes all Transfers from the [Moonbeam EVM FRAX ERC-20 contract](https://moonscan.io/token/0x322e86852e492a7ee17f28a78c663da38fb33bfb), as well as Collators joining and leaving events from [Moonbeam's Staking functions](https://docs.moonbeam.network/builders/pallets-precompiles/pallets/staking/).
 
 This project is unique, as it indexes data from both Moonbeam's Substrate execution layer (native Moonbeam pallets and runtime), with smart contract data from Moonbeam's EVM smart contract layer, within the same SubQuery project and into the same dataset. A very similar approach was taken with [indexing Astar's WASM layer too](https://academy.subquery.network/quickstart/quickstart_chains/polkadot-astar.html).
