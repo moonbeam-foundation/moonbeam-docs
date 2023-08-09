@@ -110,6 +110,47 @@ contract Box {
 Before you can deploy the contract to Moonbase Alpha, you'll need to modify the Hardhat configuration file and create a secure file to store your private key in.
 
 --8<-- 'text/hardhat/hardhat-configuration-file.md'
+    You can modify the `hardhat.config.js` file to use any of the Moonbeam networks:
+
+    === "Moonbeam"
+
+        ```js
+        moonbeam: {
+            url: '{{ networks.moonbeam.rpc_url }}', // Insert your RPC URL here
+            chainId: {{ networks.moonbeam.chain_id }}, // (hex: {{ networks.moonbeam.hex_chain_id }}),
+            accounts: [privateKey]
+          },
+        ```
+
+    === "Moonriver"
+
+        ```js
+        moonriver: {
+            url: '{{ networks.moonriver.rpc_url }}', // Insert your RPC URL here
+            chainId: {{ networks.moonriver.chain_id }}, // (hex: {{ networks.moonriver.hex_chain_id }}),
+            accounts: [privateKey]
+          },
+        ```
+
+    === "Moonbase Alpha"
+
+        ```js
+        moonbase: {
+            url: '{{ networks.moonbase.rpc_url }}',
+            chainId: {{ networks.moonbase.chain_id }}, // (hex: {{ networks.moonbase.hex_chain_id }}),
+            accounts: [privateKey]
+          },
+        ```
+
+    === "Moonbeam Dev Node"
+
+        ```js
+        dev: {
+            url: '{{ networks.development.rpc_url }}',
+            chainId: {{ networks.development.chain_id }}, // (hex: {{ networks.development.hex_chain_id }}),
+            accounts: [privateKey]
+          },
+        ```
 
 ```js
 // 1. Import the Ethers plugin required to interact with the contract
