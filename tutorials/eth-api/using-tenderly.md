@@ -39,7 +39,7 @@ Adding a smart contract to your Tenderly project is akin to bookmarking it. Whil
 
 To add a smart contract to your Tenderly project, click on the **Contracts** tab under the **Inspect** heading, then click **Add Contracts**. Then, take the following steps:
 
-1. Enter the address of the contract. For this tutorial, we'll be using the Multichain USDC contract `0x818ec0a7fe18ff94269904fced6ae3dae6d6dc0b`
+1. Enter the address of the contract. For this tutorial, we'll be using the FRAX stablecoin contract `0x322E86852e492a7Ee17f28a78c663da38FB33bfb`
 2. Select the network the contract is deployed to. We'll select **Moonbeam** in this case
 3. Give the contract a name to help you recognize it on the dashboard
 4. Press **Add Contract**
@@ -62,11 +62,11 @@ Head over to the **Simulator** tab, and let's craft a transaction to simulate ag
 
 ![Simulate a transaction against Moonbeam](/images/tutorials/eth-api/using-tenderly/tenderly-3.png)
 
-Clearly, this simulated transaction is going to fail because we're trying to send 10,000 USDC that we don't have. But, with the [Tenderly Simulator](https://docs.tenderly.co/simulations-and-forks/how-to-simulate-a-transaction){target=_blank}, we can tinker with the blockchain state and run simulations that assume different conditions. For example, let's run the simulation assuming that Baltathar actually holds a balance of 10,000 USDC. Press **Re-Simulate** in the upper right corner, then take the following steps:
+Clearly, this simulated transaction is going to fail because we're trying to send 10,000 FRAX that we don't have. But, with the [Tenderly Simulator](https://docs.tenderly.co/simulations-and-forks/how-to-simulate-a-transaction){target=_blank}, we can tinker with the blockchain state and run simulations that assume different conditions. For example, let's run the simulation assuming that Baltathar actually holds a balance of 10,000 FRAX. Press **Re-Simulate** in the upper right corner, then take the following steps:
 
 1. Expand the **State Overrides** section
 2. Press **Add State Override**
-3. Select the relevant contract, in this case the USDC one
+3. Select the relevant contract, in this case the FRAX one
 4. Under the **Storage Variables** section, we're going to override the mapping that holds the balance of Baltathar by specifying the key as: `balanceOf[0x3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0]` and the value as: `10000000000`. Pay careful attention that you are performing this step in the **Storage Variables** section and not the **Balance** section
 5. Press **Add** to confirm adding the state override
 6. Press **Simulate Transaction**
@@ -98,33 +98,33 @@ It's easy to create a fork with Tenderly. To do so, head to the **Forks** tab an
 3. If you only need data up until a specific block, you can toggle the **Use Latest Block** slider to off and specify the block number. Otherwise, you can leave the slider as is to include all blocks up until the latest block
 4. Click **Create**
 
-![Create a fork](/images/tutorials/eth-api/using-tenderly/tenderly-7.png)
+![Create a fork](/images/tutorials/eth-api/using-tenderly/tenderly-6.png)
 
 ### Interacting with the Fork {: #interacting-with-the-fork }
 
-In the next part, we'll be demonstrating the statefulness of forks and how they can help you with testing scenarios beyond a single simulation. With the fork you just created, try calling the `transfer` function to send some USDC from Baltathar to Alice like you did previously in the [simulation section](#simulate-a-transaction) but without the state override. Unsurprisingly, this will fail because Baltathar has no balance of USDC. But let's change that by minting some USDC for Baltathar in our forked environment. To do so, take the following steps:
+In the next part, we'll be demonstrating the statefulness of forks and how they can help you with testing scenarios beyond a single simulation. With the fork you just created, try calling the `transfer` function to send some FRAX from Baltathar to Alice like you did previously in the [simulation section](#simulate-a-transaction) but without the state override. Unsurprisingly, this will fail because Baltathar has no balance of FRAX. But let's change that by minting some FRAX for Baltathar in our forked environment. To do so, take the following steps:
 
 1. Select the desired contract to interact with.
-2. Select the contract function you'd like to call. We'll choose `mint` in this case.
+2. Select the contract function you'd like to call. We'll choose `minter_mint` in this case.
 3. Enter Baltathar's address: `0x3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0`
 4. Enter the amount to mint, such as `10000000000000`
-5. Minting is a privileged role in the USDC contract. We need to specify the sender of this transaction in our fork as the [authorized minter of the USDC contract](https://moonbeam.moonscan.io/token/0x818ec0a7fe18ff94269904fced6ae3dae6d6dc0b#readContract){target=_blank}, which is `0xEC4486a90371c9b66f499Ff3936F29f0D5AF8b7E`
+5. Minting is a privileged role in the FRAX contract. We need to specify the sender of this transaction in our fork as an [authorized minter of the FRAX contract](https://moonbeam.moonscan.io/token/0x322e86852e492a7ee17f28a78c663da38fb33bfb#readContract){target=_blank}, which is `0x343e4f06bf240d22fbdfd4a2fe5858bc66e79f12`
 6. Press **Simulate Transaction**
 
-![Run simulation on fork to mint USDC](/images/tutorials/eth-api/using-tenderly/tenderly-6.png)
+![Run simulation on fork to mint FRAX](/images/tutorials/eth-api/using-tenderly/tenderly-7.png)
 
-Great! Now let's go ahead and try to perform the transfer from Baltathar now that Baltathar has plenty of USDC. To do so, press **New Simulation**, then take the following steps:
+Great! Now let's go ahead and try to perform the transfer from Baltathar now that Baltathar has plenty of FRAX. To do so, press **New Simulation**, then take the following steps:
 
-1. Select the `USDC` contract from the dropdown
+1. Select the `FRAX` contract from the dropdown
 2. Select the contract function you'd like to call. We'll select `transfer` in this case
 3. Next, we'll input the relevant function parameters. Input Alith's address as the destination: `0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac`
 4. For amount, you can also specify any nonzero amount, such as `123`
 5. Specify the from address as Baltathar `0x3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0`
 6. Press **Simulate Transaction**
 
-![Run simulation on fork to transfer USDC](/images/tutorials/eth-api/using-tenderly/tenderly-8.png)
+![Run simulation on fork to transfer FRAX](/images/tutorials/eth-api/using-tenderly/tenderly-8.png)
 
-Note in the upper right corner under **Fork Parameters** that the parent block is the **Previous Simulation**. This indicates that the simulation we're submitting now will build upon any state changes made in the prior one. If you notice an error indicating that the balance is insufficient, this could be a result of accidentally overriding the block number to use the same block number as the original `mint` transaction.
+Note in the upper right corner under **Fork Parameters** that the parent block is the **Previous Simulation**. This indicates that the simulation we're submitting now will build upon any state changes made in the prior one. If you notice an error indicating that the balance is insufficient, this could be a result of accidentally overriding the block number to use the same block number as the original `minter_mint` transaction.
 
 Tenderly also generates a custom RPC url for your fork, which looks something like `https://rpc.tenderly.co/fork/YOUR_UNIQUE_FORK_IDENTIFIER`. You can use this RPC url to submit transactions to your fork from [Hardhat](/builders/build/eth-api/dev-env/hardhat){target=_blank}, [Foundry](/builders/build/eth-api/dev-env/foundry){target=_blank}, or another preferred [development environment](/builders/build/eth-api/dev-env/){target=_blank}.
 
