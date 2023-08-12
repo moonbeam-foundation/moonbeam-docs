@@ -21,7 +21,7 @@ This guide will cover all of the details needed to get started with the [Covalen
 
 ## Unified API {: #unified-api } 
 
-Covalent's Unified API is a powerful but easy-to-use REST API that offers visibility to assets across all blockchain networks. The Unified API features a consistent request and response object format across networks. For example, a user can fetch all the token balances for a wallet address across any supported blockchain by changing the unique blockchain name or id path parameter in the request URL. Covalent's Unified API can offer more data flexbility than JSON-RPC interfaces which are typically limited to queries on a specific block. The Unified API also allows queries on multiple objects and batch exports of data.
+Covalent's Unified API is a powerful but easy-to-use REST API that offers visibility to assets across all blockchain networks. The Unified API features a consistent request and response object format across networks. For example, a user can fetch all the token balances for a wallet address across any supported blockchain by changing the unique blockchain name or id path parameter in the request URL. Covalent's Unified API can offer more data flexibility than JSON-RPC interfaces which are typically limited to queries on a specific block. The Unified API also allows queries on multiple objects and batch exports of data.
 
 [![example-api-response-json](/images/builders/integrations/indexers/covalent/covalent-1.png)](https://www.covalenthq.com/docs/api/balances/get-token-balances-for-address/?utm_source=moonbeam&utm_medium=partner-docs)
 
@@ -239,7 +239,7 @@ The balances endpoint returns a list of all ERC-20 and NFT token balances, inclu
 
 ### Python Example {: #python-example } 
 
-Covalent doesn’t have an official API wrapper. To query the API directly you will have to use the Python [requests library](https://pypi.org/project/requests/){target=_blank}. Install requests into your environment from the command line with `pip install requests`. Then import it and use it in your code. Use the HTTP verbs get methods to return the information from the API. Copy and paste the below code block into your preferred environment and run it. The output should look similiar to the screenshot above, however the formatting may vary depending on your environment.
+Covalent doesn’t have an official API wrapper. To query the API directly you will have to use the Python [requests library](https://pypi.org/project/requests/){target=_blank}. Install requests into your environment from the command line with `pip install requests`. Then import it and use it in your code. Use the HTTP verbs get methods to return the information from the API. Copy and paste the below code block into your preferred environment and run it. The output should look similar to the screenshot above, however the formatting may vary depending on your environment.
 
 ```python
 import requests
@@ -267,7 +267,7 @@ fetch_wallet_balance('0xFEC4f9D5B322Aa834056E85946A32c35A3f5aDD8')
 
 ## Increment {: #increment } 
 
-Increment is a no-code charting and reporting tool enables users to build dynamic, personalized charts with data models. The tool directly encodes business logic - Reach, Retention, and Revenue - into an SQL compiler that outputs valid SQL. Increment can convert any chart made with SQL and bake them into a standardized, open-sourced set of dimensions and measures - known as a model.
+Increment is a no-code charting and reporting tool that enables users to build dynamic, personalized charts with data models. The tool directly encodes business logic - Reach, Retention, and Revenue - into an SQL compiler that outputs valid SQL. Increment can convert any chart made with SQL and bake them into a standardized, open-sourced set of dimensions and measures - known as a model.
 
 [![example-increment-chart](/images/builders/integrations/indexers/covalent/covalent-3.png)](https://www.covalenthq.com/platform/increment/#/?utm_source=moonbeam&utm_medium=partner-docs)
 
