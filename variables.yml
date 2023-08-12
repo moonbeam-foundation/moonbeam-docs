@@ -273,27 +273,6 @@ networks:
     preimage:
       base_deposit: 5
       byte_deposit: 0.0001
-    democracy:
-      launch_period:
-        days: 1
-        blocks: 7200
-      vote_period:
-        days: 5
-        blocks: 36000
-      fast_vote_period:
-        hours: 4
-        blocks: 1200
-      enact_period:
-        days: 1
-        blocks: 7200
-      cool_period:
-        days: 7
-        blocks: 50400
-      min_deposit: 4
-      min_preim_deposit: 0.004
-      max_votes: 100
-      max_proposals: 100
-      max_referenda: 5
     inflation:
       total_annual_inflation: 5
       delegator_reward_inflation: 50
@@ -591,27 +570,6 @@ networks:
     preimage:
       base_deposit: 5
       byte_deposit: 0.0001
-    democracy:
-      launch_period:
-        days: 1
-        blocks: 7200
-      vote_period:
-        days: 5
-        blocks: 36000
-      fast_vote_period:
-        hours: 3
-        blocks: 900
-      enact_period:
-        days: 1
-        blocks: 7200
-      cool_period:
-        days: 7
-        blocks: 50400
-      min_deposit: 4
-      max_votes: 100
-      min_preim_deposit: 0.004
-      max_proposals: 100
-      max_referenda: 5
     inflation:
       total_annual_inflation: 5
       delegator_reward_inflation: 50
@@ -965,34 +923,6 @@ networks:
     preimage:
       base_deposit: 500
       byte_deposit: .01
-    democracy:
-      launch_period:
-        days: 7
-        blocks: 50400
-      vote_period:
-        days: 14
-        blocks: 100800
-      fast_vote_period:
-        days: 1
-        blocks: 7200
-      enact_period:
-        days: 2
-        blocks: 14400
-      cool_period:
-        days: 7
-        blocks: 50400
-      min_deposit: 400
-      max_votes: 100
-      min_preim_deposit: 0.04
-      max_proposals: 100
-      max_referenda: 2
-      lock_period:
-        conviction_1: 7
-        conviction_2: 14
-        conviction_3: 28
-        conviction_4: 56
-        conviction_5: 112
-        conviction_6: 224
     inflation:
       total_annual_inflation: 5
       delegator_reward_inflation: 50
