@@ -1,19 +1,27 @@
 import { ApiPromise, WsProvider } from '@polkadot/api';
 
-const wsProvider = new WsProvider('WSS-API-ENDPOINT-HERE');
-const api = await ApiPromise.create({ provider: wsProvider });
+const main = async () => {
+  // Construct API provider
+  const wsProvider = new WsProvider('WSS_API_ENDPOINT_HERE');
+  const api = await ApiPromise.create({ provider: wsProvider });
 
-const addr = 'MOONBEAM-WALLET-ADDRESS-HERE';
+  // Retrieve the chain name
+  const chain = await api.rpc.system.chain();
 
-const chain = await api.rpc.system.chain();
+  // Subscribe to the new headers
+  await api.rpc.chain.subscribeNewHeads((lastHeader) => {
+    console.log(`${chain}: last block #${lastHeader.number} has hash ${lastHeader.hash}`);
+  });
 
-await api.rpc.chain.subscribeNewHeads((lastHeader) => {
-  console.log(`${chain}: last block #${lastHeader.number} has hash ${lastHeader.hash}`);
-});
+  // Define wallet address
+  const addr = 'MOONBEAM_WALLET_ADDRESS_HERE';
 
-await api.query.system.account(addr, ({ nonce, data: balance }) => {
-  console.log(`free balance is ${balance.free} with ${balance.reserved} reserved and a nonce of ${nonce}`);
-});
+  // Subscribe to balance changes for a specified account
+  await api.query.system.account(addr, ({ nonce, data: balance }) => {
+    console.log(`free balance is ${balance.free} with ${balance.reserved} reserved and a nonce of ${nonce}`);
 
-// Disconnect the API
-api.disconnect();
+    // Handle API disconnect here if needed
+  });
+};
+
+main();

@@ -1,35 +1,40 @@
 import { ApiPromise, WsProvider } from '@polkadot/api';
-import { Keyring } from '@polkadot/api';
+import Keyring from '@polkadot/keyring';
 
-const wsProvider = new WsProvider('WSS-API-ENDPOINT-HERE');
-const api = await ApiPromise.create({ provider: wsProvider });
+const main = async () => {
+  // Construct API provider
+  const wsProvider = new WsProvider('WSS_API_ENDPOINT_HERE');
+  const api = await ApiPromise.create({ provider: wsProvider });
 
-const keyring = new Keyring({ type: 'ethereum' });
+  // Create a keyring instance (ECDSA)
+  const keyring = new Keyring({ type: 'ethereum' });
 
-const alice = keyring.addFromUri('ALICE-ACCOUNT-PRIVATE-KEY-HERE');
-const bob = 'BOB-ACCOUNT-PUBLIC-KEY-HERE';
-const charlie = 'CHARLIE-ACCOUNT-PUBLIC-KEY-HERE';
-const collator = 'COLLATOR-ACCOUNT-PUBLIC-KEY-HERE';
+  // Initialize wallet key pairs
+  const alice = keyring.addFromUri('ALICE_ACCOUNT_PRIVATE_KEY');
 
-const txs = [
-  api.tx.balances.transfer(bob, 12345n),
-  api.tx.balances.transfer(charlie, 12345n),
-  api.tx.parachainStaking.scheduleDelegatorBondLess(collator, 12345n)
-];
+  // Construct a list of transactions to batch
+  const collator = 'COLLATOR_ACCOUNT_PUBLIC_KEY';
+  const txs = [
+    api.tx.balances.transfer('BOB_ADDRESS', BigInt(12345)),
+    api.tx.balances.transfer('CHARLEY_ADDRESS', BigInt(12345)),
+    api.tx.parachainStaking.scheduleDelegatorBondLess(collator, BigInt(12345)),
+  ];
 
-const info = await api.tx.utility
-  .batch(txs)
-  .paymentInfo(alice);
+  // Estimate the fees as RuntimeDispatchInfo, using the signer (either
+  // address or locked/unlocked keypair)
+  const info = await api.tx.utility.batch(txs).paymentInfo(alice);
 
-console.log(`estimated fees: ${info}`);
+  console.log(`Estimated fees: ${info}`);
 
-api.tx.utility
-  .batch(txs)
-  .signAndSend(alice, ({ status }) => {
+  // Construct the batch and send the transactions
+  api.tx.utility.batch(txs).signAndSend(alice, async ({ status }) => {
     if (status.isInBlock) {
-      console.log(`included in ${status.asInBlock}`);
+      console.log(`Included in ${status.asInBlock}`);
+
+      // Disconnect the API
+      await api.disconnect();
     }
   });
+};
 
-// Disconnect the API
-api.disconnect();
+main();

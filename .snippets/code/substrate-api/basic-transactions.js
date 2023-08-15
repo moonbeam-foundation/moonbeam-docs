@@ -1,24 +1,33 @@
 import { ApiPromise, WsProvider } from '@polkadot/api';
-import { Keyring } from '@polkadot/api';
+import Keyring from '@polkadot/keyring';
 
-const wsProvider = new WsProvider('WSS-API-ENDPOINT-HERE');
-const api = await ApiPromise.create({ provider: wsProvider });
+const main = async () => {
+  // Construct API provider
+  const wsProvider = new WsProvider('WSS_API_ENDPOINT_HERE');
+  const api = await ApiPromise.create({ provider: wsProvider });
 
-const keyring = new Keyring({ type: 'ethereum' });
+  // Create a keyring instance (ECDSA)
+  const keyring = new Keyring({ type: 'ethereum' });
 
-const alice = keyring.addFromUri('ALICE-ACCOUNT-PRIVATE-KEY-HERE');
-const bob = 'BOB-ACCOUNT-PUBLIC-KEY-HERE';
+  // Initialize wallet key pairs
+  const alice = keyring.addFromUri('ALICE_ACCOUNT_PRIVATE_KEY');
+  const bob = 'BOB_ACCOUNT_PUBLIC_KEY';
 
-const tx = await api.tx.balances
-  .transfer(bob, 12345n)
+  // Form the transaction
+  const tx = await api.tx.balances.transfer(bob, BigInt(12345));
 
-const encodedCallData = tx.method.toHex()
-console.log(encodedCallData)
+  // Retrieve the encoded calldata of the transaction
+  const encodedCalldata = tx.method.toHex();
+  console.log(`Encoded calldata: ${encodedCalldata}`);
 
-const txHash = await tx
-  .signAndSend(alice);
+  // Sign and send the transaction
+  const txHash = await tx.signAndSend(alice);
 
-console.log(`Submitted with hash ${txHash}`);
+  // Show the transaction hash
+  console.log(`Submitted with hash ${txHash}`);
 
-// Disconnect the API
-api.disconnect();
+  // Disconnect the API
+  await api.disconnect();
+};
+
+main();
