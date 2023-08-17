@@ -39,7 +39,7 @@ You'll also need to provide answers to the following questions:
 
 ## XCM Proposals {: #xcm-proposals }
 
-The second post is a preliminary draft of the proposal in the [XCM Proposals category](https://forum.moonbeam.foundation/c/xcm-hrmp/xcm-proposals/14){target=_blank}. Once a proposal is submitted on-chain and available for voting, you must also add a description to it in either the [Moonbeam Polkassembly](https://moonbeam.polkassembly.network/){target=_blank} or [Moonriver Polkassembly](https://moonriver.polkassembly.network/){target=_blank}.
+The second post is a preliminary draft of the proposal in the [XCM Proposals category](https://forum.moonbeam.foundation/c/xcm-hrmp/xcm-proposals/14){target=_blank}. Once a proposal is submitted on-chain and available for voting, you must also add a description to it in either the [Moonbeam Polkassembly](https://moonbeam.polkassembly.io/opengov){target=_blank} or [Moonriver Polkassembly](https://moonriver.polkassembly.io/opengov){target=_blank}.
 
 Once you hit the **New Topic** button, a template is provided with the relevant information to be filled in. Please use either the Moonbeam or Moonriver tag, depending on the network you are integrating with.
 

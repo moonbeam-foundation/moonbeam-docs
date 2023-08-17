@@ -11,7 +11,7 @@ description: As a Polkadot parachain, Moonbeam uses an on-chain governance syste
 
 The goal of Moonbeam’s governance mechanism is to advance the protocol according to the desires of the community. In that shared mission, the governance process seeks to include all token holders. Any and all changes to the protocol must go through a referendum so that all token holders, weighted by stake, can have input on the decision.
 
-Governance forums like the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=_blank} and [Polkassembly](https://moonbeam.polkassembly.network/){target=_blank} enable open discussion and allow proposals to be refined based on community input. Autonomous enactments and [forkless upgrades](https://wiki.polkadot.network/docs/learn-runtime-upgrades#forkless-upgrades/){target=_blank} unite the community towards a shared mission to advance the protocol.
+Governance forums like the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=_blank} and [Polkassembly](https://moonbeam.polkassembly.io/opengov){target=_blank} enable open discussion and allow proposals to be refined based on community input. Autonomous enactments and [forkless upgrades](https://wiki.polkadot.network/docs/learn-runtime-upgrades#forkless-upgrades/){target=_blank} unite the community towards a shared mission to advance the protocol.
 
 With the rollout of OpenGov (originally referred to as Gov2), the second phase of governance in Polkadot, several modifications have been introduced to the governance process. You can read the [OpenGov: What is Polkadot Gov2](https://moonbeam.network/blog/opengov/){target=_blank} blog post, which provides an overview of all of the changes made in OpenGov.
 
@@ -249,7 +249,7 @@ If a referendum continously receives enough Approval and Support during the Conf
 
 The happy path for a proposal is shown in the following diagram:
 
-![A happy path diagram of the proposal roadmap in OpenGov.](/images/learn/features/governance/v2/proposal-roadmap.png)
+![A happy path diagram of the proposal roadmap in OpenGov.](/images/learn/features/governance/proposal-roadmap.png)
 
 ### Proposal Example Walkthrough
 

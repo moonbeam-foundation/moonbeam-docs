@@ -88,7 +88,7 @@ Sovereign Account Address on Moonbase Alpha: 0x7369626ce803000000000000000000000
 
 From a technical perspective, the process of creating an HRMP channel with Moonriver and Moonbeam is nearly identical. However, engagement with the Moonbeam community is crucial and required before a proposal will pass.
 
-Please check the HRMP channel guidelines that the community voted on for [Moonriver](https://moonriver.polkassembly.network/referenda/0){target=_blank} and [Moonbeam](https://moonbeam.polkassembly.network/proposal/21){target=_blank} before starting.
+Please check the HRMP channel guidelines that the community voted on for [Moonriver](https://moonriver.polkassembly.io/referenda/0){target=_blank} and [Moonbeam](https://moonbeam.polkassembly.io/proposal/21){target=_blank} before starting.
 
 The process can be summarized in the following steps:
 
