@@ -29,17 +29,20 @@ Some of the key parameters for this guide are the following:
  - **Maximum number of votes** — the maximum number of concurrent votes per account
 
     === "Moonbeam"
-        ```
+
+        ```text
         {{ networks.moonbeam.governance.max_votes }} votes
         ```
 
     === "Moonriver"
-        ```
+
+        ```text
         {{ networks.moonriver.governance.max_votes }} votes
         ```
 
     === "Moonbase Alpha"
-        ```
+
+        ```text
         {{ networks.moonbase.governance.max_votes }} votes
         ```
 
@@ -69,7 +72,7 @@ A vote on a democracy referenda is a binary outcome. However, a token holder's o
 
 The forum serves the critical role of providing a platform for discussion and allowing proposers to receive feedback from the community prior to an on-chain action. Creating a post on the forum is quick and easy as shown in the [Using the Moonbeam Community Forum](https://moonbeam.network/blog/using-moonbeam-community-forum/){target=_blank} guide. There are categories corresponding to each type of proposal, including democracy, treasury, and grant proposals. While this step is optional, explaining the details of the proposal and following up with any questions raised may increase the chances of the initiative being accepted and subsequently passed by the community.
 
-![Moonbeam's Community Forum home](/images/tokens/governance/voting/vote-0.png)
+![Moonbeam's Community Forum home](/images/tokens/governance/voting/vote-1.png)
 
 ## Voting on a Referendum {: #voting-on-a-referendum }
 
