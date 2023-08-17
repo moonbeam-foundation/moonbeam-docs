@@ -44,19 +44,6 @@ Similar to [Ethereum API libraries](/builders/build/eth-api/libraries/){target=_
 
 --8<-- 'text/common/endpoint-examples.md'
 
-// Import
-import { ApiPromise, WsProvider } from '@polkadot/api';
-
-const main = async () => {
-  // Construct API provider
-  const wsProvider = new WsProvider('wss://wss.api.moonbeam.network');
-  const api = await ApiPromise.create({ provider: wsProvider });
-
-  await api.disconnect();
-};
-
-main();
-
 === "Moonbeam"
     ```javascript
     // Import
@@ -457,6 +444,6 @@ var encoded_tx = encode(txDataArray)
 console.log(keccakAsHex(encoded_tx))
 ```
 
-You can check the respective [NPM repository page](https://www.npmjs.com/package/@polkadot/util-crypto/v/0.32.19){target=_blank} for a list of available methods in the @polkadot/util-crypto library and their descriptions.
+You can check the respective [NPM repository page](https://www.npmjs.com/package/@polkadot/util-crypto/v/0.32.19){target=_blank} for a list of available methods in the `@polkadot/util-crypto` library and their descriptions.
 
 --8<-- 'text/disclaimers/third-party-content.md'
