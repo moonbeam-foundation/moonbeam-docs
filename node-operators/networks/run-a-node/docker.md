@@ -90,13 +90,11 @@ If you're using MacOS, there are adapted [code snippets](https://www.github.com/
     --base-path=/data \
     --chain {{ networks.moonbeam.chain_spec }} \
     --name="YOUR-NODE-NAME" \
-    --execution wasm \
     --wasm-execution compiled \
     --state-pruning archive \
     --trie-cache-size 0 \
     --db-cache <50% RAM in MB> \
     -- \
-    --execution wasm \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
@@ -109,13 +107,11 @@ If you're using MacOS, there are adapted [code snippets](https://www.github.com/
     --base-path=/data \
     --chain {{ networks.moonriver.chain_spec }} \
     --name="YOUR-NODE-NAME" \
-    --execution wasm \
     --wasm-execution compiled \
     --state-pruning archive \
     --trie-cache-size 0 \
     --db-cache <50% RAM in MB> \
     -- \
-    --execution wasm \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
@@ -128,13 +124,11 @@ If you're using MacOS, there are adapted [code snippets](https://www.github.com/
     --base-path=/data \
     --chain {{ networks.moonbase.chain_spec }} \
     --name="YOUR-NODE-NAME" \
-    --execution wasm \
     --wasm-execution compiled \
     --state-pruning archive \
     --trie-cache-size 0 \
     --db-cache <50% RAM in MB> \
     -- \
-    --execution wasm \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
@@ -153,12 +147,10 @@ If you're using MacOS, there are adapted [code snippets](https://www.github.com/
     --chain {{ networks.moonbeam.chain_spec }} \
     --name="YOUR-NODE-NAME" \
     --collator \
-    --execution wasm \
     --wasm-execution compiled \
     --trie-cache-size 0 \
     --db-cache <50% RAM in MB> \
     -- \
-    --execution wasm \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
@@ -172,12 +164,10 @@ If you're using MacOS, there are adapted [code snippets](https://www.github.com/
     --chain {{ networks.moonriver.chain_spec }} \
     --name="YOUR-NODE-NAME" \
     --collator \
-    --execution wasm \
     --wasm-execution compiled \
     --trie-cache-size 0 \
     --db-cache <50% RAM in MB> \
     -- \
-    --execution wasm \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
@@ -191,12 +181,10 @@ If you're using MacOS, there are adapted [code snippets](https://www.github.com/
     --chain {{ networks.moonbase.chain_spec }} \
     --name="YOUR-NODE-NAME" \
     --collator \
-    --execution wasm \
     --wasm-execution compiled \
     --trie-cache-size 0 \
     --db-cache <50% RAM in MB> \
     -- \
-    --execution wasm \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
