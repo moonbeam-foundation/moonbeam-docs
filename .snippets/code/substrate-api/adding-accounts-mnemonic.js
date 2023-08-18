@@ -5,7 +5,7 @@ import { mnemonicToLegacySeed, hdEthereum } from '@polkadot/util-crypto';
 
 // Import Ethereum account from mnemonic
 const keyringECDSA = new Keyring({ type: 'ethereum' });
-const mnemonic = 'MNEMONIC_HERE';
+const mnemonic = 'INSERT_MNEMONIC';
 
 // Define index of the derivation path and the derivation path
 const index = 0;
@@ -19,5 +19,8 @@ console.log(`Ethereum Derivation Path: ${ethDerPath}`);
 console.log(`Derived Ethereum Address from Mnemonic: ${alice.address}`);
 
 // Extract private key from mnemonic
-const privateKey = u8aToHex(hdEthereum(mnemonicToLegacySeed(mnemonic, '', false, 64), ethDerPath).secretKey);
+const privateKey = u8aToHex(
+  hdEthereum(mnemonicToLegacySeed(mnemonic, '', false, 64), ethDerPath)
+    .secretKey
+);
 console.log(`Derived Private Key from Mnemonic: ${privateKey}`);

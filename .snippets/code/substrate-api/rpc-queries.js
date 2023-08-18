@@ -2,7 +2,7 @@ import { ApiPromise, WsProvider } from '@polkadot/api';
 
 const main = async () => {
   // Construct API provider
-  const wsProvider = new WsProvider('WSS_API_ENDPOINT_HERE');
+  const wsProvider = new WsProvider('INSERT_WSS_ENDPOINT');
   const api = await ApiPromise.create({ provider: wsProvider });
 
   // Retrieve the chain name
@@ -12,7 +12,9 @@ const main = async () => {
   const lastHeader = await api.rpc.chain.getHeader();
 
   // Log the information
-  console.log(`${chain}: last block #${lastHeader.number} has hash ${lastHeader.hash}`);
+  console.log(
+    `${chain}: last block #${lastHeader.number} has hash ${lastHeader.hash}`
+  );
 
   // Disconnect the API
   await api.disconnect();

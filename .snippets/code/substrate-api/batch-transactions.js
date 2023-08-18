@@ -3,20 +3,20 @@ import Keyring from '@polkadot/keyring';
 
 const main = async () => {
   // Construct API provider
-  const wsProvider = new WsProvider('WSS_API_ENDPOINT_HERE');
+  const wsProvider = new WsProvider('INSERT_WSS_ENDPOINT');
   const api = await ApiPromise.create({ provider: wsProvider });
 
   // Create a keyring instance (ECDSA)
   const keyring = new Keyring({ type: 'ethereum' });
 
   // Initialize wallet key pairs
-  const alice = keyring.addFromUri('ALICE_ACCOUNT_PRIVATE_KEY');
+  const alice = keyring.addFromUri('INSERT_ALICES_PRIVATE_KEY');
 
   // Construct a list of transactions to batch
-  const collator = 'COLLATOR_ACCOUNT_PUBLIC_KEY';
+  const collator = 'INSERT_COLLATORS_ADDRESS';
   const txs = [
-    api.tx.balances.transfer('BOB_ADDRESS', BigInt(12345)),
-    api.tx.balances.transfer('CHARLEY_ADDRESS', BigInt(12345)),
+    api.tx.balances.transfer('INSERT_BOBS_ADDRESS', BigInt(12345)),
+    api.tx.balances.transfer('INSERT_CHARLEYS_ADDRESS', BigInt(12345)),
     api.tx.parachainStaking.scheduleDelegatorBondLess(collator, BigInt(12345)),
   ];
 

@@ -3,7 +3,7 @@ import Keyring from '@polkadot/keyring';
 
 // Import Ethereum account from mnemonic
 const keyringECDSA = new Keyring({ type: 'ethereum' });
-const privateKeyInput = 'PK_HERE';
+const privateKeyInput = 'INSERT_PK';
 
 // Extract address from private key
 const alice = keyringECDSA.addFromUri(privateKeyInput);
