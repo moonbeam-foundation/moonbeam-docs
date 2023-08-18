@@ -33,7 +33,7 @@ const message = {
         requireWeightAtMost: { refTime: 40000000000n, proofSize: 900000n },
         call: {
           encoded:
-            '0x0c113a7d3048f3cb0391bb44b518e5729f07bcc7a45d000064a7b3b6e00d00000000000000002c01000025000000',
+            '0x0c123a7d3048f3cb0391bb44b518e5729f07bcc7a45d000064a7b3b6e00d000000000000000064430000000600000000000000',
         },
       },
     },
