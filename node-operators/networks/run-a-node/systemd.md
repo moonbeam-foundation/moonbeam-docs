@@ -235,7 +235,6 @@ The next step is to create the systemd configuration file. If you are setting up
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
-         --wasm-execution compiled \
          --state-pruning=archive \
          --trie-cache-size 0 \
          --db-cache <50% RAM in MB> \
@@ -266,7 +265,6 @@ The next step is to create the systemd configuration file. If you are setting up
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
-         --wasm-execution compiled \
          --state-pruning=archive \
          --trie-cache-size 0 \
          --db-cache <50% RAM in MB> \
@@ -297,7 +295,6 @@ The next step is to create the systemd configuration file. If you are setting up
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
-         --wasm-execution compiled \
          --state-pruning=archive \
          --trie-cache-size 0 \
          --db-cache <50% RAM in MB> \
@@ -334,7 +331,6 @@ The next step is to create the systemd configuration file. If you are setting up
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
          --collator \
-         --wasm-execution compiled \
          --trie-cache-size 0 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonbeam.node_directory }} \
@@ -365,7 +361,6 @@ The next step is to create the systemd configuration file. If you are setting up
     KillSignal=SIGHUP
     ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
          --collator \
-         --wasm-execution compiled \
          --trie-cache-size 0 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonriver.node_directory }} \
@@ -396,7 +391,6 @@ The next step is to create the systemd configuration file. If you are setting up
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
          --collator \
-         --wasm-execution compiled \
          --trie-cache-size 0 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonbase.node_directory }} \

@@ -17,7 +17,6 @@ purestake/moonbeam:v0.32.1 \
 --base-path=/data \
 --chain moonbeam \
 --name="YOUR-NODE-NAME" \
---wasm-execution compiled \
 --state-pruning archive \
 --trie-cache-size 0 \
 -- \
@@ -34,7 +33,6 @@ purestake/moonbeam:v0.32.1 \
 --chain moonbeam \
 --name="YOUR-NODE-NAME" \
 --collator \
---wasm-execution compiled \
 --trie-cache-size 0 \
 -- \
 --name="YOUR-NODE-NAME (Embedded Relay)"
@@ -49,7 +47,6 @@ purestake/moonbeam:v0.32.1 \
 --base-path=/data \
 --chain moonriver \
 --name="YOUR-NODE-NAME" \
---wasm-execution compiled \
 --state-pruning archive \
 --trie-cache-size 0 \
 -- \
@@ -66,7 +63,6 @@ purestake/moonbeam:v0.32.1 \
 --chain moonriver \
 --name="YOUR-NODE-NAME" \
 --collator \
---wasm-execution compiled \
 --trie-cache-size 0 \
 -- \
 --name="YOUR-NODE-NAME (Embedded Relay)"
@@ -81,7 +77,6 @@ purestake/moonbeam:v0.32.1 \
 --base-path=/data \
 --chain alphanet \
 --name="YOUR-NODE-NAME" \
---wasm-execution compiled \
 --state-pruning archive \
 --trie-cache-size 0 \
 -- \
@@ -98,7 +93,6 @@ purestake/moonbeam:v0.32.1 \
 --chain alphanet \
 --name="YOUR-NODE-NAME" \
 --collator \
---wasm-execution compiled \
 --trie-cache-size 0 \
 -- \
 --name="YOUR-NODE-NAME (Embedded Relay)"
