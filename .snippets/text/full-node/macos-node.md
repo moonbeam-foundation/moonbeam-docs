@@ -18,7 +18,7 @@ purestake/moonbeam:v0.32.1 \
 --chain moonbeam \
 --name="YOUR-NODE-NAME" \
 --state-pruning archive \
---trie-cache-size 0 \
+--trie-cache-size 1073741824 \
 -- \
 --name="YOUR-NODE-NAME (Embedded Relay)"
 ```
@@ -33,7 +33,7 @@ purestake/moonbeam:v0.32.1 \
 --chain moonbeam \
 --name="YOUR-NODE-NAME" \
 --collator \
---trie-cache-size 0 \
+--trie-cache-size 1073741824 \
 -- \
 --name="YOUR-NODE-NAME (Embedded Relay)"
 ```
@@ -48,7 +48,7 @@ purestake/moonbeam:v0.32.1 \
 --chain moonriver \
 --name="YOUR-NODE-NAME" \
 --state-pruning archive \
---trie-cache-size 0 \
+--trie-cache-size 1073741824 \
 -- \
 --name="YOUR-NODE-NAME (Embedded Relay)"
 ```
@@ -63,7 +63,7 @@ purestake/moonbeam:v0.32.1 \
 --chain moonriver \
 --name="YOUR-NODE-NAME" \
 --collator \
---trie-cache-size 0 \
+--trie-cache-size 1073741824 \
 -- \
 --name="YOUR-NODE-NAME (Embedded Relay)"
 ```
@@ -78,7 +78,7 @@ purestake/moonbeam:v0.32.1 \
 --chain alphanet \
 --name="YOUR-NODE-NAME" \
 --state-pruning archive \
---trie-cache-size 0 \
+--trie-cache-size 1073741824 \
 -- \
 --name="YOUR-NODE-NAME (Embedded Relay)"
 ```
@@ -93,7 +93,7 @@ purestake/moonbeam:v0.32.1 \
 --chain alphanet \
 --name="YOUR-NODE-NAME" \
 --collator \
---trie-cache-size 0 \
+--trie-cache-size 1073741824 \
 -- \
 --name="YOUR-NODE-NAME (Embedded Relay)"
 ```

@@ -91,7 +91,7 @@ If you're using MacOS, there are adapted [code snippets](https://www.github.com/
     --chain {{ networks.moonbeam.chain_spec }} \
     --name="YOUR-NODE-NAME" \
     --state-pruning archive \
-    --trie-cache-size 0 \
+    --trie-cache-size 1073741824 \
     --db-cache <50% RAM in MB> \
     -- \
     --name="YOUR-NODE-NAME (Embedded Relay)"
@@ -107,7 +107,7 @@ If you're using MacOS, there are adapted [code snippets](https://www.github.com/
     --chain {{ networks.moonriver.chain_spec }} \
     --name="YOUR-NODE-NAME" \
     --state-pruning archive \
-    --trie-cache-size 0 \
+    --trie-cache-size 1073741824 \
     --db-cache <50% RAM in MB> \
     -- \
     --name="YOUR-NODE-NAME (Embedded Relay)"
@@ -123,7 +123,7 @@ If you're using MacOS, there are adapted [code snippets](https://www.github.com/
     --chain {{ networks.moonbase.chain_spec }} \
     --name="YOUR-NODE-NAME" \
     --state-pruning archive \
-    --trie-cache-size 0 \
+    --trie-cache-size 1073741824 \
     --db-cache <50% RAM in MB> \
     -- \
     --name="YOUR-NODE-NAME (Embedded Relay)"
@@ -144,7 +144,7 @@ If you're using MacOS, there are adapted [code snippets](https://www.github.com/
     --chain {{ networks.moonbeam.chain_spec }} \
     --name="YOUR-NODE-NAME" \
     --collator \
-    --trie-cache-size 0 \
+    --trie-cache-size 1073741824 \
     --db-cache <50% RAM in MB> \
     -- \
     --name="YOUR-NODE-NAME (Embedded Relay)"
@@ -160,7 +160,7 @@ If you're using MacOS, there are adapted [code snippets](https://www.github.com/
     --chain {{ networks.moonriver.chain_spec }} \
     --name="YOUR-NODE-NAME" \
     --collator \
-    --trie-cache-size 0 \
+    --trie-cache-size 1073741824 \
     --db-cache <50% RAM in MB> \
     -- \
     --name="YOUR-NODE-NAME (Embedded Relay)"
@@ -176,7 +176,7 @@ If you're using MacOS, there are adapted [code snippets](https://www.github.com/
     --chain {{ networks.moonbase.chain_spec }} \
     --name="YOUR-NODE-NAME" \
     --collator \
-    --trie-cache-size 0 \
+    --trie-cache-size 1073741824 \
     --db-cache <50% RAM in MB> \
     -- \
     --name="YOUR-NODE-NAME (Embedded Relay)"
