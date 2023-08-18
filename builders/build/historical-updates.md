@@ -117,6 +117,22 @@ For more information, you can review the [relative PR on GitHub](https://github.
 
 ***
 
+#### Substrate Tips Missing Treasury Distribution {: #substrate-tips }
+
+Tips for Substrate-based transactions weren't handled properly. The entire portion of the tip was burned because it was not handled in the runtime code. A fix was applied so that 20% is paid to treasury and 80% is burned, which is consistent with all other fee behavior.
+
+This bug existed during the following runtimes and block ranges:
+
+|    Network     | Introduced | Fixed  | Impacted Block Range |
+|:--------------:|:----------:|:------:|:--------------------:|
+|    Moonbeam    |   RT900    | RT2403 |     0 - 4163078      |
+|   Moonriver    |    RT49    | RT2401 |     0 - 4668844      |
+| Moonbase Alpha |    RT40    | RT2401 |     0 - 4591616      |
+
+For more information, you can review the [relative PR on GitHub](https://github.com/PureStake/moonbeam/pull/2291){target=_blank}.
+
+***
+
 #### Incorrect Delegation Reward Calculation {: #incorrect-delegation-reward-calculation }
 
 The reward payouts for all delegations and collators were underestimated whenever there were pending requests. Delegation rewards are calculated based on the amount of tokens bonded by each delegator in respect to the total stake of the given collator. By counting delegation amounts for pending requests, the rewards to collators and their delegations were less than they should have been.

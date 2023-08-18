@@ -9,11 +9,11 @@ description: Use one of the supported API providers to connect to a public endpo
 
 ## Public Endpoints {: #public-endpoints }
 
-Moonbeam-based networks have two endpoints available for users to connect to: one for HTTPS and one for WSS. 
+Moonbeam-based networks have two endpoints available for users to connect to: one for HTTPS and one for WSS.
 
 The endpoints in this section are for development purposes only and are not meant to be used in production applications.
 
-If you are looking for an API provider suitable for production use, you can check out the [Endpoint Providers](#endpoint-providers) section of this guide. 
+If you are looking for an API provider suitable for production use, you can check out the [Endpoint Providers](#endpoint-providers) section of this guide.
 
 ### Moonbeam {: #moonbeam }
 
@@ -27,7 +27,7 @@ If you are looking for an API provider suitable for production use, you can chec
 
 --8<-- 'text/endpoints/moonbase.md'
 
-## Endpoint Providers {: #endpoint-providers }
+## RPC Endpoint Providers {: #endpoint-providers }
 
 You can create your own endpoint suitable for development or production use using any of the following API providers:
 
@@ -61,7 +61,7 @@ To get started, you'll need to head to [Blast](https://blastapi.io/){target=_bla
 2. Click on **Available Endpoints**
 3. Select a network for your endpoint. There are three options to choose from: Moonbeam, Moonriver and Moonbase Alpha
 4. Confirm the selected network and Press **Activate**
-5. You'll now see your chosen network under **Active Endpoints**. Click on the network and you'll see your custom RPC and WSS endpoints on the next page 
+5. You'll now see your chosen network under **Active Endpoints**. Click on the network and you'll see your custom RPC and WSS endpoints on the next page
 
 ![Bware Labs](/images/builders/get-started/endpoints/endpoints-2.png)
 
@@ -73,7 +73,7 @@ To get started, you'll need to head to [BlockSpaces](https://www.blockspaces.com
 
 1. Visit [BlockSpaces](https://www.blockspaces.com/web3-infrastructure){target=_blank}
 2. Submit your **email**
-3. Copy Moonbeam/Moonriver endpoint to your clipboard 
+3. Copy Moonbeam/Moonriver endpoint to your clipboard
 
  ![BlockSpaces](/images/builders/get-started/endpoints/endpoints-3.png)
 
@@ -113,10 +113,6 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 3. Your custom API endpoint will be generated automatically
 
 ![OnFinality](/images/builders/get-started/endpoints/endpoints-6.png)
-
-OnFinality also provides a Trace API, which allows you to call non-standard RPC methods that belong to Geth's `debug` and `txpool` APIs and OpenEthereum's `trace` module. Currently, the [Trace API is only supported on Moonriver](https://documentation.onfinality.io/support/trace-api#TraceAPI-SupportedNetworks){target=_blank}, with support for Moonbeam coming soon.
-
-If you are tracing historic blocks, it is recommended to use your own dedicated trace node to backfill any data, and then once you're caught up, you can switch to using the Trace API. You can check out the [How to Deploy a Trace Node for Moonbeam on OnFinality](https://onfinality.medium.com/how-to-deploy-a-trace-node-for-moonbeam-on-onfinality-85683181d290){target=-_blank} post for more information on how to get started.
 
 ### Pocket Network {: #pokt }
 
@@ -175,3 +171,18 @@ To get started, head to the [Ankr Protocol](https://www.ankr.com/protocol/){targ
 
 ![Ankr](/images/builders/get-started/endpoints/endpoints-5.png)-->
 
+## Tracing RPC Endpoint Providers {: #tracing-providers }
+
+Tracing RPC endpoints allow you to access non-standard RPC methods, such as those that belong to Geth's `debug` and `txpool` APIs and OpenEthereum's `trace` module. To see a list of the supported non-standard RPC methods on Moonbeam for debugging and tracing, please refer to the [Debug API & Trace Module](/builders/build/eth-api/debug-trace){target=_blank} guide.
+
+The following providers provide tracing RPC endpoints:
+
+- [OnFinality](#onfinality-tracing)
+
+### OnFinality {: #onfinality-tracing }
+
+[OnFinality](https://onfinality.io/){target=_blank}'s Trace API can be used to quickly get started tracing and debugging transactions on Moonbeam and Moonriver. It is only available to users on their [Growth and Ultimate plans](https://onfinality.io/pricing){target=_blank}.
+
+To use the Trace API, you simply call the trace method of your choice from your [private RPC endpoint](#onfinality). For a list of the supported networks and trace methods, please check out [OnFinality's Trace API documentation](https://documentation.onfinality.io/support/trace-api#TraceAPI-SupportedNetworks){target=_blank}.
+
+Please note that if you are tracing historic blocks, it is recommended to use your own dedicated trace node to backfill any data, and then once you're caught up, you can switch to using the Trace API. You can check out the [How to Deploy a Trace Node for Moonbeam on OnFinality](https://onfinality.medium.com/how-to-deploy-a-trace-node-for-moonbeam-on-onfinality-85683181d290){target=-_blank} post for more information on how to spin up your own dedicated trace node.
