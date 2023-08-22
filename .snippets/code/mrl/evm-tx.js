@@ -1,50 +1,86 @@
-async function batchApproveTransferEVMTx(moonbeamAPI) {
-  // Get Batch, IERC20, ITokenBridge contracts
-  const Batch = new ethers.utils.Interface(abi.Batch);
-  const WrappedFTM = new ethers.utils.Interface(abi.IERC20);
-  // https://github.com/wormhole-foundation/example-token-bridge-relayer/blob/main/evm/src/token-bridge-relayer/TokenBridgeRelayer.sol
-  const TokenRelayer = new ethers.Contract(
-    XLABS_RELAYER_ADDRESS,
-    abi.TokenRelayer,
-    new providers.JsonRpcProvider('https://moonbase-alpha.public.blastapi.io')
+import { ApiPromise, WsProvider, Keyring } from '@polkadot/api';
+import { ethers, providers } from 'ethers';
+import batchABI from './abi/Batch.js';
+import erc20ABI from './abi/ERC20.js';
+import tokenRelayerABI from './abi/TokenRelayer.js';
+
+// Input data
+// ...
+const xLabsRelayer = '0x9563a59c15842a6f322b10f69d1dd88b41f2e97b';
+const batchPrecompile = '0x0000000000000000000000000000000000000808';
+const destinationChainId = 'INSERT_DESTINATION_CHAIN_ID';
+// The recipient address on the destination chain needs to be formatted in 32 bytes
+// You'll pad the address to the left with zeroes. Add the destination address below
+// without the 0x
+const destinationAddress =
+  '0x0000000000000000000000000' + 'INSERT_DESTINATION_ADDRESS';
+
+// Transfer multiassets parameters
+// ...
+
+// Create contract instances
+const Batch = new ethers.utils.Interface(batchABI);
+const LocalXC20 = new ethers.utils.Interface(erc20ABI);
+const TokenRelayer = new ethers.Contract(
+  xLabsRelayer,
+  tokenRelayerABI,
+  new providers.JsonRpcProvider('https://rpc.api.moonbase.moonbeam.network')
+);
+
+// Get the encoded call data for the approve transaction
+const approve = LocalXC20.encodeFunctionData('approve', [
+  xLabsRelayer, // Spender
+  transferAmount, // Amount
+]);
+
+// Get the encoded call data for the transferTokensWithRelay transaction.
+// Use wrapAndTransferEthWithRelay if the token is GLMR
+const transferTokensWithRelay = TokenRelayer.interface.encodeFunctionData(
+  'transferTokensWithRelay',
+  [
+    localXC20Address, // Token
+    transferAmount, // Amount to be transferred
+    0, // Amount to swap into native assets on the target chain
+    destinationChainId, // Target chain ID, like Ethereum MainNet or Fantom
+    destinationAddress, // Target recipient address
+    0, // Batch ID for Wormhole message batching
+  ]
+);
+
+const batchAll = Batch.encodeFunctionData('batchAll', [
+  [localXC20Address, xLabsRelayer], // Addresses to call
+  [0, 0], // Value to send for each call
+  [approve, transferTokensWithRelay], // Call data for each call
+  [], // Gas limit for each call
+]);
+
+const sendBatchTx = async () => {
+  // Create origin chain API provider
+  // ...
+
+  // Create Moonbeam API provider
+  const moonbeamProvider = new WsProvider(
+    'wss://wss.api.moonbase.moonbeam.network'
   );
+  const moonbeamAPI = await ApiPromise.create({ provider: moonbeamProvider });
 
-  // Create approve contract calls & batch them
-  const approveTx = WrappedFTM.encodeFunctionData("approve", [XLABS_RELAYER_ADDRESS, AMOUNT_OF_TOKEN_YOU_WANT_TO_SEND]);
+  // Create the transferMultiasset extrinsic
+  // ...
 
-  // Print out the relayer fee. If we're sending too little tokens, the transaction will fail.
-  const relayerFee = await TokenRelayer.calculateRelayerFee(YOUR_DESTINATION_CHAIN_ID, ADDRESS_OF_THE_TOKEN_HERE, 18);
-  console.log(`The relayer fee for this token will be ${relayerFee}.`);
-
-  // Create a transferTokensWithRelay transaction. Use wrapAndTransferEthWithRelay if the token is GLMR
-  const transferTx = TokenRelayer.interface.encodeFunctionData("transferTokensWithRelay", [
-    ADDRESS_OF_THE_TOKEN_HERE,
-    AMOUNT_OF_TOKEN_YOU_WANT_TO_SEND,
-    0,
-    YOUR_DESTINATION_CHAIN_ID, // Target chain, like Ethereum MainNet or Fantom
-    '0x0000000000000000000000000' + YOUR_TARGET_RECIPIENT_ADDRESS_WITHOUT_0x,
-    0 // batchId
-  ]);
-
-  const batchTx = Batch.encodeFunctionData('batchAll', [
-    [ADDRESS_OF_THE_TOKEN_HERE, XLABS_RELAYER_ADDRESS],
-    [0, 0],
-    [approveTx, transferTx],
-    []
-  ]);
-
-  // Create the ethereumXCM extrinsic that uses the batch precompile
-  const batchXCMTx = moonbeamAPI.tx.ethereumXcm.transact({
+  // Create the ethereumXCM extrinsic that uses the Batch Precompile
+  const transact = moonbeamAPI.tx.ethereumXcm.transact({
     V1: {
-      gasLimit: new BN(350000),
+      gasLimit: 350000n,
       feePayment: 'Auto',
       action: {
-        Call: BATCH_PRECOMPILE_ADDRESS
+        Call: batchPrecompile,
       },
-      value: new BN(0),
-      input: batchTx
-    }
+      value: 0n,
+      input: batchAll,
+    },
   });
 
-  return batchXCMTx;
-}
+  // Additional code goes here
+};
+
+sendBatchTx();
