@@ -267,7 +267,7 @@ fetch_wallet_balance('0xFEC4f9D5B322Aa834056E85946A32c35A3f5aDD8')
 
 ## Increment {: #increment } 
 
-Increment is a no-code charting and reporting tool that enables users to build dynamic, personalized charts with data models. The tool directly encodes business logic - Reach, Retention, and Revenue - into an SQL compiler that outputs valid SQL. Increment can convert any chart made with SQL and bake them into a standardized, open-sourced set of dimensions and measures - known as a model.
+[Increment](https://www.covalenthq.com/docs/increment/){target=_blank} is a no-code charting and reporting tool that enables users to build dynamic, personalized charts with data models. The tool directly encodes business logic—reach, retention, and revenue—into an SQL compiler that outputs valid SQL. Increment can convert any chart made with SQL and bake them into a standardized, open-sourced set of dimensions and measures, known as a model.
 
 [![Example Increment chart](/images/builders/integrations/indexers/covalent/covalent-3.png)](https://www.covalenthq.com/platform/increment/#/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}
 
