@@ -5,8 +5,6 @@ description: Learn how to establish a cross-chain integration with a Moonbeam-ba
 
 # How to Establish an XC Integration with Moonbeam
 
-![Forum Templates Banner](/images/builders/interoperability/xcm/xc-registration/xc-integration/channels-banner.png)
-
 ## Introduction {: #introduction }
 
 While Cross-Chain Message Passing (XCMP) is being developed, a stop-gap protocol has been implemented called Horizontal Relay-routed Message Passing (HRMP). It has the same interface and functionality as XCMP, but the messages are stored in and read from the relay chain. Whereas with XCMP, only the message's associated metadata is stored in the relay chain. Since all messages are passed via the relay chain with HRMP, it is much more demanding on resources. As such, HRMP will be phased out once XCMP is implemented.

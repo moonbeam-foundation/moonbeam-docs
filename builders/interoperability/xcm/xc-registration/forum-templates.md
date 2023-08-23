@@ -5,8 +5,6 @@ description: Learn about and how to craft the two posts you need to make on the 
 
 # Moonbeam Community Forum Templates for XCM Integrations
 
-![Forum Templates Banner](/images/builders/interoperability/xcm/xc-registration/forum-templates/forum-banner.png)
-
 ## Introduction {: #introduction }
 
 When starting an XCM integration on Moonriver or Moonbeam MainNet, there are two preliminary posts that must be made on the [Moonbeam Community Forum](https://forum.moonbeam.foundation/){target=_blank} so that the voting community has the chance to provide feedback. The two preliminary posts are an XCM disclosure and an XCM proposal. **This step is not necessary when connecting to Moonbase Alpha.**

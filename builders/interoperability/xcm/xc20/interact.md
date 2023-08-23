@@ -5,8 +5,6 @@ description: This guide includes everything you need to know to register local a
 
 # Interact with XC-20s on Moonbeam
 
-![Interact with XC-20s Banner](/images/builders/interoperability/xcm/xc20/interact/interact-banner.png)
-
 ## Introduction {: #introduction }
 
 As mentioned in the [XC-20s Overview](/builders/interoperability/xcm/xc20/overview){target=_blank} page, XC-20s are a unique asset class on Moonbeam. Although they are Substrate-native assets, they also have an ERC-20 interface and can be interacted with like any other ERC-20. Additionally, the ERC-20 Permit interface is available for all external XC-20s.

@@ -5,8 +5,6 @@ description: This guide includes everything you need to know to register local a
 
 # How to Register Cross-Chain Assets
 
-![Forum Templates Banner](/images/builders/interoperability/xcm/xc-registration/assets/assets-banner.png)
-
 ## Introduction {: #introduction }
 
 For an asset to be transferred across chains via XCM, there needs to be an open channel between the two chains, and the asset needs to be registered on the destination chain. If a channel doesn't exist between the two chains, one will need to be opened. Please check out the [XC Channel Registration](/builders/interoperability/xcm/xc-registration/xc-integration){target=_blank} guide for information on how to establish a channel between Moonbeam and another chain.
