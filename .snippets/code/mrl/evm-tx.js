@@ -1,11 +1,13 @@
 import { ApiPromise, WsProvider, Keyring } from '@polkadot/api';
-import { ethers, providers } from 'ethers';
+import { ethers } from 'ethers';
 import batchABI from './abi/Batch.js';
 import erc20ABI from './abi/ERC20.js';
 import tokenRelayerABI from './abi/TokenRelayer.js';
 
 // Input data
 // ...
+const localXC20Address = 'INSERT_LOCAL_XC20_ADDRESS';
+const transferAmount = 'INSERT_AMOUNT_TO_TRANSFER';
 const xLabsRelayer = '0x9563a59c15842a6f322b10f69d1dd88b41f2e97b';
 const batchPrecompile = '0x0000000000000000000000000000000000000808';
 const destinationChainId = 'INSERT_DESTINATION_CHAIN_ID';
@@ -13,29 +15,29 @@ const destinationChainId = 'INSERT_DESTINATION_CHAIN_ID';
 // You'll pad the address to the left with zeroes. Add the destination address below
 // without the 0x
 const destinationAddress =
-  '0x0000000000000000000000000' + 'INSERT_DESTINATION_ADDRESS';
+  '0x000000000000000000000000' + 'INSERT_DESTINATION_ADDRESS';
 
 // Transfer multiassets parameters
 // ...
 
 // Create contract instances
-const Batch = new ethers.utils.Interface(batchABI);
-const LocalXC20 = new ethers.utils.Interface(erc20ABI);
-const TokenRelayer = new ethers.Contract(
+const batchInterface = new ethers.Interface(batchABI);
+const localXC20Interface = new ethers.Interface(erc20ABI);
+const tokenRelayer = new ethers.Contract(
   xLabsRelayer,
   tokenRelayerABI,
-  new providers.JsonRpcProvider('https://rpc.api.moonbase.moonbeam.network')
+  new ethers.JsonRpcProvider('https://rpc.api.moonbase.moonbeam.network')
 );
 
 // Get the encoded call data for the approve transaction
-const approve = LocalXC20.encodeFunctionData('approve', [
+const approve = localXC20Interface.encodeFunctionData('approve', [
   xLabsRelayer, // Spender
   transferAmount, // Amount
 ]);
 
 // Get the encoded call data for the transferTokensWithRelay transaction.
 // Use wrapAndTransferEthWithRelay if the token is GLMR
-const transferTokensWithRelay = TokenRelayer.interface.encodeFunctionData(
+const transferTokensWithRelay = tokenRelayer.interface.encodeFunctionData(
   'transferTokensWithRelay',
   [
     localXC20Address, // Token
@@ -47,7 +49,7 @@ const transferTokensWithRelay = TokenRelayer.interface.encodeFunctionData(
   ]
 );
 
-const batchAll = Batch.encodeFunctionData('batchAll', [
+const batchAll = batchInterface.encodeFunctionData('batchAll', [
   [localXC20Address, xLabsRelayer], // Addresses to call
   [0, 0], // Value to send for each call
   [approve, transferTokensWithRelay], // Call data for each call
@@ -69,9 +71,8 @@ const sendBatchTx = async () => {
 
   // Create the ethereumXCM extrinsic that uses the Batch Precompile
   const transact = moonbeamAPI.tx.ethereumXcm.transact({
-    V1: {
+    V2: {
       gasLimit: 350000n,
-      feePayment: 'Auto',
       action: {
         Call: batchPrecompile,
       },

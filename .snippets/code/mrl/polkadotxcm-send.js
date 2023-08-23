@@ -8,7 +8,7 @@ const sendBatchTx = async () => {
   const txWeight = (await transact.paymentInfo(multilocationDerivativeAccount))
     .weight;
   
-  const sendXCM = originChainPolkadotJsAPI.tx.polkadotXcm.send(
+  const sendXCM = originChainAPI.tx.polkadotXcm.send(
     { V3: { parents: 1, interior: { X1: { Parachain: 1000 } } } },
     {
       V3: [

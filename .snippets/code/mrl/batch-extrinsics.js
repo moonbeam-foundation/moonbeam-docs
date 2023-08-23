@@ -17,8 +17,8 @@ const sendBatchTx = async () => {
   // ...
 
   // Create batch transaction
-  const batchExtrinsic = originChainPolkadotJsAPI.tx.utility.batchAll([
-    transferMultiAssets,
+  const batchExtrinsic = originChainAPI.tx.utility.batchAll([
+    transferMultiassets,
     sendXCM,
   ]);
 

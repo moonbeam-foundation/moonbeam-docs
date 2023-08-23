@@ -1,5 +1,5 @@
 import { ApiPromise, WsProvider, Keyring } from '@polkadot/api';
-import { ethers, providers } from 'ethers';
+import { ethers } from 'ethers';
 
 // Input data
 const originChainProviderWsURL = 'INSERT_ORIGIN_CHAIN_WSS_URL';
@@ -72,7 +72,7 @@ const sendBatchTx = async () => {
   const originChainAPI = await ApiPromise.create({ provider: originChainProvider });
 
   // Create the transferMultiasset extrinsic
-  const transferMultiAssets = originChainAPI.tx.xTokens.transferMultiassets(
+  const transferMultiassets = originChainAPI.tx.xTokens.transferMultiassets(
     assets,
     feeItem,
     destination,

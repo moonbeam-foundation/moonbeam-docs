@@ -86,7 +86,7 @@ Alternatively, the `multilocationToAddress` function of the [XCM Utilities Preco
 Once you have the multilocation-derivative account, you can begin to construct the `utility.batchAll` transaction. To get started, you'll need to make sure you have a few packages installed:
 
 ```bash
-npm i @polkadot/api @polkadot/keyring @polkadot/util ethers
+npm i @polkadot/api ethers
 ```
 
 Now you can begin to tackle the `xTokens.transferMultiassets` extrinsic, which accepts four parameters: `assets`, `feeItem`, `dest`, and `destWeightLimit`. You can find out more information on each of the parameters in the [X-Tokens Pallet Interface](/builders/interoperability/xcm/xc20/xtokens#x-tokens-pallet-interface){target=_blank} documentation.
