@@ -280,7 +280,7 @@ Increment can be used for:
 - [Analyzing NFT marketplaces](https://www.covalenthq.com/docs/increment/data-models/jpeg-analysis/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}
 - [Tracking monthly active wallets](https://www.covalenthq.com/docs/networks/moonbeam/?utm_source=moonbeam&utm_medium=partner-docs#network-status){target=_blank}
 
-[![example-network-status-increment](/images/builders/integrations/indexers/covalent/covalent-4.png)](https://www.covalenthq.com/docs/networks/moonbeam/?utm_source=moonbeam&utm_medium=partner-docs#network-status)*Click on the above image to get the latest number of Moonbeam network active wallets, transactions and tokens by day, week, month or year*
+[![Example network status increment](/images/builders/integrations/indexers/covalent/covalent-4.png)](https://www.covalenthq.com/docs/networks/moonbeam/?utm_source=moonbeam&utm_medium=partner-docs#network-status){target=_blank} *Click on the above image to get the latest number of Moonbeam network active wallets, transactions and tokens by day, week, month or year.*
 
 ### Increment Resources {: #increment-resources } 
 
