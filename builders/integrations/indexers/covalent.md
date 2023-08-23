@@ -53,7 +53,7 @@ The Covalent API has three classes of endpoints:
  - **Class B** — endpoints that are for a specific protocol on a blockchain, e.g. Uniswap is Ethereum-only and is not applicable to other blockchain networks
  - **Class C** — endpoints that are community built and maintained but powered by Covalent infrastructure.
 
-## Fundamentals of the Covalent API {: #fundamentals-of-the-covalent-api } 
+## Fundamentals of the Unified API {: #fundamentals-of-the-unified-api } 
 
  - The Covalent API is RESTful and it is designed around the main resources that are available through the web interface
  - The current version of the API is version 1 
@@ -67,14 +67,14 @@ The Covalent API has three classes of endpoints:
 
 For a full list of supported endpoints, refer to the [Covalent API reference](https://www.covalenthq.com/docs/api/guide/overview/){target=_blank}. A subset of the supported endpoints include: 
 
- - **Balances** — Get token balances for an address. Returns a list of all ERC-20 and NFT token balances including ERC-721 and ERC-1155 along with their current spot prices (if available)
- - **Transactions** — Retrieves all transactions for an address including decoded log events. Does a deep-crawl of the blockchain to 
+ - **Balances** — get token balances for an address. Returns a list of all ERC-20 and NFT token balances including ERC-721 and ERC-1155 along with their current spot prices (if available)
+ - **Transactions** — retrieves all transactions for an address including decoded log events. Does a deep-crawl of the blockchain to 
  retrieve all transactions that reference this address
- - **Transfers** — Get ERC-20 token transfers for an address along with historical token prices (if available)
- - **Token holders** — Return a paginated list of token holders
- - **Log events (smart contract)** — Return a paginated list of decoded log events emitted by a particular smart contract
- - **Log events (topic hash)** — Return a paginated list of decoded log events with one or more topic hashes separated by a comma
- - **Security (Token Approvals)** - Return a list of approvals across all token contracts categorized by spenders for a wallet’s assets
+ - **Transfers** — get ERC-20 token transfers for an address along with historical token prices (if available)
+ - **Token holders** — return a paginated list of token holders
+ - **Log events (smart contract)** — return a paginated list of decoded log events emitted by a particular smart contract
+ - **Log events (topic hash)** — return a paginated list of decoded log events with one or more topic hashes separated by a comma
+ - **Security (Token Approvals)** - return a list of approvals across all token contracts categorized by spenders for a wallet’s assets
 
 ## Request Formatting {: #request-formatting }
 
@@ -118,7 +118,7 @@ For a full list of supported endpoints, refer to the [Covalent API reference](ht
     |                                                                         Contract                                                                          |                               Address                                |
     |:---------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
     |    chainName     |              `moonbeam-mainnet`               |
-    |    chainID    |            {{ networks.moonbeam.chain_id }}             |
+    |    chainID    |            {{ `networks.moonbeam.chain_id` }}             |
     |    Response Formats     |              JSON, CSV               |
     | Real-Time Data Latency | 2 blocks |
     | Batch Data Latency | 30 minutes |
@@ -129,7 +129,7 @@ For a full list of supported endpoints, refer to the [Covalent API reference](ht
     |                                                                         Contract                                                                          |                                Address                                |
     |:---------------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------:|
        |    chainName     |              `moonbeam-moonriver`               |
-    |    chainID    |            {{ networks.moonriver.chain_id }}             |
+    |    chainID    |            {{ `networks.moonriver.chain_id` }}             |
     |    Response Formats     |              JSON, CSV               |
     | Real-Time Data Latency | 2 blocks |
     | Batch Data Latency | 30 minutes |
@@ -141,7 +141,7 @@ For a full list of supported endpoints, refer to the [Covalent API reference](ht
     |                                                                         Contract                                                                          |                               Address                                |
     |:---------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
     |    chainName     |              `moonbeam-moonbase-alpha`               |
-    |    chainID    |            {{ networks.moonbase.chain_id }}             |
+    |    chainID    |            {{ `networks.moonbase.chain_id` }}             |
     |    Response Formats     |              JSON, CSV               |
     | Real-Time Data Latency | 2 blocks |
     | Batch Data Latency | 30 minutes |
