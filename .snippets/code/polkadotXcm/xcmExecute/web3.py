@@ -21,7 +21,7 @@ xcm_utils = web3.eth.contract(
 def execute_xcm_message_locally():
     ## Define parameters required for the xcmExecute function ##
     encoded_calldata = 'INSERT_ENCODED_CALLDATA'
-    max_weight = 100000000000
+    max_weight = 400000000
 
     ## Execute the custom XCM message ##
     # Craft the extrinsic

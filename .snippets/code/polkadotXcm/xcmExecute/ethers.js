@@ -5,7 +5,7 @@ const PRIVATE_KEY = 'INSERT_YOUR_PRIVATE_KEY';
 const xcmUtilsAddress = '0x000000000000000000000000000000000000080C';
 
 /* Create Ethers provider and signer */
-const provider = new ethers.providers.JsonRpcProvider(
+const provider = new ethers.JsonRpcProvider(
   'https://rpc.api.moonbase.moonbeam.network'
 );
 const signer = new ethers.Wallet(PRIVATE_KEY, provider);
@@ -20,7 +20,7 @@ const xcmUtils = new ethers.Contract(
 const executeXcmMessageLocally = async () => {
   /* Define parameters required for the xcmExecute function */
   const encodedCalldata = 'INSERT_ENCODED_CALLDATA';
-  const maxWeight = '100000000000';
+  const maxWeight = '400000000';
 
   /* Execute the custom XCM message */
   const tx = await xcmUtils.xcmExecute(encodedCalldata, maxWeight);

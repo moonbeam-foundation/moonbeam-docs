@@ -13,7 +13,7 @@ const instr1 = {
 };
 const instr2 = {
   DepositAsset: {
-    assets: { Wild: 'All' },
+    assets: { Wild: { AllCounted: 1 } },
     beneficiary: {
       parents: 0,
       interior: {
@@ -27,7 +27,7 @@ const instr2 = {
   },
 };
 const message = { V3: [instr1, instr2] };
-const maxWeight =  { refTime: 100000000000n, proofSize: 0 };
+const maxWeight =  { refTime: 400000000n, proofSize: 14484n };
 
 const getEncodedXcmMessage = async () => {
   // 2. Create Substrate API provider
