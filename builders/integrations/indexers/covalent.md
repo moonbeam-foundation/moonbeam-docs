@@ -19,25 +19,6 @@ This guide will cover all of the details needed to get started with the [Covalen
 
 --8<-- 'text/disclaimers/third-party-content-intro.md'
 
-## Quick Start {: #quick-start } 
-
-If you're familiar with Covalent and looking to learn how to dive right in on any of the Moonbeam-based networks, you only need to provide the chain ID:
-
-=== "Moonbeam"
-    ```
-    {{ networks.moonbeam.chain_id }}
-    ```
-
-=== "Moonriver"
-    ```
-    {{ networks.moonriver.chain_id }}
-    ```
-
-=== "Moonbase Alpha"
-    ```
-    {{ networks.moonbase.chain_id }}
-    ```
-
 
 ## Unified API {: #unified-api } 
 
@@ -45,15 +26,7 @@ Covalent's Unified API is a powerful but easy-to-use REST API that offers visibi
 
 [![Example API response in JSON](/images/builders/integrations/indexers/covalent/covalent-1.png)](https://www.covalenthq.com/docs/api/balances/get-token-balances-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank} *Click on the above image to try out the request yourself.*
 
-## Types of Endpoints {: #types-of-endpoints } 
-
-The Covalent API has three classes of endpoints:
-
- - **Class A** — endpoints that return enriched blockchain data applicable to all blockchain networks, eg: balances, transactions, log events, etc
- - **Class B** — endpoints that are for a specific protocol on a blockchain, e.g. Uniswap is Ethereum-only and is not applicable to other blockchain networks
- - **Class C** — endpoints that are community built and maintained but powered by Covalent infrastructure.
-
-## Fundamentals of the Unified API {: #fundamentals-of-the-unified-api } 
+### Fundamentals of the Unified API {: #fundamentals-of-the-unified-api } 
 
  - The Covalent API is RESTful and it is designed around the main resources that are available through the web interface
  - The current version of the API is version 1 
@@ -62,9 +35,19 @@ The Covalent API has three classes of endpoints:
  - The cost of an API call is denominated in credits and varies depending on the particular call. Upon creating an API key, you're given a substantial amount of free credits to get started (100,000 at the time of writing). You can track your usage of these free credits on the [Increment Dashboard](https://www.covalenthq.com/platform/increment/#/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}
  - The root URL of the API is: [https://api.covalenthq.com/v1/](https://api.covalenthq.com/v1/){target=_blank}
  - All requests are done over HTTPS (calls over plain HTTP will fail)
- - The refresh rate of the APIs is real-time: 30s or 2 blocks, and batch 30m or 40 blocks  
+ - The refresh rate of the APIs is real-time: 30s or 2 blocks, and batch 30m or 40 blocks 
 
-## Sample Supported Endpoints {: #sample-supported-endpoints } 
+### Types of Endpoints {: #types-of-endpoints } 
+
+The Covalent API has three classes of endpoints:
+
+ - **Class A** — endpoints that return enriched blockchain data applicable to all blockchain networks, eg: balances, transactions, log events, etc
+ - **Class B** — endpoints that are for a specific protocol on a blockchain, e.g. Uniswap is Ethereum-only and is not applicable to other blockchain networks
+ - **Class C** — endpoints that are community built and maintained but powered by Covalent infrastructure.
+
+ 
+
+### Sample Supported Endpoints {: #sample-supported-endpoints } 
 
 For a full list of supported endpoints, refer to the [Covalent API reference](https://www.covalenthq.com/docs/api/guide/overview/){target=_blank}. A subset of the supported endpoints include: 
 
@@ -77,7 +60,7 @@ For a full list of supported endpoints, refer to the [Covalent API reference](ht
  - **Log events (topic hash)** — return a paginated list of decoded log events with one or more topic hashes separated by a comma
  - **Security (Token Approvals)** - return a list of approvals across all token contracts categorized by spenders for a wallet’s assets
 
-## Request Formatting {: #request-formatting }
+### Request Formatting {: #request-formatting }
 
 === "Moonbeam"
     |                                                                                Endpoint                                                                                |                                             Format                                              |
@@ -85,9 +68,9 @@ For a full list of supported endpoints, refer to the [Covalent API reference](ht
     |          [Balances](https://www.covalenthq.com/docs/api/balances/get-token-balances-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}           |      api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/address/{ADDRESS}/balances_v2/      |
     |       [Transactions](https://www.covalenthq.com/docs/api/transactions/get-transactions-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}        |    api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/address/{ADDRESS}/transactions_v2/    |
     |                            [Transfers](https://www.covalenthq.com/docs/api/balances/get-erc20-token-transfers-for-address/){target=_blank}                             |     api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/address/{ADDRESS}/transfers_v2/      |
-    |                   [Token holders](https://www.covalenthq.com/docs/api/balances/#balances/get-token-holders-as-of-any-block-height-v2){target=_blank}                   | api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/tokens/{contract_address}/token_holders/ |
-    | [Log events (smart contract)](https://www.covalenthq.com/docs/api/base/get-log-events-by-contract-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank} |    api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/events/address/{contract_address}/    |
-    |                            [Log events (topic hash)](https://www.covalenthq.com/docs/api/base/get-log-events-by-topic-hash/){target=_blank}                            |          api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/events/topics/{topic}/          |
+    |                   [Token holders](https://www.covalenthq.com/docs/api/balances/#balances/get-token-holders-as-of-any-block-height-v2){target=_blank}                   | api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/tokens/{CONTRACT_ADDRESS}/token_holders/ |
+    | [Log events (smart contract)](https://www.covalenthq.com/docs/api/base/get-log-events-by-contract-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank} |    api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/events/address/{CONTRACT_ADDRESS}/    |
+    |                            [Log events (topic hash)](https://www.covalenthq.com/docs/api/base/get-log-events-by-topic-hash/){target=_blank}                            |          api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/events/topics/{TOPIC}/          |
     |                       [Security (Token Approvals)](https://www.covalenthq.com/docs/api/security/get-token-approvals-for-address/){target=_blank}                       |           api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/approvals/{ADDRESS}/           |
 
 === "Moonriver"
@@ -96,9 +79,9 @@ For a full list of supported endpoints, refer to the [Covalent API reference](ht
     |          [Balances](https://www.covalenthq.com/docs/api/balances/get-token-balances-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}           |      api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/address/{ADDRESS}/balances_v2/      |
     |       [Transactions](https://www.covalenthq.com/docs/api/transactions/get-transactions-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}        |    api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/address/{ADDRESS}/transactions_v2/    |
     |                            [Transfers](https://www.covalenthq.com/docs/api/balances/get-erc20-token-transfers-for-address/){target=_blank}                             |     api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/address/{ADDRESS}/transfers_v2/      |
-    |                   [Token holders](https://www.covalenthq.com/docs/api/balances/#balances/get-token-holders-as-of-any-block-height-v2){target=_blank}                   | api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/tokens/{contract_address}/token_holders/ |
-    | [Log events (smart contract)](https://www.covalenthq.com/docs/api/base/get-log-events-by-contract-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank} |    api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/events/address/{contract_address}/    |
-    |                            [Log events (topic hash)](https://www.covalenthq.com/docs/api/base/get-log-events-by-topic-hash/){target=_blank}                            |          api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/events/topics/{topic}/          |
+    |                   [Token holders](https://www.covalenthq.com/docs/api/balances/#balances/get-token-holders-as-of-any-block-height-v2){target=_blank}                   | api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/tokens/{CONTRACT_ADDRESS}/token_holders/ |
+    | [Log events (smart contract)](https://www.covalenthq.com/docs/api/base/get-log-events-by-contract-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank} |    api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/events/address/{CONTRACT_ADDRESS}/    |
+    |                            [Log events (topic hash)](https://www.covalenthq.com/docs/api/base/get-log-events-by-topic-hash/){target=_blank}                            |          api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/events/topics/{TOPIC}/          |
     |                       [Security (Token Approvals)](https://www.covalenthq.com/docs/api/security/get-token-approvals-for-address/){target=_blank}                       |           api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/approvals/{ADDRESS}/           |
 
 === "Moonbase Alpha"
@@ -107,13 +90,13 @@ For a full list of supported endpoints, refer to the [Covalent API reference](ht
     |          [Balances](https://www.covalenthq.com/docs/api/balances/get-token-balances-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}           |      api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/address/{ADDRESS}/balances_v2/      |
     |       [Transactions](https://www.covalenthq.com/docs/api/transactions/get-transactions-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}        |    api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/address/{ADDRESS}/transactions_v2/    |
     |                            [Transfers](https://www.covalenthq.com/docs/api/balances/get-erc20-token-transfers-for-address/){target=_blank}                             |     api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/address/{ADDRESS}/transfers_v2/      |
-    |                   [Token holders](https://www.covalenthq.com/docs/api/balances/#balances/get-token-holders-as-of-any-block-height-v2){target=_blank}                   | api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/tokens/{contract_address}/token_holders/ |
-    | [Log events (smart contract)](https://www.covalenthq.com/docs/api/base/get-log-events-by-contract-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank} |    api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/events/address/{contract_address}/    |
-    |                            [Log events (topic hash)](https://www.covalenthq.com/docs/api/base/get-log-events-by-topic-hash/){target=_blank}                            |          api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/events/topics/{topic}/          |
+    |                   [Token holders](https://www.covalenthq.com/docs/api/balances/#balances/get-token-holders-as-of-any-block-height-v2){target=_blank}                   | api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/tokens/{CONTRACT_ADDRESS}/token_holders/ |
+    | [Log events (smart contract)](https://www.covalenthq.com/docs/api/base/get-log-events-by-contract-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank} |    api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/events/address/{CONTRACT_ADDRESS}/    |
+    |                            [Log events (topic hash)](https://www.covalenthq.com/docs/api/base/get-log-events-by-topic-hash/){target=_blank}                            |          api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/events/topics/{TOPIC}/          |
     |                       [Security (Token Approvals)](https://www.covalenthq.com/docs/api/security/get-token-approvals-for-address/){target=_blank}                       |           api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/approvals/{ADDRESS}/           |
 
 
-## Unified API Parameters {: #unified-api-parameters. }
+### API Parameters {: #api-parameters }
 
 === "Moonbeam"
     |        Parameter       |                Value               |
@@ -150,7 +133,17 @@ For a full list of supported endpoints, refer to the [Covalent API reference](ht
     |    API Premium Tier    |          Limit of 50 RPS           |
 
 
-## Checking Prerequisites {: #checking-prerequisites } 
+### API Resources {: #api-resources } 
+
+- [API Reference & In-Browser Endpoint Demo](https://www.covalenthq.com/docs/api/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}
+- [Covalent Quickstart](https://www.covalenthq.com/docs/unified-api/quickstart/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}
+- [Written Guides](https://www.covalenthq.com/docs/unified-api/guides/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}
+
+## How to Use the Unified API {: #how-to-use-the-unified-api } 
+
+First, make sure you have [your API Key](https://www.covalenthq.com/platform/#/auth/register/){target=_blank} which begins with `ckey_`. Once you have your API key you will be able to access any of the supported endpoints. To get information for a specific network, you will need to provide the chain ID.
+
+### Checking Prerequisites {: #checking-prerequisites } 
 
 To get started with the Covalent API, you will need to have the following:
 
@@ -158,10 +151,6 @@ To get started with the Covalent API, you will need to have the following:
  - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=_blank}
  - An account with funds.
   --8<-- 'text/faucet/faucet-list-item.md'
-
-## Try it Out {: #try-it-out } 
-
-First, make sure you have [your API Key](https://www.covalenthq.com/platform/#/auth/register/){target=_blank} which begins with `ckey_`. Once you have your API key you will be able to access any of the supported endpoints. To get information for a specific network, you will need to provide the [chain ID](#quick-start).
 
 ### Using Curl {: #using-curl }
 
@@ -180,7 +169,7 @@ curl https://api.covalenthq.com/v1/1287/tokens/\
 
 Unless you already owned some ERTH tokens, your address will be missing from that list. Head over to the [Moonbase Alpha ERC-20 Faucet](https://moonbase-minterc20.netlify.app/){target=_blank} to generate some ERTH tokens for yourself. Now repeat the same Covalent API request as above. The Covalent API updates in real-time, so you should now see your address in the list of token holders for the ERTH token.
 
-### JavaScript Examples {: #javascript-examples } 
+### Using Javascript {: #using-javascript } 
 
 Copy and paste the below code block into your preferred environment, or [JSFiddle](https://jsfiddle.net/){target=_blank}. After setting the API key, set the address constant. Remember for Moonbase Alpha the chain ID is `{{ networks.moonbase.chain_id }}`.
 
@@ -238,7 +227,7 @@ The balances endpoint returns a list of all ERC-20 and NFT token balances, inclu
 
 ![JavaScript Console Output](/images/builders/integrations/indexers/covalent/covalent-2.png)
 
-### Python Example {: #python-example } 
+### Using Python {: #using-python } 
 
 Covalent doesn’t have an official API wrapper. To query the API directly you will have to use the Python [requests library](https://pypi.org/project/requests/){target=_blank}. Install requests into your environment from the command line with `pip install requests`. Then import it and use it in your code. Use the HTTP verbs get methods to return the information from the API. Copy and paste the below code block into your preferred environment and run it. The output should look similar to the screenshot above, however the formatting may vary depending on your environment.
 
@@ -260,11 +249,6 @@ fetch_wallet_balance('0xFEC4f9D5B322Aa834056E85946A32c35A3f5aDD8')
 !!! note
     The 2nd parameter of `auth` is empty, because there is no password required - your API key is all that's needed.
 
-### Unified API Resources {: #unified-api-resources } 
-
-- [API Reference & In-Browser Endpoint Demo](https://www.covalenthq.com/docs/api/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}
-- [Covalent Quickstart](https://www.covalenthq.com/docs/unified-api/quickstart/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}
-- [Written Guides](https://www.covalenthq.com/docs/unified-api/guides/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}
 
 ## Increment {: #increment } 
 
