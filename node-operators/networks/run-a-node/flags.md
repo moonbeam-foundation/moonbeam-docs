@@ -32,7 +32,7 @@ This guide will cover some of the most common flags and show you how to access a
 - **`--state-pruning`** - specifies the state pruning mode. For client versions prior to v0.27.0, the `--state-pruning` flag was named `--pruning`. If running a node with the `--collator` flag, the default is to keep the full state of all blocks. Otherwise, the state is only kept for the last 256 blocks. The available options are:
     - **`archive`** - keeps the full state of all blocks
     - **`<number-of-blocks>`** - specifies a custom number of blocks to keep the state for
-- **`--trie-cache-size`** - specifies the size of the internal state cache. The default is `67108864`. You can set this value to `0` to disable the cache and improve collator performance. For client versions prior to v0.27.0, the `--trie-cache-size` flag was named `--state-cache-size`
+- **`--trie-cache-size`** - specifies the size of the internal state cache. The default is `67108864`. You can try setting this value to `1073741824` (1GB) to improve collator performance. However, this value may be too low and need to be adjusted. For client versions prior to v0.27.0, the `--trie-cache-size` flag was named `--state-cache-size`
 - **`--db-cache`** - specifies the memory the database cache is limited to use. It is recommended to set it to 50% of the actual RAM your server has. For example, for 32 GB RAM, the value should be set to `16000`. The minimum value is `2000`, but it is below the recommended specs
 - **`--base-path`** - specifies the base path where your chain data is stored
 - **`--chain`** - specifies the chain specification to use. It can be a predefined chainspec such as `{{ networks.moonbeam.chain_spec }}`, `{{ networks.moonriver.chain_spec }}`, or `{{ networks.moonbase.chain_spec }}`. Or it can be a path to a file with the chainspec (such as the one exported by the `build-spec` command)
@@ -43,6 +43,11 @@ This guide will cover some of the most common flags and show you how to access a
 - **`--runtime-cache-size 64`** - configures the number of different runtime versions preserved in the in-memory cache to 64
 - **`--eth-log-block-cache`** - size in bytes the LRU cache for block data is limited to use. This flag mostly pertains to RPC providers. The default is `300000000`
 - **`--eth-statuses-cache`** - size in bytes the LRU cache for transaction statuses data is limited to use. This flag mostly pertains to RPC providers. The default is `300000000`
+- **--sync** - sets the blockchain syncing mode, which can allow for the blockchain to be synced faster. The available options are:
+    - **`full`** - downloads and validates the full blockchain history
+    - **`fast`** - downloads blocks without executing them and downloads the latest state with proofs
+    - **`fast-unsafe`** - same as `fast`, but skips downloading the state proofs
+    - **`warp`** - downloads the latest state and proof
 
 ## How to Access All of the Available Flags {: #how-to-access-all-of-the-available-flags }
 

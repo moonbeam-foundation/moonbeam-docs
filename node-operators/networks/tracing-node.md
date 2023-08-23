@@ -40,24 +40,28 @@ Spinning up a `debug`, `txpool`, or `tracing` node is similar to [running a full
 If you haven't previously run a standard full Moonbeam node, you will need to setup a directory to store chain data:
 
 === "Moonbeam"
-    ```
+
+    ```bash
     mkdir {{ networks.moonbeam.node_directory }}
     ```
 
 === "Moonriver"
-    ```
+
+    ```bash
     mkdir {{ networks.moonriver.node_directory }}
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```bash
     mkdir {{ networks.moonbase.node_directory }}
     ```
 
 Before getting started, you'll need to set the necessary permissions either for a specific or current user (replace `DOCKER_USER` for the actual user that will run the `docker` command):
 
 === "Moonbeam"
-    ```
+
+    ```bash
     # chown to a specific user
     chown DOCKER_USER {{ networks.moonbeam.node_directory }}
 
@@ -66,7 +70,8 @@ Before getting started, you'll need to set the necessary permissions either for 
     ```
 
 === "Moonriver"
-    ```
+
+    ```bash
     # chown to a specific user
     chown DOCKER_USER {{ networks.moonriver.node_directory }}
 
@@ -75,7 +80,8 @@ Before getting started, you'll need to set the necessary permissions either for 
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```bash
     # chown to a specific user
     chown DOCKER_USER {{ networks.moonbase.node_directory }}
 
@@ -98,7 +104,8 @@ Now, execute the docker run command. Note that you have to:
 The complete command for running a tracing node is as follows:
 
 === "Moonbeam"
-    ```
+
+    ```bash
     docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     {{ networks.moonbeam.tracing_tag }} \
@@ -106,18 +113,18 @@ The complete command for running a tracing node is as follows:
     --chain {{ networks.moonbeam.chain_spec }} \
     --name="YOUR-NODE-NAME" \
     --state-pruning archive \
-    --trie-cache-size 0 \
+    --trie-cache-size 1073741824 \
     --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonbeam-substitutes-tracing \
     --runtime-cache-size 64 \
     -- \
-    --execution wasm \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
 === "Moonriver"
-    ```
+
+    ```bash
     docker run --network="host" -v "{{ networks.moonriver.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     {{ networks.moonriver.tracing_tag }} \
@@ -125,18 +132,18 @@ The complete command for running a tracing node is as follows:
     --chain {{ networks.moonriver.chain_spec }} \
     --name="YOUR-NODE-NAME" \
     --state-pruning archive \
-    --trie-cache-size 0 \
+    --trie-cache-size 1073741824 \
     --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonriver-substitutes-tracing \
     --runtime-cache-size 64 \
     -- \
-    --execution wasm \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```bash
     docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     {{ networks.moonbase.tracing_tag }} \
@@ -144,18 +151,18 @@ The complete command for running a tracing node is as follows:
     --chain {{ networks.moonbase.chain_spec }} \
     --name="YOUR-NODE-NAME" \
     --state-pruning archive \
-    --trie-cache-size 0 \
+    --trie-cache-size 1073741824 \
     --db-cache <50% RAM in MB> \
     --ethapi=debug,trace,txpool \
     --wasm-runtime-overrides=/moonbeam/moonbase-substitutes-tracing \
     --runtime-cache-size 64 \
     -- \
-    --execution wasm \
     --name="YOUR-NODE-NAME (Embedded Relay)"
     ```
 
 === "Moonbeam Dev Node"
-    ```
+
+    ```bash
     docker run --network="host" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     {{ networks.development.tracing_tag }} \
@@ -186,60 +193,70 @@ You'll need to create a directory for the Wasm runtime overrides and obtain them
 You can clone the repository to any location on your local machine. For simplicity, you can use the directory where you're storing on-chain data. To set up the Wasm override files, you can take the following steps:
 
 1. Clone the [Moonbeam Runtime Overrides repository](https://github.com/moonbeam-foundation/moonbeam-runtime-overrides){target=_blank}
-    ```
+
+    ```bash
     git clone https://github.com/moonbeam-foundation/moonbeam-runtime-overrides.git
     ```
 
 2. Move the Wasm overrides into your on-chain data directory:
 
     === "Moonbeam"
-        ```
+
+        ```bash
         mv moonbeam-runtime-overrides/wasm {{ networks.moonbeam.node_directory }}
         ```
 
     === "Moonriver"
-        ```
+
+        ```bash
         mv moonbeam-runtime-overrides/wasm {{ networks.moonriver.node_directory }}
         ```
 
     === "Moonbase Alpha"
-        ```
+
+        ```bash
         mv moonbeam-runtime-overrides/wasm {{ networks.moonbase.node_directory }}
         ```
 
 3. Delete the override files for the networks that you aren't running
 
     === "Moonbeam"
-        ```
+
+        ```bash
         rm {{ networks.moonbeam.node_directory }}/wasm/moonriver-runtime-* &&  rm {{ networks.moonbeam.node_directory }}/wasm/moonbase-runtime-*
         ```
 
     === "Moonriver"
-        ```
+
+        ```bash
         rm {{ networks.moonriver.node_directory }}/wasm/moonbeam-runtime-* &&  rm {{ networks.moonriver.node_directory }}/wasm/moonbase-runtime-*
         ```
 
     === "Moonbase Alpha"
-        ```
+
+        ```bash
         rm {{ networks.moonbase.node_directory }}/wasm/moonbeam-runtime-* &&  rm {{ networks.moonbase.node_directory }}/wasm/moonriver-runtime-*
         ```
 
 4. Set user permissions for the overrides:
 
     === "Moonbeam"
-        ```
+
+        ```bash
         chmod +x {{ networks.moonbeam.node_directory }}/wasm/*
         chown moonbeam_service {{ networks.moonbeam.node_directory }}/wasm/*
         ```
 
     === "Moonriver"
-        ```
+
+        ```bash
         chmod +x {{ networks.moonriver.node_directory }}/wasm/*
         chown moonriver_service {{ networks.moonriver.node_directory }}/wasm/*
         ```
 
     === "Moonbase Alpha"
-        ```
+
+        ```bash
         chmod +x {{ networks.moonbase.node_directory }}/wasm/*
         chown moonbase_service {{ networks.moonbase.node_directory }}/wasm/*
         ```
@@ -260,7 +277,8 @@ The next step is to create the systemd configuration file, you'll need to:
     For client versions prior to v0.30.0, `--rpc-port` was used to specify the port for HTTP connections and `--ws-port` was used to specify the port for WS connections. As of client v0.30.0, the `--rpc-port` has been deprecated and the `--ws-port` flag is for both HTTP and WS connections. Similarly, the `--rpc-max-connections` flag has been deprecated and is now hardcoded to 100. You can use `--ws-max-connections` to adjust the combined HTTP and WS connection limit.
 
 === "Moonbeam"
-    ```
+
+    ```bash
     [Unit]
     Description="Moonbeam systemd service"
     After=network.target
@@ -275,9 +293,8 @@ The next step is to create the systemd configuration file, you'll need to:
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
-         --execution wasm \
          --state-pruning=archive \
-         --trie-cache-size 0 \
+         --trie-cache-size 1073741824 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonbeam.node_directory }} \
          --ethapi=debug,trace,txpool \
@@ -286,7 +303,6 @@ The next step is to create the systemd configuration file, you'll need to:
          --chain {{ networks.moonbeam.chain_spec }} \
          --name "YOUR-NODE-NAME" \
          -- \
-         --execution wasm \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
     [Install]
@@ -294,7 +310,8 @@ The next step is to create the systemd configuration file, you'll need to:
     ```
 
 === "Moonriver"
-    ```
+
+    ```bash
     [Unit]
     Description="Moonriver systemd service"
     After=network.target
@@ -309,9 +326,8 @@ The next step is to create the systemd configuration file, you'll need to:
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
-         --execution wasm \
          --state-pruning=archive \
-         --trie-cache-size 0 \
+         --trie-cache-size 1073741824 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonriver.node_directory }} \
          --ethapi=debug,trace,txpool \
@@ -320,7 +336,6 @@ The next step is to create the systemd configuration file, you'll need to:
          --chain {{ networks.moonriver.chain_spec }} \
          --name "YOUR-NODE-NAME" \
          -- \
-         --execution wasm \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
     [Install]
@@ -328,7 +343,8 @@ The next step is to create the systemd configuration file, you'll need to:
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```bash
     [Unit]
     Description="Moonbase Alpha systemd service"
     After=network.target
@@ -343,9 +359,8 @@ The next step is to create the systemd configuration file, you'll need to:
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
-         --execution wasm \
          --state-pruning=archive \
-         --trie-cache-size 0 \
+         --trie-cache-size 1073741824 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonbase.node_directory }} \
          --ethapi=debug,trace,txpool \
@@ -354,7 +369,6 @@ The next step is to create the systemd configuration file, you'll need to:
          --chain {{ networks.moonbase.chain_spec }} \
          --name "YOUR-NODE-NAME" \
          -- \
-         --execution wasm \
          --name="YOUR-NODE-NAME (Embedded Relay)"
 
     [Install]
@@ -372,7 +386,7 @@ The next step is to create the systemd configuration file, you'll need to:
 
 You can also run the following command to see logs of the tracing node spinning up:
 
-```
+```bash
 journalctl -f -u moonbeam.service
 ```
 

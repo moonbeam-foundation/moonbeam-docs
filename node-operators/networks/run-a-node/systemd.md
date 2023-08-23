@@ -219,7 +219,8 @@ The next step is to create the systemd configuration file. If you are setting up
 ### Full Node {: #full-node }
 
 === "Moonbeam"
-    ```
+
+    ```bash
     [Unit]
     Description="Moonbeam systemd service"
     After=network.target
@@ -234,16 +235,13 @@ The next step is to create the systemd configuration file. If you are setting up
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
-         --execution wasm \
-         --wasm-execution compiled \
          --state-pruning=archive \
-         --trie-cache-size 0 \
+         --trie-cache-size 1073741824 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonbeam.node_directory }} \
          --chain {{ networks.moonbeam.chain_spec }} \
          --name "YOUR-NODE-NAME" \
          -- \
-         --execution wasm \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
     [Install]
@@ -251,7 +249,8 @@ The next step is to create the systemd configuration file. If you are setting up
     ```
 
 === "Moonriver"
-    ```
+
+    ```bash
     [Unit]
     Description="Moonriver systemd service"
     After=network.target
@@ -266,16 +265,13 @@ The next step is to create the systemd configuration file. If you are setting up
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
-         --execution wasm \
-         --wasm-execution compiled \
          --state-pruning=archive \
-         --trie-cache-size 0 \
+         --trie-cache-size 1073741824 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonriver.node_directory }} \
          --chain {{ networks.moonriver.chain_spec }} \
          --name "YOUR-NODE-NAME" \
          -- \
-         --execution wasm \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
     [Install]
@@ -283,7 +279,8 @@ The next step is to create the systemd configuration file. If you are setting up
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```bash
     [Unit]
     Description="Moonbase Alpha systemd service"
     After=network.target
@@ -298,16 +295,13 @@ The next step is to create the systemd configuration file. If you are setting up
     SyslogFacility=local7
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
-         --execution wasm \
-         --wasm-execution compiled \
          --state-pruning=archive \
-         --trie-cache-size 0 \
+         --trie-cache-size 1073741824 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonbase.node_directory }} \
          --chain {{ networks.moonbase.chain_spec }} \
          --name "YOUR-NODE-NAME" \
          -- \
-         --execution wasm \
          --name="YOUR-NODE-NAME (Embedded Relay)"
 
     [Install]
@@ -320,7 +314,8 @@ The next step is to create the systemd configuration file. If you are setting up
 ### Collator {: #collator }
 
 === "Moonbeam"
-    ```
+
+    ```bash
     [Unit]
     Description="Moonbeam systemd service"
     After=network.target
@@ -336,15 +331,12 @@ The next step is to create the systemd configuration file. If you are setting up
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
          --collator \
-         --execution wasm \
-         --wasm-execution compiled \
-         --trie-cache-size 0 \
+         --trie-cache-size 1073741824 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonbeam.node_directory }} \
          --chain {{ networks.moonbeam.chain_spec }} \
          --name "YOUR-NODE-NAME" \
          -- \
-         --execution wasm \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
     [Install]
@@ -352,7 +344,8 @@ The next step is to create the systemd configuration file. If you are setting up
     ```
 
 === "Moonriver"
-    ```
+
+    ```bash
     [Unit]
     Description="Moonriver systemd service"
     After=network.target
@@ -368,15 +361,12 @@ The next step is to create the systemd configuration file. If you are setting up
     KillSignal=SIGHUP
     ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
          --collator \
-         --execution wasm \
-         --wasm-execution compiled \
-         --trie-cache-size 0 \
+         --trie-cache-size 1073741824 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonriver.node_directory }} \
          --chain {{ networks.moonriver.chain_spec }} \
          --name "YOUR-NODE-NAME" \
          -- \
-         --execution wasm \
          --name="YOUR-NODE-NAME (Embedded Relay)"
     
     [Install]
@@ -384,7 +374,8 @@ The next step is to create the systemd configuration file. If you are setting up
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```bash
     [Unit]
     Description="Moonbase Alpha systemd service"
     After=network.target
@@ -400,15 +391,12 @@ The next step is to create the systemd configuration file. If you are setting up
     KillSignal=SIGHUP
     ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
          --collator \
-         --execution wasm \
-         --wasm-execution compiled \
-         --trie-cache-size 0 \
+         --trie-cache-size 1073741824 \
          --db-cache <50% RAM in MB> \
          --base-path {{ networks.moonbase.node_directory }} \
          --chain {{ networks.moonbase.chain_spec }} \
          --name "YOUR-NODE-NAME" \
          -- \
-         --execution wasm \
          --name="YOUR-NODE-NAME (Embedded Relay)"
 
     [Install]
