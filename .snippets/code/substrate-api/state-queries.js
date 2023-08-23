@@ -1,15 +1,25 @@
 import { ApiPromise, WsProvider } from '@polkadot/api';
 
-const wsProvider = new WsProvider('WSS-API-ENDPOINT-HERE');
-const api = await ApiPromise.create({ provider: wsProvider });
+const main = async () => {
+  // Construct API provider
+  const wsProvider = new WsProvider('INSERT_WSS_ENDPOINT');
+  const api = await ApiPromise.create({ provider: wsProvider });
 
-const addr = 'MOONBEAM-WALLET-ADDRESS-HERE';
+  // Define wallet address
+  const addr = 'INSERT_ADDRESS';
 
-const now = await api.query.timestamp.now();
-const { nonce, data: balance } = await api.query.system.account(addr);
-const nextNonce = await api.rpc.system.accountNextIndex(addr);
+  // Retrieve the last timestamp via the timestamp module
+  const now = await api.query.timestamp.now();
 
-console.log(`${now}: balance of ${balance.free} and a current nonce of ${nonce} and next nonce of ${nextNonce}`);
+  // Retrieve the account balance & current nonce via the system module
+  const { nonce, data: balance } = await api.query.system.account(addr);
 
-// Disconnect the API
-api.disconnect();
+  console.log(
+    `${now}: balance of ${balance.free} and a current nonce of ${nonce}`
+  );
+
+  // Disconnect the API
+  await api.disconnect();
+};
+
+main();
