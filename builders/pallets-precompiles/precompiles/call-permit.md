@@ -6,13 +6,13 @@ keywords: solidity, ethereum, call permit, permit, gasless transaction, moonbeam
 
 # Interacting with the Call Permit Precompile
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
-The Call Permit Precompile on Moonbeam allows a user to sign a permit, an [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=_blank} signed message, for any EVM call and it can be dispatched by anyone or any smart contract. It is similar to the [ERC-20 Permit Solidity Interface](/builders/interoperability/xcm/xc20/overview/#the-erc20-permit-interface){target=_blank}, except it applies to any EVM call instead of approvals only. 
+The Call Permit Precompile on Moonbeam allows a user to sign a permit, an [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=_blank} signed message, for any EVM call and it can be dispatched by anyone or any smart contract. It is similar to the [ERC-20 Permit Solidity Interface](/builders/interoperability/xcm/xc20/overview/#the-erc20-permit-interface){target=_blank}, except it applies to any EVM call instead of approvals only.
 
 When the call permit is dispatched, it is done so on behalf of the user who signed the permit and the user or contract that dispatches the permit is responsible for paying transaction fees. As such, the precompile can be used to perform gas-less transactions.
 
-For example, Alice signs a call permit and Bob dispatches it and performs the call on behalf of Alice. Bob pays for the transaction fees and as such, Alice doesn't need to have any of the native currency to pay for the transaction, unless the call includes a transfer. 
+For example, Alice signs a call permit and Bob dispatches it and performs the call on behalf of Alice. Bob pays for the transaction fees and as such, Alice doesn't need to have any of the native currency to pay for the transaction, unless the call includes a transfer.
 
 The Call Permit Precompile is located at the following address:
 
@@ -35,7 +35,7 @@ The Call Permit Precompile is located at the following address:
 
 ## The Call Permit Solidity Interface {: #the-call-permit-interface }
 
-[`CallPermit.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/call-permit/CallPermit.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's three methods.
+[`CallPermit.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/call-permit/CallPermit.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's three methods.
 
 The interface includes the following functions:
 
@@ -55,13 +55,13 @@ The interface includes the following functions:
 
 --8<-- 'text/precompiles/call-permit/domain-separator.md'
 
-When `dispatch` is called, the permit needs to be verified before the call is dispatched. The first step is to [compute the domain separator](https://github.com/PureStake/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L138){target=_blank}. The calculation can be seen in [Moonbeam's implementation](https://github.com/PureStake/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L112-L126){target=_blank} or you can check out a practical example in [OpenZeppelin's EIP712 contract](ttps://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/cryptography/draft-EIP712.sol#L70-L84){target=_blank}.
+When `dispatch` is called, the permit needs to be verified before the call is dispatched. The first step is to [compute the domain separator](https://github.com/moonbeam-foundation/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L138){target=_blank}. The calculation can be seen in [Moonbeam's implementation](https://github.com/moonbeam-foundation/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L112-L126){target=_blank} or you can check out a practical example in [OpenZeppelin's EIP712 contract](ttps://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/cryptography/draft-EIP712.sol#L70-L84){target=_blank}.
 
-From there, a [hash of the signature and the given arguments](https://github.com/PureStake/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L140-L151){target=_blank} is generated which guarantees that the signature can only be used for the call permit. It uses a given nonce to ensure the signature is not subject to a replay attack. It is similar to [OpenZeppelin's `ERC20Permit` contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/token/ERC20/extensions/draft-ERC20Permit.sol#L52){target=_blank}, except the `PERMIT_TYPEHASH` is for a call permit, and the arguments match that of the [dispatch function](#:~:text=The interface includes the following functions) plus the nonce.
+From there, a [hash of the signature and the given arguments](https://github.com/moonbeam-foundation/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L140-L151){target=_blank} is generated which guarantees that the signature can only be used for the call permit. It uses a given nonce to ensure the signature is not subject to a replay attack. It is similar to [OpenZeppelin's `ERC20Permit` contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/token/ERC20/extensions/draft-ERC20Permit.sol#L52){target=_blank}, except the `PERMIT_TYPEHASH` is for a call permit, and the arguments match that of the [dispatch function](#:~:text=The interface includes the following functions) plus the nonce.
 
-The domain separator and the hash struct can be used to build the [final hash](https://github.com/PureStake/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L153-L157){target=_blank} of the fully encoded message. A practical example is shown in [OpenZeppelin's EIP712 contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/cryptography/draft-EIP712.sol#L101){target=_blank}.
+The domain separator and the hash struct can be used to build the [final hash](https://github.com/moonbeam-foundation/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L153-L157){target=_blank} of the fully encoded message. A practical example is shown in [OpenZeppelin's EIP712 contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/cryptography/draft-EIP712.sol#L101){target=_blank}.
 
-With the final hash and the v, r, and s values, the signature can be [verified and recovered](https://github.com/PureStake/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L211-L223){target=_blank}. If successfully verified, the nonce will increase by one and the call will be dispatched.
+With the final hash and the v, r, and s values, the signature can be [verified and recovered](https://github.com/moonbeam-foundation/moonbeam/blob/ae705bb2e9652204ace66c598a00dcd92445eb81/precompiles/call-permit/src/lib.rs#L211-L223){target=_blank}. If successfully verified, the nonce will increase by one and the call will be dispatched.
 
 ## Setup the Contracts {: #setup-the-example-contract }
 
@@ -69,7 +69,7 @@ For this example, you'll learn how to sign a call permit that updates a message 
 
 Once you've setup the example contract, then you can setup the Call Permit Precompile contract.
 
-### Checking Prerequisites {: #checking-prerequisites } 
+### Checking Prerequisites {: #checking-prerequisites }
 
 To follow along with this tutorial, you will need to have:
 
@@ -99,9 +99,9 @@ contract SetMessage {
 }
 ```
 
-### Remix Set Up {: #remix-set-up } 
+### Remix Set Up {: #remix-set-up }
 
-You can use [Remix](https://remix.ethereum.org/){target=_blank} to compile the example contract and deploy it. You'll need a copy of [`SetMessage.sol`](#example-contract){target=_blank} and [`CallPermit.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/call-permit/CallPermit.sol){target=_blank}. To add the contracts to Remix, you can take the following steps:
+You can use [Remix](https://remix.ethereum.org/){target=_blank} to compile the example contract and deploy it. You'll need a copy of [`SetMessage.sol`](#example-contract){target=_blank} and [`CallPermit.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/call-permit/CallPermit.sol){target=_blank}. To add the contracts to Remix, you can take the following steps:
 
 1. Click on the **File explorer** tab
 2. Paste the `SetMessage.sol` contract into a Remix file named `SetMessage.sol`
@@ -109,21 +109,12 @@ You can use [Remix](https://remix.ethereum.org/){target=_blank} to compile the e
 
 ![Copying and pasting the example contract into Remix](/images/builders/pallets-precompiles/precompiles/call-permit/call-1-new.png)
 
-### Compile & Deploy the Example Contract {: #compile-deploy-example-contract } 
+### Compile & Deploy the Example Contract {: #compile-deploy-example-contract }
 
 First you'll need to compile the example contract:
 
 1. Click on the **Compile** tab, second from top
 2. Then to compile the interface, click on **Compile SetMessage.sol**
-
-!!! note
-    With the release of [Solidity v0.8.20](https://github.com/ethereum/solidity/releases/tag/v0.8.20){target=_blank}, support for the Shanghai hard fork has been introduced, which includes `PUSH0` opcodes in the generated bytecode. Support for the `PUSH0` opcode on Moonbeam hasn't been rolled out yet. As such, if you'd like to use Solidity v0.8.20, you'll need to modify some configurations. From the **Advanced Configurations** dropdown, you can set the **EVM VERSION** to **london**.
-
-    If you attempt to use the default compiler of Solidity v0.8.20, you will see the following error:
-
-    ```
-    {'code': -32603, 'message': 'evm error: InvalidCode(Opcode(95))', 'data': '0x'}
-    ```
 
 ![Compiling SetMessage.sol](/images/builders/pallets-precompiles/precompiles/call-permit/call-2.png)
 
@@ -199,7 +190,7 @@ The nonce of the signer will also be needed. If this is your first time signing 
 To get started, you can open [JSFiddle](https://jsfiddle.net/){target=_blank} or another JavaScript playground in the browser. First, you'll need to add [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank} as it will be used to get the `v`, `r`, and `s` values of the signature:
 
 1. Click on **Resources**
-2. Start to type in `ethers` and the dropdown should populate matching libraries. Choose **ethers** 
+2. Start to type in `ethers` and the dropdown should populate matching libraries. Choose **ethers**
 3. Click on the **+** button
 
 The CDN for Ethers.js will appear in the list of libraries under **Resources**.

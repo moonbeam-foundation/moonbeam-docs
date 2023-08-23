@@ -69,9 +69,9 @@ A channel for XCMs between the relay chain and parachain is automatically opened
  2. [BuyExecution](https://github.com/paritytech/xcm-format#buyexecution){target=_blank}
  3. [Transact](https://github.com/paritytech/xcm-format#transact){target=_blank}
 
-Here, **Transact** will include the encoded call data to execute a channel open/accept action in the relay chain. Additional instructions can be included to refund assets that were not consumed during the execution. 
+Here, **Transact** will include the encoded call data to execute a channel open/accept action in the relay chain. Additional instructions can be included to refund assets that were not consumed during the execution.
 
-The XCM message sent to the relay chain consists of at least: 
+The XCM message sent to the relay chain consists of at least:
 
 - The destination where the message will be executed (relay chain in this case)
 - The account that will pay the fees (paid in the relay chain token)
@@ -94,7 +94,7 @@ Once the channel is established, assets need to be registered before being trans
 
 ## XCM Asset Registration {: #xcm-asset-registration }
 
-Once a channel is established between parachains (or relay chain-parachain), asset registration can occur. 
+Once a channel is established between parachains (or relay chain-parachain), asset registration can occur.
 
 In general, asset registration can happen at a runtime level, which means that a runtime upgrade is required, after which the asset is now registered and supported by XCM. However, Moonbeam included a Substrate pallet to handle asset registration without the need for runtime upgrades, making the process a lot simpler.
 
@@ -103,11 +103,11 @@ When registering an XCM asset, the extrinsic must include (among other things):
 - Parachain ID of where the origin asset is located
 - Type of asset. At the time of writing, you can register either the native parachain token or an asset created via the [Pallet Assets](https://github.com/paritytech/substrate/blob/master/frame/assets/src/lib.rs){target=_blank}, by providing its index
 - An asset name, symbol, and decimal count
-- Minimum balance 
+- Minimum balance
 
 After the XCM asset is registered, the units per second of execution may be set. This is a metric used to charge the incoming XCM message for its execution in the target parachain, similar to gas fees in the Ethereum world. Nevertheless, fees can be charged in another token, for example, DOT. If the amount of tokens being sent via the XCM is not enough to cover the XCM execution, the XCM transaction fails, and the spent fee is not refunded.
 
-Once the channel has been successfully established, the XCM asset registered in the target parachain, and the units per second of execution set, users should be able to start transferring assets. 
+Once the channel has been successfully established, the XCM asset registered in the target parachain, and the units per second of execution set, users should be able to start transferring assets.
 
 All the actions mentioned above can be executed via SUDO (if available), or through Democracy (technical committee or referenda).
 
@@ -115,11 +115,11 @@ All the actions mentioned above can be executed via SUDO (if available), or thro
 
 As Moonbeam is a parachain within the Polkadot ecosystems, one of the most direct implementations of XCM is to enable asset transfer from Polkadot and other parachains from/to Moonbeam. This will allow users to bring their tokens to Moonbeam and all its dApps.
 
-Expanding on Moonbeam's unique Ethereum compatibility features, foreign assets will be represented via a standard [ERC-20 interface](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=_blank} through a precompiled contract. XCM assets on Moonbeam are called XC-20s, to differentiate native XCM assets from ERC-20 generated via the EVM. The precompile contract will access the necessary Substrate functions to perform the required actions. Nevertheless, from a developer's perspective, XC-20s are ERC-20 tokens with the added benefit of being an XCM cross-chain asset, and dApps can easily support them through a familiar ERC-20 interface.  
+Expanding on Moonbeam's unique Ethereum compatibility features, foreign assets will be represented via a standard [ERC-20 interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=_blank} through a precompiled contract. XCM assets on Moonbeam are called XC-20s, to differentiate native XCM assets from ERC-20 generated via the EVM. The precompile contract will access the necessary Substrate functions to perform the required actions. Nevertheless, from a developer's perspective, XC-20s are ERC-20 tokens with the added benefit of being an XCM cross-chain asset, and dApps can easily support them through a familiar ERC-20 interface.  
 
 ![Moonbeam XC-20 XCM Integration With Polkadot](/images/builders/interoperability/xcm/overview/overview-4.png)
 
-The precompile does not support cross-chain transfers to stay as close as possible to the original ERC-20 interface. Consequently, developers will have to rely on the Substrate API and XCMs to move the assets back to their original chain, or on a different [precompile contract](https://github.com/PureStake/moonbeam/tree/master/precompiles/xtokens){target=_blank} to access XCM based features from the Ethereum API.
+The precompile does not support cross-chain transfers to stay as close as possible to the original ERC-20 interface. Consequently, developers will have to rely on the Substrate API and XCMs to move the assets back to their original chain, or on a different [precompile contract](https://github.com/moonbeam-foundation/moonbeam/tree/master/precompiles/xtokens){target=_blank} to access XCM based features from the Ethereum API.
 
 Depending on the target blockchain, asset transfers can be done via teleporting or remote transfers, the latter being the most common method used. Initially, Moonbeam will only support remote transfers.
 
@@ -155,7 +155,7 @@ Polkadot will execute the action the XCM message is programmed to do locally. In
 
 ### Moonbeam & Other Parachains {: #moonbeam-other-parachains }
 
-As Moonbeam is a parachain within the Polkadot ecosystem, XCM + XCMP allows asset transfers from/to Moonbeam and other parachains. This section goes through a high-level overview of the main differences compared to XCMs from/to Polkadot/Moonbeam. 
+As Moonbeam is a parachain within the Polkadot ecosystem, XCM + XCMP allows asset transfers from/to Moonbeam and other parachains. This section goes through a high-level overview of the main differences compared to XCMs from/to Polkadot/Moonbeam.
 
 The first requirement is that a channel between the parachains must exist, and the asset being transferred must be registered in the target parachain. Only when both conditions are met can XCMs be sent between parachains.
 

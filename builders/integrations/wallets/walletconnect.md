@@ -5,9 +5,9 @@ description: Learn how to integrate WalletConnect into a dApp built on any of th
 
 # Integrate WalletConnect into a DApp
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
-[WalletConnect](https://walletconnect.com/){target=_blank} is an open protocol to communicate securely between wallets and DApps. 
+[WalletConnect](https://walletconnect.com/){target=_blank} is an open protocol to communicate securely between wallets and DApps.
 
 WalletConnect establishes a remote connection between a DApp and mobile wallet by using a bridge server to relay payloads. The connection is initiated via a QR code displayed in a DApp, which will need to be scanned and approved by a mobile wallet. When a connection is established, the payloads between the DApp and wallet are encrypted through a shared key.
 
@@ -17,14 +17,15 @@ WalletConnect can also be used to establish a connection between a DApp and a de
 
 In this guide, you'll learn how to integrate WalletConnect into a simple DApp built on the Moonbase Alpha TestNet. The guide will be divided into a few different sections. The first section will cover connecting your DApp to MetaMask mobile. After the connection has been established, the guide will cover disconnections. This way, when you are testing your DApp you will be able to connect and then disconnect so you don't end up with a bunch of unnecessary WalletConnect sessions lingering in MetaMask mobile. Afterwards you will learn how to display network and account details when connected, and send transactions from your DApp to MetaMask mobile for confirmation.
 
-This guide is an adaptation of the [WalletConnect Example Dapp](https://example.walletconnect.org/){target=_blank} ([source code](https://github.com/WalletConnect/walletconnect-example-dapp){target=_blank}). To view the end result, you can check out the [Moonbeam WalletConnect Demo app](https://moonbeam-walletconnect-demo.netlify.app/){target=_blank} ([source code](https://github.com/PureStake/moonbeam-walletconnect-demo){target=_blank}).
+This guide is an adaptation of the [WalletConnect Example Dapp](https://example.walletconnect.org/){target=_blank} ([source code](https://github.com/WalletConnect/walletconnect-example-dapp){target=_blank}). To view the end result, you can check out the [Moonbeam WalletConnect Demo app](https://moonbeam-walletconnect-demo.netlify.app/){target=_blank} ([source code](https://github.com/papermoonio/moonbeam-walletconnect-demo){target=_blank}).
 
 ## Quick Start {: #quick-start }
 
 If you already have a DApp with WalletConnect support, and just want to add Moonbeam support, you can use the following network configurations:
 
 === "Moonbeam"
-    ```
+
+    ```js
     {
       name: "Moonbeam",
       short_name: "moonbeam",
@@ -44,7 +45,8 @@ If you already have a DApp with WalletConnect support, and just want to add Moon
     ```
 
 === "Moonriver"
-    ```
+
+    ```js
     {
       name: "Moonriver",
       short_name: "moonriver",
@@ -64,7 +66,8 @@ If you already have a DApp with WalletConnect support, and just want to add Moon
     ```
 
 === "Moonbase Alpha"
-    ```
+
+    ```js
     {
       name: "Moonbase Alpha",
       short_name: "moonbase",
@@ -93,14 +96,14 @@ npm install ethers @walletconnect/client @walletconnect/qrcode-modal
 
 This guide will use MetaMask mobile for testing purposes. To install MetaMask mobile, you can go to [metamask.io/download/](https://metamask.io/download/){target=_blank} and switch to either the **iOS** or **Android** tab.
 
-Lastly, you will need to have an account funded with DEV tokens, so that you can test out sending a transaction. 
+Lastly, you will need to have an account funded with DEV tokens, so that you can test out sending a transaction.
  --8<-- 'text/faucet/faucet-sentence.md'
 
 ## Getting Started {: #getting-started }
 
 To get started quickly with the Moonbeam WalletConnect template, which provides everything you need to dive right in, you'll need to take the following steps:
 
-1. Clone the [walletconnect-template GitHub repository](https://github.com/PureStake/moonbeam-walletconnect-template){target=_blank}
+1. Clone the [walletconnect-template GitHub repository](https://github.com/papermoonio/moonbeam-walletconnect-template){target=_blank}
 2. Run `npm install` to install the required dependencies
 3. Run `npm start` to spin up a local instance of the DApp
 
@@ -112,7 +115,7 @@ There are a couple of ways you can connect your MetaMask mobile wallet to the Mo
 
 In this section, you will learn how to make a connection between your DApp and MetaMask mobile. WalletConnect establishes a remote connection between a DApp and mobile wallet by using a bridge server to relay payloads. The connection is initiated via a QR code displayed in the DApp, which will need to be scanned and approved by the mobile wallet.
 
-To get started, you can open up the [`App.js` file of the template](https://github.com/PureStake/moonbeam-walletconnect-template/blob/main/src/App.js){target=_blank} and the first changes will be made within the `connect` function. This function will handle the connection logic by creating a new instance of the WalletConnect connector. You'll notice that the `setFetching` state hook is already in place. This will be used to set the `fetching` state variable to `true` while the connection is being established. In general the `connect` function will:
+To get started, you can open up the [`App.js` file of the template](https://github.com/papermoonio/moonbeam-walletconnect-template/blob/main/src/App.js){target=_blank} and the first changes will be made within the `connect` function. This function will handle the connection logic by creating a new instance of the WalletConnect connector. You'll notice that the `setFetching` state hook is already in place. This will be used to set the `fetching` state variable to `true` while the connection is being established. In general the `connect` function will:
 
 1. Create the WalletConnect Connector and pass in the URL for the bridge server and the WalletConnect QR code modal
 2. Use the `setConnector` state hook to update the `connector` state variable
@@ -135,13 +138,13 @@ const connect = async () => {
 };
 ```
 
-Now that you have the `connect` function setup, you can create a **Connect Wallet** button that will call it `onClick`. You can replace the `{/* buttons and network details will go here */}` comment in the [template](https://github.com/PureStake/moonbeam-walletconnect-template/blob/main/src/App.js#L124){target=_blank} with the following button:
+Now that you have the `connect` function setup, you can create a **Connect Wallet** button that will call it `onClick`. You can replace the `{/* buttons and network details will go here */}` comment in the [template](https://github.com/papermoonio/moonbeam-walletconnect-template/blob/main/src/App.js#L124){target=_blank} with the following button:
 
-```html
+```jsx
 <Button onClick={connect}>Connect Wallet</Button>
 ```
 
-To test out the code so far, if you haven't already you can run `npm start` to spin up a local instance of your DApp. Then click on **Connect Wallet**. The WalletConnect QR code modal will pop-up. 
+To test out the code so far, if you haven't already you can run `npm start` to spin up a local instance of your DApp. Then click on **Connect Wallet**. The WalletConnect QR code modal will pop-up.
 
 ![Scan QR code from DApp](/images/builders/integrations/wallets/walletconnect/walletconnect-2.png)
 
@@ -197,7 +200,7 @@ const killSession = () => {
 
 Now that you have all of the logic required to handle the disconnection, you will need the **Disconnect** button that `onClick` will call the `killSession` function. Since you only want to display the **Disconnect** button once a user is connected, you can use [conditional renderering](https://reactjs.org/docs/conditional-rendering.html){target=_blank}. Conditional rendering allows you to check against certain variables and if a condition applies you can render one element or another. In this case, if you are not fetching the initial connection and the connector exists, you can render the **Disconnect** button, otherwise render the **Connect Wallet** button. You can replace the existing `<Button>` with the following:
 
-```html
+```jsx
 {connector && !fetching ? (
   <OutlinedButton onClick={killSession}>Disconnect</OutlinedButton>
 ) : (
@@ -233,7 +236,7 @@ So far you've setup the minimum logic required for connecting and disconnecting 
 
 With the basics of connecting and disconnecting out of the way, you can expand on what is displayed in the DApp when a user is connected. The first thing you'll want to do is check if the network they are on is supported and if not display a message that requests them to switch the network.
 
-The template comes with a list of supported networks, you can find it under [`src/helpers/networks.js`](https://github.com/PureStake/moonbeam-walletconnect-template/blob/main/src/helpers/networks.js){target=_blank}. For the purposes of this guide, Moonbase Alpha is the only one that you'll be testing but you can feel free to uncomment the Moonbeam and Moonriver network configurations and add additional networks as needed.
+The template comes with a list of supported networks, you can find it under [`src/helpers/networks.js`](https://github.com/papermoonio/moonbeam-walletconnect-template/blob/main/src/helpers/networks.js){target=_blank}. For the purposes of this guide, Moonbase Alpha is the only one that you'll be testing but you can feel free to uncomment the Moonbeam and Moonriver network configurations and add additional networks as needed.
 
 You can add the logic to check if the connected network is supported to the `onConnect` function. The `onConnect` function is called anytime a `connect` event is emitted. If the user is connected to a supported network, you can display network details such as the chain ID, network name, and more. You can add the following state variables and hooks:
 
@@ -266,7 +269,7 @@ const onConnect = async (chainId, connectedAccount) => {
 };
 ```
 
-If the network does exist in the list of supported networks, you can then save additional network name and symbol. The symbol will be used later on to display the connected account's balance. 
+If the network does exist in the list of supported networks, you can then save additional network name and symbol. The symbol will be used later on to display the connected account's balance.
 
 You can replace the `// set additional network data here` comment with the following:
 
@@ -285,7 +288,7 @@ useEffect(() => {
 
 Then to render these state variables on the page, you can include additional UI elements alongside the **Disconnect** button. Again, you can use conditional rendering to display specific details or an error message if the network is supported or not.
 
-```html
+```jsx
 {connector && !fetching ? (
   <LoadedData>
     <Data>
@@ -323,7 +326,7 @@ While you're developing the DApp, you'll want to handle page refreshes and updat
 
 The template already has a `refreshData` function, it just needs to be called under certain circumstances. If the `connector` exists and is connected, but the `chainId` or `account` doesn't you should call the `refreshData` function and use the `connector` configurations to update state and re-render the variables on the page.
 
-You can replace the `// check state variables here & if needed refresh the app` [comment](https://github.com/PureStake/moonbeam-walletconnect-template/blob/main/src/App.js#L84){target=_blank} with the following:
+You can replace the `// check state variables here & if needed refresh the app` [comment](https://github.com/papermoonio/moonbeam-walletconnect-template/blob/main/src/App.js#L84){target=_blank} with the following:
 
 ```js
 // If any of these variables do not exist and the connector is connected, refresh the data
@@ -396,7 +399,7 @@ if ((!chainId || !account || !balance) && connector.connected) {
 
 Finally, you can display the account balance if the user is connected to a supported network. You can use the `symbol` state variable that was created earlier on in the guide to show the balance in **DEV** for Moonbase Alpha.
 
-```html
+```jsx
 {supported ? (
   <>
     <Data>
@@ -434,7 +437,7 @@ const sendTransaction = async () => {
 
 To initiate the transaction from the DApp, you will need to create a button, that `onClick` calls the `sendTransaction` function. This should only be done if the connected network is a supported network.
 
-```html
+```jsx
 {supported ? (
   <>
     <Data>
@@ -465,7 +468,7 @@ You can also confirm the transaction went through by searching for your account 
 
 ![DApp Final Result](/images/builders/integrations/wallets/walletconnect/walletconnect-6.png)
 
-To review the code for this tutorial in one place, you can check out the [moonbeam-walletconnect-demo GitHub repository](https://github.com/PureStake/moonbeam-walletconnect-demo){target=_blank}.
+To review the code for this tutorial in one place, you can check out the [moonbeam-walletconnect-demo GitHub repository](https://github.com/papermoonio/moonbeam-walletconnect-demo){target=_blank}.
 
 To see all of the code in action, you can check out the deployed [Moonbeam WalletConnect Demo App](https://moonbeam-walletconnect-demo.netlify.app/){target=_blank}.
 

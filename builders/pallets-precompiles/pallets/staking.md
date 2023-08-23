@@ -10,7 +10,7 @@ keywords: staking, substrate, pallet, moonbeam, polkadot
 
 Moonbeam uses a Delegated Proof of Stake (DPoS) system that determines which collators are eligible to produce blocks based on their total stake in the network. For general information on staking, such as general terminology, staking variables, and more, please refer to the [Staking on Moonbeam](/learn/features/staking){target=_blank} page.
 
-The DPoS system is powered by the [parachain staking](https://github.com/PureStake/moonbeam/tree/master/pallets/parachain-staking/src){target=_blank} pallet, allowing token holders (delegators) to express exactly which collator candidates they would like to support and with what quantity of stake. The design of the parachain staking pallet is such that it enforces shared risk/reward on chain between delegators and candidates.
+The DPoS system is powered by the [parachain staking](https://github.com/moonbeam-foundation/moonbeam/tree/master/pallets/parachain-staking/src){target=_blank} pallet, allowing token holders (delegators) to express exactly which collator candidates they would like to support and with what quantity of stake. The design of the parachain staking pallet is such that it enforces shared risk/reward on chain between delegators and candidates.
 
 Some of the functionality of the parachain staking pallet is also available through a staking precompile. The precompile is a Solidity interface that enables you to perform staking actions through the Ethereum API. Please refer to the [Staking Precompile](/builders/pallets-precompiles/precompiles/staking){target=_blank} guide for more information.
 
@@ -58,7 +58,7 @@ The parachain staking pallet provides the following extrinsics (functions):
 - **cancelLeaveCandidates**(candidateCount) - cancels a candidate's pending scheduled request to leave the candidate pool given the current number of candidates in the pool
 - **cancelLeaveDelegators**() - *deprecated as of runtime 1800* - cancels a pending scheduled request to leave the set of delegators. Use the [batch utility](/builders/pallets-precompiles/pallets/utility/#using-the-batch-extrinsics){target=_blank} with `cancelDelegationRequest` for all delegations instead
 - **candidateBondMore**(more) - request to increase a candidate's self bond by a specified amount
-- **delegate**(candidate, amount, candidateDelegationCount, delegationCount) -  request to add a delegation to a specific candidate for a given amount and sets the percentage of rewards to auto-compound automatically to `0`. If the caller is not a delegator, this function adds them to the set of delegators. If the caller is already a delegator, then it adjusts their delegation amount
+- **delegate**(candidate, amount, candidateDelegationCount, delegationCount) - *deprecated as of runtime 2400* - request to add a delegation to a specific candidate for a given amount. Use the `delegateWithAutoCompound` extrinsic instead
 - **delegateWithAutoCompound**(candidate, amount, autoCompound, candidateDelegationCount, candidateAutoCompoundingDelegationCount, delegationCount) - delegates a collator candidate and sets the percentage of rewards to auto-compound given an integer (no decimals) for the `amount` between 0-100. If the caller is not a delegator, this function adds them to the set of delegators. If the caller is already a delegator, then it adjusts their delegation amount
 - **delegatorBondMore**(candidate, more) - request to increase a delegator's amount delegated for a specific candidate
 - **executeCandidateBondLess**(candidate) - executes any scheduled due requests to decrease a candidate's self bond amount
@@ -115,15 +115,15 @@ The parachain staking pallet includes the following read-only storage methods to
 The parachain staking pallet includes the following read-only functions to obtain pallet constants:
 
 - **candidateBondLessDelay**() - returns the number of rounds that must be waited until a candidate's scheduled request to decrease their self bond can be executed
-- **defaultBlocksPerRound**() - returns the default number of blocks per round
-- **defaultCollatorCommission**() - returns the default commission due to collators
-- **defaultParachainBondReservePercent**() - returns the default percent of inflation set aside for the parachain bond account
+- **defaultBlocksPerRound**() -  *deprecated as of runtime 1900* - returns the default number of blocks per round
+- **defaultCollatorCommission**() - *deprecated as of runtime 1900* - returns the default commission due to collators
+- **defaultParachainBondReservePercent**() - *deprecated as of runtime 1900* - returns the default percent of inflation set aside for the parachain bond account
 - **delegationBondLessDelay**() - returns the number of rounds that must be waited until a scheduled request to decrease a delegation can be executed
 - **leaveCandidatesDelay**() - returns the number of rounds that must be waited before a scheduled request for a candidate to leave the candidate pool can be executed
 - **leaveDelegatorsDelay**() - returns the number of rounds that must be waited before a scheduled request for a delegator to leave the set of delegators can be executed
-- **maxBottomDelegationsPerCandidate**() - returns the maximum number of bottom delegations per candidate 
+- **maxBottomDelegationsPerCandidate**() - returns the maximum number of bottom delegations per candidate
 - **maxDelegationsPerDelegator**() - returns the maximum number of delegations per delegator  
-- **maxTopDelegationsPerCandidate**() - returns the maximum number of top delegations per candidate 
+- **maxTopDelegationsPerCandidate**() - returns the maximum number of top delegations per candidate
 - **minBlocksPerRound**() - returns the minimum number of blocks per round
 - **minCandidateStk**() - returns the minimum stake required for a candidate to be a collator candidate
 - **minCollatorStk**() - *deprecated as of runtime 2400* - returns the minimum stake required for a candidate to be in the active set

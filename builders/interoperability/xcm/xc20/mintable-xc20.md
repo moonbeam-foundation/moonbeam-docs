@@ -5,13 +5,13 @@ description: Learn about cross chain assets that can be minted and burned on a M
 
 # Mintable XC-20s
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 As covered in the [XC-20 Overview](/builders/interoperability/xcm/xc20/overview){target=_blank}, there are two [types of XC-20s](/builders/interoperability/xcm/xc20/overview#types-of-xc-20s){target=_blank}: [external](/builders/interoperability/xcm/xc20/overview/#external-xc20s){target=_blank} and mintable. The key distinction between external and mintable XC-20s, is that mintable XC-20s represent assets that are minted/burned in Moonbeam directly, but have native XCM interoperability features. Also, mintable XC-20s can be transferred to any other parachain as long as it is registered as an XCM asset on that chain, as covered in the [XCM overview](/builders/interoperability/xcm/overview/){target=_blank} page. In contrast, external XC-20s represent assets that are locked in Moonbeam's sovereign account in either the relay chain or other parachains, and are registered as such on Moonbeam. This guide will cover mintable XC-20s.
 
 All XC-20s are Substrate assets at their core. Typically with Substrate assets, developers need to interact directly with the Substrate API. However, Moonbeam removes the need for Substrate knowledge and allows users and developers to interact with these assets through an ERC-20 interface via a precompile contract. Therefore, developers can use standard Ethereum developer tooling to interact with these assets. Mintable XC-20s include an extension of the ERC-20 interface with some additional functionality for managing the asset and setting the metadata, such as the name, symbol, and decimals for the asset. There are also some additional roles in place for asset registration and management.
 
-Currently, mintable XC-20 assets need to be created through democracy proposals and be voted on via on-chain governance. Once a proposal has received majority votes and has been approved the asset can then be registered and minted on Moonbeam. In addition, there is a [deposit](#create-a-proposal) (bond) associated to the creation of a mintable XC-20 token. 
+Currently, mintable XC-20 assets need to be created through democracy proposals and be voted on via on-chain governance. Once a proposal has received majority votes and has been approved the asset can then be registered and minted on Moonbeam. In addition, there is a [deposit](#create-a-proposal) (bond) associated to the creation of a mintable XC-20 token.
 
 ## Mintable XC-20 Roles {: #mintable-xc-20-roles }
 
@@ -37,13 +37,13 @@ The breakdown of responsibilities for each role is as follows:
 
 The Solidity interface for Mintable XC-20 tokens is a combination of the following three interfaces:
 
- - [ERC-20 Interface](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=_blank} — as described in the [XC-20 overview page](/builders/interoperability/xcm/xc20/overview/#the-erc20-interface){target=_blank}
- - [Permit Interface (EIP-712 compliant)](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol){target=_blank} — as described in the [XC-20 overview page](/builders/interoperability/xcm/xc20/overview/#the-erc20-permit-interface){target=_blank}
- - [Mintable interface](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/LocalAsset.sol){target=_blank} — as described in the [following section](#additional-functions)
+ - [ERC-20 Interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/assets-erc20/ERC20.sol){target=_blank} — as described in the [XC-20 overview page](/builders/interoperability/xcm/xc20/overview/#the-erc20-interface){target=_blank}
+ - [Permit Interface (EIP-712 compliant)](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/assets-erc20/Permit.sol){target=_blank} — as described in the [XC-20 overview page](/builders/interoperability/xcm/xc20/overview/#the-erc20-permit-interface){target=_blank}
+ - [Mintable interface](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/assets-erc20/LocalAsset.sol){target=_blank} — as described in the [following section](#additional-functions)
 
 ## Mintable XC-20 Specific Functions {: #additional-functions }
 
-Mintable XC-20s include additional functions that only the owner or the designated account is allowed to call. They are declared in the [LocalAsset.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/LocalAsset.sol){target=_blank} interface, and are as follows:
+Mintable XC-20s include additional functions that only the owner or the designated account is allowed to call. They are declared in the [LocalAsset.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/assets-erc20/LocalAsset.sol){target=_blank} interface, and are as follows:
 
 - **mint(*address* to, *uint256* value)** - mints a given amount of tokens to a specified address. Only the owner and the issuer are capable of calling this function
 
@@ -207,7 +207,7 @@ As previously mentioned, this section of the guide will only cover interacting w
 
 First, you will need to add the `LocalAsset` interface to [Remix](https://remix.ethereum.org/){target=_blank}. Then you can take the following steps:
 
-1. Get a copy of [LocalAsset.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/assets-erc20/LocalAsset.sol){target=_blank}
+1. Get a copy of [LocalAsset.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/assets-erc20/LocalAsset.sol){target=_blank}
 2. Paste the file contents into a Remix file named **ILocalAsset.sol**
 
 ![Load the interface in Remix](/images/builders/interoperability/xcm/xc20/mintable-xc20/mintable-xc20-6.png)

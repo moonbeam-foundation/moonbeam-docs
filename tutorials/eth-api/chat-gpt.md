@@ -5,7 +5,7 @@ description: Learn how you can use OpenAI's ChatGPT (GPT-4) generative AI LLM to
 
 # Using GPT-4 to Write and Debug Solidity Smart Contracts
 
-_May 10, 2023 | by Kevin Neilson_
+_by Kevin Neilson_
 
 ## Introduction {: #introduction }
 

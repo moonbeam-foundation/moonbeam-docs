@@ -6,7 +6,7 @@ keywords: solidity, ethereum, collective, proposal, council technical, committee
 
 # Interacting with the Collective Precompile
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 The Collective Precompile enables a user to directly interact with [Substrate's collective pallet](https://paritytech.github.io/substrate/master/pallet_collective/index.html){target=_blank} directly from a Solidity interface.
 
@@ -43,11 +43,11 @@ The Collective Precompiles are located at the following addresses:
 
 ## The Collective Solidity Interface {: #the-call-permit-interface }
 
-[`Collective.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/collective/Collective.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's five methods.
+[`Collective.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=_blank} is a Solidity interface that allows developers to interact with the precompile's five methods.
 
 The interface includes the following functions:
 
-- **execute**(*bytes memory* proposal) - executes a proposal as a single member of the collective. The sender must be a member of the collective. This will *not* revert if the Substrate proposal is dispatched but fails 
+- **execute**(*bytes memory* proposal) - executes a proposal as a single member of the collective. The sender must be a member of the collective. This will *not* revert if the Substrate proposal is dispatched but fails
 - **propose**(*uint32* threshold, *bytes memory* proposal) - adds a new proposal to be voted on. The sender must be a member of the collective. If the threshold is less than two then the proposal will be dispatched and executed directly, with the proposer as dispatcher. If the threshold is met, the index of the new proposal is returned
 - **vote**(*bytes32* proposalHash, *uint32* proposalIndex, *bool* approve) - votes on a proposal. The sender must be a member of the collective
 - **close**(*bytes32* proposalHash, *uint32* proposalIndex, *uint64* proposalWeightBound, *uint32* lengthBound) - closes a proposal. Can be called by anyone once there are enough votes. Returns a boolean indicating whether the proposal was executed or removed
@@ -83,7 +83,7 @@ The example in this guide will be shown on a Moonbeam development node, however,
 To get started, you will need to have the following:
 
  - Have MetaMask installed and [connected to one of the Moonbeam-based networks](/tokens/connect/metamask/){target=_blank}
- - Have an account with funds. If using a Moonbeam development node, the development accounts are pre-funded. For Moonbeam, Moonriver, or Moonbase Alpha, you'll need to fund your account. 
+ - Have an account with funds. If using a Moonbeam development node, the development accounts are pre-funded. For Moonbeam, Moonriver, or Moonbase Alpha, you'll need to fund your account.
   --8<-- 'text/faucet/faucet-list-item.md'
 
 If you're using a Moonbeam development node and the development accounts, you'll also need to do the following:
@@ -92,21 +92,21 @@ If you're using a Moonbeam development node and the development accounts, you'll
 - [Connect Polkadot.js Apps to your local Moonbeam development node](/builders/get-started/networks/moonbeam-dev/#connecting-polkadot-js-apps-to-a-local-moonbeam-node){target=_blank}
 - Import Baltathar's, Charleth's, and/or Dorothy's accounts into [Polkadot.js Apps](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=_blank} and [MetaMask](/tokens/connect/metamask/#import-accounts){target=_blank}
 
-### Remix Set Up {: #remix-set-up } 
+### Remix Set Up {: #remix-set-up }
 
-1. Get a copy of [`Collective.sol`](https://github.com/PureStake/moonbeam/blob/master/precompiles/collective/Collective.sol){target=_blank} 
+1. Get a copy of [`Collective.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/collective/Collective.sol){target=_blank} 
 2. Copy and paste the file contents into a [Remix file](https://remix.ethereum.org/){target=_blank} named `Collective.sol`
 
 ![Copying and Pasting the Collective Interface into Remix](/images/builders/pallets-precompiles/precompiles/collective/collective-1.png)
 
-### Compile the Contract {: #compile-the-contract } 
+### Compile the Contract {: #compile-the-contract }
 
 1. Click on the **Compile** tab, second from top
 2. Then to compile the interface, click on **Compile Collective.sol**
 
 ![Compiling Collective.sol](/images/builders/pallets-precompiles/precompiles/collective/collective-2.png)
 
-### Access the Contract {: #access-the-contract } 
+### Access the Contract {: #access-the-contract }
 
 1. Click on the **Deploy and Run** tab, directly below the **Compile** tab in Remix. Note: You are not deploying a contract here; instead you are accessing a precompiled contract that is already deployed
 2. Make sure **Injected Provider - Metamask** is selected in the **ENVIRONMENT** drop down

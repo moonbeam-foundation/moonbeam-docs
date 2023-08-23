@@ -5,7 +5,7 @@ description: Improve your dApp development experience by following this guide to
 
 # Index a Local Moonbeam Development Node with Subsquid
 
-_April 14, 2023 | by Erin Shaben_
+_by Erin Shaben_
 
 ## Introduction {: #introduction }
 
@@ -13,7 +13,7 @@ When developing a dApp, it's beneficial to develop smart contracts using a local
 
 But what about dApps that rely on indexers to index blockchain data? How can developers of these applications streamline the development process? Thanks to [Subsquid](/builders/integrations/indexers/subsquid){target=_blank}, a query node framework for Substrate-based blockchains like Moonbeam, it is now possible to index blocks on a local development environment, such as your Moonbeam development node!
 
-This tutorial will walk you through the process of indexing data on a local Moonbeam development node using Subsquid. We'll create an ERC-20 contract and use Subsquid to index transfers of our ERC-20. 
+This tutorial will walk you through the process of indexing data on a local Moonbeam development node using Subsquid. We'll create an ERC-20 contract and use Subsquid to index transfers of our ERC-20.
 
 This tutorial is based off of Massimo Luraschi's tutorial on how to [Boost your dApp development productivity with local indexing](https://medium.com/subsquid/boost-your-dapp-development-productivity-with-local-indexing-3936ba7a8cec){target=_blank}, but was modified for a Moonbeam development node.
 
@@ -29,7 +29,7 @@ We'll configure our Hardhat project and create our Subsquid project later on in 
 
 ## Spin up a Local Development Node {: #spin-up-a-local-development-node }
 
-To get started, we're going to spin up a local Moonbeam development node using Docker. For the purposes of this tutorial, we're going to configure our development node to produce (seal) blocks every four seconds. This will ease the debugging process. However, you can feel free to increase or decrease this time or configure your node to instantly seal blocks. When using instant seal, a block will be created when a transaction is received. 
+To get started, we're going to spin up a local Moonbeam development node using Docker. For the purposes of this tutorial, we're going to configure our development node to produce (seal) blocks every four seconds. This will ease the debugging process. However, you can feel free to increase or decrease this time or configure your node to instantly seal blocks. When using instant seal, a block will be created when a transaction is received.
 
 We'll use the following commands when starting up our node:
 
@@ -40,27 +40,30 @@ We'll use the following commands when starting up our node:
 To spin up a development node, which will pull the latest Docker image for Moonbeam, you can run the following command:
 
 === "Ubuntu"
-    ```
+
+    ```bash
     docker run --rm --name {{ networks.development.container_name }} --network host \
     purestake/moonbeam:{{ networks.development.build_tag }} \
     --dev --sealing 4000 --ws-external --rpc-external
     ```
 
 === "MacOS"
-    ```
+
+    ```bash
     docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 \
     purestake/moonbeam:{{ networks.development.build_tag }} \
     --dev --sealing 4000 --ws-external --rpc-external
     ```
 
 === "Windows"
-    ```
+
+    ```bash
     docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 ^
     purestake/moonbeam:{{ networks.development.build_tag }} ^
     --dev --sealing 4000 --ws-external --rpc-external
     ```
 
-This will start up our development node, which can be accessed on port 9944. 
+This will start up our development node, which can be accessed on port 9944.
 
 ![Spin up a Moonbeam development node](/images/tutorials/integrations/local-subsquid/local-squid-1.png)
 
@@ -77,25 +80,25 @@ You should have already created an empty Hardhat project, but if you haven't don
 
 In this section, we'll configure our Hardhat project for a local Moonbeam development node, create an ERC-20 contract, and write scripts to deploy and interact with our contract.
 
-Before we dive into creating our project, let's install a couple of dependencies that we'll need: the [Hardhat Ethers plugin](https://hardhat.org/plugins/nomiclabs-hardhat-ethers.html){target=_blank} and [OpenZeppelin contracts](https://docs.openzeppelin.com/contracts/4.x/){target=_blank}. The Hardhat Ethers plugin provides a convenient way to use the [Ethers](/builders/build/eth-api/libraries/ethersjs){target=_blank} library to interact with the network. We'll use OpenZeppelin's base ERC-20 implementation to create an ERC-20. To install both of these dependencies, you can run:
+Before we dive into creating our project, let's install a couple of dependencies that we'll need: the [Hardhat Ethers plugin](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers){target=_blank} and [OpenZeppelin contracts](https://docs.openzeppelin.com/contracts/4.x/){target=_blank}. The Hardhat Ethers plugin provides a convenient way to use the [Ethers](/builders/build/eth-api/libraries/ethersjs){target=_blank} library to interact with the network. We'll use OpenZeppelin's base ERC-20 implementation to create an ERC-20. To install both of these dependencies, you can run:
 
 === "npm"
 
-    ```
-    npm install @nomiclabs/hardhat-ethers ethers @openzeppelin/contracts
+    ```bash
+    npm install @nomicfoundation/hardhat-ethers ethers @openzeppelin/contracts
     ```
 
 === "yarn"
 
-    ```
-    yarn add @nomiclabs/hardhat-ethers ethers @openzeppelin/contracts
+    ```bash
+    yarn add @nomicfoundation/hardhat-ethers ethers @openzeppelin/contracts
     ```
 
 ### Configure Hardhat For a Local Development Node {: #create-a-hardhat-project }
 
 Before we update the configuration file, we'll need to get the private key of one of our development accounts, which will be used to deploy our contract and send transactions. For this example, we'll use Alith's private key:
 
-```
+```text
 0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133
 ```
 
@@ -107,7 +110,7 @@ Before we update the configuration file, we'll need to get the private key of on
 Now we can edit `hardhat.config.js` to include the following network and account configurations for our Moonbeam development node:
 
 ```js
-require('@nomiclabs/hardhat-ethers');
+require('@nomicfoundation/hardhat-ethers');
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
@@ -122,35 +125,17 @@ module.exports = {
 };
 ```
 
-!!! note
-    With the release of [Solidity v0.8.20](https://github.com/ethereum/solidity/releases/tag/v0.8.20){target=_blank}, support for the Shanghai hard fork has been introduced, which includes `PUSH0` opcodes in the generated bytecode. Support for the `PUSH0` opcode on Moonbeam hasn't been rolled out yet. As such, if you'd like to use Solidity v0.8.20, you'll need to update the `solidity` config to use the London compiler:
-
-    ```js
-    solidity: {
-      version: '0.8.20',
-      settings: {
-        evmVersion: 'london',
-      },
-    },
-    ```
-
-    If you attempt to use the default compiler of Solidity v0.8.20, you will see the following error:
-
-    ```
-    ProviderError: evm error: InvalidCode(Opcode(95))
-    ```
-
 ### Create an ERC-20 Contract {: #create-an-erc-20-contract }
 
 For the purposes of this tutorial, we'll be creating a simple ERC-20 contract. We'll rely on OpenZeppelin's ERC-20 base implementation. We'll start by creating a file for the contract and naming it `MyTok.sol`:
 
-```
+```bash
 mkdir -p contracts && touch contracts/MyTok.sol
 ```
 
 Now we can edit the `MyTok.sol` file to include the following contract, which will mint an initial supply of MYTOKs and allow only the owner of the contract to mint additional tokens:
 
-```
+```sol
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
@@ -170,11 +155,11 @@ contract MyTok is ERC20, Ownable {
 
 ### Deploy an ERC-20 Contract {: #deploy-erc-20-contract }
 
-Now that we have our contract set up, we can compile and deploy our contract. 
+Now that we have our contract set up, we can compile and deploy our contract.
 
 To compile the contract, you can run:
 
-```
+```bash
 npx hardhat compile
 ```
 
@@ -182,13 +167,13 @@ npx hardhat compile
 
 This command will compile our contract and generate an `artifacts` directory containing the ABI of the contract.
 
-To deploy our contract, we'll need to create a deployment script that deploys our ERC-20 contract and mints an initial supply of MYTOKs. We'll use Alith's account to deploy the contract, and we'll specify the initial supply to be 1000 MYTOK. The initial supply will be minted and sent to the contract owner, which is Alith. 
+To deploy our contract, we'll need to create a deployment script that deploys our ERC-20 contract and mints an initial supply of MYTOKs. We'll use Alith's account to deploy the contract, and we'll specify the initial supply to be 1000 MYTOK. The initial supply will be minted and sent to the contract owner, which is Alith.
 
 Let's take the following steps to deploy our contract:
 
 1. Create a directory and file for our script:
 
-    ```
+    ```bash
     mkdir -p scripts && touch scripts/deploy.js
     ```
 
@@ -226,7 +211,7 @@ Let's take the following steps to deploy our contract:
 
 3. Run the script using the `dev` network configurations we set up in the `hardhat.config.js` file:
 
-    ```
+    ```bash
     npx hardhat run scripts/deploy.js --network dev
     ```
 
@@ -240,7 +225,7 @@ Since we'll be indexing `Transfer` events for our ERC-20, we'll need to send a f
 
 1. Create a new file script to send transactions:
 
-    ```
+    ```bash
     touch scripts/transactions.js
     ```
 
@@ -296,7 +281,7 @@ Since we'll be indexing `Transfer` events for our ERC-20, we'll need to send a f
 
 3. Run the script to send the transactions:
 
-    ```
+    ```bash
     npx hardhat run scripts/transactions.js --network dev
     ```
 
@@ -310,7 +295,7 @@ Now we can move on to creating our Squid to index the data on our local developm
 
 Now we're going to create our Subquid project. First, we'll need to install the [Subsquid CLI](https://docs.subsquid.io/squid-cli/){target=_blank}:
 
-```
+```bash
 npm i -g @subsquid/cli
 ```
 
@@ -318,13 +303,13 @@ Now we'll be able to use the `sqd` command to interact with our Squid project. T
 
 You can run the following command to create an EVM Squid named `local-squid`:
 
-```
+```bash
 sqd init local-squid -t evm
 ```
 
 This will create a Squid with all of the necessary dependencies. You can go ahead and install the dependencies:
 
-```
+```bash
 cd local-squid && npm install
 ```
 
@@ -338,7 +323,7 @@ The EVM Archive is made available through Subsquid's `subsquid/eth-archive-worke
 
 To get started, we'll create a new directory and Docker compose file for our Archive:
 
-```
+```bash
 mkdir archive && touch archive/docker-compose.archive.yml
 ```
 
@@ -407,7 +392,7 @@ To easily run our Archive, let's update the preexisting `commands.json` file, wh
 
 Now we can start our Archive by running:
 
-```
+```bash
 sqd archive-up
 ```
 
@@ -427,7 +412,7 @@ In order to index ERC-20 transfers, we'll need to take a series of actions:
 
 As mentioned, we'll first need to define the database schema for the transfer data. To do so, we'll edit the `schema.graphql` file, which is located in the root `local-squid` directory, and create a `Transfer` entity:
 
-```
+```graphql
 type Transfer @entity {
   id: ID!
   block: Int!
@@ -441,13 +426,13 @@ type Transfer @entity {
 
 Now we can generate the entity classes from the schema, which we'll use when we process the transfer data:
 
-```
+```bash
 sqd codegen
 ```
 
 Next, we can tackle the second item on our list and use our contract's ABI to generate TypeScript interface classes. We can do this by running:
 
-```
+```bash
 sqd typegen ../artifacts/contracts/MyTok.sol/MyTok.json
 ```
 
@@ -524,26 +509,26 @@ To run our indexer, we're going to run a series of `sqd` commands:
 
 1. Build our project
 
-    ```
+    ```bash
     sqd build
     ```
 
 2. Launch the database:
 
-    ```
+    ```bash
     sqd up
     ```
 
 3. Remove the database migration file that comes with the EVM template and generate a new one for our new database schema:
 
-    ```
+    ```bash
     sqd migration:clean
     sqd migration:generate
     ```
 
 4. Launch the processor:
 
-    ```
+    ```bash
     sqd process
     ```
 
@@ -556,19 +541,19 @@ In your terminal, you should see your indexer starting to process blocks!
 
 If your Squid isn't indexing blocks properly, make sure that your development node is running with the `--sealing` flag. For this example, you should have set the flag as `--sealing 4000`, so that a block is produced every four seconds. You can feel free to edit the sealing interval as needed. Before you try to spin up your Squid again, run the following commands to shut down your local Archive and Squid:
 
-```
+```bash
 sqd archive-down && sqd down
 ```
 
 Then you can start your local Archive and Squid back up:
 
-```
+```bash
 sqd archive-up && sqd up
 ```
 
 Finally, you should be able to start indexing again:
 
-```
+```bash
 sqd process
 ```
 
@@ -578,7 +563,7 @@ Now your indexer should be indexing your development node without any problems!
 
 To query our indexer, we'll need to launch the GraphQL server in a new terminal window:
 
-```
+```bash
 sqd serve
 ```
 

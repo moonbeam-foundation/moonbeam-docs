@@ -83,7 +83,7 @@ Now that we have the calldata for the mint actions, we can work with the Batch P
 
 For demonstration purposes, we'll be using [Remix](http://remix.ethereum.org/){target=_blank} to visualize and construct our calldata. If needed, the [Batch Precompile page](/builders/pallets-precompiles/precompiles/batch/#remix-set-up){target=_blank} offers a step-by-step guide for getting started with the Batch Precompile in Remix.
 
-To quickly get started, go ahead and copy [`Batch.sol`](https://raw.githubusercontent.com/PureStake/moonbeam/master/precompiles/batch/Batch.sol){target=_blank} and compile it. From the **Deploy** tab of Remix, specify your environment in Remix as **Injected Web3** and make sure your wallet is on the Moonbase Alpha network. As it is a precompile, we won't be deploying anything but rather will access the Batch Precompile at its respective address:
+To quickly get started, go ahead and copy [`Batch.sol`](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam/master/precompiles/batch/Batch.sol){target=_blank} and compile it. From the **Deploy** tab of Remix, specify your environment in Remix as **Injected Web3** and make sure your wallet is on the Moonbase Alpha network. As it is a precompile, we won't be deploying anything but rather will access the Batch Precompile at its respective address:
 
 === "Moonbeam"
      ```
@@ -178,7 +178,7 @@ Let's go through each of the main components of the snippet shown above:
  1. Provide the input data for the call. This includes:
      - [Moonbase relay chain](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffrag-moonbase-relay-rpc-ws.g.moonbase.moonbeam.network#/accounts){target=_blank} endpoint URL to create the provider
      - Amount of tokens (in Wei) to withdraw from the multilocation-derivative account. For this example, `0.01` tokens are more than enough. To understand how to get this value, please refer to the [XCM fee page](/builders/interoperability/xcm/fees/#moonbeam-reserve-assets){target=_blank}
-     - The [multilocation of the DEV token](/builders/interoperability/xcm/xc-integration/#register-moonbeams-asset-on-your-parachain){target=_blank}, as seen by Moonbase Alpha
+     - The [multilocation of the DEV token](/builders/interoperability/xcm/xc-registration/assets/#register-moonbeam-native-assets){target=_blank}, as seen by Moonbase Alpha
      - The weight for the `transact` XCM instruction. This can be obtained by multiplying `25000` by the gas limit obtained before. It is recommended to add approximately 10% more of the estimated value. You can read more about this value on the [Remote EVM Calls through XCM](/builders/interoperability/xcm/remote-evm-calls/#build-xcm-remote-evm){target=_blank} page
      - The multilocation-derivative account, as it will be needed later for an XCM instruction
      - The bytes for the `transact` XCM instruction that we calculated in the previous section

@@ -5,7 +5,7 @@ description: Learn about the requirements for becoming and maintaining a collato
 
 # Collator Requirements
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 There are some requirements to keep in mind before diving into running a collator node. Primarily, you need to follow the community guidelines and meet the technical requirements. You should have top of the line hardware, securely created and stored accounts, meet bonding requirements, and fill out a collator questionnaire.
 
@@ -30,7 +30,7 @@ There is a level of commitment to the community and the network that is necessar
 - Contribute to open-source software relating to the ecosystem
 - Actively participate in governance and vote on proposals
 
-## Hardware Requirements {: #hardware-requirements } 
+## Hardware Requirements {: #hardware-requirements }
 
 Collators must have a full node running with the collation options. To do so, follow the [Run a Node](/node-operators/networks/run-a-node/overview/) tutorial and installation steps for [Using Systemd](/node-operators/networks/run-a-node/systemd/). Make sure you use the specific code snippets for collators.
 
@@ -50,11 +50,11 @@ In addition, you should take into account the following considerations:
 - You should have primary and backup bare metal servers in different data centers and countries. Hetzner is OK for one of these servers, but shouldn't be used for both
 - Your Moonbeam server should be dedicated for Moonbeam only, please do not use the same server for other apps
 
-## Account Requirements {: #account-requirements } 
+## Account Requirements {: #account-requirements }
 
 Similar to Polkadot validators, you need to create an account. For Moonbeam, this is an H160 account or an Ethereum-style account from which you hold the private keys. As a collator, you are responsible for correctly managing your own keys. Incorrectly doing so can result in a loss of funds.
 
-There are many Ethereum wallets that can be used, but for production purposes it is recommended to generate keys as securely as possible. It is also recommended to generate backup keys. You can actually generate keys using the Moonbeam binary through a tool called Moonkey. It can be used to generate both Ethereum-style accounts and Substrate-style accounts. 
+There are many Ethereum wallets that can be used, but for production purposes it is recommended to generate keys as securely as possible. It is also recommended to generate backup keys. You can actually generate keys using the Moonbeam binary through a tool called Moonkey. It can be used to generate both Ethereum-style accounts and Substrate-style accounts.
 
 To generate keys securely it is recommended to do so on an air-gapped machine. Once you generate your keys make sure you store them safely. To securely store your keys, here are some recommendations, from least to most secure:
 
@@ -64,11 +64,11 @@ To generate keys securely it is recommended to do so on an air-gapped machine. O
 
 As always, it is recommended to do your own research and use tools that you vet as trustworthy.
 
-### Getting Started with Moonkey {: #getting-started-with-moonkey } 
+### Getting Started with Moonkey {: #getting-started-with-moonkey }
 
 The first step is to fetch the moonkey binary file hosted on GitHub. To do so, you can download a binary file (tested on Linux/Ubuntu):
 
-`https://github.com/PureStake/moonbeam/releases/download/v0.8.0/moonkey`
+`https://github.com/moonbeam-foundation/moonbeam/releases/download/v0.8.0/moonkey`
 
 Once you’ve downloaded the tool, ensure you have the correct access permissions to execute the binary file. Next, check that you have the right version by checking the downloaded file hash.
 
@@ -80,7 +80,7 @@ For Linux-based systems such as Ubuntu, open the terminal and head to the folder
 
 After you’ve verified the hash, it is recommended to move the binary file to an air-gapped machine (no network interfaces). You can also check the hash of the file in the air-gapped device directly.
 
-### Generating an Account with Moonkey {: #generating-an-account-with-moonkey } 
+### Generating an Account with Moonkey {: #generating-an-account-with-moonkey }
 
 Using the moonkey binary file is very straightforward. Every time you execute the binary, the information related to a newly created account is displayed.
 

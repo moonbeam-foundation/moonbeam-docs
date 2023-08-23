@@ -5,15 +5,17 @@ description:  Learn how to leverage Geth's Debug and Txpool APIs, and OpenEthere
 
 # Debug API & Trace Module
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 Geth's `debug` and `txpool` APIs and OpenEthereum's `trace` module provide non-standard RPC methods for getting a deeper insight into transaction processing. As part of Moonbeam's goal of providing a seamless Ethereum experience for developers, there is support for some of these non-standard RPC methods. Supporting these RPC methods is an important milestone because many projects, such as [The Graph](https://thegraph.com/){target=_blank} or [Blockscout](https://docs.blockscout.com/){target=_blank}, rely on them to index blockchain data.
+
+To view a list of tracing RPC providers, please check out the [Network Endpoints](/builders/get-started/endpoints#tracing-providers){target=_blank} page.
 
 This guide will cover the supported RPC methods available on Moonbeam as well as how to invoke the methods using curl commands against a local Moonbase Alpha tracing node.
 
 ## Supported RPC Methods {: #supported-rpc-methods }
 
-The following RPC methods are available: 
+The following RPC methods are available:
 
   - [`debug_traceTransaction`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#debug_tracetransaction){target=_blank}
   - [`debug_traceBlockByNumber`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#debug_traceblockbynumber){target=_blank}
@@ -23,7 +25,7 @@ The following RPC methods are available:
   - [`txpool_inspect`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool#txpool_inspect){target=_blank}
   - [`txpool_status`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool#txpool_status){target=_blank}
 
-## Debug API {: #geth-debug-api } 
+## Debug API {: #geth-debug-api }
 
 The debug RPC implementations follow [Geth's debug API guidelines](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug){target=_blank}:
 
@@ -42,10 +44,10 @@ As *optional* parameters for the supported debug methods, you can provide the fo
 The txpool RPC implementations follow [Geth's txpool API guidelines](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool):
 
   - **[`txpool_content`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool#txpool_content){target=_blank}** - no required or optional parameters
-  - **[`txpool_inspect`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool#txpool_inspect){target=_blank}** - no required or optional parameters 
+  - **[`txpool_inspect`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool#txpool_inspect){target=_blank}** - no required or optional parameters
   - **[`txpool_status`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-txpool#txpool_status){target=_blank}** - no required or optional parameters
 
-## Trace Module {: #trace-module } 
+## Trace Module {: #trace-module }
 
 The [`trace_filter`](https://openethereum.github.io/JSONRPC-trace-module#trace_filter){target=_blank} RPC implementation follows [OpenEthereum's trace module guidelines](https://openethereum.github.io/JSONRPC-trace-module){target=_blank}. The RPC method requires any of the following *optional* parameters:
 
@@ -65,7 +67,7 @@ To change the default values you can add [Additional Flags](/node-operators/netw
 
 ## Checking Prerequisites {: #checking-prerequisites }
 
-For this guide, you will need to have a locally running instance of a Moonbase Alpha tracing node with the `debug`, `txpool`, and `tracing` flags enabled for this guide. You can also adapt the instructions for Moonbeam and Moonriver. 
+For this guide, you will need to have a locally running instance of a Moonbase Alpha tracing node with the `debug`, `txpool`, and `tracing` flags enabled for this guide. You can also adapt the instructions for Moonbeam and Moonriver.
 
 If you haven't already done so, you can follow the guide on [Running a Tracing Node](/node-operators/networks/tracing-node/){target=_blank}. The RPC HTTP endpoint should be at `{{ networks.development.rpc_url }}`.
 
@@ -133,6 +135,6 @@ curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charse
   }'
 ```
 
-For this example, the `txpool_status` method will return the number of transactions currently pending or queued. 
+For this example, the `txpool_status` method will return the number of transactions currently pending or queued.
 
 ![Txpool Request and Response](/images/builders/build/eth-api/debug-trace/debug-trace-4.png)

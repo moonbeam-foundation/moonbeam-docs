@@ -8,7 +8,7 @@ keywords: solidity, ethereum, xcm, utils, moonbeam, precompiled, contracts
 
 ## Introduction {: #xcmutils-precompile}
 
-The XCM Utilities Precompile contract gives developers XCM-related utility functions directly within the EVM. This allows for easier transactions and interactions with other XCM-related precompiles. 
+The XCM Utilities Precompile contract gives developers XCM-related utility functions directly within the EVM. This allows for easier transactions and interactions with other XCM-related precompiles.
 
 Similar to other [precompile contracts](/builders/pallets-precompiles/precompiles/){target=_blank}, the XCM Utilities Precompile is located at the following addresses:
 
@@ -29,9 +29,9 @@ Similar to other [precompile contracts](/builders/pallets-precompiles/precompile
 
 --8<-- 'text/precompiles/security.md'
 
-## The XCM Utilities Solidity Interface {: #xcmutils-solidity-interface } 
+## The XCM Utilities Solidity Interface {: #xcmutils-solidity-interface }
 
-[XcmUtils.sol](https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm-utils/XcmUtils.sol){target=_blank} is an interface to interact with the precompile.
+[XcmUtils.sol](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-utils/XcmUtils.sol){target=_blank} is an interface to interact with the precompile.
 
 !!! note
     The precompile will be updated in the future to include additional features. Feel free to suggest additional utility functions in the [Discord](https://discord.gg/PfpUATX){target=_blank}.
@@ -46,9 +46,9 @@ The interface includes the following functions:
 
 The `Multilocation` struct in the XCM Utilities Precompile is built the [same as the XCM Transactor](/builders/interoperability/xcm/xcm-transactor#building-the-precompile-multilocation){target=_blank} precompile's `Multilocation`.
 
-## Using the XCM Utilities Precompile {: #using-the-xcmutils-precompile } 
+## Using the XCM Utilities Precompile {: #using-the-xcmutils-precompile }
 
-The XCM Utilities precompile allows users to read data off of the Ethereum JSON-RPC instead of having to go through a Polkadot library. The functions are more for convenience, and less for smart contract use cases. 
+The XCM Utilities precompile allows users to read data off of the Ethereum JSON-RPC instead of having to go through a Polkadot library. The functions are more for convenience, and less for smart contract use cases.
 
 For `multilocationToAddress`, one example use case is being able to allow transactions that originate from other parachains by whitelisting their multilocation-derived addresses. A user can whitelist a multilocation by calculating and storing an address. EVM transactions can originate from other parachains via [remote EVM calls](/builders/interoperability/xcm/remote-evm-calls).  
 
@@ -56,7 +56,7 @@ For `multilocationToAddress`, one example use case is being able to allow transa
 // SPDX-License-Identifier: GPL-3.0-only
 pragma solidity >=0.8.3;
 
-import "https://github.com/PureStake/moonbeam/blob/master/precompiles/xcm-utils/XcmUtils.sol";
+import "https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-utils/XcmUtils.sol";
 
 contract MultilocationWhitelistExample {
     XcmUtils xcmutils = XcmUtils(0x000000000000000000000000000000000000080C);

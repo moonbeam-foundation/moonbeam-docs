@@ -300,7 +300,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-rust/send-tx/main.rs){target=_blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/ethers-rust/send-tx/main.rs){target=_blank}.
 
 To run the script, which will send the transaction and then check the balances once the transaction has been sent, you can run the following command:
 
@@ -486,7 +486,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-rust/deploy-contract/main.rs){target=_blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/ethers-rust/deploy-contract/main.rs){target=_blank}.
 
 To run the script, which will deploy the contract and return the current value stored in the `Incrementer` contract, you can enter the following command into your terminal:
 
@@ -547,7 +547,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-rust/deploy-contract/main.rs){target=_blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/ethers-rust/deploy-contract/main.rs){target=_blank}.
 
 To run the script, you can enter the following command into your terminal:
 
@@ -608,6 +608,6 @@ If successful, the transaction receipt will be displayed in the terminal. You ca
 
 ![Terminal logs from resetting the number](/images/builders/build/eth-api/libraries/ethersrs/ethersrs-4.png)
 
-You can view the [complete script on GitHub](https://raw.githubusercontent.com/PureStake/moonbeam-docs/master/.snippets/code/ethers-rust/deploy-contract/main.rs){target=_blank}.
+You can view the [complete script on GitHub](https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/master/.snippets/code/ethers-rust/deploy-contract/main.rs){target=_blank}.
 
 --8<-- 'text/disclaimers/third-party-content.md'

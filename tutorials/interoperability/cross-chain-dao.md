@@ -5,9 +5,9 @@ description: In this step-by-step tutorial, you'll learn about connected contrac
 
 # Building a Cross-Chain DAO with OpenZeppelin's Governor Contract
 
-_March 24, 2023 | by Jeremy Boetticher_
+_by Jeremy Boetticher_
 
-## Introduction {: #introduction } 
+## Introduction {: #introduction }
 
 Moonbeam works hard to support interoperability and cross-chain logic. Its [Connected Contracts](https://moonbeam.network/builders/connected-contracts/){target=_blank} initiative requires an updating of previously understood smart contract concepts so that they fit a cross-chain world. While some cross-chain primitives have been available for years, such as cross-chain tokens, others are only now starting to be worked on, such as cross-chain swaps, AMMs, and, of particular interest for this tutorial, DAOs.
 
