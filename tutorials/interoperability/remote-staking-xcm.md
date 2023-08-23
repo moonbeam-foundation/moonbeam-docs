@@ -49,7 +49,7 @@ This tutorial will cover the two-step process to perform remote staking operatio
 
 We'll be using the `delegateWithAutoCompound` function of the [Parachain Staking Pallet](/builders/pallets-precompiles/pallets/staking){target=_blank}, which accepts six parameters: `candidate`, `amount`, `autoCompound`, `candidateDelegationCount`, `candidateAutoCompoundingDelegationCount`, and `delegationCount`.
 
-In order to generate the encoded call data, we'll need to assemble the arugments for each of the `delegateWithAutoCompound` parameters and use them to build a transaction which will call the `delegateWithAutoCompound` function. We are not submitting a transaction, but simplying preparing one to get the encoded call data. We'll take the following steps to build our script:
+In order to generate the encoded call data, we'll need to assemble the arguments for each of the `delegateWithAutoCompound` parameters and use them to build a transaction which will call the `delegateWithAutoCompound` function. We are not submitting a transaction, but simply preparing one to get the encoded call data. We'll take the following steps to build our script:
 
 1. Create a [Polkadot.js API](/builders/build/substrate-api/polkadot-js-api){target=_blank} provider
 2. Assemble the arguments for each of the parameters of the `delegateWithAutoCompound` function:
