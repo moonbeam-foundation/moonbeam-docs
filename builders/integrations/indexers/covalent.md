@@ -79,74 +79,74 @@ For a full list of supported endpoints, refer to the [Covalent API reference](ht
 ## Request Formatting {: #request-formatting }
 
 === "Moonbeam"
-    |                                                                         Endpoint                                                                          |                               Format                                |
-    |:---------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-    |    [Balances](https://www.covalenthq.com/docs/api/balances/get-token-balances-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}     |             api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/address/{address}/balances_v2/               |
-    |    [Transactions](https://www.covalenthq.com/docs/api/transactions/get-transactions-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}    |            api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/address/{address}/transactions_v2/          |
-    |    [Transfers](https://www.covalenthq.com/docs/api/balances/get-erc20-token-transfers-for-address/){target=_blank}     |              api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/address/{address}/transfers_v2/               |
-    | [Token holders](https://www.covalenthq.com/docs/api/balances/#balances/get-token-holders-as-of-any-block-height-v2){target=_blank} | api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/tokens/{contract_address}/token_holders/ |
-    | [Log events (smart contract)](https://www.covalenthq.com/docs/api/base/get-log-events-by-contract-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank} | api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/events/address/{contract_address}/ |
-    |    [Log events (topic hash)](https://www.covalenthq.com/docs/api/base/get-log-events-by-topic-hash/){target=_blank}    |              api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/events/topics/{topic}/               |
-    |    [Security (Token Approvals)](https://www.covalenthq.com/docs/api/security/get-token-approvals-for-address/){target=_blank}     |            api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/approvals/{address}/               |
+    |                                                                                Endpoint                                                                                |                                             Format                                              |
+    |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
+    |          [Balances](https://www.covalenthq.com/docs/api/balances/get-token-balances-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}           |      api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/address/{address}/balances_v2/      |
+    |       [Transactions](https://www.covalenthq.com/docs/api/transactions/get-transactions-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}        |    api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/address/{address}/transactions_v2/    |
+    |                            [Transfers](https://www.covalenthq.com/docs/api/balances/get-erc20-token-transfers-for-address/){target=_blank}                             |     api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/address/{address}/transfers_v2/      |
+    |                   [Token holders](https://www.covalenthq.com/docs/api/balances/#balances/get-token-holders-as-of-any-block-height-v2){target=_blank}                   | api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/tokens/{contract_address}/token_holders/ |
+    | [Log events (smart contract)](https://www.covalenthq.com/docs/api/base/get-log-events-by-contract-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank} |    api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/events/address/{contract_address}/    |
+    |                            [Log events (topic hash)](https://www.covalenthq.com/docs/api/base/get-log-events-by-topic-hash/){target=_blank}                            |          api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/events/topics/{topic}/          |
+    |                       [Security (Token Approvals)](https://www.covalenthq.com/docs/api/security/get-token-approvals-for-address/){target=_blank}                       |           api.covalenthq.com/v1/{{ networks.moonbeam.chain_id }}/approvals/{address}/           |
 
 === "Moonriver"
-    |                                                                         Contract                                                                          |                                Address                                |
-    |:---------------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------:|
-    |    [Balances](https://www.covalenthq.com/docs/api/balances/get-token-balances-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}     |             api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/address/{address}/balances_v2/               |
-    |    [Transactions](https://www.covalenthq.com/docs/api/transactions/get-transactions-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}    |            api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/address/{address}/transactions_v2/          |
-    |    [Transfers](https://www.covalenthq.com/docs/api/balances/get-erc20-token-transfers-for-address/){target=_blank}     |              api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/address/{address}/transfers_v2/               |
-    | [Token holders](https://www.covalenthq.com/docs/api/balances/#balances/get-token-holders-as-of-any-block-height-v2){target=_blank} | api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/tokens/{contract_address}/token_holders/ |
-    | [Log events (smart contract)](https://www.covalenthq.com/docs/api/base/get-log-events-by-contract-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank} | api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/events/address/{contract_address}/ |
-    |    [Log events (topic hash)](https://www.covalenthq.com/docs/api/base/get-log-events-by-topic-hash/){target=_blank}    |              api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/events/topics/{topic}/               |
-    |    [Security (Token Approvals)](https://www.covalenthq.com/docs/api/security/get-token-approvals-for-address/){target=_blank}     |            api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/approvals/{address}/               |
+    |                                                                                Contract                                                                                |                                             Address                                              |
+    |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------:|
+    |          [Balances](https://www.covalenthq.com/docs/api/balances/get-token-balances-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}           |      api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/address/{address}/balances_v2/      |
+    |       [Transactions](https://www.covalenthq.com/docs/api/transactions/get-transactions-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}        |    api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/address/{address}/transactions_v2/    |
+    |                            [Transfers](https://www.covalenthq.com/docs/api/balances/get-erc20-token-transfers-for-address/){target=_blank}                             |     api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/address/{address}/transfers_v2/      |
+    |                   [Token holders](https://www.covalenthq.com/docs/api/balances/#balances/get-token-holders-as-of-any-block-height-v2){target=_blank}                   | api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/tokens/{contract_address}/token_holders/ |
+    | [Log events (smart contract)](https://www.covalenthq.com/docs/api/base/get-log-events-by-contract-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank} |    api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/events/address/{contract_address}/    |
+    |                            [Log events (topic hash)](https://www.covalenthq.com/docs/api/base/get-log-events-by-topic-hash/){target=_blank}                            |          api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/events/topics/{topic}/          |
+    |                       [Security (Token Approvals)](https://www.covalenthq.com/docs/api/security/get-token-approvals-for-address/){target=_blank}                       |           api.covalenthq.com/v1/{{ networks.moonriver.chain_id }}/approvals/{address}/           |
 
 === "Moonbase Alpha"
-    |                                                                         Contract                                                                          |                               Address                                |
-    |:---------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-    |    [Balances](https://www.covalenthq.com/docs/api/balances/get-token-balances-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}     |             api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/address/{address}/balances_v2/               |
-    |    [Transactions](https://www.covalenthq.com/docs/api/transactions/get-transactions-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}    |            api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/address/{address}/transactions_v2/          |
-    |    [Transfers](https://www.covalenthq.com/docs/api/balances/get-erc20-token-transfers-for-address/){target=_blank}     |              api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/address/{address}/transfers_v2/               |
-    | [Token holders](https://www.covalenthq.com/docs/api/balances/#balances/get-token-holders-as-of-any-block-height-v2){target=_blank} | api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/tokens/{contract_address}/token_holders/ |
-    | [Log events (smart contract)](https://www.covalenthq.com/docs/api/base/get-log-events-by-contract-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank} | api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/events/address/{contract_address}/ |
-    |    [Log events (topic hash)](https://www.covalenthq.com/docs/api/base/get-log-events-by-topic-hash/){target=_blank}    |              api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/events/topics/{topic}/               |
-    |    [Security (Token Approvals)](https://www.covalenthq.com/docs/api/security/get-token-approvals-for-address/){target=_blank}     |            api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/approvals/{address}/               |
+    |                                                                                Contract                                                                                |                                             Address                                             |
+    |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
+    |          [Balances](https://www.covalenthq.com/docs/api/balances/get-token-balances-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}           |      api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/address/{address}/balances_v2/      |
+    |       [Transactions](https://www.covalenthq.com/docs/api/transactions/get-transactions-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}        |    api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/address/{address}/transactions_v2/    |
+    |                            [Transfers](https://www.covalenthq.com/docs/api/balances/get-erc20-token-transfers-for-address/){target=_blank}                             |     api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/address/{address}/transfers_v2/      |
+    |                   [Token holders](https://www.covalenthq.com/docs/api/balances/#balances/get-token-holders-as-of-any-block-height-v2){target=_blank}                   | api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/tokens/{contract_address}/token_holders/ |
+    | [Log events (smart contract)](https://www.covalenthq.com/docs/api/base/get-log-events-by-contract-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank} |    api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/events/address/{contract_address}/    |
+    |                            [Log events (topic hash)](https://www.covalenthq.com/docs/api/base/get-log-events-by-topic-hash/){target=_blank}                            |          api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/events/topics/{topic}/          |
+    |                       [Security (Token Approvals)](https://www.covalenthq.com/docs/api/security/get-token-approvals-for-address/){target=_blank}                       |           api.covalenthq.com/v1/{{ networks.moonbase.chain_id }}/approvals/{address}/           |
 
 
 ## Unified API Parameters {: #unified-api-parameters. }
 
 === "Moonbeam"
-    |                                                                         Contract                                                                          |                               Address                                |
-    |:---------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-    |    chainName     |              `moonbeam-mainnet`               |
-    |    chainID    |            {{ `networks.moonbeam.chain_id` }}             |
-    |    Response Formats     |              JSON, CSV               |
-    | Real-Time Data Latency | 2 blocks |
-    | Batch Data Latency | 30 minutes |
-    |    API Free Tier    |              Limit of 4 RPS               |
-    |    API Premium Tier     |              Limit of 50 RPS               |
+    |        Contract        |              Address               |
+    |:----------------------:|:----------------------------------:|
+    |       chainName        |         `moonbeam-mainnet`         |
+    |        chainID         | {{ `networks.moonbeam.chain_id` }} |
+    |    Response Formats    |             JSON, CSV              |
+    | Real-Time Data Latency |              2 blocks              |
+    |   Batch Data Latency   |             30 minutes             |
+    |     API Free Tier      |           Limit of 4 RPS           |
+    |    API Premium Tier    |          Limit of 50 RPS           |
 
 === "Moonriver"
-    |                                                                         Contract                                                                          |                                Address                                |
-    |:---------------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------:|
-       |    chainName     |              `moonbeam-moonriver`               |
-    |    chainID    |            {{ `networks.moonriver.chain_id` }}             |
-    |    Response Formats     |              JSON, CSV               |
-    | Real-Time Data Latency | 2 blocks |
-    | Batch Data Latency | 30 minutes |
-    |    API Free Tier    |              Limit of 4 RPS               |
-    |    API Premium Tier     |              Limit of 50 RPS               |
+    |        Contract        |               Address               |
+    |:----------------------:|:-----------------------------------:|
+    |       chainName        |        `moonbeam-moonriver`         |
+    |        chainID         | {{ `networks.moonriver.chain_id` }} |
+    |    Response Formats    |              JSON, CSV              |
+    | Real-Time Data Latency |              2 blocks               |
+    |   Batch Data Latency   |             30 minutes              |
+    |     API Free Tier      |           Limit of 4 RPS            |
+    |    API Premium Tier    |           Limit of 50 RPS           |
 
 
 === "Moonbase Alpha"
-    |                                                                         Contract                                                                          |                               Address                                |
-    |:---------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-    |    chainName     |              `moonbeam-moonbase-alpha`               |
-    |    chainID    |            {{ `networks.moonbase.chain_id` }}             |
-    |    Response Formats     |              JSON, CSV               |
-    | Real-Time Data Latency | 2 blocks |
-    | Batch Data Latency | 30 minutes |
-    |    API Free Tier    |              Limit of 4 RPS               |
-    |    API Premium Tier     |              Limit of 50 RPS               |
+    |        Contract        |              Address               |
+    |:----------------------:|:----------------------------------:|
+    |       chainName        |     `moonbeam-moonbase-alpha`      |
+    |        chainID         | {{ `networks.moonbase.chain_id` }} |
+    |    Response Formats    |             JSON, CSV              |
+    | Real-Time Data Latency |              2 blocks              |
+    |   Batch Data Latency   |             30 minutes             |
+    |     API Free Tier      |           Limit of 4 RPS           |
+    |    API Premium Tier    |          Limit of 50 RPS           |
 
 
 ## Checking Prerequisites {: #checking-prerequisites } 
