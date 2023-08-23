@@ -15,7 +15,7 @@ description: Querying blockchain data such as balances, transactions, transfers,
 2. [Increment](#increment) - create and embed custom charts with no-code analytics
 
 
-This guide will cover all of the details needed to get started with the [Covalent API](https://www.covalenthq.com/docs/api/#/0/0/USD/1){target=_blank} and how to access the API endpoints for Moonbeam using curl commands, and JavaScript and Python snippets.
+This guide will cover all of the details needed to get started with the [Covalent API](https://www.covalenthq.com/docs/api/){target=_blank} and how to access the API endpoints for Moonbeam using curl commands and JavaScript and Python snippets.
 
 --8<-- 'text/disclaimers/third-party-content-intro.md'
 
