@@ -21,7 +21,7 @@ This guide will cover all of the details needed to get started with the [Covalen
 
 ## Unified API {: #unified-api } 
 
-Covalent's Unified API is a powerful but easy-to-use REST API that offers visibility to assets across all blockchain networks. The Unified API features a consistent request and response object format across networks. For example, a user can fetch all the token balances for a wallet address across any supported blockchain by changing the unique blockchain name or id path parameter in the request URL. Covalent's Unified API can offer more data flexibility than JSON-RPC interfaces which are typically limited to queries on a specific block. The Unified API also allows queries on multiple objects and batch exports of data.
+Covalent's Unified API is a powerful but easy-to-use REST API that offers visibility to assets across all blockchain networks. It features a consistent request and response object format across networks. For example, a user can fetch all the token balances for a wallet address across any supported blockchain by changing the unique blockchain name or id path parameter in the request URL. Covalent's Unified API can offer more data flexibility than JSON-RPC interfaces, which are typically limited to queries on a specific block. It also allows queries on multiple objects and batch exports of data.
 
 [![example-api-response-json](/images/builders/integrations/indexers/covalent/covalent-1.png)](https://www.covalenthq.com/docs/api/balances/get-token-balances-for-address/?utm_source=moonbeam&utm_medium=partner-docs)
 
