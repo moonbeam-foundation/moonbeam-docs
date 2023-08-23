@@ -60,7 +60,7 @@ The Covalent API has three classes of endpoints:
  - The default return format for all endpoints is JSON 
  - All requests require authentication; you will need [a free API Key](https://www.covalenthq.com/platform/#/auth/register/){target=_blank} to use the Covalent API
  - The cost of an API call is denominated in credits and varies depending on the particular call. Upon creating an API key, you're given a substantial amount of free credits to get started (100,000 at the time of writing). You can track your usage of these free credits on the [Increment Dashboard](https://www.covalenthq.com/platform/increment/#/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}
- - The root URL of the API is https://api.covalenthq.com/v1/ 
+ - The root URL of the API is: [https://api.covalenthq.com/v1/](https://api.covalenthq.com/v1/){target=_blank}
  - All requests are done over HTTPS (calls over plain HTTP will fail)
  - The refresh rate of the APIs is real-time: 30s or 2 blocks, and batch 30m or 40 blocks  
 
