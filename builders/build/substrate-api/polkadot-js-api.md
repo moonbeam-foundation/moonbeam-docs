@@ -29,13 +29,13 @@ First, you need to install the Polkadot.js API library for your project through 
 
 === "npm"
 
-    ```
+    ```bash
     npm i @polkadot/api
     ```
 
 === "yarn"
 
-    ```
+    ```bash
     yarn add @polkadot/api
     ```
 
@@ -129,14 +129,14 @@ Before diving into the details of performing different tasks via the Polkadot.js
 
 When the Polkadot.js API connects to a node, one of the first things it does is retrieve the metadata and decorate the API based on the metadata information. The metadata effectively provides data in the form of:
 
-```
+```text
 api.<type>.<module>.<section>
 ```
 
-Where `<type>` can be either: 
+Where `<type>` can be either:
 
 - `query` - for endpoints to read all the state queries
-- `tx` - for endpoints related to transactions 
+- `tx` - for endpoints related to transactions
 - `rpc` - for endpoints specific to RPC calls
 - `consts` - for endpoints specific to runtime constants
 
@@ -148,7 +148,7 @@ In this section, you will learn how to query for on-chain information using the 
 
 ### Moonbeam Chain State Queries {: #state-queries }
 
-This category of queries retrieves information related to the current state of the chain. These endpoints are generally of the form `api.query.<module>.<method>`, where the module and method decorations are generated through metadata. You can see a list of all available endpoints by examining the `api.query` object, for example via: 
+This category of queries retrieves information related to the current state of the chain. These endpoints are generally of the form `api.query.<module>.<method>`, where the module and method decorations are generated through metadata. You can see a list of all available endpoints by examining the `api.query` object, for example via:
 
 ```javascript
 console.log(api.query);
@@ -170,13 +170,14 @@ console.log(`${now}: balance of ${balance.free} and a current nonce of ${nonce}`
 ```
 
 ??? code "View the complete script"
+
     ```js
     --8<-- 'code/substrate-api/state-queries.js'
     ```
 
 ### Moonbeam RPC Queries {: #rpc-queries }
 
-The RPC calls provide the backbone for the transmission of data to and from the node. This means that all API endpoints such as `api.query`, `api.tx` or `api.derive` just wrap RPC calls, providing information in the encoded format as expected by the node. You can see a list of all available endpoints by examining the `api.rpc` object, for example via: 
+The RPC calls provide the backbone for the transmission of data to and from the node. This means that all API endpoints such as `api.query`, `api.tx` or `api.derive` just wrap RPC calls, providing information in the encoded format as expected by the node. You can see a list of all available endpoints by examining the `api.rpc` object, for example via:
 
 ```javascript
 console.log(api.rpc);
@@ -196,6 +197,7 @@ console.log(`${chain}: last block #${lastHeader.number} has hash ${lastHeader.ha
 ```
 
 ??? code "View the complete script"
+
     ```js
     --8<-- 'code/substrate-api/rpc-queries.js'
     ```
@@ -233,6 +235,7 @@ await api.query.system.account(addr, ({ nonce, data: balance }) => {
 ```
 
 ??? code "View the complete script"
+
     ```js
     --8<-- 'code/substrate-api/query-subscriptions.js'
     ```
@@ -262,6 +265,7 @@ There are a number of ways to add an account to the keyring instance, including 
     ```javascript
     --8<-- 'code/substrate-api/adding-accounts-mnemonic.js'
     ```
+
 === "From Private Key"
 
     ```javascript
@@ -270,7 +274,7 @@ There are a number of ways to add an account to the keyring instance, including 
 
 ## Send Transactions on Moonbeam  {: #transactions }
 
-Transaction endpoints are exposed on endpoints generally of the form `api.tx.<module>.<method>`, where the module and method decorations are generated through metadata. These allow you to submit transactions for inclusion in blocks, be it transfers, interacting with pallets, or anything else Moonbeam supports. You can see a list of all available endpoints by examining the `api.tx` object, for example via: 
+Transaction endpoints are exposed on endpoints generally of the form `api.tx.<module>.<method>`, where the module and method decorations are generated through metadata. These allow you to submit transactions for inclusion in blocks, be it transfers, interacting with pallets, or anything else Moonbeam supports. You can see a list of all available endpoints by examining the `api.tx` object, for example via:
 
 ```javascript
 console.log(api.tx);
@@ -278,8 +282,7 @@ console.log(api.tx);
 
 ### Send a Transaction {: #sending-basic-transactions }
 
-The Polkadot.js API library can be used to send transactions to the network. For example, assuming you've [initialized the API](#creating-an-API-provider-instance) and a [keyring instance](#creating-a-keyring-instance), you can use the following snippet to send a basic transaction (this code sample will also retrieve the encoded calldata of the transaction as well as the transaction hash after submitting): 
-
+The Polkadot.js API library can be used to send transactions to the network. For example, assuming you've [initialized the API](#creating-an-API-provider-instance) and a [keyring instance](#creating-a-keyring-instance), you can use the following snippet to send a basic transaction (this code sample will also retrieve the encoded calldata of the transaction as well as the transaction hash after submitting):
 
 ```javascript
 // Initialize wallet key pairs
@@ -303,6 +306,7 @@ console.log(`Submitted with hash ${txHash}`);
 ```
 
 ??? code "View the complete script"
+
     ```js
     --8<-- 'code/substrate-api/basic-transactions.js'
     ```
@@ -313,9 +317,9 @@ Note that the `signAndSend` function can also accept optional parameters, such a
 
 The transaction endpoint also offers a method to obtain weight information for a given `api.tx.<module>.<method>`. To do so, you'll need to use the `paymentInfo` function after having built the entire transaction with the specific `module` and `method`.
 
-The `paymetnInfo` function returns weight information in terms of `refTime` and `proofSize`, which can be used to determined the transaction fee. This is extermely helpful when crafting [remote execution calls via XCM](/builders/interoperability/xcm/xcm-transactor/){target=_blank}.
+The `paymetnInfo` function returns weight information in terms of `refTime` and `proofSize`, which can be used to determine the transaction fee. This is extremely helpful when crafting [remote execution calls via XCM](/builders/interoperability/xcm/xcm-transactor/){target=_blank}.
 
-For example, assuming you've [initialized the API](#creating-an-API-provider-instance), the following snippet shows how you can get the weight info for a simple balance transfer between two accounts:
+For example, assuming you've [initialized the API](#creating-an-API-provider-instance), the following snippet shows how you can get the weight information for a simple balance transfer between two accounts:
 
 ```javascript
 // Transaction to get weight information
@@ -329,6 +333,7 @@ console.log(`Transaction fee: ${partialFee.toHuman()}`);
 ```
 
 ??? code "View the complete script"
+
     ```js
     --8<-- 'code/substrate-api/payment-info.js'
     ```
@@ -377,6 +382,7 @@ api.tx.utility
 ```
 
 ??? code "View the complete script"
+
     ```js
     --8<-- 'code/substrate-api/batch-transactions.js'
     ```
@@ -438,7 +444,7 @@ Some of the methods availabe through the Polkadot.js API interface are also avai
       }'
     ```
 
-The [Consensus and Finality page](/builders/get-started/eth-compare/consensus-finality/#){target=_blank} has sample code for using the exposed custom and Substrate RPC calls to check the finality of a given transaction. 
+The [Consensus and Finality page](/builders/get-started/eth-compare/consensus-finality/#){target=_blank} has sample code for using the exposed custom and Substrate RPC calls to check the finality of a given transaction.
 
 ## Polkadot.js API Utility Functions {: #utilities }
 
