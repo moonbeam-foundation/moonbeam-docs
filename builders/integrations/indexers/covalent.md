@@ -118,7 +118,7 @@ For a full list of supported endpoints, refer to the [Covalent API reference](ht
     |        Contract        |              Address               |
     |:----------------------:|:----------------------------------:|
     |       chainName        |         `moonbeam-mainnet`         |
-    |        chainID         | {{ `networks.moonbeam.chain_id` }} |
+    |        chainID         | `{{ networks.moonbeam.chain_id }}` |
     |    Response Formats    |             JSON, CSV              |
     | Real-Time Data Latency |              2 blocks              |
     |   Batch Data Latency   |             30 minutes             |
@@ -129,7 +129,7 @@ For a full list of supported endpoints, refer to the [Covalent API reference](ht
     |        Contract        |               Address               |
     |:----------------------:|:-----------------------------------:|
     |       chainName        |        `moonbeam-moonriver`         |
-    |        chainID         | {{ `networks.moonriver.chain_id` }} |
+    |        chainID         | `{{ networks.moonriver.chain_id }}` |
     |    Response Formats    |              JSON, CSV              |
     | Real-Time Data Latency |              2 blocks               |
     |   Batch Data Latency   |             30 minutes              |
@@ -141,7 +141,7 @@ For a full list of supported endpoints, refer to the [Covalent API reference](ht
     |        Contract        |              Address               |
     |:----------------------:|:----------------------------------:|
     |       chainName        |     `moonbeam-moonbase-alpha`      |
-    |        chainID         | {{ `networks.moonbase.chain_id` }} |
+    |        chainID         | `{{ networks.moonbase.chain_id }}` |
     |    Response Formats    |             JSON, CSV              |
     | Real-Time Data Latency |              2 blocks              |
     |   Batch Data Latency   |             30 minutes             |
