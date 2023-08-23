@@ -80,7 +80,7 @@ The `execute` function of the Polkadot XCM Pallet accepts two parameters: `messa
     ```js
     const instr2 = {
       DepositAsset: {
-        assets: { Wild: 'All' },
+        assets: { Wild: { AllCounted: 1 } },
         beneficiary: {
           parents: 0,
           interior: {
@@ -102,11 +102,11 @@ The `execute` function of the Polkadot XCM Pallet accepts two parameters: `messa
     ```
 
 4. Specify the `maxWeight`, which includes a value for `refTime` and `proofSize` that you will need to define:
-    - The `refTime` is the amount of computational time that can be used for execution. For this example, you can set it to `100000000000n`
-    - The `proofSize` is the amount of storage in bytes that can be used. You can set this to `0`
+    - The `refTime` is the amount of computational time that can be used for execution. For this example, you can set it to `400000000` since the `refTime` for [`WithdrawAsset`](https://github.com/moonbeam-foundation/moonbeam/blob/{{networks.moonbase.spec_version}}/pallets/moonbeam-xcm-benchmarks/src/weights/moonbeam_xcm_benchmarks_fungible.rs#L37){target=_blank} and [`DepositAsset`](https://github.com/moonbeam-foundation/moonbeam/blob/{{networks.moonbase.spec_version}}/pallets/moonbeam-xcm-benchmarks/src/weights/moonbeam_xcm_benchmarks_fungible.rs#L59){target=_blank} is set to `200000000` each
+    - The `proofSize` is the amount of storage in bytes that can be used. You can set this to `14484` since the `proofSize` for [`WithdrawAsset`](https://github.com/moonbeam-foundation/moonbeam/blob/{{networks.moonbase.spec_version}}/pallets/moonbeam-xcm-benchmarks/src/weights/moonbeam_xcm_benchmarks_fungible.rs#L37){target=_blank} and [`DepositAsset`](https://github.com/moonbeam-foundation/moonbeam/blob/{{networks.moonbase.spec_version}}/pallets/moonbeam-xcm-benchmarks/src/weights/moonbeam_xcm_benchmarks_fungible.rs#L59){target=_blank} is set to `7242` each
 
     ```js
-    const maxWeight = { refTime: 100000000000n, proofSize: 0 } ;
+    const maxWeight = { refTime: 400000000n, proofSize: 14484n } ;
     ```
 
 Now that you have the values for each of the parameters, you can write the script for the execution. You'll take the following steps:
@@ -127,7 +127,7 @@ Now that you have the values for each of the parameters, you can write the scrip
 ```
 
 !!! note
-    You can view an example of the above script, which sends 1 DEV to Bobs's account on Moonbeam, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1c03030800040000010403001300008a5d784563010d0100000103003cd0a705a2dc65e5b1e1205896baa2be8a07c6e00700e876481700){target=_blank} using the following encoded calldata: `0x1c03030800040000010403001300008a5d784563010d0100000103003cd0a705a2dc65e5b1e1205896baa2be8a07c6e00700e876481700`.
+    You can view an example of the above script, which sends 1 DEV to Bobs's account on Moonbeam, on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/extrinsics/decode/0x1c03030800040000010403001300008a5d784563010d010204000103003cd0a705a2dc65e5b1e1205896baa2be8a07c6e002105e5f51e2){target=_blank} using the following encoded calldata: `0x1c03030800040000010403001300008a5d784563010d010204000103003cd0a705a2dc65e5b1e1205896baa2be8a07c6e002105e5f51e2`.
 
 Once the transaction is processed, the 0.1 DEV tokens should be withdrawn from Alice's account along with the associated XCM fees, and the destination account should have received 0.1 DEV tokens in their account. A `polkadotXcm.Attempted` event will be emitted with the outcome.
 
@@ -135,13 +135,13 @@ Once the transaction is processed, the 0.1 DEV tokens should be withdrawn from A
 
 In this section, you'll use the `xcmExecute` function of the [XCM Utilities Precompile](/builders/pallets-precompiles/precompiles/xcm-utils){target=_blank}, which is only supported on Moonbase Alpha, to execute an XCM message locally. The XCM Utilities Precompile is located at the following address:
 
-```
+```text
 {{ networks.moonbase.precompiles.xcm_utils }}
 ```
 
 Under the hood, the `xcmExecute` function of the XCM Utilities Precompile calls the `execute` function of the Polkadot XCM Pallet, which is a Substrate pallet that is coded in Rust. The benefit of using the XCM Utilities Precompile to call `xcmExecute` is that you can do so via the Ethereum API and use [Ethereum libraries](/builders/build/eth-api/libraries/){target=_blank} like [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank}.
 
-The `xcmExecute` function accepts two parameters: the SCALE encoded versioned XCM message to be executed and the maximum weight to be consumed. 
+The `xcmExecute` function accepts two parameters: the SCALE encoded versioned XCM message to be executed and the maximum weight to be consumed.
 
 First, you'll learn how to generate the encoded calldata, and then you'll learn how to use the encoded calldata to interact with the XCM Utilities Precompile.
 
@@ -168,23 +168,26 @@ Now that you have the SCALE encoded XCM message, you can use the following code 
 
 1. Create a provider and signer
 2. Create an instance of the XCM Utilities Precompile to interact with
-3. Define parameters required for the `xcmExecute` function, which will be the encoded calldata for the XCM message and the maximum weight to use to execute the message. You can set the `maxWeight` to be `100000000000n`, which corresponds to the `refTime`. The `proofSize` will automatically be set to the default, which is 64KB
+3. Define parameters required for the `xcmExecute` function, which will be the encoded calldata for the XCM message and the maximum weight to use to execute the message. You can set the `maxWeight` to be `400000000n`, which corresponds to the `refTime`. The `proofSize` will automatically be set to the default, which is 64KB
 4. Execute the XCM message
 
 !!! remember
     The following snippets are for demo purposes only. Never store your private keys in a JavaScript or Python file.
 
 === "Ethers.js"
+
     ```js
     --8<-- 'code/polkadotXcm/xcmExecute/ethers.js'
     ```
 
 === "Web3.js"
+
     ```js
     --8<-- 'code/polkadotXcm/xcmExecute/web3.js'
     ```
 
 === "Web3.py"
+
     ```py
     --8<-- 'code/polkadotXcm/xcmExecute/web3.py'
     ```
@@ -247,7 +250,7 @@ The `send` function of the Polkadot XCM Pallet accepts two parameters: `dest` an
         { Unlimited: null }
       ],
     };
-    ```    
+    ```
 
 4. Build the `DepositAsset` instruction, which will require you to define:
     - The multiasset identifier for UNIT tokens. You can use the [`WildMultiAsset` format](https://github.com/paritytech/xcm-format/blob/master/README.md#6-universal-asset-identifiers){target=_blank}, which allows for wildcard matching, to identify the asset
@@ -304,8 +307,9 @@ Once the transaction is processed, a `polkadotXcm.sent` event is emitted with th
 In this section, you'll use the `xcmSend` function of the [XCM Utilities Precompile](/builders/pallets-precompiles/precompiles/xcm-utils){target=_blank}, which is only supported on Moonbase Alpha, to send an XCM message cross-chain. The XCM Utilities Precompile is located at the following address:
 
 === "Moonbase Alpha"
-     ```
-     {{networks.moonbase.precompiles.xcm_utils}}
+
+     ```text
+     {{ networks.moonbase.precompiles.xcm_utils }}
      ```
 
 Under the hood, the `xcmSend` function of the XCM Utilities Precompile calls the `send` function of the Polkadot XCM Pallet, which is a Substrate pallet that is coded in Rust. The benefit of using the XCM Utilities Precompile to call `xcmSend` is that you can do so via the Ethereum API and use Ethereum libraries like [Ethers.js](/builders/build/eth-api/libraries/ethersjs){target=_blank}. For the XCM message to be successfully executed, the target chain needs to be able to understand the instructions in the message.
@@ -353,18 +357,21 @@ Now that you have the SCALE encoded XCM message and the destination multilocatio
     The following snippets are for demo purposes only. Never store your private keys in a JavaScript or Python file.
 
 === "Ethers.js"
+
     ```js
     --8<-- 'code/polkadotXcm/xcmSend/ethers.js'
     ```
 
 === "Web3.js"
+
     ```js
     --8<-- 'code/polkadotXcm/xcmSend/web3.js'
     ```
 
 === "Web3.py"
+
     ```py
     --8<-- 'code/polkadotXcm/xcmSend/web3.py'
     ```
 
-And that's it! You've successfully used the Polkadot XCM Pallet and the XCM Utilities Precompile to send a message from Moonbase Alpha to another chain! 
+And that's it! You've successfully used the Polkadot XCM Pallet and the XCM Utilities Precompile to send a message from Moonbase Alpha to another chain!

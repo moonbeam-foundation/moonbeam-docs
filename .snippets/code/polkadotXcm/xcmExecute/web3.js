@@ -17,7 +17,7 @@ const xcmUtils = new web3.eth.Contract(
 const executeXcmMessageLocally = async () => {
   /* Define parameters required for the xcmExecute function */
   const encodedCalldata = 'INSERT_ENCODED_CALLDATA';
-  const maxWeight = '100000000000';
+  const maxWeight = '400000000';
 
   /* Send the custom XCM message */
   // Craft the extrinsic

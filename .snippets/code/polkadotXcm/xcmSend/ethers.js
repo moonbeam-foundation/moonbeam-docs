@@ -5,7 +5,7 @@ const privateKey = 'INSERT_PRIVATE_KEY';
 const xcmUtilsAddress = '0x000000000000000000000000000000000000080C';
 
 /* Create Ethers provider and signer */
-const provider = new ethers.providers.JsonRpcProvider(
+const provider = new ethers.JsonRpcProvider(
   'https://rpc.api.moonbase.moonbeam.network'
 );
 const signer = new ethers.Wallet(privateKey, provider);
