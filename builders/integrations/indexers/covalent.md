@@ -116,7 +116,7 @@ For a full list of supported endpoints, refer to the [Covalent API reference](ht
 ## Unified API Parameters {: #unified-api-parameters. }
 
 === "Moonbeam"
-    |        Contract        |              Address               |
+    |        Parameter       |                Value               |
     |:----------------------:|:----------------------------------:|
     |       chainName        |         `moonbeam-mainnet`         |
     |        chainID         | `{{ networks.moonbeam.chain_id }}` |
@@ -127,7 +127,7 @@ For a full list of supported endpoints, refer to the [Covalent API reference](ht
     |    API Premium Tier    |          Limit of 50 RPS           |
 
 === "Moonriver"
-    |        Contract        |               Address               |
+    |        Parameter       |                Value                |
     |:----------------------:|:-----------------------------------:|
     |       chainName        |        `moonbeam-moonriver`         |
     |        chainID         | `{{ networks.moonriver.chain_id }}` |
@@ -139,7 +139,7 @@ For a full list of supported endpoints, refer to the [Covalent API reference](ht
 
 
 === "Moonbase Alpha"
-    |        Contract        |              Address               |
+    |        Parameter       |                Value               |
     |:----------------------:|:----------------------------------:|
     |       chainName        |     `moonbeam-moonbase-alpha`      |
     |        chainID         | `{{ networks.moonbase.chain_id }}` |
