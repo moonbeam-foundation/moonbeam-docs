@@ -19,13 +19,6 @@ This guide will cover all of the details needed to get started with the [Covalen
 
 --8<-- 'text/disclaimers/third-party-content-intro.md'
 
-## Unified API {: #unified-api } 
-
-Covalent's Unified API is a powerful but easy-to-use REST API that offers visibility to assets across all blockchain networks. It features a consistent request and response object format across networks. For example, a user can fetch all the token balances for a wallet address across any supported blockchain by changing the unique blockchain name or id path parameter in the request URL. Covalent's Unified API can offer more data flexibility than JSON-RPC interfaces, which are typically limited to queries on a specific block. It also allows queries on multiple objects and batch exports of data.
-
-[![Example API response in JSON](/images/builders/integrations/indexers/covalent/covalent-1.png)](https://www.covalenthq.com/docs/api/balances/get-token-balances-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank} *Click on the above image to try out the request yourself.*
-
-
 ## Quick Start {: #quick-start } 
 
 If you're familiar with Covalent and looking to learn how to dive right in on any of the Moonbeam-based networks, you only need to provide the chain ID:
@@ -44,6 +37,13 @@ If you're familiar with Covalent and looking to learn how to dive right in on an
     ```
     {{ networks.moonbase.chain_id }}
     ```
+
+
+## Unified API {: #unified-api } 
+
+Covalent's Unified API is a powerful but easy-to-use REST API that offers visibility to assets across all blockchain networks. It features a consistent request and response object format across networks. For example, a user can fetch all the token balances for a wallet address across any supported blockchain by changing the unique blockchain name or id path parameter in the request URL. Covalent's Unified API can offer more data flexibility than JSON-RPC interfaces, which are typically limited to queries on a specific block. It also allows queries on multiple objects and batch exports of data.
+
+[![Example API response in JSON](/images/builders/integrations/indexers/covalent/covalent-1.png)](https://www.covalenthq.com/docs/api/balances/get-token-balances-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank} *Click on the above image to try out the request yourself.*
 
 ## Types of Endpoints {: #types-of-endpoints } 
 
