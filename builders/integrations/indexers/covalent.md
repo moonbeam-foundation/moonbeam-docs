@@ -271,7 +271,8 @@ Increment is a no-code charting and reporting tool that enables users to build d
 
 [![example-increment-chart](/images/builders/integrations/indexers/covalent/covalent-3.png)](https://www.covalenthq.com/platform/increment/#/?utm_source=moonbeam&utm_medium=partner-docs)
 
-### Common use cases {: #common-use-cases } 
+### Common Use Cases {: #common-use-cases } 
+
 Increment can be used for:
 
 - [Analyzing blockchain networks](https://www.covalenthq.com/docs/increment/data-models/chain-gdp/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank}
