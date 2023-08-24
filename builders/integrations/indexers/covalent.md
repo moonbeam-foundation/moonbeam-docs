@@ -26,6 +26,30 @@ Covalent's Unified API is a powerful but easy-to-use REST API that offers visibi
 
 [![Example API response in JSON](/images/builders/integrations/indexers/covalent/covalent-1.png)](https://www.covalenthq.com/docs/api/balances/get-token-balances-for-address/?utm_source=moonbeam&utm_medium=partner-docs){target=_blank} *Click on the above image to try out the request yourself.*
 
+### Quick Start {: #quick-start } 
+
+If you're already familiar with Covalent and ready to dive in, you simply need the chainID and network name to get started.
+
+=== "Moonbeam"
+    |        Parameter       |                Value               |
+    |:----------------------:|:----------------------------------:|
+    |       chainName        |         `moonbeam-mainnet`         |
+    |        chainID         | `{{ networks.moonbeam.chain_id }}` |
+
+
+=== "Moonriver"
+    |        Parameter       |                Value                |
+    |:----------------------:|:-----------------------------------:|
+    |       chainName        |        `moonbeam-moonriver`         |
+    |        chainID         | `{{ networks.moonriver.chain_id }}` |
+
+
+=== "Moonbase Alpha"
+    |        Parameter       |                Value               |
+    |:----------------------:|:----------------------------------:|
+    |       chainName        |     `moonbeam-moonbase-alpha`      |
+    |        chainID         | `{{ networks.moonbase.chain_id }}` |
+
 ### Fundamentals of the Unified API {: #fundamentals-of-the-unified-api } 
 
  - The Covalent API is RESTful and it is designed around the main resources that are available through the web interface
@@ -101,8 +125,6 @@ For a full list of supported endpoints, refer to the [Covalent API reference](ht
 === "Moonbeam"
     |        Parameter       |                Value               |
     |:----------------------:|:----------------------------------:|
-    |       chainName        |         `moonbeam-mainnet`         |
-    |        chainID         | `{{ networks.moonbeam.chain_id }}` |
     |    Response Formats    |             JSON, CSV              |
     | Real-Time Data Latency |              2 blocks              |
     |   Batch Data Latency   |             30 minutes             |
@@ -112,8 +134,6 @@ For a full list of supported endpoints, refer to the [Covalent API reference](ht
 === "Moonriver"
     |        Parameter       |                Value                |
     |:----------------------:|:-----------------------------------:|
-    |       chainName        |        `moonbeam-moonriver`         |
-    |        chainID         | `{{ networks.moonriver.chain_id }}` |
     |    Response Formats    |              JSON, CSV              |
     | Real-Time Data Latency |              2 blocks               |
     |   Batch Data Latency   |             30 minutes              |
@@ -124,8 +144,6 @@ For a full list of supported endpoints, refer to the [Covalent API reference](ht
 === "Moonbase Alpha"
     |        Parameter       |                Value               |
     |:----------------------:|:----------------------------------:|
-    |       chainName        |     `moonbeam-moonbase-alpha`      |
-    |        chainID         | `{{ networks.moonbase.chain_id }}` |
     |    Response Formats    |             JSON, CSV              |
     | Real-Time Data Latency |              2 blocks              |
     |   Batch Data Latency   |             30 minutes             |
