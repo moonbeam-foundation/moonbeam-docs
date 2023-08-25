@@ -3,7 +3,9 @@ const supportedLanguages = ['cn'];
 
 const selectWrapper = document.querySelector('.language-select-wrapper');
 const languageSelect = document.querySelector('.language-select');
-const languageOptions = document.querySelectorAll('.language-select-wrapper .language-select li');
+const languageOptions = document.querySelectorAll(
+  '.language-select-wrapper .language-select li'
+);
 const selectLabel = document.querySelector('.language-select-label');
 const openArrow = document.querySelector('.selector-open');
 const closedArrow = document.querySelector('.selector-closed');
@@ -29,7 +31,7 @@ const getCurrentPath = () => {
   }
 
   return currentPath;
-}
+};
 
 /* Show user the current language on the dropdown */
 const displayLanguage = (label, language, abbreviatedLanguage) => {
@@ -77,12 +79,22 @@ if (currentLanguage === 'en') {
 } else {
   const currentLanguageElement = document.querySelector(`.${currentLanguage}`);
   currentLanguageElement.classList.add(selected);
-  displayLanguage(selectLabel, currentLanguageElement.textContent, currentLanguage.toUpperCase());
+  displayLanguage(
+    selectLabel,
+    currentLanguageElement.textContent,
+    currentLanguage.toUpperCase()
+  );
 }
 
 /* Add event listeners */
 selectWrapper.addEventListener('click', (e) => {
   e.preventDefault();
+
+  // Make sure we have the latest current path. Due to mkdocs navigation.instant the page doesn't
+  // always reload so this script doesn't always run. So, if we grab it after the user has clicked
+  // on the dropdown menu, we're sure to get the correct path before redirecting them
+  currentPath = getCurrentPath();
+
   selectWrapper.classList.toggle('active');
   openArrow.classList.toggle('active');
   closedArrow.classList.toggle('active');
@@ -93,11 +105,6 @@ languageOptions.forEach((option) => {
   displayLanguage(option, null, destinationLanguage.toUpperCase());
   option.addEventListener('click', (e) => {
     e.preventDefault();
-
-    // Make sure we have the latest current path. Due to mkdocs navigation.instant the page doesn't
-    // always reload so this script doesn't always run. So, if we grab it after the user has clicked
-    // on the dropdown menu, we're sure to get the correct path before redirecting them
-    currentPath = getCurrentPath();
 
     // Redirect users to the destination language
     if (supportedLanguages.includes(destinationLanguage)) {
