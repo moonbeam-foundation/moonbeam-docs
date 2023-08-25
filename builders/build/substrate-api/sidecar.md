@@ -92,11 +92,11 @@ If the installation and configuration are successful, you should see this output
 
 Some of the commonly used Substrate API Sidecar endpoints include:
 
- - **GET /blocks​/head** — Get the most recently finalized block. The optional parameter `finalized` can be set to `false` to the get the newest known block, which may not be finalized.
- - **GET /blocks/head/header** — Get the most recently finalized block header. The optional parameter `finalized` can be set to `false` to the get the newest known block header, which may not be finalized.
- - **GET /blocks/{blockId}** — Get a block by its height or hash.
- - **GET /accounts/{accountId}/balance-info** — Get balance information for an account.
- - **GET /node/version** — Get information about the Substrates node's implementation and versioning.
+ - **GET /blocks​/head** — Get the most recently finalized block. The optional parameter `finalized` can be set to `false` to the get the newest known block, which may not be finalized
+ - **GET /blocks/head/header** — Get the most recently finalized block header. The optional parameter `finalized` can be set to `false` to the get the newest known block header, which may not be finalized
+ - **GET /blocks/{blockId}** — Get a block by its height or hash
+ - **GET /accounts/{accountId}/balance-info** — Get balance information for an account
+ - **GET /node/version** — Get information about the Substrates node's implementation and versioning
  - **GET /runtime/metadata** — Get the runtime metadata in decoded, JSON form.
 
 For a full list of API endpoints available on Substrate API Sidecar, please refer to the [official documentation](https://paritytech.github.io/substrate-api-sidecar/dist/).
