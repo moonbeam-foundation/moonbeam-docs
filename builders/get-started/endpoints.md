@@ -33,7 +33,6 @@ You can create your own endpoint suitable for development or production use usin
 
 - [1RPC](#1rpc)
 - [Blast](#blast)
-- [BlockSpaces](#blockspaces)
 - [Dwellir](#dwellir)
 - [GetBlock](#getblock)
 - [OnFinality](#onfinality)
@@ -65,18 +64,6 @@ To get started, you'll need to head to [Blast](https://blastapi.io/){target=_bla
 
 ![Bware Labs](/images/builders/get-started/endpoints/endpoints-2.png)
 
-### BlockSpaces {: #blockspaces}
-
- [BlockSpaces](https://www.blockspaces.com/){target=_blank} is a multiweb integration platform that offers a free RPC endpoint service in support of the community.  You will be able to obtain your endpoint allowing you to interact with Moonbeam/Moonriver just by providing your email! All endpoints are free and support up to 10m transactions daily.
-
-To get started, you'll need to head to [BlockSpaces](https://www.blockspaces.com/web3-infrastructure){target=_blank}, and just put in your email address. That's it! Once you're in, point your dApp at our Moonbeam, or Moonriver endpoint and you're up and running.
-
-1. Visit [BlockSpaces](https://www.blockspaces.com/web3-infrastructure){target=_blank}
-2. Submit your **email**
-3. Copy Moonbeam/Moonriver endpoint to your clipboard
-
- ![BlockSpaces](/images/builders/get-started/endpoints/endpoints-3.png)
-
 ### Dwellir {: #dwellir }
 
 [Dwellir](https://www.dwellir.com/){target=_blank} is a blockchain operation service that ensures global scalability, low latency, and a 99.99% uptime guarantee, providing fast and reliable node operations wherever your business stands. The public endpoint service is geographically distributed bare metal servers globally. As the service is public, there are no sign-up or API keys to manage.
@@ -86,7 +73,7 @@ To get started with a developer endpoint or dedicated node, you'll need to conta
 1. Visit [Dwellir](https://www.dwellir.com/contact){target=_blank}
 2. Submit your **email** and your node request
 
-![Dwellir](/images/builders/get-started/endpoints/endpoints-4.png)
+![Dwellir](/images/builders/get-started/endpoints/endpoints-3.png)
 
 ### GetBlock {: #getblock }
 
@@ -100,7 +87,7 @@ Creating a new API key is simple, all you have to do is:
 2. Enter a name for your API key
 3. Click **Create** to generate your API key
 
-![GetBlock](/images/builders/get-started/endpoints/endpoints-5.png)
+![GetBlock](/images/builders/get-started/endpoints/endpoints-4.png)
 
 ### OnFinality {: #onfinality }
 
@@ -112,7 +99,7 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 2. Select the network from the dropdown
 3. Your custom API endpoint will be generated automatically
 
-![OnFinality](/images/builders/get-started/endpoints/endpoints-6.png)
+![OnFinality](/images/builders/get-started/endpoints/endpoints-5.png)
 
 ### Pocket Network {: #pokt }
 
@@ -125,7 +112,7 @@ To get your own endpoint, go to [Pocket Network](https://mainnet.portal.pokt.net
 3. Enter the name of your DApp and select your corresponding network
 4. Your new endpoint will be generated and displayed for you in the following app screen
 
-![Pocket Network](/images/builders/get-started/endpoints/endpoints-7.png)
+![Pocket Network](/images/builders/get-started/endpoints/endpoints-6.png)
 
 You don't have to generate a new DApp for every endpoint! You can add a new chain to your preexisting DApp:  
 
