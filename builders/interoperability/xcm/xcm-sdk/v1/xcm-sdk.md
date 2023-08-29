@@ -445,13 +445,6 @@ The `swap` function returns the transfer data with the original source chain and
           weight: 1000000000,
           ws: 'wss://rpc.polkadot.io'
         },
-        destinationFeeBalance: e {
-          key: 'dot',
-          originSymbol: 'DOT',
-          amount: 0n,
-          decimals: 10,
-          symbol: 'DOT'
-        },
         existentialDeposit: e {
           key: 'dot',
           originSymbol: 'DOT',
@@ -526,6 +519,13 @@ The `swap` function returns the transfer data with the original source chain and
           ws: 'wss://wss.api.moonbeam.network',
           id: 1284,
           rpc: 'https://rpc.api.moonbeam.network'
+        },
+        destinationFeeBalance: e {
+          key: 'dot',
+          originSymbol: 'DOT',
+          amount: 0n,
+          decimals: 10,
+          symbol: 'DOT'
         },
         existentialDeposit: e {
           key: 'glmr',
