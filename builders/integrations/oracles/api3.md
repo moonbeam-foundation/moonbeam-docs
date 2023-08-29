@@ -421,5 +421,6 @@ Here are some additional developer resources:
     - [QRNG Docs](https://docs.api3.org/explore/qrng/){target=_blank}
 - [API3 DAO GitHub](https://github.com/api3dao/){target=_blank}
 - [API3 Medium](https://medium.com/api3){target=_blank}
+- [API3 YouTube](https://www.youtube.com/API3DAO){target=_blank}
 
 --8<-- 'text/disclaimers/third-party-content.md'
