@@ -140,7 +140,7 @@ npx thirdweb install
 
 Wrap your application in the `ThirdwebProvider` component and change the `activeChain` to Moonbeam.
 
-```jsx
+```javascript
 import { ThirdwebProvider } from '@thirdweb-dev/react';
 import { Moonbeam } from '@thirdweb-dev/chains';
 
@@ -157,7 +157,7 @@ const App = () => {
 
 To connect to your contract, use the SDK’s [`getContract`](https://portal.thirdweb.com/typescript/sdk.thirdwebsdk.getcontract){target=_blank} method.
 
-```jsx
+```javascript
 import { useContract } from '@thirdweb-dev/react';
 
 function App() {
@@ -171,7 +171,7 @@ For extension based functions, use the built-in supported hooks. There are sever
 
 - Use the NFTs extension to access a list of NFTs owned by an address via the [`useOwnedNFTs` hook](https://portal.thirdweb.com/react/react.useownednfts){target=_blank}:
 
-    ```jsx
+    ```javascript
     import { useOwnedNFTs, useContract, useAddress } from '@thirdweb-dev/react';
 
     // Your smart contract address
@@ -186,7 +186,7 @@ For extension based functions, use the built-in supported hooks. There are sever
 
 - Use the [`useContractRead` hook](https://portal.thirdweb.com/react/react.usecontractread){target=_blank} to call any read functions on your contract by passing in the name of the function you want to use:
 
-    ```jsx
+    ```javascript
     import { useContractRead, useContract } from '@thirdweb-dev/react';
 
     // Your smart contract address
@@ -201,7 +201,7 @@ For extension based functions, use the built-in supported hooks. There are sever
 
 - Use the [`useContractWrite` hook](https://portal.thirdweb.com/react/react.usecontractwrite){target=_blank} to call any write functions on your contract by passing in the name of the function you want to use:
 
-    ```jsx
+    ```javascript
     import {
       useContractWrite,
       useContract,
@@ -237,7 +237,7 @@ There are a couple of ways that you can create a custom [connect wallet](https:/
 
 The following example will show you how to use the `ConnectWallet` component. To go this route, you will need to specify the supported wallets and pass them to your provider.
 
-```jsx
+```javascript
 import {
   ThirdwebProvider,
   metamaskWallet,
@@ -273,7 +273,7 @@ function MyApp() {
 
 Next, you'll need to add in a connect wallet button to prompt end-users to login with any of the above supported wallets.
 
-```jsx
+```javascript
 import { ConnectWallet } from '@thirdweb-dev/react';
 
 function App() {

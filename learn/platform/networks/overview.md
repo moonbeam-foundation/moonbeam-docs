@@ -11,8 +11,7 @@ An overview of our parachain deployments are as follows:
 
  - Moonbeam: deployment on Polkadot (_December 2021_)
  - Moonriver: deployment on Kusama (_June 2021_)
- - Moonrock: deployment on the Rococo TestNet (_May 2021_)
- - Moonbase Alpha: PureStake hosted parachain TestNet (_September 2020_) 
+ - Moonbase Alpha: Parachain TestNet for Moonbeam and Moonriver (_September 2020_) 
  
 This strategy allows us to de-risk software upgrades to Moonbeam on the Polkadot MainNet while still maintaining a reasonable update velocity.
 
@@ -31,12 +30,6 @@ In advance of deploying to the Polkadot MainNet, [Moonbeam launched Moonriver](h
 Moonriver will offer parachain-related functionalities such as [XCMP](https://wiki.polkadot.network/docs/learn-crosschain){target=_blank} and [SPREE](https://wiki.polkadot.network/docs/learn-spree){target=_blank} as these features become available.
 
 [Learn more about Moonriver](/learn/platform/networks/moonriver/).
-
-## Moonrock {: #moonrock } 
-
-We decided not to participate in the first parachain deployments to Rococo because we have been running our own parachain/relay chain setup since we launched our TestNet in September 2020.
-
-However, Moonrock was deployed to Rococo for the first time in May 2021. 
 
 ## Moonbase Alpha {: #moonbase-alpha } 
 

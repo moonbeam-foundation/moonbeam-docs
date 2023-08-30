@@ -24,7 +24,7 @@ networks:
     node_directory: /var/lib/alphanet-data
     node_db_loc: /chains/moonbase_alpha/db
     binary_name: moonbeam
-    min_gas_price: 1
+    min_gas_price: 0.125
     block_time: 12
     website_faucet_amount: 1.1 DEV tokens
     chaindrop_faucet_amount: 0.1 DEV tokens
@@ -282,7 +282,7 @@ networks:
       min_can_stk: 500
       min_can_stk_wei: 500000000000000000000
       collator_map_bond: 100
-      max_candidates: 37
+      max_candidates: 36
       round_blocks: 600
       round_hours: 2
       min_del_stake: 1
@@ -395,7 +395,7 @@ networks:
     block_explorer: https://moonriver.moonscan.io/
     spec_version: runtime-2403
     binary_name: moonbeam
-    min_gas_price: 1
+    min_gas_price: 1.25
     block_time: 12
     gas_block: 15M
     gas_tx: 12.995M
@@ -734,7 +734,7 @@ networks:
     block_explorer: https://moonscan.io
     spec_version: runtime-2403
     binary_name: moonbeam
-    min_gas_price: 100
+    min_gas_price: 125
     block_time: 12
     gas_block: 15M
     gas_tx: 12.995M
@@ -932,7 +932,7 @@ networks:
       min_can_stk: 2000000
       min_can_stk_wei: 2000000000000000000000000
       collator_map_bond: 10000
-      max_candidates: 72
+      max_candidates: 76
       round_blocks: 1800
       round_hours: 6
       min_del_stake: 50
@@ -1040,7 +1040,7 @@ networks:
       metadata_byte_deposit: .01
     orbiter:
       max_orbiters_per_collator: 6
-      max_collators: 4
+      max_collators: 5
       active:
         rounds: 1
         hours: 6

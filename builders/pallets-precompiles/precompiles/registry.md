@@ -38,7 +38,7 @@ The Registry Precompile is located at the following address:
 
 ??? code "PrecompileRegistry.sol"
 
-    ```sol
+    ```solidity
     --8<-- 'code/precompiles/registry/PrecompileRegistry.sol'
     ```
 
