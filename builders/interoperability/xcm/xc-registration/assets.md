@@ -27,7 +27,7 @@ Registering External XC-20s on Moonbeam is a multi-step process that, at a high 
 
 If a channel between Moonbeam and the origin chain of the asset does not yet exist, one will need to be opened. You can batch the channel-related calls with the asset registration calls, so you only need to submit a single proposal. You'll need to start by creating a couple of forum posts: an [XCM Disclosure](/builders/interoperability/xcm/xc-registration/forum-templates#xcm-disclosures){target=_blank} post and an [XCM Proposal](/builders/interoperability/xcm/xc-registration/forum-templates#xcm-proposals){target=_blank} post.
 
-After you've collected feedback from community members, you can create a proposal to open a channel and register any assets. Please refer to the [Establishing an XC Integration with Moonbeam](/builders/interoperability/xcm/xc-integration/){target=_blank} guide for more information on opening a channel.
+After you've collected feedback from community members, you can create a proposal to open a channel and register any assets. Please refer to the [Establishing an XC Integration with Moonbeam](/builders/interoperability/xcm/xc-registration/xc-integration){target=_blank} guide for more information on opening a channel.
 
 ![Asset registration if XC channel doesn't exist](/images/builders/interoperability/xcm/xc-registration/assets/assets-1.png)
 
@@ -266,7 +266,7 @@ If you need DEV tokens (the native token for Moonbase Alpha) to use your XC-20 a
 
 In order to enable cross-chain transfers of Moonbeam assets, including Moonbeam native assets (GLMR, MOVR, DEV) and local XC-20s (XCM-enabled ERC-20s) deployed on Moonbeam, between Moonbeam and another chain, you'll need to register the assets on the other chain. Since each chain stores cross-chain assets differently, the exact steps to register Moonbeam assets on another chain will vary depending on the chain. At the very least, you'll need to know the metadata and the multilocation of the assets on Moonbeam.
 
-There are additional steps aside from asset registration that will need to be taken to enable cross-chain integration with Moonbeam. For more information, please refer to the [Establishing an XC Integration with Moonbeam](/builders/interoperability/xcm/xc-integration){target=_blank} guide.
+There are additional steps aside from asset registration that will need to be taken to enable cross-chain integration with Moonbeam. For more information, please refer to the [Establishing an XC Integration with Moonbeam](/builders/interoperability/xcm/xc-registration/xc-integration){target=_blank} guide.
 
 ### Register Moonbeam Native Assets on Another Chain {: #register-moonbeam-native-assets }
 

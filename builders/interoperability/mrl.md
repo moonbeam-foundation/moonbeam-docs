@@ -5,14 +5,12 @@ description: Learn how to receive Moonbeam Routed Liquidity after establishing a
 
 # Moonbeam Routed Liquidity
 
-![XCM Overview Banner](/images/builders/interoperability/xcm/xc-integration/xc-integration-banner.png)
-
 ## Introduction {: #introduction }
 
 Moonbeam Routed Liquidity (MRL) refers to a Moonbeam use case in which liquidity in any blockchain ecosystem that Moonbeam is connected to can be routed to Polkadot parachains. This is possible because of multiple components that work together:
 
 - **General Message Passing (GMP)** - technology connecting multiple blockchains together, including Moonbeam. With it, developers can pass messages with arbitrary data, and tokens can be sent across non-parachain blockchains through [chain-agnostic GMP protocols](/builders/interoperability/protocols){target=_blank}
-- [**Cross-Consensus Message Passing (XCM)**](builders/interoperability/xcm/overview/){target=_blank} - Polkadot's flavor of GMP. Main technology driving cross-chain interactions between Polkadot and its parachains, including Moonbeam
+- [**Cross-Consensus Message Passing (XCM)**](/builders/interoperability/xcm/overview/){target=_blank} - Polkadot's flavor of GMP. Main technology driving cross-chain interactions between Polkadot and its parachains, including Moonbeam
 - **XCM-Enabled ERC-20s** - also referred to as [local XC-20s](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=_blank}, are all of the ERC-20 tokens that exist on Moonbeam's EVM that are XCM-enabled out of the box
 - [**GMP Precompile**](/builders/pallets-precompiles/precompiles/gmp/){target=_blank} - a [precompiled contract](/builders/pallets-precompiles/precompiles/overview/){target=_blank} that acts as an interface between a message passed from [Wormhole GMP protocol](/builders/interoperability/protocols/wormhole/){target=_blank} and XCM
 
